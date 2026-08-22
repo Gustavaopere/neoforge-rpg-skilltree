@@ -1,0 +1,1 @@
+Temporary marker created during synchronization. It will be replaced by actual Alpha 2 documentation.
