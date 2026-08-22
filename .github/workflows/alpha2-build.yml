@@ -1,0 +1,48 @@
+name: Alpha 2 Build
+
+on:
+  push:
+    branches:
+      - main
+      - feat/alpha2-runtime
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Core tests
+        run: bash scripts/test-core.sh
+
+      - name: Data validation
+        run: python3 scripts/validate-data.py
+
+      - name: Client tree validation
+        run: python3 scripts/validate-client-tree.py
+
+      - name: Node effect validation
+        run: python3 scripts/validate-node-effects.py
+
+      - name: Runtime scaffold validation
+        run: python3 scripts/verify-runtime-scaffold.py
+
+      - name: NeoForge build
+        run: gradle --no-daemon build
