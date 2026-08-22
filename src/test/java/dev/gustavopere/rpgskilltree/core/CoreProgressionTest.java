@@ -1,7 +1,7 @@
 package dev.gustavopere.rpgskilltree.core;
 import java.util.*;
 public final class CoreProgressionTest {
- public static void main(String[] a){modifierOrder();override();archetypes();hybrids();tags();treeUnlocksRequireGatewayAndMastery();canonicalStatsResolveWithoutAmbiguity();normalizedActionsHaveStableIdentityAndProcGuard();attunementRespecEjectsOverflowDeterministically();System.out.println("CoreProgressionTest: PASS");}
+ public static void main(String[] a){modifierOrder();override();archetypes();hybrids();tags();treeUnlocksRequireGatewayAndMastery();canonicalStatsResolveWithoutAmbiguity();normalizedActionsHaveStableIdentityAndProcGuard();attunementRespecEjectsOverflowDeterministically();masteryPoliciesRewardRealActionsOnly();System.out.println("CoreProgressionTest: PASS");}
  static void modifierOrder(){var r=ModifierResolver.resolve(10,List.of(new ModifierSpec("attack_damage",ModifierOperation.ADD_FLAT,5,"node:flat",0),new ModifierSpec("attack_damage",ModifierOperation.ADD_PERCENT_BASE,.2,"node:percent",0),new ModifierSpec("attack_damage",ModifierOperation.MULTIPLY_TOTAL,.5,"node:more",0)));close(25.5,r.value());}
  static void override(){var r=ModifierResolver.resolve(1,List.of(new ModifierSpec("x",ModifierOperation.OVERRIDE,2,"z",10),new ModifierSpec("x",ModifierOperation.OVERRIDE,3,"a",10)));eq(3.0,r.value());}
  static void archetypes(){var s=InvestmentState.of(List.of(new NodeInvestment("a",Map.of(ProgressionDomain.ARCANE,8),Set.of("magic")),new NodeInvestment("m",Map.of(ProgressionDomain.MARTIAL,7),Set.of())));var mage=new ArchetypeDefinition("mage",10,Map.of(ProgressionDomain.ARCANE,8),Set.of(),Set.of());var war=new ArchetypeDefinition("warrior",10,Map.of(ProgressionDomain.MARTIAL,8),Set.of(),Set.of());eq(List.of("mage"),ArchetypeResolver.resolve(s,List.of(mage,war)).stream().map(ArchetypeMatch::archetypeId).toList());}
@@ -46,6 +46,16 @@ public final class CoreProgressionTest {
   eq(List.of("relics:relic_a","artifacts:artifact_b"),plan.kept().stream().map(AttunedItem::itemId).toList());
   eq(List.of("create_wizardry:focus"),plan.ejected().stream().map(AttunedItem::itemId).toList());
   eq(0,AttunementPlanner.resize(current,0).kept().size());
+ }
+
+ static void masteryPoliciesRewardRealActionsOnly(){
+  var fire=new SpellAction(new ActionOrigin("irons_spellbooks:fireball",0),"irons","irons_spellbooks:fireball","fire",Set.of("spell","projectile"),40);
+  eq(List.of("magic:casting","irons:fire"),MasteryPolicies.forIron(fire).stream().map(MasteryAward::laneId).toList());
+  eq(List.of(),MasteryPolicies.forIron(fire.withOrigin(fire.origin().child("rpgskilltree:echo"))));
+  var ars=new SpellAction(new ActionOrigin("ars_nouveau:glyph_spell",0),"ars","ars_nouveau:glyph_spell","glyph",Set.of("projectile","amplification"),20);
+  eq(Set.of("magic:casting","ars:projectile","ars:amplification"),new HashSet<>(MasteryPolicies.forArs(ars).stream().map(MasteryAward::laneId).toList()));
+  var engineering=new EngineeringAction(new ActionOrigin("create:mechanical_crafter",0),"create","assemble",Set.of("kinetics","logistics"),1);
+  eq(Set.of("create:engineering","create:kinetics","create:logistics"),new HashSet<>(MasteryPolicies.forCreate(engineering).stream().map(MasteryAward::laneId).toList()));
  }
  static void close(double e,double a){if(Math.abs(e-a)>1e-9)throw new AssertionError(e+" != "+a);} static void eq(Object e,Object a){if(!Objects.equals(e,a))throw new AssertionError(e+" != "+a);}
 }
