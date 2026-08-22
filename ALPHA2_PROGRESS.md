@@ -1,0 +1,1 @@
+Alpha 2 development is being synchronized from the validated local worktree. This checkpoint will be replaced by the full implementation commits.
