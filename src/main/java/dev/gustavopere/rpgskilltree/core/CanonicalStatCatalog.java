@@ -16,6 +16,8 @@ public final class CanonicalStatCatalog {
   for(String id:List.of("max_mana","mana_regen","cooldown_reduction","spell_power","spell_resist","cast_time_reduction","summon_damage","casting_movespeed")) s.add(stat("irons:"+id,id,"irons_spellbooks:"+id));
   for(String school:List.of("fire","ice","lightning","holy","ender","blood","evocation","nature","eldritch")){s.add(stat("irons:"+school+"_spell_power","irons_spellbooks:"+school+"_spell_power"));s.add(stat("irons:"+school+"_magic_resist","irons_spellbooks:"+school+"_magic_resist"));}
   s.add(stat("ars:amplification")); s.add(stat("ars:damage_modifier")); s.add(stat("ars:duration_multiplier")); s.add(stat("ars:aoe_multiplier")); s.add(stat("ars:acceleration"));
+  for(String id:List.of("draw_speed","crit_chance","crit_damage","cold_damage","fire_damage","life_steal","current_hp_damage","overheal","mining_speed","arrow_damage","arrow_velocity","projectile_damage","experience_gained","healing_received","armor_pierce","armor_shred","prot_pierce","prot_shred","dodge_chance")) s.add(stat("apothic_attributes:"+id,id));
+  s.add(stat("apotheosis:gem_power","gem_power")); s.add(stat("apotheosis:gem_socket_bonus","gem_socket_bonus"));
   s.add(stat("passive:projectile_duplication")); s.add(stat("passive:projectile_speed"));
   return new CanonicalStatCatalog(s);
  }

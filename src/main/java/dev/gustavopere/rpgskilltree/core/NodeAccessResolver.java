@@ -1,0 +1,28 @@
+package dev.gustavopere.rpgskilltree.core;
+
+import java.util.Objects;
+
+public final class NodeAccessResolver {
+    private NodeAccessResolver() {}
+
+    public static boolean satisfied(
+        ProgressionState state,
+        NodeAccessRequirement requirement,
+        CharacterLevelCurve curve
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(requirement);
+        Objects.requireNonNull(curve);
+        if (state.characterProgress(curve).level() < requirement.minCharacterLevel()) return false;
+        for (String classId : requirement.requiredClassIds()) {
+            if (!state.classProgression().isUnlocked(classId)) return false;
+        }
+        for (var entry : requirement.requiredMastery().entrySet()) {
+            if (state.mastery().experience(entry.getKey()) < entry.getValue()) return false;
+        }
+        for (String specializationId : requirement.requiredSpecializationIds()) {
+            if (!state.specializations().isUnlocked(specializationId)) return false;
+        }
+        return true;
+    }
+}
