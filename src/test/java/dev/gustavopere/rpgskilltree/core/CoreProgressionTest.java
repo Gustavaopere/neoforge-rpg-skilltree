@@ -1,7 +1,7 @@
 package dev.gustavopere.rpgskilltree.core;
 import java.util.*;
 public final class CoreProgressionTest {
- public static void main(String[] a){modifierOrder();override();archetypes();hybrids();tags();treeUnlocksRequireGatewayAndMastery();System.out.println("CoreProgressionTest: PASS");}
+ public static void main(String[] a){modifierOrder();override();archetypes();hybrids();tags();treeUnlocksRequireGatewayAndMastery();canonicalStatsResolveWithoutAmbiguity();System.out.println("CoreProgressionTest: PASS");}
  static void modifierOrder(){var r=ModifierResolver.resolve(10,List.of(new ModifierSpec("attack_damage",ModifierOperation.ADD_FLAT,5,"node:flat",0),new ModifierSpec("attack_damage",ModifierOperation.ADD_PERCENT_BASE,.2,"node:percent",0),new ModifierSpec("attack_damage",ModifierOperation.MULTIPLY_TOTAL,.5,"node:more",0)));close(25.5,r.value());}
  static void override(){var r=ModifierResolver.resolve(1,List.of(new ModifierSpec("x",ModifierOperation.OVERRIDE,2,"z",10),new ModifierSpec("x",ModifierOperation.OVERRIDE,3,"a",10)));eq(3.0,r.value());}
  static void archetypes(){var s=InvestmentState.of(List.of(new NodeInvestment("a",Map.of(ProgressionDomain.ARCANE,8),Set.of("magic")),new NodeInvestment("m",Map.of(ProgressionDomain.MARTIAL,7),Set.of())));var mage=new ArchetypeDefinition("mage",10,Map.of(ProgressionDomain.ARCANE,8),Set.of(),Set.of());var war=new ArchetypeDefinition("warrior",10,Map.of(ProgressionDomain.MARTIAL,8),Set.of(),Set.of());eq(List.of("mage"),ArchetypeResolver.resolve(s,List.of(mage,war)).stream().map(ArchetypeMatch::archetypeId).toList());}
@@ -15,6 +15,18 @@ public final class CoreProgressionTest {
   eq(true,TreeUnlockResolver.canUnlock(invested,MasteryState.of(Map.of("irons:fire",100)),fireTree));
   var noGate=InvestmentState.of(List.of(new NodeInvestment("arcane",Map.of(ProgressionDomain.ARCANE,50),Set.of())));
   eq(false,TreeUnlockResolver.canUnlock(noGate,MasteryState.of(Map.of("irons:fire",9999)),fireTree));
+ }
+
+ static void canonicalStatsResolveWithoutAmbiguity(){
+  var catalog=CanonicalStatCatalog.defaults();
+  eq("irons:spell_power",catalog.resolve("spell_power").id());
+  eq("irons:fire_spell_power",catalog.resolve("irons_spellbooks:fire_spell_power").id());
+  eq("minecraft:attack_damage",catalog.resolve("attack_damage").id());
+  eq("ars:amplification",catalog.resolve("ars:amplification").id());
+  eq(catalog.size(),catalog.canonicalIds().size());
+  boolean rejected=false;
+  try { new CanonicalStatCatalog(List.of(new CanonicalStat("a:x",Set.of("same")),new CanonicalStat("b:x",Set.of("same")))); } catch(IllegalArgumentException expected){ rejected=true; }
+  eq(true,rejected);
  }
  static void close(double e,double a){if(Math.abs(e-a)>1e-9)throw new AssertionError(e+" != "+a);} static void eq(Object e,Object a){if(!Objects.equals(e,a))throw new AssertionError(e+" != "+a);}
 }
