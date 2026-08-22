@@ -1,0 +1,9 @@
+{
+  "id": "rpgskilltree:artificer",
+  "priority": 15,
+  "minimum_domain_scores": {
+    "ENGINEERING": 12
+  },
+  "required_tags": [],
+  "forbidden_tags": []
+}

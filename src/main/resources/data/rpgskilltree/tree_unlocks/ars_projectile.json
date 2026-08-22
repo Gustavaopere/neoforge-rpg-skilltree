@@ -1,0 +1,12 @@
+{
+  "tree_id": "rpgskilltree:ars_projectile",
+  "minimum_domain_scores": {
+    "ARCANE": 8
+  },
+  "required_tags": [
+    "gateway:ars_projectile"
+  ],
+  "minimum_mastery_experience": {
+    "ars:projectile": 100
+  }
+}

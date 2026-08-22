@@ -1,0 +1,12 @@
+{
+  "tree_id": "rpgskilltree:create_kinetics",
+  "minimum_domain_scores": {
+    "ENGINEERING": 10
+  },
+  "required_tags": [
+    "gateway:create_kinetics"
+  ],
+  "minimum_mastery_experience": {
+    "create:kinetics": 100
+  }
+}

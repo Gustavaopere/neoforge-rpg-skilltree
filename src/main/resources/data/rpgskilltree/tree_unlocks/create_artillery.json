@@ -1,0 +1,13 @@
+{
+  "tree_id": "rpgskilltree:create_artillery",
+  "minimum_domain_scores": {
+    "ENGINEERING": 10,
+    "MARTIAL": 6
+  },
+  "required_tags": [
+    "gateway:create_artillery"
+  ],
+  "minimum_mastery_experience": {
+    "create:artillery": 150
+  }
+}

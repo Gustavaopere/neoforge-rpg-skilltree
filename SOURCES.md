@@ -86,6 +86,16 @@ This private project studies and integrates ideas/code/data from multiple Minecr
 - Target branch: `1.21.1`
 - Role: weapon categories/capabilities, combat event hooks, skill cast/consume and category-aware combat modifiers
 
+### Create
+
+- Source: https://github.com/Creators-of-Create/Create
+- Role: kinetics/engineering actions, machinery-aware mastery and hybrid Technomancer integrations
+
+### Curios
+
+- Source: https://github.com/TheIllusiveC4/Curios
+- Role: expandable equipment capability and dedicated Attunement-slot integration
+
 ## Internal provenance rule
 
 When a final node is strongly derived from a specific source project rather than merely sharing a generic RPG concept, record that origin in the development documentation/data comment or provenance metadata. This is primarily for maintenance: if the source changes, we can identify which unified mechanics should be re-evaluated.

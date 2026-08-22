@@ -1,36 +1,65 @@
 # NeoForge RPG Skill Tree
 
-Projeto privado para Minecraft **1.21.1 / NeoForge** que unifica progressão de personagem em uma árvore passiva grande e visualmente densa, inspirada em Path of Exile/Path of Exile 2, usando a interface e a engine do Passive Skill Tree como base.
+Projeto privado para Minecraft **1.21.1 / NeoForge** que unifica a progressão de personagem em uma árvore passiva ampla, inspirada em Path of Exile, usando o modelo visual/runtime do Passive Skill Tree como base.
 
 ## Objetivo
 
 Construir uma única experiência de progressão que integre, sem duplicar bônus equivalentes:
 
-- Passive Skill Tree / community port NeoForge 1.21.1
-- Iron's Spells 'n Spellbooks e addons
-- Ars Nouveau e addons
-- Epic Fight / Battle Arts e compatibilidades
-- atributos genéricos do pack quando fizer sentido
+- Passive Skill Tree / community port NeoForge 1.21.1;
+- Iron's Spells 'n Spellbooks e addons;
+- Ars Nouveau e addons;
+- Epic Fight / Battle Arts;
+- Create, Curios e demais sistemas do modpack quando houver integração mecânica real.
 
-A árvore principal deve ser ampla e orgânica. Keystones podem desbloquear árvores especializadas. Exemplo: progressão arcana -> **Mestre do Fogo** -> árvore especializada de Fire, cujo XP é obtido usando magia de fogo.
+Classes surgem do investimento na árvore, sem escolha permanente nem bloqueio entre caminhos. Especializações combinadas, como Spellblade, Battlemage, Arcane Archer e Technomancer, têm prioridade quando seus requisitos são preenchidos.
+
+## Alpha 1 — Core Architecture
+
+Implementado neste checkpoint:
+
+- resolução determinística de modificadores canônicos;
+- 10 arquétipos/classes emergentes;
+- requisitos de gateway e XP de mastery separados dos pontos da árvore;
+- catálogo de atributos canônicos para evitar bônus equivalentes duplicados;
+- contratos normalizados de ações de magia, combate e engenharia;
+- proteção contra recursão de procs;
+- políticas de mastery para Iron's, Ars, Epic Fight e Create;
+- modelo seguro de redimensionamento/ejeção de Attunement;
+- blueprint principal com **420 nós únicos e 664 conexões**;
+- 15 gateways iniciais de subárvores.
 
 ## Princípios
 
-1. **Uma UI principal:** a apresentação visual do Passive Skill Tree.
-2. **Um atributo canônico por conceito:** evitar `spell damage`, `magic damage`, `generic spell power` etc. empilhados sem necessidade.
-3. **Integração por capacidades/APIs:** reconhecer escolas do Iron's, glyphs/stats do Ars e categorias/movesets/skills do Epic Fight, em vez de hardcode por item quando possível.
-4. **Progressão temática:** especialização deve exigir uso real da mecânica correspondente.
-5. **Builds, não só números:** nodes pequenos dão incrementos; notables e keystones mudam comportamento, sinergias e restrições.
-6. **Compatibilidade com addons:** novos conteúdos que respeitem as APIs principais devem herdar integrações automaticamente sempre que possível.
+1. **Uma UI principal:** apresentação visual baseada no Passive Skill Tree.
+2. **Um atributo canônico por conceito:** evitar empilhamento acidental de atributos equivalentes.
+3. **Integração por capacidades e APIs:** preferir escolas, glyphs, categorias e eventos registrados a hardcode por item.
+4. **Progressão temática:** uso real da disciplina concede mastery.
+5. **Builds com comportamento:** notables e keystones devem alterar mecânicas, sinergias ou restrições.
+6. **Compatibilidade com addons:** conteúdos que respeitem as APIs principais devem herdar integrações quando possível.
 
-## Status
+## Verificação local
 
-Fase atual: **arquitetura e inventário técnico**.
+```bash
+./scripts/test-core.sh
+./scripts/validate-data.py
+./scripts/generate-tree-skeleton.py
+```
 
-Documentos principais:
+Resultados do Alpha 1:
 
+- `CoreProgressionTest: PASS`
+- `Data validation: PASS (10 archetypes, 15 tree gateways, 420 main-tree nodes budgeted)`
+- layout: `420 unique nodes / 664 edges`
+
+## Documentação
+
+- `RELEASE_NOTES_ALPHA_1.md`
+- `docs/ARCHITECTURE.md`
+- `docs/MODPACK_SCOPE.md`
+- `docs/integrations/`
 - `docs/specs/2026-08-22-unified-rpg-skill-tree-design.md`
 - `docs/research/integration-inventory.md`
 - `SOURCES.md`
 
-A implementação será feita em branches e PRs separados; `main` permanece estável.
+> Limitação conhecida: este Alpha 1 é um checkpoint de arquitetura e código-fonte. Ainda não produz um JAR instalável do mod.

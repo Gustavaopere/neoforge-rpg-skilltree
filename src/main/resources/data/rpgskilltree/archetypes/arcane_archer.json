@@ -1,0 +1,12 @@
+{
+  "id": "rpgskilltree:arcane_archer",
+  "priority": 30,
+  "minimum_domain_scores": {
+    "ARCANE": 8,
+    "AGILITY": 8
+  },
+  "required_tags": [
+    "combat:ranged"
+  ],
+  "forbidden_tags": []
+}

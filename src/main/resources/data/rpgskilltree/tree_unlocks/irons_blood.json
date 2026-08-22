@@ -1,0 +1,12 @@
+{
+  "tree_id": "rpgskilltree:irons_blood",
+  "minimum_domain_scores": {
+    "ARCANE": 10
+  },
+  "required_tags": [
+    "gateway:irons_blood"
+  ],
+  "minimum_mastery_experience": {
+    "irons:blood": 100
+  }
+}

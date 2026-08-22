@@ -1,0 +1,10 @@
+{
+  "id": "rpgskilltree:tank",
+  "priority": 15,
+  "minimum_domain_scores": {
+    "VITALITY": 12,
+    "MARTIAL": 6
+  },
+  "required_tags": [],
+  "forbidden_tags": []
+}
