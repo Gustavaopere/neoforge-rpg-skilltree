@@ -1,0 +1,14 @@
+{
+  "tree_id": "rpgskilltree:create_arcane_engineering",
+  "minimum_domain_scores": {
+    "ENGINEERING": 8,
+    "ARCANE": 8
+  },
+  "required_tags": [
+    "gateway:technomancer"
+  ],
+  "minimum_mastery_experience": {
+    "create:kinetics": 80,
+    "magic:casting": 80
+  }
+}

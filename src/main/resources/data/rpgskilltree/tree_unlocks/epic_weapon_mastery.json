@@ -1,0 +1,12 @@
+{
+  "tree_id": "rpgskilltree:epic_weapon_mastery",
+  "minimum_domain_scores": {
+    "MARTIAL": 10
+  },
+  "required_tags": [
+    "gateway:epic_weapon_mastery"
+  ],
+  "minimum_mastery_experience": {
+    "epicfight:weapon": 120
+  }
+}

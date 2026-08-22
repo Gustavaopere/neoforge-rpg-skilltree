@@ -1,0 +1,12 @@
+{
+  "tree_id": "rpgskilltree:irons_holy",
+  "minimum_domain_scores": {
+    "ARCANE": 10
+  },
+  "required_tags": [
+    "gateway:irons_holy"
+  ],
+  "minimum_mastery_experience": {
+    "irons:holy": 100
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "tree_id": "rpgskilltree:ars_overcharge",
+  "minimum_domain_scores": {
+    "ARCANE": 10
+  },
+  "required_tags": [
+    "gateway:ars_overcharge"
+  ],
+  "minimum_mastery_experience": {
+    "ars:amplification": 120
+  }
+}
