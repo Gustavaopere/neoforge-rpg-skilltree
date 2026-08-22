@@ -33,5 +33,10 @@ def main():
         if not isinstance(d.get('required_tags',[]),list): raise AssertionError(f'{p}: required_tags')
     if len(arch)<10: raise AssertionError('expected at least 10 archetypes')
     if len(unlocks)<15: raise AssertionError('expected at least 15 specialized tree gateways')
-    print(f'Data validation: PASS ({len(arch)} archetypes, {len(unlocks)} tree gateways)')
+    
+    blue=json.loads((ROOT/'tree_blueprints/main.json').read_text())
+    total=sum(r['node_budget'] for r in blue['regions'])+blue['shared_core_nodes']+blue['hybrid_bridge_nodes']+blue['outer_keystone_nodes']
+    if total != blue['target_node_count']: raise AssertionError(f'blueprint node budget {total} != target {blue["target_node_count"]}')
+    if blue['target_node_count'] < 350: raise AssertionError('main tree is not large enough for the design target')
+    print(f'Data validation: PASS ({len(arch)} archetypes, {len(unlocks)} tree gateways, {total} main-tree nodes budgeted)')
 if __name__=='__main__': main()

@@ -1,0 +1,6067 @@
+{
+  "id": "rpgskilltree:main",
+  "target_node_count": 420,
+  "actual_node_count": 420,
+  "nodes": [
+    {
+      "id": "core_00",
+      "kind": "core",
+      "x": 260.0,
+      "y": 0.0
+    },
+    {
+      "id": "core_01",
+      "kind": "core",
+      "x": 253.481,
+      "y": 57.855
+    },
+    {
+      "id": "core_02",
+      "kind": "core",
+      "x": 234.252,
+      "y": 112.81
+    },
+    {
+      "id": "core_03",
+      "kind": "core",
+      "x": 203.276,
+      "y": 162.107
+    },
+    {
+      "id": "core_04",
+      "kind": "core",
+      "x": 162.107,
+      "y": 203.276
+    },
+    {
+      "id": "core_05",
+      "kind": "core",
+      "x": 112.81,
+      "y": 234.252
+    },
+    {
+      "id": "core_06",
+      "kind": "core",
+      "x": 57.855,
+      "y": 253.481
+    },
+    {
+      "id": "core_07",
+      "kind": "core",
+      "x": 0.0,
+      "y": 260.0
+    },
+    {
+      "id": "core_08",
+      "kind": "core",
+      "x": -57.855,
+      "y": 253.481
+    },
+    {
+      "id": "core_09",
+      "kind": "core",
+      "x": -112.81,
+      "y": 234.252
+    },
+    {
+      "id": "core_10",
+      "kind": "core",
+      "x": -162.107,
+      "y": 203.276
+    },
+    {
+      "id": "core_11",
+      "kind": "core",
+      "x": -203.276,
+      "y": 162.107
+    },
+    {
+      "id": "core_12",
+      "kind": "core",
+      "x": -234.252,
+      "y": 112.81
+    },
+    {
+      "id": "core_13",
+      "kind": "core",
+      "x": -253.481,
+      "y": 57.855
+    },
+    {
+      "id": "core_14",
+      "kind": "core",
+      "x": -260.0,
+      "y": 0.0
+    },
+    {
+      "id": "core_15",
+      "kind": "core",
+      "x": -253.481,
+      "y": -57.855
+    },
+    {
+      "id": "core_16",
+      "kind": "core",
+      "x": -234.252,
+      "y": -112.81
+    },
+    {
+      "id": "core_17",
+      "kind": "core",
+      "x": -203.276,
+      "y": -162.107
+    },
+    {
+      "id": "core_18",
+      "kind": "core",
+      "x": -162.107,
+      "y": -203.276
+    },
+    {
+      "id": "core_19",
+      "kind": "core",
+      "x": -112.81,
+      "y": -234.252
+    },
+    {
+      "id": "core_20",
+      "kind": "core",
+      "x": -57.855,
+      "y": -253.481
+    },
+    {
+      "id": "core_21",
+      "kind": "core",
+      "x": -0.0,
+      "y": -260.0
+    },
+    {
+      "id": "core_22",
+      "kind": "core",
+      "x": 57.855,
+      "y": -253.481
+    },
+    {
+      "id": "core_23",
+      "kind": "core",
+      "x": 112.81,
+      "y": -234.252
+    },
+    {
+      "id": "core_24",
+      "kind": "core",
+      "x": 162.107,
+      "y": -203.276
+    },
+    {
+      "id": "core_25",
+      "kind": "core",
+      "x": 203.276,
+      "y": -162.107
+    },
+    {
+      "id": "core_26",
+      "kind": "core",
+      "x": 234.252,
+      "y": -112.81
+    },
+    {
+      "id": "core_27",
+      "kind": "core",
+      "x": 253.481,
+      "y": -57.855
+    },
+    {
+      "id": "martial_000",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 1,
+      "x": -249.06,
+      "y": -723.322
+    },
+    {
+      "id": "martial_001",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 1,
+      "x": -151.208,
+      "y": -749.907
+    },
+    {
+      "id": "martial_002",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 1,
+      "x": -50.7,
+      "y": -763.318
+    },
+    {
+      "id": "martial_003",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 1,
+      "x": 50.7,
+      "y": -763.318
+    },
+    {
+      "id": "martial_004",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 1,
+      "x": 151.208,
+      "y": -749.907
+    },
+    {
+      "id": "martial_005",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 1,
+      "x": 249.06,
+      "y": -723.322
+    },
+    {
+      "id": "martial_006",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 2,
+      "x": -361.952,
+      "y": -942.916
+    },
+    {
+      "id": "martial_007",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 2,
+      "x": -261.407,
+      "y": -975.585
+    },
+    {
+      "id": "martial_008",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 2,
+      "x": -157.999,
+      "y": -997.565
+    },
+    {
+      "id": "martial_009",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 2,
+      "x": -52.859,
+      "y": -1008.616
+    },
+    {
+      "id": "martial_010",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 2,
+      "x": 52.859,
+      "y": -1008.616
+    },
+    {
+      "id": "martial_011",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 2,
+      "x": 157.999,
+      "y": -997.565
+    },
+    {
+      "id": "martial_012",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 2,
+      "x": 261.407,
+      "y": -975.585
+    },
+    {
+      "id": "martial_013",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 2,
+      "x": 361.952,
+      "y": -942.916
+    },
+    {
+      "id": "martial_014",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": -490.368,
+      "y": -1155.234
+    },
+    {
+      "id": "martial_015",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": -385.501,
+      "y": -1194.326
+    },
+    {
+      "id": "martial_016",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": -277.569,
+      "y": -1223.92
+    },
+    {
+      "id": "martial_017",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": -167.429,
+      "y": -1243.782
+    },
+    {
+      "id": "martial_018",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": -55.958,
+      "y": -1253.752
+    },
+    {
+      "id": "martial_019",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": 55.958,
+      "y": -1253.752
+    },
+    {
+      "id": "martial_020",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": 167.429,
+      "y": -1243.782
+    },
+    {
+      "id": "martial_021",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": 277.569,
+      "y": -1223.92
+    },
+    {
+      "id": "martial_022",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": 385.501,
+      "y": -1194.326
+    },
+    {
+      "id": "martial_023",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 3,
+      "x": 490.368,
+      "y": -1155.234
+    },
+    {
+      "id": "martial_024",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": -633.927,
+      "y": -1359.462
+    },
+    {
+      "id": "martial_025",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": -524.196,
+      "y": -1405.425
+    },
+    {
+      "id": "martial_026",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": -411.168,
+      "y": -1442.547
+    },
+    {
+      "id": "martial_027",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": -295.553,
+      "y": -1470.595
+    },
+    {
+      "id": "martial_028",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": -178.079,
+      "y": -1489.392
+    },
+    {
+      "id": "martial_029",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": -59.484,
+      "y": -1498.82
+    },
+    {
+      "id": "martial_030",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": 59.484,
+      "y": -1498.82
+    },
+    {
+      "id": "martial_031",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": 178.079,
+      "y": -1489.392
+    },
+    {
+      "id": "martial_032",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": 295.553,
+      "y": -1470.595
+    },
+    {
+      "id": "martial_033",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": 411.168,
+      "y": -1442.547
+    },
+    {
+      "id": "martial_034",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": 524.196,
+      "y": -1405.425
+    },
+    {
+      "id": "martial_035",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 4,
+      "x": 633.927,
+      "y": -1359.462
+    },
+    {
+      "id": "martial_036",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": -792.213,
+      "y": -1554.806
+    },
+    {
+      "id": "martial_037",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": -656.255,
+      "y": -1616.897
+    },
+    {
+      "id": "martial_038",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": -515.482,
+      "y": -1667.124
+    },
+    {
+      "id": "martial_039",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": -370.926,
+      "y": -1705.121
+    },
+    {
+      "id": "martial_040",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": -223.65,
+      "y": -1730.608
+    },
+    {
+      "id": "martial_041",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": -74.733,
+      "y": -1743.399
+    },
+    {
+      "id": "martial_042",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": 74.733,
+      "y": -1743.399
+    },
+    {
+      "id": "martial_043",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": 223.65,
+      "y": -1730.608
+    },
+    {
+      "id": "martial_044",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": 370.926,
+      "y": -1705.121
+    },
+    {
+      "id": "martial_045",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": 515.482,
+      "y": -1667.124
+    },
+    {
+      "id": "martial_046",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": 656.255,
+      "y": -1616.897
+    },
+    {
+      "id": "martial_047",
+      "kind": "domain",
+      "domain": "MARTIAL",
+      "ring": 5,
+      "x": 792.213,
+      "y": -1554.806
+    },
+    {
+      "id": "agility_000",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": 410.23,
+      "y": -645.706
+    },
+    {
+      "id": "agility_001",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": 492.025,
+      "y": -585.779
+    },
+    {
+      "id": "agility_002",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": 565.175,
+      "y": -515.56
+    },
+    {
+      "id": "agility_003",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": 628.397,
+      "y": -436.283
+    },
+    {
+      "id": "agility_004",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": 680.578,
+      "y": -349.341
+    },
+    {
+      "id": "agility_005",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": 720.802,
+      "y": -256.261
+    },
+    {
+      "id": "agility_006",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": 511.528,
+      "y": -870.884
+    },
+    {
+      "id": "agility_007",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": 599.758,
+      "y": -812.644
+    },
+    {
+      "id": "agility_008",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": 681.417,
+      "y": -745.5
+    },
+    {
+      "id": "agility_009",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": 755.61,
+      "y": -670.189
+    },
+    {
+      "id": "agility_010",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": 821.525,
+      "y": -587.535
+    },
+    {
+      "id": "agility_011",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": 878.439,
+      "y": -498.443
+    },
+    {
+      "id": "agility_012",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": 925.728,
+      "y": -403.891
+    },
+    {
+      "id": "agility_013",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": 962.875,
+      "y": -304.913
+    },
+    {
+      "id": "agility_014",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 597.459,
+      "y": -1103.661
+    },
+    {
+      "id": "agility_015",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 693.406,
+      "y": -1046.047
+    },
+    {
+      "id": "agility_016",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 783.838,
+      "y": -980.114
+    },
+    {
+      "id": "agility_017",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 868.037,
+      "y": -906.386
+    },
+    {
+      "id": "agility_018",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 945.333,
+      "y": -825.451
+    },
+    {
+      "id": "agility_019",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 1015.112,
+      "y": -737.952
+    },
+    {
+      "id": "agility_020",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 1076.818,
+      "y": -644.584
+    },
+    {
+      "id": "agility_021",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 1129.961,
+      "y": -546.09
+    },
+    {
+      "id": "agility_022",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 1174.117,
+      "y": -443.253
+    },
+    {
+      "id": "agility_023",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": 1208.937,
+      "y": -336.892
+    },
+    {
+      "id": "agility_024",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 667.623,
+      "y": -1343.235
+    },
+    {
+      "id": "agility_025",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 771.974,
+      "y": -1286.101
+    },
+    {
+      "id": "agility_026",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 871.47,
+      "y": -1220.877
+    },
+    {
+      "id": "agility_027",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 965.483,
+      "y": -1147.973
+    },
+    {
+      "id": "agility_028",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 1053.423,
+      "y": -1067.848
+    },
+    {
+      "id": "agility_029",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 1134.737,
+      "y": -981.006
+    },
+    {
+      "id": "agility_030",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 1208.913,
+      "y": -887.992
+    },
+    {
+      "id": "agility_031",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 1275.484,
+      "y": -789.393
+    },
+    {
+      "id": "agility_032",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 1334.031,
+      "y": -685.828
+    },
+    {
+      "id": "agility_033",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 1384.187,
+      "y": -577.949
+    },
+    {
+      "id": "agility_034",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 1425.636,
+      "y": -466.435
+    },
+    {
+      "id": "agility_035",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": 1458.117,
+      "y": -351.986
+    },
+    {
+      "id": "agility_036",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 721.66,
+      "y": -1588.783
+    },
+    {
+      "id": "agility_037",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 854.972,
+      "y": -1521.199
+    },
+    {
+      "id": "agility_038",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 982.013,
+      "y": -1442.455
+    },
+    {
+      "id": "agility_039",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 1101.849,
+      "y": -1353.128
+    },
+    {
+      "id": "agility_040",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 1213.601,
+      "y": -1253.873
+    },
+    {
+      "id": "agility_041",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 1316.449,
+      "y": -1145.42
+    },
+    {
+      "id": "agility_042",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 1409.639,
+      "y": -1028.563
+    },
+    {
+      "id": "agility_043",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 1492.488,
+      "y": -904.16
+    },
+    {
+      "id": "agility_044",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 1564.386,
+      "y": -773.124
+    },
+    {
+      "id": "agility_045",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 1624.808,
+      "y": -636.415
+    },
+    {
+      "id": "agility_046",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 1673.309,
+      "y": -495.038
+    },
+    {
+      "id": "agility_047",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 5,
+      "x": 1709.534,
+      "y": -350.029
+    },
+    {
+      "id": "vitality_000",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 1,
+      "x": 760.608,
+      "y": -81.861
+    },
+    {
+      "id": "vitality_001",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 1,
+      "x": 764.753,
+      "y": 19.453
+    },
+    {
+      "id": "vitality_002",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 1,
+      "x": 755.462,
+      "y": 120.426
+    },
+    {
+      "id": "vitality_003",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 1,
+      "x": 732.898,
+      "y": 219.283
+    },
+    {
+      "id": "vitality_004",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 1,
+      "x": 697.459,
+      "y": 314.287
+    },
+    {
+      "id": "vitality_005",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 1,
+      "x": 649.766,
+      "y": 403.769
+    },
+    {
+      "id": "vitality_006",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 2,
+      "x": 999.817,
+      "y": -143.058
+    },
+    {
+      "id": "vitality_007",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 2,
+      "x": 1009.294,
+      "y": -37.765
+    },
+    {
+      "id": "vitality_008",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 2,
+      "x": 1007.712,
+      "y": 67.942
+    },
+    {
+      "id": "vitality_009",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 2,
+      "x": 995.09,
+      "y": 172.904
+    },
+    {
+      "id": "vitality_010",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 2,
+      "x": 971.565,
+      "y": 275.972
+    },
+    {
+      "id": "vitality_011",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 2,
+      "x": 937.396,
+      "y": 376.017
+    },
+    {
+      "id": "vitality_012",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 2,
+      "x": 892.957,
+      "y": 471.941
+    },
+    {
+      "id": "vitality_013",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 2,
+      "x": 838.734,
+      "y": 562.695
+    },
+    {
+      "id": "vitality_014",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1235.387,
+      "y": -221.009
+    },
+    {
+      "id": "vitality_015",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1250.164,
+      "y": -110.073
+    },
+    {
+      "id": "vitality_016",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1254.999,
+      "y": 1.738
+    },
+    {
+      "id": "vitality_017",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1249.854,
+      "y": 113.536
+    },
+    {
+      "id": "vitality_018",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1234.77,
+      "y": 224.431
+    },
+    {
+      "id": "vitality_019",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1209.866,
+      "y": 333.541
+    },
+    {
+      "id": "vitality_020",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1175.341,
+      "y": 439.999
+    },
+    {
+      "id": "vitality_021",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1131.469,
+      "y": 542.957
+    },
+    {
+      "id": "vitality_022",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1078.599,
+      "y": 641.598
+    },
+    {
+      "id": "vitality_023",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 3,
+      "x": 1017.152,
+      "y": 735.137
+    },
+    {
+      "id": "vitality_024",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1466.439,
+      "y": -315.525
+    },
+    {
+      "id": "vitality_025",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1486.832,
+      "y": -198.317
+    },
+    {
+      "id": "vitality_026",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1497.873,
+      "y": -79.862
+    },
+    {
+      "id": "vitality_027",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1499.49,
+      "y": 39.095
+    },
+    {
+      "id": "vitality_028",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1491.676,
+      "y": 157.807
+    },
+    {
+      "id": "vitality_029",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1474.478,
+      "y": 275.526
+    },
+    {
+      "id": "vitality_030",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1448.005,
+      "y": 391.512
+    },
+    {
+      "id": "vitality_031",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1412.423,
+      "y": 505.035
+    },
+    {
+      "id": "vitality_032",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1367.957,
+      "y": 615.381
+    },
+    {
+      "id": "vitality_033",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1314.886,
+      "y": 721.856
+    },
+    {
+      "id": "vitality_034",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1253.543,
+      "y": 823.79
+    },
+    {
+      "id": "vitality_035",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 4,
+      "x": 1184.315,
+      "y": 920.542
+    },
+    {
+      "id": "vitality_036",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1692.108,
+      "y": -426.374
+    },
+    {
+      "id": "vitality_037",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1722.388,
+      "y": -280.008
+    },
+    {
+      "id": "vitality_038",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1740.032,
+      "y": -131.587
+    },
+    {
+      "id": "vitality_039",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1744.909,
+      "y": 17.799
+    },
+    {
+      "id": "vitality_040",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1736.985,
+      "y": 167.054
+    },
+    {
+      "id": "vitality_041",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1716.318,
+      "y": 315.084
+    },
+    {
+      "id": "vitality_042",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1683.059,
+      "y": 460.802
+    },
+    {
+      "id": "vitality_043",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1637.452,
+      "y": 603.139
+    },
+    {
+      "id": "vitality_044",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1579.831,
+      "y": 741.052
+    },
+    {
+      "id": "vitality_045",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1510.621,
+      "y": 873.527
+    },
+    {
+      "id": "vitality_046",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1430.327,
+      "y": 999.594
+    },
+    {
+      "id": "vitality_047",
+      "kind": "domain",
+      "domain": "VITALITY",
+      "ring": 5,
+      "x": 1339.54,
+      "y": 1118.328
+    },
+    {
+      "id": "arcane_000",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 1,
+      "x": 538.233,
+      "y": 543.627
+    },
+    {
+      "id": "arcane_001",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 1,
+      "x": 461.606,
+      "y": 610.037
+    },
+    {
+      "id": "arcane_002",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 1,
+      "x": 376.87,
+      "y": 665.728
+    },
+    {
+      "id": "arcane_003",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 1,
+      "x": 285.513,
+      "y": 709.724
+    },
+    {
+      "id": "arcane_004",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 1,
+      "x": 189.139,
+      "y": 741.25
+    },
+    {
+      "id": "arcane_005",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 1,
+      "x": 89.443,
+      "y": 759.753
+    },
+    {
+      "id": "arcane_006",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 2,
+      "x": 735.223,
+      "y": 692.493
+    },
+    {
+      "id": "arcane_007",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 2,
+      "x": 658.81,
+      "y": 765.551
+    },
+    {
+      "id": "arcane_008",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 2,
+      "x": 575.179,
+      "y": 830.222
+    },
+    {
+      "id": "arcane_009",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 2,
+      "x": 485.247,
+      "y": 885.797
+    },
+    {
+      "id": "arcane_010",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 2,
+      "x": 389.997,
+      "y": 931.666
+    },
+    {
+      "id": "arcane_011",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 2,
+      "x": 290.475,
+      "y": 967.328
+    },
+    {
+      "id": "arcane_012",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 2,
+      "x": 187.771,
+      "y": 992.392
+    },
+    {
+      "id": "arcane_013",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 2,
+      "x": 83.009,
+      "y": 1006.583
+    },
+    {
+      "id": "arcane_014",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 943.043,
+      "y": 828.067
+    },
+    {
+      "id": "arcane_015",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 865.523,
+      "y": 908.788
+    },
+    {
+      "id": "arcane_016",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 781.12,
+      "y": 982.281
+    },
+    {
+      "id": "arcane_017",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 690.505,
+      "y": 1047.964
+    },
+    {
+      "id": "arcane_018",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 594.399,
+      "y": 1105.312
+    },
+    {
+      "id": "arcane_019",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 493.566,
+      "y": 1153.871
+    },
+    {
+      "id": "arcane_020",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 388.808,
+      "y": 1193.253
+    },
+    {
+      "id": "arcane_021",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 280.958,
+      "y": 1223.147
+    },
+    {
+      "id": "arcane_022",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 170.874,
+      "y": 1243.313
+    },
+    {
+      "id": "arcane_023",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 3,
+      "x": 59.431,
+      "y": 1253.592
+    },
+    {
+      "id": "arcane_024",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 1160.997,
+      "y": 949.782
+    },
+    {
+      "id": "arcane_025",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 1082.075,
+      "y": 1038.804
+    },
+    {
+      "id": "arcane_026",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 996.347,
+      "y": 1121.291
+    },
+    {
+      "id": "arcane_027",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 904.351,
+      "y": 1196.724
+    },
+    {
+      "id": "arcane_028",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 806.666,
+      "y": 1264.63
+    },
+    {
+      "id": "arcane_029",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 703.907,
+      "y": 1324.581
+    },
+    {
+      "id": "arcane_030",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 596.72,
+      "y": 1376.199
+    },
+    {
+      "id": "arcane_031",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 485.78,
+      "y": 1419.161
+    },
+    {
+      "id": "arcane_032",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 371.783,
+      "y": 1453.196
+    },
+    {
+      "id": "arcane_033",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 255.448,
+      "y": 1478.089
+    },
+    {
+      "id": "arcane_034",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 137.506,
+      "y": 1493.684
+    },
+    {
+      "id": "arcane_035",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 4,
+      "x": 18.699,
+      "y": 1499.883
+    },
+    {
+      "id": "arcane_036",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 1388.365,
+      "y": 1057.104
+    },
+    {
+      "id": "arcane_037",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 1308.147,
+      "y": 1154.893
+    },
+    {
+      "id": "arcane_038",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 1221.056,
+      "y": 1246.614
+    },
+    {
+      "id": "arcane_039",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 1127.55,
+      "y": 1331.787
+    },
+    {
+      "id": "arcane_040",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 1028.121,
+      "y": 1409.962
+    },
+    {
+      "id": "arcane_041",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 923.29,
+      "y": 1480.73
+    },
+    {
+      "id": "arcane_042",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 813.608,
+      "y": 1543.719
+    },
+    {
+      "id": "arcane_043",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 699.652,
+      "y": 1598.597
+    },
+    {
+      "id": "arcane_044",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 582.02,
+      "y": 1645.077
+    },
+    {
+      "id": "arcane_045",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 461.33,
+      "y": 1682.914
+    },
+    {
+      "id": "arcane_046",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 338.217,
+      "y": 1711.91
+    },
+    {
+      "id": "arcane_047",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 213.326,
+      "y": 1731.911
+    },
+    {
+      "id": "arcane_048",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": 87.315,
+      "y": 1742.814
+    },
+    {
+      "id": "arcane_049",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 5,
+      "x": -39.154,
+      "y": 1744.561
+    },
+    {
+      "id": "arcane_050",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": 1624.4,
+      "y": 1149.532
+    },
+    {
+      "id": "arcane_051",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": 1485.113,
+      "y": 1324.59
+    },
+    {
+      "id": "arcane_052",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": 1327.057,
+      "y": 1482.909
+    },
+    {
+      "id": "arcane_053",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": 1152.23,
+      "y": 1622.487
+    },
+    {
+      "id": "arcane_054",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": 962.842,
+      "y": 1741.561
+    },
+    {
+      "id": "arcane_055",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": 761.285,
+      "y": 1838.626
+    },
+    {
+      "id": "arcane_056",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": 550.108,
+      "y": 1912.454
+    },
+    {
+      "id": "arcane_057",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": 331.979,
+      "y": 1962.114
+    },
+    {
+      "id": "arcane_058",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": 109.654,
+      "y": 1986.977
+    },
+    {
+      "id": "arcane_059",
+      "kind": "domain",
+      "domain": "ARCANE",
+      "ring": 6,
+      "x": -114.057,
+      "y": 1986.729
+    },
+    {
+      "id": "engineering_000",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 1,
+      "x": -89.443,
+      "y": 759.753
+    },
+    {
+      "id": "engineering_001",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 1,
+      "x": -189.139,
+      "y": 741.25
+    },
+    {
+      "id": "engineering_002",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 1,
+      "x": -285.513,
+      "y": 709.724
+    },
+    {
+      "id": "engineering_003",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 1,
+      "x": -376.87,
+      "y": 665.728
+    },
+    {
+      "id": "engineering_004",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 1,
+      "x": -461.606,
+      "y": 610.037
+    },
+    {
+      "id": "engineering_005",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 1,
+      "x": -538.233,
+      "y": 543.627
+    },
+    {
+      "id": "engineering_006",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 2,
+      "x": -83.009,
+      "y": 1006.583
+    },
+    {
+      "id": "engineering_007",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 2,
+      "x": -187.771,
+      "y": 992.392
+    },
+    {
+      "id": "engineering_008",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 2,
+      "x": -290.475,
+      "y": 967.328
+    },
+    {
+      "id": "engineering_009",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 2,
+      "x": -389.997,
+      "y": 931.666
+    },
+    {
+      "id": "engineering_010",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 2,
+      "x": -485.247,
+      "y": 885.797
+    },
+    {
+      "id": "engineering_011",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 2,
+      "x": -575.179,
+      "y": 830.222
+    },
+    {
+      "id": "engineering_012",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 2,
+      "x": -658.81,
+      "y": 765.551
+    },
+    {
+      "id": "engineering_013",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 2,
+      "x": -735.223,
+      "y": 692.493
+    },
+    {
+      "id": "engineering_014",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -59.431,
+      "y": 1253.592
+    },
+    {
+      "id": "engineering_015",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -170.874,
+      "y": 1243.313
+    },
+    {
+      "id": "engineering_016",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -280.958,
+      "y": 1223.147
+    },
+    {
+      "id": "engineering_017",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -388.808,
+      "y": 1193.253
+    },
+    {
+      "id": "engineering_018",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -493.566,
+      "y": 1153.871
+    },
+    {
+      "id": "engineering_019",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -594.399,
+      "y": 1105.312
+    },
+    {
+      "id": "engineering_020",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -690.505,
+      "y": 1047.964
+    },
+    {
+      "id": "engineering_021",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -781.12,
+      "y": 982.281
+    },
+    {
+      "id": "engineering_022",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -865.523,
+      "y": 908.788
+    },
+    {
+      "id": "engineering_023",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 3,
+      "x": -943.043,
+      "y": 828.067
+    },
+    {
+      "id": "engineering_024",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -18.699,
+      "y": 1499.883
+    },
+    {
+      "id": "engineering_025",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -137.506,
+      "y": 1493.684
+    },
+    {
+      "id": "engineering_026",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -255.448,
+      "y": 1478.089
+    },
+    {
+      "id": "engineering_027",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -371.783,
+      "y": 1453.196
+    },
+    {
+      "id": "engineering_028",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -485.78,
+      "y": 1419.161
+    },
+    {
+      "id": "engineering_029",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -596.72,
+      "y": 1376.199
+    },
+    {
+      "id": "engineering_030",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -703.907,
+      "y": 1324.581
+    },
+    {
+      "id": "engineering_031",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -806.666,
+      "y": 1264.63
+    },
+    {
+      "id": "engineering_032",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -904.351,
+      "y": 1196.724
+    },
+    {
+      "id": "engineering_033",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -996.347,
+      "y": 1121.291
+    },
+    {
+      "id": "engineering_034",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -1082.075,
+      "y": 1038.804
+    },
+    {
+      "id": "engineering_035",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 4,
+      "x": -1160.997,
+      "y": 949.782
+    },
+    {
+      "id": "engineering_036",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": 39.154,
+      "y": 1744.561
+    },
+    {
+      "id": "engineering_037",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -87.315,
+      "y": 1742.814
+    },
+    {
+      "id": "engineering_038",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -213.326,
+      "y": 1731.911
+    },
+    {
+      "id": "engineering_039",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -338.217,
+      "y": 1711.91
+    },
+    {
+      "id": "engineering_040",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -461.33,
+      "y": 1682.914
+    },
+    {
+      "id": "engineering_041",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -582.02,
+      "y": 1645.077
+    },
+    {
+      "id": "engineering_042",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -699.652,
+      "y": 1598.597
+    },
+    {
+      "id": "engineering_043",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -813.608,
+      "y": 1543.719
+    },
+    {
+      "id": "engineering_044",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -923.29,
+      "y": 1480.73
+    },
+    {
+      "id": "engineering_045",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -1028.121,
+      "y": 1409.962
+    },
+    {
+      "id": "engineering_046",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -1127.55,
+      "y": 1331.787
+    },
+    {
+      "id": "engineering_047",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -1221.056,
+      "y": 1246.614
+    },
+    {
+      "id": "engineering_048",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -1308.147,
+      "y": 1154.893
+    },
+    {
+      "id": "engineering_049",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 5,
+      "x": -1388.365,
+      "y": 1057.104
+    },
+    {
+      "id": "engineering_050",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 6,
+      "x": 114.057,
+      "y": 1986.729
+    },
+    {
+      "id": "engineering_051",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 6,
+      "x": -287.76,
+      "y": 1969.085
+    },
+    {
+      "id": "engineering_052",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 6,
+      "x": -677.822,
+      "y": 1871.004
+    },
+    {
+      "id": "engineering_053",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 6,
+      "x": -1040.195,
+      "y": 1696.495
+    },
+    {
+      "id": "engineering_054",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 6,
+      "x": -1360.077,
+      "y": 1452.684
+    },
+    {
+      "id": "engineering_055",
+      "kind": "domain",
+      "domain": "ENGINEERING",
+      "ring": 6,
+      "x": -1624.4,
+      "y": 1149.532
+    },
+    {
+      "id": "survival_000",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 1,
+      "x": -649.766,
+      "y": 403.769
+    },
+    {
+      "id": "survival_001",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 1,
+      "x": -697.459,
+      "y": 314.287
+    },
+    {
+      "id": "survival_002",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 1,
+      "x": -732.898,
+      "y": 219.283
+    },
+    {
+      "id": "survival_003",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 1,
+      "x": -755.462,
+      "y": 120.426
+    },
+    {
+      "id": "survival_004",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 1,
+      "x": -764.753,
+      "y": 19.453
+    },
+    {
+      "id": "survival_005",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 1,
+      "x": -760.608,
+      "y": -81.861
+    },
+    {
+      "id": "survival_006",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 2,
+      "x": -838.734,
+      "y": 562.695
+    },
+    {
+      "id": "survival_007",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 2,
+      "x": -892.957,
+      "y": 471.941
+    },
+    {
+      "id": "survival_008",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 2,
+      "x": -937.396,
+      "y": 376.017
+    },
+    {
+      "id": "survival_009",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 2,
+      "x": -971.565,
+      "y": 275.972
+    },
+    {
+      "id": "survival_010",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 2,
+      "x": -995.09,
+      "y": 172.904
+    },
+    {
+      "id": "survival_011",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 2,
+      "x": -1007.712,
+      "y": 67.942
+    },
+    {
+      "id": "survival_012",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 2,
+      "x": -1009.294,
+      "y": -37.765
+    },
+    {
+      "id": "survival_013",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 2,
+      "x": -999.817,
+      "y": -143.058
+    },
+    {
+      "id": "survival_014",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1017.152,
+      "y": 735.137
+    },
+    {
+      "id": "survival_015",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1078.599,
+      "y": 641.598
+    },
+    {
+      "id": "survival_016",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1131.469,
+      "y": 542.957
+    },
+    {
+      "id": "survival_017",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1175.341,
+      "y": 439.999
+    },
+    {
+      "id": "survival_018",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1209.866,
+      "y": 333.541
+    },
+    {
+      "id": "survival_019",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1234.77,
+      "y": 224.431
+    },
+    {
+      "id": "survival_020",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1249.854,
+      "y": 113.536
+    },
+    {
+      "id": "survival_021",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1254.999,
+      "y": 1.738
+    },
+    {
+      "id": "survival_022",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1250.164,
+      "y": -110.073
+    },
+    {
+      "id": "survival_023",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 3,
+      "x": -1235.387,
+      "y": -221.009
+    },
+    {
+      "id": "survival_024",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1184.315,
+      "y": 920.542
+    },
+    {
+      "id": "survival_025",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1253.543,
+      "y": 823.79
+    },
+    {
+      "id": "survival_026",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1314.886,
+      "y": 721.856
+    },
+    {
+      "id": "survival_027",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1367.957,
+      "y": 615.381
+    },
+    {
+      "id": "survival_028",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1412.423,
+      "y": 505.035
+    },
+    {
+      "id": "survival_029",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1448.005,
+      "y": 391.512
+    },
+    {
+      "id": "survival_030",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1474.478,
+      "y": 275.526
+    },
+    {
+      "id": "survival_031",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1491.676,
+      "y": 157.807
+    },
+    {
+      "id": "survival_032",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1499.49,
+      "y": 39.095
+    },
+    {
+      "id": "survival_033",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1497.873,
+      "y": -79.862
+    },
+    {
+      "id": "survival_034",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1486.832,
+      "y": -198.317
+    },
+    {
+      "id": "survival_035",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 4,
+      "x": -1466.439,
+      "y": -315.525
+    },
+    {
+      "id": "survival_036",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 5,
+      "x": -1339.54,
+      "y": 1118.328
+    },
+    {
+      "id": "survival_037",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 5,
+      "x": -1619.561,
+      "y": 649.652
+    },
+    {
+      "id": "survival_038",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 5,
+      "x": -1741.047,
+      "y": 117.384
+    },
+    {
+      "id": "survival_039",
+      "kind": "domain",
+      "domain": "SURVIVAL",
+      "ring": 5,
+      "x": -1692.108,
+      "y": -426.374
+    },
+    {
+      "id": "summoning_000",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 1,
+      "x": -720.802,
+      "y": -256.261
+    },
+    {
+      "id": "summoning_001",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 1,
+      "x": -680.578,
+      "y": -349.341
+    },
+    {
+      "id": "summoning_002",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 1,
+      "x": -628.397,
+      "y": -436.283
+    },
+    {
+      "id": "summoning_003",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 1,
+      "x": -565.175,
+      "y": -515.56
+    },
+    {
+      "id": "summoning_004",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 1,
+      "x": -492.025,
+      "y": -585.779
+    },
+    {
+      "id": "summoning_005",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 1,
+      "x": -410.23,
+      "y": -645.706
+    },
+    {
+      "id": "summoning_006",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 2,
+      "x": -962.875,
+      "y": -304.913
+    },
+    {
+      "id": "summoning_007",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 2,
+      "x": -925.728,
+      "y": -403.891
+    },
+    {
+      "id": "summoning_008",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 2,
+      "x": -878.439,
+      "y": -498.443
+    },
+    {
+      "id": "summoning_009",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 2,
+      "x": -821.525,
+      "y": -587.535
+    },
+    {
+      "id": "summoning_010",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 2,
+      "x": -755.61,
+      "y": -670.189
+    },
+    {
+      "id": "summoning_011",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 2,
+      "x": -681.417,
+      "y": -745.5
+    },
+    {
+      "id": "summoning_012",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 2,
+      "x": -599.758,
+      "y": -812.644
+    },
+    {
+      "id": "summoning_013",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 2,
+      "x": -511.528,
+      "y": -870.884
+    },
+    {
+      "id": "summoning_014",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -1208.937,
+      "y": -336.892
+    },
+    {
+      "id": "summoning_015",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -1174.117,
+      "y": -443.253
+    },
+    {
+      "id": "summoning_016",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -1129.961,
+      "y": -546.09
+    },
+    {
+      "id": "summoning_017",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -1076.818,
+      "y": -644.584
+    },
+    {
+      "id": "summoning_018",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -1015.112,
+      "y": -737.952
+    },
+    {
+      "id": "summoning_019",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -945.333,
+      "y": -825.451
+    },
+    {
+      "id": "summoning_020",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -868.037,
+      "y": -906.386
+    },
+    {
+      "id": "summoning_021",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -783.838,
+      "y": -980.114
+    },
+    {
+      "id": "summoning_022",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -693.406,
+      "y": -1046.047
+    },
+    {
+      "id": "summoning_023",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 3,
+      "x": -597.459,
+      "y": -1103.661
+    },
+    {
+      "id": "summoning_024",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -1458.117,
+      "y": -351.986
+    },
+    {
+      "id": "summoning_025",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -1425.636,
+      "y": -466.435
+    },
+    {
+      "id": "summoning_026",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -1384.187,
+      "y": -577.949
+    },
+    {
+      "id": "summoning_027",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -1334.031,
+      "y": -685.828
+    },
+    {
+      "id": "summoning_028",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -1275.484,
+      "y": -789.393
+    },
+    {
+      "id": "summoning_029",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -1208.913,
+      "y": -887.992
+    },
+    {
+      "id": "summoning_030",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -1134.737,
+      "y": -981.006
+    },
+    {
+      "id": "summoning_031",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -1053.423,
+      "y": -1067.848
+    },
+    {
+      "id": "summoning_032",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -965.483,
+      "y": -1147.973
+    },
+    {
+      "id": "summoning_033",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -871.47,
+      "y": -1220.877
+    },
+    {
+      "id": "summoning_034",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -771.974,
+      "y": -1286.101
+    },
+    {
+      "id": "summoning_035",
+      "kind": "domain",
+      "domain": "SUMMONING",
+      "ring": 4,
+      "x": -667.623,
+      "y": -1343.235
+    },
+    {
+      "id": "bridge_spellblade_00",
+      "kind": "hybrid",
+      "archetype": "spellblade",
+      "domains": [
+        "MARTIAL",
+        "ARCANE"
+      ],
+      "x": 1091.919,
+      "y": -249.223
+    },
+    {
+      "id": "bridge_spellblade_01",
+      "kind": "hybrid",
+      "archetype": "spellblade",
+      "domains": [
+        "MARTIAL",
+        "ARCANE"
+      ],
+      "x": 1243.033,
+      "y": -283.714
+    },
+    {
+      "id": "bridge_spellblade_02",
+      "kind": "hybrid",
+      "archetype": "spellblade",
+      "domains": [
+        "MARTIAL",
+        "ARCANE"
+      ],
+      "x": 1394.147,
+      "y": -318.205
+    },
+    {
+      "id": "bridge_spellblade_03",
+      "kind": "hybrid",
+      "archetype": "spellblade",
+      "domains": [
+        "MARTIAL",
+        "ARCANE"
+      ],
+      "x": 1545.261,
+      "y": -352.696
+    },
+    {
+      "id": "bridge_spellblade_04",
+      "kind": "hybrid",
+      "archetype": "spellblade",
+      "domains": [
+        "MARTIAL",
+        "ARCANE"
+      ],
+      "x": 1696.375,
+      "y": -387.186
+    },
+    {
+      "id": "bridge_spellblade_05",
+      "kind": "hybrid",
+      "archetype": "spellblade",
+      "domains": [
+        "MARTIAL",
+        "ARCANE"
+      ],
+      "x": 1847.488,
+      "y": -421.677
+    },
+    {
+      "id": "bridge_battlemage_00",
+      "kind": "hybrid",
+      "archetype": "battlemage",
+      "domains": [
+        "VITALITY",
+        "ARCANE"
+      ],
+      "x": 875.651,
+      "y": 698.309
+    },
+    {
+      "id": "bridge_battlemage_01",
+      "kind": "hybrid",
+      "archetype": "battlemage",
+      "domains": [
+        "VITALITY",
+        "ARCANE"
+      ],
+      "x": 996.835,
+      "y": 794.949
+    },
+    {
+      "id": "bridge_battlemage_02",
+      "kind": "hybrid",
+      "archetype": "battlemage",
+      "domains": [
+        "VITALITY",
+        "ARCANE"
+      ],
+      "x": 1118.019,
+      "y": 891.59
+    },
+    {
+      "id": "bridge_battlemage_03",
+      "kind": "hybrid",
+      "archetype": "battlemage",
+      "domains": [
+        "VITALITY",
+        "ARCANE"
+      ],
+      "x": 1239.203,
+      "y": 988.231
+    },
+    {
+      "id": "bridge_battlemage_04",
+      "kind": "hybrid",
+      "archetype": "battlemage",
+      "domains": [
+        "VITALITY",
+        "ARCANE"
+      ],
+      "x": 1360.387,
+      "y": 1084.872
+    },
+    {
+      "id": "bridge_battlemage_05",
+      "kind": "hybrid",
+      "archetype": "battlemage",
+      "domains": [
+        "VITALITY",
+        "ARCANE"
+      ],
+      "x": 1481.571,
+      "y": 1181.513
+    },
+    {
+      "id": "bridge_arcane_archer_00",
+      "kind": "hybrid",
+      "archetype": "arcane_archer",
+      "domains": [
+        "AGILITY",
+        "ARCANE"
+      ],
+      "x": 1091.919,
+      "y": 249.223
+    },
+    {
+      "id": "bridge_arcane_archer_01",
+      "kind": "hybrid",
+      "archetype": "arcane_archer",
+      "domains": [
+        "AGILITY",
+        "ARCANE"
+      ],
+      "x": 1243.033,
+      "y": 283.714
+    },
+    {
+      "id": "bridge_arcane_archer_02",
+      "kind": "hybrid",
+      "archetype": "arcane_archer",
+      "domains": [
+        "AGILITY",
+        "ARCANE"
+      ],
+      "x": 1394.147,
+      "y": 318.205
+    },
+    {
+      "id": "bridge_arcane_archer_03",
+      "kind": "hybrid",
+      "archetype": "arcane_archer",
+      "domains": [
+        "AGILITY",
+        "ARCANE"
+      ],
+      "x": 1545.261,
+      "y": 352.696
+    },
+    {
+      "id": "bridge_arcane_archer_04",
+      "kind": "hybrid",
+      "archetype": "arcane_archer",
+      "domains": [
+        "AGILITY",
+        "ARCANE"
+      ],
+      "x": 1696.375,
+      "y": 387.186
+    },
+    {
+      "id": "bridge_arcane_archer_05",
+      "kind": "hybrid",
+      "archetype": "arcane_archer",
+      "domains": [
+        "AGILITY",
+        "ARCANE"
+      ],
+      "x": 1847.488,
+      "y": 421.677
+    },
+    {
+      "id": "bridge_technomancer_00",
+      "kind": "hybrid",
+      "archetype": "technomancer",
+      "domains": [
+        "ARCANE",
+        "ENGINEERING"
+      ],
+      "x": 0.0,
+      "y": 1120.0
+    },
+    {
+      "id": "bridge_technomancer_01",
+      "kind": "hybrid",
+      "archetype": "technomancer",
+      "domains": [
+        "ARCANE",
+        "ENGINEERING"
+      ],
+      "x": 0.0,
+      "y": 1275.0
+    },
+    {
+      "id": "bridge_technomancer_02",
+      "kind": "hybrid",
+      "archetype": "technomancer",
+      "domains": [
+        "ARCANE",
+        "ENGINEERING"
+      ],
+      "x": 0.0,
+      "y": 1430.0
+    },
+    {
+      "id": "bridge_technomancer_03",
+      "kind": "hybrid",
+      "archetype": "technomancer",
+      "domains": [
+        "ARCANE",
+        "ENGINEERING"
+      ],
+      "x": 0.0,
+      "y": 1585.0
+    },
+    {
+      "id": "bridge_technomancer_04",
+      "kind": "hybrid",
+      "archetype": "technomancer",
+      "domains": [
+        "ARCANE",
+        "ENGINEERING"
+      ],
+      "x": 0.0,
+      "y": 1740.0
+    },
+    {
+      "id": "bridge_technomancer_05",
+      "kind": "hybrid",
+      "archetype": "technomancer",
+      "domains": [
+        "ARCANE",
+        "ENGINEERING"
+      ],
+      "x": 0.0,
+      "y": 1895.0
+    },
+    {
+      "id": "bridge_artillerist_00",
+      "kind": "hybrid",
+      "archetype": "artillerist",
+      "domains": [
+        "MARTIAL",
+        "ENGINEERING"
+      ],
+      "x": -1091.919,
+      "y": -249.223
+    },
+    {
+      "id": "bridge_artillerist_01",
+      "kind": "hybrid",
+      "archetype": "artillerist",
+      "domains": [
+        "MARTIAL",
+        "ENGINEERING"
+      ],
+      "x": -1243.033,
+      "y": -283.714
+    },
+    {
+      "id": "bridge_artillerist_02",
+      "kind": "hybrid",
+      "archetype": "artillerist",
+      "domains": [
+        "MARTIAL",
+        "ENGINEERING"
+      ],
+      "x": -1394.147,
+      "y": -318.205
+    },
+    {
+      "id": "bridge_artillerist_03",
+      "kind": "hybrid",
+      "archetype": "artillerist",
+      "domains": [
+        "MARTIAL",
+        "ENGINEERING"
+      ],
+      "x": -1545.261,
+      "y": -352.696
+    },
+    {
+      "id": "bridge_artillerist_04",
+      "kind": "hybrid",
+      "archetype": "artillerist",
+      "domains": [
+        "MARTIAL",
+        "ENGINEERING"
+      ],
+      "x": -1696.375,
+      "y": -387.186
+    },
+    {
+      "id": "bridge_artillerist_05",
+      "kind": "hybrid",
+      "archetype": "artillerist",
+      "domains": [
+        "MARTIAL",
+        "ENGINEERING"
+      ],
+      "x": -1847.488,
+      "y": -421.677
+    },
+    {
+      "id": "bridge_beastmaster_00",
+      "kind": "hybrid",
+      "archetype": "beastmaster",
+      "domains": [
+        "SURVIVAL",
+        "SUMMONING"
+      ],
+      "x": -1091.919,
+      "y": -249.223
+    },
+    {
+      "id": "bridge_beastmaster_01",
+      "kind": "hybrid",
+      "archetype": "beastmaster",
+      "domains": [
+        "SURVIVAL",
+        "SUMMONING"
+      ],
+      "x": -1243.033,
+      "y": -283.714
+    },
+    {
+      "id": "bridge_beastmaster_02",
+      "kind": "hybrid",
+      "archetype": "beastmaster",
+      "domains": [
+        "SURVIVAL",
+        "SUMMONING"
+      ],
+      "x": -1394.147,
+      "y": -318.205
+    },
+    {
+      "id": "bridge_beastmaster_03",
+      "kind": "hybrid",
+      "archetype": "beastmaster",
+      "domains": [
+        "SURVIVAL",
+        "SUMMONING"
+      ],
+      "x": -1545.261,
+      "y": -352.696
+    },
+    {
+      "id": "bridge_beastmaster_04",
+      "kind": "hybrid",
+      "archetype": "beastmaster",
+      "domains": [
+        "SURVIVAL",
+        "SUMMONING"
+      ],
+      "x": -1696.375,
+      "y": -387.186
+    },
+    {
+      "id": "bridge_beastmaster_05",
+      "kind": "hybrid",
+      "archetype": "beastmaster",
+      "domains": [
+        "SURVIVAL",
+        "SUMMONING"
+      ],
+      "x": -1847.488,
+      "y": -421.677
+    },
+    {
+      "id": "bridge_warlock_00",
+      "kind": "hybrid",
+      "archetype": "warlock",
+      "domains": [
+        "ARCANE",
+        "SUMMONING"
+      ],
+      "x": -875.651,
+      "y": 698.309
+    },
+    {
+      "id": "bridge_warlock_01",
+      "kind": "hybrid",
+      "archetype": "warlock",
+      "domains": [
+        "ARCANE",
+        "SUMMONING"
+      ],
+      "x": -996.835,
+      "y": 794.949
+    },
+    {
+      "id": "bridge_warlock_02",
+      "kind": "hybrid",
+      "archetype": "warlock",
+      "domains": [
+        "ARCANE",
+        "SUMMONING"
+      ],
+      "x": -1118.019,
+      "y": 891.59
+    },
+    {
+      "id": "bridge_warlock_03",
+      "kind": "hybrid",
+      "archetype": "warlock",
+      "domains": [
+        "ARCANE",
+        "SUMMONING"
+      ],
+      "x": -1239.203,
+      "y": 988.231
+    },
+    {
+      "id": "bridge_warlock_04",
+      "kind": "hybrid",
+      "archetype": "warlock",
+      "domains": [
+        "ARCANE",
+        "SUMMONING"
+      ],
+      "x": -1360.387,
+      "y": 1084.872
+    },
+    {
+      "id": "bridge_warlock_05",
+      "kind": "hybrid",
+      "archetype": "warlock",
+      "domains": [
+        "ARCANE",
+        "SUMMONING"
+      ],
+      "x": -1481.571,
+      "y": 1181.513
+    },
+    {
+      "id": "keystone_00",
+      "kind": "keystone",
+      "x": 0.0,
+      "y": -1950.0
+    },
+    {
+      "id": "keystone_01",
+      "kind": "keystone",
+      "x": 846.073,
+      "y": -1756.889
+    },
+    {
+      "id": "keystone_02",
+      "kind": "keystone",
+      "x": 1524.571,
+      "y": -1215.805
+    },
+    {
+      "id": "keystone_03",
+      "kind": "keystone",
+      "x": 1901.109,
+      "y": -433.916
+    },
+    {
+      "id": "keystone_04",
+      "kind": "keystone",
+      "x": 1901.109,
+      "y": 433.916
+    },
+    {
+      "id": "keystone_05",
+      "kind": "keystone",
+      "x": 1524.571,
+      "y": 1215.805
+    },
+    {
+      "id": "keystone_06",
+      "kind": "keystone",
+      "x": 846.073,
+      "y": 1756.889
+    },
+    {
+      "id": "keystone_07",
+      "kind": "keystone",
+      "x": 0.0,
+      "y": 1950.0
+    },
+    {
+      "id": "keystone_08",
+      "kind": "keystone",
+      "x": -846.073,
+      "y": 1756.889
+    },
+    {
+      "id": "keystone_09",
+      "kind": "keystone",
+      "x": -1524.571,
+      "y": 1215.805
+    },
+    {
+      "id": "keystone_10",
+      "kind": "keystone",
+      "x": -1901.109,
+      "y": 433.916
+    },
+    {
+      "id": "keystone_11",
+      "kind": "keystone",
+      "x": -1901.109,
+      "y": -433.916
+    },
+    {
+      "id": "keystone_12",
+      "kind": "keystone",
+      "x": -1524.571,
+      "y": -1215.805
+    },
+    {
+      "id": "keystone_13",
+      "kind": "keystone",
+      "x": -846.073,
+      "y": -1756.889
+    }
+  ],
+  "edges": [
+    [
+      "core_00",
+      "core_01"
+    ],
+    [
+      "core_01",
+      "core_02"
+    ],
+    [
+      "core_02",
+      "core_03"
+    ],
+    [
+      "core_03",
+      "core_04"
+    ],
+    [
+      "core_04",
+      "core_05"
+    ],
+    [
+      "core_05",
+      "core_06"
+    ],
+    [
+      "core_06",
+      "core_07"
+    ],
+    [
+      "core_07",
+      "core_08"
+    ],
+    [
+      "core_08",
+      "core_09"
+    ],
+    [
+      "core_09",
+      "core_10"
+    ],
+    [
+      "core_10",
+      "core_11"
+    ],
+    [
+      "core_11",
+      "core_12"
+    ],
+    [
+      "core_12",
+      "core_13"
+    ],
+    [
+      "core_13",
+      "core_14"
+    ],
+    [
+      "core_14",
+      "core_15"
+    ],
+    [
+      "core_15",
+      "core_16"
+    ],
+    [
+      "core_16",
+      "core_17"
+    ],
+    [
+      "core_17",
+      "core_18"
+    ],
+    [
+      "core_18",
+      "core_19"
+    ],
+    [
+      "core_19",
+      "core_20"
+    ],
+    [
+      "core_20",
+      "core_21"
+    ],
+    [
+      "core_21",
+      "core_22"
+    ],
+    [
+      "core_22",
+      "core_23"
+    ],
+    [
+      "core_23",
+      "core_24"
+    ],
+    [
+      "core_24",
+      "core_25"
+    ],
+    [
+      "core_25",
+      "core_26"
+    ],
+    [
+      "core_26",
+      "core_27"
+    ],
+    [
+      "core_27",
+      "core_00"
+    ],
+    [
+      "martial_000",
+      "martial_001"
+    ],
+    [
+      "martial_001",
+      "martial_002"
+    ],
+    [
+      "martial_002",
+      "martial_003"
+    ],
+    [
+      "martial_003",
+      "martial_004"
+    ],
+    [
+      "martial_004",
+      "martial_005"
+    ],
+    [
+      "martial_000",
+      "martial_006"
+    ],
+    [
+      "martial_006",
+      "martial_007"
+    ],
+    [
+      "martial_001",
+      "martial_007"
+    ],
+    [
+      "martial_007",
+      "martial_008"
+    ],
+    [
+      "martial_001",
+      "martial_008"
+    ],
+    [
+      "martial_008",
+      "martial_009"
+    ],
+    [
+      "martial_002",
+      "martial_009"
+    ],
+    [
+      "martial_009",
+      "martial_010"
+    ],
+    [
+      "martial_003",
+      "martial_010"
+    ],
+    [
+      "martial_010",
+      "martial_011"
+    ],
+    [
+      "martial_004",
+      "martial_011"
+    ],
+    [
+      "martial_011",
+      "martial_012"
+    ],
+    [
+      "martial_004",
+      "martial_012"
+    ],
+    [
+      "martial_012",
+      "martial_013"
+    ],
+    [
+      "martial_005",
+      "martial_013"
+    ],
+    [
+      "martial_006",
+      "martial_014"
+    ],
+    [
+      "martial_014",
+      "martial_015"
+    ],
+    [
+      "martial_007",
+      "martial_015"
+    ],
+    [
+      "martial_015",
+      "martial_016"
+    ],
+    [
+      "martial_008",
+      "martial_016"
+    ],
+    [
+      "martial_016",
+      "martial_017"
+    ],
+    [
+      "martial_008",
+      "martial_017"
+    ],
+    [
+      "martial_017",
+      "martial_018"
+    ],
+    [
+      "martial_009",
+      "martial_018"
+    ],
+    [
+      "martial_018",
+      "martial_019"
+    ],
+    [
+      "martial_010",
+      "martial_019"
+    ],
+    [
+      "martial_019",
+      "martial_020"
+    ],
+    [
+      "martial_011",
+      "martial_020"
+    ],
+    [
+      "martial_020",
+      "martial_021"
+    ],
+    [
+      "martial_011",
+      "martial_021"
+    ],
+    [
+      "martial_021",
+      "martial_022"
+    ],
+    [
+      "martial_012",
+      "martial_022"
+    ],
+    [
+      "martial_022",
+      "martial_023"
+    ],
+    [
+      "martial_013",
+      "martial_023"
+    ],
+    [
+      "martial_014",
+      "martial_024"
+    ],
+    [
+      "martial_024",
+      "martial_025"
+    ],
+    [
+      "martial_015",
+      "martial_025"
+    ],
+    [
+      "martial_025",
+      "martial_026"
+    ],
+    [
+      "martial_016",
+      "martial_026"
+    ],
+    [
+      "martial_026",
+      "martial_027"
+    ],
+    [
+      "martial_016",
+      "martial_027"
+    ],
+    [
+      "martial_027",
+      "martial_028"
+    ],
+    [
+      "martial_017",
+      "martial_028"
+    ],
+    [
+      "martial_028",
+      "martial_029"
+    ],
+    [
+      "martial_018",
+      "martial_029"
+    ],
+    [
+      "martial_029",
+      "martial_030"
+    ],
+    [
+      "martial_019",
+      "martial_030"
+    ],
+    [
+      "martial_030",
+      "martial_031"
+    ],
+    [
+      "martial_020",
+      "martial_031"
+    ],
+    [
+      "martial_031",
+      "martial_032"
+    ],
+    [
+      "martial_021",
+      "martial_032"
+    ],
+    [
+      "martial_032",
+      "martial_033"
+    ],
+    [
+      "martial_021",
+      "martial_033"
+    ],
+    [
+      "martial_033",
+      "martial_034"
+    ],
+    [
+      "martial_022",
+      "martial_034"
+    ],
+    [
+      "martial_034",
+      "martial_035"
+    ],
+    [
+      "martial_023",
+      "martial_035"
+    ],
+    [
+      "martial_024",
+      "martial_036"
+    ],
+    [
+      "martial_036",
+      "martial_037"
+    ],
+    [
+      "martial_025",
+      "martial_037"
+    ],
+    [
+      "martial_037",
+      "martial_038"
+    ],
+    [
+      "martial_026",
+      "martial_038"
+    ],
+    [
+      "martial_038",
+      "martial_039"
+    ],
+    [
+      "martial_027",
+      "martial_039"
+    ],
+    [
+      "martial_039",
+      "martial_040"
+    ],
+    [
+      "martial_028",
+      "martial_040"
+    ],
+    [
+      "martial_040",
+      "martial_041"
+    ],
+    [
+      "martial_029",
+      "martial_041"
+    ],
+    [
+      "martial_041",
+      "martial_042"
+    ],
+    [
+      "martial_030",
+      "martial_042"
+    ],
+    [
+      "martial_042",
+      "martial_043"
+    ],
+    [
+      "martial_031",
+      "martial_043"
+    ],
+    [
+      "martial_043",
+      "martial_044"
+    ],
+    [
+      "martial_032",
+      "martial_044"
+    ],
+    [
+      "martial_044",
+      "martial_045"
+    ],
+    [
+      "martial_033",
+      "martial_045"
+    ],
+    [
+      "martial_045",
+      "martial_046"
+    ],
+    [
+      "martial_034",
+      "martial_046"
+    ],
+    [
+      "martial_046",
+      "martial_047"
+    ],
+    [
+      "martial_035",
+      "martial_047"
+    ],
+    [
+      "core_21",
+      "martial_000"
+    ],
+    [
+      "agility_000",
+      "agility_001"
+    ],
+    [
+      "agility_001",
+      "agility_002"
+    ],
+    [
+      "agility_002",
+      "agility_003"
+    ],
+    [
+      "agility_003",
+      "agility_004"
+    ],
+    [
+      "agility_004",
+      "agility_005"
+    ],
+    [
+      "agility_000",
+      "agility_006"
+    ],
+    [
+      "agility_006",
+      "agility_007"
+    ],
+    [
+      "agility_001",
+      "agility_007"
+    ],
+    [
+      "agility_007",
+      "agility_008"
+    ],
+    [
+      "agility_001",
+      "agility_008"
+    ],
+    [
+      "agility_008",
+      "agility_009"
+    ],
+    [
+      "agility_002",
+      "agility_009"
+    ],
+    [
+      "agility_009",
+      "agility_010"
+    ],
+    [
+      "agility_003",
+      "agility_010"
+    ],
+    [
+      "agility_010",
+      "agility_011"
+    ],
+    [
+      "agility_004",
+      "agility_011"
+    ],
+    [
+      "agility_011",
+      "agility_012"
+    ],
+    [
+      "agility_004",
+      "agility_012"
+    ],
+    [
+      "agility_012",
+      "agility_013"
+    ],
+    [
+      "agility_005",
+      "agility_013"
+    ],
+    [
+      "agility_006",
+      "agility_014"
+    ],
+    [
+      "agility_014",
+      "agility_015"
+    ],
+    [
+      "agility_007",
+      "agility_015"
+    ],
+    [
+      "agility_015",
+      "agility_016"
+    ],
+    [
+      "agility_008",
+      "agility_016"
+    ],
+    [
+      "agility_016",
+      "agility_017"
+    ],
+    [
+      "agility_008",
+      "agility_017"
+    ],
+    [
+      "agility_017",
+      "agility_018"
+    ],
+    [
+      "agility_009",
+      "agility_018"
+    ],
+    [
+      "agility_018",
+      "agility_019"
+    ],
+    [
+      "agility_010",
+      "agility_019"
+    ],
+    [
+      "agility_019",
+      "agility_020"
+    ],
+    [
+      "agility_011",
+      "agility_020"
+    ],
+    [
+      "agility_020",
+      "agility_021"
+    ],
+    [
+      "agility_011",
+      "agility_021"
+    ],
+    [
+      "agility_021",
+      "agility_022"
+    ],
+    [
+      "agility_012",
+      "agility_022"
+    ],
+    [
+      "agility_022",
+      "agility_023"
+    ],
+    [
+      "agility_013",
+      "agility_023"
+    ],
+    [
+      "agility_014",
+      "agility_024"
+    ],
+    [
+      "agility_024",
+      "agility_025"
+    ],
+    [
+      "agility_015",
+      "agility_025"
+    ],
+    [
+      "agility_025",
+      "agility_026"
+    ],
+    [
+      "agility_016",
+      "agility_026"
+    ],
+    [
+      "agility_026",
+      "agility_027"
+    ],
+    [
+      "agility_016",
+      "agility_027"
+    ],
+    [
+      "agility_027",
+      "agility_028"
+    ],
+    [
+      "agility_017",
+      "agility_028"
+    ],
+    [
+      "agility_028",
+      "agility_029"
+    ],
+    [
+      "agility_018",
+      "agility_029"
+    ],
+    [
+      "agility_029",
+      "agility_030"
+    ],
+    [
+      "agility_019",
+      "agility_030"
+    ],
+    [
+      "agility_030",
+      "agility_031"
+    ],
+    [
+      "agility_020",
+      "agility_031"
+    ],
+    [
+      "agility_031",
+      "agility_032"
+    ],
+    [
+      "agility_021",
+      "agility_032"
+    ],
+    [
+      "agility_032",
+      "agility_033"
+    ],
+    [
+      "agility_021",
+      "agility_033"
+    ],
+    [
+      "agility_033",
+      "agility_034"
+    ],
+    [
+      "agility_022",
+      "agility_034"
+    ],
+    [
+      "agility_034",
+      "agility_035"
+    ],
+    [
+      "agility_023",
+      "agility_035"
+    ],
+    [
+      "agility_024",
+      "agility_036"
+    ],
+    [
+      "agility_036",
+      "agility_037"
+    ],
+    [
+      "agility_025",
+      "agility_037"
+    ],
+    [
+      "agility_037",
+      "agility_038"
+    ],
+    [
+      "agility_026",
+      "agility_038"
+    ],
+    [
+      "agility_038",
+      "agility_039"
+    ],
+    [
+      "agility_027",
+      "agility_039"
+    ],
+    [
+      "agility_039",
+      "agility_040"
+    ],
+    [
+      "agility_028",
+      "agility_040"
+    ],
+    [
+      "agility_040",
+      "agility_041"
+    ],
+    [
+      "agility_029",
+      "agility_041"
+    ],
+    [
+      "agility_041",
+      "agility_042"
+    ],
+    [
+      "agility_030",
+      "agility_042"
+    ],
+    [
+      "agility_042",
+      "agility_043"
+    ],
+    [
+      "agility_031",
+      "agility_043"
+    ],
+    [
+      "agility_043",
+      "agility_044"
+    ],
+    [
+      "agility_032",
+      "agility_044"
+    ],
+    [
+      "agility_044",
+      "agility_045"
+    ],
+    [
+      "agility_033",
+      "agility_045"
+    ],
+    [
+      "agility_045",
+      "agility_046"
+    ],
+    [
+      "agility_034",
+      "agility_046"
+    ],
+    [
+      "agility_046",
+      "agility_047"
+    ],
+    [
+      "agility_035",
+      "agility_047"
+    ],
+    [
+      "core_25",
+      "agility_000"
+    ],
+    [
+      "vitality_000",
+      "vitality_001"
+    ],
+    [
+      "vitality_001",
+      "vitality_002"
+    ],
+    [
+      "vitality_002",
+      "vitality_003"
+    ],
+    [
+      "vitality_003",
+      "vitality_004"
+    ],
+    [
+      "vitality_004",
+      "vitality_005"
+    ],
+    [
+      "vitality_000",
+      "vitality_006"
+    ],
+    [
+      "vitality_006",
+      "vitality_007"
+    ],
+    [
+      "vitality_001",
+      "vitality_007"
+    ],
+    [
+      "vitality_007",
+      "vitality_008"
+    ],
+    [
+      "vitality_001",
+      "vitality_008"
+    ],
+    [
+      "vitality_008",
+      "vitality_009"
+    ],
+    [
+      "vitality_002",
+      "vitality_009"
+    ],
+    [
+      "vitality_009",
+      "vitality_010"
+    ],
+    [
+      "vitality_003",
+      "vitality_010"
+    ],
+    [
+      "vitality_010",
+      "vitality_011"
+    ],
+    [
+      "vitality_004",
+      "vitality_011"
+    ],
+    [
+      "vitality_011",
+      "vitality_012"
+    ],
+    [
+      "vitality_004",
+      "vitality_012"
+    ],
+    [
+      "vitality_012",
+      "vitality_013"
+    ],
+    [
+      "vitality_005",
+      "vitality_013"
+    ],
+    [
+      "vitality_006",
+      "vitality_014"
+    ],
+    [
+      "vitality_014",
+      "vitality_015"
+    ],
+    [
+      "vitality_007",
+      "vitality_015"
+    ],
+    [
+      "vitality_015",
+      "vitality_016"
+    ],
+    [
+      "vitality_008",
+      "vitality_016"
+    ],
+    [
+      "vitality_016",
+      "vitality_017"
+    ],
+    [
+      "vitality_008",
+      "vitality_017"
+    ],
+    [
+      "vitality_017",
+      "vitality_018"
+    ],
+    [
+      "vitality_009",
+      "vitality_018"
+    ],
+    [
+      "vitality_018",
+      "vitality_019"
+    ],
+    [
+      "vitality_010",
+      "vitality_019"
+    ],
+    [
+      "vitality_019",
+      "vitality_020"
+    ],
+    [
+      "vitality_011",
+      "vitality_020"
+    ],
+    [
+      "vitality_020",
+      "vitality_021"
+    ],
+    [
+      "vitality_011",
+      "vitality_021"
+    ],
+    [
+      "vitality_021",
+      "vitality_022"
+    ],
+    [
+      "vitality_012",
+      "vitality_022"
+    ],
+    [
+      "vitality_022",
+      "vitality_023"
+    ],
+    [
+      "vitality_013",
+      "vitality_023"
+    ],
+    [
+      "vitality_014",
+      "vitality_024"
+    ],
+    [
+      "vitality_024",
+      "vitality_025"
+    ],
+    [
+      "vitality_015",
+      "vitality_025"
+    ],
+    [
+      "vitality_025",
+      "vitality_026"
+    ],
+    [
+      "vitality_016",
+      "vitality_026"
+    ],
+    [
+      "vitality_026",
+      "vitality_027"
+    ],
+    [
+      "vitality_016",
+      "vitality_027"
+    ],
+    [
+      "vitality_027",
+      "vitality_028"
+    ],
+    [
+      "vitality_017",
+      "vitality_028"
+    ],
+    [
+      "vitality_028",
+      "vitality_029"
+    ],
+    [
+      "vitality_018",
+      "vitality_029"
+    ],
+    [
+      "vitality_029",
+      "vitality_030"
+    ],
+    [
+      "vitality_019",
+      "vitality_030"
+    ],
+    [
+      "vitality_030",
+      "vitality_031"
+    ],
+    [
+      "vitality_020",
+      "vitality_031"
+    ],
+    [
+      "vitality_031",
+      "vitality_032"
+    ],
+    [
+      "vitality_021",
+      "vitality_032"
+    ],
+    [
+      "vitality_032",
+      "vitality_033"
+    ],
+    [
+      "vitality_021",
+      "vitality_033"
+    ],
+    [
+      "vitality_033",
+      "vitality_034"
+    ],
+    [
+      "vitality_022",
+      "vitality_034"
+    ],
+    [
+      "vitality_034",
+      "vitality_035"
+    ],
+    [
+      "vitality_023",
+      "vitality_035"
+    ],
+    [
+      "vitality_024",
+      "vitality_036"
+    ],
+    [
+      "vitality_036",
+      "vitality_037"
+    ],
+    [
+      "vitality_025",
+      "vitality_037"
+    ],
+    [
+      "vitality_037",
+      "vitality_038"
+    ],
+    [
+      "vitality_026",
+      "vitality_038"
+    ],
+    [
+      "vitality_038",
+      "vitality_039"
+    ],
+    [
+      "vitality_027",
+      "vitality_039"
+    ],
+    [
+      "vitality_039",
+      "vitality_040"
+    ],
+    [
+      "vitality_028",
+      "vitality_040"
+    ],
+    [
+      "vitality_040",
+      "vitality_041"
+    ],
+    [
+      "vitality_029",
+      "vitality_041"
+    ],
+    [
+      "vitality_041",
+      "vitality_042"
+    ],
+    [
+      "vitality_030",
+      "vitality_042"
+    ],
+    [
+      "vitality_042",
+      "vitality_043"
+    ],
+    [
+      "vitality_031",
+      "vitality_043"
+    ],
+    [
+      "vitality_043",
+      "vitality_044"
+    ],
+    [
+      "vitality_032",
+      "vitality_044"
+    ],
+    [
+      "vitality_044",
+      "vitality_045"
+    ],
+    [
+      "vitality_033",
+      "vitality_045"
+    ],
+    [
+      "vitality_045",
+      "vitality_046"
+    ],
+    [
+      "vitality_034",
+      "vitality_046"
+    ],
+    [
+      "vitality_046",
+      "vitality_047"
+    ],
+    [
+      "vitality_035",
+      "vitality_047"
+    ],
+    [
+      "core_01",
+      "vitality_000"
+    ],
+    [
+      "arcane_000",
+      "arcane_001"
+    ],
+    [
+      "arcane_001",
+      "arcane_002"
+    ],
+    [
+      "arcane_002",
+      "arcane_003"
+    ],
+    [
+      "arcane_003",
+      "arcane_004"
+    ],
+    [
+      "arcane_004",
+      "arcane_005"
+    ],
+    [
+      "arcane_000",
+      "arcane_006"
+    ],
+    [
+      "arcane_006",
+      "arcane_007"
+    ],
+    [
+      "arcane_001",
+      "arcane_007"
+    ],
+    [
+      "arcane_007",
+      "arcane_008"
+    ],
+    [
+      "arcane_001",
+      "arcane_008"
+    ],
+    [
+      "arcane_008",
+      "arcane_009"
+    ],
+    [
+      "arcane_002",
+      "arcane_009"
+    ],
+    [
+      "arcane_009",
+      "arcane_010"
+    ],
+    [
+      "arcane_003",
+      "arcane_010"
+    ],
+    [
+      "arcane_010",
+      "arcane_011"
+    ],
+    [
+      "arcane_004",
+      "arcane_011"
+    ],
+    [
+      "arcane_011",
+      "arcane_012"
+    ],
+    [
+      "arcane_004",
+      "arcane_012"
+    ],
+    [
+      "arcane_012",
+      "arcane_013"
+    ],
+    [
+      "arcane_005",
+      "arcane_013"
+    ],
+    [
+      "arcane_006",
+      "arcane_014"
+    ],
+    [
+      "arcane_014",
+      "arcane_015"
+    ],
+    [
+      "arcane_007",
+      "arcane_015"
+    ],
+    [
+      "arcane_015",
+      "arcane_016"
+    ],
+    [
+      "arcane_008",
+      "arcane_016"
+    ],
+    [
+      "arcane_016",
+      "arcane_017"
+    ],
+    [
+      "arcane_008",
+      "arcane_017"
+    ],
+    [
+      "arcane_017",
+      "arcane_018"
+    ],
+    [
+      "arcane_009",
+      "arcane_018"
+    ],
+    [
+      "arcane_018",
+      "arcane_019"
+    ],
+    [
+      "arcane_010",
+      "arcane_019"
+    ],
+    [
+      "arcane_019",
+      "arcane_020"
+    ],
+    [
+      "arcane_011",
+      "arcane_020"
+    ],
+    [
+      "arcane_020",
+      "arcane_021"
+    ],
+    [
+      "arcane_011",
+      "arcane_021"
+    ],
+    [
+      "arcane_021",
+      "arcane_022"
+    ],
+    [
+      "arcane_012",
+      "arcane_022"
+    ],
+    [
+      "arcane_022",
+      "arcane_023"
+    ],
+    [
+      "arcane_013",
+      "arcane_023"
+    ],
+    [
+      "arcane_014",
+      "arcane_024"
+    ],
+    [
+      "arcane_024",
+      "arcane_025"
+    ],
+    [
+      "arcane_015",
+      "arcane_025"
+    ],
+    [
+      "arcane_025",
+      "arcane_026"
+    ],
+    [
+      "arcane_016",
+      "arcane_026"
+    ],
+    [
+      "arcane_026",
+      "arcane_027"
+    ],
+    [
+      "arcane_016",
+      "arcane_027"
+    ],
+    [
+      "arcane_027",
+      "arcane_028"
+    ],
+    [
+      "arcane_017",
+      "arcane_028"
+    ],
+    [
+      "arcane_028",
+      "arcane_029"
+    ],
+    [
+      "arcane_018",
+      "arcane_029"
+    ],
+    [
+      "arcane_029",
+      "arcane_030"
+    ],
+    [
+      "arcane_019",
+      "arcane_030"
+    ],
+    [
+      "arcane_030",
+      "arcane_031"
+    ],
+    [
+      "arcane_020",
+      "arcane_031"
+    ],
+    [
+      "arcane_031",
+      "arcane_032"
+    ],
+    [
+      "arcane_021",
+      "arcane_032"
+    ],
+    [
+      "arcane_032",
+      "arcane_033"
+    ],
+    [
+      "arcane_021",
+      "arcane_033"
+    ],
+    [
+      "arcane_033",
+      "arcane_034"
+    ],
+    [
+      "arcane_022",
+      "arcane_034"
+    ],
+    [
+      "arcane_034",
+      "arcane_035"
+    ],
+    [
+      "arcane_023",
+      "arcane_035"
+    ],
+    [
+      "arcane_024",
+      "arcane_036"
+    ],
+    [
+      "arcane_036",
+      "arcane_037"
+    ],
+    [
+      "arcane_025",
+      "arcane_037"
+    ],
+    [
+      "arcane_037",
+      "arcane_038"
+    ],
+    [
+      "arcane_026",
+      "arcane_038"
+    ],
+    [
+      "arcane_038",
+      "arcane_039"
+    ],
+    [
+      "arcane_027",
+      "arcane_039"
+    ],
+    [
+      "arcane_039",
+      "arcane_040"
+    ],
+    [
+      "arcane_027",
+      "arcane_040"
+    ],
+    [
+      "arcane_040",
+      "arcane_041"
+    ],
+    [
+      "arcane_028",
+      "arcane_041"
+    ],
+    [
+      "arcane_041",
+      "arcane_042"
+    ],
+    [
+      "arcane_029",
+      "arcane_042"
+    ],
+    [
+      "arcane_042",
+      "arcane_043"
+    ],
+    [
+      "arcane_030",
+      "arcane_043"
+    ],
+    [
+      "arcane_043",
+      "arcane_044"
+    ],
+    [
+      "arcane_031",
+      "arcane_044"
+    ],
+    [
+      "arcane_044",
+      "arcane_045"
+    ],
+    [
+      "arcane_032",
+      "arcane_045"
+    ],
+    [
+      "arcane_045",
+      "arcane_046"
+    ],
+    [
+      "arcane_032",
+      "arcane_046"
+    ],
+    [
+      "arcane_046",
+      "arcane_047"
+    ],
+    [
+      "arcane_033",
+      "arcane_047"
+    ],
+    [
+      "arcane_047",
+      "arcane_048"
+    ],
+    [
+      "arcane_034",
+      "arcane_048"
+    ],
+    [
+      "arcane_048",
+      "arcane_049"
+    ],
+    [
+      "arcane_035",
+      "arcane_049"
+    ],
+    [
+      "arcane_036",
+      "arcane_050"
+    ],
+    [
+      "arcane_050",
+      "arcane_051"
+    ],
+    [
+      "arcane_037",
+      "arcane_051"
+    ],
+    [
+      "arcane_051",
+      "arcane_052"
+    ],
+    [
+      "arcane_039",
+      "arcane_052"
+    ],
+    [
+      "arcane_052",
+      "arcane_053"
+    ],
+    [
+      "arcane_040",
+      "arcane_053"
+    ],
+    [
+      "arcane_053",
+      "arcane_054"
+    ],
+    [
+      "arcane_042",
+      "arcane_054"
+    ],
+    [
+      "arcane_054",
+      "arcane_055"
+    ],
+    [
+      "arcane_043",
+      "arcane_055"
+    ],
+    [
+      "arcane_055",
+      "arcane_056"
+    ],
+    [
+      "arcane_045",
+      "arcane_056"
+    ],
+    [
+      "arcane_056",
+      "arcane_057"
+    ],
+    [
+      "arcane_046",
+      "arcane_057"
+    ],
+    [
+      "arcane_057",
+      "arcane_058"
+    ],
+    [
+      "arcane_048",
+      "arcane_058"
+    ],
+    [
+      "arcane_058",
+      "arcane_059"
+    ],
+    [
+      "arcane_049",
+      "arcane_059"
+    ],
+    [
+      "core_05",
+      "arcane_000"
+    ],
+    [
+      "engineering_000",
+      "engineering_001"
+    ],
+    [
+      "engineering_001",
+      "engineering_002"
+    ],
+    [
+      "engineering_002",
+      "engineering_003"
+    ],
+    [
+      "engineering_003",
+      "engineering_004"
+    ],
+    [
+      "engineering_004",
+      "engineering_005"
+    ],
+    [
+      "engineering_000",
+      "engineering_006"
+    ],
+    [
+      "engineering_006",
+      "engineering_007"
+    ],
+    [
+      "engineering_001",
+      "engineering_007"
+    ],
+    [
+      "engineering_007",
+      "engineering_008"
+    ],
+    [
+      "engineering_001",
+      "engineering_008"
+    ],
+    [
+      "engineering_008",
+      "engineering_009"
+    ],
+    [
+      "engineering_002",
+      "engineering_009"
+    ],
+    [
+      "engineering_009",
+      "engineering_010"
+    ],
+    [
+      "engineering_003",
+      "engineering_010"
+    ],
+    [
+      "engineering_010",
+      "engineering_011"
+    ],
+    [
+      "engineering_004",
+      "engineering_011"
+    ],
+    [
+      "engineering_011",
+      "engineering_012"
+    ],
+    [
+      "engineering_004",
+      "engineering_012"
+    ],
+    [
+      "engineering_012",
+      "engineering_013"
+    ],
+    [
+      "engineering_005",
+      "engineering_013"
+    ],
+    [
+      "engineering_006",
+      "engineering_014"
+    ],
+    [
+      "engineering_014",
+      "engineering_015"
+    ],
+    [
+      "engineering_007",
+      "engineering_015"
+    ],
+    [
+      "engineering_015",
+      "engineering_016"
+    ],
+    [
+      "engineering_008",
+      "engineering_016"
+    ],
+    [
+      "engineering_016",
+      "engineering_017"
+    ],
+    [
+      "engineering_008",
+      "engineering_017"
+    ],
+    [
+      "engineering_017",
+      "engineering_018"
+    ],
+    [
+      "engineering_009",
+      "engineering_018"
+    ],
+    [
+      "engineering_018",
+      "engineering_019"
+    ],
+    [
+      "engineering_010",
+      "engineering_019"
+    ],
+    [
+      "engineering_019",
+      "engineering_020"
+    ],
+    [
+      "engineering_011",
+      "engineering_020"
+    ],
+    [
+      "engineering_020",
+      "engineering_021"
+    ],
+    [
+      "engineering_011",
+      "engineering_021"
+    ],
+    [
+      "engineering_021",
+      "engineering_022"
+    ],
+    [
+      "engineering_012",
+      "engineering_022"
+    ],
+    [
+      "engineering_022",
+      "engineering_023"
+    ],
+    [
+      "engineering_013",
+      "engineering_023"
+    ],
+    [
+      "engineering_014",
+      "engineering_024"
+    ],
+    [
+      "engineering_024",
+      "engineering_025"
+    ],
+    [
+      "engineering_015",
+      "engineering_025"
+    ],
+    [
+      "engineering_025",
+      "engineering_026"
+    ],
+    [
+      "engineering_016",
+      "engineering_026"
+    ],
+    [
+      "engineering_026",
+      "engineering_027"
+    ],
+    [
+      "engineering_016",
+      "engineering_027"
+    ],
+    [
+      "engineering_027",
+      "engineering_028"
+    ],
+    [
+      "engineering_017",
+      "engineering_028"
+    ],
+    [
+      "engineering_028",
+      "engineering_029"
+    ],
+    [
+      "engineering_018",
+      "engineering_029"
+    ],
+    [
+      "engineering_029",
+      "engineering_030"
+    ],
+    [
+      "engineering_019",
+      "engineering_030"
+    ],
+    [
+      "engineering_030",
+      "engineering_031"
+    ],
+    [
+      "engineering_020",
+      "engineering_031"
+    ],
+    [
+      "engineering_031",
+      "engineering_032"
+    ],
+    [
+      "engineering_021",
+      "engineering_032"
+    ],
+    [
+      "engineering_032",
+      "engineering_033"
+    ],
+    [
+      "engineering_021",
+      "engineering_033"
+    ],
+    [
+      "engineering_033",
+      "engineering_034"
+    ],
+    [
+      "engineering_022",
+      "engineering_034"
+    ],
+    [
+      "engineering_034",
+      "engineering_035"
+    ],
+    [
+      "engineering_023",
+      "engineering_035"
+    ],
+    [
+      "engineering_024",
+      "engineering_036"
+    ],
+    [
+      "engineering_036",
+      "engineering_037"
+    ],
+    [
+      "engineering_025",
+      "engineering_037"
+    ],
+    [
+      "engineering_037",
+      "engineering_038"
+    ],
+    [
+      "engineering_026",
+      "engineering_038"
+    ],
+    [
+      "engineering_038",
+      "engineering_039"
+    ],
+    [
+      "engineering_027",
+      "engineering_039"
+    ],
+    [
+      "engineering_039",
+      "engineering_040"
+    ],
+    [
+      "engineering_027",
+      "engineering_040"
+    ],
+    [
+      "engineering_040",
+      "engineering_041"
+    ],
+    [
+      "engineering_028",
+      "engineering_041"
+    ],
+    [
+      "engineering_041",
+      "engineering_042"
+    ],
+    [
+      "engineering_029",
+      "engineering_042"
+    ],
+    [
+      "engineering_042",
+      "engineering_043"
+    ],
+    [
+      "engineering_030",
+      "engineering_043"
+    ],
+    [
+      "engineering_043",
+      "engineering_044"
+    ],
+    [
+      "engineering_031",
+      "engineering_044"
+    ],
+    [
+      "engineering_044",
+      "engineering_045"
+    ],
+    [
+      "engineering_032",
+      "engineering_045"
+    ],
+    [
+      "engineering_045",
+      "engineering_046"
+    ],
+    [
+      "engineering_032",
+      "engineering_046"
+    ],
+    [
+      "engineering_046",
+      "engineering_047"
+    ],
+    [
+      "engineering_033",
+      "engineering_047"
+    ],
+    [
+      "engineering_047",
+      "engineering_048"
+    ],
+    [
+      "engineering_034",
+      "engineering_048"
+    ],
+    [
+      "engineering_048",
+      "engineering_049"
+    ],
+    [
+      "engineering_035",
+      "engineering_049"
+    ],
+    [
+      "engineering_036",
+      "engineering_050"
+    ],
+    [
+      "engineering_050",
+      "engineering_051"
+    ],
+    [
+      "engineering_039",
+      "engineering_051"
+    ],
+    [
+      "engineering_051",
+      "engineering_052"
+    ],
+    [
+      "engineering_041",
+      "engineering_052"
+    ],
+    [
+      "engineering_052",
+      "engineering_053"
+    ],
+    [
+      "engineering_044",
+      "engineering_053"
+    ],
+    [
+      "engineering_053",
+      "engineering_054"
+    ],
+    [
+      "engineering_046",
+      "engineering_054"
+    ],
+    [
+      "engineering_054",
+      "engineering_055"
+    ],
+    [
+      "engineering_049",
+      "engineering_055"
+    ],
+    [
+      "core_09",
+      "engineering_000"
+    ],
+    [
+      "survival_000",
+      "survival_001"
+    ],
+    [
+      "survival_001",
+      "survival_002"
+    ],
+    [
+      "survival_002",
+      "survival_003"
+    ],
+    [
+      "survival_003",
+      "survival_004"
+    ],
+    [
+      "survival_004",
+      "survival_005"
+    ],
+    [
+      "survival_000",
+      "survival_006"
+    ],
+    [
+      "survival_006",
+      "survival_007"
+    ],
+    [
+      "survival_001",
+      "survival_007"
+    ],
+    [
+      "survival_007",
+      "survival_008"
+    ],
+    [
+      "survival_001",
+      "survival_008"
+    ],
+    [
+      "survival_008",
+      "survival_009"
+    ],
+    [
+      "survival_002",
+      "survival_009"
+    ],
+    [
+      "survival_009",
+      "survival_010"
+    ],
+    [
+      "survival_003",
+      "survival_010"
+    ],
+    [
+      "survival_010",
+      "survival_011"
+    ],
+    [
+      "survival_004",
+      "survival_011"
+    ],
+    [
+      "survival_011",
+      "survival_012"
+    ],
+    [
+      "survival_004",
+      "survival_012"
+    ],
+    [
+      "survival_012",
+      "survival_013"
+    ],
+    [
+      "survival_005",
+      "survival_013"
+    ],
+    [
+      "survival_006",
+      "survival_014"
+    ],
+    [
+      "survival_014",
+      "survival_015"
+    ],
+    [
+      "survival_007",
+      "survival_015"
+    ],
+    [
+      "survival_015",
+      "survival_016"
+    ],
+    [
+      "survival_008",
+      "survival_016"
+    ],
+    [
+      "survival_016",
+      "survival_017"
+    ],
+    [
+      "survival_008",
+      "survival_017"
+    ],
+    [
+      "survival_017",
+      "survival_018"
+    ],
+    [
+      "survival_009",
+      "survival_018"
+    ],
+    [
+      "survival_018",
+      "survival_019"
+    ],
+    [
+      "survival_010",
+      "survival_019"
+    ],
+    [
+      "survival_019",
+      "survival_020"
+    ],
+    [
+      "survival_011",
+      "survival_020"
+    ],
+    [
+      "survival_020",
+      "survival_021"
+    ],
+    [
+      "survival_011",
+      "survival_021"
+    ],
+    [
+      "survival_021",
+      "survival_022"
+    ],
+    [
+      "survival_012",
+      "survival_022"
+    ],
+    [
+      "survival_022",
+      "survival_023"
+    ],
+    [
+      "survival_013",
+      "survival_023"
+    ],
+    [
+      "survival_014",
+      "survival_024"
+    ],
+    [
+      "survival_024",
+      "survival_025"
+    ],
+    [
+      "survival_015",
+      "survival_025"
+    ],
+    [
+      "survival_025",
+      "survival_026"
+    ],
+    [
+      "survival_016",
+      "survival_026"
+    ],
+    [
+      "survival_026",
+      "survival_027"
+    ],
+    [
+      "survival_016",
+      "survival_027"
+    ],
+    [
+      "survival_027",
+      "survival_028"
+    ],
+    [
+      "survival_017",
+      "survival_028"
+    ],
+    [
+      "survival_028",
+      "survival_029"
+    ],
+    [
+      "survival_018",
+      "survival_029"
+    ],
+    [
+      "survival_029",
+      "survival_030"
+    ],
+    [
+      "survival_019",
+      "survival_030"
+    ],
+    [
+      "survival_030",
+      "survival_031"
+    ],
+    [
+      "survival_020",
+      "survival_031"
+    ],
+    [
+      "survival_031",
+      "survival_032"
+    ],
+    [
+      "survival_021",
+      "survival_032"
+    ],
+    [
+      "survival_032",
+      "survival_033"
+    ],
+    [
+      "survival_021",
+      "survival_033"
+    ],
+    [
+      "survival_033",
+      "survival_034"
+    ],
+    [
+      "survival_022",
+      "survival_034"
+    ],
+    [
+      "survival_034",
+      "survival_035"
+    ],
+    [
+      "survival_023",
+      "survival_035"
+    ],
+    [
+      "survival_024",
+      "survival_036"
+    ],
+    [
+      "survival_036",
+      "survival_037"
+    ],
+    [
+      "survival_028",
+      "survival_037"
+    ],
+    [
+      "survival_037",
+      "survival_038"
+    ],
+    [
+      "survival_031",
+      "survival_038"
+    ],
+    [
+      "survival_038",
+      "survival_039"
+    ],
+    [
+      "survival_035",
+      "survival_039"
+    ],
+    [
+      "core_13",
+      "survival_000"
+    ],
+    [
+      "summoning_000",
+      "summoning_001"
+    ],
+    [
+      "summoning_001",
+      "summoning_002"
+    ],
+    [
+      "summoning_002",
+      "summoning_003"
+    ],
+    [
+      "summoning_003",
+      "summoning_004"
+    ],
+    [
+      "summoning_004",
+      "summoning_005"
+    ],
+    [
+      "summoning_000",
+      "summoning_006"
+    ],
+    [
+      "summoning_006",
+      "summoning_007"
+    ],
+    [
+      "summoning_001",
+      "summoning_007"
+    ],
+    [
+      "summoning_007",
+      "summoning_008"
+    ],
+    [
+      "summoning_001",
+      "summoning_008"
+    ],
+    [
+      "summoning_008",
+      "summoning_009"
+    ],
+    [
+      "summoning_002",
+      "summoning_009"
+    ],
+    [
+      "summoning_009",
+      "summoning_010"
+    ],
+    [
+      "summoning_003",
+      "summoning_010"
+    ],
+    [
+      "summoning_010",
+      "summoning_011"
+    ],
+    [
+      "summoning_004",
+      "summoning_011"
+    ],
+    [
+      "summoning_011",
+      "summoning_012"
+    ],
+    [
+      "summoning_004",
+      "summoning_012"
+    ],
+    [
+      "summoning_012",
+      "summoning_013"
+    ],
+    [
+      "summoning_005",
+      "summoning_013"
+    ],
+    [
+      "summoning_006",
+      "summoning_014"
+    ],
+    [
+      "summoning_014",
+      "summoning_015"
+    ],
+    [
+      "summoning_007",
+      "summoning_015"
+    ],
+    [
+      "summoning_015",
+      "summoning_016"
+    ],
+    [
+      "summoning_008",
+      "summoning_016"
+    ],
+    [
+      "summoning_016",
+      "summoning_017"
+    ],
+    [
+      "summoning_008",
+      "summoning_017"
+    ],
+    [
+      "summoning_017",
+      "summoning_018"
+    ],
+    [
+      "summoning_009",
+      "summoning_018"
+    ],
+    [
+      "summoning_018",
+      "summoning_019"
+    ],
+    [
+      "summoning_010",
+      "summoning_019"
+    ],
+    [
+      "summoning_019",
+      "summoning_020"
+    ],
+    [
+      "summoning_011",
+      "summoning_020"
+    ],
+    [
+      "summoning_020",
+      "summoning_021"
+    ],
+    [
+      "summoning_011",
+      "summoning_021"
+    ],
+    [
+      "summoning_021",
+      "summoning_022"
+    ],
+    [
+      "summoning_012",
+      "summoning_022"
+    ],
+    [
+      "summoning_022",
+      "summoning_023"
+    ],
+    [
+      "summoning_013",
+      "summoning_023"
+    ],
+    [
+      "summoning_014",
+      "summoning_024"
+    ],
+    [
+      "summoning_024",
+      "summoning_025"
+    ],
+    [
+      "summoning_015",
+      "summoning_025"
+    ],
+    [
+      "summoning_025",
+      "summoning_026"
+    ],
+    [
+      "summoning_016",
+      "summoning_026"
+    ],
+    [
+      "summoning_026",
+      "summoning_027"
+    ],
+    [
+      "summoning_016",
+      "summoning_027"
+    ],
+    [
+      "summoning_027",
+      "summoning_028"
+    ],
+    [
+      "summoning_017",
+      "summoning_028"
+    ],
+    [
+      "summoning_028",
+      "summoning_029"
+    ],
+    [
+      "summoning_018",
+      "summoning_029"
+    ],
+    [
+      "summoning_029",
+      "summoning_030"
+    ],
+    [
+      "summoning_019",
+      "summoning_030"
+    ],
+    [
+      "summoning_030",
+      "summoning_031"
+    ],
+    [
+      "summoning_020",
+      "summoning_031"
+    ],
+    [
+      "summoning_031",
+      "summoning_032"
+    ],
+    [
+      "summoning_021",
+      "summoning_032"
+    ],
+    [
+      "summoning_032",
+      "summoning_033"
+    ],
+    [
+      "summoning_021",
+      "summoning_033"
+    ],
+    [
+      "summoning_033",
+      "summoning_034"
+    ],
+    [
+      "summoning_022",
+      "summoning_034"
+    ],
+    [
+      "summoning_034",
+      "summoning_035"
+    ],
+    [
+      "summoning_023",
+      "summoning_035"
+    ],
+    [
+      "core_17",
+      "summoning_000"
+    ],
+    [
+      "bridge_spellblade_00",
+      "bridge_spellblade_01"
+    ],
+    [
+      "bridge_spellblade_01",
+      "bridge_spellblade_02"
+    ],
+    [
+      "bridge_spellblade_02",
+      "bridge_spellblade_03"
+    ],
+    [
+      "bridge_spellblade_03",
+      "bridge_spellblade_04"
+    ],
+    [
+      "bridge_spellblade_04",
+      "bridge_spellblade_05"
+    ],
+    [
+      "bridge_battlemage_00",
+      "bridge_battlemage_01"
+    ],
+    [
+      "bridge_battlemage_01",
+      "bridge_battlemage_02"
+    ],
+    [
+      "bridge_battlemage_02",
+      "bridge_battlemage_03"
+    ],
+    [
+      "bridge_battlemage_03",
+      "bridge_battlemage_04"
+    ],
+    [
+      "bridge_battlemage_04",
+      "bridge_battlemage_05"
+    ],
+    [
+      "bridge_arcane_archer_00",
+      "bridge_arcane_archer_01"
+    ],
+    [
+      "bridge_arcane_archer_01",
+      "bridge_arcane_archer_02"
+    ],
+    [
+      "bridge_arcane_archer_02",
+      "bridge_arcane_archer_03"
+    ],
+    [
+      "bridge_arcane_archer_03",
+      "bridge_arcane_archer_04"
+    ],
+    [
+      "bridge_arcane_archer_04",
+      "bridge_arcane_archer_05"
+    ],
+    [
+      "bridge_technomancer_00",
+      "bridge_technomancer_01"
+    ],
+    [
+      "bridge_technomancer_01",
+      "bridge_technomancer_02"
+    ],
+    [
+      "bridge_technomancer_02",
+      "bridge_technomancer_03"
+    ],
+    [
+      "bridge_technomancer_03",
+      "bridge_technomancer_04"
+    ],
+    [
+      "bridge_technomancer_04",
+      "bridge_technomancer_05"
+    ],
+    [
+      "bridge_artillerist_00",
+      "bridge_artillerist_01"
+    ],
+    [
+      "bridge_artillerist_01",
+      "bridge_artillerist_02"
+    ],
+    [
+      "bridge_artillerist_02",
+      "bridge_artillerist_03"
+    ],
+    [
+      "bridge_artillerist_03",
+      "bridge_artillerist_04"
+    ],
+    [
+      "bridge_artillerist_04",
+      "bridge_artillerist_05"
+    ],
+    [
+      "bridge_beastmaster_00",
+      "bridge_beastmaster_01"
+    ],
+    [
+      "bridge_beastmaster_01",
+      "bridge_beastmaster_02"
+    ],
+    [
+      "bridge_beastmaster_02",
+      "bridge_beastmaster_03"
+    ],
+    [
+      "bridge_beastmaster_03",
+      "bridge_beastmaster_04"
+    ],
+    [
+      "bridge_beastmaster_04",
+      "bridge_beastmaster_05"
+    ],
+    [
+      "bridge_warlock_00",
+      "bridge_warlock_01"
+    ],
+    [
+      "bridge_warlock_01",
+      "bridge_warlock_02"
+    ],
+    [
+      "bridge_warlock_02",
+      "bridge_warlock_03"
+    ],
+    [
+      "bridge_warlock_03",
+      "bridge_warlock_04"
+    ],
+    [
+      "bridge_warlock_04",
+      "bridge_warlock_05"
+    ]
+  ]
+}

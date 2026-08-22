@@ -1,0 +1,27 @@
+{
+  "id": "rpgskilltree:main",
+  "style": "poe_radial_web",
+  "target_node_count": 420,
+  "canvas": {"width": 4096, "height": 4096},
+  "regions": [
+    {"id": "MARTIAL", "node_budget": 48},
+    {"id": "AGILITY", "node_budget": 48},
+    {"id": "VITALITY", "node_budget": 48},
+    {"id": "ARCANE", "node_budget": 60},
+    {"id": "ENGINEERING", "node_budget": 56},
+    {"id": "SURVIVAL", "node_budget": 40},
+    {"id": "SUMMONING", "node_budget": 36}
+  ],
+  "shared_core_nodes": 28,
+  "hybrid_bridge_nodes": 42,
+  "outer_keystone_nodes": 14,
+  "class_bridges": [
+    {"id": "spellblade", "domains": ["MARTIAL", "ARCANE"]},
+    {"id": "battlemage", "domains": ["VITALITY", "ARCANE"]},
+    {"id": "arcane_archer", "domains": ["AGILITY", "ARCANE"]},
+    {"id": "technomancer", "domains": ["ARCANE", "ENGINEERING"]},
+    {"id": "artillerist", "domains": ["MARTIAL", "ENGINEERING"]},
+    {"id": "beastmaster", "domains": ["SURVIVAL", "SUMMONING"]},
+    {"id": "warlock", "domains": ["ARCANE", "SUMMONING"]}
+  ]
+}
