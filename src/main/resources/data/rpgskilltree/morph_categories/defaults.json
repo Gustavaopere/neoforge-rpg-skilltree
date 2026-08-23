@@ -15,5 +15,117 @@
   "blacklist": [
     "minecraft:ender_dragon",
     "minecraft:wither"
-  ]
+  ],
+  "hostility_memory_seconds": 45,
+  "entity_factions": {
+    "minecraft:villager": ["minecraft:village"],
+    "minecraft:wandering_trader": ["minecraft:village"],
+    "minecraft:pillager": ["minecraft:illager"],
+    "minecraft:vindicator": ["minecraft:illager"],
+    "minecraft:evoker": ["minecraft:illager"],
+    "minecraft:ravager": ["minecraft:illager"],
+    "minecraft:zombie": ["minecraft:zombie"],
+    "minecraft:husk": ["minecraft:zombie"],
+    "minecraft:drowned": ["minecraft:zombie"],
+    "minecraft:zombie_villager": ["minecraft:zombie"],
+    "minecraft:skeleton": ["minecraft:skeleton"],
+    "minecraft:stray": ["minecraft:skeleton"],
+    "minecraft:bogged": ["minecraft:skeleton"],
+    "minecraft:creeper": ["minecraft:creeper"],
+    "minecraft:phantom": ["minecraft:phantom"],
+    "minecraft:cat": ["minecraft:feline"],
+    "minecraft:ocelot": ["minecraft:feline"],
+    "minecraft:wolf": ["minecraft:wolf"],
+    "minecraft:piglin": ["minecraft:piglin"],
+    "minecraft:piglin_brute": ["minecraft:piglin"],
+    "minecraft:bee": ["minecraft:bee"],
+    "minecraft:iron_golem": ["minecraft:village_defender"],
+    "minecraft:snow_golem": ["minecraft:village_defender"]
+  },
+  "entity_traits": {
+    "minecraft:parrot": ["rpgskilltree:natural", "rpgskilltree:flying"],
+    "minecraft:bee": ["rpgskilltree:natural", "rpgskilltree:flying"],
+    "minecraft:cat": ["rpgskilltree:natural", "rpgskilltree:predator"],
+    "minecraft:ocelot": ["rpgskilltree:natural", "rpgskilltree:predator"],
+    "minecraft:wolf": ["rpgskilltree:natural", "rpgskilltree:predator"],
+    "minecraft:villager": ["rpgskilltree:humanoid"],
+    "minecraft:wandering_trader": ["rpgskilltree:humanoid"],
+    "minecraft:pillager": ["rpgskilltree:humanoid"],
+    "minecraft:vindicator": ["rpgskilltree:humanoid"],
+    "minecraft:evoker": ["rpgskilltree:humanoid", "rpgskilltree:magical"],
+    "minecraft:piglin": ["rpgskilltree:humanoid"],
+    "minecraft:piglin_brute": ["rpgskilltree:humanoid"],
+    "minecraft:zombie": ["rpgskilltree:undead"],
+    "minecraft:husk": ["rpgskilltree:undead"],
+    "minecraft:drowned": ["rpgskilltree:undead"],
+    "minecraft:zombie_villager": ["rpgskilltree:undead", "rpgskilltree:humanoid"],
+    "minecraft:skeleton": ["rpgskilltree:undead"],
+    "minecraft:stray": ["rpgskilltree:undead"],
+    "minecraft:bogged": ["rpgskilltree:undead"],
+    "minecraft:phantom": ["rpgskilltree:undead", "rpgskilltree:flying"],
+    "minecraft:iron_golem": ["rpgskilltree:construct"],
+    "minecraft:snow_golem": ["rpgskilltree:construct"],
+    "minecraft:allay": ["rpgskilltree:magical", "rpgskilltree:flying"],
+    "ars_nouveau:starbuncle": ["rpgskilltree:magical", "rpgskilltree:natural"],
+    "ars_nouveau:whirlisprig": ["rpgskilltree:magical", "rpgskilltree:natural"],
+    "ars_nouveau:drygmy": ["rpgskilltree:magical", "rpgskilltree:natural"],
+    "ars_nouveau:wixie": ["rpgskilltree:magical", "rpgskilltree:natural"]
+  },
+  "faction_relations": {
+    "minecraft:village": {
+      "allies": ["minecraft:village", "minecraft:village_defender"],
+      "enemies": ["minecraft:illager", "minecraft:zombie"],
+      "fears": []
+    },
+    "minecraft:village_defender": {
+      "allies": ["minecraft:village", "minecraft:village_defender"],
+      "enemies": ["minecraft:illager", "minecraft:zombie"],
+      "fears": []
+    },
+    "minecraft:illager": {
+      "allies": ["minecraft:illager"],
+      "enemies": ["minecraft:village", "minecraft:village_defender"],
+      "fears": []
+    },
+    "minecraft:zombie": {
+      "allies": ["minecraft:zombie"],
+      "enemies": ["minecraft:village"],
+      "fears": []
+    },
+    "minecraft:skeleton": {
+      "allies": ["minecraft:skeleton"],
+      "enemies": [],
+      "fears": ["minecraft:wolf"]
+    },
+    "minecraft:creeper": {
+      "allies": ["minecraft:creeper"],
+      "enemies": [],
+      "fears": ["minecraft:feline"]
+    },
+    "minecraft:phantom": {
+      "allies": ["minecraft:phantom"],
+      "enemies": [],
+      "fears": ["minecraft:feline"]
+    },
+    "minecraft:feline": {
+      "allies": ["minecraft:feline"],
+      "enemies": [],
+      "fears": []
+    },
+    "minecraft:wolf": {
+      "allies": ["minecraft:wolf"],
+      "enemies": ["minecraft:skeleton"],
+      "fears": []
+    },
+    "minecraft:piglin": {
+      "allies": ["minecraft:piglin"],
+      "enemies": [],
+      "fears": []
+    },
+    "minecraft:bee": {
+      "allies": ["minecraft:bee"],
+      "enemies": [],
+      "fears": []
+    }
+  }
 }
