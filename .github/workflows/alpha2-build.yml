@@ -31,7 +31,7 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.10.2'
+          gradle-version: '8.14'
 
       - name: Materialize verified Alpha 2 snapshot when staged
         id: snapshot
@@ -118,4 +118,4 @@ jobs:
           git commit -m "feat: materialize Alpha 2 runtime snapshot"
           git push origin HEAD:feat/alpha2-runtime
 
-# retrigger after verified snapshot halves were corrected
+# Gradle 8.14 is required by NeoGradle userdev 7.1.26
