@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.data.BossRewardReloader;
@@ -47,6 +48,9 @@ public final class RpgSkillTreeMod {
         }
         if (ModList.get().isLoaded("ars_nouveau")) {
             NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
+        }
+        if (ModList.get().isLoaded("goety")) {
+            NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class);
         }
         if (ModList.get().isLoaded("epicfight")) {
             EpicFightProgressionHooks.register();

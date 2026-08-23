@@ -12,3 +12,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ArsCompositionClassifierTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategoryTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ArcaneAccessPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProviderIdentityClassTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.GoetyMasteryCoreTest

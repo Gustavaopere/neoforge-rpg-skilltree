@@ -18,6 +18,14 @@ public final class MasteryPolicies {
   for(String lane:List.of("projectile","amplification","aoe","duration","summoning","control")) if(action.tags().contains(lane)) out.add(new MasteryAward("ars:"+lane,3,action.spellId()));
   return List.copyOf(out);
  }
+ public static List<MasteryAward> forGoety(SpellAction action){
+  if(action.origin().procDepth()>0) return List.of();
+  List<MasteryAward> out=new ArrayList<>();
+  out.add(new MasteryAward("occult:practice",2,action.spellId()));
+  out.add(new MasteryAward("goety:casting",3,action.spellId()));
+  for(String lane:List.of("necromancy","nether","ill","frost","geomancy","wind","storm","abyss","wild","void","summoning")) if(action.tags().contains(lane)) out.add(new MasteryAward("goety:"+lane,4,action.spellId()));
+  return List.copyOf(out);
+ }
  public static List<MasteryAward> forCreate(EngineeringAction action){
   if(action.origin().procDepth()>0) return List.of();
   List<MasteryAward> out=new ArrayList<>();out.add(new MasteryAward("create:engineering",3,action.actionId()));

@@ -25,6 +25,11 @@ repositories {
         name = 'BlameJared Maven'
         url = 'https://maven.blamejared.com'
     }
+    maven {
+        name = 'CurseMaven'
+        url = 'https://www.cursemaven.com'
+        content { includeGroup 'curse.maven' }
+    }
     exclusiveContent {
         forRepository {
             maven {
@@ -69,6 +74,9 @@ dependencies {
         transitive = false
     }
     compileOnly("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
+        transitive = false
+    }
+    compileOnly("curse.maven:goety-586095:${goety_file_id}") {
         transitive = false
     }
 }
