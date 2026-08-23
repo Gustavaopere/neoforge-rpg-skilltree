@@ -1,0 +1,17 @@
+{
+  "class_id": "mage",
+  "tree_id": "rpgskilltree:class/mage",
+  "kind": "provider_identity",
+  "required_completed_domains": [],
+  "required_nodes": [
+    "rpgskilltree:arcane_000"
+  ],
+  "minimum_mastery_experience": {
+    "irons:casting": 60
+  },
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": true,
+  "non_adjacent_bridge_cost": 0,
+  "notes": "Emerges from Arcane Awakening plus sustained learned/catalogued spellcasting through Iron's Spells 'n Spellbooks."
+}
