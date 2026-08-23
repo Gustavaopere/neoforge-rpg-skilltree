@@ -71,7 +71,8 @@ public final class TreeArchitectureReloader extends SimpleJsonResourceReloadList
                 branch.get("label").getAsString(),
                 branch.has("role") ? branch.get("role").getAsString() : "branch",
                 branch.has("order") ? branch.get("order").getAsInt() : result.size(),
-                readStringSet(branch.getAsJsonArray("tags"))
+                readStringSet(branch.getAsJsonArray("tags")),
+                branch.has("catalogCode") ? branch.get("catalogCode").getAsString() : null
             ));
         }
         return List.copyOf(result);
