@@ -30,6 +30,12 @@ public final class NodeAccessResolver {
                 if (!selectedChoices.contains(choiceId)) return false;
             }
         }
+        for (String nodeId : requirement.requiredNodeIds()) {
+            if (!state.passiveNodes().learned(nodeId)) return false;
+        }
+        for (String discoveryKey : requirement.requiredDiscoveryKeys()) {
+            if (!state.discoveries().contains(discoveryKey)) return false;
+        }
         return true;
     }
 }
