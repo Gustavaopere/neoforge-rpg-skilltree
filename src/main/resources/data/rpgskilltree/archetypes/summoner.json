@@ -1,6 +1,7 @@
 {
   "id": "rpgskilltree:summoner",
   "priority": 20,
+  "specificity_score": 2,
   "minimum_domain_scores": {
     "SUMMONING": 10,
     "ARCANE": 6

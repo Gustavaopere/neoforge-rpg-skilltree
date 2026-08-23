@@ -1,6 +1,7 @@
 {
   "id": "rpgskilltree:warrior",
   "priority": 10,
+  "specificity_score": 1,
   "minimum_domain_scores": {
     "MARTIAL": 12
   },

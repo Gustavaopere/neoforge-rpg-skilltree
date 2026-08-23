@@ -1,6 +1,7 @@
 {
   "id": "rpgskilltree:technomancer",
   "priority": 40,
+  "specificity_score": 2,
   "minimum_domain_scores": {
     "ARCANE": 8,
     "ENGINEERING": 8

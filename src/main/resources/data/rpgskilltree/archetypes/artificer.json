@@ -1,6 +1,7 @@
 {
   "id": "rpgskilltree:artificer",
   "priority": 15,
+  "specificity_score": 1,
   "minimum_domain_scores": {
     "ENGINEERING": 12
   },

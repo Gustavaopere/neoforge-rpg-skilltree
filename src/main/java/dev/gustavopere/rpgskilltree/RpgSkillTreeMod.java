@@ -9,6 +9,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.data.ArchetypeReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.BossRewardReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRulesReloader;
@@ -39,6 +40,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(TreeArchitectureReloader.class);
         NeoForge.EVENT_BUS.register(ClassRulesReloader.class);
         NeoForge.EVENT_BUS.register(ClassChoiceRulesReloader.class);
+        NeoForge.EVENT_BUS.register(ArchetypeReloader.class);
         NeoForge.EVENT_BUS.register(MorphCategoryReloader.class);
         NeoForge.EVENT_BUS.register(NodeEffectsReloader.class);
         NeoForge.EVENT_BUS.register(BossRewardReloader.class);
