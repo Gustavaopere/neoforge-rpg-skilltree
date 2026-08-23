@@ -40,20 +40,20 @@ public final class SystemFoundationTest {
         var state = InvestmentState.of(List.of(
             new NodeInvestment("arcane", Map.of(ProgressionDomain.ARCANE, 14), Set.of()),
             new NodeInvestment("martial", Map.of(ProgressionDomain.MARTIAL, 9), Set.of()),
-            new NodeInvestment("agility", Map.of(ProgressionDomain.AGILITY, 7), Set.of())
+            new NodeInvestment("engineering", Map.of(ProgressionDomain.ENGINEERING, 7), Set.of())
         ));
         var spellblade = new ArchetypeDefinition(
             "spellblade", 1,
             Map.of(ProgressionDomain.ARCANE, 6, ProgressionDomain.MARTIAL, 6),
             Set.of(), Set.of()
         );
-        var arcaneArcher = new ArchetypeDefinition(
-            "arcane_archer", 100,
-            Map.of(ProgressionDomain.ARCANE, 6, ProgressionDomain.AGILITY, 6),
+        var technomancer = new ArchetypeDefinition(
+            "technomancer", 100,
+            Map.of(ProgressionDomain.ARCANE, 6, ProgressionDomain.ENGINEERING, 6),
             Set.of(), Set.of()
         );
 
-        eq(List.of("spellblade", "arcane_archer"), ids(ArchetypeResolver.resolve(state, List.of(arcaneArcher, spellblade))));
+        eq(List.of("spellblade", "technomancer"), ids(ArchetypeResolver.resolve(state, List.of(technomancer, spellblade))));
     }
 
     static void hierarchySeparatesPrimaryAndSecondaryClasses() {
