@@ -182,7 +182,7 @@ public final class ProgressionService {
             int refund = targetDefinition.costPerRank();
             FinalTriadProgress triads = state.finalTriads();
             if (targetDefinition.finalTriadNode()) {
-                triads = triads.decrease(targetDefinition.finalTriadDomain(), definition.finalTriadSlot(), 1);
+                triads = triads.decrease(targetDefinition.finalTriadDomain(), targetDefinition.finalTriadSlot(), 1);
             }
             ProgressionState next = state.withPassiveNodes(nodes)
                 .withPassivePoints(state.passivePoints().refund(refund))
