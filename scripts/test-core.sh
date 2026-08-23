@@ -26,3 +26,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SystemFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ArchetypeSpecificityScoreTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MorphEcologyPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionStateMigrationMatrixTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SpecializationReconciliationTest
