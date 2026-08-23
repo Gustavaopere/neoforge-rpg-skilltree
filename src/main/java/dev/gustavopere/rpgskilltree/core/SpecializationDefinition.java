@@ -15,13 +15,18 @@ public record SpecializationDefinition(
         Objects.requireNonNull(eligibleClassIds);
         Objects.requireNonNull(minimumMasteryExperience);
         Objects.requireNonNull(requiredTags);
-        if (specializationId.isBlank()) throw new IllegalArgumentException("specializationId must not be blank");
+        if (specializationId.isBlank()) {
+            throw new IllegalArgumentException("specializationId must not be blank");
+        }
         eligibleClassIds = Set.copyOf(eligibleClassIds);
         minimumMasteryExperience = Map.copyOf(minimumMasteryExperience);
         requiredTags = Set.copyOf(requiredTags);
-        if (eligibleClassIds.isEmpty()) throw new IllegalArgumentException("specialization requires at least one eligible class");
-        if (minimumMasteryExperience.values().stream().anyMatch(v -> v == null || v < 0)) {
+        if (minimumMasteryExperience.values().stream().anyMatch(value -> value == null || value < 0)) {
             throw new IllegalArgumentException("mastery requirements must be >= 0");
         }
+    }
+
+    public boolean requiresClass() {
+        return !eligibleClassIds.isEmpty();
     }
 }
