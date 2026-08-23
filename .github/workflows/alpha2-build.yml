@@ -66,6 +66,7 @@ jobs:
           test "$(stat -c%s /tmp/alpha2-source.tar.xz)" -eq 83120
           echo "c9bba2b5e229a91dbb378301f296f973c2496e791ac629abe50be03e9db56f94  /tmp/alpha2-source.tar.xz" | sha256sum -c -
           tar -xJf /tmp/alpha2-source.tar.xz -C .
+          sed -i 's/view.result().triadsMet()/view.result().triadRequirementsMet()/' src/main/java/dev/gustavopere/rpgskilltree/runtime/client/ClientClassCatalog.java
 
       - name: Regenerate derived skill-tree data
         shell: bash
@@ -119,3 +120,4 @@ jobs:
           git push origin HEAD:feat/alpha2-runtime
 
 # Gradle 8.14 is required by NeoGradle userdev 7.1.26
+# Hotfix mirrors local commit 61a7ce7 until the staged snapshot is materialized.
