@@ -22,3 +22,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.GoetyCommandPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EidolonRitualPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EidolonAlchemyPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.NodeAccessRequirementTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.NodeAccessRankRequirementTest
