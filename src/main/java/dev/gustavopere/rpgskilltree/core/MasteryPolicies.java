@@ -4,7 +4,7 @@ public final class MasteryPolicies {
  private MasteryPolicies(){}
  public static List<MasteryAward> forIron(SpellAction action){
   if(action.origin().procDepth()>0) return List.of();
-  int intensity=Math.max(1,Math.min(5,(Math.max(1,action.magnitude())+49)/50));
+  int intensity=Math.max(1,Math.min(5,(Math.max(1,action.resourceCost())+49)/50));
   return List.of(
    new MasteryAward("magic:casting",2,action.spellId()),
    new MasteryAward("irons:casting",2+intensity,action.spellId()),
