@@ -117,3 +117,5 @@ jobs:
           git add -A
           git commit -m "feat: materialize Alpha 2 runtime snapshot"
           git push origin HEAD:feat/alpha2-runtime
+
+# retrigger after verified snapshot halves were corrected
