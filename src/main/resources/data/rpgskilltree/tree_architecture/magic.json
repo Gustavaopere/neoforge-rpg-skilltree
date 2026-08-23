@@ -1,0 +1,132 @@
+{
+  "trees": [
+    {
+      "id": "rpgskilltree:irons_fire",
+      "type": "specialization",
+      "provider": "irons_spellbooks",
+      "domains": ["ARCANE"],
+      "tags": ["school", "elemental", "pyromancer"],
+      "branches": [
+        {"id": "flame_power", "label": "Chama e Potência", "role": "damage", "order": 10},
+        {"id": "ignite", "label": "Ignição e Propagação", "role": "ailment", "order": 20},
+        {"id": "flameborne", "label": "Flameborne e Resistência", "role": "defense", "order": 30},
+        {"id": "lava", "label": "Lava e Terreno", "role": "utility", "order": 40},
+        {"id": "living_flame", "label": "Aura e Imbuimento", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 15, "requiredClasses": ["arcanist"], "requiredMastery": {"irons:fire": 100}, "requiredSpecializations": ["irons_fire"], "requiredTags": ["gateway:irons_fire"]}
+    },
+    {
+      "id": "rpgskilltree:irons_ice",
+      "type": "specialization",
+      "provider": "irons_spellbooks",
+      "domains": ["ARCANE"],
+      "tags": ["school", "elemental", "cryomancer"],
+      "branches": [
+        {"id": "cold_power", "label": "Frio e Potência", "role": "damage", "order": 10},
+        {"id": "buildup", "label": "Cold Buildup", "role": "ailment", "order": 20},
+        {"id": "freeze", "label": "Slow, Freeze e Shatter", "role": "control", "order": 30},
+        {"id": "frost_guard", "label": "Retaliação de Gelo", "role": "defense", "order": 40},
+        {"id": "frozen_world", "label": "Terreno Congelado", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 15, "requiredClasses": ["arcanist"], "requiredMastery": {"irons:ice": 100}, "requiredSpecializations": ["irons_ice"], "requiredTags": ["gateway:irons_ice"]}
+    },
+    {
+      "id": "rpgskilltree:irons_lightning",
+      "type": "specialization",
+      "provider": "irons_spellbooks",
+      "domains": ["ARCANE", "AGILITY"],
+      "tags": ["school", "elemental", "storm"],
+      "branches": [
+        {"id": "shock", "label": "Shock e Condutividade", "role": "ailment", "order": 10},
+        {"id": "chains", "label": "Chains e Propagação", "role": "damage", "order": 20},
+        {"id": "mobility", "label": "Mobilidade Elétrica", "role": "utility", "order": 30},
+        {"id": "overload", "label": "Overload", "role": "keystone", "order": 40}
+      ],
+      "gate": {"minimumCharacterLevel": 15, "requiredClasses": ["arcanist"], "requiredMastery": {"irons:lightning": 100}, "requiredSpecializations": ["irons_lightning"], "requiredTags": ["gateway:irons_lightning"]}
+    },
+    {
+      "id": "rpgskilltree:irons_holy",
+      "type": "specialization",
+      "provider": "irons_spellbooks",
+      "domains": ["ARCANE", "HEALING"],
+      "tags": ["school", "holy", "support"],
+      "branches": [
+        {"id": "healing", "label": "Cura e Regeneração", "role": "healing", "order": 10},
+        {"id": "ward", "label": "Ward e Proteção", "role": "defense", "order": 20},
+        {"id": "judgment", "label": "Julgamento", "role": "damage", "order": 30},
+        {"id": "aura", "label": "Auras Sagradas", "role": "support", "order": 40}
+      ],
+      "gate": {"minimumCharacterLevel": 15, "requiredClasses": ["cleric"], "requiredMastery": {"irons:holy": 100}, "requiredSpecializations": ["irons_holy"], "requiredTags": ["gateway:irons_holy"]}
+    },
+    {
+      "id": "rpgskilltree:irons_blood",
+      "type": "specialization",
+      "provider": "irons_spellbooks",
+      "domains": ["ARCANE", "OCCULT"],
+      "tags": ["school", "blood", "risk_reward"],
+      "branches": [
+        {"id": "blood_power", "label": "Hemomancia", "role": "damage", "order": 10},
+        {"id": "life_cost", "label": "Custo de Vida", "role": "resource", "order": 20},
+        {"id": "siphon", "label": "Sifão Carmesim", "role": "sustain", "order": 30},
+        {"id": "low_life", "label": "Baixa Vida", "role": "keystone", "order": 40}
+      ],
+      "gate": {"minimumCharacterLevel": 20, "requiredClasses": ["warlock"], "requiredMastery": {"irons:blood": 100}, "requiredSpecializations": ["irons_blood"], "requiredTags": ["gateway:irons_blood"]}
+    },
+    {
+      "id": "rpgskilltree:irons_ender",
+      "type": "specialization",
+      "provider": "irons_spellbooks",
+      "domains": ["ARCANE", "AGILITY"],
+      "tags": ["school", "ender", "mobility"],
+      "branches": [
+        {"id": "range", "label": "Alcance Ender", "role": "damage", "order": 10},
+        {"id": "teleport", "label": "Teleporte e Reposicionamento", "role": "utility", "order": 20},
+        {"id": "rift", "label": "Rift e Controle Espacial", "role": "control", "order": 30},
+        {"id": "voidstep", "label": "Voidstep", "role": "keystone", "order": 40}
+      ],
+      "gate": {"minimumCharacterLevel": 15, "requiredClasses": ["arcanist"], "requiredMastery": {"irons:ender": 100}, "requiredSpecializations": ["irons_ender"], "requiredTags": ["gateway:irons_ender"]}
+    },
+    {
+      "id": "rpgskilltree:irons_evocation",
+      "type": "specialization",
+      "provider": "irons_spellbooks",
+      "domains": ["ARCANE"],
+      "tags": ["school", "evocation", "direct_magic"],
+      "branches": [
+        {"id": "power", "label": "Potência Evocativa", "role": "damage", "order": 10},
+        {"id": "crit", "label": "Crítico Mágico", "role": "critical", "order": 20},
+        {"id": "impact", "label": "Impacto Arcano", "role": "control", "order": 30},
+        {"id": "overcast", "label": "Overcast", "role": "keystone", "order": 40}
+      ],
+      "gate": {"minimumCharacterLevel": 15, "requiredClasses": ["arcanist"], "requiredMastery": {"irons:evocation": 100}, "requiredSpecializations": ["irons_evocation"], "requiredTags": ["gateway:irons_evocation"]}
+    },
+    {
+      "id": "rpgskilltree:irons_nature",
+      "type": "specialization",
+      "provider": "irons_spellbooks",
+      "domains": ["ARCANE", "SURVIVAL", "SUMMONING"],
+      "tags": ["school", "nature", "druid_bridge"],
+      "branches": [
+        {"id": "growth", "label": "Crescimento e Regeneração", "role": "healing", "order": 10},
+        {"id": "poison", "label": "Veneno e Buildup", "role": "ailment", "order": 20},
+        {"id": "roots", "label": "Raízes e Controle", "role": "control", "order": 30},
+        {"id": "wild", "label": "Sinergia Selvagem", "role": "bridge", "order": 40}
+      ],
+      "gate": {"minimumCharacterLevel": 15, "requiredMastery": {"irons:nature": 100}, "requiredSpecializations": ["irons_nature"], "requiredTags": ["gateway:irons_nature"]}
+    },
+    {
+      "id": "rpgskilltree:irons_eldritch",
+      "type": "specialization",
+      "provider": "irons_spellbooks",
+      "domains": ["ARCANE", "OCCULT"],
+      "tags": ["school", "eldritch", "occult"],
+      "branches": [
+        {"id": "power", "label": "Potência Eldritch", "role": "damage", "order": 10},
+        {"id": "curse", "label": "Curses e Vulnerabilidade", "role": "ailment", "order": 20},
+        {"id": "sustain", "label": "Fome do Abismo", "role": "sustain", "order": 30},
+        {"id": "corruption", "label": "Corrupção Controlada", "role": "keystone", "order": 40}
+      ],
+      "gate": {"minimumCharacterLevel": 20, "requiredClasses": ["warlock"], "requiredMastery": {"irons:eldritch": 100}, "requiredSpecializations": ["irons_eldritch"], "requiredTags": ["gateway:irons_eldritch"]}
+    }
+  ]
+}
