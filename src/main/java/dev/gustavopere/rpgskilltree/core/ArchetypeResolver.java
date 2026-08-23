@@ -22,7 +22,7 @@ public final class ArchetypeResolver {
             .map(definition -> new ArchetypeMatch(
                 definition.id(),
                 definition.priority(),
-                definition.specificity(),
+                definition.specificityScore(),
                 definition.minimumDomainScores().keySet().stream()
                     .mapToInt(state::domainScore)
                     .sum()
