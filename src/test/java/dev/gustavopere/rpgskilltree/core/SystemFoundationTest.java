@@ -10,6 +10,7 @@ public final class SystemFoundationTest {
         strongerSatisfiedRequirementsBreakSpecificityTies();
         classlessSpecializationCanUnlock();
         classGatedSpecializationStillRequiresEligibleClass();
+        legacyClassIdentitiesMigrateWithoutErasingKnowledge();
         System.out.println("SystemFoundationTest: PASS");
     }
 
@@ -84,6 +85,24 @@ public final class SystemFoundationTest {
         );
         eq(false, result.unlockable());
         eq(true, result.missingEligibleClass());
+    }
+
+    static void legacyClassIdentitiesMigrateWithoutErasingKnowledge() {
+        var state = ProgressionState.empty()
+            .withClassProgression(ClassProgressionState.of(Set.of("mage", "industrialist", "logistician", "prospector")))
+            .withSpecializations(SpecializationProgressionState.of(Set.of("create_kinetics")))
+            .withMastery(MasteryState.of(Map.of("create:kinetics", 321, "tfc:prospecting", 144)))
+            .withDiscoveries(DiscoveryProgress.of(Set.of("world:ancient_ruin")));
+
+        var migrated = ProgressionStateMigrations.migrate(state, 4);
+
+        eq(Set.of("mage"), migrated.classProgression().unlockedClassIds());
+        eq(Set.of("create_kinetics", "industrialist", "logistician", "prospector"),
+            migrated.specializations().unlockedSpecializationIds());
+        eq(state.mastery().experience(), migrated.mastery().experience());
+        eq(state.discoveries().discoveredKeys(), migrated.discoveries().discoveredKeys());
+        eq(state.passivePoints(), migrated.passivePoints());
+        eq(state.passiveNodes().ranks(), migrated.passiveNodes().ranks());
     }
 
     private static List<String> ids(List<ArchetypeMatch> matches) {
