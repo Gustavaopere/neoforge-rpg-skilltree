@@ -1,0 +1,28 @@
+{
+  "trees": [
+    {
+      "id": "rpgskilltree:main",
+      "type": "main",
+      "provider": "rpgskilltree",
+      "domains": ["MARTIAL", "AGILITY", "VITALITY", "HEALING", "ARCANE", "ENGINEERING", "MINING", "SURVIVAL", "SUMMONING", "OCCULT", "LOGISTICS"],
+      "tags": ["root", "poe_radial_web", "emergent_classes", "multiclass"],
+      "branches": [
+        {"id": "core", "label": "Núcleo Compartilhado", "role": "trunk", "order": 0, "tags": ["starting_area"]},
+        {"id": "martial", "label": "Martial", "role": "domain", "order": 10},
+        {"id": "agility", "label": "Agility", "role": "domain", "order": 20},
+        {"id": "vitality", "label": "Vitality", "role": "domain", "order": 30},
+        {"id": "healing", "label": "Healing", "role": "domain", "order": 40},
+        {"id": "arcane", "label": "Arcane", "role": "domain", "order": 50},
+        {"id": "engineering", "label": "Engineering", "role": "domain", "order": 60},
+        {"id": "mining", "label": "Mining", "role": "domain", "order": 70},
+        {"id": "survival", "label": "Survival", "role": "domain", "order": 80},
+        {"id": "summoning", "label": "Summoning", "role": "domain", "order": 90},
+        {"id": "occult", "label": "Occult", "role": "domain", "order": 100},
+        {"id": "logistics", "label": "Logistics", "role": "domain", "order": 110},
+        {"id": "hybrid_corridors", "label": "Corredores Híbridos", "role": "bridge", "order": 120},
+        {"id": "outer_keystones", "label": "Keystones Externas", "role": "keystone", "order": 130}
+      ],
+      "gate": {"minimumCharacterLevel": 1}
+    }
+  ]
+}
