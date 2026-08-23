@@ -17,6 +17,10 @@ repositories {
     mavenCentral()
     maven { url = 'https://maven.neoforged.net/releases' }
     maven { url = 'https://maven.parchmentmc.org' }
+    maven {
+        name = "Iron's Maven - Release"
+        url = 'https://code.redspace.io/releases'
+    }
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -47,6 +51,7 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
+    compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}:api"
 }
 
 tasks.named('wrapper', Wrapper).configure {

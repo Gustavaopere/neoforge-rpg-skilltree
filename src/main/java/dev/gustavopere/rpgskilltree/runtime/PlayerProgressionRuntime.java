@@ -7,6 +7,8 @@ import dev.gustavopere.rpgskilltree.core.BossRewardKeyPolicy;
 import dev.gustavopere.rpgskilltree.core.CharacterLevelCurve;
 import dev.gustavopere.rpgskilltree.core.CharacterXpAward;
 import dev.gustavopere.rpgskilltree.core.DiscoveryProgressionResult;
+import dev.gustavopere.rpgskilltree.core.MasteryAward;
+import dev.gustavopere.rpgskilltree.core.MasteryAwardService;
 import dev.gustavopere.rpgskilltree.core.NodeAccessResolver;
 import dev.gustavopere.rpgskilltree.core.ProgressionService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
@@ -15,6 +17,7 @@ import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeRuleCatalog;
 import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
+import java.util.Collection;
 import java.util.Objects;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -29,6 +32,18 @@ public final class PlayerProgressionRuntime {
 
     public static ProgressionState applyXp(ServerPlayer player, CharacterXpAward award) {
         ProgressionState next = ProgressionService.applyXp(get(player), award, CharacterLevelCurve.defaultCurve());
+        set(player, next);
+        return next;
+    }
+
+    public static ProgressionState awardMastery(ServerPlayer player, Collection<MasteryAward> awards) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(awards);
+        ProgressionState current = get(player);
+        if (awards.isEmpty()) return current;
+
+        ProgressionState next = current.withMastery(MasteryAwardService.apply(current.mastery(), awards));
+        next = reconcileDerivedState(next);
         set(player, next);
         return next;
     }
@@ -51,7 +66,6 @@ public final class PlayerProgressionRuntime {
         if (result.firstDefeat()) set(player, result.state());
         return result;
     }
-
 
     public static boolean purchaseNode(ServerPlayer player, ResourceLocation nodeId) {
         Objects.requireNonNull(player);
@@ -171,6 +185,14 @@ public final class PlayerProgressionRuntime {
             ModNetworking.syncToOwner(player, get(player));
             return false;
         }
+    }
+
+    /** Revalidates persisted progression against the currently loaded datapack rules. */
+    public static ProgressionState reconcilePlayerState(ServerPlayer player) {
+        Objects.requireNonNull(player);
+        ProgressionState reconciled = reconcileDerivedState(get(player));
+        set(player, reconciled);
+        return reconciled;
     }
 
     private static ProgressionState reconcileDerivedState(ProgressionState initial) {

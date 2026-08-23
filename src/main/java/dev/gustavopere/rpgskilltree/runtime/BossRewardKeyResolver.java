@@ -5,7 +5,7 @@ import dev.gustavopere.rpgskilltree.core.ApothicBossRewardKeyPolicy;
 import dev.gustavopere.rpgskilltree.core.BossIdentity;
 import dev.gustavopere.rpgskilltree.core.BossRewardDefinition;
 import dev.gustavopere.rpgskilltree.core.BossRewardKeyPolicy;
-import dev.gustavopere.rpgskilltree.core.BossRewardRegistry;
+import dev.gustavopere.rpgskilltree.runtime.data.BossRewardCatalog;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -72,6 +72,6 @@ public final class BossRewardKeyResolver {
         String key = rewardKey(identity);
         int separator = key.indexOf(':');
         if (separator <= 0) throw new IllegalArgumentException("invalid boss reward key: " + key);
-        return BossRewardRegistry.defaults().resolveForNamespace(key.substring(0, separator));
+        return BossRewardCatalog.resolveForNamespace(key.substring(0, separator));
     }
 }
