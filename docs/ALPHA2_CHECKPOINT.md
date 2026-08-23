@@ -1,1 +1,0 @@
-Alpha 2 validated development checkpoint. Full source synchronization follows in subsequent commits.

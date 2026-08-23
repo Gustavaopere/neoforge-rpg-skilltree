@@ -1,1 +1,0 @@
-Validated Alpha 2 checkpoints are being synchronized directly to main. Current local work includes authoritative progression, 512-node tree export, respec, effects, viewer, exploration/mining XP, class confluences, and node access requirements.

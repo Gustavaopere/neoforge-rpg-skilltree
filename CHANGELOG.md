@@ -1,45 +1,69 @@
 # Changelog
 
-## 0.2.0-alpha.2-dev - Unreleased
+This file is the single chronological development record for the project. Older standalone `RELEASE_NOTES_*`, temporary sync/checkpoint notes and obsolete progress files were consolidated here on 2026-08-23; their full original contents remain available in Git history.
 
-Alpha 2 is the progression/runtime foundation phase. It is not yet an installable release.
+## 1.0.0-alpha.5.4.1-dev — Unreleased
 
-### Added
-- Independent Character Level 1-100 with a piecewise XP curve and 1 passive point per level gained.
-- Source-aware passive point ledger for LEVEL, BOSS, ADVANCEMENT, ADMIN and MIGRATION awards.
-- First-credit boss rewards: Cataclysm 5, vanilla 3, Apotheosis/Apothic 2 by default.
-- 11-domain main-tree vocabulary with 3/3/3 Final Triads.
-- Persistent class unlocks and 10-point abnormal bridges for non-adjacent classes.
-- 24 seed classes, including Paladin, Cleric, Technomancer, Druid, Warlock, Geomancer and Metamorph.
-- 25 post-class specialization definitions across Iron's, Ars, Epic Fight, Create, AE2 and Oritech.
-- Path-of-Exile-style target path planner.
-- Identity 2 / Ars Morph class-gating contracts for Druid and Metamorph forms.
-- Warlock pact choice model with Blade, Familiar, Grimoire, Souls and Blood.
-- Apotheosis/Apothic gem socket and attribute integration contracts.
-- Main-tree blueprint expanded to 512 nodes and 803 generated graph edges.
+Current NeoForge 1.21.1 development line. The latest pre-consolidation runtime checkpoint (`117c5cbe73daa4b2c60b167b4a05dbb89a0b0c60`) reported `rpgskilltree/full-build = success`.
 
-### Still required before Alpha 2 release
-- NeoForge persistence/network synchronization.
-- Passive Skill Tree runtime/UI source integration.
-- Real adapters for Identity 2/Ars Morph, Apotheosis, Iron's, Ars, Epic Fight, Create, Oritech, AE2 and other selected pack mods.
-- Conversion of abstract layout nodes into actual playable Passive Skill Tree node JSON.
-- Gradle/JAR build and isolated in-game validation on NeoForge 1.21.1.
+### Unified progression/runtime foundation
+- Independent Character Level 1–100 and source-aware passive-point ledger.
+- First-credit boss rewards with datapack configuration; defaults remain Cataclysm 5, vanilla Minecraft 3 and Apotheosis/Apothic 2.
+- Main progression vocabulary across Martial, Agility, Vitality, Healing, Arcane, Engineering, Mining, Survival, Summoning, Occult and Logistics.
+- 3/3/3 final-domain triads, persistent emergent classes, abnormal bridge costs for distant hybrids, class trees, specializations, Warlock pacts, morph policy and server-authoritative purchase/respec flow.
+- 512-node main-tree blueprint, path planning, persistence/network synchronization, runtime data loading and tree viewer foundations.
+- Mining/exploration/combat progression protections, including player-placed-ore tracking and reward anti-farm/backpressure infrastructure.
+- Apotheosis/Apothic attribute, gem/socket and attunement foundations.
 
-## 0.1.0-alpha.1 - 2026-08-22
+### Alpha 1.x — Iron's Spells 'n Spellbooks
+- Intentional Iron casts feed provider-wide and school mastery while automatic/proc-only origins are excluded.
+- Arcane Awakening is the shared entry gate for player-driven spellcasting.
+- Permanent spell inscription now requires real provider/school practice; tier 3+ learned magic requires the emergent Mage identity.
+- Mastery intensity scales from bounded real spell resource expenditure.
+- School/content addons that use Iron's normal spell/school APIs inherit the common path; bespoke native systems remain explicit compatibility work.
 
-First architecture/core alpha for the NeoForge 1.21.1 RPG Skilltree project.
+### Alpha 2.x — Ars Nouveau
+- Ars composition and provider mastery use real casts and glyph semantics.
+- Arcane investment and emergent Sorcerer modify Ars native max mana and regeneration.
+- Familiar binding is tied to entry into the unified Summoning branch.
+- Cast mastery scales from bounded real mana cost.
+- Glyph-learning is deliberately not pseudo-gated through fragile generic interaction hooks while no stable dedicated unlock event is available.
 
-### Added
-- Canonical RPG stat catalog and deterministic modifier resolution.
-- Emergent archetype resolver with 10 initial classes/hybrids, including Spellblade and Technomancer.
-- Specialized-tree unlock gates combining main-tree investment, gateway nodes, and mastery XP.
-- Normalized spell, combat, and engineering action contracts.
-- Proc recursion guard for derived/echo actions.
-- Mastery reward policies for Iron's Spells 'n Spellbooks, Ars Nouveau, Epic Fight, and Create-facing adapters.
-- Safe Curios Attunement slot resize/ejection planning model.
-- 420-node Path-of-Exile-style main-tree blueprint with 664 graph edges.
-- 15 initial specialized tree gateways for Iron's schools, Ars, Epic Fight, and Create.
-- Integration architecture notes for Iron's, Ars Nouveau, Epic Fight, Create, and Curios.
+### Alpha 3.x — Epic Fight
+- Weapon-category progression is integrated without replacing Epic Fight's own skill slots, skillbooks, combo engine or animation state machine.
+- Martial/Agility investment modifies native stamina/impact-facing progression and bounded real stamina costs.
+- Skill-resource use and successful dodge state feed dedicated mastery lanes.
+- Fake-player, creative/spectator and derived-proc farming paths are rejected.
 
-### Status
-This alpha is a source/core architecture milestone. It is not yet an installable gameplay JAR. NeoForge runtime adapters, UI integration with the Passive Skill Tree port, concrete keystones/notables, persistence/networking, and in-game validation remain subsequent milestones.
+### Alpha 4.x — Goety / Goety Iron / Goety Cataclysm
+- Goety progression uses its real Soul Energy economy instead of introducing a parallel mana pool.
+- Occult/Warlock investment modifies Soul gain and spell cost; Necromancer receives summon-specific efficiency.
+- Soul-backed spell mastery scales from actual adjusted cost.
+- Hostile servant kills are attributed through Goety ownership and feed servant/Summoning plus eligible class lanes.
+- Bridge-friendly deduplication prevents the same underlying action from being rewarded twice.
+
+### Alpha 5 — Malum / Gaze / Vestis
+- Malum Spirit Reaping and collection feed typed provider and per-spirit mastery.
+- Dynamic spirit affinities are identified by registry identity rather than a brittle fixed list.
+- Malum-native Soul Ward/Arcane Resonance/Geas-facing progression is exposed through canonical tree effects.
+- Soul rupture and scythe kill outcomes feed typed Malum mastery where the provider exposes reliable outcome state.
+- Gaze extends shared Malum registries/systems; cosmetic-only Vestis receives no artificial progression lane.
+
+### Current verification boundary
+- Green CI/full-build is required for every runtime checkpoint.
+- Dedicated-server startup smoke exists in the pipeline and has been used on prior verified checkpoints.
+- A green build does not by itself promote the project to Beta; Beta begins only after a functional GitHub Release JAR and the project shifts primarily to correctness, balance, compatibility hardening and UX/release polish.
+- Full modpack/player-flow testing remains a separate quality gate from isolated build/server smoke.
+
+## Historical consolidated milestones
+
+### 0.2.0-alpha.2 — runtime foundation
+- Character progression, boss rewards, 24 seed classes, 25 specialization definitions, class/pact/morph contracts and the expanded 512-node tree were established.
+- NeoForge persistence, networking, adapters and build/runtime validation were subsequently implemented on the same development lineage, so the old Alpha 2 draft/status files are superseded by the current track above.
+
+### 0.1.0-alpha.1 — 2026-08-22
+- Initial architecture/core milestone: canonical RPG stats, deterministic modifier resolution, emergent hybrid classes, specialized-tree gates, normalized spell/combat/engineering actions, proc recursion guard, Curios attunement planning and the original 420-node/664-edge tree blueprint.
+- This was a source architecture milestone rather than an installable gameplay release.
+
+## Roadmap source
+`ALPHA_TRACK.md` is the current provider-by-provider implementation roadmap. Design documents under `docs/` remain authoritative for architecture and integration contracts; temporary release/checkpoint/synchronization marker files are intentionally not maintained as separate status sources.

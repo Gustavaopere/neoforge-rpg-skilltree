@@ -1,1 +1,0 @@
-Validated Alpha 2 work is being synchronized into main in checkpoints.
