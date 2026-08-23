@@ -9,12 +9,13 @@ import dev.gustavopere.rpgskilltree.core.MorphPerceivedIdentity;
 import dev.gustavopere.rpgskilltree.core.MorphPermissionResolver;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.util.Optional;
+import net.Gabou.identity2.api.IdentityApi;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 
-/** Optional Identity 2 bridge. Contains no compile-time reference to Identity 2 classes. */
+/** Optional Identity 2 bridge. This class must only be loaded when the identity2 mod is present. */
 public final class MorphIdentityAccess {
     private static final ResourceLocation BASE_PLAYER = ResourceLocation.fromNamespaceAndPath("minecraft", "player");
 
@@ -31,7 +32,13 @@ public final class MorphIdentityAccess {
         );
     }
 
-    /** Central perceived-identity projection used by future AI/faction adapters. */
+    /** Reads Identity 2's authoritative selected form through its public API. */
+    public static Optional<ResourceLocation> currentIdentityId(ServerPlayer player) {
+        if (player == null) return Optional.empty();
+        return Optional.ofNullable(IdentityApi.getCurrentMorphId(player));
+    }
+
+    /** Central perceived-identity projection used by AI/faction adapters. */
     public static Optional<MorphPerceivedIdentity> perceivedIdentity(ResourceLocation identityId) {
         if (identityId == null || BASE_PLAYER.equals(identityId)) return Optional.empty();
         return descriptor(identityId).map(form -> MorphEcologyPolicy.perceivedIdentity(
@@ -39,6 +46,10 @@ public final class MorphIdentityAccess {
             MorphCategoryCatalog.factionsByEntity(),
             MorphCategoryCatalog.traitsByEntity()
         ));
+    }
+
+    public static Optional<MorphPerceivedIdentity> currentPerceivedIdentity(ServerPlayer player) {
+        return currentIdentityId(player).flatMap(MorphIdentityAccess::perceivedIdentity);
     }
 
     /** Resolves the ecological reaction an observer should have to a supplied Identity 2 form. */
@@ -52,10 +63,26 @@ public final class MorphIdentityAccess {
         }
         Optional<MorphPerceivedIdentity> perceived = perceivedIdentity(identityId);
         if (perceived.isEmpty()) return MorphFactionDisposition.NEUTRAL;
+        return ecologicalDisposition(player, observerEntityId, perceived.get());
+    }
+
+    /** Resolves an observer reaction against the player's actual current Identity 2 form. */
+    public static MorphFactionDisposition ecologicalDisposition(ServerPlayer player, ResourceLocation observerEntityId) {
+        if (player == null || observerEntityId == null) return MorphFactionDisposition.NEUTRAL;
+        Optional<MorphPerceivedIdentity> perceived = currentPerceivedIdentity(player);
+        if (perceived.isEmpty()) return MorphFactionDisposition.NEUTRAL;
+        return ecologicalDisposition(player, observerEntityId, perceived.get());
+    }
+
+    private static MorphFactionDisposition ecologicalDisposition(
+        ServerPlayer player,
+        ResourceLocation observerEntityId,
+        MorphPerceivedIdentity perceived
+    ) {
         return MorphEcologyPolicy.disposition(
             observerEntityId.toString(),
             MorphEcologyPolicy.factionsFor(observerEntityId.toString(), MorphCategoryCatalog.factionsByEntity()),
-            perceived.get(),
+            perceived,
             MorphCategoryCatalog.factionRelations(),
             MorphHostilityMemoryRuntime.memory(player),
             System.currentTimeMillis()
