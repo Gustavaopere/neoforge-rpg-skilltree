@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,7 +26,8 @@ public final class TreeArchitectureCatalog {
         String label,
         String role,
         int order,
-        Set<String> tags
+        Set<String> tags,
+        String catalogCode
     ) {
         public BranchDefinition {
             if (id == null || id.isBlank()) throw new IllegalArgumentException("branch id is required");
@@ -33,6 +35,22 @@ public final class TreeArchitectureCatalog {
             role = role == null || role.isBlank() ? "branch" : role;
             if (order < 0) throw new IllegalArgumentException("branch order must be non-negative: " + id);
             tags = tags == null ? Set.of() : Set.copyOf(tags);
+            catalogCode = catalogCode == null || catalogCode.isBlank()
+                ? null
+                : catalogCode.trim().toUpperCase(Locale.ROOT);
+            if (catalogCode != null && !catalogCode.matches("A\\d{4}")) {
+                throw new IllegalArgumentException("invalid catalog code for branch " + id + ": " + catalogCode);
+            }
+        }
+    }
+
+    public record CatalogBranchBinding(ResourceLocation treeId, BranchDefinition branch) {
+        public CatalogBranchBinding {
+            Objects.requireNonNull(treeId);
+            Objects.requireNonNull(branch);
+            if (branch.catalogCode() == null) {
+                throw new IllegalArgumentException("catalog binding requires a catalog code");
+            }
         }
     }
 
@@ -95,15 +113,28 @@ public final class TreeArchitectureCatalog {
     }
 
     private static volatile Map<ResourceLocation, TreeDefinition> trees = Map.of();
+    private static volatile Map<String, CatalogBranchBinding> catalogBindings = Map.of();
 
     private TreeArchitectureCatalog() {}
 
     public static synchronized void replace(List<TreeDefinition> definitions) {
         Objects.requireNonNull(definitions);
         Map<ResourceLocation, TreeDefinition> next = new HashMap<>();
+        Map<String, CatalogBranchBinding> nextCatalogBindings = new HashMap<>();
         for (TreeDefinition definition : definitions) {
             if (next.put(definition.id(), definition) != null) {
                 throw new IllegalArgumentException("duplicate tree architecture id: " + definition.id());
+            }
+            for (BranchDefinition branch : definition.branches()) {
+                if (branch.catalogCode() == null) continue;
+                CatalogBranchBinding binding = new CatalogBranchBinding(definition.id(), branch);
+                CatalogBranchBinding previous = nextCatalogBindings.put(branch.catalogCode(), binding);
+                if (previous != null) {
+                    throw new IllegalArgumentException(
+                        "duplicate catalog code " + branch.catalogCode() + ": " + previous.treeId() + "/" + previous.branch().id()
+                            + " and " + definition.id() + "/" + branch.id()
+                    );
+                }
             }
         }
 
@@ -119,10 +150,16 @@ public final class TreeArchitectureCatalog {
             }
         }
         trees = Map.copyOf(next);
+        catalogBindings = Map.copyOf(nextCatalogBindings);
     }
 
     public static Optional<TreeDefinition> definition(ResourceLocation id) {
         return Optional.ofNullable(trees.get(id));
+    }
+
+    public static Optional<CatalogBranchBinding> branchByCatalogCode(String catalogCode) {
+        if (catalogCode == null || catalogCode.isBlank()) return Optional.empty();
+        return Optional.ofNullable(catalogBindings.get(catalogCode.trim().toUpperCase(Locale.ROOT)));
     }
 
     public static List<TreeDefinition> all() {
