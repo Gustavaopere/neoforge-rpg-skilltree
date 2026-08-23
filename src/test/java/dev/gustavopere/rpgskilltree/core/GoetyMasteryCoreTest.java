@@ -31,7 +31,13 @@ public final class GoetyMasteryCoreTest {
             12
         );
         Set<String> lanes = new HashSet<>(MasteryPolicies.forGoety(action).stream().map(MasteryAward::laneId).toList());
-        eq(Set.of("occult:practice", "goety:casting", "goety:necromancy", "goety:summoning"), lanes);
+        eq(Set.of(
+            "occult:practice",
+            "goety:casting",
+            "goety:soul_spending",
+            "goety:necromancy",
+            "goety:summoning"
+        ), lanes);
     }
 
     private static void rejectsProcGeneratedMastery() {
