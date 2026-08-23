@@ -50,10 +50,11 @@ public final class CoreProgressionTest {
 
  static void masteryPoliciesRewardRealActionsOnly(){
   var fire=new SpellAction(new ActionOrigin("irons_spellbooks:fireball",0),"irons","irons_spellbooks:fireball","fire",Set.of("spell","projectile"),40);
-  eq(List.of("magic:casting","irons:fire"),MasteryPolicies.forIron(fire).stream().map(MasteryAward::laneId).toList());
+  eq(List.of("magic:casting","irons:casting","irons:fire"),MasteryPolicies.forIron(fire).stream().map(MasteryAward::laneId).toList());
   eq(List.of(),MasteryPolicies.forIron(fire.withOrigin(fire.origin().child("rpgskilltree:echo"))));
   var ars=new SpellAction(new ActionOrigin("ars_nouveau:glyph_spell",0),"ars","ars_nouveau:glyph_spell","glyph",Set.of("projectile","amplification"),20);
-  eq(Set.of("magic:casting","ars:projectile","ars:amplification"),new HashSet<>(MasteryPolicies.forArs(ars).stream().map(MasteryAward::laneId).toList()));
+  eq(Set.of("magic:casting","ars:casting","ars:projectile","ars:amplification"),new HashSet<>(MasteryPolicies.forArs(ars).stream().map(MasteryAward::laneId).toList()));
+  eq(List.of(),MasteryPolicies.forArs(ars.withOrigin(ars.origin().child("rpgskilltree:echo"))));
   var engineering=new EngineeringAction(new ActionOrigin("create:mechanical_crafter",0),"create","assemble",Set.of("kinetics","logistics"),1);
   eq(Set.of("create:engineering","create:kinetics","create:logistics"),new HashSet<>(MasteryPolicies.forCreate(engineering).stream().map(MasteryAward::laneId).toList()));
  }
