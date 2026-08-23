@@ -85,6 +85,9 @@ dependencies {
     compileOnly("curse.maven:eidolon-repraised-870250:${eidolon_file_id}") {
         transitive = false
     }
+    compileOnly("curse.maven:identity2-1238155:${identity2_file_id}") {
+        transitive = false
+    }
 }
 
 tasks.named('wrapper', Wrapper).configure {
