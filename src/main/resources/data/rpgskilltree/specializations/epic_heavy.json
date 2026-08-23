@@ -5,8 +5,7 @@
   "eligible_class_ids": [
     "warrior",
     "guardian",
-    "paladin",
-    "industrialist"
+    "paladin"
   ],
   "minimum_mastery_experience": {
     "epicfight:heavy": 80

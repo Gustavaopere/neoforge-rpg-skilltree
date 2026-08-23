@@ -10,10 +10,20 @@ Current NeoForge 1.21.1 development line. The latest pre-consolidation runtime c
 - Independent Character Level 1–100 and source-aware passive-point ledger.
 - First-credit boss rewards with datapack configuration; defaults remain Cataclysm 5, vanilla Minecraft 3 and Apotheosis/Apothic 2.
 - Main progression vocabulary across Martial, Agility, Vitality, Healing, Arcane, Engineering, Mining, Survival, Summoning, Occult and Logistics.
-- 3/3/3 final-domain triads, persistent emergent classes, abnormal bridge costs for distant hybrids, class trees, specializations, Warlock pacts, morph policy and server-authoritative purchase/respec flow.
+- 3/3/3 final-domain triads, persistent emergent classes, transitional abnormal bridge costs for distant hybrids, class trees, specializations, Warlock pacts, morph policy and server-authoritative purchase/respec flow. Invisible bridge surcharges remain only as compatibility until physical Bridge Node corridors are reconciled.
 - 512-node main-tree blueprint, path planning, persistence/network synchronization, runtime data loading and tree viewer foundations.
 - Mining/exploration/combat progression protections, including player-placed-ore tracking and reward anti-farm/backpressure infrastructure.
 - Apotheosis/Apothic attribute, gem/socket and attunement foundations.
+- Emergent-class resolution now exposes a dynamic Primary Class plus ordered Secondary Classes; class identity remains derived from progression rather than an irreversible player selection.
+- Built-in archetypes now carry explicit `specificity_score`; `ArchetypeReloader` and `ArchetypeCatalog` make the modern archetype definitions datapack-loadable without prematurely replacing the live legacy class rules before node investment metadata is available.
+- `SpecializationReloader`/`SpecializationCatalog` and `TreeUnlockReloader`/`TreeUnlockCatalog` now load the existing specialization and specialist-tree eligibility datasets at runtime. Their domain/tag gates are not promoted to automatic player-state authority until purchased nodes expose canonical investment metadata.
+- Specializations may be classless when their definition has no eligible-class gate.
+- `Industrialist`, `Logistician` and `Prospector` are reclassified from classes to specializations. Existing v4 saves are migrated semantically during decode: those unlocked identities move into specialization progress while mastery, discoveries, passive points and purchased nodes are preserved. The migration is idempotent and does not require a binary save-format bump.
+- Node-specialization reconciliation explicitly preserves those three migrated IDs while reconstructing other current specialization IDs from live node grants. This protects migrated saves without allowing removed gateway definitions to leave arbitrary stale unlocks; generalized specialization provenance remains a future persisted-state concern.
+- Save compatibility regression coverage exercises supported binary formats v1 through v4 and verifies semantic migration/preservation of earned progression.
+- Morph ecology is data-driven: perceived species, factions, ecological traits, ally/enemy/fear relationships and a configurable temporary hostility memory are loaded independently from perk topology. Ender Dragon and Wither remain blocked by default.
+- Identity 2 1.21.1 is an optional compile-only provider integration. Current-form ecology uses its public API when loaded; target acquisition respects explicit ally/fear dispositions and attacking a perceived ally can temporarily compromise the disguise. Identity 2 exposes no verified public pre-transform veto callback, so final transformation gating is not falsely claimed complete.
+- The obsolete duplicate `morph/form_rules.json` manifest was removed; core Druid/Metamorph permission semantics remain invariant while form classification/ecology is extended through the live `morph_categories/` data source.
 
 ### Alpha 1.x — Iron's Spells 'n Spellbooks
 - Intentional Iron casts feed provider-wide and school mastery while automatic/proc-only origins are excluded.

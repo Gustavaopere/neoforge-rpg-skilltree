@@ -3,9 +3,7 @@
   "provider": "oritech",
   "kind": "technology",
   "eligible_class_ids": [
-    "miner",
-    "industrialist",
-    "prospector"
+    "miner"
   ],
   "minimum_mastery_experience": {
     "oritech:mining": 80

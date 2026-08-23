@@ -3,9 +3,7 @@
   "provider": "create",
   "kind": "technology",
   "eligible_class_ids": [
-    "engineer",
-    "industrialist",
-    "logistician"
+    "engineer"
   ],
   "minimum_mastery_experience": {
     "create:automation": 80

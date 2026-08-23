@@ -6,15 +6,19 @@ import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgres
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.data.ArchetypeReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.BossRewardReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.NodeEffectsReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.NodeRulesReloader;
+import dev.gustavopere.rpgskilltree.runtime.data.SpecializationReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeArchitectureReloader;
+import dev.gustavopere.rpgskilltree.runtime.data.TreeUnlockReloader;
 import dev.gustavopere.rpgskilltree.runtime.events.ApothicBossBridgeEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.BossProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.CombatProgressionEvents;
@@ -37,8 +41,11 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(PlayerProgressionEvents.class);
         NeoForge.EVENT_BUS.register(NodeRulesReloader.class);
         NeoForge.EVENT_BUS.register(TreeArchitectureReloader.class);
+        NeoForge.EVENT_BUS.register(TreeUnlockReloader.class);
         NeoForge.EVENT_BUS.register(ClassRulesReloader.class);
         NeoForge.EVENT_BUS.register(ClassChoiceRulesReloader.class);
+        NeoForge.EVENT_BUS.register(ArchetypeReloader.class);
+        NeoForge.EVENT_BUS.register(SpecializationReloader.class);
         NeoForge.EVENT_BUS.register(MorphCategoryReloader.class);
         NeoForge.EVENT_BUS.register(NodeEffectsReloader.class);
         NeoForge.EVENT_BUS.register(BossRewardReloader.class);
@@ -63,6 +70,9 @@ public final class RpgSkillTreeMod {
         if (ModList.get().isLoaded("eidolon")) {
             NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
             NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
+        }
+        if (ModList.get().isLoaded("identity2")) {
+            NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
         }
         if (ModList.get().isLoaded("epicfight")) {
             EpicFightProgressionHooks.register();

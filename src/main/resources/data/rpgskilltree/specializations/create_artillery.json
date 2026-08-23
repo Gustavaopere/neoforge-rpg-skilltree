@@ -4,7 +4,6 @@
   "kind": "technology",
   "eligible_class_ids": [
     "engineer",
-    "industrialist",
     "warrior",
     "technomancer"
   ],

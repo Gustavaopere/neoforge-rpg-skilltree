@@ -85,20 +85,6 @@
       ]
     },
     {
-      "id": "industrialist",
-      "domains": [
-        "ENGINEERING",
-        "MINING"
-      ]
-    },
-    {
-      "id": "prospector",
-      "domains": [
-        "MINING",
-        "SURVIVAL"
-      ]
-    },
-    {
       "id": "druid",
       "domains": [
         "SURVIVAL",

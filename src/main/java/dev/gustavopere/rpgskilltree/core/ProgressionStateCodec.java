@@ -60,7 +60,19 @@ public final class ProgressionStateCodec {
             PassiveNodeProgress passiveNodes = version >= 3 ? PassiveNodeProgress.of(readStringIntMap(in)) : PassiveNodeProgress.empty();
             DiscoveryProgress discoveries = version >= 4 ? DiscoveryProgress.of(readStringSet(in)) : DiscoveryProgress.empty();
             if (in.available() != 0) throw new IllegalArgumentException("progression state contains trailing bytes");
-            return new ProgressionState(totalXp, ledger, bosses, classes, mastery, choices, specializations, finalTriads, passiveNodes, discoveries);
+            ProgressionState decoded = new ProgressionState(
+                totalXp,
+                ledger,
+                bosses,
+                classes,
+                mastery,
+                choices,
+                specializations,
+                finalTriads,
+                passiveNodes,
+                discoveries
+            );
+            return ProgressionStateMigrations.migrate(decoded, version);
         } catch (IOException e) {
             throw new IllegalArgumentException("invalid progression state payload", e);
         }

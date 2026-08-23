@@ -3,7 +3,6 @@
   "provider": "ae2",
   "kind": "technology",
   "eligible_class_ids": [
-    "logistician",
     "engineer",
     "technomancer"
   ],

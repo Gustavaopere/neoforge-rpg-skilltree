@@ -1,6 +1,7 @@
 {
   "id": "rpgskilltree:spellblade",
   "priority": 30,
+  "specificity_score": 2,
   "minimum_domain_scores": {
     "ARCANE": 8,
     "MARTIAL": 8
