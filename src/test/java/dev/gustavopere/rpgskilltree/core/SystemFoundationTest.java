@@ -8,6 +8,8 @@ public final class SystemFoundationTest {
     public static void main(String[] args) {
         moreSpecificArchetypeBeatsDisplayPriority();
         strongerSatisfiedRequirementsBreakSpecificityTies();
+        hierarchySeparatesPrimaryAndSecondaryClasses();
+        emptyHierarchyHasNoPrimaryOrSecondaryClass();
         classlessSpecializationCanUnlock();
         classGatedSpecializationStillRequiresEligibleClass();
         legacyClassIdentitiesMigrateWithoutErasingKnowledge();
@@ -53,6 +55,47 @@ public final class SystemFoundationTest {
         eq(List.of("spellblade", "arcane_archer"), ids(ArchetypeResolver.resolve(state, List.of(arcaneArcher, spellblade))));
     }
 
+    static void hierarchySeparatesPrimaryAndSecondaryClasses() {
+        var state = InvestmentState.of(List.of(
+            new NodeInvestment("arcane", Map.of(ProgressionDomain.ARCANE, 14), Set.of()),
+            new NodeInvestment("martial", Map.of(ProgressionDomain.MARTIAL, 12), Set.of())
+        ));
+        var mage = new ArchetypeDefinition(
+            "mage", 90,
+            Map.of(ProgressionDomain.ARCANE, 8),
+            Set.of(), Set.of()
+        );
+        var warrior = new ArchetypeDefinition(
+            "warrior", 80,
+            Map.of(ProgressionDomain.MARTIAL, 8),
+            Set.of(), Set.of()
+        );
+        var spellblade = new ArchetypeDefinition(
+            "spellblade", 10,
+            Map.of(ProgressionDomain.ARCANE, 6, ProgressionDomain.MARTIAL, 6),
+            Set.of(), Set.of()
+        );
+
+        var hierarchy = ArchetypeResolver.resolveHierarchy(state, List.of(mage, warrior, spellblade));
+        eq("spellblade", hierarchy.primaryClassId().orElseThrow());
+        eq(List.of("mage", "warrior"), hierarchy.secondaryClassIds());
+        eq(List.of("spellblade", "mage", "warrior"), ids(hierarchy.orderedMatches()));
+    }
+
+    static void emptyHierarchyHasNoPrimaryOrSecondaryClass() {
+        var hierarchy = ArchetypeResolver.resolveHierarchy(
+            InvestmentState.of(List.of()),
+            List.of(new ArchetypeDefinition(
+                "mage", 1,
+                Map.of(ProgressionDomain.ARCANE, 8),
+                Set.of(), Set.of()
+            ))
+        );
+        eq(true, hierarchy.primaryClassId().isEmpty());
+        eq(List.of(), hierarchy.secondaryClassIds());
+        eq(List.of(), hierarchy.orderedMatches());
+    }
+
     static void classlessSpecializationCanUnlock() {
         var definition = new SpecializationDefinition(
             "create_kinetics",
@@ -88,10 +131,16 @@ public final class SystemFoundationTest {
     }
 
     static void legacyClassIdentitiesMigrateWithoutErasingKnowledge() {
+        var ledger = PassivePointLedger.empty()
+            .award(PassivePointSource.LEVEL, 12)
+            .award(PassivePointSource.BOSS, 5)
+            .spend(4);
         var state = ProgressionState.empty()
+            .withPassivePoints(ledger)
             .withClassProgression(ClassProgressionState.of(Set.of("mage", "industrialist", "logistician", "prospector")))
             .withSpecializations(SpecializationProgressionState.of(Set.of("create_kinetics")))
             .withMastery(MasteryState.of(Map.of("create:kinetics", 321, "tfc:prospecting", 144)))
+            .withPassiveNodes(PassiveNodeProgress.of(Map.of("rpgskilltree:test_node", 2)))
             .withDiscoveries(DiscoveryProgress.of(Set.of("world:ancient_ruin")));
 
         var migrated = ProgressionStateMigrations.migrate(state, 4);
@@ -101,7 +150,9 @@ public final class SystemFoundationTest {
             migrated.specializations().unlockedSpecializationIds());
         eq(state.mastery().experience(), migrated.mastery().experience());
         eq(state.discoveries().discoveredKeys(), migrated.discoveries().discoveredKeys());
-        eq(state.passivePoints(), migrated.passivePoints());
+        eq(state.passivePoints().earnedBySource(), migrated.passivePoints().earnedBySource());
+        eq(state.passivePoints().spent(), migrated.passivePoints().spent());
+        eq(state.passivePoints().available(), migrated.passivePoints().available());
         eq(state.passiveNodes().ranks(), migrated.passiveNodes().ranks());
     }
 
