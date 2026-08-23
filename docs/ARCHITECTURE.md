@@ -16,9 +16,9 @@ Build a private NeoForge 1.21.1 progression mod around the Passive Skill Tree UI
 ## Main tree
 The current blueprint budgets **512 nodes** on a 4608x4608 canvas across **11 universal regions**: Martial, Agility, Vitality, Healing, Arcane, Engineering, Mining, Survival, Summoning, Occult and Logistics.
 
-The topology is deliberately physical. Adjacent regions form natural confluences; non-adjacent identities can require paid bridge corridors. The central wheel, domain fans, hybrid corridors and outer keystones are generated deterministically from `tree_blueprints/main.json`.
+The topology is deliberately physical. Adjacent regions form natural confluences; non-adjacent identities should ultimately use paid bridge corridors made of buyable nodes. The central wheel, domain fans, hybrid corridors and outer keystones are generated deterministically from `tree_blueprints/main.json`.
 
-The three outermost nodes of each domain are the persistent 3/3/3 final triad used by class-completion rules.
+The three outermost nodes of each domain are the persistent 3/3/3 final triad used by the current class-completion compatibility rules.
 
 ## Semantic tree architecture
 The purchase graph and the semantic architecture are separate layers:
@@ -31,7 +31,31 @@ The purchase graph and the semantic architecture are separate layers:
 
 This split allows one stable purchase engine to serve many specialist trees while the planner/UI can reason about concepts such as “Fire -> Ignite -> Flameborne -> Lava” instead of treating every node as an anonymous coordinate.
 
-The first semantic pass materializes **83 tree definitions** covering the main tree, Iron schools, Ars composition families, combat weapons, TFC survival, technology/logistics providers, occult/summoning systems, morph/ecology and hybrid classes.
+The first semantic pass materializes **83 tree definitions** covering the main tree, Iron schools, Ars composition families, combat weapons, TFC survival, technology/logistics providers, occult/summoning systems, morph/ecology and hybrid identities.
+
+## Emergent archetype architecture
+`data/rpgskilltree/archetypes/` is loaded by `ArchetypeReloader` into `ArchetypeCatalog`. Archetype definitions carry explicit `specificity_score`, domain thresholds and required/forbidden tags. Resolution exposes one Primary Class and ordered Secondary Classes using the deterministic ordering:
+
+1. specificity score;
+2. degree of the currently represented requirements satisfied;
+3. display priority;
+4. stable archetype ID.
+
+The modern resolver is intentionally **not yet the live player-class authority**. Purchased nodes do not yet expose the canonical domain/tag/mastery contribution metadata required to build a faithful `InvestmentState`. Wiring it earlier would invent progression weights or duplicate the legacy class system.
+
+Until perk reconciliation supplies those contributions, `data/rpgskilltree/classes/`, `ClassRulesReloader` and `ClassRuleCatalog` remain the compatibility/runtime class path. This is transitional architecture, not a second desired class system.
+
+## Bridge transition boundary
+The master design prefers physical Bridge Node corridors over an invisible class surcharge. The legacy class runtime still contains `nonAdjacentBridgeCost`, `UnlockClassPayload` and `PlayerProgressionRuntime.unlockPaidClass(...)` for non-adjacent classes.
+
+That legacy path cannot be removed safely before the corresponding buyable bridge corridors exist: removing it first would make those classes unreachable. It remains a compatibility mechanism until the perk topology is reconciled, at which point bridge spending should occur through ordinary node purchases and the hidden surcharge path can be deleted.
+
+## Specialization ownership
+Specialization state can have more than one legitimate source. Node-granted specializations are revocable when their granting node is no longer active, while persisted/non-node identities must survive generic node reconciliation.
+
+`ProgressionService.reconcileNodeSpecializations(...)` therefore treats only specialization IDs represented by loaded node grants as node-owned. Other persisted IDs are preserved. This is required for semantic class-to-specialization migrations such as `industrialist`, `logistician` and `prospector` and prevents runtime reconciliation from silently erasing migrated progress.
+
+The three migrated identities deliberately do not yet receive invented zero-cost specialization gates. Their future acquisition requirements depend on the canonical investment/mastery signals that will be finalized with the perk metadata.
 
 ## Specialized trees
 ### Iron's Spellbooks
@@ -57,10 +81,14 @@ Goety Soul/Servants/Necromancy, Malum Spirits/Spirit Knight, Eidolon Ritual/Theu
 Provider resources remain separate: Soul Energy is not mana, Essentia Vitae is not Soul Energy, Malum spirits are not generic mana, and universal vampirism has lower coefficients/caps than narrow leech specialists.
 
 ### Morph / Ecology
-Druid Wild Shape, Metamorph Assimilation, Morph Ecology and Beastmaster. Identity 2 is the intended morph backend; RPG Skill Tree owns gates, form categories, mastery and ecological/social rules rather than copying per-entity identity NBT.
+Druid Wild Shape, Metamorph Assimilation, Morph Ecology and Beastmaster share one form taxonomy/ecology layer. Identity 2 is the intended morph backend; RPG Skill Tree owns gates, form categories, mastery and ecological/social rules rather than copying per-entity identity NBT.
 
-### Hybrid classes
-Spellblade, Battlemage, Arcane Archer, Paladin, Death Knight, Geomancer, Technomancer, Necromancer, Warlock and Beastmaster hybrids have semantic subtrees that deliberately consume two or more domain/provider identities.
+The Identity 2 1.21.1 integration uses its public current-morph API when the provider is loaded. Perceived species/factions/traits and temporary hostility memory are data-driven. Final Druid/Metamorph permission grants remain dependent on perk reconciliation, and a provider-side pre-transformation veto is not claimed complete until it is wired and verified.
+
+### Hybrid classes and identities
+Canonical hybrid/emergent class work currently includes Spellblade, Paladin, Geomancer, Technomancer, Necromancer, Warlock and Beastmaster, with Death Knight still planned/conditional on a sufficiently deep Martial + Occult integration.
+
+Battlemage and Arcane Archer are **not canonical class archetypes** in the modern resolver. Any existing semantic-tree references to those names are compatibility/planning artifacts to reconcile with the parallel perk topology, not authority to recreate them as classes. Artificer remains deliberately unresolved because the master design currently contains contradictory class-taxonomy statements; code must not guess that decision.
 
 ## Attunement
 Tree nodes may unlock dedicated Attunement slots. These should be implemented as real Curios-backed storage where possible so equipped items keep native tick/equip/unequip/attribute behavior. The normal Curios inventory is not consumed. Respecs must eject overflow safely and deterministically.
@@ -77,5 +105,9 @@ Tree nodes may unlock dedicated Attunement slots. These should be implemented as
 - malformed tags/bridges;
 - bridges to unknown trees or to the tree itself.
 
+Foundation validation additionally protects the final taxonomy from reintroducing demoted class IDs, requires explicit specificity for built-in archetypes, validates morph ecology references and keeps class-gate references internally consistent.
+
 ## Save compatibility
 Stable namespaced IDs are required for nodes, archetypes, mastery lanes, canonical stats and semantic trees. Renames use aliases/migrations instead of silently deleting player progression.
+
+The current binary save format remains v4. Semantic migrations run idempotently during decode, including the reclassification of Industrialist, Logistician and Prospector from legacy class IDs to specialization IDs. Compatibility tests exercise all supported binary versions (v1 through v4) and verify preservation of earned progression across decode/migration.
