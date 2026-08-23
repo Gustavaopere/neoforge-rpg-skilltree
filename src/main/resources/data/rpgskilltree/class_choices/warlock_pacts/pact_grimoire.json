@@ -1,0 +1,14 @@
+{
+  "choice_id": "warlock:pact_grimoire",
+  "required_class_id": "warlock",
+  "group_id": "warlock:pact",
+  "default_group_capacity": 1,
+  "title": "Pact of the Grimoire",
+  "mechanics": [
+    "expanded_spell_access",
+    "ritual_knowledge",
+    "casting_tradeoffs"
+  ],
+  "notes": "Spell/ritual knowledge path; should interact with actual Iron/Ars spell systems rather than duplicating spell inventories.",
+  "display_key": "choice.rpgskilltree.warlock.pact_grimoire"
+}

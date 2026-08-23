@@ -1,0 +1,23 @@
+{
+  "id": "rpgskilltree:bridge_cleric_03",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:bridge_cleric_04"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:bridge/cleric",
+    "rpgskilltree:domain/arcane",
+    "rpgskilltree:domain/healing",
+    "rpgskilltree:kind/hybrid"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/notable.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/notable.png",
+  "positionX": 1568.867,
+  "positionY": -225.569,
+  "buttonSize": 24,
+  "isStartingPoint": false
+}

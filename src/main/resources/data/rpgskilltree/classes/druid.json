@@ -1,0 +1,14 @@
+{
+  "class_id": "druid",
+  "tree_id": "rpgskilltree:class/druid",
+  "kind": "hybrid",
+  "required_completed_domains": [
+    "SURVIVAL",
+    "SUMMONING"
+  ],
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": true,
+  "non_adjacent_bridge_cost": 0,
+  "notes": "Natural SURVIVAL + SUMMONING confluence; owns natural morph permissions through Identity 2 / Ars Morph adapters."
+}

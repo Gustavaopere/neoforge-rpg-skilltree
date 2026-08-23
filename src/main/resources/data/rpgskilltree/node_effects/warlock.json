@@ -1,0 +1,123 @@
+{
+  "attributes": [
+    {
+      "effectId": "rpgskilltree:warlock/forbidden_lore/mana",
+      "nodeId": "rpgskilltree:warlock/forbidden_lore",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 8.0
+    },
+    {
+      "effectId": "rpgskilltree:warlock/pact_confluence/spell_power",
+      "nodeId": "rpgskilltree:warlock/pact_confluence",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    },
+    {
+      "effectId": "rpgskilltree:warlock/blade_bond/attack",
+      "nodeId": "rpgskilltree:warlock/blade_bond",
+      "attributeId": "minecraft:generic.attack_damage",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.5
+    },
+    {
+      "effectId": "rpgskilltree:warlock/hex_edge/speed",
+      "nodeId": "rpgskilltree:warlock/hex_edge",
+      "attributeId": "minecraft:generic.attack_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:warlock/soulsteel_keystone/spell",
+      "nodeId": "rpgskilltree:warlock/soulsteel_keystone",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "MULTIPLY_TOTAL",
+      "amountPerRank": 0.1
+    },
+    {
+      "effectId": "rpgskilltree:warlock/blood_sacrifice/blood_power",
+      "nodeId": "rpgskilltree:warlock/blood_sacrifice",
+      "attributeId": "irons_spellbooks:blood_spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.06
+    },
+    {
+      "effectId": "rpgskilltree:warlock/blood_hunger/life_steal",
+      "nodeId": "rpgskilltree:warlock/blood_hunger",
+      "attributeId": "apothic_attributes:life_steal",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.01
+    },
+    {
+      "effectId": "rpgskilltree:warlock/crimson_covenant/overheal",
+      "nodeId": "rpgskilltree:warlock/crimson_covenant",
+      "attributeId": "apothic_attributes:overheal",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.12
+    },
+    {
+      "effectId": "rpgskilltree:warlock/familiar_bond/summon",
+      "nodeId": "rpgskilltree:warlock/familiar_bond",
+      "attributeId": "irons_spellbooks:summon_damage",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.07
+    },
+    {
+      "effectId": "rpgskilltree:warlock/servant_command/health",
+      "nodeId": "rpgskilltree:warlock/servant_command",
+      "attributeId": "minecraft:generic.max_health",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    },
+    {
+      "effectId": "rpgskilltree:warlock/anchored_familiar/summon_total",
+      "nodeId": "rpgskilltree:warlock/anchored_familiar",
+      "attributeId": "irons_spellbooks:summon_damage",
+      "operation": "MULTIPLY_TOTAL",
+      "amountPerRank": 0.12
+    },
+    {
+      "effectId": "rpgskilltree:warlock/grimoire_pages/mana",
+      "nodeId": "rpgskilltree:warlock/grimoire_pages",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 12.0
+    },
+    {
+      "effectId": "rpgskilltree:warlock/ritual_memory/regen",
+      "nodeId": "rpgskilltree:warlock/ritual_memory",
+      "attributeId": "irons_spellbooks:mana_regen",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.05
+    },
+    {
+      "effectId": "rpgskilltree:warlock/forbidden_formula/spell",
+      "nodeId": "rpgskilltree:warlock/forbidden_formula",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "MULTIPLY_TOTAL",
+      "amountPerRank": 0.1
+    },
+    {
+      "effectId": "rpgskilltree:warlock/soul_harvest/spell",
+      "nodeId": "rpgskilltree:warlock/soul_harvest",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    },
+    {
+      "effectId": "rpgskilltree:warlock/servant_link/summon",
+      "nodeId": "rpgskilltree:warlock/servant_link",
+      "attributeId": "irons_spellbooks:summon_damage",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.06
+    },
+    {
+      "effectId": "rpgskilltree:warlock/soul_conduit/health",
+      "nodeId": "rpgskilltree:warlock/soul_conduit",
+      "attributeId": "minecraft:generic.max_health",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 2.0
+    }
+  ]
+}

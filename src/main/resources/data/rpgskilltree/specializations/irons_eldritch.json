@@ -1,0 +1,16 @@
+{
+  "specialization_id": "irons_eldritch",
+  "provider": "irons_spellbooks",
+  "kind": "school",
+  "eligible_class_ids": [
+    "warlock",
+    "occultist",
+    "necromancer"
+  ],
+  "minimum_mastery_experience": {
+    "irons:eldritch": 100
+  },
+  "required_tags": [
+    "gateway:irons_eldritch"
+  ]
+}

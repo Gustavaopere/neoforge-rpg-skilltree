@@ -1,0 +1,22 @@
+{
+  "id": "rpgskilltree:engineering_041",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:engineering_042",
+    "rpgskilltree:keystone_06"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/engineering",
+    "rpgskilltree:kind/final_triad"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/notable.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/notable.png",
+  "positionX": 1257.17,
+  "positionY": 1210.186,
+  "buttonSize": 24,
+  "isStartingPoint": false
+}

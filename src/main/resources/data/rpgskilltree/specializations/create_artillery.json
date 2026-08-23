@@ -1,0 +1,17 @@
+{
+  "specialization_id": "create_artillery",
+  "provider": "create",
+  "kind": "technology",
+  "eligible_class_ids": [
+    "engineer",
+    "industrialist",
+    "warrior",
+    "technomancer"
+  ],
+  "minimum_mastery_experience": {
+    "create:artillery": 80
+  },
+  "required_tags": [
+    "gateway:create_artillery"
+  ]
+}

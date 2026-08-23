@@ -23,6 +23,13 @@ public final class NodeAccessResolver {
         for (String specializationId : requirement.requiredSpecializationIds()) {
             if (!state.specializations().isUnlocked(specializationId)) return false;
         }
+        if (!requirement.requiredClassChoiceIds().isEmpty()) {
+            java.util.Set<String> selectedChoices = new java.util.HashSet<>();
+            state.classChoices().selections().values().forEach(selectedChoices::addAll);
+            for (String choiceId : requirement.requiredClassChoiceIds()) {
+                if (!selectedChoices.contains(choiceId)) return false;
+            }
+        }
         return true;
     }
 }

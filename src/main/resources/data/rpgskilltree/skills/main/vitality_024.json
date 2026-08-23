@@ -1,0 +1,22 @@
+{
+  "id": "rpgskilltree:vitality_024",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:vitality_025",
+    "rpgskilltree:vitality_036"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/vitality",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": 201.687,
+  "positionY": -1486.379,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

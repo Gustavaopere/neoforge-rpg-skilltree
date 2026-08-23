@@ -1,0 +1,20 @@
+{
+  "id": "rpgskilltree:core_07",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:core_08"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:kind/core"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/class.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": 0.0,
+  "positionY": 260.0,
+  "buttonSize": 20,
+  "isStartingPoint": false
+}

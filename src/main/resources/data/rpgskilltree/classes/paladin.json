@@ -1,0 +1,14 @@
+{
+  "class_id": "paladin",
+  "tree_id": "rpgskilltree:class/paladin",
+  "kind": "hybrid",
+  "required_completed_domains": [
+    "VITALITY",
+    "HEALING"
+  ],
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": true,
+  "non_adjacent_bridge_cost": 0,
+  "notes": "Natural VITALITY + HEALING confluence."
+}

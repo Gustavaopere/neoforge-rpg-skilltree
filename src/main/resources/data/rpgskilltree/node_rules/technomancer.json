@@ -1,0 +1,287 @@
+{
+  "treeId": "rpgskilltree:class/technomancer",
+  "nodes": [
+    {
+      "id": "rpgskilltree:technomancer/core",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": true,
+      "neighbors": [
+        "rpgskilltree:technomancer/conductive_mana"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 20
+    },
+    {
+      "id": "rpgskilltree:technomancer/conductive_mana",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/core",
+        "rpgskilltree:technomancer/arcane_bus"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 20
+    },
+    {
+      "id": "rpgskilltree:technomancer/arcane_bus",
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/conductive_mana",
+        "rpgskilltree:technomancer/create_resonance",
+        "rpgskilltree:technomancer/network_memory",
+        "rpgskilltree:technomancer/power_conduit"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 20
+    },
+    {
+      "id": "rpgskilltree:technomancer/create_resonance",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/arcane_bus",
+        "rpgskilltree:technomancer/kinetic_casting"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 20
+    },
+    {
+      "id": "rpgskilltree:technomancer/kinetic_casting",
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/create_resonance",
+        "rpgskilltree:technomancer/create_gateway"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 20
+    },
+    {
+      "id": "rpgskilltree:technomancer/create_gateway",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/kinetic_casting",
+        "rpgskilltree:technomancer/create_overdrive"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 25,
+      "requiredMastery": {
+        "magic:casting": 60,
+        "create:kinetics": 80
+      },
+      "grantsSpecialization": {
+        "id": "create_kinetics",
+        "requiredRank": 1
+      }
+    },
+    {
+      "id": "rpgskilltree:technomancer/create_overdrive",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/create_gateway",
+        "rpgskilltree:technomancer/dual_systems"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 30,
+      "requiredSpecializations": [
+        "create_kinetics"
+      ]
+    },
+    {
+      "id": "rpgskilltree:technomancer/network_memory",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/arcane_bus",
+        "rpgskilltree:technomancer/pattern_mind"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 20
+    },
+    {
+      "id": "rpgskilltree:technomancer/pattern_mind",
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/network_memory",
+        "rpgskilltree:technomancer/ae2_gateway"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 20
+    },
+    {
+      "id": "rpgskilltree:technomancer/ae2_gateway",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/pattern_mind",
+        "rpgskilltree:technomancer/arcane_autocrafting"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 25,
+      "requiredMastery": {
+        "magic:casting": 60,
+        "ae2:networks": 80
+      },
+      "grantsSpecialization": {
+        "id": "ae2_networks",
+        "requiredRank": 1
+      }
+    },
+    {
+      "id": "rpgskilltree:technomancer/arcane_autocrafting",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/ae2_gateway",
+        "rpgskilltree:technomancer/dual_systems"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 30,
+      "requiredSpecializations": [
+        "ae2_networks"
+      ]
+    },
+    {
+      "id": "rpgskilltree:technomancer/power_conduit",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/arcane_bus",
+        "rpgskilltree:technomancer/charged_focus"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 20
+    },
+    {
+      "id": "rpgskilltree:technomancer/charged_focus",
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/power_conduit",
+        "rpgskilltree:technomancer/oritech_gateway"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 20
+    },
+    {
+      "id": "rpgskilltree:technomancer/oritech_gateway",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/charged_focus",
+        "rpgskilltree:technomancer/overcharged_caster"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 25,
+      "requiredMastery": {
+        "magic:casting": 60,
+        "oritech:power": 80
+      },
+      "grantsSpecialization": {
+        "id": "oritech_power",
+        "requiredRank": 1
+      }
+    },
+    {
+      "id": "rpgskilltree:technomancer/overcharged_caster",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/oritech_gateway",
+        "rpgskilltree:technomancer/triune_core"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 30,
+      "requiredSpecializations": [
+        "oritech_power"
+      ]
+    },
+    {
+      "id": "rpgskilltree:technomancer/dual_systems",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/create_overdrive",
+        "rpgskilltree:technomancer/arcane_autocrafting",
+        "rpgskilltree:technomancer/triune_core"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 40,
+      "requiredSpecializations": [
+        "create_kinetics",
+        "ae2_networks"
+      ]
+    },
+    {
+      "id": "rpgskilltree:technomancer/triune_core",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:technomancer/dual_systems",
+        "rpgskilltree:technomancer/overcharged_caster"
+      ],
+      "requiredClasses": [
+        "technomancer"
+      ],
+      "minCharacterLevel": 50,
+      "requiredSpecializations": [
+        "create_kinetics",
+        "ae2_networks",
+        "oritech_power"
+      ]
+    }
+  ]
+}

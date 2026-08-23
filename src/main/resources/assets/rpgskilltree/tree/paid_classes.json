@@ -1,0 +1,49 @@
+{
+  "classes": [
+    {
+      "id": "beastmaster",
+      "requiredCompletedDomains": [
+        "AGILITY",
+        "SUMMONING"
+      ],
+      "bridgeCost": 10,
+      "displayKey": "class.rpgskilltree.beastmaster"
+    },
+    {
+      "id": "geomancer",
+      "requiredCompletedDomains": [
+        "ARCANE",
+        "MINING"
+      ],
+      "bridgeCost": 10,
+      "displayKey": "class.rpgskilltree.geomancer"
+    },
+    {
+      "id": "metamorph",
+      "requiredCompletedDomains": [
+        "AGILITY",
+        "OCCULT"
+      ],
+      "bridgeCost": 10,
+      "displayKey": "class.rpgskilltree.metamorph"
+    },
+    {
+      "id": "spellblade",
+      "requiredCompletedDomains": [
+        "ARCANE",
+        "MARTIAL"
+      ],
+      "bridgeCost": 10,
+      "displayKey": "class.rpgskilltree.spellblade"
+    },
+    {
+      "id": "warlock",
+      "requiredCompletedDomains": [
+        "ARCANE",
+        "OCCULT"
+      ],
+      "bridgeCost": 10,
+      "displayKey": "class.rpgskilltree.warlock"
+    }
+  ]
+}

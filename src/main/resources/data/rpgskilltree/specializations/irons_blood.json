@@ -1,0 +1,17 @@
+{
+  "specialization_id": "irons_blood",
+  "provider": "irons_spellbooks",
+  "kind": "school",
+  "eligible_class_ids": [
+    "warlock",
+    "occultist",
+    "necromancer",
+    "arcanist"
+  ],
+  "minimum_mastery_experience": {
+    "irons:blood": 100
+  },
+  "required_tags": [
+    "gateway:irons_blood"
+  ]
+}

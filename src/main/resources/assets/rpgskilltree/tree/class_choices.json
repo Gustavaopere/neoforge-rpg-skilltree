@@ -1,0 +1,39 @@
+{
+  "choices": [
+    {
+      "id": "warlock:pact_blade",
+      "requiredClassId": "warlock",
+      "groupId": "warlock:pact",
+      "capacity": 1,
+      "displayKey": "choice.rpgskilltree.warlock.pact_blade"
+    },
+    {
+      "id": "warlock:pact_blood",
+      "requiredClassId": "warlock",
+      "groupId": "warlock:pact",
+      "capacity": 1,
+      "displayKey": "choice.rpgskilltree.warlock.pact_blood"
+    },
+    {
+      "id": "warlock:pact_familiar",
+      "requiredClassId": "warlock",
+      "groupId": "warlock:pact",
+      "capacity": 1,
+      "displayKey": "choice.rpgskilltree.warlock.pact_familiar"
+    },
+    {
+      "id": "warlock:pact_grimoire",
+      "requiredClassId": "warlock",
+      "groupId": "warlock:pact",
+      "capacity": 1,
+      "displayKey": "choice.rpgskilltree.warlock.pact_grimoire"
+    },
+    {
+      "id": "warlock:pact_souls",
+      "requiredClassId": "warlock",
+      "groupId": "warlock:pact",
+      "capacity": 1,
+      "displayKey": "choice.rpgskilltree.warlock.pact_souls"
+    }
+  ]
+}

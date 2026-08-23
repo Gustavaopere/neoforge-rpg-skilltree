@@ -1,0 +1,22 @@
+{
+  "id": "rpgskilltree:logistics_010",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:logistics_011",
+    "rpgskilltree:logistics_019"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/logistics",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": -895.511,
+  "positionY": -467.077,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

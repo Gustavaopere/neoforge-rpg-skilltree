@@ -1,0 +1,23 @@
+{
+  "id": "rpgskilltree:mining_021",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:mining_022",
+    "rpgskilltree:mining_032",
+    "rpgskilltree:mining_033"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/mining",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": 78.493,
+  "positionY": 1252.543,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

@@ -1,0 +1,17 @@
+{
+  "specialization_id": "ars_summoning",
+  "provider": "ars_nouveau",
+  "kind": "spell_composition",
+  "eligible_class_ids": [
+    "summoner",
+    "druid",
+    "necromancer",
+    "warlock"
+  ],
+  "minimum_mastery_experience": {
+    "ars:summoning": 80
+  },
+  "required_tags": [
+    "gateway:ars_summoning"
+  ]
+}

@@ -41,6 +41,18 @@ public final class ClassChoiceState {
         return new ClassChoiceState(next);
     }
 
+    public ClassChoiceState withoutSelection(String groupId, String choiceId) {
+        if (groupId == null || groupId.isBlank() || choiceId == null || choiceId.isBlank()) {
+            throw new IllegalArgumentException("choice identifiers must not be blank");
+        }
+        Map<String, Set<String>> next = new HashMap<>(selections);
+        Set<String> values = new HashSet<>(next.getOrDefault(groupId, Set.of()));
+        if (!values.remove(choiceId)) return this;
+        if (values.isEmpty()) next.remove(groupId);
+        else next.put(groupId, Set.copyOf(values));
+        return new ClassChoiceState(next);
+    }
+
     public Map<String, Set<String>> selections() {
         return selections;
     }

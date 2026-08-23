@@ -1,0 +1,23 @@
+{
+  "id": "rpgskilltree:engineering_008",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:engineering_009",
+    "rpgskilltree:engineering_016",
+    "rpgskilltree:engineering_017"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/engineering",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": 857.377,
+  "positionY": 533.859,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

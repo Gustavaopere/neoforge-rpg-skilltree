@@ -1,0 +1,16 @@
+{
+  "specialization_id": "create_aeronautics",
+  "provider": "create",
+  "kind": "technology",
+  "eligible_class_ids": [
+    "engineer",
+    "survivor",
+    "technomancer"
+  ],
+  "minimum_mastery_experience": {
+    "create:aeronautics": 80
+  },
+  "required_tags": [
+    "gateway:create_aeronautics"
+  ]
+}

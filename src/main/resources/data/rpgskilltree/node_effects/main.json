@@ -1,0 +1,466 @@
+{
+  "attributes": [
+    {
+      "effectId": "rpgskilltree:node/agility_000/movement_speed",
+      "nodeId": "rpgskilltree:agility_000",
+      "attributeId": "minecraft:movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/agility_001/attack_speed",
+      "nodeId": "rpgskilltree:agility_001",
+      "attributeId": "minecraft:attack_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/agility_002/dodge_chance",
+      "nodeId": "rpgskilltree:agility_002",
+      "attributeId": "apothic_attributes:dodge_chance",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/agility_031/capstone_movement",
+      "nodeId": "rpgskilltree:agility_031",
+      "attributeId": "minecraft:movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/agility_032/capstone_speed",
+      "nodeId": "rpgskilltree:agility_032",
+      "attributeId": "minecraft:attack_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/agility_033/capstone_dodge",
+      "nodeId": "rpgskilltree:agility_033",
+      "attributeId": "apothic_attributes:dodge_chance",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/arcane_000/max_mana",
+      "nodeId": "rpgskilltree:arcane_000",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 20.0
+    },
+    {
+      "effectId": "rpgskilltree:node/arcane_001/spell_power",
+      "nodeId": "rpgskilltree:arcane_001",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.025
+    },
+    {
+      "effectId": "rpgskilltree:node/arcane_002/mana_regen",
+      "nodeId": "rpgskilltree:arcane_002",
+      "attributeId": "irons_spellbooks:mana_regen",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/arcane_037/capstone_mana",
+      "nodeId": "rpgskilltree:arcane_037",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 35.0
+    },
+    {
+      "effectId": "rpgskilltree:node/arcane_040/capstone_power",
+      "nodeId": "rpgskilltree:arcane_040",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    },
+    {
+      "effectId": "rpgskilltree:node/arcane_046/capstone_cooldown",
+      "nodeId": "rpgskilltree:arcane_046",
+      "attributeId": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/engineering_000/tooling_speed",
+      "nodeId": "rpgskilltree:engineering_000",
+      "attributeId": "minecraft:attack_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.015
+    },
+    {
+      "effectId": "rpgskilltree:node/engineering_001/precision",
+      "nodeId": "rpgskilltree:engineering_001",
+      "attributeId": "minecraft:luck",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.25
+    },
+    {
+      "effectId": "rpgskilltree:node/engineering_002/field_mobility",
+      "nodeId": "rpgskilltree:engineering_002",
+      "attributeId": "minecraft:movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.01
+    },
+    {
+      "effectId": "rpgskilltree:node/engineering_037/capstone_tooling",
+      "nodeId": "rpgskilltree:engineering_037",
+      "attributeId": "minecraft:attack_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/engineering_041/capstone_precision",
+      "nodeId": "rpgskilltree:engineering_041",
+      "attributeId": "minecraft:luck",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.5
+    },
+    {
+      "effectId": "rpgskilltree:node/engineering_045/capstone_mobility",
+      "nodeId": "rpgskilltree:engineering_045",
+      "attributeId": "minecraft:movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/healing_000/healing_received",
+      "nodeId": "rpgskilltree:healing_000",
+      "attributeId": "apothic_attributes:healing_received",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/healing_001/holy_power",
+      "nodeId": "rpgskilltree:healing_001",
+      "attributeId": "irons_spellbooks:holy_spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.025
+    },
+    {
+      "effectId": "rpgskilltree:node/healing_002/spell_resist",
+      "nodeId": "rpgskilltree:healing_002",
+      "attributeId": "irons_spellbooks:spell_resist",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/healing_028/capstone_healing",
+      "nodeId": "rpgskilltree:healing_028",
+      "attributeId": "apothic_attributes:healing_received",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.05
+    },
+    {
+      "effectId": "rpgskilltree:node/healing_029/capstone_holy",
+      "nodeId": "rpgskilltree:healing_029",
+      "attributeId": "irons_spellbooks:holy_spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    },
+    {
+      "effectId": "rpgskilltree:node/healing_033/capstone_ward",
+      "nodeId": "rpgskilltree:healing_033",
+      "attributeId": "irons_spellbooks:spell_resist",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/logistics_000/movement_speed",
+      "nodeId": "rpgskilltree:logistics_000",
+      "attributeId": "minecraft:movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.015
+    },
+    {
+      "effectId": "rpgskilltree:node/logistics_001/routing_luck",
+      "nodeId": "rpgskilltree:logistics_001",
+      "attributeId": "minecraft:luck",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.2
+    },
+    {
+      "effectId": "rpgskilltree:node/logistics_002/handling_speed",
+      "nodeId": "rpgskilltree:logistics_002",
+      "attributeId": "minecraft:attack_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.01
+    },
+    {
+      "effectId": "rpgskilltree:node/logistics_025/capstone_movement",
+      "nodeId": "rpgskilltree:logistics_025",
+      "attributeId": "minecraft:movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/logistics_026/capstone_luck",
+      "nodeId": "rpgskilltree:logistics_026",
+      "attributeId": "minecraft:luck",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.5
+    },
+    {
+      "effectId": "rpgskilltree:node/logistics_024/capstone_handling",
+      "nodeId": "rpgskilltree:logistics_024",
+      "attributeId": "minecraft:attack_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/martial_000/attack_damage",
+      "nodeId": "rpgskilltree:martial_000",
+      "attributeId": "minecraft:attack_damage",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.35
+    },
+    {
+      "effectId": "rpgskilltree:node/martial_001/attack_speed",
+      "nodeId": "rpgskilltree:martial_001",
+      "attributeId": "minecraft:attack_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/martial_002/armor_pierce",
+      "nodeId": "rpgskilltree:martial_002",
+      "attributeId": "apothic_attributes:armor_pierce",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/martial_036/capstone_damage",
+      "nodeId": "rpgskilltree:martial_036",
+      "attributeId": "minecraft:attack_damage",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.75
+    },
+    {
+      "effectId": "rpgskilltree:node/martial_037/capstone_speed",
+      "nodeId": "rpgskilltree:martial_037",
+      "attributeId": "minecraft:attack_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/martial_038/capstone_pierce",
+      "nodeId": "rpgskilltree:martial_038",
+      "attributeId": "apothic_attributes:armor_pierce",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/mining_000/mining_speed",
+      "nodeId": "rpgskilltree:mining_000",
+      "attributeId": "apothic_attributes:mining_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    },
+    {
+      "effectId": "rpgskilltree:node/mining_001/prospecting_luck",
+      "nodeId": "rpgskilltree:mining_001",
+      "attributeId": "minecraft:luck",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.25
+    },
+    {
+      "effectId": "rpgskilltree:node/mining_002/hardness_pierce",
+      "nodeId": "rpgskilltree:mining_002",
+      "attributeId": "apothic_attributes:armor_pierce",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.015
+    },
+    {
+      "effectId": "rpgskilltree:node/mining_029/capstone_mining",
+      "nodeId": "rpgskilltree:mining_029",
+      "attributeId": "apothic_attributes:mining_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.06
+    },
+    {
+      "effectId": "rpgskilltree:node/mining_031/capstone_prospecting",
+      "nodeId": "rpgskilltree:mining_031",
+      "attributeId": "minecraft:luck",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.5
+    },
+    {
+      "effectId": "rpgskilltree:node/mining_033/capstone_hardness",
+      "nodeId": "rpgskilltree:mining_033",
+      "attributeId": "apothic_attributes:armor_pierce",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.025
+    },
+    {
+      "effectId": "rpgskilltree:node/occult_000/blood_power",
+      "nodeId": "rpgskilltree:occult_000",
+      "attributeId": "irons_spellbooks:blood_spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/occult_001/eldritch_power",
+      "nodeId": "rpgskilltree:occult_001",
+      "attributeId": "irons_spellbooks:eldritch_spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/occult_002/occult_power",
+      "nodeId": "rpgskilltree:occult_002",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.015
+    },
+    {
+      "effectId": "rpgskilltree:node/occult_037/capstone_blood",
+      "nodeId": "rpgskilltree:occult_037",
+      "attributeId": "irons_spellbooks:blood_spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.05
+    },
+    {
+      "effectId": "rpgskilltree:node/occult_036/capstone_eldritch",
+      "nodeId": "rpgskilltree:occult_036",
+      "attributeId": "irons_spellbooks:eldritch_spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.05
+    },
+    {
+      "effectId": "rpgskilltree:node/occult_027/capstone_power",
+      "nodeId": "rpgskilltree:occult_027",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/summoning_000/summon_damage",
+      "nodeId": "rpgskilltree:summoning_000",
+      "attributeId": "irons_spellbooks:summon_damage",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/summoning_001/summon_reserve",
+      "nodeId": "rpgskilltree:summoning_001",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 12.0
+    },
+    {
+      "effectId": "rpgskilltree:node/summoning_002/summon_regen",
+      "nodeId": "rpgskilltree:summoning_002",
+      "attributeId": "irons_spellbooks:mana_regen",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/summoning_029/capstone_summons",
+      "nodeId": "rpgskilltree:summoning_029",
+      "attributeId": "irons_spellbooks:summon_damage",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.05
+    },
+    {
+      "effectId": "rpgskilltree:node/summoning_031/capstone_regen",
+      "nodeId": "rpgskilltree:summoning_031",
+      "attributeId": "irons_spellbooks:mana_regen",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    },
+    {
+      "effectId": "rpgskilltree:node/summoning_033/capstone_reserve",
+      "nodeId": "rpgskilltree:summoning_033",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 20.0
+    },
+    {
+      "effectId": "rpgskilltree:node/survival_000/hardiness",
+      "nodeId": "rpgskilltree:survival_000",
+      "attributeId": "minecraft:max_health",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.75
+    },
+    {
+      "effectId": "rpgskilltree:node/survival_001/field_armor",
+      "nodeId": "rpgskilltree:survival_001",
+      "attributeId": "minecraft:armor",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.35
+    },
+    {
+      "effectId": "rpgskilltree:node/survival_002/terrain_mobility",
+      "nodeId": "rpgskilltree:survival_002",
+      "attributeId": "minecraft:movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.01
+    },
+    {
+      "effectId": "rpgskilltree:node/survival_036/capstone_armor",
+      "nodeId": "rpgskilltree:survival_036",
+      "attributeId": "minecraft:armor",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    },
+    {
+      "effectId": "rpgskilltree:node/survival_028/capstone_health",
+      "nodeId": "rpgskilltree:survival_028",
+      "attributeId": "minecraft:max_health",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.5
+    },
+    {
+      "effectId": "rpgskilltree:node/survival_037/capstone_terrain",
+      "nodeId": "rpgskilltree:survival_037",
+      "attributeId": "minecraft:movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/vitality_000/max_health",
+      "nodeId": "rpgskilltree:vitality_000",
+      "attributeId": "minecraft:max_health",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    },
+    {
+      "effectId": "rpgskilltree:node/vitality_001/armor",
+      "nodeId": "rpgskilltree:vitality_001",
+      "attributeId": "minecraft:armor",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.5
+    },
+    {
+      "effectId": "rpgskilltree:node/vitality_002/knockback_resistance",
+      "nodeId": "rpgskilltree:vitality_002",
+      "attributeId": "minecraft:knockback_resistance",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/vitality_036/capstone_health",
+      "nodeId": "rpgskilltree:vitality_036",
+      "attributeId": "minecraft:max_health",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 2.0
+    },
+    {
+      "effectId": "rpgskilltree:node/vitality_028/capstone_armor",
+      "nodeId": "rpgskilltree:vitality_028",
+      "attributeId": "minecraft:armor",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    },
+    {
+      "effectId": "rpgskilltree:node/vitality_037/capstone_stability",
+      "nodeId": "rpgskilltree:vitality_037",
+      "attributeId": "minecraft:knockback_resistance",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.03
+    }
+  ]
+}

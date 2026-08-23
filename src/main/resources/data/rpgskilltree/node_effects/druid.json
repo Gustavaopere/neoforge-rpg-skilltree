@@ -1,0 +1,53 @@
+{
+  "attributes": [
+    {
+      "effectId": "rpgskilltree:druid/wild_shape/health",
+      "nodeId": "rpgskilltree:druid/wild_shape",
+      "attributeId": "minecraft:generic.max_health",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    },
+    {
+      "effectId": "rpgskilltree:druid/natural_resilience/armor",
+      "nodeId": "rpgskilltree:druid/natural_resilience",
+      "attributeId": "minecraft:generic.armor",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.5
+    },
+    {
+      "effectId": "rpgskilltree:druid/deep_lungs/speed",
+      "nodeId": "rpgskilltree:druid/deep_lungs",
+      "attributeId": "minecraft:generic.movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:druid/sky_instinct/speed",
+      "nodeId": "rpgskilltree:druid/sky_instinct",
+      "attributeId": "minecraft:generic.movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:druid/predator_form/damage",
+      "nodeId": "rpgskilltree:druid/predator_form",
+      "attributeId": "minecraft:generic.attack_damage",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    },
+    {
+      "effectId": "rpgskilltree:druid/pack_guardian/health",
+      "nodeId": "rpgskilltree:druid/pack_guardian",
+      "attributeId": "minecraft:generic.max_health",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    },
+    {
+      "effectId": "rpgskilltree:druid/primal_spirit/nature",
+      "nodeId": "rpgskilltree:druid/primal_spirit",
+      "attributeId": "irons_spellbooks:nature_spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.08
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "specialization_id": "ars_amplification",
+  "provider": "ars_nouveau",
+  "kind": "spell_composition",
+  "eligible_class_ids": [
+    "arcanist",
+    "technomancer",
+    "warlock"
+  ],
+  "minimum_mastery_experience": {
+    "ars:amplification": 80
+  },
+  "required_tags": [
+    "gateway:ars_amplification"
+  ]
+}

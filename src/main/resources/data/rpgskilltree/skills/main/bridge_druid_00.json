@@ -1,0 +1,25 @@
+{
+  "id": "rpgskilltree:bridge_druid_00",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:bridge_druid_01",
+    "rpgskilltree:summoning_007",
+    "rpgskilltree:survival_012"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:bridge/druid",
+    "rpgskilltree:domain/summoning",
+    "rpgskilltree:domain/survival",
+    "rpgskilltree:kind/hybrid"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/notable.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/notable.png",
+  "positionX": -605.518,
+  "positionY": 942.204,
+  "buttonSize": 24,
+  "isStartingPoint": false
+}

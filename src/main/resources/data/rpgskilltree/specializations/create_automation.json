@@ -1,0 +1,16 @@
+{
+  "specialization_id": "create_automation",
+  "provider": "create",
+  "kind": "technology",
+  "eligible_class_ids": [
+    "engineer",
+    "industrialist",
+    "logistician"
+  ],
+  "minimum_mastery_experience": {
+    "create:automation": 80
+  },
+  "required_tags": [
+    "gateway:create_automation"
+  ]
+}

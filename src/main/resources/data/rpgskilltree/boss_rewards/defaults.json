@@ -1,0 +1,13 @@
+{
+  "namespace_defaults": {
+    "minecraft": 3,
+    "cataclysm": 5,
+    "apotheosis": 2,
+    "apothic_spawners": 2,
+    "apothic_attributes": 2
+  },
+  "first_kill_only": true,
+  "notes": {
+    "apotheosis": "Runtime adapter should use a bounded stable reward key such as boss tier/archetype, never random entity UUIDs, to prevent infinite passive-point farming."
+  }
+}

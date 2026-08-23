@@ -1,0 +1,14 @@
+{
+  "class_id": "technomancer",
+  "tree_id": "rpgskilltree:class/technomancer",
+  "kind": "hybrid",
+  "required_completed_domains": [
+    "ARCANE",
+    "ENGINEERING"
+  ],
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": true,
+  "non_adjacent_bridge_cost": 0,
+  "notes": "Natural ARCANE + ENGINEERING confluence; integrates Ars/Create/Oritech/AE2 adapters."
+}

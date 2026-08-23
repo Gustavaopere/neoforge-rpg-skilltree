@@ -1,0 +1,17 @@
+{
+  "max_character_level": 100,
+  "passive_points_per_level": 1,
+  "vanilla_xp_is_separate": true,
+  "default_non_adjacent_class_bridge_cost": 10,
+  "xp_curve": [
+    {"from_level": 1, "through_level": 19, "base_xp_to_next": 100, "increment_per_level": 35},
+    {"from_level": 20, "through_level": 59, "base_xp_to_next": 800, "increment_per_level": 60},
+    {"from_level": 60, "through_level": 89, "base_xp_to_next": 3200, "increment_per_level": 140},
+    {"from_level": 90, "through_level": 99, "base_xp_to_next": 7600, "increment_per_level": 400}
+  ],
+  "xp_activity_domains": [
+    "MARTIAL", "AGILITY", "VITALITY", "HEALING", "ARCANE", "ENGINEERING",
+    "MINING", "SURVIVAL", "SUMMONING", "OCCULT", "LOGISTICS"
+  ],
+  "runtime_rule": "Adapters award Character XP for meaningful gameplay while vanilla experience remains available to enchanting, anvils and other mods. Anti-cheese is adapter-specific."
+}
