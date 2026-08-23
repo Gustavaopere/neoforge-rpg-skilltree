@@ -65,7 +65,7 @@ configurations {
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
     compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}:api"
-    compileOnly("com.hollingsworth.ars_nouveau:ars_nouveau-1.21.1:${ars_nouveau_version}") {
+    compileOnly("maven.modrinth:TKB6INcv:${ars_nouveau_version_id}") {
         transitive = false
     }
     compileOnly("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
