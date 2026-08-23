@@ -13,6 +13,7 @@ public final class SystemFoundationTest {
         classlessSpecializationCanUnlock();
         classGatedSpecializationStillRequiresEligibleClass();
         legacyClassIdentitiesMigrateWithoutErasingKnowledge();
+        codecDecodeAppliesSemanticReclassification();
         System.out.println("SystemFoundationTest: PASS");
     }
 
@@ -154,6 +155,45 @@ public final class SystemFoundationTest {
         eq(state.passivePoints().spent(), migrated.passivePoints().spent());
         eq(state.passivePoints().available(), migrated.passivePoints().available());
         eq(state.passiveNodes().ranks(), migrated.passiveNodes().ranks());
+    }
+
+    static void codecDecodeAppliesSemanticReclassification() {
+        try {
+            var bytes = new java.io.ByteArrayOutputStream();
+            try (var out = new java.io.DataOutputStream(bytes)) {
+                out.writeInt(4); // current binary format
+                out.writeLong(0L);
+                out.writeInt(0); // ledger sources
+                out.writeInt(0); // spent
+                writeStrings(out, Set.of()); // bosses
+                writeStrings(out, Set.of("mage", "industrialist", "logistician", "prospector"));
+                out.writeInt(0); // mastery map
+                out.writeInt(0); // class-choice map
+                writeStrings(out, Set.of("create_kinetics"));
+                out.writeInt(0); // final triads
+                out.writeInt(0); // passive nodes
+                writeStrings(out, Set.of("world:ancient_ruin"));
+            }
+
+            var decoded = ProgressionStateCodec.decode(bytes.toByteArray());
+            eq(Set.of("mage"), decoded.classProgression().unlockedClassIds());
+            eq(Set.of("create_kinetics", "industrialist", "logistician", "prospector"),
+                decoded.specializations().unlockedSpecializationIds());
+            eq(Set.of("world:ancient_ruin"), decoded.discoveries().discoveredKeys());
+            eq(4, ProgressionStateCodec.CURRENT_VERSION);
+        } catch (java.io.IOException impossible) {
+            throw new AssertionError(impossible);
+        }
+    }
+
+    private static void writeStrings(java.io.DataOutputStream out, Set<String> values) throws java.io.IOException {
+        var sorted = values.stream().sorted().toList();
+        out.writeInt(sorted.size());
+        for (String value : sorted) {
+            byte[] encoded = value.getBytes(java.nio.charset.StandardCharsets.UTF_8);
+            out.writeInt(encoded.length);
+            out.write(encoded);
+        }
     }
 
     private static List<String> ids(List<ArchetypeMatch> matches) {
