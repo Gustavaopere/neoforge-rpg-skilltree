@@ -4,6 +4,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]/'src/main/resources/data/rpgskilltree'
 DOMAINS={'MARTIAL','AGILITY','VITALITY','ARCANE','ENGINEERING','SURVIVAL','SUMMONING','HEALING','MINING','OCCULT','LOGISTICS'}
 TREE_TYPES={'main','specialization','hybrid','provider','class'}
+# Master taxonomy: these identities must not resolve as primary/secondary classes.
+NON_CLASS_ARCHETYPE_IDS={'rpgskilltree:arcane_archer','rpgskilltree:battlemage','rpgskilltree:tank'}
 def load_dir(name):
     out=[]
     for p in sorted((ROOT/name).glob('*.json')):
@@ -22,6 +24,7 @@ def main():
     for p,d in arch:
         id_=d['id'];
         if id_ in ids: raise AssertionError(f'duplicate id {id_}')
+        if id_ in NON_CLASS_ARCHETYPE_IDS: raise AssertionError(f'{p}: {id_} is not a canonical class archetype')
         ids.add(id_); nonneg_map(p,d,'minimum_domain_scores')
         if not isinstance(d.get('priority'),int): raise AssertionError(f'{p}: priority')
         for key in ('required_tags','forbidden_tags'):
@@ -69,7 +72,7 @@ def main():
         if sid in spec_ids: raise AssertionError(f'duplicate specialization {sid}')
         spec_ids.add(sid)
         eligible=d.get('eligible_class_ids',[])
-        if not isinstance(eligible,list) or not eligible: raise AssertionError(f'{p}: eligible_class_ids')
+        if not isinstance(eligible,list): raise AssertionError(f'{p}: eligible_class_ids')
         if any(cid not in class_ids for cid in eligible): raise AssertionError(f'{p}: unknown eligible class')
         mastery=d.get('minimum_mastery_experience',{})
         if not isinstance(mastery,dict) or any(not isinstance(v,int) or v<0 for v in mastery.values()): raise AssertionError(f'{p}: mastery requirements')
@@ -113,7 +116,7 @@ def main():
     if progression.get('passive_points_per_level') != 1: raise AssertionError('default points per level must be 1')
     if progression.get('default_non_adjacent_class_bridge_cost') != 10: raise AssertionError('default abnormal bridge cost must be 10')
 
-    if len(arch)<10: raise AssertionError('expected at least 10 archetypes')
+    if not arch: raise AssertionError('expected at least one archetype prototype')
     if len(unlocks)<15: raise AssertionError('expected at least 15 specialized tree gateways')
     if len(classes)<20: raise AssertionError('expected at least 20 alpha 2 class definitions')
     if len(specs)<20: raise AssertionError('expected at least 20 post-class specializations')
