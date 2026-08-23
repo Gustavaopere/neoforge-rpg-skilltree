@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 public final class ProgressionStateCodec {
-    public static final int CURRENT_VERSION = 5;
+    public static final int CURRENT_VERSION = 4;
     private static final int MAX_COLLECTION_SIZE = 16_384;
     private static final int MAX_STRING_BYTES = 4_096;
 
