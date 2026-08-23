@@ -5,16 +5,17 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Versioned semantic migrations for persisted progression state.
+ * Semantic migrations for persisted progression state.
  *
- * <p>These migrations intentionally preserve player-earned knowledge. They may
- * reclassify an identity when the design model changes, but they must not erase
- * mastery, discoveries, boss credit, passive investment, or character XP.</p>
+ * <p>Binary-format migrations remain controlled by {@link ProgressionStateCodec}.
+ * Semantic migrations are intentionally idempotent so they can normalize an old
+ * identity even when the serialized layout itself did not change.</p>
+ *
+ * <p>Migrations must preserve player-earned knowledge: mastery, discoveries,
+ * boss credit, passive investment and character XP are not reset here.</p>
  */
 public final class ProgressionStateMigrations {
     private ProgressionStateMigrations() {}
-
-    private static final int CLASS_SPECIALIZATION_RECLASS_VERSION = 5;
 
     /**
      * Alpha-era identities that were temporarily modeled as classes but are
@@ -27,16 +28,15 @@ public final class ProgressionStateMigrations {
         "prospector", "prospector"
     );
 
-    public static ProgressionState migrate(ProgressionState state, int sourceVersion) {
+    public static ProgressionState migrate(ProgressionState state, int sourceFormatVersion) {
         Objects.requireNonNull(state);
-        if (sourceVersion < 1 || sourceVersion > ProgressionStateCodec.CURRENT_VERSION) {
-            throw new IllegalArgumentException("unsupported progression state version: " + sourceVersion);
+        if (sourceFormatVersion < 1 || sourceFormatVersion > ProgressionStateCodec.CURRENT_VERSION) {
+            throw new IllegalArgumentException("unsupported progression state version: " + sourceFormatVersion);
         }
-        ProgressionState current = state;
-        if (sourceVersion < CLASS_SPECIALIZATION_RECLASS_VERSION) {
-            current = reclassifyLegacyClasses(current);
-        }
-        return current;
+        // This migration changes meaning, not bytes. It is safe and intentional
+        // to run for every supported format version until all legacy identities
+        // have naturally disappeared from persisted saves.
+        return reclassifyLegacyClasses(state);
     }
 
     static ProgressionState reclassifyLegacyClasses(ProgressionState state) {
