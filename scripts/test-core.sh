@@ -7,3 +7,4 @@ javac --release 21 -d "$OUT" "${SOURCES[@]}"
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.Alpha2ProgressionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MasteryRuntimeCoreTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.PlacedBlockProvenanceTest
