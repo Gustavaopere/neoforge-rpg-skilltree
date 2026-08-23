@@ -27,6 +27,7 @@ public final class ProgressionService {
         ProgressionState next = new ProgressionState(state.totalCharacterXp(), ledger, reward.progress(), state.classProgression(), state.mastery(), state.classChoices(), state.specializations(), state.finalTriads(), state.passiveNodes(), state.discoveries());
         return new BossProgressionResult(next, reward.pointsAwarded(), reward.firstDefeat());
     }
+
     public static DiscoveryProgressionResult creditDiscovery(
         ProgressionState state,
         String discoveryKey,
@@ -62,12 +63,13 @@ public final class ProgressionService {
             if (definition.nonAdjacentBridgeCost() != 0) continue;
             ClassUnlockResult eligibility = ClassUnlockResolver.evaluate(
                 current.finalTriads(), definition, current.passivePoints().available());
+            boolean contextualRequirementsMet = ClassRequirementPolicy.satisfied(current, definition);
             boolean unlocked = current.classProgression().isUnlocked(definition.classId());
-            if (eligibility.unlockable() && !unlocked) {
+            if (eligibility.unlockable() && contextualRequirementsMet && !unlocked) {
                 ClassUnlockMutationResult mutation = unlockClass(current, definition);
                 current = mutation.state();
                 if (mutation.unlockedNow()) newlyUnlocked.add(definition.classId());
-            } else if (!eligibility.unlockable() && unlocked) {
+            } else if ((!eligibility.unlockable() || !contextualRequirementsMet) && unlocked) {
                 current = current.withClassProgression(
                     current.classProgression().without(definition.classId()));
                 removed.add(definition.classId());
@@ -91,7 +93,7 @@ public final class ProgressionService {
             if (current.classProgression().isUnlocked(definition.classId())) continue;
             ClassUnlockResult eligibility = ClassUnlockResolver.evaluate(
                 current.finalTriads(), definition, current.passivePoints().available());
-            if (!eligibility.unlockable()) continue;
+            if (!eligibility.unlockable() || !ClassRequirementPolicy.satisfied(current, definition)) continue;
             ClassUnlockMutationResult mutation = unlockClass(current, definition);
             current = mutation.state();
             if (mutation.unlockedNow()) unlocked.add(definition.classId());
@@ -106,6 +108,9 @@ public final class ProgressionService {
     public static ClassUnlockMutationResult unlockClass(ProgressionState state, FinalTriadProgress triads, ClassUnlockDefinition definition) {
         if (state.classProgression().isUnlocked(definition.classId())) {
             return new ClassUnlockMutationResult(state, false, 0);
+        }
+        if (!ClassRequirementPolicy.satisfied(state, definition)) {
+            throw new IllegalArgumentException("class contextual requirements are not satisfied: " + definition.classId());
         }
         ClassUnlockResult result = ClassUnlockResolver.evaluate(triads, definition, state.passivePoints().available());
         if (!result.unlockable()) {
@@ -312,6 +317,4 @@ public final class ProgressionService {
         }
         return state.withSpecializations(specializations);
     }
-
-
 }

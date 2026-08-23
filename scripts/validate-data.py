@@ -37,13 +37,24 @@ def main():
         if id_ in class_ids: raise AssertionError(f'duplicate class {id_}')
         class_ids.add(id_)
         domains=d.get('required_completed_domains',[])
-        if not isinstance(domains,list) or not domains: raise AssertionError(f'{p}: required_completed_domains')
+        if not isinstance(domains,list): raise AssertionError(f'{p}: required_completed_domains')
         if any(domain not in DOMAINS for domain in domains): raise AssertionError(f'{p}: unknown class domain')
+        mastery=d.get('minimum_mastery_experience',{})
+        if not isinstance(mastery,dict) or any(
+            not isinstance(k,str) or not k or not isinstance(v,int) or v<=0
+            for k,v in mastery.items()
+        ): raise AssertionError(f'{p}: invalid class mastery requirements')
+        required_nodes=d.get('required_nodes',[])
+        if not isinstance(required_nodes,list) or any(not isinstance(node,str) or not node for node in required_nodes):
+            raise AssertionError(f'{p}: invalid required_nodes')
+        if not domains and not mastery and not required_nodes:
+            raise AssertionError(f'{p}: class needs domain, mastery, or node requirements')
         if d.get('final_triad_rank_per_capstone') != 3: raise AssertionError(f'{p}: final triad rank must be 3')
         if d.get('final_triad_capstones_per_domain') != 3: raise AssertionError(f'{p}: final triad must have three capstones')
         cost=d.get('non_adjacent_bridge_cost',0)
         if not isinstance(cost,int) or cost<0: raise AssertionError(f'{p}: non_adjacent_bridge_cost')
         if d.get('adjacent_confluence',False) and cost != 0: raise AssertionError(f'{p}: adjacent class cannot have bridge surcharge')
+        if len(domains)<=1 and cost != 0: raise AssertionError(f'{p}: pure/provider class cannot have bridge surcharge')
 
     rewards=json.loads((ROOT/'boss_rewards/defaults.json').read_text())
     expected_rewards={'minecraft':3,'cataclysm':5,'apotheosis':2}

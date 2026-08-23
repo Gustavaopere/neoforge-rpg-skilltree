@@ -4,11 +4,17 @@ public final class MasteryPolicies {
  private MasteryPolicies(){}
  public static List<MasteryAward> forIron(SpellAction action){
   if(action.origin().procDepth()>0) return List.of();
-  return List.of(new MasteryAward("magic:casting",2,action.spellId()),new MasteryAward("irons:"+action.discipline(),5,action.spellId()));
+  return List.of(
+   new MasteryAward("magic:casting",2,action.spellId()),
+   new MasteryAward("irons:casting",3,action.spellId()),
+   new MasteryAward("irons:"+action.discipline(),5,action.spellId())
+  );
  }
  public static List<MasteryAward> forArs(SpellAction action){
   if(action.origin().procDepth()>0) return List.of();
-  List<MasteryAward> out=new ArrayList<>();out.add(new MasteryAward("magic:casting",2,action.spellId()));
+  List<MasteryAward> out=new ArrayList<>();
+  out.add(new MasteryAward("magic:casting",2,action.spellId()));
+  out.add(new MasteryAward("ars:casting",3,action.spellId()));
   for(String lane:List.of("projectile","amplification","aoe","duration","summoning","control")) if(action.tags().contains(lane)) out.add(new MasteryAward("ars:"+lane,3,action.spellId()));
   return List.copyOf(out);
  }

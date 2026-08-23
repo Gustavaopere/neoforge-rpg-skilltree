@@ -8,8 +8,11 @@ import dev.gustavopere.rpgskilltree.core.ClassUnlockDefinition;
 import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -43,11 +46,26 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
             EnumSet<ProgressionDomain> domains = EnumSet.noneOf(ProgressionDomain.class);
             root.getAsJsonArray("required_completed_domains")
                 .forEach(value -> domains.add(ProgressionDomain.valueOf(value.getAsString())));
+
+            Map<String, Integer> mastery = new HashMap<>();
+            if (root.has("minimum_mastery_experience")) {
+                for (Map.Entry<String, JsonElement> entry : root.getAsJsonObject("minimum_mastery_experience").entrySet()) {
+                    mastery.put(entry.getKey(), entry.getValue().getAsInt());
+                }
+            }
+
+            Set<String> requiredNodes = new HashSet<>();
+            if (root.has("required_nodes")) {
+                root.getAsJsonArray("required_nodes").forEach(value -> requiredNodes.add(value.getAsString()));
+            }
+
             definitions.add(new ClassUnlockDefinition(
                 classId,
                 domains,
                 root.get("adjacent_confluence").getAsBoolean(),
-                root.get("non_adjacent_bridge_cost").getAsInt()
+                root.get("non_adjacent_bridge_cost").getAsInt(),
+                mastery,
+                requiredNodes
             ));
         }
         ClassRuleCatalog.replace(definitions);

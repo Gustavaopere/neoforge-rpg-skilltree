@@ -8,10 +8,37 @@ public final class ProviderIdentityClassTest {
     private static final String ARCANE_AWAKENING = "rpgskilltree:arcane_000";
 
     public static void main(String[] args) {
+        providerPoliciesAwardIdentityMastery();
         requiresBothTreeInvestmentAndProviderMastery();
         mageAndSorcererCanCoexist();
         respecRemovesIdentityWithoutDeletingMastery();
         System.out.println("ProviderIdentityClassTest: PASS");
+    }
+
+    private static void providerPoliciesAwardIdentityMastery() {
+        SpellAction iron = new SpellAction(
+            new ActionOrigin("test:iron", 0),
+            "irons",
+            "irons_spellbooks:fireball",
+            "fire",
+            Set.of(),
+            10
+        );
+        MasteryState ironMastery = MasteryAwardService.apply(MasteryState.empty(), MasteryPolicies.forIron(iron));
+        require(ironMastery.experience("irons:casting") == 3, "Iron casts must advance Mage identity mastery");
+        require(ironMastery.experience("irons:fire") == 5, "Iron school mastery must remain intact");
+
+        SpellAction ars = new SpellAction(
+            new ActionOrigin("test:ars", 0),
+            "ars",
+            "ars_nouveau:projectile>ars_nouveau:harm",
+            "composition",
+            Set.of("projectile"),
+            10
+        );
+        MasteryState arsMastery = MasteryAwardService.apply(MasteryState.empty(), MasteryPolicies.forArs(ars));
+        require(arsMastery.experience("ars:casting") == 3, "Ars casts must advance Sorcerer identity mastery");
+        require(arsMastery.experience("ars:projectile") == 3, "Ars composition mastery must remain intact");
     }
 
     private static void requiresBothTreeInvestmentAndProviderMastery() {
