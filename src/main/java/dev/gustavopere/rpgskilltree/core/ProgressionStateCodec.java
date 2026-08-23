@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 public final class ProgressionStateCodec {
-    public static final int CURRENT_VERSION = 4;
+    public static final int CURRENT_VERSION = 5;
     private static final int MAX_COLLECTION_SIZE = 16_384;
     private static final int MAX_STRING_BYTES = 4_096;
 
@@ -60,7 +60,19 @@ public final class ProgressionStateCodec {
             PassiveNodeProgress passiveNodes = version >= 3 ? PassiveNodeProgress.of(readStringIntMap(in)) : PassiveNodeProgress.empty();
             DiscoveryProgress discoveries = version >= 4 ? DiscoveryProgress.of(readStringSet(in)) : DiscoveryProgress.empty();
             if (in.available() != 0) throw new IllegalArgumentException("progression state contains trailing bytes");
-            return new ProgressionState(totalXp, ledger, bosses, classes, mastery, choices, specializations, finalTriads, passiveNodes, discoveries);
+            ProgressionState decoded = new ProgressionState(
+                totalXp,
+                ledger,
+                bosses,
+                classes,
+                mastery,
+                choices,
+                specializations,
+                finalTriads,
+                passiveNodes,
+                discoveries
+            );
+            return ProgressionStateMigrations.migrate(decoded, version);
         } catch (IOException e) {
             throw new IllegalArgumentException("invalid progression state payload", e);
         }
