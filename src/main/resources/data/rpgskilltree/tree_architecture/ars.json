@@ -1,0 +1,154 @@
+{
+  "trees": [
+    {
+      "id": "rpgskilltree:ars_projectile",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE"],
+      "tags": ["ars", "form", "projectile"],
+      "branches": [
+        {"id": "range", "label": "Alcance", "role": "delivery", "order": 10},
+        {"id": "velocity", "label": "Velocidade", "role": "delivery", "order": 20},
+        {"id": "mana", "label": "Eficiência", "role": "resource", "order": 30},
+        {"id": "ricochet", "label": "Ricochete Arcano", "role": "notable", "order": 40},
+        {"id": "ballistics", "label": "Mestre Balístico", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 10, "requiredMastery": {"ars:projectile": 80}, "requiredSpecializations": ["ars_projectile"], "requiredTags": ["gateway:ars_projectile"]}
+    },
+    {
+      "id": "rpgskilltree:ars_touch",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE", "MARTIAL"],
+      "tags": ["ars", "form", "touch", "spellblade_bridge"],
+      "branches": [
+        {"id": "power", "label": "Potência de Contato", "role": "damage", "order": 10},
+        {"id": "mana", "label": "Mana Eficiente", "role": "resource", "order": 20},
+        {"id": "critical", "label": "Contato Crítico", "role": "critical", "order": 30},
+        {"id": "mark", "label": "Marca de Proximidade", "role": "bridge", "order": 40},
+        {"id": "frontline", "label": "Conjurador de Linha de Frente", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 10, "requiredMastery": {"ars:touch": 80}, "requiredTags": ["gateway:ars_touch"]}
+    },
+    {
+      "id": "rpgskilltree:ars_self",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE", "VITALITY"],
+      "tags": ["ars", "form", "self"],
+      "branches": [
+        {"id": "duration", "label": "Duração Pessoal", "role": "buff", "order": 10},
+        {"id": "mana", "label": "Eficiência Pessoal", "role": "resource", "order": 20},
+        {"id": "preparation", "label": "Preparação", "role": "utility", "order": 30},
+        {"id": "reaction", "label": "Reação Defensiva", "role": "defense", "order": 40},
+        {"id": "arcane_form", "label": "Forma Arcana", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 10, "requiredMastery": {"ars:self": 80}, "requiredTags": ["gateway:ars_self"]}
+    },
+    {
+      "id": "rpgskilltree:ars_aoe",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE"],
+      "tags": ["ars", "augment", "aoe"],
+      "branches": [
+        {"id": "radius", "label": "Raio", "role": "area", "order": 10},
+        {"id": "mana", "label": "Eficiência", "role": "resource", "order": 20},
+        {"id": "density", "label": "Densidade", "role": "damage", "order": 30},
+        {"id": "center", "label": "Centro de Massa", "role": "control", "order": 40},
+        {"id": "field", "label": "Arquitetura de Campo", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 12, "requiredMastery": {"ars:aoe": 90}, "requiredSpecializations": ["ars_aoe"], "requiredTags": ["gateway:ars_aoe"]}
+    },
+    {
+      "id": "rpgskilltree:ars_amplification",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE"],
+      "tags": ["ars", "augment", "amplify"],
+      "branches": [
+        {"id": "power", "label": "Potência", "role": "damage", "order": 10},
+        {"id": "mana", "label": "Custo Mitigado", "role": "resource", "order": 20},
+        {"id": "stability", "label": "Limite Seguro", "role": "utility", "order": 30},
+        {"id": "overload", "label": "Sobrecarga", "role": "notable", "order": 40},
+        {"id": "excess", "label": "Potência Excedente", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 12, "requiredMastery": {"ars:amplification": 90}, "requiredSpecializations": ["ars_amplification"], "requiredTags": ["gateway:ars_amplification"]}
+    },
+    {
+      "id": "rpgskilltree:ars_duration",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE"],
+      "tags": ["ars", "augment", "duration"],
+      "branches": [
+        {"id": "persistence", "label": "Persistência", "role": "duration", "order": 10},
+        {"id": "mana", "label": "Economia Temporal", "role": "resource", "order": 20},
+        {"id": "dot", "label": "DoT Sustentado", "role": "ailment", "order": 30},
+        {"id": "echo", "label": "Eco Persistente", "role": "notable", "order": 40},
+        {"id": "chronomancy", "label": "Cronomante Menor", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 12, "requiredMastery": {"ars:duration": 90}, "requiredSpecializations": ["ars_duration"], "requiredTags": ["gateway:ars_duration"]}
+    },
+    {
+      "id": "rpgskilltree:ars_control",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE"],
+      "tags": ["ars", "control"],
+      "branches": [
+        {"id": "potency", "label": "Potência de Controle", "role": "control", "order": 10},
+        {"id": "mana", "label": "Mana Tática", "role": "resource", "order": 20},
+        {"id": "buildup", "label": "Buildup", "role": "ailment", "order": 30},
+        {"id": "vulnerable", "label": "Presa Vulnerável", "role": "notable", "order": 40},
+        {"id": "architect", "label": "Arquiteto de Combate", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 12, "requiredMastery": {"ars:control": 90}, "requiredSpecializations": ["ars_control"], "requiredTags": ["gateway:ars_control"]}
+    },
+    {
+      "id": "rpgskilltree:ars_summoning",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE", "SUMMONING"],
+      "tags": ["ars", "summoning", "familiar"],
+      "branches": [
+        {"id": "health", "label": "Vida", "role": "defense", "order": 10},
+        {"id": "damage", "label": "Dano", "role": "damage", "order": 20},
+        {"id": "duration", "label": "Duração", "role": "duration", "order": 30},
+        {"id": "command", "label": "Comando Sinérgico", "role": "command", "order": 40},
+        {"id": "familiar_circle", "label": "Círculo Familiar", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 12, "requiredMastery": {"ars:summoning": 90}, "requiredSpecializations": ["ars_summoning"], "requiredTags": ["gateway:ars_summoning"]}
+    },
+    {
+      "id": "rpgskilltree:ars_movement",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE", "AGILITY"],
+      "tags": ["ars", "movement"],
+      "branches": [
+        {"id": "impulse", "label": "Impulso", "role": "mobility", "order": 10},
+        {"id": "mana", "label": "Mana Cinética", "role": "resource", "order": 20},
+        {"id": "fall", "label": "Queda Arcana", "role": "defense", "order": 30},
+        {"id": "fluid_combat", "label": "Combate Fluido", "role": "bridge", "order": 40},
+        {"id": "space_weaver", "label": "Tecelão do Espaço", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 12, "requiredMastery": {"ars:movement": 90}, "requiredTags": ["gateway:ars_movement"]}
+    },
+    {
+      "id": "rpgskilltree:ars_manipulation",
+      "type": "specialization",
+      "provider": "ars_nouveau",
+      "domains": ["ARCANE", "ENGINEERING", "LOGISTICS"],
+      "tags": ["ars", "manipulation", "automation", "technomancy_bridge"],
+      "branches": [
+        {"id": "precision", "label": "Precisão", "role": "utility", "order": 10},
+        {"id": "mana", "label": "Custo", "role": "resource", "order": 20},
+        {"id": "remote", "label": "Interação Remota", "role": "utility", "order": 30},
+        {"id": "arcane_engineer", "label": "Engenheiro Arcano", "role": "bridge", "order": 40},
+        {"id": "automation_master", "label": "Mestre da Automação Mágica", "role": "keystone", "order": 50}
+      ],
+      "gate": {"minimumCharacterLevel": 15, "requiredMastery": {"ars:manipulation": 100}, "requiredTags": ["gateway:ars_manipulation"]}
+    }
+  ]
+}
