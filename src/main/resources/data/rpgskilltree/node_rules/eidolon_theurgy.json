@@ -1,0 +1,44 @@
+{
+  "treeId": "rpgskilltree:eidolon_theurgy",
+  "nodes": [
+    {
+      "id": "rpgskilltree:eidolon_theurgy/protection",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": true,
+      "neighbors": ["rpgskilltree:eidolon_theurgy/curse"],
+      "minCharacterLevel": 20,
+      "requiredMastery": {"eidolon:ritual": 120, "irons:holy": 80},
+      "requiredNodes": ["rpgskilltree:occult_000"],
+      "requiredDiscoveries": ["eidolon:ritual:completed"]
+    },
+    {
+      "id": "rpgskilltree:eidolon_theurgy/curse",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": ["rpgskilltree:eidolon_theurgy/protection", "rpgskilltree:eidolon_theurgy/ritual_target"]
+    },
+    {
+      "id": "rpgskilltree:eidolon_theurgy/ritual_target",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": ["rpgskilltree:eidolon_theurgy/curse", "rpgskilltree:eidolon_theurgy/double_liturgy"]
+    },
+    {
+      "id": "rpgskilltree:eidolon_theurgy/double_liturgy",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": ["rpgskilltree:eidolon_theurgy/ritual_target", "rpgskilltree:eidolon_theurgy/theurge"]
+    },
+    {
+      "id": "rpgskilltree:eidolon_theurgy/theurge",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": ["rpgskilltree:eidolon_theurgy/double_liturgy"]
+    }
+  ]
+}
