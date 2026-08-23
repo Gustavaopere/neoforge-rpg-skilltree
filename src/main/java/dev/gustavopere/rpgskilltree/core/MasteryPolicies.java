@@ -64,6 +64,17 @@ public final class MasteryPolicies {
   });
   return List.copyOf(out);
  }
+ public static List<MasteryAward> forEidolonRitual(EidolonRitualAction action){
+  if(action.origin().procDepth()>0 || !action.tags().contains("confirmed_ritual")) return List.of();
+  int ritualXp=action.firstCompletion()?8:3;
+  int occultXp=action.firstCompletion()?4:2;
+  List<MasteryAward> out=new ArrayList<>();
+  out.add(new MasteryAward("eidolon:ritual",ritualXp,action.ritualId()));
+  out.add(new MasteryAward("occult:practice",occultXp,action.ritualId()));
+  if(action.tags().contains("summoning")) out.add(new MasteryAward("summoning:practice",action.firstCompletion()?4:2,action.ritualId()));
+  if(action.tags().contains("holy")) out.add(new MasteryAward("healing:practice",action.firstCompletion()?3:1,action.ritualId()));
+  return List.copyOf(out);
+ }
  public static List<MasteryAward> forCreate(EngineeringAction action){
   if(action.origin().procDepth()>0) return List.of();
   List<MasteryAward> out=new ArrayList<>();out.add(new MasteryAward("create:engineering",3,action.actionId()));
