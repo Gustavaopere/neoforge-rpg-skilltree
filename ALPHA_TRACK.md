@@ -5,7 +5,7 @@ This project remains in **Alpha** until the integrated modpack behavior is funct
 ## Versioning rule
 - Each major integration gets its own Alpha checkpoint.
 - Fixes or extensions to an already completed integration use a decimal revision of that provider track when practical (`1.1`, `1.2`, `2.1`, etc.).
-- The Gradle `mod_version` tracks the latest chronological project checkpoint; provider maturity is recorded separately below. Retrospective Alpha 1.x/2.x/3.x work after Alpha 5 therefore ships as chronological `alpha.5.x-dev` checkpoints without pretending the project went backwards.
+- The Gradle `mod_version` tracks the latest chronological project checkpoint; provider maturity is recorded separately below. Retrospective Alpha 1.x/2.x/3.x/4.x work after Alpha 5 therefore ships as chronological `alpha.5.x-dev` checkpoints without pretending the project went backwards.
 - A green CI build is necessary but does not by itself promote the project to Beta.
 - The three current Notion guides (Magic, Technology, Gameplay/Systems) are the source of truth for which pack mods are currently installed/removed and what each integration must account for.
 
@@ -28,10 +28,11 @@ After Alpha 5, the already landed providers are explicitly scheduled for depth r
 | Alpha 2.2 | Ars native-mana/familiar depth pass | **verified green** in project `alpha.5.2-dev`: Arcane tree + Sorcerer affect Ars native max mana/regen, SUMMONING entry gates familiar binding, cast mastery scales from real mana cost; core/build/JAR/server smoke passed |
 | Alpha 2.3 | Ars glyph/source/ritual/automation + Ars Morph/new bridges | planned; glyph learning has no dedicated public unlock event in 5.13.0, so no fragile generic right-click pseudo-gate is used |
 | Alpha 3 | Epic Fight | live weapon-category adapter implemented |
-| Alpha 3.2 | Epic Fight native stamina/guard/dodge/skill depth pass | implemented in project candidate `alpha.5.3-dev`: MARTIAL/AGILITY nodes modify Epic Fight stamina attributes and actual stamina costs, skill-resource use feeds dedicated mastery lanes, successful `ON_DODGE` feeds dodge + unified agility practice, proc/creative/fake-player farming rejected; pending CI verification |
-| Alpha 3.3 | Epic Fight combo/skillbook/passive-skill and current addon compatibility | planned after 3.2 verification; must preserve Epic Fight's own learnable skill system rather than clone it |
-| Alpha 4 | Goety + Goety Iron + Goety Cataclysm | Soul-backed spell mastery verified green in CI; deeper servant/economy review scheduled |
-| Alpha 4.1 | Goety servants, Soul economy and bridge dedupe | scheduled retrospective review |
+| Alpha 3.2 | Epic Fight native stamina/guard/dodge/skill depth pass | **verified green** in project `alpha.5.3-dev`: MARTIAL/AGILITY nodes modify Epic Fight stamina attributes and actual stamina costs, skill-resource use feeds dedicated mastery lanes, successful `ON_DODGE` feeds dodge + unified agility practice, proc/creative/fake-player farming rejected; core/build/JAR/server smoke passed |
+| Alpha 3.3 | Epic Fight combo/skillbook/passive-skill and current addon compatibility | planned; must preserve Epic Fight's own learnable skill system rather than clone it |
+| Alpha 4 | Goety + Goety Iron + Goety Cataclysm | Soul-backed spell mastery verified green in CI |
+| Alpha 4.1 | Goety Soul economy + servant outcome depth pass | implemented in project candidate `alpha.5.4-dev`: OCCULT/Warlock modify native Soul gain/cast cost, Necromancer gets summon-specific efficiency, Soul-backed spell mastery scales with actual adjusted cost, hostile servant kills feed servants/SUMMONING and owner class lanes; pending CI verification |
+| Alpha 4.2 | Goety commanding/servant orders + Goety Iron/Cataclysm bridge dedupe | planned after 4.1 verification; only stable public order/state hooks should be used |
 | Alpha 5 | Malum + Gaze + Vestis | **verified green**: Spirit Reaping/collection, dynamic spirit affinities and native Malum attribute/tree integration; build, JAR verification and dedicated-server smoke passed |
 | Alpha 5.x provider follow-up | Malum Spirit Rites/Locus/Anchors and richer Gaze state hooks | planned only where a stable completion/state hook is available; no fragile mixin solely for XP |
 | Alpha 6 | Eidolon: Repraised | planned after retrospective depth revisions |
@@ -52,7 +53,7 @@ After Alpha 5, the already landed providers are explicitly scheduled for depth r
 - Iron's Spells 'n Spellbooks 3.16.3 and its large school/addon ecosystem. Mage is learned/catalogued magic: scroll practice and school mastery lead into permanent spellbook study rather than being only a display identity.
 - Iron-side content includes Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells and ShadowsZ. School/content addons inherit the Iron provider path where possible; native systems such as ShadowsZ may add their own state bridge.
 - Ars Nouveau 5.13.0 with Elemental/Elemancy, Creo, Technica, Controle, Not Enough Glyphs, Ars Zero, Starbunclemania, Ars Morph and cross-provider bridges. Sorcerer is intrinsic/modular magic: its identity now changes Ars's own mana economy while composition mastery remains glyph-semantic.
-- Goety 3.1.4, including Goety Iron and Goety Cataclysm. Goety feeds OCCULT/SUMMONING-style progression through real Soul-backed use rather than being treated as generic Arcane.
+- Goety 3.1.4, including Goety Iron and Goety Cataclysm. Goety feeds OCCULT/SUMMONING-style progression through real Soul-backed use. The unified tree modifies Goety's own Soul Energy change event rather than adding a second mana pool, and servant progress is attributed through Goety ownership state.
 - Malum 1.8.2 with Gaze and Vestis. Malum is Spirit Arcana: Soul Reaping, dynamic spirit affinities, Soul Ward/Arcane Resonance and Geas are first-class mechanics. Gaze extends those registries/systems; Vestis is cosmetic and receives no artificial mastery lane.
 - Eidolon: Repraised 0.5.0.2.
 - Neo Vitae 1.1.13 as a separate blood-magic progression.
@@ -81,4 +82,4 @@ After Alpha 5, the already landed providers are explicitly scheduled for depth r
 Bridge mods must not grant the same underlying action twice. Examples include Ars 'n' Spells, Goety Iron, Ars Creo/Technica, Create: Wizardry, Applied Create, Vampirism Iron's Spells Compatibility and Ars Morph. Runtime integrations should normalize one user action into one origin and then distribute mastery to all legitimately involved lanes. Duplicate callbacks from bridge mods must be deduplicated before rewards are persisted.
 
 ## Native-progression coexistence rule
-When another mod already owns a meaningful progression system (for example Vampirism/Bloodlines/Werewolves, ShadowsZ shadow levels, Identity morph unlocks, Epic Fight skillbooks/skill slots or Professions), RPG Skill Tree should read that state/action as requirements, mastery or class identity where useful. It should not recreate the same native tree unless there is a deliberate migration plan.
+When another mod already owns a meaningful progression system (for example Vampirism/Bloodlines/Werewolves, ShadowsZ shadow levels, Identity morph unlocks, Epic Fight skillbooks/skill slots, Goety Soul Energy/servant ownership or Professions), RPG Skill Tree should read or modify that native state through stable public hooks where useful. It should not recreate the same native tree or resource system unless there is a deliberate migration plan.

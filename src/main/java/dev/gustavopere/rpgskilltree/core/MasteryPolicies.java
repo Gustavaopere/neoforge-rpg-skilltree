@@ -22,10 +22,22 @@ public final class MasteryPolicies {
  }
  public static List<MasteryAward> forGoety(SpellAction action){
   if(action.origin().procDepth()>0) return List.of();
+  int intensity=Math.max(1,Math.min(4,(Math.max(1,action.resourceCost())+49)/50));
   List<MasteryAward> out=new ArrayList<>();
   out.add(new MasteryAward("occult:practice",2,action.spellId()));
-  out.add(new MasteryAward("goety:casting",3,action.spellId()));
-  for(String lane:List.of("necromancy","nether","ill","frost","geomancy","wind","storm","abyss","wild","void","summoning")) if(action.tags().contains(lane)) out.add(new MasteryAward("goety:"+lane,4,action.spellId()));
+  out.add(new MasteryAward("goety:casting",2+intensity,action.spellId()));
+  out.add(new MasteryAward("goety:soul_spending",1+intensity,action.spellId()));
+  for(String lane:List.of("necromancy","nether","ill","frost","geomancy","wind","storm","abyss","wild","void","summoning")) if(action.tags().contains(lane)) out.add(new MasteryAward("goety:"+lane,3+intensity,action.spellId()));
+  return List.copyOf(out);
+ }
+ public static List<MasteryAward> forGoetyServant(CombatAction action){
+  if(action.origin().procDepth()>0 || !action.tags().contains("servant_kill")) return List.of();
+  int intensity=Math.max(1,Math.min(4,(int)Math.ceil(Math.max(1.0D,action.damage())/10.0D)));
+  List<MasteryAward> out=new ArrayList<>();
+  out.add(new MasteryAward("goety:servants",2+intensity,action.skillId()));
+  out.add(new MasteryAward("summoning:practice",2,action.skillId()));
+  if(action.tags().contains("necromancer")) out.add(new MasteryAward("goety:necromancy",3+intensity,action.skillId()));
+  if(action.tags().contains("warlock")) out.add(new MasteryAward("goety:pact_servants",2+intensity,action.skillId()));
   return List.copyOf(out);
  }
  public static List<MasteryAward> forMalum(SpiritPracticeAction action){
