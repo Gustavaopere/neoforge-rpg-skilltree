@@ -5,7 +5,7 @@ This project remains in **Alpha** until the integrated modpack behavior is funct
 ## Versioning rule
 - Each major integration gets its own Alpha checkpoint.
 - Fixes or extensions to an already completed integration use a decimal revision of that provider track when practical (`1.1`, `1.2`, `2.1`, etc.).
-- The Gradle `mod_version` tracks the latest chronological project checkpoint; provider maturity is recorded separately below. Retrospective Alpha 1.x/2.x work after Alpha 5 therefore ships as chronological `alpha.5.x-dev` checkpoints without pretending the project went backwards.
+- The Gradle `mod_version` tracks the latest chronological project checkpoint; provider maturity is recorded separately below. Retrospective Alpha 1.x/2.x/3.x work after Alpha 5 therefore ships as chronological `alpha.5.x-dev` checkpoints without pretending the project went backwards.
 - A green CI build is necessary but does not by itself promote the project to Beta.
 - The three current Notion guides (Magic, Technology, Gameplay/Systems) are the source of truth for which pack mods are currently installed/removed and what each integration must account for.
 
@@ -25,10 +25,11 @@ After Alpha 5, the already landed providers are explicitly scheduled for depth r
 | Alpha 1.1 | Iron learned/catalogued-magic depth pass | **verified green** in project `alpha.5.1.1-dev`: permanent inscription uses real provider/school practice, tier 3+ requires emergent Mage, mastery scales from bounded real mana expenditure; core/build/JAR/server smoke passed |
 | Alpha 1.2 | Current Iron addon ecosystem: Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells, ShadowsZ, Vampirism/Iron bridge and other provider extensions | API-compatible school/spell addons inherit 1.1 rules automatically; bespoke native-progression addons remain scheduled |
 | Alpha 2 | Ars Nouveau | live composition mastery + Arcane gate implemented |
-| Alpha 2.2 | Ars native-mana/familiar depth pass | implemented in project candidate `alpha.5.2-dev`: Arcane tree + Sorcerer affect Ars native max mana/regen, SUMMONING entry gates familiar binding, cast mastery scales from real mana cost; pending CI verification |
+| Alpha 2.2 | Ars native-mana/familiar depth pass | **verified green** in project `alpha.5.2-dev`: Arcane tree + Sorcerer affect Ars native max mana/regen, SUMMONING entry gates familiar binding, cast mastery scales from real mana cost; core/build/JAR/server smoke passed |
 | Alpha 2.3 | Ars glyph/source/ritual/automation + Ars Morph/new bridges | planned; glyph learning has no dedicated public unlock event in 5.13.0, so no fragile generic right-click pseudo-gate is used |
-| Alpha 3 | Epic Fight | live weapon-category adapter implemented; deeper combat-state review scheduled next |
-| Alpha 3.2 | Epic Fight skills/stamina/guard/dodge/combo + current compat | scheduled retrospective review |
+| Alpha 3 | Epic Fight | live weapon-category adapter implemented |
+| Alpha 3.2 | Epic Fight native stamina/guard/dodge/skill depth pass | implemented in project candidate `alpha.5.3-dev`: MARTIAL/AGILITY nodes modify Epic Fight stamina attributes and actual stamina costs, skill-resource use feeds dedicated mastery lanes, successful `ON_DODGE` feeds dodge + unified agility practice, proc/creative/fake-player farming rejected; pending CI verification |
+| Alpha 3.3 | Epic Fight combo/skillbook/passive-skill and current addon compatibility | planned after 3.2 verification; must preserve Epic Fight's own learnable skill system rather than clone it |
 | Alpha 4 | Goety + Goety Iron + Goety Cataclysm | Soul-backed spell mastery verified green in CI; deeper servant/economy review scheduled |
 | Alpha 4.1 | Goety servants, Soul economy and bridge dedupe | scheduled retrospective review |
 | Alpha 5 | Malum + Gaze + Vestis | **verified green**: Spirit Reaping/collection, dynamic spirit affinities and native Malum attribute/tree integration; build, JAR verification and dedicated-server smoke passed |
@@ -67,6 +68,7 @@ After Alpha 5, the already landed providers are explicitly scheduled for depth r
 - Applied Create creates a direct Create↔AE2 hybrid path.
 
 ### Gameplay/progression coexistence policy
+- Epic Fight 21.17.3.1 is treated as the authoritative combat-state provider. RPG Skill Tree may modify its exposed stamina/impact/etc. attributes and consume its public hooks, but it should not replace Epic Fight's skill slots, skillbooks, combo engine or animation state machine.
 - Pufferfish's Skills is a framework and may remain as a dependency/API surface.
 - Skills Mastery Reimagined is a standalone ready-made skill tree and competes with RPG Skill Tree for persistent character-tree progression.
 - Iron's Spells Dynamic Skill Tree and Iron's Spells Magic Schools also duplicate progression RPG Skill Tree is explicitly implementing.
@@ -79,4 +81,4 @@ After Alpha 5, the already landed providers are explicitly scheduled for depth r
 Bridge mods must not grant the same underlying action twice. Examples include Ars 'n' Spells, Goety Iron, Ars Creo/Technica, Create: Wizardry, Applied Create, Vampirism Iron's Spells Compatibility and Ars Morph. Runtime integrations should normalize one user action into one origin and then distribute mastery to all legitimately involved lanes. Duplicate callbacks from bridge mods must be deduplicated before rewards are persisted.
 
 ## Native-progression coexistence rule
-When another mod already owns a meaningful progression system (for example Vampirism/Bloodlines/Werewolves, ShadowsZ shadow levels, Identity morph unlocks or Professions), RPG Skill Tree should read that state/action as requirements, mastery or class identity where useful. It should not recreate the same native tree unless there is a deliberate migration plan.
+When another mod already owns a meaningful progression system (for example Vampirism/Bloodlines/Werewolves, ShadowsZ shadow levels, Identity morph unlocks, Epic Fight skillbooks/skill slots or Professions), RPG Skill Tree should read that state/action as requirements, mastery or class identity where useful. It should not recreate the same native tree unless there is a deliberate migration plan.

@@ -52,6 +52,26 @@ public final class MasteryPolicies {
  }
  public static List<MasteryAward> forEpicFight(CombatAction action){
   if(action.origin().procDepth()>0) return List.of();
-  return List.of(new MasteryAward("epicfight:weapon",2,action.skillId()),new MasteryAward("epicfight:"+action.weaponCategory(),3,action.skillId()));
+  List<MasteryAward> out=new ArrayList<>();
+  if(action.tags().contains("hit")){
+   out.add(new MasteryAward("epicfight:weapon",2,action.skillId()));
+   out.add(new MasteryAward("epicfight:"+action.weaponCategory(),3,action.skillId()));
+  }
+  if(action.tags().contains("skill")){
+   int intensity=Math.max(1,Math.min(3,(int)Math.ceil(Math.max(0.0D,action.damage()))));
+   out.add(new MasteryAward("epicfight:practice",1,action.skillId()));
+   out.add(new MasteryAward("epicfight:skill",2,action.skillId()));
+   if(action.tags().contains("stamina")) out.add(new MasteryAward("epicfight:stamina",1+intensity,action.skillId()));
+   if(action.tags().contains("guard")) out.add(new MasteryAward("epicfight:guard",3,action.skillId()));
+   if(action.tags().contains("dodge")) out.add(new MasteryAward("epicfight:dodge",2,action.skillId()));
+   if(action.tags().contains("mover")) out.add(new MasteryAward("epicfight:mobility",2,action.skillId()));
+   if(action.tags().contains("weapon_innate")) out.add(new MasteryAward("epicfight:weapon_innate",3,action.skillId()));
+  }
+  if(action.tags().contains("dodge_success")){
+   out.add(new MasteryAward("epicfight:practice",2,action.skillId()));
+   out.add(new MasteryAward("epicfight:dodge",6,action.skillId()));
+   out.add(new MasteryAward("agility:practice",3,action.skillId()));
+  }
+  return List.copyOf(out);
  }
 }

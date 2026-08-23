@@ -1,0 +1,39 @@
+{
+  "attributes": [
+    {
+      "effectId": "rpgskilltree:node/martial_000/epicfight_stamina",
+      "nodeId": "rpgskilltree:martial_000",
+      "attributeId": "epicfight:stamina",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    },
+    {
+      "effectId": "rpgskilltree:node/martial_001/epicfight_stamina_regen",
+      "nodeId": "rpgskilltree:martial_001",
+      "attributeId": "epicfight:stamina_regen",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/martial_002/epicfight_impact",
+      "nodeId": "rpgskilltree:martial_002",
+      "attributeId": "epicfight:impact",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/agility_000/epicfight_stamina",
+      "nodeId": "rpgskilltree:agility_000",
+      "attributeId": "epicfight:stamina",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.75
+    },
+    {
+      "effectId": "rpgskilltree:node/agility_001/epicfight_stamina_regen",
+      "nodeId": "rpgskilltree:agility_001",
+      "attributeId": "epicfight:stamina_regen",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    }
+  ]
+}
