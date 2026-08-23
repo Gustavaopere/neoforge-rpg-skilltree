@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree;
 
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
@@ -61,6 +62,7 @@ public final class RpgSkillTreeMod {
         }
         if (ModList.get().isLoaded("eidolon")) {
             NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
+            NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
         }
         if (ModList.get().isLoaded("epicfight")) {
             EpicFightProgressionHooks.register();
