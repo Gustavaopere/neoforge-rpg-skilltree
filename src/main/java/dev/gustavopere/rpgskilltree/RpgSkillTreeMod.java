@@ -16,6 +16,7 @@ import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.NodeEffectsReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.NodeRulesReloader;
+import dev.gustavopere.rpgskilltree.runtime.data.SpecializationReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeArchitectureReloader;
 import dev.gustavopere.rpgskilltree.runtime.events.ApothicBossBridgeEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.BossProgressionEvents;
@@ -42,6 +43,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(ClassRulesReloader.class);
         NeoForge.EVENT_BUS.register(ClassChoiceRulesReloader.class);
         NeoForge.EVENT_BUS.register(ArchetypeReloader.class);
+        NeoForge.EVENT_BUS.register(SpecializationReloader.class);
         NeoForge.EVENT_BUS.register(MorphCategoryReloader.class);
         NeoForge.EVENT_BUS.register(NodeEffectsReloader.class);
         NeoForge.EVENT_BUS.register(BossRewardReloader.class);
