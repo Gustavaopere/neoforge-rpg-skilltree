@@ -33,6 +33,8 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
  * rewarded.
  */
 public final class EidolonRitualProgressionEvents {
+    public static final String RITUAL_GATEWAY_DISCOVERY = "eidolon:ritual:completed";
+
     private static final Map<UUID, PendingRitual> PENDING = new HashMap<>();
     private static final long MAX_TRACKING_AGE_TICKS = 20L * 60L * 20L;
 
@@ -111,8 +113,15 @@ public final class EidolonRitualProgressionEvents {
             firstCompletion
         );
         var afterMastery = PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forEidolonRitual(action));
-        if (firstCompletion) {
-            PlayerProgressionRuntime.set(player, afterMastery.withDiscoveries(afterMastery.discoveries().add(discoveryKey)));
+        var discoveries = afterMastery.discoveries();
+        if (!discoveries.contains(RITUAL_GATEWAY_DISCOVERY)) {
+            discoveries = discoveries.add(RITUAL_GATEWAY_DISCOVERY);
+        }
+        if (firstCompletion && !discoveries.contains(discoveryKey)) {
+            discoveries = discoveries.add(discoveryKey);
+        }
+        if (discoveries != afterMastery.discoveries()) {
+            PlayerProgressionRuntime.set(player, afterMastery.withDiscoveries(discoveries));
         }
     }
 
