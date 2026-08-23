@@ -21,6 +21,10 @@ repositories {
         name = "Iron's Maven - Release"
         url = 'https://code.redspace.io/releases'
     }
+    maven {
+        name = 'BlameJared Maven'
+        url = 'https://maven.blamejared.com'
+    }
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -52,6 +56,9 @@ configurations {
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
     compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}:api"
+    compileOnly("com.hollingsworth.ars_nouveau:ars_nouveau-1.21.1:${ars_nouveau_version}") {
+        transitive = false
+    }
 }
 
 tasks.named('wrapper', Wrapper).configure {
