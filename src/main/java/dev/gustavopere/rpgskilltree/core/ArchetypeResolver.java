@@ -31,6 +31,13 @@ public final class ArchetypeResolver {
             .toList();
     }
 
+    public static EmergentClassResolution resolveHierarchy(
+        InvestmentState state,
+        Collection<ArchetypeDefinition> definitions
+    ) {
+        return EmergentClassResolution.fromOrderedMatches(resolve(state, definitions));
+    }
+
     private static boolean matches(InvestmentState state, ArchetypeDefinition definition) {
         return definition.minimumDomainScores().entrySet().stream()
                 .allMatch(entry -> state.domainScore(entry.getKey()) >= entry.getValue())
