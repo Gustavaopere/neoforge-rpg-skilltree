@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.core;
 
+import java.util.Map;
 import java.util.Objects;
 
 public final class NodeAccessResolver {
@@ -32,6 +33,15 @@ public final class NodeAccessResolver {
         }
         for (String nodeId : requirement.requiredNodeIds()) {
             if (!state.passiveNodes().learned(nodeId)) return false;
+        }
+        for (Map.Entry<String, Integer> rankedRequirement : requirement.requiredNodeRanks().entrySet()) {
+            if (state.passiveNodes().rank(rankedRequirement.getKey()) < rankedRequirement.getValue()) return false;
+        }
+        for (Map<String, Integer> alternatives : requirement.anyRequiredNodeRankGroups()) {
+            boolean groupSatisfied = alternatives.entrySet().stream().anyMatch(
+                entry -> state.passiveNodes().rank(entry.getKey()) >= entry.getValue()
+            );
+            if (!groupSatisfied) return false;
         }
         for (String discoveryKey : requirement.requiredDiscoveryKeys()) {
             if (!state.discoveries().contains(discoveryKey)) return false;
