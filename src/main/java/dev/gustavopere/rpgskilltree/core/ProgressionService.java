@@ -310,17 +310,17 @@ public final class ProgressionService {
         Objects.requireNonNull(state);
         Objects.requireNonNull(grants);
 
-        // Only specialization IDs represented by node grants are node-owned and
-        // therefore revocable by node reconciliation. Persisted/manual identities
-        // (including legacy class -> specialization migrations) must survive.
-        Set<String> nodeOwnedIds = new HashSet<>();
-        for (NodeSpecializationGrant grant : grants) {
-            nodeOwnedIds.add(grant.specializationId());
-        }
-
-        SpecializationProgressionState specializations = state.specializations();
-        for (String nodeOwnedId : nodeOwnedIds) {
-            specializations = specializations.without(nodeOwnedId);
+        // SpecializationProgressionState does not yet persist provenance. Preserve
+        // only the stable IDs explicitly created by the legacy class -> specialization
+        // migration; all other current entries are reconstructed from live node grants
+        // so removed datapack gateways cannot leave permanent stale unlocks behind.
+        Set<String> migratedIds = Set.copyOf(
+            ProgressionStateMigrations.legacyClassSpecializations().values());
+        SpecializationProgressionState specializations = SpecializationProgressionState.empty();
+        for (String migratedId : migratedIds) {
+            if (state.specializations().isUnlocked(migratedId)) {
+                specializations = specializations.unlock(migratedId);
+            }
         }
         for (NodeSpecializationGrant grant : grants) {
             if (state.passiveNodes().rank(grant.nodeId()) >= grant.requiredRank()) {
