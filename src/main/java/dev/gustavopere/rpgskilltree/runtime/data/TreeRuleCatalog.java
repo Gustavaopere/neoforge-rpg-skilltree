@@ -58,6 +58,15 @@ public final class TreeRuleCatalog {
             if (rule.specializationGrant() != null) {
                 nextSpecializationGrants.add(rule.specializationGrant());
             }
+            for (String requiredNode : rule.requirement().requiredNodeIds()) {
+                ResourceLocation requiredId = ResourceLocation.parse(requiredNode);
+                if (!knownIds.contains(requiredId)) {
+                    throw new IllegalArgumentException("unknown required node: " + rule.id() + " -> " + requiredId);
+                }
+                if (requiredId.equals(rule.id())) {
+                    throw new IllegalArgumentException("node cannot require itself: " + rule.id());
+                }
+            }
             for (ResourceLocation neighbor : rule.neighbors()) {
                 if (!knownIds.contains(neighbor)) {
                     throw new IllegalArgumentException("unknown node rule neighbor: " + rule.id() + " -> " + neighbor);
