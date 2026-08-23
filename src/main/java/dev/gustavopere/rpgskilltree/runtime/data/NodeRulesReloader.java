@@ -63,12 +63,16 @@ public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
                 Map<String, Integer> requiredMastery = readIntMap(node.getAsJsonObject("requiredMastery"));
                 Set<String> requiredSpecializations = readStringSet(node.getAsJsonArray("requiredSpecializations"));
                 Set<String> requiredClassChoices = readStringSet(node.getAsJsonArray("requiredClassChoices"));
+                Set<String> requiredNodes = readStringSet(node.getAsJsonArray("requiredNodes"));
+                Set<String> requiredDiscoveries = readStringSet(node.getAsJsonArray("requiredDiscoveries"));
                 NodeAccessRequirement requirement = new NodeAccessRequirement(
                     node.has("minCharacterLevel") ? node.get("minCharacterLevel").getAsInt() : 1,
                     requiredClasses,
                     requiredMastery,
                     requiredSpecializations,
-                    requiredClassChoices
+                    requiredClassChoices,
+                    requiredNodes,
+                    requiredDiscoveries
                 );
                 NodeSpecializationGrant specializationGrant = null;
                 if (node.has("grantsSpecialization")) {
