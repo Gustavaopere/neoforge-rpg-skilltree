@@ -40,6 +40,14 @@ public final class MasteryPolicies {
   if(action.tags().contains("warlock")) out.add(new MasteryAward("goety:pact_servants",2+intensity,action.skillId()));
   return List.copyOf(out);
  }
+ public static List<MasteryAward> forGoetyCommand(GoetyCommandAction action){
+  if(action.origin().procDepth()>0 || !action.tags().contains("confirmed_command") || action.servantCount()<=0) return List.of();
+  int breadth=Math.min(3,action.servantCount());
+  List<MasteryAward> out=new ArrayList<>();
+  out.add(new MasteryAward("goety:commanding",2+breadth,action.targetId()));
+  out.add(new MasteryAward("summoning:practice",1+Math.min(2,action.servantCount()),action.targetId()));
+  return List.copyOf(out);
+ }
  public static List<MasteryAward> forMalum(SpiritPracticeAction action){
   if(action.origin().procDepth()>0) return List.of();
   List<MasteryAward> out=new ArrayList<>();
