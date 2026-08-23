@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]/'src/main/resources/data/rpgskilltree'
 DOMAINS={'MARTIAL','AGILITY','VITALITY','ARCANE','ENGINEERING','SURVIVAL','SUMMONING','HEALING','MINING','OCCULT','LOGISTICS'}
+TREE_TYPES={'main','specialization','hybrid','provider','class'}
 def load_dir(name):
     out=[]
     for p in sorted((ROOT/name).glob('*.json')):
@@ -124,5 +125,59 @@ def main():
     if blue['target_node_count'] < 500: raise AssertionError('alpha 2 main tree must budget at least 500 base nodes')
     for cid in blue.get('dynamic_non_adjacent_classes',[]):
         if cid not in class_ids: raise AssertionError(f'unknown dynamic class {cid}')
-    print(f'Data validation: PASS ({len(arch)} archetypes, {len(classes)} classes, {len(specs)} specializations, {len(pacts)} pacts, {len(unlocks)} tree gateways, {total} main-tree nodes budgeted)')
+
+    architecture_files=load_dir('tree_architecture')
+    architecture={}
+    for p,root in architecture_files:
+        trees=root.get('trees',[])
+        if not isinstance(trees,list): raise AssertionError(f'{p}: trees must be a list')
+        for tree in trees:
+            tid=tree.get('id')
+            if not isinstance(tid,str) or ':' not in tid: raise AssertionError(f'{p}: invalid architecture tree id {tid}')
+            if tid in architecture: raise AssertionError(f'duplicate architecture tree {tid}')
+            tree_type=tree.get('type')
+            if tree_type not in TREE_TYPES: raise AssertionError(f'{p}: invalid tree type {tree_type} for {tid}')
+            domains=tree.get('domains',[])
+            if not isinstance(domains,list) or any(domain not in DOMAINS for domain in domains):
+                raise AssertionError(f'{p}: invalid architecture domains for {tid}')
+            provider=tree.get('provider','rpgskilltree')
+            if not isinstance(provider,str) or not provider: raise AssertionError(f'{p}: invalid provider for {tid}')
+            branches=tree.get('branches',[])
+            if not isinstance(branches,list) or not branches: raise AssertionError(f'{p}: {tid} requires branches')
+            branch_ids=set()
+            for branch in branches:
+                bid=branch.get('id'); label=branch.get('label'); order=branch.get('order',0)
+                if not isinstance(bid,str) or not bid: raise AssertionError(f'{p}: invalid branch id in {tid}')
+                if bid in branch_ids: raise AssertionError(f'{p}: duplicate branch {tid}/{bid}')
+                branch_ids.add(bid)
+                if not isinstance(label,str) or not label: raise AssertionError(f'{p}: missing branch label {tid}/{bid}')
+                if not isinstance(order,int) or order<0: raise AssertionError(f'{p}: invalid branch order {tid}/{bid}')
+                if not isinstance(branch.get('tags',[]),list): raise AssertionError(f'{p}: invalid branch tags {tid}/{bid}')
+            gate=tree.get('gate',{})
+            if not isinstance(gate,dict): raise AssertionError(f'{p}: gate must be object for {tid}')
+            min_level=gate.get('minimumCharacterLevel',1)
+            if not isinstance(min_level,int) or min_level<1: raise AssertionError(f'{p}: invalid minimumCharacterLevel for {tid}')
+            required_classes=gate.get('requiredClasses',[])
+            if not isinstance(required_classes,list) or any(cid not in class_ids for cid in required_classes):
+                raise AssertionError(f'{p}: unknown required class in {tid}')
+            mastery=gate.get('requiredMastery',{})
+            if not isinstance(mastery,dict) or any(
+                not isinstance(k,str) or not k or not isinstance(v,int) or v<0
+                for k,v in mastery.items()
+            ): raise AssertionError(f'{p}: invalid requiredMastery for {tid}')
+            required_specs=gate.get('requiredSpecializations',[])
+            if not isinstance(required_specs,list) or any(sid not in spec_ids for sid in required_specs):
+                raise AssertionError(f'{p}: unknown required specialization in {tid}')
+            for key in ('requiredTags','tags','bridges'):
+                if not isinstance((gate if key=='requiredTags' else tree).get(key,[]),list):
+                    raise AssertionError(f'{p}: invalid {key} for {tid}')
+            architecture[tid]=(p,tree)
+    if 'rpgskilltree:main' not in architecture: raise AssertionError('missing semantic main-tree architecture')
+    if len(architecture)<70: raise AssertionError(f'expected at least 70 semantic trees, got {len(architecture)}')
+    for tid,(p,tree) in architecture.items():
+        for bridge in tree.get('bridges',[]):
+            if bridge not in architecture: raise AssertionError(f'{p}: unknown architecture bridge {tid} -> {bridge}')
+            if bridge == tid: raise AssertionError(f'{p}: architecture tree cannot bridge to itself: {tid}')
+
+    print(f'Data validation: PASS ({len(arch)} archetypes, {len(classes)} classes, {len(specs)} specializations, {len(pacts)} pacts, {len(unlocks)} tree gateways, {total} main-tree nodes budgeted, {len(architecture)} semantic trees)')
 if __name__=='__main__': main()
