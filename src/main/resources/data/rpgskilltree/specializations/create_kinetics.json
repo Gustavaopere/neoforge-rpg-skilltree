@@ -4,8 +4,7 @@
   "kind": "technology",
   "eligible_class_ids": [
     "engineer",
-    "technomancer",
-    "industrialist"
+    "technomancer"
   ],
   "minimum_mastery_experience": {
     "create:kinetics": 80
