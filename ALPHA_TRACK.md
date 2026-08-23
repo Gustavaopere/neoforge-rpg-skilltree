@@ -5,7 +5,7 @@ This project remains in **Alpha** until the integrated modpack behavior is funct
 ## Versioning rule
 - Each major integration gets its own Alpha checkpoint.
 - Fixes or extensions to an already completed integration use a decimal revision of that provider track when practical (`1.1`, `1.2`, `2.1`, etc.).
-- The Gradle `mod_version` tracks the latest chronological project checkpoint; provider maturity is recorded separately below. A retrospective Alpha 1.x revision landed after Alpha 5 can therefore ship in project checkpoint `alpha.5.1-dev` without pretending the rest of the project went backwards.
+- The Gradle `mod_version` tracks the latest chronological project checkpoint; provider maturity is recorded separately below. Retrospective Alpha 1.x/2.x work after Alpha 5 therefore ships as chronological `alpha.5.x-dev` checkpoints without pretending the project went backwards.
 - A green CI build is necessary but does not by itself promote the project to Beta.
 - The three current Notion guides (Magic, Technology, Gameplay/Systems) are the source of truth for which pack mods are currently installed/removed and what each integration must account for.
 
@@ -14,7 +14,7 @@ The Notion guides identify the active pack and provide orientation, but implemen
 
 After Alpha 5, the already landed providers are explicitly scheduled for depth revisions before new magic providers continue:
 - Alpha 1.x: Iron's + its current addon/bridge ecosystem;
-- Alpha 2.x: Ars Nouveau + glyph/source/ritual/automation/morph bridges;
+- Alpha 2.x: Ars Nouveau + mana/glyph/source/ritual/familiar/automation/morph bridges;
 - Alpha 3.x: Epic Fight stamina/guard/dodge/skills/combo semantics beyond weapon-hit mastery;
 - Alpha 4.x: Goety Soul economy, servants/commanding and bridge deduplication beyond cast mastery.
 
@@ -22,16 +22,17 @@ After Alpha 5, the already landed providers are explicitly scheduled for depth r
 | Track | Scope | Current state |
 |---|---|---|
 | Alpha 1 | Iron's Spells 'n Spellbooks | live provider mastery + Arcane gate implemented |
-| Alpha 1.1 | Iron learned/catalogued-magic depth pass | implemented in project `alpha.5.1-dev`: permanent inscription uses real provider/school practice, tier 3+ requires emergent Mage, and mastery scales from bounded real mana expenditure; pending CI verification |
-| Alpha 1.2 | Current Iron addon ecosystem: Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells, ShadowsZ, Vampirism/Iron bridge and other provider extensions | next retrospective provider review; API-compatible school/spell addons inherit 1.1 rules automatically |
-| Alpha 2 | Ars Nouveau | live composition mastery + Arcane gate implemented; depth revision required |
-| Alpha 2.2 | Ars glyph/source/ritual/automation + Ars Morph/new bridges | scheduled retrospective review; duplicate bridge rewards must be prevented |
-| Alpha 3 | Epic Fight | live weapon-category adapter implemented; deeper combat-state review scheduled |
+| Alpha 1.1 | Iron learned/catalogued-magic depth pass | **verified green** in project `alpha.5.1.1-dev`: permanent inscription uses real provider/school practice, tier 3+ requires emergent Mage, mastery scales from bounded real mana expenditure; core/build/JAR/server smoke passed |
+| Alpha 1.2 | Current Iron addon ecosystem: Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells, ShadowsZ, Vampirism/Iron bridge and other provider extensions | API-compatible school/spell addons inherit 1.1 rules automatically; bespoke native-progression addons remain scheduled |
+| Alpha 2 | Ars Nouveau | live composition mastery + Arcane gate implemented |
+| Alpha 2.2 | Ars native-mana/familiar depth pass | implemented in project candidate `alpha.5.2-dev`: Arcane tree + Sorcerer affect Ars native max mana/regen, SUMMONING entry gates familiar binding, cast mastery scales from real mana cost; pending CI verification |
+| Alpha 2.3 | Ars glyph/source/ritual/automation + Ars Morph/new bridges | planned; glyph learning has no dedicated public unlock event in 5.13.0, so no fragile generic right-click pseudo-gate is used |
+| Alpha 3 | Epic Fight | live weapon-category adapter implemented; deeper combat-state review scheduled next |
 | Alpha 3.2 | Epic Fight skills/stamina/guard/dodge/combo + current compat | scheduled retrospective review |
 | Alpha 4 | Goety + Goety Iron + Goety Cataclysm | Soul-backed spell mastery verified green in CI; deeper servant/economy review scheduled |
 | Alpha 4.1 | Goety servants, Soul economy and bridge dedupe | scheduled retrospective review |
-| Alpha 5 | Malum + Gaze + Vestis | Spirit Reaping/collection, dynamic spirit affinities and native Malum attribute/tree integration verified green: build, JAR verification and dedicated-server smoke passed |
-| Alpha 5.2 | Malum Spirit Rites/Locus/Anchors and richer Gaze state hooks | planned only where a stable completion/state hook is available; no fragile mixin solely for XP |
+| Alpha 5 | Malum + Gaze + Vestis | **verified green**: Spirit Reaping/collection, dynamic spirit affinities and native Malum attribute/tree integration; build, JAR verification and dedicated-server smoke passed |
+| Alpha 5.x provider follow-up | Malum Spirit Rites/Locus/Anchors and richer Gaze state hooks | planned only where a stable completion/state hook is available; no fragile mixin solely for XP |
 | Alpha 6 | Eidolon: Repraised | planned after retrospective depth revisions |
 | Alpha 7 | Neo Vitae + BloodMagic AE2 Addition | planned |
 | Alpha 8 | Create core + major Create industrial lanes | planned |
@@ -44,17 +45,14 @@ After Alpha 5, the already landed providers are explicitly scheduled for depth r
 | Alpha 15 | Identity 2 + Ars Morph + Metamorph/Druid runtime integration | foundations already exist; full action/state integration planned |
 | Alpha 16 | World difficulty/boss bridges: Legendary Monsters, Improved Mobs and related reward attribution | planned; should consume unified level/reward logic rather than create another player tree |
 
-The numbering may gain point revisions when a prior integration needs correction or new addons extend that provider without forcing unrelated systems into the same checkpoint.
-
 ## Updated pack architecture — 23 Aug 2026
-The current Notion inventory establishes these major progression ecosystems:
 
 ### Magic and supernatural systems
 - Iron's Spells 'n Spellbooks 3.16.3 and its large school/addon ecosystem. Mage is learned/catalogued magic: scroll practice and school mastery lead into permanent spellbook study rather than being only a display identity.
-- Newly added Iron-side content includes Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells and ShadowsZ. These are not automatically new top-level classes: school/content addons inherit the Iron provider path where possible, while systems such as ShadowsZ may add their own mastery/state bridge.
-- Ars Nouveau 5.13.0 with Elemental/Elemancy, Creo, Technica, Controle, Not Enough Glyphs, Ars Zero, Starbunclemania, Ars Morph and cross-provider bridges.
-- Goety 3.1.4, including Goety Iron and Goety Cataclysm. Goety feeds OCCULT/SUMMONING-style progression through real Soul-backed spell use rather than being treated as another generic Arcane provider.
-- Malum 1.8.2 with Gaze and Vestis. Malum is treated as Spirit Arcana: Soul Reaping, dynamic spirit affinities, Soul Ward/Arcane Resonance and Geas are first-class mechanics. Gaze extends those registries/systems; Vestis is cosmetic and receives no artificial mastery lane.
+- Iron-side content includes Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells and ShadowsZ. School/content addons inherit the Iron provider path where possible; native systems such as ShadowsZ may add their own state bridge.
+- Ars Nouveau 5.13.0 with Elemental/Elemancy, Creo, Technica, Controle, Not Enough Glyphs, Ars Zero, Starbunclemania, Ars Morph and cross-provider bridges. Sorcerer is intrinsic/modular magic: its identity now changes Ars's own mana economy while composition mastery remains glyph-semantic.
+- Goety 3.1.4, including Goety Iron and Goety Cataclysm. Goety feeds OCCULT/SUMMONING-style progression through real Soul-backed use rather than being treated as generic Arcane.
+- Malum 1.8.2 with Gaze and Vestis. Malum is Spirit Arcana: Soul Reaping, dynamic spirit affinities, Soul Ward/Arcane Resonance and Geas are first-class mechanics. Gaze extends those registries/systems; Vestis is cosmetic and receives no artificial mastery lane.
 - Eidolon: Repraised 0.5.0.2.
 - Neo Vitae 1.1.13 as a separate blood-magic progression.
 - Vampirism 1.10.12 with Bloodlines, Vampiric Ageing, Werewolves, Integrations and the Iron's Blood/Holy bridge. These are supernatural character states with native progression, not merely spell schools.
@@ -65,13 +63,13 @@ The current Notion inventory establishes these major progression ecosystems:
 - Applied Energistics 2 19.2.17 for digital storage/autocrafting.
 - Oritech 1.2.10 for powered industrial machines.
 - Sable 2.0.5 + Create Aeronautics 1.3.1 for physical vehicles/sublevels.
-- TFMG, Create: New Age, Create Nuclear, Crafts & Additions, Diesel Generators, Metallurgy/Metalwork and other Create branches as specialization lanes rather than separate top-level character classes by default.
+- TFMG, Create: New Age, Create Nuclear, Crafts & Additions, Diesel Generators, Metallurgy/Metalwork and other Create branches are specialization lanes rather than separate top-level character classes by default.
 - Applied Create creates a direct Create↔AE2 hybrid path.
 
-### Gameplay/progression systems requiring coexistence policy
+### Gameplay/progression coexistence policy
 - Pufferfish's Skills is a framework and may remain as a dependency/API surface.
-- Skills Mastery Reimagined is a standalone ready-made skill tree and therefore competes with RPG Skill Tree for persistent character-tree progression.
-- Iron's Spells Dynamic Skill Tree and Iron's Spells Magic Schools also duplicate progression that RPG Skill Tree is explicitly implementing.
+- Skills Mastery Reimagined is a standalone ready-made skill tree and competes with RPG Skill Tree for persistent character-tree progression.
+- Iron's Spells Dynamic Skill Tree and Iron's Spells Magic Schools also duplicate progression RPG Skill Tree is explicitly implementing.
 - Player Stats duplicates permanent attribute growth and must not silently stack with equivalent canonical attributes.
 - Professions is complementary if treated as activity mastery/input rather than as a mutually exclusive class system.
 - Improved Mobs can later consume the unified character level/difficulty model rather than define player progression itself.

@@ -13,10 +13,11 @@ public final class MasteryPolicies {
  }
  public static List<MasteryAward> forArs(SpellAction action){
   if(action.origin().procDepth()>0) return List.of();
+  int intensity=Math.max(1,Math.min(5,(Math.max(1,action.resourceCost())+49)/50));
   List<MasteryAward> out=new ArrayList<>();
   out.add(new MasteryAward("magic:casting",2,action.spellId()));
-  out.add(new MasteryAward("ars:casting",3,action.spellId()));
-  for(String lane:List.of("projectile","amplification","aoe","duration","summoning","control")) if(action.tags().contains(lane)) out.add(new MasteryAward("ars:"+lane,3,action.spellId()));
+  out.add(new MasteryAward("ars:casting",2+intensity,action.spellId()));
+  for(String lane:List.of("projectile","amplification","aoe","duration","summoning","control")) if(action.tags().contains(lane)) out.add(new MasteryAward("ars:"+lane,2+intensity,action.spellId()));
   return List.copyOf(out);
  }
  public static List<MasteryAward> forGoety(SpellAction action){

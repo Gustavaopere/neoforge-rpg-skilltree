@@ -15,3 +15,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProviderIdentityClassTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.GoetyMasteryCoreTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MalumMasteryCoreTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.IronStudyPolicyTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ArsNativeProgressionPolicyTest
