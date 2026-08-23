@@ -1,0 +1,45 @@
+{
+  "treeId": "rpgskilltree:eidolon_ritual",
+  "nodes": [
+    {
+      "id": "rpgskilltree:eidolon_ritual/knowledge",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": true,
+      "neighbors": ["rpgskilltree:eidolon_ritual/alchemy"],
+      "minCharacterLevel": 15,
+      "requiredMastery": {"eidolon:ritual": 90},
+      "requiredNodes": ["rpgskilltree:occult_000"],
+      "requiredDiscoveries": ["eidolon:ritual:completed"]
+    },
+    {
+      "id": "rpgskilltree:eidolon_ritual/alchemy",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": ["rpgskilltree:eidolon_ritual/knowledge", "rpgskilltree:eidolon_ritual/circle"]
+    },
+    {
+      "id": "rpgskilltree:eidolon_ritual/circle",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": ["rpgskilltree:eidolon_ritual/alchemy", "rpgskilltree:eidolon_ritual/offering"]
+    },
+    {
+      "id": "rpgskilltree:eidolon_ritual/offering",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": ["rpgskilltree:eidolon_ritual/circle", "rpgskilltree:eidolon_ritual/master"]
+    },
+    {
+      "id": "rpgskilltree:eidolon_ritual/master",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": ["rpgskilltree:eidolon_ritual/offering"],
+      "requiredMastery": {"eidolon:ritual": 120}
+    }
+  ]
+}
