@@ -6,6 +6,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgres
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
@@ -65,6 +66,9 @@ public final class RpgSkillTreeMod {
         if (ModList.get().isLoaded("eidolon")) {
             NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
             NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
+        }
+        if (ModList.get().isLoaded("identity2")) {
+            NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
         }
         if (ModList.get().isLoaded("epicfight")) {
             EpicFightProgressionHooks.register();
