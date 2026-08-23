@@ -182,7 +182,7 @@ public final class ProgressionService {
             int refund = targetDefinition.costPerRank();
             FinalTriadProgress triads = state.finalTriads();
             if (targetDefinition.finalTriadNode()) {
-                triads = triads.decrease(targetDefinition.finalTriadDomain(), targetDefinition.finalTriadSlot(), 1);
+                triads = triads.decrease(targetDefinition.finalTriadDomain(), definition.finalTriadSlot(), 1);
             }
             ProgressionState next = state.withPassiveNodes(nodes)
                 .withPassivePoints(state.passivePoints().refund(refund))
@@ -309,7 +309,19 @@ public final class ProgressionService {
     ) {
         Objects.requireNonNull(state);
         Objects.requireNonNull(grants);
-        SpecializationProgressionState specializations = SpecializationProgressionState.empty();
+
+        // Only specialization IDs represented by node grants are node-owned and
+        // therefore revocable by node reconciliation. Persisted/manual identities
+        // (including legacy class -> specialization migrations) must survive.
+        Set<String> nodeOwnedIds = new HashSet<>();
+        for (NodeSpecializationGrant grant : grants) {
+            nodeOwnedIds.add(grant.specializationId());
+        }
+
+        SpecializationProgressionState specializations = state.specializations();
+        for (String nodeOwnedId : nodeOwnedIds) {
+            specializations = specializations.without(nodeOwnedId);
+        }
         for (NodeSpecializationGrant grant : grants) {
             if (state.passiveNodes().rank(grant.nodeId()) >= grant.requiredRank()) {
                 specializations = specializations.unlock(grant.specializationId());
