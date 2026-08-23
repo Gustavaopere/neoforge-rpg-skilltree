@@ -4,7 +4,9 @@ import dev.gustavopere.rpgskilltree.core.ActionOrigin;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
 import dev.gustavopere.rpgskilltree.core.SpellAction;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import dev.gustavopere.rpgskilltree.runtime.compat.MagicAccessRuntime;
 import io.redspace.ironsspellbooks.api.events.SpellOnCastEvent;
+import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import java.util.Locale;
 import java.util.Set;
@@ -12,14 +14,25 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.util.FakePlayer;
 
 /** Optional Iron's Spells 'n Spellbooks adapter. Loaded only when Iron's is present. */
 public final class IronsSpellbookProgressionEvents {
     private IronsSpellbookProgressionEvents() {}
 
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onSpellPreCast(SpellPreCastEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (player instanceof FakePlayer) return;
+        if (event.getCastSource() == CastSource.COMMAND) return;
+        if (MagicAccessRuntime.requireArcaneAccess(player)) return;
+        event.setCanceled(true);
+    }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpellCast(SpellOnCastEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (player instanceof FakePlayer) return;
         if (!countsForMastery(event.getCastSource())) return;
 
         ResourceLocation schoolId = event.getSchoolType().getId();

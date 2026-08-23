@@ -6,6 +6,7 @@ import dev.gustavopere.rpgskilltree.core.ArsCompositionClassifier;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
 import dev.gustavopere.rpgskilltree.core.SpellAction;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import dev.gustavopere.rpgskilltree.runtime.compat.MagicAccessRuntime;
 import java.util.List;
 import java.util.Set;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +18,15 @@ import net.neoforged.neoforge.common.util.FakePlayer;
 /** Optional Ars Nouveau adapter. Loaded only when Ars Nouveau is present. */
 public final class ArsNouveauProgressionEvents {
     private ArsNouveauProgressionEvents() {}
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onSpellPreCast(SpellCastEvent event) {
+        if (event.isCanceled()) return;
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (player instanceof FakePlayer) return;
+        if (MagicAccessRuntime.requireArcaneAccess(player)) return;
+        event.setCanceled(true);
+    }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpellCast(SpellCastEvent event) {
