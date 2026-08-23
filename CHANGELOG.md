@@ -14,6 +14,9 @@ Current NeoForge 1.21.1 development line. The latest pre-consolidation runtime c
 - 512-node main-tree blueprint, path planning, persistence/network synchronization, runtime data loading and tree viewer foundations.
 - Mining/exploration/combat progression protections, including player-placed-ore tracking and reward anti-farm/backpressure infrastructure.
 - Apotheosis/Apothic attribute, gem/socket and attunement foundations.
+- Emergent-class resolution now exposes a dynamic Primary Class plus ordered Secondary Classes; class identity remains derived from progression rather than an irreversible player selection.
+- Specializations may be classless when their definition has no eligible-class gate.
+- `Industrialist`, `Logistician` and `Prospector` are reclassified from classes to specializations. Existing v4 saves are migrated semantically during decode: those unlocked identities move into specialization progress while mastery, discoveries, passive points and purchased nodes are preserved. The migration is idempotent and does not require a binary save-format bump.
 
 ### Alpha 1.x — Iron's Spells 'n Spellbooks
 - Intentional Iron casts feed provider-wide and school mastery while automatic/proc-only origins are excluded.
