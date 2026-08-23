@@ -9,7 +9,9 @@ public record NodeAccessRequirement(
     Set<String> requiredClassIds,
     Map<String, Integer> requiredMastery,
     Set<String> requiredSpecializationIds,
-    Set<String> requiredClassChoiceIds
+    Set<String> requiredClassChoiceIds,
+    Set<String> requiredNodeIds,
+    Set<String> requiredDiscoveryKeys
 ) {
     public NodeAccessRequirement {
         if (minCharacterLevel < 1) throw new IllegalArgumentException("minCharacterLevel must be >= 1");
@@ -17,25 +19,45 @@ public record NodeAccessRequirement(
         Objects.requireNonNull(requiredMastery);
         Objects.requireNonNull(requiredSpecializationIds);
         Objects.requireNonNull(requiredClassChoiceIds);
-        if (requiredClassIds.stream().anyMatch(id -> id == null || id.isBlank())) {
+        Objects.requireNonNull(requiredNodeIds);
+        Objects.requireNonNull(requiredDiscoveryKeys);
+        if (requiredClassIds.stream().anyMatch(NodeAccessRequirement::blank)) {
             throw new IllegalArgumentException("required class ids must not be blank");
         }
-        if (requiredMastery.keySet().stream().anyMatch(id -> id == null || id.isBlank())) {
+        if (requiredMastery.keySet().stream().anyMatch(NodeAccessRequirement::blank)) {
             throw new IllegalArgumentException("required mastery ids must not be blank");
         }
         if (requiredMastery.values().stream().anyMatch(value -> value == null || value < 0)) {
             throw new IllegalArgumentException("required mastery must be >= 0");
         }
-        if (requiredSpecializationIds.stream().anyMatch(id -> id == null || id.isBlank())) {
+        if (requiredSpecializationIds.stream().anyMatch(NodeAccessRequirement::blank)) {
             throw new IllegalArgumentException("required specialization ids must not be blank");
         }
-        if (requiredClassChoiceIds.stream().anyMatch(id -> id == null || id.isBlank())) {
+        if (requiredClassChoiceIds.stream().anyMatch(NodeAccessRequirement::blank)) {
             throw new IllegalArgumentException("required class choice ids must not be blank");
+        }
+        if (requiredNodeIds.stream().anyMatch(NodeAccessRequirement::blank)) {
+            throw new IllegalArgumentException("required node ids must not be blank");
+        }
+        if (requiredDiscoveryKeys.stream().anyMatch(NodeAccessRequirement::blank)) {
+            throw new IllegalArgumentException("required discovery keys must not be blank");
         }
         requiredClassIds = Set.copyOf(requiredClassIds);
         requiredMastery = Map.copyOf(requiredMastery);
         requiredSpecializationIds = Set.copyOf(requiredSpecializationIds);
         requiredClassChoiceIds = Set.copyOf(requiredClassChoiceIds);
+        requiredNodeIds = Set.copyOf(requiredNodeIds);
+        requiredDiscoveryKeys = Set.copyOf(requiredDiscoveryKeys);
+    }
+
+    public NodeAccessRequirement(
+        int minCharacterLevel,
+        Set<String> requiredClassIds,
+        Map<String, Integer> requiredMastery,
+        Set<String> requiredSpecializationIds,
+        Set<String> requiredClassChoiceIds
+    ) {
+        this(minCharacterLevel, requiredClassIds, requiredMastery, requiredSpecializationIds, requiredClassChoiceIds, Set.of(), Set.of());
     }
 
     public NodeAccessRequirement(
@@ -44,10 +66,14 @@ public record NodeAccessRequirement(
         Map<String, Integer> requiredMastery,
         Set<String> requiredSpecializationIds
     ) {
-        this(minCharacterLevel, requiredClassIds, requiredMastery, requiredSpecializationIds, Set.of());
+        this(minCharacterLevel, requiredClassIds, requiredMastery, requiredSpecializationIds, Set.of(), Set.of(), Set.of());
     }
 
     public static NodeAccessRequirement none() {
-        return new NodeAccessRequirement(1, Set.of(), Map.of(), Set.of(), Set.of());
+        return new NodeAccessRequirement(1, Set.of(), Map.of(), Set.of(), Set.of(), Set.of(), Set.of());
+    }
+
+    private static boolean blank(String id) {
+        return id == null || id.isBlank();
     }
 }
