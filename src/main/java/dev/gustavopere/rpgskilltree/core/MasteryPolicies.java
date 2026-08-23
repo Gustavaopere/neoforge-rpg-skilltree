@@ -26,6 +26,22 @@ public final class MasteryPolicies {
   for(String lane:List.of("necromancy","nether","ill","frost","geomancy","wind","storm","abyss","wild","void","summoning")) if(action.tags().contains(lane)) out.add(new MasteryAward("goety:"+lane,4,action.spellId()));
   return List.copyOf(out);
  }
+ public static List<MasteryAward> forMalum(SpiritPracticeAction action){
+  if(action.origin().procDepth()>0) return List.of();
+  List<MasteryAward> out=new ArrayList<>();
+  int magnitude=Math.max(1,Math.min(action.magnitude(),8));
+  out.add(new MasteryAward("malum:spirit_arcana",2+Math.min(3,magnitude/2),action.actionId()));
+  if(action.tags().contains("reaping")){
+   out.add(new MasteryAward("occult:practice",2,action.actionId()));
+   out.add(new MasteryAward("malum:reaping",2+Math.min(6,magnitude),action.actionId()));
+  }
+  if(action.tags().contains("collection")) out.add(new MasteryAward("malum:collection",1,action.actionId()));
+  action.tags().stream().filter(tag->tag.startsWith("spirit:")).sorted().forEach(tag->{
+   String affinity=tag.substring("spirit:".length());
+   if(!affinity.isBlank()) out.add(new MasteryAward("malum:spirit/"+affinity,2,action.actionId()));
+  });
+  return List.copyOf(out);
+ }
  public static List<MasteryAward> forCreate(EngineeringAction action){
   if(action.origin().procDepth()>0) return List.of();
   List<MasteryAward> out=new ArrayList<>();out.add(new MasteryAward("create:engineering",3,action.actionId()));

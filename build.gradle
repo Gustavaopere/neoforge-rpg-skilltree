@@ -79,6 +79,9 @@ dependencies {
     compileOnly("curse.maven:goety-586095:${goety_file_id}") {
         transitive = false
     }
+    compileOnly("curse.maven:malum-484064:${malum_file_id}") {
+        transitive = false
+    }
 }
 
 tasks.named('wrapper', Wrapper).configure {

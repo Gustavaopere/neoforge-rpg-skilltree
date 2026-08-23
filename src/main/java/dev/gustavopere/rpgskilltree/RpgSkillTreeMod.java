@@ -6,6 +6,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressio
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.data.BossRewardReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRulesReloader;
@@ -51,6 +52,9 @@ public final class RpgSkillTreeMod {
         }
         if (ModList.get().isLoaded("goety")) {
             NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class);
+        }
+        if (ModList.get().isLoaded("malum")) {
+            NeoForge.EVENT_BUS.register(MalumProgressionEvents.class);
         }
         if (ModList.get().isLoaded("epicfight")) {
             EpicFightProgressionHooks.register();

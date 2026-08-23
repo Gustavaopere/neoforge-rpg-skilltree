@@ -9,17 +9,29 @@ This project remains in **Alpha** until the integrated modpack behavior is funct
 - A green CI build is necessary but does not by itself promote the project to Beta.
 - The three current Notion guides (Magic, Technology, Gameplay/Systems) are the source of truth for which pack mods are currently installed/removed and what each integration must account for.
 
+## Integration depth rule
+The Notion guides identify the active pack and provide orientation, but implementation decisions must be grounded in deeper research of each provider: official project pages/wiki/changelogs plus source/API where available. An integration is not considered complete merely because it awards generic mastery or flat damage/resistance. Prefer real provider mechanics: resource economies, spell composition, rituals, summons, transformations, equipment states, automation, native progression, tradeoffs and persistent commitments.
+
+After Alpha 5, the already landed providers are explicitly scheduled for depth revisions before new magic providers continue:
+- Alpha 1.x: Iron's + its current addon/bridge ecosystem;
+- Alpha 2.x: Ars Nouveau + glyph/source/ritual/automation/morph bridges;
+- Alpha 3.x: Epic Fight stamina/guard/dodge/skills/combo semantics beyond weapon-hit mastery;
+- Alpha 4.x: Goety Soul economy, servants/commanding and bridge deduplication beyond cast mastery.
+
 ## Current integration map
 | Track | Scope | Current state |
 |---|---|---|
-| Alpha 1 | Iron's Spells 'n Spellbooks | implemented; provider mastery/class correction included in 1.1 work |
-| Alpha 1.2 | Current Iron addon ecosystem: Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells, ShadowsZ, Vampirism/Iron bridge and other provider extensions | planned compatibility revision; base Iron schools already inherit automatically where API-compatible |
-| Alpha 2 | Ars Nouveau | implemented; composition/provider mastery correction included in 2.1 work |
-| Alpha 2.2 | Ars Morph and new Ars bridge behavior | planned compatibility revision; must avoid duplicate rewards across bridge callbacks |
-| Alpha 3 | Epic Fight | implemented runtime adapter; project previously reached `alpha.3.1-dev` after Iron/Ars identity corrections |
-| Alpha 4 | Goety + Goety Iron + Goety Cataclysm | implementation in progress; real spell/Soul mastery feed added at `alpha.4-dev` pending CI verification |
-| Alpha 5 | Malum + Gaze + Vestis | planned |
-| Alpha 6 | Eidolon: Repraised | planned |
+| Alpha 1 | Iron's Spells 'n Spellbooks | live provider mastery + Arcane gate implemented; depth revision required |
+| Alpha 1.2 | Current Iron addon ecosystem: Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells, ShadowsZ, Vampirism/Iron bridge and other provider extensions | next retrospective provider review |
+| Alpha 2 | Ars Nouveau | live composition mastery + Arcane gate implemented; depth revision required |
+| Alpha 2.2 | Ars glyph/source/ritual/automation + Ars Morph/new bridges | scheduled retrospective review; duplicate bridge rewards must be prevented |
+| Alpha 3 | Epic Fight | live weapon-category adapter implemented; deeper combat-state review scheduled |
+| Alpha 3.2 | Epic Fight skills/stamina/guard/dodge/combo + current compat | scheduled retrospective review |
+| Alpha 4 | Goety + Goety Iron + Goety Cataclysm | Soul-backed spell mastery verified green in CI; deeper servant/economy review scheduled |
+| Alpha 4.1 | Goety servants, Soul economy and bridge dedupe | scheduled retrospective review |
+| Alpha 5 | Malum + Gaze + Vestis | Spirit Reaping/collection, dynamic spirit affinities and native Malum attribute/tree integration implemented at `alpha.5-dev`; pending CI verification |
+| Alpha 5.1 | Malum Spirit Rites/Locus/Anchors and richer Gaze state hooks | planned only where a stable completion/state hook is available; no fragile mixin solely for XP |
+| Alpha 6 | Eidolon: Repraised | planned after retrospective depth revisions |
 | Alpha 7 | Neo Vitae + BloodMagic AE2 Addition | planned |
 | Alpha 8 | Create core + major Create industrial lanes | planned |
 | Alpha 9 | Applied Energistics 2 | planned |
@@ -41,7 +53,7 @@ The current Notion inventory establishes these major progression ecosystems:
 - Newly added Iron-side content includes Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells and ShadowsZ. These are not automatically new top-level classes: school/content addons inherit the Iron provider path where possible, while systems such as ShadowsZ may add their own mastery/state bridge.
 - Ars Nouveau 5.13.0 with Elemental/Elemancy, Creo, Technica, Controle, Not Enough Glyphs, Ars Zero, Starbunclemania, Ars Morph and cross-provider bridges.
 - Goety 3.1.4, including Goety Iron and Goety Cataclysm. Goety feeds OCCULT/SUMMONING-style progression through real Soul-backed spell use rather than being treated as another generic Arcane provider.
-- Malum 1.8.2 with Gaze and Vestis.
+- Malum 1.8.2 with Gaze and Vestis. Malum is treated as Spirit Arcana: Soul Reaping, dynamic spirit affinities, Soul Ward/Arcane Resonance and Geas are first-class mechanics. Gaze extends those registries/systems; Vestis is cosmetic and receives no artificial mastery lane.
 - Eidolon: Repraised 0.5.0.2.
 - Neo Vitae 1.1.13 as a separate blood-magic progression.
 - Vampirism 1.10.12 with Bloodlines, Vampiric Ageing, Werewolves, Integrations and the Iron's Blood/Holy bridge. These are supernatural character states with native progression, not merely spell schools.

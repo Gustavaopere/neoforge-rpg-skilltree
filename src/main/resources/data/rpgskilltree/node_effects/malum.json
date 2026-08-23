@@ -1,0 +1,32 @@
+{
+  "attributes": [
+    {
+      "effectId": "rpgskilltree:malum/occult_000/spirit_spoils",
+      "nodeId": "rpgskilltree:occult_000",
+      "attributeId": "malum:spirit_spoils",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    },
+    {
+      "effectId": "rpgskilltree:malum/occult_001/arcane_resonance",
+      "nodeId": "rpgskilltree:occult_001",
+      "attributeId": "malum:arcane_resonance",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.10
+    },
+    {
+      "effectId": "rpgskilltree:malum/occult_002/soul_ward_capacity",
+      "nodeId": "rpgskilltree:occult_002",
+      "attributeId": "malum:soul_ward_capacity",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 2.0
+    },
+    {
+      "effectId": "rpgskilltree:malum/occult_027/geas_limit",
+      "nodeId": "rpgskilltree:occult_027",
+      "attributeId": "malum:geas_limit",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    }
+  ]
+}
