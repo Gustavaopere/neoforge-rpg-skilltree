@@ -4,8 +4,8 @@ This project remains in **Alpha** until the integrated modpack behavior is funct
 
 ## Versioning rule
 - Each major integration gets its own Alpha checkpoint.
-- Fixes or extensions to an already completed integration use a decimal revision of that Alpha when practical (`1.1`, `1.2`, `2.1`, etc.).
-- The Gradle `mod_version` tracks the latest project checkpoint; individual integration maturity is recorded below.
+- Fixes or extensions to an already completed integration use a decimal revision of that provider track when practical (`1.1`, `1.2`, `2.1`, etc.).
+- The Gradle `mod_version` tracks the latest chronological project checkpoint; provider maturity is recorded separately below. A retrospective Alpha 1.x revision landed after Alpha 5 can therefore ship in project checkpoint `alpha.5.1-dev` without pretending the rest of the project went backwards.
 - A green CI build is necessary but does not by itself promote the project to Beta.
 - The three current Notion guides (Magic, Technology, Gameplay/Systems) are the source of truth for which pack mods are currently installed/removed and what each integration must account for.
 
@@ -21,16 +21,17 @@ After Alpha 5, the already landed providers are explicitly scheduled for depth r
 ## Current integration map
 | Track | Scope | Current state |
 |---|---|---|
-| Alpha 1 | Iron's Spells 'n Spellbooks | live provider mastery + Arcane gate implemented; depth revision required |
-| Alpha 1.2 | Current Iron addon ecosystem: Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells, ShadowsZ, Vampirism/Iron bridge and other provider extensions | next retrospective provider review |
+| Alpha 1 | Iron's Spells 'n Spellbooks | live provider mastery + Arcane gate implemented |
+| Alpha 1.1 | Iron learned/catalogued-magic depth pass | implemented in project `alpha.5.1-dev`: permanent inscription uses real provider/school practice, tier 3+ requires emergent Mage, and mastery scales from bounded real mana expenditure; pending CI verification |
+| Alpha 1.2 | Current Iron addon ecosystem: Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells, ShadowsZ, Vampirism/Iron bridge and other provider extensions | next retrospective provider review; API-compatible school/spell addons inherit 1.1 rules automatically |
 | Alpha 2 | Ars Nouveau | live composition mastery + Arcane gate implemented; depth revision required |
 | Alpha 2.2 | Ars glyph/source/ritual/automation + Ars Morph/new bridges | scheduled retrospective review; duplicate bridge rewards must be prevented |
 | Alpha 3 | Epic Fight | live weapon-category adapter implemented; deeper combat-state review scheduled |
 | Alpha 3.2 | Epic Fight skills/stamina/guard/dodge/combo + current compat | scheduled retrospective review |
 | Alpha 4 | Goety + Goety Iron + Goety Cataclysm | Soul-backed spell mastery verified green in CI; deeper servant/economy review scheduled |
 | Alpha 4.1 | Goety servants, Soul economy and bridge dedupe | scheduled retrospective review |
-| Alpha 5 | Malum + Gaze + Vestis | Spirit Reaping/collection, dynamic spirit affinities and native Malum attribute/tree integration implemented at `alpha.5-dev`; pending CI verification |
-| Alpha 5.1 | Malum Spirit Rites/Locus/Anchors and richer Gaze state hooks | planned only where a stable completion/state hook is available; no fragile mixin solely for XP |
+| Alpha 5 | Malum + Gaze + Vestis | Spirit Reaping/collection, dynamic spirit affinities and native Malum attribute/tree integration verified green: build, JAR verification and dedicated-server smoke passed |
+| Alpha 5.2 | Malum Spirit Rites/Locus/Anchors and richer Gaze state hooks | planned only where a stable completion/state hook is available; no fragile mixin solely for XP |
 | Alpha 6 | Eidolon: Repraised | planned after retrospective depth revisions |
 | Alpha 7 | Neo Vitae + BloodMagic AE2 Addition | planned |
 | Alpha 8 | Create core + major Create industrial lanes | planned |
@@ -49,7 +50,7 @@ The numbering may gain point revisions when a prior integration needs correction
 The current Notion inventory establishes these major progression ecosystems:
 
 ### Magic and supernatural systems
-- Iron's Spells 'n Spellbooks 3.16.3 and its large school/addon ecosystem.
+- Iron's Spells 'n Spellbooks 3.16.3 and its large school/addon ecosystem. Mage is learned/catalogued magic: scroll practice and school mastery lead into permanent spellbook study rather than being only a display identity.
 - Newly added Iron-side content includes Acolyte, Apprentice's Codex, Crystal Chronicles, Legendary Spellbooks, Somake Spells and ShadowsZ. These are not automatically new top-level classes: school/content addons inherit the Iron provider path where possible, while systems such as ShadowsZ may add their own mastery/state bridge.
 - Ars Nouveau 5.13.0 with Elemental/Elemancy, Creo, Technica, Controle, Not Enough Glyphs, Ars Zero, Starbunclemania, Ars Morph and cross-provider bridges.
 - Goety 3.1.4, including Goety Iron and Goety Cataclysm. Goety feeds OCCULT/SUMMONING-style progression through real Soul-backed spell use rather than being treated as another generic Arcane provider.
