@@ -1,0 +1,17 @@
+{
+  "specialization_id": "epic_sword",
+  "provider": "epicfight",
+  "kind": "combat",
+  "eligible_class_ids": [
+    "warrior",
+    "duelist",
+    "spellblade",
+    "paladin"
+  ],
+  "minimum_mastery_experience": {
+    "epicfight:sword": 80
+  },
+  "required_tags": [
+    "gateway:epic_sword"
+  ]
+}

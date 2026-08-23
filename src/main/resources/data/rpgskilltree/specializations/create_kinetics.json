@@ -1,0 +1,16 @@
+{
+  "specialization_id": "create_kinetics",
+  "provider": "create",
+  "kind": "technology",
+  "eligible_class_ids": [
+    "engineer",
+    "technomancer",
+    "industrialist"
+  ],
+  "minimum_mastery_experience": {
+    "create:kinetics": 80
+  },
+  "required_tags": [
+    "gateway:create_kinetics"
+  ]
+}

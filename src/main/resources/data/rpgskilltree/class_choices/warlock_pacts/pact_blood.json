@@ -1,0 +1,14 @@
+{
+  "choice_id": "warlock:pact_blood",
+  "required_class_id": "warlock",
+  "group_id": "warlock:pact",
+  "default_group_capacity": 1,
+  "title": "Pact of Blood",
+  "mechanics": [
+    "health_as_resource",
+    "blood_school",
+    "life_steal_tradeoffs"
+  ],
+  "notes": "Can bridge Iron Blood school, Apothic life-steal/overheal attributes and other installed blood systems through adapters.",
+  "display_key": "choice.rpgskilltree.warlock.pact_blood"
+}

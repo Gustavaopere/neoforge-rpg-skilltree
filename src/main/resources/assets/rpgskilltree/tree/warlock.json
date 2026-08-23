@@ -1,0 +1,388 @@
+{
+  "id": "rpgskilltree:class/warlock",
+  "displayKey": "tree.rpgskilltree.warlock",
+  "nodes": [
+    {
+      "id": "rpgskilltree:warlock/core",
+      "kind": "class",
+      "domain": "WARLOCK",
+      "x": 0,
+      "y": 170,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": true,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/forbidden_lore",
+      "kind": "lesser",
+      "domain": "WARLOCK",
+      "x": 0,
+      "y": 105,
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/pact_confluence",
+      "kind": "notable",
+      "domain": "WARLOCK",
+      "x": 0,
+      "y": 35,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/blade_bond",
+      "kind": "lesser",
+      "domain": "WARLOCK",
+      "x": -260,
+      "y": -70,
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_blade"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/hex_edge",
+      "kind": "notable",
+      "domain": "WARLOCK",
+      "x": -260,
+      "y": -140,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_blade"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/soulsteel_keystone",
+      "kind": "keystone",
+      "domain": "WARLOCK",
+      "x": -260,
+      "y": -215,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 35,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_blade"
+      ],
+      "requiredMastery": {
+        "magic:casting": 80
+      }
+    },
+    {
+      "id": "rpgskilltree:warlock/blood_sacrifice",
+      "kind": "lesser",
+      "domain": "WARLOCK",
+      "x": -130,
+      "y": -70,
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_blood"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/blood_hunger",
+      "kind": "notable",
+      "domain": "WARLOCK",
+      "x": -130,
+      "y": -140,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_blood"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/crimson_covenant",
+      "kind": "keystone",
+      "domain": "WARLOCK",
+      "x": -130,
+      "y": -215,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 35,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_blood"
+      ],
+      "requiredMastery": {
+        "irons:blood": 80
+      }
+    },
+    {
+      "id": "rpgskilltree:warlock/familiar_bond",
+      "kind": "lesser",
+      "domain": "WARLOCK",
+      "x": 0,
+      "y": -70,
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_familiar"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/servant_command",
+      "kind": "notable",
+      "domain": "WARLOCK",
+      "x": 0,
+      "y": -140,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_familiar"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/anchored_familiar",
+      "kind": "keystone",
+      "domain": "WARLOCK",
+      "x": 0,
+      "y": -215,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 35,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_familiar"
+      ],
+      "requiredMastery": {
+        "magic:casting": 80
+      }
+    },
+    {
+      "id": "rpgskilltree:warlock/grimoire_pages",
+      "kind": "lesser",
+      "domain": "WARLOCK",
+      "x": 130,
+      "y": -70,
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_grimoire"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/ritual_memory",
+      "kind": "notable",
+      "domain": "WARLOCK",
+      "x": 130,
+      "y": -140,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_grimoire"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/forbidden_formula",
+      "kind": "keystone",
+      "domain": "WARLOCK",
+      "x": 130,
+      "y": -215,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 35,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_grimoire"
+      ],
+      "requiredMastery": {
+        "magic:casting": 120
+      }
+    },
+    {
+      "id": "rpgskilltree:warlock/soul_harvest",
+      "kind": "lesser",
+      "domain": "WARLOCK",
+      "x": 260,
+      "y": -70,
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_souls"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/servant_link",
+      "kind": "notable",
+      "domain": "WARLOCK",
+      "x": 260,
+      "y": -140,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_souls"
+      ]
+    },
+    {
+      "id": "rpgskilltree:warlock/soul_conduit",
+      "kind": "keystone",
+      "domain": "WARLOCK",
+      "x": 260,
+      "y": -215,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 35,
+      "requiredClasses": [
+        "warlock"
+      ],
+      "requiredClassChoices": [
+        "warlock:pact_souls"
+      ],
+      "requiredMastery": {
+        "magic:casting": 80
+      }
+    }
+  ],
+  "edges": [
+    [
+      "rpgskilltree:warlock/core",
+      "rpgskilltree:warlock/forbidden_lore"
+    ],
+    [
+      "rpgskilltree:warlock/forbidden_lore",
+      "rpgskilltree:warlock/pact_confluence"
+    ],
+    [
+      "rpgskilltree:warlock/blade_bond",
+      "rpgskilltree:warlock/pact_confluence"
+    ],
+    [
+      "rpgskilltree:warlock/blood_sacrifice",
+      "rpgskilltree:warlock/pact_confluence"
+    ],
+    [
+      "rpgskilltree:warlock/familiar_bond",
+      "rpgskilltree:warlock/pact_confluence"
+    ],
+    [
+      "rpgskilltree:warlock/grimoire_pages",
+      "rpgskilltree:warlock/pact_confluence"
+    ],
+    [
+      "rpgskilltree:warlock/pact_confluence",
+      "rpgskilltree:warlock/soul_harvest"
+    ],
+    [
+      "rpgskilltree:warlock/blade_bond",
+      "rpgskilltree:warlock/hex_edge"
+    ],
+    [
+      "rpgskilltree:warlock/hex_edge",
+      "rpgskilltree:warlock/soulsteel_keystone"
+    ],
+    [
+      "rpgskilltree:warlock/blood_hunger",
+      "rpgskilltree:warlock/blood_sacrifice"
+    ],
+    [
+      "rpgskilltree:warlock/blood_hunger",
+      "rpgskilltree:warlock/crimson_covenant"
+    ],
+    [
+      "rpgskilltree:warlock/familiar_bond",
+      "rpgskilltree:warlock/servant_command"
+    ],
+    [
+      "rpgskilltree:warlock/anchored_familiar",
+      "rpgskilltree:warlock/servant_command"
+    ],
+    [
+      "rpgskilltree:warlock/grimoire_pages",
+      "rpgskilltree:warlock/ritual_memory"
+    ],
+    [
+      "rpgskilltree:warlock/forbidden_formula",
+      "rpgskilltree:warlock/ritual_memory"
+    ],
+    [
+      "rpgskilltree:warlock/servant_link",
+      "rpgskilltree:warlock/soul_harvest"
+    ],
+    [
+      "rpgskilltree:warlock/servant_link",
+      "rpgskilltree:warlock/soul_conduit"
+    ]
+  ]
+}

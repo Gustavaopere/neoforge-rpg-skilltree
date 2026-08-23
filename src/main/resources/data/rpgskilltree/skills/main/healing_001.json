@@ -1,0 +1,23 @@
+{
+  "id": "rpgskilltree:healing_001",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:healing_002",
+    "rpgskilltree:healing_007",
+    "rpgskilltree:healing_008"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/healing",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": 619.326,
+  "positionY": -449.066,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

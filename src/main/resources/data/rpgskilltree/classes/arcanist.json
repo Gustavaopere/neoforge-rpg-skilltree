@@ -1,0 +1,13 @@
+{
+  "class_id": "arcanist",
+  "tree_id": "rpgskilltree:class/arcanist",
+  "kind": "pure",
+  "required_completed_domains": [
+    "ARCANE"
+  ],
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": true,
+  "non_adjacent_bridge_cost": 0,
+  "notes": "Pure Arcane class; later branches into spell-system specializations rather than treating Iron schools as classes."
+}

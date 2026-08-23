@@ -1,0 +1,13 @@
+{
+  "class_id": "warrior",
+  "tree_id": "rpgskilltree:class/warrior",
+  "kind": "pure",
+  "required_completed_domains": [
+    "MARTIAL"
+  ],
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": true,
+  "non_adjacent_bridge_cost": 0,
+  "notes": "Seed Alpha 2 class definition; talents and final naming may evolve during class-content design."
+}

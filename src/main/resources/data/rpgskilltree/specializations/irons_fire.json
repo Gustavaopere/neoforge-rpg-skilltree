@@ -1,0 +1,17 @@
+{
+  "specialization_id": "irons_fire",
+  "provider": "irons_spellbooks",
+  "kind": "school",
+  "eligible_class_ids": [
+    "arcanist",
+    "spellblade",
+    "technomancer",
+    "warlock"
+  ],
+  "minimum_mastery_experience": {
+    "irons:fire": 100
+  },
+  "required_tags": [
+    "gateway:irons_fire"
+  ]
+}

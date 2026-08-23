@@ -1,0 +1,16 @@
+{
+  "specialization_id": "irons_lightning",
+  "provider": "irons_spellbooks",
+  "kind": "school",
+  "eligible_class_ids": [
+    "arcanist",
+    "technomancer",
+    "spellblade"
+  ],
+  "minimum_mastery_experience": {
+    "irons:lightning": 100
+  },
+  "required_tags": [
+    "gateway:irons_lightning"
+  ]
+}

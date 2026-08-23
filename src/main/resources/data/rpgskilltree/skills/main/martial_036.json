@@ -1,0 +1,21 @@
+{
+  "id": "rpgskilltree:martial_036",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:martial_037"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/martial",
+    "rpgskilltree:kind/final_triad"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/notable.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/notable.png",
+  "positionX": -792.213,
+  "positionY": -1554.806,
+  "buttonSize": 24,
+  "isStartingPoint": false
+}

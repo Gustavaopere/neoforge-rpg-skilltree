@@ -1,0 +1,16 @@
+{
+  "specialization_id": "irons_nature",
+  "provider": "irons_spellbooks",
+  "kind": "school",
+  "eligible_class_ids": [
+    "druid",
+    "arcanist",
+    "summoner"
+  ],
+  "minimum_mastery_experience": {
+    "irons:nature": 100
+  },
+  "required_tags": [
+    "gateway:irons_nature"
+  ]
+}

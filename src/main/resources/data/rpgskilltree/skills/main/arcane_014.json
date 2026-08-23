@@ -1,0 +1,22 @@
+{
+  "id": "rpgskilltree:arcane_014",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:arcane_015",
+    "rpgskilltree:arcane_024"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/arcane",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": 1213.262,
+  "positionY": -320.969,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

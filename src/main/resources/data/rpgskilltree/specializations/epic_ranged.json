@@ -1,0 +1,16 @@
+{
+  "specialization_id": "epic_ranged",
+  "provider": "epicfight",
+  "kind": "combat",
+  "eligible_class_ids": [
+    "rogue",
+    "beastmaster",
+    "arcanist"
+  ],
+  "minimum_mastery_experience": {
+    "epicfight:ranged": 80
+  },
+  "required_tags": [
+    "gateway:epic_ranged"
+  ]
+}

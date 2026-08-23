@@ -1,0 +1,210 @@
+package dev.gustavopere.rpgskilltree.runtime;
+
+import dev.gustavopere.rpgskilltree.core.BossIdentity;
+import dev.gustavopere.rpgskilltree.core.BossProgressionResult;
+import dev.gustavopere.rpgskilltree.core.BossRewardDefinition;
+import dev.gustavopere.rpgskilltree.core.BossRewardKeyPolicy;
+import dev.gustavopere.rpgskilltree.core.CharacterLevelCurve;
+import dev.gustavopere.rpgskilltree.core.CharacterXpAward;
+import dev.gustavopere.rpgskilltree.core.DiscoveryProgressionResult;
+import dev.gustavopere.rpgskilltree.core.NodeAccessResolver;
+import dev.gustavopere.rpgskilltree.core.ProgressionService;
+import dev.gustavopere.rpgskilltree.core.ProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.data.ClassRuleCatalog;
+import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceCatalog;
+import dev.gustavopere.rpgskilltree.runtime.data.TreeRuleCatalog;
+import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
+import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
+import java.util.Objects;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+
+public final class PlayerProgressionRuntime {
+    private PlayerProgressionRuntime() {}
+
+    public static ProgressionState get(ServerPlayer player) {
+        Objects.requireNonNull(player);
+        return player.getData(ModAttachments.PROGRESSION);
+    }
+
+    public static ProgressionState applyXp(ServerPlayer player, CharacterXpAward award) {
+        ProgressionState next = ProgressionService.applyXp(get(player), award, CharacterLevelCurve.defaultCurve());
+        set(player, next);
+        return next;
+    }
+
+    public static DiscoveryProgressionResult creditDiscovery(
+        ServerPlayer player,
+        String discoveryKey,
+        CharacterXpAward award
+    ) {
+        Objects.requireNonNull(player);
+        DiscoveryProgressionResult result = ProgressionService.creditDiscovery(
+            get(player), discoveryKey, award, CharacterLevelCurve.defaultCurve());
+        if (result.firstDiscovery()) set(player, result.state());
+        return result;
+    }
+
+    public static BossProgressionResult creditBoss(ServerPlayer player, BossIdentity identity, BossRewardDefinition definition) {
+        String rewardKey = BossRewardKeyPolicy.resolve(identity);
+        BossProgressionResult result = ProgressionService.creditBoss(get(player), rewardKey, definition);
+        if (result.firstDefeat()) set(player, result.state());
+        return result;
+    }
+
+
+    public static boolean purchaseNode(ServerPlayer player, ResourceLocation nodeId) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(nodeId);
+        var definition = TreeRuleCatalog.definition(nodeId);
+        if (definition.isEmpty()) {
+            ModNetworking.syncToOwner(player, get(player));
+            return false;
+        }
+        try {
+            ProgressionState current = get(player);
+            boolean requirementsSatisfied = NodeAccessResolver.satisfied(
+                current,
+                TreeRuleCatalog.requirement(nodeId),
+                CharacterLevelCurve.defaultCurve()
+            );
+            ProgressionState next = ProgressionService.purchaseNode(
+                current,
+                TreeRuleCatalog.graph(),
+                definition.get(),
+                requirementsSatisfied
+            );
+            next = reconcileDerivedState(next);
+            set(player, next);
+            return true;
+        } catch (IllegalArgumentException rejectedPurchase) {
+            ModNetworking.syncToOwner(player, get(player));
+            return false;
+        }
+    }
+
+    public static boolean selectClassChoice(ServerPlayer player, ResourceLocation choiceId) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(choiceId);
+        var definition = ClassChoiceCatalog.definition(choiceId.toString());
+        if (definition.isEmpty()) {
+            ModNetworking.syncToOwner(player, get(player));
+            return false;
+        }
+        ProgressionState current = get(player);
+        if (current.classChoices().selectedInGroup(definition.get().groupId()).contains(definition.get().choiceId())) {
+            ModNetworking.syncToOwner(player, current);
+            return false;
+        }
+        try {
+            var choices = dev.gustavopere.rpgskilltree.core.ClassChoicePolicy.select(
+                current.classChoices(),
+                definition.get(),
+                current.classProgression().unlockedClassIds(),
+                definition.get().defaultGroupCapacity()
+            );
+            ProgressionState next = reconcileDerivedState(current.withClassChoices(choices));
+            set(player, next);
+            return true;
+        } catch (IllegalArgumentException rejectedChoice) {
+            ModNetworking.syncToOwner(player, current);
+            return false;
+        }
+    }
+
+    public static boolean clearClassChoice(ServerPlayer player, ResourceLocation choiceId) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(choiceId);
+        var definition = ClassChoiceCatalog.definition(choiceId.toString());
+        if (definition.isEmpty()) {
+            ModNetworking.syncToOwner(player, get(player));
+            return false;
+        }
+        ProgressionState current = get(player);
+        if (!current.classChoices().selectedInGroup(definition.get().groupId()).contains(definition.get().choiceId())) {
+            ModNetworking.syncToOwner(player, current);
+            return false;
+        }
+        var choices = current.classChoices().withoutSelection(definition.get().groupId(), definition.get().choiceId());
+        ProgressionState next = reconcileDerivedState(current.withClassChoices(choices));
+        set(player, next);
+        return true;
+    }
+
+    public static boolean unlockPaidClass(ServerPlayer player, ResourceLocation classId) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(classId);
+        if (!classId.getNamespace().equals("rpgskilltree")) {
+            ModNetworking.syncToOwner(player, get(player));
+            return false;
+        }
+        var definition = ClassRuleCatalog.definition(classId.getPath());
+        if (definition.isEmpty() || definition.get().nonAdjacentBridgeCost() <= 0) {
+            ModNetworking.syncToOwner(player, get(player));
+            return false;
+        }
+        try {
+            var result = ProgressionService.unlockClass(get(player), definition.get());
+            ProgressionState next = reconcileDerivedState(result.state());
+            set(player, next);
+            return result.unlockedNow();
+        } catch (IllegalArgumentException rejectedUnlock) {
+            ModNetworking.syncToOwner(player, get(player));
+            return false;
+        }
+    }
+
+    public static boolean respecNode(ServerPlayer player, ResourceLocation nodeId) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(nodeId);
+        try {
+            var result = ProgressionService.respecNode(
+                get(player),
+                TreeRuleCatalog.graph(),
+                TreeRuleCatalog.definitions(),
+                nodeId.toString()
+            );
+            ProgressionState reconciled = reconcileDerivedState(result.state());
+            set(player, reconciled);
+            return true;
+        } catch (IllegalArgumentException rejectedRespec) {
+            ModNetworking.syncToOwner(player, get(player));
+            return false;
+        }
+    }
+
+    private static ProgressionState reconcileDerivedState(ProgressionState initial) {
+        ProgressionState current = initial;
+        for (int iteration = 0; iteration < 32; iteration++) {
+            var beforeNodes = current.passiveNodes().learnedNodeIds();
+            var beforeClasses = current.classProgression().unlockedClassIds();
+            var beforeSpecializations = current.specializations().unlockedSpecializationIds();
+
+            current = ProgressionService.reconcileAutomaticClasses(
+                current, ClassRuleCatalog.definitions()).state();
+            current = ProgressionService.reconcileNodeSpecializations(
+                current, TreeRuleCatalog.specializationGrants());
+            current = ProgressionService.reconcileInvalidNodes(
+                current,
+                TreeRuleCatalog.graph(),
+                TreeRuleCatalog.definitions(),
+                TreeRuleCatalog.requirements(),
+                CharacterLevelCurve.defaultCurve()
+            ).state();
+
+            boolean stable = beforeNodes.equals(current.passiveNodes().learnedNodeIds())
+                && beforeClasses.equals(current.classProgression().unlockedClassIds())
+                && beforeSpecializations.equals(current.specializations().unlockedSpecializationIds());
+            if (stable) return current;
+        }
+        throw new IllegalStateException("progression reconciliation did not stabilize");
+    }
+
+    public static void set(ServerPlayer player, ProgressionState state) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(state);
+        player.setData(ModAttachments.PROGRESSION, state);
+        AttributeNodeEffectRuntime.refresh(player, state);
+        ModNetworking.syncToOwner(player, state);
+    }
+}

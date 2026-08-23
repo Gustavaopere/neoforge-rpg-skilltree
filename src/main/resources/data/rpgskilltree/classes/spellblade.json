@@ -1,0 +1,14 @@
+{
+  "class_id": "spellblade",
+  "tree_id": "rpgskilltree:class/spellblade",
+  "kind": "hybrid_abnormal",
+  "required_completed_domains": [
+    "ARCANE",
+    "MARTIAL"
+  ],
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": false,
+  "non_adjacent_bridge_cost": 10,
+  "notes": "Distant ARCANE + MARTIAL class; higher bridge price offsets crossing the base tree."
+}

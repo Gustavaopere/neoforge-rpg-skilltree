@@ -1,0 +1,11 @@
+{
+  "class_id": "metamorph",
+  "tree_id": "rpgskilltree:class/metamorph",
+  "kind": "hybrid_abnormal",
+  "required_completed_domains": ["AGILITY", "OCCULT"],
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": false,
+  "non_adjacent_bridge_cost": 10,
+  "notes": "Non-natural shapeshifting class. Runtime Identity 2 / Ars Morph adapter grants humanoid, monster and aberrant form permissions from class-tree nodes; technical and blacklisted entities remain denied."
+}

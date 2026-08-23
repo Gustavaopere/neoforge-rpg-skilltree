@@ -1,0 +1,21 @@
+{
+  "id": "rpgskilltree:occult_033",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:occult_034"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/occult",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": -1486.379,
+  "positionY": -201.687,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

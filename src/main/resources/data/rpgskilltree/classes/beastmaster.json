@@ -1,0 +1,14 @@
+{
+  "class_id": "beastmaster",
+  "tree_id": "rpgskilltree:class/beastmaster",
+  "kind": "hybrid_abnormal",
+  "required_completed_domains": [
+    "AGILITY",
+    "SUMMONING"
+  ],
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": false,
+  "non_adjacent_bridge_cost": 10,
+  "notes": "Distant AGILITY + SUMMONING class for active companion/animal combat."
+}

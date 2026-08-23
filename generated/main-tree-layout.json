@@ -1,7 +1,7 @@
 {
   "id": "rpgskilltree:main",
-  "target_node_count": 420,
-  "actual_node_count": 420,
+  "target_node_count": 512,
+  "actual_node_count": 512,
   "nodes": [
     {
       "id": "core_00",
@@ -461,94 +461,33 @@
     },
     {
       "id": "martial_036",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "MARTIAL",
       "ring": 5,
       "x": -792.213,
-      "y": -1554.806
+      "y": -1554.806,
+      "finalTriadSlot": 0
     },
     {
       "id": "martial_037",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "MARTIAL",
       "ring": 5,
-      "x": -656.255,
-      "y": -1616.897
+      "x": -272.978,
+      "y": -1723.516,
+      "finalTriadSlot": 1
     },
     {
       "id": "martial_038",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "MARTIAL",
       "ring": 5,
-      "x": -515.482,
-      "y": -1667.124
+      "x": 272.978,
+      "y": -1723.516,
+      "finalTriadSlot": 2
     },
     {
       "id": "martial_039",
-      "kind": "domain",
-      "domain": "MARTIAL",
-      "ring": 5,
-      "x": -370.926,
-      "y": -1705.121
-    },
-    {
-      "id": "martial_040",
-      "kind": "domain",
-      "domain": "MARTIAL",
-      "ring": 5,
-      "x": -223.65,
-      "y": -1730.608
-    },
-    {
-      "id": "martial_041",
-      "kind": "domain",
-      "domain": "MARTIAL",
-      "ring": 5,
-      "x": -74.733,
-      "y": -1743.399
-    },
-    {
-      "id": "martial_042",
-      "kind": "domain",
-      "domain": "MARTIAL",
-      "ring": 5,
-      "x": 74.733,
-      "y": -1743.399
-    },
-    {
-      "id": "martial_043",
-      "kind": "domain",
-      "domain": "MARTIAL",
-      "ring": 5,
-      "x": 223.65,
-      "y": -1730.608
-    },
-    {
-      "id": "martial_044",
-      "kind": "domain",
-      "domain": "MARTIAL",
-      "ring": 5,
-      "x": 370.926,
-      "y": -1705.121
-    },
-    {
-      "id": "martial_045",
-      "kind": "domain",
-      "domain": "MARTIAL",
-      "ring": 5,
-      "x": 515.482,
-      "y": -1667.124
-    },
-    {
-      "id": "martial_046",
-      "kind": "domain",
-      "domain": "MARTIAL",
-      "ring": 5,
-      "x": 656.255,
-      "y": -1616.897
-    },
-    {
-      "id": "martial_047",
       "kind": "domain",
       "domain": "MARTIAL",
       "ring": 5,
@@ -556,2506 +495,3206 @@
       "y": -1554.806
     },
     {
-      "id": "agility_000",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 1,
-      "x": 410.23,
-      "y": -645.706
-    },
-    {
-      "id": "agility_001",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 1,
-      "x": 492.025,
-      "y": -585.779
-    },
-    {
-      "id": "agility_002",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 1,
-      "x": 565.175,
-      "y": -515.56
-    },
-    {
-      "id": "agility_003",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 1,
-      "x": 628.397,
-      "y": -436.283
-    },
-    {
-      "id": "agility_004",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 1,
-      "x": 680.578,
-      "y": -349.341
-    },
-    {
-      "id": "agility_005",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 1,
-      "x": 720.802,
-      "y": -256.261
-    },
-    {
-      "id": "agility_006",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 2,
-      "x": 511.528,
-      "y": -870.884
-    },
-    {
-      "id": "agility_007",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 2,
-      "x": 599.758,
-      "y": -812.644
-    },
-    {
-      "id": "agility_008",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 2,
-      "x": 681.417,
-      "y": -745.5
-    },
-    {
-      "id": "agility_009",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 2,
-      "x": 755.61,
-      "y": -670.189
-    },
-    {
-      "id": "agility_010",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 2,
-      "x": 821.525,
-      "y": -587.535
-    },
-    {
-      "id": "agility_011",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 2,
-      "x": 878.439,
-      "y": -498.443
-    },
-    {
-      "id": "agility_012",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 2,
-      "x": 925.728,
-      "y": -403.891
-    },
-    {
-      "id": "agility_013",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 2,
-      "x": 962.875,
-      "y": -304.913
-    },
-    {
-      "id": "agility_014",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 597.459,
-      "y": -1103.661
-    },
-    {
-      "id": "agility_015",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 693.406,
-      "y": -1046.047
-    },
-    {
-      "id": "agility_016",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 783.838,
-      "y": -980.114
-    },
-    {
-      "id": "agility_017",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 868.037,
-      "y": -906.386
-    },
-    {
-      "id": "agility_018",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 945.333,
-      "y": -825.451
-    },
-    {
-      "id": "agility_019",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 1015.112,
-      "y": -737.952
-    },
-    {
-      "id": "agility_020",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 1076.818,
-      "y": -644.584
-    },
-    {
-      "id": "agility_021",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 1129.961,
-      "y": -546.09
-    },
-    {
-      "id": "agility_022",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 1174.117,
-      "y": -443.253
-    },
-    {
-      "id": "agility_023",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 3,
-      "x": 1208.937,
-      "y": -336.892
-    },
-    {
-      "id": "agility_024",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 667.623,
-      "y": -1343.235
-    },
-    {
-      "id": "agility_025",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 771.974,
-      "y": -1286.101
-    },
-    {
-      "id": "agility_026",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 871.47,
-      "y": -1220.877
-    },
-    {
-      "id": "agility_027",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 965.483,
-      "y": -1147.973
-    },
-    {
-      "id": "agility_028",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 1053.423,
-      "y": -1067.848
-    },
-    {
-      "id": "agility_029",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 1134.737,
-      "y": -981.006
-    },
-    {
-      "id": "agility_030",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 1208.913,
-      "y": -887.992
-    },
-    {
-      "id": "agility_031",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 1275.484,
-      "y": -789.393
-    },
-    {
-      "id": "agility_032",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 1334.031,
-      "y": -685.828
-    },
-    {
-      "id": "agility_033",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 1384.187,
-      "y": -577.949
-    },
-    {
-      "id": "agility_034",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 1425.636,
-      "y": -466.435
-    },
-    {
-      "id": "agility_035",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 4,
-      "x": 1458.117,
-      "y": -351.986
-    },
-    {
-      "id": "agility_036",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 721.66,
-      "y": -1588.783
-    },
-    {
-      "id": "agility_037",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 854.972,
-      "y": -1521.199
-    },
-    {
-      "id": "agility_038",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 982.013,
-      "y": -1442.455
-    },
-    {
-      "id": "agility_039",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 1101.849,
-      "y": -1353.128
-    },
-    {
-      "id": "agility_040",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 1213.601,
-      "y": -1253.873
-    },
-    {
-      "id": "agility_041",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 1316.449,
-      "y": -1145.42
-    },
-    {
-      "id": "agility_042",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 1409.639,
-      "y": -1028.563
-    },
-    {
-      "id": "agility_043",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 1492.488,
-      "y": -904.16
-    },
-    {
-      "id": "agility_044",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 1564.386,
-      "y": -773.124
-    },
-    {
-      "id": "agility_045",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 1624.808,
-      "y": -636.415
-    },
-    {
-      "id": "agility_046",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 1673.309,
-      "y": -495.038
-    },
-    {
-      "id": "agility_047",
-      "kind": "domain",
-      "domain": "AGILITY",
-      "ring": 5,
-      "x": 1709.534,
-      "y": -350.029
-    },
-    {
       "id": "vitality_000",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 1,
-      "x": 760.608,
-      "y": -81.861
+      "x": 181.535,
+      "y": -743.149
     },
     {
       "id": "vitality_001",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 1,
-      "x": 764.753,
-      "y": 19.453
+      "x": 278.226,
+      "y": -712.611
     },
     {
       "id": "vitality_002",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 1,
-      "x": 755.462,
-      "y": 120.426
+      "x": 370.03,
+      "y": -669.554
     },
     {
       "id": "vitality_003",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 1,
-      "x": 732.898,
-      "y": 219.283
+      "x": 455.332,
+      "y": -614.734
     },
     {
       "id": "vitality_004",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 1,
-      "x": 697.459,
-      "y": 314.287
+      "x": 532.635,
+      "y": -549.113
     },
     {
       "id": "vitality_005",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 1,
-      "x": 649.766,
-      "y": 403.769
+      "x": 600.58,
+      "y": -473.845
     },
     {
       "id": "vitality_006",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 2,
-      "x": 999.817,
-      "y": -143.058
+      "x": 205.286,
+      "y": -988.917
     },
     {
       "id": "vitality_007",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 2,
-      "x": 1009.294,
-      "y": -37.765
+      "x": 307.531,
+      "y": -962.042
     },
     {
       "id": "vitality_008",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 2,
-      "x": 1007.712,
-      "y": 67.942
+      "x": 406.407,
+      "y": -924.626
     },
     {
       "id": "vitality_009",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 2,
-      "x": 995.09,
-      "y": 172.904
+      "x": 500.831,
+      "y": -877.08
     },
     {
       "id": "vitality_010",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 2,
-      "x": 971.565,
-      "y": 275.972
+      "x": 589.767,
+      "y": -819.924
     },
     {
       "id": "vitality_011",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 2,
-      "x": 937.396,
-      "y": 376.017
+      "x": 672.242,
+      "y": -753.785
     },
     {
       "id": "vitality_012",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 2,
-      "x": 892.957,
-      "y": 471.941
+      "x": 747.351,
+      "y": -679.387
     },
     {
       "id": "vitality_013",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 2,
-      "x": 838.734,
-      "y": 562.695
+      "x": 814.272,
+      "y": -597.546
     },
     {
       "id": "vitality_014",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1235.387,
-      "y": -221.009
+      "x": 212.043,
+      "y": -1236.957
     },
     {
       "id": "vitality_015",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1250.164,
-      "y": -110.073
+      "x": 321.397,
+      "y": -1213.148
     },
     {
       "id": "vitality_016",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1254.999,
-      "y": 1.738
+      "x": 428.196,
+      "y": -1179.692
     },
     {
       "id": "vitality_017",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1249.854,
-      "y": 113.536
+      "x": 531.589,
+      "y": -1136.855
     },
     {
       "id": "vitality_018",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1234.77,
-      "y": 224.431
+      "x": 630.755,
+      "y": -1084.976
     },
     {
       "id": "vitality_019",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1209.866,
-      "y": 333.541
+      "x": 724.904,
+      "y": -1024.47
     },
     {
       "id": "vitality_020",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1175.341,
-      "y": 439.999
+      "x": 813.289,
+      "y": -955.817
     },
     {
       "id": "vitality_021",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1131.469,
-      "y": 542.957
+      "x": 895.207,
+      "y": -879.562
     },
     {
       "id": "vitality_022",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1078.599,
-      "y": 641.598
+      "x": 970.005,
+      "y": -796.313
     },
     {
       "id": "vitality_023",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 3,
-      "x": 1017.152,
-      "y": 735.137
+      "x": 1037.09,
+      "y": -706.732
     },
     {
       "id": "vitality_024",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1466.439,
-      "y": -315.525
+      "x": 201.687,
+      "y": -1486.379
     },
     {
       "id": "vitality_025",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1486.832,
-      "y": -198.317
+      "x": 318.848,
+      "y": -1465.72
     },
     {
       "id": "vitality_026",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1497.873,
-      "y": -79.862
+      "x": 434.003,
+      "y": -1435.842
     },
     {
       "id": "vitality_027",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1499.49,
-      "y": 39.095
+      "x": 546.429,
+      "y": -1396.931
     },
     {
       "id": "vitality_028",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1491.676,
-      "y": 157.807
+      "x": 655.417,
+      "y": -1349.233,
+      "finalTriadSlot": 1
     },
     {
       "id": "vitality_029",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1474.478,
-      "y": 275.526
+      "x": 760.282,
+      "y": -1293.047
     },
     {
       "id": "vitality_030",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1448.005,
-      "y": 391.512
+      "x": 860.365,
+      "y": -1228.728
     },
     {
       "id": "vitality_031",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1412.423,
-      "y": 505.035
+      "x": 955.035,
+      "y": -1156.68
     },
     {
       "id": "vitality_032",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1367.957,
-      "y": 615.381
+      "x": 1043.698,
+      "y": -1077.355
     },
     {
       "id": "vitality_033",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1314.886,
-      "y": 721.856
+      "x": 1125.796,
+      "y": -991.253
     },
     {
       "id": "vitality_034",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1253.543,
-      "y": 823.79
+      "x": 1200.812,
+      "y": -898.916
     },
     {
       "id": "vitality_035",
       "kind": "domain",
       "domain": "VITALITY",
       "ring": 4,
-      "x": 1184.315,
-      "y": 920.542
+      "x": 1268.274,
+      "y": -800.925
     },
     {
       "id": "vitality_036",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "VITALITY",
       "ring": 5,
-      "x": 1692.108,
-      "y": -426.374
+      "x": 174.139,
+      "y": -1736.289,
+      "finalTriadSlot": 0
     },
     {
       "id": "vitality_037",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "VITALITY",
       "ring": 5,
-      "x": 1722.388,
-      "y": -280.008
+      "x": 1507.044,
+      "y": -879.683,
+      "finalTriadSlot": 2
     },
     {
-      "id": "vitality_038",
+      "id": "healing_000",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1740.032,
-      "y": -131.587
+      "domain": "HEALING",
+      "ring": 1,
+      "x": 554.493,
+      "y": -527.031
     },
     {
-      "id": "vitality_039",
+      "id": "healing_001",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1744.909,
-      "y": 17.799
+      "domain": "HEALING",
+      "ring": 1,
+      "x": 619.326,
+      "y": -449.066
     },
     {
-      "id": "vitality_040",
+      "id": "healing_002",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1736.985,
-      "y": 167.054
+      "domain": "HEALING",
+      "ring": 1,
+      "x": 673.277,
+      "y": -363.212
     },
     {
-      "id": "vitality_041",
+      "id": "healing_003",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1716.318,
-      "y": 315.084
+      "domain": "HEALING",
+      "ring": 1,
+      "x": 715.4,
+      "y": -270.976
     },
     {
-      "id": "vitality_042",
+      "id": "healing_004",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1683.059,
-      "y": 460.802
+      "domain": "HEALING",
+      "ring": 1,
+      "x": 744.954,
+      "y": -173.979
     },
     {
-      "id": "vitality_043",
+      "id": "healing_005",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1637.452,
-      "y": 603.139
+      "domain": "HEALING",
+      "ring": 1,
+      "x": 761.42,
+      "y": -73.926
     },
     {
-      "id": "vitality_044",
+      "id": "healing_006",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1579.831,
-      "y": 741.052
+      "domain": "HEALING",
+      "ring": 2,
+      "x": 707.347,
+      "y": -720.944
     },
     {
-      "id": "vitality_045",
+      "id": "healing_007",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1510.621,
-      "y": 873.527
+      "domain": "HEALING",
+      "ring": 2,
+      "x": 778.831,
+      "y": -643.057
     },
     {
-      "id": "vitality_046",
+      "id": "healing_008",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1430.327,
-      "y": 999.594
+      "domain": "HEALING",
+      "ring": 2,
+      "x": 841.782,
+      "y": -558.124
     },
     {
-      "id": "vitality_047",
+      "id": "healing_009",
       "kind": "domain",
-      "domain": "VITALITY",
-      "ring": 5,
-      "x": 1339.54,
-      "y": 1118.328
+      "domain": "HEALING",
+      "ring": 2,
+      "x": 895.511,
+      "y": -467.077
+    },
+    {
+      "id": "healing_010",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 2,
+      "x": 939.428,
+      "y": -370.912
+    },
+    {
+      "id": "healing_011",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 2,
+      "x": 973.052,
+      "y": -270.683
+    },
+    {
+      "id": "healing_012",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 2,
+      "x": 996.016,
+      "y": -167.488
+    },
+    {
+      "id": "healing_013",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 2,
+      "x": 1008.067,
+      "y": -62.459
+    },
+    {
+      "id": "healing_014",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 847.131,
+      "y": -925.955
+    },
+    {
+      "id": "healing_015",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 926.254,
+      "y": -846.805
+    },
+    {
+      "id": "healing_016",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 998.011,
+      "y": -760.92
+    },
+    {
+      "id": "healing_017",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 1061.831,
+      "y": -668.984
+    },
+    {
+      "id": "healing_018",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 1117.207,
+      "y": -571.729
+    },
+    {
+      "id": "healing_019",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 1163.699,
+      "y": -469.926
+    },
+    {
+      "id": "healing_020",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 1200.936,
+      "y": -364.387
+    },
+    {
+      "id": "healing_021",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 1228.623,
+      "y": -255.949
+    },
+    {
+      "id": "healing_022",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 1246.54,
+      "y": -145.477
+    },
+    {
+      "id": "healing_023",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 3,
+      "x": 1254.543,
+      "y": -33.847
+    },
+    {
+      "id": "healing_024",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 973.267,
+      "y": -1141.381
+    },
+    {
+      "id": "healing_025",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 1079.193,
+      "y": -1041.797
+    },
+    {
+      "id": "healing_026",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 1174.981,
+      "y": -932.426
+    },
+    {
+      "id": "healing_027",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 1259.731,
+      "y": -814.295
+    },
+    {
+      "id": "healing_028",
+      "kind": "final_triad",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 1332.647,
+      "y": -688.515,
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "healing_029",
+      "kind": "final_triad",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 1393.043,
+      "y": -556.266,
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "healing_030",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 1440.352,
+      "y": -418.791
+    },
+    {
+      "id": "healing_031",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 1474.13,
+      "y": -277.383
+    },
+    {
+      "id": "healing_032",
+      "kind": "domain",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 1494.059,
+      "y": -133.368
+    },
+    {
+      "id": "healing_033",
+      "kind": "final_triad",
+      "domain": "HEALING",
+      "ring": 4,
+      "x": 1499.953,
+      "y": 11.9,
+      "finalTriadSlot": 2
     },
     {
       "id": "arcane_000",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 1,
-      "x": 538.233,
-      "y": 543.627
+      "x": 751.404,
+      "y": -143.585
     },
     {
       "id": "arcane_001",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 1,
-      "x": 461.606,
-      "y": 610.037
+      "x": 763.794,
+      "y": -42.946
     },
     {
       "id": "arcane_002",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 1,
-      "x": 376.87,
-      "y": 665.728
+      "x": 762.764,
+      "y": 58.448
     },
     {
       "id": "arcane_003",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 1,
-      "x": 285.513,
-      "y": 709.724
+      "x": 748.333,
+      "y": 158.815
     },
     {
       "id": "arcane_004",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 1,
-      "x": 189.139,
-      "y": 741.25
+      "x": 720.755,
+      "y": 256.392
     },
     {
       "id": "arcane_005",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 1,
-      "x": 89.443,
-      "y": 759.753
+      "x": 680.514,
+      "y": 349.464
     },
     {
       "id": "arcane_006",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 2,
-      "x": 735.223,
-      "y": 692.493
+      "x": 984.83,
+      "y": -224.077
     },
     {
       "id": "arcane_007",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 2,
-      "x": 658.81,
-      "y": 765.551
+      "x": 1002.857,
+      "y": -119.906
     },
     {
       "id": "arcane_008",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 2,
-      "x": 575.179,
-      "y": 830.222
+      "x": 1009.897,
+      "y": -14.422
     },
     {
       "id": "arcane_009",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 2,
-      "x": 485.247,
-      "y": 885.797
+      "x": 1005.872,
+      "y": 91.22
     },
     {
       "id": "arcane_010",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 2,
-      "x": 389.997,
-      "y": 931.666
+      "x": 990.827,
+      "y": 195.862
     },
     {
       "id": "arcane_011",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 2,
-      "x": 290.475,
-      "y": 967.328
+      "x": 964.926,
+      "y": 298.359
     },
     {
       "id": "arcane_012",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 2,
-      "x": 187.771,
-      "y": 992.392
+      "x": 928.453,
+      "y": 397.587
     },
     {
       "id": "arcane_013",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 2,
-      "x": 83.009,
-      "y": 1006.583
+      "x": 881.808,
+      "y": 492.458
     },
     {
       "id": "arcane_014",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 943.043,
-      "y": 828.067
+      "x": 1213.262,
+      "y": -320.969
     },
     {
       "id": "arcane_015",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 865.523,
-      "y": 908.788
+      "x": 1237.032,
+      "y": -211.607
     },
     {
       "id": "arcane_016",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 781.12,
-      "y": 982.281
+      "x": 1250.965,
+      "y": -100.561
     },
     {
       "id": "arcane_017",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 690.505,
-      "y": 1047.964
+      "x": 1254.949,
+      "y": 11.284
     },
     {
       "id": "arcane_018",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 594.399,
-      "y": 1105.312
+      "x": 1248.954,
+      "y": 123.039
     },
     {
       "id": "arcane_019",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 493.566,
-      "y": 1153.871
+      "x": 1233.027,
+      "y": 233.816
     },
     {
       "id": "arcane_020",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 388.808,
-      "y": 1193.253
+      "x": 1207.294,
+      "y": 342.733
     },
     {
       "id": "arcane_021",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 280.958,
-      "y": 1223.147
+      "x": 1171.96,
+      "y": 448.925
     },
     {
       "id": "arcane_022",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 170.874,
-      "y": 1243.313
+      "x": 1127.307,
+      "y": 551.547
     },
     {
       "id": "arcane_023",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 3,
-      "x": 59.431,
-      "y": 1253.592
+      "x": 1073.688,
+      "y": 649.783
     },
     {
       "id": "arcane_024",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 1160.997,
-      "y": 949.782
+      "x": 1435.842,
+      "y": -434.003
     },
     {
       "id": "arcane_025",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 1082.075,
-      "y": 1038.804
+      "x": 1465.72,
+      "y": -318.848
     },
     {
       "id": "arcane_026",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 996.347,
-      "y": 1121.291
+      "x": 1486.379,
+      "y": -201.687
     },
     {
       "id": "arcane_027",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 904.351,
-      "y": 1196.724
+      "x": 1497.688,
+      "y": -83.257
     },
     {
       "id": "arcane_028",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 806.666,
-      "y": 1264.63
+      "x": 1499.575,
+      "y": 35.697
     },
     {
       "id": "arcane_029",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 703.907,
-      "y": 1324.581
+      "x": 1492.03,
+      "y": 154.426
     },
     {
       "id": "arcane_030",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 596.72,
-      "y": 1376.199
+      "x": 1475.099,
+      "y": 272.183
     },
     {
       "id": "arcane_031",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 485.78,
-      "y": 1419.161
+      "x": 1448.889,
+      "y": 388.229
     },
     {
       "id": "arcane_032",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 371.783,
-      "y": 1453.196
+      "x": 1413.565,
+      "y": 501.832
     },
     {
       "id": "arcane_033",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 255.448,
-      "y": 1478.089
+      "x": 1369.348,
+      "y": 612.278
     },
     {
       "id": "arcane_034",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 137.506,
-      "y": 1493.684
+      "x": 1316.518,
+      "y": 718.873
     },
     {
       "id": "arcane_035",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 4,
-      "x": 18.699,
-      "y": 1499.883
+      "x": 1255.407,
+      "y": 820.946
     },
     {
       "id": "arcane_036",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 1388.365,
-      "y": 1057.104
+      "x": 1651.724,
+      "y": -562.878
     },
     {
       "id": "arcane_037",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 1308.147,
-      "y": 1154.893
+      "x": 1688.158,
+      "y": -441.757,
+      "finalTriadSlot": 0
     },
     {
       "id": "arcane_038",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 1221.056,
-      "y": 1246.614
+      "x": 1715.722,
+      "y": -318.315
     },
     {
       "id": "arcane_039",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 1127.55,
-      "y": 1331.787
+      "x": 1734.272,
+      "y": -193.201
     },
     {
       "id": "arcane_040",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 1028.121,
-      "y": 1409.962
+      "x": 1743.711,
+      "y": -67.072,
+      "finalTriadSlot": 1
     },
     {
       "id": "arcane_041",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 923.29,
-      "y": 1480.73
+      "x": 1743.988,
+      "y": 59.41
     },
     {
       "id": "arcane_042",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 813.608,
-      "y": 1543.719
+      "x": 1735.104,
+      "y": 185.579
     },
     {
       "id": "arcane_043",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 699.652,
-      "y": 1598.597
+      "x": 1717.104,
+      "y": 310.773
     },
     {
       "id": "arcane_044",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 582.02,
-      "y": 1645.077
+      "x": 1690.082,
+      "y": 434.335
     },
     {
       "id": "arcane_045",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 461.33,
-      "y": 1682.914
+      "x": 1654.182,
+      "y": 555.615
     },
     {
       "id": "arcane_046",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 338.217,
-      "y": 1711.91
+      "x": 1609.591,
+      "y": 673.976,
+      "finalTriadSlot": 2
     },
     {
       "id": "arcane_047",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 213.326,
-      "y": 1731.911
+      "x": 1556.543,
+      "y": 788.796
     },
     {
       "id": "arcane_048",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": 87.315,
-      "y": 1742.814
+      "x": 1495.318,
+      "y": 899.472
     },
     {
       "id": "arcane_049",
       "kind": "domain",
       "domain": "ARCANE",
       "ring": 5,
-      "x": -39.154,
-      "y": 1744.561
-    },
-    {
-      "id": "arcane_050",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": 1624.4,
-      "y": 1149.532
-    },
-    {
-      "id": "arcane_051",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": 1485.113,
-      "y": 1324.59
-    },
-    {
-      "id": "arcane_052",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": 1327.057,
-      "y": 1482.909
-    },
-    {
-      "id": "arcane_053",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": 1152.23,
-      "y": 1622.487
-    },
-    {
-      "id": "arcane_054",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": 962.842,
-      "y": 1741.561
-    },
-    {
-      "id": "arcane_055",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": 761.285,
-      "y": 1838.626
-    },
-    {
-      "id": "arcane_056",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": 550.108,
-      "y": 1912.454
-    },
-    {
-      "id": "arcane_057",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": 331.979,
-      "y": 1962.114
-    },
-    {
-      "id": "arcane_058",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": 109.654,
-      "y": 1986.977
-    },
-    {
-      "id": "arcane_059",
-      "kind": "domain",
-      "domain": "ARCANE",
-      "ring": 6,
-      "x": -114.057,
-      "y": 1986.729
+      "x": 1426.237,
+      "y": 1005.422
     },
     {
       "id": "engineering_000",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 1,
-      "x": -89.443,
-      "y": 759.753
+      "x": 709.749,
+      "y": 285.448
     },
     {
       "id": "engineering_001",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 1,
-      "x": -189.139,
-      "y": 741.25
+      "x": 665.762,
+      "y": 376.81
     },
     {
       "id": "engineering_002",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 1,
-      "x": -285.513,
-      "y": 709.724
+      "x": 610.078,
+      "y": 461.551
     },
     {
       "id": "engineering_003",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 1,
-      "x": -376.87,
-      "y": 665.728
+      "x": 543.676,
+      "y": 538.183
     },
     {
       "id": "engineering_004",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 1,
-      "x": -461.606,
-      "y": 610.037
+      "x": 467.722,
+      "y": 605.36
     },
     {
       "id": "engineering_005",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 1,
-      "x": -538.233,
-      "y": 543.627
+      "x": 383.551,
+      "y": 661.902
     },
     {
       "id": "engineering_006",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 2,
-      "x": -83.009,
-      "y": 1006.583
+      "x": 949.636,
+      "y": 343.934
     },
     {
       "id": "engineering_007",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 2,
-      "x": -187.771,
-      "y": 992.392
+      "x": 908.483,
+      "y": 441.314
     },
     {
       "id": "engineering_008",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 2,
-      "x": -290.475,
-      "y": 967.328
+      "x": 857.377,
+      "y": 533.859
     },
     {
       "id": "engineering_009",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 2,
-      "x": -389.997,
-      "y": 931.666
+      "x": 796.876,
+      "y": 620.554
     },
     {
       "id": "engineering_010",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 2,
-      "x": -485.247,
-      "y": 885.797
+      "x": 727.645,
+      "y": 700.451
     },
     {
       "id": "engineering_011",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 2,
-      "x": -575.179,
-      "y": 830.222
+      "x": 650.442,
+      "y": 772.674
     },
     {
       "id": "engineering_012",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 2,
-      "x": -658.81,
-      "y": 765.551
+      "x": 566.113,
+      "y": 836.431
     },
     {
       "id": "engineering_013",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 2,
-      "x": -735.223,
-      "y": 692.493
+      "x": 475.581,
+      "y": 891.024
     },
     {
       "id": "engineering_014",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -59.431,
-      "y": 1253.592
+      "x": 1194.19,
+      "y": 385.922
     },
     {
       "id": "engineering_015",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -170.874,
-      "y": 1243.313
+      "x": 1155.061,
+      "y": 490.775
     },
     {
       "id": "engineering_016",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -280.958,
-      "y": 1223.147
+      "x": 1106.746,
+      "y": 591.725
     },
     {
       "id": "engineering_017",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -388.808,
-      "y": 1193.253
+      "x": 1049.63,
+      "y": 687.969
     },
     {
       "id": "engineering_018",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -493.566,
-      "y": 1153.871
+      "x": 984.167,
+      "y": 778.743
     },
     {
       "id": "engineering_019",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -594.399,
-      "y": 1105.312
+      "x": 910.878,
+      "y": 863.323
     },
     {
       "id": "engineering_020",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -690.505,
-      "y": 1047.964
+      "x": 830.345,
+      "y": 941.038
     },
     {
       "id": "engineering_021",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -781.12,
-      "y": 982.281
+      "x": 743.208,
+      "y": 1011.27
     },
     {
       "id": "engineering_022",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -865.523,
-      "y": 908.788
+      "x": 650.162,
+      "y": 1073.459
     },
     {
       "id": "engineering_023",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 3,
-      "x": -943.043,
-      "y": 828.067
+      "x": 551.945,
+      "y": 1127.112
     },
     {
       "id": "engineering_024",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -18.699,
-      "y": 1499.883
+      "x": 1442.547,
+      "y": 411.168
     },
     {
       "id": "engineering_025",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -137.506,
-      "y": 1493.684
+      "x": 1405.425,
+      "y": 524.196
     },
     {
       "id": "engineering_026",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -255.448,
-      "y": 1478.089
+      "x": 1359.462,
+      "y": 633.927
     },
     {
       "id": "engineering_027",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -371.783,
-      "y": 1453.196
+      "x": 1304.947,
+      "y": 739.671
     },
     {
       "id": "engineering_028",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -485.78,
-      "y": 1419.161
+      "x": 1242.224,
+      "y": 840.761
     },
     {
       "id": "engineering_029",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -596.72,
-      "y": 1376.199
+      "x": 1171.687,
+      "y": 936.563
     },
     {
       "id": "engineering_030",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -703.907,
-      "y": 1324.581
+      "x": 1093.779,
+      "y": 1026.474
     },
     {
       "id": "engineering_031",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -806.666,
-      "y": 1264.63
+      "x": 1008.991,
+      "y": 1109.927
     },
     {
       "id": "engineering_032",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -904.351,
-      "y": 1196.724
+      "x": 917.855,
+      "y": 1186.399
     },
     {
       "id": "engineering_033",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -996.347,
-      "y": 1121.291
+      "x": 820.946,
+      "y": 1255.407
     },
     {
       "id": "engineering_034",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -1082.075,
-      "y": 1038.804
+      "x": 718.873,
+      "y": 1316.518
     },
     {
       "id": "engineering_035",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 4,
-      "x": -1160.997,
-      "y": 949.782
+      "x": 612.278,
+      "y": 1369.348
     },
     {
       "id": "engineering_036",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": 39.154,
-      "y": 1744.561
+      "x": 1693.834,
+      "y": 419.467
     },
     {
       "id": "engineering_037",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": -87.315,
-      "y": 1742.814
+      "x": 1640.709,
+      "y": 594.223,
+      "finalTriadSlot": 0
     },
     {
       "id": "engineering_038",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": -213.326,
-      "y": 1731.911
+      "x": 1569.607,
+      "y": 762.468
     },
     {
       "id": "engineering_039",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": -338.217,
-      "y": 1711.91
+      "x": 1481.309,
+      "y": 922.36
     },
     {
       "id": "engineering_040",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": -461.33,
-      "y": 1682.914
+      "x": 1376.782,
+      "y": 1072.146
     },
     {
       "id": "engineering_041",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": -582.02,
-      "y": 1645.077
+      "x": 1257.17,
+      "y": 1210.186,
+      "finalTriadSlot": 1
     },
     {
       "id": "engineering_042",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": -699.652,
-      "y": 1598.597
+      "x": 1123.784,
+      "y": 1334.966
     },
     {
       "id": "engineering_043",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": -813.608,
-      "y": 1543.719
+      "x": 978.086,
+      "y": 1445.12
     },
     {
       "id": "engineering_044",
       "kind": "domain",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": -923.29,
-      "y": 1480.73
+      "x": 821.671,
+      "y": 1539.442
     },
     {
       "id": "engineering_045",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "ENGINEERING",
       "ring": 5,
-      "x": -1028.121,
-      "y": 1409.962
+      "x": 656.255,
+      "y": 1616.897,
+      "finalTriadSlot": 2
     },
     {
-      "id": "engineering_046",
+      "id": "mining_000",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 5,
-      "x": -1127.55,
-      "y": 1331.787
+      "domain": "MINING",
+      "ring": 1,
+      "x": 442.754,
+      "y": 623.854
     },
     {
-      "id": "engineering_047",
+      "id": "mining_001",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 5,
-      "x": -1221.056,
-      "y": 1246.614
+      "domain": "MINING",
+      "ring": 1,
+      "x": 356.356,
+      "y": 676.931
     },
     {
-      "id": "engineering_048",
+      "id": "mining_002",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 5,
-      "x": -1308.147,
-      "y": 1154.893
+      "domain": "MINING",
+      "ring": 1,
+      "x": 263.697,
+      "y": 718.115
     },
     {
-      "id": "engineering_049",
+      "id": "mining_003",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 5,
-      "x": -1388.365,
-      "y": 1057.104
+      "domain": "MINING",
+      "ring": 1,
+      "x": 166.406,
+      "y": 746.682
     },
     {
-      "id": "engineering_050",
+      "id": "mining_004",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 6,
-      "x": 114.057,
-      "y": 1986.729
+      "domain": "MINING",
+      "ring": 1,
+      "x": 66.19,
+      "y": 762.131
     },
     {
-      "id": "engineering_051",
+      "id": "mining_005",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 6,
-      "x": -287.76,
-      "y": 1969.085
+      "domain": "MINING",
+      "ring": 1,
+      "x": -35.188,
+      "y": 764.19
     },
     {
-      "id": "engineering_052",
+      "id": "mining_006",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 6,
-      "x": -677.822,
-      "y": 1871.004
+      "domain": "MINING",
+      "ring": 2,
+      "x": 612.94,
+      "y": 802.748
     },
     {
-      "id": "engineering_053",
+      "id": "mining_007",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 6,
-      "x": -1040.195,
-      "y": 1696.495
+      "domain": "MINING",
+      "ring": 2,
+      "x": 525.672,
+      "y": 862.42
     },
     {
-      "id": "engineering_054",
+      "id": "mining_008",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 6,
-      "x": -1360.077,
-      "y": 1452.684
+      "domain": "MINING",
+      "ring": 2,
+      "x": 432.645,
+      "y": 912.643
     },
     {
-      "id": "engineering_055",
+      "id": "mining_009",
       "kind": "domain",
-      "domain": "ENGINEERING",
-      "ring": 6,
-      "x": -1624.4,
-      "y": 1149.532
+      "domain": "MINING",
+      "ring": 2,
+      "x": 334.878,
+      "y": 952.868
+    },
+    {
+      "id": "mining_010",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 2,
+      "x": 233.442,
+      "y": 982.652
+    },
+    {
+      "id": "mining_011",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 2,
+      "x": 129.448,
+      "y": 1001.67
+    },
+    {
+      "id": "mining_012",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 2,
+      "x": 24.036,
+      "y": 1009.714
+    },
+    {
+      "id": "mining_013",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 2,
+      "x": -81.64,
+      "y": 1006.695
+    },
+    {
+      "id": "mining_014",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": 795.971,
+      "y": 970.286
+    },
+    {
+      "id": "mining_015",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": 706.366,
+      "y": 1037.339
+    },
+    {
+      "id": "mining_016",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": 611.143,
+      "y": 1096.143
+    },
+    {
+      "id": "mining_017",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": 511.061,
+      "y": 1146.229
+    },
+    {
+      "id": "mining_018",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": 406.914,
+      "y": 1187.201
+    },
+    {
+      "id": "mining_019",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": 299.531,
+      "y": 1218.731
+    },
+    {
+      "id": "mining_020",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": 189.767,
+      "y": 1240.57
+    },
+    {
+      "id": "mining_021",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": 78.493,
+      "y": 1252.543
+    },
+    {
+      "id": "mining_022",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": -33.405,
+      "y": 1254.555
+    },
+    {
+      "id": "mining_023",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 3,
+      "x": -145.037,
+      "y": 1246.591
+    },
+    {
+      "id": "mining_024",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 991.253,
+      "y": 1125.796
+    },
+    {
+      "id": "mining_025",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 898.916,
+      "y": 1200.812
+    },
+    {
+      "id": "mining_026",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 800.925,
+      "y": 1268.274
+    },
+    {
+      "id": "mining_027",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 697.895,
+      "y": 1327.758
+    },
+    {
+      "id": "mining_028",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 590.475,
+      "y": 1378.89
+    },
+    {
+      "id": "mining_029",
+      "kind": "final_triad",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 479.341,
+      "y": 1421.349,
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "mining_030",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 365.192,
+      "y": 1454.866
+    },
+    {
+      "id": "mining_031",
+      "kind": "final_triad",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 248.745,
+      "y": 1479.232,
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "mining_032",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 130.734,
+      "y": 1494.292
+    },
+    {
+      "id": "mining_033",
+      "kind": "final_triad",
+      "domain": "MINING",
+      "ring": 4,
+      "x": 11.9,
+      "y": 1499.953,
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "mining_034",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 4,
+      "x": -107.009,
+      "y": 1496.178
+    },
+    {
+      "id": "mining_035",
+      "kind": "domain",
+      "domain": "MINING",
+      "ring": 4,
+      "x": -225.244,
+      "y": 1482.992
     },
     {
       "id": "survival_000",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 1,
-      "x": -649.766,
-      "y": 403.769
+      "x": 35.188,
+      "y": 764.19
     },
     {
       "id": "survival_001",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 1,
-      "x": -697.459,
-      "y": 314.287
+      "x": -66.19,
+      "y": 762.131
     },
     {
       "id": "survival_002",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 1,
-      "x": -732.898,
-      "y": 219.283
+      "x": -166.406,
+      "y": 746.682
     },
     {
       "id": "survival_003",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 1,
-      "x": -755.462,
-      "y": 120.426
+      "x": -263.697,
+      "y": 718.115
     },
     {
       "id": "survival_004",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 1,
-      "x": -764.753,
-      "y": 19.453
+      "x": -356.356,
+      "y": 676.931
     },
     {
       "id": "survival_005",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 1,
-      "x": -760.608,
-      "y": -81.861
+      "x": -442.754,
+      "y": 623.854
     },
     {
       "id": "survival_006",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 2,
-      "x": -838.734,
-      "y": 562.695
+      "x": 81.64,
+      "y": 1006.695
     },
     {
       "id": "survival_007",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 2,
-      "x": -892.957,
-      "y": 471.941
+      "x": -24.036,
+      "y": 1009.714
     },
     {
       "id": "survival_008",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 2,
-      "x": -937.396,
-      "y": 376.017
+      "x": -129.448,
+      "y": 1001.67
     },
     {
       "id": "survival_009",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 2,
-      "x": -971.565,
-      "y": 275.972
+      "x": -233.442,
+      "y": 982.652
     },
     {
       "id": "survival_010",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 2,
-      "x": -995.09,
-      "y": 172.904
+      "x": -334.878,
+      "y": 952.868
     },
     {
       "id": "survival_011",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 2,
-      "x": -1007.712,
-      "y": 67.942
+      "x": -432.645,
+      "y": 912.643
     },
     {
       "id": "survival_012",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 2,
-      "x": -1009.294,
-      "y": -37.765
+      "x": -525.672,
+      "y": 862.42
     },
     {
       "id": "survival_013",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 2,
-      "x": -999.817,
-      "y": -143.058
+      "x": -612.94,
+      "y": 802.748
     },
     {
       "id": "survival_014",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1017.152,
-      "y": 735.137
+      "x": 145.037,
+      "y": 1246.591
     },
     {
       "id": "survival_015",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1078.599,
-      "y": 641.598
+      "x": 33.405,
+      "y": 1254.555
     },
     {
       "id": "survival_016",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1131.469,
-      "y": 542.957
+      "x": -78.493,
+      "y": 1252.543
     },
     {
       "id": "survival_017",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1175.341,
-      "y": 439.999
+      "x": -189.767,
+      "y": 1240.57
     },
     {
       "id": "survival_018",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1209.866,
-      "y": 333.541
+      "x": -299.531,
+      "y": 1218.731
     },
     {
       "id": "survival_019",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1234.77,
-      "y": 224.431
+      "x": -406.914,
+      "y": 1187.201
     },
     {
       "id": "survival_020",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1249.854,
-      "y": 113.536
+      "x": -511.061,
+      "y": 1146.229
     },
     {
       "id": "survival_021",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1254.999,
-      "y": 1.738
+      "x": -611.143,
+      "y": 1096.143
     },
     {
       "id": "survival_022",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1250.164,
-      "y": -110.073
+      "x": -706.366,
+      "y": 1037.339
     },
     {
       "id": "survival_023",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 3,
-      "x": -1235.387,
-      "y": -221.009
+      "x": -795.971,
+      "y": 970.286
     },
     {
       "id": "survival_024",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1184.315,
-      "y": 920.542
+      "x": 225.244,
+      "y": 1482.992
     },
     {
       "id": "survival_025",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1253.543,
-      "y": 823.79
+      "x": 107.009,
+      "y": 1496.178
     },
     {
       "id": "survival_026",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1314.886,
-      "y": 721.856
+      "x": -11.9,
+      "y": 1499.953
     },
     {
       "id": "survival_027",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1367.957,
-      "y": 615.381
+      "x": -130.734,
+      "y": 1494.292
     },
     {
       "id": "survival_028",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1412.423,
-      "y": 505.035
+      "x": -248.745,
+      "y": 1479.232,
+      "finalTriadSlot": 1
     },
     {
       "id": "survival_029",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1448.005,
-      "y": 391.512
+      "x": -365.192,
+      "y": 1454.866
     },
     {
       "id": "survival_030",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1474.478,
-      "y": 275.526
+      "x": -479.341,
+      "y": 1421.349
     },
     {
       "id": "survival_031",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1491.676,
-      "y": 157.807
+      "x": -590.475,
+      "y": 1378.89
     },
     {
       "id": "survival_032",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1499.49,
-      "y": 39.095
+      "x": -697.895,
+      "y": 1327.758
     },
     {
       "id": "survival_033",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1497.873,
-      "y": -79.862
+      "x": -800.925,
+      "y": 1268.274
     },
     {
       "id": "survival_034",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1486.832,
-      "y": -198.317
+      "x": -898.916,
+      "y": 1200.812
     },
     {
       "id": "survival_035",
       "kind": "domain",
       "domain": "SURVIVAL",
       "ring": 4,
-      "x": -1466.439,
-      "y": -315.525
+      "x": -991.253,
+      "y": 1125.796
     },
     {
       "id": "survival_036",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "SURVIVAL",
       "ring": 5,
-      "x": -1339.54,
-      "y": 1118.328
+      "x": 322.084,
+      "y": 1715.018,
+      "finalTriadSlot": 0
     },
     {
       "id": "survival_037",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "SURVIVAL",
       "ring": 5,
-      "x": -1619.561,
-      "y": 649.652
-    },
-    {
-      "id": "survival_038",
-      "kind": "domain",
-      "domain": "SURVIVAL",
-      "ring": 5,
-      "x": -1741.047,
-      "y": 117.384
-    },
-    {
-      "id": "survival_039",
-      "kind": "domain",
-      "domain": "SURVIVAL",
-      "ring": 5,
-      "x": -1692.108,
-      "y": -426.374
+      "x": -1198.163,
+      "y": 1268.633,
+      "finalTriadSlot": 2
     },
     {
       "id": "summoning_000",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 1,
-      "x": -720.802,
-      "y": -256.261
+      "x": -383.551,
+      "y": 661.902
     },
     {
       "id": "summoning_001",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 1,
-      "x": -680.578,
-      "y": -349.341
+      "x": -467.722,
+      "y": 605.36
     },
     {
       "id": "summoning_002",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 1,
-      "x": -628.397,
-      "y": -436.283
+      "x": -543.676,
+      "y": 538.183
     },
     {
       "id": "summoning_003",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 1,
-      "x": -565.175,
-      "y": -515.56
+      "x": -610.078,
+      "y": 461.551
     },
     {
       "id": "summoning_004",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 1,
-      "x": -492.025,
-      "y": -585.779
+      "x": -665.762,
+      "y": 376.81
     },
     {
       "id": "summoning_005",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 1,
-      "x": -410.23,
-      "y": -645.706
+      "x": -709.749,
+      "y": 285.448
     },
     {
       "id": "summoning_006",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 2,
-      "x": -962.875,
-      "y": -304.913
+      "x": -475.581,
+      "y": 891.024
     },
     {
       "id": "summoning_007",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 2,
-      "x": -925.728,
-      "y": -403.891
+      "x": -566.113,
+      "y": 836.431
     },
     {
       "id": "summoning_008",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 2,
-      "x": -878.439,
-      "y": -498.443
+      "x": -650.442,
+      "y": 772.674
     },
     {
       "id": "summoning_009",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 2,
-      "x": -821.525,
-      "y": -587.535
+      "x": -727.645,
+      "y": 700.451
     },
     {
       "id": "summoning_010",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 2,
-      "x": -755.61,
-      "y": -670.189
+      "x": -796.876,
+      "y": 620.554
     },
     {
       "id": "summoning_011",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 2,
-      "x": -681.417,
-      "y": -745.5
+      "x": -857.377,
+      "y": 533.859
     },
     {
       "id": "summoning_012",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 2,
-      "x": -599.758,
-      "y": -812.644
+      "x": -908.483,
+      "y": 441.314
     },
     {
       "id": "summoning_013",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 2,
-      "x": -511.528,
-      "y": -870.884
+      "x": -949.636,
+      "y": 343.934
     },
     {
       "id": "summoning_014",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -1208.937,
-      "y": -336.892
+      "x": -551.945,
+      "y": 1127.112
     },
     {
       "id": "summoning_015",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -1174.117,
-      "y": -443.253
+      "x": -650.162,
+      "y": 1073.459
     },
     {
       "id": "summoning_016",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -1129.961,
-      "y": -546.09
+      "x": -743.208,
+      "y": 1011.27
     },
     {
       "id": "summoning_017",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -1076.818,
-      "y": -644.584
+      "x": -830.345,
+      "y": 941.038
     },
     {
       "id": "summoning_018",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -1015.112,
-      "y": -737.952
+      "x": -910.878,
+      "y": 863.323
     },
     {
       "id": "summoning_019",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -945.333,
-      "y": -825.451
+      "x": -984.167,
+      "y": 778.743
     },
     {
       "id": "summoning_020",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -868.037,
-      "y": -906.386
+      "x": -1049.63,
+      "y": 687.969
     },
     {
       "id": "summoning_021",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -783.838,
-      "y": -980.114
+      "x": -1106.746,
+      "y": 591.725
     },
     {
       "id": "summoning_022",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -693.406,
-      "y": -1046.047
+      "x": -1155.061,
+      "y": 490.775
     },
     {
       "id": "summoning_023",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 3,
-      "x": -597.459,
-      "y": -1103.661
+      "x": -1194.19,
+      "y": 385.922
     },
     {
       "id": "summoning_024",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -1458.117,
-      "y": -351.986
+      "x": -612.278,
+      "y": 1369.348
     },
     {
       "id": "summoning_025",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -1425.636,
-      "y": -466.435
+      "x": -741.97,
+      "y": 1303.641
     },
     {
       "id": "summoning_026",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -1384.187,
-      "y": -577.949
+      "x": -864.692,
+      "y": 1225.687
     },
     {
       "id": "summoning_027",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -1334.031,
-      "y": -685.828
+      "x": -979.29,
+      "y": 1136.218
     },
     {
       "id": "summoning_028",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -1275.484,
-      "y": -789.393
+      "x": -1084.688,
+      "y": 1036.075
     },
     {
       "id": "summoning_029",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -1208.913,
-      "y": -887.992
+      "x": -1179.897,
+      "y": 926.199,
+      "finalTriadSlot": 0
     },
     {
       "id": "summoning_030",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -1134.737,
-      "y": -981.006
+      "x": -1264.02,
+      "y": 807.621
     },
     {
       "id": "summoning_031",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -1053.423,
-      "y": -1067.848
+      "x": -1336.27,
+      "y": 681.457,
+      "finalTriadSlot": 1
     },
     {
       "id": "summoning_032",
       "kind": "domain",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -965.483,
-      "y": -1147.973
+      "x": -1395.965,
+      "y": 548.891
     },
     {
       "id": "summoning_033",
-      "kind": "domain",
+      "kind": "final_triad",
       "domain": "SUMMONING",
       "ring": 4,
-      "x": -871.47,
-      "y": -1220.877
+      "x": -1442.547,
+      "y": 411.168,
+      "finalTriadSlot": 2
     },
     {
-      "id": "summoning_034",
+      "id": "occult_000",
       "kind": "domain",
-      "domain": "SUMMONING",
-      "ring": 4,
-      "x": -771.974,
-      "y": -1286.101
+      "domain": "OCCULT",
+      "ring": 1,
+      "x": -680.514,
+      "y": 349.464
     },
     {
-      "id": "summoning_035",
+      "id": "occult_001",
       "kind": "domain",
-      "domain": "SUMMONING",
+      "domain": "OCCULT",
+      "ring": 1,
+      "x": -720.755,
+      "y": 256.392
+    },
+    {
+      "id": "occult_002",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 1,
+      "x": -748.333,
+      "y": 158.815
+    },
+    {
+      "id": "occult_003",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 1,
+      "x": -762.764,
+      "y": 58.448
+    },
+    {
+      "id": "occult_004",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 1,
+      "x": -763.794,
+      "y": -42.946
+    },
+    {
+      "id": "occult_005",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 1,
+      "x": -751.404,
+      "y": -143.585
+    },
+    {
+      "id": "occult_006",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 2,
+      "x": -881.808,
+      "y": 492.458
+    },
+    {
+      "id": "occult_007",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 2,
+      "x": -928.453,
+      "y": 397.587
+    },
+    {
+      "id": "occult_008",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 2,
+      "x": -964.926,
+      "y": 298.359
+    },
+    {
+      "id": "occult_009",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 2,
+      "x": -990.827,
+      "y": 195.862
+    },
+    {
+      "id": "occult_010",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 2,
+      "x": -1005.872,
+      "y": 91.22
+    },
+    {
+      "id": "occult_011",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 2,
+      "x": -1009.897,
+      "y": -14.422
+    },
+    {
+      "id": "occult_012",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 2,
+      "x": -1002.857,
+      "y": -119.906
+    },
+    {
+      "id": "occult_013",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 2,
+      "x": -984.83,
+      "y": -224.077
+    },
+    {
+      "id": "occult_014",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1073.688,
+      "y": 649.783
+    },
+    {
+      "id": "occult_015",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1127.307,
+      "y": 551.547
+    },
+    {
+      "id": "occult_016",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1171.96,
+      "y": 448.925
+    },
+    {
+      "id": "occult_017",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1207.294,
+      "y": 342.733
+    },
+    {
+      "id": "occult_018",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1233.027,
+      "y": 233.816
+    },
+    {
+      "id": "occult_019",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1248.954,
+      "y": 123.039
+    },
+    {
+      "id": "occult_020",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1254.949,
+      "y": 11.284
+    },
+    {
+      "id": "occult_021",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1250.965,
+      "y": -100.561
+    },
+    {
+      "id": "occult_022",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1237.032,
+      "y": -211.607
+    },
+    {
+      "id": "occult_023",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 3,
+      "x": -1213.262,
+      "y": -320.969
+    },
+    {
+      "id": "occult_024",
+      "kind": "domain",
+      "domain": "OCCULT",
       "ring": 4,
-      "x": -667.623,
-      "y": -1343.235
+      "x": -1255.407,
+      "y": 820.946
     },
     {
-      "id": "bridge_spellblade_00",
-      "kind": "hybrid",
-      "archetype": "spellblade",
-      "domains": [
-        "MARTIAL",
-        "ARCANE"
-      ],
-      "x": 1091.919,
-      "y": -249.223
+      "id": "occult_025",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1316.518,
+      "y": 718.873
     },
     {
-      "id": "bridge_spellblade_01",
-      "kind": "hybrid",
-      "archetype": "spellblade",
-      "domains": [
-        "MARTIAL",
-        "ARCANE"
-      ],
-      "x": 1243.033,
-      "y": -283.714
+      "id": "occult_026",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1369.348,
+      "y": 612.278
     },
     {
-      "id": "bridge_spellblade_02",
-      "kind": "hybrid",
-      "archetype": "spellblade",
-      "domains": [
-        "MARTIAL",
-        "ARCANE"
-      ],
-      "x": 1394.147,
-      "y": -318.205
+      "id": "occult_027",
+      "kind": "final_triad",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1413.565,
+      "y": 501.832,
+      "finalTriadSlot": 2
     },
     {
-      "id": "bridge_spellblade_03",
-      "kind": "hybrid",
-      "archetype": "spellblade",
-      "domains": [
-        "MARTIAL",
-        "ARCANE"
-      ],
-      "x": 1545.261,
-      "y": -352.696
+      "id": "occult_028",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1448.889,
+      "y": 388.229
     },
     {
-      "id": "bridge_spellblade_04",
-      "kind": "hybrid",
-      "archetype": "spellblade",
-      "domains": [
-        "MARTIAL",
-        "ARCANE"
-      ],
-      "x": 1696.375,
-      "y": -387.186
+      "id": "occult_029",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1475.099,
+      "y": 272.183
     },
     {
-      "id": "bridge_spellblade_05",
-      "kind": "hybrid",
-      "archetype": "spellblade",
-      "domains": [
-        "MARTIAL",
-        "ARCANE"
-      ],
-      "x": 1847.488,
-      "y": -421.677
+      "id": "occult_030",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1492.03,
+      "y": 154.426
     },
     {
-      "id": "bridge_battlemage_00",
+      "id": "occult_031",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1499.575,
+      "y": 35.697
+    },
+    {
+      "id": "occult_032",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1497.688,
+      "y": -83.257
+    },
+    {
+      "id": "occult_033",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1486.379,
+      "y": -201.687
+    },
+    {
+      "id": "occult_034",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1465.72,
+      "y": -318.848
+    },
+    {
+      "id": "occult_035",
+      "kind": "domain",
+      "domain": "OCCULT",
+      "ring": 4,
+      "x": -1435.842,
+      "y": -434.003
+    },
+    {
+      "id": "occult_036",
+      "kind": "final_triad",
+      "domain": "OCCULT",
+      "ring": 5,
+      "x": -1426.237,
+      "y": 1005.422,
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "occult_037",
+      "kind": "final_triad",
+      "domain": "OCCULT",
+      "ring": 5,
+      "x": -1651.724,
+      "y": -562.878,
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "logistics_000",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 1,
+      "x": -761.42,
+      "y": -73.926
+    },
+    {
+      "id": "logistics_001",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 1,
+      "x": -744.954,
+      "y": -173.979
+    },
+    {
+      "id": "logistics_002",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 1,
+      "x": -715.4,
+      "y": -270.976
+    },
+    {
+      "id": "logistics_003",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 1,
+      "x": -673.277,
+      "y": -363.212
+    },
+    {
+      "id": "logistics_004",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 1,
+      "x": -619.326,
+      "y": -449.066
+    },
+    {
+      "id": "logistics_005",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 1,
+      "x": -554.493,
+      "y": -527.031
+    },
+    {
+      "id": "logistics_006",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 2,
+      "x": -1008.067,
+      "y": -62.459
+    },
+    {
+      "id": "logistics_007",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 2,
+      "x": -996.016,
+      "y": -167.488
+    },
+    {
+      "id": "logistics_008",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 2,
+      "x": -973.052,
+      "y": -270.683
+    },
+    {
+      "id": "logistics_009",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 2,
+      "x": -939.428,
+      "y": -370.912
+    },
+    {
+      "id": "logistics_010",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 2,
+      "x": -895.511,
+      "y": -467.077
+    },
+    {
+      "id": "logistics_011",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 2,
+      "x": -841.782,
+      "y": -558.124
+    },
+    {
+      "id": "logistics_012",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 2,
+      "x": -778.831,
+      "y": -643.057
+    },
+    {
+      "id": "logistics_013",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 2,
+      "x": -707.347,
+      "y": -720.944
+    },
+    {
+      "id": "logistics_014",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -1254.543,
+      "y": -33.847
+    },
+    {
+      "id": "logistics_015",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -1246.54,
+      "y": -145.477
+    },
+    {
+      "id": "logistics_016",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -1228.623,
+      "y": -255.949
+    },
+    {
+      "id": "logistics_017",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -1200.936,
+      "y": -364.387
+    },
+    {
+      "id": "logistics_018",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -1163.699,
+      "y": -469.926
+    },
+    {
+      "id": "logistics_019",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -1117.207,
+      "y": -571.729
+    },
+    {
+      "id": "logistics_020",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -1061.831,
+      "y": -668.984
+    },
+    {
+      "id": "logistics_021",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -998.011,
+      "y": -760.92
+    },
+    {
+      "id": "logistics_022",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -926.254,
+      "y": -846.805
+    },
+    {
+      "id": "logistics_023",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 3,
+      "x": -847.131,
+      "y": -925.955
+    },
+    {
+      "id": "logistics_024",
+      "kind": "final_triad",
+      "domain": "LOGISTICS",
+      "ring": 4,
+      "x": -1499.953,
+      "y": 11.9,
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "logistics_025",
+      "kind": "final_triad",
+      "domain": "LOGISTICS",
+      "ring": 4,
+      "x": -1479.232,
+      "y": -248.745,
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "logistics_026",
+      "kind": "final_triad",
+      "domain": "LOGISTICS",
+      "ring": 4,
+      "x": -1413.565,
+      "y": -501.832,
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "logistics_027",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 4,
+      "x": -1304.947,
+      "y": -739.671
+    },
+    {
+      "id": "logistics_028",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 4,
+      "x": -1156.68,
+      "y": -955.035
+    },
+    {
+      "id": "logistics_029",
+      "kind": "domain",
+      "domain": "LOGISTICS",
+      "ring": 4,
+      "x": -973.267,
+      "y": -1141.381
+    },
+    {
+      "id": "agility_000",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": -600.58,
+      "y": -473.845
+    },
+    {
+      "id": "agility_001",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": -532.635,
+      "y": -549.113
+    },
+    {
+      "id": "agility_002",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": -455.332,
+      "y": -614.734
+    },
+    {
+      "id": "agility_003",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": -370.03,
+      "y": -669.554
+    },
+    {
+      "id": "agility_004",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": -278.226,
+      "y": -712.611
+    },
+    {
+      "id": "agility_005",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 1,
+      "x": -181.535,
+      "y": -743.149
+    },
+    {
+      "id": "agility_006",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": -814.272,
+      "y": -597.546
+    },
+    {
+      "id": "agility_007",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": -747.351,
+      "y": -679.387
+    },
+    {
+      "id": "agility_008",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": -672.242,
+      "y": -753.785
+    },
+    {
+      "id": "agility_009",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": -589.767,
+      "y": -819.924
+    },
+    {
+      "id": "agility_010",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": -500.831,
+      "y": -877.08
+    },
+    {
+      "id": "agility_011",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": -406.407,
+      "y": -924.626
+    },
+    {
+      "id": "agility_012",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": -307.531,
+      "y": -962.042
+    },
+    {
+      "id": "agility_013",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 2,
+      "x": -205.286,
+      "y": -988.917
+    },
+    {
+      "id": "agility_014",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -1037.09,
+      "y": -706.732
+    },
+    {
+      "id": "agility_015",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -970.005,
+      "y": -796.313
+    },
+    {
+      "id": "agility_016",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -895.207,
+      "y": -879.562
+    },
+    {
+      "id": "agility_017",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -813.289,
+      "y": -955.817
+    },
+    {
+      "id": "agility_018",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -724.904,
+      "y": -1024.47
+    },
+    {
+      "id": "agility_019",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -630.755,
+      "y": -1084.976
+    },
+    {
+      "id": "agility_020",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -531.589,
+      "y": -1136.855
+    },
+    {
+      "id": "agility_021",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -428.196,
+      "y": -1179.692
+    },
+    {
+      "id": "agility_022",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -321.397,
+      "y": -1213.148
+    },
+    {
+      "id": "agility_023",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 3,
+      "x": -212.043,
+      "y": -1236.957
+    },
+    {
+      "id": "agility_024",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -1268.274,
+      "y": -800.925
+    },
+    {
+      "id": "agility_025",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -1200.812,
+      "y": -898.916
+    },
+    {
+      "id": "agility_026",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -1125.796,
+      "y": -991.253
+    },
+    {
+      "id": "agility_027",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -1043.698,
+      "y": -1077.355
+    },
+    {
+      "id": "agility_028",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -955.035,
+      "y": -1156.68
+    },
+    {
+      "id": "agility_029",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -860.365,
+      "y": -1228.728
+    },
+    {
+      "id": "agility_030",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -760.282,
+      "y": -1293.047
+    },
+    {
+      "id": "agility_031",
+      "kind": "final_triad",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -655.417,
+      "y": -1349.233,
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "agility_032",
+      "kind": "final_triad",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -546.429,
+      "y": -1396.931,
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "agility_033",
+      "kind": "final_triad",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -434.003,
+      "y": -1435.842,
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "agility_034",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -318.848,
+      "y": -1465.72
+    },
+    {
+      "id": "agility_035",
+      "kind": "domain",
+      "domain": "AGILITY",
+      "ring": 4,
+      "x": -201.687,
+      "y": -1486.379
+    },
+    {
+      "id": "bridge_paladin_00",
       "kind": "hybrid",
-      "archetype": "battlemage",
+      "archetype": "paladin",
       "domains": [
         "VITALITY",
-        "ARCANE"
+        "HEALING"
       ],
-      "x": 875.651,
-      "y": 698.309
+      "x": 846.44,
+      "y": -733.444
     },
     {
-      "id": "bridge_battlemage_01",
+      "id": "bridge_paladin_01",
       "kind": "hybrid",
-      "archetype": "battlemage",
+      "archetype": "paladin",
       "domains": [
         "VITALITY",
-        "ARCANE"
+        "HEALING"
       ],
-      "x": 996.835,
-      "y": 794.949
+      "x": 963.581,
+      "y": -834.947
     },
     {
-      "id": "bridge_battlemage_02",
+      "id": "bridge_paladin_02",
       "kind": "hybrid",
-      "archetype": "battlemage",
+      "archetype": "paladin",
       "domains": [
         "VITALITY",
-        "ARCANE"
+        "HEALING"
       ],
-      "x": 1118.019,
-      "y": 891.59
+      "x": 1080.722,
+      "y": -936.451
     },
     {
-      "id": "bridge_battlemage_03",
+      "id": "bridge_paladin_03",
       "kind": "hybrid",
-      "archetype": "battlemage",
+      "archetype": "paladin",
       "domains": [
         "VITALITY",
-        "ARCANE"
+        "HEALING"
       ],
-      "x": 1239.203,
-      "y": 988.231
+      "x": 1197.863,
+      "y": -1037.954
     },
     {
-      "id": "bridge_battlemage_04",
+      "id": "bridge_paladin_04",
       "kind": "hybrid",
-      "archetype": "battlemage",
+      "archetype": "paladin",
       "domains": [
         "VITALITY",
-        "ARCANE"
+        "HEALING"
       ],
-      "x": 1360.387,
-      "y": 1084.872
+      "x": 1315.004,
+      "y": -1139.458
     },
     {
-      "id": "bridge_battlemage_05",
+      "id": "bridge_paladin_05",
       "kind": "hybrid",
-      "archetype": "battlemage",
+      "archetype": "paladin",
       "domains": [
         "VITALITY",
-        "ARCANE"
+        "HEALING"
       ],
-      "x": 1481.571,
-      "y": 1181.513
+      "x": 1432.145,
+      "y": -1240.961
     },
     {
-      "id": "bridge_arcane_archer_00",
+      "id": "bridge_cleric_00",
       "kind": "hybrid",
-      "archetype": "arcane_archer",
+      "archetype": "cleric",
       "domains": [
-        "AGILITY",
+        "HEALING",
         "ARCANE"
       ],
-      "x": 1091.919,
-      "y": 249.223
+      "x": 1108.6,
+      "y": -159.393
     },
     {
-      "id": "bridge_arcane_archer_01",
+      "id": "bridge_cleric_01",
       "kind": "hybrid",
-      "archetype": "arcane_archer",
+      "archetype": "cleric",
       "domains": [
-        "AGILITY",
+        "HEALING",
         "ARCANE"
       ],
-      "x": 1243.033,
-      "y": 283.714
+      "x": 1262.022,
+      "y": -181.451
     },
     {
-      "id": "bridge_arcane_archer_02",
+      "id": "bridge_cleric_02",
       "kind": "hybrid",
-      "archetype": "arcane_archer",
+      "archetype": "cleric",
       "domains": [
-        "AGILITY",
+        "HEALING",
         "ARCANE"
       ],
-      "x": 1394.147,
-      "y": 318.205
+      "x": 1415.445,
+      "y": -203.51
     },
     {
-      "id": "bridge_arcane_archer_03",
+      "id": "bridge_cleric_03",
       "kind": "hybrid",
-      "archetype": "arcane_archer",
+      "archetype": "cleric",
       "domains": [
-        "AGILITY",
+        "HEALING",
         "ARCANE"
       ],
-      "x": 1545.261,
-      "y": 352.696
+      "x": 1568.867,
+      "y": -225.569
     },
     {
-      "id": "bridge_arcane_archer_04",
+      "id": "bridge_cleric_04",
       "kind": "hybrid",
-      "archetype": "arcane_archer",
+      "archetype": "cleric",
       "domains": [
-        "AGILITY",
+        "HEALING",
         "ARCANE"
       ],
-      "x": 1696.375,
-      "y": 387.186
+      "x": 1722.289,
+      "y": -247.628
     },
     {
-      "id": "bridge_arcane_archer_05",
+      "id": "bridge_cleric_05",
       "kind": "hybrid",
-      "archetype": "arcane_archer",
+      "archetype": "cleric",
       "domains": [
-        "AGILITY",
+        "HEALING",
         "ARCANE"
       ],
-      "x": 1847.488,
-      "y": 421.677
+      "x": 1875.712,
+      "y": -269.687
     },
     {
       "id": "bridge_technomancer_00",
@@ -3065,8 +3704,8 @@
         "ARCANE",
         "ENGINEERING"
       ],
-      "x": 0.0,
-      "y": 1120.0
+      "x": 1018.788,
+      "y": 465.265
     },
     {
       "id": "bridge_technomancer_01",
@@ -3076,8 +3715,8 @@
         "ARCANE",
         "ENGINEERING"
       ],
-      "x": 0.0,
-      "y": 1275.0
+      "x": 1159.781,
+      "y": 529.654
     },
     {
       "id": "bridge_technomancer_02",
@@ -3087,8 +3726,8 @@
         "ARCANE",
         "ENGINEERING"
       ],
-      "x": 0.0,
-      "y": 1430.0
+      "x": 1300.774,
+      "y": 594.043
     },
     {
       "id": "bridge_technomancer_03",
@@ -3098,8 +3737,8 @@
         "ARCANE",
         "ENGINEERING"
       ],
-      "x": 0.0,
-      "y": 1585.0
+      "x": 1441.767,
+      "y": 658.433
     },
     {
       "id": "bridge_technomancer_04",
@@ -3109,8 +3748,8 @@
         "ARCANE",
         "ENGINEERING"
       ],
-      "x": 0.0,
-      "y": 1740.0
+      "x": 1582.76,
+      "y": 722.822
     },
     {
       "id": "bridge_technomancer_05",
@@ -3120,206 +3759,338 @@
         "ARCANE",
         "ENGINEERING"
       ],
+      "x": 1723.753,
+      "y": 787.211
+    },
+    {
+      "id": "bridge_industrialist_00",
+      "kind": "hybrid",
+      "archetype": "industrialist",
+      "domains": [
+        "ENGINEERING",
+        "MINING"
+      ],
+      "x": 605.518,
+      "y": 942.204
+    },
+    {
+      "id": "bridge_industrialist_01",
+      "kind": "hybrid",
+      "archetype": "industrialist",
+      "domains": [
+        "ENGINEERING",
+        "MINING"
+      ],
+      "x": 689.317,
+      "y": 1072.598
+    },
+    {
+      "id": "bridge_industrialist_02",
+      "kind": "hybrid",
+      "archetype": "industrialist",
+      "domains": [
+        "ENGINEERING",
+        "MINING"
+      ],
+      "x": 773.116,
+      "y": 1202.993
+    },
+    {
+      "id": "bridge_industrialist_03",
+      "kind": "hybrid",
+      "archetype": "industrialist",
+      "domains": [
+        "ENGINEERING",
+        "MINING"
+      ],
+      "x": 856.916,
+      "y": 1333.387
+    },
+    {
+      "id": "bridge_industrialist_04",
+      "kind": "hybrid",
+      "archetype": "industrialist",
+      "domains": [
+        "ENGINEERING",
+        "MINING"
+      ],
+      "x": 940.715,
+      "y": 1463.781
+    },
+    {
+      "id": "bridge_industrialist_05",
+      "kind": "hybrid",
+      "archetype": "industrialist",
+      "domains": [
+        "ENGINEERING",
+        "MINING"
+      ],
+      "x": 1024.514,
+      "y": 1594.175
+    },
+    {
+      "id": "bridge_prospector_00",
+      "kind": "hybrid",
+      "archetype": "prospector",
+      "domains": [
+        "MINING",
+        "SURVIVAL"
+      ],
+      "x": 0.0,
+      "y": 1120.0
+    },
+    {
+      "id": "bridge_prospector_01",
+      "kind": "hybrid",
+      "archetype": "prospector",
+      "domains": [
+        "MINING",
+        "SURVIVAL"
+      ],
+      "x": 0.0,
+      "y": 1275.0
+    },
+    {
+      "id": "bridge_prospector_02",
+      "kind": "hybrid",
+      "archetype": "prospector",
+      "domains": [
+        "MINING",
+        "SURVIVAL"
+      ],
+      "x": 0.0,
+      "y": 1430.0
+    },
+    {
+      "id": "bridge_prospector_03",
+      "kind": "hybrid",
+      "archetype": "prospector",
+      "domains": [
+        "MINING",
+        "SURVIVAL"
+      ],
+      "x": 0.0,
+      "y": 1585.0
+    },
+    {
+      "id": "bridge_prospector_04",
+      "kind": "hybrid",
+      "archetype": "prospector",
+      "domains": [
+        "MINING",
+        "SURVIVAL"
+      ],
+      "x": 0.0,
+      "y": 1740.0
+    },
+    {
+      "id": "bridge_prospector_05",
+      "kind": "hybrid",
+      "archetype": "prospector",
+      "domains": [
+        "MINING",
+        "SURVIVAL"
+      ],
       "x": 0.0,
       "y": 1895.0
     },
     {
-      "id": "bridge_artillerist_00",
+      "id": "bridge_druid_00",
       "kind": "hybrid",
-      "archetype": "artillerist",
-      "domains": [
-        "MARTIAL",
-        "ENGINEERING"
-      ],
-      "x": -1091.919,
-      "y": -249.223
-    },
-    {
-      "id": "bridge_artillerist_01",
-      "kind": "hybrid",
-      "archetype": "artillerist",
-      "domains": [
-        "MARTIAL",
-        "ENGINEERING"
-      ],
-      "x": -1243.033,
-      "y": -283.714
-    },
-    {
-      "id": "bridge_artillerist_02",
-      "kind": "hybrid",
-      "archetype": "artillerist",
-      "domains": [
-        "MARTIAL",
-        "ENGINEERING"
-      ],
-      "x": -1394.147,
-      "y": -318.205
-    },
-    {
-      "id": "bridge_artillerist_03",
-      "kind": "hybrid",
-      "archetype": "artillerist",
-      "domains": [
-        "MARTIAL",
-        "ENGINEERING"
-      ],
-      "x": -1545.261,
-      "y": -352.696
-    },
-    {
-      "id": "bridge_artillerist_04",
-      "kind": "hybrid",
-      "archetype": "artillerist",
-      "domains": [
-        "MARTIAL",
-        "ENGINEERING"
-      ],
-      "x": -1696.375,
-      "y": -387.186
-    },
-    {
-      "id": "bridge_artillerist_05",
-      "kind": "hybrid",
-      "archetype": "artillerist",
-      "domains": [
-        "MARTIAL",
-        "ENGINEERING"
-      ],
-      "x": -1847.488,
-      "y": -421.677
-    },
-    {
-      "id": "bridge_beastmaster_00",
-      "kind": "hybrid",
-      "archetype": "beastmaster",
+      "archetype": "druid",
       "domains": [
         "SURVIVAL",
         "SUMMONING"
       ],
-      "x": -1091.919,
-      "y": -249.223
+      "x": -605.518,
+      "y": 942.204
     },
     {
-      "id": "bridge_beastmaster_01",
+      "id": "bridge_druid_01",
       "kind": "hybrid",
-      "archetype": "beastmaster",
+      "archetype": "druid",
       "domains": [
         "SURVIVAL",
         "SUMMONING"
       ],
-      "x": -1243.033,
-      "y": -283.714
+      "x": -689.317,
+      "y": 1072.598
     },
     {
-      "id": "bridge_beastmaster_02",
+      "id": "bridge_druid_02",
       "kind": "hybrid",
-      "archetype": "beastmaster",
+      "archetype": "druid",
       "domains": [
         "SURVIVAL",
         "SUMMONING"
       ],
-      "x": -1394.147,
-      "y": -318.205
+      "x": -773.116,
+      "y": 1202.993
     },
     {
-      "id": "bridge_beastmaster_03",
+      "id": "bridge_druid_03",
       "kind": "hybrid",
-      "archetype": "beastmaster",
+      "archetype": "druid",
       "domains": [
         "SURVIVAL",
         "SUMMONING"
       ],
-      "x": -1545.261,
-      "y": -352.696
+      "x": -856.916,
+      "y": 1333.387
     },
     {
-      "id": "bridge_beastmaster_04",
+      "id": "bridge_druid_04",
       "kind": "hybrid",
-      "archetype": "beastmaster",
+      "archetype": "druid",
       "domains": [
         "SURVIVAL",
         "SUMMONING"
       ],
-      "x": -1696.375,
-      "y": -387.186
+      "x": -940.715,
+      "y": 1463.781
     },
     {
-      "id": "bridge_beastmaster_05",
+      "id": "bridge_druid_05",
       "kind": "hybrid",
-      "archetype": "beastmaster",
+      "archetype": "druid",
       "domains": [
         "SURVIVAL",
         "SUMMONING"
       ],
-      "x": -1847.488,
-      "y": -421.677
+      "x": -1024.514,
+      "y": 1594.175
     },
     {
-      "id": "bridge_warlock_00",
+      "id": "bridge_necromancer_00",
       "kind": "hybrid",
-      "archetype": "warlock",
+      "archetype": "necromancer",
       "domains": [
-        "ARCANE",
-        "SUMMONING"
+        "SUMMONING",
+        "OCCULT"
       ],
-      "x": -875.651,
-      "y": 698.309
+      "x": -1018.788,
+      "y": 465.265
     },
     {
-      "id": "bridge_warlock_01",
+      "id": "bridge_necromancer_01",
       "kind": "hybrid",
-      "archetype": "warlock",
+      "archetype": "necromancer",
       "domains": [
-        "ARCANE",
-        "SUMMONING"
+        "SUMMONING",
+        "OCCULT"
       ],
-      "x": -996.835,
-      "y": 794.949
+      "x": -1159.781,
+      "y": 529.654
     },
     {
-      "id": "bridge_warlock_02",
+      "id": "bridge_necromancer_02",
       "kind": "hybrid",
-      "archetype": "warlock",
+      "archetype": "necromancer",
       "domains": [
-        "ARCANE",
-        "SUMMONING"
+        "SUMMONING",
+        "OCCULT"
       ],
-      "x": -1118.019,
-      "y": 891.59
+      "x": -1300.774,
+      "y": 594.043
     },
     {
-      "id": "bridge_warlock_03",
+      "id": "bridge_necromancer_03",
       "kind": "hybrid",
-      "archetype": "warlock",
+      "archetype": "necromancer",
       "domains": [
-        "ARCANE",
-        "SUMMONING"
+        "SUMMONING",
+        "OCCULT"
       ],
-      "x": -1239.203,
-      "y": 988.231
+      "x": -1441.767,
+      "y": 658.433
     },
     {
-      "id": "bridge_warlock_04",
+      "id": "bridge_necromancer_04",
       "kind": "hybrid",
-      "archetype": "warlock",
+      "archetype": "necromancer",
       "domains": [
-        "ARCANE",
-        "SUMMONING"
+        "SUMMONING",
+        "OCCULT"
       ],
-      "x": -1360.387,
-      "y": 1084.872
+      "x": -1582.76,
+      "y": 722.822
     },
     {
-      "id": "bridge_warlock_05",
+      "id": "bridge_necromancer_05",
       "kind": "hybrid",
-      "archetype": "warlock",
+      "archetype": "necromancer",
       "domains": [
-        "ARCANE",
-        "SUMMONING"
+        "SUMMONING",
+        "OCCULT"
       ],
-      "x": -1481.571,
-      "y": 1181.513
+      "x": -1723.753,
+      "y": 787.211
+    },
+    {
+      "id": "bridge_duelist_00",
+      "kind": "hybrid",
+      "archetype": "duelist",
+      "domains": [
+        "AGILITY",
+        "MARTIAL"
+      ],
+      "x": -315.54,
+      "y": -1074.632
+    },
+    {
+      "id": "bridge_duelist_01",
+      "kind": "hybrid",
+      "archetype": "duelist",
+      "domains": [
+        "AGILITY",
+        "MARTIAL"
+      ],
+      "x": -359.209,
+      "y": -1223.354
+    },
+    {
+      "id": "bridge_duelist_02",
+      "kind": "hybrid",
+      "archetype": "duelist",
+      "domains": [
+        "AGILITY",
+        "MARTIAL"
+      ],
+      "x": -402.878,
+      "y": -1372.075
+    },
+    {
+      "id": "bridge_duelist_03",
+      "kind": "hybrid",
+      "archetype": "duelist",
+      "domains": [
+        "AGILITY",
+        "MARTIAL"
+      ],
+      "x": -446.546,
+      "y": -1520.796
+    },
+    {
+      "id": "bridge_duelist_04",
+      "kind": "hybrid",
+      "archetype": "duelist",
+      "domains": [
+        "AGILITY",
+        "MARTIAL"
+      ],
+      "x": -490.215,
+      "y": -1669.518
+    },
+    {
+      "id": "bridge_duelist_05",
+      "kind": "hybrid",
+      "archetype": "duelist",
+      "domains": [
+        "AGILITY",
+        "MARTIAL"
+      ],
+      "x": -533.883,
+      "y": -1818.239
     },
     {
       "id": "keystone_00",
@@ -3330,80 +4101,92 @@
     {
       "id": "keystone_01",
       "kind": "keystone",
-      "x": 846.073,
-      "y": -1756.889
+      "x": 746.233,
+      "y": -1801.565
     },
     {
       "id": "keystone_02",
       "kind": "keystone",
-      "x": 1524.571,
-      "y": -1215.805
+      "x": 1378.858,
+      "y": -1378.858
     },
     {
       "id": "keystone_03",
       "kind": "keystone",
-      "x": 1901.109,
-      "y": -433.916
+      "x": 1801.565,
+      "y": -746.233
     },
     {
       "id": "keystone_04",
       "kind": "keystone",
-      "x": 1901.109,
-      "y": 433.916
+      "x": 1950.0,
+      "y": 0.0
     },
     {
       "id": "keystone_05",
       "kind": "keystone",
-      "x": 1524.571,
-      "y": 1215.805
+      "x": 1801.565,
+      "y": 746.233
     },
     {
       "id": "keystone_06",
       "kind": "keystone",
-      "x": 846.073,
-      "y": 1756.889
+      "x": 1378.858,
+      "y": 1378.858
     },
     {
       "id": "keystone_07",
+      "kind": "keystone",
+      "x": 746.233,
+      "y": 1801.565
+    },
+    {
+      "id": "keystone_08",
       "kind": "keystone",
       "x": 0.0,
       "y": 1950.0
     },
     {
-      "id": "keystone_08",
-      "kind": "keystone",
-      "x": -846.073,
-      "y": 1756.889
-    },
-    {
       "id": "keystone_09",
       "kind": "keystone",
-      "x": -1524.571,
-      "y": 1215.805
+      "x": -746.233,
+      "y": 1801.565
     },
     {
       "id": "keystone_10",
       "kind": "keystone",
-      "x": -1901.109,
-      "y": 433.916
+      "x": -1378.858,
+      "y": 1378.858
     },
     {
       "id": "keystone_11",
       "kind": "keystone",
-      "x": -1901.109,
-      "y": -433.916
+      "x": -1801.565,
+      "y": 746.233
     },
     {
       "id": "keystone_12",
       "kind": "keystone",
-      "x": -1524.571,
-      "y": -1215.805
+      "x": -1950.0,
+      "y": 0.0
     },
     {
       "id": "keystone_13",
       "kind": "keystone",
-      "x": -846.073,
-      "y": -1756.889
+      "x": -1801.565,
+      "y": -746.233
+    },
+    {
+      "id": "keystone_14",
+      "kind": "keystone",
+      "x": -1378.858,
+      "y": -1378.858
+    },
+    {
+      "id": "keystone_15",
+      "kind": "keystone",
+      "x": -746.233,
+      "y": -1801.565
     }
   ],
   "edges": [
@@ -3776,7 +4559,7 @@
       "martial_037"
     ],
     [
-      "martial_025",
+      "martial_028",
       "martial_037"
     ],
     [
@@ -3784,7 +4567,7 @@
       "martial_038"
     ],
     [
-      "martial_026",
+      "martial_031",
       "martial_038"
     ],
     [
@@ -3792,420 +4575,12 @@
       "martial_039"
     ],
     [
-      "martial_027",
-      "martial_039"
-    ],
-    [
-      "martial_039",
-      "martial_040"
-    ],
-    [
-      "martial_028",
-      "martial_040"
-    ],
-    [
-      "martial_040",
-      "martial_041"
-    ],
-    [
-      "martial_029",
-      "martial_041"
-    ],
-    [
-      "martial_041",
-      "martial_042"
-    ],
-    [
-      "martial_030",
-      "martial_042"
-    ],
-    [
-      "martial_042",
-      "martial_043"
-    ],
-    [
-      "martial_031",
-      "martial_043"
-    ],
-    [
-      "martial_043",
-      "martial_044"
-    ],
-    [
-      "martial_032",
-      "martial_044"
-    ],
-    [
-      "martial_044",
-      "martial_045"
-    ],
-    [
-      "martial_033",
-      "martial_045"
-    ],
-    [
-      "martial_045",
-      "martial_046"
-    ],
-    [
-      "martial_034",
-      "martial_046"
-    ],
-    [
-      "martial_046",
-      "martial_047"
-    ],
-    [
       "martial_035",
-      "martial_047"
+      "martial_039"
     ],
     [
       "core_21",
       "martial_000"
-    ],
-    [
-      "agility_000",
-      "agility_001"
-    ],
-    [
-      "agility_001",
-      "agility_002"
-    ],
-    [
-      "agility_002",
-      "agility_003"
-    ],
-    [
-      "agility_003",
-      "agility_004"
-    ],
-    [
-      "agility_004",
-      "agility_005"
-    ],
-    [
-      "agility_000",
-      "agility_006"
-    ],
-    [
-      "agility_006",
-      "agility_007"
-    ],
-    [
-      "agility_001",
-      "agility_007"
-    ],
-    [
-      "agility_007",
-      "agility_008"
-    ],
-    [
-      "agility_001",
-      "agility_008"
-    ],
-    [
-      "agility_008",
-      "agility_009"
-    ],
-    [
-      "agility_002",
-      "agility_009"
-    ],
-    [
-      "agility_009",
-      "agility_010"
-    ],
-    [
-      "agility_003",
-      "agility_010"
-    ],
-    [
-      "agility_010",
-      "agility_011"
-    ],
-    [
-      "agility_004",
-      "agility_011"
-    ],
-    [
-      "agility_011",
-      "agility_012"
-    ],
-    [
-      "agility_004",
-      "agility_012"
-    ],
-    [
-      "agility_012",
-      "agility_013"
-    ],
-    [
-      "agility_005",
-      "agility_013"
-    ],
-    [
-      "agility_006",
-      "agility_014"
-    ],
-    [
-      "agility_014",
-      "agility_015"
-    ],
-    [
-      "agility_007",
-      "agility_015"
-    ],
-    [
-      "agility_015",
-      "agility_016"
-    ],
-    [
-      "agility_008",
-      "agility_016"
-    ],
-    [
-      "agility_016",
-      "agility_017"
-    ],
-    [
-      "agility_008",
-      "agility_017"
-    ],
-    [
-      "agility_017",
-      "agility_018"
-    ],
-    [
-      "agility_009",
-      "agility_018"
-    ],
-    [
-      "agility_018",
-      "agility_019"
-    ],
-    [
-      "agility_010",
-      "agility_019"
-    ],
-    [
-      "agility_019",
-      "agility_020"
-    ],
-    [
-      "agility_011",
-      "agility_020"
-    ],
-    [
-      "agility_020",
-      "agility_021"
-    ],
-    [
-      "agility_011",
-      "agility_021"
-    ],
-    [
-      "agility_021",
-      "agility_022"
-    ],
-    [
-      "agility_012",
-      "agility_022"
-    ],
-    [
-      "agility_022",
-      "agility_023"
-    ],
-    [
-      "agility_013",
-      "agility_023"
-    ],
-    [
-      "agility_014",
-      "agility_024"
-    ],
-    [
-      "agility_024",
-      "agility_025"
-    ],
-    [
-      "agility_015",
-      "agility_025"
-    ],
-    [
-      "agility_025",
-      "agility_026"
-    ],
-    [
-      "agility_016",
-      "agility_026"
-    ],
-    [
-      "agility_026",
-      "agility_027"
-    ],
-    [
-      "agility_016",
-      "agility_027"
-    ],
-    [
-      "agility_027",
-      "agility_028"
-    ],
-    [
-      "agility_017",
-      "agility_028"
-    ],
-    [
-      "agility_028",
-      "agility_029"
-    ],
-    [
-      "agility_018",
-      "agility_029"
-    ],
-    [
-      "agility_029",
-      "agility_030"
-    ],
-    [
-      "agility_019",
-      "agility_030"
-    ],
-    [
-      "agility_030",
-      "agility_031"
-    ],
-    [
-      "agility_020",
-      "agility_031"
-    ],
-    [
-      "agility_031",
-      "agility_032"
-    ],
-    [
-      "agility_021",
-      "agility_032"
-    ],
-    [
-      "agility_032",
-      "agility_033"
-    ],
-    [
-      "agility_021",
-      "agility_033"
-    ],
-    [
-      "agility_033",
-      "agility_034"
-    ],
-    [
-      "agility_022",
-      "agility_034"
-    ],
-    [
-      "agility_034",
-      "agility_035"
-    ],
-    [
-      "agility_023",
-      "agility_035"
-    ],
-    [
-      "agility_024",
-      "agility_036"
-    ],
-    [
-      "agility_036",
-      "agility_037"
-    ],
-    [
-      "agility_025",
-      "agility_037"
-    ],
-    [
-      "agility_037",
-      "agility_038"
-    ],
-    [
-      "agility_026",
-      "agility_038"
-    ],
-    [
-      "agility_038",
-      "agility_039"
-    ],
-    [
-      "agility_027",
-      "agility_039"
-    ],
-    [
-      "agility_039",
-      "agility_040"
-    ],
-    [
-      "agility_028",
-      "agility_040"
-    ],
-    [
-      "agility_040",
-      "agility_041"
-    ],
-    [
-      "agility_029",
-      "agility_041"
-    ],
-    [
-      "agility_041",
-      "agility_042"
-    ],
-    [
-      "agility_030",
-      "agility_042"
-    ],
-    [
-      "agility_042",
-      "agility_043"
-    ],
-    [
-      "agility_031",
-      "agility_043"
-    ],
-    [
-      "agility_043",
-      "agility_044"
-    ],
-    [
-      "agility_032",
-      "agility_044"
-    ],
-    [
-      "agility_044",
-      "agility_045"
-    ],
-    [
-      "agility_033",
-      "agility_045"
-    ],
-    [
-      "agility_045",
-      "agility_046"
-    ],
-    [
-      "agility_034",
-      "agility_046"
-    ],
-    [
-      "agility_046",
-      "agility_047"
-    ],
-    [
-      "agility_035",
-      "agility_047"
-    ],
-    [
-      "core_25",
-      "agility_000"
     ],
     [
       "vitality_000",
@@ -4464,92 +4839,248 @@
       "vitality_037"
     ],
     [
-      "vitality_025",
+      "vitality_035",
       "vitality_037"
     ],
     [
-      "vitality_037",
-      "vitality_038"
-    ],
-    [
-      "vitality_026",
-      "vitality_038"
-    ],
-    [
-      "vitality_038",
-      "vitality_039"
-    ],
-    [
-      "vitality_027",
-      "vitality_039"
-    ],
-    [
-      "vitality_039",
-      "vitality_040"
-    ],
-    [
-      "vitality_028",
-      "vitality_040"
-    ],
-    [
-      "vitality_040",
-      "vitality_041"
-    ],
-    [
-      "vitality_029",
-      "vitality_041"
-    ],
-    [
-      "vitality_041",
-      "vitality_042"
-    ],
-    [
-      "vitality_030",
-      "vitality_042"
-    ],
-    [
-      "vitality_042",
-      "vitality_043"
-    ],
-    [
-      "vitality_031",
-      "vitality_043"
-    ],
-    [
-      "vitality_043",
-      "vitality_044"
-    ],
-    [
-      "vitality_032",
-      "vitality_044"
-    ],
-    [
-      "vitality_044",
-      "vitality_045"
-    ],
-    [
-      "vitality_033",
-      "vitality_045"
-    ],
-    [
-      "vitality_045",
-      "vitality_046"
-    ],
-    [
-      "vitality_034",
-      "vitality_046"
-    ],
-    [
-      "vitality_046",
-      "vitality_047"
-    ],
-    [
-      "vitality_035",
-      "vitality_047"
-    ],
-    [
-      "core_01",
+      "core_24",
       "vitality_000"
+    ],
+    [
+      "healing_000",
+      "healing_001"
+    ],
+    [
+      "healing_001",
+      "healing_002"
+    ],
+    [
+      "healing_002",
+      "healing_003"
+    ],
+    [
+      "healing_003",
+      "healing_004"
+    ],
+    [
+      "healing_004",
+      "healing_005"
+    ],
+    [
+      "healing_000",
+      "healing_006"
+    ],
+    [
+      "healing_006",
+      "healing_007"
+    ],
+    [
+      "healing_001",
+      "healing_007"
+    ],
+    [
+      "healing_007",
+      "healing_008"
+    ],
+    [
+      "healing_001",
+      "healing_008"
+    ],
+    [
+      "healing_008",
+      "healing_009"
+    ],
+    [
+      "healing_002",
+      "healing_009"
+    ],
+    [
+      "healing_009",
+      "healing_010"
+    ],
+    [
+      "healing_003",
+      "healing_010"
+    ],
+    [
+      "healing_010",
+      "healing_011"
+    ],
+    [
+      "healing_004",
+      "healing_011"
+    ],
+    [
+      "healing_011",
+      "healing_012"
+    ],
+    [
+      "healing_004",
+      "healing_012"
+    ],
+    [
+      "healing_012",
+      "healing_013"
+    ],
+    [
+      "healing_005",
+      "healing_013"
+    ],
+    [
+      "healing_006",
+      "healing_014"
+    ],
+    [
+      "healing_014",
+      "healing_015"
+    ],
+    [
+      "healing_007",
+      "healing_015"
+    ],
+    [
+      "healing_015",
+      "healing_016"
+    ],
+    [
+      "healing_008",
+      "healing_016"
+    ],
+    [
+      "healing_016",
+      "healing_017"
+    ],
+    [
+      "healing_008",
+      "healing_017"
+    ],
+    [
+      "healing_017",
+      "healing_018"
+    ],
+    [
+      "healing_009",
+      "healing_018"
+    ],
+    [
+      "healing_018",
+      "healing_019"
+    ],
+    [
+      "healing_010",
+      "healing_019"
+    ],
+    [
+      "healing_019",
+      "healing_020"
+    ],
+    [
+      "healing_011",
+      "healing_020"
+    ],
+    [
+      "healing_020",
+      "healing_021"
+    ],
+    [
+      "healing_011",
+      "healing_021"
+    ],
+    [
+      "healing_021",
+      "healing_022"
+    ],
+    [
+      "healing_012",
+      "healing_022"
+    ],
+    [
+      "healing_022",
+      "healing_023"
+    ],
+    [
+      "healing_013",
+      "healing_023"
+    ],
+    [
+      "healing_014",
+      "healing_024"
+    ],
+    [
+      "healing_024",
+      "healing_025"
+    ],
+    [
+      "healing_015",
+      "healing_025"
+    ],
+    [
+      "healing_025",
+      "healing_026"
+    ],
+    [
+      "healing_016",
+      "healing_026"
+    ],
+    [
+      "healing_026",
+      "healing_027"
+    ],
+    [
+      "healing_017",
+      "healing_027"
+    ],
+    [
+      "healing_027",
+      "healing_028"
+    ],
+    [
+      "healing_018",
+      "healing_028"
+    ],
+    [
+      "healing_028",
+      "healing_029"
+    ],
+    [
+      "healing_019",
+      "healing_029"
+    ],
+    [
+      "healing_029",
+      "healing_030"
+    ],
+    [
+      "healing_020",
+      "healing_030"
+    ],
+    [
+      "healing_030",
+      "healing_031"
+    ],
+    [
+      "healing_021",
+      "healing_031"
+    ],
+    [
+      "healing_031",
+      "healing_032"
+    ],
+    [
+      "healing_022",
+      "healing_032"
+    ],
+    [
+      "healing_032",
+      "healing_033"
+    ],
+    [
+      "healing_023",
+      "healing_033"
+    ],
+    [
+      "core_26",
+      "healing_000"
     ],
     [
       "arcane_000",
@@ -4908,83 +5439,7 @@
       "arcane_049"
     ],
     [
-      "arcane_036",
-      "arcane_050"
-    ],
-    [
-      "arcane_050",
-      "arcane_051"
-    ],
-    [
-      "arcane_037",
-      "arcane_051"
-    ],
-    [
-      "arcane_051",
-      "arcane_052"
-    ],
-    [
-      "arcane_039",
-      "arcane_052"
-    ],
-    [
-      "arcane_052",
-      "arcane_053"
-    ],
-    [
-      "arcane_040",
-      "arcane_053"
-    ],
-    [
-      "arcane_053",
-      "arcane_054"
-    ],
-    [
-      "arcane_042",
-      "arcane_054"
-    ],
-    [
-      "arcane_054",
-      "arcane_055"
-    ],
-    [
-      "arcane_043",
-      "arcane_055"
-    ],
-    [
-      "arcane_055",
-      "arcane_056"
-    ],
-    [
-      "arcane_045",
-      "arcane_056"
-    ],
-    [
-      "arcane_056",
-      "arcane_057"
-    ],
-    [
-      "arcane_046",
-      "arcane_057"
-    ],
-    [
-      "arcane_057",
-      "arcane_058"
-    ],
-    [
-      "arcane_048",
-      "arcane_058"
-    ],
-    [
-      "arcane_058",
-      "arcane_059"
-    ],
-    [
-      "arcane_049",
-      "arcane_059"
-    ],
-    [
-      "core_05",
+      "core_01",
       "arcane_000"
     ],
     [
@@ -5260,7 +5715,7 @@
       "engineering_039"
     ],
     [
-      "engineering_027",
+      "engineering_028",
       "engineering_039"
     ],
     [
@@ -5268,7 +5723,7 @@
       "engineering_040"
     ],
     [
-      "engineering_027",
+      "engineering_029",
       "engineering_040"
     ],
     [
@@ -5276,7 +5731,7 @@
       "engineering_041"
     ],
     [
-      "engineering_028",
+      "engineering_030",
       "engineering_041"
     ],
     [
@@ -5284,7 +5739,7 @@
       "engineering_042"
     ],
     [
-      "engineering_029",
+      "engineering_031",
       "engineering_042"
     ],
     [
@@ -5292,7 +5747,7 @@
       "engineering_043"
     ],
     [
-      "engineering_030",
+      "engineering_033",
       "engineering_043"
     ],
     [
@@ -5300,7 +5755,7 @@
       "engineering_044"
     ],
     [
-      "engineering_031",
+      "engineering_034",
       "engineering_044"
     ],
     [
@@ -5308,88 +5763,264 @@
       "engineering_045"
     ],
     [
-      "engineering_032",
+      "engineering_035",
       "engineering_045"
     ],
     [
-      "engineering_045",
-      "engineering_046"
-    ],
-    [
-      "engineering_032",
-      "engineering_046"
-    ],
-    [
-      "engineering_046",
-      "engineering_047"
-    ],
-    [
-      "engineering_033",
-      "engineering_047"
-    ],
-    [
-      "engineering_047",
-      "engineering_048"
-    ],
-    [
-      "engineering_034",
-      "engineering_048"
-    ],
-    [
-      "engineering_048",
-      "engineering_049"
-    ],
-    [
-      "engineering_035",
-      "engineering_049"
-    ],
-    [
-      "engineering_036",
-      "engineering_050"
-    ],
-    [
-      "engineering_050",
-      "engineering_051"
-    ],
-    [
-      "engineering_039",
-      "engineering_051"
-    ],
-    [
-      "engineering_051",
-      "engineering_052"
-    ],
-    [
-      "engineering_041",
-      "engineering_052"
-    ],
-    [
-      "engineering_052",
-      "engineering_053"
-    ],
-    [
-      "engineering_044",
-      "engineering_053"
-    ],
-    [
-      "engineering_053",
-      "engineering_054"
-    ],
-    [
-      "engineering_046",
-      "engineering_054"
-    ],
-    [
-      "engineering_054",
-      "engineering_055"
-    ],
-    [
-      "engineering_049",
-      "engineering_055"
-    ],
-    [
-      "core_09",
+      "core_03",
       "engineering_000"
+    ],
+    [
+      "mining_000",
+      "mining_001"
+    ],
+    [
+      "mining_001",
+      "mining_002"
+    ],
+    [
+      "mining_002",
+      "mining_003"
+    ],
+    [
+      "mining_003",
+      "mining_004"
+    ],
+    [
+      "mining_004",
+      "mining_005"
+    ],
+    [
+      "mining_000",
+      "mining_006"
+    ],
+    [
+      "mining_006",
+      "mining_007"
+    ],
+    [
+      "mining_001",
+      "mining_007"
+    ],
+    [
+      "mining_007",
+      "mining_008"
+    ],
+    [
+      "mining_001",
+      "mining_008"
+    ],
+    [
+      "mining_008",
+      "mining_009"
+    ],
+    [
+      "mining_002",
+      "mining_009"
+    ],
+    [
+      "mining_009",
+      "mining_010"
+    ],
+    [
+      "mining_003",
+      "mining_010"
+    ],
+    [
+      "mining_010",
+      "mining_011"
+    ],
+    [
+      "mining_004",
+      "mining_011"
+    ],
+    [
+      "mining_011",
+      "mining_012"
+    ],
+    [
+      "mining_004",
+      "mining_012"
+    ],
+    [
+      "mining_012",
+      "mining_013"
+    ],
+    [
+      "mining_005",
+      "mining_013"
+    ],
+    [
+      "mining_006",
+      "mining_014"
+    ],
+    [
+      "mining_014",
+      "mining_015"
+    ],
+    [
+      "mining_007",
+      "mining_015"
+    ],
+    [
+      "mining_015",
+      "mining_016"
+    ],
+    [
+      "mining_008",
+      "mining_016"
+    ],
+    [
+      "mining_016",
+      "mining_017"
+    ],
+    [
+      "mining_008",
+      "mining_017"
+    ],
+    [
+      "mining_017",
+      "mining_018"
+    ],
+    [
+      "mining_009",
+      "mining_018"
+    ],
+    [
+      "mining_018",
+      "mining_019"
+    ],
+    [
+      "mining_010",
+      "mining_019"
+    ],
+    [
+      "mining_019",
+      "mining_020"
+    ],
+    [
+      "mining_011",
+      "mining_020"
+    ],
+    [
+      "mining_020",
+      "mining_021"
+    ],
+    [
+      "mining_011",
+      "mining_021"
+    ],
+    [
+      "mining_021",
+      "mining_022"
+    ],
+    [
+      "mining_012",
+      "mining_022"
+    ],
+    [
+      "mining_022",
+      "mining_023"
+    ],
+    [
+      "mining_013",
+      "mining_023"
+    ],
+    [
+      "mining_014",
+      "mining_024"
+    ],
+    [
+      "mining_024",
+      "mining_025"
+    ],
+    [
+      "mining_015",
+      "mining_025"
+    ],
+    [
+      "mining_025",
+      "mining_026"
+    ],
+    [
+      "mining_016",
+      "mining_026"
+    ],
+    [
+      "mining_026",
+      "mining_027"
+    ],
+    [
+      "mining_016",
+      "mining_027"
+    ],
+    [
+      "mining_027",
+      "mining_028"
+    ],
+    [
+      "mining_017",
+      "mining_028"
+    ],
+    [
+      "mining_028",
+      "mining_029"
+    ],
+    [
+      "mining_018",
+      "mining_029"
+    ],
+    [
+      "mining_029",
+      "mining_030"
+    ],
+    [
+      "mining_019",
+      "mining_030"
+    ],
+    [
+      "mining_030",
+      "mining_031"
+    ],
+    [
+      "mining_020",
+      "mining_031"
+    ],
+    [
+      "mining_031",
+      "mining_032"
+    ],
+    [
+      "mining_021",
+      "mining_032"
+    ],
+    [
+      "mining_032",
+      "mining_033"
+    ],
+    [
+      "mining_021",
+      "mining_033"
+    ],
+    [
+      "mining_033",
+      "mining_034"
+    ],
+    [
+      "mining_022",
+      "mining_034"
+    ],
+    [
+      "mining_034",
+      "mining_035"
+    ],
+    [
+      "mining_023",
+      "mining_035"
+    ],
+    [
+      "core_06",
+      "mining_000"
     ],
     [
       "survival_000",
@@ -5648,27 +6279,11 @@
       "survival_037"
     ],
     [
-      "survival_028",
+      "survival_035",
       "survival_037"
     ],
     [
-      "survival_037",
-      "survival_038"
-    ],
-    [
-      "survival_031",
-      "survival_038"
-    ],
-    [
-      "survival_038",
-      "survival_039"
-    ],
-    [
-      "survival_035",
-      "survival_039"
-    ],
-    [
-      "core_13",
+      "core_08",
       "survival_000"
     ],
     [
@@ -5852,7 +6467,7 @@
       "summoning_027"
     ],
     [
-      "summoning_016",
+      "summoning_017",
       "summoning_027"
     ],
     [
@@ -5860,7 +6475,7 @@
       "summoning_028"
     ],
     [
-      "summoning_017",
+      "summoning_018",
       "summoning_028"
     ],
     [
@@ -5868,7 +6483,7 @@
       "summoning_029"
     ],
     [
-      "summoning_018",
+      "summoning_019",
       "summoning_029"
     ],
     [
@@ -5876,7 +6491,7 @@
       "summoning_030"
     ],
     [
-      "summoning_019",
+      "summoning_020",
       "summoning_030"
     ],
     [
@@ -5884,7 +6499,7 @@
       "summoning_031"
     ],
     [
-      "summoning_020",
+      "summoning_021",
       "summoning_031"
     ],
     [
@@ -5892,7 +6507,7 @@
       "summoning_032"
     ],
     [
-      "summoning_021",
+      "summoning_022",
       "summoning_032"
     ],
     [
@@ -5900,88 +6515,788 @@
       "summoning_033"
     ],
     [
-      "summoning_021",
+      "summoning_023",
       "summoning_033"
     ],
     [
-      "summoning_033",
-      "summoning_034"
-    ],
-    [
-      "summoning_022",
-      "summoning_034"
-    ],
-    [
-      "summoning_034",
-      "summoning_035"
-    ],
-    [
-      "summoning_023",
-      "summoning_035"
-    ],
-    [
-      "core_17",
+      "core_11",
       "summoning_000"
     ],
     [
-      "bridge_spellblade_00",
-      "bridge_spellblade_01"
+      "occult_000",
+      "occult_001"
     ],
     [
-      "bridge_spellblade_01",
-      "bridge_spellblade_02"
+      "occult_001",
+      "occult_002"
     ],
     [
-      "bridge_spellblade_02",
-      "bridge_spellblade_03"
+      "occult_002",
+      "occult_003"
     ],
     [
-      "bridge_spellblade_03",
-      "bridge_spellblade_04"
+      "occult_003",
+      "occult_004"
     ],
     [
-      "bridge_spellblade_04",
-      "bridge_spellblade_05"
+      "occult_004",
+      "occult_005"
     ],
     [
-      "bridge_battlemage_00",
-      "bridge_battlemage_01"
+      "occult_000",
+      "occult_006"
     ],
     [
-      "bridge_battlemage_01",
-      "bridge_battlemage_02"
+      "occult_006",
+      "occult_007"
     ],
     [
-      "bridge_battlemage_02",
-      "bridge_battlemage_03"
+      "occult_001",
+      "occult_007"
     ],
     [
-      "bridge_battlemage_03",
-      "bridge_battlemage_04"
+      "occult_007",
+      "occult_008"
     ],
     [
-      "bridge_battlemage_04",
-      "bridge_battlemage_05"
+      "occult_001",
+      "occult_008"
     ],
     [
-      "bridge_arcane_archer_00",
-      "bridge_arcane_archer_01"
+      "occult_008",
+      "occult_009"
     ],
     [
-      "bridge_arcane_archer_01",
-      "bridge_arcane_archer_02"
+      "occult_002",
+      "occult_009"
     ],
     [
-      "bridge_arcane_archer_02",
-      "bridge_arcane_archer_03"
+      "occult_009",
+      "occult_010"
     ],
     [
-      "bridge_arcane_archer_03",
-      "bridge_arcane_archer_04"
+      "occult_003",
+      "occult_010"
     ],
     [
-      "bridge_arcane_archer_04",
-      "bridge_arcane_archer_05"
+      "occult_010",
+      "occult_011"
+    ],
+    [
+      "occult_004",
+      "occult_011"
+    ],
+    [
+      "occult_011",
+      "occult_012"
+    ],
+    [
+      "occult_004",
+      "occult_012"
+    ],
+    [
+      "occult_012",
+      "occult_013"
+    ],
+    [
+      "occult_005",
+      "occult_013"
+    ],
+    [
+      "occult_006",
+      "occult_014"
+    ],
+    [
+      "occult_014",
+      "occult_015"
+    ],
+    [
+      "occult_007",
+      "occult_015"
+    ],
+    [
+      "occult_015",
+      "occult_016"
+    ],
+    [
+      "occult_008",
+      "occult_016"
+    ],
+    [
+      "occult_016",
+      "occult_017"
+    ],
+    [
+      "occult_008",
+      "occult_017"
+    ],
+    [
+      "occult_017",
+      "occult_018"
+    ],
+    [
+      "occult_009",
+      "occult_018"
+    ],
+    [
+      "occult_018",
+      "occult_019"
+    ],
+    [
+      "occult_010",
+      "occult_019"
+    ],
+    [
+      "occult_019",
+      "occult_020"
+    ],
+    [
+      "occult_011",
+      "occult_020"
+    ],
+    [
+      "occult_020",
+      "occult_021"
+    ],
+    [
+      "occult_011",
+      "occult_021"
+    ],
+    [
+      "occult_021",
+      "occult_022"
+    ],
+    [
+      "occult_012",
+      "occult_022"
+    ],
+    [
+      "occult_022",
+      "occult_023"
+    ],
+    [
+      "occult_013",
+      "occult_023"
+    ],
+    [
+      "occult_014",
+      "occult_024"
+    ],
+    [
+      "occult_024",
+      "occult_025"
+    ],
+    [
+      "occult_015",
+      "occult_025"
+    ],
+    [
+      "occult_025",
+      "occult_026"
+    ],
+    [
+      "occult_016",
+      "occult_026"
+    ],
+    [
+      "occult_026",
+      "occult_027"
+    ],
+    [
+      "occult_016",
+      "occult_027"
+    ],
+    [
+      "occult_027",
+      "occult_028"
+    ],
+    [
+      "occult_017",
+      "occult_028"
+    ],
+    [
+      "occult_028",
+      "occult_029"
+    ],
+    [
+      "occult_018",
+      "occult_029"
+    ],
+    [
+      "occult_029",
+      "occult_030"
+    ],
+    [
+      "occult_019",
+      "occult_030"
+    ],
+    [
+      "occult_030",
+      "occult_031"
+    ],
+    [
+      "occult_020",
+      "occult_031"
+    ],
+    [
+      "occult_031",
+      "occult_032"
+    ],
+    [
+      "occult_021",
+      "occult_032"
+    ],
+    [
+      "occult_032",
+      "occult_033"
+    ],
+    [
+      "occult_021",
+      "occult_033"
+    ],
+    [
+      "occult_033",
+      "occult_034"
+    ],
+    [
+      "occult_022",
+      "occult_034"
+    ],
+    [
+      "occult_034",
+      "occult_035"
+    ],
+    [
+      "occult_023",
+      "occult_035"
+    ],
+    [
+      "occult_024",
+      "occult_036"
+    ],
+    [
+      "occult_036",
+      "occult_037"
+    ],
+    [
+      "occult_035",
+      "occult_037"
+    ],
+    [
+      "core_13",
+      "occult_000"
+    ],
+    [
+      "logistics_000",
+      "logistics_001"
+    ],
+    [
+      "logistics_001",
+      "logistics_002"
+    ],
+    [
+      "logistics_002",
+      "logistics_003"
+    ],
+    [
+      "logistics_003",
+      "logistics_004"
+    ],
+    [
+      "logistics_004",
+      "logistics_005"
+    ],
+    [
+      "logistics_000",
+      "logistics_006"
+    ],
+    [
+      "logistics_006",
+      "logistics_007"
+    ],
+    [
+      "logistics_001",
+      "logistics_007"
+    ],
+    [
+      "logistics_007",
+      "logistics_008"
+    ],
+    [
+      "logistics_001",
+      "logistics_008"
+    ],
+    [
+      "logistics_008",
+      "logistics_009"
+    ],
+    [
+      "logistics_002",
+      "logistics_009"
+    ],
+    [
+      "logistics_009",
+      "logistics_010"
+    ],
+    [
+      "logistics_003",
+      "logistics_010"
+    ],
+    [
+      "logistics_010",
+      "logistics_011"
+    ],
+    [
+      "logistics_004",
+      "logistics_011"
+    ],
+    [
+      "logistics_011",
+      "logistics_012"
+    ],
+    [
+      "logistics_004",
+      "logistics_012"
+    ],
+    [
+      "logistics_012",
+      "logistics_013"
+    ],
+    [
+      "logistics_005",
+      "logistics_013"
+    ],
+    [
+      "logistics_006",
+      "logistics_014"
+    ],
+    [
+      "logistics_014",
+      "logistics_015"
+    ],
+    [
+      "logistics_007",
+      "logistics_015"
+    ],
+    [
+      "logistics_015",
+      "logistics_016"
+    ],
+    [
+      "logistics_008",
+      "logistics_016"
+    ],
+    [
+      "logistics_016",
+      "logistics_017"
+    ],
+    [
+      "logistics_008",
+      "logistics_017"
+    ],
+    [
+      "logistics_017",
+      "logistics_018"
+    ],
+    [
+      "logistics_009",
+      "logistics_018"
+    ],
+    [
+      "logistics_018",
+      "logistics_019"
+    ],
+    [
+      "logistics_010",
+      "logistics_019"
+    ],
+    [
+      "logistics_019",
+      "logistics_020"
+    ],
+    [
+      "logistics_011",
+      "logistics_020"
+    ],
+    [
+      "logistics_020",
+      "logistics_021"
+    ],
+    [
+      "logistics_011",
+      "logistics_021"
+    ],
+    [
+      "logistics_021",
+      "logistics_022"
+    ],
+    [
+      "logistics_012",
+      "logistics_022"
+    ],
+    [
+      "logistics_022",
+      "logistics_023"
+    ],
+    [
+      "logistics_013",
+      "logistics_023"
+    ],
+    [
+      "logistics_014",
+      "logistics_024"
+    ],
+    [
+      "logistics_024",
+      "logistics_025"
+    ],
+    [
+      "logistics_016",
+      "logistics_025"
+    ],
+    [
+      "logistics_025",
+      "logistics_026"
+    ],
+    [
+      "logistics_018",
+      "logistics_026"
+    ],
+    [
+      "logistics_026",
+      "logistics_027"
+    ],
+    [
+      "logistics_019",
+      "logistics_027"
+    ],
+    [
+      "logistics_027",
+      "logistics_028"
+    ],
+    [
+      "logistics_021",
+      "logistics_028"
+    ],
+    [
+      "logistics_028",
+      "logistics_029"
+    ],
+    [
+      "logistics_023",
+      "logistics_029"
+    ],
+    [
+      "core_16",
+      "logistics_000"
+    ],
+    [
+      "agility_000",
+      "agility_001"
+    ],
+    [
+      "agility_001",
+      "agility_002"
+    ],
+    [
+      "agility_002",
+      "agility_003"
+    ],
+    [
+      "agility_003",
+      "agility_004"
+    ],
+    [
+      "agility_004",
+      "agility_005"
+    ],
+    [
+      "agility_000",
+      "agility_006"
+    ],
+    [
+      "agility_006",
+      "agility_007"
+    ],
+    [
+      "agility_001",
+      "agility_007"
+    ],
+    [
+      "agility_007",
+      "agility_008"
+    ],
+    [
+      "agility_001",
+      "agility_008"
+    ],
+    [
+      "agility_008",
+      "agility_009"
+    ],
+    [
+      "agility_002",
+      "agility_009"
+    ],
+    [
+      "agility_009",
+      "agility_010"
+    ],
+    [
+      "agility_003",
+      "agility_010"
+    ],
+    [
+      "agility_010",
+      "agility_011"
+    ],
+    [
+      "agility_004",
+      "agility_011"
+    ],
+    [
+      "agility_011",
+      "agility_012"
+    ],
+    [
+      "agility_004",
+      "agility_012"
+    ],
+    [
+      "agility_012",
+      "agility_013"
+    ],
+    [
+      "agility_005",
+      "agility_013"
+    ],
+    [
+      "agility_006",
+      "agility_014"
+    ],
+    [
+      "agility_014",
+      "agility_015"
+    ],
+    [
+      "agility_007",
+      "agility_015"
+    ],
+    [
+      "agility_015",
+      "agility_016"
+    ],
+    [
+      "agility_008",
+      "agility_016"
+    ],
+    [
+      "agility_016",
+      "agility_017"
+    ],
+    [
+      "agility_008",
+      "agility_017"
+    ],
+    [
+      "agility_017",
+      "agility_018"
+    ],
+    [
+      "agility_009",
+      "agility_018"
+    ],
+    [
+      "agility_018",
+      "agility_019"
+    ],
+    [
+      "agility_010",
+      "agility_019"
+    ],
+    [
+      "agility_019",
+      "agility_020"
+    ],
+    [
+      "agility_011",
+      "agility_020"
+    ],
+    [
+      "agility_020",
+      "agility_021"
+    ],
+    [
+      "agility_011",
+      "agility_021"
+    ],
+    [
+      "agility_021",
+      "agility_022"
+    ],
+    [
+      "agility_012",
+      "agility_022"
+    ],
+    [
+      "agility_022",
+      "agility_023"
+    ],
+    [
+      "agility_013",
+      "agility_023"
+    ],
+    [
+      "agility_014",
+      "agility_024"
+    ],
+    [
+      "agility_024",
+      "agility_025"
+    ],
+    [
+      "agility_015",
+      "agility_025"
+    ],
+    [
+      "agility_025",
+      "agility_026"
+    ],
+    [
+      "agility_016",
+      "agility_026"
+    ],
+    [
+      "agility_026",
+      "agility_027"
+    ],
+    [
+      "agility_016",
+      "agility_027"
+    ],
+    [
+      "agility_027",
+      "agility_028"
+    ],
+    [
+      "agility_017",
+      "agility_028"
+    ],
+    [
+      "agility_028",
+      "agility_029"
+    ],
+    [
+      "agility_018",
+      "agility_029"
+    ],
+    [
+      "agility_029",
+      "agility_030"
+    ],
+    [
+      "agility_019",
+      "agility_030"
+    ],
+    [
+      "agility_030",
+      "agility_031"
+    ],
+    [
+      "agility_020",
+      "agility_031"
+    ],
+    [
+      "agility_031",
+      "agility_032"
+    ],
+    [
+      "agility_021",
+      "agility_032"
+    ],
+    [
+      "agility_032",
+      "agility_033"
+    ],
+    [
+      "agility_021",
+      "agility_033"
+    ],
+    [
+      "agility_033",
+      "agility_034"
+    ],
+    [
+      "agility_022",
+      "agility_034"
+    ],
+    [
+      "agility_034",
+      "agility_035"
+    ],
+    [
+      "agility_023",
+      "agility_035"
+    ],
+    [
+      "core_18",
+      "agility_000"
+    ],
+    [
+      "bridge_paladin_00",
+      "bridge_paladin_01"
+    ],
+    [
+      "bridge_paladin_01",
+      "bridge_paladin_02"
+    ],
+    [
+      "bridge_paladin_02",
+      "bridge_paladin_03"
+    ],
+    [
+      "bridge_paladin_03",
+      "bridge_paladin_04"
+    ],
+    [
+      "bridge_paladin_04",
+      "bridge_paladin_05"
+    ],
+    [
+      "vitality_012",
+      "bridge_paladin_00"
+    ],
+    [
+      "healing_007",
+      "bridge_paladin_00"
+    ],
+    [
+      "bridge_cleric_00",
+      "bridge_cleric_01"
+    ],
+    [
+      "bridge_cleric_01",
+      "bridge_cleric_02"
+    ],
+    [
+      "bridge_cleric_02",
+      "bridge_cleric_03"
+    ],
+    [
+      "bridge_cleric_03",
+      "bridge_cleric_04"
+    ],
+    [
+      "bridge_cleric_04",
+      "bridge_cleric_05"
+    ],
+    [
+      "healing_012",
+      "bridge_cleric_00"
+    ],
+    [
+      "arcane_007",
+      "bridge_cleric_00"
     ],
     [
       "bridge_technomancer_00",
@@ -6004,64 +7319,216 @@
       "bridge_technomancer_05"
     ],
     [
-      "bridge_artillerist_00",
-      "bridge_artillerist_01"
+      "arcane_012",
+      "bridge_technomancer_00"
     ],
     [
-      "bridge_artillerist_01",
-      "bridge_artillerist_02"
+      "engineering_007",
+      "bridge_technomancer_00"
     ],
     [
-      "bridge_artillerist_02",
-      "bridge_artillerist_03"
+      "bridge_industrialist_00",
+      "bridge_industrialist_01"
     ],
     [
-      "bridge_artillerist_03",
-      "bridge_artillerist_04"
+      "bridge_industrialist_01",
+      "bridge_industrialist_02"
     ],
     [
-      "bridge_artillerist_04",
-      "bridge_artillerist_05"
+      "bridge_industrialist_02",
+      "bridge_industrialist_03"
     ],
     [
-      "bridge_beastmaster_00",
-      "bridge_beastmaster_01"
+      "bridge_industrialist_03",
+      "bridge_industrialist_04"
     ],
     [
-      "bridge_beastmaster_01",
-      "bridge_beastmaster_02"
+      "bridge_industrialist_04",
+      "bridge_industrialist_05"
     ],
     [
-      "bridge_beastmaster_02",
-      "bridge_beastmaster_03"
+      "engineering_012",
+      "bridge_industrialist_00"
     ],
     [
-      "bridge_beastmaster_03",
-      "bridge_beastmaster_04"
+      "mining_007",
+      "bridge_industrialist_00"
     ],
     [
-      "bridge_beastmaster_04",
-      "bridge_beastmaster_05"
+      "bridge_prospector_00",
+      "bridge_prospector_01"
     ],
     [
-      "bridge_warlock_00",
-      "bridge_warlock_01"
+      "bridge_prospector_01",
+      "bridge_prospector_02"
     ],
     [
-      "bridge_warlock_01",
-      "bridge_warlock_02"
+      "bridge_prospector_02",
+      "bridge_prospector_03"
     ],
     [
-      "bridge_warlock_02",
-      "bridge_warlock_03"
+      "bridge_prospector_03",
+      "bridge_prospector_04"
     ],
     [
-      "bridge_warlock_03",
-      "bridge_warlock_04"
+      "bridge_prospector_04",
+      "bridge_prospector_05"
     ],
     [
-      "bridge_warlock_04",
-      "bridge_warlock_05"
+      "mining_012",
+      "bridge_prospector_00"
+    ],
+    [
+      "survival_007",
+      "bridge_prospector_00"
+    ],
+    [
+      "bridge_druid_00",
+      "bridge_druid_01"
+    ],
+    [
+      "bridge_druid_01",
+      "bridge_druid_02"
+    ],
+    [
+      "bridge_druid_02",
+      "bridge_druid_03"
+    ],
+    [
+      "bridge_druid_03",
+      "bridge_druid_04"
+    ],
+    [
+      "bridge_druid_04",
+      "bridge_druid_05"
+    ],
+    [
+      "survival_012",
+      "bridge_druid_00"
+    ],
+    [
+      "summoning_007",
+      "bridge_druid_00"
+    ],
+    [
+      "bridge_necromancer_00",
+      "bridge_necromancer_01"
+    ],
+    [
+      "bridge_necromancer_01",
+      "bridge_necromancer_02"
+    ],
+    [
+      "bridge_necromancer_02",
+      "bridge_necromancer_03"
+    ],
+    [
+      "bridge_necromancer_03",
+      "bridge_necromancer_04"
+    ],
+    [
+      "bridge_necromancer_04",
+      "bridge_necromancer_05"
+    ],
+    [
+      "summoning_012",
+      "bridge_necromancer_00"
+    ],
+    [
+      "occult_007",
+      "bridge_necromancer_00"
+    ],
+    [
+      "bridge_duelist_00",
+      "bridge_duelist_01"
+    ],
+    [
+      "bridge_duelist_01",
+      "bridge_duelist_02"
+    ],
+    [
+      "bridge_duelist_02",
+      "bridge_duelist_03"
+    ],
+    [
+      "bridge_duelist_03",
+      "bridge_duelist_04"
+    ],
+    [
+      "bridge_duelist_04",
+      "bridge_duelist_05"
+    ],
+    [
+      "agility_012",
+      "bridge_duelist_00"
+    ],
+    [
+      "martial_007",
+      "bridge_duelist_00"
+    ],
+    [
+      "vitality_036",
+      "keystone_00"
+    ],
+    [
+      "martial_039",
+      "keystone_01"
+    ],
+    [
+      "bridge_paladin_05",
+      "keystone_02"
+    ],
+    [
+      "arcane_036",
+      "keystone_03"
+    ],
+    [
+      "arcane_041",
+      "keystone_04"
+    ],
+    [
+      "bridge_technomancer_05",
+      "keystone_05"
+    ],
+    [
+      "engineering_041",
+      "keystone_06"
+    ],
+    [
+      "engineering_045",
+      "keystone_07"
+    ],
+    [
+      "bridge_prospector_05",
+      "keystone_08"
+    ],
+    [
+      "bridge_druid_05",
+      "keystone_09"
+    ],
+    [
+      "survival_037",
+      "keystone_10"
+    ],
+    [
+      "bridge_necromancer_05",
+      "keystone_11"
+    ],
+    [
+      "logistics_024",
+      "keystone_12"
+    ],
+    [
+      "occult_037",
+      "keystone_13"
+    ],
+    [
+      "agility_027",
+      "keystone_14"
+    ],
+    [
+      "bridge_duelist_05",
+      "keystone_15"
     ]
   ]
 }

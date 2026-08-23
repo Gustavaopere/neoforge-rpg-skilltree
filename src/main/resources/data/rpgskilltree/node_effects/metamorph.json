@@ -1,0 +1,39 @@
+{
+  "attributes": [
+    {
+      "effectId": "rpgskilltree:metamorph/borrowed_face/speed",
+      "nodeId": "rpgskilltree:metamorph/borrowed_face",
+      "attributeId": "minecraft:generic.movement_speed",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:metamorph/mutable_bones/armor",
+      "nodeId": "rpgskilltree:metamorph/mutable_bones",
+      "attributeId": "minecraft:generic.armor",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.5
+    },
+    {
+      "effectId": "rpgskilltree:metamorph/predatory_mimicry/damage",
+      "nodeId": "rpgskilltree:metamorph/predatory_mimicry",
+      "attributeId": "minecraft:generic.attack_damage",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    },
+    {
+      "effectId": "rpgskilltree:metamorph/unstable_anatomy/health",
+      "nodeId": "rpgskilltree:metamorph/unstable_anatomy",
+      "attributeId": "minecraft:generic.max_health",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 1.0
+    },
+    {
+      "effectId": "rpgskilltree:metamorph/chimeric_memory/dodge",
+      "nodeId": "rpgskilltree:metamorph/chimeric_memory",
+      "attributeId": "apothic_attributes:dodge_chance",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    }
+  ]
+}

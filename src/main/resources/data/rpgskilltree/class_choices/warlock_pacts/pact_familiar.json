@@ -1,0 +1,14 @@
+{
+  "choice_id": "warlock:pact_familiar",
+  "required_class_id": "warlock",
+  "group_id": "warlock:pact",
+  "default_group_capacity": 1,
+  "title": "Pact of the Familiar",
+  "mechanics": [
+    "primary_pact_servant",
+    "summon_scaling",
+    "revive_cooldown"
+  ],
+  "notes": "Uses real compatible summons/servants where adapters exist; intended for Goety, Ars familiars and other supported summon systems.",
+  "display_key": "choice.rpgskilltree.warlock.pact_familiar"
+}

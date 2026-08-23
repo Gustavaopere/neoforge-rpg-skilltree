@@ -1,0 +1,25 @@
+{
+  "id": "rpgskilltree:bridge_paladin_00",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:bridge_paladin_01",
+    "rpgskilltree:healing_007",
+    "rpgskilltree:vitality_012"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:bridge/paladin",
+    "rpgskilltree:domain/healing",
+    "rpgskilltree:domain/vitality",
+    "rpgskilltree:kind/hybrid"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/notable.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/notable.png",
+  "positionX": 846.44,
+  "positionY": -733.444,
+  "buttonSize": 24,
+  "isStartingPoint": false
+}

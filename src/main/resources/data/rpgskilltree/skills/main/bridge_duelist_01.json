@@ -1,0 +1,23 @@
+{
+  "id": "rpgskilltree:bridge_duelist_01",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:bridge_duelist_02"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:bridge/duelist",
+    "rpgskilltree:domain/agility",
+    "rpgskilltree:domain/martial",
+    "rpgskilltree:kind/hybrid"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/notable.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/notable.png",
+  "positionX": -359.209,
+  "positionY": -1223.354,
+  "buttonSize": 24,
+  "isStartingPoint": false
+}

@@ -1,0 +1,210 @@
+{
+  "id": "rpgskilltree:class/druid",
+  "displayKey": "tree.rpgskilltree.druid",
+  "nodes": [
+    {
+      "id": "rpgskilltree:druid/core",
+      "kind": "class",
+      "domain": "DRUID",
+      "x": 0,
+      "y": 150,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": true,
+      "minCharacterLevel": 20,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/wild_shape",
+      "kind": "lesser",
+      "domain": "DRUID",
+      "x": 0,
+      "y": 85,
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 20,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/natural_resilience",
+      "kind": "lesser",
+      "domain": "DRUID",
+      "x": 0,
+      "y": 20,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 20,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/aquatic_shape",
+      "kind": "notable",
+      "domain": "DRUID",
+      "x": -155,
+      "y": -50,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 20,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/deep_lungs",
+      "kind": "lesser",
+      "domain": "DRUID",
+      "x": -215,
+      "y": -120,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 20,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/winged_shape",
+      "kind": "notable",
+      "domain": "DRUID",
+      "x": 0,
+      "y": -70,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 20,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/sky_instinct",
+      "kind": "lesser",
+      "domain": "DRUID",
+      "x": 0,
+      "y": -145,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 20,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/predator_form",
+      "kind": "notable",
+      "domain": "DRUID",
+      "x": 155,
+      "y": -50,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 20,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/pack_guardian",
+      "kind": "lesser",
+      "domain": "DRUID",
+      "x": 215,
+      "y": -120,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 20,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/primal_spirit",
+      "kind": "keystone",
+      "domain": "DRUID",
+      "x": 0,
+      "y": -225,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 30,
+      "requiredClasses": [
+        "druid"
+      ]
+    },
+    {
+      "id": "rpgskilltree:druid/archdruid",
+      "kind": "keystone",
+      "domain": "DRUID",
+      "x": 0,
+      "y": -305,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 35,
+      "requiredClasses": [
+        "druid"
+      ]
+    }
+  ],
+  "edges": [
+    [
+      "rpgskilltree:druid/core",
+      "rpgskilltree:druid/wild_shape"
+    ],
+    [
+      "rpgskilltree:druid/wild_shape",
+      "rpgskilltree:druid/natural_resilience"
+    ],
+    [
+      "rpgskilltree:druid/natural_resilience",
+      "rpgskilltree:druid/aquatic_shape"
+    ],
+    [
+      "rpgskilltree:druid/aquatic_shape",
+      "rpgskilltree:druid/deep_lungs"
+    ],
+    [
+      "rpgskilltree:druid/natural_resilience",
+      "rpgskilltree:druid/winged_shape"
+    ],
+    [
+      "rpgskilltree:druid/winged_shape",
+      "rpgskilltree:druid/sky_instinct"
+    ],
+    [
+      "rpgskilltree:druid/natural_resilience",
+      "rpgskilltree:druid/predator_form"
+    ],
+    [
+      "rpgskilltree:druid/predator_form",
+      "rpgskilltree:druid/pack_guardian"
+    ],
+    [
+      "rpgskilltree:druid/sky_instinct",
+      "rpgskilltree:druid/primal_spirit"
+    ],
+    [
+      "rpgskilltree:druid/deep_lungs",
+      "rpgskilltree:druid/primal_spirit"
+    ],
+    [
+      "rpgskilltree:druid/pack_guardian",
+      "rpgskilltree:druid/primal_spirit"
+    ],
+    [
+      "rpgskilltree:druid/primal_spirit",
+      "rpgskilltree:druid/archdruid"
+    ]
+  ]
+}

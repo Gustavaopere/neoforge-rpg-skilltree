@@ -1,0 +1,14 @@
+{
+  "choice_id": "warlock:pact_souls",
+  "required_class_id": "warlock",
+  "group_id": "warlock:pact",
+  "default_group_capacity": 1,
+  "title": "Pact of Souls",
+  "mechanics": [
+    "soul_resource",
+    "kill_marking",
+    "servant_synergy"
+  ],
+  "notes": "Goety-backed where available; must degrade gracefully if a soul-energy provider is absent.",
+  "display_key": "choice.rpgskilltree.warlock.pact_souls"
+}

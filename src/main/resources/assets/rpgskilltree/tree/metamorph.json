@@ -1,0 +1,192 @@
+{
+  "id": "rpgskilltree:class/metamorph",
+  "displayKey": "tree.rpgskilltree.metamorph",
+  "nodes": [
+    {
+      "id": "rpgskilltree:metamorph/core",
+      "kind": "class",
+      "domain": "METAMORPH",
+      "x": 0,
+      "y": 150,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": true,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    },
+    {
+      "id": "rpgskilltree:metamorph/borrowed_face",
+      "kind": "lesser",
+      "domain": "METAMORPH",
+      "x": 0,
+      "y": 80,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    },
+    {
+      "id": "rpgskilltree:metamorph/mutable_bones",
+      "kind": "lesser",
+      "domain": "METAMORPH",
+      "x": 0,
+      "y": 10,
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 25,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    },
+    {
+      "id": "rpgskilltree:metamorph/monstrous_flesh",
+      "kind": "notable",
+      "domain": "METAMORPH",
+      "x": -145,
+      "y": -70,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 28,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    },
+    {
+      "id": "rpgskilltree:metamorph/predatory_mimicry",
+      "kind": "lesser",
+      "domain": "METAMORPH",
+      "x": -210,
+      "y": -140,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 28,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    },
+    {
+      "id": "rpgskilltree:metamorph/aberrant_form",
+      "kind": "notable",
+      "domain": "METAMORPH",
+      "x": 145,
+      "y": -70,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 30,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    },
+    {
+      "id": "rpgskilltree:metamorph/unstable_anatomy",
+      "kind": "lesser",
+      "domain": "METAMORPH",
+      "x": 210,
+      "y": -140,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 30,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    },
+    {
+      "id": "rpgskilltree:metamorph/chimeric_memory",
+      "kind": "notable",
+      "domain": "METAMORPH",
+      "x": 0,
+      "y": -90,
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 30,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    },
+    {
+      "id": "rpgskilltree:metamorph/perfect_mimicry",
+      "kind": "keystone",
+      "domain": "METAMORPH",
+      "x": 0,
+      "y": -180,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 35,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    },
+    {
+      "id": "rpgskilltree:metamorph/apex_metamorph",
+      "kind": "keystone",
+      "domain": "METAMORPH",
+      "x": 0,
+      "y": -265,
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "minCharacterLevel": 40,
+      "requiredClasses": [
+        "metamorph"
+      ]
+    }
+  ],
+  "edges": [
+    [
+      "rpgskilltree:metamorph/core",
+      "rpgskilltree:metamorph/borrowed_face"
+    ],
+    [
+      "rpgskilltree:metamorph/borrowed_face",
+      "rpgskilltree:metamorph/mutable_bones"
+    ],
+    [
+      "rpgskilltree:metamorph/mutable_bones",
+      "rpgskilltree:metamorph/monstrous_flesh"
+    ],
+    [
+      "rpgskilltree:metamorph/monstrous_flesh",
+      "rpgskilltree:metamorph/predatory_mimicry"
+    ],
+    [
+      "rpgskilltree:metamorph/mutable_bones",
+      "rpgskilltree:metamorph/aberrant_form"
+    ],
+    [
+      "rpgskilltree:metamorph/aberrant_form",
+      "rpgskilltree:metamorph/unstable_anatomy"
+    ],
+    [
+      "rpgskilltree:metamorph/mutable_bones",
+      "rpgskilltree:metamorph/chimeric_memory"
+    ],
+    [
+      "rpgskilltree:metamorph/predatory_mimicry",
+      "rpgskilltree:metamorph/perfect_mimicry"
+    ],
+    [
+      "rpgskilltree:metamorph/unstable_anatomy",
+      "rpgskilltree:metamorph/perfect_mimicry"
+    ],
+    [
+      "rpgskilltree:metamorph/chimeric_memory",
+      "rpgskilltree:metamorph/perfect_mimicry"
+    ],
+    [
+      "rpgskilltree:metamorph/perfect_mimicry",
+      "rpgskilltree:metamorph/apex_metamorph"
+    ]
+  ]
+}

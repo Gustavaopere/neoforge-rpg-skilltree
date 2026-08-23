@@ -1,0 +1,19 @@
+{
+  "overrides": {
+    "minecraft:parrot": "NATURAL_FLYING",
+    "minecraft:bee": "NATURAL_FLYING",
+    "minecraft:allay": "MAGICAL_NATURAL",
+    "minecraft:villager": "HUMANOID",
+    "minecraft:wandering_trader": "HUMANOID",
+    "minecraft:iron_golem": "HUMANOID",
+    "minecraft:snow_golem": "HUMANOID",
+    "ars_nouveau:starbuncle": "MAGICAL_NATURAL",
+    "ars_nouveau:whirlisprig": "MAGICAL_NATURAL",
+    "ars_nouveau:drygmy": "MAGICAL_NATURAL",
+    "ars_nouveau:wixie": "MAGICAL_NATURAL"
+  },
+  "blacklist": [
+    "minecraft:ender_dragon",
+    "minecraft:wither"
+  ]
+}

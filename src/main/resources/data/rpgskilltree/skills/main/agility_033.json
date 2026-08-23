@@ -1,0 +1,21 @@
+{
+  "id": "rpgskilltree:agility_033",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:agility_034"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/agility",
+    "rpgskilltree:kind/final_triad"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/notable.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/notable.png",
+  "positionX": -434.003,
+  "positionY": -1435.842,
+  "buttonSize": 24,
+  "isStartingPoint": false
+}

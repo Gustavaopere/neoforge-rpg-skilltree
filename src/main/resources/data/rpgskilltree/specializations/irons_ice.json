@@ -1,0 +1,16 @@
+{
+  "specialization_id": "irons_ice",
+  "provider": "irons_spellbooks",
+  "kind": "school",
+  "eligible_class_ids": [
+    "arcanist",
+    "spellblade",
+    "cleric"
+  ],
+  "minimum_mastery_experience": {
+    "irons:ice": 100
+  },
+  "required_tags": [
+    "gateway:irons_ice"
+  ]
+}

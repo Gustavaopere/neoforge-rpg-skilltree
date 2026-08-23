@@ -1,0 +1,109 @@
+{
+  "attributes": [
+    {
+      "effectId": "rpgskilltree:node/technomancer/core/mana",
+      "nodeId": "rpgskilltree:technomancer/core",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 25.0
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/conductive_mana/mana",
+      "nodeId": "rpgskilltree:technomancer/conductive_mana",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 20.0
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/arcane_bus/regen",
+      "nodeId": "rpgskilltree:technomancer/arcane_bus",
+      "attributeId": "irons_spellbooks:mana_regen",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/create_resonance/power",
+      "nodeId": "rpgskilltree:technomancer/create_resonance",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/kinetic_casting/cast_time",
+      "nodeId": "rpgskilltree:technomancer/kinetic_casting",
+      "attributeId": "irons_spellbooks:cast_time_reduction",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.025
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/create_overdrive/cooldown",
+      "nodeId": "rpgskilltree:technomancer/create_overdrive",
+      "attributeId": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.05
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/network_memory/mana",
+      "nodeId": "rpgskilltree:technomancer/network_memory",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 15.0
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/pattern_mind/power",
+      "nodeId": "rpgskilltree:technomancer/pattern_mind",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.025
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/arcane_autocrafting/regen",
+      "nodeId": "rpgskilltree:technomancer/arcane_autocrafting",
+      "attributeId": "irons_spellbooks:mana_regen",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.06
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/power_conduit/regen",
+      "nodeId": "rpgskilltree:technomancer/power_conduit",
+      "attributeId": "irons_spellbooks:mana_regen",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.025
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/charged_focus/power",
+      "nodeId": "rpgskilltree:technomancer/charged_focus",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.025
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/overcharged_caster/crit",
+      "nodeId": "rpgskilltree:technomancer/overcharged_caster",
+      "attributeId": "apothic_attributes:crit_chance",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.05
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/dual_systems/cooldown",
+      "nodeId": "rpgskilltree:technomancer/dual_systems",
+      "attributeId": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.04
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/triune_core/power",
+      "nodeId": "rpgskilltree:technomancer/triune_core",
+      "attributeId": "irons_spellbooks:spell_power",
+      "operation": "ADD_PERCENT_BASE",
+      "amountPerRank": 0.08
+    },
+    {
+      "effectId": "rpgskilltree:node/technomancer/triune_core/mana",
+      "nodeId": "rpgskilltree:technomancer/triune_core",
+      "attributeId": "irons_spellbooks:max_mana",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 50.0
+    }
+  ]
+}

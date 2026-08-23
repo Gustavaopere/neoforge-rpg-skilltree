@@ -1,0 +1,16 @@
+{
+  "specialization_id": "irons_evocation",
+  "provider": "irons_spellbooks",
+  "kind": "school",
+  "eligible_class_ids": [
+    "arcanist",
+    "spellblade",
+    "duelist"
+  ],
+  "minimum_mastery_experience": {
+    "irons:evocation": 100
+  },
+  "required_tags": [
+    "gateway:irons_evocation"
+  ]
+}

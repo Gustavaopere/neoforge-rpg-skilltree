@@ -1,0 +1,16 @@
+{
+  "specialization_id": "oritech_mining",
+  "provider": "oritech",
+  "kind": "technology",
+  "eligible_class_ids": [
+    "miner",
+    "industrialist",
+    "prospector"
+  ],
+  "minimum_mastery_experience": {
+    "oritech:mining": 80
+  },
+  "required_tags": [
+    "gateway:oritech_mining"
+  ]
+}

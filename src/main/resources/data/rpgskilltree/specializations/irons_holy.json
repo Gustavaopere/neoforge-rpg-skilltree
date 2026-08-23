@@ -1,0 +1,17 @@
+{
+  "specialization_id": "irons_holy",
+  "provider": "irons_spellbooks",
+  "kind": "school",
+  "eligible_class_ids": [
+    "priest",
+    "cleric",
+    "paladin",
+    "arcanist"
+  ],
+  "minimum_mastery_experience": {
+    "irons:holy": 100
+  },
+  "required_tags": [
+    "gateway:irons_holy"
+  ]
+}

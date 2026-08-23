@@ -1,0 +1,16 @@
+{
+  "specialization_id": "ae2_networks",
+  "provider": "ae2",
+  "kind": "technology",
+  "eligible_class_ids": [
+    "logistician",
+    "engineer",
+    "technomancer"
+  ],
+  "minimum_mastery_experience": {
+    "ae2:networks": 80
+  },
+  "required_tags": [
+    "gateway:ae2_networks"
+  ]
+}

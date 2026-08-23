@@ -1,0 +1,22 @@
+{
+  "id": "rpgskilltree:summoning_017",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:summoning_018",
+    "rpgskilltree:summoning_027"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/summoning",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": -830.345,
+  "positionY": 941.038,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

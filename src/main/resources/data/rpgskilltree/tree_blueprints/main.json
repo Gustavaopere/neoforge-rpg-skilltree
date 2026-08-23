@@ -1,27 +1,130 @@
 {
   "id": "rpgskilltree:main",
   "style": "poe_radial_web",
-  "target_node_count": 420,
-  "canvas": {"width": 4096, "height": 4096},
+  "target_node_count": 512,
+  "canvas": {
+    "width": 4608,
+    "height": 4608
+  },
+  "region_order_note": "Physical order is intentional: adjacency controls natural class confluences. Not every adjacent pair must define a class.",
   "regions": [
-    {"id": "MARTIAL", "node_budget": 48},
-    {"id": "AGILITY", "node_budget": 48},
-    {"id": "VITALITY", "node_budget": 48},
-    {"id": "ARCANE", "node_budget": 60},
-    {"id": "ENGINEERING", "node_budget": 56},
-    {"id": "SURVIVAL", "node_budget": 40},
-    {"id": "SUMMONING", "node_budget": 36}
+    {
+      "id": "MARTIAL",
+      "node_budget": 40
+    },
+    {
+      "id": "VITALITY",
+      "node_budget": 38
+    },
+    {
+      "id": "HEALING",
+      "node_budget": 34
+    },
+    {
+      "id": "ARCANE",
+      "node_budget": 50
+    },
+    {
+      "id": "ENGINEERING",
+      "node_budget": 46
+    },
+    {
+      "id": "MINING",
+      "node_budget": 36
+    },
+    {
+      "id": "SURVIVAL",
+      "node_budget": 38
+    },
+    {
+      "id": "SUMMONING",
+      "node_budget": 34
+    },
+    {
+      "id": "OCCULT",
+      "node_budget": 38
+    },
+    {
+      "id": "LOGISTICS",
+      "node_budget": 30
+    },
+    {
+      "id": "AGILITY",
+      "node_budget": 36
+    }
   ],
   "shared_core_nodes": 28,
-  "hybrid_bridge_nodes": 42,
-  "outer_keystone_nodes": 14,
+  "hybrid_bridge_nodes": 48,
+  "outer_keystone_nodes": 16,
+  "final_triad": {
+    "capstones_per_region": 3,
+    "ranks_per_capstone": 3,
+    "points_to_complete_region_end": 9
+  },
+  "non_adjacent_class_bridge_cost": 10,
   "class_bridges": [
-    {"id": "spellblade", "domains": ["MARTIAL", "ARCANE"]},
-    {"id": "battlemage", "domains": ["VITALITY", "ARCANE"]},
-    {"id": "arcane_archer", "domains": ["AGILITY", "ARCANE"]},
-    {"id": "technomancer", "domains": ["ARCANE", "ENGINEERING"]},
-    {"id": "artillerist", "domains": ["MARTIAL", "ENGINEERING"]},
-    {"id": "beastmaster", "domains": ["SURVIVAL", "SUMMONING"]},
-    {"id": "warlock", "domains": ["ARCANE", "SUMMONING"]}
+    {
+      "id": "paladin",
+      "domains": [
+        "VITALITY",
+        "HEALING"
+      ]
+    },
+    {
+      "id": "cleric",
+      "domains": [
+        "HEALING",
+        "ARCANE"
+      ]
+    },
+    {
+      "id": "technomancer",
+      "domains": [
+        "ARCANE",
+        "ENGINEERING"
+      ]
+    },
+    {
+      "id": "industrialist",
+      "domains": [
+        "ENGINEERING",
+        "MINING"
+      ]
+    },
+    {
+      "id": "prospector",
+      "domains": [
+        "MINING",
+        "SURVIVAL"
+      ]
+    },
+    {
+      "id": "druid",
+      "domains": [
+        "SURVIVAL",
+        "SUMMONING"
+      ]
+    },
+    {
+      "id": "necromancer",
+      "domains": [
+        "SUMMONING",
+        "OCCULT"
+      ]
+    },
+    {
+      "id": "duelist",
+      "domains": [
+        "AGILITY",
+        "MARTIAL"
+      ]
+    }
+  ],
+  "dynamic_non_adjacent_classes": [
+    "warlock",
+    "geomancer",
+    "spellblade",
+    "beastmaster",
+    "metamorph"
   ]
 }

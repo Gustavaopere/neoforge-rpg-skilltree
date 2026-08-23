@@ -1,0 +1,17 @@
+{
+  "specialization_id": "ars_projectile",
+  "provider": "ars_nouveau",
+  "kind": "spell_composition",
+  "eligible_class_ids": [
+    "arcanist",
+    "technomancer",
+    "spellblade",
+    "cleric"
+  ],
+  "minimum_mastery_experience": {
+    "ars:projectile": 80
+  },
+  "required_tags": [
+    "gateway:ars_projectile"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "class_id": "prospector",
+  "tree_id": "rpgskilltree:class/prospector",
+  "kind": "hybrid",
+  "required_completed_domains": [
+    "MINING",
+    "SURVIVAL"
+  ],
+  "final_triad_capstones_per_domain": 3,
+  "final_triad_rank_per_capstone": 3,
+  "adjacent_confluence": true,
+  "non_adjacent_bridge_cost": 0,
+  "notes": "Seed Alpha 2 class definition; talents and final naming may evolve during class-content design."
+}

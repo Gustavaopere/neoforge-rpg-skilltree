@@ -1,0 +1,22 @@
+{
+  "id": "rpgskilltree:martial_010",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:martial_011",
+    "rpgskilltree:martial_019"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/martial",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": 52.859,
+  "positionY": -1008.616,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

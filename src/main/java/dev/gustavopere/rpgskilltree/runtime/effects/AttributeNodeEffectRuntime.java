@@ -1,0 +1,49 @@
+package dev.gustavopere.rpgskilltree.runtime.effects;
+
+import dev.gustavopere.rpgskilltree.core.ModifierOperation;
+import dev.gustavopere.rpgskilltree.core.NodeEffectResolver;
+import dev.gustavopere.rpgskilltree.core.ProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalog;
+import java.util.HashMap;
+import java.util.Map;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+
+public final class AttributeNodeEffectRuntime {
+    private AttributeNodeEffectRuntime() {}
+
+    public static void refresh(ServerPlayer player, ProgressionState state) {
+        for (var effect : NodeEffectCatalog.clearableAttributeEffects()) {
+            var attributeId = ResourceLocation.parse(effect.attributeId());
+            var holder = BuiltInRegistries.ATTRIBUTE.getHolder(attributeId).orElse(null);
+            if (holder == null) continue;
+            var instance = player.getAttribute(holder);
+            if (instance == null) continue;
+            instance.removeModifier(ResourceLocation.parse(effect.effectId()));
+        }
+
+        for (var effect : NodeEffectResolver.resolveAttributes(state.passiveNodes(), NodeEffectCatalog.attributeEffects())) {
+            var attributeId = ResourceLocation.parse(effect.attributeId());
+            var holder = BuiltInRegistries.ATTRIBUTE.getHolder(attributeId).orElse(null);
+            if (holder == null) continue;
+            var instance = player.getAttribute(holder);
+            if (instance == null) continue;
+            instance.addOrUpdateTransientModifier(new AttributeModifier(
+                ResourceLocation.parse(effect.effectId()),
+                effect.amount(),
+                operation(effect.operation())
+            ));
+        }
+    }
+
+    private static AttributeModifier.Operation operation(ModifierOperation operation) {
+        return switch (operation) {
+            case ADD_FLAT -> AttributeModifier.Operation.ADD_VALUE;
+            case ADD_PERCENT_BASE -> AttributeModifier.Operation.ADD_MULTIPLIED_BASE;
+            case MULTIPLY_TOTAL -> AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL;
+            case OVERRIDE -> throw new IllegalArgumentException("OVERRIDE is not supported for attribute node effects");
+        };
+    }
+}

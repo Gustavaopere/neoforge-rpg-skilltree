@@ -1,0 +1,16 @@
+{
+  "specialization_id": "oritech_power",
+  "provider": "oritech",
+  "kind": "technology",
+  "eligible_class_ids": [
+    "engineer",
+    "industrialist",
+    "technomancer"
+  ],
+  "minimum_mastery_experience": {
+    "oritech:power": 80
+  },
+  "required_tags": [
+    "gateway:oritech_power"
+  ]
+}

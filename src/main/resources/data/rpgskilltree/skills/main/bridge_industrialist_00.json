@@ -1,0 +1,25 @@
+{
+  "id": "rpgskilltree:bridge_industrialist_00",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:bridge_industrialist_01",
+    "rpgskilltree:engineering_012",
+    "rpgskilltree:mining_007"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:bridge/industrialist",
+    "rpgskilltree:domain/engineering",
+    "rpgskilltree:domain/mining",
+    "rpgskilltree:kind/hybrid"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/notable.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/notable.png",
+  "positionX": 605.518,
+  "positionY": 942.204,
+  "buttonSize": 24,
+  "isStartingPoint": false
+}

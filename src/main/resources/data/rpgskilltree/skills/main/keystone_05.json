@@ -1,0 +1,18 @@
+{
+  "id": "rpgskilltree:keystone_05",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:kind/keystone"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/keystone.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/keystone.png",
+  "positionX": 1801.565,
+  "positionY": 746.233,
+  "buttonSize": 32,
+  "isStartingPoint": false
+}

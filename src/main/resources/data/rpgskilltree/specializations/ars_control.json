@@ -1,0 +1,17 @@
+{
+  "specialization_id": "ars_control",
+  "provider": "ars_nouveau",
+  "kind": "spell_composition",
+  "eligible_class_ids": [
+    "arcanist",
+    "cleric",
+    "technomancer",
+    "druid"
+  ],
+  "minimum_mastery_experience": {
+    "ars:control": 80
+  },
+  "required_tags": [
+    "gateway:ars_control"
+  ]
+}

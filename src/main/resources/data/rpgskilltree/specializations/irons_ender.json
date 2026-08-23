@@ -1,0 +1,16 @@
+{
+  "specialization_id": "irons_ender",
+  "provider": "irons_spellbooks",
+  "kind": "school",
+  "eligible_class_ids": [
+    "arcanist",
+    "warlock",
+    "occultist"
+  ],
+  "minimum_mastery_experience": {
+    "irons:ender": 100
+  },
+  "required_tags": [
+    "gateway:irons_ender"
+  ]
+}

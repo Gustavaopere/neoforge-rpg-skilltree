@@ -1,0 +1,147 @@
+{
+  "treeId": "rpgskilltree:class/metamorph",
+  "nodes": [
+    {
+      "id": "rpgskilltree:metamorph/core",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": true,
+      "neighbors": [
+        "rpgskilltree:metamorph/borrowed_face"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 25
+    },
+    {
+      "id": "rpgskilltree:metamorph/borrowed_face",
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:metamorph/core",
+        "rpgskilltree:metamorph/mutable_bones"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 25
+    },
+    {
+      "id": "rpgskilltree:metamorph/mutable_bones",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:metamorph/borrowed_face",
+        "rpgskilltree:metamorph/monstrous_flesh",
+        "rpgskilltree:metamorph/aberrant_form",
+        "rpgskilltree:metamorph/chimeric_memory"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 25
+    },
+    {
+      "id": "rpgskilltree:metamorph/monstrous_flesh",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:metamorph/mutable_bones",
+        "rpgskilltree:metamorph/predatory_mimicry"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 28
+    },
+    {
+      "id": "rpgskilltree:metamorph/predatory_mimicry",
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:metamorph/monstrous_flesh",
+        "rpgskilltree:metamorph/perfect_mimicry"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 28
+    },
+    {
+      "id": "rpgskilltree:metamorph/aberrant_form",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:metamorph/mutable_bones",
+        "rpgskilltree:metamorph/unstable_anatomy"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 30
+    },
+    {
+      "id": "rpgskilltree:metamorph/unstable_anatomy",
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:metamorph/aberrant_form",
+        "rpgskilltree:metamorph/perfect_mimicry"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 30
+    },
+    {
+      "id": "rpgskilltree:metamorph/chimeric_memory",
+      "maxRank": 2,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:metamorph/mutable_bones",
+        "rpgskilltree:metamorph/perfect_mimicry"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 30
+    },
+    {
+      "id": "rpgskilltree:metamorph/perfect_mimicry",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:metamorph/predatory_mimicry",
+        "rpgskilltree:metamorph/unstable_anatomy",
+        "rpgskilltree:metamorph/chimeric_memory",
+        "rpgskilltree:metamorph/apex_metamorph"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 35
+    },
+    {
+      "id": "rpgskilltree:metamorph/apex_metamorph",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:metamorph/perfect_mimicry"
+      ],
+      "requiredClasses": [
+        "metamorph"
+      ],
+      "minCharacterLevel": 40
+    }
+  ]
+}

@@ -1,0 +1,5837 @@
+{
+  "treeId": "rpgskilltree:main",
+  "nodes": [
+    {
+      "id": "rpgskilltree:core_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": true,
+      "neighbors": [
+        "rpgskilltree:core_01",
+        "rpgskilltree:core_27"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_000",
+        "rpgskilltree:core_00",
+        "rpgskilltree:core_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_01",
+        "rpgskilltree:core_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_02",
+        "rpgskilltree:core_04",
+        "rpgskilltree:engineering_000"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_03",
+        "rpgskilltree:core_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_04",
+        "rpgskilltree:core_06"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_06",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_05",
+        "rpgskilltree:core_07",
+        "rpgskilltree:mining_000"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_07",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_06",
+        "rpgskilltree:core_08"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_08",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_07",
+        "rpgskilltree:core_09",
+        "rpgskilltree:survival_000"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_09",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_08",
+        "rpgskilltree:core_10"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_10",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_09",
+        "rpgskilltree:core_11"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_11",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_10",
+        "rpgskilltree:core_12",
+        "rpgskilltree:summoning_000"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_12",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_11",
+        "rpgskilltree:core_13"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_13",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_12",
+        "rpgskilltree:core_14",
+        "rpgskilltree:occult_000"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_14",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_13",
+        "rpgskilltree:core_15"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_15",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_14",
+        "rpgskilltree:core_16"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_16",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_15",
+        "rpgskilltree:core_17",
+        "rpgskilltree:logistics_000"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_17",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_16",
+        "rpgskilltree:core_18"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_18",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_000",
+        "rpgskilltree:core_17",
+        "rpgskilltree:core_19"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_19",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_18",
+        "rpgskilltree:core_20"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_20",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_19",
+        "rpgskilltree:core_21"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_21",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_20",
+        "rpgskilltree:core_22",
+        "rpgskilltree:martial_000"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_22",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_21",
+        "rpgskilltree:core_23"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_23",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_22",
+        "rpgskilltree:core_24"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_24",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_23",
+        "rpgskilltree:core_25",
+        "rpgskilltree:vitality_000"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_25",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_24",
+        "rpgskilltree:core_26"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_26",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_25",
+        "rpgskilltree:core_27",
+        "rpgskilltree:healing_000"
+      ]
+    },
+    {
+      "id": "rpgskilltree:core_27",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_00",
+        "rpgskilltree:core_26"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_21",
+        "rpgskilltree:martial_001",
+        "rpgskilltree:martial_006"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_000",
+        "rpgskilltree:martial_002",
+        "rpgskilltree:martial_007",
+        "rpgskilltree:martial_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_001",
+        "rpgskilltree:martial_003",
+        "rpgskilltree:martial_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_002",
+        "rpgskilltree:martial_004",
+        "rpgskilltree:martial_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_003",
+        "rpgskilltree:martial_005",
+        "rpgskilltree:martial_011",
+        "rpgskilltree:martial_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_004",
+        "rpgskilltree:martial_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_000",
+        "rpgskilltree:martial_007",
+        "rpgskilltree:martial_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_duelist_00",
+        "rpgskilltree:martial_001",
+        "rpgskilltree:martial_006",
+        "rpgskilltree:martial_008",
+        "rpgskilltree:martial_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_001",
+        "rpgskilltree:martial_007",
+        "rpgskilltree:martial_009",
+        "rpgskilltree:martial_016",
+        "rpgskilltree:martial_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_002",
+        "rpgskilltree:martial_008",
+        "rpgskilltree:martial_010",
+        "rpgskilltree:martial_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_003",
+        "rpgskilltree:martial_009",
+        "rpgskilltree:martial_011",
+        "rpgskilltree:martial_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_004",
+        "rpgskilltree:martial_010",
+        "rpgskilltree:martial_012",
+        "rpgskilltree:martial_020",
+        "rpgskilltree:martial_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_004",
+        "rpgskilltree:martial_011",
+        "rpgskilltree:martial_013",
+        "rpgskilltree:martial_022"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_005",
+        "rpgskilltree:martial_012",
+        "rpgskilltree:martial_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_006",
+        "rpgskilltree:martial_015",
+        "rpgskilltree:martial_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_007",
+        "rpgskilltree:martial_014",
+        "rpgskilltree:martial_016",
+        "rpgskilltree:martial_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_008",
+        "rpgskilltree:martial_015",
+        "rpgskilltree:martial_017",
+        "rpgskilltree:martial_026",
+        "rpgskilltree:martial_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_008",
+        "rpgskilltree:martial_016",
+        "rpgskilltree:martial_018",
+        "rpgskilltree:martial_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_009",
+        "rpgskilltree:martial_017",
+        "rpgskilltree:martial_019",
+        "rpgskilltree:martial_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_010",
+        "rpgskilltree:martial_018",
+        "rpgskilltree:martial_020",
+        "rpgskilltree:martial_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_011",
+        "rpgskilltree:martial_019",
+        "rpgskilltree:martial_021",
+        "rpgskilltree:martial_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_011",
+        "rpgskilltree:martial_020",
+        "rpgskilltree:martial_022",
+        "rpgskilltree:martial_032",
+        "rpgskilltree:martial_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_012",
+        "rpgskilltree:martial_021",
+        "rpgskilltree:martial_023",
+        "rpgskilltree:martial_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_013",
+        "rpgskilltree:martial_022",
+        "rpgskilltree:martial_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_014",
+        "rpgskilltree:martial_025",
+        "rpgskilltree:martial_036"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_015",
+        "rpgskilltree:martial_024",
+        "rpgskilltree:martial_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_016",
+        "rpgskilltree:martial_025",
+        "rpgskilltree:martial_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_016",
+        "rpgskilltree:martial_026",
+        "rpgskilltree:martial_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_028",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_017",
+        "rpgskilltree:martial_027",
+        "rpgskilltree:martial_029",
+        "rpgskilltree:martial_037"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_029",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_018",
+        "rpgskilltree:martial_028",
+        "rpgskilltree:martial_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_019",
+        "rpgskilltree:martial_029",
+        "rpgskilltree:martial_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_031",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_020",
+        "rpgskilltree:martial_030",
+        "rpgskilltree:martial_032",
+        "rpgskilltree:martial_038"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_032",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_021",
+        "rpgskilltree:martial_031",
+        "rpgskilltree:martial_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_033",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_021",
+        "rpgskilltree:martial_032",
+        "rpgskilltree:martial_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_034",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_022",
+        "rpgskilltree:martial_033",
+        "rpgskilltree:martial_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_035",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_023",
+        "rpgskilltree:martial_034",
+        "rpgskilltree:martial_039"
+      ]
+    },
+    {
+      "id": "rpgskilltree:martial_036",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_024",
+        "rpgskilltree:martial_037"
+      ],
+      "finalTriadDomain": "MARTIAL",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:martial_037",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_028",
+        "rpgskilltree:martial_036",
+        "rpgskilltree:martial_038"
+      ],
+      "finalTriadDomain": "MARTIAL",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:martial_038",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_031",
+        "rpgskilltree:martial_037",
+        "rpgskilltree:martial_039"
+      ],
+      "finalTriadDomain": "MARTIAL",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:martial_039",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:keystone_01",
+        "rpgskilltree:martial_035",
+        "rpgskilltree:martial_038"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_24",
+        "rpgskilltree:vitality_001",
+        "rpgskilltree:vitality_006"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_000",
+        "rpgskilltree:vitality_002",
+        "rpgskilltree:vitality_007",
+        "rpgskilltree:vitality_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_001",
+        "rpgskilltree:vitality_003",
+        "rpgskilltree:vitality_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_002",
+        "rpgskilltree:vitality_004",
+        "rpgskilltree:vitality_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_003",
+        "rpgskilltree:vitality_005",
+        "rpgskilltree:vitality_011",
+        "rpgskilltree:vitality_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_004",
+        "rpgskilltree:vitality_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_000",
+        "rpgskilltree:vitality_007",
+        "rpgskilltree:vitality_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_001",
+        "rpgskilltree:vitality_006",
+        "rpgskilltree:vitality_008",
+        "rpgskilltree:vitality_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_001",
+        "rpgskilltree:vitality_007",
+        "rpgskilltree:vitality_009",
+        "rpgskilltree:vitality_016",
+        "rpgskilltree:vitality_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_002",
+        "rpgskilltree:vitality_008",
+        "rpgskilltree:vitality_010",
+        "rpgskilltree:vitality_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_003",
+        "rpgskilltree:vitality_009",
+        "rpgskilltree:vitality_011",
+        "rpgskilltree:vitality_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_004",
+        "rpgskilltree:vitality_010",
+        "rpgskilltree:vitality_012",
+        "rpgskilltree:vitality_020",
+        "rpgskilltree:vitality_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_00",
+        "rpgskilltree:vitality_004",
+        "rpgskilltree:vitality_011",
+        "rpgskilltree:vitality_013",
+        "rpgskilltree:vitality_022"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_005",
+        "rpgskilltree:vitality_012",
+        "rpgskilltree:vitality_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_006",
+        "rpgskilltree:vitality_015",
+        "rpgskilltree:vitality_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_007",
+        "rpgskilltree:vitality_014",
+        "rpgskilltree:vitality_016",
+        "rpgskilltree:vitality_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_008",
+        "rpgskilltree:vitality_015",
+        "rpgskilltree:vitality_017",
+        "rpgskilltree:vitality_026",
+        "rpgskilltree:vitality_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_008",
+        "rpgskilltree:vitality_016",
+        "rpgskilltree:vitality_018",
+        "rpgskilltree:vitality_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_009",
+        "rpgskilltree:vitality_017",
+        "rpgskilltree:vitality_019",
+        "rpgskilltree:vitality_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_010",
+        "rpgskilltree:vitality_018",
+        "rpgskilltree:vitality_020",
+        "rpgskilltree:vitality_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_011",
+        "rpgskilltree:vitality_019",
+        "rpgskilltree:vitality_021",
+        "rpgskilltree:vitality_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_011",
+        "rpgskilltree:vitality_020",
+        "rpgskilltree:vitality_022",
+        "rpgskilltree:vitality_032",
+        "rpgskilltree:vitality_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_012",
+        "rpgskilltree:vitality_021",
+        "rpgskilltree:vitality_023",
+        "rpgskilltree:vitality_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_013",
+        "rpgskilltree:vitality_022",
+        "rpgskilltree:vitality_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_014",
+        "rpgskilltree:vitality_025",
+        "rpgskilltree:vitality_036"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_015",
+        "rpgskilltree:vitality_024",
+        "rpgskilltree:vitality_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_016",
+        "rpgskilltree:vitality_025",
+        "rpgskilltree:vitality_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_016",
+        "rpgskilltree:vitality_026",
+        "rpgskilltree:vitality_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_028",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_017",
+        "rpgskilltree:vitality_027",
+        "rpgskilltree:vitality_029"
+      ],
+      "finalTriadDomain": "VITALITY",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:vitality_029",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_018",
+        "rpgskilltree:vitality_028",
+        "rpgskilltree:vitality_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_019",
+        "rpgskilltree:vitality_029",
+        "rpgskilltree:vitality_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_031",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_020",
+        "rpgskilltree:vitality_030",
+        "rpgskilltree:vitality_032"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_032",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_021",
+        "rpgskilltree:vitality_031",
+        "rpgskilltree:vitality_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_033",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_021",
+        "rpgskilltree:vitality_032",
+        "rpgskilltree:vitality_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_034",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_022",
+        "rpgskilltree:vitality_033",
+        "rpgskilltree:vitality_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_035",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_023",
+        "rpgskilltree:vitality_034",
+        "rpgskilltree:vitality_037"
+      ]
+    },
+    {
+      "id": "rpgskilltree:vitality_036",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:keystone_00",
+        "rpgskilltree:vitality_024",
+        "rpgskilltree:vitality_037"
+      ],
+      "finalTriadDomain": "VITALITY",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:vitality_037",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_035",
+        "rpgskilltree:vitality_036"
+      ],
+      "finalTriadDomain": "VITALITY",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:healing_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_26",
+        "rpgskilltree:healing_001",
+        "rpgskilltree:healing_006"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_000",
+        "rpgskilltree:healing_002",
+        "rpgskilltree:healing_007",
+        "rpgskilltree:healing_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_001",
+        "rpgskilltree:healing_003",
+        "rpgskilltree:healing_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_002",
+        "rpgskilltree:healing_004",
+        "rpgskilltree:healing_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_003",
+        "rpgskilltree:healing_005",
+        "rpgskilltree:healing_011",
+        "rpgskilltree:healing_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_004",
+        "rpgskilltree:healing_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_000",
+        "rpgskilltree:healing_007",
+        "rpgskilltree:healing_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_00",
+        "rpgskilltree:healing_001",
+        "rpgskilltree:healing_006",
+        "rpgskilltree:healing_008",
+        "rpgskilltree:healing_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_001",
+        "rpgskilltree:healing_007",
+        "rpgskilltree:healing_009",
+        "rpgskilltree:healing_016",
+        "rpgskilltree:healing_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_002",
+        "rpgskilltree:healing_008",
+        "rpgskilltree:healing_010",
+        "rpgskilltree:healing_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_003",
+        "rpgskilltree:healing_009",
+        "rpgskilltree:healing_011",
+        "rpgskilltree:healing_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_004",
+        "rpgskilltree:healing_010",
+        "rpgskilltree:healing_012",
+        "rpgskilltree:healing_020",
+        "rpgskilltree:healing_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_cleric_00",
+        "rpgskilltree:healing_004",
+        "rpgskilltree:healing_011",
+        "rpgskilltree:healing_013",
+        "rpgskilltree:healing_022"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_005",
+        "rpgskilltree:healing_012",
+        "rpgskilltree:healing_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_006",
+        "rpgskilltree:healing_015",
+        "rpgskilltree:healing_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_007",
+        "rpgskilltree:healing_014",
+        "rpgskilltree:healing_016",
+        "rpgskilltree:healing_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_008",
+        "rpgskilltree:healing_015",
+        "rpgskilltree:healing_017",
+        "rpgskilltree:healing_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_008",
+        "rpgskilltree:healing_016",
+        "rpgskilltree:healing_018",
+        "rpgskilltree:healing_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_009",
+        "rpgskilltree:healing_017",
+        "rpgskilltree:healing_019",
+        "rpgskilltree:healing_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_010",
+        "rpgskilltree:healing_018",
+        "rpgskilltree:healing_020",
+        "rpgskilltree:healing_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_011",
+        "rpgskilltree:healing_019",
+        "rpgskilltree:healing_021",
+        "rpgskilltree:healing_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_011",
+        "rpgskilltree:healing_020",
+        "rpgskilltree:healing_022",
+        "rpgskilltree:healing_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_012",
+        "rpgskilltree:healing_021",
+        "rpgskilltree:healing_023",
+        "rpgskilltree:healing_032"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_013",
+        "rpgskilltree:healing_022",
+        "rpgskilltree:healing_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_014",
+        "rpgskilltree:healing_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_015",
+        "rpgskilltree:healing_024",
+        "rpgskilltree:healing_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_016",
+        "rpgskilltree:healing_025",
+        "rpgskilltree:healing_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_017",
+        "rpgskilltree:healing_026",
+        "rpgskilltree:healing_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_028",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_018",
+        "rpgskilltree:healing_027",
+        "rpgskilltree:healing_029"
+      ],
+      "finalTriadDomain": "HEALING",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:healing_029",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_019",
+        "rpgskilltree:healing_028",
+        "rpgskilltree:healing_030"
+      ],
+      "finalTriadDomain": "HEALING",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:healing_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_020",
+        "rpgskilltree:healing_029",
+        "rpgskilltree:healing_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_031",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_021",
+        "rpgskilltree:healing_030",
+        "rpgskilltree:healing_032"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_032",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_022",
+        "rpgskilltree:healing_031",
+        "rpgskilltree:healing_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:healing_033",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:healing_023",
+        "rpgskilltree:healing_032"
+      ],
+      "finalTriadDomain": "HEALING",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:arcane_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_001",
+        "rpgskilltree:arcane_006",
+        "rpgskilltree:core_01"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_000",
+        "rpgskilltree:arcane_002",
+        "rpgskilltree:arcane_007",
+        "rpgskilltree:arcane_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_001",
+        "rpgskilltree:arcane_003",
+        "rpgskilltree:arcane_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_002",
+        "rpgskilltree:arcane_004",
+        "rpgskilltree:arcane_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_003",
+        "rpgskilltree:arcane_005",
+        "rpgskilltree:arcane_011",
+        "rpgskilltree:arcane_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_004",
+        "rpgskilltree:arcane_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_000",
+        "rpgskilltree:arcane_007",
+        "rpgskilltree:arcane_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_001",
+        "rpgskilltree:arcane_006",
+        "rpgskilltree:arcane_008",
+        "rpgskilltree:arcane_015",
+        "rpgskilltree:bridge_cleric_00"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_001",
+        "rpgskilltree:arcane_007",
+        "rpgskilltree:arcane_009",
+        "rpgskilltree:arcane_016",
+        "rpgskilltree:arcane_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_002",
+        "rpgskilltree:arcane_008",
+        "rpgskilltree:arcane_010",
+        "rpgskilltree:arcane_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_003",
+        "rpgskilltree:arcane_009",
+        "rpgskilltree:arcane_011",
+        "rpgskilltree:arcane_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_004",
+        "rpgskilltree:arcane_010",
+        "rpgskilltree:arcane_012",
+        "rpgskilltree:arcane_020",
+        "rpgskilltree:arcane_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_004",
+        "rpgskilltree:arcane_011",
+        "rpgskilltree:arcane_013",
+        "rpgskilltree:arcane_022",
+        "rpgskilltree:bridge_technomancer_00"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_005",
+        "rpgskilltree:arcane_012",
+        "rpgskilltree:arcane_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_006",
+        "rpgskilltree:arcane_015",
+        "rpgskilltree:arcane_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_007",
+        "rpgskilltree:arcane_014",
+        "rpgskilltree:arcane_016",
+        "rpgskilltree:arcane_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_008",
+        "rpgskilltree:arcane_015",
+        "rpgskilltree:arcane_017",
+        "rpgskilltree:arcane_026",
+        "rpgskilltree:arcane_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_008",
+        "rpgskilltree:arcane_016",
+        "rpgskilltree:arcane_018",
+        "rpgskilltree:arcane_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_009",
+        "rpgskilltree:arcane_017",
+        "rpgskilltree:arcane_019",
+        "rpgskilltree:arcane_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_010",
+        "rpgskilltree:arcane_018",
+        "rpgskilltree:arcane_020",
+        "rpgskilltree:arcane_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_011",
+        "rpgskilltree:arcane_019",
+        "rpgskilltree:arcane_021",
+        "rpgskilltree:arcane_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_011",
+        "rpgskilltree:arcane_020",
+        "rpgskilltree:arcane_022",
+        "rpgskilltree:arcane_032",
+        "rpgskilltree:arcane_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_012",
+        "rpgskilltree:arcane_021",
+        "rpgskilltree:arcane_023",
+        "rpgskilltree:arcane_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_013",
+        "rpgskilltree:arcane_022",
+        "rpgskilltree:arcane_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_014",
+        "rpgskilltree:arcane_025",
+        "rpgskilltree:arcane_036"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_015",
+        "rpgskilltree:arcane_024",
+        "rpgskilltree:arcane_026",
+        "rpgskilltree:arcane_037"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_016",
+        "rpgskilltree:arcane_025",
+        "rpgskilltree:arcane_027",
+        "rpgskilltree:arcane_038"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_016",
+        "rpgskilltree:arcane_026",
+        "rpgskilltree:arcane_028",
+        "rpgskilltree:arcane_039",
+        "rpgskilltree:arcane_040"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_028",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_017",
+        "rpgskilltree:arcane_027",
+        "rpgskilltree:arcane_029",
+        "rpgskilltree:arcane_041"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_029",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_018",
+        "rpgskilltree:arcane_028",
+        "rpgskilltree:arcane_030",
+        "rpgskilltree:arcane_042"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_019",
+        "rpgskilltree:arcane_029",
+        "rpgskilltree:arcane_031",
+        "rpgskilltree:arcane_043"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_031",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_020",
+        "rpgskilltree:arcane_030",
+        "rpgskilltree:arcane_032",
+        "rpgskilltree:arcane_044"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_032",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_021",
+        "rpgskilltree:arcane_031",
+        "rpgskilltree:arcane_033",
+        "rpgskilltree:arcane_045",
+        "rpgskilltree:arcane_046"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_033",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_021",
+        "rpgskilltree:arcane_032",
+        "rpgskilltree:arcane_034",
+        "rpgskilltree:arcane_047"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_034",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_022",
+        "rpgskilltree:arcane_033",
+        "rpgskilltree:arcane_035",
+        "rpgskilltree:arcane_048"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_035",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_023",
+        "rpgskilltree:arcane_034",
+        "rpgskilltree:arcane_049"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_036",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_024",
+        "rpgskilltree:arcane_037",
+        "rpgskilltree:keystone_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_037",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_025",
+        "rpgskilltree:arcane_036",
+        "rpgskilltree:arcane_038"
+      ],
+      "finalTriadDomain": "ARCANE",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:arcane_038",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_026",
+        "rpgskilltree:arcane_037",
+        "rpgskilltree:arcane_039"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_039",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_027",
+        "rpgskilltree:arcane_038",
+        "rpgskilltree:arcane_040"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_040",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_027",
+        "rpgskilltree:arcane_039",
+        "rpgskilltree:arcane_041"
+      ],
+      "finalTriadDomain": "ARCANE",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:arcane_041",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_028",
+        "rpgskilltree:arcane_040",
+        "rpgskilltree:arcane_042",
+        "rpgskilltree:keystone_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_042",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_029",
+        "rpgskilltree:arcane_041",
+        "rpgskilltree:arcane_043"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_043",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_030",
+        "rpgskilltree:arcane_042",
+        "rpgskilltree:arcane_044"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_044",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_031",
+        "rpgskilltree:arcane_043",
+        "rpgskilltree:arcane_045"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_045",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_032",
+        "rpgskilltree:arcane_044",
+        "rpgskilltree:arcane_046"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_046",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_032",
+        "rpgskilltree:arcane_045",
+        "rpgskilltree:arcane_047"
+      ],
+      "finalTriadDomain": "ARCANE",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:arcane_047",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_033",
+        "rpgskilltree:arcane_046",
+        "rpgskilltree:arcane_048"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_048",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_034",
+        "rpgskilltree:arcane_047",
+        "rpgskilltree:arcane_049"
+      ]
+    },
+    {
+      "id": "rpgskilltree:arcane_049",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_035",
+        "rpgskilltree:arcane_048"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_03",
+        "rpgskilltree:engineering_001",
+        "rpgskilltree:engineering_006"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_000",
+        "rpgskilltree:engineering_002",
+        "rpgskilltree:engineering_007",
+        "rpgskilltree:engineering_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_001",
+        "rpgskilltree:engineering_003",
+        "rpgskilltree:engineering_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_002",
+        "rpgskilltree:engineering_004",
+        "rpgskilltree:engineering_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_003",
+        "rpgskilltree:engineering_005",
+        "rpgskilltree:engineering_011",
+        "rpgskilltree:engineering_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_004",
+        "rpgskilltree:engineering_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_000",
+        "rpgskilltree:engineering_007",
+        "rpgskilltree:engineering_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_technomancer_00",
+        "rpgskilltree:engineering_001",
+        "rpgskilltree:engineering_006",
+        "rpgskilltree:engineering_008",
+        "rpgskilltree:engineering_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_001",
+        "rpgskilltree:engineering_007",
+        "rpgskilltree:engineering_009",
+        "rpgskilltree:engineering_016",
+        "rpgskilltree:engineering_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_002",
+        "rpgskilltree:engineering_008",
+        "rpgskilltree:engineering_010",
+        "rpgskilltree:engineering_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_003",
+        "rpgskilltree:engineering_009",
+        "rpgskilltree:engineering_011",
+        "rpgskilltree:engineering_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_004",
+        "rpgskilltree:engineering_010",
+        "rpgskilltree:engineering_012",
+        "rpgskilltree:engineering_020",
+        "rpgskilltree:engineering_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_industrialist_00",
+        "rpgskilltree:engineering_004",
+        "rpgskilltree:engineering_011",
+        "rpgskilltree:engineering_013",
+        "rpgskilltree:engineering_022"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_005",
+        "rpgskilltree:engineering_012",
+        "rpgskilltree:engineering_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_006",
+        "rpgskilltree:engineering_015",
+        "rpgskilltree:engineering_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_007",
+        "rpgskilltree:engineering_014",
+        "rpgskilltree:engineering_016",
+        "rpgskilltree:engineering_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_008",
+        "rpgskilltree:engineering_015",
+        "rpgskilltree:engineering_017",
+        "rpgskilltree:engineering_026",
+        "rpgskilltree:engineering_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_008",
+        "rpgskilltree:engineering_016",
+        "rpgskilltree:engineering_018",
+        "rpgskilltree:engineering_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_009",
+        "rpgskilltree:engineering_017",
+        "rpgskilltree:engineering_019",
+        "rpgskilltree:engineering_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_010",
+        "rpgskilltree:engineering_018",
+        "rpgskilltree:engineering_020",
+        "rpgskilltree:engineering_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_011",
+        "rpgskilltree:engineering_019",
+        "rpgskilltree:engineering_021",
+        "rpgskilltree:engineering_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_011",
+        "rpgskilltree:engineering_020",
+        "rpgskilltree:engineering_022",
+        "rpgskilltree:engineering_032",
+        "rpgskilltree:engineering_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_012",
+        "rpgskilltree:engineering_021",
+        "rpgskilltree:engineering_023",
+        "rpgskilltree:engineering_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_013",
+        "rpgskilltree:engineering_022",
+        "rpgskilltree:engineering_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_014",
+        "rpgskilltree:engineering_025",
+        "rpgskilltree:engineering_036"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_015",
+        "rpgskilltree:engineering_024",
+        "rpgskilltree:engineering_026",
+        "rpgskilltree:engineering_037"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_016",
+        "rpgskilltree:engineering_025",
+        "rpgskilltree:engineering_027",
+        "rpgskilltree:engineering_038"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_016",
+        "rpgskilltree:engineering_026",
+        "rpgskilltree:engineering_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_028",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_017",
+        "rpgskilltree:engineering_027",
+        "rpgskilltree:engineering_029",
+        "rpgskilltree:engineering_039"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_029",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_018",
+        "rpgskilltree:engineering_028",
+        "rpgskilltree:engineering_030",
+        "rpgskilltree:engineering_040"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_019",
+        "rpgskilltree:engineering_029",
+        "rpgskilltree:engineering_031",
+        "rpgskilltree:engineering_041"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_031",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_020",
+        "rpgskilltree:engineering_030",
+        "rpgskilltree:engineering_032",
+        "rpgskilltree:engineering_042"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_032",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_021",
+        "rpgskilltree:engineering_031",
+        "rpgskilltree:engineering_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_033",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_021",
+        "rpgskilltree:engineering_032",
+        "rpgskilltree:engineering_034",
+        "rpgskilltree:engineering_043"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_034",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_022",
+        "rpgskilltree:engineering_033",
+        "rpgskilltree:engineering_035",
+        "rpgskilltree:engineering_044"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_035",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_023",
+        "rpgskilltree:engineering_034",
+        "rpgskilltree:engineering_045"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_036",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_024",
+        "rpgskilltree:engineering_037"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_037",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_025",
+        "rpgskilltree:engineering_036",
+        "rpgskilltree:engineering_038"
+      ],
+      "finalTriadDomain": "ENGINEERING",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:engineering_038",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_026",
+        "rpgskilltree:engineering_037",
+        "rpgskilltree:engineering_039"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_039",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_028",
+        "rpgskilltree:engineering_038",
+        "rpgskilltree:engineering_040"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_040",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_029",
+        "rpgskilltree:engineering_039",
+        "rpgskilltree:engineering_041"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_041",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_030",
+        "rpgskilltree:engineering_040",
+        "rpgskilltree:engineering_042",
+        "rpgskilltree:keystone_06"
+      ],
+      "finalTriadDomain": "ENGINEERING",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:engineering_042",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_031",
+        "rpgskilltree:engineering_041",
+        "rpgskilltree:engineering_043"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_043",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_033",
+        "rpgskilltree:engineering_042",
+        "rpgskilltree:engineering_044"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_044",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_034",
+        "rpgskilltree:engineering_043",
+        "rpgskilltree:engineering_045"
+      ]
+    },
+    {
+      "id": "rpgskilltree:engineering_045",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_035",
+        "rpgskilltree:engineering_044",
+        "rpgskilltree:keystone_07"
+      ],
+      "finalTriadDomain": "ENGINEERING",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:mining_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_06",
+        "rpgskilltree:mining_001",
+        "rpgskilltree:mining_006"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_000",
+        "rpgskilltree:mining_002",
+        "rpgskilltree:mining_007",
+        "rpgskilltree:mining_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_001",
+        "rpgskilltree:mining_003",
+        "rpgskilltree:mining_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_002",
+        "rpgskilltree:mining_004",
+        "rpgskilltree:mining_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_003",
+        "rpgskilltree:mining_005",
+        "rpgskilltree:mining_011",
+        "rpgskilltree:mining_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_004",
+        "rpgskilltree:mining_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_000",
+        "rpgskilltree:mining_007",
+        "rpgskilltree:mining_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_industrialist_00",
+        "rpgskilltree:mining_001",
+        "rpgskilltree:mining_006",
+        "rpgskilltree:mining_008",
+        "rpgskilltree:mining_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_001",
+        "rpgskilltree:mining_007",
+        "rpgskilltree:mining_009",
+        "rpgskilltree:mining_016",
+        "rpgskilltree:mining_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_002",
+        "rpgskilltree:mining_008",
+        "rpgskilltree:mining_010",
+        "rpgskilltree:mining_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_003",
+        "rpgskilltree:mining_009",
+        "rpgskilltree:mining_011",
+        "rpgskilltree:mining_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_004",
+        "rpgskilltree:mining_010",
+        "rpgskilltree:mining_012",
+        "rpgskilltree:mining_020",
+        "rpgskilltree:mining_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_prospector_00",
+        "rpgskilltree:mining_004",
+        "rpgskilltree:mining_011",
+        "rpgskilltree:mining_013",
+        "rpgskilltree:mining_022"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_005",
+        "rpgskilltree:mining_012",
+        "rpgskilltree:mining_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_006",
+        "rpgskilltree:mining_015",
+        "rpgskilltree:mining_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_007",
+        "rpgskilltree:mining_014",
+        "rpgskilltree:mining_016",
+        "rpgskilltree:mining_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_008",
+        "rpgskilltree:mining_015",
+        "rpgskilltree:mining_017",
+        "rpgskilltree:mining_026",
+        "rpgskilltree:mining_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_008",
+        "rpgskilltree:mining_016",
+        "rpgskilltree:mining_018",
+        "rpgskilltree:mining_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_009",
+        "rpgskilltree:mining_017",
+        "rpgskilltree:mining_019",
+        "rpgskilltree:mining_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_010",
+        "rpgskilltree:mining_018",
+        "rpgskilltree:mining_020",
+        "rpgskilltree:mining_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_011",
+        "rpgskilltree:mining_019",
+        "rpgskilltree:mining_021",
+        "rpgskilltree:mining_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_011",
+        "rpgskilltree:mining_020",
+        "rpgskilltree:mining_022",
+        "rpgskilltree:mining_032",
+        "rpgskilltree:mining_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_012",
+        "rpgskilltree:mining_021",
+        "rpgskilltree:mining_023",
+        "rpgskilltree:mining_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_013",
+        "rpgskilltree:mining_022",
+        "rpgskilltree:mining_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_014",
+        "rpgskilltree:mining_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_015",
+        "rpgskilltree:mining_024",
+        "rpgskilltree:mining_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_016",
+        "rpgskilltree:mining_025",
+        "rpgskilltree:mining_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_016",
+        "rpgskilltree:mining_026",
+        "rpgskilltree:mining_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_028",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_017",
+        "rpgskilltree:mining_027",
+        "rpgskilltree:mining_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_029",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_018",
+        "rpgskilltree:mining_028",
+        "rpgskilltree:mining_030"
+      ],
+      "finalTriadDomain": "MINING",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:mining_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_019",
+        "rpgskilltree:mining_029",
+        "rpgskilltree:mining_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_031",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_020",
+        "rpgskilltree:mining_030",
+        "rpgskilltree:mining_032"
+      ],
+      "finalTriadDomain": "MINING",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:mining_032",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_021",
+        "rpgskilltree:mining_031",
+        "rpgskilltree:mining_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_033",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_021",
+        "rpgskilltree:mining_032",
+        "rpgskilltree:mining_034"
+      ],
+      "finalTriadDomain": "MINING",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:mining_034",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_022",
+        "rpgskilltree:mining_033",
+        "rpgskilltree:mining_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:mining_035",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:mining_023",
+        "rpgskilltree:mining_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_08",
+        "rpgskilltree:survival_001",
+        "rpgskilltree:survival_006"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_000",
+        "rpgskilltree:survival_002",
+        "rpgskilltree:survival_007",
+        "rpgskilltree:survival_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_001",
+        "rpgskilltree:survival_003",
+        "rpgskilltree:survival_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_002",
+        "rpgskilltree:survival_004",
+        "rpgskilltree:survival_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_003",
+        "rpgskilltree:survival_005",
+        "rpgskilltree:survival_011",
+        "rpgskilltree:survival_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_004",
+        "rpgskilltree:survival_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_000",
+        "rpgskilltree:survival_007",
+        "rpgskilltree:survival_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_prospector_00",
+        "rpgskilltree:survival_001",
+        "rpgskilltree:survival_006",
+        "rpgskilltree:survival_008",
+        "rpgskilltree:survival_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_001",
+        "rpgskilltree:survival_007",
+        "rpgskilltree:survival_009",
+        "rpgskilltree:survival_016",
+        "rpgskilltree:survival_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_002",
+        "rpgskilltree:survival_008",
+        "rpgskilltree:survival_010",
+        "rpgskilltree:survival_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_003",
+        "rpgskilltree:survival_009",
+        "rpgskilltree:survival_011",
+        "rpgskilltree:survival_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_004",
+        "rpgskilltree:survival_010",
+        "rpgskilltree:survival_012",
+        "rpgskilltree:survival_020",
+        "rpgskilltree:survival_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_00",
+        "rpgskilltree:survival_004",
+        "rpgskilltree:survival_011",
+        "rpgskilltree:survival_013",
+        "rpgskilltree:survival_022"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_005",
+        "rpgskilltree:survival_012",
+        "rpgskilltree:survival_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_006",
+        "rpgskilltree:survival_015",
+        "rpgskilltree:survival_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_007",
+        "rpgskilltree:survival_014",
+        "rpgskilltree:survival_016",
+        "rpgskilltree:survival_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_008",
+        "rpgskilltree:survival_015",
+        "rpgskilltree:survival_017",
+        "rpgskilltree:survival_026",
+        "rpgskilltree:survival_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_008",
+        "rpgskilltree:survival_016",
+        "rpgskilltree:survival_018",
+        "rpgskilltree:survival_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_009",
+        "rpgskilltree:survival_017",
+        "rpgskilltree:survival_019",
+        "rpgskilltree:survival_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_010",
+        "rpgskilltree:survival_018",
+        "rpgskilltree:survival_020",
+        "rpgskilltree:survival_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_011",
+        "rpgskilltree:survival_019",
+        "rpgskilltree:survival_021",
+        "rpgskilltree:survival_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_011",
+        "rpgskilltree:survival_020",
+        "rpgskilltree:survival_022",
+        "rpgskilltree:survival_032",
+        "rpgskilltree:survival_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_012",
+        "rpgskilltree:survival_021",
+        "rpgskilltree:survival_023",
+        "rpgskilltree:survival_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_013",
+        "rpgskilltree:survival_022",
+        "rpgskilltree:survival_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_014",
+        "rpgskilltree:survival_025",
+        "rpgskilltree:survival_036"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_015",
+        "rpgskilltree:survival_024",
+        "rpgskilltree:survival_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_016",
+        "rpgskilltree:survival_025",
+        "rpgskilltree:survival_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_016",
+        "rpgskilltree:survival_026",
+        "rpgskilltree:survival_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_028",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_017",
+        "rpgskilltree:survival_027",
+        "rpgskilltree:survival_029"
+      ],
+      "finalTriadDomain": "SURVIVAL",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:survival_029",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_018",
+        "rpgskilltree:survival_028",
+        "rpgskilltree:survival_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_019",
+        "rpgskilltree:survival_029",
+        "rpgskilltree:survival_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_031",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_020",
+        "rpgskilltree:survival_030",
+        "rpgskilltree:survival_032"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_032",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_021",
+        "rpgskilltree:survival_031",
+        "rpgskilltree:survival_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_033",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_021",
+        "rpgskilltree:survival_032",
+        "rpgskilltree:survival_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_034",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_022",
+        "rpgskilltree:survival_033",
+        "rpgskilltree:survival_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_035",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_023",
+        "rpgskilltree:survival_034",
+        "rpgskilltree:survival_037"
+      ]
+    },
+    {
+      "id": "rpgskilltree:survival_036",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_024",
+        "rpgskilltree:survival_037"
+      ],
+      "finalTriadDomain": "SURVIVAL",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:survival_037",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:keystone_10",
+        "rpgskilltree:survival_035",
+        "rpgskilltree:survival_036"
+      ],
+      "finalTriadDomain": "SURVIVAL",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:summoning_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_11",
+        "rpgskilltree:summoning_001",
+        "rpgskilltree:summoning_006"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_000",
+        "rpgskilltree:summoning_002",
+        "rpgskilltree:summoning_007",
+        "rpgskilltree:summoning_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_001",
+        "rpgskilltree:summoning_003",
+        "rpgskilltree:summoning_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_002",
+        "rpgskilltree:summoning_004",
+        "rpgskilltree:summoning_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_003",
+        "rpgskilltree:summoning_005",
+        "rpgskilltree:summoning_011",
+        "rpgskilltree:summoning_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_004",
+        "rpgskilltree:summoning_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_000",
+        "rpgskilltree:summoning_007",
+        "rpgskilltree:summoning_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_00",
+        "rpgskilltree:summoning_001",
+        "rpgskilltree:summoning_006",
+        "rpgskilltree:summoning_008",
+        "rpgskilltree:summoning_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_001",
+        "rpgskilltree:summoning_007",
+        "rpgskilltree:summoning_009",
+        "rpgskilltree:summoning_016",
+        "rpgskilltree:summoning_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_002",
+        "rpgskilltree:summoning_008",
+        "rpgskilltree:summoning_010",
+        "rpgskilltree:summoning_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_003",
+        "rpgskilltree:summoning_009",
+        "rpgskilltree:summoning_011",
+        "rpgskilltree:summoning_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_004",
+        "rpgskilltree:summoning_010",
+        "rpgskilltree:summoning_012",
+        "rpgskilltree:summoning_020",
+        "rpgskilltree:summoning_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_00",
+        "rpgskilltree:summoning_004",
+        "rpgskilltree:summoning_011",
+        "rpgskilltree:summoning_013",
+        "rpgskilltree:summoning_022"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_005",
+        "rpgskilltree:summoning_012",
+        "rpgskilltree:summoning_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_006",
+        "rpgskilltree:summoning_015",
+        "rpgskilltree:summoning_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_007",
+        "rpgskilltree:summoning_014",
+        "rpgskilltree:summoning_016",
+        "rpgskilltree:summoning_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_008",
+        "rpgskilltree:summoning_015",
+        "rpgskilltree:summoning_017",
+        "rpgskilltree:summoning_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_008",
+        "rpgskilltree:summoning_016",
+        "rpgskilltree:summoning_018",
+        "rpgskilltree:summoning_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_009",
+        "rpgskilltree:summoning_017",
+        "rpgskilltree:summoning_019",
+        "rpgskilltree:summoning_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_010",
+        "rpgskilltree:summoning_018",
+        "rpgskilltree:summoning_020",
+        "rpgskilltree:summoning_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_011",
+        "rpgskilltree:summoning_019",
+        "rpgskilltree:summoning_021",
+        "rpgskilltree:summoning_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_011",
+        "rpgskilltree:summoning_020",
+        "rpgskilltree:summoning_022",
+        "rpgskilltree:summoning_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_012",
+        "rpgskilltree:summoning_021",
+        "rpgskilltree:summoning_023",
+        "rpgskilltree:summoning_032"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_013",
+        "rpgskilltree:summoning_022",
+        "rpgskilltree:summoning_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_014",
+        "rpgskilltree:summoning_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_015",
+        "rpgskilltree:summoning_024",
+        "rpgskilltree:summoning_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_016",
+        "rpgskilltree:summoning_025",
+        "rpgskilltree:summoning_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_017",
+        "rpgskilltree:summoning_026",
+        "rpgskilltree:summoning_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_028",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_018",
+        "rpgskilltree:summoning_027",
+        "rpgskilltree:summoning_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_029",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_019",
+        "rpgskilltree:summoning_028",
+        "rpgskilltree:summoning_030"
+      ],
+      "finalTriadDomain": "SUMMONING",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:summoning_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_020",
+        "rpgskilltree:summoning_029",
+        "rpgskilltree:summoning_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_031",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_021",
+        "rpgskilltree:summoning_030",
+        "rpgskilltree:summoning_032"
+      ],
+      "finalTriadDomain": "SUMMONING",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:summoning_032",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_022",
+        "rpgskilltree:summoning_031",
+        "rpgskilltree:summoning_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:summoning_033",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:summoning_023",
+        "rpgskilltree:summoning_032"
+      ],
+      "finalTriadDomain": "SUMMONING",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:occult_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_13",
+        "rpgskilltree:occult_001",
+        "rpgskilltree:occult_006"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_000",
+        "rpgskilltree:occult_002",
+        "rpgskilltree:occult_007",
+        "rpgskilltree:occult_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_001",
+        "rpgskilltree:occult_003",
+        "rpgskilltree:occult_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_002",
+        "rpgskilltree:occult_004",
+        "rpgskilltree:occult_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_003",
+        "rpgskilltree:occult_005",
+        "rpgskilltree:occult_011",
+        "rpgskilltree:occult_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_004",
+        "rpgskilltree:occult_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_000",
+        "rpgskilltree:occult_007",
+        "rpgskilltree:occult_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_00",
+        "rpgskilltree:occult_001",
+        "rpgskilltree:occult_006",
+        "rpgskilltree:occult_008",
+        "rpgskilltree:occult_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_001",
+        "rpgskilltree:occult_007",
+        "rpgskilltree:occult_009",
+        "rpgskilltree:occult_016",
+        "rpgskilltree:occult_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_002",
+        "rpgskilltree:occult_008",
+        "rpgskilltree:occult_010",
+        "rpgskilltree:occult_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_003",
+        "rpgskilltree:occult_009",
+        "rpgskilltree:occult_011",
+        "rpgskilltree:occult_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_004",
+        "rpgskilltree:occult_010",
+        "rpgskilltree:occult_012",
+        "rpgskilltree:occult_020",
+        "rpgskilltree:occult_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_004",
+        "rpgskilltree:occult_011",
+        "rpgskilltree:occult_013",
+        "rpgskilltree:occult_022"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_005",
+        "rpgskilltree:occult_012",
+        "rpgskilltree:occult_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_006",
+        "rpgskilltree:occult_015",
+        "rpgskilltree:occult_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_007",
+        "rpgskilltree:occult_014",
+        "rpgskilltree:occult_016",
+        "rpgskilltree:occult_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_008",
+        "rpgskilltree:occult_015",
+        "rpgskilltree:occult_017",
+        "rpgskilltree:occult_026",
+        "rpgskilltree:occult_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_008",
+        "rpgskilltree:occult_016",
+        "rpgskilltree:occult_018",
+        "rpgskilltree:occult_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_009",
+        "rpgskilltree:occult_017",
+        "rpgskilltree:occult_019",
+        "rpgskilltree:occult_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_010",
+        "rpgskilltree:occult_018",
+        "rpgskilltree:occult_020",
+        "rpgskilltree:occult_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_011",
+        "rpgskilltree:occult_019",
+        "rpgskilltree:occult_021",
+        "rpgskilltree:occult_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_011",
+        "rpgskilltree:occult_020",
+        "rpgskilltree:occult_022",
+        "rpgskilltree:occult_032",
+        "rpgskilltree:occult_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_012",
+        "rpgskilltree:occult_021",
+        "rpgskilltree:occult_023",
+        "rpgskilltree:occult_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_013",
+        "rpgskilltree:occult_022",
+        "rpgskilltree:occult_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_014",
+        "rpgskilltree:occult_025",
+        "rpgskilltree:occult_036"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_015",
+        "rpgskilltree:occult_024",
+        "rpgskilltree:occult_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_016",
+        "rpgskilltree:occult_025",
+        "rpgskilltree:occult_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_027",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_016",
+        "rpgskilltree:occult_026",
+        "rpgskilltree:occult_028"
+      ],
+      "finalTriadDomain": "OCCULT",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:occult_028",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_017",
+        "rpgskilltree:occult_027",
+        "rpgskilltree:occult_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_029",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_018",
+        "rpgskilltree:occult_028",
+        "rpgskilltree:occult_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_019",
+        "rpgskilltree:occult_029",
+        "rpgskilltree:occult_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_031",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_020",
+        "rpgskilltree:occult_030",
+        "rpgskilltree:occult_032"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_032",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_021",
+        "rpgskilltree:occult_031",
+        "rpgskilltree:occult_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_033",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_021",
+        "rpgskilltree:occult_032",
+        "rpgskilltree:occult_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_034",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_022",
+        "rpgskilltree:occult_033",
+        "rpgskilltree:occult_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_035",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_023",
+        "rpgskilltree:occult_034",
+        "rpgskilltree:occult_037"
+      ]
+    },
+    {
+      "id": "rpgskilltree:occult_036",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_024",
+        "rpgskilltree:occult_037"
+      ],
+      "finalTriadDomain": "OCCULT",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:occult_037",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:keystone_13",
+        "rpgskilltree:occult_035",
+        "rpgskilltree:occult_036"
+      ],
+      "finalTriadDomain": "OCCULT",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:logistics_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:core_16",
+        "rpgskilltree:logistics_001",
+        "rpgskilltree:logistics_006"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_000",
+        "rpgskilltree:logistics_002",
+        "rpgskilltree:logistics_007",
+        "rpgskilltree:logistics_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_001",
+        "rpgskilltree:logistics_003",
+        "rpgskilltree:logistics_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_002",
+        "rpgskilltree:logistics_004",
+        "rpgskilltree:logistics_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_003",
+        "rpgskilltree:logistics_005",
+        "rpgskilltree:logistics_011",
+        "rpgskilltree:logistics_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_004",
+        "rpgskilltree:logistics_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_000",
+        "rpgskilltree:logistics_007",
+        "rpgskilltree:logistics_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_001",
+        "rpgskilltree:logistics_006",
+        "rpgskilltree:logistics_008",
+        "rpgskilltree:logistics_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_001",
+        "rpgskilltree:logistics_007",
+        "rpgskilltree:logistics_009",
+        "rpgskilltree:logistics_016",
+        "rpgskilltree:logistics_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_002",
+        "rpgskilltree:logistics_008",
+        "rpgskilltree:logistics_010",
+        "rpgskilltree:logistics_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_003",
+        "rpgskilltree:logistics_009",
+        "rpgskilltree:logistics_011",
+        "rpgskilltree:logistics_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_004",
+        "rpgskilltree:logistics_010",
+        "rpgskilltree:logistics_012",
+        "rpgskilltree:logistics_020",
+        "rpgskilltree:logistics_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_004",
+        "rpgskilltree:logistics_011",
+        "rpgskilltree:logistics_013",
+        "rpgskilltree:logistics_022"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_005",
+        "rpgskilltree:logistics_012",
+        "rpgskilltree:logistics_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_006",
+        "rpgskilltree:logistics_015",
+        "rpgskilltree:logistics_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_007",
+        "rpgskilltree:logistics_014",
+        "rpgskilltree:logistics_016"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_008",
+        "rpgskilltree:logistics_015",
+        "rpgskilltree:logistics_017",
+        "rpgskilltree:logistics_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_008",
+        "rpgskilltree:logistics_016",
+        "rpgskilltree:logistics_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_009",
+        "rpgskilltree:logistics_017",
+        "rpgskilltree:logistics_019",
+        "rpgskilltree:logistics_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_010",
+        "rpgskilltree:logistics_018",
+        "rpgskilltree:logistics_020",
+        "rpgskilltree:logistics_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_011",
+        "rpgskilltree:logistics_019",
+        "rpgskilltree:logistics_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_011",
+        "rpgskilltree:logistics_020",
+        "rpgskilltree:logistics_022",
+        "rpgskilltree:logistics_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_012",
+        "rpgskilltree:logistics_021",
+        "rpgskilltree:logistics_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_013",
+        "rpgskilltree:logistics_022",
+        "rpgskilltree:logistics_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_024",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:keystone_12",
+        "rpgskilltree:logistics_014",
+        "rpgskilltree:logistics_025"
+      ],
+      "finalTriadDomain": "LOGISTICS",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:logistics_025",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_016",
+        "rpgskilltree:logistics_024",
+        "rpgskilltree:logistics_026"
+      ],
+      "finalTriadDomain": "LOGISTICS",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:logistics_026",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_018",
+        "rpgskilltree:logistics_025",
+        "rpgskilltree:logistics_027"
+      ],
+      "finalTriadDomain": "LOGISTICS",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:logistics_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_019",
+        "rpgskilltree:logistics_026",
+        "rpgskilltree:logistics_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_028",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_021",
+        "rpgskilltree:logistics_027",
+        "rpgskilltree:logistics_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:logistics_029",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_023",
+        "rpgskilltree:logistics_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_000",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_001",
+        "rpgskilltree:agility_006",
+        "rpgskilltree:core_18"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_001",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_000",
+        "rpgskilltree:agility_002",
+        "rpgskilltree:agility_007",
+        "rpgskilltree:agility_008"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_002",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_001",
+        "rpgskilltree:agility_003",
+        "rpgskilltree:agility_009"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_003",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_002",
+        "rpgskilltree:agility_004",
+        "rpgskilltree:agility_010"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_004",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_003",
+        "rpgskilltree:agility_005",
+        "rpgskilltree:agility_011",
+        "rpgskilltree:agility_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_005",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_004",
+        "rpgskilltree:agility_013"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_006",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_000",
+        "rpgskilltree:agility_007",
+        "rpgskilltree:agility_014"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_007",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_001",
+        "rpgskilltree:agility_006",
+        "rpgskilltree:agility_008",
+        "rpgskilltree:agility_015"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_008",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_001",
+        "rpgskilltree:agility_007",
+        "rpgskilltree:agility_009",
+        "rpgskilltree:agility_016",
+        "rpgskilltree:agility_017"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_009",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_002",
+        "rpgskilltree:agility_008",
+        "rpgskilltree:agility_010",
+        "rpgskilltree:agility_018"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_010",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_003",
+        "rpgskilltree:agility_009",
+        "rpgskilltree:agility_011",
+        "rpgskilltree:agility_019"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_011",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_004",
+        "rpgskilltree:agility_010",
+        "rpgskilltree:agility_012",
+        "rpgskilltree:agility_020",
+        "rpgskilltree:agility_021"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_012",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_004",
+        "rpgskilltree:agility_011",
+        "rpgskilltree:agility_013",
+        "rpgskilltree:agility_022",
+        "rpgskilltree:bridge_duelist_00"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_013",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_005",
+        "rpgskilltree:agility_012",
+        "rpgskilltree:agility_023"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_014",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_006",
+        "rpgskilltree:agility_015",
+        "rpgskilltree:agility_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_015",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_007",
+        "rpgskilltree:agility_014",
+        "rpgskilltree:agility_016",
+        "rpgskilltree:agility_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_016",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_008",
+        "rpgskilltree:agility_015",
+        "rpgskilltree:agility_017",
+        "rpgskilltree:agility_026",
+        "rpgskilltree:agility_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_017",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_008",
+        "rpgskilltree:agility_016",
+        "rpgskilltree:agility_018",
+        "rpgskilltree:agility_028"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_018",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_009",
+        "rpgskilltree:agility_017",
+        "rpgskilltree:agility_019",
+        "rpgskilltree:agility_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_019",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_010",
+        "rpgskilltree:agility_018",
+        "rpgskilltree:agility_020",
+        "rpgskilltree:agility_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_020",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_011",
+        "rpgskilltree:agility_019",
+        "rpgskilltree:agility_021",
+        "rpgskilltree:agility_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_021",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_011",
+        "rpgskilltree:agility_020",
+        "rpgskilltree:agility_022",
+        "rpgskilltree:agility_032",
+        "rpgskilltree:agility_033"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_022",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_012",
+        "rpgskilltree:agility_021",
+        "rpgskilltree:agility_023",
+        "rpgskilltree:agility_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_023",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_013",
+        "rpgskilltree:agility_022",
+        "rpgskilltree:agility_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_024",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_014",
+        "rpgskilltree:agility_025"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_025",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_015",
+        "rpgskilltree:agility_024",
+        "rpgskilltree:agility_026"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_026",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_016",
+        "rpgskilltree:agility_025",
+        "rpgskilltree:agility_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_027",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_016",
+        "rpgskilltree:agility_026",
+        "rpgskilltree:agility_028",
+        "rpgskilltree:keystone_14"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_028",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_017",
+        "rpgskilltree:agility_027",
+        "rpgskilltree:agility_029"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_029",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_018",
+        "rpgskilltree:agility_028",
+        "rpgskilltree:agility_030"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_030",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_019",
+        "rpgskilltree:agility_029",
+        "rpgskilltree:agility_031"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_031",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_020",
+        "rpgskilltree:agility_030",
+        "rpgskilltree:agility_032"
+      ],
+      "finalTriadDomain": "AGILITY",
+      "finalTriadSlot": 0
+    },
+    {
+      "id": "rpgskilltree:agility_032",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_021",
+        "rpgskilltree:agility_031",
+        "rpgskilltree:agility_033"
+      ],
+      "finalTriadDomain": "AGILITY",
+      "finalTriadSlot": 1
+    },
+    {
+      "id": "rpgskilltree:agility_033",
+      "maxRank": 3,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_021",
+        "rpgskilltree:agility_032",
+        "rpgskilltree:agility_034"
+      ],
+      "finalTriadDomain": "AGILITY",
+      "finalTriadSlot": 2
+    },
+    {
+      "id": "rpgskilltree:agility_034",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_022",
+        "rpgskilltree:agility_033",
+        "rpgskilltree:agility_035"
+      ]
+    },
+    {
+      "id": "rpgskilltree:agility_035",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_023",
+        "rpgskilltree:agility_034"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_paladin_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_01",
+        "rpgskilltree:healing_007",
+        "rpgskilltree:vitality_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_paladin_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_00",
+        "rpgskilltree:bridge_paladin_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_paladin_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_01",
+        "rpgskilltree:bridge_paladin_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_paladin_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_02",
+        "rpgskilltree:bridge_paladin_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_paladin_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_03",
+        "rpgskilltree:bridge_paladin_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_paladin_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_04",
+        "rpgskilltree:keystone_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_007",
+        "rpgskilltree:bridge_cleric_01",
+        "rpgskilltree:healing_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_cleric_00",
+        "rpgskilltree:bridge_cleric_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_cleric_01",
+        "rpgskilltree:bridge_cleric_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_cleric_02",
+        "rpgskilltree:bridge_cleric_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_cleric_03",
+        "rpgskilltree:bridge_cleric_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_cleric_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_technomancer_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_012",
+        "rpgskilltree:bridge_technomancer_01",
+        "rpgskilltree:engineering_007"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_technomancer_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_technomancer_00",
+        "rpgskilltree:bridge_technomancer_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_technomancer_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_technomancer_01",
+        "rpgskilltree:bridge_technomancer_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_technomancer_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_technomancer_02",
+        "rpgskilltree:bridge_technomancer_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_technomancer_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_technomancer_03",
+        "rpgskilltree:bridge_technomancer_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_technomancer_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_technomancer_04",
+        "rpgskilltree:keystone_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_industrialist_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_industrialist_01",
+        "rpgskilltree:engineering_012",
+        "rpgskilltree:mining_007"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_industrialist_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_industrialist_00",
+        "rpgskilltree:bridge_industrialist_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_industrialist_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_industrialist_01",
+        "rpgskilltree:bridge_industrialist_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_industrialist_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_industrialist_02",
+        "rpgskilltree:bridge_industrialist_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_industrialist_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_industrialist_03",
+        "rpgskilltree:bridge_industrialist_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_industrialist_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_industrialist_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_prospector_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_prospector_01",
+        "rpgskilltree:mining_012",
+        "rpgskilltree:survival_007"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_prospector_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_prospector_00",
+        "rpgskilltree:bridge_prospector_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_prospector_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_prospector_01",
+        "rpgskilltree:bridge_prospector_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_prospector_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_prospector_02",
+        "rpgskilltree:bridge_prospector_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_prospector_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_prospector_03",
+        "rpgskilltree:bridge_prospector_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_prospector_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_prospector_04",
+        "rpgskilltree:keystone_08"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_druid_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_01",
+        "rpgskilltree:summoning_007",
+        "rpgskilltree:survival_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_druid_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_00",
+        "rpgskilltree:bridge_druid_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_druid_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_01",
+        "rpgskilltree:bridge_druid_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_druid_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_02",
+        "rpgskilltree:bridge_druid_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_druid_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_03",
+        "rpgskilltree:bridge_druid_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_druid_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_04",
+        "rpgskilltree:keystone_09"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_necromancer_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_01",
+        "rpgskilltree:occult_007",
+        "rpgskilltree:summoning_012"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_necromancer_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_00",
+        "rpgskilltree:bridge_necromancer_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_necromancer_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_01",
+        "rpgskilltree:bridge_necromancer_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_necromancer_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_02",
+        "rpgskilltree:bridge_necromancer_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_necromancer_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_03",
+        "rpgskilltree:bridge_necromancer_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_necromancer_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_04",
+        "rpgskilltree:keystone_11"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_012",
+        "rpgskilltree:bridge_duelist_01",
+        "rpgskilltree:martial_007"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_duelist_00",
+        "rpgskilltree:bridge_duelist_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_duelist_01",
+        "rpgskilltree:bridge_duelist_03"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_duelist_02",
+        "rpgskilltree:bridge_duelist_04"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_duelist_03",
+        "rpgskilltree:bridge_duelist_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_duelist_04",
+        "rpgskilltree:keystone_15"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_00",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:vitality_036"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_01",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:martial_039"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_02",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_03",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_036"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_04",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:arcane_041"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_05",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_technomancer_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_06",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_041"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_07",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:engineering_045"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_08",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_prospector_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_09",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_10",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:survival_037"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_11",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_05"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_12",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:logistics_024"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_13",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:occult_037"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_14",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:agility_027"
+      ]
+    },
+    {
+      "id": "rpgskilltree:keystone_15",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_duelist_05"
+      ]
+    }
+  ]
+}

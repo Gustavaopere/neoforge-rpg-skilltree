@@ -1,0 +1,23 @@
+{
+  "id": "rpgskilltree:bridge_necromancer_04",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:bridge_necromancer_05"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:bridge/necromancer",
+    "rpgskilltree:domain/occult",
+    "rpgskilltree:domain/summoning",
+    "rpgskilltree:kind/hybrid"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/notable.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/notable.png",
+  "positionX": -1582.76,
+  "positionY": 722.822,
+  "buttonSize": 24,
+  "isStartingPoint": false
+}

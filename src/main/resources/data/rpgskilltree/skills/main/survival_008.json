@@ -1,0 +1,23 @@
+{
+  "id": "rpgskilltree:survival_008",
+  "bonuses": [],
+  "requirements": [],
+  "directConnections": [
+    "rpgskilltree:survival_009",
+    "rpgskilltree:survival_016",
+    "rpgskilltree:survival_017"
+  ],
+  "longConnections": [],
+  "oneWayConnections": [],
+  "tags": [
+    "rpgskilltree:domain/survival",
+    "rpgskilltree:kind/domain"
+  ],
+  "backgroundTexture": "skilltree:textures/icons/background/lesser.png",
+  "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
+  "borderTexture": "skilltree:textures/tooltip/lesser.png",
+  "positionX": -129.448,
+  "positionY": 1001.67,
+  "buttonSize": 16,
+  "isStartingPoint": false
+}

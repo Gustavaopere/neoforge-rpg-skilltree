@@ -1,0 +1,17 @@
+{
+  "specialization_id": "epic_heavy",
+  "provider": "epicfight",
+  "kind": "combat",
+  "eligible_class_ids": [
+    "warrior",
+    "guardian",
+    "paladin",
+    "industrialist"
+  ],
+  "minimum_mastery_experience": {
+    "epicfight:heavy": 80
+  },
+  "required_tags": [
+    "gateway:epic_heavy"
+  ]
+}

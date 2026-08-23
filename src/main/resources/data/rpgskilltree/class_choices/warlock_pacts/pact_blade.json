@@ -1,0 +1,14 @@
+{
+  "choice_id": "warlock:pact_blade",
+  "required_class_id": "warlock",
+  "group_id": "warlock:pact",
+  "default_group_capacity": 1,
+  "title": "Pact of the Blade",
+  "mechanics": [
+    "bound_weapon",
+    "occult_scaling",
+    "epic_fight_hooks"
+  ],
+  "notes": "Bound weapon path; later adapter can blend occult/spell scaling into a chosen real weapon without replacing Epic Fight weapon categories.",
+  "display_key": "choice.rpgskilltree.warlock.pact_blade"
+}

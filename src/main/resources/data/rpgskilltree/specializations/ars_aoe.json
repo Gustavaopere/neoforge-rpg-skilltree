@@ -1,0 +1,16 @@
+{
+  "specialization_id": "ars_aoe",
+  "provider": "ars_nouveau",
+  "kind": "spell_composition",
+  "eligible_class_ids": [
+    "arcanist",
+    "technomancer",
+    "geomancer"
+  ],
+  "minimum_mastery_experience": {
+    "ars:aoe": 80
+  },
+  "required_tags": [
+    "gateway:ars_aoe"
+  ]
+}
