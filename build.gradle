@@ -82,6 +82,9 @@ dependencies {
     compileOnly("curse.maven:malum-484064:${malum_file_id}") {
         transitive = false
     }
+    compileOnly("curse.maven:eidolon-repraised-870250:${eidolon_file_id}") {
+        transitive = false
+    }
 }
 
 tasks.named('wrapper', Wrapper).configure {
