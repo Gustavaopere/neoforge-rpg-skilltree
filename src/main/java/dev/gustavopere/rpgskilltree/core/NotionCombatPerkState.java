@@ -89,6 +89,17 @@ public final class NotionCombatPerkState {
         return lost;
     }
 
+    /** Starts A0004's frozen rapid decay cadence without inventing an immediate stack loss. */
+    public synchronized boolean startMomentumRapidDecay(String actorId, long nowMillis) {
+        ActorState state = actor(actorId);
+        if (state.momentum <= 0) return false;
+        long firstLossAt = safeAdd(nowMillis, 1_000L);
+        if (state.nextMomentumDecayAt <= 0L || firstLossAt < state.nextMomentumDecayAt) {
+            state.nextMomentumDecayAt = firstLossAt;
+        }
+        return true;
+    }
+
     public synchronized int decayMomentum(String actorId, long nowMillis) {
         ActorState state = actorOrEmpty(actorId);
         if (state.momentum <= 0 || state.nextMomentumDecayAt <= 0L || nowMillis < state.nextMomentumDecayAt) return 0;
