@@ -1,5 +1,7 @@
 package dev.gustavopere.rpgskilltree.core;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -7,13 +9,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
-/**
- * Canonical A0046/A0048 Focus lifecycle: preparation, release-time consumption, and projectile correlation.
- */
+/** Canonical A0046/A0048 Focus lifecycle and projectile correlation. */
 public final class CanonicalFocusService {
     public static final double PREPARE_THRESHOLD = 80.0D;
     public static final double PREPARED_SHOT_COST = 50.0D;
     public static final long REQUIRED_STABLE_AIM_MILLIS = 1_250L;
+
+    public static final long FOCUS_INTERVAL_MILLIS = 500L;
+    public static final long SUDDEN_AIM_WINDOW_MILLIS = 250L;
+    public static final long SUDDEN_AIM_COOLDOWN_MILLIS = 500L;
+    public static final double SUDDEN_AIM_THRESHOLD_DEGREES = 45.0D;
+    public static final double DISTANT_HIT_MIN_DISTANCE = 12.0D;
 
     private final long retentionMillis;
     private final int maxTrackedShots;
@@ -22,6 +28,8 @@ public final class CanonicalFocusService {
     private final LinkedHashMap<ActionKey, PreparedShot> shots = new LinkedHashMap<>();
     private final Map<String, ProjectileLink> projectiles = new LinkedHashMap<>();
     private final Map<String, Long> cooldowns = new LinkedHashMap<>();
+    private final Map<String, AimTracker> aimTrackers = new LinkedHashMap<>();
+    private final Map<String, DistantCredit> distantCredits = new LinkedHashMap<>();
 
     public CanonicalFocusService(long retentionMillis, int maxTrackedShots) {
         if (retentionMillis <= 0L) throw new IllegalArgumentException("retentionMillis must be positive");
@@ -31,6 +39,7 @@ public final class CanonicalFocusService {
         this.ledger = new CanonicalEventLedger(Math.multiplyExact(maxTrackedShots, 4));
     }
 
+    /** Generic producer kept for canonical callers outside the frozen A0046 aim/hit producers. */
     public ProductionStatus produce(ProductionRequest request, NotionCombatPerkState state, long nowMillis) {
         Objects.requireNonNull(request);
         Objects.requireNonNull(state);
@@ -45,6 +54,131 @@ public final class CanonicalFocusService {
         }
         state.addFocus(request.action().actorId(), amount * request.multiplier(), nowMillis);
         return ProductionStatus.APPLIED;
+    }
+
+    /**
+     * Samples one server-side tick of active bow use for A0046. Credits or drains at most one
+     * half-second interval per call, so missed ticks never become an AFK/catch-up burst.
+     */
+    public synchronized AimStatus sampleAim(
+        AimSampleRequest request,
+        NotionCombatPerkState state,
+        long nowMillis
+    ) {
+        Objects.requireNonNull(request);
+        Objects.requireNonNull(state);
+        requireNow(nowMillis);
+        prune(nowMillis);
+        if (request.rank() == 0) return AimStatus.NOT_LEARNED;
+        if (!eligible(request.action(), request.serverAuthoritative(), request.eligibleActor(), true)
+            || !request.bowInUse()) {
+            aimTrackers.remove(request.action().actorId());
+            return AimStatus.INELIGIBLE;
+        }
+
+        String actorId = request.action().actorId();
+        AimTracker tracker = aimTrackers.get(actorId);
+        if (tracker == null || !tracker.action.sameAction(request.action())) {
+            tracker = new AimTracker(request.action(), nowMillis, request.yaw(), request.pitch(), nowMillis);
+            aimTrackers.put(actorId, tracker);
+            return AimStatus.TRACKING;
+        }
+
+        double angularDelta = angularDelta(tracker.lastYaw, tracker.lastPitch, request.yaw(), request.pitch());
+        tracker.lastYaw = request.yaw();
+        tracker.lastPitch = request.pitch();
+        tracker.lastSampleMillis = nowMillis;
+        tracker.angularSteps.addLast(new AngularStep(nowMillis, angularDelta));
+        while (!tracker.angularSteps.isEmpty()
+            && tracker.angularSteps.peekFirst().atMillis() < nowMillis - SUDDEN_AIM_WINDOW_MILLIS) {
+            tracker.angularSteps.removeFirst();
+        }
+
+        double accumulated = 0.0D;
+        for (AngularStep step : tracker.angularSteps) accumulated += step.degrees();
+        if (accumulated > SUDDEN_AIM_THRESHOLD_DEGREES && nowMillis >= tracker.suddenCooldownUntilMillis) {
+            consumeFocusClamped(state, actorId, 10.0D * request.lossScalar());
+            tracker.suddenCooldownUntilMillis = Math.addExact(nowMillis, SUDDEN_AIM_COOLDOWN_MILLIS);
+            tracker.lastIntervalMillis = nowMillis;
+            tracker.angularSteps.clear();
+            return AimStatus.SUDDEN_CHANGE_DRAIN;
+        }
+
+        if (nowMillis - tracker.lastIntervalMillis < FOCUS_INTERVAL_MILLIS) return AimStatus.TRACKING;
+        tracker.lastIntervalMillis = nowMillis;
+
+        if (request.sprinting()) {
+            consumeFocusClamped(state, actorId, 6.0D * request.lossScalar());
+            return AimStatus.SPRINT_DRAIN;
+        }
+
+        double intervalGain = request.rank() >= 2 ? 5.0D : 4.0D;
+        state.addFocus(actorId, intervalGain * request.gainScalar(), nowMillis);
+        return AimStatus.STABLE_GAIN;
+    }
+
+    public synchronized void endAimTracking(String actorId) {
+        requireActorId(actorId);
+        aimTrackers.remove(actorId);
+    }
+
+    /** One canonical A0046 long-range Focus credit per projectile. */
+    public synchronized DistantHitStatus creditDistantProjectileHit(
+        DistantHitRequest request,
+        NotionCombatPerkState state,
+        long nowMillis
+    ) {
+        Objects.requireNonNull(request);
+        Objects.requireNonNull(state);
+        requireNow(nowMillis);
+        prune(nowMillis);
+        if (request.rank() == 0) return DistantHitStatus.NOT_LEARNED;
+        if (!eligible(request.action(), request.serverAuthoritative(), request.eligibleOwner(), request.directPlayerOwned())) {
+            return DistantHitStatus.INELIGIBLE;
+        }
+        if (request.distanceFromShot() < DISTANT_HIT_MIN_DISTANCE) return DistantHitStatus.TOO_CLOSE;
+        if (distantCredits.containsKey(request.projectileId())) return DistantHitStatus.DUPLICATE_PROJECTILE;
+
+        distantCredits.put(
+            request.projectileId(),
+            new DistantCredit(request.action().actorId(), Math.addExact(nowMillis, retentionMillis))
+        );
+        state.addFocus(request.action().actorId(), request.rank() >= 2 ? 12.5D : 10.0D, nowMillis);
+        return DistantHitStatus.APPLIED;
+    }
+
+    public synchronized boolean applyHeavyImpactLoss(
+        String actorId,
+        boolean serverAuthoritative,
+        boolean provenHeavyImpact,
+        NotionCombatPerkState state,
+        long nowMillis
+    ) {
+        Objects.requireNonNull(state);
+        requireActorId(actorId);
+        requireNow(nowMillis);
+        if (!serverAuthoritative || !provenHeavyImpact) return false;
+        consumeFocusClamped(state, actorId, 25.0D);
+        return true;
+    }
+
+    public synchronized boolean applyCancelledDrawLoss(
+        String actorId,
+        boolean serverAuthoritative,
+        boolean eligibleActor,
+        double drawFraction,
+        NotionCombatPerkState state,
+        long nowMillis
+    ) {
+        Objects.requireNonNull(state);
+        requireActorId(actorId);
+        requireNow(nowMillis);
+        if (!Double.isFinite(drawFraction) || drawFraction < 0.0D) {
+            throw new IllegalArgumentException("drawFraction must be finite and non-negative");
+        }
+        if (!serverAuthoritative || !eligibleActor || drawFraction < 0.80D) return false;
+        consumeFocusClamped(state, actorId, 15.0D);
+        return true;
     }
 
     public synchronized PreparationStatus beginPreparation(
@@ -181,12 +315,13 @@ public final class CanonicalFocusService {
     }
 
     public synchronized void clearActor(String actorId) {
-        Objects.requireNonNull(actorId);
-        if (actorId.isBlank()) throw new IllegalArgumentException("actorId must not be blank");
+        requireActorId(actorId);
         preparations.remove(actorId);
         cooldowns.remove(actorId);
+        aimTrackers.remove(actorId);
         shots.entrySet().removeIf(entry -> entry.getKey().actorId.equals(actorId));
         projectiles.entrySet().removeIf(entry -> entry.getValue().shotKey.actorId.equals(actorId));
+        distantCredits.entrySet().removeIf(entry -> entry.getValue().actorId.equals(actorId));
         ledger.clearActor(actorId);
     }
 
@@ -196,6 +331,9 @@ public final class CanonicalFocusService {
         projectiles.entrySet().removeIf(entry ->
             entry.getValue().expiresAtMillis <= nowMillis || !shots.containsKey(entry.getValue().shotKey));
         cooldowns.entrySet().removeIf(entry -> entry.getValue() <= nowMillis);
+        aimTrackers.entrySet().removeIf(entry ->
+            entry.getValue().lastSampleMillis <= nowMillis - retentionMillis);
+        distantCredits.entrySet().removeIf(entry -> entry.getValue().expiresAtMillis <= nowMillis);
     }
 
     private void makeShotRoom() {
@@ -205,6 +343,26 @@ public final class CanonicalFocusService {
             iterator.remove();
             projectiles.entrySet().removeIf(entry -> entry.getValue().shotKey.equals(removed));
         }
+    }
+
+    private static void consumeFocusClamped(NotionCombatPerkState state, String actorId, double amount) {
+        if (!Double.isFinite(amount) || amount < 0.0D) throw new IllegalArgumentException("loss must be finite and non-negative");
+        double current = state.focus(actorId);
+        if (current <= 0.0D || amount == 0.0D) return;
+        state.consumeFocus(actorId, Math.min(current, amount));
+    }
+
+    private static double angularDelta(double previousYaw, double previousPitch, double yaw, double pitch) {
+        double yawDelta = Math.abs(wrapDegrees(yaw - previousYaw));
+        double pitchDelta = Math.abs(pitch - previousPitch);
+        return Math.hypot(yawDelta, pitchDelta);
+    }
+
+    private static double wrapDegrees(double degrees) {
+        double wrapped = degrees % 360.0D;
+        if (wrapped >= 180.0D) wrapped -= 360.0D;
+        if (wrapped < -180.0D) wrapped += 360.0D;
+        return wrapped;
     }
 
     private static boolean eligible(
@@ -228,12 +386,34 @@ public final class CanonicalFocusService {
         if (projectileId.isBlank()) throw new IllegalArgumentException("projectileId must not be blank");
     }
 
+    private static void requireActorId(String actorId) {
+        Objects.requireNonNull(actorId);
+        if (actorId.isBlank()) throw new IllegalArgumentException("actorId must not be blank");
+    }
+
     public enum ProductionStatus {
         APPLIED,
         DUPLICATE,
         INELIGIBLE,
         NO_GAIN,
         UNSUPPORTED_UNSPECIFIED_AMOUNT
+    }
+
+    public enum AimStatus {
+        TRACKING,
+        STABLE_GAIN,
+        SPRINT_DRAIN,
+        SUDDEN_CHANGE_DRAIN,
+        INELIGIBLE,
+        NOT_LEARNED
+    }
+
+    public enum DistantHitStatus {
+        APPLIED,
+        DUPLICATE_PROJECTILE,
+        TOO_CLOSE,
+        INELIGIBLE,
+        NOT_LEARNED
     }
 
     public enum PreparationStatus {
@@ -286,6 +466,50 @@ public final class CanonicalFocusService {
         }
     }
 
+    public record AimSampleRequest(
+        CanonicalActionIdentity action,
+        boolean serverAuthoritative,
+        boolean eligibleActor,
+        boolean bowInUse,
+        boolean sprinting,
+        int rank,
+        double yaw,
+        double pitch,
+        double gainScalar,
+        double lossScalar
+    ) {
+        public AimSampleRequest {
+            Objects.requireNonNull(action);
+            if (rank < 0 || rank > 2) throw new IllegalArgumentException("rank must be in 0..2");
+            if (!Double.isFinite(yaw) || !Double.isFinite(pitch)) {
+                throw new IllegalArgumentException("aim angles must be finite");
+            }
+            if (!Double.isFinite(gainScalar) || gainScalar <= 0.0D
+                || !Double.isFinite(lossScalar) || lossScalar <= 0.0D) {
+                throw new IllegalArgumentException("body-state scalars must be finite and positive");
+            }
+        }
+    }
+
+    public record DistantHitRequest(
+        CanonicalActionIdentity action,
+        String projectileId,
+        boolean serverAuthoritative,
+        boolean eligibleOwner,
+        boolean directPlayerOwned,
+        double distanceFromShot,
+        int rank
+    ) {
+        public DistantHitRequest {
+            Objects.requireNonNull(action);
+            requireProjectileId(projectileId);
+            if (!Double.isFinite(distanceFromShot) || distanceFromShot < 0.0D) {
+                throw new IllegalArgumentException("distanceFromShot must be finite and non-negative");
+            }
+            if (rank < 0 || rank > 2) throw new IllegalArgumentException("rank must be in 0..2");
+        }
+    }
+
     public record ReleaseRequest(
         CanonicalActionIdentity shot,
         boolean serverAuthoritative,
@@ -329,4 +553,26 @@ public final class CanonicalFocusService {
     private record PreparedShot(CanonicalActionIdentity action, long expiresAtMillis, boolean resolved) {}
 
     private record ProjectileLink(ActionKey shotKey, long expiresAtMillis) {}
+
+    private record AngularStep(long atMillis, double degrees) {}
+
+    private record DistantCredit(String actorId, long expiresAtMillis) {}
+
+    private static final class AimTracker {
+        final CanonicalActionIdentity action;
+        final Deque<AngularStep> angularSteps = new ArrayDeque<>();
+        long lastIntervalMillis;
+        long lastSampleMillis;
+        long suddenCooldownUntilMillis;
+        double lastYaw;
+        double lastPitch;
+
+        AimTracker(CanonicalActionIdentity action, long lastIntervalMillis, double lastYaw, double lastPitch, long lastSampleMillis) {
+            this.action = action;
+            this.lastIntervalMillis = lastIntervalMillis;
+            this.lastYaw = lastYaw;
+            this.lastPitch = lastPitch;
+            this.lastSampleMillis = lastSampleMillis;
+        }
+    }
 }
