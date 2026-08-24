@@ -20,9 +20,11 @@ import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.Set;
 import java.util.WeakHashMap;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -688,45 +690,31 @@ public final class EpicFightCombatPerkHooks {
         );
     }
 
-    /** Explicit mace tags win; Epic Fight category is only a fallback when no explicit family is present. */
     static boolean unambiguousMace(ItemStack stack, CapabilityItem capability) {
-        boolean explicitMace = stack.is(MACES) || stack.is(COMBAT_MACE);
-        boolean explicitOther = stack.getItem() instanceof BowItem
-            || stack.getItem() instanceof CrossbowItem
-            || stack.is(SWORDS)
-            || stack.is(AXES)
-            || stack.is(SPEARS)
-            || stack.is(DAGGERS)
-            || stack.is(HAMMERS)
-            || stack.is(SCYTHES)
-            || stack.is(BOWS)
-            || stack.is(CROSSBOWS);
-        if (explicitMace) return !explicitOther;
-        if (explicitOther || capability == null || capability.isEmpty()) return false;
-        return CombatWeaponFamilyPolicy.fromEpicFightCategory(capability.getWeaponCategory().toString())
-            .orElse(null) == WeaponFamily.MACE;
+        return weaponFamily(stack, capability).orElse(null) == WeaponFamily.MACE;
     }
 
     static Optional<WeaponFamily> weaponFamily(ItemStack stack, CapabilityItem capability) {
-        if (capability != null && !capability.isEmpty()) {
-            Optional<WeaponFamily> provider = CombatWeaponFamilyPolicy.fromEpicFightCategory(
-                capability.getWeaponCategory().toString()
-            );
-            if (provider.isPresent()) return provider;
-        }
+        Set<WeaponFamily> explicitFamilies = new HashSet<>();
+        if (stack.is(SWORDS)) explicitFamilies.add(WeaponFamily.SWORD);
+        if (stack.is(AXES)) explicitFamilies.add(WeaponFamily.AXE);
+        if (stack.is(SPEARS)) explicitFamilies.add(WeaponFamily.SPEAR);
+        if (stack.is(DAGGERS)) explicitFamilies.add(WeaponFamily.DAGGER);
+        if (stack.is(HAMMERS)) explicitFamilies.add(WeaponFamily.HAMMER);
+        if (stack.is(MACES) || stack.is(COMBAT_MACE)) explicitFamilies.add(WeaponFamily.MACE);
+        if (stack.is(SCYTHES)) explicitFamilies.add(WeaponFamily.SCYTHE);
+        if (stack.is(BOWS)) explicitFamilies.add(WeaponFamily.BOW);
+        if (stack.is(CROSSBOWS)) explicitFamilies.add(WeaponFamily.CROSSBOW);
 
-        if (stack.getItem() instanceof BowItem) return Optional.of(WeaponFamily.BOW);
-        if (stack.getItem() instanceof CrossbowItem) return Optional.of(WeaponFamily.CROSSBOW);
-        if (stack.is(SWORDS)) return Optional.of(WeaponFamily.SWORD);
-        if (stack.is(AXES)) return Optional.of(WeaponFamily.AXE);
-        if (stack.is(SPEARS)) return Optional.of(WeaponFamily.SPEAR);
-        if (stack.is(DAGGERS)) return Optional.of(WeaponFamily.DAGGER);
-        if (stack.is(HAMMERS)) return Optional.of(WeaponFamily.HAMMER);
-        if (stack.is(MACES)) return Optional.of(WeaponFamily.MACE);
-        if (stack.is(SCYTHES)) return Optional.of(WeaponFamily.SCYTHE);
-        if (stack.is(BOWS)) return Optional.of(WeaponFamily.BOW);
-        if (stack.is(CROSSBOWS)) return Optional.of(WeaponFamily.CROSSBOW);
-        return Optional.empty();
+        Optional<WeaponFamily> fallback = Optional.empty();
+        if (stack.getItem() instanceof BowItem) {
+            fallback = Optional.of(WeaponFamily.BOW);
+        } else if (stack.getItem() instanceof CrossbowItem) {
+            fallback = Optional.of(WeaponFamily.CROSSBOW);
+        } else if (capability != null && !capability.isEmpty()) {
+            fallback = CombatWeaponFamilyPolicy.fromEpicFightCategory(capability.getWeaponCategory().toString());
+        }
+        return CombatWeaponFamilyPolicy.resolve(explicitFamilies, fallback);
     }
 
     private static TagKey<Item> tag(String path) {
