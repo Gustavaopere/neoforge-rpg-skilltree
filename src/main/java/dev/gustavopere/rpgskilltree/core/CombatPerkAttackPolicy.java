@@ -150,6 +150,18 @@ public final class CombatPerkAttackPolicy {
                 }
             }
             case DAGGER -> {
+                if (ranks.learned("A0024")
+                    && state.flow(context.actorId()) >= 4
+                    && state.consumeActorFlag(
+                        context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis())) {
+                    state.consumeFlow(context.actorId(), 4);
+                    state.setActorFlag(
+                        context.actorId(),
+                        NotionCombatPerkState.ActorFlag.SHADOW_DANCE,
+                        Math.addExact(context.nowMillis(), 4_000L)
+                    );
+                }
+
                 int blindSpotRank = ranks.rank("A0023");
                 if (blindSpotRank > 0
                     && context.flankOrBack()
