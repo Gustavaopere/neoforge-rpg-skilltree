@@ -3,9 +3,11 @@ package dev.gustavopere.rpgskilltree.core;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
-/** Stable provider/category and fallback-tag mapping for A0001-A0050 weapon families. */
+/** Stable provider/category and curated-tag mapping for A0001-A0050 weapon families. */
 public final class CombatWeaponFamilyPolicy {
     private static final Map<String, WeaponFamily> EPIC_FIGHT = Map.ofEntries(
         Map.entry("sword", WeaponFamily.SWORD),
@@ -42,5 +44,21 @@ public final class CombatWeaponFamilyPolicy {
     public static Optional<WeaponFamily> fromFallbackTag(String rawTag) {
         if (rawTag == null || rawTag.isBlank()) return Optional.empty();
         return Optional.ofNullable(FALLBACK_TAGS.get(rawTag.trim().toLowerCase(Locale.ROOT)));
+    }
+
+    /**
+     * Resolves one canonical family. Curated RPG tags are authoritative; conflicting curated tags
+     * fail closed rather than guessing. Epic Fight is consulted only when no curated tag classified
+     * the item, so a generic provider category can never overwrite a more specific RPG tag.
+     */
+    public static Optional<WeaponFamily> resolve(
+        Set<WeaponFamily> explicitFamilies,
+        Optional<WeaponFamily> providerFamily
+    ) {
+        Objects.requireNonNull(explicitFamilies);
+        Objects.requireNonNull(providerFamily);
+        if (explicitFamilies.size() > 1) return Optional.empty();
+        if (explicitFamilies.size() == 1) return Optional.of(explicitFamilies.iterator().next());
+        return providerFamily;
     }
 }
