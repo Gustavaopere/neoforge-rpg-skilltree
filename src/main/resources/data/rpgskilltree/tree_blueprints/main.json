@@ -62,6 +62,21 @@
     "points_to_complete_region_end": 9
   },
   "non_adjacent_class_bridge_cost": 10,
+  "node_tags": {
+    "martial_000": [
+      "gateway:epic_sword",
+      "gateway:epic_axe",
+      "gateway:epic_spear",
+      "gateway:epic_dagger",
+      "gateway:epic_hammer",
+      "gateway:combat_mace",
+      "gateway:combat_scythe"
+    ],
+    "agility_000": [
+      "gateway:epic_bow",
+      "gateway:epic_crossbow"
+    ]
+  },
   "class_bridges": [
     {
       "id": "paladin",

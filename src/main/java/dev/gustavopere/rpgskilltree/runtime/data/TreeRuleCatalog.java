@@ -20,16 +20,19 @@ public final class TreeRuleCatalog {
         NodePurchaseDefinition definition,
         NodeAccessRequirement requirement,
         NodeSpecializationGrant specializationGrant,
+        Set<String> tags,
         Set<ResourceLocation> neighbors
     ) {
         public NodeRule {
             Objects.requireNonNull(id);
             Objects.requireNonNull(definition);
             Objects.requireNonNull(requirement);
+            Objects.requireNonNull(tags);
             Objects.requireNonNull(neighbors);
             if (!definition.nodeId().equals(id.toString())) {
                 throw new IllegalArgumentException("node rule definition id mismatch: " + id);
             }
+            tags = Set.copyOf(tags);
             neighbors = Set.copyOf(neighbors);
         }
     }
@@ -37,6 +40,7 @@ public final class TreeRuleCatalog {
     private static volatile Map<ResourceLocation, NodePurchaseDefinition> definitions = Map.of();
     private static volatile Map<ResourceLocation, NodeAccessRequirement> requirements = Map.of();
     private static volatile List<NodeSpecializationGrant> specializationGrants = List.of();
+    private static volatile Map<String, Set<String>> tagsByNode = Map.of();
     private static volatile SkillGraph graph = SkillGraph.undirected(List.of());
 
     private TreeRuleCatalog() {}
@@ -47,6 +51,7 @@ public final class TreeRuleCatalog {
         Map<ResourceLocation, NodeAccessRequirement> nextRequirements = new HashMap<>();
         Set<SkillGraph.Edge> nextEdges = new HashSet<>();
         List<NodeSpecializationGrant> nextSpecializationGrants = new ArrayList<>();
+        Map<String, Set<String>> nextTagsByNode = new HashMap<>();
         Set<ResourceLocation> knownIds = new HashSet<>();
         rules.forEach(rule -> knownIds.add(rule.id()));
 
@@ -57,6 +62,9 @@ public final class TreeRuleCatalog {
             nextRequirements.put(rule.id(), rule.requirement());
             if (rule.specializationGrant() != null) {
                 nextSpecializationGrants.add(rule.specializationGrant());
+            }
+            if (!rule.tags().isEmpty()) {
+                nextTagsByNode.put(rule.id().toString(), rule.tags());
             }
             for (String requiredNode : rule.requirement().requiredNodeIds()) {
                 validateRequiredNode(rule.id(), requiredNode, knownIds);
@@ -78,6 +86,7 @@ public final class TreeRuleCatalog {
         definitions = Map.copyOf(nextDefinitions);
         requirements = Map.copyOf(nextRequirements);
         specializationGrants = List.copyOf(nextSpecializationGrants);
+        tagsByNode = Map.copyOf(nextTagsByNode);
         graph = SkillGraph.undirected(new ArrayList<>(nextEdges));
     }
 
@@ -109,6 +118,10 @@ public final class TreeRuleCatalog {
 
     public static List<NodeSpecializationGrant> specializationGrants() {
         return specializationGrants;
+    }
+
+    public static Map<String, Set<String>> tagsByNode() {
+        return tagsByNode;
     }
 
     public static Map<String, NodePurchaseDefinition> definitions() {

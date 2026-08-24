@@ -78,6 +78,16 @@ for i in range(blue['outer_keystone_nodes']):
     closest=min(candidates,key=lambda n:(n['x']-keystone['x'])**2+(n['y']-keystone['y'])**2)
     nodes.append(keystone)
     edges.append([closest['id'],keystone['id']])
+# Attach gameplay metadata from the blueprint only after every generated node exists.
+node_by_id={node['id']:node for node in nodes}
+for node_id,tags in blue.get('node_tags',{}).items():
+    if node_id not in node_by_id:
+        raise SystemExit(f'unknown tagged node: {node_id}')
+    if not isinstance(tags,list) or not tags or any(not isinstance(tag,str) or not tag for tag in tags):
+        raise SystemExit(f'invalid node tags: {node_id}')
+    if len(tags)!=len(set(tags)):
+        raise SystemExit(f'duplicate node tags: {node_id}')
+    node_by_id[node_id]['tags']=sorted(tags)
 # Normalize undirected edges for deterministic exports and validation.
 seen=set(); normalized=[]
 for a,b in edges:
