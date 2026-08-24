@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.core;
 
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
+import java.util.Locale;
 import java.util.Objects;
 
 /** Frozen transition rules for A0004 Momentum, A0016 Distance Control and A0022 Flow. */
@@ -20,15 +21,40 @@ public final class CombatPerkTransitionPolicy {
         if (ranks.rank("A0022") > 0) state.tickStationaryFlow(actorId, inCombat, relevantHorizontalMovement, nowMillis);
     }
 
+    /**
+     * Provider-neutral compatibility entry point. The actor/family/server-tick tuple is a fail-closed
+     * miss identity so a duplicated callback in the same server tick cannot charge the same transition twice.
+     * Provider adapters with a stronger action identity should call the action-aware overload below.
+     */
     public static boolean onConfirmedMiss(String actorId, WeaponFamily family, CombatPerkRanks ranks,
                                           NotionCombatPerkState state, long nowMillis) {
         requireActor(actorId);
         Objects.requireNonNull(family);
+        CanonicalActionIdentity action = CanonicalActionIdentity.root(
+            actorId,
+            "confirmed-miss/" + family.name().toLowerCase(Locale.ROOT) + "/" + nowMillis,
+            "provider:confirmed-miss"
+        );
+        return onConfirmedMiss(action, actorId, family, ranks, state, nowMillis);
+    }
+
+    /** Applies one frozen miss transition for one canonical provider action. */
+    public static boolean onConfirmedMiss(CanonicalActionIdentity action, String actorId, WeaponFamily family,
+                                          CombatPerkRanks ranks, NotionCombatPerkState state, long nowMillis) {
+        Objects.requireNonNull(action);
+        requireActor(actorId);
+        Objects.requireNonNull(family);
         Objects.requireNonNull(ranks);
         Objects.requireNonNull(state);
+        if (!action.actorId().equals(actorId)) return false;
+
         return switch (family) {
-            case SWORD -> ranks.learned("A0004") && state.startMomentumRapidDecay(actorId, nowMillis);
-            case SPEAR -> ranks.rank("A0016") > 0 && state.loseDistanceControlClamped(actorId, 1, nowMillis) > 0;
+            case SWORD -> ranks.learned("A0004")
+                && state.claimPrimaryOnce(action, "A0004:momentum-miss", nowMillis)
+                && state.loseMomentumClamped(actorId, 1) > 0;
+            case SPEAR -> ranks.rank("A0016") > 0
+                && state.claimPrimaryOnce(action, "A0016:distance-control-miss", nowMillis)
+                && state.loseDistanceControlClamped(actorId, 1, nowMillis) > 0;
             default -> false;
         };
     }
@@ -39,7 +65,7 @@ public final class CombatPerkTransitionPolicy {
         requireActor(actorId);
         Objects.requireNonNull(ranks);
         Objects.requireNonNull(state);
-        return ranks.learned("A0004") && state.startMomentumRapidDecay(actorId, nowMillis);
+        return ranks.learned("A0004") && state.loseMomentumClamped(actorId, 2) > 0;
     }
 
     /** Applies the A0016 consumer after its own certified heavy-impact receipt claim. */
