@@ -121,6 +121,7 @@ public final class CombatPerkFinalizationPolicy {
             || !direct
             || !hostile
             || !legitimateKill
+            || weaponMastery < 80
             || !ranks.learned("A0042")
             || !state.hasTargetFlag(actorId, victimId, NotionCombatPerkState.TargetFlag.REAPING_MATURE, nowMillis)
             || !state.actorCooldownReady(actorId, "A0042", nowMillis)) {
@@ -136,7 +137,8 @@ public final class CombatPerkFinalizationPolicy {
 
     /**
      * Consumes an armed Harvest only on the next legitimate direct scythe hit against a different target.
-     * The exact 10% stamina refund remains outside this policy until the provider exposes a post-consumption receipt.
+     * Exact stamina restitution is deliberately resolved by the certified provider bridge after this
+     * policy confirms that the Harvest hit itself was eligible and consumed the window.
      */
     public static boolean consumeBattleHarvestOnHit(
         CanonicalActionIdentity action,
