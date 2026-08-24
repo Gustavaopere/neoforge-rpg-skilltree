@@ -9,6 +9,7 @@ public final class CombatPerkAttackPolicyTest {
         riposteSuppressesMomentumRegeneration();
         axeRuptureConsumesFuryOnlyAgainstRelevantDefense();
         spearAndDaggerConsumeTheirOwnResources();
+        spearDistanceControlExpiresByRank();
         spearMasteryWindowPreemptsBasicInterception();
         recentDodgeCanGenerateDaggerFlow();
         hammerMaceAndScytheUsePerTargetPreparation();
@@ -90,6 +91,49 @@ public final class CombatPerkAttackPolicyTest {
         CombatPerkAttackPolicy.afterConfirmedHit(ctx, ranks, state);
         require(state.flow("p") == 1, "A0022 can generate flow after dodge");
         require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2000L), "dodge window consumed by hit");
+    }
+
+    private static void spearDistanceControlExpiresByRank() {
+        var rankOne = CombatPerkRanks.of(Map.of("A0016", 1, "A0017", 2));
+        var rankOneState = new NotionCombatPerkState();
+        CombatPerkAttackPolicy.afterConfirmedHit(
+            context(WeaponFamily.SPEAR, false, false, true, false, false, 1.0, 0.0, 1000L),
+            rankOne,
+            rankOneState
+        );
+        var expiredRankOne = CombatPerkAttackPolicy.beforeHit(
+            context(WeaponFamily.SPEAR, false, false, true, true, false, 1.0, 0.0, 6000L),
+            rankOne,
+            rankOneState
+        );
+        require(close(expiredRankOne.guardPressureMultiplier(), 1.0D), "A0016 rank1 expires after five seconds");
+
+        var rankTwo = CombatPerkRanks.of(Map.of("A0016", 2, "A0017", 2));
+        var activeRankTwoState = new NotionCombatPerkState();
+        CombatPerkAttackPolicy.afterConfirmedHit(
+            context(WeaponFamily.SPEAR, false, false, true, false, false, 1.0, 0.0, 1000L),
+            rankTwo,
+            activeRankTwoState
+        );
+        var activeRankTwo = CombatPerkAttackPolicy.beforeHit(
+            context(WeaponFamily.SPEAR, false, false, true, true, false, 1.0, 0.0, 7999L),
+            rankTwo,
+            activeRankTwoState
+        );
+        require(close(activeRankTwo.guardPressureMultiplier(), 1.35D), "A0016 rank2 remains active before seven seconds");
+
+        var expiredRankTwoState = new NotionCombatPerkState();
+        CombatPerkAttackPolicy.afterConfirmedHit(
+            context(WeaponFamily.SPEAR, false, false, true, false, false, 1.0, 0.0, 1000L),
+            rankTwo,
+            expiredRankTwoState
+        );
+        var expiredRankTwo = CombatPerkAttackPolicy.beforeHit(
+            context(WeaponFamily.SPEAR, false, false, true, true, false, 1.0, 0.0, 8000L),
+            rankTwo,
+            expiredRankTwoState
+        );
+        require(close(expiredRankTwo.guardPressureMultiplier(), 1.0D), "A0016 rank2 expires after seven seconds");
     }
 
     private static void spearMasteryWindowPreemptsBasicInterception() {
