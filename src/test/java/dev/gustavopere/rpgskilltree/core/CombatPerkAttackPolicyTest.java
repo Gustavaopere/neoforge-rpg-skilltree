@@ -16,6 +16,7 @@ public final class CombatPerkAttackPolicyTest {
         hammerMaceAndScytheUsePerTargetPreparation();
         confirmedHitsGenerateOnlyTheirOwnResources();
         furyGenerationRequiresAnExplicitCanonicalBaseGain();
+        duplicateProviderCallbacksCannotConsumeOrProduceTwice();
         invalidActionsCannotGainTrainingOrResources();
         System.out.println("CombatPerkAttackPolicyTest: PASS");
     }
@@ -301,6 +302,42 @@ public final class CombatPerkAttackPolicyTest {
             state
         );
         require(close(state.fury("p"), 30.0), "target switch gets +50% after rank multiplier");
+    }
+
+    private static void duplicateProviderCallbacksCannotConsumeOrProduceTwice() {
+        var state = new NotionCombatPerkState();
+        state.addFury("p", 100.0D, 500L);
+        var action = CanonicalActionIdentity.root("p", "axe-hit-1", "epicfight:damage_pre");
+        var axe = new CombatPerkAttackPolicy.AttackContext(
+            action,
+            "p", "mob", WeaponFamily.AXE,
+            true, true, true, false, false, false, false, false,
+            1.0D, false, 0.0D, 1_000L
+        );
+        var axeRanks = CombatPerkRanks.of(Map.of("A0011", 2));
+
+        var first = CombatPerkAttackPolicy.beforeHit(axe, axeRanks, state);
+        var duplicate = CombatPerkAttackPolicy.beforeHit(
+            axe.withAction(action.withSource("epicfight:damage_pre_duplicate")), axeRanks, state);
+
+        require(close(first.armorNegationPoints(), 10.0D), "first callback applies consumer");
+        require(close(duplicate.damageMultiplier(), 1.0D), "duplicate callback is neutral");
+        require(close(duplicate.armorNegationPoints(), 0.0D), "duplicate callback cannot attach modifiers");
+        require(close(state.fury("p"), 80.0D), "duplicate callback cannot consume Fury twice");
+
+        var swordState = new NotionCombatPerkState();
+        var swordAction = CanonicalActionIdentity.root("p", "sword-hit-1", "epicfight:damage_post");
+        var sword = new CombatPerkAttackPolicy.AttackContext(
+            swordAction,
+            "p", "mob", WeaponFamily.SWORD,
+            true, true, false, false, false, false, false, false,
+            1.0D, false, 0.0D, 2_000L
+        );
+        var swordRanks = CombatPerkRanks.of(Map.of("A0004", 1));
+        CombatPerkAttackPolicy.afterConfirmedHit(sword, swordRanks, swordState);
+        CombatPerkAttackPolicy.afterConfirmedHit(
+            sword.withAction(swordAction.withSource("epicfight:damage_post_duplicate")), swordRanks, swordState);
+        require(swordState.momentum("p") == 1, "duplicate result cannot produce a resource twice");
     }
 
     private static void invalidActionsCannotGainTrainingOrResources() {
