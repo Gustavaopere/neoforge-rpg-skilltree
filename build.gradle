@@ -77,6 +77,9 @@ dependencies {
     compileOnly("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
         transitive = false
     }
+    localRuntime("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
+        transitive = false
+    }
     compileOnly("curse.maven:goety-586095:${goety_file_id}") {
         transitive = false
     }
@@ -105,14 +108,17 @@ tasks.register('verifyEpicFightReceiptJarContract', JavaExec) {
     mainClass = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightReceiptJarContractTest'
     doFirst {
         File epicFightJar = configurations.epicfightReceiptContract.singleFile
+        if (epicfight_receipt_sha256.toString().isBlank()) {
+            throw new GradleException('epicfight_receipt_sha256 must be pinned for the exact receipt contract')
+        }
         args = [
             epicFightJar.absolutePath,
-            epicfight_version,
-            epicfight_version_id
+            epicfight_mod_version,
+            epicfight_version_id,
+            epicfight_receipt_sha256
         ]
-        if (project.hasProperty('epicfight_receipt_sha256') && !epicfight_receipt_sha256.toString().isBlank()) {
-            args += epicfight_receipt_sha256.toString()
-        }
+        logger.lifecycle("Epic Fight receipt release: ${epicfight_version}")
+        logger.lifecycle("Epic Fight receipt packaged mod version: ${epicfight_mod_version}")
         logger.lifecycle("Epic Fight receipt contract coordinate: maven.modrinth:vu3NZ5Ma:${epicfight_version_id}")
         logger.lifecycle("Epic Fight receipt contract file: ${epicFightJar.name}")
     }
