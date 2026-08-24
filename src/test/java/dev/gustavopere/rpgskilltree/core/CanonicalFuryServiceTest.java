@@ -78,7 +78,7 @@ public final class CanonicalFuryServiceTest {
         OptionalDouble baseGain
     ) {
         return new CanonicalFuryService.ProductionRequest(
-            action, targetId, true, true, true, true, rank, baseGain
+            action, targetId, true, true, true, true, true, rank, baseGain
         );
     }
 
