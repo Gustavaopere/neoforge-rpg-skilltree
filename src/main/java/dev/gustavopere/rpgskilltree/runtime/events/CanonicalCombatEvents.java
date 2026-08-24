@@ -27,6 +27,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.LivingEntity;
@@ -73,6 +74,7 @@ public final class CanonicalCombatEvents {
     private static final TagKey<DamageType> PERIODIC_SUSTAIN = damageTag("periodic_sustain");
     private static final TagKey<DamageType> BLOOD_MAGIC_COST = damageTag("blood_magic_cost");
     private static final Map<String, CrossbowReloadStart> CROSSBOW_RELOADS = new HashMap<>();
+    private static final Map<String, Long> FORCED_MOVEMENT_UNTIL = new HashMap<>();
     private static final ResourceLocation A0036_DESYNC_MOVEMENT =
         ResourceLocation.fromNamespaceAndPath("rpgskilltree", "a0036_desync_movement");
 
@@ -250,6 +252,8 @@ public final class CanonicalCombatEvents {
             player.getX(), player.getY(), player.getZ(), player.isPassenger(), false, false, true
         ));
         FrozenCombatRuntimeState.revalidateStance(player);
+        FORCED_MOVEMENT_UNTIL.entrySet().removeIf(
+            entry -> entry.getValue() < player.level().getGameTime());
 
         int recoveryRank = FrozenCombatRuntimeState.ranks(player).rank("A0081");
         if (recoveryRank > 0 && eligible(player)) {
@@ -465,6 +469,46 @@ public final class CanonicalCombatEvents {
         }
     }
 
+    /** Victim-side A0092/A0096-A0099 resolution runs after cancellation/classification adapters. */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onFrozenVitalityIncomingDamage(LivingIncomingDamageEvent event) {
+        if (event.isCanceled() || event.getAmount() <= 0.0F
+            || !(event.getEntity() instanceof ServerPlayer victim) || !eligible(victim)
+            || event.getSource().is(BLOOD_MAGIC_COST)) return;
+        DamageSource source = event.getSource();
+        boolean hostile = source.getEntity() instanceof LivingEntity attacker
+            && attacker != victim
+            && !victim.isAlliedTo(attacker)
+            && (attacker instanceof Enemy || attacker instanceof Player);
+        boolean providerNonWeapon = CanonicalSustainRuntime.isProviderClassifiedNonWeapon(source);
+        boolean physical = !providerNonWeapon
+            && safeDirectPhysical(event)
+            && !source.is(DamageTypeTags.BYPASSES_ARMOR);
+        boolean mitigable = !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY);
+        long nowMillis = now(victim);
+        CanonicalActionIdentity action = CanonicalCombatRuntimeState.receivedDamageAction(
+            victim, source, nowMillis);
+        String actorId = victim.getUUID().toString();
+        boolean forced = FORCED_MOVEMENT_UNTIL.getOrDefault(actorId, -1L)
+            >= victim.level().getGameTime();
+        boolean sprinting = victim.isSprinting() && !victim.isPassenger();
+        boolean stationary = !sprinting && !forced
+            && FrozenCombatRuntimeState.stationary().state(actorId).stationary();
+        double healthFraction = victim.getMaxHealth() <= 0.0F ? 1.0D
+            : Math.max(0.0D, Math.min(1.0D, victim.getHealth() / victim.getMaxHealth()));
+        var resolution = FrozenCombatRuntimeState.vitalityDefense().resolve(
+            new dev.gustavopere.rpgskilltree.core.FrozenVitalityDefenseService.Request(
+                action, true, true, hostile, physical, mitigable,
+                sprinting, forced, stationary, healthFraction
+            ),
+            FrozenCombatRuntimeState.ranks(victim),
+            nowMillis
+        );
+        if (Double.compare(resolution.damageMultiplier(), 1.0D) != 0) {
+            event.setAmount((float) (event.getAmount() * resolution.damageMultiplier()));
+        }
+    }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onCrossbowUseStart(LivingEntityUseItemEvent.Start event) {
         if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)
@@ -501,6 +545,8 @@ public final class CanonicalCombatEvents {
     public static void onKnockback(LivingKnockBackEvent event) {
         if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player) {
             FrozenCombatRuntimeState.stationary().invalidate(player.getUUID().toString());
+            FORCED_MOVEMENT_UNTIL.put(
+                player.getUUID().toString(), Math.addExact(player.level().getGameTime(), 1L));
         }
     }
 

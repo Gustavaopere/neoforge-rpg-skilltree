@@ -9,6 +9,7 @@ import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.FrozenMartialOffenseService;
 import dev.gustavopere.rpgskilltree.core.FrozenMartialTacticsService;
+import dev.gustavopere.rpgskilltree.core.FrozenVitalityDefenseService;
 import dev.gustavopere.rpgskilltree.core.FrozenMartialTacticsService.Stance;
 import dev.gustavopere.rpgskilltree.core.MartialRhythmService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
@@ -35,6 +36,7 @@ public final class FrozenCombatRuntimeState {
     private static final SustainResolver SUSTAIN = new SustainResolver();
     private static final CombatRecoveryService RECOVERY = new CombatRecoveryService();
     private static final BloodThirstService BLOOD_THIRST = new BloodThirstService(BODY);
+    private static final FrozenVitalityDefenseService VITALITY_DEFENSE = new FrozenVitalityDefenseService();
     private static final Map<ItemStack, String> STACK_IDENTITIES = new IdentityHashMap<>();
     private static final AtomicLong NEXT_STACK_ID = new AtomicLong();
 
@@ -50,6 +52,7 @@ public final class FrozenCombatRuntimeState {
     public static SustainResolver sustain() { return SUSTAIN; }
     public static CombatRecoveryService recovery() { return RECOVERY; }
     public static BloodThirstService bloodThirst() { return BLOOD_THIRST; }
+    public static FrozenVitalityDefenseService vitalityDefense() { return VITALITY_DEFENSE; }
 
     public static synchronized boolean toggleStance(ServerPlayer player, Stance requested) {
         FrozenCombatPerkRanks ranks = ranks(player);
@@ -113,6 +116,7 @@ public final class FrozenCombatRuntimeState {
         SUSTAIN.clearTransient(actorId);
         RECOVERY.clearTransient(actorId);
         BLOOD_THIRST.clearTransient(actorId, player.level().getGameTime());
+        VITALITY_DEFENSE.clearTransient(actorId);
         STACK_IDENTITIES.entrySet().removeIf(entry -> entry.getValue().startsWith(actorId + "/"));
     }
 }

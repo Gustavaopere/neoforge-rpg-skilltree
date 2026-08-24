@@ -44,6 +44,8 @@ public final class CanonicalCombatRuntimeState {
     private static final Map<String, CrossbowBurst> CROSSBOW_BURSTS = new HashMap<>();
     private static final Map<DamageSource, Map<String, DamageActionFacts>> DAMAGE_ACTIONS = new WeakHashMap<>();
     private static final Map<DamageSource, PeriodicPulseAction> PERIODIC_PULSES = new WeakHashMap<>();
+    private static final Map<DamageSource, Map<String, ReceivedDamageFacts>> RECEIVED_DAMAGE_ACTIONS =
+        new WeakHashMap<>();
 
     private CanonicalCombatRuntimeState() {}
 
@@ -361,6 +363,26 @@ public final class CanonicalCombatRuntimeState {
         return action;
     }
 
+    /** Stable victim-side identity across duplicate adapters for one incoming damage event. */
+    public static synchronized CanonicalActionIdentity receivedDamageAction(
+        ServerPlayer victim,
+        DamageSource source,
+        long nowMillis
+    ) {
+        Objects.requireNonNull(victim);
+        Objects.requireNonNull(source);
+        if (nowMillis < 0L) throw new IllegalArgumentException("nowMillis");
+        String targetId = actorId(victim);
+        Map<String, ReceivedDamageFacts> byTarget = RECEIVED_DAMAGE_ACTIONS.computeIfAbsent(
+            source, ignored -> new HashMap<>());
+        ReceivedDamageFacts current = byTarget.get(targetId);
+        if (current != null && current.expiresAtMillis() > nowMillis) return current.action();
+        CanonicalActionIdentity action = newRoot(victim, "neoforge:received_damage", nowMillis);
+        byTarget.put(targetId, new ReceivedDamageFacts(
+            action, Math.addExact(nowMillis, CORRELATION_RETENTION_MILLIS)));
+        return action;
+    }
+
     public static synchronized void invalidateAim(ServerPlayer player, long nowMillis) {
         String actorId = actorId(player);
         PENDING_CANCELLED_DRAWS.remove(actorId);
@@ -392,6 +414,7 @@ public final class CanonicalCombatRuntimeState {
         DAMAGE_ACTIONS.values().forEach(byTarget -> byTarget.entrySet().removeIf(
             entry -> entry.getValue().action().actorId().equals(actorId)));
         PERIODIC_PULSES.entrySet().removeIf(entry -> entry.getValue().action().actorId().equals(actorId));
+        RECEIVED_DAMAGE_ACTIONS.values().forEach(byTarget -> byTarget.remove(actorId));
     }
 
     private static void pruneShots(long nowMillis) {
@@ -431,6 +454,8 @@ public final class CanonicalCombatRuntimeState {
     private record CrossbowBurst(String stackIdentity, long expiresAtMillis) {}
 
     private record PeriodicPulseAction(long tick, CanonicalActionIdentity action) {}
+
+    private record ReceivedDamageFacts(CanonicalActionIdentity action, long expiresAtMillis) {}
 
     private record ActionKey(String actorId, String actionId) {
         static ActionKey of(CanonicalActionIdentity action) {

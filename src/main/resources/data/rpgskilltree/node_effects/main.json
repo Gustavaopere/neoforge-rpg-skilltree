@@ -482,6 +482,13 @@
       "attributeId": "minecraft:armor_toughness",
       "operation": "MULTIPLY_TOTAL",
       "amountPerRank": 0.02
+    },
+    {
+      "effectId": "rpgskilltree:node/combat/a0091/knockback_resistance",
+      "nodeId": "rpgskilltree:combat/a0091",
+      "attributeId": "minecraft:knockback_resistance",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.03
     }
   ]
 }
