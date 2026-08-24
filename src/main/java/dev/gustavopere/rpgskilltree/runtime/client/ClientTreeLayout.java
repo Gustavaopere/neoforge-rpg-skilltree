@@ -172,7 +172,10 @@ public final class ClientTreeLayout {
                     readStringSet(node.getAsJsonArray("requiredClasses")),
                     readIntMap(node.getAsJsonObject("requiredMastery")),
                     readStringSet(node.getAsJsonArray("requiredSpecializations")),
-                    readStringSet(node.getAsJsonArray("requiredClassChoices"))
+                    readStringSet(node.getAsJsonArray("requiredClassChoices")),
+                    readStringSet(node.getAsJsonArray("requiredNodes")),
+                    readIntMap(node.getAsJsonObject("requiredNodeRanks")),
+                    readStringSet(node.getAsJsonArray("requiredDiscoveries"))
                 );
                 Integer finalTriadSlot = node.has("finalTriadSlot") ? node.get("finalTriadSlot").getAsInt() : null;
                 nodes.add(new Node(
