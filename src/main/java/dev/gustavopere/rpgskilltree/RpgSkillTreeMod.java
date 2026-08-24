@@ -5,6 +5,8 @@ import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEven
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightCombatPerkHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightExactStaminaReceiptBridge;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightExactStaminaReceiptLifecycleEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
@@ -80,6 +82,10 @@ public final class RpgSkillTreeMod {
         if (ModList.get().isLoaded("epicfight")) {
             EpicFightProgressionHooks.register();
             EpicFightCombatPerkHooks.register();
+            if (EpicFightExactStaminaReceiptBridge.isSupportedInstalledVersion()) {
+                EpicFightExactStaminaReceiptBridge.register();
+                NeoForge.EVENT_BUS.register(EpicFightExactStaminaReceiptLifecycleEvents.class);
+            }
         }
     }
 }

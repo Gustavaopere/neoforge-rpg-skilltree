@@ -25,3 +25,6 @@ side="BOTH"
 
 [[mixins]]
 config="rpgskilltree.mixins.json"
+
+[[mixins]]
+config="rpgskilltree-compat-epicfight-receipt.mixins.json"

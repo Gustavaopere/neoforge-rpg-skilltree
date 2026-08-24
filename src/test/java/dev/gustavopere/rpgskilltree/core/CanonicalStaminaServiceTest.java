@@ -4,7 +4,9 @@ public final class CanonicalStaminaServiceTest {
     public static void main(String[] args) {
         preConsumeIntentCannotAuthorizeRefund();
         exactPostConsumeEvidenceEnablesCausalRefund();
+        receiptLookupIsReadOnlyCorrelatedAndExpires();
         refundIsCorrelatedAndIdempotent();
+        duplicateObservationDoesNotReplaceReceipt();
         fakeAndProcActionsCannotRecordCosts();
         System.out.println("CanonicalStaminaServiceTest: PASS");
     }
@@ -20,6 +22,7 @@ public final class CanonicalStaminaServiceTest {
         require(service.observe(observation, 1_000L)
             == CanonicalStaminaService.CostStatus.UNSUPPORTED_PRE_CONSUME_ONLY,
             "Epic Fight public pre-consume event is not confirmed cost");
+        require(service.receipt(action, 1_001L).isEmpty(), "intent alone cannot create an exact receipt");
         require(service.refundAmount(action, "A0029", 0.10D, 1_001L).isEmpty(),
             "intent alone cannot refund stamina");
     }
@@ -35,6 +38,18 @@ public final class CanonicalStaminaServiceTest {
             "refund derives from exact confirmed cost");
     }
 
+    private static void receiptLookupIsReadOnlyCorrelatedAndExpires() {
+        var service = new CanonicalStaminaService(100L, 64);
+        var action = root("receipt-1");
+        service.observe(confirmed(action, 12.5D, "provider:evidence-1"), 1_000L);
+
+        var receipt = service.receipt(action.withSource("epicfight:damage_post"), 1_001L).orElseThrow();
+        require(close(receipt.exactCost(), 12.5D), "lookup uses actor/action identity across provider stages");
+        require(receipt.evidenceId().equals("provider:evidence-1"), "receipt exposes audit evidence id");
+        require(service.receipt(action, 1_002L).isPresent(), "lookup does not consume the receipt");
+        require(service.receipt(action, 1_100L).isEmpty(), "receipt expires at retention boundary");
+    }
+
     private static void refundIsCorrelatedAndIdempotent() {
         var service = new CanonicalStaminaService(30_000L, 64);
         var action = root("hammer-1");
@@ -46,6 +61,18 @@ public final class CanonicalStaminaServiceTest {
             "same action and consumer cannot refund twice");
         require(service.refundAmount(root("hammer-2"), "A0029", 0.10D, 1_002L).isEmpty(),
             "different action cannot borrow another action's cost");
+    }
+
+    private static void duplicateObservationDoesNotReplaceReceipt() {
+        var service = new CanonicalStaminaService(30_000L, 64);
+        var action = root("dup");
+        require(service.observe(confirmed(action, 5.0D, "first"), 1_000L)
+            == CanonicalStaminaService.CostStatus.RECORDED, "first observation recorded");
+        require(service.observe(confirmed(action.withSource("epicfight:damage_post"), 99.0D, "second"), 1_001L)
+            == CanonicalStaminaService.CostStatus.DUPLICATE, "second observation is duplicate");
+        var receipt = service.receipt(action, 1_002L).orElseThrow();
+        require(close(receipt.exactCost(), 5.0D), "duplicate cannot overwrite exact cost");
+        require(receipt.evidenceId().equals("first"), "duplicate cannot overwrite evidence identity");
     }
 
     private static void fakeAndProcActionsCannotRecordCosts() {
