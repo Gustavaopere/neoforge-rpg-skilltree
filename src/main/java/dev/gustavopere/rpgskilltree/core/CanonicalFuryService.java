@@ -5,6 +5,8 @@ import java.util.OptionalDouble;
 
 /** Canonical producer/cap/consumer boundary for A0010-A0012 Fury. */
 public final class CanonicalFuryService {
+    public static final double A0010_BASE_GAIN = 8.0D;
+
     private final long retentionMillis;
     private final CanonicalEventLedger ledger;
 
@@ -23,14 +25,14 @@ public final class CanonicalFuryService {
             return ProductionStatus.INELIGIBLE;
         }
         if (request.rank() == 0) return ProductionStatus.NOT_LEARNED;
-        if (request.baseGain().isEmpty()) return ProductionStatus.UNSUPPORTED_UNSPECIFIED_BASE_GAIN;
-        double baseGain = request.baseGain().getAsDouble();
-        if (baseGain == 0.0D) return ProductionStatus.NO_GAIN;
         if (!ledger.claimPrimaryOnce(request.action(), "fury:producer", nowMillis, retentionMillis)) {
             return ProductionStatus.DUPLICATE;
         }
 
-        double gain = baseGain * (1.0D + 0.10D * request.rank());
+        // Frozen A0010 contract: base 8 -> rank multiplier -> legitimate target-switch x1.5 -> state cap 100.
+        // baseGain remains on the request only for binary/source compatibility with the pre-freeze API and is
+        // intentionally ignored so a provider cannot override the canonical producer amount.
+        double gain = A0010_BASE_GAIN * (1.0D + 0.10D * request.rank());
         if (state.recordTargetAndWasDifferent(request.action().actorId(), request.targetId())) gain *= 1.50D;
         state.addFury(request.action().actorId(), gain, nowMillis);
         return ProductionStatus.APPLIED;
