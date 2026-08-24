@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.OptionalDouble;
 
 /** Exact action-to-cost correlation for stamina effects; pre-consume intents never authorize refunds. */
@@ -42,6 +43,18 @@ public final class CanonicalStaminaService {
             new TimedCost(observation.exactCost(), observation.evidenceId(), Math.addExact(nowMillis, retentionMillis))
         );
         return CostStatus.RECORDED;
+    }
+
+    /** Read-only inspection of a confirmed exact post-consume receipt. This does not claim a refund. */
+    public synchronized Optional<ExactCostReceipt> receipt(CanonicalActionIdentity action, long nowMillis) {
+        Objects.requireNonNull(action);
+        requireNow(nowMillis);
+        if (!ProcGuard.mayTriggerSecondaryEffect(action.origin())) return Optional.empty();
+        prune(nowMillis);
+        TimedCost cost = costs.get(ActionKey.of(action));
+        return cost == null
+            ? Optional.empty()
+            : Optional.of(new ExactCostReceipt(cost.exactCost, cost.evidenceId));
     }
 
     public synchronized OptionalDouble refundAmount(
@@ -100,6 +113,16 @@ public final class CanonicalStaminaService {
         DUPLICATE,
         INELIGIBLE,
         UNSUPPORTED_PRE_CONSUME_ONLY
+    }
+
+    public record ExactCostReceipt(double exactCost, String evidenceId) {
+        public ExactCostReceipt {
+            if (!Double.isFinite(exactCost) || exactCost < 0.0D) {
+                throw new IllegalArgumentException("exactCost must be finite and non-negative");
+            }
+            Objects.requireNonNull(evidenceId);
+            if (evidenceId.isBlank()) throw new IllegalArgumentException("evidenceId must not be blank");
+        }
     }
 
     public record CostObservation(
