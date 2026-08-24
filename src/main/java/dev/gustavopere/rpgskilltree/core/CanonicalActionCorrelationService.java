@@ -8,7 +8,8 @@ import java.util.Optional;
 
 /** Bounded server-runtime correlation between provider events that do not share an event object. */
 public final class CanonicalActionCorrelationService {
-    private final long retentionMillis;
+    private final long pendingRetentionMillis;
+    private final long projectileRetentionMillis;
     private final int maxTracked;
     private final Map<String, Long> actorSequences = new LinkedHashMap<>();
     private final LinkedHashMap<MeleeKey, TimedAction> pendingMelee = new LinkedHashMap<>();
@@ -16,9 +17,23 @@ public final class CanonicalActionCorrelationService {
     private final LinkedHashMap<String, ProjectileAction> projectiles = new LinkedHashMap<>();
 
     public CanonicalActionCorrelationService(long retentionMillis, int maxTracked) {
-        if (retentionMillis <= 0L) throw new IllegalArgumentException("retentionMillis must be positive");
+        this(retentionMillis, retentionMillis, maxTracked);
+    }
+
+    public CanonicalActionCorrelationService(
+        long pendingRetentionMillis,
+        long projectileRetentionMillis,
+        int maxTracked
+    ) {
+        if (pendingRetentionMillis <= 0L) {
+            throw new IllegalArgumentException("pendingRetentionMillis must be positive");
+        }
+        if (projectileRetentionMillis <= 0L) {
+            throw new IllegalArgumentException("projectileRetentionMillis must be positive");
+        }
         if (maxTracked <= 0) throw new IllegalArgumentException("maxTracked must be positive");
-        this.retentionMillis = retentionMillis;
+        this.pendingRetentionMillis = pendingRetentionMillis;
+        this.projectileRetentionMillis = projectileRetentionMillis;
         this.maxTracked = maxTracked;
     }
 
@@ -45,7 +60,7 @@ public final class CanonicalActionCorrelationService {
         makeRoom(pendingMelee);
         pendingMelee.put(
             new MeleeKey(action.actorId(), targetId),
-            new TimedAction(action, Math.addExact(nowMillis, retentionMillis))
+            new TimedAction(action, Math.addExact(nowMillis, pendingRetentionMillis))
         );
     }
 
@@ -70,7 +85,7 @@ public final class CanonicalActionCorrelationService {
         makeRoom(pendingShots);
         pendingShots.put(
             shot.actorId(),
-            new TimedAction(shot, Math.addExact(nowMillis, retentionMillis))
+            new TimedAction(shot, Math.addExact(nowMillis, pendingRetentionMillis))
         );
     }
 
@@ -94,7 +109,7 @@ public final class CanonicalActionCorrelationService {
         makeRoom(projectiles);
         projectiles.put(
             projectileId,
-            new ProjectileAction(shot.action, Math.addExact(nowMillis, retentionMillis))
+            new ProjectileAction(shot.action, Math.addExact(nowMillis, projectileRetentionMillis))
         );
         return Optional.of(shot.action.withSource("neoforge:projectile_spawn"));
     }

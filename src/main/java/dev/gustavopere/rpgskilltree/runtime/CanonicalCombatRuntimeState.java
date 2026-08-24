@@ -19,11 +19,16 @@ import net.minecraft.server.level.ServerPlayer;
 public final class CanonicalCombatRuntimeState {
     /** Vanilla BowItem spawns its projectile synchronously; two ticks cover event-order jitter without a broad reuse window. */
     private static final long CORRELATION_RETENTION_MILLIS = 100L;
+    private static final long PROJECTILE_RETENTION_MILLIS = 30_000L;
     private static final long CRITICAL_RETENTION_MILLIS = 30_000L;
     private static final int MAX_TRACKED_ACTIONS = 8_192;
 
     private static final CanonicalActionCorrelationService CORRELATION =
-        new CanonicalActionCorrelationService(CORRELATION_RETENTION_MILLIS, MAX_TRACKED_ACTIONS);
+        new CanonicalActionCorrelationService(
+            CORRELATION_RETENTION_MILLIS,
+            PROJECTILE_RETENTION_MILLIS,
+            MAX_TRACKED_ACTIONS
+        );
     private static final CanonicalCriticalService CRITICAL = new CanonicalCriticalService(
         () -> ThreadLocalRandom.current().nextDouble(),
         CRITICAL_RETENTION_MILLIS,
