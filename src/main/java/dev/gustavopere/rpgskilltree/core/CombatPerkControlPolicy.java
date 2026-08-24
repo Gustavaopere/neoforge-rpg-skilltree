@@ -39,7 +39,7 @@ public final class CombatPerkControlPolicy {
         OptionalDouble previousDistance = state.recordTargetDistance(actorId, targetId, distance);
         if (previousDistance.isEmpty()
             || !ranks.learned("A0018")
-            || state.distanceControl(actorId) < 3
+            || state.distanceControl(actorId, nowMillis) < 3
             || !targetAdvancing
             || previousDistance.getAsDouble() <= effectiveReach
             || !CombatPositionPolicy.isIdealSpearRange(distance, effectiveReach, 0.0D)

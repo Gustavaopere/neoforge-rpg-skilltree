@@ -128,12 +128,12 @@ public final class CombatPerkAttackPolicy {
             }
             case SPEAR -> {
                 boolean masteryInterception = ranks.learned("A0018")
-                    && state.distanceControl(context.actorId()) >= 3
+                    && state.distanceControl(context.actorId(), context.nowMillis()) >= 3
                     && state.consumeTargetFlag(
                         context.actorId(), context.targetId(),
                         NotionCombatPerkState.TargetFlag.INTERCEPTION_WINDOW, context.nowMillis());
                 if (masteryInterception) {
-                    state.consumeDistanceControl(context.actorId(), 3);
+                    state.consumeDistanceControl(context.actorId(), 3, context.nowMillis());
                     damage *= 1.15D;
                     impact *= 1.40D;
                     guardPressure *= 1.40D;
@@ -142,8 +142,8 @@ public final class CombatPerkAttackPolicy {
                     if (interceptionRank > 0
                         && context.idealRange()
                         && context.targetAdvancing()
-                        && state.distanceControl(context.actorId()) >= 1) {
-                        state.consumeDistanceControl(context.actorId(), 1);
+                        && state.distanceControl(context.actorId(), context.nowMillis()) >= 1) {
+                        state.consumeDistanceControl(context.actorId(), 1, context.nowMillis());
                         double pressure = interceptionRank >= 2 ? 1.35D : 1.20D;
                         impact *= pressure;
                         guardPressure *= pressure;
@@ -291,7 +291,12 @@ public final class CombatPerkAttackPolicy {
             case SPEAR -> {
                 int rangeRank = ranks.rank("A0016");
                 if (rangeRank > 0 && context.idealRange()) {
-                    state.addDistanceControl(context.actorId(), 1, context.nowMillis());
+                    state.addDistanceControl(
+                        context.actorId(),
+                        1,
+                        context.nowMillis(),
+                        rangeRank >= 2 ? 7_000L : 5_000L
+                    );
                 }
             }
             case DAGGER -> {

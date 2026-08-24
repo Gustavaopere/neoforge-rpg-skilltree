@@ -62,7 +62,7 @@ public final class CombatPerkControlPolicyTest {
     private static void spearInterceptionWindowRequiresAnInwardRangeCrossing() {
         var ranks = CombatPerkRanks.of(Map.of("A0018", 1));
         var state = new NotionCombatPerkState();
-        state.addDistanceControl("p", 3, 1000L);
+        state.addDistanceControl("p", 3, 1000L, 7_000L);
 
         require(!spearRangeUpdate(
             "p", "mob", CombatPerkDefinition.WeaponFamily.SPEAR,
@@ -84,7 +84,7 @@ public final class CombatPerkControlPolicyTest {
         require(state.cooldownReady("p", "mob", "A0018", 10000L), "same-target lockout expires exactly");
 
         var masteryState = new NotionCombatPerkState();
-        masteryState.addDistanceControl("p", 3, 1000L);
+        masteryState.addDistanceControl("p", 3, 1000L, 7_000L);
         require(!spearRangeUpdate(
             "p", "other", CombatPerkDefinition.WeaponFamily.SPEAR,
             5.0D, 4.0D, true, ranks, masteryState, 90, 1000L
@@ -101,7 +101,7 @@ public final class CombatPerkControlPolicyTest {
         );
 
         var invalid = new NotionCombatPerkState();
-        invalid.addDistanceControl("p", 3, 1000L);
+        invalid.addDistanceControl("p", 3, 1000L, 7_000L);
         require(!spearRangeUpdate(
             "p", "wrong", CombatPerkDefinition.WeaponFamily.AXE,
             5.0D, 4.0D, true, ranks, invalid, 100, 1000L

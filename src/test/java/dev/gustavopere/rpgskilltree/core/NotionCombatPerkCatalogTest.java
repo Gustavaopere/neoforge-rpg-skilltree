@@ -47,13 +47,13 @@ public final class NotionCombatPerkCatalogTest {
         var runtime = new NotionCombatPerkState();
         runtime.addMomentum("player", 7, 1000L);
         runtime.addFury("player", 140.0, 1000L);
-        runtime.addDistanceControl("player", 5, 1000L);
+        runtime.addDistanceControl("player", 5, 1000L, 7_000L);
         runtime.addFlow("player", 9, 1000L);
         runtime.addFocus("player", 130.0, 1000L);
 
         require(runtime.momentum("player") == 5, "momentum cap");
         require(runtime.fury("player") == 100.0, "fury cap");
-        require(runtime.distanceControl("player") == 3, "distance-control cap");
+        require(runtime.distanceControl("player", 1000L) == 3, "distance-control cap");
         require(runtime.flow("player") == 4, "flow cap");
         require(runtime.focus("player") == 100.0, "focus cap");
 
@@ -61,7 +61,7 @@ public final class NotionCombatPerkCatalogTest {
         runtime.consumeFury("player", 20.0);
         require(runtime.momentum("player") == 3, "momentum consumption");
         require(runtime.fury("player") == 80.0, "fury consumption");
-        require(runtime.distanceControl("player") == 3, "momentum/fury must not consume distance control");
+        require(runtime.distanceControl("player", 1000L) == 3, "momentum/fury must not consume distance control");
         require(runtime.flow("player") == 4, "momentum/fury must not consume flow");
         require(runtime.focus("player") == 100.0, "momentum/fury must not consume focus");
     }

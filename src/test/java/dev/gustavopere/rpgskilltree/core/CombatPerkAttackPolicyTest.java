@@ -66,12 +66,12 @@ public final class CombatPerkAttackPolicyTest {
 
     private static void spearAndDaggerConsumeTheirOwnResources() {
         var spearState = new NotionCombatPerkState();
-        spearState.addDistanceControl("p", 1, 1000L);
+        spearState.addDistanceControl("p", 1, 1000L, 7_000L);
         var spearRanks = CombatPerkRanks.of(Map.of("A0017", 2));
         var spear = context(WeaponFamily.SPEAR, false, false, true, true, false, 1.0, 0.0, 1000L);
         var intercept = CombatPerkAttackPolicy.beforeHit(spear, spearRanks, spearState);
         require(close(intercept.guardPressureMultiplier(), 1.35), "A0017 pressure");
-        require(spearState.distanceControl("p") == 0, "A0017 consumes distance control");
+        require(spearState.distanceControl("p", 1000L) == 0, "A0017 consumes distance control");
 
         var daggerState = new NotionCombatPerkState();
         daggerState.addFlow("p", 2, 1000L);
@@ -138,7 +138,7 @@ public final class CombatPerkAttackPolicyTest {
 
     private static void spearMasteryWindowPreemptsBasicInterception() {
         var state = new NotionCombatPerkState();
-        state.addDistanceControl("p", 3, 1000L);
+        state.addDistanceControl("p", 3, 1000L, 7_000L);
         state.setTargetFlag(
             "p",
             "mob",
@@ -163,7 +163,7 @@ public final class CombatPerkAttackPolicyTest {
         require(close(result.damageMultiplier(), 1.15D), "A0018 physical damage takes priority");
         require(close(result.impactMultiplier(), 1.40D), "A0018 impact takes priority");
         require(close(result.guardPressureMultiplier(), 1.40D), "A0018 guard pressure takes priority");
-        require(state.distanceControl("p") == 0, "A0018 consumes all three charges");
+        require(state.distanceControl("p", 2000L) == 0, "A0018 consumes all three charges");
         require(
             !state.hasTargetFlag("p", "mob", NotionCombatPerkState.TargetFlag.INTERCEPTION_WINDOW, 2000L),
             "A0018 consumes its window"
@@ -211,7 +211,7 @@ public final class CombatPerkAttackPolicyTest {
         var spearRanks = CombatPerkRanks.of(Map.of("A0016", 2));
         CombatPerkAttackPolicy.afterConfirmedHit(
             context(WeaponFamily.SPEAR, false, false, true, false, false, 1.0, 0.0, 2000L), spearRanks, state);
-        require(state.distanceControl("p") == 1, "A0016 distance control");
+        require(state.distanceControl("p", 2000L) == 1, "A0016 distance control");
 
         var daggerRanks = CombatPerkRanks.of(Map.of("A0022", 2));
         CombatPerkAttackPolicy.afterConfirmedHit(

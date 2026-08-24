@@ -81,22 +81,36 @@ public final class NotionCombatPerkState {
         state.fury -= amount;
     }
 
-    public synchronized void addDistanceControl(String actorId, int amount, long nowMillis) {
+    public synchronized void addDistanceControl(
+        String actorId,
+        int amount,
+        long nowMillis,
+        long durationMillis
+    ) {
         if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
+        if (durationMillis <= 0) throw new IllegalArgumentException("duration must be positive");
         ActorState state = actor(actorId);
+        if (state.distanceControlExpiresAt <= nowMillis) state.distanceControl = 0;
         state.distanceControl = Math.min(MAX_DISTANCE_CONTROL, state.distanceControl + amount);
         state.lastDistanceControlChange = nowMillis;
+        state.distanceControlExpiresAt = safeAdd(nowMillis, durationMillis);
     }
 
-    public synchronized int distanceControl(String actorId) {
-        return actorOrEmpty(actorId).distanceControl;
+    public synchronized int distanceControl(String actorId, long nowMillis) {
+        ActorState state = actorOrEmpty(actorId);
+        if (state.distanceControlExpiresAt <= nowMillis) {
+            state.distanceControl = 0;
+        }
+        return state.distanceControl;
     }
 
-    public synchronized void consumeDistanceControl(String actorId, int amount) {
+    public synchronized void consumeDistanceControl(String actorId, int amount, long nowMillis) {
         if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
+        int current = distanceControl(actorId, nowMillis);
         ActorState state = actor(actorId);
-        if (amount > state.distanceControl) throw new IllegalArgumentException("insufficient distance control");
+        if (amount > current) throw new IllegalArgumentException("insufficient distance control");
         state.distanceControl -= amount;
+        if (state.distanceControl == 0) state.distanceControlExpiresAt = 0L;
     }
 
     public synchronized void addFlow(String actorId, int amount, long nowMillis) {
@@ -329,6 +343,7 @@ public final class NotionCombatPerkState {
         long lastMomentumChange;
         long lastFuryChange;
         long lastDistanceControlChange;
+        long distanceControlExpiresAt;
         long lastFlowChange;
         long lastFocusChange;
         String lastTargetId;
