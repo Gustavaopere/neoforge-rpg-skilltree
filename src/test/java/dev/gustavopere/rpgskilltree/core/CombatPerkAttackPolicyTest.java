@@ -12,6 +12,7 @@ public final class CombatPerkAttackPolicyTest {
         spearDistanceControlExpiresByRank();
         spearMasteryWindowPreemptsBasicInterception();
         recentDodgeCanGenerateDaggerFlow();
+        daggerFlowExpiresByRank();
         hammerMaceAndScytheUsePerTargetPreparation();
         confirmedHitsGenerateOnlyTheirOwnResources();
         furyGenerationRequiresAnExplicitCanonicalBaseGain();
@@ -168,6 +169,52 @@ public final class CombatPerkAttackPolicyTest {
             !state.hasTargetFlag("p", "mob", NotionCombatPerkState.TargetFlag.INTERCEPTION_WINDOW, 2000L),
             "A0018 consumes its window"
         );
+    }
+
+    private static void daggerFlowExpiresByRank() {
+        var rankOne = CombatPerkRanks.of(Map.of("A0022", 1, "A0023", 2));
+        var rankOneState = new NotionCombatPerkState();
+        generateTwoDaggerFlow(rankOneState, rankOne);
+        var expiredRankOne = CombatPerkAttackPolicy.beforeHit(
+            context(WeaponFamily.DAGGER, false, false, false, false, true, 1.0, 0.0, 6000L),
+            rankOne,
+            rankOneState
+        );
+        require(close(expiredRankOne.armorNegationPoints(), 0.0D), "A0022 rank1 Flow expires after five seconds");
+
+        var rankTwo = CombatPerkRanks.of(Map.of("A0022", 2, "A0023", 2));
+        var activeRankTwoState = new NotionCombatPerkState();
+        generateTwoDaggerFlow(activeRankTwoState, rankTwo);
+        var activeRankTwo = CombatPerkAttackPolicy.beforeHit(
+            context(WeaponFamily.DAGGER, false, false, false, false, true, 1.0, 0.0, 7999L),
+            rankTwo,
+            activeRankTwoState
+        );
+        require(close(activeRankTwo.armorNegationPoints(), 10.0D), "A0022 rank2 Flow remains active before seven seconds");
+
+        var expiredRankTwoState = new NotionCombatPerkState();
+        generateTwoDaggerFlow(expiredRankTwoState, rankTwo);
+        var expiredRankTwo = CombatPerkAttackPolicy.beforeHit(
+            context(WeaponFamily.DAGGER, false, false, false, false, true, 1.0, 0.0, 8000L),
+            rankTwo,
+            expiredRankTwoState
+        );
+        require(close(expiredRankTwo.armorNegationPoints(), 0.0D), "A0022 rank2 Flow expires after seven seconds");
+    }
+
+    private static void generateTwoDaggerFlow(NotionCombatPerkState state, CombatPerkRanks ranks) {
+        for (long nowMillis : new long[] {900L, 1000L}) {
+            state.setActorFlag(
+                "p",
+                NotionCombatPerkState.ActorFlag.RECENT_DODGE,
+                Math.addExact(nowMillis, 2_000L)
+            );
+            CombatPerkAttackPolicy.afterConfirmedHit(
+                context(WeaponFamily.DAGGER, false, false, false, false, false, 1.0, 0.0, nowMillis),
+                ranks,
+                state
+            );
+        }
     }
 
     private static void hammerMaceAndScytheUsePerTargetPreparation() {
