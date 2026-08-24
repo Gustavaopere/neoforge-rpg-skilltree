@@ -36,7 +36,9 @@ public final class NotionCombatPerkState {
         PERFECT_RIPOSTE,
         SHADOW_DANCE,
         BATTLE_HARVEST,
-        PREPARED_SHOT
+        PREPARED_SHOT,
+        RECENT_DODGE,
+        SUPPRESS_MOMENTUM_ON_RESULT
     }
 
     public synchronized void addMomentum(String actorId, int amount, long nowMillis) {
