@@ -154,8 +154,9 @@ public final class CombatPerkAttackPolicy {
             }
             case AXE -> {
                 int ruptureRank = ranks.rank("A0011");
+                boolean protectedForPenetration = context.relevantDefense() || context.protectedTarget();
                 boolean rupture = ruptureRank > 0
-                    && context.relevantDefense()
+                    && protectedForPenetration
                     && state.furyService().consume(
                         new CanonicalFuryService.ConsumptionRequest(
                             context.action(), true, true, context.direct(), "A0011", 40.0D, 20.0D
@@ -165,7 +166,9 @@ public final class CombatPerkAttackPolicy {
                     ) == CanonicalFuryService.ConsumptionStatus.APPLIED;
                 if (rupture) {
                     armorNegation += ruptureRank >= 2 ? 10.0D : 6.0D;
-                    guardPressure *= ruptureRank >= 2 ? 1.35D : 1.20D;
+                    if (context.relevantDefense()) {
+                        guardPressure *= ruptureRank >= 2 ? 1.35D : 1.20D;
+                    }
                 }
 
                 if (ranks.learned("A0012") && state.fury(context.actorId()) >= 75.0D) {
@@ -275,23 +278,9 @@ public final class CombatPerkAttackPolicy {
                 }
             }
             case MACE -> {
-                int armorCrackRank = ranks.rank("A0035");
-                boolean crackedBeforeHit = state.hasTargetFlag(
-                    context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.ARMOR_CRACKED, context.nowMillis());
-                if (armorCrackRank > 0 && crackedBeforeHit) {
-                    armorNegation += armorCrackRank >= 2 ? 9.0D : 6.0D;
-                }
-
-                int trauma = state.targetCounter(
-                    context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.TRAUMA, context.nowMillis());
-                if (armorCrackRank > 0 && trauma >= 3) {
-                    state.consumeTargetCounter(
-                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.TRAUMA, 3, context.nowMillis());
-                    long duration = armorCrackRank >= 2 ? 6_000L : 4_000L;
-                    state.setTargetFlag(
-                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.ARMOR_CRACKED,
-                        Math.addExact(context.nowMillis(), duration));
-                }
+                // A0035 Armadura Fendida is a target-side temporary armor debuff. The pure policy
+                // cannot safely apply that effect and therefore fails closed: it neither consumes
+                // Trauma nor converts an active flag into attacker-local armor negation.
             }
             case SCYTHE -> {
                 int reapRank = ranks.rank("A0041");
