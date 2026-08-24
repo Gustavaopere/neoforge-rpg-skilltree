@@ -35,8 +35,13 @@ import yesman.epicfight.world.damagesource.EpicFightDamageSource;
  * the animation carried by the Epic Fight damage source that owns the canonical action.
  */
 public final class EpicFightExactStaminaReceiptBridge {
-    public static final String SUPPORTED_EPIC_FIGHT_VERSION = "21.17.3.1-mc1.21.1-neoforge";
+    /** Distribution release pinned by Modrinth version id and SHA-256 in the build contract. */
+    public static final String SUPPORTED_EPIC_FIGHT_RELEASE = "21.17.3.1-mc1.21.1-neoforge";
+    /** Version exposed by Epic Fight's packaged NeoForge mod metadata at runtime. */
+    public static final String SUPPORTED_EPIC_FIGHT_VERSION = "21.17.3.1";
     public static final String SUPPORTED_EPIC_FIGHT_VERSION_ID = "8HHhJt6i";
+    public static final String SUPPORTED_EPIC_FIGHT_SHA256 =
+        "8b882554cf10086398340fbdc741819ee72a801a3adce516c7f4768326a39526";
 
     public static final String CALLSITE_PLAYER_PATCH = "epicfight:PlayerPatch.consumeForSkill";
     public static final String CALLSITE_REQUEST_HOLD = "epicfight:SkillContainer.requestHold";
@@ -65,7 +70,8 @@ public final class EpicFightExactStaminaReceiptBridge {
         if (registered) return;
         if (!isSupportedInstalledVersion()) {
             throw new IllegalStateException(
-                "Exact stamina receipt bridge only supports Epic Fight " + SUPPORTED_EPIC_FIGHT_VERSION
+                "Exact stamina receipt bridge only supports Epic Fight release " + SUPPORTED_EPIC_FIGHT_RELEASE
+                    + " (packaged mod version " + SUPPORTED_EPIC_FIGHT_VERSION + ')'
             );
         }
         EpicFightEventHooks.Animation.START_ACTION.registerEvent(
