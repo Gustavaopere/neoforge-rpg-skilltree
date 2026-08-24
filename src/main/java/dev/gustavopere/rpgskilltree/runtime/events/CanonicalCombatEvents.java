@@ -23,6 +23,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.player.ArrowLooseEvent;
 import net.neoforged.neoforge.event.entity.player.ArrowNockEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
@@ -100,6 +101,24 @@ public final class CanonicalCombatEvents {
         );
     }
 
+    /**
+     * Stop fires before BowItem's normal release. We only stage the cancellation here; a normal
+     * ArrowLoose clears it synchronously, while a genuine no-arrow stop is resolved next tick.
+     */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onUseItemStop(LivingEntityUseItemEvent.Stop event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)
+            || !(event.getItem().getItem() instanceof BowItem)
+            || !eligible(player)
+            || !CanonicalCombatRuntimeState.hasAim(player)) {
+            return;
+        }
+        int totalDuration = event.getItem().getUseDuration(player);
+        int usedTicks = Math.max(0, totalDuration - event.getDuration());
+        double drawFraction = BowItem.getPowerForTime(usedTicks);
+        CanonicalCombatRuntimeState.recordUseStop(player, drawFraction, now(player));
+    }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         if (event.getLevel().isClientSide() || event.loadedFromDisk()) return;
@@ -148,21 +167,55 @@ public final class CanonicalCombatEvents {
 
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
-        if (!(event.getEntity() instanceof ServerPlayer player)
-            || !CanonicalCombatRuntimeState.hasAim(player)) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        long nowMillis = now(player);
+
+        if (CanonicalCombatRuntimeState.hasPendingCancelledDraw(player)) {
+            if (CanonicalCombatRuntimeState.resolvePendingCancelledDraw(player, nowMillis)) return;
+            // Stop and ArrowLoose can share a game tick; do not invalidate the pending proof early.
+            if (CanonicalCombatRuntimeState.hasPendingCancelledDraw(player)) return;
+        }
+        if (!CanonicalCombatRuntimeState.hasAim(player)) return;
+        if (!eligible(player)) {
+            CanonicalCombatRuntimeState.invalidateAim(player, nowMillis);
             return;
         }
-        if (!eligible(player)
-            || player.isSprinting()
-            || !player.isUsingItem()
-            || !(player.getUseItem().getItem() instanceof BowItem)) {
-            CanonicalCombatRuntimeState.invalidateAim(player, now(player));
+        if (!player.isUsingItem() || !(player.getUseItem().getItem() instanceof BowItem)) {
+            CanonicalCombatRuntimeState.invalidateAim(player, nowMillis);
+            return;
         }
+        CanonicalCombatRuntimeState.sampleAim(player, nowMillis);
     }
 
     @SubscribeEvent
-    public static void onPlayerDamaged(LivingDamageEvent.Post event) {
-        if (event.getNewDamage() > 0.0F && event.getEntity() instanceof ServerPlayer player) {
+    public static void onLivingDamaged(LivingDamageEvent.Post event) {
+        if (event.getNewDamage() <= 0.0F) return;
+
+        if (event.getSource().getDirectEntity() instanceof AbstractArrow arrow
+            && arrow.getOwner() instanceof ServerPlayer owner
+            && eligible(owner)
+            && weaponFamily(arrow.getWeaponItem()).orElse(null) == WeaponFamily.BOW) {
+            int focusRank = CombatPerkRuntimeState.ranks(owner).rank("A0046");
+            if (focusRank > 0) {
+                long nowMillis = now(owner);
+                String projectileId = arrow.getUUID().toString();
+                CanonicalCombatRuntimeState.projectileShotFacts(owner, projectileId, nowMillis).ifPresent(facts -> {
+                    double dx = event.getEntity().getX() - facts.shotX();
+                    double dy = event.getEntity().getY() - facts.shotY();
+                    double dz = event.getEntity().getZ() - facts.shotZ();
+                    double distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                    CombatPerkRuntimeState.state().focusService().creditDistantProjectileHit(
+                        new CanonicalFocusService.DistantHitRequest(
+                            facts.action(), projectileId, true, true, true, distance, focusRank
+                        ),
+                        CombatPerkRuntimeState.state(),
+                        nowMillis
+                    );
+                });
+            }
+        }
+
+        if (event.getEntity() instanceof ServerPlayer player) {
             CanonicalCombatRuntimeState.invalidateAim(player, now(player));
         }
     }
