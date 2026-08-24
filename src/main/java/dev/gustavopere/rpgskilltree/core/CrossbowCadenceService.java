@@ -26,9 +26,9 @@ public final class CrossbowCadenceService {
         if (previous != null) {
             projectiles.putIfAbsent(request.projectileId(), new ProjectileState(
                 request.action(), request.stackIdentity(), previous, false));
-            return ShotEffect.duplicate();
+            return ShotEffect.duplicateResult();
         }
-        if (projectiles.containsKey(request.projectileId())) return ShotEffect.duplicate();
+        if (projectiles.containsKey(request.projectileId())) return ShotEffect.duplicateResult();
 
         ActorState actor = actors.computeIfAbsent(request.action().actorId(), ignored -> new ActorState());
         if (actor.pendingAction != null) loseCharge(actor);
@@ -177,7 +177,7 @@ public final class CrossbowCadenceService {
 
     public record ShotEffect(boolean duplicate, double damageBonus, double penetrationBonus, double impactBonus) {
         static ShotEffect none() { return new ShotEffect(false, 0.0D, 0.0D, 0.0D); }
-        static ShotEffect duplicate() { return new ShotEffect(true, 0.0D, 0.0D, 0.0D); }
+        static ShotEffect duplicateResult() { return new ShotEffect(true, 0.0D, 0.0D, 0.0D); }
         public boolean active() { return damageBonus > 0.0D || penetrationBonus > 0.0D || impactBonus > 0.0D; }
     }
 

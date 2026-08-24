@@ -49,7 +49,7 @@ public final class FistSequenceService {
             return FinisherEffect.inactive();
         }
         ActionKey activation = ActionKey.of(request.action());
-        if (!activationClaims.add(activation)) return FinisherEffect.duplicate();
+        if (!activationClaims.add(activation)) return FinisherEffect.duplicateResult();
         ActorState actor = actors.get(request.action().actorId());
         if (actor == null) return FinisherEffect.inactive();
 
@@ -136,7 +136,7 @@ public final class FistSequenceService {
     ) {
         public FinisherEffect { receiptActions = List.copyOf(receiptActions); }
         static FinisherEffect inactive() { return new FinisherEffect(false, 0.0D, 0.0D, 0.0D, List.of(), false); }
-        static FinisherEffect duplicate() { return new FinisherEffect(true, 0.0D, 0.0D, 0.0D, List.of(), false); }
+        static FinisherEffect duplicateResult() { return new FinisherEffect(true, 0.0D, 0.0D, 0.0D, List.of(), false); }
         public boolean active() { return damageBonus > 0.0D || guardPressureBonus > 0.0D || impactBonus > 0.0D; }
     }
 
