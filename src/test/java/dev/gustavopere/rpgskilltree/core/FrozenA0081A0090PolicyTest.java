@@ -30,6 +30,7 @@ public final class FrozenA0081A0090PolicyTest {
         service.recordHostileDamage("player", 10, 100, true, 0L);
         service.recordHostileDamage("player", 15, 100, true, 100L);
         require(service.active("player", 101L), "25% hostile loss in six seconds activates coupled lease");
+        require(close(provider.acquired.hydrationMultiplier(), 0.15D), "provider receives the inseparable hydration cost");
         require(close(service.weaponMinimumCoefficient("player", 101L), 0.03D) && close(service.healingMultiplier("player", 101L), 1.08D), "benefits while costs active");
         provider.available = false;
         require(!service.active("player", 102L) && close(service.weaponMinimumCoefficient("player", 102L), 0.0D), "provider loss ends all benefits");
@@ -45,7 +46,11 @@ public final class FrozenA0081A0090PolicyTest {
 
     private static final class ToggleProvider implements CanonicalBodyTradeoffService.Provider {
         boolean available = true;
-        public boolean acquire(String actor, CanonicalBodyTradeoffService.LeaseRequest request) { return available; }
+        CanonicalBodyTradeoffService.LeaseRequest acquired;
+        public boolean acquire(String actor, CanonicalBodyTradeoffService.LeaseRequest request) {
+            acquired = request;
+            return available;
+        }
         public boolean maintain(String actor, CanonicalBodyTradeoffService.LeaseRequest request) { return available; }
         public void release(String actor, CanonicalBodyTradeoffService.LeaseRequest request) {}
     }

@@ -87,11 +87,18 @@ public final class CanonicalBodyTradeoffService {
         void release(String actorId, LeaseRequest request);
     }
 
-    public record LeaseRequest(String benefitId, double heatMultiplier, double exhaustionMultiplier, long durationTicks, long cooldownTicks) {
+    public record LeaseRequest(String benefitId, double heatMultiplier, double exhaustionMultiplier,
+        double hydrationMultiplier, long durationTicks, long cooldownTicks) {
+        public LeaseRequest(String benefitId, double heatMultiplier, double exhaustionMultiplier,
+            long durationTicks, long cooldownTicks) {
+            this(benefitId, heatMultiplier, exhaustionMultiplier, 0.0D, durationTicks, cooldownTicks);
+        }
+
         public LeaseRequest {
             requireId(benefitId);
             if (!Double.isFinite(heatMultiplier) || heatMultiplier < 0.0D
-                || !Double.isFinite(exhaustionMultiplier) || exhaustionMultiplier < 0.0D) {
+                || !Double.isFinite(exhaustionMultiplier) || exhaustionMultiplier < 0.0D
+                || !Double.isFinite(hydrationMultiplier) || hydrationMultiplier < 0.0D) {
                 throw new IllegalArgumentException("metabolic costs must be finite and non-negative");
             }
             if (durationTicks <= 0L || cooldownTicks < 0L) throw new IllegalArgumentException("invalid lease timings");

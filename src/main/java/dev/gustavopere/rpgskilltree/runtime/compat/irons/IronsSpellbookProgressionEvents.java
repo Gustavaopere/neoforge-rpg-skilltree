@@ -1,12 +1,17 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.irons;
 
 import dev.gustavopere.rpgskilltree.core.ActionOrigin;
+import dev.gustavopere.rpgskilltree.core.CanonicalActionIdentity;
 import dev.gustavopere.rpgskilltree.core.IronStudyPolicy;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
 import dev.gustavopere.rpgskilltree.core.SpellAction;
+import dev.gustavopere.rpgskilltree.core.SustainResolver;
+import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.CanonicalSustainRuntime;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.compat.MagicAccessRuntime;
 import io.redspace.ironsspellbooks.api.events.InscribeSpellEvent;
+import io.redspace.ironsspellbooks.api.events.SpellDamageEvent;
 import io.redspace.ironsspellbooks.api.events.SpellOnCastEvent;
 import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
@@ -15,12 +20,19 @@ import java.util.Set;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 
 /** Optional Iron's Spells 'n Spellbooks adapter. Loaded only when Iron's is present. */
 public final class IronsSpellbookProgressionEvents {
+    private static final Set<String> ELEMENTAL_SCHOOLS = Set.of("fire", "ice", "lightning", "nature");
+
     private IronsSpellbookProgressionEvents() {}
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -94,8 +106,71 @@ public final class IronsSpellbookProgressionEvents {
         PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forIron(action));
     }
 
+    /** Captures pre-damage health and canonical ownership before Iron's enters NeoForge damage. */
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onSpellDamage(SpellDamageEvent event) {
+        var source = event.getSpellDamageSource();
+        if (!(source.getEntity() instanceof ServerPlayer owner) || !eligible(owner)
+            || !validHostileTarget(owner, event.getEntity()) || !directSpellOwner(source.getDirectEntity(), owner)) {
+            return;
+        }
+        CanonicalSustainRuntime.markProviderClassifiedNonWeapon(source);
+        long nowMillis = Math.multiplyExact(owner.level().getGameTime(), 50L);
+        CanonicalActionIdentity action = source.getDirectEntity() instanceof Projectile projectile
+            ? CanonicalCombatRuntimeState.projectileAction(owner, projectile.getUUID().toString(), nowMillis)
+            : CanonicalCombatRuntimeState.newRoot(owner, "irons:spell_damage", nowMillis);
+        CanonicalCombatRuntimeState.rememberDamageAction(
+            source, event.getEntity().getUUID().toString(), action, event.getEntity().getHealth());
+    }
+
+    /** Runs before Iron's native post-hit lifesteal and replays it through the shared capped resolver. */
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onSpellDamagePost(LivingDamageEvent.Post event) {
+        if (!(event.getSource() instanceof io.redspace.ironsspellbooks.damage.SpellDamageSource source)
+            || !(source.getEntity() instanceof ServerPlayer owner) || !eligible(owner)
+            || !validHostileTarget(owner, event.getEntity()) || !directSpellOwner(source.getDirectEntity(), owner)) {
+            return;
+        }
+        CanonicalSustainRuntime.markProviderClassifiedNonWeapon(source);
+        var known = CanonicalCombatRuntimeState.damageAction(
+            source, event.getEntity().getUUID().toString());
+        if (known.isEmpty()) return;
+        String school = normalizeSchool(source.spell().getSchoolType().getId());
+        CanonicalSustainRuntime.Classification classification = new CanonicalSustainRuntime.Classification(
+            false, true, ELEMENTAL_SCHOOLS.contains(school), false, true);
+        if (!CanonicalSustainRuntime.hasEligibleCandidate(owner, classification)) return;
+
+        float nativeCoefficient = Math.max(0.0F, source.getLifestealPercent());
+        double interceptedNativeHealing = nativeCoefficient * event.getNewDamage();
+        if (nativeCoefficient > 0.0F) source.setLifestealPercent(0.0F);
+        CanonicalSustainRuntime.resolve(
+            owner,
+            known.get().action(),
+            classification,
+            event.getNewDamage(),
+            known.get().targetHealthBefore(),
+            nativeCoefficient > 0.0F
+                ? SustainResolver.NativeCorrelation.EXACT_INTERCEPTED
+                : SustainResolver.NativeCorrelation.NONE,
+            interceptedNativeHealing
+        );
+    }
+
     static boolean countsForMastery(CastSource source) {
         return source == CastSource.SPELLBOOK || source == CastSource.SCROLL;
+    }
+
+    private static boolean eligible(ServerPlayer player) {
+        return !(player instanceof FakePlayer) && !player.isCreative() && !player.isSpectator();
+    }
+
+    private static boolean directSpellOwner(net.minecraft.world.entity.Entity direct, ServerPlayer owner) {
+        return direct == owner || direct instanceof Projectile projectile && projectile.getOwner() == owner;
+    }
+
+    private static boolean validHostileTarget(ServerPlayer owner, LivingEntity target) {
+        return target != owner && !owner.isAlliedTo(target)
+            && (target instanceof Enemy || target instanceof Player);
     }
 
     static String normalizeSchool(ResourceLocation schoolId) {

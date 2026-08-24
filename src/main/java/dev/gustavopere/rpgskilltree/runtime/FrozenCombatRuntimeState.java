@@ -1,6 +1,8 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.core.CanonicalBodyTradeoffService;
+import dev.gustavopere.rpgskilltree.core.BloodThirstService;
+import dev.gustavopere.rpgskilltree.core.CombatRecoveryService;
 import dev.gustavopere.rpgskilltree.core.CrossbowCadenceService;
 import dev.gustavopere.rpgskilltree.core.FistSequenceService;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkNodeBinding;
@@ -11,6 +13,7 @@ import dev.gustavopere.rpgskilltree.core.FrozenMartialTacticsService.Stance;
 import dev.gustavopere.rpgskilltree.core.MartialRhythmService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.core.StationaryStateService;
+import dev.gustavopere.rpgskilltree.core.SustainResolver;
 import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -29,6 +32,9 @@ public final class FrozenCombatRuntimeState {
     // The frozen provider audit found no installed body/metabolism API. A null provider is deliberate fail-closed state.
     private static final CanonicalBodyTradeoffService BODY = new CanonicalBodyTradeoffService(null);
     private static final MartialRhythmService RHYTHM = new MartialRhythmService(BODY);
+    private static final SustainResolver SUSTAIN = new SustainResolver();
+    private static final CombatRecoveryService RECOVERY = new CombatRecoveryService();
+    private static final BloodThirstService BLOOD_THIRST = new BloodThirstService(BODY);
     private static final Map<ItemStack, String> STACK_IDENTITIES = new IdentityHashMap<>();
     private static final AtomicLong NEXT_STACK_ID = new AtomicLong();
 
@@ -41,6 +47,9 @@ public final class FrozenCombatRuntimeState {
     public static StationaryStateService stationary() { return STATIONARY; }
     public static CanonicalBodyTradeoffService body() { return BODY; }
     public static MartialRhythmService rhythm() { return RHYTHM; }
+    public static SustainResolver sustain() { return SUSTAIN; }
+    public static CombatRecoveryService recovery() { return RECOVERY; }
+    public static BloodThirstService bloodThirst() { return BLOOD_THIRST; }
 
     public static synchronized boolean toggleStance(ServerPlayer player, Stance requested) {
         FrozenCombatPerkRanks ranks = ranks(player);
@@ -101,6 +110,9 @@ public final class FrozenCombatRuntimeState {
         TACTICS.clearTransient(actorId);
         STATIONARY.invalidate(actorId);
         RHYTHM.clearTransient(actorId, player.level().getGameTime());
+        SUSTAIN.clearTransient(actorId);
+        RECOVERY.clearTransient(actorId);
+        BLOOD_THIRST.clearTransient(actorId, player.level().getGameTime());
         STACK_IDENTITIES.entrySet().removeIf(entry -> entry.getValue().startsWith(actorId + "/"));
     }
 }

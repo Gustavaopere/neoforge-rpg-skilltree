@@ -631,7 +631,10 @@ public final class EpicFightCombatPerkHooks {
         String targetId = target.getUUID().toString();
         Map<String, CanonicalActionIdentity> byTarget = ACTIONS.computeIfAbsent(source, ignored -> new HashMap<>());
         CanonicalActionIdentity existing = byTarget.get(targetId);
-        if (existing != null) return existing.withSource("epicfight:damage_pre");
+        if (existing != null) {
+            rememberDamageAction(source, target, existing);
+            return existing.withSource("epicfight:damage_pre");
+        }
 
         Optional<CanonicalActionIdentity> bridgeBound = EpicFightExactStaminaReceiptBridge.boundActionForDamage(
             player,
@@ -641,6 +644,7 @@ public final class EpicFightCombatPerkHooks {
         if (bridgeBound.isPresent()) {
             CanonicalActionIdentity action = bridgeBound.get();
             byTarget.put(targetId, action);
+            rememberDamageAction(source, target, action);
             return action.withSource("epicfight:damage_pre");
         }
 
@@ -661,6 +665,7 @@ public final class EpicFightCombatPerkHooks {
         }
         byTarget.put(targetId, action);
         EpicFightExactStaminaReceiptBridge.bindDamageAction(player, source, action, nowMillis);
+        rememberDamageAction(source, target, action);
         return action.withSource("epicfight:damage_pre");
     }
 
@@ -687,12 +692,25 @@ public final class EpicFightCombatPerkHooks {
         String targetId = target.getUUID().toString();
         Map<String, CanonicalActionIdentity> byTarget = ACTIONS.computeIfAbsent(source, ignored -> new HashMap<>());
         CanonicalActionIdentity existing = byTarget.get(targetId);
-        if (existing != null) return existing.withSource("epicfight:damage_pre");
+        if (existing != null) {
+            rememberDamageAction(source, target, existing);
+            return existing.withSource("epicfight:damage_pre");
+        }
         CanonicalActionIdentity action = CanonicalCombatRuntimeState.projectileAction(
             player, projectile.getUUID().toString(), nowMillis);
         byTarget.put(targetId, action);
         EpicFightExactStaminaReceiptBridge.bindDamageAction(player, source, action, nowMillis);
+        rememberDamageAction(source, target, action);
         return action.withSource("epicfight:damage_pre");
+    }
+
+    private static void rememberDamageAction(
+        EpicFightDamageSource source,
+        LivingEntity target,
+        CanonicalActionIdentity action
+    ) {
+        CanonicalCombatRuntimeState.rememberDamageAction(
+            source, target.getUUID().toString(), action, target.getHealth());
     }
 
     private static synchronized Optional<CanonicalActionIdentity> existingActionForDamage(

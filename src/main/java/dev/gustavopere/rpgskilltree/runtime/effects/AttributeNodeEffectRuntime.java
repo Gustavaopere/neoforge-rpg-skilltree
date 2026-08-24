@@ -6,15 +6,23 @@ import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalog;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 
 public final class AttributeNodeEffectRuntime {
+    private static final String A0088 = "rpgskilltree:combat/a0088";
+    private static final Map<UUID, Integer> A0088_RANKS = new ConcurrentHashMap<>();
     private AttributeNodeEffectRuntime() {}
 
     public static void refresh(ServerPlayer player, ProgressionState state) {
+        int nextHealthRank = state.passiveNodes().rank(A0088);
+        Integer previousHealthRank = A0088_RANKS.put(player.getUUID(), nextHealthRank);
+        boolean preserveHealthRatio = previousHealthRank == null ? nextHealthRank > 0 : previousHealthRank != nextHealthRank;
+        double healthRatio = player.getMaxHealth() <= 0.0F ? 0.0D : player.getHealth() / player.getMaxHealth();
         for (var effect : NodeEffectCatalog.clearableAttributeEffects()) {
             var attributeId = ResourceLocation.parse(effect.attributeId());
             var holder = BuiltInRegistries.ATTRIBUTE.getHolder(attributeId).orElse(null);
@@ -35,6 +43,9 @@ public final class AttributeNodeEffectRuntime {
                 effect.amount(),
                 operation(effect.operation())
             ));
+        }
+        if (preserveHealthRatio) {
+            player.setHealth((float)Math.min(player.getMaxHealth(), player.getMaxHealth() * healthRatio));
         }
     }
 

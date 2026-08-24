@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.runtime.events;
 
 import dev.gustavopere.rpgskilltree.core.CanonicalActionIdentity;
 import dev.gustavopere.rpgskilltree.core.CanonicalFocusService;
+import dev.gustavopere.rpgskilltree.core.CombatRecoveryService;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
@@ -11,8 +12,10 @@ import dev.gustavopere.rpgskilltree.core.FrozenCombatOffensePolicy;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.FrozenMartialOffenseService;
 import dev.gustavopere.rpgskilltree.core.FrozenMartialTacticsService;
+import dev.gustavopere.rpgskilltree.core.SustainResolver;
 import dev.gustavopere.rpgskilltree.runtime.BossRewardKeyResolver;
 import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.CanonicalSustainRuntime;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.EliteTargetResolver;
 import dev.gustavopere.rpgskilltree.runtime.FrozenCombatRuntimeState;
@@ -24,12 +27,15 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
@@ -40,6 +46,7 @@ import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
@@ -61,6 +68,10 @@ public final class CanonicalCombatEvents {
     private static final TagKey<Item> BOWS = tag("bows");
     private static final TagKey<Item> CROSSBOWS = tag("crossbows");
     private static final TagKey<Item> FIST_WEAPONS = tag("fist_weapons");
+    private static final TagKey<DamageType> MAGIC_DIRECT = damageTag("magic_direct");
+    private static final TagKey<DamageType> ELEMENTAL_DIRECT = damageTag("elemental_direct");
+    private static final TagKey<DamageType> PERIODIC_SUSTAIN = damageTag("periodic_sustain");
+    private static final TagKey<DamageType> BLOOD_MAGIC_COST = damageTag("blood_magic_cost");
     private static final Map<String, CrossbowReloadStart> CROSSBOW_RELOADS = new HashMap<>();
     private static final ResourceLocation A0036_DESYNC_MOVEMENT =
         ResourceLocation.fromNamespaceAndPath("rpgskilltree", "a0036_desync_movement");
@@ -240,6 +251,23 @@ public final class CanonicalCombatEvents {
         ));
         FrozenCombatRuntimeState.revalidateStance(player);
 
+        int recoveryRank = FrozenCombatRuntimeState.ranks(player).rank("A0081");
+        if (recoveryRank > 0 && eligible(player)) {
+            FrozenCombatRuntimeState.recovery().offerInstallment(
+                player.getUUID().toString(),
+                player.getMaxHealth(),
+                Math.max(0.0D, player.getMaxHealth() - player.getHealth()),
+                nowMillis
+            ).ifPresent(installment -> {
+                double before = player.getHealth();
+                player.heal((float) installment.attemptedHealing());
+                FrozenCombatRuntimeState.recovery().confirmHealed(
+                    installment,
+                    Math.max(0.0D, player.getHealth() - before)
+                );
+            });
+        }
+
         CrossbowReloadStart reload = CROSSBOW_RELOADS.get(player.getUUID().toString());
         if (reload != null) {
             String heldIdentity = FrozenCombatRuntimeState.stackIdentity(player, player.getMainHandItem());
@@ -303,9 +331,23 @@ public final class CanonicalCombatEvents {
                 && event.getSource().getEntity() instanceof LivingEntity attacker
                 && attacker != victim
                 && !victim.isAlliedTo(attacker)
-                && (attacker instanceof Enemy || attacker instanceof Player);
+                && (attacker instanceof Enemy || attacker instanceof Player)
+                && !event.getSource().is(BLOOD_MAGIC_COST);
             FrozenCombatRuntimeState.tactics().confirmDirectHostileDamage(
                 victim.getUUID().toString(), true, directHostile, false, now(victim));
+            if (directHostile) {
+                FrozenCombatRuntimeState.recovery().recordHostileDamage(
+                    victim.getUUID().toString(), true, now(victim));
+                if (FrozenCombatRuntimeState.ranks(victim).learned("A0087")) {
+                    FrozenCombatRuntimeState.bloodThirst().recordHostileDamage(
+                        victim.getUUID().toString(),
+                        event.getNewDamage(),
+                        victim.getMaxHealth(),
+                        true,
+                        victim.level().getGameTime()
+                    );
+                }
+            }
         }
 
         if (event.getSource().getDirectEntity() instanceof AbstractArrow arrow
@@ -342,6 +384,8 @@ public final class CanonicalCombatEvents {
             FrozenCombatRuntimeState.crossbow().confirmHit(arrow.getUUID().toString(), action, nowMillis);
         }
 
+        resolveFrozenSustain(event);
+
         if (event.getEntity() instanceof ServerPlayer player) {
             CanonicalCombatRuntimeState.invalidateAim(player, now(player));
         }
@@ -350,6 +394,8 @@ public final class CanonicalCombatEvents {
     /** Vanilla physical fallback; the shared action ledger prevents NeoForge + Epic Fight double application. */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
+        rememberCanonicalDamageAction(event);
+        if (CanonicalSustainRuntime.isProviderClassifiedNonWeapon(event.getSource())) return;
         if (event.getEntity() instanceof ServerPlayer victim && eligible(victim)
             && safeDirectPhysical(event)) {
             double taken = FrozenCombatRuntimeState.tactics().directPhysicalDamageTakenMultiplier(
@@ -376,11 +422,20 @@ public final class CanonicalCombatEvents {
             weapon.isEmpty(), weapon.is(FIST_WEAPONS), CombatFistPolicy.ProviderCategory.UNKNOWN);
         if (family == null && !fist) return;
         long nowMillis = now(owner);
-        CanonicalActionIdentity action = arrow != null
-            ? CanonicalCombatRuntimeState.projectileAction(owner, arrow.getUUID().toString(), nowMillis)
-            : CanonicalCombatRuntimeState.claimMeleeForProvider(
-                owner, event.getEntity().getUUID().toString(), nowMillis)
-                .orElseGet(() -> CanonicalCombatRuntimeState.newRoot(owner, "neoforge:living_incoming", nowMillis));
+        String targetId = event.getEntity().getUUID().toString();
+        Optional<CanonicalCombatRuntimeState.DamageActionFacts> known =
+            CanonicalCombatRuntimeState.damageAction(event.getSource(), targetId);
+        CanonicalActionIdentity action;
+        if (known.isPresent()) action = known.get().action();
+        else if (arrow != null) {
+            action = CanonicalCombatRuntimeState.projectileAction(owner, arrow.getUUID().toString(), nowMillis);
+        } else {
+            action = CanonicalCombatRuntimeState.claimMeleeForProvider(owner, targetId, nowMillis)
+                .orElseGet(() -> CanonicalCombatRuntimeState.newRoot(
+                    owner, "neoforge:living_incoming", nowMillis));
+        }
+        CanonicalCombatRuntimeState.rememberDamageAction(
+            event.getSource(), targetId, action, event.getEntity().getHealth());
         boolean critical = CanonicalCombatRuntimeState.criticalDecision(action, nowMillis).orElse(false);
         double healthFraction = event.getEntity().getMaxHealth() <= 0.0F ? 1.0D
             : Math.max(0.0D, Math.min(1.0D, event.getEntity().getHealth() / event.getEntity().getMaxHealth()));
@@ -449,6 +504,110 @@ public final class CanonicalCombatEvents {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingHeal(LivingHealEvent event) {
+        CanonicalSustainRuntime.clampHealing(event);
+    }
+
+    private static void rememberCanonicalDamageAction(LivingIncomingDamageEvent event) {
+        DamageSource source = event.getSource();
+        if (!(source.getEntity() instanceof ServerPlayer owner) || !eligible(owner)
+            || !validHostileTarget(owner, event.getEntity())) return;
+        String targetId = event.getEntity().getUUID().toString();
+        if (CanonicalCombatRuntimeState.damageAction(source, targetId).isPresent()) return;
+
+        boolean periodic = source.is(PERIODIC_SUSTAIN);
+        boolean explicitlyMagic = source.is(MAGIC_DIRECT) || source.is(ELEMENTAL_DIRECT);
+        boolean directOwner = source.getDirectEntity() == owner;
+        Projectile projectile = source.getDirectEntity() instanceof Projectile value ? value : null;
+        boolean ownedProjectile = projectile != null && projectile.getOwner() == owner;
+        if (!periodic && !directOwner && !ownedProjectile) return;
+
+        long nowMillis = now(owner);
+        CanonicalActionIdentity action;
+        if (periodic) {
+            action = CanonicalCombatRuntimeState.periodicPulseAction(
+                owner, source, owner.level().getGameTime());
+        } else if (ownedProjectile) {
+            action = CanonicalCombatRuntimeState.projectileAction(
+                owner, projectile.getUUID().toString(), nowMillis);
+        } else if (explicitlyMagic) {
+            action = CanonicalCombatRuntimeState.newRoot(owner, "neoforge:direct_magic", nowMillis);
+        } else {
+            ItemStack weapon = owner.getMainHandItem();
+            boolean fist = CombatFistPolicy.isFistWeapon(
+                weapon.isEmpty(), weapon.is(FIST_WEAPONS), CombatFistPolicy.ProviderCategory.UNKNOWN);
+            if (weaponFamily(weapon).isEmpty() && !fist) return;
+            action = CanonicalCombatRuntimeState.claimMeleeForProvider(owner, targetId, nowMillis)
+                .orElseGet(() -> CanonicalCombatRuntimeState.newRoot(
+                    owner, "neoforge:living_incoming", nowMillis));
+        }
+        CanonicalCombatRuntimeState.rememberDamageAction(
+            source, targetId, action, event.getEntity().getHealth());
+    }
+
+    private static void resolveFrozenSustain(LivingDamageEvent.Post event) {
+        DamageSource source = event.getSource();
+        if (!(source.getEntity() instanceof ServerPlayer owner) || !eligible(owner)
+            || !validHostileTarget(owner, event.getEntity()) || source.is(BLOOD_MAGIC_COST)) return;
+        String targetId = event.getEntity().getUUID().toString();
+        Optional<CanonicalCombatRuntimeState.DamageActionFacts> known =
+            CanonicalCombatRuntimeState.damageAction(source, targetId);
+        if (known.isEmpty()) return;
+
+        boolean directOwner = source.getDirectEntity() == owner;
+        Projectile projectile = source.getDirectEntity() instanceof Projectile value ? value : null;
+        boolean ownedProjectile = projectile != null && projectile.getOwner() == owner;
+        boolean periodic = source.is(PERIODIC_SUSTAIN);
+        boolean magic = source.is(MAGIC_DIRECT) && !periodic;
+        boolean elemental = source.is(ELEMENTAL_DIRECT) && !periodic;
+        boolean weapon = false;
+        if (!magic && !elemental && !periodic
+            && !CanonicalSustainRuntime.isProviderClassifiedNonWeapon(source)) {
+            ItemStack weaponStack = projectile instanceof AbstractArrow arrow
+                ? arrow.getWeaponItem() : owner.getMainHandItem();
+            weapon = weaponFamily(weaponStack).isPresent() || CombatFistPolicy.isFistWeapon(
+                weaponStack.isEmpty(), weaponStack.is(FIST_WEAPONS), CombatFistPolicy.ProviderCategory.UNKNOWN);
+        }
+        boolean ownerProven = periodic ? source.getEntity() == owner : directOwner || ownedProjectile;
+        if (!weapon && !magic && !elemental && !periodic || !ownerProven) return;
+
+        CanonicalSustainRuntime.Classification classification = new CanonicalSustainRuntime.Classification(
+            weapon, magic, elemental, periodic, true);
+        CanonicalSustainRuntime.resolve(
+            owner,
+            known.get().action(),
+            classification,
+            event.getNewDamage(),
+            known.get().targetHealthBefore(),
+            CanonicalSustainRuntime.hasAmbiguousNativeHealing(source)
+                ? SustainResolver.NativeCorrelation.AMBIGUOUS
+                : SustainResolver.NativeCorrelation.NONE,
+            0.0D
+        );
+
+        if (weapon && directOwner) {
+            FrozenCombatPerkRanks ranks = FrozenCombatRuntimeState.ranks(owner);
+            int recoveryRank = ranks.rank("A0081");
+            if (recoveryRank > 0) {
+                FrozenCombatRuntimeState.recovery().recordDamage(
+                    new CombatRecoveryService.DamageRequest(
+                        known.get().action(), true, true, true, true,
+                        FrozenCombatRuntimeState.rhythm().staminaCostMultiplier(
+                            owner.getUUID().toString(), owner.level().getGameTime()) < 1.0D,
+                        owner.getMaxHealth(), event.getNewDamage(), known.get().targetHealthBefore(), recoveryRank
+                    ),
+                    now(owner)
+                );
+            }
+        }
+    }
+
+    private static boolean validHostileTarget(ServerPlayer owner, LivingEntity target) {
+        return target != owner && !owner.isAlliedTo(target)
+            && (target instanceof Enemy || target instanceof Player);
+    }
+
     static Optional<WeaponFamily> weaponFamily(ItemStack stack) {
         if (stack.getItem() instanceof BowItem) return Optional.of(WeaponFamily.BOW);
         if (stack.getItem() instanceof CrossbowItem) return Optional.of(WeaponFamily.CROSSBOW);
@@ -479,6 +638,10 @@ public final class CanonicalCombatEvents {
 
     private static TagKey<Item> tag(String path) {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("rpgskilltree", path));
+    }
+
+    private static TagKey<DamageType> damageTag(String path) {
+        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath("rpgskilltree", path));
     }
 
     private static boolean eligible(ServerPlayer player) {

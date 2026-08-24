@@ -12,8 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.WeakHashMap;
 import java.util.concurrent.ThreadLocalRandom;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.item.BowItem;
 
 /** Server-only owner for canonical action identity, critical decisions, and ranged correlation. */
@@ -40,6 +42,8 @@ public final class CanonicalCombatRuntimeState {
     private static final Map<ActionKey, ShotFacts> SHOTS = new HashMap<>();
     private static final Map<String, ProjectileShotFacts> PROJECTILE_SHOTS = new HashMap<>();
     private static final Map<String, CrossbowBurst> CROSSBOW_BURSTS = new HashMap<>();
+    private static final Map<DamageSource, Map<String, DamageActionFacts>> DAMAGE_ACTIONS = new WeakHashMap<>();
+    private static final Map<DamageSource, PeriodicPulseAction> PERIODIC_PULSES = new WeakHashMap<>();
 
     private CanonicalCombatRuntimeState() {}
 
@@ -319,6 +323,44 @@ public final class CanonicalCombatRuntimeState {
         return CRITICAL.decision(action, nowMillis);
     }
 
+    public static synchronized void rememberDamageAction(
+        DamageSource source,
+        String targetId,
+        CanonicalActionIdentity action,
+        double targetHealthBefore
+    ) {
+        Objects.requireNonNull(source); Objects.requireNonNull(targetId); Objects.requireNonNull(action);
+        if (!Double.isFinite(targetHealthBefore) || targetHealthBefore < 0.0D) throw new IllegalArgumentException("targetHealthBefore");
+        DAMAGE_ACTIONS.computeIfAbsent(source, ignored -> new HashMap<>())
+            .putIfAbsent(targetId, new DamageActionFacts(action, targetHealthBefore));
+    }
+
+    public static synchronized Optional<DamageActionFacts> damageAction(DamageSource source, String targetId) {
+        Map<String, DamageActionFacts> byTarget = DAMAGE_ACTIONS.get(source);
+        return byTarget == null ? Optional.empty() : Optional.ofNullable(byTarget.get(targetId));
+    }
+
+    /** One explicit periodic provider source can resolve once per server tick, even across several targets. */
+    public static synchronized CanonicalActionIdentity periodicPulseAction(
+        ServerPlayer owner,
+        DamageSource source,
+        long nowTick
+    ) {
+        Objects.requireNonNull(owner);
+        Objects.requireNonNull(source);
+        if (nowTick < 0L) throw new IllegalArgumentException("nowTick");
+        PeriodicPulseAction current = PERIODIC_PULSES.get(source);
+        if (current != null && current.tick() == nowTick
+            && current.action().actorId().equals(actorId(owner))) return current.action();
+        CanonicalActionIdentity action = newRoot(
+            owner,
+            "neoforge:periodic_pulse/" + nowTick,
+            Math.multiplyExact(nowTick, 50L)
+        );
+        PERIODIC_PULSES.put(source, new PeriodicPulseAction(nowTick, action));
+        return action;
+    }
+
     public static synchronized void invalidateAim(ServerPlayer player, long nowMillis) {
         String actorId = actorId(player);
         PENDING_CANCELLED_DRAWS.remove(actorId);
@@ -347,6 +389,9 @@ public final class CanonicalCombatRuntimeState {
         CROSSBOW_BURSTS.remove(actorId);
         CORRELATION.clearActor(actorId);
         CRITICAL.clearActor(actorId);
+        DAMAGE_ACTIONS.values().forEach(byTarget -> byTarget.entrySet().removeIf(
+            entry -> entry.getValue().action().actorId().equals(actorId)));
+        PERIODIC_PULSES.entrySet().removeIf(entry -> entry.getValue().action().actorId().equals(actorId));
     }
 
     private static void pruneShots(long nowMillis) {
@@ -359,6 +404,8 @@ public final class CanonicalCombatRuntimeState {
     }
 
     public record ShotCorrelation(CanonicalActionIdentity action, ShotFacts facts) {}
+
+    public record DamageActionFacts(CanonicalActionIdentity action, double targetHealthBefore) {}
 
     public record ShotFacts(
         boolean fullyDrawn,
@@ -382,6 +429,8 @@ public final class CanonicalCombatRuntimeState {
     private record PendingCancelledDraw(double drawFraction, long resolveAtMillis) {}
 
     private record CrossbowBurst(String stackIdentity, long expiresAtMillis) {}
+
+    private record PeriodicPulseAction(long tick, CanonicalActionIdentity action) {}
 
     private record ActionKey(String actorId, String actionId) {
         static ActionKey of(CanonicalActionIdentity action) {
