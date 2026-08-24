@@ -103,6 +103,7 @@ public final class CombatPerkFinalizationPolicy {
         ));
     }
 
+    /** Compatibility entry point for callers evaluating the kill before the current hit mutates mark state. */
     public static boolean activateBattleHarvest(
         CanonicalActionIdentity action,
         String actorId,
@@ -116,14 +117,49 @@ public final class CombatPerkFinalizationPolicy {
         int weaponMastery,
         long nowMillis
     ) {
+        return activateBattleHarvestFromPreHitSnapshot(
+            action,
+            actorId,
+            victimId,
+            weaponFamily,
+            direct,
+            hostile,
+            legitimateKill,
+            state.hasTargetFlag(actorId, victimId, NotionCombatPerkState.TargetFlag.REAPING_MATURE, nowMillis),
+            ranks,
+            state,
+            weaponMastery,
+            nowMillis
+        );
+    }
+
+    /**
+     * Canonical A0042 kill activation. The mature flag must be the immutable PRE-hit fact: A0041 may
+     * consume an already-mature mark during the fatal hit, while A0040 must not make that same hit
+     * retroactively eligible by maturing a fresh mark during POST.
+     */
+    public static boolean activateBattleHarvestFromPreHitSnapshot(
+        CanonicalActionIdentity action,
+        String actorId,
+        String victimId,
+        WeaponFamily weaponFamily,
+        boolean direct,
+        boolean hostile,
+        boolean legitimateKill,
+        boolean reapingMatureBeforeHit,
+        CombatPerkRanks ranks,
+        NotionCombatPerkState state,
+        int weaponMastery,
+        long nowMillis
+    ) {
         validateAction(action, actorId, victimId, weaponFamily, ranks, state, weaponMastery);
         if (weaponFamily != WeaponFamily.SCYTHE
             || !direct
             || !hostile
             || !legitimateKill
+            || !reapingMatureBeforeHit
             || weaponMastery < 80
             || !ranks.learned("A0042")
-            || !state.hasTargetFlag(actorId, victimId, NotionCombatPerkState.TargetFlag.REAPING_MATURE, nowMillis)
             || !state.actorCooldownReady(actorId, "A0042", nowMillis)) {
             return false;
         }
