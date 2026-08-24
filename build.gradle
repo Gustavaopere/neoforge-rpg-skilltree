@@ -65,6 +65,7 @@ sourceSets.main.resources {
 
 configurations {
     runtimeClasspath.extendsFrom localRuntime
+    epicfightReceiptContract
 }
 
 dependencies {
@@ -88,6 +89,37 @@ dependencies {
     compileOnly("curse.maven:identity2-1238155:${identity2_file_id}") {
         transitive = false
     }
+
+    epicfightReceiptContract("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
+        transitive = false
+    }
+    testImplementation 'org.ow2.asm:asm:9.7.1'
+    testImplementation 'org.ow2.asm:asm-tree:9.7.1'
+}
+
+tasks.register('verifyEpicFightReceiptJarContract', JavaExec) {
+    group = 'verification'
+    description = 'Proves the causal stamina receipt bridge against the exact distributed Epic Fight JAR.'
+    dependsOn tasks.named('testClasses')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightReceiptJarContractTest'
+    doFirst {
+        File epicFightJar = configurations.epicfightReceiptContract.singleFile
+        args = [
+            epicFightJar.absolutePath,
+            epicfight_version,
+            epicfight_version_id
+        ]
+        if (project.hasProperty('epicfight_receipt_sha256') && !epicfight_receipt_sha256.toString().isBlank()) {
+            args += epicfight_receipt_sha256.toString()
+        }
+        logger.lifecycle("Epic Fight receipt contract coordinate: maven.modrinth:vu3NZ5Ma:${epicfight_version_id}")
+        logger.lifecycle("Epic Fight receipt contract file: ${epicFightJar.name}")
+    }
+}
+
+tasks.named('check').configure {
+    dependsOn tasks.named('verifyEpicFightReceiptJarContract')
 }
 
 tasks.named('wrapper', Wrapper).configure {
