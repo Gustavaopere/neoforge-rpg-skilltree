@@ -6,7 +6,7 @@ import java.util.Map;
 /** Frozen transition contract for A0004, A0016 and A0022. */
 public final class CombatPerkTransitionPolicyTest {
     public static void main(String[] args) {
-        momentumDecaysAfterFiveSecondsAndErrorsStartCanonicalDecay();
+        momentumDecaysAfterFiveSecondsAndLossesAreImmediate();
         distanceControlLossesPreserveSharedExpiry();
         flowUsesTwoPointFiveSecondDodgeWindowAndAtMostOneGain();
         flowPositionalFallbackRequiresRealDisplacementAndSixtyDegrees();
@@ -15,7 +15,7 @@ public final class CombatPerkTransitionPolicyTest {
         System.out.println("CombatPerkTransitionPolicyTest: PASS");
     }
 
-    private static void momentumDecaysAfterFiveSecondsAndErrorsStartCanonicalDecay() {
+    private static void momentumDecaysAfterFiveSecondsAndLossesAreImmediate() {
         var state = new NotionCombatPerkState();
         var ranks = CombatPerkRanks.of(Map.of("A0004", 1));
         state.addMomentum("p", 3, 1_000L);
@@ -27,14 +27,17 @@ public final class CombatPerkTransitionPolicyTest {
 
         state.addMomentum("q", 3, 10_000L);
         require(CombatPerkTransitionPolicy.onConfirmedMiss("q", WeaponFamily.SWORD, ranks, state, 11_000L),
-            "confirmed relevant sword miss starts rapid Momentum decay");
-        require(state.momentum("q") == 3, "miss does not invent an immediate stack loss");
-        CombatPerkTransitionPolicy.tick("q", ranks, state, false, false, 11_999L);
-        require(state.momentum("q") == 3, "rapid decay still respects the frozen one-stack-per-second rate");
-        CombatPerkTransitionPolicy.tick("q", ranks, state, false, false, 12_000L);
-        require(state.momentum("q") == 2, "miss-triggered rapid decay removes one stack after one second");
-        CombatPerkTransitionPolicy.tick("q", ranks, state, false, false, 13_000L);
-        require(state.momentum("q") == 1, "rapid Momentum decay continues at one stack per second");
+            "confirmed relevant sword miss applies an immediate Momentum loss");
+        require(state.momentum("q") == 2, "confirmed sword miss removes exactly one Momentum immediately");
+        require(!CombatPerkTransitionPolicy.onConfirmedMiss("q", WeaponFamily.SWORD, ranks, state, 11_000L),
+            "duplicated miss callback in the same canonical server tick is rejected");
+        require(state.momentum("q") == 2, "duplicated miss callback cannot remove another Momentum");
+        CombatPerkTransitionPolicy.tick("q", ranks, state, false, false, 14_999L);
+        require(state.momentum("q") == 2, "miss loss does not refresh or shorten the original inactivity timer");
+        CombatPerkTransitionPolicy.tick("q", ranks, state, false, false, 15_000L);
+        require(state.momentum("q") == 1, "inactivity decay still begins five seconds after the last valid gain");
+        CombatPerkTransitionPolicy.tick("q", ranks, state, false, false, 16_000L);
+        require(state.momentum("q") == 0, "inactivity Momentum decay continues at one stack per second");
 
         state.addMomentum("p", 5, 20_000L);
         state.addMomentum("p", 1, 22_000L);
@@ -131,13 +134,13 @@ public final class CombatPerkTransitionPolicyTest {
             "non-hostile signal cannot trigger heavy-impact transitions");
         require(CombatPerkTransitionPolicy.onConfirmedHeavyImpact("p", true, ranks, state, 2_000L),
             "provider-confirmed hostile heavy impact triggers frozen transitions");
-        require(state.momentum("p") == 5, "A0004 heavy imbalance starts decay instead of inventing immediate stack loss");
+        require(state.momentum("p") == 3, "A0004 heavy imbalance removes exactly two Momentum immediately");
         require(state.distanceControl("p", 2_000L) == 2, "A0016 loses one Distance Control");
         require(state.flow("p", 2_000L) == 2, "A0022 loses two Flow");
-        CombatPerkTransitionPolicy.tick("p", ranks, state, true, false, 2_999L);
-        require(state.momentum("p") == 5, "A0004 rapid decay respects one-second cadence");
-        CombatPerkTransitionPolicy.tick("p", ranks, state, true, false, 3_000L);
-        require(state.momentum("p") == 4, "A0004 heavy imbalance starts the canonical one-per-second decay");
+        CombatPerkTransitionPolicy.tick("p", ranks, state, true, false, 5_999L);
+        require(state.momentum("p") == 3, "A0004 heavy loss does not alter the original inactivity timer");
+        CombatPerkTransitionPolicy.tick("p", ranks, state, true, false, 6_000L);
+        require(state.momentum("p") == 2, "A0004 inactivity decay remains one-per-second after immediate heavy loss");
     }
 
     private static void require(boolean condition, String message) {
