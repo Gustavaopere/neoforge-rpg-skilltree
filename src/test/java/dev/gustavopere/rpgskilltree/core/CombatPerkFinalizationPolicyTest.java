@@ -8,7 +8,7 @@ public final class CombatPerkFinalizationPolicyTest {
         boneBreakerRequiresCrackedHeavyMaceAndUsesMasteryCooldown();
         battleHarvestRequiresLegitimateRootKillAndConsumesOnceOnDifferentTarget();
         battleHarvestCooldownScalesWithMastery();
-        shockTransferMovesAtMostOneStackWithoutDuplication();
+        shockNeverTransfersBetweenTargets();
         System.out.println("CombatPerkFinalizationPolicyTest: PASS");
     }
 
@@ -101,18 +101,16 @@ public final class CombatPerkFinalizationPolicyTest {
         require(state.hasBattleHarvest("p", now + 5_999L), "Harvest lasts six seconds");
         require(!state.hasBattleHarvest("p", now + 6_000L), "Harvest expires at six seconds");
 
-        var sameTarget = CombatPerkFinalizationPolicy.consumeBattleHarvestOnHit(
+        require(!CombatPerkFinalizationPolicy.consumeBattleHarvestOnHit(
             CanonicalActionIdentity.root("p", "same-target-hit", "test"), "p", "victim",
             WeaponFamily.SCYTHE, true, true, ranks, state, now + 1_000L
-        );
-        require(!sameTarget, "attempt on the killed target does not consume Harvest");
+        ), "attempt on the killed target does not consume Harvest");
         require(state.hasBattleHarvest("p", now + 1_000L), "same-target attempt leaves Harvest armed");
 
-        var otherTarget = CombatPerkFinalizationPolicy.consumeBattleHarvestOnHit(
+        require(CombatPerkFinalizationPolicy.consumeBattleHarvestOnHit(
             CanonicalActionIdentity.root("p", "other-target-hit", "test"), "p", "next",
             WeaponFamily.SCYTHE, true, true, ranks, state, now + 1_500L
-        );
-        require(otherTarget, "next direct scythe hit on a different target consumes Harvest");
+        ), "next direct scythe hit on a different target consumes Harvest");
         require(state.hasTargetFlag("p", "next", NotionCombatPerkState.TargetFlag.REAPING_MARK, now + 1_500L),
             "Harvest immediately transfers Reaping Mark");
         require(!state.hasBattleHarvest("p", now + 1_500L), "Harvest consumes exactly once");
@@ -140,42 +138,33 @@ public final class CombatPerkFinalizationPolicyTest {
         require(state.actorCooldownReady("p", "A0042", now + expected), "Harvest cooldown exact expiry");
     }
 
-    private static void shockTransferMovesAtMostOneStackWithoutDuplication() {
-        for (int starting = 0; starting <= 3; starting++) {
-            long now = 1_000L;
-            var state = new NotionCombatPerkState();
-            if (starting > 0) {
-                state.addTargetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK,
-                    starting, 3, now, 6_000L);
-            }
-            state.recordCounterTarget("p", NotionCombatPerkState.TargetCounter.SHOCK, "first");
-            int moved = state.transferCounterOnTargetSwitch(
-                "p", NotionCombatPerkState.TargetCounter.SHOCK, "second", now + 500L, 6_000L, 3
-            );
-            int expectedMoved = starting == 0 ? 0 : 1;
-            require(moved == expectedMoved, "A0028 moves at most one stack from " + starting);
-            require(state.targetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, now + 500L)
-                == Math.max(0, starting - expectedMoved), "source loses exactly transferred stack");
-            require(state.targetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, now + 500L)
-                == expectedMoved, "destination receives no duplicated stacks");
-            require(state.transferCounterOnTargetSwitch(
-                "p", NotionCombatPerkState.TargetCounter.SHOCK, "second", now + 600L, 6_000L, 3
-            ) == 0, "repeated same-target resolution cannot transfer again");
-        }
+    private static void shockNeverTransfersBetweenTargets() {
+        long now = 1_000L;
+        var state = new NotionCombatPerkState();
+        state.addTargetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, 3, 3, now, 6_000L);
+        state.recordCounterTarget("p", NotionCombatPerkState.TargetCounter.SHOCK, "first");
 
-        var repeated = new NotionCombatPerkState();
-        repeated.addTargetCounter("p", "a", NotionCombatPerkState.TargetCounter.SHOCK, 3, 3, 1_000L, 6_000L);
-        repeated.recordCounterTarget("p", NotionCombatPerkState.TargetCounter.SHOCK, "a");
-        require(repeated.transferCounterOnTargetSwitch("p", NotionCombatPerkState.TargetCounter.SHOCK,
-            "b", 2_000L, 6_000L, 3) == 1, "first switch transfers one");
-        require(repeated.transferCounterOnTargetSwitch("p", NotionCombatPerkState.TargetCounter.SHOCK,
-            "a", 3_000L, 6_000L, 3) == 1, "switching back can transfer at most one from current target");
+        int transferred = state.transferCounterOnTargetSwitch(
+            "p", NotionCombatPerkState.TargetCounter.SHOCK, "second", now + 500L, 6_000L, 3
+        );
 
-        var expired = new NotionCombatPerkState();
-        expired.addTargetCounter("p", "old", NotionCombatPerkState.TargetCounter.SHOCK, 3, 3, 1_000L, 6_000L);
-        expired.recordCounterTarget("p", NotionCombatPerkState.TargetCounter.SHOCK, "old");
-        require(expired.transferCounterOnTargetSwitch("p", NotionCombatPerkState.TargetCounter.SHOCK,
-            "new", 7_000L, 6_000L, 3) == 0, "expired Shock cannot transfer");
+        require(transferred == 0, "frozen A0028 transfers zero Shock stacks when target changes");
+        require(state.targetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, now + 500L) == 3,
+            "first target keeps its independent Shock record");
+        require(state.targetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, now + 500L) == 0,
+            "second target receives no transferred Shock");
+
+        state.addTargetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, 1, 3, now + 500L, 6_000L);
+        require(state.targetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, now + 1_000L) == 3,
+            "different targets keep independent counters");
+        require(state.targetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, now + 1_000L) == 1,
+            "second target tracks only its own hits");
+        require(state.targetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, now + 6_000L) == 0,
+            "first target expires six seconds after its own last gain");
+        require(state.targetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, now + 6_499L) == 1,
+            "second target uses its own six-second TTL");
+        require(state.targetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, now + 6_500L) == 0,
+            "second target expires from its own last gain");
     }
 
     private static NotionCombatPerkState matureVictim(String actor, String victim, long now) {
