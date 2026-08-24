@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
+import dev.gustavopere.rpgskilltree.core.CanonicalTargetDebuffService;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkState;
@@ -10,11 +11,16 @@ import net.minecraft.server.level.ServerPlayer;
 /** Server-runtime owner for combat resources that must never be persisted in ProgressionState. */
 public final class CombatPerkRuntimeState {
     private static final NotionCombatPerkState STATE = new NotionCombatPerkState();
+    private static final CanonicalTargetDebuffService TARGET_DEBUFFS = new CanonicalTargetDebuffService();
 
     private CombatPerkRuntimeState() {}
 
     public static NotionCombatPerkState state() {
         return STATE;
+    }
+
+    public static CanonicalTargetDebuffService targetDebuffs() {
+        return TARGET_DEBUFFS;
     }
 
     public static CombatPerkRanks ranks(ProgressionState progression) {
@@ -34,6 +40,8 @@ public final class CombatPerkRuntimeState {
 
     public static void clear(ServerPlayer player) {
         CanonicalCombatRuntimeState.clear(player);
-        STATE.clear(actorId(player));
+        String actorId = actorId(player);
+        TARGET_DEBUFFS.clearSource(actorId);
+        STATE.clear(actorId);
     }
 }
