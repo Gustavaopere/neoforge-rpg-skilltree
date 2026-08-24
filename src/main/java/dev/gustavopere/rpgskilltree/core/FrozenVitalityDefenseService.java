@@ -11,6 +11,16 @@ public final class FrozenVitalityDefenseService {
     private final CanonicalEventLedger events = new CanonicalEventLedger(16_384);
     private final Map<String, Long> lastHostileDamage = new HashMap<>();
 
+    /**
+     * Starts the authoritative no-hostile-damage clock without requiring a sacrificial first hit.
+     * Re-observation never rearms the clock, so ticks, respawns and dimension changes cannot reset it.
+     */
+    public synchronized void observeActor(String actorId, long nowMillis) {
+        Objects.requireNonNull(actorId);
+        if (nowMillis < 0L) throw new IllegalArgumentException("nowMillis");
+        lastHostileDamage.putIfAbsent(actorId, nowMillis);
+    }
+
     public synchronized Resolution resolve(Request request, FrozenCombatPerkRanks ranks, long nowMillis) {
         Objects.requireNonNull(request);
         Objects.requireNonNull(ranks);
@@ -33,8 +43,9 @@ public final class FrozenVitalityDefenseService {
 
         if (request.hostile()) {
             String actorId = request.action().actorId();
-            Long last = lastHostileDamage.put(actorId, nowMillis);
-            if (last != null && nowMillis - last >= OPENING_DELAY_MILLIS) {
+            long last = lastHostileDamage.getOrDefault(actorId, nowMillis);
+            lastHostileDamage.put(actorId, nowMillis);
+            if (nowMillis - last >= OPENING_DELAY_MILLIS) {
                 multiplier *= 1.0D - 0.05D * ranks.rank("A0097");
             }
             if (request.sprinting() && !request.forcedDisplacement()) {

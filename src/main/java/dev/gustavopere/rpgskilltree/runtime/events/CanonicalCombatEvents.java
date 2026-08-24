@@ -251,6 +251,10 @@ public final class CanonicalCombatEvents {
             player.getUUID().toString(), player.level().getGameTime(), player.level().dimension().location().toString(),
             player.getX(), player.getY(), player.getZ(), player.isPassenger(), false, false, true
         ));
+        if (eligible(player)) {
+            FrozenCombatRuntimeState.vitalityDefense().observeActor(
+                player.getUUID().toString(), nowMillis);
+        }
         FrozenCombatRuntimeState.revalidateStance(player);
         FORCED_MOVEMENT_UNTIL.entrySet().removeIf(
             entry -> entry.getValue() < player.level().getGameTime());
