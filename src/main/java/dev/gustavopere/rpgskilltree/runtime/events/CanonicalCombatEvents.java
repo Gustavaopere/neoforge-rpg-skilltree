@@ -10,9 +10,11 @@ import dev.gustavopere.rpgskilltree.core.CrossbowCadenceService;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatOffensePolicy;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.FrozenMartialOffenseService;
+import dev.gustavopere.rpgskilltree.core.FrozenMartialTacticsService;
 import dev.gustavopere.rpgskilltree.runtime.BossRewardKeyResolver;
 import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.EliteTargetResolver;
 import dev.gustavopere.rpgskilltree.runtime.FrozenCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.util.Optional;
@@ -23,6 +25,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -34,8 +38,10 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.player.ArrowLooseEvent;
 import net.neoforged.neoforge.event.entity.player.ArrowNockEvent;
@@ -228,6 +234,11 @@ public final class CanonicalCombatEvents {
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         long nowMillis = now(player);
+        FrozenCombatRuntimeState.stationary().observe(new dev.gustavopere.rpgskilltree.core.StationaryStateService.Sample(
+            player.getUUID().toString(), player.level().getGameTime(), player.level().dimension().location().toString(),
+            player.getX(), player.getY(), player.getZ(), player.isPassenger(), false, false, true
+        ));
+        FrozenCombatRuntimeState.revalidateStance(player);
 
         CrossbowReloadStart reload = CROSSBOW_RELOADS.get(player.getUUID().toString());
         if (reload != null) {
@@ -287,6 +298,16 @@ public final class CanonicalCombatEvents {
     public static void onLivingDamaged(LivingDamageEvent.Post event) {
         if (event.getNewDamage() <= 0.0F) return;
 
+        if (event.getEntity() instanceof ServerPlayer victim && eligible(victim)) {
+            boolean directHostile = event.getSource().getDirectEntity() != null
+                && event.getSource().getEntity() instanceof LivingEntity attacker
+                && attacker != victim
+                && !victim.isAlliedTo(attacker)
+                && (attacker instanceof Enemy || attacker instanceof Player);
+            FrozenCombatRuntimeState.tactics().confirmDirectHostileDamage(
+                victim.getUUID().toString(), true, directHostile, false, now(victim));
+        }
+
         if (event.getSource().getDirectEntity() instanceof AbstractArrow arrow
             && arrow.getOwner() instanceof ServerPlayer owner
             && eligible(owner)
@@ -329,6 +350,13 @@ public final class CanonicalCombatEvents {
     /** Vanilla physical fallback; the shared action ledger prevents NeoForge + Epic Fight double application. */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
+        if (event.getEntity() instanceof ServerPlayer victim && eligible(victim)
+            && safeDirectPhysical(event)) {
+            double taken = FrozenCombatRuntimeState.tactics().directPhysicalDamageTakenMultiplier(
+                victim.getUUID().toString());
+            if (Double.compare(taken, 1.0D) != 0) event.setAmount((float)(event.getAmount() * taken));
+        }
+
         ServerPlayer owner;
         ItemStack weapon;
         AbstractArrow arrow = null;
@@ -364,6 +392,15 @@ public final class CanonicalCombatEvents {
         if (Double.compare(multiplier, 1.0D) != 0) {
             event.setAmount((float)(event.getAmount() * multiplier));
         }
+        var tactics = FrozenCombatRuntimeState.tactics().resolveAttack(new FrozenMartialTacticsService.AttackRequest(
+            action, event.getEntity().getUUID().toString(), true, true, true, true, true, healthFraction,
+            EliteTargetResolver.isElite(event.getEntity()), BossRewardKeyResolver.isBoss(event.getEntity()), false,
+            owner.isSprinting() && !owner.isPassenger(), FrozenCombatRuntimeState.stationary().state(
+                owner.getUUID().toString()).stationary()
+        ), FrozenCombatRuntimeState.ranks(owner), nowMillis);
+        if (Double.compare(tactics.damageMultiplier(), 1.0D) != 0) {
+            event.setAmount((float)(event.getAmount() * tactics.damageMultiplier()));
+        }
         if (arrow != null && family == WeaponFamily.CROSSBOW) {
             AbstractArrow correlatedArrow = arrow;
             FrozenCombatRuntimeState.crossbow().claimFirstImpact(
@@ -396,6 +433,20 @@ public final class CanonicalCombatEvents {
             start.stackIdentity.equals(stackIdentity), now(player) > start.startedAtMillis,
             ranks.rank("A0052"), ranks.rank("A0054"), mastery
         ), now(player));
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onTeleport(EntityTeleportEvent event) {
+        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player) {
+            FrozenCombatRuntimeState.stationary().invalidate(player.getUUID().toString());
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onKnockback(LivingKnockBackEvent event) {
+        if (!event.isCanceled() && event.getEntity() instanceof ServerPlayer player) {
+            FrozenCombatRuntimeState.stationary().invalidate(player.getUUID().toString());
+        }
     }
 
     static Optional<WeaponFamily> weaponFamily(ItemStack stack) {
@@ -432,6 +483,12 @@ public final class CanonicalCombatEvents {
 
     private static boolean eligible(ServerPlayer player) {
         return !(player instanceof FakePlayer) && !player.isCreative() && !player.isSpectator();
+    }
+
+    private static boolean safeDirectPhysical(LivingIncomingDamageEvent event) {
+        if (event.getSource().getDirectEntity() instanceof AbstractArrow) return true;
+        return event.getSource().getEntity() instanceof LivingEntity attacker
+            && event.getSource().getDirectEntity() == attacker;
     }
 
     private record CrossbowReloadStart(String stackIdentity, long startedAtMillis) {}

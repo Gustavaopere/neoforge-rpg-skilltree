@@ -25,13 +25,12 @@ public final class StationaryStateServiceTest {
     private static void resetsImmediatelyWhenPathExceedsCanonicalTolerance() {
         var service = new StationaryStateService();
         for (long tick = 1L; tick <= 29L; tick++) {
-            double x = tick % 2L == 0L ? 0.0D : 0.004D;
-            service.observe(sample(tick, "overworld", x, false, false, false));
+            service.observe(sample(tick, "overworld", (tick - 1L) * 0.0035D, false, false, false));
         }
-        var reset = service.observe(sample(30L, "overworld", 0.02D, false, false, false));
+        var reset = service.observe(sample(30L, "overworld", 0.103D, false, false, false));
         require(!reset.stationary() && reset.consecutiveTicks() == 1, "path > 0.10 resets immediately");
         require(close(reset.accumulatedPath(), 0.0D), "new stationary attempt starts at current position");
-        var gap = service.observe(sample(32L, "overworld", 0.02D, false, false, false));
+        var gap = service.observe(sample(32L, "overworld", 0.103D, false, false, false));
         require(gap.consecutiveTicks() == 1, "tick gap breaks consecutiveness");
     }
 

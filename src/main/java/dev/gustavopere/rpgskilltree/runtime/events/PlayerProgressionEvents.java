@@ -16,6 +16,7 @@ public final class PlayerProgressionEvents {
             CombatPerkRuntimeState.clear(player);
             FrozenCombatRuntimeState.clearTransient(player);
             PlayerProgressionRuntime.reconcilePlayerState(player);
+            FrozenCombatRuntimeState.revalidateStance(player);
         }
     }
 
@@ -33,6 +34,7 @@ public final class PlayerProgressionEvents {
             CombatPerkRuntimeState.clear(player);
             FrozenCombatRuntimeState.clearTransient(player);
             PlayerProgressionRuntime.reconcilePlayerState(player);
+            FrozenCombatRuntimeState.revalidateStance(player);
         }
     }
 
@@ -41,6 +43,7 @@ public final class PlayerProgressionEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             FrozenCombatRuntimeState.clearTransient(player);
             PlayerProgressionRuntime.reconcilePlayerState(player);
+            FrozenCombatRuntimeState.revalidateStance(player);
         }
     }
 }

@@ -17,7 +17,7 @@ public final class FrozenA0071A0080PolicyTest {
         var ranks = FrozenCombatPerkRanks.of(Map.of("A0071", 5, "A0072", 3, "A0078", 3, "A0079", 3));
         service.confirmDirectHostileDamage("player", true, true, false, 1_000L);
         var effect = service.resolveAttack(request(root("facts"), "elite", 0.5D, true, false, true, true, true), ranks, 1_001L);
-        require(close(effect.damageMultiplier(), 1.51D), "A71+A72+A78+A79 stack from explicit facts");
+        require(close(effect.damageMultiplier(), 1.54D), "A71+A72+A78+A79 stack from explicit facts");
         var forged = service.resolveAttack(request(root("forged").child("proc"), "elite", 0.5D, true, false, true, true, true), ranks, 1_002L);
         require(!forged.active(), "proc depth cannot farm tactics");
         service.confirmDirectHostileDamage("player", true, false, false, 1_003L);
@@ -66,24 +66,25 @@ public final class FrozenA0071A0080PolicyTest {
         var follow = service.resolveAttack(request(root("follow"), "target", 0.5D, false, true, false, false, true), ranks, 1_001L);
         require(opening.openingPrimed() && close(follow.damageMultiplier(), 1.10D), "distinct follow-up consumes opening");
         require(service.setStance("player", FrozenMartialTacticsService.Stance.AGGRESSIVE, true, true, 2_000L), "activate owned stance");
-        require(!service.setStance("player", FrozenMartialTacticsService.Stance.CAUTIOUS, true, true, 2_029L), "1.5s switch lock");
-        require(service.setStance("player", FrozenMartialTacticsService.Stance.CAUTIOUS, true, true, 2_030L), "exclusive switch after lock");
+        require(!service.setStance("player", FrozenMartialTacticsService.Stance.CAUTIOUS, true, true, 3_499L), "1.5s switch lock");
+        require(service.setStance("player", FrozenMartialTacticsService.Stance.CAUTIOUS, true, true, 3_500L), "exclusive switch after lock");
         require(service.stanceModifiers("player").damageMultiplier() == 0.95D, "cautious damage penalty");
+        require(service.directPhysicalDamageTakenMultiplier("player") == 0.92D, "cautious resistance benefit");
         service.revalidateStance("player", false, true);
         require(service.stance("player") == FrozenMartialTacticsService.Stance.NONE, "lost rank clears persistent stance");
-        require(!service.confirmDodge("player", true, true, false, 3_000L), "button press alone is not dodge");
-        require(service.confirmDodge("player", true, true, true, 3_001L), "confirmed hostile avoided attack");
-        var dodge = service.resolveAttack(request(root("dodge"), "other", 0.5D, false, true, false, false, true), ranks, 3_002L);
+        require(!service.confirmDodge("player", true, true, false, 4_000L), "button press alone is not dodge");
+        require(service.confirmDodge("player", true, true, true, 4_001L), "confirmed hostile avoided attack");
+        var dodge = service.resolveAttack(request(root("dodge"), "other", 0.5D, false, true, false, false, true), ranks, 4_002L);
         require(close(dodge.damageMultiplier(), 1.15D), "next physical direct hit consumes opportunity");
-        require(!service.confirmDodge("player", true, true, true, 3_003L), "cooldown after consume");
+        require(!service.confirmDodge("player", true, true, true, 4_003L), "cooldown after consume");
 
         var body = new CanonicalBodyTradeoffService(new AcceptingProvider());
         var rhythm = new MartialRhythmService(body);
-        require(!rhythm.observe("player", "slash", true, true, 4_000L, 1), "one action");
-        require(!rhythm.observe("player", "slash", true, true, 4_001L, 1), "repeated action ignored");
-        require(!rhythm.observe("player", "kick", true, true, 4_002L, 1), "two distinct actions");
-        require(rhythm.observe("player", "dash", true, true, 4_003L, 1), "three distinct actions activate with body costs");
-        require(close(rhythm.staminaCostMultiplier("player", 4_004L), 0.90D), "benefit coupled to active body lease");
+        require(!rhythm.observe("player", "slash", true, true, 5_000L, 1), "one action");
+        require(!rhythm.observe("player", "slash", true, true, 5_001L, 1), "repeated action ignored");
+        require(!rhythm.observe("player", "kick", true, true, 5_002L, 1), "two distinct actions");
+        require(rhythm.observe("player", "dash", true, true, 5_003L, 1), "three distinct actions activate with body costs");
+        require(close(rhythm.staminaCostMultiplier("player", 5_004L), 0.90D), "benefit coupled to active body lease");
     }
 
     private static FrozenMartialTacticsService.AttackRequest request(CanonicalActionIdentity action, String target, double health, boolean elite, boolean impact, boolean sprint, boolean stationary, boolean hostile) {

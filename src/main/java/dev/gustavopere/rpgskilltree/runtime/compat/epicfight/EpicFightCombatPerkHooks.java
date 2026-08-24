@@ -18,12 +18,14 @@ import dev.gustavopere.rpgskilltree.core.FrozenCombatOffensePolicy;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.FrozenMartialOffenseService;
+import dev.gustavopere.rpgskilltree.core.FrozenMartialTacticsService;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkState;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.BossRewardKeyResolver;
 import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.EliteTargetResolver;
 import dev.gustavopere.rpgskilltree.runtime.FrozenCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
@@ -69,6 +71,7 @@ public final class EpicFightCombatPerkHooks {
     private static final String TICK_SUBSCRIBER_ID = "rpgskilltree:notion_combat/tick";
     private static final String A0029_REFUND_CONSUMER = "A0029:posture-break-refund";
     private static final String A0042_REFUND_CONSUMER = "A0042:battle-harvest-refund";
+    private static final String A0073_REFUND_CONSUMER = "A0073:execution-refund";
 
     private static final TagKey<Item> SWORDS = tag("swords");
     private static final TagKey<Item> AXES = tag("axes");
@@ -187,6 +190,8 @@ public final class EpicFightCombatPerkHooks {
             event.getDamageSource().attachImpactModifier(
                 ValueModifier.multiplier((float)(1.0D + frozenModifiers.impactBonus())));
         }
+        applyFrozenTactics(event, player, action, frozenRanks, context.direct(), context.hostile());
+        observeMartialRhythm(player, event.getDamageSource(), frozenRanks, context.direct(), context.hostile());
 
         if (resolved.get() == WeaponFamily.CROSSBOW
             && event.getDamageSource().getDirectEntity() instanceof Projectile projectile
@@ -386,7 +391,16 @@ public final class EpicFightCombatPerkHooks {
         if (!(event.getDamageSource() instanceof EpicFightDamageSource source)) return;
 
         LivingEntity victim = event.getKilledEntity();
-        if (!legitimateBattleHarvestKill(player, victim, source)) return;
+        if (!legitimateDirectKill(player, victim, source)) return;
+
+        long nowMillis = now(player);
+        Optional<CanonicalActionIdentity> action = existingActionForDamage(player, victim, source, nowMillis);
+        FrozenCombatPerkRanks frozenRanks = FrozenCombatRuntimeState.ranks(player);
+        if (frozenRanks.learned("A0073") && action.isPresent()
+            && FrozenCombatRuntimeState.tactics().claimExecutionKillAction(
+                player.getUUID().toString(), victim.getUUID().toString(), action.get())) {
+            refundExactStamina(player, action.get(), A0073_REFUND_CONSUMER, 0.10D, nowMillis);
+        }
 
         ItemStack usedItem = usedWeapon(source);
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(usedItem);
@@ -395,8 +409,6 @@ public final class EpicFightCombatPerkHooks {
         CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
         if (!ranks.learned("A0042")) return;
 
-        long nowMillis = now(player);
-        Optional<CanonicalActionIdentity> action = existingActionForDamage(player, victim, source, nowMillis);
         boolean reapingMatureBeforeHit = consumeReapingMatureBeforeHit(source, victim.getUUID().toString());
         if (action.isEmpty()) return;
 
@@ -466,6 +478,12 @@ public final class EpicFightCombatPerkHooks {
     private static void onSuccessfulDodge(DodgeEvent event) {
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player)) return;
         if (!eligible(player)) return;
+
+        FrozenCombatPerkRanks frozenRanks = FrozenCombatRuntimeState.ranks(player);
+        if (frozenRanks.learned("A0080")) {
+            FrozenCombatRuntimeState.tactics().confirmDodge(
+                player.getUUID().toString(), true, true, true, now(player));
+        }
 
         ItemStack held = player.getMainHandItem();
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(held);
@@ -774,6 +792,19 @@ public final class EpicFightCombatPerkHooks {
         return source.getEntity() == player && source.getDirectEntity() == player;
     }
 
+    private static boolean legitimateDirectKill(
+        ServerPlayer player,
+        LivingEntity victim,
+        EpicFightDamageSource source
+    ) {
+        if (victim == player || player.isAlliedTo(victim) || !(victim instanceof Enemy || victim instanceof Player)) {
+            return false;
+        }
+        if (source.getEntity() != player) return false;
+        if (source.getDirectEntity() == player) return true;
+        return source.getDirectEntity() instanceof Projectile projectile && projectile.getOwner() == player;
+    }
+
     private static boolean canonicalCritical(
         CanonicalActionIdentity action,
         EpicFightDamageSource source,
@@ -887,6 +918,8 @@ public final class EpicFightCombatPerkHooks {
             event.getDamageSource().attachImpactModifier(
                 ValueModifier.multiplier((float)(1.0D + universal.impactBonus())));
         }
+        applyFrozenTactics(event, player, action, ranks, true, true);
+        observeMartialRhythm(player, event.getDamageSource(), ranks, true, true);
 
         // Epic Fight 21.17.3.1 exposes no unequivocal heavy/finalizer fact. Frozen A0059/A0060
         // therefore stay fail-closed here; no damage coefficient or charge-weapon heuristic is used.
@@ -910,6 +943,48 @@ public final class EpicFightCombatPerkHooks {
 
     private static int fistMastery(ServerPlayer player) {
         return PlayerProgressionRuntime.get(player).mastery().experience(CombatFistPolicy.MASTERY_ID);
+    }
+
+    private static void applyFrozenTactics(
+        DealDamageEvent.Pre event,
+        ServerPlayer player,
+        CanonicalActionIdentity action,
+        FrozenCombatPerkRanks ranks,
+        boolean direct,
+        boolean hostile
+    ) {
+        double healthFraction = event.getTarget().getMaxHealth() <= 0.0F ? 1.0D
+            : Math.max(0.0D, Math.min(1.0D, event.getTarget().getHealth() / event.getTarget().getMaxHealth()));
+        FrozenMartialTacticsService.AttackEffect effect = FrozenCombatRuntimeState.tactics().resolveAttack(
+            new FrozenMartialTacticsService.AttackRequest(
+                action, event.getTarget().getUUID().toString(), true, true, direct, true, hostile,
+                healthFraction, EliteTargetResolver.isElite(event.getTarget()), BossRewardKeyResolver.isBoss(event.getTarget()),
+                true, player.isSprinting() && !player.isPassenger(), FrozenCombatRuntimeState.stationary()
+                    .state(player.getUUID().toString()).stationary()
+            ),
+            ranks,
+            now(player)
+        );
+        if (Double.compare(effect.damageMultiplier(), 1.0D) != 0) {
+            event.getDamageSource().attachDamageModifier(ValueModifier.multiplier((float)effect.damageMultiplier()));
+        }
+        if (effect.impactBonus() > 0.0D) {
+            event.getDamageSource().attachImpactModifier(ValueModifier.multiplier((float)(1.0D + effect.impactBonus())));
+        }
+    }
+
+    private static void observeMartialRhythm(
+        ServerPlayer player,
+        EpicFightDamageSource source,
+        FrozenCombatPerkRanks ranks,
+        boolean direct,
+        boolean hostile
+    ) {
+        if (!direct || !hostile || ranks.rank("A0075") <= 0 || source.getAnimation() == null
+            || source.getAnimation().isEmpty() || source.getAnimation().registryName() == null) return;
+        FrozenCombatRuntimeState.rhythm().observe(
+            player.getUUID().toString(), source.getAnimation().registryName().toString(), true, true,
+            player.level().getGameTime(), ranks.rank("A0075"));
     }
 
     private static boolean hostile(ServerPlayer player, LivingEntity target) {

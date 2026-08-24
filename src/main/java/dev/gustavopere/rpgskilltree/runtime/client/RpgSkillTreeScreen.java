@@ -9,6 +9,7 @@ import dev.gustavopere.rpgskilltree.runtime.network.RespecNodePayload;
 import dev.gustavopere.rpgskilltree.runtime.network.UnlockClassPayload;
 import dev.gustavopere.rpgskilltree.runtime.network.SelectClassChoicePayload;
 import dev.gustavopere.rpgskilltree.runtime.network.ClearClassChoicePayload;
+import dev.gustavopere.rpgskilltree.runtime.network.ToggleMartialStancePayload;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.gui.GuiGraphics;
@@ -231,7 +232,9 @@ public final class RpgSkillTreeScreen extends Screen {
         String description = nodeDescription(node);
         if (!description.isBlank()) lines.add(description);
         lines.add(node.groupLabel() + "  •  Rank " + state.rank() + "/" + state.maxRank() + "  •  Cost " + state.costPerRank());
-        lines.add(state.canPurchase() ? "LMB: purchase" : state.learned() ? "Purchased" : "Locked by path or requirements");
+        boolean posture = node.id().equals("rpgskilltree:combat/a0076") || node.id().equals("rpgskilltree:combat/a0077");
+        lines.add(state.canPurchase() ? "LMB: purchase" : state.learned() && posture
+            ? "LMB: toggle posture" : state.learned() ? "Purchased" : "Locked by path or requirements");
         if (state.canRespec()) lines.add("RMB: respec");
         int boxWidth = 0;
         for (String line : lines) boxWidth = Math.max(boxWidth, font.width(line));
@@ -280,6 +283,11 @@ public final class RpgSkillTreeScreen extends Screen {
             ResourceLocation nodeId = ResourceLocation.parse(node.id());
             if (button == 0 && state != null && state.canPurchase()) {
                 PacketDistributor.sendToServer(new PurchaseNodePayload(nodeId));
+                return true;
+            }
+            if (button == 0 && state != null && state.learned()
+                && (node.id().equals("rpgskilltree:combat/a0076") || node.id().equals("rpgskilltree:combat/a0077"))) {
+                PacketDistributor.sendToServer(new ToggleMartialStancePayload(nodeId));
                 return true;
             }
             if (button == 1 && state != null && state.canRespec()) {
