@@ -27,13 +27,13 @@ public final class CombatPerkTransitionPolicy {
         Objects.requireNonNull(ranks);
         Objects.requireNonNull(state);
         return switch (family) {
-            case SWORD -> ranks.learned("A0004") && state.loseMomentumClamped(actorId, 1) > 0;
+            case SWORD -> ranks.learned("A0004") && state.startMomentumRapidDecay(actorId, nowMillis);
             case SPEAR -> ranks.rank("A0016") > 0 && state.loseDistanceControlClamped(actorId, 1, nowMillis) > 0;
             default -> false;
         };
     }
 
-    /** Applies losses only from a provider-confirmed hostile heavy stagger/impact. */
+    /** Applies only transitions whose heavy-impact semantics are frozen in A0001-A0050. */
     public static boolean onConfirmedHeavyImpact(String actorId, boolean hostileSource, CombatPerkRanks ranks,
                                                  NotionCombatPerkState state, long nowMillis) {
         requireActor(actorId);
@@ -42,8 +42,7 @@ public final class CombatPerkTransitionPolicy {
         if (!hostileSource) return false;
         boolean applicable = false;
         if (ranks.learned("A0004")) {
-            applicable = true;
-            state.loseMomentumClamped(actorId, 2);
+            applicable |= state.startMomentumRapidDecay(actorId, nowMillis);
         }
         if (ranks.rank("A0016") > 0) {
             applicable = true;
@@ -53,10 +52,7 @@ public final class CombatPerkTransitionPolicy {
             applicable = true;
             state.loseFlowClamped(actorId, 2, nowMillis);
         }
-        if (ranks.rank("A0046") > 0) {
-            applicable = true;
-            state.focusService().applyHeavyImpactLoss(actorId, true, true, state, nowMillis);
-        }
+        // A0046 heavy-impact loss is intentionally owned by the separate causal P-0002 service.
         return applicable;
     }
 
