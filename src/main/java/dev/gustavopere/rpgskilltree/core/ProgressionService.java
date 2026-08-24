@@ -258,6 +258,23 @@ public final class ProgressionService {
         );
     }
 
+    /**
+     * Administrative inspection path for learned nodes whose current rule definition is absent.
+     * Normal gameplay reconciliation must not invent a historical cost/refund for these nodes.
+     */
+    public static Set<String> unknownLearnedNodes(
+        ProgressionState state,
+        Map<String, NodePurchaseDefinition> definitions
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(definitions);
+        Set<String> unknown = new HashSet<>();
+        for (String learnedId : state.passiveNodes().learnedNodeIds()) {
+            if (!definitions.containsKey(learnedId)) unknown.add(learnedId);
+        }
+        return Set.copyOf(unknown);
+    }
+
     public static NodeAccessReconcileResult reconcileInvalidNodes(
         ProgressionState state,
         SkillGraph graph,
@@ -271,6 +288,13 @@ public final class ProgressionService {
         Objects.requireNonNull(requirements);
         Objects.requireNonNull(curve);
 
+        // A missing definition has no trustworthy current cost or migration semantics. Fail closed:
+        // report it through unknownLearnedNodes() and leave the entire gameplay state untouched for
+        // an explicit administrative migration rather than partially mutating/refunding around it.
+        if (!unknownLearnedNodes(state, definitions).isEmpty()) {
+            return new NodeAccessReconcileResult(state, Map.of(), 0);
+        }
+
         ProgressionState current = state;
         Map<String, Integer> removedRanks = new HashMap<>();
         int refunded = 0;
@@ -282,8 +306,6 @@ public final class ProgressionService {
             String invalid = snapshot.passiveNodes().learnedNodeIds().stream()
                 .sorted()
                 .filter(nodeId -> {
-                    NodePurchaseDefinition definition = definitions.get(nodeId);
-                    if (definition == null) return true;
                     NodeAccessRequirement requirement = requirements.getOrDefault(nodeId, NodeAccessRequirement.none());
                     return !NodeAccessResolver.satisfied(snapshot, requirement, curve);
                 })
@@ -310,17 +332,15 @@ public final class ProgressionService {
         Objects.requireNonNull(state);
         Objects.requireNonNull(grants);
 
-        // SpecializationProgressionState does not yet persist provenance. Preserve
-        // only the stable IDs explicitly created by the legacy class -> specialization
-        // migration; all other current entries are reconstructed from live node grants
-        // so removed datapack gateways cannot leave permanent stale unlocks behind.
-        Set<String> migratedIds = Set.copyOf(
-            ProgressionStateMigrations.legacyClassSpecializations().values());
+        // Without persisted provenance, the only specializations we can safely revoke here are
+        // IDs explicitly owned by the current node-grant catalog. Every unmanaged/current ID is
+        // preserved; active node-owned IDs are then reconstructed from learned ranks.
+        Set<String> nodeOwnedIds = new HashSet<>();
+        for (NodeSpecializationGrant grant : grants) nodeOwnedIds.add(grant.specializationId());
+
         SpecializationProgressionState specializations = SpecializationProgressionState.empty();
-        for (String migratedId : migratedIds) {
-            if (state.specializations().isUnlocked(migratedId)) {
-                specializations = specializations.unlock(migratedId);
-            }
+        for (String currentId : state.specializations().unlockedSpecializationIds()) {
+            if (!nodeOwnedIds.contains(currentId)) specializations = specializations.unlock(currentId);
         }
         for (NodeSpecializationGrant grant : grants) {
             if (state.passiveNodes().rank(grant.nodeId()) >= grant.requiredRank()) {
