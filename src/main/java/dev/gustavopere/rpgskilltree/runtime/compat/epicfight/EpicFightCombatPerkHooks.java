@@ -17,6 +17,7 @@ import dev.gustavopere.rpgskilltree.core.FistSequenceService;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatOffensePolicy;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkRanks;
+import dev.gustavopere.rpgskilltree.core.FrozenMartialOffenseService;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkState;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
@@ -136,7 +137,7 @@ public final class EpicFightCombatPerkHooks {
         if (resolved.isEmpty()) return;
 
         CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
-        if (ranks.ranks().isEmpty()) return;
+        FrozenCombatPerkRanks frozenRanks = FrozenCombatRuntimeState.ranks(player);
 
         NotionCombatPerkState state = CombatPerkRuntimeState.state();
         long nowMillis = now(player);
@@ -145,6 +146,13 @@ public final class EpicFightCombatPerkHooks {
             && projectile.getOwner() == player
             ? actionForKnownProjectile(player, event.getTarget(), event.getDamageSource(), projectile, nowMillis)
             : actionForPre(player, event.getTarget(), event.getDamageSource(), nowMillis);
+        double criticalBonus = NotionCombatPerkRules.criticalChanceBonus(resolved.get(), ranks)
+            + FrozenMartialOffenseService.criticalChanceBonus(frozenRanks, true, true, true, true);
+        Optional<Boolean> criticalBeforeProvider = CanonicalCombatRuntimeState.criticalDecision(action, nowMillis);
+        boolean criticalHit = canonicalCritical(action, event.getDamageSource(), criticalBonus, nowMillis);
+        if (criticalBeforeProvider.isEmpty() && criticalHit) {
+            event.getDamageSource().attachDamageModifier(ValueModifier.multiplier(1.5F));
+        }
         CombatPerkAttackPolicy.AttackContext context = context(
             player,
             event.getTarget(),
@@ -152,8 +160,33 @@ public final class EpicFightCombatPerkHooks {
             resolved.get(),
             capability,
             action,
-            canonicalCritical(action, event.getDamageSource(), nowMillis)
+            criticalHit
         );
+
+        FrozenMartialOffenseService.Modifiers frozenModifiers = FrozenCombatRuntimeState.offense().resolve(
+            new FrozenMartialOffenseService.AttackRequest(
+                action, true, true, context.direct(), true, context.hostile(), context.targetHealthFraction(),
+                BossRewardKeyResolver.isBoss(event.getTarget()), context.criticalHit(), true, true
+            ),
+            frozenRanks,
+            nowMillis
+        );
+        if (Double.compare(frozenModifiers.damageMultiplier(), 1.0D) != 0) {
+            event.getDamageSource().attachDamageModifier(
+                ValueModifier.multiplier((float)frozenModifiers.damageMultiplier()));
+        }
+        if (Double.compare(frozenModifiers.criticalDamageMultiplier(), 1.0D) != 0) {
+            event.getDamageSource().attachDamageModifier(
+                ValueModifier.multiplier((float)frozenModifiers.criticalDamageMultiplier()));
+        }
+        if (frozenModifiers.penetrationBonus() > 0.0D) {
+            event.getDamageSource().attachArmorNegationModifier(
+                ValueModifier.multiplier((float)(1.0D + frozenModifiers.penetrationBonus())));
+        }
+        if (frozenModifiers.impactBonus() > 0.0D) {
+            event.getDamageSource().attachImpactModifier(
+                ValueModifier.multiplier((float)(1.0D + frozenModifiers.impactBonus())));
+        }
 
         if (resolved.get() == WeaponFamily.CROSSBOW
             && event.getDamageSource().getDirectEntity() instanceof Projectile projectile
@@ -276,7 +309,7 @@ public final class EpicFightCombatPerkHooks {
             resolved.get(),
             capability,
             action,
-            canonicalCritical(action, event.getDamageSource(), nowMillis)
+            canonicalCritical(action, event.getDamageSource(), 0.0D, nowMillis)
         );
 
         boolean armorCrackedBeforeHit = consumeArmorCrackedBeforeHit(
@@ -411,7 +444,8 @@ public final class EpicFightCombatPerkHooks {
             FrozenCombatPerkRanks frozenRanks = player instanceof ServerPlayer serverPlayer
                 ? FrozenCombatRuntimeState.ranks(serverPlayer)
                 : FrozenCombatPerkNodeBinding.ranks(progression.passiveNodes());
-            double multiplier = FrozenCombatOffensePolicy.fistAttackSpeedMultiplier(frozenRanks, true);
+            double multiplier = FrozenCombatOffensePolicy.fistAttackSpeedMultiplier(frozenRanks, true)
+                * FrozenMartialOffenseService.attackSpeedMultiplier(frozenRanks, true);
             if (Double.compare(multiplier, 1.0D) != 0) {
                 event.setAttackSpeed((float)(event.getAttackSpeed() * multiplier));
             }
@@ -422,8 +456,10 @@ public final class EpicFightCombatPerkHooks {
 
         CombatPerkRanks ranks = CombatPerkNodeBinding.ranks(progression.passiveNodes());
         double bonus = NotionCombatPerkRules.rhythmBonus(resolved.get(), ranks);
-        if (bonus > 0.0D) {
-            event.setAttackSpeed((float)(event.getAttackSpeed() * (1.0D + bonus)));
+        FrozenCombatPerkRanks frozenRanks = FrozenCombatPerkNodeBinding.ranks(progression.passiveNodes());
+        double multiplier = (1.0D + bonus) * FrozenMartialOffenseService.attackSpeedMultiplier(frozenRanks, true);
+        if (Double.compare(multiplier, 1.0D) != 0) {
+            event.setAttackSpeed((float)(event.getAttackSpeed() * multiplier));
         }
     }
 
@@ -587,7 +623,6 @@ public final class EpicFightCombatPerkHooks {
         if (bridgeBound.isPresent()) {
             CanonicalActionIdentity action = bridgeBound.get();
             byTarget.put(targetId, action);
-            canonicalCritical(action, source, nowMillis);
             return action.withSource("epicfight:damage_pre");
         }
 
@@ -608,7 +643,6 @@ public final class EpicFightCombatPerkHooks {
         }
         byTarget.put(targetId, action);
         EpicFightExactStaminaReceiptBridge.bindDamageAction(player, source, action, nowMillis);
-        canonicalCritical(action, source, nowMillis);
         return action.withSource("epicfight:damage_pre");
     }
 
@@ -640,7 +674,6 @@ public final class EpicFightCombatPerkHooks {
             player, projectile.getUUID().toString(), nowMillis);
         byTarget.put(targetId, action);
         EpicFightExactStaminaReceiptBridge.bindDamageAction(player, source, action, nowMillis);
-        canonicalCritical(action, source, nowMillis);
         return action.withSource("epicfight:damage_pre");
     }
 
@@ -744,14 +777,16 @@ public final class EpicFightCombatPerkHooks {
     private static boolean canonicalCritical(
         CanonicalActionIdentity action,
         EpicFightDamageSource source,
+        double bonusChance,
         long nowMillis
     ) {
         Optional<Boolean> existing = CanonicalCombatRuntimeState.criticalDecision(action, nowMillis);
         if (existing.isPresent()) return existing.get();
         boolean providerCritical = source.getDirectEntity() instanceof AbstractArrow arrow && arrow.isCritArrow();
-        return CanonicalCombatRuntimeState.resolveProviderCritical(
+        return CanonicalCombatRuntimeState.resolveCriticalBonus(
             action,
             providerCritical,
+            bonusChance,
             nowMillis
         );
     }
@@ -817,17 +852,40 @@ public final class EpicFightCombatPerkHooks {
         long nowMillis = now(player);
         CanonicalActionIdentity action = actionForPre(player, event.getTarget(), event.getDamageSource(), nowMillis);
         Optional<Boolean> prior = CanonicalCombatRuntimeState.criticalDecision(action, nowMillis);
+        boolean critical;
         if (prior.isEmpty()) {
-            boolean critical = CanonicalCombatRuntimeState.resolveCriticalBonus(
-                action, false, FrozenCombatOffensePolicy.fistCriticalChance(ranks), nowMillis);
+            critical = CanonicalCombatRuntimeState.resolveCriticalBonus(
+                action, false, FrozenCombatOffensePolicy.fistCriticalChance(ranks)
+                    + FrozenMartialOffenseService.criticalChanceBonus(ranks, true, true, true, true), nowMillis);
             if (critical) {
                 event.getDamageSource().attachDamageModifier(ValueModifier.multiplier(1.5F));
             }
-        }
+        } else critical = prior.get();
 
         double damageMultiplier = FrozenCombatOffensePolicy.fistDamageMultiplier(ranks);
         if (Double.compare(damageMultiplier, 1.0D) != 0) {
             event.getDamageSource().attachDamageModifier(ValueModifier.multiplier((float)damageMultiplier));
+        }
+
+        double healthFraction = event.getTarget().getMaxHealth() <= 0.0F ? 1.0D
+            : Math.max(0.0D, Math.min(1.0D, event.getTarget().getHealth() / event.getTarget().getMaxHealth()));
+        var universal = FrozenCombatRuntimeState.offense().resolve(new FrozenMartialOffenseService.AttackRequest(
+            action, true, true, true, true, true, healthFraction,
+            BossRewardKeyResolver.isBoss(event.getTarget()), critical, true, true
+        ), ranks, nowMillis);
+        if (Double.compare(universal.damageMultiplier(), 1.0D) != 0) {
+            event.getDamageSource().attachDamageModifier(ValueModifier.multiplier((float)universal.damageMultiplier()));
+        }
+        if (Double.compare(universal.criticalDamageMultiplier(), 1.0D) != 0) {
+            event.getDamageSource().attachDamageModifier(ValueModifier.multiplier((float)universal.criticalDamageMultiplier()));
+        }
+        if (universal.penetrationBonus() > 0.0D) {
+            event.getDamageSource().attachArmorNegationModifier(
+                ValueModifier.multiplier((float)(1.0D + universal.penetrationBonus())));
+        }
+        if (universal.impactBonus() > 0.0D) {
+            event.getDamageSource().attachImpactModifier(
+                ValueModifier.multiplier((float)(1.0D + universal.impactBonus())));
         }
 
         // Epic Fight 21.17.3.1 exposes no unequivocal heavy/finalizer fact. Frozen A0059/A0060

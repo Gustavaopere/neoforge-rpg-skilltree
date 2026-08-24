@@ -9,6 +9,8 @@ import dev.gustavopere.rpgskilltree.core.CombatFistPolicy;
 import dev.gustavopere.rpgskilltree.core.CrossbowCadenceService;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatOffensePolicy;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkRanks;
+import dev.gustavopere.rpgskilltree.core.FrozenMartialOffenseService;
+import dev.gustavopere.rpgskilltree.runtime.BossRewardKeyResolver;
 import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.FrozenCombatRuntimeState;
@@ -79,9 +81,13 @@ public final class CanonicalCombatEvents {
         boolean critical = curatedFist
             ? CanonicalCombatRuntimeState.resolveCriticalBonus(
                 action, event.isCriticalHit(),
-                FrozenCombatOffensePolicy.fistCriticalChance(FrozenCombatRuntimeState.ranks(player)), nowMillis)
+                FrozenCombatOffensePolicy.fistCriticalChance(FrozenCombatRuntimeState.ranks(player))
+                    + FrozenMartialOffenseService.criticalChanceBonus(
+                        FrozenCombatRuntimeState.ranks(player), true, true, true, true), nowMillis)
             : CanonicalCombatRuntimeState.resolveCritical(
-                action, family.orElseThrow(), CombatPerkRuntimeState.ranks(player), event.isCriticalHit(), nowMillis);
+                action, family.orElseThrow(), CombatPerkRuntimeState.ranks(player), event.isCriticalHit(),
+                FrozenMartialOffenseService.criticalChanceBonus(
+                    FrozenCombatRuntimeState.ranks(player), true, true, true, true), nowMillis);
         if (critical && !event.isCriticalHit()) {
             event.setDamageMultiplier(Math.max(1.5F, event.getDamageMultiplier()));
         }
@@ -175,7 +181,8 @@ public final class CanonicalCombatEvents {
                 net.neoforged.fml.ModList.get().isLoaded("epicfight")
             ), nowMillis);
             boolean critical = CanonicalCombatRuntimeState.resolveCriticalBonus(
-                action, arrow.isCritArrow(), FrozenCombatOffensePolicy.crossbowCriticalChance(ranks), nowMillis);
+                action, arrow.isCritArrow(), FrozenCombatOffensePolicy.crossbowCriticalChance(ranks)
+                    + FrozenMartialOffenseService.criticalChanceBonus(ranks, true, true, true, true), nowMillis);
             arrow.setCritArrow(critical);
             return;
         }
@@ -210,6 +217,8 @@ public final class CanonicalCombatEvents {
             WeaponFamily.BOW,
             ranks,
             arrow.isCritArrow(),
+            FrozenMartialOffenseService.criticalChanceBonus(
+                FrozenCombatRuntimeState.ranks(owner), true, true, true, true),
             nowMillis
         );
         arrow.setCritArrow(critical);
@@ -317,19 +326,51 @@ public final class CanonicalCombatEvents {
         }
     }
 
-    /** Vanilla fallback for the A0054 damage component when no earlier semantic provider claimed the impact. */
+    /** Vanilla physical fallback; the shared action ledger prevents NeoForge + Epic Fight double application. */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
-        if (!(event.getSource().getDirectEntity() instanceof AbstractArrow arrow)
-            || !(arrow.getOwner() instanceof ServerPlayer owner)
-            || !eligible(owner)
-            || weaponFamily(arrow.getWeaponItem()).orElse(null) != WeaponFamily.CROSSBOW) return;
+        ServerPlayer owner;
+        ItemStack weapon;
+        AbstractArrow arrow = null;
+        if (event.getSource().getDirectEntity() instanceof AbstractArrow directArrow
+            && directArrow.getOwner() instanceof ServerPlayer projectileOwner) {
+            owner = projectileOwner;
+            arrow = directArrow;
+            weapon = directArrow.getWeaponItem();
+        } else if (event.getSource().getEntity() instanceof ServerPlayer meleeOwner
+            && event.getSource().getDirectEntity() == meleeOwner) {
+            owner = meleeOwner;
+            weapon = meleeOwner.getMainHandItem();
+        } else return;
+        if (!eligible(owner) || owner.isAlliedTo(event.getEntity())) return;
+        WeaponFamily family = weaponFamily(weapon).orElse(null);
+        boolean fist = CombatFistPolicy.isFistWeapon(
+            weapon.isEmpty(), weapon.is(FIST_WEAPONS), CombatFistPolicy.ProviderCategory.UNKNOWN);
+        if (family == null && !fist) return;
         long nowMillis = now(owner);
-        CanonicalActionIdentity action = CanonicalCombatRuntimeState.projectileAction(
-            owner, arrow.getUUID().toString(), nowMillis);
-        FrozenCombatRuntimeState.crossbow().claimFirstImpact(arrow.getUUID().toString(), action, nowMillis)
-            .filter(effect -> effect.damageBonus() > 0.0D)
-            .ifPresent(effect -> event.setAmount((float)(event.getAmount() * (1.0D + effect.damageBonus()))));
+        CanonicalActionIdentity action = arrow != null
+            ? CanonicalCombatRuntimeState.projectileAction(owner, arrow.getUUID().toString(), nowMillis)
+            : CanonicalCombatRuntimeState.claimMeleeForProvider(
+                owner, event.getEntity().getUUID().toString(), nowMillis)
+                .orElseGet(() -> CanonicalCombatRuntimeState.newRoot(owner, "neoforge:living_incoming", nowMillis));
+        boolean critical = CanonicalCombatRuntimeState.criticalDecision(action, nowMillis).orElse(false);
+        double healthFraction = event.getEntity().getMaxHealth() <= 0.0F ? 1.0D
+            : Math.max(0.0D, Math.min(1.0D, event.getEntity().getHealth() / event.getEntity().getMaxHealth()));
+        var modifiers = FrozenCombatRuntimeState.offense().resolve(new FrozenMartialOffenseService.AttackRequest(
+            action, true, true, true, true, true, healthFraction,
+            BossRewardKeyResolver.isBoss(event.getEntity()), critical, false, false
+        ), FrozenCombatRuntimeState.ranks(owner), nowMillis);
+        double multiplier = modifiers.damageMultiplier() * modifiers.criticalDamageMultiplier();
+        if (Double.compare(multiplier, 1.0D) != 0) {
+            event.setAmount((float)(event.getAmount() * multiplier));
+        }
+        if (arrow != null && family == WeaponFamily.CROSSBOW) {
+            AbstractArrow correlatedArrow = arrow;
+            FrozenCombatRuntimeState.crossbow().claimFirstImpact(
+                correlatedArrow.getUUID().toString(), action, nowMillis)
+                .filter(effect -> effect.damageBonus() > 0.0D)
+                .ifPresent(effect -> event.setAmount((float)(event.getAmount() * (1.0D + effect.damageBonus()))));
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

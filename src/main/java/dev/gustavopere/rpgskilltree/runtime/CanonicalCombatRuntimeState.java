@@ -276,8 +276,19 @@ public final class CanonicalCombatRuntimeState {
         boolean providerCritical,
         long nowMillis
     ) {
+        return resolveCritical(action, family, ranks, providerCritical, 0.0D, nowMillis);
+    }
+
+    public static boolean resolveCritical(
+        CanonicalActionIdentity action,
+        WeaponFamily family,
+        CombatPerkRanks ranks,
+        boolean providerCritical,
+        double additionalBonusChance,
+        long nowMillis
+    ) {
         double bonusChance = NotionCombatPerkRules.criticalChanceBonus(family, ranks);
-        return resolveCriticalBonus(action, providerCritical, bonusChance, nowMillis);
+        return resolveCriticalBonus(action, providerCritical, bonusChance + additionalBonusChance, nowMillis);
     }
 
     public static boolean resolveCriticalBonus(
