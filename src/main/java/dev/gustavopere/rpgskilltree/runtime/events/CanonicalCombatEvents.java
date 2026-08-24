@@ -516,6 +516,10 @@ public final class CanonicalCombatEvents {
         String targetId = event.getEntity().getUUID().toString();
         if (CanonicalCombatRuntimeState.damageAction(source, targetId).isPresent()) return;
 
+        boolean providerNonWeapon = source.getClass().getName()
+            .equals("io.redspace.ironsspellbooks.damage.SpellDamageSource");
+        if (providerNonWeapon) CanonicalSustainRuntime.markProviderClassifiedNonWeapon(source);
+
         boolean periodic = source.is(PERIODIC_SUSTAIN);
         boolean explicitlyMagic = source.is(MAGIC_DIRECT) || source.is(ELEMENTAL_DIRECT);
         boolean directOwner = source.getDirectEntity() == owner;
@@ -531,8 +535,9 @@ public final class CanonicalCombatEvents {
         } else if (ownedProjectile) {
             action = CanonicalCombatRuntimeState.projectileAction(
                 owner, projectile.getUUID().toString(), nowMillis);
-        } else if (explicitlyMagic) {
-            action = CanonicalCombatRuntimeState.newRoot(owner, "neoforge:direct_magic", nowMillis);
+        } else if (explicitlyMagic || providerNonWeapon) {
+            action = CanonicalCombatRuntimeState.newRoot(
+                owner, providerNonWeapon ? "irons:spell_damage" : "neoforge:direct_magic", nowMillis);
         } else {
             ItemStack weapon = owner.getMainHandItem();
             boolean fist = CombatFistPolicy.isFistWeapon(
