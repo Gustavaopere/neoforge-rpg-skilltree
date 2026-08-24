@@ -8,6 +8,7 @@ import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkFinalizationPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
+import dev.gustavopere.rpgskilltree.core.CombatPerkTransitionPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPositionPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponFamilyPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
@@ -41,6 +42,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import yesman.epicfight.api.event.EpicFightEventHooks;
+import yesman.epicfight.api.event.types.animation.AttackPhaseEndEvent;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 import yesman.epicfight.api.event.types.entity.DodgeEvent;
 import yesman.epicfight.api.event.types.entity.KillEntityEvent;
@@ -60,6 +62,7 @@ public final class EpicFightCombatPerkHooks {
     private static final String KILL_SUBSCRIBER_ID = "rpgskilltree:notion_combat/kill";
     private static final String SPEED_SUBSCRIBER_ID = "rpgskilltree:notion_combat/attack_speed";
     private static final String DODGE_SUBSCRIBER_ID = "rpgskilltree:notion_combat/dodge";
+    private static final String MISS_SUBSCRIBER_ID = "rpgskilltree:notion_combat/attack_phase_end";
     private static final String TICK_SUBSCRIBER_ID = "rpgskilltree:notion_combat/tick";
     private static final String A0029_REFUND_CONSUMER = "A0029:posture-break-refund";
     private static final String A0042_REFUND_CONSUMER = "A0042:battle-harvest-refund";
@@ -106,6 +109,10 @@ public final class EpicFightCombatPerkHooks {
         EpicFightEventHooks.Entity.ON_DODGE.registerEvent(
             EpicFightCombatPerkHooks::onSuccessfulDodge,
             DODGE_SUBSCRIBER_ID
+        );
+        EpicFightEventHooks.Animation.ATTACK_PHASE_END.registerEvent(
+            EpicFightCombatPerkHooks::onAttackPhaseEnd,
+            MISS_SUBSCRIBER_ID
         );
         EpicFightEventHooks.Player.TICK_EPICFIGHT_MODE.registerEvent(
             EpicFightCombatPerkHooks::onEpicFightModeTick,
@@ -402,18 +409,80 @@ public final class EpicFightCombatPerkHooks {
         );
     }
 
+    /**
+     * Epic Fight clears ACTUALLY_HIT_ENTITIES at the start of each attack phase, so an empty list
+     * at ATTACK_PHASE_END is a provider-confirmed miss rather than a damage/animation heuristic.
+     */
+    private static void onAttackPhaseEnd(AttackPhaseEndEvent event) {
+        if (!(event.getEntityPatch() instanceof ServerPlayerPatch patch)) return;
+        ServerPlayer player = patch.getOriginal();
+        if (!eligible(player) || !patch.getCurrentlyActuallyHitEntities().isEmpty()) return;
+
+        var hand = event.getPhase().effectiveHand(patch);
+        ItemStack usedItem = player.getItemInHand(hand);
+        CapabilityItem capability = patch.getHoldingItemCapability(hand);
+        Optional<WeaponFamily> family = weaponFamily(usedItem, capability);
+        if (family.isEmpty() || (family.get() != WeaponFamily.SWORD && family.get() != WeaponFamily.SPEAR)) return;
+
+        CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
+        if (family.get() == WeaponFamily.SWORD && !ranks.learned("A0004")) return;
+        if (family.get() == WeaponFamily.SPEAR && ranks.rank("A0016") <= 0) return;
+
+        CombatPerkTransitionPolicy.onConfirmedMiss(
+            CombatPerkRuntimeState.actorId(player),
+            family.get(),
+            ranks,
+            CombatPerkRuntimeState.state(),
+            now(player)
+        );
+    }
+
     private static void onEpicFightModeTick(TickPlayerEpicFightModeEvent event) {
         if (!(event.getPlayerPatch() instanceof ServerPlayerPatch patch)) return;
         ServerPlayer player = patch.getOriginal();
         if (!eligible(player)) return;
+
+        CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
+        NotionCombatPerkState state = CombatPerkRuntimeState.state();
+        String actorId = CombatPerkRuntimeState.actorId(player);
+        long nowMillis = now(player);
         LivingEntity target = patch.getTarget();
-        if (target == null || !target.isAlive() || !(target instanceof Enemy || target instanceof Player)) return;
+        boolean inCombat = target != null
+            && target.isAlive()
+            && (target instanceof Enemy || target instanceof Player);
+        var motion = player.getDeltaMovement();
+        boolean relevantHorizontalMovement = motion.x != 0.0D || motion.z != 0.0D;
+
+        CombatPerkTransitionPolicy.tick(
+            actorId,
+            ranks,
+            state,
+            inCombat,
+            relevantHorizontalMovement,
+            nowMillis
+        );
+        if (!inCombat) return;
 
         ItemStack held = player.getMainHandItem();
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(held);
-        if (weaponFamily(held, capability).orElse(null) != WeaponFamily.SPEAR) return;
-        CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
-        if (!ranks.learned("A0018")) return;
+        Optional<WeaponFamily> family = weaponFamily(held, capability);
+        if (family.isEmpty()) return;
+
+        if (family.get() == WeaponFamily.DAGGER && ranks.rank("A0022") > 0 && relevantHorizontalMovement) {
+            CombatPerkTransitionPolicy.recordFlowPositionSample(
+                actorId,
+                target.getUUID().toString(),
+                player.getX(),
+                player.getZ(),
+                target.getX(),
+                target.getZ(),
+                true,
+                state,
+                nowMillis
+            );
+        }
+
+        if (family.get() != WeaponFamily.SPEAR || !ranks.learned("A0018")) return;
 
         double effectiveReach = player.entityInteractionRange() + Math.max(0.0D, capability.getReach());
         var targetMotion = target.getDeltaMovement();
@@ -426,16 +495,16 @@ public final class EpicFightCombatPerkHooks {
             targetMotion.z
         );
         CombatPerkControlPolicy.onSpearRangeUpdate(
-            CombatPerkRuntimeState.actorId(player),
+            actorId,
             target.getUUID().toString(),
             WeaponFamily.SPEAR,
             player.distanceTo(target),
             effectiveReach,
             targetAdvancing,
             ranks,
-            CombatPerkRuntimeState.state(),
+            state,
             weaponMastery(player, WeaponFamily.SPEAR),
-            Math.multiplyExact(player.level().getGameTime(), 50L)
+            nowMillis
         );
     }
 
