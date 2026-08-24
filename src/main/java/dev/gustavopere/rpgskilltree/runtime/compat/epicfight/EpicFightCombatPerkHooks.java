@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
+import dev.gustavopere.rpgskilltree.core.CanonicalActionIdentity;
 import dev.gustavopere.rpgskilltree.core.CombatPerkAttackPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkControlPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefensePolicy;
@@ -12,10 +13,14 @@ import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkState;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.WeakHashMap;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -59,6 +64,8 @@ public final class EpicFightCombatPerkHooks {
     private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final TagKey<Item> BOWS = tag("bows");
     private static final TagKey<Item> CROSSBOWS = tag("crossbows");
+    private static final Map<EpicFightDamageSource, Map<String, CanonicalActionIdentity>> ACTIONS =
+        new WeakHashMap<>();
 
     private static boolean registered;
 
@@ -102,12 +109,17 @@ public final class EpicFightCombatPerkHooks {
         if (ranks.ranks().isEmpty()) return;
 
         NotionCombatPerkState state = CombatPerkRuntimeState.state();
+        long nowMillis = now(player);
+        CanonicalActionIdentity action = actionForPre(
+            player, event.getTarget(), event.getDamageSource(), resolved.get(), ranks, nowMillis);
         CombatPerkAttackPolicy.AttackContext context = context(
             player,
             event.getTarget(),
             event.getDamageSource(),
             resolved.get(),
-            capability
+            capability,
+            action,
+            canonicalCritical(action, resolved.get(), ranks, event.getDamageSource(), nowMillis)
         );
         HurtableEntityPatch<?> targetPatch = EpicFightCapabilities.getEntityPatch(event.getTarget(), HurtableEntityPatch.class);
         int shockBefore = resolved.get() == WeaponFamily.HAMMER
@@ -161,12 +173,17 @@ public final class EpicFightCombatPerkHooks {
         if (ranks.ranks().isEmpty()) return;
 
         NotionCombatPerkState state = CombatPerkRuntimeState.state();
+        long nowMillis = now(player);
+        CanonicalActionIdentity action = actionForPost(
+            player, event.getTarget(), event.getDamageSource(), resolved.get(), ranks, nowMillis);
         CombatPerkAttackPolicy.AttackContext context = context(
             player,
             event.getTarget(),
             event.getDamageSource(),
             resolved.get(),
-            capability
+            capability,
+            action,
+            canonicalCritical(action, resolved.get(), ranks, event.getDamageSource(), nowMillis)
         );
         CombatPerkAttackPolicy.afterConfirmedHit(context, ranks, state);
 
@@ -290,7 +307,9 @@ public final class EpicFightCombatPerkHooks {
         LivingEntity target,
         EpicFightDamageSource source,
         WeaponFamily family,
-        CapabilityItem capability
+        CapabilityItem capability,
+        CanonicalActionIdentity action,
+        boolean criticalHit
     ) {
         boolean projectileDirect = source.getDirectEntity() instanceof Projectile projectile
             && projectile.getOwner() == player;
@@ -330,6 +349,7 @@ public final class EpicFightCombatPerkHooks {
         );
 
         return new CombatPerkAttackPolicy.AttackContext(
+            action,
             player.getUUID().toString(),
             target.getUUID().toString(),
             family,
@@ -342,9 +362,76 @@ public final class EpicFightCombatPerkHooks {
             flankOrBack,
             protectedTarget,
             healthFraction,
-            false,
+            criticalHit,
             0.0D,
-            Math.multiplyExact(player.level().getGameTime(), 50L)
+            now(player)
+        );
+    }
+
+    private static synchronized CanonicalActionIdentity actionForPre(
+        ServerPlayer player,
+        LivingEntity target,
+        EpicFightDamageSource source,
+        WeaponFamily family,
+        CombatPerkRanks ranks,
+        long nowMillis
+    ) {
+        String targetId = target.getUUID().toString();
+        Map<String, CanonicalActionIdentity> byTarget = ACTIONS.computeIfAbsent(source, ignored -> new HashMap<>());
+        CanonicalActionIdentity existing = byTarget.get(targetId);
+        if (existing != null) return existing.withSource("epicfight:damage_pre");
+
+        CanonicalActionIdentity action;
+        if (source.getDirectEntity() instanceof Projectile projectile && projectile.getOwner() == player) {
+            action = CanonicalCombatRuntimeState.projectileAction(
+                player,
+                projectile.getUUID().toString(),
+                nowMillis
+            );
+        } else {
+            action = CanonicalCombatRuntimeState.claimMeleeForProvider(player, targetId, nowMillis)
+                .orElseGet(() -> CanonicalCombatRuntimeState.newRoot(
+                    player,
+                    "epicfight:damage_pre",
+                    nowMillis
+                ));
+        }
+        byTarget.put(targetId, action);
+        canonicalCritical(action, family, ranks, source, nowMillis);
+        return action.withSource("epicfight:damage_pre");
+    }
+
+    private static synchronized CanonicalActionIdentity actionForPost(
+        ServerPlayer player,
+        LivingEntity target,
+        EpicFightDamageSource source,
+        WeaponFamily family,
+        CombatPerkRanks ranks,
+        long nowMillis
+    ) {
+        Map<String, CanonicalActionIdentity> byTarget = ACTIONS.get(source);
+        CanonicalActionIdentity action = byTarget == null ? null : byTarget.get(target.getUUID().toString());
+        return action == null
+            ? actionForPre(player, target, source, family, ranks, nowMillis).withSource("epicfight:damage_post")
+            : action.withSource("epicfight:damage_post");
+    }
+
+    private static boolean canonicalCritical(
+        CanonicalActionIdentity action,
+        WeaponFamily family,
+        CombatPerkRanks ranks,
+        EpicFightDamageSource source,
+        long nowMillis
+    ) {
+        Optional<Boolean> existing = CanonicalCombatRuntimeState.criticalDecision(action, nowMillis);
+        if (existing.isPresent()) return existing.get();
+        boolean providerCritical = source.getDirectEntity() instanceof AbstractArrow arrow && arrow.isCritArrow();
+        return CanonicalCombatRuntimeState.resolveCritical(
+            action,
+            family,
+            ranks,
+            providerCritical,
+            nowMillis
         );
     }
 
@@ -372,6 +459,10 @@ public final class EpicFightCombatPerkHooks {
 
     private static TagKey<Item> tag(String path) {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("rpgskilltree", path));
+    }
+
+    private static long now(ServerPlayer player) {
+        return Math.multiplyExact(player.level().getGameTime(), 50L);
     }
 
     private static boolean eligible(ServerPlayer player) {
