@@ -27,6 +27,10 @@ public final class CombatPerkFinalizationPolicy {
         }
     }
 
+    /**
+     * Compatibility entry point for callers that evaluate before any mutation from the current hit.
+     * Runtime adapters that span PRE/POST must use activateBoneBreakerFromPreHitSnapshot instead.
+     */
     public static Optional<BoneBreakerEffect> activateBoneBreaker(
         CanonicalActionIdentity action,
         String actorId,
@@ -41,13 +45,50 @@ public final class CombatPerkFinalizationPolicy {
         int weaponMastery,
         long nowMillis
     ) {
+        return activateBoneBreakerFromPreHitSnapshot(
+            action,
+            actorId,
+            targetId,
+            weaponFamily,
+            direct,
+            hostile,
+            heavyAttack,
+            state.hasTargetFlag(actorId, targetId, NotionCombatPerkState.TargetFlag.ARMOR_CRACKED, nowMillis),
+            targetIsBoss,
+            ranks,
+            state,
+            weaponMastery,
+            nowMillis
+        );
+    }
+
+    /**
+     * Canonical A0036 activation. armorCrackedBeforeHit must be captured before the provider hit can
+     * mutate A0035 state; a crack created by the same hit must therefore pass false here.
+     */
+    public static Optional<BoneBreakerEffect> activateBoneBreakerFromPreHitSnapshot(
+        CanonicalActionIdentity action,
+        String actorId,
+        String targetId,
+        WeaponFamily weaponFamily,
+        boolean direct,
+        boolean hostile,
+        boolean heavyAttack,
+        boolean armorCrackedBeforeHit,
+        boolean targetIsBoss,
+        CombatPerkRanks ranks,
+        NotionCombatPerkState state,
+        int weaponMastery,
+        long nowMillis
+    ) {
         validateAction(action, actorId, targetId, weaponFamily, ranks, state, weaponMastery);
         if (weaponFamily != WeaponFamily.MACE
             || !direct
             || !hostile
             || !heavyAttack
+            || !armorCrackedBeforeHit
+            || weaponMastery < 80
             || !ranks.learned("A0036")
-            || !state.hasTargetFlag(actorId, targetId, NotionCombatPerkState.TargetFlag.ARMOR_CRACKED, nowMillis)
             || !state.cooldownReady(actorId, targetId, "A0036", nowMillis)) {
             return Optional.empty();
         }
