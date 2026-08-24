@@ -234,6 +234,34 @@ public final class NotionCombatPerkState {
         else target.counters.put(counter, new TimedCounter(current - amount, previous.expiresAtMillis));
     }
 
+    public synchronized void recordCounterTarget(String actorId, TargetCounter counter, String targetId) {
+        Objects.requireNonNull(counter);
+        actor(actorId).lastCounterTargets.put(counter, requireTargetId(targetId));
+    }
+
+    /** Moves, rather than copies, at most one live per-target stack when a mechanic changes target. */
+    public synchronized int transferCounterOnTargetSwitch(
+        String actorId,
+        TargetCounter counter,
+        String targetId,
+        long nowMillis,
+        long durationMillis,
+        int cap
+    ) {
+        Objects.requireNonNull(counter);
+        if (durationMillis <= 0L) throw new IllegalArgumentException("duration must be positive");
+        if (cap <= 0) throw new IllegalArgumentException("cap must be positive");
+        ActorState state = actor(actorId);
+        String nextTarget = requireTargetId(targetId);
+        String previousTarget = state.lastCounterTargets.put(counter, nextTarget);
+        if (previousTarget == null || previousTarget.equals(nextTarget)) return 0;
+        int available = targetCounter(actorId, previousTarget, counter, nowMillis);
+        if (available <= 0) return 0;
+        consumeTargetCounter(actorId, previousTarget, counter, 1, nowMillis);
+        addTargetCounter(actorId, nextTarget, counter, 1, cap, nowMillis, durationMillis);
+        return 1;
+    }
+
     public synchronized void setTargetFlag(String actorId, String targetId, TargetFlag flag, long expiresAtMillis) {
         Objects.requireNonNull(flag);
         TargetState target = target(actorId, targetId);
@@ -294,6 +322,41 @@ public final class NotionCombatPerkState {
         actor(actorId).cooldowns.put(cooldownKey(targetId, key), safeAdd(nowMillis, durationMillis));
     }
 
+    public synchronized boolean actorCooldownReady(String actorId, String key, long nowMillis) {
+        String validatedKey = requireKey(key);
+        Long until = actorOrEmpty(actorId).actorCooldowns.get(validatedKey);
+        return until == null || until <= nowMillis;
+    }
+
+    public synchronized void startActorCooldown(String actorId, String key, long nowMillis, long durationMillis) {
+        if (durationMillis <= 0) throw new IllegalArgumentException("duration must be positive");
+        actor(actorId).actorCooldowns.put(requireKey(key), safeAdd(nowMillis, durationMillis));
+    }
+
+    public synchronized void armBattleHarvest(String actorId, String sourceTargetId, long expiresAtMillis) {
+        ActorState state = actor(actorId);
+        state.battleHarvestSourceTargetId = requireTargetId(sourceTargetId);
+        state.battleHarvestExpiresAt = expiresAtMillis;
+    }
+
+    public synchronized boolean hasBattleHarvest(String actorId, long nowMillis) {
+        ActorState state = actorOrEmpty(actorId);
+        return state.battleHarvestSourceTargetId != null && state.battleHarvestExpiresAt > nowMillis;
+    }
+
+    public synchronized boolean consumeBattleHarvestForDifferentTarget(String actorId, String targetId, long nowMillis) {
+        ActorState state = actorOrEmpty(actorId);
+        String target = requireTargetId(targetId);
+        if (state.battleHarvestSourceTargetId == null
+            || state.battleHarvestExpiresAt <= nowMillis
+            || state.battleHarvestSourceTargetId.equals(target)) {
+            return false;
+        }
+        state.battleHarvestSourceTargetId = null;
+        state.battleHarvestExpiresAt = 0L;
+        return true;
+    }
+
     public synchronized boolean recordTargetAndWasDifferent(String actorId, String targetId) {
         ActorState state = actor(actorId);
         String target = requireTargetId(targetId);
@@ -344,9 +407,13 @@ public final class NotionCombatPerkState {
     }
 
     private static String cooldownKey(String targetId, String key) {
+        return requireTargetId(targetId) + '\u0000' + requireKey(key);
+    }
+
+    private static String requireKey(String key) {
         Objects.requireNonNull(key);
         if (key.isBlank()) throw new IllegalArgumentException("cooldown key must not be blank");
-        return requireTargetId(targetId) + '\u0000' + key;
+        return key;
     }
 
     private static String requireActorId(String actorId) {
@@ -394,9 +461,13 @@ public final class NotionCombatPerkState {
         long lastFlowChange;
         long flowExpiresAt;
         long lastFocusChange;
+        long battleHarvestExpiresAt;
+        String battleHarvestSourceTargetId;
         String lastTargetId;
         final EnumMap<ActorFlag, Long> flags = new EnumMap<>(ActorFlag.class);
+        final EnumMap<TargetCounter, String> lastCounterTargets = new EnumMap<>(TargetCounter.class);
         final Map<String, Long> cooldowns = new HashMap<>();
+        final Map<String, Long> actorCooldowns = new HashMap<>();
         final Map<String, TargetState> targets = new HashMap<>();
     }
 }
