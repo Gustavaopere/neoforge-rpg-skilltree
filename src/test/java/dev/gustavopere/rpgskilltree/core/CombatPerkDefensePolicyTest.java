@@ -8,6 +8,7 @@ public final class CombatPerkDefensePolicyTest {
         riposteUsesGlobalCooldown();
         daggerDodgeOpensRecentDodgeWindow();
         daggerCapstoneConsumesFlowOnNextAttack();
+        shadowDanceWindowScalesWithMastery();
         System.out.println("CombatPerkDefensePolicyTest: PASS");
     }
 
@@ -54,29 +55,48 @@ public final class CombatPerkDefensePolicyTest {
         var ranks = CombatPerkRanks.of(Map.of("A0022", 2, "A0024", 1));
         CombatPerkDefensePolicy.onSuccessfulDodge("p", CombatPerkDefinition.WeaponFamily.DAGGER, ranks, state, 80, 1000L);
 
-        var trigger = new CombatPerkAttackPolicy.AttackContext(
-            "p", "mob", CombatPerkDefinition.WeaponFamily.DAGGER,
-            true, true, false, false, false, false, false, false,
-            1.0D, false, 0.0D, 2000L
-        );
-        CombatPerkAttackPolicy.beforeHit(trigger, ranks, state);
+        var trigger = daggerContext(2000L, false);
+        CombatPerkAttackPolicy.beforeHit(trigger, ranks, state, 80);
 
         require(state.flow("p") == 0, "A0024 consumes all four flow");
         require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2000L), "A0024 consumes dodge trigger");
         require(state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5999L), "A0024 shadow dance base window");
+        require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 6000L), "A0024 base window expires at four seconds");
 
         CombatPerkAttackPolicy.afterConfirmedHit(trigger, ranks, state);
         require(state.flow("p") == 0, "capstone trigger cannot regenerate flow from same dodge");
 
-        var flank = new CombatPerkAttackPolicy.AttackContext(
-            "p", "mob2", CombatPerkDefinition.WeaponFamily.DAGGER,
-            true, true, false, false, false, false, true, false,
-            1.0D, false, 0.0D, 3000L
-        );
-        var result = CombatPerkAttackPolicy.beforeHit(flank, ranks, state);
+        var flank = daggerContext(3000L, true);
+        var result = CombatPerkAttackPolicy.beforeHit(flank, ranks, state, 80);
         require(close(result.damageMultiplier(), 1.15D), "shadow dance first flank damage");
         require(close(result.impactMultiplier(), 1.20D), "shadow dance first flank impact");
         require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 3000L), "shadow dance benefit consumed once");
+    }
+
+    private static void shadowDanceWindowScalesWithMastery() {
+        var ranks = CombatPerkRanks.of(Map.of("A0024", 1));
+
+        var mastery90 = new NotionCombatPerkState();
+        mastery90.addFlow("p", 4, 0L);
+        mastery90.setActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 3000L);
+        CombatPerkAttackPolicy.beforeHit(daggerContext(1000L, false), ranks, mastery90, 90);
+        require(mastery90.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5499L), "mastery90 gives 4.5 second window");
+        require(!mastery90.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5500L), "mastery90 window expires exactly");
+
+        var mastery100 = new NotionCombatPerkState();
+        mastery100.addFlow("p", 4, 0L);
+        mastery100.setActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 3000L);
+        CombatPerkAttackPolicy.beforeHit(daggerContext(1000L, false), ranks, mastery100, 100);
+        require(mastery100.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5999L), "mastery100 gives five second window");
+        require(!mastery100.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 6000L), "mastery100 window expires exactly");
+    }
+
+    private static CombatPerkAttackPolicy.AttackContext daggerContext(long nowMillis, boolean flank) {
+        return new CombatPerkAttackPolicy.AttackContext(
+            "p", "mob", CombatPerkDefinition.WeaponFamily.DAGGER,
+            true, true, false, false, false, false, flank, false,
+            1.0D, false, 0.0D, nowMillis
+        );
     }
 
     private static boolean close(double actual, double expected) {
