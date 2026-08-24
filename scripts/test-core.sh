@@ -35,6 +35,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkAttackPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkFinalizationPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0010FuryPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenPhysicalProtectionPolicyTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0046FocusPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatWeaponFamilyPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPositionPolicyTest
