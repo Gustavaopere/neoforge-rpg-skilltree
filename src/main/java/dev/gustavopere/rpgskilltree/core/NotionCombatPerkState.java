@@ -113,22 +113,29 @@ public final class NotionCombatPerkState {
         if (state.distanceControl == 0) state.distanceControlExpiresAt = 0L;
     }
 
-    public synchronized void addFlow(String actorId, int amount, long nowMillis) {
+    public synchronized void addFlow(String actorId, int amount, long nowMillis, long durationMillis) {
         if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
+        if (durationMillis <= 0) throw new IllegalArgumentException("duration must be positive");
         ActorState state = actor(actorId);
+        if (state.flowExpiresAt <= nowMillis) state.flow = 0;
         state.flow = Math.min(MAX_FLOW, state.flow + amount);
         state.lastFlowChange = nowMillis;
+        state.flowExpiresAt = safeAdd(nowMillis, durationMillis);
     }
 
-    public synchronized int flow(String actorId) {
-        return actorOrEmpty(actorId).flow;
+    public synchronized int flow(String actorId, long nowMillis) {
+        ActorState state = actorOrEmpty(actorId);
+        if (state.flowExpiresAt <= nowMillis) state.flow = 0;
+        return state.flow;
     }
 
-    public synchronized void consumeFlow(String actorId, int amount) {
+    public synchronized void consumeFlow(String actorId, int amount, long nowMillis) {
         if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
+        int current = flow(actorId, nowMillis);
         ActorState state = actor(actorId);
-        if (amount > state.flow) throw new IllegalArgumentException("insufficient flow");
+        if (amount > current) throw new IllegalArgumentException("insufficient flow");
         state.flow -= amount;
+        if (state.flow == 0) state.flowExpiresAt = 0L;
     }
 
     public synchronized void addFocus(String actorId, double amount, long nowMillis) {
@@ -345,6 +352,7 @@ public final class NotionCombatPerkState {
         long lastDistanceControlChange;
         long distanceControlExpiresAt;
         long lastFlowChange;
+        long flowExpiresAt;
         long lastFocusChange;
         String lastTargetId;
         final EnumMap<ActorFlag, Long> flags = new EnumMap<>(ActorFlag.class);

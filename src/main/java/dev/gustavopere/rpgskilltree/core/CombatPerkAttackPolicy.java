@@ -152,10 +152,10 @@ public final class CombatPerkAttackPolicy {
             }
             case DAGGER -> {
                 if (ranks.learned("A0024")
-                    && state.flow(context.actorId()) >= 4
+                    && state.flow(context.actorId(), context.nowMillis()) >= 4
                     && state.consumeActorFlag(
                         context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis())) {
-                    state.consumeFlow(context.actorId(), 4);
+                    state.consumeFlow(context.actorId(), 4, context.nowMillis());
                     long shadowDuration;
                     if (state.consumeActorFlag(
                         context.actorId(), NotionCombatPerkState.ActorFlag.SHADOW_DANCE_MASTERY_100, context.nowMillis())) {
@@ -176,9 +176,9 @@ public final class CombatPerkAttackPolicy {
                 int blindSpotRank = ranks.rank("A0023");
                 if (blindSpotRank > 0
                     && context.flankOrBack()
-                    && state.flow(context.actorId()) >= 2
+                    && state.flow(context.actorId(), context.nowMillis()) >= 2
                     && state.cooldownReady(context.actorId(), context.targetId(), "A0023", context.nowMillis())) {
-                    state.consumeFlow(context.actorId(), 2);
+                    state.consumeFlow(context.actorId(), 2, context.nowMillis());
                     armorNegation += blindSpotRank >= 2 ? 10.0D : 6.0D;
                     if (context.criticalHit()) damage *= blindSpotRank >= 2 ? 1.25D : 1.15D;
                     state.startCooldown(context.actorId(), context.targetId(), "A0023", context.nowMillis(), 4_000L);
@@ -306,7 +306,12 @@ public final class CombatPerkAttackPolicy {
                 if (flowRank > 0 && recentDodge) {
                     state.consumeActorFlag(
                         context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis());
-                    state.addFlow(context.actorId(), 1, context.nowMillis());
+                    state.addFlow(
+                        context.actorId(),
+                        1,
+                        context.nowMillis(),
+                        flowRank >= 2 ? 7_000L : 5_000L
+                    );
                 }
             }
             case HAMMER -> {

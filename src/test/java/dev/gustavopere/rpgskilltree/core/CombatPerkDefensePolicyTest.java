@@ -51,20 +51,20 @@ public final class CombatPerkDefensePolicyTest {
 
     private static void daggerCapstoneConsumesFlowOnNextAttack() {
         var state = new NotionCombatPerkState();
-        state.addFlow("p", 4, 1000L);
+        state.addFlow("p", 4, 1000L, 7_000L);
         var ranks = CombatPerkRanks.of(Map.of("A0022", 2, "A0024", 1));
         CombatPerkDefensePolicy.onSuccessfulDodge("p", CombatPerkDefinition.WeaponFamily.DAGGER, ranks, state, 80, 1000L);
 
         var trigger = daggerContext(2000L, false);
         CombatPerkAttackPolicy.beforeHit(trigger, ranks, state);
 
-        require(state.flow("p") == 0, "A0024 consumes all four flow");
+        require(state.flow("p", 2000L) == 0, "A0024 consumes all four flow");
         require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2000L), "A0024 consumes dodge trigger");
         require(state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5999L), "A0024 shadow dance base window");
         require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 6000L), "A0024 base window expires at four seconds");
 
         CombatPerkAttackPolicy.afterConfirmedHit(trigger, ranks, state);
-        require(state.flow("p") == 0, "capstone trigger cannot regenerate flow from same dodge");
+        require(state.flow("p", 2000L) == 0, "capstone trigger cannot regenerate flow from same dodge");
 
         var flank = daggerContext(3000L, true);
         var result = CombatPerkAttackPolicy.beforeHit(flank, ranks, state);
@@ -77,14 +77,14 @@ public final class CombatPerkDefensePolicyTest {
         var ranks = CombatPerkRanks.of(Map.of("A0024", 1));
 
         var mastery90 = new NotionCombatPerkState();
-        mastery90.addFlow("p", 4, 0L);
+        mastery90.addFlow("p", 4, 0L, 7_000L);
         CombatPerkDefensePolicy.onSuccessfulDodge("p", CombatPerkDefinition.WeaponFamily.DAGGER, ranks, mastery90, 90, 0L);
         CombatPerkAttackPolicy.beforeHit(daggerContext(1000L, false), ranks, mastery90);
         require(mastery90.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5499L), "mastery90 gives 4.5 second window");
         require(!mastery90.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5500L), "mastery90 window expires exactly");
 
         var mastery100 = new NotionCombatPerkState();
-        mastery100.addFlow("p", 4, 0L);
+        mastery100.addFlow("p", 4, 0L, 7_000L);
         CombatPerkDefensePolicy.onSuccessfulDodge("p", CombatPerkDefinition.WeaponFamily.DAGGER, ranks, mastery100, 100, 0L);
         CombatPerkAttackPolicy.beforeHit(daggerContext(1000L, false), ranks, mastery100);
         require(mastery100.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5999L), "mastery100 gives five second window");

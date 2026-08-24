@@ -75,13 +75,13 @@ public final class CombatPerkAttackPolicyTest {
         require(spearState.distanceControl("p", 1000L) == 0, "A0017 consumes distance control");
 
         var daggerState = new NotionCombatPerkState();
-        daggerState.addFlow("p", 2, 1000L);
+        daggerState.addFlow("p", 2, 1000L, 7_000L);
         var daggerRanks = CombatPerkRanks.of(Map.of("A0023", 2));
         var dagger = context(WeaponFamily.DAGGER, false, false, false, false, true, 1.0, 0.0, 1000L, true);
         var blindSpot = CombatPerkAttackPolicy.beforeHit(dagger, daggerRanks, daggerState);
         require(close(blindSpot.damageMultiplier(), 1.25), "A0023 critical damage when hit is critical");
         require(close(blindSpot.armorNegationPoints(), 10.0), "A0023 penetration");
-        require(daggerState.flow("p") == 0, "A0023 consumes flow");
+        require(daggerState.flow("p", 1000L) == 0, "A0023 consumes flow");
     }
 
     private static void recentDodgeCanGenerateDaggerFlow() {
@@ -90,7 +90,7 @@ public final class CombatPerkAttackPolicyTest {
         var ranks = CombatPerkRanks.of(Map.of("A0022", 1));
         var ctx = context(WeaponFamily.DAGGER, false, false, false, false, false, 1.0, 0.0, 2000L);
         CombatPerkAttackPolicy.afterConfirmedHit(ctx, ranks, state);
-        require(state.flow("p") == 1, "A0022 can generate flow after dodge");
+        require(state.flow("p", 2000L) == 1, "A0022 can generate flow after dodge");
         require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2000L), "dodge window consumed by hit");
     }
 
@@ -253,7 +253,7 @@ public final class CombatPerkAttackPolicyTest {
         CombatPerkAttackPolicy.afterConfirmedHit(
             context(WeaponFamily.SWORD, false, false, false, false, false, 1.0, 0.0, 1000L), swordRanks, state);
         require(state.momentum("p") == 1, "A0004 momentum generation");
-        require(state.flow("p") == 0, "sword cannot generate flow");
+        require(state.flow("p", 1000L) == 0, "sword cannot generate flow");
 
         var spearRanks = CombatPerkRanks.of(Map.of("A0016", 2));
         CombatPerkAttackPolicy.afterConfirmedHit(
@@ -263,7 +263,7 @@ public final class CombatPerkAttackPolicyTest {
         var daggerRanks = CombatPerkRanks.of(Map.of("A0022", 2));
         CombatPerkAttackPolicy.afterConfirmedHit(
             context(WeaponFamily.DAGGER, false, false, false, false, true, 1.0, 0.0, 3000L), daggerRanks, state);
-        require(state.flow("p") == 0, "remaining at the flank cannot farm A0022 flow");
+        require(state.flow("p", 3000L) == 0, "remaining at the flank cannot farm A0022 flow");
 
         var hammerRanks = CombatPerkRanks.of(Map.of("A0028", 2));
         CombatPerkAttackPolicy.afterConfirmedHit(
