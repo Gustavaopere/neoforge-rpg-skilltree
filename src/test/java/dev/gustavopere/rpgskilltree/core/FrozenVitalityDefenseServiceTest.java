@@ -26,9 +26,9 @@ public final class FrozenVitalityDefenseServiceTest {
     private static void openingDefenseRequiresTenSecondsAndConsumesOnce() {
         var service = new FrozenVitalityDefenseService();
         var ranks = FrozenCombatPerkRanks.of(Map.of("A0097", 3));
-        require(close(service.resolve(request("first", true, false, false, false, false, 1), ranks, 0L).damageMultiplier(), 1), "first observation only arms timer");
+        service.observeActor("victim", 0L);
         require(close(service.resolve(request("environment", false, false, false, false, false, 1), ranks, 9_999L).damageMultiplier(), 1), "environment does not consume or reset");
-        require(close(service.resolve(request("ready", true, false, false, false, false, 1), ranks, 10_000L).damageMultiplier(), 0.85D), "ten seconds arms opening defense");
+        require(close(service.resolve(request("ready", true, false, false, false, false, 1), ranks, 10_000L).damageMultiplier(), 0.85D), "ten seconds without hostile damage arms the first defense");
         require(close(service.resolve(request("consumed", true, false, false, false, false, 1), ranks, 10_001L).damageMultiplier(), 1), "next hostile event consumes preparation once");
     }
 
