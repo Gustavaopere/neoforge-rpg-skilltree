@@ -77,6 +77,9 @@ dependencies {
     compileOnly("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
         transitive = false
     }
+    testCompileOnly("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
+        transitive = false
+    }
     localRuntime("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
         transitive = false
     }
