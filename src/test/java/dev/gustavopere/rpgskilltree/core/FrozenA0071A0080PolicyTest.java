@@ -70,7 +70,7 @@ public final class FrozenA0071A0080PolicyTest {
         require(service.setStance("player", FrozenMartialTacticsService.Stance.CAUTIOUS, true, true, 3_500L), "exclusive switch after lock");
         require(service.stanceModifiers("player").damageMultiplier() == 0.95D, "cautious damage penalty");
         require(service.directPhysicalDamageTakenMultiplier("player") == 0.92D, "cautious resistance benefit");
-        service.revalidateStance("player", false, true);
+        service.revalidateStance("player", true, false);
         require(service.stance("player") == FrozenMartialTacticsService.Stance.NONE, "lost rank clears persistent stance");
         require(!service.confirmDodge("player", true, true, false, 4_000L), "button press alone is not dodge");
         require(service.confirmDodge("player", true, true, true, 4_001L), "confirmed hostile avoided attack");
