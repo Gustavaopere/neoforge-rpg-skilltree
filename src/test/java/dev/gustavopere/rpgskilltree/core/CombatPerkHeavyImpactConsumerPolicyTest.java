@@ -5,7 +5,7 @@ import java.util.Map;
 /** Consumer-side contract after the certified P-0002 heavy-impact receipt has been claimed. */
 public final class CombatPerkHeavyImpactConsumerPolicyTest {
     public static void main(String[] args) {
-        a0004ArmsCanonicalDecayWithoutInstantLoss();
+        a0004LosesExactlyTwoMomentumImmediately();
         a0016LosesExactlyOneDistanceControl();
         a0022LosesExactlyTwoFlow();
         a0046LosesExactlyTwentyFiveFocus();
@@ -13,18 +13,18 @@ public final class CombatPerkHeavyImpactConsumerPolicyTest {
         System.out.println("CombatPerkHeavyImpactConsumerPolicyTest: PASS");
     }
 
-    private static void a0004ArmsCanonicalDecayWithoutInstantLoss() {
+    private static void a0004LosesExactlyTwoMomentumImmediately() {
         var state = new NotionCombatPerkState();
         var ranks = CombatPerkRanks.of(Map.of("A0004", 1));
         state.addMomentum("p", 5, 1_000L);
 
         require(CombatPerkTransitionPolicy.applyA0004ConfirmedHeavyImpact("p", ranks, state, 2_000L),
-            "claimed A0004 heavy receipt must arm decay");
-        require(state.momentum("p") == 5, "A0004 heavy receipt must not invent immediate Momentum loss");
-        CombatPerkTransitionPolicy.tick("p", ranks, state, true, false, 2_999L);
-        require(state.momentum("p") == 5, "canonical heavy-triggered decay waits one second");
-        CombatPerkTransitionPolicy.tick("p", ranks, state, true, false, 3_000L);
-        require(state.momentum("p") == 4, "canonical heavy-triggered decay loses one after one second");
+            "claimed A0004 heavy receipt must resolve");
+        require(state.momentum("p") == 3, "A0004 heavy receipt removes exactly two Momentum immediately");
+        CombatPerkTransitionPolicy.tick("p", ranks, state, true, false, 5_999L);
+        require(state.momentum("p") == 3, "A0004 heavy loss preserves the original inactivity timer");
+        CombatPerkTransitionPolicy.tick("p", ranks, state, true, false, 6_000L);
+        require(state.momentum("p") == 2, "original five-second inactivity timer remains authoritative after heavy loss");
     }
 
     private static void a0016LosesExactlyOneDistanceControl() {
