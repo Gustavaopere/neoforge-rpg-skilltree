@@ -13,6 +13,7 @@ public final class CombatPerkAttackPolicyTest {
         hammerMaceAndScytheUsePerTargetPreparation();
         confirmedHitsGenerateOnlyTheirOwnResources();
         furyGenerationRequiresAnExplicitCanonicalBaseGain();
+        invalidActionsCannotGainTrainingOrResources();
         System.out.println("CombatPerkAttackPolicyTest: PASS");
     }
 
@@ -136,7 +137,7 @@ public final class CombatPerkAttackPolicyTest {
         var daggerRanks = CombatPerkRanks.of(Map.of("A0022", 2));
         CombatPerkAttackPolicy.afterConfirmedHit(
             context(WeaponFamily.DAGGER, false, false, false, false, true, 1.0, 0.0, 3000L), daggerRanks, state);
-        require(state.flow("p") == 1, "A0022 flow");
+        require(state.flow("p") == 0, "remaining at the flank cannot farm A0022 flow");
 
         var hammerRanks = CombatPerkRanks.of(Map.of("A0028", 2));
         CombatPerkAttackPolicy.afterConfirmedHit(
@@ -174,6 +175,32 @@ public final class CombatPerkAttackPolicyTest {
             state
         );
         require(close(state.fury("p"), 30.0), "target switch gets +50% after rank multiplier");
+    }
+
+    private static void invalidActionsCannotGainTrainingOrResources() {
+        var ranks = CombatPerkRanks.of(Map.of("A0001", 3, "A0004", 1));
+
+        var indirectState = new NotionCombatPerkState();
+        var indirect = new CombatPerkAttackPolicy.AttackContext(
+            "p", "mob", WeaponFamily.SWORD,
+            false, true, false, false, false, false, false, false,
+            1.0D, false, 0.0D, 1000L
+        );
+        var indirectModifiers = CombatPerkAttackPolicy.beforeHit(indirect, ranks, indirectState);
+        require(close(indirectModifiers.damageMultiplier(), 1.0D), "indirect damage cannot receive training");
+        CombatPerkAttackPolicy.afterConfirmedHit(indirect, ranks, indirectState);
+        require(indirectState.momentum("p") == 0, "indirect damage cannot generate momentum");
+
+        var passiveState = new NotionCombatPerkState();
+        var passive = new CombatPerkAttackPolicy.AttackContext(
+            "p", "passive", WeaponFamily.SWORD,
+            true, false, false, false, false, false, false, false,
+            1.0D, false, 0.0D, 1000L
+        );
+        var passiveModifiers = CombatPerkAttackPolicy.beforeHit(passive, ranks, passiveState);
+        require(close(passiveModifiers.damageMultiplier(), 1.0D), "non-hostile target cannot receive training damage");
+        CombatPerkAttackPolicy.afterConfirmedHit(passive, ranks, passiveState);
+        require(passiveState.momentum("p") == 0, "non-hostile target cannot generate momentum");
     }
 
     private static CombatPerkAttackPolicy.AttackContext context(
