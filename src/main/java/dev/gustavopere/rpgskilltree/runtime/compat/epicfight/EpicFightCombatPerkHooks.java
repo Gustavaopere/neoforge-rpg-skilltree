@@ -22,6 +22,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
@@ -36,6 +37,7 @@ import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.HurtableEntityPatch;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
+import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 
 /** Optional Epic Fight adapter for the audited A0001-A0050 combat-perk batch. */
 public final class EpicFightCombatPerkHooks {
@@ -83,7 +85,7 @@ public final class EpicFightCombatPerkHooks {
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player)) return;
         if (!eligible(player)) return;
 
-        ItemStack usedItem = event.getDamageSource().getUsedItem();
+        ItemStack usedItem = usedWeapon(event.getDamageSource());
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(usedItem);
         Optional<WeaponFamily> resolved = weaponFamily(usedItem, capability);
         if (resolved.isEmpty()) return;
@@ -136,7 +138,7 @@ public final class EpicFightCombatPerkHooks {
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player)) return;
         if (!eligible(player) || event.getModifiedDamage() <= 0.0F) return;
 
-        ItemStack usedItem = event.getDamageSource().getUsedItem();
+        ItemStack usedItem = usedWeapon(event.getDamageSource());
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(usedItem);
         Optional<WeaponFamily> resolved = weaponFamily(usedItem, capability);
         if (resolved.isEmpty()) return;
@@ -217,10 +219,20 @@ public final class EpicFightCombatPerkHooks {
         return PlayerProgressionRuntime.get(player).mastery().experience("epicfight:" + category);
     }
 
+    private static ItemStack usedWeapon(EpicFightDamageSource source) {
+        ItemStack usedItem = source.getUsedItem();
+        if (!usedItem.isEmpty()) return usedItem;
+        if (source.getDirectEntity() instanceof AbstractArrow arrow) {
+            ItemStack firedFromWeapon = arrow.getWeaponItem();
+            if (!firedFromWeapon.isEmpty()) return firedFromWeapon;
+        }
+        return ItemStack.EMPTY;
+    }
+
     private static CombatPerkAttackPolicy.AttackContext context(
         ServerPlayer player,
         LivingEntity target,
-        yesman.epicfight.world.damagesource.EpicFightDamageSource source,
+        EpicFightDamageSource source,
         WeaponFamily family
     ) {
         boolean projectileDirect = source.getDirectEntity() instanceof Projectile;
