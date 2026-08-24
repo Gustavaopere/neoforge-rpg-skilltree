@@ -7,13 +7,13 @@ import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponFamilyPolicy;
+import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkState;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
-import java.util.Locale;
 import java.util.Optional;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -161,7 +161,7 @@ public final class EpicFightCombatPerkHooks {
                     WeaponFamily.HAMMER,
                     ranks,
                     state,
-                    weaponMastery(player, capability, WeaponFamily.HAMMER),
+                    weaponMastery(player, WeaponFamily.HAMMER),
                     context.nowMillis()
                 );
             }
@@ -207,19 +207,18 @@ public final class EpicFightCombatPerkHooks {
             resolved.get(),
             ranks,
             CombatPerkRuntimeState.state(),
-            weaponMastery(player, capability, resolved.get()),
+            weaponMastery(player, resolved.get()),
             Math.multiplyExact(player.level().getGameTime(), 50L)
         );
     }
 
-    private static int weaponMastery(ServerPlayer player, CapabilityItem capability, WeaponFamily family) {
-        String category = capability != null && !capability.isEmpty()
-            ? capability.getWeaponCategory().toString().toLowerCase(Locale.ROOT)
-            : family.name().toLowerCase(Locale.ROOT);
-        return PlayerProgressionRuntime.get(player).mastery().experience("epicfight:" + category);
+    private static int weaponMastery(ServerPlayer player, WeaponFamily family) {
+        return PlayerProgressionRuntime.get(player).mastery().experience(
+            CombatWeaponMasteryPolicy.masteryLane(family)
+        );
     }
 
-    private static ItemStack usedWeapon(EpicFightDamageSource source) {
+    static ItemStack usedWeapon(EpicFightDamageSource source) {
         ItemStack usedItem = source.getUsedItem();
         if (!usedItem.isEmpty()) return usedItem;
         if (source.getDirectEntity() instanceof AbstractArrow arrow) {
@@ -265,7 +264,7 @@ public final class EpicFightCombatPerkHooks {
         );
     }
 
-    private static Optional<WeaponFamily> weaponFamily(ItemStack stack, CapabilityItem capability) {
+    static Optional<WeaponFamily> weaponFamily(ItemStack stack, CapabilityItem capability) {
         if (capability != null && !capability.isEmpty()) {
             Optional<WeaponFamily> provider = CombatWeaponFamilyPolicy.fromEpicFightCategory(
                 capability.getWeaponCategory().toString()

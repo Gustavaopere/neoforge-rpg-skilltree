@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
 import dev.gustavopere.rpgskilltree.core.ActionOrigin;
 import dev.gustavopere.rpgskilltree.core.CombatAction;
+import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
 import dev.gustavopere.rpgskilltree.core.EpicFightStaminaPolicy;
 import dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategory;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
@@ -10,6 +11,8 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
@@ -18,6 +21,7 @@ import yesman.epicfight.api.event.types.player.SkillConsumeEvent;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
+import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 
 /** Optional Epic Fight adapter. Registered only when Epic Fight is present. */
 public final class EpicFightProgressionHooks {
@@ -52,12 +56,23 @@ public final class EpicFightProgressionHooks {
         double damage = Math.max(0.0D, event.getModifiedDamage());
         if (damage <= 0.0D) return;
 
-        var usedItem = event.getDamageSource().getUsedItem();
+        EpicFightDamageSource damageSource = event.getDamageSource();
+        ItemStack usedItem = EpicFightCombatPerkHooks.usedWeapon(damageSource);
+        if (!directWeaponAction(player, damageSource, usedItem)) return;
         var weaponCapability = EpicFightCapabilities.getItemStackCapability(usedItem);
+        var origin = new ActionOrigin("epicfight:damage_post", 0);
+        var family = EpicFightCombatPerkHooks.weaponFamily(usedItem, weaponCapability);
+        if (family.isPresent()) {
+            PlayerProgressionRuntime.awardMastery(
+                player,
+                CombatWeaponMasteryPolicy.forConfirmedHit(origin, family.get(), "weapon_hit")
+            );
+            return;
+        }
         String category = EpicFightWeaponCategory.normalize(weaponCapability.getWeaponCategory().toString());
 
         CombatAction action = new CombatAction(
-            new ActionOrigin("epicfight:damage_post", 0),
+            origin,
             "epicfight",
             category,
             "weapon_hit",
@@ -65,6 +80,17 @@ public final class EpicFightProgressionHooks {
             damage
         );
         PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forEpicFight(action));
+    }
+
+    private static boolean directWeaponAction(
+        ServerPlayer player,
+        EpicFightDamageSource source,
+        ItemStack usedItem
+    ) {
+        if (source.getDirectEntity() == player) return true;
+        return !usedItem.isEmpty()
+            && source.getDirectEntity() instanceof Projectile projectile
+            && projectile.getOwner() == player;
     }
 
     private static void onSkillConsume(SkillConsumeEvent event) {
