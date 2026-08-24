@@ -55,3 +55,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ExactStaminaPerkIntegrationCon
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0051A0060CatalogTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0051A0060PolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenCombatTreeProgressionTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0061A0070PolicyTest
