@@ -67,11 +67,11 @@ public final class NotionCombatPerkCatalogTest {
     }
 
     private static void trainingRulesAreWeaponSpecific() {
-        var ranks = CombatPerkRanks.of(Map.of(
-            "A0001", 3, "A0002", 2, "A0003", 1,
-            "A0007", 1, "A0008", 3, "A0009", 2,
-            "A0043", 2, "A0044", 1, "A0045", 3,
-            "A0049", 3, "A0050", 2
+        var ranks = CombatPerkRanks.of(Map.ofEntries(
+            Map.entry("A0001", 3), Map.entry("A0002", 2), Map.entry("A0003", 1),
+            Map.entry("A0007", 1), Map.entry("A0008", 3), Map.entry("A0009", 2),
+            Map.entry("A0043", 2), Map.entry("A0044", 1), Map.entry("A0045", 3),
+            Map.entry("A0049", 3), Map.entry("A0050", 2)
         ));
 
         require(close(NotionCombatPerkRules.baseDamageMultiplier(CombatPerkDefinition.WeaponFamily.SWORD, ranks), 1.09), "A0001 sword damage");
