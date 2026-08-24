@@ -6,6 +6,8 @@ import java.util.Map;
 public final class FrozenA0081A0090PolicyTest {
     public static void main(String[] args) {
         coefficientsAreFrozenAndUniversalIsOnlyFallback();
+        periodicProvidersRequireExplicitClassificationAndPersistentOrigin();
+        periodicPulseIdentityDeduplicatesMultiTargetCallbacks();
         bloodThirstCannotStartOrRemainWithoutBodyCosts();
         vitalityAttributesAreRelativeAndBounded();
         System.out.println("FrozenA0081A0090PolicyTest: PASS");
@@ -19,6 +21,56 @@ public final class FrozenA0081A0090PolicyTest {
         require(close(FrozenSustainPolicy.periodicCoefficient(ranks), 0.0105D), "A0085");
         require(close(FrozenSustainPolicy.coefficientFor(ranks, true, true, false, false), 0.018D), "specialized maximum wins");
         require(close(FrozenSustainPolicy.coefficientFor(FrozenCombatPerkRanks.of(Map.of("A0086", 1)), true, false, false, false), 0.01D), "universal fills uncovered source");
+    }
+
+    private static void periodicProvidersRequireExplicitClassificationAndPersistentOrigin() {
+        require(FrozenPeriodicProviderPolicy.classify(
+            "io.redspace.ironsspellbooks.damage.SpellDamageSource",
+            "net.minecraft.server.level.ServerPlayer",
+            "io.redspace.ironsspellbooks.spells.blood.RayOfSiphoningSpell",
+            false,
+            true
+        ) == FrozenPeriodicProviderPolicy.Classification.IRONS_RAY_OF_SIPHONING,
+            "Iron's continuous siphon is explicitly periodic");
+        require(FrozenPeriodicProviderPolicy.classify(
+            "io.redspace.ironsspellbooks.damage.SpellDamageSource",
+            "net.minecraft.server.level.ServerPlayer",
+            "io.redspace.ironsspellbooks.spells.blood.BloodSlashSpell",
+            false,
+            true
+        ) == FrozenPeriodicProviderPolicy.Classification.NONE,
+            "blood school alone never implies periodic damage");
+        require(FrozenPeriodicProviderPolicy.classify(
+            "net.minecraft.world.damagesource.DamageSource",
+            "com.Polarice3.Goety.common.entities.projectiles.AcidPool",
+            "",
+            false,
+            true
+        ) == FrozenPeriodicProviderPolicy.Classification.GOETY_ACID_POOL,
+            "Goety AcidPool carries application ownership into every pulse");
+        require(FrozenPeriodicProviderPolicy.classify(
+            "net.minecraft.world.damagesource.DamageSource",
+            "",
+            "",
+            true,
+            false
+        ) == FrozenPeriodicProviderPolicy.Classification.NONE,
+            "configured tag without persistent origin fails closed");
+    }
+
+    private static void periodicPulseIdentityDeduplicatesMultiTargetCallbacks() {
+        var firstTarget = CanonicalPeriodicPulseIdentity.forPulse(
+            "player", "goety_acid_pool", "pool-uuid", 40L);
+        var secondTarget = CanonicalPeriodicPulseIdentity.forPulse(
+            "player", "goety_acid_pool", "pool-uuid", 40L);
+        require(firstTarget.sameAction(secondTarget),
+            "one application pulse hitting several targets has one action identity");
+        require(!firstTarget.sameAction(CanonicalPeriodicPulseIdentity.forPulse(
+            "player", "goety_acid_pool", "pool-uuid", 41L)),
+            "the next pulse is a new action");
+        require(!firstTarget.sameAction(CanonicalPeriodicPulseIdentity.forPulse(
+            "player", "goety_acid_pool", "other-pool", 40L)),
+            "different applications remain independent");
     }
 
     private static void bloodThirstCannotStartOrRemainWithoutBodyCosts() {
