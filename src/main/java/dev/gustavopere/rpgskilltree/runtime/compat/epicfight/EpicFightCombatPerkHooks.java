@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
 import dev.gustavopere.rpgskilltree.core.CombatPerkAttackPolicy;
+import dev.gustavopere.rpgskilltree.core.CombatPerkDefensePolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
@@ -10,6 +11,7 @@ import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
+import java.util.Locale;
 import java.util.Optional;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +28,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
+import yesman.epicfight.api.event.types.entity.DodgeEvent;
 import yesman.epicfight.api.event.types.entity.ModifyAttackSpeedEvent;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
@@ -37,6 +40,7 @@ public final class EpicFightCombatPerkHooks {
     private static final String PRE_SUBSCRIBER_ID = "rpgskilltree:notion_combat/damage_pre";
     private static final String POST_SUBSCRIBER_ID = "rpgskilltree:notion_combat/damage_post";
     private static final String SPEED_SUBSCRIBER_ID = "rpgskilltree:notion_combat/attack_speed";
+    private static final String DODGE_SUBSCRIBER_ID = "rpgskilltree:notion_combat/dodge";
 
     private static final TagKey<Item> SWORDS = tag("swords");
     private static final TagKey<Item> AXES = tag("axes");
@@ -65,6 +69,10 @@ public final class EpicFightCombatPerkHooks {
         EpicFightEventHooks.Entity.MODIFY_ATTACK_SPEED.registerEvent(
             EpicFightCombatPerkHooks::onModifyAttackSpeed,
             SPEED_SUBSCRIBER_ID
+        );
+        EpicFightEventHooks.Entity.ON_DODGE.registerEvent(
+            EpicFightCombatPerkHooks::onSuccessfulDodge,
+            DODGE_SUBSCRIBER_ID
         );
         registered = true;
     }
@@ -142,6 +150,33 @@ public final class EpicFightCombatPerkHooks {
         if (bonus > 0.0D) {
             event.setAttackSpeed((float)(event.getAttackSpeed() * (1.0D + bonus)));
         }
+    }
+
+    private static void onSuccessfulDodge(DodgeEvent event) {
+        if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player)) return;
+        if (!eligible(player)) return;
+
+        ItemStack held = player.getMainHandItem();
+        CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(held);
+        Optional<WeaponFamily> resolved = weaponFamily(held, capability);
+        if (resolved.isEmpty()) return;
+
+        CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
+        if (ranks.ranks().isEmpty()) return;
+
+        String category = capability != null && !capability.isEmpty()
+            ? capability.getWeaponCategory().toString().toLowerCase(Locale.ROOT)
+            : resolved.get().name().toLowerCase(Locale.ROOT);
+        int weaponMastery = PlayerProgressionRuntime.get(player).mastery().experience("epicfight:" + category);
+
+        CombatPerkDefensePolicy.onSuccessfulDodge(
+            CombatPerkRuntimeState.actorId(player),
+            resolved.get(),
+            ranks,
+            CombatPerkRuntimeState.state(),
+            weaponMastery,
+            Math.multiplyExact(player.level().getGameTime(), 50L)
+        );
     }
 
     private static CombatPerkAttackPolicy.AttackContext context(
