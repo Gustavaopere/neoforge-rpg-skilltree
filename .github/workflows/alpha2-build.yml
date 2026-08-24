@@ -110,7 +110,14 @@ jobs:
           JAR="$(find build/libs -maxdepth 1 -type f -name 'RPGSkillTree*.jar' | head -n 1)"
           test -n "$JAR"
           jar tf "$JAR" | grep -Fx 'META-INF/neoforge.mods.toml'
+          jar tf "$JAR" | grep -Fx 'rpgskilltree-compat-epicfight-receipt.mixins.json'
           jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/RpgSkillTreeMod.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightExactStaminaReceiptBridge.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightExecutionScope.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/PlayerPatchStaminaReceiptMixin.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/SkillContainerStaminaReceiptMixin.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/ComboAttacksStaminaReceiptMixin.class'
+          unzip -p "$JAR" META-INF/neoforge.mods.toml | grep -F 'config="rpgskilltree-compat-epicfight-receipt.mixins.json"'
           echo "jar_path=$JAR" >> "$GITHUB_OUTPUT"
 
       - name: NeoForge dedicated-server smoke test
