@@ -1,0 +1,317 @@
+package dev.gustavopere.rpgskilltree.core;
+
+import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
+import java.util.Objects;
+
+/**
+ * Pure, provider-independent combat-perk policy for one confirmed attack attempt.
+ *
+ * <p>Provider adapters are responsible only for supplying facts that they can prove (weapon family,
+ * heavy/positional state, target defense, canonical Fury gain, critical result, etc.). Missing facts
+ * remain false/zero instead of being inferred heuristically here.
+ */
+public final class CombatPerkAttackPolicy {
+    private CombatPerkAttackPolicy() {}
+
+    public record AttackContext(
+        String actorId,
+        String targetId,
+        WeaponFamily weaponFamily,
+        boolean direct,
+        boolean hostile,
+        boolean relevantDefense,
+        boolean heavyAttack,
+        boolean idealRange,
+        boolean targetAdvancing,
+        boolean flankOrBack,
+        boolean protectedTarget,
+        double targetHealthFraction,
+        boolean criticalHit,
+        double baseFuryGain,
+        long nowMillis
+    ) {
+        public AttackContext {
+            requireId(actorId, "actorId");
+            requireId(targetId, "targetId");
+            Objects.requireNonNull(weaponFamily);
+            if (!Double.isFinite(targetHealthFraction) || targetHealthFraction < 0.0D || targetHealthFraction > 1.0D) {
+                throw new IllegalArgumentException("targetHealthFraction must be in 0..1");
+            }
+            if (!Double.isFinite(baseFuryGain) || baseFuryGain < 0.0D) {
+                throw new IllegalArgumentException("baseFuryGain must be finite and non-negative");
+            }
+        }
+
+        public AttackContext withNowMillis(long value) {
+            return new AttackContext(
+                actorId, targetId, weaponFamily, direct, hostile, relevantDefense, heavyAttack,
+                idealRange, targetAdvancing, flankOrBack, protectedTarget, targetHealthFraction,
+                criticalHit, baseFuryGain, value
+            );
+        }
+    }
+
+    public record HitModifiers(
+        double damageMultiplier,
+        double armorNegationPoints,
+        double impactMultiplier,
+        double guardPressureMultiplier
+    ) {
+        public HitModifiers {
+            requirePositiveFinite(damageMultiplier, "damageMultiplier");
+            requireNonNegativeFinite(armorNegationPoints, "armorNegationPoints");
+            requirePositiveFinite(impactMultiplier, "impactMultiplier");
+            requirePositiveFinite(guardPressureMultiplier, "guardPressureMultiplier");
+        }
+    }
+
+    public static HitModifiers beforeHit(
+        AttackContext context,
+        CombatPerkRanks ranks,
+        NotionCombatPerkState state
+    ) {
+        Objects.requireNonNull(context);
+        Objects.requireNonNull(ranks);
+        Objects.requireNonNull(state);
+
+        double damage = NotionCombatPerkRules.baseDamageMultiplier(context.weaponFamily(), ranks);
+        double armorNegation = 0.0D;
+        double impact = 1.0D;
+        double guardPressure = 1.0D;
+
+        if (!context.direct() || !context.hostile()) {
+            return new HitModifiers(damage, armorNegation, impact, guardPressure);
+        }
+
+        switch (context.weaponFamily()) {
+            case SWORD -> {
+                if (ranks.learned("A0005")
+                    && state.momentum(context.actorId()) >= 3
+                    && state.cooldownReady(context.actorId(), context.targetId(), "A0005", context.nowMillis())) {
+                    state.consumeMomentum(context.actorId(), 2);
+                    armorNegation += 12.0D;
+                    impact *= 1.08D;
+                    guardPressure *= 1.08D;
+                    state.startCooldown(context.actorId(), context.targetId(), "A0005", context.nowMillis(), 6_000L);
+                }
+
+                if (ranks.learned("A0006")
+                    && state.momentum(context.actorId()) >= 5
+                    && state.consumeActorFlag(context.actorId(), NotionCombatPerkState.ActorFlag.PERFECT_RIPOSTE, context.nowMillis())) {
+                    state.consumeMomentum(context.actorId(), 5);
+                    if (context.criticalHit()) damage *= 1.20D;
+                    impact *= 1.20D;
+                    guardPressure *= 1.20D;
+                }
+            }
+            case AXE -> {
+                int ruptureRank = ranks.rank("A0011");
+                if (ruptureRank > 0 && context.relevantDefense() && state.fury(context.actorId()) >= 40.0D) {
+                    state.consumeFury(context.actorId(), 20.0D);
+                    armorNegation += ruptureRank >= 2 ? 10.0D : 6.0D;
+                    guardPressure *= ruptureRank >= 2 ? 1.35D : 1.20D;
+                }
+
+                if (ranks.learned("A0012") && state.fury(context.actorId()) >= 75.0D) {
+                    impact *= 1.10D;
+                    if (context.heavyAttack() && state.fury(context.actorId()) >= 100.0D) {
+                        state.consumeFury(context.actorId(), 40.0D);
+                        impact *= 1.20D;
+                        guardPressure *= 1.20D;
+                    }
+                }
+            }
+            case SPEAR -> {
+                int interceptionRank = ranks.rank("A0017");
+                if (interceptionRank > 0
+                    && context.idealRange()
+                    && context.targetAdvancing()
+                    && state.distanceControl(context.actorId()) >= 1) {
+                    state.consumeDistanceControl(context.actorId(), 1);
+                    double pressure = interceptionRank >= 2 ? 1.35D : 1.20D;
+                    impact *= pressure;
+                    guardPressure *= pressure;
+                }
+
+                if (ranks.learned("A0018")
+                    && state.distanceControl(context.actorId()) >= 3
+                    && state.consumeTargetFlag(
+                        context.actorId(), context.targetId(),
+                        NotionCombatPerkState.TargetFlag.INTERCEPTION_WINDOW, context.nowMillis())) {
+                    state.consumeDistanceControl(context.actorId(), 3);
+                    damage *= 1.15D;
+                    impact *= 1.40D;
+                    guardPressure *= 1.40D;
+                }
+            }
+            case DAGGER -> {
+                int blindSpotRank = ranks.rank("A0023");
+                if (blindSpotRank > 0
+                    && context.flankOrBack()
+                    && state.flow(context.actorId()) >= 2
+                    && state.cooldownReady(context.actorId(), context.targetId(), "A0023", context.nowMillis())) {
+                    state.consumeFlow(context.actorId(), 2);
+                    armorNegation += blindSpotRank >= 2 ? 10.0D : 6.0D;
+                    if (context.criticalHit()) damage *= blindSpotRank >= 2 ? 1.25D : 1.15D;
+                    state.startCooldown(context.actorId(), context.targetId(), "A0023", context.nowMillis(), 4_000L);
+                }
+
+                if (ranks.learned("A0024")
+                    && context.flankOrBack()
+                    && state.consumeActorFlag(context.actorId(), NotionCombatPerkState.ActorFlag.SHADOW_DANCE, context.nowMillis())) {
+                    damage *= 1.15D;
+                    impact *= 1.20D;
+                }
+            }
+            case HAMMER -> {
+                int shockRank = ranks.rank("A0028");
+                int shock = state.targetCounter(
+                    context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.SHOCK, context.nowMillis());
+                if (shockRank > 0 && shock > 0) {
+                    double perStack = shockRank >= 2 ? 0.12D : 0.08D;
+                    guardPressure *= 1.0D + perStack * shock;
+                }
+
+                int postureBreakRank = ranks.rank("A0029");
+                if (postureBreakRank > 0 && context.heavyAttack() && shock >= 3) {
+                    state.consumeTargetCounter(
+                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.SHOCK, 3, context.nowMillis());
+                    guardPressure *= postureBreakRank >= 2 ? 1.45D : 1.30D;
+                    impact *= postureBreakRank >= 2 ? 1.15D : 1.10D;
+                }
+
+                if (ranks.learned("A0030")
+                    && context.heavyAttack()
+                    && state.consumeTargetFlag(
+                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.DEMOLISH_WINDOW, context.nowMillis())) {
+                    damage *= 1.20D;
+                    impact *= 1.25D;
+                }
+            }
+            case MACE -> {
+                int armorCrackRank = ranks.rank("A0035");
+                boolean crackedBeforeHit = state.hasTargetFlag(
+                    context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.ARMOR_CRACKED, context.nowMillis());
+                if (armorCrackRank > 0 && crackedBeforeHit) {
+                    armorNegation += armorCrackRank >= 2 ? 9.0D : 6.0D;
+                }
+
+                int trauma = state.targetCounter(
+                    context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.TRAUMA, context.nowMillis());
+                if (armorCrackRank > 0 && trauma >= 3) {
+                    state.consumeTargetCounter(
+                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.TRAUMA, 3, context.nowMillis());
+                    long duration = armorCrackRank >= 2 ? 6_000L : 4_000L;
+                    state.setTargetFlag(
+                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.ARMOR_CRACKED,
+                        Math.addExact(context.nowMillis(), duration));
+                }
+            }
+            case SCYTHE -> {
+                int reapRank = ranks.rank("A0041");
+                if (reapRank > 0
+                    && context.targetHealthFraction() < 0.50D
+                    && state.hasTargetFlag(
+                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.REAPING_MARK, context.nowMillis())
+                    && state.hasTargetFlag(
+                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.REAPING_MATURE, context.nowMillis())) {
+                    state.clearTargetFlag(context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.REAPING_MARK);
+                    state.clearTargetFlag(context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.REAPING_MATURE);
+                    damage *= reapRank >= 2 ? 1.20D : 1.12D;
+                    impact *= reapRank >= 2 ? 1.25D : 1.15D;
+                }
+            }
+            case BOW, CROSSBOW -> {
+                // Training damage is already applied above. Projectile-specific Focus and prepared-shot
+                // facts are supplied by the ranged adapter rather than inferred from a melee hit.
+            }
+        }
+
+        return new HitModifiers(damage, armorNegation, impact, guardPressure);
+    }
+
+    public static void afterConfirmedHit(
+        AttackContext context,
+        CombatPerkRanks ranks,
+        NotionCombatPerkState state
+    ) {
+        Objects.requireNonNull(context);
+        Objects.requireNonNull(ranks);
+        Objects.requireNonNull(state);
+        if (!context.direct() || !context.hostile()) return;
+
+        switch (context.weaponFamily()) {
+            case SWORD -> {
+                if (ranks.learned("A0004")) state.addMomentum(context.actorId(), 1, context.nowMillis());
+            }
+            case AXE -> {
+                int furyRank = ranks.rank("A0010");
+                boolean switchedTarget = state.recordTargetAndWasDifferent(context.actorId(), context.targetId());
+                if (furyRank > 0 && context.baseFuryGain() > 0.0D) {
+                    double gain = context.baseFuryGain() * (1.0D + 0.10D * furyRank);
+                    if (switchedTarget) gain *= 1.50D;
+                    state.addFury(context.actorId(), gain, context.nowMillis());
+                }
+            }
+            case SPEAR -> {
+                int rangeRank = ranks.rank("A0016");
+                if (rangeRank > 0 && context.idealRange()) {
+                    state.addDistanceControl(context.actorId(), 1, context.nowMillis());
+                }
+            }
+            case DAGGER -> {
+                int flowRank = ranks.rank("A0022");
+                if (flowRank > 0 && context.flankOrBack()) {
+                    state.addFlow(context.actorId(), 1, context.nowMillis());
+                }
+            }
+            case HAMMER -> {
+                if (ranks.learned("A0028")) {
+                    state.addTargetCounter(
+                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.SHOCK,
+                        1, 3, context.nowMillis(), 6_000L);
+                }
+            }
+            case MACE -> {
+                int traumaRank = ranks.rank("A0034");
+                if (traumaRank > 0 && (context.relevantDefense() || context.protectedTarget())) {
+                    state.addTargetCounter(
+                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.TRAUMA,
+                        1, 3, context.nowMillis(), traumaRank >= 2 ? 8_000L : 6_000L);
+                }
+            }
+            case SCYTHE -> {
+                int markRank = ranks.rank("A0040");
+                if (markRank > 0) {
+                    long expiresAt = Math.addExact(context.nowMillis(), markRank >= 2 ? 10_000L : 8_000L);
+                    state.setTargetFlag(
+                        context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.REAPING_MARK, expiresAt);
+                    if (context.targetHealthFraction() < 0.50D) {
+                        state.setTargetFlag(
+                            context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.REAPING_MATURE, expiresAt);
+                    }
+                }
+            }
+            case BOW, CROSSBOW -> {
+                // Projectile-specific resource generation belongs to the ranged adapter.
+            }
+        }
+    }
+
+    private static void requireId(String value, String name) {
+        Objects.requireNonNull(value);
+        if (value.isBlank()) throw new IllegalArgumentException(name + " must not be blank");
+    }
+
+    private static void requirePositiveFinite(double value, String name) {
+        if (!Double.isFinite(value) || value <= 0.0D) {
+            throw new IllegalArgumentException(name + " must be finite and positive");
+        }
+    }
+
+    private static void requireNonNegativeFinite(double value, String name) {
+        if (!Double.isFinite(value) || value < 0.0D) {
+            throw new IllegalArgumentException(name + " must be finite and non-negative");
+        }
+    }
+}
