@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.core;
 
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import java.util.Objects;
+import java.util.OptionalDouble;
 
 /**
  * Pure, provider-independent combat-perk policy for one confirmed attack attempt.
@@ -14,6 +15,7 @@ public final class CombatPerkAttackPolicy {
     private CombatPerkAttackPolicy() {}
 
     public record AttackContext(
+        CanonicalActionIdentity action,
         String actorId,
         String targetId,
         WeaponFamily weaponFamily,
@@ -31,15 +33,53 @@ public final class CombatPerkAttackPolicy {
         long nowMillis
     ) {
         public AttackContext {
+            Objects.requireNonNull(action);
             requireId(actorId, "actorId");
             requireId(targetId, "targetId");
             Objects.requireNonNull(weaponFamily);
+            if (!action.actorId().equals(actorId)) {
+                throw new IllegalArgumentException("action actor must match actorId");
+            }
             if (!Double.isFinite(targetHealthFraction) || targetHealthFraction < 0.0D || targetHealthFraction > 1.0D) {
                 throw new IllegalArgumentException("targetHealthFraction must be in 0..1");
             }
             if (!Double.isFinite(baseFuryGain) || baseFuryGain < 0.0D) {
                 throw new IllegalArgumentException("baseFuryGain must be finite and non-negative");
             }
+        }
+
+        /** Compatibility constructor for pure callers that do not yet supply provider identity. */
+        public AttackContext(
+            String actorId,
+            String targetId,
+            WeaponFamily weaponFamily,
+            boolean direct,
+            boolean hostile,
+            boolean relevantDefense,
+            boolean heavyAttack,
+            boolean idealRange,
+            boolean targetAdvancing,
+            boolean flankOrBack,
+            boolean protectedTarget,
+            double targetHealthFraction,
+            boolean criticalHit,
+            double baseFuryGain,
+            long nowMillis
+        ) {
+            this(
+                legacyAction(actorId, targetId, weaponFamily, nowMillis),
+                actorId, targetId, weaponFamily, direct, hostile, relevantDefense, heavyAttack,
+                idealRange, targetAdvancing, flankOrBack, protectedTarget, targetHealthFraction,
+                criticalHit, baseFuryGain, nowMillis
+            );
+        }
+
+        public AttackContext withAction(CanonicalActionIdentity value) {
+            return new AttackContext(
+                value, actorId, targetId, weaponFamily, direct, hostile, relevantDefense, heavyAttack,
+                idealRange, targetAdvancing, flankOrBack, protectedTarget, targetHealthFraction,
+                criticalHit, baseFuryGain, nowMillis
+            );
         }
 
         public AttackContext withNowMillis(long value) {
@@ -81,6 +121,9 @@ public final class CombatPerkAttackPolicy {
         if (!context.direct() || !context.hostile()) {
             return new HitModifiers(1.0D, armorNegation, impact, guardPressure);
         }
+        if (!state.claimPrimaryOnce(context.action(), "combat:before-hit", context.nowMillis())) {
+            return new HitModifiers(1.0D, armorNegation, impact, guardPressure);
+        }
         double damage = NotionCombatPerkRules.baseDamageMultiplier(context.weaponFamily(), ranks);
 
         switch (context.weaponFamily()) {
@@ -111,16 +154,31 @@ public final class CombatPerkAttackPolicy {
             }
             case AXE -> {
                 int ruptureRank = ranks.rank("A0011");
-                if (ruptureRank > 0 && context.relevantDefense() && state.fury(context.actorId()) >= 40.0D) {
-                    state.consumeFury(context.actorId(), 20.0D);
+                boolean rupture = ruptureRank > 0
+                    && context.relevantDefense()
+                    && state.furyService().consume(
+                        new CanonicalFuryService.ConsumptionRequest(
+                            context.action(), true, true, context.direct(), "A0011", 40.0D, 20.0D
+                        ),
+                        state,
+                        context.nowMillis()
+                    ) == CanonicalFuryService.ConsumptionStatus.APPLIED;
+                if (rupture) {
                     armorNegation += ruptureRank >= 2 ? 10.0D : 6.0D;
                     guardPressure *= ruptureRank >= 2 ? 1.35D : 1.20D;
                 }
 
                 if (ranks.learned("A0012") && state.fury(context.actorId()) >= 75.0D) {
                     impact *= 1.10D;
-                    if (context.heavyAttack() && state.fury(context.actorId()) >= 100.0D) {
-                        state.consumeFury(context.actorId(), 40.0D);
+                    boolean heavyFrenzy = context.heavyAttack()
+                        && state.furyService().consume(
+                            new CanonicalFuryService.ConsumptionRequest(
+                                context.action(), true, true, context.direct(), "A0012-heavy", 100.0D, 40.0D
+                            ),
+                            state,
+                            context.nowMillis()
+                        ) == CanonicalFuryService.ConsumptionStatus.APPLIED;
+                    if (heavyFrenzy) {
                         impact *= 1.20D;
                         guardPressure *= 1.20D;
                     }
@@ -267,6 +325,7 @@ public final class CombatPerkAttackPolicy {
         Objects.requireNonNull(ranks);
         Objects.requireNonNull(state);
         if (!context.direct() || !context.hostile()) return;
+        if (!state.claimPrimaryOnce(context.action(), "combat:after-confirmed-hit", context.nowMillis())) return;
 
         switch (context.weaponFamily()) {
             case SWORD -> {
@@ -281,12 +340,17 @@ public final class CombatPerkAttackPolicy {
             }
             case AXE -> {
                 int furyRank = ranks.rank("A0010");
-                boolean switchedTarget = state.recordTargetAndWasDifferent(context.actorId(), context.targetId());
-                if (furyRank > 0 && context.baseFuryGain() > 0.0D) {
-                    double gain = context.baseFuryGain() * (1.0D + 0.10D * furyRank);
-                    if (switchedTarget) gain *= 1.50D;
-                    state.addFury(context.actorId(), gain, context.nowMillis());
-                }
+                OptionalDouble baseGain = context.baseFuryGain() > 0.0D
+                    ? OptionalDouble.of(context.baseFuryGain())
+                    : OptionalDouble.empty();
+                state.furyService().produce(
+                    new CanonicalFuryService.ProductionRequest(
+                        context.action(), context.targetId(), true, true, context.direct(), context.hostile(),
+                        true, furyRank, baseGain
+                    ),
+                    state,
+                    context.nowMillis()
+                );
             }
             case SPEAR -> {
                 int rangeRank = ranks.rank("A0016");
@@ -362,5 +426,21 @@ public final class CombatPerkAttackPolicy {
         if (!Double.isFinite(value) || value < 0.0D) {
             throw new IllegalArgumentException(name + " must be finite and non-negative");
         }
+    }
+
+    private static CanonicalActionIdentity legacyAction(
+        String actorId,
+        String targetId,
+        WeaponFamily family,
+        long nowMillis
+    ) {
+        requireId(actorId, "actorId");
+        requireId(targetId, "targetId");
+        Objects.requireNonNull(family);
+        return CanonicalActionIdentity.root(
+            actorId,
+            "legacy/" + family.name().toLowerCase() + "/" + targetId + "/" + nowMillis,
+            "rpgskilltree:combat_policy"
+        );
     }
 }

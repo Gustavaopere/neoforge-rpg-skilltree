@@ -17,8 +17,23 @@ public final class NotionCombatPerkState {
     private static final int MAX_DISTANCE_CONTROL = 3;
     private static final int MAX_FLOW = 4;
     private static final double MAX_FOCUS = 100.0D;
+    private static final long ACTION_RETENTION_MILLIS = 30_000L;
+    private static final int MAX_ACTION_CLAIMS = 8_192;
 
     private final Map<String, ActorState> actors = new HashMap<>();
+    private final CanonicalEventLedger actionLedger = new CanonicalEventLedger(MAX_ACTION_CLAIMS);
+    private final CanonicalFuryService furyService = new CanonicalFuryService(
+        ACTION_RETENTION_MILLIS,
+        MAX_ACTION_CLAIMS
+    );
+    private final CanonicalFocusService focusService = new CanonicalFocusService(
+        ACTION_RETENTION_MILLIS,
+        2_048
+    );
+    private final CanonicalStaminaService staminaService = new CanonicalStaminaService(
+        ACTION_RETENTION_MILLIS,
+        2_048
+    );
 
     public enum TargetCounter {
         SHOCK,
@@ -43,6 +58,26 @@ public final class NotionCombatPerkState {
         PREPARED_SHOT,
         RECENT_DODGE,
         SUPPRESS_MOMENTUM_ON_RESULT
+    }
+
+    public boolean claimPrimaryOnce(
+        CanonicalActionIdentity action,
+        String consumerId,
+        long nowMillis
+    ) {
+        return actionLedger.claimPrimaryOnce(action, consumerId, nowMillis, ACTION_RETENTION_MILLIS);
+    }
+
+    public CanonicalFuryService furyService() {
+        return furyService;
+    }
+
+    public CanonicalFocusService focusService() {
+        return focusService;
+    }
+
+    public CanonicalStaminaService staminaService() {
+        return staminaService;
     }
 
     public synchronized void addMomentum(String actorId, int amount, long nowMillis) {
@@ -282,7 +317,12 @@ public final class NotionCombatPerkState {
     }
 
     public synchronized void clear(String actorId) {
-        actors.remove(requireActorId(actorId));
+        String validatedActorId = requireActorId(actorId);
+        actors.remove(validatedActorId);
+        actionLedger.clearActor(validatedActorId);
+        furyService.clearActor(validatedActorId);
+        focusService.clearActor(validatedActorId);
+        staminaService.clearActor(validatedActorId);
     }
 
     private ActorState actor(String actorId) {
