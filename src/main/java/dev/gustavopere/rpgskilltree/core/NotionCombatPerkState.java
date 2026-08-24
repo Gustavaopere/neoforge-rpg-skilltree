@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.OptionalDouble;
 
 /**
  * Ephemeral server-authoritative combat resources for Notion combat perks.
@@ -245,6 +246,20 @@ public final class NotionCombatPerkState {
         return different;
     }
 
+    public synchronized OptionalDouble recordTargetDistance(
+        String actorId,
+        String targetId,
+        double distance
+    ) {
+        if (!Double.isFinite(distance) || distance < 0.0D) {
+            throw new IllegalArgumentException("distance must be finite and non-negative");
+        }
+        TargetState target = target(actorId, targetId);
+        double previous = target.lastDistance;
+        target.lastDistance = distance;
+        return Double.isNaN(previous) ? OptionalDouble.empty() : OptionalDouble.of(previous);
+    }
+
     public synchronized void clear(String actorId) {
         actors.remove(requireActorId(actorId));
     }
@@ -300,6 +315,7 @@ public final class NotionCombatPerkState {
     private static final class TargetState {
         final EnumMap<TargetCounter, TimedCounter> counters = new EnumMap<>(TargetCounter.class);
         final EnumMap<TargetFlag, Long> flags = new EnumMap<>(TargetFlag.class);
+        double lastDistance = Double.NaN;
     }
 
     private static final class ActorState {

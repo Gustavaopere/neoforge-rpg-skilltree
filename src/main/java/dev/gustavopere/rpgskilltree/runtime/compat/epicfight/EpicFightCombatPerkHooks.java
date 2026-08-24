@@ -35,8 +35,10 @@ import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 import yesman.epicfight.api.event.types.entity.DodgeEvent;
 import yesman.epicfight.api.event.types.entity.ModifyAttackSpeedEvent;
 import yesman.epicfight.api.utils.math.ValueModifier;
+import yesman.epicfight.api.event.types.player.TickPlayerEpicFightModeEvent;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.HurtableEntityPatch;
+import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 
@@ -46,6 +48,7 @@ public final class EpicFightCombatPerkHooks {
     private static final String POST_SUBSCRIBER_ID = "rpgskilltree:notion_combat/damage_post";
     private static final String SPEED_SUBSCRIBER_ID = "rpgskilltree:notion_combat/attack_speed";
     private static final String DODGE_SUBSCRIBER_ID = "rpgskilltree:notion_combat/dodge";
+    private static final String TICK_SUBSCRIBER_ID = "rpgskilltree:notion_combat/tick";
 
     private static final TagKey<Item> SWORDS = tag("swords");
     private static final TagKey<Item> AXES = tag("axes");
@@ -78,6 +81,10 @@ public final class EpicFightCombatPerkHooks {
         EpicFightEventHooks.Entity.ON_DODGE.registerEvent(
             EpicFightCombatPerkHooks::onSuccessfulDodge,
             DODGE_SUBSCRIBER_ID
+        );
+        EpicFightEventHooks.Player.TICK_EPICFIGHT_MODE.registerEvent(
+            EpicFightCombatPerkHooks::onEpicFightModeTick,
+            TICK_SUBSCRIBER_ID
         );
         registered = true;
     }
@@ -221,6 +228,43 @@ public final class EpicFightCombatPerkHooks {
             ranks,
             CombatPerkRuntimeState.state(),
             weaponMastery(player, resolved.get()),
+            Math.multiplyExact(player.level().getGameTime(), 50L)
+        );
+    }
+
+    private static void onEpicFightModeTick(TickPlayerEpicFightModeEvent event) {
+        if (!(event.getPlayerPatch() instanceof ServerPlayerPatch patch)) return;
+        ServerPlayer player = patch.getOriginal();
+        if (!eligible(player)) return;
+        LivingEntity target = patch.getTarget();
+        if (target == null || !target.isAlive() || !(target instanceof Enemy || target instanceof Player)) return;
+
+        ItemStack held = player.getMainHandItem();
+        CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(held);
+        if (weaponFamily(held, capability).orElse(null) != WeaponFamily.SPEAR) return;
+        CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
+        if (!ranks.learned("A0018")) return;
+
+        double effectiveReach = player.entityInteractionRange() + Math.max(0.0D, capability.getReach());
+        var targetMotion = target.getDeltaMovement();
+        boolean targetAdvancing = CombatPositionPolicy.isAdvancingToward(
+            player.getX(),
+            player.getZ(),
+            target.getX(),
+            target.getZ(),
+            targetMotion.x,
+            targetMotion.z
+        );
+        CombatPerkControlPolicy.onSpearRangeUpdate(
+            CombatPerkRuntimeState.actorId(player),
+            target.getUUID().toString(),
+            WeaponFamily.SPEAR,
+            player.distanceTo(target),
+            effectiveReach,
+            targetAdvancing,
+            ranks,
+            CombatPerkRuntimeState.state(),
+            weaponMastery(player, WeaponFamily.SPEAR),
             Math.multiplyExact(player.level().getGameTime(), 50L)
         );
     }
