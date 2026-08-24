@@ -11,30 +11,17 @@ public final class CombatPerkTransitionPolicy {
 
     private CombatPerkTransitionPolicy() {}
 
-    public static void tick(
-        String actorId,
-        CombatPerkRanks ranks,
-        NotionCombatPerkState state,
-        boolean inCombat,
-        boolean relevantHorizontalMovement,
-        long nowMillis
-    ) {
+    public static void tick(String actorId, CombatPerkRanks ranks, NotionCombatPerkState state,
+                            boolean inCombat, boolean relevantHorizontalMovement, long nowMillis) {
         requireActor(actorId);
         Objects.requireNonNull(ranks);
         Objects.requireNonNull(state);
         if (ranks.learned("A0004")) state.decayMomentum(actorId, nowMillis);
-        if (ranks.rank("A0022") > 0) {
-            state.tickStationaryFlow(actorId, inCombat, relevantHorizontalMovement, nowMillis);
-        }
+        if (ranks.rank("A0022") > 0) state.tickStationaryFlow(actorId, inCombat, relevantHorizontalMovement, nowMillis);
     }
 
-    public static boolean onConfirmedMiss(
-        String actorId,
-        WeaponFamily family,
-        CombatPerkRanks ranks,
-        NotionCombatPerkState state,
-        long nowMillis
-    ) {
+    public static boolean onConfirmedMiss(String actorId, WeaponFamily family, CombatPerkRanks ranks,
+                                          NotionCombatPerkState state, long nowMillis) {
         requireActor(actorId);
         Objects.requireNonNull(family);
         Objects.requireNonNull(ranks);
@@ -47,13 +34,8 @@ public final class CombatPerkTransitionPolicy {
     }
 
     /** Applies losses only from a provider-confirmed hostile heavy stagger/impact. */
-    public static boolean onConfirmedHeavyImpact(
-        String actorId,
-        boolean hostileSource,
-        CombatPerkRanks ranks,
-        NotionCombatPerkState state,
-        long nowMillis
-    ) {
+    public static boolean onConfirmedHeavyImpact(String actorId, boolean hostileSource, CombatPerkRanks ranks,
+                                                 NotionCombatPerkState state, long nowMillis) {
         requireActor(actorId);
         Objects.requireNonNull(ranks);
         Objects.requireNonNull(state);
@@ -78,21 +60,11 @@ public final class CombatPerkTransitionPolicy {
         return applicable;
     }
 
-    /**
-     * Records trusted server-side positional samples. A target-relative opportunity is armed only
-     * when both frozen fallback requirements are met inside 2.5 seconds.
-     */
-    public static boolean recordFlowPositionSample(
-        String actorId,
-        String targetId,
-        double attackerX,
-        double attackerZ,
-        double targetX,
-        double targetZ,
-        boolean trustedMovement,
-        NotionCombatPerkState state,
-        long nowMillis
-    ) {
+    /** Records trusted server-side positional samples using the frozen A0022 fallback thresholds. */
+    public static boolean recordFlowPositionSample(String actorId, String targetId, double attackerX,
+                                                   double attackerZ, double targetX, double targetZ,
+                                                   boolean trustedMovement, NotionCombatPerkState state,
+                                                   long nowMillis) {
         requireActor(actorId);
         requireTarget(targetId);
         requireFinite(attackerX, "attackerX");
@@ -100,29 +72,21 @@ public final class CombatPerkTransitionPolicy {
         requireFinite(targetX, "targetX");
         requireFinite(targetZ, "targetZ");
         Objects.requireNonNull(state);
-
         if (!trustedMovement) {
             state.clearFlowPositionTracking(actorId, targetId);
             return false;
         }
 
-        var current = new NotionCombatPerkState.FlowPositionSample(
-            attackerX, attackerZ, targetX, targetZ, nowMillis
-        );
+        var current = new NotionCombatPerkState.FlowPositionSample(attackerX, attackerZ, targetX, targetZ, nowMillis);
         var previous = state.flowPositionBaseline(actorId, targetId);
         if (previous.isEmpty() || nowMillis - previous.get().atMillis() > FLOW_WINDOW_MILLIS) {
             state.setFlowPositionBaseline(actorId, targetId, current);
             return false;
         }
-
         var baseline = previous.get();
-        double dx = attackerX - baseline.attackerX();
-        double dz = attackerZ - baseline.attackerZ();
-        double displacement = Math.hypot(dx, dz);
+        double displacement = Math.hypot(attackerX - baseline.attackerX(), attackerZ - baseline.attackerZ());
         double angle = relativeAngleDegrees(baseline, current);
-        if (displacement + 1.0E-9D < FLOW_MIN_DISPLACEMENT || angle + 1.0E-9D < FLOW_MIN_ANGLE_DEGREES) {
-            return false;
-        }
+        if (displacement + 1.0E-9D < FLOW_MIN_DISPLACEMENT || angle + 1.0E-9D < FLOW_MIN_ANGLE_DEGREES) return false;
 
         state.armFlowReposition(actorId, targetId, Math.addExact(nowMillis, FLOW_WINDOW_MILLIS));
         state.setFlowPositionBaseline(actorId, targetId, current);
@@ -130,17 +94,10 @@ public final class CombatPerkTransitionPolicy {
     }
 
     /** One confirmed dagger result grants at most one Flow even when several movement facts overlap. */
-    public static boolean consumeFlowOpportunity(
-        CanonicalActionIdentity action,
-        String actorId,
-        String targetId,
-        WeaponFamily family,
-        boolean direct,
-        boolean hostile,
-        CombatPerkRanks ranks,
-        NotionCombatPerkState state,
-        long nowMillis
-    ) {
+    public static boolean consumeFlowOpportunity(CanonicalActionIdentity action, String actorId, String targetId,
+                                                 WeaponFamily family, boolean direct, boolean hostile,
+                                                 CombatPerkRanks ranks, NotionCombatPerkState state,
+                                                 long nowMillis) {
         Objects.requireNonNull(action);
         requireActor(actorId);
         requireTarget(targetId);
@@ -148,9 +105,7 @@ public final class CombatPerkTransitionPolicy {
         Objects.requireNonNull(ranks);
         Objects.requireNonNull(state);
         int rank = ranks.rank("A0022");
-        if (rank <= 0 || family != WeaponFamily.DAGGER || !direct || !hostile || !action.actorId().equals(actorId)) {
-            return false;
-        }
+        if (rank <= 0 || family != WeaponFamily.DAGGER || !direct || !hostile || !action.actorId().equals(actorId)) return false;
 
         boolean dodge = state.hasActorFlag(actorId, NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, nowMillis);
         boolean reposition = state.hasFlowReposition(actorId, targetId, nowMillis);
@@ -159,14 +114,17 @@ public final class CombatPerkTransitionPolicy {
 
         if (dodge) state.consumeActorFlag(actorId, NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, nowMillis);
         if (reposition) state.consumeFlowReposition(actorId, targetId, nowMillis);
+        // A0024 uses its own shorter dodge token. This hit has resolved the dodge opportunity,
+        // so clear it too to prevent the legacy post-hit path from granting a second Flow stack.
+        if (state.hasActorFlag(actorId, NotionCombatPerkState.ActorFlag.RECENT_DODGE, nowMillis)) {
+            state.consumeActorFlag(actorId, NotionCombatPerkState.ActorFlag.RECENT_DODGE, nowMillis);
+        }
         state.addFlow(actorId, 1, nowMillis, rank >= 2 ? 7_000L : 5_000L);
         return true;
     }
 
-    private static double relativeAngleDegrees(
-        NotionCombatPerkState.FlowPositionSample first,
-        NotionCombatPerkState.FlowPositionSample second
-    ) {
+    private static double relativeAngleDegrees(NotionCombatPerkState.FlowPositionSample first,
+                                               NotionCombatPerkState.FlowPositionSample second) {
         double ax = first.attackerX() - first.targetX();
         double az = first.attackerZ() - first.targetZ();
         double bx = second.attackerX() - second.targetX();
