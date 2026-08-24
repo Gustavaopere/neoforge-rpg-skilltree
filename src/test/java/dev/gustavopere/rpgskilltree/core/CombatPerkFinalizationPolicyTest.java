@@ -6,6 +6,9 @@ import java.util.Map;
 public final class CombatPerkFinalizationPolicyTest {
     public static void main(String[] args) {
         boneBreakerRequiresCrackedHeavyMaceAndUsesMasteryCooldown();
+        battleHarvestRequiresLegitimateRootKillAndConsumesOnceOnDifferentTarget();
+        battleHarvestCooldownScalesWithMastery();
+        shockTransferMovesAtMostOneStackWithoutDuplication();
         System.out.println("CombatPerkFinalizationPolicyTest: PASS");
     }
 
@@ -62,6 +65,124 @@ public final class CombatPerkFinalizationPolicyTest {
             "p", "other", WeaponFamily.MACE, true, true, true, false,
             ranks, new NotionCombatPerkState(), 80, now
         ).isEmpty(), "A0036 requires Armor Cracked before the hit");
+    }
+
+    private static void battleHarvestRequiresLegitimateRootKillAndConsumesOnceOnDifferentTarget() {
+        long now = 10_000L;
+        var ranks = CombatPerkRanks.of(Map.of("A0040", 2, "A0042", 1));
+
+        var noMature = new NotionCombatPerkState();
+        require(!CombatPerkFinalizationPolicy.activateBattleHarvest(
+            CanonicalActionIdentity.root("p", "kill-no-mark", "test"), "p", "victim",
+            WeaponFamily.SCYTHE, true, true, true, ranks, noMature, 80, now
+        ), "victim without Mature Reaping Mark cannot arm Harvest");
+
+        var procState = matureVictim("p", "victim", now);
+        require(!CombatPerkFinalizationPolicy.activateBattleHarvest(
+            CanonicalActionIdentity.root("p", "proc-kill", "test").child("proc"), "p", "victim",
+            WeaponFamily.SCYTHE, true, true, true, ranks, procState, 80, now
+        ), "kill caused by proc/derived damage cannot arm Harvest");
+
+        var derivedChain = matureVictim("p", "victim", now);
+        require(!CombatPerkFinalizationPolicy.activateBattleHarvest(
+            CanonicalActionIdentity.root("p", "chain-kill", "test").child("proc1").child("proc2"), "p", "victim",
+            WeaponFamily.SCYTHE, true, true, true, ranks, derivedChain, 80, now
+        ), "proc chain cannot arm Harvest");
+
+        var state = matureVictim("p", "victim", now);
+        var kill = CanonicalActionIdentity.root("p", "kill-1", "test");
+        require(CombatPerkFinalizationPolicy.activateBattleHarvest(
+            kill, "p", "victim", WeaponFamily.SCYTHE, true, true, true, ranks, state, 80, now
+        ), "legitimate direct scythe kill of mature-marked victim arms Harvest");
+        require(!CombatPerkFinalizationPolicy.activateBattleHarvest(
+            kill.withSource("duplicate-callback"), "p", "victim", WeaponFamily.SCYTHE,
+            true, true, true, ranks, state, 80, now
+        ), "duplicate callback for same death is idempotent");
+        require(state.hasBattleHarvest("p", now + 5_999L), "Harvest lasts six seconds");
+        require(!state.hasBattleHarvest("p", now + 6_000L), "Harvest expires at six seconds");
+
+        var sameTarget = CombatPerkFinalizationPolicy.consumeBattleHarvestOnHit(
+            CanonicalActionIdentity.root("p", "same-target-hit", "test"), "p", "victim",
+            WeaponFamily.SCYTHE, true, true, ranks, state, now + 1_000L
+        );
+        require(!sameTarget, "attempt on the killed target does not consume Harvest");
+        require(state.hasBattleHarvest("p", now + 1_000L), "same-target attempt leaves Harvest armed");
+
+        var otherTarget = CombatPerkFinalizationPolicy.consumeBattleHarvestOnHit(
+            CanonicalActionIdentity.root("p", "other-target-hit", "test"), "p", "next",
+            WeaponFamily.SCYTHE, true, true, ranks, state, now + 1_500L
+        );
+        require(otherTarget, "next direct scythe hit on a different target consumes Harvest");
+        require(state.hasTargetFlag("p", "next", NotionCombatPerkState.TargetFlag.REAPING_MARK, now + 1_500L),
+            "Harvest immediately transfers Reaping Mark");
+        require(!state.hasBattleHarvest("p", now + 1_500L), "Harvest consumes exactly once");
+        require(!CombatPerkFinalizationPolicy.consumeBattleHarvestOnHit(
+            CanonicalActionIdentity.root("p", "third-hit", "test"), "p", "third",
+            WeaponFamily.SCYTHE, true, true, ranks, state, now + 2_000L
+        ), "a consumed Harvest cannot chain again");
+    }
+
+    private static void battleHarvestCooldownScalesWithMastery() {
+        requireHarvestCooldown(80, 10_000L);
+        requireHarvestCooldown(90, 9_000L);
+        requireHarvestCooldown(100, 8_000L);
+    }
+
+    private static void requireHarvestCooldown(int mastery, long expected) {
+        long now = 1_000L;
+        var state = matureVictim("p", "victim", now);
+        var ranks = CombatPerkRanks.of(Map.of("A0040", 1, "A0042", 1));
+        require(CombatPerkFinalizationPolicy.activateBattleHarvest(
+            CanonicalActionIdentity.root("p", "kill-" + mastery, "test"), "p", "victim",
+            WeaponFamily.SCYTHE, true, true, true, ranks, state, mastery, now
+        ), "Harvest activation for mastery " + mastery);
+        require(!state.actorCooldownReady("p", "A0042", now + expected - 1L), "Harvest cooldown active");
+        require(state.actorCooldownReady("p", "A0042", now + expected), "Harvest cooldown exact expiry");
+    }
+
+    private static void shockTransferMovesAtMostOneStackWithoutDuplication() {
+        for (int starting = 0; starting <= 3; starting++) {
+            long now = 1_000L;
+            var state = new NotionCombatPerkState();
+            if (starting > 0) {
+                state.addTargetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK,
+                    starting, 3, now, 6_000L);
+            }
+            state.recordCounterTarget("p", NotionCombatPerkState.TargetCounter.SHOCK, "first");
+            int moved = state.transferCounterOnTargetSwitch(
+                "p", NotionCombatPerkState.TargetCounter.SHOCK, "second", now + 500L, 6_000L, 3
+            );
+            int expectedMoved = starting == 0 ? 0 : 1;
+            require(moved == expectedMoved, "A0028 moves at most one stack from " + starting);
+            require(state.targetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, now + 500L)
+                == Math.max(0, starting - expectedMoved), "source loses exactly transferred stack");
+            require(state.targetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, now + 500L)
+                == expectedMoved, "destination receives no duplicated stacks");
+            require(state.transferCounterOnTargetSwitch(
+                "p", NotionCombatPerkState.TargetCounter.SHOCK, "second", now + 600L, 6_000L, 3
+            ) == 0, "repeated same-target resolution cannot transfer again");
+        }
+
+        var repeated = new NotionCombatPerkState();
+        repeated.addTargetCounter("p", "a", NotionCombatPerkState.TargetCounter.SHOCK, 3, 3, 1_000L, 6_000L);
+        repeated.recordCounterTarget("p", NotionCombatPerkState.TargetCounter.SHOCK, "a");
+        require(repeated.transferCounterOnTargetSwitch("p", NotionCombatPerkState.TargetCounter.SHOCK,
+            "b", 2_000L, 6_000L, 3) == 1, "first switch transfers one");
+        require(repeated.transferCounterOnTargetSwitch("p", NotionCombatPerkState.TargetCounter.SHOCK,
+            "a", 3_000L, 6_000L, 3) == 1, "switching back can transfer at most one from current target");
+
+        var expired = new NotionCombatPerkState();
+        expired.addTargetCounter("p", "old", NotionCombatPerkState.TargetCounter.SHOCK, 3, 3, 1_000L, 6_000L);
+        expired.recordCounterTarget("p", NotionCombatPerkState.TargetCounter.SHOCK, "old");
+        require(expired.transferCounterOnTargetSwitch("p", NotionCombatPerkState.TargetCounter.SHOCK,
+            "new", 7_000L, 6_000L, 3) == 0, "expired Shock cannot transfer");
+    }
+
+    private static NotionCombatPerkState matureVictim(String actor, String victim, long now) {
+        var state = new NotionCombatPerkState();
+        state.setTargetFlag(actor, victim, NotionCombatPerkState.TargetFlag.REAPING_MARK, now + 10_000L);
+        state.setTargetFlag(actor, victim, NotionCombatPerkState.TargetFlag.REAPING_MATURE, now + 10_000L);
+        return state;
     }
 
     private static boolean close(double actual, double expected) {
