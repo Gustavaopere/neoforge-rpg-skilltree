@@ -4,6 +4,7 @@ public final class CanonicalActionCorrelationServiceTest {
     public static void main(String[] args) {
         providerCallbacksClaimTheMeleeDecisionOnce();
         oneShotCanCorrelateMultipleProjectiles();
+        projectileIdentityOutlivesTheShortSpawnWindow();
         unknownAndCrossActorProjectilesCannotBorrowShots();
         actorCleanupRemovesPendingCorrelation();
         System.out.println("CanonicalActionCorrelationServiceTest: PASS");
@@ -31,6 +32,18 @@ public final class CanonicalActionCorrelationServiceTest {
             "multishot projectile uses the same token");
         require(service.projectileAction("arrow-a", 1_002L).orElseThrow().sameAction(shot),
             "damage callback can recover shot identity");
+    }
+
+    private static void projectileIdentityOutlivesTheShortSpawnWindow() {
+        var service = new CanonicalActionCorrelationService(100L, 30_000L, 64);
+        var shot = service.newRoot("player-a", "neoforge:arrow_loose", 1_000L);
+        service.recordShot(shot, 1_000L);
+        service.correlateProjectile("player-a", "arrow-a", 1_050L);
+
+        require(service.correlateProjectile("player-a", "late-spawn", 1_101L).isEmpty(),
+            "new projectile cannot borrow an expired spawn window");
+        require(service.projectileAction("arrow-a", 20_000L).orElseThrow().sameAction(shot),
+            "already-correlated projectile keeps identity throughout normal flight");
     }
 
     private static void unknownAndCrossActorProjectilesCannotBorrowShots() {
