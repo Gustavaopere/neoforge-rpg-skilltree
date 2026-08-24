@@ -59,13 +59,10 @@ public final class TreeRuleCatalog {
                 nextSpecializationGrants.add(rule.specializationGrant());
             }
             for (String requiredNode : rule.requirement().requiredNodeIds()) {
-                ResourceLocation requiredId = ResourceLocation.parse(requiredNode);
-                if (!knownIds.contains(requiredId)) {
-                    throw new IllegalArgumentException("unknown required node: " + rule.id() + " -> " + requiredId);
-                }
-                if (requiredId.equals(rule.id())) {
-                    throw new IllegalArgumentException("node cannot require itself: " + rule.id());
-                }
+                validateRequiredNode(rule.id(), requiredNode, knownIds);
+            }
+            for (String requiredNode : rule.requirement().requiredNodeRanks().keySet()) {
+                validateRequiredNode(rule.id(), requiredNode, knownIds);
             }
             for (ResourceLocation neighbor : rule.neighbors()) {
                 if (!knownIds.contains(neighbor)) {
@@ -82,6 +79,20 @@ public final class TreeRuleCatalog {
         requirements = Map.copyOf(nextRequirements);
         specializationGrants = List.copyOf(nextSpecializationGrants);
         graph = SkillGraph.undirected(new ArrayList<>(nextEdges));
+    }
+
+    private static void validateRequiredNode(
+        ResourceLocation owner,
+        String requiredNode,
+        Set<ResourceLocation> knownIds
+    ) {
+        ResourceLocation requiredId = ResourceLocation.parse(requiredNode);
+        if (!knownIds.contains(requiredId)) {
+            throw new IllegalArgumentException("unknown required node: " + owner + " -> " + requiredId);
+        }
+        if (requiredId.equals(owner)) {
+            throw new IllegalArgumentException("node cannot require itself: " + owner);
+        }
     }
 
     public static Optional<NodePurchaseDefinition> definition(ResourceLocation nodeId) {
