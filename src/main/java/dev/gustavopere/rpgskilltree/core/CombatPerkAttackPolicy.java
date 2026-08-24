@@ -155,10 +155,20 @@ public final class CombatPerkAttackPolicy {
                     && state.consumeActorFlag(
                         context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis())) {
                     state.consumeFlow(context.actorId(), 4);
+                    long shadowDuration;
+                    if (state.consumeActorFlag(
+                        context.actorId(), NotionCombatPerkState.ActorFlag.SHADOW_DANCE_MASTERY_100, context.nowMillis())) {
+                        shadowDuration = 5_000L;
+                    } else if (state.consumeActorFlag(
+                        context.actorId(), NotionCombatPerkState.ActorFlag.SHADOW_DANCE_MASTERY_90, context.nowMillis())) {
+                        shadowDuration = 4_500L;
+                    } else {
+                        shadowDuration = 4_000L;
+                    }
                     state.setActorFlag(
                         context.actorId(),
                         NotionCombatPerkState.ActorFlag.SHADOW_DANCE,
-                        Math.addExact(context.nowMillis(), 4_000L)
+                        Math.addExact(context.nowMillis(), shadowDuration)
                     );
                 }
 
