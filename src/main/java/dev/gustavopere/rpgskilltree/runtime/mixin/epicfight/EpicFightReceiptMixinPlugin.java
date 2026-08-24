@@ -3,7 +3,7 @@ package dev.gustavopere.rpgskilltree.runtime.mixin.epicfight;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightExactStaminaReceiptBridge;
 import java.util.List;
 import java.util.Set;
-import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.LoadingModList;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -14,7 +14,7 @@ public final class EpicFightReceiptMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void onLoad(String mixinPackage) {
-        this.apply = FMLLoader.getCurrent().getLoadingModList().getMods().stream()
+        this.apply = LoadingModList.get().getMods().stream()
             .anyMatch(mod -> "epicfight".equals(mod.getModId())
                 && EpicFightExactStaminaReceiptBridge.SUPPORTED_EPIC_FIGHT_VERSION.equals(mod.getVersion().toString()));
     }
