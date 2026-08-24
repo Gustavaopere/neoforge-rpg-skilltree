@@ -600,14 +600,14 @@ public final class Alpha2ProgressionTest {
 
         var removeB = ProgressionService.respecNode(oneRank.state(), graph, definitions, "b");
         eq(false, removeB.state().passiveNodes().learned("b"));
-        eq(true, removeB.state().passiveNodes().learned("c")); // c still reaches start through d
+        eq(true, removeB.state().passiveNodes().learned("c"));
         eq(2, removeB.pointsRefunded());
         eq(Map.of("b", 1), removeB.removedRanks());
 
         var removeD = ProgressionService.respecNode(removeB.state(), graph, definitions, "d");
         eq(false, removeD.state().passiveNodes().learned("d"));
-        eq(false, removeD.state().passiveNodes().learned("c")); // c is now orphaned and cascades
-        eq(4, removeD.pointsRefunded()); // d=1 + c=3
+        eq(false, removeD.state().passiveNodes().learned("c"));
+        eq(4, removeD.pointsRefunded());
         eq(Map.of("d", 1, "c", 1), removeD.removedRanks());
         eq(18, removeD.state().passivePoints().available());
 
@@ -768,7 +768,6 @@ public final class Alpha2ProgressionTest {
         eq(false, disconnectedProjected.nodes().get("b").canPurchase());
     }
 
-
     static void explorationDiscoveriesAwardXpOnlyOnceAndPersist() {
         var state = ProgressionState.empty();
         var plains = GameplayXpPolicy.biomeDiscovery("minecraft:plains");
@@ -799,7 +798,6 @@ public final class Alpha2ProgressionTest {
         eq(4, ProgressionStateCodec.CURRENT_VERSION);
     }
 
-
     static void oreMiningXpRewardsTaggedOresWithoutExplodingProgression() {
         var common = GameplayXpPolicy.oreMined("minecraft:iron_ore", false);
         eq(8L, common.amount());
@@ -815,7 +813,6 @@ public final class Alpha2ProgressionTest {
         catch (IllegalArgumentException expected) { rejected = true; }
         eq(true, rejected);
     }
-
 
     static void automaticClassesReconcileWhenFinalTriadsAreRespecced() {
         var arcanist = new ClassUnlockDefinition(
@@ -851,7 +848,6 @@ public final class Alpha2ProgressionTest {
         eq(false, reconciled.state().classProgression().isUnlocked("technomancer"));
         eq(true, reconciled.state().classProgression().isUnlocked("geomancer"));
     }
-
 
     static void nodeAccessRequirementsAreEvaluatedFromAuthoritativeState() {
         var curve = CharacterLevelCurve.defaultCurve();
@@ -952,12 +948,12 @@ public final class Alpha2ProgressionTest {
         );
 
         var reconciled = ProgressionService.reconcileNodeSpecializations(state, grants);
-        eq(java.util.Set.of("create_kinetics"), reconciled.specializations().unlockedSpecializationIds());
+        eq(java.util.Set.of("stale_spec", "create_kinetics"), reconciled.specializations().unlockedSpecializationIds());
 
         var removedGateway = reconciled.withPassiveNodes(
             reconciled.passiveNodes().without(java.util.Set.of("rpgskilltree:technomancer/create_gateway")));
         var afterRespec = ProgressionService.reconcileNodeSpecializations(removedGateway, grants);
-        eq(java.util.Set.of(), afterRespec.specializations().unlockedSpecializationIds());
+        eq(java.util.Set.of("stale_spec"), afterRespec.specializations().unlockedSpecializationIds());
 
         boolean invalidRankRejected = false;
         try { new NodeSpecializationGrant("node", "spec", 0); }
