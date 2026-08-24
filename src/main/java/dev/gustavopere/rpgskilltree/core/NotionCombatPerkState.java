@@ -24,35 +24,10 @@ public final class NotionCombatPerkState {
     private final CanonicalStaminaService staminaService = new CanonicalStaminaService(ACTION_RETENTION_MILLIS, 2_048);
 
     public enum TargetCounter { SHOCK, TRAUMA }
+    public enum TargetFlag { REAPING_MARK, REAPING_MATURE, ARMOR_CRACKED, DEMOLISH_WINDOW, INTERCEPTION_WINDOW, POSTURE_BREAK_PENDING }
+    public enum ActorFlag { PERFECT_RIPOSTE, SHADOW_DANCE, SHADOW_DANCE_MASTERY_90, SHADOW_DANCE_MASTERY_100, BATTLE_HARVEST, PREPARED_SHOT, RECENT_DODGE, FLOW_DODGE_WINDOW, SUPPRESS_MOMENTUM_ON_RESULT }
 
-    public enum TargetFlag {
-        REAPING_MARK,
-        REAPING_MATURE,
-        ARMOR_CRACKED,
-        DEMOLISH_WINDOW,
-        INTERCEPTION_WINDOW,
-        POSTURE_BREAK_PENDING
-    }
-
-    public enum ActorFlag {
-        PERFECT_RIPOSTE,
-        SHADOW_DANCE,
-        SHADOW_DANCE_MASTERY_90,
-        SHADOW_DANCE_MASTERY_100,
-        BATTLE_HARVEST,
-        PREPARED_SHOT,
-        RECENT_DODGE,
-        FLOW_DODGE_WINDOW,
-        SUPPRESS_MOMENTUM_ON_RESULT
-    }
-
-    public record FlowPositionSample(
-        double attackerX,
-        double attackerZ,
-        double targetX,
-        double targetZ,
-        long atMillis
-    ) {}
+    public record FlowPositionSample(double attackerX, double attackerZ, double targetX, double targetZ, long atMillis) {}
 
     public boolean claimPrimaryOnce(CanonicalActionIdentity action, String consumerId, long nowMillis) {
         return actionLedger.claimPrimaryOnce(action, consumerId, nowMillis, ACTION_RETENTION_MILLIS);
@@ -89,14 +64,11 @@ public final class NotionCombatPerkState {
         return lost;
     }
 
-    /** Starts A0004's frozen rapid decay cadence without inventing an immediate stack loss. */
     public synchronized boolean startMomentumRapidDecay(String actorId, long nowMillis) {
         ActorState state = actor(actorId);
         if (state.momentum <= 0) return false;
         long firstLossAt = safeAdd(nowMillis, 1_000L);
-        if (state.nextMomentumDecayAt <= 0L || firstLossAt < state.nextMomentumDecayAt) {
-            state.nextMomentumDecayAt = firstLossAt;
-        }
+        if (state.nextMomentumDecayAt <= 0L || firstLossAt < state.nextMomentumDecayAt) state.nextMomentumDecayAt = firstLossAt;
         return true;
     }
 
@@ -119,9 +91,7 @@ public final class NotionCombatPerkState {
         state.fury = Math.min(MAX_FURY, state.fury + amount);
         state.lastFuryChange = nowMillis;
     }
-
     public synchronized double fury(String actorId) { return actorOrEmpty(actorId).fury; }
-
     public synchronized void consumeFury(String actorId, double amount) {
         requireFiniteNonNegative(amount);
         ActorState state = actor(actorId);
@@ -138,16 +108,11 @@ public final class NotionCombatPerkState {
         state.lastDistanceControlChange = nowMillis;
         state.distanceControlExpiresAt = safeAdd(nowMillis, durationMillis);
     }
-
     public synchronized int distanceControl(String actorId, long nowMillis) {
         ActorState state = actorOrEmpty(actorId);
-        if (state.distanceControlExpiresAt <= nowMillis) {
-            state.distanceControl = 0;
-            state.distanceControlExpiresAt = 0L;
-        }
+        if (state.distanceControlExpiresAt <= nowMillis) { state.distanceControl = 0; state.distanceControlExpiresAt = 0L; }
         return state.distanceControl;
     }
-
     public synchronized void consumeDistanceControl(String actorId, int amount, long nowMillis) {
         if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
         int current = distanceControl(actorId, nowMillis);
@@ -156,7 +121,6 @@ public final class NotionCombatPerkState {
         state.distanceControl -= amount;
         if (state.distanceControl == 0) state.distanceControlExpiresAt = 0L;
     }
-
     public synchronized int loseDistanceControlClamped(String actorId, int amount, long nowMillis) {
         if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
         int current = distanceControl(actorId, nowMillis);
@@ -176,16 +140,11 @@ public final class NotionCombatPerkState {
         state.lastFlowChange = nowMillis;
         state.flowExpiresAt = safeAdd(nowMillis, durationMillis);
     }
-
     public synchronized int flow(String actorId, long nowMillis) {
         ActorState state = actorOrEmpty(actorId);
-        if (state.flowExpiresAt <= nowMillis) {
-            state.flow = 0;
-            state.flowExpiresAt = 0L;
-        }
+        if (state.flowExpiresAt <= nowMillis) { state.flow = 0; state.flowExpiresAt = 0L; }
         return state.flow;
     }
-
     public synchronized void consumeFlow(String actorId, int amount, long nowMillis) {
         if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
         int current = flow(actorId, nowMillis);
@@ -194,7 +153,6 @@ public final class NotionCombatPerkState {
         state.flow -= amount;
         if (state.flow == 0) state.flowExpiresAt = 0L;
     }
-
     public synchronized int loseFlowClamped(String actorId, int amount, long nowMillis) {
         if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
         int current = flow(actorId, nowMillis);
@@ -204,61 +162,38 @@ public final class NotionCombatPerkState {
         if (state.flow == 0) state.flowExpiresAt = 0L;
         return lost;
     }
-
     public synchronized int tickStationaryFlow(String actorId, boolean inCombat, boolean relevantMovement, long nowMillis) {
         ActorState state = actor(actorId);
-        if (!inCombat) {
-            state.stationaryCombatTracking = false;
-            state.nextStationaryFlowDecayAt = 0L;
-            return 0;
-        }
-        if (!state.stationaryCombatTracking || relevantMovement) {
-            state.stationaryCombatTracking = true;
-            state.nextStationaryFlowDecayAt = safeAdd(nowMillis, 3_000L);
-            return 0;
-        }
+        if (!inCombat) { state.stationaryCombatTracking = false; state.nextStationaryFlowDecayAt = 0L; return 0; }
+        if (!state.stationaryCombatTracking || relevantMovement) { state.stationaryCombatTracking = true; state.nextStationaryFlowDecayAt = safeAdd(nowMillis, 3_000L); return 0; }
         int current = flow(actorId, nowMillis);
         if (current <= 0 || nowMillis < state.nextStationaryFlowDecayAt) return 0;
         int lost = 0;
         while (state.flow > 0 && nowMillis >= state.nextStationaryFlowDecayAt) {
-            state.flow--;
-            lost++;
-            state.nextStationaryFlowDecayAt = safeAdd(state.nextStationaryFlowDecayAt, 1_000L);
+            state.flow--; lost++; state.nextStationaryFlowDecayAt = safeAdd(state.nextStationaryFlowDecayAt, 1_000L);
         }
         if (state.flow == 0) state.flowExpiresAt = 0L;
         return lost;
     }
 
-    public synchronized void armFlowReposition(String actorId, String targetId, long expiresAtMillis) {
-        target(actorId, targetId).flowRepositionExpiresAt = expiresAtMillis;
-    }
-
+    public synchronized void armFlowReposition(String actorId, String targetId, long expiresAtMillis) { target(actorId, targetId).flowRepositionExpiresAt = expiresAtMillis; }
     public synchronized boolean hasFlowReposition(String actorId, String targetId, long nowMillis) {
         TargetState target = targetOrNull(actorId, targetId);
         return target != null && target.flowRepositionExpiresAt > nowMillis;
     }
-
     public synchronized boolean consumeFlowReposition(String actorId, String targetId, long nowMillis) {
         if (!hasFlowReposition(actorId, targetId, nowMillis)) return false;
         target(actorId, targetId).flowRepositionExpiresAt = 0L;
         return true;
     }
-
     public synchronized Optional<FlowPositionSample> flowPositionBaseline(String actorId, String targetId) {
         TargetState target = targetOrNull(actorId, targetId);
         return target == null ? Optional.empty() : Optional.ofNullable(target.flowPositionBaseline);
     }
-
-    public synchronized void setFlowPositionBaseline(String actorId, String targetId, FlowPositionSample sample) {
-        target(actorId, targetId).flowPositionBaseline = Objects.requireNonNull(sample);
-    }
-
+    public synchronized void setFlowPositionBaseline(String actorId, String targetId, FlowPositionSample sample) { target(actorId, targetId).flowPositionBaseline = Objects.requireNonNull(sample); }
     public synchronized void clearFlowPositionTracking(String actorId, String targetId) {
         TargetState target = targetOrNull(actorId, targetId);
-        if (target != null) {
-            target.flowPositionBaseline = null;
-            target.flowRepositionExpiresAt = 0L;
-        }
+        if (target != null) { target.flowPositionBaseline = null; target.flowRepositionExpiresAt = 0L; }
     }
 
     public synchronized void addFocus(String actorId, double amount, long nowMillis) {
@@ -267,9 +202,7 @@ public final class NotionCombatPerkState {
         state.focus = Math.min(MAX_FOCUS, state.focus + amount);
         state.lastFocusChange = nowMillis;
     }
-
     public synchronized double focus(String actorId) { return actorOrEmpty(actorId).focus; }
-
     public synchronized void consumeFocus(String actorId, double amount) {
         requireFiniteNonNegative(amount);
         ActorState state = actor(actorId);
@@ -287,7 +220,6 @@ public final class NotionCombatPerkState {
         int currentValue = current != null && current.expiresAtMillis > nowMillis ? current.value : 0;
         target.counters.put(counter, new TimedCounter(Math.min(cap, currentValue + amount), safeAdd(nowMillis, durationMillis)));
     }
-
     public synchronized int targetCounter(String actorId, String targetId, TargetCounter counter, long nowMillis) {
         Objects.requireNonNull(counter);
         TargetState target = targetOrNull(actorId, targetId);
@@ -295,7 +227,6 @@ public final class NotionCombatPerkState {
         TimedCounter current = target.counters.get(counter);
         return current != null && current.expiresAtMillis > nowMillis ? current.value : 0;
     }
-
     public synchronized void consumeTargetCounter(String actorId, String targetId, TargetCounter counter, int amount, long nowMillis) {
         if (amount < 0) throw new IllegalArgumentException("amount must be non-negative");
         int current = targetCounter(actorId, targetId, counter, nowMillis);
@@ -306,11 +237,7 @@ public final class NotionCombatPerkState {
         else target.counters.put(counter, new TimedCounter(current - amount, previous.expiresAtMillis));
     }
 
-    public synchronized void setTargetFlag(String actorId, String targetId, TargetFlag flag, long expiresAtMillis) {
-        Objects.requireNonNull(flag);
-        target(actorId, targetId).flags.put(flag, expiresAtMillis);
-    }
-
+    public synchronized void setTargetFlag(String actorId, String targetId, TargetFlag flag, long expiresAtMillis) { Objects.requireNonNull(flag); target(actorId, targetId).flags.put(flag, expiresAtMillis); }
     public synchronized boolean hasTargetFlag(String actorId, String targetId, TargetFlag flag, long nowMillis) {
         Objects.requireNonNull(flag);
         TargetState target = targetOrNull(actorId, targetId);
@@ -318,30 +245,19 @@ public final class NotionCombatPerkState {
         Long expiresAt = target.flags.get(flag);
         return expiresAt != null && expiresAt > nowMillis;
     }
-
     public synchronized boolean consumeTargetFlag(String actorId, String targetId, TargetFlag flag, long nowMillis) {
         if (!hasTargetFlag(actorId, targetId, flag, nowMillis)) return false;
         target(actorId, targetId).flags.remove(flag);
         return true;
     }
+    public synchronized void clearTargetFlag(String actorId, String targetId, TargetFlag flag) { Objects.requireNonNull(flag); TargetState target = targetOrNull(actorId, targetId); if (target != null) target.flags.remove(flag); }
 
-    public synchronized void clearTargetFlag(String actorId, String targetId, TargetFlag flag) {
-        Objects.requireNonNull(flag);
-        TargetState target = targetOrNull(actorId, targetId);
-        if (target != null) target.flags.remove(flag);
-    }
-
-    public synchronized void setActorFlag(String actorId, ActorFlag flag, long expiresAtMillis) {
-        Objects.requireNonNull(flag);
-        actor(actorId).flags.put(flag, expiresAtMillis);
-    }
-
+    public synchronized void setActorFlag(String actorId, ActorFlag flag, long expiresAtMillis) { Objects.requireNonNull(flag); actor(actorId).flags.put(flag, expiresAtMillis); }
     public synchronized boolean hasActorFlag(String actorId, ActorFlag flag, long nowMillis) {
         Objects.requireNonNull(flag);
         Long expiresAt = actorOrEmpty(actorId).flags.get(flag);
         return expiresAt != null && expiresAt > nowMillis;
     }
-
     public synchronized boolean consumeActorFlag(String actorId, ActorFlag flag, long nowMillis) {
         if (!hasActorFlag(actorId, flag, nowMillis)) return false;
         actor(actorId).flags.remove(flag);
@@ -352,17 +268,14 @@ public final class NotionCombatPerkState {
         Long until = actorOrEmpty(actorId).cooldowns.get(cooldownKey(targetId, key));
         return until == null || until <= nowMillis;
     }
-
     public synchronized void startCooldown(String actorId, String targetId, String key, long nowMillis, long durationMillis) {
         if (durationMillis <= 0) throw new IllegalArgumentException("duration must be positive");
         actor(actorId).cooldowns.put(cooldownKey(targetId, key), safeAdd(nowMillis, durationMillis));
     }
-
     public synchronized boolean actorCooldownReady(String actorId, String key, long nowMillis) {
         Long until = actorOrEmpty(actorId).actorCooldowns.get(requireKey(key));
         return until == null || until <= nowMillis;
     }
-
     public synchronized void startActorCooldown(String actorId, String key, long nowMillis, long durationMillis) {
         if (durationMillis <= 0) throw new IllegalArgumentException("duration must be positive");
         actor(actorId).actorCooldowns.put(requireKey(key), safeAdd(nowMillis, durationMillis));
@@ -373,12 +286,10 @@ public final class NotionCombatPerkState {
         state.battleHarvestSourceTargetId = requireTargetId(sourceTargetId);
         state.battleHarvestExpiresAt = expiresAtMillis;
     }
-
     public synchronized boolean hasBattleHarvest(String actorId, long nowMillis) {
         ActorState state = actorOrEmpty(actorId);
         return state.battleHarvestSourceTargetId != null && state.battleHarvestExpiresAt > nowMillis;
     }
-
     public synchronized boolean consumeBattleHarvestForDifferentTarget(String actorId, String targetId, long nowMillis) {
         ActorState state = actorOrEmpty(actorId);
         String target = requireTargetId(targetId);
@@ -395,7 +306,6 @@ public final class NotionCombatPerkState {
         state.lastTargetId = target;
         return different;
     }
-
     public synchronized OptionalDouble recordTargetDistance(String actorId, String targetId, double distance) {
         if (!Double.isFinite(distance) || distance < 0.0D) throw new IllegalArgumentException("distance must be finite and non-negative");
         TargetState target = target(actorId, targetId);
@@ -404,6 +314,42 @@ public final class NotionCombatPerkState {
         return Double.isNaN(previous) ? OptionalDouble.empty() : OptionalDouble.of(previous);
     }
 
+    /**
+     * Death, respawn, clone/recreation and dimension changes clear entity-bound combat state,
+     * but deliberately retain cooldowns and canonical anti-duplication/antiabuse ledgers.
+     */
+    public synchronized void clearTransientPreservingGuards(String actorId) {
+        String validatedActorId = requireActorId(actorId);
+        ActorState state = actors.get(validatedActorId);
+        if (state != null) {
+            state.momentum = 0;
+            state.fury = 0.0D;
+            state.distanceControl = 0;
+            state.flow = 0;
+            state.focus = 0.0D;
+            state.lastMomentumChange = 0L;
+            state.nextMomentumDecayAt = 0L;
+            state.lastFuryChange = 0L;
+            state.lastDistanceControlChange = 0L;
+            state.distanceControlExpiresAt = 0L;
+            state.lastFlowChange = 0L;
+            state.flowExpiresAt = 0L;
+            state.stationaryCombatTracking = false;
+            state.nextStationaryFlowDecayAt = 0L;
+            state.lastFocusChange = 0L;
+            state.battleHarvestExpiresAt = 0L;
+            state.battleHarvestSourceTargetId = null;
+            state.lastTargetId = null;
+            state.flags.clear();
+            state.targets.clear();
+            // cooldowns and actorCooldowns intentionally survive.
+        }
+        focusService.clearTransientActorPreservingGuards(validatedActorId);
+        staminaService.clearTransientActorPreservingGuards(validatedActorId);
+        // actionLedger and furyService claim ledger intentionally survive.
+    }
+
+    /** Full session teardown, used on logout/login boundary. */
     public synchronized void clear(String actorId) {
         String validatedActorId = requireActorId(actorId);
         actors.remove(validatedActorId);
@@ -426,7 +372,6 @@ public final class NotionCombatPerkState {
     private static long safeAdd(long left, long right) { return Math.addExact(left, right); }
 
     private record TimedCounter(int value, long expiresAtMillis) {}
-
     private static final class TargetState {
         final EnumMap<TargetCounter, TimedCounter> counters = new EnumMap<>(TargetCounter.class);
         final EnumMap<TargetFlag, Long> flags = new EnumMap<>(TargetFlag.class);
@@ -434,7 +379,6 @@ public final class NotionCombatPerkState {
         long flowRepositionExpiresAt;
         FlowPositionSample flowPositionBaseline;
     }
-
     private static final class ActorState {
         private static final ActorState EMPTY = new ActorState();
         int momentum;
