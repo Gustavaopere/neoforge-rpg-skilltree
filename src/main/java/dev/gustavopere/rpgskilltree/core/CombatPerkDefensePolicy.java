@@ -40,15 +40,20 @@ public final class CombatPerkDefensePolicy {
                 }
             }
             case DAGGER -> {
-                if (ranks.learned("A0022") || ranks.learned("A0024")) {
+                if (ranks.learned("A0022")) {
+                    state.setActorFlag(
+                        actorId,
+                        NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW,
+                        Math.addExact(nowMillis, CombatPerkTransitionPolicy.FLOW_WINDOW_MILLIS)
+                    );
+                }
+                if (ranks.learned("A0024")) {
                     long expiresAt = Math.addExact(nowMillis, 2_000L);
                     state.setActorFlag(actorId, NotionCombatPerkState.ActorFlag.RECENT_DODGE, expiresAt);
-                    if (ranks.learned("A0024")) {
-                        if (weaponMastery >= 100) {
-                            state.setActorFlag(actorId, NotionCombatPerkState.ActorFlag.SHADOW_DANCE_MASTERY_100, expiresAt);
-                        } else if (weaponMastery >= 90) {
-                            state.setActorFlag(actorId, NotionCombatPerkState.ActorFlag.SHADOW_DANCE_MASTERY_90, expiresAt);
-                        }
+                    if (weaponMastery >= 100) {
+                        state.setActorFlag(actorId, NotionCombatPerkState.ActorFlag.SHADOW_DANCE_MASTERY_100, expiresAt);
+                    } else if (weaponMastery >= 90) {
+                        state.setActorFlag(actorId, NotionCombatPerkState.ActorFlag.SHADOW_DANCE_MASTERY_90, expiresAt);
                     }
                 }
             }
