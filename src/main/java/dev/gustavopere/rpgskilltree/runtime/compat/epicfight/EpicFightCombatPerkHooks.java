@@ -47,6 +47,7 @@ import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 import yesman.epicfight.api.event.types.entity.DodgeEvent;
 import yesman.epicfight.api.event.types.entity.KillEntityEvent;
 import yesman.epicfight.api.event.types.entity.ModifyAttackSpeedEvent;
+import yesman.epicfight.api.event.types.entity.TakeDamageEvent;
 import yesman.epicfight.api.event.types.player.TickPlayerEpicFightModeEvent;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
@@ -64,6 +65,11 @@ public final class EpicFightCombatPerkHooks {
     private static final String DODGE_SUBSCRIBER_ID = "rpgskilltree:notion_combat/dodge";
     private static final String MISS_SUBSCRIBER_ID = "rpgskilltree:notion_combat/attack_phase_end";
     private static final String TICK_SUBSCRIBER_ID = "rpgskilltree:notion_combat/tick";
+    private static final String HEAVY_IMPACT_SUBSCRIBER_ID = "rpgskilltree:notion_combat/heavy_impact";
+    private static final String A0004_HEAVY_CONSUMER = "rpgskilltree:a0004_momentum_heavy";
+    private static final String A0016_HEAVY_CONSUMER = "rpgskilltree:a0016_distance_control_heavy";
+    private static final String A0022_HEAVY_CONSUMER = "rpgskilltree:a0022_flow_heavy";
+    private static final String A0046_HEAVY_CONSUMER = "rpgskilltree:a0046_focus_heavy_impact";
     private static final String A0029_REFUND_CONSUMER = "A0029:posture-break-refund";
     private static final String A0042_REFUND_CONSUMER = "A0042:battle-harvest-refund";
 
@@ -98,6 +104,11 @@ public final class EpicFightCombatPerkHooks {
             EpicFightCombatPerkHooks::onDealDamagePost,
             POST_SUBSCRIBER_ID
         );
+        EpicFightEventHooks.Entity.TAKE_DAMAGE_POST.registerEvent(
+            EpicFightCombatPerkHooks::onIncomingHeavyImpact,
+            HEAVY_IMPACT_SUBSCRIBER_ID,
+            0
+        );
         EpicFightEventHooks.Entity.KILL_ENTITY.registerEvent(
             EpicFightCombatPerkHooks::onKillEntity,
             KILL_SUBSCRIBER_ID
@@ -119,6 +130,47 @@ public final class EpicFightCombatPerkHooks {
             TICK_SUBSCRIBER_ID
         );
         registered = true;
+    }
+
+    /**
+     * Runs between the certified heavy-impact bridge POST-finalize (MAX) and POST-cleanup (MIN).
+     * Each perk independently claims the same causal receipt with a stable consumer id.
+     */
+    private static void onIncomingHeavyImpact(TakeDamageEvent.Post event) {
+        if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player)) return;
+        if (!eligible(player)) return;
+
+        CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
+        if (ranks.ranks().isEmpty()) return;
+
+        NotionCombatPerkState state = CombatPerkRuntimeState.state();
+        String actorId = CombatPerkRuntimeState.actorId(player);
+        long nowMillis = now(player);
+
+        if (ranks.learned("A0004")
+            && EpicFightHeavyImpactReceiptBridge.claimConfirmedHeavyImpact(event, A0004_HEAVY_CONSUMER)
+                .filter(receipt -> receipt.actorId().equals(actorId))
+                .isPresent()) {
+            CombatPerkTransitionPolicy.applyA0004ConfirmedHeavyImpact(actorId, ranks, state, nowMillis);
+        }
+        if (ranks.rank("A0016") > 0
+            && EpicFightHeavyImpactReceiptBridge.claimConfirmedHeavyImpact(event, A0016_HEAVY_CONSUMER)
+                .filter(receipt -> receipt.actorId().equals(actorId))
+                .isPresent()) {
+            CombatPerkTransitionPolicy.applyA0016ConfirmedHeavyImpact(actorId, ranks, state, nowMillis);
+        }
+        if (ranks.rank("A0022") > 0
+            && EpicFightHeavyImpactReceiptBridge.claimConfirmedHeavyImpact(event, A0022_HEAVY_CONSUMER)
+                .filter(receipt -> receipt.actorId().equals(actorId))
+                .isPresent()) {
+            CombatPerkTransitionPolicy.applyA0022ConfirmedHeavyImpact(actorId, ranks, state, nowMillis);
+        }
+        if (ranks.rank("A0046") > 0
+            && EpicFightHeavyImpactReceiptBridge.claimConfirmedHeavyImpact(event, A0046_HEAVY_CONSUMER)
+                .filter(receipt -> receipt.actorId().equals(actorId))
+                .isPresent()) {
+            CombatPerkTransitionPolicy.applyA0046ConfirmedHeavyImpact(actorId, ranks, state, nowMillis);
+        }
     }
 
     private static void onDealDamagePre(DealDamageEvent.Pre event) {
