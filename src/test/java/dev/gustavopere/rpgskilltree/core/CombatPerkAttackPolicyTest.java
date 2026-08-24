@@ -15,7 +15,7 @@ public final class CombatPerkAttackPolicyTest {
         daggerFlowExpiresByRank();
         hammerMaceAndScytheUsePerTargetPreparation();
         confirmedHitsGenerateOnlyTheirOwnResources();
-        furyGenerationRequiresAnExplicitCanonicalBaseGain();
+        furyGenerationUsesFrozenCanonicalBaseGain();
         duplicateProviderCallbacksCannotConsumeOrProduceTwice();
         invalidActionsCannotGainTrainingOrResources();
         System.out.println("CombatPerkAttackPolicyTest: PASS");
@@ -282,16 +282,16 @@ public final class CombatPerkAttackPolicyTest {
         require(state.hasTargetFlag("p", "mob", NotionCombatPerkState.TargetFlag.REAPING_MATURE, 15000L), "A0040 mature mark");
     }
 
-    private static void furyGenerationRequiresAnExplicitCanonicalBaseGain() {
+    private static void furyGenerationUsesFrozenCanonicalBaseGain() {
         var ranks = CombatPerkRanks.of(Map.of("A0010", 2));
         var state = new NotionCombatPerkState();
         CombatPerkAttackPolicy.afterConfirmedHit(
             context(WeaponFamily.AXE, false, false, false, false, false, 1.0, 0.0, 1000L), ranks, state);
-        require(close(state.fury("p"), 0.0), "no invented fury base gain");
+        require(close(state.fury("p"), 9.6D), "A0010 rank2 uses frozen base eight without provider amount");
 
         CombatPerkAttackPolicy.afterConfirmedHit(
             context(WeaponFamily.AXE, false, false, false, false, false, 1.0, 10.0, 2000L), ranks, state);
-        require(close(state.fury("p"), 12.0), "rank2 fury multiplier");
+        require(close(state.fury("p"), 19.2D), "legacy provider amount cannot alter frozen gain");
         CombatPerkAttackPolicy.afterConfirmedHit(
             new CombatPerkAttackPolicy.AttackContext(
                 "p", "other", WeaponFamily.AXE,
@@ -301,7 +301,7 @@ public final class CombatPerkAttackPolicyTest {
             ranks,
             state
         );
-        require(close(state.fury("p"), 30.0), "target switch gets +50% after rank multiplier");
+        require(close(state.fury("p"), 33.6D), "target switch adds frozen rank2 14.4 after rank multiplier");
     }
 
     private static void duplicateProviderCallbacksCannotConsumeOrProduceTwice() {
