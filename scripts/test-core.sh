@@ -29,3 +29,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionStateMigrationMatri
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SpecializationReconciliationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.NotionCombatPerkCatalogTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkNodeBindingTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkTreeModelTest
