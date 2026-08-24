@@ -33,6 +33,7 @@ public final class CombatPerkRuntimeState {
     }
 
     public static void clear(ServerPlayer player) {
+        CanonicalCombatRuntimeState.clear(player);
         STATE.clear(actorId(player));
     }
 }
