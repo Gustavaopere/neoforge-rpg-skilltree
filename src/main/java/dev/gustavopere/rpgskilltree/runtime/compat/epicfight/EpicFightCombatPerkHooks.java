@@ -6,6 +6,7 @@ import dev.gustavopere.rpgskilltree.core.CombatPerkDefensePolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
+import dev.gustavopere.rpgskilltree.core.CombatPositionPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponFamilyPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
@@ -94,7 +95,13 @@ public final class EpicFightCombatPerkHooks {
         if (ranks.ranks().isEmpty()) return;
 
         NotionCombatPerkState state = CombatPerkRuntimeState.state();
-        CombatPerkAttackPolicy.AttackContext context = context(player, event.getTarget(), event.getDamageSource(), resolved.get());
+        CombatPerkAttackPolicy.AttackContext context = context(
+            player,
+            event.getTarget(),
+            event.getDamageSource(),
+            resolved.get(),
+            capability
+        );
         HurtableEntityPatch<?> targetPatch = EpicFightCapabilities.getEntityPatch(event.getTarget(), HurtableEntityPatch.class);
         int shockBefore = resolved.get() == WeaponFamily.HAMMER
             ? state.targetCounter(context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.SHOCK, context.nowMillis())
@@ -147,7 +154,13 @@ public final class EpicFightCombatPerkHooks {
         if (ranks.ranks().isEmpty()) return;
 
         NotionCombatPerkState state = CombatPerkRuntimeState.state();
-        CombatPerkAttackPolicy.AttackContext context = context(player, event.getTarget(), event.getDamageSource(), resolved.get());
+        CombatPerkAttackPolicy.AttackContext context = context(
+            player,
+            event.getTarget(),
+            event.getDamageSource(),
+            resolved.get(),
+            capability
+        );
         CombatPerkAttackPolicy.afterConfirmedHit(context, ranks, state);
 
         if (resolved.get() == WeaponFamily.HAMMER
@@ -232,9 +245,11 @@ public final class EpicFightCombatPerkHooks {
         ServerPlayer player,
         LivingEntity target,
         EpicFightDamageSource source,
-        WeaponFamily family
+        WeaponFamily family,
+        CapabilityItem capability
     ) {
-        boolean projectileDirect = source.getDirectEntity() instanceof Projectile;
+        boolean projectileDirect = source.getDirectEntity() instanceof Projectile projectile
+            && projectile.getOwner() == player;
         boolean direct = source.getDirectEntity() == player
             || ((family == WeaponFamily.BOW || family == WeaponFamily.CROSSBOW) && projectileDirect);
         boolean hostile = target instanceof Enemy || target instanceof Player;
@@ -244,6 +259,31 @@ public final class EpicFightCombatPerkHooks {
         double healthFraction = target.getMaxHealth() <= 0.0F
             ? 1.0D
             : Math.max(0.0D, Math.min(1.0D, target.getHealth() / target.getMaxHealth()));
+        double distance = player.distanceTo(target);
+        double providerReach = capability == null || capability.isEmpty() ? 0.0D : capability.getReach();
+        boolean idealRange = family == WeaponFamily.SPEAR && CombatPositionPolicy.isIdealSpearRange(
+            distance,
+            player.entityInteractionRange(),
+            Math.max(0.0D, providerReach)
+        );
+        var targetMotion = target.getDeltaMovement();
+        boolean targetAdvancing = idealRange && CombatPositionPolicy.isAdvancingToward(
+            player.getX(),
+            player.getZ(),
+            target.getX(),
+            target.getZ(),
+            targetMotion.x,
+            targetMotion.z
+        );
+        var targetLook = target.getLookAngle();
+        boolean flankOrBack = family == WeaponFamily.DAGGER && CombatPositionPolicy.isFlankOrBack(
+            player.getX(),
+            player.getZ(),
+            target.getX(),
+            target.getZ(),
+            targetLook.x,
+            targetLook.z
+        );
 
         return new CombatPerkAttackPolicy.AttackContext(
             player.getUUID().toString(),
@@ -253,9 +293,9 @@ public final class EpicFightCombatPerkHooks {
             hostile,
             relevantDefense,
             source.shouldChargeWeapon(),
-            false,
-            false,
-            false,
+            idealRange,
+            targetAdvancing,
+            flankOrBack,
             protectedTarget,
             healthFraction,
             false,
