@@ -44,3 +44,5 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalFuryServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalFocusServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalStaminaServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalActionCorrelationServiceTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ExactStaminaDebitCaptureTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ExactStaminaReceiptCorrelationTest
