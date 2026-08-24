@@ -76,6 +76,8 @@ public final class EpicFightCombatPerkHooks {
         new WeakHashMap<>();
     private static final Map<EpicFightDamageSource, Map<String, Boolean>> ARMOR_CRACKED_BEFORE_HIT =
         new WeakHashMap<>();
+    private static final Map<EpicFightDamageSource, Map<String, Boolean>> REAPING_MATURE_BEFORE_HIT =
+        new WeakHashMap<>();
 
     private static boolean registered;
 
@@ -146,6 +148,18 @@ public final class EpicFightCombatPerkHooks {
                     context.actorId(),
                     context.targetId(),
                     NotionCombatPerkState.TargetFlag.ARMOR_CRACKED,
+                    context.nowMillis()
+                )
+            );
+        }
+        if (ranks.learned("A0042") && resolved.get() == WeaponFamily.SCYTHE) {
+            rememberReapingMatureBeforeHit(
+                event.getDamageSource(),
+                context.targetId(),
+                state.hasTargetFlag(
+                    context.actorId(),
+                    context.targetId(),
+                    NotionCombatPerkState.TargetFlag.REAPING_MATURE,
                     context.nowMillis()
                 )
             );
@@ -311,9 +325,10 @@ public final class EpicFightCombatPerkHooks {
 
         long nowMillis = now(player);
         Optional<CanonicalActionIdentity> action = existingActionForDamage(player, victim, source, nowMillis);
+        boolean reapingMatureBeforeHit = consumeReapingMatureBeforeHit(source, victim.getUUID().toString());
         if (action.isEmpty()) return;
 
-        CombatPerkFinalizationPolicy.activateBattleHarvest(
+        CombatPerkFinalizationPolicy.activateBattleHarvestFromPreHitSnapshot(
             action.get().withSource("epicfight:kill_entity"),
             CombatPerkRuntimeState.actorId(player),
             victim.getUUID().toString(),
@@ -321,6 +336,7 @@ public final class EpicFightCombatPerkHooks {
             true,
             true,
             true,
+            reapingMatureBeforeHit,
             ranks,
             CombatPerkRuntimeState.state(),
             weaponMastery(player, WeaponFamily.SCYTHE),
@@ -599,6 +615,27 @@ public final class EpicFightCombatPerkHooks {
         if (byTarget == null) return false;
         Boolean value = byTarget.remove(targetId);
         if (byTarget.isEmpty()) ARMOR_CRACKED_BEFORE_HIT.remove(source);
+        return Boolean.TRUE.equals(value);
+    }
+
+    private static synchronized void rememberReapingMatureBeforeHit(
+        EpicFightDamageSource source,
+        String targetId,
+        boolean reapingMature
+    ) {
+        REAPING_MATURE_BEFORE_HIT
+            .computeIfAbsent(source, ignored -> new HashMap<>())
+            .put(targetId, reapingMature);
+    }
+
+    private static synchronized boolean consumeReapingMatureBeforeHit(
+        EpicFightDamageSource source,
+        String targetId
+    ) {
+        Map<String, Boolean> byTarget = REAPING_MATURE_BEFORE_HIT.get(source);
+        if (byTarget == null) return false;
+        Boolean value = byTarget.remove(targetId);
+        if (byTarget.isEmpty()) REAPING_MATURE_BEFORE_HIT.remove(source);
         return Boolean.TRUE.equals(value);
     }
 
