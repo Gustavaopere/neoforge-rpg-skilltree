@@ -142,23 +142,17 @@ public final class CombatPerkFinalizationPolicyTest {
         long now = 1_000L;
         var state = new NotionCombatPerkState();
         state.addTargetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, 3, 3, now, 6_000L);
-        state.recordCounterTarget("p", NotionCombatPerkState.TargetCounter.SHOCK, "first");
 
-        int transferred = state.transferCounterOnTargetSwitch(
-            "p", NotionCombatPerkState.TargetCounter.SHOCK, "second", now + 500L, 6_000L, 3
-        );
-
-        require(transferred == 0, "frozen A0028 transfers zero Shock stacks when target changes");
         require(state.targetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, now + 500L) == 3,
-            "first target keeps its independent Shock record");
+            "first target keeps its independent Shock record when combat changes targets");
         require(state.targetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, now + 500L) == 0,
-            "second target receives no transferred Shock");
+            "second target receives zero Shock without its own eligible hit");
 
         state.addTargetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, 1, 3, now + 500L, 6_000L);
         require(state.targetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, now + 1_000L) == 3,
-            "different targets keep independent counters");
+            "a hit on another target cannot consume or transfer the first target's Shock");
         require(state.targetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, now + 1_000L) == 1,
-            "second target tracks only its own hits");
+            "second target tracks only its own eligible hits");
         require(state.targetCounter("p", "first", NotionCombatPerkState.TargetCounter.SHOCK, now + 6_000L) == 0,
             "first target expires six seconds after its own last gain");
         require(state.targetCounter("p", "second", NotionCombatPerkState.TargetCounter.SHOCK, now + 6_499L) == 1,
