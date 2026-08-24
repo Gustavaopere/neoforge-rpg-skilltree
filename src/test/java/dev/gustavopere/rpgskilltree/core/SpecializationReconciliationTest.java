@@ -13,6 +13,7 @@ public final class SpecializationReconciliationTest {
         restoresActiveNodeOwnedSpecializations();
         unlocksEligibleTagGatedSpecialization();
         revokesIneligibleCatalogSpecializationWithoutErasingUnmanagedState();
+        projectsOnlyTagsFromLearnedNodes();
         System.out.println("SpecializationReconciliationTest: PASS");
     }
 
@@ -87,6 +88,20 @@ public final class SpecializationReconciliationTest {
         eq(Set.of("industrialist"), reconciled.specializations().unlockedSpecializationIds());
     }
 
+    static void projectsOnlyTagsFromLearnedNodes() {
+        var progress = PassiveNodeProgress.of(Map.of("rpgskilltree:martial_000", 1));
+        var tagsByNode = Map.of(
+            "rpgskilltree:martial_000", Set.of("gateway:epic_sword", "gateway:epic_axe"),
+            "rpgskilltree:agility_000", Set.of("gateway:epic_bow")
+        );
+
+        InvestmentState investment = projectInvestment(progress, tagsByNode);
+
+        eq(true, investment.hasTag("gateway:epic_sword"));
+        eq(true, investment.hasTag("gateway:epic_axe"));
+        eq(false, investment.hasTag("gateway:epic_bow"));
+    }
+
     private static ProgressionState reconcileEligible(
         ProgressionState state,
         List<SpecializationDefinition> definitions,
@@ -102,6 +117,27 @@ public final class SpecializationReconciliationTest {
             return (ProgressionState) method.invoke(null, state, definitions, investment);
         } catch (NoSuchMethodException missingFeature) {
             throw new AssertionError("ProgressionService.reconcileEligibleSpecializations is missing", missingFeature);
+        } catch (IllegalAccessException inaccessible) {
+            throw new AssertionError(inaccessible);
+        } catch (InvocationTargetException failed) {
+            Throwable cause = failed.getCause();
+            if (cause instanceof RuntimeException runtime) throw runtime;
+            if (cause instanceof Error error) throw error;
+            throw new AssertionError(cause);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static InvestmentState projectInvestment(
+        PassiveNodeProgress progress,
+        Map<String, Set<String>> tagsByNode
+    ) {
+        try {
+            Class<?> policy = Class.forName("dev.gustavopere.rpgskilltree.core.NodeInvestmentProjection");
+            var method = policy.getMethod("from", PassiveNodeProgress.class, Map.class);
+            return (InvestmentState) method.invoke(null, progress, tagsByNode);
+        } catch (ClassNotFoundException | NoSuchMethodException missingFeature) {
+            throw new AssertionError("NodeInvestmentProjection.from is missing", missingFeature);
         } catch (IllegalAccessException inaccessible) {
             throw new AssertionError(inaccessible);
         } catch (InvocationTargetException failed) {
