@@ -5,8 +5,8 @@ import dev.gustavopere.rpgskilltree.core.CanonicalActionIdentity;
 import dev.gustavopere.rpgskilltree.core.CanonicalCriticalRequest;
 import dev.gustavopere.rpgskilltree.core.CanonicalCriticalService;
 import dev.gustavopere.rpgskilltree.core.CanonicalFocusService;
-import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
+import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.BowItem;
 
 /** Server-only owner for canonical action identity, critical decisions, and ranged correlation. */
 public final class CanonicalCombatRuntimeState {
@@ -35,7 +36,9 @@ public final class CanonicalCombatRuntimeState {
         MAX_TRACKED_ACTIONS
     );
     private static final Map<String, AimSession> AIMS = new HashMap<>();
+    private static final Map<String, PendingCancelledDraw> PENDING_CANCELLED_DRAWS = new HashMap<>();
     private static final Map<ActionKey, ShotFacts> SHOTS = new HashMap<>();
+    private static final Map<String, ProjectileShotFacts> PROJECTILE_SHOTS = new HashMap<>();
 
     private CanonicalCombatRuntimeState() {}
 
@@ -68,13 +71,97 @@ public final class CanonicalCombatRuntimeState {
 
     public static synchronized void beginAim(ServerPlayer player, long nowMillis) {
         CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
-        if (!ranks.learned("A0048")) return;
-        CanonicalActionIdentity preparation = newRoot(player, "neoforge:arrow_nock", nowMillis);
-        CanonicalFocusService.PreparationStatus status = CombatPerkRuntimeState.state().focusService()
-            .beginPreparation(preparation, true, true, nowMillis);
-        if (status == CanonicalFocusService.PreparationStatus.STARTED) {
-            AIMS.put(actorId(player), new AimSession(preparation));
+        boolean focusGeneration = ranks.learned("A0046");
+        boolean preparedShot = ranks.learned("A0048");
+        if (!focusGeneration && !preparedShot) return;
+
+        CanonicalActionIdentity aimAction = newRoot(player, "neoforge:arrow_nock", nowMillis);
+        boolean preparationStarted = false;
+        if (preparedShot) {
+            CanonicalFocusService.PreparationStatus status = CombatPerkRuntimeState.state().focusService()
+                .beginPreparation(aimAction, true, true, nowMillis);
+            preparationStarted = status == CanonicalFocusService.PreparationStatus.STARTED;
         }
+        if (focusGeneration || preparationStarted) {
+            AIMS.put(actorId(player), new AimSession(aimAction, preparationStarted));
+        }
+    }
+
+    public static synchronized CanonicalFocusService.AimStatus sampleAim(ServerPlayer player, long nowMillis) {
+        String actorId = actorId(player);
+        AimSession aim = AIMS.get(actorId);
+        if (aim == null) return CanonicalFocusService.AimStatus.INELIGIBLE;
+        CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
+        int rank = ranks.rank("A0046");
+        boolean bowInUse = player.isUsingItem() && player.getUseItem().getItem() instanceof BowItem;
+        CanonicalFocusService.AimStatus result = CombatPerkRuntimeState.state().focusService().sampleAim(
+            new CanonicalFocusService.AimSampleRequest(
+                aim.action,
+                true,
+                true,
+                bowInUse,
+                player.isSprinting(),
+                rank,
+                player.getYRot(),
+                player.getXRot(),
+                1.0D,
+                1.0D
+            ),
+            CombatPerkRuntimeState.state(),
+            nowMillis
+        );
+
+        if (player.isSprinting() && aim.preparationStarted) {
+            CombatPerkRuntimeState.state().focusService().armPreparation(
+                aim.action,
+                false,
+                CombatPerkRuntimeState.state(),
+                nowMillis
+            );
+            AIMS.put(actorId, new AimSession(aim.action, false));
+        }
+        return result;
+    }
+
+    /** Records a possible cancelled draw; a normal ArrowLoose in the same release sequence clears it. */
+    public static synchronized void recordUseStop(ServerPlayer player, double drawFraction, long nowMillis) {
+        if (!Double.isFinite(drawFraction) || drawFraction < 0.0D) return;
+        String actorId = actorId(player);
+        if (!AIMS.containsKey(actorId) || CombatPerkRuntimeState.ranks(player).rank("A0046") <= 0) return;
+        PENDING_CANCELLED_DRAWS.put(
+            actorId,
+            new PendingCancelledDraw(drawFraction, Math.addExact(nowMillis, 50L))
+        );
+    }
+
+    public static synchronized boolean hasPendingCancelledDraw(ServerPlayer player) {
+        return PENDING_CANCELLED_DRAWS.containsKey(actorId(player));
+    }
+
+    /** Resolves a Stop that was not followed by ArrowLoose, proving an actual cancelled shot. */
+    public static synchronized boolean resolvePendingCancelledDraw(ServerPlayer player, long nowMillis) {
+        String actorId = actorId(player);
+        PendingCancelledDraw pending = PENDING_CANCELLED_DRAWS.get(actorId);
+        if (pending == null || pending.resolveAtMillis > nowMillis) return false;
+        PENDING_CANCELLED_DRAWS.remove(actorId);
+        AimSession aim = AIMS.remove(actorId);
+        CombatPerkRuntimeState.state().focusService().endAimTracking(actorId);
+        if (aim != null && aim.preparationStarted) {
+            CombatPerkRuntimeState.state().focusService().armPreparation(
+                aim.action,
+                false,
+                CombatPerkRuntimeState.state(),
+                nowMillis
+            );
+        }
+        return CombatPerkRuntimeState.state().focusService().applyCancelledDrawLoss(
+            actorId,
+            true,
+            true,
+            pending.drawFraction,
+            CombatPerkRuntimeState.state(),
+            nowMillis
+        );
     }
 
     public static synchronized CanonicalActionIdentity recordLoose(
@@ -84,10 +171,12 @@ public final class CanonicalCombatRuntimeState {
         long nowMillis
     ) {
         String actorId = actorId(player);
+        PENDING_CANCELLED_DRAWS.remove(actorId);
         AimSession aim = AIMS.remove(actorId);
-        if (aim != null) {
+        CombatPerkRuntimeState.state().focusService().endAimTracking(actorId);
+        if (aim != null && aim.preparationStarted) {
             CombatPerkRuntimeState.state().focusService().armPreparation(
-                aim.preparation,
+                aim.action,
                 fullyDrawn && !player.isSprinting(),
                 CombatPerkRuntimeState.state(),
                 nowMillis
@@ -99,7 +188,14 @@ public final class CanonicalCombatRuntimeState {
         pruneShots(nowMillis);
         SHOTS.put(
             ActionKey.of(shot),
-            new ShotFacts(fullyDrawn, cooldownMillis, Math.addExact(nowMillis, CORRELATION_RETENTION_MILLIS))
+            new ShotFacts(
+                fullyDrawn,
+                cooldownMillis,
+                player.getX(),
+                player.getY(),
+                player.getZ(),
+                Math.addExact(nowMillis, CORRELATION_RETENTION_MILLIS)
+            )
         );
         return shot;
     }
@@ -114,7 +210,30 @@ public final class CanonicalCombatRuntimeState {
             actorId(owner), projectileId, nowMillis);
         if (action.isEmpty()) return Optional.empty();
         ShotFacts facts = SHOTS.get(ActionKey.of(action.get()));
+        if (facts != null) {
+            PROJECTILE_SHOTS.put(
+                projectileId,
+                new ProjectileShotFacts(
+                    action.get(),
+                    facts.shotX,
+                    facts.shotY,
+                    facts.shotZ,
+                    Math.addExact(nowMillis, PROJECTILE_RETENTION_MILLIS)
+                )
+            );
+        }
         return Optional.of(new ShotCorrelation(action.get(), facts));
+    }
+
+    public static synchronized Optional<ProjectileShotFacts> projectileShotFacts(
+        ServerPlayer owner,
+        String projectileId,
+        long nowMillis
+    ) {
+        pruneShots(nowMillis);
+        ProjectileShotFacts facts = PROJECTILE_SHOTS.get(projectileId);
+        if (facts == null || !facts.action.actorId().equals(actorId(owner))) return Optional.empty();
+        return Optional.of(facts);
     }
 
     public static synchronized CanonicalActionIdentity projectileAction(
@@ -161,10 +280,13 @@ public final class CanonicalCombatRuntimeState {
     }
 
     public static synchronized void invalidateAim(ServerPlayer player, long nowMillis) {
-        AimSession aim = AIMS.remove(actorId(player));
-        if (aim != null) {
+        String actorId = actorId(player);
+        PENDING_CANCELLED_DRAWS.remove(actorId);
+        AimSession aim = AIMS.remove(actorId);
+        CombatPerkRuntimeState.state().focusService().endAimTracking(actorId);
+        if (aim != null && aim.preparationStarted) {
             CombatPerkRuntimeState.state().focusService().armPreparation(
-                aim.preparation,
+                aim.action,
                 false,
                 CombatPerkRuntimeState.state(),
                 nowMillis
@@ -179,13 +301,16 @@ public final class CanonicalCombatRuntimeState {
     public static synchronized void clear(ServerPlayer player) {
         String actorId = actorId(player);
         AIMS.remove(actorId);
+        PENDING_CANCELLED_DRAWS.remove(actorId);
         SHOTS.keySet().removeIf(key -> key.actorId.equals(actorId));
+        PROJECTILE_SHOTS.entrySet().removeIf(entry -> entry.getValue().action.actorId().equals(actorId));
         CORRELATION.clearActor(actorId);
         CRITICAL.clearActor(actorId);
     }
 
     private static void pruneShots(long nowMillis) {
         SHOTS.entrySet().removeIf(entry -> entry.getValue().expiresAtMillis <= nowMillis);
+        PROJECTILE_SHOTS.entrySet().removeIf(entry -> entry.getValue().expiresAtMillis <= nowMillis);
     }
 
     private static String actorId(ServerPlayer player) {
@@ -194,9 +319,26 @@ public final class CanonicalCombatRuntimeState {
 
     public record ShotCorrelation(CanonicalActionIdentity action, ShotFacts facts) {}
 
-    public record ShotFacts(boolean fullyDrawn, long cooldownMillis, long expiresAtMillis) {}
+    public record ShotFacts(
+        boolean fullyDrawn,
+        long cooldownMillis,
+        double shotX,
+        double shotY,
+        double shotZ,
+        long expiresAtMillis
+    ) {}
 
-    private record AimSession(CanonicalActionIdentity preparation) {}
+    public record ProjectileShotFacts(
+        CanonicalActionIdentity action,
+        double shotX,
+        double shotY,
+        double shotZ,
+        long expiresAtMillis
+    ) {}
+
+    private record AimSession(CanonicalActionIdentity action, boolean preparationStarted) {}
+
+    private record PendingCancelledDraw(double drawFraction, long resolveAtMillis) {}
 
     private record ActionKey(String actorId, String actionId) {
         static ActionKey of(CanonicalActionIdentity action) {
