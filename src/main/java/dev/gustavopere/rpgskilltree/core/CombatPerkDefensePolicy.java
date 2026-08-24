@@ -44,7 +44,7 @@ public final class CombatPerkDefensePolicy {
                     state.setActorFlag(
                         actorId,
                         NotionCombatPerkState.ActorFlag.RECENT_DODGE,
-                        Math.addExact(nowMillis, 2_500L)
+                        Math.addExact(nowMillis, 2_000L)
                     );
                 }
             }
