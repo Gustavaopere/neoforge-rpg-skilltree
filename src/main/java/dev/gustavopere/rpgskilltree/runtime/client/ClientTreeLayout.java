@@ -4,6 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition;
+import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
@@ -14,7 +16,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +27,7 @@ import java.util.Set;
 public final class ClientTreeLayout {
     private static final String RESOURCE_BASE = "/assets/rpgskilltree/tree/";
     private static final ClientTreeLayout MAIN = load("main");
+    private static final ClientTreeLayout NOTION_COMBAT = createNotionCombat();
     private static final ClientTreeLayout TECHNOMANCER = load("technomancer");
     private static final ClientTreeLayout WARLOCK = load("warlock");
     private static final ClientTreeLayout DRUID = load("druid");
@@ -109,6 +114,9 @@ public final class ClientTreeLayout {
     public static List<ClientTreeLayout> availableFor(ProgressionState state) {
         List<ClientTreeLayout> available = new ArrayList<>();
         available.add(MAIN);
+        if (CombatPerkTreeModel.specializationIds().stream().anyMatch(state.specializations()::isUnlocked)) {
+            available.add(NOTION_COMBAT);
+        }
         if (state.classProgression().isUnlocked("technomancer")) available.add(TECHNOMANCER);
         if (state.classProgression().isUnlocked("warlock")) available.add(WARLOCK);
         if (state.classProgression().isUnlocked("druid")) available.add(DRUID);
@@ -146,6 +154,79 @@ public final class ClientTreeLayout {
 
     public SkillGraph graph() {
         return graph;
+    }
+
+    private static ClientTreeLayout createNotionCombat() {
+        List<Node> nodes = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
+        Map<CombatPerkDefinition.WeaponFamily, Integer> familyIndices = new EnumMap<>(CombatPerkDefinition.WeaponFamily.class);
+
+        for (CombatPerkTreeModel.Node source : CombatPerkTreeModel.all()) {
+            int localIndex = familyIndices.getOrDefault(source.weaponFamily(), 0);
+            familyIndices.put(source.weaponFamily(), localIndex + 1);
+            double[] position = combatPosition(source.weaponFamily(), localIndex);
+            NodeAccessRequirement requirement = new NodeAccessRequirement(
+                source.minCharacterLevel(),
+                Set.of(),
+                source.requiredMastery(),
+                source.requiredSpecializations(),
+                Set.of(),
+                Set.of(),
+                source.requiredNodeRanks(),
+                Set.of()
+            );
+            nodes.add(new Node(
+                source.nodeId(),
+                source.kind(),
+                null,
+                source.weaponFamily().name().toLowerCase(java.util.Locale.ROOT),
+                source.domains().stream().sorted().toList(),
+                position[0],
+                position[1],
+                null,
+                source.maxRank(),
+                source.costPerRank(),
+                source.startingPoint(),
+                requirement
+            ));
+        }
+
+        Set<String> seenEdges = new HashSet<>();
+        for (CombatPerkTreeModel.Node source : CombatPerkTreeModel.all()) {
+            for (String neighbor : source.neighbors().stream().sorted().toList()) {
+                String from = source.nodeId().compareTo(neighbor) <= 0 ? source.nodeId() : neighbor;
+                String to = source.nodeId().compareTo(neighbor) <= 0 ? neighbor : source.nodeId();
+                String key = from + "\u0000" + to;
+                if (seenEdges.add(key)) edges.add(new Edge(from, to));
+            }
+        }
+        return new ClientTreeLayout(
+            "rpgskilltree:notion_combat",
+            "tree.rpgskilltree.notion_combat",
+            nodes,
+            edges
+        );
+    }
+
+    private static double[] combatPosition(CombatPerkDefinition.WeaponFamily family, int localIndex) {
+        double baseX = (family.ordinal() - 4) * 260.0D;
+        double[][] standard = {
+            {0.0D, 0.0D},
+            {-55.0D, 120.0D},
+            {55.0D, 120.0D},
+            {55.0D, 240.0D},
+            {-20.0D, 360.0D},
+            {0.0D, 500.0D}
+        };
+        double[][] shortBranch = {
+            {0.0D, 0.0D},
+            {0.0D, 140.0D}
+        };
+        double[][] positions = family == CombatPerkDefinition.WeaponFamily.CROSSBOW ? shortBranch : standard;
+        if (localIndex < 0 || localIndex >= positions.length) {
+            throw new IllegalStateException("unexpected node count for combat family " + family);
+        }
+        return new double[] {baseX + positions[localIndex][0], positions[localIndex][1]};
     }
 
     private static ClientTreeLayout load(String resourceName) {
