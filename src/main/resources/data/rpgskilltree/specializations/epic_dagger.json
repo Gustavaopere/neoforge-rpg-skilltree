@@ -1,12 +1,12 @@
 {
-  "specialization_id": "epic_sword",
+  "specialization_id": "epic_dagger",
   "provider": "epicfight",
   "kind": "combat",
   "eligible_class_ids": [],
   "minimum_mastery_experience": {
-    "epicfight:sword": 60
+    "epicfight:dagger": 60
   },
   "required_tags": [
-    "gateway:epic_sword"
+    "gateway:epic_dagger"
   ]
 }

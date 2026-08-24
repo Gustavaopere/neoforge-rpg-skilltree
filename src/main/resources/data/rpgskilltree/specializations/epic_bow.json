@@ -1,12 +1,12 @@
 {
-  "specialization_id": "epic_sword",
+  "specialization_id": "epic_bow",
   "provider": "epicfight",
   "kind": "combat",
   "eligible_class_ids": [],
   "minimum_mastery_experience": {
-    "epicfight:sword": 60
+    "combat:bow": 60
   },
   "required_tags": [
-    "gateway:epic_sword"
+    "gateway:epic_bow"
   ]
 }

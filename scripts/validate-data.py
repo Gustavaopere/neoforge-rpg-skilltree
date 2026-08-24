@@ -211,11 +211,13 @@ def main():
         raise AssertionError('boss rewards must be first-kill-only')
 
     spec_ids = set()
+    specs_by_id = {}
     for p, d in specs:
         sid = d['specialization_id']
         if sid in spec_ids:
             raise AssertionError(f'duplicate specialization {sid}')
         spec_ids.add(sid)
+        specs_by_id[sid] = (p, d)
         eligible = d.get('eligible_class_ids', [])
         eligible_set = string_list(p, eligible, 'eligible_class_ids')
         migrated_as_class = eligible_set & MIGRATED_CLASS_IDS
@@ -230,6 +232,29 @@ def main():
         ):
             raise AssertionError(f'{p}: mastery requirements')
         string_list(p, d.get('required_tags', []), 'required_tags')
+
+    expected_combat_specializations = {
+        'epic_sword': ('epicfight:sword', 60, 'gateway:epic_sword'),
+        'epic_axe': ('epicfight:axe', 60, 'gateway:epic_axe'),
+        'epic_spear': ('epicfight:spear', 60, 'gateway:epic_spear'),
+        'epic_dagger': ('epicfight:dagger', 60, 'gateway:epic_dagger'),
+        'epic_hammer': ('epicfight:heavy', 70, 'gateway:epic_hammer'),
+        'combat_mace': ('combat:mace', 60, 'gateway:combat_mace'),
+        'combat_scythe': ('combat:scythe', 60, 'gateway:combat_scythe'),
+        'epic_bow': ('combat:bow', 60, 'gateway:epic_bow'),
+        'epic_crossbow': ('combat:crossbow', 60, 'gateway:epic_crossbow'),
+    }
+    missing_combat_specs = set(expected_combat_specializations) - set(specs_by_id)
+    if missing_combat_specs:
+        raise AssertionError(f'missing combat specializations: {sorted(missing_combat_specs)}')
+    for sid, (lane, threshold, gateway_tag) in expected_combat_specializations.items():
+        p, d = specs_by_id[sid]
+        if d.get('eligible_class_ids') != []:
+            raise AssertionError(f'{p}: combat gateway specialization must not require a class')
+        if d.get('minimum_mastery_experience') != {lane: threshold}:
+            raise AssertionError(f'{p}: expected mastery {{{lane!r}: {threshold}}}')
+        if d.get('required_tags') != [gateway_tag]:
+            raise AssertionError(f'{p}: expected only gateway tag {gateway_tag}')
 
     pact_dir = ROOT / 'class_choices/warlock_pacts'
     pacts = []
