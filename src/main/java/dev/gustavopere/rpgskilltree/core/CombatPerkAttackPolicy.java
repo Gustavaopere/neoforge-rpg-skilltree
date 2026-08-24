@@ -74,14 +74,14 @@ public final class CombatPerkAttackPolicy {
         Objects.requireNonNull(ranks);
         Objects.requireNonNull(state);
 
-        double damage = NotionCombatPerkRules.baseDamageMultiplier(context.weaponFamily(), ranks);
         double armorNegation = 0.0D;
         double impact = 1.0D;
         double guardPressure = 1.0D;
 
         if (!context.direct() || !context.hostile()) {
-            return new HitModifiers(damage, armorNegation, impact, guardPressure);
+            return new HitModifiers(1.0D, armorNegation, impact, guardPressure);
         }
+        double damage = NotionCombatPerkRules.baseDamageMultiplier(context.weaponFamily(), ranks);
 
         switch (context.weaponFamily()) {
             case SWORD -> {
@@ -297,11 +297,9 @@ public final class CombatPerkAttackPolicy {
                 int flowRank = ranks.rank("A0022");
                 boolean recentDodge = state.hasActorFlag(
                     context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis());
-                if (flowRank > 0 && (context.flankOrBack() || recentDodge)) {
-                    if (recentDodge) {
-                        state.consumeActorFlag(
-                            context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis());
-                    }
+                if (flowRank > 0 && recentDodge) {
+                    state.consumeActorFlag(
+                        context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis());
                     state.addFlow(context.actorId(), 1, context.nowMillis());
                 }
             }
