@@ -118,8 +118,9 @@ public final class IronsSpellbookProgressionEvents {
             source, event.getEntity().getUUID().toString());
         if (known.isEmpty()) return;
         String school = ironSchool(source);
+        boolean periodic = CanonicalSustainRuntime.periodicSource(source, false, owner).isPresent();
         CanonicalSustainRuntime.Classification classification = new CanonicalSustainRuntime.Classification(
-            false, true, ELEMENTAL_SCHOOLS.contains(school), false, true);
+            false, true, ELEMENTAL_SCHOOLS.contains(school), periodic, true);
         if (!CanonicalSustainRuntime.hasEligibleCandidate(owner, classification)) return;
 
         float nativeCoefficient = ironLifesteal(source);

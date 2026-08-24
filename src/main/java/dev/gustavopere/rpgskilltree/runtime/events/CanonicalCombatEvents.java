@@ -570,7 +570,9 @@ public final class CanonicalCombatEvents {
             .equals("io.redspace.ironsspellbooks.damage.SpellDamageSource");
         if (providerNonWeapon) CanonicalSustainRuntime.markProviderClassifiedNonWeapon(source);
 
-        boolean periodic = source.is(PERIODIC_SUSTAIN);
+        Optional<CanonicalSustainRuntime.PeriodicSource> periodicSource =
+            CanonicalSustainRuntime.periodicSource(source, source.is(PERIODIC_SUSTAIN), owner);
+        boolean periodic = periodicSource.isPresent();
         boolean explicitlyMagic = source.is(MAGIC_DIRECT) || source.is(ELEMENTAL_DIRECT);
         boolean directOwner = source.getDirectEntity() == owner;
         Projectile projectile = source.getDirectEntity() instanceof Projectile value ? value : null;
@@ -580,8 +582,9 @@ public final class CanonicalCombatEvents {
         long nowMillis = now(owner);
         CanonicalActionIdentity action;
         if (periodic) {
+            CanonicalSustainRuntime.PeriodicSource pulse = periodicSource.orElseThrow();
             action = CanonicalCombatRuntimeState.periodicPulseAction(
-                owner, source, owner.level().getGameTime());
+                owner, pulse.providerId(), pulse.persistentOriginId(), owner.level().getGameTime());
         } else if (ownedProjectile) {
             action = CanonicalCombatRuntimeState.projectileAction(
                 owner, projectile.getUUID().toString(), nowMillis);
@@ -613,7 +616,9 @@ public final class CanonicalCombatEvents {
         boolean directOwner = source.getDirectEntity() == owner;
         Projectile projectile = source.getDirectEntity() instanceof Projectile value ? value : null;
         boolean ownedProjectile = projectile != null && projectile.getOwner() == owner;
-        boolean periodic = source.is(PERIODIC_SUSTAIN);
+        Optional<CanonicalSustainRuntime.PeriodicSource> periodicSource =
+            CanonicalSustainRuntime.periodicSource(source, source.is(PERIODIC_SUSTAIN), owner);
+        boolean periodic = periodicSource.isPresent();
         boolean magic = source.is(MAGIC_DIRECT) && !periodic;
         boolean elemental = source.is(ELEMENTAL_DIRECT) && !periodic;
         boolean weapon = false;
@@ -624,7 +629,7 @@ public final class CanonicalCombatEvents {
             weapon = weaponFamily(weaponStack).isPresent() || CombatFistPolicy.isFistWeapon(
                 weaponStack.isEmpty(), weaponStack.is(FIST_WEAPONS), CombatFistPolicy.ProviderCategory.UNKNOWN);
         }
-        boolean ownerProven = periodic ? source.getEntity() == owner : directOwner || ownedProjectile;
+        boolean ownerProven = periodic ? periodicSource.isPresent() : directOwner || ownedProjectile;
         if (!weapon && !magic && !elemental && !periodic || !ownerProven) return;
 
         CanonicalSustainRuntime.Classification classification = new CanonicalSustainRuntime.Classification(

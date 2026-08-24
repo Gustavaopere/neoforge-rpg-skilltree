@@ -5,6 +5,7 @@ import dev.gustavopere.rpgskilltree.core.CanonicalActionIdentity;
 import dev.gustavopere.rpgskilltree.core.CanonicalCriticalRequest;
 import dev.gustavopere.rpgskilltree.core.CanonicalCriticalService;
 import dev.gustavopere.rpgskilltree.core.CanonicalFocusService;
+import dev.gustavopere.rpgskilltree.core.CanonicalPeriodicPulseIdentity;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
@@ -43,7 +44,6 @@ public final class CanonicalCombatRuntimeState {
     private static final Map<String, ProjectileShotFacts> PROJECTILE_SHOTS = new HashMap<>();
     private static final Map<String, CrossbowBurst> CROSSBOW_BURSTS = new HashMap<>();
     private static final Map<DamageSource, Map<String, DamageActionFacts>> DAMAGE_ACTIONS = new WeakHashMap<>();
-    private static final Map<DamageSource, PeriodicPulseAction> PERIODIC_PULSES = new WeakHashMap<>();
     private static final Map<DamageSource, Map<String, ReceivedDamageFacts>> RECEIVED_DAMAGE_ACTIONS =
         new WeakHashMap<>();
 
@@ -342,25 +342,16 @@ public final class CanonicalCombatRuntimeState {
         return byTarget == null ? Optional.empty() : Optional.ofNullable(byTarget.get(targetId));
     }
 
-    /** One explicit periodic provider source can resolve once per server tick, even across several targets. */
+    /** One persistent provider application can resolve once per server tick, even if it creates a source per target. */
     public static synchronized CanonicalActionIdentity periodicPulseAction(
         ServerPlayer owner,
-        DamageSource source,
+        String providerId,
+        String persistentOriginId,
         long nowTick
     ) {
         Objects.requireNonNull(owner);
-        Objects.requireNonNull(source);
-        if (nowTick < 0L) throw new IllegalArgumentException("nowTick");
-        PeriodicPulseAction current = PERIODIC_PULSES.get(source);
-        if (current != null && current.tick() == nowTick
-            && current.action().actorId().equals(actorId(owner))) return current.action();
-        CanonicalActionIdentity action = newRoot(
-            owner,
-            "neoforge:periodic_pulse/" + nowTick,
-            Math.multiplyExact(nowTick, 50L)
-        );
-        PERIODIC_PULSES.put(source, new PeriodicPulseAction(nowTick, action));
-        return action;
+        return CanonicalPeriodicPulseIdentity.forPulse(
+            actorId(owner), providerId, persistentOriginId, nowTick);
     }
 
     /** Stable victim-side identity across duplicate adapters for one incoming damage event. */
@@ -413,7 +404,6 @@ public final class CanonicalCombatRuntimeState {
         CRITICAL.clearActor(actorId);
         DAMAGE_ACTIONS.values().forEach(byTarget -> byTarget.entrySet().removeIf(
             entry -> entry.getValue().action().actorId().equals(actorId)));
-        PERIODIC_PULSES.entrySet().removeIf(entry -> entry.getValue().action().actorId().equals(actorId));
         RECEIVED_DAMAGE_ACTIONS.values().forEach(byTarget -> byTarget.remove(actorId));
     }
 
@@ -452,8 +442,6 @@ public final class CanonicalCombatRuntimeState {
     private record PendingCancelledDraw(double drawFraction, long resolveAtMillis) {}
 
     private record CrossbowBurst(String stackIdentity, long expiresAtMillis) {}
-
-    private record PeriodicPulseAction(long tick, CanonicalActionIdentity action) {}
 
     private record ReceivedDamageFacts(CanonicalActionIdentity action, long expiresAtMillis) {}
 

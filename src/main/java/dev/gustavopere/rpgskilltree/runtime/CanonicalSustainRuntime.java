@@ -2,16 +2,20 @@ package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.core.CanonicalActionIdentity;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkRanks;
+import dev.gustavopere.rpgskilltree.core.FrozenPeriodicProviderPolicy;
 import dev.gustavopere.rpgskilltree.core.FrozenSustainPolicy;
 import dev.gustavopere.rpgskilltree.core.SustainResolver;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.WeakHashMap;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
 
 /** Runtime adapter for one capped healing pipeline; provider-specific classification stays outside it. */
@@ -39,6 +43,38 @@ public final class CanonicalSustainRuntime {
 
     public static synchronized boolean hasAmbiguousNativeHealing(DamageSource source) {
         return AMBIGUOUS_NATIVE_HEALING.contains(Objects.requireNonNull(source));
+    }
+
+    /** Resolves only exact providers or an explicitly configured tag with a persistent direct origin. */
+    public static Optional<PeriodicSource> periodicSource(
+        DamageSource source,
+        boolean configuredPeriodicTag,
+        ServerPlayer owner
+    ) {
+        Objects.requireNonNull(source);
+        Objects.requireNonNull(owner);
+        Entity direct = source.getDirectEntity();
+        String spellClass = ironSpellClass(source);
+        FrozenPeriodicProviderPolicy.Classification classification =
+            FrozenPeriodicProviderPolicy.classify(
+                source.getClass().getName(),
+                direct == null ? "" : direct.getClass().getName(),
+                spellClass,
+                configuredPeriodicTag,
+                direct != null
+            );
+        if (classification == FrozenPeriodicProviderPolicy.Classification.NONE) return Optional.empty();
+
+        boolean exactOwnedOrigin = switch (classification) {
+            case IRONS_RAY_OF_SIPHONING -> direct == owner && source.getEntity() == owner;
+            case GOETY_ACID_POOL -> source.getEntity() == owner;
+            case CONFIGURED_TAG -> direct == owner
+                || direct instanceof Projectile projectile && projectile.getOwner() == owner;
+            case NONE -> false;
+        };
+        if (!exactOwnedOrigin) return Optional.empty();
+        return Optional.of(new PeriodicSource(
+            classification.providerId(), direct.getUUID().toString()));
     }
 
     public static boolean hasEligibleCandidate(ServerPlayer player, Classification classification) {
@@ -135,6 +171,17 @@ public final class CanonicalSustainRuntime {
         return selected;
     }
 
+    private static String ironSpellClass(DamageSource source) {
+        if (!source.getClass().getName()
+            .equals("io.redspace.ironsspellbooks.damage.SpellDamageSource")) return "";
+        try {
+            Object spell = source.getClass().getMethod("spell").invoke(source);
+            return spell == null ? "" : spell.getClass().getName();
+        } catch (ReflectiveOperationException | RuntimeException ignored) {
+            return "";
+        }
+    }
+
     public record Classification(
         boolean weapon,
         boolean magic,
@@ -142,6 +189,13 @@ public final class CanonicalSustainRuntime {
         boolean periodic,
         boolean directOwnerProven
     ) {}
+
+    public record PeriodicSource(String providerId, String persistentOriginId) {
+        public PeriodicSource {
+            Objects.requireNonNull(providerId);
+            Objects.requireNonNull(persistentOriginId);
+        }
+    }
 
     private record HealEnvelope(ServerPlayer player, double maximumFinalHealing) {}
 }
