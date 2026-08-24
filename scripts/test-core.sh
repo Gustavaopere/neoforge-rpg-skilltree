@@ -56,3 +56,6 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0051A0060CatalogTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0051A0060PolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenCombatTreeProgressionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0061A0070PolicyTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.StationaryStateServiceTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalBodyTradeoffServiceTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0071A0080PolicyTest
