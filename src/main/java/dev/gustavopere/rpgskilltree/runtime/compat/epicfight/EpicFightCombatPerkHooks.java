@@ -1,12 +1,14 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
 import dev.gustavopere.rpgskilltree.core.CombatPerkAttackPolicy;
+import dev.gustavopere.rpgskilltree.core.CombatPerkControlPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefensePolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponFamilyPolicy;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
+import dev.gustavopere.rpgskilltree.core.NotionCombatPerkState;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
@@ -89,12 +91,31 @@ public final class EpicFightCombatPerkHooks {
         CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
         if (ranks.ranks().isEmpty()) return;
 
+        NotionCombatPerkState state = CombatPerkRuntimeState.state();
         CombatPerkAttackPolicy.AttackContext context = context(player, event.getTarget(), event.getDamageSource(), resolved.get());
-        CombatPerkAttackPolicy.HitModifiers modifiers = CombatPerkAttackPolicy.beforeHit(
-            context,
-            ranks,
-            CombatPerkRuntimeState.state()
-        );
+        HurtableEntityPatch<?> targetPatch = EpicFightCapabilities.getEntityPatch(event.getTarget(), HurtableEntityPatch.class);
+        int shockBefore = resolved.get() == WeaponFamily.HAMMER
+            ? state.targetCounter(context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.SHOCK, context.nowMillis())
+            : 0;
+        boolean postureBreakCandidate = resolved.get() == WeaponFamily.HAMMER
+            && ranks.rank("A0029") > 0
+            && context.direct()
+            && context.hostile()
+            && context.heavyAttack()
+            && shockBefore >= 3
+            && targetPatch != null
+            && targetPatch.getStunShield() > 0.0F;
+
+        CombatPerkAttackPolicy.HitModifiers modifiers = CombatPerkAttackPolicy.beforeHit(context, ranks, state);
+
+        if (postureBreakCandidate) {
+            state.setTargetFlag(
+                context.actorId(),
+                context.targetId(),
+                NotionCombatPerkState.TargetFlag.POSTURE_BREAK_PENDING,
+                Math.addExact(context.nowMillis(), 250L)
+            );
+        }
 
         if (Double.compare(modifiers.damageMultiplier(), 1.0D) != 0) {
             event.getDamageSource().attachDamageModifier(ValueModifier.multiplier((float)modifiers.damageMultiplier()));
@@ -123,11 +144,26 @@ public final class EpicFightCombatPerkHooks {
         CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
         if (ranks.ranks().isEmpty()) return;
 
-        CombatPerkAttackPolicy.afterConfirmedHit(
-            context(player, event.getTarget(), event.getDamageSource(), resolved.get()),
-            ranks,
-            CombatPerkRuntimeState.state()
-        );
+        NotionCombatPerkState state = CombatPerkRuntimeState.state();
+        CombatPerkAttackPolicy.AttackContext context = context(player, event.getTarget(), event.getDamageSource(), resolved.get());
+        CombatPerkAttackPolicy.afterConfirmedHit(context, ranks, state);
+
+        if (resolved.get() == WeaponFamily.HAMMER
+            && state.consumeTargetFlag(
+                context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.POSTURE_BREAK_PENDING, context.nowMillis())) {
+            HurtableEntityPatch<?> targetPatch = EpicFightCapabilities.getEntityPatch(event.getTarget(), HurtableEntityPatch.class);
+            if (targetPatch != null && targetPatch.getStunShield() <= 0.0F) {
+                CombatPerkControlPolicy.onConfirmedPostureBreak(
+                    context.actorId(),
+                    context.targetId(),
+                    WeaponFamily.HAMMER,
+                    ranks,
+                    state,
+                    weaponMastery(player, capability, WeaponFamily.HAMMER),
+                    context.nowMillis()
+                );
+            }
+        }
     }
 
     private static void onModifyAttackSpeed(ModifyAttackSpeedEvent event) {
@@ -164,19 +200,21 @@ public final class EpicFightCombatPerkHooks {
         CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
         if (ranks.ranks().isEmpty()) return;
 
-        String category = capability != null && !capability.isEmpty()
-            ? capability.getWeaponCategory().toString().toLowerCase(Locale.ROOT)
-            : resolved.get().name().toLowerCase(Locale.ROOT);
-        int weaponMastery = PlayerProgressionRuntime.get(player).mastery().experience("epicfight:" + category);
-
         CombatPerkDefensePolicy.onSuccessfulDodge(
             CombatPerkRuntimeState.actorId(player),
             resolved.get(),
             ranks,
             CombatPerkRuntimeState.state(),
-            weaponMastery,
+            weaponMastery(player, capability, resolved.get()),
             Math.multiplyExact(player.level().getGameTime(), 50L)
         );
+    }
+
+    private static int weaponMastery(ServerPlayer player, CapabilityItem capability, WeaponFamily family) {
+        String category = capability != null && !capability.isEmpty()
+            ? capability.getWeaponCategory().toString().toLowerCase(Locale.ROOT)
+            : family.name().toLowerCase(Locale.ROOT);
+        return PlayerProgressionRuntime.get(player).mastery().experience("epicfight:" + category);
     }
 
     private static CombatPerkAttackPolicy.AttackContext context(
