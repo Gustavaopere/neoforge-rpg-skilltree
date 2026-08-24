@@ -22,6 +22,7 @@ import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.WeakHashMap;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -40,6 +41,7 @@ import net.neoforged.neoforge.common.util.FakePlayer;
 import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 import yesman.epicfight.api.event.types.entity.DodgeEvent;
+import yesman.epicfight.api.event.types.entity.KillEntityEvent;
 import yesman.epicfight.api.event.types.entity.ModifyAttackSpeedEvent;
 import yesman.epicfight.api.event.types.player.TickPlayerEpicFightModeEvent;
 import yesman.epicfight.api.utils.math.ValueModifier;
@@ -53,9 +55,12 @@ import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 public final class EpicFightCombatPerkHooks {
     private static final String PRE_SUBSCRIBER_ID = "rpgskilltree:notion_combat/damage_pre";
     private static final String POST_SUBSCRIBER_ID = "rpgskilltree:notion_combat/damage_post";
+    private static final String KILL_SUBSCRIBER_ID = "rpgskilltree:notion_combat/kill";
     private static final String SPEED_SUBSCRIBER_ID = "rpgskilltree:notion_combat/attack_speed";
     private static final String DODGE_SUBSCRIBER_ID = "rpgskilltree:notion_combat/dodge";
     private static final String TICK_SUBSCRIBER_ID = "rpgskilltree:notion_combat/tick";
+    private static final String A0029_REFUND_CONSUMER = "A0029:posture-break-refund";
+    private static final String A0042_REFUND_CONSUMER = "A0042:battle-harvest-refund";
 
     private static final TagKey<Item> SWORDS = tag("swords");
     private static final TagKey<Item> AXES = tag("axes");
@@ -85,6 +90,10 @@ public final class EpicFightCombatPerkHooks {
         EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST.registerEvent(
             EpicFightCombatPerkHooks::onDealDamagePost,
             POST_SUBSCRIBER_ID
+        );
+        EpicFightEventHooks.Entity.KILL_ENTITY.registerEvent(
+            EpicFightCombatPerkHooks::onKillEntity,
+            KILL_SUBSCRIBER_ID
         );
         EpicFightEventHooks.Entity.MODIFY_ATTACK_SPEED.registerEvent(
             EpicFightCombatPerkHooks::onModifyAttackSpeed,
@@ -243,6 +252,22 @@ public final class EpicFightCombatPerkHooks {
             ));
         }
 
+        boolean consumedBattleHarvest = resolved.get() == WeaponFamily.SCYTHE
+            && CombatPerkFinalizationPolicy.consumeBattleHarvestOnHit(
+                action,
+                context.actorId(),
+                context.targetId(),
+                WeaponFamily.SCYTHE,
+                context.direct(),
+                context.hostile(),
+                ranks,
+                state,
+                context.nowMillis()
+            );
+        if (consumedBattleHarvest) {
+            refundExactStamina(player, action, A0042_REFUND_CONSUMER, 0.10D, context.nowMillis());
+        }
+
         // A0035 may mutate Armor Cracked here. A0036 has already consumed the immutable PRE snapshot above.
         CombatPerkAttackPolicy.afterConfirmedHit(context, ranks, state);
 
@@ -251,6 +276,11 @@ public final class EpicFightCombatPerkHooks {
                 context.actorId(), context.targetId(), NotionCombatPerkState.TargetFlag.POSTURE_BREAK_PENDING, context.nowMillis())) {
             HurtableEntityPatch<?> targetPatch = EpicFightCapabilities.getEntityPatch(event.getTarget(), HurtableEntityPatch.class);
             if (targetPatch != null && targetPatch.getStunShield() <= 0.0F) {
+                if (ranks.rank("A0029") > 0
+                    && state.actorCooldownReady(context.actorId(), A0029_REFUND_CONSUMER, context.nowMillis())
+                    && refundExactStamina(player, action, A0029_REFUND_CONSUMER, 0.10D, context.nowMillis())) {
+                    state.startActorCooldown(context.actorId(), A0029_REFUND_CONSUMER, context.nowMillis(), 8_000L);
+                }
                 CombatPerkControlPolicy.onConfirmedPostureBreak(
                     context.actorId(),
                     context.targetId(),
@@ -262,6 +292,40 @@ public final class EpicFightCombatPerkHooks {
                 );
             }
         }
+    }
+
+    private static void onKillEntity(KillEntityEvent event) {
+        if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player)) return;
+        if (!eligible(player)) return;
+        if (!(event.getDamageSource() instanceof EpicFightDamageSource source)) return;
+
+        LivingEntity victim = event.getKilledEntity();
+        if (!legitimateBattleHarvestKill(player, victim, source)) return;
+
+        ItemStack usedItem = usedWeapon(source);
+        CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(usedItem);
+        if (weaponFamily(usedItem, capability).orElse(null) != WeaponFamily.SCYTHE) return;
+
+        CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
+        if (!ranks.learned("A0042")) return;
+
+        long nowMillis = now(player);
+        Optional<CanonicalActionIdentity> action = existingActionForDamage(player, victim, source, nowMillis);
+        if (action.isEmpty()) return;
+
+        CombatPerkFinalizationPolicy.activateBattleHarvest(
+            action.get().withSource("epicfight:kill_entity"),
+            CombatPerkRuntimeState.actorId(player),
+            victim.getUUID().toString(),
+            WeaponFamily.SCYTHE,
+            true,
+            true,
+            true,
+            ranks,
+            CombatPerkRuntimeState.state(),
+            weaponMastery(player, WeaponFamily.SCYTHE),
+            nowMillis
+        );
     }
 
     /** Epic Fight applies damage modifiers to baseDamage before its separate extra-damage instances. */
@@ -450,6 +514,18 @@ public final class EpicFightCombatPerkHooks {
         CanonicalActionIdentity existing = byTarget.get(targetId);
         if (existing != null) return existing.withSource("epicfight:damage_pre");
 
+        Optional<CanonicalActionIdentity> bridgeBound = EpicFightExactStaminaReceiptBridge.boundActionForDamage(
+            player,
+            source,
+            nowMillis
+        );
+        if (bridgeBound.isPresent()) {
+            CanonicalActionIdentity action = bridgeBound.get();
+            byTarget.put(targetId, action);
+            canonicalCritical(action, source, nowMillis);
+            return action.withSource("epicfight:damage_pre");
+        }
+
         CanonicalActionIdentity action;
         if (source.getDirectEntity() instanceof Projectile projectile && projectile.getOwner() == player) {
             action = CanonicalCombatRuntimeState.projectileAction(
@@ -466,6 +542,7 @@ public final class EpicFightCombatPerkHooks {
                 ));
         }
         byTarget.put(targetId, action);
+        EpicFightExactStaminaReceiptBridge.bindDamageAction(player, source, action, nowMillis);
         canonicalCritical(action, source, nowMillis);
         return action.withSource("epicfight:damage_pre");
     }
@@ -481,6 +558,27 @@ public final class EpicFightCombatPerkHooks {
         return action == null
             ? actionForPre(player, target, source, nowMillis).withSource("epicfight:damage_post")
             : action.withSource("epicfight:damage_post");
+    }
+
+    private static synchronized Optional<CanonicalActionIdentity> existingActionForDamage(
+        ServerPlayer player,
+        LivingEntity target,
+        EpicFightDamageSource source,
+        long nowMillis
+    ) {
+        Map<String, CanonicalActionIdentity> byTarget = ACTIONS.get(source);
+        CanonicalActionIdentity action = byTarget == null ? null : byTarget.get(target.getUUID().toString());
+        if (action != null) return Optional.of(action);
+
+        Optional<CanonicalActionIdentity> bridgeBound = EpicFightExactStaminaReceiptBridge.boundActionForDamage(
+            player,
+            source,
+            nowMillis
+        );
+        bridgeBound.ifPresent(bound -> ACTIONS
+            .computeIfAbsent(source, ignored -> new HashMap<>())
+            .put(target.getUUID().toString(), bound));
+        return bridgeBound;
     }
 
     private static synchronized void rememberArmorCrackedBeforeHit(
@@ -502,6 +600,40 @@ public final class EpicFightCombatPerkHooks {
         Boolean value = byTarget.remove(targetId);
         if (byTarget.isEmpty()) ARMOR_CRACKED_BEFORE_HIT.remove(source);
         return Boolean.TRUE.equals(value);
+    }
+
+    private static boolean refundExactStamina(
+        ServerPlayer player,
+        CanonicalActionIdentity action,
+        String consumerId,
+        double fraction,
+        long nowMillis
+    ) {
+        ServerPlayerPatch patch = EpicFightCapabilities.getServerPlayerPatch(player);
+        if (patch == null) return false;
+        if (EpicFightExactStaminaReceiptBridge.receipt(action, nowMillis).isEmpty()) return false;
+
+        OptionalDouble refund = EpicFightExactStaminaReceiptBridge.claimRefundAmount(
+            action,
+            consumerId,
+            fraction,
+            nowMillis
+        );
+        if (refund.isEmpty()) return false;
+
+        float amount = (float)refund.getAsDouble();
+        patch.setStamina(Math.min(patch.getMaxStamina(), patch.getStamina() + amount));
+        return true;
+    }
+
+    private static boolean legitimateBattleHarvestKill(
+        ServerPlayer player,
+        LivingEntity victim,
+        EpicFightDamageSource source
+    ) {
+        if (victim == player || player.isAlliedTo(victim)) return false;
+        if (!(victim instanceof Enemy || victim instanceof Player)) return false;
+        return source.getEntity() == player && source.getDirectEntity() == player;
     }
 
     private static boolean canonicalCritical(
