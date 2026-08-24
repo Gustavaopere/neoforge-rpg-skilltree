@@ -31,3 +31,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.NotionCombatPerkCatalogTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkNodeBindingTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkTreeModelTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkRuntimeStateTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkAttackPolicyTest
