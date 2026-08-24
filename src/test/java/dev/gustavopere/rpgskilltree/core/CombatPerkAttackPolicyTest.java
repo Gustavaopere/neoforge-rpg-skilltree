@@ -232,10 +232,13 @@ public final class CombatPerkAttackPolicyTest {
         maceState.addTargetCounter("p", "mob", NotionCombatPerkState.TargetCounter.TRAUMA, 3, 3, 1000L, 8000L);
         var maceRanks = CombatPerkRanks.of(Map.of("A0035", 2));
         var mace = context(WeaponFamily.MACE, false, false, false, false, false, 1.0, 0.0, 1000L);
-        CombatPerkAttackPolicy.beforeHit(mace, maceRanks, maceState);
-        require(maceState.hasTargetFlag("p", "mob", NotionCombatPerkState.TargetFlag.ARMOR_CRACKED, 6999L), "A0035 armor crack active");
-        var crackedHit = CombatPerkAttackPolicy.beforeHit(mace.withNowMillis(2000L), maceRanks, maceState);
-        require(close(crackedHit.armorNegationPoints(), 9.0), "A0035 fallback penetration while cracked");
+        var failedClosed = CombatPerkAttackPolicy.beforeHit(mace, maceRanks, maceState);
+        require(close(failedClosed.armorNegationPoints(), 0.0), "A0035 pure policy cannot substitute target debuff with personal penetration");
+        require(!maceState.hasTargetFlag("p", "mob", NotionCombatPerkState.TargetFlag.ARMOR_CRACKED, 6999L), "A0035 pure policy does not fabricate target armor debuff");
+        require(maceState.targetCounter("p", "mob", NotionCombatPerkState.TargetCounter.TRAUMA, 1000L) == 3, "A0035 fail-closed preserves Trauma");
+        maceState.setTargetFlag("p", "mob", NotionCombatPerkState.TargetFlag.ARMOR_CRACKED, 7000L);
+        var flaggedHit = CombatPerkAttackPolicy.beforeHit(mace.withNowMillis(2000L), maceRanks, maceState);
+        require(close(flaggedHit.armorNegationPoints(), 0.0), "A0035 active target flag still cannot become attacker-local armorNegation");
 
         var scytheState = new NotionCombatPerkState();
         scytheState.setTargetFlag("p", "mob", NotionCombatPerkState.TargetFlag.REAPING_MARK, 9000L);
