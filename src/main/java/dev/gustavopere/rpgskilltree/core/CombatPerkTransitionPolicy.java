@@ -33,7 +33,47 @@ public final class CombatPerkTransitionPolicy {
         };
     }
 
-    /** Applies only transitions whose heavy-impact semantics are frozen in A0001-A0050. */
+    /** Applies the A0004 consumer after its own certified heavy-impact receipt claim. */
+    public static boolean applyA0004ConfirmedHeavyImpact(String actorId, CombatPerkRanks ranks,
+                                                         NotionCombatPerkState state, long nowMillis) {
+        requireActor(actorId);
+        Objects.requireNonNull(ranks);
+        Objects.requireNonNull(state);
+        return ranks.learned("A0004") && state.startMomentumRapidDecay(actorId, nowMillis);
+    }
+
+    /** Applies the A0016 consumer after its own certified heavy-impact receipt claim. */
+    public static boolean applyA0016ConfirmedHeavyImpact(String actorId, CombatPerkRanks ranks,
+                                                         NotionCombatPerkState state, long nowMillis) {
+        requireActor(actorId);
+        Objects.requireNonNull(ranks);
+        Objects.requireNonNull(state);
+        return ranks.rank("A0016") > 0 && state.loseDistanceControlClamped(actorId, 1, nowMillis) > 0;
+    }
+
+    /** Applies the A0022 consumer after its own certified heavy-impact receipt claim. */
+    public static boolean applyA0022ConfirmedHeavyImpact(String actorId, CombatPerkRanks ranks,
+                                                         NotionCombatPerkState state, long nowMillis) {
+        requireActor(actorId);
+        Objects.requireNonNull(ranks);
+        Objects.requireNonNull(state);
+        return ranks.rank("A0022") > 0 && state.loseFlowClamped(actorId, 2, nowMillis) > 0;
+    }
+
+    /** Applies the A0046 consumer after its own certified heavy-impact receipt claim. */
+    public static boolean applyA0046ConfirmedHeavyImpact(String actorId, CombatPerkRanks ranks,
+                                                         NotionCombatPerkState state, long nowMillis) {
+        requireActor(actorId);
+        Objects.requireNonNull(ranks);
+        Objects.requireNonNull(state);
+        if (ranks.rank("A0046") <= 0) return false;
+        return state.focusService().applyHeavyImpactLoss(actorId, true, true, state, nowMillis);
+    }
+
+    /**
+     * Legacy aggregate entry point retained for existing callers/tests. Runtime provider wiring must use the
+     * individual receipt consumers above so each perk owns an independent idempotent claim.
+     */
     public static boolean onConfirmedHeavyImpact(String actorId, boolean hostileSource, CombatPerkRanks ranks,
                                                  NotionCombatPerkState state, long nowMillis) {
         requireActor(actorId);
@@ -41,18 +81,10 @@ public final class CombatPerkTransitionPolicy {
         Objects.requireNonNull(state);
         if (!hostileSource) return false;
         boolean applicable = false;
-        if (ranks.learned("A0004")) {
-            applicable |= state.startMomentumRapidDecay(actorId, nowMillis);
-        }
-        if (ranks.rank("A0016") > 0) {
-            applicable = true;
-            state.loseDistanceControlClamped(actorId, 1, nowMillis);
-        }
-        if (ranks.rank("A0022") > 0) {
-            applicable = true;
-            state.loseFlowClamped(actorId, 2, nowMillis);
-        }
-        // A0046 heavy-impact loss is intentionally owned by the separate causal P-0002 service.
+        applicable |= applyA0004ConfirmedHeavyImpact(actorId, ranks, state, nowMillis);
+        applicable |= applyA0016ConfirmedHeavyImpact(actorId, ranks, state, nowMillis);
+        applicable |= applyA0022ConfirmedHeavyImpact(actorId, ranks, state, nowMillis);
+        // A0046 is intentionally excluded from the legacy aggregate. It is owned by its own causal receipt claim.
         return applicable;
     }
 
