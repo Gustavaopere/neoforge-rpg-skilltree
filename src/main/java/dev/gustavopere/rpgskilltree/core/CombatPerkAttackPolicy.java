@@ -127,26 +127,27 @@ public final class CombatPerkAttackPolicy {
                 }
             }
             case SPEAR -> {
-                int interceptionRank = ranks.rank("A0017");
-                if (interceptionRank > 0
-                    && context.idealRange()
-                    && context.targetAdvancing()
-                    && state.distanceControl(context.actorId()) >= 1) {
-                    state.consumeDistanceControl(context.actorId(), 1);
-                    double pressure = interceptionRank >= 2 ? 1.35D : 1.20D;
-                    impact *= pressure;
-                    guardPressure *= pressure;
-                }
-
-                if (ranks.learned("A0018")
+                boolean masteryInterception = ranks.learned("A0018")
                     && state.distanceControl(context.actorId()) >= 3
                     && state.consumeTargetFlag(
                         context.actorId(), context.targetId(),
-                        NotionCombatPerkState.TargetFlag.INTERCEPTION_WINDOW, context.nowMillis())) {
+                        NotionCombatPerkState.TargetFlag.INTERCEPTION_WINDOW, context.nowMillis());
+                if (masteryInterception) {
                     state.consumeDistanceControl(context.actorId(), 3);
                     damage *= 1.15D;
                     impact *= 1.40D;
                     guardPressure *= 1.40D;
+                } else {
+                    int interceptionRank = ranks.rank("A0017");
+                    if (interceptionRank > 0
+                        && context.idealRange()
+                        && context.targetAdvancing()
+                        && state.distanceControl(context.actorId()) >= 1) {
+                        state.consumeDistanceControl(context.actorId(), 1);
+                        double pressure = interceptionRank >= 2 ? 1.35D : 1.20D;
+                        impact *= pressure;
+                        guardPressure *= pressure;
+                    }
                 }
             }
             case DAGGER -> {
