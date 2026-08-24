@@ -29,12 +29,15 @@ public final class NotionCombatPerkState {
         REAPING_MATURE,
         ARMOR_CRACKED,
         DEMOLISH_WINDOW,
-        INTERCEPTION_WINDOW
+        INTERCEPTION_WINDOW,
+        POSTURE_BREAK_PENDING
     }
 
     public enum ActorFlag {
         PERFECT_RIPOSTE,
         SHADOW_DANCE,
+        SHADOW_DANCE_MASTERY_90,
+        SHADOW_DANCE_MASTERY_100,
         BATTLE_HARVEST,
         PREPARED_SHOT,
         RECENT_DODGE,
