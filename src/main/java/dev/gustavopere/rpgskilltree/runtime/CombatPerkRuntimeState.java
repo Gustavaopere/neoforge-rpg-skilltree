@@ -15,13 +15,8 @@ public final class CombatPerkRuntimeState {
 
     private CombatPerkRuntimeState() {}
 
-    public static NotionCombatPerkState state() {
-        return STATE;
-    }
-
-    public static CanonicalTargetDebuffService targetDebuffs() {
-        return TARGET_DEBUFFS;
-    }
+    public static NotionCombatPerkState state() { return STATE; }
+    public static CanonicalTargetDebuffService targetDebuffs() { return TARGET_DEBUFFS; }
 
     public static CombatPerkRanks ranks(ProgressionState progression) {
         Objects.requireNonNull(progression);
@@ -38,6 +33,15 @@ public final class CombatPerkRuntimeState {
         return player.getUUID().toString();
     }
 
+    /** Entity-bound teardown for death/respawn/clone/dimension without resetting exploit guards. */
+    public static void clearTransientPreservingGuards(ServerPlayer player) {
+        CanonicalCombatRuntimeState.clearTransientPreservingGuards(player);
+        String actorId = actorId(player);
+        TARGET_DEBUFFS.clearSource(actorId);
+        STATE.clearTransientPreservingGuards(actorId);
+    }
+
+    /** Full session teardown. */
     public static void clear(ServerPlayer player) {
         CanonicalCombatRuntimeState.clear(player);
         String actorId = actorId(player);
