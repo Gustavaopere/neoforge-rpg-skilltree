@@ -4,11 +4,14 @@ import dev.gustavopere.rpgskilltree.core.CanonicalActionIdentity;
 import dev.gustavopere.rpgskilltree.core.CanonicalFocusService;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
+import dev.gustavopere.rpgskilltree.core.CombatWeaponFamilyPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
 import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -255,18 +258,21 @@ public final class CanonicalCombatEvents {
     }
 
     static Optional<WeaponFamily> weaponFamily(ItemStack stack) {
-        if (stack.getItem() instanceof BowItem) return Optional.of(WeaponFamily.BOW);
-        if (stack.getItem() instanceof CrossbowItem) return Optional.of(WeaponFamily.CROSSBOW);
-        if (stack.is(SWORDS)) return Optional.of(WeaponFamily.SWORD);
-        if (stack.is(AXES)) return Optional.of(WeaponFamily.AXE);
-        if (stack.is(SPEARS)) return Optional.of(WeaponFamily.SPEAR);
-        if (stack.is(DAGGERS)) return Optional.of(WeaponFamily.DAGGER);
-        if (stack.is(HAMMERS)) return Optional.of(WeaponFamily.HAMMER);
-        if (stack.is(MACES)) return Optional.of(WeaponFamily.MACE);
-        if (stack.is(SCYTHES)) return Optional.of(WeaponFamily.SCYTHE);
-        if (stack.is(BOWS)) return Optional.of(WeaponFamily.BOW);
-        if (stack.is(CROSSBOWS)) return Optional.of(WeaponFamily.CROSSBOW);
-        return Optional.empty();
+        Set<WeaponFamily> explicitFamilies = new HashSet<>();
+        if (stack.is(SWORDS)) explicitFamilies.add(WeaponFamily.SWORD);
+        if (stack.is(AXES)) explicitFamilies.add(WeaponFamily.AXE);
+        if (stack.is(SPEARS)) explicitFamilies.add(WeaponFamily.SPEAR);
+        if (stack.is(DAGGERS)) explicitFamilies.add(WeaponFamily.DAGGER);
+        if (stack.is(HAMMERS)) explicitFamilies.add(WeaponFamily.HAMMER);
+        if (stack.is(MACES)) explicitFamilies.add(WeaponFamily.MACE);
+        if (stack.is(SCYTHES)) explicitFamilies.add(WeaponFamily.SCYTHE);
+        if (stack.is(BOWS)) explicitFamilies.add(WeaponFamily.BOW);
+        if (stack.is(CROSSBOWS)) explicitFamilies.add(WeaponFamily.CROSSBOW);
+
+        Optional<WeaponFamily> vanillaFallback = Optional.empty();
+        if (stack.getItem() instanceof BowItem) vanillaFallback = Optional.of(WeaponFamily.BOW);
+        else if (stack.getItem() instanceof CrossbowItem) vanillaFallback = Optional.of(WeaponFamily.CROSSBOW);
+        return CombatWeaponFamilyPolicy.resolve(explicitFamilies, vanillaFallback);
     }
 
     private static long preparedShotCooldown(ServerPlayer player) {
