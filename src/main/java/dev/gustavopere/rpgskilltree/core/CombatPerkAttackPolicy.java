@@ -102,6 +102,11 @@ public final class CombatPerkAttackPolicy {
                     if (context.criticalHit()) damage *= 1.20D;
                     impact *= 1.20D;
                     guardPressure *= 1.20D;
+                    state.setActorFlag(
+                        context.actorId(),
+                        NotionCombatPerkState.ActorFlag.SUPPRESS_MOMENTUM_ON_RESULT,
+                        Math.addExact(context.nowMillis(), 1L)
+                    );
                 }
             }
             case AXE -> {
@@ -242,6 +247,13 @@ public final class CombatPerkAttackPolicy {
 
         switch (context.weaponFamily()) {
             case SWORD -> {
+                if (state.consumeActorFlag(
+                    context.actorId(),
+                    NotionCombatPerkState.ActorFlag.SUPPRESS_MOMENTUM_ON_RESULT,
+                    context.nowMillis()
+                )) {
+                    break;
+                }
                 if (ranks.learned("A0004")) state.addMomentum(context.actorId(), 1, context.nowMillis());
             }
             case AXE -> {
@@ -261,7 +273,13 @@ public final class CombatPerkAttackPolicy {
             }
             case DAGGER -> {
                 int flowRank = ranks.rank("A0022");
-                if (flowRank > 0 && context.flankOrBack()) {
+                boolean recentDodge = state.hasActorFlag(
+                    context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis());
+                if (flowRank > 0 && (context.flankOrBack() || recentDodge)) {
+                    if (recentDodge) {
+                        state.consumeActorFlag(
+                            context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis());
+                    }
                     state.addFlow(context.actorId(), 1, context.nowMillis());
                 }
             }
