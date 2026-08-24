@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
 import dev.gustavopere.rpgskilltree.core.CanonicalActionIdentity;
+import dev.gustavopere.rpgskilltree.core.CombatFistPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkAttackPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkControlPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefensePolicy;
@@ -11,12 +12,18 @@ import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.CombatPositionPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponFamilyPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
+import dev.gustavopere.rpgskilltree.core.CrossbowCadenceService;
+import dev.gustavopere.rpgskilltree.core.FistSequenceService;
+import dev.gustavopere.rpgskilltree.core.FrozenCombatOffensePolicy;
+import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkNodeBinding;
+import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkState;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.BossRewardKeyResolver;
 import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.FrozenCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
 import java.util.HashMap;
@@ -72,6 +79,7 @@ public final class EpicFightCombatPerkHooks {
     private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final TagKey<Item> BOWS = tag("bows");
     private static final TagKey<Item> CROSSBOWS = tag("crossbows");
+    private static final TagKey<Item> FIST_WEAPONS = tag("fist_weapons");
     private static final Map<EpicFightDamageSource, Map<String, CanonicalActionIdentity>> ACTIONS =
         new WeakHashMap<>();
     private static final Map<EpicFightDamageSource, Map<String, Boolean>> ARMOR_CRACKED_BEFORE_HIT =
@@ -120,6 +128,10 @@ public final class EpicFightCombatPerkHooks {
 
         ItemStack usedItem = usedWeapon(event.getDamageSource());
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(usedItem);
+        if (unambiguousFist(usedItem, capability)) {
+            onFistDamagePre(event, player, usedItem);
+            return;
+        }
         Optional<WeaponFamily> resolved = weaponFamily(usedItem, capability);
         if (resolved.isEmpty()) return;
 
@@ -128,8 +140,11 @@ public final class EpicFightCombatPerkHooks {
 
         NotionCombatPerkState state = CombatPerkRuntimeState.state();
         long nowMillis = now(player);
-        CanonicalActionIdentity action = actionForPre(
-            player, event.getTarget(), event.getDamageSource(), nowMillis);
+        CanonicalActionIdentity action = resolved.get() == WeaponFamily.CROSSBOW
+            && event.getDamageSource().getDirectEntity() instanceof Projectile projectile
+            && projectile.getOwner() == player
+            ? actionForKnownProjectile(player, event.getTarget(), event.getDamageSource(), projectile, nowMillis)
+            : actionForPre(player, event.getTarget(), event.getDamageSource(), nowMillis);
         CombatPerkAttackPolicy.AttackContext context = context(
             player,
             event.getTarget(),
@@ -139,6 +154,26 @@ public final class EpicFightCombatPerkHooks {
             action,
             canonicalCritical(action, event.getDamageSource(), nowMillis)
         );
+
+        if (resolved.get() == WeaponFamily.CROSSBOW
+            && event.getDamageSource().getDirectEntity() instanceof Projectile projectile
+            && projectile.getOwner() == player) {
+            FrozenCombatRuntimeState.crossbow().claimFirstImpact(
+                projectile.getUUID().toString(), action, nowMillis).ifPresent(effect -> {
+                    if (effect.damageBonus() > 0.0D) {
+                        event.getDamageSource().attachDamageModifier(
+                            ValueModifier.multiplier((float)(1.0D + effect.damageBonus())));
+                    }
+                    if (effect.penetrationBonus() > 0.0D) {
+                        event.getDamageSource().attachArmorNegationModifier(
+                            ValueModifier.multiplier((float)(1.0D + effect.penetrationBonus())));
+                    }
+                    if (effect.impactBonus() > 0.0D) {
+                        event.getDamageSource().attachImpactModifier(
+                            ValueModifier.multiplier((float)(1.0D + effect.impactBonus())));
+                    }
+                });
+        }
 
         if (ranks.learned("A0036") && unambiguousMace(usedItem, capability)) {
             rememberArmorCrackedBeforeHit(
@@ -214,6 +249,10 @@ public final class EpicFightCombatPerkHooks {
 
         ItemStack usedItem = usedWeapon(event.getDamageSource());
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(usedItem);
+        if (unambiguousFist(usedItem, capability)) {
+            onFistDamagePost(event, player);
+            return;
+        }
         Optional<WeaponFamily> resolved = weaponFamily(usedItem, capability);
         if (resolved.isEmpty()) {
             consumeArmorCrackedBeforeHit(event.getDamageSource(), event.getTarget().getUUID().toString());
@@ -368,6 +407,16 @@ public final class EpicFightCombatPerkHooks {
         }
 
         ItemStack held = player.getMainHandItem();
+        if (unambiguousFist(held, event.getItemCapability())) {
+            FrozenCombatPerkRanks frozenRanks = player instanceof ServerPlayer serverPlayer
+                ? FrozenCombatRuntimeState.ranks(serverPlayer)
+                : FrozenCombatPerkNodeBinding.ranks(progression.passiveNodes());
+            double multiplier = FrozenCombatOffensePolicy.fistAttackSpeedMultiplier(frozenRanks, true);
+            if (Double.compare(multiplier, 1.0D) != 0) {
+                event.setAttackSpeed((float)(event.getAttackSpeed() * multiplier));
+            }
+            return;
+        }
         Optional<WeaponFamily> resolved = weaponFamily(held, event.getItemCapability());
         if (resolved.isEmpty() || resolved.get() == WeaponFamily.BOW || resolved.get() == WeaponFamily.CROSSBOW) return;
 
@@ -576,6 +625,25 @@ public final class EpicFightCombatPerkHooks {
             : action.withSource("epicfight:damage_post");
     }
 
+    private static synchronized CanonicalActionIdentity actionForKnownProjectile(
+        ServerPlayer player,
+        LivingEntity target,
+        EpicFightDamageSource source,
+        Projectile projectile,
+        long nowMillis
+    ) {
+        String targetId = target.getUUID().toString();
+        Map<String, CanonicalActionIdentity> byTarget = ACTIONS.computeIfAbsent(source, ignored -> new HashMap<>());
+        CanonicalActionIdentity existing = byTarget.get(targetId);
+        if (existing != null) return existing.withSource("epicfight:damage_pre");
+        CanonicalActionIdentity action = CanonicalCombatRuntimeState.projectileAction(
+            player, projectile.getUUID().toString(), nowMillis);
+        byTarget.put(targetId, action);
+        EpicFightExactStaminaReceiptBridge.bindDamageAction(player, source, action, nowMillis);
+        canonicalCritical(action, source, nowMillis);
+        return action.withSource("epicfight:damage_pre");
+    }
+
     private static synchronized Optional<CanonicalActionIdentity> existingActionForDamage(
         ServerPlayer player,
         LivingEntity target,
@@ -727,6 +795,67 @@ public final class EpicFightCombatPerkHooks {
         if (stack.is(BOWS)) return Optional.of(WeaponFamily.BOW);
         if (stack.is(CROSSBOWS)) return Optional.of(WeaponFamily.CROSSBOW);
         return Optional.empty();
+    }
+
+    static boolean unambiguousFist(ItemStack stack, CapabilityItem capability) {
+        boolean explicitOther = stack.getItem() instanceof BowItem
+            || stack.getItem() instanceof CrossbowItem
+            || stack.is(SWORDS) || stack.is(AXES) || stack.is(SPEARS) || stack.is(DAGGERS)
+            || stack.is(HAMMERS) || stack.is(MACES) || stack.is(SCYTHES) || stack.is(BOWS) || stack.is(CROSSBOWS);
+        CombatFistPolicy.ProviderCategory category;
+        if (explicitOther) category = CombatFistPolicy.ProviderCategory.OTHER_SPECIFIC;
+        else if (capability == null || capability.isEmpty()) category = CombatFistPolicy.ProviderCategory.UNKNOWN;
+        else category = CombatFistPolicy.providerCategory(capability.getWeaponCategory().toString());
+        return CombatFistPolicy.isFistWeapon(stack.isEmpty(), stack.is(FIST_WEAPONS), category);
+    }
+
+    private static void onFistDamagePre(DealDamageEvent.Pre event, ServerPlayer player, ItemStack usedItem) {
+        if (event.getDamageSource().getEntity() != player || event.getDamageSource().getDirectEntity() != player
+            || !hostile(player, event.getTarget())) return;
+        FrozenCombatPerkRanks ranks = FrozenCombatRuntimeState.ranks(player);
+        if (ranks.ranks().isEmpty()) return;
+        long nowMillis = now(player);
+        CanonicalActionIdentity action = actionForPre(player, event.getTarget(), event.getDamageSource(), nowMillis);
+        Optional<Boolean> prior = CanonicalCombatRuntimeState.criticalDecision(action, nowMillis);
+        if (prior.isEmpty()) {
+            boolean critical = CanonicalCombatRuntimeState.resolveCriticalBonus(
+                action, false, FrozenCombatOffensePolicy.fistCriticalChance(ranks), nowMillis);
+            if (critical) {
+                event.getDamageSource().attachDamageModifier(ValueModifier.multiplier(1.5F));
+            }
+        }
+
+        double damageMultiplier = FrozenCombatOffensePolicy.fistDamageMultiplier(ranks);
+        if (Double.compare(damageMultiplier, 1.0D) != 0) {
+            event.getDamageSource().attachDamageModifier(ValueModifier.multiplier((float)damageMultiplier));
+        }
+
+        // Epic Fight 21.17.3.1 exposes no unequivocal heavy/finalizer fact. Frozen A0059/A0060
+        // therefore stay fail-closed here; no damage coefficient or charge-weapon heuristic is used.
+        FrozenCombatRuntimeState.fist().activate(new FistSequenceService.FinisherRequest(
+            action, true, true, true, hostile(player, event.getTarget()), true,
+            false, true, true, true, ranks.rank("A0059"), ranks.rank("A0060"), fistMastery(player)
+        ), nowMillis);
+    }
+
+    private static void onFistDamagePost(DealDamageEvent.Post event, ServerPlayer player) {
+        if (event.getModifiedDamage() <= 0.0F) return;
+        FrozenCombatPerkRanks ranks = FrozenCombatRuntimeState.ranks(player);
+        if (ranks.rank("A0058") <= 0) return;
+        long nowMillis = now(player);
+        CanonicalActionIdentity action = actionForPost(player, event.getTarget(), event.getDamageSource(), nowMillis);
+        FrozenCombatRuntimeState.fist().confirmedDirectHit(new FistSequenceService.HitRequest(
+            action, true, true, event.getDamageSource().getDirectEntity() == player,
+            hostile(player, event.getTarget()), true, ranks.rank("A0058")
+        ), nowMillis);
+    }
+
+    private static int fistMastery(ServerPlayer player) {
+        return PlayerProgressionRuntime.get(player).mastery().experience(CombatFistPolicy.MASTERY_ID);
+    }
+
+    private static boolean hostile(ServerPlayer player, LivingEntity target) {
+        return target != player && !player.isAlliedTo(target) && (target instanceof Enemy || target instanceof Player);
     }
 
     private static TagKey<Item> tag(String path) {

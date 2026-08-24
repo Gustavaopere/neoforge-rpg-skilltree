@@ -69,6 +69,13 @@ public final class EpicFightProgressionHooks {
             );
             return;
         }
+        if (EpicFightCombatPerkHooks.unambiguousFist(usedItem, weaponCapability)) {
+            PlayerProgressionRuntime.awardMastery(
+                player,
+                CombatWeaponMasteryPolicy.forConfirmedFistHit(origin, "weapon_hit")
+            );
+            return;
+        }
         String category = EpicFightWeaponCategory.normalize(weaponCapability.getWeaponCategory().toString());
 
         CombatAction action = new CombatAction(

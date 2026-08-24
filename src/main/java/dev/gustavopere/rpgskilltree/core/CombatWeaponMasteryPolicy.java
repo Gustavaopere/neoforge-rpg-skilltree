@@ -43,4 +43,15 @@ public final class CombatWeaponMasteryPolicy {
             new MasteryAward(masteryLane(family), 3, sourceId)
         );
     }
+
+    public static List<MasteryAward> forConfirmedFistHit(ActionOrigin origin, String sourceId) {
+        Objects.requireNonNull(origin);
+        Objects.requireNonNull(sourceId);
+        if (sourceId.isBlank()) throw new IllegalArgumentException("sourceId must not be blank");
+        if (origin.procDepth() > 0) return List.of();
+        return List.of(
+            new MasteryAward("epicfight:weapon", 2, sourceId),
+            new MasteryAward(CombatFistPolicy.MASTERY_ID, 3, sourceId)
+        );
+    }
 }

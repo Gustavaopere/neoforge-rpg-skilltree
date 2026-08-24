@@ -9,7 +9,16 @@ public final class FrozenA0051A0060CatalogTest {
         catalogMatchesFrozenNotionCohort();
         combatFistGateIsCanonicalAndFailClosed();
         fistClassificationIsExplicitAndExcludesEmptyHands();
+        fistMasteryUsesTheCanonicalLane();
         System.out.println("FrozenA0051A0060CatalogTest: PASS");
+    }
+
+    private static void fistMasteryUsesTheCanonicalLane() {
+        var awards = CombatWeaponMasteryPolicy.forConfirmedFistHit(new ActionOrigin("epicfight:damage_post", 0), "fist_hit");
+        require(awards.stream().anyMatch(award -> award.laneId().equals(CombatFistPolicy.MASTERY_ID)),
+            "confirmed fist hit must award combat:fist");
+        require(CombatWeaponMasteryPolicy.forConfirmedFistHit(
+            new ActionOrigin("derived", 1), "derived_fist_hit").isEmpty(), "derived fist hit cannot train mastery");
     }
 
     private static void catalogMatchesFrozenNotionCohort() {

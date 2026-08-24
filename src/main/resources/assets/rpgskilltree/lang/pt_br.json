@@ -7,6 +7,8 @@
   "screen.rpgskilltree.level": "Nível %s  •  XP %s / %s",
   "screen.rpgskilltree.classes": "Classes: %s",
   "tree.rpgskilltree.main": "Árvore Principal",
+  "tree.rpgskilltree.notion_combat": "Maestrias de Combate",
+  "tree.rpgskilltree.frozen_a0051_a0100": "Combate e Vitalidade",
   "tree.rpgskilltree.technomancer": "Tecnomago",
   "node.rpgskilltree.technomancer.core.name": "Núcleo Tecnomágico",
   "node.rpgskilltree.technomancer.core.description": "O ponto de entrada da classe Tecnomago.",

@@ -6,6 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
+import dev.gustavopere.rpgskilltree.core.FrozenA0051A0100TreeModel;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.NodeSpecializationGrant;
@@ -96,6 +97,7 @@ public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
             }
         }
         addNotionCombatRules(rules);
+        addFrozenCombatRules(rules);
         TreeRuleCatalog.replace(rules);
     }
 
@@ -118,6 +120,20 @@ public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
                 node.requiredNodeRanks(),
                 Set.of()
             );
+            Set<ResourceLocation> neighbors = new HashSet<>();
+            node.neighbors().forEach(neighbor -> neighbors.add(ResourceLocation.parse(neighbor)));
+            rules.add(new TreeRuleCatalog.NodeRule(id, definition, requirement, null, Set.of(), neighbors));
+        }
+    }
+
+    private static void addFrozenCombatRules(List<TreeRuleCatalog.NodeRule> rules) {
+        for (FrozenA0051A0100TreeModel.Node node : FrozenA0051A0100TreeModel.all()) {
+            ResourceLocation id = ResourceLocation.parse(node.nodeId());
+            NodePurchaseDefinition definition = new NodePurchaseDefinition(
+                node.nodeId(), node.maxRank(), node.costPerRank(), node.startingPoint());
+            NodeAccessRequirement requirement = new NodeAccessRequirement(
+                node.minCharacterLevel(), Set.of(), node.requiredMastery(), node.requiredSpecializations(),
+                Set.of(), node.requiredNodes(), node.requiredNodeRanks(), Set.of());
             Set<ResourceLocation> neighbors = new HashSet<>();
             node.neighbors().forEach(neighbor -> neighbors.add(ResourceLocation.parse(neighbor)));
             rules.add(new TreeRuleCatalog.NodeRule(id, definition, requirement, null, Set.of(), neighbors));

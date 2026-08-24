@@ -39,6 +39,7 @@ public final class CanonicalCombatRuntimeState {
     private static final Map<String, PendingCancelledDraw> PENDING_CANCELLED_DRAWS = new HashMap<>();
     private static final Map<ActionKey, ShotFacts> SHOTS = new HashMap<>();
     private static final Map<String, ProjectileShotFacts> PROJECTILE_SHOTS = new HashMap<>();
+    private static final Map<String, CrossbowBurst> CROSSBOW_BURSTS = new HashMap<>();
 
     private CanonicalCombatRuntimeState() {}
 
@@ -249,6 +250,25 @@ public final class CanonicalCombatRuntimeState {
             ));
     }
 
+    /** Groups a synchronous multishot crossbow burst into one action while retaining every projectile alias. */
+    public static synchronized CanonicalActionIdentity crossbowProjectileAction(
+        ServerPlayer owner,
+        String stackIdentity,
+        String projectileId,
+        long nowMillis
+    ) {
+        String actorId = actorId(owner);
+        CrossbowBurst burst = CROSSBOW_BURSTS.get(actorId);
+        if (burst == null || burst.expiresAtMillis <= nowMillis || !burst.stackIdentity.equals(stackIdentity)) {
+            CanonicalActionIdentity shot = newRoot(owner, "neoforge:crossbow_fire", nowMillis);
+            CORRELATION.recordShot(shot, nowMillis);
+            burst = new CrossbowBurst(stackIdentity, Math.addExact(nowMillis, CORRELATION_RETENTION_MILLIS));
+            CROSSBOW_BURSTS.put(actorId, burst);
+        }
+        return CORRELATION.correlateProjectile(actorId, projectileId, nowMillis)
+            .orElseGet(() -> projectileAction(owner, projectileId, nowMillis));
+    }
+
     public static boolean resolveCritical(
         CanonicalActionIdentity action,
         WeaponFamily family,
@@ -257,6 +277,15 @@ public final class CanonicalCombatRuntimeState {
         long nowMillis
     ) {
         double bonusChance = NotionCombatPerkRules.criticalChanceBonus(family, ranks);
+        return resolveCriticalBonus(action, providerCritical, bonusChance, nowMillis);
+    }
+
+    public static boolean resolveCriticalBonus(
+        CanonicalActionIdentity action,
+        boolean providerCritical,
+        double bonusChance,
+        long nowMillis
+    ) {
         return CRITICAL.resolve(
             new CanonicalCriticalRequest(action, true, true, true, providerCritical, bonusChance),
             nowMillis
@@ -304,6 +333,7 @@ public final class CanonicalCombatRuntimeState {
         PENDING_CANCELLED_DRAWS.remove(actorId);
         SHOTS.keySet().removeIf(key -> key.actorId.equals(actorId));
         PROJECTILE_SHOTS.entrySet().removeIf(entry -> entry.getValue().action.actorId().equals(actorId));
+        CROSSBOW_BURSTS.remove(actorId);
         CORRELATION.clearActor(actorId);
         CRITICAL.clearActor(actorId);
     }
@@ -339,6 +369,8 @@ public final class CanonicalCombatRuntimeState {
     private record AimSession(CanonicalActionIdentity action, boolean preparationStarted) {}
 
     private record PendingCancelledDraw(double drawFraction, long resolveAtMillis) {}
+
+    private record CrossbowBurst(String stackIdentity, long expiresAtMillis) {}
 
     private record ActionKey(String actorId, String actionId) {
         static ActionKey of(CanonicalActionIdentity action) {

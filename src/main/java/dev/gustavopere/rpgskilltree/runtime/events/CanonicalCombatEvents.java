@@ -5,10 +5,17 @@ import dev.gustavopere.rpgskilltree.core.CanonicalFocusService;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
+import dev.gustavopere.rpgskilltree.core.CombatFistPolicy;
+import dev.gustavopere.rpgskilltree.core.CrossbowCadenceService;
+import dev.gustavopere.rpgskilltree.core.FrozenCombatOffensePolicy;
+import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkRanks;
 import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.FrozenCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,6 +33,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.player.ArrowLooseEvent;
 import net.neoforged.neoforge.event.entity.player.ArrowNockEvent;
@@ -44,6 +52,8 @@ public final class CanonicalCombatEvents {
     private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final TagKey<Item> BOWS = tag("bows");
     private static final TagKey<Item> CROSSBOWS = tag("crossbows");
+    private static final TagKey<Item> FIST_WEAPONS = tag("fist_weapons");
+    private static final Map<String, CrossbowReloadStart> CROSSBOW_RELOADS = new HashMap<>();
     private static final ResourceLocation A0036_DESYNC_MOVEMENT =
         ResourceLocation.fromNamespaceAndPath("rpgskilltree", "a0036_desync_movement");
 
@@ -52,8 +62,13 @@ public final class CanonicalCombatEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onCriticalHit(CriticalHitEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
-        Optional<WeaponFamily> family = weaponFamily(player.getMainHandItem());
-        if (family.isEmpty() || family.get() == WeaponFamily.BOW || family.get() == WeaponFamily.CROSSBOW) return;
+        ItemStack held = player.getMainHandItem();
+        Optional<WeaponFamily> family = weaponFamily(held);
+        boolean curatedFist = CombatFistPolicy.isFistWeapon(
+            held.isEmpty(), held.is(FIST_WEAPONS), CombatFistPolicy.ProviderCategory.UNKNOWN);
+        if ((family.isEmpty() && !curatedFist)
+            || family.orElse(null) == WeaponFamily.BOW
+            || family.orElse(null) == WeaponFamily.CROSSBOW) return;
 
         long nowMillis = now(player);
         CanonicalActionIdentity action = CanonicalCombatRuntimeState.beginMelee(
@@ -61,13 +76,12 @@ public final class CanonicalCombatEvents {
             event.getTarget().getUUID().toString(),
             nowMillis
         );
-        boolean critical = CanonicalCombatRuntimeState.resolveCritical(
-            action,
-            family.get(),
-            CombatPerkRuntimeState.ranks(player),
-            event.isCriticalHit(),
-            nowMillis
-        );
+        boolean critical = curatedFist
+            ? CanonicalCombatRuntimeState.resolveCriticalBonus(
+                action, event.isCriticalHit(),
+                FrozenCombatOffensePolicy.fistCriticalChance(FrozenCombatRuntimeState.ranks(player)), nowMillis)
+            : CanonicalCombatRuntimeState.resolveCritical(
+                action, family.orElseThrow(), CombatPerkRuntimeState.ranks(player), event.isCriticalHit(), nowMillis);
         if (critical && !event.isCriticalHit()) {
             event.setDamageMultiplier(Math.max(1.5F, event.getDamageMultiplier()));
         }
@@ -113,6 +127,17 @@ public final class CanonicalCombatEvents {
      */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onUseItemStop(LivingEntityUseItemEvent.Stop event) {
+        if (event.getEntity() instanceof ServerPlayer crossbowPlayer
+            && event.getItem().getItem() instanceof CrossbowItem
+            && eligible(crossbowPlayer)) {
+            CrossbowReloadStart start = CROSSBOW_RELOADS.remove(crossbowPlayer.getUUID().toString());
+            int totalDuration = event.getItem().getUseDuration(crossbowPlayer);
+            int usedTicks = Math.max(0, totalDuration - event.getDuration());
+            if (start != null && totalDuration > 0 && usedTicks * 2 > totalDuration) {
+                FrozenCombatRuntimeState.crossbow().missOrCancel(crossbowPlayer.getUUID().toString());
+            }
+            return;
+        }
         if (!(event.getEntity() instanceof ServerPlayer player)
             || !(event.getItem().getItem() instanceof BowItem)
             || !eligible(player)
@@ -132,9 +157,28 @@ public final class CanonicalCombatEvents {
         if (!(arrow.getOwner() instanceof ServerPlayer owner) || !eligible(owner)) return;
 
         ItemStack weapon = arrow.getWeaponItem();
-        if (weaponFamily(weapon).orElse(null) != WeaponFamily.BOW) return;
+        WeaponFamily family = weaponFamily(weapon).orElse(null);
+        if (family != WeaponFamily.BOW && family != WeaponFamily.CROSSBOW) return;
         long nowMillis = now(owner);
         String projectileId = arrow.getUUID().toString();
+        if (family == WeaponFamily.CROSSBOW) {
+            ItemStack held = owner.getMainHandItem();
+            ItemStack identityStack = weaponFamily(held).orElse(null) == WeaponFamily.CROSSBOW ? held : weapon;
+            String stackIdentity = FrozenCombatRuntimeState.stackIdentity(owner, identityStack);
+            CanonicalActionIdentity action = CanonicalCombatRuntimeState.crossbowProjectileAction(
+                owner, stackIdentity, projectileId, nowMillis);
+            FrozenCombatPerkRanks ranks = FrozenCombatRuntimeState.ranks(owner);
+            FrozenCombatRuntimeState.crossbow().fire(new CrossbowCadenceService.ShotRequest(
+                action, projectileId, stackIdentity, true, true, true, true,
+                ranks.rank("A0053"), ranks.rank("A0054"),
+                net.neoforged.fml.ModList.get().isLoaded("epicfight"),
+                net.neoforged.fml.ModList.get().isLoaded("epicfight")
+            ), nowMillis);
+            boolean critical = CanonicalCombatRuntimeState.resolveCriticalBonus(
+                action, arrow.isCritArrow(), FrozenCombatOffensePolicy.crossbowCriticalChance(ranks), nowMillis);
+            arrow.setCritArrow(critical);
+            return;
+        }
         Optional<CanonicalCombatRuntimeState.ShotCorrelation> correlated =
             CanonicalCombatRuntimeState.correlateProjectile(owner, projectileId, nowMillis);
         CanonicalActionIdentity action = correlated
@@ -175,6 +219,15 @@ public final class CanonicalCombatEvents {
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         long nowMillis = now(player);
+
+        CrossbowReloadStart reload = CROSSBOW_RELOADS.get(player.getUUID().toString());
+        if (reload != null) {
+            String heldIdentity = FrozenCombatRuntimeState.stackIdentity(player, player.getMainHandItem());
+            if (!reload.stackIdentity.equals(heldIdentity)) {
+                CROSSBOW_RELOADS.remove(player.getUUID().toString());
+                FrozenCombatRuntimeState.crossbow().missOrCancel(player.getUUID().toString());
+            }
+        }
 
         if (CanonicalCombatRuntimeState.hasPendingCancelledDraw(player)) {
             if (CanonicalCombatRuntimeState.resolvePendingCancelledDraw(player, nowMillis)) return;
@@ -249,9 +302,59 @@ public final class CanonicalCombatEvents {
             }
         }
 
+        if (event.getSource().getDirectEntity() instanceof AbstractArrow arrow
+            && arrow.getOwner() instanceof ServerPlayer owner
+            && eligible(owner)
+            && weaponFamily(arrow.getWeaponItem()).orElse(null) == WeaponFamily.CROSSBOW) {
+            long nowMillis = now(owner);
+            CanonicalActionIdentity action = CanonicalCombatRuntimeState.projectileAction(
+                owner, arrow.getUUID().toString(), nowMillis);
+            FrozenCombatRuntimeState.crossbow().confirmHit(arrow.getUUID().toString(), action, nowMillis);
+        }
+
         if (event.getEntity() instanceof ServerPlayer player) {
             CanonicalCombatRuntimeState.invalidateAim(player, now(player));
         }
+    }
+
+    /** Vanilla fallback for the A0054 damage component when no earlier semantic provider claimed the impact. */
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
+        if (!(event.getSource().getDirectEntity() instanceof AbstractArrow arrow)
+            || !(arrow.getOwner() instanceof ServerPlayer owner)
+            || !eligible(owner)
+            || weaponFamily(arrow.getWeaponItem()).orElse(null) != WeaponFamily.CROSSBOW) return;
+        long nowMillis = now(owner);
+        CanonicalActionIdentity action = CanonicalCombatRuntimeState.projectileAction(
+            owner, arrow.getUUID().toString(), nowMillis);
+        FrozenCombatRuntimeState.crossbow().claimFirstImpact(arrow.getUUID().toString(), action, nowMillis)
+            .filter(effect -> effect.damageBonus() > 0.0D)
+            .ifPresent(effect -> event.setAmount((float)(event.getAmount() * (1.0D + effect.damageBonus()))));
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onCrossbowUseStart(LivingEntityUseItemEvent.Start event) {
+        if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)
+            || !(event.getItem().getItem() instanceof CrossbowItem)
+            || CrossbowItem.isCharged(event.getItem())) return;
+        CROSSBOW_RELOADS.put(player.getUUID().toString(), new CrossbowReloadStart(
+            FrozenCombatRuntimeState.stackIdentity(player, event.getItem()), now(player)));
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onCrossbowUseFinish(LivingEntityUseItemEvent.Finish event) {
+        if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
+        CrossbowReloadStart start = CROSSBOW_RELOADS.remove(player.getUUID().toString());
+        ItemStack result = event.getResultStack();
+        if (start == null || !(result.getItem() instanceof CrossbowItem) || !CrossbowItem.isCharged(result)) return;
+        String stackIdentity = FrozenCombatRuntimeState.stackIdentity(player, result);
+        FrozenCombatPerkRanks ranks = FrozenCombatRuntimeState.ranks(player);
+        int mastery = PlayerProgressionRuntime.get(player).mastery().experience("combat:crossbow");
+        FrozenCombatRuntimeState.crossbow().completeReload(new CrossbowCadenceService.ReloadRequest(
+            player.getUUID().toString(), stackIdentity, true, true,
+            start.stackIdentity.equals(stackIdentity), now(player) > start.startedAtMillis,
+            ranks.rank("A0052"), ranks.rank("A0054"), mastery
+        ), now(player));
     }
 
     static Optional<WeaponFamily> weaponFamily(ItemStack stack) {
@@ -289,4 +392,6 @@ public final class CanonicalCombatEvents {
     private static boolean eligible(ServerPlayer player) {
         return !(player instanceof FakePlayer) && !player.isCreative() && !player.isSpectator();
     }
+
+    private record CrossbowReloadStart(String stackIdentity, long startedAtMillis) {}
 }
