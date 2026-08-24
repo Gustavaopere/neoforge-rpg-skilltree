@@ -35,6 +35,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkAttackPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkFinalizationPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkTransitionPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkHeavyImpactConsumerPolicyTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0004MomentumPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkLifecyclePolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkLifecycleBoundaryTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkPurchaseRespecReconcileTest
