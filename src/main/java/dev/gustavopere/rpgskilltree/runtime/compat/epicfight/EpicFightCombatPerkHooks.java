@@ -5,6 +5,7 @@ import dev.gustavopere.rpgskilltree.core.CombatPerkAttackPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkControlPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefensePolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
+import dev.gustavopere.rpgskilltree.core.CombatPerkFinalizationPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.CombatPositionPolicy;
@@ -13,6 +14,7 @@ import dev.gustavopere.rpgskilltree.core.CombatWeaponMasteryPolicy;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkState;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.BossRewardKeyResolver;
 import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkRuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
@@ -39,8 +41,8 @@ import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 import yesman.epicfight.api.event.types.entity.DodgeEvent;
 import yesman.epicfight.api.event.types.entity.ModifyAttackSpeedEvent;
-import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.api.event.types.player.TickPlayerEpicFightModeEvent;
+import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.HurtableEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
@@ -61,10 +63,13 @@ public final class EpicFightCombatPerkHooks {
     private static final TagKey<Item> DAGGERS = tag("daggers");
     private static final TagKey<Item> HAMMERS = tag("hammers");
     private static final TagKey<Item> MACES = tag("maces");
+    private static final TagKey<Item> COMBAT_MACE = tag("combat", "mace");
     private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final TagKey<Item> BOWS = tag("bows");
     private static final TagKey<Item> CROSSBOWS = tag("crossbows");
     private static final Map<EpicFightDamageSource, Map<String, CanonicalActionIdentity>> ACTIONS =
+        new WeakHashMap<>();
+    private static final Map<EpicFightDamageSource, Map<String, Boolean>> ARMOR_CRACKED_BEFORE_HIT =
         new WeakHashMap<>();
 
     private static boolean registered;
@@ -97,6 +102,8 @@ public final class EpicFightCombatPerkHooks {
     }
 
     private static void onDealDamagePre(DealDamageEvent.Pre event) {
+        applyOutgoingDesync(event);
+
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player)) return;
         if (!eligible(player)) return;
 
@@ -121,6 +128,20 @@ public final class EpicFightCombatPerkHooks {
             action,
             canonicalCritical(action, event.getDamageSource(), nowMillis)
         );
+
+        if (ranks.learned("A0036") && unambiguousMace(usedItem, capability)) {
+            rememberArmorCrackedBeforeHit(
+                event.getDamageSource(),
+                context.targetId(),
+                state.hasTargetFlag(
+                    context.actorId(),
+                    context.targetId(),
+                    NotionCombatPerkState.TargetFlag.ARMOR_CRACKED,
+                    context.nowMillis()
+                )
+            );
+        }
+
         HurtableEntityPatch<?> targetPatch = EpicFightCapabilities.getEntityPatch(event.getTarget(), HurtableEntityPatch.class);
         int shockBefore = resolved.get() == WeaponFamily.HAMMER
             ? state.targetCounter(context.actorId(), context.targetId(), NotionCombatPerkState.TargetCounter.SHOCK, context.nowMillis())
@@ -162,15 +183,25 @@ public final class EpicFightCombatPerkHooks {
 
     private static void onDealDamagePost(DealDamageEvent.Post event) {
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player)) return;
-        if (!eligible(player) || event.getModifiedDamage() <= 0.0F) return;
+        if (!eligible(player)) return;
+        if (event.getModifiedDamage() <= 0.0F) {
+            consumeArmorCrackedBeforeHit(event.getDamageSource(), event.getTarget().getUUID().toString());
+            return;
+        }
 
         ItemStack usedItem = usedWeapon(event.getDamageSource());
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(usedItem);
         Optional<WeaponFamily> resolved = weaponFamily(usedItem, capability);
-        if (resolved.isEmpty()) return;
+        if (resolved.isEmpty()) {
+            consumeArmorCrackedBeforeHit(event.getDamageSource(), event.getTarget().getUUID().toString());
+            return;
+        }
 
         CombatPerkRanks ranks = CombatPerkRuntimeState.ranks(player);
-        if (ranks.ranks().isEmpty()) return;
+        if (ranks.ranks().isEmpty()) {
+            consumeArmorCrackedBeforeHit(event.getDamageSource(), event.getTarget().getUUID().toString());
+            return;
+        }
 
         NotionCombatPerkState state = CombatPerkRuntimeState.state();
         long nowMillis = now(player);
@@ -185,6 +216,34 @@ public final class EpicFightCombatPerkHooks {
             action,
             canonicalCritical(action, event.getDamageSource(), nowMillis)
         );
+
+        boolean armorCrackedBeforeHit = consumeArmorCrackedBeforeHit(
+            event.getDamageSource(),
+            context.targetId()
+        );
+        if (unambiguousMace(usedItem, capability)) {
+            CombatPerkFinalizationPolicy.activateBoneBreakerFromPreHitSnapshot(
+                action,
+                context.actorId(),
+                context.targetId(),
+                WeaponFamily.MACE,
+                context.direct(),
+                context.hostile(),
+                context.heavyAttack(),
+                armorCrackedBeforeHit,
+                BossRewardKeyResolver.isBoss(event.getTarget()),
+                ranks,
+                state,
+                weaponMastery(player, WeaponFamily.MACE),
+                context.nowMillis()
+            ).ifPresent(effect -> CombatPerkRuntimeState.targetDebuffs().applyDesync(
+                context.actorId(),
+                context.targetId(),
+                effect
+            ));
+        }
+
+        // A0035 may mutate Armor Cracked here. A0036 has already consumed the immutable PRE snapshot above.
         CombatPerkAttackPolicy.afterConfirmedHit(context, ranks, state);
 
         if (resolved.get() == WeaponFamily.HAMMER
@@ -203,6 +262,18 @@ public final class EpicFightCombatPerkHooks {
                 );
             }
         }
+    }
+
+    /** Epic Fight applies damage modifiers to baseDamage before its separate extra-damage instances. */
+    private static void applyOutgoingDesync(DealDamageEvent.Pre event) {
+        LivingEntity attacker = event.getEntityPatch().getOriginal();
+        if (attacker.level().isClientSide()) return;
+        long nowMillis = Math.multiplyExact(attacker.level().getGameTime(), 50L);
+        CombatPerkRuntimeState.targetDebuffs()
+            .desync(attacker.getUUID().toString(), nowMillis)
+            .ifPresent(desync -> event.getDamageSource().attachDamageModifier(
+                ValueModifier.multiplier((float)desync.outgoingPhysicalDamageMultiplier())
+            ));
     }
 
     private static void onModifyAttackSpeed(ModifyAttackSpeedEvent event) {
@@ -412,6 +483,27 @@ public final class EpicFightCombatPerkHooks {
             : action.withSource("epicfight:damage_post");
     }
 
+    private static synchronized void rememberArmorCrackedBeforeHit(
+        EpicFightDamageSource source,
+        String targetId,
+        boolean armorCracked
+    ) {
+        ARMOR_CRACKED_BEFORE_HIT
+            .computeIfAbsent(source, ignored -> new HashMap<>())
+            .put(targetId, armorCracked);
+    }
+
+    private static synchronized boolean consumeArmorCrackedBeforeHit(
+        EpicFightDamageSource source,
+        String targetId
+    ) {
+        Map<String, Boolean> byTarget = ARMOR_CRACKED_BEFORE_HIT.get(source);
+        if (byTarget == null) return false;
+        Boolean value = byTarget.remove(targetId);
+        if (byTarget.isEmpty()) ARMOR_CRACKED_BEFORE_HIT.remove(source);
+        return Boolean.TRUE.equals(value);
+    }
+
     private static boolean canonicalCritical(
         CanonicalActionIdentity action,
         EpicFightDamageSource source,
@@ -425,6 +517,25 @@ public final class EpicFightCombatPerkHooks {
             providerCritical,
             nowMillis
         );
+    }
+
+    /** Explicit mace tags win; Epic Fight category is only a fallback when no explicit family is present. */
+    static boolean unambiguousMace(ItemStack stack, CapabilityItem capability) {
+        boolean explicitMace = stack.is(MACES) || stack.is(COMBAT_MACE);
+        boolean explicitOther = stack.getItem() instanceof BowItem
+            || stack.getItem() instanceof CrossbowItem
+            || stack.is(SWORDS)
+            || stack.is(AXES)
+            || stack.is(SPEARS)
+            || stack.is(DAGGERS)
+            || stack.is(HAMMERS)
+            || stack.is(SCYTHES)
+            || stack.is(BOWS)
+            || stack.is(CROSSBOWS);
+        if (explicitMace) return !explicitOther;
+        if (explicitOther || capability == null || capability.isEmpty()) return false;
+        return CombatWeaponFamilyPolicy.fromEpicFightCategory(capability.getWeaponCategory().toString())
+            .orElse(null) == WeaponFamily.MACE;
     }
 
     static Optional<WeaponFamily> weaponFamily(ItemStack stack, CapabilityItem capability) {
@@ -450,7 +561,11 @@ public final class EpicFightCombatPerkHooks {
     }
 
     private static TagKey<Item> tag(String path) {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("rpgskilltree", path));
+        return tag("rpgskilltree", path);
+    }
+
+    private static TagKey<Item> tag(String namespace, String path) {
+        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(namespace, path));
     }
 
     private static long now(ServerPlayer player) {
