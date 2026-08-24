@@ -9,6 +9,7 @@ public final class CombatPerkAttackPolicyTest {
         riposteSuppressesMomentumRegeneration();
         axeRuptureConsumesFuryOnlyAgainstRelevantDefense();
         spearAndDaggerConsumeTheirOwnResources();
+        spearMasteryWindowPreemptsBasicInterception();
         recentDodgeCanGenerateDaggerFlow();
         hammerMaceAndScytheUsePerTargetPreparation();
         confirmedHitsGenerateOnlyTheirOwnResources();
@@ -89,6 +90,40 @@ public final class CombatPerkAttackPolicyTest {
         CombatPerkAttackPolicy.afterConfirmedHit(ctx, ranks, state);
         require(state.flow("p") == 1, "A0022 can generate flow after dodge");
         require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2000L), "dodge window consumed by hit");
+    }
+
+    private static void spearMasteryWindowPreemptsBasicInterception() {
+        var state = new NotionCombatPerkState();
+        state.addDistanceControl("p", 3, 1000L);
+        state.setTargetFlag(
+            "p",
+            "mob",
+            NotionCombatPerkState.TargetFlag.INTERCEPTION_WINDOW,
+            5000L
+        );
+        var ranks = CombatPerkRanks.of(Map.of("A0017", 2, "A0018", 1));
+        var ctx = context(
+            WeaponFamily.SPEAR,
+            false,
+            false,
+            true,
+            true,
+            false,
+            1.0D,
+            0.0D,
+            2000L
+        );
+
+        var result = CombatPerkAttackPolicy.beforeHit(ctx, ranks, state);
+
+        require(close(result.damageMultiplier(), 1.15D), "A0018 physical damage takes priority");
+        require(close(result.impactMultiplier(), 1.40D), "A0018 impact takes priority");
+        require(close(result.guardPressureMultiplier(), 1.40D), "A0018 guard pressure takes priority");
+        require(state.distanceControl("p") == 0, "A0018 consumes all three charges");
+        require(
+            !state.hasTargetFlag("p", "mob", NotionCombatPerkState.TargetFlag.INTERCEPTION_WINDOW, 2000L),
+            "A0018 consumes its window"
+        );
     }
 
     private static void hammerMaceAndScytheUsePerTargetPreparation() {
