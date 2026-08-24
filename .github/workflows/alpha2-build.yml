@@ -63,7 +63,23 @@ jobs:
         run: bash scripts/test-core.sh
 
       - name: Epic Fight exact stamina receipt JAR contract
-        run: gradle --no-daemon verifyEpicFightReceiptJarContract
+        shell: bash
+        run: |
+          set +e
+          gradle --no-daemon verifyEpicFightReceiptJarContract
+          STATUS=$?
+          set -e
+          EXACT_JAR="$(find "$HOME/.gradle" -type f -name 'vu3NZ5Ma-8HHhJt6i.jar' -print -quit)"
+          if [ -n "$EXACT_JAR" ]; then
+            echo "EPICFIGHT_RECEIPT_RESOLVED_JAR=$EXACT_JAR"
+            sha256sum "$EXACT_JAR"
+            echo '--- packaged Epic Fight mod metadata ---'
+            unzip -p "$EXACT_JAR" META-INF/neoforge.mods.toml | grep -E '^[[:space:]]*(modId|version)[[:space:]]*=' || true
+            echo '--- end packaged Epic Fight mod metadata ---'
+          else
+            echo 'Exact Epic Fight artifact was not found in the Gradle cache.'
+          fi
+          exit "$STATUS"
 
       - name: Data validation
         run: python3 scripts/validate-data.py
