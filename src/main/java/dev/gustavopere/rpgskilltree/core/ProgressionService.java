@@ -355,4 +355,16 @@ public final class ProgressionService {
         }
         return state.withSpecializations(specializations);
     }
+
+    public static ProgressionState reconcileEligibleSpecializationsFromNodes(
+        ProgressionState state,
+        java.util.Collection<SpecializationDefinition> definitions,
+        Map<String, Set<String>> tagsByNode
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(definitions);
+        Objects.requireNonNull(tagsByNode);
+        InvestmentState investment = NodeInvestmentProjection.from(state.passiveNodes(), tagsByNode);
+        return reconcileEligibleSpecializations(state, definitions, investment);
+    }
 }
