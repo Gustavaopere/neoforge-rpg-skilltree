@@ -13,6 +13,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
@@ -27,9 +30,10 @@ import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.player.ArrowLooseEvent;
 import net.neoforged.neoforge.event.entity.player.ArrowNockEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-/** NeoForge adapters for canonical melee criticals and bow shot/projectile correlation. */
+/** NeoForge adapters for canonical melee criticals, target debuffs, and bow shot/projectile correlation. */
 public final class CanonicalCombatEvents {
     private static final TagKey<Item> SWORDS = tag("swords");
     private static final TagKey<Item> AXES = tag("axes");
@@ -40,6 +44,8 @@ public final class CanonicalCombatEvents {
     private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final TagKey<Item> BOWS = tag("bows");
     private static final TagKey<Item> CROSSBOWS = tag("crossbows");
+    private static final ResourceLocation A0036_DESYNC_MOVEMENT =
+        ResourceLocation.fromNamespaceAndPath("rpgskilltree", "a0036_desync_movement");
 
     private CanonicalCombatEvents() {}
 
@@ -185,6 +191,34 @@ public final class CanonicalCombatEvents {
             return;
         }
         CanonicalCombatRuntimeState.sampleAim(player, nowMillis);
+    }
+
+    /** Keeps the A0036 movement modifier synchronized with the canonical transient target service. */
+    @SubscribeEvent
+    public static void onEntityTick(EntityTickEvent.Post event) {
+        if (!(event.getEntity() instanceof LivingEntity living) || living.level().isClientSide()) return;
+        var movement = living.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (movement == null) return;
+
+        String targetId = living.getUUID().toString();
+        if (!living.isAlive()) {
+            CombatPerkRuntimeState.targetDebuffs().clearTarget(targetId);
+            movement.removeModifier(A0036_DESYNC_MOVEMENT);
+            return;
+        }
+
+        long nowMillis = Math.multiplyExact(living.level().getGameTime(), 50L);
+        var desync = CombatPerkRuntimeState.targetDebuffs().desync(targetId, nowMillis);
+        if (desync.isEmpty()) {
+            movement.removeModifier(A0036_DESYNC_MOVEMENT);
+            return;
+        }
+
+        movement.addOrUpdateTransientModifier(new AttributeModifier(
+            A0036_DESYNC_MOVEMENT,
+            desync.get().movementSpeedMultiplier() - 1.0D,
+            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+        ));
     }
 
     @SubscribeEvent
