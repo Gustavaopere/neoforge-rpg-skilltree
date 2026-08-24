@@ -111,7 +111,7 @@ public final class EpicFightCombatPerkHooks {
         NotionCombatPerkState state = CombatPerkRuntimeState.state();
         long nowMillis = now(player);
         CanonicalActionIdentity action = actionForPre(
-            player, event.getTarget(), event.getDamageSource(), resolved.get(), ranks, nowMillis);
+            player, event.getTarget(), event.getDamageSource(), nowMillis);
         CombatPerkAttackPolicy.AttackContext context = context(
             player,
             event.getTarget(),
@@ -119,7 +119,7 @@ public final class EpicFightCombatPerkHooks {
             resolved.get(),
             capability,
             action,
-            canonicalCritical(action, resolved.get(), ranks, event.getDamageSource(), nowMillis)
+            canonicalCritical(action, event.getDamageSource(), nowMillis)
         );
         HurtableEntityPatch<?> targetPatch = EpicFightCapabilities.getEntityPatch(event.getTarget(), HurtableEntityPatch.class);
         int shockBefore = resolved.get() == WeaponFamily.HAMMER
@@ -175,7 +175,7 @@ public final class EpicFightCombatPerkHooks {
         NotionCombatPerkState state = CombatPerkRuntimeState.state();
         long nowMillis = now(player);
         CanonicalActionIdentity action = actionForPost(
-            player, event.getTarget(), event.getDamageSource(), resolved.get(), ranks, nowMillis);
+            player, event.getTarget(), event.getDamageSource(), nowMillis);
         CombatPerkAttackPolicy.AttackContext context = context(
             player,
             event.getTarget(),
@@ -183,7 +183,7 @@ public final class EpicFightCombatPerkHooks {
             resolved.get(),
             capability,
             action,
-            canonicalCritical(action, resolved.get(), ranks, event.getDamageSource(), nowMillis)
+            canonicalCritical(action, event.getDamageSource(), nowMillis)
         );
         CombatPerkAttackPolicy.afterConfirmedHit(context, ranks, state);
 
@@ -372,8 +372,6 @@ public final class EpicFightCombatPerkHooks {
         ServerPlayer player,
         LivingEntity target,
         EpicFightDamageSource source,
-        WeaponFamily family,
-        CombatPerkRanks ranks,
         long nowMillis
     ) {
         String targetId = target.getUUID().toString();
@@ -397,7 +395,7 @@ public final class EpicFightCombatPerkHooks {
                 ));
         }
         byTarget.put(targetId, action);
-        canonicalCritical(action, family, ranks, source, nowMillis);
+        canonicalCritical(action, source, nowMillis);
         return action.withSource("epicfight:damage_pre");
     }
 
@@ -405,31 +403,25 @@ public final class EpicFightCombatPerkHooks {
         ServerPlayer player,
         LivingEntity target,
         EpicFightDamageSource source,
-        WeaponFamily family,
-        CombatPerkRanks ranks,
         long nowMillis
     ) {
         Map<String, CanonicalActionIdentity> byTarget = ACTIONS.get(source);
         CanonicalActionIdentity action = byTarget == null ? null : byTarget.get(target.getUUID().toString());
         return action == null
-            ? actionForPre(player, target, source, family, ranks, nowMillis).withSource("epicfight:damage_post")
+            ? actionForPre(player, target, source, nowMillis).withSource("epicfight:damage_post")
             : action.withSource("epicfight:damage_post");
     }
 
     private static boolean canonicalCritical(
         CanonicalActionIdentity action,
-        WeaponFamily family,
-        CombatPerkRanks ranks,
         EpicFightDamageSource source,
         long nowMillis
     ) {
         Optional<Boolean> existing = CanonicalCombatRuntimeState.criticalDecision(action, nowMillis);
         if (existing.isPresent()) return existing.get();
         boolean providerCritical = source.getDirectEntity() instanceof AbstractArrow arrow && arrow.isCritArrow();
-        return CanonicalCombatRuntimeState.resolveCritical(
+        return CanonicalCombatRuntimeState.resolveProviderCritical(
             action,
-            family,
-            ranks,
             providerCritical,
             nowMillis
         );

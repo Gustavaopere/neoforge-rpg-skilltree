@@ -144,6 +144,18 @@ public final class CanonicalCombatRuntimeState {
         );
     }
 
+    /** Records a provider boolean without creating a perk roll outside the canonical NeoForge hook. */
+    public static boolean resolveProviderCritical(
+        CanonicalActionIdentity action,
+        boolean providerCritical,
+        long nowMillis
+    ) {
+        return CRITICAL.resolve(
+            new CanonicalCriticalRequest(action, true, true, true, providerCritical, 0.0D),
+            nowMillis
+        );
+    }
+
     public static Optional<Boolean> criticalDecision(CanonicalActionIdentity action, long nowMillis) {
         return CRITICAL.decision(action, nowMillis);
     }

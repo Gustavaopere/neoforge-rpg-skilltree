@@ -12,6 +12,14 @@ public final class EpicFightStaminaPolicy {
 
     private EpicFightStaminaPolicy() {}
 
+    /**
+     * Epic Fight 1.21.1 exposes {@code SkillConsumeEvent} before its resource predicate/consumer.
+     * It does not expose a public post-consume receipt, so exact-cost refunds remain unsupported.
+     */
+    public static ExactCostSupport exactCostSupport() {
+        return ExactCostSupport.UNSUPPORTED_PRE_CONSUME_ONLY;
+    }
+
     public static float adjustedCost(PassiveNodeProgress nodes, String skillCategory, float originalCost) {
         Objects.requireNonNull(nodes);
         Objects.requireNonNull(skillCategory);
@@ -33,5 +41,9 @@ public final class EpicFightStaminaPolicy {
 
         discount = Math.min(0.35D, discount);
         return (float)(originalCost * (1.0D - discount));
+    }
+
+    public enum ExactCostSupport {
+        UNSUPPORTED_PRE_CONSUME_ONLY
     }
 }
