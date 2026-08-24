@@ -6,8 +6,10 @@ import java.util.Map;
 public final class CombatPerkAttackPolicyTest {
     public static void main(String[] args) {
         swordOpeningConsumesMomentumAndAddsPenetration();
+        riposteSuppressesMomentumRegeneration();
         axeRuptureConsumesFuryOnlyAgainstRelevantDefense();
         spearAndDaggerConsumeTheirOwnResources();
+        recentDodgeCanGenerateDaggerFlow();
         hammerMaceAndScytheUsePerTargetPreparation();
         confirmedHitsGenerateOnlyTheirOwnResources();
         furyGenerationRequiresAnExplicitCanonicalBaseGain();
@@ -25,6 +27,19 @@ public final class CombatPerkAttackPolicyTest {
         require(close(result.impactMultiplier(), 1.08), "A0005 impact");
         require(state.momentum("p") == 1, "A0005 consumes two momentum");
         require(!state.cooldownReady("p", "mob", "A0005", 2000L), "A0005 target cooldown");
+    }
+
+    private static void riposteSuppressesMomentumRegeneration() {
+        var state = new NotionCombatPerkState();
+        state.addMomentum("p", 5, 1000L);
+        state.setActorFlag("p", NotionCombatPerkState.ActorFlag.PERFECT_RIPOSTE, 5000L);
+        var ranks = CombatPerkRanks.of(Map.of("A0004", 1, "A0006", 1));
+        var ctx = context(WeaponFamily.SWORD, false, false, false, false, false, 1.0, 0.0, 2000L);
+        var result = CombatPerkAttackPolicy.beforeHit(ctx, ranks, state);
+        require(close(result.impactMultiplier(), 1.20), "A0006 impact");
+        require(state.momentum("p") == 0, "A0006 consumes all momentum");
+        CombatPerkAttackPolicy.afterConfirmedHit(ctx, ranks, state);
+        require(state.momentum("p") == 0, "A0006 result cannot regenerate momentum");
     }
 
     private static void axeRuptureConsumesFuryOnlyAgainstRelevantDefense() {
@@ -63,6 +78,16 @@ public final class CombatPerkAttackPolicyTest {
         require(close(blindSpot.damageMultiplier(), 1.25), "A0023 critical damage when hit is critical");
         require(close(blindSpot.armorNegationPoints(), 10.0), "A0023 penetration");
         require(daggerState.flow("p") == 0, "A0023 consumes flow");
+    }
+
+    private static void recentDodgeCanGenerateDaggerFlow() {
+        var state = new NotionCombatPerkState();
+        state.setActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 4000L);
+        var ranks = CombatPerkRanks.of(Map.of("A0022", 1));
+        var ctx = context(WeaponFamily.DAGGER, false, false, false, false, false, 1.0, 0.0, 2000L);
+        CombatPerkAttackPolicy.afterConfirmedHit(ctx, ranks, state);
+        require(state.flow("p") == 1, "A0022 can generate flow after dodge");
+        require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2000L), "dodge window consumed by hit");
     }
 
     private static void hammerMaceAndScytheUsePerTargetPreparation() {
