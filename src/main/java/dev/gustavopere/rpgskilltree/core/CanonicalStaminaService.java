@@ -80,6 +80,17 @@ public final class CanonicalStaminaService {
         return OptionalDouble.of(cost.exactCost * fraction);
     }
 
+    /**
+     * Entity recreation/dimension changes invalidate the exact debit receipt, but the refund
+     * claim ledger survives so the same canonical action cannot be paid twice after recreation.
+     */
+    public synchronized void clearTransientActorPreservingGuards(String actorId) {
+        Objects.requireNonNull(actorId);
+        if (actorId.isBlank()) throw new IllegalArgumentException("actorId must not be blank");
+        costs.keySet().removeIf(key -> key.actorId.equals(actorId));
+    }
+
+    /** Full session teardown, used on logout. */
     public synchronized void clearActor(String actorId) {
         Objects.requireNonNull(actorId);
         if (actorId.isBlank()) throw new IllegalArgumentException("actorId must not be blank");
