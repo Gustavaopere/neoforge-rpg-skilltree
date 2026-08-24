@@ -13,6 +13,7 @@ public final class ExactStaminaPerkIntegrationContractTest {
 
     public static void main(String[] args) throws Exception {
         battleHarvestRequiresMasteryGateAtRuntime();
+        battleHarvestUsesPreHitMatureSnapshot();
         combatAdapterUsesCertifiedCausalBridge();
         System.out.println("ExactStaminaPerkIntegrationContractTest: PASS");
     }
@@ -38,6 +39,45 @@ public final class ExactStaminaPerkIntegrationContractTest {
         ), "A0042 must fail closed below scythe mastery 80 even if an invalid state contains the node");
     }
 
+    private static void battleHarvestUsesPreHitMatureSnapshot() {
+        long now = 20_000L;
+        var ranks = CombatPerkRanks.of(Map.of("A0040", 2, "A0041", 2, "A0042", 1));
+
+        var consumedByKillingHit = new NotionCombatPerkState();
+        require(CombatPerkFinalizationPolicy.activateBattleHarvestFromPreHitSnapshot(
+            CanonicalActionIdentity.root("p", "mature-before-kill", "test"),
+            "p",
+            "victim",
+            WeaponFamily.SCYTHE,
+            true,
+            true,
+            true,
+            true,
+            ranks,
+            consumedByKillingHit,
+            80,
+            now
+        ), "A0042 must remain eligible when A0041 consumed the already-mature mark during the killing hit");
+
+        var maturedByKillingHit = new NotionCombatPerkState();
+        maturedByKillingHit.setTargetFlag(
+            "p", "victim", NotionCombatPerkState.TargetFlag.REAPING_MATURE, now + 10_000L);
+        require(!CombatPerkFinalizationPolicy.activateBattleHarvestFromPreHitSnapshot(
+            CanonicalActionIdentity.root("p", "mature-during-kill", "test"),
+            "p",
+            "victim",
+            WeaponFamily.SCYTHE,
+            true,
+            true,
+            true,
+            false,
+            ranks,
+            maturedByKillingHit,
+            80,
+            now
+        ), "A0042 must not arm from a mark that became mature only during the killing hit");
+    }
+
     private static void combatAdapterUsesCertifiedCausalBridge() throws Exception {
         String source = Files.readString(EPIC_FIGHT_HOOKS);
         requireContains(source, "EpicFightExactStaminaReceiptBridge.boundActionForDamage(",
@@ -54,8 +94,8 @@ public final class ExactStaminaPerkIntegrationContractTest {
             "A0042 must have a stable independent claim consumer id");
         requireContains(source, "EpicFightEventHooks.Entity.KILL_ENTITY.registerEvent(",
             "A0042 activation must use Epic Fight's real server-side death signal");
-        requireContains(source, "CombatPerkFinalizationPolicy.activateBattleHarvest(",
-            "A0042 kill must arm Harvest through the canonical finalization policy");
+        requireContains(source, "activateBattleHarvestFromPreHitSnapshot(",
+            "A0042 kill must use the immutable PRE snapshot rather than post-hit mark state");
         requireContains(source, "CombatPerkFinalizationPolicy.consumeBattleHarvestOnHit(",
             "A0042 next-hit mark transfer must be integrated before refund claiming");
 
