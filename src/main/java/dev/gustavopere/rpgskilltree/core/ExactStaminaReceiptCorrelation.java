@@ -200,12 +200,12 @@ public final class ExactStaminaReceiptCorrelation {
     }
 
     public synchronized void clearActor(String actorId) {
-        actorId = requireId(actorId, "actorId");
-        actorExecutionSequences.remove(actorId);
-        actorPlaybackSequences.remove(actorId);
-        executions.entrySet().removeIf(entry -> entry.getValue().token.actorId().equals(actorId));
-        playbacks.entrySet().removeIf(entry -> entry.getKey().actorId().equals(actorId));
-        activePlaybacks.entrySet().removeIf(entry -> entry.getKey().actorId.equals(actorId));
+        String validatedActorId = requireId(actorId, "actorId");
+        actorExecutionSequences.remove(validatedActorId);
+        actorPlaybackSequences.remove(validatedActorId);
+        executions.entrySet().removeIf(entry -> entry.getValue().token.actorId().equals(validatedActorId));
+        playbacks.entrySet().removeIf(entry -> entry.getKey().actorId().equals(validatedActorId));
+        activePlaybacks.entrySet().removeIf(entry -> entry.getKey().actorId.equals(validatedActorId));
     }
 
     private CorrelatedDebit correlatedDebit(
