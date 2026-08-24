@@ -140,7 +140,11 @@ public final class CombatPerkAttackPolicyTest {
             context(WeaponFamily.AXE, false, false, false, false, false, 1.0, 10.0, 2000L), ranks, state);
         require(close(state.fury("p"), 12.0), "rank2 fury multiplier");
         CombatPerkAttackPolicy.afterConfirmedHit(
-            new CombatPerkAttackPolicy.AttackContext("p", "other", WeaponFamily.AXE, true, true, false, false, false, false, false, 1.0, false, 10.0, 3000L),
+            new CombatPerkAttackPolicy.AttackContext(
+                "p", "other", WeaponFamily.AXE,
+                true, true, false, false, false, false, false, false,
+                1.0, false, 10.0, 3000L
+            ),
             ranks,
             state
         );
