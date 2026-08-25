@@ -11,7 +11,7 @@ public final class CombatPerkAttackPolicyTest {
         spearAndDaggerConsumeTheirOwnResources();
         spearDistanceControlExpiresByRank();
         spearMasteryWindowPreemptsBasicInterception();
-        recentDodgeCanGenerateDaggerFlow();
+        a0022DodgeWindowCanGenerateDaggerFlow();
         daggerFlowExpiresByRank();
         hammerMaceAndScytheUsePerTargetPreparation();
         confirmedHitsGenerateOnlyTheirOwnResources();
@@ -85,14 +85,14 @@ public final class CombatPerkAttackPolicyTest {
         require(daggerState.flow("p", 1000L) == 0, "A0023 consumes flow");
     }
 
-    private static void recentDodgeCanGenerateDaggerFlow() {
+    private static void a0022DodgeWindowCanGenerateDaggerFlow() {
         var state = new NotionCombatPerkState();
-        state.setActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 4000L);
+        state.setActorFlag("p", NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, 4500L);
         var ranks = CombatPerkRanks.of(Map.of("A0022", 1));
         var ctx = context(WeaponFamily.DAGGER, false, false, false, false, false, 1.0, 0.0, 2000L);
         CombatPerkAttackPolicy.afterConfirmedHit(ctx, ranks, state);
-        require(state.flow("p", 2000L) == 1, "A0022 can generate flow after dodge");
-        require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2000L), "dodge window consumed by hit");
+        require(state.flow("p", 2000L) == 1, "A0022 can generate flow after its own dodge window");
+        require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, 2000L), "A0022 dodge window consumed by hit");
     }
 
     private static void spearDistanceControlExpiresByRank() {
@@ -207,8 +207,8 @@ public final class CombatPerkAttackPolicyTest {
         for (long nowMillis : new long[] {900L, 1000L}) {
             state.setActorFlag(
                 "p",
-                NotionCombatPerkState.ActorFlag.RECENT_DODGE,
-                Math.addExact(nowMillis, 2_000L)
+                NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW,
+                Math.addExact(nowMillis, 2_500L)
             );
             CombatPerkAttackPolicy.afterConfirmedHit(
                 context(WeaponFamily.DAGGER, false, false, false, false, false, 1.0, 0.0, nowMillis),
