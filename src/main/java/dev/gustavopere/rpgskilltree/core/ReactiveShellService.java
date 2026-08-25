@@ -49,6 +49,13 @@ public final class ReactiveShellService {
         return new Bonuses(baseArmor * 0.15D, baseToughness * 0.08D);
     }
 
+    /** Clears only beneficial hit/window state; the anti-bypass cooldown remains authoritative. */
+    public synchronized void clearTransient(String playerId) {
+        requireId(playerId, "playerId");
+        hits.remove(playerId);
+        activeUntil.remove(playerId);
+    }
+
     public record Hit(String playerId, CanonicalActionIdentity action, boolean hostileEligible, boolean directEligible) {
         public Hit {
             requireId(playerId, "playerId");

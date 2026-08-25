@@ -130,6 +130,11 @@ public final class FrozenA0101A0110PolicyTest {
         var bonuses = service.bonuses("player", 10.0D, 0.0D, 41L);
         close(1.5D, bonuses.armor(), "relative armor bonus");
         close(0.0D, bonuses.toughness(), "zero base remains zero");
+        service.clearTransient("player");
+        close(0.0D, service.bonuses("player", 10.0D, 10.0D, 42L).armor(),
+            "lifecycle clears transient armor window");
+        require(!service.record(new ReactiveShellService.Hit("player", action("h4"), true, true), 1, 43L),
+            "lifecycle cannot bypass persistent cooldown");
     }
 
     private static void emergencyGuardIncludesTriggerAndSingleFatalSave() {

@@ -223,6 +223,33 @@ require_contains('src/main/resources/assets/rpgskilltree/lang/en_us.json',
                  'tree.rpgskilltree.frozen_a0101_a0150')
 require_contains('src/main/resources/assets/rpgskilltree/lang/pt_br.json',
                  'tree.rpgskilltree.frozen_a0101_a0150')
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/FrozenSurvivalRuntimeState.java',
+                 'DamageMitigationResolver',
+                 'SecondWindService',
+                 'ReactiveShellService',
+                 'EmergencyGuardService',
+                 'FrozenSurvivalPerkNodeBinding.ranks',
+                 'clearTransient')
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/events/FrozenSurvivalEvents.java',
+                 'LivingIncomingDamageEvent',
+                 'LivingDamageEvent.Post',
+                 'PlayerTickEvent.Post',
+                 'DamageTypeTags.BYPASSES_INVULNERABILITY',
+                 'environmental_non_elemental',
+                 'FrozenDamageMitigationPolicy.modifiers',
+                 'FrozenDefensiveTradeoffPolicy.stoneSkin',
+                 'FrozenA0107IntegrationPolicy.providerCertified()',
+                 'FakePlayer')
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/events/PlayerProgressionEvents.java',
+                 'FrozenSurvivalRuntimeState.clearTransient',
+                 'FrozenSurvivalRuntimeState.revalidate')
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java',
+                 'FrozenSurvivalEvents.class')
+require_contains('src/main/resources/data/rpgskilltree/tags/damage_type/environmental_non_elemental.json',
+                 'minecraft:falling_block',
+                 'minecraft:falling_anvil',
+                 'minecraft:stalagmite',
+                 'minecraft:fly_into_wall')
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java',
                  'NodeRulesReloader.class',
                  'ClassRulesReloader.class',

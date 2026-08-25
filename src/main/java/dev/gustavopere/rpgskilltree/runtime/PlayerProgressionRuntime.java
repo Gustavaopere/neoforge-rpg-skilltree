@@ -283,6 +283,7 @@ public final class PlayerProgressionRuntime {
         Objects.requireNonNull(state);
         player.setData(ModAttachments.PROGRESSION, state);
         AttributeNodeEffectRuntime.refresh(player, state);
+        FrozenSurvivalRuntimeState.revalidate(player, state);
         ModNetworking.syncToOwner(player, state);
     }
 }
