@@ -7,7 +7,7 @@ public final class CombatPerkDefensePolicyTest {
         swordDodgeBuildsMomentumAndArmsRiposte();
         riposteUsesGlobalCooldown();
         daggerDodgeUsesDistinctFlowAndCapstoneWindows();
-        daggerCapstoneConsumesFlowOnNextAttack();
+        daggerCapstoneConsumesExistingFlowWithoutSuppressingA0022();
         shadowDanceWindowScalesWithMastery();
         System.out.println("CombatPerkDefensePolicyTest: PASS");
     }
@@ -51,19 +51,21 @@ public final class CombatPerkDefensePolicyTest {
         require(capstone.hasActorFlag("p", NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, 3499L), "A0022 keeps its longer frozen window");
     }
 
-    private static void daggerCapstoneConsumesFlowOnNextAttack() {
+    private static void daggerCapstoneConsumesExistingFlowWithoutSuppressingA0022() {
         var state = new NotionCombatPerkState();
         state.addFlow("p", 4, 1000L, 7_000L);
         var ranks = CombatPerkRanks.of(Map.of("A0022", 2, "A0024", 1));
         CombatPerkDefensePolicy.onSuccessfulDodge("p", CombatPerkDefinition.WeaponFamily.DAGGER, ranks, state, 80, 1000L);
         var trigger = daggerContext(2000L, false);
         CombatPerkAttackPolicy.beforeHit(trigger, ranks, state);
-        require(state.flow("p", 2000L) == 0, "A0024 consumes all four flow");
-        require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2000L), "A0024 consumes dodge trigger");
+        require(state.flow("p", 2000L) == 0, "A0024 consumes all four Flow charges that existed before the attack");
+        require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2000L), "A0024 consumes its own two-second token");
+        require(state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, 2000L), "A0024 does not consume A0022's independent opportunity");
         require(state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5999L), "A0024 shadow dance base window");
         require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 6000L), "A0024 base window expires at four seconds");
         CombatPerkAttackPolicy.afterConfirmedHit(trigger, ranks, state);
-        require(state.flow("p", 2000L) == 0, "capstone trigger cannot regenerate flow from legacy token");
+        require(state.flow("p", 2000L) == 1, "the confirmed hit may start a new Flow cycle through the independent A0022 opportunity");
+        require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, 2000L), "A0022 consumes its own opportunity once");
         var flank = daggerContext(3000L, true);
         var result = CombatPerkAttackPolicy.beforeHit(flank, ranks, state);
         require(close(result.damageMultiplier(), 1.15D), "shadow dance first flank damage");
