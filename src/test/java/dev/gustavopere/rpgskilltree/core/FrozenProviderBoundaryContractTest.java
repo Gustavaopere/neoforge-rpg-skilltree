@@ -55,7 +55,7 @@ public final class FrozenProviderBoundaryContractTest {
         eq("epicfight:dagger", CombatWeaponMasteryPolicy.masteryLane(family.orElseThrow()));
 
         var awards = CombatWeaponMasteryPolicy.forConfirmedHit(
-            new ActionOrigin(ActionOrigin.Kind.PLAYER_DIRECT, "provider-boundary", 0),
+            new ActionOrigin("provider-boundary", 0),
             family.orElseThrow(),
             "provider-boundary"
         );
@@ -64,7 +64,7 @@ public final class FrozenProviderBoundaryContractTest {
         eq(0L, awards.stream().filter(a -> a.lane().equals("epicfight:sword")).count());
 
         var procAwards = CombatWeaponMasteryPolicy.forConfirmedHit(
-            new ActionOrigin(ActionOrigin.Kind.PLAYER_DIRECT, "provider-boundary-proc", 1),
+            new ActionOrigin("provider-boundary-proc", 1),
             family.orElseThrow(),
             "provider-boundary-proc"
         );
