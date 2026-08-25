@@ -352,21 +352,17 @@ public final class CombatPerkAttackPolicy {
                     );
                 }
             }
-            case DAGGER -> {
-                int flowRank = ranks.rank("A0022");
-                boolean recentDodge = state.hasActorFlag(
-                    context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis());
-                if (flowRank > 0 && recentDodge) {
-                    state.consumeActorFlag(
-                        context.actorId(), NotionCombatPerkState.ActorFlag.RECENT_DODGE, context.nowMillis());
-                    state.addFlow(
-                        context.actorId(),
-                        1,
-                        context.nowMillis(),
-                        flowRank >= 2 ? 7_000L : 5_000L
-                    );
-                }
-            }
+            case DAGGER -> CombatPerkTransitionPolicy.consumeFlowOpportunity(
+                context.action(),
+                context.actorId(),
+                context.targetId(),
+                WeaponFamily.DAGGER,
+                context.direct(),
+                context.hostile(),
+                ranks,
+                state,
+                context.nowMillis()
+            );
             case HAMMER -> {
                 if (ranks.learned("A0028")) {
                     state.addTargetCounter(
