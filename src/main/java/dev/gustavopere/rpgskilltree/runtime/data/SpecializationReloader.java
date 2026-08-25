@@ -5,11 +5,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
 import dev.gustavopere.rpgskilltree.core.SpecializationDefinition;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import net.minecraft.resources.ResourceLocation;
@@ -48,6 +50,9 @@ public final class SpecializationReloader extends SimpleJsonResourceReloadListen
             String id = requiredString(root, "specialization_id", resource.getKey());
             Set<String> eligibleClasses = stringSet(root, "eligible_class_ids", resource.getKey());
             Set<String> requiredTags = stringSet(root, "required_tags", resource.getKey());
+            int minimumCharacterLevel = root.has("minimum_character_level")
+                ? positiveInt(root, "minimum_character_level", resource.getKey(), 1)
+                : 1;
 
             Map<String, Integer> mastery = new HashMap<>();
             if (root.has("minimum_mastery_experience")) {
@@ -71,7 +76,39 @@ public final class SpecializationReloader extends SimpleJsonResourceReloadListen
                 }
             }
 
-            definitions.add(new SpecializationDefinition(id, eligibleClasses, mastery, requiredTags));
+            Map<ProgressionDomain, Integer> domainInvestment = new HashMap<>();
+            if (root.has("minimum_domain_investment")) {
+                if (!root.get("minimum_domain_investment").isJsonObject()) {
+                    throw new IllegalArgumentException(resource.getKey() + ": minimum_domain_investment must be an object");
+                }
+                for (Map.Entry<String, JsonElement> entry : root.getAsJsonObject("minimum_domain_investment").entrySet()) {
+                    ProgressionDomain domain;
+                    try {
+                        domain = ProgressionDomain.valueOf(entry.getKey().toUpperCase(Locale.ROOT));
+                    } catch (IllegalArgumentException exception) {
+                        throw new IllegalArgumentException(resource.getKey() + ": unknown progression domain " + entry.getKey(), exception);
+                    }
+                    int required;
+                    try {
+                        required = entry.getValue().getAsInt();
+                    } catch (RuntimeException exception) {
+                        throw new IllegalArgumentException(resource.getKey() + ": invalid domain investment for " + entry.getKey(), exception);
+                    }
+                    if (required < 0) {
+                        throw new IllegalArgumentException(resource.getKey() + ": domain investment must be >= 0 for " + entry.getKey());
+                    }
+                    domainInvestment.put(domain, required);
+                }
+            }
+
+            definitions.add(new SpecializationDefinition(
+                id,
+                eligibleClasses,
+                mastery,
+                requiredTags,
+                minimumCharacterLevel,
+                domainInvestment
+            ));
         }
         SpecializationCatalog.replace(definitions);
     }
@@ -82,6 +119,22 @@ public final class SpecializationReloader extends SimpleJsonResourceReloadListen
         }
         String value = root.get(key).getAsString();
         if (value.isBlank()) throw new IllegalArgumentException(resourceId + ": blank " + key);
+        return value;
+    }
+
+    private static int positiveInt(JsonObject root, String key, ResourceLocation resourceId, int minimum) {
+        if (!root.get(key).isJsonPrimitive()) {
+            throw new IllegalArgumentException(resourceId + ": " + key + " must be an integer");
+        }
+        int value;
+        try {
+            value = root.get(key).getAsInt();
+        } catch (RuntimeException exception) {
+            throw new IllegalArgumentException(resourceId + ": invalid " + key, exception);
+        }
+        if (value < minimum) {
+            throw new IllegalArgumentException(resourceId + ": " + key + " must be >= " + minimum);
+        }
         return value;
     }
 
