@@ -27,5 +27,7 @@ public final class FrozenSurvivalPerkRanks {
 
     public int rank(String code) { return ranks.getOrDefault(code, 0); }
 
+    public boolean learned(String code) { return rank(code) > 0; }
+
     public Map<String, Integer> asMap() { return ranks; }
 }
