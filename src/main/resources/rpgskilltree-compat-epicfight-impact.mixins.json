@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.gustavopere.rpgskilltree.runtime.mixin.epicfight",
+  "plugin": "dev.gustavopere.rpgskilltree.runtime.mixin.epicfight.EpicFightImpactMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "VanillaEntityImpactStaminaMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

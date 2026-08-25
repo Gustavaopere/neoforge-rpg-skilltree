@@ -58,3 +58,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalActionCorrelationServ
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ExactStaminaDebitCaptureTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ExactStaminaReceiptCorrelationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ExactStaminaPerkIntegrationContractTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ImpactStaminaConversionPolicyTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ImpactStaminaTransactionTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ImpactStaminaInvocationGuardTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ImpactStaminaCompatibilityPolicyTest
