@@ -9,6 +9,7 @@
   "tree.rpgskilltree.main": "Main Tree",
   "tree.rpgskilltree.notion_combat": "Combat Masteries",
   "tree.rpgskilltree.frozen_a0051_a0100": "Combat & Vitality",
+  "tree.rpgskilltree.frozen_a0101_a0150": "Survival & Arcane",
   "tree.rpgskilltree.technomancer": "Technomancer",
   "node.rpgskilltree.technomancer.core.name": "Núcleo Tecnomágico",
   "node.rpgskilltree.technomancer.core.description": "O ponto de entrada da classe Tecnomago.",

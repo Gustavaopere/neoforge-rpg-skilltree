@@ -209,6 +209,20 @@ require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgr
                  'selectClassChoice',
                  'clearClassChoice',
                  'ClassChoiceCatalog.definition')
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/data/NodeRulesReloader.java',
+                 'FrozenA0101A0150TreeModel',
+                 'addFrozenSurvivalRules(rules)')
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java',
+                 'FrozenSurvivalPerkNodeBinding.catalogCode',
+                 'FrozenSurvivalAccessPolicy.satisfied')
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/client/ClientTreeLayout.java',
+                 'createFrozenSurvival()',
+                 'rpgskilltree:frozen_a0101_a0150',
+                 'tree.rpgskilltree.frozen_a0101_a0150')
+require_contains('src/main/resources/assets/rpgskilltree/lang/en_us.json',
+                 'tree.rpgskilltree.frozen_a0101_a0150')
+require_contains('src/main/resources/assets/rpgskilltree/lang/pt_br.json',
+                 'tree.rpgskilltree.frozen_a0101_a0150')
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java',
                  'NodeRulesReloader.class',
                  'ClassRulesReloader.class',

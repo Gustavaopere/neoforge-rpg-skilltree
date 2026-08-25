@@ -7,7 +7,9 @@ import com.google.gson.JsonParser;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition;
 import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
 import dev.gustavopere.rpgskilltree.core.FrozenA0051A0100TreeModel;
+import dev.gustavopere.rpgskilltree.core.FrozenA0101A0150TreeModel;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkNodeBinding;
+import dev.gustavopere.rpgskilltree.core.FrozenSurvivalPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
@@ -31,6 +33,7 @@ public final class ClientTreeLayout {
     private static final ClientTreeLayout MAIN = load("main");
     private static final ClientTreeLayout NOTION_COMBAT = createNotionCombat();
     private static final ClientTreeLayout FROZEN_COMBAT = createFrozenCombat();
+    private static final ClientTreeLayout FROZEN_SURVIVAL = createFrozenSurvival();
     private static final ClientTreeLayout TECHNOMANCER = load("technomancer");
     private static final ClientTreeLayout WARLOCK = load("warlock");
     private static final ClientTreeLayout DRUID = load("druid");
@@ -118,6 +121,7 @@ public final class ClientTreeLayout {
         List<ClientTreeLayout> available = new ArrayList<>();
         available.add(MAIN);
         available.add(FROZEN_COMBAT);
+        available.add(FROZEN_SURVIVAL);
         if (CombatPerkTreeModel.specializationIds().stream().anyMatch(state.specializations()::isUnlocked)) {
             available.add(NOTION_COMBAT);
         }
@@ -249,6 +253,48 @@ public final class ClientTreeLayout {
         return new ClientTreeLayout(
             "rpgskilltree:frozen_a0051_a0100",
             "tree.rpgskilltree.frozen_a0051_a0100",
+            nodes,
+            edges
+        );
+    }
+
+    private static ClientTreeLayout createFrozenSurvival() {
+        List<Node> nodes = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
+        Map<dev.gustavopere.rpgskilltree.core.FrozenSurvivalPerkDefinition.Family, Integer> familyIndices =
+            new EnumMap<>(dev.gustavopere.rpgskilltree.core.FrozenSurvivalPerkDefinition.Family.class);
+        Set<String> localIds = new HashSet<>();
+        FrozenA0101A0150TreeModel.all().forEach(node -> localIds.add(node.nodeId()));
+
+        for (FrozenA0101A0150TreeModel.Node source : FrozenA0101A0150TreeModel.all()) {
+            int localIndex = familyIndices.getOrDefault(source.family(), 0);
+            familyIndices.put(source.family(), localIndex + 1);
+            double x = (source.family().ordinal() - 4.5D) * 250.0D;
+            double y = localIndex * 105.0D;
+            boolean clientRoot = source.startingPoint()
+                || source.neighbors().stream().noneMatch(localIds::contains);
+            NodeAccessRequirement requirement = new NodeAccessRequirement(
+                1, Set.of(), Map.of(), source.requiredSpecializations(), Set.of(),
+                source.requiredNodes(), source.requiredNodeRanks(), Set.of());
+            nodes.add(new Node(
+                source.nodeId(), source.kind().name().toLowerCase(java.util.Locale.ROOT), null,
+                source.family().name().toLowerCase(java.util.Locale.ROOT),
+                source.domains().stream().sorted().toList(), x, y, null,
+                source.maxRank(), source.costPerRank(), clientRoot, requirement));
+        }
+
+        Set<String> seenEdges = new HashSet<>();
+        for (FrozenA0101A0150TreeModel.Node source : FrozenA0101A0150TreeModel.all()) {
+            for (String neighbor : source.neighbors()) {
+                if (FrozenSurvivalPerkNodeBinding.catalogCode(neighbor).isEmpty()) continue;
+                String from = source.nodeId().compareTo(neighbor) <= 0 ? source.nodeId() : neighbor;
+                String to = source.nodeId().compareTo(neighbor) <= 0 ? neighbor : source.nodeId();
+                if (seenEdges.add(from + "\u0000" + to)) edges.add(new Edge(from, to));
+            }
+        }
+        return new ClientTreeLayout(
+            "rpgskilltree:frozen_a0101_a0150",
+            "tree.rpgskilltree.frozen_a0101_a0150",
             nodes,
             edges
         );

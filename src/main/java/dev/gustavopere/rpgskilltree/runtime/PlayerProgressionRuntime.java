@@ -8,8 +8,11 @@ import dev.gustavopere.rpgskilltree.core.CharacterLevelCurve;
 import dev.gustavopere.rpgskilltree.core.CharacterXpAward;
 import dev.gustavopere.rpgskilltree.core.DiscoveryProgressionResult;
 import dev.gustavopere.rpgskilltree.core.FrozenA0051A0100TreeModel;
+import dev.gustavopere.rpgskilltree.core.FrozenA0101A0150TreeModel;
 import dev.gustavopere.rpgskilltree.core.FrozenBatchAccessPolicy;
 import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkNodeBinding;
+import dev.gustavopere.rpgskilltree.core.FrozenSurvivalAccessPolicy;
+import dev.gustavopere.rpgskilltree.core.FrozenSurvivalPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.MasteryAward;
 import dev.gustavopere.rpgskilltree.core.MasteryAwardService;
 import dev.gustavopere.rpgskilltree.core.NodeAccessResolver;
@@ -233,15 +236,26 @@ public final class PlayerProgressionRuntime {
     }
 
     private static boolean frozenRuntimeRequirementsSatisfied(ProgressionState state, String nodeId) {
-        var code = FrozenCombatPerkNodeBinding.catalogCode(nodeId);
-        if (code.isEmpty()) return true;
-        var node = FrozenA0051A0100TreeModel.node(code.get()).orElseThrow();
+        var combatCode = FrozenCombatPerkNodeBinding.catalogCode(nodeId);
+        if (combatCode.isPresent()) {
+            var node = FrozenA0051A0100TreeModel.node(combatCode.get()).orElseThrow();
+            boolean registryPresent = node.requiredSpecializations().stream()
+                .allMatch(id -> SpecializationCatalog.definition(id).isPresent());
+            return registryPresent && FrozenBatchAccessPolicy.satisfied(
+                node.specialGate(),
+                state.specializations().unlockedSpecializationIds(),
+                state.passiveNodes().learnedNodeIds()
+            );
+        }
+        var survivalCode = FrozenSurvivalPerkNodeBinding.catalogCode(nodeId);
+        if (survivalCode.isEmpty()) return true;
+        var node = FrozenA0101A0150TreeModel.node(survivalCode.get()).orElseThrow();
         boolean registryPresent = node.requiredSpecializations().stream()
             .allMatch(id -> SpecializationCatalog.definition(id).isPresent());
-        return registryPresent && FrozenBatchAccessPolicy.satisfied(
+        return registryPresent && FrozenSurvivalAccessPolicy.satisfied(
             node.specialGate(),
-            state.specializations().unlockedSpecializationIds(),
-            state.passiveNodes().learnedNodeIds()
+            state.passiveNodes(),
+            state.specializations().unlockedSpecializationIds()
         );
     }
 
@@ -251,7 +265,8 @@ public final class PlayerProgressionRuntime {
             ProgressionState snapshot = current;
             String invalid = snapshot.passiveNodes().learnedNodeIds().stream()
                 .sorted()
-                .filter(id -> FrozenCombatPerkNodeBinding.catalogCode(id).isPresent())
+                .filter(id -> FrozenCombatPerkNodeBinding.catalogCode(id).isPresent()
+                    || FrozenSurvivalPerkNodeBinding.catalogCode(id).isPresent())
                 .filter(id -> !frozenRuntimeRequirementsSatisfied(snapshot, id))
                 .findFirst()
                 .orElse(null);
