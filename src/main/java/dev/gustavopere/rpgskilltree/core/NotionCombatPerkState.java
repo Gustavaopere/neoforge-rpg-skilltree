@@ -195,6 +195,19 @@ public final class NotionCombatPerkState {
         TargetState target = targetOrNull(actorId, targetId);
         if (target != null) { target.flowPositionBaseline = null; target.flowRepositionExpiresAt = 0L; }
     }
+    public synchronized void blockFlowReposition(String actorId, long nowMillis, long durationMillis) {
+        if (durationMillis <= 0L) throw new IllegalArgumentException("duration must be positive");
+        ActorState state = actor(actorId);
+        long blockedUntil = safeAdd(nowMillis, durationMillis);
+        if (blockedUntil > state.flowRepositionBlockedUntil) state.flowRepositionBlockedUntil = blockedUntil;
+        for (TargetState target : state.targets.values()) {
+            target.flowPositionBaseline = null;
+            target.flowRepositionExpiresAt = 0L;
+        }
+    }
+    public synchronized boolean flowRepositionBlocked(String actorId, long nowMillis) {
+        return actorOrEmpty(actorId).flowRepositionBlockedUntil > nowMillis;
+    }
 
     public synchronized void addFocus(String actorId, double amount, long nowMillis) {
         requireFiniteNonNegative(amount);
@@ -336,6 +349,7 @@ public final class NotionCombatPerkState {
             state.flowExpiresAt = 0L;
             state.stationaryCombatTracking = false;
             state.nextStationaryFlowDecayAt = 0L;
+            state.flowRepositionBlockedUntil = 0L;
             state.lastFocusChange = 0L;
             state.battleHarvestExpiresAt = 0L;
             state.battleHarvestSourceTargetId = null;
@@ -395,6 +409,7 @@ public final class NotionCombatPerkState {
         long flowExpiresAt;
         boolean stationaryCombatTracking;
         long nextStationaryFlowDecayAt;
+        long flowRepositionBlockedUntil;
         long lastFocusChange;
         long battleHarvestExpiresAt;
         String battleHarvestSourceTargetId;
