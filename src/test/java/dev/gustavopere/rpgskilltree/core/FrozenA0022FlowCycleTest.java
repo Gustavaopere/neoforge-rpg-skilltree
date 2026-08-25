@@ -6,6 +6,8 @@ import java.util.Map;
 /** Full frozen contract for A0022 Flow, including forced-movement fail-closed semantics. */
 public final class FrozenA0022FlowCycleTest {
     public static void main(String[] args) {
+        a0022DodgeWorksWithoutA0024();
+        a0024RemainsIndependentFromA0022();
         validDodgeAndA0024UseIndependentWindows();
         positionalFallbackRequiresDistanceAngleAndTrustedMovement();
         knockbackOrTeleportQuarantineInvalidatesPositionalOpportunity();
@@ -14,6 +16,47 @@ public final class FrozenA0022FlowCycleTest {
         duplicateHitCallbackCannotDoubleGain();
         lifecycleAndMultiplayerRemainActorLocal();
         System.out.println("FrozenA0022FlowCycleTest: PASS");
+    }
+
+    private static void a0022DodgeWorksWithoutA0024() {
+        var state = new NotionCombatPerkState();
+        var ranks = CombatPerkRanks.of(Map.of("A0022", 1));
+        CombatPerkDefensePolicy.onSuccessfulDodge("p", WeaponFamily.DAGGER, ranks, state, 80, 1_000L);
+        require(state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, 3_499L),
+            "A0022 owns its 2.5-second dodge opportunity without A0024");
+        require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 1_500L),
+            "A0022 does not borrow A0024's two-second token");
+
+        CombatPerkAttackPolicy.afterConfirmedHit(daggerContext("p", "mob", "a0022-only", 1_500L), ranks, state);
+        require(state.flow("p", 1_500L) == 1, "A0022-only confirmed dagger hit consumes its own dodge opportunity and gains Flow");
+        require(!state.hasActorFlag("p", NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, 1_500L),
+            "A0022 dodge opportunity is single-consume");
+    }
+
+    private static void a0024RemainsIndependentFromA0022() {
+        var capstoneOnly = new NotionCombatPerkState();
+        var a0024 = CombatPerkRanks.of(Map.of("A0024", 1));
+        capstoneOnly.addFlow("p", 4, 500L, 7_000L);
+        CombatPerkDefensePolicy.onSuccessfulDodge("p", WeaponFamily.DAGGER, a0024, capstoneOnly, 80, 1_000L);
+        require(capstoneOnly.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 2_999L),
+            "A0024 owns a two-second token even when A0022 is absent");
+        require(!capstoneOnly.hasActorFlag("p", NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, 1_500L),
+            "A0024 does not fabricate A0022's Flow window");
+        CombatPerkAttackPolicy.beforeHit(daggerContext("p", "mob", "a0024-only", 1_500L), a0024, capstoneOnly);
+        require(capstoneOnly.flow("p", 1_500L) == 0, "A0024-only trigger consumes the four pre-existing Flow charges");
+        require(capstoneOnly.hasActorFlag("p", NotionCombatPerkState.ActorFlag.SHADOW_DANCE, 5_499L),
+            "A0024-only trigger still arms Shadow Dance");
+
+        var both = new NotionCombatPerkState();
+        var ranks = CombatPerkRanks.of(Map.of("A0022", 2, "A0024", 1));
+        both.addFlow("p", 3, 500L, 7_000L);
+        CombatPerkDefensePolicy.onSuccessfulDodge("p", WeaponFamily.DAGGER, ranks, both, 80, 1_000L);
+        CombatPerkAttackPolicy.afterConfirmedHit(daggerContext("p", "mob", "flow-completes-four", 1_500L), ranks, both);
+        require(both.flow("p", 1_500L) == 4, "A0022 may complete the fourth Flow charge on the first post-dodge hit");
+        require(both.hasActorFlag("p", NotionCombatPerkState.ActorFlag.RECENT_DODGE, 1_500L),
+            "A0022 consumption must not erase A0024's independent two-second token");
+        CombatPerkAttackPolicy.beforeHit(daggerContext("p", "mob2", "capstone-next-hit", 1_750L), ranks, both);
+        require(both.flow("p", 1_750L) == 0, "A0024 can consume the four Flow charges on the next eligible hit");
     }
 
     private static void validDodgeAndA0024UseIndependentWindows() {
@@ -122,6 +165,29 @@ public final class FrozenA0022FlowCycleTest {
         require(state.flow("p", 1_100L) == 0, "Flow clears on death/respawn/dimension transient lifecycle");
         require(state.flow("q", 1_100L) == 2, "another player's Flow remains isolated");
         require(!state.flowRepositionBlocked("p", 1_100L), "movement quarantine is transient entity-bound state and clears with lifecycle");
+    }
+
+    private static CombatPerkAttackPolicy.AttackContext daggerContext(
+        String actorId, String targetId, String actionId, long nowMillis
+    ) {
+        return new CombatPerkAttackPolicy.AttackContext(
+            CanonicalActionIdentity.root(actorId, actionId, "test"),
+            actorId,
+            targetId,
+            WeaponFamily.DAGGER,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            1.0D,
+            false,
+            0.0D,
+            nowMillis
+        );
     }
 
     private static void require(boolean condition, String message) {
