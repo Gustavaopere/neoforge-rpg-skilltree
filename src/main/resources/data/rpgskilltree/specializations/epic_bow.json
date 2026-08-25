@@ -3,6 +3,10 @@
   "provider": "epicfight",
   "kind": "combat",
   "eligible_class_ids": [],
+  "minimum_character_level": 8,
+  "minimum_domain_investment": {
+    "AGILITY": 8
+  },
   "minimum_mastery_experience": {
     "combat:bow": 60
   },
