@@ -33,9 +33,7 @@ public final class FrozenBodyCostPolicy {
             case RANGED -> channel == BodyCostResolver.Channel.METABOLIC ? "A0129" : "A0130";
             case CAST -> channel == BodyCostResolver.Channel.METABOLIC ? "A0131" : "A0132";
             case CARRY -> channel == BodyCostResolver.Channel.METABOLIC ? "A0133" : "A0134";
-            case WORK_HOT -> channel == BodyCostResolver.Channel.METABOLIC ? "A0135" : "A0136";
-            case WORK_COLD -> channel == BodyCostResolver.Channel.METABOLIC ? "A0137" : "A0138";
-            case THERMAL_HOT, THERMAL_COLD, BASAL, UNATTRIBUTED -> null;
+            case WORK_HOT, WORK_COLD, THERMAL_HOT, THERMAL_COLD, BASAL, UNATTRIBUTED -> null;
         };
     }
 }

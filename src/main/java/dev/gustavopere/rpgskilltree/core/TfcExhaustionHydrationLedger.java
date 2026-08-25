@@ -28,16 +28,30 @@ public final class TfcExhaustionHydrationLedger {
         double exactExhaustion,
         long nowTick
     ) {
+        return recordKnown(playerId, action, cause, exactExhaustion,
+            AcclimationLedger.ThermalState.UNKNOWN, nowTick);
+    }
+
+    public synchronized boolean recordKnown(
+        String playerId,
+        CanonicalActionIdentity action,
+        BodyCostResolver.Cause cause,
+        double exactExhaustion,
+        AcclimationLedger.ThermalState thermalState,
+        long nowTick
+    ) {
         requireId(playerId, "playerId");
         Objects.requireNonNull(action);
         Objects.requireNonNull(cause);
+        Objects.requireNonNull(thermalState);
         requirePositive(exactExhaustion, "exactExhaustion");
         if (!action.actorId().equals(playerId)
             || cause == BodyCostResolver.Cause.UNATTRIBUTED
             || !ProcGuard.mayTriggerSecondaryEffect(action.origin())) return false;
         if (!claims.claimPrimaryOnce(action, "tfc_exhaustion:" + playerId, nowTick, 12_000L)) return false;
         append(playerId, new Segment(
-            Optional.of(action.actionId()), cause, BodyCostResolver.Attribution.EXACT, exactExhaustion));
+            Optional.of(action.actionId()), cause, BodyCostResolver.Attribution.EXACT,
+            thermalState, exactExhaustion));
         return true;
     }
 
@@ -74,8 +88,8 @@ public final class TfcExhaustionHydrationLedger {
                 baseHydrationCost * remaining / exhaustionConsumed);
         }
         if (bucket.isEmpty()) buckets.remove(playerId);
-        return new HydrationAllocation(List.copyOf(shares), thermalHotHydrationCost,
-            BodyCostResolver.Cause.THERMAL_HOT);
+        return new HydrationAllocation(List.copyOf(shares), exhaustionConsumed,
+            thermalHotHydrationCost, BodyCostResolver.Cause.THERMAL_HOT);
     }
 
     /** Outstanding real TFC bucket state is not transient and cannot be erased by lifecycle hopping. */
@@ -109,14 +123,15 @@ public final class TfcExhaustionHydrationLedger {
             BaseShare tail = shares.get(shares.size() - 1);
             if (tail.actionId.equals(segment.actionId)
                 && tail.cause == segment.cause
-                && tail.attribution == segment.attribution) {
+                && tail.attribution == segment.attribution
+                && tail.thermalState == segment.thermalState) {
                 shares.set(shares.size() - 1, new BaseShare(
-                    tail.actionId, tail.cause, tail.attribution,
+                    tail.actionId, tail.cause, tail.attribution, tail.thermalState,
                     tail.exhaustionShare + exhaustionShare, tail.hydrationCost + hydrationCost));
                 return;
             }
         }
-        shares.add(new BaseShare(segment.actionId, segment.cause, segment.attribution,
+        shares.add(new BaseShare(segment.actionId, segment.cause, segment.attribution, segment.thermalState,
             exhaustionShare, hydrationCost));
     }
 
@@ -124,6 +139,7 @@ public final class TfcExhaustionHydrationLedger {
         Optional<String> actionId,
         BodyCostResolver.Cause cause,
         BodyCostResolver.Attribution attribution,
+        AcclimationLedger.ThermalState thermalState,
         double exhaustionShare,
         double hydrationCost
     ) {
@@ -131,11 +147,13 @@ public final class TfcExhaustionHydrationLedger {
             actionId = Objects.requireNonNull(actionId);
             Objects.requireNonNull(cause);
             Objects.requireNonNull(attribution);
+            Objects.requireNonNull(thermalState);
         }
     }
 
     public record HydrationAllocation(
         List<BaseShare> baseShares,
+        double exhaustionConsumed,
         double thermalHotHydrationCost,
         BodyCostResolver.Cause thermalCause
     ) {
@@ -145,6 +163,28 @@ public final class TfcExhaustionHydrationLedger {
             if (thermalCause != BodyCostResolver.Cause.THERMAL_HOT) {
                 throw new IllegalArgumentException("thermal lane must remain THERMAL_HOT");
             }
+            requirePositive(exhaustionConsumed, "exhaustionConsumed");
+        }
+
+        public double eligibleHotWorkExhaustionFraction() {
+            double eligible = baseShares.stream()
+                .filter(share -> share.attribution() == BodyCostResolver.Attribution.EXACT)
+                .filter(share -> share.thermalState() == AcclimationLedger.ThermalState.HOT)
+                .filter(share -> physicalWork(share.cause()))
+                .mapToDouble(BaseShare::exhaustionShare).sum();
+            return Math.min(1.0D, eligible / exhaustionConsumed);
+        }
+
+        public double eligibleHotWorkThermalHydrationCost() {
+            return thermalHotHydrationCost * eligibleHotWorkExhaustionFraction();
+        }
+
+        public double eligibleColdWorkBaseHydrationCost() {
+            return baseShares.stream()
+                .filter(share -> share.attribution() == BodyCostResolver.Attribution.EXACT)
+                .filter(share -> share.thermalState() == AcclimationLedger.ThermalState.COLD)
+                .filter(share -> physicalWork(share.cause()))
+                .mapToDouble(BaseShare::hydrationCost).sum();
         }
     }
 
@@ -152,20 +192,30 @@ public final class TfcExhaustionHydrationLedger {
         Optional<String> actionId,
         BodyCostResolver.Cause cause,
         BodyCostResolver.Attribution attribution,
+        AcclimationLedger.ThermalState thermalState,
         double exhaustion
     ) {
         private static Segment unattributed(double exhaustion) {
             return new Segment(Optional.empty(), BodyCostResolver.Cause.UNATTRIBUTED,
-                BodyCostResolver.Attribution.UNATTRIBUTED, exhaustion);
+                BodyCostResolver.Attribution.UNATTRIBUTED,
+                AcclimationLedger.ThermalState.UNKNOWN, exhaustion);
         }
 
         private Segment withExhaustion(double value) {
-            return new Segment(actionId, cause, attribution, value);
+            return new Segment(actionId, cause, attribution, thermalState, value);
         }
 
         private boolean sameIdentity(Segment other) {
-            return actionId.equals(other.actionId) && cause == other.cause && attribution == other.attribution;
+            return actionId.equals(other.actionId) && cause == other.cause
+                && attribution == other.attribution && thermalState == other.thermalState;
         }
+    }
+
+    private static boolean physicalWork(BodyCostResolver.Cause cause) {
+        return switch (cause) {
+            case SPRINT, JUMP, SWIM, CLIMB, MINE, FORESTRY, MELEE, RANGED, CARRY, WORK_HOT, WORK_COLD -> true;
+            case CAST, THERMAL_HOT, THERMAL_COLD, BASAL, UNATTRIBUTED -> false;
+        };
     }
 
     private static void requireId(String value, String field) {
