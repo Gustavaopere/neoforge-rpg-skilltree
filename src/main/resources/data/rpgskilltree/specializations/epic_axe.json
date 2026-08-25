@@ -3,6 +3,10 @@
   "provider": "epicfight",
   "kind": "combat",
   "eligible_class_ids": [],
+  "minimum_character_level": 8,
+  "minimum_domain_investment": {
+    "MARTIAL": 8
+  },
   "minimum_mastery_experience": {
     "epicfight:axe": 60
   },
