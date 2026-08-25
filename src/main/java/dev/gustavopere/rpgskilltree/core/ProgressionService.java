@@ -355,9 +355,25 @@ public final class ProgressionService {
         java.util.Collection<SpecializationDefinition> definitions,
         InvestmentState investment
     ) {
+        return reconcileEligibleSpecializations(
+            state,
+            definitions,
+            investment,
+            CharacterLevelCurve.defaultCurve()
+        );
+    }
+
+    public static ProgressionState reconcileEligibleSpecializations(
+        ProgressionState state,
+        java.util.Collection<SpecializationDefinition> definitions,
+        InvestmentState investment,
+        CharacterLevelCurve curve
+    ) {
         Objects.requireNonNull(state);
         Objects.requireNonNull(definitions);
         Objects.requireNonNull(investment);
+        Objects.requireNonNull(curve);
+        int characterLevel = curve.levelForTotalXp(state.totalCharacterXp());
 
         SpecializationProgressionState specializations = state.specializations();
         for (SpecializationDefinition definition : definitions.stream()
@@ -367,6 +383,7 @@ public final class ProgressionService {
                 state.classProgression().unlockedClassIds(),
                 state.mastery(),
                 investment,
+                characterLevel,
                 definition
             ).unlockable();
             specializations = unlockable
@@ -381,10 +398,25 @@ public final class ProgressionService {
         java.util.Collection<SpecializationDefinition> definitions,
         Map<String, Set<String>> tagsByNode
     ) {
+        return reconcileEligibleSpecializationsFromNodes(
+            state,
+            definitions,
+            tagsByNode,
+            CharacterLevelCurve.defaultCurve()
+        );
+    }
+
+    public static ProgressionState reconcileEligibleSpecializationsFromNodes(
+        ProgressionState state,
+        java.util.Collection<SpecializationDefinition> definitions,
+        Map<String, Set<String>> tagsByNode,
+        CharacterLevelCurve curve
+    ) {
         Objects.requireNonNull(state);
         Objects.requireNonNull(definitions);
         Objects.requireNonNull(tagsByNode);
+        Objects.requireNonNull(curve);
         InvestmentState investment = NodeInvestmentProjection.from(state.passiveNodes(), tagsByNode);
-        return reconcileEligibleSpecializations(state, definitions, investment);
+        return reconcileEligibleSpecializations(state, definitions, investment, curve);
     }
 }
