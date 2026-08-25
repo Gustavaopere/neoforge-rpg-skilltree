@@ -44,6 +44,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkPurchaseRespecReconc
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0005GateLifecycleTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0023PositionContractTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenCombatGatewayLifecycleTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenProviderBoundaryContractTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0010FuryPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenPhysicalProtectionPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.FrozenA0046FocusPolicyTest
