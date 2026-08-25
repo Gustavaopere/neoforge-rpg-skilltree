@@ -1,0 +1,12 @@
+{
+  "specialization_id": "epic_axe",
+  "provider": "epicfight",
+  "kind": "combat",
+  "eligible_class_ids": [],
+  "minimum_mastery_experience": {
+    "epicfight:axe": 60
+  },
+  "required_tags": [
+    "gateway:epic_axe"
+  ]
+}

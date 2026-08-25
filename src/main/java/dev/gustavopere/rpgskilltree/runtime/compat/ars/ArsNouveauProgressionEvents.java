@@ -4,13 +4,19 @@ import com.hollingsworth.arsnouveau.api.event.FamiliarSummonEvent;
 import com.hollingsworth.arsnouveau.api.event.ManaRegenCalcEvent;
 import com.hollingsworth.arsnouveau.api.event.MaxManaCalcEvent;
 import com.hollingsworth.arsnouveau.api.event.SpellCastEvent;
+import com.hollingsworth.arsnouveau.api.event.SpellDamageEvent;
+import com.hollingsworth.arsnouveau.api.util.PerkUtil;
+import com.hollingsworth.arsnouveau.common.perk.VampiricPerk;
 import dev.gustavopere.rpgskilltree.core.ActionOrigin;
 import dev.gustavopere.rpgskilltree.core.ArsCompositionClassifier;
 import dev.gustavopere.rpgskilltree.core.ArsNativeProgressionPolicy;
+import dev.gustavopere.rpgskilltree.core.CanonicalActionIdentity;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.core.SpellAction;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import dev.gustavopere.rpgskilltree.runtime.CanonicalCombatRuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.CanonicalSustainRuntime;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.compat.MagicAccessRuntime;
 import java.util.List;
@@ -19,6 +25,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -50,6 +57,24 @@ public final class ArsNouveauProgressionEvents {
         PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forArs(action));
     }
 
+    /** Ars exposes the spell/caster at application time, which provides direct authorship. */
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onSpellDamagePre(SpellDamageEvent.Pre event) {
+        if (!(event.caster instanceof ServerPlayer owner) || !eligible(owner)
+            || !(event.target instanceof LivingEntity target) || !validHostileTarget(owner, target)) return;
+        CanonicalSustainRuntime.markProviderClassifiedNonWeapon(event.damageSource);
+        if (PerkUtil.countForPerk(VampiricPerk.INSTANCE, owner) > 0) {
+            // Ars heals later from SpellDamageEvent.Post and exposes no cancellation/amount hook for
+            // that native perk. Disable only this source's Skill Tree payment to prevent double heal.
+            CanonicalSustainRuntime.markAmbiguousNativeHealing(event.damageSource);
+        }
+        long nowMillis = Math.multiplyExact(owner.level().getGameTime(), 50L);
+        CanonicalActionIdentity action = CanonicalCombatRuntimeState.newRoot(
+            owner, "ars:spell_damage", nowMillis);
+        CanonicalCombatRuntimeState.rememberDamageAction(
+            event.damageSource, target.getUUID().toString(), action, target.getHealth());
+    }
+
     @SubscribeEvent
     public static void onMaxMana(MaxManaCalcEvent event) {
         ProgressionState state = progressionFor(event.getEntity());
@@ -79,5 +104,14 @@ public final class ArsNouveauProgressionEvents {
         if (entity instanceof ServerPlayer serverPlayer) return PlayerProgressionRuntime.get(serverPlayer);
         if (entity.level().isClientSide()) return ClientProgressionState.get();
         return null;
+    }
+
+    private static boolean eligible(ServerPlayer player) {
+        return !(player instanceof FakePlayer) && !player.isCreative() && !player.isSpectator();
+    }
+
+    private static boolean validHostileTarget(ServerPlayer owner, LivingEntity target) {
+        return target != owner && !owner.isAlliedTo(target)
+            && (target instanceof Enemy || target instanceof Player);
     }
 }

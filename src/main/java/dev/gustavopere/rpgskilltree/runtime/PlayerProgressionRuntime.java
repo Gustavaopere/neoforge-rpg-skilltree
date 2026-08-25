@@ -7,6 +7,12 @@ import dev.gustavopere.rpgskilltree.core.BossRewardKeyPolicy;
 import dev.gustavopere.rpgskilltree.core.CharacterLevelCurve;
 import dev.gustavopere.rpgskilltree.core.CharacterXpAward;
 import dev.gustavopere.rpgskilltree.core.DiscoveryProgressionResult;
+import dev.gustavopere.rpgskilltree.core.FrozenA0051A0100TreeModel;
+import dev.gustavopere.rpgskilltree.core.FrozenA0101A0150TreeModel;
+import dev.gustavopere.rpgskilltree.core.FrozenBatchAccessPolicy;
+import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkNodeBinding;
+import dev.gustavopere.rpgskilltree.core.FrozenSurvivalAccessPolicy;
+import dev.gustavopere.rpgskilltree.core.FrozenSurvivalPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.MasteryAward;
 import dev.gustavopere.rpgskilltree.core.MasteryAwardService;
 import dev.gustavopere.rpgskilltree.core.NodeAccessResolver;
@@ -14,6 +20,7 @@ import dev.gustavopere.rpgskilltree.core.ProgressionService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRuleCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceCatalog;
+import dev.gustavopere.rpgskilltree.runtime.data.SpecializationCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeRuleCatalog;
 import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
@@ -81,7 +88,7 @@ public final class PlayerProgressionRuntime {
                 current,
                 TreeRuleCatalog.requirement(nodeId),
                 CharacterLevelCurve.defaultCurve()
-            );
+            ) && frozenRuntimeRequirementsSatisfied(current, nodeId.toString());
             ProgressionState next = ProgressionService.purchaseNode(
                 current,
                 TreeRuleCatalog.graph(),
@@ -206,6 +213,11 @@ public final class PlayerProgressionRuntime {
                 current, ClassRuleCatalog.definitions()).state();
             current = ProgressionService.reconcileNodeSpecializations(
                 current, TreeRuleCatalog.specializationGrants());
+            current = ProgressionService.reconcileEligibleSpecializationsFromNodes(
+                current,
+                SpecializationCatalog.definitions(),
+                TreeRuleCatalog.tagsByNode()
+            );
             current = ProgressionService.reconcileInvalidNodes(
                 current,
                 TreeRuleCatalog.graph(),
@@ -213,6 +225,7 @@ public final class PlayerProgressionRuntime {
                 TreeRuleCatalog.requirements(),
                 CharacterLevelCurve.defaultCurve()
             ).state();
+            current = reconcileFrozenRuntimeRequirements(current);
 
             boolean stable = beforeNodes.equals(current.passiveNodes().learnedNodeIds())
                 && beforeClasses.equals(current.classProgression().unlockedClassIds())
@@ -222,11 +235,55 @@ public final class PlayerProgressionRuntime {
         throw new IllegalStateException("progression reconciliation did not stabilize");
     }
 
+    private static boolean frozenRuntimeRequirementsSatisfied(ProgressionState state, String nodeId) {
+        var combatCode = FrozenCombatPerkNodeBinding.catalogCode(nodeId);
+        if (combatCode.isPresent()) {
+            var node = FrozenA0051A0100TreeModel.node(combatCode.get()).orElseThrow();
+            boolean registryPresent = node.requiredSpecializations().stream()
+                .allMatch(id -> SpecializationCatalog.definition(id).isPresent());
+            return registryPresent && FrozenBatchAccessPolicy.satisfied(
+                node.specialGate(),
+                state.specializations().unlockedSpecializationIds(),
+                state.passiveNodes().learnedNodeIds()
+            );
+        }
+        var survivalCode = FrozenSurvivalPerkNodeBinding.catalogCode(nodeId);
+        if (survivalCode.isEmpty()) return true;
+        var node = FrozenA0101A0150TreeModel.node(survivalCode.get()).orElseThrow();
+        boolean registryPresent = node.requiredSpecializations().stream()
+            .allMatch(id -> SpecializationCatalog.definition(id).isPresent());
+        return registryPresent && FrozenSurvivalAccessPolicy.satisfied(
+            node.specialGate(),
+            state.passiveNodes(),
+            state.specializations().unlockedSpecializationIds()
+        );
+    }
+
+    private static ProgressionState reconcileFrozenRuntimeRequirements(ProgressionState initial) {
+        ProgressionState current = initial;
+        while (true) {
+            ProgressionState snapshot = current;
+            String invalid = snapshot.passiveNodes().learnedNodeIds().stream()
+                .sorted()
+                .filter(id -> FrozenCombatPerkNodeBinding.catalogCode(id).isPresent()
+                    || FrozenSurvivalPerkNodeBinding.catalogCode(id).isPresent())
+                .filter(id -> !frozenRuntimeRequirementsSatisfied(snapshot, id))
+                .findFirst()
+                .orElse(null);
+            if (invalid == null) return current;
+            while (current.passiveNodes().rank(invalid) > 0) {
+                current = ProgressionService.respecNode(
+                    current, TreeRuleCatalog.graph(), TreeRuleCatalog.definitions(), invalid).state();
+            }
+        }
+    }
+
     public static void set(ServerPlayer player, ProgressionState state) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(state);
         player.setData(ModAttachments.PROGRESSION, state);
         AttributeNodeEffectRuntime.refresh(player, state);
+        FrozenSurvivalRuntimeState.revalidate(player, state);
         ModNetworking.syncToOwner(player, state);
     }
 }

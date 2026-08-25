@@ -9,6 +9,13 @@
   "longConnections": [],
   "oneWayConnections": [],
   "tags": [
+    "gateway:combat_mace",
+    "gateway:combat_scythe",
+    "gateway:epic_axe",
+    "gateway:epic_dagger",
+    "gateway:epic_hammer",
+    "gateway:epic_spear",
+    "gateway:epic_sword",
     "rpgskilltree:domain/martial",
     "rpgskilltree:kind/domain"
   ],

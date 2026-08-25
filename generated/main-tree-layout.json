@@ -177,7 +177,16 @@
       "domain": "MARTIAL",
       "ring": 1,
       "x": -249.06,
-      "y": -723.322
+      "y": -723.322,
+      "tags": [
+        "gateway:combat_mace",
+        "gateway:combat_scythe",
+        "gateway:epic_axe",
+        "gateway:epic_dagger",
+        "gateway:epic_hammer",
+        "gateway:epic_spear",
+        "gateway:epic_sword"
+      ]
     },
     {
       "id": "martial_001",
@@ -3279,7 +3288,11 @@
       "domain": "AGILITY",
       "ring": 1,
       "x": -600.58,
-      "y": -473.845
+      "y": -473.845,
+      "tags": [
+        "gateway:epic_bow",
+        "gateway:epic_crossbow"
+      ]
     },
     {
       "id": "agility_001",

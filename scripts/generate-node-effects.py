@@ -162,6 +162,38 @@ for domain, domain_nodes in sorted(by_domain.items()):
             'amountPerRank': amount,
         })
 
+# Frozen Notion A0088-A0091 are explicit attribute nodes, independent of layout heuristics.
+effects.extend([
+    {
+        'effectId': 'rpgskilltree:node/combat/a0088/max_health',
+        'nodeId': 'rpgskilltree:combat/a0088',
+        'attributeId': 'minecraft:max_health',
+        'operation': 'MULTIPLY_TOTAL',
+        'amountPerRank': 0.02,
+    },
+    {
+        'effectId': 'rpgskilltree:node/combat/a0089/armor',
+        'nodeId': 'rpgskilltree:combat/a0089',
+        'attributeId': 'minecraft:armor',
+        'operation': 'MULTIPLY_TOTAL',
+        'amountPerRank': 0.02,
+    },
+    {
+        'effectId': 'rpgskilltree:node/combat/a0090/armor_toughness',
+        'nodeId': 'rpgskilltree:combat/a0090',
+        'attributeId': 'minecraft:armor_toughness',
+        'operation': 'MULTIPLY_TOTAL',
+        'amountPerRank': 0.02,
+    },
+    {
+        'effectId': 'rpgskilltree:node/combat/a0091/knockback_resistance',
+        'nodeId': 'rpgskilltree:combat/a0091',
+        'attributeId': 'minecraft:knockback_resistance',
+        'operation': 'ADD_FLAT',
+        'amountPerRank': 0.03,
+    },
+])
+
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 OUTPUT.write_text(json.dumps({'attributes': effects}, indent=2) + '\n')
 print(f'Generated {len(effects)} node attribute effects -> {OUTPUT}')

@@ -1,0 +1,10 @@
+{
+  "specialization_id": "combat_fist",
+  "provider": "rpgskilltree",
+  "kind": "combat",
+  "eligible_class_ids": [],
+  "minimum_mastery_experience": {
+    "combat:fist": 60
+  },
+  "required_tags": []
+}

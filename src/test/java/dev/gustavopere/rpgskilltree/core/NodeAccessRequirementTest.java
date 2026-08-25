@@ -12,6 +12,7 @@ public final class NodeAccessRequirementTest {
             Set.of(),
             Set.of(),
             Set.of("rpgskilltree:occult_000"),
+            Map.of("rpgskilltree:combat/a0001", 2),
             Set.of("eidolon:ritual:completed")
         );
 
@@ -20,16 +21,28 @@ public final class NodeAccessRequirementTest {
             "missing node and discovery must reject access");
 
         ProgressionState nodeOnly = empty.withPassiveNodes(
-            PassiveNodeProgress.of(Map.of("rpgskilltree:occult_000", 1))
+            PassiveNodeProgress.of(Map.of(
+                "rpgskilltree:occult_000", 1,
+                "rpgskilltree:combat/a0001", 1
+            ))
         );
         check(!NodeAccessResolver.satisfied(nodeOnly, requirement, CharacterLevelCurve.defaultCurve()),
+            "required node rank must reject a lower rank");
+
+        ProgressionState ranked = empty.withPassiveNodes(
+            PassiveNodeProgress.of(Map.of(
+                "rpgskilltree:occult_000", 1,
+                "rpgskilltree:combat/a0001", 2
+            ))
+        );
+        check(!NodeAccessResolver.satisfied(ranked, requirement, CharacterLevelCurve.defaultCurve()),
             "required discovery must be enforced independently");
 
-        ProgressionState ready = nodeOnly.withDiscoveries(
+        ProgressionState ready = ranked.withDiscoveries(
             DiscoveryProgress.of(Set.of("eidolon:ritual:completed"))
         );
         check(NodeAccessResolver.satisfied(ready, requirement, CharacterLevelCurve.defaultCurve()),
-            "required node plus discovery must satisfy access");
+            "required nodes, rank and discovery must satisfy access");
 
         System.out.println("NodeAccessRequirementTest PASS");
     }

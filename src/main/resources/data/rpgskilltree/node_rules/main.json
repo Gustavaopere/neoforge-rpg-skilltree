@@ -301,6 +301,15 @@
         "rpgskilltree:core_21",
         "rpgskilltree:martial_001",
         "rpgskilltree:martial_006"
+      ],
+      "tags": [
+        "gateway:combat_mace",
+        "gateway:combat_scythe",
+        "gateway:epic_axe",
+        "gateway:epic_dagger",
+        "gateway:epic_hammer",
+        "gateway:epic_spear",
+        "gateway:epic_sword"
       ]
     },
     {
@@ -4791,6 +4800,10 @@
         "rpgskilltree:agility_001",
         "rpgskilltree:agility_006",
         "rpgskilltree:core_18"
+      ],
+      "tags": [
+        "gateway:epic_bow",
+        "gateway:epic_crossbow"
       ]
     },
     {

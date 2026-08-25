@@ -62,6 +62,25 @@ jobs:
       - name: Core tests
         run: bash scripts/test-core.sh
 
+      - name: Epic Fight exact stamina receipt JAR contract
+        shell: bash
+        run: |
+          set +e
+          gradle --no-daemon verifyEpicFightReceiptJarContract
+          STATUS=$?
+          set -e
+          EXACT_JAR="$(find "$HOME/.gradle" -type f -name 'vu3NZ5Ma-8HHhJt6i.jar' -print -quit)"
+          if [ -n "$EXACT_JAR" ]; then
+            echo "EPICFIGHT_RECEIPT_RESOLVED_JAR=$EXACT_JAR"
+            sha256sum "$EXACT_JAR"
+            echo '--- packaged Epic Fight mod metadata ---'
+            unzip -p "$EXACT_JAR" META-INF/neoforge.mods.toml | grep -E '^[[:space:]]*(modId|version)[[:space:]]*=' || true
+            echo '--- end packaged Epic Fight mod metadata ---'
+          else
+            echo 'Exact Epic Fight artifact was not found in the Gradle cache.'
+          fi
+          exit "$STATUS"
+
       - name: Data validation
         run: python3 scripts/validate-data.py
 
@@ -91,7 +110,14 @@ jobs:
           JAR="$(find build/libs -maxdepth 1 -type f -name 'RPGSkillTree*.jar' | head -n 1)"
           test -n "$JAR"
           jar tf "$JAR" | grep -Fx 'META-INF/neoforge.mods.toml'
+          jar tf "$JAR" | grep -Fx 'rpgskilltree-compat-epicfight-receipt.mixins.json'
           jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/RpgSkillTreeMod.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightExactStaminaReceiptBridge.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightExecutionScope.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/PlayerPatchStaminaReceiptMixin.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/SkillContainerStaminaReceiptMixin.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/ComboAttacksStaminaReceiptMixin.class'
+          unzip -p "$JAR" META-INF/neoforge.mods.toml | grep -F 'config="rpgskilltree-compat-epicfight-receipt.mixins.json"'
           echo "jar_path=$JAR" >> "$GITHUB_OUTPUT"
 
       - name: NeoForge dedicated-server smoke test

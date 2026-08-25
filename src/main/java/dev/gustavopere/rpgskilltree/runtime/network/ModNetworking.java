@@ -49,6 +49,11 @@ public final class ModNetworking {
             ClearClassChoicePayload.STREAM_CODEC,
             ClearClassChoicePayload::handle
         );
+        registrar.playToServer(
+            ToggleMartialStancePayload.TYPE,
+            ToggleMartialStancePayload.STREAM_CODEC,
+            ToggleMartialStancePayload::handle
+        );
     }
 
     public static void syncToOwner(ServerPlayer player, ProgressionState state) {

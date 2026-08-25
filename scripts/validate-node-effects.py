@@ -16,6 +16,15 @@ for path in sorted(RULE_DIR.glob('*.json')):
     for rule in data.get('nodes',[]):
         if rule['id'] in rule_map: raise SystemExit(f"Node effect validation: FAIL duplicate rule {rule['id']}")
         rule_map[rule['id']]=rule
+# A0051-A0150 are projected into TreeRuleCatalog by the frozen tree models at reload time.
+# Keep the static validator aligned with that canonical runtime projection without duplicating
+# those rules into main.json (which would make the reloader reject duplicate IDs).
+for number in range(51, 101):
+    node_id = f'rpgskilltree:combat/a{number:04d}'
+    rule_map.setdefault(node_id, {'id': node_id})
+for number in range(101, 151):
+    node_id = f'rpgskilltree:frozen/a{number:04d}'
+    rule_map.setdefault(node_id, {'id': node_id})
 node_ids=set(rule_map)
 effects=[]
 for path in sorted(EFFECT_DIR.glob('*.json')):

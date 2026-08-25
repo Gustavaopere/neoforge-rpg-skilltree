@@ -4,6 +4,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition;
+import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
+import dev.gustavopere.rpgskilltree.core.FrozenA0051A0100TreeModel;
+import dev.gustavopere.rpgskilltree.core.FrozenA0101A0150TreeModel;
+import dev.gustavopere.rpgskilltree.core.FrozenCombatPerkNodeBinding;
+import dev.gustavopere.rpgskilltree.core.FrozenSurvivalPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
@@ -14,7 +20,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +31,9 @@ import java.util.Set;
 public final class ClientTreeLayout {
     private static final String RESOURCE_BASE = "/assets/rpgskilltree/tree/";
     private static final ClientTreeLayout MAIN = load("main");
+    private static final ClientTreeLayout NOTION_COMBAT = createNotionCombat();
+    private static final ClientTreeLayout FROZEN_COMBAT = createFrozenCombat();
+    private static final ClientTreeLayout FROZEN_SURVIVAL = createFrozenSurvival();
     private static final ClientTreeLayout TECHNOMANCER = load("technomancer");
     private static final ClientTreeLayout WARLOCK = load("warlock");
     private static final ClientTreeLayout DRUID = load("druid");
@@ -109,6 +120,11 @@ public final class ClientTreeLayout {
     public static List<ClientTreeLayout> availableFor(ProgressionState state) {
         List<ClientTreeLayout> available = new ArrayList<>();
         available.add(MAIN);
+        available.add(FROZEN_COMBAT);
+        available.add(FROZEN_SURVIVAL);
+        if (CombatPerkTreeModel.specializationIds().stream().anyMatch(state.specializations()::isUnlocked)) {
+            available.add(NOTION_COMBAT);
+        }
         if (state.classProgression().isUnlocked("technomancer")) available.add(TECHNOMANCER);
         if (state.classProgression().isUnlocked("warlock")) available.add(WARLOCK);
         if (state.classProgression().isUnlocked("druid")) available.add(DRUID);
@@ -148,6 +164,163 @@ public final class ClientTreeLayout {
         return graph;
     }
 
+    private static ClientTreeLayout createNotionCombat() {
+        List<Node> nodes = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
+        Map<CombatPerkDefinition.WeaponFamily, Integer> familyIndices = new EnumMap<>(CombatPerkDefinition.WeaponFamily.class);
+
+        for (CombatPerkTreeModel.Node source : CombatPerkTreeModel.all()) {
+            int localIndex = familyIndices.getOrDefault(source.weaponFamily(), 0);
+            familyIndices.put(source.weaponFamily(), localIndex + 1);
+            double[] position = combatPosition(source.weaponFamily(), localIndex);
+            NodeAccessRequirement requirement = new NodeAccessRequirement(
+                source.minCharacterLevel(),
+                Set.of(),
+                source.requiredMastery(),
+                source.requiredSpecializations(),
+                Set.of(),
+                Set.of(),
+                source.requiredNodeRanks(),
+                Set.of()
+            );
+            nodes.add(new Node(
+                source.nodeId(),
+                source.kind(),
+                null,
+                source.weaponFamily().name().toLowerCase(java.util.Locale.ROOT),
+                source.domains().stream().sorted().toList(),
+                position[0],
+                position[1],
+                null,
+                source.maxRank(),
+                source.costPerRank(),
+                source.startingPoint(),
+                requirement
+            ));
+        }
+
+        Set<String> seenEdges = new HashSet<>();
+        for (CombatPerkTreeModel.Node source : CombatPerkTreeModel.all()) {
+            for (String neighbor : source.neighbors().stream().sorted().toList()) {
+                String from = source.nodeId().compareTo(neighbor) <= 0 ? source.nodeId() : neighbor;
+                String to = source.nodeId().compareTo(neighbor) <= 0 ? neighbor : source.nodeId();
+                String key = from + "\u0000" + to;
+                if (seenEdges.add(key)) edges.add(new Edge(from, to));
+            }
+        }
+        return new ClientTreeLayout(
+            "rpgskilltree:notion_combat",
+            "tree.rpgskilltree.notion_combat",
+            nodes,
+            edges
+        );
+    }
+
+    private static ClientTreeLayout createFrozenCombat() {
+        List<Node> nodes = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
+        Map<dev.gustavopere.rpgskilltree.core.FrozenCombatPerkDefinition.Family, Integer> familyIndices =
+            new EnumMap<>(dev.gustavopere.rpgskilltree.core.FrozenCombatPerkDefinition.Family.class);
+        Set<String> localIds = new HashSet<>();
+        FrozenA0051A0100TreeModel.all().forEach(node -> localIds.add(node.nodeId()));
+
+        for (FrozenA0051A0100TreeModel.Node source : FrozenA0051A0100TreeModel.all()) {
+            int localIndex = familyIndices.getOrDefault(source.family(), 0);
+            familyIndices.put(source.family(), localIndex + 1);
+            double x = (source.family().ordinal() - 2.5D) * 270.0D;
+            double y = localIndex * 105.0D;
+            boolean clientRoot = source.startingPoint()
+                || source.neighbors().stream().noneMatch(localIds::contains);
+            NodeAccessRequirement requirement = new NodeAccessRequirement(
+                source.minCharacterLevel(), Set.of(), source.requiredMastery(), source.requiredSpecializations(),
+                Set.of(), source.requiredNodes(), source.requiredNodeRanks(), Set.of());
+            nodes.add(new Node(
+                source.nodeId(), source.kind().name().toLowerCase(java.util.Locale.ROOT), null,
+                source.family().name().toLowerCase(java.util.Locale.ROOT),
+                source.domains().stream().sorted().toList(), x, y, null,
+                source.maxRank(), source.costPerRank(), clientRoot, requirement));
+        }
+
+        Set<String> seenEdges = new HashSet<>();
+        for (FrozenA0051A0100TreeModel.Node source : FrozenA0051A0100TreeModel.all()) {
+            for (String neighbor : source.neighbors()) {
+                if (FrozenCombatPerkNodeBinding.catalogCode(neighbor).isEmpty()) continue;
+                String from = source.nodeId().compareTo(neighbor) <= 0 ? source.nodeId() : neighbor;
+                String to = source.nodeId().compareTo(neighbor) <= 0 ? neighbor : source.nodeId();
+                if (seenEdges.add(from + "\u0000" + to)) edges.add(new Edge(from, to));
+            }
+        }
+        return new ClientTreeLayout(
+            "rpgskilltree:frozen_a0051_a0100",
+            "tree.rpgskilltree.frozen_a0051_a0100",
+            nodes,
+            edges
+        );
+    }
+
+    private static ClientTreeLayout createFrozenSurvival() {
+        List<Node> nodes = new ArrayList<>();
+        List<Edge> edges = new ArrayList<>();
+        Map<dev.gustavopere.rpgskilltree.core.FrozenSurvivalPerkDefinition.Family, Integer> familyIndices =
+            new EnumMap<>(dev.gustavopere.rpgskilltree.core.FrozenSurvivalPerkDefinition.Family.class);
+        Set<String> localIds = new HashSet<>();
+        FrozenA0101A0150TreeModel.all().forEach(node -> localIds.add(node.nodeId()));
+
+        for (FrozenA0101A0150TreeModel.Node source : FrozenA0101A0150TreeModel.all()) {
+            int localIndex = familyIndices.getOrDefault(source.family(), 0);
+            familyIndices.put(source.family(), localIndex + 1);
+            double x = (source.family().ordinal() - 4.5D) * 250.0D;
+            double y = localIndex * 105.0D;
+            boolean clientRoot = source.startingPoint()
+                || source.neighbors().stream().noneMatch(localIds::contains);
+            NodeAccessRequirement requirement = new NodeAccessRequirement(
+                1, Set.of(), Map.of(), source.requiredSpecializations(), Set.of(),
+                source.requiredNodes(), source.requiredNodeRanks(), Set.of());
+            nodes.add(new Node(
+                source.nodeId(), source.kind().name().toLowerCase(java.util.Locale.ROOT), null,
+                source.family().name().toLowerCase(java.util.Locale.ROOT),
+                source.domains().stream().sorted().toList(), x, y, null,
+                source.maxRank(), source.costPerRank(), clientRoot, requirement));
+        }
+
+        Set<String> seenEdges = new HashSet<>();
+        for (FrozenA0101A0150TreeModel.Node source : FrozenA0101A0150TreeModel.all()) {
+            for (String neighbor : source.neighbors()) {
+                if (FrozenSurvivalPerkNodeBinding.catalogCode(neighbor).isEmpty()) continue;
+                String from = source.nodeId().compareTo(neighbor) <= 0 ? source.nodeId() : neighbor;
+                String to = source.nodeId().compareTo(neighbor) <= 0 ? neighbor : source.nodeId();
+                if (seenEdges.add(from + "\u0000" + to)) edges.add(new Edge(from, to));
+            }
+        }
+        return new ClientTreeLayout(
+            "rpgskilltree:frozen_a0101_a0150",
+            "tree.rpgskilltree.frozen_a0101_a0150",
+            nodes,
+            edges
+        );
+    }
+
+    private static double[] combatPosition(CombatPerkDefinition.WeaponFamily family, int localIndex) {
+        double baseX = (family.ordinal() - 4) * 260.0D;
+        double[][] standard = {
+            {0.0D, 0.0D},
+            {-55.0D, 120.0D},
+            {55.0D, 120.0D},
+            {55.0D, 240.0D},
+            {-20.0D, 360.0D},
+            {0.0D, 500.0D}
+        };
+        double[][] shortBranch = {
+            {0.0D, 0.0D},
+            {0.0D, 140.0D}
+        };
+        double[][] positions = family == CombatPerkDefinition.WeaponFamily.CROSSBOW ? shortBranch : standard;
+        if (localIndex < 0 || localIndex >= positions.length) {
+            throw new IllegalStateException("unexpected node count for combat family " + family);
+        }
+        return new double[] {baseX + positions[localIndex][0], positions[localIndex][1]};
+    }
+
     private static ClientTreeLayout load(String resourceName) {
         String resourcePath = RESOURCE_BASE + resourceName + ".json";
         try (InputStream stream = ClientTreeLayout.class.getResourceAsStream(resourcePath)) {
@@ -172,7 +345,10 @@ public final class ClientTreeLayout {
                     readStringSet(node.getAsJsonArray("requiredClasses")),
                     readIntMap(node.getAsJsonObject("requiredMastery")),
                     readStringSet(node.getAsJsonArray("requiredSpecializations")),
-                    readStringSet(node.getAsJsonArray("requiredClassChoices"))
+                    readStringSet(node.getAsJsonArray("requiredClassChoices")),
+                    readStringSet(node.getAsJsonArray("requiredNodes")),
+                    readIntMap(node.getAsJsonObject("requiredNodeRanks")),
+                    readStringSet(node.getAsJsonArray("requiredDiscoveries"))
                 );
                 Integer finalTriadSlot = node.has("finalTriadSlot") ? node.get("finalTriadSlot").getAsInt() : null;
                 nodes.add(new Node(

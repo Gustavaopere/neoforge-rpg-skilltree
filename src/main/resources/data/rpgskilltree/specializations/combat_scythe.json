@@ -1,0 +1,12 @@
+{
+  "specialization_id": "combat_scythe",
+  "provider": "rpgskilltree",
+  "kind": "combat",
+  "eligible_class_ids": [],
+  "minimum_mastery_experience": {
+    "combat:scythe": 60
+  },
+  "required_tags": [
+    "gateway:combat_scythe"
+  ]
+}

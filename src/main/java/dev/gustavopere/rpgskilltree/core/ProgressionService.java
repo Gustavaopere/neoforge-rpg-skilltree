@@ -329,4 +329,42 @@ public final class ProgressionService {
         }
         return state.withSpecializations(specializations);
     }
+
+    public static ProgressionState reconcileEligibleSpecializations(
+        ProgressionState state,
+        java.util.Collection<SpecializationDefinition> definitions,
+        InvestmentState investment
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(definitions);
+        Objects.requireNonNull(investment);
+
+        SpecializationProgressionState specializations = state.specializations();
+        for (SpecializationDefinition definition : definitions.stream()
+            .sorted(java.util.Comparator.comparing(SpecializationDefinition::specializationId))
+            .toList()) {
+            boolean unlockable = SpecializationResolver.evaluate(
+                state.classProgression().unlockedClassIds(),
+                state.mastery(),
+                investment,
+                definition
+            ).unlockable();
+            specializations = unlockable
+                ? specializations.unlock(definition.specializationId())
+                : specializations.without(definition.specializationId());
+        }
+        return state.withSpecializations(specializations);
+    }
+
+    public static ProgressionState reconcileEligibleSpecializationsFromNodes(
+        ProgressionState state,
+        java.util.Collection<SpecializationDefinition> definitions,
+        Map<String, Set<String>> tagsByNode
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(definitions);
+        Objects.requireNonNull(tagsByNode);
+        InvestmentState investment = NodeInvestmentProjection.from(state.passiveNodes(), tagsByNode);
+        return reconcileEligibleSpecializations(state, definitions, investment);
+    }
 }
