@@ -27,7 +27,7 @@ public final class FrozenCombatGatewayLifecycleTest {
         new Gateway("combat_mace", ProgressionDomain.MARTIAL, 8, "combat:mace", 60, "gateway:combat_mace", "A0031"),
         new Gateway("combat_scythe", ProgressionDomain.MARTIAL, 8, "combat:scythe", 60, "gateway:combat_scythe", "A0037"),
         new Gateway("epic_bow", ProgressionDomain.AGILITY, 8, "combat:bow", 60, "gateway:epic_bow", "A0043"),
-        new Gateway("epic_crossbow", ProgressionDomain.AGILITY, 8, "combat:crossbow", 60, "gateway:epic_crossbow", "A0047")
+        new Gateway("epic_crossbow", ProgressionDomain.AGILITY, 8, "combat:crossbow", 60, "gateway:epic_crossbow", "A0049")
     );
 
     public static void main(String[] args) {
