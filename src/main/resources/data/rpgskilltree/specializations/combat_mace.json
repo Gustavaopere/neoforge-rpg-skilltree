@@ -1,0 +1,12 @@
+{
+  "specialization_id": "combat_mace",
+  "provider": "rpgskilltree",
+  "kind": "combat",
+  "eligible_class_ids": [],
+  "minimum_mastery_experience": {
+    "combat:mace": 60
+  },
+  "required_tags": [
+    "gateway:combat_mace"
+  ]
+}

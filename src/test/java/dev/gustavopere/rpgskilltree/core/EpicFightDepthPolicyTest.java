@@ -4,6 +4,11 @@ import java.util.Map;
 
 public final class EpicFightDepthPolicyTest {
     public static void main(String[] args) {
+        check(
+            EpicFightStaminaPolicy.exactCostSupport()
+                == EpicFightStaminaPolicy.ExactCostSupport.UNSUPPORTED_PRE_CONSUME_ONLY,
+            "public Epic Fight API must not be presented as confirmed post-consume cost"
+        );
         PassiveNodeProgress empty = PassiveNodeProgress.empty();
         checkClose(10.0F, EpicFightStaminaPolicy.adjustedCost(empty, "DODGE", 10.0F), "empty tree must not discount stamina");
 

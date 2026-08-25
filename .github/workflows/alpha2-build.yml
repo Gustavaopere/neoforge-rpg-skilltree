@@ -59,8 +59,62 @@ jobs:
           python3 scripts/generate-warlock-subtree.py
           python3 scripts/generate-morph-subtrees.py
 
+      - name: P-0002 heavy impact correlation contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$PWD/build/p0002-heavy-impact-test-classes"
+          rm -rf "$OUT"
+          mkdir -p "$OUT"
+          mapfile -t CORE_SOURCES < <(find src/main/java/dev/gustavopere/rpgskilltree/core -name '*.java' -print | sort)
+          javac --release 21 -d "$OUT" "${CORE_SOURCES[@]}" \
+            src/test/java/dev/gustavopere/rpgskilltree/core/HeavyImpactReceiptCorrelationTest.java \
+            src/test/java/dev/gustavopere/rpgskilltree/core/HeavyImpactReceiptWindowTest.java
+          java -cp "$OUT" dev.gustavopere.rpgskilltree.core.HeavyImpactReceiptCorrelationTest
+          java -cp "$OUT" dev.gustavopere.rpgskilltree.core.HeavyImpactReceiptWindowTest
+
+      - name: P-0002 Epic Fight provider adapter contract
+        run: gradle --no-daemon verifyP0002EpicFightProviderContract
+
+      - name: P-0002 exact Epic Fight JAR provider contract
+        run: gradle --no-daemon verifyP0002EpicFightHeavyImpactJarContract
+
+      - name: P-0035 exact Epic Fight impact/stamina JAR contract
+        run: gradle --no-daemon verifyP0035EpicFightImpactJarContract
+
+      - name: P-0035 restricted Mixin source contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$PWD/build/p0035-mixin-structure-classes"
+          rm -rf "$OUT"; mkdir -p "$OUT"
+          javac --release 21 -d "$OUT" src/test/java/dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightImpactStaminaMixinStructureTest.java
+          java -cp "$OUT" dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightImpactStaminaMixinStructureTest
+
+      - name: P-0035 audited Epic Fight addon binaries
+        run: bash scripts/verify-p0035-epicfight-addons.sh
+
       - name: Core tests
         run: bash scripts/test-core.sh
+
+      - name: Epic Fight exact stamina receipt JAR contract
+        shell: bash
+        run: |
+          set +e
+          gradle --no-daemon verifyEpicFightReceiptJarContract
+          STATUS=$?
+          set -e
+          EXACT_JAR="$(find "$HOME/.gradle" -type f -name 'vu3NZ5Ma-8HHhJt6i.jar' -print -quit)"
+          if [ -n "$EXACT_JAR" ]; then
+            echo "EPICFIGHT_RECEIPT_RESOLVED_JAR=$EXACT_JAR"
+            sha256sum "$EXACT_JAR"
+            echo '--- packaged Epic Fight mod metadata ---'
+            unzip -p "$EXACT_JAR" META-INF/neoforge.mods.toml | grep -E '^[[:space:]]*(modId|version)[[:space:]]*=' || true
+            echo '--- end packaged Epic Fight mod metadata ---'
+          else
+            echo 'Exact Epic Fight artifact was not found in the Gradle cache.'
+          fi
+          exit "$STATUS"
 
       - name: Data validation
         run: python3 scripts/validate-data.py
@@ -91,7 +145,25 @@ jobs:
           JAR="$(find build/libs -maxdepth 1 -type f -name 'RPGSkillTree*.jar' | head -n 1)"
           test -n "$JAR"
           jar tf "$JAR" | grep -Fx 'META-INF/neoforge.mods.toml'
+          jar tf "$JAR" | grep -Fx 'rpgskilltree-compat-epicfight-receipt.mixins.json'
+          jar tf "$JAR" | grep -Fx 'rpgskilltree-compat-epicfight-impact.mixins.json'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightImpactStaminaBridge.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/EpicFightImpactMixinPlugin.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/VanillaEntityImpactStaminaMixin.class'
           jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/RpgSkillTreeMod.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightExactStaminaReceiptBridge.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightExecutionScope.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/PlayerPatchStaminaReceiptMixin.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/SkillContainerStaminaReceiptMixin.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/mixin/epicfight/ComboAttacksStaminaReceiptMixin.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/core/HeavyImpactReceiptCorrelation.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/core/HeavyImpactReceiptWindow.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightHeavyImpactReceiptBridge.class'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightHeavyImpactReceiptLifecycleEvents.class'
+          unzip -p "$JAR" META-INF/neoforge.mods.toml | grep -F 'config="rpgskilltree-compat-epicfight-receipt.mixins.json"'
+          unzip -p "$JAR" META-INF/neoforge.mods.toml | grep -F 'config="rpgskilltree-compat-epicfight-impact.mixins.json"'
+          javap -classpath "$JAR" -c -p dev.gustavopere.rpgskilltree.RpgSkillTreeMod | grep -F 'EpicFightHeavyImpactReceiptBridge.register'
+          javap -classpath "$JAR" -c -p dev.gustavopere.rpgskilltree.RpgSkillTreeMod | grep -F 'EpicFightHeavyImpactReceiptLifecycleEvents'
           echo "jar_path=$JAR" >> "$GITHUB_OUTPUT"
 
       - name: NeoForge dedicated-server smoke test

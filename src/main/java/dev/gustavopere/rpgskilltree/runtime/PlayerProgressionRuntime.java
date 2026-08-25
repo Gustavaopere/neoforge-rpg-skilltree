@@ -14,6 +14,7 @@ import dev.gustavopere.rpgskilltree.core.ProgressionService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRuleCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceCatalog;
+import dev.gustavopere.rpgskilltree.runtime.data.SpecializationCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeRuleCatalog;
 import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
@@ -206,6 +207,11 @@ public final class PlayerProgressionRuntime {
                 current, ClassRuleCatalog.definitions()).state();
             current = ProgressionService.reconcileNodeSpecializations(
                 current, TreeRuleCatalog.specializationGrants());
+            current = ProgressionService.reconcileEligibleSpecializationsFromNodes(
+                current,
+                SpecializationCatalog.definitions(),
+                TreeRuleCatalog.tagsByNode()
+            );
             current = ProgressionService.reconcileInvalidNodes(
                 current,
                 TreeRuleCatalog.graph(),

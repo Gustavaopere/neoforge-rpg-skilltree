@@ -50,6 +50,7 @@ for node in nodes:
         tags.append(f'rpgskilltree:domain/{domain.lower()}')
     if node.get('archetype'):
         tags.append(f'rpgskilltree:bridge/{node["archetype"]}')
+    tags.extend(node.get('tags', []))
 
     if kind == 'keystone':
         background = 'skilltree:textures/icons/background/keystone.png'
@@ -99,6 +100,8 @@ for node in nodes:
     if 'finalTriadSlot' in node:
         rule['finalTriadDomain'] = node['domain']
         rule['finalTriadSlot'] = node['finalTriadSlot']
+    if node.get('tags'):
+        rule['tags'] = sorted(set(node['tags']))
     rules.append(rule)
 
 TREE_FILE.write_text(json.dumps({'skillIds': skill_ids, 'id': 'rpgskilltree:main'}, indent=2) + '\n')

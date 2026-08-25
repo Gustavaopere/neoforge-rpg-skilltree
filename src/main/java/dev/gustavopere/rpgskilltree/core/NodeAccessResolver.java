@@ -33,6 +33,9 @@ public final class NodeAccessResolver {
         for (String nodeId : requirement.requiredNodeIds()) {
             if (!state.passiveNodes().learned(nodeId)) return false;
         }
+        for (var entry : requirement.requiredNodeRanks().entrySet()) {
+            if (state.passiveNodes().rank(entry.getKey()) < entry.getValue()) return false;
+        }
         for (String discoveryKey : requirement.requiredDiscoveryKeys()) {
             if (!state.discoveries().contains(discoveryKey)) return false;
         }

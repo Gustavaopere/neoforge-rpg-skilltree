@@ -65,6 +65,7 @@ sourceSets.main.resources {
 
 configurations {
     runtimeClasspath.extendsFrom localRuntime
+    epicfightReceiptContract
 }
 
 dependencies {
@@ -74,6 +75,12 @@ dependencies {
         transitive = false
     }
     compileOnly("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
+        transitive = false
+    }
+    testCompileOnly("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
+        transitive = false
+    }
+    localRuntime("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
         transitive = false
     }
     compileOnly("curse.maven:goety-586095:${goety_file_id}") {
@@ -88,6 +95,121 @@ dependencies {
     compileOnly("curse.maven:identity2-1238155:${identity2_file_id}") {
         transitive = false
     }
+
+    epicfightReceiptContract("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
+        transitive = false
+    }
+    testImplementation 'org.ow2.asm:asm:9.7.1'
+    testImplementation 'org.ow2.asm:asm-tree:9.7.1'
+}
+
+def p0002ProviderContractOutput = layout.buildDirectory.dir('p0002-provider-contract-classes')
+def p0002JarContractOutput = layout.buildDirectory.dir('p0002-heavy-impact-jar-contract-classes')
+def p0035ImpactJarContractOutput = layout.buildDirectory.dir('p0035-impact-stamina-jar-contract-classes')
+
+tasks.register('compileP0002ProviderContract', JavaCompile) {
+    group = 'verification'
+    description = 'Compiles only the isolated P-0002 Epic Fight provider contract test.'
+    dependsOn tasks.named('classes')
+    source = files('src/test/java/dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightHeavyImpactProviderContractTest.java')
+    classpath = sourceSets.main.output + sourceSets.main.compileClasspath + configurations.testCompileClasspath
+    destinationDirectory = p0002ProviderContractOutput
+    options.release = 21
+    options.encoding = 'UTF-8'
+}
+
+tasks.register('verifyP0002EpicFightProviderContract', JavaExec) {
+    group = 'verification'
+    description = 'Runs only the P-0002 Epic Fight provider contract without compiling the concurrent core test suite.'
+    dependsOn tasks.named('compileP0002ProviderContract')
+    classpath = files(p0002ProviderContractOutput) + sourceSets.main.output + sourceSets.main.compileClasspath + configurations.testRuntimeClasspath
+    mainClass = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightHeavyImpactProviderContractTest'
+}
+
+tasks.register('compileP0002EpicFightJarContract', JavaCompile) {
+    group = 'verification'
+    description = 'Compiles the isolated P-0002 exact Epic Fight binary contract.'
+    source = files('src/test/java/dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightHeavyImpactJarContractTest.java')
+    classpath = configurations.testCompileClasspath
+    destinationDirectory = p0002JarContractOutput
+    options.release = 21
+    options.encoding = 'UTF-8'
+}
+
+tasks.register('verifyP0002EpicFightHeavyImpactJarContract', JavaExec) {
+    group = 'verification'
+    description = 'Proves the P-0002 heavy-impact provider path against the exact distributed Epic Fight JAR.'
+    dependsOn tasks.named('compileP0002EpicFightJarContract')
+    classpath = files(p0002JarContractOutput) + configurations.testRuntimeClasspath
+    mainClass = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightHeavyImpactJarContractTest'
+    doFirst {
+        File epicFightJar = configurations.epicfightReceiptContract.singleFile
+        if (epicfight_receipt_sha256.toString().isBlank()) {
+            throw new GradleException('epicfight_receipt_sha256 must be pinned for the exact P-0002 provider contract')
+        }
+        args = [epicFightJar.absolutePath, epicfight_receipt_sha256]
+        logger.lifecycle("P-0002 Epic Fight contract coordinate: maven.modrinth:vu3NZ5Ma:${epicfight_version_id}")
+        logger.lifecycle("P-0002 Epic Fight contract file: ${epicFightJar.name}")
+    }
+}
+
+
+tasks.register('compileP0035EpicFightImpactJarContract', JavaCompile) {
+    group = 'verification'
+    description = 'Compiles the isolated P-0035 exact Epic Fight impact/stamina binary contract.'
+    source = files('src/test/java/dev/gustavopere/rpgskilltree/runtime/compat/epicfight/EpicFightImpactStaminaJarContractTest.java')
+    classpath = configurations.testCompileClasspath
+    destinationDirectory = p0035ImpactJarContractOutput
+    options.release = 21
+    options.encoding = 'UTF-8'
+}
+
+tasks.register('verifyP0035EpicFightImpactJarContract', JavaExec) {
+    group = 'verification'
+    description = 'Proves the P-0035 post-cancel/pre-stun-shield transaction domain against the exact Epic Fight JAR.'
+    dependsOn tasks.named('compileP0035EpicFightImpactJarContract')
+    classpath = files(p0035ImpactJarContractOutput) + configurations.testRuntimeClasspath
+    mainClass = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightImpactStaminaJarContractTest'
+    doFirst {
+        File epicFightJar = configurations.epicfightReceiptContract.singleFile
+        if (epicfight_receipt_sha256.toString().isBlank()) {
+            throw new GradleException('epicfight_receipt_sha256 must be pinned for the P-0035 impact/stamina contract')
+        }
+        args = [epicFightJar.absolutePath, epicfight_receipt_sha256]
+        logger.lifecycle("P-0035 Epic Fight contract coordinate: maven.modrinth:vu3NZ5Ma:${epicfight_version_id}")
+        logger.lifecycle("P-0035 Epic Fight contract file: ${epicFightJar.name}")
+    }
+}
+
+tasks.register('verifyEpicFightReceiptJarContract', JavaExec) {
+    group = 'verification'
+    description = 'Proves the causal stamina receipt bridge against the exact distributed Epic Fight JAR.'
+    dependsOn tasks.named('testClasses')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightReceiptJarContractTest'
+    doFirst {
+        File epicFightJar = configurations.epicfightReceiptContract.singleFile
+        if (epicfight_receipt_sha256.toString().isBlank()) {
+            throw new GradleException('epicfight_receipt_sha256 must be pinned for the exact receipt contract')
+        }
+        args = [
+            epicFightJar.absolutePath,
+            epicfight_mod_version,
+            epicfight_version_id,
+            epicfight_receipt_sha256
+        ]
+        logger.lifecycle("Epic Fight receipt release: ${epicfight_version}")
+        logger.lifecycle("Epic Fight receipt packaged mod version: ${epicfight_mod_version}")
+        logger.lifecycle("Epic Fight receipt contract coordinate: maven.modrinth:vu3NZ5Ma:${epicfight_version_id}")
+        logger.lifecycle("Epic Fight receipt contract file: ${epicFightJar.name}")
+    }
+}
+
+tasks.named('check').configure {
+    dependsOn tasks.named('verifyEpicFightReceiptJarContract')
+    dependsOn tasks.named('verifyP0002EpicFightProviderContract')
+    dependsOn tasks.named('verifyP0002EpicFightHeavyImpactJarContract')
+    dependsOn tasks.named('verifyP0035EpicFightImpactJarContract')
 }
 
 tasks.named('wrapper', Wrapper).configure {

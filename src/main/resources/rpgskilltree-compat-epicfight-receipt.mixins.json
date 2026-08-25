@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.gustavopere.rpgskilltree.runtime.mixin.epicfight",
+  "plugin": "dev.gustavopere.rpgskilltree.runtime.mixin.epicfight.EpicFightReceiptMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PlayerPatchStaminaReceiptMixin",
+    "SkillContainerStaminaReceiptMixin",
+    "ComboAttacksStaminaReceiptMixin",
+    "EpicFightCanonicalActionReceiptMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

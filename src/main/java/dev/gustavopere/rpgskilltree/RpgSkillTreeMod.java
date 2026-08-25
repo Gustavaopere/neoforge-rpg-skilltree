@@ -4,6 +4,11 @@ import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightCombatPerkHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightExactStaminaReceiptBridge;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightExactStaminaReceiptLifecycleEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightHeavyImpactReceiptBridge;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightHeavyImpactReceiptLifecycleEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
@@ -22,6 +27,7 @@ import dev.gustavopere.rpgskilltree.runtime.data.TreeUnlockReloader;
 import dev.gustavopere.rpgskilltree.runtime.events.ApothicBossBridgeEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.BossProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.CombatProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.CanonicalCombatEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ExplorationProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.MiningProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.PlayerProgressionEvents;
@@ -52,6 +58,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(ApothicBossBridgeEvents.class);
         NeoForge.EVENT_BUS.register(BossProgressionEvents.class);
         NeoForge.EVENT_BUS.register(CombatProgressionEvents.class);
+        NeoForge.EVENT_BUS.register(CanonicalCombatEvents.class);
         NeoForge.EVENT_BUS.register(ExplorationProgressionEvents.class);
         NeoForge.EVENT_BUS.register(MiningProgressionEvents.class);
 
@@ -76,6 +83,15 @@ public final class RpgSkillTreeMod {
         }
         if (ModList.get().isLoaded("epicfight")) {
             EpicFightProgressionHooks.register();
+            EpicFightCombatPerkHooks.register();
+            if (EpicFightExactStaminaReceiptBridge.isSupportedInstalledVersion()) {
+                EpicFightExactStaminaReceiptBridge.register();
+                NeoForge.EVENT_BUS.register(EpicFightExactStaminaReceiptLifecycleEvents.class);
+            }
+            if (EpicFightHeavyImpactReceiptBridge.isSupportedInstalledVersion()) {
+                EpicFightHeavyImpactReceiptBridge.register();
+                NeoForge.EVENT_BUS.register(EpicFightHeavyImpactReceiptLifecycleEvents.class);
+            }
         }
     }
 }

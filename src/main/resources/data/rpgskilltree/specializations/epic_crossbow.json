@@ -1,0 +1,12 @@
+{
+  "specialization_id": "epic_crossbow",
+  "provider": "epicfight",
+  "kind": "combat",
+  "eligible_class_ids": [],
+  "minimum_mastery_experience": {
+    "combat:crossbow": 60
+  },
+  "required_tags": [
+    "gateway:epic_crossbow"
+  ]
+}

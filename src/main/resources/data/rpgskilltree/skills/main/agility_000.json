@@ -10,6 +10,8 @@
   "longConnections": [],
   "oneWayConnections": [],
   "tags": [
+    "gateway:epic_bow",
+    "gateway:epic_crossbow",
     "rpgskilltree:domain/agility",
     "rpgskilltree:kind/domain"
   ],

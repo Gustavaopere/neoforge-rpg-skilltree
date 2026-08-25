@@ -72,6 +72,36 @@ rules = json.loads(RULES_FILE.read_text())
 rule_map = {r['id']: r for r in rules.get('nodes', [])}
 if set(rule_map) != expected_ids:
     raise SystemExit('Passive export validation: FAIL node rules IDs mismatch')
+
+expected_gateway_tags = {
+    'rpgskilltree:martial_000': {
+        'gateway:epic_sword',
+        'gateway:epic_axe',
+        'gateway:epic_spear',
+        'gateway:epic_dagger',
+        'gateway:epic_hammer',
+        'gateway:combat_mace',
+        'gateway:combat_scythe',
+    },
+    'rpgskilltree:agility_000': {
+        'gateway:epic_bow',
+        'gateway:epic_crossbow',
+    },
+}
+for sid, expected_tags in expected_gateway_tags.items():
+    actual_rule_tags = set(rule_map[sid].get('tags', []))
+    if actual_rule_tags != expected_tags:
+        raise SystemExit(
+            f'Passive export validation: FAIL {sid} gateway rule tags '
+            f'expected={sorted(expected_tags)} actual={sorted(actual_rule_tags)}'
+        )
+    actual_skill_tags = set(skills[sid].get('tags', []))
+    if not expected_tags <= actual_skill_tags:
+        raise SystemExit(
+            f'Passive export validation: FAIL {sid} missing passive gateway tags '
+            f'{sorted(expected_tags - actual_skill_tags)}'
+        )
+
 rule_edges = set()
 final_triads = {}
 for sid, rule in rule_map.items():
