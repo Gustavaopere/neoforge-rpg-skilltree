@@ -126,7 +126,7 @@ public final class CombatPerkTransitionPolicy {
         requireFinite(targetX, "targetX");
         requireFinite(targetZ, "targetZ");
         Objects.requireNonNull(state);
-        if (!trustedMovement) {
+        if (!trustedMovement || state.flowRepositionBlocked(actorId, nowMillis)) {
             state.clearFlowPositionTracking(actorId, targetId);
             return false;
         }
@@ -168,11 +168,7 @@ public final class CombatPerkTransitionPolicy {
 
         if (dodge) state.consumeActorFlag(actorId, NotionCombatPerkState.ActorFlag.FLOW_DODGE_WINDOW, nowMillis);
         if (reposition) state.consumeFlowReposition(actorId, targetId, nowMillis);
-        // A0024 uses its own shorter dodge token. This hit has resolved the dodge opportunity,
-        // so clear it too to prevent the legacy post-hit path from granting a second Flow stack.
-        if (state.hasActorFlag(actorId, NotionCombatPerkState.ActorFlag.RECENT_DODGE, nowMillis)) {
-            state.consumeActorFlag(actorId, NotionCombatPerkState.ActorFlag.RECENT_DODGE, nowMillis);
-        }
+        // A0024 intentionally owns a separate two-second token and must not be consumed by A0022.
         state.addFlow(actorId, 1, nowMillis, rank >= 2 ? 7_000L : 5_000L);
         return true;
     }
