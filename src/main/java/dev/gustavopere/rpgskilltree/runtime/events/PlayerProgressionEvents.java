@@ -21,6 +21,7 @@ public final class PlayerProgressionEvents {
             PlayerProgressionRuntime.reconcilePlayerState(player);
             FrozenCombatRuntimeState.revalidateStance(player);
             FrozenSurvivalRuntimeState.revalidate(player, PlayerProgressionRuntime.get(player));
+            FrozenSurvivalRuntimeState.beginSession(player);
         }
     }
 
@@ -51,6 +52,7 @@ public final class PlayerProgressionEvents {
             PlayerProgressionRuntime.reconcilePlayerState(player);
             FrozenCombatRuntimeState.revalidateStance(player);
             FrozenSurvivalRuntimeState.revalidate(player, PlayerProgressionRuntime.get(player));
+            FrozenSurvivalRuntimeState.beginSession(player);
         }
     }
 

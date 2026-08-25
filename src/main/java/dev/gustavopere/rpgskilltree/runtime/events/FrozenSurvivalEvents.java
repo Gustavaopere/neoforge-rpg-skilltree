@@ -105,6 +105,10 @@ public final class FrozenSurvivalEvents {
         boolean hostile = hostile(victim, source);
         boolean direct = hostile && directHostile(source);
         if (!hostile) return;
+        FrozenSurvivalRuntimeState.recordHostileCombat(victim);
+        if (source.getEntity() instanceof ServerPlayer attacker && eligible(attacker)) {
+            FrozenSurvivalRuntimeState.recordHostileCombat(attacker);
+        }
 
         long nowTick = victim.level().getGameTime();
         CanonicalActionIdentity action = CanonicalCombatRuntimeState.receivedDamageAction(
