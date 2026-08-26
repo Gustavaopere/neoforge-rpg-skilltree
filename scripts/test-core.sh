@@ -30,3 +30,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SpecializationReconciliationTe
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.InfiniteProgressionFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CorePointEconomyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRulesSnapshotTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.LegacyProgressionMigrationTest
