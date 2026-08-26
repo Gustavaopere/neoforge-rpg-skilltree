@@ -10,24 +10,30 @@ import java.util.Objects;
 /**
  * Immutable Core Progression Point ledger.
  *
- * <p>Transaction ids provide replay/idempotency safety. Credits are retained by
- * provenance while current allocation is tracked independently for attributes
- * and the finite main perk tree.</p>
+ * <p>Long-lived balances and credit provenance are aggregated. Only a bounded
+ * window of recent transaction payloads is retained for replay/idempotency
+ * protection, preventing runtime and save growth from becoming proportional to
+ * the entire history of an uncapped character.</p>
  */
 public final class CorePointLedger {
+    public static final int RECENT_TRANSACTION_LIMIT = 1_024;
+
     private final List<CorePointTransaction> transactions;
     private final Map<String, CorePointTransaction> transactionsById;
+    private final Map<String, Long> creditTotalsBySource;
     private final long totalCredits;
     private final Map<CorePointAllocation, Long> allocated;
 
     private CorePointLedger(
         List<CorePointTransaction> transactions,
         Map<String, CorePointTransaction> transactionsById,
+        Map<String, Long> creditTotalsBySource,
         long totalCredits,
         Map<CorePointAllocation, Long> allocated
     ) {
         this.transactions = List.copyOf(transactions);
         this.transactionsById = Map.copyOf(transactionsById);
+        this.creditTotalsBySource = Map.copyOf(creditTotalsBySource);
         this.totalCredits = totalCredits;
         EnumMap<CorePointAllocation, Long> allocationCopy = new EnumMap<>(CorePointAllocation.class);
         allocationCopy.putAll(allocated);
@@ -35,7 +41,26 @@ public final class CorePointLedger {
     }
 
     public static CorePointLedger empty() {
-        return new CorePointLedger(List.of(), Map.of(), 0L, Map.of());
+        return new CorePointLedger(List.of(), Map.of(), Map.of(), 0L, Map.of());
+    }
+
+    public static CorePointLedger restore(CorePointLedgerCheckpoint checkpoint) {
+        Objects.requireNonNull(checkpoint);
+        Map<String, CorePointTransaction> recentById = new HashMap<>();
+        for (CorePointTransaction transaction : checkpoint.recentTransactions()) {
+            recentById.put(transaction.transactionId(), transaction);
+        }
+        return new CorePointLedger(
+            checkpoint.recentTransactions(),
+            recentById,
+            checkpoint.creditTotalsBySource(),
+            checkpoint.totalCredits(),
+            checkpoint.allocated()
+        );
+    }
+
+    public CorePointLedgerCheckpoint checkpoint() {
+        return new CorePointLedgerCheckpoint(creditTotalsBySource, allocated, transactions);
     }
 
     public CorePointLedger apply(CorePointTransaction transaction) {
@@ -47,11 +72,19 @@ public final class CorePointLedger {
         }
 
         long nextCredits = totalCredits;
+        Map<String, Long> nextCreditTotals = new HashMap<>(creditTotalsBySource);
         EnumMap<CorePointAllocation, Long> nextAllocated = new EnumMap<>(CorePointAllocation.class);
         nextAllocated.putAll(allocated);
 
         switch (transaction.kind()) {
-            case EARN, MIGRATION -> nextCredits = Math.addExact(totalCredits, transaction.amount());
+            case EARN, MIGRATION -> {
+                nextCredits = Math.addExact(totalCredits, transaction.amount());
+                long currentSourceTotal = nextCreditTotals.getOrDefault(transaction.sourceId(), 0L);
+                nextCreditTotals.put(
+                    transaction.sourceId(),
+                    Math.addExact(currentSourceTotal, transaction.amount())
+                );
+            }
             case SPEND -> {
                 if (transaction.amount() > available()) {
                     throw new IllegalArgumentException("insufficient Core Progression Points");
@@ -71,14 +104,31 @@ public final class CorePointLedger {
         }
 
         List<CorePointTransaction> nextTransactions = new ArrayList<>(transactions);
-        nextTransactions.add(transaction);
         Map<String, CorePointTransaction> nextById = new HashMap<>(transactionsById);
+        nextTransactions.add(transaction);
         nextById.put(transaction.transactionId(), transaction);
-        return new CorePointLedger(nextTransactions, nextById, nextCredits, nextAllocated);
+        if (nextTransactions.size() > RECENT_TRANSACTION_LIMIT) {
+            CorePointTransaction expired = nextTransactions.removeFirst();
+            nextById.remove(expired.transactionId());
+        }
+
+        return new CorePointLedger(
+            nextTransactions,
+            nextById,
+            nextCreditTotals,
+            nextCredits,
+            nextAllocated
+        );
     }
 
+    /** Bounded recent transaction window retained for replay protection. */
     public List<CorePointTransaction> transactions() {
         return transactions;
+    }
+
+    /** Aggregate credit provenance retained independently from transaction history. */
+    public Map<String, Long> creditTotalsBySource() {
+        return creditTotalsBySource;
     }
 
     public long totalCredits() {
