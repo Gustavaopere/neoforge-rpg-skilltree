@@ -11,6 +11,7 @@ public final class LegacyProgressionMigrationTest {
         completedLevelUpsAndPartialProgressArePreserved();
         legacyCapExcessDoesNotCreateRetroactiveLevels();
         persistedPointLedgerIsMigratedInsteadOfRecomputed();
+        grandfatheredLegacyOverspendCanRefundTowardBudget();
         migrationIsDeterministicAndVersioned();
         invalidSourceVersionsAreRejected();
         System.out.println("LegacyProgressionMigrationTest: PASS");
@@ -95,6 +96,34 @@ public final class LegacyProgressionMigrationTest {
         eq(8L, points.available());
         eq(3L, points.transactions().stream().filter(t -> t.kind() == CorePointTransactionKind.MIGRATION).count());
         eq(1L, points.transactions().stream().filter(t -> t.kind() == CorePointTransactionKind.SPEND).count());
+    }
+
+    private static void grandfatheredLegacyOverspendCanRefundTowardBudget() {
+        PassivePointLedger legacyLedger = PassivePointLedger.of(
+            Map.of(PassivePointSource.LEVEL, 50),
+            40
+        );
+        LegacyProgressionMigrationResult migrated = LegacyProgressionMigration.migrate(
+            stateWith(0L, legacyLedger),
+            4,
+            rules()
+        );
+        eq(40L, migrated.corePoints().allocated(CorePointAllocation.MAIN_PERK));
+
+        CorePointTransaction refund = CorePointTransaction.allocate(
+            "test:grandfathered_refund",
+            CorePointTransactionKind.REFUND,
+            10L,
+            "test:respec",
+            CorePointAllocation.MAIN_PERK,
+            rules().version()
+        );
+        CorePointLedger afterRefund = CorePointEconomyService.apply(
+            migrated.corePoints(),
+            rules().mainPerkBudget(),
+            refund
+        );
+        eq(30L, afterRefund.allocated(CorePointAllocation.MAIN_PERK));
     }
 
     private static void migrationIsDeterministicAndVersioned() {
