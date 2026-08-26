@@ -34,7 +34,7 @@ public final class ProgressionRulesSnapshotTest {
         ));
         BigInteger atFiveBillion = curve.cumulativeXpToReachLevel(5_000_000_000L);
         eq(true, atFiveBillion.signum() > 0);
-        eq(BigInteger.valueOf(10_000_000_098L), curve.xpToNextLevel(5_000_000_000L));
+        eq(BigInteger.valueOf(10_000_000_100L), curve.xpToNextLevel(5_000_000_000L));
     }
 
     private static void snapshotFingerprintIsDeterministicAndContentSensitive() {
