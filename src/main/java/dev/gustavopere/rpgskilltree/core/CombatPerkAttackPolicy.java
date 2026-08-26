@@ -91,32 +91,83 @@ public final class CombatPerkAttackPolicy {
         }
     }
 
+    /**
+     * Provider evidence required by migrated A0012. Thermal and hunger/exhaustion evidence are mandatory;
+     * TWR thirst remains an optional, independent same-action receipt and is never inferred from exhaustion.
+     */
+    public record FrenzyBodyEvidence(
+        boolean thermalParcelAvailable,
+        boolean exhaustionCostAvailable,
+        boolean thirstCostReceiptAvailable
+    ) {
+        public static FrenzyBodyEvidence unavailable() {
+            return new FrenzyBodyEvidence(false, false, false);
+        }
+
+        public boolean mandatoryTradeoffsAvailable() {
+            return thermalParcelAvailable && exhaustionCostAvailable;
+        }
+    }
+
     public record HitModifiers(
         double damageMultiplier,
         double armorNegationPoints,
         double impactMultiplier,
-        double guardPressureMultiplier
+        double guardPressureMultiplier,
+        double heatContributionMultiplier,
+        double exhaustionMultiplier,
+        double thirstMultiplier
     ) {
         public HitModifiers {
             requirePositiveFinite(damageMultiplier, "damageMultiplier");
             requireNonNegativeFinite(armorNegationPoints, "armorNegationPoints");
             requirePositiveFinite(impactMultiplier, "impactMultiplier");
             requirePositiveFinite(guardPressureMultiplier, "guardPressureMultiplier");
+            requirePositiveFinite(heatContributionMultiplier, "heatContributionMultiplier");
+            requirePositiveFinite(exhaustionMultiplier, "exhaustionMultiplier");
+            requirePositiveFinite(thirstMultiplier, "thirstMultiplier");
+        }
+
+        public HitModifiers(
+            double damageMultiplier,
+            double armorNegationPoints,
+            double impactMultiplier,
+            double guardPressureMultiplier
+        ) {
+            this(damageMultiplier, armorNegationPoints, impactMultiplier, guardPressureMultiplier, 1.0D, 1.0D, 1.0D);
         }
     }
 
+    /**
+     * Compatibility/runtime entry point. A0012 deliberately fails closed here because no causal body
+     * receipts have been supplied. Provider wiring that can prove the migrated body tradeoffs must use
+     * the evidence-aware overload.
+     */
     public static HitModifiers beforeHit(
         AttackContext context,
         CombatPerkRanks ranks,
         NotionCombatPerkState state
     ) {
+        return beforeHit(context, ranks, state, FrenzyBodyEvidence.unavailable());
+    }
+
+    public static HitModifiers beforeHit(
+        AttackContext context,
+        CombatPerkRanks ranks,
+        NotionCombatPerkState state,
+        FrenzyBodyEvidence frenzyBodyEvidence
+    ) {
         Objects.requireNonNull(context);
         Objects.requireNonNull(ranks);
         Objects.requireNonNull(state);
+        Objects.requireNonNull(frenzyBodyEvidence);
 
         double armorNegation = 0.0D;
         double impact = 1.0D;
         double guardPressure = 1.0D;
+        double heatContribution = 1.0D;
+        double exhaustion = 1.0D;
+        double thirst = 1.0D;
 
         if (!context.direct() || !context.hostile()) {
             return new HitModifiers(1.0D, armorNegation, impact, guardPressure);
@@ -171,8 +222,15 @@ public final class CombatPerkAttackPolicy {
                     }
                 }
 
-                if (ranks.learned("A0012") && state.fury(context.actorId()) >= 75.0D) {
+                boolean frenzy = ranks.learned("A0012")
+                    && state.fury(context.actorId()) >= 75.0D
+                    && frenzyBodyEvidence.mandatoryTradeoffsAvailable();
+                if (frenzy) {
                     impact *= 1.10D;
+                    heatContribution *= 1.25D;
+                    exhaustion *= 1.15D;
+                    if (frenzyBodyEvidence.thirstCostReceiptAvailable()) thirst *= 1.15D;
+
                     boolean heavyFrenzy = context.heavyAttack()
                         && state.furyService().consume(
                             new CanonicalFuryService.ConsumptionRequest(
@@ -183,7 +241,7 @@ public final class CombatPerkAttackPolicy {
                         ) == CanonicalFuryService.ConsumptionStatus.APPLIED;
                     if (heavyFrenzy) {
                         impact *= 1.20D;
-                        guardPressure *= 1.20D;
+                        guardPressure *= 1.40D;
                     }
                 }
             }
@@ -302,7 +360,15 @@ public final class CombatPerkAttackPolicy {
             }
         }
 
-        return new HitModifiers(damage, armorNegation, impact, guardPressure);
+        return new HitModifiers(
+            damage,
+            armorNegation,
+            impact,
+            guardPressure,
+            heatContribution,
+            exhaustion,
+            thirst
+        );
     }
 
     public static void afterConfirmedHit(

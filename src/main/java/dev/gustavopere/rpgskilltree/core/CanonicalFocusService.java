@@ -84,7 +84,7 @@ public final class CanonicalFocusService {
         double accumulated = 0.0D;
         for (AngularStep step : tracker.angularSteps) accumulated += step.degrees();
         if (accumulated > SUDDEN_AIM_THRESHOLD_DEGREES && nowMillis >= tracker.suddenCooldownUntilMillis) {
-            consumeFocusClamped(state, actorId, 10.0D * request.lossScalar());
+            consumeFocusClamped(state, actorId, 10.0D * request.bodyScalars().lossMultiplier());
             tracker.suddenCooldownUntilMillis = Math.addExact(nowMillis, SUDDEN_AIM_COOLDOWN_MILLIS);
             tracker.lastIntervalMillis = nowMillis;
             tracker.angularSteps.clear();
@@ -93,11 +93,11 @@ public final class CanonicalFocusService {
         if (nowMillis - tracker.lastIntervalMillis < FOCUS_INTERVAL_MILLIS) return AimStatus.TRACKING;
         tracker.lastIntervalMillis = nowMillis;
         if (request.sprinting()) {
-            consumeFocusClamped(state, actorId, 6.0D * request.lossScalar());
+            consumeFocusClamped(state, actorId, 6.0D * request.bodyScalars().lossMultiplier());
             return AimStatus.SPRINT_DRAIN;
         }
         double intervalGain = request.rank() >= 2 ? 5.0D : 4.0D;
-        state.addFocus(actorId, intervalGain * request.gainScalar(), nowMillis);
+        state.addFocus(actorId, intervalGain * request.bodyScalars().gainMultiplier(), nowMillis);
         return AimStatus.STABLE_GAIN;
     }
 
@@ -116,26 +116,70 @@ public final class CanonicalFocusService {
         if (request.distanceFromShot() < DISTANT_HIT_MIN_DISTANCE) return DistantHitStatus.TOO_CLOSE;
         if (distantCredits.containsKey(request.projectileId())) return DistantHitStatus.DUPLICATE_PROJECTILE;
         distantCredits.put(request.projectileId(), new DistantCredit(request.action().actorId(), Math.addExact(nowMillis, retentionMillis)));
-        state.addFocus(request.action().actorId(), request.rank() >= 2 ? 12.5D : 10.0D, nowMillis);
+        double baseGain = request.rank() >= 2 ? 12.5D : 10.0D;
+        state.addFocus(request.action().actorId(), baseGain * request.bodyScalars().gainMultiplier(), nowMillis);
         return DistantHitStatus.APPLIED;
     }
 
-    public synchronized boolean applyHeavyImpactLoss(String actorId, boolean serverAuthoritative, boolean provenHeavyImpact, NotionCombatPerkState state, long nowMillis) {
+    public synchronized boolean applyHeavyImpactLoss(
+        String actorId,
+        boolean serverAuthoritative,
+        boolean provenHeavyImpact,
+        NotionCombatPerkState state,
+        long nowMillis
+    ) {
+        return applyHeavyImpactLoss(
+            actorId, serverAuthoritative, provenHeavyImpact, CanonicalBodyStateScalars.neutral(), state, nowMillis
+        );
+    }
+
+    public synchronized boolean applyHeavyImpactLoss(
+        String actorId,
+        boolean serverAuthoritative,
+        boolean provenHeavyImpact,
+        CanonicalBodyStateScalars bodyScalars,
+        NotionCombatPerkState state,
+        long nowMillis
+    ) {
+        Objects.requireNonNull(bodyScalars);
         Objects.requireNonNull(state);
         requireActorId(actorId);
         requireNow(nowMillis);
         if (!serverAuthoritative || !provenHeavyImpact) return false;
-        consumeFocusClamped(state, actorId, 25.0D);
+        consumeFocusClamped(state, actorId, 25.0D * bodyScalars.lossMultiplier());
         return true;
     }
 
-    public synchronized boolean applyCancelledDrawLoss(String actorId, boolean serverAuthoritative, boolean eligibleActor, double drawFraction, NotionCombatPerkState state, long nowMillis) {
+    public synchronized boolean applyCancelledDrawLoss(
+        String actorId,
+        boolean serverAuthoritative,
+        boolean eligibleActor,
+        double drawFraction,
+        NotionCombatPerkState state,
+        long nowMillis
+    ) {
+        return applyCancelledDrawLoss(
+            actorId, serverAuthoritative, eligibleActor, drawFraction,
+            CanonicalBodyStateScalars.neutral(), state, nowMillis
+        );
+    }
+
+    public synchronized boolean applyCancelledDrawLoss(
+        String actorId,
+        boolean serverAuthoritative,
+        boolean eligibleActor,
+        double drawFraction,
+        CanonicalBodyStateScalars bodyScalars,
+        NotionCombatPerkState state,
+        long nowMillis
+    ) {
+        Objects.requireNonNull(bodyScalars);
         Objects.requireNonNull(state);
         requireActorId(actorId);
         requireNow(nowMillis);
         if (!Double.isFinite(drawFraction) || drawFraction < 0.0D) throw new IllegalArgumentException("drawFraction must be finite and non-negative");
         if (!serverAuthoritative || !eligibleActor || drawFraction < 0.80D) return false;
-        consumeFocusClamped(state, actorId, 15.0D);
+        consumeFocusClamped(state, actorId, 15.0D * bodyScalars.lossMultiplier());
         return true;
     }
 
@@ -306,6 +350,16 @@ public final class CanonicalFocusService {
         if (actorId.isBlank()) throw new IllegalArgumentException("actorId must not be blank");
     }
 
+    private static CanonicalBodyStateScalars legacyNeutralBodyScalars(double gainScalar, double lossScalar) {
+        if (!Double.isFinite(gainScalar) || gainScalar <= 0.0D || !Double.isFinite(lossScalar) || lossScalar <= 0.0D) {
+            throw new IllegalArgumentException("body-state scalars must be finite and positive");
+        }
+        if (Double.compare(gainScalar, 1.0D) != 0 || Double.compare(lossScalar, 1.0D) != 0) {
+            throw new IllegalArgumentException("aggregate body-state scalars were removed by the 2026-08-25 provider migration");
+        }
+        return CanonicalBodyStateScalars.neutral();
+    }
+
     public enum ProductionStatus { APPLIED, DUPLICATE, INELIGIBLE, NO_GAIN, UNSUPPORTED_UNSPECIFIED_AMOUNT }
     public enum AimStatus { TRACKING, STABLE_GAIN, SPRINT_DRAIN, SUDDEN_CHANGE_DRAIN, INELIGIBLE, NOT_LEARNED }
     public enum DistantHitStatus { APPLIED, DUPLICATE_PROJECTILE, TOO_CLOSE, INELIGIBLE, NOT_LEARNED }
@@ -322,21 +376,75 @@ public final class CanonicalFocusService {
         }
     }
 
-    public record AimSampleRequest(CanonicalActionIdentity action, boolean serverAuthoritative, boolean eligibleActor, boolean bowInUse, boolean sprinting, int rank, double yaw, double pitch, double gainScalar, double lossScalar) {
+    public record AimSampleRequest(
+        CanonicalActionIdentity action,
+        boolean serverAuthoritative,
+        boolean eligibleActor,
+        boolean bowInUse,
+        boolean sprinting,
+        int rank,
+        double yaw,
+        double pitch,
+        CanonicalBodyStateScalars bodyScalars
+    ) {
         public AimSampleRequest {
             Objects.requireNonNull(action);
+            Objects.requireNonNull(bodyScalars);
             if (rank < 0 || rank > 2) throw new IllegalArgumentException("rank must be in 0..2");
             if (!Double.isFinite(yaw) || !Double.isFinite(pitch)) throw new IllegalArgumentException("aim angles must be finite");
-            if (!Double.isFinite(gainScalar) || gainScalar <= 0.0D || !Double.isFinite(lossScalar) || lossScalar <= 0.0D) throw new IllegalArgumentException("body-state scalars must be finite and positive");
+        }
+
+        /** Neutral-only compatibility path; non-neutral aggregate scalars are fail-closed after migration. */
+        public AimSampleRequest(
+            CanonicalActionIdentity action,
+            boolean serverAuthoritative,
+            boolean eligibleActor,
+            boolean bowInUse,
+            boolean sprinting,
+            int rank,
+            double yaw,
+            double pitch,
+            double gainScalar,
+            double lossScalar
+        ) {
+            this(
+                action, serverAuthoritative, eligibleActor, bowInUse, sprinting, rank, yaw, pitch,
+                legacyNeutralBodyScalars(gainScalar, lossScalar)
+            );
         }
     }
 
-    public record DistantHitRequest(CanonicalActionIdentity action, String projectileId, boolean serverAuthoritative, boolean eligibleOwner, boolean directPlayerOwned, double distanceFromShot, int rank) {
+    public record DistantHitRequest(
+        CanonicalActionIdentity action,
+        String projectileId,
+        boolean serverAuthoritative,
+        boolean eligibleOwner,
+        boolean directPlayerOwned,
+        double distanceFromShot,
+        int rank,
+        CanonicalBodyStateScalars bodyScalars
+    ) {
         public DistantHitRequest {
             Objects.requireNonNull(action);
+            Objects.requireNonNull(bodyScalars);
             requireProjectileId(projectileId);
             if (!Double.isFinite(distanceFromShot) || distanceFromShot < 0.0D) throw new IllegalArgumentException("distanceFromShot must be finite and non-negative");
             if (rank < 0 || rank > 2) throw new IllegalArgumentException("rank must be in 0..2");
+        }
+
+        public DistantHitRequest(
+            CanonicalActionIdentity action,
+            String projectileId,
+            boolean serverAuthoritative,
+            boolean eligibleOwner,
+            boolean directPlayerOwned,
+            double distanceFromShot,
+            int rank
+        ) {
+            this(
+                action, projectileId, serverAuthoritative, eligibleOwner, directPlayerOwned,
+                distanceFromShot, rank, CanonicalBodyStateScalars.neutral()
+            );
         }
     }
 

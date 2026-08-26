@@ -25,7 +25,7 @@ public final class NotionCombatPerkCatalog {
         d("A0009", "Precisão com Machados", WeaponFamily.AXE, EffectKind.CRITICAL_TRAINING, 3, 1, Map.of("A0007", 1)),
         d("A0010", "Pressão do Carrasco", WeaponFamily.AXE, EffectKind.FURY_GENERATION, 2, 1, Map.of("A0009", 2)),
         d("A0011", "Ruptura de Guarda", WeaponFamily.AXE, EffectKind.GUARD_RUPTURE, 2, 1, Map.of("A0008", 2, "A0009", 1)),
-        d("A0012", "Maestria de Machados — Frenesi do Reaver", WeaponFamily.AXE, EffectKind.REAVER_FRENZY, 1, 2, Map.of("A0010", 1, "A0011", 1)),
+        d("A0012", "Maestria de Machados — Frenesi do Saqueador", WeaponFamily.AXE, EffectKind.REAVER_FRENZY, 1, 2, Map.of("A0010", 1, "A0011", 1)),
         d("A0013", "Treino com Lanças I", WeaponFamily.SPEAR, EffectKind.DAMAGE_TRAINING, 3, 1, Map.of()),
         d("A0014", "Treino com Lanças II", WeaponFamily.SPEAR, EffectKind.RHYTHM_TRAINING, 3, 1, Map.of("A0013", 2)),
         d("A0015", "Precisão com Lanças", WeaponFamily.SPEAR, EffectKind.CRITICAL_TRAINING, 3, 1, Map.of("A0013", 1)),
