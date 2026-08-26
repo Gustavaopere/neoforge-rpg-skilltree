@@ -28,3 +28,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MorphEcologyPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionStateMigrationMatrixTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SpecializationReconciliationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.InfiniteProgressionFoundationTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CorePointEconomyTest
