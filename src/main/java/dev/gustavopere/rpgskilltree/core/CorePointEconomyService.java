@@ -16,7 +16,8 @@ public final class CorePointEconomyService {
         Objects.requireNonNull(transaction);
 
         long currentMainPerkAllocation = ledger.allocated(CorePointAllocation.MAIN_PERK);
-        if (currentMainPerkAllocation > perkBudget.total()) {
+        if (currentMainPerkAllocation > perkBudget.total()
+            && transaction.kind() != CorePointTransactionKind.REFUND) {
             throw new IllegalStateException("persisted main perk allocation exceeds current perk budget");
         }
 
