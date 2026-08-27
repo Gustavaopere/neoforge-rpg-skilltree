@@ -17,14 +17,14 @@ for node in nodes:
 # Three early nodes give each region immediate mechanical identity.
 BASE = {
     'MARTIAL': [
-        ('minecraft:attack_damage', 'ADD_FLAT', 0.35, 'attack_damage'),
-        ('minecraft:attack_speed', 'ADD_PERCENT_BASE', 0.02, 'attack_speed'),
+        ('minecraft:generic.attack_damage', 'ADD_FLAT', 0.35, 'attack_damage'),
+        ('minecraft:generic.attack_speed', 'ADD_PERCENT_BASE', 0.02, 'attack_speed'),
         ('apothic_attributes:armor_pierce', 'ADD_PERCENT_BASE', 0.02, 'armor_pierce'),
     ],
     'VITALITY': [
-        ('minecraft:max_health', 'ADD_FLAT', 1.0, 'max_health'),
-        ('minecraft:armor', 'ADD_FLAT', 0.5, 'armor'),
-        ('minecraft:knockback_resistance', 'ADD_FLAT', 0.02, 'knockback_resistance'),
+        ('minecraft:generic.max_health', 'ADD_FLAT', 1.0, 'max_health'),
+        ('minecraft:generic.armor', 'ADD_FLAT', 0.5, 'armor'),
+        ('minecraft:generic.knockback_resistance', 'ADD_FLAT', 0.02, 'knockback_resistance'),
     ],
     'HEALING': [
         ('apothic_attributes:healing_received', 'ADD_PERCENT_BASE', 0.03, 'healing_received'),
@@ -37,19 +37,19 @@ BASE = {
         ('irons_spellbooks:mana_regen', 'ADD_PERCENT_BASE', 0.03, 'mana_regen'),
     ],
     'ENGINEERING': [
-        ('minecraft:attack_speed', 'ADD_PERCENT_BASE', 0.015, 'tooling_speed'),
-        ('minecraft:luck', 'ADD_FLAT', 0.25, 'precision'),
-        ('minecraft:movement_speed', 'ADD_PERCENT_BASE', 0.01, 'field_mobility'),
+        ('minecraft:generic.attack_speed', 'ADD_PERCENT_BASE', 0.015, 'tooling_speed'),
+        ('minecraft:generic.luck', 'ADD_FLAT', 0.25, 'precision'),
+        ('minecraft:generic.movement_speed', 'ADD_PERCENT_BASE', 0.01, 'field_mobility'),
     ],
     'MINING': [
         ('apothic_attributes:mining_speed', 'ADD_PERCENT_BASE', 0.04, 'mining_speed'),
-        ('minecraft:luck', 'ADD_FLAT', 0.25, 'prospecting_luck'),
+        ('minecraft:generic.luck', 'ADD_FLAT', 0.25, 'prospecting_luck'),
         ('apothic_attributes:armor_pierce', 'ADD_PERCENT_BASE', 0.015, 'hardness_pierce'),
     ],
     'SURVIVAL': [
-        ('minecraft:max_health', 'ADD_FLAT', 0.75, 'hardiness'),
-        ('minecraft:armor', 'ADD_FLAT', 0.35, 'field_armor'),
-        ('minecraft:movement_speed', 'ADD_PERCENT_BASE', 0.01, 'terrain_mobility'),
+        ('minecraft:generic.max_health', 'ADD_FLAT', 0.75, 'hardiness'),
+        ('minecraft:generic.armor', 'ADD_FLAT', 0.35, 'field_armor'),
+        ('minecraft:generic.movement_speed', 'ADD_PERCENT_BASE', 0.01, 'terrain_mobility'),
     ],
     'SUMMONING': [
         ('irons_spellbooks:summon_damage', 'ADD_PERCENT_BASE', 0.03, 'summon_damage'),
@@ -62,13 +62,13 @@ BASE = {
         ('irons_spellbooks:spell_power', 'ADD_PERCENT_BASE', 0.015, 'occult_power'),
     ],
     'LOGISTICS': [
-        ('minecraft:movement_speed', 'ADD_PERCENT_BASE', 0.015, 'movement_speed'),
-        ('minecraft:luck', 'ADD_FLAT', 0.2, 'routing_luck'),
-        ('minecraft:attack_speed', 'ADD_PERCENT_BASE', 0.01, 'handling_speed'),
+        ('minecraft:generic.movement_speed', 'ADD_PERCENT_BASE', 0.015, 'movement_speed'),
+        ('minecraft:generic.luck', 'ADD_FLAT', 0.2, 'routing_luck'),
+        ('minecraft:generic.attack_speed', 'ADD_PERCENT_BASE', 0.01, 'handling_speed'),
     ],
     'AGILITY': [
-        ('minecraft:movement_speed', 'ADD_PERCENT_BASE', 0.02, 'movement_speed'),
-        ('minecraft:attack_speed', 'ADD_PERCENT_BASE', 0.02, 'attack_speed'),
+        ('minecraft:generic.movement_speed', 'ADD_PERCENT_BASE', 0.02, 'movement_speed'),
+        ('minecraft:generic.attack_speed', 'ADD_PERCENT_BASE', 0.02, 'attack_speed'),
         ('apothic_attributes:dodge_chance', 'ADD_PERCENT_BASE', 0.02, 'dodge_chance'),
     ],
 }
@@ -76,14 +76,14 @@ BASE = {
 # Final 3/3/3 capstones are deliberately stronger per rank.
 FINAL = {
     'MARTIAL': [
-        ('minecraft:attack_damage', 'ADD_FLAT', 0.75, 'capstone_damage'),
-        ('minecraft:attack_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_speed'),
+        ('minecraft:generic.attack_damage', 'ADD_FLAT', 0.75, 'capstone_damage'),
+        ('minecraft:generic.attack_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_speed'),
         ('apothic_attributes:armor_pierce', 'ADD_PERCENT_BASE', 0.03, 'capstone_pierce'),
     ],
     'VITALITY': [
-        ('minecraft:max_health', 'ADD_FLAT', 2.0, 'capstone_health'),
-        ('minecraft:armor', 'ADD_FLAT', 1.0, 'capstone_armor'),
-        ('minecraft:knockback_resistance', 'ADD_FLAT', 0.03, 'capstone_stability'),
+        ('minecraft:generic.max_health', 'ADD_FLAT', 2.0, 'capstone_health'),
+        ('minecraft:generic.armor', 'ADD_FLAT', 1.0, 'capstone_armor'),
+        ('minecraft:generic.knockback_resistance', 'ADD_FLAT', 0.03, 'capstone_stability'),
     ],
     'HEALING': [
         ('apothic_attributes:healing_received', 'ADD_PERCENT_BASE', 0.05, 'capstone_healing'),
@@ -96,19 +96,19 @@ FINAL = {
         ('irons_spellbooks:cooldown_reduction', 'ADD_PERCENT_BASE', 0.03, 'capstone_cooldown'),
     ],
     'ENGINEERING': [
-        ('minecraft:attack_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_tooling'),
-        ('minecraft:luck', 'ADD_FLAT', 0.5, 'capstone_precision'),
-        ('minecraft:movement_speed', 'ADD_PERCENT_BASE', 0.02, 'capstone_mobility'),
+        ('minecraft:generic.attack_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_tooling'),
+        ('minecraft:generic.luck', 'ADD_FLAT', 0.5, 'capstone_precision'),
+        ('minecraft:generic.movement_speed', 'ADD_PERCENT_BASE', 0.02, 'capstone_mobility'),
     ],
     'MINING': [
         ('apothic_attributes:mining_speed', 'ADD_PERCENT_BASE', 0.06, 'capstone_mining'),
-        ('minecraft:luck', 'ADD_FLAT', 0.5, 'capstone_prospecting'),
+        ('minecraft:generic.luck', 'ADD_FLAT', 0.5, 'capstone_prospecting'),
         ('apothic_attributes:armor_pierce', 'ADD_PERCENT_BASE', 0.025, 'capstone_hardness'),
     ],
     'SURVIVAL': [
-        ('minecraft:armor', 'ADD_FLAT', 1.0, 'capstone_armor'),
-        ('minecraft:max_health', 'ADD_FLAT', 1.5, 'capstone_health'),
-        ('minecraft:movement_speed', 'ADD_PERCENT_BASE', 0.02, 'capstone_terrain'),
+        ('minecraft:generic.armor', 'ADD_FLAT', 1.0, 'capstone_armor'),
+        ('minecraft:generic.max_health', 'ADD_FLAT', 1.5, 'capstone_health'),
+        ('minecraft:generic.movement_speed', 'ADD_PERCENT_BASE', 0.02, 'capstone_terrain'),
     ],
     'SUMMONING': [
         ('irons_spellbooks:summon_damage', 'ADD_PERCENT_BASE', 0.05, 'capstone_summons'),
@@ -121,13 +121,13 @@ FINAL = {
         ('irons_spellbooks:spell_power', 'ADD_PERCENT_BASE', 0.03, 'capstone_power'),
     ],
     'LOGISTICS': [
-        ('minecraft:movement_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_movement'),
-        ('minecraft:luck', 'ADD_FLAT', 0.5, 'capstone_luck'),
-        ('minecraft:attack_speed', 'ADD_PERCENT_BASE', 0.02, 'capstone_handling'),
+        ('minecraft:generic.movement_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_movement'),
+        ('minecraft:generic.luck', 'ADD_FLAT', 0.5, 'capstone_luck'),
+        ('minecraft:generic.attack_speed', 'ADD_PERCENT_BASE', 0.02, 'capstone_handling'),
     ],
     'AGILITY': [
-        ('minecraft:movement_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_movement'),
-        ('minecraft:attack_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_speed'),
+        ('minecraft:generic.movement_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_movement'),
+        ('minecraft:generic.attack_speed', 'ADD_PERCENT_BASE', 0.03, 'capstone_speed'),
         ('apothic_attributes:dodge_chance', 'ADD_PERCENT_BASE', 0.03, 'capstone_dodge'),
     ],
 }
