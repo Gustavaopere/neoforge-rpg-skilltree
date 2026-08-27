@@ -126,9 +126,10 @@ public final class CoreProgressionMutationServiceTest {
     private static void attributeRankPurchaseIsAtomicAndPolicyPriced() {
         ProgressionRulesSnapshot rules = rules(7L, 3L);
         CoreProgressionState before = auditedState(rules);
-        AttributeRankCostPolicy costPolicy = (attribute, currentRank) -> {
+        AttributeRankCostPolicy costPolicy = (attribute, startRank, rankCount) -> {
             eq(AttributeId.STRENGTH, attribute);
-            eq(8L, currentRank);
+            eq(8L, startRank);
+            eq(1L, rankCount);
             return 3L;
         };
 
@@ -156,14 +157,14 @@ public final class CoreProgressionMutationServiceTest {
             state,
             AttributeId.AGILITY,
             "attribute:agility/1",
-            (attribute, currentRank) -> 0L,
+            (attribute, startRank, rankCount) -> 0L,
             rules
         ));
         expect(IllegalArgumentException.class, () -> CoreProgressionMutationService.purchaseAttributeRank(
             state,
             AttributeId.AGILITY,
             "attribute:agility/1",
-            (attribute, currentRank) -> 11L,
+            (attribute, startRank, rankCount) -> 11L,
             rules
         ));
         eq(0L, state.attributeRanks().rank(AttributeId.AGILITY));
@@ -173,7 +174,7 @@ public final class CoreProgressionMutationServiceTest {
     private static void attributeRankPurchaseReplayIsIdempotent() {
         ProgressionRulesSnapshot rules = rules(7L, 3L);
         CoreProgressionState initial = auditedState(rules);
-        AttributeRankCostPolicy costPolicy = (attribute, currentRank) -> 2L;
+        AttributeRankCostPolicy costPolicy = (attribute, startRank, rankCount) -> 2L;
 
         CoreProgressionState once = CoreProgressionMutationService.purchaseAttributeRank(
             initial,
