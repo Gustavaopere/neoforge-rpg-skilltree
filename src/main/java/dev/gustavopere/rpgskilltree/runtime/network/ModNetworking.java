@@ -12,7 +12,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public final class ModNetworking {
-    private static final String NETWORK_VERSION = "2";
+    private static final String NETWORK_VERSION = "3";
 
     private ModNetworking() {}
 
@@ -56,6 +56,16 @@ public final class ModNetworking {
             ClearClassChoicePayload.TYPE,
             ClearClassChoicePayload.STREAM_CODEC,
             ClearClassChoicePayload::handle
+        );
+        registrar.playToServer(
+            PurchaseAttributeRanksPayload.TYPE,
+            PurchaseAttributeRanksPayload.STREAM_CODEC,
+            PurchaseAttributeRanksPayload::handle
+        );
+        registrar.playToServer(
+            RefundAttributeRanksPayload.TYPE,
+            RefundAttributeRanksPayload.STREAM_CODEC,
+            RefundAttributeRanksPayload::handle
         );
     }
 
