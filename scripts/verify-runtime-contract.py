@@ -5,6 +5,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 LEGACY = ROOT / "scripts" / "verify-runtime-scaffold.py"
+MOD_MAIN = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java"
 EVENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/PlayerProgressionEvents.java"
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java"
 ATTACHMENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/ModAttachments.java"
@@ -14,6 +15,8 @@ PLAYER_PLACED_ORES = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/
 NETWORKING = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/ModNetworking.java"
 CORE_PAYLOAD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/CoreProgressionSyncPayload.java"
 CORE_CLIENT = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/client/ClientCoreProgressionState.java"
+CORE_RULES_CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/data/CoreProgressionRulesCatalog.java"
+CORE_RULES_RELOADER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/data/CoreProgressionRulesReloader.java"
 
 STALE_ERRORS = {
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/PlayerProgressionEvents.java: missing 'ModNetworking.syncToOwner'",
@@ -24,6 +27,12 @@ STALE_ERRORS = {
 def require(text: str, needle: str, location: str) -> None:
     if needle not in text:
         print(f"ERROR: {location}: missing {needle!r}")
+        raise SystemExit(1)
+
+
+def forbid(text: str, needle: str, location: str) -> None:
+    if needle in text:
+        print(f"ERROR: {location}: forbidden {needle!r}")
         raise SystemExit(1)
 
 
@@ -135,4 +144,33 @@ require(player_placed_ores_text, "new BlockProvenanceAntiFarmService(provenance)
 require(player_placed_ores_text, "public boolean consume(BlockPos pos)", str(PLAYER_PLACED_ORES.relative_to(ROOT)))
 require(player_placed_ores_text, "provenance.consume(pos.asLong())", str(PLAYER_PLACED_ORES.relative_to(ROOT)))
 
-print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/sync/mutations/semantic XP/mining anti-farm verified)")
+# The uncapped Core ruleset has its own datapack boundary. The old progression/defaults.json
+# remains an Alpha-2 compatibility asset and must never be treated as the authoritative
+# infinite rules snapshot. Missing Core rules disable the provider; ambiguity fails closed.
+mod_main_text = read_required(MOD_MAIN)
+core_rules_catalog_text = read_required(CORE_RULES_CATALOG)
+core_rules_reloader_text = read_required(CORE_RULES_RELOADER)
+
+require(core_rules_catalog_text, "InstallableProgressionRulesProvider", str(CORE_RULES_CATALOG.relative_to(ROOT)))
+require(core_rules_catalog_text, "public static ProgressionRulesProvider provider()", str(CORE_RULES_CATALOG.relative_to(ROOT)))
+require(core_rules_catalog_text, "public static void install(ProgressionRulesSnapshot rules)", str(CORE_RULES_CATALOG.relative_to(ROOT)))
+require(core_rules_catalog_text, "PROVIDER.install(rules)", str(CORE_RULES_CATALOG.relative_to(ROOT)))
+require(core_rules_catalog_text, "public static void clear()", str(CORE_RULES_CATALOG.relative_to(ROOT)))
+require(core_rules_catalog_text, "PROVIDER.clear()", str(CORE_RULES_CATALOG.relative_to(ROOT)))
+forbid(core_rules_catalog_text, "progression/defaults.json", str(CORE_RULES_CATALOG.relative_to(ROOT)))
+
+require(core_rules_reloader_text, 'super(GSON, "core_progression_rules")', str(CORE_RULES_RELOADER.relative_to(ROOT)))
+require(core_rules_reloader_text, "if (resources.isEmpty())", str(CORE_RULES_RELOADER.relative_to(ROOT)))
+require(core_rules_reloader_text, "CoreProgressionRulesCatalog.clear()", str(CORE_RULES_RELOADER.relative_to(ROOT)))
+require(core_rules_reloader_text, "resources.size() != 1", str(CORE_RULES_RELOADER.relative_to(ROOT)))
+require(core_rules_reloader_text, "ROOT_FIELDS", str(CORE_RULES_RELOADER.relative_to(ROOT)))
+require(core_rules_reloader_text, "BAND_FIELDS", str(CORE_RULES_RELOADER.relative_to(ROOT)))
+require(core_rules_reloader_text, "longValueExact()", str(CORE_RULES_RELOADER.relative_to(ROOT)))
+require(core_rules_reloader_text, "new ProgressionRulesSnapshot(", str(CORE_RULES_RELOADER.relative_to(ROOT)))
+require(core_rules_reloader_text, "CoreProgressionRulesCatalog.install(snapshot)", str(CORE_RULES_RELOADER.relative_to(ROOT)))
+forbid(core_rules_reloader_text, "progression/defaults.json", str(CORE_RULES_RELOADER.relative_to(ROOT)))
+
+require(mod_main_text, "CoreProgressionRulesReloader", str(MOD_MAIN.relative_to(ROOT)))
+require(mod_main_text, "NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class)", str(MOD_MAIN.relative_to(ROOT)))
+
+print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/sync/mutations/semantic XP/mining anti-farm/rules reload verified)")
