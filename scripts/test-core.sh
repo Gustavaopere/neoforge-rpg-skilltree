@@ -57,4 +57,5 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.TerritoryGridTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.NativeAreaThreatCompositionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.RelevantPlayerLevelFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityArchetypeStatScalingTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobRarityFoundationTest
 python3 "$ROOT/scripts/verify-quest-runtime.py"
