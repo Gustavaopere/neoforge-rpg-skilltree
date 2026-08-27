@@ -5,11 +5,13 @@ import java.util.Objects;
 /**
  * Pure mutation boundary for the authoritative uncapped Core progression state.
  *
- * <p>This service does not decide reward amounts. Callers provide already-quantified
- * XP grants or Core Point transactions; this boundary validates the rules snapshot,
- * delegates arithmetic/economy policy, and preserves migration audit metadata.</p>
+ * <p>This service does not decide reward amounts. XP-to-level progression and
+ * level-derived Core Point awards are interpreted from the supplied rules snapshot;
+ * direct Core Point transactions remain explicitly quantified by their caller.</p>
  */
 public final class CoreProgressionMutationService {
+    private static final String CHARACTER_LEVEL_SOURCE = "character_level";
+
     private CoreProgressionMutationService() {}
 
     public static CoreProgressionState grantXp(
@@ -25,7 +27,28 @@ public final class CoreProgressionMutationService {
             amount,
             rules.levelCurve()
         );
-        return withCharacterProgression(validated, result.after());
+
+        long awardedPoints = rules.levelCorePointAwardPolicy().pointsAwarded(
+            result.before().level(),
+            result.after().level()
+        );
+        CorePointLedger nextLedger = validated.corePoints();
+        if (awardedPoints > 0L) {
+            CorePointTransaction award = CorePointTransaction.credit(
+                levelAwardTransactionId(rules, result.before().level(), result.after().level()),
+                CorePointTransactionKind.EARN,
+                awardedPoints,
+                CHARACTER_LEVEL_SOURCE,
+                rules.version()
+            );
+            nextLedger = CorePointEconomyService.apply(
+                nextLedger,
+                rules.mainPerkBudget(),
+                award
+            );
+        }
+
+        return withProgressionAndCorePoints(validated, result.after(), nextLedger);
     }
 
     public static CoreProgressionState applyCorePointTransaction(
@@ -50,13 +73,22 @@ public final class CoreProgressionMutationService {
         return withCorePoints(validated, nextLedger);
     }
 
-    private static CoreProgressionState withCharacterProgression(
+    private static String levelAwardTransactionId(
+        ProgressionRulesSnapshot rules,
+        long beforeLevel,
+        long afterLevel
+    ) {
+        return "core:level_award:v" + rules.version() + ":" + beforeLevel + "->" + afterLevel;
+    }
+
+    private static CoreProgressionState withProgressionAndCorePoints(
         CoreProgressionState state,
-        CharacterProgressionState characterProgression
+        CharacterProgressionState characterProgression,
+        CorePointLedger corePoints
     ) {
         return new CoreProgressionState(
             characterProgression,
-            state.corePoints(),
+            corePoints,
             state.attributeRanks(),
             state.rulesVersion(),
             state.rulesFingerprint(),
