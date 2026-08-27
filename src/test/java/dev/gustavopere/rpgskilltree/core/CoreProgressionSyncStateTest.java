@@ -1,8 +1,10 @@
 package dev.gustavopere.rpgskilltree.core;
 
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public final class CoreProgressionSyncStateTest {
@@ -60,10 +62,18 @@ public final class CoreProgressionSyncStateTest {
     private static void projectionCarriesClientRelevantState() {
         ProgressionRulesSnapshot rules = rules(21L, 100L);
         CorePointLedger ledger = populatedLedger(rules.version());
-        CoreProgressionState state = CoreProgressionState.nativeState(
+        AttributeRanks attributes = AttributeRanks.of(Map.of(
+            AttributeId.STRENGTH, 8L,
+            AttributeId.INTELLIGENCE, 5_000_000_000L
+        ));
+        CoreProgressionState state = new CoreProgressionState(
             new CharacterProgressionState(1_000_000L, 123L),
             ledger,
-            rules
+            attributes,
+            rules.version(),
+            rules.fingerprint(),
+            0,
+            0L
         );
 
         CoreProgressionSyncState sync = CoreProgressionSyncState.from(state, rules);
@@ -75,8 +85,12 @@ public final class CoreProgressionSyncStateTest {
         eq(20L, sync.mainPerkAllocated());
         eq(980L, sync.availableCorePoints());
         eq(30L, sync.mainPerkBudget());
+        eq(attributes, sync.attributeRanks());
+        eq(8L, sync.attributeRanks().rank(AttributeId.STRENGTH));
+        eq(5_000_000_000L, sync.attributeRanks().rank(AttributeId.INTELLIGENCE));
         eq(rules.version(), sync.rulesVersion());
         eq(rules.fingerprint(), sync.rulesFingerprint());
+        eq(2, CoreProgressionSyncStateCodec.CURRENT_VERSION);
 
         byte[] encoded = CoreProgressionSyncStateCodec.encode(sync);
         eq(sync, CoreProgressionSyncStateCodec.decode(encoded));
@@ -131,7 +145,7 @@ public final class CoreProgressionSyncStateTest {
         expect(IllegalArgumentException.class, () -> CoreProgressionSyncStateCodec.decode(new byte[0]));
 
         byte[] badVersion = valid.clone();
-        badVersion[3] = 2;
+        ByteBuffer.wrap(badVersion).putInt(CoreProgressionSyncStateCodec.CURRENT_VERSION + 1);
         expect(IllegalArgumentException.class, () -> CoreProgressionSyncStateCodec.decode(badVersion));
 
         byte[] trailing = Arrays.copyOf(valid, valid.length + 1);
