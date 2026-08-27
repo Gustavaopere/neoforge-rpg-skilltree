@@ -8,6 +8,8 @@ import dev.gustavopere.rpgskilltree.core.CorePointTransaction;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionBootstrap;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionMutationService;
+import dev.gustavopere.rpgskilltree.core.CoreProgressionQueryService;
+import dev.gustavopere.rpgskilltree.core.CoreProgressionQuerySnapshot;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
 import dev.gustavopere.rpgskilltree.core.ProgressionReward;
 import dev.gustavopere.rpgskilltree.core.ProgressionRewardService;
@@ -197,6 +199,22 @@ public final class CorePlayerProgressionRuntime {
         return next;
     }
 
+    /**
+     * Stable observational query for quest/provider integrations.
+     *
+     * <p>The query resolves authoritative server rules but deliberately does not bootstrap,
+     * persist, migrate attachments or synchronize the client merely because an adapter
+     * asked for progression data. Legacy and new-player states are projected in memory.</p>
+     */
+    public static CoreProgressionQuerySnapshot queryProgression(
+        ServerPlayer player
+    ) {
+        Objects.requireNonNull(player);
+        ProgressionRulesSnapshot rules = CoreProgressionRulesCatalog.provider().requireCurrent();
+        CoreProgressionState state = readOnlyState(player, rules);
+        return CoreProgressionQueryService.snapshot(state, rules);
+    }
+
     public static SemanticProgressionResult applySemanticAction(
         ServerPlayer player,
         SemanticAction action,
@@ -222,6 +240,25 @@ public final class CorePlayerProgressionRuntime {
             set(player, result.state(), rules);
         }
         return result;
+    }
+
+    private static CoreProgressionState readOnlyState(
+        ServerPlayer player,
+        ProgressionRulesSnapshot rules
+    ) {
+        if (player.hasData(ModAttachments.CORE_PROGRESSION)) {
+            CoreProgressionAttachmentData existing = player.getData(ModAttachments.CORE_PROGRESSION);
+            if (existing.isInitialized()) {
+                return CoreProgressionBootstrap.resume(existing.state().orElseThrow(), rules);
+            }
+        }
+        if (player.hasData(ModAttachments.PROGRESSION)) {
+            return CoreProgressionBootstrap.migrateDecodedLegacy(
+                player.getData(ModAttachments.PROGRESSION),
+                rules
+            );
+        }
+        return CoreProgressionBootstrap.newPlayer(rules);
     }
 
     public static void set(
