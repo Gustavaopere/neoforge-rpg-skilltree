@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.core;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public final class CoreProgressionMutationServiceTest {
@@ -26,9 +27,14 @@ public final class CoreProgressionMutationServiceTest {
         CorePointLedger ledger = CorePointLedger.empty().apply(
             CorePointTransaction.credit("migration:seed", CorePointTransactionKind.MIGRATION, 10L, "legacy", rules.version())
         );
+        AttributeRanks attributes = AttributeRanks.of(Map.of(
+            AttributeId.STRENGTH, 8L,
+            AttributeId.DETERMINATION, 5_000_000_000L
+        ));
         return new CoreProgressionState(
             new CharacterProgressionState(2L, 50L),
             ledger,
+            attributes,
             rules.version(),
             rules.fingerprint(),
             4,
@@ -44,6 +50,7 @@ public final class CoreProgressionMutationServiceTest {
         eq(5L, after.characterProgression().level());
         eq(0L, after.characterProgression().xpIntoLevel());
         sameLedger(before.corePoints(), after.corePoints());
+        eq(before.attributeRanks(), after.attributeRanks());
         auditUnchanged(before, after);
     }
 
@@ -63,6 +70,7 @@ public final class CoreProgressionMutationServiceTest {
         eq(2L, after.corePoints().allocated(CorePointAllocation.MAIN_PERK));
         eq(8L, after.corePoints().available());
         eq(before.characterProgression(), after.characterProgression());
+        eq(before.attributeRanks(), after.attributeRanks());
         auditUnchanged(before, after);
     }
 
