@@ -1,14 +1,17 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
+import dev.gustavopere.rpgskilltree.core.CorePointTransaction;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionBootstrap;
+import dev.gustavopere.rpgskilltree.core.CoreProgressionMutationService;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
 import dev.gustavopere.rpgskilltree.core.ProgressionRulesSnapshot;
+import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import java.util.Objects;
 import net.minecraft.server.level.ServerPlayer;
 
 /**
- * NeoForge boundary for initializing the new Core progression beside the legacy runtime.
+ * NeoForge boundary for the uncapped Core progression beside the legacy runtime.
  *
  * <p>This class deliberately requires an explicit rules snapshot. Automatic login
  * bootstrap is not enabled until the runtime has an authoritative rules provider.</p>
@@ -45,5 +48,52 @@ public final class CorePlayerProgressionRuntime {
             CoreProgressionAttachmentData.initialized(initialized)
         );
         return initialized;
+    }
+
+    public static CoreProgressionState grantXp(
+        ServerPlayer player,
+        long amount,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(rules);
+        CoreProgressionState current = bootstrap(player, rules);
+        CoreProgressionState next = CoreProgressionMutationService.grantXp(current, amount, rules);
+        set(player, next, rules);
+        return next;
+    }
+
+    public static CoreProgressionState applyCorePointTransaction(
+        ServerPlayer player,
+        CorePointTransaction transaction,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(transaction);
+        Objects.requireNonNull(rules);
+        CoreProgressionState current = bootstrap(player, rules);
+        CoreProgressionState next = CoreProgressionMutationService.applyCorePointTransaction(
+            current,
+            transaction,
+            rules
+        );
+        set(player, next, rules);
+        return next;
+    }
+
+    public static void set(
+        ServerPlayer player,
+        CoreProgressionState state,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(rules);
+        CoreProgressionState validated = CoreProgressionBootstrap.resume(state, rules);
+        player.setData(
+            ModAttachments.CORE_PROGRESSION,
+            CoreProgressionAttachmentData.initialized(state)
+        );
+        ModNetworking.syncCoreToOwner(player, state, rules);
     }
 }
