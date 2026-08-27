@@ -9,9 +9,10 @@ import java.util.Objects;
 
 public final class AttributeRanksPersistenceTest {
     public static void main(String[] args) throws Exception {
-        codecVersionIsBumpedForPersistedAttributes();
+        codecVersionIncludesBudgetProgressionAfterPersistedAttributes();
         roundTripPreservesSparseUncappedRanks();
         legacyVersionOneDefaultsAttributesToZero();
+        legacyVersionTwoDefaultsBudgetProgressionToZero();
         System.out.println("AttributeRanksPersistenceTest: PASS");
     }
 
@@ -24,8 +25,8 @@ public final class AttributeRanksPersistenceTest {
         );
     }
 
-    private static void codecVersionIsBumpedForPersistedAttributes() {
-        eq(2, CoreProgressionStateCodec.CURRENT_VERSION);
+    private static void codecVersionIncludesBudgetProgressionAfterPersistedAttributes() {
+        eq(3, CoreProgressionStateCodec.CURRENT_VERSION);
     }
 
     private static void roundTripPreservesSparseUncappedRanks() {
@@ -52,19 +53,34 @@ public final class AttributeRanksPersistenceTest {
 
     private static void legacyVersionOneDefaultsAttributesToZero() throws Exception {
         ProgressionRulesSnapshot rules = rules();
-        byte[] v1 = legacyV1EmptyPayload(rules);
+        byte[] v1 = legacyEmptyPayload(rules, 1, false);
         CoreProgressionState decoded = CoreProgressionStateCodec.decode(v1);
 
         eq(AttributeRanks.empty(), decoded.attributeRanks());
         eq(0L, decoded.attributeRanks().rank(AttributeId.DETERMINATION));
+        eq(MainPerkBudgetProgression.empty(), decoded.mainPerkBudgetProgression());
         eq(rules.version(), decoded.rulesVersion());
         eq(rules.fingerprint(), decoded.rulesFingerprint());
     }
 
-    private static byte[] legacyV1EmptyPayload(ProgressionRulesSnapshot rules) throws Exception {
+    private static void legacyVersionTwoDefaultsBudgetProgressionToZero() throws Exception {
+        ProgressionRulesSnapshot rules = rules();
+        byte[] v2 = legacyEmptyPayload(rules, 2, true);
+        CoreProgressionState decoded = CoreProgressionStateCodec.decode(v2);
+
+        eq(AttributeRanks.empty(), decoded.attributeRanks());
+        eq(MainPerkBudgetProgression.empty(), decoded.mainPerkBudgetProgression());
+        eq(0L, decoded.mainPerkBudgetProgression().bonus());
+    }
+
+    private static byte[] legacyEmptyPayload(
+        ProgressionRulesSnapshot rules,
+        int version,
+        boolean includeAttributes
+    ) throws Exception {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         try (DataOutputStream out = new DataOutputStream(bytes)) {
-            out.writeInt(1);
+            out.writeInt(version);
             out.writeLong(0L);
             out.writeLong(0L);
             out.writeLong(rules.version());
@@ -75,6 +91,7 @@ public final class AttributeRanksPersistenceTest {
             out.writeLong(0L);
             out.writeLong(0L);
             out.writeInt(0);
+            if (includeAttributes) out.writeInt(0);
         }
         return bytes.toByteArray();
     }
