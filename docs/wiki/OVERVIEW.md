@@ -15,8 +15,12 @@ RPG Skill Tree é uma camada de progressão RPG server-authoritative para Minecr
 
 ## Filosofia
 
-O personagem é definido por investimento e prática. Um jogador pode convergir para Mage, Warrior, Ranger, Tank, Artificer, Summoner ou híbridos como Spellblade/Battlemage/Arcane Archer/Technomancer conforme os contratos de classe e especialização evoluem, sem transformar a seleção inicial em lock absoluto.
+O personagem é definido por investimento e prática. Um jogador pode convergir para Mage, Warrior, Ranger, Tank, Artificer, Summoner ou híbridos conforme os contratos de classe e especialização evoluem, sem transformar a seleção inicial em lock absoluto.
 
-## 512 vs 474
+## A árvore de 512 nós
 
-Documentos históricos descrevem um blueprint de 512 nós. A auditoria desta revisão encontra 474 arquivos JSON materializados em `src/main/resources/data/rpgskilltree/skills/main/`. Portanto, `512` é tratado como blueprint/meta; `474` é o inventário atual comprovado.
+A árvore principal atual possui **512 nós materializados**, não apenas um alvo histórico. O layout gerado declara `target_node_count = 512` e `actual_node_count = 512`.
+
+A composição é: 28 nós Core + 420 nós nas 11 regiões principais + 48 bridges híbridas + 16 keystones externos = 512.
+
+Importante: **nó materializado não é sinônimo de efeito mecânico distinto finalizado**. Vários JSONs de skill têm `bonuses: []`; a mecânica efetiva também pode vir de `node_effects/*.json` e de handlers runtime. A wiki separa, por isso, inventário de nós e catálogo de efeitos.
