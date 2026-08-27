@@ -46,3 +46,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRanksTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRanksPersistenceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRankMutationServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRankCostPolicyProviderTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicyTest
