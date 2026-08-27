@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree;
 
+import dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicy;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
@@ -11,6 +12,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReload
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.data.ArchetypeReloader;
+import dev.gustavopere.rpgskilltree.runtime.data.AttributeRankCostPolicyCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.BossRewardReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRulesReloader;
@@ -37,6 +39,7 @@ public final class RpgSkillTreeMod {
     public static final String MOD_ID = "rpgskilltree";
 
     public RpgSkillTreeMod(IEventBus modBus) {
+        AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);
         ModNetworking.register(modBus);
         NeoForge.EVENT_BUS.register(PlayerProgressionEvents.class);
