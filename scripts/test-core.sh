@@ -36,3 +36,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionStateCodecTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionBootstrapTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionSyncStateTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionMutationServiceTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SemanticXpPipelineTest
