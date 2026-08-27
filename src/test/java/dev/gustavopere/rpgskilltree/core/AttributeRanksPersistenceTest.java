@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public final class AttributeRanksPersistenceTest {
     public static void main(String[] args) throws Exception {
-        codecVersionIncludesBudgetProgressionAfterPersistedAttributes();
+        codecVersionIncludesTypedRewardClaimsAfterBudgetProgression();
         roundTripPreservesSparseUncappedRanks();
         legacyVersionOneDefaultsAttributesToZero();
         legacyVersionTwoDefaultsBudgetProgressionToZero();
@@ -25,8 +25,8 @@ public final class AttributeRanksPersistenceTest {
         );
     }
 
-    private static void codecVersionIncludesBudgetProgressionAfterPersistedAttributes() {
-        eq(3, CoreProgressionStateCodec.CURRENT_VERSION);
+    private static void codecVersionIncludesTypedRewardClaimsAfterBudgetProgression() {
+        eq(4, CoreProgressionStateCodec.CURRENT_VERSION);
     }
 
     private static void roundTripPreservesSparseUncappedRanks() {
@@ -49,6 +49,7 @@ public final class AttributeRanksPersistenceTest {
         eq(8L, decoded.attributeRanks().rank(AttributeId.STRENGTH));
         eq(5_000_000_000L, decoded.attributeRanks().rank(AttributeId.INTELLIGENCE));
         eq(0L, decoded.attributeRanks().rank(AttributeId.CHARISMA));
+        eq(ProgressionRewardClaims.empty(), decoded.progressionRewardClaims());
     }
 
     private static void legacyVersionOneDefaultsAttributesToZero() throws Exception {
@@ -59,6 +60,7 @@ public final class AttributeRanksPersistenceTest {
         eq(AttributeRanks.empty(), decoded.attributeRanks());
         eq(0L, decoded.attributeRanks().rank(AttributeId.DETERMINATION));
         eq(MainPerkBudgetProgression.empty(), decoded.mainPerkBudgetProgression());
+        eq(ProgressionRewardClaims.empty(), decoded.progressionRewardClaims());
         eq(rules.version(), decoded.rulesVersion());
         eq(rules.fingerprint(), decoded.rulesFingerprint());
     }
@@ -71,6 +73,7 @@ public final class AttributeRanksPersistenceTest {
         eq(AttributeRanks.empty(), decoded.attributeRanks());
         eq(MainPerkBudgetProgression.empty(), decoded.mainPerkBudgetProgression());
         eq(0L, decoded.mainPerkBudgetProgression().bonus());
+        eq(ProgressionRewardClaims.empty(), decoded.progressionRewardClaims());
     }
 
     private static byte[] legacyEmptyPayload(

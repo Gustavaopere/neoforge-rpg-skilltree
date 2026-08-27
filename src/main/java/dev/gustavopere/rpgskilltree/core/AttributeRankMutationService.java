@@ -147,6 +147,7 @@ public final class AttributeRankMutationService {
             corePoints,
             attributeRanks,
             state.mainPerkBudgetProgression(),
+            state.progressionRewardClaims(),
             state.rulesVersion(),
             state.rulesFingerprint(),
             state.migrationSourceFormatVersion(),

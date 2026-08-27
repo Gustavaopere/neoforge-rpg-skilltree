@@ -15,12 +15,14 @@ import java.util.Map;
 
 /** Versioned binary codec for the uncapped RPG Core foundation state. */
 public final class CoreProgressionStateCodec {
-    public static final int CURRENT_VERSION = 3;
+    public static final int CURRENT_VERSION = 4;
     private static final int LEGACY_VERSION_WITHOUT_ATTRIBUTES = 1;
     private static final int VERSION_WITH_ATTRIBUTES = 2;
+    private static final int VERSION_WITH_PERK_BUDGET_PROGRESSION = 3;
     private static final int MAX_STRING_BYTES = 4_096;
     private static final int MAX_CREDIT_SOURCES = 16_384;
     private static final int MAX_PERK_BUDGET_GRANTS = 65_536;
+    private static final int MAX_REWARD_CLAIMS = 131_072;
 
     private CoreProgressionStateCodec() {}
 
@@ -39,6 +41,7 @@ public final class CoreProgressionStateCodec {
                 writeCheckpoint(out, state.corePoints().checkpoint());
                 writeAttributeRanks(out, state.attributeRanks());
                 writeMainPerkBudgetProgression(out, state.mainPerkBudgetProgression());
+                writeProgressionRewardClaims(out, state.progressionRewardClaims());
             }
             return bytes.toByteArray();
         } catch (IOException exception) {
@@ -52,6 +55,7 @@ public final class CoreProgressionStateCodec {
             int version = in.readInt();
             if (version != LEGACY_VERSION_WITHOUT_ATTRIBUTES
                 && version != VERSION_WITH_ATTRIBUTES
+                && version != VERSION_WITH_PERK_BUDGET_PROGRESSION
                 && version != CURRENT_VERSION) {
                 throw new IllegalArgumentException("unsupported core progression state version: " + version);
             }
@@ -64,9 +68,12 @@ public final class CoreProgressionStateCodec {
             AttributeRanks attributeRanks = version >= VERSION_WITH_ATTRIBUTES
                 ? readAttributeRanks(in)
                 : AttributeRanks.empty();
-            MainPerkBudgetProgression mainPerkBudgetProgression = version >= CURRENT_VERSION
+            MainPerkBudgetProgression mainPerkBudgetProgression = version >= VERSION_WITH_PERK_BUDGET_PROGRESSION
                 ? readMainPerkBudgetProgression(in)
                 : MainPerkBudgetProgression.empty();
+            ProgressionRewardClaims rewardClaims = version >= CURRENT_VERSION
+                ? readProgressionRewardClaims(in)
+                : ProgressionRewardClaims.empty();
             if (in.available() != 0) {
                 throw new IllegalArgumentException("core progression state contains trailing bytes");
             }
@@ -75,6 +82,7 @@ public final class CoreProgressionStateCodec {
                 ledger,
                 attributeRanks,
                 mainPerkBudgetProgression,
+                rewardClaims,
                 rulesVersion,
                 fingerprint,
                 migrationSourceVersion,
@@ -103,9 +111,7 @@ public final class CoreProgressionStateCodec {
         for (int i = 0; i < count; i++) {
             AttributeId attribute = parseAttributeId(readString(in));
             long rank = in.readLong();
-            if (rank <= 0L) {
-                throw new IllegalArgumentException("persisted attribute rank must be positive");
-            }
+            if (rank <= 0L) throw new IllegalArgumentException("persisted attribute rank must be positive");
             if (ranks.put(attribute, rank) != null) {
                 throw new IllegalArgumentException("duplicate persisted attribute rank: " + attribute.serializedId());
             }
@@ -134,14 +140,40 @@ public final class CoreProgressionStateCodec {
         for (int i = 0; i < count; i++) {
             String grantId = readString(in);
             long amount = in.readLong();
-            if (amount <= 0L) {
-                throw new IllegalArgumentException("persisted main perk budget grant must be positive");
-            }
+            if (amount <= 0L) throw new IllegalArgumentException("persisted main perk budget grant must be positive");
             if (grants.put(grantId, amount) != null) {
                 throw new IllegalArgumentException("duplicate main perk budget grant id: " + grantId);
             }
         }
         return MainPerkBudgetProgression.of(grants);
+    }
+
+    private static void writeProgressionRewardClaims(
+        DataOutputStream out,
+        ProgressionRewardClaims rewardClaims
+    ) throws IOException {
+        List<String> rewardIds = rewardClaims.claims().keySet().stream().sorted().toList();
+        if (rewardIds.size() > MAX_REWARD_CLAIMS) {
+            throw new IllegalArgumentException("too many progression reward claims");
+        }
+        out.writeInt(rewardIds.size());
+        for (String rewardId : rewardIds) {
+            writeString(out, rewardId);
+            writeString(out, rewardClaims.claims().get(rewardId));
+        }
+    }
+
+    private static ProgressionRewardClaims readProgressionRewardClaims(DataInputStream in) throws IOException {
+        int count = readCount(in, MAX_REWARD_CLAIMS, "progression reward claim");
+        Map<String, String> claims = new HashMap<>();
+        for (int i = 0; i < count; i++) {
+            String rewardId = readString(in);
+            String payload = readString(in);
+            if (claims.put(rewardId, payload) != null) {
+                throw new IllegalArgumentException("duplicate progression reward claim id: " + rewardId);
+            }
+        }
+        return ProgressionRewardClaims.of(claims);
     }
 
     private static AttributeId parseAttributeId(String serializedId) {

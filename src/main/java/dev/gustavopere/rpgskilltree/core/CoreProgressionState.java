@@ -9,6 +9,7 @@ public record CoreProgressionState(
     CorePointLedger corePoints,
     AttributeRanks attributeRanks,
     MainPerkBudgetProgression mainPerkBudgetProgression,
+    ProgressionRewardClaims progressionRewardClaims,
     long rulesVersion,
     String rulesFingerprint,
     int migrationSourceFormatVersion,
@@ -21,6 +22,7 @@ public record CoreProgressionState(
         Objects.requireNonNull(corePoints);
         Objects.requireNonNull(attributeRanks);
         Objects.requireNonNull(mainPerkBudgetProgression);
+        Objects.requireNonNull(progressionRewardClaims);
         Objects.requireNonNull(rulesFingerprint);
         if (rulesVersion <= 0L) throw new IllegalArgumentException("rulesVersion must be positive");
         if (!SHA256.matcher(rulesFingerprint).matches()) {
@@ -35,6 +37,30 @@ public record CoreProgressionState(
         if (migrationSourceFormatVersion == 0 && discardedLegacyCapXp != 0L) {
             throw new IllegalArgumentException("native progression cannot contain discarded legacy XP");
         }
+    }
+
+    /** Compatibility constructor for pre-reward-claim Core callers. */
+    public CoreProgressionState(
+        CharacterProgressionState characterProgression,
+        CorePointLedger corePoints,
+        AttributeRanks attributeRanks,
+        MainPerkBudgetProgression mainPerkBudgetProgression,
+        long rulesVersion,
+        String rulesFingerprint,
+        int migrationSourceFormatVersion,
+        long discardedLegacyCapXp
+    ) {
+        this(
+            characterProgression,
+            corePoints,
+            attributeRanks,
+            mainPerkBudgetProgression,
+            ProgressionRewardClaims.empty(),
+            rulesVersion,
+            rulesFingerprint,
+            migrationSourceFormatVersion,
+            discardedLegacyCapXp
+        );
     }
 
     /** Compatibility constructor for pre-budget-progression Core callers. */
@@ -52,6 +78,7 @@ public record CoreProgressionState(
             corePoints,
             attributeRanks,
             MainPerkBudgetProgression.empty(),
+            ProgressionRewardClaims.empty(),
             rulesVersion,
             rulesFingerprint,
             migrationSourceFormatVersion,
@@ -59,7 +86,7 @@ public record CoreProgressionState(
         );
     }
 
-    /** Compatibility constructor for pre-attribute Core callers; attributes and earned budget default to zero. */
+    /** Compatibility constructor for pre-attribute Core callers. */
     public CoreProgressionState(
         CharacterProgressionState characterProgression,
         CorePointLedger corePoints,
@@ -73,6 +100,7 @@ public record CoreProgressionState(
             corePoints,
             AttributeRanks.empty(),
             MainPerkBudgetProgression.empty(),
+            ProgressionRewardClaims.empty(),
             rulesVersion,
             rulesFingerprint,
             migrationSourceFormatVersion,
@@ -91,6 +119,7 @@ public record CoreProgressionState(
             corePoints,
             AttributeRanks.empty(),
             MainPerkBudgetProgression.empty(),
+            ProgressionRewardClaims.empty(),
             rules.version(),
             rules.fingerprint(),
             0,
@@ -105,6 +134,7 @@ public record CoreProgressionState(
             migration.corePoints(),
             AttributeRanks.empty(),
             MainPerkBudgetProgression.empty(),
+            ProgressionRewardClaims.empty(),
             migration.targetRulesVersion(),
             migration.targetRulesFingerprint(),
             migration.sourceFormatVersion(),
