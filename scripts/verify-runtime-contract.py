@@ -10,6 +10,9 @@ RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgr
 ATTACHMENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/ModAttachments.java"
 CORE_SERIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CoreProgressionAttachmentSerializer.java"
 CORE_RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
+NETWORKING = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/ModNetworking.java"
+CORE_PAYLOAD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/CoreProgressionSyncPayload.java"
+CORE_CLIENT = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/client/ClientCoreProgressionState.java"
 
 STALE_ERRORS = {
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/PlayerProgressionEvents.java: missing 'ModNetworking.syncToOwner'",
@@ -83,4 +86,22 @@ require(core_runtime_text, "CoreProgressionBootstrap.newPlayer", str(CORE_RUNTIM
 require(core_runtime_compact, "player.setData( ModAttachments.CORE_PROGRESSION,", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionAttachmentData.initialized(initialized)", str(CORE_RUNTIME.relative_to(ROOT)))
 
-print("Runtime scaffold validation: PASS (legacy reconciliation + parallel Core bootstrap verified)")
+# Clientbound Core sync is deliberately explicit: no login hook is allowed to invent
+# a rules snapshot. Callers must supply the same authoritative rules used by bootstrap.
+networking_text = read_required(NETWORKING)
+core_payload_text = read_required(CORE_PAYLOAD)
+core_client_text = read_required(CORE_CLIENT)
+networking_compact = " ".join(networking_text.split())
+
+require(core_payload_text, "implements CustomPacketPayload", str(CORE_PAYLOAD.relative_to(ROOT)))
+require(core_payload_text, '"core_progression_sync"', str(CORE_PAYLOAD.relative_to(ROOT)))
+require(core_payload_text, "CoreProgressionSyncStateCodec.encode", str(CORE_PAYLOAD.relative_to(ROOT)))
+require(core_client_text, "CoreProgressionSyncStateCodec.decode(payload.snapshot())", str(CORE_CLIENT.relative_to(ROOT)))
+require(core_client_text, "CURRENT.set(decoded)", str(CORE_CLIENT.relative_to(ROOT)))
+require(networking_text, "CoreProgressionSyncPayload.TYPE", str(NETWORKING.relative_to(ROOT)))
+require(networking_text, "CoreProgressionSyncPayload.STREAM_CODEC", str(NETWORKING.relative_to(ROOT)))
+require(networking_text, "ClientCoreProgressionState::handleSync", str(NETWORKING.relative_to(ROOT)))
+require(networking_text, "public static void syncCoreToOwner(", str(NETWORKING.relative_to(ROOT)))
+require(networking_compact, "PacketDistributor.sendToPlayer( player, CoreProgressionSyncPayload.fromState(state, rules)", str(NETWORKING.relative_to(ROOT)))
+
+print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/client sync verified)")
