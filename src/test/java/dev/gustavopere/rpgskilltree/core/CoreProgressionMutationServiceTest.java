@@ -6,7 +6,8 @@ import java.util.Objects;
 
 public final class CoreProgressionMutationServiceTest {
     public static void main(String[] args) {
-        xpMutationDelegatesToCharacterProgressionAndPreservesAudit();
+        xpMutationAwardsConfiguredLevelCorePointsAtomically();
+        xpMutationWithoutConfiguredAwardsPreservesLedger();
         pointMutationDelegatesToEconomyAndPreservesAudit();
         transactionRulesVersionMustMatchSnapshot();
         stateRulesMustMatchSnapshot();
@@ -20,6 +21,20 @@ public final class CoreProgressionMutationServiceTest {
             "rpgskilltree:mutation_test",
             List.of(new LevelCurveBand(0L, 100L, 0L)),
             new MainPerkBudget(mainPerkBudget)
+        );
+    }
+
+    private static ProgressionRulesSnapshot rules(
+        long version,
+        long mainPerkBudget,
+        LevelCorePointAwardPolicy levelPointPolicy
+    ) {
+        return new ProgressionRulesSnapshot(
+            version,
+            "rpgskilltree:mutation_test",
+            List.of(new LevelCurveBand(0L, 100L, 0L)),
+            new MainPerkBudget(mainPerkBudget),
+            levelPointPolicy
         );
     }
 
@@ -42,7 +57,34 @@ public final class CoreProgressionMutationServiceTest {
         );
     }
 
-    private static void xpMutationDelegatesToCharacterProgressionAndPreservesAudit() {
+    private static void xpMutationAwardsConfiguredLevelCorePointsAtomically() {
+        ProgressionRulesSnapshot rules = rules(
+            7L,
+            3L,
+            new PeriodicLevelCorePointAwardPolicy(3L, 2L, 2L)
+        );
+        CoreProgressionState before = auditedState(rules);
+        CoreProgressionState after = CoreProgressionMutationService.grantXp(before, 250L, rules);
+
+        eq(5L, after.characterProgression().level());
+        eq(0L, after.characterProgression().xpIntoLevel());
+        eq(14L, after.corePoints().totalCredits());
+        eq(14L, after.corePoints().available());
+        eq(4L, after.corePoints().creditTotalsBySource().get("character_level"));
+        eq(before.corePoints().transactions().size() + 1, after.corePoints().transactions().size());
+
+        CorePointTransaction award = after.corePoints().transactions().getLast();
+        eq(CorePointTransactionKind.EARN, award.kind());
+        eq(4L, award.amount());
+        eq("character_level", award.sourceId());
+        eq(CorePointAllocation.NONE, award.allocation());
+        eq(rules.version(), award.rulesVersion());
+
+        eq(before.attributeRanks(), after.attributeRanks());
+        auditUnchanged(before, after);
+    }
+
+    private static void xpMutationWithoutConfiguredAwardsPreservesLedger() {
         ProgressionRulesSnapshot rules = rules(7L, 3L);
         CoreProgressionState before = auditedState(rules);
         CoreProgressionState after = CoreProgressionMutationService.grantXp(before, 250L, rules);
