@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree.runtime.data;
 import dev.gustavopere.rpgskilltree.core.InstallableProgressionRulesProvider;
 import dev.gustavopere.rpgskilltree.core.ProgressionRulesProvider;
 import dev.gustavopere.rpgskilltree.core.ProgressionRulesSnapshot;
+import dev.gustavopere.rpgskilltree.core.ProgressionRulesTransitionPolicy;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ public final class CoreProgressionRulesCatalog {
 
     public static void install(ProgressionRulesSnapshot rules) {
         Objects.requireNonNull(rules, "rules");
+        ProgressionRulesTransitionPolicy.requireLiveReloadSafe(PROVIDER.current(), rules);
         PROVIDER.install(rules);
     }
 
