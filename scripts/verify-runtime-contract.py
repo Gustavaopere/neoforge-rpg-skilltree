@@ -116,4 +116,13 @@ require(core_runtime_compact, "CoreProgressionAttachmentData.initialized(state)"
 require(core_runtime_text, "ModNetworking.syncCoreToOwner(player, state, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "set(player, next, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
 
-print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/sync/mutations verified)")
+# Semantic gameplay XP stays opt-in and receives an explicit rules snapshot. The
+# runtime delegates evaluation/mutation to the pure service and persists/syncs only
+# when that service returns a distinct Core state.
+require(core_runtime_text, "public static SemanticProgressionResult applySemanticAction(", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "SemanticProgressionService.apply(", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "if (result.state() != current)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "set(player, result.state(), rules)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "return result;", str(CORE_RUNTIME.relative_to(ROOT)))
+
+print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/sync/mutations/semantic XP verified)")
