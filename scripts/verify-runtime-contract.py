@@ -104,4 +104,16 @@ require(networking_text, "ClientCoreProgressionState::handleSync", str(NETWORKIN
 require(networking_text, "public static void syncCoreToOwner(", str(NETWORKING.relative_to(ROOT)))
 require(networking_compact, "PacketDistributor.sendToPlayer( player, CoreProgressionSyncPayload.fromState(state, rules)", str(NETWORKING.relative_to(ROOT)))
 
-print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/client sync verified)")
+# Mutations remain opt-in until a rules provider is authoritative. Once invoked, the
+# runtime must persist and sync only the accepted final state, never an intermediate
+# bootstrap/migration snapshot.
+require(core_runtime_text, "public static CoreProgressionState grantXp(", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CoreProgressionMutationService.grantXp", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "public static CoreProgressionState applyCorePointTransaction(", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CoreProgressionMutationService.applyCorePointTransaction", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "public static void set(", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_compact, "CoreProgressionAttachmentData.initialized(state)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "ModNetworking.syncCoreToOwner(player, state, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "set(player, next, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
+
+print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/sync/mutations verified)")
