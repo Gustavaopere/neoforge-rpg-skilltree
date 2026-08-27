@@ -57,6 +57,7 @@ public final class CoreProgressionMutationService {
         return new CoreProgressionState(
             characterProgression,
             state.corePoints(),
+            state.attributeRanks(),
             state.rulesVersion(),
             state.rulesFingerprint(),
             state.migrationSourceFormatVersion(),
@@ -71,6 +72,7 @@ public final class CoreProgressionMutationService {
         return new CoreProgressionState(
             state.characterProgression(),
             corePoints,
+            state.attributeRanks(),
             state.rulesVersion(),
             state.rulesFingerprint(),
             state.migrationSourceFormatVersion(),
