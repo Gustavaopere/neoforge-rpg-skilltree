@@ -14,6 +14,8 @@ import dev.gustavopere.rpgskilltree.core.SemanticAction;
 import dev.gustavopere.rpgskilltree.core.SemanticProgressionResult;
 import dev.gustavopere.rpgskilltree.core.SemanticProgressionService;
 import dev.gustavopere.rpgskilltree.core.XpPolicy;
+import dev.gustavopere.rpgskilltree.runtime.data.AttributeRankCostPolicyCatalog;
+import dev.gustavopere.rpgskilltree.runtime.data.CoreProgressionRulesCatalog;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import java.util.Objects;
 import net.minecraft.server.level.ServerPlayer;
@@ -89,6 +91,19 @@ public final class CorePlayerProgressionRuntime {
         return next;
     }
 
+    /** Server-authoritative entry point: neither rules nor price policy are accepted from the client. */
+    public static CoreProgressionState purchaseAttributeRanks(
+        ServerPlayer player,
+        AttributeId attribute,
+        long rankCount,
+        String transactionId,
+        String sourceId
+    ) {
+        ProgressionRulesSnapshot rules = CoreProgressionRulesCatalog.provider().requireCurrent();
+        AttributeRankCostPolicy costPolicy = AttributeRankCostPolicyCatalog.provider().requireCurrent();
+        return purchaseAttributeRanks(player, attribute, rankCount, transactionId, sourceId, costPolicy, rules);
+    }
+
     public static CoreProgressionState purchaseAttributeRanks(
         ServerPlayer player,
         AttributeId attribute,
@@ -116,6 +131,19 @@ public final class CorePlayerProgressionRuntime {
             set(player, next, rules);
         }
         return next;
+    }
+
+    /** Server-authoritative entry point: neither rules nor refund policy are accepted from the client. */
+    public static CoreProgressionState refundAttributeRanks(
+        ServerPlayer player,
+        AttributeId attribute,
+        long rankCount,
+        String transactionId,
+        String sourceId
+    ) {
+        ProgressionRulesSnapshot rules = CoreProgressionRulesCatalog.provider().requireCurrent();
+        AttributeRankCostPolicy costPolicy = AttributeRankCostPolicyCatalog.provider().requireCurrent();
+        return refundAttributeRanks(player, attribute, rankCount, transactionId, sourceId, costPolicy, rules);
     }
 
     public static CoreProgressionState refundAttributeRanks(
