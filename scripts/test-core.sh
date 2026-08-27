@@ -43,3 +43,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRulesProviderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.InstallableProgressionRulesProviderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRulesTransitionPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRanksTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRanksPersistenceTest
