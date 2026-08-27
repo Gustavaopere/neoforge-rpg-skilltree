@@ -8,13 +8,15 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /** Versioned binary codec for the uncapped RPG Core foundation state. */
 public final class CoreProgressionStateCodec {
-    public static final int CURRENT_VERSION = 1;
+    public static final int CURRENT_VERSION = 2;
+    private static final int LEGACY_VERSION_WITHOUT_ATTRIBUTES = 1;
     private static final int MAX_STRING_BYTES = 4_096;
     private static final int MAX_CREDIT_SOURCES = 16_384;
 
@@ -33,6 +35,7 @@ public final class CoreProgressionStateCodec {
                 out.writeInt(state.migrationSourceFormatVersion());
                 out.writeLong(state.discardedLegacyCapXp());
                 writeCheckpoint(out, state.corePoints().checkpoint());
+                writeAttributeRanks(out, state.attributeRanks());
             }
             return bytes.toByteArray();
         } catch (IOException exception) {
@@ -44,7 +47,7 @@ public final class CoreProgressionStateCodec {
         if (encoded == null) throw new IllegalArgumentException("encoded state must not be null");
         try (DataInputStream in = new DataInputStream(new ByteArrayInputStream(encoded))) {
             int version = in.readInt();
-            if (version != CURRENT_VERSION) {
+            if (version != LEGACY_VERSION_WITHOUT_ATTRIBUTES && version != CURRENT_VERSION) {
                 throw new IllegalArgumentException("unsupported core progression state version: " + version);
             }
             CharacterProgressionState character = new CharacterProgressionState(in.readLong(), in.readLong());
@@ -53,12 +56,14 @@ public final class CoreProgressionStateCodec {
             int migrationSourceVersion = in.readInt();
             long discardedLegacyCapXp = in.readLong();
             CorePointLedger ledger = CorePointLedger.restore(readCheckpoint(in));
+            AttributeRanks attributeRanks = version >= 2 ? readAttributeRanks(in) : AttributeRanks.empty();
             if (in.available() != 0) {
                 throw new IllegalArgumentException("core progression state contains trailing bytes");
             }
             return new CoreProgressionState(
                 character,
                 ledger,
+                attributeRanks,
                 rulesVersion,
                 fingerprint,
                 migrationSourceVersion,
@@ -67,6 +72,41 @@ public final class CoreProgressionStateCodec {
         } catch (IOException exception) {
             throw new IllegalArgumentException("invalid core progression state payload", exception);
         }
+    }
+
+    private static void writeAttributeRanks(DataOutputStream out, AttributeRanks ranks) throws IOException {
+        List<Map.Entry<AttributeId, Long>> nonZero = ranks.asMap().entrySet().stream()
+            .filter(entry -> entry.getValue() > 0L)
+            .sorted(Map.Entry.comparingByKey((left, right) -> left.serializedId().compareTo(right.serializedId())))
+            .toList();
+        out.writeInt(nonZero.size());
+        for (Map.Entry<AttributeId, Long> entry : nonZero) {
+            writeString(out, entry.getKey().serializedId());
+            out.writeLong(entry.getValue());
+        }
+    }
+
+    private static AttributeRanks readAttributeRanks(DataInputStream in) throws IOException {
+        int count = readCount(in, AttributeId.values().length, "attribute rank");
+        EnumMap<AttributeId, Long> ranks = new EnumMap<>(AttributeId.class);
+        for (int i = 0; i < count; i++) {
+            AttributeId attribute = parseAttributeId(readString(in));
+            long rank = in.readLong();
+            if (rank <= 0L) {
+                throw new IllegalArgumentException("persisted attribute rank must be positive");
+            }
+            if (ranks.put(attribute, rank) != null) {
+                throw new IllegalArgumentException("duplicate persisted attribute rank: " + attribute.serializedId());
+            }
+        }
+        return AttributeRanks.of(ranks);
+    }
+
+    private static AttributeId parseAttributeId(String serializedId) {
+        for (AttributeId attribute : AttributeId.values()) {
+            if (attribute.serializedId().equals(serializedId)) return attribute;
+        }
+        throw new IllegalArgumentException("unknown attribute id: " + serializedId);
     }
 
     private static void writeCheckpoint(DataOutputStream out, CorePointLedgerCheckpoint checkpoint) throws IOException {
