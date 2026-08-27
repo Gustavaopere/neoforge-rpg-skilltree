@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public record CoreProgressionState(
     CharacterProgressionState characterProgression,
     CorePointLedger corePoints,
+    AttributeRanks attributeRanks,
     long rulesVersion,
     String rulesFingerprint,
     int migrationSourceFormatVersion,
@@ -17,6 +18,7 @@ public record CoreProgressionState(
     public CoreProgressionState {
         Objects.requireNonNull(characterProgression);
         Objects.requireNonNull(corePoints);
+        Objects.requireNonNull(attributeRanks);
         Objects.requireNonNull(rulesFingerprint);
         if (rulesVersion <= 0L) throw new IllegalArgumentException("rulesVersion must be positive");
         if (!SHA256.matcher(rulesFingerprint).matches()) {
@@ -33,6 +35,26 @@ public record CoreProgressionState(
         }
     }
 
+    /** Compatibility constructor for pre-attribute Core callers; attributes default to zero. */
+    public CoreProgressionState(
+        CharacterProgressionState characterProgression,
+        CorePointLedger corePoints,
+        long rulesVersion,
+        String rulesFingerprint,
+        int migrationSourceFormatVersion,
+        long discardedLegacyCapXp
+    ) {
+        this(
+            characterProgression,
+            corePoints,
+            AttributeRanks.empty(),
+            rulesVersion,
+            rulesFingerprint,
+            migrationSourceFormatVersion,
+            discardedLegacyCapXp
+        );
+    }
+
     public static CoreProgressionState nativeState(
         CharacterProgressionState characterProgression,
         CorePointLedger corePoints,
@@ -42,6 +64,7 @@ public record CoreProgressionState(
         return new CoreProgressionState(
             characterProgression,
             corePoints,
+            AttributeRanks.empty(),
             rules.version(),
             rules.fingerprint(),
             0,
@@ -54,6 +77,7 @@ public record CoreProgressionState(
         return new CoreProgressionState(
             migration.characterProgression(),
             migration.corePoints(),
+            AttributeRanks.empty(),
             migration.targetRulesVersion(),
             migration.targetRulesFingerprint(),
             migration.sourceFormatVersion(),
