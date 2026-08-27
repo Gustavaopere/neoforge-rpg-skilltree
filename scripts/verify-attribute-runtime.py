@@ -2,6 +2,7 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+MOD_MAIN = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java"
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
 CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/data/AttributeRankCostPolicyCatalog.java"
 NETWORKING = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/ModNetworking.java"
@@ -40,6 +41,19 @@ for needle in [
 ]:
     if needle not in catalog_text:
         print(f"ERROR: {CATALOG.relative_to(ROOT)}: missing {needle!r}")
+        raise SystemExit(1)
+
+# The canonical 1 CPP = 1 rank policy is a server bootstrap decision. The network
+# never installs or supplies a policy, and the catalog must not remain empty in a
+# normally constructed mod instance.
+mod_main_text = MOD_MAIN.read_text(encoding="utf-8")
+for needle in [
+    "UnitAttributeRankCostPolicy",
+    "AttributeRankCostPolicyCatalog",
+    "AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE)",
+]:
+    if needle not in mod_main_text:
+        print(f"ERROR: {MOD_MAIN.relative_to(ROOT)}: missing {needle!r}")
         raise SystemExit(1)
 
 # Client -> server attribute mutations are request-only. The client may identify an
