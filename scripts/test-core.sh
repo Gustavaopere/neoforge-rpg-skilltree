@@ -59,3 +59,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.RelevantPlayerLevelFoundationT
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityArchetypeStatScalingTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobRarityFoundationTest
 python3 "$ROOT/scripts/verify-quest-runtime.py"
+python3 "$ROOT/scripts/verify-1211-resources.py"
