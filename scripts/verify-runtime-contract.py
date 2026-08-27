@@ -10,6 +10,7 @@ RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgr
 ATTACHMENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/ModAttachments.java"
 CORE_SERIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CoreProgressionAttachmentSerializer.java"
 CORE_RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
+PLAYER_PLACED_ORES = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/mining/PlayerPlacedOreData.java"
 NETWORKING = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/ModNetworking.java"
 CORE_PAYLOAD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/CoreProgressionSyncPayload.java"
 CORE_CLIENT = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/client/ClientCoreProgressionState.java"
@@ -125,4 +126,13 @@ require(core_runtime_text, "if (result.state() != current)", str(CORE_RUNTIME.re
 require(core_runtime_text, "set(player, result.state(), rules)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "return result;", str(CORE_RUNTIME.relative_to(ROOT)))
 
-print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/sync/mutations/semantic XP verified)")
+# Mining anti-farm must use the same persisted provenance that placement/break lifecycle
+# already maintains. Evaluation is a non-consuming view; consume() remains a lifecycle
+# operation after the block is actually broken.
+player_placed_ores_text = read_required(PLAYER_PLACED_ORES)
+require(player_placed_ores_text, "public AntiFarmService antiFarmService()", str(PLAYER_PLACED_ORES.relative_to(ROOT)))
+require(player_placed_ores_text, "new BlockProvenanceAntiFarmService(provenance)", str(PLAYER_PLACED_ORES.relative_to(ROOT)))
+require(player_placed_ores_text, "public boolean consume(BlockPos pos)", str(PLAYER_PLACED_ORES.relative_to(ROOT)))
+require(player_placed_ores_text, "provenance.consume(pos.asLong())", str(PLAYER_PLACED_ORES.relative_to(ROOT)))
+
+print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/sync/mutations/semantic XP/mining anti-farm verified)")
