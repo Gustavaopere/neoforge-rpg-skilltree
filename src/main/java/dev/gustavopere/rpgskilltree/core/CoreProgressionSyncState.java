@@ -94,6 +94,7 @@ public record CoreProgressionSyncState(
         BigInteger nextCost = character.level() == Long.MAX_VALUE
             ? BigInteger.ZERO
             : rules.levelCurve().xpToNextLevel(character.level());
+        long effectivePerkBudget = CoreProgressionMutationService.effectivePerkBudget(validated, rules).total();
         return new CoreProgressionSyncState(
             character.level(),
             character.xpIntoLevel(),
@@ -102,7 +103,7 @@ public record CoreProgressionSyncState(
             ledger.allocated(CorePointAllocation.ATTRIBUTE),
             ledger.allocated(CorePointAllocation.MAIN_PERK),
             ledger.available(),
-            rules.mainPerkBudget().total(),
+            effectivePerkBudget,
             validated.attributeRanks(),
             rules.version(),
             rules.fingerprint()

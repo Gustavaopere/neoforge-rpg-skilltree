@@ -41,7 +41,7 @@ public final class AttributeRankMutationService {
         );
         CorePointLedger nextLedger = CorePointEconomyService.apply(
             validated.corePoints(),
-            rules.mainPerkBudget(),
+            CoreProgressionMutationService.effectivePerkBudget(validated, rules),
             transaction
         );
         AttributeRanks nextRanks = validated.attributeRanks().increase(attribute, rankCount);
@@ -87,7 +87,7 @@ public final class AttributeRankMutationService {
         );
         CorePointLedger nextLedger = CorePointEconomyService.apply(
             validated.corePoints(),
-            rules.mainPerkBudget(),
+            CoreProgressionMutationService.effectivePerkBudget(validated, rules),
             transaction
         );
         AttributeRanks nextRanks = validated.attributeRanks().decrease(attribute, rankCount);
@@ -146,6 +146,7 @@ public final class AttributeRankMutationService {
             state.characterProgression(),
             corePoints,
             attributeRanks,
+            state.mainPerkBudgetProgression(),
             state.rulesVersion(),
             state.rulesFingerprint(),
             state.migrationSourceFormatVersion(),

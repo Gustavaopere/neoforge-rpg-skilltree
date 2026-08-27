@@ -8,6 +8,7 @@ public record CoreProgressionState(
     CharacterProgressionState characterProgression,
     CorePointLedger corePoints,
     AttributeRanks attributeRanks,
+    MainPerkBudgetProgression mainPerkBudgetProgression,
     long rulesVersion,
     String rulesFingerprint,
     int migrationSourceFormatVersion,
@@ -19,6 +20,7 @@ public record CoreProgressionState(
         Objects.requireNonNull(characterProgression);
         Objects.requireNonNull(corePoints);
         Objects.requireNonNull(attributeRanks);
+        Objects.requireNonNull(mainPerkBudgetProgression);
         Objects.requireNonNull(rulesFingerprint);
         if (rulesVersion <= 0L) throw new IllegalArgumentException("rulesVersion must be positive");
         if (!SHA256.matcher(rulesFingerprint).matches()) {
@@ -35,7 +37,29 @@ public record CoreProgressionState(
         }
     }
 
-    /** Compatibility constructor for pre-attribute Core callers; attributes default to zero. */
+    /** Compatibility constructor for pre-budget-progression Core callers. */
+    public CoreProgressionState(
+        CharacterProgressionState characterProgression,
+        CorePointLedger corePoints,
+        AttributeRanks attributeRanks,
+        long rulesVersion,
+        String rulesFingerprint,
+        int migrationSourceFormatVersion,
+        long discardedLegacyCapXp
+    ) {
+        this(
+            characterProgression,
+            corePoints,
+            attributeRanks,
+            MainPerkBudgetProgression.empty(),
+            rulesVersion,
+            rulesFingerprint,
+            migrationSourceFormatVersion,
+            discardedLegacyCapXp
+        );
+    }
+
+    /** Compatibility constructor for pre-attribute Core callers; attributes and earned budget default to zero. */
     public CoreProgressionState(
         CharacterProgressionState characterProgression,
         CorePointLedger corePoints,
@@ -48,6 +72,7 @@ public record CoreProgressionState(
             characterProgression,
             corePoints,
             AttributeRanks.empty(),
+            MainPerkBudgetProgression.empty(),
             rulesVersion,
             rulesFingerprint,
             migrationSourceFormatVersion,
@@ -65,6 +90,7 @@ public record CoreProgressionState(
             characterProgression,
             corePoints,
             AttributeRanks.empty(),
+            MainPerkBudgetProgression.empty(),
             rules.version(),
             rules.fingerprint(),
             0,
@@ -78,6 +104,7 @@ public record CoreProgressionState(
             migration.characterProgression(),
             migration.corePoints(),
             AttributeRanks.empty(),
+            MainPerkBudgetProgression.empty(),
             migration.targetRulesVersion(),
             migration.targetRulesFingerprint(),
             migration.sourceFormatVersion(),

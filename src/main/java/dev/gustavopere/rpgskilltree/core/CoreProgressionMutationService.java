@@ -7,7 +7,8 @@ import java.util.Objects;
  *
  * <p>This service does not decide reward amounts. XP-to-level progression and
  * level-derived Core Point awards are interpreted from the supplied rules snapshot;
- * direct Core Point transactions remain explicitly quantified by their caller.</p>
+ * direct Core Point transactions and typed budget grants remain explicitly quantified
+ * by their caller.</p>
  */
 public final class CoreProgressionMutationService {
     private static final String CHARACTER_LEVEL_SOURCE = "character_level";
@@ -43,7 +44,7 @@ public final class CoreProgressionMutationService {
             );
             nextLedger = CorePointEconomyService.apply(
                 nextLedger,
-                rules.mainPerkBudget(),
+                effectivePerkBudget(validated, rules),
                 award
             );
         }
@@ -67,10 +68,37 @@ public final class CoreProgressionMutationService {
         }
         CorePointLedger nextLedger = CorePointEconomyService.apply(
             validated.corePoints(),
-            rules.mainPerkBudget(),
+            effectivePerkBudget(validated, rules),
             transaction
         );
         return withCorePoints(validated, nextLedger);
+    }
+
+    /**
+     * Applies a persistent, idempotent increase to this player's main-tree budget.
+     * The stable grant id is intended for quest, boss and milestone completion keys.
+     */
+    public static CoreProgressionState grantMainPerkBudget(
+        CoreProgressionState state,
+        String grantId,
+        long amount,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(rules);
+        CoreProgressionState validated = CoreProgressionBootstrap.resume(state, rules);
+        MainPerkBudgetProgression next = validated.mainPerkBudgetProgression().grant(grantId, amount);
+        if (next == validated.mainPerkBudgetProgression()) return validated;
+        return withMainPerkBudgetProgression(validated, next);
+    }
+
+    public static MainPerkBudget effectivePerkBudget(
+        CoreProgressionState state,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(rules);
+        return state.mainPerkBudgetProgression().effectiveBudget(rules.mainPerkBudget());
     }
 
     private static String levelAwardTransactionId(
@@ -90,6 +118,7 @@ public final class CoreProgressionMutationService {
             characterProgression,
             corePoints,
             state.attributeRanks(),
+            state.mainPerkBudgetProgression(),
             state.rulesVersion(),
             state.rulesFingerprint(),
             state.migrationSourceFormatVersion(),
@@ -105,6 +134,23 @@ public final class CoreProgressionMutationService {
             state.characterProgression(),
             corePoints,
             state.attributeRanks(),
+            state.mainPerkBudgetProgression(),
+            state.rulesVersion(),
+            state.rulesFingerprint(),
+            state.migrationSourceFormatVersion(),
+            state.discardedLegacyCapXp()
+        );
+    }
+
+    private static CoreProgressionState withMainPerkBudgetProgression(
+        CoreProgressionState state,
+        MainPerkBudgetProgression mainPerkBudgetProgression
+    ) {
+        return new CoreProgressionState(
+            state.characterProgression(),
+            state.corePoints(),
+            state.attributeRanks(),
+            mainPerkBudgetProgression,
             state.rulesVersion(),
             state.rulesFingerprint(),
             state.migrationSourceFormatVersion(),
