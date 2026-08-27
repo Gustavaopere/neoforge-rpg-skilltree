@@ -1,7 +1,10 @@
 package dev.gustavopere.rpgskilltree.runtime.network;
 
+import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
+import dev.gustavopere.rpgskilltree.core.ProgressionRulesSnapshot;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.core.ProgressionStateCodec;
+import dev.gustavopere.rpgskilltree.runtime.client.ClientCoreProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
@@ -9,7 +12,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public final class ModNetworking {
-    private static final String NETWORK_VERSION = "1";
+    private static final String NETWORK_VERSION = "2";
 
     private ModNetworking() {}
 
@@ -23,6 +26,11 @@ public final class ModNetworking {
             ProgressionSyncPayload.TYPE,
             ProgressionSyncPayload.STREAM_CODEC,
             ClientProgressionState::handleSync
+        );
+        registrar.playToClient(
+            CoreProgressionSyncPayload.TYPE,
+            CoreProgressionSyncPayload.STREAM_CODEC,
+            ClientCoreProgressionState::handleSync
         );
         registrar.playToServer(
             PurchaseNodePayload.TYPE,
@@ -54,5 +62,16 @@ public final class ModNetworking {
     public static void syncToOwner(ServerPlayer player, ProgressionState state) {
         byte[] encoded = ProgressionStateCodec.encode(state);
         PacketDistributor.sendToPlayer(player, new ProgressionSyncPayload(encoded));
+    }
+
+    public static void syncCoreToOwner(
+        ServerPlayer player,
+        CoreProgressionState state,
+        ProgressionRulesSnapshot rules
+    ) {
+        PacketDistributor.sendToPlayer(
+            player,
+            CoreProgressionSyncPayload.fromState(state, rules)
+        );
     }
 }
