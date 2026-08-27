@@ -66,6 +66,7 @@ if result.returncode != 0:
 attachments_text = read_required(ATTACHMENTS)
 serializer_text = read_required(CORE_SERIALIZER)
 core_runtime_text = read_required(CORE_RUNTIME)
+core_runtime_compact = " ".join(core_runtime_text.split())
 
 require(attachments_text, "CORE_PROGRESSION", str(ATTACHMENTS.relative_to(ROOT)))
 require(attachments_text, '"core_progression"', str(ATTACHMENTS.relative_to(ROOT)))
@@ -79,6 +80,7 @@ require(core_runtime_text, "CoreProgressionBootstrap.resume", str(CORE_RUNTIME.r
 require(core_runtime_text, "player.hasData(ModAttachments.PROGRESSION)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionBootstrap.migrateDecodedLegacy", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionBootstrap.newPlayer", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_text, "player.setData(ModAttachments.CORE_PROGRESSION", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_compact, "player.setData( ModAttachments.CORE_PROGRESSION,", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CoreProgressionAttachmentData.initialized(initialized)", str(CORE_RUNTIME.relative_to(ROOT)))
 
 print("Runtime scaffold validation: PASS (legacy reconciliation + parallel Core bootstrap verified)")
