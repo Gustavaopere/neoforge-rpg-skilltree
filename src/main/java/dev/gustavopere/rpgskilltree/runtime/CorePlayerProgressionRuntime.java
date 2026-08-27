@@ -1,6 +1,9 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.core.AntiFarmService;
+import dev.gustavopere.rpgskilltree.core.AttributeId;
+import dev.gustavopere.rpgskilltree.core.AttributeRankCostPolicy;
+import dev.gustavopere.rpgskilltree.core.AttributeRankMutationService;
 import dev.gustavopere.rpgskilltree.core.CorePointTransaction;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionBootstrap;
@@ -86,6 +89,64 @@ public final class CorePlayerProgressionRuntime {
         return next;
     }
 
+    public static CoreProgressionState purchaseAttributeRanks(
+        ServerPlayer player,
+        AttributeId attribute,
+        long rankCount,
+        String transactionId,
+        String sourceId,
+        AttributeRankCostPolicy costPolicy,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(attribute);
+        Objects.requireNonNull(costPolicy);
+        Objects.requireNonNull(rules);
+        CoreProgressionState current = bootstrap(player, rules);
+        CoreProgressionState next = AttributeRankMutationService.purchase(
+            current,
+            attribute,
+            rankCount,
+            transactionId,
+            sourceId,
+            costPolicy,
+            rules
+        );
+        if (next != current) {
+            set(player, next, rules);
+        }
+        return next;
+    }
+
+    public static CoreProgressionState refundAttributeRanks(
+        ServerPlayer player,
+        AttributeId attribute,
+        long rankCount,
+        String transactionId,
+        String sourceId,
+        AttributeRankCostPolicy costPolicy,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(attribute);
+        Objects.requireNonNull(costPolicy);
+        Objects.requireNonNull(rules);
+        CoreProgressionState current = bootstrap(player, rules);
+        CoreProgressionState next = AttributeRankMutationService.refund(
+            current,
+            attribute,
+            rankCount,
+            transactionId,
+            sourceId,
+            costPolicy,
+            rules
+        );
+        if (next != current) {
+            set(player, next, rules);
+        }
+        return next;
+    }
+
     public static SemanticProgressionResult applySemanticAction(
         ServerPlayer player,
         SemanticAction action,
@@ -124,8 +185,8 @@ public final class CorePlayerProgressionRuntime {
         CoreProgressionState validated = CoreProgressionBootstrap.resume(state, rules);
         player.setData(
             ModAttachments.CORE_PROGRESSION,
-            CoreProgressionAttachmentData.initialized(state)
+            CoreProgressionAttachmentData.initialized(validated)
         );
-        ModNetworking.syncCoreToOwner(player, state, rules);
+        ModNetworking.syncCoreToOwner(player, validated, rules);
     }
 }
