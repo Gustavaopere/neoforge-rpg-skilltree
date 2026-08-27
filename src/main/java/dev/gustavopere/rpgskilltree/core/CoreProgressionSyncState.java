@@ -14,6 +14,7 @@ public record CoreProgressionSyncState(
     long mainPerkAllocated,
     long availableCorePoints,
     long mainPerkBudget,
+    AttributeRanks attributeRanks,
     long rulesVersion,
     String rulesFingerprint
 ) {
@@ -21,6 +22,7 @@ public record CoreProgressionSyncState(
 
     public CoreProgressionSyncState {
         Objects.requireNonNull(xpToNextLevel);
+        Objects.requireNonNull(attributeRanks);
         Objects.requireNonNull(rulesFingerprint);
         if (level < 0L) throw new IllegalArgumentException("level must be non-negative");
         if (xpIntoLevel < 0L) throw new IllegalArgumentException("xpIntoLevel must be non-negative");
@@ -52,6 +54,34 @@ public record CoreProgressionSyncState(
         }
     }
 
+    /** Compatibility constructor for pre-attribute sync callers. */
+    public CoreProgressionSyncState(
+        long level,
+        long xpIntoLevel,
+        BigInteger xpToNextLevel,
+        long totalCorePoints,
+        long attributeAllocated,
+        long mainPerkAllocated,
+        long availableCorePoints,
+        long mainPerkBudget,
+        long rulesVersion,
+        String rulesFingerprint
+    ) {
+        this(
+            level,
+            xpIntoLevel,
+            xpToNextLevel,
+            totalCorePoints,
+            attributeAllocated,
+            mainPerkAllocated,
+            availableCorePoints,
+            mainPerkBudget,
+            AttributeRanks.empty(),
+            rulesVersion,
+            rulesFingerprint
+        );
+    }
+
     public static CoreProgressionSyncState from(
         CoreProgressionState state,
         ProgressionRulesSnapshot rules
@@ -73,6 +103,7 @@ public record CoreProgressionSyncState(
             ledger.allocated(CorePointAllocation.MAIN_PERK),
             ledger.available(),
             rules.mainPerkBudget().total(),
+            validated.attributeRanks(),
             rules.version(),
             rules.fingerprint()
         );
