@@ -21,6 +21,7 @@ CORE_RULES_RELOADER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime
 STALE_ERRORS = {
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/PlayerProgressionEvents.java: missing 'ModNetworking.syncToOwner'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/PlayerProgressionEvents.java: missing 'AttributeNodeEffectRuntime.refresh'",
+    "ERROR: missing file: src/main/resources/data/rpgskilltree/tags/entity_types/bosses.json",
 }
 
 
