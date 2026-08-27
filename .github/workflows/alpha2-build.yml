@@ -77,6 +77,9 @@ jobs:
       - name: Runtime scaffold validation
         run: python3 scripts/verify-runtime-contract.py
 
+      - name: Attribute runtime validation
+        run: python3 scripts/verify-attribute-runtime.py
+
       - name: Diff sanity
         run: git diff --check
 
