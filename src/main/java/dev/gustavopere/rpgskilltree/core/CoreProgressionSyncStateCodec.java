@@ -8,13 +8,18 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.util.EnumMap;
 import java.util.HexFormat;
+import java.util.List;
+import java.util.Map;
 
 /** Binary codec for the compact client-facing Core progression projection. */
 public final class CoreProgressionSyncStateCodec {
-    public static final int CURRENT_VERSION = 1;
+    public static final int CURRENT_VERSION = 2;
     private static final int FINGERPRINT_BYTES = 32;
     private static final int MAX_BIG_INTEGER_BYTES = 128;
+    private static final int MAX_ATTRIBUTE_ID_BYTES = 64;
 
     private CoreProgressionSyncStateCodec() {}
 
@@ -35,7 +40,7 @@ public final class CoreProgressionSyncStateCodec {
         }
 
         try {
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream(128);
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream(192);
             try (DataOutputStream out = new DataOutputStream(bytes)) {
                 out.writeInt(CURRENT_VERSION);
                 out.writeLong(state.level());
@@ -47,6 +52,7 @@ public final class CoreProgressionSyncStateCodec {
                 out.writeLong(state.mainPerkAllocated());
                 out.writeLong(state.availableCorePoints());
                 out.writeLong(state.mainPerkBudget());
+                writeAttributeRanks(out, state.attributeRanks());
                 out.writeLong(state.rulesVersion());
                 out.write(fingerprint);
             }
@@ -78,6 +84,7 @@ public final class CoreProgressionSyncStateCodec {
             long mainPerkAllocated = in.readLong();
             long availableCorePoints = in.readLong();
             long mainPerkBudget = in.readLong();
+            AttributeRanks attributeRanks = readAttributeRanks(in);
             long rulesVersion = in.readLong();
 
             byte[] fingerprint = in.readNBytes(FINGERPRINT_BYTES);
@@ -95,11 +102,67 @@ public final class CoreProgressionSyncStateCodec {
                 mainPerkAllocated,
                 availableCorePoints,
                 mainPerkBudget,
+                attributeRanks,
                 rulesVersion,
                 HexFormat.of().formatHex(fingerprint)
             );
         } catch (IOException invalidPayload) {
             throw new IllegalArgumentException("invalid Core progression sync payload", invalidPayload);
         }
+    }
+
+    private static void writeAttributeRanks(DataOutputStream out, AttributeRanks ranks) throws IOException {
+        List<Map.Entry<AttributeId, Long>> nonZero = ranks.asMap().entrySet().stream()
+            .filter(entry -> entry.getValue() > 0L)
+            .sorted(Map.Entry.comparingByKey((left, right) -> left.serializedId().compareTo(right.serializedId())))
+            .toList();
+        out.writeInt(nonZero.size());
+        for (Map.Entry<AttributeId, Long> entry : nonZero) {
+            writeAttributeId(out, entry.getKey().serializedId());
+            out.writeLong(entry.getValue());
+        }
+    }
+
+    private static AttributeRanks readAttributeRanks(DataInputStream in) throws IOException {
+        int count = in.readInt();
+        if (count < 0 || count > AttributeId.values().length) {
+            throw new IllegalArgumentException("invalid attribute rank count: " + count);
+        }
+        EnumMap<AttributeId, Long> ranks = new EnumMap<>(AttributeId.class);
+        for (int i = 0; i < count; i++) {
+            AttributeId attribute = parseAttributeId(readAttributeId(in));
+            long rank = in.readLong();
+            if (rank <= 0L) throw new IllegalArgumentException("synced attribute rank must be positive");
+            if (ranks.put(attribute, rank) != null) {
+                throw new IllegalArgumentException("duplicate synced attribute rank: " + attribute.serializedId());
+            }
+        }
+        return AttributeRanks.of(ranks);
+    }
+
+    private static void writeAttributeId(DataOutputStream out, String value) throws IOException {
+        byte[] bytes = value.getBytes(StandardCharsets.UTF_8);
+        if (bytes.length == 0 || bytes.length > MAX_ATTRIBUTE_ID_BYTES) {
+            throw new IllegalArgumentException("invalid attribute id length");
+        }
+        out.writeInt(bytes.length);
+        out.write(bytes);
+    }
+
+    private static String readAttributeId(DataInputStream in) throws IOException {
+        int length = in.readInt();
+        if (length <= 0 || length > MAX_ATTRIBUTE_ID_BYTES) {
+            throw new IllegalArgumentException("invalid attribute id length: " + length);
+        }
+        byte[] bytes = in.readNBytes(length);
+        if (bytes.length != length) throw new EOFException("truncated attribute id");
+        return new String(bytes, StandardCharsets.UTF_8);
+    }
+
+    private static AttributeId parseAttributeId(String serializedId) {
+        for (AttributeId attribute : AttributeId.values()) {
+            if (attribute.serializedId().equals(serializedId)) return attribute;
+        }
+        throw new IllegalArgumentException("unknown attribute id: " + serializedId);
     }
 }
