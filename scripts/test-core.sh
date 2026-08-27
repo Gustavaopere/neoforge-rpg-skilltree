@@ -50,3 +50,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicyTes
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.LevelCorePointAwardPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MainPerkBudgetProgressionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRewardServiceTest
+python3 "$ROOT/scripts/verify-quest-runtime.py"
