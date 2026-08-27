@@ -182,11 +182,11 @@ public final class CorePlayerProgressionRuntime {
         Objects.requireNonNull(player);
         Objects.requireNonNull(state);
         Objects.requireNonNull(rules);
-        CoreProgressionState validated = CoreProgressionBootstrap.resume(state, rules);
+        CoreProgressionBootstrap.resume(state, rules);
         player.setData(
             ModAttachments.CORE_PROGRESSION,
-            CoreProgressionAttachmentData.initialized(validated)
+            CoreProgressionAttachmentData.initialized(state)
         );
-        ModNetworking.syncCoreToOwner(player, validated, rules);
+        ModNetworking.syncCoreToOwner(player, state, rules);
     }
 }
