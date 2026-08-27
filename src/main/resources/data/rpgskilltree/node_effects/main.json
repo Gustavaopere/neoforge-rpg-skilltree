@@ -3,14 +3,14 @@
     {
       "effectId": "rpgskilltree:node/agility_000/movement_speed",
       "nodeId": "rpgskilltree:agility_000",
-      "attributeId": "minecraft:movement_speed",
+      "attributeId": "minecraft:generic.movement_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.02
     },
     {
       "effectId": "rpgskilltree:node/agility_001/attack_speed",
       "nodeId": "rpgskilltree:agility_001",
-      "attributeId": "minecraft:attack_speed",
+      "attributeId": "minecraft:generic.attack_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.02
     },
@@ -24,14 +24,14 @@
     {
       "effectId": "rpgskilltree:node/agility_031/capstone_movement",
       "nodeId": "rpgskilltree:agility_031",
-      "attributeId": "minecraft:movement_speed",
+      "attributeId": "minecraft:generic.movement_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.03
     },
     {
       "effectId": "rpgskilltree:node/agility_032/capstone_speed",
       "nodeId": "rpgskilltree:agility_032",
-      "attributeId": "minecraft:attack_speed",
+      "attributeId": "minecraft:generic.attack_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.03
     },
@@ -87,42 +87,42 @@
     {
       "effectId": "rpgskilltree:node/engineering_000/tooling_speed",
       "nodeId": "rpgskilltree:engineering_000",
-      "attributeId": "minecraft:attack_speed",
+      "attributeId": "minecraft:generic.attack_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.015
     },
     {
       "effectId": "rpgskilltree:node/engineering_001/precision",
       "nodeId": "rpgskilltree:engineering_001",
-      "attributeId": "minecraft:luck",
+      "attributeId": "minecraft:generic.luck",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.25
     },
     {
       "effectId": "rpgskilltree:node/engineering_002/field_mobility",
       "nodeId": "rpgskilltree:engineering_002",
-      "attributeId": "minecraft:movement_speed",
+      "attributeId": "minecraft:generic.movement_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.01
     },
     {
       "effectId": "rpgskilltree:node/engineering_037/capstone_tooling",
       "nodeId": "rpgskilltree:engineering_037",
-      "attributeId": "minecraft:attack_speed",
+      "attributeId": "minecraft:generic.attack_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.03
     },
     {
       "effectId": "rpgskilltree:node/engineering_041/capstone_precision",
       "nodeId": "rpgskilltree:engineering_041",
-      "attributeId": "minecraft:luck",
+      "attributeId": "minecraft:generic.luck",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.5
     },
     {
       "effectId": "rpgskilltree:node/engineering_045/capstone_mobility",
       "nodeId": "rpgskilltree:engineering_045",
-      "attributeId": "minecraft:movement_speed",
+      "attributeId": "minecraft:generic.movement_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.02
     },
@@ -171,56 +171,56 @@
     {
       "effectId": "rpgskilltree:node/logistics_000/movement_speed",
       "nodeId": "rpgskilltree:logistics_000",
-      "attributeId": "minecraft:movement_speed",
+      "attributeId": "minecraft:generic.movement_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.015
     },
     {
       "effectId": "rpgskilltree:node/logistics_001/routing_luck",
       "nodeId": "rpgskilltree:logistics_001",
-      "attributeId": "minecraft:luck",
+      "attributeId": "minecraft:generic.luck",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.2
     },
     {
       "effectId": "rpgskilltree:node/logistics_002/handling_speed",
       "nodeId": "rpgskilltree:logistics_002",
-      "attributeId": "minecraft:attack_speed",
+      "attributeId": "minecraft:generic.attack_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.01
     },
     {
       "effectId": "rpgskilltree:node/logistics_025/capstone_movement",
       "nodeId": "rpgskilltree:logistics_025",
-      "attributeId": "minecraft:movement_speed",
+      "attributeId": "minecraft:generic.movement_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.03
     },
     {
       "effectId": "rpgskilltree:node/logistics_026/capstone_luck",
       "nodeId": "rpgskilltree:logistics_026",
-      "attributeId": "minecraft:luck",
+      "attributeId": "minecraft:generic.luck",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.5
     },
     {
       "effectId": "rpgskilltree:node/logistics_024/capstone_handling",
       "nodeId": "rpgskilltree:logistics_024",
-      "attributeId": "minecraft:attack_speed",
+      "attributeId": "minecraft:generic.attack_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.02
     },
     {
       "effectId": "rpgskilltree:node/martial_000/attack_damage",
       "nodeId": "rpgskilltree:martial_000",
-      "attributeId": "minecraft:attack_damage",
+      "attributeId": "minecraft:generic.attack_damage",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.35
     },
     {
       "effectId": "rpgskilltree:node/martial_001/attack_speed",
       "nodeId": "rpgskilltree:martial_001",
-      "attributeId": "minecraft:attack_speed",
+      "attributeId": "minecraft:generic.attack_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.02
     },
@@ -234,14 +234,14 @@
     {
       "effectId": "rpgskilltree:node/martial_036/capstone_damage",
       "nodeId": "rpgskilltree:martial_036",
-      "attributeId": "minecraft:attack_damage",
+      "attributeId": "minecraft:generic.attack_damage",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.75
     },
     {
       "effectId": "rpgskilltree:node/martial_037/capstone_speed",
       "nodeId": "rpgskilltree:martial_037",
-      "attributeId": "minecraft:attack_speed",
+      "attributeId": "minecraft:generic.attack_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.03
     },
@@ -262,7 +262,7 @@
     {
       "effectId": "rpgskilltree:node/mining_001/prospecting_luck",
       "nodeId": "rpgskilltree:mining_001",
-      "attributeId": "minecraft:luck",
+      "attributeId": "minecraft:generic.luck",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.25
     },
@@ -283,7 +283,7 @@
     {
       "effectId": "rpgskilltree:node/mining_031/capstone_prospecting",
       "nodeId": "rpgskilltree:mining_031",
-      "attributeId": "minecraft:luck",
+      "attributeId": "minecraft:generic.luck",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.5
     },
@@ -381,84 +381,84 @@
     {
       "effectId": "rpgskilltree:node/survival_000/hardiness",
       "nodeId": "rpgskilltree:survival_000",
-      "attributeId": "minecraft:max_health",
+      "attributeId": "minecraft:generic.max_health",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.75
     },
     {
       "effectId": "rpgskilltree:node/survival_001/field_armor",
       "nodeId": "rpgskilltree:survival_001",
-      "attributeId": "minecraft:armor",
+      "attributeId": "minecraft:generic.armor",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.35
     },
     {
       "effectId": "rpgskilltree:node/survival_002/terrain_mobility",
       "nodeId": "rpgskilltree:survival_002",
-      "attributeId": "minecraft:movement_speed",
+      "attributeId": "minecraft:generic.movement_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.01
     },
     {
       "effectId": "rpgskilltree:node/survival_036/capstone_armor",
       "nodeId": "rpgskilltree:survival_036",
-      "attributeId": "minecraft:armor",
+      "attributeId": "minecraft:generic.armor",
       "operation": "ADD_FLAT",
       "amountPerRank": 1.0
     },
     {
       "effectId": "rpgskilltree:node/survival_028/capstone_health",
       "nodeId": "rpgskilltree:survival_028",
-      "attributeId": "minecraft:max_health",
+      "attributeId": "minecraft:generic.max_health",
       "operation": "ADD_FLAT",
       "amountPerRank": 1.5
     },
     {
       "effectId": "rpgskilltree:node/survival_037/capstone_terrain",
       "nodeId": "rpgskilltree:survival_037",
-      "attributeId": "minecraft:movement_speed",
+      "attributeId": "minecraft:generic.movement_speed",
       "operation": "ADD_PERCENT_BASE",
       "amountPerRank": 0.02
     },
     {
       "effectId": "rpgskilltree:node/vitality_000/max_health",
       "nodeId": "rpgskilltree:vitality_000",
-      "attributeId": "minecraft:max_health",
+      "attributeId": "minecraft:generic.max_health",
       "operation": "ADD_FLAT",
       "amountPerRank": 1.0
     },
     {
       "effectId": "rpgskilltree:node/vitality_001/armor",
       "nodeId": "rpgskilltree:vitality_001",
-      "attributeId": "minecraft:armor",
+      "attributeId": "minecraft:generic.armor",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.5
     },
     {
       "effectId": "rpgskilltree:node/vitality_002/knockback_resistance",
       "nodeId": "rpgskilltree:vitality_002",
-      "attributeId": "minecraft:knockback_resistance",
+      "attributeId": "minecraft:generic.knockback_resistance",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.02
     },
     {
       "effectId": "rpgskilltree:node/vitality_036/capstone_health",
       "nodeId": "rpgskilltree:vitality_036",
-      "attributeId": "minecraft:max_health",
+      "attributeId": "minecraft:generic.max_health",
       "operation": "ADD_FLAT",
       "amountPerRank": 2.0
     },
     {
       "effectId": "rpgskilltree:node/vitality_028/capstone_armor",
       "nodeId": "rpgskilltree:vitality_028",
-      "attributeId": "minecraft:armor",
+      "attributeId": "minecraft:generic.armor",
       "operation": "ADD_FLAT",
       "amountPerRank": 1.0
     },
     {
       "effectId": "rpgskilltree:node/vitality_037/capstone_stability",
       "nodeId": "rpgskilltree:vitality_037",
-      "attributeId": "minecraft:knockback_resistance",
+      "attributeId": "minecraft:generic.knockback_resistance",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.03
     }
