@@ -33,13 +33,27 @@ public final class CoreProgressionAttachmentData {
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
-        return other instanceof CoreProgressionAttachmentData that
-            && Objects.equals(state, that.state);
+        if (!(other instanceof CoreProgressionAttachmentData that)) return false;
+        if (state == null || that.state == null) return state == that.state;
+        return state.characterProgression().equals(that.state.characterProgression())
+            && state.corePoints().checkpoint().equals(that.state.corePoints().checkpoint())
+            && state.rulesVersion() == that.state.rulesVersion()
+            && state.rulesFingerprint().equals(that.state.rulesFingerprint())
+            && state.migrationSourceFormatVersion() == that.state.migrationSourceFormatVersion()
+            && state.discardedLegacyCapXp() == that.state.discardedLegacyCapXp();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(state);
+        if (state == null) return 0;
+        return Objects.hash(
+            state.characterProgression(),
+            state.corePoints().checkpoint(),
+            state.rulesVersion(),
+            state.rulesFingerprint(),
+            state.migrationSourceFormatVersion(),
+            state.discardedLegacyCapXp()
+        );
     }
 
     @Override
