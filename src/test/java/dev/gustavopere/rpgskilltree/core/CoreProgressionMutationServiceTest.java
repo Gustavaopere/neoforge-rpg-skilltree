@@ -11,6 +11,9 @@ public final class CoreProgressionMutationServiceTest {
         transactionRulesVersionMustMatchSnapshot();
         stateRulesMustMatchSnapshot();
         mainPerkBudgetIsEnforcedThroughMutationBoundary();
+        attributeRankPurchaseIsAtomicAndPolicyPriced();
+        attributeRankPurchaseRejectsInvalidCostAndInsufficientPoints();
+        attributeRankPurchaseReplayIsIdempotent();
         System.out.println("CoreProgressionMutationServiceTest: PASS");
     }
 
@@ -118,6 +121,78 @@ public final class CoreProgressionMutationServiceTest {
         );
         expect(IllegalArgumentException.class, () ->
             CoreProgressionMutationService.applyCorePointTransaction(state, tooMuch, rules));
+    }
+
+    private static void attributeRankPurchaseIsAtomicAndPolicyPriced() {
+        ProgressionRulesSnapshot rules = rules(7L, 3L);
+        CoreProgressionState before = auditedState(rules);
+        AttributeRankCostPolicy costPolicy = (attribute, currentRank) -> {
+            eq(AttributeId.STRENGTH, attribute);
+            eq(8L, currentRank);
+            return 3L;
+        };
+
+        CoreProgressionState after = CoreProgressionMutationService.purchaseAttributeRank(
+            before,
+            AttributeId.STRENGTH,
+            "attribute:strength/9",
+            costPolicy,
+            rules
+        );
+
+        eq(9L, after.attributeRanks().rank(AttributeId.STRENGTH));
+        eq(5_000_000_000L, after.attributeRanks().rank(AttributeId.DETERMINATION));
+        eq(3L, after.corePoints().allocated(CorePointAllocation.ATTRIBUTE));
+        eq(7L, after.corePoints().available());
+        eq(before.characterProgression(), after.characterProgression());
+        auditUnchanged(before, after);
+    }
+
+    private static void attributeRankPurchaseRejectsInvalidCostAndInsufficientPoints() {
+        ProgressionRulesSnapshot rules = rules(7L, 3L);
+        CoreProgressionState state = auditedState(rules);
+
+        expect(IllegalArgumentException.class, () -> CoreProgressionMutationService.purchaseAttributeRank(
+            state,
+            AttributeId.AGILITY,
+            "attribute:agility/1",
+            (attribute, currentRank) -> 0L,
+            rules
+        ));
+        expect(IllegalArgumentException.class, () -> CoreProgressionMutationService.purchaseAttributeRank(
+            state,
+            AttributeId.AGILITY,
+            "attribute:agility/1",
+            (attribute, currentRank) -> 11L,
+            rules
+        ));
+        eq(0L, state.attributeRanks().rank(AttributeId.AGILITY));
+        eq(0L, state.corePoints().allocated(CorePointAllocation.ATTRIBUTE));
+    }
+
+    private static void attributeRankPurchaseReplayIsIdempotent() {
+        ProgressionRulesSnapshot rules = rules(7L, 3L);
+        CoreProgressionState initial = auditedState(rules);
+        AttributeRankCostPolicy costPolicy = (attribute, currentRank) -> 2L;
+
+        CoreProgressionState once = CoreProgressionMutationService.purchaseAttributeRank(
+            initial,
+            AttributeId.CHARISMA,
+            "attribute:charisma/1",
+            costPolicy,
+            rules
+        );
+        CoreProgressionState replay = CoreProgressionMutationService.purchaseAttributeRank(
+            once,
+            AttributeId.CHARISMA,
+            "attribute:charisma/1",
+            costPolicy,
+            rules
+        );
+
+        eq(1L, replay.attributeRanks().rank(AttributeId.CHARISMA));
+        eq(2L, replay.corePoints().allocated(CorePointAllocation.ATTRIBUTE));
+        eq(once, replay);
     }
 
     private static void auditUnchanged(CoreProgressionState before, CoreProgressionState after) {
