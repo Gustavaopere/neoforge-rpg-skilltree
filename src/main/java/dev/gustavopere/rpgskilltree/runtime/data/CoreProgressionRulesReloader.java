@@ -6,8 +6,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import dev.gustavopere.rpgskilltree.core.LevelCorePointAwardPolicy;
 import dev.gustavopere.rpgskilltree.core.LevelCurveBand;
 import dev.gustavopere.rpgskilltree.core.MainPerkBudget;
+import dev.gustavopere.rpgskilltree.core.PeriodicLevelCorePointAwardPolicy;
 import dev.gustavopere.rpgskilltree.core.ProgressionRulesSnapshot;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -29,12 +31,19 @@ public final class CoreProgressionRulesReloader extends SimpleJsonResourceReload
         "rules_version",
         "rules_id",
         "main_perk_budget",
-        "level_curve"
+        "level_curve",
+        "level_core_points"
     );
     private static final Set<String> BAND_FIELDS = Set.of(
         "start_level",
         "base_xp",
         "growth_per_level"
+    );
+    private static final Set<String> POINT_POLICY_FIELDS = Set.of(
+        "type",
+        "first_award_level",
+        "levels_per_award",
+        "points_per_award"
     );
 
     public CoreProgressionRulesReloader() {
@@ -97,11 +106,26 @@ public final class CoreProgressionRulesReloader extends SimpleJsonResourceReload
             ));
         }
 
+        JsonObject pointPolicy = requiredObject(root, "level_core_points", resourceId);
+        rejectUnknown(pointPolicy, POINT_POLICY_FIELDS, resourceId, "level_core_points");
+        String pointPolicyType = requiredString(pointPolicy, "type", resourceId);
+        LevelCorePointAwardPolicy levelPointPolicy;
+        if ("periodic".equals(pointPolicyType)) {
+            levelPointPolicy = new PeriodicLevelCorePointAwardPolicy(
+                exactLong(pointPolicy, "first_award_level", resourceId),
+                exactLong(pointPolicy, "levels_per_award", resourceId),
+                exactLong(pointPolicy, "points_per_award", resourceId)
+            );
+        } else {
+            throw invalid(resourceId, "unknown level_core_points type: " + pointPolicyType);
+        }
+
         return new ProgressionRulesSnapshot(
             version,
             rulesId,
             bands,
-            new MainPerkBudget(mainPerkBudget)
+            new MainPerkBudget(mainPerkBudget),
+            levelPointPolicy
         );
     }
 
@@ -143,6 +167,14 @@ public final class CoreProgressionRulesReloader extends SimpleJsonResourceReload
             throw invalid(resourceId, field + " must not be blank");
         }
         return result;
+    }
+
+    private static JsonObject requiredObject(JsonObject object, String field, ResourceLocation resourceId) {
+        JsonElement value = required(object, field, resourceId);
+        if (!value.isJsonObject()) {
+            throw invalid(resourceId, field + " must be an object");
+        }
+        return value.getAsJsonObject();
     }
 
     private static JsonArray requiredArray(JsonObject object, String field, ResourceLocation resourceId) {
