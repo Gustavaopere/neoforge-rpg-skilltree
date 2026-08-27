@@ -1,11 +1,16 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
+import dev.gustavopere.rpgskilltree.core.AntiFarmService;
 import dev.gustavopere.rpgskilltree.core.CorePointTransaction;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionBootstrap;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionMutationService;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
 import dev.gustavopere.rpgskilltree.core.ProgressionRulesSnapshot;
+import dev.gustavopere.rpgskilltree.core.SemanticAction;
+import dev.gustavopere.rpgskilltree.core.SemanticProgressionResult;
+import dev.gustavopere.rpgskilltree.core.SemanticProgressionService;
+import dev.gustavopere.rpgskilltree.core.XpPolicy;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import java.util.Objects;
 import net.minecraft.server.level.ServerPlayer;
@@ -79,6 +84,33 @@ public final class CorePlayerProgressionRuntime {
         );
         set(player, next, rules);
         return next;
+    }
+
+    public static SemanticProgressionResult applySemanticAction(
+        ServerPlayer player,
+        SemanticAction action,
+        AntiFarmService antiFarmService,
+        XpPolicy xpPolicy,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(action);
+        Objects.requireNonNull(antiFarmService);
+        Objects.requireNonNull(xpPolicy);
+        Objects.requireNonNull(rules);
+
+        CoreProgressionState current = bootstrap(player, rules);
+        SemanticProgressionResult result = SemanticProgressionService.apply(
+            current,
+            action,
+            antiFarmService,
+            xpPolicy,
+            rules
+        );
+        if (result.state() != current) {
+            set(player, result.state(), rules);
+        }
+        return result;
     }
 
     public static void set(
