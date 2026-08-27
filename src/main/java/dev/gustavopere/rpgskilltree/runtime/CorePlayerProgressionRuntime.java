@@ -9,6 +9,8 @@ import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionBootstrap;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionMutationService;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
+import dev.gustavopere.rpgskilltree.core.ProgressionReward;
+import dev.gustavopere.rpgskilltree.core.ProgressionRewardService;
 import dev.gustavopere.rpgskilltree.core.ProgressionRulesSnapshot;
 import dev.gustavopere.rpgskilltree.core.SemanticAction;
 import dev.gustavopere.rpgskilltree.core.SemanticProgressionResult;
@@ -23,8 +25,9 @@ import net.minecraft.server.level.ServerPlayer;
 /**
  * NeoForge boundary for the uncapped Core progression beside the legacy runtime.
  *
- * <p>This class deliberately requires an explicit rules snapshot. Automatic login
- * bootstrap is not enabled until the runtime has an authoritative rules provider.</p>
+ * <p>This class deliberately requires an explicit rules snapshot for low-level
+ * mutation overloads. Public gameplay boundaries that must be server-authoritative
+ * resolve their rules from the installed Core rules catalog.</p>
  */
 public final class CorePlayerProgressionRuntime {
     private CorePlayerProgressionRuntime() {}
@@ -169,6 +172,25 @@ public final class CorePlayerProgressionRuntime {
             costPolicy,
             rules
         );
+        if (next != current) {
+            set(player, next, rules);
+        }
+        return next;
+    }
+
+    /**
+     * Server-authoritative typed reward entry point for quest, boss and milestone adapters.
+     * Reward identity/type/amount come from the trusted server adapter; balance rules do not.
+     */
+    public static CoreProgressionState applyProgressionReward(
+        ServerPlayer player,
+        ProgressionReward reward
+    ) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(reward);
+        ProgressionRulesSnapshot rules = CoreProgressionRulesCatalog.provider().requireCurrent();
+        CoreProgressionState current = bootstrap(player, rules);
+        CoreProgressionState next = ProgressionRewardService.apply(current, reward, rules);
         if (next != current) {
             set(player, next, rules);
         }
