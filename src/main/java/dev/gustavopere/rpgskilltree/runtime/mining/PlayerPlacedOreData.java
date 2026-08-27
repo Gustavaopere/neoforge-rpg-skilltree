@@ -1,5 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.mining;
 
+import dev.gustavopere.rpgskilltree.core.AntiFarmService;
+import dev.gustavopere.rpgskilltree.core.BlockProvenanceAntiFarmService;
 import dev.gustavopere.rpgskilltree.core.PlacedBlockProvenance;
 import java.util.Arrays;
 import java.util.Collection;
@@ -41,6 +43,11 @@ public final class PlayerPlacedOreData extends SavedData {
 
     public void mark(BlockPos pos) {
         if (provenance.mark(pos.asLong())) setDirty();
+    }
+
+    /** Non-consuming anti-farm view over the same persisted placement provenance. */
+    public AntiFarmService antiFarmService() {
+        return new BlockProvenanceAntiFarmService(provenance);
     }
 
     /** Returns true when the position was player-placed and consumes its provenance marker. */
