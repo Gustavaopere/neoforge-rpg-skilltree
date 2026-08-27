@@ -1,14 +1,19 @@
 package dev.gustavopere.rpgskilltree.core;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 
 public final class ProgressionRewardServiceTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         typedRewardsMutateOnlyTheirOwnedProgressionDomain();
         exactReplayIsIdempotentAcrossAllRewardTypes();
         rewardIdCannotBeReusedWithDifferentPayload();
         claimsRoundTripAndProtectReplayAfterReload();
+        claimsSurviveUnrelatedCoreMutations();
+        legacyVersionThreeDefaultsClaimsToEmpty();
         invalidRewardsAreRejected();
         System.out.println("ProgressionRewardServiceTest: PASS");
     }
@@ -113,6 +118,69 @@ public final class ProgressionRewardServiceTest {
         CoreProgressionState replay = ProgressionRewardService.apply(decoded, reward, rules);
         same(decoded, replay);
         eq(applied.characterProgression(), replay.characterProgression());
+    }
+
+    private static void claimsSurviveUnrelatedCoreMutations() {
+        ProgressionRulesSnapshot rules = rules();
+        CoreProgressionState state = ProgressionRewardService.apply(
+            CoreProgressionBootstrap.newPlayer(rules),
+            ProgressionReward.corePoints("quest:persist:points", 4L, "quest:persist"),
+            rules
+        );
+
+        state = CoreProgressionMutationService.grantXp(state, 50L, rules);
+        eq(1, state.progressionRewardClaims().claims().size());
+        state = CoreProgressionMutationService.grantMainPerkBudget(
+            state,
+            "milestone:later-budget",
+            1L,
+            rules
+        );
+        eq(1, state.progressionRewardClaims().claims().size());
+        state = AttributeRankMutationService.purchase(
+            state,
+            AttributeId.STRENGTH,
+            1L,
+            "attribute:post-reward",
+            "test:post-reward",
+            UnitAttributeRankCostPolicy.INSTANCE,
+            rules
+        );
+        eq(1, state.progressionRewardClaims().claims().size());
+        eq(true, state.progressionRewardClaims().claims().containsKey("quest:persist:points"));
+    }
+
+    private static void legacyVersionThreeDefaultsClaimsToEmpty() throws Exception {
+        ProgressionRulesSnapshot rules = rules();
+        CoreProgressionState decoded = CoreProgressionStateCodec.decode(legacyV3EmptyPayload(rules));
+        eq(ProgressionRewardClaims.empty(), decoded.progressionRewardClaims());
+        eq(MainPerkBudgetProgression.empty(), decoded.mainPerkBudgetProgression());
+    }
+
+    private static byte[] legacyV3EmptyPayload(ProgressionRulesSnapshot rules) throws Exception {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        try (DataOutputStream out = new DataOutputStream(bytes)) {
+            out.writeInt(3);
+            out.writeLong(0L);
+            out.writeLong(0L);
+            out.writeLong(rules.version());
+            writeString(out, rules.fingerprint());
+            out.writeInt(0);
+            out.writeLong(0L);
+            out.writeInt(0);
+            out.writeLong(0L);
+            out.writeLong(0L);
+            out.writeInt(0);
+            out.writeInt(0);
+            out.writeInt(0);
+        }
+        return bytes.toByteArray();
+    }
+
+    private static void writeString(DataOutputStream out, String value) throws Exception {
+        byte[] encoded = value.getBytes(StandardCharsets.UTF_8);
+        out.writeInt(encoded.length);
+        out.write(encoded);
     }
 
     private static void invalidRewardsAreRejected() {
