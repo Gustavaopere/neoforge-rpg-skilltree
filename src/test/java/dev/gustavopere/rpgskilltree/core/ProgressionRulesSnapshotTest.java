@@ -9,6 +9,7 @@ public final class ProgressionRulesSnapshotTest {
         segmentedCurveStartsAtLevelZeroAndCrossesBands();
         hugeLevelsAreCalculatedWithoutFiniteThresholdTables();
         snapshotFingerprintIsDeterministicAndContentSensitive();
+        levelCorePointPolicyIsVersionedInFingerprint();
         invalidCurveDefinitionsAreRejected();
         System.out.println("ProgressionRulesSnapshotTest: PASS");
     }
@@ -56,6 +57,38 @@ public final class ProgressionRulesSnapshotTest {
         eq(false, a.fingerprint().equals(changedCurve.fingerprint()));
         eq(false, a.fingerprint().equals(changedBudget.fingerprint()));
         eq(BigInteger.valueOf(100L), a.levelCurve().xpToNextLevel(0L));
+    }
+
+    private static void levelCorePointPolicyIsVersionedInFingerprint() {
+        var curve = List.of(new LevelCurveBand(0L, 100L, 10L));
+        LevelCorePointAwardPolicy everyTwo = new PeriodicLevelCorePointAwardPolicy(1L, 2L, 1L);
+        LevelCorePointAwardPolicy everyThree = new PeriodicLevelCorePointAwardPolicy(1L, 3L, 1L);
+
+        var a = new ProgressionRulesSnapshot(
+            9L,
+            "rpgskilltree:point_policy_test",
+            curve,
+            new MainPerkBudget(30L),
+            everyTwo
+        );
+        var b = new ProgressionRulesSnapshot(
+            9L,
+            "rpgskilltree:point_policy_test",
+            curve,
+            new MainPerkBudget(30L),
+            everyTwo
+        );
+        var changed = new ProgressionRulesSnapshot(
+            9L,
+            "rpgskilltree:point_policy_test",
+            curve,
+            new MainPerkBudget(30L),
+            everyThree
+        );
+
+        eq(everyTwo, a.levelCorePointAwardPolicy());
+        eq(a.fingerprint(), b.fingerprint());
+        eq(false, a.fingerprint().equals(changed.fingerprint()));
     }
 
     private static void invalidCurveDefinitionsAreRejected() {
