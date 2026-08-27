@@ -170,6 +170,22 @@ require(core_rules_reloader_text, "new ProgressionRulesSnapshot(", str(CORE_RULE
 require(core_rules_reloader_text, "CoreProgressionRulesCatalog.install(snapshot)", str(CORE_RULES_RELOADER.relative_to(ROOT)))
 forbid(core_rules_reloader_text, "progression/defaults.json", str(CORE_RULES_RELOADER.relative_to(ROOT)))
 
+# Level-derived Core Points are part of the authoritative rules snapshot. The
+# datapack must configure the policy explicitly; the compatibility-disabled
+# constructor must never become the live runtime economy by omission.
+for needle in [
+    '"level_core_points"',
+    "POINT_POLICY_FIELDS",
+    "requiredObject(root, \"level_core_points\", resourceId)",
+    '"periodic"',
+    '"first_award_level"',
+    '"levels_per_award"',
+    '"points_per_award"',
+    "PeriodicLevelCorePointAwardPolicy",
+    "levelPointPolicy",
+]:
+    require(core_rules_reloader_text, needle, str(CORE_RULES_RELOADER.relative_to(ROOT)))
+
 require(mod_main_text, "CoreProgressionRulesReloader", str(MOD_MAIN.relative_to(ROOT)))
 require(mod_main_text, "NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class)", str(MOD_MAIN.relative_to(ROOT)))
 
