@@ -24,7 +24,7 @@ public final class GameplaySemanticXpPolicyTest {
             Map.of(),
             Set.of()
         );
-        eq(Optional.of(GameplayXpPolicy.oreMined("minecraft:iron_ore", false)), policy.evaluate(common));
+        eq(Optional.of(GameplayXpPolicy.oreMined("minecraft:iron_ore", false)), policy.resolve(common));
 
         var rare = action(
             SemanticActionType.ORE_MINED,
@@ -32,7 +32,7 @@ public final class GameplaySemanticXpPolicyTest {
             Map.of(),
             Set.of(GameplaySemanticXpPolicy.RARE_ORE_TAG)
         );
-        eq(Optional.of(GameplayXpPolicy.oreMined("minecraft:diamond_ore", true)), policy.evaluate(rare));
+        eq(Optional.of(GameplayXpPolicy.oreMined("minecraft:diamond_ore", true)), policy.resolve(rare));
     }
 
     static void combatPreservesLegacyGameplayValues() {
@@ -44,7 +44,7 @@ public final class GameplaySemanticXpPolicyTest {
             Map.of(GameplaySemanticXpPolicy.MAX_HEALTH_METRIC, 20.0),
             Set.of()
         );
-        eq(Optional.of(GameplayXpPolicy.combatKill("minecraft:zombie", 20.0, false)), policy.evaluate(hostile));
+        eq(Optional.of(GameplayXpPolicy.combatKill("minecraft:zombie", 20.0, false)), policy.resolve(hostile));
 
         var boss = action(
             SemanticActionType.BOSS_DEFEATED,
@@ -52,23 +52,23 @@ public final class GameplaySemanticXpPolicyTest {
             Map.of(GameplaySemanticXpPolicy.MAX_HEALTH_METRIC, 300.0),
             Set.of()
         );
-        eq(Optional.of(GameplayXpPolicy.combatKill("minecraft:wither", 300.0, true)), policy.evaluate(boss));
+        eq(Optional.of(GameplayXpPolicy.combatKill("minecraft:wither", 300.0, true)), policy.resolve(boss));
     }
 
     static void explorationPreservesLegacyGameplayValues() {
         XpPolicy policy = GameplaySemanticXpPolicy.INSTANCE;
 
         var biome = action(SemanticActionType.BIOME_DISCOVERED, "minecraft:plains", Map.of(), Set.of());
-        eq(Optional.of(GameplayXpPolicy.biomeDiscovery("minecraft:plains")), policy.evaluate(biome));
+        eq(Optional.of(GameplayXpPolicy.biomeDiscovery("minecraft:plains")), policy.resolve(biome));
 
         var dimension = action(SemanticActionType.DIMENSION_DISCOVERED, "minecraft:the_nether", Map.of(), Set.of());
-        eq(Optional.of(GameplayXpPolicy.dimensionDiscovery("minecraft:the_nether")), policy.evaluate(dimension));
+        eq(Optional.of(GameplayXpPolicy.dimensionDiscovery("minecraft:the_nether")), policy.resolve(dimension));
     }
 
     static void incompleteCombatEvidenceFailsClosed() {
         XpPolicy policy = GameplaySemanticXpPolicy.INSTANCE;
         var missing = action(SemanticActionType.HOSTILE_KILLED, "minecraft:zombie", Map.of(), Set.of());
-        eq(Optional.empty(), policy.evaluate(missing));
+        eq(Optional.empty(), policy.resolve(missing));
 
         var invalid = action(
             SemanticActionType.HOSTILE_KILLED,
@@ -76,13 +76,13 @@ public final class GameplaySemanticXpPolicyTest {
             Map.of(GameplaySemanticXpPolicy.MAX_HEALTH_METRIC, 0.0),
             Set.of()
         );
-        eq(Optional.empty(), policy.evaluate(invalid));
+        eq(Optional.empty(), policy.resolve(invalid));
     }
 
     static void unsupportedSemanticActionHasNoAward() {
         XpPolicy policy = GameplaySemanticXpPolicy.INSTANCE;
         var crafted = action(SemanticActionType.ITEM_CRAFTED, "minecraft:diamond_pickaxe", Map.of(), Set.of());
-        eq(Optional.empty(), policy.evaluate(crafted));
+        eq(Optional.empty(), policy.resolve(crafted));
     }
 
     private static SemanticAction action(
