@@ -66,8 +66,16 @@ public final class CanonicalPlayerAttachmentData {
 
     public CanonicalPlayerAttachmentData withCompatibilityProgression(ProgressionState next) {
         Objects.requireNonNull(next, "next");
-        if (next == compatibilityProgression) return this;
-        return new CanonicalPlayerAttachmentData(coreProgression, next, legacyMigrationSource);
+        byte[] currentBytes = ProgressionStateCodec.encode(compatibilityProgression);
+        byte[] nextBytes = ProgressionStateCodec.encode(next);
+        if (Arrays.equals(currentBytes, nextBytes)) return this;
+
+        boolean nextLegacyMigrationSource = legacyMigrationSource || !coreProgression.isInitialized();
+        return new CanonicalPlayerAttachmentData(
+            coreProgression,
+            next,
+            nextLegacyMigrationSource
+        );
     }
 
     public CanonicalPlayerAttachmentData withCoreProgression(CoreProgressionAttachmentData next) {
