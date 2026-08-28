@@ -13,10 +13,10 @@ Aceita. IDs, requisitos e efeitos permanecem carregáveis/validáveis por dados 
 Aceita. Alguns nós são estruturais ou gateways; efeitos também vivem em packs e handlers.
 
 ## D005 — Wiki de jogador vive em `wiki/`, na raiz
-Aceita. `wiki/` não contém arquitetura, tarefas de programação ou guia de desenvolvedor. Ela documenta gameplay, estatísticas, requisitos, interações e trivia. Conteúdo técnico pertence a `plans/` ou `docs/technical/`.
+Aceita. `wiki/` não contém arquitetura, tarefas de programação ou guia de desenvolvedor.
 
 ## D006 — Integração genérica continua genérica
-Aceita. Um modificador de dano/poder mágico só é atribuído nominalmente a um spell externo quando existe evidência específica dessa relação.
+Aceita. Um modificador só é atribuído nominalmente a conteúdo externo quando existe evidência específica dessa relação.
 
 ## D007 — Mods opcionais não viram dependência dura por acidente
 Aceita. Adapters devem ser isolados e protegidos por presença/contratos apropriados.
@@ -30,8 +30,11 @@ Aceita. Renomear/remover skill, classe, mastery ou especialização exige compat
 ## D010 — Um evento de gameplay concede progressão uma vez
 Aceita. Bridges devem preferir confirmação semântica real e idempotência.
 
-## D011 — Estado de plano é expresso no nome do arquivo
-Aceita. Cada estágio usa `PLANO.md` enquanto aberto e só é renomeado para `PLANO-✅.md` após implementação, validação e integração canônica completas.
+## D011 — Planos seguem o padrão Volcanoes
+Aceita. Cada estágio tem `README.md` + múltiplos arquivos numerados. Trabalho concluído é marcado renomeando `01-x.md` para `✅-01-x.md`.
 
-## D012 — O plano de estágio é executável
-Aceita. Cada `PLANO.md` registra objetivo, dependências, ordem de implementação, migração/dados, testes, critérios de aceite e definição explícita de pronto.
+## D012 — O check pertence ao subplano
+Aceita. Não é necessário esperar o estágio inteiro terminar para marcar um arquivo; porém o arquivo só recebe check depois de implementação, validação e integração completas do seu próprio escopo.
+
+## D013 — Cada subplano é executável isoladamente
+Aceita. Todo arquivo numerado deve conter objetivo, passos de implementação, testes/validação e critério de aceite, respeitando dependências causais anteriores.
