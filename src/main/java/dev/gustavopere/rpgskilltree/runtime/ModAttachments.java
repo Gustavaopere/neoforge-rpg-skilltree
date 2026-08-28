@@ -1,10 +1,12 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
+import dev.gustavopere.rpgskilltree.compendium.discovery.DiscoveryProgress;
 import dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
 import dev.gustavopere.rpgskilltree.core.EntityScalingAttachmentData;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.compendium.DiscoveryProgressAttachmentSerializer;
 import java.util.function.Supplier;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
@@ -40,6 +42,15 @@ public final class ModAttachments {
         "canonical_player",
         () -> AttachmentType.builder(CanonicalPlayerAttachmentData::empty)
             .serialize(CanonicalPlayerAttachmentSerializer.INSTANCE)
+            .copyOnDeath()
+            .build()
+    );
+
+    /** Persistent per-player natural Compendium discovery progress. */
+    public static final Supplier<AttachmentType<DiscoveryProgress>> COMPENDIUM_DISCOVERY = ATTACHMENTS.register(
+        "compendium_discovery",
+        () -> AttachmentType.builder(DiscoveryProgress::empty)
+            .serialize(DiscoveryProgressAttachmentSerializer.INSTANCE)
             .copyOnDeath()
             .build()
     );
