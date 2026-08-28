@@ -3,6 +3,7 @@
   "bonuses": [],
   "requirements": [],
   "directConnections": [
+    "rpgskilltree:bridge_duelist_06",
     "rpgskilltree:keystone_15"
   ],
   "longConnections": [],

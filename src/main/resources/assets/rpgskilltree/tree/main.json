@@ -3629,6 +3629,28 @@
       "y": -1240.961
     },
     {
+      "id": "rpgskilltree:bridge_paladin_06",
+      "kind": "hybrid",
+      "archetype": "paladin",
+      "domains": [
+        "VITALITY",
+        "HEALING"
+      ],
+      "x": 1549.287,
+      "y": -1342.465
+    },
+    {
+      "id": "rpgskilltree:bridge_paladin_07",
+      "kind": "hybrid",
+      "archetype": "paladin",
+      "domains": [
+        "VITALITY",
+        "HEALING"
+      ],
+      "x": 1666.428,
+      "y": -1443.968
+    },
+    {
       "id": "rpgskilltree:bridge_cleric_00",
       "kind": "hybrid",
       "archetype": "cleric",
@@ -3693,6 +3715,28 @@
       ],
       "x": 1875.712,
       "y": -269.687
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_06",
+      "kind": "hybrid",
+      "archetype": "cleric",
+      "domains": [
+        "HEALING",
+        "ARCANE"
+      ],
+      "x": 2029.134,
+      "y": -291.745
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_07",
+      "kind": "hybrid",
+      "archetype": "cleric",
+      "domains": [
+        "HEALING",
+        "ARCANE"
+      ],
+      "x": 2182.556,
+      "y": -313.804
     },
     {
       "id": "rpgskilltree:bridge_technomancer_00",
@@ -3761,136 +3805,26 @@
       "y": 787.211
     },
     {
-      "id": "rpgskilltree:bridge_industrialist_00",
+      "id": "rpgskilltree:bridge_technomancer_06",
       "kind": "hybrid",
-      "archetype": "industrialist",
+      "archetype": "technomancer",
       "domains": [
-        "ENGINEERING",
-        "MINING"
+        "ARCANE",
+        "ENGINEERING"
       ],
-      "x": 605.518,
-      "y": 942.204
+      "x": 1864.746,
+      "y": 851.601
     },
     {
-      "id": "rpgskilltree:bridge_industrialist_01",
+      "id": "rpgskilltree:bridge_technomancer_07",
       "kind": "hybrid",
-      "archetype": "industrialist",
+      "archetype": "technomancer",
       "domains": [
-        "ENGINEERING",
-        "MINING"
+        "ARCANE",
+        "ENGINEERING"
       ],
-      "x": 689.317,
-      "y": 1072.598
-    },
-    {
-      "id": "rpgskilltree:bridge_industrialist_02",
-      "kind": "hybrid",
-      "archetype": "industrialist",
-      "domains": [
-        "ENGINEERING",
-        "MINING"
-      ],
-      "x": 773.116,
-      "y": 1202.993
-    },
-    {
-      "id": "rpgskilltree:bridge_industrialist_03",
-      "kind": "hybrid",
-      "archetype": "industrialist",
-      "domains": [
-        "ENGINEERING",
-        "MINING"
-      ],
-      "x": 856.916,
-      "y": 1333.387
-    },
-    {
-      "id": "rpgskilltree:bridge_industrialist_04",
-      "kind": "hybrid",
-      "archetype": "industrialist",
-      "domains": [
-        "ENGINEERING",
-        "MINING"
-      ],
-      "x": 940.715,
-      "y": 1463.781
-    },
-    {
-      "id": "rpgskilltree:bridge_industrialist_05",
-      "kind": "hybrid",
-      "archetype": "industrialist",
-      "domains": [
-        "ENGINEERING",
-        "MINING"
-      ],
-      "x": 1024.514,
-      "y": 1594.175
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_00",
-      "kind": "hybrid",
-      "archetype": "prospector",
-      "domains": [
-        "MINING",
-        "SURVIVAL"
-      ],
-      "x": 0.0,
-      "y": 1120.0
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_01",
-      "kind": "hybrid",
-      "archetype": "prospector",
-      "domains": [
-        "MINING",
-        "SURVIVAL"
-      ],
-      "x": 0.0,
-      "y": 1275.0
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_02",
-      "kind": "hybrid",
-      "archetype": "prospector",
-      "domains": [
-        "MINING",
-        "SURVIVAL"
-      ],
-      "x": 0.0,
-      "y": 1430.0
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_03",
-      "kind": "hybrid",
-      "archetype": "prospector",
-      "domains": [
-        "MINING",
-        "SURVIVAL"
-      ],
-      "x": 0.0,
-      "y": 1585.0
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_04",
-      "kind": "hybrid",
-      "archetype": "prospector",
-      "domains": [
-        "MINING",
-        "SURVIVAL"
-      ],
-      "x": 0.0,
-      "y": 1740.0
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_05",
-      "kind": "hybrid",
-      "archetype": "prospector",
-      "domains": [
-        "MINING",
-        "SURVIVAL"
-      ],
-      "x": 0.0,
-      "y": 1895.0
+      "x": 2005.739,
+      "y": 915.99
     },
     {
       "id": "rpgskilltree:bridge_druid_00",
@@ -3959,6 +3893,28 @@
       "y": 1594.175
     },
     {
+      "id": "rpgskilltree:bridge_druid_06",
+      "kind": "hybrid",
+      "archetype": "druid",
+      "domains": [
+        "SURVIVAL",
+        "SUMMONING"
+      ],
+      "x": -1108.314,
+      "y": 1724.57
+    },
+    {
+      "id": "rpgskilltree:bridge_druid_07",
+      "kind": "hybrid",
+      "archetype": "druid",
+      "domains": [
+        "SURVIVAL",
+        "SUMMONING"
+      ],
+      "x": -1192.113,
+      "y": 1854.964
+    },
+    {
       "id": "rpgskilltree:bridge_necromancer_00",
       "kind": "hybrid",
       "archetype": "necromancer",
@@ -4025,6 +3981,28 @@
       "y": 787.211
     },
     {
+      "id": "rpgskilltree:bridge_necromancer_06",
+      "kind": "hybrid",
+      "archetype": "necromancer",
+      "domains": [
+        "SUMMONING",
+        "OCCULT"
+      ],
+      "x": -1864.746,
+      "y": 851.601
+    },
+    {
+      "id": "rpgskilltree:bridge_necromancer_07",
+      "kind": "hybrid",
+      "archetype": "necromancer",
+      "domains": [
+        "SUMMONING",
+        "OCCULT"
+      ],
+      "x": -2005.739,
+      "y": 915.99
+    },
+    {
       "id": "rpgskilltree:bridge_duelist_00",
       "kind": "hybrid",
       "archetype": "duelist",
@@ -4089,6 +4067,28 @@
       ],
       "x": -533.883,
       "y": -1818.239
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_06",
+      "kind": "hybrid",
+      "archetype": "duelist",
+      "domains": [
+        "AGILITY",
+        "MARTIAL"
+      ],
+      "x": -577.552,
+      "y": -1966.961
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_07",
+      "kind": "hybrid",
+      "archetype": "duelist",
+      "domains": [
+        "AGILITY",
+        "MARTIAL"
+      ],
+      "x": -621.22,
+      "y": -2115.682
     },
     {
       "id": "rpgskilltree:keystone_00",
@@ -7261,6 +7261,14 @@
       "rpgskilltree:bridge_paladin_05"
     ],
     [
+      "rpgskilltree:bridge_paladin_05",
+      "rpgskilltree:bridge_paladin_06"
+    ],
+    [
+      "rpgskilltree:bridge_paladin_06",
+      "rpgskilltree:bridge_paladin_07"
+    ],
+    [
       "rpgskilltree:vitality_012",
       "rpgskilltree:bridge_paladin_00"
     ],
@@ -7287,6 +7295,14 @@
     [
       "rpgskilltree:bridge_cleric_04",
       "rpgskilltree:bridge_cleric_05"
+    ],
+    [
+      "rpgskilltree:bridge_cleric_05",
+      "rpgskilltree:bridge_cleric_06"
+    ],
+    [
+      "rpgskilltree:bridge_cleric_06",
+      "rpgskilltree:bridge_cleric_07"
     ],
     [
       "rpgskilltree:healing_012",
@@ -7317,68 +7333,20 @@
       "rpgskilltree:bridge_technomancer_05"
     ],
     [
+      "rpgskilltree:bridge_technomancer_05",
+      "rpgskilltree:bridge_technomancer_06"
+    ],
+    [
+      "rpgskilltree:bridge_technomancer_06",
+      "rpgskilltree:bridge_technomancer_07"
+    ],
+    [
       "rpgskilltree:arcane_012",
       "rpgskilltree:bridge_technomancer_00"
     ],
     [
       "rpgskilltree:engineering_007",
       "rpgskilltree:bridge_technomancer_00"
-    ],
-    [
-      "rpgskilltree:bridge_industrialist_00",
-      "rpgskilltree:bridge_industrialist_01"
-    ],
-    [
-      "rpgskilltree:bridge_industrialist_01",
-      "rpgskilltree:bridge_industrialist_02"
-    ],
-    [
-      "rpgskilltree:bridge_industrialist_02",
-      "rpgskilltree:bridge_industrialist_03"
-    ],
-    [
-      "rpgskilltree:bridge_industrialist_03",
-      "rpgskilltree:bridge_industrialist_04"
-    ],
-    [
-      "rpgskilltree:bridge_industrialist_04",
-      "rpgskilltree:bridge_industrialist_05"
-    ],
-    [
-      "rpgskilltree:engineering_012",
-      "rpgskilltree:bridge_industrialist_00"
-    ],
-    [
-      "rpgskilltree:mining_007",
-      "rpgskilltree:bridge_industrialist_00"
-    ],
-    [
-      "rpgskilltree:bridge_prospector_00",
-      "rpgskilltree:bridge_prospector_01"
-    ],
-    [
-      "rpgskilltree:bridge_prospector_01",
-      "rpgskilltree:bridge_prospector_02"
-    ],
-    [
-      "rpgskilltree:bridge_prospector_02",
-      "rpgskilltree:bridge_prospector_03"
-    ],
-    [
-      "rpgskilltree:bridge_prospector_03",
-      "rpgskilltree:bridge_prospector_04"
-    ],
-    [
-      "rpgskilltree:bridge_prospector_04",
-      "rpgskilltree:bridge_prospector_05"
-    ],
-    [
-      "rpgskilltree:mining_012",
-      "rpgskilltree:bridge_prospector_00"
-    ],
-    [
-      "rpgskilltree:survival_007",
-      "rpgskilltree:bridge_prospector_00"
     ],
     [
       "rpgskilltree:bridge_druid_00",
@@ -7399,6 +7367,14 @@
     [
       "rpgskilltree:bridge_druid_04",
       "rpgskilltree:bridge_druid_05"
+    ],
+    [
+      "rpgskilltree:bridge_druid_05",
+      "rpgskilltree:bridge_druid_06"
+    ],
+    [
+      "rpgskilltree:bridge_druid_06",
+      "rpgskilltree:bridge_druid_07"
     ],
     [
       "rpgskilltree:survival_012",
@@ -7429,6 +7405,14 @@
       "rpgskilltree:bridge_necromancer_05"
     ],
     [
+      "rpgskilltree:bridge_necromancer_05",
+      "rpgskilltree:bridge_necromancer_06"
+    ],
+    [
+      "rpgskilltree:bridge_necromancer_06",
+      "rpgskilltree:bridge_necromancer_07"
+    ],
+    [
       "rpgskilltree:summoning_012",
       "rpgskilltree:bridge_necromancer_00"
     ],
@@ -7455,6 +7439,14 @@
     [
       "rpgskilltree:bridge_duelist_04",
       "rpgskilltree:bridge_duelist_05"
+    ],
+    [
+      "rpgskilltree:bridge_duelist_05",
+      "rpgskilltree:bridge_duelist_06"
+    ],
+    [
+      "rpgskilltree:bridge_duelist_06",
+      "rpgskilltree:bridge_duelist_07"
     ],
     [
       "rpgskilltree:agility_012",
@@ -7497,7 +7489,7 @@
       "rpgskilltree:keystone_07"
     ],
     [
-      "rpgskilltree:bridge_prospector_05",
+      "rpgskilltree:survival_036",
       "rpgskilltree:keystone_08"
     ],
     [

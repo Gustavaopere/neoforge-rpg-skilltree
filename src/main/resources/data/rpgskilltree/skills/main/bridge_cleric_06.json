@@ -1,23 +1,23 @@
 {
-  "id": "rpgskilltree:bridge_prospector_02",
+  "id": "rpgskilltree:bridge_cleric_06",
   "bonuses": [],
   "requirements": [],
   "directConnections": [
-    "rpgskilltree:bridge_prospector_03"
+    "rpgskilltree:bridge_cleric_07"
   ],
   "longConnections": [],
   "oneWayConnections": [],
   "tags": [
-    "rpgskilltree:bridge/prospector",
-    "rpgskilltree:domain/mining",
-    "rpgskilltree:domain/survival",
+    "rpgskilltree:bridge/cleric",
+    "rpgskilltree:domain/arcane",
+    "rpgskilltree:domain/healing",
     "rpgskilltree:kind/hybrid"
   ],
   "backgroundTexture": "skilltree:textures/icons/background/notable.png",
   "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
   "borderTexture": "skilltree:textures/tooltip/notable.png",
-  "positionX": 0.0,
-  "positionY": 1430.0,
+  "positionX": 2029.134,
+  "positionY": -291.745,
   "buttonSize": 24,
   "isStartingPoint": false
 }

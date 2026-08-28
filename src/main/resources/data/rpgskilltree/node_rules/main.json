@@ -2335,7 +2335,6 @@
       "costPerRank": 1,
       "startingPoint": false,
       "neighbors": [
-        "rpgskilltree:bridge_industrialist_00",
         "rpgskilltree:engineering_004",
         "rpgskilltree:engineering_011",
         "rpgskilltree:engineering_013",
@@ -2813,7 +2812,6 @@
       "costPerRank": 1,
       "startingPoint": false,
       "neighbors": [
-        "rpgskilltree:bridge_industrialist_00",
         "rpgskilltree:mining_001",
         "rpgskilltree:mining_006",
         "rpgskilltree:mining_008",
@@ -2876,7 +2874,6 @@
       "costPerRank": 1,
       "startingPoint": false,
       "neighbors": [
-        "rpgskilltree:bridge_prospector_00",
         "rpgskilltree:mining_004",
         "rpgskilltree:mining_011",
         "rpgskilltree:mining_013",
@@ -3234,7 +3231,6 @@
       "costPerRank": 1,
       "startingPoint": false,
       "neighbors": [
-        "rpgskilltree:bridge_prospector_00",
         "rpgskilltree:survival_001",
         "rpgskilltree:survival_006",
         "rpgskilltree:survival_008",
@@ -3575,6 +3571,7 @@
       "costPerRank": 1,
       "startingPoint": false,
       "neighbors": [
+        "rpgskilltree:keystone_08",
         "rpgskilltree:survival_024",
         "rpgskilltree:survival_037"
       ],
@@ -5261,7 +5258,27 @@
       "startingPoint": false,
       "neighbors": [
         "rpgskilltree:bridge_paladin_04",
+        "rpgskilltree:bridge_paladin_06",
         "rpgskilltree:keystone_02"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_paladin_06",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_05",
+        "rpgskilltree:bridge_paladin_07"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_paladin_07",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_paladin_06"
       ]
     },
     {
@@ -5321,7 +5338,27 @@
       "costPerRank": 1,
       "startingPoint": false,
       "neighbors": [
-        "rpgskilltree:bridge_cleric_04"
+        "rpgskilltree:bridge_cleric_04",
+        "rpgskilltree:bridge_cleric_06"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_06",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_cleric_05",
+        "rpgskilltree:bridge_cleric_07"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_cleric_07",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_cleric_06"
       ]
     },
     {
@@ -5382,128 +5419,27 @@
       "startingPoint": false,
       "neighbors": [
         "rpgskilltree:bridge_technomancer_04",
+        "rpgskilltree:bridge_technomancer_06",
         "rpgskilltree:keystone_05"
       ]
     },
     {
-      "id": "rpgskilltree:bridge_industrialist_00",
+      "id": "rpgskilltree:bridge_technomancer_06",
       "maxRank": 1,
       "costPerRank": 1,
       "startingPoint": false,
       "neighbors": [
-        "rpgskilltree:bridge_industrialist_01",
-        "rpgskilltree:engineering_012",
-        "rpgskilltree:mining_007"
+        "rpgskilltree:bridge_technomancer_05",
+        "rpgskilltree:bridge_technomancer_07"
       ]
     },
     {
-      "id": "rpgskilltree:bridge_industrialist_01",
+      "id": "rpgskilltree:bridge_technomancer_07",
       "maxRank": 1,
       "costPerRank": 1,
       "startingPoint": false,
       "neighbors": [
-        "rpgskilltree:bridge_industrialist_00",
-        "rpgskilltree:bridge_industrialist_02"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_industrialist_02",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_industrialist_01",
-        "rpgskilltree:bridge_industrialist_03"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_industrialist_03",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_industrialist_02",
-        "rpgskilltree:bridge_industrialist_04"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_industrialist_04",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_industrialist_03",
-        "rpgskilltree:bridge_industrialist_05"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_industrialist_05",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_industrialist_04"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_00",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_prospector_01",
-        "rpgskilltree:mining_012",
-        "rpgskilltree:survival_007"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_01",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_prospector_00",
-        "rpgskilltree:bridge_prospector_02"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_02",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_prospector_01",
-        "rpgskilltree:bridge_prospector_03"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_03",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_prospector_02",
-        "rpgskilltree:bridge_prospector_04"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_04",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_prospector_03",
-        "rpgskilltree:bridge_prospector_05"
-      ]
-    },
-    {
-      "id": "rpgskilltree:bridge_prospector_05",
-      "maxRank": 1,
-      "costPerRank": 1,
-      "startingPoint": false,
-      "neighbors": [
-        "rpgskilltree:bridge_prospector_04",
-        "rpgskilltree:keystone_08"
+        "rpgskilltree:bridge_technomancer_06"
       ]
     },
     {
@@ -5564,7 +5500,27 @@
       "startingPoint": false,
       "neighbors": [
         "rpgskilltree:bridge_druid_04",
+        "rpgskilltree:bridge_druid_06",
         "rpgskilltree:keystone_09"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_druid_06",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_05",
+        "rpgskilltree:bridge_druid_07"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_druid_07",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_druid_06"
       ]
     },
     {
@@ -5625,7 +5581,27 @@
       "startingPoint": false,
       "neighbors": [
         "rpgskilltree:bridge_necromancer_04",
+        "rpgskilltree:bridge_necromancer_06",
         "rpgskilltree:keystone_11"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_necromancer_06",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_05",
+        "rpgskilltree:bridge_necromancer_07"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_necromancer_07",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_necromancer_06"
       ]
     },
     {
@@ -5686,7 +5662,27 @@
       "startingPoint": false,
       "neighbors": [
         "rpgskilltree:bridge_duelist_04",
+        "rpgskilltree:bridge_duelist_06",
         "rpgskilltree:keystone_15"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_06",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_duelist_05",
+        "rpgskilltree:bridge_duelist_07"
+      ]
+    },
+    {
+      "id": "rpgskilltree:bridge_duelist_07",
+      "maxRank": 1,
+      "costPerRank": 1,
+      "startingPoint": false,
+      "neighbors": [
+        "rpgskilltree:bridge_duelist_06"
       ]
     },
     {
@@ -5767,7 +5763,7 @@
       "costPerRank": 1,
       "startingPoint": false,
       "neighbors": [
-        "rpgskilltree:bridge_prospector_05"
+        "rpgskilltree:survival_036"
       ]
     },
     {

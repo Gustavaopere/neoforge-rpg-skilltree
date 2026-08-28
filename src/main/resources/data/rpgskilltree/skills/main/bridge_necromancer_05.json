@@ -3,6 +3,7 @@
   "bonuses": [],
   "requirements": [],
   "directConnections": [
+    "rpgskilltree:bridge_necromancer_06",
     "rpgskilltree:keystone_11"
   ],
   "longConnections": [],

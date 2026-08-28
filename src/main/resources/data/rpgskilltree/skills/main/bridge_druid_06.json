@@ -1,23 +1,23 @@
 {
-  "id": "rpgskilltree:bridge_prospector_01",
+  "id": "rpgskilltree:bridge_druid_06",
   "bonuses": [],
   "requirements": [],
   "directConnections": [
-    "rpgskilltree:bridge_prospector_02"
+    "rpgskilltree:bridge_druid_07"
   ],
   "longConnections": [],
   "oneWayConnections": [],
   "tags": [
-    "rpgskilltree:bridge/prospector",
-    "rpgskilltree:domain/mining",
+    "rpgskilltree:bridge/druid",
+    "rpgskilltree:domain/summoning",
     "rpgskilltree:domain/survival",
     "rpgskilltree:kind/hybrid"
   ],
   "backgroundTexture": "skilltree:textures/icons/background/notable.png",
   "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
   "borderTexture": "skilltree:textures/tooltip/notable.png",
-  "positionX": 0.0,
-  "positionY": 1275.0,
+  "positionX": -1108.314,
+  "positionY": 1724.57,
   "buttonSize": 24,
   "isStartingPoint": false
 }

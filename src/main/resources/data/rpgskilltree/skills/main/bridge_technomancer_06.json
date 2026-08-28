@@ -1,23 +1,23 @@
 {
-  "id": "rpgskilltree:bridge_industrialist_02",
+  "id": "rpgskilltree:bridge_technomancer_06",
   "bonuses": [],
   "requirements": [],
   "directConnections": [
-    "rpgskilltree:bridge_industrialist_03"
+    "rpgskilltree:bridge_technomancer_07"
   ],
   "longConnections": [],
   "oneWayConnections": [],
   "tags": [
-    "rpgskilltree:bridge/industrialist",
+    "rpgskilltree:bridge/technomancer",
+    "rpgskilltree:domain/arcane",
     "rpgskilltree:domain/engineering",
-    "rpgskilltree:domain/mining",
     "rpgskilltree:kind/hybrid"
   ],
   "backgroundTexture": "skilltree:textures/icons/background/notable.png",
   "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
   "borderTexture": "skilltree:textures/tooltip/notable.png",
-  "positionX": 773.116,
-  "positionY": 1202.993,
+  "positionX": 1864.746,
+  "positionY": 851.601,
   "buttonSize": 24,
   "isStartingPoint": false
 }
