@@ -18,6 +18,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.catalog.CompendiumCatalogBuilderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.provider.ProviderMergeTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.data.CompendiumSchemaTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.EntitySpeciesEntryFactoryTest
 
 python3 - "$DATA" <<'PY'
 import json
