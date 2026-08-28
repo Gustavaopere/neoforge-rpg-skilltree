@@ -51,6 +51,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.LevelCorePointAwardPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MainPerkBudgetProgressionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRewardServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionQueryServiceTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalPlayerStateFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalEffectiveStatsFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.WorldEntityLevelFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.TerritoryGridTest
