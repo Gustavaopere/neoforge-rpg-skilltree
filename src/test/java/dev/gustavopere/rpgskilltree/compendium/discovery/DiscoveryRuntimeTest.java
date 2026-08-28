@@ -77,10 +77,11 @@ public final class DiscoveryRuntimeTest {
     private static void forgedInspectionIsRejected() {
         CompendiumEntryId pig = entity("minecraft:pig");
         CompendiumEntryId cow = entity("minecraft:cow");
-        yes(DiscoveryInspectionValidator.isValid(pig, pig, 16.0D, 64.0D, true));
-        no(DiscoveryInspectionValidator.isValid(pig, cow, 16.0D, 64.0D, true));
-        no(DiscoveryInspectionValidator.isValid(pig, pig, 65.0D, 64.0D, true));
-        no(DiscoveryInspectionValidator.isValid(pig, pig, 16.0D, 64.0D, false));
+        yes(DiscoveryInspectionValidator.isValid(pig, pig, 16.0D, 64.0D, true, true));
+        no(DiscoveryInspectionValidator.isValid(pig, cow, 16.0D, 64.0D, true, true));
+        no(DiscoveryInspectionValidator.isValid(pig, pig, 65.0D, 64.0D, true, true));
+        no(DiscoveryInspectionValidator.isValid(pig, pig, 16.0D, 64.0D, false, true));
+        no(DiscoveryInspectionValidator.isValid(pig, pig, 16.0D, 64.0D, true, false));
     }
 
     private static DiscoveryCriterion criterion(
