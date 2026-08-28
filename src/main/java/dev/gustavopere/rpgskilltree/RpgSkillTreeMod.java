@@ -11,6 +11,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEve
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumInventoryEvents;
 import dev.gustavopere.rpgskilltree.runtime.data.ArchetypeReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.AttributeRankCostPolicyCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.BossRewardReloader;
@@ -63,6 +64,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CombatProgressionEvents.class);
         NeoForge.EVENT_BUS.register(ExplorationProgressionEvents.class);
         NeoForge.EVENT_BUS.register(MiningProgressionEvents.class);
+        NeoForge.EVENT_BUS.register(CompendiumInventoryEvents.class);
 
         if (ModList.get().isLoaded("irons_spellbooks")) {
             NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
