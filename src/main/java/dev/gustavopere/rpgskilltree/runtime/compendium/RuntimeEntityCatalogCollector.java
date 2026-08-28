@@ -50,7 +50,7 @@ public final class RuntimeEntityCatalogCollector {
             );
             entries.add(EntitySpeciesEntryFactory.create(EntityRegistryProvider.toSpeciesFacts(descriptor)));
         }
-        entries.sort(Comparator.comparing(entry -> entry.id().canonical()));
+        entries.sort(Comparator.comparing(entry -> entry.id().serializedId()));
         return List.copyOf(entries);
     }
 
