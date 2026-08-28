@@ -11,6 +11,8 @@ RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgr
 ATTACHMENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/ModAttachments.java"
 CORE_SERIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CoreProgressionAttachmentSerializer.java"
 CORE_RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
+CANONICAL_SERIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CanonicalPlayerAttachmentSerializer.java"
+CANONICAL_RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CanonicalPlayerAttachmentRuntime.java"
 PLAYER_PLACED_ORES = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/mining/PlayerPlacedOreData.java"
 NETWORKING = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/ModNetworking.java"
 CORE_PAYLOAD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/CoreProgressionSyncPayload.java"
@@ -25,6 +27,8 @@ STALE_ERRORS = {
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/CombatProgressionEvents.java: missing 'PlayerProgressionRuntime.applyXp'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java: missing 'GameplayXpPolicy.oreMined'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java: missing 'PlayerProgressionRuntime.applyXp'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'player.getData(ModAttachments.PROGRESSION)'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'player.setData(ModAttachments.PROGRESSION, state)'",
 }
 
 
@@ -50,13 +54,17 @@ def read_required(path: Path) -> str:
 events_text = EVENTS.read_text(encoding="utf-8")
 runtime_text = RUNTIME.read_text(encoding="utf-8")
 
-# Login/respawn now delegate to one reconciliation boundary. That boundary persists the
-# reconciled state and then refreshes effects + syncs the owner through set().
+# Login/respawn delegate to one reconciliation boundary. That boundary persists the
+# reconciled compatibility section inside the canonical attachment and then refreshes
+# effects + syncs the owner through set().
 require(events_text, "PlayerProgressionRuntime.reconcilePlayerState(player)", str(EVENTS.relative_to(ROOT)))
 require(runtime_text, "public static ProgressionState reconcilePlayerState(ServerPlayer player)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "set(player, reconciled)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "AttributeNodeEffectRuntime.refresh(player, state)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "ModNetworking.syncToOwner(player, state)", str(RUNTIME.relative_to(ROOT)))
+require(runtime_text, "CanonicalPlayerAttachmentRuntime.readOrMigrate(player)", str(RUNTIME.relative_to(ROOT)))
+require(runtime_text, "CanonicalPlayerAttachmentRuntime.write(player, current.withCompatibilityProgression(state))", str(RUNTIME.relative_to(ROOT)))
+forbid(runtime_text, "setData(ModAttachments.PROGRESSION", str(RUNTIME.relative_to(ROOT)))
 
 result = subprocess.run(
     [sys.executable, str(LEGACY)],
@@ -74,34 +82,53 @@ if result.returncode != 0:
         raise SystemExit(result.returncode)
     seen_stale = {line for line in lines if line in STALE_ERRORS}
     if seen_stale != STALE_ERRORS:
-        print("ERROR: legacy validator failed for an unrecognized reconciliation contract state")
+        print("ERROR: legacy validator failed for an unrecognized canonical persistence contract state")
         raise SystemExit(1)
 
-# Core progression is introduced beside the legacy attachment until Axxxx runtime
-# mutations are migrated. It must never materialize the legacy default merely to
-# decide whether a player has a legacy save.
+# The old progression attachments remain registered only as migration inputs so old
+# worlds can deserialize. CANONICAL_PLAYER is the sole normal persistence destination.
 attachments_text = read_required(ATTACHMENTS)
 serializer_text = read_required(CORE_SERIALIZER)
 core_runtime_text = read_required(CORE_RUNTIME)
+canonical_serializer_text = read_required(CANONICAL_SERIALIZER)
+canonical_runtime_text = read_required(CANONICAL_RUNTIME)
 core_runtime_compact = " ".join(core_runtime_text.split())
 
+require(attachments_text, "PROGRESSION", str(ATTACHMENTS.relative_to(ROOT)))
 require(attachments_text, "CORE_PROGRESSION", str(ATTACHMENTS.relative_to(ROOT)))
-require(attachments_text, '"core_progression"', str(ATTACHMENTS.relative_to(ROOT)))
-require(attachments_text, "CoreProgressionAttachmentData::uninitialized", str(ATTACHMENTS.relative_to(ROOT)))
-require(attachments_text, "CoreProgressionAttachmentSerializer.INSTANCE", str(ATTACHMENTS.relative_to(ROOT)))
+require(attachments_text, "CANONICAL_PLAYER", str(ATTACHMENTS.relative_to(ROOT)))
+require(attachments_text, '"canonical_player"', str(ATTACHMENTS.relative_to(ROOT)))
+require(attachments_text, "CanonicalPlayerAttachmentData::empty", str(ATTACHMENTS.relative_to(ROOT)))
+require(attachments_text, "CanonicalPlayerAttachmentSerializer.INSTANCE", str(ATTACHMENTS.relative_to(ROOT)))
 require(serializer_text, "CoreProgressionAttachmentDataCodec.decode", str(CORE_SERIALIZER.relative_to(ROOT)))
 require(serializer_text, "CoreProgressionAttachmentDataCodec.encode", str(CORE_SERIALIZER.relative_to(ROOT)))
-require(core_runtime_text, "public static CoreProgressionState bootstrap(", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_text, "player.hasData(ModAttachments.CORE_PROGRESSION)", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_text, "CoreProgressionBootstrap.resume", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_text, "player.hasData(ModAttachments.PROGRESSION)", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_text, "CoreProgressionBootstrap.migrateDecodedLegacy", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_text, "CoreProgressionBootstrap.newPlayer", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_compact, "player.setData( ModAttachments.CORE_PROGRESSION,", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_text, "CoreProgressionAttachmentData.initialized(initialized)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(canonical_serializer_text, "CanonicalPlayerAttachmentDataCodec.decode", str(CANONICAL_SERIALIZER.relative_to(ROOT)))
+require(canonical_serializer_text, "CanonicalPlayerAttachmentDataCodec.encode", str(CANONICAL_SERIALIZER.relative_to(ROOT)))
 
-# Clientbound Core sync is deliberately explicit: no login hook is allowed to invent
-# a rules snapshot. Callers must supply the same authoritative rules used by bootstrap.
+require(canonical_runtime_text, "public static CanonicalPlayerAttachmentData readOrMigrate(", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "public static CanonicalPlayerAttachmentData observe(", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "public static void write(", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "ModAttachments.CANONICAL_PLAYER", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "ModAttachments.PROGRESSION", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "ModAttachments.CORE_PROGRESSION", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "CanonicalPlayerAttachmentData.fromMigrationInputs", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "player.removeData(ModAttachments.PROGRESSION)", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "player.removeData(ModAttachments.CORE_PROGRESSION)", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+forbid(canonical_runtime_text, "setData(ModAttachments.PROGRESSION", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+forbid(canonical_runtime_text, "setData(ModAttachments.CORE_PROGRESSION", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+
+require(core_runtime_text, "public static CoreProgressionState bootstrap(", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CanonicalPlayerAttachmentRuntime.readOrMigrate(player)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "current.initializeCore(rules)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CanonicalPlayerAttachmentRuntime.observe(player)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CoreProgressionBootstrap.resume(state, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CanonicalPlayerAttachmentRuntime.write(player, next)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CoreProgressionAttachmentData.initialized(state)", str(CORE_RUNTIME.relative_to(ROOT)))
+forbid(core_runtime_text, "setData(ModAttachments.PROGRESSION", str(CORE_RUNTIME.relative_to(ROOT)))
+forbid(core_runtime_text, "setData(ModAttachments.CORE_PROGRESSION", str(CORE_RUNTIME.relative_to(ROOT)))
+
+# Clientbound Core sync remains explicit and uses the same authoritative rules as the
+# canonical Core section. Persistence consolidation does not conflate packet schemas.
 networking_text = read_required(NETWORKING)
 core_payload_text = read_required(CORE_PAYLOAD)
 core_client_text = read_required(CORE_CLIENT)
@@ -118,30 +145,24 @@ require(networking_text, "ClientCoreProgressionState::handleSync", str(NETWORKIN
 require(networking_text, "public static void syncCoreToOwner(", str(NETWORKING.relative_to(ROOT)))
 require(networking_compact, "PacketDistributor.sendToPlayer( player, CoreProgressionSyncPayload.fromState(state, rules)", str(NETWORKING.relative_to(ROOT)))
 
-# Mutations remain opt-in until a rules provider is authoritative. Once invoked, the
-# runtime must persist and sync only the accepted final state, never an intermediate
-# bootstrap/migration snapshot.
+# Mutations persist/sync only accepted final state through the canonical envelope.
 require(core_runtime_text, "public static CoreProgressionState grantXp(", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionMutationService.grantXp", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "public static CoreProgressionState applyCorePointTransaction(", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionMutationService.applyCorePointTransaction", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "public static void set(", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_compact, "CoreProgressionAttachmentData.initialized(state)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CoreProgressionAttachmentData.initialized(state)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "ModNetworking.syncCoreToOwner(player, state, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "set(player, next, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
 
-# Semantic gameplay XP stays opt-in and receives an explicit rules snapshot. The
-# runtime delegates evaluation/mutation to the pure service and persists/syncs only
-# when that service returns a distinct Core state.
+# Semantic gameplay XP stays opt-in and receives an explicit rules snapshot.
 require(core_runtime_text, "public static SemanticProgressionResult applySemanticAction(", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "SemanticProgressionService.apply(", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "if (result.state() != current)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "set(player, result.state(), rules)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "return result;", str(CORE_RUNTIME.relative_to(ROOT)))
 
-# Mining anti-farm must use the same persisted provenance that placement/break lifecycle
-# already maintains. Evaluation is a non-consuming view; consume() remains a lifecycle
-# operation after the block is actually broken.
+# Mining anti-farm uses the same persisted provenance that placement/break lifecycle maintains.
 player_placed_ores_text = read_required(PLAYER_PLACED_ORES)
 require(player_placed_ores_text, "public AntiFarmService antiFarmService()", str(PLAYER_PLACED_ORES.relative_to(ROOT)))
 require(player_placed_ores_text, "new BlockProvenanceAntiFarmService(provenance)", str(PLAYER_PLACED_ORES.relative_to(ROOT)))
@@ -149,8 +170,7 @@ require(player_placed_ores_text, "public boolean consume(BlockPos pos)", str(PLA
 require(player_placed_ores_text, "provenance.consume(pos.asLong())", str(PLAYER_PLACED_ORES.relative_to(ROOT)))
 
 # The uncapped Core ruleset has its own datapack boundary. The old progression/defaults.json
-# remains an Alpha-2 compatibility asset and must never be treated as the authoritative
-# infinite rules snapshot. Missing Core rules disable the provider; ambiguity fails closed.
+# remains a compatibility asset and must never become the infinite rules snapshot.
 mod_main_text = read_required(MOD_MAIN)
 core_rules_catalog_text = read_required(CORE_RULES_CATALOG)
 core_rules_reloader_text = read_required(CORE_RULES_RELOADER)
@@ -174,9 +194,7 @@ require(core_rules_reloader_text, "new ProgressionRulesSnapshot(", str(CORE_RULE
 require(core_rules_reloader_text, "CoreProgressionRulesCatalog.install(snapshot)", str(CORE_RULES_RELOADER.relative_to(ROOT)))
 forbid(core_rules_reloader_text, "progression/defaults.json", str(CORE_RULES_RELOADER.relative_to(ROOT)))
 
-# Level-derived Core Points are part of the authoritative rules snapshot. The
-# datapack must configure the policy explicitly; the compatibility-disabled
-# constructor must never become the live runtime economy by omission.
+# Level-derived Core Points are part of the authoritative rules snapshot.
 for needle in [
     '"level_core_points"',
     "POINT_POLICY_FIELDS",
@@ -193,4 +211,4 @@ for needle in [
 require(mod_main_text, "CoreProgressionRulesReloader", str(MOD_MAIN.relative_to(ROOT)))
 require(mod_main_text, "NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class)", str(MOD_MAIN.relative_to(ROOT)))
 
-print("Runtime scaffold validation: PASS (legacy runtime + parallel Core persistence/sync/mutations/semantic XP/mining anti-farm/rules reload verified)")
+print("Runtime scaffold validation: PASS (canonical player persistence + legacy migration inputs + Core sync/mutations/semantic XP/rules reload verified)")
