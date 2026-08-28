@@ -2,7 +2,7 @@
 
 Última auditoria de fechamento: **2026-08-28**.
 
-Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas` e `10.05 — Fauna, criaturas e análise de entidades` foram implementados, validados, integrados e auditados no mesmo dia.
+Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades` e `10.06 — Flora, árvores, fungos e cultivos` foram implementados, validados, integrados e auditados no mesmo dia.
 
 Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
@@ -18,11 +18,13 @@ Fechamento do Stage 10.04 auditado contra `main@8fdfff0c518fa40099b9459e279118cd
 
 Fechamento do Stage 10.05 auditado contra `main@33360ba2a44148ddce2d4f8c825066985eee9fb6`, após integração do PR #76. Os CIs pós-merge `33212930323` / Compendium Entities #38, `33212930426` / Compendium Discovery #115 e `33212930354` / RPG Skill Tree #998 fecharam GREEN; o CI completo incluiu validators, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final do commit.
 
+Fechamento funcional do Stage 10.06 auditado contra `main@68f694e98c068f3274cd1ecb6bd7588951833fb5`, após integração do PR #88. Os CIs pós-merge `33220942187` / Compendium Flora #35, `33220942179` / Compendium Entities #101, `33220942213` / Compendium Discovery #178 e `33220942238` / RPG Skill Tree #1061 fecharam GREEN; o CI completo incluiu todos os validators, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final do commit.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**11 / 75 subplanos concluídos formalmente.**
+**12 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `01-rpg-core/✅-01-player-state.md`
@@ -35,6 +37,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `10-compendio-natural/✅-03-modelo-dados-identidade.md`
 - `10-compendio-natural/✅-04-descoberta-progresso.md`
 - `10-compendio-natural/✅-05-fauna-entidades.md`
+- `10-compendio-natural/✅-06-flora-arvores-cultivos.md`
 
 Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`, contrato efetivamente implementado, evidência de verificação e `Acceptance: satisfied`.
 
@@ -52,8 +55,8 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 0 | 6 | EM ANDAMENTO / implementação paralela |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
-| 10 Compêndio Natural | 5 | 15 | EM ANDAMENTO |
-| **Total** | **11** | **75** | |
+| 10 Compêndio Natural | 6 | 15 | EM ANDAMENTO |
+| **Total** | **12** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -99,11 +102,11 @@ Nenhum gate final pode ser fechado enquanto existirem blockers de migração, co
 
 ### 10 — Compêndio Natural
 
-`✅-01-proveniencia-licencas.md`, `✅-02-inventario-modpack.md`, `✅-03-modelo-dados-identidade.md`, `✅-04-descoberta-progresso.md` e `✅-05-fauna-entidades.md` estão fechados. O Stage 10 possui proveniência/licenças auditadas, inventário reproduzível de modlist + registries runtime, modelo canônico de identidade/fatos/relações, catálogo imutável com publicação atômica, descoberta persistente/server-authoritative e agora uma camada técnica de entidades com cobertura integral de `ENTITY_TYPE`, separação espécie×instância, inspeção whitelisted, providers vanilla fail-soft e integração com o scaling canônico do RPG. A materialização do snapshot da instância completa do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `06-flora-arvores-cultivos.md`.
+`✅-01-proveniencia-licencas.md`, `✅-02-inventario-modpack.md`, `✅-03-modelo-dados-identidade.md`, `✅-04-descoberta-progresso.md`, `✅-05-fauna-entidades.md` e `✅-06-flora-arvores-cultivos.md` estão fechados. O Stage 10 possui proveniência/licenças auditadas, inventário reproduzível de modlist + registries runtime, modelo canônico de identidade/fatos/relações, catálogo imutável com publicação atômica, descoberta persistente/server-authoritative, camada técnica de entidades com cobertura integral de `ENTITY_TYPE` e agora uma camada técnica de flora/cultivos/árvores baseada em `BLOCK` registry, classificação fail-closed por evidência estável, agrupamento de árvores por espécie, diagnóstico explícito de ambiguidade e catálogo flora separado/publicado atomicamente no startup. Contratos opcionais TFC/Dynamic Trees estão presentes e degradam com segurança; o wiring direto de APIs públicas especializadas continua explicitamente no `10.11-F`, não é reivindicado como concluído pelo 10.06. A materialização do snapshot da instância completa do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `07-loot-dieta-reproducao-ecologia.md`.
 
 ## Evidência de regressão atual
 
-O fechamento mais recente do Stage 10.05 foi auditado em `main@33360ba2a44148ddce2d4f8c825066985eee9fb6`; CI `33212930323` / Compendium Entities #38, CI `33212930426` / Compendium Discovery #115 e CI `33212930354` / RPG Skill Tree #998 passaram os contratos do Compêndio, Core tests, validators RPG, generated-data drift/diff sanity, NeoForge build, verificação do JAR e dedicated-server smoke. O CI completo também publicou o artefato e o status final do commit com sucesso.
+O fechamento mais recente do Stage 10.06 foi auditado em `main@68f694e98c068f3274cd1ecb6bd7588951833fb5`; CI `33220942187` / Compendium Flora #35, CI `33220942179` / Compendium Entities #101, CI `33220942213` / Compendium Discovery #178 e CI `33220942238` / RPG Skill Tree #1061 passaram os contratos do Compêndio, Core tests, validators RPG, generated-data drift/diff sanity, NeoForge build, verificação do JAR e dedicated-server smoke. O CI completo também publicou o artefato e o status final do commit com sucesso.
 
 ## Convenção
 
