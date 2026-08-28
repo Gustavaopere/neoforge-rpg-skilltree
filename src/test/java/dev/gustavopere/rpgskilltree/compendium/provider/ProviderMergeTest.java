@@ -12,6 +12,7 @@ public final class ProviderMergeTest {
         higherPriorityWinsExplicitly();
         equalPriorityConflictIsDeterministicAndDiagnostic();
         inputOrderDoesNotChangeResult();
+        duplicateProviderIdentityIsRejected();
         System.out.println("ProviderMergeTest: PASS");
     }
 
@@ -49,6 +50,12 @@ public final class ProviderMergeTest {
         eq(first.diagnostics(), second.diagnostics());
     }
 
+    private static void duplicateProviderIdentityIsRejected() {
+        ProviderContribution first = contribution("same_provider", 50, 22.0D);
+        ProviderContribution second = contribution("same_provider", 50, 40.0D);
+        throwsIllegal(() -> ProviderMerger.merge(baseEntry(), List.of(first, second)));
+    }
+
     private static ProviderContribution contribution(String providerId, int priority, double health) {
         return new ProviderContribution(
             providerId,
@@ -78,6 +85,15 @@ public final class ProviderMergeTest {
             DiscoveryPolicy.OBSERVATION, VisibilityPolicy.HIDE_DETAILS_UNTIL_DISCOVERED,
             new CompendiumProvenance(FactSource.REGISTRY, "minecraft:zombie"), 1
         );
+    }
+
+    private static void throwsIllegal(Runnable action) {
+        try {
+            action.run();
+            throw new AssertionError("expected IllegalArgumentException");
+        } catch (IllegalArgumentException expected) {
+            // expected
+        }
     }
 
     private static void eq(Object expected, Object actual) {
