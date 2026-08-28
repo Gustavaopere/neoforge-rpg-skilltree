@@ -70,6 +70,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobAffixPersistenceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityBehaviorFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntitySelectionLifecyclePersistenceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingFoundationTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingCatalogTest
 python3 "$ROOT/scripts/verify-1211-resources.py"
 python3 "$ROOT/scripts/verify-node-effect-diagnostics.py"
 python3 "$ROOT/scripts/verify-quest-runtime.py"
@@ -77,3 +78,4 @@ python3 "$ROOT/scripts/verify-core-xp-adapters.py"
 python3 "$ROOT/scripts/verify-world-scaling-runtime.py"
 python3 "$ROOT/scripts/verify-entity-scaling-events.py"
 python3 "$ROOT/scripts/verify-canonical-player-runtime.py"
+python3 "$ROOT/scripts/verify-canonical-provider-bindings.py"
