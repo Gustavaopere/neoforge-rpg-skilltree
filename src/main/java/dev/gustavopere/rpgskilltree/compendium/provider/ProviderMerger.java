@@ -31,7 +31,13 @@ public final class ProviderMerger {
     public static ProviderResult merge(CompendiumEntry baseEntry, List<ProviderContribution> contributions) {
         Objects.requireNonNull(baseEntry, "baseEntry");
         List<ProviderContribution> ordered = new ArrayList<>(contributions == null ? List.of() : contributions);
-        ordered.forEach(contribution -> Objects.requireNonNull(contribution, "provider contribution"));
+        LinkedHashSet<String> providerIds = new LinkedHashSet<>();
+        for (ProviderContribution contribution : ordered) {
+            Objects.requireNonNull(contribution, "provider contribution");
+            if (!providerIds.add(contribution.providerId())) {
+                throw new IllegalArgumentException("duplicate compendium provider id: " + contribution.providerId());
+            }
+        }
         ordered.sort(CONTRIBUTION_ORDER);
 
         TreeMap<String, TreeMap<String, Candidate>> selectedFacts = new TreeMap<>();
