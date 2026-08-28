@@ -10,6 +10,7 @@ public final class EntityRegistryProviderTest {
     public static void main(String[] args) {
         mapsRegistryDescriptorWithoutConstructingEntity();
         keepsGenericFallbackUseful();
+        acceptsZeroSizedRegisteredEntityTypes();
         System.out.println("EntityRegistryProviderTest: PASS");
     }
 
@@ -48,6 +49,23 @@ public final class EntityRegistryProviderTest {
         EntitySpeciesFacts facts = EntityRegistryProvider.toSpeciesFacts(descriptor);
         eq(Map.of(), facts.baseAttributes());
         check(facts.gameplayCategories().contains(EntityGameplayCategory.OUTRO), "fallback category missing");
+    }
+
+    private static void acceptsZeroSizedRegisteredEntityTypes() {
+        EntityRegistryDescriptor descriptor = new EntityRegistryDescriptor(
+            "minecraft:marker",
+            "minecraft",
+            "entity.minecraft.marker",
+            "misc",
+            0.0,
+            0.0,
+            Set.of(EntityGameplayCategory.OUTRO),
+            Map.of()
+        );
+
+        EntitySpeciesFacts facts = EntityRegistryProvider.toSpeciesFacts(descriptor);
+        eq(0.0, facts.hitboxWidth());
+        eq(0.0, facts.hitboxHeight());
     }
 
     private static void check(boolean value, String message) {
