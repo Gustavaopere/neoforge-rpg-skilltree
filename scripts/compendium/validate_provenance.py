@@ -176,11 +176,26 @@ def validate_asset_record(raw: Any, index: int, errors: list[str]) -> str | None
     require_string(raw, "license", context, errors)
     if origin and origin not in ALLOWED_ASSET_ORIGINS:
         errors.append(f"{context}: unknown origin {origin!r}")
-    if origin in {"EXTERNAL_REUSE", "DERIVED"}:
+
+    if origin == "DERIVED":
         require_string(raw, "source", context, errors)
-        frozen = raw.get("source_sha") or raw.get("source_version")
+        source_sha = require_string(raw, "source_sha", context, errors)
+        if source_sha and not SHA40.fullmatch(source_sha):
+            errors.append(
+                f"{context}: DERIVED source_sha must be a frozen 40-character lowercase Git SHA, got {source_sha!r}"
+            )
+    elif origin == "EXTERNAL_REUSE":
+        require_string(raw, "source", context, errors)
+        source_sha = raw.get("source_sha")
+        source_version = raw.get("source_version")
+        frozen = source_sha or source_version
         if not isinstance(frozen, str) or not frozen.strip():
-            errors.append(f"{context}: {origin} requires source_sha or source_version")
+            errors.append(f"{context}: EXTERNAL_REUSE requires source_sha or source_version")
+        if isinstance(source_sha, str) and source_sha.strip() and not SHA40.fullmatch(source_sha.strip()):
+            errors.append(
+                f"{context}: source_sha must be a frozen 40-character lowercase Git SHA when supplied, got {source_sha!r}"
+            )
+
     return normalize_repo_path(path_value) if path_value else None
 
 
@@ -216,10 +231,6 @@ def validate_assets(root: Path, data: Any, errors: list[str]) -> None:
 
     for path in sorted(actual - registered):
         errors.append(f"untracked asset: {path} is not registered in ASSET_SOURCES.md")
-    for path in sorted(registered - actual):
-        # A more specific missing-file error is already emitted above; keep this
-        # branch silent to avoid duplicate diagnostics.
-        pass
 
 
 def imported_editorial_metadata(document: Any) -> dict[str, Any] | None:
