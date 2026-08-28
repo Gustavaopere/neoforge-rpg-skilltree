@@ -24,17 +24,9 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-/**
- * Optional Eidolon: Repraised adapter.
- *
- * The brazier interaction is only an intent. Progression is awarded after the
- * provider's own persisted state proves that a ritual was selected and reached
- * ritualDone before the brazier completed. Failed/extinguished rituals are not
- * rewarded.
- */
+/** Optional Eidolon ritual adapter with provider-confirmed completion semantics. */
 public final class EidolonRitualProgressionEvents {
     public static final String RITUAL_GATEWAY_DISCOVERY = "eidolon:ritual:completed";
-
     private static final Map<UUID, PendingRitual> PENDING = new HashMap<>();
     private static final long MAX_TRACKING_AGE_TICKS = 20L * 60L * 20L;
 
@@ -46,16 +38,10 @@ public final class EidolonRitualProgressionEvents {
         ItemStack held = player.getItemInHand(event.getHand());
         if (!(held.getItem() instanceof FlintAndSteelItem)) return;
         if (!(player.level().getBlockEntity(event.getPos()) instanceof BrazierTileEntity brazier)) return;
-
         CompoundTag state = snapshot(brazier, player.level());
         if (state.getBoolean("burning")) return;
-
         PENDING.put(player.getUUID(), new PendingRitual(
-            player.level().dimension(),
-            event.getPos().immutable(),
-            null,
-            player.level().getGameTime()
-        ));
+            player.level().dimension(), event.getPos().immutable(), null, player.level().getGameTime()));
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -63,7 +49,6 @@ public final class EidolonRitualProgressionEvents {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         PendingRitual pending = PENDING.get(player.getUUID());
         if (pending == null) return;
-
         long age = player.level().getGameTime() - pending.startedAt();
         if (!eligible(player) || age < 0L || age > MAX_TRACKING_AGE_TICKS || player.level().dimension() != pending.dimension()) {
             PENDING.remove(player.getUUID());
@@ -73,26 +58,18 @@ public final class EidolonRitualProgressionEvents {
             PENDING.remove(player.getUUID());
             return;
         }
-
         CompoundTag state = snapshot(brazier, player.level());
         boolean burning = state.getBoolean("burning");
         String ritualId = state.contains("ritual") ? state.getString("ritual") : "";
         boolean ritualDone = state.getBoolean("ritualDone");
-
         if (pending.ritualId() == null) {
-            if (!ritualId.isBlank()) {
-                PENDING.put(player.getUUID(), pending.withRitual(ritualId));
-            } else if (!burning && age > 5L) {
-                PENDING.remove(player.getUUID());
-            }
+            if (!ritualId.isBlank()) PENDING.put(player.getUUID(), pending.withRitual(ritualId));
+            else if (!burning && age > 5L) PENDING.remove(player.getUUID());
             return;
         }
-
         if (burning) return;
         PENDING.remove(player.getUUID());
-        if (!ritualDone) return;
-
-        confirm(player, pending.ritualId());
+        if (ritualDone) confirm(player, pending.ritualId());
     }
 
     @SubscribeEvent
@@ -104,25 +81,13 @@ public final class EidolonRitualProgressionEvents {
         String discoveryKey = "eidolon:ritual:first/" + ritualId;
         var before = PlayerProgressionRuntime.get(player);
         boolean firstCompletion = !before.discoveries().contains(discoveryKey);
-
-        Set<String> tags = classify(ritualId);
         EidolonRitualAction action = new EidolonRitualAction(
-            new ActionOrigin("eidolon:ritual", 0),
-            ritualId,
-            tags,
-            firstCompletion
-        );
-        var afterMastery = PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forEidolonRitual(action));
-        var discoveries = afterMastery.discoveries();
-        if (!discoveries.contains(RITUAL_GATEWAY_DISCOVERY)) {
-            discoveries = discoveries.add(RITUAL_GATEWAY_DISCOVERY);
-        }
-        if (firstCompletion && !discoveries.contains(discoveryKey)) {
-            discoveries = discoveries.add(discoveryKey);
-        }
-        if (discoveries != afterMastery.discoveries()) {
-            PlayerProgressionRuntime.set(player, afterMastery.withDiscoveries(discoveries));
-        }
+            new ActionOrigin("eidolon:ritual", 0), ritualId, classify(ritualId), firstCompletion);
+        Set<String> discoveries = new HashSet<>();
+        if (!before.discoveries().contains(RITUAL_GATEWAY_DISCOVERY)) discoveries.add(RITUAL_GATEWAY_DISCOVERY);
+        if (firstCompletion) discoveries.add(discoveryKey);
+        PlayerProgressionRuntime.awardMasteryAndDiscoveries(
+            player, MasteryPolicies.forEidolonRitual(action), discoveries);
     }
 
     private static Set<String> classify(String ritualId) {
@@ -143,8 +108,6 @@ public final class EidolonRitualProgressionEvents {
     }
 
     private record PendingRitual(ResourceKey<Level> dimension, BlockPos pos, String ritualId, long startedAt) {
-        PendingRitual withRitual(String id) {
-            return new PendingRitual(dimension, pos, id, startedAt);
-        }
+        PendingRitual withRitual(String id) { return new PendingRitual(dimension, pos, id, startedAt); }
     }
 }

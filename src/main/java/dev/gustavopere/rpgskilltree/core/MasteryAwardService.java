@@ -3,7 +3,7 @@ package dev.gustavopere.rpgskilltree.core;
 import java.util.Collection;
 import java.util.Objects;
 
-/** Applies normalized mastery awards to the immutable mastery state. */
+/** Applies normalized replay-safe mastery awards to the immutable mastery state. */
 public final class MasteryAwardService {
     private MasteryAwardService() {}
 
@@ -13,8 +13,7 @@ public final class MasteryAwardService {
 
         MasteryState current = state;
         for (MasteryAward award : awards) {
-            Objects.requireNonNull(award);
-            current = current.award(award.laneId(), award.experience());
+            current = current.award(Objects.requireNonNull(award));
         }
         return current;
     }

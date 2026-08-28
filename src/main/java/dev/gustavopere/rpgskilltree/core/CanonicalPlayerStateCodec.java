@@ -9,7 +9,7 @@ import java.io.UncheckedIOException;
 
 /** Versioned outer codec composing the Core and compatibility state codecs. */
 public final class CanonicalPlayerStateCodec {
-    public static final int CURRENT_VERSION = 1;
+    public static final int CURRENT_VERSION = 2;
     private static final int MAX_SECTION_BYTES = 16 * 1024 * 1024;
 
     private CanonicalPlayerStateCodec() {}
@@ -40,7 +40,7 @@ public final class CanonicalPlayerStateCodec {
         if (encoded == null) throw new IllegalArgumentException("encoded state must not be null");
         try (DataInputStream in = new DataInputStream(new ByteArrayInputStream(encoded))) {
             int version = in.readInt();
-            if (version != CURRENT_VERSION) {
+            if (version < 1 || version > CURRENT_VERSION) {
                 throw new IllegalArgumentException("unsupported canonical player state version: " + version);
             }
             byte[] core = readSection(in, "Core progression");

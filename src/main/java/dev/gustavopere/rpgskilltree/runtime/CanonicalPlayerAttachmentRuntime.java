@@ -24,7 +24,7 @@ public final class CanonicalPlayerAttachmentRuntime {
         }
 
         CanonicalPlayerAttachmentData migrated = migrationInputs(player);
-        player.setData(ModAttachments.CANONICAL_PLAYER, migrated);
+        write(player, migrated);
         removeLegacyCopies(player);
         return migrated;
     }
@@ -37,11 +37,40 @@ public final class CanonicalPlayerAttachmentRuntime {
         return migrationInputs(player);
     }
 
-    public static void write(ServerPlayer player, CanonicalPlayerAttachmentData attachment) {
+    static void write(ServerPlayer player, CanonicalPlayerAttachmentData attachment) {
         Objects.requireNonNull(player, "player");
         Objects.requireNonNull(attachment, "attachment");
         player.setData(ModAttachments.CANONICAL_PLAYER, attachment);
         removeLegacyCopies(player);
+    }
+
+    static boolean commitMutation(
+        ServerPlayer player,
+        CanonicalPlayerAttachmentData before,
+        CanonicalPlayerAttachmentData after,
+        ProgressionMutationEvent.Section section
+    ) {
+        Objects.requireNonNull(player, "player");
+        Objects.requireNonNull(before, "before");
+        Objects.requireNonNull(after, "after");
+        Objects.requireNonNull(section, "section");
+        if (before.equals(after)) {
+            return false;
+        }
+
+        CanonicalPlayerAttachmentData current = readOrMigrate(player);
+        if (!current.equals(before)) {
+            throw new IllegalStateException("stale canonical progression mutation");
+        }
+
+        write(player, after);
+        ProgressionMutationEvents.publish(new ProgressionMutationEvent(
+            player.getUUID(),
+            section,
+            before,
+            after
+        ));
+        return true;
     }
 
     private static CanonicalPlayerAttachmentData migrationInputs(ServerPlayer player) {
