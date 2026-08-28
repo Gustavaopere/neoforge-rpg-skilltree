@@ -2,7 +2,7 @@
 
 Última auditoria de fechamento: **2026-08-28**.
 
-Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças` e `10.02 — Inventário do modpack e cobertura de conteúdo` foram implementados, validados, integrados e auditados no mesmo dia.
+Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo` e `10.03 — Modelo de dados, identidade e providers` foram implementados, validados, integrados e auditados no mesmo dia.
 
 Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
@@ -10,11 +10,13 @@ Fechamento do Stage 10.01 auditado contra `main@b4d84e9078b27349cc691ec2875574ff
 
 Fechamento do Stage 10.02 auditado contra `main@259eb2d4310f5c7c84dcf0db1a5c3c5f6522df1d`, com CI pós-merge `33190772894` / run #805 GREEN completo.
 
+Fechamento do Stage 10.03 auditado contra `main@112d9266de9ece584f2f58adff03ffb6c8776ca6`, com CI pós-merge `33195224667` / run #858 GREEN completo.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**7 / 75 subplanos concluídos formalmente.**
+**8 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `03-skill-tree-perks/✅-05-respec.md`
@@ -23,6 +25,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `06-integrations/✅-05-goety-malum-eidolon.md`
 - `10-compendio-natural/✅-01-proveniencia-licencas.md`
 - `10-compendio-natural/✅-02-inventario-modpack.md`
+- `10-compendio-natural/✅-03-modelo-dados-identidade.md`
 
 Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`, contrato efetivamente implementado, evidência de verificação e `Acceptance: satisfied`.
 
@@ -40,8 +43,8 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 0 | 6 | EM ANDAMENTO / implementação paralela |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
-| 10 Compêndio Natural | 2 | 15 | EM ANDAMENTO |
-| **Total** | **7** | **75** | |
+| 10 Compêndio Natural | 3 | 15 | EM ANDAMENTO |
+| **Total** | **8** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -87,11 +90,11 @@ Nenhum gate final pode ser fechado enquanto existirem blockers de migração, co
 
 ### 10 — Compêndio Natural
 
-`✅-01-proveniencia-licencas.md` e `✅-02-inventario-modpack.md` estão fechados. O Stage 10 possui proveniência/licenças auditadas e agora também um pipeline reproduzível de modlist + registries runtime, cobertura explícita (`AUTO/CURATED/ADAPTER/IGNORED/ERROR`), drift/orphans e relatórios por namespace. A materialização do snapshot da instância completa do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `03-modelo-dados-identidade.md`.
+`✅-01-proveniencia-licencas.md`, `✅-02-inventario-modpack.md` e `✅-03-modelo-dados-identidade.md` estão fechados. O Stage 10 possui proveniência/licenças auditadas, inventário reproduzível de modlist + registries runtime e agora um modelo canônico de identidade/fatos/relações, catálogo imutável com publicação atômica, merge determinístico de providers e schemas data-driven versionados. A materialização do snapshot da instância completa do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `04-descoberta-progresso.md`.
 
 ## Evidência de regressão atual
 
-O CI pós-merge de `main@259eb2d4310f5c7c84dcf0db1a5c3c5f6522df1d` foi `33190772894` / run #805: Core tests, gates do Compêndio, validators, NeoForge build, verificação do JAR, upload do artefato, dedicated-server smoke e status final passaram.
+O CI pós-merge de `main@112d9266de9ece584f2f58adff03ffb6c8776ca6` foi `33195224667` / run #858: Core tests, todos os gates do Compêndio incluindo `Compendium model and provider tests`, validators, NeoForge build, verificação do JAR, upload do artefato, dedicated-server smoke e status final passaram.
 
 ## Convenção
 
