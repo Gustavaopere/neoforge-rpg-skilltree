@@ -16,8 +16,8 @@ import net.minecraft.server.level.ServerPlayer;
  * Stable server-side integration surface for quest, NPC and narrative addons.
  *
  * <p>Consumers query immutable snapshots, evaluate declarative conditions and submit
- * typed replay-safe rewards. Attachments, codecs and balance-rule catalogs remain
- * implementation details of the RPG runtime.</p>
+ * typed replay-safe rewards. Attachments, persistence formats and balance-rule catalogs
+ * remain implementation details of the RPG runtime.</p>
  */
 public final class RpgQuestProgressionApi {
     private RpgQuestProgressionApi() {}
