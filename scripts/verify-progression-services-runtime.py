@@ -61,6 +61,12 @@ require(core_runtime, "CanonicalPlayerAttachmentRuntime.commitMutation(", CORE_R
 forbid(runtime, "public static void set(ServerPlayer player, ProgressionState state)", RUNTIME)
 require(runtime, "awardMasteryAndDiscoveries(", RUNTIME)
 
+# XP removal is a distinct trusted-server rollback path, never a negative ordinary grant.
+require(core_runtime, "public static CoreProgressionState rollbackXp(", CORE_RUNTIME)
+require(core_runtime, "CoreProgressionMutationService.rollbackXp(", CORE_RUNTIME)
+forbid(core_runtime, "grantXp(player, -", CORE_RUNTIME)
+forbid(core_runtime, "grantXp(current, -", CORE_RUNTIME)
+
 # Provider adapters may request canonical mutations, but may not write storage themselves.
 for path, text in ((EIDOLON_RITUAL, ritual), (EIDOLON_ALCHEMY, alchemy)):
     forbid(text, "PlayerProgressionRuntime.set(", path)
