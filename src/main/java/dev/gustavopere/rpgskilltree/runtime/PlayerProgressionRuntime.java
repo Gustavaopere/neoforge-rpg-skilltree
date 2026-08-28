@@ -4,6 +4,7 @@ import dev.gustavopere.rpgskilltree.core.BossIdentity;
 import dev.gustavopere.rpgskilltree.core.BossProgressionResult;
 import dev.gustavopere.rpgskilltree.core.BossRewardDefinition;
 import dev.gustavopere.rpgskilltree.core.BossRewardKeyPolicy;
+import dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CharacterLevelCurve;
 import dev.gustavopere.rpgskilltree.core.CharacterXpAward;
 import dev.gustavopere.rpgskilltree.core.DiscoveryProgressionResult;
@@ -27,7 +28,7 @@ public final class PlayerProgressionRuntime {
 
     public static ProgressionState get(ServerPlayer player) {
         Objects.requireNonNull(player);
-        return player.getData(ModAttachments.PROGRESSION);
+        return CanonicalPlayerAttachmentRuntime.readOrMigrate(player).compatibilityProgression();
     }
 
     public static ProgressionState applyXp(ServerPlayer player, CharacterXpAward award) {
@@ -225,7 +226,8 @@ public final class PlayerProgressionRuntime {
     public static void set(ServerPlayer player, ProgressionState state) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(state);
-        player.setData(ModAttachments.PROGRESSION, state);
+        CanonicalPlayerAttachmentData current = CanonicalPlayerAttachmentRuntime.readOrMigrate(player);
+        CanonicalPlayerAttachmentRuntime.write(player, current.withCompatibilityProgression(state));
         AttributeNodeEffectRuntime.refresh(player, state);
         ModNetworking.syncToOwner(player, state);
     }

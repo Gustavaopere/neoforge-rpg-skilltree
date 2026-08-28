@@ -4,6 +4,7 @@ import dev.gustavopere.rpgskilltree.core.AntiFarmService;
 import dev.gustavopere.rpgskilltree.core.AttributeId;
 import dev.gustavopere.rpgskilltree.core.AttributeRankCostPolicy;
 import dev.gustavopere.rpgskilltree.core.AttributeRankMutationService;
+import dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CorePointTransaction;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionBootstrap;
@@ -24,13 +25,7 @@ import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import java.util.Objects;
 import net.minecraft.server.level.ServerPlayer;
 
-/**
- * NeoForge boundary for the uncapped Core progression beside the legacy runtime.
- *
- * <p>This class deliberately requires an explicit rules snapshot for low-level
- * mutation overloads. Public gameplay boundaries that must be server-authoritative
- * resolve their rules from the installed Core rules catalog.</p>
- */
+/** NeoForge boundary for the uncapped Core section of the canonical player RPG state. */
 public final class CorePlayerProgressionRuntime {
     private CorePlayerProgressionRuntime() {}
 
@@ -41,28 +36,12 @@ public final class CorePlayerProgressionRuntime {
         Objects.requireNonNull(player);
         Objects.requireNonNull(rules);
 
-        if (player.hasData(ModAttachments.CORE_PROGRESSION)) {
-            CoreProgressionAttachmentData existing = player.getData(ModAttachments.CORE_PROGRESSION);
-            if (existing.isInitialized()) {
-                return CoreProgressionBootstrap.resume(existing.state().orElseThrow(), rules);
-            }
+        CanonicalPlayerAttachmentData current = CanonicalPlayerAttachmentRuntime.readOrMigrate(player);
+        CanonicalPlayerAttachmentData initialized = current.initializeCore(rules);
+        if (initialized != current) {
+            CanonicalPlayerAttachmentRuntime.write(player, initialized);
         }
-
-        final CoreProgressionState initialized;
-        if (player.hasData(ModAttachments.PROGRESSION)) {
-            initialized = CoreProgressionBootstrap.migrateDecodedLegacy(
-                player.getData(ModAttachments.PROGRESSION),
-                rules
-            );
-        } else {
-            initialized = CoreProgressionBootstrap.newPlayer(rules);
-        }
-
-        player.setData(
-            ModAttachments.CORE_PROGRESSION,
-            CoreProgressionAttachmentData.initialized(initialized)
-        );
-        return initialized;
+        return initialized.coreProgression().state().orElseThrow();
     }
 
     public static CoreProgressionState grantXp(
@@ -246,19 +225,9 @@ public final class CorePlayerProgressionRuntime {
         ServerPlayer player,
         ProgressionRulesSnapshot rules
     ) {
-        if (player.hasData(ModAttachments.CORE_PROGRESSION)) {
-            CoreProgressionAttachmentData existing = player.getData(ModAttachments.CORE_PROGRESSION);
-            if (existing.isInitialized()) {
-                return CoreProgressionBootstrap.resume(existing.state().orElseThrow(), rules);
-            }
-        }
-        if (player.hasData(ModAttachments.PROGRESSION)) {
-            return CoreProgressionBootstrap.migrateDecodedLegacy(
-                player.getData(ModAttachments.PROGRESSION),
-                rules
-            );
-        }
-        return CoreProgressionBootstrap.newPlayer(rules);
+        CanonicalPlayerAttachmentData observed = CanonicalPlayerAttachmentRuntime.observe(player);
+        CanonicalPlayerAttachmentData initialized = observed.initializeCore(rules);
+        return initialized.coreProgression().state().orElseThrow();
     }
 
     public static void set(
@@ -270,10 +239,11 @@ public final class CorePlayerProgressionRuntime {
         Objects.requireNonNull(state);
         Objects.requireNonNull(rules);
         CoreProgressionBootstrap.resume(state, rules);
-        player.setData(
-            ModAttachments.CORE_PROGRESSION,
+        CanonicalPlayerAttachmentData current = CanonicalPlayerAttachmentRuntime.readOrMigrate(player);
+        CanonicalPlayerAttachmentData next = current.withCoreProgression(
             CoreProgressionAttachmentData.initialized(state)
         );
+        CanonicalPlayerAttachmentRuntime.write(player, next);
         ModNetworking.syncCoreToOwner(player, state, rules);
     }
 }

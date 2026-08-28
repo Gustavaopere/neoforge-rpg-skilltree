@@ -51,6 +51,8 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.LevelCorePointAwardPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MainPerkBudgetProgressionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRewardServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionQueryServiceTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalPlayerStateFoundationTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentDataTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalEffectiveStatsFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.WorldEntityLevelFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.TerritoryGridTest
@@ -67,3 +69,4 @@ python3 "$ROOT/scripts/verify-quest-runtime.py"
 python3 "$ROOT/scripts/verify-core-xp-adapters.py"
 python3 "$ROOT/scripts/verify-world-scaling-runtime.py"
 python3 "$ROOT/scripts/verify-entity-scaling-events.py"
+python3 "$ROOT/scripts/verify-canonical-player-runtime.py"
