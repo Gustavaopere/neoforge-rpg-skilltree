@@ -39,9 +39,9 @@ public final class QuestProgressionHooksFoundationTest {
 
         masterySource.put("fire", 999);
         eq(120L, snapshot.masteryExperience("fire"));
-        expect(UnsupportedOperationException.class, () -> snapshot.masteryExperience().put("ice", 1));
+        expect(UnsupportedOperationException.class, () -> snapshot.masteryExperience().put("ice", 1L));
         expect(UnsupportedOperationException.class, () -> snapshot.unlockedClassIds().add("warrior"));
-        expect(UnsupportedOperationException.class, () -> snapshot.perkRanks().put("rpgskilltree:a9999", 1));
+        expect(UnsupportedOperationException.class, () -> snapshot.perkRanks().put("rpgskilltree:a9999", 1L));
     }
 
     private static void declarativeConditionsCoverCoreQuestFacts() {
