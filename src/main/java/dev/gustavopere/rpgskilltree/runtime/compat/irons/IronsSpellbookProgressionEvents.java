@@ -21,6 +21,8 @@ import net.neoforged.neoforge.common.util.FakePlayer;
 
 /** Optional Iron's Spells 'n Spellbooks adapter. Loaded only when Iron's is present. */
 public final class IronsSpellbookProgressionEvents {
+    private static final String BLACK_ARCANA_PREFIX = "black_arcana:";
+
     private IronsSpellbookProgressionEvents() {}
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -33,9 +35,9 @@ public final class IronsSpellbookProgressionEvents {
     }
 
     /**
-     * Makes permanent spellbook inscription a learned-magic progression mechanic.
-     * Scrolls intentionally remain usable after Arcane Awakening so they form the practice
-     * path needed to qualify for advanced inscription instead of creating a progression deadlock.
+     * Makes permanent native Iron's spellbook inscription a learned-magic progression mechanic.
+     * Externally-owned Black Arcana spells keep their own progression contract instead of being
+     * evaluated as native Iron's content by school/level heuristics.
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onInscribeSpell(InscribeSpellEvent event) {
@@ -47,6 +49,8 @@ public final class IronsSpellbookProgressionEvents {
         }
 
         var spellData = event.getSpellData();
+        if (externallyOwnsProgression(spellData.getSpell().getSpellId())) return;
+
         ResourceLocation schoolId = spellData.getSpell().getSchoolType().getId();
         String discipline = normalizeSchool(schoolId);
         var state = PlayerProgressionRuntime.get(player);
@@ -81,6 +85,7 @@ public final class IronsSpellbookProgressionEvents {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         if (player instanceof FakePlayer) return;
         if (!countsForMastery(event.getCastSource())) return;
+        if (externallyOwnsProgression(event.getSpellId())) return;
 
         String discipline = normalizeSchool(event.getSchoolType().getId());
         SpellAction action = new SpellAction(
@@ -96,6 +101,10 @@ public final class IronsSpellbookProgressionEvents {
 
     static boolean countsForMastery(CastSource source) {
         return source == CastSource.SPELLBOOK || source == CastSource.SCROLL;
+    }
+
+    static boolean externallyOwnsProgression(String spellId) {
+        return spellId != null && spellId.startsWith(BLACK_ARCANA_PREFIX);
     }
 
     static String normalizeSchool(ResourceLocation schoolId) {
