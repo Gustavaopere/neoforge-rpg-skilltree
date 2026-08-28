@@ -9,7 +9,7 @@ entries rather than silently deleting them.
 from __future__ import annotations
 
 import argparse
-from collections import Counter, defaultdict
+from collections import Counter
 import json
 from pathlib import Path
 import sys
@@ -242,14 +242,30 @@ def build_summary(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
         kind = entry.get("kind")
         if kind in SUMMARY_KIND_KEYS:
             row[SUMMARY_KIND_KEYS[kind]] += 1
-        state = entry["coverage_state"]
-        row[state] += 1
+        row[entry["coverage_state"]] += 1
     return [by_namespace[key] for key in sorted(by_namespace)]
 
 
 def coverage_totals(entries: list[dict[str, Any]]) -> dict[str, int]:
     counts = Counter(item["coverage_state"] for item in entries)
     return {state: counts.get(state, 0) for state in STATES}
+
+
+def detailed_groups(entries: list[dict[str, Any]]) -> dict[str, dict[str, list[dict[str, Any]]]]:
+    grouped: dict[str, dict[str, list[dict[str, Any]]]] = {}
+    for kind in KINDS:
+        grouped[kind] = {}
+    for entry in entries:
+        kind = entry.get("kind")
+        if kind not in KINDS:
+            continue
+        namespace = entry.get("namespace") if isinstance(entry.get("namespace"), str) else "__invalid__"
+        namespace = namespace.strip() or "__invalid__"
+        grouped[kind].setdefault(namespace, []).append(entry)
+    for namespaces in grouped.values():
+        for values in namespaces.values():
+            values.sort(key=lambda item: item["inventory_key"])
+    return grouped
 
 
 def render_markdown(payload: dict[str, Any]) -> str:
@@ -274,18 +290,45 @@ def render_markdown(payload: dict[str, Any]) -> str:
             )
         )
 
+    comparison = payload.get("modlist_comparison")
+    if comparison is not None:
+        lines.extend(["", "## Modlist x runtime", ""])
+        for key in ("listed_but_not_loaded", "loaded_but_not_listed"):
+            values = comparison[key]
+            lines.append(f"- `{key}`: " + (", ".join(f"`{value}`" for value in values) if values else "nenhum"))
+
     drift_payload = payload["drift"]
     lines.extend(["", "## Drift", ""])
     for key in ("added_mods", "removed_mods", "added_registry_entries", "removed_registry_entries", "orphaned_registry_entries"):
         values = drift_payload[key]
         lines.append(f"- `{key}`: " + (", ".join(f"`{value}`" for value in values) if values else "nenhum"))
 
+    groups = detailed_groups(payload["entries"])
+    lines.extend(["", "## Listas detalhadas", ""])
+    for kind in KINDS:
+        lines.append(f"### {kind}")
+        lines.append("")
+        namespaces = groups[kind]
+        if not namespaces:
+            lines.append("Nenhuma entrada.")
+            lines.append("")
+            continue
+        for namespace in sorted(namespaces):
+            lines.append(f"#### `{namespace}`")
+            lines.append("")
+            for entry in namespaces[namespace]:
+                lines.append(
+                    f"- `{entry['resource_location']}` — **{entry['coverage_state']}** — "
+                    f"`{entry['translation_key']}`"
+                )
+            lines.append("")
+
     errors = [entry for entry in payload["entries"] if entry["coverage_state"] == "ERROR"]
     if errors:
-        lines.extend(["", "## Erros de inventário", ""])
+        lines.extend(["## Erros de inventário", ""])
         for entry in errors:
             lines.append(f"- `{entry['inventory_key']}` — {entry['coverage_reason']}")
-    lines.append("")
+        lines.append("")
     return "\n".join(lines)
 
 
