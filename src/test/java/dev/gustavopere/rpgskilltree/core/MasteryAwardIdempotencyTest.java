@@ -6,49 +6,67 @@ import java.util.Objects;
 
 public final class MasteryAwardIdempotencyTest {
     public static void main(String[] args) {
-        identicalSourceReplayIsANoOp();
-        conflictingSourceReplayFailsClosed();
+        identicalReplayKeyIsANoOp();
+        conflictingReplayKeyFailsClosed();
         batchDuplicatesDoNotDoubleAward();
+        repeatableProvenanceStillAccumulates();
         receiptsSurviveProgressionCodecRoundTrip();
         System.out.println("MasteryAwardIdempotencyTest: PASS");
     }
 
-    private static void identicalSourceReplayIsANoOp() {
-        MasteryAward award = new MasteryAward("martial:melee", 25, "semantic:combat/hit/0001");
+    private static void identicalReplayKeyIsANoOp() {
+        MasteryAward award = MasteryAward.replaySafe(
+            "martial:melee", 25, "minecraft:player_attack", "semantic:combat/hit/0001");
         MasteryState first = MasteryAwardService.apply(MasteryState.empty(), List.of(award));
         eq(25, first.experience("martial:melee"));
-        eq(new MasteryAwardReceipt("martial:melee", 25), first.creditedAwards().get(award.sourceId()));
+        eq(new MasteryAwardReceipt("martial:melee", 25), first.creditedAwards().get(award.replayKey()));
 
         MasteryState replay = MasteryAwardService.apply(first, List.of(award));
         same(first, replay);
         eq(25, replay.experience("martial:melee"));
     }
 
-    private static void conflictingSourceReplayFailsClosed() {
-        MasteryAward firstAward = new MasteryAward("martial:melee", 25, "semantic:combat/hit/0002");
+    private static void conflictingReplayKeyFailsClosed() {
+        MasteryAward firstAward = MasteryAward.replaySafe(
+            "martial:melee", 25, "minecraft:player_attack", "semantic:combat/hit/0002");
         MasteryState state = MasteryAwardService.apply(MasteryState.empty(), List.of(firstAward));
 
         expect(IllegalArgumentException.class, () -> MasteryAwardService.apply(
             state,
-            List.of(new MasteryAward("martial:melee", 30, firstAward.sourceId()))
+            List.of(MasteryAward.replaySafe(
+                "martial:melee", 30, "minecraft:player_attack", firstAward.replayKey()))
         ));
         expect(IllegalArgumentException.class, () -> MasteryAwardService.apply(
             state,
-            List.of(new MasteryAward("arcane:fire", 25, firstAward.sourceId()))
+            List.of(MasteryAward.replaySafe(
+                "arcane:fire", 25, "minecraft:player_attack", firstAward.replayKey()))
         ));
     }
 
     private static void batchDuplicatesDoNotDoubleAward() {
-        MasteryAward award = new MasteryAward("arcane:fire", 40, "semantic:spell/cast/0001");
+        MasteryAward award = MasteryAward.replaySafe(
+            "arcane:fire", 40, "irons_spellbooks:fireball", "semantic:spell/cast/0001");
         MasteryState state = MasteryAwardService.apply(MasteryState.empty(), List.of(award, award));
         eq(40, state.experience("arcane:fire"));
         eq(1, state.creditedAwards().size());
     }
 
+    private static void repeatableProvenanceStillAccumulates() {
+        MasteryState state = MasteryAwardService.apply(MasteryState.empty(), List.of(
+            new MasteryAward("magic:casting", 2, "irons_spellbooks:fireball"),
+            new MasteryAward("irons:fire", 5, "irons_spellbooks:fireball"),
+            new MasteryAward("irons:fire", 3, "addon:flame_wave")
+        ));
+        eq(2, state.experience("magic:casting"));
+        eq(8, state.experience("irons:fire"));
+        eq(0, state.creditedAwards().size());
+    }
+
     private static void receiptsSurviveProgressionCodecRoundTrip() {
         MasteryState mastery = MasteryAwardService.apply(
             MasteryState.of(Map.of("legacy:lane", 7)),
-            List.of(new MasteryAward("arcane:fire", 55, "semantic:spell/cast/roundtrip"))
+            List.of(MasteryAward.replaySafe(
+                "arcane:fire", 55, "irons_spellbooks:fireball", "semantic:spell/cast/roundtrip"))
         );
         ProgressionState source = ProgressionState.empty().withMastery(mastery);
         ProgressionState decoded = ProgressionStateCodec.decode(ProgressionStateCodec.encode(source));
