@@ -7,46 +7,46 @@ import java.util.Optional;
 public final class EntityScalingAttachmentData {
     private static final EntityScalingAttachmentData UNINITIALIZED = new EntityScalingAttachmentData(Optional.empty());
 
-    private final Optional<EntityScalingSnapshot> snapshot;
+    private final Optional<EntityScalingState> state;
 
-    private EntityScalingAttachmentData(Optional<EntityScalingSnapshot> snapshot) {
-        this.snapshot = Objects.requireNonNull(snapshot, "snapshot");
+    private EntityScalingAttachmentData(Optional<EntityScalingState> state) {
+        this.state = Objects.requireNonNull(state, "state");
     }
 
     public static EntityScalingAttachmentData uninitialized() {
         return UNINITIALIZED;
     }
 
-    public static EntityScalingAttachmentData initialized(EntityScalingSnapshot snapshot) {
-        return new EntityScalingAttachmentData(Optional.of(Objects.requireNonNull(snapshot, "snapshot")));
+    public static EntityScalingAttachmentData initialized(EntityScalingState state) {
+        return new EntityScalingAttachmentData(Optional.of(Objects.requireNonNull(state, "state")));
     }
 
     public boolean initialized() {
-        return snapshot.isPresent();
+        return state.isPresent();
     }
 
-    public Optional<EntityScalingSnapshot> snapshot() {
-        return snapshot;
+    public Optional<EntityScalingState> state() {
+        return state;
     }
 
-    public EntityScalingSnapshot requireSnapshot() {
-        return snapshot.orElseThrow(() -> new IllegalStateException("entity scaling attachment is not initialized"));
+    public EntityScalingState requireState() {
+        return state.orElseThrow(() -> new IllegalStateException("entity scaling attachment is not initialized"));
     }
 
     @Override
     public boolean equals(Object other) {
         return this == other
             || other instanceof EntityScalingAttachmentData data
-            && snapshot.equals(data.snapshot);
+            && state.equals(data.state);
     }
 
     @Override
     public int hashCode() {
-        return snapshot.hashCode();
+        return state.hashCode();
     }
 
     @Override
     public String toString() {
-        return initialized() ? "EntityScalingAttachmentData[" + requireSnapshot() + "]" : "EntityScalingAttachmentData[uninitialized]";
+        return initialized() ? "EntityScalingAttachmentData[" + requireState() + "]" : "EntityScalingAttachmentData[uninitialized]";
     }
 }
