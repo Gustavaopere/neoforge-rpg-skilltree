@@ -39,11 +39,12 @@ public final class CanonicalPlayerAttachmentDataCodec {
 
     public static CanonicalPlayerAttachmentData decode(byte[] encoded) {
         if (encoded == null) throw new IllegalArgumentException("encoded attachment must not be null");
-        try (DataInputStream in = new DataInputStream(new ByteArrayInputStream(encoded))) {
+        byte[] current = CanonicalPlayerAttachmentMigrations.toCurrent(encoded);
+        try (DataInputStream in = new DataInputStream(new ByteArrayInputStream(current))) {
             int version = in.readInt();
             if (version != CURRENT_VERSION) {
                 throw new IllegalArgumentException(
-                    "unsupported canonical player attachment version: " + version
+                    "canonical migration registry did not normalize payload to current version: " + version
                 );
             }
             boolean legacySource = in.readBoolean();
