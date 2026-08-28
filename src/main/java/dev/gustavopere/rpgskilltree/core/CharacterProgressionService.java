@@ -51,18 +51,7 @@ public final class CharacterProgressionService {
         long targetLevel = resolveLevel(curve, totalXp, state.level());
         BigInteger targetThreshold = threshold(curve, targetLevel);
         BigInteger remainder = totalXp.subtract(targetThreshold);
-        if (remainder.signum() < 0) {
-            throw new IllegalStateException("curve resolution produced a negative XP remainder");
-        }
-
-        if (targetLevel < Long.MAX_VALUE) {
-            BigInteger targetCost = levelCost(curve, targetLevel, targetThreshold);
-            if (remainder.compareTo(targetCost) >= 0) {
-                throw new IllegalStateException("curve resolution did not select the highest reached level");
-            }
-        } else if (remainder.signum() != 0) {
-            throw new ArithmeticException("cannot persist XP beyond Long.MAX_VALUE level");
-        }
+        validateResolvedPosition(curve, targetLevel, targetThreshold, remainder);
 
         final long partialXp;
         try {
@@ -74,6 +63,57 @@ public final class CharacterProgressionService {
         CharacterProgressionState next = new CharacterProgressionState(targetLevel, partialXp);
         long gained = targetLevel - state.level();
         return new CharacterXpGrantResult(state, next, amount, gained);
+    }
+
+    /**
+     * Removes already-earned RPG XP through an explicit privileged path.
+     *
+     * <p>This is intentionally separate from ordinary XP grants: gameplay rewards never
+     * accept negative XP. Rollback resolves the destination by binary search over the
+     * same cumulative curve and therefore does not iterate once per lost level.</p>
+     */
+    public static CharacterXpRollbackResult rollbackXp(
+        CharacterProgressionState state,
+        long amount,
+        InfiniteLevelCurve curve
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(curve);
+        if (amount < 0L) throw new IllegalArgumentException("XP rollback must be non-negative");
+
+        BigInteger zeroThreshold = threshold(curve, 0L);
+        if (zeroThreshold.signum() != 0) {
+            throw new IllegalArgumentException("Level 0 cumulative XP must be zero");
+        }
+
+        BigInteger currentThreshold = threshold(curve, state.level());
+        validateStatePosition(state, curve, currentThreshold);
+        if (amount == 0L) {
+            return new CharacterXpRollbackResult(state, state, 0L, 0L);
+        }
+
+        BigInteger currentTotalXp = currentThreshold.add(BigInteger.valueOf(state.xpIntoLevel()));
+        BigInteger removed = BigInteger.valueOf(amount);
+        if (removed.compareTo(currentTotalXp) > 0) {
+            throw new IllegalArgumentException("XP rollback cannot reduce total RPG XP below zero");
+        }
+
+        BigInteger targetTotalXp = currentTotalXp.subtract(removed);
+        long targetLevel = resolveLevelAtOrBelow(curve, targetTotalXp, state.level());
+        BigInteger targetThreshold = threshold(curve, targetLevel);
+        BigInteger remainder = targetTotalXp.subtract(targetThreshold);
+        validateResolvedPosition(curve, targetLevel, targetThreshold, remainder);
+
+        final long partialXp;
+        try {
+            partialXp = remainder.longValueExact();
+        } catch (ArithmeticException overflow) {
+            throw new ArithmeticException("partial XP exceeds the persisted long representation");
+        }
+
+        CharacterProgressionState next = new CharacterProgressionState(targetLevel, partialXp);
+        long lost = state.level() - targetLevel;
+        return new CharacterXpRollbackResult(state, next, amount, lost);
     }
 
     private static void validateStatePosition(
@@ -93,9 +133,47 @@ public final class CharacterProgressionService {
         }
     }
 
+    private static void validateResolvedPosition(
+        InfiniteLevelCurve curve,
+        long targetLevel,
+        BigInteger targetThreshold,
+        BigInteger remainder
+    ) {
+        if (remainder.signum() < 0) {
+            throw new IllegalStateException("curve resolution produced a negative XP remainder");
+        }
+        if (targetLevel < Long.MAX_VALUE) {
+            BigInteger targetCost = levelCost(curve, targetLevel, targetThreshold);
+            if (remainder.compareTo(targetCost) >= 0) {
+                throw new IllegalStateException("curve resolution did not select the highest reached level");
+            }
+        } else if (remainder.signum() != 0) {
+            throw new ArithmeticException("cannot persist XP beyond Long.MAX_VALUE level");
+        }
+    }
+
     private static long resolveLevel(InfiniteLevelCurve curve, BigInteger totalXp, long minimumLevel) {
         long low = minimumLevel;
         long high = Long.MAX_VALUE;
+        while (low < high) {
+            long delta = high - low;
+            long mid = low + (delta >>> 1) + (delta & 1L);
+            if (threshold(curve, mid).compareTo(totalXp) <= 0) {
+                low = mid;
+            } else {
+                high = mid - 1L;
+            }
+        }
+        return low;
+    }
+
+    private static long resolveLevelAtOrBelow(
+        InfiniteLevelCurve curve,
+        BigInteger totalXp,
+        long maximumLevel
+    ) {
+        long low = 0L;
+        long high = maximumLevel;
         while (low < high) {
             long delta = high - low;
             long mid = low + (delta >>> 1) + (delta & 1L);
