@@ -2,7 +2,9 @@
   "id": "rpgskilltree:bridge_cleric_05",
   "bonuses": [],
   "requirements": [],
-  "directConnections": [],
+  "directConnections": [
+    "rpgskilltree:bridge_cleric_06"
+  ],
   "longConnections": [],
   "oneWayConnections": [],
   "tags": [

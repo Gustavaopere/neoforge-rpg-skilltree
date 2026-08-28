@@ -1,23 +1,23 @@
 {
-  "id": "rpgskilltree:bridge_industrialist_01",
+  "id": "rpgskilltree:bridge_paladin_06",
   "bonuses": [],
   "requirements": [],
   "directConnections": [
-    "rpgskilltree:bridge_industrialist_02"
+    "rpgskilltree:bridge_paladin_07"
   ],
   "longConnections": [],
   "oneWayConnections": [],
   "tags": [
-    "rpgskilltree:bridge/industrialist",
-    "rpgskilltree:domain/engineering",
-    "rpgskilltree:domain/mining",
+    "rpgskilltree:bridge/paladin",
+    "rpgskilltree:domain/healing",
+    "rpgskilltree:domain/vitality",
     "rpgskilltree:kind/hybrid"
   ],
   "backgroundTexture": "skilltree:textures/icons/background/notable.png",
   "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
   "borderTexture": "skilltree:textures/tooltip/notable.png",
-  "positionX": 689.317,
-  "positionY": 1072.598,
+  "positionX": 1549.287,
+  "positionY": -1342.465,
   "buttonSize": 24,
   "isStartingPoint": false
 }

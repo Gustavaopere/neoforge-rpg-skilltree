@@ -2,7 +2,9 @@
   "id": "rpgskilltree:keystone_08",
   "bonuses": [],
   "requirements": [],
-  "directConnections": [],
+  "directConnections": [
+    "rpgskilltree:survival_036"
+  ],
   "longConnections": [],
   "oneWayConnections": [],
   "tags": [

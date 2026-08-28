@@ -3,6 +3,7 @@
   "bonuses": [],
   "requirements": [],
   "directConnections": [
+    "rpgskilltree:bridge_paladin_06",
     "rpgskilltree:keystone_02"
   ],
   "longConnections": [],

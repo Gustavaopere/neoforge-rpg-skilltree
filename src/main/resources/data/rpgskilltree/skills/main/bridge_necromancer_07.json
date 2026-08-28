@@ -1,25 +1,21 @@
 {
-  "id": "rpgskilltree:bridge_industrialist_00",
+  "id": "rpgskilltree:bridge_necromancer_07",
   "bonuses": [],
   "requirements": [],
-  "directConnections": [
-    "rpgskilltree:bridge_industrialist_01",
-    "rpgskilltree:engineering_012",
-    "rpgskilltree:mining_007"
-  ],
+  "directConnections": [],
   "longConnections": [],
   "oneWayConnections": [],
   "tags": [
-    "rpgskilltree:bridge/industrialist",
-    "rpgskilltree:domain/engineering",
-    "rpgskilltree:domain/mining",
+    "rpgskilltree:bridge/necromancer",
+    "rpgskilltree:domain/occult",
+    "rpgskilltree:domain/summoning",
     "rpgskilltree:kind/hybrid"
   ],
   "backgroundTexture": "skilltree:textures/icons/background/notable.png",
   "iconTexture": "skilltree:textures/icons/potion_yellow_big.png",
   "borderTexture": "skilltree:textures/tooltip/notable.png",
-  "positionX": 605.518,
-  "positionY": 942.204,
+  "positionX": -2005.739,
+  "positionY": 915.99,
   "buttonSize": 24,
   "isStartingPoint": false
 }
