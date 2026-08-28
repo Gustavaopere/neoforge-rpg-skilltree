@@ -14,39 +14,40 @@ public final class NodeEffectCatalogReloadTest {
     }
 
     private static void retargetedEffectKeepsOldAndNewTargetsClearable() {
-        NodeEffectCatalog.resetForTests();
-        NodeEffectCatalog.replace(List.of(effect("rpgskilltree:test/effect", "minecraft:max_health")));
-        NodeEffectCatalog.replace(List.of(effect("rpgskilltree:test/effect", "minecraft:movement_speed")));
+        String effectId = "rpgskilltree:test/retarget";
+        NodeEffectCatalog.replace(List.of(effect(effectId, "minecraft:max_health")));
+        NodeEffectCatalog.replace(List.of(effect(effectId, "minecraft:movement_speed")));
 
         eq(1, NodeEffectCatalog.attributeEffects().size());
         eq("minecraft:movement_speed", NodeEffectCatalog.attributeEffects().getFirst().attributeId());
         eq(List.of(
-            "rpgskilltree:test/effect@minecraft:max_health",
-            "rpgskilltree:test/effect@minecraft:movement_speed"
-        ), cleanupKeys());
+            effectId + "@minecraft:max_health",
+            effectId + "@minecraft:movement_speed"
+        ), cleanupKeys(effectId));
     }
 
     private static void repeatedEquivalentReloadDoesNotGrowCleanupHistory() {
-        NodeEffectCatalog.resetForTests();
-        NodeAttributeEffect effect = effect("rpgskilltree:test/effect", "minecraft:max_health");
+        String effectId = "rpgskilltree:test/repeated";
+        NodeAttributeEffect effect = effect(effectId, "minecraft:max_health");
         NodeEffectCatalog.replace(List.of(effect));
         NodeEffectCatalog.replace(List.of(effect));
         NodeEffectCatalog.replace(List.of(effect));
 
-        eq(List.of("rpgskilltree:test/effect@minecraft:max_health"), cleanupKeys());
+        eq(List.of(effectId + "@minecraft:max_health"), cleanupKeys(effectId));
     }
 
     private static void removedEffectRemainsClearable() {
-        NodeEffectCatalog.resetForTests();
-        NodeEffectCatalog.replace(List.of(effect("rpgskilltree:test/effect", "minecraft:max_health")));
+        String effectId = "rpgskilltree:test/removed";
+        NodeEffectCatalog.replace(List.of(effect(effectId, "minecraft:max_health")));
         NodeEffectCatalog.replace(List.of());
 
         eq(List.of(), NodeEffectCatalog.attributeEffects());
-        eq(List.of("rpgskilltree:test/effect@minecraft:max_health"), cleanupKeys());
+        eq(List.of(effectId + "@minecraft:max_health"), cleanupKeys(effectId));
     }
 
-    private static List<String> cleanupKeys() {
+    private static List<String> cleanupKeys(String effectId) {
         return NodeEffectCatalog.clearableAttributeEffects().stream()
+            .filter(effect -> effect.effectId().equals(effectId))
             .map(effect -> effect.effectId() + "@" + effect.attributeId())
             .sorted()
             .toList();
