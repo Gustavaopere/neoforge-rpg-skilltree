@@ -17,7 +17,8 @@ import java.util.Map;
 import java.util.Set;
 
 public final class ProgressionStateCodec {
-    public static final int CURRENT_VERSION = 5;
+    /** Legacy compatibility payload version. New normal saves are versioned by CanonicalPlayerStateCodec. */
+    public static final int CURRENT_VERSION = 4;
     private static final int MAX_COLLECTION_SIZE = 16_384;
     private static final int MAX_STRING_BYTES = 4_096;
 
@@ -38,6 +39,7 @@ public final class ProgressionStateCodec {
                 writeFinalTriads(out, state.finalTriads());
                 writeStringIntMap(out, state.passiveNodes().ranks());
                 writeStringSet(out, state.discoveries().discoveredKeys());
+                // Canonical-player schema v2 extends compatibility v4 with a bounded optional tail.
                 writeMasteryReceipts(out, state.mastery().creditedAwards());
             }
             return bytes.toByteArray();
@@ -61,7 +63,7 @@ public final class ProgressionStateCodec {
             FinalTriadProgress finalTriads = version >= 2 ? readFinalTriads(in) : FinalTriadProgress.empty();
             PassiveNodeProgress passiveNodes = version >= 3 ? PassiveNodeProgress.of(readStringIntMap(in)) : PassiveNodeProgress.empty();
             DiscoveryProgress discoveries = version >= 4 ? DiscoveryProgress.of(readStringSet(in)) : DiscoveryProgress.empty();
-            Map<String, MasteryAwardReceipt> masteryReceipts = version >= 5
+            Map<String, MasteryAwardReceipt> masteryReceipts = version >= 4 && in.available() > 0
                 ? readMasteryReceipts(in)
                 : Map.of();
             if (in.available() != 0) throw new IllegalArgumentException("progression state contains trailing bytes");
