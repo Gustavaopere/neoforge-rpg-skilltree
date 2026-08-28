@@ -10,6 +10,7 @@ import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
@@ -26,13 +27,7 @@ import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-/**
- * Optional Eidolon crucible adapter.
- *
- * Player interactions/tosses only establish authorship. Mastery is confirmed
- * from Eidolon's own successful result spawn while the Crucible still exposes
- * the completed recipe steps. No ingredient stack is modified by this bridge.
- */
+/** Optional Eidolon crucible adapter with provider-confirmed result semantics. */
 public final class EidolonAlchemyProgressionEvents {
     private static final Map<CrucibleKey, PendingContributor> CONTRIBUTORS = new HashMap<>();
     private static final long MAX_CONTRIBUTION_AGE_TICKS = 20L * 60L * 2L;
@@ -58,25 +53,19 @@ public final class EidolonAlchemyProgressionEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         if (!(event.getLevel() instanceof ServerLevel level) || !(event.getEntity() instanceof ItemEntity item) || event.loadedFromDisk()) return;
-
         BlockPos pos = item.blockPosition();
         if (!(level.getBlockEntity(pos) instanceof CrucibleTileEntity crucible)) return;
-
         CrucibleRecipe recipe = CrucibleHelper.find(level, crucible.getSteps());
         if (recipe == null || !matchesResult(item.getItem(), recipe.getResult())) return;
-
         String recipeId = stableRecipeId(level, recipe);
         if (recipeId == null) return;
-
         CrucibleKey key = new CrucibleKey(level.dimension(), pos.immutable());
         PendingContributor pending = CONTRIBUTORS.remove(key);
         if (pending == null) return;
         long age = level.getGameTime() - pending.gameTime();
         if (age < 0L || age > MAX_CONTRIBUTION_AGE_TICKS) return;
-
         ServerPlayer player = level.getServer().getPlayerList().getPlayer(pending.playerId());
         if (player == null || !eligible(player) || !player.level().dimension().equals(level.dimension())) return;
-
         confirm(player, recipeId);
     }
 
@@ -90,24 +79,18 @@ public final class EidolonAlchemyProgressionEvents {
         String discoveryKey = "eidolon:alchemy:first/" + recipeId;
         var before = PlayerProgressionRuntime.get(player);
         boolean firstCompletion = !before.discoveries().contains(discoveryKey);
-
         EidolonAlchemyAction action = new EidolonAlchemyAction(
-            new ActionOrigin("eidolon:alchemy", 0),
-            recipeId,
-            true,
-            firstCompletion
+            new ActionOrigin("eidolon:alchemy", 0), recipeId, true, firstCompletion);
+        PlayerProgressionRuntime.awardMasteryAndDiscoveries(
+            player,
+            MasteryPolicies.forEidolonAlchemy(action),
+            firstCompletion ? Set.of(discoveryKey) : Set.of()
         );
-        var afterMastery = PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forEidolonAlchemy(action));
-        if (firstCompletion) {
-            PlayerProgressionRuntime.set(player, afterMastery.withDiscoveries(afterMastery.discoveries().add(discoveryKey)));
-        }
     }
 
     private static void remember(ServerPlayer player, BlockPos pos) {
-        CONTRIBUTORS.put(
-            new CrucibleKey(player.level().dimension(), pos.immutable()),
-            new PendingContributor(player.getUUID(), player.level().getGameTime())
-        );
+        CONTRIBUTORS.put(new CrucibleKey(player.level().dimension(), pos.immutable()),
+            new PendingContributor(player.getUUID(), player.level().getGameTime()));
     }
 
     private static BlockPos nearestActiveCrucible(ServerLevel level, BlockPos origin) {
