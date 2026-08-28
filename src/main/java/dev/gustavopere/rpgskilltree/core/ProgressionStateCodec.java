@@ -11,12 +11,13 @@ import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public final class ProgressionStateCodec {
-    public static final int CURRENT_VERSION = 4;
+    public static final int CURRENT_VERSION = 5;
     private static final int MAX_COLLECTION_SIZE = 16_384;
     private static final int MAX_STRING_BYTES = 4_096;
 
@@ -37,6 +38,7 @@ public final class ProgressionStateCodec {
                 writeFinalTriads(out, state.finalTriads());
                 writeStringIntMap(out, state.passiveNodes().ranks());
                 writeStringSet(out, state.discoveries().discoveredKeys());
+                writeMasteryReceipts(out, state.mastery().creditedAwards());
             }
             return bytes.toByteArray();
         } catch (IOException e) {
@@ -53,19 +55,22 @@ public final class ProgressionStateCodec {
             PassivePointLedger ledger = readLedger(in);
             BossProgress bosses = BossProgress.of(readStringSet(in));
             ClassProgressionState classes = ClassProgressionState.of(readStringSet(in));
-            MasteryState mastery = MasteryState.of(readStringIntMap(in));
+            Map<String, Integer> masteryExperience = readStringIntMap(in);
             ClassChoiceState choices = ClassChoiceState.of(readStringSetMap(in));
             SpecializationProgressionState specializations = SpecializationProgressionState.of(readStringSet(in));
             FinalTriadProgress finalTriads = version >= 2 ? readFinalTriads(in) : FinalTriadProgress.empty();
             PassiveNodeProgress passiveNodes = version >= 3 ? PassiveNodeProgress.of(readStringIntMap(in)) : PassiveNodeProgress.empty();
             DiscoveryProgress discoveries = version >= 4 ? DiscoveryProgress.of(readStringSet(in)) : DiscoveryProgress.empty();
+            Map<String, MasteryAwardReceipt> masteryReceipts = version >= 5
+                ? readMasteryReceipts(in)
+                : Map.of();
             if (in.available() != 0) throw new IllegalArgumentException("progression state contains trailing bytes");
             ProgressionState decoded = new ProgressionState(
                 totalXp,
                 ledger,
                 bosses,
                 classes,
-                mastery,
+                MasteryState.of(masteryExperience, masteryReceipts),
                 choices,
                 specializations,
                 finalTriads,
@@ -192,6 +197,37 @@ public final class ProgressionStateCodec {
             if (ranks.put(domain, values) != null) throw new IllegalArgumentException("duplicate final triad domain: " + domainName);
         }
         return FinalTriadProgress.of(ranks);
+    }
+
+    private static void writeMasteryReceipts(
+        DataOutputStream out,
+        Map<String, MasteryAwardReceipt> receipts
+    ) throws IOException {
+        if (receipts.size() > MasteryState.RECENT_AWARD_LIMIT) {
+            throw new IllegalArgumentException("too many recent mastery award receipts");
+        }
+        out.writeInt(receipts.size());
+        for (Map.Entry<String, MasteryAwardReceipt> entry : receipts.entrySet()) {
+            writeString(out, entry.getKey());
+            writeString(out, entry.getValue().laneId());
+            out.writeInt(entry.getValue().experience());
+        }
+    }
+
+    private static Map<String, MasteryAwardReceipt> readMasteryReceipts(DataInputStream in) throws IOException {
+        int count = readCollectionSize(in);
+        if (count > MasteryState.RECENT_AWARD_LIMIT) {
+            throw new IllegalArgumentException("too many recent mastery award receipts");
+        }
+        LinkedHashMap<String, MasteryAwardReceipt> receipts = new LinkedHashMap<>();
+        for (int i = 0; i < count; i++) {
+            String sourceId = readString(in);
+            MasteryAwardReceipt receipt = new MasteryAwardReceipt(readString(in), in.readInt());
+            if (receipts.put(sourceId, receipt) != null) {
+                throw new IllegalArgumentException("duplicate mastery source id: " + sourceId);
+            }
+        }
+        return receipts;
     }
 
     private static void writeString(DataOutputStream out, String value) throws IOException {
