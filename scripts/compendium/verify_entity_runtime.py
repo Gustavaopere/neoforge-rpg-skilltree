@@ -5,6 +5,7 @@ import re
 ROOT = Path(__file__).resolve().parents[2]
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/compendium/RuntimeEntityCatalogCollector.java"
 RUNTIME_INSPECTOR = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/compendium/RuntimeEntityInstanceInspector.java"
+RUNTIME_SPECIAL = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/compendium/RuntimeVanillaEntitySpecialInspector.java"
 ENTITY_PROVIDER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/compendium/provider/entity"
 
 
@@ -33,6 +34,15 @@ def main() -> None:
     require("net.minecraft.client" not in inspection, "runtime entity inspector must not import client classes")
     for forbidden in ("CompoundTag", "getPersistentData", "saveWithoutId", "saveAsPassenger", "save("):
         require(forbidden not in inspection, f"runtime entity inspector must not expose arbitrary entity data: {forbidden}")
+
+    require(RUNTIME_SPECIAL.is_file(), f"missing runtime vanilla special inspector: {RUNTIME_SPECIAL}")
+    special = RUNTIME_SPECIAL.read_text(encoding="utf-8")
+    require("VanillaEntitySpecialInspectors.inspect" in special, "runtime special adapter must delegate to pure special inspectors")
+    for family_type in ("Horse", "Panda", "Villager", "Bee", "Dolphin", "Goat", "WanderingTrader"):
+        require(f"instanceof {family_type}" in special, f"runtime special adapter missing narrow {family_type} branch")
+    require("net.minecraft.client" not in special, "runtime special inspector must not import client classes")
+    for forbidden in ("CompoundTag", "getPersistentData", "Class.forName", "getDeclaredField", "getDeclaredMethod", "setAccessible"):
+        require(forbidden not in special, f"runtime special inspector must not use reflection/NBT: {forbidden}")
 
     for path in sorted(ENTITY_PROVIDER.glob("*.java")):
         provider_text = path.read_text(encoding="utf-8")
