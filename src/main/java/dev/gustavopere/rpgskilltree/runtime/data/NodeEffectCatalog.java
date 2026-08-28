@@ -27,11 +27,14 @@ public final class NodeEffectCatalog {
             .sorted(Comparator.comparing(NodeAttributeEffect::effectId))
             .toList();
 
-        Map<String, NodeAttributeEffect> clearable = new LinkedHashMap<>();
-        clearableAttributeEffects.forEach(effect -> clearable.put(effect.effectId(), effect));
-        sorted.forEach(effect -> clearable.put(effect.effectId(), effect));
+        Map<ClearableKey, NodeAttributeEffect> clearable = new LinkedHashMap<>();
+        clearableAttributeEffects.forEach(effect -> clearable.put(ClearableKey.of(effect), effect));
+        sorted.forEach(effect -> clearable.put(ClearableKey.of(effect), effect));
         attributeEffects = List.copyOf(sorted);
-        clearableAttributeEffects = List.copyOf(new ArrayList<>(clearable.values()));
+        clearableAttributeEffects = clearable.entrySet().stream()
+            .sorted(Map.Entry.comparingByKey())
+            .map(Map.Entry::getValue)
+            .toList();
     }
 
     public static List<NodeAttributeEffect> attributeEffects() {
@@ -40,5 +43,22 @@ public final class NodeEffectCatalog {
 
     public static List<NodeAttributeEffect> clearableAttributeEffects() {
         return clearableAttributeEffects;
+    }
+
+    private record ClearableKey(String effectId, String attributeId) implements Comparable<ClearableKey> {
+        private ClearableKey {
+            Objects.requireNonNull(effectId);
+            Objects.requireNonNull(attributeId);
+        }
+
+        private static ClearableKey of(NodeAttributeEffect effect) {
+            return new ClearableKey(effect.effectId(), effect.attributeId());
+        }
+
+        @Override
+        public int compareTo(ClearableKey other) {
+            int byEffectId = effectId.compareTo(other.effectId);
+            return byEffectId != 0 ? byEffectId : attributeId.compareTo(other.attributeId);
+        }
     }
 }
