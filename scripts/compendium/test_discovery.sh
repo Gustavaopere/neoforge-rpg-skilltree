@@ -21,3 +21,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.discovery.DiscoveryProgr
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.discovery.DiscoveryRuntimeTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.discovery.DiscoveryIdempotencyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.discovery.DiscoveryRewardTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.discovery.DiscoverySaveRoundTripTest
