@@ -104,7 +104,7 @@ require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/events/Comb
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java',
                  'CombatProgressionEvents.class')
 
-require_contains('src/main/resources/data/rpgskilltree/tags/entity_types/bosses.json',
+require_contains('src/main/resources/data/rpgskilltree/tags/entity_type/bosses.json',
                  'minecraft:ender_dragon',
                  'minecraft:wither',
                  'cataclysm:ignis',
