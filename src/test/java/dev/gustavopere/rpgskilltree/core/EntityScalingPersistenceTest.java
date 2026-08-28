@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.core;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.OptionalLong;
 
 public final class EntityScalingPersistenceTest {
@@ -17,54 +18,62 @@ public final class EntityScalingPersistenceTest {
         EntityScalingAttachmentData data = EntityScalingAttachmentData.uninitialized();
         check(!data.initialized(), "fresh entity scaling attachment should be uninitialized");
         eq(data, EntityScalingStateCodec.decode(EntityScalingStateCodec.encode(data)));
-        expect(IllegalStateException.class, data::requireSnapshot);
+        expect(IllegalStateException.class, data::requireState);
     }
 
     private static void initializedEntityScalingRoundTripsExactly() {
-        EntityLevelResolution level = new EntityLevelResolution(
-            EntityArchetype.HOSTILE,
-            23L,
-            OptionalLong.of(50L),
-            50L,
-            56L,
-            56L
+        EntityScalingState state = new EntityScalingState(
+            TerritoryKey.of("minecraft:overworld", 3L, -2L),
+            new EntityLevelResolution(
+                EntityArchetype.HOSTILE,
+                23L,
+                OptionalLong.of(50L),
+                50L,
+                56L,
+                56L
+            ),
+            1L,
+            Optional.of(new MobRaritySelection(MobRarityKey.of("rpgskilltree:veteran"), 5L)),
+            0x123456789ABCDEFL
         );
-        MobRaritySelection rarity = new MobRaritySelection(MobRarityKey.of("rpgskilltree:veteran"), 5L);
-        EntityScalingSnapshot snapshot = new EntityScalingSnapshot(level, rarity);
-        EntityScalingAttachmentData data = EntityScalingAttachmentData.initialized(snapshot);
+        EntityScalingAttachmentData data = EntityScalingAttachmentData.initialized(state);
 
         byte[] encoded = EntityScalingStateCodec.encode(data);
         EntityScalingAttachmentData decoded = EntityScalingStateCodec.decode(encoded);
 
         check(decoded.initialized(), "decoded scaling should remain initialized");
-        eq(snapshot, decoded.requireSnapshot());
-        eq(EntityArchetype.HOSTILE, decoded.requireSnapshot().archetype());
-        eq(MobRarityKey.of("rpgskilltree:veteran"), decoded.requireSnapshot().rarity());
-        eq(56L, decoded.requireSnapshot().entityLevel());
+        eq(state, decoded.requireState());
+        eq(EntityArchetype.HOSTILE, decoded.requireState().archetype());
+        eq(MobRarityKey.of("rpgskilltree:veteran"), decoded.requireState().rarity().orElseThrow().rarity());
+        eq(56L, decoded.requireState().entityLevel());
+        eq(TerritoryKey.of("minecraft:overworld", 3L, -2L), decoded.requireState().territory());
     }
 
     private static void hugeLevelsAndRarityRemainStableAcrossSaveLoad() {
         long huge = 5_000_000_000L;
-        EntityLevelResolution level = new EntityLevelResolution(
-            EntityArchetype.BOSS,
-            huge,
-            OptionalLong.of(huge - 1L),
-            huge,
-            huge + 1_024L,
-            huge + 1_024L
-        );
-        EntityScalingSnapshot snapshot = new EntityScalingSnapshot(
-            level,
-            new MobRaritySelection(MobRarityKey.of("rpgskilltree:champion"), 1_000L)
+        EntityScalingState state = new EntityScalingState(
+            TerritoryKey.of("minecraft:the_end", -99L, 77L),
+            new EntityLevelResolution(
+                EntityArchetype.BOSS,
+                huge,
+                OptionalLong.of(huge - 1L),
+                huge,
+                huge + 1_024L,
+                huge + 1_024L
+            ),
+            24L,
+            Optional.of(new MobRaritySelection(MobRarityKey.of("rpgskilltree:champion"), 1_000L)),
+            Long.MIN_VALUE + 7L
         );
 
         EntityScalingAttachmentData decoded = EntityScalingStateCodec.decode(
-            EntityScalingStateCodec.encode(EntityScalingAttachmentData.initialized(snapshot))
+            EntityScalingStateCodec.encode(EntityScalingAttachmentData.initialized(state))
         );
 
-        eq(snapshot, decoded.requireSnapshot());
-        eq(huge + 1_024L, decoded.requireSnapshot().entityLevel());
-        eq(huge, decoded.requireSnapshot().levelResolution().nativeAreaLevel());
+        eq(state, decoded.requireState());
+        eq(huge + 1_024L, decoded.requireState().entityLevel());
+        eq(huge, decoded.requireState().levelResolution().nativeAreaLevel());
+        eq(Long.MIN_VALUE + 7L, decoded.requireState().deterministicSeed());
     }
 
     private static void malformedPayloadsFailClosed() {
