@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
+import dev.gustavopere.rpgskilltree.core.EntityScalingAttachmentData;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import java.util.function.Supplier;
 import net.neoforged.bus.api.IEventBus;
@@ -28,6 +29,13 @@ public final class ModAttachments {
         () -> AttachmentType.builder(CoreProgressionAttachmentData::uninitialized)
             .serialize(CoreProgressionAttachmentSerializer.INSTANCE)
             .copyOnDeath()
+            .build()
+    );
+
+    public static final Supplier<AttachmentType<EntityScalingAttachmentData>> ENTITY_SCALING = ATTACHMENTS.register(
+        "entity_scaling",
+        () -> AttachmentType.builder(EntityScalingAttachmentData::uninitialized)
+            .serialize(EntityScalingAttachmentSerializer.INSTANCE)
             .build()
     );
 
