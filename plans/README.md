@@ -55,5 +55,6 @@ Se uma regressão ou mudança arquitetural reabrir o trabalho, o arquivo volta a
 | 07 | `07-data-network-ui/` | EM ANDAMENTO |
 | 08 | `08-quests-progression-hooks/` | PLANEJADO |
 | 09 | `09-hardening-release/` | EM ANDAMENTO contínuo |
+| 10 | `10-encyclopedic-compendium/` | PLANEJADO |
 
 Antes de implementar qualquer subplano, ler `STATUS.md`, `DECISIONS.md`, `PENDING.md`, o `README.md` do estágio e os arquivos anteriores na ordem numérica.
