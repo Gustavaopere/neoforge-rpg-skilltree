@@ -1,8 +1,8 @@
-# Catálogo dos 512 nós da árvore principal
+# Catálogo dos 512 nós
 
-Este é o inventário exaustivo por família de `data/rpgskilltree/skills/main` na base auditada. O layout gerado confirma **512/512 nós**.
+Este é o índice exaustivo da **Árvore Principal** atualmente materializada no jogo. São 512 nós reais de dados; alguns são caminhos/requisitos e ainda não têm efeito numérico próprio.
 
-| Família | Quantidade | IDs materializados |
+| Família | Quantidade | IDs |
 | --- | ---: | --- |
 | Core | 28 | `core_00` … `core_27` |
 | Martial | 40 | `martial_000` … `martial_039` |
@@ -16,11 +16,11 @@ Este é o inventário exaustivo por família de `data/rpgskilltree/skills/main` 
 | Occult | 38 | `occult_000` … `occult_037` |
 | Logistics | 30 | `logistics_000` … `logistics_029` |
 | Agility | 36 | `agility_000` … `agility_035` |
-| Bridges | 48 | 6 grupos × 8 |
+| Bridges | 48 | seis grupos × oito |
 | Keystones | 16 | `keystone_00` … `keystone_15` |
 | **Total** | **512** | |
 
-## Bridges — todos os 48 IDs
+## Todos os grupos de bridge
 
 - `bridge_paladin_00` … `bridge_paladin_07`
 - `bridge_cleric_00` … `bridge_cleric_07`
@@ -29,10 +29,6 @@ Este é o inventário exaustivo por família de `data/rpgskilltree/skills/main` 
 - `bridge_necromancer_00` … `bridge_necromancer_07`
 - `bridge_duelist_00` … `bridge_duelist_07`
 
-## O que “512 nós” significa
+## Como usar este catálogo
 
-São 512 arquivos/nós materializados na árvore principal, com layout 512/512. Isso **não** significa 512 bônus exclusivos já finalizados. Arquivos representativos como nós Core/Bridge/Keystone e diversos nós regionais podem ter `bonuses: []`; o efeito resolvido pode vir de outra camada ou ainda não estar preenchido.
-
-## Onde estão os efeitos
-
-O catálogo de efeitos atuais está em [EFFECT_CATALOG.md](EFFECT_CATALOG.md). Os JSONs em `node_effects/*.json` permanecem a fonte canônica para atributos, operação e `amountPerRank`.
+Se você quer saber “esse ID existe?”, esta é a página certa. Se quer saber “o que ele faz?”, consulte [Perks](PERKS.md) e [Estatísticas dos efeitos](EFFECT_CATALOG.md). IDs sem descrição localizada ou efeito declarado permanecem listados aqui porque fazem parte da árvore e podem servir de caminho, requisito ou conteúdo ainda em desenvolvimento.

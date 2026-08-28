@@ -1,42 +1,51 @@
-# RPG Skill Tree — Planos canônicos
+# RPG Skill Tree — Planos de implementação
 
-Este diretório é a memória operacional do projeto. Ele complementa, sem substituir, `docs/MASTER_PLAN.md` e `docs/specs/`, que permanecem como histórico e especificações de design.
+`plans/` contém **somente planejamento de programação e engenharia**. Informação destinada ao jogador fica em `wiki/`. Specs históricas e documentação técnica complementar permanecem em `docs/`.
 
-## Regra de autoridade
+## Convenção obrigatória de cada estágio
 
-Para dizer o que **existe hoje**, a ordem de autoridade é:
+Cada subpasta numerada contém um único arquivo operacional:
+
+- `PLANO.md` — estágio aberto, planejado ou em implementação;
+- `PLANO-✅.md` — estágio concluído e validado.
+
+O check no nome é um marco de engenharia, não editorial. Um plano só recebe `✅` depois que todos os critérios de aceite relevantes estiverem satisfeitos no código/dados, a validação aplicável estiver verde e o estado tiver sido integrado à branch canônica.
+
+Se um estágio concluído voltar a ter requisito obrigatório aberto por regressão ou mudança arquitetural, o arquivo deve voltar para `PLANO.md` até o fechamento.
+
+## Ordem de autoridade
+
+Para decidir o que existe no runtime:
 
 1. código e recursos versionados em `src/`;
-2. testes/CI e contratos executáveis;
-3. este diretório `plans/`;
-4. wiki em `docs/wiki/`;
-5. especificações históricas em `docs/specs/` e `docs/MASTER_PLAN.md`.
-
-Uma ideia descrita em documentação antiga não deve ser promovida a `IMPLEMENTED` sem evidência correspondente no runtime ou datapack atual.
+2. testes, validadores e CI executáveis;
+3. contratos/decisões em `plans/`;
+4. wiki de jogador em `wiki/`;
+5. specs históricas em `docs/specs/` e `docs/MASTER_PLAN.md`.
 
 ## Ordem causal
 
-| Estágio | Escopo | Estado |
+| Estágio | Diretório | Estado |
 | --- | --- | --- |
-| 00 | Foundation | EM ANDAMENTO / base existente |
-| 01 | RPG Core | EM ANDAMENTO / base existente |
-| 02 | Progression & World Scaling | EM ANDAMENTO / base existente |
-| 03 | Skill Tree & Perks | EM ANDAMENTO / catálogo data-driven existente |
-| 04 | Classes, Masteries & Specializations | EM ANDAMENTO |
-| 05 | Combat & Magic Hooks | EM ANDAMENTO |
-| 06 | Integrations | EM ANDAMENTO |
-| 07 | Data, Network & UI | EM ANDAMENTO |
-| 08 | Quest & Progression Hooks | PLANEJADO |
-| 09 | Hardening & Release | EM ANDAMENTO contínuo |
+| 00 | `00-foundation/PLANO.md` | EM ANDAMENTO / base existente |
+| 01 | `01-rpg-core/PLANO.md` | EM ANDAMENTO / base existente |
+| 02 | `02-progression-world-scaling/PLANO.md` | EM ANDAMENTO |
+| 03 | `03-skill-tree-perks/PLANO.md` | EM ANDAMENTO |
+| 04 | `04-classes-masteries-specializations/PLANO.md` | EM ANDAMENTO |
+| 05 | `05-combat-magic-hooks/PLANO.md` | EM ANDAMENTO |
+| 06 | `06-integrations/PLANO.md` | EM ANDAMENTO |
+| 07 | `07-data-network-ui/PLANO.md` | EM ANDAMENTO |
+| 08 | `08-quests-progression-hooks/PLANO.md` | PLANEJADO |
+| 09 | `09-hardening-release/PLANO.md` | EM ANDAMENTO contínuo |
 
-## Regras de trabalho
+## Regras gerais de execução
 
-- NeoForge 1.21.1 e Java 21 são o alvo canônico.
-- Servidor é autoridade para progressão, gating e efeitos que alterem gameplay.
-- Conteúdo data-driven deve ser validado antes de entrar em runtime.
-- Integrações opcionais não podem quebrar o carregamento quando o mod externo estiver ausente.
-- Não inventar integração nominal: hooks genéricos devem ser documentados como genéricos.
-- Mudanças em IDs persistidos exigem estratégia de migração.
-- Cada estágio só pode ser marcado como concluído quando seus critérios de aceite estiverem cobertos por código/dados e validação adequada.
-
-Consulte `STATUS.md`, `DECISIONS.md` e `PENDING.md` antes de iniciar trabalho novo.
+- alvo canônico: Minecraft 1.21.1, NeoForge e Java 21;
+- servidor é autoridade de level, XP, mastery, unlocks e efeitos de gameplay;
+- IDs persistidos são API de save e não podem ser renomeados sem migração;
+- conteúdo data-driven deve ser validado antes de chegar ao runtime;
+- integração opcional não pode virar dependência dura acidental;
+- um evento semântico concede progressão uma vez;
+- nenhum adapter deve duplicar o fallback vanilla;
+- antes de implementar um estágio, ler `STATUS.md`, `DECISIONS.md`, `PENDING.md` e seu `PLANO.md`;
+- ao fechar um estágio, atualizar `STATUS.md` e renomear atomicamente `PLANO.md` para `PLANO-✅.md`.
