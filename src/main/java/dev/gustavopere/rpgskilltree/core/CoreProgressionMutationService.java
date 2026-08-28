@@ -52,6 +52,30 @@ public final class CoreProgressionMutationService {
         return withProgressionAndCorePoints(validated, result.after(), nextLedger);
     }
 
+    /**
+     * Privileged rollback of already-earned RPG XP.
+     *
+     * <p>Rollback intentionally leaves the Core Point ledger unchanged. Reversing a
+     * historical economic reward is a distinct administrative/economic operation and
+     * must never happen implicitly merely because character XP is corrected.</p>
+     */
+    public static CoreProgressionState rollbackXp(
+        CoreProgressionState state,
+        long amount,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(rules);
+        CoreProgressionState validated = CoreProgressionBootstrap.resume(state, rules);
+        CharacterXpRollbackResult result = CharacterProgressionService.rollbackXp(
+            validated.characterProgression(),
+            amount,
+            rules.levelCurve()
+        );
+        if (result.after() == validated.characterProgression()) return validated;
+        return withProgressionAndCorePoints(validated, result.after(), validated.corePoints());
+    }
+
     public static CoreProgressionState applyCorePointTransaction(
         CoreProgressionState state,
         CorePointTransaction transaction,
