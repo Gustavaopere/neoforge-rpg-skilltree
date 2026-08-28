@@ -38,3 +38,18 @@ Aceita. Não é necessário esperar o estágio inteiro terminar para marcar um a
 
 ## D013 — Cada subplano é executável isoladamente
 Aceita. Todo arquivo numerado deve conter objetivo, passos de implementação, testes/validação e critério de aceite, respeitando dependências causais anteriores.
+
+## D014 — O Compêndio é subsistema próprio, não fusão de mods externos
+Aceita. O Stage 10 reimplementa um guia de campo/bestiário/enciclopédia dentro do RPG Skill Tree usando contratos próprios. Código, texto e assets de outros mods não são copiados ou reempacotados.
+
+## D015 — PT-BR é o idioma editorial canônico player-facing
+Aceita. Todo texto visível ao jogador no Compêndio deve possuir versão completa em `pt_br`; `en_us` pode existir como fallback técnico, mas não substitui a cobertura PT-BR.
+
+## D016 — Entradas enciclopédicas são data-driven e endereçadas por IDs/registries estáveis
+Aceita. O catálogo referencia `ResourceLocation`/targets reais quando aplicável, valida providers e evita listas hardcoded de classes externas. Mods opcionais continuam opcionais.
+
+## D017 — Descoberta enciclopédica reutiliza a progressão server-authoritative existente
+Aceita. `DiscoveryProgress`/`ProgressionState.discoveries()` e `PlayerProgressionRuntime.creditDiscovery(...)` são a primeira via. Um segundo silo de save só pode existir se uma necessidade concreta exigir estado mais rico e houver migração explícita.
+
+## D018 — Conteúdo enciclopédico factual exige verificação
+Aceita. Spawn, biome, comportamento, stats, drops, domesticação, reprodução, estruturas e outras mecânicas só podem ser descritos como fatos depois de confirmação por registry, código/documentação do provider ou teste da versão suportada. Lacunas ficam ausentes/pendentes; não são preenchidas por invenção.
