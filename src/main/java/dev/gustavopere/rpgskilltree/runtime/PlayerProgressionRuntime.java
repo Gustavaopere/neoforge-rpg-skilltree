@@ -31,6 +31,12 @@ public final class PlayerProgressionRuntime {
         return CanonicalPlayerAttachmentRuntime.readOrMigrate(player).compatibilityProgression();
     }
 
+    public static void syncToOwner(ServerPlayer player) {
+        Objects.requireNonNull(player);
+        CanonicalPlayerAttachmentData observed = CanonicalPlayerAttachmentRuntime.observe(player);
+        ModNetworking.syncToOwner(player, observed.compatibilityProgression());
+    }
+
     public static ProgressionState applyXp(ServerPlayer player, CharacterXpAward award) {
         ProgressionState next = ProgressionService.applyXp(get(player), award, CharacterLevelCurve.defaultCurve());
         set(player, next);

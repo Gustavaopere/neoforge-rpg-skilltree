@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.events;
 
+import dev.gustavopere.rpgskilltree.runtime.CorePlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -12,6 +13,7 @@ public final class PlayerProgressionEvents {
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             PlayerProgressionRuntime.reconcilePlayerState(player);
+            CorePlayerProgressionRuntime.syncToOwnerIfInitialized(player);
         }
     }
 
@@ -19,6 +21,15 @@ public final class PlayerProgressionEvents {
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             PlayerProgressionRuntime.reconcilePlayerState(player);
+            CorePlayerProgressionRuntime.syncToOwnerIfInitialized(player);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            PlayerProgressionRuntime.syncToOwner(player);
+            CorePlayerProgressionRuntime.syncToOwnerIfInitialized(player);
         }
     }
 }
