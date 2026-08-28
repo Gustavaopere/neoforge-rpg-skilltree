@@ -7,9 +7,10 @@ import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 import java.util.OptionalLong;
 
-/** Strict versioned binary codec for persisted entity-level/rarity decisions. */
+/** Strict versioned binary codec for persisted entity-scaling lifecycle decisions. */
 public final class EntityScalingStateCodec {
     public static final int CURRENT_VERSION = 1;
     private static final int MAX_STRING_BYTES = 256;
@@ -23,12 +24,17 @@ public final class EntityScalingStateCodec {
             try (DataOutputStream out = new DataOutputStream(buffer)) {
                 out.writeInt(CURRENT_VERSION);
                 out.writeBoolean(data.initialized());
-                if (data.initialized()) writeSnapshot(out, data.requireSnapshot());
+                if (data.initialized()) writeState(out, data.requireState());
             }
             return buffer.toByteArray();
         } catch (IOException exception) {
             throw new IllegalStateException("failed to encode entity scaling state", exception);
         }
+    }
+
+    /** Uses the same canonical envelope format as attachment persistence. */
+    public static byte[] encode(EntityScalingState state) {
+        return encode(EntityScalingAttachmentData.initialized(state));
     }
 
     public static EntityScalingAttachmentData decode(byte[] payload) {
@@ -40,7 +46,7 @@ public final class EntityScalingStateCodec {
             }
             boolean initialized = in.readBoolean();
             EntityScalingAttachmentData result = initialized
-                ? EntityScalingAttachmentData.initialized(readSnapshot(in))
+                ? EntityScalingAttachmentData.initialized(readState(in))
                 : EntityScalingAttachmentData.uninitialized();
             if (in.available() != 0) {
                 throw new IllegalArgumentException("entity scaling state contains trailing bytes");
@@ -53,34 +59,59 @@ public final class EntityScalingStateCodec {
         }
     }
 
-    private static void writeSnapshot(DataOutputStream out, EntityScalingSnapshot snapshot) throws IOException {
-        EntityLevelResolution level = snapshot.levelResolution();
+    public static EntityScalingState decodeState(byte[] payload) {
+        return decode(payload).requireState();
+    }
+
+    private static void writeState(DataOutputStream out, EntityScalingState state) throws IOException {
+        writeString(out, state.territory().dimensionId());
+        out.writeLong(state.territory().cellX());
+        out.writeLong(state.territory().cellZ());
+
+        EntityLevelResolution level = state.levelResolution();
         writeString(out, level.archetype().name());
         out.writeLong(level.nativeAreaLevel());
         out.writeBoolean(level.relevantPlayerLevel().isPresent());
-        if (level.relevantPlayerLevel().isPresent()) out.writeLong(level.relevantPlayerLevel().getAsLong());
+        if (level.relevantPlayerLevel().isPresent()) {
+            out.writeLong(level.relevantPlayerLevel().getAsLong());
+        }
         out.writeLong(level.baseFloor());
         out.writeLong(level.rolledLevel());
         out.writeLong(level.finalLevel());
-        writeString(out, snapshot.raritySelection().rarity().serializedId());
-        out.writeLong(snapshot.raritySelection().levelBonus());
+        out.writeLong(state.variance());
+
+        out.writeBoolean(state.rarity().isPresent());
+        if (state.rarity().isPresent()) {
+            MobRaritySelection rarity = state.rarity().orElseThrow();
+            writeString(out, rarity.rarity().serializedId());
+            out.writeLong(rarity.levelBonus());
+        }
+        out.writeLong(state.deterministicSeed());
     }
 
-    private static EntityScalingSnapshot readSnapshot(DataInputStream in) throws IOException {
-        EntityArchetype archetype;
-        try {
-            archetype = EntityArchetype.valueOf(readString(in));
-        } catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException("unknown entity archetype in persisted scaling state", exception);
-        }
+    private static EntityScalingState readState(DataInputStream in) throws IOException {
+        TerritoryKey territory = TerritoryKey.of(readString(in), in.readLong(), in.readLong());
+        EntityArchetype archetype = parseArchetype(readString(in));
         long nativeAreaLevel = in.readLong();
-        OptionalLong relevantPlayerLevel = in.readBoolean() ? OptionalLong.of(in.readLong()) : OptionalLong.empty();
+        OptionalLong relevantPlayerLevel = in.readBoolean()
+            ? OptionalLong.of(in.readLong())
+            : OptionalLong.empty();
         long baseFloor = in.readLong();
         long rolledLevel = in.readLong();
         long finalLevel = in.readLong();
-        MobRarityKey rarity = MobRarityKey.of(readString(in));
-        long rarityBonus = in.readLong();
-        return new EntityScalingSnapshot(
+        long variance = in.readLong();
+
+        Optional<MobRaritySelection> rarity = Optional.empty();
+        if (in.readBoolean()) {
+            rarity = Optional.of(new MobRaritySelection(
+                MobRarityKey.of(readString(in)),
+                in.readLong()
+            ));
+        }
+        long deterministicSeed = in.readLong();
+
+        return new EntityScalingState(
+            territory,
             new EntityLevelResolution(
                 archetype,
                 nativeAreaLevel,
@@ -89,8 +120,18 @@ public final class EntityScalingStateCodec {
                 rolledLevel,
                 finalLevel
             ),
-            new MobRaritySelection(rarity, rarityBonus)
+            variance,
+            rarity,
+            deterministicSeed
         );
+    }
+
+    private static EntityArchetype parseArchetype(String name) {
+        try {
+            return EntityArchetype.valueOf(name);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException("unknown entity archetype: " + name, exception);
+        }
     }
 
     private static void writeString(DataOutputStream out, String value) throws IOException {
