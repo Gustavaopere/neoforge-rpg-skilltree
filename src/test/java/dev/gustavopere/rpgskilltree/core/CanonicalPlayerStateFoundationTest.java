@@ -50,7 +50,7 @@ public final class CanonicalPlayerStateFoundationTest {
             Optional.empty(), Optional.empty(), rules);
 
         eq(CharacterProgressionState.empty(), state.coreProgression().characterProgression());
-        eq(ProgressionState.empty(), state.compatibilityProgression());
+        progressionEq(ProgressionState.empty(), state.compatibilityProgression());
         eq(rules.version(), state.coreProgression().rulesVersion());
     }
 
@@ -60,7 +60,7 @@ public final class CanonicalPlayerStateFoundationTest {
         CanonicalPlayerState state = CanonicalPlayerStateBootstrap.bootstrap(
             Optional.empty(), Optional.of(legacy), rules);
 
-        eq(legacy, state.compatibilityProgression());
+        progressionEq(legacy, state.compatibilityProgression());
         eq(11L, state.coreProgression().characterProgression().level());
         eq(13L, state.coreProgression().corePoints().totalCredits());
         eq(4L, state.coreProgression().corePoints().allocated(CorePointAllocation.MAIN_PERK));
@@ -82,7 +82,7 @@ public final class CanonicalPlayerStateFoundationTest {
         if (state.coreProgression() != core) {
             throw new AssertionError("matching Core state must be reused without remigration");
         }
-        eq(legacy, state.compatibilityProgression());
+        progressionEq(legacy, state.compatibilityProgression());
     }
 
     private static void codecRoundTripsBothSections() {
@@ -120,6 +120,12 @@ public final class CanonicalPlayerStateFoundationTest {
         unsupported[2] = 0;
         unsupported[3] = 99;
         expect(IllegalArgumentException.class, () -> CanonicalPlayerStateCodec.decode(unsupported));
+    }
+
+    private static void progressionEq(ProgressionState expected, ProgressionState actual) {
+        if (!Arrays.equals(ProgressionStateCodec.encode(expected), ProgressionStateCodec.encode(actual))) {
+            throw new AssertionError("persisted progression states differ");
+        }
     }
 
     private static void expect(Class<? extends Throwable> type, Runnable action) {
