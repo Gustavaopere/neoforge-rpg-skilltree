@@ -60,6 +60,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityArchetypeStatScalingTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobRarityFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingPersistenceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingLifecycleStateTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingInitializationServiceTest
 python3 "$ROOT/scripts/verify-quest-runtime.py"
 python3 "$ROOT/scripts/verify-core-xp-adapters.py"
 python3 "$ROOT/scripts/verify-world-scaling-runtime.py"
