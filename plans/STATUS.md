@@ -2,7 +2,7 @@
 
 Última auditoria de fechamento: **2026-08-28**.
 
-Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo` e `10.03 — Modelo de dados, identidade e providers` foram implementados, validados, integrados e auditados no mesmo dia.
+Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers` e `10.04 — Descoberta, progresso e recompensas` foram implementados, validados, integrados e auditados no mesmo dia.
 
 Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
@@ -14,11 +14,13 @@ Fechamento do Stage 10.03 auditado contra `main@112d9266de9ece584f2f58adff03ffb6
 
 Fechamento do Stage 01.01 auditado contra `main@5171ec7e099be545663b4a1ac989c36fc68835eb`, após consolidação do attachment canônico, dimension-change sync e query somente-leitura; o último gate funcional foi CI `33198679352` / run #908 GREEN completo.
 
+Fechamento do Stage 10.04 auditado contra `main@8fdfff0c518fa40099b9459e279118cdbef1b2fc`, após integração do PR #71. O CI focal pós-merge `33201053431` / Compendium Discovery #38 e o CI completo `33201053442` / RPG Skill Tree #921 fecharam GREEN, incluindo NeoForge build, verificação do JAR e dedicated-server smoke.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**9 / 75 subplanos concluídos formalmente.**
+**10 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `01-rpg-core/✅-01-player-state.md`
@@ -29,6 +31,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `10-compendio-natural/✅-01-proveniencia-licencas.md`
 - `10-compendio-natural/✅-02-inventario-modpack.md`
 - `10-compendio-natural/✅-03-modelo-dados-identidade.md`
+- `10-compendio-natural/✅-04-descoberta-progresso.md`
 
 Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`, contrato efetivamente implementado, evidência de verificação e `Acceptance: satisfied`.
 
@@ -46,8 +49,8 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 0 | 6 | EM ANDAMENTO / implementação paralela |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
-| 10 Compêndio Natural | 3 | 15 | EM ANDAMENTO |
-| **Total** | **9** | **75** | |
+| 10 Compêndio Natural | 4 | 15 | EM ANDAMENTO |
+| **Total** | **10** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -93,11 +96,11 @@ Nenhum gate final pode ser fechado enquanto existirem blockers de migração, co
 
 ### 10 — Compêndio Natural
 
-`✅-01-proveniencia-licencas.md`, `✅-02-inventario-modpack.md` e `✅-03-modelo-dados-identidade.md` estão fechados. O Stage 10 possui proveniência/licenças auditadas, inventário reproduzível de modlist + registries runtime e agora um modelo canônico de identidade/fatos/relações, catálogo imutável com publicação atômica, merge determinístico de providers e schemas data-driven versionados. A materialização do snapshot da instância completa do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `04-descoberta-progresso.md`.
+`✅-01-proveniencia-licencas.md`, `✅-02-inventario-modpack.md`, `✅-03-modelo-dados-identidade.md` e `✅-04-descoberta-progresso.md` estão fechados. O Stage 10 possui proveniência/licenças auditadas, inventário reproduzível de modlist + registries runtime, modelo canônico de identidade/fatos/relações, catálogo imutável com publicação atômica e agora uma base persistente e server-authoritative de descoberta com estados monotônicos, rewards idempotentes, preservação de tombstones, conclusão derivada e feeds genéricos NeoForge. A materialização do snapshot da instância completa do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `05-fauna-entidades.md`.
 
 ## Evidência de regressão atual
 
-O fechamento mais recente do Stage 01.01 foi auditado em `main@5171ec7e099be545663b4a1ac989c36fc68835eb`; CI `33198679352` / run #908 passou Core tests, todos os gates do Compêndio, validators RPG, generated-data drift/diff sanity, NeoForge build, verificação do JAR e dedicated-server smoke.
+O fechamento mais recente do Stage 10.04 foi auditado em `main@8fdfff0c518fa40099b9459e279118cdbef1b2fc`; CI `33201053431` / Compendium Discovery #38 e CI `33201053442` / RPG Skill Tree #921 passaram os testes do Compêndio, Core tests, validators RPG, generated-data drift/diff sanity, NeoForge build, verificação do JAR e dedicated-server smoke.
 
 ## Convenção
 
