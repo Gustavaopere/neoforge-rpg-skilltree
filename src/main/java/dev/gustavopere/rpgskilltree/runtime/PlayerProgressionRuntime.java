@@ -19,6 +19,7 @@ import dev.gustavopere.rpgskilltree.runtime.data.TreeRuleCatalog;
 import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,19 +39,44 @@ public final class PlayerProgressionRuntime {
     }
 
     public static ProgressionState applyXp(ServerPlayer player, CharacterXpAward award) {
-        ProgressionState next = ProgressionService.applyXp(get(player), award, CharacterLevelCurve.defaultCurve());
+        ProgressionState current = get(player);
+        ProgressionState next = ProgressionService.applyXp(current, award, CharacterLevelCurve.defaultCurve());
         set(player, next);
         return next;
     }
 
     public static ProgressionState awardMastery(ServerPlayer player, Collection<MasteryAward> awards) {
+        return awardMasteryAndDiscoveries(player, awards, List.of());
+    }
+
+    /**
+     * Applies mastery and discovery changes as one canonical compatibility mutation.
+     * Provider adapters never need direct access to the persistence boundary.
+     */
+    public static ProgressionState awardMasteryAndDiscoveries(
+        ServerPlayer player,
+        Collection<MasteryAward> awards,
+        Collection<String> discoveryKeys
+    ) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(awards);
+        Objects.requireNonNull(discoveryKeys);
         ProgressionState current = get(player);
-        if (awards.isEmpty()) return current;
+        if (awards.isEmpty() && discoveryKeys.isEmpty()) return current;
 
-        ProgressionState next = current.withMastery(MasteryAwardService.apply(current.mastery(), awards));
-        next = reconcileDerivedState(next);
+        var mastery = MasteryAwardService.apply(current.mastery(), awards);
+        var discoveries = current.discoveries();
+        for (String discoveryKey : discoveryKeys) {
+            Objects.requireNonNull(discoveryKey, "discoveryKey");
+            if (discoveryKey.isBlank()) {
+                throw new IllegalArgumentException("discoveryKey must not be blank");
+            }
+            discoveries = discoveries.add(discoveryKey);
+        }
+
+        ProgressionState next = reconcileDerivedState(
+            current.withMastery(mastery).withDiscoveries(discoveries)
+        );
         set(player, next);
         return next;
     }
@@ -61,15 +87,17 @@ public final class PlayerProgressionRuntime {
         CharacterXpAward award
     ) {
         Objects.requireNonNull(player);
+        ProgressionState current = get(player);
         DiscoveryProgressionResult result = ProgressionService.creditDiscovery(
-            get(player), discoveryKey, award, CharacterLevelCurve.defaultCurve());
+            current, discoveryKey, award, CharacterLevelCurve.defaultCurve());
         if (result.firstDiscovery()) set(player, result.state());
         return result;
     }
 
     public static BossProgressionResult creditBoss(ServerPlayer player, BossIdentity identity, BossRewardDefinition definition) {
+        ProgressionState current = get(player);
         String rewardKey = BossRewardKeyPolicy.resolve(identity);
-        BossProgressionResult result = ProgressionService.creditBoss(get(player), rewardKey, definition);
+        BossProgressionResult result = ProgressionService.creditBoss(current, rewardKey, definition);
         if (result.firstDefeat()) set(player, result.state());
         return result;
     }
@@ -165,7 +193,8 @@ public final class PlayerProgressionRuntime {
             return false;
         }
         try {
-            var result = ProgressionService.unlockClass(get(player), definition.get());
+            ProgressionState current = get(player);
+            var result = ProgressionService.unlockClass(current, definition.get());
             ProgressionState next = reconcileDerivedState(result.state());
             set(player, next);
             return result.unlockedNow();
@@ -179,8 +208,9 @@ public final class PlayerProgressionRuntime {
         Objects.requireNonNull(player);
         Objects.requireNonNull(nodeId);
         try {
+            ProgressionState current = get(player);
             var result = ProgressionService.respecNode(
-                get(player),
+                current,
                 TreeRuleCatalog.graph(),
                 TreeRuleCatalog.definitions(),
                 nodeId.toString()
@@ -198,7 +228,10 @@ public final class PlayerProgressionRuntime {
     public static ProgressionState reconcilePlayerState(ServerPlayer player) {
         Objects.requireNonNull(player);
         ProgressionState reconciled = reconcileDerivedState(get(player));
-        set(player, reconciled);
+        if (!set(player, reconciled)) {
+            AttributeNodeEffectRuntime.refresh(player, reconciled);
+            ModNetworking.syncToOwner(player, reconciled);
+        }
         return reconciled;
     }
 
@@ -229,12 +262,21 @@ public final class PlayerProgressionRuntime {
         throw new IllegalStateException("progression reconciliation did not stabilize");
     }
 
-    public static void set(ServerPlayer player, ProgressionState state) {
+    private static boolean set(ServerPlayer player, ProgressionState state) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(state);
         CanonicalPlayerAttachmentData current = CanonicalPlayerAttachmentRuntime.readOrMigrate(player);
-        CanonicalPlayerAttachmentRuntime.write(player, current.withCompatibilityProgression(state));
+        CanonicalPlayerAttachmentData next = current.withCompatibilityProgression(state);
+        if (!CanonicalPlayerAttachmentRuntime.commitMutation(
+            player,
+            current,
+            next,
+            ProgressionMutationEvent.Section.COMPATIBILITY
+        )) {
+            return false;
+        }
         AttributeNodeEffectRuntime.refresh(player, state);
         ModNetworking.syncToOwner(player, state);
+        return true;
     }
 }
