@@ -68,6 +68,9 @@ jobs:
       - name: Compendium inventory catalog tests
         run: bash scripts/compendium/test_inventory_catalog.sh
 
+      - name: Compendium model and provider tests
+        run: bash scripts/compendium/test_model_catalog.sh
+
       - name: Compendium modlist parser tests
         run: python3 scripts/compendium/test_inventory_modlist.py
 
