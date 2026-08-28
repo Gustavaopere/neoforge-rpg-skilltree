@@ -50,6 +50,8 @@ require("player.setData(ModAttachments.COMPENDIUM_DISCOVERY" in runtime,
         "changed discovery progress must be persisted to the player attachment")
 require("player.level().isClientSide()" in runtime,
         "discovery mutation boundary must reject client-side execution")
+require("removeData(ModAttachments.COMPENDIUM_DISCOVERY" not in runtime,
+        "normal discovery runtime must never reset persistent progress")
 
 reward_bridge = text("src/main/java/dev/gustavopere/rpgskilltree/runtime/compendium/CompendiumDiscoveryRewardBridge.java")
 require("DiscoveryRewardKind.CHARACTER_XP" in reward_bridge,
@@ -92,6 +94,8 @@ require("new DiscoveryOrigin(" in events,
         "trusted event feeds must derive first origin server-side")
 require("getEntities" not in events and "getAllEntities" not in events,
         "Stage 10.04 must not scan nearby entities each tick")
+require("removeData(ModAttachments.COMPENDIUM_DISCOVERY" not in events,
+        "dimension/login/tick discovery events must never reset progress")
 
 mod = text("src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java")
 require("CompendiumDiscoveryEvents" in mod,
