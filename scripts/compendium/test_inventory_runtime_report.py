@@ -73,7 +73,12 @@ class RuntimeCoverageReportTest(unittest.TestCase):
             self.assertEqual(3, len(payload["entries"]))
             self.assertEqual({"AUTO"}, {item["coverage_state"] for item in payload["entries"]})
             self.assertEqual(0, payload["coverage_totals"]["ERROR"])
-            self.assertIn("futuremod", out_md.read_text(encoding="utf-8"))
+            markdown = out_md.read_text(encoding="utf-8")
+            self.assertIn("futuremod", markdown)
+            self.assertIn("## Listas detalhadas", markdown)
+            self.assertIn("### ENTITY", markdown)
+            self.assertIn("`minecraft:zombie`", markdown)
+            self.assertIn("#### `futuremod`", markdown)
 
     def test_ignored_without_reason_fails_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
