@@ -2,13 +2,15 @@
 
 Última auditoria de fechamento: **2026-08-27**.
 
-Base auditada: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
+Base auditada para os estágios 00-09: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
+
+Atualização estrutural posterior: **2026-08-28** — o Stage 10 foi planejado sobre `main@e5d540cba41b9bb42cb2801b7f6636512b6a4578`. Essa inclusão não reaudita os estágios anteriores e não marca implementação nova como concluída.
 
 A auditoria foi feita contra código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**5 / 60 subplanos concluídos formalmente.**
+**5 / 70 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `03-skill-tree-perks/✅-05-respec.md`
@@ -17,6 +19,8 @@ A auditoria foi feita contra código, recursos, testes, validators e CI já inte
 - `06-integrations/✅-05-goety-malum-eidolon.md`
 
 Cada arquivo concluído foi convertido para o mesmo padrão documental do Volcanoes: checklist `[x]`, contrato efetivamente implementado, evidência de verificação e `Acceptance: satisfied`.
+
+Os dez arquivos do Stage 10 foram adicionados apenas como planejamento e permanecem todos abertos.
 
 ## Progresso por estágio
 
@@ -32,7 +36,8 @@ Cada arquivo concluído foi convertido para o mesmo padrão documental do Volcan
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 0 | 6 | EM ANDAMENTO / implementação paralela |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
-| **Total** | **5** | **60** | |
+| 10 Compêndio Enciclopédico | 0 | 10 | PLANEJADO |
+| **Total** | **5** | **70** | |
 
 ## Por que os demais continuam abertos
 
@@ -75,6 +80,10 @@ Ainda não conta como concluído porque o PR #28 permanece draft e fora da `main
 ### 09 — Hardening & Release
 
 Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. A suíte atual é forte, mas ainda não cobre toda a matriz cliente/multiplayer/optional-mods e não substitui profiling/budgets, migrations e release gate finais.
+
+### 10 — Compêndio Enciclopédico
+
+O estágio está apenas planejado. O repositório já fornece fundações aproveitáveis — `DiscoveryProgress`, `ProgressionState.discoveries()`, `PlayerProgressionRuntime.creditDiscovery(...)`, eventos de exploração, loaders data-driven, networking e `pt_br.json` — mas ainda não existem catálogo enciclopédico, schema de entries, matriz da modlist, descoberta por fauna/flora/estruturas, UI própria, validators editoriais nem gate de cobertura. Nenhum dos dez subplanos pode ser marcado até a implementação correspondente ser integrada e auditada.
 
 ## Evidência de regressão atual
 
