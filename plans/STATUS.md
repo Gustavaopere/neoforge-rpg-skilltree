@@ -1,24 +1,27 @@
 # Status canônico dos planos
 
-Última auditoria de fechamento: **2026-08-27**.
+Última auditoria de fechamento: **2026-08-28**.
 
-Planejamento do Stage 10 adicionado em **2026-08-28**. Nenhum item do Stage 10 conta como implementado por existir apenas no plano.
+Planejamento do Stage 10 adicionado em **2026-08-28**. O subplano `10.01 — Proveniência, referências e licenças` foi implementado, validado, integrado e auditado no mesmo dia.
 
-Base auditada para os fechamentos existentes: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
+Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
-A auditoria foi feita contra código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
+Fechamento do Stage 10.01 auditado contra `main@b4d84e9078b27349cc691ec2875574ff67246101`, com CI pós-merge `33187232908` / run #755 GREEN completo.
+
+A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**5 / 75 subplanos concluídos formalmente.**
+**6 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `03-skill-tree-perks/✅-05-respec.md`
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
 - `06-integrations/✅-05-goety-malum-eidolon.md`
+- `10-compendio-natural/✅-01-proveniencia-licencas.md`
 
-Cada arquivo concluído foi convertido para o mesmo padrão documental do Volcanoes: checklist `[x]`, contrato efetivamente implementado, evidência de verificação e `Acceptance: satisfied`.
+Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`, contrato efetivamente implementado, evidência de verificação e `Acceptance: satisfied`.
 
 ## Progresso por estágio
 
@@ -34,8 +37,8 @@ Cada arquivo concluído foi convertido para o mesmo padrão documental do Volcan
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 0 | 6 | EM ANDAMENTO / implementação paralela |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
-| 10 Compêndio Natural | 0 | 15 | PLANEJADO — implementação ainda não iniciada |
-| **Total** | **5** | **75** | |
+| 10 Compêndio Natural | 1 | 15 | EM ANDAMENTO |
+| **Total** | **6** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -49,43 +52,43 @@ A `main` ainda contém `ProgressionState`/`PlayerProgressionRuntime` e a fundaç
 
 ### 02 — Progression & World Scaling
 
-Relevant-player, território, entity level, rarity e stat scaling possuem fundações reais e testadas, mas os próprios PRs mergeados declararam que políticas finais de raio/party, fórmulas, caps, balance e persistência não estavam congeladas. PRs #31 e #32 continuam implementando persistência/lifecycle para impedir reroll depois de unload/reload. Performance/balance final também permanece aberto.
+Relevant-player, território, entity level, rarity e stat scaling possuem fundações reais e testadas, mas políticas finais de raio/party, fórmulas, caps, balance e persistência continuam sendo fechadas incrementalmente. Performance/balance final também permanece aberto.
 
 ### 03 — Skill Tree & Perks
 
-O respec está fechado. Os demais subplanos ainda têm gaps objetivos: validação atômica de reload/IDs, detecção explícita de cycles/orphans no validator de grafo, motivo legível de rejeição de compra, composição formal entre efeitos inline/packs/behavior handlers e geração automática da `wiki/`. O PR #25 também mostra que a validação atual ainda pode deixar passar ResourceLocation/attribute ID incorreto.
+O respec está fechado. Os demais subplanos ainda têm gaps objetivos: validação atômica de reload/IDs, detecção explícita de cycles/orphans no validator de grafo, motivo legível de rejeição de compra, composição formal entre efeitos inline/packs/behavior handlers e geração automática da `wiki/`.
 
 ### 04 — Classes, Masteries & Specializations
 
-As quatro subtrees dedicadas estão fechadas. Class resolution geral ainda precisa reconciliar reload; confluences ainda não mostram todos os requisitos faltantes na UI; masteries não possuem curva/cap final; provider identities têm requisitos e testes fortes, mas falta uma política explícita para saves/provider ausente; specializations não verificam presença do provider no resolver atual.
+As quatro subtrees dedicadas estão fechadas. Class resolution geral ainda precisa reconciliar reload; confluences ainda não mostram todos os requisitos faltantes na UI; masteries não possuem curva/cap final; provider identities têm requisitos e testes fortes, mas falta política final para saves/provider ausente; specializations ainda dependem dos contratos finais aplicáveis.
 
 ### 05 — Combat & Magic Hooks
 
-O pipeline canônico final por hit/projétil/magia ainda não está na `main`. `CombatAction` não representa todo o contexto de source/owner/target/fases de dano exigido pelo plano, e os PRs #7/#8/#12/#14/#15 continuam carregando trabalho de perks/serviços de combate ainda não integrado. O contrato conjunto Ars + Iron's para stats genéricas também permanece em `PENDING.md`.
+O pipeline canônico final por hit/projétil/magia ainda não está formalmente fechado. O contrato conjunto Ars + Iron's para stats genéricas também permanece em `PENDING.md`.
 
 ### 06 — Integrations
 
-Iron's e o bloco Goety/Malum/Eidolon estão fechados. Epic Fight ainda depende do pipeline canônico de combate; Ars precisa do contrato de coexistência com Iron's; Identity2 tem runtime/mixin funcional, mas a matriz lifecycle solicitada (death/relog/dimension) não está formalmente testada; Apothic ainda precisa de revalidação nominal; Create/AE2/Oritech continuam data-driven sem adapter runtime completo; a matriz de presença/ausência por mod ainda está pendente.
+Iron's e o bloco Goety/Malum/Eidolon estão fechados. Epic Fight ainda depende do pipeline canônico de combate; Ars precisa do contrato de coexistência com Iron's; Identity2 ainda requer a matriz lifecycle formal; Apothic ainda precisa de revalidação nominal; Create/AE2/Oritech continuam com trabalho pendente; a matriz de presença/ausência por mod permanece aberta.
 
 ### 07 — Data, Network & UI
 
-Loaders, packets e UI já existem, mas o acceptance final ainda não está satisfeito: reload cross-catalog não é publicado como snapshot atômico único, protocolo/schemas não estão formalmente versionados, dimension-change sync não está fechado, e a UI ainda usa mensagens genéricas/hardcoded em alguns tooltips em vez de efeito/requisito/erro resolvido completo.
+Loaders, packets e UI já existem, mas o acceptance final ainda não está satisfeito: reload cross-catalog, versionamento formal de protocolo/schemas, dimension-change sync e resolução completa de efeitos/requisitos/erros na UI ainda possuem trabalho aberto.
 
 ### 08 — Quest & Progression Hooks
 
-Ainda não conta como concluído porque o PR #28 permanece draft e fora da `main`. O core possui peças reutilizáveis de query/reward/idempotency, mas a API quest-facing completa, condições data-driven, adapters e authoring diagnostics ainda não foram integrados.
+O core possui peças reutilizáveis de query/reward/idempotency, mas a API quest-facing completa, condições data-driven, adapters e authoring diagnostics ainda não foram formalmente fechados e integrados como estágio concluído.
 
 ### 09 — Hardening & Release
 
-Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. A suíte atual é forte, mas ainda não cobre toda a matriz cliente/multiplayer/optional-mods e não substitui profiling/budgets, migrations e release gate finais.
+Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. A suíte atual é forte, mas ainda não substitui profiling/budgets, migrations, matriz completa de optional mods e release gate finais.
 
 ### 10 — Compêndio Natural
 
-O Stage 10 está **somente planejado**. Ele introduz 15 subplanos para proveniência, inventário da modlist/registries, modelo de dados, descoberta, fauna, flora/árvores/cultivos, ecologia/loot, worldgen, UI/modelo 3D/notas, corpus editorial pt-BR, integrações, ferramentas de operador, save/rede/cache, hardening e gate final. Nenhum arquivo recebe `✅-` até existir implementação, teste, integração e evidência correspondente.
+`✅-01-proveniencia-licencas.md` está fechado. O Stage 10 agora possui manifestos de upstream/licenças, política de reimplementação limpa, validação de assets/corpus externos e gate de CI específico. Os subplanos `02` a `15` permanecem abertos; o próximo passo causal é `02-inventario-modpack.md`.
 
 ## Evidência de regressão atual
 
-O último CI completo da `main` materializada antes desta auditoria foi `33132979048` / run #620: Core tests, regeneração/validators, NeoForge build, verificação do JAR e dedicated-server smoke passaram.
+O CI pós-merge de `main@b4d84e9078b27349cc691ec2875574ff67246101` foi `33187232908` / run #755: Core tests, Compendium provenance tests, validators, NeoForge build, verificação do JAR, upload do artefato e dedicated-server smoke passaram.
 
 ## Convenção
 
