@@ -14,6 +14,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.data.ArchetypeReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.AttributeRankCostPolicyCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.BossRewardReloader;
+import dev.gustavopere.rpgskilltree.runtime.data.CanonicalProviderBindingReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.CoreProgressionRulesReloader;
@@ -55,6 +56,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(NodeEffectsReloader.class);
         NeoForge.EVENT_BUS.register(BossRewardReloader.class);
         NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class);
+        NeoForge.EVENT_BUS.register(CanonicalProviderBindingReloader.class);
         NeoForge.EVENT_BUS.register(EntityScalingEvents.class);
         NeoForge.EVENT_BUS.register(ApothicBossBridgeEvents.class);
         NeoForge.EVENT_BUS.register(BossProgressionEvents.class);
