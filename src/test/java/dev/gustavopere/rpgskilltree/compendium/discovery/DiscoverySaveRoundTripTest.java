@@ -8,13 +8,12 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 public final class DiscoverySaveRoundTripTest {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         roundTripPreservesAllDiscoveryFields();
         removedModEntrySurvivesWithoutCatalogLookup();
         encodingIsDeterministicByCanonicalEntryId();
@@ -70,7 +69,7 @@ public final class DiscoverySaveRoundTripTest {
             DiscoveryProgressCodec.encode(new DiscoveryProgress(second)));
     }
 
-    private static void invalidPayloadsFailClosed() throws Exception {
+    private static void invalidPayloadsFailClosed() {
         byte[] valid = DiscoveryProgressCodec.encode(DiscoveryProgress.empty());
         byte[] unsupportedVersion = valid.clone();
         unsupportedVersion[3] = 99;
@@ -86,7 +85,7 @@ public final class DiscoverySaveRoundTripTest {
         throwsIllegal(() -> DiscoveryProgressCodec.decode(malformedIdPayload()));
     }
 
-    private static byte[] malformedIdPayload() throws IOException {
+    private static byte[] malformedIdPayload() {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try (DataOutputStream out = new DataOutputStream(buffer)) {
             out.writeInt(DiscoveryProgressCodec.CURRENT_VERSION);
@@ -98,8 +97,10 @@ public final class DiscoverySaveRoundTripTest {
             out.writeInt(0);
             out.writeInt(0);
             out.writeInt(0);
+            return buffer.toByteArray();
+        } catch (IOException exception) {
+            throw new AssertionError("unexpected in-memory payload write failure", exception);
         }
-        return buffer.toByteArray();
     }
 
     private static void writeString(DataOutputStream out, String value) throws IOException {
