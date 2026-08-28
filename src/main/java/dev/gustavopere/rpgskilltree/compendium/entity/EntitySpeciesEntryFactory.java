@@ -33,11 +33,10 @@ public final class EntitySpeciesEntryFactory {
         identity.add(fact(EntityFactKeys.SOURCE_MOD_ID, species.sourceModId(), null));
         if (species.mobCategory() != null) identity.add(fact(EntityFactKeys.MOB_CATEGORY, species.mobCategory(), null));
 
-        List<CompendiumFact<?>> baseStats = species.baseAttributes().entrySet().stream()
+        List<CompendiumFact<?>> baseStats = new ArrayList<>();
+        species.baseAttributes().entrySet().stream()
             .sorted(Map.Entry.comparingByKey())
-            .map(entry -> fact(entry.getKey(), entry.getValue(), unitFor(entry.getKey())))
-            .map(fact -> (CompendiumFact<?>) fact)
-            .toList();
+            .forEach(entry -> baseStats.add(fact(entry.getKey(), entry.getValue(), unitFor(entry.getKey()))));
 
         List<CompendiumFact<?>> dimensions = List.of(
             fact(EntityFactKeys.HITBOX_WIDTH, species.hitboxWidth(), "blocks"),
