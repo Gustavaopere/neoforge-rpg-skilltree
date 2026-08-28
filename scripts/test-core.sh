@@ -67,6 +67,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingInitializationSer
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobAffixFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobAffixPersistenceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityBehaviorFoundationTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntitySelectionLifecyclePersistenceTest
 python3 "$ROOT/scripts/verify-1211-resources.py"
 python3 "$ROOT/scripts/verify-node-effect-diagnostics.py"
 python3 "$ROOT/scripts/verify-quest-runtime.py"
