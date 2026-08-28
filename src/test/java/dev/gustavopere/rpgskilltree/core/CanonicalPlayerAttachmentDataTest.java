@@ -12,6 +12,7 @@ public final class CanonicalPlayerAttachmentDataTest {
         legacyPresenceIsPreservedEvenWhenLegacyStateIsEmpty();
         oldCoreAndLegacyInputsAreCollectedWithoutReinterpretingThem();
         coreInitializationUsesPersistedLegacyPresenceExactlyOnce();
+        compatibilityMutationBeforeCoreInitializationBecomesMigrationSource();
         codecRoundTripsUninitializedAndInitializedCore();
         malformedPayloadsFailClosed();
         System.out.println("CanonicalPlayerAttachmentDataTest: PASS");
@@ -84,6 +85,36 @@ public final class CanonicalPlayerAttachmentDataTest {
         if (resumed != migrated) {
             throw new AssertionError("initialized canonical attachment must be reused on repeated initialization");
         }
+    }
+
+    private static void compatibilityMutationBeforeCoreInitializationBecomesMigrationSource() {
+        CanonicalPlayerAttachmentData fresh = CanonicalPlayerAttachmentData.empty();
+        ProgressionState equivalentEmpty = ProgressionStateCodec.decode(
+            ProgressionStateCodec.encode(ProgressionState.empty()));
+        CanonicalPlayerAttachmentData unchanged = fresh.withCompatibilityProgression(equivalentEmpty);
+        eq(false, unchanged.hasLegacyMigrationSource());
+
+        ProgressionState empty = ProgressionState.empty();
+        ProgressionState progressed = new ProgressionState(
+            CharacterLevelCurve.defaultCurve().xpRequiredForLevel(4) + 25L,
+            PassivePointLedger.of(Map.of(PassivePointSource.LEVEL, 3), 0),
+            empty.bossProgress(),
+            empty.classProgression(),
+            empty.mastery(),
+            empty.classChoices(),
+            empty.specializations(),
+            empty.finalTriads(),
+            empty.passiveNodes(),
+            empty.discoveries()
+        );
+        CanonicalPlayerAttachmentData updated = fresh.withCompatibilityProgression(progressed);
+        eq(true, updated.hasLegacyMigrationSource());
+
+        CoreProgressionState migrated = updated.initializeCore(rules())
+            .coreProgression().state().orElseThrow();
+        eq(3L, migrated.characterProgression().level());
+        eq(3L, migrated.corePoints().totalCredits());
+        eq(ProgressionStateCodec.CURRENT_VERSION, migrated.migrationSourceFormatVersion());
     }
 
     private static void codecRoundTripsUninitializedAndInitializedCore() {
