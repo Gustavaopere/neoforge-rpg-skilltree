@@ -121,7 +121,9 @@ jobs:
           printf 'eula=true\n' > runs/server/eula.txt
           LOG="$PWD/build/server-smoke.log"
           REPORT="$PWD/runs/server/generated/compendium/runtime-registry-inventory.json"
-          rm -f "$REPORT"
+          COVERAGE_JSON="$PWD/build/compendium-smoke-coverage.json"
+          COVERAGE_MD="$PWD/build/compendium-smoke-coverage.md"
+          rm -f "$REPORT" "$COVERAGE_JSON" "$COVERAGE_MD"
           export RPGSKILLTREE_COMPENDIUM_INVENTORY=1
           gradle --no-daemon runServer >"$LOG" 2>&1 &
           PID=$!
@@ -150,6 +152,12 @@ jobs:
               assert required in kinds, (required, sorted(kinds))
           assert len(payload["runtime_fingerprint_sha256"]) == 64
           PY
+              python3 scripts/compendium/inventory_runtime_report.py \
+                "$REPORT" \
+                --json "$COVERAGE_JSON" \
+                --markdown "$COVERAGE_MD"
+              test -s "$COVERAGE_JSON"
+              test -s "$COVERAGE_MD"
               echo 'Dedicated-server smoke test: PASS'
               exit 0
             fi
