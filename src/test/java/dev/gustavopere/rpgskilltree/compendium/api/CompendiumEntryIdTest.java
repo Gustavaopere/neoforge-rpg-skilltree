@@ -6,8 +6,10 @@ public final class CompendiumEntryIdTest {
     public static void main(String[] args) {
         kindsMayShareResourceLocation();
         serializedIdentityIsStable();
+        serializedIdentityRoundTrips();
         blockFeatureIsCanonicalKind();
         malformedResourceLocationIsRejected();
+        malformedSerializedIdentityIsRejected();
         System.out.println("CompendiumEntryIdTest: PASS");
     }
 
@@ -23,6 +25,11 @@ public final class CompendiumEntryIdTest {
         eq("terrafirmacraft", id.namespace());
     }
 
+    private static void serializedIdentityRoundTrips() {
+        CompendiumEntryId id = CompendiumEntryId.of(CompendiumEntryKind.BIOME, "minecraft:lush_caves");
+        eq(id, CompendiumEntryId.parse(id.serializedId()));
+    }
+
     private static void blockFeatureIsCanonicalKind() {
         CompendiumEntryId id = CompendiumEntryId.of(CompendiumEntryKind.BLOCK_FEATURE, "minecraft:spawner");
         eq(CompendiumEntryKind.BLOCK_FEATURE, id.kind());
@@ -32,6 +39,12 @@ public final class CompendiumEntryIdTest {
         throwsIllegal(() -> CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "MissingNamespace"));
         throwsIllegal(() -> CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "Minecraft:Zombie"));
         throwsIllegal(() -> CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "minecraft:"));
+    }
+
+    private static void malformedSerializedIdentityIsRejected() {
+        throwsIllegal(() -> CompendiumEntryId.parse("ENTITY:minecraft:zombie"));
+        throwsIllegal(() -> CompendiumEntryId.parse("ITEM|minecraft:stick"));
+        throwsIllegal(() -> CompendiumEntryId.parse("ENTITY|Minecraft:Zombie"));
     }
 
     private static void throwsIllegal(Runnable action) {
