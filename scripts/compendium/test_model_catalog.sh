@@ -30,6 +30,8 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.FloraClassifierTes
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.CropProviderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.TreeGroupingTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.FloraCatalogCoverageTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.TfcFloraAdapterTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.DynamicTreesAdapterTest
 
 python3 - "$DATA" <<'PY'
 import json
