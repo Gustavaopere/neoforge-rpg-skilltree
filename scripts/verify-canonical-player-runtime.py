@@ -70,4 +70,14 @@ require("setData(" not in query_runtime,
 require("ModNetworking" not in query_runtime,
         "canonical player query runtime must not synchronize as a query side effect")
 
+compat_root = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat"
+legacy_reads = []
+for path in sorted(compat_root.rglob("*.java")):
+    source = path.read_text(encoding="utf-8")
+    if "PlayerProgressionRuntime.get(" in source:
+        legacy_reads.append(path.relative_to(ROOT).as_posix())
+require(not legacy_reads,
+        "compat adapters must read through CanonicalPlayerQueryRuntime, legacy direct reads found in: "
+        + ", ".join(legacy_reads))
+
 print("Canonical player runtime validation: PASS")
