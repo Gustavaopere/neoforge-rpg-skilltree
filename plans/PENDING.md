@@ -11,3 +11,10 @@
 - [ ] Definir versão/migração de dados persistidos antes de release estável.
 - [ ] Automatizar verificação de drift entre `wiki/`, registries, localização, layout gerado e datapacks.
 - [ ] Completar conteúdo mecânico dos nós da malha que ainda sejam apenas estruturais quando isso fizer parte do design final.
+
+## Stage 10 — Compêndio Natural
+
+- [ ] Regenerar o snapshot da modlist canônica no início da implementação do Stage 10; o snapshot de planejamento não pode ser tratado como presença eterna de mods.
+- [ ] Auditar e congelar upstream/tag/licença de Biology Dictionary, Field Guide, Wildex e qualquer outra referência antes de qualquer reutilização de código, assets ou corpus; reimplementação comportamental continua sendo o default.
+- [ ] Fechar no `10.13` se notas pessoais serão persistidas server-side por jogador ou client-side por mundo/servidor, com limites e migração explícitos.
+- [ ] Medir o catálogo real do modpack antes de congelar budgets numéricos de startup, reload, memória e UI; não inventar budgets sem baseline.
