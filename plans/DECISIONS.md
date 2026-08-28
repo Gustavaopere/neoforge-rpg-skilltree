@@ -9,11 +9,11 @@ Aceita. XP, level, mastery, unlocks, gating e efeitos de gameplay não dependem 
 ## D003 — Conteúdo de árvore é data-driven
 Aceita. IDs, requisitos e efeitos devem permanecer carregáveis/validáveis por dados quando o sistema já oferece esse contrato.
 
-## D004 — 512 não significa 512 perks implementadas
-Aceita. `512` representa o blueprint/capacidade histórica; a revisão de 2026-08-27 encontra 474 arquivos de nós materializados em `skills/main`.
+## D004 — 512 é o orçamento materializado da árvore principal, não sinônimo de 512 efeitos mecânicos distintos
+Aceita. A revisão atual comprova 512 nós JSON e layout 512/512. Alguns nós ainda são estruturais/esqueleto e não possuem bônus inline próprio.
 
-## D005 — Wiki não duplica silenciosamente payload de 474 JSON
-Aceita. `PERK_CATALOG.md` indexa todo o inventário materializado e aponta os arquivos JSON como autoridade de efeitos. A evolução desejada é geração automática de páginas/tabelas detalhadas.
+## D005 — Wiki separa inventário de nós de catálogo de efeitos
+Aceita. `PERK_CATALOG.md` indexa todos os 512 IDs materializados; `EFFECT_CATALOG.md` documenta as entradas de atributo atualmente declaradas. Os JSONs continuam sendo a autoridade.
 
 ## D006 — Integração genérica continua genérica
 Aceita. Ex.: um modificador de dano mágico só pode ser atribuído nominalmente a um feitiço externo se houver handler/tag/contrato que prove essa relação.
@@ -22,7 +22,7 @@ Aceita. Ex.: um modificador de dano mágico só pode ser atribuído nominalmente
 Aceita. Adapters devem ser isolados e protegidos por detecção de mod/contratos apropriados.
 
 ## D008 — Create/AE2 não serão anunciados como runtime completo sem adapter comprovado
-Aceita. Definições de progressão/especialização podem existir e serão rotuladas `SPEC/DATA` enquanto isso.
+Aceita. Nomes como `technomancer/create_resonance` podem ter efeitos reais sobre atributos do RPG/Iron's sem, por si só, provar que eventos de máquinas Create são interceptados.
 
 ## D009 — IDs persistidos são API de save
 Aceita. Renomear/remover IDs de skill, classe, mastery ou especialização exige compatibilidade ou migração explícita.

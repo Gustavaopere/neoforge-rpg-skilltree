@@ -2,7 +2,7 @@
 
 Última auditoria documental: **2026-08-27**.
 
-Base auditada: `main@60055e83e8db9a36646be8aaeaeaec62b1cb4b9d`.
+Base de código/dados auditada nesta revisão: `main@0904c060e5bde58529e30b919ff27d20fcac74d8`.
 
 ## Estado observado
 
@@ -11,10 +11,12 @@ Base auditada: `main@60055e83e8db9a36646be8aaeaeaec62b1cb4b9d`.
 - Level de área/território, entidade e cálculo de nível relevante: infraestrutura presente.
 - Raridade/arquetipagem/escala de mobs: trabalho já integrado na base auditada.
 - Skill tree data-driven: presente.
-- Catálogo materializado em `data/rpgskilltree/skills/main`: **474 nós JSON** auditados.
-- Blueprint histórico/conceitual: **512 nós**. Não confundir capacidade/meta de design com materialização atual.
-- Integrações runtime confirmadas na auditoria: Epic Fight, Iron's Spellbooks, Ars Nouveau, Goety, Malum e Eidolon: Repraised. Identity2 possui contrato de identidade/progressão no projeto, mas detalhes devem continuar sendo verificados contra o código antes de documentar efeitos específicos.
-- Create e Applied Energistics 2 possuem definições de progressão/especialização nos dados/especificações, mas adapter runtime dedicado não foi comprovado na auditoria desta revisão.
+- Árvore principal materializada: **512 nós JSON** em `data/rpgskilltree/skills/main`.
+- Layout gerado: `target_node_count = 512` e `actual_node_count = 512`, com `node_budget_satisfied = true`.
+- Efeitos de atributo declarados nos packs `node_effects/*.json`: **119 entradas** na revisão auditada (66 `main` + 53 distribuídas entre Druid, Epic Fight, Malum, Metamorph, Technomancer e Warlock).
+- Nem todo nó da árvore principal possui hoje um efeito mecânico distinto: vários JSONs são nós estruturais/esqueleto com `bonuses: []`; efeitos também podem vir de packs de node effects e handlers runtime.
+- Integrações runtime confirmadas na auditoria: Epic Fight, Iron's Spellbooks, Ars Nouveau, Goety, Malum e Eidolon: Repraised.
+- Create e Applied Energistics 2 possuem definições de progressão/especialização, mas adapter runtime dedicado a eventos/máquinas não foi comprovado nesta revisão.
 
 ## Legenda
 
@@ -27,7 +29,7 @@ Base auditada: `main@60055e83e8db9a36646be8aaeaeaec62b1cb4b9d`.
 ## Próximos checkpoints
 
 1. Congelar contratos do RPG Core que alimentam perks, classes e scaling.
-2. Gerar automaticamente documentação de cada nó a partir dos JSON para eliminar drift.
+2. Automatizar a geração da wiki a partir de `skills/main`, `node_effects` e registries/runtime para eliminar drift.
 3. Fechar matriz de integração com testes por mod opcional.
 4. Conectar quests/recompensas aos serviços canônicos, sem duplicar XP/level.
 5. Fechar migração de SavedData/player data e matriz dedicated-server antes de release.

@@ -3,18 +3,29 @@
 Estado: **EM ANDAMENTO**.
 
 ## Base atual
-O datapack principal contém 474 nós JSON materializados, enquanto o design histórico descreve um blueprint de 512 nós.
+
+A árvore principal possui **512 nós JSON materializados**. `generated/main-tree-layout.json` comprova `target_node_count = 512`, `actual_node_count = 512` e `node_budget_satisfied = true`.
+
+Isso não significa que existam 512 efeitos mecânicos distintos finalizados. Os arquivos de skill definem a estrutura da árvore e vários têm `bonuses: []`; efeitos mecânicos também são declarados separadamente em `data/rpgskilltree/node_effects` e handlers runtime.
 
 ## Objetivo
-Manter árvores extensas, legíveis e data-driven, com validação forte de IDs, dependências e efeitos.
 
-## Famílias auditadas
-Arcane, Martial, Vitality, Agility, Engineering, Healing, Logistics, Mining, Occult, Summoning, Survival, Core, Keystones e Bridges.
+Manter uma árvore extensa, legível e data-driven, com validação forte de IDs, dependências e efeitos.
+
+## Inventário da árvore principal
+
+- Core: 28
+- Regiões principais: 420
+- Bridges híbridas: 48
+- Keystones externos: 16
+- Total: 512
 
 ## Critérios de aceite
-- [ ] todo nó referencia efeitos conhecidos;
+
+- [x] orçamento estrutural 512/512 no layout gerado;
+- [ ] todo efeito declarado referencia contratos válidos;
 - [ ] requisitos formam grafo válido;
 - [ ] nenhum ID duplicado;
 - [ ] desbloqueio é server-authoritative;
 - [ ] respec não deixa atributos/efeitos órfãos;
-- [ ] catálogo da wiki pode ser regenerado a partir dos dados.
+- [ ] catálogo da wiki pode ser regenerado automaticamente a partir dos dados.
