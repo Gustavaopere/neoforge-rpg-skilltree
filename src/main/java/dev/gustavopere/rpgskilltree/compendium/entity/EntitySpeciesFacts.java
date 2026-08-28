@@ -32,11 +32,11 @@ public record EntitySpeciesFacts(
         gameplayCategories = Set.copyOf(gameplayCategories == null ? Set.of() : gameplayCategories);
         for (EntityGameplayCategory category : gameplayCategories) Objects.requireNonNull(category, "gameplay category");
         mobCategory = normalizeNullable(mobCategory);
-        if (!Double.isFinite(hitboxWidth) || hitboxWidth <= 0.0D) {
-            throw new IllegalArgumentException("hitboxWidth must be positive and finite");
+        if (!Double.isFinite(hitboxWidth) || hitboxWidth < 0.0D) {
+            throw new IllegalArgumentException("hitboxWidth must be non-negative and finite");
         }
-        if (!Double.isFinite(hitboxHeight) || hitboxHeight <= 0.0D) {
-            throw new IllegalArgumentException("hitboxHeight must be positive and finite");
+        if (!Double.isFinite(hitboxHeight) || hitboxHeight < 0.0D) {
+            throw new IllegalArgumentException("hitboxHeight must be non-negative and finite");
         }
         LinkedHashMap<String, Double> attributes = new LinkedHashMap<>();
         if (baseAttributes != null) {
