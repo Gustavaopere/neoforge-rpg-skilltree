@@ -14,7 +14,7 @@
 
 ## Stage 10 — Compêndio Natural
 
-- [ ] Regenerar o snapshot da modlist canônica no início da implementação do Stage 10; o snapshot de planejamento não pode ser tratado como presença eterna de mods.
-- [ ] Auditar e congelar upstream/tag/licença de Biology Dictionary, Field Guide, Wildex e qualquer outra referência antes de qualquer reutilização de código, assets ou corpus; reimplementação comportamental continua sendo o default.
+- [ ] Antes do gate de conteúdo/release, executar o pipeline de inventário já integrado no Stage 10.02 sobre a instância canônica completa do pack e arquivar o snapshot/coverage correspondente; a fonte conhecida possui 553 entradas top-level, mas presença em runtime continua sendo a autoridade.
+- [ ] Auditar e congelar upstream/tag/licença de qualquer nova referência além de Biology Dictionary, Field Guide e Wildex antes de reutilizar código, assets ou corpus; os três upstreams iniciais já foram auditados no Stage 10.01 e reimplementação comportamental continua sendo o default.
 - [ ] Fechar no `10.13` se notas pessoais serão persistidas server-side por jogador ou client-side por mundo/servidor, com limites e migração explícitos.
 - [ ] Medir o catálogo real do modpack antes de congelar budgets numéricos de startup, reload, memória e UI; não inventar budgets sem baseline.
