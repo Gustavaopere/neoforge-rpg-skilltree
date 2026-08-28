@@ -4,6 +4,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[2]
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/compendium/RuntimeEntityCatalogCollector.java"
+RUNTIME_INSPECTOR = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/compendium/RuntimeEntityInstanceInspector.java"
 ENTITY_PROVIDER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/compendium/provider/entity"
 
 
@@ -23,9 +24,20 @@ def main() -> None:
     require("EntityType.create" not in text, "runtime entity collector must not construct arbitrary entities")
     require(not re.search(r"\.create\s*\(\s*[^)]*Level", text), "runtime entity collector appears to construct entities")
 
+    require(RUNTIME_INSPECTOR.is_file(), f"missing runtime entity instance inspector: {RUNTIME_INSPECTOR}")
+    inspection = RUNTIME_INSPECTOR.read_text(encoding="utf-8")
+    require("EntityInstanceInspector.inspect" in inspection, "runtime inspector must project through the whitelist inspector")
+    require("BuiltInRegistries.ENTITY_TYPE.getKey" in inspection, "runtime inspector must derive identity from the registry")
+    require("getActiveEffects" in inspection, "runtime inspector must expose bounded active effects")
+    require("getHealth" in inspection and "getMaxHealth" in inspection, "runtime inspector must expose current/max health")
+    require("net.minecraft.client" not in inspection, "runtime entity inspector must not import client classes")
+    for forbidden in ("CompoundTag", "getPersistentData", "saveWithoutId", "saveAsPassenger", "save("):
+        require(forbidden not in inspection, f"runtime entity inspector must not expose arbitrary entity data: {forbidden}")
+
     for path in sorted(ENTITY_PROVIDER.glob("*.java")):
         provider_text = path.read_text(encoding="utf-8")
         require("net.minecraft.client" not in provider_text, f"client import leaked into {path.name}")
+        require("CompoundTag" not in provider_text, f"NBT surface leaked into {path.name}")
 
     print("Compendium entity runtime validation: PASS")
 
