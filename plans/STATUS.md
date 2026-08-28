@@ -2,13 +2,15 @@
 
 Última auditoria de fechamento: **2026-08-27**.
 
-Base auditada: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
+Planejamento do Stage 10 adicionado em **2026-08-28**. Nenhum item do Stage 10 conta como implementado por existir apenas no plano.
+
+Base auditada para os fechamentos existentes: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
 A auditoria foi feita contra código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**5 / 60 subplanos concluídos formalmente.**
+**5 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `03-skill-tree-perks/✅-05-respec.md`
@@ -32,7 +34,8 @@ Cada arquivo concluído foi convertido para o mesmo padrão documental do Volcan
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 0 | 6 | EM ANDAMENTO / implementação paralela |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
-| **Total** | **5** | **60** | |
+| 10 Compêndio Natural | 0 | 15 | PLANEJADO — implementação ainda não iniciada |
+| **Total** | **5** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -75,6 +78,10 @@ Ainda não conta como concluído porque o PR #28 permanece draft e fora da `main
 ### 09 — Hardening & Release
 
 Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. A suíte atual é forte, mas ainda não cobre toda a matriz cliente/multiplayer/optional-mods e não substitui profiling/budgets, migrations e release gate finais.
+
+### 10 — Compêndio Natural
+
+O Stage 10 está **somente planejado**. Ele introduz 15 subplanos para proveniência, inventário da modlist/registries, modelo de dados, descoberta, fauna, flora/árvores/cultivos, ecologia/loot, worldgen, UI/modelo 3D/notas, corpus editorial pt-BR, integrações, ferramentas de operador, save/rede/cache, hardening e gate final. Nenhum arquivo recebe `✅-` até existir implementação, teste, integração e evidência correspondente.
 
 ## Evidência de regressão atual
 
