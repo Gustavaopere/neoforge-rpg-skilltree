@@ -50,9 +50,31 @@ Cada registro contém `kind`, `resource_location`, `namespace`, `translation_key
 
 A ausência de um mod opcional não é erro: se o namespace não está carregado, ele simplesmente não aparece na coleta. Nenhuma classe de mod opcional é referenciada pelo scanner genérico.
 
-## 3. Cobertura editorial
+## 3. Geração integral em um comando
 
-A partir da coleta runtime:
+Depois que a instância real produziu o snapshot runtime, a saída completa do Stage 10.02 pode ser regenerada com um único comando:
+
+```bash
+python3 scripts/compendium/generate_inventory.py \
+  "/caminho/para/modlist agora atual.txt" \
+  "/caminho/da/instancia/generated/compendium/runtime-registry-inventory.json" \
+  --output-dir generated/compendium
+```
+
+O comando gera:
+
+```text
+generated/compendium/modpack-inventory.json
+generated/compendium/modpack-inventory.md
+generated/compendium/coverage-report.json
+generated/compendium/coverage-report.md
+```
+
+Ele cruza a lista top-level com os mods realmente carregados. O runtime continua soberano: discrepâncias aparecem em `modlist_comparison`, não são mascaradas.
+
+## 4. Cobertura editorial
+
+O relatório de cobertura também pode ser executado isoladamente:
 
 ```bash
 python3 scripts/compendium/inventory_runtime_report.py \
@@ -94,7 +116,7 @@ Arquivo opcional:
 
 Override que referencia ID ausente do runtime falha fechado. `IGNORED` e `ERROR` sem motivo também falham.
 
-## 4. Drift e legado
+## 5. Drift e legado
 
 Para comparar duas coletas:
 
@@ -108,7 +130,7 @@ O relatório registra mods adicionados/removidos e IDs adicionados/removidos. ID
 
 Isso é deliberado: Stage 10.02 **detecta e preserva a informação de ausência**. A política definitiva de migração do progresso salvo pertence aos subplanos de save/hardening; um mod temporariamente ausente não autoriza apagar silenciosamente descobertas do jogador.
 
-## 5. Relatório por namespace
+## 6. Relatório por namespace e listas detalhadas
 
 `coverage-report.md` inclui a matriz:
 
@@ -116,14 +138,14 @@ Isso é deliberado: Stage 10.02 **detecta e preserva a informação de ausência
 namespace | mod | entities | flora | trees | crops | biomes | structures | dimensions | AUTO | CURATED | ADAPTER | IGNORED | ERROR
 ```
 
-O JSON mantém todas as entradas individuais e, portanto, permite gerar listas detalhadas por tipo ou namespace sem perder IDs.
+Abaixo da matriz, o relatório gera listas detalhadas agrupadas primeiro por tipo (`ENTITY`, `FLORA`, `TREE`, `CROP`, `BIOME`, `STRUCTURE`, `DIMENSION`) e depois por namespace, preservando `resource_location`, `translation_key` e estado editorial de cada entrada. O JSON mantém a mesma coleção integral em forma estruturada.
 
-## 6. CI
+## 7. CI
 
 O workflow principal executa:
 
 - contratos Java do catálogo;
-- testes do parser da modlist;
+- testes do parser da modlist e do pipeline integral;
 - testes do relatório de cobertura/drift;
 - build NeoForge;
 - dedicated-server smoke com `RPGSKILLTREE_COMPENDIUM_INVENTORY=1` e validação do JSON produzido pelo jogo.
