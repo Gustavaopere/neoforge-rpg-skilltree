@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.compendium.api;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -27,7 +28,7 @@ public record CompendiumEntry(
             throw new IllegalArgumentException("invalid sourceModId: " + sourceModId);
         }
         translationKey = requireText(translationKey, "translationKey");
-        categoryIds = Set.copyOf(categoryIds == null ? Set.of() : categoryIds);
+        categoryIds = normalizeCategoryIds(categoryIds);
         sections = List.copyOf(sections == null ? List.of() : sections);
         relations = List.copyOf(relations == null ? List.of() : relations);
         Objects.requireNonNull(discoveryPolicy, "discoveryPolicy");
@@ -35,7 +36,6 @@ public record CompendiumEntry(
         Objects.requireNonNull(provenance, "provenance");
         if (contentVersion <= 0) throw new IllegalArgumentException("contentVersion must be positive");
 
-        for (String categoryId : categoryIds) requireText(categoryId, "categoryId");
         HashSet<String> sectionIds = new HashSet<>();
         for (CompendiumSection section : sections) {
             if (section == null) throw new IllegalArgumentException("section must not be null");
@@ -63,6 +63,15 @@ public record CompendiumEntry(
             id, sourceModId, translationKey, replacementCategories, sections, replacementRelations,
             discoveryPolicy, visibilityPolicy, provenance, contentVersion
         );
+    }
+
+    private static Set<String> normalizeCategoryIds(Set<String> values) {
+        if (values == null || values.isEmpty()) return Set.of();
+        LinkedHashSet<String> normalized = new LinkedHashSet<>();
+        for (String value : values) {
+            normalized.add(requireText(value, "categoryId"));
+        }
+        return Set.copyOf(normalized);
     }
 
     private static String requireText(String value, String field) {
