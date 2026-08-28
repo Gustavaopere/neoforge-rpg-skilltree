@@ -7,13 +7,16 @@ import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.OptionalLong;
 
 /** Strict versioned binary codec for persisted entity-scaling lifecycle decisions. */
 public final class EntityScalingStateCodec {
-    public static final int CURRENT_VERSION = 1;
+    public static final int CURRENT_VERSION = 2;
     private static final int MAX_STRING_BYTES = 256;
+    private static final int MAX_AFFIXES = 256;
 
     private EntityScalingStateCodec() {}
 
@@ -41,12 +44,12 @@ public final class EntityScalingStateCodec {
         if (payload == null) throw new IllegalArgumentException("payload must not be null");
         try (DataInputStream in = new DataInputStream(new ByteArrayInputStream(payload))) {
             int version = in.readInt();
-            if (version != CURRENT_VERSION) {
+            if (version != 1 && version != CURRENT_VERSION) {
                 throw new IllegalArgumentException("unsupported entity scaling state version: " + version);
             }
             boolean initialized = in.readBoolean();
             EntityScalingAttachmentData result = initialized
-                ? EntityScalingAttachmentData.initialized(readState(in))
+                ? EntityScalingAttachmentData.initialized(readState(in, version))
                 : EntityScalingAttachmentData.uninitialized();
             if (in.available() != 0) {
                 throw new IllegalArgumentException("entity scaling state contains trailing bytes");
@@ -87,9 +90,18 @@ public final class EntityScalingStateCodec {
             out.writeLong(rarity.levelBonus());
         }
         out.writeLong(state.deterministicSeed());
+
+        List<MobAffixKey> affixes = state.affixes().affixes();
+        if (affixes.size() > MAX_AFFIXES) {
+            throw new IllegalArgumentException("too many persisted mob affixes");
+        }
+        out.writeInt(affixes.size());
+        for (MobAffixKey affix : affixes) {
+            writeString(out, affix.serializedId());
+        }
     }
 
-    private static EntityScalingState readState(DataInputStream in) throws IOException {
+    private static EntityScalingState readState(DataInputStream in, int version) throws IOException {
         TerritoryKey territory = TerritoryKey.of(readString(in), in.readLong(), in.readLong());
         EntityArchetype archetype = parseArchetype(readString(in));
         long nativeAreaLevel = in.readLong();
@@ -110,6 +122,19 @@ public final class EntityScalingStateCodec {
         }
         long deterministicSeed = in.readLong();
 
+        MobAffixSelection affixes = MobAffixSelection.empty();
+        if (version >= 2) {
+            int count = in.readInt();
+            if (count < 0 || count > MAX_AFFIXES) {
+                throw new IllegalArgumentException("invalid persisted mob affix count: " + count);
+            }
+            ArrayList<MobAffixKey> keys = new ArrayList<>(count);
+            for (int i = 0; i < count; i++) {
+                keys.add(MobAffixKey.of(readString(in)));
+            }
+            affixes = new MobAffixSelection(keys);
+        }
+
         return new EntityScalingState(
             territory,
             new EntityLevelResolution(
@@ -122,7 +147,8 @@ public final class EntityScalingStateCodec {
             ),
             variance,
             rarity,
-            deterministicSeed
+            deterministicSeed,
+            affixes
         );
     }
 
