@@ -1,48 +1,53 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.core.EntityScalingAttachmentData;
-import dev.gustavopere.rpgskilltree.core.EntityScalingSnapshot;
+import dev.gustavopere.rpgskilltree.core.EntityScalingBootstrap;
+import dev.gustavopere.rpgskilltree.core.EntityScalingState;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Supplier;
 import net.minecraft.world.entity.LivingEntity;
 
-/** NeoForge persistence boundary for one entity's already-resolved scaling decision. */
+/** NeoForge persistence boundary for one entity's already-resolved scaling lifecycle. */
 public final class EntityScalingRuntime {
     private EntityScalingRuntime() {}
 
     /**
-     * Persists a candidate only for an entity that has no initialized scaling state.
+     * Returns persisted state without invoking the initializer, or initializes and persists exactly once.
      *
-     * <p>Callers are responsible for producing the candidate from the pure world/entity
-     * scaling services. This boundary never recalculates or rerolls level/rarity.</p>
+     * <p>The initializer owns pure level/rarity resolution. This boundary never recalculates or rerolls
+     * an entity that already has persisted scaling metadata.</p>
      */
-    public static EntityScalingSnapshot initializeIfAbsent(
+    public static EntityScalingState getOrInitialize(
         LivingEntity entity,
-        EntityScalingSnapshot candidate
+        Supplier<EntityScalingState> initializer
     ) {
         Objects.requireNonNull(entity, "entity");
-        Objects.requireNonNull(candidate, "candidate");
+        Objects.requireNonNull(initializer, "initializer");
 
+        Optional<EntityScalingState> existing = Optional.empty();
         if (entity.hasData(ModAttachments.ENTITY_SCALING)) {
-            EntityScalingAttachmentData existing = entity.getData(ModAttachments.ENTITY_SCALING);
-            if (existing.initialized()) {
-                return existing.requireSnapshot();
-            }
+            existing = entity.getData(ModAttachments.ENTITY_SCALING).state();
+        }
+
+        EntityScalingState resolved = EntityScalingBootstrap.resumeOrInitialize(existing, initializer);
+        if (existing.isPresent()) {
+            return resolved;
         }
 
         entity.setData(
             ModAttachments.ENTITY_SCALING,
-            EntityScalingAttachmentData.initialized(candidate)
+            EntityScalingAttachmentData.initialized(resolved)
         );
-        return candidate;
+        return resolved;
     }
 
     /** Read-only view; does not materialize the default attachment. */
-    public static Optional<EntityScalingSnapshot> current(LivingEntity entity) {
+    public static Optional<EntityScalingState> current(LivingEntity entity) {
         Objects.requireNonNull(entity, "entity");
         if (!entity.hasData(ModAttachments.ENTITY_SCALING)) {
             return Optional.empty();
         }
-        return entity.getData(ModAttachments.ENTITY_SCALING).snapshot();
+        return entity.getData(ModAttachments.ENTITY_SCALING).state();
     }
 }
