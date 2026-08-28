@@ -1,40 +1,85 @@
 package dev.gustavopere.rpgskilltree.runtime.effects;
 
+import com.mojang.logging.LogUtils;
 import dev.gustavopere.rpgskilltree.core.ModifierOperation;
 import dev.gustavopere.rpgskilltree.core.NodeEffectResolver;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalog;
-import java.util.HashMap;
-import java.util.Map;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import org.slf4j.Logger;
 
 public final class AttributeNodeEffectRuntime {
+    private static final Logger LOGGER = LogUtils.getLogger();
+
     private AttributeNodeEffectRuntime() {}
 
     public static void refresh(ServerPlayer player, ProgressionState state) {
         for (var effect : NodeEffectCatalog.clearableAttributeEffects()) {
             var attributeId = ResourceLocation.parse(effect.attributeId());
             var holder = BuiltInRegistries.ATTRIBUTE.getHolder(attributeId).orElse(null);
-            if (holder == null) continue;
+            if (holder == null) {
+                reportUnavailable(
+                    effect.effectId(),
+                    effect.attributeId(),
+                    AttributeEffectDiagnostics.Reason.MISSING_REGISTRY_TARGET
+                );
+                continue;
+            }
             var instance = player.getAttribute(holder);
-            if (instance == null) continue;
+            if (instance == null) {
+                reportUnavailable(
+                    effect.effectId(),
+                    effect.attributeId(),
+                    AttributeEffectDiagnostics.Reason.MISSING_PLAYER_ATTRIBUTE
+                );
+                continue;
+            }
             instance.removeModifier(ResourceLocation.parse(effect.effectId()));
         }
 
         for (var effect : NodeEffectResolver.resolveAttributes(state.passiveNodes(), NodeEffectCatalog.attributeEffects())) {
             var attributeId = ResourceLocation.parse(effect.attributeId());
             var holder = BuiltInRegistries.ATTRIBUTE.getHolder(attributeId).orElse(null);
-            if (holder == null) continue;
+            if (holder == null) {
+                reportUnavailable(
+                    effect.effectId(),
+                    effect.attributeId(),
+                    AttributeEffectDiagnostics.Reason.MISSING_REGISTRY_TARGET
+                );
+                continue;
+            }
             var instance = player.getAttribute(holder);
-            if (instance == null) continue;
+            if (instance == null) {
+                reportUnavailable(
+                    effect.effectId(),
+                    effect.attributeId(),
+                    AttributeEffectDiagnostics.Reason.MISSING_PLAYER_ATTRIBUTE
+                );
+                continue;
+            }
             instance.addOrUpdateTransientModifier(new AttributeModifier(
                 ResourceLocation.parse(effect.effectId()),
                 effect.amount(),
                 operation(effect.operation())
             ));
+        }
+    }
+
+    private static void reportUnavailable(
+        String effectId,
+        String attributeId,
+        AttributeEffectDiagnostics.Reason reason
+    ) {
+        if (AttributeEffectDiagnostics.report(effectId, attributeId, reason)) {
+            LOGGER.warn(
+                "Node effect {} targets unavailable attribute {} ({}); the effect will not be applied",
+                effectId,
+                attributeId,
+                reason
+            );
         }
     }
 
