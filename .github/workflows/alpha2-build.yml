@@ -65,6 +65,9 @@ jobs:
       - name: Compendium provenance tests
         run: python3 scripts/compendium/test_provenance.py
 
+      - name: Compendium inventory catalog tests
+        run: bash scripts/compendium/test_inventory_catalog.sh
+
       - name: Data validation
         run: python3 scripts/validate-data.py
 
