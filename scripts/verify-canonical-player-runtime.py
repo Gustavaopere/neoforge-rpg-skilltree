@@ -50,4 +50,24 @@ require("setData(ModAttachments.PROGRESSION" not in helper,
 require("setData(ModAttachments.CORE_PROGRESSION" not in helper,
         "canonical attachment runtime must never write legacy CORE_PROGRESSION")
 
+query_runtime_path = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CanonicalPlayerQueryRuntime.java"
+require(query_runtime_path.exists(), "CanonicalPlayerQueryRuntime.java is required")
+query_runtime = query_runtime_path.read_text(encoding="utf-8")
+require("CanonicalPlayerSnapshot" in query_runtime and " query(" in query_runtime,
+        "canonical player query runtime must expose a CanonicalPlayerSnapshot query")
+require("CoreProgressionRulesCatalog.provider().requireCurrent()" in query_runtime,
+        "canonical player query runtime must resolve authoritative server rules")
+require("CanonicalPlayerAttachmentRuntime.observe(player)" in query_runtime,
+        "canonical player query runtime must observe without persisting migration")
+require("CanonicalPlayerQueryService.snapshot(" in query_runtime,
+        "canonical player query runtime must delegate projection to CanonicalPlayerQueryService")
+require("readOrMigrate" not in query_runtime,
+        "canonical player query runtime must not materialize migration during observation")
+require("CanonicalPlayerAttachmentRuntime.write" not in query_runtime,
+        "canonical player query runtime must not persist as a query side effect")
+require("setData(" not in query_runtime,
+        "canonical player query runtime must not write attachments directly")
+require("ModNetworking" not in query_runtime,
+        "canonical player query runtime must not synchronize as a query side effect")
+
 print("Canonical player runtime validation: PASS")
