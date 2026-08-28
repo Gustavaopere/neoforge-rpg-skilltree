@@ -28,6 +28,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.RpgScalingFactsTe
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.EntityCatalogCoverageTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.FloraClassifierTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.CropProviderTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.TreeGroupingTest
 
 python3 - "$DATA" <<'PY'
 import json
