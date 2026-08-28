@@ -24,7 +24,7 @@ public record EntityScalingState(
         }
 
         long rarityBonus = rarity.map(MobRaritySelection::levelBonus).orElse(0L);
-        final long expectedRolled;
+        long expectedRolled;
         try {
             expectedRolled = Math.addExact(Math.addExact(expectedBaseFloor, variance), rarityBonus);
         } catch (ArithmeticException exception) {
