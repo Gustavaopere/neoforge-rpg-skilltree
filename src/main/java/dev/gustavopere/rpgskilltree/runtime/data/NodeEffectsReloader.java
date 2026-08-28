@@ -6,7 +6,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.gustavopere.rpgskilltree.core.ModifierOperation;
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
+import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.effects.AttributeEffectDiagnostics;
+import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.NotNull;
 
 public final class NodeEffectsReloader extends SimpleJsonResourceReloadListener {
@@ -54,5 +57,12 @@ public final class NodeEffectsReloader extends SimpleJsonResourceReloadListener 
         }
         NodeEffectCatalog.replace(effects);
         AttributeEffectDiagnostics.clear();
+
+        var server = ServerLifecycleHooks.getCurrentServer();
+        if (server != null) {
+            server.getPlayerList().getPlayers().forEach(player ->
+                AttributeNodeEffectRuntime.refresh(player, PlayerProgressionRuntime.get(player))
+            );
+        }
     }
 }
