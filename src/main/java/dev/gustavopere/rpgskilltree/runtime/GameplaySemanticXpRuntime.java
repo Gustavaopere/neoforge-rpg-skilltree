@@ -2,15 +2,17 @@ package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.core.AntiFarmService;
 import dev.gustavopere.rpgskilltree.core.SemanticAction;
+import dev.gustavopere.rpgskilltree.core.SemanticXpDecision;
 import dev.gustavopere.rpgskilltree.core.SemanticXpPipeline;
 import dev.gustavopere.rpgskilltree.core.SemanticXpResult;
 import dev.gustavopere.rpgskilltree.core.XpPolicy;
 import dev.gustavopere.rpgskilltree.runtime.data.CoreProgressionRulesCatalog;
 import java.util.Objects;
+import java.util.Optional;
 import net.minecraft.server.level.ServerPlayer;
 
 /**
- * Transitional single routing boundary for repeatable gameplay semantic XP.
+ * Transitional single routing boundary for repeatable and first-completion gameplay semantic XP.
  *
  * <p>When an authoritative Core rules snapshot is installed, the uncapped Core is
  * the only XP mutation target. Until a production Core ruleset is configured, the
@@ -50,5 +52,53 @@ public final class GameplaySemanticXpRuntime {
             PlayerProgressionRuntime.applyXp(player, semantic.award().orElseThrow());
         }
         return semantic;
+    }
+
+    public static SemanticXpResult applyFirstCompletion(
+        ServerPlayer player,
+        String completionKey,
+        SemanticAction action,
+        AntiFarmService antiFarmService,
+        XpPolicy xpPolicy
+    ) {
+        Objects.requireNonNull(player, "player");
+        Objects.requireNonNull(completionKey, "completionKey");
+        Objects.requireNonNull(action, "action");
+        Objects.requireNonNull(antiFarmService, "antiFarmService");
+        Objects.requireNonNull(xpPolicy, "xpPolicy");
+        if (completionKey.isBlank()) throw new IllegalArgumentException("completionKey must not be blank");
+
+        var rules = Objects.requireNonNull(
+            CoreProgressionRulesCatalog.provider().current(),
+            "Core progression rules provider returned null"
+        );
+        if (rules.isPresent()) {
+            return CorePlayerProgressionRuntime.applyFirstCompletionXp(
+                player,
+                completionKey,
+                action,
+                antiFarmService,
+                xpPolicy,
+                rules.get()
+            ).semanticXp();
+        }
+
+        SemanticXpResult semantic = SemanticXpPipeline.evaluate(action, antiFarmService, xpPolicy);
+        if (semantic.decision() != SemanticXpDecision.AWARDED) {
+            return semantic;
+        }
+        var discovery = PlayerProgressionRuntime.creditDiscovery(
+            player,
+            completionKey,
+            semantic.award().orElseThrow()
+        );
+        if (discovery.firstDiscovery()) {
+            return semantic;
+        }
+        return new SemanticXpResult(
+            SemanticXpDecision.NO_AWARD,
+            Optional.empty(),
+            "first_completion_already_claimed"
+        );
     }
 }

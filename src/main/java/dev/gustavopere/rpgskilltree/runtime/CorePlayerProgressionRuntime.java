@@ -221,6 +221,36 @@ public final class CorePlayerProgressionRuntime {
         return result;
     }
 
+    public static SemanticProgressionResult applyFirstCompletionXp(
+        ServerPlayer player,
+        String completionKey,
+        SemanticAction action,
+        AntiFarmService antiFarmService,
+        XpPolicy xpPolicy,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(completionKey);
+        Objects.requireNonNull(action);
+        Objects.requireNonNull(antiFarmService);
+        Objects.requireNonNull(xpPolicy);
+        Objects.requireNonNull(rules);
+
+        CoreProgressionState current = bootstrap(player, rules);
+        SemanticProgressionResult result = SemanticProgressionService.applyFirstCompletion(
+            current,
+            completionKey,
+            action,
+            antiFarmService,
+            xpPolicy,
+            rules
+        );
+        if (result.state() != current) {
+            set(player, result.state(), rules);
+        }
+        return result;
+    }
+
     private static CoreProgressionState readOnlyState(
         ServerPlayer player,
         ProgressionRulesSnapshot rules

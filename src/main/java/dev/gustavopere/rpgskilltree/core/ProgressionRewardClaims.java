@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-/** Persistent exact-replay protection for one-time typed progression rewards. */
+/** Persistent exact-replay and first-completion protection for progression rewards. */
 public final class ProgressionRewardClaims {
     private static final ProgressionRewardClaims EMPTY = new ProgressionRewardClaims(Map.of());
+    private static final String COMPLETION_PREFIX = "completion:";
+    private static final String COMPLETION_PAYLOAD = "completion:v1";
 
     private final Map<String, String> claims;
 
@@ -50,8 +52,36 @@ public final class ProgressionRewardClaims {
         return new ProgressionRewardClaims(next);
     }
 
+    /**
+     * Returns whether a stable first-completion key has already been claimed.
+     *
+     * <p>The payload deliberately excludes XP amount/balance revision so a later
+     * balance change cannot make an already completed discovery eligible again.</p>
+     */
+    public boolean isCompletionClaimed(String completionKey) {
+        String claimId = completionClaimId(completionKey);
+        String existing = claims.get(claimId);
+        if (existing == null) return false;
+        if (COMPLETION_PAYLOAD.equals(existing)) return true;
+        throw new IllegalArgumentException(
+            "completion claim id is already used by a different claim payload: " + claimId
+        );
+    }
+
+    public ProgressionRewardClaims claimCompletion(String completionKey) {
+        String claimId = completionClaimId(completionKey);
+        if (isCompletionClaimed(completionKey)) return this;
+        HashMap<String, String> next = new HashMap<>(claims);
+        next.put(claimId, COMPLETION_PAYLOAD);
+        return new ProgressionRewardClaims(next);
+    }
+
     public Map<String, String> claims() {
         return claims;
+    }
+
+    private static String completionClaimId(String completionKey) {
+        return COMPLETION_PREFIX + requireText(completionKey, "completionKey");
     }
 
     private static String requireText(String value, String label) {
