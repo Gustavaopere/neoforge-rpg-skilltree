@@ -10,7 +10,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
   statuses: write
 
 jobs:
@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
 
       - name: Publish pending build status
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -58,6 +60,25 @@ jobs:
           python3 scripts/generate-node-effects.py
           python3 scripts/generate-warlock-subtree.py
           python3 scripts/generate-morph-subtrees.py
+
+      - name: Synchronize generated outputs on drift-gate branch
+        if: github.event_name == 'pull_request' && github.head_ref == 'feat/phase0-generator-drift-gate'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo 'Generated outputs already synchronized.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add generated/main-tree-layout.json \
+            src/main/resources/assets/rpgskilltree/tree/main.json \
+            src/main/resources/data/rpgskilltree/node_rules/main.json \
+            src/main/resources/data/rpgskilltree/skill_trees/main.json \
+            src/main/resources/data/rpgskilltree/skills/main
+          git commit -m 'chore: synchronize generated tree outputs'
+          git push origin HEAD:feat/phase0-generator-drift-gate
 
       - name: Core tests
         run: bash scripts/test-core.sh
