@@ -170,7 +170,7 @@ public final class PlayerProgressionRuntime {
             set(player, next);
             return result.unlockedNow();
         } catch (IllegalArgumentException rejectedUnlock) {
-            ModNetworking.syncToOwner(player, get(player());
+            ModNetworking.syncToOwner(player, get(player));
             return false;
         }
     }
