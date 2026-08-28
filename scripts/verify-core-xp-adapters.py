@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 COMBAT = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/CombatProgressionEvents.java"
 MINING = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java"
-CORE_RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
+ROUTER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/GameplaySemanticXpRuntime.java"
 
 
 def read(path: Path) -> str:
@@ -25,13 +25,13 @@ def forbid(text: str, needle: str, path: Path) -> None:
 
 combat = read(COMBAT)
 mining = read(MINING)
-runtime = read(CORE_RUNTIME)
 
 for path, text in ((COMBAT, combat), (MINING, mining)):
     forbid(text, "PlayerProgressionRuntime", path)
+    forbid(text, "CorePlayerProgressionRuntime", path)
     forbid(text, "GameplayXpPolicy", path)
     forbid(text, "CoreProgressionRulesCatalog", path)
-    require(text, "CorePlayerProgressionRuntime.applySemanticAction(", path)
+    require(text, "GameplaySemanticXpRuntime.apply(", path)
     require(text, "GameplaySemanticXpPolicy.INSTANCE", path)
     require(text, "SemanticActionAuthorship.DIRECT_PLAYER", path)
     require(text, "new ActionOrigin(", path)
@@ -46,9 +46,16 @@ require(mining, "OptionalLong.of(event.getPos().asLong())", MINING)
 require(mining, "oreData.antiFarmService()", MINING)
 require(mining, "oreData.consume(event.getPos())", MINING)
 
-# Event adapters never choose the active rules snapshot. The runtime resolves it
-# from the authoritative server catalog and delegates to the explicit-rules overload.
-require(runtime, "ProgressionRulesSnapshot rules = CoreProgressionRulesCatalog.provider().requireCurrent();", CORE_RUNTIME)
-require(runtime, "return applySemanticAction(player, action, antiFarmService, xpPolicy, rules);", CORE_RUNTIME)
+# During convergence there is exactly one backend decision boundary. If the Core
+# rules catalog is configured, semantic XP mutates Core. If it is not configured,
+# legacy XP remains a compatibility fallback so normal gameplay does not crash or
+# silently lose progression. Event adapters never see this decision.
+router = read(ROUTER)
+require(router, "CoreProgressionRulesCatalog.provider().current()", ROUTER)
+require(router, "if (rules.isPresent())", ROUTER)
+require(router, "CorePlayerProgressionRuntime.applySemanticAction(", ROUTER)
+require(router, "SemanticXpPipeline.evaluate(", ROUTER)
+require(router, "PlayerProgressionRuntime.applyXp(", ROUTER)
+require(router, "semantic.award().orElseThrow()", ROUTER)
 
 print("Core XP adapter validation: PASS")
