@@ -24,8 +24,8 @@ require((ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CanonicalPla
 
 require("CanonicalPlayerAttachmentRuntime.readOrMigrate" in legacy_runtime,
         "PlayerProgressionRuntime must read through the canonical attachment runtime")
-require("CanonicalPlayerAttachmentRuntime.write" in legacy_runtime,
-        "PlayerProgressionRuntime must write through the canonical attachment runtime")
+require("CanonicalPlayerAttachmentRuntime.commitMutation" in legacy_runtime,
+        "PlayerProgressionRuntime must commit mutations through the canonical attachment runtime")
 require("setData(ModAttachments.PROGRESSION" not in legacy_runtime,
         "PlayerProgressionRuntime must not write legacy PROGRESSION")
 
@@ -33,8 +33,8 @@ require("CanonicalPlayerAttachmentRuntime.readOrMigrate" in core_runtime,
         "CorePlayerProgressionRuntime must read through the canonical attachment runtime")
 require("CanonicalPlayerAttachmentRuntime.observe" in core_runtime,
         "Core read-only query must observe canonical/migration inputs without persisting")
-require("CanonicalPlayerAttachmentRuntime.write" in core_runtime,
-        "CorePlayerProgressionRuntime must write through the canonical attachment runtime")
+require("CanonicalPlayerAttachmentRuntime.commitMutation" in core_runtime,
+        "CorePlayerProgressionRuntime must commit mutations through the canonical attachment runtime")
 require("setData(ModAttachments.CORE_PROGRESSION" not in core_runtime,
         "CorePlayerProgressionRuntime must not write legacy CORE_PROGRESSION")
 require("setData(ModAttachments.PROGRESSION" not in core_runtime,
@@ -45,6 +45,8 @@ require("ModAttachments.CANONICAL_PLAYER" in helper,
         "canonical attachment runtime must use CANONICAL_PLAYER")
 require("ModAttachments.PROGRESSION" in helper and "ModAttachments.CORE_PROGRESSION" in helper,
         "canonical attachment runtime must retain old attachments only as migration inputs")
+require("commitMutation(" in helper,
+        "canonical attachment runtime must own the confirmed mutation commit boundary")
 require("setData(ModAttachments.PROGRESSION" not in helper,
         "canonical attachment runtime must never write legacy PROGRESSION")
 require("setData(ModAttachments.CORE_PROGRESSION" not in helper,
