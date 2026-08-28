@@ -26,3 +26,6 @@ jobs:
 
       - name: Compendium discovery tests
         run: bash scripts/compendium/test_discovery.sh
+
+      - name: Compendium discovery runtime validation
+        run: python3 scripts/compendium/verify_discovery_runtime.py
