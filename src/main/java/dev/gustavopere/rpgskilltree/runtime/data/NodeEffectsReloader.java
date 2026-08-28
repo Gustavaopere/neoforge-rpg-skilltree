@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.gustavopere.rpgskilltree.core.ModifierOperation;
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
+import dev.gustavopere.rpgskilltree.runtime.effects.AttributeEffectDiagnostics;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -52,5 +53,6 @@ public final class NodeEffectsReloader extends SimpleJsonResourceReloadListener 
             });
         }
         NodeEffectCatalog.replace(effects);
+        AttributeEffectDiagnostics.clear();
     }
 }
