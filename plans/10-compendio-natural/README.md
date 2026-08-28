@@ -85,9 +85,9 @@ src/test/java/dev/gustavopere/rpgskilltree/compendium/
 
 ## Ordem causal
 
-1. `01-proveniencia-licencas.md`
-2. `02-inventario-modpack.md`
-3. `03-modelo-dados-identidade.md`
+1. `✅-01-proveniencia-licencas.md`
+2. `✅-02-inventario-modpack.md`
+3. `✅-03-modelo-dados-identidade.md`
 4. `04-descoberta-progresso.md`
 5. `05-fauna-entidades.md`
 6. `06-flora-arvores-cultivos.md`
