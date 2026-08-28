@@ -26,6 +26,7 @@ public final class FloraClassifier {
         }
 
         Set<FloraKind> candidates = new LinkedHashSet<>();
+        Set<String> editorialCategories = new LinkedHashSet<>();
         List<String> reasons = new ArrayList<>();
 
         if (evidence.cropClass()) {
@@ -38,6 +39,7 @@ public final class FloraClassifier {
         }
         if (evidence.flowerClass()) {
             candidates.add(FloraKind.FLORA);
+            editorialCategories.add("flor");
             reasons.add("stable class: flower");
         }
         if (evidence.fungusClass()) {
@@ -53,6 +55,9 @@ public final class FloraClassifier {
             FloraKind tagKind = kindForTag(tagId);
             if (tagKind != null) {
                 candidates.add(tagKind);
+                if (tagId.equals("minecraft:flowers")) {
+                    editorialCategories.add("flor");
+                }
                 reasons.add("stable tag: " + tagId);
             }
         }
@@ -63,7 +68,10 @@ public final class FloraClassifier {
             return FloraClassification.ambiguous(diagnostics);
         }
         if (candidates.size() == 1) {
-            return FloraClassification.classified(candidates.iterator().next(), reasons);
+            FloraKind kind = candidates.iterator().next();
+            Set<String> categories = new LinkedHashSet<>(kind.defaultCategories());
+            categories.addAll(editorialCategories);
+            return new FloraClassification(kind, categories, false, false, reasons);
         }
 
         if (evidence.decorativeOnly()) {
