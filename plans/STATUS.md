@@ -12,13 +12,16 @@ Fechamento do Stage 10.02 auditado contra `main@259eb2d4310f5c7c84dcf0db1a5c3c5f
 
 Fechamento do Stage 10.03 auditado contra `main@112d9266de9ece584f2f58adff03ffb6c8776ca6`, com CI pós-merge `33195224667` / run #858 GREEN completo.
 
+Fechamento do Stage 01.01 auditado contra `main@5171ec7e099be545663b4a1ac989c36fc68835eb`, após consolidação do attachment canônico, dimension-change sync e query somente-leitura; o último gate funcional foi CI `33198679352` / run #908 GREEN completo.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**8 / 75 subplanos concluídos formalmente.**
+**9 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
+- `01-rpg-core/✅-01-player-state.md`
 - `03-skill-tree-perks/✅-05-respec.md`
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
@@ -34,7 +37,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | Estágio | Concluídos | Total | Estado geral |
 | --- | ---: | ---: | --- |
 | 00 Foundation | 1 | 4 | EM ANDAMENTO |
-| 01 RPG Core | 0 | 5 | EM ANDAMENTO |
+| 01 RPG Core | 1 | 5 | EM ANDAMENTO |
 | 02 Progression & World Scaling | 0 | 5 | EM ANDAMENTO |
 | 03 Skill Tree & Perks | 1 | 6 | EM ANDAMENTO |
 | 04 Classes, Masteries & Specializations | 1 | 6 | EM ANDAMENTO |
@@ -44,7 +47,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 0 | 6 | EM ANDAMENTO / implementação paralela |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 3 | 15 | EM ANDAMENTO |
-| **Total** | **8** | **75** | |
+| **Total** | **9** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -54,7 +57,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 
 ### 01 — RPG Core
 
-A `main` ainda contém `ProgressionState`/`PlayerProgressionRuntime` e a fundação nova `CoreProgressionState`/Core runtime em paralelo. Por isso o requisito de uma fonte de verdade única, API única de mutation/query e sync/migração completos ainda não pode ser marcado. Dimension-change sync e a política final de migração também permanecem abertos.
+`✅-01-player-state.md` está fechado: `CANONICAL_PLAYER` é o único envelope persistente de escrita normal, attachments antigos existem somente como inputs de migração, os runtimes convergem pelo `CanonicalPlayerAttachmentRuntime` e `CanonicalPlayerSnapshot` fornece a projeção somente-leitura sem reintroduzir authorities legados. Os subplanos `02-progression-services`, `03-attributes-modifiers`, `04-persistence-sync` e `05-core-api-invariants` continuam abertos porque ainda exigem fechamento formal de todas as mutation routes, recomputação/modificadores, matriz completa de migração/sync/corrupção e invariantes públicas de API/boundary.
 
 ### 02 — Progression & World Scaling
 
@@ -78,7 +81,7 @@ Iron's e o bloco Goety/Malum/Eidolon estão fechados. Epic Fight ainda depende d
 
 ### 07 — Data, Network & UI
 
-Loaders, packets e UI já existem, mas o acceptance final ainda não está satisfeito: reload cross-catalog, versionamento formal de protocolo/schemas, dimension-change sync e resolução completa de efeitos/requisitos/erros na UI ainda possuem trabalho aberto.
+Loaders, packets e UI já existem, mas o acceptance final ainda não está satisfeito: reload cross-catalog, versionamento formal de protocolo/schemas e resolução completa de efeitos/requisitos/erros na UI ainda possuem trabalho aberto. O dimension-change sync do RPG Core já foi integrado e não é mais blocker deste estágio.
 
 ### 08 — Quest & Progression Hooks
 
@@ -94,7 +97,7 @@ Nenhum gate final pode ser fechado enquanto existirem blockers de migração, co
 
 ## Evidência de regressão atual
 
-O CI pós-merge de `main@112d9266de9ece584f2f58adff03ffb6c8776ca6` foi `33195224667` / run #858: Core tests, todos os gates do Compêndio incluindo `Compendium model and provider tests`, validators, NeoForge build, verificação do JAR, upload do artefato, dedicated-server smoke e status final passaram.
+O fechamento mais recente do Stage 01.01 foi auditado em `main@5171ec7e099be545663b4a1ac989c36fc68835eb`; CI `33198679352` / run #908 passou Core tests, todos os gates do Compêndio, validators RPG, generated-data drift/diff sanity, NeoForge build, verificação do JAR e dedicated-server smoke.
 
 ## Convenção
 
