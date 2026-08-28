@@ -11,6 +11,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 PARSER = ROOT / "scripts/compendium/inventory_modlist.py"
+PIPELINE = ROOT / "scripts/compendium/generate_inventory.py"
 
 
 def fixture(declared: int = 3, suffix: str = "") -> str:
@@ -44,6 +45,42 @@ def run_parser(input_path: Path, json_path: Path, markdown_path: Path) -> subpro
         capture_output=True,
         text=True,
     )
+
+
+def runtime_fixture() -> dict:
+    entries = [
+        {
+            "kind": "ENTITY",
+            "resource_location": "minecraft:zombie",
+            "namespace": "minecraft",
+            "translation_key": "entity.minecraft.zombie",
+            "mod_display_name": "Minecraft",
+            "registry_source": "minecraft:entity_type",
+            "present_at_runtime": True,
+        },
+        {
+            "kind": "STRUCTURE",
+            "resource_location": "moda:tower",
+            "namespace": "moda",
+            "translation_key": "structure.moda.tower",
+            "mod_display_name": "Mod A",
+            "registry_source": "minecraft:structure",
+            "present_at_runtime": True,
+        },
+    ]
+    return {
+        "schema": 1,
+        "minecraft_version": "1.21.1",
+        "loader": "neoforge",
+        "runtime_fingerprint_sha256": "b" * 64,
+        "loaded_mods": [
+            {"mod_id": "neoforge", "display_name": "NeoForge", "runtime_version": "21.1.248"},
+            {"mod_id": "moda", "display_name": "Mod A", "runtime_version": "1.0"},
+            {"mod_id": "modb", "display_name": "Mod B", "runtime_version": "3.4"},
+        ],
+        "entry_count": len(entries),
+        "entries": entries,
+    }
 
 
 class ModlistParserTest(unittest.TestCase):
@@ -87,6 +124,34 @@ class ModlistParserTest(unittest.TestCase):
             a = json.loads((root / "a.json").read_text(encoding="utf-8"))["snapshot_sha256"]
             b = json.loads((root / "b.json").read_text(encoding="utf-8"))["snapshot_sha256"]
             self.assertNotEqual(a, b)
+
+    def test_single_command_pipeline_generates_all_stage_outputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            modlist = root / "modlist agora atual.txt"
+            runtime = root / "runtime-registry-inventory.json"
+            output = root / "generated/compendium"
+            modlist.write_text(fixture(), encoding="utf-8")
+            runtime.write_text(json.dumps(runtime_fixture()), encoding="utf-8")
+            result = subprocess.run(
+                [sys.executable, str(PIPELINE), str(modlist), str(runtime), "--output-dir", str(output)],
+                cwd=ROOT,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            for filename in (
+                "modpack-inventory.json",
+                "modpack-inventory.md",
+                "coverage-report.json",
+                "coverage-report.md",
+            ):
+                self.assertTrue((output / filename).is_file(), filename)
+            report = json.loads((output / "coverage-report.json").read_text(encoding="utf-8"))
+            self.assertEqual(2, len(report["entries"]))
+            self.assertEqual([], report["modlist_comparison"]["listed_but_not_loaded"])
+            self.assertEqual([], report["modlist_comparison"]["loaded_but_not_listed"])
 
 
 if __name__ == "__main__":
