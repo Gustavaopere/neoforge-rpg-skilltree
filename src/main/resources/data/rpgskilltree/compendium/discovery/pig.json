@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "id": "observe_pig",
+  "entry": "ENTITY|minecraft:pig",
+  "trigger": "OBSERVATION"
+}
