@@ -1,23 +1,29 @@
 # Compatibilidade
 
-RPG Skill Tree é construído para conviver com mods opcionais. A ausência de uma integração não deveria impedir o núcleo do RPG de carregar.
+RPG Skill Tree pode reconhecer conteúdo de vários mods sem exigir que todos estejam instalados ao mesmo tempo.
 
-## Integrações com gameplay confirmado
+## Interações de gameplay já documentadas
 
-Epic Fight, Iron's Spells 'n Spellbooks, Ars Nouveau, Goety, Malum e Eidolon: Repraised possuem comportamento de integração confirmado na auditoria atual. Identity2/morphs também participa de permissões de forma de Druid/Metamorph.
+- Epic Fight
+- Iron's Spells 'n Spellbooks
+- Ars Nouveau
+- Goety
+- Malum
+- Eidolon: Repraised
+- Identity2 / sistemas de transformação usados por Druida e Metamorfo
 
-## Compatibilidade por atributos
+## Apothic Attributes
 
-Apothic Attributes fornece vários atributos usados por perks. Isso é diferente de uma bridge completa para todos os sistemas Apothic.
+Várias perks usam estatísticas do Apothic Attributes. Se o atributo correspondente não fizer parte da sua instalação, não presuma que aquela parcela específica da perk produzirá o mesmo resultado.
 
-## Conteúdo preparado
+## Caminhos tecnológicos
 
-Create, Applied Energistics 2 e Oritech possuem especializações/gateways em dados. Consulte [Interações com outros mods](MOD_INTERACTIONS.md) para saber o que está ou não comprovado em runtime.
+Create, Applied Energistics 2 e Oritech aparecem em especializações e gateways do Tecnomago. A existência de um caminho de progressão não significa, por si só, que cada máquina desses mods receba um bônus direto.
 
-## Se um bônus parecer não funcionar
+## Quando algo parecer não funcionar
 
-1. confira se o mod que fornece o atributo está instalado;
-2. confira se o nó realmente tem efeito numérico em [Estatísticas](EFFECT_CATALOG.md);
-3. diferencie perk estrutural/gateway de perk de atributo;
-4. confira se a ação usada é a que concede mastery;
-5. em servidor, confirme que cliente e servidor usam a mesma versão/modpack.
+1. confirme se o mod relacionado à perk está instalado na mesma versão do modpack;
+2. confira [Estatísticas dos efeitos](EFFECT_CATALOG.md) para saber se o nó possui bônus numérico conhecido;
+3. lembre que gateways podem servir principalmente para abrir caminhos;
+4. para masteries, use a atividade correspondente — possuir um item não substitui prática;
+5. em multiplayer, cliente e servidor devem usar a mesma composição/versões de mods.

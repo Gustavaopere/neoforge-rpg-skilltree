@@ -14,7 +14,7 @@
 
 **Confluência** — classe formada pelo encontro de dois domínios.
 
-**Bridge** — caminho/custo para cruzar domínios distantes.
+**Bridge** — caminho especial usado para aproximar domínios distantes; algumas classes cobram pontos extras por essa travessia.
 
 **Mastery** — experiência obtida por prática de uma atividade específica.
 
@@ -24,6 +24,6 @@
 
 **Capstone** — perk de fechamento de um caminho, geralmente mais forte ou definidora.
 
-**Spell Power** — atributo de potência mágica usado por sistemas compatíveis.
+**Spell Power** — estatística de potência mágica usada por sistemas compatíveis.
 
-**Server-authoritative** — o servidor é quem decide o estado válido de progressão; para o jogador, isso significa que a UI reflete a progressão confirmada e não pode conceder unlocks por conta própria.
+**Respec** — desfazer investimentos da árvore conforme as regras disponíveis no jogo.

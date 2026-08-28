@@ -1,6 +1,6 @@
 # Especializações
 
-Especializações refinam uma classe ou estilo depois que a base da build já está definida. O datapack atual contém **25 definições**.
+Especializações refinam uma classe ou estilo depois que a base da build já está definida. O conteúdo atual possui **25 especializações**.
 
 ## Ars Nouveau
 
@@ -25,7 +25,7 @@ Esses caminhos refletem aspectos da construção modular de feitiços, em vez de
 - Lightning
 - Nature
 
-As escolas funcionam como especializações mágicas. Elas não substituem as identidades Mage/Warlock/Druid e podem interagir com atributos de spell power específicos.
+As escolas funcionam como especializações mágicas. Elas não substituem identidades como Mage, Bruxo ou Druida: classe e escola são camadas diferentes da build.
 
 ## Epic Fight
 
@@ -43,6 +43,6 @@ As escolas funcionam como especializações mágicas. Elas não substituem as id
 - Oritech Mining
 - Oritech Power
 
-### Importante sobre tecnologia
+### Nota sobre especializações tecnológicas
 
-Uma especialização existir no datapack não garante que todos os eventos do mod externo já alimentem a progressão. Create e AE2 possuem conteúdo de especialização definido, mas a auditoria atual não confirma um adapter completo de máquinas/eventos equivalente aos adapters de magia. Veja [Interações com outros mods](MOD_INTERACTIONS.md).
+Esses caminhos já existem como opções de progressão do RPG. Nem toda especialização tecnológica modifica diretamente cada máquina ou rede do mod citado. Quando houver um efeito direto e mensurável sobre um sistema externo, ele é descrito em [Interações com outros mods](MOD_INTERACTIONS.md).

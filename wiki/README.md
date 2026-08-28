@@ -1,8 +1,8 @@
 # RPG Skill Tree — Wiki
 
-Esta pasta é a enciclopédia de **gameplay** do RPG Skill Tree. Ela descreve o que o jogador encontra no jogo: progressão, árvore, classes, especializações, perks, estatísticas, sinergias, integrações e curiosidades.
+Esta pasta é a enciclopédia de **gameplay** do RPG Skill Tree. Ela descreve o que o jogador encontra no jogo: progressão, árvore, classes, especializações, perks, estatísticas, sinergias, interações com outros mods e curiosidades.
 
-A wiki evita detalhes de implementação. Código, arquitetura, contratos, testes e planos ficam em `docs/` e `plans/`.
+Aqui não ficam planos de desenvolvimento nem documentação de programação. Esses materiais pertencem a `plans/` e `docs/`.
 
 ## Comece aqui
 
@@ -22,8 +22,6 @@ A wiki evita detalhes de implementação. Código, arquitetura, contratos, teste
 - [Trivia](TRIVIA.md)
 - [Glossário](GLOSSARY.md)
 
-## Estado da wiki
+## Sobre conteúdo em desenvolvimento
 
-O mod ainda está em desenvolvimento. Um nó existir na árvore não significa automaticamente que ele já possui um efeito mecânico exclusivo. A wiki separa três coisas: **nó materializado**, **efeito numérico declarado** e **mecânica comportamental confirmada**.
-
-Quando houver diferença entre um texto antigo e o jogo atual, os dados e comportamentos atuais do mod têm prioridade.
+O mod ainda está crescendo. A árvore já possui 512 nós, mas alguns existem principalmente como caminhos, requisitos ou gateways e ainda não têm um bônus numérico próprio. Quando uma página apresenta uma estatística, ela corresponde a um efeito atualmente definido; quando descreve apenas uma função, requisito ou fantasia de classe, isso é indicado pelo texto.

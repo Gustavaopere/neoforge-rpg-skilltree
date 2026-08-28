@@ -1,54 +1,71 @@
 # Interações com outros mods
 
-Esta página descreve somente interações sustentadas pelo estado atual do projeto. “Conteúdo definido” não é o mesmo que “adapter completo em runtime”.
+RPG Skill Tree foi pensado para fazer sistemas diferentes participarem da mesma progressão. Esta página separa efeitos que já têm comportamento conhecido de conteúdo que, por enquanto, funciona principalmente como caminho de especialização.
 
-## Epic Fight — integração confirmada
+## Epic Fight
 
-Perks Martial/Agility podem conceder stamina, regeneração de stamina e impact. O combate integrado evita tratar o mesmo golpe como Epic Fight e fallback vanilla ao mesmo tempo.
+Martial e Agility podem conceder **Stamina**, **Stamina Regen** e **Impact**. Isso faz com que investir na árvore também altere recursos usados pelo combate do Epic Fight.
 
-## Iron's Spells 'n Spellbooks — integração confirmada
+- `martial_000`: +1 Stamina por rank.
+- `martial_001`: +3% Stamina Regen por rank.
+- `martial_002`: +0,03 Impact por rank.
+- `agility_000`: +0,75 Stamina por rank.
+- `agility_001`: +4% Stamina Regen por rank.
 
-- mastery `irons:casting` participa da classe Mage;
-- perks usam max mana, mana regen, spell power, cooldown reduction, cast time reduction e poderes de escolas;
+## Iron's Spells 'n Spellbooks
+
+Iron's participa profundamente das builds mágicas:
+
+- conjurar desenvolve a mastery usada para reconhecer **Mage**;
+- perks podem aumentar mana, regeneração, spell power, redução de cooldown e redução de cast time;
 - existem especializações Blood, Eldritch, Ender, Evocation, Fire, Holy, Ice, Lightning e Nature;
-- Warlock, Druid e Technomancer possuem efeitos que usam atributos do Iron's.
+- Bruxo, Druida e Tecnomago possuem perks que usam atributos mágicos do Iron's.
 
-Um bônus em Fire Spell Power, por exemplo, é uma interação por atributo/escola. A wiki não afirma que cada spell de fogo tenha lógica nominal própria.
+Um bônus de Fire Spell Power, por exemplo, fortalece magia que usa esse atributo de escola. Isso não significa que cada feitiço de fogo tenha uma regra exclusiva escrita pelo RPG Skill Tree.
 
-## Ars Nouveau — integração confirmada
+## Ars Nouveau
 
-- mastery `ars:casting` participa da classe Sorcerer;
-- existem caminhos de Amplification, AoE, Control, Duration, Projectile e Summoning;
-- há adapter runtime dedicado para ações do Ars.
+O uso continuado de magia do Ars desenvolve `ars:casting`, mastery que participa da identidade **Sorcerer**. O RPG também possui especializações de Amplification, AoE, Control, Duration, Projectile e Summoning.
 
-## Malum — integração confirmada
+## Malum
 
-Occult possui efeitos em Spirit Spoils, Arcane Resonance, Soul Ward Capacity e Geas Limit. Spirit harvesting/reaping confirmados também participam da progressão de mastery.
+A região Occult conversa diretamente com quatro estatísticas do Malum:
 
-## Goety — integração confirmada
+- Spirit Spoils: +1 em `occult_000`;
+- Arcane Resonance: +10% em `occult_001`;
+- Soul Ward Capacity: +2 em `occult_002`;
+- Geas Limit: +1 em `occult_027`.
 
-Eventos confirmados do Goety alimentam progressão associada a Soul Energy/ações ocultas. Isso não significa que qualquer interação trivial com um bloco ou item do mod conceda mastery.
+Ações de colheita/reaping de espíritos também participam da progressão associada.
 
-## Eidolon: Repraised — integração confirmada
+## Goety
 
-A conclusão válida de receitas do Crucible participa de mastery/discovery. Tentativas incompletas não devem ser interpretadas como conclusão.
+Ações reconhecidas do Goety podem alimentar progressão ligada a práticas ocultas e Soul Energy. Nem toda interação trivial com um item ou bloco do mod conta como prática.
 
-## Identity2 / morphs — integração presente
+## Eidolon: Repraised
 
-Druid e Metamorph possuem permissões de forma ligadas à progressão. Druid representa formas naturais; Metamorph representa formas humanoides, monstruosas e aberrantes. Entidades técnicas/blacklisted permanecem fora dessas permissões.
+Concluir corretamente uma receita no Crucible pode participar de mastery e descoberta. Uma tentativa incompleta não equivale a completar o ritual/receita.
 
-## Apothic Attributes — compatibilidade por atributos
+## Identity2 e transformações
 
-Várias perks usam atributos Apothic como dodge chance, armor pierce, mining speed, healing received, crit chance, life steal e overheal. Isso comprova compatibilidade de atributo, não uma integração completa com todo o ecossistema de bosses do Apothic.
+**Druida** e **Metamorfo** possuem caminhos relacionados a formas. Druida é associado a formas naturais; Metamorfo avança por formas humanoides, monstruosas e aberrantes. Algumas entidades técnicas ou inadequadas são excluídas das transformações permitidas.
 
-## Create — conteúdo definido, integração de máquinas não confirmada
+## Apothic Attributes
 
-Existem especializações Create Kinetics, Automation, Artillery e Aeronautics, além de perks Tecnomago com nomes ligados a Create. Os efeitos numéricos auditados de `create_resonance` e `create_overdrive` alteram spell power/cooldown do Iron's. Não há base para afirmar que máquinas Create recebem esses bônus diretamente.
+Diversas perks usam atributos fornecidos pelo Apothic Attributes, incluindo Dodge Chance, Armor Pierce, Mining Speed, Healing Received, Crit Chance, Life Steal e Overheal.
 
-## Applied Energistics 2 — conteúdo definido
+Isso não significa que todos os bosses ou sistemas do ecossistema Apothic tenham regras exclusivas no RPG Skill Tree.
 
-Existe AE2 Networks e gateway de Rede Arcana no Tecnomago. Um adapter completo de rede/crafting não está confirmado por esta revisão.
+## Create
 
-## Oritech — conteúdo definido
+O Tecnomago e as especializações tecnológicas fazem referências claras ao Create: Create Kinetics, Automation, Artillery e Aeronautics. Porém, as perks **Ressonância Cinética** e **Sobrecarga Cinética**, apesar do nome, atualmente concedem Spell Power e Cooldown Reduction usados pela parte mágica da build.
 
-Existem Oritech Mining e Oritech Power, além do Portal de Potência na árvore de Tecnomago. O conteúdo é documentado como especialização existente; efeitos de eventos/máquinas só devem ser considerados quando confirmados no runtime.
+Em outras palavras: investir nesses caminhos já constrói a identidade de Tecnomago, mas não se deve assumir que toda máquina Create fica mais rápida ou poderosa sem uma estatística explicitamente descrita.
+
+## Applied Energistics 2
+
+Existe a especialização **AE2 Networks** e o **Portal de Rede Arcana** do Tecnomago. O foco atual é a identidade/progressão de rede; a wiki só atribui bônus a máquinas ou crafting quando houver um efeito explícito para isso.
+
+## Oritech
+
+Existem **Oritech Mining**, **Oritech Power** e o **Portal de Potência** do Tecnomago. Assim como em AE2/Create, a presença de uma especialização não significa automaticamente bônus universal para todas as máquinas do mod.
