@@ -103,6 +103,19 @@ class ModlistParserTest(unittest.TestCase):
             self.assertRegex(payload["snapshot_sha256"], r"^[0-9a-f]{64}$")
             self.assertIn("moda", out_md.read_text(encoding="utf-8"))
 
+    def test_embedded_path_without_leading_slash_is_not_promoted(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "modlist.txt"
+            source.write_text(fixture().replace("/META-INF/jarjar/", "META-INF/jarjar/"), encoding="utf-8")
+            out_json = root / "inventory.json"
+            result = run_parser(source, out_json, root / "inventory.md")
+            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            payload = json.loads(out_json.read_text(encoding="utf-8"))
+            self.assertEqual(3, payload["parsed_top_level_count"])
+            self.assertEqual(1, payload["embedded_dependency_count"])
+            self.assertEqual("embeddedlib", payload["embedded_dependencies"][0]["mod_id"])
+
     def test_declared_count_mismatch_fails_closed(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
