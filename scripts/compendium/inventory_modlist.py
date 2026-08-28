@@ -17,7 +17,7 @@ import sys
 from typing import Any
 
 COUNT_RE = re.compile(r"^\s*Mods count:\s*(\d+)\s*$", re.IGNORECASE | re.MULTILINE)
-EMBEDDED_PREFIXES = ("/META-INF/jarjar/", "/META-INF/jars/")
+EMBEDDED_PREFIXES = ("META-INF/jarjar/", "META-INF/jars/")
 
 
 class InventoryError(ValueError):
@@ -67,7 +67,7 @@ def parse_modlist_bytes(raw: bytes, source_name: str) -> dict[str, Any]:
             continue
 
         normalized_path = jar_name.replace("\\", "/")
-        is_embedded = normalized_path.startswith(EMBEDDED_PREFIXES)
+        is_embedded = normalized_path.lstrip("/").startswith(EMBEDDED_PREFIXES)
         mod_id = _field(parts, 2)
         mod_name = _field(parts, 3)
         runtime_version = _field(parts, 4)
