@@ -18,3 +18,6 @@ test "${#SOURCES[@]}" -gt 0
 javac --release 21 -d "$OUT" "${SOURCES[@]}"
 
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.discovery.DiscoveryProgressTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.discovery.DiscoveryRuntimeTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.discovery.DiscoveryIdempotencyTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.discovery.DiscoveryRewardTest
