@@ -146,7 +146,7 @@ jobs:
           assert any(mod["mod_id"] == "rpgskilltree" for mod in payload["loaded_mods"])
           assert any(entry["namespace"] == "minecraft" for entry in payload["entries"])
           kinds = {entry["kind"] for entry in payload["entries"]}
-          for required in {"ENTITY", "BIOME", "STRUCTURE", "DIMENSION"}:
+          for required in {"ENTITY", "FLORA", "TREE", "CROP", "BIOME", "STRUCTURE", "DIMENSION"}:
               assert required in kinds, (required, sorted(kinds))
           assert len(payload["runtime_fingerprint_sha256"]) == 64
           PY
