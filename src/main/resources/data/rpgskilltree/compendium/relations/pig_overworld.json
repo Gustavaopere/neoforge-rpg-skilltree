@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "type": "BELONGS_TO_DIMENSION",
+  "from": "ENTITY|minecraft:pig",
+  "to": "DIMENSION|minecraft:overworld",
+  "source": "REGISTRY"
+}
