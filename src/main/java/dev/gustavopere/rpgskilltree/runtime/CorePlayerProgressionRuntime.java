@@ -178,6 +178,25 @@ public final class CorePlayerProgressionRuntime {
         return next;
     }
 
+    /** Synchronizes an already-initialized Core snapshot without materializing migration. */
+    public static boolean syncToOwnerIfInitialized(ServerPlayer player) {
+        Objects.requireNonNull(player);
+        CanonicalPlayerAttachmentData observed = CanonicalPlayerAttachmentRuntime.observe(player);
+        CoreProgressionAttachmentData core = observed.coreProgression();
+        if (!core.isInitialized()) {
+            return false;
+        }
+        var currentRules = CoreProgressionRulesCatalog.current();
+        if (currentRules.isEmpty()) {
+            return false;
+        }
+        ProgressionRulesSnapshot rules = currentRules.orElseThrow();
+        CoreProgressionState state = core.state().orElseThrow();
+        CoreProgressionBootstrap.resume(state, rules);
+        ModNetworking.syncCoreToOwner(player, state, rules);
+        return true;
+    }
+
     /**
      * Stable observational query for quest/provider integrations.
      *
