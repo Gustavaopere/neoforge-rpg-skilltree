@@ -26,6 +26,12 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.EntityVariantProv
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.VanillaEntitySpecialInspectorsTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.RpgScalingFactsTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.EntityCatalogCoverageTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.FloraClassifierTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.CropProviderTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.TreeGroupingTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.FloraCatalogCoverageTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.TfcFloraAdapterTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.DynamicTreesAdapterTest
 
 python3 - "$DATA" <<'PY'
 import json
