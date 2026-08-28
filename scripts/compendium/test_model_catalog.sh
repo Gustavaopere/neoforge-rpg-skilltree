@@ -18,6 +18,14 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.catalog.CompendiumCatalogBuilderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.provider.ProviderMergeTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.data.CompendiumSchemaTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.EntitySpeciesEntryFactoryTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.EntityRegistryProviderTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.LivingEntityAttributeProviderTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.EntityInstanceInspectorTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.EntityVariantProviderTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.VanillaEntitySpecialInspectorsTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.RpgScalingFactsTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.entity.EntityCatalogCoverageTest
 
 python3 - "$DATA" <<'PY'
 import json
