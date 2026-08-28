@@ -45,19 +45,20 @@ require(text, "if (next != current)")
 require(text, "set(player, next, rules)")
 
 # Quest/provider reads have their own projection and must be observational. Asking a
-# question must not materialize a Core attachment, persist an in-memory legacy migration,
-# or emit owner sync. Rules still come exclusively from the installed server catalog.
+# question must not materialize the canonical attachment, persist an in-memory legacy
+# migration, delete migration inputs, or emit owner sync. Rules still come exclusively
+# from the installed server catalog.
 require(text, "import dev.gustavopere.rpgskilltree.core.CoreProgressionQuerySnapshot;")
 require(text, "import dev.gustavopere.rpgskilltree.core.CoreProgressionQueryService;")
+require(text, "import dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentData;")
 require(
     compact,
     "public static CoreProgressionQuerySnapshot queryProgression( ServerPlayer player )",
 )
 require(text, "private static CoreProgressionState readOnlyState(")
 require(text, "CoreProgressionQueryService.snapshot(state, rules)")
-require(text, "CoreProgressionBootstrap.resume(existing.state().orElseThrow(), rules)")
-require(text, "CoreProgressionBootstrap.migrateDecodedLegacy(")
-require(text, "CoreProgressionBootstrap.newPlayer(rules)")
+require(text, "CanonicalPlayerAttachmentRuntime.observe(player)")
+require(text, "observed.initializeCore(rules)")
 
 query_method = between(
     text,
@@ -73,8 +74,10 @@ forbid(query_method, "bootstrap(", "queryProgression")
 forbid(query_method, "setData(", "queryProgression")
 forbid(query_method, "syncCoreToOwner(", "queryProgression")
 forbid(query_method, "set(player,", "queryProgression")
+forbid(query_method, "readOrMigrate(", "queryProgression")
 forbid(read_only_helper, "setData(", "readOnlyState")
 forbid(read_only_helper, "syncCoreToOwner(", "readOnlyState")
 forbid(read_only_helper, "set(player,", "readOnlyState")
+forbid(read_only_helper, "readOrMigrate(", "readOnlyState")
 
 print("Quest reward/query runtime validation: PASS")
