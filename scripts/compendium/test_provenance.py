@@ -36,6 +36,23 @@ ALLOWED_POLICIES = {
     "ASSET_REUSE",
     "NO_REUSE",
 }
+EXPECTED_REFERENCES = {
+    "biology_dictionary": {
+        "source_sha": "5b70858371960d95a4ffba1ef4c1320aa94452e8",
+        "observed_version": "1.2.1",
+        "code_license": "LGPL-3.0-or-later",
+    },
+    "field_guide": {
+        "source_sha": "a206cf81a4465e453b0663b0173066f30dcdc348",
+        "observed_version": "1.15.2",
+        "code_license": "MIT",
+    },
+    "wildex": {
+        "source_sha": "b67267f6e664af58fe4ff430ba83c78a379029a5",
+        "observed_version": "3.0.0",
+        "code_license": "CC-BY-NC-4.0",
+    },
+}
 
 
 def extract_manifest(path: Path) -> object:
@@ -46,6 +63,16 @@ def extract_manifest(path: Path) -> object:
     open_fence = fenced.index("```json") + len("```json")
     close_fence = fenced.index("```", open_fence)
     return json.loads(fenced[open_fence:close_fence].strip())
+
+
+def replace_manifest(path: Path, data: object) -> None:
+    text = path.read_text(encoding="utf-8")
+    marker = MARKERS[path.name]
+    marker_index = text.index(marker) + len(marker)
+    open_fence = text.index("```json", marker_index) + len("```json")
+    close_fence = text.index("```", open_fence)
+    payload = "\n" + json.dumps(data, indent=2, ensure_ascii=False) + "\n"
+    path.write_text(text[:open_fence] + payload + text[close_fence:], encoding="utf-8")
 
 
 def run_validator(root: Path) -> subprocess.CompletedProcess[str]:
@@ -76,14 +103,13 @@ class ProvenanceBootstrapTest(unittest.TestCase):
         upstream = extract_manifest(DOCS / "UPSTREAM.md")
         self.assertIsInstance(upstream, list)
         records = {entry["id"]: entry for entry in upstream}
-        self.assertEqual(
-            {"biology_dictionary", "field_guide", "wildex"},
-            set(records),
-        )
-        for upstream_id, record in records.items():
+        self.assertEqual(set(EXPECTED_REFERENCES), set(records))
+        for upstream_id, expected in EXPECTED_REFERENCES.items():
+            record = records[upstream_id]
+            self.assertEqual(expected["source_sha"], record["source_sha"], upstream_id)
+            self.assertEqual(expected["observed_version"], record["observed_version"], upstream_id)
+            self.assertEqual(expected["code_license"], record["code_license"], upstream_id)
             self.assertRegex(record["source_sha"], r"^[0-9a-f]{40}$", upstream_id)
-            self.assertTrue(record["observed_version"], upstream_id)
-            self.assertTrue(record["code_license"], upstream_id)
             self.assertIn(record["code_reuse_policy"], ALLOWED_POLICIES, upstream_id)
             self.assertIn(record["asset_reuse_policy"], ALLOWED_POLICIES, upstream_id)
 
@@ -134,13 +160,34 @@ class ProvenanceValidatorTest(unittest.TestCase):
         holder, root = self.make_fixture()
         with holder:
             path = root / "docs/compendium/UPSTREAM.md"
-            text = path.read_text(encoding="utf-8")
-            text = text.replace(
-                "5b70858371960d95a4ffba1ef4c1320aa94452e8",
-                "main-architectury-1.21.1",
-                1,
-            )
-            path.write_text(text, encoding="utf-8")
+            upstream = extract_manifest(path)
+            self.assertIsInstance(upstream, list)
+            upstream[0]["source_sha"] = "main-architectury-1.21.1"
+            replace_manifest(path, upstream)
+            result = run_validator(root)
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn("source_sha", result.stdout + result.stderr)
+
+    def test_derived_asset_requires_frozen_source_sha(self) -> None:
+        holder, root = self.make_fixture()
+        with holder:
+            asset = root / "src/main/resources/assets/rpgskilltree/compendium/derived.txt"
+            asset.write_text("derived fixture", encoding="utf-8")
+            manifest_path = root / "docs/compendium/ASSET_SOURCES.md"
+            manifest = extract_manifest(manifest_path)
+            self.assertIsInstance(manifest, dict)
+            manifest["assets"] = [
+                {
+                    "path": asset.relative_to(root).as_posix(),
+                    "origin": "DERIVED",
+                    "author": "Fixture Author",
+                    "license": "MIT",
+                    "source": "https://example.invalid/upstream",
+                    "source_sha": "main",
+                    "notes": "This deliberately uses a floating source ref.",
+                }
+            ]
+            replace_manifest(manifest_path, manifest)
             result = run_validator(root)
             self.assertNotEqual(0, result.returncode)
             self.assertIn("source_sha", result.stdout + result.stderr)
