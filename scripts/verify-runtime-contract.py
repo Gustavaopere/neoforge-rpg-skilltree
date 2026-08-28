@@ -21,6 +21,10 @@ CORE_RULES_RELOADER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime
 STALE_ERRORS = {
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/PlayerProgressionEvents.java: missing 'ModNetworking.syncToOwner'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/PlayerProgressionEvents.java: missing 'AttributeNodeEffectRuntime.refresh'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/CombatProgressionEvents.java: missing 'GameplayXpPolicy.combatKill'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/CombatProgressionEvents.java: missing 'PlayerProgressionRuntime.applyXp'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java: missing 'GameplayXpPolicy.oreMined'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java: missing 'PlayerProgressionRuntime.applyXp'",
 }
 
 
