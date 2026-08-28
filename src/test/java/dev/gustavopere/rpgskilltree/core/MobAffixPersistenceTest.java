@@ -11,14 +11,14 @@ import java.util.OptionalLong;
 
 public final class MobAffixPersistenceTest {
     public static void main(String[] args) {
-        schemaV2RoundTripsCanonicalAffixSelection();
+        currentSchemaRoundTripsCanonicalAffixSelection();
         schemaV1LoadsWithEmptyAffixes();
         oldStateConstructorDefaultsToEmptyAffixes();
         System.out.println("MobAffixPersistenceTest: PASS");
     }
 
-    private static void schemaV2RoundTripsCanonicalAffixSelection() {
-        eq(2, EntityScalingStateCodec.CURRENT_VERSION);
+    private static void currentSchemaRoundTripsCanonicalAffixSelection() {
+        eq(3, EntityScalingStateCodec.CURRENT_VERSION);
         EntityScalingState state = new EntityScalingState(
             TerritoryKey.of("minecraft:overworld", 7L, -4L),
             new EntityLevelResolution(

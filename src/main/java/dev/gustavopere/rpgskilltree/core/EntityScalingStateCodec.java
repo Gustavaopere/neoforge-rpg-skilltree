@@ -14,9 +14,10 @@ import java.util.OptionalLong;
 
 /** Strict versioned binary codec for persisted entity-scaling lifecycle decisions. */
 public final class EntityScalingStateCodec {
-    public static final int CURRENT_VERSION = 2;
+    public static final int CURRENT_VERSION = 3;
     private static final int MAX_STRING_BYTES = 256;
     private static final int MAX_AFFIXES = 256;
+    private static final int MAX_BEHAVIORS = 256;
 
     private EntityScalingStateCodec() {}
 
@@ -44,7 +45,7 @@ public final class EntityScalingStateCodec {
         if (payload == null) throw new IllegalArgumentException("payload must not be null");
         try (DataInputStream in = new DataInputStream(new ByteArrayInputStream(payload))) {
             int version = in.readInt();
-            if (version != 1 && version != CURRENT_VERSION) {
+            if (version < 1 || version > CURRENT_VERSION) {
                 throw new IllegalArgumentException("unsupported entity scaling state version: " + version);
             }
             boolean initialized = in.readBoolean();
@@ -91,13 +92,29 @@ public final class EntityScalingStateCodec {
         }
         out.writeLong(state.deterministicSeed());
 
-        List<MobAffixKey> affixes = state.affixes().affixes();
+        writeAffixes(out, state.affixes());
+        writeBehaviors(out, state.behaviors());
+    }
+
+    private static void writeAffixes(DataOutputStream out, MobAffixSelection selection) throws IOException {
+        List<MobAffixKey> affixes = selection.affixes();
         if (affixes.size() > MAX_AFFIXES) {
             throw new IllegalArgumentException("too many persisted mob affixes");
         }
         out.writeInt(affixes.size());
         for (MobAffixKey affix : affixes) {
             writeString(out, affix.serializedId());
+        }
+    }
+
+    private static void writeBehaviors(DataOutputStream out, EntityBehaviorSelection selection) throws IOException {
+        List<EntityBehaviorKey> behaviors = selection.behaviors();
+        if (behaviors.size() > MAX_BEHAVIORS) {
+            throw new IllegalArgumentException("too many persisted entity behaviors");
+        }
+        out.writeInt(behaviors.size());
+        for (EntityBehaviorKey behavior : behaviors) {
+            writeString(out, behavior.serializedId());
         }
     }
 
@@ -122,18 +139,8 @@ public final class EntityScalingStateCodec {
         }
         long deterministicSeed = in.readLong();
 
-        MobAffixSelection affixes = MobAffixSelection.empty();
-        if (version >= 2) {
-            int count = in.readInt();
-            if (count < 0 || count > MAX_AFFIXES) {
-                throw new IllegalArgumentException("invalid persisted mob affix count: " + count);
-            }
-            ArrayList<MobAffixKey> keys = new ArrayList<>(count);
-            for (int i = 0; i < count; i++) {
-                keys.add(MobAffixKey.of(readString(in)));
-            }
-            affixes = new MobAffixSelection(keys);
-        }
+        MobAffixSelection affixes = version >= 2 ? readAffixes(in) : MobAffixSelection.empty();
+        EntityBehaviorSelection behaviors = version >= 3 ? readBehaviors(in) : EntityBehaviorSelection.empty();
 
         return new EntityScalingState(
             territory,
@@ -148,8 +155,35 @@ public final class EntityScalingStateCodec {
             variance,
             rarity,
             deterministicSeed,
-            affixes
+            affixes,
+            behaviors
         );
+    }
+
+    private static MobAffixSelection readAffixes(DataInputStream in) throws IOException {
+        int count = readCount(in, MAX_AFFIXES, "mob affix");
+        ArrayList<MobAffixKey> keys = new ArrayList<>(count);
+        for (int i = 0; i < count; i++) {
+            keys.add(MobAffixKey.of(readString(in)));
+        }
+        return new MobAffixSelection(keys);
+    }
+
+    private static EntityBehaviorSelection readBehaviors(DataInputStream in) throws IOException {
+        int count = readCount(in, MAX_BEHAVIORS, "entity behavior");
+        ArrayList<EntityBehaviorKey> keys = new ArrayList<>(count);
+        for (int i = 0; i < count; i++) {
+            keys.add(EntityBehaviorKey.of(readString(in)));
+        }
+        return new EntityBehaviorSelection(keys);
+    }
+
+    private static int readCount(DataInputStream in, int maximum, String label) throws IOException {
+        int count = in.readInt();
+        if (count < 0 || count > maximum) {
+            throw new IllegalArgumentException("invalid persisted " + label + " count: " + count);
+        }
+        return count;
     }
 
     private static EntityArchetype parseArchetype(String name) {
