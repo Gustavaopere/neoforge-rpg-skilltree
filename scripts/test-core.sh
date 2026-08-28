@@ -5,6 +5,9 @@ python3 "$ROOT/scripts/verify-ci-generator-drift.py"
 OUT="$ROOT/build/core-test-classes"; rm -rf "$OUT"; mkdir -p "$OUT"
 mapfile -t SOURCES < <(find "$ROOT/src/main/java/dev/gustavopere/rpgskilltree/core" "$ROOT/src/test/java/dev/gustavopere/rpgskilltree/core" -name '*.java' -print | sort)
 javac --release 21 -d "$OUT" "${SOURCES[@]}"
+javac --release 21 -cp "$OUT" -d "$OUT" \
+  "$ROOT/src/main/java/dev/gustavopere/rpgskilltree/runtime/data/NodeEffectCatalog.java" \
+  "$ROOT/src/test/java/dev/gustavopere/rpgskilltree/runtime/data/NodeEffectCatalogReloadTest.java"
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.Alpha2ProgressionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MasteryRuntimeCoreTest
@@ -75,6 +78,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntitySelectionLifecyclePersis
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingDecisionServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingCatalogTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalogReloadTest
 python3 "$ROOT/scripts/verify-1211-resources.py"
 python3 "$ROOT/scripts/verify-node-effect-diagnostics.py"
 python3 "$ROOT/scripts/verify-quest-runtime.py"
