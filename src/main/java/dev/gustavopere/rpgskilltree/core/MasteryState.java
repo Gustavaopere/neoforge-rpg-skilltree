@@ -32,10 +32,10 @@ public record MasteryState(
         }
         LinkedHashMap<String, MasteryAwardReceipt> receiptCopy = new LinkedHashMap<>();
         for (Map.Entry<String, MasteryAwardReceipt> entry : creditedAwards.entrySet()) {
-            String sourceId = Objects.requireNonNull(entry.getKey(), "mastery source id");
+            String replayKey = Objects.requireNonNull(entry.getKey(), "mastery replay key");
             MasteryAwardReceipt receipt = Objects.requireNonNull(entry.getValue(), "mastery receipt");
-            if (sourceId.isBlank()) throw new IllegalArgumentException("mastery source id must not be blank");
-            receiptCopy.put(sourceId, receipt);
+            if (replayKey.isBlank()) throw new IllegalArgumentException("mastery replay key must not be blank");
+            receiptCopy.put(replayKey, receipt);
         }
         creditedAwards = Collections.unmodifiableMap(receiptCopy);
     }
@@ -63,7 +63,7 @@ public record MasteryState(
         return experience.getOrDefault(lane, 0);
     }
 
-    /** Legacy/untracked mutation path retained only for compatibility services. */
+    /** Legacy/untracked mutation path retained for genuinely repeatable mastery actions. */
     public MasteryState award(String lane, int amount) {
         if (lane == null || lane.isBlank()) throw new IllegalArgumentException("mastery lane must not be blank");
         if (amount <= 0) throw new IllegalArgumentException("mastery award must be positive");
@@ -72,15 +72,19 @@ public record MasteryState(
         return new MasteryState(next, creditedAwards);
     }
 
-    /** Replay-safe mastery mutation keyed by the adapter-provided stable source id. */
+    /** Applies one normalized award, using a replay receipt only when replayKey is explicitly present. */
     public MasteryState award(MasteryAward award) {
         Objects.requireNonNull(award, "award");
+        if (!award.replaySafe()) {
+            return award(award.laneId(), award.experience());
+        }
+
         MasteryAwardReceipt incoming = MasteryAwardReceipt.from(award);
-        MasteryAwardReceipt existing = creditedAwards.get(award.sourceId());
+        MasteryAwardReceipt existing = creditedAwards.get(award.replayKey());
         if (existing != null) {
             if (existing.equals(incoming)) return this;
             throw new IllegalArgumentException(
-                "mastery source id already used with different payload: " + award.sourceId()
+                "mastery replay key already used with different payload: " + award.replayKey()
             );
         }
 
@@ -88,7 +92,7 @@ public record MasteryState(
         nextExperience.merge(award.laneId(), award.experience(), Math::addExact);
 
         LinkedHashMap<String, MasteryAwardReceipt> nextReceipts = new LinkedHashMap<>(creditedAwards);
-        nextReceipts.put(award.sourceId(), incoming);
+        nextReceipts.put(award.replayKey(), incoming);
         if (nextReceipts.size() > RECENT_AWARD_LIMIT) {
             String oldest = nextReceipts.keySet().iterator().next();
             nextReceipts.remove(oldest);

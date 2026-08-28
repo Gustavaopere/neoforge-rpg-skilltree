@@ -2,7 +2,7 @@ package dev.gustavopere.rpgskilltree.core;
 
 import java.util.Objects;
 
-/** Persisted payload associated with a recent mastery award source id. */
+/** Persisted payload associated with one recent replay-safe mastery emission. */
 public record MasteryAwardReceipt(String laneId, int experience) {
     public MasteryAwardReceipt {
         Objects.requireNonNull(laneId, "laneId");
