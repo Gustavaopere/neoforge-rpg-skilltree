@@ -16,6 +16,24 @@ public record CompendiumEntryId(CompendiumEntryKind kind, String resourceLocatio
         return new CompendiumEntryId(kind, resourceLocation);
     }
 
+    public static CompendiumEntryId parse(String serializedId) {
+        if (serializedId == null) throw new IllegalArgumentException("serializedId must not be null");
+        String normalized = serializedId.trim();
+        int separator = normalized.indexOf('|');
+        if (separator <= 0 || separator == normalized.length() - 1 || normalized.indexOf('|', separator + 1) >= 0) {
+            throw new IllegalArgumentException("invalid serialized compendium entry id: " + serializedId);
+        }
+        String kindName = normalized.substring(0, separator);
+        String resourceLocation = normalized.substring(separator + 1);
+        final CompendiumEntryKind kind;
+        try {
+            kind = CompendiumEntryKind.valueOf(kindName);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException("unknown compendium entry kind: " + kindName, exception);
+        }
+        return of(kind, resourceLocation);
+    }
+
     public String namespace() {
         return resourceLocation.substring(0, resourceLocation.indexOf(':'));
     }
