@@ -16,14 +16,17 @@ Fechamento do Stage 01.01 auditado contra `main@5171ec7e099be545663b4a1ac989c36f
 
 Fechamento do Stage 10.04 auditado contra `main@8fdfff0c518fa40099b9459e279118cdbef1b2fc`, após integração do PR #71. O CI focal pós-merge `33201053431` / Compendium Discovery #38 e o CI completo `33201053442` / RPG Skill Tree #921 fecharam GREEN, incluindo NeoForge build, verificação do JAR e dedicated-server smoke.
 
+Fechamento do Stage 01.02 auditado contra `main@10403670fb10f7fdfb6ae9f00ca56405db8bb491`, após integração dos PRs #74 e #77. O CI pós-merge `33212979768` / RPG Skill Tree #999 fechou GREEN completo, incluindo Core tests, Compendium tests, validators, generated-data drift/diff sanity, NeoForge build, verificação do JAR e dedicated-server smoke.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**10 / 75 subplanos concluídos formalmente.**
+**11 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `01-rpg-core/✅-01-player-state.md`
+- `01-rpg-core/✅-02-progression-services.md`
 - `03-skill-tree-perks/✅-05-respec.md`
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
@@ -40,7 +43,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | Estágio | Concluídos | Total | Estado geral |
 | --- | ---: | ---: | --- |
 | 00 Foundation | 1 | 4 | EM ANDAMENTO |
-| 01 RPG Core | 1 | 5 | EM ANDAMENTO |
+| 01 RPG Core | 2 | 5 | EM ANDAMENTO |
 | 02 Progression & World Scaling | 0 | 5 | EM ANDAMENTO |
 | 03 Skill Tree & Perks | 1 | 6 | EM ANDAMENTO |
 | 04 Classes, Masteries & Specializations | 1 | 6 | EM ANDAMENTO |
@@ -50,7 +53,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 0 | 6 | EM ANDAMENTO / implementação paralela |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 4 | 15 | EM ANDAMENTO |
-| **Total** | **10** | **75** | |
+| **Total** | **11** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -60,7 +63,11 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 
 ### 01 — RPG Core
 
-`✅-01-player-state.md` está fechado: `CANONICAL_PLAYER` é o único envelope persistente de escrita normal, attachments antigos existem somente como inputs de migração, os runtimes convergem pelo `CanonicalPlayerAttachmentRuntime` e `CanonicalPlayerSnapshot` fornece a projeção somente-leitura sem reintroduzir authorities legados. Os subplanos `02-progression-services`, `03-attributes-modifiers`, `04-persistence-sync` e `05-core-api-invariants` continuam abertos porque ainda exigem fechamento formal de todas as mutation routes, recomputação/modificadores, matriz completa de migração/sync/corrupção e invariantes públicas de API/boundary.
+`✅-01-player-state.md` está fechado: `CANONICAL_PLAYER` é o único envelope persistente de escrita normal, attachments antigos existem somente como inputs de migração, os runtimes convergem pelo `CanonicalPlayerAttachmentRuntime` e `CanonicalPlayerSnapshot` fornece a projeção somente-leitura sem reintroduzir authorities legados.
+
+`✅-02-progression-services.md` também está fechado: grants e rollback privilegiado de RPG XP possuem rotas canônicas separadas; level-up/recompensas associadas passam pelo Core; mastery usa replay keys persistentes; adapters não gravam storage de progressão diretamente; `commitMutation(...)` suprime no-ops e publica `ProgressionMutationEvent` somente após persistência confirmada. O rollback de XP é trusted-server/admin, não usa grant negativo nem packet de gameplay, e preserva Core Progression Points históricos por contrato.
+
+Os subplanos `03-attributes-modifiers`, `04-persistence-sync` e `05-core-api-invariants` continuam abertos porque ainda exigem fechamento formal de recomputação/modificadores, matriz completa de migração/sync/corrupção e invariantes públicas de API/boundary.
 
 ### 02 — Progression & World Scaling
 
@@ -100,7 +107,7 @@ Nenhum gate final pode ser fechado enquanto existirem blockers de migração, co
 
 ## Evidência de regressão atual
 
-O fechamento mais recente do Stage 10.04 foi auditado em `main@8fdfff0c518fa40099b9459e279118cdbef1b2fc`; CI `33201053431` / Compendium Discovery #38 e CI `33201053442` / RPG Skill Tree #921 passaram os testes do Compêndio, Core tests, validators RPG, generated-data drift/diff sanity, NeoForge build, verificação do JAR e dedicated-server smoke.
+O fechamento mais recente do Stage 01.02 foi auditado em `main@10403670fb10f7fdfb6ae9f00ca56405db8bb491`; CI pós-merge `33212979768` / RPG Skill Tree #999 passou Core tests, Compendium tests, validators RPG, generated-data drift/diff sanity, NeoForge build, verificação do JAR, dedicated-server smoke e publicação do status final.
 
 ## Convenção
 
