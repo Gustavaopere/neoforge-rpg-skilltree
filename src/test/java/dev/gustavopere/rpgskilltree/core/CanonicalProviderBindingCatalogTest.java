@@ -74,7 +74,10 @@ public final class CanonicalProviderBindingCatalogTest {
         CanonicalProviderBindingResolution resolution = catalog.resolve(
             health,
             binding -> true,
-            (stat, available) -> available.get(1)
+            (stat, available) -> available.stream()
+                .filter(provider::equals)
+                .findFirst()
+                .orElseThrow()
         );
         eq(provider, resolution.requireSelected());
 
