@@ -50,42 +50,25 @@ If external extensibility is a goal, migrate before v5 freezes the persisted con
 
 ## D004 — ProgressionState v5 exact schema
 
-**Status:** OPEN  
+**Status:** PARTIALLY ACCEPTED — allocation/economic facts defined by [ADR 004](004-progression-state-v5-allocation-economics.md); specialization/domain portions remain open  
 **Blocks:** Phase 1
 
-Minimum facts expected for node allocation:
+The accepted allocation slice persists exact rank-acquisition facts (historical paid cost, currency, source tree, provenance and rules version) in compact batches. Binary format version remains distinct from per-acquisition rules revision.
 
-```text
-nodeId
-rank
-paidCost
-currencyId
-sourceTreeId
-provenance
-rulesVersion
-```
+Still open under D004:
 
-Also decide:
-
-- disk format version versus semantic/economic schema version;
-- unknown-ID preservation/quarantine representation;
-- specialization/unlock provenance representation;
-- bounds for collections;
-- migration metadata.
+- specialization/unlock provenance representation (D007);
+- final relationship with `ProgressionDomain` extensibility (D003);
+- final migration metadata for the complete v5 state.
 
 ---
 
 ## D005 — Unknown/removed node policy
 
-**Status:** OPEN  
-**Blocks:** Phase 1
+**Status:** ACCEPTED FOR v5 NODE ALLOCATIONS — quarantine/retain, never silently delete; see [ADR 004](004-progression-state-v5-allocation-economics.md)  
+**Blocks:** Phase 1 implementation
 
-Possible mechanisms may include:
-
-- alias migration;
-- administrative removal with historical refund;
-- quarantine/orphan retention;
-- invisible compatibility holding state.
+Unknown or removed v5 node allocations retain their complete acquisition history in quarantine. They do not grant live effects/access while quarantined, but remain serializable/exportable/restorable by alias, migration or administrative reconciliation.
 
 Invariant: a missing definition must never prevent login, and unknown persisted progression must never be silently discarded.
 
@@ -93,17 +76,16 @@ Invariant: a missing definition must never prevent login, and unknown persisted 
 
 ## D006 — Refund and economic migration policy
 
-**Status:** PROVISIONAL DIRECTION: historical paid cost  
-**Blocks:** Phase 1
+**Status:** ACCEPTED FOR NEW v5 ACQUISITIONS — historical paid cost/LIFO batches; legacy inference remains explicit migration work; see [ADR 004](004-progression-state-v5-allocation-economics.md)  
+**Blocks:** Phase 1 implementation
 
-Recommended rule from both audits: persist what was actually paid and refund from acquisition history rather than recalculating from the current datapack cost.
+New v5 purchases refund from persisted acquisition history rather than current datapack cost. Raw v1–v4 decode does not invent historical costs; legacy rank conversion is a separate rule-aware migration step and must label inferred economic facts as migration provenance.
 
-Still decide:
+Still decide/implement:
 
-- treatment of legacy v1–v4 purchases without historical paid-cost data;
-- policy for max-rank reduction;
-- policy for retroactive datapack economic changes;
-- whether old economic revisions need explicit migration tables.
+- the exact legacy v1–v4 inference/migration table used when historical cost is unavailable;
+- policy for max-rank reduction after migration;
+- administrative handling when no migration basis exists.
 
 ---
 
