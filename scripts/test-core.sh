@@ -69,6 +69,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobAffixFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobAffixPersistenceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityBehaviorFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntitySelectionLifecyclePersistenceTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingDecisionServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingCatalogTest
 python3 "$ROOT/scripts/verify-1211-resources.py"
