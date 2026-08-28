@@ -18,6 +18,10 @@ public final class EntityScalingInitializerCatalog {
         CURRENT.set(Objects.requireNonNull(initializer, "initializer"));
     }
 
+    public static void installDecisionFactory(EntityScalingDecisionRequestFactory requestFactory) {
+        install(new EntityScalingDecisionInitializer(requestFactory));
+    }
+
     public static void clear() {
         CURRENT.set(null);
     }
