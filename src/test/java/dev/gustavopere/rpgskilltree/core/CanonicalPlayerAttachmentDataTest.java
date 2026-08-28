@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.core;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,8 @@ public final class CanonicalPlayerAttachmentDataTest {
         coreInitializationUsesPersistedLegacyPresenceExactlyOnce();
         compatibilityMutationBeforeCoreInitializationBecomesMigrationSource();
         codecRoundTripsUninitializedAndInitializedCore();
+        futureSchemaMigrationPolicyIsSequentialAndBounded();
+        canonicalMigrationRegistryIsFailClosedUntilARealStepExists();
         malformedPayloadsFailClosed();
         System.out.println("CanonicalPlayerAttachmentDataTest: PASS");
     }
@@ -128,6 +131,122 @@ public final class CanonicalPlayerAttachmentDataTest {
             CanonicalPlayerAttachmentDataCodec.encode(initialized)));
     }
 
+    private static void futureSchemaMigrationPolicyIsSequentialAndBounded() {
+        CanonicalPlayerAttachmentMigrationChain chain = new CanonicalPlayerAttachmentMigrationChain(
+            3,
+            64,
+            List.of(
+                new CanonicalPlayerAttachmentMigrationStep(
+                    1,
+                    2,
+                    encoded -> upgradeVersion(encoded, 1, 2, (byte) 0x22)
+                ),
+                new CanonicalPlayerAttachmentMigrationStep(
+                    2,
+                    3,
+                    encoded -> upgradeVersion(encoded, 2, 3, (byte) 0x33)
+                )
+            )
+        );
+
+        byte[] v1 = payload(1, (byte) 0x11);
+        byte[] v3 = chain.migrateToCurrent(v1);
+        eq(3, encodedVersion(v3));
+        arrayEq(payload(3, (byte) 0x11, (byte) 0x22, (byte) 0x33), v3);
+
+        byte[] alreadyCurrent = chain.migrateToCurrent(v3);
+        arrayEq(v3, alreadyCurrent);
+        if (alreadyCurrent == v3) {
+            throw new AssertionError("current-version migration must return a defensive copy");
+        }
+
+        expect(IllegalArgumentException.class, () -> chain.migrateToCurrent(payload(4, (byte) 1)));
+        expect(IllegalArgumentException.class, () -> chain.migrateToCurrent(payload(0, (byte) 1)));
+        expect(IllegalArgumentException.class, () -> chain.migrateToCurrent(new byte[3]));
+        expect(IllegalArgumentException.class, () -> chain.migrateToCurrent(new byte[65]));
+
+        CanonicalPlayerAttachmentMigrationChain gap = new CanonicalPlayerAttachmentMigrationChain(
+            3,
+            64,
+            List.of(new CanonicalPlayerAttachmentMigrationStep(
+                1,
+                2,
+                encoded -> upgradeVersion(encoded, 1, 2, (byte) 1)
+            ))
+        );
+        expect(IllegalArgumentException.class, () -> gap.migrateToCurrent(v1));
+
+        expect(IllegalArgumentException.class, () -> new CanonicalPlayerAttachmentMigrationStep(
+            1,
+            3,
+            encoded -> encoded
+        ));
+        expect(IllegalArgumentException.class, () -> new CanonicalPlayerAttachmentMigrationChain(
+            3,
+            64,
+            List.of(
+                new CanonicalPlayerAttachmentMigrationStep(1, 2, encoded -> payload(2)),
+                new CanonicalPlayerAttachmentMigrationStep(1, 2, encoded -> payload(2))
+            )
+        ));
+
+        CanonicalPlayerAttachmentMigrationChain wrongHeader = new CanonicalPlayerAttachmentMigrationChain(
+            2,
+            64,
+            List.of(new CanonicalPlayerAttachmentMigrationStep(1, 2, encoded -> encoded.clone()))
+        );
+        expect(IllegalArgumentException.class, () -> wrongHeader.migrateToCurrent(v1));
+
+        CanonicalPlayerAttachmentMigrationChain emptyOutput = new CanonicalPlayerAttachmentMigrationChain(
+            2,
+            64,
+            List.of(new CanonicalPlayerAttachmentMigrationStep(1, 2, encoded -> new byte[0]))
+        );
+        expect(IllegalArgumentException.class, () -> emptyOutput.migrateToCurrent(v1));
+    }
+
+    private static void canonicalMigrationRegistryIsFailClosedUntilARealStepExists() {
+        byte[] current = CanonicalPlayerAttachmentDataCodec.encode(CanonicalPlayerAttachmentData.empty());
+        byte[] normalized = CanonicalPlayerAttachmentMigrations.toCurrent(current);
+        arrayEq(current, normalized);
+        if (normalized == current) {
+            throw new AssertionError("canonical migration normalization must return a defensive copy");
+        }
+
+        byte[] future = current.clone();
+        ByteBuffer.wrap(future).putInt(CanonicalPlayerAttachmentDataCodec.CURRENT_VERSION + 1);
+        expect(IllegalArgumentException.class, () -> CanonicalPlayerAttachmentMigrations.toCurrent(future));
+    }
+
+    private static byte[] upgradeVersion(
+        byte[] encoded,
+        int expectedVersion,
+        int nextVersion,
+        byte marker
+    ) {
+        if (encodedVersion(encoded) != expectedVersion) {
+            throw new IllegalArgumentException("unexpected migration source version");
+        }
+        byte[] upgraded = Arrays.copyOf(encoded, encoded.length + 1);
+        ByteBuffer.wrap(upgraded).putInt(nextVersion);
+        upgraded[upgraded.length - 1] = marker;
+        return upgraded;
+    }
+
+    private static byte[] payload(int version, byte... body) {
+        ByteBuffer buffer = ByteBuffer.allocate(Integer.BYTES + body.length);
+        buffer.putInt(version);
+        buffer.put(body);
+        return buffer.array();
+    }
+
+    private static int encodedVersion(byte[] encoded) {
+        if (encoded.length < Integer.BYTES) {
+            throw new IllegalArgumentException("payload too short for version header");
+        }
+        return ByteBuffer.wrap(encoded).getInt();
+    }
+
     private static void malformedPayloadsFailClosed() {
         expect(IllegalArgumentException.class, () -> CanonicalPlayerAttachmentDataCodec.decode(new byte[0]));
         byte[] valid = CanonicalPlayerAttachmentDataCodec.encode(CanonicalPlayerAttachmentData.empty());
@@ -140,13 +259,19 @@ public final class CanonicalPlayerAttachmentDataTest {
         expect(IllegalArgumentException.class, () -> CanonicalPlayerAttachmentDataCodec.decode(trailing));
 
         byte[] unsupported = valid.clone();
-        unsupported[0] = 99;
+        ByteBuffer.wrap(unsupported).putInt(99);
         expect(IllegalArgumentException.class, () -> CanonicalPlayerAttachmentDataCodec.decode(unsupported));
     }
 
     private static void progressionEq(ProgressionState expected, ProgressionState actual) {
         if (!Arrays.equals(ProgressionStateCodec.encode(expected), ProgressionStateCodec.encode(actual))) {
             throw new AssertionError("persisted progression states differ");
+        }
+    }
+
+    private static void arrayEq(byte[] expected, byte[] actual) {
+        if (!Arrays.equals(expected, actual)) {
+            throw new AssertionError("byte arrays differ");
         }
     }
 
