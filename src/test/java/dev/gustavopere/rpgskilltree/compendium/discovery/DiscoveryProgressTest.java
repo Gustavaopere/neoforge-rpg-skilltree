@@ -13,6 +13,7 @@ public final class DiscoveryProgressTest {
         progressUsesCanonicalEntryIdentity();
         recordCollectionsAreDefensivelyCopied();
         absentCatalogEntryCanRemainPersisted();
+        independentPlayersDoNotShareDiscoveryProgress();
         System.out.println("DiscoveryProgressTest: PASS");
     }
 
@@ -70,6 +71,19 @@ public final class DiscoveryProgressTest {
         );
         eq(removed, progress.record(removed).orElseThrow().entryId());
         eq(DiscoveryState.MASTERED, progress.record(removed).orElseThrow().state());
+    }
+
+    private static void independentPlayersDoNotShareDiscoveryProgress() {
+        CompendiumEntryId pig = CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "minecraft:pig");
+        DiscoveryProgress playerOne = DiscoveryProgress.empty().withRecord(
+            record(pig, DiscoveryState.SEEN, Set.of(), Set.of("observe"), Set.of())
+        );
+        DiscoveryProgress playerTwo = DiscoveryProgress.empty();
+
+        yes(playerOne.record(pig).isPresent());
+        no(playerTwo.record(pig).isPresent());
+        eq(1, playerOne.records().size());
+        eq(0, playerTwo.records().size());
     }
 
     private static DiscoveryRecord record(
