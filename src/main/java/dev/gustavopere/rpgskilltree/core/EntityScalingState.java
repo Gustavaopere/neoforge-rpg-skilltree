@@ -9,12 +9,14 @@ public record EntityScalingState(
     EntityLevelResolution levelResolution,
     long variance,
     Optional<MobRaritySelection> rarity,
-    long deterministicSeed
+    long deterministicSeed,
+    MobAffixSelection affixes
 ) {
     public EntityScalingState {
         Objects.requireNonNull(territory, "territory");
         Objects.requireNonNull(levelResolution, "levelResolution");
         Objects.requireNonNull(rarity, "rarity");
+        Objects.requireNonNull(affixes, "affixes");
 
         long expectedBaseFloor = levelResolution.relevantPlayerLevel().isPresent()
             ? Math.max(levelResolution.nativeAreaLevel(), levelResolution.relevantPlayerLevel().getAsLong())
@@ -40,6 +42,17 @@ public record EntityScalingState(
         if (levelResolution.finalLevel() != expectedFinal) {
             throw new IllegalArgumentException("entity scaling finalLevel is inconsistent with floor semantics");
         }
+    }
+
+    /** Source-compatible constructor for states created before affix persistence existed. */
+    public EntityScalingState(
+        TerritoryKey territory,
+        EntityLevelResolution levelResolution,
+        long variance,
+        Optional<MobRaritySelection> rarity,
+        long deterministicSeed
+    ) {
+        this(territory, levelResolution, variance, rarity, deterministicSeed, MobAffixSelection.empty());
     }
 
     public EntityArchetype archetype() {
