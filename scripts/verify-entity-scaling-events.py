@@ -4,6 +4,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 EVENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/EntityScalingEvents.java"
 INITIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingInitializer.java"
+DECISION_FACTORY = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingDecisionRequestFactory.java"
+DECISION_INITIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingDecisionInitializer.java"
 CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingInitializerCatalog.java"
 MOD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java"
 
@@ -29,17 +31,26 @@ def forbid(text: str, needle: str, location: str) -> None:
 
 events = read_required(EVENTS)
 initializer = read_required(INITIALIZER)
+decision_factory = read_required(DECISION_FACTORY)
+decision_initializer = read_required(DECISION_INITIALIZER)
 catalog = read_required(CATALOG)
 mod = read_required(MOD)
 
 events_location = str(EVENTS.relative_to(ROOT))
 initializer_location = str(INITIALIZER.relative_to(ROOT))
+decision_factory_location = str(DECISION_FACTORY.relative_to(ROOT))
+decision_initializer_location = str(DECISION_INITIALIZER.relative_to(ROOT))
 catalog_location = str(CATALOG.relative_to(ROOT))
 mod_location = str(MOD.relative_to(ROOT))
 
 require(initializer, "EntityScalingState initialize(ServerLevel level, LivingEntity entity)", initializer_location)
+require(decision_factory, "EntityScalingDecisionRequest create(ServerLevel level, LivingEntity entity)", decision_factory_location)
+require(decision_initializer, "implements EntityScalingInitializer", decision_initializer_location)
+require(decision_initializer, "EntityScalingDecisionService.resolve(request).state()", decision_initializer_location)
 require(catalog, "Optional<EntityScalingInitializer> current()", catalog_location)
 require(catalog, "install(EntityScalingInitializer initializer)", catalog_location)
+require(catalog, "installDecisionFactory(EntityScalingDecisionRequestFactory requestFactory)", catalog_location)
+require(catalog, "new EntityScalingDecisionInitializer(requestFactory)", catalog_location)
 require(catalog, "clear()", catalog_location)
 
 require(events, "@SubscribeEvent", events_location)
@@ -65,4 +76,4 @@ if persisted < 0 or catalog_lookup < 0 or initialize < 0 or not (persisted < cat
     print(f"ERROR: {events_location}: persisted state must be checked before initializer lookup and initialization")
     raise SystemExit(1)
 
-print("Entity scaling event validation: PASS (server-only join boundary + persisted-state-first initialization verified)")
+print("Entity scaling event validation: PASS (server-only join boundary + canonical decision initializer + persisted-state-first initialization verified)")
