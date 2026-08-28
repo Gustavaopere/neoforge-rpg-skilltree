@@ -9,6 +9,7 @@ import java.util.Set;
 public final class CompendiumEntryTest {
     public static void main(String[] args) {
         collectionsAreDefensivelyCopied();
+        categoryIdsAreNormalized();
         translatedMetadataDoesNotChangeIdentity();
         contentVersionMustBePositive();
         relationRequiresAvailableEvidence();
@@ -25,6 +26,17 @@ public final class CompendiumEntryTest {
         eq(Set.of("fauna"), entry.categoryIds());
         eq(1, entry.sections().size());
         throwsUnsupported(() -> entry.categoryIds().add("x"));
+    }
+
+    private static void categoryIdsAreNormalized() {
+        CompendiumEntry entry = entry(
+            "entity.minecraft.zombie",
+            new LinkedHashSet<>(List.of(" fauna ", "hostile", "fauna")),
+            List.of(),
+            List.of()
+        );
+        eq(Set.of("fauna", "hostile"), entry.categoryIds());
+        throwsIllegal(() -> entry("entity.minecraft.zombie", Set.of("   "), List.of(), List.of()));
     }
 
     private static void translatedMetadataDoesNotChangeIdentity() {
