@@ -57,6 +57,33 @@ public final class CorePlayerProgressionRuntime {
         return next;
     }
 
+    /**
+     * Trusted server/admin rollback entry point. This is intentionally not exposed by a
+     * clientbound/serverbound gameplay packet and never accepts a negative grant shortcut.
+     */
+    public static CoreProgressionState rollbackXp(
+        ServerPlayer player,
+        long amount
+    ) {
+        ProgressionRulesSnapshot rules = CoreProgressionRulesCatalog.provider().requireCurrent();
+        return rollbackXp(player, amount, rules);
+    }
+
+    public static CoreProgressionState rollbackXp(
+        ServerPlayer player,
+        long amount,
+        ProgressionRulesSnapshot rules
+    ) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(rules);
+        CoreProgressionState current = bootstrap(player, rules);
+        CoreProgressionState next = CoreProgressionMutationService.rollbackXp(current, amount, rules);
+        if (next != current) {
+            set(player, next, rules);
+        }
+        return next;
+    }
+
     public static CoreProgressionState applyCorePointTransaction(
         ServerPlayer player,
         CorePointTransaction transaction,
