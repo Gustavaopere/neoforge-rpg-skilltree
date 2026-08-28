@@ -53,7 +53,8 @@ public final class MasteryAwardIdempotencyTest {
         ProgressionState source = ProgressionState.empty().withMastery(mastery);
         ProgressionState decoded = ProgressionStateCodec.decode(ProgressionStateCodec.encode(source));
 
-        eq(5, ProgressionStateCodec.CURRENT_VERSION);
+        eq(4, ProgressionStateCodec.CURRENT_VERSION);
+        eq(2, CanonicalPlayerStateCodec.CURRENT_VERSION);
         eq(mastery.experience(), decoded.mastery().experience());
         eq(mastery.creditedAwards(), decoded.mastery().creditedAwards());
     }
