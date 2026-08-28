@@ -63,3 +63,4 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingLifecycleStateTes
 python3 "$ROOT/scripts/verify-quest-runtime.py"
 python3 "$ROOT/scripts/verify-core-xp-adapters.py"
 python3 "$ROOT/scripts/verify-world-scaling-runtime.py"
+python3 "$ROOT/scripts/verify-entity-scaling-events.py"
