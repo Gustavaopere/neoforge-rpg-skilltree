@@ -54,16 +54,15 @@ def read_required(path: Path) -> str:
 events_text = EVENTS.read_text(encoding="utf-8")
 runtime_text = RUNTIME.read_text(encoding="utf-8")
 
-# Login/respawn delegate to one reconciliation boundary. That boundary persists the
-# reconciled compatibility section inside the canonical attachment and then refreshes
-# effects + syncs the owner through set().
+# Login/respawn delegate to one reconciliation boundary. Confirmed compatibility
+# mutations use the canonical commit boundary before effects and owner sync.
 require(events_text, "PlayerProgressionRuntime.reconcilePlayerState(player)", str(EVENTS.relative_to(ROOT)))
 require(runtime_text, "public static ProgressionState reconcilePlayerState(ServerPlayer player)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "set(player, reconciled)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "AttributeNodeEffectRuntime.refresh(player, state)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "ModNetworking.syncToOwner(player, state)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "CanonicalPlayerAttachmentRuntime.readOrMigrate(player)", str(RUNTIME.relative_to(ROOT)))
-require(runtime_text, "CanonicalPlayerAttachmentRuntime.write(player, current.withCompatibilityProgression(state))", str(RUNTIME.relative_to(ROOT)))
+require(runtime_text, "CanonicalPlayerAttachmentRuntime.commitMutation(", str(RUNTIME.relative_to(ROOT)))
 forbid(runtime_text, "setData(ModAttachments.PROGRESSION", str(RUNTIME.relative_to(ROOT)))
 
 result = subprocess.run(
@@ -107,7 +106,8 @@ require(canonical_serializer_text, "CanonicalPlayerAttachmentDataCodec.encode", 
 
 require(canonical_runtime_text, "public static CanonicalPlayerAttachmentData readOrMigrate(", str(CANONICAL_RUNTIME.relative_to(ROOT)))
 require(canonical_runtime_text, "public static CanonicalPlayerAttachmentData observe(", str(CANONICAL_RUNTIME.relative_to(ROOT)))
-require(canonical_runtime_text, "public static void write(", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "static void write(", str(CANONICAL_RUNTIME.relative_to(ROOT)))
+require(canonical_runtime_text, "static boolean commitMutation(", str(CANONICAL_RUNTIME.relative_to(ROOT)))
 require(canonical_runtime_text, "ModAttachments.CANONICAL_PLAYER", str(CANONICAL_RUNTIME.relative_to(ROOT)))
 require(canonical_runtime_text, "ModAttachments.PROGRESSION", str(CANONICAL_RUNTIME.relative_to(ROOT)))
 require(canonical_runtime_text, "ModAttachments.CORE_PROGRESSION", str(CANONICAL_RUNTIME.relative_to(ROOT)))
@@ -122,7 +122,7 @@ require(core_runtime_text, "CanonicalPlayerAttachmentRuntime.readOrMigrate(playe
 require(core_runtime_text, "current.initializeCore(rules)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CanonicalPlayerAttachmentRuntime.observe(player)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionBootstrap.resume(state, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_text, "CanonicalPlayerAttachmentRuntime.write(player, next)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(core_runtime_text, "CanonicalPlayerAttachmentRuntime.commitMutation(", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionAttachmentData.initialized(state)", str(CORE_RUNTIME.relative_to(ROOT)))
 forbid(core_runtime_text, "setData(ModAttachments.PROGRESSION", str(CORE_RUNTIME.relative_to(ROOT)))
 forbid(core_runtime_text, "setData(ModAttachments.CORE_PROGRESSION", str(CORE_RUNTIME.relative_to(ROOT)))
