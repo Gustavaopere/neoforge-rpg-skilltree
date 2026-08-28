@@ -29,7 +29,9 @@ public final class EntityScalingInitializationService {
             levelResolution,
             input.variance(),
             input.rarity(),
-            input.deterministicSeed()
+            input.deterministicSeed(),
+            input.affixes(),
+            input.behaviors()
         );
     }
 }

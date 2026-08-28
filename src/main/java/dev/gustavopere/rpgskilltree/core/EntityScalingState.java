@@ -10,13 +10,15 @@ public record EntityScalingState(
     long variance,
     Optional<MobRaritySelection> rarity,
     long deterministicSeed,
-    MobAffixSelection affixes
+    MobAffixSelection affixes,
+    EntityBehaviorSelection behaviors
 ) {
     public EntityScalingState {
         Objects.requireNonNull(territory, "territory");
         Objects.requireNonNull(levelResolution, "levelResolution");
         Objects.requireNonNull(rarity, "rarity");
         Objects.requireNonNull(affixes, "affixes");
+        Objects.requireNonNull(behaviors, "behaviors");
 
         long expectedBaseFloor = levelResolution.relevantPlayerLevel().isPresent()
             ? Math.max(levelResolution.nativeAreaLevel(), levelResolution.relevantPlayerLevel().getAsLong())
@@ -52,7 +54,35 @@ public record EntityScalingState(
         Optional<MobRaritySelection> rarity,
         long deterministicSeed
     ) {
-        this(territory, levelResolution, variance, rarity, deterministicSeed, MobAffixSelection.empty());
+        this(
+            territory,
+            levelResolution,
+            variance,
+            rarity,
+            deterministicSeed,
+            MobAffixSelection.empty(),
+            EntityBehaviorSelection.empty()
+        );
+    }
+
+    /** Source-compatible constructor for states created after affix but before behavior persistence. */
+    public EntityScalingState(
+        TerritoryKey territory,
+        EntityLevelResolution levelResolution,
+        long variance,
+        Optional<MobRaritySelection> rarity,
+        long deterministicSeed,
+        MobAffixSelection affixes
+    ) {
+        this(
+            territory,
+            levelResolution,
+            variance,
+            rarity,
+            deterministicSeed,
+            affixes,
+            EntityBehaviorSelection.empty()
+        );
     }
 
     public EntityArchetype archetype() {
