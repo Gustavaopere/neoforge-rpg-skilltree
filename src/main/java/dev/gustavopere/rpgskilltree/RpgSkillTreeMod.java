@@ -51,6 +51,7 @@ import dev.gustavopere.rpgskilltree.runtime.events.MiningProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.PlayerProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ProgressionOwnerSyncEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.RelevantPlayerCacheEvents;
+import dev.gustavopere.rpgskilltree.runtime.loot.ModLootModifiers;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -66,6 +67,7 @@ public final class RpgSkillTreeMod {
     public RpgSkillTreeMod(IEventBus modBus) {
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);
+        ModLootModifiers.register(modBus);
         ModNetworking.register(modBus);
         ProgressionOwnerSyncRuntime.initialize();
         RelevantPlayerCandidateRuntime.initialize();
