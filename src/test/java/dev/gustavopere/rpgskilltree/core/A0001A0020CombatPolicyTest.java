@@ -97,7 +97,7 @@ public final class A0001A0020CombatPolicyTest {
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", true, true, capstoneRanks, state, 80, 200L);
         var capstone = A0001A0020CombatPolicy.beforeHit(
             facts("spear-cap", WeaponFamily.SPEAR, "target", false, false, false, true, 300L), capstoneRanks, state);
-        require(close(capstone.damageMultiplier(), 1.24D), "A0013 rank 0 plus A0018 should produce 1.15 damage multiplier");
+        require(close(capstone.damageMultiplier(), 1.15D), "A0013 rank 0 plus A0018 should produce 1.15 damage multiplier");
         require(close(capstone.impactMultiplier(), 1.40D), "A0018 impact must be +40%");
         require(state.distanceControl("player", 300L) == 0, "A0018 must consume all three Distance Control charges");
 
