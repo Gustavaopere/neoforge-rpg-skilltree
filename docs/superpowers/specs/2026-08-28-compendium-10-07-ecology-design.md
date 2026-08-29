@@ -7,7 +7,7 @@
 
 ## Status do design
 
-**Aprovado e congelado para esta implementação.** A execução preserva as fronteiras deste documento; evidências TDD/CI e o merge-ref final ficam no plano `docs/superpowers/plans/2026-08-28-compendium-10-07-ecology.md` e no PR de implementação.
+**Aprovado e congelado para esta implementação.** Evidências TDD/CI e o merge-ref final ficam no plano `docs/superpowers/plans/2026-08-28-compendium-10-07-ecology.md` e no PR de implementação.
 
 ## 1. Objetivo
 
@@ -15,143 +15,64 @@ Enriquecer entradas do Compêndio Natural com relações de gameplay verificáve
 
 O Stage 10.07 trabalha sobre o modelo canônico já fechado nos Stages 10.03–10.06. Ele não cria um recipe browser, não assume habitat/worldgen que pertence ao 10.08 e não absorve o wiring completo de APIs públicas de mods opcionais que pertence ao 10.11.
 
-## 2. Decisão estrutural: alvo tipado de relação
+## 2. Alvo tipado de relação
 
-O modelo possui relações como `DROPS`, `EATS`, `ATTRACTED_BY` e `BREEDS_WITH_ITEM`, mas itens e tags de itens não são páginas canônicas do Compêndio e não devem ser transformados artificialmente em `CompendiumEntryKind.ITEM`.
+Itens e tags de itens não são páginas canônicas do Compêndio e não viram `CompendiumEntryKind.ITEM`.
 
-`CompendiumRelationTarget` usa kinds explícitos:
+`CompendiumRelationTarget` usa kinds explícitos `ENTRY`, `ITEM`, `ITEM_TAG`, `BLOCK` e `BLOCK_TAG`. `CompendiumRelation` mantém compatibilidade com `CompendiumEntryId` e o alvo expõe serialização determinística para ordenação, diagnostics e schema.
 
-- `ENTRY` — outra entrada canônica do Compêndio;
-- `ITEM` — `ResourceLocation` de item;
-- `ITEM_TAG` — `ResourceLocation` de tag de item;
-- `BLOCK` — `ResourceLocation` de bloco para interação ecológica concreta;
-- `BLOCK_TAG` — `ResourceLocation` de tag de bloco.
+## 3. Proveniência e confiança
 
-`CompendiumRelation` armazena o alvo tipado e mantém construtor de compatibilidade com `CompendiumEntryId`. O alvo expõe serialização determinística usada por ordenação, diagnostics e schema.
+`CURATED_EDITORIAL + EXACT` exige `evidenceId` não vazio. Fontes técnicas reproduzíveis podem omiti-lo. `UNAVAILABLE` não é relação publicável.
 
-Não existe `CompendiumEntryKind.ITEM` neste estágio.
+## 4. Schema
 
-## 3. Proveniência e confiança de relações
+`schema_version: 1` permanece compatível. Relação usa exatamente um formato: `to` legado para ENTRY ou `target_kind + target`. Misturar os dois falha deterministicamente.
 
-`FactSource` e `FactConfidence` continuam sendo a autoridade semântica. Relações editoriais exatas precisam provar de onde vieram através de `evidenceId`.
+## 5. Loot seguro
 
-Regras:
+Loot é derivado dos recursos de datapack/reload, nunca de execução de `LootTable`, comandos, functions, spawn ou contexto sintético.
 
-- `CURATED_EDITORIAL + EXACT` exige `evidenceId` não vazio;
-- fontes técnicas reproduzíveis como `REGISTRY`, `LOOT_TABLE`, `RUNTIME_ENTITY`, `DATAPACK` e `ADAPTER` podem omitir `evidenceId`;
-- `UNAVAILABLE` é inválido para relações publicadas;
-- relação sem evidência suficiente não é publicada como `EXACT`.
+O parser resolve apenas estruturas matematicamente demonstráveis. Formato/função/condição não suportado vira `CONDICIONAL`, nunca número inventado.
 
-## 4. Compatibilidade de schema de relações
+`CompendiumLootSnapshot` é imutável. `CompendiumLootEnricher` aplica o snapshot atual a uma página ENTITY sem reconstruir o catálogo-base, adicionando `DROPS` e seção `loot`; item, quantidade/faixa e chance entram como facts apenas quando resolvidos.
 
-O schema global permanece em `schema_version: 1` porque a extensão é retrocompatível.
-
-Formato legado válido:
-
-```json
-{
-  "schema_version": 1,
-  "type": "BELONGS_TO_DIMENSION",
-  "from": "ENTITY|minecraft:pig",
-  "to": "DIMENSION|minecraft:overworld",
-  "source": "REGISTRY"
-}
-```
-
-Novo alvo tipado:
-
-```json
-{
-  "schema_version": 1,
-  "type": "BREEDS_WITH_ITEM",
-  "from": "ENTITY|minecraft:cow",
-  "target_kind": "ITEM",
-  "target": "minecraft:wheat",
-  "source": "REGISTRY",
-  "confidence": "EXACT"
-}
-```
-
-O validator aceita exatamente um dos formatos: `to` legado para ENTRY, ou `target_kind + target`. Mistura dos formatos falha deterministically. `evidence_id` é opcional conforme a regra de proveniência.
-
-## 5. Loot: análise estrutural sem execução
-
-Loot de entidade é derivado dos recursos do datapack/reload. A implementação não executa `LootTable`, comandos, functions, spawning de entidade nem contexto sintético.
-
-O parser suporta inicialmente o que pode ser resumido sem ambiguidade: item direto, `set_count` constante/uniforme, rolls constantes/uniformes simples e condições conhecidas relevantes a player kill/Looting quando deriváveis. Entry/function/number-provider/condition não suportado torna o aspecto `CONDICIONAL`; nunca vira um número inventado.
-
-`CompendiumLootSnapshot` é imutável. `CompendiumLootEnricher` aplica o snapshot atual a uma página ENTITY sem reconstruir o catálogo-base, adicionando relações `DROPS` e seção `loot`. Item, quantidade/faixa e chance entram como facts somente quando resolvidos; condições/contextos permanecem `CONTEXTUAL`.
-
-No Minecraft 1.21.1 os dados residem em `data/<namespace>/loot_table/...` (singular). O listener observa `loot_table/entities`, enquanto o ID lógico armazenado é `<namespace>:entities/<path>`.
+Minecraft 1.21.1 usa `data/<namespace>/loot_table/...` (singular). O listener observa `loot_table/entities`; o ID lógico permanece `<namespace>:entities/<path>`.
 
 ## 6. XP de morte
 
-O Compêndio distingue XP vanilla/base observável de recompensas do RPG. Valores dinâmicos de instância não são publicados como inteiro exato global. Adapter confiável pode posteriormente fornecer faixa/fórmula; indisponível/contextual permanece explicitamente assim.
+XP vanilla/base e recompensas do RPG permanecem semanticamente separados. Valor dinâmico de instância não vira inteiro exato global.
 
 ## 7. Dieta, atração e reprodução
 
-Esses conceitos são independentes mesmo quando usam o mesmo item.
+Food, temptation e breeding são independentes. `Animal.isFood(ItemStack)` não prova temptation nem reprodução. Gestação, sexo, genética e herança só entram por adapter confiável.
 
-- `FoodRelationProvider` — alimento verificável;
-- `TemptationRelationProvider` — atração verificável;
-- `BreedingRelationProvider` — capacidade/requisitos/reprodução verificável.
+## 8. Domesticação
 
-`Animal.isFood(ItemStack)` não prova por si só temptation nem reprodução. Nenhum provider auto-promove `EATS` para `ATTRACTED_BY` ou `BREEDS_WITH_ITEM`.
+Capability estática da espécie é separada do tame/owner/adult state contextual. Inspeção usa entidade existente e não mantém cache global de entity/world.
 
-Gestação, sexo, genética e herança só entram por adapter confiável.
+## 9. Ecologia
 
-## 8. Domesticação e dados de instância
-
-Domesticação separa capability estática da espécie do estado contextual da instância. Tame state, owner e adulto são inspecionados sobre entidade existente, não persistidos em cache global. Não há referência forte global a entity/world.
-
-## 9. Ecologia de gameplay
-
-`PREDATOR_OF`, `PREY_OF`, medo/evitação, polinização, hostilidade dirigida e interações com blocos/plantas só são publicadas com comportamento técnico ou fonte confiável. Habitat geográfico/bioma/estrutura/dimensão permanece no 10.08. Não há inferência por nome, translation key ou aparência.
+Predação, medo, polinização, hostilidade dirigida e interação com blocos/plantas só entram com comportamento técnico ou fonte confiável. Habitat geográfico permanece no 10.08. Não há heurística por nome/translation key/aparência.
 
 ## 10. Mods opcionais
 
-O 10.07 fornece contrato fail-soft de enrichment opcional. Ausência/incompatibilidade do mod retorna ausência de contribution e preserva o catálogo base. O wiring completo de APIs externas — TFC, Animal Husbandry, Animal Wellness e equivalentes — permanece no 10.11, sem reflection arbitrária ou NBT não documentado.
+Enrichment opcional é fail-soft. Ausência/incompatibilidade preserva o catálogo base. Wiring completo de APIs externas permanece no 10.11; sem reflection arbitrária ou NBT não documentado.
 
-## 11. Reload, cache e atomicidade
+## 11. Reload e atomicidade
 
-Summaries de loot são construídos em reload/snapshot, nunca por tick/frame.
+Reload constrói staging, parseia/valida e só então troca o snapshot imutável. Falha mantém o snapshot anterior. Não há rebuild por tick/frame. Orquestração global de cache/rede continua no 10.13.
 
-Fluxo:
+## 12. Erros
 
-1. reload lê recursos para staging;
-2. parser cria summaries/diagnostics;
-3. validação conclui antes da publicação;
-4. snapshot imutável novo substitui atomicamente o anterior;
-5. falha mantém o snapshot anterior.
-
-O Stage 10.13 continua responsável pelo gerenciador global de catálogo/rede/cache. Dados contextuais de instância não entram no cache global.
-
-## 12. Erros e diagnostics
-
-- loot malformado: staging falha antes da publicação;
-- formato não suportado: aspecto condicional, sem execução;
-- `CURATED_EDITORIAL + EXACT` sem evidência: rejeitado;
-- target inválido: rejeitado;
-- mod opcional ausente/incompatível: enrichment ausente;
-- conflito de providers segue `ProviderMerger` determinístico.
+Loot malformado falha antes da publicação; conteúdo não suportado fica contextual; editorial EXACT sem evidência e target inválido são rejeitados; optional mod ausente degrada sem corromper catálogo.
 
 ## 13. Testes e gates
 
-TDD cobre relation target/proveniência, loot simples/range/condicional, food/tempt/breeding separados, taming contextual, ecology/adapters opcionais, reload atômico e aplicação do snapshot atual à página.
+TDD cobre relation target/proveniência, loot simples/range/condicional, food/tempt/breeding, taming contextual, ecology/adapters opcionais, reload atômico e enriquecimento da página pelo snapshot atual.
 
-O gate focal é `Compendium Ecology CI`. A integração exige também Flora, Entities, Discovery e `RPG Skill Tree CI`, incluindo NeoForge build, verificação do JAR e dedicated-server smoke.
+Gate focal: `Compendium Ecology CI`. Integração exige também Flora, Entities, Discovery e `RPG Skill Tree CI`, incluindo NeoForge build, JAR e dedicated-server smoke.
 
-## 14. Critérios de aceite
+## 14. Acceptance
 
-O Stage 10.07 está pronto quando:
-
-- loot é documentado por análise segura de dados;
-- chance/quantidade só são exatas quando demonstráveis;
-- item/tag pode ser alvo de relação sem virar entrada artificial;
-- alimento, atração e reprodução são distintos;
-- domesticação separa capability de estado contextual;
-- ecologia possui fonte/confiança;
-- adapters opcionais degradam com segurança;
-- reload publica snapshot atomicamente;
-- editorial `EXACT` sem evidência é rejeitado;
-- gates focais e CI NeoForge completo estão verdes antes do merge.
+O Stage 10.07 está pronto quando loot é seguro e source-aware; quantidade/chance só são exatas quando demonstráveis; relation targets não criam páginas ITEM artificiais; food/tempt/breeding continuam distintos; taming separa capability de estado; ecologia tem fonte/confiança; optional adapters são fail-soft; reload é atômico; editorial EXACT sem evidência é rejeitado; e todos os gates estão verdes antes do merge.
