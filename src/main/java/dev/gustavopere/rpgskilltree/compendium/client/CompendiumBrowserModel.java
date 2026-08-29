@@ -1,7 +1,11 @@
 package dev.gustavopere.rpgskilltree.compendium.client;
 
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryId;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -18,6 +22,7 @@ public final class CompendiumBrowserModel {
 
     private String query = "";
     private CompendiumFilterState filter = CompendiumFilterState.all();
+    private List<CompendiumEntryId> entryScope;
     private List<CompendiumClientEntry> matches;
     private int firstVisibleRow;
     private int selectedRow = -1;
@@ -61,6 +66,26 @@ public final class CompendiumBrowserModel {
 
     public void setFilter(CompendiumFilterState filter) {
         this.filter = Objects.requireNonNull(filter, "filter");
+        refreshFromTop();
+    }
+
+    /**
+     * Restricts list/search/filter results to the supplied IDs, preserving the supplied order.
+     * IDs absent from the current snapshot are ignored instead of mutating the caller's state.
+     */
+    public void setEntryScope(List<CompendiumEntryId> orderedIds) {
+        Objects.requireNonNull(orderedIds, "orderedIds");
+        LinkedHashSet<CompendiumEntryId> unique = new LinkedHashSet<>();
+        for (CompendiumEntryId id : orderedIds) {
+            unique.add(Objects.requireNonNull(id, "entry scope id"));
+        }
+        entryScope = List.copyOf(unique);
+        refreshFromTop();
+    }
+
+    /** Restores the normal full-snapshot browser scope. */
+    public void clearEntryScope() {
+        entryScope = null;
         refreshFromTop();
     }
 
@@ -158,7 +183,19 @@ public final class CompendiumBrowserModel {
 
     private List<CompendiumClientEntry> resolveMatches() {
         int searchLimit = Math.max(1, snapshot.size());
-        return filter.filter(searchIndex.search(query, searchLimit));
+        List<CompendiumClientEntry> searched = filter.filter(searchIndex.search(query, searchLimit));
+        if (entryScope == null) return searched;
+
+        Map<CompendiumEntryId, CompendiumClientEntry> byId = new LinkedHashMap<>();
+        for (CompendiumClientEntry entry : searched) {
+            byId.put(entry.id(), entry);
+        }
+        ArrayList<CompendiumClientEntry> scoped = new ArrayList<>();
+        for (CompendiumEntryId id : entryScope) {
+            CompendiumClientEntry entry = byId.get(id);
+            if (entry != null) scoped.add(entry);
+        }
+        return List.copyOf(scoped);
     }
 
     public record Viewport(
