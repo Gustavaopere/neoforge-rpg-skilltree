@@ -11,6 +11,7 @@ import dev.gustavopere.rpgskilltree.core.DiscoveryProgressionResult;
 import dev.gustavopere.rpgskilltree.core.MasteryAward;
 import dev.gustavopere.rpgskilltree.core.MasteryAwardService;
 import dev.gustavopere.rpgskilltree.core.NodeAccessResolver;
+import dev.gustavopere.rpgskilltree.core.NodePurchaseResult;
 import dev.gustavopere.rpgskilltree.core.ProgressionService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRuleCatalog;
@@ -21,10 +22,14 @@ import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 
 public final class PlayerProgressionRuntime {
+    private static final NodePurchaseRequestProcessor NODE_PURCHASE_PROCESSOR =
+        new NodePurchaseRequestProcessor(256);
+
     // Legacy scaffold marker only. Confirmed mutation sync moved to ProgressionOwnerSyncRuntime:
     // ModNetworking.syncToOwner(player, state)
     private PlayerProgressionRuntime() {}
@@ -104,14 +109,15 @@ public final class PlayerProgressionRuntime {
         return result;
     }
 
+    /**
+     * Trusted server-side compatibility entry point. Client packets do not use this path;
+     * they use the request-id overload below so retransmission can be rejected idempotently.
+     */
     public static boolean purchaseNode(ServerPlayer player, ResourceLocation nodeId) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(nodeId);
         var definition = TreeRuleCatalog.definition(nodeId);
-        if (definition.isEmpty()) {
-            ModNetworking.syncToOwner(player, get(player));
-            return false;
-        }
+        if (definition.isEmpty()) return false;
         try {
             ProgressionState current = get(player);
             boolean requirementsSatisfied = NodeAccessResolver.satisfied(
@@ -129,9 +135,58 @@ public final class PlayerProgressionRuntime {
             set(player, next);
             return true;
         } catch (IllegalArgumentException rejectedPurchase) {
-            ModNetworking.syncToOwner(player, get(player));
             return false;
         }
+    }
+
+    /**
+     * Server-authoritative network purchase boundary. The client supplies only node identity and
+     * an idempotency key; costs, requirements, topology and ranks are resolved server-side.
+     */
+    public static NodePurchaseResult purchaseNode(
+        ServerPlayer player,
+        ResourceLocation nodeId,
+        String requestId
+    ) {
+        Objects.requireNonNull(player, "player");
+        Objects.requireNonNull(nodeId, "nodeId");
+        Objects.requireNonNull(requestId, "requestId");
+
+        ProgressionState current = get(player);
+        var definition = TreeRuleCatalog.definition(nodeId);
+        if (definition.isEmpty()) {
+            return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.UNKNOWN_NODE);
+        }
+
+        boolean requirementsSatisfied = NodeAccessResolver.satisfied(
+            current,
+            TreeRuleCatalog.requirement(nodeId),
+            CharacterLevelCurve.defaultCurve()
+        );
+        NodePurchaseResult result = NODE_PURCHASE_PROCESSOR.purchase(
+            player.getUUID(),
+            requestId,
+            nodeId,
+            current,
+            TreeRuleCatalog.graph(),
+            definition.get(),
+            requirementsSatisfied
+        );
+        if (!result.accepted()) {
+            return result;
+        }
+
+        ProgressionState reconciled = reconcileDerivedState(result.state());
+        set(player, reconciled);
+        return NodePurchaseResult.accepted(reconciled);
+    }
+
+    public static void clearNodePurchaseRequests(UUID playerId) {
+        NODE_PURCHASE_PROCESSOR.clear(playerId);
+    }
+
+    public static void clearAllNodePurchaseRequests() {
+        NODE_PURCHASE_PROCESSOR.clearAll();
     }
 
     public static boolean selectClassChoice(ServerPlayer player, ResourceLocation choiceId) {
