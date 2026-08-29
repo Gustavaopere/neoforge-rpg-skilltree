@@ -127,6 +127,48 @@ unexpected = set(dependencies) - set(required) - optional
 if unexpected:
     fail(f"unclassified dependency metadata: {sorted(unexpected)}")
 
+mod_bootstrap = (
+    ROOT / "src" / "main" / "java" / "dev" / "gustavopere" / "rpgskilltree" / "RpgSkillTreeMod.java"
+).read_text(encoding="utf-8")
+ordered_bootstrap_markers = (
+    "AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);",
+    "ModAttachments.register(modBus);",
+    "ModNetworking.register(modBus);",
+    "ProgressionOwnerSyncRuntime.initialize();",
+    "NeoForge.EVENT_BUS.register(ProgressionOwnerSyncEvents.class);",
+    "NeoForge.EVENT_BUS.register(PlayerProgressionEvents.class);",
+    "NeoForge.EVENT_BUS.register(NodeRulesReloader.class);",
+    "NeoForge.EVENT_BUS.register(TreeArchitectureReloader.class);",
+    "NeoForge.EVENT_BUS.register(TreeUnlockReloader.class);",
+    "NeoForge.EVENT_BUS.register(ClassRulesReloader.class);",
+    "NeoForge.EVENT_BUS.register(ClassChoiceRulesReloader.class);",
+    "NeoForge.EVENT_BUS.register(ArchetypeReloader.class);",
+    "NeoForge.EVENT_BUS.register(SpecializationReloader.class);",
+    "NeoForge.EVENT_BUS.register(MorphCategoryReloader.class);",
+    "NeoForge.EVENT_BUS.register(NodeEffectsReloader.class);",
+    "NeoForge.EVENT_BUS.register(BossRewardReloader.class);",
+    "NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class);",
+    "NeoForge.EVENT_BUS.register(CanonicalProviderBindingReloader.class);",
+    "NeoForge.EVENT_BUS.register(EntityScalingEvents.class);",
+    "NeoForge.EVENT_BUS.register(CompendiumEntityCatalogEvents.class);",
+    "NeoForge.EVENT_BUS.register(CompendiumFloraCatalogEvents.class);",
+    "NeoForge.EVENT_BUS.register(CompendiumInventoryEvents.class);",
+    "NeoForge.EVENT_BUS.register(CompendiumLootResourceReloader.class);",
+    "NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);",
+)
+position = -1
+for marker in ordered_bootstrap_markers:
+    next_position = mod_bootstrap.find(marker)
+    if next_position < 0:
+        fail(f"bootstrap registration is missing: {marker}")
+    if next_position <= position:
+        fail(f"bootstrap registration order changed before: {marker}")
+    position = next_position
+
+first_optional_guard = mod_bootstrap.find('ModList.get().isLoaded("irons_spellbooks")')
+if first_optional_guard < 0 or first_optional_guard <= position:
+    fail("optional provider registration must occur after the deterministic common bootstrap")
+
 java_sources = ROOT / "src" / "main" / "java"
 registered_configs = []
 for path in java_sources.rglob("*.java"):
