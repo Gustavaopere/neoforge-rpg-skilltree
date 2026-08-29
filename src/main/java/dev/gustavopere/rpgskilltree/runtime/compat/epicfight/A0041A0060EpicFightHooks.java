@@ -119,6 +119,7 @@ public final class A0041A0060EpicFightHooks {
         double impact = 1.0D;
         if (family.get() == WeaponFamily.FIST) {
             damage *= NotionCombatPerkRules.baseDamageMultiplier(WeaponFamily.FIST, ranks);
+            damage *= dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.criticalDamageMultiplier(ranks, root.critical);
             if (root.critical && !root.criticalMultiplierApplied) damage *= 1.5D;
             // A0059/A0060 intentionally remain fail-closed until Epic Fight exposes an
             // unambiguous server-authoritative heavy/finalizer receipt for the concrete action.
