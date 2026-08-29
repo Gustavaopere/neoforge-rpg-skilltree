@@ -19,6 +19,8 @@ import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumFloraCatalogEve
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumInventoryEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumLootResourceReloader;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumWorldCatalogEvents;
+import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumWorldCatalogReloader;
+import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumWorldDiscoveryEvents;
 import dev.gustavopere.rpgskilltree.runtime.data.ArchetypeReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.AttributeRankCostPolicyCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.BossRewardReloader;
@@ -82,6 +84,8 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CompendiumInventoryEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumLootResourceReloader.class);
         NeoForge.EVENT_BUS.register(CompendiumWorldCatalogEvents.class);
+        NeoForge.EVENT_BUS.register(CompendiumWorldCatalogReloader.class);
+        NeoForge.EVENT_BUS.register(CompendiumWorldDiscoveryEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);
 
         if (ModList.get().isLoaded("irons_spellbooks")) {
