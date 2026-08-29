@@ -217,6 +217,9 @@ public final class CompendiumScreen extends Screen {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (searchBox != null && searchBox.isFocused()) {
+            return super.keyPressed(keyCode, scanCode, modifiers);
+        }
         if (session.showingDetail()
             && (keyCode == GLFW.GLFW_KEY_BACKSPACE || keyCode == GLFW.GLFW_KEY_LEFT)) {
             session.backToList();
