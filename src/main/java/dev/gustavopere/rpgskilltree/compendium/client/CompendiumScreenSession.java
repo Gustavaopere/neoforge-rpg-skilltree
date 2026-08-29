@@ -7,9 +7,9 @@ import java.util.Optional;
 /**
  * Pure interaction state for the Compendium screen.
  *
- * <p>The NeoForge screen owns rendering and input translation only. Search, virtual scrolling,
- * entry opening and list/detail navigation are kept here so they remain deterministic and testable
- * without constructing a Minecraft client.</p>
+ * <p>The NeoForge screen owns rendering and input translation only. Search, filters, virtual
+ * scrolling, entry opening and list/detail navigation are kept here so they remain deterministic
+ * and testable without constructing a Minecraft client.</p>
  */
 public final class CompendiumScreenSession {
     private final CompendiumClientSnapshot snapshot;
@@ -22,6 +22,10 @@ public final class CompendiumScreenSession {
 
     public String query() {
         return browser.query();
+    }
+
+    public CompendiumFilterState filter() {
+        return browser.filter();
     }
 
     public int totalMatches() {
@@ -38,6 +42,10 @@ public final class CompendiumScreenSession {
 
     public void setQuery(String query) {
         browser.setQuery(query);
+    }
+
+    public void setFilter(CompendiumFilterState filter) {
+        browser.setFilter(Objects.requireNonNull(filter, "filter"));
     }
 
     public void scrollRows(int delta) {
