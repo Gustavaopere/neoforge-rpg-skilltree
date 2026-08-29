@@ -14,7 +14,7 @@ public final class CompendiumScreenSessionTest {
         queryAndScrollDriveTheVisibleViewport();
         keyboardSelectionDelegatesToBrowserAndPreservesDetailContext();
         filterStateDrivesMatchesAndSurvivesDetailNavigation();
-        openAndBackPreserveBrowserContext();
+        pointerOpenSelectsAndPreservesBrowserContext();
         entryWithoutPageStillOpensAsShell();
         invalidVisibleRowIsRejected();
         System.out.println("CompendiumScreenSessionTest: PASS");
@@ -111,14 +111,16 @@ public final class CompendiumScreenSessionTest {
         eq(griffin.id(), session.viewport(5).entries().getFirst().id());
 
         session.openVisibleRow(0, 5);
+        eq(griffin, session.selectedEntry().orElseThrow());
         session.backToList();
 
         eq(filter, session.filter());
         eq(1, session.totalMatches());
+        eq(griffin, session.selectedEntry().orElseThrow());
         eq(griffin.id(), session.viewport(5).entries().getFirst().id());
     }
 
-    private static void openAndBackPreserveBrowserContext() {
+    private static void pointerOpenSelectsAndPreservesBrowserContext() {
         CompendiumClientEntry wolf = entry("minecraft:wolf", "Lobo");
         CompendiumClientEntry fox = entry("minecraft:fox", "Raposa");
         CompendiumClientSnapshot snapshot = new CompendiumClientSnapshot(
@@ -132,12 +134,14 @@ public final class CompendiumScreenSessionTest {
         session.openVisibleRow(0, 1);
 
         isTrue(session.showingDetail());
+        eq(fox, session.selectedEntry().orElseThrow());
         eq(fox.id(), session.currentEntry().orElseThrow().id());
         eq(fox.id(), session.currentPage().orElseThrow().id());
         eq(1, session.viewport(1).firstIndex());
 
         session.backToList();
         isFalse(session.showingDetail());
+        eq(fox, session.selectedEntry().orElseThrow());
         eq("", session.query());
         eq(1, session.viewport(1).firstIndex());
     }
@@ -151,6 +155,7 @@ public final class CompendiumScreenSessionTest {
         session.openVisibleRow(0, 4);
 
         isTrue(session.showingDetail());
+        eq(hidden, session.selectedEntry().orElseThrow());
         eq(hidden, session.currentEntry().orElseThrow());
         isTrue(session.currentPage().isEmpty());
     }
