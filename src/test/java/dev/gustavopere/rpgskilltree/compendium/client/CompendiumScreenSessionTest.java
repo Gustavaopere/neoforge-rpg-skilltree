@@ -162,7 +162,7 @@ public final class CompendiumScreenSessionTest {
         eq(List.of(ordered.get(1).id()), notes.recentEntries());
 
         session.backToList();
-        session.moveSelection(1, 2);
+        session.moveSelection(-1, 2);
         session.openSelectedEntry();
         eq(List.of(ordered.get(0).id(), ordered.get(1).id()), notes.recentEntries());
     }
