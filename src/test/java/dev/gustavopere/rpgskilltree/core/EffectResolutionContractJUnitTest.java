@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Map;
-import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.Test;
 
 final class EffectResolutionContractJUnitTest {
@@ -28,33 +27,32 @@ final class EffectResolutionContractJUnitTest {
 
     @Test
     void generatedModifierIdentityIsStableAcrossRankAndSensitiveToOrigin() {
-        ResourceLocation nodeId = ResourceLocation.parse("rpgskilltree:test/child");
-        ResourceLocation sourceA = ResourceLocation.parse("pack_a:node_effects/test.json");
-        ResourceLocation sourceB = ResourceLocation.parse("pack_b:node_effects/test.json");
+        String nodeId = "rpgskilltree:test/child";
+        String sourceA = "pack_a:node_effects/test.json";
+        String sourceB = "pack_b:node_effects/test.json";
 
-        ResourceLocation first = NodeEffectIdPolicy.attribute(
+        String first = NodeEffectIdPolicy.attribute(
             sourceA,
             nodeId,
-            ResourceLocation.parse("minecraft:generic.attack_damage"),
+            "minecraft:generic.attack_damage",
             ModifierOperation.ADD_FLAT
         );
-        ResourceLocation repeated = NodeEffectIdPolicy.attribute(
+        String repeated = NodeEffectIdPolicy.attribute(
             sourceA,
             nodeId,
-            ResourceLocation.parse("minecraft:generic.attack_damage"),
+            "minecraft:generic.attack_damage",
             ModifierOperation.ADD_FLAT
         );
-        ResourceLocation otherOrigin = NodeEffectIdPolicy.attribute(
+        String otherOrigin = NodeEffectIdPolicy.attribute(
             sourceB,
             nodeId,
-            ResourceLocation.parse("minecraft:generic.attack_damage"),
+            "minecraft:generic.attack_damage",
             ModifierOperation.ADD_FLAT
         );
 
         assertEquals(first, repeated, "rank changes must reuse the same modifier identity");
         assertNotEquals(first, otherOrigin, "external pack origin must participate in generated identity");
-        assertEquals("rpgskilltree", first.getNamespace());
-        assertTrue(first.getPath().startsWith("generated/node_effect/"));
+        assertTrue(first.startsWith("rpgskilltree:generated/node_effect/"));
     }
 
     @Test
