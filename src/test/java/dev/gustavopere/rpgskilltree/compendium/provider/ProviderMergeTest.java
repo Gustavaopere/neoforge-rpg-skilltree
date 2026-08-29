@@ -28,7 +28,9 @@ public final class ProviderMergeTest {
         ProviderContribution low = contribution("registry", 10, 20.0D);
         ProviderContribution high = contribution("adapter", 100, 30.0D);
         ProviderResult result = ProviderMerger.merge(base, List.of(low, high));
-        eq(30.0D, fact(result.entry(), "stats", "base_health").value());
+        CompendiumFact<?> winner = fact(result.entry(), "stats", "base_health");
+        eq(30.0D, winner.value());
+        eq("adapter", winner.providerId());
         eq(List.of(), result.diagnostics());
     }
 
@@ -36,7 +38,9 @@ public final class ProviderMergeTest {
         ProviderContribution a = contribution("a_provider", 50, 22.0D);
         ProviderContribution z = contribution("z_provider", 50, 40.0D);
         ProviderResult result = ProviderMerger.merge(baseEntry(), List.of(z, a));
-        eq(22.0D, fact(result.entry(), "stats", "base_health").value());
+        CompendiumFact<?> winner = fact(result.entry(), "stats", "base_health");
+        eq(22.0D, winner.value());
+        eq("a_provider", winner.providerId());
         eq(1, result.diagnostics().size());
         eq("FACT_CONFLICT", result.diagnostics().getFirst().code());
     }
