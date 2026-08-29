@@ -289,13 +289,11 @@ public final class CorePlayerProgressionRuntime {
         CanonicalPlayerAttachmentData next = current.withCoreProgression(
             CoreProgressionAttachmentData.initialized(state)
         );
-        if (CanonicalPlayerAttachmentRuntime.commitMutation(
+        CanonicalPlayerAttachmentRuntime.commitMutation(
             player,
             current,
             next,
             ProgressionMutationEvent.Section.CORE
-        )) {
-            ModNetworking.syncCoreToOwner(player, state, rules);
-        }
+        );
     }
 }

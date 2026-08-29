@@ -13,6 +13,7 @@ public final class CoreProgressionQueryServiceTest {
         hugeLevelRetainsBigIntegerNextLevelCost();
         technicalCeilingHasNoNextLevelCost();
         rulesMismatchIsRejected();
+        QuestProgressionHooksFoundationTest.main(new String[0]);
         System.out.println("CoreProgressionQueryServiceTest: PASS");
     }
 

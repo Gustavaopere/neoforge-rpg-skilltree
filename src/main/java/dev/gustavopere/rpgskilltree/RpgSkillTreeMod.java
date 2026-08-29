@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree;
 
 import dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicy;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
+import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
@@ -35,6 +36,7 @@ import dev.gustavopere.rpgskilltree.runtime.events.EntityScalingEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ExplorationProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.MiningProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.PlayerProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.ProgressionOwnerSyncEvents;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
@@ -49,6 +51,8 @@ public final class RpgSkillTreeMod {
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);
         ModNetworking.register(modBus);
+        ProgressionOwnerSyncRuntime.initialize();
+        NeoForge.EVENT_BUS.register(ProgressionOwnerSyncEvents.class);
         NeoForge.EVENT_BUS.register(PlayerProgressionEvents.class);
         NeoForge.EVENT_BUS.register(NodeRulesReloader.class);
         NeoForge.EVENT_BUS.register(TreeArchitectureReloader.class);
@@ -71,8 +75,8 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CompendiumEntityCatalogEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumFloraCatalogEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumInventoryEvents.class);
-        NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumLootResourceReloader.class);
+        NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);
 
         if (ModList.get().isLoaded("irons_spellbooks")) {
             NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);

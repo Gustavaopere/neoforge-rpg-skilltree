@@ -3,17 +3,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
+PUBLIC_API = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/api/RpgQuestProgressionApi.java"
 
 
-def require(text: str, needle: str) -> None:
+def require(text: str, needle: str, source: Path = RUNTIME) -> None:
     if needle not in text:
-        print(f"ERROR: {RUNTIME.relative_to(ROOT)}: missing {needle!r}")
+        print(f"ERROR: {source.relative_to(ROOT)}: missing {needle!r}")
         raise SystemExit(1)
 
 
-def forbid(text: str, needle: str, label: str) -> None:
+def forbid(text: str, needle: str, label: str, source: Path = RUNTIME) -> None:
     if needle in text:
-        print(f"ERROR: {RUNTIME.relative_to(ROOT)}: {label} contains forbidden {needle!r}")
+        print(f"ERROR: {source.relative_to(ROOT)}: {label} contains forbidden {needle!r}")
         raise SystemExit(1)
 
 
@@ -80,4 +81,30 @@ forbid(read_only_helper, "syncCoreToOwner(", "readOnlyState")
 forbid(read_only_helper, "set(player,", "readOnlyState")
 forbid(read_only_helper, "readOrMigrate(", "readOnlyState")
 
-print("Quest reward/query runtime validation: PASS")
+# Public quest/NPC integration API must remain a façade over canonical runtime services.
+# It may observe the canonical envelope and submit typed rewards, but never touch data
+# attachment methods or legacy attachment identifiers directly.
+if not PUBLIC_API.exists():
+    print(f"ERROR: missing {PUBLIC_API.relative_to(ROOT)}")
+    raise SystemExit(1)
+api_text = PUBLIC_API.read_text(encoding="utf-8")
+api_compact = " ".join(api_text.split())
+require(api_text, "CorePlayerProgressionRuntime.queryProgression(player)", PUBLIC_API)
+require(api_text, "CanonicalPlayerAttachmentRuntime.observe(player)", PUBLIC_API)
+require(api_text, "CorePlayerProgressionRuntime.applyProgressionReward(player, reward)", PUBLIC_API)
+require(api_text, "QuestProgressionConditionService.evaluate(query(player), condition)", PUBLIC_API)
+require(
+    api_compact,
+    "public static QuestProgressionSnapshot query(ServerPlayer player)",
+    PUBLIC_API,
+)
+for forbidden in (
+    "ModAttachments.",
+    ".setData(",
+    ".removeData(",
+    "CanonicalPlayerAttachmentRuntime.readOrMigrate(",
+    "CoreProgressionRulesCatalog",
+):
+    forbid(api_text, forbidden, "public quest API", PUBLIC_API)
+
+print("Quest reward/query/public API validation: PASS")
