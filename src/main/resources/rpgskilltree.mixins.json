@@ -1,7 +1,7 @@
 {
   "required": false,
   "minVersion": "0.8",
-  "package": "dev.gustavopere.rpgskilltree.runtime.mixin",
+  "package": "dev.gustavopere.rpgskilltree.runtime.compat.identity2.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "IdentityProgressionMixin"
