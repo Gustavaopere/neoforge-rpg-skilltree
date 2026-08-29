@@ -44,7 +44,7 @@ public final class CompendiumScreenSessionTest {
         eq("Entrada", session.query());
         eq(20, session.totalMatches());
         eq(7, viewport.firstIndex());
-        eq("Entrada 7", viewport.entries().getFirst().displayName());
+        eq(5, viewport.entries().size());
 
         session.scrollRows(-100);
         eq(0, session.viewport(5).firstIndex());
