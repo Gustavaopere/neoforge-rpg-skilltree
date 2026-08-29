@@ -13,8 +13,8 @@ public final class A0021A0040MasteryPolicyTest {
 
         var awards = A0021A0040MasteryPolicy.forConfirmedDirectHit(WeaponFamily.MACE, true, true, 4.0D, "hit-1");
         require(awards.size() == 1, "one canonical mastery award per confirmed hit");
-        require(awards.getFirst().masteryKey().equals("combat:mace"), "mace key");
-        require(awards.getFirst().amount() == 3, "mace award amount follows existing Epic Fight family-hit rate");
+        require(awards.getFirst().laneId().equals("combat:mace"), "mace key");
+        require(awards.getFirst().experience() == 3, "mace award amount follows existing Epic Fight family-hit rate");
         require(A0021A0040MasteryPolicy.forConfirmedDirectHit(WeaponFamily.MACE, false, true, 4.0D, "hit-2").isEmpty(), "indirect rejected");
         require(A0021A0040MasteryPolicy.forConfirmedDirectHit(WeaponFamily.SCYTHE, true, true, 0.0D, "hit-3").isEmpty(), "zero damage rejected");
         require(A0021A0040MasteryPolicy.forConfirmedDirectHit(WeaponFamily.HAMMER, true, false, 4.0D, "hit-4").isEmpty(), "non-hostile rejected");
