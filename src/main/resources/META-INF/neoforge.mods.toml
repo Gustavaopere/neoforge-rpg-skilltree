@@ -11,15 +11,74 @@ description='''${mod_description}'''
 
 [[dependencies.${mod_id}]]
 modId="neoforge"
-mandatory=true
+type="required"
 versionRange="[${neo_version},)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.${mod_id}]]
 modId="minecraft"
-mandatory=true
+type="required"
 versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+
+# Provider integrations are artifact-level optional. Runtime adapters must remain
+# classloading-safe when absent; certified provider version ranges belong to the
+# integration compatibility matrix and are not guessed here.
+[[dependencies.${mod_id}]]
+modId="irons_spellbooks"
+type="optional"
+reason="Optional Iron's Spells 'n Spellbooks progression integration"
+versionRange=""
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="ars_nouveau"
+type="optional"
+reason="Optional Ars Nouveau progression integration"
+versionRange=""
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="epicfight"
+type="optional"
+reason="Optional Epic Fight combat progression integration"
+versionRange=""
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="goety"
+type="optional"
+reason="Optional Goety progression integration"
+versionRange=""
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="malum"
+type="optional"
+reason="Optional Malum progression integration"
+versionRange=""
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="eidolon"
+type="optional"
+reason="Optional Eidolon progression integration"
+versionRange=""
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="identity2"
+type="optional"
+reason="Optional Identity 2 morph/ecology integration"
+versionRange=""
 ordering="NONE"
 side="BOTH"
 

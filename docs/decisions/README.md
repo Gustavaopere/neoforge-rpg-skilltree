@@ -220,6 +220,17 @@ Use the intended progression design and node contribution model as authority.
 
 ---
 
+## D015 — Persisted and extensible identifiers are namespaced
+
+**Status:** ACCEPTED — see [ADR 015](015-persisted-resource-id-convention.md)  
+**Blocks:** no Foundation blocker; constrains future persistence/addon schemas
+
+New persisted or addon-facing extensible identities use the canonical full `namespace:path` form compatible with Minecraft `ResourceLocation` syntax. RPG-owned identities use `rpgskilltree`; authoritative provider identities preserve the provider namespace. Display names, translations, Java class names, JAR filenames and enum ordinals are not save/network identities.
+
+Existing legacy unnamespaced values are not silently bulk-rewritten. They remain explicit schema-specific compatibility/migration inputs until their owning persistence plan migrates them with fixtures and reconciliation evidence.
+
+---
+
 # ADR format
 
 When resolving a decision, create a file such as:
