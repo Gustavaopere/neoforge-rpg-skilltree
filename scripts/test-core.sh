@@ -8,86 +8,10 @@ javac --release 21 -d "$OUT" "${SOURCES[@]}"
 javac --release 21 -cp "$OUT" -d "$OUT" \
   "$ROOT/src/main/java/dev/gustavopere/rpgskilltree/runtime/data/NodeEffectCatalog.java" \
   "$ROOT/src/test/java/dev/gustavopere/rpgskilltree/runtime/data/NodeEffectCatalogReloadTest.java"
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.Alpha2ProgressionTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MasteryRuntimeCoreTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MasteryAwardIdempotencyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.PlacedBlockProvenanceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ArsCompositionClassifierTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategoryTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ArcaneAccessPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProviderIdentityClassTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.GoetyMasteryCoreTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MalumMasteryCoreTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.IronStudyPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ArsNativeProgressionPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EpicFightDepthPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.GoetySoulPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.GoetyCommandPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EidolonRitualPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EidolonAlchemyPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.NodeAccessRequirementTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SystemFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ArchetypeSpecificityScoreTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MorphEcologyPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionStateMigrationMatrixTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionStateV5AllocationFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.PersistedNodeAllocationsCodecTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.LegacyNodeAllocationMigrationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SpecializationReconciliationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.InfiniteProgressionFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CharacterXpRollbackTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CorePointEconomyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRulesSnapshotTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.LegacyProgressionMigrationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CorePointLedgerCheckpointTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionStateCodecTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionBootstrapTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionSyncStateTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionMutationServiceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SemanticXpPipelineTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SemanticProgressionServiceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.GameplaySemanticXpPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRulesProviderTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.InstallableProgressionRulesProviderTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRulesTransitionPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRanksTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRanksPersistenceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRankMutationServiceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.AttributeRankCostPolicyProviderTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.LevelCorePointAwardPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MainPerkBudgetProgressionTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionRewardServiceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreProgressionQueryServiceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.QuestProgressionHooksFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalPlayerStateFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentDataTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalPlayerQueryServiceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalEffectiveStatsFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.WorldEntityLevelFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.TerritoryGridTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.NativeAreaThreatCompositionTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.RelevantPlayerLevelFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityArchetypeStatScalingTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.WorldEntityScalingPipelineTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobRarityFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingPersistenceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingLifecycleStateTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingInitializationServiceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobAffixFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobAffixPersistenceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityBehaviorFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntitySelectionLifecyclePersistenceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingDecisionServiceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingFoundationTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingCatalogTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionSyncCoalescerTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0001A0020NotionContractTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0001A0020CombatPolicyTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0001A0020CriticalServiceTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0018RangeCrossingTest
-java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0021A0040NotionContractTest
+for test in \
+ CoreProgressionTest Alpha2ProgressionTest MasteryRuntimeCoreTest MasteryAwardIdempotencyTest PlacedBlockProvenanceTest ArsCompositionClassifierTest EpicFightWeaponCategoryTest ArcaneAccessPolicyTest ProviderIdentityClassTest GoetyMasteryCoreTest MalumMasteryCoreTest IronStudyPolicyTest ArsNativeProgressionPolicyTest EpicFightDepthPolicyTest GoetySoulPolicyTest GoetyCommandPolicyTest EidolonRitualPolicyTest EidolonAlchemyPolicyTest NodeAccessRequirementTest SystemFoundationTest ArchetypeSpecificityScoreTest MorphEcologyPolicyTest ProgressionStateMigrationMatrixTest ProgressionStateV5AllocationFoundationTest PersistedNodeAllocationsCodecTest LegacyNodeAllocationMigrationTest SpecializationReconciliationTest InfiniteProgressionFoundationTest CharacterXpRollbackTest CorePointEconomyTest ProgressionRulesSnapshotTest LegacyProgressionMigrationTest CorePointLedgerCheckpointTest CoreProgressionStateCodecTest CoreProgressionBootstrapTest CoreProgressionSyncStateTest CoreProgressionMutationServiceTest SemanticXpPipelineTest SemanticProgressionServiceTest GameplaySemanticXpPolicyTest ProgressionRulesProviderTest InstallableProgressionRulesProviderTest ProgressionRulesTransitionPolicyTest AttributeRanksTest AttributeRanksPersistenceTest AttributeRankMutationServiceTest AttributeRankCostPolicyProviderTest UnitAttributeRankCostPolicyTest LevelCorePointAwardPolicyTest MainPerkBudgetProgressionTest ProgressionRewardServiceTest CoreProgressionQueryServiceTest QuestProgressionHooksFoundationTest CanonicalPlayerStateFoundationTest CanonicalPlayerAttachmentDataTest CanonicalPlayerQueryServiceTest CanonicalEffectiveStatsFoundationTest WorldEntityLevelFoundationTest TerritoryGridTest NativeAreaThreatCompositionTest RelevantPlayerLevelFoundationTest EntityArchetypeStatScalingTest WorldEntityScalingPipelineTest MobRarityFoundationTest EntityScalingPersistenceTest EntityScalingLifecycleStateTest EntityScalingInitializationServiceTest MobAffixFoundationTest MobAffixPersistenceTest EntityBehaviorFoundationTest EntitySelectionLifecyclePersistenceTest EntityScalingDecisionServiceTest CanonicalProviderBindingFoundationTest CanonicalProviderBindingCatalogTest ProgressionSyncCoalescerTest A0001A0020NotionContractTest A0001A0020CombatPolicyTest A0001A0020CriticalServiceTest A0018RangeCrossingTest A0021A0040NotionContractTest A0021A0040CombatPolicyTest; do
+ java -cp "$OUT" "dev.gustavopere.rpgskilltree.core.$test"
+done
 java -cp "$OUT" dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalogReloadTest
 python3 "$ROOT/scripts/verify-1211-resources.py"
 python3 "$ROOT/scripts/verify-node-effect-diagnostics.py"
