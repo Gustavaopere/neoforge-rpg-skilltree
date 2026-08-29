@@ -27,8 +27,13 @@ log_path = Path(sys.argv[1])
 if not log_path.is_file():
     fail(f"server log does not exist: {log_path}")
 
+log_text = log_path.read_text(encoding="utf-8", errors="replace")
+for forbidden in ("ClassNotFoundException", "NoClassDefFoundError"):
+    if forbidden in log_text:
+        fail(f"core-only dedicated server emitted {forbidden}; optional adapters must be classloading-safe")
+
 matches: list[str] = []
-for line in log_path.read_text(encoding="utf-8", errors="replace").splitlines():
+for line in log_text.splitlines():
     if PREFIX in line:
         matches.append(line.split(PREFIX, 1)[1].strip())
 
@@ -60,3 +65,4 @@ if not_absent:
 
 print("Optional provider smoke: PASS")
 print("Absence matrix:", ", ".join(f"{mod_id}=absent" for mod_id in EXPECTED))
+print("Classloading errors: none")
