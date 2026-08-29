@@ -1,6 +1,8 @@
 package dev.gustavopere.rpgskilltree.runtime.compendium;
 
 import com.mojang.logging.LogUtils;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
 import java.io.IOException;
 import java.nio.file.Path;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -20,9 +22,21 @@ public final class CompendiumInventoryEvents {
             Path output = RuntimeInventoryReportWriter.write(
                 RuntimeRegistryInventoryCollector.collect(event.getServer())
             );
-            LOGGER.info("Compendium runtime inventory written to {}", output);
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPENDIUM,
+                "runtime_inventory_written",
+                "Compendium runtime inventory written to {}",
+                output
+            );
         } catch (IOException | RuntimeException exc) {
-            LOGGER.error("Failed to write Compendium runtime inventory", exc);
+            RuntimeDiagnostics.error(
+                LOGGER,
+                Category.COMPENDIUM,
+                "runtime_inventory_write_failed",
+                "Failed to write Compendium runtime inventory",
+                exc
+            );
             throw new IllegalStateException("Compendium runtime inventory collection failed", exc);
         }
     }
