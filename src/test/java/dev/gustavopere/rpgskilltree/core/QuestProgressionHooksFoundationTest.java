@@ -8,14 +8,16 @@ import java.util.Set;
 
 public final class QuestProgressionHooksFoundationTest {
     public static void main(String[] args) {
-        snapshotCombinesCanonicalAndLegacyProgressionWithoutAliasing();
+        snapshotCombinesCanonicalAndCompatibilityProgressionWithoutAliasing();
         declarativeConditionsCoverCoreQuestFacts();
+        missingIdsFailClosedWithoutProviderCoupling();
+        publicContractIsVersioned();
         conditionIdsAndSubjectsAreValidated();
         hugeLevelsAndAttributeRanksRemainSupported();
         System.out.println("QuestProgressionHooksFoundationTest: PASS");
     }
 
-    private static void snapshotCombinesCanonicalAndLegacyProgressionWithoutAliasing() {
+    private static void snapshotCombinesCanonicalAndCompatibilityProgressionWithoutAliasing() {
         CoreProgressionQuerySnapshot core = coreSnapshot(
             42L,
             AttributeRanks.of(Map.of(AttributeId.INTELLIGENCE, 7L))
@@ -24,16 +26,25 @@ public final class QuestProgressionHooksFoundationTest {
         masterySource.put("fire", 120);
         MasteryState mastery = MasteryState.of(masterySource);
         ClassProgressionState classes = ClassProgressionState.of(Set.of("mage", "spellblade"));
+        SpecializationProgressionState specializations = SpecializationProgressionState.of(Set.of("pyromancer"));
         PassiveNodeProgress perks = PassiveNodeProgress.of(Map.of(
             "rpgskilltree:a0001", 2,
             "rpgskilltree:a0042", 1
         ));
 
-        QuestProgressionSnapshot snapshot = QuestProgressionSnapshot.from(core, mastery, classes, perks);
+        QuestProgressionSnapshot snapshot = QuestProgressionSnapshot.from(
+            core,
+            mastery,
+            classes,
+            specializations,
+            perks
+        );
         eq(42L, snapshot.level());
         eq(120L, snapshot.masteryExperience("fire"));
         eq(true, snapshot.classUnlocked("mage"));
         eq(false, snapshot.classUnlocked("warrior"));
+        eq(true, snapshot.specializationUnlocked("pyromancer"));
+        eq(false, snapshot.specializationUnlocked("cryomancer"));
         eq(2L, snapshot.perkRank("rpgskilltree:a0001"));
         eq(7L, snapshot.attributeRank(AttributeId.INTELLIGENCE));
 
@@ -41,6 +52,7 @@ public final class QuestProgressionHooksFoundationTest {
         eq(120L, snapshot.masteryExperience("fire"));
         expect(UnsupportedOperationException.class, () -> snapshot.masteryExperience().put("ice", 1L));
         expect(UnsupportedOperationException.class, () -> snapshot.unlockedClassIds().add("warrior"));
+        expect(UnsupportedOperationException.class, () -> snapshot.unlockedSpecializationIds().add("cryomancer"));
         expect(UnsupportedOperationException.class, () -> snapshot.perkRanks().put("rpgskilltree:a9999", 1L));
     }
 
@@ -49,21 +61,46 @@ public final class QuestProgressionHooksFoundationTest {
             coreSnapshot(42L, AttributeRanks.of(Map.of(AttributeId.STRENGTH, 12L))),
             MasteryState.of(Map.of("fire", 120, "projectile", 30)),
             ClassProgressionState.of(Set.of("mage")),
+            SpecializationProgressionState.of(Set.of("pyromancer")),
             PassiveNodeProgress.of(Map.of("rpgskilltree:a0001", 2))
         );
 
         assertMatch(snapshot, QuestProgressionCondition.minimumLevel("rpgskilltree:quest/level_40", 40L), 42L, 40L, true);
         assertMatch(snapshot, QuestProgressionCondition.minimumMasteryXp("rpgskilltree:quest/fire_100", "fire", 100L), 120L, 100L, true);
         assertMatch(snapshot, QuestProgressionCondition.classUnlocked("rpgskilltree:quest/mage", "mage"), 1L, 1L, true);
+        assertMatch(snapshot, QuestProgressionCondition.specializationUnlocked("rpgskilltree:quest/pyromancer", "pyromancer"), 1L, 1L, true);
         assertMatch(snapshot, QuestProgressionCondition.perkRankAtLeast("rpgskilltree:quest/a0001_rank_3", "rpgskilltree:a0001", 3L), 2L, 3L, false);
         assertMatch(snapshot, QuestProgressionCondition.attributeRankAtLeast("rpgskilltree:quest/strength_10", AttributeId.STRENGTH, 10L), 12L, 10L, true);
+    }
 
-        QuestConditionEvaluation missingMastery = QuestProgressionConditionService.evaluate(
-            snapshot,
-            QuestProgressionCondition.minimumMasteryXp("rpgskilltree:quest/unknown_mastery", "alchemy", 1L)
+    private static void missingIdsFailClosedWithoutProviderCoupling() {
+        QuestProgressionSnapshot snapshot = QuestProgressionSnapshot.from(
+            coreSnapshot(1L, AttributeRanks.empty()),
+            MasteryState.empty(),
+            ClassProgressionState.empty(),
+            SpecializationProgressionState.empty(),
+            PassiveNodeProgress.empty()
         );
-        eq(0L, missingMastery.actualValue());
-        eq(false, missingMastery.matched());
+
+        eq(0L, snapshot.masteryExperience("provider_absent:mastery"));
+        eq(false, snapshot.classUnlocked("provider_absent:class"));
+        eq(false, snapshot.specializationUnlocked("provider_absent:specialization"));
+        eq(0L, snapshot.perkRank("provider_absent:perk"));
+
+        assertMatch(
+            snapshot,
+            QuestProgressionCondition.specializationUnlocked(
+                "rpgskilltree:quest/missing_specialization",
+                "provider_absent:specialization"
+            ),
+            0L,
+            1L,
+            false
+        );
+    }
+
+    private static void publicContractIsVersioned() {
+        eq(1, QuestProgressionSnapshot.CONTRACT_VERSION);
     }
 
     private static void conditionIdsAndSubjectsAreValidated() {
@@ -73,6 +110,7 @@ public final class QuestProgressionHooksFoundationTest {
         expect(IllegalArgumentException.class, () -> QuestProgressionCondition.minimumLevel("rpgskilltree:negative", -1L));
         expect(IllegalArgumentException.class, () -> QuestProgressionCondition.minimumMasteryXp("rpgskilltree:test", "", 1L));
         expect(IllegalArgumentException.class, () -> QuestProgressionCondition.classUnlocked("rpgskilltree:test", ""));
+        expect(IllegalArgumentException.class, () -> QuestProgressionCondition.specializationUnlocked("rpgskilltree:test", ""));
         expect(IllegalArgumentException.class, () -> QuestProgressionCondition.perkRankAtLeast("rpgskilltree:test", "", 1L));
     }
 
@@ -82,6 +120,7 @@ public final class QuestProgressionHooksFoundationTest {
             coreSnapshot(huge, AttributeRanks.of(Map.of(AttributeId.DETERMINATION, huge))),
             MasteryState.empty(),
             ClassProgressionState.empty(),
+            SpecializationProgressionState.empty(),
             PassiveNodeProgress.empty()
         );
         assertMatch(snapshot, QuestProgressionCondition.minimumLevel("rpgskilltree:quest/huge_level", huge), huge, huge, true);
