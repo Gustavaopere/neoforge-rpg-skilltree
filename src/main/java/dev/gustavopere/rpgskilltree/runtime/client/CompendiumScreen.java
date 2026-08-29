@@ -38,6 +38,8 @@ public final class CompendiumScreen extends Screen {
     private static final int POSITIVE = 0xFF9BC58E;
     private static final int BACK_BUTTON_WIDTH = 78;
     private static final int BACK_BUTTON_HEIGHT = 18;
+    private static final int FAVORITE_BUTTON_WIDTH = 88;
+    private static final int FAVORITE_BUTTON_HEIGHT = 18;
     private static final int LIST_PADDING = 6;
     private static final int FILTER_BUTTON_GAP = 4;
     private static final int SCROLL_ROWS_PER_NOTCH = 3;
@@ -47,9 +49,10 @@ public final class CompendiumScreen extends Screen {
     private EditBox searchBox;
     private Button kindFilterButton;
     private Button discoveredFilterButton;
+    private Button favoriteButton;
 
     public CompendiumScreen(CompendiumClientSnapshot snapshot) {
-        this(snapshot, new CompendiumNotesModel());
+        this(snapshot, ClientCompendiumState.personalState());
     }
 
     public CompendiumScreen(CompendiumClientSnapshot snapshot, CompendiumNotesModel notes) {
@@ -66,6 +69,7 @@ public final class CompendiumScreen extends Screen {
         searchBox = null;
         kindFilterButton = null;
         discoveredFilterButton = null;
+        favoriteButton = null;
         if (width < CompendiumScreenLayout.MIN_SCREEN_WIDTH || height < CompendiumScreenLayout.MIN_SCREEN_HEIGHT) {
             layout = null;
             return;
@@ -105,6 +109,19 @@ public final class CompendiumScreen extends Screen {
         ).build();
         addRenderableWidget(kindFilterButton);
         addRenderableWidget(discoveredFilterButton);
+
+        CompendiumScreenLayout.Rect detail = layout.detailBody();
+        favoriteButton = Button.builder(favoriteLabel(), button -> {
+            session.toggleCurrentEntryFavorite();
+            refreshFavoriteButton();
+        }).bounds(
+            detail.right() - FAVORITE_BUTTON_WIDTH - 10,
+            detail.y() + 10,
+            FAVORITE_BUTTON_WIDTH,
+            FAVORITE_BUTTON_HEIGHT
+        ).build();
+        favoriteButton.visible = false;
+        addRenderableWidget(favoriteButton);
     }
 
     @Override
@@ -116,6 +133,7 @@ public final class CompendiumScreen extends Screen {
             return;
         }
 
+        refreshFavoriteButton();
         renderHeader(graphics);
         renderToolbar(graphics);
         if (layout.splitPanes()) {
@@ -227,7 +245,9 @@ public final class CompendiumScreen extends Screen {
         }
 
         CompendiumClientEntry current = entry.orElseThrow();
-        graphics.drawString(font, fitToWidth(current.displayName(), body.width() - 20), x, y, ACCENT);
+        int titleWidth = body.width() - 20;
+        if (!compactBack) titleWidth = Math.max(20, titleWidth - FAVORITE_BUTTON_WIDTH - 8);
+        graphics.drawString(font, fitToWidth(current.displayName(), titleWidth), x, y, ACCENT);
         y += 13;
         graphics.drawString(
             font,
@@ -362,6 +382,22 @@ public final class CompendiumScreen extends Screen {
     private void refreshFilterButtonLabels() {
         if (kindFilterButton != null) kindFilterButton.setMessage(kindFilterLabel());
         if (discoveredFilterButton != null) discoveredFilterButton.setMessage(discoveredFilterLabel());
+    }
+
+    private void refreshFavoriteButton() {
+        if (favoriteButton == null) return;
+        boolean hasCurrentEntry = session.currentEntry().isPresent();
+        favoriteButton.visible = hasCurrentEntry;
+        favoriteButton.active = hasCurrentEntry;
+        favoriteButton.setMessage(favoriteLabel());
+    }
+
+    private Component favoriteLabel() {
+        return Component.translatable(
+            session.isCurrentEntryFavorite()
+                ? "screen.rpgskilltree.compendium.favorite.remove"
+                : "screen.rpgskilltree.compendium.favorite.add"
+        );
     }
 
     private Component kindFilterLabel() {
