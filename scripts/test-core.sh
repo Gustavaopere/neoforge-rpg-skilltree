@@ -71,6 +71,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.WorldEntityLevelFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.TerritoryGridTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.NativeAreaThreatCompositionTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.RelevantPlayerLevelFoundationTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.RelevantPlayerSpatialIndexTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityArchetypeStatScalingTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.WorldEntityScalingPipelineTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MobRarityFoundationTest
@@ -107,3 +108,4 @@ python3 "$ROOT/scripts/verify-progression-services-runtime.py"
 python3 "$ROOT/scripts/verify-progression-sync-coalescing.py"
 python3 "$ROOT/scripts/verify-persistence-sync-contract.py"
 python3 "$ROOT/scripts/verify-core-api-boundary.py"
+python3 "$ROOT/scripts/verify-relevant-player-runtime.py"
