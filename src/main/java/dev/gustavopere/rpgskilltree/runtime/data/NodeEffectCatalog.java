@@ -1,7 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.data;
 
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -30,11 +29,22 @@ public final class NodeEffectCatalog {
         Map<ClearableKey, NodeAttributeEffect> clearable = new LinkedHashMap<>();
         clearableAttributeEffects.forEach(effect -> clearable.put(ClearableKey.of(effect), effect));
         sorted.forEach(effect -> clearable.put(ClearableKey.of(effect), effect));
-        attributeEffects = List.copyOf(sorted);
-        clearableAttributeEffects = clearable.entrySet().stream()
-            .sorted(Map.Entry.comparingByKey())
-            .map(Map.Entry::getValue)
-            .toList();
+        installValidated(
+            sorted,
+            clearable.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .map(Map.Entry::getValue)
+                .toList()
+        );
+    }
+
+    /** Package-private projection used only after the candidate has already passed full validation. */
+    static synchronized void installValidated(
+        Collection<NodeAttributeEffect> active,
+        Collection<NodeAttributeEffect> clearable
+    ) {
+        attributeEffects = List.copyOf(Objects.requireNonNull(active));
+        clearableAttributeEffects = List.copyOf(Objects.requireNonNull(clearable));
     }
 
     public static List<NodeAttributeEffect> attributeEffects() {
