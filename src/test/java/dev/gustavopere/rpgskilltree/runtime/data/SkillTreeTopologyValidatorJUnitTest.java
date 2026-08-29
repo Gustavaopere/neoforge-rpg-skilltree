@@ -73,6 +73,19 @@ final class SkillTreeTopologyValidatorJUnitTest {
         assertTrue(failure.getMessage().contains("cycle"));
     }
 
+    @Test
+    void preparedCandidateCannotBypassTopologyValidation() {
+        List<TreeRuleCatalog.NodeRule> rules = List.of(
+            rule(ROOT, true, Set.of(CHILD), NodeAccessRequirement.none()),
+            rule(CHILD, false, Set.of(), requires(ROOT))
+        );
+        SkillTreeDataValidationException failure = assertThrows(
+            SkillTreeDataValidationException.class,
+            () -> new PreparedSkillTreeData(rules, treeIds(rules), List.of(), Map.of())
+        );
+        assertEquals("neighbors", failure.field());
+    }
+
     private static TreeRuleCatalog.NodeRule rule(
         ResourceLocation id,
         boolean startingPoint,
