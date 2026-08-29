@@ -80,6 +80,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntitySelectionLifecyclePersis
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingDecisionServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingCatalogTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionSyncCoalescerTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalogReloadTest
 python3 "$ROOT/scripts/verify-1211-resources.py"
 python3 "$ROOT/scripts/verify-node-effect-diagnostics.py"
@@ -90,3 +91,4 @@ python3 "$ROOT/scripts/verify-entity-scaling-events.py"
 python3 "$ROOT/scripts/verify-canonical-player-runtime.py"
 python3 "$ROOT/scripts/verify-dimension-sync.py"
 python3 "$ROOT/scripts/verify-progression-services-runtime.py"
+python3 "$ROOT/scripts/verify-progression-sync-coalescing.py"

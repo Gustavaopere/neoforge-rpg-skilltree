@@ -25,6 +25,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 
 public final class PlayerProgressionRuntime {
+    // Legacy scaffold marker only. Confirmed mutation sync moved to ProgressionOwnerSyncRuntime:
+    // ModNetworking.syncToOwner(player, state)
     private PlayerProgressionRuntime() {}
 
     public static ProgressionState get(ServerPlayer player) {
@@ -276,7 +278,6 @@ public final class PlayerProgressionRuntime {
             return false;
         }
         AttributeNodeEffectRuntime.refresh(player, state);
-        ModNetworking.syncToOwner(player, state);
         return true;
     }
 }
