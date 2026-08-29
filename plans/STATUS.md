@@ -1,6 +1,6 @@
 # Status canônico dos planos
 
-Última auditoria de fechamento: **2026-08-28**.
+Última auditoria de fechamento: **2026-08-29**.
 
 Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos`, `10.07 — Loot, dieta, reprodução e ecologia` e `10.08 — Biomas, estruturas e dimensões` foram implementados, validados, integrados e auditados.
 
@@ -30,14 +30,17 @@ Fechamento do Stage 00.01 auditado contra `main@0f008fc3bc1767e74da777fcc02e37fd
 
 Fechamento funcional do Stage 10.08 auditado contra `main@c980f7835a01ef038e34d1ea0fab66d33e8bb03c`, após integração do PR #110. Os CIs pós-merge `33230100328` / Compendium Flora #215, `33230100330` / Compendium Entities #281, `33230100337` / Foundation Bootstrap #19, `33230100355` / Compendium Ecology #254, `33230100371` / Compendium Discovery #358, `33230100386` / Compendium World #16 e `33230100358` / RPG Skill Tree #1241 fecharam GREEN; o CI completo incluiu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
 
+Fechamento do Stage 00.03 auditado contra `main@4f48fefa15477023ce2dcb9d56c36b586a6b16ea`, após integração do PR #113. O TDD RED `33230185322` detectou a ausência do registry central; um candidato intermediário revelou ainda `ClassNotFoundException` real do target Identity2 no Mixin, corrigido por isolamento e gate early-startup. Os CIs pós-merge `33230834923` / Foundation Bootstrap #55, `33230834955` / Foundation Optional Integrations #17 e `33230834856` / RPG Skill Tree #1277 fecharam GREEN. O CI completo incluiu Core, JUnit 5, NeoForge GameTests, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e status final de sucesso; o smoke confirmou os sete providers opcionais ausentes e `Classloading errors: none`.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**17 / 75 subplanos concluídos formalmente.**
+**18 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
+- `00-foundation/✅-03-optional-integrations.md`
 - `01-rpg-core/✅-01-player-state.md`
 - `01-rpg-core/✅-02-progression-services.md`
 - `03-skill-tree-perks/✅-05-respec.md`
@@ -60,7 +63,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 
 | Estágio | Concluídos | Total | Estado geral |
 | --- | ---: | ---: | --- |
-| 00 Foundation | 2 | 4 | EM ANDAMENTO |
+| 00 Foundation | 3 | 4 | EM ANDAMENTO |
 | 01 RPG Core | 2 | 5 | EM ANDAMENTO |
 | 02 Progression & World Scaling | 0 | 5 | EM ANDAMENTO |
 | 03 Skill Tree & Perks | 1 | 6 | EM ANDAMENTO |
@@ -71,13 +74,13 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
-| **Total** | **17** | **75** | |
+| **Total** | **18** | **75** | |
 
 ## Por que os demais continuam abertos
 
 ### 00 — Foundation
 
-`✅-01-environment-bootstrap.md` está fechado: ambiente MC 1.21.1/NeoForge 21.1.248/Java 21, Gradle Wrapper 8.14, metadata required/optional, bootstrap comum determinístico e convenção de IDs persistidos estão protegidos por contrato e CI. O baseline não possui config de usuário registrada; futuras configs são obrigadas pelo contrato a usar `ModConfigSpec`. `03-optional-integrations` continua aberto porque ainda falta a matriz completa de ausência individual de providers e a centralização formal da detecção; `04-diagnostics-testing` tem CI forte, mas logging/diagnóstico padronizado e reprodução local dos gates ainda não estão fechados.
+`✅-01-environment-bootstrap.md` está fechado: ambiente MC 1.21.1/NeoForge 21.1.248/Java 21, Gradle Wrapper 8.14, metadata required/optional, bootstrap comum determinístico e convenção de IDs persistidos estão protegidos por contrato e CI. O baseline não possui config de usuário registrada; futuras configs são obrigadas pelo contrato a usar `ModConfigSpec`. `✅-03-optional-integrations.md` também está fechado: detecção dos sete providers compile-only é centralizada, adapters e mixin Identity2 são isolados, ausência possui fallback neutro, e o dedicated-server smoke prova core-only sem `ClassNotFoundException`/`NoClassDefFoundError`. Matriz de provider **presente** permanece responsabilidade dos respectivos estágios de integração. Apenas `04-diagnostics-testing` continua aberto na Foundation, por ainda exigir fechamento formal de logging/diagnóstico padronizado e reprodução local atualizada dos gates.
 
 ### 01 — RPG Core
 
@@ -101,7 +104,7 @@ O pipeline canônico final por hit/projétil/magia ainda não está formalmente 
 
 ### 06 — Integrations
 
-Iron's e o bloco Goety/Malum/Eidolon estão fechados. Epic Fight, Ars, Identity2, Apothic, Create/AE2/Oritech e a matriz global de presença/ausência ainda possuem trabalho pendente.
+Iron's e o bloco Goety/Malum/Eidolon estão fechados. Epic Fight, Ars, Identity2, Apothic, Create/AE2/Oritech e as matrizes provider-presente ainda possuem trabalho pendente. A segurança core-only/ausência global já está fechada no Stage 00.03.
 
 ### 07 — Data, Network & UI
 
@@ -113,7 +116,7 @@ Loaders, packets e UI já existem, mas o acceptance final ainda exige reload cro
 
 ### 09 — Hardening & Release
 
-Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. A suíte atual é forte, mas ainda não substitui profiling/budgets, migrations e matriz completa de optional mods.
+Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. A suíte atual é forte, mas ainda não substitui profiling/budgets, migrations e matrizes provider-presente.
 
 ### 10 — Compêndio Natural
 
@@ -127,7 +130,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento formal mais recente é Stage 10.08 em `main@c980f7835a01ef038e34d1ea0fab66d33e8bb03c`. Compendium Flora `33230100328`, Compendium Entities `33230100330`, Foundation Bootstrap `33230100337`, Compendium Ecology `33230100355`, Compendium Discovery `33230100371`, Compendium World `33230100386` e RPG Skill Tree CI `33230100358` passaram no commit integrado; o CI completo cobriu Core, JUnit 5, NeoForge GameTests, todos os validators, build, JAR e dedicated-server smoke.
+O fechamento formal mais recente é Stage 00.03 em `main@4f48fefa15477023ce2dcb9d56c36b586a6b16ea`. Foundation Bootstrap `33230834923`, Foundation Optional Integrations `33230834955` e RPG Skill Tree CI `33230834856` passaram no commit integrado; o CI completo cobriu Core, JUnit 5, NeoForge GameTests, validators, build, JAR e dedicated-server smoke, com os sete providers ausentes e nenhuma falha de classloading.
 
 ## Convenção
 
