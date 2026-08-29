@@ -54,7 +54,6 @@ runs {
 
     gameTestServer {
         systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
-        setForceExit false
     }
 
     junit {}
