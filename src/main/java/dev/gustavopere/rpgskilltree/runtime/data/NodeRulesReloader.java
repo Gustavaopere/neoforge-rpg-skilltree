@@ -75,8 +75,10 @@ public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
         for (CombatPerkTreeModel.Node node : CombatPerkTreeModel.all()) {
             ResourceLocation id = ResourceLocation.parse(node.nodeId());
             NodePurchaseDefinition definition = new NodePurchaseDefinition(node.nodeId(), node.maxRank(), node.costPerRank(), node.startingPoint());
+            // Combat gateway IDs are semantic outer-tree identities, not SpecializationProgressionState ids.
+            // The live acquisition contract is the learned Martial gateway node plus mastery/dependency ranks.
             NodeAccessRequirement requirement = new NodeAccessRequirement(node.minCharacterLevel(), Set.of(), node.requiredMastery(),
-                node.requiredSpecializations(), Set.of(), Set.of(), node.requiredNodeRanks(), Set.of());
+                Set.of(), Set.of(), Set.of(), node.requiredNodeRanks(), Set.of());
             Set<ResourceLocation> neighbors = new HashSet<>();
             node.neighbors().forEach(value -> neighbors.add(ResourceLocation.parse(value)));
             rules.add(new TreeRuleCatalog.NodeRule(id, definition, requirement, null, neighbors));
