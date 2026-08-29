@@ -15,7 +15,6 @@ import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPageModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPersonalView;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayout;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSession;
-import dev.gustavopere.rpgskilltree.compendium.client.render.CompendiumEntityPreview;
 import java.util.Locale;
 import java.util.Objects;
 import net.minecraft.client.gui.GuiGraphics;
@@ -52,7 +51,7 @@ public final class CompendiumScreen extends Screen {
     private static final int PREVIEW_TEXT_GAP = 4;
 
     private final CompendiumScreenSession session;
-    private final CompendiumEntityPreview entityPreview = new CompendiumEntityPreview();
+    private final CompendiumEntityPreviewRenderer entityPreview = new CompendiumEntityPreviewRenderer();
     private CompendiumScreenLayout layout;
     private EditBox searchBox;
     private Button allViewButton;
