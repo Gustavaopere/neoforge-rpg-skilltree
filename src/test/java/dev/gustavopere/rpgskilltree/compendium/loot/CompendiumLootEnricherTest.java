@@ -3,7 +3,9 @@ package dev.gustavopere.rpgskilltree.compendium.loot;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntry;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryId;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryKind;
+import dev.gustavopere.rpgskilltree.compendium.api.CompendiumFact;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumProvenance;
+import dev.gustavopere.rpgskilltree.compendium.api.CompendiumSection;
 import dev.gustavopere.rpgskilltree.compendium.api.DiscoveryPolicy;
 import dev.gustavopere.rpgskilltree.compendium.api.FactSource;
 import dev.gustavopere.rpgskilltree.compendium.api.VisibilityPolicy;
@@ -17,6 +19,7 @@ import java.util.Set;
 public final class CompendiumLootEnricherTest {
     public static void main(String[] args) {
         entityPageUsesMatchingLootTable();
+        resolvedLootFactsAreExposedOnPage();
         changedSnapshotChangesEnrichedPageWithoutRebuildingBaseCatalog();
         nonEntityPageIsUnchanged();
         System.out.println("CompendiumLootEnricherTest: PASS");
@@ -30,6 +33,22 @@ public final class CompendiumLootEnricherTest {
         CompendiumEntry enriched = CompendiumLootEnricher.enrich(cow, snapshot);
         eq(1, enriched.relations().size());
         eq("ITEM|minecraft:beef", enriched.relations().getFirst().target().serializedTarget());
+    }
+
+    private static void resolvedLootFactsAreExposedOnPage() {
+        CompendiumEntry cow = entry(CompendiumEntryKind.ENTITY, "minecraft:cow");
+        CompendiumEntry enriched = CompendiumLootEnricher.enrich(cow, CompendiumLootSnapshot.stage(Map.of(
+            "minecraft:entities/cow", table("minecraft:beef")
+        )));
+        CompendiumSection loot = enriched.sections().stream()
+            .filter(section -> section.sectionId().equals("loot"))
+            .findFirst()
+            .orElseThrow(() -> new AssertionError("missing loot section"));
+        eq("minecraft:beef", fact(loot, "drop.0.item").value());
+        eq(1.0, fact(loot, "drop.0.count_min").value());
+        eq(1.0, fact(loot, "drop.0.count_max").value());
+        eq(1.0, fact(loot, "drop.0.chance_min").value());
+        eq(1.0, fact(loot, "drop.0.chance_max").value());
     }
 
     private static void changedSnapshotChangesEnrichedPageWithoutRebuildingBaseCatalog() {
@@ -49,6 +68,13 @@ public final class CompendiumLootEnricherTest {
         CompendiumEntry biome = entry(CompendiumEntryKind.BIOME, "minecraft:plains");
         CompendiumEntry enriched = CompendiumLootEnricher.enrich(biome, CompendiumLootSnapshot.empty());
         eq(biome, enriched);
+    }
+
+    private static CompendiumFact<?> fact(CompendiumSection section, String key) {
+        return section.facts().stream()
+            .filter(value -> value.factKey().equals(key))
+            .findFirst()
+            .orElseThrow(() -> new AssertionError("missing fact " + key));
     }
 
     private static CompendiumEntry entry(CompendiumEntryKind kind, String id) {
