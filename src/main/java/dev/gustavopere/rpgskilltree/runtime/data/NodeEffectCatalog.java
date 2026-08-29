@@ -1,7 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.data;
 
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -10,15 +9,28 @@ import java.util.Map;
 import java.util.Objects;
 
 public final class NodeEffectCatalog {
+    static final class PreparedSnapshot {
+        private final List<NodeAttributeEffect> attributeEffects;
+
+        private PreparedSnapshot(List<NodeAttributeEffect> attributeEffects) {
+            this.attributeEffects = List.copyOf(attributeEffects);
+        }
+    }
+
     private static volatile List<NodeAttributeEffect> attributeEffects = List.of();
     private static volatile List<NodeAttributeEffect> clearableAttributeEffects = List.of();
 
     private NodeEffectCatalog() {}
 
     public static synchronized void replace(Collection<NodeAttributeEffect> next) {
+        publish(prepare(next));
+    }
+
+    static PreparedSnapshot prepare(Collection<NodeAttributeEffect> next) {
         Objects.requireNonNull(next);
         Map<String, NodeAttributeEffect> currentById = new LinkedHashMap<>();
         for (NodeAttributeEffect effect : next) {
+            Objects.requireNonNull(effect, "node attribute effect");
             if (currentById.put(effect.effectId(), effect) != null) {
                 throw new IllegalArgumentException("duplicate node effect id: " + effect.effectId());
             }
@@ -26,11 +38,15 @@ public final class NodeEffectCatalog {
         List<NodeAttributeEffect> sorted = currentById.values().stream()
             .sorted(Comparator.comparing(NodeAttributeEffect::effectId))
             .toList();
+        return new PreparedSnapshot(sorted);
+    }
 
+    static synchronized void publish(PreparedSnapshot snapshot) {
+        Objects.requireNonNull(snapshot, "snapshot");
         Map<ClearableKey, NodeAttributeEffect> clearable = new LinkedHashMap<>();
         clearableAttributeEffects.forEach(effect -> clearable.put(ClearableKey.of(effect), effect));
-        sorted.forEach(effect -> clearable.put(ClearableKey.of(effect), effect));
-        attributeEffects = List.copyOf(sorted);
+        snapshot.attributeEffects.forEach(effect -> clearable.put(ClearableKey.of(effect), effect));
+        attributeEffects = snapshot.attributeEffects;
         clearableAttributeEffects = clearable.entrySet().stream()
             .sorted(Map.Entry.comparingByKey())
             .map(Map.Entry::getValue)
