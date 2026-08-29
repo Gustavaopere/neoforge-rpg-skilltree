@@ -26,12 +26,15 @@ Fechamento do Stage 08.01 auditado contra `main@2b8e5d10b70704598c0f175a3a9bf1ad
 
 Fechamento funcional do Stage 10.07 auditado contra `main@03403fc3f7934b0e2b2c9a5cd0a9e6606a2ba7d9`, após integração do PR #99. Os CIs pós-merge `33228111273` / Compendium Ecology #111, `33228111253` / Compendium Flora #149, `33228111262` / Compendium Entities #215, `33228111257` / Compendium Discovery #292 e `33228111266` / RPG Skill Tree #1175 fecharam GREEN; o CI completo incluiu Core/tests/validators, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final do commit.
 
+Fechamento do Stage 00.01 auditado contra `main@0f008fc3bc1767e74da777fcc02e37fd19acb263`, após integração do PR #108. O `Foundation Bootstrap Contract` pós-merge `33229822213` e o `RPG Skill Tree CI` pós-merge `33229822237` fecharam GREEN; o CI completo incluiu wrapper contract, Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**15 / 75 subplanos concluídos formalmente.**
+**16 / 75 subplanos concluídos formalmente.**
 
+- `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `01-rpg-core/✅-01-player-state.md`
 - `01-rpg-core/✅-02-progression-services.md`
@@ -54,7 +57,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 
 | Estágio | Concluídos | Total | Estado geral |
 | --- | ---: | ---: | --- |
-| 00 Foundation | 1 | 4 | EM ANDAMENTO |
+| 00 Foundation | 2 | 4 | EM ANDAMENTO |
 | 01 RPG Core | 2 | 5 | EM ANDAMENTO |
 | 02 Progression & World Scaling | 0 | 5 | EM ANDAMENTO |
 | 03 Skill Tree & Perks | 1 | 6 | EM ANDAMENTO |
@@ -65,13 +68,13 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 7 | 15 | EM ANDAMENTO |
-| **Total** | **15** | **75** | |
+| **Total** | **16** | **75** | |
 
 ## Por que os demais continuam abertos
 
 ### 00 — Foundation
 
-`01-environment-bootstrap` ainda inclui validação de configuração e convenções/IDs que não estão formalmente encerradas; `03-optional-integrations` ainda não possui a matriz completa de ausência individual de providers; `04-diagnostics-testing` tem CI forte, mas logging/diagnóstico padronizado e reprodução local dos gates ainda não estão fechados.
+`✅-01-environment-bootstrap.md` está fechado: ambiente MC 1.21.1/NeoForge 21.1.248/Java 21, Gradle Wrapper 8.14, metadata required/optional, bootstrap comum determinístico e convenção de IDs persistidos estão protegidos por contrato e CI. O baseline não possui config de usuário registrada; futuras configs são obrigadas pelo contrato a usar `ModConfigSpec`. `03-optional-integrations` continua aberto porque ainda falta a matriz completa de ausência individual de providers e a centralização formal da detecção; `04-diagnostics-testing` tem CI forte, mas logging/diagnóstico padronizado e reprodução local dos gates ainda não estão fechados.
 
 ### 01 — RPG Core
 
@@ -119,7 +122,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento funcional mais recente do Stage 10.07 foi auditado em `main@03403fc3f7934b0e2b2c9a5cd0a9e6606a2ba7d9`. Compendium Ecology `33228111273`, Flora `33228111253`, Entities `33228111262`, Discovery `33228111257` e RPG Skill Tree `33228111266` passaram. O CI completo incluiu NeoForge build, verificação do JAR, dedicated-server smoke, upload do artefato e publicação do status final.
+O fechamento formal mais recente é Stage 00.01 em `main@0f008fc3bc1767e74da777fcc02e37fd19acb263`. `Foundation Bootstrap Contract` `33229822213` e `RPG Skill Tree CI` `33229822237` passaram no commit integrado; o CI completo cobriu wrapper, Core, JUnit 5, NeoForge GameTests, todos os validators, build, JAR e dedicated-server smoke.
 
 ## Convenção
 
