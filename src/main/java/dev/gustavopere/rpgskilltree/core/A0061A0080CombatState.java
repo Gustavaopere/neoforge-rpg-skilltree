@@ -69,6 +69,12 @@ public final class A0061A0080CombatState {
         return target(actorId, targetId).executionCooldownUntil > now;
     }
 
+    public synchronized boolean firstBloodWindowActive(String actorId, String targetId, long now) {
+        TargetState target = target(actorId, targetId);
+        expireFirstBlood(target, now);
+        return target.firstBloodUntil > now && target.firstBloodRoot != null;
+    }
+
     public synchronized FirstBloodStage firstBloodStage(String actorId, String targetId, String rootActionId, long now) {
         TargetState target = target(actorId, targetId);
         expireFirstBlood(target, now);
