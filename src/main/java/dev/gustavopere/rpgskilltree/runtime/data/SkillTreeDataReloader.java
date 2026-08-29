@@ -2,7 +2,6 @@ package dev.gustavopere.rpgskilltree.runtime.data;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.effects.AttributeEffectDiagnostics;
 import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
@@ -15,7 +14,6 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.NotNull;
@@ -26,7 +24,6 @@ import org.slf4j.LoggerFactory;
  * Owns the authoritative skill-tree datapack transaction. The complete candidate is prepared
  * and validated before apply publishes one revision, so a failed reload leaves the prior state intact.
  */
-@EventBusSubscriber(modid = RpgSkillTreeMod.MOD_ID)
 public final class SkillTreeDataReloader extends SimplePreparableReloadListener<PreparedSkillTreeData> {
     private static final Logger LOGGER = LoggerFactory.getLogger(SkillTreeDataReloader.class);
 
