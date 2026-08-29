@@ -6,6 +6,8 @@ import dev.gustavopere.rpgskilltree.compendium.api.CompendiumSection;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumBrowserModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientEntry;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientSnapshot;
+import dev.gustavopere.rpgskilltree.compendium.client.CompendiumDebugField;
+import dev.gustavopere.rpgskilltree.compendium.client.CompendiumDebugPanelModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterControls;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterState;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumNotesModel;
@@ -54,6 +56,7 @@ public final class CompendiumScreen extends Screen {
     private Button kindFilterButton;
     private Button discoveredFilterButton;
     private Button favoriteButton;
+    private boolean debugDetailsEnabled;
 
     public CompendiumScreen(CompendiumClientSnapshot snapshot) {
         this(snapshot, ClientCompendiumState.personalState());
@@ -325,14 +328,17 @@ public final class CompendiumScreen extends Screen {
         }
 
         CompendiumPageModel model = page.orElseThrow();
+        y = renderDebugProvenance(graphics, model, x, y, body.width() - 24, body.bottom());
         if (!model.detailsVisible()) {
-            graphics.drawString(
-                font,
-                Component.translatable("screen.rpgskilltree.compendium.details_hidden"),
-                x,
-                y,
-                MUTED
-            );
+            if (y + 11 < body.bottom()) {
+                graphics.drawString(
+                    font,
+                    Component.translatable("screen.rpgskilltree.compendium.details_hidden"),
+                    x,
+                    y,
+                    MUTED
+                );
+            }
             return;
         }
 
@@ -360,6 +366,38 @@ public final class CompendiumScreen extends Screen {
             }
             y += 4;
         }
+    }
+
+    private int renderDebugProvenance(
+        GuiGraphics graphics,
+        CompendiumPageModel model,
+        int x,
+        int y,
+        int maxWidth,
+        int bottom
+    ) {
+        var fields = CompendiumDebugPanelModel.fields(model, debugDetailsEnabled);
+        if (fields.isEmpty()) return y;
+        if (y + 12 >= bottom) return y;
+
+        graphics.drawString(
+            font,
+            Component.translatable("screen.rpgskilltree.compendium.debug.title"),
+            x,
+            y,
+            ACCENT
+        );
+        y += 12;
+        for (CompendiumDebugField field : fields) {
+            if (y + 11 >= bottom) {
+                graphics.drawString(font, "…", x, bottom - 11, MUTED);
+                return bottom;
+            }
+            Component line = Component.translatable(field.translationKey(), field.value());
+            graphics.drawString(font, fitToWidth(line.getString(), maxWidth), x + 6, y, MUTED);
+            y += 11;
+        }
+        return y + 4;
     }
 
     @Override
@@ -398,6 +436,10 @@ public final class CompendiumScreen extends Screen {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (keyCode == GLFW.GLFW_KEY_F3) {
+            debugDetailsEnabled = !debugDetailsEnabled;
+            return true;
+        }
         if (keyCode == GLFW.GLFW_KEY_ESCAPE && layout != null && !layout.splitPanes() && session.showingDetail()) {
             session.backToList();
             return true;
@@ -420,6 +462,10 @@ public final class CompendiumScreen extends Screen {
             return true;
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
+    }
+
+    boolean debugDetailsEnabled() {
+        return debugDetailsEnabled;
     }
 
     @Override

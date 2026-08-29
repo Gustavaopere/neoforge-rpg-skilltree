@@ -43,6 +43,14 @@ public final class CompendiumPageModelFactory {
             ? entryRelations(entry.relations())
             : List.of();
 
+        CompendiumDebugInfo debugInfo = new CompendiumDebugInfo(
+            entry.id().resourceLocation(),
+            entry.sourceModId(),
+            entry.provenance().source(),
+            entry.provenance().sourceId(),
+            clientEntry.coverageState()
+        );
+
         return Optional.of(new CompendiumPageModel(
             entry.id(),
             clientEntry.displayName(),
@@ -50,7 +58,8 @@ public final class CompendiumPageModelFactory {
             discovered,
             detailsVisible,
             sections,
-            relations
+            relations,
+            debugInfo
         ));
     }
 
