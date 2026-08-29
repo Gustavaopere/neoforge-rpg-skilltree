@@ -112,16 +112,34 @@ public final class TreeArchitectureCatalog {
         }
     }
 
+    static final class PreparedSnapshot {
+        private final Map<ResourceLocation, TreeDefinition> trees;
+        private final Map<String, CatalogBranchBinding> catalogBindings;
+
+        private PreparedSnapshot(
+            Map<ResourceLocation, TreeDefinition> trees,
+            Map<String, CatalogBranchBinding> catalogBindings
+        ) {
+            this.trees = Map.copyOf(trees);
+            this.catalogBindings = Map.copyOf(catalogBindings);
+        }
+    }
+
     private static volatile Map<ResourceLocation, TreeDefinition> trees = Map.of();
     private static volatile Map<String, CatalogBranchBinding> catalogBindings = Map.of();
 
     private TreeArchitectureCatalog() {}
 
     public static synchronized void replace(List<TreeDefinition> definitions) {
+        publish(prepare(definitions));
+    }
+
+    static PreparedSnapshot prepare(List<TreeDefinition> definitions) {
         Objects.requireNonNull(definitions);
         Map<ResourceLocation, TreeDefinition> next = new HashMap<>();
         Map<String, CatalogBranchBinding> nextCatalogBindings = new HashMap<>();
         for (TreeDefinition definition : definitions) {
+            Objects.requireNonNull(definition, "tree definition");
             if (next.put(definition.id(), definition) != null) {
                 throw new IllegalArgumentException("duplicate tree architecture id: " + definition.id());
             }
@@ -149,8 +167,13 @@ public final class TreeArchitectureCatalog {
                 }
             }
         }
-        trees = Map.copyOf(next);
-        catalogBindings = Map.copyOf(nextCatalogBindings);
+        return new PreparedSnapshot(next, nextCatalogBindings);
+    }
+
+    static synchronized void publish(PreparedSnapshot snapshot) {
+        Objects.requireNonNull(snapshot, "snapshot");
+        trees = snapshot.trees;
+        catalogBindings = snapshot.catalogBindings;
     }
 
     public static Optional<TreeDefinition> definition(ResourceLocation id) {
