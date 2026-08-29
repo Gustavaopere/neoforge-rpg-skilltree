@@ -48,6 +48,11 @@ Cada arquivo deve avaliar explicitamente:
 
 ## Lotes
 
-A migração é feita em lotes pequenos para permitir re-fetch do Notion, auditoria e revisão técnica por perk. O primeiro lote contém **A0001–A0010**.
+A migração é feita em lotes pequenos para permitir re-fetch do Notion, auditoria e revisão técnica por perk.
+
+- **Lote 1:** A0001–A0010.
+- **Lote 2:** A0011–A0020.
+
+Dossiês individualizados até o momento: **A0001–A0020**.
 
 Fonte de critérios: https://app.notion.com/p/3c669db9f0db81e2a0f7cd9b2d410567
