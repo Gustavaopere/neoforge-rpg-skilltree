@@ -20,6 +20,14 @@ def require_contains(path: str, *needles: str):
         if needle not in text:
             errors.append(f"{path}: missing {needle!r}")
 
+def forbid_contains(path: str, *needles: str):
+    text = require_file(path)
+    if text is None:
+        return
+    for needle in needles:
+        if needle in text:
+            errors.append(f"{path}: forbidden {needle!r}")
+
 require_contains('gradle.properties',
                  'minecraft_version=1.21.1',
                  'neo_version=21.1.248',
@@ -272,14 +280,34 @@ require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/client/RpgS
                  'layout.requirements()')
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/client/ClientKeyMappings.java',
                  'RegisterKeyMappingsEvent',
-                 'InputEvent.Key',
+                 'ClientTickEvent.Post',
                  'Dist.CLIENT',
-                 'minecraft.setScreen(new RpgSkillTreeScreen())')
+                 'GLFW.GLFW_KEY_K',
+                 'GLFW.GLFW_KEY_J',
+                 'while (OPEN_TREE.consumeClick())',
+                 'while (OPEN_COMPENDIUM.consumeClick())',
+                 'minecraft.setScreen(new RpgSkillTreeScreen())',
+                 'minecraft.setScreen(new CompendiumScreen(ClientCompendiumState.get()))')
+forbid_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/client/ClientKeyMappings.java',
+                'InputEvent.Key')
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/client/CompendiumScreen.java',
+                 'extends Screen',
+                 'CompendiumScreenSession',
+                 'CompendiumScreenLayout.calculate',
+                 'new EditBox(',
+                 'addRenderableWidget(searchBox)',
+                 'session.viewport(layout.visibleRows())',
+                 'public boolean isPauseScreen()',
+                 'return false;')
 require_contains('src/main/resources/assets/rpgskilltree/lang/en_us.json',
                  'key.rpgskilltree.open_tree',
+                 'key.rpgskilltree.open_compendium',
+                 'screen.rpgskilltree.compendium.title',
                  'key.categories.rpgskilltree')
 require_contains('src/main/resources/assets/rpgskilltree/lang/pt_br.json',
                  'key.rpgskilltree.open_tree',
+                 'key.rpgskilltree.open_compendium',
+                 'screen.rpgskilltree.compendium.title',
                  'key.categories.rpgskilltree')
 
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/identity2/MorphCategoryReloader.java',
