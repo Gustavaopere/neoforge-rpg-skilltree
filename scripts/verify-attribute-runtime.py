@@ -82,14 +82,17 @@ if "if (server != null)" not in node_reloader_text:
 
 # The plan's idempotency acceptance is a Minecraft-runtime contract, not only a
 # pure resolver property. Keep one GameTest exercising a real ServerPlayer
-# AttributeInstance through apply -> repeated apply -> remove -> reapply.
+# AttributeInstance through apply -> repeated apply -> remove -> reapply. The fixture
+# deliberately does not register the player in PlayerList: doing so fires normal
+# login networking, which is unrelated to this attribute-runtime acceptance.
 if not ATTRIBUTE_GAMETEST.is_file():
     print(f"ERROR: {ATTRIBUTE_GAMETEST.relative_to(ROOT)}: required attribute modifier GameTest is missing")
     raise SystemExit(1)
 gametest_text = ATTRIBUTE_GAMETEST.read_text(encoding="utf-8")
 for needle in [
     "@GameTest",
-    "makeMockServerPlayerInLevel",
+    "new ServerPlayer(",
+    "ClientInformation.createDefault()",
     "NodeEffectCatalog.replace",
     "AttributeNodeEffectRuntime.refresh",
     "ProgressionState.empty().withPassiveNodes",
@@ -100,6 +103,11 @@ for needle in [
     if needle not in gametest_text:
         print(f"ERROR: {ATTRIBUTE_GAMETEST.relative_to(ROOT)}: missing runtime acceptance marker {needle!r}")
         raise SystemExit(1)
+if "makeMockServerPlayerInLevel" in gametest_text:
+    print(
+        f"ERROR: {ATTRIBUTE_GAMETEST.relative_to(ROOT)}: attribute GameTest must not fire the normal login/network lifecycle"
+    )
+    raise SystemExit(1)
 if gametest_text.count("AttributeNodeEffectRuntime.refresh") < 4:
     print(
         f"ERROR: {ATTRIBUTE_GAMETEST.relative_to(ROOT)}: GameTest must exercise apply, repeated apply, removal and reapply"
