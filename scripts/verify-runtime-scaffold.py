@@ -272,14 +272,18 @@ require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/client/RpgS
                  'layout.requirements()')
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/client/ClientKeyMappings.java',
                  'RegisterKeyMappingsEvent',
-                 'InputEvent.Key',
+                 'ClientTickEvent.Post',
+                 'OPEN_TREE.consumeClick()',
+                 'OPEN_COMPENDIUM.consumeClick()',
                  'Dist.CLIENT',
-                 'minecraft.setScreen(new RpgSkillTreeScreen())')
+                 'minecraft.setScreen(new RpgSkillTreeScreen())',
+                 'minecraft.setScreen(new CompendiumScreen())')
 require_contains('src/main/resources/assets/rpgskilltree/lang/en_us.json',
                  'key.rpgskilltree.open_tree',
                  'key.categories.rpgskilltree')
 require_contains('src/main/resources/assets/rpgskilltree/lang/pt_br.json',
                  'key.rpgskilltree.open_tree',
+                 'key.rpgskilltree.open_compendium',
                  'key.categories.rpgskilltree')
 
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/identity2/MorphCategoryReloader.java',
