@@ -1,7 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.client;
 
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientSnapshot;
-import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreen;
 import java.util.List;
 import net.minecraft.network.chat.Component;
 import org.junit.jupiter.api.Test;
