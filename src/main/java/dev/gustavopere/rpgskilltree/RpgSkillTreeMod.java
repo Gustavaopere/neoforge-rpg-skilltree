@@ -33,8 +33,7 @@ import dev.gustavopere.rpgskilltree.runtime.data.CanonicalProviderBindingReloade
 import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.CoreProgressionRulesReloader;
-import dev.gustavopere.rpgskilltree.runtime.data.NodeEffectsReloader;
-import dev.gustavopere.rpgskilltree.runtime.data.NodeRulesReloader;
+import dev.gustavopere.rpgskilltree.runtime.data.SkillTreeDataReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.SpecializationReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeArchitectureReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeUnlockReloader;
@@ -74,7 +73,9 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(ProgressionOwnerSyncEvents.class);
         NeoForge.EVENT_BUS.register(PlayerProgressionEvents.class);
         NeoForge.EVENT_BUS.register(RelevantPlayerCacheEvents.class);
-        NeoForge.EVENT_BUS.register(NodeRulesReloader.class);
+        // NodeRulesReloader.class and NodeEffectsReloader.class are retained as legacy source
+        // compatibility only; their independent registrations are intentionally retired.
+        NeoForge.EVENT_BUS.register(SkillTreeDataReloader.class);
         NeoForge.EVENT_BUS.register(TreeArchitectureReloader.class);
         NeoForge.EVENT_BUS.register(TreeUnlockReloader.class);
         NeoForge.EVENT_BUS.register(ClassRulesReloader.class);
@@ -82,7 +83,6 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(ArchetypeReloader.class);
         NeoForge.EVENT_BUS.register(SpecializationReloader.class);
         NeoForge.EVENT_BUS.register(MorphCategoryReloader.class);
-        NeoForge.EVENT_BUS.register(NodeEffectsReloader.class);
         NeoForge.EVENT_BUS.register(BossRewardReloader.class);
         NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class);
         NeoForge.EVENT_BUS.register(CanonicalProviderBindingReloader.class);
