@@ -156,9 +156,13 @@ public final class NotionCombatPerkState {
         String target = require(targetId, "targetId");
         pruneSpearWindows(state, nowMillis);
         Boolean previous = state.spearInsideByTarget.put(target, insideIdealRange);
-        if (!Boolean.FALSE.equals(previous) || !insideIdealRange || !targetAdvancing) return;
+        if (!Boolean.FALSE.equals(previous) || !insideIdealRange) return;
 
-        state.interceptUntilByTarget.put(target, Math.addExact(nowMillis, NotionCombatPerkRules.A0017_WINDOW_MILLIS));
+        // A0017 additionally requires an advancing hostile target.
+        if (targetAdvancing) {
+            state.interceptUntilByTarget.put(target, Math.addExact(nowMillis, NotionCombatPerkRules.A0017_WINDOW_MILLIS));
+        }
+        // A0018 requires only a reliable outside->inside crossing plus three charges.
         if (distanceControl(actorId, nowMillis) >= 3
             && state.lineLockoutUntilByTarget.getOrDefault(target, 0L) <= nowMillis) {
             state.lineUntilByTarget.put(
