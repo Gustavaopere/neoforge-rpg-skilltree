@@ -5,6 +5,8 @@ import java.util.Map;
 
 /** Fresh structural contract for the closed Notion batch A0081-A0100. */
 public final class A0081A0100NotionContractTest {
+    private static final String ARCANE_GATEWAY_NODE = "rpgskilltree:arcane_000";
+    private static final String OCCULT_GATEWAY_NODE = "rpgskilltree:occult_000";
     private record Expected(String name, int maxRank, int cost, Map<String,Integer> deps) {}
 
     public static void main(String[] args) {
@@ -44,9 +46,9 @@ public final class A0081A0100NotionContractTest {
 
         checkRankGate("A0081", CombatPerkTreeModel.MARTIAL_GATEWAY_NODE, 1);
         checkRankGate("A0082", CombatPerkTreeModel.MARTIAL_GATEWAY_NODE, 1);
-        checkRankGate("A0083", CombatPerkTreeModel.ARCANE_GATEWAY_NODE, 1);
-        checkRankGate("A0084", CombatPerkTreeModel.ARCANE_GATEWAY_NODE, 1);
-        checkRankGate("A0085", CombatPerkTreeModel.OCCULT_GATEWAY_NODE, 1);
+        checkRankGate("A0083", ARCANE_GATEWAY_NODE, 1);
+        checkRankGate("A0084", ARCANE_GATEWAY_NODE, 1);
+        checkRankGate("A0085", OCCULT_GATEWAY_NODE, 1);
         for (int i = 88; i <= 100; i++) checkRankGate("A%04d".formatted(i), CombatPerkTreeModel.VITALITY_GATEWAY_NODE, 1);
         checkRankGate("A0098", CombatPerkTreeModel.AGILITY_GATEWAY_NODE, 1);
         checkRankGate("A0099", CombatPerkTreeModel.MARTIAL_GATEWAY_NODE, 1);
