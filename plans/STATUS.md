@@ -32,15 +32,18 @@ Fechamento funcional do Stage 10.08 auditado contra `main@c980f7835a01ef038e34d1
 
 Fechamento do Stage 00.03 auditado contra `main@4f48fefa15477023ce2dcb9d56c36b586a6b16ea`, após integração do PR #113. O TDD RED `33230185322` detectou a ausência do registry central; um candidato intermediário revelou ainda `ClassNotFoundException` real do target Identity2 no Mixin, corrigido por isolamento e gate early-startup. Os CIs pós-merge `33230834923` / Foundation Bootstrap #55, `33230834955` / Foundation Optional Integrations #17 e `33230834856` / RPG Skill Tree #1277 fecharam GREEN. O CI completo incluiu Core, JUnit 5, NeoForge GameTests, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e status final de sucesso; o smoke confirmou os sete providers opcionais ausentes e `Classloading errors: none`.
 
+Fechamento do Stage 00.04 auditado contra `main@4a13ac7c8deda8827e755d100223985f07319e8e`, após integração do PR #120. O RED inicial `33231244859` exigiu o boundary de diagnostics; a implementação consolidou taxonomia estruturada, reload fail-visible com path/resource IDs, anti-spam de falhas persistentes e documentação reproduzível dos gates. Os CIs pós-merge `33244389124` / Foundation Diagnostics #22, `33244389122` / Foundation Bootstrap #113, `33244389143` / Foundation Optional Integrations #75 e `33244389119` / RPG Skill Tree #1335 fecharam GREEN. O CI completo cobriu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**18 / 75 subplanos concluídos formalmente.**
+**19 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `00-foundation/✅-03-optional-integrations.md`
+- `00-foundation/✅-04-diagnostics-testing.md`
 - `01-rpg-core/✅-01-player-state.md`
 - `01-rpg-core/✅-02-progression-services.md`
 - `03-skill-tree-perks/✅-05-respec.md`
@@ -63,7 +66,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 
 | Estágio | Concluídos | Total | Estado geral |
 | --- | ---: | ---: | --- |
-| 00 Foundation | 3 | 4 | EM ANDAMENTO |
+| 00 Foundation | 4 | 4 | CONCLUÍDO |
 | 01 RPG Core | 2 | 5 | EM ANDAMENTO |
 | 02 Progression & World Scaling | 0 | 5 | EM ANDAMENTO |
 | 03 Skill Tree & Perks | 1 | 6 | EM ANDAMENTO |
@@ -74,13 +77,13 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
-| **Total** | **18** | **75** | |
+| **Total** | **19** | **75** | |
 
 ## Por que os demais continuam abertos
 
 ### 00 — Foundation
 
-`✅-01-environment-bootstrap.md` está fechado: ambiente MC 1.21.1/NeoForge 21.1.248/Java 21, Gradle Wrapper 8.14, metadata required/optional, bootstrap comum determinístico e convenção de IDs persistidos estão protegidos por contrato e CI. O baseline não possui config de usuário registrada; futuras configs são obrigadas pelo contrato a usar `ModConfigSpec`. `✅-03-optional-integrations.md` também está fechado: detecção dos sete providers compile-only é centralizada, adapters e mixin Identity2 são isolados, ausência possui fallback neutro, e o dedicated-server smoke prova core-only sem `ClassNotFoundException`/`NoClassDefFoundError`. Matriz de provider **presente** permanece responsabilidade dos respectivos estágios de integração. Apenas `04-diagnostics-testing` continua aberto na Foundation, por ainda exigir fechamento formal de logging/diagnóstico padronizado e reprodução local atualizada dos gates.
+Stage 00 concluído. `✅-01-environment-bootstrap.md` fixa e verifica ambiente, metadata, bootstrap determinístico e convenção de IDs; `✅-02-client-server-boundaries.md` fecha separação de lados e autoridade; `✅-03-optional-integrations.md` centraliza detecção/isola adapters e prova core-only sem falha de classloading; `✅-04-diagnostics-testing.md` fecha diagnostics estruturados, reload fail-visible com contexto de resource, anti-spam, comandos locais reproduzíveis e gates permanentes de testes/build/JAR/dedicated-server smoke. Matrizes de provider **presente** permanecem corretamente nos respectivos estágios de integração.
 
 ### 01 — RPG Core
 
@@ -130,7 +133,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento formal mais recente é Stage 00.03 em `main@4f48fefa15477023ce2dcb9d56c36b586a6b16ea`. Foundation Bootstrap `33230834923`, Foundation Optional Integrations `33230834955` e RPG Skill Tree CI `33230834856` passaram no commit integrado; o CI completo cobriu Core, JUnit 5, NeoForge GameTests, validators, build, JAR e dedicated-server smoke, com os sete providers ausentes e nenhuma falha de classloading.
+O fechamento formal mais recente é Stage 00.04 em `main@4a13ac7c8deda8827e755d100223985f07319e8e`. Foundation Diagnostics `33244389124`, Foundation Bootstrap `33244389122`, Foundation Optional Integrations `33244389143` e RPG Skill Tree CI `33244389119` passaram no commit integrado; o CI completo cobriu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso.
 
 ## Convenção
 
