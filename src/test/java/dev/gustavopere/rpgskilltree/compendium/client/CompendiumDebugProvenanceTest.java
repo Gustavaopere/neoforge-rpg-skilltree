@@ -61,7 +61,7 @@ public final class CompendiumDebugProvenanceTest {
         ), fields.get(2));
         eq(new CompendiumDebugField(
             "screen.rpgskilltree.compendium.debug.fact_source",
-            "stats/base_health = RUNTIME"
+            "stats/base_health = RUNTIME_ENTITY"
         ), fields.get(3));
         eq(new CompendiumDebugField(
             "screen.rpgskilltree.compendium.debug.provider",
@@ -79,7 +79,7 @@ public final class CompendiumDebugProvenanceTest {
                 "base_health",
                 30.0D,
                 "hp",
-                FactSource.RUNTIME,
+                FactSource.RUNTIME_ENTITY,
                 FactConfidence.EXACT,
                 FactVisibility.PUBLIC,
                 null,
