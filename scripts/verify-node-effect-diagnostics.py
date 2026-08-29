@@ -41,7 +41,9 @@ for needle in [
     "AttributeEffectDiagnostics.report(",
     "MISSING_REGISTRY_TARGET",
     "MISSING_PLAYER_ATTRIBUTE",
-    "LOGGER.warn(",
+    "RuntimeDiagnostics.warn(",
+    "Category.EFFECTS",
+    '"attribute_effect_unavailable"',
 ]:
     require(RUNTIME, needle)
 
