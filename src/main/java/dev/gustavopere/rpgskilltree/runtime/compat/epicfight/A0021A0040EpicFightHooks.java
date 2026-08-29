@@ -190,6 +190,10 @@ public final class A0021A0040EpicFightHooks {
         if (family.get() != WeaponFamily.DAGGER) {
             damage *= NotionCombatPerkRules.baseDamageMultiplier(family.get(), ranks);
         }
+        double a0063CriticalDamage = family.get() == WeaponFamily.DAGGER
+            ? 1.0D
+            : dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.criticalDamageMultiplier(ranks, root.critical);
+        damage *= a0063CriticalDamage;
         if (root.critical && family.get() != WeaponFamily.DAGGER && !root.criticalMultiplierAlreadyApplied) {
             damage *= 1.5D;
         }
@@ -353,7 +357,8 @@ public final class A0021A0040EpicFightHooks {
             facts, ranks, A0021A0040RuntimeState.state(), mastery(player, family.get())
         );
         double multiplier = NotionCombatPerkRules.baseDamageMultiplier(family.get(), ranks)
-            * specialty.damageMultiplier();
+            * specialty.damageMultiplier()
+            * dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.criticalDamageMultiplier(ranks, critical);
         if (Double.compare(multiplier, 1.0D) != 0) {
             event.setAmount((float) (event.getAmount() * multiplier));
         }

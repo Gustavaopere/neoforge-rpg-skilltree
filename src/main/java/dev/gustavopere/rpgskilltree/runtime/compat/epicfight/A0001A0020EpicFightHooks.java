@@ -156,6 +156,7 @@ public final class A0001A0020EpicFightHooks {
         var modifiers = A0001A0020CombatPolicy.beforeHit(facts, ranks, A0001A0020RuntimeState.state());
 
         double damageMultiplier = modifiers.damageMultiplier();
+        damageMultiplier *= dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.criticalDamageMultiplier(ranks, critical);
         if (critical && !root.criticalMultiplierAlreadyApplied) damageMultiplier *= 1.5D;
         if (Double.compare(damageMultiplier, 1.0D) != 0) {
             source.attachDamageModifier(ValueModifier.multiplier((float)damageMultiplier));

@@ -11,6 +11,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgress
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0041A0060EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0042ScytheKillHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0061A0080EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
@@ -132,15 +133,17 @@ public final class RpgSkillTreeMod {
                 A0001A0020EpicFightHooks.register();
                 A0042ScytheKillHooks.register();
                 A0041A0060EpicFightHooks.register();
+                A0061A0080EpicFightHooks.register();
                 NeoForge.EVENT_BUS.register(A0001A0020EpicFightHooks.class);
                 NeoForge.EVENT_BUS.register(A0042ScytheKillHooks.class);
                 NeoForge.EVENT_BUS.register(A0041A0060EpicFightHooks.class);
+                NeoForge.EVENT_BUS.register(A0061A0080EpicFightHooks.class);
             } else {
                 RuntimeDiagnostics.warn(
                     LOGGER,
                     Category.COMPAT,
                     "epicfight_version_unsupported",
-                    "A0001-A0060 Epic Fight integration disabled: expected {}*, found {}",
+                    "A0001-A0080 Epic Fight integration disabled: expected {}*, found {}",
                     A0001A0020EpicFightHooks.SUPPORTED_VERSION_PREFIX,
                     version
                 );

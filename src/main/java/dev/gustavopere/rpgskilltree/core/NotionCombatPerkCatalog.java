@@ -6,13 +6,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-/** Fresh Notion snapshot for the currently closed implementation range A0001-A0060. */
+/** Fresh Notion snapshot for the currently closed implementation range A0001-A0080. */
 public final class NotionCombatPerkCatalog {
     private static final Set<String> EPIC_DAMAGE = Set.of("epicfight:weapon_category", "epicfight:damage_pre");
     private static final Set<String> EPIC_CADENCE = Set.of("epicfight:weapon_category", "epicfight:modify_attack_speed");
     private static final Set<String> EPIC_CRIT = Set.of("epicfight:weapon_category", "rpgskilltree:canonical_critical");
     private static final Set<String> PROJECTILE_DAMAGE = Set.of("minecraft:physical_projectile", "minecraft:projectile_owner");
     private static final Set<String> PROJECTILE_CRIT = Set.of("minecraft:physical_projectile", "minecraft:projectile_owner", "rpgskilltree:canonical_critical");
+    private static final Set<String> DIRECT_PHYSICAL = Set.of("rpgskilltree:direct_physical", "rpgskilltree:causal_player_source");
     private static final Map<String, CombatPerkDefinition> DEFINITIONS = build();
 
     private NotionCombatPerkCatalog() {}
@@ -91,6 +92,27 @@ public final class NotionCombatPerkCatalog {
         add(map, "A0058", "Sequência Limpa", WeaponFamily.FIST, 2, 1, Map.of("A0057", 2), Set.of("epicfight:damage_post", "epicfight:confirmed_miss_optional"));
         add(map, "A0059", "Quebra de Ritmo", WeaponFamily.FIST, 2, 1, Map.of("A0058", 1, "A0056", 2), Set.of("epicfight:heavy_or_finisher", "epicfight:guard_posture_optional", "epicfight:impact_optional"));
         add(map, "A0060", "Maestria de Armas de Punho — Combinação Final", WeaponFamily.FIST, 1, 2, Map.of("A0058", 2, "A0059", 1), Set.of("epicfight:heavy_or_finisher", "epicfight:impact_optional", "epicfight:stamina_receipt_optional"));
+
+        add(map, "A0061", "Força Aplicada", WeaponFamily.MARTIAL, 5, 1, Map.of(), DIRECT_PHYSICAL);
+        add(map, "A0062", "Golpe Preciso", WeaponFamily.MARTIAL, 4, 1, Map.of(), Set.of("rpgskilltree:canonical_critical"));
+        add(map, "A0063", "Impacto Crítico", WeaponFamily.MARTIAL, 3, 1, Map.of("A0062", 2), Set.of("rpgskilltree:canonical_critical", "provider:critical_damage_optional"));
+        add(map, "A0064", "Ritmo de Combate", WeaponFamily.MARTIAL, 4, 1, Map.of(), Set.of("epicfight:modify_attack_speed", "minecraft:attack_speed_safe_optional"));
+        add(map, "A0065", "Penetração Física", WeaponFamily.MARTIAL, 4, 1, Map.of("A0061", 2), Set.of("epicfight:armor_negation", "provider:armor_pierce_optional"));
+        add(map, "A0066", "Impacto Marcial", WeaponFamily.MARTIAL, 4, 1, Map.of("A0061", 1), Set.of("epicfight:impact_optional"));
+        add(map, "A0067", "Firmeza Ofensiva", WeaponFamily.MARTIAL, 4, 1, Map.of("A0066", 1), Set.of("epicfight:attack_window", "epicfight:stun_armor_optional"));
+        add(map, "A0068", "Dano contra Feridos", WeaponFamily.MARTIAL, 3, 1, Map.of("A0061", 1), Set.of("minecraft:preimpact_health", "rpgskilltree:direct_physical"));
+        add(map, "A0069", "Dano contra Íntegros", WeaponFamily.MARTIAL, 3, 1, Map.of("A0061", 1), Set.of("minecraft:preimpact_health", "rpgskilltree:direct_physical"));
+        add(map, "A0070", "Dano contra Chefes", WeaponFamily.MARTIAL, 5, 1, Map.of("A0061", 1), Set.of("rpgskilltree:canonical_target_classification", "rpgskilltree:boss"));
+        add(map, "A0071", "Dano contra Elites", WeaponFamily.MARTIAL, 5, 1, Map.of("A0061", 1), Set.of("rpgskilltree:canonical_target_classification", "rpgskilltree:elite"));
+        add(map, "A0072", "Retaliação", WeaponFamily.MARTIAL, 3, 1, Map.of("A0067", 1), Set.of("minecraft:post_mitigation_hostile_damage"));
+        add(map, "A0073", "Janela de Execução", WeaponFamily.MARTIAL, 1, 2, Map.of("A0068", 2), Set.of("minecraft:preimpact_health", "rpgskilltree:execution_window", "epicfight:impact_optional", "epicfight:stamina_receipt_optional"));
+        add(map, "A0074", "Primeiro Sangue", WeaponFamily.MARTIAL, 1, 2, Map.of("A0069", 2), Set.of("minecraft:preimpact_health", "rpgskilltree:last_target_attack", "epicfight:impact_optional"));
+        add(map, "A0075", "Ritmo Sustentado", WeaponFamily.MARTIAL, 1, 2, Map.of("A0061", 3, "A0064", 2), Set.of("epicfight:stamina_regen", "cold_sweat:thermal_activity", "minecraft:exhaustion"));
+        add(map, "A0076", "Postura Agressiva", WeaponFamily.MARTIAL, 1, 1, Map.of("A0061", 3, "A0064", 1), Set.of("rpgskilltree:martial_stance", "rpgskilltree:physical_resistance"));
+        add(map, "A0077", "Postura Cautelosa", WeaponFamily.MARTIAL, 1, 1, Map.of("A0067", 2), Set.of("rpgskilltree:martial_stance", "rpgskilltree:physical_resistance"));
+        add(map, "A0078", "Ataque em Movimento", WeaponFamily.MARTIAL, 3, 1, Map.of("A0064", 2), Set.of("rpgskilltree:agility_corridor", "minecraft:server_sprint"));
+        add(map, "A0079", "Ataque Estacionário", WeaponFamily.MARTIAL, 3, 1, Map.of("A0061", 2), Set.of("rpgskilltree:vitality_corridor", "rpgskilltree:stationary_state"));
+        add(map, "A0080", "Golpe de Oportunidade", WeaponFamily.MARTIAL, 1, 2, Map.of("A0078", 2), Set.of("rpgskilltree:agility_dodge_corridor", "provider:confirmed_dodge_success"));
         return Map.copyOf(map);
     }
 
