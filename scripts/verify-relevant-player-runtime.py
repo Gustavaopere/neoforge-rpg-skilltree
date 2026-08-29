@@ -83,6 +83,8 @@ require(runtime, "searchPolicy.cacheTtlTicks()", runtime_path)
 require(runtime, "trimCache(limits.maxCacheEntries())", runtime_path)
 require(runtime, "RelevantPlayerCandidateMerger.merge", runtime_path)
 require(runtime, "PartyCandidateSource", runtime_path)
+require(runtime, "party.size() > searchPolicy.maxCandidates()", runtime_path)
+require(runtime, "party candidate source exceeded maxCandidates", runtime_path)
 
 # Cost accounting and invalidation are executable contracts, not documentation only.
 for token in (
