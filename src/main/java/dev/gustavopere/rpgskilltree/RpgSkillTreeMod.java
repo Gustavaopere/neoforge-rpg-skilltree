@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree;
 import dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicy;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
+import dev.gustavopere.rpgskilltree.runtime.RelevantPlayerCandidateRuntime;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
@@ -61,6 +62,7 @@ public final class RpgSkillTreeMod {
         ModAttachments.register(modBus);
         ModNetworking.register(modBus);
         ProgressionOwnerSyncRuntime.initialize();
+        RelevantPlayerCandidateRuntime.initialize();
         NeoForge.EVENT_BUS.register(ProgressionOwnerSyncEvents.class);
         NeoForge.EVENT_BUS.register(PlayerProgressionEvents.class);
         NeoForge.EVENT_BUS.register(NodeRulesReloader.class);
