@@ -25,47 +25,40 @@
 
 ## Execution status
 
-All six tasks have been implemented and reviewed. TDD RED/GREEN cycles were recorded during development, including the final page-enrichment review REDs. Final pre-merge verification on merge-ref `83d52269e90b1f4a0be07cc5188b32b3c94f14d7` (`main@50c263d3da91c57ff15b047afaf1244f4991b89a` + `head@aba397cbab14f08cdd244aebd0d87a102620ef2b`) is GREEN across Compendium Ecology #85, Flora #103, Entities #169, Discovery #246 and RPG Skill Tree #1129, including NeoForge build, JAR verification and dedicated-server smoke.
+All six tasks have been implemented and reviewed. TDD RED/GREEN cycles include the final review REDs for missing current-snapshot enrichment and missing resolved loot facts.
+
+Final pre-merge head: `090a84d35b7b9dd8a2f2ef14b09fe9d3ea245ae9`.
+Final merge-ref: `004124f52dd68c053307274b1599c39463cc4146` = `main@50c263d3da91c57ff15b047afaf1244f4991b89a` + final head.
+
+Final GREEN gates:
+- Compendium Ecology #95 / `33224525345`;
+- Compendium Flora #109 / `33224525332`;
+- Compendium Entities #174 / `33224525358`;
+- Compendium Discovery #252 / `33224525326`;
+- RPG Skill Tree #1135 / `33224525390`, including NeoForge build, JAR verification and dedicated-server smoke.
 
 ### Task 1: Typed relation targets and evidence validation
+- [x] ENTRY/ITEM/ITEM_TAG/BLOCK/BLOCK_TAG targets; no ITEM entry kind.
+- [x] Legacy schema/constructor compatibility and exact-editorial evidence validation.
 
-- [x] Added typed relation targets for ENTRY/ITEM/ITEM_TAG/BLOCK/BLOCK_TAG without creating `CompendiumEntryKind.ITEM`.
-- [x] Preserved legacy entry-target constructor/schema compatibility.
-- [x] Enforced evidence for `CURATED_EDITORIAL + EXACT`.
-- [x] Updated deterministic relation ordering and schema validation.
+### Task 2: Structural loot summary
+- [x] Fixed/range/conditional summary semantics without loot rolling.
+- [x] `DROPS` relations and page facts only when mathematically resolvable.
 
-### Task 2: Pure loot summary model and structural parser
+### Task 3: Food, temptation, breeding, taming and ecology
+- [x] Food/tempt/breeding are distinct.
+- [x] Taming capability and contextual instance state are distinct.
+- [x] Optional ecology contributions fail soft.
 
-- [x] Added immutable loot summary contracts and structural parser.
-- [x] Fixed/range count and simple chance are represented only when resolvable.
-- [x] Player-kill/Looting/unsupported context remains conditional rather than fabricated.
-- [x] Added `DROPS` item relations and page facts for resolved item/count/chance.
+### Task 4: Runtime ecology inspection
+- [x] Existing entities only; no spawning, reflection, arbitrary NBT, client-only imports or global entity/world cache.
 
-### Task 3: Food, temptation, breeding, taming and ecology providers
+### Task 5: Atomic loot reload
+- [x] 1.21.1 `loot_table/entities`, staging before atomic publication, no rolling/per-tick rebuild.
 
-- [x] Food, temptation and breeding remain separate semantics.
-- [x] Breeding supports typed item/tag targets.
-- [x] Taming separates species capability from contextual instance state.
-- [x] Optional ecology adapter contribution is fail-soft.
-
-### Task 4: NeoForge entity ecology inspection without global instance cache
-
-- [x] Runtime inspector consumes existing entities only.
-- [x] No entity spawning, reflection, arbitrary NBT or client-only imports.
-- [x] No static entity/world cache.
-
-### Task 5: Atomic loot resource reload snapshot
-
-- [x] Reads singular 1.21.1 `loot_table/entities` resources during server reload.
-- [x] Stages/validates before atomic publication.
-- [x] Invalid staging leaves the previous published snapshot untouched.
-- [x] No loot rolling via `getRandomItems`/`fill` and no per-tick rebuild.
-
-### Task 6: Focal CI, review, integration and closure
-
-- [x] `Compendium Ecology CI` added.
-- [x] Temporary TDD/PR marker files removed before merge.
-- [x] Diff reviewed against the Stage 10.07 plan/spec; no scope creep into habitat/worldgen, external API wiring or global save/network orchestration.
-- [x] Final merge-ref reconciled with current `main` and all focused/full gates passed.
+### Task 6: Integration and closure
+- [x] Focal Ecology CI added and temporary markers removed.
+- [x] Diff reviewed against Stage 10.07 boundaries.
+- [x] Current `main` merged virtually by GitHub merge-ref and all focused/full gates passed.
 - [ ] Merge PR and verify push workflows on `main`.
-- [ ] Close `07-loot-dieta-reproducao-ecologia.md` in a separate documentation PR after functional post-merge verification.
+- [ ] Close Stage 10.07 in a separate documentation PR after functional post-merge verification.
