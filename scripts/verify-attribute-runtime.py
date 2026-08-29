@@ -182,7 +182,7 @@ for payload_text, path, record_name, operation, source_id in [
 
 networking_text = NETWORKING.read_text(encoding="utf-8")
 for needle in [
-    'private static final String NETWORK_VERSION = "3";',
+    'private static final String NETWORK_VERSION = "4";',
     "PurchaseAttributeRanksPayload.TYPE",
     "PurchaseAttributeRanksPayload.STREAM_CODEC",
     "PurchaseAttributeRanksPayload::handle",
