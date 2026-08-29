@@ -5,6 +5,9 @@
       "type": "class",
       "provider": "rpgskilltree",
       "domains": ["SURVIVAL", "SUMMONING"],
+      "branches": [
+        {"id": "core", "label": "Druid", "role": "class", "order": 0, "tags": ["class"]}
+      ],
       "tags": ["class", "druid"]
     },
     {
@@ -12,6 +15,9 @@
       "type": "class",
       "provider": "rpgskilltree",
       "domains": ["AGILITY", "OCCULT"],
+      "branches": [
+        {"id": "core", "label": "Metamorph", "role": "class", "order": 0, "tags": ["class"]}
+      ],
       "tags": ["class", "metamorph"]
     },
     {
@@ -19,6 +25,9 @@
       "type": "class",
       "provider": "rpgskilltree",
       "domains": ["ARCANE", "ENGINEERING"],
+      "branches": [
+        {"id": "core", "label": "Technomancer", "role": "class", "order": 0, "tags": ["class"]}
+      ],
       "tags": ["class", "technomancer"]
     },
     {
@@ -26,6 +35,9 @@
       "type": "class",
       "provider": "rpgskilltree",
       "domains": ["ARCANE", "OCCULT"],
+      "branches": [
+        {"id": "core", "label": "Warlock", "role": "class", "order": 0, "tags": ["class"]}
+      ],
       "tags": ["class", "warlock"]
     }
   ]
