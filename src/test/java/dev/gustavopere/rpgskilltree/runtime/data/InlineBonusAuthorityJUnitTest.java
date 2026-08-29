@@ -22,7 +22,9 @@ final class InlineBonusAuthorityJUnitTest {
                       "id":"rpgskilltree:test/root","maxRank":1,"costPerRank":1,"startingPoint":true
                     }]}
                     """)),
-                Map.of(EFFECT_SOURCE, json("""{"attributes":[]}""")),
+                Map.of(EFFECT_SOURCE, json("""
+                    {"attributes":[]}
+                    """)),
                 Map.of(SKILL_SOURCE, json("""
                     {
                       "id":"rpgskilltree:test/root",
