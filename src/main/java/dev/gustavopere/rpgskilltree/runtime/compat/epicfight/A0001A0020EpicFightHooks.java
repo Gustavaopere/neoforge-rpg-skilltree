@@ -20,6 +20,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
@@ -69,6 +70,13 @@ public final class A0001A0020EpicFightHooks {
         EpicFightEventHooks.Entity.ON_DODGE.registerEvent(A0001A0020EpicFightHooks::onDodge, DODGE_ID);
         EpicFightEventHooks.Animation.ATTACK_PHASE_END.registerEvent(A0001A0020EpicFightHooks::onAttackPhaseEnd, MISS_ID);
         EpicFightEventHooks.Player.TICK_EPICFIGHT_MODE.registerEvent(A0001A0020EpicFightHooks::onEpicFightTick, TICK_ID);
+
+        // The cumulative A0021-A0040 adapter shares this exact Epic Fight version contract.
+        // Chaining it here leaves the global optional-provider bootstrap owned by main unchanged.
+        A0021A0040EpicFightHooks.register();
+        A0021A0040MasteryHooks.register();
+        NeoForge.EVENT_BUS.register(A0021A0040EpicFightHooks.class);
+        NeoForge.EVENT_BUS.register(A0021A0040MasteryHooks.class);
         registered = true;
     }
 
