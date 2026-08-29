@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.core;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /** Auditable output of the complete deterministic initial entity-scaling decision. */
 public record EntityScalingDecisionResult(
@@ -28,6 +29,12 @@ public record EntityScalingDecisionResult(
         }
         if (state.rarity().isEmpty() || !state.rarity().get().equals(rarity)) {
             throw new IllegalArgumentException("persisted rarity must match decision rarity");
+        }
+        Optional<EntityEffectiveStatsSnapshot> expectedEffectiveStats = Optional.of(
+            EntityEffectiveStatsSnapshot.from(scaledStats.effectiveStats())
+        );
+        if (!state.effectiveStats().equals(expectedEffectiveStats)) {
+            throw new IllegalArgumentException("persisted effective stats must match decision effective stats");
         }
         if (!state.affixes().equals(affixes)) {
             throw new IllegalArgumentException("persisted affixes must match decision affixes");

@@ -1,5 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.events;
 
+import dev.gustavopere.rpgskilltree.core.EntityScalingState;
+import dev.gustavopere.rpgskilltree.runtime.EntityEffectiveStatsRuntime;
 import dev.gustavopere.rpgskilltree.runtime.EntityScalingInitializer;
 import dev.gustavopere.rpgskilltree.runtime.EntityScalingInitializerCatalog;
 import dev.gustavopere.rpgskilltree.runtime.EntityScalingRuntime;
@@ -21,16 +23,21 @@ public final class EntityScalingEvents {
         if (entity instanceof Player) return;
 
         // Persisted state always wins, including entities reloaded from disk or re-added to a level.
-        if (EntityScalingRuntime.current(entity).isPresent()) return;
+        Optional<EntityScalingState> existing = EntityScalingRuntime.current(entity);
+        if (existing.isPresent()) {
+            EntityEffectiveStatsRuntime.refresh(entity, existing.orElseThrow());
+            return;
+        }
 
         // No balance/world-threat policy is implied by this adapter. New entities remain unscaled
         // until the server has explicitly installed an authoritative initializer.
         Optional<EntityScalingInitializer> initializer = EntityScalingInitializerCatalog.current();
         if (initializer.isEmpty()) return;
 
-        EntityScalingRuntime.getOrInitialize(
+        EntityScalingState initialized = EntityScalingRuntime.getOrInitialize(
             entity,
             () -> initializer.orElseThrow().initialize(serverLevel, entity)
         );
+        EntityEffectiveStatsRuntime.refresh(entity, initialized);
     }
 }

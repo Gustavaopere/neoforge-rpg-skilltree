@@ -6,18 +6,22 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalLong;
 
 /** Strict versioned binary codec for persisted entity-scaling lifecycle decisions. */
 public final class EntityScalingStateCodec {
-    public static final int CURRENT_VERSION = 3;
+    public static final int CURRENT_VERSION = 4;
     private static final int MAX_STRING_BYTES = 256;
     private static final int MAX_AFFIXES = 256;
     private static final int MAX_BEHAVIORS = 256;
+    private static final int MAX_EFFECTIVE_STATS = 256;
 
     private EntityScalingStateCodec() {}
 
@@ -94,6 +98,7 @@ public final class EntityScalingStateCodec {
 
         writeAffixes(out, state.affixes());
         writeBehaviors(out, state.behaviors());
+        writeEffectiveStats(out, state.effectiveStats());
     }
 
     private static void writeAffixes(DataOutputStream out, MobAffixSelection selection) throws IOException {
@@ -115,6 +120,25 @@ public final class EntityScalingStateCodec {
         out.writeInt(behaviors.size());
         for (EntityBehaviorKey behavior : behaviors) {
             writeString(out, behavior.serializedId());
+        }
+    }
+
+    private static void writeEffectiveStats(
+        DataOutputStream out,
+        Optional<EntityEffectiveStatsSnapshot> snapshot
+    ) throws IOException {
+        out.writeBoolean(snapshot.isPresent());
+        if (snapshot.isEmpty()) return;
+
+        var entries = new ArrayList<>(snapshot.orElseThrow().values().entrySet());
+        entries.sort(Comparator.comparing(entry -> entry.getKey().serializedId()));
+        if (entries.size() > MAX_EFFECTIVE_STATS) {
+            throw new IllegalArgumentException("too many persisted effective stats");
+        }
+        out.writeInt(entries.size());
+        for (var entry : entries) {
+            writeString(out, entry.getKey().serializedId());
+            writeString(out, entry.getValue().toPlainString());
         }
     }
 
@@ -141,6 +165,9 @@ public final class EntityScalingStateCodec {
 
         MobAffixSelection affixes = version >= 2 ? readAffixes(in) : MobAffixSelection.empty();
         EntityBehaviorSelection behaviors = version >= 3 ? readBehaviors(in) : EntityBehaviorSelection.empty();
+        Optional<EntityEffectiveStatsSnapshot> effectiveStats = version >= 4
+            ? readEffectiveStats(in)
+            : Optional.empty();
 
         return new EntityScalingState(
             territory,
@@ -155,6 +182,7 @@ public final class EntityScalingStateCodec {
             variance,
             rarity,
             deterministicSeed,
+            effectiveStats,
             affixes,
             behaviors
         );
@@ -176,6 +204,28 @@ public final class EntityScalingStateCodec {
             keys.add(EntityBehaviorKey.of(readString(in)));
         }
         return new EntityBehaviorSelection(keys);
+    }
+
+    private static Optional<EntityEffectiveStatsSnapshot> readEffectiveStats(DataInputStream in) throws IOException {
+        if (!in.readBoolean()) return Optional.empty();
+        int count = readCount(in, MAX_EFFECTIVE_STATS, "effective stat");
+        if (count == 0) {
+            throw new IllegalArgumentException("persisted effective stat snapshot must not be empty");
+        }
+        HashMap<CanonicalStatKey, BigDecimal> values = new HashMap<>();
+        for (int i = 0; i < count; i++) {
+            CanonicalStatKey key = CanonicalStatKey.of(readString(in));
+            BigDecimal value;
+            try {
+                value = new BigDecimal(readString(in));
+            } catch (NumberFormatException exception) {
+                throw new IllegalArgumentException("invalid persisted effective stat value", exception);
+            }
+            if (values.putIfAbsent(key, value) != null) {
+                throw new IllegalArgumentException("duplicate persisted effective stat: " + key.serializedId());
+            }
+        }
+        return Optional.of(EntityEffectiveStatsSnapshot.of(values));
     }
 
     private static int readCount(DataInputStream in, int maximum, String label) throws IOException {
