@@ -18,7 +18,7 @@
 - `CanonicalPlayerQueryService.snapshot(...)` compõe a visão somente-leitura do envelope RPG completo.
 - `CoreProgressionQuerySnapshot` e `CanonicalPlayerSnapshot` são os tipos de projeção destinados a UI, scaling e adapters; consumidores não precisam conhecer attachments, codecs ou payloads de rede.
 - `CanonicalPlayerQueryServiceTest.snapshotDoesNotExposeLegacyProgressionAuthorities()` impede que `ProgressionState` ou `PassivePointLedger` voltem a aparecer como autoridade pública no snapshot canônico.
-- A fronteira NeoForge de consulta permanece `CanonicalPlayerQueryRuntime`, já protegida por `verify-canonical-player-runtime.py`: observação não materializa migration, não escreve attachments e não sincroniza rede como efeito colateral.
+- A fronteira NeoForge de consulta permanece `CanonicalPlayerQueryRuntime`, protegida por `verify-canonical-player-runtime.py`: observação não materializa migration persistida, não escreve attachments e não sincroniza rede como efeito colateral.
 
 ### Commands / mutations
 
@@ -42,6 +42,8 @@
 
 O mesmo verificador exige explicitamente as superfícies de query, mutation e snapshot acima e confirma que `CoreApiInvariantTest` continua fazendo parte da suíte core.
 
+Auditoria direta posterior também pesquisou os adapters de integração e não encontrou dependência em `ModAttachments`, `CanonicalPlayerAttachmentData`, `CanonicalPlayerState` ou `ProgressionState` como atalho de storage. O runtime observacional exposto ao lado NeoForge continua sendo `CanonicalPlayerQueryRuntime.query(ServerPlayer)`, que lê o envelope, projeta a inicialização em memória e retorna `CanonicalPlayerSnapshot` sem write/sync lateral.
+
 ## Cobertura de limites
 
 - `InfiniteProgressionFoundationTest`, `CharacterXpRollbackTest` e `CoreProgressionQueryServiceTest`: XP/level, grandes valores, regras incompatíveis e teto técnico.
@@ -51,6 +53,17 @@ O mesmo verificador exige explicitamente as superfícies de query, mutation e sn
 - `CanonicalPlayerQueryServiceTest`: snapshot canônico sem vazamento das autoridades de storage legadas.
 - `CoreApiInvariantTest`: IDs vazios, valores negativos essenciais, defensive copies e impossibilidade de mutar coleções públicas de mastery/classes/nodes/discoveries/attributes.
 
+## Evidência de integração e verificação
+
+- Implementação funcional consolidada pelo PR #131, head `9cfe75564686192b3c63d55ef4c9865b31aba79d`, mergeado na `main` como `fd2879c1c7375ab006cafb022f10bd8700f2da9c`.
+- O head funcional passou o RPG Skill Tree CI `33244812701` / run #1344 GREEN, além dos workflows Foundation/Compendium associados.
+- O pós-merge funcional em `main@fd2879c1c7375ab006cafb022f10bd8700f2da9c` passou o RPG Skill Tree CI `33244953339` / run #1346 GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, generated-data drift, NeoForge build, verificação do JAR e dedicated-server smoke.
+- A auditoria de fechamento foi executada depois dos fechamentos 01.01–01.04. O gate pós-fechamento do 01.04, `33262871523` / run #1407 em `main@845335058bbe8cd4f5e6f4c140bf4c8fd9f14063`, também terminou GREEN completo, confirmando que o conjunto do RPG Core permaneceu íntegro antes desta formalização final do Stage 01.
+
 ## Interpretação do acceptance
 
-Consumidores podem depender das projeções e serviços explícitos acima sem conhecer a representação persistida. A barreira de imports torna a direção de dependência verificável; os testes de snapshots e coleções tornam o contrato observacional imutável; e as mutation services concentram as mudanças de estado com validação fail-closed.
+Consumidores podem depender das projeções e serviços explícitos acima sem conhecer a representação persistida. A barreira de imports torna a direção de dependência verificável; os testes de snapshots e coleções tornam o contrato observacional imutável; as mutation services concentram as mudanças de estado com validação fail-closed; e a auditoria direta não encontrou vazamento de attachment/storage para adapters de integração.
+
+Mudanças futuras na forma de persistência podem permanecer confinadas à runtime/serializer boundary enquanto as superfícies `CoreProgressionQueryService`, `CanonicalPlayerQueryService`, snapshots e mutation services preservarem seus contratos.
+
+**Acceptance: satisfied.**
