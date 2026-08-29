@@ -10,6 +10,7 @@ public record EntityScalingState(
     long variance,
     Optional<MobRaritySelection> rarity,
     long deterministicSeed,
+    Optional<EntityEffectiveStatsSnapshot> effectiveStats,
     MobAffixSelection affixes,
     EntityBehaviorSelection behaviors
 ) {
@@ -17,6 +18,7 @@ public record EntityScalingState(
         Objects.requireNonNull(territory, "territory");
         Objects.requireNonNull(levelResolution, "levelResolution");
         Objects.requireNonNull(rarity, "rarity");
+        Objects.requireNonNull(effectiveStats, "effectiveStats");
         Objects.requireNonNull(affixes, "affixes");
         Objects.requireNonNull(behaviors, "behaviors");
 
@@ -46,6 +48,28 @@ public record EntityScalingState(
         }
     }
 
+    /** Source-compatible constructor for states created before effective-stat persistence existed. */
+    public EntityScalingState(
+        TerritoryKey territory,
+        EntityLevelResolution levelResolution,
+        long variance,
+        Optional<MobRaritySelection> rarity,
+        long deterministicSeed,
+        MobAffixSelection affixes,
+        EntityBehaviorSelection behaviors
+    ) {
+        this(
+            territory,
+            levelResolution,
+            variance,
+            rarity,
+            deterministicSeed,
+            Optional.empty(),
+            affixes,
+            behaviors
+        );
+    }
+
     /** Source-compatible constructor for states created before affix persistence existed. */
     public EntityScalingState(
         TerritoryKey territory,
@@ -60,6 +84,7 @@ public record EntityScalingState(
             variance,
             rarity,
             deterministicSeed,
+            Optional.empty(),
             MobAffixSelection.empty(),
             EntityBehaviorSelection.empty()
         );
@@ -80,6 +105,7 @@ public record EntityScalingState(
             variance,
             rarity,
             deterministicSeed,
+            Optional.empty(),
             affixes,
             EntityBehaviorSelection.empty()
         );

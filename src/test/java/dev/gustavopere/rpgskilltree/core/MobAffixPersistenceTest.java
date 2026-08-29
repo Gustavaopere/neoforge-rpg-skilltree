@@ -18,7 +18,7 @@ public final class MobAffixPersistenceTest {
     }
 
     private static void currentSchemaRoundTripsCanonicalAffixSelection() {
-        eq(3, EntityScalingStateCodec.CURRENT_VERSION);
+        eq(4, EntityScalingStateCodec.CURRENT_VERSION);
         EntityScalingState state = new EntityScalingState(
             TerritoryKey.of("minecraft:overworld", 7L, -4L),
             new EntityLevelResolution(
@@ -40,6 +40,7 @@ public final class MobAffixPersistenceTest {
 
         EntityScalingState decoded = EntityScalingStateCodec.decodeState(EntityScalingStateCodec.encode(state));
         eq(state, decoded);
+        eq(Optional.empty(), decoded.effectiveStats());
         eq(List.of(
             MobAffixKey.of("rpgskilltree:armored"),
             MobAffixKey.of("rpgskilltree:swift")
@@ -50,6 +51,7 @@ public final class MobAffixPersistenceTest {
         EntityScalingState decoded = EntityScalingStateCodec.decodeState(legacyV1Payload());
         eq(40L, decoded.entityLevel());
         eq(MobRarityKey.of("rpgskilltree:veteran"), decoded.rarity().orElseThrow().rarity());
+        eq(Optional.empty(), decoded.effectiveStats());
         eq(MobAffixSelection.empty(), decoded.affixes());
     }
 
@@ -68,6 +70,7 @@ public final class MobAffixPersistenceTest {
             Optional.empty(),
             42L
         );
+        eq(Optional.empty(), state.effectiveStats());
         eq(MobAffixSelection.empty(), state.affixes());
     }
 

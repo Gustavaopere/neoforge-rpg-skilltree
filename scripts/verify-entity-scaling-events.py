@@ -7,6 +7,7 @@ INITIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityS
 DECISION_FACTORY = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingDecisionRequestFactory.java"
 DECISION_INITIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingDecisionInitializer.java"
 CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingInitializerCatalog.java"
+EFFECTIVE_STATS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityEffectiveStatsRuntime.java"
 MOD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java"
 
 
@@ -34,6 +35,7 @@ initializer = read_required(INITIALIZER)
 decision_factory = read_required(DECISION_FACTORY)
 decision_initializer = read_required(DECISION_INITIALIZER)
 catalog = read_required(CATALOG)
+effective_stats = read_required(EFFECTIVE_STATS)
 mod = read_required(MOD)
 
 events_location = str(EVENTS.relative_to(ROOT))
@@ -41,6 +43,7 @@ initializer_location = str(INITIALIZER.relative_to(ROOT))
 decision_factory_location = str(DECISION_FACTORY.relative_to(ROOT))
 decision_initializer_location = str(DECISION_INITIALIZER.relative_to(ROOT))
 catalog_location = str(CATALOG.relative_to(ROOT))
+effective_stats_location = str(EFFECTIVE_STATS.relative_to(ROOT))
 mod_location = str(MOD.relative_to(ROOT))
 
 require(initializer, "EntityScalingState initialize(ServerLevel level, LivingEntity entity)", initializer_location)
@@ -53,14 +56,23 @@ require(catalog, "installDecisionFactory(EntityScalingDecisionRequestFactory req
 require(catalog, "new EntityScalingDecisionInitializer(requestFactory)", catalog_location)
 require(catalog, "clear()", catalog_location)
 
+require(effective_stats, "void refresh(LivingEntity entity, EntityScalingState state)", effective_stats_location)
+require(effective_stats, "instance.removeModifier(modifierId)", effective_stats_location)
+require(effective_stats, "addOrReplacePermanentModifier", effective_stats_location)
+require(effective_stats, "AttributeModifier.Operation.ADD_VALUE", effective_stats_location)
+require(effective_stats, '"rpgskilltree"', effective_stats_location)
+require(effective_stats, '"entity_scaling/" + statKey.path()', effective_stats_location)
+
 require(events, "@SubscribeEvent", events_location)
 require(events, "EntityJoinLevelEvent", events_location)
 require(events, "event.getLevel() instanceof ServerLevel", events_location)
 require(events, "event.getEntity() instanceof LivingEntity", events_location)
 require(events, "instanceof Player", events_location)
 require(events, "EntityScalingRuntime.current", events_location)
+require(events, "EntityEffectiveStatsRuntime.refresh(entity, existing.orElseThrow())", events_location)
 require(events, "EntityScalingInitializerCatalog.current", events_location)
 require(events, "EntityScalingRuntime.getOrInitialize", events_location)
+require(events, "EntityEffectiveStatsRuntime.refresh(entity, initialized)", events_location)
 
 # The join event may fire before the underlying chunk reaches FULL. Keep world threat/player scans
 # outside this adapter and behind the explicitly installed initializer contract.
@@ -70,10 +82,25 @@ for forbidden in ("EntityLevelService", "MobRarityService", ".getChunk(", ".getB
 require(mod, "NeoForge.EVENT_BUS.register(EntityScalingEvents.class);", mod_location)
 
 persisted = events.find("EntityScalingRuntime.current")
+persisted_refresh = events.find("EntityEffectiveStatsRuntime.refresh(entity, existing.orElseThrow())")
 catalog_lookup = events.find("EntityScalingInitializerCatalog.current")
 initialize = events.find("EntityScalingRuntime.getOrInitialize")
-if persisted < 0 or catalog_lookup < 0 or initialize < 0 or not (persisted < catalog_lookup < initialize):
-    print(f"ERROR: {events_location}: persisted state must be checked before initializer lookup and initialization")
+initialized_refresh = events.find("EntityEffectiveStatsRuntime.refresh(entity, initialized)")
+if (
+    persisted < 0
+    or persisted_refresh < 0
+    or catalog_lookup < 0
+    or initialize < 0
+    or initialized_refresh < 0
+    or not (persisted < persisted_refresh < catalog_lookup < initialize < initialized_refresh)
+):
+    print(
+        f"ERROR: {events_location}: persisted state must be reapplied before initializer lookup, "
+        "and newly initialized state must be applied after persistence"
+    )
     raise SystemExit(1)
 
-print("Entity scaling event validation: PASS (server-only join boundary + canonical decision initializer + persisted-state-first initialization verified)")
+print(
+    "Entity scaling event validation: PASS "
+    "(server-only join boundary + persisted Effective Stats reapplication + canonical initialization verified)"
+)
