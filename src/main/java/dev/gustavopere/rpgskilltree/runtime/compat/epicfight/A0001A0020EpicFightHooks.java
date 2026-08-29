@@ -19,12 +19,12 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
-import net.neoforged.bus.api.SubscribeEvent;
 import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.api.event.types.animation.AttackPhaseEndEvent;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
@@ -41,6 +41,7 @@ import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 /** Provider-native Epic Fight 21.17.3.1 bridge for exactly A0001-A0020. */
 public final class A0001A0020EpicFightHooks {
     public static final String SUPPORTED_VERSION_PREFIX = "21.17.3.1";
+    private static final long CRITICAL_CORRELATION_MILLIS = 100L;
 
     private static final String PRE_ID = "rpgskilltree:a0001_a0020/pre";
     private static final String POST_ID = "rpgskilltree:a0001_a0020/post";
@@ -50,6 +51,7 @@ public final class A0001A0020EpicFightHooks {
     private static final String TICK_ID = "rpgskilltree:a0001_a0020/tick";
 
     private static final WeakHashMap<EpicFightDamageSource, Map<String, PendingHit>> PENDING = new WeakHashMap<>();
+    private static final Map<String, RecentCriticalRoot> RECENT_CRITICAL_ROOTS = new HashMap<>();
     private static final AtomicLong ACTION_SEQUENCE = new AtomicLong();
     private static boolean registered;
 
@@ -70,6 +72,32 @@ public final class A0001A0020EpicFightHooks {
         registered = true;
     }
 
+    /** Canonical NeoForge critical stage; Epic Fight PRE reuses this root when both callbacks exist. */
+    @SubscribeEvent
+    public static void onCriticalHit(CriticalHitEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
+        LivingEntity target = event.getTarget();
+        if (!hostile(player, target)) return;
+        Optional<WeaponFamily> family = family(EpicFightCapabilities.getItemStackCapability(player.getMainHandItem()));
+        if (family.isEmpty()) return;
+        CombatPerkRanks ranks = A0001A0020RuntimeState.ranks(player);
+        double bonusChance = NotionCombatPerkRules.criticalChanceBonus(family.get(), ranks);
+        if (bonusChance <= 0.0D && !event.isCriticalHit()) return;
+
+        long now = now(player);
+        String actorId = A0001A0020RuntimeState.actorId(player);
+        String targetId = target.getUUID().toString();
+        String rootActionId = "neoforge-critical/" + player.level().getGameTime() + "/" + ACTION_SEQUENCE.incrementAndGet();
+        boolean providerCritical = event.isCriticalHit();
+        boolean critical = A0001A0020RuntimeState.critical().resolve(
+            actorId, rootActionId, providerCritical, bonusChance, now);
+        if (critical && !providerCritical) {
+            event.setDamageMultiplier(Math.max(1.5F, event.getDamageMultiplier()));
+        }
+        event.setCriticalHit(critical);
+        rememberRecentCriticalRoot(actorId, targetId, rootActionId, critical, now);
+    }
+
     private static void onDamagePre(DealDamageEvent.Pre event) {
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
         LivingEntity target = event.getTarget();
@@ -85,11 +113,11 @@ public final class A0001A0020EpicFightHooks {
 
         String targetId = target.getUUID().toString();
         long now = now(player);
-        String rootActionId = rootActionId(source, targetId, now);
+        RootResolution root = rootAction(player, source, targetId, now);
         boolean critical = A0001A0020RuntimeState.critical().resolve(
             A0001A0020RuntimeState.actorId(player),
-            rootActionId,
-            false,
+            root.rootActionId,
+            root.providerCritical,
             NotionCombatPerkRules.criticalChanceBonus(family.get(), ranks),
             now
         );
@@ -103,7 +131,7 @@ public final class A0001A0020EpicFightHooks {
         A0001A0020CombatPolicy.HitFacts facts = new A0001A0020CombatPolicy.HitFacts(
             A0001A0020RuntimeState.actorId(player),
             targetId,
-            rootActionId,
+            root.rootActionId,
             family.get(),
             true,
             true,
@@ -120,7 +148,7 @@ public final class A0001A0020EpicFightHooks {
         var modifiers = A0001A0020CombatPolicy.beforeHit(facts, ranks, A0001A0020RuntimeState.state());
 
         double damageMultiplier = modifiers.damageMultiplier();
-        if (critical) damageMultiplier *= 1.5D;
+        if (critical && !root.criticalMultiplierAlreadyApplied) damageMultiplier *= 1.5D;
         if (Double.compare(damageMultiplier, 1.0D) != 0) {
             source.attachDamageModifier(ValueModifier.multiplier((float)damageMultiplier));
         }
@@ -134,7 +162,9 @@ public final class A0001A0020EpicFightHooks {
             source.attachImpactModifier(ValueModifier.multiplier((float)impact));
         }
 
-        remember(source, targetId, new PendingHit(rootActionId, family.get(), idealSpearRange, critical, modifiers.suppressMomentumGain()));
+        remember(source, targetId, new PendingHit(
+            root.rootActionId, family.get(), idealSpearRange, critical,
+            root.criticalMultiplierAlreadyApplied, modifiers.suppressMomentumGain()));
     }
 
     private static void onDamagePost(DealDamageEvent.Post event) {
@@ -231,28 +261,31 @@ public final class A0001A0020EpicFightHooks {
 
     @SubscribeEvent
     public static void onDeath(LivingDeathEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) A0001A0020RuntimeState.clear(player);
+        if (event.getEntity() instanceof ServerPlayer player) clearPlayer(player);
     }
 
     @SubscribeEvent
     public static void onLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) A0001A0020RuntimeState.clear(player);
+        if (event.getEntity() instanceof ServerPlayer player) clearPlayer(player);
     }
 
     @SubscribeEvent
     public static void onDimensionChange(PlayerEvent.PlayerChangedDimensionEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) A0001A0020RuntimeState.clear(player);
+        if (event.getEntity() instanceof ServerPlayer player) clearPlayer(player);
     }
 
     @SubscribeEvent
     public static void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) A0001A0020RuntimeState.clear(player);
+        if (event.getEntity() instanceof ServerPlayer player) clearPlayer(player);
     }
 
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
         A0001A0020RuntimeState.clearAll();
-        synchronized (A0001A0020EpicFightHooks.class) { PENDING.clear(); }
+        synchronized (A0001A0020EpicFightHooks.class) {
+            PENDING.clear();
+            RECENT_CRITICAL_ROOTS.clear();
+        }
     }
 
     private static Optional<WeaponFamily> family(CapabilityItem capability) {
@@ -274,11 +307,51 @@ public final class A0001A0020EpicFightHooks {
         return target instanceof Enemy || target instanceof Player;
     }
 
-    private static synchronized String rootActionId(EpicFightDamageSource source, String targetId, long nowMillis) {
+    private static synchronized RootResolution rootAction(
+        ServerPlayer player,
+        EpicFightDamageSource source,
+        String targetId,
+        long nowMillis
+    ) {
         Map<String, PendingHit> byTarget = PENDING.computeIfAbsent(source, ignored -> new HashMap<>());
         PendingHit existing = byTarget.get(targetId);
-        if (existing != null) return existing.rootActionId;
-        return "epicfight/" + nowMillis + "/" + ACTION_SEQUENCE.incrementAndGet();
+        if (existing != null) {
+            return new RootResolution(existing.rootActionId, existing.critical, existing.criticalMultiplierAlreadyApplied);
+        }
+        String actorId = A0001A0020RuntimeState.actorId(player);
+        RecentCriticalRoot correlated = claimRecentCriticalRoot(actorId, targetId, nowMillis);
+        if (correlated != null) {
+            return new RootResolution(correlated.rootActionId, correlated.critical, true);
+        }
+        return new RootResolution(
+            "epicfight/" + nowMillis + "/" + ACTION_SEQUENCE.incrementAndGet(), false, false);
+    }
+
+    private static synchronized void rememberRecentCriticalRoot(
+        String actorId,
+        String targetId,
+        String rootActionId,
+        boolean critical,
+        long nowMillis
+    ) {
+        pruneRecentCriticalRoots(nowMillis);
+        RECENT_CRITICAL_ROOTS.put(
+            criticalKey(actorId, targetId),
+            new RecentCriticalRoot(rootActionId, critical, Math.addExact(nowMillis, CRITICAL_CORRELATION_MILLIS))
+        );
+    }
+
+    private static synchronized RecentCriticalRoot claimRecentCriticalRoot(String actorId, String targetId, long nowMillis) {
+        pruneRecentCriticalRoots(nowMillis);
+        return RECENT_CRITICAL_ROOTS.remove(criticalKey(actorId, targetId));
+    }
+
+    private static void pruneRecentCriticalRoots(long nowMillis) {
+        RECENT_CRITICAL_ROOTS.entrySet().removeIf(entry -> entry.getValue().expiresAtMillis <= nowMillis);
+    }
+
+    private static String criticalKey(String actorId, String targetId) {
+        return actorId + '\u0000' + targetId;
     }
 
     private static synchronized void remember(EpicFightDamageSource source, String targetId, PendingHit pending) {
@@ -293,6 +366,14 @@ public final class A0001A0020EpicFightHooks {
         return pending;
     }
 
+    private static synchronized void clearPlayer(ServerPlayer player) {
+        String actorId = A0001A0020RuntimeState.actorId(player);
+        A0001A0020RuntimeState.clear(player);
+        String prefix = actorId + '\u0000';
+        RECENT_CRITICAL_ROOTS.keySet().removeIf(key -> key.startsWith(prefix));
+        PENDING.entrySet().removeIf(entry -> entry.getKey().getEntity() == player);
+    }
+
     private static long now(ServerPlayer player) {
         return Math.multiplyExact(player.level().getGameTime(), 50L);
     }
@@ -301,11 +382,24 @@ public final class A0001A0020EpicFightHooks {
         return !(player instanceof FakePlayer) && !player.isCreative() && !player.isSpectator();
     }
 
+    private record RootResolution(
+        String rootActionId,
+        boolean providerCritical,
+        boolean criticalMultiplierAlreadyApplied
+    ) {}
+
+    private record RecentCriticalRoot(
+        String rootActionId,
+        boolean critical,
+        long expiresAtMillis
+    ) {}
+
     private record PendingHit(
         String rootActionId,
         WeaponFamily family,
         boolean idealSpearRange,
         boolean critical,
+        boolean criticalMultiplierAlreadyApplied,
         boolean suppressMomentumGain
     ) {}
 }
