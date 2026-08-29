@@ -5,7 +5,8 @@ import java.util.Set;
 /** Regression contract: outer-tree weapon gateways are main-tree node gates, not specialist-state ids. */
 public final class CombatPerkGatewayContractTest {
     private static final Set<String> KNOWN_GATEWAYS = Set.of(
-        "epic_sword", "epic_axe", "epic_spear", "epic_dagger", "epic_hammer", "combat_mace", "combat_scythe"
+        "epic_sword", "epic_axe", "epic_spear", "epic_dagger", "epic_hammer",
+        "combat_mace", "combat_scythe", "epic_bow", "epic_crossbow", "combat_fist"
     );
 
     private CombatPerkGatewayContractTest() {}
