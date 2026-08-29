@@ -12,6 +12,8 @@ public final class CompendiumBrowserModelTest {
     public static void main(String[] args) {
         virtualizesLargeResultSets();
         composesSearchAndFilters();
+        keyboardSelectionTracksViewportAndOpensEntry();
+        queryAndFilterResetKeyboardSelection();
         openingAndBackPreserveListState();
         queryAndFilterChangesResetScroll();
         System.out.println("CompendiumBrowserModelTest: PASS");
@@ -60,6 +62,56 @@ public final class CompendiumBrowserModelTest {
 
         eq(List.of(moddedEagle), model.viewport(10).entries());
         eq(1, model.totalMatches());
+    }
+
+    private static void keyboardSelectionTracksViewportAndOpensEntry() {
+        List<CompendiumClientEntry> entries = new ArrayList<>();
+        for (int i = 0; i < 20; i++) entries.add(entry(i, "minecraft", true, false));
+        CompendiumBrowserModel model = new CompendiumBrowserModel(entries);
+
+        isTrue(model.selectedEntry().isEmpty());
+        model.moveSelection(1, 5);
+        eq(entries.get(0), model.selectedEntry().orElseThrow());
+        eq(0, model.viewport(5).firstIndex());
+
+        for (int i = 0; i < 8; i++) model.moveSelection(1, 5);
+        eq(entries.get(8), model.selectedEntry().orElseThrow());
+        eq(4, model.viewport(5).firstIndex());
+
+        model.moveSelection(-2, 5);
+        eq(entries.get(6), model.selectedEntry().orElseThrow());
+        eq(4, model.viewport(5).firstIndex());
+
+        model.openSelectedEntry();
+        eq(entries.get(6).id(), model.openEntry().orElseThrow());
+        model.backToList();
+        eq(entries.get(6), model.selectedEntry().orElseThrow());
+    }
+
+    private static void queryAndFilterResetKeyboardSelection() {
+        List<CompendiumClientEntry> entries = List.of(
+            namedEntry("minecraft:wolf", "Lobo", "minecraft", true, false),
+            namedEntry("example:fox", "Raposa", "example", true, false)
+        );
+        CompendiumBrowserModel model = new CompendiumBrowserModel(entries);
+
+        model.moveSelection(1, 5);
+        isTrue(model.selectedEntry().isPresent());
+        model.setQuery("Raposa");
+        isTrue(model.selectedEntry().isEmpty());
+
+        model.moveSelection(1, 5);
+        isTrue(model.selectedEntry().isPresent());
+        model.setFilter(new CompendiumFilterState(
+            Set.of(), Set.of(), Set.of("example"), Set.of(), Set.of(), Set.of(),
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            Set.of()
+        ));
+        isTrue(model.selectedEntry().isEmpty());
     }
 
     private static void openingAndBackPreserveListState() {
