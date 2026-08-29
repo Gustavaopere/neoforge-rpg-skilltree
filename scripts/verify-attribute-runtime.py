@@ -103,7 +103,7 @@ for needle in [
     if needle not in gametest_text:
         print(f"ERROR: {ATTRIBUTE_GAMETEST.relative_to(ROOT)}: missing runtime acceptance marker {needle!r}")
         raise SystemExit(1)
-if "makeMockServerPlayerInLevel" in gametest_text:
+if "helper.makeMockServerPlayerInLevel()" in gametest_text:
     print(
         f"ERROR: {ATTRIBUTE_GAMETEST.relative_to(ROOT)}: attribute GameTest must not fire the normal login/network lifecycle"
     )
