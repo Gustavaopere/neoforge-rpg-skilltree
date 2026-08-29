@@ -87,6 +87,9 @@ public final class RelevantPlayerCandidateRuntime {
                 source.candidates(level, encounter, searchPolicy),
                 "party candidate source result"
             ));
+            if (party.size() > searchPolicy.maxCandidates()) {
+                throw new IllegalArgumentException("party candidate source exceeded maxCandidates");
+            }
             merged = RelevantPlayerCandidateMerger.merge(
                 spatial.candidates(),
                 party,
