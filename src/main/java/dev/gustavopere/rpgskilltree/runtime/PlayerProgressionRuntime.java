@@ -109,13 +109,38 @@ public final class PlayerProgressionRuntime {
         return result;
     }
 
-    /** Compatibility entry point for trusted server callers that do not carry a client request id. */
+    /**
+     * Trusted server-side compatibility entry point. Client packets do not use this path;
+     * they use the request-id overload below so retransmission can be rejected idempotently.
+     */
     public static boolean purchaseNode(ServerPlayer player, ResourceLocation nodeId) {
-        return purchaseNode(player, nodeId, "server:" + UUID.randomUUID()).accepted();
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(nodeId);
+        var definition = TreeRuleCatalog.definition(nodeId);
+        if (definition.isEmpty()) return false;
+        try {
+            ProgressionState current = get(player);
+            boolean requirementsSatisfied = NodeAccessResolver.satisfied(
+                current,
+                TreeRuleCatalog.requirement(nodeId),
+                CharacterLevelCurve.defaultCurve()
+            );
+            ProgressionState next = ProgressionService.purchaseNode(
+                current,
+                TreeRuleCatalog.graph(),
+                definition.get(),
+                requirementsSatisfied
+            );
+            next = reconcileDerivedState(next);
+            set(player, next);
+            return true;
+        } catch (IllegalArgumentException rejectedPurchase) {
+            return false;
+        }
     }
 
     /**
-     * Server-authoritative purchase boundary. The client supplies only node identity and
+     * Server-authoritative network purchase boundary. The client supplies only node identity and
      * an idempotency key; costs, requirements, topology and ranks are resolved server-side.
      */
     public static NodePurchaseResult purchaseNode(
