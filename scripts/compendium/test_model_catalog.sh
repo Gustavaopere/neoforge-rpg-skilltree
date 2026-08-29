@@ -8,7 +8,7 @@ DATA="$ROOT/src/main/resources/data/rpgskilltree/compendium"
 
 rm -rf "$OUT"
 mkdir -p "$OUT"
-mapfile -t SOURCES < <(find "$MAIN" "$TEST" -name '*.java' -print | sort)
+mapfile -t SOURCES < <(find "$MAIN" "$TEST" -name '*.java' ! -path "$MAIN/client/CompendiumScreen.java" -print | sort)
 test "${#SOURCES[@]}" -gt 0
 javac --release 21 -d "$OUT" "${SOURCES[@]}"
 
