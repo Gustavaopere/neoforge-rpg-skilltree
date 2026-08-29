@@ -1,0 +1,5 @@
+{
+  "type": "rpgskilltree:reward_risk",
+  "conditions": [],
+  "max_extra_stacks_per_input": 16
+}

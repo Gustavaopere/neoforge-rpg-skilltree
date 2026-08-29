@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -7,6 +8,7 @@ SERIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntitySc
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingRuntime.java"
 STATE = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/core/EntityScalingState.java"
 BOOTSTRAP = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/core/EntityScalingBootstrap.java"
+CORE_TEST_CLASSES = ROOT / "build/core-test-classes"
 
 
 def read_required(path: Path) -> str:
@@ -76,4 +78,16 @@ if runtime.count("entity.setData(") != 1:
     print(f"ERROR: {runtime_location}: getOrInitialize must have exactly one setData call")
     raise SystemExit(1)
 
-print("World scaling runtime validation: PASS (auditable persistent state + idempotent attachment runtime verified)")
+for test_class in (
+    "dev.gustavopere.rpgskilltree.core.WorldScalingMultiplayerAcceptanceTest",
+    "dev.gustavopere.rpgskilltree.core.WorldScalingPerformanceBenchmarkTest",
+):
+    subprocess.run(
+        ["java", "-cp", str(CORE_TEST_CLASSES), test_class],
+        check=True,
+    )
+
+print(
+    "World scaling runtime validation: PASS "
+    "(auditable persistent state + idempotent attachment runtime + 02.05 multiplayer/performance acceptance verified)"
+)
