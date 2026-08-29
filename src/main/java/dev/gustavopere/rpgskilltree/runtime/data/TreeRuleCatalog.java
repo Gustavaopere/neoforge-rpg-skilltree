@@ -34,6 +34,25 @@ public final class TreeRuleCatalog {
         }
     }
 
+    static final class PreparedSnapshot {
+        private final Map<ResourceLocation, NodePurchaseDefinition> definitions;
+        private final Map<ResourceLocation, NodeAccessRequirement> requirements;
+        private final List<NodeSpecializationGrant> specializationGrants;
+        private final SkillGraph graph;
+
+        private PreparedSnapshot(
+            Map<ResourceLocation, NodePurchaseDefinition> definitions,
+            Map<ResourceLocation, NodeAccessRequirement> requirements,
+            List<NodeSpecializationGrant> specializationGrants,
+            SkillGraph graph
+        ) {
+            this.definitions = Map.copyOf(definitions);
+            this.requirements = Map.copyOf(requirements);
+            this.specializationGrants = List.copyOf(specializationGrants);
+            this.graph = Objects.requireNonNull(graph);
+        }
+    }
+
     private static volatile Map<ResourceLocation, NodePurchaseDefinition> definitions = Map.of();
     private static volatile Map<ResourceLocation, NodeAccessRequirement> requirements = Map.of();
     private static volatile List<NodeSpecializationGrant> specializationGrants = List.of();
@@ -42,6 +61,10 @@ public final class TreeRuleCatalog {
     private TreeRuleCatalog() {}
 
     public static synchronized void replace(List<NodeRule> rules) {
+        publish(prepare(rules));
+    }
+
+    static PreparedSnapshot prepare(List<NodeRule> rules) {
         Objects.requireNonNull(rules);
         Map<ResourceLocation, NodePurchaseDefinition> nextDefinitions = new HashMap<>();
         Map<ResourceLocation, NodeAccessRequirement> nextRequirements = new HashMap<>();
@@ -51,6 +74,7 @@ public final class TreeRuleCatalog {
         rules.forEach(rule -> knownIds.add(rule.id()));
 
         for (NodeRule rule : rules) {
+            Objects.requireNonNull(rule, "node rule");
             if (nextDefinitions.put(rule.id(), rule.definition()) != null) {
                 throw new IllegalArgumentException("duplicate node rule: " + rule.id());
             }
@@ -67,6 +91,15 @@ public final class TreeRuleCatalog {
                     throw new IllegalArgumentException("node cannot require itself: " + rule.id());
                 }
             }
+            for (String requiredNode : rule.requirement().requiredNodeRanks().keySet()) {
+                ResourceLocation requiredId = ResourceLocation.parse(requiredNode);
+                if (!knownIds.contains(requiredId)) {
+                    throw new IllegalArgumentException("unknown ranked required node: " + rule.id() + " -> " + requiredId);
+                }
+                if (requiredId.equals(rule.id())) {
+                    throw new IllegalArgumentException("node cannot require its own rank: " + rule.id());
+                }
+            }
             for (ResourceLocation neighbor : rule.neighbors()) {
                 if (!knownIds.contains(neighbor)) {
                     throw new IllegalArgumentException("unknown node rule neighbor: " + rule.id() + " -> " + neighbor);
@@ -78,10 +111,20 @@ public final class TreeRuleCatalog {
             }
         }
 
-        definitions = Map.copyOf(nextDefinitions);
-        requirements = Map.copyOf(nextRequirements);
-        specializationGrants = List.copyOf(nextSpecializationGrants);
-        graph = SkillGraph.undirected(new ArrayList<>(nextEdges));
+        return new PreparedSnapshot(
+            nextDefinitions,
+            nextRequirements,
+            nextSpecializationGrants,
+            SkillGraph.undirected(new ArrayList<>(nextEdges))
+        );
+    }
+
+    static synchronized void publish(PreparedSnapshot snapshot) {
+        Objects.requireNonNull(snapshot, "snapshot");
+        definitions = snapshot.definitions;
+        requirements = snapshot.requirements;
+        specializationGrants = snapshot.specializationGrants;
+        graph = snapshot.graph;
     }
 
     public static Optional<NodePurchaseDefinition> definition(ResourceLocation nodeId) {
