@@ -81,7 +81,7 @@ final class NodePurchaseMutationServiceJUnitTest {
     }
 
     @Test
-    void resultExposesStableReadableReasonKey() {
+    void resultExposesStableReadableReasonKeyAndFallback() {
         NodePurchaseResult result = NodePurchaseMutationService.purchase(
             ProgressionState.empty(),
             GRAPH,
@@ -89,6 +89,7 @@ final class NodePurchaseMutationServiceJUnitTest {
             true
         );
         assertEquals("purchase.rpgskilltree.insufficient_points", result.messageKey());
+        assertEquals("Not enough passive points for this purchase.", result.fallbackMessage());
     }
 
     private static ProgressionState withPoints(int points) {
