@@ -20,11 +20,13 @@ Fechamento do Stage 10.05 auditado contra `main@33360ba2a44148ddce2d4f8c82506698
 
 Fechamento funcional do Stage 10.06 auditado contra `main@68f694e98c068f3274cd1ecb6bd7588951833fb5`, após integração do PR #88. Os CIs pós-merge `33220942187` / Compendium Flora #35, `33220942179` / Compendium Entities #101, `33220942213` / Compendium Discovery #178 e `33220942238` / RPG Skill Tree #1061 fecharam GREEN; o CI completo incluiu todos os validators, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final do commit.
 
+Fechamento do Stage 08.01 auditado contra `main@2b8e5d10b70704598c0f175a3a9bf1ad0af5586e`, após integração dos PRs #97 e #98. O CI da fundação quest-facing `33225421326` e o CI de especializações/versionamento `33227098892` fecharam GREEN completos, ambos com NeoForge build, verificação do JAR e dedicated-server smoke; os workflows Compendium associados também fecharam GREEN.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**12 / 75 subplanos concluídos formalmente.**
+**13 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `01-rpg-core/✅-01-player-state.md`
@@ -32,6 +34,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
 - `06-integrations/✅-05-goety-malum-eidolon.md`
+- `08-quests-progression-hooks/✅-01-public-query-api.md`
 - `10-compendio-natural/✅-01-proveniencia-licencas.md`
 - `10-compendio-natural/✅-02-inventario-modpack.md`
 - `10-compendio-natural/✅-03-modelo-dados-identidade.md`
@@ -53,10 +56,10 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 05 Combat & Magic Hooks | 0 | 6 | EM ANDAMENTO |
 | 06 Integrations | 2 | 9 | EM ANDAMENTO |
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
-| 08 Quest & Progression Hooks | 0 | 6 | EM ANDAMENTO / implementação paralela |
+| 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 6 | 15 | EM ANDAMENTO |
-| **Total** | **12** | **75** | |
+| **Total** | **13** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -94,7 +97,7 @@ Loaders, packets e UI já existem, mas o acceptance final ainda não está satis
 
 ### 08 — Quest & Progression Hooks
 
-O core possui peças reutilizáveis de query/reward/idempotency, mas a API quest-facing completa, condições data-driven, adapters e authoring diagnostics ainda não foram formalmente fechados e integrados como estágio concluído.
+`✅-01-public-query-api.md` está fechado: `RpgQuestProgressionApi` fornece snapshot imutável/versionado e condições read-only para level/XP/points, perks, classes, masteries, especializações e attributes, com IDs ausentes resolvidos de forma fail-closed e sem exposição do persistence layer. Os subplanos `02-progression-rewards`, `03-data-driven-conditions`, `04-idempotency-ledger`, `05-ftbquests-npc-adapters` e `06-authoring-diagnostics` continuam abertos e devem ser fechados separadamente contra seus próprios Acceptances.
 
 ### 09 — Hardening & Release
 
@@ -106,7 +109,7 @@ Nenhum gate final pode ser fechado enquanto existirem blockers de migração, co
 
 ## Evidência de regressão atual
 
-O fechamento mais recente do Stage 10.06 foi auditado em `main@68f694e98c068f3274cd1ecb6bd7588951833fb5`; CI `33220942187` / Compendium Flora #35, CI `33220942179` / Compendium Entities #101, CI `33220942213` / Compendium Discovery #178 e CI `33220942238` / RPG Skill Tree #1061 passaram os contratos do Compêndio, Core tests, validators RPG, generated-data drift/diff sanity, NeoForge build, verificação do JAR e dedicated-server smoke. O CI completo também publicou o artefato e o status final do commit com sucesso.
+O fechamento mais recente do Stage 08.01 foi auditado em `main@2b8e5d10b70704598c0f175a3a9bf1ad0af5586e`. A PR #97 passou RPG Skill Tree CI `33225421326` e a PR #98 passou RPG Skill Tree CI `33227098892`; ambos incluíram Core tests/validators, NeoForge build, verificação do JAR e dedicated-server smoke. Os workflows Compendium Discovery/Flora/Entities associados às duas integrações também passaram.
 
 ## Convenção
 
