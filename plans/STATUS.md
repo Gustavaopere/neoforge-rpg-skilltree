@@ -4,6 +4,8 @@
 
 Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos`, `10.07 — Loot, dieta, reprodução e ecologia` e `10.08 — Biomas, estruturas e dimensões` foram implementados, validados, integrados e auditados.
 
+Planejamento do Stage 11 adicionado em **2026-08-29** pelo PR #188. O estágio possui **15 subplanos**, todos ainda abertos; por isso a base global de planejamento passa de 75 para **90 subplanos**, sem aumentar a quantidade concluída.
+
 Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
 Fechamento do Stage 10.01 auditado contra `main@b4d84e9078b27349cc691ec2875574ff67246101`, com CI pós-merge `33187232908` / run #755 GREEN completo.
@@ -44,13 +46,13 @@ Fechamento do Stage 01.05 auditado sobre a implementação integrada pelo PR #13
 
 Fechamento dos Stages 02.03, 02.04 e 02.05 integrado em `main@7cfa1e988c81619ce8209a39b330a7b181785a88`, após o acceptance funcional de multiplayer/performance já ter sido integrado em `main@98c5f33952559ea9eea059169b7f486837fc20f1`. O PR docs-only #174 passou o RPG Skill Tree CI `33272133374` / run #1605 GREEN completo antes do merge; o CI pós-merge `33272264027` / run #1617 repetiu Core, JUnit 5, todos os NeoForge GameTests, validators, build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final em GREEN.
 
-Reconciliação do Stage 03 confirma que `✅-01-data-schema-loaders.md` e `✅-02-graph-layout-validation.md` já estão materializados na `main`; seus heads funcionais `4a10cc875dc95b04474b85e00b4645fd3340be04` e `f641e99e87882575705b88b21fa68d582a1f9db8` passaram respectivamente os RPG Skill Tree CI `33275095434` / run #1676 e `33278390140` / run #1700 em GREEN completo. O fechamento do Stage 03.03 é integrado pelo PR #186: após quatro ciclos TDD RED, o head funcional `3b1d01a8829d3c99dc8b242e8ab538e46046eceb` passou o RPG Skill Tree CI `33280107469` / run #1728 GREEN completo, incluindo Core, JUnit 5, todos os 11 NeoForge GameTests, validators, NeoForge build, verificação do JAR e dedicated-server smoke; os workflows Foundation/Compendium associados também fecharam GREEN.
+Reconciliação do Stage 03 confirma que `✅-01-data-schema-loaders.md` e `✅-02-graph-layout-validation.md` já estão materializados na `main`; seus heads funcionais `4a10cc875dc95b04474b85e00b4645fd3340be04` e `f641e99e87882575705b88b21fa68d582a1f9db8` passaram respectivamente os RPG Skill Tree CI `33275095434` / run #1676 e `33278390140` / run #1700 em GREEN completo. O fechamento do Stage 03.03 foi integrado pela PR #189 no merge `efe45b9e5ee15fd37169086ef5e17887e98d4059`; a PR #186 preserva o histórico de implementação/TDD e foi reconhecida pelo GitHub como merged quando o mesmo head entrou na `main`. Após quatro ciclos TDD RED, o head funcional `3b1d01a8829d3c99dc8b242e8ab538e46046eceb` passou o RPG Skill Tree CI `33280107469` / run #1728 GREEN completo; o head final `cde8b5dd0c0e19e91aa528f45bf227fcb0ecc1b3` passou novamente os CIs #1732 e #1737 em GREEN completo, incluindo Core, JUnit 5, todos os 11 NeoForge GameTests, validators, NeoForge build, verificação do JAR e dedicated-server smoke; os workflows Foundation/Compendium associados também fecharam GREEN.
 
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**30 / 75 subplanos concluídos formalmente.**
+**30 / 90 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -100,7 +102,8 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
-| **Total** | **30** | **75** | |
+| 11 Itemização & Progressão de Equipamentos | 0 | 15 | PLANEJADO |
+| **Total** | **30** | **90** | |
 
 ## Por que os demais continuam abertos
 
@@ -154,9 +157,13 @@ O 10.08 adicionou providers de `BIOME`, `STRUCTURE` e `DIMENSION` com identidade
 
 A materialização do snapshot completo da instância do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `09-ui-modelo3d-notas.md`.
 
+### 11 — Itemização e Progressão de Equipamentos
+
+Os 15 subplanos adicionados pelo PR #188 permanecem abertos. O estágio cobre invariantes de domínio, classificação universal de equipamentos, identidade persistente sem reroll, ranks/Poder do Item, schema e geração de Prefixos/Sufixos/Infixos, runtime de modificadores, loot/craft/mobs, integrações Apotheosis/Apothic, Iron's/Ars, Create/tech/Curios, salvaging, localização/UI pt-BR, migração de mundos e hardening/performance. Nenhum desses itens é contado como concluído até receber `✅-` após implementação, validação e integração.
+
 ## Evidência de regressão atual
 
-O fechamento funcional mais recente desta reconciliação é Stage 03.03 no head `3b1d01a8829d3c99dc8b242e8ab538e46046eceb`: o RPG Skill Tree CI `33280107469` / run #1728 fechou GREEN completo, incluindo Core, JUnit 5, todos os 11 NeoForge GameTests, validators, drift, build, JAR e dedicated-server smoke. A mesma reconciliação incorpora os fechamentos 03.01 e 03.02 já materializados na `main`; os fechamentos anteriores de 01.04/01.05 e 02.01–02.05 permanecem preservados pelas mesmas matrizes de regressão.
+O fechamento mais recente integrado é Stage 03.03 em `main@efe45b9e5ee15fd37169086ef5e17887e98d4059`. O head final `cde8b5dd0c0e19e91aa528f45bf227fcb0ecc1b3` passou o RPG Skill Tree CI `33280593275` / run #1737 GREEN completo no merge-ref corrente, incluindo Core, JUnit 5, todos os 11 NeoForge GameTests, validators, drift, build, JAR e dedicated-server smoke; todos os oito workflows Foundation/Compendium associados também fecharam GREEN. A mesma reconciliação incorpora os fechamentos 03.01 e 03.02 já materializados na `main`; os fechamentos anteriores de 01.04/01.05 e 02.01–02.05 permanecem preservados pelas mesmas matrizes de regressão.
 
 ## Convenção
 
