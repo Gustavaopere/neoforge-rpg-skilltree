@@ -1,14 +1,17 @@
 package dev.gustavopere.rpgskilltree.core;
 
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-/** Acquisition topology/gates for the currently closed A0001-A0080 range. */
+/** Acquisition topology/gates for the currently closed A0001-A0100 range. */
 public final class CombatPerkTreeModel {
     public static final String MARTIAL_GATEWAY_NODE = "rpgskilltree:martial_000";
+    public static final String ARCANE_GATEWAY_NODE = "rpgskilltree:arcane_000";
+    public static final String OCCULT_GATEWAY_NODE = "rpgskilltree:occult_000";
     public static final String AGILITY_GATEWAY_NODE = "rpgskilltree:agility_000";
     public static final String AGILITY_DODGE_NODE = "rpgskilltree:agility_002";
     public static final String VITALITY_GATEWAY_NODE = "rpgskilltree:vitality_000";
@@ -55,14 +58,15 @@ public final class CombatPerkTreeModel {
         family(map, 55, 60, "combat_fist", 8, "combat:fist", 60, 60,
             new String[][]{{"A0055","A0056"},{"A0055","A0057"},{"A0057","A0058"},{"A0056","A0059"},{"A0058","A0059"},{"A0058","A0060"},{"A0059","A0060"}});
         martialFoundations(map);
+        sustainAndVitality(map);
         return Map.copyOf(map);
     }
 
     private static void family(Map<String, Node> target, int first, int last, String gatewayId,
                                int rootLevel, String masteryKey, int rootMastery, int terminalNumber,
                                String[][] edges) {
-        Map<String, java.util.LinkedHashSet<String>> adjacency = new LinkedHashMap<>();
-        for (int i = first; i <= last; i++) adjacency.put(code(i), new java.util.LinkedHashSet<>());
+        Map<String, LinkedHashSet<String>> adjacency = new LinkedHashMap<>();
+        for (int i = first; i <= last; i++) adjacency.put(code(i), new LinkedHashSet<>());
         for (String[] edge : edges) {
             adjacency.get(edge[0]).add(edge[1]);
             adjacency.get(edge[1]).add(edge[0]);
@@ -85,8 +89,8 @@ public final class CombatPerkTreeModel {
     }
 
     private static void martialFoundations(Map<String, Node> target) {
-        Map<String, java.util.LinkedHashSet<String>> adjacency = new LinkedHashMap<>();
-        for (int i = 61; i <= 80; i++) adjacency.put(code(i), new java.util.LinkedHashSet<>());
+        Map<String, LinkedHashSet<String>> adjacency = new LinkedHashMap<>();
+        for (int i = 61; i <= 80; i++) adjacency.put(code(i), new LinkedHashSet<>());
         for (int i = 61; i <= 80; i++) {
             String child = code(i);
             NotionCombatPerkCatalog.definition(child).orElseThrow().dependencies().keySet().forEach(parent -> {
@@ -114,11 +118,82 @@ public final class CombatPerkTreeModel {
         }
     }
 
+    private static void sustainAndVitality(Map<String, Node> target) {
+        Map<String, LinkedHashSet<String>> adjacency = new LinkedHashMap<>();
+        for (int i = 81; i <= 100; i++) adjacency.put(code(i), new LinkedHashSet<>());
+
+        for (int i = 81; i <= 100; i++) {
+            String child = code(i);
+            for (String parent : NotionCombatPerkCatalog.definition(child).orElseThrow().dependencies().keySet()) {
+                if (adjacency.containsKey(parent)) {
+                    adjacency.get(parent).add(child);
+                    adjacency.get(child).add(parent);
+                } else if (target.containsKey(parent)) {
+                    adjacency.get(child).add(parent);
+                    addExistingNeighbor(target, parent, child);
+                }
+            }
+        }
+
+        for (int i = 81; i <= 100; i++) {
+            String perk = code(i);
+            CombatPerkDefinition definition = NotionCombatPerkCatalog.definition(perk).orElseThrow();
+            LinkedHashMap<String,Integer> gates = dependencyRanksOnly(definition.dependencies());
+            String gatewayId;
+
+            if (perk.equals("A0081") || perk.equals("A0082") || perk.equals("A0087")) {
+                gates.put(MARTIAL_GATEWAY_NODE, 1);
+                gatewayId = "martial_sustain";
+            } else if (perk.equals("A0083") || perk.equals("A0084")) {
+                gates.put(ARCANE_GATEWAY_NODE, 1);
+                gatewayId = perk.equals("A0084") ? "arcane_elemental_sustain" : "arcane_sustain";
+            } else if (perk.equals("A0085")) {
+                gates.put(OCCULT_GATEWAY_NODE, 1);
+                gatewayId = "occult_dot_sustain";
+            } else if (perk.equals("A0086")) {
+                gatewayId = "hybrid_sustain_convergence";
+            } else {
+                gates.put(VITALITY_GATEWAY_NODE, 1);
+                if (perk.equals("A0093") || perk.equals("A0099")) gates.put(MARTIAL_GATEWAY_NODE, 1);
+                if (perk.equals("A0098")) gates.put(AGILITY_GATEWAY_NODE, 1);
+                gatewayId = perk.equals("A0098") ? "vitality_agility_bridge"
+                    : (perk.equals("A0093") || perk.equals("A0099")) ? "vitality_martial_bridge"
+                    : "vitality_core";
+            }
+
+            boolean terminal = perk.equals("A0087");
+            target.put(perk, new Node(
+                perk, CombatPerkNodeBinding.nodeIdUnchecked(perk), definition.maxRank(), definition.rankCost(),
+                definition.dependencies().isEmpty(), 1, Map.of(), gatewayId, Map.copyOf(gates),
+                adjacency.get(perk).stream().map(CombatPerkNodeBinding::nodeIdUnchecked).collect(java.util.stream.Collectors.toUnmodifiableSet()),
+                terminal
+            ));
+        }
+    }
+
+    private static void addExistingNeighbor(Map<String, Node> target, String existingCode, String newCode) {
+        Node existing = target.get(existingCode);
+        if (existing == null) return;
+        LinkedHashSet<String> neighbors = new LinkedHashSet<>(existing.neighbors());
+        neighbors.add(CombatPerkNodeBinding.nodeIdUnchecked(newCode));
+        target.put(existingCode, new Node(
+            existing.code(), existing.nodeId(), existing.maxRank(), existing.costPerRank(), existing.startingPoint(),
+            existing.minCharacterLevel(), existing.requiredMastery(), existing.gatewayId(), existing.requiredNodeRanks(),
+            Set.copyOf(neighbors), existing.terminal()
+        ));
+    }
+
     private static Map<String, Integer> dependencyNodeRanks(Map<String, Integer> dependencies) {
         LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
         result.put(MARTIAL_GATEWAY_NODE, 1);
         dependencies.forEach((perk, rank) -> result.put(CombatPerkNodeBinding.nodeIdUnchecked(perk), rank));
         return Map.copyOf(result);
+    }
+
+    private static LinkedHashMap<String,Integer> dependencyRanksOnly(Map<String,Integer> dependencies) {
+        LinkedHashMap<String,Integer> result = new LinkedHashMap<>();
+        dependencies.forEach((perk, rank) -> result.put(CombatPerkNodeBinding.nodeIdUnchecked(perk), rank));
+        return result;
     }
 
     private static String code(int number) { return "A%04d".formatted(number); }
