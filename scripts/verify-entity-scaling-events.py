@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -144,4 +146,11 @@ print(
     "Entity scaling event validation: PASS "
     "(server-only join boundary + persisted Effective Stats reapplication + canonical initialization + "
     "persisted-state-only XP reward adapter verified)"
+)
+
+# Keep the entity-reward paths adjacent in the core gate: XP and loot must both consume only
+# already-persisted scaling state and the explicitly installed canonical reward policy.
+subprocess.run(
+    [sys.executable, str(ROOT / "scripts/verify-reward-loot-modifier.py")],
+    check=True,
 )
