@@ -36,13 +36,15 @@ Fechamento do Stage 00.04 auditado contra `main@4a13ac7c8deda8827e755d100223985f
 
 Fechamento do Stage 01.03 auditado contra `main@398f160f5bec74629331475eff1e60d3cdeb0958`, após integração do PR #135. O RED `33245655826` falhou exatamente porque o GameTest runtime ainda não existia. O head sincronizado final `4bcefe741d641da6b7d14b1b89d4214bce9bc3ff` passou o CI completo `33246262135`, incluindo NeoForge GameTests, `Attribute runtime validation`, build, JAR e dedicated-server smoke. O pós-merge canônico `33246405719` repetiu toda a matriz em GREEN, incluindo upload do JAR e publicação do status final de sucesso.
 
-Fechamento do Stage 01.04 auditado contra `main@461f386179a3c904f52793354998c29ff7979dd7`, após integração do PR #128. O head funcional `a02b76ae004aa48e3fe2efef01c33c31f1fd267f` passou o RPG Skill Tree CI `33244574779` e os workflows Foundation/Compendium associados. O pós-merge canônico `33244700777` / run #1341 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso. Auditoria posterior confirmou que o `AttachmentType` canônico continua usando `CanonicalPlayerAttachmentSerializer`, o mesmo codec exercitado pelos testes de round-trip.
+Fechamento do Stage 01.04 auditado contra `main@461f386179a3c904f52793354998c29ff7979dd7`, após integração do PR #128. O head funcional `a02b76ae004aa48e3fe2efef01c33c31f1fd267f` passou o RPG Skill Tree CI `33244574779` e os workflows Foundation/Compendium associados. O pós-merge funcional `33244700777` / run #1341 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso. O fechamento formal foi mergeado como `845335058bbe8cd4f5e6f4c140bf4c8fd9f14063`, cujo CI pós-merge `33262871523` / run #1407 também terminou GREEN completo. Auditoria posterior confirmou que o `AttachmentType` canônico continua usando `CanonicalPlayerAttachmentSerializer`, o mesmo codec exercitado pelos testes de round-trip.
+
+Fechamento do Stage 01.05 auditado sobre a implementação integrada pelo PR #131, head `9cfe75564686192b3c63d55ef4c9865b31aba79d`, mergeada como `fd2879c1c7375ab006cafb022f10bd8700f2da9c`. O CI do head `33244812701` / run #1344 e o CI pós-merge `33244953339` / run #1346 fecharam GREEN completos, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke. A auditoria direta confirmou a barreira de imports do package `core`, snapshots/read boundaries sem efeitos laterais e ausência de vazamento de attachments/estado persistido para adapters de integração.
 
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**21 / 75 subplanos concluídos formalmente.**
+**22 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -52,6 +54,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `01-rpg-core/✅-02-progression-services.md`
 - `01-rpg-core/✅-03-attributes-modifiers.md`
 - `01-rpg-core/✅-04-persistence-sync.md`
+- `01-rpg-core/✅-05-core-api-invariants.md`
 - `03-skill-tree-perks/✅-05-respec.md`
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
@@ -73,7 +76,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | Estágio | Concluídos | Total | Estado geral |
 | --- | ---: | ---: | --- |
 | 00 Foundation | 4 | 4 | CONCLUÍDO |
-| 01 RPG Core | 4 | 5 | EM ANDAMENTO |
+| 01 RPG Core | 5 | 5 | CONCLUÍDO |
 | 02 Progression & World Scaling | 0 | 5 | EM ANDAMENTO |
 | 03 Skill Tree & Perks | 1 | 6 | EM ANDAMENTO |
 | 04 Classes, Masteries & Specializations | 1 | 6 | EM ANDAMENTO |
@@ -83,7 +86,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
-| **Total** | **21** | **75** | |
+| **Total** | **22** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -93,7 +96,7 @@ Stage 00 concluído. `✅-01-environment-bootstrap.md` fixa e verifica ambiente,
 
 ### 01 — RPG Core
 
-`✅-01-player-state.md` está fechado: `CANONICAL_PLAYER` é o envelope persistente de escrita normal e `CanonicalPlayerSnapshot` fornece a projeção read-only. `✅-02-progression-services.md` fecha XP grant/rollback, recompensas de level, mastery replay-safe, storage boundary, idempotência e eventos pós-persistência. `✅-03-attributes-modifiers.md` fecha identidade estável de modifiers, composição flat/percent-base/multiplicative-total, recomputação determinística, limpeza de órfãos e a prova NeoForge real `apply → reapply → remove → reapply` sem stacking ou drift. `✅-04-persistence-sync.md` fecha versionamento/migração do envelope persistido, round-trip do mesmo codec registrado no attachment NeoForge, falha fechada para payload inválido, sincronização de lifecycle/mutações e autoridade estritamente server-side. Apenas `05-core-api-invariants` permanece formalmente aberto no Stage 01.
+Stage 01 concluído. `✅-01-player-state.md` fecha o envelope persistente canônico e a projeção read-only; `✅-02-progression-services.md` fecha XP grant/rollback, recompensas de level, mastery replay-safe, storage boundary, idempotência e eventos pós-persistência; `✅-03-attributes-modifiers.md` fecha identidade/composição/recomputação de modifiers e a prova NeoForge real sem stacking ou drift; `✅-04-persistence-sync.md` fecha versionamento/migração, round-trip do codec real, lifecycle/mutation sync e autoridade server-side; `✅-05-core-api-invariants.md` fecha queries versus mutations, snapshots imutáveis, invariantes de IDs/limites e a barreira que impede o core de depender de UI, runtime Minecraft/NeoForge ou mods opcionais.
 
 ### 02 — Progression & World Scaling
 
@@ -139,7 +142,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento formal mais recente é Stage 01.04, com implementação funcional integrada em `main@461f386179a3c904f52793354998c29ff7979dd7`. O head funcional passou `33244574779`; e o RPG Skill Tree CI pós-merge `33244700777` / run #1341 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso.
+O fechamento formal mais recente é Stage 01.05, com implementação funcional integrada em `main@fd2879c1c7375ab006cafb022f10bd8700f2da9c`. O head funcional passou o RPG Skill Tree CI `33244812701` / run #1344 e o pós-merge funcional `33244953339` / run #1346 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR e dedicated-server smoke. O pré-requisito 01.04 permaneceu íntegro no gate pós-fechamento `33262871523` / run #1407 GREEN completo.
 
 ## Convenção
 
