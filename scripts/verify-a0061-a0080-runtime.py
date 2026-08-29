@@ -60,6 +60,13 @@ require(mid, "A0061A0080CombatPolicy.criticalDamageMultiplier", MID)
 require(late, "A0061A0080CombatPolicy.criticalDamageMultiplier", LATE)
 require(projectiles, "A0061A0080CombatPolicy.criticalDamageMultiplier", PROJECTILES)
 
+# Dagger is processed by both the cumulative A0001 and A0021 Epic Fight adapters. A0063 must have
+# exactly one owner for that overlap: A0001 owns dagger critical damage, while A0021 owns only its
+# hammer/mace/scythe lanes. This prevents multiplying A0063 twice on one root action.
+require(mid, "double a0063CriticalDamage = family.get() == WeaponFamily.DAGGER", MID)
+require(mid, "damage *= a0063CriticalDamage;", MID)
+forbid(mid, "damage *= dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.criticalDamageMultiplier(ranks, root.critical);", MID)
+
 # Ranged physical hits receive the general direct-physical layer, but no fabricated impact.
 require(projectiles, "A0061A0080CombatPolicy.beforePhysicalHit(", PROJECTILES)
 require(projectiles, "MartialTargetClassifier.classify(", PROJECTILES)
