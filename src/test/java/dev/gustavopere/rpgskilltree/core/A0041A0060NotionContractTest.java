@@ -6,38 +6,34 @@ public final class A0041A0060NotionContractTest {
     private A0041A0060NotionContractTest() {}
 
     public static void main(String[] args) {
-        closedRangeIsExact();
+        closedRangeIsPresent();
         ranksCostsDependenciesMatchFreshNotion();
         familiesAndGatesMatchFreshNotion();
+        A0061A0080NotionContractTest.main(new String[0]);
         System.out.println("A0041A0060NotionContractTest: PASS");
     }
 
-    private static void closedRangeIsExact() {
-        require(NotionCombatPerkCatalog.all().size() == 60, "catalog must contain exactly A0001-A0060 after this batch");
+    private static void closedRangeIsPresent() {
         for (int i = 41; i <= 60; i++) {
             require(NotionCombatPerkCatalog.definition("A%04d".formatted(i)).isPresent(), "missing A%04d".formatted(i));
         }
-        require(NotionCombatPerkCatalog.definition("A0061").isEmpty(), "A0061 must remain outside this batch");
     }
 
     private static void ranksCostsDependenciesMatchFreshNotion() {
         expect("A0041",2,1,Map.of("A0038",2,"A0039",1));
         expect("A0042",1,2,Map.of("A0040",1,"A0041",1));
-
         expect("A0043",3,1,Map.of());
         expect("A0044",3,1,Map.of("A0043",2));
         expect("A0045",3,1,Map.of("A0043",1));
         expect("A0046",2,1,Map.of("A0045",2));
         expect("A0047",2,1,Map.of("A0044",2,"A0045",1));
         expect("A0048",1,2,Map.of("A0046",1,"A0047",1));
-
         expect("A0049",3,1,Map.of());
         expect("A0050",3,1,Map.of("A0049",2));
         expect("A0051",3,1,Map.of("A0049",1));
         expect("A0052",2,1,Map.of("A0050",2,"A0051",2));
         expect("A0053",2,1,Map.of("A0052",1));
         expect("A0054",1,2,Map.of("A0052",2,"A0053",1));
-
         expect("A0055",3,1,Map.of());
         expect("A0056",3,1,Map.of("A0055",2));
         expect("A0057",3,1,Map.of("A0055",1));
@@ -51,7 +47,6 @@ public final class A0041A0060NotionContractTest {
         family("A0043","BOW"); family("A0048","BOW");
         family("A0049","CROSSBOW"); family("A0054","CROSSBOW");
         family("A0055","FIST"); family("A0060","FIST");
-
         gate("A0042","combat_scythe","combat:scythe",80,true);
         gate("A0043","epic_bow","epicfight:bow",60,false);
         gate("A0048","epic_bow","epicfight:bow",80,true);
