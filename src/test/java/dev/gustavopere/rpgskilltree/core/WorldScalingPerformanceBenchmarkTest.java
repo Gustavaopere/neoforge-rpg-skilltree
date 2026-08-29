@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalLong;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -93,7 +92,7 @@ public final class WorldScalingPerformanceBenchmarkTest {
             spawnElapsed,
             spatialElapsed,
             resumeElapsed,
-            spatialIndex.size(),
+            spatialIndex.indexedPlayers(),
             maxScanned,
             maxVisited,
             searchPolicy.worstCaseVisitedCells(),
