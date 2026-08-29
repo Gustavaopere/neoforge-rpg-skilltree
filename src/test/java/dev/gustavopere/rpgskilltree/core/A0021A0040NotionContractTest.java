@@ -6,18 +6,17 @@ public final class A0021A0040NotionContractTest {
     private A0021A0040NotionContractTest() {}
 
     public static void main(String[] args) {
-        closedRangeIsExact();
+        closedRangeRemainsCovered();
         ranksCostsDependenciesMatchFreshNotion();
         familiesAndGatesMatchFreshNotion();
         System.out.println("A0021A0040NotionContractTest: PASS");
     }
 
-    private static void closedRangeIsExact() {
-        require(NotionCombatPerkCatalog.all().size() == 40, "catalog must contain exactly A0001-A0040 after this batch");
+    private static void closedRangeRemainsCovered() {
+        require(NotionCombatPerkCatalog.all().size() >= 40, "cumulative catalog must retain A0001-A0040");
         for (int i = 21; i <= 40; i++) {
             require(NotionCombatPerkCatalog.definition("A%04d".formatted(i)).isPresent(), "missing A%04d".formatted(i));
         }
-        require(NotionCombatPerkCatalog.definition("A0041").isEmpty(), "A0041 must remain outside this batch");
     }
 
     private static void ranksCostsDependenciesMatchFreshNotion() {
