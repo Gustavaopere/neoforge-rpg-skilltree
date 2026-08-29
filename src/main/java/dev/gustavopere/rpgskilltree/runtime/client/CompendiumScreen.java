@@ -8,6 +8,7 @@ import dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientEntry;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientSnapshot;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterControls;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterState;
+import dev.gustavopere.rpgskilltree.compendium.client.CompendiumNotesModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPageModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayout;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSession;
@@ -48,8 +49,15 @@ public final class CompendiumScreen extends Screen {
     private Button discoveredFilterButton;
 
     public CompendiumScreen(CompendiumClientSnapshot snapshot) {
+        this(snapshot, new CompendiumNotesModel());
+    }
+
+    public CompendiumScreen(CompendiumClientSnapshot snapshot, CompendiumNotesModel notes) {
         super(Component.translatable("screen.rpgskilltree.compendium.title"));
-        this.session = new CompendiumScreenSession(Objects.requireNonNull(snapshot, "snapshot"));
+        this.session = new CompendiumScreenSession(
+            Objects.requireNonNull(snapshot, "snapshot"),
+            Objects.requireNonNull(notes, "notes")
+        );
     }
 
     @Override
