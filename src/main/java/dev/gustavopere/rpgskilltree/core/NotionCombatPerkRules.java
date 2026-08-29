@@ -39,6 +39,7 @@ public final class NotionCombatPerkRules {
     public static final double A0047_FOCUS_COST=25.0D, A0048_MIN_FOCUS=80.0D, A0048_FOCUS_COST=50.0D;
     public static final long A0047_STABLE_AIM_MILLIS=500L, A0048_STABLE_AIM_MILLIS=1_250L;
     public static final double A0047_MIN_DISTANCE=12.0D, A0048_MIN_DISTANCE=15.0D;
+    public static final double A0046_DISTANT_HIT_DISTANCE=A0047_MIN_DISTANCE;
     public static final int CADENCE_CAP=3, A0053_CADENCE_COST=2;
     public static final int SEQUENCE_CAP=5, A0059_SEQUENCE_COST=3;
 
