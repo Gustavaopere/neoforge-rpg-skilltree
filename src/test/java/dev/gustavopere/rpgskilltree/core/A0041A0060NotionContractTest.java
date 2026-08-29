@@ -9,7 +9,6 @@ public final class A0041A0060NotionContractTest {
         closedRangeIsPresent();
         ranksCostsDependenciesMatchFreshNotion();
         familiesAndGatesMatchFreshNotion();
-        A0061A0080NotionContractTest.main(new String[0]);
         System.out.println("A0041A0060NotionContractTest: PASS");
     }
 
