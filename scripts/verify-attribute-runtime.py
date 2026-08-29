@@ -6,6 +6,7 @@ MOD_MAIN = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.ja
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
 CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/data/AttributeRankCostPolicyCatalog.java"
 NODE_EFFECT_RELOADER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/data/NodeEffectsReloader.java"
+ATTRIBUTE_GAMETEST = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/gametest/AttributeModifierGameTests.java"
 NETWORKING = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/ModNetworking.java"
 PURCHASE_PAYLOAD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/PurchaseAttributeRanksPayload.java"
 REFUND_PAYLOAD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/network/RefundAttributeRanksPayload.java"
@@ -77,6 +78,32 @@ if not (replace_pos < diagnostics_pos < server_pos < refresh_pos):
     raise SystemExit(1)
 if "if (server != null)" not in node_reloader_text:
     print(f"ERROR: {NODE_EFFECT_RELOADER.relative_to(ROOT)}: initial reload must tolerate a null server")
+    raise SystemExit(1)
+
+# The plan's idempotency acceptance is a Minecraft-runtime contract, not only a
+# pure resolver property. Keep one GameTest exercising a real ServerPlayer
+# AttributeInstance through apply -> repeated apply -> remove -> reapply.
+if not ATTRIBUTE_GAMETEST.is_file():
+    print(f"ERROR: {ATTRIBUTE_GAMETEST.relative_to(ROOT)}: required attribute modifier GameTest is missing")
+    raise SystemExit(1)
+gametest_text = ATTRIBUTE_GAMETEST.read_text(encoding="utf-8")
+for needle in [
+    "@GameTest",
+    "makeMockServerPlayerInLevel",
+    "NodeEffectCatalog.replace",
+    "AttributeNodeEffectRuntime.refresh",
+    "ProgressionState.empty().withPassiveNodes",
+    "PassiveNodeProgress.empty()",
+    "instance.getValue()",
+    "helper.succeed()",
+]:
+    if needle not in gametest_text:
+        print(f"ERROR: {ATTRIBUTE_GAMETEST.relative_to(ROOT)}: missing runtime acceptance marker {needle!r}")
+        raise SystemExit(1)
+if gametest_text.count("AttributeNodeEffectRuntime.refresh") < 4:
+    print(
+        f"ERROR: {ATTRIBUTE_GAMETEST.relative_to(ROOT)}: GameTest must exercise apply, repeated apply, removal and reapply"
+    )
     raise SystemExit(1)
 
 # The canonical 1 CPP = 1 rank policy is a server bootstrap decision. The network
