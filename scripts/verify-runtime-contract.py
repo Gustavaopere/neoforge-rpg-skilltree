@@ -28,6 +28,9 @@ STALE_ERRORS = {
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/CombatProgressionEvents.java: missing 'PlayerProgressionRuntime.applyXp'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java: missing 'GameplayXpPolicy.oreMined'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java: missing 'PlayerProgressionRuntime.applyXp'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/ExplorationProgressionEvents.java: missing 'GameplayXpPolicy.biomeDiscovery'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/ExplorationProgressionEvents.java: missing 'GameplayXpPolicy.dimensionDiscovery'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/ExplorationProgressionEvents.java: missing 'PlayerProgressionRuntime.creditDiscovery'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'player.getData(ModAttachments.PROGRESSION)'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'player.setData(ModAttachments.PROGRESSION, state)'",
 }

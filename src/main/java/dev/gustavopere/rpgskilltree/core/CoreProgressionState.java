@@ -141,4 +141,20 @@ public record CoreProgressionState(
             migration.discardedLegacyCapXp()
         );
     }
+
+    public CoreProgressionState withProgressionRewardClaims(ProgressionRewardClaims claims) {
+        Objects.requireNonNull(claims, "claims");
+        if (progressionRewardClaims.equals(claims)) return this;
+        return new CoreProgressionState(
+            characterProgression,
+            corePoints,
+            attributeRanks,
+            mainPerkBudgetProgression,
+            claims,
+            rulesVersion,
+            rulesFingerprint,
+            migrationSourceFormatVersion,
+            discardedLegacyCapXp
+        );
+    }
 }

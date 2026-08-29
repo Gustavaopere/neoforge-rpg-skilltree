@@ -29,13 +29,18 @@ public final class CoreProgressionBootstrap {
     ) {
         Objects.requireNonNull(legacy);
         Objects.requireNonNull(rules);
-        return CoreProgressionState.fromMigration(
+        CoreProgressionState migrated = CoreProgressionState.fromMigration(
             LegacyProgressionMigration.migrate(
                 legacy,
                 ProgressionStateCodec.CURRENT_VERSION,
                 rules
             )
         );
+        ProgressionRewardClaims claims = migrated.progressionRewardClaims();
+        for (String discoveryKey : legacy.discoveries().discoveredKeys().stream().sorted().toList()) {
+            claims = claims.claimCompletion(discoveryKey);
+        }
+        return migrated.withProgressionRewardClaims(claims);
     }
 
     /**
