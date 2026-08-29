@@ -33,6 +33,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.MorphEcologyPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionStateMigrationMatrixTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionStateV5AllocationFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.PersistedNodeAllocationsCodecTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.LegacyNodeAllocationMigrationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.SpecializationReconciliationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.InfiniteProgressionFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CharacterXpRollbackTest
@@ -80,6 +81,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntitySelectionLifecyclePersis
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingDecisionServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingCatalogTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionSyncCoalescerTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0001A0020NotionContractTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0001A0020CombatPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalogReloadTest
@@ -92,3 +94,4 @@ python3 "$ROOT/scripts/verify-entity-scaling-events.py"
 python3 "$ROOT/scripts/verify-canonical-player-runtime.py"
 python3 "$ROOT/scripts/verify-dimension-sync.py"
 python3 "$ROOT/scripts/verify-progression-services-runtime.py"
+python3 "$ROOT/scripts/verify-progression-sync-coalescing.py"
