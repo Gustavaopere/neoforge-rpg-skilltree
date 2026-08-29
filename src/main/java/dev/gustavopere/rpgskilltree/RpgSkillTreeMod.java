@@ -34,6 +34,8 @@ import dev.gustavopere.rpgskilltree.runtime.data.NodeRulesReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.SpecializationReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeArchitectureReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeUnlockReloader;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
 import dev.gustavopere.rpgskilltree.runtime.events.ApothicBossBridgeEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.BossProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.CombatProgressionEvents;
@@ -88,7 +90,13 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CompendiumWorldDiscoveryEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);
 
-        LOGGER.info("Optional integrations: {}", OptionalIntegrations.summary());
+        RuntimeDiagnostics.info(
+            LOGGER,
+            Category.COMPAT,
+            "optional_providers",
+            "Optional integrations: {}",
+            OptionalIntegrations.summary()
+        );
 
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)) {
             NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
@@ -116,7 +124,10 @@ public final class RpgSkillTreeMod {
                 A0001A0020EpicFightHooks.register();
                 NeoForge.EVENT_BUS.register(A0001A0020EpicFightHooks.class);
             } else {
-                LOGGER.warn(
+                RuntimeDiagnostics.warn(
+                    LOGGER,
+                    Category.COMPAT,
+                    "epicfight_version_unsupported",
                     "A0001-A0020 Epic Fight integration disabled: expected {}*, found {}",
                     A0001A0020EpicFightHooks.SUPPORTED_VERSION_PREFIX,
                     version

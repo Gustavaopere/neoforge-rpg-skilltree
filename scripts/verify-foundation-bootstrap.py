@@ -165,8 +165,16 @@ for marker in ordered_bootstrap_markers:
         fail(f"bootstrap registration order changed before: {marker}")
     position = next_position
 
-summary_marker = 'LOGGER.info("Optional integrations: {}", OptionalIntegrations.summary());'
-summary_position = mod_bootstrap.find(summary_marker)
+for marker in (
+    "RuntimeDiagnostics.info(",
+    "Category.COMPAT",
+    '"optional_providers"',
+    '"Optional integrations: {}"',
+    "OptionalIntegrations.summary()",
+):
+    if marker not in mod_bootstrap:
+        fail(f"optional integration diagnostics are missing semantic marker: {marker}")
+summary_position = mod_bootstrap.find('"optional_providers"')
 first_optional_guard = mod_bootstrap.find(
     "OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)"
 )

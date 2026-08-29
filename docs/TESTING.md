@@ -1,396 +1,172 @@
 # TESTING — RPG Skill Tree
 
-Status: **canonical testing strategy**  
-Target: **Minecraft 1.21.1 + NeoForge 21.1.x + Java 21**
+Status: **canonical testing strategy and local reproduction guide**  
+Target: **Minecraft 1.21.1 + NeoForge 21.1.248 + Java 21 + Gradle Wrapper 8.14**
 
-The project currently has useful core tests and Python validators, but these are not sufficient evidence for runtime correctness. This document defines the target test pyramid and merge gates.
+The repository has multiple test layers. A green build is necessary but is not treated as equivalent to runtime or provider-present evidence.
 
----
+## Evidence rules
 
-# Principles
+- A bug fix should start with a regression that fails for the intended reason when practical.
+- Pure progression rules stay outside Minecraft runtime whenever possible.
+- NeoForge lifecycle, registry, world, player and entity behavior is verified in NeoForge runtime.
+- Dedicated-server safety is a permanent gate for common/server/runtime changes.
+- Generated resources must be deterministic and leave a clean working tree after official generators run.
+- Provider absence and provider presence are different claims. Foundation proves core-only absence safety; each integration stage must separately certify provider-present versions and behavior.
+- Do not convert compile success into a stronger claim such as runtime, UI or save compatibility.
 
-1. A bug fix should start with a regression that fails for the intended reason when practical.
-2. Pure progression rules should remain fast and testable without launching Minecraft.
-3. NeoForge behavior must be tested in NeoForge runtime, not inferred from source-string checks.
-4. Build success is necessary but not proof of gameplay correctness.
-5. Dedicated-server safety is a permanent gate.
-6. Provider integrations require both provider-absent and provider-present evidence.
-7. Save migrations require fixtures from every supported version.
-8. Generated resources must be deterministic and leave a clean working tree.
-9. Version-sensitive resources/registries must be validated specifically against Minecraft 1.21.1.
-10. Tests must be automatically discovered; adding a test must not require remembering to edit a manual class list indefinitely.
+## Supported local environment
 
----
-
-# Current baseline
-
-At the consolidated audit baseline:
-
-- existing Java tests are mainly executable `main()` classes run by `scripts/test-core.sh`;
-- Python validators cover graph/data/export structure;
-- CI builds the NeoForge mod and performs a dedicated-server smoke test;
-- JUnit is not integrated into Gradle;
-- GameTests are absent;
-- client startup/UI is not automated;
-- provider-present runtime matrices are absent;
-- the workflow uses `git diff --check`, which does not detect generated-content drift.
-
-Preserve useful existing tests while migrating toward the target structure.
-
----
-
-# Test layers
-
-## T0 — Pure core unit tests
-
-Use JUnit 5 after Phase 0 migration.
-
-Cover deterministic logic that does not require Minecraft runtime:
-
-- level curve;
-- passive ledgers/currencies;
-- node purchase cost/rank;
-- graph traversal/dependencies;
-- respec accounting;
-- `InvestmentState`;
-- archetype/class resolution;
-- specificity/tie ordering;
-- specialization resolution/provenance rules;
-- mastery policies;
-- gateway requirements;
-- canonical modifier ordering/caps;
-- semantic-action fingerprints/dedupe;
-- migrations/codecs where Minecraft types are not required.
-
-Requirements:
-
-- deterministic;
-- no network/filesystem when avoidable;
-- small fixtures;
-- clear assertion messages;
-- no test that passes by filtering/ignoring a known failure.
-
-## T1 — Data/generator contract tests
-
-Run the existing Python validators plus new validators as necessary.
-
-Verify:
-
-- JSON parseability;
-- namespaced IDs;
-- graph references;
-- no self-requirement/cycles where prohibited;
-- class/specialization/tree references;
-- provider ownership;
-- canonical stat bindings;
-- 1.21.1 registry/resource naming conventions;
-- optional tag entries;
-- generated client/server projections;
-- deterministic regeneration.
-
-Canonical generated-data gate:
+Use the checked-in wrapper; do not substitute a system Gradle installation.
 
 ```bash
-# run all official generators first
-git diff --check
-git diff --exit-code
+java -version
+./gradlew --version
 ```
 
-`git diff --check` remains useful for whitespace, but it is not a substitute for `git diff --exit-code`.
+The canonical environment contract is enforced by:
 
-## T2 — Save/migration fixtures
+```bash
+python3 scripts/verify-gradle-wrapper.py
+python3 scripts/verify-foundation-bootstrap.py
+```
 
-Maintain binary or representative fixtures for every supported persisted version.
+## Fast local loop
 
-Minimum cases:
-
-- v1→latest;
-- v2→latest;
-- v3→latest;
-- v4→v5 when introduced;
-- migrated class→specialization identities;
-- migration applied twice;
-- unknown node;
-- renamed node/alias;
-- removed provider;
-- rank above new max;
-- cost changed after purchase;
-- unknown specialization/provider ID;
-- truncated data;
-- duplicate entries;
-- oversized collections;
-- trailing bytes;
-- invalid enum/legacy token where supported.
-
-Assertions must include conservation rules: XP, paid points, mastery, discoveries, choices and intended specialization progress must not silently disappear.
-
-## T3 — NeoForge GameTests/runtime tests
-
-Use NeoForge 1.21.1 GameTests for behavior that depends on registries, players/entities/world state or lifecycle.
-
-Priority GameTests:
-
-### Resources/registries
-
-- boss tag resolves from correct `entity_type` tag directory;
-- optional Cataclysm entries do not break core-only loading;
-- every required node attribute target resolves in the actual registry;
-- canonical binding validation behaves correctly.
-
-### Player progression
-
-- attach initial state;
-- login reconciliation;
-- purchase/upgrade/respec;
-- death/respawn/copy policy;
-- removed-node administrative reconciliation;
-- provider removed after persisted state;
-- modifier apply/remove/idempotence;
-- reload updates online player effects.
-
-### Reload
-
-- valid snapshot publishes atomically;
-- invalid snapshot retains last-known-good rules;
-- cross-reference failure does not partially replace catalogs;
-- removed effect disappears;
-- changed cost/requirement gets a new rules revision.
-
-### Networking
-
-- invalid purchase intent rejected;
-- client cannot forge balance/rank/cost;
-- owner-only state sync;
-- revision mismatch handled;
-- rate limits/backpressure when implemented;
-- repeated invalid requests do not trigger unbounded full sync.
-
-### Mastery/action pipeline
-
-- duplicate observation of one semantic action rewards once;
-- proc-depth policy;
-- cancelled action does not reward;
-- confirmed action rewards;
-- multiple awards in one tick coalesce sync.
-
-## T4 — Dedicated server smoke
-
-Permanent gate for any common/server/runtime change.
-
-At minimum verify:
-
-- server starts core-only;
-- no client classloading error;
-- datapacks load;
-- rules snapshot builds;
-- no missing registry target errors;
-- test world reaches a stable ready state;
-- server shuts down cleanly.
-
-Later matrix:
-
-- core only;
-- each supported provider individually;
-- selected provider combinations matching the target modpack.
-
-## T5 — Client smoke/UI verification
-
-For client-facing changes verify:
-
-- client starts;
-- tree key mapping works using the supported lifecycle;
-- screen opens/closes;
-- state clears on disconnect;
-- reconnect to different server/rules revision works;
-- large tree remains navigable;
-- gateway/subtree navigation;
-- unavailable provider/reason shown;
-- GUI scale/resolution behavior;
-- localization for new strings.
-
-Where automation is impractical, use a documented manual checklist and screenshots rather than claiming automated coverage.
-
-## T6 — Provider integration tests
-
-Every supported integration needs a matrix covering absence and presence.
-
-For each provider:
-
-- compatible version loads;
-- provider absent loads;
-- provider action confirmed;
-- action cancelled/failed;
-- duplicate callback/event;
-- fake player policy;
-- creative/spectator policy;
-- logout/reload cleanup;
-- multiplayer attribution;
-- provider removed from an existing save;
-- unsupported/API-drift behavior is fail-visible.
-
-Specific high-risk cases:
-
-- Iron's/Ars cast gating and confirmed mastery;
-- Epic Fight high-frequency hit/skill/dodge duplication;
-- Goety intent→outcome correlation;
-- Malum reflection/API drift;
-- Eidolon ritual/alchemy contributor attribution and cleanup;
-- Identity authorization/mixin visibility;
-- future Create progression based on completed meaningful outcomes, never raw machine ticks.
-
-## T7 — Performance/regression tests
-
-Measure hot paths when modifying them:
-
-- XP/mastery awards must not refresh all modifiers when allocations/effects did not change;
-- state sync coalescing per tick;
-- packet size/frequency;
-- rules reload time;
-- modifier refresh time;
-- UI rendering/hit testing for 512+ nodes;
-- cache/map growth over long sessions;
-- player-placed ore provenance storage;
-- many-player event throughput.
-
-Do not optimize the entire UI without profiling, but obvious architectural amplification (full effect rebuild/full sync per award) should be removed before scaling content.
-
----
-
-# Canonical commands
-
-## Current transitional commands
-
-Until Gradle Wrapper/JUnit/GameTests are implemented, the repository currently relies on commands such as:
+Run the pure/core suite before Minecraft runtime when changing deterministic progression logic, codecs, policies, parsers or validators:
 
 ```bash
 bash scripts/test-core.sh
-python3 scripts/validate-data.py
-python3 scripts/validate-client-tree.py
-python3 scripts/validate-node-effects.py
-python3 scripts/validate-passive-export.py
-python3 scripts/verify-runtime-contract.py
-gradle --no-daemon build
-gradle --no-daemon runServer
-gradle --no-daemon runData
-git diff --check
+./gradlew --no-daemon test
 ```
 
-This is transitional, not the desired final contract.
+`scripts/test-core.sh` compiles the pure Java/core fixtures with Java 21 and runs the project validators that do not require a Minecraft process. Gradle `test` runs the JUnit 5 suite.
 
-## Target commands after Phase 0
+Foundation contracts can be reproduced directly:
 
 ```bash
-./gradlew --no-daemon clean test
-./gradlew --no-daemon runGameTestServer
-./gradlew --no-daemon build
-./gradlew --no-daemon runServer
-./gradlew --no-daemon runData
+python3 scripts/verify-foundation-bootstrap.py
+python3 scripts/verify-optional-integrations.py
+python3 scripts/verify-foundation-diagnostics.py
+```
 
+## NeoForge GameTests
+
+Runtime behavior that needs Minecraft registries, players/entities, world state or lifecycle belongs in NeoForge GameTests.
+
+```bash
+./gradlew --no-daemon runGameTestServer
+```
+
+The Foundation suite includes `FoundationGameTests.dedicatedServerGameTestBoots`; additional GameTests should be added when a change cannot be proved correctly by pure unit tests or static validators.
+
+## Data and generated-resource gates
+
+Run the official generators/validators relevant to the changed catalog. The full CI regenerates the derived skill-tree outputs and then requires a clean diff.
+
+Canonical drift checks are:
+
+```bash
 git diff --check
 git diff --exit-code
 ```
 
-Provider/client-specific tasks may be added when the integration matrix is formalized.
+`git diff --check` catches whitespace errors; only `git diff --exit-code` proves that regeneration produced no uncommitted content drift.
 
----
+## NeoForge build
 
-# Merge gates by change type
+```bash
+./gradlew --no-daemon build
+```
 
-## Pure core change
+The CI additionally inspects the produced `RPGSkillTree*.jar` for `META-INF/neoforge.mods.toml` and `RpgSkillTreeMod.class`.
 
-Required:
+## Dedicated-server smoke
 
-- relevant JUnit/core tests;
-- full core suite;
-- build.
+A plain runtime invocation is:
 
-## Data/schema/generator change
+```bash
+./gradlew --no-daemon runServer
+```
 
-Required:
+For an exact reproduction of the CI smoke gate, use a disposable server run with `eula=true`, set `RPGSKILLTREE_COMPENDIUM_INVENTORY=1`, capture the server log, wait for the vanilla `Done (...)!` ready marker plus the Compendium startup marker, and then run:
 
-- validators;
-- regeneration;
-- `git diff --exit-code` after expected generated changes are committed;
-- cross-reference tests;
-- build;
-- reload/GameTest if runtime semantics changed.
+```bash
+python3 scripts/verify-optional-provider-smoke.py build/server-smoke.log
+```
 
-## Save/codec/migration change
+The CI smoke is bounded and fails if the server exits early, does not reach ready state, does not publish the expected runtime inventory, loads an optional provider in the core-only configuration, or emits `ClassNotFoundException`/`NoClassDefFoundError`.
 
-Required:
+## Full pre-PR Foundation sequence
 
-- regression first;
-- all migration fixtures;
-- corrupt/truncated test;
-- round trip;
-- runtime login/respawn where applicable;
-- dedicated server.
+For Foundation/runtime changes, the local sequence corresponding to the principal CI gates is:
 
-## Networking/runtime progression change
+```bash
+python3 scripts/verify-gradle-wrapper.py
+python3 scripts/verify-foundation-bootstrap.py
+python3 scripts/verify-optional-integrations.py
+python3 scripts/verify-foundation-diagnostics.py
+bash scripts/test-core.sh
+./gradlew --no-daemon test
+./gradlew --no-daemon runGameTestServer
+./gradlew --no-daemon build
+./gradlew --no-daemon runServer
+```
 
-Required:
+The GitHub workflow also executes Compendium tests, data/client/node validators, canonical provider-binding validation, generated-data drift checks, JAR verification and the bounded dedicated-server smoke.
 
-- core tests;
-- GameTests;
-- invalid/replay cases;
-- owner sync verification;
-- dedicated server;
-- performance check if hot path changed.
+## Test layers
 
-## Client/UI change
+### T0 — Pure core and JUnit 5
 
-Required:
+Use for deterministic state transitions and policies: level curves, ledgers/currencies, node cost/rank, graphs, respec, classes/archetypes, specializations, mastery, canonical modifier policies, semantic-action dedupe, migrations and codecs that do not require runtime types.
 
-- build;
-- client smoke/manual regression;
-- disconnect/reconnect state behavior;
-- dedicated server to prove no client class leakage.
+Requirements: deterministic fixtures, no ignored known failure, clear assertions, and no network/filesystem dependency unless the unit under test is specifically a parser/serializer for those resources.
 
-## Provider integration change
+### T1 — Data/generator contracts
 
-Required:
+Use Python/Java validators for JSON parseability, namespaced IDs, graph and catalog references, provider ownership, canonical stat bindings, Minecraft 1.21.1 resource conventions, optional tag entries and deterministic generated projections.
 
-- core-only startup;
-- provider-present startup;
-- confirmed/cancelled action tests;
-- duplicate/dedupe test;
-- multiplayer attribution when relevant;
-- dedicated server;
-- client if the integration has client behavior.
+### T2 — Save/migration fixtures
 
----
+Every supported persisted schema needs representative migration and corruption cases. Assertions must protect conservation of XP, paid points, mastery, discoveries, choices and intended specialization progress. Unknown IDs, duplicate entries, truncated data, removed providers and repeat migration must fail closed or reconcile according to the explicit migration policy.
 
-# Mandatory regression cases from the consolidated audit
+### T3 — NeoForge GameTests
 
-These should receive explicit automated coverage as the relevant phases land:
+Use when behavior depends on real registries or lifecycle. Typical targets are attachments, login/respawn reconciliation, modifier apply/remove/idempotence, reload publication, networking authority, semantic-action dedupe and registry-sensitive resources.
 
-1. Boss tag singular path.
-2. Cataclysm optional tag entries.
-3. All seven vanilla attribute families resolve on 1.21.1.
-4. Missing attribute target cannot become silent purchased no-op.
-5. Removed node can be reconciled without requiring its missing definition.
-6. Paid-cost refund survives rule cost changes.
-7. Migrated Industrialist/Logistician/Prospector progress remains preserved.
-8. Generic specialization provenance is respected once added.
-9. Invalid reload keeps old snapshot.
-10. Client uses the same rules revision as server.
-11. XP/mastery-only update does not refresh all attributes.
-12. Duplicate semantic action rewards once.
-13. Generated-data drift fails CI.
-14. Provider absence never leaves a purchasable useless node.
-15. Dedicated server remains free of client classloading.
+### T4 — Dedicated-server smoke
 
----
+Permanent gate for common/server/runtime changes. The core-only server must reach ready state without client leakage or optional-provider classloading failures. Provider-present matrices are owned by the relevant integration plans.
 
-# Evidence standard
+### T5 — Client/UI verification
 
-Use precise completion language:
+Client-facing changes require actual client verification for startup, key mapping, screen lifecycle, disconnect/reconnect state, large-tree navigation, unavailable-provider reasons, GUI scale and localization. If automation is not available, record the manual checklist and evidence instead of claiming automated coverage.
 
-- “compiles” means build succeeded;
-- “server smoke passes” means dedicated server initialized under the tested configuration;
-- “GameTest passes” means the tested runtime behavior succeeded;
-- “integration works” requires provider-present runtime evidence, not only compileOnly compilation;
-- “UI works” requires actual client verification;
-- “save compatible” requires migration fixtures/runtime evidence.
+### T6 — Provider integration tests
+
+Each supported provider requires provider-present startup and behavior evidence in addition to the Foundation core-only gate. Test compatible versions, confirmed/cancelled actions, duplicate callbacks, fake-player/creative/spectator policy, cleanup, multiplayer attribution and API-drift behavior.
+
+### T7 — Performance/regression tests
+
+Profile hot paths when they change: XP/mastery award frequency, modifier refreshes, state-sync coalescing, packet size/frequency, reload time, UI hit testing, cache growth and high-player event throughput. Do not invent performance budgets without measured baselines.
+
+## Merge gates by change type
+
+Pure core changes require relevant core/JUnit tests and build. Data/schema/generator changes require validators, deterministic regeneration and build, plus runtime reload tests when semantics change. Save/codec changes require regression/migration fixtures and runtime evidence when lifecycle is involved. Networking/runtime progression changes require core tests, GameTests, invalid/replay cases and dedicated server. Client/UI changes require client evidence plus dedicated-server safety. Provider integration changes require both the core-only gate and provider-present evidence.
+
+## Mandatory high-risk regressions
+
+Maintain explicit automated coverage as the relevant stages land for: registry/tag paths, optional tag entries, missing attribute targets, removed-node reconciliation, paid-cost refunds after rule changes, specialization migration/provenance, invalid reload retaining last-known-good state, client/server rules revision, XP-only updates avoiding unnecessary modifier rebuilds, semantic-action dedupe, generated-data drift, provider absence not leaving purchased useless behavior, and dedicated-server freedom from client/optional classloading.
+
+## Evidence vocabulary
+
+- **compiles**: NeoForge build completed.
+- **JUnit/core tests pass**: the deterministic/pure test layers completed.
+- **GameTest passes**: the named Minecraft runtime behavior completed under the GameTest server.
+- **server smoke passes**: the dedicated server reached the tested ready-state contract.
+- **integration works**: requires provider-present runtime evidence, not only `compileOnly` compilation or core-only startup.
+- **UI works**: requires actual client verification.
+- **save compatible**: requires the applicable migration fixtures/runtime evidence.
 
 Never promote one level of evidence into a stronger claim.
