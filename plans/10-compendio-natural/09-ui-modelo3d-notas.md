@@ -123,10 +123,10 @@ Decisão de armazenamento deve ser fechada no 10.13. Requisitos funcionais:
 
 ### F — Favoritos e histórico leve
 
-- [ ] favoritar entradas;
-- [ ] opcionalmente manter lista limitada de últimas entradas abertas;
-- [ ] não criar histórico ilimitado;
-- [ ] favoritos não interferem na descoberta.
+- [x] favoritar entradas;
+- [x] opcionalmente manter lista limitada de últimas entradas abertas;
+- [x] não criar histórico ilimitado;
+- [x] favoritos não interferem na descoberta.
 
 ### G — Tooltip de proveniência/debug
 
