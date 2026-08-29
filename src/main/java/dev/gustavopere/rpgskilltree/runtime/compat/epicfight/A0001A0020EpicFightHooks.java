@@ -76,7 +76,7 @@ public final class A0001A0020EpicFightHooks {
     @SubscribeEvent
     public static void onCriticalHit(CriticalHitEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
-        LivingEntity target = event.getTarget();
+        if (!(event.getTarget() instanceof LivingEntity target)) return;
         if (!hostile(player, target)) return;
         Optional<WeaponFamily> family = family(EpicFightCapabilities.getItemStackCapability(player.getMainHandItem()));
         if (family.isEmpty()) return;
