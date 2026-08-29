@@ -10,6 +10,7 @@ import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterControls;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterState;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumNotesModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPageModel;
+import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPersonalView;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayout;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSession;
 import java.util.Locale;
@@ -47,6 +48,9 @@ public final class CompendiumScreen extends Screen {
     private final CompendiumScreenSession session;
     private CompendiumScreenLayout layout;
     private EditBox searchBox;
+    private Button allViewButton;
+    private Button favoritesViewButton;
+    private Button recentViewButton;
     private Button kindFilterButton;
     private Button discoveredFilterButton;
     private Button favoriteButton;
@@ -67,6 +71,9 @@ public final class CompendiumScreen extends Screen {
     protected void init() {
         super.init();
         searchBox = null;
+        allViewButton = null;
+        favoritesViewButton = null;
+        recentViewButton = null;
         kindFilterButton = null;
         discoveredFilterButton = null;
         favoriteButton = null;
@@ -90,6 +97,38 @@ public final class CompendiumScreen extends Screen {
         searchBox.setHint(Component.translatable("screen.rpgskilltree.compendium.search_hint"));
         searchBox.setResponder(session::setQuery);
         addRenderableWidget(searchBox);
+
+        CompendiumScreenLayout.Rect personalToolbar = layout.personalToolbar();
+        int personalUsable = Math.max(3, personalToolbar.width() - FILTER_BUTTON_GAP * 2);
+        int allWidth = Math.max(1, personalUsable / 3);
+        int favoritesWidth = Math.max(1, (personalUsable - allWidth) / 2);
+        int recentWidth = Math.max(1, personalUsable - allWidth - favoritesWidth);
+        allViewButton = Button.builder(
+            Component.translatable("screen.rpgskilltree.compendium.view.all"),
+            button -> selectPersonalView(CompendiumPersonalView.ALL)
+        ).bounds(personalToolbar.x(), personalToolbar.y(), allWidth, personalToolbar.height()).build();
+        favoritesViewButton = Button.builder(
+            Component.translatable("screen.rpgskilltree.compendium.view.favorites"),
+            button -> selectPersonalView(CompendiumPersonalView.FAVORITES)
+        ).bounds(
+            personalToolbar.x() + allWidth + FILTER_BUTTON_GAP,
+            personalToolbar.y(),
+            favoritesWidth,
+            personalToolbar.height()
+        ).build();
+        recentViewButton = Button.builder(
+            Component.translatable("screen.rpgskilltree.compendium.view.recent"),
+            button -> selectPersonalView(CompendiumPersonalView.RECENT)
+        ).bounds(
+            personalToolbar.right() - recentWidth,
+            personalToolbar.y(),
+            recentWidth,
+            personalToolbar.height()
+        ).build();
+        addRenderableWidget(allViewButton);
+        addRenderableWidget(favoritesViewButton);
+        addRenderableWidget(recentViewButton);
+        refreshPersonalViewButtons();
 
         CompendiumScreenLayout.Rect toolbar = layout.toolbar();
         int firstWidth = Math.max(1, (toolbar.width() - FILTER_BUTTON_GAP) / 2);
@@ -134,6 +173,7 @@ public final class CompendiumScreen extends Screen {
         }
 
         refreshFavoriteButton();
+        refreshPersonalViewButtons();
         renderHeader(graphics);
         renderToolbar(graphics);
         if (layout.splitPanes()) {
@@ -167,6 +207,14 @@ public final class CompendiumScreen extends Screen {
     }
 
     private void renderToolbar(GuiGraphics graphics) {
+        CompendiumScreenLayout.Rect personalToolbar = layout.personalToolbar();
+        graphics.fill(
+            personalToolbar.x(),
+            personalToolbar.y(),
+            personalToolbar.right(),
+            personalToolbar.bottom(),
+            PANEL
+        );
         CompendiumScreenLayout.Rect toolbar = layout.toolbar();
         graphics.fill(toolbar.x(), toolbar.y(), toolbar.right(), toolbar.bottom(), PANEL);
     }
@@ -177,7 +225,7 @@ public final class CompendiumScreen extends Screen {
         if (viewport.entries().isEmpty()) {
             Component empty = Component.translatable(
                 session.query().isBlank()
-                    ? "screen.rpgskilltree.compendium.empty"
+                    ? emptyPersonalViewKey()
                     : "screen.rpgskilltree.compendium.no_results"
             );
             graphics.drawString(font, empty, body.x() + 10, body.y() + 10, MUTED);
@@ -379,6 +427,18 @@ public final class CompendiumScreen extends Screen {
         return false;
     }
 
+    private void selectPersonalView(CompendiumPersonalView view) {
+        session.setPersonalView(view);
+        refreshPersonalViewButtons();
+    }
+
+    private void refreshPersonalViewButtons() {
+        CompendiumPersonalView current = session.personalView();
+        if (allViewButton != null) allViewButton.active = current != CompendiumPersonalView.ALL;
+        if (favoritesViewButton != null) favoritesViewButton.active = current != CompendiumPersonalView.FAVORITES;
+        if (recentViewButton != null) recentViewButton.active = current != CompendiumPersonalView.RECENT;
+    }
+
     private void refreshFilterButtonLabels() {
         if (kindFilterButton != null) kindFilterButton.setMessage(kindFilterLabel());
         if (discoveredFilterButton != null) discoveredFilterButton.setMessage(discoveredFilterLabel());
@@ -418,6 +478,14 @@ public final class CompendiumScreen extends Screen {
             case FALSE -> "false";
         };
         return Component.translatable("screen.rpgskilltree.compendium.filter.discovered." + suffix);
+    }
+
+    private String emptyPersonalViewKey() {
+        return switch (session.personalView()) {
+            case ALL -> "screen.rpgskilltree.compendium.empty";
+            case FAVORITES -> "screen.rpgskilltree.compendium.empty_favorites";
+            case RECENT -> "screen.rpgskilltree.compendium.empty_recent";
+        };
     }
 
     private String fitToWidth(String value, int maxWidth) {

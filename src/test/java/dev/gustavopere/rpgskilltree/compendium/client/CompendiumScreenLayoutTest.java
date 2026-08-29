@@ -9,6 +9,7 @@ public final class CompendiumScreenLayoutTest {
         wideLayoutUsesNonOverlappingSplitPanes();
         ultrawideLayoutStaysCenteredAndBounded();
         rowCapacityTracksAvailableBodyHeight();
+        personalToolbarGetsDedicatedResponsiveRow();
         System.out.println("CompendiumScreenLayoutTest: PASS");
     }
 
@@ -23,14 +24,16 @@ public final class CompendiumScreenLayoutTest {
 
         isFalse(layout.splitPanes());
         eq(layout.listBody(), layout.detailBody());
-        isTrue(layout.visibleRows() >= 6);
+        isTrue(layout.visibleRows() >= 5);
         within(layout.content(), 320, 240);
         within(layout.header(), 320, 240);
         within(layout.search(), 320, 240);
+        within(layout.personalToolbar(), 320, 240);
         within(layout.toolbar(), 320, 240);
         within(layout.listBody(), 320, 240);
         isTrue(layout.header().bottom() <= layout.search().y());
-        isTrue(layout.search().bottom() <= layout.toolbar().y());
+        isTrue(layout.search().bottom() <= layout.personalToolbar().y());
+        isTrue(layout.personalToolbar().bottom() <= layout.toolbar().y());
         isTrue(layout.toolbar().bottom() <= layout.listBody().y());
     }
 
@@ -43,6 +46,7 @@ public final class CompendiumScreenLayoutTest {
         isTrue(layout.listBody().width() < layout.detailBody().width());
         eq(layout.listBody().y(), layout.detailBody().y());
         eq(layout.listBody().height(), layout.detailBody().height());
+        within(layout.personalToolbar(), 854, 480);
         within(layout.listBody(), 854, 480);
         within(layout.detailBody(), 854, 480);
     }
@@ -64,6 +68,16 @@ public final class CompendiumScreenLayoutTest {
         eq(shortLayout.listBody().height() / CompendiumScreenLayout.ROW_HEIGHT, shortLayout.visibleRows());
         eq(tallLayout.listBody().height() / CompendiumScreenLayout.ROW_HEIGHT, tallLayout.visibleRows());
         isTrue(tallLayout.visibleRows() > shortLayout.visibleRows());
+    }
+
+    private static void personalToolbarGetsDedicatedResponsiveRow() {
+        CompendiumScreenLayout compact = CompendiumScreenLayout.calculate(240, 180);
+        CompendiumScreenLayout wide = CompendiumScreenLayout.calculate(1280, 720);
+
+        eq(compact.content().width(), compact.personalToolbar().width());
+        eq(wide.content().width(), wide.personalToolbar().width());
+        eq(compact.toolbar().height(), compact.personalToolbar().height());
+        eq(wide.toolbar().height(), wide.personalToolbar().height());
     }
 
     private static void within(CompendiumScreenLayout.Rect rect, int screenWidth, int screenHeight) {

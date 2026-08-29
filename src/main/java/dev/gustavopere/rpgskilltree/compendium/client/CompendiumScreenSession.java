@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.compendium.client;
 
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryId;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ public final class CompendiumScreenSession {
     private final CompendiumClientSnapshot snapshot;
     private final CompendiumBrowserModel browser;
     private final CompendiumNotesModel notes;
+    private CompendiumPersonalView personalView = CompendiumPersonalView.ALL;
 
     public CompendiumScreenSession(CompendiumClientSnapshot snapshot) {
         this(snapshot, new CompendiumNotesModel());
@@ -32,6 +34,10 @@ public final class CompendiumScreenSession {
 
     public CompendiumFilterState filter() {
         return browser.filter();
+    }
+
+    public CompendiumPersonalView personalView() {
+        return personalView;
     }
 
     public int totalMatches() {
@@ -58,6 +64,11 @@ public final class CompendiumScreenSession {
         browser.setFilter(Objects.requireNonNull(filter, "filter"));
     }
 
+    public void setPersonalView(CompendiumPersonalView personalView) {
+        this.personalView = Objects.requireNonNull(personalView, "personalView");
+        refreshPersonalScope();
+    }
+
     public void scrollRows(int delta) {
         long requested = (long) browser.firstVisibleRow() + delta;
         int clampedRequest = requested < Integer.MIN_VALUE
@@ -74,12 +85,12 @@ public final class CompendiumScreenSession {
 
     public void openSelectedEntry() {
         browser.openSelectedEntry();
-        browser.openEntry().ifPresent(notes::recordOpened);
+        recordCurrentEntryOpened();
     }
 
     public void openVisibleRow(int visibleRow, int rowCapacity) {
         browser.openVisibleRow(visibleRow, rowCapacity);
-        browser.openEntry().ifPresent(notes::recordOpened);
+        recordCurrentEntryOpened();
     }
 
     public Optional<CompendiumClientEntry> currentEntry() {
@@ -101,10 +112,31 @@ public final class CompendiumScreenSession {
         currentEntry().ifPresent(entry -> {
             CompendiumEntryId id = entry.id();
             notes.setFavorite(id, !notes.isFavorite(id));
+            if (personalView == CompendiumPersonalView.FAVORITES) refreshPersonalScope();
         });
     }
 
     public void backToList() {
         browser.backToList();
+    }
+
+    private void recordCurrentEntryOpened() {
+        browser.openEntry().ifPresent(id -> {
+            notes.recordOpened(id);
+            if (personalView == CompendiumPersonalView.RECENT) refreshPersonalScope();
+        });
+    }
+
+    private void refreshPersonalScope() {
+        switch (personalView) {
+            case ALL -> browser.clearEntryScope();
+            case FAVORITES -> browser.setEntryScope(
+                snapshot.entries().stream()
+                    .map(CompendiumClientEntry::id)
+                    .filter(notes::isFavorite)
+                    .toList()
+            );
+            case RECENT -> browser.setEntryScope(notes.recentEntries());
+        }
     }
 }

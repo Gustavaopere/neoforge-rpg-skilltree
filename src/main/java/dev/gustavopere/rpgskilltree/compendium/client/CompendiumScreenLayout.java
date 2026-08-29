@@ -11,6 +11,7 @@ public record CompendiumScreenLayout(
     Rect content,
     Rect header,
     Rect search,
+    Rect personalToolbar,
     Rect toolbar,
     Rect listBody,
     Rect detailBody,
@@ -53,9 +54,15 @@ public record CompendiumScreenLayout(
             content.width(),
             SEARCH_HEIGHT
         );
-        Rect toolbar = new Rect(
+        Rect personalToolbar = new Rect(
             content.x(),
             search.bottom() + CONTROL_GAP,
+            content.width(),
+            TOOLBAR_HEIGHT
+        );
+        Rect toolbar = new Rect(
+            content.x(),
+            personalToolbar.bottom() + CONTROL_GAP,
             content.width(),
             TOOLBAR_HEIGHT
         );
@@ -85,6 +92,7 @@ public record CompendiumScreenLayout(
             content,
             header,
             search,
+            personalToolbar,
             toolbar,
             listBody,
             detailBody,
