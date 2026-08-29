@@ -4,7 +4,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 python3 "$ROOT/scripts/verify-ci-generator-drift.py"
 python3 "$ROOT/scripts/verify-gradle-wrapper.py"
 OUT="$ROOT/build/core-test-classes"; rm -rf "$OUT"; mkdir -p "$OUT"
-mapfile -t SOURCES < <(find "$ROOT/src/main/java/dev/gustavopere/rpgskilltree/core" "$ROOT/src/test/java/dev/gustavopere/rpgskilltree/core" -name '*.java' -print | sort)
+mapfile -t SOURCES < <(find "$ROOT/src/main/java/dev/gustavopere/rpgskilltree/core" "$ROOT/src/test/java/dev/gustavopere/rpgskilltree/core" -name '*.java' ! -name '*JUnitTest.java' -print | sort)
 javac --release 21 -d "$OUT" "${SOURCES[@]}"
 javac --release 21 -cp "$OUT" -d "$OUT" \
   "$ROOT/src/main/java/dev/gustavopere/rpgskilltree/runtime/data/NodeEffectCatalog.java" \
