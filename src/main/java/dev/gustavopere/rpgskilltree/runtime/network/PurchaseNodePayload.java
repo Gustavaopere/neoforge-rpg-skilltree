@@ -5,6 +5,7 @@ import dev.gustavopere.rpgskilltree.core.NodePurchaseResult;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import io.netty.buffer.ByteBuf;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.regex.Pattern;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -30,6 +31,11 @@ public record PurchaseNodePayload(ResourceLocation nodeId, String requestId) imp
         PurchaseNodePayload::requestId,
         PurchaseNodePayload::new
     );
+
+    /** Creates a fresh intent id for a new client click while preserving the legacy call site. */
+    public PurchaseNodePayload(ResourceLocation nodeId) {
+        this(nodeId, "node:" + UUID.randomUUID());
+    }
 
     public PurchaseNodePayload {
         Objects.requireNonNull(nodeId, "nodeId");
