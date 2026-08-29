@@ -29,6 +29,8 @@
   "screen.rpgskilltree.compendium.undiscovered": "Não descoberto",
   "screen.rpgskilltree.compendium.shell": "Detalhes ainda não disponíveis para esta entrada.",
   "screen.rpgskilltree.compendium.details_hidden": "Descubra esta entrada para revelar os detalhes.",
+  "screen.rpgskilltree.compendium.favorite.add": "☆ Favoritar",
+  "screen.rpgskilltree.compendium.favorite.remove": "★ Favorito",
   "screen.rpgskilltree.title": "Árvore de Habilidades RPG",
   "screen.rpgskilltree.points": "Pontos Passivos: %s",
   "screen.rpgskilltree.controls": "Arraste: mover • Roda: zoom • LMB: comprar • RMB: respec • Tab: trocar árvore",
