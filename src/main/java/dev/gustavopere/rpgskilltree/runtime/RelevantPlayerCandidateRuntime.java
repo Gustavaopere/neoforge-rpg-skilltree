@@ -16,43 +16,22 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 
-/**
- * NeoForge boundary that turns live server players into bounded relevant-player candidates.
- *
- * <p>One immutable spatial index is cached per dimension/policy cell configuration for a short
- * TTL. Encounter queries then visit only intersecting index cells. The cache is also invalidated
- * after confirmed Core progression mutations and player lifecycle topology changes, so level or
- * membership changes never wait for TTL expiry.</p>
- *
- * <p>The initial index build itself is bounded. If the active-player probe exceeds the caller's
- * technical limit, spatial evidence fails closed to an empty index instead of accepting an
- * arbitrary prefix. Optional party integration is exposed only through {@link PartyCandidateSource}
- * and creates no hard dependency on a party mod.</p>
- */
+/** Bounded NeoForge player sampling/cache boundary for initial world-scaling decisions. */
 public final class RelevantPlayerCandidateRuntime {
     private static final Object LOCK = new Object();
     private static final LinkedHashMap<CacheKey, CacheEntry> CACHE = new LinkedHashMap<>(16, 0.75F, true);
-
     private static volatile PartyCandidateSource partyCandidateSource;
     private static AutoCloseable mutationSubscription;
-    private static long cacheHits;
-    private static long cacheMisses;
-    private static long playersSampled;
-    private static long saturatedBuilds;
-    private static long spatialQueries;
-    private static long spatialPlayersScanned;
-    private static long spatialCellsVisited;
+    private static long cacheHits, cacheMisses, playersSampled, saturatedBuilds;
+    private static long spatialQueries, spatialPlayersScanned, spatialCellsVisited;
 
     private RelevantPlayerCandidateRuntime() {}
 
-    /** Installs progression-driven cache invalidation exactly once for the mod lifetime. */
     public static void initialize() {
         synchronized (LOCK) {
             if (mutationSubscription != null) return;
             mutationSubscription = ProgressionMutationEvents.subscribe(event -> {
-                if (event.section() == ProgressionMutationEvent.Section.CORE) {
-                    invalidateAll();
-                }
+                if (event.section() == ProgressionMutationEvent.Section.CORE) invalidateAll();
             });
         }
     }
@@ -73,40 +52,28 @@ public final class RelevantPlayerCandidateRuntime {
 
         CacheEntry cached = indexFor(level, searchPolicy, limits);
         RelevantPlayerSpatialQuery spatial = cached.index().query(
-            floorToInt(encounter.getX()),
-            floorToInt(encounter.getY()),
-            floorToInt(encounter.getZ()),
-            searchPolicy
+            floorToInt(encounter.getX()), floorToInt(encounter.getY()), floorToInt(encounter.getZ()), searchPolicy
         );
         recordSpatialQuery(spatial);
 
+        List<RelevantPlayerCandidate> candidates = spatial.candidates();
         PartyCandidateSource source = partyCandidateSource;
-        List<RelevantPlayerCandidate> merged = spatial.candidates();
         if (source != null) {
             List<RelevantPlayerCandidate> party = List.copyOf(Objects.requireNonNull(
-                source.candidates(level, encounter, searchPolicy),
-                "party candidate source result"
+                source.candidates(level, encounter, searchPolicy), "party candidate source result"
             ));
             if (party.size() > searchPolicy.maxCandidates()) {
                 throw new IllegalArgumentException("party candidate source exceeded maxCandidates");
             }
-            merged = RelevantPlayerCandidateMerger.merge(
-                spatial.candidates(),
-                party,
-                searchPolicy.maxCandidates()
+            candidates = RelevantPlayerCandidateMerger.merge(
+                spatial.candidates(), party, searchPolicy.maxCandidates()
             );
         }
-
         return new QueryResult(
-            merged,
-            spatial.indexedPlayers(),
-            spatial.scannedPlayers(),
-            spatial.visitedCells(),
-            cached.saturated()
+            candidates, spatial.indexedPlayers(), spatial.scannedPlayers(), spatial.visitedCells(), cached.saturated()
         );
     }
 
-    /** Optional adapter seam for a real party/team provider. */
     public static void installPartyCandidateSource(PartyCandidateSource source) {
         partyCandidateSource = Objects.requireNonNull(source, "source");
     }
@@ -115,7 +82,6 @@ public final class RelevantPlayerCandidateRuntime {
         partyCandidateSource = null;
     }
 
-    /** Clears movement/topology/progression-sensitive cached player presence snapshots. */
     public static void invalidateAll() {
         synchronized (LOCK) {
             CACHE.clear();
@@ -124,28 +90,15 @@ public final class RelevantPlayerCandidateRuntime {
 
     public static Metrics metrics() {
         synchronized (LOCK) {
-            return new Metrics(
-                cacheHits,
-                cacheMisses,
-                playersSampled,
-                saturatedBuilds,
-                spatialQueries,
-                spatialPlayersScanned,
-                spatialCellsVisited,
-                CACHE.size()
-            );
+            return new Metrics(cacheHits, cacheMisses, playersSampled, saturatedBuilds,
+                spatialQueries, spatialPlayersScanned, spatialCellsVisited, CACHE.size());
         }
     }
 
     public static void resetMetrics() {
         synchronized (LOCK) {
-            cacheHits = 0L;
-            cacheMisses = 0L;
-            playersSampled = 0L;
-            saturatedBuilds = 0L;
-            spatialQueries = 0L;
-            spatialPlayersScanned = 0L;
-            spatialCellsVisited = 0L;
+            cacheHits = cacheMisses = playersSampled = saturatedBuilds = 0L;
+            spatialQueries = spatialPlayersScanned = spatialCellsVisited = 0L;
         }
     }
 
@@ -155,13 +108,10 @@ public final class RelevantPlayerCandidateRuntime {
         RuntimeLimits limits
     ) {
         CacheKey key = new CacheKey(
-            level.dimension().location().toString(),
-            searchPolicy.cellSizeBlocks(),
-            searchPolicy.cacheTtlTicks(),
-            limits.maxIndexedPlayers()
+            level.dimension().location().toString(), searchPolicy.cellSizeBlocks(),
+            searchPolicy.cacheTtlTicks(), limits.maxIndexedPlayers()
         );
         long now = level.getGameTime();
-
         synchronized (LOCK) {
             CacheEntry existing = CACHE.get(key);
             if (existing != null && now < existing.expiresAtTick()) {
@@ -190,35 +140,27 @@ public final class RelevantPlayerCandidateRuntime {
     ) {
         int probeLimit = Math.addExact(limits.maxIndexedPlayers(), 1);
         List<ServerPlayer> players = level.getPlayers(
-            player -> player.isAlive() && !player.isSpectator(),
-            probeLimit
+            player -> player.isAlive() && !player.isSpectator(), probeLimit
         );
         if (players.size() > limits.maxIndexedPlayers()) {
             return new CacheEntry(
                 RelevantPlayerSpatialIndex.build(List.of(), searchPolicy.cellSizeBlocks()),
-                expiresAt(now, searchPolicy.cacheTtlTicks()),
-                players.size(),
-                true
+                expiresAt(now, searchPolicy.cacheTtlTicks()), players.size(), true
             );
         }
 
         ArrayList<RelevantPlayerPresence> presences = new ArrayList<>(players.size());
         for (ServerPlayer player : players) {
-            long level = CorePlayerProgressionRuntime.queryProgression(player).level();
+            long playerLevel = CorePlayerProgressionRuntime.queryProgression(player).level();
             presences.add(new RelevantPlayerPresence(
-                player.getUUID().toString(),
-                level,
-                floorToInt(player.getX()),
-                floorToInt(player.getY()),
-                floorToInt(player.getZ())
+                player.getUUID().toString(), playerLevel,
+                floorToInt(player.getX()), floorToInt(player.getY()), floorToInt(player.getZ())
             ));
         }
         presences.sort((left, right) -> left.playerId().compareTo(right.playerId()));
         return new CacheEntry(
             RelevantPlayerSpatialIndex.build(presences, searchPolicy.cellSizeBlocks()),
-            expiresAt(now, searchPolicy.cacheTtlTicks()),
-            players.size(),
-            false
+            expiresAt(now, searchPolicy.cacheTtlTicks()), players.size(), false
         );
     }
 
@@ -239,8 +181,7 @@ public final class RelevantPlayerCandidateRuntime {
     }
 
     private static long expiresAt(long now, long ttl) {
-        if (Long.MAX_VALUE - now < ttl) return Long.MAX_VALUE;
-        return now + ttl;
+        return Long.MAX_VALUE - now < ttl ? Long.MAX_VALUE : now + ttl;
     }
 
     private static int floorToInt(double value) {
@@ -252,23 +193,17 @@ public final class RelevantPlayerCandidateRuntime {
 
     @FunctionalInterface
     public interface PartyCandidateSource {
-        /** Party candidates must set {@code partyMember=true}; the core merger validates this. */
         List<RelevantPlayerCandidate> candidates(
-            ServerLevel level,
-            LivingEntity encounter,
-            RelevantPlayerSearchPolicy searchPolicy
+            ServerLevel level, LivingEntity encounter, RelevantPlayerSearchPolicy searchPolicy
         );
     }
 
-    /** Technical resource ceilings supplied by the caller; no gameplay balance lives here. */
     public record RuntimeLimits(int maxIndexedPlayers, int maxCacheEntries) {
         public RuntimeLimits {
             if (maxIndexedPlayers <= 0 || maxIndexedPlayers == Integer.MAX_VALUE) {
                 throw new IllegalArgumentException("maxIndexedPlayers must be positive and leave probe headroom");
             }
-            if (maxCacheEntries <= 0) {
-                throw new IllegalArgumentException("maxCacheEntries must be positive");
-            }
+            if (maxCacheEntries <= 0) throw new IllegalArgumentException("maxCacheEntries must be positive");
         }
     }
 
@@ -280,8 +215,7 @@ public final class RelevantPlayerCandidateRuntime {
         boolean saturatedIndex
     ) {
         public QueryResult {
-            Objects.requireNonNull(candidates, "candidates");
-            candidates = List.copyOf(candidates);
+            candidates = List.copyOf(Objects.requireNonNull(candidates, "candidates"));
             if (indexedPlayers < 0 || scannedPlayers < 0 || scannedPlayers > indexedPlayers) {
                 throw new IllegalArgumentException("invalid relevant-player query counters");
             }
@@ -290,27 +224,10 @@ public final class RelevantPlayerCandidateRuntime {
     }
 
     public record Metrics(
-        long cacheHits,
-        long cacheMisses,
-        long playersSampled,
-        long saturatedBuilds,
-        long spatialQueries,
-        long spatialPlayersScanned,
-        long spatialCellsVisited,
-        int cacheEntries
+        long cacheHits, long cacheMisses, long playersSampled, long saturatedBuilds,
+        long spatialQueries, long spatialPlayersScanned, long spatialCellsVisited, int cacheEntries
     ) {}
 
-    private record CacheKey(
-        String dimensionId,
-        int cellSizeBlocks,
-        long cacheTtlTicks,
-        int maxIndexedPlayers
-    ) {}
-
-    private record CacheEntry(
-        RelevantPlayerSpatialIndex index,
-        long expiresAtTick,
-        int sampledPlayers,
-        boolean saturated
-    ) {}
+    private record CacheKey(String dimensionId, int cellSizeBlocks, long cacheTtlTicks, int maxIndexedPlayers) {}
+    private record CacheEntry(RelevantPlayerSpatialIndex index, long expiresAtTick, int sampledPlayers, boolean saturated) {}
 }
