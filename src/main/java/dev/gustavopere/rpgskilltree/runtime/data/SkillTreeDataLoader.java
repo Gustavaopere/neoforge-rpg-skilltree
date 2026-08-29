@@ -312,6 +312,13 @@ public final class SkillTreeDataLoader {
             if (!rulesById.containsKey(id)) {
                 throw validation(source, idText, "id", "layout references unknown node " + id);
             }
+            if (skill.has("bonuses") && !skill.get("bonuses").isJsonNull()) {
+                JsonArray bonuses = requiredArray(source, idText, skill, "bonuses");
+                if (bonuses.size() > 0) {
+                    throw validation(source, idText, "bonuses",
+                        "must be empty; server-authoritative gameplay effects belong in node_effects");
+                }
+            }
             ResourceLocation previous = sourceByNode.putIfAbsent(id, source);
             if (previous != null) {
                 throw validation(source, idText, "id", "duplicate layout entry; first declared in " + previous);
