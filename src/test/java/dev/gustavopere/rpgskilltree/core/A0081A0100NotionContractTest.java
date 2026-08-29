@@ -50,6 +50,7 @@ public final class A0081A0100NotionContractTest {
         for (int i = 88; i <= 100; i++) checkRankGate("A%04d".formatted(i), CombatPerkTreeModel.VITALITY_GATEWAY_NODE, 1);
         checkRankGate("A0098", CombatPerkTreeModel.AGILITY_GATEWAY_NODE, 1);
         checkRankGate("A0099", CombatPerkTreeModel.MARTIAL_GATEWAY_NODE, 1);
+        A0081A0100CombatPolicyTest.main(new String[0]);
         System.out.println("A0081A0100NotionContractTest: OK");
     }
 
