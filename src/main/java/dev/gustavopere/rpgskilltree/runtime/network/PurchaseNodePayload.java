@@ -61,7 +61,7 @@ public record PurchaseNodePayload(ResourceLocation nodeId, String requestId) imp
                     payload.requestId()
                 );
                 if (!result.accepted()) {
-                    player.sendSystemMessage(Component.translatable(result.messageKey()));
+                    player.sendSystemMessage(Component.literal(result.fallbackMessage()));
                 }
             }
         });
