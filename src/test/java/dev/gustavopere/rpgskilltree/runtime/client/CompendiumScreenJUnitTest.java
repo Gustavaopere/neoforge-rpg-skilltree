@@ -5,10 +5,12 @@ import dev.gustavopere.rpgskilltree.compendium.client.CompendiumNotesModel;
 import java.util.List;
 import net.minecraft.network.chat.Component;
 import org.junit.jupiter.api.Test;
+import org.lwjgl.glfw.GLFW;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class CompendiumScreenJUnitTest {
     @Test
@@ -30,6 +32,17 @@ final class CompendiumScreenJUnitTest {
     @Test
     void screenRejectsNullSnapshot() {
         assertThrows(NullPointerException.class, () -> new CompendiumScreen(null));
+    }
+
+    @Test
+    void debugProvenanceStartsHiddenAndF3TogglesIt() {
+        CompendiumScreen screen = new CompendiumScreen(emptySnapshot());
+
+        assertFalse(screen.debugDetailsEnabled());
+        assertTrue(screen.keyPressed(GLFW.GLFW_KEY_F3, 0, 0));
+        assertTrue(screen.debugDetailsEnabled());
+        assertTrue(screen.keyPressed(GLFW.GLFW_KEY_F3, 0, 0));
+        assertFalse(screen.debugDetailsEnabled());
     }
 
     private static CompendiumClientSnapshot emptySnapshot() {

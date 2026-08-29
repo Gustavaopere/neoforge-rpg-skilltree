@@ -3,6 +3,8 @@ package dev.gustavopere.rpgskilltree.compendium.client;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryId;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumRelation;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumSection;
+import dev.gustavopere.rpgskilltree.compendium.api.FactSource;
+import dev.gustavopere.rpgskilltree.compendium.catalog.CoverageState;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +16,8 @@ public record CompendiumPageModel(
     boolean discovered,
     boolean detailsVisible,
     List<CompendiumSection> sections,
-    List<CompendiumRelation> entryRelations
+    List<CompendiumRelation> entryRelations,
+    CompendiumDebugInfo debugInfo
 ) {
     public CompendiumPageModel {
         Objects.requireNonNull(id, "id");
@@ -31,6 +34,38 @@ public record CompendiumPageModel(
                 throw new IllegalArgumentException("entry relation must target a Compendium entry");
             }
         }
+        Objects.requireNonNull(debugInfo, "debugInfo");
+    }
+
+    /**
+     * Compatibility constructor for protocol-agnostic/headless callers that do not yet project canonical provenance.
+     * Production page creation uses {@link CompendiumPageModelFactory} and therefore supplies exact debug metadata.
+     */
+    public CompendiumPageModel(
+        CompendiumEntryId id,
+        String displayName,
+        String sourceModId,
+        boolean discovered,
+        boolean detailsVisible,
+        List<CompendiumSection> sections,
+        List<CompendiumRelation> entryRelations
+    ) {
+        this(
+            id,
+            displayName,
+            sourceModId,
+            discovered,
+            detailsVisible,
+            sections,
+            entryRelations,
+            new CompendiumDebugInfo(
+                Objects.requireNonNull(id, "id").resourceLocation(),
+                sourceModId,
+                FactSource.UNKNOWN,
+                "unknown",
+                CoverageState.ERROR
+            )
+        );
     }
 
     private static String requireText(String value, String field) {

@@ -132,13 +132,13 @@ Decisão de armazenamento deve ser fechada no 10.13. Requisitos funcionais:
 
 Em modo avançado/debug, permitir visualizar:
 
-- `ResourceLocation`;
-- source mod;
-- `FactSource`;
-- provider que forneceu o dado;
-- coverage status.
+- [x] `ResourceLocation`;
+- [x] source mod;
+- [x] `FactSource`;
+- [x] provider/origem técnico registrado na proveniência da entrada;
+- [x] coverage status.
 
-No modo survival normal, esses detalhes não devem poluir a leitura.
+- [x] No modo survival normal, esses detalhes não poluem a leitura; a exibição é opt-in e local ao cliente.
 
 ### H — Acesso
 

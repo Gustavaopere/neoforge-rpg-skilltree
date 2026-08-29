@@ -9,8 +9,21 @@ public record CompendiumFact<T>(
     FactSource source,
     FactConfidence confidence,
     FactVisibility visibility,
-    Long capturedAtEpochMillis
+    Long capturedAtEpochMillis,
+    String providerId
 ) {
+    public CompendiumFact(
+        String factKey,
+        T value,
+        String unit,
+        FactSource source,
+        FactConfidence confidence,
+        FactVisibility visibility,
+        Long capturedAtEpochMillis
+    ) {
+        this(factKey, value, unit, source, confidence, visibility, capturedAtEpochMillis, null);
+    }
+
     public CompendiumFact {
         factKey = requireText(factKey, "factKey");
         unit = normalizeNullable(unit);
@@ -25,6 +38,7 @@ public record CompendiumFact<T>(
         if (capturedAtEpochMillis != null && capturedAtEpochMillis < 0L) {
             throw new IllegalArgumentException("capturedAtEpochMillis must be non-negative");
         }
+        providerId = normalizeNullable(providerId);
     }
 
     public static CompendiumFact<Object> unavailable(
@@ -37,6 +51,19 @@ public record CompendiumFact<T>(
 
     public boolean isConfirmed() {
         return confidence != FactConfidence.UNAVAILABLE && value != null;
+    }
+
+    public CompendiumFact<T> withProviderId(String providerId) {
+        return new CompendiumFact<>(
+            factKey,
+            value,
+            unit,
+            source,
+            confidence,
+            visibility,
+            capturedAtEpochMillis,
+            providerId
+        );
     }
 
     private static String requireText(String value, String field) {

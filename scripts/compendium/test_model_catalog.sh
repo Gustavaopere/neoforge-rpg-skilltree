@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+cd "$ROOT"
+
 MAIN="$ROOT/src/main/java/dev/gustavopere/rpgskilltree/compendium"
 TEST="$ROOT/src/test/java/dev/gustavopere/rpgskilltree/compendium"
 OUT="$ROOT/build/compendium-model-test-classes"
@@ -41,6 +43,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumBrowser
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayoutTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientSnapshotTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSessionTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumDebugProvenanceTest
 
 python3 - "$DATA" <<'PY'
 import json
