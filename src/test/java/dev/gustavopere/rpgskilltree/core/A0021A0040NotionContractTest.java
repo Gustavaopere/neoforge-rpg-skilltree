@@ -48,9 +48,10 @@ public final class A0021A0040NotionContractTest {
     private static void family(String code, String expected) {
         require(NotionCombatPerkCatalog.definition(code).orElseThrow().weaponFamily().name().equals(expected), code+" family");
     }
-    private static void gate(String code, String specialization, String masteryKey, int mastery, boolean terminal) {
+    private static void gate(String code, String gateway, String masteryKey, int mastery, boolean terminal) {
         CombatPerkTreeModel.Node n = CombatPerkTreeModel.node(code).orElseThrow();
-        require(n.requiredSpecializations().contains(specialization), code+" specialization");
+        require(n.gatewayId().equals(gateway), code+" gateway identity");
+        require(n.requiredNodeRanks().getOrDefault(CombatPerkTreeModel.MARTIAL_GATEWAY_NODE,0)==1, code+" main-tree gateway");
         require(n.requiredMastery().getOrDefault(masteryKey,0) >= mastery, code+" mastery"); require(n.terminal()==terminal, code+" terminal");
     }
     private static void require(boolean value, String message) { if (!value) throw new AssertionError(message); }
