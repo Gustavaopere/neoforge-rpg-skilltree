@@ -56,7 +56,10 @@ Se uma regressão ou mudança arquitetural reabrir o trabalho, o arquivo volta a
 | 08 | `08-quests-progression-hooks/` | PLANEJADO |
 | 09 | `09-hardening-release/` | EM ANDAMENTO contínuo |
 | 10 | `10-compendio-natural/` | PLANEJADO — Dicionário Enciclopédico pt-BR |
+| 11 | `11-itemization-equipment-progression/` | PLANEJADO — itemização universal e progressão de equipamentos |
 
 O Stage 10 consolida fauna, flora, árvores, cultivos, biomas, estruturas, dimensões, descoberta e dados técnicos em um único **Compêndio Natural**. O inventário deve ser derivado da modlist/registries atuais e manter suporte automático a conteúdo modded desconhecido.
+
+O Stage 11 consolida a **Itemização e Progressão de Equipamentos**: identidade persistente, Rank, Poder do Item, 1–5 Prefixos, 1–5 Sufixos e 1–5 Infixos por equipamento, sem reroll, com geração universal em craft/loot/mobs/outputs modded, integração com Apotheosis/Apothic, Iron's Spellbooks, Ars Nouveau, Create/tech e Curios, além de apresentação própria integral em português do Brasil.
 
 Antes de implementar qualquer subplano, ler `STATUS.md`, `DECISIONS.md`, `PENDING.md`, o `README.md` do estágio e os arquivos anteriores na ordem numérica.
