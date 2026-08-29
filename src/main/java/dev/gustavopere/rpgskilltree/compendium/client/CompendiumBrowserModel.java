@@ -9,8 +9,8 @@ import java.util.Optional;
  * Pure client-side state model for the Compendium browser.
  *
  * <p>The model composes the existing search index and filter contract, then exposes only a bounded
- * viewport to rendering code. Opening an entry never mutates the list query/filter/scroll state, so
- * returning to the browser restores the exact previous context.</p>
+ * viewport to rendering code. Opening an entry never mutates the list query/filter/scroll/selection
+ * state, so returning to the browser restores the exact previous context.</p>
  */
 public final class CompendiumBrowserModel {
     private final List<CompendiumClientEntry> snapshot;
@@ -20,6 +20,7 @@ public final class CompendiumBrowserModel {
     private CompendiumFilterState filter = CompendiumFilterState.all();
     private List<CompendiumClientEntry> matches;
     private int firstVisibleRow;
+    private int selectedRow = -1;
     private CompendiumEntryId openEntry;
 
     public CompendiumBrowserModel(List<CompendiumClientEntry> snapshot) {
@@ -48,6 +49,11 @@ public final class CompendiumBrowserModel {
         return Optional.ofNullable(openEntry);
     }
 
+    public Optional<CompendiumClientEntry> selectedEntry() {
+        if (selectedRow < 0 || selectedRow >= matches.size()) return Optional.empty();
+        return Optional.of(matches.get(selectedRow));
+    }
+
     public void setQuery(String query) {
         this.query = query == null ? "" : query;
         refreshFromTop();
@@ -67,6 +73,40 @@ public final class CompendiumBrowserModel {
             return;
         }
         firstVisibleRow = Math.max(0, Math.min(requestedRow, matches.size() - 1));
+    }
+
+    /**
+     * Moves the keyboard selection and keeps it inside the current viewport.
+     */
+    public void moveSelection(int delta, int rowCapacity) {
+        if (rowCapacity <= 0) throw new IllegalArgumentException("rowCapacity must be positive");
+        if (matches.isEmpty()) {
+            selectedRow = -1;
+            firstVisibleRow = 0;
+            return;
+        }
+        if (delta == 0) return;
+
+        long requested;
+        if (selectedRow < 0) {
+            requested = delta > 0 ? 0 : matches.size() - 1L;
+        } else {
+            requested = (long) selectedRow + delta;
+        }
+        selectedRow = (int) Math.max(0L, Math.min(requested, matches.size() - 1L));
+
+        if (selectedRow < firstVisibleRow) {
+            firstVisibleRow = selectedRow;
+        } else if (selectedRow >= firstVisibleRow + rowCapacity) {
+            firstVisibleRow = selectedRow - rowCapacity + 1;
+        }
+    }
+
+    /**
+     * Opens the keyboard-selected entry when one exists.
+     */
+    public void openSelectedEntry() {
+        selectedEntry().ifPresent(entry -> openEntry(entry.id()));
     }
 
     /**
@@ -101,6 +141,7 @@ public final class CompendiumBrowserModel {
     private void refreshFromTop() {
         matches = resolveMatches();
         firstVisibleRow = 0;
+        selectedRow = -1;
     }
 
     private List<CompendiumClientEntry> resolveMatches() {

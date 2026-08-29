@@ -12,6 +12,7 @@ public final class CompendiumScreenSessionTest {
     public static void main(String[] args) {
         emptySnapshotProducesEmptyListState();
         queryAndScrollDriveTheVisibleViewport();
+        keyboardSelectionDelegatesToBrowserAndPreservesDetailContext();
         filterStateDrivesMatchesAndSurvivesDetailNavigation();
         openAndBackPreserveBrowserContext();
         entryWithoutPageStillOpensAsShell();
@@ -27,6 +28,7 @@ public final class CompendiumScreenSessionTest {
         eq(0, session.totalMatches());
         eq(List.of(), session.viewport(8).entries());
         isFalse(session.showingDetail());
+        isTrue(session.selectedEntry().isEmpty());
         isTrue(session.currentEntry().isEmpty());
         isTrue(session.currentPage().isEmpty());
     }
@@ -51,6 +53,34 @@ public final class CompendiumScreenSessionTest {
         eq(0, session.viewport(5).firstIndex());
         session.scrollRows(10_000);
         eq(19, session.viewport(5).firstIndex());
+    }
+
+    private static void keyboardSelectionDelegatesToBrowserAndPreservesDetailContext() {
+        ArrayList<CompendiumClientEntry> entries = new ArrayList<>();
+        for (int i = 0; i < 12; i++) entries.add(entry("example:entry_" + i, "Entrada " + i));
+        CompendiumClientSnapshot snapshot = new CompendiumClientSnapshot(
+            entries,
+            entries.stream().map(CompendiumScreenSessionTest::page).toList()
+        );
+        CompendiumScreenSession session = new CompendiumScreenSession(snapshot);
+        List<CompendiumClientEntry> ordered = session.viewport(12).entries();
+
+        session.moveSelection(1, 4);
+        eq(ordered.get(0), session.selectedEntry().orElseThrow());
+        session.moveSelection(5, 4);
+        eq(ordered.get(5), session.selectedEntry().orElseThrow());
+        eq(2, session.viewport(4).firstIndex());
+
+        session.openSelectedEntry();
+        isTrue(session.showingDetail());
+        eq(ordered.get(5), session.currentEntry().orElseThrow());
+
+        session.backToList();
+        isFalse(session.showingDetail());
+        eq(ordered.get(5), session.selectedEntry().orElseThrow());
+
+        session.setQuery("Entrada 1");
+        isTrue(session.selectedEntry().isEmpty());
     }
 
     private static void filterStateDrivesMatchesAndSurvivesDetailNavigation() {
