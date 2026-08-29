@@ -99,6 +99,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0041A0060NotionContractTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0061A0080NotionContractTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicyTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0081A0100NotionContractTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkGatewayContractTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalogReloadTest
 python3 "$ROOT/scripts/verify-1211-resources.py"
@@ -106,6 +107,7 @@ python3 "$ROOT/scripts/verify-node-effect-diagnostics.py"
 python3 "$ROOT/scripts/verify-quest-runtime.py"
 python3 "$ROOT/scripts/verify-core-xp-adapters.py"
 python3 "$ROOT/scripts/verify-a0061-a0080-runtime.py"
+python3 "$ROOT/scripts/verify-a0081-a0100-runtime.py"
 python3 "$ROOT/scripts/verify-world-scaling-runtime.py"
 python3 "$ROOT/scripts/verify-entity-scaling-events.py"
 python3 "$ROOT/scripts/verify-canonical-player-runtime.py"
