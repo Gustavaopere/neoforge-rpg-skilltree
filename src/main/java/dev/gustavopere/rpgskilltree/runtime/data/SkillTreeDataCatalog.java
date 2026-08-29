@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.data;
 
+import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.NodeSpecializationGrant;
@@ -28,15 +29,21 @@ public final class SkillTreeDataCatalog {
 
     /**
      * Publishes one fully prepared candidate. All fallible structural work happens before
-     * either the compatibility projection or the canonical volatile snapshot is replaced.
+     * either compatibility projection or the canonical volatile snapshot is replaced.
      */
     public static synchronized void publish(PreparedSkillTreeData prepared) {
         Objects.requireNonNull(prepared, "prepared");
         SkillTreeDataSnapshot previous = current;
         SkillTreeDataSnapshot next = buildSnapshot(prepared, Math.addExact(previous.revision(), 1L), previous);
 
-        // Compatibility projection for existing effect runtime/tests. This method performs
-        // only defensive immutable copies; validation and history construction already ran.
+        // Both projection installers only perform immutable copies of already validated state.
+        // No parser/reference validation is allowed past this boundary.
+        TreeRuleCatalog.installValidated(
+            next.definitions(),
+            next.requirements(),
+            next.specializationGrants(),
+            next.graph()
+        );
         NodeEffectCatalog.installValidated(next.attributeEffects(), next.clearableAttributeEffects());
         current = next;
     }
@@ -73,7 +80,7 @@ public final class SkillTreeDataCatalog {
             .toList();
 
         Map<ResourceLocation, NodePurchaseDefinition> definitions = new LinkedHashMap<>();
-        Map<ResourceLocation, dev.gustavopere.rpgskilltree.core.NodeAccessRequirement> requirements = new LinkedHashMap<>();
+        Map<ResourceLocation, NodeAccessRequirement> requirements = new LinkedHashMap<>();
         List<NodeSpecializationGrant> specializationGrants = new ArrayList<>();
         Set<SkillGraph.Edge> edges = new HashSet<>();
         Set<ResourceLocation> knownIds = new HashSet<>();
@@ -86,6 +93,9 @@ public final class SkillTreeDataCatalog {
         if (!prepared.treeIdsByNode().keySet().equals(knownIds)) {
             throw new IllegalArgumentException("tree id index must match the published node set");
         }
+
+        Map<ResourceLocation, NodePurchaseDefinition> allDefinitions = new HashMap<>();
+        rules.forEach(rule -> allDefinitions.put(rule.id(), rule.definition()));
 
         for (TreeRuleCatalog.NodeRule rule : rules) {
             definitions.put(rule.id(), rule.definition());
@@ -103,16 +113,9 @@ public final class SkillTreeDataCatalog {
             }
             for (Map.Entry<String, Integer> ranked : rule.requirement().requiredNodeRanks().entrySet()) {
                 ResourceLocation requiredId = ResourceLocation.parse(ranked.getKey());
-                NodePurchaseDefinition required = definitions.get(requiredId);
+                NodePurchaseDefinition required = allDefinitions.get(requiredId);
                 if (required == null) {
-                    // Definitions later in deterministic order may not be inserted yet; resolve from rules.
-                    required = rules.stream()
-                        .filter(candidate -> candidate.id().equals(requiredId))
-                        .map(TreeRuleCatalog.NodeRule::definition)
-                        .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException(
-                            "unknown ranked required node: " + rule.id() + " -> " + requiredId
-                        ));
+                    throw new IllegalArgumentException("unknown ranked required node: " + rule.id() + " -> " + requiredId);
                 }
                 if (ranked.getValue() > required.maxRank()) {
                     throw new IllegalArgumentException(
