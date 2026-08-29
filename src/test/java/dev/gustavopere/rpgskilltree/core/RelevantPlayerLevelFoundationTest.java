@@ -1,6 +1,6 @@
 package dev.gustavopere.rpgskilltree.core;
 
-import java.util.ArrayList;
+import dev.gustavopere.rpgskilltree.core.RelevantPlayerSpatialSelector.Snapshot;
 import java.util.List;
 import java.util.Objects;
 import java.util.OptionalLong;
@@ -14,6 +14,8 @@ public final class RelevantPlayerLevelFoundationTest {
         noRelevantCandidatesProduceNoPlayerFloor();
         policyCannotInventLevelOutsideRelevantRange();
         hugeRelevantLevelsRemainSupported();
+        spatialSelectionIsDeterministicAndBounded();
+        partyMergePreservesLocalPriorityAndFailsClosed();
         System.out.println("RelevantPlayerLevelFoundationTest: PASS");
     }
 
@@ -128,6 +130,55 @@ public final class RelevantPlayerLevelFoundationTest {
             candidates -> OptionalLong.of(candidates.stream().mapToLong(RelevantPlayerCandidate::level).max().orElseThrow())
         );
         eq(OptionalLong.of(huge), resolution.relevantPlayerLevel());
+    }
+
+    private static void spatialSelectionIsDeterministicAndBounded() {
+        List<Snapshot> snapshots = List.of(
+            new Snapshot("far", 999L, 30.0D, 0.0D, 0.0D),
+            new Snapshot("z-near", 40L, 3.0D, 4.0D, 0.0D),
+            new Snapshot("a-nearest", 10L, 1.0D, 0.0D, 0.0D),
+            new Snapshot("m-near", 20L, 0.0D, 6.0D, 0.0D)
+        );
+
+        List<RelevantPlayerCandidate> selected = RelevantPlayerSpatialSelector.select(
+            snapshots, 0.0D, 0.0D, 0.0D, 10.0D, 2
+        );
+        eq(List.of("a-nearest", "z-near"), selected.stream().map(RelevantPlayerCandidate::playerId).toList());
+        eq(List.of(1L, 25L), selected.stream().map(RelevantPlayerCandidate::distanceSquared).toList());
+        expect(UnsupportedOperationException.class, () -> selected.add(
+            new RelevantPlayerCandidate("inject", 1L, 0L, true, false)
+        ));
+        expect(IllegalArgumentException.class, () -> RelevantPlayerSpatialSelector.select(
+            List.of(new Snapshot("dup", 1L, 0.0D, 0.0D, 0.0D), new Snapshot("dup", 1L, 1.0D, 0.0D, 0.0D)),
+            0.0D, 0.0D, 0.0D, 5.0D, 2
+        ));
+    }
+
+    private static void partyMergePreservesLocalPriorityAndFailsClosed() {
+        List<RelevantPlayerCandidate> spatial = List.of(
+            new RelevantPlayerCandidate("local-a", 10L, 4L, true, false),
+            new RelevantPlayerCandidate("local-b", 20L, 9L, true, false)
+        );
+        List<RelevantPlayerCandidate> party = List.of(
+            new RelevantPlayerCandidate("local-a", 10L, 4L, false, true),
+            new RelevantPlayerCandidate("remote-party", 200L, 100_000L, false, true)
+        );
+
+        List<RelevantPlayerCandidate> bounded = RelevantPlayerSpatialSelector.mergeParty(spatial, party, 2);
+        eq(List.of("local-a", "local-b"), bounded.stream().map(RelevantPlayerCandidate::playerId).toList());
+        eq(true, bounded.get(0).partyMember());
+        eq(true, bounded.get(0).engaged());
+
+        expect(IllegalArgumentException.class, () -> RelevantPlayerSpatialSelector.mergeParty(
+            spatial,
+            List.of(new RelevantPlayerCandidate("not-marked-party", 30L, 16L, false, false)),
+            4
+        ));
+        expect(IllegalArgumentException.class, () -> RelevantPlayerSpatialSelector.mergeParty(
+            spatial,
+            List.of(new RelevantPlayerCandidate("local-a", 999L, 4L, false, true)),
+            4
+        ));
     }
 
     private static void expect(Class<? extends Throwable> type, Runnable action) {
