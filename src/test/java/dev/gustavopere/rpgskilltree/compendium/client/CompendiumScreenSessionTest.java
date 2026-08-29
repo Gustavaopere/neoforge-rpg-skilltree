@@ -17,6 +17,9 @@ public final class CompendiumScreenSessionTest {
         pointerOpenSelectsAndPreservesBrowserContext();
         openingEntriesRecordsRecentHistory();
         currentEntryFavoriteTogglesInPersonalState();
+        personalNavigationScopesRespectStateAndPreserveSearchFilters();
+        recentNavigationUsesMruOrderAndIgnoresUnavailableIds();
+        favoriteScopeRefreshesAfterToggleWithoutClosingDetail();
         entryWithoutPageStillOpensAsShell();
         invalidVisibleRowIsRejected();
         System.out.println("CompendiumScreenSessionTest: PASS");
@@ -186,6 +189,88 @@ public final class CompendiumScreenSessionTest {
 
         session.toggleCurrentEntryFavorite();
         isFalse(session.isCurrentEntryFavorite());
+        isFalse(notes.isFavorite(wolf.id()));
+    }
+
+    private static void personalNavigationScopesRespectStateAndPreserveSearchFilters() {
+        CompendiumClientEntry wolf = entry("minecraft:wolf", "Lobo");
+        CompendiumClientEntry fox = entry("minecraft:fox", "Raposa");
+        CompendiumClientEntry griffin = entry("example:griffin", "Grifo");
+        CompendiumNotesModel notes = new CompendiumNotesModel();
+        notes.setFavorite(fox.id(), true);
+        notes.setFavorite(griffin.id(), true);
+        CompendiumScreenSession session = new CompendiumScreenSession(
+            new CompendiumClientSnapshot(List.of(wolf, fox, griffin), List.of()),
+            notes
+        );
+        CompendiumFilterState minecraftOnly = new CompendiumFilterState(
+            Set.of(),
+            Set.of(),
+            Set.of("minecraft"),
+            Set.of(),
+            Set.of(),
+            Set.of(),
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            Set.of()
+        );
+        session.setQuery("o");
+        session.setFilter(minecraftOnly);
+
+        session.setPersonalView(CompendiumPersonalView.FAVORITES);
+
+        eq(CompendiumPersonalView.FAVORITES, session.personalView());
+        eq("o", session.query());
+        eq(minecraftOnly, session.filter());
+        eq(List.of(fox.id()), session.viewport(10).entries().stream().map(CompendiumClientEntry::id).toList());
+
+        session.setPersonalView(CompendiumPersonalView.ALL);
+        eq(List.of(wolf.id(), fox.id()), session.viewport(10).entries().stream().map(CompendiumClientEntry::id).toList());
+    }
+
+    private static void recentNavigationUsesMruOrderAndIgnoresUnavailableIds() {
+        CompendiumClientEntry wolf = entry("minecraft:wolf", "Lobo");
+        CompendiumClientEntry fox = entry("minecraft:fox", "Raposa");
+        CompendiumEntryId missing = CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "removed:missing");
+        CompendiumNotesModel notes = new CompendiumNotesModel();
+        notes.recordOpened(wolf.id());
+        notes.recordOpened(missing);
+        notes.recordOpened(fox.id());
+        CompendiumScreenSession session = new CompendiumScreenSession(
+            new CompendiumClientSnapshot(List.of(wolf, fox), List.of(page(wolf), page(fox))),
+            notes
+        );
+
+        session.setPersonalView(CompendiumPersonalView.RECENT);
+        eq(List.of(fox.id(), wolf.id()), session.viewport(10).entries().stream().map(CompendiumClientEntry::id).toList());
+
+        session.openVisibleRow(1, 10);
+        isTrue(session.showingDetail());
+        eq(wolf.id(), session.currentEntry().orElseThrow().id());
+        eq(List.of(wolf.id(), fox.id()), session.viewport(10).entries().stream().map(CompendiumClientEntry::id).toList());
+        eq(List.of(wolf.id(), fox.id(), missing), notes.recentEntries());
+    }
+
+    private static void favoriteScopeRefreshesAfterToggleWithoutClosingDetail() {
+        CompendiumClientEntry wolf = entry("minecraft:wolf", "Lobo");
+        CompendiumNotesModel notes = new CompendiumNotesModel();
+        notes.setFavorite(wolf.id(), true);
+        CompendiumScreenSession session = new CompendiumScreenSession(
+            new CompendiumClientSnapshot(List.of(wolf), List.of(page(wolf))),
+            notes
+        );
+
+        session.setPersonalView(CompendiumPersonalView.FAVORITES);
+        session.openVisibleRow(0, 4);
+        session.toggleCurrentEntryFavorite();
+
+        isTrue(session.showingDetail());
+        eq(wolf.id(), session.currentEntry().orElseThrow().id());
+        eq(0, session.totalMatches());
+        eq(List.of(), session.viewport(4).entries());
         isFalse(notes.isFavorite(wolf.id()));
     }
 
