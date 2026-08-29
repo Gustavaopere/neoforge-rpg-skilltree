@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-/** Fresh Notion snapshot for the implementation range A0001-A0020 only. */
+/** Fresh Notion snapshot for the currently closed implementation range A0001-A0040. */
 public final class NotionCombatPerkCatalog {
     private static final Set<String> EPIC_DAMAGE = Set.of("epicfight:weapon_category", "epicfight:damage_pre");
     private static final Set<String> EPIC_CADENCE = Set.of("epicfight:weapon_category", "epicfight:modify_attack_speed");
@@ -43,6 +43,29 @@ public final class NotionCombatPerkCatalog {
 
         add(map, "A0019", "Treino com Adagas I", WeaponFamily.DAGGER, 3, 1, Map.of(), EPIC_DAMAGE);
         add(map, "A0020", "Treino com Adagas II", WeaponFamily.DAGGER, 3, 1, Map.of("A0019", 2), EPIC_CADENCE);
+        add(map, "A0021", "Precisão com Adagas", WeaponFamily.DAGGER, 3, 1, Map.of("A0019", 1), EPIC_CRIT);
+        add(map, "A0022", "Ritmo das Sombras", WeaponFamily.DAGGER, 2, 1, Map.of("A0021", 2), Set.of("epicfight:dodge", "minecraft:server_position"));
+        add(map, "A0023", "Ataque ao Ponto Cego", WeaponFamily.DAGGER, 2, 1, Map.of("A0020", 2, "A0021", 1), Set.of("minecraft:server_orientation", "epicfight:physical_penetration"));
+        add(map, "A0024", "Maestria de Adagas — Dança das Sombras", WeaponFamily.DAGGER, 1, 2, Map.of("A0022", 1, "A0023", 1), Set.of("epicfight:dodge", "minecraft:server_orientation", "epicfight:impact"));
+
+        add(map, "A0025", "Treino com Martelos I", WeaponFamily.HAMMER, 3, 1, Map.of(), EPIC_DAMAGE);
+        add(map, "A0026", "Treino com Martelos II", WeaponFamily.HAMMER, 3, 1, Map.of("A0025", 2), EPIC_CADENCE);
+        add(map, "A0027", "Precisão com Martelos", WeaponFamily.HAMMER, 3, 1, Map.of("A0025", 1), EPIC_CRIT);
+        add(map, "A0028", "Abalo Crescente", WeaponFamily.HAMMER, 2, 1, Map.of("A0027", 2), Set.of("epicfight:guard_posture_pressure"));
+        add(map, "A0029", "Quebra de Postura", WeaponFamily.HAMMER, 2, 1, Map.of("A0026", 2, "A0027", 1), Set.of("epicfight:heavy_attack", "epicfight:impact", "epicfight:guard_posture_pressure"));
+        add(map, "A0030", "Maestria de Martelos — Golpe Demolidor", WeaponFamily.HAMMER, 1, 2, Map.of("A0028", 1, "A0029", 1), Set.of("epicfight:confirmed_guard_break", "epicfight:heavy_attack", "epicfight:impact"));
+
+        add(map, "A0031", "Treino com Maças I", WeaponFamily.MACE, 3, 1, Map.of(), Set.of("minecraft:mace", "epicfight:weapon_category"));
+        add(map, "A0032", "Treino com Maças II", WeaponFamily.MACE, 3, 1, Map.of("A0031", 2), EPIC_CADENCE);
+        add(map, "A0033", "Precisão com Maças", WeaponFamily.MACE, 3, 1, Map.of("A0031", 1), EPIC_CRIT);
+        add(map, "A0034", "Trauma Contundente", WeaponFamily.MACE, 2, 1, Map.of("A0033", 2), Set.of("minecraft:armor", "epicfight:active_guard_posture"));
+        add(map, "A0035", "Armadura Fendida", WeaponFamily.MACE, 2, 1, Map.of("A0032", 2, "A0033", 1), Set.of("minecraft:temporary_armor_modifier"));
+        add(map, "A0036", "Maestria de Maças — Quebra-Ossos", WeaponFamily.MACE, 1, 2, Map.of("A0034", 1, "A0035", 1), Set.of("epicfight:heavy_attack", "minecraft:temporary_damage_and_movement_modifier"));
+
+        add(map, "A0037", "Treino com Foices I", WeaponFamily.SCYTHE, 3, 1, Map.of(), EPIC_DAMAGE);
+        add(map, "A0038", "Treino com Foices II", WeaponFamily.SCYTHE, 3, 1, Map.of("A0037", 2), EPIC_CADENCE);
+        add(map, "A0039", "Precisão com Foices", WeaponFamily.SCYTHE, 3, 1, Map.of("A0037", 1), EPIC_CRIT);
+        add(map, "A0040", "Marca da Ceifa", WeaponFamily.SCYTHE, 2, 1, Map.of("A0039", 2), Set.of("minecraft:health", "epicfight:damage_post"));
         return Map.copyOf(map);
     }
 
