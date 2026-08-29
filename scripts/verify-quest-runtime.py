@@ -4,6 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
 PUBLIC_API = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/api/RpgQuestProgressionApi.java"
+TEST_RUNNER = ROOT / "scripts/test-core.sh"
 
 
 def require(text: str, needle: str, source: Path = RUNTIME) -> None:
@@ -89,8 +90,10 @@ if not PUBLIC_API.exists():
     raise SystemExit(1)
 api_text = PUBLIC_API.read_text(encoding="utf-8")
 api_compact = " ".join(api_text.split())
+require(api_text, "public static final int CONTRACT_VERSION = QuestProgressionSnapshot.CONTRACT_VERSION;", PUBLIC_API)
 require(api_text, "CorePlayerProgressionRuntime.queryProgression(player)", PUBLIC_API)
 require(api_text, "CanonicalPlayerAttachmentRuntime.observe(player)", PUBLIC_API)
+require(api_text, "compatibility.specializations()", PUBLIC_API)
 require(api_text, "CorePlayerProgressionRuntime.applyProgressionReward(player, reward)", PUBLIC_API)
 require(api_text, "QuestProgressionConditionService.evaluate(query(player), condition)", PUBLIC_API)
 require(
@@ -106,5 +109,12 @@ for forbidden in (
     "CoreProgressionRulesCatalog",
 ):
     forbid(api_text, forbidden, "public quest API", PUBLIC_API)
+
+runner_text = TEST_RUNNER.read_text(encoding="utf-8")
+require(
+    runner_text,
+    'java -cp "$OUT" dev.gustavopere.rpgskilltree.core.QuestProgressionHooksFoundationTest',
+    TEST_RUNNER,
+)
 
 print("Quest reward/query/public API validation: PASS")

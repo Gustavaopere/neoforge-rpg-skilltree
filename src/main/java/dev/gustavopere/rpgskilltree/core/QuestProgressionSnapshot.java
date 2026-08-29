@@ -10,12 +10,17 @@ public record QuestProgressionSnapshot(
     CoreProgressionQuerySnapshot core,
     Map<String, Long> masteryExperience,
     Set<String> unlockedClassIds,
+    Set<String> unlockedSpecializationIds,
     Map<String, Long> perkRanks
 ) {
+    /** Public quest-integration contract revision. Increment only for incompatible semantic changes. */
+    public static final int CONTRACT_VERSION = 1;
+
     public QuestProgressionSnapshot {
         Objects.requireNonNull(core, "core");
         Objects.requireNonNull(masteryExperience, "masteryExperience");
         Objects.requireNonNull(unlockedClassIds, "unlockedClassIds");
+        Objects.requireNonNull(unlockedSpecializationIds, "unlockedSpecializationIds");
         Objects.requireNonNull(perkRanks, "perkRanks");
 
         HashMap<String, Long> masteryCopy = new HashMap<>();
@@ -27,6 +32,7 @@ public record QuestProgressionSnapshot(
         });
 
         for (String classId : unlockedClassIds) requireId(classId, "class id");
+        for (String specializationId : unlockedSpecializationIds) requireId(specializationId, "specialization id");
 
         HashMap<String, Long> perkCopy = new HashMap<>();
         perkRanks.forEach((id, value) -> {
@@ -38,7 +44,18 @@ public record QuestProgressionSnapshot(
 
         masteryExperience = Map.copyOf(masteryCopy);
         unlockedClassIds = Set.copyOf(unlockedClassIds);
+        unlockedSpecializationIds = Set.copyOf(unlockedSpecializationIds);
         perkRanks = Map.copyOf(perkCopy);
+    }
+
+    /** Source-compatible constructor for callers that predate specialization exposure. */
+    public QuestProgressionSnapshot(
+        CoreProgressionQuerySnapshot core,
+        Map<String, Long> masteryExperience,
+        Set<String> unlockedClassIds,
+        Map<String, Long> perkRanks
+    ) {
+        this(core, masteryExperience, unlockedClassIds, Set.of(), perkRanks);
     }
 
     public static QuestProgressionSnapshot from(
@@ -47,15 +64,32 @@ public record QuestProgressionSnapshot(
         ClassProgressionState classes,
         PassiveNodeProgress perks
     ) {
+        return from(core, mastery, classes, SpecializationProgressionState.empty(), perks);
+    }
+
+    public static QuestProgressionSnapshot from(
+        CoreProgressionQuerySnapshot core,
+        MasteryState mastery,
+        ClassProgressionState classes,
+        SpecializationProgressionState specializations,
+        PassiveNodeProgress perks
+    ) {
         Objects.requireNonNull(mastery, "mastery");
         Objects.requireNonNull(classes, "classes");
+        Objects.requireNonNull(specializations, "specializations");
         Objects.requireNonNull(perks, "perks");
 
         Map<String, Long> masteryValues = new HashMap<>();
         mastery.experience().forEach((id, value) -> masteryValues.put(id, value.longValue()));
         Map<String, Long> perkValues = new HashMap<>();
         perks.ranks().forEach((id, value) -> perkValues.put(id, value.longValue()));
-        return new QuestProgressionSnapshot(core, masteryValues, classes.unlockedClassIds(), perkValues);
+        return new QuestProgressionSnapshot(
+            core,
+            masteryValues,
+            classes.unlockedClassIds(),
+            specializations.unlockedSpecializationIds(),
+            perkValues
+        );
     }
 
     public long level() {
@@ -68,6 +102,10 @@ public record QuestProgressionSnapshot(
 
     public boolean classUnlocked(String classId) {
         return unlockedClassIds.contains(requireId(classId, "class id"));
+    }
+
+    public boolean specializationUnlocked(String specializationId) {
+        return unlockedSpecializationIds.contains(requireId(specializationId, "specialization id"));
     }
 
     public long perkRank(String perkId) {

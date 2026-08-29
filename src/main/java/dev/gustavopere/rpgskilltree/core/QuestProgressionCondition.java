@@ -24,8 +24,10 @@ public record QuestProgressionCondition(
             subjectId = requireText(subjectId, "subjectId");
         }
 
-        if (fact == QuestProgressionFact.CLASS_UNLOCKED && minimumValue != 1L) {
-            throw new IllegalArgumentException("CLASS_UNLOCKED requires minimumValue=1");
+        if ((fact == QuestProgressionFact.CLASS_UNLOCKED
+            || fact == QuestProgressionFact.SPECIALIZATION_UNLOCKED)
+            && minimumValue != 1L) {
+            throw new IllegalArgumentException(fact + " requires minimumValue=1");
         }
         if (fact == QuestProgressionFact.ATTRIBUTE_RANK) {
             parseAttribute(subjectId);
@@ -46,6 +48,18 @@ public record QuestProgressionCondition(
 
     public static QuestProgressionCondition classUnlocked(String conditionId, String classId) {
         return new QuestProgressionCondition(conditionId, QuestProgressionFact.CLASS_UNLOCKED, classId, 1L);
+    }
+
+    public static QuestProgressionCondition specializationUnlocked(
+        String conditionId,
+        String specializationId
+    ) {
+        return new QuestProgressionCondition(
+            conditionId,
+            QuestProgressionFact.SPECIALIZATION_UNLOCKED,
+            specializationId,
+            1L
+        );
     }
 
     public static QuestProgressionCondition perkRankAtLeast(

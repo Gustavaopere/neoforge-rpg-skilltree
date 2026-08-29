@@ -21,6 +21,9 @@ import net.minecraft.server.level.ServerPlayer;
  * remain implementation details of the RPG runtime.</p>
  */
 public final class RpgQuestProgressionApi {
+    /** Public integration contract version for external quest/NPC adapters. */
+    public static final int CONTRACT_VERSION = QuestProgressionSnapshot.CONTRACT_VERSION;
+
     private RpgQuestProgressionApi() {}
 
     /** Returns a read-only combined snapshot without materializing progression state as a side effect. */
@@ -33,6 +36,7 @@ public final class RpgQuestProgressionApi {
             core,
             compatibility.mastery(),
             compatibility.classProgression(),
+            compatibility.specializations(),
             compatibility.passiveNodes()
         );
     }
