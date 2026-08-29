@@ -14,6 +14,7 @@ public final class CanonicalPlayerAttachmentDataTest {
         coreInitializationUsesPersistedLegacyPresenceExactlyOnce();
         compatibilityMutationBeforeCoreInitializationBecomesMigrationSource();
         codecRoundTripsUninitializedAndInitializedCore();
+        CanonicalPlayerAttachmentMigrationChainTest.main(new String[0]);
         malformedPayloadsFailClosed();
         System.out.println("CanonicalPlayerAttachmentDataTest: PASS");
     }
