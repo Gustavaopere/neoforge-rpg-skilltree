@@ -1,17 +1,19 @@
 package dev.gustavopere.rpgskilltree.compendium.client;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryId;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryKind;
 import dev.gustavopere.rpgskilltree.compendium.catalog.CoverageState;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
-import org.junit.jupiter.api.Test;
 
-class CompendiumSearchIndexTest {
-    @Test
-    void pesquisaIgnoraAcentosEEncontraNomeAliasModEIdTecnico() {
+public final class CompendiumSearchIndexTest {
+    public static void main(String[] args) {
+        pesquisaIgnoraAcentosEEncontraNomeAliasModEIdTecnico();
+        System.out.println("CompendiumSearchIndexTest: PASS");
+    }
+
+    private static void pesquisaIgnoraAcentosEEncontraNomeAliasModEIdTecnico() {
         CompendiumClientEntry lobo = entry(
             "alexsmobs:arctic_wolf",
             "Lobo Ártico",
@@ -26,11 +28,11 @@ class CompendiumSearchIndexTest {
         );
         CompendiumSearchIndex index = new CompendiumSearchIndex(List.of(urso, lobo));
 
-        assertEquals(List.of(lobo), index.search("lobo artico", 20));
-        assertEquals(List.of(lobo), index.search("canídeo polar", 20));
-        assertEquals(List.of(lobo), index.search("alexsmobs", 20));
-        assertEquals(List.of(lobo), index.search("arctic_wolf", 20));
-        assertEquals("Lobo Ártico", index.search("lobo artico", 20).getFirst().displayName());
+        eq(List.of(lobo), index.search("lobo artico", 20));
+        eq(List.of(lobo), index.search("canídeo polar", 20));
+        eq(List.of(lobo), index.search("alexsmobs", 20));
+        eq(List.of(lobo), index.search("arctic_wolf", 20));
+        eq("Lobo Ártico", index.search("lobo artico", 20).getFirst().displayName());
     }
 
     private static CompendiumClientEntry entry(
@@ -54,5 +56,9 @@ class CompendiumSearchIndexTest {
             false,
             CoverageState.AUTO
         );
+    }
+
+    private static void eq(Object expected, Object actual) {
+        if (!Objects.equals(expected, actual)) throw new AssertionError(expected + " != " + actual);
     }
 }
