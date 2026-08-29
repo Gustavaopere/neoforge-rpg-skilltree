@@ -41,6 +41,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumBrowser
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayoutTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientSnapshotTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSessionTest
+python3 "$ROOT/scripts/compendium/verify_client_ui.py"
 
 python3 - "$DATA" <<'PY'
 import json
