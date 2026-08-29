@@ -8,6 +8,9 @@ ROOT = Path(__file__).resolve().parents[1]
 JAVA = ROOT / "src" / "main" / "java"
 BOOTSTRAP = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "RpgSkillTreeMod.java"
 CENTRAL = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "runtime" / "compat" / "OptionalIntegrations.java"
+IDENTITY_MIXIN = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "runtime" / "compat" / "identity2" / "mixin" / "IdentityProgressionMixin.java"
+IDENTITY_PLUGIN = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "bootstrap" / "Identity2MixinPlugin.java"
+MIXIN_CONFIG = ROOT / "src" / "main" / "resources" / "rpgskilltree.mixins.json"
 METADATA = ROOT / "src" / "main" / "resources" / "META-INF" / "neoforge.mods.toml"
 WORKFLOW = ROOT / ".github" / "workflows" / "alpha2-build.yml"
 SMOKE_VERIFIER = ROOT / "scripts" / "verify-optional-provider-smoke.py"
@@ -72,8 +75,26 @@ for path in JAVA.rglob("*.java"):
         if allowed_suffix not in rel:
             fail(f"external provider type {external_package} leaked outside isolated adapter path: {rel}")
 
+if not IDENTITY_MIXIN.is_file():
+    fail("Identity2 mixin must live inside the isolated identity2 adapter tree")
+if not IDENTITY_PLUGIN.is_file():
+    fail("missing early-startup Identity2 mixin gate")
+plugin = IDENTITY_PLUGIN.read_text(encoding="utf-8")
+for marker in ("implements IMixinConfigPlugin", "shouldApplyMixin", "IDENTITY_TARGET_RESOURCE", "getResource"):
+    if marker not in plugin:
+        fail(f"Identity2 mixin gate is missing marker {marker!r}")
+if any(marker in plugin for marker in ("net.minecraft.", "net.Gabou.identity2", "ModList")):
+    fail("Identity2 mixin gate must remain early-startup safe and provider/game-type free")
+config = MIXIN_CONFIG.read_text(encoding="utf-8")
+if '"plugin": "dev.gustavopere.rpgskilltree.bootstrap.Identity2MixinPlugin"' not in config:
+    fail("mixin config must install the early Identity2 target gate")
+
 if not SMOKE_VERIFIER.is_file():
     fail("missing dedicated-server optional-provider absence verifier")
+smoke = SMOKE_VERIFIER.read_text(encoding="utf-8")
+for marker in ("ClassNotFoundException", "NoClassDefFoundError"):
+    if marker not in smoke:
+        fail(f"server-smoke verifier must reject {marker}")
 workflow = WORKFLOW.read_text(encoding="utf-8")
 if 'python3 scripts/verify-optional-provider-smoke.py "$LOG"' not in workflow:
     fail("dedicated-server smoke must assert the optional-provider absence matrix")
