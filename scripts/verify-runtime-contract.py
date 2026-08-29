@@ -8,6 +8,7 @@ LEGACY = ROOT / "scripts" / "verify-runtime-scaffold.py"
 MOD_MAIN = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java"
 EVENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/PlayerProgressionEvents.java"
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java"
+OWNER_SYNC_RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/ProgressionOwnerSyncRuntime.java"
 ATTACHMENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/ModAttachments.java"
 CORE_SERIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CoreProgressionAttachmentSerializer.java"
 CORE_RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
@@ -53,17 +54,20 @@ def read_required(path: Path) -> str:
 
 events_text = EVENTS.read_text(encoding="utf-8")
 runtime_text = RUNTIME.read_text(encoding="utf-8")
+owner_sync_text = read_required(OWNER_SYNC_RUNTIME)
 
 # Login/respawn delegate to one reconciliation boundary. Confirmed compatibility
-# mutations use the canonical commit boundary before effects and owner sync.
+# mutations use the canonical commit boundary before effects; owner sync is coalesced
+# from the published mutation event and flushed at server tick end.
 require(events_text, "PlayerProgressionRuntime.reconcilePlayerState(player)", str(EVENTS.relative_to(ROOT)))
 require(runtime_text, "public static ProgressionState reconcilePlayerState(ServerPlayer player)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "set(player, reconciled)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "AttributeNodeEffectRuntime.refresh(player, state)", str(RUNTIME.relative_to(ROOT)))
-require(runtime_text, "ModNetworking.syncToOwner(player, state)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "CanonicalPlayerAttachmentRuntime.readOrMigrate(player)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "CanonicalPlayerAttachmentRuntime.commitMutation(", str(RUNTIME.relative_to(ROOT)))
 forbid(runtime_text, "setData(ModAttachments.PROGRESSION", str(RUNTIME.relative_to(ROOT)))
+require(owner_sync_text, "ProgressionMutationEvents.subscribe", str(OWNER_SYNC_RUNTIME.relative_to(ROOT)))
+require(owner_sync_text, "ModNetworking.syncToOwner", str(OWNER_SYNC_RUNTIME.relative_to(ROOT)))
 
 result = subprocess.run(
     [sys.executable, str(LEGACY)],
@@ -145,15 +149,16 @@ require(networking_text, "ClientCoreProgressionState::handleSync", str(NETWORKIN
 require(networking_text, "public static void syncCoreToOwner(", str(NETWORKING.relative_to(ROOT)))
 require(networking_compact, "PacketDistributor.sendToPlayer( player, CoreProgressionSyncPayload.fromState(state, rules)", str(NETWORKING.relative_to(ROOT)))
 
-# Mutations persist/sync only accepted final state through the canonical envelope.
+# Mutations persist accepted final state through the canonical envelope. Owner packet
+# emission is coalesced in ProgressionOwnerSyncRuntime rather than performed in setters.
 require(core_runtime_text, "public static CoreProgressionState grantXp(", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionMutationService.grantXp", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "public static CoreProgressionState applyCorePointTransaction(", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionMutationService.applyCorePointTransaction", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "public static void set(", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "CoreProgressionAttachmentData.initialized(state)", str(CORE_RUNTIME.relative_to(ROOT)))
-require(core_runtime_text, "ModNetworking.syncCoreToOwner(player, state, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
 require(core_runtime_text, "set(player, next, rules)", str(CORE_RUNTIME.relative_to(ROOT)))
+require(owner_sync_text, "ModNetworking.syncCoreToOwner", str(OWNER_SYNC_RUNTIME.relative_to(ROOT)))
 
 # Semantic gameplay XP stays opt-in and receives an explicit rules snapshot.
 require(core_runtime_text, "public static SemanticProgressionResult applySemanticAction(", str(CORE_RUNTIME.relative_to(ROOT)))
@@ -211,4 +216,4 @@ for needle in [
 require(mod_main_text, "CoreProgressionRulesReloader", str(MOD_MAIN.relative_to(ROOT)))
 require(mod_main_text, "NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class)", str(MOD_MAIN.relative_to(ROOT)))
 
-print("Runtime scaffold validation: PASS (canonical player persistence + legacy migration inputs + Core sync/mutations/semantic XP/rules reload verified)")
+print("Runtime scaffold validation: PASS (canonical persistence + coalesced owner sync + Core mutations/semantic XP/rules reload verified)")
