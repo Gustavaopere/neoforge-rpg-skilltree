@@ -5,6 +5,10 @@
 **Plataforma:** Minecraft 1.21.1, NeoForge 21.1, Java 21  
 **Escopo canônico:** `plans/10-compendio-natural/07-loot-dieta-reproducao-ecologia.md`
 
+## Status do design
+
+**Aprovado para implementação.** A execução preserva as fronteiras deste documento; o checkpoint operacional e as evidências TDD/CI ficam no plano `docs/superpowers/plans/2026-08-28-compendium-10-07-ecology.md`.
+
 ## 1. Objetivo
 
 Enriquecer entradas do Compêndio Natural com relações de gameplay verificáveis — loot, alimentação, atração, reprodução, domesticação e ecologia — sem executar efeitos de gameplay para produzir documentação e sem converter inferências em fatos confirmados.
@@ -76,10 +80,6 @@ O validator aceitará exatamente um dos formatos de alvo: `to` legado para `ENTR
 
 Loot de entidade será derivado de recursos de datapack/reload, não de execução de `LootTable`, comandos, functions, spawning de entidades ou construção de contexto sintético.
 
-Em Minecraft 1.21.1 o diretório canônico de datapack é singular: `data/<namespace>/loot_table/...`. Para loot de entidades, o coletor trabalha sob `loot_table/entities`. O Stage 10.07 não usará o path legado `loot_tables`.
-
-O listener será registrado pelo mesmo contrato server-side já usado e compilado pelo projeto (`AddReloadListenerEvent` + `ResourceManager`). A leitura trabalha sobre recursos do reload em staging e não depende de estado client-only.
-
 Componentes previstos:
 
 - `CompendiumLootProvider` — transforma um summary já resolvido em facts/relações;
@@ -88,9 +88,11 @@ Componentes previstos:
 - `LootConditionSummary` — condições conhecidas/condicionais;
 - `CompendiumLootResourceReloader` — lê recursos de loot no reload e publica um snapshot imutável somente depois de validação completa.
 
-O parser suportará inicialmente os formatos que podem ser resumidos sem ambiguidade: item direto, `set_count` constante/uniforme, rolls constantes/uniformes simples e condições conhecidas relevantes a player kill/Looting quando matematicamente deriváveis. Probabilidade exata só será emitida quando a composição do pool/entry permitir cálculo fechado sem siblings/weights/condições desconhecidas. Qualquer função, entry type, number provider ou condição não suportada torna o aspecto correspondente `CONDICIONAL`; nunca será substituído por uma chance inventada.
+O parser suportará inicialmente os formatos que podem ser resumidos sem ambiguidade: item direto, `set_count` constante/uniforme, rolls constantes/uniformes simples e condições conhecidas relevantes a player kill/Looting quando matematicamente deriváveis. Qualquer função, entry type, number provider ou condição não suportada torna o aspecto correspondente `CONDICIONAL`; nunca será substituído por uma chance inventada.
 
 Tabelas ausentes ou vazias resultam em ausência clara de loot documentável, não em erro de runtime.
+
+No Minecraft 1.21.1 os dados residem em `data/<namespace>/loot_table/...` (singular). O listener deste estágio observa especificamente a subárvore `loot_table/entities`; o ID lógico armazenado no snapshot permanece `<namespace>:entities/<path>`.
 
 ## 6. XP de morte
 
