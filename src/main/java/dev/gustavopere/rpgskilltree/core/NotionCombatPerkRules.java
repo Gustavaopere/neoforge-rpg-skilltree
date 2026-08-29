@@ -5,7 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
 
-/** Pure coefficients from the fresh currently closed A0001-A0060 Notion snapshot. */
+/** Pure coefficients from the fresh currently closed A0001-A0080 Notion snapshot. */
 public final class NotionCombatPerkRules {
     private static final Map<WeaponFamily, String> DAMAGE = Map.of(
         WeaponFamily.SWORD,"A0001", WeaponFamily.AXE,"A0007", WeaponFamily.SPEAR,"A0013", WeaponFamily.DAGGER,"A0019",
@@ -46,8 +46,8 @@ public final class NotionCombatPerkRules {
     private NotionCombatPerkRules() {}
 
     public static double baseDamageMultiplier(WeaponFamily family, CombatPerkRanks ranks) { Objects.requireNonNull(family); Objects.requireNonNull(ranks); String code=DAMAGE.get(family); return code==null?1.0D:1.0D+0.03D*ranks.rank(code); }
-    public static double rhythmBonus(WeaponFamily family, CombatPerkRanks ranks) { Objects.requireNonNull(family); Objects.requireNonNull(ranks); String code=RHYTHM.get(family); return code==null?0.0D:0.02D*ranks.rank(code); }
-    public static double criticalChanceBonus(WeaponFamily family, CombatPerkRanks ranks) { Objects.requireNonNull(family); Objects.requireNonNull(ranks); String code=CRITICAL.get(family); return code==null?0.0D:0.03D*ranks.rank(code); }
+    public static double rhythmBonus(WeaponFamily family, CombatPerkRanks ranks) { Objects.requireNonNull(family); Objects.requireNonNull(ranks); String code=RHYTHM.get(family); double familyBonus=code==null?0.0D:0.02D*ranks.rank(code); return familyBonus+0.02D*ranks.rank("A0064"); }
+    public static double criticalChanceBonus(WeaponFamily family, CombatPerkRanks ranks) { Objects.requireNonNull(family); Objects.requireNonNull(ranks); String code=CRITICAL.get(family); double familyBonus=code==null?0.0D:0.03D*ranks.rank(code); return familyBonus+0.02D*ranks.rank("A0062"); }
 
     public static double axeFuryGain(int rank, boolean switchedTarget){ if(rank<1||rank>2)return 0.0D; double ranked=8.0D*(rank==1?1.10D:1.20D); return ranked*(switchedTarget?1.50D:1.0D); }
     public static double ruptureImpactMultiplier(int rank){return rank>=2?1.35D:rank==1?1.20D:1.0D;} public static double rupturePenetrationFraction(int rank){return rank>=2?0.10D:rank==1?0.06D:0.0D;}
