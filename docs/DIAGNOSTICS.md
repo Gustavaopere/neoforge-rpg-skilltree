@@ -13,6 +13,7 @@ The SLF4J logger remains owned by the emitting class. The prefix is an operation
 - `progression` — canonical progression mutation/runtime failures.
 - `effects` — application or removal of gameplay effects/modifiers.
 - `compendium` — Compendium catalog publication, runtime inventory and related operational work.
+- `data` — datapack/resource reload failures and invalid runtime data.
 
 Event IDs are stable `lower_snake_case` tokens. They should identify the machine-searchable event rather than repeat the full human message.
 
@@ -41,9 +42,12 @@ Use `ERROR` when an operation that should have completed failed or when a commit
 - `[rpgskilltree/compendium/entity_catalog_published]` — entity catalog publication completed.
 - `[rpgskilltree/compendium/flora_catalog_published]` — flora/tree/crop catalog publication completed.
 - `[rpgskilltree/compendium/world_catalog_published]` — world geography catalog publication completed.
+- `[rpgskilltree/data/reload_failed]` — a JSON data reload failed; the diagnostic includes the logical data path, sorted resource IDs participating in the reload, and the originating exception before the failure is rethrown.
+
+The canonical node/class rule reloaders use the shared `ReloadDiagnostics` boundary. Core progression rules additionally include their exact `ResourceLocation` directly in validation exceptions. New correctness-sensitive JSON reloaders should use the same fail-visible pattern rather than swallowing malformed data or publishing partial state.
 
 ## Logging constraints
 
-Diagnostics must remain bounded and operationally useful. Do not log full NBT/state snapshots, secrets, authentication data or unbounded user-controlled payloads. Prefer stable identifiers and counts. Repeated degradation on hot paths should be deduplicated/rate-limited by the owning subsystem rather than flooding logs.
+Diagnostics must remain bounded and operationally useful. Do not log full NBT/state snapshots, secrets, authentication data or unbounded user-controlled payloads. Prefer stable identifiers and counts. Repeated degradation on hot paths should be deduplicated/rate-limited by the owning subsystem rather than flooding logs. `AttributeEffectDiagnostics` uses a `putIfAbsent` report key so persistent unavailable-attribute failures warn once per unique diagnostic condition instead of once per tick/refresh.
 
 When adding a new operational event, choose the existing category when possible, assign a stable `lower_snake_case` event ID, use the weakest severity that accurately represents the condition, and add/update tests or validators when the event is part of an operational contract.
