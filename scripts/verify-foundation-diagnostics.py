@@ -6,11 +6,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 JAVA = ROOT / "src" / "main" / "java" / "dev" / "gustavopere" / "rpgskilltree"
 DIAGNOSTICS = JAVA / "runtime" / "diagnostics" / "RuntimeDiagnostics.java"
+RELOAD_DIAGNOSTICS = JAVA / "runtime" / "diagnostics" / "ReloadDiagnostics.java"
 TESTING_DOC = ROOT / "docs" / "TESTING.md"
 DIAGNOSTICS_DOC = ROOT / "docs" / "DIAGNOSTICS.md"
 CI = ROOT / ".github" / "workflows" / "alpha2-build.yml"
 CORE_TESTS = ROOT / "scripts" / "test-core.sh"
 GAMETEST = JAVA / "gametest" / "FoundationGameTests.java"
+NODE_RULES = JAVA / "runtime" / "data" / "NodeRulesReloader.java"
+CLASS_RULES = JAVA / "runtime" / "data" / "ClassRulesReloader.java"
+ATTRIBUTE_DIAGNOSTICS = JAVA / "runtime" / "effects" / "AttributeEffectDiagnostics.java"
 
 
 def fail(message: str) -> None:
@@ -36,6 +40,7 @@ for marker in (
     "PROGRESSION",
     "EFFECTS",
     "COMPENDIUM",
+    "DATA",
     "String prefix(",
     "void info(",
     "void warn(",
@@ -43,6 +48,28 @@ for marker in (
     '"[rpgskilltree/"',
 ):
     require(diag, marker, "RuntimeDiagnostics")
+
+reload_diag = text(RELOAD_DIAGNOSTICS)
+for marker in (
+    "public final class ReloadDiagnostics",
+    "Category.DATA",
+    '"reload_failed"',
+    "resources.keySet()",
+    ".sorted()",
+    "throw failure;",
+):
+    require(reload_diag, marker, "ReloadDiagnostics")
+
+for label, path, data_path in (
+    ("NodeRulesReloader", NODE_RULES, "node_rules"),
+    ("ClassRulesReloader", CLASS_RULES, "classes"),
+):
+    source = text(path)
+    require(source, "ReloadDiagnostics.run(", label)
+    require(source, f'"{data_path}"', label)
+
+# Persistent effect failures are emitted once per unique condition instead of once per refresh/tick.
+require(text(ATTRIBUTE_DIAGNOSTICS), "putIfAbsent", "AttributeEffectDiagnostics")
 
 operational_files = {
     "RpgSkillTreeMod.java": JAVA / "RpgSkillTreeMod.java",
@@ -111,6 +138,9 @@ for marker in (
     "progression",
     "effects",
     "compendium",
+    "data",
+    "[rpgskilltree/data/reload_failed]",
+    "putIfAbsent",
 ):
     require(operations, marker, "docs/DIAGNOSTICS.md")
 
