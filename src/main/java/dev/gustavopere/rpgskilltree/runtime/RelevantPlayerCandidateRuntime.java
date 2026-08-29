@@ -134,7 +134,8 @@ public final class RelevantPlayerCandidateRuntime {
             sectionY,
             sectionZ,
             Double.doubleToLongBits(config.spatialRadius()),
-            config.maxPlayersScanned()
+            config.maxPlayersScanned(),
+            config.cacheTtlTicks()
         );
         long now = level.getGameTime();
 
@@ -285,7 +286,8 @@ public final class RelevantPlayerCandidateRuntime {
         int sectionY,
         int sectionZ,
         long radiusBits,
-        int maxPlayersScanned
+        int maxPlayersScanned,
+        long cacheTtlTicks
     ) {}
 
     private record CacheEntry(
