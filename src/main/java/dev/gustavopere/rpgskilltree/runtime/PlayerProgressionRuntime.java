@@ -276,7 +276,6 @@ public final class PlayerProgressionRuntime {
             return false;
         }
         AttributeNodeEffectRuntime.refresh(player, state);
-        ModNetworking.syncToOwner(player, state);
         return true;
     }
 }
