@@ -15,6 +15,7 @@ javac --release 21 -d "$OUT" "${SOURCES[@]}"
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryIdTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.api.CompendiumFactTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.api.CompendiumRelationTargetTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.catalog.CompendiumCatalogBuilderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.provider.ProviderMergeTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.data.CompendiumSchemaTest
@@ -42,7 +43,7 @@ root = Path(sys.argv[1])
 required = {
     "entries": {"schema_version", "id", "source_mod_id", "translation_key", "content_version"},
     "categories": {"schema_version", "id", "translation_key"},
-    "relations": {"schema_version", "type", "from", "to", "source"},
+    "relations": {"schema_version", "type", "from", "source"},
     "discovery": {"schema_version", "id", "entry", "trigger"},
 }
 for directory, fields in required.items():
@@ -59,5 +60,11 @@ for directory, fields in required.items():
         missing = sorted(fields - payload.keys())
         if missing:
             raise SystemExit(f"{file}: missing fields {missing}")
+        if directory == "relations":
+            legacy = isinstance(payload.get("to"), str) and bool(payload.get("to", "").strip())
+            typed = isinstance(payload.get("target_kind"), str) and bool(payload.get("target_kind", "").strip()) \
+                and isinstance(payload.get("target"), str) and bool(payload.get("target", "").strip())
+            if legacy == typed:
+                raise SystemExit(f"{file}: relation must use exactly one target format")
 print("Compendium model resources: PASS")
 PY
