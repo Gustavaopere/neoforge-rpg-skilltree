@@ -9,6 +9,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: rpgskilltree-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 permissions:
   contents: read
   statuses: write
@@ -16,6 +20,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -62,6 +67,12 @@ jobs:
 
       - name: Core tests
         run: bash scripts/test-core.sh
+
+      - name: JUnit 5 tests
+        run: ./gradlew --no-daemon test
+
+      - name: NeoForge GameTests
+        run: ./gradlew --no-daemon runGameTestServer
 
       - name: Compendium provenance tests
         run: python3 scripts/compendium/test_provenance.py

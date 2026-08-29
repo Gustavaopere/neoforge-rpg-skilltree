@@ -52,6 +52,13 @@ runs {
     client {}
     server {}
 
+    gameTestServer {
+        systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+        setForceExit false
+    }
+
+    junit {}
+
     data {
         arguments.addAll '--mod', mod_id, '--all',
                 '--output', file('src/generated/resources/').absolutePath,
@@ -88,10 +95,18 @@ dependencies {
     compileOnly("curse.maven:identity2-1238155:${identity2_file_id}") {
         transitive = false
     }
+
+    testImplementation platform("org.junit:junit-bom:${junit_version}")
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }
 
 tasks.withType(ProcessResources).configureEach {
