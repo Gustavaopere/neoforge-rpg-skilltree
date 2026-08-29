@@ -1,4 +1,4 @@
-package dev.gustavopere.rpgskilltree.runtime.mixin;
+package dev.gustavopere.rpgskilltree.runtime.compat.identity2.mixin;
 
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphIdentityAccess;
 import net.minecraft.nbt.CompoundTag;
@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/** Optional Identity2 mixin. The pseudo string target avoids loading provider types when absent. */
 @Pseudo
 @Mixin(targets = "net.Gabou.identity2.identity.IdentityProgression", remap = false)
 public abstract class IdentityProgressionMixin {

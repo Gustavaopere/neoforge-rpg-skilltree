@@ -114,7 +114,6 @@ require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgr
                  'ProgressionService.creditBoss',
                  'ProgressionService.applyXp')
 
-
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/data/NodeRulesReloader.java',
                  'SimpleJsonResourceReloadListener',
                  'super(GSON, "node_rules")',
@@ -215,9 +214,6 @@ require_contains('src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.jav
                  'ClassChoiceRulesReloader.class',
                  'NodeEffectsReloader.class')
 
-
-
-
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java',
                  'BlockEvent.BreakEvent',
                  'Tags.Blocks.ORES',
@@ -286,7 +282,6 @@ require_contains('src/main/resources/assets/rpgskilltree/lang/pt_br.json',
                  'key.rpgskilltree.open_tree',
                  'key.categories.rpgskilltree')
 
-
 require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/identity2/MorphCategoryReloader.java',
                  'SimpleJsonResourceReloadListener',
                  'super(GSON, "morph_categories")',
@@ -296,13 +291,19 @@ require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/iden
                  'MorphPermissionResolver.resolve',
                  'MorphAccessPolicy.canUse',
                  'minecraft", "player')
-require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/mixin/IdentityProgressionMixin.java',
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/identity2/mixin/IdentityProgressionMixin.java',
                  '@Pseudo',
                  'net.Gabou.identity2.identity.IdentityProgression',
                  'MorphIdentityAccess.canMorph',
                  'CallbackInfoReturnable<Boolean>')
 require_contains('src/main/resources/rpgskilltree.mixins.json',
-                 'IdentityProgressionMixin')
+                 'IdentityProgressionMixin',
+                 'Identity2MixinPlugin')
+require_contains('src/main/java/dev/gustavopere/rpgskilltree/bootstrap/Identity2MixinPlugin.java',
+                 'implements IMixinConfigPlugin',
+                 'shouldApplyMixin',
+                 'IDENTITY_TARGET_RESOURCE',
+                 'getResource')
 require_contains('src/main/resources/META-INF/neoforge.mods.toml',
                  'rpgskilltree.mixins.json')
 require_contains('src/main/resources/data/rpgskilltree/morph_categories/defaults.json',

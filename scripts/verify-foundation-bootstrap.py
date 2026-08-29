@@ -165,9 +165,15 @@ for marker in ordered_bootstrap_markers:
         fail(f"bootstrap registration order changed before: {marker}")
     position = next_position
 
-first_optional_guard = mod_bootstrap.find('ModList.get().isLoaded("irons_spellbooks")')
-if first_optional_guard < 0 or first_optional_guard <= position:
-    fail("optional provider registration must occur after the deterministic common bootstrap")
+summary_marker = 'LOGGER.info("Optional integrations: {}", OptionalIntegrations.summary());'
+summary_position = mod_bootstrap.find(summary_marker)
+first_optional_guard = mod_bootstrap.find(
+    "OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)"
+)
+if summary_position < 0 or summary_position <= position:
+    fail("optional integration diagnostics must occur after the deterministic common bootstrap")
+if first_optional_guard < 0 or first_optional_guard <= summary_position:
+    fail("optional provider registration must occur after the deterministic common bootstrap and diagnostics")
 
 java_sources = ROOT / "src" / "main" / "java"
 registered_configs = []
