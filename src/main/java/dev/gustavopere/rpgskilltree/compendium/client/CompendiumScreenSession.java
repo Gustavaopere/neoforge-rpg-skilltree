@@ -8,8 +8,8 @@ import java.util.Optional;
  * Pure interaction state for the Compendium screen.
  *
  * <p>The NeoForge screen owns rendering and input translation only. Search, filters, virtual
- * scrolling, entry opening and list/detail navigation are kept here so they remain deterministic
- * and testable without constructing a Minecraft client.</p>
+ * scrolling, keyboard selection, entry opening and list/detail navigation are kept here so they
+ * remain deterministic and testable without constructing a Minecraft client.</p>
  */
 public final class CompendiumScreenSession {
     private final CompendiumClientSnapshot snapshot;
@@ -36,6 +36,10 @@ public final class CompendiumScreenSession {
         return browser.openEntry().isPresent();
     }
 
+    public Optional<CompendiumClientEntry> selectedEntry() {
+        return browser.selectedEntry();
+    }
+
     public CompendiumBrowserModel.Viewport viewport(int rowCapacity) {
         return browser.viewport(rowCapacity);
     }
@@ -56,6 +60,14 @@ public final class CompendiumScreenSession {
                 ? Integer.MAX_VALUE
                 : (int) requested;
         browser.scrollToRow(clampedRequest);
+    }
+
+    public void moveSelection(int delta, int rowCapacity) {
+        browser.moveSelection(delta, rowCapacity);
+    }
+
+    public void openSelectedEntry() {
+        browser.openSelectedEntry();
     }
 
     public void openVisibleRow(int visibleRow, int rowCapacity) {

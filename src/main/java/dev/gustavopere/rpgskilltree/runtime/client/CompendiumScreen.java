@@ -30,6 +30,7 @@ public final class CompendiumScreen extends Screen {
     private static final int PANEL_ALT = 0xE6171E2A;
     private static final int ROW = 0xFF1B2430;
     private static final int ROW_HOVER = 0xFF2A3948;
+    private static final int ROW_SELECTED = 0xFF40546A;
     private static final int TEXT = 0xFFF0F3F7;
     private static final int MUTED = 0xFF9EA9B8;
     private static final int ACCENT = 0xFFD9C47C;
@@ -157,11 +158,13 @@ public final class CompendiumScreen extends Screen {
             return;
         }
 
+        CompendiumClientEntry selected = session.selectedEntry().orElse(null);
         int y = body.y();
         for (CompendiumClientEntry entry : viewport.entries()) {
             int bottom = Math.min(body.bottom(), y + CompendiumScreenLayout.ROW_HEIGHT);
             boolean hovered = mouseX >= body.x() && mouseX < body.right() && mouseY >= y && mouseY < bottom;
-            graphics.fill(body.x(), y, body.right(), bottom, hovered ? ROW_HOVER : ROW);
+            int rowColor = entry.equals(selected) ? ROW_SELECTED : hovered ? ROW_HOVER : ROW;
+            graphics.fill(body.x(), y, body.right(), bottom, rowColor);
             int available = Math.max(20, body.width() - LIST_PADDING * 2);
             graphics.drawString(
                 font,
@@ -321,6 +324,23 @@ public final class CompendiumScreen extends Screen {
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (keyCode == GLFW.GLFW_KEY_ESCAPE && layout != null && !layout.splitPanes() && session.showingDetail()) {
             session.backToList();
+            return true;
+        }
+
+        boolean listActive = layout != null && (layout.splitPanes() || !session.showingDetail());
+        if (listActive && keyCode == GLFW.GLFW_KEY_UP) {
+            session.moveSelection(-1, layout.visibleRows());
+            return true;
+        }
+        if (listActive && keyCode == GLFW.GLFW_KEY_DOWN) {
+            session.moveSelection(1, layout.visibleRows());
+            return true;
+        }
+        if (listActive
+            && (keyCode == GLFW.GLFW_KEY_ENTER || keyCode == GLFW.GLFW_KEY_KP_ENTER)
+            && !(getFocused() instanceof Button)
+            && session.selectedEntry().isPresent()) {
+            session.openSelectedEntry();
             return true;
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
