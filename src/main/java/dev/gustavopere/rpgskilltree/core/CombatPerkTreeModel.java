@@ -8,6 +8,7 @@ import java.util.Set;
 
 /** Acquisition topology/gates for the currently closed A0001-A0040 range. */
 public final class CombatPerkTreeModel {
+    public static final String MARTIAL_GATEWAY_NODE = "rpgskilltree:martial_000";
     private static final Map<String, Node> NODES = build();
     private CombatPerkTreeModel() {}
 
@@ -19,7 +20,7 @@ public final class CombatPerkTreeModel {
         boolean startingPoint,
         int minCharacterLevel,
         Map<String, Integer> requiredMastery,
-        Set<String> requiredSpecializations,
+        String gatewayId,
         Map<String, Integer> requiredNodeRanks,
         Set<String> neighbors,
         boolean terminal
@@ -49,7 +50,7 @@ public final class CombatPerkTreeModel {
         return Map.copyOf(map);
     }
 
-    private static void family(Map<String, Node> target, int first, int last, String specialization,
+    private static void family(Map<String, Node> target, int first, int last, String gatewayId,
                                int rootLevel, String masteryKey, int rootMastery, int terminalNumber,
                                String[][] edges) {
         Map<String, java.util.LinkedHashSet<String>> adjacency = new LinkedHashMap<>();
@@ -72,7 +73,7 @@ public final class CombatPerkTreeModel {
                 root,
                 root ? rootLevel : 1,
                 mastery == 0 ? Map.of() : Map.of(masteryKey, mastery),
-                Set.of(specialization),
+                gatewayId,
                 dependencyNodeRanks(definition.dependencies()),
                 adjacency.get(code).stream().map(CombatPerkNodeBinding::nodeIdUnchecked).collect(java.util.stream.Collectors.toUnmodifiableSet()),
                 terminal
@@ -82,6 +83,7 @@ public final class CombatPerkTreeModel {
 
     private static Map<String, Integer> dependencyNodeRanks(Map<String, Integer> dependencies) {
         LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
+        result.put(MARTIAL_GATEWAY_NODE, 1);
         dependencies.forEach((code, rank) -> result.put(CombatPerkNodeBinding.nodeIdUnchecked(code), rank));
         return Map.copyOf(result);
     }
