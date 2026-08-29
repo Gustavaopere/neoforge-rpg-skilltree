@@ -110,6 +110,9 @@ jobs:
       - name: Canonical provider binding runtime validation
         run: python3 scripts/verify-canonical-binding-runtime.py
 
+      - name: Foundation diagnostics validation
+        run: python3 scripts/verify-foundation-diagnostics.py
+
       - name: Generated data drift and diff sanity
         shell: bash
         run: |
