@@ -44,11 +44,13 @@ Fechamento do Stage 01.05 auditado sobre a implementação integrada pelo PR #13
 
 Fechamento dos Stages 02.03, 02.04 e 02.05 integrado em `main@7cfa1e988c81619ce8209a39b330a7b181785a88`, após o acceptance funcional de multiplayer/performance já ter sido integrado em `main@98c5f33952559ea9eea059169b7f486837fc20f1`. O PR docs-only #174 passou o RPG Skill Tree CI `33272133374` / run #1605 GREEN completo antes do merge; o CI pós-merge `33272264027` / run #1617 repetiu Core, JUnit 5, todos os NeoForge GameTests, validators, build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final em GREEN.
 
+Reconciliação do Stage 03 confirma que `✅-01-data-schema-loaders.md` e `✅-02-graph-layout-validation.md` já estão materializados na `main`; seus heads funcionais `4a10cc875dc95b04474b85e00b4645fd3340be04` e `f641e99e87882575705b88b21fa68d582a1f9db8` passaram respectivamente os RPG Skill Tree CI `33275095434` / run #1676 e `33278390140` / run #1700 em GREEN completo. O fechamento do Stage 03.03 é integrado pelo PR #186: após quatro ciclos TDD RED, o head funcional `3b1d01a8829d3c99dc8b242e8ab538e46046eceb` passou o RPG Skill Tree CI `33280107469` / run #1728 GREEN completo, incluindo Core, JUnit 5, todos os 11 NeoForge GameTests, validators, NeoForge build, verificação do JAR e dedicated-server smoke; os workflows Foundation/Compendium associados também fecharam GREEN.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**27 / 75 subplanos concluídos formalmente.**
+**30 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -64,6 +66,9 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `02-progression-world-scaling/✅-03-entity-level.md`
 - `02-progression-world-scaling/✅-04-rarity-archetypes.md`
 - `02-progression-world-scaling/✅-05-scaling-rewards-performance.md`
+- `03-skill-tree-perks/✅-01-data-schema-loaders.md`
+- `03-skill-tree-perks/✅-02-graph-layout-validation.md`
+- `03-skill-tree-perks/✅-03-purchase-ranks.md`
 - `03-skill-tree-perks/✅-05-respec.md`
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
@@ -87,7 +92,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 00 Foundation | 4 | 4 | CONCLUÍDO |
 | 01 RPG Core | 5 | 5 | CONCLUÍDO |
 | 02 Progression & World Scaling | 5 | 5 | CONCLUÍDO |
-| 03 Skill Tree & Perks | 1 | 6 | EM ANDAMENTO |
+| 03 Skill Tree & Perks | 4 | 6 | EM ANDAMENTO |
 | 04 Classes, Masteries & Specializations | 1 | 6 | EM ANDAMENTO |
 | 05 Combat & Magic Hooks | 0 | 6 | EM ANDAMENTO |
 | 06 Integrations | 2 | 9 | EM ANDAMENTO |
@@ -95,7 +100,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
-| **Total** | **27** | **75** | |
+| **Total** | **30** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -113,7 +118,7 @@ Stage 02 concluído. `✅-01-relevant-player-level.md` fecha seleção bounded/l
 
 ### 03 — Skill Tree & Perks
 
-O respec está fechado. Os demais subplanos ainda têm gaps objetivos em reload/IDs, cycles/orphans, motivos legíveis de rejeição, composição de efeitos e geração automática da `wiki/`.
+Schema/loaders, grafo/layout, compra/ranks e respec estão fechados. Permanecem abertos apenas `04-effects-runtime.md` e `06-content-wiki-generation.md`: composição/aplicação final dos efeitos e geração automática da `wiki/` ainda precisam de fechamento próprio.
 
 ### 04 — Classes, Masteries & Specializations
 
@@ -151,7 +156,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento formal mais recente desta reconciliação é Stage 02.03–02.05 em `main@7cfa1e988c81619ce8209a39b330a7b181785a88`. O acceptance funcional multiplayer/performance já estava integrado em `main@98c5f33952559ea9eea059169b7f486837fc20f1`; o PR docs-only #174 passou o RPG Skill Tree CI `33272133374` / run #1605 e o pós-merge `33272264027` / run #1617 fechou GREEN completo, incluindo Core, JUnit 5, todos os NeoForge GameTests, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e publicação final de sucesso. Os fechamentos anteriores de 01.04/01.05 e 02.01/02.02 permanecem preservados pelas mesmas matrizes de regressão.
+O fechamento funcional mais recente desta reconciliação é Stage 03.03 no head `3b1d01a8829d3c99dc8b242e8ab538e46046eceb`: o RPG Skill Tree CI `33280107469` / run #1728 fechou GREEN completo, incluindo Core, JUnit 5, todos os 11 NeoForge GameTests, validators, drift, build, JAR e dedicated-server smoke. A mesma reconciliação incorpora os fechamentos 03.01 e 03.02 já materializados na `main`; os fechamentos anteriores de 01.04/01.05 e 02.01–02.05 permanecem preservados pelas mesmas matrizes de regressão.
 
 ## Convenção
 
