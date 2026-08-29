@@ -1,7 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.client;
 
 import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
-import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreen;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
