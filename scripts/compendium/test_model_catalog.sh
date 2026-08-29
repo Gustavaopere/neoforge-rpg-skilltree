@@ -38,6 +38,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterS
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumPageModelFactoryTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumNotesModelTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumBrowserModelTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayoutTest
 
 python3 - "$DATA" <<'PY'
 import json
