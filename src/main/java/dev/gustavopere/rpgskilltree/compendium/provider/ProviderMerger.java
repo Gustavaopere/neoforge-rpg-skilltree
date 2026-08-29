@@ -72,7 +72,7 @@ public final class ProviderMerger {
         ArrayList<CompendiumSection> sections = new ArrayList<>();
         selectedFacts.forEach((sectionId, facts) -> {
             ArrayList<CompendiumFact<?>> values = new ArrayList<>();
-            facts.values().forEach(candidate -> values.add(candidate.fact()));
+            facts.values().forEach(candidate -> values.add(materializeFact(candidate)));
             sections.add(new CompendiumSection(sectionId, values));
         });
 
@@ -114,6 +114,11 @@ public final class ProviderMerger {
             contributions.add(contribution);
         }
         return merge(baseEntry, contributions);
+    }
+
+    private static CompendiumFact<?> materializeFact(Candidate candidate) {
+        if (BASE_PROVIDER.equals(candidate.providerId())) return candidate.fact();
+        return candidate.fact().withProviderId(candidate.providerId());
     }
 
     private static void mergeFact(
