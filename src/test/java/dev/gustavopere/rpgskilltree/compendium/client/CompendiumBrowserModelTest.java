@@ -68,24 +68,25 @@ public final class CompendiumBrowserModelTest {
         List<CompendiumClientEntry> entries = new ArrayList<>();
         for (int i = 0; i < 20; i++) entries.add(entry(i, "minecraft", true, false));
         CompendiumBrowserModel model = new CompendiumBrowserModel(entries);
+        List<CompendiumClientEntry> orderedMatches = model.viewport(20).entries();
 
         isTrue(model.selectedEntry().isEmpty());
         model.moveSelection(1, 5);
-        eq(entries.get(0), model.selectedEntry().orElseThrow());
+        eq(orderedMatches.get(0), model.selectedEntry().orElseThrow());
         eq(0, model.viewport(5).firstIndex());
 
         for (int i = 0; i < 8; i++) model.moveSelection(1, 5);
-        eq(entries.get(8), model.selectedEntry().orElseThrow());
+        eq(orderedMatches.get(8), model.selectedEntry().orElseThrow());
         eq(4, model.viewport(5).firstIndex());
 
         model.moveSelection(-2, 5);
-        eq(entries.get(6), model.selectedEntry().orElseThrow());
+        eq(orderedMatches.get(6), model.selectedEntry().orElseThrow());
         eq(4, model.viewport(5).firstIndex());
 
         model.openSelectedEntry();
-        eq(entries.get(6).id(), model.openEntry().orElseThrow());
+        eq(orderedMatches.get(6).id(), model.openEntry().orElseThrow());
         model.backToList();
-        eq(entries.get(6), model.selectedEntry().orElseThrow());
+        eq(orderedMatches.get(6), model.selectedEntry().orElseThrow());
     }
 
     private static void queryAndFilterResetKeyboardSelection() {
