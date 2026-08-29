@@ -1,5 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
@@ -26,7 +28,13 @@ public final class ProgressionMutationEvents {
             try {
                 listener.accept(event);
             } catch (RuntimeException failure) {
-                LOGGER.error("Progression mutation listener failed after committed state change", failure);
+                RuntimeDiagnostics.error(
+                    LOGGER,
+                    Category.PROGRESSION,
+                    "mutation_listener_failed",
+                    "Progression mutation listener failed after committed state change",
+                    failure
+                );
             }
         }
     }

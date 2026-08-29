@@ -1,5 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.compendium;
 
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import org.slf4j.Logger;
@@ -13,6 +15,12 @@ public final class CompendiumWorldCatalogEvents {
     @SubscribeEvent
     public static void onServerStarted(ServerStartedEvent event) {
         var snapshot = RuntimeCompendiumWorldCatalog.publish(event.getServer());
-        LOGGER.info("Compendium world catalog published: {} entries", snapshot.entries().size());
+        RuntimeDiagnostics.info(
+            LOGGER,
+            Category.COMPENDIUM,
+            "world_catalog_published",
+            "Compendium world catalog published: {} entries",
+            snapshot.entries().size()
+        );
     }
 }

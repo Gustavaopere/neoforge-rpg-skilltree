@@ -51,8 +51,22 @@ if "OptionalIntegrations" not in bootstrap:
 for enum_name in PROVIDERS:
     if f"OptionalIntegrations.Provider.{enum_name}" not in bootstrap:
         fail(f"bootstrap does not use central provider identity {enum_name}")
-if 'LOGGER.info("Optional integrations: {}", OptionalIntegrations.summary())' not in bootstrap:
+for marker in (
+    "RuntimeDiagnostics.info(",
+    "Category.COMPAT",
+    '"optional_providers"',
+    '"Optional integrations: {}"',
+    "OptionalIntegrations.summary()",
+):
+    if marker not in bootstrap:
+        fail(f"bootstrap optional-provider diagnostic is missing semantic marker {marker!r}")
+summary_position = bootstrap.find('"Optional integrations: {}"')
+summary_value_position = bootstrap.find("OptionalIntegrations.summary()", summary_position)
+first_optional_guard = bootstrap.find("OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)")
+if summary_position < 0 or summary_value_position < summary_position:
     fail("bootstrap must emit one bounded optional-integration summary for server-smoke evidence")
+if first_optional_guard < 0 or first_optional_guard <= summary_value_position:
+    fail("optional-provider summary must be emitted before optional adapter registration")
 
 metadata = METADATA.read_text(encoding="utf-8")
 metadata_optional = set()

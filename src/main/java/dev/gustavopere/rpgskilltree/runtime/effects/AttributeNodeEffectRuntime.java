@@ -5,6 +5,8 @@ import dev.gustavopere.rpgskilltree.core.ModifierOperation;
 import dev.gustavopere.rpgskilltree.core.NodeEffectResolver;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalog;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -74,7 +76,10 @@ public final class AttributeNodeEffectRuntime {
         AttributeEffectDiagnostics.Reason reason
     ) {
         if (AttributeEffectDiagnostics.report(effectId, attributeId, reason)) {
-            LOGGER.warn(
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.EFFECTS,
+                "attribute_effect_unavailable",
                 "Node effect {} targets unavailable attribute {} ({}); the effect will not be applied",
                 effectId,
                 attributeId,

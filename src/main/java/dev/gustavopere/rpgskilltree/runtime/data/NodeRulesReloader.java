@@ -9,6 +9,7 @@ import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.NodeSpecializationGrant;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.ReloadDiagnostics;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,9 +22,13 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
     private static final Gson GSON = new GsonBuilder().create();
+    private static final Logger LOGGER = LoggerFactory.getLogger(NodeRulesReloader.class);
+
     public NodeRulesReloader() { super(GSON, "node_rules"); }
 
     @SubscribeEvent
@@ -31,6 +36,10 @@ public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
 
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> resources, @NotNull ResourceManager resourceManager, @NotNull ProfilerFiller profiler) {
+        ReloadDiagnostics.run(LOGGER, "node_rules", resources, () -> load(resources));
+    }
+
+    private static void load(Map<ResourceLocation, JsonElement> resources) {
         List<TreeRuleCatalog.NodeRule> rules = new ArrayList<>();
         for (JsonElement element : resources.values()) {
             JsonObject root = element.getAsJsonObject();

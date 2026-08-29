@@ -2,6 +2,8 @@ package dev.gustavopere.rpgskilltree.runtime.compendium;
 
 import com.mojang.logging.LogUtils;
 import dev.gustavopere.rpgskilltree.compendium.catalog.CompendiumCatalogSnapshot;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import org.slf4j.Logger;
@@ -15,6 +17,12 @@ public final class CompendiumEntityCatalogEvents {
     @SubscribeEvent
     public static void onServerStarted(ServerStartedEvent event) {
         CompendiumCatalogSnapshot snapshot = RuntimeCompendiumEntityCatalog.publishFromRegistries();
-        LOGGER.info("Compendium entity catalog published with {} entries", snapshot.entries().size());
+        RuntimeDiagnostics.info(
+            LOGGER,
+            Category.COMPENDIUM,
+            "entity_catalog_published",
+            "Compendium entity catalog published with {} entries",
+            snapshot.entries().size()
+        );
     }
 }
