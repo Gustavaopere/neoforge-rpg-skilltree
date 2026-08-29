@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.NodeSpecializationGrant;
@@ -23,22 +24,13 @@ import org.jetbrains.annotations.NotNull;
 
 public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
     private static final Gson GSON = new GsonBuilder().create();
-
-    public NodeRulesReloader() {
-        super(GSON, "node_rules");
-    }
+    public NodeRulesReloader() { super(GSON, "node_rules"); }
 
     @SubscribeEvent
-    public static void onAddReloadListeners(AddReloadListenerEvent event) {
-        event.addListener(new NodeRulesReloader());
-    }
+    public static void onAddReloadListeners(AddReloadListenerEvent event) { event.addListener(new NodeRulesReloader()); }
 
     @Override
-    protected void apply(
-        Map<ResourceLocation, JsonElement> resources,
-        @NotNull ResourceManager resourceManager,
-        @NotNull ProfilerFiller profiler
-    ) {
+    protected void apply(Map<ResourceLocation, JsonElement> resources, @NotNull ResourceManager resourceManager, @NotNull ProfilerFiller profiler) {
         List<TreeRuleCatalog.NodeRule> rules = new ArrayList<>();
         for (JsonElement element : resources.values()) {
             JsonObject root = element.getAsJsonObject();
@@ -48,63 +40,55 @@ public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
                 JsonObject node = nodeElement.getAsJsonObject();
                 ResourceLocation id = ResourceLocation.parse(node.get("id").getAsString());
                 var finalTriadDomain = node.has("finalTriadDomain")
-                    ? dev.gustavopere.rpgskilltree.core.ProgressionDomain.valueOf(node.get("finalTriadDomain").getAsString())
-                    : null;
+                    ? dev.gustavopere.rpgskilltree.core.ProgressionDomain.valueOf(node.get("finalTriadDomain").getAsString()) : null;
                 int finalTriadSlot = node.has("finalTriadSlot") ? node.get("finalTriadSlot").getAsInt() : -1;
-                NodePurchaseDefinition definition = new NodePurchaseDefinition(
-                    id.toString(),
-                    node.get("maxRank").getAsInt(),
-                    node.get("costPerRank").getAsInt(),
-                    node.get("startingPoint").getAsBoolean(),
-                    finalTriadDomain,
-                    finalTriadSlot
-                );
+                NodePurchaseDefinition definition = new NodePurchaseDefinition(id.toString(), node.get("maxRank").getAsInt(),
+                    node.get("costPerRank").getAsInt(), node.get("startingPoint").getAsBoolean(), finalTriadDomain, finalTriadSlot);
                 Set<String> requiredClasses = readStringSet(node.getAsJsonArray("requiredClasses"));
                 Map<String, Integer> requiredMastery = readIntMap(node.getAsJsonObject("requiredMastery"));
                 Set<String> requiredSpecializations = readStringSet(node.getAsJsonArray("requiredSpecializations"));
                 Set<String> requiredClassChoices = readStringSet(node.getAsJsonArray("requiredClassChoices"));
                 Set<String> requiredNodes = readStringSet(node.getAsJsonArray("requiredNodes"));
+                Map<String, Integer> requiredNodeRanks = readIntMap(node.getAsJsonObject("requiredNodeRanks"));
                 Set<String> requiredDiscoveries = readStringSet(node.getAsJsonArray("requiredDiscoveries"));
                 NodeAccessRequirement requirement = new NodeAccessRequirement(
                     node.has("minCharacterLevel") ? node.get("minCharacterLevel").getAsInt() : 1,
-                    requiredClasses,
-                    requiredMastery,
-                    requiredSpecializations,
-                    requiredClassChoices,
-                    requiredNodes,
-                    requiredDiscoveries
-                );
+                    requiredClasses, requiredMastery, requiredSpecializations, requiredClassChoices,
+                    requiredNodes, requiredNodeRanks, requiredDiscoveries);
                 NodeSpecializationGrant specializationGrant = null;
                 if (node.has("grantsSpecialization")) {
                     JsonObject grant = node.getAsJsonObject("grantsSpecialization");
-                    specializationGrant = new NodeSpecializationGrant(
-                        id.toString(),
-                        grant.get("id").getAsString(),
-                        grant.has("requiredRank") ? grant.get("requiredRank").getAsInt() : definition.maxRank()
-                    );
+                    specializationGrant = new NodeSpecializationGrant(id.toString(), grant.get("id").getAsString(),
+                        grant.has("requiredRank") ? grant.get("requiredRank").getAsInt() : definition.maxRank());
                 }
                 Set<ResourceLocation> neighbors = new HashSet<>();
                 JsonArray neighborArray = node.getAsJsonArray("neighbors");
-                if (neighborArray != null) {
-                    neighborArray.forEach(value -> neighbors.add(ResourceLocation.parse(value.getAsString())));
-                }
+                if (neighborArray != null) neighborArray.forEach(value -> neighbors.add(ResourceLocation.parse(value.getAsString())));
                 rules.add(new TreeRuleCatalog.NodeRule(id, definition, requirement, specializationGrant, neighbors));
             }
         }
+        addClosedCombatRules(rules);
         TreeRuleCatalog.replace(rules);
+    }
+
+    private static void addClosedCombatRules(List<TreeRuleCatalog.NodeRule> rules) {
+        for (CombatPerkTreeModel.Node node : CombatPerkTreeModel.all()) {
+            ResourceLocation id = ResourceLocation.parse(node.nodeId());
+            NodePurchaseDefinition definition = new NodePurchaseDefinition(node.nodeId(), node.maxRank(), node.costPerRank(), node.startingPoint());
+            NodeAccessRequirement requirement = new NodeAccessRequirement(node.minCharacterLevel(), Set.of(), node.requiredMastery(),
+                node.requiredSpecializations(), Set.of(), Set.of(), node.requiredNodeRanks(), Set.of());
+            Set<ResourceLocation> neighbors = new HashSet<>();
+            node.neighbors().forEach(value -> neighbors.add(ResourceLocation.parse(value)));
+            rules.add(new TreeRuleCatalog.NodeRule(id, definition, requirement, null, neighbors));
+        }
     }
 
     private static Set<String> readStringSet(JsonArray values) {
         if (values == null) return Set.of();
-        Set<String> result = new HashSet<>();
-        values.forEach(value -> result.add(value.getAsString()));
-        return Set.copyOf(result);
+        Set<String> result = new HashSet<>(); values.forEach(value -> result.add(value.getAsString())); return Set.copyOf(result);
     }
-
     private static Map<String, Integer> readIntMap(JsonObject values) {
         if (values == null) return Map.of();
-        java.util.HashMap<String, Integer> result = new java.util.HashMap<>();
-        values.entrySet().forEach(entry -> result.put(entry.getKey(), entry.getValue().getAsInt()));
-        return Map.copyOf(result);
+        java.util.HashMap<String, Integer> result = new java.util.HashMap<>(); values.entrySet().forEach(entry -> result.put(entry.getKey(), entry.getValue().getAsInt())); return Map.copyOf(result);
     }
 }

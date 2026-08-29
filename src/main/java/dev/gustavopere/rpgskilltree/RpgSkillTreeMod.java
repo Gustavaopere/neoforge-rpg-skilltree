@@ -6,6 +6,7 @@ import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
@@ -42,10 +43,13 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Mod(RpgSkillTreeMod.MOD_ID)
 public final class RpgSkillTreeMod {
     public static final String MOD_ID = "rpgskilltree";
+    private static final Logger LOGGER = LoggerFactory.getLogger(RpgSkillTreeMod.class);
 
     public RpgSkillTreeMod(IEventBus modBus) {
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
@@ -99,6 +103,19 @@ public final class RpgSkillTreeMod {
         }
         if (ModList.get().isLoaded("epicfight")) {
             EpicFightProgressionHooks.register();
+            String version = ModList.get().getModContainerById("epicfight")
+                .map(container -> container.getModInfo().getVersion().toString())
+                .orElse("unknown");
+            if (A0001A0020EpicFightHooks.supportsVersion(version)) {
+                A0001A0020EpicFightHooks.register();
+                NeoForge.EVENT_BUS.register(A0001A0020EpicFightHooks.class);
+            } else {
+                LOGGER.warn(
+                    "A0001-A0020 Epic Fight integration disabled: expected {}*, found {}",
+                    A0001A0020EpicFightHooks.SUPPORTED_VERSION_PREFIX,
+                    version
+                );
+            }
         }
     }
 }
