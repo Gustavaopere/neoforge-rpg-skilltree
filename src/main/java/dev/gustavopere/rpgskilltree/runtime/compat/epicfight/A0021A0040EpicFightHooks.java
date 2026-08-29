@@ -190,7 +190,10 @@ public final class A0021A0040EpicFightHooks {
         if (family.get() != WeaponFamily.DAGGER) {
             damage *= NotionCombatPerkRules.baseDamageMultiplier(family.get(), ranks);
         }
-        damage *= dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.criticalDamageMultiplier(ranks, root.critical);
+        double a0063CriticalDamage = family.get() == WeaponFamily.DAGGER
+            ? 1.0D
+            : dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.criticalDamageMultiplier(ranks, root.critical);
+        damage *= a0063CriticalDamage;
         if (root.critical && family.get() != WeaponFamily.DAGGER && !root.criticalMultiplierAlreadyApplied) {
             damage *= 1.5D;
         }
