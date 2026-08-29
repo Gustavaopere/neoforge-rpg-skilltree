@@ -10,6 +10,10 @@ public final class EntityScalingCurvePolicyTest {
         familiesRemainExplicitAndComplete();
         cappedLinearCurveSupportsIndependentGrowthAndCaps();
         effectiveStatPolicyUsesConfiguredCurveWithoutHiddenDefaults();
+        vanillaStatFamiliesAreExplicitWithoutPathHeuristics();
+        providerExtensionsMustBeRegisteredExplicitly();
+        curveBackedArchetypePolicyRoutesIndependentFamilies();
+        unknownProviderStatsFailClosedUntilRegistered();
         invalidCurveConfigurationFailsClosed();
         System.out.println("EntityScalingCurvePolicyTest: PASS");
     }
@@ -65,12 +69,112 @@ public final class EntityScalingCurvePolicyTest {
         decimalEq("26.000", policy.resolve(context));
     }
 
+    private static void vanillaStatFamiliesAreExplicitWithoutPathHeuristics() {
+        CanonicalStatScalingFamilyCatalog catalog = CanonicalStatScalingFamilyCatalog.vanillaDefaults();
+        eq(ScalingCurveFamily.HEALTH, catalog.family(CanonicalStatKey.of("minecraft:max_health")));
+        eq(ScalingCurveFamily.DAMAGE, catalog.family(CanonicalStatKey.of("minecraft:attack_damage")));
+        eq(ScalingCurveFamily.DEFENSE, catalog.family(CanonicalStatKey.of("minecraft:armor")));
+        eq(ScalingCurveFamily.DEFENSE, catalog.family(CanonicalStatKey.of("minecraft:armor_toughness")));
+        eq(ScalingCurveFamily.DEFENSE, catalog.family(CanonicalStatKey.of("minecraft:knockback_resistance")));
+        eq(ScalingCurveFamily.UTILITY, catalog.family(CanonicalStatKey.of("minecraft:attack_speed")));
+        eq(ScalingCurveFamily.UTILITY, catalog.family(CanonicalStatKey.of("minecraft:movement_speed")));
+        eq(ScalingCurveFamily.UTILITY, catalog.family(CanonicalStatKey.of("minecraft:luck")));
+        eq(8, catalog.asMap().size());
+        expect(UnsupportedOperationException.class, () -> catalog.asMap().clear());
+        expect(IllegalStateException.class, () -> catalog.family(CanonicalStatKey.of("custom:max_health")));
+    }
+
+    private static void providerExtensionsMustBeRegisteredExplicitly() {
+        CanonicalStatKey mana = CanonicalStatKey.of("irons:max_mana");
+        CanonicalStatScalingFamilyCatalog catalog = CanonicalStatScalingFamilyCatalog.vanillaDefaults()
+            .extend(Map.of(mana, ScalingCurveFamily.UTILITY));
+        eq(ScalingCurveFamily.UTILITY, catalog.family(mana));
+        expect(IllegalArgumentException.class, () -> catalog.extend(Map.of(
+            CanonicalStatKey.of("minecraft:max_health"),
+            ScalingCurveFamily.DAMAGE
+        )));
+    }
+
+    private static void curveBackedArchetypePolicyRoutesIndependentFamilies() {
+        ScalingCurveSet curves = distinctFixtureCurves();
+        CanonicalStatScalingFamilyCatalog families = CanonicalStatScalingFamilyCatalog.vanillaDefaults();
+        EntityArchetypeStatPolicy policy = CurveBackedEntityArchetypeStatPolicy.of(families, curves);
+
+        CanonicalStatKey health = CanonicalStatKey.of("minecraft:max_health");
+        CanonicalStatKey damage = CanonicalStatKey.of("minecraft:attack_damage");
+        CanonicalStatKey armor = CanonicalStatKey.of("minecraft:armor");
+        CanonicalStatKey movement = CanonicalStatKey.of("minecraft:movement_speed");
+        CanonicalStatSnapshot provider = CanonicalStatSnapshot.of(Map.of(
+            health, new BigDecimal("20"),
+            damage, new BigDecimal("5"),
+            armor, new BigDecimal("10"),
+            movement, new BigDecimal("0.1")
+        ));
+        EntityLevelResolution level = EntityLevelService.resolve(
+            EntityLevelContext.nativeOnly(10L, EntityArchetype.HOSTILE),
+            EntityLevelAdjustment.NONE
+        );
+
+        EntityStatScalingResult result = EntityStatScalingService.resolve(
+            level,
+            provider,
+            Map.of(EntityArchetype.HOSTILE, policy)
+        );
+        decimalEq("22.0", result.effectiveStats().value(health));
+        decimalEq("6.0", result.effectiveStats().value(damage));
+        decimalEq("13.0", result.effectiveStats().value(armor));
+        decimalEq("0.140", result.effectiveStats().value(movement));
+    }
+
+    private static void unknownProviderStatsFailClosedUntilRegistered() {
+        CanonicalStatKey mana = CanonicalStatKey.of("irons:max_mana");
+        CanonicalStatSnapshot provider = CanonicalStatSnapshot.of(Map.of(mana, new BigDecimal("100")));
+        EntityLevelResolution level = EntityLevelService.resolve(
+            EntityLevelContext.nativeOnly(10L, EntityArchetype.HOSTILE),
+            EntityLevelAdjustment.NONE
+        );
+        ScalingCurveSet curves = distinctFixtureCurves();
+
+        EntityArchetypeStatPolicy vanillaOnly = CurveBackedEntityArchetypeStatPolicy.of(
+            CanonicalStatScalingFamilyCatalog.vanillaDefaults(),
+            curves
+        );
+        expect(IllegalStateException.class, () -> EntityStatScalingService.resolve(
+            level,
+            provider,
+            Map.of(EntityArchetype.HOSTILE, vanillaOnly)
+        ));
+
+        EntityArchetypeStatPolicy extended = CurveBackedEntityArchetypeStatPolicy.of(
+            CanonicalStatScalingFamilyCatalog.vanillaDefaults().extend(Map.of(mana, ScalingCurveFamily.UTILITY)),
+            curves
+        );
+        EntityStatScalingResult resolved = EntityStatScalingService.resolve(
+            level,
+            provider,
+            Map.of(EntityArchetype.HOSTILE, extended)
+        );
+        decimalEq("140.0", resolved.effectiveStats().value(mana));
+    }
+
     private static void invalidCurveConfigurationFailsClosed() {
         expect(IllegalArgumentException.class, () -> curve("1", "0.01", "2", "1"));
         expect(NullPointerException.class, () -> CappedLinearScalingCurve.of(null, BigDecimal.ZERO, BigDecimal.ONE, BigDecimal.ONE));
         expect(NullPointerException.class, () -> ScalingCurveSet.of(null));
         expect(NullPointerException.class, () -> EffectiveStatCurvePolicy.of(null));
         expect(IllegalArgumentException.class, () -> ScalingCurveSet.of(Map.of()));
+        expect(NullPointerException.class, () -> CanonicalStatScalingFamilyCatalog.of(null));
+        expect(NullPointerException.class, () -> CurveBackedEntityArchetypeStatPolicy.of(null, distinctFixtureCurves()));
+    }
+
+    private static ScalingCurveSet distinctFixtureCurves() {
+        return ScalingCurveSet.of(Map.of(
+            ScalingCurveFamily.HEALTH, curve("1", "0.01", "1", "10"),
+            ScalingCurveFamily.DAMAGE, curve("1", "0.02", "1", "10"),
+            ScalingCurveFamily.DEFENSE, curve("1", "0.03", "1", "10"),
+            ScalingCurveFamily.UTILITY, curve("1", "0.04", "1", "10"),
+            ScalingCurveFamily.REWARD, curve("1", "0.05", "1", "10")
+        ));
     }
 
     private static CappedLinearScalingCurve curve(String base, String perLevel, String minimum, String maximum) {
