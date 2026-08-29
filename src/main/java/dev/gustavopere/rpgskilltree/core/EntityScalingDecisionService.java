@@ -51,6 +51,7 @@ public final class EntityScalingDecisionService {
             request.variance(),
             Optional.of(rarity),
             request.deterministicSeed(),
+            Optional.of(EntityEffectiveStatsSnapshot.from(scaledStats.effectiveStats())),
             affixes,
             behaviors
         );
