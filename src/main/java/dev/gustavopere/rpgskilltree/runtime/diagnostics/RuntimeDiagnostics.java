@@ -14,7 +14,8 @@ public final class RuntimeDiagnostics {
         COMPAT("compat"),
         PROGRESSION("progression"),
         EFFECTS("effects"),
-        COMPENDIUM("compendium");
+        COMPENDIUM("compendium"),
+        DATA("data");
 
         private final String id;
 
