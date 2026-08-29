@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.events;
 
 import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
+import dev.gustavopere.rpgskilltree.runtime.RelevantPlayerCandidateRuntime;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -21,11 +22,13 @@ public final class ProgressionOwnerSyncEvents {
     public static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             ProgressionOwnerSyncRuntime.clear(player.getUUID());
+            RelevantPlayerCandidateRuntime.invalidateAll();
         }
     }
 
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
         ProgressionOwnerSyncRuntime.clearAll();
+        RelevantPlayerCandidateRuntime.invalidateAll();
     }
 }
