@@ -57,11 +57,11 @@ public final class A0001A0020NotionContractTest {
     }
 
     private static void weaponTrainingCoefficientsMatchNotion() {
-        var ranks = CombatPerkRanks.of(Map.of(
-            "A0001", 3, "A0002", 3, "A0003", 3,
-            "A0007", 3, "A0008", 3, "A0009", 3,
-            "A0013", 3, "A0014", 3, "A0015", 3,
-            "A0019", 3, "A0020", 3
+        var ranks = CombatPerkRanks.of(Map.ofEntries(
+            Map.entry("A0001", 3), Map.entry("A0002", 3), Map.entry("A0003", 3),
+            Map.entry("A0007", 3), Map.entry("A0008", 3), Map.entry("A0009", 3),
+            Map.entry("A0013", 3), Map.entry("A0014", 3), Map.entry("A0015", 3),
+            Map.entry("A0019", 3), Map.entry("A0020", 3)
         ));
         require(close(NotionCombatPerkRules.baseDamageMultiplier(WeaponFamily.SWORD, ranks), 1.09D), "A0001 damage");
         require(close(NotionCombatPerkRules.rhythmBonus(WeaponFamily.SWORD, ranks), 0.06D), "A0002 rhythm");
