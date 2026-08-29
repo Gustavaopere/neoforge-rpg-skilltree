@@ -15,6 +15,7 @@ public final class EntityScalingCurvePolicyTest {
         curveBackedArchetypePolicyRoutesIndependentFamilies();
         unknownProviderStatsFailClosedUntilRegistered();
         invalidCurveConfigurationFailsClosed();
+        EntityRewardScalingPolicyTest.main(args);
         System.out.println("EntityScalingCurvePolicyTest: PASS");
     }
 
