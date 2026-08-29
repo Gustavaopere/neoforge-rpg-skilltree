@@ -38,13 +38,15 @@ Fechamento do Stage 01.03 auditado contra `main@398f160f5bec74629331475eff1e60d3
 
 Fechamento do Stage 01.04 auditado contra `main@461f386179a3c904f52793354998c29ff7979dd7`, após integração do PR #128. O head funcional `a02b76ae004aa48e3fe2efef01c33c31f1fd267f` passou o RPG Skill Tree CI `33244574779` e os workflows Foundation/Compendium associados. O pós-merge funcional `33244700777` / run #1341 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso. O fechamento formal foi mergeado como `845335058bbe8cd4f5e6f4c140bf4c8fd9f14063`, cujo CI pós-merge `33262871523` / run #1407 também terminou GREEN completo. Auditoria posterior confirmou que o `AttachmentType` canônico continua usando `CanonicalPlayerAttachmentSerializer`, o mesmo codec exercitado pelos testes de round-trip.
 
+Fechamento do Stage 02.01 e 02.02 integrado em `main@6afc351449bfb04a14f35c44aebb37c77802eec3`. O head sincronizado `62733fa01f4eab936df336af41c7f835ef16a42e` passou o RPG Skill Tree CI `33263146200` / run #1412 e os workflows Foundation/Compendium, incluindo NeoForge build, verificação do JAR e dedicated-server smoke. Os dois planos estão materializados na `main` como `✅-01-relevant-player-level.md` e `✅-02-territory-area-level.md`.
+
 Fechamento do Stage 01.05 auditado sobre a implementação integrada pelo PR #131, head `9cfe75564686192b3c63d55ef4c9865b31aba79d`, mergeada como `fd2879c1c7375ab006cafb022f10bd8700f2da9c`. O CI do head `33244812701` / run #1344 e o CI pós-merge `33244953339` / run #1346 fecharam GREEN completos, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke. A auditoria direta confirmou a barreira de imports do package `core`, snapshots/read boundaries sem efeitos laterais e ausência de vazamento de attachments/estado persistido para adapters de integração.
 
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**22 / 75 subplanos concluídos formalmente.**
+**24 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -55,6 +57,8 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `01-rpg-core/✅-03-attributes-modifiers.md`
 - `01-rpg-core/✅-04-persistence-sync.md`
 - `01-rpg-core/✅-05-core-api-invariants.md`
+- `02-progression-world-scaling/✅-01-relevant-player-level.md`
+- `02-progression-world-scaling/✅-02-territory-area-level.md`
 - `03-skill-tree-perks/✅-05-respec.md`
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
@@ -77,7 +81,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | --- | ---: | ---: | --- |
 | 00 Foundation | 4 | 4 | CONCLUÍDO |
 | 01 RPG Core | 5 | 5 | CONCLUÍDO |
-| 02 Progression & World Scaling | 0 | 5 | EM ANDAMENTO |
+| 02 Progression & World Scaling | 2 | 5 | EM ANDAMENTO |
 | 03 Skill Tree & Perks | 1 | 6 | EM ANDAMENTO |
 | 04 Classes, Masteries & Specializations | 1 | 6 | EM ANDAMENTO |
 | 05 Combat & Magic Hooks | 0 | 6 | EM ANDAMENTO |
@@ -86,7 +90,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
-| **Total** | **22** | **75** | |
+| **Total** | **24** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -100,7 +104,7 @@ Stage 01 concluído. `✅-01-player-state.md` fecha o envelope persistente canô
 
 ### 02 — Progression & World Scaling
 
-Relevant-player, território, entity level, rarity e stat scaling possuem fundações reais e testadas, mas políticas finais de raio/party, fórmulas, caps, balance, persistência e performance ainda precisam de fechamento formal.
+`✅-01-relevant-player-level.md` e `✅-02-territory-area-level.md` estão fechados. Relevant-player possui política bounded; território/area level possui resolução e transição determinísticas no core. `03-entity-level`, `04-rarity-roll` e `05-stat-scaling` permanecem formalmente abertos para seus contratos finais, balance, persistência e performance.
 
 ### 03 — Skill Tree & Perks
 
@@ -142,7 +146,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento formal mais recente é Stage 01.05, com implementação funcional integrada em `main@fd2879c1c7375ab006cafb022f10bd8700f2da9c`. O head funcional passou o RPG Skill Tree CI `33244812701` / run #1344 e o pós-merge funcional `33244953339` / run #1346 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR e dedicated-server smoke. O pré-requisito 01.04 permaneceu íntegro no gate pós-fechamento `33262871523` / run #1407 GREEN completo.
+O fechamento formal mais recente desta reconciliação é Stage 01.05, com implementação funcional integrada em `main@fd2879c1c7375ab006cafb022f10bd8700f2da9c`. O head funcional passou o RPG Skill Tree CI `33244812701` / run #1344 e o pós-merge funcional `33244953339` / run #1346 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR e dedicated-server smoke. O pré-requisito 01.04 permaneceu íntegro no gate pós-fechamento `33262871523` / run #1407 GREEN completo; os fechamentos concorrentes 02.01/02.02 foram preservados de `main@6afc351449bfb04a14f35c44aebb37c77802eec3` com head `62733fa01f4eab936df336af41c7f835ef16a42e` GREEN no CI `33263146200`.
 
 ## Convenção
 
