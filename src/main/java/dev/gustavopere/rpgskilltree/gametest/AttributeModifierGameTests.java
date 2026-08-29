@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.gametest;
 
+import com.mojang.authlib.GameProfile;
 import dev.gustavopere.rpgskilltree.core.ModifierOperation;
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
 import dev.gustavopere.rpgskilltree.core.PassiveNodeProgress;
@@ -9,10 +10,13 @@ import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ClientInformation;
+import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -27,12 +31,21 @@ public final class AttributeModifierGameTests {
     private AttributeModifierGameTests() {
     }
 
-    @SuppressWarnings("removal")
     @GameTest(template = "foundation_empty")
     public static void applyingRemovingAndReapplyingBuildIsIdempotent(GameTestHelper helper) {
-        var player = helper.makeMockServerPlayerInLevel();
+        // Construct a real ServerPlayer/AttributeMap without registering it in PlayerList.
+        // GameTestHelper.makeMockServerPlayerInLevel() fires the normal login lifecycle,
+        // including owner-sync packets that require a negotiated client channel. That
+        // lifecycle is outside this modifier-runtime acceptance and makes the fixture
+        // fail before any attribute assertion executes.
+        var player = new ServerPlayer(
+            helper.getLevel().getServer(),
+            helper.getLevel(),
+            new GameProfile(UUID.randomUUID(), "attribute-modifier-test"),
+            ClientInformation.createDefault()
+        );
         var attributeHolder = BuiltInRegistries.ATTRIBUTE.getHolder(ResourceLocation.parse(ATTRIBUTE_ID)).orElseThrow();
-        var instance = Objects.requireNonNull(player.getAttribute(attributeHolder), "mock player attack damage attribute");
+        var instance = Objects.requireNonNull(player.getAttribute(attributeHolder), "test player attack damage attribute");
 
         List<NodeAttributeEffect> originalCatalog = NodeEffectCatalog.attributeEffects();
         var effect = new NodeAttributeEffect(
