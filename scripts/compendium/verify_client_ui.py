@@ -35,6 +35,7 @@ else:
         "mouseClicked",
         "mouseScrolled",
         "backToList",
+        "searchBox != null && searchBox.isFocused()",
     ):
         require_text(screen_text, needle, "CompendiumScreen")
 
