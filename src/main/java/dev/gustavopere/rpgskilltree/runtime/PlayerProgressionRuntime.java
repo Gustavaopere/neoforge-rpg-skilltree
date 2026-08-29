@@ -11,7 +11,6 @@ import dev.gustavopere.rpgskilltree.core.DiscoveryProgressionResult;
 import dev.gustavopere.rpgskilltree.core.MasteryAward;
 import dev.gustavopere.rpgskilltree.core.MasteryAwardService;
 import dev.gustavopere.rpgskilltree.core.NodeAccessResolver;
-import dev.gustavopere.rpgskilltree.core.NodePurchaseMutationService;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseResult;
 import dev.gustavopere.rpgskilltree.core.ProgressionService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
@@ -28,8 +27,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 
 public final class PlayerProgressionRuntime {
-    private static final NodePurchaseRequestTracker NODE_PURCHASE_REQUESTS =
-        new NodePurchaseRequestTracker(256);
+    private static final NodePurchaseRequestProcessor NODE_PURCHASE_PROCESSOR =
+        new NodePurchaseRequestProcessor(256);
 
     // Legacy scaffold marker only. Confirmed mutation sync moved to ProgressionOwnerSyncRuntime:
     // ModNetworking.syncToOwner(player, state)
@@ -129,18 +128,6 @@ public final class PlayerProgressionRuntime {
         Objects.requireNonNull(requestId, "requestId");
 
         ProgressionState current = get(player);
-        NodePurchaseRequestTracker.Decision replayDecision = NODE_PURCHASE_REQUESTS.checkAndRecord(
-            player.getUUID(),
-            requestId,
-            nodeId
-        );
-        if (replayDecision == NodePurchaseRequestTracker.Decision.REPLAY) {
-            return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.DUPLICATE_REQUEST);
-        }
-        if (replayDecision == NodePurchaseRequestTracker.Decision.CONFLICT) {
-            return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.REQUEST_ID_CONFLICT);
-        }
-
         var definition = TreeRuleCatalog.definition(nodeId);
         if (definition.isEmpty()) {
             return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.UNKNOWN_NODE);
@@ -151,7 +138,10 @@ public final class PlayerProgressionRuntime {
             TreeRuleCatalog.requirement(nodeId),
             CharacterLevelCurve.defaultCurve()
         );
-        NodePurchaseResult result = NodePurchaseMutationService.purchase(
+        NodePurchaseResult result = NODE_PURCHASE_PROCESSOR.purchase(
+            player.getUUID(),
+            requestId,
+            nodeId,
             current,
             TreeRuleCatalog.graph(),
             definition.get(),
@@ -167,11 +157,11 @@ public final class PlayerProgressionRuntime {
     }
 
     public static void clearNodePurchaseRequests(UUID playerId) {
-        NODE_PURCHASE_REQUESTS.clear(playerId);
+        NODE_PURCHASE_PROCESSOR.clear(playerId);
     }
 
     public static void clearAllNodePurchaseRequests() {
-        NODE_PURCHASE_REQUESTS.clearAll();
+        NODE_PURCHASE_PROCESSOR.clearAll();
     }
 
     public static boolean selectClassChoice(ServerPlayer player, ResourceLocation choiceId) {
