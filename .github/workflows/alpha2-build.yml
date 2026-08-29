@@ -95,6 +95,12 @@ jobs:
       - name: Client tree validation
         run: python3 scripts/validate-client-tree.py
 
+      - name: Tree position schema validation
+        run: python3 scripts/validate-tree-position-schema.py
+
+      - name: Skill-tree reload contract
+        run: python3 scripts/verify-skill-tree-reload-contract.py
+
       - name: Node effect validation
         run: python3 scripts/validate-node-effects.py
 
