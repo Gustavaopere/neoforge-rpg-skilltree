@@ -35,8 +35,8 @@ public final class A0021A0040NotionContractTest {
         family("A0031","MACE"); family("A0036","MACE"); family("A0037","SCYTHE"); family("A0040","SCYTHE");
         gate("A0024","epic_dagger","epicfight:dagger",80,true);
         gate("A0025","epic_hammer","epicfight:heavy",70,false); gate("A0030","epic_hammer","epicfight:heavy",80,true);
-        gate("A0031","combat_mace","epicfight:mace",60,false); gate("A0036","combat_mace","epicfight:mace",80,true);
-        gate("A0037","combat_scythe","epicfight:scythe",60,false);
+        gate("A0031","combat_mace","combat:mace",60,false); gate("A0036","combat_mace","combat:mace",80,true);
+        gate("A0037","combat_scythe","combat:scythe",60,false);
         require(!CombatPerkTreeModel.node("A0040").orElseThrow().terminal(), "A0040 is explicitly not a terminal");
     }
 
