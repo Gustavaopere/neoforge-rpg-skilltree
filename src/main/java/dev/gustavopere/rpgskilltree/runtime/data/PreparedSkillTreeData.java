@@ -18,5 +18,6 @@ public record PreparedSkillTreeData(
         treeIdsByNode = Map.copyOf(Objects.requireNonNull(treeIdsByNode));
         attributeEffects = List.copyOf(Objects.requireNonNull(attributeEffects));
         positions = Map.copyOf(Objects.requireNonNull(positions));
+        SkillTreeTopologyValidator.validate(nodeRules, treeIdsByNode, Map.of());
     }
 }
