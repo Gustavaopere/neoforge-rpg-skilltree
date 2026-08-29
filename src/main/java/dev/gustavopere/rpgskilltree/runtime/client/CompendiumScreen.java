@@ -1,16 +1,20 @@
 package dev.gustavopere.rpgskilltree.runtime.client;
 
+import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryKind;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumFact;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumSection;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumBrowserModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientEntry;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientSnapshot;
+import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterControls;
+import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterState;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPageModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayout;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSession;
 import java.util.Locale;
 import java.util.Objects;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -33,11 +37,14 @@ public final class CompendiumScreen extends Screen {
     private static final int BACK_BUTTON_WIDTH = 78;
     private static final int BACK_BUTTON_HEIGHT = 18;
     private static final int LIST_PADDING = 6;
+    private static final int FILTER_BUTTON_GAP = 4;
     private static final int SCROLL_ROWS_PER_NOTCH = 3;
 
     private final CompendiumScreenSession session;
     private CompendiumScreenLayout layout;
     private EditBox searchBox;
+    private Button kindFilterButton;
+    private Button discoveredFilterButton;
 
     public CompendiumScreen(CompendiumClientSnapshot snapshot) {
         super(Component.translatable("screen.rpgskilltree.compendium.title"));
@@ -48,6 +55,8 @@ public final class CompendiumScreen extends Screen {
     protected void init() {
         super.init();
         searchBox = null;
+        kindFilterButton = null;
+        discoveredFilterButton = null;
         if (width < CompendiumScreenLayout.MIN_SCREEN_WIDTH || height < CompendiumScreenLayout.MIN_SCREEN_HEIGHT) {
             layout = null;
             return;
@@ -68,6 +77,25 @@ public final class CompendiumScreen extends Screen {
         searchBox.setHint(Component.translatable("screen.rpgskilltree.compendium.search_hint"));
         searchBox.setResponder(session::setQuery);
         addRenderableWidget(searchBox);
+
+        CompendiumScreenLayout.Rect toolbar = layout.toolbar();
+        int firstWidth = Math.max(1, (toolbar.width() - FILTER_BUTTON_GAP) / 2);
+        int secondWidth = Math.max(1, toolbar.width() - FILTER_BUTTON_GAP - firstWidth);
+        kindFilterButton = Button.builder(kindFilterLabel(), button -> {
+            session.setFilter(CompendiumFilterControls.cycleKind(session.filter()));
+            refreshFilterButtonLabels();
+        }).bounds(toolbar.x(), toolbar.y(), firstWidth, toolbar.height()).build();
+        discoveredFilterButton = Button.builder(discoveredFilterLabel(), button -> {
+            session.setFilter(CompendiumFilterControls.cycleDiscovered(session.filter()));
+            refreshFilterButtonLabels();
+        }).bounds(
+            toolbar.x() + firstWidth + FILTER_BUTTON_GAP,
+            toolbar.y(),
+            secondWidth,
+            toolbar.height()
+        ).build();
+        addRenderableWidget(kindFilterButton);
+        addRenderableWidget(discoveredFilterButton);
     }
 
     @Override
@@ -114,13 +142,6 @@ public final class CompendiumScreen extends Screen {
     private void renderToolbar(GuiGraphics graphics) {
         CompendiumScreenLayout.Rect toolbar = layout.toolbar();
         graphics.fill(toolbar.x(), toolbar.y(), toolbar.right(), toolbar.bottom(), PANEL);
-        graphics.drawString(
-            font,
-            Component.translatable("screen.rpgskilltree.compendium.controls"),
-            toolbar.x() + 6,
-            toolbar.y() + 6,
-            MUTED
-        );
     }
 
     private void renderList(GuiGraphics graphics, int mouseX, int mouseY, CompendiumScreenLayout.Rect body) {
@@ -308,6 +329,31 @@ public final class CompendiumScreen extends Screen {
     @Override
     public boolean isPauseScreen() {
         return false;
+    }
+
+    private void refreshFilterButtonLabels() {
+        if (kindFilterButton != null) kindFilterButton.setMessage(kindFilterLabel());
+        if (discoveredFilterButton != null) discoveredFilterButton.setMessage(discoveredFilterLabel());
+    }
+
+    private Component kindFilterLabel() {
+        CompendiumFilterState filter = session.filter();
+        if (filter.kinds().size() != 1) {
+            return Component.translatable("screen.rpgskilltree.compendium.filter.kind.all");
+        }
+        CompendiumEntryKind kind = filter.kinds().iterator().next();
+        return Component.translatable(
+            "screen.rpgskilltree.compendium.filter.kind." + kind.name().toLowerCase(Locale.ROOT)
+        );
+    }
+
+    private Component discoveredFilterLabel() {
+        String suffix = switch (session.filter().discovered()) {
+            case ANY -> "any";
+            case TRUE -> "true";
+            case FALSE -> "false";
+        };
+        return Component.translatable("screen.rpgskilltree.compendium.filter.discovered." + suffix);
     }
 
     private String fitToWidth(String value, int maxWidth) {
