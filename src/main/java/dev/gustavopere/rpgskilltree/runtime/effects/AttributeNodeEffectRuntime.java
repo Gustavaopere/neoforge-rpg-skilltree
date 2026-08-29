@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.effects;
 
 import com.mojang.logging.LogUtils;
+import dev.gustavopere.rpgskilltree.core.A0081A0100CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.ModifierOperation;
 import dev.gustavopere.rpgskilltree.core.NodeEffectResolver;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
@@ -19,6 +20,9 @@ public final class AttributeNodeEffectRuntime {
     private AttributeNodeEffectRuntime() {}
 
     public static void refresh(ServerPlayer player, ProgressionState state) {
+        double oldHealth = player.getHealth();
+        double oldMaxHealth = player.getMaxHealth();
+
         for (var effect : NodeEffectCatalog.clearableAttributeEffects()) {
             var attributeId = ResourceLocation.parse(effect.attributeId());
             var holder = BuiltInRegistries.ATTRIBUTE.getHolder(attributeId).orElse(null);
@@ -66,6 +70,15 @@ public final class AttributeNodeEffectRuntime {
                 ResourceLocation.parse(effect.effectId()),
                 effect.amount(),
                 operation(effect.operation())
+            ));
+        }
+
+        double newMaxHealth = player.getMaxHealth();
+        if (oldMaxHealth > 0.0D && newMaxHealth > 0.0D && Double.compare(oldMaxHealth, newMaxHealth) != 0) {
+            player.setHealth((float) A0081A0100CombatPolicy.preserveHealthRatio(
+                oldHealth,
+                oldMaxHealth,
+                newMaxHealth
             ));
         }
     }
