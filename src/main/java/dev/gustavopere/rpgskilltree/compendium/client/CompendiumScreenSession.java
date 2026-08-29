@@ -93,6 +93,17 @@ public final class CompendiumScreenSession {
         return browser.openEntry().flatMap(snapshot::page);
     }
 
+    public boolean isCurrentEntryFavorite() {
+        return currentEntry().map(entry -> notes.isFavorite(entry.id())).orElse(false);
+    }
+
+    public void toggleCurrentEntryFavorite() {
+        currentEntry().ifPresent(entry -> {
+            CompendiumEntryId id = entry.id();
+            notes.setFavorite(id, !notes.isFavorite(id));
+        });
+    }
+
     public void backToList() {
         browser.backToList();
     }
