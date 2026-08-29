@@ -71,11 +71,7 @@ public final class CompendiumScreenSession {
     }
 
     public void openVisibleRow(int visibleRow, int rowCapacity) {
-        CompendiumBrowserModel.Viewport viewport = browser.viewport(rowCapacity);
-        if (visibleRow < 0 || visibleRow >= viewport.entries().size()) {
-            throw new IllegalArgumentException("visible row is outside the current viewport: " + visibleRow);
-        }
-        browser.openEntry(viewport.entries().get(visibleRow).id());
+        browser.openVisibleRow(visibleRow, rowCapacity);
     }
 
     public Optional<CompendiumClientEntry> currentEntry() {

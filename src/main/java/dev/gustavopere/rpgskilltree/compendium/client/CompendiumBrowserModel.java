@@ -110,6 +110,18 @@ public final class CompendiumBrowserModel {
     }
 
     /**
+     * Selects and opens one row from the current visible viewport without moving that viewport.
+     */
+    public void openVisibleRow(int visibleRow, int rowCapacity) {
+        Viewport viewport = viewport(rowCapacity);
+        if (visibleRow < 0 || visibleRow >= viewport.entries().size()) {
+            throw new IllegalArgumentException("visible row is outside the current viewport: " + visibleRow);
+        }
+        selectedRow = viewport.firstIndex() + visibleRow;
+        openEntry(matches.get(selectedRow).id());
+    }
+
+    /**
      * Returns at most {@code rowCapacity} entries for the renderer.
      */
     public Viewport viewport(int rowCapacity) {

@@ -13,6 +13,7 @@ public final class CompendiumBrowserModelTest {
         virtualizesLargeResultSets();
         composesSearchAndFilters();
         keyboardSelectionTracksViewportAndOpensEntry();
+        pointerOpenSelectsTheSameVisibleEntry();
         queryAndFilterResetKeyboardSelection();
         openingAndBackPreserveListState();
         queryAndFilterChangesResetScroll();
@@ -87,6 +88,26 @@ public final class CompendiumBrowserModelTest {
         eq(orderedMatches.get(6).id(), model.openEntry().orElseThrow());
         model.backToList();
         eq(orderedMatches.get(6), model.selectedEntry().orElseThrow());
+    }
+
+    private static void pointerOpenSelectsTheSameVisibleEntry() {
+        List<CompendiumClientEntry> entries = new ArrayList<>();
+        for (int i = 0; i < 12; i++) entries.add(entry(i, "minecraft", true, false));
+        CompendiumBrowserModel model = new CompendiumBrowserModel(entries);
+
+        model.moveSelection(1, 4);
+        CompendiumClientEntry keyboardSelected = model.selectedEntry().orElseThrow();
+        CompendiumBrowserModel.Viewport viewport = model.viewport(4);
+        CompendiumClientEntry clicked = viewport.entries().get(2);
+        isFalse(clicked.equals(keyboardSelected));
+
+        model.openVisibleRow(2, 4);
+
+        eq(clicked, model.selectedEntry().orElseThrow());
+        eq(clicked.id(), model.openEntry().orElseThrow());
+        model.backToList();
+        eq(clicked, model.selectedEntry().orElseThrow());
+        eq(viewport.firstIndex(), model.viewport(4).firstIndex());
     }
 
     private static void queryAndFilterResetKeyboardSelection() {
