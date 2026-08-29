@@ -57,9 +57,12 @@ Se uma regressão ou mudança arquitetural reabrir o trabalho, o arquivo volta a
 | 09 | `09-hardening-release/` | EM ANDAMENTO contínuo |
 | 10 | `10-compendio-natural/` | PLANEJADO — Dicionário Enciclopédico pt-BR |
 | 11 | `11-itemization-equipment-progression/` | PLANEJADO — itemização universal e progressão de equipamentos |
+| 12 | `12-bodies-clones-progression-identities/` | PLANEJADO — corpos, clones e identidades de progressão |
 
 O Stage 10 consolida fauna, flora, árvores, cultivos, biomas, estruturas, dimensões, descoberta e dados técnicos em um único **Compêndio Natural**. O inventário deve ser derivado da modlist/registries atuais e manter suporte automático a conteúdo modded desconhecido.
 
 O Stage 11 consolida a **Itemização e Progressão de Equipamentos**: identidade persistente, Rank, Poder do Item, 1–5 Prefixos, 1–5 Sufixos e 1–5 Infixos por equipamento, sem reroll, com geração universal em craft/loot/mobs/outputs modded, integração com Apotheosis/Apothic, Iron's Spellbooks, Ars Nouveau, Create/tech e Curios, além de apresentação própria integral em português do Brasil.
+
+O Stage 12 consolida **Corpos, Clones e Identidades de Progressão**: uma mesma conta pode manter múltiplos corpos persistentes com level, árvore, atributos, classes, masteries, inventário e integrações corporais independentes. A troca usa transação server-authoritative com rollback; o world scaling passa a consultar a progressão do corpo ativo sem remover baselines naturais de dimensões/territórios. O acesso pode ocorrer por construção tecnológica ou transmigração mística, incluindo integração opcional e não destrutiva com caixões do Vampirism, e toda apresentação própria deve ser integralmente localizada em português do Brasil.
 
 Antes de implementar qualquer subplano, ler `STATUS.md`, `DECISIONS.md`, `PENDING.md`, o `README.md` do estágio e os arquivos anteriores na ordem numérica.
