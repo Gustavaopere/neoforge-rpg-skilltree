@@ -7,6 +7,7 @@ bash scripts/compendium/test_model_catalog.sh
 OUT="$ROOT/build/compendium-model-test-classes"
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.loot.LootSummaryTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.loot.LootSnapshotTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.loot.CompendiumLootEnricherTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.ecology.FoodRelationProviderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.ecology.BreedingProviderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.ecology.EcologyRelationTest
