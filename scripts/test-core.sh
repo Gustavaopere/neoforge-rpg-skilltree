@@ -65,6 +65,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.QuestProgressionHooksFoundatio
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalPlayerStateFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentDataTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalPlayerQueryServiceTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CoreApiInvariantTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalEffectiveStatsFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.WorldEntityLevelFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.TerritoryGridTest
@@ -100,3 +101,4 @@ python3 "$ROOT/scripts/verify-dimension-sync.py"
 python3 "$ROOT/scripts/verify-progression-services-runtime.py"
 python3 "$ROOT/scripts/verify-progression-sync-coalescing.py"
 python3 "$ROOT/scripts/verify-persistence-sync-contract.py"
+python3 "$ROOT/scripts/verify-core-api-boundary.py"
