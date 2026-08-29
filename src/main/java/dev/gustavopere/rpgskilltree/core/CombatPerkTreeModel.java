@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-/** Acquisition topology/gates for the currently closed A0001-A0040 range. */
+/** Acquisition topology/gates for the currently closed A0001-A0060 range. */
 public final class CombatPerkTreeModel {
     public static final String MARTIAL_GATEWAY_NODE = "rpgskilltree:martial_000";
     private static final Map<String, Node> NODES = build();
@@ -41,12 +41,18 @@ public final class CombatPerkTreeModel {
             new String[][]{{"A0019","A0020"},{"A0019","A0021"},{"A0020","A0023"},{"A0021","A0022"},{"A0021","A0023"},{"A0022","A0024"},{"A0023","A0024"}});
         family(map, 25, 30, "epic_hammer", 10, "epicfight:heavy", 70, 30,
             new String[][]{{"A0025","A0026"},{"A0025","A0027"},{"A0026","A0029"},{"A0027","A0028"},{"A0027","A0029"},{"A0028","A0030"},{"A0029","A0030"}});
-        // Maces and scythes can be supplied by vanilla/datapack mappings as well as Epic Fight.
+        // Maces, scythes and fist weapons can be supplied by vanilla/datapack mappings as well as Epic Fight.
         // Their canonical mastery keys therefore live in the provider-neutral combat namespace.
         family(map, 31, 36, "combat_mace", 8, "combat:mace", 60, 36,
             new String[][]{{"A0031","A0032"},{"A0031","A0033"},{"A0032","A0035"},{"A0033","A0034"},{"A0033","A0035"},{"A0034","A0036"},{"A0035","A0036"}});
-        family(map, 37, 40, "combat_scythe", 8, "combat:scythe", 60, -1,
-            new String[][]{{"A0037","A0038"},{"A0037","A0039"},{"A0039","A0040"}});
+        family(map, 37, 42, "combat_scythe", 8, "combat:scythe", 60, 42,
+            new String[][]{{"A0037","A0038"},{"A0037","A0039"},{"A0039","A0040"},{"A0038","A0041"},{"A0039","A0041"},{"A0040","A0042"},{"A0041","A0042"}});
+        family(map, 43, 48, "epic_bow", 8, "epicfight:bow", 60, 48,
+            new String[][]{{"A0043","A0044"},{"A0043","A0045"},{"A0045","A0046"},{"A0044","A0047"},{"A0045","A0047"},{"A0046","A0048"},{"A0047","A0048"}});
+        family(map, 49, 54, "epic_crossbow", 8, "epicfight:crossbow", 60, 54,
+            new String[][]{{"A0049","A0050"},{"A0049","A0051"},{"A0050","A0052"},{"A0051","A0052"},{"A0052","A0053"},{"A0052","A0054"},{"A0053","A0054"}});
+        family(map, 55, 60, "combat_fist", 8, "combat:fist", 60, 60,
+            new String[][]{{"A0055","A0056"},{"A0055","A0057"},{"A0057","A0058"},{"A0056","A0059"},{"A0058","A0059"},{"A0058","A0060"},{"A0059","A0060"}});
         return Map.copyOf(map);
     }
 

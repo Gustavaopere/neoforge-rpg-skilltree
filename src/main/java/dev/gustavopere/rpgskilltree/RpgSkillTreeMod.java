@@ -9,6 +9,8 @@ import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEven
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0041A0060EpicFightHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0042ScytheKillHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
@@ -37,6 +39,7 @@ import dev.gustavopere.rpgskilltree.runtime.data.TreeArchitectureReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeUnlockReloader;
 import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
 import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
+import dev.gustavopere.rpgskilltree.runtime.events.A0041A0060ProjectileEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ApothicBossBridgeEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.BossProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.CombatProgressionEvents;
@@ -85,6 +88,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CombatProgressionEvents.class);
         NeoForge.EVENT_BUS.register(ExplorationProgressionEvents.class);
         NeoForge.EVENT_BUS.register(MiningProgressionEvents.class);
+        NeoForge.EVENT_BUS.register(A0041A0060ProjectileEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumEntityCatalogEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumFloraCatalogEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumInventoryEvents.class);
@@ -126,13 +130,17 @@ public final class RpgSkillTreeMod {
             String version = OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT);
             if (A0001A0020EpicFightHooks.supportsVersion(version)) {
                 A0001A0020EpicFightHooks.register();
+                A0042ScytheKillHooks.register();
+                A0041A0060EpicFightHooks.register();
                 NeoForge.EVENT_BUS.register(A0001A0020EpicFightHooks.class);
+                NeoForge.EVENT_BUS.register(A0042ScytheKillHooks.class);
+                NeoForge.EVENT_BUS.register(A0041A0060EpicFightHooks.class);
             } else {
                 RuntimeDiagnostics.warn(
                     LOGGER,
                     Category.COMPAT,
                     "epicfight_version_unsupported",
-                    "A0001-A0020 Epic Fight integration disabled: expected {}*, found {}",
+                    "A0001-A0060 Epic Fight integration disabled: expected {}*, found {}",
                     A0001A0020EpicFightHooks.SUPPORTED_VERSION_PREFIX,
                     version
                 );
