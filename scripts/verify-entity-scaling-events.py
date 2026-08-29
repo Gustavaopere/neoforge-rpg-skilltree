@@ -8,6 +8,9 @@ DECISION_FACTORY = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/En
 DECISION_INITIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingDecisionInitializer.java"
 CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingInitializerCatalog.java"
 EFFECTIVE_STATS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityEffectiveStatsRuntime.java"
+REWARD_EVENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/EntityRewardEvents.java"
+REWARD_CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityRewardScalingPolicyCatalog.java"
+REWARD_EXPERIENCE = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityRewardExperienceRuntime.java"
 MOD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java"
 
 
@@ -36,6 +39,9 @@ decision_factory = read_required(DECISION_FACTORY)
 decision_initializer = read_required(DECISION_INITIALIZER)
 catalog = read_required(CATALOG)
 effective_stats = read_required(EFFECTIVE_STATS)
+reward_events = read_required(REWARD_EVENTS)
+reward_catalog = read_required(REWARD_CATALOG)
+reward_experience = read_required(REWARD_EXPERIENCE)
 mod = read_required(MOD)
 
 events_location = str(EVENTS.relative_to(ROOT))
@@ -44,6 +50,9 @@ decision_factory_location = str(DECISION_FACTORY.relative_to(ROOT))
 decision_initializer_location = str(DECISION_INITIALIZER.relative_to(ROOT))
 catalog_location = str(CATALOG.relative_to(ROOT))
 effective_stats_location = str(EFFECTIVE_STATS.relative_to(ROOT))
+reward_events_location = str(REWARD_EVENTS.relative_to(ROOT))
+reward_catalog_location = str(REWARD_CATALOG.relative_to(ROOT))
+reward_experience_location = str(REWARD_EXPERIENCE.relative_to(ROOT))
 mod_location = str(MOD.relative_to(ROOT))
 
 require(initializer, "EntityScalingState initialize(ServerLevel level, LivingEntity entity)", initializer_location)
@@ -79,7 +88,29 @@ require(events, "EntityEffectiveStatsRuntime.refresh(entity, initialized)", even
 for forbidden in ("EntityLevelService", "MobRarityService", ".getChunk(", ".getBiome(", "StructureManager"):
     forbid(events, forbidden, events_location)
 
+require(reward_catalog, "Optional<CappedEntityRewardScalingPolicy> current()", reward_catalog_location)
+require(reward_catalog, "install(CappedEntityRewardScalingPolicy policy)", reward_catalog_location)
+require(reward_catalog, "clear()", reward_catalog_location)
+
+require(reward_experience, "scaleExperience(int currentExperience, EntityRewardScalingResult scaling)", reward_experience_location)
+require(reward_experience, "RoundingMode.DOWN", reward_experience_location)
+require(reward_experience, "Integer.MAX_VALUE", reward_experience_location)
+require(reward_experience, "currentExperience < 0", reward_experience_location)
+
+require(reward_events, "@SubscribeEvent", reward_events_location)
+require(reward_events, "LivingExperienceDropEvent", reward_events_location)
+require(reward_events, "event.getEntity().level().isClientSide()", reward_events_location)
+require(reward_events, "EntityRewardScalingPolicyCatalog.current()", reward_events_location)
+require(reward_events, "EntityScalingRuntime.current(event.getEntity())", reward_events_location)
+require(reward_events, "new EntityRewardScalingContext", reward_events_location)
+require(reward_events, "event.getDroppedExperience()", reward_events_location)
+require(reward_events, "event.setDroppedExperience", reward_events_location)
+require(reward_events, "EntityRewardExperienceRuntime.scaleExperience", reward_events_location)
+for forbidden in ("getOriginalExperience()", "EntityScalingRuntime.getOrInitialize", "EntityScalingInitializerCatalog"):
+    forbid(reward_events, forbidden, reward_events_location)
+
 require(mod, "NeoForge.EVENT_BUS.register(EntityScalingEvents.class);", mod_location)
+require(mod, "NeoForge.EVENT_BUS.register(EntityRewardEvents.class);", mod_location)
 
 persisted = events.find("EntityScalingRuntime.current")
 persisted_refresh = events.find("EntityEffectiveStatsRuntime.refresh(entity, existing.orElseThrow())")
@@ -100,7 +131,17 @@ if (
     )
     raise SystemExit(1)
 
+reward_policy = reward_events.find("EntityRewardScalingPolicyCatalog.current()")
+reward_state = reward_events.find("EntityScalingRuntime.current(event.getEntity())")
+reward_apply = reward_events.find("event.setDroppedExperience")
+if reward_policy < 0 or reward_state < 0 or reward_apply < 0 or not (reward_policy < reward_state < reward_apply):
+    print(
+        f"ERROR: {reward_events_location}: reward policy and persisted state must be resolved before XP mutation"
+    )
+    raise SystemExit(1)
+
 print(
     "Entity scaling event validation: PASS "
-    "(server-only join boundary + persisted Effective Stats reapplication + canonical initialization verified)"
+    "(server-only join boundary + persisted Effective Stats reapplication + canonical initialization + "
+    "persisted-state-only XP reward adapter verified)"
 )
