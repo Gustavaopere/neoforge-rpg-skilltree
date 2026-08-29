@@ -2,7 +2,7 @@
 
 Última auditoria de fechamento: **2026-08-28**.
 
-Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos` e `10.07 — Loot, dieta, reprodução e ecologia` foram implementados, validados, integrados e auditados.
+Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos`, `10.07 — Loot, dieta, reprodução e ecologia` e `10.08 — Biomas, estruturas e dimensões` foram implementados, validados, integrados e auditados.
 
 Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
@@ -28,11 +28,13 @@ Fechamento funcional do Stage 10.07 auditado contra `main@03403fc3f7934b0e2b2c9a
 
 Fechamento do Stage 00.01 auditado contra `main@0f008fc3bc1767e74da777fcc02e37fd19acb263`, após integração do PR #108. O `Foundation Bootstrap Contract` pós-merge `33229822213` e o `RPG Skill Tree CI` pós-merge `33229822237` fecharam GREEN; o CI completo incluiu wrapper contract, Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
 
+Fechamento funcional do Stage 10.08 auditado contra `main@c980f7835a01ef038e34d1ea0fab66d33e8bb03c`, após integração do PR #110. Os CIs pós-merge `33230100328` / Compendium Flora #215, `33230100330` / Compendium Entities #281, `33230100337` / Foundation Bootstrap #19, `33230100355` / Compendium Ecology #254, `33230100371` / Compendium Discovery #358, `33230100386` / Compendium World #16 e `33230100358` / RPG Skill Tree #1241 fecharam GREEN; o CI completo incluiu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**16 / 75 subplanos concluídos formalmente.**
+**17 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -50,6 +52,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `10-compendio-natural/✅-05-fauna-entidades.md`
 - `10-compendio-natural/✅-06-flora-arvores-cultivos.md`
 - `10-compendio-natural/✅-07-loot-dieta-reproducao-ecologia.md`
+- `10-compendio-natural/✅-08-biomas-estruturas-dimensoes.md`
 
 Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`, contrato efetivamente implementado, evidência de verificação e `Acceptance: satisfied`.
 
@@ -67,8 +70,8 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
-| 10 Compêndio Natural | 7 | 15 | EM ANDAMENTO |
-| **Total** | **16** | **75** | |
+| 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
+| **Total** | **17** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -114,15 +117,17 @@ Nenhum gate final pode ser fechado enquanto existirem blockers de migração, co
 
 ### 10 — Compêndio Natural
 
-`✅-01-proveniencia-licencas.md` até `✅-07-loot-dieta-reproducao-ecologia.md` estão fechados. O Stage 10 agora possui proveniência/licenças auditadas, inventário reproduzível, identidade/fatos/relações canônicas, snapshots imutáveis, descoberta server-authoritative, cobertura técnica de entidades e flora e enriquecimento seguro de loot/ecologia.
+`✅-01-proveniencia-licencas.md` até `✅-08-biomas-estruturas-dimensoes.md` estão fechados. O Stage 10 agora possui proveniência/licenças auditadas, inventário reproduzível, identidade/fatos/relações canônicas, snapshots imutáveis, descoberta server-authoritative, cobertura técnica de entidades e flora, enriquecimento seguro de loot/ecologia e geografia runtime de biomas, estruturas e dimensões.
 
 O 10.07 adicionou alvos tipados de relação (`ENTRY`, `ITEM`, `ITEM_TAG`, `BLOCK`, `BLOCK_TAG`) sem criar `ITEM` como kind canônico; análise estrutural de loot sem rolling/efeitos; semânticas separadas de alimento/atração/reprodução; domesticação separando capability de espécie de estado contextual; relações ecológicas source-aware; e snapshot de loot atômico em datapack reload. Integrações externas completas permanecem no 10.11 e save/rede/cache global no 10.13.
 
-A materialização do snapshot completo da instância do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `08-biomas-estruturas-dimensoes.md`.
+O 10.08 adicionou providers de `BIOME`, `STRUCTURE` e `DIMENSION` com identidade por registry ID; coleta server-authoritative de registries e níveis carregados; índices `Dimension ↔ Biome` e `Structure ↔ Biome`, com `Structure ↔ Dimension` somente quando a interseção de biomas fornece evidência; snapshot geográfico imutável e publicação validada por cobertura; reload de datapack; e structure discovery confirmada pelo servidor de forma bounded. Suites opcionais de worldgen permanecem desacopladas e fatos editoriais não deriváveis genericamente continuam reservados aos estágios posteriores.
+
+A materialização do snapshot completo da instância do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `09-ui-modelo3d-notas.md`.
 
 ## Evidência de regressão atual
 
-O fechamento formal mais recente é Stage 00.01 em `main@0f008fc3bc1767e74da777fcc02e37fd19acb263`. `Foundation Bootstrap Contract` `33229822213` e `RPG Skill Tree CI` `33229822237` passaram no commit integrado; o CI completo cobriu wrapper, Core, JUnit 5, NeoForge GameTests, todos os validators, build, JAR e dedicated-server smoke.
+O fechamento formal mais recente é Stage 10.08 em `main@c980f7835a01ef038e34d1ea0fab66d33e8bb03c`. Compendium Flora `33230100328`, Compendium Entities `33230100330`, Foundation Bootstrap `33230100337`, Compendium Ecology `33230100355`, Compendium Discovery `33230100371`, Compendium World `33230100386` e RPG Skill Tree CI `33230100358` passaram no commit integrado; o CI completo cobriu Core, JUnit 5, NeoForge GameTests, todos os validators, build, JAR e dedicated-server smoke.
 
 ## Convenção
 
