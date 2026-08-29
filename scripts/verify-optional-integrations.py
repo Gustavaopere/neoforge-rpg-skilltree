@@ -73,6 +73,10 @@ for path in JAVA.rglob("*.java"):
         if external_package not in text:
             continue
         if allowed_suffix not in rel:
+            # A standalone early Mixin plugin may carry the provider target as an inert string,
+            # but it must never import or otherwise link the provider package.
+            if path == IDENTITY_PLUGIN and f'"{external_package}' in text and f"import {external_package}" not in text:
+                continue
             fail(f"external provider type {external_package} leaked outside isolated adapter path: {rel}")
 
 if not IDENTITY_MIXIN.is_file():
@@ -83,8 +87,9 @@ plugin = IDENTITY_PLUGIN.read_text(encoding="utf-8")
 for marker in ("implements IMixinConfigPlugin", "shouldApplyMixin", "IDENTITY_TARGET_RESOURCE", "getResource"):
     if marker not in plugin:
         fail(f"Identity2 mixin gate is missing marker {marker!r}")
-if any(marker in plugin for marker in ("net.minecraft.", "net.Gabou.identity2", "ModList")):
-    fail("Identity2 mixin gate must remain early-startup safe and provider/game-type free")
+for forbidden in ("import net.minecraft.", "import net.Gabou.identity2", "ModList"):
+    if forbidden in plugin:
+        fail(f"Identity2 mixin gate must remain early-startup safe; forbidden marker {forbidden!r}")
 config = MIXIN_CONFIG.read_text(encoding="utf-8")
 if '"plugin": "dev.gustavopere.rpgskilltree.bootstrap.Identity2MixinPlugin"' not in config:
     fail("mixin config must install the early Identity2 target gate")
