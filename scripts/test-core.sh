@@ -96,6 +96,8 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0021A0040MasteryPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0021A0040RespecReconcileTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0041A0060NotionContractTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicyTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0061A0080NotionContractTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CombatPerkGatewayContractTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalogReloadTest
 python3 "$ROOT/scripts/verify-1211-resources.py"
