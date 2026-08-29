@@ -6,11 +6,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-/** Fresh Notion snapshot for the currently closed implementation range A0001-A0040. */
+/** Fresh Notion snapshot for the currently closed implementation range A0001-A0060. */
 public final class NotionCombatPerkCatalog {
     private static final Set<String> EPIC_DAMAGE = Set.of("epicfight:weapon_category", "epicfight:damage_pre");
     private static final Set<String> EPIC_CADENCE = Set.of("epicfight:weapon_category", "epicfight:modify_attack_speed");
     private static final Set<String> EPIC_CRIT = Set.of("epicfight:weapon_category", "rpgskilltree:canonical_critical");
+    private static final Set<String> PROJECTILE_DAMAGE = Set.of("minecraft:physical_projectile", "minecraft:projectile_owner");
+    private static final Set<String> PROJECTILE_CRIT = Set.of("minecraft:physical_projectile", "minecraft:projectile_owner", "rpgskilltree:canonical_critical");
     private static final Map<String, CombatPerkDefinition> DEFINITIONS = build();
 
     private NotionCombatPerkCatalog() {}
@@ -66,6 +68,29 @@ public final class NotionCombatPerkCatalog {
         add(map, "A0038", "Treino com Foices II", WeaponFamily.SCYTHE, 3, 1, Map.of("A0037", 2), EPIC_CADENCE);
         add(map, "A0039", "Precisão com Foices", WeaponFamily.SCYTHE, 3, 1, Map.of("A0037", 1), EPIC_CRIT);
         add(map, "A0040", "Marca da Ceifa", WeaponFamily.SCYTHE, 2, 1, Map.of("A0039", 2), Set.of("minecraft:health", "epicfight:damage_post"));
+        add(map, "A0041", "Corte de Ceifa", WeaponFamily.SCYTHE, 2, 1, Map.of("A0038", 2, "A0039", 1), Set.of("rpgskilltree:mature_reap_mark", "epicfight:impact"));
+        add(map, "A0042", "Maestria de Foices — Colheita de Batalha", WeaponFamily.SCYTHE, 1, 2, Map.of("A0040", 1, "A0041", 1), Set.of("minecraft:legitimate_kill", "rpgskilltree:reap_mark_transfer", "epicfight:stamina_receipt_optional"));
+
+        add(map, "A0043", "Treino com Arcos I", WeaponFamily.BOW, 3, 1, Map.of(), PROJECTILE_DAMAGE);
+        add(map, "A0044", "Treino com Arcos II", WeaponFamily.BOW, 3, 1, Map.of("A0043", 2), Set.of("provider:bow_preparation_speed_optional"));
+        add(map, "A0045", "Precisão com Arcos", WeaponFamily.BOW, 3, 1, Map.of("A0043", 1), PROJECTILE_CRIT);
+        add(map, "A0046", "Foco de Mira", WeaponFamily.BOW, 2, 1, Map.of("A0045", 2), Set.of("minecraft:bow_use_fraction", "minecraft:server_orientation", "minecraft:projectile_origin"));
+        add(map, "A0047", "Distância Dominada", WeaponFamily.BOW, 2, 1, Map.of("A0044", 2, "A0045", 1), Set.of("minecraft:projectile_correlation", "provider:projectile_speed_optional", "provider:physical_penetration_optional"));
+        add(map, "A0048", "Maestria de Arcos — Tiro Preparado", WeaponFamily.BOW, 1, 2, Map.of("A0046", 1, "A0047", 1), Set.of("minecraft:projectile_correlation", "rpgskilltree:focus", "provider:physical_penetration_optional"));
+
+        add(map, "A0049", "Treino com Bestas I", WeaponFamily.CROSSBOW, 3, 1, Map.of(), PROJECTILE_DAMAGE);
+        add(map, "A0050", "Treino com Bestas II", WeaponFamily.CROSSBOW, 3, 1, Map.of("A0049", 2), Set.of("provider:crossbow_reload_speed_optional"));
+        add(map, "A0051", "Precisão com Bestas", WeaponFamily.CROSSBOW, 3, 1, Map.of("A0049", 1), PROJECTILE_CRIT);
+        add(map, "A0052", "Cadência de Recarga", WeaponFamily.CROSSBOW, 2, 1, Map.of("A0050", 2, "A0051", 2), Set.of("minecraft:crossbow_hit", "minecraft:native_reload_completion"));
+        add(map, "A0053", "Virote Perfurante", WeaponFamily.CROSSBOW, 2, 1, Map.of("A0052", 1), Set.of("rpgskilltree:cadence", "provider:physical_penetration_optional", "epicfight:impact_optional"));
+        add(map, "A0054", "Maestria de Bestas — Mecanismo Ajustado", WeaponFamily.CROSSBOW, 1, 2, Map.of("A0052", 2, "A0053", 1), Set.of("minecraft:native_reload_completion", "provider:crossbow_reload_speed_optional"));
+
+        add(map, "A0055", "Treino com Armas de Punho I", WeaponFamily.FIST, 3, 1, Map.of(), EPIC_DAMAGE);
+        add(map, "A0056", "Treino com Armas de Punho II", WeaponFamily.FIST, 3, 1, Map.of("A0055", 2), EPIC_CADENCE);
+        add(map, "A0057", "Precisão com Armas de Punho", WeaponFamily.FIST, 3, 1, Map.of("A0055", 1), EPIC_CRIT);
+        add(map, "A0058", "Sequência Limpa", WeaponFamily.FIST, 2, 1, Map.of("A0057", 2), Set.of("epicfight:damage_post", "epicfight:confirmed_miss_optional"));
+        add(map, "A0059", "Quebra de Ritmo", WeaponFamily.FIST, 2, 1, Map.of("A0058", 1, "A0056", 2), Set.of("epicfight:heavy_or_finisher", "epicfight:guard_posture_optional", "epicfight:impact_optional"));
+        add(map, "A0060", "Maestria de Armas de Punho — Combinação Final", WeaponFamily.FIST, 1, 2, Map.of("A0058", 2, "A0059", 1), Set.of("epicfight:heavy_or_finisher", "epicfight:impact_optional", "epicfight:stamina_receipt_optional"));
         return Map.copyOf(map);
     }
 
