@@ -39,4 +39,17 @@ public record NodePurchaseResult(ProgressionState state, Status status) {
     public String messageKey() {
         return "purchase.rpgskilltree." + status.name().toLowerCase(Locale.ROOT);
     }
+
+    public String fallbackMessage() {
+        return switch (status) {
+            case ACCEPTED -> "Node purchase confirmed.";
+            case UNKNOWN_NODE -> "Unknown skill-tree node.";
+            case REQUIREMENTS_NOT_SATISFIED -> "This node's requirements are not satisfied.";
+            case MAX_RANK_REACHED -> "This node is already at maximum rank.";
+            case NOT_CONNECTED -> "This node is not connected to the learned tree.";
+            case INSUFFICIENT_POINTS -> "Not enough passive points for this purchase.";
+            case DUPLICATE_REQUEST -> "This purchase request was already processed.";
+            case REQUEST_ID_CONFLICT -> "Invalid purchase request: request id was reused.";
+        };
+    }
 }
