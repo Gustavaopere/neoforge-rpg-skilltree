@@ -84,6 +84,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityBehaviorFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntitySelectionLifecyclePersistenceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingDecisionServiceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityScalingCurvePolicyTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.core.EntityRewardRiskPolicyTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingFoundationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.CanonicalProviderBindingCatalogTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.core.ProgressionSyncCoalescerTest
