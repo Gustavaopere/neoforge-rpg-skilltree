@@ -6,9 +6,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-/** Acquisition topology/gates for the currently closed A0001-A0060 range. */
+/** Acquisition topology/gates for the currently closed A0001-A0080 range. */
 public final class CombatPerkTreeModel {
     public static final String MARTIAL_GATEWAY_NODE = "rpgskilltree:martial_000";
+    public static final String AGILITY_GATEWAY_NODE = "rpgskilltree:agility_000";
+    public static final String AGILITY_DODGE_NODE = "rpgskilltree:agility_002";
+    public static final String VITALITY_GATEWAY_NODE = "rpgskilltree:vitality_000";
     private static final Map<String, Node> NODES = build();
     private CombatPerkTreeModel() {}
 
@@ -41,8 +44,6 @@ public final class CombatPerkTreeModel {
             new String[][]{{"A0019","A0020"},{"A0019","A0021"},{"A0020","A0023"},{"A0021","A0022"},{"A0021","A0023"},{"A0022","A0024"},{"A0023","A0024"}});
         family(map, 25, 30, "epic_hammer", 10, "epicfight:heavy", 70, 30,
             new String[][]{{"A0025","A0026"},{"A0025","A0027"},{"A0026","A0029"},{"A0027","A0028"},{"A0027","A0029"},{"A0028","A0030"},{"A0029","A0030"}});
-        // Maces, scythes and fist weapons can be supplied by vanilla/datapack mappings as well as Epic Fight.
-        // Their canonical mastery keys therefore live in the provider-neutral combat namespace.
         family(map, 31, 36, "combat_mace", 8, "combat:mace", 60, 36,
             new String[][]{{"A0031","A0032"},{"A0031","A0033"},{"A0032","A0035"},{"A0033","A0034"},{"A0033","A0035"},{"A0034","A0036"},{"A0035","A0036"}});
         family(map, 37, 42, "combat_scythe", 8, "combat:scythe", 60, 42,
@@ -53,6 +54,7 @@ public final class CombatPerkTreeModel {
             new String[][]{{"A0049","A0050"},{"A0049","A0051"},{"A0050","A0052"},{"A0051","A0052"},{"A0052","A0053"},{"A0052","A0054"},{"A0053","A0054"}});
         family(map, 55, 60, "combat_fist", 8, "combat:fist", 60, 60,
             new String[][]{{"A0055","A0056"},{"A0055","A0057"},{"A0057","A0058"},{"A0056","A0059"},{"A0058","A0059"},{"A0058","A0060"},{"A0059","A0060"}});
+        martialFoundations(map);
         return Map.copyOf(map);
     }
 
@@ -72,14 +74,9 @@ public final class CombatPerkTreeModel {
             boolean terminal = i == terminalNumber;
             int mastery = terminal ? 80 : root ? rootMastery : 0;
             target.put(code, new Node(
-                code,
-                CombatPerkNodeBinding.nodeIdUnchecked(code),
-                definition.maxRank(),
-                definition.rankCost(),
-                root,
-                root ? rootLevel : 1,
-                mastery == 0 ? Map.of() : Map.of(masteryKey, mastery),
-                gatewayId,
+                code, CombatPerkNodeBinding.nodeIdUnchecked(code), definition.maxRank(), definition.rankCost(),
+                root, root ? rootLevel : 1,
+                mastery == 0 ? Map.of() : Map.of(masteryKey, mastery), gatewayId,
                 dependencyNodeRanks(definition.dependencies()),
                 adjacency.get(code).stream().map(CombatPerkNodeBinding::nodeIdUnchecked).collect(java.util.stream.Collectors.toUnmodifiableSet()),
                 terminal
@@ -87,10 +84,40 @@ public final class CombatPerkTreeModel {
         }
     }
 
+    private static void martialFoundations(Map<String, Node> target) {
+        Map<String, java.util.LinkedHashSet<String>> adjacency = new LinkedHashMap<>();
+        for (int i = 61; i <= 80; i++) adjacency.put(code(i), new java.util.LinkedHashSet<>());
+        for (int i = 61; i <= 80; i++) {
+            String child = code(i);
+            NotionCombatPerkCatalog.definition(child).orElseThrow().dependencies().keySet().forEach(parent -> {
+                if (adjacency.containsKey(parent)) {
+                    adjacency.get(parent).add(child);
+                    adjacency.get(child).add(parent);
+                }
+            });
+        }
+        for (int i = 61; i <= 80; i++) {
+            String perk = code(i);
+            CombatPerkDefinition definition = NotionCombatPerkCatalog.definition(perk).orElseThrow();
+            LinkedHashMap<String,Integer> gates = new LinkedHashMap<>(dependencyNodeRanks(definition.dependencies()));
+            if (perk.equals("A0078")) gates.put(AGILITY_GATEWAY_NODE, 1);
+            if (perk.equals("A0079")) gates.put(VITALITY_GATEWAY_NODE, 1);
+            if (perk.equals("A0080")) gates.put(AGILITY_DODGE_NODE, 1);
+            String gatewayId = perk.equals("A0079") ? "martial_vitality_bridge"
+                : (perk.equals("A0078") || perk.equals("A0080")) ? "martial_agility_bridge" : "martial_core";
+            target.put(perk, new Node(
+                perk, CombatPerkNodeBinding.nodeIdUnchecked(perk), definition.maxRank(), definition.rankCost(),
+                definition.dependencies().isEmpty(), 1, Map.of(), gatewayId, Map.copyOf(gates),
+                adjacency.get(perk).stream().map(CombatPerkNodeBinding::nodeIdUnchecked).collect(java.util.stream.Collectors.toUnmodifiableSet()),
+                false
+            ));
+        }
+    }
+
     private static Map<String, Integer> dependencyNodeRanks(Map<String, Integer> dependencies) {
         LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
         result.put(MARTIAL_GATEWAY_NODE, 1);
-        dependencies.forEach((code, rank) -> result.put(CombatPerkNodeBinding.nodeIdUnchecked(code), rank));
+        dependencies.forEach((perk, rank) -> result.put(CombatPerkNodeBinding.nodeIdUnchecked(perk), rank));
         return Map.copyOf(result);
     }
 
