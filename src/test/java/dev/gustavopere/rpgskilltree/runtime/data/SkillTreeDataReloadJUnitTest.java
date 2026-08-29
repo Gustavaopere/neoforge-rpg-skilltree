@@ -189,7 +189,7 @@ final class SkillTreeDataReloadJUnitTest {
     }
 
     private static final ResourceLocation RULE_SOURCE = ResourceLocation.parse("rpgskilltree:node_rules/test.json");
-    private static final ResourceLocation DUPLICATE_RULE_SOURCE = ResourceLocation.parse("rpgskilltree:node_rules/duplicate.json");
+    private static final ResourceLocation DUPLICATE_RULE_SOURCE = ResourceLocation.parse("rpgskilltree:node_rules/z_duplicate.json");
     private static final ResourceLocation EFFECT_SOURCE = ResourceLocation.parse("rpgskilltree:node_effects/test.json");
     private static final ResourceLocation ROOT_SKILL_SOURCE = ResourceLocation.parse("rpgskilltree:skills/main/root.json");
     private static final ResourceLocation CHILD_SKILL_SOURCE = ResourceLocation.parse("rpgskilltree:skills/main/child.json");
