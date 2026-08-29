@@ -1,10 +1,12 @@
 package dev.gustavopere.rpgskilltree.core;
 
+import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import java.util.Map;
 
 public final class A0061A0080CombatPolicyTest {
     public static void main(String[] args) {
         coreOffenseAndClassification();
+        sharedCriticalAndCadenceComposeOnce();
         retaliationIsSingleWindow();
         executionIsTwoHitAndBossHalved();
         firstBloodIsTwoHit();
@@ -33,6 +35,20 @@ public final class A0061A0080CombatPolicyTest {
         close(elite.damageMultiplier(),1.25D,"base + elite");
         close(A0061A0080CombatPolicy.criticalChanceBonus(ranks),0.08D,"crit chance");
         close(A0061A0080CombatPolicy.criticalDamageMultiplier(ranks,true),1.15D,"crit damage");
+    }
+
+    private static void sharedCriticalAndCadenceComposeOnce() {
+        CombatPerkRanks sword = CombatPerkRanks.of(Map.of("A0003",3,"A0002",3,"A0062",4,"A0064",4));
+        close(NotionCombatPerkRules.criticalChanceBonus(WeaponFamily.SWORD,sword),0.17D,
+            "A0062 must compose into the existing canonical sword critical roll");
+        close(NotionCombatPerkRules.rhythmBonus(WeaponFamily.SWORD,sword),0.14D,
+            "A0064 must compose into the existing provider-native sword cadence modifier");
+
+        CombatPerkRanks hammer = CombatPerkRanks.of(Map.of("A0027",2,"A0026",2,"A0062",1,"A0064",1));
+        close(NotionCombatPerkRules.criticalChanceBonus(WeaponFamily.HAMMER,hammer),0.08D,
+            "A0062 must compose for later Epic Fight families too");
+        close(NotionCombatPerkRules.rhythmBonus(WeaponFamily.HAMMER,hammer),0.06D,
+            "A0064 must compose for later Epic Fight families too");
     }
 
     private static void retaliationIsSingleWindow() {
