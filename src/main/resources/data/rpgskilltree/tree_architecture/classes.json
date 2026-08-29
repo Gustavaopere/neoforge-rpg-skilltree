@@ -1,0 +1,32 @@
+{
+  "trees": [
+    {
+      "id": "rpgskilltree:class/druid",
+      "type": "class",
+      "provider": "rpgskilltree",
+      "domains": ["SURVIVAL", "SUMMONING"],
+      "tags": ["class", "druid"]
+    },
+    {
+      "id": "rpgskilltree:class/metamorph",
+      "type": "class",
+      "provider": "rpgskilltree",
+      "domains": ["AGILITY", "OCCULT"],
+      "tags": ["class", "metamorph"]
+    },
+    {
+      "id": "rpgskilltree:class/technomancer",
+      "type": "class",
+      "provider": "rpgskilltree",
+      "domains": ["ARCANE", "ENGINEERING"],
+      "tags": ["class", "technomancer"]
+    },
+    {
+      "id": "rpgskilltree:class/warlock",
+      "type": "class",
+      "provider": "rpgskilltree",
+      "domains": ["ARCANE", "OCCULT"],
+      "tags": ["class", "warlock"]
+    }
+  ]
+}
