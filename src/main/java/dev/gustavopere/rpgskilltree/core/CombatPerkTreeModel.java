@@ -40,9 +40,11 @@ public final class CombatPerkTreeModel {
             new String[][]{{"A0019","A0020"},{"A0019","A0021"},{"A0020","A0023"},{"A0021","A0022"},{"A0021","A0023"},{"A0022","A0024"},{"A0023","A0024"}});
         family(map, 25, 30, "epic_hammer", 10, "epicfight:heavy", 70, 30,
             new String[][]{{"A0025","A0026"},{"A0025","A0027"},{"A0026","A0029"},{"A0027","A0028"},{"A0027","A0029"},{"A0028","A0030"},{"A0029","A0030"}});
-        family(map, 31, 36, "combat_mace", 8, "epicfight:mace", 60, 36,
+        // Maces and scythes can be supplied by vanilla/datapack mappings as well as Epic Fight.
+        // Their canonical mastery keys therefore live in the provider-neutral combat namespace.
+        family(map, 31, 36, "combat_mace", 8, "combat:mace", 60, 36,
             new String[][]{{"A0031","A0032"},{"A0031","A0033"},{"A0032","A0035"},{"A0033","A0034"},{"A0033","A0035"},{"A0034","A0036"},{"A0035","A0036"}});
-        family(map, 37, 40, "combat_scythe", 8, "epicfight:scythe", 60, -1,
+        family(map, 37, 40, "combat_scythe", 8, "combat:scythe", 60, -1,
             new String[][]{{"A0037","A0038"},{"A0037","A0039"},{"A0039","A0040"}});
         return Map.copyOf(map);
     }
