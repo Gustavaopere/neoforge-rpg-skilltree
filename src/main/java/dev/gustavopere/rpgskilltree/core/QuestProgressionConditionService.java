@@ -17,6 +17,7 @@ public final class QuestProgressionConditionService {
             case LEVEL -> snapshot.level();
             case MASTERY_XP -> snapshot.masteryExperience(condition.subjectId());
             case CLASS_UNLOCKED -> snapshot.classUnlocked(condition.subjectId()) ? 1L : 0L;
+            case SPECIALIZATION_UNLOCKED -> snapshot.specializationUnlocked(condition.subjectId()) ? 1L : 0L;
             case PERK_RANK -> snapshot.perkRank(condition.subjectId());
             case ATTRIBUTE_RANK -> snapshot.attributeRank(condition.attributeId());
         };
