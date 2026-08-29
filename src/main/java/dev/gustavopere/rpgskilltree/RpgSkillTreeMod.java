@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree;
 import dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicy;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
+import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
@@ -45,7 +46,6 @@ import dev.gustavopere.rpgskilltree.runtime.events.PlayerProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ProgressionOwnerSyncEvents;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
@@ -90,30 +90,30 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CompendiumWorldDiscoveryEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);
 
-        if (ModList.get().isLoaded("irons_spellbooks")) {
+        LOGGER.info("Optional integrations: {}", OptionalIntegrations.summary());
+
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)) {
             NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
         }
-        if (ModList.get().isLoaded("ars_nouveau")) {
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.ARS_NOUVEAU)) {
             NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
         }
-        if (ModList.get().isLoaded("goety")) {
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.GOETY)) {
             NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class);
         }
-        if (ModList.get().isLoaded("malum")) {
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MALUM)) {
             NeoForge.EVENT_BUS.register(MalumProgressionEvents.class);
         }
-        if (ModList.get().isLoaded("eidolon")) {
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EIDOLON)) {
             NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
             NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
         }
-        if (ModList.get().isLoaded("identity2")) {
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IDENTITY2)) {
             NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
         }
-        if (ModList.get().isLoaded("epicfight")) {
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EPIC_FIGHT)) {
             EpicFightProgressionHooks.register();
-            String version = ModList.get().getModContainerById("epicfight")
-                .map(container -> container.getModInfo().getVersion().toString())
-                .orElse("unknown");
+            String version = OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT);
             if (A0001A0020EpicFightHooks.supportsVersion(version)
                 && A0021A0040EpicFightHooks.supportsVersion(version)) {
                 A0001A0020EpicFightHooks.register();
