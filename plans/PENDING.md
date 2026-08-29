@@ -6,7 +6,6 @@
 - [ ] Confirmar e implementar, se desejado, adapter runtime próprio para eventos/máquinas Create.
 - [ ] Confirmar e implementar a mesma decisão para Applied Energistics 2 e Oritech.
 - [ ] Fechar contrato único para magic damage/cast speed/mana/crit quando Ars e Iron's estiverem simultaneamente instalados.
-- [ ] Cobrir ausência de cada mod opcional em dedicated server.
 - [ ] Especificar hooks públicos para FTB Quests/quests futuras sem acoplar o core ao mod de quests.
 - [ ] Definir versão/migração de dados persistidos antes de release estável.
 - [ ] Automatizar verificação de drift entre `wiki/`, registries, localização, layout gerado e datapacks.
