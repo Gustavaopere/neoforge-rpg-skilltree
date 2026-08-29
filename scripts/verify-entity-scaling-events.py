@@ -11,6 +11,7 @@ EFFECTIVE_STATS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/Ent
 REWARD_EVENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/EntityRewardEvents.java"
 REWARD_CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityRewardScalingPolicyCatalog.java"
 REWARD_EXPERIENCE = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityRewardExperienceRuntime.java"
+LOOT_CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityLootQuantityPolicyCatalog.java"
 MOD = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java"
 
 
@@ -42,6 +43,7 @@ effective_stats = read_required(EFFECTIVE_STATS)
 reward_events = read_required(REWARD_EVENTS)
 reward_catalog = read_required(REWARD_CATALOG)
 reward_experience = read_required(REWARD_EXPERIENCE)
+loot_catalog = read_required(LOOT_CATALOG)
 mod = read_required(MOD)
 
 events_location = str(EVENTS.relative_to(ROOT))
@@ -53,6 +55,7 @@ effective_stats_location = str(EFFECTIVE_STATS.relative_to(ROOT))
 reward_events_location = str(REWARD_EVENTS.relative_to(ROOT))
 reward_catalog_location = str(REWARD_CATALOG.relative_to(ROOT))
 reward_experience_location = str(REWARD_EXPERIENCE.relative_to(ROOT))
+loot_catalog_location = str(LOOT_CATALOG.relative_to(ROOT))
 mod_location = str(MOD.relative_to(ROOT))
 
 require(initializer, "EntityScalingState initialize(ServerLevel level, LivingEntity entity)", initializer_location)
@@ -92,6 +95,10 @@ require(reward_catalog, "Optional<CappedEntityRewardScalingPolicy> current()", r
 require(reward_catalog, "install(CappedEntityRewardScalingPolicy policy)", reward_catalog_location)
 require(reward_catalog, "clear()", reward_catalog_location)
 
+require(loot_catalog, "Optional<CappedEntityLootQuantityPolicy> current()", loot_catalog_location)
+require(loot_catalog, "install(CappedEntityLootQuantityPolicy policy)", loot_catalog_location)
+require(loot_catalog, "clear()", loot_catalog_location)
+
 require(reward_experience, "scaleExperience(int currentExperience, EntityRewardScalingResult scaling)", reward_experience_location)
 require(reward_experience, "RoundingMode.DOWN", reward_experience_location)
 require(reward_experience, "Integer.MAX_VALUE", reward_experience_location)
@@ -99,14 +106,26 @@ require(reward_experience, "currentExperience < 0", reward_experience_location)
 
 require(reward_events, "@SubscribeEvent", reward_events_location)
 require(reward_events, "LivingExperienceDropEvent", reward_events_location)
+require(reward_events, "LivingDropsEvent", reward_events_location)
 require(reward_events, "event.getEntity().level().isClientSide()", reward_events_location)
 require(reward_events, "EntityRewardScalingPolicyCatalog.current()", reward_events_location)
+require(reward_events, "EntityLootQuantityPolicyCatalog.current()", reward_events_location)
 require(reward_events, "EntityScalingRuntime.current(event.getEntity())", reward_events_location)
 require(reward_events, "new EntityRewardScalingContext", reward_events_location)
 require(reward_events, "event.getDroppedExperience()", reward_events_location)
 require(reward_events, "event.setDroppedExperience", reward_events_location)
 require(reward_events, "EntityRewardExperienceRuntime.scaleExperience", reward_events_location)
-for forbidden in ("getOriginalExperience()", "EntityScalingRuntime.getOrInitialize", "EntityScalingInitializerCatalog"):
+require(reward_events, "event.getDrops()", reward_events_location)
+require(reward_events, "stack.getMaxStackSize()", reward_events_location)
+require(reward_events, "stack.setCount(scaledCount)", reward_events_location)
+require(reward_events, "quantityPolicy.maxExtraPerKill()", reward_events_location)
+for forbidden in (
+    "getOriginalExperience()",
+    "EntityScalingRuntime.getOrInitialize",
+    "EntityScalingInitializerCatalog",
+    "new ItemEntity",
+    "event.getDrops().add",
+):
     forbid(reward_events, forbidden, reward_events_location)
 
 require(mod, "NeoForge.EVENT_BUS.register(EntityScalingEvents.class);", mod_location)
@@ -131,17 +150,41 @@ if (
     )
     raise SystemExit(1)
 
-reward_policy = reward_events.find("EntityRewardScalingPolicyCatalog.current()")
-reward_state = reward_events.find("EntityScalingRuntime.current(event.getEntity())")
-reward_apply = reward_events.find("event.setDroppedExperience")
+experience_method = reward_events.find("public static void onExperienceDrop")
+loot_method = reward_events.find("public static void onDrops")
+if experience_method < 0 or loot_method < 0:
+    print(f"ERROR: {reward_events_location}: XP and loot reward handlers must both exist")
+    raise SystemExit(1)
+
+experience_section = reward_events[experience_method:loot_method]
+reward_policy = experience_section.find("EntityRewardScalingPolicyCatalog.current()")
+reward_state = experience_section.find("EntityScalingRuntime.current(event.getEntity())")
+reward_apply = experience_section.find("event.setDroppedExperience")
 if reward_policy < 0 or reward_state < 0 or reward_apply < 0 or not (reward_policy < reward_state < reward_apply):
     print(
         f"ERROR: {reward_events_location}: reward policy and persisted state must be resolved before XP mutation"
     )
     raise SystemExit(1)
 
+loot_section = reward_events[loot_method:]
+loot_reward_policy = loot_section.find("EntityRewardScalingPolicyCatalog.current()")
+loot_quantity_policy = loot_section.find("EntityLootQuantityPolicyCatalog.current()")
+loot_state = loot_section.find("EntityScalingRuntime.current(event.getEntity())")
+loot_apply = loot_section.find("stack.setCount(scaledCount)")
+if (
+    loot_reward_policy < 0
+    or loot_quantity_policy < 0
+    or loot_state < 0
+    or loot_apply < 0
+    or not (loot_reward_policy < loot_quantity_policy < loot_state < loot_apply)
+):
+    print(
+        f"ERROR: {reward_events_location}: reward policy, loot policy and persisted state must resolve before drop mutation"
+    )
+    raise SystemExit(1)
+
 print(
     "Entity scaling event validation: PASS "
     "(server-only join boundary + persisted Effective Stats reapplication + canonical initialization + "
-    "persisted-state-only XP reward adapter verified)"
+    "persisted-state-only XP/loot reward adapters verified)"
 )
