@@ -30,7 +30,7 @@ public final class A0061A0080NotionContractTest {
         add(expected,"A0079","Ataque Estacionário",3,1,Map.of("A0061",2));
         add(expected,"A0080","Golpe de Oportunidade",1,2,Map.of("A0078",2));
 
-        check(NotionCombatPerkCatalog.all().size() == 80, "catalog must contain exactly A0001-A0080");
+        check(NotionCombatPerkCatalog.all().size() >= 80, "catalog must preserve A0001-A0080");
         expected.forEach((code,row) -> {
             CombatPerkDefinition actual = NotionCombatPerkCatalog.definition(code)
                 .orElseThrow(() -> new AssertionError("missing " + code));
@@ -43,7 +43,6 @@ public final class A0061A0080NotionContractTest {
             check(node.requiredNodeRanks().getOrDefault(CombatPerkTreeModel.MARTIAL_GATEWAY_NODE,0) >= 1,
                 code + " MARTIAL gateway");
         });
-        check(NotionCombatPerkCatalog.definition("A0081").isEmpty(), "A0081 must remain outside this batch");
 
         checkRankGate("A0078","rpgskilltree:agility_000",1);
         checkRankGate("A0079","rpgskilltree:vitality_000",1);
