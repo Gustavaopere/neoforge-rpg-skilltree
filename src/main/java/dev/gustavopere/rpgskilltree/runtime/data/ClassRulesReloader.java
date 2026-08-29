@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.gustavopere.rpgskilltree.core.ClassUnlockDefinition;
 import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.ReloadDiagnostics;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -20,9 +21,12 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
     private static final Gson GSON = new GsonBuilder().create();
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClassRulesReloader.class);
 
     public ClassRulesReloader() {
         super(GSON, "classes");
@@ -39,6 +43,10 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
         @NotNull ResourceManager resourceManager,
         @NotNull ProfilerFiller profiler
     ) {
+        ReloadDiagnostics.run(LOGGER, "classes", resources, () -> load(resources));
+    }
+
+    private static void load(Map<ResourceLocation, JsonElement> resources) {
         List<ClassUnlockDefinition> definitions = new ArrayList<>();
         for (JsonElement element : resources.values()) {
             JsonObject root = element.getAsJsonObject();
