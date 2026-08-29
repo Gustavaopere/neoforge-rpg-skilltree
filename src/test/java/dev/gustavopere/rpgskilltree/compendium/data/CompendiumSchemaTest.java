@@ -7,6 +7,10 @@ import java.util.Objects;
 public final class CompendiumSchemaTest {
     public static void main(String[] args) {
         validEntryDocumentPasses();
+        legacyRelationDocumentPasses();
+        typedRelationDocumentPasses();
+        mixedRelationTargetFormatsFail();
+        typedRelationRequiresBothKindAndTarget();
         missingSchemaVersionReportsFileAndField();
         unsupportedSchemaVersionFails();
         unknownDirectoryFailsClosed();
@@ -21,6 +25,69 @@ public final class CompendiumSchemaTest {
         document.put("translation_key", "entity.minecraft.zombie");
         document.put("content_version", 1);
         CompendiumSchemaValidator.validate(CompendiumDataKind.ENTRY, "rpgskilltree:entries/zombie", document);
+    }
+
+    private static void legacyRelationDocumentPasses() {
+        CompendiumSchemaValidator.validate(
+            CompendiumDataKind.RELATION,
+            "rpgskilltree:relations/pig_overworld",
+            Map.of(
+                "schema_version", 1,
+                "type", "BELONGS_TO_DIMENSION",
+                "from", "ENTITY|minecraft:pig",
+                "to", "DIMENSION|minecraft:overworld",
+                "source", "REGISTRY"
+            )
+        );
+    }
+
+    private static void typedRelationDocumentPasses() {
+        Map<String, Object> document = new LinkedHashMap<>();
+        document.put("schema_version", 1);
+        document.put("type", "BREEDS_WITH_ITEM");
+        document.put("from", "ENTITY|minecraft:cow");
+        document.put("target_kind", "ITEM");
+        document.put("target", "minecraft:wheat");
+        document.put("source", "CURATED_EDITORIAL");
+        document.put("confidence", "EXACT");
+        document.put("evidence_id", "minecraft:animal.isFood");
+        CompendiumSchemaValidator.validate(CompendiumDataKind.RELATION, "rpgskilltree:relations/cow_wheat", document);
+    }
+
+    private static void mixedRelationTargetFormatsFail() {
+        try {
+            Map<String, Object> document = new LinkedHashMap<>();
+            document.put("schema_version", 1);
+            document.put("type", "EATS");
+            document.put("from", "ENTITY|minecraft:cow");
+            document.put("to", "ENTITY|minecraft:pig");
+            document.put("target_kind", "ITEM");
+            document.put("target", "minecraft:wheat");
+            document.put("source", "REGISTRY");
+            CompendiumSchemaValidator.validate(CompendiumDataKind.RELATION, "rpgskilltree:relations/invalid_mixed", document);
+            throw new AssertionError("expected mixed relation target failure");
+        } catch (CompendiumSchemaException expected) {
+            truth(expected.getMessage().contains("target"));
+        }
+    }
+
+    private static void typedRelationRequiresBothKindAndTarget() {
+        try {
+            CompendiumSchemaValidator.validate(
+                CompendiumDataKind.RELATION,
+                "rpgskilltree:relations/invalid_typed",
+                Map.of(
+                    "schema_version", 1,
+                    "type", "EATS",
+                    "from", "ENTITY|minecraft:cow",
+                    "target_kind", "ITEM",
+                    "source", "REGISTRY"
+                )
+            );
+            throw new AssertionError("expected incomplete typed relation failure");
+        } catch (CompendiumSchemaException expected) {
+            truth(expected.getMessage().contains("target"));
+        }
     }
 
     private static void missingSchemaVersionReportsFileAndField() {

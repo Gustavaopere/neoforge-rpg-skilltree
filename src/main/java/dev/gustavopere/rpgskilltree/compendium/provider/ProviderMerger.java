@@ -22,9 +22,10 @@ public final class ProviderMerger {
         .thenComparing(ProviderContribution::providerId);
     private static final Comparator<CompendiumRelation> RELATION_ORDER = Comparator
         .comparing((CompendiumRelation relation) -> relation.type().name())
-        .thenComparing(relation -> relation.target().serializedId())
+        .thenComparing(relation -> relation.target().serializedTarget())
         .thenComparing(relation -> relation.source().name())
-        .thenComparing(relation -> relation.confidence().name());
+        .thenComparing(relation -> relation.confidence().name())
+        .thenComparing(relation -> relation.evidenceId() == null ? "" : relation.evidenceId());
 
     private ProviderMerger() {}
 
