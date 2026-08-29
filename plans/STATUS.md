@@ -34,11 +34,13 @@ Fechamento do Stage 00.03 auditado contra `main@4f48fefa15477023ce2dcb9d56c36b58
 
 Fechamento do Stage 00.04 auditado contra `main@4a13ac7c8deda8827e755d100223985f07319e8e`, após integração do PR #120. O RED inicial `33231244859` exigiu o boundary de diagnostics; a implementação consolidou taxonomia estruturada, reload fail-visible com path/resource IDs, anti-spam de falhas persistentes e documentação reproduzível dos gates. Os CIs pós-merge `33244389124` / Foundation Diagnostics #22, `33244389122` / Foundation Bootstrap #113, `33244389143` / Foundation Optional Integrations #75 e `33244389119` / RPG Skill Tree #1335 fecharam GREEN. O CI completo cobriu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
 
+Fechamento do Stage 01.03 auditado contra `main@398f160f5bec74629331475eff1e60d3cdeb0958`, após integração do PR #135. O RED `33245655826` falhou exatamente porque o GameTest runtime ainda não existia. O head sincronizado final `4bcefe741d641da6b7d14b1b89d4214bce9bc3ff` passou o CI completo `33246262135`, incluindo NeoForge GameTests, `Attribute runtime validation`, build, JAR e dedicated-server smoke. O pós-merge canônico `33246405719` repetiu toda a matriz em GREEN, incluindo upload do JAR e publicação do status final de sucesso.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**19 / 75 subplanos concluídos formalmente.**
+**20 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -46,6 +48,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `00-foundation/✅-04-diagnostics-testing.md`
 - `01-rpg-core/✅-01-player-state.md`
 - `01-rpg-core/✅-02-progression-services.md`
+- `01-rpg-core/✅-03-attributes-modifiers.md`
 - `03-skill-tree-perks/✅-05-respec.md`
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
@@ -67,7 +70,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | Estágio | Concluídos | Total | Estado geral |
 | --- | ---: | ---: | --- |
 | 00 Foundation | 4 | 4 | CONCLUÍDO |
-| 01 RPG Core | 2 | 5 | EM ANDAMENTO |
+| 01 RPG Core | 3 | 5 | EM ANDAMENTO |
 | 02 Progression & World Scaling | 0 | 5 | EM ANDAMENTO |
 | 03 Skill Tree & Perks | 1 | 6 | EM ANDAMENTO |
 | 04 Classes, Masteries & Specializations | 1 | 6 | EM ANDAMENTO |
@@ -77,7 +80,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
-| **Total** | **19** | **75** | |
+| **Total** | **20** | **75** | |
 
 ## Por que os demais continuam abertos
 
@@ -87,7 +90,7 @@ Stage 00 concluído. `✅-01-environment-bootstrap.md` fixa e verifica ambiente,
 
 ### 01 — RPG Core
 
-`✅-01-player-state.md` está fechado: `CANONICAL_PLAYER` é o envelope persistente de escrita normal e `CanonicalPlayerSnapshot` fornece a projeção read-only. `✅-02-progression-services.md` também está fechado: XP grant/rollback, recompensas de level, mastery replay-safe, storage boundary, idempotência e eventos pós-persistência convergem em serviços canônicos. Os subplanos `03-attributes-modifiers`, `04-persistence-sync` e `05-core-api-invariants` continuam abertos porque ainda exigem fechamento formal de recomputação/modificadores, migração/sync/corrupção e invariantes públicas de API/boundary.
+`✅-01-player-state.md` está fechado: `CANONICAL_PLAYER` é o envelope persistente de escrita normal e `CanonicalPlayerSnapshot` fornece a projeção read-only. `✅-02-progression-services.md` fecha XP grant/rollback, recompensas de level, mastery replay-safe, storage boundary, idempotência e eventos pós-persistência. `✅-03-attributes-modifiers.md` fecha identidade estável de modifiers, composição flat/percent-base/multiplicative-total, recomputação determinística, limpeza de órfãos e a prova NeoForge real `apply → reapply → remove → reapply` sem stacking ou drift. Os subplanos `04-persistence-sync` e `05-core-api-invariants` permanecem formalmente abertos e exigem seus próprios fechamentos de Acceptance.
 
 ### 02 — Progression & World Scaling
 
@@ -133,7 +136,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento formal mais recente é Stage 00.04 em `main@4a13ac7c8deda8827e755d100223985f07319e8e`. Foundation Diagnostics `33244389124`, Foundation Bootstrap `33244389122`, Foundation Optional Integrations `33244389143` e RPG Skill Tree CI `33244389119` passaram no commit integrado; o CI completo cobriu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso.
+O fechamento formal mais recente é Stage 01.03 em `main@398f160f5bec74629331475eff1e60d3cdeb0958`. O RED `33245655826` exigiu a prova runtime; o head sincronizado passou `33246262135`; e o RPG Skill Tree CI pós-merge `33246405719` fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, `Attribute runtime validation`, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso.
 
 ## Convenção
 
