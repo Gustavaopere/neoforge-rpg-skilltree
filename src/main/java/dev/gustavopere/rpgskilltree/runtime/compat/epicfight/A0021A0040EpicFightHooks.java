@@ -170,17 +170,16 @@ public final class A0021A0040EpicFightHooks {
         boolean rear = family.get() == WeaponFamily.DAGGER && rearHalfPlane(player, target);
         boolean reposition = family.get() == WeaponFamily.DAGGER
             && A0021A0040RuntimeState.state().repositionActive(actor, now);
-        // A0034 fallback is deliberately conservative: canonical Armor is always safe to read.
         boolean protectedTarget = target.getArmorValue() > 0;
         boolean boss = target.getType().is(Tags.EntityTypes.BOSSES);
 
         HitFacts facts = facts(
             actor, targetId, root.id, family.get(), root.critical, reposition, rear,
             false, protectedTarget,
-            false, // no public Epic Fight contract proving guard/posture pressure for A0028/A0029
-            true,  // impact is provider-native
-            true,  // Epic Fight armor negation is valid attacker penetration for A0023 only
-            true,  // A0035 uses an actual transient target Attributes.ARMOR modifier
+            false,
+            true,
+            true,
+            true,
             healthFraction(target), boss, now
         );
         BeforeResult specialty = A0021A0040CombatPolicy.beforeHit(
@@ -311,7 +310,11 @@ public final class A0021A0040EpicFightHooks {
         if (moving) {
             A0021A0040RuntimeState.state().recordHorizontalMovement(actor, now);
         }
-        A0021A0040RuntimeState.state().tickFlow(actor, true, now);
+        LivingEntity combatTarget = patch.getTarget();
+        boolean inCombat = combatTarget != null
+            && combatTarget.isAlive()
+            && hostile(player, combatTarget);
+        A0021A0040RuntimeState.state().tickFlow(actor, inCombat, now);
 
         // Do not infer A0022/A0024 reposition from a coarse rear-half-plane transition. The Notion
         // fallback also requires displacement/angle thresholds and exclusion of teleport/knockback.
@@ -368,7 +371,6 @@ public final class A0021A0040EpicFightHooks {
             target.getUUID().toString(), healthFraction(target), now
         );
 
-        // NeoForge 1.21.1 exposes final health loss through getNewDamage().
         if (!(event.getSource().getDirectEntity() instanceof ServerPlayer player)
             || !eligible(player)
             || event.getNewDamage() <= 0.0F) return;
@@ -519,7 +521,10 @@ public final class A0021A0040EpicFightHooks {
     }
 
     private static boolean eligible(ServerPlayer player) {
-        return !player.level().isClientSide() && !player.isSpectator() && !(player instanceof FakePlayer);
+        return !player.level().isClientSide()
+            && !player.isCreative()
+            && !player.isSpectator()
+            && !(player instanceof FakePlayer);
     }
 
     private static String actor(ServerPlayer player) {
