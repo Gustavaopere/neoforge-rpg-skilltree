@@ -2,7 +2,7 @@
 
 Última auditoria de fechamento: **2026-08-28**.
 
-Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades` e `10.06 — Flora, árvores, fungos e cultivos` foram implementados, validados, integrados e auditados no mesmo dia.
+Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos` e `10.07 — Loot, dieta, reprodução e ecologia` foram implementados, validados, integrados e auditados.
 
 Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
@@ -22,11 +22,13 @@ Fechamento funcional do Stage 10.06 auditado contra `main@68f694e98c068f3274cd1e
 
 Fechamento do Stage 08.01 auditado contra `main@2b8e5d10b70704598c0f175a3a9bf1ad0af5586e`, após integração dos PRs #97 e #98. O CI da fundação quest-facing `33225421326` e o CI de especializações/versionamento `33227098892` fecharam GREEN completos, ambos com NeoForge build, verificação do JAR e dedicated-server smoke; os workflows Compendium associados também fecharam GREEN.
 
+Fechamento funcional do Stage 10.07 auditado contra `main@03403fc3f7934b0e2b2c9a5cd0a9e6606a2ba7d9`, após integração do PR #99. Os CIs pós-merge `33228111273` / Compendium Ecology #111, `33228111253` / Compendium Flora #149, `33228111262` / Compendium Entities #215, `33228111257` / Compendium Discovery #292 e `33228111266` / RPG Skill Tree #1175 fecharam GREEN; o CI completo incluiu Core/tests/validators, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final do commit.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**13 / 75 subplanos concluídos formalmente.**
+**14 / 75 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-02-client-server-boundaries.md`
 - `01-rpg-core/✅-01-player-state.md`
@@ -41,6 +43,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `10-compendio-natural/✅-04-descoberta-progresso.md`
 - `10-compendio-natural/✅-05-fauna-entidades.md`
 - `10-compendio-natural/✅-06-flora-arvores-cultivos.md`
+- `10-compendio-natural/✅-07-loot-dieta-reproducao-ecologia.md`
 
 Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`, contrato efetivamente implementado, evidência de verificação e `Acceptance: satisfied`.
 
@@ -58,58 +61,62 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
-| 10 Compêndio Natural | 6 | 15 | EM ANDAMENTO |
-| **Total** | **13** | **75** | |
+| 10 Compêndio Natural | 7 | 15 | EM ANDAMENTO |
+| **Total** | **14** | **75** | |
 
 ## Por que os demais continuam abertos
 
 ### 00 — Foundation
 
-`01-environment-bootstrap` ainda inclui validação de configuração e convenções/IDs que não estão formalmente encerradas; o PR #25 existe justamente para corrigir/validar recursos e attribute IDs de 1.21.1. `03-optional-integrations` ainda não possui a matriz de ausência individual de cada provider exigida em `PENDING.md`. `04-diagnostics-testing` tem CI forte, mas logging/diagnóstico padronizado e reprodução local dos gates ainda não estão fechados.
+`01-environment-bootstrap` ainda inclui validação de configuração e convenções/IDs que não estão formalmente encerradas; `03-optional-integrations` ainda não possui a matriz completa de ausência individual de providers; `04-diagnostics-testing` tem CI forte, mas logging/diagnóstico padronizado e reprodução local dos gates ainda não estão fechados.
 
 ### 01 — RPG Core
 
-`✅-01-player-state.md` está fechado: `CANONICAL_PLAYER` é o único envelope persistente de escrita normal, attachments antigos existem somente como inputs de migração, os runtimes convergem pelo `CanonicalPlayerAttachmentRuntime` e `CanonicalPlayerSnapshot` fornece a projeção somente-leitura sem reintroduzir authorities legados. Os subplanos `02-progression-services`, `03-attributes-modifiers`, `04-persistence-sync` e `05-core-api-invariants` continuam abertos porque ainda exigem fechamento formal de todas as mutation routes, recomputação/modificadores, matriz completa de migração/sync/corrupção e invariantes públicas de API/boundary.
+`✅-01-player-state.md` está fechado: `CANONICAL_PLAYER` é o envelope persistente de escrita normal e `CanonicalPlayerSnapshot` fornece a projeção read-only. Os subplanos `02-progression-services`, `03-attributes-modifiers`, `04-persistence-sync` e `05-core-api-invariants` continuam abertos porque ainda exigem fechamento formal das mutation routes, recomputação/modificadores, migração/sync/corrupção e invariantes públicas de API/boundary.
 
 ### 02 — Progression & World Scaling
 
-Relevant-player, território, entity level, rarity e stat scaling possuem fundações reais e testadas, mas políticas finais de raio/party, fórmulas, caps, balance e persistência continuam sendo fechadas incrementalmente. Performance/balance final também permanece aberto.
+Relevant-player, território, entity level, rarity e stat scaling possuem fundações reais e testadas, mas políticas finais de raio/party, fórmulas, caps, balance, persistência e performance ainda precisam de fechamento formal.
 
 ### 03 — Skill Tree & Perks
 
-O respec está fechado. Os demais subplanos ainda têm gaps objetivos: validação atômica de reload/IDs, detecção explícita de cycles/orphans no validator de grafo, motivo legível de rejeição de compra, composição formal entre efeitos inline/packs/behavior handlers e geração automática da `wiki/`.
+O respec está fechado. Os demais subplanos ainda têm gaps objetivos em reload/IDs, cycles/orphans, motivos legíveis de rejeição, composição de efeitos e geração automática da `wiki/`.
 
 ### 04 — Classes, Masteries & Specializations
 
-As quatro subtrees dedicadas estão fechadas. Class resolution geral ainda precisa reconciliar reload; confluences ainda não mostram todos os requisitos faltantes na UI; masteries não possuem curva/cap final; provider identities têm requisitos e testes fortes, mas falta política final para saves/provider ausente; specializations ainda dependem dos contratos finais aplicáveis.
+As quatro subtrees dedicadas estão fechadas. Class resolution, confluences, curvas/caps de masteries, provider identities e specializations ainda possuem contratos finais pendentes.
 
 ### 05 — Combat & Magic Hooks
 
-O pipeline canônico final por hit/projétil/magia ainda não está formalmente fechado. O contrato conjunto Ars + Iron's para stats genéricas também permanece em `PENDING.md`.
+O pipeline canônico final por hit/projétil/magia ainda não está formalmente fechado. O contrato conjunto Ars + Iron's para stats genéricas também permanece pendente.
 
 ### 06 — Integrations
 
-Iron's e o bloco Goety/Malum/Eidolon estão fechados. Epic Fight ainda depende do pipeline canônico de combate; Ars precisa do contrato de coexistência com Iron's; Identity2 ainda requer a matriz lifecycle formal; Apothic ainda precisa de revalidação nominal; Create/AE2/Oritech continuam com trabalho pendente; a matriz de presença/ausência por mod permanece aberta.
+Iron's e o bloco Goety/Malum/Eidolon estão fechados. Epic Fight, Ars, Identity2, Apothic, Create/AE2/Oritech e a matriz global de presença/ausência ainda possuem trabalho pendente.
 
 ### 07 — Data, Network & UI
 
-Loaders, packets e UI já existem, mas o acceptance final ainda não está satisfeito: reload cross-catalog, versionamento formal de protocolo/schemas e resolução completa de efeitos/requisitos/erros na UI ainda possuem trabalho aberto. O dimension-change sync do RPG Core já foi integrado e não é mais blocker deste estágio.
+Loaders, packets e UI já existem, mas o acceptance final ainda exige reload cross-catalog, versionamento formal de protocolo/schemas e resolução completa de efeitos/requisitos/erros na UI.
 
 ### 08 — Quest & Progression Hooks
 
-`✅-01-public-query-api.md` está fechado: `RpgQuestProgressionApi` fornece snapshot imutável/versionado e condições read-only para level/XP/points, perks, classes, masteries, especializações e attributes, com IDs ausentes resolvidos de forma fail-closed e sem exposição do persistence layer. Os subplanos `02-progression-rewards`, `03-data-driven-conditions`, `04-idempotency-ledger`, `05-ftbquests-npc-adapters` e `06-authoring-diagnostics` continuam abertos e devem ser fechados separadamente contra seus próprios Acceptances.
+`✅-01-public-query-api.md` está fechado. Os subplanos `02-progression-rewards`, `03-data-driven-conditions`, `04-idempotency-ledger`, `05-ftbquests-npc-adapters` e `06-authoring-diagnostics` continuam abertos e devem ser fechados separadamente.
 
 ### 09 — Hardening & Release
 
-Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. A suíte atual é forte, mas ainda não substitui profiling/budgets, migrations, matriz completa de optional mods e release gate finais.
+Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. A suíte atual é forte, mas ainda não substitui profiling/budgets, migrations e matriz completa de optional mods.
 
 ### 10 — Compêndio Natural
 
-`✅-01-proveniencia-licencas.md`, `✅-02-inventario-modpack.md`, `✅-03-modelo-dados-identidade.md`, `✅-04-descoberta-progresso.md`, `✅-05-fauna-entidades.md` e `✅-06-flora-arvores-cultivos.md` estão fechados. O Stage 10 possui proveniência/licenças auditadas, inventário reproduzível de modlist + registries runtime, modelo canônico de identidade/fatos/relações, catálogo imutável com publicação atômica, descoberta persistente/server-authoritative, camada técnica de entidades com cobertura integral de `ENTITY_TYPE` e agora uma camada técnica de flora/cultivos/árvores baseada em `BLOCK` registry, classificação fail-closed por evidência estável, agrupamento de árvores por espécie, diagnóstico explícito de ambiguidade e catálogo flora separado/publicado atomicamente no startup. Contratos opcionais TFC/Dynamic Trees estão presentes e degradam com segurança; o wiring direto de APIs públicas especializadas continua explicitamente no `10.11-F`, não é reivindicado como concluído pelo 10.06. A materialização do snapshot da instância completa do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `07-loot-dieta-reproducao-ecologia.md`.
+`✅-01-proveniencia-licencas.md` até `✅-07-loot-dieta-reproducao-ecologia.md` estão fechados. O Stage 10 agora possui proveniência/licenças auditadas, inventário reproduzível, identidade/fatos/relações canônicas, snapshots imutáveis, descoberta server-authoritative, cobertura técnica de entidades e flora e enriquecimento seguro de loot/ecologia.
+
+O 10.07 adicionou alvos tipados de relação (`ENTRY`, `ITEM`, `ITEM_TAG`, `BLOCK`, `BLOCK_TAG`) sem criar `ITEM` como kind canônico; análise estrutural de loot sem rolling/efeitos; semânticas separadas de alimento/atração/reprodução; domesticação separando capability de espécie de estado contextual; relações ecológicas source-aware; e snapshot de loot atômico em datapack reload. Integrações externas completas permanecem no 10.11 e save/rede/cache global no 10.13.
+
+A materialização do snapshot completo da instância do pack continua como tarefa operacional do gate de conteúdo; o runtime é a autoridade. O próximo passo causal é `08-biomas-estruturas-dimensoes.md`.
 
 ## Evidência de regressão atual
 
-O fechamento mais recente do Stage 08.01 foi auditado em `main@2b8e5d10b70704598c0f175a3a9bf1ad0af5586e`. A PR #97 passou RPG Skill Tree CI `33225421326` e a PR #98 passou RPG Skill Tree CI `33227098892`; ambos incluíram Core tests/validators, NeoForge build, verificação do JAR e dedicated-server smoke. Os workflows Compendium Discovery/Flora/Entities associados às duas integrações também passaram.
+O fechamento funcional mais recente do Stage 10.07 foi auditado em `main@03403fc3f7934b0e2b2c9a5cd0a9e6606a2ba7d9`. Compendium Ecology `33228111273`, Flora `33228111253`, Entities `33228111262`, Discovery `33228111257` e RPG Skill Tree `33228111266` passaram. O CI completo incluiu NeoForge build, verificação do JAR, dedicated-server smoke, upload do artefato e publicação do status final.
 
 ## Convenção
 
