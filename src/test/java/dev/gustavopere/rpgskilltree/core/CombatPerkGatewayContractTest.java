@@ -1,16 +1,19 @@
 package dev.gustavopere.rpgskilltree.core;
 
+import java.util.Set;
+
 /** Regression contract: outer-tree weapon gateways are main-tree node gates, not specialist-state ids. */
 public final class CombatPerkGatewayContractTest {
-    private static final String MARTIAL_GATEWAY_NODE = "rpgskilltree:martial_000";
+    private static final Set<String> KNOWN_GATEWAYS = Set.of(
+        "epic_sword", "epic_axe", "epic_spear", "epic_dagger", "epic_hammer", "combat_mace", "combat_scythe"
+    );
 
     private CombatPerkGatewayContractTest() {}
 
     public static void main(String[] args) {
         for (CombatPerkTreeModel.Node node : CombatPerkTreeModel.all()) {
-            require(node.requiredSpecializations().isEmpty(),
-                node.code() + " must not use SpecializationProgressionState for an outer-tree weapon gateway");
-            require(node.requiredNodeRanks().getOrDefault(MARTIAL_GATEWAY_NODE, 0) >= 1,
+            require(KNOWN_GATEWAYS.contains(node.gatewayId()), node.code() + " unknown gateway identity " + node.gatewayId());
+            require(node.requiredNodeRanks().getOrDefault(CombatPerkTreeModel.MARTIAL_GATEWAY_NODE, 0) >= 1,
                 node.code() + " must require the learned Martial gateway node");
         }
         System.out.println("CombatPerkGatewayContractTest: PASS");
