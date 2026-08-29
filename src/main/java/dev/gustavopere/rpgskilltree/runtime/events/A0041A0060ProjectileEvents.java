@@ -3,11 +3,15 @@ package dev.gustavopere.rpgskilltree.runtime.events;
 import dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicy.BowShot;
 import dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicy.CombatResult;
+import dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
 import dev.gustavopere.rpgskilltree.runtime.A0001A0020RuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.A0041A0060RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier;
+import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier.TargetClass;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -37,7 +41,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
-/** Server-authoritative vanilla/NeoForge projectile bridge for bow and crossbow perks A0043-A0054. */
+/** Server-authoritative projectile bridge for A0043-A0054 plus general physical A0061-A0080 effects. */
 public final class A0041A0060ProjectileEvents {
     private static final long LAUNCH_CORRELATION_MILLIS = 250L;
     private static final long ABRUPT_AIM_BLOCK_MILLIS = 250L;
@@ -127,9 +131,17 @@ public final class A0041A0060ProjectileEvents {
         }
 
         ProjectileMeta meta = new ProjectileMeta(
-            family, actor(player), pending.rootActionId, arrow.position(),
+            family,
+            actor(player),
+            pending.rootActionId,
+            arrow.position(),
             NotionCombatPerkRules.baseDamageMultiplier(family, A0041A0060RuntimeState.ranks(player)),
-            pending.criticalMultiplierNeeded, bowShot, crossbowShot
+            Boolean.TRUE.equals(pending.critical),
+            pending.criticalMultiplierNeeded,
+            player.isSprinting(),
+            A0061A0080RuntimeState.isStationary(player),
+            bowShot,
+            crossbowShot
         );
         synchronized (PROJECTILES) {
             PROJECTILES.put(arrow, meta);
@@ -145,10 +157,62 @@ public final class A0041A0060ProjectileEvents {
         ProjectileMeta meta = metadata(arrow);
         if (meta == null || !meta.actorId.equals(actor(player))) return;
 
-        double multiplier = meta.baseDamageMultiplier * (meta.criticalMultiplierNeeded ? 1.5D : 1.0D);
-        double penetration = 0.0D;
+        CombatPerkRanks ranks = A0061A0080RuntimeState.ranks(player);
+        LivingEntity target = event.getEntity();
+        TargetClass targetClass = MartialTargetClassifier.classify(target);
+        long now = now(player);
+        A0061A0080CombatPolicy.HitFacts facts = new A0061A0080CombatPolicy.HitFacts(
+            meta.actorId,
+            target.getUUID().toString(),
+            meta.rootActionId,
+            healthFraction(target),
+            targetClass == TargetClass.BOSS,
+            targetClass == TargetClass.ELITE,
+            meta.sprintingAtLaunch,
+            meta.stationaryAtLaunch,
+            meta.critical,
+            true,
+            true,
+            now
+        );
+        A0061A0080CombatPolicy.PhysicalModifiers general = A0061A0080CombatPolicy.beforePhysicalHit(
+            facts, ranks, A0061A0080RuntimeState.state()
+        );
+        A0061A0080CombatPolicy.SpecialResult execution = A0061A0080CombatPolicy.execution(
+            meta.actorId,
+            target.getUUID().toString(),
+            meta.rootActionId,
+            facts.preImpactHealthFraction(),
+            targetClass == TargetClass.BOSS,
+            ranks,
+            A0061A0080RuntimeState.state(),
+            false,
+            now
+        );
+        A0061A0080CombatPolicy.SpecialResult firstBlood = A0061A0080CombatPolicy.firstBlood(
+            meta.actorId,
+            target.getUUID().toString(),
+            meta.rootActionId,
+            facts.preImpactHealthFraction(),
+            ranks,
+            A0061A0080RuntimeState.state(),
+            false,
+            now
+        );
+        double opportunity = A0061A0080CombatPolicy.consumeOpportunityDamageMultiplier(
+            meta.actorId, meta.rootActionId, ranks, A0061A0080RuntimeState.state(), now
+        );
+
+        double multiplier = meta.baseDamageMultiplier
+            * (meta.criticalMultiplierNeeded ? 1.5D : 1.0D)
+            * A0061A0080CombatPolicy.criticalDamageMultiplier(ranks, meta.critical)
+            * general.damageMultiplier()
+            * execution.damageMultiplier()
+            * firstBlood.damageMultiplier()
+            * opportunity;
+        double penetration = general.penetrationFraction();
         if (!meta.specialImpactClaimed) {
-            double distance = meta.origin.distanceTo(event.getEntity().position());
+            double distance = meta.origin.distanceTo(target.position());
             CombatResult result;
             if (meta.family == WeaponFamily.BOW) {
                 result = A0041A0060CombatPolicy.resolveBowHit(meta.bowShot, distance, true);
@@ -158,7 +222,7 @@ public final class A0041A0060ProjectileEvents {
             if (result.applied()) {
                 meta.specialImpactClaimed = true;
                 multiplier *= result.damageMultiplier();
-                penetration = result.penetrationFraction();
+                penetration = Math.min(1.0D, penetration + result.penetrationFraction());
             }
         }
 
@@ -172,6 +236,8 @@ public final class A0041A0060ProjectileEvents {
                 (container, reductionIn) -> reductionIn * retainedReduction
             );
         }
+        // A0066 Impact is intentionally not fabricated for vanilla projectile damage. There is no
+        // provider-native projectile Impact receipt in this bridge, so only its safe components apply.
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -389,6 +455,12 @@ public final class A0041A0060ProjectileEvents {
             && (target instanceof Enemy || target instanceof Player);
     }
 
+    private static double healthFraction(LivingEntity target) {
+        return target.getMaxHealth() <= 0.0F
+            ? 0.0D
+            : Math.max(0.0D, Math.min(1.0D, target.getHealth() / target.getMaxHealth()));
+    }
+
     private static String actor(ServerPlayer player) { return player.getUUID().toString(); }
     private static long now(ServerPlayer player) { return player.level().getGameTime() * 50L; }
 
@@ -433,7 +505,10 @@ public final class A0041A0060ProjectileEvents {
         final String rootActionId;
         final Vec3 origin;
         final double baseDamageMultiplier;
+        final boolean critical;
         final boolean criticalMultiplierNeeded;
+        final boolean sprintingAtLaunch;
+        final boolean stationaryAtLaunch;
         final BowShot bowShot;
         final CombatResult crossbowShot;
         boolean specialImpactClaimed;
@@ -442,11 +517,13 @@ public final class A0041A0060ProjectileEvents {
         boolean failureRecorded;
 
         ProjectileMeta(WeaponFamily family, String actorId, String rootActionId, Vec3 origin,
-                       double baseDamageMultiplier, boolean criticalMultiplierNeeded,
+                       double baseDamageMultiplier, boolean critical, boolean criticalMultiplierNeeded,
+                       boolean sprintingAtLaunch, boolean stationaryAtLaunch,
                        BowShot bowShot, CombatResult crossbowShot) {
             this.family = family; this.actorId = actorId; this.rootActionId = rootActionId;
             this.origin = origin; this.baseDamageMultiplier = baseDamageMultiplier;
-            this.criticalMultiplierNeeded = criticalMultiplierNeeded;
+            this.critical = critical; this.criticalMultiplierNeeded = criticalMultiplierNeeded;
+            this.sprintingAtLaunch = sprintingAtLaunch; this.stationaryAtLaunch = stationaryAtLaunch;
             this.bowShot = bowShot; this.crossbowShot = crossbowShot;
         }
     }
