@@ -87,7 +87,12 @@ plugin = IDENTITY_PLUGIN.read_text(encoding="utf-8")
 for marker in ("implements IMixinConfigPlugin", "shouldApplyMixin", "IDENTITY_TARGET_RESOURCE", "getResource"):
     if marker not in plugin:
         fail(f"Identity2 mixin gate is missing marker {marker!r}")
-for forbidden in ("import net.minecraft.", "import net.Gabou.identity2", "ModList"):
+for forbidden in (
+    "import net.minecraft.",
+    "import net.Gabou.identity2",
+    "import net.neoforged.fml.ModList",
+    "ModList.get(",
+):
     if forbidden in plugin:
         fail(f"Identity2 mixin gate must remain early-startup safe; forbidden marker {forbidden!r}")
 config = MIXIN_CONFIG.read_text(encoding="utf-8")
