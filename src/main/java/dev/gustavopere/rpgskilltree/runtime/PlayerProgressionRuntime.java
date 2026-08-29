@@ -11,6 +11,8 @@ import dev.gustavopere.rpgskilltree.core.DiscoveryProgressionResult;
 import dev.gustavopere.rpgskilltree.core.MasteryAward;
 import dev.gustavopere.rpgskilltree.core.MasteryAwardService;
 import dev.gustavopere.rpgskilltree.core.NodeAccessResolver;
+import dev.gustavopere.rpgskilltree.core.NodePurchaseMutationService;
+import dev.gustavopere.rpgskilltree.core.NodePurchaseResult;
 import dev.gustavopere.rpgskilltree.core.ProgressionService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRuleCatalog;
@@ -21,10 +23,14 @@ import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 
 public final class PlayerProgressionRuntime {
+    private static final NodePurchaseRequestTracker NODE_PURCHASE_REQUESTS =
+        new NodePurchaseRequestTracker(256);
+
     // Legacy scaffold marker only. Confirmed mutation sync moved to ProgressionOwnerSyncRuntime:
     // ModNetworking.syncToOwner(player, state)
     private PlayerProgressionRuntime() {}
@@ -104,34 +110,68 @@ public final class PlayerProgressionRuntime {
         return result;
     }
 
+    /** Compatibility entry point for trusted server callers that do not carry a client request id. */
     public static boolean purchaseNode(ServerPlayer player, ResourceLocation nodeId) {
-        Objects.requireNonNull(player);
-        Objects.requireNonNull(nodeId);
+        return purchaseNode(player, nodeId, "server:" + UUID.randomUUID()).accepted();
+    }
+
+    /**
+     * Server-authoritative purchase boundary. The client supplies only node identity and
+     * an idempotency key; costs, requirements, topology and ranks are resolved server-side.
+     */
+    public static NodePurchaseResult purchaseNode(
+        ServerPlayer player,
+        ResourceLocation nodeId,
+        String requestId
+    ) {
+        Objects.requireNonNull(player, "player");
+        Objects.requireNonNull(nodeId, "nodeId");
+        Objects.requireNonNull(requestId, "requestId");
+
+        ProgressionState current = get(player);
+        NodePurchaseRequestTracker.Decision replayDecision = NODE_PURCHASE_REQUESTS.checkAndRecord(
+            player.getUUID(),
+            requestId,
+            nodeId
+        );
+        if (replayDecision == NodePurchaseRequestTracker.Decision.REPLAY) {
+            return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.DUPLICATE_REQUEST);
+        }
+        if (replayDecision == NodePurchaseRequestTracker.Decision.CONFLICT) {
+            return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.REQUEST_ID_CONFLICT);
+        }
+
         var definition = TreeRuleCatalog.definition(nodeId);
         if (definition.isEmpty()) {
-            ModNetworking.syncToOwner(player, get(player));
-            return false;
+            return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.UNKNOWN_NODE);
         }
-        try {
-            ProgressionState current = get(player);
-            boolean requirementsSatisfied = NodeAccessResolver.satisfied(
-                current,
-                TreeRuleCatalog.requirement(nodeId),
-                CharacterLevelCurve.defaultCurve()
-            );
-            ProgressionState next = ProgressionService.purchaseNode(
-                current,
-                TreeRuleCatalog.graph(),
-                definition.get(),
-                requirementsSatisfied
-            );
-            next = reconcileDerivedState(next);
-            set(player, next);
-            return true;
-        } catch (IllegalArgumentException rejectedPurchase) {
-            ModNetworking.syncToOwner(player, get(player));
-            return false;
+
+        boolean requirementsSatisfied = NodeAccessResolver.satisfied(
+            current,
+            TreeRuleCatalog.requirement(nodeId),
+            CharacterLevelCurve.defaultCurve()
+        );
+        NodePurchaseResult result = NodePurchaseMutationService.purchase(
+            current,
+            TreeRuleCatalog.graph(),
+            definition.get(),
+            requirementsSatisfied
+        );
+        if (!result.accepted()) {
+            return result;
         }
+
+        ProgressionState reconciled = reconcileDerivedState(result.state());
+        set(player, reconciled);
+        return NodePurchaseResult.accepted(reconciled);
+    }
+
+    public static void clearNodePurchaseRequests(UUID playerId) {
+        NODE_PURCHASE_REQUESTS.clear(playerId);
+    }
+
+    public static void clearAllNodePurchaseRequests() {
+        NODE_PURCHASE_REQUESTS.clearAll();
     }
 
     public static boolean selectClassChoice(ServerPlayer player, ResourceLocation choiceId) {
