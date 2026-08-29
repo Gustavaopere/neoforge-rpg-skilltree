@@ -12,6 +12,9 @@ public final class EntityRewardScalingPolicyTest {
         absentRarityUsesExplicitConfiguredFactor();
         unknownRarityAndIncompleteArchetypesFailClosed();
         rewardResultScalesNonNegativeBaseValues();
+        lootQuantityUsesIndependentAntiFarmCaps();
+        lootQuantityNeverDuplicatesNonStackablesOrReducesDrops();
+        invalidLootQuantityConfigurationFailsClosed();
         System.out.println("EntityRewardScalingPolicyTest: PASS");
     }
 
@@ -117,16 +120,53 @@ public final class EntityRewardScalingPolicyTest {
     }
 
     private static void rewardResultScalesNonNegativeBaseValues() {
-        EntityRewardScalingResult result = new EntityRewardScalingResult(
-            new BigDecimal("1.5"),
-            BigDecimal.ONE,
-            new BigDecimal("1.2"),
-            new BigDecimal("1.8"),
-            new BigDecimal("1.8")
-        );
+        EntityRewardScalingResult result = rewardResult("1.8");
         decimalEq("180.0", result.scale(new BigDecimal("100")));
         decimalEq("0.0", result.scale(BigDecimal.ZERO));
         expect(IllegalArgumentException.class, () -> result.scale(new BigDecimal("-1")));
+    }
+
+    private static void lootQuantityUsesIndependentAntiFarmCaps() {
+        CappedEntityLootQuantityPolicy policy = CappedEntityLootQuantityPolicy.of(
+            new BigDecimal("1.5"),
+            2,
+            3
+        );
+        EntityRewardScalingResult highRisk = rewardResult("3");
+
+        eq(6, policy.scaleCount(4, 64, 0, highRisk));
+        eq(5, policy.scaleCount(4, 64, 2, highRisk));
+        eq(64, policy.scaleCount(63, 64, 0, highRisk));
+        eq(3, policy.maxExtraPerKill());
+    }
+
+    private static void lootQuantityNeverDuplicatesNonStackablesOrReducesDrops() {
+        CappedEntityLootQuantityPolicy policy = CappedEntityLootQuantityPolicy.of(
+            new BigDecimal("2"),
+            8,
+            16
+        );
+
+        eq(1, policy.scaleCount(1, 1, 0, rewardResult("3")));
+        eq(7, policy.scaleCount(7, 64, 0, rewardResult("0.5")));
+        eq(64, policy.scaleCount(64, 64, 0, rewardResult("3")));
+        eq(70, policy.scaleCount(70, 64, 0, rewardResult("3")));
+    }
+
+    private static void invalidLootQuantityConfigurationFailsClosed() {
+        expect(IllegalArgumentException.class, () -> CappedEntityLootQuantityPolicy.of(new BigDecimal("0.9"), 1, 1));
+        expect(IllegalArgumentException.class, () -> CappedEntityLootQuantityPolicy.of(BigDecimal.ONE, -1, 1));
+        expect(IllegalArgumentException.class, () -> CappedEntityLootQuantityPolicy.of(BigDecimal.ONE, 1, -1));
+        CappedEntityLootQuantityPolicy policy = CappedEntityLootQuantityPolicy.of(BigDecimal.ONE, 1, 1);
+        expect(IllegalArgumentException.class, () -> policy.scaleCount(-1, 64, 0, rewardResult("1")));
+        expect(IllegalArgumentException.class, () -> policy.scaleCount(1, 0, 0, rewardResult("1")));
+        expect(IllegalArgumentException.class, () -> policy.scaleCount(1, 64, -1, rewardResult("1")));
+        expect(NullPointerException.class, () -> policy.scaleCount(1, 64, 0, null));
+    }
+
+    private static EntityRewardScalingResult rewardResult(String multiplier) {
+        BigDecimal value = new BigDecimal(multiplier);
+        return new EntityRewardScalingResult(value, BigDecimal.ONE, BigDecimal.ONE, value, value);
     }
 
     private static Map<EntityArchetype, BigDecimal> completeArchetypeMultipliers(
