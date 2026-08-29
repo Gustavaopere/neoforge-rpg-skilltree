@@ -84,7 +84,7 @@ public final class CompendiumDebugProvenanceTest {
                 "hp",
                 FactSource.REGISTRY,
                 FactConfidence.EXACT,
-                FactVisibility.ALWAYS,
+                FactVisibility.PUBLIC,
                 null
             )))),
             List.of(),
@@ -102,7 +102,7 @@ public final class CompendiumDebugProvenanceTest {
                 "hp",
                 FactSource.RUNTIME,
                 FactConfidence.EXACT,
-                FactVisibility.ALWAYS,
+                FactVisibility.PUBLIC,
                 null
             ))),
             Set.of(),
