@@ -66,6 +66,25 @@ final class ClientCompendiumStateJUnitTest {
         assertEquals("", second.query());
     }
 
+    @Test
+    void personalStateSurvivesSnapshotInstallsAndResetsOnExplicitClear() {
+        ClientCompendiumState.clear();
+        CompendiumEntryId wolfId = CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "minecraft:wolf");
+        var personal = ClientCompendiumState.personalState();
+        personal.setFavorite(wolfId, true);
+
+        ClientCompendiumState.install(snapshot("minecraft:wolf", "Lobo"));
+        ClientCompendiumState.install(snapshot("minecraft:fox", "Raposa"));
+
+        assertSame(personal, ClientCompendiumState.personalState());
+        assertTrue(ClientCompendiumState.personalState().isFavorite(wolfId));
+
+        ClientCompendiumState.clear();
+        assertNotSame(personal, ClientCompendiumState.personalState());
+        assertTrue(ClientCompendiumState.personalState().favoritesSnapshot().isEmpty());
+        assertTrue(ClientCompendiumState.personalState().recentEntries().isEmpty());
+    }
+
     private static CompendiumClientSnapshot snapshot(String id, String displayName) {
         return new CompendiumClientSnapshot(List.of(entry(id, displayName)), List.of());
     }

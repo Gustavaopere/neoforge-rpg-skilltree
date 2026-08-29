@@ -29,6 +29,8 @@
   "screen.rpgskilltree.compendium.undiscovered": "Undiscovered",
   "screen.rpgskilltree.compendium.shell": "Details are not available for this entry yet.",
   "screen.rpgskilltree.compendium.details_hidden": "Discover this entry to reveal its details.",
+  "screen.rpgskilltree.compendium.favorite.add": "☆ Favorite",
+  "screen.rpgskilltree.compendium.favorite.remove": "★ Favorited",
   "screen.rpgskilltree.title": "RPG Skill Tree",
   "screen.rpgskilltree.points": "Passive Points: %s",
   "screen.rpgskilltree.controls": "Drag: pan • Wheel: zoom • LMB: buy • RMB: respec • Tab: switch tree",

@@ -15,6 +15,8 @@ public final class CompendiumScreenSessionTest {
         keyboardSelectionDelegatesToBrowserAndPreservesDetailContext();
         filterStateDrivesMatchesAndSurvivesDetailNavigation();
         pointerOpenSelectsAndPreservesBrowserContext();
+        openingEntriesRecordsRecentHistory();
+        currentEntryFavoriteTogglesInPersonalState();
         entryWithoutPageStillOpensAsShell();
         invalidVisibleRowIsRejected();
         System.out.println("CompendiumScreenSessionTest: PASS");
@@ -144,6 +146,47 @@ public final class CompendiumScreenSessionTest {
         eq(fox, session.selectedEntry().orElseThrow());
         eq("", session.query());
         eq(1, session.viewport(1).firstIndex());
+    }
+
+    private static void openingEntriesRecordsRecentHistory() {
+        CompendiumClientEntry wolf = entry("minecraft:wolf", "Lobo");
+        CompendiumClientEntry fox = entry("minecraft:fox", "Raposa");
+        CompendiumClientSnapshot snapshot = new CompendiumClientSnapshot(
+            List.of(wolf, fox),
+            List.of(page(wolf), page(fox))
+        );
+        CompendiumNotesModel notes = new CompendiumNotesModel();
+        CompendiumScreenSession session = new CompendiumScreenSession(snapshot, notes);
+        List<CompendiumClientEntry> ordered = session.viewport(2).entries();
+
+        session.openVisibleRow(1, 2);
+        eq(List.of(ordered.get(1).id()), notes.recentEntries());
+
+        session.backToList();
+        session.moveSelection(-1, 2);
+        session.openSelectedEntry();
+        eq(List.of(ordered.get(0).id(), ordered.get(1).id()), notes.recentEntries());
+    }
+
+    private static void currentEntryFavoriteTogglesInPersonalState() {
+        CompendiumClientEntry wolf = entry("minecraft:wolf", "Lobo");
+        CompendiumNotesModel notes = new CompendiumNotesModel();
+        CompendiumScreenSession session = new CompendiumScreenSession(
+            new CompendiumClientSnapshot(List.of(wolf), List.of(page(wolf))),
+            notes
+        );
+
+        isFalse(session.isCurrentEntryFavorite());
+        session.openVisibleRow(0, 4);
+        isFalse(session.isCurrentEntryFavorite());
+
+        session.toggleCurrentEntryFavorite();
+        isTrue(session.isCurrentEntryFavorite());
+        isTrue(notes.isFavorite(wolf.id()));
+
+        session.toggleCurrentEntryFavorite();
+        isFalse(session.isCurrentEntryFavorite());
+        isFalse(notes.isFavorite(wolf.id()));
     }
 
     private static void entryWithoutPageStillOpensAsShell() {

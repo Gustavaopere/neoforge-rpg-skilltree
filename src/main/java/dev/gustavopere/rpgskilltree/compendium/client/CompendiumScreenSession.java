@@ -14,10 +14,16 @@ import java.util.Optional;
 public final class CompendiumScreenSession {
     private final CompendiumClientSnapshot snapshot;
     private final CompendiumBrowserModel browser;
+    private final CompendiumNotesModel notes;
 
     public CompendiumScreenSession(CompendiumClientSnapshot snapshot) {
+        this(snapshot, new CompendiumNotesModel());
+    }
+
+    public CompendiumScreenSession(CompendiumClientSnapshot snapshot, CompendiumNotesModel notes) {
         this.snapshot = Objects.requireNonNull(snapshot, "snapshot");
         this.browser = snapshot.newBrowserModel();
+        this.notes = Objects.requireNonNull(notes, "notes");
     }
 
     public String query() {
@@ -68,10 +74,12 @@ public final class CompendiumScreenSession {
 
     public void openSelectedEntry() {
         browser.openSelectedEntry();
+        browser.openEntry().ifPresent(notes::recordOpened);
     }
 
     public void openVisibleRow(int visibleRow, int rowCapacity) {
         browser.openVisibleRow(visibleRow, rowCapacity);
+        browser.openEntry().ifPresent(notes::recordOpened);
     }
 
     public Optional<CompendiumClientEntry> currentEntry() {
@@ -83,6 +91,17 @@ public final class CompendiumScreenSession {
 
     public Optional<CompendiumPageModel> currentPage() {
         return browser.openEntry().flatMap(snapshot::page);
+    }
+
+    public boolean isCurrentEntryFavorite() {
+        return currentEntry().map(entry -> notes.isFavorite(entry.id())).orElse(false);
+    }
+
+    public void toggleCurrentEntryFavorite() {
+        currentEntry().ifPresent(entry -> {
+            CompendiumEntryId id = entry.id();
+            notes.setFavorite(id, !notes.isFavorite(id));
+        });
     }
 
     public void backToList() {
