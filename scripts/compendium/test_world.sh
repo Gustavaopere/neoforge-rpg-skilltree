@@ -8,3 +8,6 @@ OUT="$ROOT/build/compendium-model-test-classes"
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.world.BiomeProviderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.world.StructureProviderTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.world.DimensionProviderTest
+
+python3 scripts/compendium/verify_world_runtime.py
+python3 scripts/compendium/verify_world_catalog_publication.py
