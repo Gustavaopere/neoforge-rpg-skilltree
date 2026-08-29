@@ -1,6 +1,5 @@
 package dev.gustavopere.rpgskilltree.core;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.OptionalLong;
@@ -14,6 +13,7 @@ public final class RelevantPlayerLevelFoundationTest {
         noRelevantCandidatesProduceNoPlayerFloor();
         policyCannotInventLevelOutsideRelevantRange();
         hugeRelevantLevelsRemainSupported();
+        partyMergePreservesSpatialPriorityAndFailsClosed();
         System.out.println("RelevantPlayerLevelFoundationTest: PASS");
     }
 
@@ -128,6 +128,34 @@ public final class RelevantPlayerLevelFoundationTest {
             candidates -> OptionalLong.of(candidates.stream().mapToLong(RelevantPlayerCandidate::level).max().orElseThrow())
         );
         eq(OptionalLong.of(huge), resolution.relevantPlayerLevel());
+    }
+
+    private static void partyMergePreservesSpatialPriorityAndFailsClosed() {
+        List<RelevantPlayerCandidate> spatial = List.of(
+            new RelevantPlayerCandidate("local-a", 10L, 4L, true, false),
+            new RelevantPlayerCandidate("local-b", 20L, 9L, false, false)
+        );
+        List<RelevantPlayerCandidate> party = List.of(
+            new RelevantPlayerCandidate("local-a", 10L, 4L, false, true),
+            new RelevantPlayerCandidate("remote-party", 200L, 100_000L, false, true)
+        );
+
+        List<RelevantPlayerCandidate> bounded = RelevantPlayerCandidateMerger.merge(spatial, party, 2);
+        eq(List.of("local-a", "local-b"), bounded.stream().map(RelevantPlayerCandidate::playerId).toList());
+        eq(true, bounded.get(0).partyMember());
+        eq(true, bounded.get(0).engaged());
+
+        expect(IllegalArgumentException.class, () -> RelevantPlayerCandidateMerger.merge(
+            spatial,
+            List.of(new RelevantPlayerCandidate("not-marked-party", 30L, 16L, false, false)),
+            4
+        ));
+        expect(IllegalArgumentException.class, () -> RelevantPlayerCandidateMerger.merge(
+            spatial,
+            List.of(new RelevantPlayerCandidate("local-a", 999L, 4L, false, true)),
+            4
+        ));
+        expect(UnsupportedOperationException.class, () -> bounded.clear());
     }
 
     private static void expect(Class<? extends Throwable> type, Runnable action) {
