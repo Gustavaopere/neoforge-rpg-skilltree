@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 public final class CanonicalPlayerAttachmentDataTest {
     public static void main(String[] args) {
@@ -14,6 +15,7 @@ public final class CanonicalPlayerAttachmentDataTest {
         coreInitializationUsesPersistedLegacyPresenceExactlyOnce();
         compatibilityMutationBeforeCoreInitializationBecomesMigrationSource();
         codecRoundTripsUninitializedAndInitializedCore();
+        codecRoundTripsRichPersistedState();
         CanonicalPlayerAttachmentMigrationChainTest.main(new String[0]);
         malformedPayloadsFailClosed();
         System.out.println("CanonicalPlayerAttachmentDataTest: PASS");
@@ -127,6 +129,35 @@ public final class CanonicalPlayerAttachmentDataTest {
         CanonicalPlayerAttachmentData initialized = uninitialized.initializeCore(rules());
         eq(initialized, CanonicalPlayerAttachmentDataCodec.decode(
             CanonicalPlayerAttachmentDataCodec.encode(initialized)));
+    }
+
+    private static void codecRoundTripsRichPersistedState() {
+        ProgressionState empty = ProgressionState.empty();
+        ProgressionState progressed = new ProgressionState(
+            CharacterLevelCurve.defaultCurve().xpRequiredForLevel(12) + 77L,
+            PassivePointLedger.of(Map.of(PassivePointSource.LEVEL, 11, PassivePointSource.BOSS, 2), 4),
+            BossProgress.of(Set.of("rpgskilltree:test_boss")),
+            ClassProgressionState.of(Set.of("mage")),
+            MasteryState.of(Map.of("arcane", 250, "projectile", 91)),
+            empty.classChoices(),
+            SpecializationProgressionState.of(Set.of("pyromancer")),
+            empty.finalTriads(),
+            PassiveNodeProgress.of(Map.of("rpgskilltree:arcane_001", 2, "rpgskilltree:agility_000", 3)),
+            DiscoveryProgress.of(Set.of("rpgskilltree:test_discovery", "minecraft:the_nether"))
+        );
+
+        CanonicalPlayerAttachmentData original = CanonicalPlayerAttachmentData.fromMigrationInputs(
+            Optional.empty(), Optional.of(progressed));
+        original = original.initializeCore(rules());
+
+        byte[] encoded = CanonicalPlayerAttachmentDataCodec.encode(original);
+        CanonicalPlayerAttachmentData restored = CanonicalPlayerAttachmentDataCodec.decode(encoded);
+
+        eq(original, restored);
+        progressionEq(progressed, restored.compatibilityProgression());
+        eq(original.coreProgression(), restored.coreProgression());
+        eq(true, restored.hasLegacyMigrationSource());
+        if (encoded.length <= 32) throw new AssertionError("rich canonical attachment payload unexpectedly small");
     }
 
     private static void malformedPayloadsFailClosed() {
