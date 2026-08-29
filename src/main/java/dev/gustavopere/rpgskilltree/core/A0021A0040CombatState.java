@@ -10,14 +10,16 @@ public final class A0021A0040CombatState {
     private final Map<String, Long> claims = new HashMap<>();
 
     public synchronized boolean claimOnce(String actorId,String rootActionId,String consumer,long now){
-        require(actorId);require(rootActionId);require(consumer); claims.entrySet().removeIf(e->e.getValue()<=now);
-        String key=actorId+'\0'+rootActionId+'\0'+consumer; if(claims.containsKey(key))return false; claims.put(key,Math.addExact(now,30_000L)); return true;
+        require(actorId);require(rootActionId);require(consumer);claims.entrySet().removeIf(e->e.getValue()<=now);
+        String key=actorId+'\0'+rootActionId+'\0'+consumer;if(claims.containsKey(key))return false;claims.put(key,Math.addExact(now,30_000L));return true;
     }
 
-    public synchronized int flow(String actorId,long now){Actor a=actor(actorId); if(a.flow>0&&a.flowExpiresAt<=now){a.flow=0;a.flowExpiresAt=0;} return a.flow;}
-    public synchronized int addFlow(String actorId,int rank,long now){Actor a=actor(actorId); flow(actorId,now); a.flow=Math.min(NotionCombatPerkRules.FLOW_CAP,a.flow+1); a.flowExpiresAt=Math.addExact(now,NotionCombatPerkRules.flowDurationMillis(rank)); return a.flow;}
-    public synchronized int consumeFlow(String actorId,int amount,long now){Actor a=actor(actorId);flow(actorId,now);int used=Math.min(Math.max(amount,0),a.flow);a.flow-=used;if(a.flow==0)a.flowExpiresAt=0;return used;}
+    public synchronized int flow(String actorId,long now){Actor a=actor(actorId);if(a.flow>0&&a.flowExpiresAt<=now){a.flow=0;a.flowExpiresAt=0;a.nextIdleDecayAt=0;}return a.flow;}
+    public synchronized int addFlow(String actorId,int rank,long now){Actor a=actor(actorId);flow(actorId,now);a.flow=Math.min(NotionCombatPerkRules.FLOW_CAP,a.flow+1);a.flowExpiresAt=Math.addExact(now,NotionCombatPerkRules.flowDurationMillis(rank));return a.flow;}
+    public synchronized int consumeFlow(String actorId,int amount,long now){Actor a=actor(actorId);flow(actorId,now);int used=Math.min(Math.max(amount,0),a.flow);a.flow-=used;if(a.flow==0){a.flowExpiresAt=0;a.nextIdleDecayAt=0;}return used;}
     public synchronized void loseFlow(String actorId,int amount,long now){consumeFlow(actorId,amount,now);}
+    public synchronized void recordHorizontalMovement(String actorId,long now){Actor a=actor(actorId);a.lastHorizontalMovementAt=now;a.nextIdleDecayAt=Math.addExact(now,NotionCombatPerkRules.A0022_IDLE_BEFORE_DECAY_MILLIS);}
+    public synchronized void tickFlow(String actorId,boolean inCombat,long now){Actor a=actor(actorId);if(flow(actorId,now)<=0||!inCombat)return;if(a.nextIdleDecayAt==0L)a.nextIdleDecayAt=Math.addExact(now,NotionCombatPerkRules.A0022_IDLE_BEFORE_DECAY_MILLIS);if(now<a.nextIdleDecayAt)return;long steps=1L+(now-a.nextIdleDecayAt)/1_000L;loseFlow(actorId,(int)Math.min(steps,Integer.MAX_VALUE),now);if(a.flow>0)a.nextIdleDecayAt=Math.addExact(a.nextIdleDecayAt,Math.multiplyExact(steps,1_000L));}
     public synchronized boolean blindSpotReady(String actorId,String target,long now){return actor(actorId).blindSpotCooldown.getOrDefault(require(target),0L)<=now;}
     public synchronized void startBlindSpotCooldown(String actorId,String target,long now){actor(actorId).blindSpotCooldown.put(require(target),Math.addExact(now,NotionCombatPerkRules.A0023_TARGET_COOLDOWN_MILLIS));}
 
@@ -55,8 +57,8 @@ public final class A0021A0040CombatState {
     private record TargetStack(int count,long expiresAt){}
     private record ReapMark(long expiresAt,boolean mature){}
     private static final class Actor{
-        int flow;long flowExpiresAt;long repositionUntil;long danceUntil;boolean danceMoveAvailable;boolean danceHitAvailable;
+        int flow;long flowExpiresAt,lastHorizontalMovementAt,nextIdleDecayAt,repositionUntil,danceUntil;boolean danceMoveAvailable,danceHitAvailable;
         final Map<String,Long> blindSpotCooldown=new HashMap<>(),demolitionWindow=new HashMap<>(),demolitionCooldown=new HashMap<>(),sunderedUntil=new HashMap<>(),bonebreakerCooldown=new HashMap<>();
-        final Map<String,TargetStack> abalo=new HashMap<>(),trauma=new HashMap<>(); final Map<String,ReapMark> reapMarks=new HashMap<>();
+        final Map<String,TargetStack> abalo=new HashMap<>(),trauma=new HashMap<>();final Map<String,ReapMark> reapMarks=new HashMap<>();
     }
 }
