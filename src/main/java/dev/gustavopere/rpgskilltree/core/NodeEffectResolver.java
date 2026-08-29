@@ -30,4 +30,25 @@ public final class NodeEffectResolver {
         resolved.sort(Comparator.comparing(ResolvedNodeAttributeEffect::effectId));
         return List.copyOf(resolved);
     }
+
+    public static List<ResolvedNodeBehaviorEffect> resolveBehaviors(
+        PassiveNodeProgress progress,
+        Collection<NodeBehaviorEffect> effects
+    ) {
+        Objects.requireNonNull(progress);
+        Objects.requireNonNull(effects);
+        List<ResolvedNodeBehaviorEffect> resolved = new ArrayList<>();
+        for (NodeBehaviorEffect effect : effects) {
+            int rank = progress.rank(effect.nodeId());
+            if (rank <= 0) continue;
+            resolved.add(new ResolvedNodeBehaviorEffect(
+                effect.effectId(),
+                effect.nodeId(),
+                effect.handlerId(),
+                rank
+            ));
+        }
+        resolved.sort(Comparator.comparing(ResolvedNodeBehaviorEffect::effectId));
+        return List.copyOf(resolved);
+    }
 }
