@@ -78,10 +78,21 @@ public final class TreeRuleCatalog {
             }
         }
 
-        definitions = Map.copyOf(nextDefinitions);
-        requirements = Map.copyOf(nextRequirements);
-        specializationGrants = List.copyOf(nextSpecializationGrants);
-        graph = SkillGraph.undirected(new ArrayList<>(nextEdges));
+        installValidated(nextDefinitions, nextRequirements, nextSpecializationGrants,
+            SkillGraph.undirected(new ArrayList<>(nextEdges)));
+    }
+
+    /** Package-private projection used only after the candidate has already passed full validation. */
+    static synchronized void installValidated(
+        Map<ResourceLocation, NodePurchaseDefinition> nextDefinitions,
+        Map<ResourceLocation, NodeAccessRequirement> nextRequirements,
+        List<NodeSpecializationGrant> nextSpecializationGrants,
+        SkillGraph nextGraph
+    ) {
+        definitions = Map.copyOf(Objects.requireNonNull(nextDefinitions));
+        requirements = Map.copyOf(Objects.requireNonNull(nextRequirements));
+        specializationGrants = List.copyOf(Objects.requireNonNull(nextSpecializationGrants));
+        graph = Objects.requireNonNull(nextGraph);
     }
 
     public static Optional<NodePurchaseDefinition> definition(ResourceLocation nodeId) {

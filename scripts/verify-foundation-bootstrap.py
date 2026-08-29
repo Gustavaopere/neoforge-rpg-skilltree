@@ -137,7 +137,7 @@ ordered_bootstrap_markers = (
     "ProgressionOwnerSyncRuntime.initialize();",
     "NeoForge.EVENT_BUS.register(ProgressionOwnerSyncEvents.class);",
     "NeoForge.EVENT_BUS.register(PlayerProgressionEvents.class);",
-    "NeoForge.EVENT_BUS.register(NodeRulesReloader.class);",
+    "NeoForge.EVENT_BUS.register(SkillTreeDataReloader.class);",
     "NeoForge.EVENT_BUS.register(TreeArchitectureReloader.class);",
     "NeoForge.EVENT_BUS.register(TreeUnlockReloader.class);",
     "NeoForge.EVENT_BUS.register(ClassRulesReloader.class);",
@@ -145,7 +145,6 @@ ordered_bootstrap_markers = (
     "NeoForge.EVENT_BUS.register(ArchetypeReloader.class);",
     "NeoForge.EVENT_BUS.register(SpecializationReloader.class);",
     "NeoForge.EVENT_BUS.register(MorphCategoryReloader.class);",
-    "NeoForge.EVENT_BUS.register(NodeEffectsReloader.class);",
     "NeoForge.EVENT_BUS.register(BossRewardReloader.class);",
     "NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class);",
     "NeoForge.EVENT_BUS.register(CanonicalProviderBindingReloader.class);",
@@ -164,6 +163,13 @@ for marker in ordered_bootstrap_markers:
     if next_position <= position:
         fail(f"bootstrap registration order changed before: {marker}")
     position = next_position
+
+for forbidden in (
+    "NeoForge.EVENT_BUS.register(NodeRulesReloader.class);",
+    "NeoForge.EVENT_BUS.register(NodeEffectsReloader.class);",
+):
+    if forbidden in mod_bootstrap:
+        fail(f"legacy non-atomic reload registration must remain disabled: {forbidden}")
 
 for marker in (
     "RuntimeDiagnostics.info(",
