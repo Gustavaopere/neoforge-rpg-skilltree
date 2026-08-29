@@ -12,10 +12,7 @@ import dev.gustavopere.rpgskilltree.compendium.api.FactSource;
 import dev.gustavopere.rpgskilltree.compendium.api.FactVisibility;
 import dev.gustavopere.rpgskilltree.compendium.api.VisibilityPolicy;
 import dev.gustavopere.rpgskilltree.compendium.catalog.CoverageState;
-import dev.gustavopere.rpgskilltree.compendium.provider.ProviderContribution;
-import dev.gustavopere.rpgskilltree.compendium.provider.ProviderMerger;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -28,7 +25,7 @@ public final class CompendiumDebugProvenanceTest {
     public static void main(String[] args) {
         pageProjectsCanonicalDebugProvenance();
         normalPresentationDoesNotExposeDebugFields();
-        advancedDebugPresentationUsesWinningFactProvenance();
+        advancedDebugPresentationUsesPerFactProvenance();
         System.out.println("CompendiumDebugProvenanceTest: PASS");
     }
 
@@ -47,7 +44,7 @@ public final class CompendiumDebugProvenanceTest {
         eq(List.of(), CompendiumDebugPanelModel.fields(page(), false));
     }
 
-    private static void advancedDebugPresentationUsesWinningFactProvenance() {
+    private static void advancedDebugPresentationUsesPerFactProvenance() {
         List<CompendiumDebugField> fields = CompendiumDebugPanelModel.fields(page(), true);
         eq(5, fields.size());
         eq(new CompendiumDebugField(
@@ -73,19 +70,20 @@ public final class CompendiumDebugProvenanceTest {
     }
 
     private static CompendiumPageModel page() {
-        CompendiumEntry baseEntry = new CompendiumEntry(
+        CompendiumEntry entry = new CompendiumEntry(
             ID,
             "examplemod",
             "entity.examplemod.forest_stag",
             Set.of("fauna"),
             List.of(new CompendiumSection("stats", List.of(new CompendiumFact<>(
                 "base_health",
-                20.0D,
+                30.0D,
                 "hp",
-                FactSource.REGISTRY,
+                FactSource.RUNTIME,
                 FactConfidence.EXACT,
                 FactVisibility.PUBLIC,
-                null
+                null,
+                "runtime:scaled_stats"
             )))),
             List.of(),
             DiscoveryPolicy.OBSERVATION,
@@ -93,22 +91,6 @@ public final class CompendiumDebugProvenanceTest {
             new CompendiumProvenance(FactSource.REGISTRY, "registry:entity_type"),
             1
         );
-        ProviderContribution runtime = new ProviderContribution(
-            "runtime:scaled_stats",
-            100,
-            Map.of("stats", List.of(new CompendiumFact<>(
-                "base_health",
-                30.0D,
-                "hp",
-                FactSource.RUNTIME,
-                FactConfidence.EXACT,
-                FactVisibility.PUBLIC,
-                null
-            ))),
-            Set.of(),
-            List.of()
-        );
-        CompendiumEntry entry = ProviderMerger.merge(baseEntry, List.of(runtime)).entry();
         CompendiumClientEntry clientEntry = new CompendiumClientEntry(
             ID,
             "Cervo da Floresta",
