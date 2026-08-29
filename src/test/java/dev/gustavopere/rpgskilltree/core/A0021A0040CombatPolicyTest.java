@@ -10,7 +10,11 @@ public final class A0021A0040CombatPolicyTest {
     }
 
     private static void genericCoefficients(){
-        CombatPerkRanks r=ranks(Map.of("A0019",3,"A0020",3,"A0021",3,"A0025",3,"A0026",3,"A0027",3,"A0031",3,"A0032",3,"A0033",3,"A0037",3,"A0038",3,"A0039",3));
+        CombatPerkRanks r=ranks(Map.ofEntries(
+            Map.entry("A0019",3),Map.entry("A0020",3),Map.entry("A0021",3),Map.entry("A0025",3),
+            Map.entry("A0026",3),Map.entry("A0027",3),Map.entry("A0031",3),Map.entry("A0032",3),
+            Map.entry("A0033",3),Map.entry("A0037",3),Map.entry("A0038",3),Map.entry("A0039",3)
+        ));
         eq(1.09,NotionCombatPerkRules.baseDamageMultiplier(WeaponFamily.HAMMER,r));eq(.06,NotionCombatPerkRules.rhythmBonus(WeaponFamily.MACE,r));eq(.09,NotionCombatPerkRules.criticalChanceBonus(WeaponFamily.SCYTHE,r));eq(.09,NotionCombatPerkRules.criticalChanceBonus(WeaponFamily.DAGGER,r));
     }
     private static void flowAndBlindSpot(){
@@ -48,6 +52,6 @@ public final class A0021A0040CombatPolicyTest {
         req(!A0021A0040CombatPolicy.fallbackRepositionEligible(2,70,true,false),"teleport not reposition");req(A0021A0040CombatPolicy.fallbackRepositionEligible(1.5,60,false,false),"exact fallback thresholds");
     }
     private static A0021A0040CombatPolicy.HitFacts f(String a,String t,String id,WeaponFamily fam,boolean reposition,boolean flank,boolean crit,boolean heavy,boolean protectedTarget,boolean boss,boolean provider,double hp,long now){return new A0021A0040CombatPolicy.HitFacts(a,t,id,fam,true,true,true,crit,reposition,flank,heavy,protectedTarget,provider,provider,provider,provider,hp,boss,now);}
-    private static CombatPerkRanks ranks(Map<String,Integer> map){return new CombatPerkRanks(map);}
+    private static CombatPerkRanks ranks(Map<String,Integer> map){return CombatPerkRanks.of(map);}
     private static void eq(double e,double a){if(Math.abs(e-a)>1e-9)throw new AssertionError("expected "+e+" got "+a);}private static void req(boolean v,String m){if(!v)throw new AssertionError(m);}
 }
