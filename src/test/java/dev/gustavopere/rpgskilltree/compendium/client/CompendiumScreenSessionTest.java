@@ -12,6 +12,7 @@ public final class CompendiumScreenSessionTest {
     public static void main(String[] args) {
         emptySnapshotProducesEmptyListState();
         queryAndScrollDriveTheVisibleViewport();
+        filterStateDrivesMatchesAndSurvivesDetailNavigation();
         openAndBackPreserveBrowserContext();
         entryWithoutPageStillOpensAsShell();
         invalidVisibleRowIsRejected();
@@ -50,6 +51,41 @@ public final class CompendiumScreenSessionTest {
         eq(0, session.viewport(5).firstIndex());
         session.scrollRows(10_000);
         eq(19, session.viewport(5).firstIndex());
+    }
+
+    private static void filterStateDrivesMatchesAndSurvivesDetailNavigation() {
+        CompendiumClientEntry wolf = entry("minecraft:wolf", "Lobo");
+        CompendiumClientEntry griffin = entry("example:griffin", "Grifo");
+        CompendiumScreenSession session = new CompendiumScreenSession(
+            new CompendiumClientSnapshot(List.of(wolf, griffin), List.of(page(wolf), page(griffin)))
+        );
+        CompendiumFilterState filter = new CompendiumFilterState(
+            Set.of(),
+            Set.of(),
+            Set.of("example"),
+            Set.of(),
+            Set.of(),
+            Set.of(),
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            CompendiumFilterState.BooleanFilter.ANY,
+            Set.of()
+        );
+
+        session.setFilter(filter);
+
+        eq(filter, session.filter());
+        eq(1, session.totalMatches());
+        eq(griffin.id(), session.viewport(5).entries().getFirst().id());
+
+        session.openVisibleRow(0, 5);
+        session.backToList();
+
+        eq(filter, session.filter());
+        eq(1, session.totalMatches());
+        eq(griffin.id(), session.viewport(5).entries().getFirst().id());
     }
 
     private static void openAndBackPreserveBrowserContext() {
