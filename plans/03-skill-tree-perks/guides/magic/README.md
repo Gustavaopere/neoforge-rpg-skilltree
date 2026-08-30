@@ -10,6 +10,8 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 Cada arquivo abaixo contém uma **seção lógica completa**. Não existe continuação de parágrafo ou de capítulo em outro arquivo. Os arquivos podem ser lidos de forma independente; a ordem do índice apenas reproduz a ordem do guia canônico.
 
+Os quatro projetos próprios do modpack possuem uma coleção transversal obrigatória em [`../projects/`](../projects/README.md). O capítulo 17 abaixo é somente o recorte mágico; o Chat 1 deve consultar também os dossiês completos e a matriz cruzada antes de fechar uma perk que possa interagir com RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
+
 ## Índice
 
 - [Visão geral e escopo](00-visao-geral.md)
@@ -29,12 +31,14 @@ Cada arquivo abaixo contém uma **seção lógica completa**. Não existe contin
 - [Novos addons de Iron's Spells e Ars Nouveau](14-novos-addons-de-iron-s-spells-e-ars-nouveau.md)
 - [Alquimia, toxinas e mutações](15-alquimia-toxinas-e-mutacoes.md)
 - [Ecossistema Vampirism](16-ecossistema-vampirism.md)
+- [17. Projetos próprios do modpack — integração mágica canônica](17-projetos-proprios-do-modpack.md)
 
 ## Regras de manutenção
 
 - Nunca dividir um capítulo por quantidade de caracteres.
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
+- Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
 - O Notion continua sendo a fonte canônica; este diretório é o snapshot auditável usado pelo repositório.
 
-[← Voltar aos três guias](../README.md)
+[← Voltar aos guias](../README.md)
