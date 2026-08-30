@@ -1,0 +1,38 @@
+name: Semantic Wiki Snapshot Diagnostic
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle cache
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Render canonical snapshot through the contract test
+        run: ./gradlew --no-daemon test --tests dev.gustavopere.rpgskilltree.tools.CombatPerkWikiSnapshotGeneratorJUnitTest
+
+      - name: Upload rendered snapshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: semantic-combat-wiki-snapshot-${{ github.sha }}
+          path: build/generated-wiki/combat-perks.json
+          if-no-files-found: error
+          retention-days: 1
