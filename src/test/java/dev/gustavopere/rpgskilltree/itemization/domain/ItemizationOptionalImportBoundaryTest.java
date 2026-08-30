@@ -6,7 +6,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 final class ItemizationOptionalImportBoundaryTest {
@@ -16,9 +20,17 @@ final class ItemizationOptionalImportBoundaryTest {
         "import net.minecraft.",
         "import net.neoforged."
     );
+    private static final List<String> ALLOWED_QUALIFIED_PREFIXES = List.of(
+        "java.",
+        "net.minecraft.",
+        "net.neoforged."
+    );
+    private static final Pattern QUALIFIED_REFERENCE = Pattern.compile(
+        "\\b(?:[a-z_][A-Za-z0-9_$]*\\.){2,}[A-Za-z_$][A-Za-z0-9_$]*\\b"
+    );
 
     @Test
-    void itemizationDomainDoesNotImportOptionalOrInternalCompatibilityClasses() throws IOException {
+    void itemizationDomainDoesNotReferenceOptionalOrInternalCompatibilityClasses() throws IOException {
         if (!Files.isDirectory(DOMAIN_ROOT)) {
             fail("itemization domain source directory is missing");
         }
@@ -28,12 +40,62 @@ final class ItemizationOptionalImportBoundaryTest {
                 int lineNumber = 0;
                 for (String line : Files.readAllLines(file)) {
                     lineNumber++;
-                    String trimmed = line.trim();
-                    if (!trimmed.startsWith("import ")) continue;
-                    if (ALLOWED_IMPORT_PREFIXES.stream().noneMatch(trimmed::startsWith)) {
-                        fail("non-domain import in " + file + ":" + lineNumber + " -> " + trimmed);
-                    }
+                    assertAllowedSourceLine(file, lineNumber, line);
                 }
+            }
+        }
+    }
+
+    @Test
+    void scannerRejectsFullyQualifiedProviderReferencesWithoutImports() {
+        assertThrows(
+            AssertionError.class,
+            () -> assertAllowedSourceLine(
+                Path.of("Synthetic.java"),
+                1,
+                "ru.ironsspellbooks.api.spells.AbstractSpell spell;"
+            )
+        );
+        assertThrows(
+            AssertionError.class,
+            () -> assertAllowedSourceLine(
+                Path.of("Synthetic.java"),
+                1,
+                "dev.gustavopere.rpgskilltree.runtime.compat.IronsCompat bridge;"
+            )
+        );
+        assertDoesNotThrow(
+            () -> assertAllowedSourceLine(
+                Path.of("Synthetic.java"),
+                1,
+                "java.util.Objects.requireNonNull(value);"
+            )
+        );
+    }
+
+    private static void assertAllowedSourceLine(Path file, int lineNumber, String line) {
+        String trimmed = line.trim();
+        if (trimmed.isEmpty()
+            || trimmed.startsWith("package ")
+            || trimmed.startsWith("//")
+            || trimmed.startsWith("/*")
+            || trimmed.startsWith("*")
+            || trimmed.startsWith("*/")) {
+            return;
+        }
+
+        if (trimmed.startsWith("import ")) {
+            if (ALLOWED_IMPORT_PREFIXES.stream().noneMatch(trimmed::startsWith)) {
+                fail("non-domain import in " + file + ":" + lineNumber + " -> " + trimmed);
+            }
+            return;
+        }
+
+        Matcher matcher = QUALIFIED_REFERENCE.matcher(trimmed);
+        while (matcher.find()) {
+            String reference = matcher.group();
+            if (ALLOWED_QUALIFIED_PREFIXES.stream().noneMatch(reference::startsWith)) {
+                fail("fully qualified non-domain reference in " + file + ":" + lineNumber + " -> " + reference);
             }
         }
     }
