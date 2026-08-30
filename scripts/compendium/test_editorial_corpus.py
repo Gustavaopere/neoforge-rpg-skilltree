@@ -116,6 +116,20 @@ def run_validator(corpus: Path, coverage: Path, *extra: str) -> subprocess.Compl
     )
 
 
+def backlog_fixture() -> dict:
+    return {
+        "schema": 1,
+        "language": "pt_br",
+        "entries": [
+            {"entry_id": "ENTITY:minecraft:zombie", "source_mod": "minecraft", "kind": "ENTITY", "coverage": "CURATED"},
+            {"entry_id": "ENTITY:minecraft:skeleton", "source_mod": "minecraft", "kind": "ENTITY", "coverage": "AUTO"},
+            {"entry_id": "BIOME:moda:ashen_grove", "source_mod": "moda", "kind": "BIOME", "coverage": "AUTO"},
+            {"entry_id": "ERROR:__invalid_entry_0", "source_mod": "__invalid__", "kind": "ERROR", "coverage": "ERROR"},
+        ],
+        "orphaned_entries": [],
+    }
+
+
 class EditorialCorpusContractTest(unittest.TestCase):
     def fixture_root(self) -> tuple[tempfile.TemporaryDirectory[str], Path, Path, Path]:
         tmp = tempfile.TemporaryDirectory()
@@ -191,6 +205,14 @@ class EditorialCorpusContractTest(unittest.TestCase):
             combined = (result.stdout + result.stderr).lower()
             self.assertTrue("namespace" in combined or "kind" in combined)
 
+    def test_package_directory_must_match_declared_namespace(self) -> None:
+        tmp, _, corpus, coverage_path = self.fixture_root()
+        with tmp:
+            write_json(corpus / "wrong/entities.json", pack())
+            result = run_validator(corpus, coverage_path)
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn("directory namespace", result.stderr.lower())
+
     def test_runtime_absent_entry_requires_optional_or_legacy_reason(self) -> None:
         tmp, _, corpus, coverage_path = self.fixture_root()
         with tmp:
@@ -240,19 +262,8 @@ class EditorialCorpusContractTest(unittest.TestCase):
         tmp, root, corpus, coverage_path = self.fixture_root()
         with tmp:
             write_json(corpus / "minecraft/entities.json", pack())
-            backlog = {
-                "schema": 1,
-                "language": "pt_br",
-                "entries": [
-                    {"entry_id": "ENTITY:minecraft:zombie", "source_mod": "minecraft", "kind": "ENTITY", "coverage": "CURATED"},
-                    {"entry_id": "ENTITY:minecraft:skeleton", "source_mod": "minecraft", "kind": "ENTITY", "coverage": "AUTO"},
-                    {"entry_id": "BIOME:moda:ashen_grove", "source_mod": "moda", "kind": "BIOME", "coverage": "AUTO"},
-                    {"entry_id": "ERROR:__invalid_entry_0", "source_mod": "__invalid__", "kind": "ERROR", "coverage": "ERROR"},
-                ],
-                "orphaned_entries": [],
-            }
             backlog_path = root / "editorial-backlog.json"
-            write_json(backlog_path, backlog)
+            write_json(backlog_path, backlog_fixture())
             out_json = root / "editorial-coverage.json"
             out_md = root / "editorial-coverage.md"
             result = subprocess.run(
@@ -282,6 +293,37 @@ class EditorialCorpusContractTest(unittest.TestCase):
             self.assertEqual(2, report["namespaces"]["minecraft"]["expected"])
             self.assertEqual(1, report["namespaces"]["minecraft"]["reviewed"])
             self.assertIn("minecraft", out_md.read_text(encoding="utf-8"))
+
+    def test_coverage_report_accepts_empty_corpus_as_all_missing(self) -> None:
+        tmp, root, corpus, coverage_path = self.fixture_root()
+        with tmp:
+            corpus.mkdir(parents=True, exist_ok=True)
+            backlog_path = root / "editorial-backlog.json"
+            write_json(backlog_path, backlog_fixture())
+            out_json = root / "editorial-coverage.json"
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(COVERAGE),
+                    str(corpus),
+                    str(backlog_path),
+                    "--coverage",
+                    str(coverage_path),
+                    "--json",
+                    str(out_json),
+                    "--markdown",
+                    str(root / "editorial-coverage.md"),
+                ],
+                cwd=ROOT,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            report = json.loads(out_json.read_text(encoding="utf-8"))
+            self.assertEqual(0, report["totals"]["reviewed"])
+            self.assertEqual(3, report["totals"]["missing"])
+            self.assertEqual(1, report["totals"]["blocked"])
 
 
 if __name__ == "__main__":
