@@ -87,17 +87,8 @@ for directory, fields in required.items():
 print("Compendium model resources: PASS")
 PY
 
-python3 - "$LANG_ROOT" <<'PY'
-import json
-from pathlib import Path
-import sys
-
-root = Path(sys.argv[1])
-pt = json.loads((root / "pt_br.json").read_text(encoding="utf-8"))
-en = json.loads((root / "en_us.json").read_text(encoding="utf-8"))
-prefix = "screen.rpgskilltree.compendium."
-missing = sorted(key for key in pt if key.startswith(prefix) and key not in en)
-if missing:
-    raise SystemExit("en_us missing Compendium UI keys: " + ", ".join(missing))
-print("Compendium locale parity: PASS")
-PY
+python3 scripts/compendium/validate_ptbr_localization.py \
+  --pt-br "$LANG_ROOT/pt_br.json" \
+  --en-us "$LANG_ROOT/en_us.json" \
+  --source-root src/main/java \
+  --source-root src/main/resources
