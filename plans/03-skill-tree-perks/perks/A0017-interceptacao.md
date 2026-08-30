@@ -81,3 +81,19 @@
 - [x] fallback sem alteração de movimento;
 - [ ] teste do componente de deslocamento somente se surgir receipt provider-native válido;
 - [ ] dedicated-server smoke após eventual integração.
+
+## Chat 2 — implementação, testes e merge — PR #224
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI / FALLBACK CANÔNICO`; torna-se `IMPLEMENTAÇÃO CONFIRMADA / FALLBACK CANÔNICO` após merge da PR #224.
+
+- [x] Transição fora→dentro + aproximação geométrica abre janela de 2 s por alvo.
+- [x] Próximo hit direto SPEAR consome 1 Controle de Distância com deduplicação.
+- [x] Impacto/pressão ×1,20/×1,35 implementados.
+- [x] `deltaMovement` é usado somente para detectar aproximação geométrica; nunca para autorizar ou reescrever movimento ofensivo.
+- [x] Fallback aprovado pelo Chat 1 preservado: janela + impacto/pressão, sem componente de deslocamento.
+- [x] Regressão JUnit confirma consumo e que A0017 não inventa dano nem penetração.
+- [x] `RPG Skill Tree CI` #2036 GREEN no SHA `bda08ca9748ad16d3352d0872f753976731424f8`.
+- [x] JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
+- [ ] **P-A0017-01:** redução de deslocamento ofensivo continua omitida até surgir receipt provider-native causal e ponto seguro de modificação.
+
+**Risco/fail-closed:** implementar redução por velocidade vanilla, `deltaMovement`, animação ou proximidade temporal alteraria o contrato e é proibido. Este ponto deve voltar ao Chat 1 somente se um novo receipt/provider real tornar possível revisar o contrato; até lá o fallback atual é o comportamento aprovado.
