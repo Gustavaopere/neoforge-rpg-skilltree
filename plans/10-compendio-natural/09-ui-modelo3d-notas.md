@@ -106,11 +106,31 @@ Implementação inicial de segurança:
 - falha de construção ou renderer coloca o tipo em quarentena durante a sessão do cliente e usa fallback pt-BR;
 - adapters de preview têm contrato de retornar entidade viva destacada, sem adicionar/tickar a entidade no mundo.
 
+Bloqueio atual de variantes:
+
+- `DiscoveryRecord` já persiste `variantIds`, e o runtime de fauna consegue produzir snapshots da variante da instância observada;
+- o snapshot cliente atual (`CompendiumClientSnapshot`) **não transporta** os `variantIds` descobertos;
+- os feeds genéricos de descoberta ainda publicam sinais sem `variantId`;
+- por isso, a UI **não deve** construir uma lista de variantes a partir do registry/catálogo completo: isso poderia revelar variantes ainda não descobertas;
+- o seletor de variantes permanece fail-closed até o contrato de snapshot/protocolo do 10.13 projetar somente variantes autorizadas para aquele jogador.
+
 ### D — Preview de flora/árvore/estrutura
 
 - flora/árvore: item/block rendering quando disponível;
 - estrutura: ícone/screenshot próprio somente se houver asset/proveniência; não tentar renderizar estrutura inteira 3D na primeira versão;
 - bioma/dimensão: ícones e metadata; screenshots são opcionais e precisam de pipeline/asset próprio.
+
+Implementação atual:
+
+- [x] `FLORA`, `TREE`, `CROP` e `BLOCK_FEATURE` usam uma política pura de preview por registry;
+- [x] o resolver compartilhado procura o `Block` canônico e usa `Block#asItem()` quando existe representação segura em item;
+- [x] blocos sem item (`Items.AIR`) e IDs ausentes usam fallback pt-BR, sem inventar asset ou representação 3D;
+- [x] o renderer físico cliente usa `GuiGraphics.renderItem(ItemStack, x, y)` e contém falhas de renderização localmente;
+- [x] `STRUCTURE`, `BIOME` e `DIMENSION` permanecem metadata-only enquanto não houver asset próprio/proveniência válida;
+- [x] nenhuma estrutura inteira é renderizada em 3D nesta versão;
+- [x] o lookup de registry fica em `runtime/compendium`, sem dependência client-only, e é verificado em ambiente NeoForge bootstrapped por GameTest.
+
+O renderer direto de `BlockState` fica deliberadamente adiado até existir API 1.21.1 confirmada e matriz de segurança suficiente para blocos modded; a ausência de item não autoriza um renderer arbitrário.
 
 ### E — Notas pessoais
 
