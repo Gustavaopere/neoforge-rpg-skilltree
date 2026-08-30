@@ -57,6 +57,14 @@ final class CombatPerkVisualLayoutJUnitTest {
         }
     }
 
+    @Test
+    void visualNodeCanonicalizesSignedZeroCoordinates() {
+        CombatPerkVisualLayout.Node node = new CombatPerkVisualLayout.Node("test", -0.0D, -0.0D);
+
+        assertEquals(Double.doubleToRawLongBits(0.0D), Double.doubleToRawLongBits(node.x()));
+        assertEquals(Double.doubleToRawLongBits(0.0D), Double.doubleToRawLongBits(node.y()));
+    }
+
     private static String edgeKey(String first, String second) {
         return first.compareTo(second) <= 0 ? first + "|" + second : second + "|" + first;
     }
