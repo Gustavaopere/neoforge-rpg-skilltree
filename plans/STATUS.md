@@ -1,10 +1,10 @@
 # Status canônico dos planos
 
-Última auditoria de fechamento: **2026-08-29**.
+Última auditoria de fechamento: **2026-08-30**.
 
 Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos`, `10.07 — Loot, dieta, reprodução e ecologia` e `10.08 — Biomas, estruturas e dimensões` foram implementados, validados, integrados e auditados.
 
-Planejamento do Stage 11 adicionado em **2026-08-29** pelo PR #188. O estágio possui **15 subplanos**, todos ainda abertos; por isso a base global de planejamento passa de 75 para **90 subplanos**, sem aumentar a quantidade concluída.
+Planejamento do Stage 11 adicionado em **2026-08-29** pelo PR #188. O estágio possui **15 subplanos**; `11.01 — Domínio, invariantes e autoridade` foi implementado e validado pelo PR #232, restando 14 subplanos abertos. A base global permanece em **90 subplanos**.
 
 Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
@@ -50,11 +50,13 @@ Reconciliação do Stage 03 confirma que `✅-01-data-schema-loaders.md` e `✅-
 
 Fechamento do Stage 03.04 integrado pela PR #194 em `main@c1523ac5211543d26cdb54387eb2089510822ff3`. O runtime unificado `NodeEffectRuntime` passou a reconciliar efeitos numéricos e comportamentais pela mesma fronteira autoritativa; IDs gerados são estáveis e sensíveis à origem, mudanças de rank não criam identidade persistente nova, reload/login/compra/respec convergem no mesmo refresh e providers opcionais ausentes permanecem fail-soft. O head funcional `5611ebbf6a2052f4ac3a4f0ac41327376ee13463` passou o RPG Skill Tree CI `33287243581` / run #1845 GREEN completo, incluindo a aceitação NeoForge real de `ADD_FLAT`, `ADD_PERCENT_BASE` e `MULTIPLY_TOTAL`; o head documental final `c8950388e1de4281372e79f11e89a8f827ce3f5f` passou o CI `33287464600` / run #1855 GREEN completo, com Core, JUnit 5, NeoForge GameTests, validators, build, JAR e dedicated-server smoke, e todos os workflows Foundation/Compendium associados também fecharam GREEN.
 
+Fechamento funcional do Stage 11.01 preparado no PR #232. O TDD RED `33308736024` falhou exclusivamente pela ausência dos tipos do novo domínio. O head funcional corrigido após review `1fc372df5eda3e2beaa4292224cf59a6cf967d90` passou o RPG Skill Tree CI `33309096174` / run #2100 GREEN completo, incluindo JUnit 5, NeoForge GameTests, validators, NeoForge build, verificação do JAR e dedicated-server smoke; os workflows Foundation/Compendium associados também fecharam GREEN. O fechamento formal é materializado por `✅-01-domain-invariants.md` no mesmo PR.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**31 / 90 subplanos concluídos formalmente.**
+**32 / 90 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -87,6 +89,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `10-compendio-natural/✅-06-flora-arvores-cultivos.md`
 - `10-compendio-natural/✅-07-loot-dieta-reproducao-ecologia.md`
 - `10-compendio-natural/✅-08-biomas-estruturas-dimensoes.md`
+- `11-itemization-equipment-progression/✅-01-domain-invariants.md`
 
 Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`, contrato efetivamente implementado, evidência de verificação e `Acceptance: satisfied`.
 
@@ -105,8 +108,8 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
-| 11 Itemização & Progressão de Equipamentos | 0 | 15 | PLANEJADO |
-| **Total** | **31** | **90** | |
+| 11 Itemização & Progressão de Equipamentos | 1 | 15 | EM ANDAMENTO |
+| **Total** | **32** | **90** | |
 
 ## Por que os demais continuam abertos
 
@@ -162,11 +165,11 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ### 11 — Itemização e Progressão de Equipamentos
 
-Os 15 subplanos adicionados pelo PR #188 permanecem abertos. O estágio cobre invariantes de domínio, classificação universal de equipamentos, identidade persistente sem reroll, ranks/Poder do Item, schema e geração de Prefixos/Sufixos/Infixos, runtime de modificadores, loot/craft/mobs, integrações Apotheosis/Apothic, Iron's/Ars, Create/tech/Curios, salvaging, localização/UI pt-BR, migração de mundos e hardening/performance. Nenhum desses itens é contado como concluído até receber `✅-` após implementação, validação e integração.
+`✅-01-domain-invariants.md` está fechado. O domínio canônico agora fixa identidade (`instanceId`/seed/schema), sete ranks, `ItemPower`, as três famílias Prefix/Suffix/Infix com 1..5 rolls por família, fontes de geração, primeira geração imutável, query versus mutation, política de evolução/cópia e barreira contra imports opcionais/compat. Os 14 subplanos seguintes continuam abertos e devem reutilizar esse contrato sem criar representações concorrentes. O próximo passo causal é `02-equipment-classification.md`.
 
 ## Evidência de regressão atual
 
-O fechamento mais recente integrado é Stage 03.04 em `main@c1523ac5211543d26cdb54387eb2089510822ff3`. O head funcional `5611ebbf6a2052f4ac3a4f0ac41327376ee13463` passou o RPG Skill Tree CI `33287243581` / run #1845 GREEN completo; o head documental final `c8950388e1de4281372e79f11e89a8f827ce3f5f` passou o CI `33287464600` / run #1855 GREEN completo no merge-ref corrente, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR e dedicated-server smoke. Todos os oito workflows Foundation/Compendium associados ao mesmo head também fecharam GREEN. A mesma reconciliação preserva os fechamentos 03.01–03.03 e 03.05 já materializados na `main`; os fechamentos anteriores de 01.04/01.05 e 02.01–02.05 permanecem preservados pelas mesmas matrizes de regressão.
+O fechamento funcional mais recente é Stage 11.01 no PR #232. O TDD RED `33308736024` confirmou a ausência intencional dos tipos; o head funcional corrigido após review `1fc372df5eda3e2beaa4292224cf59a6cf967d90` passou o RPG Skill Tree CI `33309096174` / run #2100 GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke. Todos os oito workflows Foundation/Compendium associados ao mesmo head também fecharam GREEN. Os fechamentos anteriores, inclusive Stage 03.04 em `main@c1523ac5211543d26cdb54387eb2089510822ff3`, permanecem preservados pela mesma matriz de regressão.
 
 ## Convenção
 
