@@ -16,7 +16,7 @@ final class CombatPerkWikiSnapshotGeneratorJUnitTest {
     Path temporaryDirectory;
 
     @Test
-    void rendersExactlyTheCanonicalA0001A0100SemanticSnapshotWithoutInventingUnauditedText() {
+    void rendersExactlyTheCanonicalA0001A0100SemanticSnapshotWithoutInventingTextBeyondTheApprovedBatch() {
         String json = CombatPerkWikiSnapshotGenerator.renderJson();
 
         assertTrue(json.contains("\"treeId\": \"rpgskilltree:runtime/combat_perks\""));
@@ -24,10 +24,16 @@ final class CombatPerkWikiSnapshotGeneratorJUnitTest {
         assertTrue(json.contains("\"code\": \"A0001\""));
         assertTrue(json.contains("\"name\": \"Treino com Espadas I\""));
         assertTrue(json.contains("+3% de dano com espadas por rank, máximo +9%."));
+
         assertTrue(json.contains("\"code\": \"A0021\""));
         assertTrue(json.contains("\"name\": \"Precisão com Adagas\""));
-        assertTrue(json.contains("\"code\": \"A0021\",\n      \"name\": \"Precisão com Adagas\",\n      \"description\": null"));
-        assertFalse(json.contains("\"code\": \"A0021\"\n      \"description\": \"chance de crítico"));
+        assertTrue(json.contains("+3% de chance crítica com adagas por rank, máximo +9%."));
+        assertTrue(json.contains("\"code\": \"A0030\""));
+        assertTrue(json.contains("Sem receipt nativo de guard-break"));
+
+        assertTrue(json.contains("\"code\": \"A0031\""));
+        assertTrue(json.contains("\"code\": \"A0031\",\n      \"name\": \"Treino com Maças I\",\n      \"description\": null"));
+        assertFalse(json.contains("\"code\": \"A0031\"\n      \"description\": \""));
     }
 
     @Test

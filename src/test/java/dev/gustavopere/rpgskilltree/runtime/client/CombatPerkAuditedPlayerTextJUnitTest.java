@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class CombatPerkAuditedPlayerTextJUnitTest {
     @Test
-    void auditedA0001A0020RangeHasEffectAndGateText() {
-        for (int index = 1; index <= 20; index++) {
+    void auditedA0001A0030RangeHasEffectAndGateText() {
+        for (int index = 1; index <= 30; index++) {
             String nodeId = "rpgskilltree:combat/a%04d".formatted(index);
             assertTrue(CombatPerkClientText.nodeEffect(nodeId).isPresent(), nodeId + " effect");
             assertTrue(CombatPerkClientText.nodeGate(nodeId).isPresent(), nodeId + " gate");
@@ -33,12 +33,20 @@ final class CombatPerkAuditedPlayerTextJUnitTest {
             "Gateway `epic_dagger` acessível + A0019 ≥ 2 ranks; gateway da Árvore Exterior.",
             CombatPerkClientText.nodeGate("rpgskilltree:combat/a0020").orElseThrow()
         );
+        assertTrue(
+            CombatPerkClientText.nodeEffect("rpgskilltree:combat/a0030").orElseThrow()
+                .contains("Sem receipt nativo de guard-break")
+        );
+        assertTrue(
+            CombatPerkClientText.nodeEffect("rpgskilltree:combat/a0030").orElseThrow()
+                .contains("capstone fica indisponível")
+        );
     }
 
     @Test
     void unauditedNextRangeRemainsFailClosed() {
-        assertTrue(CombatPerkClientText.nodeEffect("rpgskilltree:combat/a0021").isEmpty());
-        assertTrue(CombatPerkClientText.nodeGate("rpgskilltree:combat/a0021").isEmpty());
+        assertTrue(CombatPerkClientText.nodeEffect("rpgskilltree:combat/a0031").isEmpty());
+        assertTrue(CombatPerkClientText.nodeGate("rpgskilltree:combat/a0031").isEmpty());
         assertTrue(CombatPerkClientText.nodeEffect("rpgskilltree:combat/a0100").isEmpty());
     }
 }
