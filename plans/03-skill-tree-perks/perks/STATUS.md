@@ -10,8 +10,8 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0002 | Treino com Espadas II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação provider→árvore VALIDADA EM CI na PR #237 | nenhuma |
 | A0003 | Precisão com Espadas | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de provenance/crítico VALIDADA EM CI na PR #237 | nenhuma |
 | A0004 | Ritmo do Duelista | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de autoria/recursos VALIDADA EM CI na PR #237 | nenhuma |
-| A0005 | Abertura de Guarda | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de defesa física VALIDADA EM CI na PR #237 | nenhuma |
-| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de provenance/defesa VALIDADA EM CI na PR #237 | nenhuma |
+| A0005 | Abertura de Guarda | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; `P-A0005-02` causal corrigida e VALIDADA EM CI na PR #244 | nenhuma; confirmação da correção após merge #244 |
+| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; `P-A0006-01` causal corrigida e VALIDADA EM CI na PR #244 | nenhuma; aparo/guarda perfeita extras seguem expansão condicional fail-closed |
 | A0007 | Treino com Machados I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação provider→árvore VALIDADA EM CI na PR #237 | nenhuma |
 | A0008 | Treino com Machados II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação provider→árvore VALIDADA EM CI na PR #237 | nenhuma |
 | A0009 | Precisão com Machados | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de provenance/crítico VALIDADA EM CI na PR #237 | nenhuma |
@@ -123,3 +123,23 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 10. `P-A0040-01` — cleanup bounded/server-authoritative de `reapMarks` para alvo removido/despawnado/chunk descarregado sem morte.
 
 **Próxima etapa deste ciclo:** CI/review do HEAD corrigido → merge → confirmação da `main` → PARAR.
+
+## Chat 3 — lote exato A0001–A0010 — PR #244
+
+**Estado:** `PENDÊNCIAS ENCONTRADAS E CORRIGIDAS; AGUARDANDO CI FINAL DO HEAD DOCUMENTAL + MERGE`.
+
+- **INÍCIO:** A0001.
+- **FIM:** A0010.
+- **Quantidade:** 10 perks consecutivas.
+- **Base auditada:** `main@d1c29b1acca488f14e0741073f90502621a5ed39`.
+- **Dossiês lidos antes da correção:** 10/10.
+- **Sem nova pendência acionável:** A0001–A0004 e A0007–A0010.
+- **`P-A0005-02`:** RESOLVIDA — A0005 agora prepara no PRE e só consome 2 Ímpetos/inicia cooldown no POST com dano confirmado.
+- **`P-A0006-01`:** RESOLVIDA — A0006 agora prepara no PRE e só consome Riposta + 5 Ímpetos no POST com dano confirmado; supressão de A0004 depende do commit real.
+- **A0006 aparo/guarda perfeita:** expansão condicional, não bloqueante; permanece fail-closed sem receipt público causal. `ON_DODGE` continua comprovado.
+- **TDD RED:** CI #2193 — 120 testes, exatamente 2 falhas, correspondentes às regressões A0005/A0006.
+- **GREEN de código:** CI #2203 no HEAD `cc7ba795437943a962cdb5e33cd350f92d0ac123` — core, JUnit, GameTests, build, JAR e dedicated-server smoke verdes; workflows auxiliares verdes.
+- **Dossiês atualizados:** A0005 e A0006.
+- **Relatório canônico:** `AUDITORIA-CHAT3-A0001-A0010-PENDENCIAS-TECNICAS.md`.
+- **Próxima ação permitida:** validar CI do HEAD final da PR #244 → merge → confirmar `main` → PARAR.
+- **A0011+:** proibido iniciar automaticamente neste ciclo.
