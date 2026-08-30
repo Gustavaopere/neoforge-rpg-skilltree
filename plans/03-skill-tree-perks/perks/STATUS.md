@@ -69,13 +69,19 @@ A fonte canônica de design permanece o Notion. Este índice separa design, cód
 - **INÍCIO:** A0011.
 - **FIM:** A0020.
 - **Quantidade:** 10 perks consecutivas.
-- **PR:** #224 — `test(perks): confirm A0011-A0020 implementation contracts`.
+- **PR de trabalho:** #224 — draft original, fechado sem merge exclusivamente porque o conector falhou ao executar `markPullRequestReadyForReview`.
+- **PR sucessora de merge:** #226 — mesmo branch e mesmo conteúdo do #224, aberta não-draft para contornar o erro administrativo do conector.
 - **P-A0012-01:** RESOLVIDA — Cold Sweat aceita somente `2.4.2` exato; RED CI #2028.
 - **P-A0012-02:** RESOLVIDA — diagnóstico bounded one-shot para versão/API/invocação + probe no bootstrap; RED CI #2033.
 - **P-A0017-01:** ABERTA / NÃO BLOQUEANTE — redução de deslocamento omitida; fallback aprovado janela + impacto/pressão permanece ativo.
 - **Regressões novas:** `ColdSweatFrenzyBridgeTest` e `A0011A0020ImplementationContractJUnitTest`.
 - **Validação de runtime/testes:** `RPG Skill Tree CI` #2036 GREEN no HEAD `bda08ca9748ad16d3352d0872f753976731424f8`; todos os 9 workflows associados ficaram GREEN, incluindo JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke.
+- **Validação documental do #224:** `RPG Skill Tree CI` #2052 GREEN no HEAD `a6ae8b954c2af23738938700f8232154f2374c56`.
 - **Estado pré-merge:** A0011–A0020 = `IMPLEMENTAÇÃO VALIDADA EM CI`; A0017 explicitamente em fallback canônico.
-- **Estado definitivo:** somente após CI verde do HEAD documental final, review limpo, merge da #224 e confirmação da `main` pós-merge.
+- **Estado definitivo:** somente após CI verde do HEAD final da sucessora #226, review limpo, merge da #226 e confirmação da `main` pós-merge.
+
+### Nota administrativa #224 → #226
+
+As seções dos dez dossiês que dizem “torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #224” foram escritas antes de o bug do conector `markPullRequestReadyForReview` ser confirmado. O #224 foi fechado **sem merge e sem mudança de branch/HEAD**; o #226 é seu sucessor operacional não-draft. Para este lote, essas referências são formalmente supersedidas por: **confirmação após merge da PR #226**. Isso não altera design, runtime, testes nem o status de P-A0017-01.
 
 O próximo lote A0021–A0030 **não deve ser iniciado neste ciclo**.
