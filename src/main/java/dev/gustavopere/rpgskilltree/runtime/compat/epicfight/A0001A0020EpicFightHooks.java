@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
+import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.rpgskilltree.core.A0001A0020CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
@@ -10,13 +11,18 @@ import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.A0001A0020RuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.compat.coldsweat.ColdSweatFrenzyBridge;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -31,13 +37,16 @@ import yesman.epicfight.api.event.types.animation.AttackPhaseEndEvent;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 import yesman.epicfight.api.event.types.entity.DodgeEvent;
 import yesman.epicfight.api.event.types.entity.ModifyAttackSpeedEvent;
+import yesman.epicfight.api.event.types.entity.StunnedEvent;
 import yesman.epicfight.api.event.types.player.TickPlayerEpicFightModeEvent;
 import yesman.epicfight.api.utils.math.ValueModifier;
+import yesman.epicfight.registry.entries.EpicFightAttributes;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.HurtableEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.EpicFightDamageSource;
+import yesman.epicfight.world.damagesource.StunType;
 
 /** Provider-native Epic Fight 21.17.3.1 bridge for exactly A0001-A0020. */
 public final class A0001A0020EpicFightHooks {
@@ -49,7 +58,10 @@ public final class A0001A0020EpicFightHooks {
     private static final String SPEED_ID = "rpgskilltree:a0001_a0020/speed";
     private static final String DODGE_ID = "rpgskilltree:a0001_a0020/dodge";
     private static final String MISS_ID = "rpgskilltree:a0001_a0020/miss";
+    private static final String STUNNED_ID = "rpgskilltree:a0001_a0020/stunned";
     private static final String TICK_ID = "rpgskilltree:a0001_a0020/tick";
+    private static final ResourceLocation A0012_RHYTHM_DROP_ID =
+        ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "a0012_rhythm_drop");
 
     private static final WeakHashMap<EpicFightDamageSource, Map<String, PendingHit>> PENDING = new WeakHashMap<>();
     private static final Map<String, RecentCriticalRoot> RECENT_CRITICAL_ROOTS = new HashMap<>();
@@ -68,6 +80,7 @@ public final class A0001A0020EpicFightHooks {
         EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST.registerEvent(A0001A0020EpicFightHooks::onDamagePost, POST_ID);
         EpicFightEventHooks.Entity.MODIFY_ATTACK_SPEED.registerEvent(A0001A0020EpicFightHooks::onAttackSpeed, SPEED_ID);
         EpicFightEventHooks.Entity.ON_DODGE.registerEvent(A0001A0020EpicFightHooks::onDodge, DODGE_ID);
+        EpicFightEventHooks.Entity.ON_STUNNED.registerEvent(A0001A0020EpicFightHooks::onStunned, STUNNED_ID);
         EpicFightEventHooks.Animation.ATTACK_PHASE_END.registerEvent(A0001A0020EpicFightHooks::onAttackPhaseEnd, MISS_ID);
         EpicFightEventHooks.Player.TICK_EPICFIGHT_MODE.registerEvent(A0001A0020EpicFightHooks::onEpicFightTick, TICK_ID);
 
@@ -119,11 +132,12 @@ public final class A0001A0020EpicFightHooks {
         CombatPerkRanks ranks = A0001A0020RuntimeState.ranks(player);
         if (ranks.ranks().isEmpty()) return;
 
+        String actorId = A0001A0020RuntimeState.actorId(player);
         String targetId = target.getUUID().toString();
         long now = now(player);
         RootResolution root = rootAction(player, source, targetId, now);
         boolean critical = A0001A0020RuntimeState.critical().resolve(
-            A0001A0020RuntimeState.actorId(player),
+            actorId,
             root.rootActionId,
             root.providerCritical,
             NotionCombatPerkRules.criticalChanceBonus(family.get(), ranks),
@@ -136,8 +150,14 @@ public final class A0001A0020EpicFightHooks {
         boolean idealSpearRange = family.get() == WeaponFamily.SPEAR
             && A0001A0020CombatPolicy.isIdealSpearRange(player.distanceTo(target), effectiveReach);
 
+        // A0012 is transactional: CORE must be paid first in the same provider PRE event. Only a
+        // successful write authorizes exhaustion and the offensive package. If A0011 would spend
+        // Fury below 75 first, no body cost is charged because Frenzy would not benefit that hit.
+        boolean frenzyBodyCostPaid = payFrenzyBodyCost(
+            player, actorId, root.rootActionId, family.get(), ranks, defended, now);
+
         A0001A0020CombatPolicy.HitFacts facts = new A0001A0020CombatPolicy.HitFacts(
-            A0001A0020RuntimeState.actorId(player),
+            actorId,
             targetId,
             root.rootActionId,
             family.get(),
@@ -146,11 +166,12 @@ public final class A0001A0020EpicFightHooks {
             true,
             defended,
             target.getArmorValue() > 0,
-            source.shouldChargeWeapon(),
+            true,
             idealSpearRange,
             critical,
             true,
             true,
+            frenzyBodyCostPaid,
             now
         );
         var modifiers = A0001A0020CombatPolicy.beforeHit(facts, ranks, A0001A0020RuntimeState.state());
@@ -173,7 +194,7 @@ public final class A0001A0020EpicFightHooks {
 
         remember(source, targetId, new PendingHit(
             root.rootActionId, family.get(), idealSpearRange, critical,
-            root.criticalMultiplierAlreadyApplied, modifiers.suppressMomentumGain()));
+            root.criticalMultiplierAlreadyApplied, modifiers.suppressMomentumGain(), frenzyBodyCostPaid));
     }
 
     private static void onDamagePost(DealDamageEvent.Post event) {
@@ -186,11 +207,12 @@ public final class A0001A0020EpicFightHooks {
         PendingHit pending = forget(event.getDamageSource(), targetId);
         if (pending == null || !hostile(player, event.getTarget())) return;
         CombatPerkRanks ranks = A0001A0020RuntimeState.ranks(player);
+        long now = now(player);
         A0001A0020CombatPolicy.HitFacts facts = new A0001A0020CombatPolicy.HitFacts(
             A0001A0020RuntimeState.actorId(player), targetId, pending.rootActionId, pending.family,
             true, true, true, false, event.getTarget().getArmorValue() > 0,
-            event.getDamageSource().shouldChargeWeapon(), pending.idealSpearRange, pending.critical,
-            true, true, now(player)
+            true, pending.idealSpearRange, pending.critical,
+            true, true, pending.frenzyBodyCostPaid, now
         );
         A0001A0020CombatPolicy.afterConfirmedHit(
             facts, ranks, A0001A0020RuntimeState.state(), pending.suppressMomentumGain);
@@ -227,6 +249,21 @@ public final class A0001A0020EpicFightHooks {
         );
     }
 
+    /** Only strong, hostile provider-native stuns satisfy A0004/A0016 heavy-stagger loss. */
+    private static void onStunned(StunnedEvent event) {
+        if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
+        EpicFightDamageSource source = event.getDamageSource();
+        if (source == null || !isHeavyStun(event.getStunType())) return;
+        Entity sourceEntity = source.getEntity();
+        if (!(sourceEntity instanceof LivingEntity attacker) || !hostile(player, attacker)) return;
+        A0001A0020CombatPolicy.onConfirmedHostileHeavyStagger(
+            A0001A0020RuntimeState.actorId(player),
+            A0001A0020RuntimeState.ranks(player),
+            A0001A0020RuntimeState.state(),
+            now(player)
+        );
+    }
+
     /** Epic Fight clears the actual-hit list per attack phase, making an empty phase-end list a confirmed miss. */
     private static void onAttackPhaseEnd(AttackPhaseEndEvent event) {
         if (!(event.getEntityPatch() instanceof ServerPlayerPatch patch)) return;
@@ -249,6 +286,11 @@ public final class A0001A0020EpicFightHooks {
         A0001A0020CombatPolicy.tick(actorId, A0001A0020RuntimeState.state(), now);
 
         CombatPerkRanks ranks = A0001A0020RuntimeState.ranks(player);
+        int axeMastery = PlayerProgressionRuntime.get(player).mastery().experience("epicfight:axe");
+        boolean frenzyRuntimeAvailable = ranks.learned("A0012") && ColdSweatFrenzyBridge.available();
+        A0001A0020RuntimeState.state().updateFrenzyState(actorId, frenzyRuntimeAvailable, axeMastery, now);
+        refreshRhythmDrop(player, actorId, now);
+
         if (ranks.rank("A0017") <= 0 && !ranks.learned("A0018")) return;
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(player.getMainHandItem());
         if (family(capability).orElse(null) != WeaponFamily.SPEAR) return;
@@ -297,6 +339,33 @@ public final class A0001A0020EpicFightHooks {
         }
     }
 
+    private static boolean payFrenzyBodyCost(
+        ServerPlayer player,
+        String actorId,
+        String rootActionId,
+        WeaponFamily family,
+        CombatPerkRanks ranks,
+        boolean defended,
+        long nowMillis
+    ) {
+        if (family != WeaponFamily.AXE || !ranks.learned("A0012") || !ColdSweatFrenzyBridge.available()) return false;
+        double fury = A0001A0020RuntimeState.state().fury(actorId);
+        if (fury + 1.0E-9D < NotionCombatPerkRules.A0012_FRENZY_THRESHOLD) return false;
+
+        // Below the peak, A0011 has priority on defended targets. Do not charge A0012 if that
+        // mandatory 20-Fury spend would leave the actor below the Frenzy threshold on this hit.
+        if (fury + 1.0E-9D < NotionCombatPerkRules.A0012_PEAK_THRESHOLD
+            && ranks.rank("A0011") > 0
+            && defended
+            && fury - NotionCombatPerkRules.A0011_FURY_COST + 1.0E-9D < NotionCombatPerkRules.A0012_FRENZY_THRESHOLD) {
+            return false;
+        }
+        if (!A0001A0020RuntimeState.state().claimOnce(actorId, rootActionId, "A0012:body-cost", nowMillis)) return false;
+        if (!ColdSweatFrenzyBridge.addCoreHeat(player, NotionCombatPerkRules.A0012_CORE_HEAT_PER_HIT)) return false;
+        player.causeFoodExhaustion((float)NotionCombatPerkRules.A0012_EXHAUSTION_PER_HIT);
+        return true;
+    }
+
     private static Optional<WeaponFamily> family(CapabilityItem capability) {
         if (capability == null || capability.isEmpty()) return Optional.empty();
         String category = EpicFightWeaponCategory.normalize(capability.getWeaponCategory().toString());
@@ -314,6 +383,24 @@ public final class A0001A0020EpicFightHooks {
     private static boolean hostile(ServerPlayer player, LivingEntity target) {
         if (target == player || player.isAlliedTo(target) || target.isInvulnerable()) return false;
         return target instanceof Enemy || target instanceof Player;
+    }
+
+    private static boolean isHeavyStun(StunType stunType) {
+        return stunType == StunType.LONG || stunType == StunType.KNOCKDOWN || stunType == StunType.NEUTRALIZE;
+    }
+
+    private static void refreshRhythmDrop(ServerPlayer player, String actorId, long nowMillis) {
+        AttributeInstance regen = player.getAttribute(EpicFightAttributes.STAMINA_REGEN);
+        if (regen == null) return;
+        if (A0001A0020RuntimeState.state().rhythmDropActive(actorId, nowMillis)) {
+            regen.addOrUpdateTransientModifier(new AttributeModifier(
+                A0012_RHYTHM_DROP_ID,
+                NotionCombatPerkRules.A0012_STAMINA_REGEN_PENALTY,
+                AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            ));
+        } else {
+            regen.removeModifier(A0012_RHYTHM_DROP_ID);
+        }
     }
 
     private static synchronized RootResolution rootAction(
@@ -376,6 +463,8 @@ public final class A0001A0020EpicFightHooks {
     }
 
     private static synchronized void clearPlayer(ServerPlayer player) {
+        AttributeInstance regen = player.getAttribute(EpicFightAttributes.STAMINA_REGEN);
+        if (regen != null) regen.removeModifier(A0012_RHYTHM_DROP_ID);
         String actorId = A0001A0020RuntimeState.actorId(player);
         A0001A0020RuntimeState.clear(player);
         String prefix = actorId + '\u0000';
@@ -409,6 +498,7 @@ public final class A0001A0020EpicFightHooks {
         boolean idealSpearRange,
         boolean critical,
         boolean criticalMultiplierAlreadyApplied,
-        boolean suppressMomentumGain
+        boolean suppressMomentumGain,
+        boolean frenzyBodyCostPaid
     ) {}
 }

@@ -8,6 +8,7 @@ EXPECTED = (
     "irons_spellbooks",
     "ars_nouveau",
     "epicfight",
+    "cold_sweat",
     "goety",
     "malum",
     "eidolon",

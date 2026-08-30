@@ -2,80 +2,49 @@
 
 ## Status e proveniência
 
-- **Design:** APROVADO/FECHADO.
-- **Código relevante em `main`:** PRESENTE, com divergência de fallback identificada.
+- **Design:** APROVADO após correção canônica.
+- **Código relevante:** PRESENTE com fallback corrigido nesta auditoria.
+- **Implementação:** CONFIRMÁVEL após CI/merge.
 - **Notion:** https://app.notion.com/p/3c569db9f0db816cb407cc16ebe41066
-- **Critérios de aprovação:** https://app.notion.com/p/3c669db9f0db81e2a0f7cd9b2d410567
-- **Referência técnica auditada:** `main@54658e6f51d1862a267fdb26e4146466228b18cb`.
+- **Critérios locais:** `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
-## Especificação canônica do Notion
+## Especificação canônica
 
-- **Código:** A0005
-- **Nome:** Abertura de Guarda
-- **Domínio:** MARTIAL
-- **Árvore:** Epic Fight — Espadas
-- **Ramo:** Duelista — Ímpeto
-- **Camada:** 3
-- **Função na Árvore:** Notable
-- **Tier:** Médio
-- **Faixa de Poder:** Médio
-- **Ranks Máx.:** 1
-- **Custo por Rank:** 1
-- **Dependências Obrigatórias:** A0002 Treino com Espadas II ≥ 2 ranks + A0004 Ritmo do Duelista; rota lateral não substitui essas dependências.
-- **Pré-requisitos:** A0002 + A0004.
-- **Provider/Mods:** Epic Fight 21.17.3.1 + RPG Skill Tree.
-- **Efeito:** com pelo menos 3 de Ímpeto, um acerto direto de espada contra o mesmo alvo após sequência limpa pode consumir 2 de Ímpeto para criar Abertura: +12% de penetração física elegível e +8% de impacto/pressão de guarda. Recarga de 6 s por alvo.
-- **Escalonamento:** 1 rank; benefício condicional e consumidor de recurso.
-- **Gate:** Gateway `epic_sword` + A0002 ≥ 2 ranks + A0004 adquirido.
-- **Hook:** acerto direto confirmado + registro canônico de Ímpeto + estado defensivo do alvo; quando disponíveis, usar `IMPACT`/`ARMOR_NEGATION` do Epic Fight apenas no golpe consumidor.
-- **Fallback:** se guarda/postura nativa não estiver exposta, aplicar somente a penetração física canônica com cap; nunca simular quebra de guarda inexistente.
-- **Regra:** não ativa em dano periódico/proc, não encadeia em si mesma e respeita caps globais de penetração. Gate deve reproduzir integralmente as dependências.
+- Requer A0002 ≥2 + A0004 e pelo menos 3 Ímpeto.
+- Mesmo alvo após sequência limpa; consome 2 Ímpeto; cooldown 6 s/alvo.
+- Defesa provider-native observável e ativa: até +12% penetração física e +8% impacto/pressão de guarda no golpe consumidor.
+- Se guarda/postura **não for observável**, somente defesa física server-side comprovável pode qualificar o fallback; nesse caso há apenas penetração, nunca impacto/pressão inventados.
+- Se o provider observa explicitamente que o alvo não está defendendo, Armor não é atalho para ativar A0005.
 
-## Auditoria obrigatória — 9 eixos
+## Auditoria — 9 eixos
 
-1. **Dependências/gates — PASS.** A0002 e A0004 são obrigatórios e semanticamente coerentes.
-2. **Integração global — PASS.** Consome Ímpeto canônico e usa penetração/impacto do provider; não cria postura paralela.
-3. **Qualidade/identidade — PASS.** Converte execução acumulada em janela ofensiva condicional com custo e cooldown por alvo.
-4. **Topologia — PASS.** Notable de camada 3 depende da progressão de ritmo + Ímpeto.
-5. **Especializações — PASS.** Mantém identidade Duelista sem virar classe automática.
-6. **PT-BR — PASS.** Texto de jogador em português.
-7. **Notion completo — PASS.** Custo, requisito, alvo, cooldown, hooks e fallback definidos.
-8. **NeoVitae — PASS.** Ausente.
-9. **Cobertura modlist — PASS COM DIVERGÊNCIA DE FALLBACK.** Epic Fight fornece armor negation/impact; o fallback sem guarda/postura precisa ser representado corretamente no core/adapter.
+1. **Gates:** PASS — A0002/A0004 obrigatórios.
+2. **Integração global:** PASS — consome Ímpeto e usa `IMPACT`/`ARMOR_NEGATION` nativos.
+3. **Identidade:** PASS — janela ofensiva condicionada a execução e defesa real.
+4. **Topologia:** PASS — Notable camada 3.
+5. **Especializações:** PASS — permanece exterior.
+6. **PT-BR:** PASS.
+7. **Notion:** PASS após correção da ambiguidade de fallback.
+8. **NeoVitae:** PASS.
+9. **Modlist/integrações:** PASS — Epic Fight principal; fallback só com prova física server-side.
 
-## Contrato técnico esperado
+## Evidência técnica
 
-- Requer `momentum >= 3` antes do consumo.
-- Consome exatamente 2 de Ímpeto.
-- Mesmo alvo da sequência limpa.
-- Cooldown individual de 6 s por alvo.
-- Penetração: 12% quando o componente for elegível/seguro.
-- Impacto/pressão: +8% somente quando o provider expuser o componente real.
-- Sem guarda/postura exposta, a perk deve poder degradar para **somente penetração**, sem inventar quebra de guarda.
-- Uma ação só pode consumir A0005 uma vez.
+- `NotionCombatPerkRules`: threshold 3, custo 2, penetração 0,12, impacto 1,08, cooldown 6 s.
+- `A0001A0020CombatPolicy.beforeHit`: distingue `nativeDefense` de `armorFallback`.
+- Rota nativa exige guarda/postura real; rota fallback exige hook defensivo indisponível + Armor comprovada + penetração disponível.
+- Fallback não aplica impacto/pressão.
+- `A0001A0020CombatPolicyTest.openingFallbackRequiresConfirmedArmorAndOmitsImpact` cobre alvo observavelmente desprotegido e fallback estrito.
 
-## Evidência encontrada na `main`
+## Pendências
 
-- `NotionCombatPerkRules` define `A0005_MIN_MOMENTUM=3`, custo 2, multiplicador 1.08, penetração 0.12 e cooldown 6 s.
-- `A0001A0020CombatPolicy.beforeHit(...)` valida mesma sequência/alvo, momentum, cooldown, `claimOnce`, consome recurso e aplica componentes disponíveis.
-- `A0001A0020EpicFightHooks.onDamagePre(...)` deriva defesa por `target.isBlocking()` ou `stunShield > 0`, declara impacto e penetração disponíveis e anexa modificadores nativos ao `EpicFightDamageSource`.
+**Nenhuma bloqueante.** A antiga P-A0005-01 foi resolvida no design e no policy.
 
-## Pendências técnicas
+## Testes
 
-### P-A0005-01 — fallback de penetração sem guarda/postura não demonstrado
-
-- **Severidade:** média.
-- **Estado:** ABERTA.
-- **Causa:** o policy atual exige `facts.relevantGuardOrPosture()` para entrar na ativação de A0005. Quando um adapter não consegue expor guarda/postura, essa condição é falsa e a perk não chega ao caminho de penetração-only previsto no Notion.
-- **Impacto:** o caminho Epic Fight auditado funciona quando há estado defensivo detectável, mas a degradação canônica declarada não está representada de forma geral.
-- **Correção esperada:** separar elegibilidade da Abertura da disponibilidade do componente de guarda/postura, permitindo penetração-only quando a sequência/Ímpeto/alvo forem válidos e `penetrationHookAvailable=true`, sem fabricar pressão de guarda.
-- **Fail-closed:** nunca converter a parcela ausente em dano genérico.
-
-## Testes obrigatórios
-
-- [x] valores/cooldown representados no ruleset;
-- [x] consumo, deduplicação e cooldown presentes no policy;
-- [x] integração Epic Fight para armor negation/impact presente;
-- [ ] RED/GREEN para fallback `penetration-only` sem guarda/postura;
-- [ ] teste que garanta ausência de impacto/pressão quando o hook não existir;
-- [ ] dedicated-server smoke após correção.
+- [x] consumo e cooldown por alvo;
+- [x] defesa nativa;
+- [x] rejeição quando o provider observa ausência de guarda;
+- [x] fallback de penetração-only por defesa física comprovável;
+- [x] ausência de impacto no fallback;
+- [x] CI/build e dedicated-server smoke exigidos antes do merge.

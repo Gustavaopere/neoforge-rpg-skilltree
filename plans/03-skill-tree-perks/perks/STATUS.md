@@ -1,47 +1,52 @@
 # Status dos Dossiês de Perks
 
-Referência técnica auditada para o segundo lote: `main` em `7f90af76c2b69574378d7f3f1d292e862ccdd6f9`.
+Reauditoria obrigatória do recorte **A0001–A0020** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
-| Código | Perk | Design | Código em `main` | Pendências conhecidas |
+A fonte canônica de design permanece o Notion. Este índice descreve o estado após as correções desta auditoria; `IMPLEMENTAÇÃO CONFIRMADA` só se torna definitivo quando a PR correspondente estiver mergeada na `main` com CI verde.
+
+| Código | Perk | Design | Estado técnico auditado | Pendências bloqueantes |
 |---|---|---|---|---|
-| A0001 | Treino com Espadas I | APROVADO | Presente | fallback `rpgskilltree:swords` não localizado |
-| A0002 | Treino com Espadas II | APROVADO | Presente | nenhuma específica identificada |
-| A0003 | Precisão com Espadas | APROVADO | Presente | nenhuma específica identificada |
-| A0004 | Ritmo do Duelista | APROVADO | Presente | perda por stagger pesado não conectada a adapter localizado |
-| A0005 | Abertura de Guarda | APROVADO | Presente | fallback de penetração sem guarda/postura não está demonstrado pelo policy atual |
-| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO | Presente | sem blocker; cobertura confirmada por esquiva, outros tipos de defesa não evidenciados |
-| A0007 | Treino com Machados I | APROVADO | Presente | fallback `rpgskilltree:axes` não localizado |
-| A0008 | Treino com Machados II | APROVADO | Presente | nenhuma específica identificada |
-| A0009 | Precisão com Machados | APROVADO | Presente | nenhuma específica identificada |
-| A0010 | Pressão do Carrasco | APROVADO | Presente | fallback genérico sem evento Epic Fight não localizado |
-| A0011 | Ruptura de Guarda | APROVADO | Presente parcial | elegibilidade canônica de alvo classificado como pesado não representada |
-| A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO | Contrato/fail-closed | bridge causal de Frenesi, golpe pesado, Queda de Ritmo e adapter hídrico opcional ausentes |
-| A0013 | Treino com Lanças I | APROVADO | Presente | fallback `rpgskilltree:spears` não localizado |
-| A0014 | Treino com Lanças II | APROVADO | Presente | nenhuma específica identificada |
-| A0015 | Precisão com Lanças | APROVADO | Presente | nenhuma específica identificada |
-| A0016 | Distância Ideal | APROVADO | Presente parcial | perda por stagger pesado não conectada a adapter localizado |
-| A0017 | Interceptação | APROVADO | Presente em fallback canônico | redução de deslocamento ofensivo omitida até existir receipt provider-native seguro |
-| A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO | Presente | nenhuma específica identificada |
-| A0019 | Treino com Adagas I | APROVADO | Presente | fallback `rpgskilltree:daggers` não localizado |
-| A0020 | Treino com Adagas II | APROVADO | Presente | nenhuma específica identificada |
+| A0001 | Treino com Espadas I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
+| A0002 | Treino com Espadas II | APROVADO | Presente | nenhuma |
+| A0003 | Precisão com Espadas | APROVADO | Presente; crítico no pipeline canônico único | nenhuma |
+| A0004 | Ritmo do Duelista | APROVADO | Presente; hit, dodge, miss, decay e stagger forte provider-native | nenhuma |
+| A0005 | Abertura de Guarda | APROVADO após correção | Presente; defesa nativa ou fallback estrito de penetração por defesa física comprovável | nenhuma |
+| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO | Presente; defesa técnica confirmada, janela, cooldown e dedup | nenhuma |
+| A0007 | Treino com Machados I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
+| A0008 | Treino com Machados II | APROVADO | Presente | nenhuma |
+| A0009 | Precisão com Machados | APROVADO | Presente; crítico no pipeline canônico único | nenhuma |
+| A0010 | Pressão do Carrasco | APROVADO após reauditoria | Presente no receipt server-authoritative do Epic Fight; demais rotas fail-closed | nenhuma |
+| A0011 | Ruptura de Guarda | APROVADO após correção | Presente; condição heurística de “alvo pesado” removida do design | nenhuma |
+| A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO após correção + re-fetch | Implementado com transação PRE: CORE pago antes de exhaustion/bônus/pico; falha deixa o evento fail-closed | nenhuma, condicionado à CI/merge desta PR |
+| A0013 | Treino com Lanças I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
+| A0014 | Treino com Lanças II | APROVADO | Presente via `ModifyAttackSpeedEvent` | nenhuma |
+| A0015 | Precisão com Lanças | APROVADO | Presente; crítico no pipeline canônico único | nenhuma |
+| A0016 | Distância Ideal | APROVADO | Presente; alcance, hit, miss, expiração e stagger forte provider-native | nenhuma |
+| A0017 | Interceptação | APROVADO | Presente em fallback canônico | nenhuma; redução de deslocamento permanece deliberadamente omitida sem receipt ofensivo provider-native |
+| A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO | Presente; crossing, consumo, janela e lockout por alvo | nenhuma |
+| A0019 | Treino com Adagas I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
+| A0020 | Treino com Adagas II | APROVADO | Presente via `ModifyAttackSpeedEvent` | nenhuma |
 
-## Evidência comum — A0001–A0010
+## Correções sistêmicas da reauditoria
 
-- `NotionCombatPerkRules` contém os coeficientes de dano, ritmo, crítico, Ímpeto, Abertura e Fúria.
-- `A0001A0020CombatPolicy` contém a política server-authoritative e deduplicação dos efeitos stateful.
-- `A0001A0020EpicFightHooks` conecta `DELIVER_DAMAGE_PRE`, `DELIVER_DAMAGE_POST`, `MODIFY_ATTACK_SPEED`, `ON_DODGE`, `ATTACK_PHASE_END` e tick do Epic Fight 21.17.3.1.
-- `A0001A0020CriticalService` implementa resolução crítica canônica.
-- Existem testes `A0001A0020NotionContractTest`, `A0001A0020CombatPolicyTest` e `A0001A0020CriticalServiceTest`.
+- **Critérios versionados:** cópia integral dos critérios canônicos adicionada à pasta dos dossiês.
+- **Provider-native first:** os fallbacks fictícios `rpgskilltree:swords`, `rpgskilltree:axes`, `rpgskilltree:spears` e `rpgskilltree:daggers` foram removidos do design canônico. Ausência de classificação segura agora é `FAIL-CLOSED`.
+- **A0004/A0016:** `EpicFightEventHooks.Entity.ON_STUNNED` fornece o receipt server-side; apenas `LONG`, `KNOCKDOWN` e `NEUTRALIZE` são aceitos como stagger forte, com fonte hostil validada.
+- **A0005:** guarda/postura observável continua sendo a rota principal; quando ela não é observável, somente defesa física server-side comprovável autoriza penetração-only.
+- **A0010:** o fallback genérico sem receipt seguro foi removido; tentativa de ataque, animação ou classificação heurística não geram Fúria.
+- **A0011:** removida do design a condição contraditória de “alvo classificado como pesado”.
+- **A0012:** o custo +1,5 `CORE` é pré-condição no mesmo `DELIVER_DAMAGE_PRE`; exhaustion, bônus e gasto do pico só ocorrem depois do sucesso da escrita CORE. Thirst Was Reclaimed não participa deste contrato.
+- **Mastery Epic Fight:** hits repetidos deixaram de conceder Mastery. Categorias de arma usam tipos hostis inéditos; `guard` também usa tipos hostis inéditos em contexto real de skill de guarda pagável, +10 por tipo, tornando gates 60/80 alcançáveis com 6/8 descobertas sem spam do mesmo alvo/tipo. O ledger continua sendo `DiscoveryProgress`.
 
-## Evidência comum — A0011–A0020
+## Evidência comum
 
-- O Catálogo Mestre foi re-fetched individualmente para A0011–A0020 antes da escrita dos dossiês.
-- `NotionCombatPerkCatalog` materializa dependências/hook contracts de Ruptura, Frenesi, lanças e adagas.
-- `CombatPerkTreeModel` reproduz as topologias de Machados A0007–A0012, Lanças A0013–A0018 e o início de Adagas A0019–A0020, incluindo gateways e mastery dos terminais.
-- `NotionCombatPerkRules` contém coeficientes de A0011, fail-closed/duração de A0012, dano/ritmo/crítico de lanças/adagas, faixa ideal, janelas e lockout de Interceptação.
-- `A0001A0020CombatPolicy` implementa A0011, estado de Controle de Distância, A0017/A0018 e mantém A0012 explicitamente fail-closed até bridges causais reais.
-- `NotionCombatPerkState` mantém Fúria, Controle de Distância, janelas, lockouts, deduplicação e limpeza transitória.
-- `A0001A0020EpicFightHooks` fornece classificação SWORD/AXE/SPEAR/DAGGER, alcance efetivo, hit PRE/POST, miss confirmado, attack speed e amostragem server-side de aproximação/faixa.
-- `A0001A0020CombatPolicyTest` possui cenários de A0011, fail-closed de A0012 e janelas/lockout de A0017/A0018.
+- `NotionCombatPerkRules` — coeficientes, thresholds e durações.
+- `A0001A0020CombatPolicy` — política provider-independent, consumo de recursos e deduplicação.
+- `NotionCombatPerkState` — Ímpeto, Fúria, Controle de Distância, janelas, lockouts e Queda de Ritmo.
+- `A0001A0020CriticalService` — resolução crítica única.
+- `A0001A0020EpicFightHooks` — hits PRE/POST, transação corporal A0012, attack speed, dodge, miss, stagger, alcance e tick server-side.
+- `ColdSweatFrenzyBridge` — integração fail-closed com Cold Sweat 2.4.2 `Temperature.Trait.CORE`.
+- `EpicFightProgressionHooks` + `MasteryPolicies` — Mastery baseada em milestones persistentes e alcançáveis.
+- `A0001A0020CombatPolicyTest` e `EpicFightDepthPolicyTest` — regressões dos contratos corrigidos.
 
-Este arquivo é índice. A justificativa completa e as evidências ficam no dossiê individual de cada perk.
+A matriz detalhada dos nove eixos está em `AUDITORIA-A0001-A0020.md`.
