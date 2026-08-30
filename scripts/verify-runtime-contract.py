@@ -30,6 +30,7 @@ STALE_ERRORS = {
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java: missing 'PlayerProgressionRuntime.applyXp'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'player.getData(ModAttachments.PROGRESSION)'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'player.setData(ModAttachments.PROGRESSION, state)'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'AttributeNodeEffectRuntime.refresh'",
 }
 
 
