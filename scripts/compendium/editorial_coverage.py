@@ -8,6 +8,7 @@ from pathlib import Path
 import sys
 from typing import Any
 
+from editorial_backlog import BacklogError, normalize_error_coverage_entry
 from editorial_corpus import EditorialCorpusError, KINDS, load_corpus, read_json
 
 SCHEMA = 1
@@ -65,17 +66,19 @@ def coverage_backlog_rows(payload: Any) -> dict[str, dict[str, str]]:
         inventory_key = raw.get("inventory_key")
         if not isinstance(inventory_key, str) or not inventory_key.strip():
             raise EditorialCorpusError(f"coverage entry {index} is missing inventory_key")
-        inventory_key = inventory_key.strip()
 
         if coverage_state == "ERROR":
-            if not inventory_key.startswith("ERROR|") or len(inventory_key) <= len("ERROR|"):
-                raise EditorialCorpusError(
-                    f"coverage ERROR entry {index} must use synthetic inventory_key ERROR|<id>"
-                )
-            entry_id = "ERROR:" + inventory_key.split("|", 1)[1]
+            try:
+                normalized = normalize_error_coverage_entry(raw, index)
+            except BacklogError as exc:
+                raise EditorialCorpusError(str(exc)) from exc
+            kind = normalized["kind"]
+            resource_location = normalized["resource_location"]
+            namespace = normalized["namespace"]
+            entry_id = f"{kind}:{resource_location}"
             expected = {
-                "source_mod": "__invalid__",
-                "kind": "ERROR",
+                "source_mod": namespace,
+                "kind": kind,
                 "coverage": "ERROR",
             }
         else:
