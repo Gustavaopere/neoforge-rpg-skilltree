@@ -2,6 +2,7 @@
 
 Esta página registra os **119 efeitos de atributo** atualmente declarados. Valores percentuais são mostrados por rank. Ela não inclui toda mecânica comportamental possível do mod.
 
+<!-- rpgskilltree:generated:effect-catalog:start -->
 ## Árvore Principal — 66 efeitos
 
 Cada região possui três efeitos iniciais e três efeitos de final triad.
@@ -92,3 +93,4 @@ Cada região possui três efeitos iniciais e três efeitos de final triad.
 - Conduto de Almas: +2 vida máxima.
 
 Todos os valores acima são por rank quando o nó admite múltiplos ranks.
+<!-- rpgskilltree:generated:effect-catalog:end -->
