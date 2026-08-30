@@ -47,7 +47,11 @@ def source_translation_keys(roots: list[Path]) -> set[str]:
                 text = path.read_text(encoding="utf-8")
             except UnicodeDecodeError:
                 continue
-            keys.update(match.group(1) for match in TRANSLATION_KEY.finditer(text))
+            for match in TRANSLATION_KEY.finditer(text):
+                key = match.group(1)
+                if key.endswith("."):
+                    continue
+                keys.add(key)
     return keys
 
 
