@@ -57,6 +57,21 @@ final class CompendiumEditorialResourceLoaderJUnitTest {
     }
 
     @Test
+    void schemaMustBeTheExactIntegralJsonNumberOne() {
+        String canonical = packageJson("minecraft", "ENTITY", validWolfEntry());
+        assertFailureContains(
+            canonical.replace("\"schema\":1", "\"schema\":\"1\""),
+            List.of(wolf()),
+            "integer"
+        );
+        assertFailureContains(
+            canonical.replace("\"schema\":1", "\"schema\":1.5"),
+            List.of(wolf()),
+            "integer"
+        );
+    }
+
+    @Test
     void kindEntryIdAndNamespaceMustAgreeWithThePackage() {
         assertFailureContains(packageJson("minecraft", "BLOCK_FEATURE", validWolfEntry()), List.of(wolf()), "kind");
         assertFailureContains(packageJson("minecraft", "BIOME", validWolfEntry()), List.of(wolf()), "kind");
