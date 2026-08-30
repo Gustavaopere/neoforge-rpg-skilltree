@@ -1,0 +1,37 @@
+name: Wiki Catalog Artifact
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle cache
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Generate factual wiki catalog
+        run: python3 scripts/generate-wiki-catalog.py
+
+      - name: Upload generated perk catalog
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-perk-catalog-${{ github.sha }}
+          path: wiki/PERK_CATALOG.md
+          if-no-files-found: error
+          retention-days: 1
