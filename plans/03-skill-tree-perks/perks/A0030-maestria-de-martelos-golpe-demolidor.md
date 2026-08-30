@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** NÃO CONFIRMADA; `P-A0030-01` aberta e depende também do receipt heavy de A0029.
+- **Implementação:** NÃO CONFIRMADA / FAIL-CLOSED VALIDADO EM CI na PR #242; `P-A0030-01` permanece aberta e depende também do receipt heavy de A0029.
 - **Notion:** `3c569db9-f0db-816e-a298-ddacef4793c4`.
 
 ## Contrato canônico
@@ -26,15 +26,23 @@
 6. PT-BR: PASS.
 7. Notion: PASS após hardening causal/anti-farm.
 8. NeoVitae: PASS.
-9. Providers: PASS de design; runtime carece dos receipts principais.
+9. Providers: PASS de design; runtime permanece fail-closed por ausência dos receipts principais.
 
 ## Evidência e pendências
 
 - `A0021A0040CombatPolicy.onConfirmedGuardBreak(...)` existe para armar a janela, e `beforeHit(...)` sabe consumir Demolição.
-- Não há caller runtime identificado para `onConfirmedGuardBreak(...)` no adapter atual.
-- O adapter também envia `heavyConfirmed=false`.
-- **P-A0030-01:** Chat 2 deve integrar um receipt server-authoritative de quebra real de guarda/postura, correlacionado ao hit direto HAMMER do jogador, e o heavy receipt seguro usado por A0029. Sem isso, A0030 permanece fail-closed e não pode ser marcada como implementada.
-- É proibido inferir guard-break por dano alto, stagger genérico, Armor, vida, animação ou queda de stamina.
+- Na fonte real do Epic Fight 21.17.3.1, `GuardSkill` calcula `blockType = canAfford ? GUARD : GUARD_BREAK`, mas `blockType` é variável interna do método de guarda.
+- `GuardSkill.dealEvent(...)` expõe o resultado geral `BLOCKED` e chama `onAttackBlocked(...)` no attacker patch, sem publicar o `BlockType.GUARD_BREAK` ou um receipt causal attacker-side equivalente.
+- Inferir quebra por animação, som, queda de stamina, dano alto, Armor ou stagger genérico é proibido pelo contrato.
+- O provider também não oferece heavy receipt inequívoco; `shouldChargeWeapon()` representa combo/charge de Weapon Innate, não heavy.
+- **P-A0030-01 permanece aberta:** sem receipt de guard-break da mesma ação HAMMER + heavy receipt seguro, A0030 permanece indisponível/fail-closed.
 - `ARCANE_BACKLASH` e companions Mobstein não abrem/consomem Demolição nem concedem Mastery ao dono.
 
-`P-A0030-01` bloqueia `IMPLEMENTAÇÃO CONFIRMADA`, não o design.
+`P-A0030-01` continua bloqueando `IMPLEMENTAÇÃO CONFIRMADA`, não o design.
+
+## Chat 2 — implementação e regressão — PR #242
+
+- A Mastery `epicfight:heavy` tornou-se finita/anti-farm conforme A0025, tornando o gate 80 alcançável por 8 tipos hostis distintos.
+- Regressão JUnit prova que heavy isolado, sem uma janela previamente armada por guard-break causal, não ativa A0030.
+- CI #2192 validou o fail-closed e o restante do runtime.
+- Estado pós-merge permanece `NÃO CONFIRMADA / FAIL-CLOSED` até os receipts provider-native existirem; não há redesenho silencioso.

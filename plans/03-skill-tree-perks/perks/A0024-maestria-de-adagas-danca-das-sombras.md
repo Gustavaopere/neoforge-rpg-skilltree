@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** presente com fallback canônico para a parcela de stamina.
+- **Implementação:** VALIDADA EM CI NO FALLBACK CANÔNICO na PR #242; confirmação definitiva após merge em `main`.
 - **Notion:** `3c569db9-f0db-81c1-9774-e31e4f891e57`.
 
 ## Contrato canônico
@@ -24,15 +24,23 @@
 6. PT-BR: PASS.
 7. Notion: PASS após boundary de recursos.
 8. NeoVitae: PASS.
-9. Providers: PASS/FALLBACK — sem stamina hook seguro, omite-se somente esse componente.
+9. Providers: PASS/FALLBACK — sem stamina hook seguro para uma ação concreta, omite-se somente esse componente.
 
 ## Evidência e boundaries
 
 - `A0021A0040CombatPolicy`/state modelam ativação e consumo único.
-- `A0021A0040EpicFightHooks.onSkillConsume` pode reduzir o primeiro custo elegível da Dança quando correlacionado ao movimento/dodge.
+- `A0021A0040EpicFightHooks.onSkillConsume` reduz o primeiro custo elegível da Dança quando existe receipt de movimento/dodge compatível.
+- A rota de reposicionamento geométrico de A0022 foi implementada server-side na PR #242 e agora pode satisfazer a janela sem depender de câmera.
 - A perk não converte Fúria, hunger/exhaustion, Cold Sweat CORE, Shroud/Exposure ou Arcane Strain em stamina.
 - `ARCANE_BACKLASH` e companions Mobstein não consomem Dança nem recebem os benefícios do dono.
 
 ## Pendências
 
-Nenhuma de design. Se o receipt exato de stamina não estiver disponível para uma ação, a redução de stamina permanece legitimamente omitida sem alterar os demais componentes seguros.
+Nenhuma bloqueante dentro do contrato aprovado. Quando a ação concreta não expõe custo de stamina correlacionável com segurança, a redução de stamina permanece legitimamente omitida; os demais componentes seguros continuam ativos.
+
+## Chat 2 — implementação e regressão — PR #242
+
+- A dependência técnica da rota geométrica de A0022 foi resolvida sem heurística client-side.
+- Consumo único de Fluxo e benefícios únicos por ativação permanecem no state/policy canônicos.
+- O fallback de stamina não foi redesenhado nem convertido para outro recurso.
+- CI #2192 validou o runtime antes do fechamento documental.

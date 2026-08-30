@@ -10,6 +10,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.coldsweat.ColdSweatFrenzyBrid
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0022RuntimeHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0041A0060EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0042ScytheKillHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0061A0080EpicFightHooks;
@@ -142,10 +143,12 @@ public final class RpgSkillTreeMod {
             if (EpicFightVersionContract.supportsVersion(version)) {
                 EpicFightProgressionHooks.register();
                 A0001A0020EpicFightHooks.register();
+                A0022RuntimeHooks.register();
                 A0042ScytheKillHooks.register();
                 A0041A0060EpicFightHooks.register();
                 A0061A0080EpicFightHooks.register();
                 NeoForge.EVENT_BUS.register(A0001A0020EpicFightHooks.class);
+                NeoForge.EVENT_BUS.register(A0022RuntimeHooks.class);
                 NeoForge.EVENT_BUS.register(A0042ScytheKillHooks.class);
                 NeoForge.EVENT_BUS.register(A0041A0060EpicFightHooks.class);
                 NeoForge.EVENT_BUS.register(A0061A0080EpicFightHooks.class);

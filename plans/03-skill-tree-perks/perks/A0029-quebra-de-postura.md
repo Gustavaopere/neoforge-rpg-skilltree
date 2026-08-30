@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** NÃO CONFIRMADA; `P-A0029-01` aberta. A restauração de stamina possui fallback canônico.
+- **Implementação:** NÃO CONFIRMADA / FAIL-CLOSED VALIDADO EM CI na PR #242; `P-A0029-01` permanece aberta. A restauração de stamina possui fallback canônico.
 - **Notion:** `3c569db9-f0db-81eb-8a3e-c67450cbc041`.
 
 ## Contrato canônico
@@ -24,14 +24,22 @@
 6. PT-BR: PASS.
 7. Notion: PASS após endurecimento causal.
 8. NeoVitae: PASS.
-9. Providers: PASS de design; heavy receipt ausente no adapter atual.
+9. Providers: PASS de design; heavy receipt público inequívoco permanece indisponível no provider auditado.
 
 ## Evidência e pendências
 
 - `A0021A0040CombatPolicy` exige `abalo>=3 && heavyConfirmed` antes de consumir cargas.
-- O adapter atual envia `heavyConfirmed=false`, então A0029 nunca ativa no caminho Epic Fight real.
-- **P-A0029-01:** Chat 2 deve encontrar/integrar receipt provider-native inequívoco de heavy attack. É proibido inferir por animação, dano, arma lenta, impacto ou charge time estimado.
-- A parcela de stamina é fallback legítimo: sem custo exato da mesma ação, omitir restauração de 10% sem redesenhar a perk.
+- O adapter continua enviando `heavyConfirmed=false`; A0029 não ativa no caminho Epic Fight real sem receipt seguro.
+- Na fonte real do Epic Fight 21.17.3.1, `PlayerPatch.getDamageSource(...)` define `chargeWeapon` quando a animação é combo/`ComboAttacks.COMBO`; `ServerPlayerPatch` usa `shouldChargeWeapon()` somente para carregar o recurso da Weapon Innate após o hit. Isso não é receipt de heavy attack.
+- **P-A0029-01 permanece aberta:** é proibido promover `shouldChargeWeapon`, animação, dano, arma lenta, impacto ou charge time estimado a heavy receipt.
+- A parcela de stamina continua fallback legítimo: sem custo exato da mesma ação, omitir somente a restauração de 10% sem redesenhar a perk.
 - `ARCANE_BACKLASH` e companions Mobstein não satisfazem heavy, guard-break ou stamina receipt.
 
-`P-A0029-01` bloqueia `IMPLEMENTAÇÃO CONFIRMADA`, não o design.
+`P-A0029-01` continua bloqueando `IMPLEMENTAÇÃO CONFIRMADA`, não o design.
+
+## Chat 2 — implementação e regressão — PR #242
+
+- A classificação HAMMER foi corrigida para provider-native, eliminando uma fonte paralela de falso positivo.
+- Regressão JUnit prova que 3 Abalo não são consumidos e os bônus não são aplicados quando `heavyConfirmed=false`.
+- CI #2192 validou o fail-closed completo.
+- Estado pós-merge permanece `NÃO CONFIRMADA / FAIL-CLOSED` até o provider expor um receipt inequívoco de heavy.
