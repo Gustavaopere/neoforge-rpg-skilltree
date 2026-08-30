@@ -127,6 +127,36 @@ public final class CombatPerkPlayerTextCatalog {
         add(entries, "A0030",
             "Uma quebra real de guarda/postura causada pelo jogador com martelo abre Janela de Demolição por 4 s naquele alvo. O próximo heavy direto confirmado contra o mesmo alvo recebe +20% de dano físico elegível e +25% de impacto, fecha a janela e não pode reabri-la no mesmo resultado. Lockout por alvo de 12 s; mastery 90/100 reduz para 11 s/10 s. Sem receipt nativo de guard-break, o capstone fica indisponível; sem receipt inequívoco de heavy, um acerto comum não consome a janela. O runtime atual carece dos dois receipts e permanece fail-closed.",
             "Gateway `epic_hammer` acessível + A0028 Abalo Crescente + A0029 Quebra de Postura + mastery `epicfight:heavy` ≥ 80.");
+        add(entries, "A0031",
+            "+3% de dano com maças por rank, máximo +9%. A maça vanilla só qualifica por identidade exata `minecraft:mace`; armas externas exigem categoria/capability MACE do Epic Fight ou mapping versionado explícito. Sem classificação MACE segura, a disciplina permanece fail-closed: tag paralela, nome, material, dano ou semelhança com martelo não qualificam. A mastery canônica `combat:mace` concede +10 uma única vez por tipo hostil inédito persistido em DiscoveryProgress; enquanto a classificação e a mastery legadas por hit não forem substituídas, a implementação permanece não confirmada.",
+            "nível 8 + mastery `combat:mace` ≥ 60 + Gateway `combat_mace`; 60 corresponde a 6 tipos hostis distintos no modelo anti-farm.");
+        add(entries, "A0032",
+            "+2% de velocidade/ritmo efetivo com maças por rank, máximo +6%, somente quando o moveset/provider expõe cadência server-authoritative. Sem hook estável de cadência, essa parcela fica inativa e não é convertida em stamina, movimento, dano ou edição de animação. A aplicação depende de classificação MACE segura.",
+            "Gateway `combat_mace` acessível + A0031 Treino com Maças I ≥ 2 ranks.");
+        add(entries, "A0033",
+            "+3% de chance crítica com maças por rank, máximo +9%, somente para acerto direto do jogador com família MACE seguramente classificada. Uma ação-raiz produz no máximo uma resolução crítica canônica; `ARCANE_BACKLASH`, proc terminal/secundário e dano de ally/bodyguard Mobstein são inelegíveis.",
+            "Gateway `combat_mace` acessível + A0031 Treino com Maças I ≥ 1 rank.");
+        add(entries, "A0034",
+            "Acerto direto MACE contra proteção física comprovada gera 1 Trauma, até 3 cargas, com duração de 6 s/8 s conforme o rank. O fallback atualmente confirmado é somente Armor do Minecraft > 0; guarda/postura provider-native ou redução física explícita só qualificam quando houver receipt seguro. Resistências arcanas/mágicas, Corruption Resistance, Arcane Strain, Shroud/Exposure/Madness, STUN_ARMOR/poise e hazards ambientais não qualificam. Dano de companion Mobstein não cria Trauma do dono.",
+            "Gateway `combat_mace` acessível + A0033 Precisão com Maças ≥ 2 ranks.");
+        add(entries, "A0035",
+            "Com 3 de Trauma, o próximo acerto direto MACE confirmado deve consumir as três cargas e aplicar −8%/−12% de `Attributes.ARMOR` por 4 s/6 s; boss recebe metade somente com classificação server-side comprovada. O efeito exige commit pós-hit confirmado: cancelamento ou dano zero não podem consumir Trauma nem marcar Armadura Fendida. O runtime ainda prepara/consome estado no PRE, portanto a implementação completa permanece não confirmada. Não substituir por Armor Negation do atacante, dano extra ou redução mágica/arcana; a atenuação específica de boss Mobstein também permanece não confirmada sem classificação canônica.",
+            "Gateway `combat_mace` acessível + A0032 Treino com Maças II ≥ 2 ranks + A0033 Precisão com Maças ≥ 1 rank.");
+        add(entries, "A0036",
+            "Capstone: contra alvo que já estava sob Armadura Fendida antes da ação atual, um golpe pesado MACE provider-confirmed pode aplicar Descompasso por 3 s: −8% de dano físico causado e −10% de velocidade de movimento; boss recebe metade. Recarga por alvo de 12 s/11 s/10 s em mastery 80/90/100. Sem heavy receipt provider-native ou sem ponto seguro para aplicar ambos os debuffs, o capstone permanece fail-closed; o mesmo golpe não pode criar Armadura Fendida e satisfazer Quebra-Ossos. Não substituir por stun, dano ou penetração.",
+            "A0034 Trauma Contundente + A0035 Armadura Fendida + mastery `combat:mace` ≥ 80; 80 corresponde a 8 tipos hostis distintos no modelo anti-farm.");
+        add(entries, "A0037",
+            "+3% de dano com foices por rank, máximo +9%. Somente categoria/capability SCYTHE do Epic Fight ou mapping versionado explícito qualificam. Sem classificação SCYTHE segura, a disciplina permanece fail-closed: tag paralela, nome, aparência ou uma enxada vanilla não transformam a arma em foice de combate. A mastery canônica `combat:scythe` concede +10 uma única vez por tipo hostil inédito persistido em DiscoveryProgress; enquanto a classificação e a mastery legadas por hit não forem substituídas, a implementação permanece não confirmada.",
+            "nível 8 + mastery `combat:scythe` ≥ 60 + Gateway `combat_scythe`; 60 corresponde a 6 tipos hostis distintos no modelo anti-farm.");
+        add(entries, "A0038",
+            "+2% de velocidade/ritmo efetivo com foices por rank, máximo +6%, somente quando o moveset/provider expõe cadência server-authoritative pelo Epic Fight. Sem hook estável, a parcela fica inativa e não é convertida em stamina, movimento, dano ou edição de animação. A aplicação depende de classificação SCYTHE segura.",
+            "Gateway `combat_scythe` acessível + A0037 Treino com Foices I ≥ 2 ranks.");
+        add(entries, "A0039",
+            "+3% de chance crítica com foices por rank, máximo +9%, somente para acerto direto do jogador com família SCYTHE seguramente classificada. Uma ação-raiz produz no máximo uma resolução crítica canônica; Backlash terminal/secundário e companion-owned damage são inelegíveis.",
+            "Gateway `combat_scythe` acessível + A0037 Treino com Foices I ≥ 1 rank.");
+        add(entries, "A0040",
+            "O primeiro hit direto SCYTHE aplica Marca da Ceifa por 8 s/10 s; reaplicar renova a mesma marca jogador→alvo. A Marca só amadurece quando o alvo já estava marcado e a vida cruza de ≥50% para <50%. Dano periódico, projétil derivado, proc encadeado, reflexão, companion/summon, fake player e callback duplicado não aplicam nem duplicam a Marca. A classificação SCYTHE continua fail-closed. Aplicação e maturação estão presentes, mas o cleanup bounded em unload/despawn ainda não está confirmado; A0040 é Notable, não terminal.",
+            "Gateway `combat_scythe` acessível + A0039 Precisão com Foices ≥ 2 ranks.");
         return Map.copyOf(entries);
     }
 
