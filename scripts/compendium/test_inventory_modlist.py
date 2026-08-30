@@ -159,12 +159,18 @@ class ModlistParserTest(unittest.TestCase):
                 "modpack-inventory.md",
                 "coverage-report.json",
                 "coverage-report.md",
+                "editorial-backlog.json",
+                "editorial-backlog.md",
             ):
                 self.assertTrue((output / filename).is_file(), filename)
             report = json.loads((output / "coverage-report.json").read_text(encoding="utf-8"))
             self.assertEqual(2, len(report["entries"]))
             self.assertEqual([], report["modlist_comparison"]["listed_but_not_loaded"])
             self.assertEqual([], report["modlist_comparison"]["loaded_but_not_listed"])
+            backlog = json.loads((output / "editorial-backlog.json").read_text(encoding="utf-8"))
+            self.assertEqual(2, backlog["entry_count"])
+            self.assertEqual("ENTITY:minecraft:zombie", backlog["entries"][0]["entry_id"])
+            self.assertEqual("STRUCTURE:moda:tower", backlog["entries"][1]["entry_id"])
 
 
 if __name__ == "__main__":
