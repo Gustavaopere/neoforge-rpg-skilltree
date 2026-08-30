@@ -210,7 +210,8 @@ Estado atual:
 - [x] keybind configurável `key.rpgskilltree.open_compendium`, registrado no menu de controles e com tecla padrão `J`;
 - [ ] botão adicional na UI do RPG continua opcional e só deve ser incluído se melhorar a navegação sem duplicar controles;
 - [x] item/livro físico continua opcional e não é a única forma de acesso, pois o keybind abre diretamente o Compêndio;
-- [x] registro do keybind e abertura da tela ficam em subscriber `Dist.CLIENT`; dedicated-server smoke permanece parte obrigatória do CI.
+- [x] registro do keybind e abertura da tela ficam em subscriber `Dist.CLIENT`; dedicated-server smoke permanece parte obrigatória do CI;
+- [ ] população do `ClientCompendiumState` em runtime real ainda não existe: `install(...)` está coberto em testes, mas não há caminho de produção que instale o catálogo projetado. Até o pipeline de snapshot/protocolo do 10.13 ser conectado, o keybind pode abrir um snapshot vazio.
 
 ## Testes previstos
 
@@ -233,7 +234,7 @@ Verificação manual/client test matrix:
 - [ ] nome duplicado de mods diferentes — comportamento de ordenação/filtro precisa de caso explícito/manual;
 - [x] entrada desconhecida/oculta — cobertura automatizada de shell e políticas de visibilidade;
 - [ ] renderer 3D vanilla e modded — requer teste visual/client real;
-- [x] renderer com falha usa fallback — contrato automatizado de fail-soft; validação visual ainda é desejável;
+- [ ] renderer com falha usa fallback — a política/fail-soft possui testes, mas ainda falta evidência que injete falha no renderer físico e valide o fallback visível no cliente;
 - [ ] UI scale 1–4 — requer cliente real;
 - [x] resolução pequena e ultrawide — geometria coberta automaticamente; validação visual continua desejável;
 - [x] navegação por teclado/mouse — modelo/sessão cobertos automaticamente; smoke visual continua desejável;
@@ -247,4 +248,5 @@ Pendências funcionais conhecidas do 10.09 que não dependem de teste manual:
 
 1. apresentação e navegação clicável das `entryRelations` já projetadas no `CompendiumPageModel`;
 2. seletor seguro de variantes, bloqueado até o snapshot/protocolo do 10.13 transportar somente variantes descobertas/autorizadas;
-3. persistência das notas, explicitamente pertencente ao 10.13.
+3. persistência das notas, explicitamente pertencente ao 10.13;
+4. população real do `ClientCompendiumState` com snapshot autorizado, dependente do pipeline de projeção/transporte do 10.13; sem isso, a UI pode abrir vazia apesar de o shell/client estar funcional.
