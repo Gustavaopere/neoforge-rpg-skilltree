@@ -108,6 +108,24 @@ tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
 
+tasks.register('generateCombatPerkWikiSnapshot', JavaExec) {
+    group = 'documentation'
+    description = 'Regenera build/generated-wiki/combat-perks.json a partir do modelo canônico A0001-A0100.'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.gustavopere.rpgskilltree.tools.CombatPerkWikiSnapshotGenerator'
+    args '--write'
+}
+
+tasks.register('checkCombatPerkWikiSnapshot', JavaExec) {
+    group = 'verification'
+    description = 'Falha se build/generated-wiki/combat-perks.json divergir do modelo canônico A0001-A0100.'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.gustavopere.rpgskilltree.tools.CombatPerkWikiSnapshotGenerator'
+    args '--check'
+}
+
 tasks.withType(ProcessResources).configureEach {
     def replaceProperties = [
         minecraft_version: minecraft_version,
