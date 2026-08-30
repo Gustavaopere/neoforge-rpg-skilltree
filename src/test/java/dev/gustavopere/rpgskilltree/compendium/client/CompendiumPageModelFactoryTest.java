@@ -15,6 +15,13 @@ import dev.gustavopere.rpgskilltree.compendium.api.FactSource;
 import dev.gustavopere.rpgskilltree.compendium.api.FactVisibility;
 import dev.gustavopere.rpgskilltree.compendium.api.VisibilityPolicy;
 import dev.gustavopere.rpgskilltree.compendium.catalog.CoverageState;
+import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialBlock;
+import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialContent;
+import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialSection;
+import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialSource;
+import dev.gustavopere.rpgskilltree.compendium.editorial.EditorialAvailability;
+import dev.gustavopere.rpgskilltree.compendium.editorial.EditorialReviewStatus;
+import dev.gustavopere.rpgskilltree.compendium.editorial.EditorialSourceType;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,6 +30,7 @@ import java.util.Set;
 public final class CompendiumPageModelFactoryTest {
     private static final CompendiumEntryId WOLF_ID = CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "minecraft:wolf");
     private static final CompendiumEntryId TAIGA_ID = CompendiumEntryId.of(CompendiumEntryKind.BIOME, "minecraft:taiga");
+    private static final CompendiumEntryId FOX_ID = CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "minecraft:fox");
 
     public static void main(String[] args) {
         hiddenEntryRequiresDiscoveryOrAdmin();
@@ -30,6 +38,9 @@ public final class CompendiumPageModelFactoryTest {
         factVisibilityAndUnavailableFactsAreApplied();
         onlyEntryRelationsBecomePageNavigation();
         mismatchedClientIdentityIsRejected();
+        editorialOverlayFollowsVisibilityAndAuthorization();
+        editorialIdentityMismatchIsRejected();
+        legacyFactoryKeepsEditorialEmpty();
         System.out.println("CompendiumPageModelFactoryTest: PASS");
     }
 
@@ -117,11 +128,88 @@ public final class CompendiumPageModelFactoryTest {
     private static void mismatchedClientIdentityIsRejected() {
         CompendiumEntry entry = entry(VisibilityPolicy.VISIBLE, List.of(), List.of());
         CompendiumClientEntry wrong = new CompendiumClientEntry(
-            CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "minecraft:fox"),
+            FOX_ID,
             "Raposa", "minecraft", Set.of(), Set.of("fauna"), Set.of("minecraft:overworld"), Set.of("minecraft:taiga"),
             true, false, true, true, false, CoverageState.AUTO
         );
         throwsIllegal(() -> CompendiumPageModelFactory.create(entry, wrong, false));
+    }
+
+    private static void editorialOverlayFollowsVisibilityAndAuthorization() {
+        CompendiumFact<Integer> health = fact("health", 20, FactVisibility.PUBLIC, FactConfidence.EXACT);
+        CompendiumEntry visible = entry(
+            VisibilityPolicy.VISIBLE,
+            List.of(new CompendiumSection("overview", List.of(health))),
+            List.of()
+        );
+        CompendiumEditorialContent editorial = editorial(WOLF_ID, List.of(TAIGA_ID, FOX_ID));
+
+        CompendiumPageModel page = CompendiumPageModelFactory.create(
+            visible,
+            client(true),
+            false,
+            Optional.of(editorial),
+            Set.of(WOLF_ID, TAIGA_ID)
+        ).orElseThrow();
+
+        CompendiumEditorialContent projected = page.editorialContent().orElseThrow();
+        eq("Lobo cinzento", projected.title());
+        eq(List.of(TAIGA_ID), projected.references());
+        eq(List.of(new CompendiumSection("overview", List.of(health))), page.sections());
+
+        CompendiumEntry hiddenDetails = entry(
+            VisibilityPolicy.HIDE_DETAILS_UNTIL_DISCOVERED,
+            List.of(new CompendiumSection("overview", List.of(health))),
+            List.of()
+        );
+        CompendiumPageModel hidden = CompendiumPageModelFactory.create(
+            hiddenDetails,
+            client(false),
+            false,
+            Optional.of(editorial),
+            Set.of(WOLF_ID, TAIGA_ID)
+        ).orElseThrow();
+        isFalse(hidden.detailsVisible());
+        eq(Optional.empty(), hidden.editorialContent());
+    }
+
+    private static void editorialIdentityMismatchIsRejected() {
+        CompendiumEntry entry = entry(VisibilityPolicy.VISIBLE, List.of(), List.of());
+        CompendiumEditorialContent wrong = editorial(FOX_ID, List.of());
+        throwsIllegal(() -> CompendiumPageModelFactory.create(
+            entry,
+            client(true),
+            false,
+            Optional.of(wrong),
+            Set.of(WOLF_ID, FOX_ID)
+        ));
+    }
+
+    private static void legacyFactoryKeepsEditorialEmpty() {
+        CompendiumEntry entry = entry(VisibilityPolicy.VISIBLE, List.of(), List.of());
+        CompendiumPageModel page = CompendiumPageModelFactory.create(entry, client(true), false).orElseThrow();
+        eq(Optional.empty(), page.editorialContent());
+    }
+
+    private static CompendiumEditorialContent editorial(CompendiumEntryId id, List<CompendiumEntryId> references) {
+        CompendiumEditorialSource source = new CompendiumEditorialSource(
+            EditorialSourceType.RUNTIME,
+            "minecraft:entity_type/minecraft:wolf",
+            null
+        );
+        return new CompendiumEditorialContent(
+            id,
+            "Lobo cinzento",
+            new CompendiumEditorialBlock("Canídeo registrado no catálogo.", List.of(source)),
+            List.of(new CompendiumEditorialSection(
+                "behavior",
+                new CompendiumEditorialBlock("Comportamento confirmado.", List.of(source))
+            )),
+            references,
+            EditorialReviewStatus.REVIEWED,
+            EditorialAvailability.RUNTIME,
+            null
+        );
     }
 
     private static CompendiumEntry entry(
