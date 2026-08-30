@@ -24,6 +24,17 @@ public final class RuntimeCompendiumEditorialCatalog {
         return CURRENT;
     }
 
+    /**
+     * Starts a new logical server lifecycle with no inherited editorial state.
+     *
+     * <p>The last-good fallback is deliberately scoped to one server lifecycle. A later integrated
+     * server in the same JVM must never observe editorial data validated against the previous
+     * world's resources or technical catalog.</p>
+     */
+    static void beginServerLifecycle() {
+        CURRENT = CompendiumEditorialSnapshot.empty();
+    }
+
     public static PublicationResult tryPublish(Supplier<CompendiumEditorialSnapshot> candidateFactory) {
         Objects.requireNonNull(candidateFactory, "candidateFactory");
         try {
@@ -52,7 +63,7 @@ public final class RuntimeCompendiumEditorialCatalog {
     }
 
     static void resetForTests() {
-        CURRENT = CompendiumEditorialSnapshot.empty();
+        beginServerLifecycle();
     }
 
     public record PublicationResult(
