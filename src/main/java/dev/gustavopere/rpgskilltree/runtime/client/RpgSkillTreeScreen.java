@@ -114,7 +114,7 @@ public final class RpgSkillTreeScreen extends Screen {
 
         graphics.fill(8, 8, 360, 102, 0xCC111722);
         graphics.drawString(font, title, 16, 15, 0xFFF2E7B6);
-        graphics.drawString(font, Component.translatable(layout.displayKey()), 16, 29, 0xFFD9C47C);
+        graphics.drawString(font, treeDisplayName(), 16, 29, 0xFFD9C47C);
         graphics.drawString(
             font,
             Component.translatable("screen.rpgskilltree.level", progress.level(), progress.xpIntoLevel(), progress.xpToNextLevel()),
@@ -340,16 +340,24 @@ public final class RpgSkillTreeScreen extends Screen {
             layout = available.get((current + 1) % available.size());
             panX = 0;
             panY = 0;
-            zoom = layout == ClientTreeLayout.main() ? 0.28 : 0.72;
+            zoom = (layout == ClientTreeLayout.main() || layout == ClientTreeLayout.combatPerks()) ? 0.28 : 0.72;
             return true;
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
+    private Component treeDisplayName() {
+        return CombatPerkClientText.treeDisplayName(layout.id())
+            .<Component>map(Component::literal)
+            .orElseGet(() -> Component.translatable(layout.displayKey()));
+    }
+
     private String nodeDisplayName(ClientTreeLayout.Node node) {
-        String key = nodeTranslationKey(node) + ".name";
-        String translated = Component.translatable(key).getString();
-        return translated.equals(key) ? node.id() : translated;
+        return CombatPerkClientText.nodeDisplayName(node.id()).orElseGet(() -> {
+            String key = nodeTranslationKey(node) + ".name";
+            String translated = Component.translatable(key).getString();
+            return translated.equals(key) ? node.id() : translated;
+        });
     }
 
     private String nodeDescription(ClientTreeLayout.Node node) {
