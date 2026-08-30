@@ -81,3 +81,12 @@
 - [x] fallback sem alteração de movimento;
 - [ ] teste do componente de deslocamento somente se surgir receipt provider-native válido;
 - [ ] dedicated-server smoke após eventual integração.
+
+## Fechamento Chat 1 V3 — ciclo exato A0011–A0020
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; o fallback de janela + impacto/pressão e a exigência de receipt ofensivo para deslocamento permanecem persistidos.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Estado aprovado:** **FALLBACK LEGÍTIMO / FAIL-CLOSED PARCIAL**. A aproximação geométrica abre a janela; `deltaMovement` não autoriza reescrever movimento.
+- **P-A0017-01 permanece aberta:** não existe receipt provider-native comprovado, em Epic Fight 21.17.3.1, para identificar e modular somente o deslocamento da mesma ação ofensiva do alvo.
+- **Regra para Chat 2:** implementar/manter somente janela + impacto/pressão. A redução de deslocamento só pode ser ativada após nova evidência técnica e retorno ao Chat 1; nunca por heurística genérica.
+- **Resultado:** **APROVADA / FECHADA EM FALLBACK CANÔNICO** no lote A0011–A0020.
