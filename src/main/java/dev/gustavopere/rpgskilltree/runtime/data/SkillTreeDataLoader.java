@@ -8,6 +8,8 @@ import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
 import dev.gustavopere.rpgskilltree.core.ModifierOperation;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
+import dev.gustavopere.rpgskilltree.core.NodeBehaviorEffect;
+import dev.gustavopere.rpgskilltree.core.NodeEffectIdPolicy;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.NodeSpecializationGrant;
 import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
@@ -63,11 +65,17 @@ public final class SkillTreeDataLoader {
         for (TreeRuleCatalog.NodeRule rule : rules) rulesById.put(rule.id(), rule);
         validateRuleReferences(rules, rulesById, sourceByNode);
 
-        List<NodeAttributeEffect> effects = parseEffects(effectResources, rulesById);
+        ParsedEffects effects = parseEffects(effectResources, rulesById);
         Map<ResourceLocation, SkillTreeDataSnapshot.NodePosition> positions = parsePositions(skillResources, rulesById);
         validateRequiredPositions(rules, treeIdsByNode, sourceByNode, positions);
 
-        return new PreparedSkillTreeData(rules, treeIdsByNode, effects, positions);
+        return new PreparedSkillTreeData(
+            rules,
+            treeIdsByNode,
+            effects.attributes(),
+            effects.behaviors(),
+            positions
+        );
     }
 
     /** Existing closed combat acquisition rules remain part of the authoritative runtime candidate. */
@@ -240,62 +248,111 @@ public final class SkillTreeDataLoader {
         }
     }
 
-    private static List<NodeAttributeEffect> parseEffects(
+    private static ParsedEffects parseEffects(
         Map<ResourceLocation, JsonElement> resources,
         Map<ResourceLocation, TreeRuleCatalog.NodeRule> rulesById
     ) {
-        List<NodeAttributeEffect> effects = new ArrayList<>();
+        List<NodeAttributeEffect> attributes = new ArrayList<>();
+        List<NodeBehaviorEffect> behaviors = new ArrayList<>();
         Map<String, ResourceLocation> sourceByEffect = new HashMap<>();
+
         sorted(resources).forEach(entry -> {
             ResourceLocation source = entry.getKey();
             JsonObject root = object(source, null, "root", entry.getValue());
-            if (!root.has("attributes")) return;
-            JsonArray attributes = requiredArray(source, null, root, "attributes");
-            for (JsonElement effectElement : attributes) {
-                JsonObject effect = object(source, null, "attributes", effectElement);
-                String effectId = requiredString(source, null, effect, "effectId");
-                namespacedId(source, effectId, "effectId", effectId);
-                ResourceLocation previous = sourceByEffect.putIfAbsent(effectId, source);
-                if (previous != null) {
-                    throw validation(source, effectId, "effectId",
-                        "duplicate effect id; first declared in " + previous);
-                }
 
-                String nodeIdText = requiredString(source, effectId, effect, "nodeId");
-                ResourceLocation nodeId = namespacedId(source, effectId, "nodeId", nodeIdText);
-                if (!rulesById.containsKey(nodeId)) {
-                    throw validation(source, effectId, "nodeId", "unknown node " + nodeId);
-                }
-                String attributeId = requiredString(source, effectId, effect, "attributeId");
-                namespacedId(source, effectId, "attributeId", attributeId);
+            if (root.has("attributes") && !root.get("attributes").isJsonNull()) {
+                JsonArray attributeArray = requiredArray(source, null, root, "attributes");
+                for (JsonElement effectElement : attributeArray) {
+                    JsonObject effect = object(source, null, "attributes", effectElement);
+                    String declaredEffectId = optionalString(source, null, effect, "effectId");
+                    String nodeIdText = requiredString(source, declaredEffectId, effect, "nodeId");
+                    ResourceLocation nodeId = namespacedId(source, declaredEffectId, "nodeId", nodeIdText);
+                    if (!rulesById.containsKey(nodeId)) {
+                        throw validation(source, declaredEffectId != null ? declaredEffectId : nodeIdText,
+                            "nodeId", "unknown node " + nodeId);
+                    }
+                    String attributeId = requiredString(source, declaredEffectId, effect, "attributeId");
+                    namespacedId(source, declaredEffectId, "attributeId", attributeId);
 
-                String operationText = requiredString(source, effectId, effect, "operation");
-                ModifierOperation operation;
-                try {
-                    operation = ModifierOperation.valueOf(operationText);
-                } catch (IllegalArgumentException failure) {
-                    throw validation(source, effectId, "operation", "unknown operation " + operationText, failure);
-                }
-                if (operation == ModifierOperation.OVERRIDE) {
-                    throw validation(source, effectId, "operation", "OVERRIDE is not supported for node attribute effects");
-                }
+                    String operationText = requiredString(source, declaredEffectId, effect, "operation");
+                    ModifierOperation operation;
+                    try {
+                        operation = ModifierOperation.valueOf(operationText);
+                    } catch (IllegalArgumentException failure) {
+                        throw validation(source, declaredEffectId, "operation", "unknown operation " + operationText, failure);
+                    }
+                    if (operation == ModifierOperation.OVERRIDE) {
+                        throw validation(source, declaredEffectId, "operation",
+                            "OVERRIDE is not supported for node attribute effects");
+                    }
 
-                double amount = requiredDouble(source, effectId, effect, "amountPerRank");
-                if (!Double.isFinite(amount)) {
-                    throw validation(source, effectId, "amountPerRank", "must be finite");
-                }
-                if (amount == 0.0D) {
-                    throw validation(source, effectId, "amountPerRank", "must be non-zero");
-                }
+                    String effectId = declaredEffectId != null
+                        ? declaredEffectId
+                        : NodeEffectIdPolicy.attribute(source.toString(), nodeIdText, attributeId, operation);
+                    namespacedId(source, effectId, "effectId", effectId);
+                    registerEffectId(sourceByEffect, source, effectId);
 
-                try {
-                    effects.add(new NodeAttributeEffect(effectId, nodeIdText, attributeId, operation, amount));
-                } catch (IllegalArgumentException failure) {
-                    throw validation(source, effectId, "effect", failure.getMessage(), failure);
+                    double amount = requiredDouble(source, effectId, effect, "amountPerRank");
+                    if (!Double.isFinite(amount)) {
+                        throw validation(source, effectId, "amountPerRank", "must be finite");
+                    }
+                    if (amount == 0.0D) {
+                        throw validation(source, effectId, "amountPerRank", "must be non-zero");
+                    }
+
+                    try {
+                        attributes.add(new NodeAttributeEffect(effectId, nodeIdText, attributeId, operation, amount));
+                    } catch (IllegalArgumentException failure) {
+                        throw validation(source, effectId, "effect", failure.getMessage(), failure);
+                    }
+                }
+            }
+
+            if (root.has("behaviors") && !root.get("behaviors").isJsonNull()) {
+                JsonArray behaviorArray = requiredArray(source, null, root, "behaviors");
+                for (JsonElement effectElement : behaviorArray) {
+                    JsonObject effect = object(source, null, "behaviors", effectElement);
+                    String declaredEffectId = optionalString(source, null, effect, "effectId");
+                    String nodeIdText = requiredString(source, declaredEffectId, effect, "nodeId");
+                    ResourceLocation nodeId = namespacedId(source, declaredEffectId, "nodeId", nodeIdText);
+                    if (!rulesById.containsKey(nodeId)) {
+                        throw validation(source, declaredEffectId != null ? declaredEffectId : nodeIdText,
+                            "nodeId", "unknown node " + nodeId);
+                    }
+                    String handlerId = requiredString(source, declaredEffectId, effect, "handlerId");
+                    namespacedId(source, declaredEffectId, "handlerId", handlerId);
+
+                    String effectId = declaredEffectId != null
+                        ? declaredEffectId
+                        : NodeEffectIdPolicy.behavior(source.toString(), nodeIdText, handlerId);
+                    namespacedId(source, effectId, "effectId", effectId);
+                    registerEffectId(sourceByEffect, source, effectId);
+
+                    try {
+                        behaviors.add(new NodeBehaviorEffect(effectId, nodeIdText, handlerId));
+                    } catch (IllegalArgumentException failure) {
+                        throw validation(source, effectId, "effect", failure.getMessage(), failure);
+                    }
                 }
             }
         });
-        return effects.stream().sorted(Comparator.comparing(NodeAttributeEffect::effectId)).toList();
+
+        return new ParsedEffects(
+            attributes.stream().sorted(Comparator.comparing(NodeAttributeEffect::effectId)).toList(),
+            behaviors.stream().sorted(Comparator.comparing(NodeBehaviorEffect::effectId)).toList()
+        );
+    }
+
+    private static void registerEffectId(
+        Map<String, ResourceLocation> sourceByEffect,
+        ResourceLocation source,
+        String effectId
+    ) {
+        ResourceLocation previous = sourceByEffect.putIfAbsent(effectId, source);
+        if (previous != null) {
+            throw validation(source, effectId, "effectId",
+                "duplicate effect id; first declared in " + previous);
+        }
     }
 
     private static Map<ResourceLocation, SkillTreeDataSnapshot.NodePosition> parsePositions(
@@ -377,6 +434,11 @@ public final class SkillTreeDataLoader {
         String value = element.getAsString();
         if (value.isBlank()) throw validation(source, entryId, field, "must not be blank");
         return value;
+    }
+
+    private static String optionalString(ResourceLocation source, String entryId, JsonObject object, String field) {
+        if (!object.has(field) || object.get(field).isJsonNull()) return null;
+        return requiredString(source, entryId, object, field);
     }
 
     private static int requiredInt(ResourceLocation source, String entryId, JsonObject object, String field) {
@@ -495,4 +557,9 @@ public final class SkillTreeDataLoader {
     ) {
         return new SkillTreeDataValidationException(source, entryId, field, detail, cause);
     }
+
+    private record ParsedEffects(
+        List<NodeAttributeEffect> attributes,
+        List<NodeBehaviorEffect> behaviors
+    ) {}
 }
