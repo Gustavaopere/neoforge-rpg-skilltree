@@ -3,94 +3,129 @@
 Esta página registra os **119 efeitos de atributo** atualmente declarados. Valores percentuais são mostrados por rank. Ela não inclui toda mecânica comportamental possível do mod.
 
 <!-- rpgskilltree:generated:effect-catalog:start -->
-## Árvore Principal — 66 efeitos
-
-Cada região possui três efeitos iniciais e três efeitos de final triad.
-
-| Região | Início | Final triad |
-| --- | --- | --- |
-| Martial | `000` +0,35 dano; `001` +2% velocidade de ataque; `002` +2% armor pierce | `036` +0,75 dano; `037` +3% velocidade; `038` +3% armor pierce |
-| Vitality | `000` +1 vida; `001` +0,5 armadura; `002` +0,02 knockback resistance | `036` +2 vida; `028` +1 armadura; `037` +0,03 knockback resistance |
-| Healing | `000` +3% healing received; `001` +2,5% holy spell power; `002` +2% spell resist | `028` +5% healing received; `029` +4% holy spell power; `033` +3% spell resist |
-| Arcane | `000` +20 mana; `001` +2,5% spell power; `002` +3% mana regen | `037` +35 mana; `040` +4% spell power; `046` +3% cooldown reduction |
-| Engineering | `000` +1,5% attack speed; `001` +0,25 luck; `002` +1% movement | `037` +3% attack speed; `041` +0,5 luck; `045` +2% movement |
-| Mining | `000` +4% mining speed; `001` +0,25 luck; `002` +1,5% armor pierce | `029` +6% mining speed; `031` +0,5 luck; `033` +2,5% armor pierce |
-| Survival | `000` +0,75 vida; `001` +0,35 armadura; `002` +1% movement | `036` +1 armadura; `028` +1,5 vida; `037` +2% movement |
-| Summoning | `000` +3% summon damage; `001` +12 mana; `002` +2% mana regen | `029` +5% summon damage; `031` +4% mana regen; `033` +20 mana |
-| Occult | `000` +3% blood spell power; `001` +3% eldritch spell power; `002` +1,5% spell power | `037` +5% blood; `036` +5% eldritch; `027` +3% spell power |
-| Logistics | `000` +1,5% movement; `001` +0,2 luck; `002` +1% attack speed | `025` +3% movement; `026` +0,5 luck; `024` +2% attack speed |
-| Agility | `000` +2% movement; `001` +2% attack speed; `002` +2% dodge | `031` +3% movement; `032` +3% attack speed; `033` +3% dodge |
-
-## Epic Fight — 5 efeitos
-
-- `martial_000`: +1 stamina.
-- `martial_001`: +3% stamina regen.
-- `martial_002`: +0,03 impact.
-- `agility_000`: +0,75 stamina.
-- `agility_001`: +4% stamina regen.
-
-## Malum — 4 efeitos
-
-- `occult_000`: +1 Spirit Spoils.
-- `occult_001`: +10% Arcane Resonance.
-- `occult_002`: +2 Soul Ward Capacity.
-- `occult_027`: +1 Geas Limit.
-
-## Druid — 7 efeitos
-
-- Forma Selvagem: +1 vida máxima.
-- Resiliência Natural: +0,5 armadura.
-- Pulmões Profundos: +2% movimento.
-- Instinto dos Céus: +2% movimento.
-- Forma Predadora: +4% dano de ataque.
-- Guardião da Matilha: +1 vida máxima.
-- Espírito Primordial: +8% Nature Spell Power do Iron's.
-
-## Metamorph — 5 efeitos
-
-- Rosto Emprestado: +2% movimento.
-- Ossos Mutáveis: +0,5 armadura.
-- Mimetismo Predatório: +4% dano de ataque.
-- Anatomia Instável: +1 vida máxima.
-- Memória Quimérica: +2% chance de esquiva Apothic.
-
-## Technomancer — 15 efeitos
-
-- Núcleo Tecnomágico: +25 mana.
-- Mana Condutiva: +20 mana.
-- Barramento Arcano: +3% mana regen.
-- Ressonância Cinética: +2% spell power.
-- Conjuração Cinética: +2,5% cast time reduction.
-- Sobrecarga Cinética: +5% cooldown reduction.
-- Memória de Rede: +15 mana.
-- Mente de Padrões: +2,5% spell power.
-- Autocrafting Arcano: +6% mana regen.
-- Conduíte de Potência: +2,5% mana regen.
-- Foco Carregado: +2,5% spell power.
-- Conjurador Sobrecarregado: +5% crit chance Apothic.
-- Sistemas Duplos: +4% cooldown reduction.
-- Núcleo Trino: +8% spell power.
-- Núcleo Trino: +50 mana.
-
-## Warlock — 17 efeitos
-
-- Conhecimento Proibido: +8 mana.
-- Confluência de Pactos: +4% spell power.
-- Lâmina Vinculada: +0,5 dano de ataque.
-- Gume Amaldiçoado: +3% velocidade de ataque.
-- Pacto de Aço-Alma: +10% spell power multiplicativo.
-- Sacrifício de Sangue: +6% blood spell power.
-- Fome de Sangue: +0,01 life steal Apothic.
-- Aliança Carmesim: +12% overheal Apothic.
-- Vínculo do Familiar: +7% summon damage.
-- Comando do Servo: +1 vida máxima.
-- Familiar Ancorado: +12% summon damage multiplicativo.
-- Páginas Proibidas: +12 mana.
-- Memória Ritual: +5% mana regen.
-- Fórmula Proibida: +10% spell power multiplicativo.
-- Colheita de Almas: +4% spell power.
-- Vínculo do Servo: +6% summon damage.
-- Conduto de Almas: +2 vida máxima.
-
-Todos os valores acima são por rank quando o nó admite múltiplos ranks.
+| Nó | Nome | Effect ID | Alvo/Handler | Operação | Por rank |
+| --- | --- | --- | --- | --- | ---: |
+| `rpgskilltree:agility_000` | rpgskilltree:agility_000 | `rpgskilltree:node/agility_000/epicfight_stamina` | `epicfight:stamina` | ADD_FLAT | +0.75/rank |
+| `rpgskilltree:agility_000` | rpgskilltree:agility_000 | `rpgskilltree:node/agility_000/movement_speed` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:agility_001` | rpgskilltree:agility_001 | `rpgskilltree:node/agility_001/attack_speed` | `minecraft:generic.attack_speed` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:agility_001` | rpgskilltree:agility_001 | `rpgskilltree:node/agility_001/epicfight_stamina_regen` | `epicfight:stamina_regen` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:agility_002` | rpgskilltree:agility_002 | `rpgskilltree:node/agility_002/dodge_chance` | `apothic_attributes:dodge_chance` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:agility_031` | rpgskilltree:agility_031 | `rpgskilltree:node/agility_031/capstone_movement` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:agility_032` | rpgskilltree:agility_032 | `rpgskilltree:node/agility_032/capstone_speed` | `minecraft:generic.attack_speed` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:agility_033` | rpgskilltree:agility_033 | `rpgskilltree:node/agility_033/capstone_dodge` | `apothic_attributes:dodge_chance` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:arcane_000` | rpgskilltree:arcane_000 | `rpgskilltree:node/arcane_000/max_mana` | `irons_spellbooks:max_mana` | ADD_FLAT | +20/rank |
+| `rpgskilltree:arcane_001` | rpgskilltree:arcane_001 | `rpgskilltree:node/arcane_001/spell_power` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +2.5%/rank |
+| `rpgskilltree:arcane_002` | rpgskilltree:arcane_002 | `rpgskilltree:node/arcane_002/mana_regen` | `irons_spellbooks:mana_regen` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:arcane_037` | rpgskilltree:arcane_037 | `rpgskilltree:node/arcane_037/capstone_mana` | `irons_spellbooks:max_mana` | ADD_FLAT | +35/rank |
+| `rpgskilltree:arcane_040` | rpgskilltree:arcane_040 | `rpgskilltree:node/arcane_040/capstone_power` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:arcane_046` | rpgskilltree:arcane_046 | `rpgskilltree:node/arcane_046/capstone_cooldown` | `irons_spellbooks:cooldown_reduction` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:combat/a0088` | rpgskilltree:combat/a0088 | `rpgskilltree:node/combat/a0088/max_health` | `minecraft:generic.max_health` | MULTIPLY_TOTAL | +2%/rank |
+| `rpgskilltree:combat/a0089` | rpgskilltree:combat/a0089 | `rpgskilltree:node/combat/a0089/armor` | `minecraft:generic.armor` | MULTIPLY_TOTAL | +2%/rank |
+| `rpgskilltree:combat/a0090` | rpgskilltree:combat/a0090 | `rpgskilltree:node/combat/a0090/armor_toughness` | `minecraft:generic.armor_toughness` | MULTIPLY_TOTAL | +2%/rank |
+| `rpgskilltree:combat/a0091` | rpgskilltree:combat/a0091 | `rpgskilltree:node/combat/a0091/knockback_resistance` | `minecraft:generic.knockback_resistance` | ADD_FLAT | +0.03/rank |
+| `rpgskilltree:druid/deep_lungs` | Pulmões Profundos | `rpgskilltree:druid/deep_lungs/speed` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:druid/natural_resilience` | Resiliência Natural | `rpgskilltree:druid/natural_resilience/armor` | `minecraft:generic.armor` | ADD_FLAT | +0.5/rank |
+| `rpgskilltree:druid/pack_guardian` | Guardião da Matilha | `rpgskilltree:druid/pack_guardian/health` | `minecraft:generic.max_health` | ADD_FLAT | +1/rank |
+| `rpgskilltree:druid/predator_form` | Forma Predadora | `rpgskilltree:druid/predator_form/damage` | `minecraft:generic.attack_damage` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:druid/primal_spirit` | Espírito Primordial | `rpgskilltree:druid/primal_spirit/nature` | `irons_spellbooks:nature_spell_power` | ADD_PERCENT_BASE | +8%/rank |
+| `rpgskilltree:druid/sky_instinct` | Instinto dos Céus | `rpgskilltree:druid/sky_instinct/speed` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:druid/wild_shape` | Forma Selvagem | `rpgskilltree:druid/wild_shape/health` | `minecraft:generic.max_health` | ADD_FLAT | +1/rank |
+| `rpgskilltree:engineering_000` | rpgskilltree:engineering_000 | `rpgskilltree:node/engineering_000/tooling_speed` | `minecraft:generic.attack_speed` | ADD_PERCENT_BASE | +1.5%/rank |
+| `rpgskilltree:engineering_001` | rpgskilltree:engineering_001 | `rpgskilltree:node/engineering_001/precision` | `minecraft:generic.luck` | ADD_FLAT | +0.25/rank |
+| `rpgskilltree:engineering_002` | rpgskilltree:engineering_002 | `rpgskilltree:node/engineering_002/field_mobility` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +1%/rank |
+| `rpgskilltree:engineering_037` | rpgskilltree:engineering_037 | `rpgskilltree:node/engineering_037/capstone_tooling` | `minecraft:generic.attack_speed` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:engineering_041` | rpgskilltree:engineering_041 | `rpgskilltree:node/engineering_041/capstone_precision` | `minecraft:generic.luck` | ADD_FLAT | +0.5/rank |
+| `rpgskilltree:engineering_045` | rpgskilltree:engineering_045 | `rpgskilltree:node/engineering_045/capstone_mobility` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:healing_000` | rpgskilltree:healing_000 | `rpgskilltree:node/healing_000/healing_received` | `apothic_attributes:healing_received` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:healing_001` | rpgskilltree:healing_001 | `rpgskilltree:node/healing_001/holy_power` | `irons_spellbooks:holy_spell_power` | ADD_PERCENT_BASE | +2.5%/rank |
+| `rpgskilltree:healing_002` | rpgskilltree:healing_002 | `rpgskilltree:node/healing_002/spell_resist` | `irons_spellbooks:spell_resist` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:healing_028` | rpgskilltree:healing_028 | `rpgskilltree:node/healing_028/capstone_healing` | `apothic_attributes:healing_received` | ADD_PERCENT_BASE | +5%/rank |
+| `rpgskilltree:healing_029` | rpgskilltree:healing_029 | `rpgskilltree:node/healing_029/capstone_holy` | `irons_spellbooks:holy_spell_power` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:healing_033` | rpgskilltree:healing_033 | `rpgskilltree:node/healing_033/capstone_ward` | `irons_spellbooks:spell_resist` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:logistics_000` | rpgskilltree:logistics_000 | `rpgskilltree:node/logistics_000/movement_speed` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +1.5%/rank |
+| `rpgskilltree:logistics_001` | rpgskilltree:logistics_001 | `rpgskilltree:node/logistics_001/routing_luck` | `minecraft:generic.luck` | ADD_FLAT | +0.2/rank |
+| `rpgskilltree:logistics_002` | rpgskilltree:logistics_002 | `rpgskilltree:node/logistics_002/handling_speed` | `minecraft:generic.attack_speed` | ADD_PERCENT_BASE | +1%/rank |
+| `rpgskilltree:logistics_024` | rpgskilltree:logistics_024 | `rpgskilltree:node/logistics_024/capstone_handling` | `minecraft:generic.attack_speed` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:logistics_025` | rpgskilltree:logistics_025 | `rpgskilltree:node/logistics_025/capstone_movement` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:logistics_026` | rpgskilltree:logistics_026 | `rpgskilltree:node/logistics_026/capstone_luck` | `minecraft:generic.luck` | ADD_FLAT | +0.5/rank |
+| `rpgskilltree:martial_000` | rpgskilltree:martial_000 | `rpgskilltree:node/martial_000/attack_damage` | `minecraft:generic.attack_damage` | ADD_FLAT | +0.35/rank |
+| `rpgskilltree:martial_000` | rpgskilltree:martial_000 | `rpgskilltree:node/martial_000/epicfight_stamina` | `epicfight:stamina` | ADD_FLAT | +1/rank |
+| `rpgskilltree:martial_001` | rpgskilltree:martial_001 | `rpgskilltree:node/martial_001/attack_speed` | `minecraft:generic.attack_speed` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:martial_001` | rpgskilltree:martial_001 | `rpgskilltree:node/martial_001/epicfight_stamina_regen` | `epicfight:stamina_regen` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:martial_002` | rpgskilltree:martial_002 | `rpgskilltree:node/martial_002/armor_pierce` | `apothic_attributes:armor_pierce` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:martial_002` | rpgskilltree:martial_002 | `rpgskilltree:node/martial_002/epicfight_impact` | `epicfight:impact` | ADD_FLAT | +0.03/rank |
+| `rpgskilltree:martial_036` | rpgskilltree:martial_036 | `rpgskilltree:node/martial_036/capstone_damage` | `minecraft:generic.attack_damage` | ADD_FLAT | +0.75/rank |
+| `rpgskilltree:martial_037` | rpgskilltree:martial_037 | `rpgskilltree:node/martial_037/capstone_speed` | `minecraft:generic.attack_speed` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:martial_038` | rpgskilltree:martial_038 | `rpgskilltree:node/martial_038/capstone_pierce` | `apothic_attributes:armor_pierce` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:metamorph/borrowed_face` | Rosto Emprestado | `rpgskilltree:metamorph/borrowed_face/speed` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:metamorph/chimeric_memory` | Memória Quimérica | `rpgskilltree:metamorph/chimeric_memory/dodge` | `apothic_attributes:dodge_chance` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:metamorph/mutable_bones` | Ossos Mutáveis | `rpgskilltree:metamorph/mutable_bones/armor` | `minecraft:generic.armor` | ADD_FLAT | +0.5/rank |
+| `rpgskilltree:metamorph/predatory_mimicry` | Mimetismo Predatório | `rpgskilltree:metamorph/predatory_mimicry/damage` | `minecraft:generic.attack_damage` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:metamorph/unstable_anatomy` | Anatomia Instável | `rpgskilltree:metamorph/unstable_anatomy/health` | `minecraft:generic.max_health` | ADD_FLAT | +1/rank |
+| `rpgskilltree:mining_000` | rpgskilltree:mining_000 | `rpgskilltree:node/mining_000/mining_speed` | `apothic_attributes:mining_speed` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:mining_001` | rpgskilltree:mining_001 | `rpgskilltree:node/mining_001/prospecting_luck` | `minecraft:generic.luck` | ADD_FLAT | +0.25/rank |
+| `rpgskilltree:mining_002` | rpgskilltree:mining_002 | `rpgskilltree:node/mining_002/hardness_pierce` | `apothic_attributes:armor_pierce` | ADD_PERCENT_BASE | +1.5%/rank |
+| `rpgskilltree:mining_029` | rpgskilltree:mining_029 | `rpgskilltree:node/mining_029/capstone_mining` | `apothic_attributes:mining_speed` | ADD_PERCENT_BASE | +6%/rank |
+| `rpgskilltree:mining_031` | rpgskilltree:mining_031 | `rpgskilltree:node/mining_031/capstone_prospecting` | `minecraft:generic.luck` | ADD_FLAT | +0.5/rank |
+| `rpgskilltree:mining_033` | rpgskilltree:mining_033 | `rpgskilltree:node/mining_033/capstone_hardness` | `apothic_attributes:armor_pierce` | ADD_PERCENT_BASE | +2.5%/rank |
+| `rpgskilltree:occult_000` | rpgskilltree:occult_000 | `rpgskilltree:malum/occult_000/spirit_spoils` | `malum:spirit_spoils` | ADD_FLAT | +1/rank |
+| `rpgskilltree:occult_000` | rpgskilltree:occult_000 | `rpgskilltree:node/occult_000/blood_power` | `irons_spellbooks:blood_spell_power` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:occult_001` | rpgskilltree:occult_001 | `rpgskilltree:malum/occult_001/arcane_resonance` | `malum:arcane_resonance` | ADD_PERCENT_BASE | +10%/rank |
+| `rpgskilltree:occult_001` | rpgskilltree:occult_001 | `rpgskilltree:node/occult_001/eldritch_power` | `irons_spellbooks:eldritch_spell_power` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:occult_002` | rpgskilltree:occult_002 | `rpgskilltree:malum/occult_002/soul_ward_capacity` | `malum:soul_ward_capacity` | ADD_FLAT | +2/rank |
+| `rpgskilltree:occult_002` | rpgskilltree:occult_002 | `rpgskilltree:node/occult_002/occult_power` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +1.5%/rank |
+| `rpgskilltree:occult_027` | rpgskilltree:occult_027 | `rpgskilltree:malum/occult_027/geas_limit` | `malum:geas_limit` | ADD_FLAT | +1/rank |
+| `rpgskilltree:occult_027` | rpgskilltree:occult_027 | `rpgskilltree:node/occult_027/capstone_power` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:occult_036` | rpgskilltree:occult_036 | `rpgskilltree:node/occult_036/capstone_eldritch` | `irons_spellbooks:eldritch_spell_power` | ADD_PERCENT_BASE | +5%/rank |
+| `rpgskilltree:occult_037` | rpgskilltree:occult_037 | `rpgskilltree:node/occult_037/capstone_blood` | `irons_spellbooks:blood_spell_power` | ADD_PERCENT_BASE | +5%/rank |
+| `rpgskilltree:summoning_000` | rpgskilltree:summoning_000 | `rpgskilltree:node/summoning_000/summon_damage` | `irons_spellbooks:summon_damage` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:summoning_001` | rpgskilltree:summoning_001 | `rpgskilltree:node/summoning_001/summon_reserve` | `irons_spellbooks:max_mana` | ADD_FLAT | +12/rank |
+| `rpgskilltree:summoning_002` | rpgskilltree:summoning_002 | `rpgskilltree:node/summoning_002/summon_regen` | `irons_spellbooks:mana_regen` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:summoning_029` | rpgskilltree:summoning_029 | `rpgskilltree:node/summoning_029/capstone_summons` | `irons_spellbooks:summon_damage` | ADD_PERCENT_BASE | +5%/rank |
+| `rpgskilltree:summoning_031` | rpgskilltree:summoning_031 | `rpgskilltree:node/summoning_031/capstone_regen` | `irons_spellbooks:mana_regen` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:summoning_033` | rpgskilltree:summoning_033 | `rpgskilltree:node/summoning_033/capstone_reserve` | `irons_spellbooks:max_mana` | ADD_FLAT | +20/rank |
+| `rpgskilltree:survival_000` | rpgskilltree:survival_000 | `rpgskilltree:node/survival_000/hardiness` | `minecraft:generic.max_health` | ADD_FLAT | +0.75/rank |
+| `rpgskilltree:survival_001` | rpgskilltree:survival_001 | `rpgskilltree:node/survival_001/field_armor` | `minecraft:generic.armor` | ADD_FLAT | +0.35/rank |
+| `rpgskilltree:survival_002` | rpgskilltree:survival_002 | `rpgskilltree:node/survival_002/terrain_mobility` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +1%/rank |
+| `rpgskilltree:survival_028` | rpgskilltree:survival_028 | `rpgskilltree:node/survival_028/capstone_health` | `minecraft:generic.max_health` | ADD_FLAT | +1.5/rank |
+| `rpgskilltree:survival_036` | rpgskilltree:survival_036 | `rpgskilltree:node/survival_036/capstone_armor` | `minecraft:generic.armor` | ADD_FLAT | +1/rank |
+| `rpgskilltree:survival_037` | rpgskilltree:survival_037 | `rpgskilltree:node/survival_037/capstone_terrain` | `minecraft:generic.movement_speed` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:technomancer/arcane_autocrafting` | Autocrafting Arcano | `rpgskilltree:node/technomancer/arcane_autocrafting/regen` | `irons_spellbooks:mana_regen` | ADD_PERCENT_BASE | +6%/rank |
+| `rpgskilltree:technomancer/arcane_bus` | Barramento Arcano | `rpgskilltree:node/technomancer/arcane_bus/regen` | `irons_spellbooks:mana_regen` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:technomancer/charged_focus` | Foco Carregado | `rpgskilltree:node/technomancer/charged_focus/power` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +2.5%/rank |
+| `rpgskilltree:technomancer/conductive_mana` | Mana Condutiva | `rpgskilltree:node/technomancer/conductive_mana/mana` | `irons_spellbooks:max_mana` | ADD_FLAT | +20/rank |
+| `rpgskilltree:technomancer/core` | Núcleo Tecnomágico | `rpgskilltree:node/technomancer/core/mana` | `irons_spellbooks:max_mana` | ADD_FLAT | +25/rank |
+| `rpgskilltree:technomancer/create_overdrive` | Sobrecarga Cinética | `rpgskilltree:node/technomancer/create_overdrive/cooldown` | `irons_spellbooks:cooldown_reduction` | ADD_PERCENT_BASE | +5%/rank |
+| `rpgskilltree:technomancer/create_resonance` | Ressonância Cinética | `rpgskilltree:node/technomancer/create_resonance/power` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +2%/rank |
+| `rpgskilltree:technomancer/dual_systems` | Sistemas Duplos | `rpgskilltree:node/technomancer/dual_systems/cooldown` | `irons_spellbooks:cooldown_reduction` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:technomancer/kinetic_casting` | Conjuração Cinética | `rpgskilltree:node/technomancer/kinetic_casting/cast_time` | `irons_spellbooks:cast_time_reduction` | ADD_PERCENT_BASE | +2.5%/rank |
+| `rpgskilltree:technomancer/network_memory` | Memória de Rede | `rpgskilltree:node/technomancer/network_memory/mana` | `irons_spellbooks:max_mana` | ADD_FLAT | +15/rank |
+| `rpgskilltree:technomancer/overcharged_caster` | Conjurador Sobrecarregado | `rpgskilltree:node/technomancer/overcharged_caster/crit` | `apothic_attributes:crit_chance` | ADD_PERCENT_BASE | +5%/rank |
+| `rpgskilltree:technomancer/pattern_mind` | Mente de Padrões | `rpgskilltree:node/technomancer/pattern_mind/power` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +2.5%/rank |
+| `rpgskilltree:technomancer/power_conduit` | Conduíte de Potência | `rpgskilltree:node/technomancer/power_conduit/regen` | `irons_spellbooks:mana_regen` | ADD_PERCENT_BASE | +2.5%/rank |
+| `rpgskilltree:technomancer/triune_core` | Núcleo Trino | `rpgskilltree:node/technomancer/triune_core/mana` | `irons_spellbooks:max_mana` | ADD_FLAT | +50/rank |
+| `rpgskilltree:technomancer/triune_core` | Núcleo Trino | `rpgskilltree:node/technomancer/triune_core/power` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +8%/rank |
+| `rpgskilltree:vitality_000` | rpgskilltree:vitality_000 | `rpgskilltree:node/vitality_000/max_health` | `minecraft:generic.max_health` | ADD_FLAT | +1/rank |
+| `rpgskilltree:vitality_001` | rpgskilltree:vitality_001 | `rpgskilltree:node/vitality_001/armor` | `minecraft:generic.armor` | ADD_FLAT | +0.5/rank |
+| `rpgskilltree:vitality_002` | rpgskilltree:vitality_002 | `rpgskilltree:node/vitality_002/knockback_resistance` | `minecraft:generic.knockback_resistance` | ADD_FLAT | +0.02/rank |
+| `rpgskilltree:vitality_028` | rpgskilltree:vitality_028 | `rpgskilltree:node/vitality_028/capstone_armor` | `minecraft:generic.armor` | ADD_FLAT | +1/rank |
+| `rpgskilltree:vitality_036` | rpgskilltree:vitality_036 | `rpgskilltree:node/vitality_036/capstone_health` | `minecraft:generic.max_health` | ADD_FLAT | +2/rank |
+| `rpgskilltree:vitality_037` | rpgskilltree:vitality_037 | `rpgskilltree:node/vitality_037/capstone_stability` | `minecraft:generic.knockback_resistance` | ADD_FLAT | +0.03/rank |
+| `rpgskilltree:warlock/anchored_familiar` | Familiar Ancorado | `rpgskilltree:warlock/anchored_familiar/summon_total` | `irons_spellbooks:summon_damage` | MULTIPLY_TOTAL | +12%/rank |
+| `rpgskilltree:warlock/blade_bond` | Lâmina Vinculada | `rpgskilltree:warlock/blade_bond/attack` | `minecraft:generic.attack_damage` | ADD_FLAT | +0.5/rank |
+| `rpgskilltree:warlock/blood_hunger` | Fome de Sangue | `rpgskilltree:warlock/blood_hunger/life_steal` | `apothic_attributes:life_steal` | ADD_FLAT | +0.01/rank |
+| `rpgskilltree:warlock/blood_sacrifice` | Sacrifício de Sangue | `rpgskilltree:warlock/blood_sacrifice/blood_power` | `irons_spellbooks:blood_spell_power` | ADD_PERCENT_BASE | +6%/rank |
+| `rpgskilltree:warlock/crimson_covenant` | Aliança Carmesim | `rpgskilltree:warlock/crimson_covenant/overheal` | `apothic_attributes:overheal` | ADD_PERCENT_BASE | +12%/rank |
+| `rpgskilltree:warlock/familiar_bond` | Vínculo do Familiar | `rpgskilltree:warlock/familiar_bond/summon` | `irons_spellbooks:summon_damage` | ADD_PERCENT_BASE | +7%/rank |
+| `rpgskilltree:warlock/forbidden_formula` | Fórmula Proibida | `rpgskilltree:warlock/forbidden_formula/spell` | `irons_spellbooks:spell_power` | MULTIPLY_TOTAL | +10%/rank |
+| `rpgskilltree:warlock/forbidden_lore` | Conhecimento Proibido | `rpgskilltree:warlock/forbidden_lore/mana` | `irons_spellbooks:max_mana` | ADD_FLAT | +8/rank |
+| `rpgskilltree:warlock/grimoire_pages` | Páginas Proibidas | `rpgskilltree:warlock/grimoire_pages/mana` | `irons_spellbooks:max_mana` | ADD_FLAT | +12/rank |
+| `rpgskilltree:warlock/hex_edge` | Gume Amaldiçoado | `rpgskilltree:warlock/hex_edge/speed` | `minecraft:generic.attack_speed` | ADD_PERCENT_BASE | +3%/rank |
+| `rpgskilltree:warlock/pact_confluence` | Confluência de Pactos | `rpgskilltree:warlock/pact_confluence/spell_power` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:warlock/ritual_memory` | Memória Ritual | `rpgskilltree:warlock/ritual_memory/regen` | `irons_spellbooks:mana_regen` | ADD_PERCENT_BASE | +5%/rank |
+| `rpgskilltree:warlock/servant_command` | Comando do Servo | `rpgskilltree:warlock/servant_command/health` | `minecraft:generic.max_health` | ADD_FLAT | +1/rank |
+| `rpgskilltree:warlock/servant_link` | Vínculo do Servo | `rpgskilltree:warlock/servant_link/summon` | `irons_spellbooks:summon_damage` | ADD_PERCENT_BASE | +6%/rank |
+| `rpgskilltree:warlock/soul_conduit` | Conduto de Almas | `rpgskilltree:warlock/soul_conduit/health` | `minecraft:generic.max_health` | ADD_FLAT | +2/rank |
+| `rpgskilltree:warlock/soul_harvest` | Colheita de Almas | `rpgskilltree:warlock/soul_harvest/spell` | `irons_spellbooks:spell_power` | ADD_PERCENT_BASE | +4%/rank |
+| `rpgskilltree:warlock/soulsteel_keystone` | Pacto de Aço-Alma | `rpgskilltree:warlock/soulsteel_keystone/spell` | `irons_spellbooks:spell_power` | MULTIPLY_TOTAL | +10%/rank |
 <!-- rpgskilltree:generated:effect-catalog:end -->
