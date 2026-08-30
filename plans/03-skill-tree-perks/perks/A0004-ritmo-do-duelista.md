@@ -54,3 +54,18 @@ A0004 é a Notable de Ímpeto da árvore de Espadas. Exige A0003 ≥2. Hit diret
 - **Anti-abuso/deduplicação:** um resultado não gera duas cargas; miss/stagger não são inferidos por distância, animação ou dano bruto; estado transitório é limpo nos lifecycles definidos.
 - **Integração global:** Ímpeto continua recurso MARTIAL próprio e não substitui nem duplica stamina de Epic Fight/ParCool.
 - **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.
+
+## Chat 2 — implementação, testes e merge — PR #221
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #221.
+
+- [x] Receipts de hit, defesa técnica, miss e stagger forte implementados.
+- [x] Deduplicação por ação/receipt implementada.
+- [x] Cap, graça, decay e lifecycle cleanup implementados.
+- [x] Stagger forte restrito a receipt provider-native; sem proxies heurísticos.
+- [x] Ímpeto permanece separado de stamina.
+- [x] Testes de policy/regressão presentes.
+- [x] `RPG Skill Tree CI` #1996 verde no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`.
+- [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma bloqueante; novos receipts de aparo/guarda perfeita permanecem opcionais e fail-closed até existir API causal.
