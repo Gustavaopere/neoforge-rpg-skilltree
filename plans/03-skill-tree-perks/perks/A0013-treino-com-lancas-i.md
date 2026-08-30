@@ -47,3 +47,12 @@
 - [x] classificação `spear` provider-native;
 - [x] ausência de alteração artificial de alcance;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Fechamento Chat 1 V3 — ciclo exato A0011–A0020
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; propriedades, gate, hook, fallback e regra permanecem alinhados.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Provider/versão:** Epic Fight 21.17.3.1 é o owner da classificação SPEAR; armas externas só entram quando a capability provider-native resolve a família.
+- **Fail-closed:** categoria desconhecida deixa A0013 inativa; não inferir por alcance, nome, material, aparência ou estatísticas genéricas.
+- **Integração periférica:** Weapons of Miracles/Epic Fight Compat podem ampliar o conjunto de armas classificadas pelo próprio Epic Fight, sem criar classificação paralela no RPG Skill Tree.
+- **Resultado:** **APROVADA / FECHADA** no lote A0011–A0020.
