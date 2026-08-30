@@ -86,6 +86,30 @@ final class ItemizationDomainContractTest {
     }
 
     @Test
+    void compatibleEvolutionPreservesIdentityAndTrueCopiesForkIt() {
+        ItemizationIdentity original = ItemizationIdentity.of(
+            UUID.fromString("b4238e48-ddcc-4860-a0af-4507c5e13857"),
+            17L,
+            1
+        );
+
+        assertSame(original, ItemizationIdentityPolicy.preserveForEvolution(original));
+
+        ItemizationIdentity copied = ItemizationIdentityPolicy.forkForTrueCopy(
+            original,
+            UUID.fromString("57de3b6a-160c-4737-aa50-dd4052d5711e"),
+            99L
+        );
+        assertNotEquals(original.instanceId(), copied.instanceId());
+        assertEquals(99L, copied.deterministicSeed());
+        assertEquals(original.schemaVersion(), copied.schemaVersion());
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> ItemizationIdentityPolicy.forkForTrueCopy(original, original.instanceId(), 99L)
+        );
+    }
+
+    @Test
     void queryCreatesImmutableProjectionWithoutMutation() {
         ItemizationState state = state(ItemRank.LEGENDARY, modifiers(2));
         ItemizationSnapshot snapshot = ItemizationQueryService.snapshot(state);
