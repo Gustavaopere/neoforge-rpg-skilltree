@@ -48,3 +48,12 @@
 - [x] fallback de penetração-only por defesa física comprovável;
 - [x] ausência de impacto no fallback;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; dependências, threshold, custo, cooldown, hook e fallback permanecem persistidos sem drift.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Provider-native first:** quando guarda/postura é observável, somente estado defensivo real qualifica; alvo explicitamente não defendendo não pode usar Armor como atalho.
+- **Fallback aprovado:** quando guarda/postura não é observável, defesa física server-side comprovável permite somente a parcela de penetração. Impacto/pressão de guarda ficam omitidos.
+- **Fail-closed:** sem defesa observável nem defesa física comprovável, a perk não ativa. Não inferir guarda por vida, aparência, animação ou dano recebido.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.

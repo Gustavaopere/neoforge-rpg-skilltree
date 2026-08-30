@@ -71,3 +71,12 @@ Nenhuma divergência específica encontrada. Qualquer novo adapter de arma/mod d
 - [x] correlação NeoForge ↔ Epic Fight presente;
 - [x] testes unitários do serviço crítico existentes;
 - [ ] revalidar integração quando versão do Epic Fight ou pipeline crítico global mudar.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; chance, gate, hook, fallback e regra persistem sem divergência.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Pipeline canônico:** crítico permanece resolvido uma única vez por ação/root; callbacks NeoForge e Epic Fight devem compartilhar a mesma decisão.
+- **Integrações:** atributos ou mods que possuam conceitos próprios de crítico não autorizam segunda rolagem MARTIAL. Crítico mágico/específico de outro provider não é fundido aqui sem adapter explícito e deduplicado.
+- **Fail-closed:** fontes não classificadas como espada pelo provider não recebem o bônus.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.

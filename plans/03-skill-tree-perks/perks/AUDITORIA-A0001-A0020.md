@@ -119,3 +119,85 @@ Mastery já persistida em mundos existentes não é apagada retroativamente; ape
 Após as correções acima, **A0001–A0020 atendem aos nove eixos obrigatórios de design e aos critérios técnicos aplicáveis ao recorte**. Não há pendência de design bloqueante dentro deste intervalo. A0017 permanece deliberadamente em seu fallback canônico para redução de deslocamento; isso não autoriza heurística e não bloqueia a aprovação da perk.
 
 O status `IMPLEMENTAÇÃO CONFIRMADA` depende do CI final verde e do merge da PR de auditoria na `main`.
+
+---
+
+## Fechamento Chat 1 V3 — lote exato A0001–A0010
+
+Data do ciclo: **2026-08-30 (America/Sao_Paulo)**.
+
+- **INÍCIO:** A0001.
+- **FIM:** A0010.
+- **Regra de lote:** este ciclo V3 revalidou **exatamente 10 perks**. A0011–A0020 permanecem fora do escopo deste ciclo, mesmo existindo no arquivo histórico acima.
+- **Protocolo:** `CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md`.
+- **Fontes operacionais:** critérios consolidados; três guias completos já lidos integralmente nesta execução; Catálogo Mestre; dossiês; `STATUS.md`; auditoria existente; modlist snapshot 28.08.26; código/runtime atual quando necessário.
+
+### Re-fetch fresco do Notion
+
+As dez páginas A0001–A0010 foram buscadas novamente no Catálogo Mestre durante este ciclo. O resultado persistido corresponde aos dossiês e às correções canônicas já realizadas anteriormente. **Nenhuma mutação adicional no Notion foi necessária**, porque não foi encontrado drift, campo contraditório ou contrato incompleto; editar sem mudança real seria mutação artificial.
+
+| Código | Re-fetch | Mutação necessária | Resultado |
+|---|---|---|---|
+| A0001 | PASS | não | APROVADA |
+| A0002 | PASS | não | APROVADA |
+| A0003 | PASS | não | APROVADA |
+| A0004 | PASS | não | APROVADA |
+| A0005 | PASS | não | APROVADA |
+| A0006 | PASS | não | APROVADA/FALLBACK LEGÍTIMO |
+| A0007 | PASS | não | APROVADA |
+| A0008 | PASS | não | APROVADA |
+| A0009 | PASS | não | APROVADA |
+| A0010 | PASS | não | APROVADA/FAIL-CLOSED LEGÍTIMO |
+
+### Matriz V3 dos nove eixos — somente A0001–A0010
+
+| Código | Gates | Integração global | Identidade | Topologia | Especialização | PT-BR | Notion | NeoVitae | Modlist/providers | Resultado |
+|---|---|---|---|---|---|---|---|---|---|---|
+| A0001 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | APROVADA |
+| A0002 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | APROVADA |
+| A0003 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | APROVADA |
+| A0004 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | APROVADA |
+| A0005 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | APROVADA |
+| A0006 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS/FALLBACK | APROVADA |
+| A0007 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | APROVADA |
+| A0008 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | APROVADA |
+| A0009 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | APROVADA |
+| A0010 | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS/FALLBACK | APROVADA |
+
+### Aplicação dos 18 critérios técnicos
+
+- **Provider-native first:** Epic Fight 21.17.3.1 continua owner de família, attack speed, receipts de dano/defesa/stagger e atributos `IMPACT`/`ARMOR_NEGATION` pertinentes.
+- **Versão exata:** `gradle.properties` pina `epicfight_version=21.17.3.1-mc1.21.1-neoforge`; o adapter declara `SUPPORTED_VERSION_PREFIX = "21.17.3.1"`.
+- **Pipeline único:** A0003/A0009 usam `A0001A0020CriticalService`; callbacks NeoForge/Epic Fight correlacionam uma única resolução crítica.
+- **Fail-closed:** A0001/A0007 não inferem família; A0002/A0008 não substituem cadência; A0005 omite pressão no fallback; A0006 só aceita defesa técnica comprovada; A0010 não concede Fúria sem receipt causal.
+- **Anti-abuso/causalidade:** hits/procs duplicados não concedem múltiplos efeitos; A0010 exige dano confirmado, alvo hostil, autoria real e uma concessão por ação; Mastery do ecossistema permanece baseada em milestones finitos, não hit/tick/AFK.
+- **Sem geração gratuita:** nenhuma perk do lote cria stamina, mana, sangue, energia, recurso corporal ou output paralelo.
+- **Read-only:** não há perk de telemetria neste lote; N/A justificado.
+- **NeoVitae:** nenhuma das dez perks possui dependência, hook ou provider residual.
+- **Implementabilidade:** hooks, gates, fallbacks, deduplicação, custos/estados e testes estão registrados nos dossiês e no código de referência sem exigir redesenho pelo Chat 2.
+
+### Cobertura dos três guias / providers periféricos
+
+- **Epic Fight 21.17.3.1:** provider principal e pipeline canônico do lote.
+- **Epic Fight Compat / armas de addons / Weapons of Miracles:** conteúdo externo só entra nas perks de espada/machado quando o Epic Fight fornecer capability/classificação provider-native; nenhuma classificação paralela é criada.
+- **ParCool / Epic ParCool:** stamina compartilhada é reconhecida, mas A0001–A0010 não alteram stamina; portanto não há segunda barra nem integração artificial.
+- **Protection Pixel:** foi explicitamente reconsiderado como provider periférico; seus equipamentos tecnológicos possuem funções próprias, porém não fornecem o estado/família necessário às perks de espada/machado deste lote. Classificação: **NÃO DEVE SER INTEGRADO NESTE LOTE**.
+- **Ars 'n' Spells, Fundamental Principles e progressões mágicas/sobrenaturais nativas:** não fornecem hooks semanticamente pertinentes a estas dez perks MARTIAL. Permanecem fora do pipeline e suas progressões nativas continuam autoritativas.
+- **Weight 1.2.0:** não é encumbrance do jogador e não participa deste lote.
+
+### Testes obrigatórios do lote V3
+
+Manter/validar no CI aplicável:
+
+- ruleset de dano/rhythm/crítico para espadas e machados;
+- classificação provider-native e fail-closed;
+- crítico sem double-roll;
+- A0004 hit/miss/dodge/stagger/decay/cleanup;
+- A0005 defesa nativa, rejeição de alvo explicitamente desprotegido e fallback penetration-only;
+- A0006 defesa técnica, janela, consumo, supressão de Ímpeto e cooldown por mastery;
+- A0010 matemática de Fúria, troca de alvo, autoria, dano confirmado e deduplicação;
+- NeoForge build + GameTests + dedicated-server smoke.
+
+### Resultado do ciclo
+
+**A0001–A0010 — LOTE FECHADO NO DESIGN.** As dez perks estão aprovadas individualmente, sem bloqueio de design e com fallbacks/fail-closed legítimos documentados. O fechamento operacional do ciclo depende exclusivamente da PR documental V3, CI aplicável verde, merge em `main` e confirmação pós-merge. **A0011 não faz parte deste ciclo e não deve ser iniciada aqui.**

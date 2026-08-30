@@ -69,3 +69,12 @@ Nenhuma pendência específica identificada nesta leitura. Isso não substitui C
 - [x] adapter de `ModifyAttackSpeedEvent` presente;
 - [x] fail-closed por ausência de família/hook;
 - [ ] manter teste de integração com versão exata do Epic Fight em CI/dedicated server sempre que o provider for atualizado.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; dependência, gate, hook, fallback e efeito persistem sem drift.
+- **Mutação no Notion neste ciclo:** não necessária; o registro já contém o contrato corrigido e completo.
+- **Provider/versão:** `Epic Fight 21.17.3.1` continua pinado no projeto e o adapter atual usa `ModifyAttackSpeedEvent` com classificação provider-native da arma.
+- **Fail-closed:** se a cadência real deixar de ser exposta de forma estável/server-authoritative, A0002 fica inativa; nunca converter para stamina, movimento, dano ou aceleração artificial de animação.
+- **Deduplicação/integrações:** armas de addons só entram se a capability do Epic Fight as classificar como espada; nenhuma bridge cria um segundo modificador concorrente.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.

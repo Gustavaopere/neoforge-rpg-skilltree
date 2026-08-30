@@ -50,3 +50,22 @@ A fonte canônica de design permanece o Notion. Este índice descreve o estado a
 - `A0001A0020CombatPolicyTest` e `EpicFightDepthPolicyTest` — regressões dos contratos corrigidos.
 
 A matriz detalhada dos nove eixos está em `AUDITORIA-A0001-A0020.md`.
+
+## Chat 1 V3 — fechamento do ciclo exato A0001–A0010
+
+**Estado:** `LOTE FECHADO NO DESIGN` — aguardando somente PR/CI/merge deste closeout documental.
+
+- **INÍCIO:** A0001.
+- **FIM:** A0010.
+- **Quantidade:** 10 perks consecutivas.
+- **A0011+:** fora do escopo deste ciclo; não iniciado pela execução V3.
+- **Re-fetch Notion:** A0001–A0010 = 10/10 PASS em 2026-08-30.
+- **Correções adicionais no Notion:** 0; os contratos persistidos já correspondiam à reauditoria canônica e nenhum drift foi encontrado.
+- **Dossiês V3:** A0001–A0010 registram explicitamente provider/version, hooks, gates, fallbacks/fail-closed, deduplicação, integrações e restrições para o Chat 2.
+- **Nove eixos:** 10/10 PASS; A0006 e A0010 mantêm fallback/fail-closed legítimo documentado.
+- **18 critérios técnicos:** PASS/N/A justificado para as dez perks; nenhum bloqueio de design.
+- **Provider principal:** Epic Fight `21.17.3.1`; versão pinada no projeto e adapter com contrato de versão explícito.
+- **Cobertura periférica:** Epic Fight Compat/armas externas entram somente pela capability provider-native; Protection Pixel foi rechecado e classificado como não pertinente às famílias/efeitos deste lote; ParCool não recebe alteração de stamina; Weight não é encumbrance; NeoVitae ausente.
+- **Pendência para Chat 2:** preservar rigorosamente fail-closed, pipeline crítico único, receipts causais e ausência de heurísticas. Não redesenhar A0001–A0010.
+
+A conclusão operacional `LOTE FECHADO` deste ciclo V3 deve ser considerada definitiva somente após a PR documental correspondente ficar verde, ser mergeada em `main` e a `main` pós-merge ser confirmada.
