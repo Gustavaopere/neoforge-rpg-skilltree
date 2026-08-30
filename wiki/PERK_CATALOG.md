@@ -2,6 +2,7 @@
 
 Este é o índice exaustivo da **Árvore Principal** atualmente materializada no jogo. São 512 nós reais de dados; alguns são caminhos/requisitos e ainda não têm efeito numérico próprio.
 
+<!-- rpgskilltree:generated:perk-catalog:start -->
 | Família | Quantidade | IDs |
 | --- | ---: | --- |
 | Core | 28 | `core_00` … `core_27` |
@@ -28,6 +29,7 @@ Este é o índice exaustivo da **Árvore Principal** atualmente materializada no
 - `bridge_druid_00` … `bridge_druid_07`
 - `bridge_necromancer_00` … `bridge_necromancer_07`
 - `bridge_duelist_00` … `bridge_duelist_07`
+<!-- rpgskilltree:generated:perk-catalog:end -->
 
 ## Como usar este catálogo
 
