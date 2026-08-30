@@ -9,6 +9,11 @@ Esta pasta documenta os quatro projetos próprios que precisam ser tratados como
 5. [Matriz de integração cruzada](05-cross-project-integration-matrix.md)
 6. [Reconciliação dos snapshots](06-snapshot-reconciliation.md)
 7. [Checklist do Chat 1 para listar providers](07-chat1-provider-listing-checklist.md)
+8. [Regra de manutenção](08-maintenance-rule.md)
+9. [Política de fontes](09-source-policy.md)
+10. [Regra de autoridade](10-authority-rule.md)
+11. [Não inferir hooks](11-do-not-infer-hooks.md)
+12. [Matriz de cobertura e delta de capacidades](12-capability-delta-coverage.md)
 
 **Fonte editorial canônica no Notion:** https://app.notion.com/p/3cc69db9f0db81b09939eaca7c446fa2
 
@@ -21,7 +26,8 @@ Os três guias históricos descrevem muito bem os mods externos do pack, mas os 
 - quais são preparatórios ou somente planejados;
 - quais bridges são reais;
 - quais relações são proibidas ou fail-closed;
-- qual provider conserva a autoridade em integrações híbridas.
+- qual provider conserva a autoridade em integrações híbridas;
+- quais **capacidades novas ou semanticamente alteradas** surgiram desde o último lote e se a árvore já as cobre.
 
 ## Taxonomia obrigatória de estado
 
@@ -34,20 +40,20 @@ Os três guias históricos descrevem muito bem os mods externos do pack, mas os 
 
 A presença de um arquivo em `plans/` **não** prova disponibilidade de runtime.
 
-## Snapshots auditados
+## Baseline reconciliado para o próximo delta — 2026-08-30
 
-A revisão de 2026-08-30 foi feita prioritariamente contra `plans/`, `plans/STATUS.md` e, quando necessário, contratos/código da `main`:
-
-| Projeto | Base da análise extensa | Reconciliação antes do fechamento |
+| Projeto | Baseline | Observação |
 |---|---|---|
-| RPG Skill Tree | `e49a1fa651abecfe096adb03c822482fcf9c3e7b` | `55463a195f8c3a87436399f71db19f29c8e85488`; 03.06 ganhou apenas o gate canônico de drift do catálogo/wiki, não fechamento integral |
-| Volcanoes | `1d0da7ae7f19e06f60390fdeb0835720e2e40f1b` | mesma `main` auditada |
-| Enshrouded | `de145be720f7f500f55e060982693312ed7f7bc3` | mesma `main` auditada |
-| Black Arcana | `07263ae9bad12eba6ed500992991faa36ad598b2` | `STATUS.md` estava atrás da `main`; equipment set bonus foi classificado apenas como componente parcial de 05A.06 |
+| RPG Skill Tree | `f448aa0b4f9df400011873e9ad26771209876ad4` | inclui a documentação canônica de projetos próprios da PR #227 |
+| Volcanoes | `602e0188c123ac8531d3413a5630daa22e3d761f` | o snapshot inicial ficou 30 commits atrás; PRs #79/#80 mudaram a frente hidrotermal/RNS |
+| Enshrouded | `77552a3d7f089a47908c109f5f8c19aff8a0f97d` | o snapshot inicial ficou 46 commits atrás; Sanctuary fechou e 06.01 Story State chegou à `main` |
+| Black Arcana | `07263ae9bad12eba6ed500992991faa36ad598b2` | sem avanço desde o snapshot auditado |
 
-Os SHAs registram a evidência usada para este snapshot. Quando a `main` avança durante a própria auditoria, a diferença é registrada em [`06-snapshot-reconciliation.md`](06-snapshot-reconciliation.md). Cada novo lote de perks ainda deve fazer fetch fresco quando a integração depender de comportamento que possa ter mudado.
+Os SHAs registram somente um **checkpoint de comparação**. A verdade operacional continua sendo `main` + `plans/STATUS.md` frescos, reconciliados com plano/código/testes/CI quando necessário.
 
-## Regra para o Chat 1
+Os dossiês 01–04 preservam a análise extensa do snapshot original. Quando houver divergência posterior, [`06-snapshot-reconciliation.md`](06-snapshot-reconciliation.md) e [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md) registram o delta que **substitui apenas os fatos afetados**, sem promover automaticamente o Stage inteiro.
+
+## Regra para o Chat 1 — dois sentidos obrigatórios
 
 Antes de fechar qualquer perk, o Chat 1 deve cruzá-la com os quatro dossiês e a matriz. Para cada projeto próprio, classificar a relação como uma destas opções:
 
@@ -61,7 +67,20 @@ Antes de fechar qualquer perk, o Chat 1 deve cruzá-la com os quatro dossiês e 
 
 Se uma perk toca mais de um projeto, o dossiê individual precisa declarar um **pipeline principal**, os providers/consumers secundários, a identidade de deduplicação, o fallback e o comportamento fail-closed.
 
-O preenchimento operacional dessa decisão está em [`07-chat1-provider-listing-checklist.md`](07-chat1-provider-listing-checklist.md).
+Além dessa auditoria **perk → provider**, cada lote deve executar obrigatoriamente a auditoria **provider → árvore** definida em [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md):
+
+1. fetch fresco de `main` e `plans/STATUS.md` dos quatro projetos;
+2. comparação contra o baseline reconciliado;
+3. extração de toda capacidade jogável nova ou semanticamente alterada, **mesmo que nenhuma perk atual a cite**;
+4. classificação de cobertura antes do fechamento do lote.
+
+Isso inclui, quando existirem ou mudarem, capacidades como O₂/respiração/pressão/proteção do Volcanoes, Arcane Resistance/Corruption Resistance/Strain do Black Arcana, Exposure/Flame/Sanctuary/Story do Enshrouded e novas superfícies públicas do próprio RPG Skill Tree.
+
+Detectar uma capacidade **não** significa criar automaticamente uma perk. Ela pode ser coberta por perk existente, perk própria, especialização, bridge, sistema universal, progressão nativa autoritativa, `SEM HOOK SEGURO` ou `NÃO DEVE SER INTEGRADO`.
+
+A descoberta de uma lacuna também não altera a regra de **lotes exatos de 10**. Uma necessidade fora do lote atual é registrada para ciclo posterior; o Chat 1 não inicia uma décima primeira perk.
+
+O preenchimento operacional de providers está em [`07-chat1-provider-listing-checklist.md`](07-chat1-provider-listing-checklist.md); o delta global está em [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md).
 
 ## Regra de autoridade
 
@@ -84,4 +103,4 @@ Os três guias continuam obrigatórios e recebem um apêndice final com o recort
 - [Mods de Magia](../magic/17-projetos-proprios-do-modpack.md)
 - [Mods de Tecnologia](../technology/19-projetos-proprios-do-modpack.md)
 
-Os apêndices são mapas temáticos. Para decidir provider, hook, status ou fail-closed, estes dossiês e a evidência fresca da `main` prevalecem.
+Os apêndices são mapas temáticos. Para decidir provider, hook, status, delta ou fail-closed, estes dossiês, a reconciliação, a matriz de delta e a evidência fresca da `main` prevalecem.
