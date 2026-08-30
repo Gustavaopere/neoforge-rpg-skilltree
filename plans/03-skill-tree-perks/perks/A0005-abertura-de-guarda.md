@@ -57,3 +57,18 @@
 - **Fallback aprovado:** quando guarda/postura não é observável, defesa física server-side comprovável permite somente a parcela de penetração. Impacto/pressão de guarda ficam omitidos.
 - **Fail-closed:** sem defesa observável nem defesa física comprovável, a perk não ativa. Não inferir guarda por vida, aparência, animação ou dano recebido.
 - **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.
+
+## Chat 2 — implementação, testes e merge — PR #221
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #221.
+
+- [x] Gate, threshold, custo e cooldown por alvo implementados.
+- [x] Rota provider-native de defesa implementada.
+- [x] Fallback Armor-only preserva somente penetração e exige defesa física comprovável.
+- [x] Alvo observavelmente não defendendo não ativa via Armor.
+- [x] Deduplicação/pipeline único implementados.
+- [x] Regressão do fallback estrito presente.
+- [x] `RPG Skill Tree CI` #1996 verde no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`.
+- [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma.
