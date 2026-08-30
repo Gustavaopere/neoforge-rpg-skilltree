@@ -59,7 +59,7 @@ Evidência TDD desta fatia:
 
 A auditoria factual revelou que a malha visual histórica de 512 nós e as perks canônicas A0001–A0100 são contratos diferentes. `CombatPerkNodeBinding` usa IDs persistentes `rpgskilltree:combat/a####` e documenta explicitamente que os antigos IDs `martial_###` não são aliases. O servidor já injeta A0001–A0100 em `rpgskilltree:runtime/combat_perks` por meio de `SkillTreeDataLoader.closedCombatRules()`, mas esses 100 nós não possuíam layout carregável pelo cliente.
 
-O PR #203 concluiu e foi mergeado em `main` como `5878b56eb5890931a3b316b545771baca014460a` durante esta fatia. O merge-ref do PR #212 foi então validado contra essa base auditada.
+O PR #203 concluiu e foi mergeado em `main` como `5878b56eb5890931a3b316b545771baca014460a` durante esta fatia. Posteriormente, o PR #213 (Stage 10.10 editorial corpus) avançou a `main` para `00c072120503e9a7f26cb6fd317f41b9f8db3bcc`; por isso o merge final do #212 exige um novo merge-ref validado contra essa base mais recente.
 
 Implementado nesta fatia:
 
@@ -72,7 +72,8 @@ Implementado nesta fatia:
 - `CombatPerkClientText` resolve os nomes A#### diretamente de `NotionCombatPerkCatalog`, sem duplicar os 100 nomes em outro catálogo/localização;
 - `RpgSkillTreeScreen` usa essa fonte canônica para nomes A#### e mostra a aba como `Perks de Combate`;
 - descrições A#### continuam ausentes quando não existe texto player-facing canônico versionado. Nenhuma descrição ou efeito foi sintetizado a partir de políticas Java;
-- o zoom inicial da aba semântica usa visão geral apropriada para uma árvore grande.
+- o zoom inicial da aba semântica usa visão geral apropriada para uma árvore grande;
+- após review P2, `CombatPerkVisualLayout.Node` canonicaliza zero assinado (`-0.0` → `+0.0`) e os dois testes de unicidade usam pares numéricos normalizados, impedindo que coordenadas visualmente idênticas escapem da detecção de overlap por diferença textual.
 
 Evidência TDD desta fatia:
 
@@ -81,7 +82,10 @@ Evidência TDD desta fatia:
 - CI #1926 / `33290844884`: RED esperado — três erros, todos pela ausência de `ClientTreeLayout.combatPerks()`;
 - CI #1930 / `33290934102`: espelhamento servidor→cliente GREEN em Core/JUnit no head correspondente;
 - CI #1933 / `33291027327`: RED esperado — seis erros, todos pela ausência de `CombatPerkClientText`;
-- CI #1936 / `33291182166`: projeção + árvore client-side + nomes canônicos + Core + JUnit + 16 GameTests + validators + build + JAR + dedicated-server smoke totalmente GREEN no merge-ref contra `main@5878b56eb5890931a3b316b545771baca014460a`.
+- CI #1936 / `33291182166`: projeção + árvore client-side + nomes canônicos + Core + JUnit + 16 GameTests + validators + build + JAR + dedicated-server smoke totalmente GREEN no merge-ref contra `main@5878b56eb5890931a3b316b545771baca014460a`;
+- CI #1938 / `33291335826`: head documental da fatia totalmente GREEN;
+- CI #1941 / `33291649067`: RED de regressão do review — 76 testes executados, exatamente 1 falha em `visualNodeCanonicalizesSignedZeroCoordinates`;
+- CI #1946 / `33291770043`: correção do review totalmente GREEN — Core, JUnit, 16 GameTests, validators, build, JAR e dedicated-server smoke. Esse run ainda foi criado sobre `main@5878b56eb5890931a3b316b545771baca014460a`, antes da entrada do #213, portanto não é usado sozinho como gate final de merge.
 
 Esta fatia resolve o blocker de **invisibilidade client-side** de A0001–A0100. Ela não declara encerrado o conteúdo dessas perks: nomes estão disponíveis pelo catálogo versionado, mas descrições/efeitos player-facing ainda precisam vir do snapshot canônico auditado, e A0021+ ainda seguem o processo de auditoria/implementação próprio.
 
