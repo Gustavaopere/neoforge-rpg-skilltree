@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** presente no pipeline crítico canônico; confirmação definitiva depende do Chat 2.
+- **Implementação:** VALIDADA EM CI na PR #242; confirmação definitiva após merge em `main`.
 - **Notion:** `3c569db9-f0db-814c-96e8-d1db9c2402b0`.
 
 ## Contrato canônico
@@ -36,4 +36,11 @@
 
 ## Pendências
 
-Nenhuma de design. Chat 2 deve apenas preservar provenance direta/root action e deduplicação.
+Nenhuma de design ou implementação bloqueante após a revalidação do Chat 2. Provenance direta/root action e deduplicação permanecem obrigatórias.
+
+## Chat 2 — implementação e regressão — PR #242
+
+- Resolver crítico DAGGER preservado sem segunda rolagem.
+- Autoria direta/hostilidade continuam exigidas no boundary Epic Fight.
+- O lote não introduziu fallback por nome/tag/material para DAGGER.
+- Regressões do lote e pipeline integral da PR validam o boundary; estado definitivo passa a `IMPLEMENTAÇÃO CONFIRMADA` quando a própria PR #242 for mergeada e a `main` pós-merge for confirmada.
