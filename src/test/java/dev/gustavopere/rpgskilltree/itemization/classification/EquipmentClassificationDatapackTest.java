@@ -4,8 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationOverrides;
+import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationReloadService;
 import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationRuleParser;
+import java.util.Map;
 import java.util.Set;
 import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.Test;
@@ -63,5 +67,39 @@ final class EquipmentClassificationDatapackTest {
                     """).getAsJsonObject()
             )
         );
+    }
+
+    @Test
+    void reloadPublishesCompleteCatalogAtomicallyAndPreservesLastValidSnapshotOnFailure() {
+        EquipmentClassificationOverrides.replace(EquipmentOverrideCatalog.empty());
+        ResourceLocation validId = ResourceLocation.fromNamespaceAndPath("example", "valid");
+        Map<ResourceLocation, JsonElement> valid = Map.of(
+            validId,
+            JsonParser.parseString("""
+                {
+                  "items": ["example:focus"],
+                  "eligibility": "WHITELIST",
+                  "add_categories": ["MAGIC_FOCUS"]
+                }
+                """)
+        );
+
+        EquipmentClassificationReloadService.reload(valid);
+        EquipmentOverrideCatalog lastValid = EquipmentClassificationOverrides.snapshot();
+        assertEquals(1, lastValid.rules().size());
+        assertEquals(validId, lastValid.rules().getFirst().id());
+
+        Map<ResourceLocation, JsonElement> invalid = Map.of(
+            ResourceLocation.fromNamespaceAndPath("example", "invalid"),
+            JsonParser.parseString("""
+                {
+                  "items": ["example:broken"],
+                  "add_categories": ["NOT_A_CATEGORY"]
+                }
+                """)
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> EquipmentClassificationReloadService.reload(invalid));
+        assertEquals(lastValid.rules(), EquipmentClassificationOverrides.snapshot().rules());
     }
 }
