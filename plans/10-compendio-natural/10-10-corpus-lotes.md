@@ -88,9 +88,37 @@ Entradas:
 - relações explícitas Lula ↔ Lula-brilhante permanecem referências editoriais, sem criar fatos técnicos paralelos;
 - texto em pt-BR revisado para não confundir comportamento neutro, passivo, defesa, domesticação ou interação.
 
+## Lote 4 — Vanilla / criaturas especiais e utilitárias
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-batch4.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:minecraft:allay` — Allay
+2. `ENTITY:minecraft:iron_golem` — Golem de Ferro
+3. `ENTITY:minecraft:mule` — Mula
+4. `ENTITY:minecraft:skeleton_horse` — Cavalo Esqueleto
+5. `ENTITY:minecraft:sniffer` — Farejador
+6. `ENTITY:minecraft:snow_golem` — Golem de Neve
+7. `ENTITY:minecraft:strider` — Andarilho
+8. `ENTITY:minecraft:tadpole` — Girino
+9. `ENTITY:minecraft:trader_llama` — Lhama do Comerciante
+10. `ENTITY:minecraft:tropical_fish` — Peixe Tropical
+
+### Critérios editoriais aplicados ao lote 4
+
+- identidade das dez entidades confirmada para Minecraft 1.21.1 e cada ficha ancorada em `RUNTIME` e `OFFICIAL_CODE`;
+- comportamentos especiais descritos pela implementação real, incluindo coleta do Allay, escavação do Farejador, estados dos golems, armadilha do Cavalo Esqueleto e vínculo da Lhama do Comerciante;
+- heranças e contratos relevantes preservados sem duplicar fatos técnicos, incluindo `AbstractHorse`, `AbstractChestedHorse`, `AbstractSchoolingFish`, `Bucketable`, `Saddleable`, `ItemSteerable`, `Shearable` e `RangedAttackMob`;
+- nenhuma duração, chance, dano, cura, velocidade, capacidade de inventário ou outro parâmetro mutável foi congelado em prosa;
+- diferenças entre criatura amigável, animal, construto, montaria e comportamento defensivo foram mantidas sem inferir classificação pelo nome do ID;
+- conteúdo validado pelo CI editorial e pelo CI agregado, incluindo carregamento do pacote, JUnit, GameTests, build, JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
-- entidades vanilla reais no corpus: **30**;
-- lotes documentados: **3**;
+- entidades vanilla reais no corpus: **40**;
+- lotes documentados: **4**;
 - namespace atual em produção: `minecraft`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
