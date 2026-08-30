@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 permissions:
-  contents: read
+  contents: write
   statuses: write
 
 jobs:
@@ -71,23 +71,30 @@ jobs:
       - name: Wiki catalog generator tests
         run: python3 scripts/test_wiki_catalog.py
 
-      - name: TEMP regenerate wiki catalogs for artifact
+      - name: TEMP commit regenerated wiki catalogs
+        if: github.event_name == 'pull_request'
         shell: bash
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           set -euo pipefail
+          MERGE_SHA="$(git rev-parse HEAD)"
           python3 scripts/generate-wiki-catalog.py
-          mkdir -p build/wiki-catalog-export
-          cp wiki/PERK_CATALOG.md build/wiki-catalog-export/PERK_CATALOG.md
-          cp wiki/EFFECT_CATALOG.md build/wiki-catalog-export/EFFECT_CATALOG.md
-          git checkout -- wiki/PERK_CATALOG.md wiki/EFFECT_CATALOG.md
-
-      - name: TEMP upload regenerated wiki catalogs
-        uses: actions/upload-artifact@v4
-        with:
-          name: regenerated-wiki-catalogs
-          path: build/wiki-catalog-export/*.md
-          if-no-files-found: error
-          retention-days: 1
+          cp wiki/PERK_CATALOG.md /tmp/PERK_CATALOG.md
+          cp wiki/EFFECT_CATALOG.md /tmp/EFFECT_CATALOG.md
+          git fetch origin "$PR_HEAD_REF"
+          git checkout --detach "$PR_HEAD_SHA"
+          cp /tmp/PERK_CATALOG.md wiki/PERK_CATALOG.md
+          cp /tmp/EFFECT_CATALOG.md wiki/EFFECT_CATALOG.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add wiki/PERK_CATALOG.md wiki/EFFECT_CATALOG.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'docs: regenerate deterministic wiki catalogs'
+            git push origin "HEAD:$PR_HEAD_REF"
+          fi
+          git checkout --detach "$MERGE_SHA"
 
       - name: Wiki catalog drift check
         run: python3 scripts/generate-wiki-catalog.py --check
