@@ -69,3 +69,12 @@ Nenhuma divergência específica foi identificada nesta leitura. Mudanças futur
 - [x] adapter de `ModifyAttackSpeedEvent` presente;
 - [x] fail-closed por ausência de classificação/hook;
 - [ ] revalidar integração e dedicated-server smoke após atualização do Epic Fight.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; dependência, gate, efeito, hook e fallback permanecem sem drift.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Provider/versão:** Epic Fight 21.17.3.1 e `ModifyAttackSpeedEvent` continuam sendo o contrato implementável auditado para cadência de machado.
+- **Fail-closed:** se o evento/atributo deixar de refletir cadência real de forma server-authoritative, A0008 fica inativa; não pode virar stamina, dano, movimento ou modificação frágil de animação.
+- **Deduplicação:** addons de armas participam somente pela classificação provider-native compartilhada do Epic Fight.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.

@@ -71,3 +71,12 @@ Nenhuma divergência específica identificada. Qualquer futura integração de a
 - [x] correlação NeoForge ↔ Epic Fight presente;
 - [x] testes unitários do serviço crítico existentes;
 - [ ] revalidar quando versão do Epic Fight ou pipeline crítico global mudar.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; dependência, chance, gate, hook, fallback e regra permanecem coerentes.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Pipeline canônico:** uma ação de machado pode produzir no máximo uma resolução crítica; callbacks de providers diferentes devem correlacionar a mesma raiz.
+- **Integrações:** crítico mágico ou crítico próprio de addons não vira automaticamente crítico MARTIAL. Novo adapter deve entrar no serviço canônico e provar deduplicação.
+- **Fail-closed:** ataques/fontes sem classificação inequívoca de machado não recebem A0009.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.

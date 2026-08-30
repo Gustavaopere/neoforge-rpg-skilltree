@@ -49,3 +49,11 @@
 - [x] classificação Epic Fight;
 - [x] ausência de heurística de fallback;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** registro do Notion consultado novamente em 2026-08-30; propriedades, gate, hook, fallback e regra permanecem alinhados a este dossiê.
+- **Mutação no Notion neste ciclo:** não necessária; nenhum drift ou campo contraditório foi encontrado.
+- **Cobertura de providers:** Epic Fight 21.17.3.1 permanece o owner da família de arma. `Epic Fight Compat` e armas/addons externos só participam quando resultarem em capability/classificação explícita do Epic Fight; itens sem classificação segura ficam inativos para A0001.
+- **Mods periféricos:** Protection Pixel e demais equipamentos/bridges que não fornecem classificação de espada não são providers desta perk e não recebem integração nominal artificial.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010. O Chat 2 deve preservar o fail-closed e nunca restaurar tags ou heurísticas paralelas de classificação.
