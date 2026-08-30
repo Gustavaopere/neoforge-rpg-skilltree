@@ -1,6 +1,8 @@
 package dev.gustavopere.rpgskilltree.compendium.client;
 
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryId;
+import dev.gustavopere.rpgskilltree.compendium.api.CompendiumRelation;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -9,8 +11,9 @@ import java.util.Optional;
  * Pure interaction state for the Compendium screen.
  *
  * <p>The NeoForge screen owns rendering and input translation only. Search, filters, virtual
- * scrolling, keyboard selection, entry opening, personal notes and list/detail navigation are
- * kept here so they remain deterministic and testable without constructing a Minecraft client.</p>
+ * scrolling, keyboard selection, entry opening, personal notes, safe relation navigation and
+ * list/detail navigation are kept here so they remain deterministic and testable without
+ * constructing a Minecraft client.</p>
  */
 public final class CompendiumScreenSession {
     private final CompendiumClientSnapshot snapshot;
@@ -102,6 +105,36 @@ public final class CompendiumScreenSession {
 
     public Optional<CompendiumPageModel> currentPage() {
         return browser.openEntry().flatMap(snapshot::page);
+    }
+
+    /**
+     * Returns only relation links whose targets are already present in the authorized client
+     * snapshot. Relations to absent targets stay fail-closed and cannot leak hidden catalog IDs.
+     */
+    public List<CompendiumRelationLink> currentRelationLinks() {
+        CompendiumPageModel page = currentPage().orElse(null);
+        if (page == null || page.entryRelations().isEmpty()) return List.of();
+
+        ArrayList<CompendiumRelationLink> links = new ArrayList<>();
+        for (CompendiumRelation relation : page.entryRelations()) {
+            CompendiumEntryId targetId = relation.target().entryId();
+            if (targetId == null) continue;
+            snapshot.entries().stream()
+                .filter(entry -> entry.id().equals(targetId))
+                .findFirst()
+                .ifPresent(target -> links.add(new CompendiumRelationLink(relation, target)));
+        }
+        return List.copyOf(links);
+    }
+
+    /** Opens one visibility-safe relation target while leaving the browser query/filter state intact. */
+    public void openCurrentRelation(int relationIndex) {
+        List<CompendiumRelationLink> links = currentRelationLinks();
+        if (relationIndex < 0 || relationIndex >= links.size()) {
+            throw new IllegalArgumentException("relation index is outside the current safe relation list: " + relationIndex);
+        }
+        browser.openEntry(links.get(relationIndex).target().id());
+        recordCurrentEntryOpened();
     }
 
     public Optional<String> currentNote() {
