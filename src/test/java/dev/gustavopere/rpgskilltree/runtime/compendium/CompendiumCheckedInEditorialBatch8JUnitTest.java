@@ -13,6 +13,7 @@ import dev.gustavopere.rpgskilltree.compendium.api.CompendiumProvenance;
 import dev.gustavopere.rpgskilltree.compendium.api.DiscoveryPolicy;
 import dev.gustavopere.rpgskilltree.compendium.api.FactSource;
 import dev.gustavopere.rpgskilltree.compendium.api.VisibilityPolicy;
+import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialValidationException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -68,11 +69,16 @@ final class CompendiumCheckedInEditorialBatch8JUnitTest {
         }
 
         assertEquals(EXPECTED_IDS, actualIds);
-        var snapshot = CompendiumEditorialResourceLoader.prepare(
-            Map.of(EDITORIAL_RESOURCE, pack),
-            List.copyOf(technicalEntries)
-        );
-        assertEquals(EXPECTED_IDS.size(), snapshot.entries().size());
+        try {
+            var snapshot = CompendiumEditorialResourceLoader.prepare(
+                Map.of(EDITORIAL_RESOURCE, pack),
+                List.copyOf(technicalEntries)
+            );
+            assertEquals(EXPECTED_IDS.size(), snapshot.entries().size());
+        } catch (CompendiumEditorialValidationException failure) {
+            System.err.println("BATCH8_EDITORIAL_VALIDATION=" + failure.getMessage());
+            throw failure;
+        }
     }
 
     private static CompendiumEntry technical(String entryId) {
