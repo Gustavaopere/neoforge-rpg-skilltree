@@ -78,3 +78,17 @@ Nenhuma divergência específica foi identificada nesta leitura. Mudanças futur
 - **Fail-closed:** se o evento/atributo deixar de refletir cadência real de forma server-authoritative, A0008 fica inativa; não pode virar stamina, dano, movimento ou modificação frágil de animação.
 - **Deduplicação:** addons de armas participam somente pela classificação provider-native compartilhada do Epic Fight.
 - **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.
+
+## Chat 2 — implementação, testes e merge — PR #221
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #221.
+
+- [x] `ModifyAttackSpeedEvent` provider-native implementado.
+- [x] Gate/ranks/dependência preservados.
+- [x] Família exclusivamente provider-native.
+- [x] FAIL-CLOSED sem conversão para stamina/movimento/dano/animação.
+- [x] Testes de ruleset/policy presentes.
+- [x] `RPG Skill Tree CI` #1996 verde no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`.
+- [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma no provider/versionamento atual.

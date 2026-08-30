@@ -54,3 +54,18 @@
 - **Cobertura de providers:** Epic Fight 21.17.3.1 é o owner da família de machado. Armas de addons só participam quando a capability do Epic Fight as classificar explicitamente; item desconhecido permanece fail-closed.
 - **Mods periféricos:** Protection Pixel e outros equipamentos/bridges tecnológicos não são providers de categoria de machado para A0007 e não recebem integração artificial.
 - **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010. O Chat 2 não deve restaurar tags, nomes, materiais ou heurísticas como classificação paralela.
+
+## Chat 2 — implementação, testes e merge — PR #221
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #221.
+
+- [x] Hook de dano direto de machado no pipeline canônico implementado.
+- [x] Gate/ranks/mastery representados no contrato runtime/modelo.
+- [x] Família exclusivamente provider-native.
+- [x] FAIL-CLOSED para categoria desconhecida; sem tag/heurística paralela.
+- [x] Deduplicação/pipeline único preservados.
+- [x] Testes de ruleset/policy presentes.
+- [x] `RPG Skill Tree CI` #1996 verde no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`.
+- [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma.

@@ -57,3 +57,18 @@
 - **Cobertura de providers:** Epic Fight 21.17.3.1 permanece o owner da família de arma. `Epic Fight Compat` e armas/addons externos só participam quando resultarem em capability/classificação explícita do Epic Fight; itens sem classificação segura ficam inativos para A0001.
 - **Mods periféricos:** Protection Pixel e demais equipamentos/bridges que não fornecem classificação de espada não são providers desta perk e não recebem integração nominal artificial.
 - **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010. O Chat 2 deve preservar o fail-closed e nunca restaurar tags ou heurísticas paralelas de classificação.
+
+## Chat 2 — implementação, testes e merge — PR #221
+
+**Estado neste commit:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` quando a PR #221 for mergeada na `main`.
+
+- [x] Hook de dano direto de espada implementado no pipeline canônico.
+- [x] Gate/ranks/dependências representados pelo contrato runtime e testes.
+- [x] Provider-native confirmado para Epic Fight 21.17.3.1.
+- [x] FAIL-CLOSED confirmado para categoria de arma não resolvida; sem tag/heurística paralela.
+- [x] Pipeline único e ausência de double-processing confirmados.
+- [x] Testes de contrato/policy presentes.
+- [x] `RPG Skill Tree CI` #1991 verde no SHA `6a826ecd836dccf85e5c683c1f0eb0bd32d88b74`.
+- [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma para A0001 no provider/versionamento atual.

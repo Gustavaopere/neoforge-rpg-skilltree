@@ -92,3 +92,19 @@ Nenhuma pendência bloqueante foi identificada para o caminho comprovado de esqu
 - **Fail-closed parcial aprovado:** aparo ou guarda perfeita só podem ser acrescentados se houver receipt público, causal e versionado. Não inferir defesa técnica por blocking passivo, invulnerabilidade, animação ou proximidade temporal.
 - **Pipeline único:** o bônus de dano só amplifica componente crítico elegível; A0006 não cria crítico próprio e o hit consumidor não pode regenerar Ímpeto.
 - **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010; a expansão futura de receipts de defesa não é bloqueio para a rota comprovada atual.
+
+## Chat 2 — implementação, testes e merge — PR #221
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #221.
+
+- [x] Receipt técnico `ON_DODGE` comprovado e provider-native.
+- [x] Janela de 3 s e cooldown 10/9/8 s implementados.
+- [x] Consumo atômico de 5 Ímpeto implementado.
+- [x] +20% de dano crítico elegível e +20% de impacto somente quando disponível.
+- [x] `suppressMomentumGain` impede regenerar Ímpeto no mesmo hit.
+- [x] Deduplicação por root action implementada.
+- [x] Regressão explícita `A0001A0010ImplementationContractJUnitTest` adicionada na PR #221.
+- [x] `RPG Skill Tree CI` #1996 verde no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`.
+- [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
+
+**Fallback/fail-closed:** aparo/guarda perfeita adicionais permanecem inativos até existir receipt público causal e versionado; isso é fallback legítimo aprovado, não pendência bloqueante.

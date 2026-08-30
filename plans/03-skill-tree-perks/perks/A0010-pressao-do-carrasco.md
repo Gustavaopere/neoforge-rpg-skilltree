@@ -53,3 +53,18 @@ O fallback genérico anterior foi removido. Sem receipt server-authoritative que
 - **Anti-abuso/deduplicação:** uma concessão de Fúria por ação; tentativa, animação, proc secundário, fake player, alvo de treino/passivo, dano zero ou callback duplicado não contam.
 - **Fail-closed:** qualquer adapter futuro deve provar `direct + hostile + actualDamage + autoria + família machado` e compartilhar a deduplicação canônica. Sem isso, A0010 fica inativa.
 - **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.
+
+## Chat 2 — implementação, testes e merge — PR #221
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #221.
+
+- [x] Receipt server-authoritative de dano efetivo implementado.
+- [x] Autoria real, alvo hostil e família de machado exigidos.
+- [x] Fórmula base/rank/troca de alvo e cap 100 implementados.
+- [x] Deduplicação por `rootActionId` implementada.
+- [x] Tentativa/animação/dano zero/família errada permanecem fail-closed.
+- [x] Regressão explícita `A0001A0010ImplementationContractJUnitTest` adicionada na PR #221.
+- [x] `RPG Skill Tree CI` #1996 verde no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`.
+- [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
+
+**Fallback/fail-closed:** somente a rota Epic Fight comprovada está ativa; adapters sem receipt equivalente permanecem inativos. Nenhuma pendência bloqueante.

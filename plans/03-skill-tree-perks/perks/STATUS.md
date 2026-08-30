@@ -6,16 +6,16 @@ A fonte canônica de design permanece o Notion. Este índice descreve o estado a
 
 | Código | Perk | Design | Estado técnico auditado | Pendências bloqueantes |
 |---|---|---|---|---|
-| A0001 | Treino com Espadas I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
-| A0002 | Treino com Espadas II | APROVADO | Presente | nenhuma |
-| A0003 | Precisão com Espadas | APROVADO | Presente; crítico no pipeline canônico único | nenhuma |
-| A0004 | Ritmo do Duelista | APROVADO | Presente; hit, dodge, miss, decay e stagger forte provider-native | nenhuma |
-| A0005 | Abertura de Guarda | APROVADO após correção | Presente; defesa nativa ou fallback estrito de penetração por defesa física comprovável | nenhuma |
-| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO | Presente; defesa técnica confirmada, janela, cooldown e dedup | nenhuma |
-| A0007 | Treino com Machados I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
-| A0008 | Treino com Machados II | APROVADO | Presente | nenhuma |
-| A0009 | Precisão com Machados | APROVADO | Presente; crítico no pipeline canônico único | nenhuma |
-| A0010 | Pressão do Carrasco | APROVADO após reauditoria | Presente no receipt server-authoritative do Epic Fight; demais rotas fail-closed | nenhuma |
+| A0001 | Treino com Espadas I | APROVADO após reauditoria | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; provider-native/fail-closed | nenhuma; confirmação após merge |
+| A0002 | Treino com Espadas II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; `ModifyAttackSpeedEvent` provider-native | nenhuma; confirmação após merge |
+| A0003 | Precisão com Espadas | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; crítico no pipeline canônico único | nenhuma; confirmação após merge |
+| A0004 | Ritmo do Duelista | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; hit/dodge/miss/decay/stagger forte provider-native | nenhuma; confirmação após merge |
+| A0005 | Abertura de Guarda | APROVADO após correção | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; defesa nativa + fallback estrito penetração-only | nenhuma; confirmação após merge |
+| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; receipt técnico, janela, cooldown, consumo e dedup | nenhuma; confirmação após merge |
+| A0007 | Treino com Machados I | APROVADO após reauditoria | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; classificação provider-native/fail-closed | nenhuma; confirmação após merge |
+| A0008 | Treino com Machados II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; `ModifyAttackSpeedEvent` provider-native | nenhuma; confirmação após merge |
+| A0009 | Precisão com Machados | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; crítico no pipeline canônico único | nenhuma; confirmação após merge |
+| A0010 | Pressão do Carrasco | APROVADO após reauditoria | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; receipt server-authoritative + dedup | nenhuma; confirmação após merge |
 | A0011 | Ruptura de Guarda | APROVADO após correção | Presente; condição heurística de “alvo pesado” removida do design | nenhuma |
 | A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO após correção + re-fetch | Implementado com transação PRE: CORE pago antes de exhaustion/bônus/pico; falha deixa o evento fail-closed | nenhuma, condicionado à CI/merge desta PR |
 | A0013 | Treino com Lanças I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
@@ -53,19 +53,26 @@ A matriz detalhada dos nove eixos está em `AUDITORIA-A0001-A0020.md`.
 
 ## Chat 1 V3 — fechamento do ciclo exato A0001–A0010
 
-**Estado:** `LOTE FECHADO NO DESIGN` — aguardando somente PR/CI/merge deste closeout documental.
+**Estado:** `LOTE FECHADO NO DESIGN`.
 
 - **INÍCIO:** A0001.
 - **FIM:** A0010.
 - **Quantidade:** 10 perks consecutivas.
-- **A0011+:** fora do escopo deste ciclo; não iniciado pela execução V3.
 - **Re-fetch Notion:** A0001–A0010 = 10/10 PASS em 2026-08-30.
-- **Correções adicionais no Notion:** 0; os contratos persistidos já correspondiam à reauditoria canônica e nenhum drift foi encontrado.
-- **Dossiês V3:** A0001–A0010 registram explicitamente provider/version, hooks, gates, fallbacks/fail-closed, deduplicação, integrações e restrições para o Chat 2.
-- **Nove eixos:** 10/10 PASS; A0006 e A0010 mantêm fallback/fail-closed legítimo documentado.
+- **Nove eixos:** 10/10 PASS.
 - **18 critérios técnicos:** PASS/N/A justificado para as dez perks; nenhum bloqueio de design.
-- **Provider principal:** Epic Fight `21.17.3.1`; versão pinada no projeto e adapter com contrato de versão explícito.
-- **Cobertura periférica:** Epic Fight Compat/armas externas entram somente pela capability provider-native; Protection Pixel foi rechecado e classificado como não pertinente às famílias/efeitos deste lote; ParCool não recebe alteração de stamina; Weight não é encumbrance; NeoVitae ausente.
-- **Pendência para Chat 2:** preservar rigorosamente fail-closed, pipeline crítico único, receipts causais e ausência de heurísticas. Não redesenhar A0001–A0010.
+- **Provider principal:** Epic Fight `21.17.3.1`.
 
-A conclusão operacional `LOTE FECHADO` deste ciclo V3 deve ser considerada definitiva somente após a PR documental correspondente ficar verde, ser mergeada em `main` e a `main` pós-merge ser confirmada.
+## Chat 2 — implementação, testes e merge — A0001–A0010
+
+- **INÍCIO:** A0001.
+- **FIM:** A0010.
+- **Quantidade:** 10 perks consecutivas.
+- **PR:** #221 — `test(perks): confirm A0001-A0010 implementation contracts`.
+- **Runtime:** preservado sem redesenho; código canônico existente foi auditado contra os dez contratos.
+- **Regressões novas:** A0006 (armamento/consumo/supressão/dedup) e A0010 (causalidade/dedup/target switch).
+- **Validação:** `RPG Skill Tree CI` #1996 GREEN no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`; JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
+- **Estado pré-merge:** A0001–A0010 = `IMPLEMENTAÇÃO VALIDADA EM CI`.
+- **Estado definitivo:** alterar para `IMPLEMENTAÇÃO CONFIRMADA` somente após merge da #221 e confirmação da `main` pós-merge.
+- **Fallback/fail-closed legítimos:** A0001/A0007 classificação desconhecida; A0005 penetração-only quando guarda não é observável mas defesa física é comprovável; A0006 receipts adicionais de aparo/guarda perfeita omitidos sem API causal; A0010 adapters sem receipt equivalente ficam inativos.
+- **Pendências bloqueantes:** nenhuma.
