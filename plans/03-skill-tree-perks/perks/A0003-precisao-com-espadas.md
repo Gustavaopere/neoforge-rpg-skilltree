@@ -80,3 +80,18 @@ Nenhuma divergência específica encontrada. Qualquer novo adapter de arma/mod d
 - **Integrações:** atributos ou mods que possuam conceitos próprios de crítico não autorizam segunda rolagem MARTIAL. Crítico mágico/específico de outro provider não é fundido aqui sem adapter explícito e deduplicado.
 - **Fail-closed:** fontes não classificadas como espada pelo provider não recebem o bônus.
 - **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.
+
+## Chat 2 — implementação, testes e merge — PR #221
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #221.
+
+- [x] Pipeline crítico canônico único implementado.
+- [x] Deduplicação/correlação NeoForge ↔ Epic Fight implementadas.
+- [x] Gate/ranks/família provider-native preservados.
+- [x] FAIL-CLOSED para fontes sem classificação inequívoca.
+- [x] Nenhuma segunda rolagem crítica criada.
+- [x] Testes do serviço crítico e policy presentes.
+- [x] `RPG Skill Tree CI` #1996 verde no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`.
+- [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma no provider/versionamento atual.
