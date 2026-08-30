@@ -73,6 +73,25 @@ final class ItemizationOptionalImportBoundaryTest {
         );
     }
 
+    @Test
+    void scannerRejectsQualifiedProviderReferencesSplitAcrossLines() {
+        assertThrows(
+            AssertionError.class,
+            () -> {
+                assertAllowedSourceLine(
+                    Path.of("Synthetic.java"),
+                    1,
+                    "ru.ironsspellbooks.api.spells."
+                );
+                assertAllowedSourceLine(
+                    Path.of("Synthetic.java"),
+                    2,
+                    "AbstractSpell spell;"
+                );
+            }
+        );
+    }
+
     private static void assertAllowedSourceLine(Path file, int lineNumber, String line) {
         String trimmed = line.trim();
         if (trimmed.isEmpty()
