@@ -1,17 +1,13 @@
 package dev.gustavopere.rpgskilltree.runtime.compendium;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.google.gson.JsonParser;
-import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntry;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryId;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryKind;
-import dev.gustavopere.rpgskilltree.compendium.api.CompendiumProvenance;
-import dev.gustavopere.rpgskilltree.compendium.api.DiscoveryPolicy;
-import dev.gustavopere.rpgskilltree.compendium.api.FactSource;
-import dev.gustavopere.rpgskilltree.compendium.api.VisibilityPolicy;
 import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialBlock;
 import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialContent;
 import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialSnapshot;
@@ -21,15 +17,14 @@ import dev.gustavopere.rpgskilltree.compendium.editorial.EditorialAvailability;
 import dev.gustavopere.rpgskilltree.compendium.editorial.EditorialReviewStatus;
 import dev.gustavopere.rpgskilltree.compendium.editorial.EditorialSourceType;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 final class RuntimeCompendiumEditorialCatalogJUnitTest {
     private static final CompendiumEntryId WOLF_ID =
         CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "minecraft:wolf");
+    private static final CompendiumEntryId FOX_ID =
+        CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "minecraft:fox");
 
     @BeforeEach
     void resetCatalog() {
@@ -37,55 +32,92 @@ final class RuntimeCompendiumEditorialCatalogJUnitTest {
     }
 
     @Test
-    void startsEmptyAndPublishAtomicallyReplacesTheWholeSnapshot() {
+    void startsEmptyAndValidCandidatesReplaceTheWholeSnapshotAtomically() {
         assertTrue(RuntimeCompendiumEditorialCatalog.snapshot().entries().isEmpty());
 
-        CompendiumEditorialSnapshot candidate = CompendiumEditorialSnapshot.fromEntries(List.of(wolfEditorial()));
-        assertSame(candidate, RuntimeCompendiumEditorialCatalog.publish(candidate));
-        assertSame(candidate, RuntimeCompendiumEditorialCatalog.snapshot());
+        CompendiumEditorialSnapshot first = snapshot(wolfEditorial());
+        RuntimeCompendiumEditorialCatalog.PublicationResult firstResult =
+            RuntimeCompendiumEditorialCatalog.tryPublish(() -> first);
+        assertTrue(firstResult.published());
+        assertSame(first, firstResult.snapshot());
+        assertEquals("", firstResult.diagnostic());
+        assertSame(first, RuntimeCompendiumEditorialCatalog.snapshot());
+
+        CompendiumEditorialSnapshot second = snapshot(foxEditorial());
+        RuntimeCompendiumEditorialCatalog.PublicationResult secondResult =
+            RuntimeCompendiumEditorialCatalog.tryPublish(() -> second);
+        assertTrue(secondResult.published());
+        assertSame(second, secondResult.snapshot());
+        assertSame(second, RuntimeCompendiumEditorialCatalog.snapshot());
     }
 
     @Test
-    void rejectedValidationCandidatePreservesTheLastGoodSnapshot() {
-        CompendiumEditorialSnapshot lastGood = CompendiumEditorialSnapshot.fromEntries(List.of(wolfEditorial()));
-        RuntimeCompendiumEditorialCatalog.publish(lastGood);
+    void firstRecoverableValidationFailureKeepsTheEmptySnapshot() {
+        RuntimeCompendiumEditorialCatalog.PublicationResult result =
+            RuntimeCompendiumEditorialCatalog.tryPublish(() -> {
+                throw new CompendiumEditorialValidationException("corpus editorial inválido");
+            });
 
-        Map<ResourceLocation, com.google.gson.JsonElement> invalid = Map.of(
-            ResourceLocation.parse("rpgskilltree:compendium/editorial/pt_br/minecraft/entities.json"),
-            JsonParser.parseString("""
-                {"schema":1,"language":"pt_br","namespace":"minecraft","kind":"ENTITY","entries":[{
-                  "entry_id":"ENTITY:minecraft:wolf","title":"TODO",
-                  "summary":{"text":"Resumo válido.","sources":[{"type":"RUNTIME","ref":"minecraft:entity_type/minecraft:wolf"}]},
-                  "sections":{},"references":[],"review_status":"REVIEWED","availability":"RUNTIME"
-                }]}
-                """)
-        );
+        assertFalse(result.published());
+        assertSame(RuntimeCompendiumEditorialCatalog.snapshot(), result.snapshot());
+        assertTrue(result.snapshot().entries().isEmpty());
+        assertTrue(result.diagnostic().contains("corpus editorial inválido"));
+    }
 
-        assertThrows(
-            CompendiumEditorialValidationException.class,
-            () -> CompendiumEditorialResourceLoader.prepare(invalid, List.of(wolfTechnical()))
-        );
+    @Test
+    void recoverableValidationFailurePreservesTheLastGoodSnapshot() {
+        CompendiumEditorialSnapshot lastGood = snapshot(wolfEditorial());
+        assertTrue(RuntimeCompendiumEditorialCatalog.tryPublish(() -> lastGood).published());
+
+        RuntimeCompendiumEditorialCatalog.PublicationResult rejected =
+            RuntimeCompendiumEditorialCatalog.tryPublish(() -> {
+                throw new CompendiumEditorialValidationException("referência editorial não resolvida");
+            });
+
+        assertFalse(rejected.published());
+        assertSame(lastGood, rejected.snapshot());
         assertSame(lastGood, RuntimeCompendiumEditorialCatalog.snapshot());
+        assertTrue(rejected.diagnostic().contains("referência editorial não resolvida"));
     }
 
     @Test
     void programmingFailureIsNotSwallowedAndCannotClobberTheLastGoodSnapshot() {
-        CompendiumEditorialSnapshot lastGood = CompendiumEditorialSnapshot.fromEntries(List.of(wolfEditorial()));
-        RuntimeCompendiumEditorialCatalog.publish(lastGood);
+        CompendiumEditorialSnapshot lastGood = snapshot(wolfEditorial());
+        assertTrue(RuntimeCompendiumEditorialCatalog.tryPublish(() -> lastGood).published());
 
-        assertThrows(NullPointerException.class, () -> RuntimeCompendiumEditorialCatalog.publish(null));
+        assertThrows(
+            NullPointerException.class,
+            () -> RuntimeCompendiumEditorialCatalog.tryPublish(() -> {
+                throw new NullPointerException("programming bug");
+            })
+        );
+        assertSame(lastGood, RuntimeCompendiumEditorialCatalog.snapshot());
+
+        assertThrows(NullPointerException.class, () -> RuntimeCompendiumEditorialCatalog.tryPublish(() -> null));
         assertSame(lastGood, RuntimeCompendiumEditorialCatalog.snapshot());
     }
 
+    private static CompendiumEditorialSnapshot snapshot(CompendiumEditorialContent content) {
+        return CompendiumEditorialSnapshot.fromEntries(List.of(content));
+    }
+
     private static CompendiumEditorialContent wolfEditorial() {
+        return editorial(WOLF_ID, "Lobo");
+    }
+
+    private static CompendiumEditorialContent foxEditorial() {
+        return editorial(FOX_ID, "Raposa");
+    }
+
+    private static CompendiumEditorialContent editorial(CompendiumEntryId id, String title) {
         return new CompendiumEditorialContent(
-            WOLF_ID,
-            "Lobo",
+            id,
+            title,
             new CompendiumEditorialBlock(
                 "Resumo válido.",
                 List.of(new CompendiumEditorialSource(
                     EditorialSourceType.RUNTIME,
-                    "minecraft:entity_type/minecraft:wolf",
+                    "minecraft:entity_type/" + id.resourceLocation(),
                     null
                 ))
             ),
@@ -94,21 +126,6 @@ final class RuntimeCompendiumEditorialCatalogJUnitTest {
             EditorialReviewStatus.REVIEWED,
             EditorialAvailability.RUNTIME,
             null
-        );
-    }
-
-    private static CompendiumEntry wolfTechnical() {
-        return new CompendiumEntry(
-            WOLF_ID,
-            "minecraft",
-            "entity.minecraft.wolf",
-            Set.of(),
-            List.of(),
-            List.of(),
-            DiscoveryPolicy.OBSERVATION,
-            VisibilityPolicy.VISIBLE,
-            new CompendiumProvenance(FactSource.REGISTRY, "test"),
-            1
         );
     }
 }
