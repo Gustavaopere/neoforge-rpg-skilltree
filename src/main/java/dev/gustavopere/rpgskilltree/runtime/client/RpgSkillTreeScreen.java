@@ -15,6 +15,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
 
@@ -226,24 +227,43 @@ public final class RpgSkillTreeScreen extends Screen {
         NodeDisplayState state = display.nodes().get(node.id());
         if (state == null) return;
 
-        List<String> lines = new ArrayList<>();
-        lines.add(nodeDisplayName(node));
+        int maxLineWidth = Math.max(120, Math.min(420, width - 40));
+        List<FormattedCharSequence> lines = new ArrayList<>();
+        lines.addAll(font.split(Component.literal(nodeDisplayName(node)), maxLineWidth));
+
         String description = nodeDescription(node);
-        if (!description.isBlank()) lines.add(description);
-        lines.add(node.groupLabel() + "  •  Rank " + state.rank() + "/" + state.maxRank() + "  •  Cost " + state.costPerRank());
-        lines.add(state.canPurchase() ? "LMB: purchase" : state.learned() ? "Purchased" : "Locked by path or requirements");
-        if (state.canRespec()) lines.add("RMB: respec");
+        if (!description.isBlank()) {
+            lines.addAll(font.split(Component.literal(description), maxLineWidth));
+        }
+
+        SkillTreeTooltipText.PurchaseState purchaseState = state.canPurchase()
+            ? SkillTreeTooltipText.PurchaseState.PURCHASABLE
+            : state.learned()
+                ? SkillTreeTooltipText.PurchaseState.PURCHASED
+                : SkillTreeTooltipText.PurchaseState.LOCKED;
+        for (SkillTreeTooltipText.Line line : SkillTreeTooltipText.lines(
+            node.groupLabel(),
+            state.rank(),
+            state.maxRank(),
+            state.costPerRank(),
+            CombatPerkClientText.nodeEffect(node.id()),
+            CombatPerkClientText.nodeGate(node.id()),
+            purchaseState,
+            state.canRespec()
+        )) {
+            Component component = Component.translatable(line.translationKey(), line.arguments().toArray());
+            lines.addAll(font.split(component, maxLineWidth));
+        }
+
         int boxWidth = 0;
-        for (String line : lines) boxWidth = Math.max(boxWidth, font.width(line));
-        int x = Math.min(mouseX + 12, width - boxWidth - 18);
+        for (FormattedCharSequence line : lines) boxWidth = Math.max(boxWidth, font.width(line));
+        int x = Math.max(8, Math.min(mouseX + 12, width - boxWidth - 18));
         int boxHeight = lines.size() * 11 + 10;
-        int y = Math.min(mouseY + 12, height - boxHeight - 4);
+        int y = Math.max(8, Math.min(mouseY + 12, height - boxHeight - 4));
         graphics.fill(x - 5, y - 5, x + boxWidth + 7, y + boxHeight, 0xEE10151D);
         int lineY = y;
-        for (String line : lines) {
-            if (!line.isEmpty()) {
-                graphics.drawString(font, line, x, lineY, 0xFFFFFFFF);
-            }
+        for (FormattedCharSequence line : lines) {
+            graphics.drawString(font, line, x, lineY, 0xFFFFFFFF);
             lineY += 11;
         }
     }
