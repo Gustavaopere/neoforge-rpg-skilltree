@@ -95,3 +95,14 @@ Nenhuma divergência específica encontrada. Qualquer novo adapter de arma/mod d
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Pendências técnicas:** nenhuma no provider/versionamento atual.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; authority do crítico é `A0001A0020CriticalService`/root action canônica. Um evento pode produzir no máximo uma decisão crítica.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO`; pressão, O₂, gases, geologia, erupções e hazards não viram chance crítica marcial.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO`; Shroud/Exposure/Flame/Story e `MagicResistanceService` não alimentam a rolagem crítica de espada.
+- **Black Arcana:** boundary legítimo de exclusão. `ARCANE_BACKLASH` é terminal, não entra no resolver crítico, não crita e não concede Mastery/proc. Ataque direto do jogador contra entidade Black Arcana continua elegível como ação Epic Fight.
+- **Mobstein 5.4.4:** alvo Mobstein é coberto pelo combate universal quando o jogador ataca diretamente. Dano de ally/bodyguard ressuscitado é Mobstein-owned, não entra no `rootActionId` crítico do dono e não herda A0003.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria para tornar essas exclusions implementáveis sem transformar Black Arcana/Mobstein em providers da perk; re-fetch 2026-08-30 confirmou persistência.
+- **Fail-closed:** origem terminal/secundária/companion ou fonte sem `SWORD` inequívoca fica inelegível; não há bridge substituta.
+- **Estado histórico:** implementação da PR #221 já mergeada; retroauditoria não altera runtime.
