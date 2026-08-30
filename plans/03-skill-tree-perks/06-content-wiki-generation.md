@@ -7,7 +7,7 @@
 - [ ] Balancear final triads, bridges e keystones.
 - [ ] Gerar catálogo de IDs, custos, ranks, requisitos e stats a partir de dados/localização.
 - [x] Preservar texto editorial extra da wiki sem sobrescrever seções manuais como trivia.
-- [ ] Adicionar CI para detectar catálogo desatualizado.
+- [x] Adicionar CI para detectar catálogo desatualizado.
 
 ## Estado da infraestrutura — PR #207
 
@@ -55,6 +55,26 @@ Evidência TDD desta fatia:
 - CI #1902 / `33289583854`: contrato de cobertura GREEN;
 - CI #1905 / `33289654389`: auditoria real + Core + JUnit + 16 GameTests + validators + build + JAR + dedicated-server smoke totalmente GREEN no head correspondente.
 
+## Gate de drift dos catálogos — PR #222
+
+O PR #222 concluiu a parte operacional que faltava para impedir divergência silenciosa entre dados/runtime e os blocos factuais da wiki.
+
+Implementado nesta fatia:
+
+- `alpha2-build.yml` executa `python3 scripts/generate-wiki-catalog.py --check` após os testes do gerador;
+- `scripts/test_wiki_catalog.py` contém contrato explícito que impede a remoção acidental desse gate do workflow principal;
+- `wiki/PERK_CATALOG.md` e `wiki/EFFECT_CATALOG.md` foram regenerados deterministicamente a partir das fontes factuais autoritativas atuais;
+- as alterações geradas permanecem confinadas aos blocos `rpgskilltree:generated:*`; o texto editorial/manual fora dos marcadores foi preservado;
+- o workflow final manteve `contents: read`; nenhuma permissão temporária usada durante a regeneração faz parte da `main`.
+
+Evidência TDD desta fatia:
+
+- CI `33302169094`: RED esperado — Core e testes do gerador GREEN, com falha apenas no novo `--check` porque `PERK_CATALOG.md` e `EFFECT_CATALOG.md` estavam desatualizados;
+- CI #2018 / `33303114590`: GREEN completo no HEAD final — Core, testes do gerador, drift gate, auditoria de conteúdo, JUnit, NeoForge GameTests, validators, build, verificação do JAR e dedicated-server smoke;
+- PR #222 mergeado em `main` como `6c36c5f7cec457984eab0b03a35cd0b5e621e334`.
+
+Esse fechamento é exclusivamente factual/infrastrutural. Ele não autoriza preencher A0021+ por inferência nem transforma runtime Java em fonte editorial para descrições player-facing.
+
 ## Visibilidade client-side das perks semânticas — PR #212
 
 A auditoria factual revelou que a malha visual histórica de 512 nós e as perks canônicas A0001–A0100 são contratos diferentes. `CombatPerkNodeBinding` usa IDs persistentes `rpgskilltree:combat/a####` e documenta explicitamente que os antigos IDs `martial_###` não são aliases. O servidor já injeta A0001–A0100 em `rpgskilltree:runtime/combat_perks` por meio de `SkillTreeDataLoader.closedCombatRules()`, mas esses 100 nós não possuíam layout carregável pelo cliente.
@@ -91,16 +111,15 @@ Esta fatia resolve o blocker de **invisibilidade client-side** de A0001–A0100.
 
 ## Bloqueio de conteúdo final
 
-O PR #203 deixou de ser um blocker de concorrência: A0001–A0020 já foram reauditoradas contra os critérios obrigatórios e mergeadas na `main`. Entretanto, o Catálogo Mestre e os lotes posteriores ainda precisam convergir para conteúdo player-facing final antes de fechar o Stage 03.06.
+O PR #203 deixou de ser um blocker de concorrência: A0001–A0020 já foram reauditoradas contra os critérios obrigatórios e mergeadas na `main`. O gate de drift e a materialização factual dos catálogos também já estão ativos na `main` pelo PR #222. Entretanto, o Catálogo Mestre e os lotes posteriores ainda precisam convergir para conteúdo player-facing final antes de fechar o Stage 03.06.
 
-Por isso estas fatias **não**:
+Por isso o trabalho remanescente **não pode**:
 
-- decidem quais nós estruturais da malha histórica permanecem estruturais;
-- criam descrições finais ou textos de efeito por inferência;
-- alteram balanceamento de triads, bridges ou keystones;
-- materializam o catálogo factual final dentro dos blocos gerados;
-- ativam ainda o `--check` contra os arquivos reais da wiki no pipeline de regeneração.
+- decidir quais nós estruturais da malha histórica permanecem estruturais sem a especificação canônica;
+- criar descrições finais ou textos de efeito por inferência;
+- alterar balanceamento de triads, bridges ou keystones sem o design auditado;
+- tratar o catálogo factual gerado como substituto do texto player-facing canônico.
 
-Esses itens devem consumir snapshots de design auditados, em vez de transformar o runtime atual em uma fonte editorial improvisada. O Stage 03.06 permanece aberto até todos os checkboxes e o Acceptance final serem satisfeitos.
+Os blocos factuais da wiki e o `--check` já estão materializados. Os itens restantes devem consumir snapshots de design auditados, em vez de transformar o runtime atual em uma fonte editorial improvisada. O Stage 03.06 permanece aberto até todos os checkboxes e o Acceptance final serem satisfeitos.
 
 **Acceptance:** jogador consegue descobrir o que cada perk final faz e a parte factual da wiki pode ser regenerada a partir do jogo.
