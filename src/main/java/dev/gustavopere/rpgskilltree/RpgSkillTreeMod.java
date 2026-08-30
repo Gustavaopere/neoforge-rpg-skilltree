@@ -10,6 +10,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.coldsweat.ColdSweatFrenzyBrid
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0022RuntimeHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0041A0060EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0042ScytheKillHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0061A0080EpicFightHooks;
@@ -54,6 +55,7 @@ import dev.gustavopere.rpgskilltree.runtime.events.MiningProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.PlayerProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ProgressionOwnerSyncEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.RelevantPlayerCacheEvents;
+import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationReloader;
 import dev.gustavopere.rpgskilltree.runtime.loot.ModLootModifiers;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
@@ -90,6 +92,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(BossRewardReloader.class);
         NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class);
         NeoForge.EVENT_BUS.register(CanonicalProviderBindingReloader.class);
+        NeoForge.EVENT_BUS.register(EquipmentClassificationReloader.class);
         NeoForge.EVENT_BUS.register(EntityScalingEvents.class);
         NeoForge.EVENT_BUS.register(EntityRewardEvents.class);
         NeoForge.EVENT_BUS.register(ApothicBossBridgeEvents.class);
@@ -142,10 +145,12 @@ public final class RpgSkillTreeMod {
             if (EpicFightVersionContract.supportsVersion(version)) {
                 EpicFightProgressionHooks.register();
                 A0001A0020EpicFightHooks.register();
+                A0022RuntimeHooks.register();
                 A0042ScytheKillHooks.register();
                 A0041A0060EpicFightHooks.register();
                 A0061A0080EpicFightHooks.register();
                 NeoForge.EVENT_BUS.register(A0001A0020EpicFightHooks.class);
+                NeoForge.EVENT_BUS.register(A0022RuntimeHooks.class);
                 NeoForge.EVENT_BUS.register(A0042ScytheKillHooks.class);
                 NeoForge.EVENT_BUS.register(A0041A0060EpicFightHooks.class);
                 NeoForge.EVENT_BUS.register(A0061A0080EpicFightHooks.class);
