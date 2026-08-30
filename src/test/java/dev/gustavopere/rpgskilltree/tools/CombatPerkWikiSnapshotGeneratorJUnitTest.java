@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 final class CombatPerkWikiSnapshotGeneratorJUnitTest {
     private static final Path SNAPSHOT = Path.of("wiki/generated/combat-perks.json");
+    private static final Path DIAGNOSTIC_SNAPSHOT = Path.of("build/generated-wiki/combat-perks.json");
 
     @Test
     void rendersExactlyTheCanonicalA0001A0100SemanticSnapshotWithoutInventingUnauditedText() {
@@ -29,13 +30,10 @@ final class CombatPerkWikiSnapshotGeneratorJUnitTest {
     @Test
     void checkedInSnapshotMatchesTheCanonicalGeneratorExactly() throws Exception {
         String expected = CombatPerkWikiSnapshotGenerator.renderJson();
+        Files.createDirectories(DIAGNOSTIC_SNAPSHOT.getParent());
+        Files.writeString(DIAGNOSTIC_SNAPSHOT, expected, StandardCharsets.UTF_8);
         if (!Files.isRegularFile(SNAPSHOT)) {
-            throw new AssertionError(
-                "semantic combat wiki snapshot is missing: " + SNAPSHOT + "\n"
-                    + "--- GENERATED SNAPSHOT START ---\n"
-                    + expected
-                    + "--- GENERATED SNAPSHOT END ---"
-            );
+            throw new AssertionError("semantic combat wiki snapshot is missing: " + SNAPSHOT);
         }
         String actual = Files.readString(SNAPSHOT, StandardCharsets.UTF_8);
         assertEquals(expected, actual, "semantic combat wiki snapshot drifted from canonical model");
