@@ -68,6 +68,9 @@ jobs:
       - name: Core tests
         run: bash scripts/test-core.sh
 
+      - name: Wiki catalog generator tests
+        run: python3 scripts/test_wiki_catalog.py
+
       - name: JUnit 5 tests
         run: ./gradlew --no-daemon test
 
