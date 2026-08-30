@@ -8,6 +8,12 @@ from typing import Any
 NAMESPACE = "rpgskilltree"
 
 
+class WikiCatalogDriftError(RuntimeError):
+    def __init__(self, paths: list[Path]):
+        self.paths = tuple(paths)
+        super().__init__("generated wiki catalog is stale: " + ", ".join(str(path) for path in paths))
+
+
 def replace_generated_block(document: str, marker: str, body: str) -> str:
     start = f"<!-- {NAMESPACE}:generated:{marker}:start -->"
     end = f"<!-- {NAMESPACE}:generated:{marker}:end -->"
@@ -100,6 +106,30 @@ def build_catalog_sections(root: Path, locale: str = "pt_br") -> tuple[str, str]
         )
 
     return "\n".join(perk_lines) + "\n", "\n".join(effect_lines) + "\n"
+
+
+def update_catalog_documents(root: Path, locale: str = "pt_br", check: bool = False) -> list[Path]:
+    root = Path(root)
+    perk_section, effect_section = build_catalog_sections(root, locale=locale)
+    targets = (
+        (root / "wiki/PERK_CATALOG.md", "perk-catalog", perk_section),
+        (root / "wiki/EFFECT_CATALOG.md", "effect-catalog", effect_section),
+    )
+    changed: list[Path] = []
+    updates: list[tuple[Path, str]] = []
+    for path, marker, section in targets:
+        original = path.read_text(encoding="utf-8")
+        updated = replace_generated_block(original, marker, section)
+        if updated != original:
+            changed.append(path)
+            updates.append((path, updated))
+
+    if check and changed:
+        raise WikiCatalogDriftError(changed)
+    if not check:
+        for path, updated in updates:
+            path.write_text(updated, encoding="utf-8")
+    return changed
 
 
 def _load_rules(root: Path) -> list[tuple[str, dict[str, Any]]]:
