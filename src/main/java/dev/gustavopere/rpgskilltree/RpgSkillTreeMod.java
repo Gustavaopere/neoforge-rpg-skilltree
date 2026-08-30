@@ -19,6 +19,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReload
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumDiscoveryEvents;
+import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEditorialCatalogEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEntityCatalogEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumFloraCatalogEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumInventoryEvents;
@@ -101,6 +102,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CompendiumInventoryEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumLootResourceReloader.class);
         NeoForge.EVENT_BUS.register(CompendiumWorldCatalogEvents.class);
+        NeoForge.EVENT_BUS.register(CompendiumEditorialCatalogEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumWorldCatalogReloader.class);
         NeoForge.EVENT_BUS.register(CompendiumWorldDiscoveryEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);
