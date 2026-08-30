@@ -42,7 +42,7 @@
       "entry_id": "ENTITY:minecraft:camel",
       "title": "Camelo",
       "summary": {
-        "text": "O camelo é uma criatura passiva domesticável por uso de sela e destinada à locomoção em dupla. Sua altura e postura modificam a forma como passageiros interagem com ameaças próximas, sem alterar diretamente os atributos do jogador.",
+        "text": "O camelo é uma criatura passiva que pode receber sela e ser usada como montaria para dois passageiros, sem exigir o processo de domesticação dos equinos. Sua postura elevada também altera a posição física dos passageiros em relação a entidades próximas.",
         "sources": [
           {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:camel"},
           {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/camel/Camel.java"}
