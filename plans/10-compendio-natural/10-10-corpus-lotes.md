@@ -202,9 +202,38 @@ Entradas:
 - todas as fichas usam `RUNTIME` e `OFFICIAL_CODE`, permanecem `REVIEWED`/`RUNTIME` e não transformam detalhes de configuração ou composição de encontros em regras universais;
 - o corpus corrigido passou pelo Compendium Editorial CI #218 e pelo RPG Skill Tree CI #2390, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
+## Lote 8 — Vanilla / habitantes, Nether e criaturas regulares remanescentes
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-batch8.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:minecraft:hoglin` — Hoglin
+2. `ENTITY:minecraft:piglin` — Piglin
+3. `ENTITY:minecraft:piglin_brute` — Piglin bárbaro
+4. `ENTITY:minecraft:slime` — Slime
+5. `ENTITY:minecraft:villager` — Aldeão
+6. `ENTITY:minecraft:wandering_trader` — Vendedor ambulante
+7. `ENTITY:minecraft:zoglin` — Zoglin
+8. `ENTITY:minecraft:zombie_horse` — Cavalo-zumbi
+9. `ENTITY:minecraft:zombie_villager` — Aldeão zumbi
+10. `ENTITY:minecraft:zombified_piglin` — Piglin-zumbi
+
+### Critérios editoriais aplicados ao lote 8
+
+- identidade das dez entidades confirmada para Minecraft 1.21.1 e nomenclatura pt-BR conferida contra os assets da mesma linha;
+- fichas ancoradas em `RUNTIME` e `OFFICIAL_CODE`, preservando as diferenças entre Hoglin/Zoglin, Piglin/Piglin bárbaro/Piglin-zumbi, Aldeão/Aldeão zumbi e Vendedor ambulante;
+- comportamento do Slime, comércio e reputação dos habitantes, estados dos piglins e relações de conversão foram descritos sem congelar preços, chances, tempos, distâncias, dano ou outros parâmetros mutáveis;
+- o Cavalo-zumbi foi documentado sem inventar spawn natural ou método de obtenção que o runtime 1.21.1 não garante;
+- durante a validação do lote foi identificado e corrigido um falso positivo do filtro de placeholders: a fronteira ASCII de `TODO` tratava a sequência final de palavras pt-BR como `método` como placeholder; o loader agora usa `Pattern.UNICODE_CHARACTER_CLASS` e possui teste de regressão que aceita `método` e continua rejeitando `TODO` isolado;
+- a causa foi isolada por teste por entrada antes da correção; a instrumentação diagnóstica temporária foi removida do HEAD final;
+- o corpus e a correção Unicode passaram pelo Compendium Editorial CI #229 e pelo RPG Skill Tree CI #2406, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke antes deste registro.
+
 ## Estado acumulado
 
-- entidades vanilla reais no corpus: **70**;
-- lotes documentados: **7**;
+- entidades vanilla reais no corpus: **80**;
+- lotes documentados: **8**;
 - namespace atual em produção: `minecraft`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
