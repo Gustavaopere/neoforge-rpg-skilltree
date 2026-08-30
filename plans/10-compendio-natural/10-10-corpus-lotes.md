@@ -144,9 +144,38 @@ Entradas:
 - variantes com registry ID próprio permanecem entradas independentes, sem duplicar a ficha da classe-base;
 - o pacote passou pelo CI editorial e pelo CI agregado antes deste registro, incluindo JUnit, GameTests, validadores do Compêndio, build, JAR e dedicated-server smoke.
 
+## Lote 6 — Vanilla / hostis de progressão e estruturas
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-batch6.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:minecraft:blaze` — Blaze
+2. `ENTITY:minecraft:breeze` — Vórtice
+3. `ENTITY:minecraft:elder_guardian` — Guardião-Mestre
+4. `ENTITY:minecraft:enderman` — Enderman
+5. `ENTITY:minecraft:evoker` — Invocador
+6. `ENTITY:minecraft:ghast` — Ghast
+7. `ENTITY:minecraft:guardian` — Guardião
+8. `ENTITY:minecraft:phantom` — Phantom
+9. `ENTITY:minecraft:pillager` — Saqueador
+10. `ENTITY:minecraft:wither_skeleton` — Esqueleto Wither
+
+### Critérios editoriais aplicados ao lote 6
+
+- identidade e classes das dez entidades confirmadas para Minecraft 1.21.1, com fichas ancoradas em `RUNTIME` e `OFFICIAL_CODE`;
+- nomenclatura pt-BR revisada contra os assets da linha 1.21.x, preservando `Phantom` para a versão 1.21.1 em vez de adotar retroativamente a tradução posterior `Espectro`;
+- comportamentos especializados registrados sem congelar números, incluindo ataque do Blaze, IA de salto/deslizamento do Vórtice, rotina adicional do Guardião-Mestre, provocação/teleporte do Enderman, feitiços do Invocador, projéteis do Ghast, feixe do Guardião, fases de ataque do Phantom, besta do Saqueador e ataque próprio do Esqueleto Wither;
+- heranças e contratos relevantes preservados, incluindo `Guardian` → `ElderGuardian`, `AbstractSkeleton` → `WitherSkeleton`, `SpellcasterIllager`, `NeutralMob`, `CrossbowAttackMob`, `InventoryCarrier`, `FlyingMob` e os behaviors do pacote `breeze`;
+- a referência de raid do Saqueador usa o pacote correto de 1.21.1, `net.minecraft.world.entity.raid.Raider`, sem transportar caminho de pacote incorreto;
+- nenhuma duração, chance, dano, alcance, cadência, força de explosão, tamanho de inventário ou outro parâmetro mecânico mutável foi congelado em prosa;
+- o corpus corrigido passou pelo CI editorial #210 e pelo CI agregado #2378, incluindo JUnit, GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
-- entidades vanilla reais no corpus: **50**;
-- lotes documentados: **5**;
+- entidades vanilla reais no corpus: **60**;
+- lotes documentados: **6**;
 - namespace atual em produção: `minecraft`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
