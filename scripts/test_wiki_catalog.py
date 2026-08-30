@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from wiki_catalog import (
     WikiCatalogDriftError,
     build_catalog_sections,
+    build_content_coverage,
     replace_generated_block,
     update_catalog_documents,
 )
@@ -63,6 +64,36 @@ class WikiCatalogContractTest(unittest.TestCase):
             self.assertIn("+3%/rank", effect_catalog)
             self.assertIn("`rpgskilltree:riposte`", effect_catalog)
             self.assertIn("BEHAVIOR_HANDLER", effect_catalog)
+
+    def test_content_coverage_reports_factual_gaps_without_calling_them_structural(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self._write_fixture(root)
+
+            audit = build_content_coverage(root, locale="pt_br", tree_id="rpgskilltree:main")
+
+            self.assertEqual(2, audit["summary"]["total_nodes"])
+            self.assertEqual(1, audit["summary"]["localized_names"])
+            self.assertEqual(1, audit["summary"]["localized_descriptions"])
+            self.assertEqual(1, audit["summary"]["nodes_with_declarative_effects"])
+            self.assertEqual(1, audit["summary"]["nodes_without_declarative_effects"])
+            self.assertEqual(1, audit["summary"]["nodes_missing_names"])
+            self.assertEqual(1, audit["summary"]["nodes_missing_descriptions"])
+
+            martial = audit["nodes"][0]
+            technical = audit["nodes"][1]
+            self.assertEqual("rpgskilltree:martial_000", martial["id"])
+            self.assertTrue(martial["has_name"])
+            self.assertTrue(martial["has_description"])
+            self.assertEqual(1, martial["attribute_effects"])
+            self.assertEqual(1, martial["behavior_effects"])
+            self.assertTrue(martial["has_declarative_effect"])
+
+            self.assertEqual("rpgskilltree:technical_only", technical["id"])
+            self.assertFalse(technical["has_name"])
+            self.assertFalse(technical["has_description"])
+            self.assertFalse(technical["has_declarative_effect"])
+            self.assertNotIn("structural", technical)
 
     def test_document_update_is_idempotent_preserves_editorial_and_check_detects_drift(self):
         with tempfile.TemporaryDirectory() as temporary:
