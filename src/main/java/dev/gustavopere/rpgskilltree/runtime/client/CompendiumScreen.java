@@ -13,9 +13,12 @@ import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterState;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumNotesModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPageModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPersonalView;
+import dev.gustavopere.rpgskilltree.compendium.client.CompendiumRelationLink;
+import dev.gustavopere.rpgskilltree.compendium.client.CompendiumRelationPanelState;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayout;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSession;
 import dev.gustavopere.rpgskilltree.compendium.client.render.CompendiumStaticPreviewPolicy;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import net.minecraft.client.gui.GuiGraphics;
@@ -46,6 +49,9 @@ public final class CompendiumScreen extends Screen {
     private static final int FAVORITE_BUTTON_HEIGHT = 18;
     private static final int NOTES_BUTTON_WIDTH = 74;
     private static final int NOTES_BUTTON_HEIGHT = 18;
+    private static final int RELATIONS_BUTTON_WIDTH = 84;
+    private static final int RELATIONS_BUTTON_HEIGHT = 18;
+    private static final int RELATION_ROW_HEIGHT = 24;
     private static final int HEADER_BUTTON_GAP = 4;
     private static final int LIST_PADDING = 6;
     private static final int FILTER_BUTTON_GAP = 4;
@@ -56,6 +62,7 @@ public final class CompendiumScreen extends Screen {
 
     private final CompendiumScreenSession session;
     private final CompendiumEntityPreviewRenderer entityPreview = new CompendiumEntityPreviewRenderer();
+    private final CompendiumRelationPanelState relationPanel = new CompendiumRelationPanelState();
     private CompendiumScreenLayout layout;
     private EditBox searchBox;
     private Button allViewButton;
@@ -65,6 +72,7 @@ public final class CompendiumScreen extends Screen {
     private Button discoveredFilterButton;
     private Button favoriteButton;
     private Button notesButton;
+    private Button relationsButton;
     private CompendiumNotesEditBox notesEditor;
     private boolean debugDetailsEnabled;
     private boolean previewDragging;
@@ -92,7 +100,9 @@ public final class CompendiumScreen extends Screen {
         discoveredFilterButton = null;
         favoriteButton = null;
         notesButton = null;
+        relationsButton = null;
         notesEditor = null;
+        relationPanel.close();
         previewDragging = false;
         if (width < CompendiumScreenLayout.MIN_SCREEN_WIDTH || height < CompendiumScreenLayout.MIN_SCREEN_HEIGHT) {
             layout = null;
@@ -181,14 +191,37 @@ public final class CompendiumScreen extends Screen {
         favoriteButton.visible = false;
         addRenderableWidget(favoriteButton);
 
-        int notesButtonX = layout.splitPanes()
-            ? detail.right() - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - HEADER_BUTTON_GAP - 10
+        int relationsButtonX = layout.splitPanes()
+            ? detail.right() - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - RELATIONS_BUTTON_WIDTH
+                - HEADER_BUTTON_GAP * 2 - 10
             : detail.x() + 10;
-        int notesButtonY = layout.splitPanes()
+        int relationsButtonY = layout.splitPanes()
             ? headerButtonY
             : headerButtonY + BACK_BUTTON_HEIGHT + HEADER_BUTTON_GAP;
+        relationsButton = Button.builder(relationsButtonLabel(), button -> {
+            CompendiumClientEntry current = session.currentEntry().orElse(null);
+            if (current == null) return;
+            List<CompendiumRelationLink> links = session.currentRelationLinks();
+            closeNotesPanel();
+            relationPanel.toggle(current.id(), links.size());
+            entityPreview.clear();
+            refreshRelationsButton();
+        }).bounds(
+            relationsButtonX,
+            relationsButtonY,
+            RELATIONS_BUTTON_WIDTH,
+            RELATIONS_BUTTON_HEIGHT
+        ).build();
+        relationsButton.visible = false;
+        addRenderableWidget(relationsButton);
+
+        int notesButtonX = layout.splitPanes()
+            ? detail.right() - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - HEADER_BUTTON_GAP - 10
+            : relationsButtonX + RELATIONS_BUTTON_WIDTH + HEADER_BUTTON_GAP;
+        int notesButtonY = relationsButtonY;
         notesButton = Button.builder(notesButtonLabel(), button -> {
             if (notesEditor == null) return;
+            closeRelationsPanel();
             notesEditor.setPanelOpen(!notesEditor.panelOpen());
             entityPreview.clear();
             refreshNotesButton();
@@ -227,8 +260,10 @@ public final class CompendiumScreen extends Screen {
         }
 
         if (notesEditor != null) notesEditor.sync();
+        syncRelationPanel();
         refreshFavoriteButton();
         refreshNotesButton();
+        refreshRelationsButton();
         refreshPersonalViewButtons();
         renderHeader(graphics);
         renderToolbar(graphics);
@@ -356,12 +391,17 @@ public final class CompendiumScreen extends Screen {
             renderNotesPanelHeader(graphics, current, x, y, body, compactBack);
             return;
         }
+        if (relationPanel.isOpen()) {
+            entityPreview.clear();
+            renderRelationsPanel(graphics, current, mouseX, mouseY, x, y, body, compactBack);
+            return;
+        }
 
         int titleWidth = body.width() - 20;
         if (!compactBack) {
             titleWidth = Math.max(
                 20,
-                titleWidth - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - HEADER_BUTTON_GAP * 2
+                titleWidth - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - RELATIONS_BUTTON_WIDTH - HEADER_BUTTON_GAP * 3
             );
         }
         graphics.drawString(font, fitToWidth(current.displayName(), titleWidth), x, y, ACCENT);
@@ -450,7 +490,8 @@ public final class CompendiumScreen extends Screen {
         if (!compactBack) {
             int titleWidth = Math.max(
                 20,
-                body.width() - 20 - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - HEADER_BUTTON_GAP * 2
+                body.width() - 20 - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - RELATIONS_BUTTON_WIDTH
+                    - HEADER_BUTTON_GAP * 3
             );
             graphics.drawString(font, fitToWidth(current.displayName(), titleWidth), x, y, ACCENT);
             y += 14;
@@ -459,6 +500,59 @@ public final class CompendiumScreen extends Screen {
         if (y + font.lineHeight < (notesEditor == null ? body.bottom() : notesEditor.getY())) {
             graphics.drawString(font, fitToWidth(title.getString(), body.width() - 20), x, y, MUTED);
         }
+    }
+
+    private void renderRelationsPanel(
+        GuiGraphics graphics,
+        CompendiumClientEntry current,
+        int mouseX,
+        int mouseY,
+        int x,
+        int y,
+        CompendiumScreenLayout.Rect body,
+        boolean compactBack
+    ) {
+        if (!compactBack) {
+            int titleWidth = Math.max(
+                20,
+                body.width() - 20 - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - RELATIONS_BUTTON_WIDTH
+                    - HEADER_BUTTON_GAP * 3
+            );
+            graphics.drawString(font, fitToWidth(current.displayName(), titleWidth), x, y, ACCENT);
+            y += 14;
+        }
+
+        Component title = Component.translatable("screen.rpgskilltree.compendium.relations.title");
+        graphics.drawString(font, fitToWidth(title.getString(), body.width() - 20), x, y, MUTED);
+        y += 14;
+
+        List<CompendiumRelationLink> links = session.currentRelationLinks();
+        if (links.isEmpty() || y + RELATION_ROW_HEIGHT > body.bottom()) return;
+
+        int capacity = relationRowCapacity(body, compactBack);
+        CompendiumRelationPanelState.Viewport viewport = relationPanel.viewport(links.size(), capacity);
+        int rowY = y;
+        int end = viewport.firstIndex() + viewport.visibleCount();
+        for (int index = viewport.firstIndex(); index < end; index++) {
+            CompendiumRelationLink link = links.get(index);
+            int rowBottom = Math.min(body.bottom(), rowY + RELATION_ROW_HEIGHT);
+            boolean hovered = mouseX >= x && mouseX < body.right() - 10
+                && mouseY >= rowY && mouseY < rowBottom;
+            graphics.fill(x, rowY, body.right() - 10, rowBottom, hovered ? ROW_HOVER : ROW);
+            Component type = Component.translatable(relationTypeTranslationKey(link));
+            int available = Math.max(20, body.width() - 32);
+            graphics.drawString(font, fitToWidth(type.getString(), available), x + 6, rowY + 3, ACCENT);
+            graphics.drawString(
+                font,
+                fitToWidth(link.target().displayName(), available),
+                x + 6,
+                rowY + 13,
+                link.target().discovered() ? TEXT : MUTED
+            );
+            rowY += RELATION_ROW_HEIGHT;
+        }
+        if (viewport.hasPrevious()) graphics.drawString(font, "▲", body.right() - 20, y + 3, MUTED);
+        if (viewport.hasNext()) graphics.drawString(font, "▼", body.right() - 20, body.bottom() - 11, MUTED);
     }
 
     private int renderEntityPreview(
@@ -617,11 +711,16 @@ public final class CompendiumScreen extends Screen {
                 && mouseY >= backY && mouseY < backY + BACK_BUTTON_HEIGHT) {
                 session.backToList();
                 closeNotesPanel();
+                closeRelationsPanel();
                 entityPreview.clear();
                 return true;
             }
-            return false;
         }
+        if (relationPanel.isOpen() && clickRelationRow(mouseX, mouseY)) {
+            entityPreview.clear();
+            return true;
+        }
+        if (!layout.splitPanes() && session.showingDetail()) return false;
 
         CompendiumScreenLayout.Rect body = layout.listBody();
         if (!contains(body, mouseX, mouseY)) return false;
@@ -652,6 +751,16 @@ public final class CompendiumScreen extends Screen {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+        if (layout != null && scrollY != 0 && relationPanel.isOpen() && contains(layout.detailBody(), mouseX, mouseY)) {
+            List<CompendiumRelationLink> links = session.currentRelationLinks();
+            int capacity = relationRowCapacity(layout.detailBody(), !layout.splitPanes());
+            relationPanel.scrollRows(
+                scrollY > 0 ? -SCROLL_ROWS_PER_NOTCH : SCROLL_ROWS_PER_NOTCH,
+                links.size(),
+                capacity
+            );
+            return true;
+        }
         if (layout != null && scrollY != 0 && previewInteractive() && entityPreview.contains(mouseX, mouseY)) {
             entityPreview.zoom(scrollY);
             return true;
@@ -672,6 +781,10 @@ public final class CompendiumScreen extends Screen {
         }
         if (keyCode == GLFW.GLFW_KEY_ESCAPE && notesEditor != null && notesEditor.panelOpen()) {
             closeNotesPanel();
+            return true;
+        }
+        if (keyCode == GLFW.GLFW_KEY_ESCAPE && relationPanel.isOpen()) {
+            closeRelationsPanel();
             return true;
         }
         if (keyCode == GLFW.GLFW_KEY_ESCAPE && layout != null && !layout.splitPanes() && session.showingDetail()) {
@@ -715,6 +828,7 @@ public final class CompendiumScreen extends Screen {
     public void removed() {
         previewDragging = false;
         closeNotesPanel();
+        closeRelationsPanel();
         entityPreview.clear();
         super.removed();
     }
@@ -722,12 +836,60 @@ public final class CompendiumScreen extends Screen {
     private boolean previewInteractive() {
         return layout != null
             && (notesEditor == null || !notesEditor.panelOpen())
+            && !relationPanel.isOpen()
             && (layout.splitPanes() || session.showingDetail());
     }
 
     private void closeNotesPanel() {
         if (notesEditor != null) notesEditor.setPanelOpen(false);
         refreshNotesButton();
+    }
+
+    private void closeRelationsPanel() {
+        relationPanel.close();
+        refreshRelationsButton();
+    }
+
+    private void syncRelationPanel() {
+        CompendiumClientEntry current = session.currentEntry().orElse(null);
+        if (current == null) {
+            relationPanel.close();
+            return;
+        }
+        relationPanel.sync(current.id(), session.currentRelationLinks().size());
+    }
+
+    private boolean clickRelationRow(double mouseX, double mouseY) {
+        if (layout == null || !contains(layout.detailBody(), mouseX, mouseY)) return false;
+        List<CompendiumRelationLink> links = session.currentRelationLinks();
+        if (links.isEmpty()) return false;
+
+        CompendiumScreenLayout.Rect body = layout.detailBody();
+        boolean compactBack = !layout.splitPanes();
+        int top = relationRowsTop(body, compactBack);
+        if (mouseY < top || mouseX < body.x() + 10 || mouseX >= body.right() - 10) return false;
+        int visibleRow = (int) ((mouseY - top) / RELATION_ROW_HEIGHT);
+        int capacity = relationRowCapacity(body, compactBack);
+        CompendiumRelationPanelState.Viewport viewport = relationPanel.viewport(links.size(), capacity);
+        if (visibleRow < 0 || visibleRow >= viewport.visibleCount()) return false;
+        session.openCurrentRelation(viewport.firstIndex() + visibleRow);
+        syncRelationPanel();
+        return true;
+    }
+
+    private int relationRowsTop(CompendiumScreenLayout.Rect body, boolean compactBack) {
+        int y = body.y() + 10;
+        if (compactBack) {
+            y += BACK_BUTTON_HEIGHT + HEADER_BUTTON_GAP + NOTES_BUTTON_HEIGHT + 8;
+        } else {
+            y += 14;
+        }
+        return y + 14;
+    }
+
+    private int relationRowCapacity(CompendiumScreenLayout.Rect body, boolean compactBack) {
+        int available = body.bottom() - relationRowsTop(body, compactBack);
+        return Math.max(1, available / RELATION_ROW_HEIGHT);
     }
 
     private void selectPersonalView(CompendiumPersonalView view) {
@@ -766,6 +928,17 @@ public final class CompendiumScreen extends Screen {
         notesButton.setMessage(notesButtonLabel());
     }
 
+    private void refreshRelationsButton() {
+        if (relationsButton == null) return;
+        CompendiumClientEntry current = session.currentEntry().orElse(null);
+        int relationCount = current == null ? 0 : session.currentRelationLinks().size();
+        boolean available = current != null && relationCount > 0;
+        relationsButton.visible = available;
+        relationsButton.active = available;
+        if (!available && relationPanel.isOpen()) relationPanel.close();
+        relationsButton.setMessage(relationsButtonLabel());
+    }
+
     private Component favoriteLabel() {
         return Component.translatable(
             session.isCurrentEntryFavorite()
@@ -780,6 +953,19 @@ public final class CompendiumScreen extends Screen {
                 ? "screen.rpgskilltree.compendium.notes.close"
                 : "screen.rpgskilltree.compendium.notes.open"
         );
+    }
+
+    private Component relationsButtonLabel() {
+        return Component.translatable(
+            relationPanel.isOpen()
+                ? "screen.rpgskilltree.compendium.relations.close"
+                : "screen.rpgskilltree.compendium.relations.open"
+        );
+    }
+
+    private String relationTypeTranslationKey(CompendiumRelationLink link) {
+        return "screen.rpgskilltree.compendium.relations.type."
+            + link.type().name().toLowerCase(Locale.ROOT);
     }
 
     private Component kindFilterLabel() {
