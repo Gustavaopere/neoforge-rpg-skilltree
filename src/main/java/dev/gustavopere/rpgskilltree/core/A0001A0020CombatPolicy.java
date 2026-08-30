@@ -58,9 +58,12 @@ public final class A0001A0020CombatPolicy {
 
         if (facts.family() == WeaponFamily.SWORD) {
             if (ranks.learned("A0006") && state.momentum(facts.actorId(), facts.nowMillis()) >= 5
-                && state.consumeRiposte(facts.actorId(), facts.nowMillis())
+                && state.riposteActive(facts.actorId(), facts.nowMillis())
                 && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0006:consume", facts.nowMillis())) {
-                state.consumeMomentum(facts.actorId(), 5);
+                // A0006's five-Momentum spend and Riposte consumption are irreversible and therefore
+                // are only prepared here. The same root action commits them after confirmed damage.
+                state.prepareRiposteCommit(
+                    facts.actorId(), facts.targetId(), facts.rootActionId(), facts.nowMillis());
                 if (facts.critical()) damage *= 1.20D;
                 if (facts.impactHookAvailable()) { impact *= 1.20D; guard *= 1.20D; }
                 suppressMomentum = true;
@@ -77,7 +80,10 @@ public final class A0001A0020CombatPolicy {
                     && state.openingCooldownReady(facts.actorId(), facts.targetId(), facts.nowMillis())
                     && openingHasSafeComponent
                     && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0005:consume", facts.nowMillis())) {
-                    state.consumeMomentum(facts.actorId(), NotionCombatPerkRules.A0005_MOMENTUM_COST);
+                    // A0005 prepares its resource spend/cooldown in PRE so damage modifiers can be
+                    // attached, but commits the irreversible state only after effective damage POST.
+                    state.prepareOpeningCommit(
+                        facts.actorId(), facts.targetId(), facts.rootActionId(), facts.nowMillis());
                     if (nativeDefense && facts.impactHookAvailable()) {
                         impact *= NotionCombatPerkRules.A0005_IMPACT_MULTIPLIER;
                         guard *= NotionCombatPerkRules.A0005_IMPACT_MULTIPLIER;
@@ -85,7 +91,6 @@ public final class A0001A0020CombatPolicy {
                     if (facts.penetrationHookAvailable()) {
                         penetration = NotionCombatPerkRules.A0005_PENETRATION_FRACTION;
                     }
-                    state.startOpeningCooldown(facts.actorId(), facts.targetId(), facts.nowMillis());
                 }
             }
         } else if (facts.family() == WeaponFamily.AXE) {
@@ -168,9 +173,25 @@ public final class A0001A0020CombatPolicy {
     /** POST-stage confirmed-hit state changes; idempotent per root action. */
     public static void afterConfirmedHit(HitFacts facts, CombatPerkRanks ranks, NotionCombatPerkState state, boolean suppressMomentum) {
         Objects.requireNonNull(facts); Objects.requireNonNull(ranks); Objects.requireNonNull(state);
-        if (!facts.direct() || !facts.hostile() || !facts.actualDamage()) return;
+        if (!facts.direct() || !facts.hostile() || !facts.actualDamage()) {
+            if (facts.family() == WeaponFamily.SWORD) {
+                state.discardPreparedSwordAction(facts.actorId(), facts.rootActionId());
+            }
+            return;
+        }
+
+        NotionCombatPerkState.PreparedSwordCommit swordCommit = NotionCombatPerkState.PreparedSwordCommit.NONE;
         if (facts.family() == WeaponFamily.SWORD) {
-            if (ranks.learned("A0004") && !suppressMomentum
+            swordCommit = state.commitPreparedSwordAction(
+                facts.actorId(), facts.targetId(), facts.rootActionId(), facts.nowMillis());
+        }
+
+        if (facts.family() == WeaponFamily.SWORD) {
+            // The committed state is authoritative for same-result suppression. The PRE boolean is
+            // retained in the method signature for adapter compatibility but cannot suppress a hit
+            // unless the corresponding Riposte transaction actually committed in POST.
+            boolean suppressConfirmedMomentum = swordCommit == NotionCombatPerkState.PreparedSwordCommit.RIPOSTE;
+            if (ranks.learned("A0004") && !suppressConfirmedMomentum
                 && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0004:gain", facts.nowMillis())) {
                 state.addMomentum(facts.actorId(), 1, facts.nowMillis());
             }
