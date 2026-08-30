@@ -1,15 +1,21 @@
 package dev.gustavopere.rpgskilltree.gametest;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import dev.gustavopere.rpgskilltree.itemization.classification.EquipmentCategory;
 import dev.gustavopere.rpgskilltree.itemization.classification.EquipmentClassification;
-import dev.gustavopere.rpgskilltree.itemization.classification.EquipmentClassifier;
 import dev.gustavopere.rpgskilltree.itemization.classification.EquipmentOverrideCatalog;
 import dev.gustavopere.rpgskilltree.itemization.classification.EquipmentProbe;
+import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationOverrides;
+import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationReloadService;
+import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationService;
 import dev.gustavopere.rpgskilltree.runtime.itemization.MinecraftEquipmentProbeFactory;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.gametest.GameTestHolder;
@@ -63,13 +69,10 @@ public final class EquipmentClassificationGameTests {
 
     @GameTest(template = "foundation_empty")
     public static void commonBlocksAndFoodRemainIneligibleButUnknownDurableItemsFallback(GameTestHelper helper) {
-        EquipmentClassifier classifier = new EquipmentClassifier(EquipmentOverrideCatalog.empty(), List.of());
-
-        EquipmentClassification stone = classifier.classify(MinecraftEquipmentProbeFactory.from(new ItemStack(Items.STONE)));
-        EquipmentClassification apple = classifier.classify(MinecraftEquipmentProbeFactory.from(new ItemStack(Items.APPLE)));
-        EquipmentClassification flintAndSteel = classifier.classify(
-            MinecraftEquipmentProbeFactory.from(new ItemStack(Items.FLINT_AND_STEEL))
-        );
+        EquipmentClassificationOverrides.replace(EquipmentOverrideCatalog.empty());
+        EquipmentClassification stone = EquipmentClassificationService.classify(new ItemStack(Items.STONE));
+        EquipmentClassification apple = EquipmentClassificationService.classify(new ItemStack(Items.APPLE));
+        EquipmentClassification flintAndSteel = EquipmentClassificationService.classify(new ItemStack(Items.FLINT_AND_STEEL));
 
         helper.assertTrue(!stone.eligible(), "ordinary block items must not become RPG equipment");
         helper.assertTrue(!apple.eligible(), "ordinary food must not become RPG equipment");
@@ -82,9 +85,44 @@ public final class EquipmentClassificationGameTests {
         helper.succeed();
     }
 
-    private static void assertCategories(GameTestHelper helper, net.minecraft.world.item.Item item, Set<EquipmentCategory> expected) {
+    @GameTest(template = "foundation_empty")
+    public static void runtimeServiceConsumesActiveDatapackSnapshot(GameTestHelper helper) {
+        EquipmentOverrideCatalog previous = EquipmentClassificationOverrides.snapshot();
+        try {
+            Map<ResourceLocation, JsonElement> rules = Map.of(
+                ResourceLocation.fromNamespaceAndPath("rpgskilltree", "gametest_stick_focus"),
+                JsonParser.parseString("""
+                    {
+                      "items": ["minecraft:stick"],
+                      "eligibility": "WHITELIST",
+                      "add_categories": ["MAGIC_FOCUS", "MAGIC_EQUIPMENT"]
+                    }
+                    """)
+            );
+            EquipmentClassificationReloadService.reload(rules);
+            EquipmentClassification classification = EquipmentClassificationService.classify(new ItemStack(Items.STICK));
+
+            helper.assertTrue(classification.eligible(), "published whitelist must make stick eligible");
+            helper.assertTrue(
+                classification.categories().equals(Set.of(EquipmentCategory.MAGIC_FOCUS, EquipmentCategory.MAGIC_EQUIPMENT)),
+                "runtime service must consume categories from the active datapack snapshot"
+            );
+            helper.assertTrue(
+                classification.providerId().equals(ResourceLocation.fromNamespaceAndPath("rpgskilltree", "override")),
+                "datapack override must be reported as the responsible provider"
+            );
+            helper.succeed();
+        } finally {
+            EquipmentClassificationOverrides.replace(previous);
+        }
+    }
+
+    private static void assertCategories(GameTestHelper helper, Item item, Set<EquipmentCategory> expected) {
         EquipmentProbe probe = MinecraftEquipmentProbeFactory.from(new ItemStack(item));
+        EquipmentClassification classification = EquipmentClassificationService.classify(probe);
         helper.assertTrue(probe.explicitEquipmentSignal(), "known vanilla equipment must expose an explicit structural signal");
-        helper.assertTrue(probe.structuralCategories().equals(expected), "unexpected categories for " + item);
+        helper.assertTrue(probe.structuralCategories().equals(expected), "unexpected structural categories for " + item);
+        helper.assertTrue(classification.eligible(), "known vanilla equipment must be eligible: " + item);
+        helper.assertTrue(classification.categories().equals(expected), "unexpected runtime categories for " + item);
     }
 }
