@@ -81,11 +81,16 @@ final class ItemizationOptionalImportBoundaryTest {
                 assertAllowedSourceLine(
                     Path.of("Synthetic.java"),
                     1,
-                    "ru.ironsspellbooks.api.spells."
+                    "ru.ironsspellbooks."
                 );
                 assertAllowedSourceLine(
                     Path.of("Synthetic.java"),
                     2,
+                    "api.spells."
+                );
+                assertAllowedSourceLine(
+                    Path.of("Synthetic.java"),
+                    3,
                     "AbstractSpell spell;"
                 );
             }
