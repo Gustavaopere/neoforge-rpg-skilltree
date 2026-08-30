@@ -28,23 +28,52 @@ Nunca tratar texto promocional ou wiki comunitária não verificada como autorid
 
 ## Proveniência por parágrafo/fato
 
-O corpus editorial deverá aceitar metadata de origem, sem necessariamente exibi-la no modo normal.
-
-Estrutura conceitual:
+O corpus editorial aceita metadata de origem por bloco textual. O contrato atual é:
 
 ```json
 {
-  "entry": "ENTITY:modid:creature",
+  "schema": 1,
   "language": "pt_br",
-  "title": "Nome em português",
-  "summary": "Resumo original em pt-BR.",
-  "sections": {
-    "biology": {"text": "...", "sources": ["..."]},
-    "behavior": {"text": "...", "sources": ["..."]},
-    "habitat": {"text": "...", "sources": ["..."]}
-  }
+  "namespace": "minecraft",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:minecraft:zombie",
+      "title": "Zumbi",
+      "summary": {
+        "text": "Resumo original em pt-BR.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:zombie"}
+        ]
+      },
+      "sections": {
+        "behavior": {
+          "text": "Descrição original baseada em fatos confirmados.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "..."}
+          ]
+        }
+      },
+      "references": ["ENTITY:minecraft:skeleton"],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
 }
 ```
+
+Fontes aceitas pelo schema atual:
+
+```text
+RUNTIME
+DATAPACK
+OFFICIAL_DOCS
+OFFICIAL_CODE
+OFFICIAL_CHANGELOG
+VERIFIED_COMMUNITY
+```
+
+`OPTIONAL` e `LEGACY` são permitidos somente com `availability_reason` explícito. `DRAFT` é permitido durante autoria, mas o modo `--release` exige `REVIEWED` para todas as entradas publicadas.
 
 Não copiar trechos extensos de documentação externa. O texto do Compêndio deve ser redação própria baseada nos fatos confirmados.
 
@@ -200,7 +229,13 @@ A priorização automática atualmente é deliberadamente conservadora: vanilla,
 
 ### Passo 3 — Pacotes por namespace
 
-Organizar dados em arquivos pequenos por mod/tipo para revisão e merge incremental, por exemplo:
+Layout canônico:
+
+```text
+src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/<namespace>/*.json
+```
+
+Exemplos futuros:
 
 ```text
 src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities.json
@@ -209,27 +244,40 @@ src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/alexscaves/entit
 src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/yungs/structures.json
 ```
 
-O nome exato dos namespaces será gerado da modlist/runtime; não criar diretório nominal para mod ausente.
+Estado implementado:
+
+- [x] `scripts/compendium/editorial_corpus.py` percorre recursivamente os pacotes JSON e monta uma visão consolidada do corpus para validação/relatório offline;
+- [x] o primeiro diretório abaixo de `pt_br/` deve ser exatamente o `namespace` declarado pelo pacote;
+- [x] `kind` e `namespace` do pacote devem coincidir com cada `entry_id`;
+- [x] IDs duplicados entre arquivos são rejeitados;
+- [x] o nome exato dos namespaces vem dos IDs/runtime e não é inferido de uma lista manual fixa;
+- [ ] os pacotes editoriais reais do modpack ainda precisam ser produzidos e revisados em lotes;
+- [ ] o carregamento NeoForge/runtime desses pacotes para compor as páginas do jogo ainda não está implementado nesta fatia.
 
 ### Passo 4 — Validação factual
 
-Criar posteriormente:
+Implementado:
 
 ```text
 scripts/compendium/validate_editorial_corpus.py
 scripts/compendium/editorial_coverage.py
+scripts/compendium/editorial_corpus.py
 ```
 
 Validar:
 
-- [ ] ID existe ou está marcado como conteúdo legado/opcional;
-- [ ] locale é `pt_br`;
-- [ ] toda entrada curada tem resumo;
-- [ ] seção que afirma stat mecânico aponta para dado técnico, não repete número hardcoded sem necessidade;
-- [ ] links internos referenciam IDs válidos;
-- [ ] fontes obrigatórias estão preenchidas;
-- [ ] texto não contém placeholders/TODO;
-- [ ] nenhuma descrição foi gerada como “fato” sem revisão.
+- [x] ID existe no coverage/runtime ou está marcado `OPTIONAL`/`LEGACY` com justificativa explícita;
+- [x] locale é obrigatoriamente `pt_br`;
+- [x] toda entrada editorial possui título e resumo não vazios;
+- [ ] seção que afirma stat mecânico aponta para provider/dado técnico adequado, sem repetir número hardcoded mutável;
+- [x] links internos referenciam IDs presentes no runtime ou no corpus consolidado;
+- [x] resumo e cada seção textual exigem ao menos uma fonte explícita de tipo reconhecido;
+- [x] `TODO`, `TBD`, `FIXME` e `PLACEHOLDER` são rejeitados em texto editorial validado;
+- [x] autoria pode permanecer `DRAFT`, porém `validate_editorial_corpus.py --release` falha enquanto qualquer entrada não estiver `REVIEWED`;
+- [x] `editorial_coverage.py` produz JSON/Markdown determinísticos com `reviewed`, `draft`, `missing`, `blocked`, `ignored` e `optional_or_legacy` por namespace;
+- [x] cobertura pode ser calculada com corpus vazio, reportando o backlog relevante como `missing` em vez de abortar.
+
+A presença de uma fonte no schema não substitui revisão humana da veracidade da fonte ou da redação. O contrato atual garante proveniência explícita e integridade estrutural, não prova automaticamente que uma afirmação externa é verdadeira.
 
 ### Passo 5 — Revisão linguística
 
@@ -245,22 +293,25 @@ Checklist:
 
 ## Cobertura da modlist
 
-O corpus não será fechado com uma seleção manual pequena. O relatório do 10.02 deve alimentar esta fila e permitir responder por namespace:
+O corpus não será fechado com uma seleção manual pequena. O relatório do 10.02 alimenta a fila e `editorial_coverage.py` permite responder por namespace:
 
 ```text
-Total de entradas relevantes
-AUTO com resumo genérico
-CURATED completo
-ADAPTER aguardando dado
-IGNORED com motivo
-ERROR
+expected
+reviewed
+draft
+missing
+blocked
+ignored
+optional_or_legacy
 ```
 
-`ERROR > 0` bloqueia release do Stage 10.
+`ERROR > 0` continua bloqueando release do Stage 10.
 
 A implementação deve percorrer os mobs, árvores, cultivos, biomas, estruturas e dimensões da modlist atual e produzir descrição completa conforme a ficha aplicável, em lotes revisáveis. Mods adicionados depois recebem página `AUTO` imediatamente e entram no backlog editorial do próximo refresh.
 
 ## Testes previstos
+
+Testes Java/runtime ainda previstos para a integração com o jogo:
 
 ```text
 src/test/java/dev/gustavopere/rpgskilltree/compendium/data/PtBrLocalizationCompletenessTest.java
@@ -268,26 +319,40 @@ src/test/java/dev/gustavopere/rpgskilltree/compendium/data/EditorialCorpusSchema
 src/test/java/dev/gustavopere/rpgskilltree/compendium/data/EditorialReferenceIntegrityTest.java
 ```
 
-Infraestrutura de backlog já coberta por:
+Infraestrutura offline já coberta por:
 
 ```text
 scripts/compendium/test_editorial_backlog.py
 scripts/compendium/test_inventory_modlist.py
+scripts/compendium/test_editorial_corpus.py
+.github/workflows/compendium-editorial-ci.yml
 ```
 
 Casos obrigatórios:
 
 - [ ] nenhuma chave própria da UI sem `pt_br`;
-- [ ] entrada `CURATED` sem resumo falha;
-- [ ] referência para ID inexistente falha ou exige marcação opcional explícita;
-- [ ] placeholder `TODO`/`TBD` bloqueia corpus final;
+- [x] entrada editorial sem resumo válido falha;
+- [x] referência para ID inexistente falha; referência para entrada `OPTIONAL`/`LEGACY` é válida quando essa entrada existe explicitamente no corpus;
+- [x] placeholder `TODO`/`TBD`/`FIXME`/`PLACEHOLDER` bloqueia o corpus;
+- [x] pacote em diretório de namespace incorreto falha;
+- [x] IDs duplicados entre pacotes falham;
+- [x] modo release rejeita `DRAFT`;
+- [x] relatório de cobertura funciona mesmo antes da primeira entrada editorial existir;
 - [x] drift/rerun preserva progresso editorial e entradas órfãs em vez de resetar ou apagar silenciosamente;
 - [x] entrada `ERROR` malformada preservada pelo 10.02 permanece no backlog como `BLOCKED`;
 - [ ] textos técnicos usam valores do provider quando o valor puder mudar por config/runtime.
 
 ## Estado atual
 
-O **pipeline de backlog editorial** está implementado e automatizado, mas o subplano 10.10 permanece aberto. Ainda faltam o schema/carga dos pacotes editoriais por namespace, os validadores factuais do corpus, a produção/revisão do conteúdo pt-BR e o fechamento da cobertura real do modpack.
+O **pipeline de backlog editorial**, o **schema/loader offline do corpus pt-BR**, a **validação estrutural/proveniência** e o **relatório de cobertura por namespace** estão implementados.
+
+O subplano 10.10 permanece aberto. Ainda faltam principalmente:
+
+1. produzir e revisar os pacotes editoriais reais do modpack;
+2. implementar o carregamento NeoForge/runtime do corpus nas páginas do Compêndio;
+3. validar afirmações técnicas mutáveis contra providers/runtime quando aplicável;
+4. completar revisão linguística pt-BR;
+5. fechar a cobertura real do modpack sem `ERROR` e sem entradas obrigatórias pendentes.
 
 ## Acceptance
 
