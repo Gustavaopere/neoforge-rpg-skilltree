@@ -54,7 +54,39 @@ final class A0021A0030ImplementationContractJUnitTest {
 
         state.invalidateFallbackReposition("player");
         assertFalse(state.repositionActive("player", 1_100L),
-            "teleport/knockback invalidation must cancel the geometric receipt");
+            "teleport invalidation must cancel the geometric receipt");
+    }
+
+    @Test
+    void a0022KnockbackSuppressesSamplingUntilForcedMotionSettles() {
+        var state = new A0021A0040CombatState();
+        state.beginForcedRepositionSuppression("player");
+
+        assertTrue(state.fallbackRepositionSuppressed("player"));
+        assertFalse(state.sampleFallbackReposition(
+            "player", "target", 2.0D, 0.0D, 0.0D, 0.0D, 1_000L),
+            "knockback suppression must prevent even a new fallback baseline while forced motion is active");
+
+        for (int tick = 0; tick < 4; tick++) {
+            assertTrue(state.updateForcedRepositionSuppression("player", 0.04D),
+                "non-trivial horizontal velocity must keep the forced-motion suppression active");
+        }
+        assertFalse(state.sampleFallbackReposition(
+            "player", "target", 0.0D, 2.0D, 0.0D, 0.0D, 1_200L),
+            "the displacement accumulated during knockback must never arm A0022");
+
+        assertTrue(state.updateForcedRepositionSuppression("player", 0.0D));
+        assertTrue(state.updateForcedRepositionSuppression("player", 0.0D));
+        assertFalse(state.updateForcedRepositionSuppression("player", 0.0D),
+            "three quiet server ticks release the conservative forced-motion suppression");
+        assertFalse(state.fallbackRepositionSuppressed("player"));
+
+        assertFalse(state.sampleFallbackReposition(
+            "player", "target", 2.0D, 0.0D, 0.0D, 0.0D, 1_400L),
+            "after suppression ends, the first voluntary sample establishes a fresh baseline");
+        assertTrue(state.sampleFallbackReposition(
+            "player", "target", 0.0D, 2.0D, 0.0D, 0.0D, 1_500L),
+            "voluntary geometry after the fresh baseline must remain eligible");
     }
 
     @Test
