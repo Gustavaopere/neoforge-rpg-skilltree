@@ -28,10 +28,10 @@ jobs:
       - name: Generate factual wiki catalogs
         run: python3 scripts/generate-wiki-catalog.py
 
-      - name: Upload generated semantic combat catalog
+      - name: Upload generated semantic combat catalog shards
         uses: actions/upload-artifact@v4
         with:
           name: generated-combat-perk-catalog-${{ github.sha }}
-          path: wiki/COMBAT_PERK_CATALOG.md
+          path: wiki/combat-perks/*.md
           if-no-files-found: error
           retention-days: 1
