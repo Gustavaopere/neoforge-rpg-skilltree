@@ -91,7 +91,18 @@ No HEAD de runtime/testes `bda08ca9748ad16d3352d0872f753976731424f8`, os **9 wor
 - built-JAR verification;
 - dedicated-server smoke.
 
-As alterações posteriores dos dossiês, desta auditoria e de `STATUS.md` são closeout documental. O HEAD final documental precisa passar novamente por CI completo antes do merge.
+O HEAD documental `a6ae8b954c2af23738938700f8232154f2374c56` também concluiu **RPG Skill Tree CI #2052 GREEN**, incluindo dedicated-server smoke, ainda no draft #224.
+
+## Nota administrativa — draft #224 → sucessor #226
+
+O conector GitHub falhou ao executar `markPullRequestReadyForReview` por consultar o campo GraphQL inexistente `Repository.fullDatabaseId`. Por isso:
+
+- o #224 foi fechado **sem merge**;
+- o branch `chat2/a0011-a0020-implementation` e todo o histórico foram preservados;
+- o #226 foi aberto não-draft com o mesmo HEAD para servir exclusivamente como PR sucessora de merge;
+- as referências nos dez dossiês a “confirmação após merge da PR #224” ficam formalmente supersedidas por **confirmação após merge da PR #226**.
+
+Esse workaround é administrativo e não altera design, runtime, testes ou P-A0017-01.
 
 ## Fallback/fail-closed remanescente
 
@@ -114,7 +125,7 @@ As alterações posteriores dos dossiês, desta auditoria e de `STATUS.md` são 
 - [x] Autoria/causalidade server-side preservadas.
 - [x] Nenhum recurso paralelo/gratuito criado.
 - [x] A0017 não ganhou heurística de movimento.
-- [x] Testes unitários/JUnit/GameTests e dedicated-server smoke verdes no candidato de runtime.
+- [x] Testes unitários/JUnit/GameTests e dedicated-server smoke verdes no candidato de runtime e no closeout documental do #224.
 - [x] Conteúdo player-facing permanece PT-BR.
 - [x] NeoVitae não foi introduzido.
 
@@ -122,9 +133,9 @@ As alterações posteriores dos dossiês, desta auditoria e de `STATUS.md` são 
 
 A0011–A0020 só mudam de `IMPLEMENTAÇÃO VALIDADA EM CI` para **`IMPLEMENTAÇÃO CONFIRMADA`** quando:
 
-1. o HEAD final documental da PR #224 ficar completamente verde;
+1. o HEAD final da PR sucessora #226 ficar completamente verde;
 2. não houver review real pendente;
-3. a PR #224 for mergeada;
+3. a PR #226 for mergeada;
 4. a `main` pós-merge for buscada e o SHA final confirmado.
 
 Após o merge, o Chat 2 deve **PARAR** e não iniciar A0021–A0030 automaticamente.
