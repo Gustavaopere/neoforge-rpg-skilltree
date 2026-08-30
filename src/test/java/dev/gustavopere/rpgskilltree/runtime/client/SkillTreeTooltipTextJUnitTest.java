@@ -64,4 +64,19 @@ final class SkillTreeTooltipTextJUnitTest {
         assertFalse(source.contains("RMB: respec"));
         assertFalse(source.contains("Locked by path or requirements"));
     }
+
+    @Test
+    void ptBrLanguageDefinesEverySemanticTooltipKey() throws IOException {
+        String lang = Files.readString(Path.of(
+            "src/main/resources/assets/rpgskilltree/lang/pt_br.json"
+        ));
+
+        assertTrue(lang.contains("\"screen.rpgskilltree.tooltip.meta\": \"%s • Rank %s/%s • Custo %s\""));
+        assertTrue(lang.contains("\"screen.rpgskilltree.tooltip.effect\": \"Efeito: %s\""));
+        assertTrue(lang.contains("\"screen.rpgskilltree.tooltip.requirement\": \"Requisito: %s\""));
+        assertTrue(lang.contains("\"screen.rpgskilltree.tooltip.purchase\": \"LMB: comprar\""));
+        assertTrue(lang.contains("\"screen.rpgskilltree.tooltip.purchased\": \"Adquirida\""));
+        assertTrue(lang.contains("\"screen.rpgskilltree.tooltip.locked\": \"Bloqueada por caminho ou requisitos\""));
+        assertTrue(lang.contains("\"screen.rpgskilltree.tooltip.respec\": \"RMB: reembolsar\""));
+    }
 }
