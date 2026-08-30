@@ -8,6 +8,8 @@ from typing import Any
 NAMESPACE = "rpgskilltree"
 SEMANTIC_COMBAT_TREE_ID = "rpgskilltree:runtime/combat_perks"
 SEMANTIC_COMBAT_SNAPSHOT = Path("build/generated-wiki/combat-perks.json")
+SEMANTIC_COMBAT_WIKI_DIR = Path("wiki/combat-perks")
+SEMANTIC_COMBAT_BATCH_SIZE = 10
 
 
 class WikiCatalogDriftError(RuntimeError):
@@ -107,27 +109,28 @@ def build_catalog_sections(root: Path, locale: str = "pt_br") -> tuple[str, str]
 
 def build_semantic_combat_section(root: Path, *, required: bool = True) -> str:
     rows = _load_semantic_combat_snapshot(Path(root), required=required)
-    lines = [
-        "| Árvore | ID | Código | Nome | Descrição | Ranks | Custo/rank | Requisitos | Efeitos |",
-        "| --- | --- | --- | --- | --- | ---: | ---: | --- | --- |",
-    ]
-    for tree_id, node in rows:
-        lines.append(
-            "| " + " | ".join(
-                [
-                    _cell(f"`{tree_id}`"),
-                    _cell(f"`{node['id']}`"),
-                    _cell(node["code"]),
-                    _cell(node["name"]),
-                    _cell(node["description"] or "—"),
-                    str(node["maxRank"]),
-                    str(node["costPerRank"]),
-                    _cell(_format_requirements(node)),
-                    "—",
-                ]
-            ) + " |"
+    return _render_semantic_combat_table(rows)
+
+
+def build_semantic_combat_documents(root: Path) -> list[tuple[Path, str]]:
+    rows = _load_semantic_combat_snapshot(Path(root), required=True)
+    if len(rows) != 100:
+        raise ValueError(f"semantic combat snapshot must contain exactly 100 nodes, got {len(rows)}")
+
+    documents: list[tuple[Path, str]] = []
+    for offset in range(0, len(rows), SEMANTIC_COMBAT_BATCH_SIZE):
+        batch = rows[offset : offset + SEMANTIC_COMBAT_BATCH_SIZE]
+        first_code = batch[0][1]["code"]
+        last_code = batch[-1][1]["code"]
+        path = SEMANTIC_COMBAT_WIKI_DIR / f"{first_code}-{last_code}.md"
+        content = (
+            f"# Perks de combate {first_code}–{last_code}\n\n"
+            "> Gerado a partir das autoridades canônicas do runtime; não editar manualmente. "
+            "Descrições ausentes permanecem `—` e efeitos não são inferidos de policies Java.\n\n"
+            + _render_semantic_combat_table(batch)
         )
-    return "\n".join(lines) + "\n"
+        documents.append((path, content))
+    return documents
 
 
 def build_content_coverage(
@@ -198,14 +201,14 @@ def build_content_coverage(
 def update_catalog_documents(root: Path, locale: str = "pt_br", check: bool = False) -> list[Path]:
     root = Path(root)
     perk_section, effect_section = build_catalog_sections(root, locale=locale)
-    combat_section = build_semantic_combat_section(root, required=True)
+    generated_documents = build_semantic_combat_documents(root)
     targets = (
         (root / "wiki/PERK_CATALOG.md", "perk-catalog", perk_section),
         (root / "wiki/EFFECT_CATALOG.md", "effect-catalog", effect_section),
-        (root / "wiki/COMBAT_PERK_CATALOG.md", "combat-perk-catalog", combat_section),
     )
     changed: list[Path] = []
     updates: list[tuple[Path, str]] = []
+
     for path, marker, section in targets:
         original = path.read_text(encoding="utf-8")
         updated = replace_generated_block(original, marker, section)
@@ -213,12 +216,44 @@ def update_catalog_documents(root: Path, locale: str = "pt_br", check: bool = Fa
             changed.append(path)
             updates.append((path, updated))
 
+    for relative_path, expected in generated_documents:
+        path = root / relative_path
+        actual = path.read_text(encoding="utf-8") if path.is_file() else None
+        if actual != expected:
+            changed.append(path)
+            updates.append((path, expected))
+
     if check and changed:
         raise WikiCatalogDriftError(changed)
     if not check:
         for path, updated in updates:
+            path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(updated, encoding="utf-8")
     return changed
+
+
+def _render_semantic_combat_table(rows: list[tuple[str, dict[str, Any]]]) -> str:
+    lines = [
+        "| Árvore | ID | Código | Nome | Descrição | Ranks | Custo/rank | Requisitos | Efeitos |",
+        "| --- | --- | --- | --- | --- | ---: | ---: | --- | --- |",
+    ]
+    for tree_id, node in rows:
+        lines.append(
+            "| " + " | ".join(
+                [
+                    _cell(f"`{tree_id}`"),
+                    _cell(f"`{node['id']}`"),
+                    _cell(node["code"]),
+                    _cell(node["name"]),
+                    _cell(node["description"] or "—"),
+                    str(node["maxRank"]),
+                    str(node["costPerRank"]),
+                    _cell(_format_requirements(node)),
+                    "—",
+                ]
+            ) + " |"
+        )
+    return "\n".join(lines) + "\n"
 
 
 def _load_rules(root: Path) -> list[tuple[str, dict[str, Any]]]:
