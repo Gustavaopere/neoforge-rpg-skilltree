@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.runtime.compendium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -30,7 +31,7 @@ final class CompendiumCheckedInEditorialCorpusJUnitTest {
     private static final ResourceLocation EDITORIAL_RESOURCE = ResourceLocation.parse(
         "rpgskilltree:compendium/editorial/pt_br/minecraft/entities.json"
     );
-    private static final Set<String> EXPECTED_IDS = Set.of(
+    private static final Set<String> EXPECTED_FIRST_BATCH_IDS = Set.of(
         "ENTITY:minecraft:bee",
         "ENTITY:minecraft:cat",
         "ENTITY:minecraft:chicken",
@@ -42,12 +43,41 @@ final class CompendiumCheckedInEditorialCorpusJUnitTest {
         "ENTITY:minecraft:sheep",
         "ENTITY:minecraft:wolf"
     );
+    private static final Set<String> EXPECTED_SECOND_BATCH_IDS = Set.of(
+        "ENTITY:minecraft:armadillo",
+        "ENTITY:minecraft:camel",
+        "ENTITY:minecraft:dolphin",
+        "ENTITY:minecraft:fox",
+        "ENTITY:minecraft:frog",
+        "ENTITY:minecraft:llama",
+        "ENTITY:minecraft:mooshroom",
+        "ENTITY:minecraft:ocelot",
+        "ENTITY:minecraft:panda",
+        "ENTITY:minecraft:polar_bear"
+    );
 
     @Test
-    void firstMinecraftFaunaBatchIsCheckedInReviewedAndLoadable() throws Exception {
+    void firstMinecraftFaunaBatchRemainsCheckedInReviewedAndLoadable() throws Exception {
+        CorpusSnapshot corpus = loadCorpus();
+        assertTrue(corpus.actualIds().containsAll(EXPECTED_FIRST_BATCH_IDS));
+        assertEquals(corpus.actualIds().size(), corpus.loadedEntries());
+    }
+
+    @Test
+    void secondMinecraftFaunaBatchIsCheckedInReviewedAndLoadable() throws Exception {
+        CorpusSnapshot corpus = loadCorpus();
+        assertTrue(
+            corpus.actualIds().containsAll(EXPECTED_SECOND_BATCH_IDS),
+            () -> "Stage 10.10 is missing second-batch vanilla fauna entries: "
+                + missing(EXPECTED_SECOND_BATCH_IDS, corpus.actualIds())
+        );
+        assertEquals(corpus.actualIds().size(), corpus.loadedEntries());
+    }
+
+    private CorpusSnapshot loadCorpus() throws Exception {
         JsonObject pack;
         try (InputStream input = getClass().getResourceAsStream(CLASSPATH_RESOURCE)) {
-            assertNotNull(input, "Stage 10.10 must ship the first real pt-BR editorial fauna package");
+            assertNotNull(input, "Stage 10.10 must ship the checked-in pt-BR editorial fauna package");
             pack = JsonParser.parseReader(new InputStreamReader(input, StandardCharsets.UTF_8)).getAsJsonObject();
         }
 
@@ -67,12 +97,17 @@ final class CompendiumCheckedInEditorialCorpusJUnitTest {
             technicalEntries.add(technical(entryId));
         }
 
-        assertEquals(EXPECTED_IDS, actualIds);
         var snapshot = CompendiumEditorialResourceLoader.prepare(
             Map.of(EDITORIAL_RESOURCE, pack),
             List.copyOf(technicalEntries)
         );
-        assertEquals(EXPECTED_IDS.size(), snapshot.entries().size());
+        return new CorpusSnapshot(Set.copyOf(actualIds), snapshot.entries().size());
+    }
+
+    private static Set<String> missing(Set<String> expected, Set<String> actual) {
+        LinkedHashSet<String> missing = new LinkedHashSet<>(expected);
+        missing.removeAll(actual);
+        return Set.copyOf(missing);
     }
 
     private static CompendiumEntry technical(String entryId) {
@@ -91,4 +126,6 @@ final class CompendiumCheckedInEditorialCorpusJUnitTest {
             1
         );
     }
+
+    private record CorpusSnapshot(Set<String> actualIds, int loadedEntries) {}
 }
