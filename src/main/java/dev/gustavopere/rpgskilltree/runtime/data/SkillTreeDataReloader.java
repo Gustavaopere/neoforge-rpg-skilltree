@@ -4,7 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.effects.AttributeEffectDiagnostics;
-import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
+import dev.gustavopere.rpgskilltree.runtime.effects.NodeEffectRuntime;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -62,14 +62,15 @@ public final class SkillTreeDataReloader extends SimplePreparableReloadListener<
         var server = ServerLifecycleHooks.getCurrentServer();
         if (server != null) {
             server.getPlayerList().getPlayers().forEach(player ->
-                AttributeNodeEffectRuntime.refresh(player, PlayerProgressionRuntime.get(player))
+                NodeEffectRuntime.refresh(player, PlayerProgressionRuntime.get(player))
             );
         }
         LOGGER.info(
-            "Published authoritative skill-tree revision {} with {} nodes and {} attribute effects",
+            "Published authoritative skill-tree revision {} with {} nodes, {} attribute effects and {} behavior effects",
             SkillTreeDataCatalog.current().revision(),
             SkillTreeDataCatalog.current().definitions().size(),
-            SkillTreeDataCatalog.current().attributeEffects().size()
+            SkillTreeDataCatalog.current().attributeEffects().size(),
+            SkillTreeDataCatalog.current().behaviorEffects().size()
         );
     }
 
