@@ -72,7 +72,6 @@ public final class A0021A0040EpicFightHooks {
     private static final String SKILL_ID = "rpgskilltree:a0021_a0040/skill";
     private static final String TICK_ID = "rpgskilltree:a0021_a0040/tick";
 
-    private static final TagKey<Item> HAMMERS = tag("hammers");
     private static final TagKey<Item> MACES = tag("maces");
     private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final ResourceLocation ARMOR_SUNDER_ID =
@@ -582,7 +581,6 @@ public final class A0021A0040EpicFightHooks {
     }
 
     private static Optional<WeaponFamily> tagFamily(ItemStack stack) {
-        if (stack.is(HAMMERS)) return Optional.of(WeaponFamily.HAMMER);
         if (stack.is(MACES)) return Optional.of(WeaponFamily.MACE);
         if (stack.is(SCYTHES)) return Optional.of(WeaponFamily.SCYTHE);
         return Optional.empty();
