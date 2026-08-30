@@ -46,7 +46,7 @@ final class A0001A0010ImplementationContractJUnitTest {
 
         assertNoFury(ranks, facts("no-damage", WeaponFamily.AXE, true, true, false, false, 100L),
             "A0010 must not gain Fury without effective damage");
-        assertNoFury(ranks, facts("indirect", WeaponFamily.AXE, false, true, true, false, false, 100L),
+        assertNoFury(ranks, facts("indirect", WeaponFamily.AXE, false, true, true, false, 100L),
             "A0010 must not gain Fury from indirect/unattributed damage");
         assertNoFury(ranks, facts("non-hostile", WeaponFamily.AXE, true, false, true, false, 100L),
             "A0010 must not gain Fury from non-hostile targets");
