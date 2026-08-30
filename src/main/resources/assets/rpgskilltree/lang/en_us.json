@@ -30,6 +30,7 @@
   "screen.rpgskilltree.compendium.back": "← Back",
   "screen.rpgskilltree.compendium.select_entry": "Select an entry to view its details.",
   "screen.rpgskilltree.compendium.source": "Source: %s",
+  "screen.rpgskilltree.compendium.editorial.sources": "Sources: %s",
   "screen.rpgskilltree.compendium.discovered": "Discovered",
   "screen.rpgskilltree.compendium.undiscovered": "Undiscovered",
   "screen.rpgskilltree.compendium.shell": "Details are not available for this entry yet.",
