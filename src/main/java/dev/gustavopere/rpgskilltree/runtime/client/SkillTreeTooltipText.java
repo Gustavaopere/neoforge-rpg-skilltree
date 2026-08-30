@@ -45,10 +45,10 @@ public final class SkillTreeTooltipText {
             List.of(groupLabel, Integer.toString(rank), Integer.toString(maxRank), Integer.toString(costPerRank))
         ));
         effect.filter(value -> !value.isBlank()).ifPresent(value ->
-            lines.add(new Line("screen.rpgskilltree.tooltip.effect", List.of(plainPlayerText(value))));
+            lines.add(new Line("screen.rpgskilltree.tooltip.effect", List.of(plainPlayerText(value))))
         );
         gate.filter(value -> !value.isBlank()).ifPresent(value ->
-            lines.add(new Line("screen.rpgskilltree.tooltip.requirement", List.of(plainPlayerText(value))));
+            lines.add(new Line("screen.rpgskilltree.tooltip.requirement", List.of(plainPlayerText(value))))
         );
         lines.add(new Line(switch (purchaseState) {
             case PURCHASABLE -> "screen.rpgskilltree.tooltip.purchase";
