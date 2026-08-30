@@ -59,11 +59,7 @@ final class CompendiumEditorialResourceLoaderJUnitTest {
     @Test
     void kindEntryIdAndNamespaceMustAgreeWithThePackage() {
         assertFailureContains(packageJson("minecraft", "BLOCK_FEATURE", validWolfEntry()), List.of(wolf()), "kind");
-        assertFailureContains(
-            packageJson("minecraft", "BIOME", validWolfEntry()),
-            List.of(wolf()),
-            "kind"
-        );
+        assertFailureContains(packageJson("minecraft", "BIOME", validWolfEntry()), List.of(wolf()), "kind");
         assertFailureContains(
             packageJson("minecraft", "ENTITY", validWolfEntry().replace("ENTITY:minecraft:wolf", "ENTITY:example:wolf")),
             List.of(wolf()),
@@ -105,7 +101,6 @@ final class CompendiumEditorialResourceLoaderJUnitTest {
     void availabilityIsMandatoryAndValidatedAgainstTechnicalCatalog() {
         String missingAvailability = validWolfEntry().replace(",\"availability\":\"RUNTIME\"", "");
         assertFailureContains(packageJson("minecraft", "ENTITY", missingAvailability), List.of(wolf()), "availability");
-
         assertFailureContains(packageJson("minecraft", "ENTITY", validWolfEntry()), List.of(), "absent");
 
         String optional = validWolfEntry()
@@ -141,17 +136,12 @@ final class CompendiumEditorialResourceLoaderJUnitTest {
         assertFailureContains(packageJson("minecraft", "ENTITY", unresolved), List.of(wolf()), "unresolved reference");
 
         LinkedHashMap<ResourceLocation, JsonElement> resources = new LinkedHashMap<>();
-        resources.put(
-            MINECRAFT_ENTITIES,
-            json(packageJson("minecraft", "ENTITY", unresolved))
-        );
-        resources.put(
-            resource("example/entities.json"),
-            json(packageJson("example", "ENTITY", optionalGhostEntry()))
-        );
+        resources.put(MINECRAFT_ENTITIES, json(packageJson("minecraft", "ENTITY", unresolved)));
+        resources.put(resource("example/entities.json"), json(packageJson("example", "ENTITY", optionalGhostEntry())));
         var editorialResolved = CompendiumEditorialResourceLoader.prepare(resources, List.of(wolf()));
+        CompendiumEntryId ghostId = CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "example:ghost");
         assertEquals(2, editorialResolved.entries().size());
-        assertEquals(CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "example:ghost"), editorialResolved.entries().getFirst().references().getFirst());
+        assertEquals(ghostId, editorialResolved.find(WOLF_ID).orElseThrow().references().getFirst());
     }
 
     private static void assertEntryMutationFails(String target, String replacement, String expectedMessage) {
