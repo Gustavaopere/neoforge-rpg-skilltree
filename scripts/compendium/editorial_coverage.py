@@ -156,7 +156,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(sys.argv[1:] if argv is None else argv)
     try:
         coverage_payload = read_json(args.coverage)
-        corpus = load_corpus(args.corpus, coverage_payload, release=False)
+        corpus = load_corpus(args.corpus, coverage_payload, release=False, allow_empty=True)
         backlog = validate_backlog(read_json(args.backlog), args.backlog)
         report = build_report(corpus, backlog, coverage_payload)
         args.json.parent.mkdir(parents=True, exist_ok=True)
