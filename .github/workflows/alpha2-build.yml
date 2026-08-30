@@ -69,7 +69,11 @@ jobs:
         run: bash scripts/test-core.sh
 
       - name: Wiki catalog generator tests
-        run: python3 scripts/test_wiki_catalog.py
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/test_wiki_catalog.py
+          python3 scripts/test_semantic_combat_wiki_catalog.py
 
       - name: Wiki catalog drift check
         run: python3 scripts/generate-wiki-catalog.py --check
