@@ -12,6 +12,8 @@ Cada arquivo abaixo contém uma **seção lógica completa**. Não existe contin
 
 Os quatro projetos próprios do modpack possuem ainda uma coleção transversal obrigatória em [`../projects/`](../projects/README.md). O capítulo 13 abaixo é o recorte de Gameplay; o Chat 1 deve consultar também os dossiês completos, a matriz cruzada e a matriz de delta antes de fechar uma perk que possa interagir com RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
 
+Para perks de combate/armas que possam tocar **Simply Swords, Simply More, Integrated Simply Swords, Simply Swords: Cataclysm, Simply Tooltips ou Epic Fight Compat**, o capítulo 15 é leitura obrigatória: ele documenta authority, implicits, Awakening, Runic Powers, sockets/gem powers, traits de addons, hooks públicos, deduplicação e fail-closed. Os hooks usados nesse capítulo foram cruzados contra um snapshot upstream ainda marcado `Simply Swords 1.70.0`; isso impede que uma API exclusiva da linha `1.71.x` seja tratada como prova automática para o JAR instalado `1.70.2`.
+
 ## Índice
 
 - [Reconciliação atual da modlist — autoridade de presença/JAR/versão](CURRENT-MODLIST.md)
@@ -30,6 +32,7 @@ Os quatro projetos próprios do modpack possuem ainda uma coleção transversal 
 - [12. Navegação entre os três guias](12-navegacao-entre-os-tres-guias.md)
 - [13. Projetos próprios do modpack — integração canônica para perks](13-projetos-proprios-do-modpack.md)
 - [14. Mobstein — fauna ressuscitada, experimentos, bosses e estruturas](14-mobstein.md)
+- [15. Simply Swords e ecossistema — contratos para integração em perks](15-simply-swords-e-ecossistema.md)
 
 ## Regras de manutenção
 
