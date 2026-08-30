@@ -1,0 +1,295 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:minecraft:allay",
+      "title": "Allay",
+      "summary": {
+        "text": "O allay é uma criatura voadora amigável capaz de carregar itens e usar um item de referência para decidir quais objetos semelhantes deve recolher no ambiente.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:allay"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/allay/Allay.java"}
+        ]
+      },
+      "sections": {
+        "itens": {
+          "text": "A entidade possui inventário próprio, lógica de coleta e comparação de itens. As condições efetivas para aceitar ou rejeitar objetos permanecem definidas pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/allay/Allay.java"}
+          ]
+        },
+        "musica": {
+          "text": "O allay mantém estados específicos ligados a jukebox, dança e duplicação. Esses comportamentos fazem parte da própria entidade e não são tratados pelo Compêndio como variantes independentes.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/allay/Allay.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:iron_golem",
+      "title": "Golem de Ferro",
+      "summary": {
+        "text": "O golem de ferro é um construto defensivo de grande porte. O runtime o trata como um golem neutro com lógica própria de alvo, combate e raiva persistente.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:iron_golem"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/IronGolem.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "A entidade diferencia golems criados por jogadores e mantém estado de raiva persistente quando aplicável. A seleção real de alvos continua sob as regras carregadas pelo jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/IronGolem.java"}
+          ]
+        },
+        "manutencao": {
+          "text": "O golem possui níveis visuais de rachadura relacionados ao seu estado e uma interação própria de reparo com lingotes de ferro. Valores exatos de cura não são congelados em prosa editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/IronGolem.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:mule",
+      "title": "Mula",
+      "summary": {
+        "text": "A mula é uma montaria equina que herda a infraestrutura de cavalos com armazenamento. Ela participa dos sistemas vanilla de sela, montaria e inventário usados por equinos compatíveis.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:mule"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Mule.java"}
+        ]
+      },
+      "sections": {
+        "montaria": {
+          "text": "A entidade deriva de AbstractChestedHorse e, por essa hierarquia, combina comportamento de montaria com suporte ao inventário adicional previsto para esse grupo de equinos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Mule.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractChestedHorse.java"}
+          ]
+        },
+        "equipamento": {
+          "text": "Sela e armazenamento seguem os contratos da hierarquia de cavalos do jogo. Capacidade, slots e demais parâmetros permanecem como dados técnicos do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractHorse.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractChestedHorse.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:skeleton_horse",
+      "title": "Cavalo Esqueleto",
+      "summary": {
+        "text": "O cavalo esqueleto é uma forma especial de equino que utiliza a infraestrutura de AbstractHorse e possui lógica própria relacionada ao estado de armadilha.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:skeleton_horse"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/SkeletonHorse.java"}
+        ]
+      },
+      "sections": {
+        "montaria": {
+          "text": "Como descendente de AbstractHorse, participa dos contratos vanilla de montaria e sela aplicáveis a essa hierarquia, sem transformar sua aparência esquelética em uma entidade técnica separada.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/SkeletonHorse.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractHorse.java"}
+          ]
+        },
+        "armadilha": {
+          "text": "A classe mantém um estado de trap e usa um objetivo específico de armadilha. Condições de ativação, tempo e demais detalhes ficam sob a implementação vanilla em runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/SkeletonHorse.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/SkeletonTrapGoal.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:sniffer",
+      "title": "Farejador",
+      "summary": {
+        "text": "O farejador é um animal passivo com uma sequência comportamental própria de farejar, procurar e escavar. Sua IA mantém estados dedicados para representar essas etapas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:sniffer"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/sniffer/Sniffer.java"}
+        ]
+      },
+      "sections": {
+        "farejamento": {
+          "text": "O runtime distingue estados de scenting, sniffing, searching, digging e rising, permitindo que a criatura execute sua busca sem o Compêndio reconstruir temporizações ou probabilidades.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/sniffer/Sniffer.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/sniffer/SnifferAi.java"}
+          ]
+        },
+        "escavacao": {
+          "text": "A escavação possui posição, estado e momento de entrega de semente controlados pelo código da entidade. O resultado concreto continua dependente das regras vanilla vigentes.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/sniffer/Sniffer.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:snow_golem",
+      "title": "Golem de Neve",
+      "summary": {
+        "text": "O golem de neve é um construto aliado com ataque à distância. A entidade combina comportamento de golem com uma cabeça de abóbora removível e sensibilidade própria à água.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:snow_golem"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/SnowGolem.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "A classe implementa RangedAttackMob e possui lógica nativa de ataque à distância. Alvos, cadência e efeitos resultantes permanecem definidos pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/SnowGolem.java"}
+          ]
+        },
+        "abobora": {
+          "text": "O estado da abóbora é rastreado pela própria entidade. O golem também implementa Shearable, permitindo uma interação específica que altera essa apresentação.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/SnowGolem.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:strider",
+      "title": "Andarilho",
+      "summary": {
+        "text": "O andarilho é uma criatura do Nether adaptada à locomoção sobre lava. Apesar de estar organizado no pacote de monstros do código, sua classe deriva de Animal e oferece mecânicas de montaria.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:strider"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Strider.java"}
+        ]
+      },
+      "sections": {
+        "montaria": {
+          "text": "A entidade implementa os contratos Saddleable e ItemSteerable, que sustentam sua interação como montaria controlável quando as condições vanilla são atendidas.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Strider.java"}
+          ]
+        },
+        "lava": {
+          "text": "A IA inclui navegação e objetivo próprios associados à lava. Velocidade, temperatura visual e demais parâmetros mutáveis permanecem fora da prosa fixa do Compêndio.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Strider.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:tadpole",
+      "title": "Girino",
+      "summary": {
+        "text": "O girino é a forma aquática juvenil relacionada aos sapos. Ele possui ciclo de crescimento próprio e comportamento voltado ao ambiente aquático antes da transformação em sua forma adulta.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:tadpole"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/frog/Tadpole.java"}
+        ]
+      },
+      "sections": {
+        "crescimento": {
+          "text": "A entidade mantém idade e lógica de crescimento até a conversão em sapo. O Compêndio não fixa duração nem parâmetros de maturação em texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/frog/Tadpole.java"}
+          ]
+        },
+        "ambiente": {
+          "text": "Seu comportamento e navegação são próprios de uma criatura aquática juvenil. Regras de sobrevivência, tentação e transformação permanecem sob o código vanilla.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/frog/Tadpole.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:trader_llama",
+      "title": "Lhama do Comerciante",
+      "summary": {
+        "text": "A lhama do comerciante é uma variante funcional de lhama associada ao comerciante ambulante. Sua classe preserva a base de Llama e acrescenta comportamento específico de proteção ao comerciante.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:trader_llama"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/TraderLlama.java"}
+        ]
+      },
+      "sections": {
+        "vinculo": {
+          "text": "A entidade possui lógica própria ligada ao comerciante ambulante e um objetivo dedicado para defendê-lo. O vínculo operacional é controlado pelo runtime, não por uma categoria editorial paralela.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/TraderLlama.java"}
+          ]
+        },
+        "comportamento": {
+          "text": "Por derivar de Llama, reutiliza sua infraestrutura básica de movimento, interação e combate, acrescentando regras específicas da versão vinculada ao comerciante.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/TraderLlama.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Llama.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:tropical_fish",
+      "title": "Peixe Tropical",
+      "summary": {
+        "text": "O peixe tropical é um peixe passivo de cardume com um sistema amplo de aparência baseado em padrão e cores. A entidade também participa do sistema vanilla de transporte de peixes em balde.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:tropical_fish"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/TropicalFish.java"}
+        ]
+      },
+      "sections": {
+        "variantes": {
+          "text": "A aparência é codificada por padrão, cor de base e cor do padrão. O runtime mantém tanto variantes comuns quanto a representação empacotada usada pela entidade e pelo balde.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/TropicalFish.java"}
+          ]
+        },
+        "comportamento": {
+          "text": "A espécie deriva de AbstractSchoolingFish e implementa Bucketable, combinando comportamento de cardume com persistência de sua variante ao ser transportada em balde.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/TropicalFish.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/AbstractSchoolingFish.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}
