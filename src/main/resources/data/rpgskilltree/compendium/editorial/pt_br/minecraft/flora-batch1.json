@@ -1,0 +1,388 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "FLORA",
+  "entries": [
+    {
+      "entry_id": "FLORA:minecraft:dandelion",
+      "title": "Dente-de-leão",
+      "summary": {
+        "text": "Dente-de-leão é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:dandelion"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma dente-de-leão em corante amarelo.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/yellow_dye_from_dandelion.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:poppy",
+      "title": "Papoula",
+      "summary": {
+        "text": "Papoula é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:poppy"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma papoula em corante vermelho.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/red_dye_from_poppy.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:blue_orchid",
+      "title": "Orquídea-azul",
+      "summary": {
+        "text": "Orquídea-azul é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:blue_orchid"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma orquídea-azul em corante azul-claro.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/light_blue_dye_from_blue_orchid.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:allium",
+      "title": "Alho-silvestre",
+      "summary": {
+        "text": "Alho-silvestre é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:allium"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma alho-silvestre em corante magenta.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/magenta_dye_from_allium.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:azure_bluet",
+      "title": "Flor-silvestre-azul",
+      "summary": {
+        "text": "Flor-silvestre-azul é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:azure_bluet"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma flor-silvestre-azul em corante cinza-claro.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/light_gray_dye_from_azure_bluet.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:red_tulip",
+      "title": "Tulipa vermelha",
+      "summary": {
+        "text": "Tulipa vermelha é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:red_tulip"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:orange_tulip",
+      "title": "Tulipa laranja",
+      "summary": {
+        "text": "Tulipa laranja é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:orange_tulip"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:white_tulip",
+      "title": "Tulipa branca",
+      "summary": {
+        "text": "Tulipa branca é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:white_tulip"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:pink_tulip",
+      "title": "Tulipa rosa",
+      "summary": {
+        "text": "Tulipa rosa é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:pink_tulip"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:oxeye_daisy",
+      "title": "Margarida",
+      "summary": {
+        "text": "Margarida é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência estrutural do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:oxeye_daisy"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertence ao conjunto vanilla de flores pequenas e usa a infraestrutura de flores do jogo; a classificação não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Integra o conjunto de flores pequenas referenciado pelos datapacks vanilla. Sua distribuição concreta depende do worldgen, dos biomas e dos datapacks ativos, por isso a ficha não fixa frequência nem locais universais.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "mechanics": {
+          "text": "Segue as regras de colocação, sobrevivência e atualização da infraestrutura de plantas e flores do runtime; condições concretas devem ser obtidas do estado atual do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/FlowerBlock.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}
