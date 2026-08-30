@@ -4,7 +4,7 @@
 
 - **Lote exato:** A0021–A0030, 10 perks consecutivas.
 - **Responsabilidade:** implementar/revalidar somente o design já aprovado pelo Chat 1.
-- **PR:** #242 — `feat(perks): implement A0021-A0030 Chat 2 contracts`.
+- **PR final de merge:** #248 — `feat(perks): implement A0021-A0030 Chat 2 contracts`; a #242 foi a PR draft predecessora fechada sem merge por limitação do conector ao mudar `ready for review`.
 - **Provider principal:** Epic Fight 21.17.3.1, sob o gate de versão exata já existente.
 - **Fora de escopo:** A0031+; MACE/SCYTHE não foram corrigidas antecipadamente.
 
@@ -13,7 +13,7 @@
 | Perk | Estado do Chat 2 | Resultado técnico |
 |---|---|---|
 | A0021 | VALIDADA EM CI | crítico DAGGER canônico único, autoria direta preservada |
-| A0022 | VALIDADA EM CI | `P-A0022-01/02/03` resolvidas: stagger forte, fallback geométrico e idle decay sem alvo |
+| A0022 | VALIDADA EM CI | `P-A0022-01/02/03` resolvidas: stagger forte, fallback geométrico, idle decay sem alvo e hardening contra falso reposicionamento durante knockback |
 | A0023 | VALIDADA EM CI | flank/rear server-side, Fluxo/cooldown preservados |
 | A0024 | VALIDADA EM CI NO FALLBACK CANÔNICO | rota geométrica de A0022 disponível; stamina continua Epic Fight-only e omitida quando receipt exato faltar |
 | A0025 | VALIDADA EM CI | `P-A0025-01/02` resolvidas: HAMMER provider-native only + Mastery anti-farm via `DiscoveryProgress` |
@@ -25,18 +25,28 @@
 
 ## TDD e CI
 
-### RED
+### RED inicial do lote
 
 - Commit inicial de regressão: `27e4d9a7a0a4e397d080fbc56dbf17117d43ce8c`.
 - `RPG Skill Tree CI #2181`: **FAILURE em JUnit 5**, após Core tests passarem, confirmando que os novos contratos A0022/A0025 ainda não eram satisfeitos antes da implementação.
 
-### GREEN técnico
+### GREEN técnico inicial
 
 - HEAD técnico após hardening completo de HAMMER: `6938549c3961821d72dc3dcba4c6044a8f09e7d9`.
 - `RPG Skill Tree CI #2192`: **SUCCESS**.
 - Passaram no mesmo run: Core tests, JUnit 5, NeoForge GameTests, data/client/node/passive/runtime/provider validations, NeoForge build, verificação do JAR e dedicated-server smoke test.
 - Os nove workflows auxiliares associados ao mesmo HEAD também concluíram **SUCCESS**: Foundation Diagnostics, Foundation Optional Integrations, Foundation Bootstrap, Compendium Flora, Entities, World, Ecology, Discovery e Editorial.
-- Nenhum teste/build local é usado como evidência deste fechamento; a validação objetiva é GitHub Actions.
+
+### Review final — knockback A0022
+
+- O review da PR #248 identificou um P1 real: `LivingKnockBackEvent` apenas invalidava a baseline no instante do evento; o tick seguinte ainda podia abrir uma baseline durante a inércia forçada e, posteriormente, transformar o próprio knockback em falso reposicionamento.
+- TDD RED: commit `6f6b2f2af355262c041c5cae5f75530cbf768c64`; `RPG Skill Tree CI #2251` falhou em `compileTestJava` exatamente porque `beginForcedRepositionSuppression`, `fallbackRepositionSuppressed` e `updateForcedRepositionSuppression` ainda não existiam.
+- GREEN de código: HEAD `07f9c63f8a861a9fb15ee40cfb2dd47c20a6736e`; JUnit do CI #2254 passou antes do fechamento documental final.
+- A implementação inicia supressão no receipt real de knockback, invalida toda baseline/receipt geométrico durante o movimento forçado, reseta o contador se a velocidade horizontal volta a ser relevante e só libera a amostragem após 3 ticks server-side quietos consecutivos.
+- Após liberação, a primeira amostra cria uma baseline nova; deslocamento acumulado durante knockback nunca pode qualificar A0022/A0024.
+- Velocidade é usada apenas como sinal negativo de exclusão do movimento forçado, nunca como evidência positiva de reposicionamento.
+
+Nenhum teste/build local é usado como evidência deste fechamento; a validação objetiva é GitHub Actions.
 
 ## A0022 — pendências resolvidas
 
@@ -52,7 +62,8 @@
 - `A0021A0040CombatState.sampleFallbackReposition(...)` usa somente posições server-side.
 - Exige deslocamento horizontal ≥1,5 blocos e mudança angular alvo→jogador ≥60°.
 - Rotação de câmera não entra no cálculo.
-- `EntityTeleportEvent` e `LivingKnockBackEvent` invalidam a rota.
+- `EntityTeleportEvent` invalida a rota imediatamente.
+- `LivingKnockBackEvent` inicia supressão persistente; nenhuma baseline é aceita enquanto o movimento forçado não tiver cessado por 3 ticks quietos consecutivos.
 - Movimento sozinho não concede Fluxo; apenas arma o receipt para o próximo hit direto elegível de DAGGER.
 
 ### P-A0022-03 — idle decay
@@ -115,15 +126,16 @@ Conclusão: `onConfirmedGuardBreak(...)` permanece sem caller runtime seguro e A
 1. idle decay de A0022 sem target;
 2. remoção de 2 Fluxo por strong stagger normalizado;
 3. geometria server-side + invalidação;
-4. A0025 +10 XP somente para tipo hostil HAMMER inédito;
-5. chave de discovery estável;
-6. A0028 não substitui guard pressure por dano/impacto;
-7. A0029 não consome Abalo sem heavy receipt;
-8. A0030 não ativa apenas por heavy sem janela de guard-break causal.
+4. supressão integral da geometria durante knockback e criação de baseline nova somente após 3 ticks quietos;
+5. A0025 +10 XP somente para tipo hostil HAMMER inédito;
+6. chave de discovery estável;
+7. A0028 não substitui guard pressure por dano/impacto;
+8. A0029 não consome Abalo sem heavy receipt;
+9. A0030 não ativa apenas por heavy sem janela de guard-break causal.
 
 ## Fechamento do Chat 2
 
-- **A0021–A0027:** prontas para `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #242 e confirmação da `main`.
+- **A0021–A0027:** prontas para `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #248 e confirmação da `main`.
 - **A0028:** permanece `IMPLEMENTAÇÃO PARCIAL / FAIL-CLOSED` por `P-A0028-01`.
 - **A0029:** permanece `NÃO CONFIRMADA / FAIL-CLOSED` por `P-A0029-01`.
 - **A0030:** permanece `NÃO CONFIRMADA / FAIL-CLOSED` por `P-A0030-01` e dependência do heavy receipt.
