@@ -6,6 +6,7 @@ import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
 import dev.gustavopere.rpgskilltree.runtime.RelevantPlayerCandidateRuntime;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.coldsweat.ColdSweatFrenzyBridge;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
@@ -13,6 +14,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0041A0060EpicFight
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0042ScytheKillHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0061A0080EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
@@ -114,6 +116,7 @@ public final class RpgSkillTreeMod {
             "Optional integrations: {}",
             OptionalIntegrations.summary()
         );
+        ColdSweatFrenzyBridge.initializeDiagnostics();
 
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)) {
             NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
@@ -135,9 +138,9 @@ public final class RpgSkillTreeMod {
             NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
         }
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EPIC_FIGHT)) {
-            EpicFightProgressionHooks.register();
             String version = OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT);
-            if (A0001A0020EpicFightHooks.supportsVersion(version)) {
+            if (EpicFightVersionContract.supportsVersion(version)) {
+                EpicFightProgressionHooks.register();
                 A0001A0020EpicFightHooks.register();
                 A0042ScytheKillHooks.register();
                 A0041A0060EpicFightHooks.register();
@@ -151,8 +154,8 @@ public final class RpgSkillTreeMod {
                     LOGGER,
                     Category.COMPAT,
                     "epicfight_version_unsupported",
-                    "A0001-A0080 Epic Fight integration disabled: expected {}*, found {}",
-                    A0001A0020EpicFightHooks.SUPPORTED_VERSION_PREFIX,
+                    "A0001-A0080 Epic Fight integration disabled: expected {}, found {}",
+                    EpicFightVersionContract.SUPPORTED_VERSION,
                     version
                 );
             }

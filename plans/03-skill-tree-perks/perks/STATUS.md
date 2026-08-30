@@ -6,26 +6,26 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 
 | Código | Perk | Design | Estado técnico auditado | Pendências bloqueantes |
 |---|---|---|---|---|
-| A0001 | Treino com Espadas I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA; retroauditoria concluída | nenhuma |
-| A0002 | Treino com Espadas II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA; retroauditoria concluída | nenhuma |
-| A0003 | Precisão com Espadas | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
-| A0004 | Ritmo do Duelista | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
-| A0005 | Abertura de Guarda | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
-| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
-| A0007 | Treino com Machados I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
-| A0008 | Treino com Machados II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
-| A0009 | Precisão com Machados | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
-| A0010 | Pressão do Carrasco | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
-| A0011 | Ruptura de Guarda | APROVADO + boundary | Presente; retroauditoria concluída | nenhuma de design |
-| A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO + boundary | Presente; transação CORE→exhaustion→benefício | preservar fail-closed do bridge CORE |
-| A0013 | Treino com Lanças I | APROVADO | Presente; provider-native/fail-closed | nenhuma de design |
-| A0014 | Treino com Lanças II | APROVADO | Presente via attack-speed provider-native | nenhuma de design |
-| A0015 | Precisão com Lanças | APROVADO + boundary | Presente; crítico canônico | nenhuma de design |
-| A0016 | Distância Ideal | APROVADO + boundary | Presente; cargas direct-player | nenhuma de design |
-| A0017 | Interceptação | APROVADO + boundary | Presente em fallback canônico | deslocamento ofensivo omitido sem receipt nativo |
-| A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO + boundary | Presente | nenhuma de design |
-| A0019 | Treino com Adagas I | APROVADO | Presente; provider-native/fail-closed | nenhuma de design |
-| A0020 | Treino com Adagas II | APROVADO | Presente via attack-speed provider-native | nenhuma de design |
+| A0001 | Treino com Espadas I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação provider→árvore VALIDADA EM CI na PR #237 | nenhuma |
+| A0002 | Treino com Espadas II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação provider→árvore VALIDADA EM CI na PR #237 | nenhuma |
+| A0003 | Precisão com Espadas | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de provenance/crítico VALIDADA EM CI na PR #237 | nenhuma |
+| A0004 | Ritmo do Duelista | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de autoria/recursos VALIDADA EM CI na PR #237 | nenhuma |
+| A0005 | Abertura de Guarda | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de defesa física VALIDADA EM CI na PR #237 | nenhuma |
+| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de provenance/defesa VALIDADA EM CI na PR #237 | nenhuma |
+| A0007 | Treino com Machados I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação provider→árvore VALIDADA EM CI na PR #237 | nenhuma |
+| A0008 | Treino com Machados II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação provider→árvore VALIDADA EM CI na PR #237 | nenhuma |
+| A0009 | Precisão com Machados | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de provenance/crítico VALIDADA EM CI na PR #237 | nenhuma |
+| A0010 | Pressão do Carrasco | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação de Fúria/autoria VALIDADA EM CI na PR #237 | nenhuma |
+| A0011 | Ruptura de Guarda | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237; confirmação definitiva após merge | nenhuma |
+| A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237; Cold Sweat 2.4.2 exato + diagnóstico bounded | nenhuma |
+| A0013 | Treino com Lanças I | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237; classificação provider-native/fail-closed | nenhuma |
+| A0014 | Treino com Lanças II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237 via attack-speed provider-native | nenhuma |
+| A0015 | Precisão com Lanças | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237; crítico canônico direto | nenhuma |
+| A0016 | Distância Ideal | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237; cargas direct-player | nenhuma |
+| A0017 | Interceptação | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI NO FALLBACK CANÔNICO na PR #237 | nenhuma bloqueante; `P-A0017-01` permanece fail-closed correto |
+| A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237; crossing/janela/consumo causais | nenhuma |
+| A0019 | Treino com Adagas I | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237; classificação provider-native/fail-closed | nenhuma |
+| A0020 | Treino com Adagas II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237 via attack-speed provider-native | nenhuma |
 | A0021 | Precisão com Adagas | APROVADO + boundary | Presente; crítico canônico direto | nenhuma exclusiva |
 | A0022 | Ritmo das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0022-01`: stagger; `P-A0022-02`: fallback geométrico; `P-A0022-03`: idle decay sem alvo |
 | A0023 | Ataque ao Ponto Cego | APROVADO + boundary | Presente; orientação server-side | nenhuma exclusiva |
@@ -50,6 +50,8 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 ## Regras sistêmicas vigentes
 
 - **Provider-native first:** famílias desconhecidas ficam `FAIL-CLOSED`; tags paralelas não versionadas não são classificação canônica.
+- **Versões auditadas A0001–A0020:** Epic Fight MARTIAL é registrado somente para `21.17.3.1`; A0012 aceita Cold Sweat somente em `2.4.2`.
+- **Provenance A0001–A0020:** hits indiretos ou não hostis retornam pacote marcial totalmente neutro, inclusive chance crítica zero.
 - **Maça vanilla:** `minecraft:mace` usa identidade exata; externos precisam de capability/mapping MACE seguro.
 - **SCYTHE:** somente capability/mapping provider-native; não inferir por enxada/nome/aparência.
 - **Crítico:** uma única resolução/root action; `ARCANE_BACKLASH` e companion-owned damage não entram como ataque direto.
@@ -62,7 +64,7 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Proteção física:** Armor/guard/posture física não se confunde com Arcane Resistance, MagicResistance, Shroud ou hazards ambientais.
 - **Black Arcana:** `ARCANE_BACKLASH` permanece terminal e não crita/proca/concede Mastery/Trauma/Marca.
 - **Enshrouded:** Shroud/Exposure/Madness/Flame/Story não fornecem Armor, heavy ou weapon receipt.
-- **Volcanoes:** hazards/geologia permanecem fora do pipeline MARTIAL.
+- **Volcanoes:** hazards/geologia permanecem fora do pipeline MARTIAL; A0012 não reaplica/deduz calor ambiental Volcanoes.
 - **Mobstein 5.4.4:** companion damage é provider-owned; Witherstein boss-half requer classificação versionada comprovada.
 - **Stage 11.01 itemização:** authority própria de identidade/rolls; projeções de efeitos ainda não existem, portanto `SEM HOOK SEGURO` para integração direta com A0031–A0040.
 - **NeoVitae:** removido/ausente.
@@ -71,9 +73,17 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 
 ### A0001–A0010
 - Chat 2 PR #221 mergeada; merge `d7aa65bf37bbe284cac5d92818ef0a1a23ffd14b`; implementação confirmada.
+- Revalidação provider→árvore posterior está na PR #237.
 
 ### A0001–A0020 — retroauditoria combinada
 - PR #233 mergeada; merge/main `0087ef7e513664454b3d54cb70a9c3f24ec46e84`; CI principal #2105 + auxiliares GREEN.
+- Chat 2 PR #237 implementa/revalida os boundaries runtime exigidos pela retroauditoria; substitui a #234, fechada sem merge por bloqueio operacional de draft no conector.
+- P-A0017-01 continua não bloqueante e fail-closed correto.
+
+### A0011–A0020 — Chat 2
+- Design/retroauditoria fechados em `AUDITORIA-RETROATIVA-PROVIDERS-A0011-A0020.md`.
+- Implementação/revalidação técnica documentada nos 10 dossiês e em `AUDITORIA-A0001-A0020-REVALIDACAO-IMPLEMENTACAO-CHAT2.md`.
+- Estado pré-merge: `IMPLEMENTAÇÃO VALIDADA EM CI` na PR #237; confirmação definitiva após merge e confirmação da `main`.
 
 ### A0021–A0030
 - Chat 1 PR #235 — `docs(perks): close Chat 1 A0021-A0030` — **MERGEADA**.

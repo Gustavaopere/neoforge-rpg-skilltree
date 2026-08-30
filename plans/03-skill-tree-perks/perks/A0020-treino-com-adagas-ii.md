@@ -68,7 +68,7 @@ Nenhuma divergência específica identificada nesta leitura. A semântica de `Mo
 - [x] adapter `ModifyAttackSpeedEvent` presente;
 - [x] classificação DAGGER provider-native;
 - [x] fail-closed quando a família/hook não existir;
-- [ ] revalidar integração e dedicated-server smoke após atualização do provider.
+- [x] integração e dedicated-server smoke revalidados no CI #2130 para Epic Fight `21.17.3.1`.
 
 ## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
 
@@ -79,3 +79,15 @@ Nenhuma divergência específica identificada nesta leitura. A semântica de `Mo
 - **Notion:** re-fetch em 2026-08-30 sem drift; nenhuma mutação artificial.
 - **Fail-closed:** se o provider deixar de expor cadência server-authoritative, A0020 fica inativa em vez de mudar de identidade.
 - **Chat 2:** nenhuma bridge nova; preservar família DAGGER e evento provider-native.
+
+## Chat 2 — revalidação de implementação — PR #237
+
+- [x] Gate A0019 ≥2 e +2% de cadência/rank preservados.
+- [x] `ModifyAttackSpeedEvent` continua a única rota semântica de cadência.
+- [x] Epic Fight é aceito somente em `21.17.3.1` exato.
+- [x] Sem família/hook seguro, o efeito permanece fail-closed e não muda de identidade.
+- [x] Companions e fontes indiretas não herdam a perk.
+- [x] Regressões JUnit e NeoForge GameTests verdes no CI #2130.
+- [x] Build, JAR e dedicated-server smoke verdes no CI #2130.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #237 na `main`.

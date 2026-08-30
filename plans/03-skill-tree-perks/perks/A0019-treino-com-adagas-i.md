@@ -57,3 +57,15 @@
 - **Notion:** re-fetch em 2026-08-30 sem drift; nenhuma mutação cosmética.
 - **Fail-closed:** item sem classificação DAGGER segura permanece inelegível.
 - **Chat 2:** nenhuma bridge nova; preservar autoria e família provider-native.
+
+## Chat 2 — revalidação de implementação — PR #237
+
+- [x] Gate, coeficiente +3%/rank e família DAGGER preservados.
+- [x] Epic Fight é aceito somente em `21.17.3.1` exato.
+- [x] Categoria desconhecida permanece fail-closed sem inferência por nome/material/velocidade.
+- [x] Companion, Backlash e demais fontes indiretas não recebem o bônus marcial.
+- [x] Pipeline server-authoritative único preservado.
+- [x] Regressões JUnit e NeoForge GameTests verdes no CI #2130.
+- [x] Build, JAR e dedicated-server smoke verdes no CI #2130.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #237 na `main`.

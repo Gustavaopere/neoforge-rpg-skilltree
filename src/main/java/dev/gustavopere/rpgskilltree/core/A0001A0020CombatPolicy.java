@@ -48,7 +48,7 @@ public final class A0001A0020CombatPolicy {
     /** PRE-stage modifiers. Never invents unavailable provider semantics. */
     public static HitModifiers beforeHit(HitFacts facts, CombatPerkRanks ranks, NotionCombatPerkState state) {
         Objects.requireNonNull(facts); Objects.requireNonNull(ranks); Objects.requireNonNull(state);
-        if (!facts.direct() || !facts.hostile()) return neutral(ranks, facts.family());
+        if (!facts.direct() || !facts.hostile()) return neutral();
         double damage = NotionCombatPerkRules.baseDamageMultiplier(facts.family(), ranks);
         double impact = 1.0D;
         double guard = 1.0D;
@@ -247,8 +247,8 @@ public final class A0001A0020CombatPolicy {
         return targetMotionX * toAttackerX + targetMotionZ * toAttackerZ > 1.0E-9D;
     }
 
-    private static HitModifiers neutral(CombatPerkRanks ranks, WeaponFamily family) {
-        return new HitModifiers(1.0D, NotionCombatPerkRules.criticalChanceBonus(family, ranks), 1.0D, 1.0D, 0.0D, false, false);
+    private static HitModifiers neutral() {
+        return new HitModifiers(1.0D, 0.0D, 1.0D, 1.0D, 0.0D, false, false);
     }
 
     private static void require(String value, String name) { if (value == null || value.isBlank()) throw new IllegalArgumentException(name + " must not be blank"); }

@@ -9,6 +9,7 @@ import dev.gustavopere.rpgskilltree.core.SustainResolver;
 import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0100RuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -379,8 +380,13 @@ public final class A0081A0100CombatEvents {
 
     private static boolean previousBatchSamplesStationary() {
         if (!OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EPIC_FIGHT)) return false;
-        String version = OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT);
-        return version != null && version.startsWith("21.17.3.1");
+        return previousBatchSamplesStationaryVersion(
+            OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT)
+        );
+    }
+
+    static boolean previousBatchSamplesStationaryVersion(String version) {
+        return EpicFightVersionContract.supportsVersion(version);
     }
 
     private static long nowMillis(ServerPlayer player) {

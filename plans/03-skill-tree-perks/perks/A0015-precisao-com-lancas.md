@@ -69,7 +69,7 @@ Nenhuma divergência específica identificada. Novos adapters de lança devem re
 - [x] serviço crítico dedicado;
 - [x] correlação NeoForge ↔ Epic Fight;
 - [x] classificação SPEAR no adapter;
-- [ ] revalidar quando o pipeline crítico ou a versão do Epic Fight mudar.
+- [x] revalidado no CI #2147 para o pipeline/versão exata atuais.
 
 ## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
 
@@ -80,3 +80,15 @@ Nenhuma divergência específica identificada. Novos adapters de lança devem re
 - **Volcanoes / Enshrouded:** NÃO DEVE SER INTEGRADO à chance crítica desta perk; hazards/Shroud/Flame não criam critical receipt.
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
 - **Chat 2:** revalidar que fontes secundárias/terminal/companions não atravessam o serviço crítico; não criar bridge específica para esses providers.
+
+## Chat 2 — revalidação de implementação — PR #237
+
+- [x] Gate A0013 ≥1 e +3% crítico/rank preservados.
+- [x] Resolver crítico canônico continua único por root action.
+- [x] Epic Fight é aceito somente em `21.17.3.1` exato.
+- [x] `ARCANE_BACKLASH`, companion-owned e demais fontes indiretas ficam neutras antes do critical bonus.
+- [x] Resultado crítico provider-native é preservado; nenhuma segunda rolagem foi criada.
+- [x] Regressões específicas de provenance + suíte crítica verdes no CI #2147 no mesmo HEAD revalidado.
+- [x] NeoForge GameTests, build, JAR e dedicated-server smoke verdes no CI #2147 no mesmo HEAD revalidado.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #237 na `main`.
