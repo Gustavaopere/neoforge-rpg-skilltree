@@ -8,6 +8,7 @@ import dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientEntry;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientSnapshot;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumDebugField;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumDebugPanelModel;
+import dev.gustavopere.rpgskilltree.compendium.client.CompendiumEditorialDisplayModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterControls;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterState;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumNotesModel;
@@ -397,6 +398,13 @@ public final class CompendiumScreen extends Screen {
             return;
         }
 
+        var page = session.currentPage();
+        String detailTitle = page
+            .filter(CompendiumPageModel::detailsVisible)
+            .map(CompendiumEditorialDisplayModel::from)
+            .map(CompendiumEditorialDisplayModel::title)
+            .orElse(current.displayName());
+
         int titleWidth = body.width() - 20;
         if (!compactBack) {
             titleWidth = Math.max(
@@ -404,7 +412,7 @@ public final class CompendiumScreen extends Screen {
                 titleWidth - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - RELATIONS_BUTTON_WIDTH - HEADER_BUTTON_GAP * 3
             );
         }
-        graphics.drawString(font, fitToWidth(current.displayName(), titleWidth), x, y, ACCENT);
+        graphics.drawString(font, fitToWidth(detailTitle, titleWidth), x, y, ACCENT);
         y += 13;
         graphics.drawString(
             font,
@@ -427,7 +435,6 @@ public final class CompendiumScreen extends Screen {
         );
         y += 16;
 
-        var page = session.currentPage();
         if (page.isEmpty()) {
             entityPreview.clear();
             graphics.drawString(font, Component.translatable("screen.rpgskilltree.compendium.shell"), x, y, MUTED);
@@ -452,6 +459,14 @@ public final class CompendiumScreen extends Screen {
 
         y = renderEntityPreview(graphics, current, x, y, body.width() - 20, body.bottom());
         y = renderStaticPreview(graphics, current, x, y, body.width() - 20, body.bottom());
+        y = renderEditorial(
+            graphics,
+            CompendiumEditorialDisplayModel.from(model),
+            x,
+            y,
+            body.width() - 20,
+            body.bottom()
+        );
 
         for (CompendiumSection section : model.sections()) {
             if (section.facts().isEmpty()) continue;
@@ -660,6 +675,40 @@ public final class CompendiumScreen extends Screen {
             String text = fitToWidth(caption.getString(), maxWidth);
             graphics.drawString(font, text, x + Math.max(0, (maxWidth - font.width(text)) / 2), y, MUTED);
             y += font.lineHeight + PREVIEW_TEXT_GAP;
+        }
+        return y;
+    }
+
+    private int renderEditorial(
+        GuiGraphics graphics,
+        CompendiumEditorialDisplayModel editorial,
+        int x,
+        int y,
+        int maxWidth,
+        int bottom
+    ) {
+        if (editorial.blocks().isEmpty()) return y;
+        int textWidth = Math.max(20, maxWidth - 6);
+        for (CompendiumEditorialDisplayModel.DisplayBlock block : editorial.blocks()) {
+            if (!"summary".equals(block.sectionId())) {
+                if (y + font.lineHeight >= bottom) return bottom;
+                graphics.drawString(font, fitToWidth(block.sectionId(), maxWidth), x, y, ACCENT);
+                y += font.lineHeight + 2;
+            }
+
+            for (var line : font.split(Component.literal(block.text()), textWidth)) {
+                if (y + font.lineHeight >= bottom) return bottom;
+                graphics.drawString(font, line, x + 6, y, TEXT);
+                y += font.lineHeight + 1;
+            }
+
+            if (y + font.lineHeight >= bottom) return bottom;
+            Component sources = Component.translatable(
+                "screen.rpgskilltree.compendium.editorial.sources",
+                String.join(", ", block.sourceRefs())
+            );
+            graphics.drawString(font, fitToWidth(sources.getString(), textWidth), x + 6, y, MUTED);
+            y += font.lineHeight + 4;
         }
         return y;
     }
