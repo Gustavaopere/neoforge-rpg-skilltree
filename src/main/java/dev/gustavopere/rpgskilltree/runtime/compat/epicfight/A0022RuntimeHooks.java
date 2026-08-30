@@ -57,13 +57,17 @@ public final class A0022RuntimeHooks {
     private static void onEpicFightTick(TickPlayerEpicFightModeEvent event) {
         if (!(event.getPlayerPatch() instanceof ServerPlayerPatch patch)) return;
         ServerPlayer player = patch.getOriginal();
-        if (!eligible(player) || providerFamily(player) != WeaponFamily.DAGGER) return;
+        if (!eligible(player)) return;
 
+        A0021A0040CombatState state = A0021A0040RuntimeState.state();
+        String actor = A0021A0040RuntimeState.actorId(player);
+        var motion = player.getDeltaMovement();
+        state.updateForcedRepositionSuppression(actor, motion.x * motion.x + motion.z * motion.z);
+
+        if (providerFamily(player) != WeaponFamily.DAGGER) return;
         CombatPerkRanks ranks = A0021A0040RuntimeState.ranks(player);
         if (ranks.rank("A0022") <= 0 && !ranks.learned("A0024")) return;
         LivingEntity target = patch.getTarget();
-        A0021A0040CombatState state = A0021A0040RuntimeState.state();
-        String actor = A0021A0040RuntimeState.actorId(player);
         if (target == null || !target.isAlive() || !hostile(player, target)) {
             state.invalidateFallbackReposition(actor);
             return;
@@ -90,7 +94,7 @@ public final class A0022RuntimeHooks {
     @SubscribeEvent
     public static void onKnockback(LivingKnockBackEvent event) {
         if (event.getEntity() instanceof ServerPlayer player && eligible(player)) {
-            A0021A0040RuntimeState.state().invalidateFallbackReposition(A0021A0040RuntimeState.actorId(player));
+            A0021A0040RuntimeState.state().beginForcedRepositionSuppression(A0021A0040RuntimeState.actorId(player));
         }
     }
 
