@@ -9,8 +9,8 @@ import java.util.Optional;
  * Pure interaction state for the Compendium screen.
  *
  * <p>The NeoForge screen owns rendering and input translation only. Search, filters, virtual
- * scrolling, keyboard selection, entry opening and list/detail navigation are kept here so they
- * remain deterministic and testable without constructing a Minecraft client.</p>
+ * scrolling, keyboard selection, entry opening, personal notes and list/detail navigation are
+ * kept here so they remain deterministic and testable without constructing a Minecraft client.</p>
  */
 public final class CompendiumScreenSession {
     private final CompendiumClientSnapshot snapshot;
@@ -102,6 +102,18 @@ public final class CompendiumScreenSession {
 
     public Optional<CompendiumPageModel> currentPage() {
         return browser.openEntry().flatMap(snapshot::page);
+    }
+
+    public Optional<String> currentNote() {
+        return currentEntry().flatMap(entry -> notes.note(entry.id()));
+    }
+
+    public void setCurrentNote(String text) {
+        Objects.requireNonNull(text, "text");
+        CompendiumEntryId id = currentEntry()
+            .map(CompendiumClientEntry::id)
+            .orElseThrow(() -> new IllegalStateException("cannot edit a Compendium note without an open entry"));
+        notes.setNote(id, text);
     }
 
     public boolean isCurrentEntryFavorite() {
