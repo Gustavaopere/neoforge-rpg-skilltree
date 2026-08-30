@@ -108,6 +108,71 @@ def build_catalog_sections(root: Path, locale: str = "pt_br") -> tuple[str, str]
     return "\n".join(perk_lines) + "\n", "\n".join(effect_lines) + "\n"
 
 
+def build_content_coverage(
+    root: Path,
+    locale: str = "pt_br",
+    tree_id: str | None = None,
+) -> dict[str, Any]:
+    root = Path(root)
+    rules = _load_rules(root)
+    translations = _load_translations(root, locale)
+    attributes, behaviors = _load_effects(root)
+
+    if tree_id is not None:
+        rules = [entry for entry in rules if entry[0] == tree_id]
+        if not rules:
+            raise ValueError(f"tree not found in node rules: {tree_id}")
+
+    attribute_counts: dict[str, int] = {}
+    behavior_counts: dict[str, int] = {}
+    for effect in attributes:
+        node_id = str(effect["nodeId"])
+        attribute_counts[node_id] = attribute_counts.get(node_id, 0) + 1
+    for effect in behaviors:
+        node_id = str(effect["nodeId"])
+        behavior_counts[node_id] = behavior_counts.get(node_id, 0) + 1
+
+    nodes: list[dict[str, Any]] = []
+    for current_tree_id, node in rules:
+        node_id = str(node["id"])
+        has_name = _has_nonblank_translation(translations, _translation_key(node_id, "name"))
+        has_description = _has_nonblank_translation(translations, _translation_key(node_id, "description"))
+        attribute_effects = attribute_counts.get(node_id, 0)
+        behavior_effects = behavior_counts.get(node_id, 0)
+        nodes.append(
+            {
+                "tree_id": current_tree_id,
+                "id": node_id,
+                "has_name": has_name,
+                "has_description": has_description,
+                "attribute_effects": attribute_effects,
+                "behavior_effects": behavior_effects,
+                "has_declarative_effect": (attribute_effects + behavior_effects) > 0,
+            }
+        )
+
+    nodes.sort(key=lambda value: (value["tree_id"], value["id"]))
+    total_nodes = len(nodes)
+    localized_names = sum(1 for node in nodes if node["has_name"])
+    localized_descriptions = sum(1 for node in nodes if node["has_description"])
+    nodes_with_declarative_effects = sum(1 for node in nodes if node["has_declarative_effect"])
+
+    return {
+        "locale": locale,
+        "tree_id": tree_id,
+        "summary": {
+            "total_nodes": total_nodes,
+            "localized_names": localized_names,
+            "localized_descriptions": localized_descriptions,
+            "nodes_missing_names": total_nodes - localized_names,
+            "nodes_missing_descriptions": total_nodes - localized_descriptions,
+            "nodes_with_declarative_effects": nodes_with_declarative_effects,
+            "nodes_without_declarative_effects": total_nodes - nodes_with_declarative_effects,
+        },
+        "nodes": nodes,
+    }
+
+
 def update_catalog_documents(root: Path, locale: str = "pt_br", check: bool = False) -> list[Path]:
     root = Path(root)
     perk_section, effect_section = build_catalog_sections(root, locale=locale)
@@ -163,6 +228,11 @@ def _load_translations(root: Path, locale: str) -> dict[str, str]:
     if not isinstance(payload, dict):
         raise ValueError(f"locale root must be an object: {path}")
     return {str(key): str(value) for key, value in payload.items()}
+
+
+def _has_nonblank_translation(translations: dict[str, str], key: str) -> bool:
+    value = translations.get(key)
+    return value is not None and bool(value.strip())
 
 
 def _translation_key(node_id: str, suffix: str) -> str:
