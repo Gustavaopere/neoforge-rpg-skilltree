@@ -18,6 +18,23 @@ A proposta consolida, em uma única experiência, os melhores conceitos observad
 - separar a enciclopédia survival, somente leitura, de ferramentas administrativas que possam alterar entidades;
 - produzir relatório de cobertura para que nenhum mob, árvore, planta, bioma, estrutura ou dimensão relevante do modpack desapareça silenciosamente.
 
+## Contrato explícito de cobertura automática de conteúdo modded
+
+A descoberta de conteúdo **não é limitada ao Minecraft vanilla**. Todo conteúdo de mods presente nos registries suportados deve entrar primeiro pelo mesmo pipeline `registry-first` usado pelo conteúdo vanilla.
+
+Regras obrigatórias:
+
+1. **Entidades modded:** todo `EntityType` registrado deve receber automaticamente uma página técnica base, mesmo sem adapter específico para o mod.
+2. **Flora modded:** blocos registrados que possuam evidência botânica estável por classe, tag, provider ou override devem entrar automaticamente no catálogo de flora/cultivos/árvores; evidência ambígua permanece diagnosticada em vez de ser adivinhada.
+3. **Worldgen modded:** biomas, estruturas e dimensões presentes nos registries suportados devem entrar automaticamente no inventário/catalogação ou possuir `IGNORED` explícito com motivo.
+4. **Nenhum cadastro manual por mod é requisito para existência da página base.** Instalar um mod novo não deve exigir enumerar manualmente todos os seus mobs, plantas, biomas ou estruturas para que eles apareçam no Compêndio.
+5. **Adapters enriquecem; não criam a existência básica.** Adapter nominal só é necessário quando o provider guarda fatos relevantes fora dos contratos genéricos ou quando uma API pública permite dados mais precisos.
+6. **Conteúdo editorial é uma camada separada.** Descrições ricas em pt-BR, relações ecológicas, comportamento especial, reprodução, dieta, variantes, loot ou lore só podem ser preenchidos quando houver fonte verificável, provider estável ou corpus curado. Ausência dessa camada não remove a página técnica base.
+7. **Fail-soft por padrão.** Um mod sem adapter, um adapter incompatível ou metadata específica ausente não pode impedir startup nem apagar conteúdo que o coletor genérico consegue representar.
+8. **Cobertura é verificável.** Relatórios devem distinguir pelo menos `AUTO`, `ADAPTER`, `CURATED`, `IGNORED` e `ERROR`, permitindo detectar conteúdo modded silenciosamente perdido.
+
+Consequência operacional: se um novo mod adicionar dezenas de entidades e plantas, o resultado esperado é que elas apareçam automaticamente com dados técnicos verificáveis; somente os fatos especiais daquele provider exigem trabalho adicional.
+
 ## Fonte de verdade do modpack
 
 O inventário editorial **não será uma lista hardcoded eterna**.
@@ -121,6 +138,9 @@ O Stage 10 só pode ser considerado concluído quando:
 
 - [ ] todos os 15 subplanos estiverem marcados individualmente como concluídos;
 - [ ] o catálogo runtime cobrir todos os tipos de entrada suportados presentes no pack;
+- [ ] conteúdo modded registrado nos registries suportados possuir página base automática ou `IGNORED` explícito e justificado;
+- [ ] nenhuma entrada depender de cadastro manual apenas para existir no catálogo base;
+- [ ] adapters nominais forem usados somente para enriquecimento ou contratos especiais não cobertos genericamente;
 - [ ] o relatório de cobertura não tiver entradas silenciosamente perdidas;
 - [ ] conteúdo pt-BR estiver validado para todas as strings próprias e para o corpus editorial entregue;
 - [ ] entidades suportadas mostrarem dados técnicos com origem verificável;
