@@ -11,6 +11,7 @@ from wiki_catalog import (
     WikiCatalogDriftError,
     build_catalog_sections,
     build_content_coverage,
+    build_semantic_combat_section,
     replace_generated_block,
     update_catalog_documents,
 )
@@ -57,6 +58,7 @@ class WikiCatalogContractTest(unittest.TestCase):
             self.assertIn("Descoberta: `rpgskilltree:discovery/arena`", perk_catalog)
             self.assertIn("`rpgskilltree:technical_only`", perk_catalog)
             self.assertNotIn("Technical Only", perk_catalog)
+            self.assertNotIn("`rpgskilltree:combat/a0021`", perk_catalog)
 
             self.assertIn("`rpgskilltree:node/martial_000/sword_damage`", effect_catalog)
             self.assertIn("`rpgskilltree:sword_damage`", effect_catalog)
@@ -65,27 +67,25 @@ class WikiCatalogContractTest(unittest.TestCase):
             self.assertIn("`rpgskilltree:riposte`", effect_catalog)
             self.assertIn("BEHAVIOR_HANDLER", effect_catalog)
 
-    def test_semantic_combat_snapshot_is_appended_without_inferred_policy_text_or_effects(self):
+    def test_semantic_combat_snapshot_is_separate_and_never_infers_policy_text_or_effects(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             self._write_fixture(root)
 
-            perk_catalog, _effect_catalog = build_catalog_sections(
-                root,
-                locale="pt_br",
-                semantic_snapshot_required=True,
-            )
+            combat_catalog = build_semantic_combat_section(root, required=True)
 
-            self.assertIn("`rpgskilltree:runtime/combat_perks`", perk_catalog)
-            self.assertIn("`rpgskilltree:combat/a0001`", perk_catalog)
-            self.assertIn("Treino com Espadas I", perk_catalog)
-            self.assertIn("+3% de dano com espadas por rank, máximo +9%.", perk_catalog)
-            self.assertIn("Nível ≥ 8", perk_catalog)
-            self.assertIn("Mastery `epicfight:sword` ≥ 60", perk_catalog)
-            self.assertIn("Nó `rpgskilltree:martial_000` rank ≥ 1", perk_catalog)
-            self.assertIn("`rpgskilltree:combat/a0021`", perk_catalog)
-            self.assertIn("Precisão com Adagas", perk_catalog)
-            a0021_row = next(line for line in perk_catalog.splitlines() if "`rpgskilltree:combat/a0021`" in line)
+            self.assertIn("`rpgskilltree:runtime/combat_perks`", combat_catalog)
+            self.assertIn("`rpgskilltree:combat/a0001`", combat_catalog)
+            self.assertIn("A0001", combat_catalog)
+            self.assertIn("Treino com Espadas I", combat_catalog)
+            self.assertIn("+3% de dano com espadas por rank, máximo +9%.", combat_catalog)
+            self.assertIn("Nível ≥ 8", combat_catalog)
+            self.assertIn("Mastery `epicfight:sword` ≥ 60", combat_catalog)
+            self.assertIn("Nó `rpgskilltree:martial_000` rank ≥ 1", combat_catalog)
+            self.assertIn("`rpgskilltree:combat/a0021`", combat_catalog)
+            self.assertIn("A0021", combat_catalog)
+            self.assertIn("Precisão com Adagas", combat_catalog)
+            a0021_row = next(line for line in combat_catalog.splitlines() if "`rpgskilltree:combat/a0021`" in line)
             self.assertIn(" | — | 3 | 1 | ", a0021_row)
             self.assertTrue(a0021_row.endswith(" | — |"))
             self.assertNotIn("chance de crítico", a0021_row.lower())
@@ -126,6 +126,7 @@ class WikiCatalogContractTest(unittest.TestCase):
             self._write_fixture(root)
             perk_path = root / "wiki/PERK_CATALOG.md"
             effect_path = root / "wiki/EFFECT_CATALOG.md"
+            combat_path = root / "wiki/COMBAT_PERK_CATALOG.md"
             perk_path.parent.mkdir(parents=True, exist_ok=True)
             perk_path.write_text(
                 "# Catálogo\n\nTexto manual.\n\n"
@@ -140,23 +141,31 @@ class WikiCatalogContractTest(unittest.TestCase):
                 "<!-- rpgskilltree:generated:effect-catalog:end -->\n",
                 encoding="utf-8",
             )
+            combat_path.write_text(
+                "# Combate\n\nContexto manual.\n\n"
+                "<!-- rpgskilltree:generated:combat-perk-catalog:start -->\nvelho\n"
+                "<!-- rpgskilltree:generated:combat-perk-catalog:end -->\n",
+                encoding="utf-8",
+            )
 
             changed = update_catalog_documents(root, locale="pt_br", check=False)
-            self.assertEqual([perk_path, effect_path], changed)
+            self.assertEqual([perk_path, effect_path, combat_path], changed)
             self.assertIn("Treino com Espadas I", perk_path.read_text(encoding="utf-8"))
-            self.assertIn("`rpgskilltree:combat/a0021`", perk_path.read_text(encoding="utf-8"))
+            self.assertNotIn("`rpgskilltree:combat/a0021`", perk_path.read_text(encoding="utf-8"))
+            self.assertIn("`rpgskilltree:combat/a0021`", combat_path.read_text(encoding="utf-8"))
             self.assertIn("Nunca sobrescrever esta trivia.", perk_path.read_text(encoding="utf-8"))
+            self.assertIn("Contexto manual.", combat_path.read_text(encoding="utf-8"))
             self.assertEqual([], update_catalog_documents(root, locale="pt_br", check=False))
             self.assertEqual([], update_catalog_documents(root, locale="pt_br", check=True))
 
-            perk_path.write_text(
-                perk_path.read_text(encoding="utf-8").replace("Treino com Espadas I", "CATÁLOGO FORA DE SINCRONIA", 1),
+            combat_path.write_text(
+                combat_path.read_text(encoding="utf-8").replace("Precisão com Adagas", "CATÁLOGO FORA DE SINCRONIA", 1),
                 encoding="utf-8",
             )
             with self.assertRaises(WikiCatalogDriftError) as failure:
                 update_catalog_documents(root, locale="pt_br", check=True)
-            self.assertIn("wiki/PERK_CATALOG.md", str(failure.exception).replace("\\", "/"))
-            self.assertIn("CATÁLOGO FORA DE SINCRONIA", perk_path.read_text(encoding="utf-8"))
+            self.assertIn("wiki/COMBAT_PERK_CATALOG.md", str(failure.exception).replace("\\", "/"))
+            self.assertIn("CATÁLOGO FORA DE SINCRONIA", combat_path.read_text(encoding="utf-8"))
 
     def test_document_update_fails_closed_when_derived_semantic_snapshot_is_missing(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -170,6 +179,10 @@ class WikiCatalogContractTest(unittest.TestCase):
             )
             (root / "wiki/EFFECT_CATALOG.md").write_text(
                 "<!-- rpgskilltree:generated:effect-catalog:start -->\nold\n<!-- rpgskilltree:generated:effect-catalog:end -->\n",
+                encoding="utf-8",
+            )
+            (root / "wiki/COMBAT_PERK_CATALOG.md").write_text(
+                "<!-- rpgskilltree:generated:combat-perk-catalog:start -->\nold\n<!-- rpgskilltree:generated:combat-perk-catalog:end -->\n",
                 encoding="utf-8",
             )
 
