@@ -65,6 +65,31 @@ class WikiCatalogContractTest(unittest.TestCase):
             self.assertIn("`rpgskilltree:riposte`", effect_catalog)
             self.assertIn("BEHAVIOR_HANDLER", effect_catalog)
 
+    def test_semantic_combat_snapshot_is_appended_without_inferred_policy_text_or_effects(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self._write_fixture(root)
+
+            perk_catalog, _effect_catalog = build_catalog_sections(
+                root,
+                locale="pt_br",
+                semantic_snapshot_required=True,
+            )
+
+            self.assertIn("`rpgskilltree:runtime/combat_perks`", perk_catalog)
+            self.assertIn("`rpgskilltree:combat/a0001`", perk_catalog)
+            self.assertIn("Treino com Espadas I", perk_catalog)
+            self.assertIn("+3% de dano com espadas por rank, máximo +9%.", perk_catalog)
+            self.assertIn("Nível ≥ 8", perk_catalog)
+            self.assertIn("Mastery `epicfight:sword` ≥ 60", perk_catalog)
+            self.assertIn("Nó `rpgskilltree:martial_000` rank ≥ 1", perk_catalog)
+            self.assertIn("`rpgskilltree:combat/a0021`", perk_catalog)
+            self.assertIn("Precisão com Adagas", perk_catalog)
+            a0021_row = next(line for line in perk_catalog.splitlines() if "`rpgskilltree:combat/a0021`" in line)
+            self.assertIn(" | — | 3 | 1 | ", a0021_row)
+            self.assertTrue(a0021_row.endswith(" | — |"))
+            self.assertNotIn("chance de crítico", a0021_row.lower())
+
     def test_content_coverage_reports_factual_gaps_without_calling_them_structural(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -119,6 +144,7 @@ class WikiCatalogContractTest(unittest.TestCase):
             changed = update_catalog_documents(root, locale="pt_br", check=False)
             self.assertEqual([perk_path, effect_path], changed)
             self.assertIn("Treino com Espadas I", perk_path.read_text(encoding="utf-8"))
+            self.assertIn("`rpgskilltree:combat/a0021`", perk_path.read_text(encoding="utf-8"))
             self.assertIn("Nunca sobrescrever esta trivia.", perk_path.read_text(encoding="utf-8"))
             self.assertEqual([], update_catalog_documents(root, locale="pt_br", check=False))
             self.assertEqual([], update_catalog_documents(root, locale="pt_br", check=True))
@@ -131,6 +157,24 @@ class WikiCatalogContractTest(unittest.TestCase):
                 update_catalog_documents(root, locale="pt_br", check=True)
             self.assertIn("wiki/PERK_CATALOG.md", str(failure.exception).replace("\\", "/"))
             self.assertIn("CATÁLOGO FORA DE SINCRONIA", perk_path.read_text(encoding="utf-8"))
+
+    def test_document_update_fails_closed_when_derived_semantic_snapshot_is_missing(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self._write_fixture(root)
+            (root / "build/generated-wiki/combat-perks.json").unlink()
+            (root / "wiki").mkdir(parents=True, exist_ok=True)
+            (root / "wiki/PERK_CATALOG.md").write_text(
+                "<!-- rpgskilltree:generated:perk-catalog:start -->\nold\n<!-- rpgskilltree:generated:perk-catalog:end -->\n",
+                encoding="utf-8",
+            )
+            (root / "wiki/EFFECT_CATALOG.md").write_text(
+                "<!-- rpgskilltree:generated:effect-catalog:start -->\nold\n<!-- rpgskilltree:generated:effect-catalog:end -->\n",
+                encoding="utf-8",
+            )
+
+            with self.assertRaises(FileNotFoundError):
+                update_catalog_documents(root, locale="pt_br", check=False)
 
     def test_main_ci_enforces_real_wiki_catalog_drift_check(self):
         root = Path(__file__).resolve().parents[1]
@@ -197,6 +241,42 @@ class WikiCatalogContractTest(unittest.TestCase):
             {
                 "node.rpgskilltree.martial_000.name": "Treino com Espadas I",
                 "node.rpgskilltree.martial_000.description": "Aumenta o dano com espadas.",
+            },
+        )
+        cls._write_json(
+            root / "build/generated-wiki/combat-perks.json",
+            {
+                "schema": 1,
+                "treeId": "rpgskilltree:runtime/combat_perks",
+                "nodes": [
+                    {
+                        "id": "rpgskilltree:combat/a0001",
+                        "code": "A0001",
+                        "name": "Treino com Espadas I",
+                        "description": "+3% de dano com espadas por rank, máximo +9%.",
+                        "maxRank": 3,
+                        "costPerRank": 1,
+                        "startingPoint": True,
+                        "minCharacterLevel": 8,
+                        "requiredMastery": {"epicfight:sword": 60},
+                        "requiredNodeRanks": {"rpgskilltree:martial_000": 1},
+                    },
+                    {
+                        "id": "rpgskilltree:combat/a0021",
+                        "code": "A0021",
+                        "name": "Precisão com Adagas",
+                        "description": None,
+                        "maxRank": 3,
+                        "costPerRank": 1,
+                        "startingPoint": False,
+                        "minCharacterLevel": 1,
+                        "requiredMastery": {},
+                        "requiredNodeRanks": {
+                            "rpgskilltree:combat/a0019": 1,
+                            "rpgskilltree:martial_000": 1,
+                        },
+                    },
+                ],
             },
         )
 
