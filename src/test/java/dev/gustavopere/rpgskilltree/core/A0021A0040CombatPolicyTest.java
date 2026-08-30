@@ -38,8 +38,11 @@ public final class A0021A0040CombatPolicyTest {
     }
     private static void maceState(){
         A0021A0040CombatState s=new A0021A0040CombatState();CombatPerkRanks r=ranks(Map.of("A0034",2,"A0035",2,"A0036",1));for(int i=0;i<3;i++)s.addTrauma("p","t",2,i);
-        var sunder=A0021A0040CombatPolicy.beforeHit(f("p","t","sunder",WeaponFamily.MACE,true,false,false,false,true,false,true,.8,20),r,s,80);req(sunder.applyArmorSunder(),"sunder applies");eq(.12,sunder.armorSunderFraction());req(s.isSundered("p","t",20),"sunder state");
-        var bone=A0021A0040CombatPolicy.beforeHit(f("p","t","bone",WeaponFamily.MACE,true,false,false,true,true,false,true,.8,21),r,s,80);req(bone.applyBonebreaker(),"bonebreaker");eq(.92,bone.outgoingPhysicalDamageMultiplier());eq(.90,bone.movementSpeedMultiplier());
+        var sunderFacts=f("p","t","sunder",WeaponFamily.MACE,true,false,false,false,true,false,true,.8,20);
+        var sunder=A0021A0040CombatPolicy.beforeHit(sunderFacts,r,s,80);req(sunder.applyArmorSunder(),"sunder prepares");eq(.12,sunder.armorSunderFraction());req(!s.isSundered("p","t",20),"sunder waits for post");req(s.trauma("p","t",20)==3,"pre preserves trauma");
+        var sunderCommit=A0021A0040CombatPolicy.afterConfirmedHit(sunderFacts,r,s);req(sunderCommit.armorSunderCommitted(),"sunder commits");req(s.isSundered("p","t",20),"sunder state after post");req(s.trauma("p","t",20)==1,"current protected hit starts a fresh trauma after consuming prior three");
+        var boneFacts=f("p","t","bone",WeaponFamily.MACE,true,false,false,true,true,false,true,.8,21);
+        var bone=A0021A0040CombatPolicy.beforeHit(boneFacts,r,s,80);req(bone.applyBonebreaker(),"bonebreaker prepares only on pre-existing sunder");eq(.92,bone.outgoingPhysicalDamageMultiplier());eq(.90,bone.movementSpeedMultiplier());req(s.bonebreakerReady("p","t",21),"bonebreaker cooldown waits for post");var boneCommit=A0021A0040CombatPolicy.afterConfirmedHit(boneFacts,r,s);req(boneCommit.bonebreakerCommitted(),"bonebreaker commits");req(!s.bonebreakerReady("p","t",21),"bonebreaker cooldown starts after post");
         A0021A0040CombatState boss=new A0021A0040CombatState();for(int i=0;i<3;i++)boss.addTrauma("p","b",2,i);var half=A0021A0040CombatPolicy.beforeHit(f("p","b","boss",WeaponFamily.MACE,true,false,false,false,true,true,true,.8,20),r,boss,80);eq(.06,half.armorSunderFraction());
     }
     private static void reapingMark(){
