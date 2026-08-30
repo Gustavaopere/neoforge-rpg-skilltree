@@ -4,6 +4,8 @@
 
 # 17. Fontes principais de referência
 
+## Projetos e ecossistemas tecnológicos
+
 - [Create Aeronautics — CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics)
 - [Applied Energistics 2 — CurseForge](https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2)
 - [Oritech — CurseForge](https://www.curseforge.com/minecraft/mc-mods/oritech)
@@ -15,6 +17,7 @@
 - [Applied Create — CurseForge](https://www.curseforge.com/minecraft/mc-mods/applied-create)
 - [Create: Aeroworks — CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeroworks)
 
-## Gameplay e sistemas
+## Guia relacionado — Gameplay e Sistemas
 
-<mention-page url="https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6"/>
+- [Snapshot local](../gameplay/README.md)
+- [Fonte canônica no Notion](https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6)
