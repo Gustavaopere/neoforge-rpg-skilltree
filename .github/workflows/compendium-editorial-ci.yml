@@ -51,6 +51,14 @@ jobs:
       - name: PT-BR localization completeness tests
         run: python3 scripts/compendium/test_ptbr_localization.py
 
+      - name: PT-BR localization completeness validation
+        run: >-
+          python3 scripts/compendium/validate_ptbr_localization.py
+          --pt-br src/main/resources/assets/rpgskilltree/lang/pt_br.json
+          --en-us src/main/resources/assets/rpgskilltree/lang/en_us.json
+          --source-root src/main/java
+          --source-root src/main/resources
+
       - name: Editorial model and locale contracts
         run: bash scripts/compendium/test_model_catalog.sh
 
