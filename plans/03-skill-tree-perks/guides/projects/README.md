@@ -8,6 +8,7 @@ Esta pasta documenta os quatro projetos próprios que precisam ser tratados como
 4. [Black Arcana](04-black-arcana.md)
 5. [Matriz de integração cruzada](05-cross-project-integration-matrix.md)
 6. [Reconciliação dos snapshots](06-snapshot-reconciliation.md)
+7. [Checklist do Chat 1 para listar providers](07-chat1-provider-listing-checklist.md)
 
 **Fonte editorial canônica no Notion:** https://app.notion.com/p/3cc69db9f0db81b09939eaca7c446fa2
 
@@ -59,6 +60,8 @@ Antes de fechar qualquer perk, o Chat 1 deve cruzá-la com os quatro dossiês e 
 - não aplicável.
 
 Se uma perk toca mais de um projeto, o dossiê individual precisa declarar um **pipeline principal**, os providers/consumers secundários, a identidade de deduplicação, o fallback e o comportamento fail-closed.
+
+O preenchimento operacional dessa decisão está em [`07-chat1-provider-listing-checklist.md`](07-chat1-provider-listing-checklist.md).
 
 ## Regra de autoridade
 
