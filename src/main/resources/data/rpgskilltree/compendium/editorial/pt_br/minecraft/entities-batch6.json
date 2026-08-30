@@ -1,0 +1,308 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:minecraft:blaze",
+      "title": "Blaze",
+      "summary": {
+        "text": "O Blaze é uma criatura hostil com mobilidade aérea curta e uma rotina própria de combate à distância baseada em estados sincronizados de ataque e fogo.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:blaze"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Blaze.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "A classe Blaze registra um objetivo específico de ataque que alterna aproximação, preparação e disparos conforme o estado do alvo e da própria entidade. Quantidade de projéteis, cadência, dano e alcance permanecem definidos pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Blaze.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Blaze$BlazeAttackGoal.java"}
+          ]
+        },
+        "ambiente": {
+          "text": "A implementação do Blaze declara sensibilidade à água. A consequência mecânica concreta dessa condição é responsabilidade do runtime e não é transformada em valor numérico editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Blaze.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:breeze",
+      "title": "Vórtice",
+      "summary": {
+        "text": "O Vórtice é uma criatura hostil cuja IA combina estados próprios de deslocamento, salto e ataque com projéteis de vento. Sua lógica é organizada por Brain e comportamentos especializados do pacote breeze.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:breeze"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/breeze/Breeze.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/breeze/BreezeAi.java"}
+        ]
+      },
+      "sections": {
+        "movimento": {
+          "text": "A IA do Vórtice possui comportamentos dedicados para deslizar e executar saltos longos. Distâncias, tempos e critérios exatos são avaliados dinamicamente pela implementação carregada.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/breeze/Slide.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/breeze/LongJump.java"}
+          ]
+        },
+        "combate": {
+          "text": "A entidade possui comportamento próprio de disparo e um contrato de desvio de projéteis. O Compêndio descreve essas capacidades sem fixar força, alcance, intervalo ou trajetória em números editoriais.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/breeze/Breeze.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/breeze/Shoot.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:elder_guardian",
+      "title": "Guardião-Mestre",
+      "summary": {
+        "text": "O Guardião-Mestre é uma variante especializada de Guardião. Por herança, reutiliza a base aquática e o sistema de combate do Guardian e acrescenta comportamento próprio em sua classe.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:elder_guardian"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/ElderGuardian.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Guardian.java"}
+        ]
+      },
+      "sections": {
+        "heranca": {
+          "text": "Como descendente de Guardian, mantém a infraestrutura de navegação, alvo e ataque dessa família, mas possui identidade e ajustes próprios no runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/ElderGuardian.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Guardian.java"}
+          ]
+        },
+        "efeito": {
+          "text": "A classe do Guardião-Mestre acrescenta uma rotina periódica que afeta jogadores próximos conforme condições internas. Intervalo, alcance e intensidade não são congelados no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/ElderGuardian.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:enderman",
+      "title": "Enderman",
+      "summary": {
+        "text": "O Enderman é uma criatura neutra que pode entrar em estado hostil quando provocada. Sua implementação combina persistência de raiva, reação ao olhar, teleporte e transporte de determinados blocos.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:enderman"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/EnderMan.java"}
+        ]
+      },
+      "sections": {
+        "hostilidade": {
+          "text": "EnderMan implementa NeutralMob e mantém estado de raiva persistente. A classe também avalia se um jogador está olhando para a entidade e usa esse contexto em sua lógica de provocação e alvo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/EnderMan.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/NeutralMob.java"}
+          ]
+        },
+        "mobilidade": {
+          "text": "A entidade possui rotinas próprias de teleporte e declara sensibilidade à água. Ela também mantém um estado sincronizado para o bloco que está carregando quando essa mecânica está ativa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/EnderMan.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:evoker",
+      "title": "Invocador",
+      "summary": {
+        "text": "O Invocador é um illager conjurador. Sua classe deriva de SpellcasterIllager e registra objetivos próprios para preparação, ataque e invocação de feitiços.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:evoker"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Evoker.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/SpellcasterIllager.java"}
+        ]
+      },
+      "sections": {
+        "magia": {
+          "text": "Evoker possui objetivos separados para conjuração ofensiva e invocação. Tempos de preparação, quantidade de entidades geradas, dano e alcance continuam sob as regras do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Evoker$EvokerAttackSpellGoal.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Evoker$EvokerSummonSpellGoal.java"}
+          ]
+        },
+        "comportamento": {
+          "text": "A implementação também contém um objetivo especial direcionado a ovelhas, separado de sua rotina normal de combate. O efeito e os critérios concretos permanecem controlados pela classe vanilla.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Evoker$EvokerWololoSpellGoal.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Evoker.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:ghast",
+      "title": "Ghast",
+      "summary": {
+        "text": "O Ghast é uma criatura hostil voadora com IA própria de deslocamento e ataque à distância. A entidade mantém um estado sincronizado de carga relacionado ao disparo de bolas de fogo.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:ghast"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Ghast.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "O objetivo de ataque do Ghast controla a preparação e o disparo de projéteis explosivos. Força da explosão, alcance, temporização e demais parâmetros permanecem mecânicas do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Ghast.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Ghast$GhastShootFireballGoal.java"}
+          ]
+        },
+        "movimento": {
+          "text": "Como FlyingMob, utiliza objetivos e controle de movimento adequados ao deslocamento aéreo, incluindo lógica de flutuação e escolha de posições. O Compêndio não converte velocidades ou distâncias em valores fixos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Ghast.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/FlyingMob.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:guardian",
+      "title": "Guardião",
+      "summary": {
+        "text": "O Guardião é uma criatura hostil aquática com navegação própria e um sistema de ataque que mantém alvo sincronizado e estado de carregamento visual do feixe.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:guardian"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Guardian.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "Guardian possui um objetivo específico de ataque que acompanha um alvo antes de concluir sua ação ofensiva. Tempo de carga, dano e alcance são mantidos como dados mecânicos da implementação.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Guardian.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Guardian$GuardianAttackGoal.java"}
+          ]
+        },
+        "movimento": {
+          "text": "A entidade usa navegação e controle de movimento especializados para o ambiente aquático. Sua classe também mantém animação própria relacionada aos espinhos, sem que o texto editorial fixe valores de animação ou deslocamento.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Guardian.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Guardian$GuardianMoveControl.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:phantom",
+      "title": "Espectro",
+      "summary": {
+        "text": "O Espectro é uma criatura hostil voadora cuja IA trabalha com fases de ataque, pontos de ancoragem e alvos de movimento no espaço aéreo.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:phantom"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Phantom.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "A classe registra objetivos separados para aquisição de jogador, estratégia de ataque e investida em mergulho. Condições de seleção, frequência e dano permanecem governados pela IA vanilla.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Phantom$PhantomAttackPlayerTargetGoal.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Phantom$PhantomSweepAttackGoal.java"}
+          ]
+        },
+        "movimento": {
+          "text": "O Espectro alterna comportamento de circulação em torno de uma âncora com deslocamento para um ponto-alvo. Velocidade, raio e duração dessas fases não são hardcoded na descrição.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Phantom.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Phantom$PhantomCircleAroundAnchorGoal.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:pillager",
+      "title": "Saqueador",
+      "summary": {
+        "text": "O Saqueador é um illager hostil especializado em combate à distância com besta. Sua classe implementa o contrato CrossbowAttackMob e mantém estado próprio de carregamento da arma.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:pillager"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Pillager.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/CrossbowAttackMob.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "A entidade expõe rotinas de carregamento e ataque à distância com besta. Cadência, precisão, alcance e dano dependem dos sistemas vanilla e do equipamento efetivamente carregado.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Pillager.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/CrossbowAttackMob.java"}
+          ]
+        },
+        "inventario_e_raid": {
+          "text": "Pillager também implementa InventoryCarrier e possui pontos de integração com comportamento de raid. O texto não presume capacidade de inventário, equipamento garantido ou bônus numéricos fora do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Pillager.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/ai/village/raid/Raider.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:wither_skeleton",
+      "title": "Esqueleto Wither",
+      "summary": {
+        "text": "O Esqueleto Wither é uma variante hostil da família de AbstractSkeleton. Ele mantém a infraestrutura esquelética compartilhada, mas possui equipamento, ataque corpo a corpo e regras de saque próprios.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:wither_skeleton"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/WitherSkeleton.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/AbstractSkeleton.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "WitherSkeleton sobrescreve a rotina de acerto corpo a corpo da classe-base para aplicar comportamento adicional próprio da variante. Duração, intensidade e dano permanecem sob as regras do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/WitherSkeleton.java"}
+          ]
+        },
+        "equipamento_e_saque": {
+          "text": "A classe possui inicialização própria de equipamento, encantamentos e saque especial de morte. Itens, chances e condições específicas não são congelados em prosa editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/WitherSkeleton.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}
