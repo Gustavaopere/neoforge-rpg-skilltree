@@ -78,6 +78,11 @@ def reject_placeholder(text: str, label: str) -> None:
         raise EditorialCorpusError(f"{label} contains a forbidden placeholder")
 
 
+def reject_source_placeholder(text: str, label: str) -> None:
+    if text == "..." or PLACEHOLDER_RE.search(text):
+        raise EditorialCorpusError(f"{label} contains a forbidden placeholder")
+
+
 def parse_entry_id(value: Any, label: str = "entry_id") -> tuple[str, str, str]:
     text = require_non_blank(value, label)
     match = ENTRY_ID_RE.fullmatch(text)
@@ -125,6 +130,7 @@ def validate_source(raw: Any, label: str) -> dict[str, str]:
             f"{label}.type has unsupported source type {source_type!r}; expected one of {sorted(SOURCE_TYPES)}"
         )
     ref = require_non_blank(raw.get("ref"), f"{label}.ref")
+    reject_source_placeholder(ref, f"{label}.ref")
     result = {"type": source_type, "ref": ref}
     note = raw.get("note")
     if note is not None:
@@ -194,13 +200,17 @@ def validate_entry(
         raise EditorialCorpusError(
             f"{label}.review_status must be one of {sorted(REVIEW_STATUSES)}, got {review_status!r}"
         )
-    availability = require_non_blank(raw.get("availability", "RUNTIME"), f"{label}.availability")
+    availability = require_non_blank(raw.get("availability"), f"{label}.availability")
     if availability not in AVAILABILITY:
         raise EditorialCorpusError(
             f"{label}.availability must be one of {sorted(AVAILABILITY)}, got {availability!r}"
         )
     availability_reason: str | None = None
     if availability in {"OPTIONAL", "LEGACY"}:
+        if entry_id in runtime_ids:
+            raise EditorialCorpusError(
+                f"{label} is present in the current runtime coverage and must use availability=RUNTIME"
+            )
         availability_reason = require_non_blank(raw.get("availability_reason"), f"{label}.availability_reason")
         reject_placeholder(availability_reason, f"{label}.availability_reason")
     elif entry_id not in runtime_ids:
