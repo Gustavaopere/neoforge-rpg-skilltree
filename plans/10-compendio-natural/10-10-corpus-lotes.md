@@ -173,9 +173,38 @@ Entradas:
 - nenhuma duração, chance, dano, alcance, cadência, força de explosão, tamanho de inventário ou outro parâmetro mecânico mutável foi congelado em prosa;
 - o corpus corrigido passou pelo CI editorial #210 e pelo CI agregado #2378, incluindo JUnit, GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
+## Lote 7 — Vanilla / chefes e ameaças de estruturas
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-batch7.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:minecraft:ender_dragon` — Dragão Ender
+2. `ENTITY:minecraft:endermite` — Endermite
+3. `ENTITY:minecraft:magma_cube` — Cubo de magma
+4. `ENTITY:minecraft:ravager` — Devastador
+5. `ENTITY:minecraft:shulker` — Shulker
+6. `ENTITY:minecraft:silverfish` — Traça
+7. `ENTITY:minecraft:vex` — Vex
+8. `ENTITY:minecraft:vindicator` — Vingador
+9. `ENTITY:minecraft:warden` — Defensor
+10. `ENTITY:minecraft:wither` — Wither
+
+### Critérios editoriais aplicados ao lote 7
+
+- identidade das dez entidades confirmada no registry de Minecraft 1.21.1 e nomenclatura revisada contra o asset `pt_br` da mesma linha, incluindo `Dragão Ender`, `Devastador`, `Traça`, `Vingador` e `Defensor`;
+- chefes tratados por seus sistemas reais em vez de descrições genéricas: o Dragão Ender usa a infraestrutura de fases do pacote `enderdragon.phases`, enquanto o Wither mantém alvos múltiplos, projéteis e estado próprio de chefe;
+- o Defensor foi documentado a partir de `Warden`, `WardenAi`, `AngerManagement`, `VibrationSystem` e do comportamento sônico no caminho correto `net.minecraft.world.entity.ai.behavior.warden.SonicBoom`;
+- relações e comportamentos estruturais relevantes foram preservados: `Ravager` → `Raider`, `MagmaCube` → `Slime`, carapaça/fixação do Shulker, infestação e chamada de grupo da Traça, vínculo/investida do Vex, estado Johnny do Vingador e ciclo de vida próprio da Endermite;
+- nenhuma duração, chance, dano, alcance, recarga, velocidade, força de projétil, resistência, limiar de raiva ou outro parâmetro mecânico mutável foi congelado em prosa;
+- todas as fichas usam `RUNTIME` e `OFFICIAL_CODE`, permanecem `REVIEWED`/`RUNTIME` e não transformam detalhes de configuração ou composição de encontros em regras universais;
+- o corpus corrigido passou pelo Compendium Editorial CI #218 e pelo RPG Skill Tree CI #2390, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
-- entidades vanilla reais no corpus: **60**;
-- lotes documentados: **6**;
+- entidades vanilla reais no corpus: **70**;
+- lotes documentados: **7**;
 - namespace atual em produção: `minecraft`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
