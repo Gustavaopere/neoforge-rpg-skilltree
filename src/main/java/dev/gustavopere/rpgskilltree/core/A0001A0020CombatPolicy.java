@@ -94,11 +94,12 @@ public final class A0001A0020CombatPolicy {
                 }
             }
         } else if (facts.family() == WeaponFamily.AXE) {
+            double availableFury = state.availableFuryForAxe(facts.actorId(), facts.nowMillis());
             boolean frenzyAvailable = ranks.learned("A0012")
-                && state.fury(facts.actorId()) + 1.0E-9D >= NotionCombatPerkRules.A0012_FRENZY_THRESHOLD
+                && availableFury + 1.0E-9D >= NotionCombatPerkRules.A0012_FRENZY_THRESHOLD
                 && NotionCombatPerkRules.frenzyBaselineAvailable(facts.impactHookAvailable(), facts.frenzyBodyCostPaid());
             boolean peakReady = frenzyAvailable
-                && state.fury(facts.actorId()) + 1.0E-9D >= NotionCombatPerkRules.A0012_PEAK_THRESHOLD;
+                && availableFury + 1.0E-9D >= NotionCombatPerkRules.A0012_PEAK_THRESHOLD;
 
             if (peakReady
                 && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0012:peak", facts.nowMillis())
@@ -115,9 +116,16 @@ public final class A0001A0020CombatPolicy {
                 boolean hasSafeComponent = nativeDefense
                     ? facts.impactHookAvailable() || facts.penetrationHookAvailable()
                     : armorFallback && facts.penetrationHookAvailable();
-                if (ruptureRank > 0 && (nativeDefense || armorFallback) && hasSafeComponent
+                boolean ruptureEligible = ruptureRank > 0
+                    && (nativeDefense || armorFallback)
+                    && hasSafeComponent
+                    && state.availableFuryForAxe(facts.actorId(), facts.nowMillis()) + 1.0E-9D >= NotionCombatPerkRules.A0011_MIN_FURY;
+                if (ruptureEligible
                     && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0011:spend", facts.nowMillis())
-                    && state.consumeFury(facts.actorId(), NotionCombatPerkRules.A0011_FURY_COST, NotionCombatPerkRules.A0011_MIN_FURY)) {
+                    && state.prepareRuptureCommit(
+                        facts.actorId(), facts.targetId(), facts.rootActionId(), facts.nowMillis())) {
+                    // A0011 reserves the 20-Fury cost in PRE so A0012 sees the effective post-cost
+                    // Fury threshold, but the irreversible debit is committed only after damage POST.
                     if (nativeDefense && facts.impactHookAvailable()) {
                         impact *= NotionCombatPerkRules.ruptureImpactMultiplier(ruptureRank);
                         guard *= NotionCombatPerkRules.ruptureImpactMultiplier(ruptureRank);
@@ -127,29 +135,37 @@ public final class A0001A0020CombatPolicy {
                     }
                 }
 
-                // A0011 may itself drop Fury below the Frenzy threshold, so eligibility is sampled
-                // again after the spend. The adapter must have paid A0012's body cost before setting
-                // frenzyBodyCostPaid=true; without that receipt the benefit remains fail-closed.
+                // A0011's bounded reservation counts against A0012 exactly as the historical PRE
+                // spend did, without mutating Fury until the same root confirms effective damage.
                 if (ranks.learned("A0012")
-                    && state.fury(facts.actorId()) + 1.0E-9D >= NotionCombatPerkRules.A0012_FRENZY_THRESHOLD
+                    && state.availableFuryForAxe(facts.actorId(), facts.nowMillis()) + 1.0E-9D >= NotionCombatPerkRules.A0012_FRENZY_THRESHOLD
                     && NotionCombatPerkRules.frenzyBaselineAvailable(facts.impactHookAvailable(), facts.frenzyBodyCostPaid())) {
                     impact = Math.max(impact, NotionCombatPerkRules.A0012_FRENZY_IMPACT_MULTIPLIER);
                     frenzyTradeoff = true;
                 }
             }
         } else if (facts.family() == WeaponFamily.SPEAR) {
-            if (ranks.learned("A0018") && state.distanceControl(facts.actorId(), facts.nowMillis()) >= 3
-                && state.consumeLineWindow(facts.actorId(), facts.targetId(), facts.nowMillis())
-                && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0018:consume", facts.nowMillis())) {
-                state.consumeDistanceControl(facts.actorId(), 3, facts.nowMillis());
-                damage *= 1.15D;
-                if (facts.impactHookAvailable()) { impact *= 1.40D; guard *= 1.40D; }
+            boolean lineEligible = ranks.learned("A0018")
+                && state.availableDistanceControl(facts.actorId(), facts.nowMillis()) >= 3
+                && state.lineWindowActive(facts.actorId(), facts.targetId(), facts.nowMillis());
+            if (lineEligible) {
+                if (state.claimOnce(facts.actorId(), facts.rootActionId(), "A0018:consume", facts.nowMillis())
+                    && state.prepareLineCommit(
+                        facts.actorId(), facts.targetId(), facts.rootActionId(), facts.nowMillis())) {
+                    // Window, three charges and target lockout remain reversible until confirmed POST.
+                    damage *= 1.15D;
+                    if (facts.impactHookAvailable()) { impact *= 1.40D; guard *= 1.40D; }
+                }
             } else {
                 int rank = ranks.rank("A0017");
-                if (rank > 0 && state.distanceControl(facts.actorId(), facts.nowMillis()) >= 1
-                    && state.consumeInterceptWindow(facts.actorId(), facts.targetId(), facts.nowMillis())
-                    && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0017:consume", facts.nowMillis())) {
-                    state.consumeDistanceControl(facts.actorId(), 1, facts.nowMillis());
+                boolean interceptEligible = rank > 0
+                    && state.availableDistanceControl(facts.actorId(), facts.nowMillis()) >= 1
+                    && state.interceptWindowActive(facts.actorId(), facts.targetId(), facts.nowMillis());
+                if (interceptEligible
+                    && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0017:consume", facts.nowMillis())
+                    && state.prepareInterceptCommit(
+                        facts.actorId(), facts.targetId(), facts.rootActionId(), facts.nowMillis())) {
+                    // A0017's window and one charge commit only after effective damage POST.
                     if (facts.impactHookAvailable()) {
                         impact *= NotionCombatPerkRules.interceptionImpactMultiplier(rank);
                         guard *= NotionCombatPerkRules.interceptionImpactMultiplier(rank);
@@ -176,6 +192,10 @@ public final class A0001A0020CombatPolicy {
         if (!facts.direct() || !facts.hostile() || !facts.actualDamage()) {
             if (facts.family() == WeaponFamily.SWORD) {
                 state.discardPreparedSwordAction(facts.actorId(), facts.rootActionId());
+            } else if (facts.family() == WeaponFamily.AXE) {
+                state.discardPreparedAxeAction(facts.actorId(), facts.rootActionId());
+            } else if (facts.family() == WeaponFamily.SPEAR) {
+                state.discardPreparedSpearAction(facts.actorId(), facts.rootActionId());
             }
             return;
         }
@@ -183,6 +203,14 @@ public final class A0001A0020CombatPolicy {
         NotionCombatPerkState.PreparedSwordCommit swordCommit = NotionCombatPerkState.PreparedSwordCommit.NONE;
         if (facts.family() == WeaponFamily.SWORD) {
             swordCommit = state.commitPreparedSwordAction(
+                facts.actorId(), facts.targetId(), facts.rootActionId(), facts.nowMillis());
+        } else if (facts.family() == WeaponFamily.AXE) {
+            // Commit before A0010 gain to preserve historical spend→gain ordering on the same hit.
+            state.commitPreparedAxeAction(
+                facts.actorId(), facts.targetId(), facts.rootActionId(), facts.nowMillis());
+        } else if (facts.family() == WeaponFamily.SPEAR) {
+            // Commit before A0016 gain so the consumer cannot spend a charge created by this hit.
+            state.commitPreparedSpearAction(
                 facts.actorId(), facts.targetId(), facts.rootActionId(), facts.nowMillis());
         }
 
