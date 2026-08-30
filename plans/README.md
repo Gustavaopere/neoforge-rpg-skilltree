@@ -58,11 +58,14 @@ Se uma regressão ou mudança arquitetural reabrir o trabalho, o arquivo volta a
 | 10 | `10-compendio-natural/` | PLANEJADO — Dicionário Enciclopédico pt-BR |
 | 11 | `11-itemization-equipment-progression/` | PLANEJADO — itemização universal e progressão de equipamentos |
 | 12 | `12-bodies-clones-progression-identities/` | PLANEJADO — corpos, clones e identidades de progressão |
+| 13 | `13-cartography-regions-poi-discovery/` | PLANEJADO — cartografia RPG, regiões, locais e descoberta |
 
 O Stage 10 consolida fauna, flora, árvores, cultivos, biomas, estruturas, dimensões, descoberta e dados técnicos em um único **Compêndio Natural**. O inventário deve ser derivado da modlist/registries atuais e manter suporte automático a conteúdo modded desconhecido.
 
 O Stage 11 consolida a **Itemização e Progressão de Equipamentos**: identidade persistente, Rank, Poder do Item, 1–5 Prefixos, 1–5 Sufixos e 1–5 Infixos por equipamento, sem reroll, com geração universal em craft/loot/mobs/outputs modded, integração com Apotheosis/Apothic, Iron's Spellbooks, Ars Nouveau, Create/tech e Curios, além de apresentação própria integral em português do Brasil.
 
 O Stage 12 consolida **Corpos, Clones e Identidades de Progressão**: uma mesma conta pode manter múltiplos corpos persistentes com level, árvore, atributos, classes, masteries, inventário e integrações corporais independentes. A troca usa transação server-authoritative com rollback; o world scaling passa a consultar a progressão do corpo ativo sem remover baselines naturais de dimensões/territórios. O acesso pode ocorrer por construção tecnológica ou transmigração mística, incluindo integração opcional e não destrutiva com caixões do Vampirism, e toda apresentação própria deve ser integralmente localizada em português do Brasil.
+
+O Stage 13 consolida **Cartografia, Regiões, Locais e Descoberta**: biomas são agrupados em regiões semânticas persistentes; estruturas e locais especiais tornam-se POIs reutilizáveis; quests podem revelar rumor, direção, região, área aproximada ou localização exata sem vazar segredos; o conhecimento é `BODY_LOCAL` por padrão para respeitar o Stage 12; e JourneyMap funciona como renderer opcional por API pública, não como autoridade do domínio. O estágio também exige provenance/licença verificável para qualquer implementação derivada de mods usados como referência.
 
 Antes de implementar qualquer subplano, ler `STATUS.md`, `DECISIONS.md`, `PENDING.md`, o `README.md` do estágio e os arquivos anteriores na ordem numérica.
