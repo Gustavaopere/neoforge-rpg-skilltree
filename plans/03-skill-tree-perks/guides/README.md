@@ -27,4 +27,7 @@ A navegação canônica de cada guia está no `README.md` de sua própria pasta.
 - Magia: 17 arquivos de conteúdo.
 - Tecnologia: 19 arquivos de conteúdo.
 - Cada guia foi primeiro reconstruído integralmente e só então repartido por headings de nível 1.
-- A rotina aborta se detectar perda/reordenação de conteúdo, heading grudado em parágrafo ou marcadores brutos de callout/TOC do Notion.
+- A transformação abortou se detectasse perda ou reordenação do conteúdo ao repartir os capítulos.
+- Headings que estavam grudados em parágrafos foram separados em linhas próprias.
+- Callouts foram convertidos para Markdown; tabelas estruturais foram convertidas para tabelas Markdown; navegação `mention-page` foi substituída por links explícitos.
+- Nenhum arquivo novo depende de continuar um parágrafo ou seção em outro arquivo.
