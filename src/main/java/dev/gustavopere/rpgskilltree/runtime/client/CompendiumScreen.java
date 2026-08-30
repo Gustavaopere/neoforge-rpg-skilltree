@@ -168,26 +168,33 @@ public final class CompendiumScreen extends Screen {
         addRenderableWidget(discoveredFilterButton);
 
         CompendiumScreenLayout.Rect detail = layout.detailBody();
+        int headerButtonY = detail.y() + 10;
         favoriteButton = Button.builder(favoriteLabel(), button -> {
             session.toggleCurrentEntryFavorite();
             refreshFavoriteButton();
         }).bounds(
             detail.right() - FAVORITE_BUTTON_WIDTH - 10,
-            detail.y() + 10,
+            headerButtonY,
             FAVORITE_BUTTON_WIDTH,
             FAVORITE_BUTTON_HEIGHT
         ).build();
         favoriteButton.visible = false;
         addRenderableWidget(favoriteButton);
 
+        int notesButtonX = layout.splitPanes()
+            ? detail.right() - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - HEADER_BUTTON_GAP - 10
+            : detail.x() + 10;
+        int notesButtonY = layout.splitPanes()
+            ? headerButtonY
+            : headerButtonY + BACK_BUTTON_HEIGHT + HEADER_BUTTON_GAP;
         notesButton = Button.builder(notesButtonLabel(), button -> {
             if (notesEditor == null) return;
             notesEditor.setPanelOpen(!notesEditor.panelOpen());
             entityPreview.clear();
             refreshNotesButton();
         }).bounds(
-            detail.right() - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - HEADER_BUTTON_GAP - 10,
-            detail.y() + 10,
+            notesButtonX,
+            notesButtonY,
             NOTES_BUTTON_WIDTH,
             NOTES_BUTTON_HEIGHT
         ).build();
@@ -196,7 +203,7 @@ public final class CompendiumScreen extends Screen {
 
         int editorTopOffset = layout.splitPanes()
             ? 38
-            : Math.min(52, Math.max(38, detail.height() / 3));
+            : 10 + BACK_BUTTON_HEIGHT + HEADER_BUTTON_GAP + NOTES_BUTTON_HEIGHT + 8;
         int editorY = detail.y() + editorTopOffset;
         int editorHeight = Math.max(18, detail.bottom() - editorY - 10);
         notesEditor = new CompendiumNotesEditBox(
@@ -327,7 +334,7 @@ public final class CompendiumScreen extends Screen {
                 && mouseY >= y && mouseY < y + BACK_BUTTON_HEIGHT;
             graphics.fill(x, y, x + BACK_BUTTON_WIDTH, y + BACK_BUTTON_HEIGHT, hovered ? ROW_HOVER : ROW);
             graphics.drawString(font, Component.translatable("screen.rpgskilltree.compendium.back"), x + 6, y + 5, TEXT);
-            y += BACK_BUTTON_HEIGHT + 8;
+            y += BACK_BUTTON_HEIGHT + HEADER_BUTTON_GAP + NOTES_BUTTON_HEIGHT + 8;
         }
 
         var entry = session.currentEntry();
