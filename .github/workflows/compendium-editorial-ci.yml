@@ -1,0 +1,25 @@
+name: Compendium Editorial CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'scripts/compendium/**'
+      - 'src/main/resources/data/rpgskilltree/compendium/editorial/**'
+      - 'plans/10-compendio-natural/10-ptbr-corpus-editorial.md'
+      - '.github/workflows/compendium-editorial-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  editorial-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Editorial corpus schema and coverage tests
+        run: python3 scripts/compendium/test_editorial_corpus.py
