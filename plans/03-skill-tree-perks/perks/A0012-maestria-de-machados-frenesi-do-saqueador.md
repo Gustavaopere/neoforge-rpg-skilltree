@@ -35,7 +35,7 @@
 ## Evidência técnica
 
 - `NotionCombatPerkRules`: threshold 75, pico 100, gasto 40, impacto 1,10/1,20, pressão 1,40, `CORE` 1,5, exhaustion 0,015 e stamina regen −0,15.
-- `ColdSweatFrenzyBridge`: verifica mod/version prefix 2.4.2, resolve `Temperature.add(..., Trait.CORE, ...)` e retorna sucesso/falha da escrita real.
+- `ColdSweatFrenzyBridge`: exige exatamente Cold Sweat `2.4.2`, resolve `Temperature.add(..., Trait.CORE, ...)` e retorna sucesso/falha da escrita real.
 - `A0001A0020EpicFightHooks.onDamagePre`: valida o mesmo evento server-authoritative, paga CORE primeiro, aplica exhaustion somente após sucesso e só então informa ao policy que o custo corporal foi pago.
 - `A0001A0020CombatPolicy.beforeHit`: baseline/pico exigem `frenzyBodyCostPaid`; o gasto de 40 Fúria do pico acontece somente depois desse receipt.
 - A0011 continua com precedência abaixo do pico; o adapter não cobra o custo corporal de A0012 se o gasto de A0011 derrubaria a Fúria abaixo de 75 antes de qualquer benefício de Frenesi.
@@ -56,3 +56,23 @@
 - [x] Queda de Ritmo 6/5/4 s;
 - [x] estado de Frenesi não é armado sem bridge CORE operacional;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Chat 2 — implementação, testes e merge — PR #224
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #224.
+
+- [x] P-A0012-01 resolvida: `supportsVersion` aceita somente a versão auditada exata `2.4.2`; `2.4.20`, `2.4.2.1`, prereleases e outras versões ficam fail-closed.
+- [x] P-A0012-02 resolvida: incompatibilidade de versão, falha de resolução da API e falha de invocação possuem diagnóstico bounded one-shot por classe/chave de falha.
+- [x] Probe de compatibilidade executado na inicialização quando Cold Sweat está presente.
+- [x] Falha de versão/API/escrita continua fail-closed e não autoriza benefício, exhaustion ou gasto do pico.
+- [x] CORE +1,5 é pago antes de exhaustion +0,015 e antes do pacote ofensivo no mesmo PRE.
+- [x] Pico só gasta 40 Fúria depois do receipt corporal confirmado.
+- [x] Queda de Ritmo continua usando `epicfight:stamina_regen`, sem stamina paralela.
+- [x] Nenhuma inferência de sede foi adicionada.
+- [x] RED P-A0012-01: CI #2028 falhou no JUnit exatamente no contrato de versão.
+- [x] RED P-A0012-02: CI #2033 falhou no JUnit exatamente no contrato de diagnóstico bounded.
+- [x] `ColdSweatFrenzyBridgeTest` cobre versão exata e deduplicação do gate diagnóstico.
+- [x] `RPG Skill Tree CI` #2036 GREEN no SHA `bda08ca9748ad16d3352d0872f753976731424f8`.
+- [x] JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma bloqueante para A0012. As duas pendências técnicas entregues pelo Chat 1 foram fechadas sem redesenho.

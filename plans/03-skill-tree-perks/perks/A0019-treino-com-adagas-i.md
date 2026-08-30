@@ -47,3 +47,17 @@
 - [x] classificação `dagger` provider-native;
 - [x] fail-closed para categoria desconhecida;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Chat 2 — implementação, testes e merge — PR #224
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #224.
+
+- [x] Hook de dano direto DAGGER implementado no pipeline canônico.
+- [x] Gate/ranks/dependências representados no modelo runtime.
+- [x] Classificação vem da capability do Epic Fight; desconhecida = FAIL-CLOSED.
+- [x] Nenhuma heurística por nome/material/velocidade foi introduzida.
+- [x] Regressão JUnit confirma +9% no rank 3 de A0019.
+- [x] `RPG Skill Tree CI` #2036 GREEN no SHA `bda08ca9748ad16d3352d0872f753976731424f8`.
+- [x] JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma para A0019.

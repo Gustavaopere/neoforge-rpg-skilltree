@@ -47,3 +47,19 @@
 - [x] rejeição de alvo observavelmente desprotegido;
 - [x] fallback de penetração-only;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Chat 2 — implementação, testes e merge — PR #224
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #224.
+
+- [x] Hook de hit direto de machado e gate de Fúria implementados.
+- [x] Gasto de 20 Fúria deduplicado por `A0011:spend`.
+- [x] Guarda/postura provider-native preservada como rota principal.
+- [x] Fallback estrito de defesa física aplica somente penetração.
+- [x] Alvo observavelmente sem guarda não ativa fallback por Armor.
+- [x] Nenhuma heurística de “alvo pesado” foi reintroduzida.
+- [x] Testes de policy cobrem rota nativa, rejeição e fallback.
+- [x] `RPG Skill Tree CI` #2036 GREEN no SHA `bda08ca9748ad16d3352d0872f753976731424f8`.
+- [x] JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma para A0011 no provider/versionamento atual.

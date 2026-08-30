@@ -77,3 +77,18 @@ Nenhuma divergência específica foi identificada no caminho auditado. Se a obte
 - [x] lockout de 8 s por alvo;
 - [x] detecção server-side fora→dentro;
 - [ ] revalidar GameTest/dedicated server após atualização do Epic Fight.
+
+## Chat 2 — implementação, testes e merge — PR #224
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #224.
+
+- [x] Crossing fora→dentro é server-side e exige 3 cargas + mastery ≥80.
+- [x] Janela 3/3,5/4 s por mastery implementada.
+- [x] Próximo hit SPEAR elegível consome exatamente 3 cargas.
+- [x] Dano ×1,15 e impacto/pressão ×1,40 aplicados sem ataque/movimento automático.
+- [x] Lockout do mesmo alvo por 8 s preservado.
+- [x] Regressão JUnit confirma consumo, bônus e lockout; durante lockout A0017 pode operar independentemente.
+- [x] `RPG Skill Tree CI` #2036 GREEN no SHA `bda08ca9748ad16d3352d0872f753976731424f8`.
+- [x] JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma para A0018.
