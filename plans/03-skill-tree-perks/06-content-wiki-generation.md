@@ -55,18 +55,48 @@ Evidência TDD desta fatia:
 - CI #1902 / `33289583854`: contrato de cobertura GREEN;
 - CI #1905 / `33289654389`: auditoria real + Core + JUnit + 16 GameTests + validators + build + JAR + dedicated-server smoke totalmente GREEN no head correspondente.
 
+## Visibilidade client-side das perks semânticas — PR #212
+
+A auditoria factual revelou que a malha visual histórica de 512 nós e as perks canônicas A0001–A0100 são contratos diferentes. `CombatPerkNodeBinding` usa IDs persistentes `rpgskilltree:combat/a####` e documenta explicitamente que os antigos IDs `martial_###` não são aliases. O servidor já injeta A0001–A0100 em `rpgskilltree:runtime/combat_perks` por meio de `SkillTreeDataLoader.closedCombatRules()`, mas esses 100 nós não possuíam layout carregável pelo cliente.
+
+O PR #203 concluiu e foi mergeado em `main` como `5878b56eb5890931a3b316b545771baca014460a` durante esta fatia. O merge-ref do PR #212 foi então validado contra essa base auditada.
+
+Implementado nesta fatia:
+
+- `CombatPerkVisualLayout` projeta os 100 nós canônicos sem criar uma segunda fonte de regras de gameplay;
+- a topologia visual é derivada exclusivamente dos vizinhos e dependências já presentes em `CombatPerkTreeModel`;
+- dependências externas como `martial_000`, `arcane_000`, `occult_000`, `agility_000` e `vitality_000` continuam sendo requisitos reais, mas não são convertidas em aliases nem adicionadas como falsas perks A####;
+- como o Catálogo Mestre do Notion não define coordenadas, X/Y são apresentação determinística derivada: componentes conectados, profundidade por `requiredNodeRanks` internos, espaçamento estável e detecção fail-closed de ciclo;
+- `ClientTreeLayout.combatPerks()` espelha exatamente os 100 IDs, `maxRank`, custo, starting point, nível mínimo, mastery e `requiredNodeRanks` de `CombatPerkTreeModel`;
+- `ClientTreeLayout.availableFor(...)` expõe `rpgskilltree:runtime/combat_perks` sem exigir desbloqueio de uma classe paga não relacionada;
+- `CombatPerkClientText` resolve os nomes A#### diretamente de `NotionCombatPerkCatalog`, sem duplicar os 100 nomes em outro catálogo/localização;
+- `RpgSkillTreeScreen` usa essa fonte canônica para nomes A#### e mostra a aba como `Perks de Combate`;
+- descrições A#### continuam ausentes quando não existe texto player-facing canônico versionado. Nenhuma descrição ou efeito foi sintetizado a partir de políticas Java;
+- o zoom inicial da aba semântica usa visão geral apropriada para uma árvore grande.
+
+Evidência TDD desta fatia:
+
+- CI #1919 / `33290671268`: RED esperado — `CombatPerkVisualLayout` inexistente;
+- CI #1921 / `33290725782`: projeção visual canônica GREEN em Core/JUnit e GameTests observados antes do run ser sucedido;
+- CI #1926 / `33290844884`: RED esperado — três erros, todos pela ausência de `ClientTreeLayout.combatPerks()`;
+- CI #1930 / `33290934102`: espelhamento servidor→cliente GREEN em Core/JUnit no head correspondente;
+- CI #1933 / `33291027327`: RED esperado — seis erros, todos pela ausência de `CombatPerkClientText`;
+- CI #1936 / `33291182166`: projeção + árvore client-side + nomes canônicos + Core + JUnit + 16 GameTests + validators + build + JAR + dedicated-server smoke totalmente GREEN no merge-ref contra `main@5878b56eb5890931a3b316b545771baca014460a`.
+
+Esta fatia resolve o blocker de **invisibilidade client-side** de A0001–A0100. Ela não declara encerrado o conteúdo dessas perks: nomes estão disponíveis pelo catálogo versionado, mas descrições/efeitos player-facing ainda precisam vir do snapshot canônico auditado, e A0021+ ainda seguem o processo de auditoria/implementação próprio.
+
 ## Bloqueio de conteúdo final
 
-O PR #203 (`audit/perk-criteria-a0001-a0020`) continua aberto e está reaplicando critérios obrigatórios e design canônico do Notion às perks A0001–A0020. O Catálogo Mestre também continua sendo editado durante essa auditoria.
+O PR #203 deixou de ser um blocker de concorrência: A0001–A0020 já foram reauditoradas contra os critérios obrigatórios e mergeadas na `main`. Entretanto, o Catálogo Mestre e os lotes posteriores ainda precisam convergir para conteúdo player-facing final antes de fechar o Stage 03.06.
 
 Por isso estas fatias **não**:
 
-- decidem quais nós estruturais permanecem estruturais;
-- criam nomes ou descrições finais por inferência;
+- decidem quais nós estruturais da malha histórica permanecem estruturais;
+- criam descrições finais ou textos de efeito por inferência;
 - alteram balanceamento de triads, bridges ou keystones;
 - materializam o catálogo factual final dentro dos blocos gerados;
 - ativam ainda o `--check` contra os arquivos reais da wiki no pipeline de regeneração.
 
-Esses itens devem consumir um snapshot de design auditado, em vez de competir com o trabalho canônico em andamento. O Stage 03.06 permanece aberto até todos os checkboxes e o Acceptance final serem satisfeitos.
+Esses itens devem consumir snapshots de design auditados, em vez de transformar o runtime atual em uma fonte editorial improvisada. O Stage 03.06 permanece aberto até todos os checkboxes e o Acceptance final serem satisfeitos.
 
 **Acceptance:** jogador consegue descobrir o que cada perk final faz e a parte factual da wiki pode ser regenerada a partir do jogo.
