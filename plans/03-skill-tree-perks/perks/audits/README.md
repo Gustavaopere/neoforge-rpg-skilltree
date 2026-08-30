@@ -11,6 +11,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 ## Auditorias pós-merge e pendências técnicas — Chat 3
 
 - `AUDITORIA-CHAT3-A0001-A0010-PENDENCIAS-TECNICAS.md`
+- `AUDITORIA-CHAT3-A0011-A0020-PENDENCIAS-TECNICAS.md`
 
 ## Auditoria consolidada histórica
 
