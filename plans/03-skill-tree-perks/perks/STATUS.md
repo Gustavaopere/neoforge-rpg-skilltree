@@ -40,12 +40,12 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0032 | Treino com Maças II | APROVADO | Presente via attack-speed | depende de `P-A0031-01` |
 | A0033 | Precisão com Maças | APROVADO + boundary | Presente no crítico canônico | depende de `P-A0031-01` |
 | A0034 | Trauma Contundente | APROVADO + boundary | Presente no fallback Armor física | rotas extras guard/posture permanecem fail-closed sem receipt |
-| A0035 | Armadura Fendida | APROVADO + boundary | PRESENTE para Armor física | `P-A0035-01`: confirmar classificação boss do Witherstein/Mobstein |
-| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | NÃO CONFIRMADA | `P-A0036-01`: heavy receipt; `P-A0036-02`: aplicar Descompasso; depende de Mastery anti-farm |
+| A0035 | Armadura Fendida | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0035-01`: boss Witherstein; `P-A0035-02`: commit de Trauma/Sunder somente após hit confirmado |
+| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | NÃO CONFIRMADA | `P-A0036-01`: heavy receipt; `P-A0036-02`: aplicar Descompasso; `P-A0036-03`: Sunder deve preexistir ao root; depende de Mastery anti-farm |
 | A0037 | Treino com Foices I | APROVADO após correção | NÃO CONFIRMADA | `P-A0037-01`: remover tag SCYTHE; `P-A0037-02`: Mastery anti-farm |
 | A0038 | Treino com Foices II | APROVADO | Presente via attack-speed | depende de `P-A0037-01` |
 | A0039 | Precisão com Foices | APROVADO + boundary | Presente no crítico canônico | depende de `P-A0037-01` |
-| A0040 | Marca da Ceifa | APROVADO | Presente: mark/crossing/lifecycle | depende apenas de família SCYTHE segura |
+| A0040 | Marca da Ceifa | APROVADO | IMPLEMENTAÇÃO PARCIAL | `P-A0040-01`: cleanup de marca em target unload/despawn; depende de família SCYTHE segura |
 
 ## Regras sistêmicas vigentes
 
@@ -56,6 +56,9 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Mastery:** não pode vir de spam de dano. HAMMER/MACE/SCYTHE auditadas usam `DiscoveryProgress` +10 uma vez por tipo hostil inédito.
 - **MACE:** `combat:mace` gate60 = 6 tipos; terminal A0036 gate80 = 8 tipos.
 - **SCYTHE:** `combat:scythe` gate60 = 6 tipos.
+- **Commit causal:** consumo irreversível de recurso/estado condicionado a resultado real deve ocorrer no commit pós-hit confirmado; cancelamento/dano zero não pode deixar estado fantasma.
+- **Sequencing:** Quebra-Ossos exige Armadura Fendida pré-existente; o mesmo root action não pode criar Sunder e simultaneamente satisfazer A0036.
+- **Lifecycle:** estados por alvo precisam bounded cleanup também quando o alvo some sem morte/evento terminal equivalente.
 - **Proteção física:** Armor/guard/posture física não se confunde com Arcane Resistance, MagicResistance, Shroud ou hazards ambientais.
 - **Black Arcana:** `ARCANE_BACKLASH` permanece terminal e não crita/proca/concede Mastery/Trauma/Marca.
 - **Enshrouded:** Shroud/Exposure/Madness/Flame/Story não fornecem Armor, heavy ou weapon receipt.
@@ -85,12 +88,13 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **INÍCIO:** A0031.
 - **FIM:** A0040.
 - **Quantidade:** 10 perks consecutivas.
-- **Base reconciliada:** `main@492a4d28ee4b57a7e43645f623c4d07c08ac3361`; delta concorrente Stage 11.01 não alterou contratos A0031–A0040.
+- **Base reconciliada inicialmente:** `main@492a4d28ee4b57a7e43645f623c4d07c08ac3361`; deltas concorrentes Stage 11.01 e Stage 10.10/pt-BR não alteraram contratos A0031–A0040.
 - **Notion fetch fresco:** 10/10.
 - **Notion alterado:** A0031, A0033, A0034, A0035, A0036, A0037, A0039.
 - **Re-fetch pós-escrita:** 7/7 PASS em 2026-08-30.
 - **Sem mutação:** A0032, A0038, A0040.
 - **Nove eixos / 18 critérios:** PASS/N/A justificado no design; gaps runtime catalogados.
+- **Review PR #239:** três findings de implementação incorporados como `P-A0035-02`, `P-A0036-03` e `P-A0040-01`; nenhum exige redesenho do Notion.
 - **Arquivo canônico:** `AUDITORIA-RETROATIVA-PROVIDERS-A0031-A0040.md`.
 - **Runtime alterado neste Chat 1:** nenhum.
 - **A0041+:** não iniciado.
@@ -100,9 +104,12 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 1. `P-A0031-01` — remover tag MACE; vanilla mace por identidade exata, externos provider-native.
 2. `P-A0031-02` — `combat:mace` anti-farm via DiscoveryProgress.
 3. `P-A0035-01` — verificar boss classification do Witherstein em Mobstein 5.4.4; mapping só com registry id comprovado.
-4. `P-A0036-01` — heavy receipt MACE seguro.
-5. `P-A0036-02` — aplicar realmente Descompasso: −8% dano físico causado + −10% movement por 3 s, boss half/cooldown/lifecycle.
-6. `P-A0037-01` — remover tag SCYTHE; provider-native only.
-7. `P-A0037-02` — `combat:scythe` anti-farm via DiscoveryProgress.
+4. `P-A0035-02` — mover consumo definitivo de 3 Trauma + `markSundered` para commit do mesmo root action em hit confirmado; dano zero/cancelamento não consome/não cria state fantasma.
+5. `P-A0036-01` — heavy receipt MACE seguro.
+6. `P-A0036-02` — aplicar realmente Descompasso: −8% dano físico causado + −10% movement por 3 s, boss half/cooldown/lifecycle.
+7. `P-A0036-03` — A0036 só pode observar Sunder existente antes do root action atual; não permitir que o mesmo golpe aplique A0035 e ative A0036.
+8. `P-A0037-01` — remover tag SCYTHE; provider-native only.
+9. `P-A0037-02` — `combat:scythe` anti-farm via DiscoveryProgress.
+10. `P-A0040-01` — cleanup bounded/server-authoritative de `reapMarks` para alvo removido/despawnado/chunk descarregado sem morte.
 
-**Próxima etapa deste ciclo:** PR documental → CI/reviews → merge → confirmação da `main` → PARAR.
+**Próxima etapa deste ciclo:** CI/review do HEAD corrigido → merge → confirmação da `main` → PARAR.
