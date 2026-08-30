@@ -216,9 +216,9 @@
     },
     {
       "entry_id": "ENTITY:minecraft:phantom",
-      "title": "Espectro",
+      "title": "Phantom",
       "summary": {
-        "text": "O Espectro é uma criatura hostil voadora cuja IA trabalha com fases de ataque, pontos de ancoragem e alvos de movimento no espaço aéreo.",
+        "text": "O Phantom é uma criatura hostil voadora cuja IA trabalha com fases de ataque, pontos de ancoragem e alvos de movimento no espaço aéreo.",
         "sources": [
           {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:phantom"},
           {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Phantom.java"}
@@ -233,7 +233,7 @@
           ]
         },
         "movimento": {
-          "text": "O Espectro alterna comportamento de circulação em torno de uma âncora com deslocamento para um ponto-alvo. Velocidade, raio e duração dessas fases não são hardcoded na descrição.",
+          "text": "O Phantom alterna comportamento de circulação em torno de uma âncora com deslocamento para um ponto-alvo. Velocidade, raio e duração dessas fases não são hardcoded na descrição.",
           "sources": [
             {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Phantom.java"},
             {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Phantom$PhantomCircleAroundAnchorGoal.java"}
@@ -267,7 +267,7 @@
           "text": "Pillager também implementa InventoryCarrier e possui pontos de integração com comportamento de raid. O texto não presume capacidade de inventário, equipamento garantido ou bônus numéricos fora do runtime.",
           "sources": [
             {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Pillager.java"},
-            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/ai/village/raid/Raider.java"}
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/raid/Raider.java"}
           ]
         }
       },
