@@ -6,6 +6,8 @@ from pathlib import Path
 from typing import Any
 
 NAMESPACE = "rpgskilltree"
+SEMANTIC_COMBAT_TREE_ID = "rpgskilltree:runtime/combat_perks"
+SEMANTIC_COMBAT_SNAPSHOT = Path("build/generated-wiki/combat-perks.json")
 
 
 class WikiCatalogDriftError(RuntimeError):
@@ -25,9 +27,14 @@ def replace_generated_block(document: str, marker: str, body: str) -> str:
     return before + start + "\n" + normalized + end + after
 
 
-def build_catalog_sections(root: Path, locale: str = "pt_br") -> tuple[str, str]:
+def build_catalog_sections(
+    root: Path,
+    locale: str = "pt_br",
+    semantic_snapshot_required: bool = False,
+) -> tuple[str, str]:
     root = Path(root)
     rules = _load_rules(root)
+    semantic_combat = _load_semantic_combat_snapshot(root, required=semantic_snapshot_required)
     translations = _load_translations(root, locale)
     attributes, behaviors = _load_effects(root)
 
@@ -46,7 +53,6 @@ def build_catalog_sections(root: Path, locale: str = "pt_br") -> tuple[str, str]
         node_id = node["id"]
         name = translations.get(_translation_key(node_id, "name"), node_id)
         description = translations.get(_translation_key(node_id, "description"), "—")
-        requirements = _format_requirements(node)
         effects = [
             _format_attribute_summary(effect)
             for effect in sorted(attributes_by_node.get(node_id, []), key=lambda value: value["effectId"])
@@ -56,18 +62,26 @@ def build_catalog_sections(root: Path, locale: str = "pt_br") -> tuple[str, str]
             for effect in sorted(behaviors_by_node.get(node_id, []), key=lambda value: value["effectId"])
         )
         perk_lines.append(
-            "| " + " | ".join(
-                [
-                    _cell(f"`{tree_id}`"),
-                    _cell(f"`{node_id}`"),
-                    _cell(name),
-                    _cell(description),
-                    str(node["maxRank"]),
-                    str(node["costPerRank"]),
-                    _cell(requirements),
-                    _cell("; ".join(effects) if effects else "—"),
-                ]
-            ) + " |"
+            _format_perk_row(
+                tree_id,
+                node_id,
+                name,
+                description,
+                node,
+                "; ".join(effects) if effects else "—",
+            )
+        )
+
+    for tree_id, node in semantic_combat:
+        perk_lines.append(
+            _format_perk_row(
+                tree_id,
+                node["id"],
+                node["name"],
+                node["description"] or "—",
+                node,
+                "—",
+            )
         )
 
     effect_lines = [
@@ -175,7 +189,11 @@ def build_content_coverage(
 
 def update_catalog_documents(root: Path, locale: str = "pt_br", check: bool = False) -> list[Path]:
     root = Path(root)
-    perk_section, effect_section = build_catalog_sections(root, locale=locale)
+    perk_section, effect_section = build_catalog_sections(
+        root,
+        locale=locale,
+        semantic_snapshot_required=True,
+    )
     targets = (
         (root / "wiki/PERK_CATALOG.md", "perk-catalog", perk_section),
         (root / "wiki/EFFECT_CATALOG.md", "effect-catalog", effect_section),
@@ -206,6 +224,73 @@ def _load_rules(root: Path) -> list[tuple[str, dict[str, Any]]]:
         for node in payload["nodes"]:
             result.append((tree_id, node))
     result.sort(key=lambda value: (value[0], value[1]["id"]))
+    return result
+
+
+def _load_semantic_combat_snapshot(
+    root: Path,
+    required: bool,
+) -> list[tuple[str, dict[str, Any]]]:
+    path = root / SEMANTIC_COMBAT_SNAPSHOT
+    if not path.is_file():
+        if required:
+            raise FileNotFoundError(f"missing derived semantic combat wiki snapshot: {path}")
+        return []
+
+    payload = _read_json(path)
+    if not isinstance(payload, dict):
+        raise ValueError(f"semantic combat snapshot root must be an object: {path}")
+    if payload.get("schema") != 1:
+        raise ValueError(f"semantic combat snapshot requires schema 1: {path}")
+    tree_id = payload.get("treeId")
+    if tree_id != SEMANTIC_COMBAT_TREE_ID:
+        raise ValueError(
+            f"semantic combat snapshot requires treeId {SEMANTIC_COMBAT_TREE_ID}: {path}"
+        )
+    nodes = payload.get("nodes")
+    if not isinstance(nodes, list):
+        raise ValueError(f"semantic combat snapshot requires nodes array: {path}")
+
+    result: list[tuple[str, dict[str, Any]]] = []
+    seen_ids: set[str] = set()
+    seen_codes: set[str] = set()
+    for index, node in enumerate(nodes):
+        if not isinstance(node, dict):
+            raise ValueError(f"semantic combat snapshot node {index} must be an object: {path}")
+        for field in ("id", "code", "name", "description", "maxRank", "costPerRank"):
+            if field not in node:
+                raise ValueError(f"semantic combat snapshot node {index} missing {field}: {path}")
+
+        node_id = node["id"]
+        code = node["code"]
+        name = node["name"]
+        description = node["description"]
+        if not isinstance(node_id, str) or not node_id:
+            raise ValueError(f"semantic combat snapshot node {index} has invalid id: {path}")
+        if not isinstance(code, str) or not code:
+            raise ValueError(f"semantic combat snapshot node {index} has invalid code: {path}")
+        if not isinstance(name, str) or not name.strip():
+            raise ValueError(f"semantic combat snapshot node {node_id} has blank name: {path}")
+        if description is not None and not isinstance(description, str):
+            raise ValueError(f"semantic combat snapshot node {node_id} has invalid description: {path}")
+        if not isinstance(node["maxRank"], int) or node["maxRank"] < 1:
+            raise ValueError(f"semantic combat snapshot node {node_id} has invalid maxRank: {path}")
+        if not isinstance(node["costPerRank"], int) or node["costPerRank"] < 0:
+            raise ValueError(f"semantic combat snapshot node {node_id} has invalid costPerRank: {path}")
+        for field in ("requiredMastery", "requiredNodeRanks"):
+            value = node.get(field, {})
+            if not isinstance(value, dict):
+                raise ValueError(f"semantic combat snapshot node {node_id} has invalid {field}: {path}")
+
+        if node_id in seen_ids:
+            raise ValueError(f"semantic combat snapshot has duplicate node id {node_id}: {path}")
+        if code in seen_codes:
+            raise ValueError(f"semantic combat snapshot has duplicate code {code}: {path}")
+        seen_ids.add(node_id)
+        seen_codes.add(code)
+        result.append((tree_id, node))
+
+    result.sort(key=lambda value: (value[0], value[1]["code"], value[1]["id"]))
     return result
 
 
@@ -264,6 +349,28 @@ def _format_requirements(node: dict[str, Any]) -> str:
     if node.get("startingPoint", False):
         parts.append("Ponto inicial")
     return "; ".join(parts) if parts else "—"
+
+
+def _format_perk_row(
+    tree_id: str,
+    node_id: str,
+    name: str,
+    description: str,
+    node: dict[str, Any],
+    effects: str,
+) -> str:
+    return "| " + " | ".join(
+        [
+            _cell(f"`{tree_id}`"),
+            _cell(f"`{node_id}`"),
+            _cell(name),
+            _cell(description),
+            str(node["maxRank"]),
+            str(node["costPerRank"]),
+            _cell(_format_requirements(node)),
+            _cell(effects),
+        ]
+    ) + " |"
 
 
 def _format_attribute_summary(effect: dict[str, Any]) -> str:
