@@ -25,6 +25,8 @@ final class ItemizationOptionalImportBoundaryTest {
         "net.minecraft.",
         "net.neoforged."
     );
+    private static final Pattern PACKAGE_DECLARATION = Pattern.compile("(?m)^\\s*package\\s+[^;]+;");
+    private static final Pattern DOT_WHITESPACE = Pattern.compile("\\s*\\.\\s*");
     private static final Pattern QUALIFIED_REFERENCE = Pattern.compile(
         "\\b(?:[a-z_][A-Za-z0-9_$]*\\.){2,}[A-Za-z_$][A-Za-z0-9_$]*\\b"
     );
@@ -37,11 +39,7 @@ final class ItemizationOptionalImportBoundaryTest {
 
         try (var files = Files.walk(DOMAIN_ROOT)) {
             for (Path file : files.filter(path -> path.toString().endsWith(".java")).toList()) {
-                int lineNumber = 0;
-                for (String line : Files.readAllLines(file)) {
-                    lineNumber++;
-                    assertAllowedSourceLine(file, lineNumber, line);
-                }
+                assertAllowedSource(file, Files.readString(file));
             }
         }
     }
@@ -50,25 +48,22 @@ final class ItemizationOptionalImportBoundaryTest {
     void scannerRejectsFullyQualifiedProviderReferencesWithoutImports() {
         assertThrows(
             AssertionError.class,
-            () -> assertAllowedSourceLine(
+            () -> assertAllowedSource(
                 Path.of("Synthetic.java"),
-                1,
-                "ru.ironsspellbooks.api.spells.AbstractSpell spell;"
+                "final class Synthetic { ru.ironsspellbooks.api.spells.AbstractSpell spell; }"
             )
         );
         assertThrows(
             AssertionError.class,
-            () -> assertAllowedSourceLine(
+            () -> assertAllowedSource(
                 Path.of("Synthetic.java"),
-                1,
-                "dev.gustavopere.rpgskilltree.runtime.compat.IronsCompat bridge;"
+                "final class Synthetic { dev.gustavopere.rpgskilltree.runtime.compat.IronsCompat bridge; }"
             )
         );
         assertDoesNotThrow(
-            () -> assertAllowedSourceLine(
+            () -> assertAllowedSource(
                 Path.of("Synthetic.java"),
-                1,
-                "java.util.Objects.requireNonNull(value);"
+                "final class Synthetic { void run() { java.util.Objects.requireNonNull(value); } }"
             )
         );
     }
@@ -77,50 +72,165 @@ final class ItemizationOptionalImportBoundaryTest {
     void scannerRejectsQualifiedProviderReferencesSplitAcrossLines() {
         assertThrows(
             AssertionError.class,
-            () -> {
-                assertAllowedSourceLine(
-                    Path.of("Synthetic.java"),
-                    1,
-                    "ru.ironsspellbooks."
-                );
-                assertAllowedSourceLine(
-                    Path.of("Synthetic.java"),
-                    2,
-                    "api.spells."
-                );
-                assertAllowedSourceLine(
-                    Path.of("Synthetic.java"),
-                    3,
-                    "AbstractSpell spell;"
-                );
-            }
+            () -> assertAllowedSource(
+                Path.of("Synthetic.java"),
+                """
+                    final class Synthetic {
+                        ru.ironsspellbooks.
+                            api.spells.
+                            AbstractSpell spell;
+                    }
+                    """
+            )
         );
     }
 
-    private static void assertAllowedSourceLine(Path file, int lineNumber, String line) {
-        String trimmed = line.trim();
-        if (trimmed.isEmpty()
-            || trimmed.startsWith("package ")
-            || trimmed.startsWith("//")
-            || trimmed.startsWith("/*")
-            || trimmed.startsWith("*")
-            || trimmed.startsWith("*/")) {
-            return;
-        }
+    @Test
+    void scannerIgnoresQualifiedNamesInsideCommentsAndLiterals() {
+        assertDoesNotThrow(
+            () -> assertAllowedSource(
+                Path.of("Synthetic.java"),
+                """
+                    final class Synthetic {
+                        // ru.ironsspellbooks.api.spells.AbstractSpell
+                        String text = "dev.gustavopere.rpgskilltree.runtime.compat.IronsCompat";
+                        char marker = '.';
+                    }
+                    """
+            )
+        );
+    }
 
-        if (trimmed.startsWith("import ")) {
+    private static void assertAllowedSource(Path file, String source) {
+        int lineNumber = 0;
+        for (String line : source.split("\\R", -1)) {
+            lineNumber++;
+            String trimmed = line.trim();
+            if (!trimmed.startsWith("import ")) {
+                continue;
+            }
             if (ALLOWED_IMPORT_PREFIXES.stream().noneMatch(trimmed::startsWith)) {
                 fail("non-domain import in " + file + ":" + lineNumber + " -> " + trimmed);
             }
-            return;
         }
 
-        Matcher matcher = QUALIFIED_REFERENCE.matcher(trimmed);
+        String codeOnly = stripCommentsAndLiterals(source);
+        codeOnly = PACKAGE_DECLARATION.matcher(codeOnly).replaceAll(" ");
+        String normalized = DOT_WHITESPACE.matcher(codeOnly).replaceAll(".");
+
+        Matcher matcher = QUALIFIED_REFERENCE.matcher(normalized);
         while (matcher.find()) {
             String reference = matcher.group();
             if (ALLOWED_QUALIFIED_PREFIXES.stream().noneMatch(reference::startsWith)) {
-                fail("fully qualified non-domain reference in " + file + ":" + lineNumber + " -> " + reference);
+                fail("fully qualified non-domain reference in " + file + " -> " + reference);
             }
+        }
+    }
+
+    private static String stripCommentsAndLiterals(String source) {
+        StringBuilder result = new StringBuilder(source.length());
+        int index = 0;
+        while (index < source.length()) {
+            if (source.startsWith("//", index)) {
+                index = maskUntilLineEnd(source, result, index);
+                continue;
+            }
+            if (source.startsWith("/*", index)) {
+                index = maskBlockComment(source, result, index);
+                continue;
+            }
+            if (source.startsWith("\"\"\"", index)) {
+                index = maskTextBlock(source, result, index);
+                continue;
+            }
+
+            char current = source.charAt(index);
+            if (current == '\"') {
+                index = maskQuotedLiteral(source, result, index, '\"');
+                continue;
+            }
+            if (current == '\'') {
+                index = maskQuotedLiteral(source, result, index, '\'');
+                continue;
+            }
+
+            result.append(current);
+            index++;
+        }
+        return result.toString();
+    }
+
+    private static int maskUntilLineEnd(String source, StringBuilder result, int start) {
+        int index = start;
+        while (index < source.length()) {
+            char current = source.charAt(index);
+            if (current == '\n' || current == '\r') {
+                return index;
+            }
+            result.append(' ');
+            index++;
+        }
+        return index;
+    }
+
+    private static int maskBlockComment(String source, StringBuilder result, int start) {
+        int index = start;
+        while (index < source.length()) {
+            if (source.startsWith("*/", index)) {
+                result.append("  ");
+                return index + 2;
+            }
+            appendMasked(result, source.charAt(index));
+            index++;
+        }
+        return index;
+    }
+
+    private static int maskTextBlock(String source, StringBuilder result, int start) {
+        int index = start;
+        result.append("   ");
+        index += 3;
+        while (index < source.length()) {
+            if (source.startsWith("\"\"\"", index)) {
+                result.append("   ");
+                return index + 3;
+            }
+            appendMasked(result, source.charAt(index));
+            index++;
+        }
+        return index;
+    }
+
+    private static int maskQuotedLiteral(String source, StringBuilder result, int start, char quote) {
+        int index = start;
+        result.append(' ');
+        index++;
+        boolean escaped = false;
+        while (index < source.length()) {
+            char current = source.charAt(index);
+            appendMasked(result, current);
+            index++;
+
+            if (escaped) {
+                escaped = false;
+                continue;
+            }
+            if (current == '\\') {
+                escaped = true;
+                continue;
+            }
+            if (current == quote) {
+                break;
+            }
+        }
+        return index;
+    }
+
+    private static void appendMasked(StringBuilder result, char current) {
+        if (current == '\n' || current == '\r') {
+            result.append(current);
+        } else {
+            result.append(' ');
         }
     }
 }
