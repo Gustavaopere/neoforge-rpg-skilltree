@@ -47,10 +47,10 @@
 - Modify: `scripts/compendium/test_model_catalog.sh`
 
 - [ ] Escrever primeiro `CompendiumEditorialModelTest` cobrindo normalização/imutabilidade, source type, section IDs, `availability_reason`, duplicate snapshot IDs e lookup O(1) por `CompendiumEntryId`.
-- [ ] Estender `CompendiumPageModelFactoryTest` antes da produção para exigir: overlay com ID correspondente; ausência de overlay preserva fallback; overlay com ID divergente falha; `HIDE_DETAILS_UNTIL_DISCOVERED` remove todo editorial; fatos técnicos permanecem byte-for-byte/`equals` iguais; referências editoriais só permanecem quando o target pertence ao conjunto autorizado.
+- [ ] Estender `CompendiumPageModelFactoryTest` antes da produção para exigir: overlay com ID correspondente; ausência de overlay preserva fallback; overlay com ID divergente falha; `HIDE_DETAILS_UNTIL_DISCOVERED` remove todo editorial; fatos técnicos permanecem `equals`-iguais; referências editoriais só permanecem quando o target pertence ao conjunto autorizado.
 - [ ] Adicionar os novos testes ao `test_model_catalog.sh` e executar `bash scripts/compendium/test_model_catalog.sh`; capturar RED exclusivamente por classes/campos/overloads ainda inexistentes.
 - [ ] Abrir PR draft neste RED para preservar a evidência do ciclo, caso ainda não exista PR para o branch.
-- [ ] Implementar o mínimo domínio puro. Contratos recomendados:
+- [ ] Implementar o mínimo domínio puro. Contrato de conteúdo:
 
 ```java
 public record CompendiumEditorialContent(
@@ -62,22 +62,12 @@ public record CompendiumEditorialContent(
     EditorialReviewStatus reviewStatus,
     EditorialAvailability availability,
     String availabilityReason
-) {
-    public CompendiumEditorialContent withReferences(List<CompendiumEntryId> replacementReferences) { ... }
-}
+) { }
 ```
 
-```java
-public final class CompendiumEditorialSnapshot {
-    public static CompendiumEditorialSnapshot empty() { ... }
-    public static CompendiumEditorialSnapshot fromEntries(Collection<CompendiumEditorialContent> entries) { ... }
-    public List<CompendiumEditorialContent> entries() { ... }
-    public Optional<CompendiumEditorialContent> find(CompendiumEntryId id) { ... }
-}
-```
-
-- [ ] Estender `CompendiumPageModel` com `Optional<CompendiumEditorialContent> editorialContent`, normalizando `null` para `Optional.empty()` apenas em construtores de compatibilidade, não como estado de domínio.
-- [ ] Preservar os construtores atuais de `CompendiumPageModel`, delegando para editorial vazio.
+- [ ] `CompendiumEditorialContent` deve normalizar coleções com `List.copyOf`, exigir texto não vazio, exigir `availabilityReason` somente em `OPTIONAL`/`LEGACY` e oferecer `withReferences(List<CompendiumEntryId>)` para projeção fail-closed sem mutar o original.
+- [ ] Implementar snapshot com API `empty()`, `fromEntries(Collection<CompendiumEditorialContent>)`, `entries()` e `find(CompendiumEntryId)`; ordenar por `id.serializedId()` e rejeitar duplicatas.
+- [ ] Estender `CompendiumPageModel` com `Optional<CompendiumEditorialContent> editorialContent`; o construtor canônico exige `Optional` não nulo e construtores de compatibilidade delegam com `Optional.empty()`.
 - [ ] Preservar `CompendiumPageModelFactory.create(entry, clientEntry, admin)` e fazê-lo delegar para novo overload editorial.
 - [ ] Implementar overload com identidade e autorização explícitas:
 
@@ -105,7 +95,7 @@ public static Optional<CompendiumPageModel> create(
 
 **Placement refinement:** o design conceitual chama a unidade de `CompendiumEditorialResourceLoader`, mas a implementação fica em `runtime/compendium` porque ela depende de Gson, `ResourceLocation`, `ResourceManager` e `Resource`. O domínio editorial permanece puro e reutilizável; isso evita quebrar o compilador headless do Compêndio.
 
-- [ ] Escrever JUnit RED para `prepare(...)` cobrindo: corpus vazio; pacote válido; `schema != 1`; idioma diferente de `pt_br`; namespace físico/declarado divergente; kind inválido/`BLOCK_FEATURE`; kind divergente do entry ID; namespace divergente; ID editorial malformado; duplicate ID entre resources; título/resumo/seção vazios; placeholders; source type inválido; source ref vazio/`...`; `availability` ausente; `RUNTIME` presente/ausente; `OPTIONAL`/`LEGACY` ausente com motivo; `OPTIONAL`/`LEGACY` mascarando ID presente; referência resolvida/não resolvida.
+- [ ] Escrever JUnit RED para `prepare(...)` cobrindo: corpus vazio; pacote válido; `schema != 1`; idioma diferente de `pt_br`; namespace físico/declarado divergente; kind inválido/`BLOCK_FEATURE`; kind divergente do entry ID; namespace divergente; ID editorial malformado; duplicate ID entre resources; título/resumo/seção vazios; placeholders; source type inválido; source ref vazio/reticências; `availability` ausente; `RUNTIME` presente/ausente; `OPTIONAL`/`LEGACY` ausente com motivo; `OPTIONAL`/`LEGACY` mascarando ID presente; referência resolvida/não resolvida.
 - [ ] Testar explicitamente a conversão `ENTITY:minecraft:zombie` -> `CompendiumEntryId.of(ENTITY, "minecraft:zombie")`, sem usar `CompendiumEntryId.parse()` diretamente.
 - [ ] Executar somente o JUnit focado e capturar RED antes da produção:
 
@@ -113,7 +103,7 @@ public static Optional<CompendiumPageModel> create(
 ./gradlew --no-daemon test --tests '*CompendiumEditorialResourceLoaderJUnitTest'
 ```
 
-- [ ] Implementar primeiro uma função determinística de candidato:
+- [ ] Implementar primeiro função determinística de candidato:
 
 ```java
 public static CompendiumEditorialSnapshot prepare(
@@ -132,10 +122,10 @@ public static CompendiumEditorialSnapshot load(
 )
 ```
 
-- [ ] `load` deve usar `listResources("compendium/editorial/pt_br", path -> path.getPath().endsWith(".json"))`, aceitar somente resources do namespace `rpgskilltree`, parsear via Gson/`JsonParser`, preservar o `ResourceLocation` no diagnóstico e delegar toda validação semântica a `prepare`.
+- [ ] `load` deve usar `listResources("compendium/editorial/pt_br", path -> path.getPath().endsWith(".json"))`, aceitar somente resources do namespace `rpgskilltree`, parsear via `JsonParser.parseReader`, preservar o `ResourceLocation` no diagnóstico e delegar toda validação semântica a `prepare`.
 - [ ] Extrair o primeiro segmento após `compendium/editorial/pt_br/` como namespace físico do pacote e exigir igualdade com `payload.namespace`.
 - [ ] Replicar exatamente os source types offline: `RUNTIME`, `DATAPACK`, `OFFICIAL_DOCS`, `OFFICIAL_CODE`, `OFFICIAL_CHANGELOG`, `VERIFIED_COMMUNITY`.
-- [ ] Rejeitar `TODO`, `TBD`, `FIXME`, `PLACEHOLDER` em texto/note/reason e rejeitar também `source.ref == "..."`.
+- [ ] Rejeitar `TODO`, `TBD`, `FIXME`, `PLACEHOLDER` em texto/note/reason e rejeitar também source ref literal de reticências.
 - [ ] Rodar o JUnit focado até GREEN e depois `./gradlew --no-daemon test` para detectar incompatibilidades com o restante do runtime.
 - [ ] Commit GREEN separado.
 
@@ -165,12 +155,9 @@ public record PublicationResult(
 ) { }
 ```
 
-- [ ] Implementar overload/runtime entry point que recebe `ResourceManager` + technical entries, chama o loader e reutiliza `tryPublish`.
-- [ ] Manter `CURRENT` como `volatile`/snapshot imutável; construir candidato inteiro antes de trocar a referência.
-- [ ] Criar helper no evento para consolidar os IDs técnicos atuais a partir de:
-  - `RuntimeCompendiumEntityCatalog.snapshot().entries()`;
-  - `RuntimeCompendiumFloraCatalog.snapshot().entries()`;
-  - `RuntimeCompendiumWorldCatalog.snapshot().entries()`.
+- [ ] Implementar entry point runtime que recebe `ResourceManager` + technical entries, chama o loader e reutiliza `tryPublish`.
+- [ ] Manter `CURRENT` como referência `volatile` para snapshot imutável; construir candidato inteiro antes de trocar a referência.
+- [ ] Criar helper no evento para consolidar os IDs técnicos atuais a partir de `RuntimeCompendiumEntityCatalog.snapshot().entries()`, `RuntimeCompendiumFloraCatalog.snapshot().entries()` e `RuntimeCompendiumWorldCatalog.snapshot().entries()`.
 - [ ] Registrar `CompendiumEditorialCatalogEvents` em `RpgSkillTreeMod` após os eventos de entidade/flora/world.
 - [ ] Usar `@SubscribeEvent(priority = EventPriority.LOWEST)` em `ServerStartedEvent` para que os catálogos técnicos de prioridade padrão já estejam publicados.
 - [ ] Em sucesso, emitir `RuntimeDiagnostics.info(..., Category.COMPENDIUM, "editorial_catalog_published", "Compendium editorial catalog published with {} entries", count)`.
@@ -192,19 +179,18 @@ public record PublicationResult(
 
 - [ ] Escrever RED puro para display model: sem editorial usa `page.displayName()` e zero blocos; com editorial usa título editorial; resumo vem primeiro; seções mantêm ordem; cada bloco expõe source refs; nenhuma source/reference é convertida em `CompendiumFact`.
 - [ ] Adicionar `CompendiumEditorialDisplayModelTest` ao runner headless e capturar RED.
-- [ ] Implementar modelo puro, por exemplo:
+- [ ] Implementar modelo puro:
 
 ```java
 public record CompendiumEditorialDisplayModel(
     String title,
     List<DisplayBlock> blocks
 ) {
-    public static CompendiumEditorialDisplayModel from(CompendiumPageModel page) { ... }
-
-    public record DisplayBlock(String sectionId, String text, List<String> sourceRefs) { ... }
+    public record DisplayBlock(String sectionId, String text, List<String> sourceRefs) { }
 }
 ```
 
+- [ ] `CompendiumEditorialDisplayModel.from(CompendiumPageModel)` deve produzir título fallback e blocos imutáveis; resumo usa sectionId estável `summary` e vem antes das seções editoriais.
 - [ ] Fazer `CompendiumScreen` usar `CompendiumEditorialDisplayModel.from(page)` dentro do detalhe; não acessar resources diretamente.
 - [ ] Renderizar título editorial quando disponível; renderizar resumo e seções como prosa separada dos fatos técnicos; manter preview, debug, Notes e Relations funcionando.
 - [ ] Não criar novo painel/scroll subsystem. Se o body físico não comportar todo o texto, renderizar apenas linhas que cabem no viewport atual, sem desenhar fora do retângulo e sem truncar/mutar o modelo armazenado.
@@ -216,18 +202,27 @@ public record CompendiumEditorialDisplayModel(
 
 ---
 
-### Task 5: Smoke runtime, reconciliação do Stage 10.10, review e merge
+### Task 5: CI editorial/runtime, smoke, reconciliação, review e merge
 
 **Files:**
+- Modify: `.github/workflows/compendium-editorial-ci.yml`
 - Modify: `.github/workflows/alpha2-build.yml`
-- Optionally modify only if useful for focused feedback: `.github/workflows/compendium-editorial-ci.yml`
 - Modify: `plans/10-compendio-natural/10-ptbr-corpus-editorial.md`
 
-- [ ] Antes de alterar CI, escrever/ajustar teste ou verificador que demonstre a ausência do novo startup marker; não adicionar condição de smoke sem uma rota de runtime já GREEN.
+- [ ] Expandir os `paths` do `Compendium Editorial CI` para cobrir o domínio/editorial Java, page-model/display, runtime editorial, testes editoriais, tela e locales relevantes.
+- [ ] Adicionar Java 21 e Gradle cache ao workflow editorial, preservando o teste Python atual.
+- [ ] O workflow editorial deve executar exatamente estes gates focados:
+
+```bash
+python3 scripts/compendium/test_editorial_corpus.py
+bash scripts/compendium/test_model_catalog.sh
+./gradlew --no-daemon test --tests '*Editorial*'
+```
+
+- [ ] Ajustar `timeout-minutes` do workflow editorial para acomodar o Gradle focado sem transformar o workflow em cópia do aggregate.
 - [ ] Atualizar o dedicated-server smoke do aggregate para também exigir a linha `Compendium editorial catalog published with ` antes de declarar startup completo. Não exigir contagem > 0; corpus vazio é válido.
-- [ ] Manter `Compendium Editorial CI` com os testes Python existentes. Só adicionar Gradle focado ali se a latência/isolamento trouxer benefício claro; o aggregate continua sendo o gate canônico de runtime.
 - [ ] Atualizar o plano 10.10 marcando apenas infraestrutura realmente entregue: domínio Java editorial, decoder runtime, snapshot/publicação de startup, page-model projection e smoke. Manter abertos corpus real em escala, validação de stats mutáveis, QA linguística e transporte/reload 10.13.
-- [ ] Rodar verificação local disponível antes do HEAD candidato:
+- [ ] Rodar verificação completa disponível antes do HEAD candidato:
 
 ```bash
 bash scripts/compendium/test_model_catalog.sh
@@ -240,7 +235,7 @@ python3 scripts/compendium/test_editorial_corpus.py
 - [ ] Fazer auto-review do diff contra a spec: nenhum `CompendiumFact<String>` editorial, nenhuma alteração de precedência de provider, nenhum listener `/reload`, nenhum pacote de rede/cache, nenhuma referência editorial vazando para target ausente do conjunto autorizado.
 - [ ] Listar review threads e corrigir qualquer P1/P2 com ciclo RED→GREEN separado antes de mergear.
 - [ ] Conferir `main` imediatamente antes da validação final. Como `main` já avançou durante o planejamento, auditar qualquer PR interveniente por sobreposição de arquivos e usar o merge-ref corrente como árvore canônica de CI.
-- [ ] Exigir no HEAD final: Compendium Editorial CI, todos os workflows especializados aplicáveis e `RPG Skill Tree CI` GREEN, incluindo JUnit, GameTests, todos os validadores, build, JAR e dedicated-server smoke.
+- [ ] Exigir no HEAD final: `Compendium Editorial CI`, todos os workflows especializados aplicáveis e `RPG Skill Tree CI` GREEN, incluindo JUnit, GameTests, todos os validadores, build, JAR e dedicated-server smoke.
 - [ ] Se o PR estiver draft e a transição ready-for-review continuar afetada pelo bug do conector, fechar o draft e recriar o mesmo head/base como PR não-draft; revalidar integralmente o novo merge-ref.
 - [ ] Fazer merge com `expected_head_sha` do HEAD exatamente validado.
 - [ ] Confirmar `main` no SHA de merge e PR em estado `merged=true`.
@@ -260,6 +255,7 @@ python3 scripts/compendium/test_editorial_corpus.py
 - [ ] Referências editoriais são filtradas por IDs autorizados e não viram relações técnicas.
 - [ ] `CompendiumClientSnapshot` aceita a página composta sem criar transporte live.
 - [ ] Tela usa apenas o modelo composto e oferece pt-BR para texto próprio novo.
+- [ ] `Compendium Editorial CI` cobre contratos Python, domínio/page-model headless e JUnit editorial runtime.
 - [ ] Nenhuma responsabilidade do Stage 10.13 foi implementada por antecipação.
 - [ ] CI completo do merge-ref final está GREEN.
 - [ ] PR é mergeado na `main` com SHA esperado e confirmado após o merge.
