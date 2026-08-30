@@ -15,4 +15,12 @@ final class ColdSweatFrenzyBridgeTest {
         assertFalse(ColdSweatFrenzyBridge.supportsVersion("2.4.1"));
         assertFalse(ColdSweatFrenzyBridge.supportsVersion(null));
     }
+
+    @Test
+    void diagnosticGateEmitsOnlyOncePerFailureClass() {
+        assertTrue(ColdSweatFrenzyBridge.shouldEmitDiagnostic("test-version"));
+        assertFalse(ColdSweatFrenzyBridge.shouldEmitDiagnostic("test-version"));
+        assertTrue(ColdSweatFrenzyBridge.shouldEmitDiagnostic("test-api"));
+        assertFalse(ColdSweatFrenzyBridge.shouldEmitDiagnostic("test-api"));
+    }
 }
