@@ -8,7 +8,7 @@ from pathlib import Path
 import sys
 from typing import Any
 
-from editorial_corpus import EditorialCorpusError, load_corpus, read_json
+from editorial_corpus import EditorialCorpusError, KINDS, load_corpus, read_json
 
 SCHEMA = 1
 LANGUAGE = "pt_br"
@@ -47,6 +47,64 @@ def validate_backlog(payload: Any, source: Path) -> dict[str, Any]:
     return payload
 
 
+def coverage_backlog_rows(payload: Any) -> dict[str, dict[str, str]]:
+    if not isinstance(payload, dict) or payload.get("schema") != SCHEMA:
+        raise EditorialCorpusError(f"coverage report schema must be {SCHEMA}")
+    entries = payload.get("entries")
+    if not isinstance(entries, list):
+        raise EditorialCorpusError("coverage report entries must be an array")
+
+    rows: dict[str, dict[str, str]] = {}
+    for index, raw in enumerate(entries):
+        if not isinstance(raw, dict):
+            raise EditorialCorpusError(f"coverage entry {index} must be an object")
+        coverage_state = raw.get("coverage_state")
+        if not isinstance(coverage_state, str) or not coverage_state.strip():
+            raise EditorialCorpusError(f"coverage entry {index} is missing coverage_state")
+        coverage_state = coverage_state.strip()
+        inventory_key = raw.get("inventory_key")
+        if not isinstance(inventory_key, str) or not inventory_key.strip():
+            raise EditorialCorpusError(f"coverage entry {index} is missing inventory_key")
+        inventory_key = inventory_key.strip()
+
+        if coverage_state == "ERROR":
+            if not inventory_key.startswith("ERROR|") or len(inventory_key) <= len("ERROR|"):
+                raise EditorialCorpusError(
+                    f"coverage ERROR entry {index} must use synthetic inventory_key ERROR|<id>"
+                )
+            entry_id = "ERROR:" + inventory_key.split("|", 1)[1]
+            expected = {
+                "source_mod": "__invalid__",
+                "kind": "ERROR",
+                "coverage": "ERROR",
+            }
+        else:
+            kind = raw.get("kind")
+            resource_location = raw.get("resource_location")
+            namespace = raw.get("namespace")
+            if kind not in KINDS:
+                raise EditorialCorpusError(f"coverage entry {index} has unsupported kind: {kind!r}")
+            if not isinstance(resource_location, str) or resource_location.strip().count(":") != 1:
+                raise EditorialCorpusError(f"coverage entry {index} has invalid resource_location")
+            resource_location = resource_location.strip()
+            expected_namespace = resource_location.split(":", 1)[0]
+            if namespace != expected_namespace:
+                raise EditorialCorpusError(
+                    f"coverage entry {index} namespace mismatch: expected {expected_namespace!r}, got {namespace!r}"
+                )
+            entry_id = f"{kind}:{resource_location}"
+            expected = {
+                "source_mod": expected_namespace,
+                "kind": kind,
+                "coverage": coverage_state,
+            }
+
+        if entry_id in rows:
+            raise EditorialCorpusError(f"duplicate current coverage entry: {entry_id}")
+        rows[entry_id] = expected
+    return rows
+
+
 def empty_namespace_totals() -> dict[str, int]:
     return {
         "expected": 0,
@@ -61,6 +119,7 @@ def empty_namespace_totals() -> dict[str, int]:
 
 def build_report(corpus, backlog: dict[str, Any], coverage_payload: dict[str, Any]) -> dict[str, Any]:
     corpus_by_id = corpus.by_id()
+    expected_backlog = coverage_backlog_rows(coverage_payload)
     namespaces: defaultdict[str, dict[str, int]] = defaultdict(empty_namespace_totals)
     totals = empty_namespace_totals()
     backlog_ids: set[str] = set()
@@ -70,19 +129,34 @@ def build_report(corpus, backlog: dict[str, Any], coverage_payload: dict[str, An
             raise EditorialCorpusError(f"editorial backlog entry {index} must be an object")
         entry_id = raw.get("entry_id")
         source_mod = raw.get("source_mod")
+        kind = raw.get("kind")
         coverage_state = raw.get("coverage")
         if not isinstance(entry_id, str) or not entry_id.strip():
             raise EditorialCorpusError(f"editorial backlog entry {index} is missing entry_id")
         if not isinstance(source_mod, str) or not source_mod.strip():
             raise EditorialCorpusError(f"editorial backlog entry {index} is missing source_mod")
+        if not isinstance(kind, str) or not kind.strip():
+            raise EditorialCorpusError(f"editorial backlog entry {index} is missing kind")
         if not isinstance(coverage_state, str) or not coverage_state.strip():
             raise EditorialCorpusError(f"editorial backlog entry {index} is missing coverage")
         entry_id = entry_id.strip()
         source_mod = source_mod.strip()
+        kind = kind.strip()
         coverage_state = coverage_state.strip()
         if entry_id in backlog_ids:
             raise EditorialCorpusError(f"duplicate editorial backlog entry: {entry_id}")
         backlog_ids.add(entry_id)
+
+        expected = expected_backlog.get(entry_id)
+        if expected is None:
+            raise EditorialCorpusError(
+                f"editorial backlog entry {entry_id} is absent from the current coverage report"
+            )
+        actual = {"source_mod": source_mod, "kind": kind, "coverage": coverage_state}
+        if actual != expected:
+            raise EditorialCorpusError(
+                f"editorial backlog entry {entry_id} disagrees with current coverage: expected {expected}, got {actual}"
+            )
 
         ns = namespaces[source_mod]
         if coverage_state == "ERROR":
@@ -106,6 +180,12 @@ def build_report(corpus, backlog: dict[str, Any], coverage_payload: dict[str, An
         else:
             ns["draft"] += 1
             totals["draft"] += 1
+
+    missing_backlog = sorted(set(expected_backlog) - backlog_ids)
+    if missing_backlog:
+        raise EditorialCorpusError(
+            "editorial backlog is missing current coverage entries: " + ", ".join(missing_backlog)
+        )
 
     for editorial in corpus.entries:
         if editorial.entry_id in backlog_ids:
