@@ -13,6 +13,8 @@ Cada integração deve registrar:
 - Narrative event/fact produzido;
 - payload mínimo permitido;
 - knowledge/evidence implications;
+- opportunity/discovery implications quando houver;
+- death/return/identity-continuity implications quando houver;
 - fallback;
 - fail-closed behavior;
 - testes.
@@ -38,7 +40,11 @@ Cada integração deve registrar:
 ### Mobstein
 - ressurreição corporal/experimentos/corpos/órgãos/allies somente por hooks reais da versão instalada;
 - perks internas do Mobstein não viram nodes do RPG;
-- necromancia temática não cria bridge automática.
+- necromancia temática não cria bridge automática;
+- retorno via Mobstein produz evento/fatos de reconstrução/reanimação corporal, não uma afirmação automática de alma, memória ou identidade integral restaurada;
+- qualquer NPC retornado deve passar pelo contrato de `26-death-resurrection-identity-continuity.md`;
+- quests que exigem corpo funcional, memória, personalidade, knowledge ou identidade legal devem consultar dimensões distintas;
+- matar/retornar repetidamente não pode duplicar rewards, milestones ou progressão.
 
 ### Volcanoes
 - geological discovery, eruption, atmosphere, gases, respiration, pressure e hazards via APIs reais;
@@ -68,10 +74,13 @@ Cada integração deve registrar:
 ### Bosses/structures/dimensions
 - discovery/defeat IDs persistentes;
 - boss morto antes da quest é rota válida;
-- estrutura encontrada cedo não deve desaparecer do histórico.
+- estrutura encontrada cedo não deve desaparecer do histórico;
+- estrutura/boss/oportunidade pode existir e nunca ser conhecida pelo jogador; usar `25-opportunity-discovery-lifecycle.md` em vez de exposição automática no journal.
 
 ## Cobertura
 Manter matriz provider → eventos narrativos e narrativa → provider. Mods de biblioteca, performance, tooltip, render ou compatibilidade sem gameplay não recebem arco artificial apenas para “ter lore”.
 
 ## Acceptance
 Uma auditoria da modlist consegue classificar cada mod jogável como provider narrativo direto, contexto/solução, conteúdo sem hook, sistema universal ou não aplicável, sem inventar eventos inexistentes.
+
+A matriz também deve permitir distinguir “provider executou retorno corporal” de “Narrative Core confirmou identidade integral”, porque essas afirmações têm authorities diferentes.
