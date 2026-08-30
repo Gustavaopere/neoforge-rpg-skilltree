@@ -14,8 +14,6 @@ import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationS
 import java.util.Map;
 import java.util.Set;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import org.junit.jupiter.api.Test;
 
 final class EquipmentClassificationDatapackTest {
@@ -110,7 +108,17 @@ final class EquipmentClassificationDatapackTest {
     @Test
     void runtimeClassificationReadsTheCurrentlyPublishedDatapackSnapshot() {
         EquipmentClassificationOverrides.replace(EquipmentOverrideCatalog.empty());
-        EquipmentClassification before = EquipmentClassificationService.classify(new ItemStack(Items.STICK));
+        EquipmentProbe stick = new EquipmentProbe(
+            ResourceLocation.parse("minecraft:stick"),
+            Set.of(),
+            false,
+            false,
+            false,
+            false,
+            false,
+            Set.of()
+        );
+        EquipmentClassification before = EquipmentClassificationService.classify(stick);
         assertFalse(before.eligible());
 
         EquipmentClassificationReloadService.reload(Map.of(
@@ -124,7 +132,7 @@ final class EquipmentClassificationDatapackTest {
                 """)
         ));
 
-        EquipmentClassification after = EquipmentClassificationService.classify(new ItemStack(Items.STICK));
+        EquipmentClassification after = EquipmentClassificationService.classify(stick);
         assertTrue(after.eligible());
         assertEquals(Set.of(EquipmentCategory.MAGIC_FOCUS, EquipmentCategory.MAGIC_EQUIPMENT), after.categories());
         assertEquals(ResourceLocation.fromNamespaceAndPath("rpgskilltree", "override"), after.providerId());
