@@ -8,6 +8,7 @@ import java.util.Objects;
 public final class A0021A0040CombatState {
     private static final double FORCED_REPOSITION_MOTION_EPSILON_SQUARED = 1.0E-4D;
     private static final int FORCED_REPOSITION_RELEASE_QUIET_TICKS = 3;
+    private static final long PREPARED_EFFECT_TTL_MILLIS = 30_000L;
 
     private final Map<String, Actor> actors = new HashMap<>();
     private final Map<String, Long> claims = new HashMap<>();
@@ -125,6 +126,44 @@ public final class A0021A0040CombatState {
     public synchronized boolean bonebreakerReady(String actorId,String target,long now){return actor(actorId).bonebreakerCooldown.getOrDefault(require(target),0L)<=now;}
     public synchronized void startBonebreakerCooldown(String actorId,String target,int mastery,long now){actor(actorId).bonebreakerCooldown.put(require(target),Math.addExact(now,NotionCombatPerkRules.bonebreakerCooldownMillis(mastery)));}
 
+    /** PRE-only reservation: no Trauma is consumed and no Sundered state is created here. */
+    public synchronized boolean prepareSunder(String actorId,String target,String rootActionId,int rank,long now){
+        Actor a=actor(actorId);String t=require(target),root=require(rootActionId);prunePrepared(a,now);
+        PendingSunder old=a.pendingSunder.get(root);
+        if(old!=null)return old.targetId.equals(t);
+        a.pendingSunder.put(root,new PendingSunder(t,rank,Math.addExact(now,PREPARED_EFFECT_TTL_MILLIS)));
+        return true;
+    }
+
+    /** POST-only commit for the exact prepared root action. */
+    public synchronized boolean commitPreparedSunder(String actorId,String target,String rootActionId,long now){
+        Actor a=actor(actorId);String t=require(target),root=require(rootActionId);prunePrepared(a,now);
+        PendingSunder pending=a.pendingSunder.remove(root);
+        if(pending==null||!pending.targetId.equals(t)||pending.expiresAt<=now)return false;
+        if(consumeTrauma(actorId,t,NotionCombatPerkRules.TRAUMA_CAP,now)!=NotionCombatPerkRules.TRAUMA_CAP)return false;
+        markSundered(actorId,t,pending.rank,now);
+        return true;
+    }
+
+    /** PRE-only reservation: the per-target cooldown remains untouched until confirmed damage. */
+    public synchronized boolean prepareBonebreaker(String actorId,String target,String rootActionId,int mastery,long now){
+        Actor a=actor(actorId);String t=require(target),root=require(rootActionId);prunePrepared(a,now);
+        if(!bonebreakerReady(actorId,t,now))return false;
+        PendingBonebreaker old=a.pendingBonebreaker.get(root);
+        if(old!=null)return old.targetId.equals(t);
+        a.pendingBonebreaker.put(root,new PendingBonebreaker(t,mastery,Math.addExact(now,PREPARED_EFFECT_TTL_MILLIS)));
+        return true;
+    }
+
+    /** POST-only commit for the exact prepared root action. */
+    public synchronized boolean commitPreparedBonebreaker(String actorId,String target,String rootActionId,long now){
+        Actor a=actor(actorId);String t=require(target),root=require(rootActionId);prunePrepared(a,now);
+        PendingBonebreaker pending=a.pendingBonebreaker.remove(root);
+        if(pending==null||!pending.targetId.equals(t)||pending.expiresAt<=now||!bonebreakerReady(actorId,t,now))return false;
+        startBonebreakerCooldown(actorId,t,pending.mastery,now);
+        return true;
+    }
+
     /** New marks start immature even when first applied below 50%; only a >=50 -> <50 crossing matures them. */
     public synchronized void applyReapingMark(String actorId,String target,int rank,double healthFraction,long now){Actor a=actor(actorId);String t=require(target);ReapMark old=a.reapMarks.get(t);boolean active=old!=null&&old.expiresAt>now;boolean mature=active&&old.mature;double previous=active?old.lastHealthFraction:healthFraction;if(active&&!mature&&previous>=NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION&&healthFraction<NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION)mature=true;a.reapMarks.put(t,new ReapMark(Math.addExact(now,NotionCombatPerkRules.reapingMarkDurationMillis(rank)),mature,healthFraction));}
     public synchronized boolean reapMarked(String actorId,String target,long now){ReapMark m=actor(actorId).reapMarks.get(require(target));if(m==null)return false;if(m.expiresAt<=now){actor(actorId).reapMarks.remove(target);return false;}return true;}
@@ -132,19 +171,36 @@ public final class A0021A0040CombatState {
     public synchronized boolean consumeMatureReap(String actorId,String target,double healthFraction,long now){Actor a=actor(actorId);String t=require(target);if(!reapMature(actorId,t,healthFraction,now))return false;a.reapMarks.remove(t);return true;}
     public synchronized void updateReapingMaturityForTarget(String target,double healthFraction,long now){String t=require(target);for(Actor a:actors.values()){ReapMark m=a.reapMarks.get(t);if(m==null)continue;if(m.expiresAt<=now){a.reapMarks.remove(t);continue;}boolean mature=m.mature||m.lastHealthFraction>=NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION&&healthFraction<NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION;a.reapMarks.put(t,new ReapMark(m.expiresAt,mature,healthFraction));}}
 
-    public synchronized void clearTarget(String targetId){String t=require(targetId);for(Actor a:actors.values()){a.abalo.remove(t);a.demolitionWindow.remove(t);a.demolitionCooldown.remove(t);a.trauma.remove(t);a.sunderedUntil.remove(t);a.bonebreakerCooldown.remove(t);a.reapMarks.remove(t);a.blindSpotCooldown.remove(t);if(a.repositionSample!=null&&a.repositionSample.targetId.equals(t))a.repositionSample=null;}}
+    /** Bounded lifecycle sweep; callers may run it periodically without resolving target UUIDs. */
+    public synchronized int pruneExpiredReapingMarks(long now){
+        int removed=0;
+        for(Actor a:actors.values()){
+            int before=a.reapMarks.size();
+            a.reapMarks.entrySet().removeIf(e->e.getValue().expiresAt<=now);
+            removed+=before-a.reapMarks.size();
+            prunePrepared(a,now);
+        }
+        claims.entrySet().removeIf(e->e.getValue()<=now);
+        return removed;
+    }
+
+    public synchronized void clearTarget(String targetId){String t=require(targetId);for(Actor a:actors.values()){a.abalo.remove(t);a.demolitionWindow.remove(t);a.demolitionCooldown.remove(t);a.trauma.remove(t);a.sunderedUntil.remove(t);a.bonebreakerCooldown.remove(t);a.reapMarks.remove(t);a.blindSpotCooldown.remove(t);a.pendingSunder.entrySet().removeIf(e->e.getValue().targetId.equals(t));a.pendingBonebreaker.entrySet().removeIf(e->e.getValue().targetId.equals(t));if(a.repositionSample!=null&&a.repositionSample.targetId.equals(t))a.repositionSample=null;}}
     public synchronized void clearActor(String actorId){actors.remove(require(actorId));String prefix=actorId+'\0';claims.keySet().removeIf(k->k.startsWith(prefix));}
     public synchronized void clearAll(){actors.clear();claims.clear();}
 
     private static void clearFallbackReposition(Actor a){a.repositionSample=null;a.fallbackRepositionUntil=0L;a.fallbackDanceActivationUntil=0L;}
+    private static void prunePrepared(Actor a,long now){a.pendingSunder.entrySet().removeIf(e->e.getValue().expiresAt<=now);a.pendingBonebreaker.entrySet().removeIf(e->e.getValue().expiresAt<=now);}
     private Actor actor(String id){return actors.computeIfAbsent(require(id),k->new Actor());}
     private static String require(String s){Objects.requireNonNull(s);if(s.isBlank())throw new IllegalArgumentException("blank id");return s;}
     private record TargetStack(int count,long expiresAt){}
     private record ReapMark(long expiresAt,boolean mature,double lastHealthFraction){}
     private record RepositionSample(String targetId,double playerX,double playerZ,double targetX,double targetZ){}
+    private record PendingSunder(String targetId,int rank,long expiresAt){}
+    private record PendingBonebreaker(String targetId,int mastery,long expiresAt){}
     private static final class Actor{
         int flow;long flowExpiresAt,nextIdleDecayAt,dodgeRepositionUntil,fallbackRepositionUntil,dodgeDanceActivationUntil,fallbackDanceActivationUntil,danceUntil;boolean danceMoveAvailable,danceHitAvailable,fallbackRepositionSuppressed;int forcedRepositionQuietTicks;RepositionSample repositionSample;
         final Map<String,Long> blindSpotCooldown=new HashMap<>(),demolitionWindow=new HashMap<>(),demolitionCooldown=new HashMap<>(),sunderedUntil=new HashMap<>(),bonebreakerCooldown=new HashMap<>();
         final Map<String,TargetStack> abalo=new HashMap<>(),trauma=new HashMap<>();final Map<String,ReapMark> reapMarks=new HashMap<>();
+        final Map<String,PendingSunder> pendingSunder=new HashMap<>();final Map<String,PendingBonebreaker> pendingBonebreaker=new HashMap<>();
     }
 }
