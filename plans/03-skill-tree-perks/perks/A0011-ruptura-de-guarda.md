@@ -57,3 +57,16 @@
 - **Volcanoes:** NÃO DEVE SER INTEGRADO a A0011; Atmosphere, pressão, gases, calor e prospecção não são defesa física/guarda da perk.
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
 - **Chat 2:** revalidar apenas guards/provenance contra essas exclusões; não criar bridge nova nem converter resistência ambiental/arcana em defesa física.
+
+## Chat 2 — revalidação de implementação — PR #234
+
+- [x] Hook/gate existentes preservados conforme o contrato aprovado.
+- [x] Provider-native Epic Fight `21.17.3.1` protegido por gate de versão exata.
+- [x] Guarda/postura mágica ou ambiental não é aceita como defesa física.
+- [x] Fallback de Armor continua restrito a penetração-only quando guarda/postura não é observável.
+- [x] Deduplicação e gasto de Fúria permanecem por root action.
+- [x] Provenance indireta/companion/magia é fail-closed no policy antes de qualquer bônus marcial.
+- [x] Regressões JUnit e NeoForge GameTests verdes no CI #2130.
+- [x] Build, JAR e dedicated-server smoke verdes no CI #2130.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #234 na `main`.

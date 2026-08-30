@@ -80,7 +80,7 @@
 - [x] impacto/pressão 20%/35%;
 - [x] fallback sem alteração de movimento;
 - [ ] teste do componente de deslocamento somente se surgir receipt provider-native válido;
-- [ ] dedicated-server smoke após eventual integração.
+- [x] dedicated-server smoke do fallback canônico no CI #2130.
 
 ## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
 
@@ -92,3 +92,16 @@
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
 - **Fail-closed:** componente de redução de deslocamento continua omitido até API/evento provider-native causal; janela + impacto/pressão permanecem o fallback canônico aprovado.
 - **Chat 2:** não usar `deltaMovement`, velocidade vanilla ou estado de outro provider como autorização para a redução de deslocamento.
+
+## Chat 2 — revalidação de implementação — PR #234
+
+- [x] Gate A0014 ≥2 + A0015 ≥1 e janela de 2 s preservados.
+- [x] Aproximação geométrica usa movimento somente para abrir janela, nunca para reescrever deslocamento.
+- [x] Janela + consumo + impacto/pressão do fallback canônico estão implementados e deduplicados.
+- [x] `ARCANE_BACKLASH`, companions e outros providers não são receipts ofensivos substitutos.
+- [x] P-A0017-01 permanece explicitamente `FAIL-CLOSED CORRETO`; nenhuma heurística foi adicionada.
+- [x] Regressões JUnit e NeoForge GameTests verdes no CI #2130.
+- [x] Build, JAR e dedicated-server smoke verdes no CI #2130.
+- [ ] **PENDÊNCIA NÃO BLOQUEANTE P-A0017-01:** redução de deslocamento só poderá ser implementada se surgir receipt ofensivo provider-native causal na versão auditada.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI NO FALLBACK CANÔNICO`; a pendência acima não bloqueia o merge porque sua omissão é parte do contrato aprovado.

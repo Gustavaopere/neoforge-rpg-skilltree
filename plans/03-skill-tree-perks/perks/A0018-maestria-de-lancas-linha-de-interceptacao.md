@@ -76,7 +76,7 @@ Nenhuma divergência específica foi identificada no caminho auditado. Se a obte
 - [x] dano +15% e impacto +40%;
 - [x] lockout de 8 s por alvo;
 - [x] detecção server-side fora→dentro;
-- [ ] revalidar GameTest/dedicated server após atualização do Epic Fight.
+- [x] GameTest/dedicated server revalidados no CI #2130 para a versão exata atual.
 
 ## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
 
@@ -88,3 +88,15 @@ Nenhuma divergência específica foi identificada no caminho auditado. Se a obte
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
 - **Fail-closed:** sem cruzamento server-side confiável, o capstone permanece indisponível; nenhum dos novos providers é fallback implícito.
 - **Chat 2:** preservar direct-player provenance, deduplicação e lockout; não adicionar bridges temáticas.
+
+## Chat 2 — revalidação de implementação — PR #234
+
+- [x] Gate A0016 + A0017 + mastery ≥80 preservado.
+- [x] Crossing server-side, janela 3/3,5/4 s, consumo de 3 cargas e lockout de 8 s preservados.
+- [x] Dano +15% e impacto/pressão +40% continuam condicionados ao hit direto elegível.
+- [x] `ARCANE_BACKLASH`, companions e demais fontes indiretas não abrem/consomem a janela.
+- [x] Deduplicação por root action/alvo e fail-closed de crossing continuam ativos.
+- [x] Regressões JUnit e NeoForge GameTests verdes no CI #2130.
+- [x] Build, JAR e dedicated-server smoke verdes no CI #2130.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #234 na `main`.

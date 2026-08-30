@@ -1,9 +1,15 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.coldsweat;
 
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
+import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
 import java.lang.reflect.Method;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Narrow, fail-closed bridge for A0012 against Cold Sweat 2.4.2.
@@ -13,21 +19,50 @@ import net.minecraft.world.entity.LivingEntity;
  * No second temperature resource is created by RPG Skill Tree.</p>
  */
 public final class ColdSweatFrenzyBridge {
-    public static final String SUPPORTED_VERSION_PREFIX = "2.4.2";
+    public static final String SUPPORTED_VERSION = "2.4.2";
     private static final String TEMPERATURE_CLASS = "com.momosoftworks.coldsweat.api.util.Temperature";
     private static final String TRAIT_CLASS = "com.momosoftworks.coldsweat.api.util.Temperature$Trait";
+    private static final Logger LOGGER = LoggerFactory.getLogger(ColdSweatFrenzyBridge.class);
+    private static final Set<String> DIAGNOSTICS = ConcurrentHashMap.newKeySet();
 
     private static volatile Resolution resolution;
 
     private ColdSweatFrenzyBridge() {}
 
     public static boolean supportsVersion(String version) {
-        return version != null && version.startsWith(SUPPORTED_VERSION_PREFIX);
+        return SUPPORTED_VERSION.equals(version);
+    }
+
+    /** Performs one bounded bootstrap compatibility probe when Cold Sweat is installed. */
+    public static void initializeDiagnostics() {
+        if (!OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.COLD_SWEAT)) return;
+        String version = OptionalIntegrations.version(OptionalIntegrations.Provider.COLD_SWEAT);
+        if (!supportsVersion(version)) {
+            warnOnce(
+                "version:" + version,
+                "cold_sweat_frenzy_version_unsupported",
+                "A0012 Cold Sweat integration disabled: expected exact {}, found {}",
+                SUPPORTED_VERSION,
+                version
+            );
+            return;
+        }
+        resolve();
     }
 
     public static boolean available() {
         if (!OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.COLD_SWEAT)) return false;
-        if (!supportsVersion(OptionalIntegrations.version(OptionalIntegrations.Provider.COLD_SWEAT))) return false;
+        String version = OptionalIntegrations.version(OptionalIntegrations.Provider.COLD_SWEAT);
+        if (!supportsVersion(version)) {
+            warnOnce(
+                "version:" + version,
+                "cold_sweat_frenzy_version_unsupported",
+                "A0012 Cold Sweat integration disabled: expected exact {}, found {}",
+                SUPPORTED_VERSION,
+                version
+            );
+            return false;
+        }
         return resolve().available();
     }
 
@@ -38,8 +73,24 @@ public final class ColdSweatFrenzyBridge {
         try {
             resolved.add().invoke(null, player, resolved.core(), amount);
             return true;
-        } catch (ReflectiveOperationException | RuntimeException ignored) {
+        } catch (ReflectiveOperationException | RuntimeException failure) {
+            warnOnce(
+                "invoke",
+                "cold_sweat_frenzy_invoke_failed",
+                "A0012 Cold Sweat CORE write failed; Frenzy remains fail-closed: {}",
+                failure.toString()
+            );
             return false;
+        }
+    }
+
+    static boolean shouldEmitDiagnostic(String key) {
+        return key != null && !key.isBlank() && DIAGNOSTICS.add(key);
+    }
+
+    private static void warnOnce(String key, String event, String message, Object... args) {
+        if (shouldEmitDiagnostic(key)) {
+            RuntimeDiagnostics.warn(LOGGER, Category.COMPAT, event, message, args);
         }
     }
 
@@ -55,7 +106,13 @@ public final class ColdSweatFrenzyBridge {
                 Object core = Enum.valueOf((Class<? extends Enum>) trait.asSubclass(Enum.class), "CORE");
                 Method add = temperature.getMethod("add", LivingEntity.class, trait, double.class);
                 resolution = new Resolution(add, core, true);
-            } catch (ReflectiveOperationException | LinkageError | RuntimeException ignored) {
+            } catch (ReflectiveOperationException | LinkageError | RuntimeException failure) {
+                warnOnce(
+                    "api-resolution",
+                    "cold_sweat_frenzy_api_unavailable",
+                    "A0012 Cold Sweat API resolution failed; Frenzy remains fail-closed: {}",
+                    failure.toString()
+                );
                 resolution = Resolution.unavailable();
             }
             return resolution;

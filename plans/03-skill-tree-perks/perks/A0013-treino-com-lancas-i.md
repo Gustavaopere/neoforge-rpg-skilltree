@@ -57,3 +57,16 @@
 - **Notion:** re-fetch em 2026-08-30 sem drift; nenhuma mutação cosmética foi realizada.
 - **Fail-closed:** sem classificação SPEAR server-authoritative, A0013 permanece inativa para o item.
 - **Chat 2:** nenhuma bridge nova; apenas preservar autoria direta e classificação provider-native.
+
+## Chat 2 — revalidação de implementação — PR #234
+
+- [x] Gate e coeficiente de dano preservados.
+- [x] Família SPEAR continua exclusivamente provider-native.
+- [x] Epic Fight é aceito somente em `21.17.3.1` exato.
+- [x] Categoria desconhecida permanece fail-closed, sem tag/nome/material/alcance heurístico.
+- [x] Companion, Backlash e outras fontes indiretas não recebem bônus marcial por defesa em profundidade no policy.
+- [x] Pipeline de dano permanece único e server-authoritative.
+- [x] Regressões JUnit e NeoForge GameTests verdes no CI #2130.
+- [x] Build, JAR e dedicated-server smoke verdes no CI #2130.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #234 na `main`.
