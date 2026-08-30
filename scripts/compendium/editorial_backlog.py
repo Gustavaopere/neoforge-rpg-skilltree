@@ -59,9 +59,53 @@ def validate_coverage(payload: Any, source: Path) -> dict[str, Any]:
     return payload
 
 
+def normalize_error_coverage_entry(raw: dict[str, Any], index: int) -> dict[str, Any]:
+    inventory_key = raw.get("inventory_key")
+    if not isinstance(inventory_key, str) or not inventory_key.strip():
+        raise BacklogError(f"coverage ERROR entry {index} is missing inventory_key")
+    inventory_key = inventory_key.strip()
+    if inventory_key.count("|") != 1:
+        raise BacklogError(f"coverage ERROR entry {index} has invalid inventory_key: {inventory_key!r}")
+    kind, target = (part.strip() for part in inventory_key.split("|", 1))
+    if not kind or not target:
+        raise BacklogError(f"coverage ERROR entry {index} has invalid inventory_key: {inventory_key!r}")
+
+    reason = raw.get("coverage_reason")
+    if not isinstance(reason, str) or not reason.strip():
+        raise BacklogError(f"coverage ERROR entry {index} requires a non-empty coverage_reason")
+
+    namespace = "__invalid__"
+    if target.count(":") == 1 and not target.startswith(":") and not target.endswith(":"):
+        namespace = target.split(":", 1)[0]
+
+    entry = dict(raw)
+    entry.update(
+        {
+            "kind": kind,
+            "resource_location": target,
+            "namespace": namespace,
+            "coverage_state": "ERROR",
+            "coverage_reason": reason.strip(),
+            "inventory_key": inventory_key,
+            "present_at_runtime": True,
+        }
+    )
+    return entry
+
+
 def validate_coverage_entry(raw: Any, index: int) -> dict[str, Any]:
     if not isinstance(raw, dict):
         raise BacklogError(f"coverage entry {index} must be an object")
+
+    coverage_raw = raw.get("coverage_state")
+    if not isinstance(coverage_raw, str) or not coverage_raw.strip():
+        raise BacklogError(f"coverage entry {index} is missing metadata: coverage_state")
+    coverage = coverage_raw.strip()
+    if coverage not in COVERAGE_STATES:
+        raise BacklogError(f"coverage entry {index} has unknown state: {coverage!r}")
+    if coverage == "ERROR":
+        return normalize_error_coverage_entry(raw, index)
+
     missing = [
         field
         for field in REQUIRED_COVERAGE_FIELDS
@@ -72,9 +116,6 @@ def validate_coverage_entry(raw: Any, index: int) -> dict[str, Any]:
     entry = dict(raw)
     for field in REQUIRED_COVERAGE_FIELDS:
         entry[field] = entry[field].strip()
-    coverage = entry["coverage_state"]
-    if coverage not in COVERAGE_STATES:
-        raise BacklogError(f"coverage entry {index} has unknown state: {coverage!r}")
     resource_location = entry["resource_location"]
     if resource_location.count(":") != 1 or resource_location.startswith(":") or resource_location.endswith(":"):
         raise BacklogError(f"coverage entry {index} has invalid resource_location: {resource_location!r}")
