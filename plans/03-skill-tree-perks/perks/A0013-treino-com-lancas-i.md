@@ -47,3 +47,13 @@
 - [x] classificação `spear` provider-native;
 - [x] ausência de alteração artificial de alcance;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA sem mutação adicional no Notion; o contrato provider-native já fecha a boundary necessária.
+- **RPG Skill Tree:** bônus pertence ao pipeline MARTIAL canônico e só é aplicado a ação direta do jogador classificada como SPEAR pelo Epic Fight.
+- **Volcanoes / Enshrouded / Black Arcana:** NÃO DEVE SER INTEGRADO a A0013; geologia/hazards, Shroud/Flame e Arcane Danger não classificam arma nem alteram alcance físico da lança.
+- **Mobstein 5.4.4:** combate direto do jogador contra entidades Mobstein é coberto pelo sistema universal; ataques de allies/bodyguards não herdam o bônus de dano do dono.
+- **Notion:** re-fetch em 2026-08-30 sem drift; nenhuma mutação cosmética foi realizada.
+- **Fail-closed:** sem classificação SPEAR server-authoritative, A0013 permanece inativa para o item.
+- **Chat 2:** nenhuma bridge nova; apenas preservar autoria direta e classificação provider-native.
