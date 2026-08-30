@@ -27,14 +27,9 @@ def replace_generated_block(document: str, marker: str, body: str) -> str:
     return before + start + "\n" + normalized + end + after
 
 
-def build_catalog_sections(
-    root: Path,
-    locale: str = "pt_br",
-    semantic_snapshot_required: bool = False,
-) -> tuple[str, str]:
+def build_catalog_sections(root: Path, locale: str = "pt_br") -> tuple[str, str]:
     root = Path(root)
     rules = _load_rules(root)
-    semantic_combat = _load_semantic_combat_snapshot(root, required=semantic_snapshot_required)
     translations = _load_translations(root, locale)
     attributes, behaviors = _load_effects(root)
 
@@ -69,18 +64,6 @@ def build_catalog_sections(
                 description,
                 node,
                 "; ".join(effects) if effects else "—",
-            )
-        )
-
-    for tree_id, node in semantic_combat:
-        perk_lines.append(
-            _format_perk_row(
-                tree_id,
-                node["id"],
-                node["name"],
-                node["description"] or "—",
-                node,
-                "—",
             )
         )
 
@@ -120,6 +103,31 @@ def build_catalog_sections(
         )
 
     return "\n".join(perk_lines) + "\n", "\n".join(effect_lines) + "\n"
+
+
+def build_semantic_combat_section(root: Path, *, required: bool = True) -> str:
+    rows = _load_semantic_combat_snapshot(Path(root), required=required)
+    lines = [
+        "| Árvore | ID | Código | Nome | Descrição | Ranks | Custo/rank | Requisitos | Efeitos |",
+        "| --- | --- | --- | --- | --- | ---: | ---: | --- | --- |",
+    ]
+    for tree_id, node in rows:
+        lines.append(
+            "| " + " | ".join(
+                [
+                    _cell(f"`{tree_id}`"),
+                    _cell(f"`{node['id']}`"),
+                    _cell(node["code"]),
+                    _cell(node["name"]),
+                    _cell(node["description"] or "—"),
+                    str(node["maxRank"]),
+                    str(node["costPerRank"]),
+                    _cell(_format_requirements(node)),
+                    "—",
+                ]
+            ) + " |"
+        )
+    return "\n".join(lines) + "\n"
 
 
 def build_content_coverage(
@@ -189,14 +197,12 @@ def build_content_coverage(
 
 def update_catalog_documents(root: Path, locale: str = "pt_br", check: bool = False) -> list[Path]:
     root = Path(root)
-    perk_section, effect_section = build_catalog_sections(
-        root,
-        locale=locale,
-        semantic_snapshot_required=True,
-    )
+    perk_section, effect_section = build_catalog_sections(root, locale=locale)
+    combat_section = build_semantic_combat_section(root, required=True)
     targets = (
         (root / "wiki/PERK_CATALOG.md", "perk-catalog", perk_section),
         (root / "wiki/EFFECT_CATALOG.md", "effect-catalog", effect_section),
+        (root / "wiki/COMBAT_PERK_CATALOG.md", "combat-perk-catalog", combat_section),
     )
     changed: list[Path] = []
     updates: list[tuple[Path, str]] = []
