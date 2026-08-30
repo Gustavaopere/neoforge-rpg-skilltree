@@ -39,7 +39,7 @@ final class CombatPerkWikiSnapshotGeneratorJUnitTest {
         assertEquals(expected, Files.readString(snapshot, StandardCharsets.UTF_8));
         CombatPerkWikiSnapshotGenerator.check(snapshot);
 
-        Files.writeString(snapshot, expected.replace("Treino com Espadas I", "DRIFT", 1), StandardCharsets.UTF_8);
+        Files.writeString(snapshot, expected.replace("Treino com Espadas I", "DRIFT"), StandardCharsets.UTF_8);
         assertThrows(IllegalStateException.class, () -> CombatPerkWikiSnapshotGenerator.check(snapshot));
     }
 
