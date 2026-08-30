@@ -17,7 +17,9 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0011-A0020.md`
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0021-A0030.md`
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0031-A0040.md`
-- novos lotes devem ser criados aqui, nunca novamente na raiz de `perks/`.
+- `AUDITORIA-RETROATIVA-PROVIDERS-A0041-A0050.md`
+
+Novos lotes devem ser criados aqui, nunca novamente na raiz de `perks/`.
 
 ## Convenção
 
@@ -25,3 +27,4 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 2. Não consolidar tudo em um único arquivo gigante: isso piora diffs, revisão e rastreabilidade de PRs.
 3. `STATUS.md` é o índice de estado; esta pasta guarda a evidência detalhada.
 4. Chat 1 e Chat 2 devem procurar a auditoria correspondente em `plans/03-skill-tree-perks/perks/audits/`.
+5. Dossiês `Axxxx-*.md` permanecem fora desta pasta para navegação direta por perk.
