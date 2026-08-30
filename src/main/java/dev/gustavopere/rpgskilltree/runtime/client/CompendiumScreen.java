@@ -27,7 +27,7 @@ import org.lwjgl.glfw.GLFW;
 
 /**
  * Physical-client Compendium browser screen backed exclusively by the visibility-filtered client snapshot.
- * Stage 10.13 owns transport and snapshot installation.
+ * Stage 10.13 owns transport, snapshot installation and persistence of personal notes.
  */
 public final class CompendiumScreen extends Screen {
     private static final int BACKGROUND = 0xFF090C12;
@@ -44,6 +44,9 @@ public final class CompendiumScreen extends Screen {
     private static final int BACK_BUTTON_HEIGHT = 18;
     private static final int FAVORITE_BUTTON_WIDTH = 88;
     private static final int FAVORITE_BUTTON_HEIGHT = 18;
+    private static final int NOTES_BUTTON_WIDTH = 74;
+    private static final int NOTES_BUTTON_HEIGHT = 18;
+    private static final int HEADER_BUTTON_GAP = 4;
     private static final int LIST_PADDING = 6;
     private static final int FILTER_BUTTON_GAP = 4;
     private static final int SCROLL_ROWS_PER_NOTCH = 3;
@@ -61,6 +64,8 @@ public final class CompendiumScreen extends Screen {
     private Button kindFilterButton;
     private Button discoveredFilterButton;
     private Button favoriteButton;
+    private Button notesButton;
+    private CompendiumNotesEditBox notesEditor;
     private boolean debugDetailsEnabled;
     private boolean previewDragging;
 
@@ -86,6 +91,8 @@ public final class CompendiumScreen extends Screen {
         kindFilterButton = null;
         discoveredFilterButton = null;
         favoriteButton = null;
+        notesButton = null;
+        notesEditor = null;
         previewDragging = false;
         if (width < CompendiumScreenLayout.MIN_SCREEN_WIDTH || height < CompendiumScreenLayout.MIN_SCREEN_HEIGHT) {
             layout = null;
@@ -161,17 +168,53 @@ public final class CompendiumScreen extends Screen {
         addRenderableWidget(discoveredFilterButton);
 
         CompendiumScreenLayout.Rect detail = layout.detailBody();
+        int headerButtonY = detail.y() + 10;
         favoriteButton = Button.builder(favoriteLabel(), button -> {
             session.toggleCurrentEntryFavorite();
             refreshFavoriteButton();
         }).bounds(
             detail.right() - FAVORITE_BUTTON_WIDTH - 10,
-            detail.y() + 10,
+            headerButtonY,
             FAVORITE_BUTTON_WIDTH,
             FAVORITE_BUTTON_HEIGHT
         ).build();
         favoriteButton.visible = false;
         addRenderableWidget(favoriteButton);
+
+        int notesButtonX = layout.splitPanes()
+            ? detail.right() - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - HEADER_BUTTON_GAP - 10
+            : detail.x() + 10;
+        int notesButtonY = layout.splitPanes()
+            ? headerButtonY
+            : headerButtonY + BACK_BUTTON_HEIGHT + HEADER_BUTTON_GAP;
+        notesButton = Button.builder(notesButtonLabel(), button -> {
+            if (notesEditor == null) return;
+            notesEditor.setPanelOpen(!notesEditor.panelOpen());
+            entityPreview.clear();
+            refreshNotesButton();
+        }).bounds(
+            notesButtonX,
+            notesButtonY,
+            NOTES_BUTTON_WIDTH,
+            NOTES_BUTTON_HEIGHT
+        ).build();
+        notesButton.visible = false;
+        addRenderableWidget(notesButton);
+
+        int editorTopOffset = layout.splitPanes()
+            ? 38
+            : 10 + BACK_BUTTON_HEIGHT + HEADER_BUTTON_GAP + NOTES_BUTTON_HEIGHT + 8;
+        int editorY = detail.y() + editorTopOffset;
+        int editorHeight = Math.max(18, detail.bottom() - editorY - 10);
+        notesEditor = new CompendiumNotesEditBox(
+            font,
+            detail.x() + 10,
+            editorY,
+            Math.max(20, detail.width() - 20),
+            editorHeight,
+            session
+        );
+        addRenderableWidget(notesEditor);
     }
 
     @Override
@@ -183,7 +226,9 @@ public final class CompendiumScreen extends Screen {
             return;
         }
 
+        if (notesEditor != null) notesEditor.sync();
         refreshFavoriteButton();
+        refreshNotesButton();
         refreshPersonalViewButtons();
         renderHeader(graphics);
         renderToolbar(graphics);
@@ -289,7 +334,7 @@ public final class CompendiumScreen extends Screen {
                 && mouseY >= y && mouseY < y + BACK_BUTTON_HEIGHT;
             graphics.fill(x, y, x + BACK_BUTTON_WIDTH, y + BACK_BUTTON_HEIGHT, hovered ? ROW_HOVER : ROW);
             graphics.drawString(font, Component.translatable("screen.rpgskilltree.compendium.back"), x + 6, y + 5, TEXT);
-            y += BACK_BUTTON_HEIGHT + 8;
+            y += BACK_BUTTON_HEIGHT + HEADER_BUTTON_GAP + NOTES_BUTTON_HEIGHT + 8;
         }
 
         var entry = session.currentEntry();
@@ -306,8 +351,19 @@ public final class CompendiumScreen extends Screen {
         }
 
         CompendiumClientEntry current = entry.orElseThrow();
+        if (notesEditor != null && notesEditor.panelOpen()) {
+            entityPreview.clear();
+            renderNotesPanelHeader(graphics, current, x, y, body, compactBack);
+            return;
+        }
+
         int titleWidth = body.width() - 20;
-        if (!compactBack) titleWidth = Math.max(20, titleWidth - FAVORITE_BUTTON_WIDTH - 8);
+        if (!compactBack) {
+            titleWidth = Math.max(
+                20,
+                titleWidth - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - HEADER_BUTTON_GAP * 2
+            );
+        }
         graphics.drawString(font, fitToWidth(current.displayName(), titleWidth), x, y, ACCENT);
         y += 13;
         graphics.drawString(
@@ -380,6 +436,28 @@ public final class CompendiumScreen extends Screen {
                 y += 11;
             }
             y += 4;
+        }
+    }
+
+    private void renderNotesPanelHeader(
+        GuiGraphics graphics,
+        CompendiumClientEntry current,
+        int x,
+        int y,
+        CompendiumScreenLayout.Rect body,
+        boolean compactBack
+    ) {
+        if (!compactBack) {
+            int titleWidth = Math.max(
+                20,
+                body.width() - 20 - FAVORITE_BUTTON_WIDTH - NOTES_BUTTON_WIDTH - HEADER_BUTTON_GAP * 2
+            );
+            graphics.drawString(font, fitToWidth(current.displayName(), titleWidth), x, y, ACCENT);
+            y += 14;
+        }
+        Component title = Component.translatable("screen.rpgskilltree.compendium.notes.title");
+        if (y + font.lineHeight < (notesEditor == null ? body.bottom() : notesEditor.getY())) {
+            graphics.drawString(font, fitToWidth(title.getString(), body.width() - 20), x, y, MUTED);
         }
     }
 
@@ -538,6 +616,7 @@ public final class CompendiumScreen extends Screen {
             if (mouseX >= backX && mouseX < backX + BACK_BUTTON_WIDTH
                 && mouseY >= backY && mouseY < backY + BACK_BUTTON_HEIGHT) {
                 session.backToList();
+                closeNotesPanel();
                 entityPreview.clear();
                 return true;
             }
@@ -591,22 +670,29 @@ public final class CompendiumScreen extends Screen {
             debugDetailsEnabled = !debugDetailsEnabled;
             return true;
         }
+        if (keyCode == GLFW.GLFW_KEY_ESCAPE && notesEditor != null && notesEditor.panelOpen()) {
+            closeNotesPanel();
+            return true;
+        }
         if (keyCode == GLFW.GLFW_KEY_ESCAPE && layout != null && !layout.splitPanes() && session.showingDetail()) {
             session.backToList();
             entityPreview.clear();
             return true;
         }
 
+        boolean textInputFocused = (searchBox != null && searchBox.isFocused())
+            || (notesEditor != null && notesEditor.isFocused());
         boolean listActive = layout != null && (layout.splitPanes() || !session.showingDetail());
-        if (listActive && keyCode == GLFW.GLFW_KEY_UP) {
+        if (listActive && !textInputFocused && keyCode == GLFW.GLFW_KEY_UP) {
             session.moveSelection(-1, layout.visibleRows());
             return true;
         }
-        if (listActive && keyCode == GLFW.GLFW_KEY_DOWN) {
+        if (listActive && !textInputFocused && keyCode == GLFW.GLFW_KEY_DOWN) {
             session.moveSelection(1, layout.visibleRows());
             return true;
         }
         if (listActive
+            && !textInputFocused
             && (keyCode == GLFW.GLFW_KEY_ENTER || keyCode == GLFW.GLFW_KEY_KP_ENTER)
             && !(getFocused() instanceof Button)
             && session.selectedEntry().isPresent()) {
@@ -628,12 +714,20 @@ public final class CompendiumScreen extends Screen {
     @Override
     public void removed() {
         previewDragging = false;
+        closeNotesPanel();
         entityPreview.clear();
         super.removed();
     }
 
     private boolean previewInteractive() {
-        return layout != null && (layout.splitPanes() || session.showingDetail());
+        return layout != null
+            && (notesEditor == null || !notesEditor.panelOpen())
+            && (layout.splitPanes() || session.showingDetail());
+    }
+
+    private void closeNotesPanel() {
+        if (notesEditor != null) notesEditor.setPanelOpen(false);
+        refreshNotesButton();
     }
 
     private void selectPersonalView(CompendiumPersonalView view) {
@@ -661,11 +755,30 @@ public final class CompendiumScreen extends Screen {
         favoriteButton.setMessage(favoriteLabel());
     }
 
+    private void refreshNotesButton() {
+        if (notesButton == null) return;
+        boolean hasCurrentEntry = session.currentEntry().isPresent();
+        notesButton.visible = hasCurrentEntry;
+        notesButton.active = hasCurrentEntry;
+        if (!hasCurrentEntry && notesEditor != null && notesEditor.panelOpen()) {
+            notesEditor.setPanelOpen(false);
+        }
+        notesButton.setMessage(notesButtonLabel());
+    }
+
     private Component favoriteLabel() {
         return Component.translatable(
             session.isCurrentEntryFavorite()
                 ? "screen.rpgskilltree.compendium.favorite.remove"
                 : "screen.rpgskilltree.compendium.favorite.add"
+        );
+    }
+
+    private Component notesButtonLabel() {
+        return Component.translatable(
+            notesEditor != null && notesEditor.panelOpen()
+                ? "screen.rpgskilltree.compendium.notes.close"
+                : "screen.rpgskilltree.compendium.notes.open"
         );
     }
 

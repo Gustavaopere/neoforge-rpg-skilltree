@@ -134,21 +134,33 @@ O renderer direto de `BlockState` fica deliberadamente adiado até existir API 1
 
 ### E — Notas pessoais
 
-Criar:
+Modelo existente:
 
 ```text
-src/main/java/dev/gustavopere/rpgskilltree/compendium/client/notes/CompendiumNotesModel.java
+src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumNotesModel.java
 ```
 
-Decisão de armazenamento deve ser fechada no 10.13. Requisitos funcionais:
+A persistência e qualquer protocolo de sincronização continuam pertencendo ao 10.13. O 10.09 fecha somente o modelo funcional e a edição local no cliente.
 
-- [ ] nota por `CompendiumEntryId`;
-- [ ] texto pt-BR livre do jogador;
-- [ ] limite de tamanho;
-- [ ] não executar formatting/comandos arbitrários;
-- [ ] notas privadas por padrão;
-- [ ] não sincronizar para outros jogadores sem feature explícita futura;
-- [ ] conteúdo ausente do modpack preserva a nota enquanto o save mantiver o ID.
+Requisitos funcionais e estado atual:
+
+- [x] nota indexada pelo `CompendiumEntryId` canônico;
+- [x] texto livre do jogador armazenado literalmente;
+- [x] limite de 4.096 code points no modelo;
+- [x] editor multiline client-only com limite conservador compatível com o modelo;
+- [x] strings próprias da UI em pt-BR;
+- [x] não interpretar nem executar formatting, comandos ou markup inseridos na nota;
+- [x] notas privadas/client-local por padrão neste estágio;
+- [x] nenhum envio de notas para outros jogadores;
+- [x] IDs ausentes do catálogo atual continuam aceitos e preservados enquanto a instância do modelo existir;
+- [x] botão/painel de notas por entrada na página do Compêndio;
+- [x] trocar de entrada recarrega a nota correspondente ao ID, sem misturar textos entre entradas;
+- [x] `Esc` fecha primeiro o painel de notas antes da navegação compacta voltar à lista;
+- [x] foco no editor não dispara navegação por setas/Enter da lista;
+- [ ] persistência de notas entre reconnect/restart/save — contrato do 10.13;
+- [ ] preservação persistente de notas de conteúdo removido do modpack — depende do armazenamento definido no 10.13.
+
+A indicação visual `Notas pessoais — sessão atual` é deliberada enquanto não existe persistência. O 10.09 não deve prometer durabilidade que o 10.13 ainda não implementou.
 
 ### F — Favoritos e histórico leve
 

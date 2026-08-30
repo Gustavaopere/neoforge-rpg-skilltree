@@ -17,6 +17,8 @@ public final class CompendiumScreenSessionTest {
         pointerOpenSelectsAndPreservesBrowserContext();
         openingEntriesRecordsRecentHistory();
         currentEntryFavoriteTogglesInPersonalState();
+        currentEntryNoteReadsAndWritesPersonalState();
+        notesRemainAttachedToEntryAcrossNavigation();
         personalNavigationScopesRespectStateAndPreserveSearchFilters();
         recentNavigationUsesMruOrderAndIgnoresUnavailableIds();
         favoriteScopeRefreshesAfterToggleWithoutClosingDetail();
@@ -36,6 +38,7 @@ public final class CompendiumScreenSessionTest {
         isTrue(session.selectedEntry().isEmpty());
         isTrue(session.currentEntry().isEmpty());
         isTrue(session.currentPage().isEmpty());
+        isTrue(session.currentNote().isEmpty());
     }
 
     private static void queryAndScrollDriveTheVisibleViewport() {
@@ -190,6 +193,55 @@ public final class CompendiumScreenSessionTest {
         session.toggleCurrentEntryFavorite();
         isFalse(session.isCurrentEntryFavorite());
         isFalse(notes.isFavorite(wolf.id()));
+    }
+
+    private static void currentEntryNoteReadsAndWritesPersonalState() {
+        CompendiumClientEntry wolf = entry("minecraft:wolf", "Lobo");
+        CompendiumNotesModel notes = new CompendiumNotesModel();
+        CompendiumScreenSession session = new CompendiumScreenSession(
+            new CompendiumClientSnapshot(List.of(wolf), List.of(page(wolf))),
+            notes
+        );
+
+        isTrue(session.currentNote().isEmpty());
+        session.openVisibleRow(0, 4);
+        isTrue(session.currentNote().isEmpty());
+
+        String text = "/say não executar §ltexto literal\nHabitat perto do rio.";
+        session.setCurrentNote(text);
+        eq(text, session.currentNote().orElseThrow());
+        eq(text, notes.note(wolf.id()).orElseThrow());
+
+        session.setCurrentNote("");
+        isTrue(session.currentNote().isEmpty());
+        isTrue(notes.note(wolf.id()).isEmpty());
+    }
+
+    private static void notesRemainAttachedToEntryAcrossNavigation() {
+        CompendiumClientEntry wolf = entry("minecraft:wolf", "Lobo");
+        CompendiumClientEntry fox = entry("minecraft:fox", "Raposa");
+        CompendiumNotesModel notes = new CompendiumNotesModel();
+        CompendiumScreenSession session = new CompendiumScreenSession(
+            new CompendiumClientSnapshot(List.of(wolf, fox), List.of(page(wolf), page(fox))),
+            notes
+        );
+        List<CompendiumClientEntry> ordered = session.viewport(2).entries();
+
+        session.openVisibleRow(0, 2);
+        CompendiumEntryId first = ordered.get(0).id();
+        session.setCurrentNote("nota da primeira entrada");
+        session.backToList();
+
+        session.openVisibleRow(1, 2);
+        CompendiumEntryId second = ordered.get(1).id();
+        isTrue(session.currentNote().isEmpty());
+        session.setCurrentNote("nota da segunda entrada");
+        session.backToList();
+
+        session.openVisibleRow(0, 2);
+        eq(first, session.currentEntry().orElseThrow().id());
+        eq("nota da primeira entrada", session.currentNote().orElseThrow());
+        eq("nota da segunda entrada", notes.note(second).orElseThrow());
     }
 
     private static void personalNavigationScopesRespectStateAndPreserveSearchFilters() {
