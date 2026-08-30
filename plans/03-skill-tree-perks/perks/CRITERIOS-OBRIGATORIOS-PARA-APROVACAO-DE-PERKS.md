@@ -1,499 +1,324 @@
 # Critérios Obrigatórios para Aprovação de Perks — RPG Skill Tree
 
-> **REGRA DE OURO:** uma perk só pode ser declarada **APROVADA/FECHADA** quando passar por **todos** os critérios desta página. Correção mecânica isolada, texto preenchido ou efeito tecnicamente possível **não são suficientes**.
+> **REGRA DE OURO:** uma perk só pode ser declarada **APROVADA/FECHADA** quando passar por todos os critérios aplicáveis deste protocolo. Efeito tecnicamente possível, texto preenchido ou correção isolada não bastam.
 
-Esta página é o protocolo permanente de auditoria do catálogo de perks do **RPG Skill Tree — NeoForge 1.21.1**. Todo novo chat, agente ou execução que criar, revisar, corrigir ou implementar perks deve ler esta página **antes de trabalhar no catálogo**.
+Esta é a cópia operacional versionada do protocolo canônico do Notion para o **RPG Skill Tree — NeoForge 1.21.1 / Java 21**.
 
 Fonte canônica no Notion: https://app.notion.com/p/3c669db9f0db81e2a0f7cd9b2d410567
 
 ## 1. Fontes de verdade obrigatórias
 
-A aprovação deve cruzar, no mínimo:
+Toda auditoria deve cruzar, no mínimo:
 
-- o **Documento Mestre de Design e Implementação** do projeto;
-- o **Catálogo Mestre — Atributos e Passivos** no Notion;
-- [GUIA COMPLETO — Mods de Magia | NeoForge 1.21.1](https://app.notion.com/p/3c569db9f0db819e9572fd43820f9c03);
-- [GUIA COMPLETO — Mods de Tecnologia | NeoForge 1.21.1](https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff);
-- [GUIA COMPLETO — Gameplay e Sistemas | NeoForge 1.21.1](https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6);
-- a **modlist atual do modpack**, quando houver versão mais recente que os guias;
-- código-fonte, API, documentação ou comportamento verificado da **versão exata do provider** usada no Minecraft **1.21.1 / NeoForge**;
-- repositório real do projeto quando a perk já possuir implementação.
+- Documento Mestre de Design e Implementação;
+- Catálogo Mestre — Atributos e Passivos no Notion;
+- Guia Completo — Gameplay e Sistemas;
+- Guia Completo — Mods de Magia;
+- Guia Completo — Mods de Tecnologia;
+- **Guia Completo — Projetos Próprios do Modpack**, incluindo os quatro dossiês, matriz cruzada e `12-capability-delta-coverage.md`;
+- modlist atual quando posterior ao snapshot dos guias;
+- API, código, documentação ou comportamento verificado da versão exata do provider em NeoForge 1.21.1;
+- repositório/implementação real quando a perk já possui código.
 
-Se houver conflito, prevalece a evidência técnica mais específica e atual da versão instalada. Suposições de gameplay nunca substituem API/código/documentação reais.
+Se houver conflito, prevalece a evidência técnica mais específica e atual. README genérico, nome de método, similaridade temática ou plano futuro não substituem runtime/API/código real.
 
 ## 2. Os 9 eixos obrigatórios de aprovação
 
-> Cada perk deve ser examinada explicitamente contra os nove eixos abaixo. Um lote só fecha quando os nove eixos foram conferidos para todas as perks do intervalo.
+Cada perk deve ser examinada explicitamente contra os nove eixos abaixo.
 
 ### 2.1 Dependências, bloqueios e gates
 
-A perk deve possuir bloqueio coerente quando depender de outra progressão.
+Verificar:
 
-Obrigatório verificar:
+- `Dependências Obrigatórias` e rank mínimo;
+- Mastery/pontos/gates externos aplicáveis;
+- ausência de atalhos e ciclos;
+- coerência semântica da dependência;
+- capacidade real do runtime de impedir aquisição/ativação quando o requisito falhar.
 
-- `Dependências Obrigatórias` corretas;
-- rank mínimo da dependência, quando aplicável;
-- mastery necessária;
-- pontos/investimento de domínio, quando aplicável;
-- gateways e condições externas;
-- ausência de atalhos que permitam comprar a perk sem percorrer sua progressão real;
-- ausência de dependência circular;
-- dependência semanticamente coerente, e não apenas um código que existe.
+### 2.2 Integração global de corpo, sobrevivência, magia, tecnologia e sistemas compartilhados
 
-**Regra:** se A depende de B, o runtime deve ser capaz de impedir a aquisição/ativação de A enquanto B não estiver satisfeita.
+A perk não pode ser analisada como se seu provider existisse isoladamente. Considerar, quando pertinente:
 
-### 2.2 Integração global entre corpo, sobrevivência, magia, tecnologia e demais sistemas — modlist 2026-08-25
-
-Nenhuma perk deve ser analisada como se o mod provider existisse isoladamente.
-
-Sempre perguntar se a perk interage com sistemas compartilhados do modpack, incluindo quando pertinente:
-
-- temperatura corporal, frio, calor e ambiente;
-- Cold Sweat como estado corporal térmico; Create: Cold Sweat apenas como bridge; Ecliptic Seasons como clima/estações sem equivalência automática com temperatura corporal;
-- sede/hidratação;
-- nutrição;
-- vida, sangue e recursos corporais;
-- cura, sobrecura, regeneração e ferimentos;
-- mana e recursos mágicos reais;
-- Soul Energy, spirits e outros recursos occult reais;
+- temperatura corporal, frio/calor e ambiente;
+- sede/hidratação e nutrição;
+- vida, sangue, cura, ferimentos e recursos corporais;
+- mana, Soul Energy, spirits e demais recursos mágicos reais;
 - stamina/Epic Fight;
-- peso/encumbrance **somente quando houver provider real do jogador**; `Weight 1.2.0` atual é massa física Aeronautics/Sable e não pode preencher esse papel;
-- radiação, contaminação ou efeitos ambientais existentes;
-- energia elétrica, cinética, combustível e fluidos;
-- summons, familiars, servants e ownership;
+- radiação, contaminação, atmosfera, O₂, gases e pressão;
+- energia elétrica/cinética, combustível e fluidos;
+- summons/familiars/servants e ownership;
 - agricultura, animais, genética e sobrevivência;
-- progressões nativas como Vampirism, Bloodlines, Werewolves e sistemas equivalentes.
+- progressões nativas autoritativas como Vampirism/Bloodlines/Werewolves e equivalentes.
 
-**Afinidade e resistência não são sinônimos.** Quando o design exigir, afinidade com um elemento pode reduzir efeitos negativos causados pelo próprio uso/elemento invocado, enquanto resistência ambiental/hostil trata exposição externa. Não fundir conceitos diferentes apenas porque ambos envolvem fogo, frio etc.
+**Afinidade não é resistência.** Não fundir conceitos apenas por compartilharem fogo, frio, magia, corrupção etc.
 
-**Regra:** sempre usar o recurso e o pipeline canônico existente. Não criar uma segunda temperatura, segunda barra de sangue, segunda mana, segundo sistema de cura ou recurso paralelo sem decisão explícita no Documento Mestre.
+Sempre usar o pipeline e recurso canônico existente. Não criar segunda temperatura, sangue, mana, cura, atmosfera, pressão ou outro estado paralelo sem decisão explícita.
 
-### 2.3 Qualidade e identidade — nenhuma perk “sem sal”
+### 2.3 Qualidade e identidade
 
-A perk precisa justificar sua existência na árvore.
+Reprovar/redesenhar perks que sejam apenas percentual genérico sem decisão de build, cópia de atributo já existente, duplicação artificial de nodes ou Notable/Keystone/Capstone incompatível com sua importância.
 
-Reprovar ou redesenhar perks que sejam apenas:
+Preferir decisões, tradeoffs, telemetria útil, planejamento, interação entre mecânicas reais, especialização operacional e alteração de regra por hook estável.
 
-- `+5%` ou `+10%` genérico sem decisão de build;
-- cópia de atributo que já existe em outro ramo;
-- bônus que não muda comportamento, estratégia, especialização ou fantasia;
-- duplicação artificial de três nodes que poderiam ser um Ranked Passive;
-- Notable/Keystone/Capstone com impacto incompatível com o nome e posição.
+### 2.4 Ramificação, distância e topologia
 
-Preferir, quando suportado:
+Conferir domínio, ramo, camada, vizinhança, travessia entre regiões, corredores/Bridge Nodes, posição de Gateway/Notable/Keystone/Capstone e custo total do caminho.
 
-- novas decisões;
-- tradeoffs;
-- telemetria útil;
-- planejamento/preflight;
-- interação entre mecânicas reais;
-- especialização operacional;
-- alteração de uma regra nativa por hook estável;
-- sinergias que não poderiam ser substituídas por um atributo genérico.
-
-### 2.4 Ramificação, distância e topologia da árvore
-
-A aprovação exige conferir **onde** a perk está na árvore, não apenas o que ela faz.
-
-Obrigatório verificar:
-
-- ramo e domínio corretos;
-- camada coerente;
-- acesso pela vizinhança correta;
-- distância suficiente para builds híbridas;
-- ausência de “teleporte” entre regiões distantes;
-- Bridges/corredores quando a travessia entre regiões deve custar investimento;
-- posição de Gateway, Notable, Keystone e Capstone coerente com o poder;
-- custo total do caminho compatível com o benefício.
-
-Travessias longas devem preferir **corredores compráveis de Bridge Nodes**. A referência de design é aproximadamente **8–12 Passive Points** para uma travessia longa, ajustável por balanceamento, e não uma taxa invisível aplicada a um único node.
+Travessias longas devem usar corredores compráveis quando apropriado; não aplicar teleportes ou taxas invisíveis para contornar a topologia.
 
 ### 2.5 Especializações
 
-Toda perk relacionada a um provider ou subdisciplina deve ser conferida contra a arquitetura de especializações.
+Verificar se a perk pertence à especialização correta, se deveria ser ramo universal/bridge/gateway, se invade outra especialização e se progressões I→II→III realmente crescem em identidade.
 
-Verificar:
-
-- se pertence à especialização certa;
-- se deve ser uma especialização, classe emergente, ramo universal ou ponte;
-- se o Gateway aparece no ponto adequado;
-- se a perk invade responsabilidades de outra especialização;
-- se há progressão I → II → III ou equivalente com identidade crescente, e não apenas números maiores;
-- se o Capstone realmente conclui a fantasia da especialização;
-- se especializações sem classe obrigatória continuam possíveis quando o design assim prevê.
-
-Mods **não viram classes automaticamente**. O provider fornece mecânicas para domínios e especializações.
+**Mods não viram classes automaticamente.** O provider fornece mecânicas; a árvore decide domínios/especializações.
 
 ### 2.6 Tradução PT-BR
 
-Todo texto destinado ao jogador deve ser apresentado em **português do Brasil**, salvo nomes próprios de mods, itens, mecânicas cujo nome oficial precise ser preservado ou termos sem tradução adequada.
-
-Obrigatório conferir:
-
-- nome da perk;
-- descrição/efeito;
-- tooltip;
-- mensagens de bloqueio;
-- requisitos apresentados ao jogador;
-- nomes de perfis/modos criados pelo RPG Skill Tree;
-- consistência terminológica entre perks.
-
-Nomes de classes Java, métodos, IDs, tags, registries e `Hook` técnico podem permanecer em inglês porque fazem parte da implementação.
+Todo texto destinado ao jogador deve estar em português do Brasil, preservando apenas nomes próprios/termos técnicos que precisem permanecer oficiais. Classes Java, métodos, IDs, tags, registries e hooks podem permanecer em inglês.
 
 ### 2.7 Preenchimento completo do Notion
 
-Uma perk não é aprovada enquanto seu registro estiver incompleto ou contraditório.
+Conferir, conforme o schema aplicável:
 
-Conferir e preencher, conforme o schema aplicável:
+`Código`, `Nome`, `Domínio`, `Árvore`, `Ramo`, `Camada`, `Função na Árvore`, `Tier`, `Faixa de Poder`, `Ranks Máx.`, `Custo por Rank`, `Custo Extra`, `Dependências Obrigatórias`, `Pré-requisitos`, `Provider/Mods`, `Efeito`, `Escalonamento`, `Gate`, `Hook`, `Fallback`, `Regra` e demais campos pertinentes.
 
-- `Código`;
-- `Nome`;
-- `Domínio`;
-- `Árvore`;
-- `Ramo`;
-- `Camada`;
-- `Função na Árvore`;
-- `Tier`;
-- `Faixa de Poder`;
-- `Ranks Máx.`;
-- `Custo por Rank`;
-- `Custo Extra`, quando existir;
-- `Dependências Obrigatórias`;
-- `Pré-requisitos`;
-- `Provider/Mods`;
-- `Efeito`;
-- `Escalonamento`;
-- `Gate`;
-- `Hook`;
-- `Fallback`;
-- `Regra`;
-- demais propriedades existentes no catálogo que sejam pertinentes.
-
-O texto deve ser suficientemente específico para implementação posterior sem o próximo desenvolvedor precisar reinventar a intenção da perk.
+O registro deve ser específico o suficiente para o Chat 2 implementar sem redesenhar.
 
 ### 2.8 Remoção total do NeoVitae
 
-**NeoVitae é legado e deve ser removido do projeto.**
-
-Para aprovação:
-
-- a perk não pode exigir NeoVitae;
-- `Provider/Mods` não pode manter NeoVitae como provider ativo;
-- hooks NeoVitae antigos devem ser migrados ou removidos;
-- recursos, afinidades, entidades ou mecânicas que só existiam no NeoVitae não podem ser fingidos como existentes;
-- se a fantasia continuar válida, ela deve ser redirecionada a providers reais remanescentes, somente quando semanticamente correto;
-- toda revisão deve procurar referências residuais, inclusive em perks antigas.
-
-A presença histórica do NeoVitae em documentos ou modlists antigas **não autoriza** criar novas dependências.
+NeoVitae é legado. Nenhuma perk aprovada pode exigir NeoVitae, listá-lo como provider ativo ou fingir que recursos exclusivos dele ainda existem. Fantasias reaproveitáveis só podem ser redirecionadas a providers reais quando semanticamente correto.
 
 ### 2.9 Cobertura completa da modlist e integração entre mods
 
-Os guias de mods não servem apenas como documentação: eles são uma **matriz de cobertura** para o desenho da árvore.
+Os guias são também matriz de cobertura. Em cada lote:
 
-Obrigatório em cada lote:
+- revisar providers pertinentes nos guias e modlist;
+- perguntar que capacidades deveriam alimentar/ser representadas pela árvore;
+- verificar bridges legítimas;
+- não ignorar mods menores/periféricos;
+- registrar quando um mod não deve ter perk própria;
+- procurar lacunas antes de fechar o lote.
 
-- revisar os providers pertinentes nos três guias e na modlist atual;
-- perguntar quais mecânicas desses mods deveriam alimentar as perks do intervalo;
-- verificar bridges entre mods que representam a mesma fantasia/sistema;
-- evitar ignorar mods menores ou periféricos apenas porque os grandes providers já possuem perks;
-- registrar quando um mod **não deve** ter perk própria e explicar se ele é coberto por um sistema universal;
-- procurar lacunas de integração antes de declarar o lote fechado.
+A auditoria mantém a pergunta paralela: **“há alguma mecânica do modpack ainda não representada ou integrada?”**
 
-**Exemplo de alerta permanente:** `Protection Pixel` foi citado como caso de mod que pode ter sido deixado passar. Portanto, a auditoria não pode presumir que a catalogação anterior cobriu todos os providers. A cobertura deve ser revalidada sistematicamente.
+Classificações permitidas de cobertura:
+
+- **COBERTA POR PERK EXISTENTE**;
+- **PERK PRÓPRIA**;
+- **ESPECIALIZAÇÃO**;
+- **BRIDGE**;
+- **COBERTO POR SISTEMA UNIVERSAL**;
+- **PROGRESSÃO NATIVA AUTORITATIVA**;
+- **SEM HOOK SEGURO**;
+- **NÃO DEVE SER INTEGRADO**.
+
+### 2.9.1 Delta obrigatório de capacidades dos projetos próprios
+
+`neoforge-rpg-skilltree`, `Volcanoes`, `Enshrouded` e `Black-Arcana` estão em desenvolvimento contínuo. A cobertura não pode partir somente das perks existentes.
+
+Antes de fechar **cada lote exato de 10**, o Chat 1 deve:
+
+1. fazer fetch fresco de `main` e `plans/STATUS.md` dos quatro projetos;
+2. comparar os SHAs atuais com os últimos baselines reconciliados;
+3. quando houver avanço, identificar os subsistemas alterados;
+4. extrair toda capacidade nova ou semanticamente alterada pertinente a progressão — recurso, resistência, estado, hazard, ação, equipamento, query, serviço, progressão, diagnóstico, milestone ou boundary público — mesmo que nenhuma perk atual a mencione;
+5. registrar cada capacidade na matriz `Projeto → Capacidade → Estado real → SHA/evidência → Cobertura atual → Decisão → Perk(s)/ação → Hook/boundary → Fail-closed`;
+6. atribuir uma das classificações de cobertura acima;
+7. registrar lacunas parciais/ausentes antes de fechar o lote.
+
+**O baseline de um projeto não pode avançar enquanto qualquer capacidade detectada naquele delta estiver sem disposição explícita.** O novo SHA só vira checkpoint depois que todas as linhas tiverem decisão, ação e comportamento fail-closed quando aplicável.
+
+A auditoria é obrigatoriamente bidirecional:
+
+- `perk → provider`: authority, hook/boundary, causalidade, deduplicação, fallback e fail-closed;
+- `provider → árvore`: nenhuma capacidade nova/alterada pertinente fica sem avaliação.
+
+Detectar uma capacidade não autoriza inventar mecânica. Exemplo: O₂ no Volcanoes exige avaliar cobertura de respiração/hipóxia/proteção, mas não autoriza inventar `+X% oxigênio` sem extension point real. Arcane Resistance do Black Arcana continua distinta de resistência mágica genérica, Shroud, temperatura, pressão e gases.
+
+A descoberta de lacuna **não transforma lote de 10 em 11**. Se a solução exigir node fora do lote ativo, registrar a necessidade/posicionamento e deixá-la para o ciclo correto posterior. Não iniciar automaticamente o próximo lote.
+
+### 2.9.2 Delta externo de modlist
+
+Mods adicionados depois do snapshot dos guias devem ser incorporados incrementalmente antes do próximo fechamento de lote.
+
+**Mobstein 5.4.4** (`mobstein-5.4.4-neoforge-1.21.1.jar`) foi adicionado em 2026-08-30:
+
+- Gameplay/Magia: provider próprio de ressurreição corporal, experimentos, allies/bodyguards ressuscitados, estruturas e boss;
+- as `Attack/Health/Speed/Template perks` internas pertencem ao Mobstein e **não** são nodes do RPG Skill Tree;
+- necromancia temática não cria bridge automática com Goety, Black Arcana, Malum, Eidolon ou Enshrouded;
+- Tecnologia: **NÃO APLICÁVEL** por padrão; Clinical/Surgery Stretch e Subject Assembly Machine não provam FE, SU, Create, AE2, Oritech ou outro contrato tecnológico.
 
 ## 3. Critérios técnicos obrigatórios
 
 ### 3.1 Provider-native first
 
-A integração deve respeitar primeiro a mecânica nativa do provider.
-
-Se o mod já possui sistema adequado de combustível, energia, durabilidade, prioridade, progressão, cooldown, skillbook, resource cost ou unlock, a perk não deve clonar ou substituir esse sistema sem justificativa explícita.
+Preservar a mecânica e a progressão nativas do provider. Não clonar combustível, energia, durabilidade, prioridade, progressão, cooldown, resource cost, unlock, ownership ou estado que o provider já controla adequadamente.
 
 ### 3.2 Não inventar mecânicas do provider
 
-É proibido afirmar que uma perk controla algo que a versão auditada do mod não possui.
-
-Exemplos de erros:
-
-- reduzir “perda de transmissão” em rede que não possui perdas;
-- oferecer filtro de minério onde a máquina não possui seleção de alvo;
-- criar prioridade automática onde o provider distribui aleatoriamente;
-- usar pressão como gate quando o runtime não a aplica;
-- criar durabilidade reduzida para equipamento marcado como unbreakable.
+É proibido afirmar que uma perk controla algo inexistente na versão auditada: perda de transmissão inexistente, filtros inexistentes, prioridade inexistente, pressão não aplicada, durabilidade em item unbreakable etc.
 
 ### 3.3 Hook implementável e versão exata
 
-O `Hook` deve identificar a fonte real do evento/estado que implementará a perk.
-
-Sempre verificar a versão usada no pack. Código de branch posterior não é evidência suficiente para NeoForge 1.21.1.
+`Hook` deve identificar a fonte real do evento/estado. Branch posterior ou documentação de outra versão não prova disponibilidade em NeoForge 1.21.1.
 
 ### 3.4 Fail-closed
 
-Quando um hook seguro não estiver disponível, a perk fica inativa para aquele provider/caso ou omite a funcionalidade indisponível.
-
-É proibido transformar silenciosamente uma perk quebrada em `+dano`, `+mastery`, `+durabilidade` ou outro bônus genérico para fazê-la “funcionar”.
+Sem API/hook seguro, a funcionalidade dependente fica inativa. Não substituir silenciosamente por `+dano`, `+mastery`, `+durabilidade` ou bônus genérico.
 
 ### 3.5 Fallback preserva identidade
 
-Fallback é degradação segura, não uma segunda perk.
-
-Exemplo correto: uma telemetria deixa de mostrar uma métrica sem adapter.
-
-Exemplo incorreto: um sistema de planejamento vira `+10% produção` se a API não existir.
+Fallback é degradação técnica segura, não uma segunda perk. Uma perk de telemetria/planejamento não pode virar bônus de produção porque um adapter faltou.
 
 ### 3.6 Uma ação, um pipeline canônico
 
-O mesmo evento não pode ser processado duas vezes por bridges diferentes.
+Crítico, cura, stamina, dano, Mastery, summons, produção e recursos não podem ser processados duas vezes por bridges diferentes.
 
-Aplicar especialmente a:
+### 3.7 Sem geração/duplicação acidental
 
-- cura;
-- crítico;
-- stamina;
-- dano;
-- mastery;
-- summons;
-- produção industrial;
-- recursos mágicos.
+Não gerar gratuitamente energia, combustível, fluidos, minério, ingredientes, outputs, recursos mágicos, vida/sangue, drops ou pontos/Mastery. Geração intencional precisa de design, custo, gate e hook auditados.
 
-### 3.7 Sem geração ou duplicação acidental
+### 3.8 Read-only realmente read-only
 
-Uma perk não pode produzir gratuitamente:
+Diagnóstico/telemetria/previsão/planejamento podem ler/calcular/simular, mas não consumir recursos, executar receita, alterar máquina/rede/bloco ou produzir resultado durante a consulta.
 
-- energia;
-- combustível;
-- fluidos;
-- minério;
-- ingredientes;
-- outputs extras não previstos;
-- recursos mágicos;
-- vida/sangue;
-- drops;
-- pontos/mastery.
+## 4. Mastery e anti-abuso
 
-Qualquer geração intencional precisa ser parte explícita do design e ter custo/gate/hook auditado.
+Mastery representa experiência real e atribuível.
 
-### 3.8 Read-only deve ser realmente read-only
+É proibido gerar Mastery por tick, AFK, equipamento vestido, distância contínua, RF/t, FE/t, SU/t, throughput, dano repetitivo sem milestone, botão contínuo, processo autônomo sem autoria ou rebuild/configuração repetitiva.
 
-Perks de diagnóstico, telemetria, previsão e planejamento podem ler/simular, mas não devem consumir recursos, executar receita, alterar máquina, mover bloco, reconfigurar rede ou produzir resultado durante a consulta.
+Preferir milestones discretos: first-use legítimo, nova família de ferramenta/máquina, nova receita/configuração real, primeiro comissionamento de arquitetura distinta, advancement e descoberta inédita com ledger limitado.
 
-Quando existir API de simulação, usar a operação de simulação.
-
-## 4. Regras de Mastery e anti-abuso
-
-Mastery representa **experiência real e atribuível**, não tempo conectado.
-
-### 4.1 Proibido gerar Mastery por
-
-- tick;
-- tempo AFK;
-- tempo com equipamento vestido;
-- distância percorrida continuamente;
-- RF/t, FE/t, SU/t ou throughput;
-- dano repetitivo sem milestone;
-- segurar botão continuamente;
-- processo autônomo sem autoria demonstrável;
-- desmontar e reconstruir a mesma estrutura;
-- alternar repetidamente a mesma configuração;
-- farm infinito de evento idêntico.
-
-### 4.2 Preferir milestones discretos
-
-Exemplos:
-
-- primeira utilização legítima de uma categoria;
-- nova família de ferramenta/máquina;
-- nova receita relevante;
-- nova configuração real;
-- primeiro comissionamento de arquitetura distinta;
-- conquista/advancement;
-- descoberta inédita registrada em ledger limitado;
-- milestone funcional claramente atribuível.
-
-### 4.3 Autoria causal
-
-Automação, fake player, redstone, turret, minion ou máquina abandonada não concede automaticamente Mastery ao jogador.
-
-Só recompensar quando houver regra estável de ownership/autoria e o resultado puder ser atribuído inequivocamente.
+Automação, fake player, redstone, turret, minion ou máquina abandonada só podem conceder progressão quando houver atribuição causal inequívoca ao jogador.
 
 ## 5. Coerência de poder e função na árvore
 
-### 5.1 Small / Ranked Passive
-
-Bônus simples são aceitáveis quando pequenos, canônicos e necessários para formar caminho. Cadeias redundantes devem virar Ranked Passive quando possível.
-
-### 5.2 Notable
-
-Deve alterar decisão de build, interação ou fantasia. Não pode ser um pequeno percentual com nome grandioso.
-
-### 5.3 Gateway
-
-Serve para desbloquear sistema, especialização ou camada. Normalmente não deve carregar um grande pacote de poder próprio.
-
-### 5.4 Keystone
-
-Altera regra relevante de gameplay e pode envolver tradeoff. Exige hook seguro e documentação precisa.
-
-### 5.5 Capstone
-
-Deve representar conclusão significativa do ramo/especialização. Não basta ser “o mesmo bônus do rank anterior, porém maior”.
-
-### 5.6 Bridge
-
-Conecta regiões e deve justificar o caminho entre as duas fantasias. Bridge não deve ser falso Notable nem teleporte gratuito.
+- **Small / Ranked Passive:** bônus simples pequenos/canônicos; consolidar cadeias redundantes quando possível.
+- **Notable:** muda decisão/interação/fantasia; não pode ser percentual banal.
+- **Gateway:** desbloqueia sistema/especialização/camada; normalmente não carrega grande pacote de poder.
+- **Keystone:** altera regra relevante; pode envolver tradeoff; exige hook seguro.
+- **Capstone:** conclusão significativa do ramo/especialização.
+- **Bridge:** conecta regiões/fantasias com custo/topologia intencionais; não é teleporte gratuito.
 
 ## 6. Checklist individual de aprovação
 
-Uma perk somente recebe **APROVADA** se todas as respostas abaixo forem `SIM` ou `N/A justificado`:
+Uma perk recebe **APROVADA** somente se todos os itens forem `SIM` ou `N/A justificado`:
 
-- [ ] Código e identidade estão corretos?
-- [ ] Dependências e gates bloqueiam corretamente a aquisição/ativação?
-- [ ] A perk está no domínio, ramo, camada e posição corretos?
-- [ ] A distância/topologia da árvore está coerente?
-- [ ] A função estrutural está correta — Small, Ranked, Bridge, Gateway, Notable, Keystone ou Capstone?
-- [ ] A faixa de poder, ranks e custos correspondem ao impacto?
-- [ ] A perk é interessante e possui identidade própria?
-- [ ] Não existe uma perk anterior que já faça essencialmente a mesma coisa?
-- [ ] A especialização está correta e não invade outra?
-- [ ] Todas as integrações globais pertinentes foram consideradas?
-- [ ] Os providers pertinentes da modlist/guias foram consultados?
-- [ ] O comportamento existe de verdade na versão do provider instalada?
-- [ ] O hook é implementável e específico?
-- [ ] O efeito respeita o provider-native first?
-- [ ] Não inventa mecânica, recurso, atributo ou estado inexistente?
-- [ ] O fallback é seguro e preserva a identidade?
-- [ ] Não duplica pipelines ou recompensa a mesma ação duas vezes?
-- [ ] Não cria exploit de energia, recursos, outputs, cura, sangue, mana ou mastery?
-- [ ] Mastery, se existir, usa milestone discreto e atribuição causal?
-- [ ] Possui proteção anti-farm/rebuild quando necessária?
-- [ ] Não possui dependência residual de NeoVitae?
-- [ ] O texto visível ao jogador está em PT-BR consistente?
-- [ ] Todos os campos pertinentes do Notion estão preenchidos?
-- [ ] Após a escrita, a página foi buscada novamente e a persistência foi confirmada?
+- [ ] código/identidade corretos;
+- [ ] dependências/gates corretos;
+- [ ] domínio/ramo/camada/posição corretos;
+- [ ] topologia/distância coerentes;
+- [ ] função estrutural correta;
+- [ ] poder/ranks/custos coerentes;
+- [ ] identidade própria e ausência de duplicação;
+- [ ] especialização correta;
+- [ ] integrações globais pertinentes consideradas;
+- [ ] providers pertinentes dos guias/modlist consultados;
+- [ ] comportamento existe na versão instalada;
+- [ ] hook específico e implementável;
+- [ ] provider-native first preservado;
+- [ ] nenhuma mecânica/recurso/estado inventado;
+- [ ] fallback seguro;
+- [ ] nenhum pipeline duplicado;
+- [ ] nenhum exploit de energia/recursos/outputs/cura/sangue/mana/Mastery;
+- [ ] Mastery usa milestone discreto e atribuição causal;
+- [ ] anti-farm/rebuild quando necessário;
+- [ ] nenhuma dependência residual de NeoVitae;
+- [ ] PT-BR consistente;
+- [ ] campos pertinentes do Notion completos;
+- [ ] delta de `main`/`plans/STATUS.md` dos quatro projetos próprios verificado;
+- [ ] toda capacidade nova/alterada recebeu disposição de cobertura;
+- [ ] nenhum baseline foi avançado com linha de delta pendente;
+- [ ] pós-escrita re-fetch do Notion confirmou persistência.
 
 ## 7. Status permitidos
 
-Use apenas estes estados conceituais durante a auditoria:
-
-**PENDENTE** — ainda não foi auditada pelos critérios completos.
-
-**EM REVISÃO** — análise em andamento; não pode ser tratada como pronta.
-
-**BLOQUEADA** — depende de informação/API/provider ainda não confirmado.
-
-**REPROVADA / REDESENHAR** — falhou em um ou mais critérios e requer mudança funcional/estrutural.
-
-**APROVADA** — passou individualmente por todos os critérios aplicáveis e foi re-fetched no Notion.
-
-**LOTE FECHADO** — todas as perks do intervalo estão aprovadas e a matriz de cobertura do lote também foi concluída.
+- **PENDENTE** — ainda não passou pela auditoria completa.
+- **EM REVISÃO** — análise em andamento.
+- **BLOQUEADA** — depende de informação/API/provider não confirmado.
+- **REPROVADA / REDESENHAR** — falhou em critérios e exige mudança funcional/estrutural.
+- **APROVADA** — passou individualmente pelos critérios aplicáveis e foi re-fetched no Notion.
+- **LOTE FECHADO** — as 10 perks estão aprovadas **e** matrizes de cobertura/delta estão fechadas.
 
 ## 8. Protocolo obrigatório de auditoria por lotes
 
-Para revisão de catálogo antigo, trabalhar preferencialmente em **lotes de 50 perks** para preservar precisão.
+**Chat 1 e Chat 2 trabalham em LOTES EXATOS DE 10 perks consecutivas.**
 
-Ao iniciar um lote, registrar explicitamente:
+Não existe intervalo fixo permanente: cada chat determina o próximo lote a partir do estado real de `STATUS.md`, auditorias e dossiês.
 
-- `INÍCIO: Axxxx`;
-- `FIM: Ayyyy`;
-- estado inicial do intervalo;
-- fontes/mods/providers que serão cruzados.
+Ao iniciar, registrar `INÍCIO`, `FIM`, estado inicial e fontes/providers cruzados.
 
-Durante o lote, manter esta matriz:
+Matriz mínima do lote:
 
-| Critério | Status do lote |
+| Critério | Status |
 |---|---|
-| 1. Dependências e bloqueios | ⬜ |
-| 2. Integrações globais/modlist atual/corpo/recursos | ⬜ |
-| 3. Qualidade/identidade | ⬜ |
-| 4. Ramificação/distância/topologia | ⬜ |
-| 5. Especializações | ⬜ |
-| 6. PT-BR | ⬜ |
-| 7. Notion completo | ⬜ |
-| 8. NeoVitae removido | ⬜ |
-| 9. Cobertura da modlist/providers | ⬜ |
-
-Um `✅` só pode ser colocado depois da verificação real de todas as perks pertinentes naquele critério.
-
-### 8.1 Fechamento do lote
+| Dependências/bloqueios | ⬜ |
+| Integração global | ⬜ |
+| Qualidade/identidade | ⬜ |
+| Topologia | ⬜ |
+| Especializações | ⬜ |
+| PT-BR | ⬜ |
+| Notion completo | ⬜ |
+| NeoVitae removido | ⬜ |
+| Cobertura modlist/providers | ⬜ |
+| Delta provider → árvore | ⬜ |
 
 Antes de anunciar `Axxxx–Ayyyy — FECHADO`:
 
-1. terminar todas as correções;
-2. re-fetch das páginas alteradas no Notion;
-3. confirmar a persistência;
-4. confirmar os nove eixos da matriz;
-5. registrar exceções/N/A com justificativa;
-6. informar claramente ao usuário o intervalo efetivamente fechado.
+1. concluir correções das 10 perks;
+2. re-fetch das páginas alteradas e confirmar persistência;
+3. confirmar os nove eixos e critérios técnicos;
+4. confirmar a matriz provider → árvore;
+5. confirmar que nenhum delta ficou sem classificação antes de atualizar baselines;
+6. registrar exceções/N/A;
+7. concluir documentação/status pertinente;
+8. quando houver trabalho GitHub neste ciclo, concluir PR, CI verde quando aplicável, merge na `main` e confirmar a `main` pós-merge;
+9. **PARAR**. Não iniciar automaticamente o próximo lote.
 
-Se a execução parar no meio, informar o **último código realmente aprovado** e o **próximo código exato**. Nunca arredondar o progresso.
+Se a execução parar no meio, informar o último código realmente aprovado e o próximo código exato.
 
-## 9. Auditoria de cobertura de mods
+## 9. Política de novos chats/agentes
 
-A revisão de perks deve manter uma segunda pergunta paralela: **“há alguma mecânica do modpack que ainda não está representada ou integrada?”**
+Antes de qualquer lote, ler este arquivo e as fontes obrigatórias atuais. Não aceitar um intervalo antigo como definitivamente fechado apenas porque outro chat escreveu `FECHADO` se ele não passou por esta versão do protocolo.
 
-Para cada provider/mod relevante, classificar sua cobertura como uma destas opções:
+Ao retomar trabalho: preservar decisões tecnicamente confirmadas, reabrir somente diante de nova evidência, documentar a razão e continuar do ponto real verificado.
 
-- **PERK PRÓPRIA** — precisa de nodes dedicados;
-- **ESPECIALIZAÇÃO** — pertence a uma progressão temática própria;
-- **BRIDGE** — conecta dois sistemas/domínios existentes;
-- **COBERTO POR SISTEMA UNIVERSAL** — não precisa de perk nominal do mod;
-- **PROGRESSÃO NATIVA AUTORITATIVA** — o sistema do próprio mod deve permanecer principal, com integração mínima;
-- **SEM HOOK SEGURO** — integração adiada/fail-closed;
-- **NÃO DEVE SER INTEGRADO** — justificar explicitamente.
+## 10. Checklist técnica consolidada — 18 critérios
 
-Isso impede tanto esquecer providers quanto criar uma árvore com uma especialização desnecessária para cada mod instalado.
+1. efeito existe de verdade na versão instalada;
+2. provider-native first;
+3. nenhuma mecânica inventada;
+4. fail-closed sem hook seguro;
+5. fallback preserva identidade;
+6. Mastery somente por feitos discretos/atribuíveis;
+7. anti-farm/anti-rebuild;
+8. atribuição causal ao jogador;
+9. não duplicar pipelines canônicos;
+10. custos/recursos reais;
+11. sem geração gratuita/duplicação acidental;
+12. read-only realmente read-only;
+13. versionamento explícito quando API for sensível;
+14. coerência estrutural da árvore;
+15. dependências com semântica correta;
+16. sem sobreposição indevida entre ramos/especializações;
+17. perk especificada para implementação posterior sem redesenho;
+18. verificação pós-escrita obrigatória.
 
-## 10. Regra para novos chats/agentes
-
-> **Antes de continuar qualquer lote:** leia esta página, identifique o intervalo exato, consulte as fontes de verdade e use a checklist completa. Não aceite como definitivamente fechado um intervalo antigo apenas porque outro chat escreveu `FECHADO` se ele ainda não tiver passado por esta versão completa da auditoria.
-
-Ao retomar trabalho já iniciado:
-
-- preservar decisões tecnicamente confirmadas;
-- não refazer trabalho sem motivo;
-- porém reabrir uma perk se nova evidência revelar violação destes critérios;
-- documentar a razão da reabertura;
-- continuar do ponto exato informado pelo último estado verificado.
-
-## 11. Política de aprovação final
-
-Uma perk é considerada pronta para implementação somente quando satisfaz simultaneamente:
-
-**Design coerente + topologia coerente + dependências corretas + integração global + cobertura de providers + API/hook real + anti-abuso + PT-BR + Notion completo + ausência de NeoVitae + persistência confirmada.**
-
-Se qualquer uma dessas partes estiver ausente, o status correto é **PENDENTE**, **BLOQUEADA** ou **REDESENHAR**, nunca `APROVADA`.
-
-## 12. Checklist técnica consolidada — 18 critérios obrigatórios
-
-> Esta seção consolida, de forma explícita, os critérios técnicos mínimos que **toda perk** deve cumprir além dos 9 eixos sistêmicos acima. Se qualquer item falhar, a perk não pode ser declarada aprovada/fechada.
-
-1. **O efeito precisa existir de verdade.** Quando depender de um mod/provider, validar API, código, documentação ou comportamento da versão real instalada. Não aceitar descrições abstratas como “melhora eficiência” sem parâmetro ou hook real correspondente.
-2. **Provider-native first.** Preservar primeiro a mecânica nativa do mod. A skill tree não deve substituir, duplicar ou contornar sistemas que o provider já oferece adequadamente.
-3. **Sem mecânica inventada disfarçada de integração.** Não criar prioridade de rede, perda de energia, filtro de minério, estabilização, pressão funcional, durabilidade ou qualquer outra mecânica que a versão auditada do provider não possua.
-4. **Fail-closed.** Sem hook/API segura, a perk fica inativa naquele caso ou omite a funcionalidade. Nunca substituir silenciosamente por `+mastery`, `+durabilidade`, `+dano` ou bônus genérico.
-5. **Fallback não pode mudar a identidade da perk.** Fallback serve para degradação técnica segura; não pode transformar uma perk de planejamento/controle/telemetria em outro bônus completamente diferente.
-6. **Mastery somente por feitos discretos e atribuíveis.** Nunca por tick, RF/t, FE/t, SU/t, stress/t, tempo AFK, throughput contínuo, dano repetido, equipamento vestido, distância contínua ou reconstrução repetitiva. Preferir ledger persistente para first-use, nova família, nova receita, nova configuração e milestones reais.
-7. **Anti-farm e anti-rebuild.** Desmontar/remontar a mesma estrutura, mover a máquina, alternar a mesma configuração ou repetir o mesmo resultado não pode gerar nova descoberta/mastery indefinidamente.
-8. **Atribuição causal ao jogador.** Máquina autônoma, redstone, fake player, turret ou processo abandonado só pode gerar mastery quando houver autoria/atribuição inequívoca ao jogador segundo a política do sistema.
-9. **Não duplicar pipelines canônicos.** Crítico, cura, stamina, dano, mastery, summons e recursos devem usar o resolvedor/evento canônico. É proibida segunda rolagem ou processamento duplicado do mesmo evento.
-10. **Custos e recursos têm que ser reais.** RF/FE, Soul Energy, sangue, mana, stamina, combustível, fluidos, durabilidade e outros custos devem ler/modificar o recurso verdadeiro do provider. Não criar barra paralela ou custo fictício sem decisão explícita de design.
-11. **Sem geração gratuita ou duplicação acidental.** Não duplicar outputs, devolver ingrediente já consumido, criar energia/combustível/minério/resource node/fluidos/vida/sangue/mana/mastery ou converter telemetria em alteração de processo sem design explícito, custo e hook auditados.
-12. **Read-only significa realmente read-only.** Diagnóstico, telemetria, planejamento e previsão podem ler/calcular/simular, mas não consumir recursos, executar receita, produzir item, alterar configuração, mover bloco ou mudar estado durante a consulta.
-13. **Versionamento explícito quando a API for sensível à versão.** Registrar e auditar a versão efetivamente usada no pack, por exemplo `Oritech 1.2.11 — NeoForge 1.21.1`. Código de versão/branch posterior não vale como prova automática.
-14. **Coerência estrutural da árvore.** Conferir função, camada, ranks, custo, faixa de poder, convergência de dependências e posição. Notable não pode ser bônus banal; Keystone deve alterar regra relevante; Capstone precisa ser digno de fim de ramo; Gateway/Ponte precisam cumprir função topológica real.
-15. **Dependências precisam ter semântica correta.** Não basta o código existir. A dependência deve representar progressão mecanicamente e tematicamente coerente, usando o provider/recurso correto.
-16. **Sem sobreposição indevida entre ramos/especializações.** Cada ação e mecânica deve alimentar os domínios/especializações que realmente lhe pertencem. Usar energia, produzir item ou possuir múltiplas capacidades não autoriza a mesma atividade a conceder mastery em vários ramos sem justificativa explícita. Bridges devem ser intencionais e anti-double-count.
-17. **A perk precisa ser implementável posteriormente.** `Hook`, `Gate`, `Efeito`, `Escalonamento`, requisitos e regras devem ser específicos o bastante para outro ChatGPT/Codex implementar sem reinterpretar ou reinventar o design.
-18. **Verificação pós-escrita obrigatória.** Depois de criar ou alterar uma perk no Notion, buscar/fazer fetch novamente e confirmar que as propriedades persistiram corretamente. Só então o node/lote pode ser chamado de `FECHADO`.
-
-### 12.1 Campos mínimos do registro da perk
-
-Além dos 18 critérios, conferir a coerência dos campos do catálogo aplicáveis: `Código`, `Nome`, `Domínio`, `Árvore`, `Ramo`, `Camada`, `Função na Árvore`, `Tier`, `Faixa de Poder`, `Ranks Máx.`, `Custo por Rank`, `Custo Extra`, `Dependências Obrigatórias`, `Pré-requisitos`, `Provider/Mods`, `Efeito`, `Escalonamento`, `Gate`, `Hook`, `Fallback`, `Regra` e quaisquer outras propriedades pertinentes do schema atual.
-
-**Regra final:** os 18 critérios desta seção são cumulativos aos 9 eixos obrigatórios da Seção 2. Nenhum deles substitui integração global, topologia, especializações, PT-BR, remoção do NeoVitae, cobertura da modlist ou preenchimento completo do Notion.
+Os 18 critérios são cumulativos aos 9 eixos; não substituem integração global, topologia, especializações, PT-BR, remoção de NeoVitae, cobertura da modlist ou Notion completo.
 
 ---
 
 ## Nota de sincronização
 
-Este arquivo é uma cópia versionada do conteúdo canônico do Notion consultado em 2026-08-29. **O Notion continua sendo a fonte canônica**: se a página de critérios mudar, este arquivo deve ser atualizado antes do próximo lote de perks.
+Sincronizado com o conteúdo canônico do Notion em **2026-08-30**, incluindo:
+
+- lotes exatos de 10;
+- Guia Completo — Projetos Próprios como fonte obrigatória;
+- auditoria bidirecional `perk → provider` e `provider → árvore`;
+- gate de delta de capacidades;
+- proibição de avançar baseline com capacidade não classificada;
+- Mobstein 5.4.4 como primeiro delta externo pós-snapshot.
+
+**O Notion continua sendo a fonte canônica.** Se a página mudar, atualizar esta cópia antes do próximo lote.

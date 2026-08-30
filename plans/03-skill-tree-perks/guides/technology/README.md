@@ -4,13 +4,13 @@ Create e addons, energia, indústria, logística, automação, transporte, compu
 
 **Fonte canônica no Notion:** https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff
 
-**Referência de presença/JAR/versão usada por este snapshot:** `modlist 28.08.26.txt`.
+**Referência de presença/JAR/versão usada por este snapshot:** `modlist 28.08.26.txt` + atualização incremental de 2026-08-30 para Mobstein `5.4.4` como boundary não tecnológico.
 
 ## Como este guia está organizado
 
 Cada arquivo abaixo contém uma **seção lógica completa**. Não existe continuação de parágrafo ou de capítulo em outro arquivo. Os arquivos podem ser lidos de forma independente; a ordem do índice apenas reproduz a ordem do guia canônico.
 
-Os quatro projetos próprios do modpack possuem uma coleção transversal obrigatória em [`../projects/`](../projects/README.md). O capítulo 19 abaixo é somente o recorte tecnológico; o Chat 1 deve consultar também os dossiês completos e a matriz cruzada antes de fechar uma perk que possa interagir com RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
+Os quatro projetos próprios do modpack possuem uma coleção transversal obrigatória em [`../projects/`](../projects/README.md). O capítulo 19 abaixo é somente o recorte tecnológico; o Chat 1 deve consultar também os dossiês completos, a matriz cruzada e a matriz de delta antes de fechar uma perk que possa interagir com RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
 
 ## Índice
 
@@ -34,6 +34,7 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - [16. Mapa rápido dos ecossistemas](17-mapa-rapido-dos-ecossistemas.md)
 - [17. Fontes principais de referência](18-fontes-principais-de-referencia.md)
 - [19. Projetos próprios do modpack — integração tecnológica canônica](19-projetos-proprios-do-modpack.md)
+- [20. Mobstein — boundary: não é provider tecnológico](20-mobstein-boundary.md)
 
 ## Regras de manutenção
 
@@ -41,6 +42,7 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
+- Novos mods adicionados à modlist depois do snapshot devem ser classificados nos guias pertinentes; quando possuírem estética/nomes tecnológicos sem contrato tecnológico real, registrar explicitamente o boundary em vez de inventar integração.
 - O Notion continua sendo a fonte canônica; este diretório é o snapshot auditável usado pelo repositório.
 
 [← Voltar aos guias](../README.md)
