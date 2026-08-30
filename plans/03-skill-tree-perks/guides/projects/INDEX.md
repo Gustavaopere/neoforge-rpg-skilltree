@@ -9,3 +9,7 @@
 - [Reconciliação de snapshots](06-snapshot-reconciliation.md)
 - [Checklist do Chat 1](07-chat1-provider-listing-checklist.md)
 - [Regra de manutenção](08-maintenance-rule.md)
+- [Política de fontes](09-source-policy.md)
+- [Regra de autoridade](10-authority-rule.md)
+- [Não inferir hooks](11-do-not-infer-hooks.md)
+- [Matriz de cobertura e delta de capacidades](12-capability-delta-coverage.md)
