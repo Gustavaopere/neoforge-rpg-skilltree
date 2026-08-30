@@ -69,3 +69,12 @@ Nenhuma divergência específica identificada nesta leitura. A semântica de `Mo
 - [x] classificação DAGGER provider-native;
 - [x] fail-closed quando a família/hook não existir;
 - [ ] revalidar integração e dedicated-server smoke após atualização do provider.
+
+## Fechamento Chat 1 V3 — ciclo exato A0011–A0020
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; dependência, gate, efeito, hook e fallback permanecem sem drift.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Hook confirmado:** Epic Fight 21.17.3.1 `ModifyAttackSpeedEvent` + família DAGGER provider-native.
+- **Fail-closed:** sem cadência real estável/server-authoritative, A0020 fica inativa; não converter para stamina, movimento, dano ou edição frágil de animação.
+- **Deduplicação:** qualquer addon de adaga participa somente por sua capability Epic Fight compartilhada, sem segundo modificador de ritmo no RPG Skill Tree.
+- **Resultado:** **APROVADA / FECHADA** no lote A0011–A0020.
