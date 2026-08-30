@@ -70,3 +70,17 @@ Nenhuma divergência específica identificada. Novos adapters de lança devem re
 - [x] correlação NeoForge ↔ Epic Fight;
 - [x] classificação SPEAR no adapter;
 - [ ] revalidar quando o pipeline crítico ou a versão do Epic Fight mudar.
+
+## Chat 2 — implementação, testes e merge — PR #224
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #224.
+
+- [x] Chance +3%/rank vinculada somente a SPEAR.
+- [x] Uma única resolução crítica canônica por root action é preservada.
+- [x] Correlação NeoForge ↔ Epic Fight reutiliza a mesma decisão crítica.
+- [x] Família desconhecida permanece FAIL-CLOSED.
+- [x] Regressão JUnit confirma +9% no rank 3 de A0015 e ausência de crítico de adaga A0021 fora deste lote.
+- [x] `RPG Skill Tree CI` #2036 GREEN no SHA `bda08ca9748ad16d3352d0872f753976731424f8`.
+- [x] JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma para A0015.
