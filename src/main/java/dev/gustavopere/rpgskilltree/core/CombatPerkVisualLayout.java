@@ -19,7 +19,12 @@ public final class CombatPerkVisualLayout {
 
     private CombatPerkVisualLayout() {}
 
-    public record Node(String id, double x, double y) {}
+    public record Node(String id, double x, double y) {
+        public Node {
+            x = canonicalZero(x);
+            y = canonicalZero(y);
+        }
+    }
     public record Edge(String from, String to) {}
     public record Layout(List<Node> nodes, List<Edge> edges) {
         public Layout {
@@ -71,6 +76,10 @@ public final class CombatPerkVisualLayout {
 
         projectedNodes.sort(Comparator.comparing(Node::id));
         return new Layout(projectedNodes, canonicalEdges(canonical, ids));
+    }
+
+    private static double canonicalZero(double value) {
+        return value == 0.0D ? 0.0D : value;
     }
 
     private static List<Set<String>> connectedComponents(
