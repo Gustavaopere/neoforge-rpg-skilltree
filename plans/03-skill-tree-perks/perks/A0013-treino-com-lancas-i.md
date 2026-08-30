@@ -47,3 +47,17 @@
 - [x] classificação `spear` provider-native;
 - [x] ausência de alteração artificial de alcance;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Chat 2 — implementação, testes e merge — PR #224
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #224.
+
+- [x] Hook de dano direto SPEAR implementado no pipeline canônico.
+- [x] Gate/ranks/dependências representados no modelo runtime.
+- [x] Família fornecida pela capability do Epic Fight; categoria desconhecida = FAIL-CLOSED.
+- [x] Nenhum alcance físico artificial foi adicionado.
+- [x] Regressão JUnit confirma +9% em rank 3 somente para SPEAR.
+- [x] `RPG Skill Tree CI` #2036 GREEN no SHA `bda08ca9748ad16d3352d0872f753976731424f8`.
+- [x] JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma para A0013.
