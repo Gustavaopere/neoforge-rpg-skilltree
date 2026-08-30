@@ -98,6 +98,9 @@ jobs:
       - name: Compendium editorial backlog tests
         run: python3 scripts/compendium/test_editorial_backlog.py
 
+      - name: Compendium editorial corpus tests
+        run: python3 scripts/compendium/test_editorial_corpus.py
+
       - name: Data validation
         run: python3 scripts/validate-data.py
 
