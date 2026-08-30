@@ -94,7 +94,9 @@ Estado atual:
 - [x] preview 3D de entidades e preview estático seguro são integrados à página;
 - [x] notas pessoais e favoritos são acessíveis pela própria página;
 - [x] proveniência administrativa permanece opt-in via debug;
-- [ ] `entryRelations` já são projetadas em `CompendiumPageModel`, mas ainda precisam de apresentação/navegação clicável na UI;
+- [x] `entryRelations` projetadas em `CompendiumPageModel` aparecem em painel clicável, limitado e rolável, com tipos traduzidos em pt-BR;
+- [x] relações cujo target não existe no `CompendiumClientSnapshot` autorizado ficam fail-closed e não expõem o ID ausente;
+- [x] navegar por relação abre a entrada-alvo e registra Recentes sem destruir query/filtro/scroll do browser normal;
 - [ ] seletor de variantes depende da projeção segura de variantes descobertas no 10.13.
 
 A primeira versão física usa seções contínuas em vez de criar abas vazias. Abas reais podem ser introduzidas se a densidade final exigir, mas não devem gerar painéis `N/A` sem conteúdo.
@@ -224,6 +226,8 @@ src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumFilterSta
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumPageModelFactoryTest.java
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumScreenLayoutTest.java
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumScreenSessionTest.java
+src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumRelationNavigationTest.java
+src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumRelationPanelStateTest.java
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumNotesModelTest.java
 ```
 
@@ -246,7 +250,6 @@ O subplano fecha quando o jogador consegue pesquisar e navegar o catálogo de fo
 
 Pendências funcionais conhecidas do 10.09 que não dependem de teste manual:
 
-1. apresentação e navegação clicável das `entryRelations` já projetadas no `CompendiumPageModel`;
-2. seletor seguro de variantes, bloqueado até o snapshot/protocolo do 10.13 transportar somente variantes descobertas/autorizadas;
-3. persistência das notas, explicitamente pertencente ao 10.13;
-4. população real do `ClientCompendiumState` com snapshot autorizado, dependente do pipeline de projeção/transporte do 10.13; sem isso, a UI pode abrir vazia apesar de o shell/client estar funcional.
+1. seletor seguro de variantes, bloqueado até o snapshot/protocolo do 10.13 transportar somente variantes descobertas/autorizadas;
+2. persistência das notas, explicitamente pertencente ao 10.13;
+3. população real do `ClientCompendiumState` com snapshot autorizado, dependente do pipeline de projeção/transporte do 10.13; sem isso, a UI pode abrir vazia apesar de o shell/client estar funcional.
