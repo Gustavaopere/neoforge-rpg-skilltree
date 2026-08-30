@@ -132,6 +132,13 @@ class WikiCatalogContractTest(unittest.TestCase):
             self.assertIn("wiki/PERK_CATALOG.md", str(failure.exception).replace("\\", "/"))
             self.assertIn("CATÁLOGO FORA DE SINCRONIA", perk_path.read_text(encoding="utf-8"))
 
+    def test_main_ci_enforces_real_wiki_catalog_drift_check(self):
+        root = Path(__file__).resolve().parents[1]
+        workflow = (root / ".github/workflows/alpha2-build.yml").read_text(encoding="utf-8")
+
+        self.assertIn("Wiki catalog drift check", workflow)
+        self.assertIn("python3 scripts/generate-wiki-catalog.py --check", workflow)
+
     @classmethod
     def _write_fixture(cls, root: Path) -> None:
         cls._write_json(
