@@ -15,6 +15,7 @@ import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPageModel;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumPersonalView;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayout;
 import dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSession;
+import dev.gustavopere.rpgskilltree.compendium.client.render.CompendiumStaticPreviewPolicy;
 import java.util.Locale;
 import java.util.Objects;
 import net.minecraft.client.gui.GuiGraphics;
@@ -354,6 +355,7 @@ public final class CompendiumScreen extends Screen {
         }
 
         y = renderEntityPreview(graphics, current, x, y, body.width() - 20, body.bottom());
+        y = renderStaticPreview(graphics, current, x, y, body.width() - 20, body.bottom());
 
         for (CompendiumSection section : model.sections()) {
             if (section.facts().isEmpty()) continue;
@@ -424,6 +426,66 @@ public final class CompendiumScreen extends Screen {
         if (y + font.lineHeight < bottom) {
             Component controls = Component.translatable("screen.rpgskilltree.compendium.preview.controls");
             String text = fitToWidth(controls.getString(), maxWidth);
+            graphics.drawString(font, text, x + Math.max(0, (maxWidth - font.width(text)) / 2), y, MUTED);
+            y += font.lineHeight + PREVIEW_TEXT_GAP;
+        }
+        return y;
+    }
+
+    private int renderStaticPreview(
+        GuiGraphics graphics,
+        CompendiumClientEntry current,
+        int x,
+        int y,
+        int maxWidth,
+        int bottom
+    ) {
+        CompendiumStaticPreviewPolicy.Request request = CompendiumStaticPreviewPolicy.requestFor(current.id());
+        if (request.mode() == CompendiumStaticPreviewPolicy.Mode.NONE) return y;
+
+        if (request.mode() == CompendiumStaticPreviewPolicy.Mode.METADATA_ONLY) {
+            if (y + font.lineHeight < bottom) {
+                Component message = Component.translatable("screen.rpgskilltree.compendium.preview.metadata_only");
+                graphics.drawString(font, fitToWidth(message.getString(), maxWidth), x, y, MUTED);
+                return y + font.lineHeight + PREVIEW_TEXT_GAP;
+            }
+            return y;
+        }
+
+        int availableHeight = bottom - y - 14;
+        int size = Math.min(PREVIEW_MIN_SIZE, Math.min(maxWidth, availableHeight));
+        if (size < 32) return y;
+
+        int left = x + Math.max(0, (maxWidth - size) / 2);
+        int top = y;
+        int right = left + size;
+        int previewBottom = top + size;
+        graphics.fill(left, top, right, previewBottom, ROW);
+
+        CompendiumStaticPreviewRenderer.RenderResult result = CompendiumStaticPreviewRenderer.render(
+            graphics,
+            request,
+            left,
+            top,
+            right,
+            previewBottom
+        );
+        if (result == CompendiumStaticPreviewRenderer.RenderResult.FALLBACK) {
+            Component fallback = Component.translatable("screen.rpgskilltree.compendium.preview.static_unavailable");
+            String text = fitToWidth(fallback.getString(), Math.max(20, size - 12));
+            graphics.drawString(
+                font,
+                text,
+                left + Math.max(6, (size - font.width(text)) / 2),
+                top + Math.max(6, (size - font.lineHeight) / 2),
+                MUTED
+            );
+        }
+
+        y = previewBottom + PREVIEW_TEXT_GAP;
+        if (result == CompendiumStaticPreviewRenderer.RenderResult.RENDERED_ITEM && y + font.lineHeight < bottom) {
+            Component caption = Component.translatable("screen.rpgskilltree.compendium.preview.registry_item");
+            String text = fitToWidth(caption.getString(), maxWidth);
             graphics.drawString(font, text, x + Math.max(0, (maxWidth - font.width(text)) / 2), y, MUTED);
             y += font.lineHeight + PREVIEW_TEXT_GAP;
         }
