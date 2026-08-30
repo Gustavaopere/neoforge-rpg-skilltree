@@ -107,6 +107,14 @@ final class ItemizationDomainContractTest {
             IllegalArgumentException.class,
             () -> ItemizationIdentityPolicy.forkForTrueCopy(original, original.instanceId(), 99L)
         );
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> ItemizationIdentityPolicy.forkForTrueCopy(
+                original,
+                UUID.fromString("81fbc3dc-09dc-4324-b136-28efbceef0d8"),
+                original.deterministicSeed()
+            )
+        );
     }
 
     @Test
