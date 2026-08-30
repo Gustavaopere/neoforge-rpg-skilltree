@@ -1,6 +1,6 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0050** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
+Reauditoria obrigatória do recorte **A0001–A0060** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
 A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
 
@@ -56,6 +56,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0048 | Maestria de Arcos — Tiro Preparado | APROVADO | CÓDIGO PRESENTE | depende de Mastery BOW 80 e prova gameplay/provider-present |
 | A0049 | Treino com Bestas I | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0049-01`: Mastery CROSSBOW por discovery finita; `P-A0049-02`: reconciliar `combat:crossbow` vs `epicfight:crossbow`; teste provider-present |
 | A0050 | Treino com Bestas II | APROVADO após review | NÃO CONFORME: availability fail-closed não implementada | `P-A0050-01`: sem reload/preparation binding, nó deve ser indisponível/não comprável e não pode gastar pontos |
+| A0051 | Precisão com Bestas | APROVADO após correção | CÓDIGO PRESENTE no crítico físico CROSSBOW | depende da reconciliação `P-A0049-02`; classificação externa sem mapping fica fail-closed |
+| A0052 | Cadência de Recarga | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL / estruturalmente indisponível | `P-A0052-01`: availability A0050→A0052; `P-A0052-02`: mesma besta hit→reload; `P-A0052-03`: regressões de ciclo |
+| A0053 | Virote Perfurante | APROVADO após correção | caminho penetration presente, mas nó indisponível | `P-A0053-01`: availability A0052→A0053; teste first-impact/dedup |
+| A0054 | Maestria de Bestas — Mecanismo Ajustado | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL / estruturalmente indisponível | `P-A0054-01`: consumo de Cadência no disparo, não no arm; `P-A0054-02`: availability; `P-A0054-03`: ledger CROSSBOW |
+| A0055 | Treino com Armas de Punho I | APROVADO após correção | NÃO CONFIRMADO como adquirível | `P-A0055-01`: producer único `combat:fist`; `P-A0055-02`: architecture `combat_fist`; `P-A0055-03`: regressão cruzada |
+| A0056 | Treino com Armas de Punho II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende do fechamento de A0055 |
+| A0057 | Precisão com Armas de Punho | APROVADO após correção | CÓDIGO PRESENTE no crítico FIST | depende do fechamento de A0055 |
+| A0058 | Sequência Limpa | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0058-01`: reset por heavy-impact recebido; `P-A0058-02`: body modulation opcional; depende de A0055 |
+| A0059 | Quebra de Ritmo | APROVADO | FAIL-CLOSED CORRETO | `P-A0059-01`: heavy/finalizer receipt; `P-A0059-02`: guard-break movement; depende de A0055/A0058 |
+| A0060 | Maestria de Armas de Punho — Combinação Final | APROVADO | FAIL-CLOSED CORRETO | `P-A0060-01`: heavy/finalizer; `P-A0060-02`: Stamina ledger; `P-A0060-03`: gate80 `combat:fist` |
 
 ## Regras sistêmicas vigentes
 
@@ -65,17 +75,19 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Provenance:** hits indiretos, companions, hazards ou fontes não hostis não podem herdar autoria MARTIAL do jogador.
 - **Crítico:** uma única resolução/root action; `ARCANE_BACKLASH` e companion-owned damage não entram como ataque direto.
 - **Mastery:** não pode vir de spam de dano. Famílias sem producer provider-native comprovado usam discovery/milestones finitos e deduplicados.
-- **Mastery BOW/CROSSBOW:** fonte canônica do lote é `epicfight:bow` / `epicfight:crossbow`, conforme Notion + `CombatPerkTreeModel` + projectile runtime. `combat:bow` / `combat:crossbow` em `tree_architecture/combat.json` são divergência runtime/catalog a corrigir, não uma segunda ledger válida.
-- **HAMMER/MACE/SCYTHE:** externos exigem capability/mapping provider-native seguro; não inferir por nome, aparência ou tag paralela não governada.
+- **Mastery BOW/CROSSBOW:** fonte canônica é `epicfight:bow` / `epicfight:crossbow`, conforme Notion + `CombatPerkTreeModel` + projectile runtime. `combat:bow` / `combat:crossbow` em `tree_architecture/combat.json` são divergência runtime/catalog a corrigir, não segunda ledger válida.
+- **Mastery FIST:** fonte canônica do ramo A0055–A0060 é `combat:fist`, +10 por tipo hostil inédito; 6 tipos→60 e 8→80. O producer genérico `epicfight:fist` deve ser reconciliado/suprimido; `tree_architecture/combat.json` precisa publicar `combat_fist` antes de o gate ser considerado alinhado.
+- **HAMMER/MACE/SCYTHE/FIST:** externos exigem capability/mapping provider-native seguro; não inferir por nome, aparência ou tag paralela não governada. Mãos vazias só entram em FIST por mapping explícito/versionado.
 - **BOW/CROSSBOW:** vanilla é classificado por `BowItem`/`CrossbowItem`; externos exigem provider-native/mapping explícito. Mastery 60 = 6 tipos hostis inéditos; Mastery 80 = 8 tipos quando o contrato terminal exigir.
-- **Commit causal:** consumo irreversível de recurso/estado condicionado a resultado real ocorre no commit pós-hit confirmado; cancelamento/dano zero não deixa estado fantasma.
-- **Lifecycle:** estados por alvo precisam cleanup bounded quando alvo morre, é removido, descarrega ou desaparece sem evento terminal equivalente.
+- **Availability em Bestas:** enquanto A0050 estiver indisponível/não comprável, A0052, A0053 e A0054 também ficam estruturalmente indisponíveis; fallback não pode bypassar dependência.
+- **Commit causal:** consumo irreversível de recurso/estado condicionado a resultado real ocorre no commit previsto pelo contrato; cancelamento/dano zero não deixa estado fantasma.
+- **Lifecycle:** estados por alvo/ator precisam cleanup bounded em morte, remoção, unload/despawn, logout/dimensão/respawn e shutdown conforme owner.
 - **Proteção física:** Armor/guard/posture física não se confunde com Arcane Resistance, MagicResistance, Shroud ou hazards ambientais.
-- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill.
-- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam arma, projectile root, Focus ou proteção física destas perks.
-- **Volcanoes:** hazards/geologia/prospecção permanecem fora do pipeline MARTIAL; A0046 só pode refletir temperatura Volcanoes indiretamente se o provider corporal Cold Sweat já a incorporou.
-- **Mobstein 5.4.4:** companion damage/projectiles/kills são provider-owned; ataque direto do jogador contra entidade Mobstein continua cobertura universal quando receipt real e anti-abuso forem satisfeitos.
-- **Stage 11.01 itemização:** authority própria de identidade/rolls; projeções de efeitos ainda não são contrato destas perks, portanto `SEM HOOK SEGURO` para dano/crítico/Focus/penetration/reload.
+- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/Cadência/Sequência nem heavy/finalizer receipt.
+- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam arma, projectile root, Cadência, Sequência ou heavy/finalizer.
+- **Volcanoes:** hazards/geologia/prospecção permanecem fora do pipeline MARTIAL; o delta RNS hidrotermal atual não cria integração com A0051–A0060.
+- **Mobstein 5.4.4:** companion damage/projectiles/kills são provider-owned; ataque direto do jogador contra entidade Mobstein continua cobertura universal quando o receipt real for satisfeito.
+- **Stage 11.01 itemização:** authority própria de identidade/rolls; projeções de efeitos ainda não são contrato destas perks, portanto `SEM HOOK SEGURO` para dano/crítico/Cadência/Sequência/reload.
 - **NeoVitae:** removido/ausente.
 
 ## Ciclos fechados anteriores
@@ -130,7 +142,7 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Organização corrigida:** auditorias movidas para `perks/audits/`; `audits/README.md` é o índice; novos `AUDITORIA-*.md` não ficam mais na raiz.
 - **Arquivo canônico do lote:** `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0041-A0050.md`.
 - **Runtime alterado neste Chat 1:** nenhum.
-- **A0051+:** não iniciado.
+- **A0051+:** não iniciado naquele ciclo.
 
 ### Pendências destinadas ao Chat 2
 
@@ -148,4 +160,46 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 12. `P-A0050-01` — availability gate server-authoritative: sem reload/preparation binding seguro, A0050 é indisponível/não comprável; nenhum gasto/rank no-op.
 13. `P-A0041-50-TEST-01` — GameTest/harness server-side provider-present/absent para SCYTHE/BOW/CROSSBOW, Mastery, Focus, availability, dedup, lifecycle e multiplayer.
 
-O estado de CI/merge da PR de fechamento é confirmado no GitHub; este arquivo registra o design canônico e as pendências técnicas. Após o merge da PR #243, o ciclo A0041–A0050 está operacionalmente encerrado e o próximo lote só pode começar mediante novo comando do usuário.
+O estado de CI/merge da PR de fechamento é confirmado no GitHub; este arquivo registra o design canônico e as pendências técnicas. Após o merge da PR #243, o ciclo A0041–A0050 está operacionalmente encerrado.
+
+## Chat 1 — lote exato A0051–A0060
+
+**Estado:** `LOTE FECHADO NO DESIGN; BLOCKERS RUNTIME CATALOGADOS`.
+
+- **INÍCIO:** A0051.
+- **FIM:** A0060.
+- **Quantidade:** 10 perks consecutivas.
+- **Base de abertura:** RPG Skill Tree `main@5e9dd777722014596641cb77d7be5c51df410e4e`.
+- **Base efetiva da branch após delta concorrente:** `main@2e6cf57d5c12630d55280d1c4ff0177f536dce96`; mudanças concorrentes do Chat 3 A0005/A0006 e Compendium foram preservadas.
+- **Providers rechecados:** Volcanoes `c26e97c136b543f1fa0ef2ebb12044d10d8af816`; Enshrouded `f8d4d54cb5b8f12aa2149568bfaa2e25f00ef5e5`; Black Arcana `73c14ce55ff918bb8a81daeb99a352607ef11064`; Mobstein 5.4.4 conforme guia obrigatório.
+- **Volcanoes delta:** somente RNS hydrothermal ownership/projection lifecycle; `NÃO DEVE SER INTEGRADO` ao lote CROSSBOW/FIST.
+- **Notion fetch fresco:** 10/10.
+- **Notion alterado:** A0051, A0052, A0053, A0054, A0055, A0057, A0058.
+- **Re-fetch pós-escrita:** 7/7 PASS em 2026-08-30.
+- **Sem mutação:** A0056, A0059, A0060.
+- **Arquivo canônico do lote:** `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0051-A0060.md`.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **A0061+:** não iniciado.
+
+### Pendências destinadas ao Chat 2
+
+1. `P-A0052-01` — availability A0050→A0052.
+2. `P-A0052-02` — mesma identidade causal de besta/ItemStack entre hit e reload; limpar receipt em troca/clone.
+3. `P-A0052-03` — regressões de miss/cancel >50%/troca/reload real/estado externo/dedup.
+4. `P-A0053-01` — availability A0052→A0053 e first-impact/dedup.
+5. `P-A0054-01` — consumir as 3 Cadências no disparo que usa Mecanismo Ajustado, não ao armar a janela.
+6. `P-A0054-02` — availability A0050/A0052/A0053→A0054.
+7. `P-A0054-03` — uma única ledger CROSSBOW `epicfight:crossbow`.
+8. `P-A0055-01` — producer `combat:fist` por discovery finita; 6→60, 8→80; suprimir/migrar `epicfight:fist` paralelo.
+9. `P-A0055-02` — publicar/reconciliar `combat_fist` no architecture catalog.
+10. `P-A0055-03` — teste architecture↔model↔Notion↔producer + provider-present/absent.
+11. `P-A0058-01` — reset da Sequência por receipt provider-native de heavy impact recebido.
+12. `P-A0058-02` — body modulation opcional somente por hunger/exhaustion real.
+13. `P-A0059-01` — heavy/finalizer receipt para Quebra de Ritmo.
+14. `P-A0059-02` — guard-break receipt + −8% movement por 2 s, com lifecycle seguro.
+15. `P-A0060-01` — heavy/finalizer receipt para Combinação Final.
+16. `P-A0060-02` — Stamina refund apenas por ledger causal pós-consumo das cinco ações; sem receipt, refund 0.
+17. `P-A0060-03` — gate80 usa exclusivamente `combat:fist`.
+18. `P-A0051-60-TEST-01` — GameTest/harness CROSSBOW/FIST, availability, Mastery, same-weapon correlation, heavy/finalizer fail-closed, dedup, lifecycle e multiplayer.
+
+O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirmação da `main`; após isso o ciclo encerra e A0061+ só pode começar mediante novo comando do usuário.
