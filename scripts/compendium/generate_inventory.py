@@ -36,7 +36,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--previous-editorial-backlog",
         type=Path,
         default=None,
-        help="previous Stage 10.10 backlog whose review progress/orphans must be preserved",
+        help="alternate previous Stage 10.10 backlog; existing output backlog is reused by default",
     )
     parser.add_argument(
         "--priority-overrides",
@@ -50,6 +50,12 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(sys.argv[1:] if argv is None else argv)
     try:
+        output = args.output_dir.resolve()
+        existing_editorial_backlog = output / "editorial-backlog.json"
+        previous_editorial_path = args.previous_editorial_backlog
+        if previous_editorial_path is None and existing_editorial_backlog.is_file():
+            previous_editorial_path = existing_editorial_backlog
+
         modlist = parse_modlist_bytes(args.modlist.read_bytes(), args.modlist.name)
         runtime = validate_runtime(read_json(args.runtime), args.runtime)
         overrides = load_overrides(args.overrides)
@@ -58,16 +64,15 @@ def main(argv: list[str] | None = None) -> int:
 
         previous_editorial = (
             validate_previous_backlog(
-                read_json(args.previous_editorial_backlog),
-                args.previous_editorial_backlog,
+                read_json(previous_editorial_path),
+                previous_editorial_path,
             )
-            if args.previous_editorial_backlog
+            if previous_editorial_path
             else None
         )
         priority_overrides = load_priority_overrides(args.priority_overrides)
         backlog = build_backlog(report, previous_editorial, priority_overrides)
 
-        output = args.output_dir.resolve()
         output.mkdir(parents=True, exist_ok=True)
         (output / "modpack-inventory.json").write_text(
             json.dumps(modlist, indent=2, ensure_ascii=False) + "\n",
