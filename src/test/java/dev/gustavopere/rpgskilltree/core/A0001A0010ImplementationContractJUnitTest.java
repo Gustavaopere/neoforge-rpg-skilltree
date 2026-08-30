@@ -13,7 +13,47 @@ final class A0001A0010ImplementationContractJUnitTest {
     private static final double EPSILON = 1.0E-9D;
 
     @Test
-    void a0006ConsumesFiveMomentumAndSuppressesSameRiposteHitGain() {
+    void a0005DefersMomentumSpendAndCooldownUntilConfirmedDamagePost() {
+        var ranks = CombatPerkRanks.of(Map.of("A0005", 1));
+        var state = new NotionCombatPerkState();
+        state.addMomentum("player", 3, 1_000L);
+        state.recordSwordSequenceTarget("player", "target-a");
+
+        var failedPreFacts = guardedSwordFacts("opening-failed", true, 1_500L);
+        var failedPre = A0001A0020CombatPolicy.beforeHit(failedPreFacts, ranks, state);
+
+        assertEquals(0.12D, failedPre.physicalPenetrationFraction(), EPSILON,
+            "an eligible A0005 PRE may prepare penetration for the provider hit");
+        assertEquals(1.08D, failedPre.impactMultiplier(), EPSILON,
+            "an eligible native-defense A0005 PRE may prepare impact");
+        assertEquals(3, state.momentum("player", 1_500L),
+            "A0005 must not irreversibly spend Momentum before effective damage is confirmed");
+        assertTrue(state.openingCooldownReady("player", "target-a", 1_500L),
+            "A0005 target cooldown must not start before effective damage is confirmed");
+
+        var failedPostFacts = guardedSwordFacts("opening-failed", false, 1_500L);
+        A0001A0020CombatPolicy.afterConfirmedHit(failedPostFacts, ranks, state, failedPre.suppressMomentumGain());
+        assertEquals(3, state.momentum("player", 1_500L),
+            "zero/cancelled A0005 damage must leave Momentum untouched");
+        assertTrue(state.openingCooldownReady("player", "target-a", 1_500L),
+            "zero/cancelled A0005 damage must not leave a ghost cooldown");
+
+        var validFacts = guardedSwordFacts("opening-valid", true, 1_600L);
+        var validPre = A0001A0020CombatPolicy.beforeHit(validFacts, ranks, state);
+        assertEquals(0.12D, validPre.physicalPenetrationFraction(), EPSILON,
+            "a later valid root action must still be able to prepare A0005 after a failed hit");
+        assertEquals(3, state.momentum("player", 1_600L),
+            "A0005 must remain transactional through the valid PRE stage");
+
+        A0001A0020CombatPolicy.afterConfirmedHit(validFacts, ranks, state, validPre.suppressMomentumGain());
+        assertEquals(1, state.momentum("player", 1_600L),
+            "confirmed A0005 damage must commit the two-Momentum spend exactly once");
+        assertFalse(state.openingCooldownReady("player", "target-a", 1_600L),
+            "confirmed A0005 damage must commit the per-target cooldown");
+    }
+
+    @Test
+    void a0006DefersRiposteAndFiveMomentumSpendUntilConfirmedDamagePost() {
         var ranks = CombatPerkRanks.of(Map.of("A0004", 1, "A0006", 1));
         var state = new NotionCombatPerkState();
         state.addMomentum("player", 4, 1_000L);
@@ -24,20 +64,34 @@ final class A0001A0010ImplementationContractJUnitTest {
         assertTrue(armed, "confirmed technical defense must arm A0006 once Momentum reaches 5");
         assertEquals(5, state.momentum("player", 1_000L), "A0004 defense gain must occur before the A0006 gate");
 
-        var facts = facts("riposte-1", WeaponFamily.SWORD, true, true, true, true, 1_500L);
-        var modifiers = A0001A0020CombatPolicy.beforeHit(facts, ranks, state);
+        var failedFacts = facts("riposte-failed", WeaponFamily.SWORD, true, true, true, true, 1_500L);
+        var failedPre = A0001A0020CombatPolicy.beforeHit(failedFacts, ranks, state);
 
-        assertEquals(1.20D, modifiers.damageMultiplier(), EPSILON, "critical A0006 riposte must receive +20% damage");
-        assertEquals(1.20D, modifiers.impactMultiplier(), EPSILON, "A0006 must use the provider impact hook when available");
-        assertTrue(modifiers.suppressMomentumGain(), "the riposte hit must not regenerate Momentum through A0004");
-        assertEquals(0, state.momentum("player", 1_500L), "A0006 must atomically consume all 5 Momentum");
+        assertEquals(1.20D, failedPre.damageMultiplier(), EPSILON,
+            "eligible critical A0006 PRE must prepare the +20% critical-damage component");
+        assertEquals(1.20D, failedPre.impactMultiplier(), EPSILON,
+            "eligible A0006 PRE must prepare provider impact when available");
+        assertTrue(failedPre.suppressMomentumGain(),
+            "a prepared A0006 consumer must suppress same-result Momentum if the hit later confirms");
+        assertEquals(5, state.momentum("player", 1_500L),
+            "A0006 must not consume five Momentum in PRE before effective damage is known");
 
-        A0001A0020CombatPolicy.afterConfirmedHit(facts, ranks, state, modifiers.suppressMomentumGain());
-        assertEquals(0, state.momentum("player", 1_500L), "the same riposte hit must remain at zero Momentum");
+        var failedPostFacts = facts("riposte-failed", WeaponFamily.SWORD, true, true, false, true, 1_500L);
+        A0001A0020CombatPolicy.afterConfirmedHit(
+            failedPostFacts, ranks, state, failedPre.suppressMomentumGain());
+        assertEquals(5, state.momentum("player", 1_500L),
+            "zero/cancelled A0006 damage must preserve all five Momentum and the armed opportunity");
 
-        var duplicate = A0001A0020CombatPolicy.beforeHit(facts, ranks, state);
-        assertEquals(1.0D, duplicate.damageMultiplier(), EPSILON, "the same root action must not consume/apply A0006 twice");
-        assertFalse(duplicate.suppressMomentumGain(), "a duplicate callback must not claim a second A0006 activation");
+        var validFacts = facts("riposte-valid", WeaponFamily.SWORD, true, true, true, true, 1_600L);
+        var validPre = A0001A0020CombatPolicy.beforeHit(validFacts, ranks, state);
+        assertEquals(1.20D, validPre.damageMultiplier(), EPSILON,
+            "a failed consumer must not destroy the A0006 window before a later valid hit");
+        assertEquals(5, state.momentum("player", 1_600L),
+            "the valid A0006 PRE stage must still be non-destructive");
+
+        A0001A0020CombatPolicy.afterConfirmedHit(validFacts, ranks, state, validPre.suppressMomentumGain());
+        assertEquals(0, state.momentum("player", 1_600L),
+            "confirmed A0006 damage must atomically commit the five-Momentum spend");
     }
 
     @Test
@@ -74,6 +128,27 @@ final class A0001A0010ImplementationContractJUnitTest {
         var state = new NotionCombatPerkState();
         A0001A0020CombatPolicy.afterConfirmedHit(facts, ranks, state, false);
         assertEquals(0.0D, state.fury("player"), EPSILON, message);
+    }
+
+    private static HitFacts guardedSwordFacts(String rootActionId, boolean actualDamage, long nowMillis) {
+        return new HitFacts(
+            "player",
+            "target-a",
+            rootActionId,
+            WeaponFamily.SWORD,
+            true,
+            true,
+            actualDamage,
+            true,
+            false,
+            true,
+            false,
+            false,
+            true,
+            true,
+            false,
+            nowMillis
+        );
     }
 
     private static HitFacts facts(
