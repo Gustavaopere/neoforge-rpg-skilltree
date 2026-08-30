@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.itemization.classification;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -9,9 +10,12 @@ import com.google.gson.JsonParser;
 import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationOverrides;
 import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationReloadService;
 import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationRuleParser;
+import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationService;
 import java.util.Map;
 import java.util.Set;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.junit.jupiter.api.Test;
 
 final class EquipmentClassificationDatapackTest {
@@ -101,5 +105,28 @@ final class EquipmentClassificationDatapackTest {
 
         assertThrows(IllegalArgumentException.class, () -> EquipmentClassificationReloadService.reload(invalid));
         assertEquals(lastValid.rules(), EquipmentClassificationOverrides.snapshot().rules());
+    }
+
+    @Test
+    void runtimeClassificationReadsTheCurrentlyPublishedDatapackSnapshot() {
+        EquipmentClassificationOverrides.replace(EquipmentOverrideCatalog.empty());
+        EquipmentClassification before = EquipmentClassificationService.classify(new ItemStack(Items.STICK));
+        assertFalse(before.eligible());
+
+        EquipmentClassificationReloadService.reload(Map.of(
+            ResourceLocation.fromNamespaceAndPath("example", "stick_focus"),
+            JsonParser.parseString("""
+                {
+                  "items": ["minecraft:stick"],
+                  "eligibility": "WHITELIST",
+                  "add_categories": ["MAGIC_FOCUS", "MAGIC_EQUIPMENT"]
+                }
+                """)
+        ));
+
+        EquipmentClassification after = EquipmentClassificationService.classify(new ItemStack(Items.STICK));
+        assertTrue(after.eligible());
+        assertEquals(Set.of(EquipmentCategory.MAGIC_FOCUS, EquipmentCategory.MAGIC_EQUIPMENT), after.categories());
+        assertEquals(ResourceLocation.fromNamespaceAndPath("rpgskilltree", "override"), after.providerId());
     }
 }
