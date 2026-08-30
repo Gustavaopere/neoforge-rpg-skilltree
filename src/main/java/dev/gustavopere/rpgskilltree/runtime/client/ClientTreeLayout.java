@@ -4,6 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
+import dev.gustavopere.rpgskilltree.core.CombatPerkVisualLayout;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
@@ -23,6 +25,7 @@ import java.util.Set;
 public final class ClientTreeLayout {
     private static final String RESOURCE_BASE = "/assets/rpgskilltree/tree/";
     private static final ClientTreeLayout MAIN = load("main");
+    private static final ClientTreeLayout COMBAT_PERKS = buildCombatPerks();
     private static final ClientTreeLayout TECHNOMANCER = load("technomancer");
     private static final ClientTreeLayout WARLOCK = load("warlock");
     private static final ClientTreeLayout DRUID = load("druid");
@@ -106,9 +109,14 @@ public final class ClientTreeLayout {
         return MAIN;
     }
 
+    public static ClientTreeLayout combatPerks() {
+        return COMBAT_PERKS;
+    }
+
     public static List<ClientTreeLayout> availableFor(ProgressionState state) {
         List<ClientTreeLayout> available = new ArrayList<>();
         available.add(MAIN);
+        available.add(COMBAT_PERKS);
         if (state.classProgression().isUnlocked("technomancer")) available.add(TECHNOMANCER);
         if (state.classProgression().isUnlocked("warlock")) available.add(WARLOCK);
         if (state.classProgression().isUnlocked("druid")) available.add(DRUID);
@@ -146,6 +154,55 @@ public final class ClientTreeLayout {
 
     public SkillGraph graph() {
         return graph;
+    }
+
+    private static ClientTreeLayout buildCombatPerks() {
+        CombatPerkVisualLayout.Layout visual = CombatPerkVisualLayout.project();
+        Map<String, CombatPerkVisualLayout.Node> positions = visual.nodes().stream()
+            .collect(java.util.stream.Collectors.toMap(CombatPerkVisualLayout.Node::id, node -> node));
+
+        List<Node> nodes = new ArrayList<>();
+        for (CombatPerkTreeModel.Node model : CombatPerkTreeModel.all()) {
+            CombatPerkVisualLayout.Node position = positions.get(model.nodeId());
+            if (position == null) {
+                throw new IllegalStateException("Missing visual position for canonical combat perk " + model.nodeId());
+            }
+            NodeAccessRequirement requirement = new NodeAccessRequirement(
+                model.minCharacterLevel(),
+                Set.of(),
+                model.requiredMastery(),
+                Set.of(),
+                Set.of(),
+                Set.of(),
+                model.requiredNodeRanks(),
+                Set.of()
+            );
+            nodes.add(new Node(
+                model.nodeId(),
+                "combat_perk",
+                null,
+                model.gatewayId(),
+                List.of(),
+                position.x(),
+                position.y(),
+                null,
+                model.maxRank(),
+                model.costPerRank(),
+                model.startingPoint(),
+                requirement
+            ));
+        }
+        nodes.sort(java.util.Comparator.comparing(Node::id));
+
+        List<Edge> edges = visual.edges().stream()
+            .map(edge -> new Edge(edge.from(), edge.to()))
+            .toList();
+        return new ClientTreeLayout(
+            "rpgskilltree:runtime/combat_perks",
+            "tree.rpgskilltree.combat_perks",
+            nodes,
+            edges
+        );
     }
 
     private static ClientTreeLayout load(String resourceName) {
