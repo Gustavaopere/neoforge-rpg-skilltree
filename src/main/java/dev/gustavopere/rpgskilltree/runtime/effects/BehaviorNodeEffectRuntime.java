@@ -72,6 +72,16 @@ public final class BehaviorNodeEffectRuntime {
         }
     }
 
+    /** Invalidates idempotency state for a player whose server-side session has ended. */
+    public synchronized void clearPlayer(UUID playerId) {
+        appliedByPlayer.remove(Objects.requireNonNull(playerId, "playerId"));
+    }
+
+    /** Invalidates all cached sessions when the server lifecycle ends. */
+    public synchronized void clearAll() {
+        appliedByPlayer.clear();
+    }
+
     private boolean handlerAvailable(String handlerId) {
         return registry.resolveAvailable(ResourceLocation.parse(handlerId)).isPresent();
     }
