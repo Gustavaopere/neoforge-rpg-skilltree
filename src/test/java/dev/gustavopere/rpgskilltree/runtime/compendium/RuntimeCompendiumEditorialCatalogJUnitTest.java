@@ -81,6 +81,25 @@ final class RuntimeCompendiumEditorialCatalogJUnitTest {
     }
 
     @Test
+    void newServerLifecycleClearsThePreviousServersLastGoodSnapshot() {
+        CompendiumEditorialSnapshot worldA = snapshot(wolfEditorial());
+        assertTrue(RuntimeCompendiumEditorialCatalog.tryPublish(() -> worldA).published());
+        assertSame(worldA, RuntimeCompendiumEditorialCatalog.snapshot());
+
+        RuntimeCompendiumEditorialCatalog.beginServerLifecycle();
+        assertTrue(RuntimeCompendiumEditorialCatalog.snapshot().entries().isEmpty());
+
+        RuntimeCompendiumEditorialCatalog.PublicationResult rejected =
+            RuntimeCompendiumEditorialCatalog.tryPublish(() -> {
+                throw new CompendiumEditorialValidationException("corpus do mundo B inválido");
+            });
+
+        assertFalse(rejected.published());
+        assertTrue(rejected.snapshot().entries().isEmpty());
+        assertSame(RuntimeCompendiumEditorialCatalog.snapshot(), rejected.snapshot());
+    }
+
+    @Test
     void programmingFailureIsNotSwallowedAndCannotClobberTheLastGoodSnapshot() {
         CompendiumEditorialSnapshot lastGood = snapshot(wolfEditorial());
         assertTrue(RuntimeCompendiumEditorialCatalog.tryPublish(() -> lastGood).published());
