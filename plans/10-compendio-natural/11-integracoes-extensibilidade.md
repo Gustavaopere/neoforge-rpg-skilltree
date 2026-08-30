@@ -8,6 +8,23 @@ Permitir que o Compêndio enriqueça conteúdo de mods opcionais e converse com 
 
 O catálogo base deve funcionar somente com Minecraft + NeoForge + o próprio mod. Toda integração externa é opcional, isolada e **fail-soft**.
 
+Além disso, **adapter não é requisito para que conteúdo modded exista no catálogo**. O pipeline genérico deve descobrir primeiro todo conteúdo suportado por registries/classes/tags/providers estáveis; adapters entram apenas para enriquecer ou corrigir fatos que não podem ser obtidos com segurança pelo contrato genérico.
+
+### Contrato AUTO → ADAPTER/CURATED
+
+Para qualquer mod novo ou conteúdo ainda não integrado nominalmente:
+
+1. o conteúdo entra primeiro como `AUTO` quando o registry/provider genérico consegue identificá-lo;
+2. a página técnica base permanece funcional sem adapter específico;
+3. o relatório de cobertura identifica facts ausentes, ambíguos ou não resolvíveis;
+4. somente então se avalia adapter nominal;
+5. `ADAPTER` adiciona fatos tecnicamente comprovados por API/evento/provider estável;
+6. `CURATED` adiciona texto editorial pt-BR e relações curadas com proveniência;
+7. falha ou ausência do adapter degrada novamente para `AUTO` sempre que a página base ainda puder ser produzida;
+8. nenhum adapter pode apagar uma entrada `AUTO` válida apenas porque o enriquecimento falhou.
+
+Esse contrato se aplica a conteúdo vanilla e modded da mesma forma; namespace externo não é motivo para exigir cadastro manual.
+
 ## Arquitetura prevista
 
 ```text
@@ -30,6 +47,8 @@ Cada adapter deve declarar:
 - requisito de versão/API quando necessário;
 - capabilities fornecidas;
 - comportamento quando ausente;
+- quais facts adiciona sobre a página `AUTO`;
+- quais facts continuam desconhecidos quando o adapter não está disponível;
 - testes de presença/ausência.
 
 ## Plano
@@ -98,7 +117,8 @@ Adapters especializados seguem o 10.06:
 
 - Dynamic Trees fornece mapeamento de família/espécie quando API pública permitir;
 - TFC fornece clima, flora/agro/fauna especializada apenas por contrato estável;
-- versões não suportadas devem degradar para catálogo genérico.
+- versões não suportadas devem degradar para catálogo genérico;
+- ausência do adapter especializado não deve remover a entrada base que já puder ser descoberta genericamente.
 
 ### G — Mods com dados zoológicos/biológicos próprios
 
@@ -114,6 +134,16 @@ Processo obrigatório:
 6. promover cobertura para `ADAPTER`/`CURATED`.
 
 Não criar adapter nominal apenas para exibir nome/logo do mod.
+
+Exemplos de facts que justificam adapter quando não forem acessíveis genericamente:
+
+- variantes internas não representadas por IDs/tags estáveis;
+- dietas, domesticação, reprodução ou genética específicas;
+- tabelas de spawn/habitat expostas somente por API própria;
+- estados especiais de boss/NPC;
+- famílias/espécies compostas de árvores;
+- dados climáticos/agronômicos especializados;
+- relações ecológicas ou loot que o provider genérico não consegue resolver com segurança.
 
 ### H — Datapacks/resource packs de terceiros
 
@@ -152,7 +182,8 @@ Testar em jobs/perfis separados quando viável:
 - + KubeJS;
 - + Exposure;
 - combinação representativa do modpack completo;
-- remoção de cada integração de um save existente.
+- remoção de cada integração de um save existente;
+- mod de conteúdo sem adapter nominal, provando que suas entradas registry-first continuam aparecendo como `AUTO`.
 
 ## Testes previstos
 
@@ -164,10 +195,12 @@ src/test/java/dev/gustavopere/rpgskilltree/compendium/integration/RpgCompendiumB
 
 - [ ] nenhuma referência de classe opcional é resolvida quando mod ausente;
 - [ ] adapter falhando é diagnosticado sem corromper catálogo base;
+- [ ] adapter ausente não remove entrada `AUTO` válida;
+- [ ] mod suportado pelos registries aparece sem cadastro manual de seus IDs;
 - [ ] eventos de descoberta são idempotentes;
 - [ ] scripts não burlam autoridade server-side;
 - [ ] reload de datapack/KubeJS produz snapshot atômico.
 
 ## Acceptance
 
-O subplano fecha quando as integrações necessárias ao pack estiverem isoladas, testadas em presença/ausência e a API pública permitir extensão sem expor internals frágeis.
+O subplano fecha quando as integrações necessárias ao pack estiverem isoladas, testadas em presença/ausência, a API pública permitir extensão sem expor internals frágeis e estiver provado que **conteúdo modded suportado continua entrando automaticamente como `AUTO` mesmo sem adapter nominal**.
