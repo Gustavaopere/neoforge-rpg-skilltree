@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
 import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.rpgskilltree.core.A0021A0040CombatPolicy;
+import dev.gustavopere.rpgskilltree.core.A0021A0040CombatPolicy.AfterResult;
 import dev.gustavopere.rpgskilltree.core.A0021A0040CombatPolicy.BeforeResult;
 import dev.gustavopere.rpgskilltree.core.A0021A0040CombatPolicy.HitFacts;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
@@ -27,6 +28,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -34,8 +37,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.Tags;
@@ -72,16 +75,22 @@ public final class A0021A0040EpicFightHooks {
     private static final String SKILL_ID = "rpgskilltree:a0021_a0040/skill";
     private static final String TICK_ID = "rpgskilltree:a0021_a0040/tick";
 
-    private static final TagKey<Item> MACES = tag("maces");
-    private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final ResourceLocation ARMOR_SUNDER_ID =
         ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "a0035_armor_sunder");
+    private static final ResourceLocation DESCOMPASSO_MOVEMENT_ID =
+        ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "a0036_descompasso_movement");
+    private static final TagKey<DamageType> PHYSICAL_DAMAGE = TagKey.create(
+        Registries.DAMAGE_TYPE,
+        ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "physical")
+    );
     private static final long CRITICAL_CORRELATION_MILLIS = 100L;
 
     private static final WeakHashMap<EpicFightDamageSource, Map<String, PendingHit>> PENDING = new WeakHashMap<>();
     private static final Map<String, RecentCritical> RECENT_CRITICAL = new HashMap<>();
     private static final Map<String, PendingVanilla> VANILLA_PENDING = new HashMap<>();
     private static final Map<UUID, Long> ARMOR_SUNDER_EXPIRES = new HashMap<>();
+    private static final Map<UUID, Long> DESCOMPASSO_EXPIRES = new HashMap<>();
+    private static final Map<UUID, Double> DESCOMPASSO_OUTGOING_MULTIPLIER = new HashMap<>();
     private static final AtomicLong ACTION_SEQUENCE = new AtomicLong();
     private static boolean registered;
 
@@ -234,12 +243,23 @@ public final class A0021A0040EpicFightHooks {
             pending.reposition, pending.rear, false, pending.protectedTarget,
             false, true, true, true, healthFraction(event.getTarget()), pending.boss, now
         );
-        A0021A0040CombatPolicy.afterConfirmedHit(facts, ranks, A0021A0040RuntimeState.state());
-        if (pending.specialty.applyArmorSunder()) {
+        AfterResult committed = A0021A0040CombatPolicy.afterConfirmedHit(
+            facts, ranks, A0021A0040RuntimeState.state()
+        );
+        if (pending.specialty.applyArmorSunder() && committed.armorSunderCommitted()) {
             applyArmorSunder(
                 event.getTarget(),
                 pending.specialty.armorSunderFraction(),
                 pending.specialty.armorSunderDurationMillis(),
+                now
+            );
+        }
+        if (pending.specialty.applyBonebreaker() && committed.bonebreakerCommitted()) {
+            applyDescompasso(
+                event.getTarget(),
+                pending.specialty.outgoingPhysicalDamageMultiplier(),
+                pending.specialty.movementSpeedMultiplier(),
+                pending.specialty.bonebreakerDurationMillis(),
                 now
             );
         }
@@ -324,7 +344,25 @@ public final class A0021A0040EpicFightHooks {
         // DodgeEvent above is the current safe server-authoritative reposition receipt.
     }
 
-    /** NeoForge-only fallback for explicitly tagged weapons that Epic Fight did not classify. */
+    /** A0036: only damage already classified by the canonical physical DamageType tag is reduced. */
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onDescompassoOutgoingDamage(LivingIncomingDamageEvent event) {
+        if (event.isCanceled() || event.getAmount() <= 0.0F || !event.getSource().is(PHYSICAL_DAMAGE)) return;
+        Entity owner = event.getSource().getEntity();
+        if (!(owner instanceof LivingEntity attacker)) return;
+        UUID id = attacker.getUUID();
+        Long expiresAt = DESCOMPASSO_EXPIRES.get(id);
+        if (expiresAt == null) return;
+        long now = attacker.level().getGameTime() * 50L;
+        if (expiresAt <= now) {
+            removeDescompasso(attacker);
+            return;
+        }
+        double multiplier = DESCOMPASSO_OUTGOING_MULTIPLIER.getOrDefault(id, 1.0D);
+        if (multiplier < 1.0D) event.setAmount((float) (event.getAmount() * multiplier));
+    }
+
+    /** NeoForge-only fallback: exact vanilla minecraft:mace only; external MACE/SCYTHE fail closed. */
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onVanillaIncoming(LivingIncomingDamageEvent event) {
         if (!(event.getSource().getDirectEntity() instanceof ServerPlayer player)
@@ -333,7 +371,7 @@ public final class A0021A0040EpicFightHooks {
         ItemStack stack = player.getMainHandItem();
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(stack);
         if (categoryFamily(capability).isPresent()) return;
-        Optional<WeaponFamily> family = tagFamily(stack);
+        Optional<WeaponFamily> family = vanillaFallbackFamily(stack);
         if (family.isEmpty() || family.get() == WeaponFamily.DAGGER) return;
 
         long now = now(player);
@@ -390,12 +428,23 @@ public final class A0021A0040EpicFightHooks {
             false, false, false, true,
             healthFraction(target), pending.boss, now
         );
-        A0021A0040CombatPolicy.afterConfirmedHit(facts, ranks, A0021A0040RuntimeState.state());
-        if (pending.specialty.applyArmorSunder()) {
+        AfterResult committed = A0021A0040CombatPolicy.afterConfirmedHit(
+            facts, ranks, A0021A0040RuntimeState.state()
+        );
+        if (pending.specialty.applyArmorSunder() && committed.armorSunderCommitted()) {
             applyArmorSunder(
                 target,
                 pending.specialty.armorSunderFraction(),
                 pending.specialty.armorSunderDurationMillis(),
+                now
+            );
+        }
+        if (pending.specialty.applyBonebreaker() && committed.bonebreakerCommitted()) {
+            applyDescompasso(
+                target,
+                pending.specialty.outgoingPhysicalDamageMultiplier(),
+                pending.specialty.movementSpeedMultiplier(),
+                pending.specialty.bonebreakerDurationMillis(),
                 now
             );
         }
@@ -407,6 +456,7 @@ public final class A0021A0040EpicFightHooks {
         A0021A0040RuntimeState.clearTarget(entity.getUUID().toString());
         removeArmorSunder(entity);
         ARMOR_SUNDER_EXPIRES.remove(entity.getUUID());
+        removeDescompasso(entity);
         if (entity instanceof ServerPlayer player) clearPlayer(player);
     }
 
@@ -434,6 +484,19 @@ public final class A0021A0040EpicFightHooks {
             if (target != null) removeArmorSunder(target);
             return true;
         });
+        DESCOMPASSO_EXPIRES.entrySet().removeIf(entry -> {
+            if (entry.getValue() > now) return false;
+            LivingEntity target = findLiving(event.getServer(), entry.getKey());
+            if (target != null) {
+                AttributeInstance movement = target.getAttribute(Attributes.MOVEMENT_SPEED);
+                if (movement != null) movement.removeModifier(DESCOMPASSO_MOVEMENT_ID);
+            }
+            DESCOMPASSO_OUTGOING_MULTIPLIER.remove(entry.getKey());
+            return true;
+        });
+        if (now % 1_000L == 0L) {
+            A0021A0040RuntimeState.state().pruneExpiredReapingMarks(now);
+        }
     }
 
     @SubscribeEvent
@@ -444,6 +507,8 @@ public final class A0021A0040EpicFightHooks {
             RECENT_CRITICAL.clear();
             VANILLA_PENDING.clear();
             ARMOR_SUNDER_EXPIRES.clear();
+            DESCOMPASSO_EXPIRES.clear();
+            DESCOMPASSO_OUTGOING_MULTIPLIER.clear();
         }
     }
 
@@ -465,6 +530,41 @@ public final class A0021A0040EpicFightHooks {
     private static void removeArmorSunder(LivingEntity target) {
         AttributeInstance armor = target.getAttribute(Attributes.ARMOR);
         if (armor != null) armor.removeModifier(ARMOR_SUNDER_ID);
+    }
+
+    private static void applyDescompasso(
+        LivingEntity target,
+        double outgoingPhysicalDamageMultiplier,
+        double movementSpeedMultiplier,
+        long duration,
+        long now
+    ) {
+        if (duration <= 0L
+            || outgoingPhysicalDamageMultiplier <= 0.0D
+            || outgoingPhysicalDamageMultiplier > 1.0D
+            || movementSpeedMultiplier <= 0.0D
+            || movementSpeedMultiplier > 1.0D) return;
+        AttributeInstance movement = target.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (movement == null) return;
+        double movementAmount = movementSpeedMultiplier - 1.0D;
+        AttributeModifier current = movement.getModifier(DESCOMPASSO_MOVEMENT_ID);
+        if (current != null) movementAmount = Math.min(movementAmount, current.amount());
+        movement.addOrUpdateTransientModifier(new AttributeModifier(
+            DESCOMPASSO_MOVEMENT_ID,
+            movementAmount,
+            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+        ));
+        UUID id = target.getUUID();
+        DESCOMPASSO_OUTGOING_MULTIPLIER.merge(id, outgoingPhysicalDamageMultiplier, Math::min);
+        DESCOMPASSO_EXPIRES.merge(id, Math.addExact(now, duration), Math::max);
+    }
+
+    private static void removeDescompasso(LivingEntity target) {
+        AttributeInstance movement = target.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (movement != null) movement.removeModifier(DESCOMPASSO_MOVEMENT_ID);
+        UUID id = target.getUUID();
+        DESCOMPASSO_EXPIRES.remove(id);
+        DESCOMPASSO_OUTGOING_MULTIPLIER.remove(id);
     }
 
     private static LivingEntity findLiving(MinecraftServer server, UUID id) {
@@ -557,13 +657,9 @@ public final class A0021A0040EpicFightHooks {
             || family == WeaponFamily.SCYTHE;
     }
 
-    private static TagKey<Item> tag(String path) {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, path));
-    }
-
     private static Optional<WeaponFamily> family(CapabilityItem capability, ItemStack stack) {
         Optional<WeaponFamily> provider = categoryFamily(capability);
-        return provider.isPresent() ? provider : tagFamily(stack);
+        return provider.isPresent() ? provider : vanillaFallbackFamily(stack);
     }
 
     private static Optional<WeaponFamily> categoryFamily(CapabilityItem capability) {
@@ -580,10 +676,8 @@ public final class A0021A0040EpicFightHooks {
         };
     }
 
-    private static Optional<WeaponFamily> tagFamily(ItemStack stack) {
-        if (stack.is(MACES)) return Optional.of(WeaponFamily.MACE);
-        if (stack.is(SCYTHES)) return Optional.of(WeaponFamily.SCYTHE);
-        return Optional.empty();
+    private static Optional<WeaponFamily> vanillaFallbackFamily(ItemStack stack) {
+        return stack.is(Items.MACE) ? Optional.of(WeaponFamily.MACE) : Optional.empty();
     }
 
     private static synchronized Root rootAction(
@@ -664,6 +758,7 @@ public final class A0021A0040EpicFightHooks {
         A0021A0040RuntimeState.clear(player);
         RECENT_CRITICAL.keySet().removeIf(key -> key.startsWith(actor + '\u0000'));
         VANILLA_PENDING.keySet().removeIf(key -> key.startsWith(actor + '\u0000'));
+        removeDescompasso(player);
     }
 
     private static long now(ServerPlayer player) {
