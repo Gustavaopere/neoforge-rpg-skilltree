@@ -78,3 +78,17 @@ Nenhuma pendência específica identificada nesta leitura. Isso não substitui C
 - **Fail-closed:** se a cadência real deixar de ser exposta de forma estável/server-authoritative, A0002 fica inativa; nunca converter para stamina, movimento, dano ou aceleração artificial de animação.
 - **Deduplicação/integrações:** armas de addons só entram se a capability do Epic Fight as classificar como espada; nenhuma bridge cria um segundo modificador concorrente.
 - **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.
+
+## Chat 2 — implementação, testes e merge — PR #221
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #221.
+
+- [x] Hook provider-native implementado e versionado para Epic Fight 21.17.3.1.
+- [x] Gate/ranks/dependência preservados no contrato runtime/modelo.
+- [x] FAIL-CLOSED preservado sem fallback que mude a identidade da perk.
+- [x] Nenhuma segunda stamina, dano ou animação paralela foi criada.
+- [x] Testes de ruleset/policy presentes.
+- [x] `RPG Skill Tree CI` #1996 verde no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`.
+- [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma no provider/versionamento atual.
