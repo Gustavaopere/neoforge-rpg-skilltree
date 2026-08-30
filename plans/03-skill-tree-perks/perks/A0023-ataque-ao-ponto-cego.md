@@ -1,0 +1,39 @@
+# A0023 — Ataque ao Ponto Cego
+
+## Estado
+
+- **Design:** APROVADO após auditoria retroativa.
+- **Implementação:** presente; confirmação definitiva depende do Chat 2.
+- **Notion:** `3c569db9-f0db-814d-9dee-e20bca763f8c`.
+
+## Contrato canônico
+
+- A0020 ≥2 + A0021 ≥1 + gateway `epic_dagger`.
+- Com ≥2 Fluxo, hit direto de adaga por flanco/traseira pode consumir 2 Fluxo.
+- Rank 1: +15% dano crítico elegível e até +6% penetração física.
+- Rank 2: +25% e até +10%.
+- Cooldown por alvo: 4 s.
+- Orientação deve ser server-authoritative; sem receipt seguro, fail-closed.
+
+## Auditoria — 9 eixos
+
+1. Gates: PASS.
+2. Integração: PASS — usa Fluxo e crítico/penetração canônicos.
+3. Identidade: PASS — recompensa ponto cego real.
+4. Topologia: PASS — Notable de posicionamento.
+5. Especializações: PASS — exterior.
+6. PT-BR: PASS.
+7. Notion: PASS após boundary causal.
+8. NeoVitae: PASS.
+9. Providers: PASS — nenhum projeto próprio substitui orientação Epic Fight.
+
+## Evidência e boundaries
+
+- `A0021A0040CombatPolicy` exige Fluxo, flank/rear e cooldown antes do consumo.
+- `A0021A0040EpicFightHooks` calcula orientação/posição server-side e evita fallback client-only.
+- `ARCANE_BACKLASH`, dano secundário e companions Mobstein não consomem Fluxo nem recebem o bônus.
+- Volcanoes/Enshrouded não fornecem receipt geométrico.
+
+## Pendências
+
+Nenhuma de design. Chat 2 deve preservar a orientação server-side e a autoria direta; não criar heurística por câmera, dano ou movimento genérico.
