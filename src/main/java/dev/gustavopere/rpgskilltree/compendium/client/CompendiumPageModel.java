@@ -5,8 +5,10 @@ import dev.gustavopere.rpgskilltree.compendium.api.CompendiumRelation;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumSection;
 import dev.gustavopere.rpgskilltree.compendium.api.FactSource;
 import dev.gustavopere.rpgskilltree.compendium.catalog.CoverageState;
+import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialContent;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /** Immutable, visibility-filtered page data ready for a client UI to render. */
 public record CompendiumPageModel(
@@ -17,7 +19,8 @@ public record CompendiumPageModel(
     boolean detailsVisible,
     List<CompendiumSection> sections,
     List<CompendiumRelation> entryRelations,
-    CompendiumDebugInfo debugInfo
+    CompendiumDebugInfo debugInfo,
+    Optional<CompendiumEditorialContent> editorialContent
 ) {
     public CompendiumPageModel {
         Objects.requireNonNull(id, "id");
@@ -35,6 +38,31 @@ public record CompendiumPageModel(
             }
         }
         Objects.requireNonNull(debugInfo, "debugInfo");
+        Objects.requireNonNull(editorialContent, "editorialContent");
+    }
+
+    /** Compatibility constructor preserving the pre-editorial page-model signature. */
+    public CompendiumPageModel(
+        CompendiumEntryId id,
+        String displayName,
+        String sourceModId,
+        boolean discovered,
+        boolean detailsVisible,
+        List<CompendiumSection> sections,
+        List<CompendiumRelation> entryRelations,
+        CompendiumDebugInfo debugInfo
+    ) {
+        this(
+            id,
+            displayName,
+            sourceModId,
+            discovered,
+            detailsVisible,
+            sections,
+            entryRelations,
+            debugInfo,
+            Optional.empty()
+        );
     }
 
     /**
@@ -64,7 +92,8 @@ public record CompendiumPageModel(
                 FactSource.UNKNOWN,
                 "unknown",
                 CoverageState.ERROR
-            )
+            ),
+            Optional.empty()
         );
     }
 

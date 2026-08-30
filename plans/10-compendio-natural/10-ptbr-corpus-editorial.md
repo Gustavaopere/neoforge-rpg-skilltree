@@ -252,8 +252,14 @@ Estado implementado:
 - [x] `kind` e `namespace` do pacote devem coincidir com cada `entry_id`;
 - [x] IDs duplicados entre arquivos são rejeitados;
 - [x] o nome exato dos namespaces vem dos IDs/runtime e não é inferido de uma lista manual fixa;
+- [x] `CompendiumEditorialResourceLoader` ingere os mesmos pacotes no runtime NeoForge, valida schema/idioma/namespace/kind/IDs/fontes/referências contra os catálogos técnicos e constrói um candidato editorial completo antes de publicação;
+- [x] `RuntimeCompendiumEditorialCatalog` publica snapshot editorial imutável e atômico no startup; falha de validação preserva o último snapshot válido e falhas de programação não são engolidas;
+- [x] `CompendiumEditorialCatalogEvents` publica em `ServerStartedEvent` com prioridade `LOWEST`, depois dos catálogos de entidade/flora/world, e emite diagnostics estáveis para publicação/rejeição;
+- [x] `CompendiumPageModelFactory` mantém editorial separado dos fatos técnicos, remove todo editorial quando detalhes não são autorizados e filtra referências por IDs autorizados;
+- [x] `CompendiumEditorialDisplayModel` projeta título/resumo/seções/fontes para a UI sem converter prosa ou referências em `CompendiumFact`;
+- [x] `CompendiumScreen` consome somente o page model composto, renderiza prosa editorial dentro do viewport existente e mantém preview/debug/Notes/Relations separados;
 - [ ] os pacotes editoriais reais do modpack ainda precisam ser produzidos e revisados em lotes;
-- [ ] o carregamento NeoForge/runtime desses pacotes para compor as páginas do jogo ainda não está implementado nesta fatia.
+- [ ] reload em runtime, transporte/sincronização live e instalação de snapshots no cliente continuam reservados ao 10.13.
 
 ### Passo 4 — Validação factual
 
@@ -314,24 +320,25 @@ optional_or_legacy
 
 A implementação deve percorrer os mobs, árvores, cultivos, biomas, estruturas e dimensões da modlist atual e produzir descrição completa conforme a ficha aplicável, em lotes revisáveis. Mods adicionados depois recebem página `AUTO` imediatamente e entram no backlog editorial do próximo refresh.
 
-## Testes previstos
+## Testes e gates
 
-Testes Java/runtime ainda previstos para a integração com o jogo:
-
-```text
-src/test/java/dev/gustavopere/rpgskilltree/compendium/data/PtBrLocalizationCompletenessTest.java
-src/test/java/dev/gustavopere/rpgskilltree/compendium/data/EditorialCorpusSchemaTest.java
-src/test/java/dev/gustavopere/rpgskilltree/compendium/data/EditorialReferenceIntegrityTest.java
-```
-
-Infraestrutura offline já coberta por:
+Infraestrutura offline e runtime atualmente coberta por:
 
 ```text
 scripts/compendium/test_editorial_backlog.py
 scripts/compendium/test_inventory_modlist.py
 scripts/compendium/test_editorial_corpus.py
+scripts/compendium/test_model_catalog.sh
+src/test/java/dev/gustavopere/rpgskilltree/compendium/editorial/CompendiumEditorialModelTest.java
+src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumPageModelFactoryTest.java
+src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumEditorialDisplayModelTest.java
+src/test/java/dev/gustavopere/rpgskilltree/runtime/compendium/CompendiumEditorialResourceLoaderJUnitTest.java
+src/test/java/dev/gustavopere/rpgskilltree/runtime/compendium/RuntimeCompendiumEditorialCatalogJUnitTest.java
+src/test/java/dev/gustavopere/rpgskilltree/runtime/compendium/CompendiumEditorialCatalogEventsJUnitTest.java
 .github/workflows/compendium-editorial-ci.yml
 ```
+
+O workflow editorial focado executa schema/cobertura Python, domínio/page-model headless + paridade de locale e JUnit `*Editorial*`. O smoke de dedicated server do aggregate exige a publicação do catálogo editorial no startup; corpus vazio continua sendo estado válido.
 
 Casos obrigatórios:
 
@@ -349,16 +356,20 @@ Casos obrigatórios:
 - [x] relatório aceita `ERROR` com `inventory_key` sintético e também `ERROR` que preserve `KIND|namespace:path`, mantendo a mesma identidade usada pelo backlog;
 - [x] drift/rerun preserva progresso editorial e entradas órfãs em vez de resetar ou apagar silenciosamente;
 - [x] entrada `ERROR` malformada preservada pelo 10.02 permanece no backlog como `BLOCKED`;
+- [x] decoder/runtime rejeita corpus inválido sem substituir o último snapshot editorial válido;
+- [x] descoberta/visibilidade remove todo editorial quando detalhes não estão autorizados;
+- [x] referências editoriais da página são filtradas contra o conjunto autorizado e não viram relações técnicas;
+- [x] tela usa o modelo editorial composto e possui a nova chave própria em pt-BR com fallback en-US explícito;
 - [ ] textos técnicos usam valores do provider quando o valor puder mudar por config/runtime.
 
 ## Estado atual
 
-O **pipeline de backlog editorial**, o **schema/loader offline do corpus pt-BR**, a **validação estrutural/proveniência** e o **relatório de cobertura por namespace** estão implementados e cobertos por 17 testes offline.
+O **pipeline de backlog editorial**, o **schema/loader offline do corpus pt-BR**, a **validação estrutural/proveniência**, o **relatório de cobertura por namespace** e a **infraestrutura Java/runtime de ingestão, snapshot, projeção e exibição editorial no startup** estão implementados e cobertos por gates offline, headless, JUnit, GameTests/build e dedicated-server smoke.
 
 O subplano 10.10 permanece aberto. Ainda faltam principalmente:
 
-1. produzir e revisar o corpus real pt-BR por namespace;
-2. implementar a ingestão NeoForge/runtime dos pacotes editoriais nas páginas do Compêndio;
-3. validar que stats mecânicos mutáveis venham de providers/dados técnicos em vez de prosa hardcoded;
-4. concluir revisão linguística e cobertura integral da modlist;
-5. fechar os testes Java/runtime de localização, schema e referências após a integração com o jogo.
+1. produzir e revisar o corpus real pt-BR por namespace e alcançar cobertura integral da modlist;
+2. validar sistematicamente que stats mecânicos mutáveis venham de providers/dados técnicos em vez de prosa hardcoded;
+3. concluir revisão linguística/terminológica do corpus em escala;
+4. fechar a garantia global de completude pt-BR para todas as chaves próprias da UI/conteúdo;
+5. integrar no 10.13 o reload em runtime, transporte/sincronização e instalação de snapshots editoriais no cliente sem duplicar esta camada de domínio/validação.

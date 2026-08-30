@@ -175,6 +175,7 @@ jobs:
           for _ in $(seq 1 150); do
             if grep -Eq 'Done \([0-9.]+s\)! For help, type "help"' "$LOG" \
               && grep -Fq 'Compendium entity catalog published with ' "$LOG" \
+              && grep -Fq 'Compendium editorial catalog published with ' "$LOG" \
               && test -f "$REPORT"; then
               python3 scripts/verify-optional-provider-smoke.py "$LOG"
               python3 - "$REPORT" <<'PY'
