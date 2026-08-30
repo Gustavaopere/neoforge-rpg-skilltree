@@ -2,18 +2,19 @@
 
 Create e addons, energia, indústria, logística, automação, transporte, computação e integrações tecnológicas.
 
-**Fonte canônica no Notion:** https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff
+**Fonte canônica:** este diretório versionado no GitHub.
 
-**Referência de presença/JAR/versão usada por este snapshot:** `modlist 28.08.26.txt` + atualização incremental de 2026-08-30 para Mobstein `5.4.4` como boundary não tecnológico.
+**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-08-30, com **573 entradas top-level incluindo NeoForge**. Consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); ele prevalece quando um capítulo histórico ainda cita versão anterior.
 
 ## Como este guia está organizado
 
-Cada arquivo abaixo contém uma **seção lógica completa**. Não existe continuação de parágrafo ou de capítulo em outro arquivo. Os arquivos podem ser lidos de forma independente; a ordem do índice apenas reproduz a ordem do guia canônico.
+Cada arquivo abaixo contém uma **seção lógica completa**. Não existe continuação de parágrafo ou de capítulo em outro arquivo. Os arquivos podem ser lidos de forma independente; a ordem do índice apenas reproduz a organização canônica.
 
 Os quatro projetos próprios do modpack possuem uma coleção transversal obrigatória em [`../projects/`](../projects/README.md). O capítulo 19 abaixo é somente o recorte tecnológico; o Chat 1 deve consultar também os dossiês completos, a matriz cruzada e a matriz de delta antes de fechar uma perk que possa interagir com RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
 
 ## Índice
 
+- [Reconciliação atual da modlist — autoridade de presença/JAR/versão](CURRENT-MODLIST.md)
 - [Visão geral e escopo](00-visao-geral.md)
 - [1. Sistemas tecnológicos principais](01-sistemas-tecnologicos-principais.md)
 - [2. Applied Energistics 2 e automação digital](02-applied-energistics-2-e-automacao-digital.md)
@@ -41,8 +42,9 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - Nunca dividir um capítulo por quantidade de caracteres.
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
+- `CURRENT-MODLIST.md` é a autoridade de presença, JAR e versão do estado instalado atual.
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
-- Novos mods adicionados à modlist depois do snapshot devem ser classificados nos guias pertinentes; quando possuírem estética/nomes tecnológicos sem contrato tecnológico real, registrar explicitamente o boundary em vez de inventar integração.
-- O Notion continua sendo a fonte canônica; este diretório é o snapshot auditável usado pelo repositório.
+- Novos mods adicionados ou atualizados na modlist devem ser classificados no guia pertinente; estética ou nome tecnológico não criam contrato tecnológico.
+- O GitHub é a fonte canônica deste guia; não manter cópia editorial concorrente no Notion.
 
 [← Voltar aos guias](../README.md)
