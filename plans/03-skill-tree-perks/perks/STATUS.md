@@ -1,71 +1,68 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0020** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
-
-A fonte canônica de design permanece o Notion. Este índice descreve o estado após as correções desta auditoria; `IMPLEMENTAÇÃO CONFIRMADA` só se torna definitivo quando a PR correspondente estiver mergeada na `main` com CI verde.
+A fonte canônica de design permanece o Notion. O protocolo do Chat 1 trabalha em **lotes exatos de 10 perks** e somente formaliza `LOTE FECHADO` após dossiês/auditoria/status, PR verde, merge e confirmação da `main`.
 
 | Código | Perk | Design | Estado técnico auditado | Pendências bloqueantes |
 |---|---|---|---|---|
-| A0001 | Treino com Espadas I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
-| A0002 | Treino com Espadas II | APROVADO | Presente | nenhuma |
-| A0003 | Precisão com Espadas | APROVADO | Presente; crítico no pipeline canônico único | nenhuma |
-| A0004 | Ritmo do Duelista | APROVADO | Presente; hit, dodge, miss, decay e stagger forte provider-native | nenhuma |
-| A0005 | Abertura de Guarda | APROVADO após correção | Presente; defesa nativa ou fallback estrito de penetração por defesa física comprovável | nenhuma |
-| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO | Presente; defesa técnica confirmada, janela, cooldown e dedup | nenhuma |
-| A0007 | Treino com Machados I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
-| A0008 | Treino com Machados II | APROVADO | Presente | nenhuma |
-| A0009 | Precisão com Machados | APROVADO | Presente; crítico no pipeline canônico único | nenhuma |
-| A0010 | Pressão do Carrasco | APROVADO após reauditoria | Presente no receipt server-authoritative do Epic Fight; demais rotas fail-closed | nenhuma |
-| A0011 | Ruptura de Guarda | APROVADO após correção | Presente; condição heurística de “alvo pesado” removida do design | nenhuma |
-| A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO após correção + re-fetch | Implementado com transação PRE: CORE pago antes de exhaustion/bônus/pico; falha deixa o evento fail-closed | nenhuma, condicionado à CI/merge desta PR |
-| A0013 | Treino com Lanças I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
-| A0014 | Treino com Lanças II | APROVADO | Presente via `ModifyAttackSpeedEvent` | nenhuma |
-| A0015 | Precisão com Lanças | APROVADO | Presente; crítico no pipeline canônico único | nenhuma |
-| A0016 | Distância Ideal | APROVADO | Presente; alcance, hit, miss, expiração e stagger forte provider-native | nenhuma |
-| A0017 | Interceptação | APROVADO | Presente em fallback canônico | nenhuma; redução de deslocamento permanece deliberadamente omitida sem receipt ofensivo provider-native |
-| A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO | Presente; crossing, consumo, janela e lockout por alvo | nenhuma |
-| A0019 | Treino com Adagas I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
-| A0020 | Treino com Adagas II | APROVADO | Presente via `ModifyAttackSpeedEvent` | nenhuma |
+| A0001 | Treino com Espadas I | APROVADO/FECHADO Chat 1 V3 | Presente; classificação provider-native e fail-closed | nenhuma |
+| A0002 | Treino com Espadas II | APROVADO/FECHADO Chat 1 V3 | Presente | nenhuma |
+| A0003 | Precisão com Espadas | APROVADO/FECHADO Chat 1 V3 | Presente; crítico no pipeline canônico único | nenhuma |
+| A0004 | Ritmo do Duelista | APROVADO/FECHADO Chat 1 V3 | Presente; hit, dodge, miss, decay e stagger forte provider-native | nenhuma |
+| A0005 | Abertura de Guarda | APROVADO/FECHADO Chat 1 V3 | Presente; defesa nativa ou fallback estrito de penetração | nenhuma |
+| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO/FECHADO Chat 1 V3 | Presente; defesa técnica confirmada, janela, cooldown e dedup | nenhuma |
+| A0007 | Treino com Machados I | APROVADO/FECHADO Chat 1 V3 | Presente; classificação provider-native e fail-closed | nenhuma |
+| A0008 | Treino com Machados II | APROVADO/FECHADO Chat 1 V3 | Presente | nenhuma |
+| A0009 | Precisão com Machados | APROVADO/FECHADO Chat 1 V3 | Presente; crítico no pipeline canônico único | nenhuma |
+| A0010 | Pressão do Carrasco | APROVADO/FECHADO Chat 1 V3 | Presente no receipt server-authoritative; demais rotas fail-closed | nenhuma |
+| A0011 | Ruptura de Guarda | APROVADO/FECHADO Chat 1 V3 | Presente; sem heurística de “alvo pesado” | nenhuma |
+| A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO/FECHADO NO DESIGN Chat 1 V3 | Contrato causal correto; runtime requer hardening | **P-A0012-01 versão exata + P-A0012-02 diagnóstico bounded bloqueiam IMPLEMENTAÇÃO CONFIRMADA** |
+| A0013 | Treino com Lanças I | APROVADO/FECHADO Chat 1 V3 | Presente; classificação provider-native e fail-closed | nenhuma |
+| A0014 | Treino com Lanças II | APROVADO/FECHADO Chat 1 V3 | Presente via `ModifyAttackSpeedEvent` | nenhuma |
+| A0015 | Precisão com Lanças | APROVADO/FECHADO Chat 1 V3 | Presente; crítico no pipeline canônico único | nenhuma |
+| A0016 | Distância Ideal | APROVADO/FECHADO Chat 1 V3 | Presente; reach, hit, miss, expiração e stagger provider-native | nenhuma |
+| A0017 | Interceptação | APROVADO/FECHADO EM FALLBACK Chat 1 V3 | Janela + impacto/pressão ativos; redução de deslocamento omitida | P-A0017-01 não bloqueia design; componente permanece fail-closed |
+| A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO/FECHADO Chat 1 V3 | Presente; crossing, consumo, janela e lockout por alvo | nenhuma |
+| A0019 | Treino com Adagas I | APROVADO/FECHADO Chat 1 V3 | Presente; classificação provider-native e fail-closed | nenhuma |
+| A0020 | Treino com Adagas II | APROVADO/FECHADO Chat 1 V3 | Presente via `ModifyAttackSpeedEvent` | nenhuma |
 
-## Correções sistêmicas da reauditoria
+## Regras sistêmicas consolidadas
 
-- **Critérios versionados:** cópia integral dos critérios canônicos adicionada à pasta dos dossiês.
-- **Provider-native first:** os fallbacks fictícios `rpgskilltree:swords`, `rpgskilltree:axes`, `rpgskilltree:spears` e `rpgskilltree:daggers` foram removidos do design canônico. Ausência de classificação segura agora é `FAIL-CLOSED`.
-- **A0004/A0016:** `EpicFightEventHooks.Entity.ON_STUNNED` fornece o receipt server-side; apenas `LONG`, `KNOCKDOWN` e `NEUTRALIZE` são aceitos como stagger forte, com fonte hostil validada.
-- **A0005:** guarda/postura observável continua sendo a rota principal; quando ela não é observável, somente defesa física server-side comprovável autoriza penetração-only.
-- **A0010:** o fallback genérico sem receipt seguro foi removido; tentativa de ataque, animação ou classificação heurística não geram Fúria.
-- **A0011:** removida do design a condição contraditória de “alvo classificado como pesado”.
-- **A0012:** o custo +1,5 `CORE` é pré-condição no mesmo `DELIVER_DAMAGE_PRE`; exhaustion, bônus e gasto do pico só ocorrem depois do sucesso da escrita CORE. Thirst Was Reclaimed não participa deste contrato.
-- **Mastery Epic Fight:** hits repetidos deixaram de conceder Mastery. Categorias de arma usam tipos hostis inéditos; `guard` também usa tipos hostis inéditos em contexto real de skill de guarda pagável, +10 por tipo, tornando gates 60/80 alcançáveis com 6/8 descobertas sem spam do mesmo alvo/tipo. O ledger continua sendo `DiscoveryProgress`.
+- **Provider-native first:** famílias vêm das capabilities do Epic Fight; ausência de classificação segura = fail-closed.
+- **Crítico:** uma única resolução canônica/root action; providers/bridges não criam segunda rolagem.
+- **Stagger forte:** `ON_STUNNED`; apenas `LONG`, `KNOCKDOWN`, `NEUTRALIZE` com fonte hostil.
+- **A0012:** design exige Cold Sweat **exatamente 2.4.2** `CORE`, seguido de exhaustion e só então benefício; runtime atual precisa corrigir match de versão e diagnóstico antes de `IMPLEMENTAÇÃO CONFIRMADA`.
+- **Mastery Epic Fight:** milestones persistentes por tipo hostil/skill; dano repetido, fake player, AFK e spam não geram Mastery.
+- **A0017:** aproximação geométrica abre janela; redução de deslocamento exige receipt ofensivo provider-native e permanece omitida sem ele.
+- **NeoVitae:** busca em `src/` = zero ocorrências.
 
 ## Evidência comum
 
-- `NotionCombatPerkRules` — coeficientes, thresholds e durações.
-- `A0001A0020CombatPolicy` — política provider-independent, consumo de recursos e deduplicação.
-- `NotionCombatPerkState` — Ímpeto, Fúria, Controle de Distância, janelas, lockouts e Queda de Ritmo.
-- `A0001A0020CriticalService` — resolução crítica única.
-- `A0001A0020EpicFightHooks` — hits PRE/POST, transação corporal A0012, attack speed, dodge, miss, stagger, alcance e tick server-side.
-- `ColdSweatFrenzyBridge` — integração fail-closed com Cold Sweat 2.4.2 `Temperature.Trait.CORE`.
-- `EpicFightProgressionHooks` + `MasteryPolicies` — Mastery baseada em milestones persistentes e alcançáveis.
-- `A0001A0020CombatPolicyTest` e `EpicFightDepthPolicyTest` — regressões dos contratos corrigidos.
+- `NotionCombatPerkRules`, `CombatPerkTreeModel`, `A0001A0020CombatPolicy`, `NotionCombatPerkState`, `A0001A0020CriticalService`.
+- `A0001A0020EpicFightHooks`, `ColdSweatFrenzyBridge`, `EpicFightProgressionHooks`.
+- `A0001A0020CombatPolicyTest` e CI/GameTests do projeto.
 
-A matriz detalhada dos nove eixos está em `AUDITORIA-A0001-A0020.md`.
+## Chat 1 V3 — A0001–A0010
 
-## Chat 1 V3 — fechamento do ciclo exato A0001–A0010
+**Estado operacional:** `LOTE FECHADO`.
 
-**Estado:** `LOTE FECHADO NO DESIGN` — aguardando somente PR/CI/merge deste closeout documental.
+- PR **#217** mergeada com CI verde.
+- `main` pós-merge confirmada em `fc6686725369cd703169ca59bde69a3a0ee80dc3` antes do ciclo seguinte.
 
-- **INÍCIO:** A0001.
-- **FIM:** A0010.
+## Chat 1 V3 — ciclo exato A0011–A0020
+
+**Estado de design:** `LOTE FECHADO NO DESIGN` — conclusão operacional do Chat 1 depende do merge deste closeout.
+
+- **INÍCIO:** A0011.
+- **FIM:** A0020.
 - **Quantidade:** 10 perks consecutivas.
-- **A0011+:** fora do escopo deste ciclo; não iniciado pela execução V3.
-- **Re-fetch Notion:** A0001–A0010 = 10/10 PASS em 2026-08-30.
-- **Correções adicionais no Notion:** 0; os contratos persistidos já correspondiam à reauditoria canônica e nenhum drift foi encontrado.
-- **Dossiês V3:** A0001–A0010 registram explicitamente provider/version, hooks, gates, fallbacks/fail-closed, deduplicação, integrações e restrições para o Chat 2.
-- **Nove eixos:** 10/10 PASS; A0006 e A0010 mantêm fallback/fail-closed legítimo documentado.
-- **18 critérios técnicos:** PASS/N/A justificado para as dez perks; nenhum bloqueio de design.
-- **Provider principal:** Epic Fight `21.17.3.1`; versão pinada no projeto e adapter com contrato de versão explícito.
-- **Cobertura periférica:** Epic Fight Compat/armas externas entram somente pela capability provider-native; Protection Pixel foi rechecado e classificado como não pertinente às famílias/efeitos deste lote; ParCool não recebe alteração de stamina; Weight não é encumbrance; NeoVitae ausente.
-- **Pendência para Chat 2:** preservar rigorosamente fail-closed, pipeline crítico único, receipts causais e ausência de heurísticas. Não redesenhar A0001–A0010.
+- **A0021+:** fora do escopo; não iniciado.
+- **Re-fetch Notion:** 10/10 PASS em 2026-08-30; 0 mutações adicionais.
+- **Dossiês:** 10/10 atualizados.
+- **Auditoria exata:** `AUDITORIA-A0011-A0020-V3.md`.
+- **Design:** 10/10 APROVADAS pelos nove eixos e 18 critérios no nível de contrato.
+- **A0012:** P-A0012-01 e P-A0012-02 **bloqueiam IMPLEMENTAÇÃO CONFIRMADA**, não o design. Chat 2 deve corrigir validação exata/segment-aware da versão Cold Sweat 2.4.2 e adicionar diagnóstico bounded do bridge, preservando fail-closed.
+- **A0017:** P-A0017-01 mantém somente a parcela de deslocamento em fail-closed; janela + impacto/pressão são o fallback aprovado.
+- **Cobertura periférica:** Weapons of Miracles/Epic Fight Compat somente via capability; Protection Pixel sem hook pertinente; Weight 1.2.0 não é encumbrance; stacks mágicos não devem ser conectados artificialmente.
+- **Regra para Chat 2:** não redesenhar; corrigir P-A0012-01/02, preservar A0017 fail-closed e executar testes/CI dedicados.
 
-A conclusão operacional `LOTE FECHADO` deste ciclo V3 deve ser considerada definitiva somente após a PR documental correspondente ficar verde, ser mergeada em `main` e a `main` pós-merge ser confirmada.
+Após PR verde, merge e confirmação da `main`, este ciclo do Chat 1 passa a **`LOTE FECHADO`** e deve **PARAR em A0020**.

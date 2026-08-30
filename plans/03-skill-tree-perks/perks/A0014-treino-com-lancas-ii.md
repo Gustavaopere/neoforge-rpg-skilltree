@@ -69,3 +69,12 @@ Nenhuma divergência específica identificada nesta leitura. A validade do event
 - [x] classificação SPEAR provider-native;
 - [x] fail-closed por ausência de família/hook;
 - [ ] revalidar integração e dedicated-server smoke após atualização do Epic Fight.
+
+## Fechamento Chat 1 V3 — ciclo exato A0011–A0020
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; dependência, efeito, gate, hook e fallback persistem sem drift.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Hook confirmado:** Epic Fight 21.17.3.1 `ModifyAttackSpeedEvent` + família SPEAR provider-native.
+- **Fail-closed:** se o provider deixar de expor cadência efetiva estável/server-authoritative, A0014 fica inativa; não virar stamina, movimento, dano ou manipulação de animação.
+- **Deduplicação:** addons de armas participam apenas pela mesma capability Epic Fight; não registrar segundo modificador concorrente de ritmo.
+- **Resultado:** **APROVADA / FECHADA** no lote A0011–A0020.

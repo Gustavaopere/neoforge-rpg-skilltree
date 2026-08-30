@@ -47,3 +47,12 @@
 - [x] rejeição de alvo observavelmente desprotegido;
 - [x] fallback de penetração-only;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Fechamento Chat 1 V3 — ciclo exato A0011–A0020
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; efeito, dependências, gate, hook, fallback e regra persistem sem drift.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Provider-native first:** guarda/postura observável tem precedência; Armor só qualifica a rota de penetração quando o adapter não consegue observar guarda/postura.
+- **Deduplicação/custo:** um único `A0011:spend` por root action; 20 de Fúria só são consumidos quando existe componente seguro aplicável.
+- **Proibição:** não restaurar a heurística de “alvo pesado”, nem inferir defesa por vida, tamanho, knockback, aparência ou dano recebido.
+- **Resultado:** **APROVADA / FECHADA** no lote A0011–A0020.
