@@ -4,13 +4,13 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 **Fonte canônica no Notion:** https://app.notion.com/p/3c569db9f0db819e9572fd43820f9c03
 
-**Referência de presença/JAR/versão usada por este snapshot:** `modlist 28.08.26.txt`.
+**Referência de presença/JAR/versão usada por este snapshot:** `modlist 28.08.26.txt` + atualização incremental de 2026-08-30 para Mobstein `5.4.4`.
 
 ## Como este guia está organizado
 
 Cada arquivo abaixo contém uma **seção lógica completa**. Não existe continuação de parágrafo ou de capítulo em outro arquivo. Os arquivos podem ser lidos de forma independente; a ordem do índice apenas reproduz a ordem do guia canônico.
 
-Os quatro projetos próprios do modpack possuem uma coleção transversal obrigatória em [`../projects/`](../projects/README.md). O capítulo 17 abaixo é somente o recorte mágico; o Chat 1 deve consultar também os dossiês completos e a matriz cruzada antes de fechar uma perk que possa interagir com RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
+Os quatro projetos próprios do modpack possuem uma coleção transversal obrigatória em [`../projects/`](../projects/README.md). O capítulo 17 abaixo é somente o recorte mágico; o Chat 1 deve consultar também os dossiês completos, a matriz cruzada e a matriz de delta antes de fechar uma perk que possa interagir com RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
 
 ## Índice
 
@@ -32,6 +32,7 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - [Alquimia, toxinas e mutações](15-alquimia-toxinas-e-mutacoes.md)
 - [Ecossistema Vampirism](16-ecossistema-vampirism.md)
 - [17. Projetos próprios do modpack — integração mágica canônica](17-projetos-proprios-do-modpack.md)
+- [18. Mobstein — necromancia corporal e ressurreição](18-mobstein-necromancia.md)
 
 ## Regras de manutenção
 
@@ -39,6 +40,7 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
+- Novos mods adicionados à modlist depois do snapshot devem entrar nos guias pertinentes e na cobertura do Chat 1; Mobstein é o primeiro delta mágico explicitamente registrado após `modlist 28.08.26.txt`.
 - O Notion continua sendo a fonte canônica; este diretório é o snapshot auditável usado pelo repositório.
 
 [← Voltar aos guias](../README.md)
