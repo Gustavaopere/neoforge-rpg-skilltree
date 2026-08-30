@@ -64,6 +64,48 @@ public final class BehaviorNodeEffectGameTests {
     }
 
     @GameTest(template = "foundation_empty")
+    public static void clearingOnePlayerForcesFreshApplicationWithoutTouchingOtherSessions(GameTestHelper helper) {
+        var registry = new NodeBehaviorHandlerRegistry();
+        var handler = new CountingHandler();
+        registry.register(HANDLER_ID, handler);
+        var runtime = new BehaviorNodeEffectRuntime(registry);
+        var effect = new NodeBehaviorEffect(EFFECT_ID, NODE_ID, HANDLER_ID.toString());
+        ServerPlayer first = player(helper, UUID.randomUUID(), "behavior-clear-first");
+        ServerPlayer second = player(helper, UUID.randomUUID(), "behavior-clear-second");
+
+        runtime.refresh(first, state(1), List.of(effect));
+        runtime.refresh(second, state(1), List.of(effect));
+        runtime.clearPlayer(first.getUUID());
+        runtime.refresh(first, state(1), List.of(effect));
+        runtime.refresh(second, state(1), List.of(effect));
+
+        helper.assertTrue(handler.applies == 3 && handler.removes == 0,
+            "clearPlayer must invalidate only the selected player's idempotency state");
+        helper.succeed();
+    }
+
+    @GameTest(template = "foundation_empty")
+    public static void clearingAllPlayersForcesFreshApplicationForEverySession(GameTestHelper helper) {
+        var registry = new NodeBehaviorHandlerRegistry();
+        var handler = new CountingHandler();
+        registry.register(HANDLER_ID, handler);
+        var runtime = new BehaviorNodeEffectRuntime(registry);
+        var effect = new NodeBehaviorEffect(EFFECT_ID, NODE_ID, HANDLER_ID.toString());
+        ServerPlayer first = player(helper, UUID.randomUUID(), "behavior-clear-all-first");
+        ServerPlayer second = player(helper, UUID.randomUUID(), "behavior-clear-all-second");
+
+        runtime.refresh(first, state(1), List.of(effect));
+        runtime.refresh(second, state(1), List.of(effect));
+        runtime.clearAll();
+        runtime.refresh(first, state(1), List.of(effect));
+        runtime.refresh(second, state(1), List.of(effect));
+
+        helper.assertTrue(handler.applies == 4 && handler.removes == 0,
+            "clearAll must invalidate every behavioral-effect session cache");
+        helper.succeed();
+    }
+
+    @GameTest(template = "foundation_empty")
     public static void unavailableOptionalBehaviorHandlerIsFailSoft(GameTestHelper helper) {
         var registry = new NodeBehaviorHandlerRegistry();
         registry.register(HANDLER_ID, new NodeBehaviorHandler() {
