@@ -64,7 +64,7 @@ Entradas:
 
 Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-batch3.json`
 
-Estado: `REVIEWED` no conteúdo; fechamento definitivo depende do CI do PR do lote.
+Estado: `REVIEWED`
 
 Entradas:
 
