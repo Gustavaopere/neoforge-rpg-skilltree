@@ -88,14 +88,23 @@ src/main/java/dev/gustavopere/rpgskilltree/compendium/client/render/EntityPrevie
 
 Requisitos:
 
-- [ ] client-only;
-- [ ] instância de preview nunca participa do mundo real;
-- [ ] não dispara AI, loot, sounds, particles ou side effects;
-- [ ] rotação/zoom controlados;
-- [ ] fallback para ícone/texto se renderer falhar;
-- [ ] blacklist/adapter para entidades que não podem ser construídas de forma segura;
-- [ ] crash de renderer modded não deve derrubar catálogo inteiro;
+- [x] client-only;
+- [x] instância de preview nunca participa do mundo real;
+- [x] não dispara AI, loot, sounds, particles ou side effects;
+- [x] rotação/zoom controlados;
+- [x] fallback para ícone/texto se renderer falhar;
+- [x] blacklist/adapter para entidades que não podem ser construídas de forma segura;
+- [x] crash de renderer modded não deve derrubar catálogo inteiro;
 - [ ] variantes podem ser selecionadas quando houver representação segura.
+
+Implementação inicial de segurança:
+
+- entidades `minecraft:*` vivas podem usar construção vanilla destacada por padrão;
+- entidades de mods terceiros ficam **fail-closed** até adapter explícito declarar construção segura;
+- nenhuma instância de preview é adicionada ao `ClientLevel` ou recebe tick pelo Compêndio;
+- blacklist explícita sobrepõe adapter;
+- falha de construção ou renderer coloca o tipo em quarentena durante a sessão do cliente e usa fallback pt-BR;
+- adapters de preview têm contrato de retornar entidade viva destacada, sem adicionar/tickar a entidade no mundo.
 
 ### D — Preview de flora/árvore/estrutura
 

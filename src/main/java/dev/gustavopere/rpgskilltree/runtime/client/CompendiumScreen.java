@@ -46,8 +46,12 @@ public final class CompendiumScreen extends Screen {
     private static final int LIST_PADDING = 6;
     private static final int FILTER_BUTTON_GAP = 4;
     private static final int SCROLL_ROWS_PER_NOTCH = 3;
+    private static final int PREVIEW_MIN_SIZE = 72;
+    private static final int PREVIEW_MAX_SIZE = 116;
+    private static final int PREVIEW_TEXT_GAP = 4;
 
     private final CompendiumScreenSession session;
+    private final CompendiumEntityPreviewRenderer entityPreview = new CompendiumEntityPreviewRenderer();
     private CompendiumScreenLayout layout;
     private EditBox searchBox;
     private Button allViewButton;
@@ -57,6 +61,7 @@ public final class CompendiumScreen extends Screen {
     private Button discoveredFilterButton;
     private Button favoriteButton;
     private boolean debugDetailsEnabled;
+    private boolean previewDragging;
 
     public CompendiumScreen(CompendiumClientSnapshot snapshot) {
         this(snapshot, ClientCompendiumState.personalState());
@@ -80,8 +85,10 @@ public final class CompendiumScreen extends Screen {
         kindFilterButton = null;
         discoveredFilterButton = null;
         favoriteButton = null;
+        previewDragging = false;
         if (width < CompendiumScreenLayout.MIN_SCREEN_WIDTH || height < CompendiumScreenLayout.MIN_SCREEN_HEIGHT) {
             layout = null;
+            entityPreview.clear();
             return;
         }
 
@@ -185,6 +192,7 @@ public final class CompendiumScreen extends Screen {
         } else if (session.showingDetail()) {
             renderDetail(graphics, mouseX, mouseY, layout.detailBody(), true);
         } else {
+            entityPreview.clear();
             renderList(graphics, mouseX, mouseY, layout.listBody());
         }
         super.render(graphics, mouseX, mouseY, partialTick);
@@ -285,6 +293,7 @@ public final class CompendiumScreen extends Screen {
 
         var entry = session.currentEntry();
         if (entry.isEmpty()) {
+            entityPreview.clear();
             graphics.drawString(
                 font,
                 Component.translatable("screen.rpgskilltree.compendium.select_entry"),
@@ -323,6 +332,7 @@ public final class CompendiumScreen extends Screen {
 
         var page = session.currentPage();
         if (page.isEmpty()) {
+            entityPreview.clear();
             graphics.drawString(font, Component.translatable("screen.rpgskilltree.compendium.shell"), x, y, MUTED);
             return;
         }
@@ -330,6 +340,7 @@ public final class CompendiumScreen extends Screen {
         CompendiumPageModel model = page.orElseThrow();
         y = renderDebugProvenance(graphics, model, x, y, body.width() - 24, body.bottom());
         if (!model.detailsVisible()) {
+            entityPreview.clear();
             if (y + 11 < body.bottom()) {
                 graphics.drawString(
                     font,
@@ -341,6 +352,8 @@ public final class CompendiumScreen extends Screen {
             }
             return;
         }
+
+        y = renderEntityPreview(graphics, current, x, y, body.width() - 20, body.bottom());
 
         for (CompendiumSection section : model.sections()) {
             if (section.facts().isEmpty()) continue;
@@ -366,6 +379,55 @@ public final class CompendiumScreen extends Screen {
             }
             y += 4;
         }
+    }
+
+    private int renderEntityPreview(
+        GuiGraphics graphics,
+        CompendiumClientEntry current,
+        int x,
+        int y,
+        int maxWidth,
+        int bottom
+    ) {
+        if (current.id().kind() != CompendiumEntryKind.ENTITY) {
+            entityPreview.clear();
+            return y;
+        }
+
+        int availableHeight = bottom - y - 14;
+        int size = Math.min(PREVIEW_MAX_SIZE, Math.min(maxWidth, availableHeight));
+        if (size < PREVIEW_MIN_SIZE) {
+            entityPreview.clear();
+            return y;
+        }
+
+        entityPreview.sync(current, minecraft == null ? null : minecraft.level);
+        int left = x + Math.max(0, (maxWidth - size) / 2);
+        int top = y;
+        int right = left + size;
+        int previewBottom = top + size;
+        graphics.fill(left, top, right, previewBottom, ROW);
+        boolean rendered = entityPreview.render(graphics, left, top, right, previewBottom);
+        if (!rendered) {
+            Component fallback = Component.translatable("screen.rpgskilltree.compendium.preview.unavailable");
+            String text = fitToWidth(fallback.getString(), Math.max(20, size - 12));
+            graphics.drawString(
+                font,
+                text,
+                left + Math.max(6, (size - font.width(text)) / 2),
+                top + Math.max(6, (size - font.lineHeight) / 2),
+                MUTED
+            );
+        }
+
+        y = previewBottom + PREVIEW_TEXT_GAP;
+        if (y + font.lineHeight < bottom) {
+            Component controls = Component.translatable("screen.rpgskilltree.compendium.preview.controls");
+            String text = fitToWidth(controls.getString(), maxWidth);
+            graphics.drawString(font, text, x + Math.max(0, (maxWidth - font.width(text)) / 2), y, MUTED);
+            y += font.lineHeight + PREVIEW_TEXT_GAP;
+        }
+        return y;
     }
 
     private int renderDebugProvenance(
@@ -404,12 +466,17 @@ public final class CompendiumScreen extends Screen {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (super.mouseClicked(mouseX, mouseY, button)) return true;
         if (button != GLFW.GLFW_MOUSE_BUTTON_LEFT || layout == null) return false;
+        if (previewInteractive() && entityPreview.contains(mouseX, mouseY)) {
+            previewDragging = true;
+            return true;
+        }
         if (!layout.splitPanes() && session.showingDetail()) {
             int backX = layout.detailBody().x() + 10;
             int backY = layout.detailBody().y() + 10;
             if (mouseX >= backX && mouseX < backX + BACK_BUTTON_WIDTH
                 && mouseY >= backY && mouseY < backY + BACK_BUTTON_HEIGHT) {
                 session.backToList();
+                entityPreview.clear();
                 return true;
             }
             return false;
@@ -425,7 +492,29 @@ public final class CompendiumScreen extends Screen {
     }
 
     @Override
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        if (button == GLFW.GLFW_MOUSE_BUTTON_LEFT && previewDragging) {
+            previewDragging = false;
+            return true;
+        }
+        return super.mouseReleased(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean mouseDragged(double mouseX, double mouseY, int button, double dragX, double dragY) {
+        if (button == GLFW.GLFW_MOUSE_BUTTON_LEFT && previewDragging && previewInteractive()) {
+            entityPreview.drag(dragX, dragY);
+            return true;
+        }
+        return super.mouseDragged(mouseX, mouseY, button, dragX, dragY);
+    }
+
+    @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+        if (layout != null && scrollY != 0 && previewInteractive() && entityPreview.contains(mouseX, mouseY)) {
+            entityPreview.zoom(scrollY);
+            return true;
+        }
         if (layout != null && scrollY != 0 && (layout.splitPanes() || !session.showingDetail())
             && contains(layout.listBody(), mouseX, mouseY)) {
             session.scrollRows(scrollY > 0 ? -SCROLL_ROWS_PER_NOTCH : SCROLL_ROWS_PER_NOTCH);
@@ -442,6 +531,7 @@ public final class CompendiumScreen extends Screen {
         }
         if (keyCode == GLFW.GLFW_KEY_ESCAPE && layout != null && !layout.splitPanes() && session.showingDetail()) {
             session.backToList();
+            entityPreview.clear();
             return true;
         }
 
@@ -471,6 +561,17 @@ public final class CompendiumScreen extends Screen {
     @Override
     public boolean isPauseScreen() {
         return false;
+    }
+
+    @Override
+    public void removed() {
+        previewDragging = false;
+        entityPreview.clear();
+        super.removed();
+    }
+
+    private boolean previewInteractive() {
+        return layout != null && (layout.splitPanes() || session.showingDetail());
     }
 
     private void selectPersonalView(CompendiumPersonalView view) {
