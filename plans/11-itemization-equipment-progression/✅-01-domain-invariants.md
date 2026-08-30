@@ -40,7 +40,7 @@ O Stage 11.01 persiste/congela a decisão canônica e não cria cache ou modifie
 
 - [x] geração/mutação é contrato server-authoritative, concentrado em `ItemizationMutationAuthority`; não existe entrada survival de re-roll;
 - [x] a fronteira de query é `ItemizationQueryService`/`ItemizationSnapshot`, separada da mutation e suficiente para consumers futuros de tooltip/UI;
-- [x] o domínio não importa classes de mods opcionais nem packages internos de compatibilidade;
+- [x] o domínio não importa classes de mods opcionais nem packages internos de compatibilidade, inclusive por referência totalmente qualificada;
 - [x] adapters externos permanecem fora do domínio e devem entrar pelas fronteiras dos Stages 00/06 e pelos subplanos específicos do Stage 11;
 - [x] APIs públicas distinguem explicitamente query de mutation.
 
@@ -71,14 +71,15 @@ Contrato canônico em `src/main/java/dev/gustavopere/rpgskilltree/itemization/do
 ## Testes e evidência
 
 - `ItemizationDomainContractTest`: vocabulário canônico, schema/seed, `ItemPower`, 1..5 por família, independência rank/contagem, rejeição de segunda geração, evolução/cópia de identidade, rejeição de UUID ou seed reutilizados em cópia real, snapshot read-only, `ResourceLocation`, ausência de texto traduzido persistido e defensive copies.
-- `ItemizationOptionalImportBoundaryTest`: varre o package de domínio e recusa imports fora de JDK/Minecraft/NeoForge, impedindo inclusive dependência indireta em `runtime.compat`/providers opcionais.
+- `ItemizationOptionalImportBoundaryTest`: varre o package de domínio, recusa imports fora de JDK/Minecraft/NeoForge e também rejeita referências totalmente qualificadas a providers/compat fora dessas fronteiras; casos sintéticos cobrem `ru.ironsspellbooks...` e `dev.gustavopere.rpgskilltree.runtime.compat...`.
 - TDD RED inicial: RPG Skill Tree CI `33308736024` falhou em `:compileTestJava` exclusivamente pelos tipos 11.01 ainda inexistentes.
 - Primeiro review do PR #232: a allowlist original permitia qualquer package interno; corrigido em `1fc372df5eda3e2beaa4292224cf59a6cf967d90` com barreira estrita.
 - GREEN intermediário: RPG Skill Tree CI `33309096174` / run #2100 — JUnit 5, NeoForge GameTests, validators, NeoForge build, JAR e dedicated-server smoke GREEN; workflows Foundation/Compendium associados também GREEN.
 - Segundo review do PR #232: `forkForTrueCopy(...)` ainda aceitava seed igual ao original. Foi criado primeiro o teste de regressão em `79fdca4bddadea6b11a97a379faf59ce50853252`; o RPG Skill Tree CI `33319128527` / run #2107 confirmou RED exatamente em `compatibleEvolutionPreservesIdentityAndTrueCopiesForkIt()` (`109 tests completed, 1 failed`).
-- Correção: `973c2bb0f9f3afad7429cf835c2aa7fa6652bcd0` passou a exigir simultaneamente `instanceId` e `deterministicSeed` distintos para cópia real.
-- GREEN funcional final antes do fechamento documental: RPG Skill Tree CI `33319227439` / run #2109 — Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke GREEN; todos os oito workflows Foundation/Compendium associados ao mesmo head também GREEN.
+- Correção de cópia: `973c2bb0f9f3afad7429cf835c2aa7fa6652bcd0` passou a exigir simultaneamente `instanceId` e `deterministicSeed` distintos para cópia real; RPG Skill Tree CI `33319227439` / run #2109 GREEN completo.
+- Terceiro finding do mesmo review: o scanner examinava apenas imports e podia deixar passar tipo opcional totalmente qualificado no corpo do código. Corrigido em `4540e1ab38e3f9ff33f9f59634755bd939ebaa8d` com inspeção de referências qualificadas e teste sintético específico.
+- GREEN após endurecimento da barreira: RPG Skill Tree CI `33319629980` / run #2115 — Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke GREEN; workflows Foundation/Compendium associados também GREEN.
 
 ## Acceptance
 
-**SATISFIED.** Existe um único contrato documentado e testado para identidade, autoridade, imutabilidade dos rolls, famílias, política de cópia/evolução e localização. Os subplanos seguintes devem reutilizar estes tipos e não criar representações concorrentes.
+**SATISFIED.** Existe um único contrato documentado e testado para identidade, autoridade, imutabilidade dos rolls, famílias, política de cópia/evolução, localização e isolamento do domínio contra providers opcionais inclusive por referências totalmente qualificadas. Os subplanos seguintes devem reutilizar estes tipos e não criar representações concorrentes.
