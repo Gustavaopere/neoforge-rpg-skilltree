@@ -43,6 +43,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumBrowser
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayoutTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientSnapshotTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSessionTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumRelationNavigationTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumDebugProvenanceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.render.EntityPreviewFactoryTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.render.CompendiumStaticPreviewPolicyTest
