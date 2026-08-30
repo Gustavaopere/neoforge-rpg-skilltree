@@ -95,6 +95,9 @@ jobs:
       - name: Compendium runtime coverage report tests
         run: python3 scripts/compendium/test_inventory_runtime_report.py
 
+      - name: Compendium editorial backlog tests
+        run: python3 scripts/compendium/test_editorial_backlog.py
+
       - name: Data validation
         run: python3 scripts/validate-data.py
 

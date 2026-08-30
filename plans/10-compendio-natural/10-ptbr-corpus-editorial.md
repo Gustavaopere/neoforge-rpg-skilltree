@@ -172,6 +172,15 @@ source_status
 review_status
 ```
 
+Estado implementado:
+
+- [x] `scripts/compendium/editorial_backlog.py` deriva a fila diretamente do `coverage-report.json` do 10.02;
+- [x] JSON e Markdown são gerados com os campos editoriais obrigatórios, sem gerar prosa ou promover inferências a fatos;
+- [x] `ERROR` fica bloqueado e `IGNORED` fica `NOT_REQUIRED`, ambos fail-closed; inclusive linhas runtime malformadas preservadas pelo 10.02 com `inventory_key` sintético continuam visíveis como `ERROR`/`BLOCKED` em vez de desaparecer;
+- [x] reruns normais de `generate_inventory.py` reutilizam automaticamente o `editorial-backlog.json` já existente no diretório de saída, preservando estados de revisão e órfãos; `--previous-editorial-backlog` permite selecionar explicitamente outra base anterior;
+- [x] `scripts/compendium/generate_inventory.py` produz os artefatos do inventário/cobertura e `editorial-backlog.json/.md` em uma única execução;
+- [x] prioridades especiais podem ser informadas por override explícito com motivo e somente para IDs presentes no runtime.
+
 ### Passo 2 — Priorizar conteúdo
 
 Ordem inicial:
@@ -186,6 +195,8 @@ Ordem inicial:
 8. entradas raras/administrativas.
 
 A prioridade não altera o gate final: toda entrada que deveria ser curada deve terminar revisada ou explicitamente permanecer `AUTO` com justificativa.
+
+A priorização automática atualmente é deliberadamente conservadora: vanilla, TFC, biomas/dimensões, estruturas e demais entradas recebem faixas determinísticas; boss/progressão e outros casos semanticamente especiais **não são inferidos pelo nome do ID** e exigem override explícito com justificativa até existir uma fonte factual própria para essa classificação.
 
 ### Passo 3 — Pacotes por namespace
 
@@ -257,14 +268,26 @@ src/test/java/dev/gustavopere/rpgskilltree/compendium/data/EditorialCorpusSchema
 src/test/java/dev/gustavopere/rpgskilltree/compendium/data/EditorialReferenceIntegrityTest.java
 ```
 
+Infraestrutura de backlog já coberta por:
+
+```text
+scripts/compendium/test_editorial_backlog.py
+scripts/compendium/test_inventory_modlist.py
+```
+
 Casos obrigatórios:
 
 - [ ] nenhuma chave própria da UI sem `pt_br`;
 - [ ] entrada `CURATED` sem resumo falha;
 - [ ] referência para ID inexistente falha ou exige marcação opcional explícita;
 - [ ] placeholder `TODO`/`TBD` bloqueia corpus final;
-- [ ] drift da modlist gera backlog novo em vez de apagar conteúdo existente;
+- [x] drift/rerun preserva progresso editorial e entradas órfãs em vez de resetar ou apagar silenciosamente;
+- [x] entrada `ERROR` malformada preservada pelo 10.02 permanece no backlog como `BLOCKED`;
 - [ ] textos técnicos usam valores do provider quando o valor puder mudar por config/runtime.
+
+## Estado atual
+
+O **pipeline de backlog editorial** está implementado e automatizado, mas o subplano 10.10 permanece aberto. Ainda faltam o schema/carga dos pacotes editoriais por namespace, os validadores factuais do corpus, a produção/revisão do conteúdo pt-BR e o fechamento da cobertura real do modpack.
 
 ## Acceptance
 
