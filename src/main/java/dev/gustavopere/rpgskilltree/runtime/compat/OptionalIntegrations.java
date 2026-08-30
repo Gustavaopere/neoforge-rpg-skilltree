@@ -16,6 +16,7 @@ public final class OptionalIntegrations {
         IRONS_SPELLBOOKS("irons_spellbooks"),
         ARS_NOUVEAU("ars_nouveau"),
         EPIC_FIGHT("epicfight"),
+        COLD_SWEAT("cold_sweat"),
         GOETY("goety"),
         MALUM("malum"),
         EIDOLON("eidolon"),

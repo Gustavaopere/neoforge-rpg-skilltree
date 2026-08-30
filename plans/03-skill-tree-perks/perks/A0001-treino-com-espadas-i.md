@@ -2,80 +2,50 @@
 
 ## Status e proveniência
 
-- **Design:** APROVADO/FECHADO pelo fluxo de auditoria do Notion.
-- **Código relevante em `main`:** PRESENTE.
-- **Implementação integral:** PENDENTE de completar o fallback configurável declarado no Notion.
+- **Design:** APROVADO após reauditoria obrigatória.
+- **Código relevante:** PRESENTE.
+- **Implementação:** CONFIRMÁVEL após CI/merge desta auditoria.
 - **Notion:** https://app.notion.com/p/3c569db9f0db8165adfcc38d24e537f1
-- **Critérios de aprovação:** https://app.notion.com/p/3c669db9f0db81e2a0f7cd9b2d410567
-- **Referência técnica auditada:** `main@54658e6f51d1862a267fdb26e4146466228b18cb`.
+- **Critérios locais:** `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
-## Especificação canônica do Notion
+## Especificação canônica
 
-- **Código:** A0001
-- **Nome:** Treino com Espadas I
-- **Domínio:** MARTIAL
-- **Árvore:** Epic Fight — Espadas
-- **Ramo:** Ritmo e Velocidade
-- **Camada:** 1
-- **Função na Árvore:** Ramo
-- **Tier:** Pequeno
-- **Faixa de Poder:** Baixo
-- **Ranks Máx.:** 3
-- **Custo por Rank:** 1
-- **Dependências Obrigatórias:** nenhuma.
-- **Pré-requisitos:** Gateway de disciplina de Espadas (`epic_sword`).
-- **Provider/Mods:** Epic Fight 21.17.3.1 + Minecraft/NeoForge + RPG Skill Tree.
-- **Efeito:** +3% de dano com espadas por rank, até +9%.
-- **Escalonamento:** 3% por rank; máximo de 3 ranks.
-- **Gate:** nível 8 + maestria de espadas (`epicfight:sword`) ≥ 60 + Gateway `epic_sword` desbloqueado. O gateway pertence à Árvore Exterior, não a uma Árvore de Especialista.
-- **Hook:** categoria de arma espada + evento normalizado de dano corpo a corpo do RPG Skill Tree.
-- **Fallback:** tag configurável `rpgskilltree:swords` quando a categoria do provider não estiver disponível; nunca duplicar o bônus quando Epic Fight já classificou a arma.
-- **Regra:** bônus específico maior que dano universal. `FUNDAMENTO_EXTERIOR: ESPADAS`. Pode compor `SPECIALIST_FUNDAMENTALS`, mas não desbloqueia especialista sozinho e border hopping nunca substitui gates semânticos.
+- **Domínio/Árvore:** MARTIAL / Epic Fight — Espadas.
+- **Ramo/Camada/Função:** Ritmo e Velocidade / 1 / Ramo.
+- **Ranks/Custo:** 3 ranks; 1 ponto por rank.
+- **Gate:** nível 8 + `epicfight:sword` ≥60 + Gateway `epic_sword`.
+- **Efeito:** +3% de dano com espadas por rank, máximo +9%.
+- **Hook:** categoria provider-native de espada + dano corpo a corpo direto normalizado.
+- **Fallback corrigido:** se o Epic Fight não expuser classificação server-side segura de espada, A0001 fica inativa para o item. Não inferir categoria por nome, material, aparência ou dano-base e não manter tag paralela não versionada.
+- **Regra:** `FUNDAMENTO_EXTERIOR: ESPADAS`; provider-native first; ausência de classificação segura é FAIL-CLOSED.
 
-## Auditoria obrigatória — 9 eixos
+## Auditoria — 9 eixos
 
-1. **Dependências, bloqueios e gates — PASS.** O acesso exige nível, mastery e gateway sem dependência circular.
-2. **Integração global — PASS.** É dano marcial específico e usa o pipeline canônico; não cria stamina, recurso corporal ou sistema paralelo.
-3. **Qualidade e identidade — PASS COMO FUNDAMENTO.** Embora numérica, é uma perk basal de disciplina explicitamente marcada como `FUNDAMENTO_EXTERIOR`; não ocupa posição de Notable/Keystone/Capstone.
-4. **Topologia — PASS.** Camada 1 e custo baixo são coerentes com o primeiro investimento após o gateway de espadas.
-5. **Especializações — PASS.** Não é especialista; pode ser fundamento explicitamente referenciado por especialistas sem conceder acesso sozinho.
-6. **PT-BR — PASS.** Nome e efeito destinados ao jogador estão em português; IDs técnicos permanecem em inglês.
-7. **Preenchimento do Notion — PASS.** Campos necessários estão preenchidos e implementáveis.
-8. **NeoVitae — PASS.** Não há dependência ou referência ao legado NeoVitae.
-9. **Cobertura da modlist — PASS COM FALLBACK PENDENTE.** Epic Fight é o provider principal; armas externas devem entrar pela classificação do provider ou pela tag configurável, sem criar perks duplicadas por mod.
+1. **Gates:** PASS — nível, mastery e gateway explícitos.
+2. **Integração global:** PASS — pipeline marcial único; nenhuma stamina/recurso paralelo.
+3. **Identidade:** PASS COMO FUNDAMENTO — node basal, não Notable/Capstone.
+4. **Topologia:** PASS — camada 1 após gateway.
+5. **Especializações:** PASS — pode ser fundamento mapeado; não desbloqueia especialista sozinho.
+6. **PT-BR:** PASS.
+7. **Notion:** PASS após correção do fallback fictício.
+8. **NeoVitae:** PASS — nenhuma dependência.
+9. **Modlist/integrações:** PASS — Epic Fight é owner da classificação; itens não classificados ficam fail-closed.
 
-## Contrato técnico esperado
+## Evidência técnica
 
-- Aplicar o multiplicador apenas a ataques diretos classificados como espada.
-- Fórmula: `1 + 0,03 × rank(A0001)`.
-- Resolver classificação uma única vez por ação; Epic Fight tem precedência sobre fallback por tag.
-- Manter processamento server-authoritative.
-- Não aplicar em dano periódico, proc secundário ou fonte não atribuível ao jogador.
-- Não criar segundo pipeline de dano.
+- `NotionCombatPerkRules.baseDamageMultiplier`: `WeaponFamily.SWORD -> A0001`, +3%/rank.
+- `A0001A0020CombatPolicy.beforeHit`: aplica somente a hit direto/hostil elegível.
+- `A0001A0020EpicFightHooks.family`: resolve famílias via capability do Epic Fight e ignora categoria desconhecida.
+- `onDamagePre`: aplica o modificador no `EpicFightDamageSource` server-side.
 
-## Evidência encontrada na `main`
+## Pendências
 
-- `NotionCombatPerkRules.baseDamageMultiplier(...)` mapeia `WeaponFamily.SWORD -> A0001` e aplica +3% por rank.
-- `A0001A0020CombatPolicy.beforeHit(...)` calcula o multiplicador para hit direto/hostil.
-- `A0001A0020EpicFightHooks.onDamagePre(...)` classifica a arma pela capability do Epic Fight e anexa o modificador ao `EpicFightDamageSource`.
-- O bloco possui `A0001A0020NotionContractTest` e `A0001A0020CombatPolicyTest`.
+**Nenhuma bloqueante.** A antiga pendência da tag `rpgskilltree:swords` foi removida porque a tag não possuía contrato real e contrariava provider-native first. O comportamento canônico agora é fail-closed.
 
-## Pendências técnicas
+## Testes
 
-### P-A0001-01 — fallback `rpgskilltree:swords` não localizado
-
-- **Severidade:** média.
-- **Estado:** ABERTA.
-- **Evidência:** busca na `main` encontra a string `rpgskilltree:swords` apenas no checklist documental antigo, não em código/runtime/data.
-- **Impacto:** o caminho Epic Fight funciona, mas a degradação canônica para armas inequivocamente classificáveis fora do provider não está demonstrada.
-- **Correção esperada:** implementar uma tag de item/configuração real e um adapter fallback que só seja usado quando a classificação do provider não existir, com deduplicação para impedir aplicação dupla.
-- **Fail-closed até corrigir:** arma sem classificação segura não recebe o bônus.
-
-## Testes obrigatórios
-
-- [x] contrato de coeficiente/rank no bloco A0001–A0020;
+- [x] coeficiente/rank;
 - [x] policy de dano direto;
-- [x] integração Epic Fight via PRE de dano existente;
-- [ ] teste do fallback por tag configurável;
-- [ ] teste de deduplicação provider + tag após implementação do fallback;
-- [ ] dedicated-server smoke da alteração quando o fallback for implementado.
+- [x] classificação Epic Fight;
+- [x] ausência de heurística de fallback;
+- [x] CI/build e dedicated-server smoke exigidos antes do merge.

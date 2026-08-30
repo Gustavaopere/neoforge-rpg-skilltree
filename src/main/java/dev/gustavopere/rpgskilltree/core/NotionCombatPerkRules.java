@@ -23,6 +23,9 @@ public final class NotionCombatPerkRules {
     public static final int MOMENTUM_CAP=5; public static final long MOMENTUM_INACTIVITY_MILLIS=5_000L; public static final long MOMENTUM_DECAY_INTERVAL_MILLIS=1_000L;
     public static final int A0005_MIN_MOMENTUM=3, A0005_MOMENTUM_COST=2; public static final double A0005_IMPACT_MULTIPLIER=1.08D, A0005_PENETRATION_FRACTION=0.12D; public static final long A0005_TARGET_COOLDOWN_MILLIS=6_000L;
     public static final double FURY_CAP=100.0D, A0011_MIN_FURY=40.0D, A0011_FURY_COST=20.0D;
+    public static final double A0012_FRENZY_THRESHOLD=75.0D, A0012_PEAK_THRESHOLD=100.0D, A0012_PEAK_FURY_COST=40.0D;
+    public static final double A0012_FRENZY_IMPACT_MULTIPLIER=1.10D, A0012_PEAK_IMPACT_MULTIPLIER=1.20D, A0012_PEAK_GUARD_PRESSURE_MULTIPLIER=1.40D;
+    public static final double A0012_CORE_HEAT_PER_HIT=1.5D, A0012_EXHAUSTION_PER_HIT=0.015D, A0012_STAMINA_REGEN_PENALTY=-0.15D;
     public static final int DISTANCE_CONTROL_CAP=3; public static final double SPEAR_IDEAL_MIN_FRACTION=0.70D, SPEAR_IDEAL_MAX_FRACTION=1.00D; public static final long A0017_WINDOW_MILLIS=2_000L, A0018_TARGET_LOCKOUT_MILLIS=8_000L;
 
     public static final int FLOW_CAP=4; public static final long A0022_REPOSITION_WINDOW_MILLIS=2_500L, A0022_IDLE_BEFORE_DECAY_MILLIS=3_000L;
@@ -53,7 +56,7 @@ public final class NotionCombatPerkRules {
     public static double ruptureImpactMultiplier(int rank){return rank>=2?1.35D:rank==1?1.20D:1.0D;} public static double rupturePenetrationFraction(int rank){return rank>=2?0.10D:rank==1?0.06D:0.0D;}
     public static double interceptionImpactMultiplier(int rank){return rank>=2?1.35D:rank==1?1.20D:1.0D;} public static double interceptionDisplacementMultiplier(int rank){return rank>=2?0.70D:rank==1?0.80D:1.0D;}
     public static long distanceControlWindowMillis(int rank){return rank>=2?7_000L:5_000L;} public static long riposteCooldownMillis(int mastery){return mastery>=100?8_000L:mastery>=90?9_000L:10_000L;} public static long interceptionMasteryWindowMillis(int mastery){return mastery>=100?4_000L:mastery>=90?3_500L:3_000L;} public static long frenzyDropDurationMillis(int mastery){return mastery>=100?4_000L:mastery>=90?5_000L:6_000L;}
-    public static boolean frenzyBaselineAvailable(boolean impact,boolean thermal,boolean exhaustion){return impact&&thermal&&exhaustion;} public static boolean frenzyThirstSurchargeAvailable(boolean thirstReceipt){return thirstReceipt;}
+    public static boolean frenzyBaselineAvailable(boolean impactHookAvailable, boolean coldSweatCoreAvailable){return impactHookAvailable&&coldSweatCoreAvailable;}
 
     public static long flowDurationMillis(int rank){return rank>=2?7_000L:5_000L;}
     public static double blindSpotCriticalDamageMultiplier(int rank){return rank>=2?1.25D:rank==1?1.15D:1.0D;}

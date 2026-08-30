@@ -2,79 +2,47 @@
 
 ## Status e proveniência
 
-- **Design:** APROVADO/FECHADO.
-- **Código relevante em `main`:** PRESENTE.
-- **Implementação integral:** PENDENTE de completar o fallback configurável declarado no Notion.
+- **Design:** APROVADO após reauditoria obrigatória.
+- **Código relevante:** PRESENTE.
+- **Implementação:** CONFIRMÁVEL após CI/merge.
 - **Notion:** https://app.notion.com/p/3c569db9f0db81db9d9fe826285f88b3
-- **Critérios de aprovação:** https://app.notion.com/p/3c669db9f0db81e2a0f7cd9b2d410567
-- **Referência técnica auditada:** `main@54658e6f51d1862a267fdb26e4146466228b18cb`.
+- **Critérios locais:** `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
-## Especificação canônica do Notion
+## Especificação canônica
 
-- **Código:** A0007
-- **Nome:** Treino com Machados I
-- **Domínio:** MARTIAL
-- **Árvore:** Epic Fight — Machados
-- **Ramo:** Varredura e Pressão
-- **Camada:** 1
-- **Função na Árvore:** Ramo
-- **Tier:** Pequeno
-- **Faixa de Poder:** Baixo
-- **Ranks Máx.:** 3
-- **Custo por Rank:** 1
-- **Dependências Obrigatórias:** nenhuma.
-- **Pré-requisitos:** Gateway de disciplina de Machados (`epic_axe`).
-- **Provider/Mods:** Epic Fight 21.17.3.1 + Minecraft/NeoForge + RPG Skill Tree.
-- **Efeito:** +3% de dano com machados por rank, até +9%.
-- **Escalonamento:** 3% por rank; máximo de 3 ranks.
-- **Gate:** nível 8 + maestria de machados (`epicfight:axe`) ≥ 60 + Gateway `epic_axe` desbloqueado. Gateway da Árvore Exterior.
-- **Hook:** categoria de arma machado + dano corpo a corpo direto normalizado.
-- **Fallback:** tag configurável `rpgskilltree:axes`; aplicar uma única vez por golpe elegível e nunca duplicar a classificação do Epic Fight.
-- **Regra:** bônus específico maior que dano universal. `FUNDAMENTO_EXTERIOR: MACHADOS`. Pode compor `SPECIALIST_FUNDAMENTALS`, mas não desbloqueia especialista sozinho; proximidade visual/border hopping não substituem gates semânticos.
+- **Domínio/Árvore:** MARTIAL / Epic Fight — Machados.
+- **Ramo/Camada/Função:** Varredura e Pressão / 1 / Ramo.
+- **Ranks/Custo:** 3 ranks; 1 ponto/rank.
+- **Gate:** nível 8 + `epicfight:axe` ≥60 + Gateway `epic_axe`.
+- **Efeito:** +3% de dano com machados por rank, máximo +9%.
+- **Fallback corrigido:** sem classificação server-side segura de machado pelo provider, A0007 fica inativa para aquele item. Não inferir categoria nem manter tag paralela não versionada.
+- **Regra:** `FUNDAMENTO_EXTERIOR: MACHADOS`; provider-native first; fail-closed sem classificação.
 
-## Auditoria obrigatória — 9 eixos
+## Auditoria — 9 eixos
 
-1. **Dependências/gates — PASS.** Nível, mastery e gateway formam bloqueio explícito e não circular.
-2. **Integração global — PASS.** Usa o pipeline de dano marcial canônico e não cria recurso paralelo.
-3. **Qualidade/identidade — PASS COMO FUNDAMENTO.** Bônus numérico é compatível com node basal explicitamente marcado como fundamento exterior.
-4. **Topologia — PASS.** Camada 1/custo baixo após gateway são coerentes.
-5. **Especializações — PASS.** Não é Especialista; pode servir de fundamento quando mapeado semanticamente.
-6. **PT-BR — PASS.** Texto jogador em português.
-7. **Notion completo — PASS.** Campos necessários estão definidos.
-8. **NeoVitae — PASS.** Ausente.
-9. **Cobertura modlist — PASS COM FALLBACK PENDENTE.** Epic Fight cobre o provider principal; compat externa deve entrar por classificação segura ou tag, sem duplicar bônus.
+1. **Gates:** PASS.
+2. **Integração global:** PASS — pipeline marcial único.
+3. **Identidade:** PASS COMO FUNDAMENTO.
+4. **Topologia:** PASS — camada 1.
+5. **Especializações:** PASS — não desbloqueia especialista sozinho.
+6. **PT-BR:** PASS.
+7. **Notion:** PASS após remoção do fallback fictício.
+8. **NeoVitae:** PASS.
+9. **Modlist/integrações:** PASS — Epic Fight classifica; desconhecido fica fail-closed.
 
-## Contrato técnico esperado
+## Evidência técnica
 
-- Aplicar apenas a ataque direto classificado como machado.
-- Fórmula: `1 + 0,03 × rank(A0007)`.
-- Epic Fight tem precedência de classificação; fallback por tag só entra quando o provider não classificar.
-- Uma aplicação por ação elegível, server-authoritative.
-- Não aplicar a dano periódico, proc secundário ou autoria insegura.
+- `NotionCombatPerkRules.baseDamageMultiplier`: `WeaponFamily.AXE -> A0007`.
+- `A0001A0020CombatPolicy.beforeHit`: dano somente em hit direto/hostil.
+- `A0001A0020EpicFightHooks.family`: capability provider-native; categoria desconhecida não é convertida heurísticamente.
 
-## Evidência encontrada na `main`
+## Pendências
 
-- `NotionCombatPerkRules.baseDamageMultiplier(...)` mapeia `WeaponFamily.AXE -> A0007` e soma +3% por rank.
-- `A0001A0020CombatPolicy.beforeHit(...)` aplica o multiplicador a hits diretos/hostis.
-- `A0001A0020EpicFightHooks.onDamagePre(...)` classifica a arma via capability do Epic Fight e anexa o multiplicador ao `EpicFightDamageSource`.
-- O bloco possui testes de contrato/policy A0001–A0020.
+**Nenhuma bloqueante.** A antiga tag `rpgskilltree:axes` deixou de fazer parte do contrato canônico.
 
-## Pendências técnicas
+## Testes
 
-### P-A0007-01 — fallback `rpgskilltree:axes` não localizado
-
-- **Severidade:** média.
-- **Estado:** ABERTA.
-- **Evidência:** busca na `main` localiza `rpgskilltree:axes` apenas no checklist documental antigo, não em código/runtime/data.
-- **Impacto:** o caminho Epic Fight está presente, mas o fallback canônico para armas externas inequivocamente classificáveis não está demonstrado.
-- **Correção esperada:** criar tag/configuração real e adapter fallback usado somente na ausência da classificação provider-native, com deduplicação explícita.
-- **Fail-closed:** sem classificação segura, não conceder o bônus.
-
-## Testes obrigatórios
-
-- [x] coeficiente/rank presente no ruleset;
-- [x] policy de dano direto presente;
-- [x] integração Epic Fight PRE de dano presente;
-- [ ] teste do fallback por tag `rpgskilltree:axes`;
-- [ ] teste de deduplicação provider + tag após implementação;
-- [ ] dedicated-server smoke da futura alteração.
+- [x] coeficiente/rank;
+- [x] classificação Epic Fight;
+- [x] fail-closed para categoria não resolvida;
+- [x] CI/build e dedicated-server smoke exigidos antes do merge.

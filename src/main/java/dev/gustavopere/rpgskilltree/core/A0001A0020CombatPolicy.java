@@ -21,11 +21,12 @@ public final class A0001A0020CombatPolicy {
         boolean actualDamage,
         boolean relevantGuardOrPosture,
         boolean armorProtected,
-        boolean heavyAttack,
+        boolean guardOrPostureHookAvailable,
         boolean idealSpearRange,
         boolean critical,
         boolean impactHookAvailable,
         boolean penetrationHookAvailable,
+        boolean frenzyBodyCostPaid,
         long nowMillis
     ) {
         public HitFacts {
@@ -40,7 +41,8 @@ public final class A0001A0020CombatPolicy {
         double impactMultiplier,
         double guardPressureMultiplier,
         double physicalPenetrationFraction,
-        boolean suppressMomentumGain
+        boolean suppressMomentumGain,
+        boolean frenzyTradeoff
     ) {}
 
     /** PRE-stage modifiers. Never invents unavailable provider semantics. */
@@ -52,6 +54,7 @@ public final class A0001A0020CombatPolicy {
         double guard = 1.0D;
         double penetration = 0.0D;
         boolean suppressMomentum = false;
+        boolean frenzyTradeoff = false;
 
         if (facts.family() == WeaponFamily.SWORD) {
             if (ranks.learned("A0006") && state.momentum(facts.actorId(), facts.nowMillis()) >= 5
@@ -61,39 +64,74 @@ public final class A0001A0020CombatPolicy {
                 if (facts.critical()) damage *= 1.20D;
                 if (facts.impactHookAvailable()) { impact *= 1.20D; guard *= 1.20D; }
                 suppressMomentum = true;
-            } else if (ranks.learned("A0005")
-                && facts.relevantGuardOrPosture()
-                && state.sameSwordSequenceTarget(facts.actorId(), facts.targetId())
-                && state.momentum(facts.actorId(), facts.nowMillis()) >= NotionCombatPerkRules.A0005_MIN_MOMENTUM
-                && state.openingCooldownReady(facts.actorId(), facts.targetId(), facts.nowMillis())
-                && (facts.impactHookAvailable() || facts.penetrationHookAvailable())
-                && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0005:consume", facts.nowMillis())) {
-                state.consumeMomentum(facts.actorId(), NotionCombatPerkRules.A0005_MOMENTUM_COST);
-                if (facts.impactHookAvailable()) {
-                    impact *= NotionCombatPerkRules.A0005_IMPACT_MULTIPLIER;
-                    guard *= NotionCombatPerkRules.A0005_IMPACT_MULTIPLIER;
+            } else {
+                boolean nativeDefense = facts.guardOrPostureHookAvailable() && facts.relevantGuardOrPosture();
+                boolean armorFallback = !facts.guardOrPostureHookAvailable() && facts.armorProtected();
+                boolean openingHasSafeComponent = nativeDefense
+                    ? facts.impactHookAvailable() || facts.penetrationHookAvailable()
+                    : armorFallback && facts.penetrationHookAvailable();
+                if (ranks.learned("A0005")
+                    && (nativeDefense || armorFallback)
+                    && state.sameSwordSequenceTarget(facts.actorId(), facts.targetId())
+                    && state.momentum(facts.actorId(), facts.nowMillis()) >= NotionCombatPerkRules.A0005_MIN_MOMENTUM
+                    && state.openingCooldownReady(facts.actorId(), facts.targetId(), facts.nowMillis())
+                    && openingHasSafeComponent
+                    && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0005:consume", facts.nowMillis())) {
+                    state.consumeMomentum(facts.actorId(), NotionCombatPerkRules.A0005_MOMENTUM_COST);
+                    if (nativeDefense && facts.impactHookAvailable()) {
+                        impact *= NotionCombatPerkRules.A0005_IMPACT_MULTIPLIER;
+                        guard *= NotionCombatPerkRules.A0005_IMPACT_MULTIPLIER;
+                    }
+                    if (facts.penetrationHookAvailable()) {
+                        penetration = NotionCombatPerkRules.A0005_PENETRATION_FRACTION;
+                    }
+                    state.startOpeningCooldown(facts.actorId(), facts.targetId(), facts.nowMillis());
                 }
-                if (facts.penetrationHookAvailable()) {
-                    penetration = NotionCombatPerkRules.A0005_PENETRATION_FRACTION;
-                }
-                state.startOpeningCooldown(facts.actorId(), facts.targetId(), facts.nowMillis());
             }
         } else if (facts.family() == WeaponFamily.AXE) {
-            int ruptureRank = ranks.rank("A0011");
-            boolean eligibleProtection = facts.relevantGuardOrPosture() || facts.armorProtected();
-            boolean hasSafeComponent = facts.penetrationHookAvailable()
-                || (facts.relevantGuardOrPosture() && facts.impactHookAvailable());
-            if (ruptureRank > 0 && eligibleProtection && hasSafeComponent
-                && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0011:spend", facts.nowMillis())
-                && state.consumeFury(facts.actorId(), NotionCombatPerkRules.A0011_FURY_COST, NotionCombatPerkRules.A0011_MIN_FURY)) {
-                if (facts.relevantGuardOrPosture() && facts.impactHookAvailable()) {
-                    impact *= NotionCombatPerkRules.ruptureImpactMultiplier(ruptureRank);
-                    guard *= NotionCombatPerkRules.ruptureImpactMultiplier(ruptureRank);
+            boolean frenzyAvailable = ranks.learned("A0012")
+                && state.fury(facts.actorId()) + 1.0E-9D >= NotionCombatPerkRules.A0012_FRENZY_THRESHOLD
+                && NotionCombatPerkRules.frenzyBaselineAvailable(facts.impactHookAvailable(), facts.frenzyBodyCostPaid());
+            boolean peakReady = frenzyAvailable
+                && state.fury(facts.actorId()) + 1.0E-9D >= NotionCombatPerkRules.A0012_PEAK_THRESHOLD;
+
+            if (peakReady
+                && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0012:peak", facts.nowMillis())
+                && state.consumeFury(facts.actorId(), NotionCombatPerkRules.A0012_PEAK_FURY_COST, NotionCombatPerkRules.A0012_PEAK_THRESHOLD)) {
+                impact = Math.max(impact, NotionCombatPerkRules.A0012_PEAK_IMPACT_MULTIPLIER);
+                if (facts.guardOrPostureHookAvailable() && facts.relevantGuardOrPosture()) {
+                    guard = Math.max(guard, NotionCombatPerkRules.A0012_PEAK_GUARD_PRESSURE_MULTIPLIER);
                 }
-                if (facts.penetrationHookAvailable()) penetration = NotionCombatPerkRules.rupturePenetrationFraction(ruptureRank);
+                frenzyTradeoff = true;
+            } else {
+                int ruptureRank = ranks.rank("A0011");
+                boolean nativeDefense = facts.guardOrPostureHookAvailable() && facts.relevantGuardOrPosture();
+                boolean armorFallback = !facts.guardOrPostureHookAvailable() && facts.armorProtected();
+                boolean hasSafeComponent = nativeDefense
+                    ? facts.impactHookAvailable() || facts.penetrationHookAvailable()
+                    : armorFallback && facts.penetrationHookAvailable();
+                if (ruptureRank > 0 && (nativeDefense || armorFallback) && hasSafeComponent
+                    && state.claimOnce(facts.actorId(), facts.rootActionId(), "A0011:spend", facts.nowMillis())
+                    && state.consumeFury(facts.actorId(), NotionCombatPerkRules.A0011_FURY_COST, NotionCombatPerkRules.A0011_MIN_FURY)) {
+                    if (nativeDefense && facts.impactHookAvailable()) {
+                        impact *= NotionCombatPerkRules.ruptureImpactMultiplier(ruptureRank);
+                        guard *= NotionCombatPerkRules.ruptureImpactMultiplier(ruptureRank);
+                    }
+                    if (facts.penetrationHookAvailable()) {
+                        penetration = NotionCombatPerkRules.rupturePenetrationFraction(ruptureRank);
+                    }
+                }
+
+                // A0011 may itself drop Fury below the Frenzy threshold, so eligibility is sampled
+                // again after the spend. The adapter must have paid A0012's body cost before setting
+                // frenzyBodyCostPaid=true; without that receipt the benefit remains fail-closed.
+                if (ranks.learned("A0012")
+                    && state.fury(facts.actorId()) + 1.0E-9D >= NotionCombatPerkRules.A0012_FRENZY_THRESHOLD
+                    && NotionCombatPerkRules.frenzyBaselineAvailable(facts.impactHookAvailable(), facts.frenzyBodyCostPaid())) {
+                    impact = Math.max(impact, NotionCombatPerkRules.A0012_FRENZY_IMPACT_MULTIPLIER);
+                    frenzyTradeoff = true;
+                }
             }
-            // A0012 baseline benefits are deliberately absent. They may only be enabled by a bridge
-            // that proves the same offensive action's thermal and hunger/exhaustion tradeoffs.
         } else if (facts.family() == WeaponFamily.SPEAR) {
             if (ranks.learned("A0018") && state.distanceControl(facts.actorId(), facts.nowMillis()) >= 3
                 && state.consumeLineWindow(facts.actorId(), facts.targetId(), facts.nowMillis())
@@ -116,7 +154,15 @@ public final class A0001A0020CombatPolicy {
                 }
             }
         }
-        return new HitModifiers(damage, NotionCombatPerkRules.criticalChanceBonus(facts.family(), ranks), impact, guard, penetration, suppressMomentum);
+        return new HitModifiers(
+            damage,
+            NotionCombatPerkRules.criticalChanceBonus(facts.family(), ranks),
+            impact,
+            guard,
+            penetration,
+            suppressMomentum,
+            frenzyTradeoff
+        );
     }
 
     /** POST-stage confirmed-hit state changes; idempotent per root action. */
@@ -202,7 +248,7 @@ public final class A0001A0020CombatPolicy {
     }
 
     private static HitModifiers neutral(CombatPerkRanks ranks, WeaponFamily family) {
-        return new HitModifiers(1.0D, NotionCombatPerkRules.criticalChanceBonus(family, ranks), 1.0D, 1.0D, 0.0D, false);
+        return new HitModifiers(1.0D, NotionCombatPerkRules.criticalChanceBonus(family, ranks), 1.0D, 1.0D, 0.0D, false, false);
     }
 
     private static void require(String value, String name) { if (value == null || value.isBlank()) throw new IllegalArgumentException(name + " must not be blank"); }

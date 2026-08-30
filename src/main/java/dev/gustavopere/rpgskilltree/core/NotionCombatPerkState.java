@@ -98,6 +98,38 @@ public final class NotionCombatPerkState {
         return switched;
     }
 
+    /** Tracks the threshold transition that owns A0012's Queda de Ritmo penalty. */
+    public synchronized boolean updateFrenzyState(String actorId, boolean learned, int mastery, long nowMillis) {
+        ActorState state = actor(actorId);
+        if (!learned) {
+            state.frenzyActive = false;
+            state.rhythmDropUntil = 0L;
+            return false;
+        }
+        boolean active = state.fury + 1.0E-9D >= NotionCombatPerkRules.A0012_FRENZY_THRESHOLD;
+        if (state.frenzyActive && !active) {
+            state.rhythmDropUntil = Math.max(
+                state.rhythmDropUntil,
+                Math.addExact(nowMillis, NotionCombatPerkRules.frenzyDropDurationMillis(mastery))
+            );
+        }
+        state.frenzyActive = active;
+        return active;
+    }
+
+    public synchronized boolean frenzyActive(String actorId) {
+        return actor(actorId).frenzyActive;
+    }
+
+    public synchronized boolean rhythmDropActive(String actorId, long nowMillis) {
+        ActorState state = actor(actorId);
+        if (state.rhythmDropUntil <= nowMillis) {
+            state.rhythmDropUntil = 0L;
+            return false;
+        }
+        return true;
+    }
+
     public synchronized int distanceControl(String actorId) { return actor(actorId).distanceControl; }
     public synchronized int distanceControl(String actorId, long nowMillis) {
         ActorState state = actor(actorId);
@@ -188,6 +220,7 @@ public final class NotionCombatPerkState {
         decayMomentum(actorId, nowMillis);
         distanceControl(actorId, nowMillis);
         ActorState state = actor(actorId);
+        if (state.rhythmDropUntil <= nowMillis) state.rhythmDropUntil = 0L;
         pruneSpearWindows(state, nowMillis);
     }
 
@@ -214,6 +247,8 @@ public final class NotionCombatPerkState {
         final Map<String, Long> openingCooldownUntilByTarget = new HashMap<>();
         double fury;
         String lastAxeTarget;
+        boolean frenzyActive;
+        long rhythmDropUntil;
         int distanceControl;
         long distanceControlExpiresAt;
         long riposteUntil;

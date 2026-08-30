@@ -33,7 +33,7 @@ public final class NotionCombatPerkCatalog {
         add(map,"A0009","Precisão com Machados",WeaponFamily.AXE,3,1,Map.of("A0007",1),EPIC_CRIT);
         add(map,"A0010","Pressão do Carrasco",WeaponFamily.AXE,2,1,Map.of("A0009",2),Set.of("epicfight:damage_post"));
         add(map,"A0011","Ruptura de Guarda",WeaponFamily.AXE,2,1,Map.of("A0008",2,"A0009",1),Set.of("epicfight:guard_posture","epicfight:impact","epicfight:physical_penetration"));
-        add(map,"A0012","Maestria de Machados — Frenesi do Saqueador",WeaponFamily.AXE,1,2,Map.of("A0010",1,"A0011",1),Set.of("epicfight:impact","cold_sweat:thermal_activity","minecraft:exhaustion","thirstwasreclaimed:water_cost"));
+        add(map,"A0012","Maestria de Machados — Frenesi do Saqueador",WeaponFamily.AXE,1,2,Map.of("A0010",1,"A0011",1),Set.of("epicfight:damage_pre","epicfight:impact","cold_sweat:core_temperature","minecraft:exhaustion","epicfight:stamina_regen"));
         add(map,"A0013","Treino com Lanças I",WeaponFamily.SPEAR,3,1,Map.of(),EPIC_DAMAGE);
         add(map,"A0014","Treino com Lanças II",WeaponFamily.SPEAR,3,1,Map.of("A0013",2),EPIC_CADENCE);
         add(map,"A0015","Precisão com Lanças",WeaponFamily.SPEAR,3,1,Map.of("A0013",1),EPIC_CRIT);

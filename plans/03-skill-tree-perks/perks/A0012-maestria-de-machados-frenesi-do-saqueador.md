@@ -2,105 +2,57 @@
 
 ## Status e proveniência
 
-- **Design:** APROVADO/FECHADO.
-- **Código relevante em `main`:** CONTRATO/COEFICIENTES PRESENTES; efeito de runtime deliberadamente FAIL-CLOSED.
-- **Implementação integral:** NÃO IMPLEMENTADA.
+- **Design:** APROVADO após correção canônica e re-fetch.
+- **Código relevante:** IMPLEMENTADO nesta auditoria.
+- **Implementação:** CONFIRMÁVEL após CI/merge.
 - **Notion:** https://app.notion.com/p/3c569db9f0db81f6806cf743fda053f5
-- **Critérios de aprovação:** https://app.notion.com/p/3c669db9f0db81e2a0f7cd9b2d410567
-- **Referência técnica auditada:** `main@7f90af76c2b69574378d7f3f1d292e862ccdd6f9`.
+- **Critérios locais:** `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
-## Especificação canônica do Notion
+## Especificação canônica corrigida
 
-- **Código:** A0012
-- **Nome:** Maestria de Machados — Frenesi do Saqueador
-- **Domínio:** MARTIAL
-- **Árvore:** Epic Fight — Machados
-- **Ramo:** Saqueador — Frenesi
-- **Camada:** 4
-- **Função na Árvore:** Capstone
-- **Tier:** Grande
-- **Faixa de Poder:** Alto
-- **Ranks Máx.:** 1
-- **Custo por Rank:** 2
-- **Dependências Obrigatórias:** A0010 + A0011 + maestria `epicfight:axe` ≥ 80; ponte/rota alternativa não substitui requisitos.
-- **Pré-requisitos:** A0010 + A0011.
-- **Provider/Mods:** Epic Fight 21.17.3.1 + RPG Skill Tree + Cold Sweat 2.4.2 para temperatura corporal + Minecraft/NeoForge para hunger/exhaustion; Thirst Was Reclaimed 3.0.4 somente se adapter versionado expuser custo hídrico causal da própria ação.
-- **Efeito:** ao alcançar 75 de Fúria usando machado, entra em Frenesi enquanto permanecer ≥75. Golpes diretos válidos recebem +10% de impacto e só aproveitam varredura/multi-hit que já exista no ataque/provider. Cada ação ofensiva válida em Frenesi aplica ×1,25 ao parcel térmico/metabólico causal quando disponível e ×1,15 ao hunger/exhaustion causado pela própria atividade. Sede recebe ×1,15 apenas com receipt hídrico causal. Em 100 de Fúria, o próximo golpe pesado inequivocamente confirmado pode consumir 40 para +20% de impacto e +40% de pressão de guarda. Sair abaixo de 75 encerra Frenesi e aplica Queda de Ritmo por 6 s, reduzindo em 15% a recuperação canônica de estamina.
-- **Escalonamento:** 1 rank. Maestria ≥90 reduz Queda de Ritmo para 5 s; ≥100 para 4 s. Limiar 75, gasto 40 e coeficientes não aumentam.
-- **Gate:** Gateway `epic_axe` + A0010 + A0011 + mastery de machados ≥80; terminal da Árvore Exterior.
-- **Hook:** Fúria + golpe direto/heavy confirmado + impacto/guarda provider-native + Cold Sweat somente por parcel térmico causal + hunger/exhaustion causal do Minecraft/NeoForge + Thirst Was Reclaimed somente por adapter causal próprio.
-- **Fallback:** omitir componente de impacto/guarda sem hook seguro; nunca fabricar varredura. Sem parcel térmico ou hunger/exhaustion causal, Frenesi fica inativo, pois o benefício não pode existir sem tradeoff. Ausência de receipt hídrico omite só sede. Sem confirmação segura de golpe pesado, não oferecer gasto de 40.
-- **Regra:** Cold Sweat continua owner da temperatura corporal; Minecraft/NeoForge, de hunger/exhaustion; TWR só participa por receipt hídrico causal. Não criar recurso térmico/metabólico paralelo. `TERMINAL_EXTERIOR: MARTIAL/MACHADOS`; especialista exige mapeamento explícito + fundamentos + ≥100 Passive Points. Respec deve proteger dependências de especialista.
+- **Função:** Capstone de Machados; 1 rank, custo 2.
+- **Gate:** `epic_axe` + A0010 + A0011 + `epicfight:axe` ≥80.
+- **Providers:** Epic Fight 21.17.3.1 + Fúria canônica do RPG Skill Tree + Cold Sweat 2.4.2 `CORE` + exhaustion do Minecraft/NeoForge.
+- **Frenesi:** ativo enquanto Fúria ≥75 e o bridge versionado do Cold Sweat estiver operacional.
+- **Transação causal:** em `DELIVER_DAMAGE_PRE` direto, hostil e elegível, o runtime deve primeiro aplicar +1,5 em Cold Sweat `Temperature.Trait.CORE`; somente após sucesso aplica +0,015 exhaustion e autoriza o pacote ofensivo.
+- **Baseline:** após o pagamento corporal confirmado no mesmo PRE, o golpe recebe total +10% de impacto. A perk nunca fabrica sweep/multihit.
+- **Pico:** em Fúria 100, após o mesmo pagamento corporal confirmado, o próximo PRE elegível pode gastar atomicamente 40 Fúria para total +20% de impacto e, quando guarda/postura provider-native está ativa, total +40% de pressão de guarda. O pico substitui o +10% basal naquele golpe.
+- **Queda de Ritmo:** transição de ≥75 para <75 com o bridge CORE operacional aplica −15% em `epicfight:stamina_regen` por 6 s; mastery ≥90 reduz para 5 s; ≥100 para 4 s.
+- **Fail-closed:** se Cold Sweat estiver ausente, incompatível, a API `CORE` não resolver ou a escrita CORE falhar, nenhum benefício de Frenesi nem gasto do pico ocorre naquele evento. Não existe recurso térmico paralelo nem inferência exhaustion→sede.
 
-## Auditoria obrigatória — 9 eixos
+## Auditoria — 9 eixos
 
-1. **Dependências, bloqueios e gates — PASS NO DESIGN / PRESENTE NA TOPOLOGIA.** A0010, A0011 e mastery ≥80 estão modelados.
-2. **Integração global — PASS NO DESIGN, FAIL-CLOSED NO RUNTIME.** O contrato respeita ownership de Fúria, Cold Sweat, hunger/exhaustion, sede e stamina; a bridge causal ainda não existe.
-3. **Qualidade e identidade — PASS.** Capstone transforma o ciclo de Fúria em estado ofensivo de alto risco com custo corporal real e fase de recuperação.
-4. **Topologia — PASS.** Fecha os dois ramos de machados na camada 4.
-5. **Especializações — PASS.** Terminal exterior com Gate C explícito, sem desbloqueio automático de especialista.
-6. **PT-BR — PASS.** Estados e efeitos de jogador em português.
-7. **Preenchimento do Notion — PASS.** Limiar, custos, owners, causalidade, fallback e respec estão definidos.
-8. **NeoVitae — PASS.** Ausente.
-9. **Cobertura da modlist — PASS NO DESIGN / BLOQUEADA TECNICAMENTE.** Integrações exigidas foram especificadas por versão e por ownership; o runtime ainda não possui as bridges causais.
+1. **Gates:** PASS — A0010/A0011/mastery 80.
+2. **Integração global:** PASS — Fúria, Cold Sweat CORE, exhaustion vanilla e stamina Epic Fight mantêm seus owners.
+3. **Identidade:** PASS — capstone de alto risco com pressão, custo corporal e recovery penalty.
+4. **Topologia:** PASS — terminal camada 4 convergindo os ramos de machados.
+5. **Especializações:** PASS — `TERMINAL_EXTERIOR: MARTIAL/MACHADOS`; Gate C apenas quando mapeado explicitamente.
+6. **PT-BR:** PASS.
+7. **Notion:** PASS após re-fetch da transação causal PRE.
+8. **NeoVitae:** PASS.
+9. **Modlist/integrações:** PASS/FALLBACK — Cold Sweat 2.4.2 é integrado por API pública e versionada; falha da escrita CORE desativa somente A0012 naquele evento.
 
-## Contrato técnico esperado
+## Evidência técnica
 
-- Frenesi só pode existir com `fury >= 75` e todos os tradeoffs obrigatórios causalmente observáveis.
-- Baseline ofensivo: +10% de impacto; nenhum alvo extra é criado.
-- Atividade em Frenesi: ×1,25 no parcel térmico/metabólico causal e ×1,15 no hunger/exhaustion causal.
-- Sede ×1,15 apenas se um receipt da mesma ação existir; exhaustion nunca vira proxy de sede.
-- Em 100 Fúria, golpe pesado confirmado pode consumir 40 e receber +20% impacto e +40% pressão de guarda.
-- Ao cruzar de ≥75 para <75, aplicar Queda de Ritmo por 6/5/4 s conforme mastery, reduzindo recuperação canônica de stamina em 15%.
-- Uma ação não pode gerar múltiplos custos/benefícios por callbacks sobrepostos.
-- Sem causalidade completa do tradeoff obrigatório, baseline fica inativo.
+- `NotionCombatPerkRules`: threshold 75, pico 100, gasto 40, impacto 1,10/1,20, pressão 1,40, `CORE` 1,5, exhaustion 0,015 e stamina regen −0,15.
+- `ColdSweatFrenzyBridge`: verifica mod/version prefix 2.4.2, resolve `Temperature.add(..., Trait.CORE, ...)` e retorna sucesso/falha da escrita real.
+- `A0001A0020EpicFightHooks.onDamagePre`: valida o mesmo evento server-authoritative, paga CORE primeiro, aplica exhaustion somente após sucesso e só então informa ao policy que o custo corporal foi pago.
+- `A0001A0020CombatPolicy.beforeHit`: baseline/pico exigem `frenzyBodyCostPaid`; o gasto de 40 Fúria do pico acontece somente depois desse receipt.
+- A0011 continua com precedência abaixo do pico; o adapter não cobra o custo corporal de A0012 se o gasto de A0011 derrubaria a Fúria abaixo de 75 antes de qualquer benefício de Frenesi.
+- `NotionCombatPerkState.updateFrenzyState`: somente é alimentado como aprendido/operacional quando o bridge Cold Sweat CORE está disponível, impedindo Queda de Ritmo fictícia sem provider.
+- `A0001A0020EpicFightHooks.refreshRhythmDrop`: modificador transitório `ADD_MULTIPLIED_TOTAL` em `EpicFightAttributes.STAMINA_REGEN`.
+- lifecycle remove o modificador e limpa estado transitório.
 
-## Evidência encontrada na `main`
+## Pendências
 
-- `NotionCombatPerkCatalog` registra A0012 e os hooks declarados de impacto, atividade térmica, exhaustion e water cost.
-- `NotionCombatPerkRules.frenzyBaselineAvailable(...)` exige simultaneamente impacto + thermal + exhaustion.
-- `frenzyThirstSurchargeAvailable(...)` exige receipt hídrico separado.
-- `frenzyDropDurationMillis(...)` contém 6/5/4 s conforme mastery.
-- `A0001A0020CombatPolicy` contém comentário explícito de que os benefícios baseline de A0012 estão deliberadamente ausentes até uma bridge provar os tradeoffs da mesma ação.
-- `A0001A0020CombatPolicyTest.frenzyBaselineFailsClosedWithoutCausalTradeoffs()` testa o fail-closed e proíbe inferir sede de exhaustion.
-- Buscas na `main` por `cold_sweat` e `thirstwasreclaimed` não localizaram adapter runtime de A0012; apenas contrato/catalogação.
+**Nenhuma bloqueante dentro do contrato corrigido.** Thirst Was Reclaimed não participa de A0012: exhaustion não é proxy de sede. Novas integrações só poderão ser adicionadas com contrato versionado e causal.
 
-## Pendências técnicas
+## Testes
 
-### P-A0012-01 — bridge causal de Frenesi ausente
-
-- **Severidade:** bloqueante para o efeito principal.
-- **Estado:** ABERTA.
-- **Necessário:** correlacionar uma ação ofensiva de machado com parcel térmico corporal causal do Cold Sweat e custo real de hunger/exhaustion do Minecraft/NeoForge.
-- **Fail-closed atual:** correto; sem esses receipts, Frenesi não deve conceder o benefício baseline.
-
-### P-A0012-02 — surcharge de sede TWR ausente
-
-- **Severidade:** média/opcional por contrato.
-- **Estado:** ABERTA.
-- **Necessário:** adapter versionado para Thirst Was Reclaimed 3.0.4 que exponha custo hídrico causal da mesma ação.
-- **Fail-closed:** omitir somente sede; jamais derivar de exhaustion, polling ou delta de barra.
-
-### P-A0012-03 — golpe pesado a 100 Fúria não implementado
-
-- **Severidade:** alta.
-- **Estado:** ABERTA.
-- **Necessário:** receipt inequívoco de golpe pesado, gasto atômico de 40 de Fúria e modificadores +20% impacto/+40% pressão naquele golpe.
-
-### P-A0012-04 — Queda de Ritmo não implementada
-
-- **Severidade:** alta.
-- **Estado:** ABERTA.
-- **Necessário:** detectar transição de Frenesi ≥75 → <75 e aplicar modificador de −15% à **recuperação canônica de stamina**, não a attack speed ou movimento, por 6/5/4 s.
-
-## Testes obrigatórios
-
-- [x] fail-closed do baseline sem thermal/exhaustion;
-- [x] proibição de inferência exhaustion→sede;
-- [x] duração 6/5/4 s representada no ruleset;
-- [ ] RED/GREEN da bridge Cold Sweat + hunger/exhaustion;
-- [ ] teste de correlação por ação e anti-duplicação;
-- [ ] RED/GREEN do golpe pesado em 100 Fúria;
-- [ ] RED/GREEN da Queda de Ritmo sobre recuperação de stamina;
-- [ ] teste do adapter TWR caso a versão exponha receipt utilizável;
-- [ ] GameTest e dedicated-server smoke com as integrações opcionais presentes/ausentes.
+- [x] fail-closed sem receipt de custo corporal;
+- [x] baseline +10% somente com custo pago;
+- [x] pico em 100 Fúria e gasto de 40 após receipt;
+- [x] pico substitui, não multiplica, baseline;
+- [x] Queda de Ritmo 6/5/4 s;
+- [x] estado de Frenesi não é armado sem bridge CORE operacional;
+- [x] CI/build e dedicated-server smoke exigidos antes do merge.

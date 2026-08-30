@@ -89,18 +89,22 @@ public final class MasteryPolicies {
   return List.copyOf(out);
  }
  public static List<MasteryAward> forEpicFight(CombatAction action){
-  if(action.origin().procDepth()>0) return List.of();
+  if(action.origin().procDepth()>0 || !action.tags().contains("milestone")) return List.of();
   List<MasteryAward> out=new ArrayList<>();
   if(action.tags().contains("hit")){
-   out.add(new MasteryAward("epicfight:weapon",2,action.skillId()));
-   out.add(new MasteryAward("epicfight:"+action.weaponCategory(),3,action.skillId()));
+   // One hostile entity-type discovery per weapon category. Six distinct types reach the
+   // foundation gate (60), eight reach capstones (80), and ten reach mastery scaling (100).
+   out.add(new MasteryAward("epicfight:weapon",5,action.skillId()));
+   out.add(new MasteryAward("epicfight:"+action.weaponCategory(),10,action.skillId()));
   }
   if(action.tags().contains("skill")){
    int intensity=Math.max(1,Math.min(3,(int)Math.ceil(Math.max(0.0D,action.damage()))));
    out.add(new MasteryAward("epicfight:practice",1,action.skillId()));
    out.add(new MasteryAward("epicfight:skill",2,action.skillId()));
    if(action.tags().contains("stamina")) out.add(new MasteryAward("epicfight:stamina",1+intensity,action.skillId()));
-   if(action.tags().contains("guard")) out.add(new MasteryAward("epicfight:guard",3,action.skillId()));
+   // Guard milestones are additionally deduplicated by hostile target type in the runtime
+   // adapter. Six distinct combat-context discoveries therefore reach 60 and eight reach 80.
+   if(action.tags().contains("guard")) out.add(new MasteryAward("epicfight:guard",10,action.skillId()));
    if(action.tags().contains("dodge")) out.add(new MasteryAward("epicfight:dodge",2,action.skillId()));
    if(action.tags().contains("mover")) out.add(new MasteryAward("epicfight:mobility",2,action.skillId()));
    if(action.tags().contains("weapon_innate")) out.add(new MasteryAward("epicfight:weapon_innate",3,action.skillId()));
