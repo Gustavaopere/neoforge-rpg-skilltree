@@ -72,3 +72,14 @@
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Pendências técnicas:** nenhuma para A0001 no provider/versionamento atual.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; authority de rank/efeito e deduplicação permanece no pipeline canônico A0001–A0020. Não escrever attachments/estado paralelo.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO` a A0001. Geologia, Atmosphere, respiração, pressão e hazards não alteram o multiplicador marcial de espada. Um alvo relacionado ao projeto continua sendo apenas alvo do ataque Epic Fight direto.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO` a A0001. Shroud/Exposure/Flame/Story não são fonte de dano de espada nem gate deste fundamento.
+- **Black Arcana:** `COBERTO POR SISTEMA UNIVERSAL` somente para ataques diretos do jogador contra entidades válidas. `ARCANE_BACKLASH` é terminal e nunca herda A0001, não recursa e não gera Mastery/proc.
+- **Mobstein 5.4.4:** `COBERTO POR SISTEMA UNIVERSAL` para golpe direto do jogador contra mobs/bosses; dano de ally/bodyguard ressuscitado permanece Mobstein-owned e não herda A0001 por ownership.
+- **Fallback/fail-closed:** nenhum bridge adicional. Sem ação direta + família `SWORD` provider-native, o bônus não aplica.
+- **Notion:** nenhuma mutação necessária nesta perk; a exigência existente de ataque direto já expressa o boundary.
+- **Estado histórico:** PR #221 já está mergeada; a implementação A0001 está confirmada. Esta retroauditoria não altera runtime.
