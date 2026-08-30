@@ -14,7 +14,7 @@ public final class ItemizationIdentityPolicy {
 
     /**
      * A real independent copy of an item stack must receive a distinct instance identity and deterministic seed.
-     * This prevents one UUID from falsely claiming uniqueness for two independently mutable item instances.
+     * This prevents two independently mutable item instances from sharing canonical identity or deterministic state.
      */
     public static ItemizationIdentity forkForTrueCopy(
         ItemizationIdentity original,
@@ -25,6 +25,9 @@ public final class ItemizationIdentityPolicy {
         Objects.requireNonNull(copiedInstanceId, "copiedInstanceId");
         if (original.instanceId().equals(copiedInstanceId)) {
             throw new IllegalArgumentException("a true item copy must use a distinct instanceId");
+        }
+        if (original.deterministicSeed() == copiedDeterministicSeed) {
+            throw new IllegalArgumentException("a true item copy must use a distinct deterministic seed");
         }
         return ItemizationIdentity.of(copiedInstanceId, copiedDeterministicSeed, original.schemaVersion());
     }
