@@ -6,6 +6,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 
 - `AUDITORIA-A0001-A0010-IMPLEMENTACAO-CHAT2.md`
 - `AUDITORIA-A0001-A0020-REVALIDACAO-IMPLEMENTACAO-CHAT2.md`
+- `AUDITORIA-A0021-A0030-IMPLEMENTACAO-CHAT2.md`
 
 ## Auditorias pós-merge e pendências técnicas — Chat 3
 

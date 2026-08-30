@@ -6,6 +6,9 @@ import java.util.Objects;
 
 /** Server-authoritative transient state for A0021-A0040. Nothing here is persisted. */
 public final class A0021A0040CombatState {
+    private static final double FORCED_REPOSITION_MOTION_EPSILON_SQUARED = 1.0E-4D;
+    private static final int FORCED_REPOSITION_RELEASE_QUIET_TICKS = 3;
+
     private final Map<String, Actor> actors = new HashMap<>();
     private final Map<String, Long> claims = new HashMap<>();
 
@@ -19,16 +22,93 @@ public final class A0021A0040CombatState {
     public synchronized int consumeFlow(String actorId,int amount,long now){Actor a=actor(actorId);flow(actorId,now);int used=Math.min(Math.max(amount,0),a.flow);a.flow-=used;if(a.flow==0){a.flowExpiresAt=0;a.nextIdleDecayAt=0;}return used;}
     public synchronized void loseFlow(String actorId,int amount,long now){consumeFlow(actorId,amount,now);}
     public synchronized void recordHorizontalMovement(String actorId,long now){Actor a=actor(actorId);a.nextIdleDecayAt=Math.addExact(now,NotionCombatPerkRules.A0022_IDLE_BEFORE_DECAY_MILLIS);}
-    public synchronized void tickFlow(String actorId,boolean inCombat,long now){Actor a=actor(actorId);if(flow(actorId,now)<=0||!inCombat)return;if(a.nextIdleDecayAt==0L)a.nextIdleDecayAt=Math.addExact(now,NotionCombatPerkRules.A0022_IDLE_BEFORE_DECAY_MILLIS);if(now<a.nextIdleDecayAt)return;long steps=1L+(now-a.nextIdleDecayAt)/1_000L;loseFlow(actorId,(int)Math.min(steps,Integer.MAX_VALUE),now);if(a.flow>0)a.nextIdleDecayAt=Math.addExact(a.nextIdleDecayAt,Math.multiplyExact(steps,1_000L));}
+
+    /** A0022 idle decay is a property of Flow itself; a current lock-on/combat target is not required. */
+    public synchronized void tickFlow(String actorId,boolean ignoredInCombat,long now){tickFlow(actorId,now);}
+    public synchronized void tickFlow(String actorId,long now){Actor a=actor(actorId);if(flow(actorId,now)<=0)return;if(a.nextIdleDecayAt==0L)a.nextIdleDecayAt=Math.addExact(now,NotionCombatPerkRules.A0022_IDLE_BEFORE_DECAY_MILLIS);if(now<a.nextIdleDecayAt)return;long steps=1L+(now-a.nextIdleDecayAt)/1_000L;loseFlow(actorId,(int)Math.min(steps,Integer.MAX_VALUE),now);if(a.flow>0)a.nextIdleDecayAt=Math.addExact(a.nextIdleDecayAt,Math.multiplyExact(steps,1_000L));}
     public synchronized boolean blindSpotReady(String actorId,String target,long now){return actor(actorId).blindSpotCooldown.getOrDefault(require(target),0L)<=now;}
     public synchronized void startBlindSpotCooldown(String actorId,String target,long now){actor(actorId).blindSpotCooldown.put(require(target),Math.addExact(now,NotionCombatPerkRules.A0023_TARGET_COOLDOWN_MILLIS));}
 
-    public synchronized void armDodgeReposition(String actorId,long now){Actor a=actor(actorId);a.repositionUntil=Math.addExact(now,NotionCombatPerkRules.A0022_REPOSITION_WINDOW_MILLIS);a.danceActivationUntil=Math.addExact(now,NotionCombatPerkRules.A0024_ACTIVATION_REPOSITION_WINDOW_MILLIS);}
-    public synchronized boolean repositionActive(String actorId,long now){return actor(actorId).repositionUntil>now;}
-    public synchronized boolean danceActivationEligible(String actorId,long now){return actor(actorId).danceActivationUntil>now;}
-    public synchronized void activateDance(String actorId,int mastery,long now){Actor a=actor(actorId);a.danceActivationUntil=0L;a.danceUntil=Math.addExact(now,NotionCombatPerkRules.shadowDanceDurationMillis(mastery));a.danceMoveAvailable=true;a.danceHitAvailable=true;}
+    public synchronized void armDodgeReposition(String actorId,long now){Actor a=actor(actorId);a.dodgeRepositionUntil=Math.addExact(now,NotionCombatPerkRules.A0022_REPOSITION_WINDOW_MILLIS);a.dodgeDanceActivationUntil=Math.addExact(now,NotionCombatPerkRules.A0024_ACTIVATION_REPOSITION_WINDOW_MILLIS);}
+    public synchronized boolean repositionActive(String actorId,long now){Actor a=actor(actorId);return a.dodgeRepositionUntil>now||a.fallbackRepositionUntil>now;}
+    public synchronized boolean danceActivationEligible(String actorId,long now){Actor a=actor(actorId);return a.dodgeDanceActivationUntil>now||a.fallbackDanceActivationUntil>now;}
+    public synchronized void activateDance(String actorId,int mastery,long now){Actor a=actor(actorId);a.dodgeDanceActivationUntil=0L;a.fallbackDanceActivationUntil=0L;a.danceUntil=Math.addExact(now,NotionCombatPerkRules.shadowDanceDurationMillis(mastery));a.danceMoveAvailable=true;a.danceHitAvailable=true;}
     public synchronized boolean consumeDanceMove(String actorId,long now){Actor a=actor(actorId);if(a.danceUntil<=now||!a.danceMoveAvailable)return false;a.danceMoveAvailable=false;return true;}
     public synchronized boolean consumeDanceHit(String actorId,long now){Actor a=actor(actorId);if(a.danceUntil<=now||!a.danceHitAvailable)return false;a.danceHitAvailable=false;return true;}
+
+    /**
+     * Samples the approved A0022 geometry on server positions. The angular term compares the
+     * target-to-player horizontal vector at the baseline and current sample, so camera rotation
+     * alone cannot satisfy it. Teleports invalidate the route immediately; knockback suppresses
+     * sampling until forced horizontal motion has remained quiet for three consecutive ticks.
+     */
+    public synchronized boolean sampleFallbackReposition(
+        String actorId,
+        String targetId,
+        double playerX,
+        double playerZ,
+        double targetX,
+        double targetZ,
+        long now
+    ) {
+        Actor a=actor(actorId);String target=require(targetId);
+        if(a.fallbackRepositionSuppressed){
+            clearFallbackReposition(a);
+            return false;
+        }
+        RepositionSample sample=a.repositionSample;
+        if(sample==null||!sample.targetId.equals(target)){
+            a.repositionSample=new RepositionSample(target,playerX,playerZ,targetX,targetZ);
+            return false;
+        }
+        double dx=playerX-sample.playerX,dz=playerZ-sample.playerZ;
+        double displacement=Math.sqrt(dx*dx+dz*dz);
+        double ax=sample.playerX-sample.targetX,az=sample.playerZ-sample.targetZ;
+        double bx=playerX-targetX,bz=playerZ-targetZ;
+        double al=Math.sqrt(ax*ax+az*az),bl=Math.sqrt(bx*bx+bz*bz);
+        double angle=0.0D;
+        if(al>1.0E-9D&&bl>1.0E-9D){double cos=Math.max(-1.0D,Math.min(1.0D,(ax*bx+az*bz)/(al*bl)));angle=Math.toDegrees(Math.acos(cos));}
+        if(!A0021A0040CombatPolicy.fallbackRepositionEligible(displacement,angle,false,false))return false;
+        a.fallbackRepositionUntil=Math.addExact(now,NotionCombatPerkRules.A0022_REPOSITION_WINDOW_MILLIS);
+        a.fallbackDanceActivationUntil=Math.addExact(now,NotionCombatPerkRules.A0024_ACTIVATION_REPOSITION_WINDOW_MILLIS);
+        a.repositionSample=new RepositionSample(target,playerX,playerZ,targetX,targetZ);
+        return true;
+    }
+
+    public synchronized void invalidateFallbackReposition(String actorId){clearFallbackReposition(actor(actorId));}
+
+    /** Starts a conservative exclusion window for knockback/other explicitly forced displacement. */
+    public synchronized void beginForcedRepositionSuppression(String actorId){
+        Actor a=actor(actorId);
+        a.fallbackRepositionSuppressed=true;
+        a.forcedRepositionQuietTicks=0;
+        clearFallbackReposition(a);
+    }
+
+    public synchronized boolean fallbackRepositionSuppressed(String actorId){
+        Actor a=actors.get(require(actorId));
+        return a!=null&&a.fallbackRepositionSuppressed;
+    }
+
+    /**
+     * Returns whether forced-motion suppression remains active after this server tick. A release
+     * requires three consecutive ticks with negligible horizontal velocity; any renewed movement
+     * resets the quiet counter. No geometric baseline survives the suppression window.
+     */
+    public synchronized boolean updateForcedRepositionSuppression(String actorId,double horizontalMotionSquared){
+        Actor a=actors.get(require(actorId));
+        if(a==null||!a.fallbackRepositionSuppressed)return false;
+        clearFallbackReposition(a);
+        if(!Double.isFinite(horizontalMotionSquared)||horizontalMotionSquared>FORCED_REPOSITION_MOTION_EPSILON_SQUARED){
+            a.forcedRepositionQuietTicks=0;
+            return true;
+        }
+        a.forcedRepositionQuietTicks++;
+        if(a.forcedRepositionQuietTicks<FORCED_REPOSITION_RELEASE_QUIET_TICKS)return true;
+        a.fallbackRepositionSuppressed=false;
+        a.forcedRepositionQuietTicks=0;
+        return false;
+    }
 
     public synchronized int abalo(String actorId,String target,long now){TargetStack s=actor(actorId).abalo.get(require(target));if(s==null)return 0;if(s.expiresAt<=now){actor(actorId).abalo.remove(target);return 0;}return s.count;}
     public synchronized int addAbalo(String actorId,String target,long now){Actor a=actor(actorId);String t=require(target);int count=Math.min(NotionCombatPerkRules.ABALO_CAP,abalo(actorId,t,now)+1);a.abalo.put(t,new TargetStack(count,Math.addExact(now,NotionCombatPerkRules.ABALO_DURATION_MILLIS)));return count;}
@@ -52,16 +132,18 @@ public final class A0021A0040CombatState {
     public synchronized boolean consumeMatureReap(String actorId,String target,double healthFraction,long now){Actor a=actor(actorId);String t=require(target);if(!reapMature(actorId,t,healthFraction,now))return false;a.reapMarks.remove(t);return true;}
     public synchronized void updateReapingMaturityForTarget(String target,double healthFraction,long now){String t=require(target);for(Actor a:actors.values()){ReapMark m=a.reapMarks.get(t);if(m==null)continue;if(m.expiresAt<=now){a.reapMarks.remove(t);continue;}boolean mature=m.mature||m.lastHealthFraction>=NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION&&healthFraction<NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION;a.reapMarks.put(t,new ReapMark(m.expiresAt,mature,healthFraction));}}
 
-    public synchronized void clearTarget(String targetId){String t=require(targetId);for(Actor a:actors.values()){a.abalo.remove(t);a.demolitionWindow.remove(t);a.demolitionCooldown.remove(t);a.trauma.remove(t);a.sunderedUntil.remove(t);a.bonebreakerCooldown.remove(t);a.reapMarks.remove(t);a.blindSpotCooldown.remove(t);}}
+    public synchronized void clearTarget(String targetId){String t=require(targetId);for(Actor a:actors.values()){a.abalo.remove(t);a.demolitionWindow.remove(t);a.demolitionCooldown.remove(t);a.trauma.remove(t);a.sunderedUntil.remove(t);a.bonebreakerCooldown.remove(t);a.reapMarks.remove(t);a.blindSpotCooldown.remove(t);if(a.repositionSample!=null&&a.repositionSample.targetId.equals(t))a.repositionSample=null;}}
     public synchronized void clearActor(String actorId){actors.remove(require(actorId));String prefix=actorId+'\0';claims.keySet().removeIf(k->k.startsWith(prefix));}
     public synchronized void clearAll(){actors.clear();claims.clear();}
 
+    private static void clearFallbackReposition(Actor a){a.repositionSample=null;a.fallbackRepositionUntil=0L;a.fallbackDanceActivationUntil=0L;}
     private Actor actor(String id){return actors.computeIfAbsent(require(id),k->new Actor());}
     private static String require(String s){Objects.requireNonNull(s);if(s.isBlank())throw new IllegalArgumentException("blank id");return s;}
     private record TargetStack(int count,long expiresAt){}
     private record ReapMark(long expiresAt,boolean mature,double lastHealthFraction){}
+    private record RepositionSample(String targetId,double playerX,double playerZ,double targetX,double targetZ){}
     private static final class Actor{
-        int flow;long flowExpiresAt,nextIdleDecayAt,repositionUntil,danceActivationUntil,danceUntil;boolean danceMoveAvailable,danceHitAvailable;
+        int flow;long flowExpiresAt,nextIdleDecayAt,dodgeRepositionUntil,fallbackRepositionUntil,dodgeDanceActivationUntil,fallbackDanceActivationUntil,danceUntil;boolean danceMoveAvailable,danceHitAvailable,fallbackRepositionSuppressed;int forcedRepositionQuietTicks;RepositionSample repositionSample;
         final Map<String,Long> blindSpotCooldown=new HashMap<>(),demolitionWindow=new HashMap<>(),demolitionCooldown=new HashMap<>(),sunderedUntil=new HashMap<>(),bonebreakerCooldown=new HashMap<>();
         final Map<String,TargetStack> abalo=new HashMap<>(),trauma=new HashMap<>();final Map<String,ReapMark> reapMarks=new HashMap<>();
     }

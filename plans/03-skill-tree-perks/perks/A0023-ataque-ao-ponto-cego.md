@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** presente; confirmação definitiva depende do Chat 2.
+- **Implementação:** VALIDADA EM CI na PR #242; confirmação definitiva após merge em `main`.
 - **Notion:** `3c569db9-f0db-814d-9dee-e20bca763f8c`.
 
 ## Contrato canônico
@@ -36,4 +36,11 @@
 
 ## Pendências
 
-Nenhuma de design. Chat 2 deve preservar a orientação server-side e a autoria direta; não criar heurística por câmera, dano ou movimento genérico.
+Nenhuma de design ou implementação bloqueante. A orientação server-side e autoria direta permanecem obrigatórias; nenhuma heurística por câmera, dano ou movimento genérico foi adicionada.
+
+## Chat 2 — implementação e regressão — PR #242
+
+- O pipeline de A0023 foi preservado sem nova rolagem crítica.
+- A correção de A0022 tornou a rota geométrica server-side disponível sem relaxar os gates de A0023.
+- O consumo de Fluxo continua condicionado a flank/rear, cooldown por alvo e hooks físicos disponíveis.
+- CI #2192 validou JUnit, GameTests, build, JAR e dedicated-server smoke antes do fechamento documental.
