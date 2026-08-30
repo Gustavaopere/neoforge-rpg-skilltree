@@ -52,9 +52,9 @@
 | Perk | Resultado | Boundary/pendência principal |
 |---|---|---|
 | A0021 | APROVADA | critical root action única; Backlash/companions excluídos |
-| A0022 | APROVADA / implementação parcial | `P-A0022-01`: perda −2 Fluxo por stagger forte não está wired |
+| A0022 | APROVADA / implementação parcial | `P-A0022-01`: perda −2 Fluxo por stagger forte; `P-A0022-02`: fallback geométrico sem `DodgeEvent`; `P-A0022-03`: idle decay sem alvo hostil — todos ainda ausentes/incompletos no adapter |
 | A0023 | APROVADA | orientação server-side; sem heurística |
-| A0024 | APROVADA | stamina Epic Fight only; fallback omite stamina-only |
+| A0024 | APROVADA | stamina Epic Fight only; fallback omite stamina-only; depende de A0022 não declarar rota geométrica inexistente |
 | A0025 | APROVADA após correção | `P-A0025-01`: remover tag HAMMER paralela; `P-A0025-02`: Mastery anti-farm |
 | A0026 | APROVADA | cadência Epic Fight; sem mutação Notion necessária |
 | A0027 | APROVADA | crítico único; depende da família HAMMER corrigida |
@@ -82,6 +82,17 @@ Contrato aprovado:
 - Integrar `ON_STUNNED` provider-native.
 - Aceitar somente `LONG`, `KNOCKDOWN`, `NEUTRALIZE` + fonte hostil.
 - Dano genérico não substitui.
+
+### P-A0022-02 — fallback geométrico de reposicionamento
+- O contrato permite ganho após deslocamento horizontal ≥1,5 blocos + mudança angular ≥60° antes do hit, mesmo sem `DodgeEvent`.
+- O adapter atual não arma essa rota quando não há `DodgeEvent`.
+- Implementar correlação server-side com o próximo hit direto de adaga sem aceitar câmera, teleport, knockback ou deslocamento sem hit como substitutos.
+- A0024 não pode assumir essa rota como disponível até o adapter satisfazê-la.
+
+### P-A0022-03 — idle decay sem alvo hostil vivo
+- O contrato exige início de perda de 1 Fluxo/s após 3 s sem deslocamento horizontal relevante.
+- Quando não há alvo hostil vivo no `PlayerPatch`, o adapter atual chama `tickFlow(..., false, ...)`, que retorna antes de aplicar o decay; o estado apenas expira em 5/7 s.
+- Chat 2 deve remover essa dependência artificial de alvo hostil para o lifecycle de Fluxo, preservando a autoridade server-side.
 
 ### P-A0025-01 — classificação HAMMER paralela
 - Remover/desativar `rpgskilltree:hammers` para HAMMER.
