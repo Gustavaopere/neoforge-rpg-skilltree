@@ -10,6 +10,7 @@ public final class CompendiumScreenLayoutTest {
         ultrawideLayoutStaysCenteredAndBounded();
         rowCapacityTracksAvailableBodyHeight();
         personalToolbarGetsDedicatedResponsiveRow();
+        minimumCompactDetailFitsOneRelationRow();
         System.out.println("CompendiumScreenLayoutTest: PASS");
     }
 
@@ -71,13 +72,27 @@ public final class CompendiumScreenLayoutTest {
     }
 
     private static void personalToolbarGetsDedicatedResponsiveRow() {
-        CompendiumScreenLayout compact = CompendiumScreenLayout.calculate(240, 180);
+        CompendiumScreenLayout compact = CompendiumScreenLayout.calculate(
+            CompendiumScreenLayout.MIN_SCREEN_WIDTH,
+            CompendiumScreenLayout.MIN_SCREEN_HEIGHT
+        );
         CompendiumScreenLayout wide = CompendiumScreenLayout.calculate(1280, 720);
 
         eq(compact.content().width(), compact.personalToolbar().width());
         eq(wide.content().width(), wide.personalToolbar().width());
         eq(compact.toolbar().height(), compact.personalToolbar().height());
         eq(wide.toolbar().height(), wide.personalToolbar().height());
+    }
+
+    private static void minimumCompactDetailFitsOneRelationRow() {
+        CompendiumScreenLayout compact = CompendiumScreenLayout.calculate(
+            CompendiumScreenLayout.MIN_SCREEN_WIDTH,
+            CompendiumScreenLayout.MIN_SCREEN_HEIGHT
+        );
+        int compactRelationMinimumHeight = 10 + 18 + 4 + 18 + 8 + 14 + 24;
+
+        isFalse(compact.splitPanes());
+        isTrue(compact.detailBody().height() >= compactRelationMinimumHeight);
     }
 
     private static void within(CompendiumScreenLayout.Rect rect, int screenWidth, int screenHeight) {

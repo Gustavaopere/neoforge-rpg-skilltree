@@ -21,7 +21,7 @@ public record CompendiumScreenLayout(
     public static final int MAX_CONTENT_WIDTH = 1_440;
     public static final int ROW_HEIGHT = 22;
     public static final int MIN_SCREEN_WIDTH = 240;
-    public static final int MIN_SCREEN_HEIGHT = 180;
+    public static final int MIN_SCREEN_HEIGHT = 208;
 
     private static final int WIDE_SPLIT_MIN_WIDTH = 720;
     private static final int HORIZONTAL_MARGIN = 16;

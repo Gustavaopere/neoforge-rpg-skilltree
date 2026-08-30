@@ -7,6 +7,7 @@ MAIN="$ROOT/src/main/java/dev/gustavopere/rpgskilltree/compendium"
 TEST="$ROOT/src/test/java/dev/gustavopere/rpgskilltree/compendium"
 OUT="$ROOT/build/compendium-model-test-classes"
 DATA="$ROOT/src/main/resources/data/rpgskilltree/compendium"
+LANG_ROOT="$ROOT/src/main/resources/assets/rpgskilltree/lang"
 
 rm -rf "$OUT"
 mkdir -p "$OUT"
@@ -43,6 +44,8 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumBrowser
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenLayoutTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumClientSnapshotTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumScreenSessionTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumRelationNavigationTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumRelationPanelStateTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumDebugProvenanceTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.render.EntityPreviewFactoryTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.render.CompendiumStaticPreviewPolicyTest
@@ -80,4 +83,19 @@ for directory, fields in required.items():
             if legacy == typed:
                 raise SystemExit(f"{file}: relation must use exactly one target format")
 print("Compendium model resources: PASS")
+PY
+
+python3 - "$LANG_ROOT" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+root = Path(sys.argv[1])
+pt = json.loads((root / "pt_br.json").read_text(encoding="utf-8"))
+en = json.loads((root / "en_us.json").read_text(encoding="utf-8"))
+prefix = "screen.rpgskilltree.compendium."
+missing = sorted(key for key in pt if key.startswith(prefix) and key not in en)
+if missing:
+    raise SystemExit("en_us missing Compendium UI keys: " + ", ".join(missing))
+print("Compendium locale parity: PASS")
 PY
