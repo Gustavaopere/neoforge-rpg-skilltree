@@ -26,16 +26,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; crossing/janela/consumo causais | nenhuma |
 | A0019 | Treino com Adagas I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; classificação provider-native/fail-closed | nenhuma |
 | A0020 | Treino com Adagas II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #237 via attack-speed provider-native | nenhuma |
-| A0021 | Precisão com Adagas | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; confirmação definitiva após merge | nenhuma |
-| A0022 | Ritmo das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; stagger forte, fallback geométrico e idle decay corrigidos | nenhuma |
-| A0023 | Ataque ao Ponto Cego | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; orientação server-side preservada | nenhuma |
-| A0024 | Maestria de Adagas — Dança das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; fallback canônico de stamina preservado | nenhuma bloqueante |
-| A0025 | Treino com Martelos I | APROVADO após correção | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; HAMMER provider-native + Mastery anti-farm | nenhuma |
-| A0026 | Treino com Martelos II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242 via attack-speed provider-native | nenhuma |
-| A0027 | Precisão com Martelos | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242 no resolver crítico canônico | nenhuma |
-| A0028 | Abalo Crescente | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL VALIDADA FAIL-CLOSED na PR #242 | `P-A0028-01`: Epic Fight 21.17.3.1 sem receipt causal separado de guard pressure |
-| A0029 | Quebra de Postura | APROVADO + boundary | NÃO CONFIRMADA; fail-closed validado na PR #242 | `P-A0029-01`: Epic Fight 21.17.3.1 sem heavy receipt inequívoco |
-| A0030 | Maestria de Martelos — Golpe Demolidor | APROVADO + boundary | NÃO CONFIRMADA; fail-closed validado na PR #242 | `P-A0030-01`: guard-break causal attacker-side + heavy receipt ausentes |
+| A0021 | Precisão com Adagas | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #248; confirmação definitiva após merge | nenhuma |
+| A0022 | Ritmo das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #248; stagger forte, fallback geométrico, idle decay e supressão integral de knockback corrigidos | nenhuma |
+| A0023 | Ataque ao Ponto Cego | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #248; orientação server-side preservada | nenhuma |
+| A0024 | Maestria de Adagas — Dança das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #248; fallback canônico de stamina preservado | nenhuma bloqueante |
+| A0025 | Treino com Martelos I | APROVADO após correção | IMPLEMENTAÇÃO VALIDADA EM CI na PR #248; HAMMER provider-native + Mastery anti-farm | nenhuma |
+| A0026 | Treino com Martelos II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #248 via attack-speed provider-native | nenhuma |
+| A0027 | Precisão com Martelos | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #248 no resolver crítico canônico | nenhuma |
+| A0028 | Abalo Crescente | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL VALIDADA FAIL-CLOSED na PR #248 | `P-A0028-01`: Epic Fight 21.17.3.1 sem receipt causal separado de guard pressure |
+| A0029 | Quebra de Postura | APROVADO + boundary | NÃO CONFIRMADA; fail-closed validado na PR #248 | `P-A0029-01`: Epic Fight 21.17.3.1 sem heavy receipt inequívoco |
+| A0030 | Maestria de Martelos — Golpe Demolidor | APROVADO + boundary | NÃO CONFIRMADA; fail-closed validado na PR #248 | `P-A0030-01`: guard-break causal attacker-side + heavy receipt ausentes |
 | A0031 | Treino com Maças I | APROVADO após correção | NÃO CONFIRMADA | `P-A0031-01`: remover tag MACE; `P-A0031-02`: Mastery anti-farm |
 | A0032 | Treino com Maças II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende de `P-A0031-01` |
 | A0033 | Precisão com Maças | APROVADO + boundary | CÓDIGO PRESENTE no crítico canônico | depende de `P-A0031-01` |
@@ -99,11 +99,12 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 
 ### A0021–A0030 — Chat 2
 - Chat 1 PR #235 mergeada; merge `15cf3f75959165e0a40f4b0be8263ffae83cb097`; design fechado.
-- Chat 2 PR #242 implementa/revalida o lote contra Epic Fight 21.17.3.1 com TDD e provider-native first.
-- A0022 resolve `P-A0022-01/02/03`; A0025 resolve `P-A0025-01/02`.
+- Chat 2 PR draft #242 iniciou a implementação; foi fechada sem merge após a limitação do conector para mudar `ready for review`. A PR final não-draft é #248, com a mesma linha de implementação e os hardenings posteriores.
+- A0022 resolve `P-A0022-01/02/03`; o review final de #248 também fechou o falso reposicionamento possível durante a inércia de knockback por supressão até 3 ticks quietos.
+- A0025 resolve `P-A0025-01/02`.
 - A0028, A0029 e A0030 permanecem com pendências técnicas explícitas e comportamento fail-closed, sem heurística substituta.
 - Auditorias: `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0021-A0030.md` e `audits/AUDITORIA-A0021-A0030-IMPLEMENTACAO-CHAT2.md`.
-- Estado pré-merge: CI integralmente verde na PR #242; confirmação definitiva das perks implementadas após merge e confirmação da `main`.
+- Estado pré-merge: implementação e regressões validadas em CI na PR #248; confirmação definitiva das perks implementadas após merge e confirmação da `main`.
 
 ### A0031–A0040
 - Chat 1 PR #239 mergeada; merge `689d0d4f0290686cbed61056e3471a124a01101c`.
