@@ -27,9 +27,9 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0019 | Treino com Adagas I | APROVADO | Presente; provider-native/fail-closed | nenhuma de design |
 | A0020 | Treino com Adagas II | APROVADO | Presente via attack-speed provider-native | nenhuma de design |
 | A0021 | Precisão com Adagas | APROVADO + boundary | Presente; crítico canônico direto | nenhuma exclusiva |
-| A0022 | Ritmo das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0022-01`: −2 Fluxo por stagger forte hostil não está wired |
+| A0022 | Ritmo das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0022-01`: −2 Fluxo por stagger forte; `P-A0022-02`: fallback geométrico sem DodgeEvent; `P-A0022-03`: idle decay sem alvo hostil vivo |
 | A0023 | Ataque ao Ponto Cego | APROVADO + boundary | Presente; orientação server-side | nenhuma exclusiva |
-| A0024 | Maestria de Adagas — Dança das Sombras | APROVADO + boundary | Presente com fallback canônico de stamina | nenhuma de design |
+| A0024 | Maestria de Adagas — Dança das Sombras | APROVADO + boundary | Presente com fallback canônico de stamina | depende de A0022 não assumir rota geométrica ausente |
 | A0025 | Treino com Martelos I | APROVADO após correção | NÃO CONFIRMADA | `P-A0025-01`: remover tag HAMMER paralela; `P-A0025-02`: Mastery anti-farm |
 | A0026 | Treino com Martelos II | APROVADO | Presente via attack-speed, condicionado à família HAMMER segura | depende de `P-A0025-01` |
 | A0027 | Precisão com Martelos | APROVADO + boundary | Presente no resolver crítico | depende de `P-A0025-01` |
@@ -90,10 +90,12 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 ### Pendências para Chat 2
 
 1. `P-A0022-01` — ligar perda de 2 Fluxo a `ON_STUNNED` forte/hostil.
-2. `P-A0025-01` — remover/desativar classificação HAMMER por tag paralela.
-3. `P-A0025-02` — substituir 3 XP/hit por `DiscoveryProgress` +10 por tipo hostil inédito.
-4. `P-A0028-01` — integrar guard/posture pressure provider-native ou manter componente fail-closed.
-5. `P-A0029-01` — integrar heavy receipt seguro; sem heurística.
-6. `P-A0030-01` — integrar guard-break causal + heavy receipt; sem isso capstone permanece fail-closed.
+2. `P-A0022-02` — implementar a rota geométrica canônica de reposicionamento (≥1,5 blocos + ≥60°) sem depender de `DodgeEvent`, preservando exclusões de câmera/teleport/knockback.
+3. `P-A0022-03` — aplicar idle decay de Fluxo após 3 s sem deslocamento relevante mesmo sem alvo hostil vivo; alvo não é condição do lifecycle.
+4. `P-A0025-01` — remover/desativar classificação HAMMER por tag paralela.
+5. `P-A0025-02` — substituir 3 XP/hit por `DiscoveryProgress` +10 por tipo hostil inédito.
+6. `P-A0028-01` — integrar guard/posture pressure provider-native ou manter componente fail-closed.
+7. `P-A0029-01` — integrar heavy receipt seguro; sem heurística.
+8. `P-A0030-01` — integrar guard-break causal + heavy receipt; sem isso capstone permanece fail-closed.
 
 **Próxima etapa deste ciclo:** PR documental → CI/reviews → merge → confirmação da `main` → PARAR.
