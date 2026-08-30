@@ -80,6 +80,19 @@ class PtBrLocalizationContractTest(unittest.TestCase):
             self.assertIn("screen.rpgskilltree.runtime_only", result.stderr)
             self.assertIn("source", result.stderr.lower())
 
+    def test_dynamic_translation_prefix_is_not_a_complete_key(self) -> None:
+        tmp, pt_br, en_us, source_root = self.fixture()
+        with tmp:
+            write_json(pt_br, {})
+            write_json(en_us, {})
+            (source_root / "Example.java").write_text(
+                'String prefix = "screen.rpgskilltree.compendium.filter.kind.";\n',
+                encoding="utf-8",
+            )
+            result = run_validator(pt_br, en_us, source_root)
+            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            self.assertIn("0 source-referenced keys", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()
