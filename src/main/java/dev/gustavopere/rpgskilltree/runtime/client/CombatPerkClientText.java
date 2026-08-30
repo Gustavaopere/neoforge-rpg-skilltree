@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.client;
 
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
+import dev.gustavopere.rpgskilltree.core.CombatPerkPlayerTextCatalog;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkCatalog;
 import java.util.Optional;
 
@@ -15,6 +16,18 @@ public final class CombatPerkClientText {
         return CombatPerkNodeBinding.catalogCode(nodeId)
             .flatMap(NotionCombatPerkCatalog::definition)
             .map(definition -> definition.name());
+    }
+
+    public static Optional<String> nodeEffect(String nodeId) {
+        return CombatPerkNodeBinding.catalogCode(nodeId)
+            .flatMap(CombatPerkPlayerTextCatalog::entry)
+            .map(CombatPerkPlayerTextCatalog.PlayerText::effect);
+    }
+
+    public static Optional<String> nodeGate(String nodeId) {
+        return CombatPerkNodeBinding.catalogCode(nodeId)
+            .flatMap(CombatPerkPlayerTextCatalog::entry)
+            .map(CombatPerkPlayerTextCatalog.PlayerText::gate);
     }
 
     public static Optional<String> treeDisplayName(String treeId) {
