@@ -56,3 +56,12 @@
 - [x] Queda de Ritmo 6/5/4 s;
 - [x] estado de Frenesi não é armado sem bridge CORE operacional;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Fechamento Chat 1 V3 — ciclo exato A0011–A0020
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; a transação causal completa permanece persistida sem divergência.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Versões/owners confirmados:** Epic Fight 21.17.3.1; Cold Sweat 2.4.2 é owner da temperatura `CORE`; Minecraft/NeoForge é owner de exhaustion; Epic Fight é owner de `stamina_regen`.
+- **Ordem obrigatória:** validar PRE elegível → aplicar +1,5 CORE → aplicar +0,015 exhaustion → autorizar baseline/pico → gastar 40 Fúria se pico. Falha antes da autorização mantém A0012 fail-closed naquele evento.
+- **Integração global:** não criar segunda temperatura, não converter exhaustion em sede e não duplicar stamina com ParCool/Epic ParCool.
+- **Resultado:** **APROVADA / FECHADA** no lote A0011–A0020, com fail-closed por evento preservado para indisponibilidade/incompatibilidade do bridge.
