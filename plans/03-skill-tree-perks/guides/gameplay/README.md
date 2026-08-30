@@ -10,6 +10,8 @@ Combate, movimento, progressão, sobrevivência, fauna, exploração, interface 
 
 Cada arquivo abaixo contém uma **seção lógica completa**. Não existe continuação de parágrafo ou de capítulo em outro arquivo. Os arquivos podem ser lidos de forma independente; a ordem do índice apenas reproduz a ordem do guia canônico.
 
+Os quatro projetos próprios do modpack possuem ainda uma coleção transversal obrigatória em [`../projects/`](../projects/README.md). O capítulo 13 abaixo é o recorte de Gameplay; o Chat 1 deve consultar também os dossiês completos e a matriz cruzada antes de fechar uma perk que possa interagir com RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
+
 ## Índice
 
 - [Visão geral e escopo](00-visao-geral.md)
@@ -25,12 +27,14 @@ Cada arquivo abaixo contém uma **seção lógica completa**. Não existe contin
 - [10. Utilidades de exploração e gameplay](10-utilidades-de-exploracao-e-gameplay.md)
 - [11. Infraestrutura técnica, interface, visual e performance](11-infraestrutura-tecnica-interface-visual-e-performance.md)
 - [12. Navegação entre os três guias](12-navegacao-entre-os-tres-guias.md)
+- [13. Projetos próprios do modpack — integração canônica para perks](13-projetos-proprios-do-modpack.md)
 
 ## Regras de manutenção
 
 - Nunca dividir um capítulo por quantidade de caracteres.
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
+- Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
 - O Notion continua sendo a fonte canônica; este diretório é o snapshot auditável usado pelo repositório.
 
-[← Voltar aos três guias](../README.md)
+[← Voltar aos guias](../README.md)
