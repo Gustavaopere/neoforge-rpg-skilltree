@@ -23,7 +23,7 @@ Congelar o contrato conceitual antes de escrever runtime: o que é equipamento i
 - [x] reload só pode alterar definições para gerações futuras: o estado canônico expõe rolls persistidos imutáveis e não possui operação de re-roll/regeração;
 - [x] reparo, mudança de dimensão, drop/pickup e containers preservam identidade por contrato; lifecycle adapters posteriores não podem substituir `ItemizationIdentity` para o mesmo equipamento;
 - [x] smithing/upgrade compatível preserva identidade via `ItemizationIdentityPolicy.preserveForEvolution(...)`;
-- [x] cópias reais de stack possuem política explícita via `forkForTrueCopy(...)`, que exige novo `instanceId`, novo seed e preserva a versão de schema.
+- [x] cópias reais de stack possuem política explícita via `forkForTrueCopy(...)`, que exige novo `instanceId`, novo `deterministicSeed` e preserva a versão de schema.
 
 ### C — Separar estado permanente de projeções
 
@@ -70,11 +70,14 @@ Contrato canônico em `src/main/java/dev/gustavopere/rpgskilltree/itemization/do
 
 ## Testes e evidência
 
-- `ItemizationDomainContractTest`: vocabulário canônico, schema/seed, `ItemPower`, 1..5 por família, independência rank/contagem, rejeição de segunda geração, evolução/cópia de identidade, snapshot read-only, `ResourceLocation`, ausência de texto traduzido persistido e defensive copies.
+- `ItemizationDomainContractTest`: vocabulário canônico, schema/seed, `ItemPower`, 1..5 por família, independência rank/contagem, rejeição de segunda geração, evolução/cópia de identidade, rejeição de UUID ou seed reutilizados em cópia real, snapshot read-only, `ResourceLocation`, ausência de texto traduzido persistido e defensive copies.
 - `ItemizationOptionalImportBoundaryTest`: varre o package de domínio e recusa imports fora de JDK/Minecraft/NeoForge, impedindo inclusive dependência indireta em `runtime.compat`/providers opcionais.
-- TDD RED: RPG Skill Tree CI `33308736024` falhou em `:compileTestJava` exclusivamente pelos tipos 11.01 ainda inexistentes.
-- Review do PR #232 identificou que a primeira allowlist permitia qualquer package interno; corrigido em `1fc372df5eda3e2beaa4292224cf59a6cf967d90` com barreira estrita.
-- GREEN funcional: RPG Skill Tree CI `33309096174` / run #2100 — JUnit 5, NeoForge GameTests, validators, NeoForge build, JAR e dedicated-server smoke GREEN; workflows Foundation/Compendium associados também GREEN.
+- TDD RED inicial: RPG Skill Tree CI `33308736024` falhou em `:compileTestJava` exclusivamente pelos tipos 11.01 ainda inexistentes.
+- Primeiro review do PR #232: a allowlist original permitia qualquer package interno; corrigido em `1fc372df5eda3e2beaa4292224cf59a6cf967d90` com barreira estrita.
+- GREEN intermediário: RPG Skill Tree CI `33309096174` / run #2100 — JUnit 5, NeoForge GameTests, validators, NeoForge build, JAR e dedicated-server smoke GREEN; workflows Foundation/Compendium associados também GREEN.
+- Segundo review do PR #232: `forkForTrueCopy(...)` ainda aceitava seed igual ao original. Foi criado primeiro o teste de regressão em `79fdca4bddadea6b11a97a379faf59ce50853252`; o RPG Skill Tree CI `33319128527` / run #2107 confirmou RED exatamente em `compatibleEvolutionPreservesIdentityAndTrueCopiesForkIt()` (`109 tests completed, 1 failed`).
+- Correção: `973c2bb0f9f3afad7429cf835c2aa7fa6652bcd0` passou a exigir simultaneamente `instanceId` e `deterministicSeed` distintos para cópia real.
+- GREEN funcional final antes do fechamento documental: RPG Skill Tree CI `33319227439` / run #2109 — Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke GREEN; todos os oito workflows Foundation/Compendium associados ao mesmo head também GREEN.
 
 ## Acceptance
 
