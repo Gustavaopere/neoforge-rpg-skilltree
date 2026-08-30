@@ -116,9 +116,37 @@ Entradas:
 - diferenças entre criatura amigável, animal, construto, montaria e comportamento defensivo foram mantidas sem inferir classificação pelo nome do ID;
 - conteúdo validado pelo CI editorial e pelo CI agregado, incluindo carregamento do pacote, JUnit, GameTests, build, JAR e dedicated-server smoke.
 
+## Lote 5 — Vanilla / hostis comuns e variantes
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-batch5.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:minecraft:bogged` — Pantanoso
+2. `ENTITY:minecraft:cave_spider` — Aranha das Cavernas
+3. `ENTITY:minecraft:creeper` — Creeper
+4. `ENTITY:minecraft:drowned` — Afogado
+5. `ENTITY:minecraft:husk` — Zumbi-Múmia
+6. `ENTITY:minecraft:skeleton` — Esqueleto
+7. `ENTITY:minecraft:spider` — Aranha
+8. `ENTITY:minecraft:stray` — Errante
+9. `ENTITY:minecraft:witch` — Bruxa
+10. `ENTITY:minecraft:zombie` — Zumbi
+
+### Critérios editoriais aplicados ao lote 5
+
+- identidade das dez entidades confirmada no registry de Minecraft 1.21.1 e ancorada em `RUNTIME` e `OFFICIAL_CODE`;
+- relações de herança relevantes preservadas, incluindo `Bogged`/`Skeleton`/`Stray` via `AbstractSkeleton`, `CaveSpider` via `Spider` e `Drowned`/`Husk` via `Zombie`;
+- comportamentos próprios descritos a partir das classes vanilla, incluindo explosão/carga do Creeper, mobilidade aquática do Afogado, poções da Bruxa, veneno da Aranha das Cavernas e corte do Pantanoso;
+- nenhuma chance, dano, duração de efeito, alcance, cadência, raio de explosão ou outro parâmetro mecânico mutável foi congelado em prosa;
+- variantes com registry ID próprio permanecem entradas independentes, sem duplicar a ficha da classe-base;
+- o pacote passou pelo CI editorial e pelo CI agregado antes deste registro, incluindo JUnit, GameTests, validadores do Compêndio, build, JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
-- entidades vanilla reais no corpus: **40**;
-- lotes documentados: **4**;
+- entidades vanilla reais no corpus: **50**;
+- lotes documentados: **5**;
 - namespace atual em produção: `minecraft`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
