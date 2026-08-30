@@ -26,16 +26,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237; crossing/janela/consumo causais | nenhuma |
 | A0019 | Treino com Adagas I | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237; classificação provider-native/fail-closed | nenhuma |
 | A0020 | Treino com Adagas II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #237 via attack-speed provider-native | nenhuma |
-| A0021 | Precisão com Adagas | APROVADO + boundary | Presente; crítico canônico direto | nenhuma exclusiva |
-| A0022 | Ritmo das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0022-01`: stagger; `P-A0022-02`: fallback geométrico; `P-A0022-03`: idle decay sem alvo |
-| A0023 | Ataque ao Ponto Cego | APROVADO + boundary | Presente; orientação server-side | nenhuma exclusiva |
-| A0024 | Maestria de Adagas — Dança das Sombras | APROVADO + boundary | Presente com fallback canônico de stamina | depende de A0022 não assumir rota geométrica ausente |
-| A0025 | Treino com Martelos I | APROVADO após correção | NÃO CONFIRMADA | `P-A0025-01`: remover tag HAMMER; `P-A0025-02`: Mastery anti-farm |
-| A0026 | Treino com Martelos II | APROVADO | Presente via attack-speed | depende de `P-A0025-01` |
-| A0027 | Precisão com Martelos | APROVADO + boundary | Presente no resolver crítico | depende de `P-A0025-01` |
-| A0028 | Abalo Crescente | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0028-01`: guard pressure receipt |
-| A0029 | Quebra de Postura | APROVADO + boundary | NÃO CONFIRMADA | `P-A0029-01`: heavy receipt |
-| A0030 | Maestria de Martelos — Golpe Demolidor | APROVADO + boundary | NÃO CONFIRMADA | `P-A0030-01`: guard-break + heavy receipt |
+| A0021 | Precisão com Adagas | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; confirmação definitiva após merge | nenhuma |
+| A0022 | Ritmo das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; stagger/geometria/idle decay resolvidos | nenhuma |
+| A0023 | Ataque ao Ponto Cego | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; orientação server-side preservada | nenhuma |
+| A0024 | Maestria de Adagas — Dança das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI NO FALLBACK CANÔNICO na PR #242 | nenhuma bloqueante; stamina é omitida somente quando não há receipt exato |
+| A0025 | Treino com Martelos I | APROVADO após correção | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; HAMMER provider-native + DiscoveryProgress anti-farm | nenhuma |
+| A0026 | Treino com Martelos II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242 via attack-speed provider-native | nenhuma |
+| A0027 | Precisão com Martelos | APROVADO + boundary | IMPLEMENTAÇÃO VALIDADA EM CI na PR #242; crítico canônico provider-native | nenhuma |
+| A0028 | Abalo Crescente | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL / FAIL-CLOSED VALIDADO EM CI na PR #242 | `P-A0028-01`: guard pressure receipt causal ausente no Epic Fight 21.17.3.1 |
+| A0029 | Quebra de Postura | APROVADO + boundary | NÃO CONFIRMADA / FAIL-CLOSED VALIDADO EM CI na PR #242 | `P-A0029-01`: heavy receipt inequívoco ausente no Epic Fight 21.17.3.1 |
+| A0030 | Maestria de Martelos — Golpe Demolidor | APROVADO + boundary | NÃO CONFIRMADA / FAIL-CLOSED VALIDADO EM CI na PR #242 | `P-A0030-01`: guard-break causal + heavy receipt ausentes |
 | A0031 | Treino com Maças I | APROVADO após correção | NÃO CONFIRMADA | `P-A0031-01`: remover tag MACE; `P-A0031-02`: Mastery anti-farm |
 | A0032 | Treino com Maças II | APROVADO | Presente via attack-speed | depende de `P-A0031-01` |
 | A0033 | Precisão com Maças | APROVADO + boundary | Presente no crítico canônico | depende de `P-A0031-01` |
@@ -50,12 +50,14 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 ## Regras sistêmicas vigentes
 
 - **Provider-native first:** famílias desconhecidas ficam `FAIL-CLOSED`; tags paralelas não versionadas não são classificação canônica.
-- **Versões auditadas A0001–A0020:** Epic Fight MARTIAL é registrado somente para `21.17.3.1`; A0012 aceita Cold Sweat somente em `2.4.2`.
-- **Provenance A0001–A0020:** hits indiretos ou não hostis retornam pacote marcial totalmente neutro, inclusive chance crítica zero.
+- **Versões auditadas A0001–A0030:** Epic Fight MARTIAL é registrado somente para `21.17.3.1`; A0012 aceita Cold Sweat somente em `2.4.2`.
+- **Provenance A0001–A0030:** hits indiretos ou não hostis não podem ser promovidos a ataques MARTIAL diretos.
+- **HAMMER A0025–A0030:** somente categoria Epic Fight explícita; `rpgskilltree:hammers` foi removida do runtime e do datapack no Chat 2 PR #242.
 - **Maça vanilla:** `minecraft:mace` usa identidade exata; externos precisam de capability/mapping MACE seguro.
 - **SCYTHE:** somente capability/mapping provider-native; não inferir por enxada/nome/aparência.
 - **Crítico:** uma única resolução/root action; `ARCANE_BACKLASH` e companion-owned damage não entram como ataque direto.
-- **Mastery:** não pode vir de spam de dano. HAMMER/MACE/SCYTHE auditadas usam `DiscoveryProgress` +10 uma vez por tipo hostil inédito.
+- **Mastery:** não pode vir de spam de dano. HAMMER usa `DiscoveryProgress` +10 uma vez por tipo hostil inédito; MACE/SCYTHE permanecem pendentes para seu lote Chat 2.
+- **HAMMER:** `epicfight:heavy` gate70 = 7 tipos; terminal A0030 gate80 = 8 tipos.
 - **MACE:** `combat:mace` gate60 = 6 tipos; terminal A0036 gate80 = 8 tipos.
 - **SCYTHE:** `combat:scythe` gate60 = 6 tipos.
 - **Commit causal:** consumo irreversível de recurso/estado condicionado a resultado real deve ocorrer no commit pós-hit confirmado; cancelamento/dano zero não pode deixar estado fantasma.
@@ -83,13 +85,23 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 ### A0011–A0020 — Chat 2
 - Design/retroauditoria fechados em `AUDITORIA-RETROATIVA-PROVIDERS-A0011-A0020.md`.
 - Implementação/revalidação técnica documentada nos 10 dossiês e em `AUDITORIA-A0001-A0020-REVALIDACAO-IMPLEMENTACAO-CHAT2.md`.
-- Estado pré-merge: `IMPLEMENTAÇÃO VALIDADA EM CI` na PR #237; confirmação definitiva após merge e confirmação da `main`.
+- Estado pré-merge registrado na PR #237; o próximo lote foi determinado pelo estado técnico real pós-merge, não por esse texto histórico.
 
-### A0021–A0030
+### A0021–A0030 — Chat 1
 - Chat 1 PR #235 — `docs(perks): close Chat 1 A0021-A0030` — **MERGEADA**.
 - Merge commit `15cf3f75959165e0a40f4b0be8263ffae83cb097`.
 - CI principal #2129 + oito auxiliares: GREEN.
-- Design fechado; implementação permanece parcial/não confirmada onde as pendências da tabela indicam.
+- Design fechado para o Chat 2.
+
+### A0021–A0030 — Chat 2
+- PR #242 — `feat(perks): implement A0021-A0030 Chat 2 contracts`.
+- `P-A0022-01`, `P-A0022-02`, `P-A0022-03`, `P-A0025-01` e `P-A0025-02` resolvidas.
+- A0021–A0027: `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva após merge e confirmação da `main`.
+- A0028: `IMPLEMENTAÇÃO PARCIAL / FAIL-CLOSED`; `P-A0028-01` permanece porque Epic Fight 21.17.3.1 não fornece guard-pressure receipt causal separado de impact/knockback.
+- A0029: `NÃO CONFIRMADA / FAIL-CLOSED`; `P-A0029-01` permanece porque `shouldChargeWeapon()` é combo/Weapon Innate, não heavy receipt.
+- A0030: `NÃO CONFIRMADA / FAIL-CLOSED`; `P-A0030-01` permanece porque `GuardSkill` mantém `GUARD_BREAK` interno e não publica receipt causal attacker-side, além da ausência de heavy receipt.
+- Head técnico `6938549c3961821d72dc3dcba4c6044a8f09e7d9`: RPG Skill Tree CI #2192 GREEN, incluindo JUnit 5, NeoForge GameTests, build, JAR e dedicated-server smoke; nove workflows auxiliares GREEN.
+- Auditoria técnica: `AUDITORIA-A0021-A0030-IMPLEMENTACAO-CHAT2.md`.
 
 ## Chat 1 — lote exato A0031–A0040
 
@@ -122,4 +134,4 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 9. `P-A0037-02` — `combat:scythe` anti-farm via DiscoveryProgress.
 10. `P-A0040-01` — cleanup bounded/server-authoritative de `reapMarks` para alvo removido/despawnado/chunk descarregado sem morte.
 
-**Próxima etapa deste ciclo:** CI/review do HEAD corrigido → merge → confirmação da `main` → PARAR.
+**Próxima etapa do ciclo A0021–A0030:** CI/review do HEAD documental → merge da PR #242 → confirmação da `main` → PARAR. A0031–A0040 não começa automaticamente.
