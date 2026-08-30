@@ -101,8 +101,9 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 
 ## Chat 1 — lote exato A0041–A0050
 
-**Estado:** `LOTE FECHADO NO DESIGN; AGUARDANDO PR/CI/MERGE`.
+**Estado:** `LOTE FECHADO NO DESIGN`.
 
+- **PR de fechamento:** #243 (`docs(perks): close Chat 1 A0041-A0050 and organize audits`).
 - **INÍCIO:** A0041.
 - **FIM:** A0050.
 - **Quantidade:** 10 perks consecutivas.
@@ -131,4 +132,4 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 8. `P-A0049-01` — Mastery CROSSBOW +10 por tipo hostil inédito; 6→60, 8→80; dedup contra producer Epic Fight.
 9. `P-A0041-50-TEST-01` — GameTest/harness server-side provider-present/absent para SCYTHE/BOW/CROSSBOW, Mastery, Focus, dedup, lifecycle e multiplayer.
 
-**Próxima etapa deste ciclo:** abrir PR do branch `audit/retro-providers-a0041-a0050` → review/CI completo → merge → confirmar `main` → PARAR.
+O estado de CI/merge da PR de fechamento é confirmado no GitHub; este arquivo registra apenas o design canônico e as pendências técnicas. Após o merge da PR #243, o ciclo A0041–A0050 está operacionalmente encerrado e o próximo lote só pode começar mediante novo comando do usuário.
