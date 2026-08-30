@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.runtime.data;
 
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
+import dev.gustavopere.rpgskilltree.core.NodeBehaviorEffect;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.NodeSpecializationGrant;
 import dev.gustavopere.rpgskilltree.core.SkillGraph;
@@ -20,6 +21,7 @@ public record SkillTreeDataSnapshot(
     List<NodeSpecializationGrant> specializationGrants,
     SkillGraph graph,
     List<NodeAttributeEffect> attributeEffects,
+    List<NodeBehaviorEffect> behaviorEffects,
     List<NodeAttributeEffect> clearableAttributeEffects,
     Map<ResourceLocation, NodePosition> positions
 ) {
@@ -32,6 +34,7 @@ public record SkillTreeDataSnapshot(
         specializationGrants = List.copyOf(Objects.requireNonNull(specializationGrants));
         Objects.requireNonNull(graph);
         attributeEffects = List.copyOf(Objects.requireNonNull(attributeEffects));
+        behaviorEffects = List.copyOf(Objects.requireNonNull(behaviorEffects));
         clearableAttributeEffects = List.copyOf(Objects.requireNonNull(clearableAttributeEffects));
         positions = Map.copyOf(Objects.requireNonNull(positions));
     }
@@ -49,6 +52,7 @@ public record SkillTreeDataSnapshot(
             Map.of(),
             List.of(),
             SkillGraph.undirected(List.of()),
+            List.of(),
             List.of(),
             List.of(),
             Map.of()

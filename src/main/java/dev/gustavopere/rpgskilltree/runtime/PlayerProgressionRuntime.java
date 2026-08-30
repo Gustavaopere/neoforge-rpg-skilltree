@@ -17,7 +17,7 @@ import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassRuleCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassChoiceCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeRuleCatalog;
-import dev.gustavopere.rpgskilltree.runtime.effects.AttributeNodeEffectRuntime;
+import dev.gustavopere.rpgskilltree.runtime.effects.NodeEffectRuntime;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import java.util.Collection;
 import java.util.List;
@@ -286,7 +286,7 @@ public final class PlayerProgressionRuntime {
         Objects.requireNonNull(player);
         ProgressionState reconciled = reconcileDerivedState(get(player));
         if (!set(player, reconciled)) {
-            AttributeNodeEffectRuntime.refresh(player, reconciled);
+            NodeEffectRuntime.refresh(player, reconciled);
             ModNetworking.syncToOwner(player, reconciled);
         }
         return reconciled;
@@ -332,7 +332,7 @@ public final class PlayerProgressionRuntime {
         )) {
             return false;
         }
-        AttributeNodeEffectRuntime.refresh(player, state);
+        NodeEffectRuntime.refresh(player, state);
         return true;
     }
 }

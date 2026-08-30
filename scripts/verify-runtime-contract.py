@@ -30,6 +30,7 @@ STALE_ERRORS = {
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/events/MiningProgressionEvents.java: missing 'PlayerProgressionRuntime.applyXp'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'player.getData(ModAttachments.PROGRESSION)'",
     "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'player.setData(ModAttachments.PROGRESSION, state)'",
+    "ERROR: src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java: missing 'AttributeNodeEffectRuntime.refresh'",
 }
 
 
@@ -62,7 +63,7 @@ owner_sync_text = read_required(OWNER_SYNC_RUNTIME)
 require(events_text, "PlayerProgressionRuntime.reconcilePlayerState(player)", str(EVENTS.relative_to(ROOT)))
 require(runtime_text, "public static ProgressionState reconcilePlayerState(ServerPlayer player)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "set(player, reconciled)", str(RUNTIME.relative_to(ROOT)))
-require(runtime_text, "AttributeNodeEffectRuntime.refresh(player, state)", str(RUNTIME.relative_to(ROOT)))
+require(runtime_text, "NodeEffectRuntime.refresh(player, state)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "CanonicalPlayerAttachmentRuntime.readOrMigrate(player)", str(RUNTIME.relative_to(ROOT)))
 require(runtime_text, "CanonicalPlayerAttachmentRuntime.commitMutation(", str(RUNTIME.relative_to(ROOT)))
 forbid(runtime_text, "setData(ModAttachments.PROGRESSION", str(RUNTIME.relative_to(ROOT)))

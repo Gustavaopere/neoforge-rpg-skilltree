@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.data;
 
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
+import dev.gustavopere.rpgskilltree.core.NodeBehaviorEffect;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -11,6 +12,7 @@ import java.util.Objects;
 public final class NodeEffectCatalog {
     private static volatile List<NodeAttributeEffect> attributeEffects = List.of();
     private static volatile List<NodeAttributeEffect> clearableAttributeEffects = List.of();
+    private static volatile List<NodeBehaviorEffect> behaviorEffects = List.of();
 
     private NodeEffectCatalog() {}
 
@@ -34,17 +36,28 @@ public final class NodeEffectCatalog {
             clearable.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .map(Map.Entry::getValue)
-                .toList()
+                .toList(),
+            behaviorEffects
         );
+    }
+
+    /** Compatibility projection for callers that only replace attribute effects. */
+    static synchronized void installValidated(
+        Collection<NodeAttributeEffect> active,
+        Collection<NodeAttributeEffect> clearable
+    ) {
+        installValidated(active, clearable, behaviorEffects);
     }
 
     /** Package-private projection used only after the candidate has already passed full validation. */
     static synchronized void installValidated(
         Collection<NodeAttributeEffect> active,
-        Collection<NodeAttributeEffect> clearable
+        Collection<NodeAttributeEffect> clearable,
+        Collection<NodeBehaviorEffect> behaviors
     ) {
         attributeEffects = List.copyOf(Objects.requireNonNull(active));
         clearableAttributeEffects = List.copyOf(Objects.requireNonNull(clearable));
+        behaviorEffects = List.copyOf(Objects.requireNonNull(behaviors));
     }
 
     public static List<NodeAttributeEffect> attributeEffects() {
@@ -53,6 +66,10 @@ public final class NodeEffectCatalog {
 
     public static List<NodeAttributeEffect> clearableAttributeEffects() {
         return clearableAttributeEffects;
+    }
+
+    public static List<NodeBehaviorEffect> behaviorEffects() {
+        return behaviorEffects;
     }
 
     private record ClearableKey(String effectId, String attributeId) implements Comparable<ClearableKey> {
