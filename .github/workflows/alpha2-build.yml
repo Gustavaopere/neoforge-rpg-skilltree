@@ -71,6 +71,21 @@ jobs:
       - name: Wiki catalog generator tests
         run: python3 scripts/test_wiki_catalog.py
 
+      - name: TEMP dump regenerated wiki catalogs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/generate-wiki-catalog.py
+          echo '__PERK_B64_START__'
+          base64 -w0 wiki/PERK_CATALOG.md
+          echo
+          echo '__PERK_B64_END__'
+          echo '__EFFECT_B64_START__'
+          base64 -w0 wiki/EFFECT_CATALOG.md
+          echo
+          echo '__EFFECT_B64_END__'
+          git checkout -- wiki/PERK_CATALOG.md wiki/EFFECT_CATALOG.md
+
       - name: Wiki catalog drift check
         run: python3 scripts/generate-wiki-catalog.py --check
 
