@@ -4,7 +4,6 @@
 
 - **Design:** APROVADO/FECHADO.
 - **Código relevante em `main`:** PRESENTE.
-- **Pendência específica identificada:** nenhuma nesta auditoria documental.
 - **Notion:** https://app.notion.com/p/3c569db9f0db814b9f8bc5f70f9ba617
 - **Critérios de aprovação:** https://app.notion.com/p/3c669db9f0db81e2a0f7cd9b2d410567
 - **Referência técnica auditada:** `main@7f90af76c2b69574378d7f3f1d292e862ccdd6f9`.
@@ -58,25 +57,35 @@
 ## Evidência encontrada na `main`
 
 - `NotionCombatPerkRules.interceptionMasteryWindowMillis(...)` implementa 3/3,5/4 s e `A0018_TARGET_LOCKOUT_MILLIS=8_000`.
-- `NotionCombatPerkState.recordSpearRange(...)` mantém estado dentro/fora por alvo e arma A0018 apenas em transição `false -> true`, com 3 cargas e lockout pronto.
-- `consumeLineWindow(...)` remove a janela e inicia lockout de 8 s.
-- `A0001A0020CombatPolicy.beforeHit(...)` consome 3 cargas, deduplica por `A0018:consume`, multiplica dano por 1,15 e impacto/pressão por 1,40 quando disponível.
+- `NotionCombatPerkState.recordSpearRange(...)` mantém estado dentro/fora por alvo e arma A0018 apenas em transição `false -> true`, com 3 cargas disponíveis e lockout pronto.
+- PRE verifica/reserva a janela por `rootActionId`; `commitPreparedSpearAction(...)` remove a janela, consome as 3 cargas e só então inicia o lockout após POST confirmado.
+- `A0001A0020CombatPolicy.beforeHit(...)` aplica dano ×1,15 e impacto/pressão ×1,40 no PRE sem destruir o estado consumidor.
 - `onEpicFightTick(...)` fornece amostragem server-side de distância/alcance e mastery real de `epicfight:spear`.
-- `A0001A0020CombatPolicyTest.spearWindowsConsumeDistanceControlAndApplyTargetLockout()` verifica consumo, dano, impacto e lockout.
+- `A0001A0020CombatPolicyTest.spearWindowsConsumeDistanceControlAndApplyTargetLockout()` e `A0011A0020CausalCommitJUnitTest` cobrem consumo causal, dano, impacto e lockout.
 
 ## Pendências técnicas
 
-Nenhuma divergência específica foi identificada no caminho auditado. Se a obtenção de alcance/distância mudar em versão futura do provider, o cruzamento precisa ser revalidado antes de manter a perk ativa.
+### P-A0018-01 — consumo/lockout prematuros no PRE
+
+- **Estado:** RESOLVIDA na PR #250; confirmação definitiva após merge.
+- **Defeito:** o runtime mergeado removia a Janela de Interceptação, consumia 3 cargas e iniciava imediatamente o lockout de 8 s no PRE. Se o golpe fosse cancelado ou resolvesse dano zero, o capstone perdia estado/recurso e podia bloquear o alvo sem um hit consumidor real.
+- **Correção:** PRE passa a reservar a janela e as 3 cargas por `rootActionId`; somente POST `direct && hostile && actualDamage` efetiva janela + 3 cargas + lockout. POST inválido descarta a reserva sem iniciar lockout.
+- **Reserva concorrente:** cargas reservadas deixam de estar disponíveis para outra root action ou para armar uma segunda linha; reserva expira de forma bounded e também é descartada quando a própria janela expira.
+- **Ordem com A0016:** A0018 consome as 3 cargas antes de A0016 conceder a carga do mesmo hit. A carga produzida pelo golpe consumidor não pode financiar o próprio capstone.
+- **Prioridade A0018→A0017:** enquanto a linha é elegível, falha de claim/reserva da própria linha não permite cair para A0017 no mesmo PRE como bypass.
+- **TDD RED:** CI #2256, commit `64e4abd9eacc45caf7f4af67b4015be9d7ef4bf9`, falhou em `a0018DefersWindowChargesAndTargetLockoutUntilConfirmedDamage`.
+- **TDD GREEN:** CI #2269, HEAD `1698bdc518f84ae99da6a9f6da1a78ad5b9f3923`, verde em JUnit, NeoForge GameTests, build/JAR e server smoke; nove auxiliares verdes.
 
 ## Testes obrigatórios
 
 - [x] janela 3/3,5/4 s;
 - [x] requisito de 3 cargas;
-- [x] consumo total das cargas;
+- [x] consumo total somente após hit confirmado;
+- [x] cancelamento/dano zero preserva janela/cargas e não inicia lockout;
 - [x] dano +15% e impacto +40%;
-- [x] lockout de 8 s por alvo;
+- [x] lockout de 8 s por alvo somente após commit válido;
 - [x] detecção server-side fora→dentro;
-- [x] GameTest/dedicated server revalidados no CI #2130 para a versão exata atual.
+- [x] GameTest/dedicated server revalidados no CI #2269.
 
 ## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
 
