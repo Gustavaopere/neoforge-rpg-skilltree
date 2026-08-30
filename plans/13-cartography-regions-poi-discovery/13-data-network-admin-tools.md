@@ -19,6 +19,23 @@ Planejar registries/configs para:
 
 Validadores devem rejeitar IDs duplicados, referências quebradas, ciclos/precedências impossíveis e ausência de lang key obrigatória.
 
+## Reload transacional e revisão de dataset
+
+Todo reload possui um `cartographyDatasetRevision` monotônico.
+
+Fluxo obrigatório:
+
+1. parse/validar o novo dataset em staging;
+2. se inválido, rejeitar integralmente e manter dataset/revision anterior;
+3. se válido, publicar atomicamente o novo dataset e incrementar a revision;
+4. invalidar caches derivados afetados por classificação, estilo, discovery ou sharing policy;
+5. reconciliar regiões/POIs conhecidos em jobs bounded quando regras semânticas mudarem;
+6. recalcular a **projeção autorizada** de cada owner/body online;
+7. emitir delta mínimo quando seguro ou `projection reset + snapshot` quando permissões/classificações mudarem de forma não incremental;
+8. reconciliar os renderers ativos, removendo markers/overlays que deixaram de ser autorizados e atualizando os alterados.
+
+Uma mudança de presentation metadata não precisa reclassificar geometria, mas ainda deve atualizar a projection revision/renderer. Mudanças de sharing/discovery policy são tratadas como security-sensitive e nunca podem deixar markers previamente autorizados visíveis até reconnect.
+
 ## Rede
 
 Pacotes devem carregar apenas projeções autorizadas e deltas necessários. Separar, conceitualmente:
@@ -27,11 +44,12 @@ Pacotes devem carregar apenas projeções autorizadas e deltas necessários. Sep
 - add/update/remove de região visível;
 - add/update/remove de POI visível;
 - atualização de área de busca/quest;
-- invalidation total ao trocar de corpo quando necessário.
+- invalidation total ao trocar de corpo quando necessário;
+- `datasetRevision` e `projectionRevision` para detectar cliente stale.
 
 Nunca serializar a base física completa de POIs para o cliente.
 
-Usar versionamento de protocolo compatível com a infraestrutura de rede canônica do projeto.
+Usar versionamento de protocolo compatível com a infraestrutura de rede canônica do projeto. Pacote de revision antiga deve ser rejeitado/ignorado de forma determinística; cliente que perde sequência recebe resync autorizado, não acesso à base física.
 
 ## Admin/debug
 
@@ -44,6 +62,7 @@ Criar comandos equivalentes, com permissões apropriadas:
 - reclassificar/reconciliar área bounded;
 - validar aliases;
 - imprimir métricas/index size;
+- imprimir dataset/projection revision;
 - exportar diagnóstico sem dados desnecessários;
 - reparar marker projection sem alterar descoberta.
 
@@ -59,6 +78,8 @@ Logs estruturados para:
 - JourneyMap adapter incompatível;
 - packet rejeitado;
 - intel inconsistente;
+- reload rejeitado/publicado e respectivas revisions;
+- projection resync;
 - recovery aplicado.
 
 Evitar log spam por chunk normal.
@@ -73,4 +94,8 @@ Mensagens player-facing/admin amigáveis devem ter lang keys PT-BR. IDs técnico
 - delta/reconnect produzem a mesma projeção;
 - comandos respeitam permissão/body scope;
 - reload inválido falha fechado preservando último dataset válido;
+- reload válido incrementa revision e reconcilia jogadores online sem exigir reconnect;
+- mudança de sharing/discovery remove imediatamente da projection todo marker que deixou de ser autorizado;
+- renderer termina consistente com a projeção server-authoritative após reload;
+- pacote stale não reintroduz marker removido;
 - ferramentas bounded não force-loadam dimensão inteira.
