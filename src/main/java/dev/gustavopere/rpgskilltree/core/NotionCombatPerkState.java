@@ -6,6 +6,14 @@ import java.util.Objects;
 
 /** Server-authoritative transient state used only by A0001-A0020. No field is persisted. */
 public final class NotionCombatPerkState {
+    private static final long PREPARED_SWORD_COMMIT_TTL_MILLIS = 30_000L;
+
+    public enum PreparedSwordCommit {
+        NONE,
+        OPENING,
+        RIPOSTE
+    }
+
     private final Map<String, ActorState> actors = new HashMap<>();
     private final Map<String, Long> claims = new HashMap<>();
 
@@ -71,6 +79,82 @@ public final class NotionCombatPerkState {
             require(targetId, "targetId"),
             Math.addExact(nowMillis, NotionCombatPerkRules.A0005_TARGET_COOLDOWN_MILLIS)
         );
+    }
+
+    /**
+     * A0005/A0006 prepare their irreversible state changes in PRE, but commit them only after
+     * provider POST confirms effective damage. A bounded preparation is safe to discard.
+     */
+    public synchronized void prepareOpeningCommit(String actorId, String targetId, String rootActionId, long nowMillis) {
+        ActorState state = actor(actorId);
+        prunePreparedSwordCommits(state, nowMillis);
+        String root = require(rootActionId, "rootActionId");
+        state.preparedSwordCommits.putIfAbsent(
+            root,
+            new PreparedSwordAction(
+                PreparedSwordCommit.OPENING,
+                require(targetId, "targetId"),
+                Math.addExact(nowMillis, PREPARED_SWORD_COMMIT_TTL_MILLIS)
+            )
+        );
+    }
+
+    public synchronized void prepareRiposteCommit(String actorId, String targetId, String rootActionId, long nowMillis) {
+        ActorState state = actor(actorId);
+        prunePreparedSwordCommits(state, nowMillis);
+        String root = require(rootActionId, "rootActionId");
+        state.preparedSwordCommits.putIfAbsent(
+            root,
+            new PreparedSwordAction(
+                PreparedSwordCommit.RIPOSTE,
+                require(targetId, "targetId"),
+                Math.addExact(nowMillis, PREPARED_SWORD_COMMIT_TTL_MILLIS)
+            )
+        );
+    }
+
+    /** Atomically commits the prepared A0005/A0006 resource mutation for one confirmed root action. */
+    public synchronized PreparedSwordCommit commitPreparedSwordAction(
+        String actorId,
+        String targetId,
+        String rootActionId,
+        long nowMillis
+    ) {
+        ActorState state = actor(actorId);
+        prunePreparedSwordCommits(state, nowMillis);
+        PreparedSwordAction prepared = state.preparedSwordCommits.remove(require(rootActionId, "rootActionId"));
+        if (prepared == null || !prepared.targetId.equals(require(targetId, "targetId"))) {
+            return PreparedSwordCommit.NONE;
+        }
+
+        if (prepared.kind == PreparedSwordCommit.OPENING) {
+            if (momentum(actorId, nowMillis) < NotionCombatPerkRules.A0005_MIN_MOMENTUM
+                || !openingCooldownReady(actorId, targetId, nowMillis)) {
+                return PreparedSwordCommit.NONE;
+            }
+            if (consumeMomentum(actorId, NotionCombatPerkRules.A0005_MOMENTUM_COST)
+                != NotionCombatPerkRules.A0005_MOMENTUM_COST) {
+                return PreparedSwordCommit.NONE;
+            }
+            startOpeningCooldown(actorId, targetId, nowMillis);
+            return PreparedSwordCommit.OPENING;
+        }
+
+        if (prepared.kind == PreparedSwordCommit.RIPOSTE) {
+            if (!riposteActive(actorId, nowMillis) || momentum(actorId, nowMillis) < 5) {
+                return PreparedSwordCommit.NONE;
+            }
+            state.riposteUntil = 0L;
+            if (consumeMomentum(actorId, 5) != 5) {
+                return PreparedSwordCommit.NONE;
+            }
+            return PreparedSwordCommit.RIPOSTE;
+        }
+        return PreparedSwordCommit.NONE;
+    }
+
+    public synchronized void discardPreparedSwordAction(String actorId, String rootActionId) {
+        actor(actorId).preparedSwordCommits.remove(require(rootActionId, "rootActionId"));
     }
 
     public synchronized double fury(String actorId) { return actor(actorId).fury; }
@@ -174,6 +258,9 @@ public final class NotionCombatPerkState {
         state.riposteUntil = Math.addExact(nowMillis, durationMillis);
         state.riposteCooldownUntil = Math.addExact(nowMillis, cooldownMillis);
     }
+    public synchronized boolean riposteActive(String actorId, long nowMillis) {
+        return actor(actorId).riposteUntil > nowMillis;
+    }
     public synchronized boolean consumeRiposte(String actorId, long nowMillis) {
         ActorState state = actor(actorId);
         boolean active = state.riposteUntil > nowMillis;
@@ -221,6 +308,7 @@ public final class NotionCombatPerkState {
         distanceControl(actorId, nowMillis);
         ActorState state = actor(actorId);
         if (state.rhythmDropUntil <= nowMillis) state.rhythmDropUntil = 0L;
+        prunePreparedSwordCommits(state, nowMillis);
         pruneSpearWindows(state, nowMillis);
     }
 
@@ -231,6 +319,10 @@ public final class NotionCombatPerkState {
     }
     public synchronized void clearAll() { actors.clear(); claims.clear(); }
 
+    private static void prunePreparedSwordCommits(ActorState state, long nowMillis) {
+        state.preparedSwordCommits.entrySet().removeIf(entry -> entry.getValue().expiresAtMillis <= nowMillis);
+    }
+
     private static void pruneSpearWindows(ActorState state, long nowMillis) {
         state.interceptUntilByTarget.entrySet().removeIf(entry -> entry.getValue() <= nowMillis);
         state.lineUntilByTarget.entrySet().removeIf(entry -> entry.getValue() <= nowMillis);
@@ -240,11 +332,14 @@ public final class NotionCombatPerkState {
     private ActorState actor(String actorId) { return actors.computeIfAbsent(require(actorId, "actorId"), ignored -> new ActorState()); }
     private static String require(String value, String name) { Objects.requireNonNull(value); if (value.isBlank()) throw new IllegalArgumentException(name + " must not be blank"); return value; }
 
+    private record PreparedSwordAction(PreparedSwordCommit kind, String targetId, long expiresAtMillis) {}
+
     private static final class ActorState {
         int momentum;
         long nextMomentumDecayAt;
         String lastSwordMomentumTarget;
         final Map<String, Long> openingCooldownUntilByTarget = new HashMap<>();
+        final Map<String, PreparedSwordAction> preparedSwordCommits = new HashMap<>();
         double fury;
         String lastAxeTarget;
         boolean frenzyActive;
