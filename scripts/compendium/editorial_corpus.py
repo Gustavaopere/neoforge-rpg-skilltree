@@ -223,18 +223,27 @@ def validate_entry(
     )
 
 
-def load_corpus(corpus_root: Path, coverage_payload: Any, *, release: bool = False) -> EditorialCorpus:
+def load_corpus(
+    corpus_root: Path,
+    coverage_payload: Any,
+    *,
+    release: bool = False,
+    allow_empty: bool = False,
+) -> EditorialCorpus:
     if not corpus_root.is_dir():
         raise EditorialCorpusError(f"editorial corpus directory does not exist: {corpus_root}")
     runtime_ids = coverage_runtime_ids(coverage_payload, Path("coverage-report.json"))
     files = tuple(sorted(path for path in corpus_root.rglob("*.json") if path.is_file()))
     if not files:
+        if allow_empty:
+            return EditorialCorpus((), ())
         raise EditorialCorpusError(f"editorial corpus contains no JSON packages: {corpus_root}")
 
     entries: list[EditorialEntry] = []
     seen: dict[str, str] = {}
     for path in files:
-        relative = path.relative_to(corpus_root).as_posix()
+        relative_path = path.relative_to(corpus_root)
+        relative = relative_path.as_posix()
         payload = read_json(path)
         if not isinstance(payload, dict):
             raise EditorialCorpusError(f"{relative} must contain a JSON object")
@@ -243,6 +252,11 @@ def load_corpus(corpus_root: Path, coverage_payload: Any, *, release: bool = Fal
         if payload.get("language") != LANGUAGE:
             raise EditorialCorpusError(f"{relative} language must be {LANGUAGE}")
         namespace = require_non_blank(payload.get("namespace"), f"{relative}.namespace")
+        directory_namespace = relative_path.parts[0] if len(relative_path.parts) > 1 else None
+        if directory_namespace != namespace:
+            raise EditorialCorpusError(
+                f"{relative} directory namespace mismatch: directory={directory_namespace!r}, declared={namespace!r}"
+            )
         kind = require_non_blank(payload.get("kind"), f"{relative}.kind")
         if kind not in KINDS:
             raise EditorialCorpusError(f"{relative}.kind must be one of {sorted(KINDS)}, got {kind!r}")
