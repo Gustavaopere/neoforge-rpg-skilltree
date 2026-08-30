@@ -77,3 +77,14 @@ Nenhuma divergência específica foi identificada no caminho auditado. Se a obte
 - [x] lockout de 8 s por alvo;
 - [x] detecção server-side fora→dentro;
 - [ ] revalidar GameTest/dedicated server após atualização do Epic Fight.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA com boundary causal retroativa; janela, dano e lockout permanecem inalterados.
+- **RPG Skill Tree:** authority de Controle de Distância, janela e lockout por alvo; deduplicação continua por identidade causal única.
+- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não abre/consome Janela de Interceptação nem recebe os bônus do capstone.
+- **Mobstein 5.4.4:** ataques de allies/bodyguards ressuscitados não abrem/consomem a janela em nome do dono; ataques diretos do jogador contra entidades Mobstein continuam elegíveis quando cumprem o contrato.
+- **Volcanoes / Enshrouded:** NÃO DEVE SER INTEGRADO ao crossing da faixa; hazards, pressão, Shroud/Exposure/Story não fornecem crossing ou hit de lança.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
+- **Fail-closed:** sem cruzamento server-side confiável, o capstone permanece indisponível; nenhum dos novos providers é fallback implícito.
+- **Chat 2:** preservar direct-player provenance, deduplicação e lockout; não adicionar bridges temáticas.

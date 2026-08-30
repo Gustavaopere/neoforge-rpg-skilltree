@@ -69,3 +69,13 @@ Nenhuma divergência específica identificada nesta leitura. A semântica de `Mo
 - [x] classificação DAGGER provider-native;
 - [x] fail-closed quando a família/hook não existir;
 - [ ] revalidar integração e dedicated-server smoke após atualização do provider.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA sem mutação no Notion; nenhum dos providers retroauditados altera a cadência provider-native da adaga.
+- **RPG Skill Tree:** rank/perk continua consumer da cadência Epic Fight, sem segundo modificador semântico.
+- **Volcanoes / Enshrouded / Black Arcana:** NÃO DEVE SER INTEGRADO; hazards, Shroud/Flame e Arcane Danger não são attack speed de adaga.
+- **Mobstein 5.4.4:** companions ressuscitados não herdam A0020 do dono e não fornecem hook de cadência ao jogador.
+- **Notion:** re-fetch em 2026-08-30 sem drift; nenhuma mutação artificial.
+- **Fail-closed:** se o provider deixar de expor cadência server-authoritative, A0020 fica inativa em vez de mudar de identidade.
+- **Chat 2:** nenhuma bridge nova; preservar família DAGGER e evento provider-native.

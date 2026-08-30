@@ -95,3 +95,14 @@ Nenhuma divergência específica identificada. Qualquer futura integração de a
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Pendências técnicas:** nenhuma.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; `A0001A0020CriticalService`/root action permanece authority do crítico e da deduplicação.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO`; hazards, pressão, gases, geologia e vulcanismo não geram chance crítica marcial.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO`; Shroud/Exposure/Flame/Story e o reducer mágico de mobs não alimentam crítico de machado.
+- **Black Arcana:** `ARCANE_BACKLASH` é terminal e fica fora do resolver crítico/Mastery/proc. Ataque direto do jogador contra entidade Black Arcana continua elegível como ação Epic Fight.
+- **Mobstein 5.4.4:** ataque direto do jogador contra mob/boss é coberto universalmente; dano de ally/bodyguard ressuscitado permanece Mobstein-owned e não entra no `rootActionId` crítico do dono.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria; re-fetch confirmou persistência.
+- **Fail-closed:** origem terminal/secundária/companion ou fonte sem `AXE` inequívoca fica inelegível; não há segunda rolagem/fallback genérico.
+- **Estado histórico:** implementação da #221 já mergeada; sem alteração runtime.

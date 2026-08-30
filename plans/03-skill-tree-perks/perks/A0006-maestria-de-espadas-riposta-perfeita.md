@@ -108,3 +108,14 @@ Nenhuma pendência bloqueante foi identificada para o caminho comprovado de esqu
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Fallback/fail-closed:** aparo/guarda perfeita adicionais permanecem inativos até existir receipt público causal e versionado; isso é fallback legítimo aprovado, não pendência bloqueante.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; authority de Ímpeto, janela, cooldown, crítico e deduplicação permanece no RPG. O provider externo só fornece o receipt técnico da defesa/ataque.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO`; sobrevivência a tremor, pressão, gases ou outros hazards não arma Riposta.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO`; Shroud/Exposure/Sanctuary/Flame/Story não são defesa técnica Epic Fight e não armam/consomem a janela.
+- **Black Arcana:** `ARCANE_BACKLASH` é terminal e nunca arma/consome Riposta, crita ou gera Mastery/proc. Um ataque direto de espada do jogador contra entidade Black Arcana pode consumir a janela normalmente se ela já tiver sido armada por receipt técnico válido.
+- **Mobstein 5.4.4:** ataques de ally/bodyguard ressuscitado são Mobstein-owned e não armam/consomem Riposta nem Ímpeto do dono; ataque direto do jogador contra um alvo Mobstein segue o contrato universal.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria; re-fetch confirmou persistência.
+- **Fail-closed:** qualquer defesa/evento sem receipt causal ou qualquer evento terminal/secundário permanece inelegível; não fabricar bridge por proximidade temática.
+- **Estado histórico:** implementação da #221 já mergeada; sem alteração runtime neste ciclo.

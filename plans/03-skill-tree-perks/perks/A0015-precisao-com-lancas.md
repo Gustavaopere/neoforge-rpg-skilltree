@@ -70,3 +70,13 @@ Nenhuma divergência específica identificada. Novos adapters de lança devem re
 - [x] correlação NeoForge ↔ Epic Fight;
 - [x] classificação SPEAR no adapter;
 - [ ] revalidar quando o pipeline crítico ou a versão do Epic Fight mudar.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA com boundary causal retroativa; coeficientes/gates/providers principais não mudaram.
+- **RPG Skill Tree:** mantém o resolver crítico único e a identidade causal/root action; nenhuma bridge pode lançar segunda rolagem.
+- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não entra no resolver crítico de A0015, não proca e não concede Mastery.
+- **Mobstein 5.4.4:** dano de ally/bodyguard ressuscitado permanece Mobstein-owned e não herda crítico/autoria marcial do dono; ataques diretos do jogador contra entidades Mobstein seguem normais se elegíveis.
+- **Volcanoes / Enshrouded:** NÃO DEVE SER INTEGRADO à chance crítica desta perk; hazards/Shroud/Flame não criam critical receipt.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
+- **Chat 2:** revalidar que fontes secundárias/terminal/companions não atravessam o serviço crítico; não criar bridge específica para esses providers.

@@ -11,7 +11,8 @@ Definir o critério final para declarar o Compêndio implementado. “A tela abr
 - [ ] reload publica snapshot atomicamente;
 - [ ] discovery/reward é server-authoritative;
 - [ ] admin tools estão separados da experiência survival;
-- [ ] nenhum mod opcional virou hard dependency acidental.
+- [ ] nenhum mod opcional virou hard dependency acidental;
+- [ ] adapter nominal não é requisito para criação de página técnica base de conteúdo modded suportado pelo pipeline genérico.
 
 ## Gate 2 — Inventário do modpack
 
@@ -46,6 +47,16 @@ O relatório deve conter:
 
 **Critério:** `ERROR = 0`.
 
+Também é obrigatório provar que conteúdo de namespaces modded não depende de enumeração manual por ID para aparecer no catálogo base. Para cada tipo de registry suportado, o relatório deve permitir distinguir:
+
+- entrada descoberta automaticamente pelo coletor genérico;
+- entrada enriquecida por adapter;
+- entrada enriquecida editorialmente;
+- entrada ignorada deliberadamente com justificativa;
+- falha real de cobertura.
+
+Um mod recém-adicionado que registre conteúdo suportado deve produzir novas entradas `AUTO` após regeneração/reload apropriado, sem necessidade de cadastrar manualmente cada mob, planta, bioma, estrutura ou dimensão.
+
 ## Gate 3 — Conteúdo pt-BR
 
 - [ ] 100% das chaves próprias do Compêndio têm `pt_br`;
@@ -55,13 +66,15 @@ O relatório deve conter:
 - [ ] ortografia/revisão linguística concluída;
 - [ ] nenhuma entrada final contém placeholder;
 - [ ] fatos mecânicos mutáveis não foram duplicados como números editoriais obsoletos;
-- [ ] lore e mecânica estão distinguidos.
+- [ ] lore e mecânica estão distinguidos;
+- [ ] ausência de texto curado nunca apaga a página técnica base válida.
 
 ## Gate 4 — Fauna
 
 Para cada entidade relevante do inventário:
 
 - [ ] página base abre;
+- [ ] entidades vanilla e modded registradas são cobertas pelo mesmo contrato registry-first;
 - [ ] origem/mod/ID é identificável;
 - [ ] stats disponíveis aparecem com fonte/contexto;
 - [ ] HP base não é confundido com HP escalado da instância;
@@ -70,21 +83,25 @@ Para cada entidade relevante do inventário:
 - [ ] reprodução/domesticação/alimentação aparecem somente quando confirmadas;
 - [ ] variantes não causam crash/duplicação indevida;
 - [ ] preview 3D tem fallback seguro;
-- [ ] conteúdo prioritário possui descrição pt-BR curada.
+- [ ] conteúdo prioritário possui descrição pt-BR curada;
+- [ ] entidade modded sem adapter específico continua possuindo página `AUTO` quando seus fatos-base forem resolvíveis genericamente.
 
 ## Gate 5 — Flora, árvores e cultivos
 
 - [ ] plantas relevantes classificadas;
+- [ ] flora modded com evidência estável entra pelo coletor genérico sem cadastro por ID;
 - [ ] árvores agrupam sapling/log/leaves/produtos corretamente;
 - [ ] Dynamic Trees não duplica espécie sem razão;
 - [ ] TFC e sistemas climáticos usam adapter/fonte correta;
 - [ ] cultivos mostram crescimento/colheita sem virar recipe browser redundante;
 - [ ] flora dimensional/modded aparece;
-- [ ] conteúdo prioritário possui descrição completa pt-BR.
+- [ ] conteúdo prioritário possui descrição completa pt-BR;
+- [ ] ausência de adapter especializado degrada para cobertura genérica quando tecnicamente possível.
 
 ## Gate 6 — Biomas, estruturas e dimensões
 
 - [ ] todos os registries relevantes aparecem no catálogo ou têm `IGNORED` explícito;
+- [ ] conteúdo worldgen modded não exige lista manual para existir no inventário base;
 - [ ] YUNG/worldgen modded carregado é inventariado;
 - [ ] estruturas vanilla alteradas não são duplicadas indevidamente;
 - [ ] dimensões modded são fail-soft;
@@ -120,7 +137,10 @@ Para todo adapter nominal implementado:
 - [ ] ausência testada;
 - [ ] versão incompatível falha com diagnóstico ou degradação segura;
 - [ ] dedicated server sem o mod opcional inicia;
-- [ ] remoção do mod de save existente não corrompe Compêndio.
+- [ ] remoção do mod de save existente não corrompe Compêndio;
+- [ ] falha/ausência do adapter não remove entradas `AUTO` que continuam representáveis pelo coletor genérico.
+
+Adicionar também pelo menos um fixture/mod de teste sem adapter nominal para provar que conteúdo registry-first aparece automaticamente como `AUTO`.
 
 ## Gate 10 — Performance
 
@@ -157,7 +177,8 @@ Obrigatório antes de renomear este arquivo para `✅-15-gate-conteudo-release.m
 - [ ] JAR verification green;
 - [ ] dedicated-server smoke green;
 - [ ] testes client/manuais definidos no 10.14 concluídos;
-- [ ] cobertura do modpack real anexada ao release evidence.
+- [ ] cobertura do modpack real anexada ao release evidence;
+- [ ] gate de cobertura automática de conteúdo modded sem adapter nominal green.
 
 ## Evidência de fechamento
 

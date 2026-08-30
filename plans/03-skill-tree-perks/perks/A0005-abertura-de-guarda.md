@@ -72,3 +72,14 @@
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Pendências técnicas:** nenhuma.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; authority de Ímpeto, cooldown e deduplicação permanece no RPG. Epic Fight fornece o estado de guarda/postura e os atributos físicos do golpe.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO`; pressão atmosférica/hidrostática, protection equipment, gases ou hazards não são guarda física do alvo e não qualificam A0005.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO`; Shroud/Exposure e `MagicResistanceService` não são guarda/postura nem defesa física elegível para o fallback.
+- **Black Arcana:** boundary de exclusão explícito. `Arcane Resistance`, `Corruption Resistance`, `Arcane Strain` e `ARCANE_BACKLASH` não são evidência de defesa física/guarda e não podem ativar o fallback. Ataque direto contra entidade Black Arcana pode usar A0005 apenas quando a defesa física real exigida estiver comprovada.
+- **Mobstein 5.4.4:** ataque direto do jogador pode abrir guarda de um alvo se o contrato físico real for satisfeito; ataque de ally/bodyguard ressuscitado não consome Ímpeto do dono nem abre guarda em seu nome.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria; re-fetch confirmou persistência.
+- **Fail-closed:** ausência de guarda/postura ou defesa física comprovável continua inativa; nunca usar resistência arcana, Shroud, aparência, vida ou ownership de companion como proxy.
+- **Estado histórico:** implementação da #221 já mergeada; retroauditoria não altera runtime.

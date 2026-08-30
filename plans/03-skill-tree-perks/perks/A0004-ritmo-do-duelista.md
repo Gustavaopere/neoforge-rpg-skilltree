@@ -69,3 +69,14 @@ A0004 é a Notable de Ímpeto da árvore de Espadas. Exige A0003 ≥2. Hit diret
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Pendências técnicas:** nenhuma bloqueante; novos receipts de aparo/guarda perfeita permanecem opcionais e fail-closed até existir API causal.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; Ímpeto continua estado MARTIAL server-authoritative do RPG e a deduplicação usa a identidade causal da ação. Nenhum projeto externo escreve esse estado diretamente.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO`; dano ambiental, tremor, pressão, gases ou permanência em hazard não geram nem renovam Ímpeto.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO`; Shroud/Exposure/Madness/Flame/Story não contam como hit/defesa técnica e não afetam decay.
+- **Black Arcana:** boundary obrigatório: `ARCANE_BACKLASH` é terminal e não gera/consome Ímpeto nem Mastery/proc ofensivo. Ataque direto do jogador contra entidade Black Arcana continua elegível pelo Epic Fight.
+- **Mobstein 5.4.4:** ataque direto do jogador contra mob/boss é coberto pelo sistema universal; dano de ally/bodyguard ressuscitado é Mobstein-owned e não gera/consome Ímpeto do dono.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria para registrar a autoria direta e essas exclusions; re-fetch confirmou persistência.
+- **Fail-closed:** sem receipt marcial direto do jogador, nenhum adapter converte Backlash, companion, hazard ou story event em Ímpeto.
+- **Estado histórico:** implementação da #221 já mergeada; nenhuma mudança runtime neste ciclo.

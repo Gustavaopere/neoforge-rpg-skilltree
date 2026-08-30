@@ -1,78 +1,101 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0020** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
+Reauditoria obrigatória do recorte **A0001–A0030** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
-A fonte canônica de design permanece o Notion. Este índice descreve o estado após as correções desta auditoria; `IMPLEMENTAÇÃO CONFIRMADA` só se torna definitivo quando a PR correspondente estiver mergeada na `main` com CI verde.
+A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
 
 | Código | Perk | Design | Estado técnico auditado | Pendências bloqueantes |
 |---|---|---|---|---|
-| A0001 | Treino com Espadas I | APROVADO após reauditoria | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; provider-native/fail-closed | nenhuma; confirmação após merge |
-| A0002 | Treino com Espadas II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; `ModifyAttackSpeedEvent` provider-native | nenhuma; confirmação após merge |
-| A0003 | Precisão com Espadas | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; crítico no pipeline canônico único | nenhuma; confirmação após merge |
-| A0004 | Ritmo do Duelista | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; hit/dodge/miss/decay/stagger forte provider-native | nenhuma; confirmação após merge |
-| A0005 | Abertura de Guarda | APROVADO após correção | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; defesa nativa + fallback estrito penetração-only | nenhuma; confirmação após merge |
-| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; receipt técnico, janela, cooldown, consumo e dedup | nenhuma; confirmação após merge |
-| A0007 | Treino com Machados I | APROVADO após reauditoria | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; classificação provider-native/fail-closed | nenhuma; confirmação após merge |
-| A0008 | Treino com Machados II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; `ModifyAttackSpeedEvent` provider-native | nenhuma; confirmação após merge |
-| A0009 | Precisão com Machados | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; crítico no pipeline canônico único | nenhuma; confirmação após merge |
-| A0010 | Pressão do Carrasco | APROVADO após reauditoria | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; receipt server-authoritative + dedup | nenhuma; confirmação após merge |
-| A0011 | Ruptura de Guarda | APROVADO após correção | Presente; condição heurística de “alvo pesado” removida do design | nenhuma |
-| A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO após correção + re-fetch | Implementado com transação PRE: CORE pago antes de exhaustion/bônus/pico; falha deixa o evento fail-closed | nenhuma, condicionado à CI/merge desta PR |
-| A0013 | Treino com Lanças I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
-| A0014 | Treino com Lanças II | APROVADO | Presente via `ModifyAttackSpeedEvent` | nenhuma |
-| A0015 | Precisão com Lanças | APROVADO | Presente; crítico no pipeline canônico único | nenhuma |
-| A0016 | Distância Ideal | APROVADO | Presente; alcance, hit, miss, expiração e stagger forte provider-native | nenhuma |
-| A0017 | Interceptação | APROVADO | Presente em fallback canônico | nenhuma; redução de deslocamento permanece deliberadamente omitida sem receipt ofensivo provider-native |
-| A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO | Presente; crossing, consumo, janela e lockout por alvo | nenhuma |
-| A0019 | Treino com Adagas I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
-| A0020 | Treino com Adagas II | APROVADO | Presente via `ModifyAttackSpeedEvent` | nenhuma |
+| A0001 | Treino com Espadas I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA; retroauditoria concluída | nenhuma |
+| A0002 | Treino com Espadas II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA; retroauditoria concluída | nenhuma |
+| A0003 | Precisão com Espadas | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
+| A0004 | Ritmo do Duelista | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
+| A0005 | Abertura de Guarda | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
+| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
+| A0007 | Treino com Machados I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
+| A0008 | Treino com Machados II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
+| A0009 | Precisão com Machados | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
+| A0010 | Pressão do Carrasco | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA | nenhuma |
+| A0011 | Ruptura de Guarda | APROVADO + boundary | Presente; retroauditoria concluída | nenhuma de design |
+| A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO + boundary | Presente; transação CORE→exhaustion→benefício | preservar fail-closed do bridge CORE |
+| A0013 | Treino com Lanças I | APROVADO | Presente; provider-native/fail-closed | nenhuma de design |
+| A0014 | Treino com Lanças II | APROVADO | Presente via attack-speed provider-native | nenhuma de design |
+| A0015 | Precisão com Lanças | APROVADO + boundary | Presente; crítico canônico | nenhuma de design |
+| A0016 | Distância Ideal | APROVADO + boundary | Presente; cargas direct-player | nenhuma de design |
+| A0017 | Interceptação | APROVADO + boundary | Presente em fallback canônico | deslocamento ofensivo omitido sem receipt nativo |
+| A0018 | Maestria de Lanças — Linha de Interceptação | APROVADO + boundary | Presente | nenhuma de design |
+| A0019 | Treino com Adagas I | APROVADO | Presente; provider-native/fail-closed | nenhuma de design |
+| A0020 | Treino com Adagas II | APROVADO | Presente via attack-speed provider-native | nenhuma de design |
+| A0021 | Precisão com Adagas | APROVADO + boundary | Presente; crítico canônico direto | nenhuma exclusiva |
+| A0022 | Ritmo das Sombras | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0022-01`: −2 Fluxo por stagger forte; `P-A0022-02`: fallback geométrico sem DodgeEvent; `P-A0022-03`: idle decay sem alvo hostil vivo |
+| A0023 | Ataque ao Ponto Cego | APROVADO + boundary | Presente; orientação server-side | nenhuma exclusiva |
+| A0024 | Maestria de Adagas — Dança das Sombras | APROVADO + boundary | Presente com fallback canônico de stamina | depende de A0022 não assumir rota geométrica ausente |
+| A0025 | Treino com Martelos I | APROVADO após correção | NÃO CONFIRMADA | `P-A0025-01`: remover tag HAMMER paralela; `P-A0025-02`: Mastery anti-farm |
+| A0026 | Treino com Martelos II | APROVADO | Presente via attack-speed, condicionado à família HAMMER segura | depende de `P-A0025-01` |
+| A0027 | Precisão com Martelos | APROVADO + boundary | Presente no resolver crítico | depende de `P-A0025-01` |
+| A0028 | Abalo Crescente | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL; Abalo é rastreado | `P-A0028-01`: guard pressure receipt ausente |
+| A0029 | Quebra de Postura | APROVADO + boundary | NÃO CONFIRMADA | `P-A0029-01`: heavy receipt ausente; stamina refund é fallback opcional |
+| A0030 | Maestria de Martelos — Golpe Demolidor | APROVADO + boundary | NÃO CONFIRMADA | `P-A0030-01`: guard-break caller/receipt + heavy receipt ausentes |
 
-## Correções sistêmicas da reauditoria
+## Regras sistêmicas vigentes
 
-- **Critérios versionados:** cópia integral dos critérios canônicos adicionada à pasta dos dossiês.
-- **Provider-native first:** os fallbacks fictícios `rpgskilltree:swords`, `rpgskilltree:axes`, `rpgskilltree:spears` e `rpgskilltree:daggers` foram removidos do design canônico. Ausência de classificação segura agora é `FAIL-CLOSED`.
-- **A0004/A0016:** `EpicFightEventHooks.Entity.ON_STUNNED` fornece o receipt server-side; apenas `LONG`, `KNOCKDOWN` e `NEUTRALIZE` são aceitos como stagger forte, com fonte hostil validada.
-- **A0005:** guarda/postura observável continua sendo a rota principal; quando ela não é observável, somente defesa física server-side comprovável autoriza penetração-only.
-- **A0010:** o fallback genérico sem receipt seguro foi removido; tentativa de ataque, animação ou classificação heurística não geram Fúria.
-- **A0011:** removida do design a condição contraditória de “alvo classificado como pesado”.
-- **A0012:** o custo +1,5 `CORE` é pré-condição no mesmo `DELIVER_DAMAGE_PRE`; exhaustion, bônus e gasto do pico só ocorrem depois do sucesso da escrita CORE. Thirst Was Reclaimed não participa deste contrato.
-- **Mastery Epic Fight:** hits repetidos deixaram de conceder Mastery. Categorias de arma usam tipos hostis inéditos; `guard` também usa tipos hostis inéditos em contexto real de skill de guarda pagável, +10 por tipo, tornando gates 60/80 alcançáveis com 6/8 descobertas sem spam do mesmo alvo/tipo. O ledger continua sendo `DiscoveryProgress`.
+- **Provider-native first:** famílias de arma desconhecidas ficam `FAIL-CLOSED`; tags paralelas não versionadas não são classificação canônica.
+- **Crítico:** uma única resolução/root action canônica; `ARCANE_BACKLASH` e companion-owned damage não entram como ataque direto do jogador.
+- **Mastery:** não pode ser obtida por spam de dano. Categorias auditadas usam milestones/descobertas persistentes.
+- **Martelos:** `epicfight:heavy` passa a usar +10 uma única vez por tipo hostil inédito, persistido em `DiscoveryProgress`; gate 70 = 7 tipos, terminal 80 = 8 tipos.
+- **Recursos:** Fluxo, Abalo e janelas são server-authoritative, deduplicados e não recebem autoria de companions.
+- **Guarda/postura/heavy:** apenas receipts provider-native seguros; dano alto, animação, Armor, velocidade e stagger genérico não substituem.
+- **Black Arcana:** `ARCANE_BACKLASH` permanece terminal e não crita/proca/concede Mastery/Fluxo/Abalo nem abre/consome janelas MARTIAL.
+- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story não são guarda, stamina, dodge, heavy ou guard-break.
+- **Volcanoes:** capacidades ambientais/geológicas permanecem em seus ramos próprios; o delta RNS/prospecção não é bridge MARTIAL.
+- **Mobstein 5.4.4:** allies/bodyguards ressuscitados são provider-owned e não herdam autoria MARTIAL do dono.
+- **NeoVitae:** removido/ausente.
 
-## Evidência comum
+## Ciclos fechados anteriores
 
-- `NotionCombatPerkRules` — coeficientes, thresholds e durações.
-- `A0001A0020CombatPolicy` — política provider-independent, consumo de recursos e deduplicação.
-- `NotionCombatPerkState` — Ímpeto, Fúria, Controle de Distância, janelas, lockouts e Queda de Ritmo.
-- `A0001A0020CriticalService` — resolução crítica única.
-- `A0001A0020EpicFightHooks` — hits PRE/POST, transação corporal A0012, attack speed, dodge, miss, stagger, alcance e tick server-side.
-- `ColdSweatFrenzyBridge` — integração fail-closed com Cold Sweat 2.4.2 `Temperature.Trait.CORE`.
-- `EpicFightProgressionHooks` + `MasteryPolicies` — Mastery baseada em milestones persistentes e alcançáveis.
-- `A0001A0020CombatPolicyTest` e `EpicFightDepthPolicyTest` — regressões dos contratos corrigidos.
+### A0001–A0010
 
-A matriz detalhada dos nove eixos está em `AUDITORIA-A0001-A0020.md`.
+- Chat 1: design fechado.
+- Chat 2: PR #221 mergeada; merge `d7aa65bf37bbe284cac5d92818ef0a1a23ffd14b`; implementação confirmada.
+- Retroauditoria: `AUDITORIA-RETROATIVA-PROVIDERS-A0001-A0010.md`.
 
-## Chat 1 V3 — fechamento do ciclo exato A0001–A0010
+### A0011–A0020
+
+- Design/retroauditoria fechados.
+- Arquivo: `AUDITORIA-RETROATIVA-PROVIDERS-A0011-A0020.md`.
+
+### Retroauditoria combinada A0001–A0020
+
+- PR #233 — `docs(perks): retroaudit provider integration A0001-A0020` — **MERGEADA**.
+- Merge/main confirmado: `0087ef7e513664454b3d54cb70a9c3f24ec46e84`.
+- CI principal #2105 + oito workflows auxiliares: GREEN.
+
+## Chat 1 — lote exato A0021–A0030
 
 **Estado:** `LOTE FECHADO NO DESIGN`.
 
-- **INÍCIO:** A0001.
-- **FIM:** A0010.
+- **INÍCIO:** A0021.
+- **FIM:** A0030.
 - **Quantidade:** 10 perks consecutivas.
-- **Re-fetch Notion:** A0001–A0010 = 10/10 PASS em 2026-08-30.
-- **Nove eixos:** 10/10 PASS.
-- **18 critérios técnicos:** PASS/N/A justificado para as dez perks; nenhum bloqueio de design.
-- **Provider principal:** Epic Fight `21.17.3.1`.
+- **Notion fetch fresco:** 10/10.
+- **Notion alterado:** A0021, A0022, A0023, A0024, A0025, A0027, A0028, A0029, A0030.
+- **Re-fetch pós-escrita:** 9/9 PASS em 2026-08-30.
+- **A0026:** sem drift; nenhuma mutação cosmética.
+- **Nove eixos:** PASS no design das 10 perks.
+- **18 critérios técnicos:** PASS/N/A justificado no design; gaps runtime catalogados para Chat 2.
+- **Arquivo canônico:** `AUDITORIA-RETROATIVA-PROVIDERS-A0021-A0030.md`.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **A0031+:** não iniciado.
 
-## Chat 2 — implementação, testes e merge — A0001–A0010
+### Pendências para Chat 2
 
-- **INÍCIO:** A0001.
-- **FIM:** A0010.
-- **Quantidade:** 10 perks consecutivas.
-- **PR:** #221 — `test(perks): confirm A0001-A0010 implementation contracts`.
-- **Runtime:** preservado sem redesenho; código canônico existente foi auditado contra os dez contratos.
-- **Regressões novas:** A0006 (armamento/consumo/supressão/dedup) e A0010 (causalidade/dedup/target switch).
-- **Validação:** `RPG Skill Tree CI` #1996 GREEN no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`; JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
-- **Estado pré-merge:** A0001–A0010 = `IMPLEMENTAÇÃO VALIDADA EM CI`.
-- **Estado definitivo:** alterar para `IMPLEMENTAÇÃO CONFIRMADA` somente após merge da #221 e confirmação da `main` pós-merge.
-- **Fallback/fail-closed legítimos:** A0001/A0007 classificação desconhecida; A0005 penetração-only quando guarda não é observável mas defesa física é comprovável; A0006 receipts adicionais de aparo/guarda perfeita omitidos sem API causal; A0010 adapters sem receipt equivalente ficam inativos.
-- **Pendências bloqueantes:** nenhuma.
+1. `P-A0022-01` — ligar perda de 2 Fluxo a `ON_STUNNED` forte/hostil.
+2. `P-A0022-02` — implementar a rota geométrica canônica de reposicionamento (≥1,5 blocos + ≥60°) sem depender de `DodgeEvent`, preservando exclusões de câmera/teleport/knockback.
+3. `P-A0022-03` — aplicar idle decay de Fluxo após 3 s sem deslocamento relevante mesmo sem alvo hostil vivo; alvo não é condição do lifecycle.
+4. `P-A0025-01` — remover/desativar classificação HAMMER por tag paralela.
+5. `P-A0025-02` — substituir 3 XP/hit por `DiscoveryProgress` +10 por tipo hostil inédito.
+6. `P-A0028-01` — integrar guard/posture pressure provider-native ou manter componente fail-closed.
+7. `P-A0029-01` — integrar heavy receipt seguro; sem heurística.
+8. `P-A0030-01` — integrar guard-break causal + heavy receipt; sem isso capstone permanece fail-closed.
+
+**Próxima etapa deste ciclo:** PR documental → CI/reviews → merge → confirmação da `main` → PARAR.

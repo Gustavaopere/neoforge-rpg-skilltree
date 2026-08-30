@@ -68,3 +68,14 @@ O fallback genérico anterior foi removido. Sem receipt server-authoritative que
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Fallback/fail-closed:** somente a rota Epic Fight comprovada está ativa; adapters sem receipt equivalente permanecem inativos. Nenhuma pendência bloqueante.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; Fúria, target-switch state e deduplicação são authority do serviço canônico do RPG. Apenas receipt direto do jogador pode mutá-los.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO`; hazards, tremor, pressão, gases, erupções ou sobrevivência ambiental não geram Fúria.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO`; Shroud/Exposure/Flame/Story não geram Fúria e não substituem receipt de dano direto.
+- **Black Arcana:** boundary obrigatório: `ARCANE_BACKLASH` é terminal e nunca concede Fúria, Mastery ou proc ofensivo. Ataque direto do jogador contra entidade Black Arcana pode gerar Fúria apenas se satisfizer integralmente `direct + hostile + actualDamage + AXE + autoria`.
+- **Mobstein 5.4.4:** ataque direto do jogador contra mob/boss Mobstein é coberto universalmente; dano de ally/bodyguard ressuscitado permanece Mobstein-owned e nunca constitui receipt de ataque do dono, mesmo se houver ownership/seguimento.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria para nomear explicitamente Backlash/companions; re-fetch confirmou persistência.
+- **Fail-closed:** proc, Backlash, summon/companion ou adapter sem receipt causal permanece inelegível; não atribuir dano secundário ao jogador apenas por ownership.
+- **Estado histórico:** implementação da #221 já mergeada; retroauditoria não altera runtime.
