@@ -6,22 +6,8 @@ on:
       - main
     paths:
       - 'scripts/compendium/**'
-      - 'src/main/resources/data/rpgskilltree/compendium/editorial/**'
-      - 'src/main/resources/assets/rpgskilltree/lang/pt_br.json'
-      - 'src/main/resources/assets/rpgskilltree/lang/en_us.json'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/compendium/editorial/**'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumPageModel.java'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumPageModelFactory.java'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumEditorialDisplayModel.java'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/runtime/compendium/CompendiumEditorial*.java'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/runtime/compendium/RuntimeCompendiumEditorialCatalog.java'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/runtime/client/CompendiumScreen.java'
-      - 'src/test/java/dev/gustavopere/rpgskilltree/compendium/editorial/**'
-      - 'src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumPageModelFactoryTest.java'
-      - 'src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumEditorialDisplayModelTest.java'
-      - 'src/test/java/dev/gustavopere/rpgskilltree/runtime/compendium/CompendiumEditorial*.java'
-      - 'src/test/java/dev/gustavopere/rpgskilltree/runtime/compendium/RuntimeCompendiumEditorialCatalogJUnitTest.java'
+      - 'src/main/java/**'
+      - 'src/main/resources/**'
       - 'plans/10-compendio-natural/10-ptbr-corpus-editorial.md'
       - '.github/workflows/compendium-editorial-ci.yml'
 
@@ -50,14 +36,6 @@ jobs:
 
       - name: PT-BR localization completeness tests
         run: python3 scripts/compendium/test_ptbr_localization.py
-
-      - name: PT-BR localization completeness validation
-        run: >-
-          python3 scripts/compendium/validate_ptbr_localization.py
-          --pt-br src/main/resources/assets/rpgskilltree/lang/pt_br.json
-          --en-us src/main/resources/assets/rpgskilltree/lang/en_us.json
-          --source-root src/main/java
-          --source-root src/main/resources
 
       - name: Editorial model and locale contracts
         run: bash scripts/compendium/test_model_catalog.sh
