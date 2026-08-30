@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.runtime.data;
 
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
+import dev.gustavopere.rpgskilltree.core.NodeBehaviorEffect;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.NodeSpecializationGrant;
 import dev.gustavopere.rpgskilltree.core.SkillGraph;
@@ -44,7 +45,11 @@ public final class SkillTreeDataCatalog {
             next.specializationGrants(),
             next.graph()
         );
-        NodeEffectCatalog.installValidated(next.attributeEffects(), next.clearableAttributeEffects());
+        NodeEffectCatalog.installValidated(
+            next.attributeEffects(),
+            next.clearableAttributeEffects(),
+            next.behaviorEffects()
+        );
         current = next;
     }
 
@@ -66,6 +71,7 @@ public final class SkillTreeDataCatalog {
             List.copyOf(rules),
             treeIds,
             previous.attributeEffects(),
+            previous.behaviorEffects(),
             positions
         ));
     }
@@ -133,17 +139,33 @@ public final class SkillTreeDataCatalog {
             }
         }
 
+        Set<String> effectIds = new HashSet<>();
         Map<String, NodeAttributeEffect> effectsById = new LinkedHashMap<>();
         for (NodeAttributeEffect effect : prepared.attributeEffects()) {
             if (!knownIds.contains(ResourceLocation.parse(effect.nodeId()))) {
                 throw new IllegalArgumentException("node effect references unknown node: " + effect.effectId());
             }
-            if (effectsById.put(effect.effectId(), effect) != null) {
+            if (!effectIds.add(effect.effectId())) {
                 throw new IllegalArgumentException("duplicate node effect id: " + effect.effectId());
             }
+            effectsById.put(effect.effectId(), effect);
         }
         List<NodeAttributeEffect> effects = effectsById.values().stream()
             .sorted(Comparator.comparing(NodeAttributeEffect::effectId))
+            .toList();
+
+        List<NodeBehaviorEffect> behaviors = new ArrayList<>();
+        for (NodeBehaviorEffect effect : prepared.behaviorEffects()) {
+            if (!knownIds.contains(ResourceLocation.parse(effect.nodeId()))) {
+                throw new IllegalArgumentException("behavior effect references unknown node: " + effect.effectId());
+            }
+            if (!effectIds.add(effect.effectId())) {
+                throw new IllegalArgumentException("duplicate node effect id: " + effect.effectId());
+            }
+            behaviors.add(effect);
+        }
+        behaviors = behaviors.stream()
+            .sorted(Comparator.comparing(NodeBehaviorEffect::effectId))
             .toList();
 
         for (ResourceLocation positioned : prepared.positions().keySet()) {
@@ -169,6 +191,7 @@ public final class SkillTreeDataCatalog {
             specializationGrants,
             SkillGraph.undirected(new ArrayList<>(edges)),
             effects,
+            behaviors,
             clearableEffects,
             prepared.positions()
         );
