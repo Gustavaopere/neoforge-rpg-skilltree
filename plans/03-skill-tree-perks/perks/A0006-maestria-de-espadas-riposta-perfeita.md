@@ -83,3 +83,12 @@ Nenhuma pendência bloqueante foi identificada para o caminho comprovado de esqu
 - [x] integração `ON_DODGE` presente;
 - [ ] adicionar testes específicos caso novos receipts de aparo/guarda perfeita sejam integrados;
 - [ ] revalidar dedicated-server smoke quando o adapter Epic Fight mudar.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; gate, dependências, janela, consumo, cooldown, escalonamento e fallback permanecem alinhados.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Receipt comprovado:** `ON_DODGE` fornece o caminho provider-native mínimo de defesa técnica para Epic Fight 21.17.3.1.
+- **Fail-closed parcial aprovado:** aparo ou guarda perfeita só podem ser acrescentados se houver receipt público, causal e versionado. Não inferir defesa técnica por blocking passivo, invulnerabilidade, animação ou proximidade temporal.
+- **Pipeline único:** o bônus de dano só amplifica componente crítico elegível; A0006 não cria crítico próprio e o hit consumidor não pode regenerar Ímpeto.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010; a expansão futura de receipts de defesa não é bloqueio para a rota comprovada atual.

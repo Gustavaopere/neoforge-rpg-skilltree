@@ -46,3 +46,11 @@
 - [x] classificação Epic Fight;
 - [x] fail-closed para categoria não resolvida;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** registro do Notion consultado novamente em 2026-08-30; propriedades, gate, hook, fallback e regra permanecem alinhados ao dossiê.
+- **Mutação no Notion neste ciclo:** não necessária; nenhum drift foi encontrado.
+- **Cobertura de providers:** Epic Fight 21.17.3.1 é o owner da família de machado. Armas de addons só participam quando a capability do Epic Fight as classificar explicitamente; item desconhecido permanece fail-closed.
+- **Mods periféricos:** Protection Pixel e outros equipamentos/bridges tecnológicos não são providers de categoria de machado para A0007 e não recebem integração artificial.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010. O Chat 2 não deve restaurar tags, nomes, materiais ou heurísticas como classificação paralela.

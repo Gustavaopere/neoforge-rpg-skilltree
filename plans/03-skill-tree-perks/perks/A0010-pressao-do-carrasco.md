@@ -44,3 +44,12 @@ O fallback genérico anterior foi removido. Sem receipt server-authoritative que
 - [x] deduplicação por ação;
 - [x] dano confirmado e autoria server-side;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; efeito, multiplicadores, gate, autoria, hook, fallback e regra permanecem persistidos sem drift.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Receipt comprovado:** Epic Fight 21.17.3.1 `DELIVER_DAMAGE_POST`/pipeline correlacionado confirma dano efetivo e autoria; a família de machado vem da capability provider-native.
+- **Anti-abuso/deduplicação:** uma concessão de Fúria por ação; tentativa, animação, proc secundário, fake player, alvo de treino/passivo, dano zero ou callback duplicado não contam.
+- **Fail-closed:** qualquer adapter futuro deve provar `direct + hostile + actualDamage + autoria + família machado` e compartilhar a deduplicação canônica. Sem isso, A0010 fica inativa.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.

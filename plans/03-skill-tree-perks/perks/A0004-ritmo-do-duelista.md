@@ -45,3 +45,12 @@ A0004 é a Notable de Ímpeto da árvore de Espadas. Exige A0003 ≥2. Hit diret
 - [x] perda de 2 por stagger forte;
 - [x] lifecycle cleanup;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; geração, perdas, decay, cleanup, dependência e fallback permanecem coerentes.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Hooks confirmados:** hit direto, `ON_DODGE`, `ATTACK_PHASE_END` e `ON_STUNNED`; stagger forte aceita apenas `LONG`, `KNOCKDOWN` e `NEUTRALIZE` com fonte hostil.
+- **Anti-abuso/deduplicação:** um resultado não gera duas cargas; miss/stagger não são inferidos por distância, animação ou dano bruto; estado transitório é limpo nos lifecycles definidos.
+- **Integração global:** Ímpeto continua recurso MARTIAL próprio e não substitui nem duplica stamina de Epic Fight/ParCool.
+- **Resultado:** **APROVADA / FECHADA** no lote A0001–A0010.
