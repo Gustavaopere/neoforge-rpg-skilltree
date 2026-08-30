@@ -7,6 +7,7 @@ Esta pasta documenta os quatro projetos próprios que precisam ser tratados como
 3. [Enshrouded](03-enshrouded.md)
 4. [Black Arcana](04-black-arcana.md)
 5. [Matriz de integração cruzada](05-cross-project-integration-matrix.md)
+6. [Reconciliação dos snapshots](06-snapshot-reconciliation.md)
 
 **Fonte editorial canônica no Notion:** https://app.notion.com/p/3cc69db9f0db81b09939eaca7c446fa2
 
@@ -36,14 +37,14 @@ A presença de um arquivo em `plans/` **não** prova disponibilidade de runtime.
 
 A revisão de 2026-08-30 foi feita prioritariamente contra `plans/`, `plans/STATUS.md` e, quando necessário, contratos/código da `main`:
 
-| Projeto | `main` auditada |
-|---|---|
-| RPG Skill Tree | `e49a1fa651abecfe096adb03c822482fcf9c3e7b` |
-| Volcanoes | `1d0da7ae7f19e06f60390fdeb0835720e2e40f1b` |
-| Enshrouded | `de145be720f7f500f55e060982693312ed7f7bc3` |
-| Black Arcana | `07263ae9bad12eba6ed500992991faa36ad598b2` |
+| Projeto | Base da análise extensa | Reconciliação antes do fechamento |
+|---|---|---|
+| RPG Skill Tree | `e49a1fa651abecfe096adb03c822482fcf9c3e7b` | `55463a195f8c3a87436399f71db19f29c8e85488`; 03.06 ganhou apenas o gate canônico de drift do catálogo/wiki, não fechamento integral |
+| Volcanoes | `1d0da7ae7f19e06f60390fdeb0835720e2e40f1b` | mesma `main` auditada |
+| Enshrouded | `de145be720f7f500f55e060982693312ed7f7bc3` | mesma `main` auditada |
+| Black Arcana | `07263ae9bad12eba6ed500992991faa36ad598b2` | `STATUS.md` estava atrás da `main`; equipment set bonus foi classificado apenas como componente parcial de 05A.06 |
 
-Os SHAs registram a evidência usada para este snapshot; cada novo lote de perks ainda deve fazer fetch fresco quando a integração depender de comportamento que possa ter mudado.
+Os SHAs registram a evidência usada para este snapshot. Quando a `main` avança durante a própria auditoria, a diferença é registrada em [`06-snapshot-reconciliation.md`](06-snapshot-reconciliation.md). Cada novo lote de perks ainda deve fazer fetch fresco quando a integração depender de comportamento que possa ter mudado.
 
 ## Regra para o Chat 1
 
