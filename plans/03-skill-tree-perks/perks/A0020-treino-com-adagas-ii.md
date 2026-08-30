@@ -69,3 +69,17 @@ Nenhuma divergência específica identificada nesta leitura. A semântica de `Mo
 - [x] classificação DAGGER provider-native;
 - [x] fail-closed quando a família/hook não existir;
 - [ ] revalidar integração e dedicated-server smoke após atualização do provider.
+
+## Chat 2 — implementação, testes e merge — PR #224
+
+**Estado:** `IMPLEMENTAÇÃO VALIDADA EM CI`; torna-se `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #224.
+
+- [x] `ModifyAttackSpeedEvent` aplica +2%/rank somente para DAGGER.
+- [x] Gate A0019 ≥2 e ranks permanecem server-authoritative no modelo canônico.
+- [x] Ausência de família/hook seguro deixa o efeito inativo.
+- [x] Nenhuma conversão para stamina, movimento, dano ou animação foi adicionada.
+- [x] Regressão JUnit confirma +6% no rank 3 de A0020.
+- [x] `RPG Skill Tree CI` #2036 GREEN no SHA `bda08ca9748ad16d3352d0872f753976731424f8`.
+- [x] JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
+
+**Pendências técnicas:** nenhuma para A0020; revalidar somente quando o provider mudar.
