@@ -110,7 +110,7 @@ tasks.withType(Test).configureEach {
 
 tasks.register('generateCombatPerkWikiSnapshot', JavaExec) {
     group = 'documentation'
-    description = 'Regenera wiki/generated/combat-perks.json a partir do modelo canônico A0001-A0100.'
+    description = 'Regenera build/generated-wiki/combat-perks.json a partir do modelo canônico A0001-A0100.'
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath
     mainClass = 'dev.gustavopere.rpgskilltree.tools.CombatPerkWikiSnapshotGenerator'
@@ -119,7 +119,7 @@ tasks.register('generateCombatPerkWikiSnapshot', JavaExec) {
 
 tasks.register('checkCombatPerkWikiSnapshot', JavaExec) {
     group = 'verification'
-    description = 'Falha se wiki/generated/combat-perks.json divergir do modelo canônico A0001-A0100.'
+    description = 'Falha se build/generated-wiki/combat-perks.json divergir do modelo canônico A0001-A0100.'
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath
     mainClass = 'dev.gustavopere.rpgskilltree.tools.CombatPerkWikiSnapshotGenerator'
