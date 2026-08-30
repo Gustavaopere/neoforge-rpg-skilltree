@@ -12,6 +12,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 PARSER = ROOT / "scripts/compendium/inventory_modlist.py"
 PIPELINE = ROOT / "scripts/compendium/generate_inventory.py"
+BACKLOG = ROOT / "scripts/compendium/editorial_backlog.py"
 
 
 def fixture(declared: int = 3, suffix: str = "") -> str:
@@ -83,6 +84,16 @@ def runtime_fixture() -> dict:
     }
 
 
+def run_pipeline(modlist: Path, runtime: Path, output: Path) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        [sys.executable, str(PIPELINE), str(modlist), str(runtime), "--output-dir", str(output)],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+
 class ModlistParserTest(unittest.TestCase):
     def test_top_level_and_embedded_are_separated(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -146,13 +157,7 @@ class ModlistParserTest(unittest.TestCase):
             output = root / "generated/compendium"
             modlist.write_text(fixture(), encoding="utf-8")
             runtime.write_text(json.dumps(runtime_fixture()), encoding="utf-8")
-            result = subprocess.run(
-                [sys.executable, str(PIPELINE), str(modlist), str(runtime), "--output-dir", str(output)],
-                cwd=ROOT,
-                check=False,
-                capture_output=True,
-                text=True,
-            )
+            result = run_pipeline(modlist, runtime, output)
             self.assertEqual(0, result.returncode, result.stdout + result.stderr)
             for filename in (
                 "modpack-inventory.json",
@@ -171,6 +176,104 @@ class ModlistParserTest(unittest.TestCase):
             self.assertEqual(2, backlog["entry_count"])
             self.assertEqual("ENTITY:minecraft:zombie", backlog["entries"][0]["entry_id"])
             self.assertEqual("STRUCTURE:moda:tower", backlog["entries"][1]["entry_id"])
+
+    def test_editorial_backlog_preserves_malformed_runtime_error_as_blocked(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            coverage = root / "coverage-report.json"
+            coverage.write_text(json.dumps({
+                "schema": 1,
+                "runtime_fingerprint_sha256": "c" * 64,
+                "entries": [
+                    {
+                        "raw_value": ["malformed-runtime-row"],
+                        "coverage_state": "ERROR",
+                        "coverage_reason": "runtime entry is not an object",
+                        "inventory_key": "ERROR|__invalid_entry_0",
+                    }
+                ],
+            }), encoding="utf-8")
+            out_json = root / "editorial-backlog.json"
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(BACKLOG),
+                    str(coverage),
+                    "--json", str(out_json),
+                    "--markdown", str(root / "editorial-backlog.md"),
+                ],
+                cwd=ROOT,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            payload = json.loads(out_json.read_text(encoding="utf-8"))
+            self.assertEqual(1, payload["entry_count"])
+            row = payload["entries"][0]
+            self.assertEqual("ERROR:__invalid_entry_0", row["entry_id"])
+            self.assertEqual("ERROR", row["kind"])
+            self.assertEqual("__invalid__", row["source_mod"])
+            self.assertEqual("ERROR", row["coverage"])
+            self.assertEqual(0, row["priority"])
+            self.assertTrue(row["present_at_runtime"])
+            for field in (
+                "ptbr_name_status",
+                "summary_status",
+                "full_description_status",
+                "source_status",
+                "review_status",
+            ):
+                self.assertEqual("BLOCKED", row[field])
+
+    def test_single_command_pipeline_reuses_existing_backlog_by_default(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            modlist = root / "modlist agora atual.txt"
+            runtime = root / "runtime-registry-inventory.json"
+            output = root / "generated/compendium"
+            modlist.write_text(fixture(), encoding="utf-8")
+            runtime.write_text(json.dumps(runtime_fixture()), encoding="utf-8")
+
+            first = run_pipeline(modlist, runtime, output)
+            self.assertEqual(0, first.returncode, first.stdout + first.stderr)
+            backlog_path = output / "editorial-backlog.json"
+            backlog = json.loads(backlog_path.read_text(encoding="utf-8"))
+            zombie = next(row for row in backlog["entries"] if row["entry_id"] == "ENTITY:minecraft:zombie")
+            zombie["summary_status"] = "COMPLETE"
+            zombie["review_status"] = "IN_PROGRESS"
+            backlog["orphaned_entries"] = [
+                {
+                    "entry_id": "ENTITY:oldmod:beast",
+                    "source_mod": "oldmod",
+                    "kind": "ENTITY",
+                    "coverage": "CURATED",
+                    "priority": 20,
+                    "priority_reason": "preserved legacy editorial work",
+                    "ptbr_name_status": "COMPLETE",
+                    "summary_status": "COMPLETE",
+                    "full_description_status": "COMPLETE",
+                    "source_status": "COMPLETE",
+                    "review_status": "COMPLETE",
+                    "present_at_runtime": False,
+                }
+            ]
+            backlog["orphaned_entry_count"] = 1
+            backlog_path.write_text(json.dumps(backlog), encoding="utf-8")
+
+            second = run_pipeline(modlist, runtime, output)
+            self.assertEqual(0, second.returncode, second.stdout + second.stderr)
+            refreshed = json.loads(backlog_path.read_text(encoding="utf-8"))
+            refreshed_zombie = next(
+                row for row in refreshed["entries"] if row["entry_id"] == "ENTITY:minecraft:zombie"
+            )
+            self.assertEqual("COMPLETE", refreshed_zombie["summary_status"])
+            self.assertEqual("IN_PROGRESS", refreshed_zombie["review_status"])
+            self.assertEqual(
+                ["ENTITY:oldmod:beast"],
+                [row["entry_id"] for row in refreshed["orphaned_entries"]],
+            )
+            self.assertFalse(refreshed["orphaned_entries"][0]["present_at_runtime"])
 
 
 if __name__ == "__main__":
