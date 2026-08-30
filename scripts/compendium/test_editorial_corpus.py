@@ -397,6 +397,56 @@ class EditorialCorpusContractTest(unittest.TestCase):
             self.assertNotEqual(0, result.returncode)
             self.assertIn("coverage", result.stderr.lower())
 
+    def test_coverage_report_accepts_error_row_with_registry_inventory_key(self) -> None:
+        tmp, root, corpus, coverage_path = self.fixture_root()
+        with tmp:
+            corpus.mkdir(parents=True, exist_ok=True)
+            coverage = coverage_fixture()
+            coverage["entries"][0] = {
+                "kind": "ENTITY",
+                "resource_location": "minecraft:zombie",
+                "namespace": "minecraft",
+                "coverage_state": "ERROR",
+                "coverage_reason": "missing translation key",
+                "inventory_key": "ENTITY|minecraft:zombie",
+                "present_at_runtime": True,
+            }
+            coverage["coverage_totals"] = {"AUTO": 1, "CURATED": 0, "ADAPTER": 0, "IGNORED": 0, "ERROR": 2}
+            write_json(coverage_path, coverage)
+
+            backlog = backlog_fixture()
+            backlog["entries"][0] = {
+                "entry_id": "ENTITY:minecraft:zombie",
+                "source_mod": "minecraft",
+                "kind": "ENTITY",
+                "coverage": "ERROR",
+            }
+            backlog_path = root / "editorial-backlog.json"
+            write_json(backlog_path, backlog)
+            out_json = root / "editorial-coverage.json"
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(COVERAGE),
+                    str(corpus),
+                    str(backlog_path),
+                    "--coverage",
+                    str(coverage_path),
+                    "--json",
+                    str(out_json),
+                    "--markdown",
+                    str(root / "editorial-coverage.md"),
+                ],
+                cwd=ROOT,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            report = json.loads(out_json.read_text(encoding="utf-8"))
+            self.assertEqual(2, report["totals"]["blocked"])
+            self.assertEqual(1, report["namespaces"]["minecraft"]["blocked"])
+
 
 if __name__ == "__main__":
     unittest.main()
