@@ -1,0 +1,312 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:minecraft:bee",
+      "title": "Abelha",
+      "summary": {
+        "text": "A abelha é uma criatura neutra ligada a flores, ninhos e colmeias. Ela coleta néctar, retorna ao abrigo e pode reagir agressivamente quando é provocada ou quando seu ninho é perturbado.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:bee"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Bee.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "Depois de visitar flores, a abelha pode carregar néctar de volta ao ninho. Durante esse percurso, a polinização pode beneficiar cultivos pelos quais ela passa, conectando a criatura à agricultura do mundo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Bee.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Flores aceitas pelo comportamento da espécie atraem as abelhas e podem ser usadas para reprodução. A lista efetiva continua determinada pelos dados e pelo comportamento da versão em execução.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Bee.java"}
+          ]
+        },
+        "recursos": {
+          "text": "Ninhos e colmeias abastecidos podem fornecer mel ou favos. Uma fogueira posicionada de forma adequada sob o abrigo permite coletar esses recursos sem provocar a mesma resposta defensiva das abelhas.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/block/BeehiveBlock.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:cat",
+      "title": "Gato",
+      "summary": {
+        "text": "O gato é uma criatura passiva que pode ser domesticada e tornar-se companheira do jogador. Gatos domesticados mantêm vínculo com seu dono e podem ser colocados para sentar.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:cat"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Cat.java"}
+        ]
+      },
+      "sections": {
+        "domesticacao": {
+          "text": "Gatos não domesticados são cautelosos com a aproximação do jogador. Bacalhau cru e salmão cru são usados no processo de domesticação e também participam da reprodução de gatos já domesticados.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Cat.java"}
+          ]
+        },
+        "comportamento": {
+          "text": "Creepers e phantoms mantêm distância de gatos, o que dá ao animal uma utilidade defensiva indireta além da companhia. Esse efeito decorre do comportamento das próprias entidades e não de um bônus de atributo aplicado ao jogador.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Cat.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:chicken",
+      "title": "Galinha",
+      "summary": {
+        "text": "A galinha é uma criatura passiva de criação, útil como fonte renovável de ovos e de materiais obtidos ao abate. Seu comportamento de reprodução usa os alimentos aceitos pela versão em execução.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:chicken"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Chicken.java"}
+        ]
+      },
+      "sections": {
+        "reproducao": {
+          "text": "Sementes e outros itens reconhecidos pelo comportamento alimentar da galinha podem atraí-la e iniciar a reprodução. O Compêndio evita fixar uma lista fechada para não contrariar alterações feitas por dados ou pelo modpack.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Chicken.java"}
+          ]
+        },
+        "recursos": {
+          "text": "Galinhas adultas põem ovos periodicamente. Penas e carne de galinha também fazem parte dos recursos associados à espécie quando ela é abatida.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Chicken.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:cow",
+      "title": "Vaca",
+      "summary": {
+        "text": "A vaca é uma criatura passiva de criação e uma fonte básica de alimento, couro e leite. Pode ser mantida em rebanhos e reproduzida pelo jogador.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:cow"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Cow.java"}
+        ]
+      },
+      "sections": {
+        "reproducao": {
+          "text": "Trigo é o alimento vanilla usado para atrair e reproduzir vacas. O nascimento do filhote segue o sistema comum de reprodução de animais do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Cow.java"}
+          ]
+        },
+        "recursos": {
+          "text": "Uma vaca adulta pode ser ordenhada com um balde vazio sem ser consumida no processo. Carne bovina e couro são recursos associados ao abate da espécie.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Cow.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:goat",
+      "title": "Cabra",
+      "summary": {
+        "text": "A cabra é uma criatura neutra associada a regiões montanhosas. É ágil, pode realizar investidas contra alvos próximos e possui variantes de comportamento vocal distintas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:goat"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/goat/Goat.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "Cabras podem baixar a cabeça e investir contra entidades selecionadas pelo seu comportamento. Como costumam viver em terreno elevado, o empurrão de uma investida pode ser especialmente perigoso perto de desníveis.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/goat/Goat.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Trigo é usado para atrair e reproduzir cabras no comportamento vanilla. Cabras adultas também podem ser ordenhadas com um balde vazio.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/goat/Goat.java"}
+          ]
+        },
+        "recursos": {
+          "text": "Quando uma cabra atinge determinados blocos naturais durante uma investida, ela pode perder um chifre. O tipo de chifre obtido depende das características da própria cabra e do comportamento disponível na versão em execução.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/goat/Goat.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:horse",
+      "title": "Cavalo",
+      "summary": {
+        "text": "O cavalo é uma criatura passiva que pode ser domesticada e usada como montaria. Indivíduos podem possuir características diferentes de vida, velocidade e capacidade de salto, por isso esses valores não são fixados na prosa editorial.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:horse"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Horse.java"}
+        ]
+      },
+      "sections": {
+        "domesticacao": {
+          "text": "A domesticação ocorre ao montar repetidamente um cavalo ainda não domesticado até que ele aceite o jogador. Depois de domesticado, uma sela permite controlar a montaria diretamente.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractHorse.java"}
+          ]
+        },
+        "equipamento": {
+          "text": "Cavalos podem usar armadura de cavalo compatível. A proteção efetiva deve ser lida do item e dos dados em execução, não de valores numéricos copiados para esta descrição.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Horse.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Cavalos domesticados podem ser reproduzidos com os alimentos vanilla aceitos para esse processo, incluindo cenoura dourada e maçã dourada. As características do filhote são derivadas pelo sistema de atributos da espécie.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractHorse.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:pig",
+      "title": "Porco",
+      "summary": {
+        "text": "O porco é uma criatura passiva de criação que fornece alimento e também pode funcionar como montaria quando recebe o equipamento apropriado.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:pig"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Pig.java"}
+        ]
+      },
+      "sections": {
+        "reproducao": {
+          "text": "Cenouras, batatas e beterrabas fazem parte dos alimentos vanilla usados para atrair e reproduzir porcos. O conjunto efetivo continua sujeito aos dados e ao comportamento carregados pelo jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Pig.java"}
+          ]
+        },
+        "montaria": {
+          "text": "Um porco equipado com sela pode ser montado. A direção da montaria é controlada com uma vara com cenoura, em vez do controle direto usado por cavalos domesticados.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Pig.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:rabbit",
+      "title": "Coelho",
+      "summary": {
+        "text": "O coelho é uma criatura passiva pequena e móvel, encontrada em variantes de aparência diferentes conforme o ambiente. Seu deslocamento é marcado por saltos frequentes.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:rabbit"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Rabbit.java"}
+        ]
+      },
+      "sections": {
+        "reproducao": {
+          "text": "Cenoura, cenoura dourada e dente-de-leão são alimentos vanilla usados para atrair e reproduzir coelhos. O filhote nasce como a forma jovem da mesma espécie.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Rabbit.java"}
+          ]
+        },
+        "recursos": {
+          "text": "Carne de coelho e pele de coelho estão entre os recursos associados ao abate; pé de coelho pode aparecer como drop especial. Chances e quantidades permanecem nos providers e tabelas de loot, não nesta prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Rabbit.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:sheep",
+      "title": "Ovelha",
+      "summary": {
+        "text": "A ovelha é uma criatura passiva de criação cuja principal característica é a lã. A cor da lã pode variar e ser alterada pelo jogador com corantes compatíveis.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:sheep"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Sheep.java"}
+        ]
+      },
+      "sections": {
+        "reproducao": {
+          "text": "Trigo é usado para atrair e reproduzir ovelhas no comportamento vanilla. A cor do filhote é determinada pelo sistema de mistura de cores usado pela espécie quando os pais possuem cores diferentes.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Sheep.java"}
+          ]
+        },
+        "recursos": {
+          "text": "Tesouras removem a lã sem matar a ovelha. Depois de tosquiada, ela pode recuperar a lã ao executar seu comportamento de alimentação de grama, tornando o recurso renovável.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Sheep.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:wolf",
+      "title": "Lobo",
+      "summary": {
+        "text": "O lobo é uma criatura neutra que pode ser domesticada e tornar-se companheira de combate do jogador. Lobos selvagens e domesticados usam estados de comportamento diferentes conforme alvo, dono e contexto.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:wolf"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Wolf.java"}
+        ]
+      },
+      "sections": {
+        "domesticacao": {
+          "text": "Ossos podem domesticar um lobo selvagem. Depois de domesticado, ele recebe vínculo com o dono, pode ser colocado para sentar e normalmente acompanha o jogador quando não está sentado.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Wolf.java"}
+          ]
+        },
+        "combate": {
+          "text": "Um lobo domesticado pode participar de confrontos relacionados ao seu dono, atacando alvos conforme as regras de IA da espécie. Dano, vida e demais valores efetivos devem vir dos atributos em runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Wolf.java"}
+          ]
+        },
+        "variantes": {
+          "text": "A versão 1.21.1 possui variantes de lobo associadas a diferentes contextos de geração. O Compêndio registra a espécie pela identidade técnica principal e deixa detalhes de variante para dados que possam ser consultados sem congelar configuração em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Wolf.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}
