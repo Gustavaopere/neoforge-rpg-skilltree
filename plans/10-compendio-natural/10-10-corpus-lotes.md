@@ -37,7 +37,7 @@ Entradas:
 
 Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-batch2.json`
 
-Estado: `REVIEWED` no conteúdo; fechamento definitivo depende do CI do PR do lote.
+Estado: `REVIEWED`
 
 Entradas:
 
@@ -60,9 +60,37 @@ Entradas:
 - variantes descritas sem transformar regras de worldgen/configuração em texto universal;
 - descrições redigidas em pt-BR e separadas dos fatos técnicos/providers do Compêndio.
 
+## Lote 3 — Vanilla / fauna ambiente e aquática
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-batch3.json`
+
+Estado: `REVIEWED` no conteúdo; fechamento definitivo depende do CI do PR do lote.
+
+Entradas:
+
+1. `ENTITY:minecraft:armadillo` — Tatu
+2. `ENTITY:minecraft:bat` — Morcego
+3. `ENTITY:minecraft:cod` — Bacalhau
+4. `ENTITY:minecraft:dolphin` — Golfinho
+5. `ENTITY:minecraft:glow_squid` — Lula-brilhante
+6. `ENTITY:minecraft:panda` — Panda
+7. `ENTITY:minecraft:polar_bear` — Urso-polar
+8. `ENTITY:minecraft:pufferfish` — Baiacu
+9. `ENTITY:minecraft:salmon` — Salmão
+10. `ENTITY:minecraft:squid` — Lula
+
+### Critérios editoriais aplicados ao lote 3
+
+- identidade de todas as dez entidades confirmada no registry de Minecraft 1.21.1;
+- comportamento descrito a partir do runtime e das classes oficiais correspondentes;
+- sem stats, probabilidades, durações, alcances, cooldowns ou limites de grupo hardcoded em prosa;
+- heranças relevantes preservadas quando informativas, como `AbstractSchoolingFish`, `Bucketable` e `Squid` → `GlowSquid`;
+- relações explícitas Lula ↔ Lula-brilhante permanecem referências editoriais, sem criar fatos técnicos paralelos;
+- texto em pt-BR revisado para não confundir comportamento neutro, passivo, defesa, domesticação ou interação.
+
 ## Estado acumulado
 
-- entidades vanilla reais no corpus: **20**;
-- lotes documentados: **2**;
+- entidades vanilla reais no corpus: **30**;
+- lotes documentados: **3**;
 - namespace atual em produção: `minecraft`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
