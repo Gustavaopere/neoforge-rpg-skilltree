@@ -14,12 +14,11 @@ final class ItemizationOptionalImportBoundaryTest {
     private static final List<String> ALLOWED_IMPORT_PREFIXES = List.of(
         "import java.",
         "import net.minecraft.",
-        "import net.neoforged.",
-        "import dev.gustavopere.rpgskilltree."
+        "import net.neoforged."
     );
 
     @Test
-    void itemizationDomainDoesNotImportOptionalProviderClasses() throws IOException {
+    void itemizationDomainDoesNotImportOptionalOrInternalCompatibilityClasses() throws IOException {
         if (!Files.isDirectory(DOMAIN_ROOT)) {
             fail("itemization domain source directory is missing");
         }
@@ -32,7 +31,7 @@ final class ItemizationOptionalImportBoundaryTest {
                     String trimmed = line.trim();
                     if (!trimmed.startsWith("import ")) continue;
                     if (ALLOWED_IMPORT_PREFIXES.stream().noneMatch(trimmed::startsWith)) {
-                        fail("optional/non-core import in " + file + ":" + lineNumber + " -> " + trimmed);
+                        fail("non-domain import in " + file + ":" + lineNumber + " -> " + trimmed);
                     }
                 }
             }
