@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkPlayerTextCatalog;
 import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkCatalog;
@@ -51,7 +50,7 @@ final class CombatPerkWikiCatalogGeneratorJUnitTest {
         String document = CombatPerkWikiCatalogGenerator.renderDocument();
         for (int number = 1; number <= 100; number++) {
             String code = "A%04d".formatted(number);
-            String nodeId = CombatPerkNodeBinding.nodeIdUnchecked(code);
+            String nodeId = CombatPerkTreeModel.node(code).orElseThrow().nodeId();
             assertTrue(document.contains("`" + nodeId + "`"), code);
         }
         assertFalse(document.contains("`rpgskilltree:martial_001` | A0001"));
