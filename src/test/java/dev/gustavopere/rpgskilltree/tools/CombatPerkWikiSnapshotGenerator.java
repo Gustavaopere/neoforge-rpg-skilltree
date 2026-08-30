@@ -21,7 +21,7 @@ import java.util.Map;
  * back into prose.</p>
  */
 public final class CombatPerkWikiSnapshotGenerator {
-    public static final Path DEFAULT_PATH = Path.of("wiki/generated/combat-perks.json");
+    public static final Path DEFAULT_PATH = Path.of("build/generated-wiki/combat-perks.json");
     private static final String TREE_ID = "rpgskilltree:runtime/combat_perks";
 
     private CombatPerkWikiSnapshotGenerator() {}
