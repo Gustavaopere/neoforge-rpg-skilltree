@@ -22,7 +22,7 @@
 - **Faixa de Poder:** Alto
 - **Ranks Máx.:** 1
 - **Custo por Rank:** 2
-- **Dependências Obrigatórias:** A0016 Distância Ideal + A0017 Interceptação + maestria de lanças ≥ 80. Ponte/rota alternativa não substitui requisitos.
+- **Dependências Obrigatórias:** A0016 Distância Ideal + A0017 Interceptação + maestria de lanças ≥ 80. A chegada por ponte/rota alternativa não substitui esses requisitos.
 - **Pré-requisitos:** A0016 + A0017.
 - **Provider/Mods:** Epic Fight 21.17.3.1 + Minecraft/NeoForge + RPG Skill Tree.
 - **Efeito:** com 3 cargas de Controle de Distância, quando inimigo cruza de fora para dentro da faixa ideal, abre Janela de Interceptação. O próximo hit direto de lança dentro da janela consome todas as cargas, recebe +15% de dano físico elegível e +40% de impacto/pressão de guarda. O mesmo alvo não pode gerar nova janela por 8 s.
@@ -77,3 +77,12 @@ Nenhuma divergência específica foi identificada no caminho auditado. Se a obte
 - [x] lockout de 8 s por alvo;
 - [x] detecção server-side fora→dentro;
 - [ ] revalidar GameTest/dedicated server após atualização do Epic Fight.
+
+## Fechamento Chat 1 V3 — ciclo exato A0011–A0020
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; gate, mastery, janela, consumo, coeficientes, lockout e fallback persistem sem drift.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Gate/topologia:** A0016 + A0017 + `epicfight:spear` ≥80 continuam obrigatórios; rota visual/bridge não substitui requisitos.
+- **Deduplicação:** janela e lockout são por alvo; o hit consumidor usa claim `A0018:consume` e não pode reaplicar o capstone no mesmo root action.
+- **Fallback:** comparação server-side de distância é permitida apenas para provar o cruzamento; se o alcance/distância deixar de ser confiável, A0018 fica indisponível, sem auto-movimento/pull/root.
+- **Resultado:** **APROVADA / FECHADA** no lote A0011–A0020.
