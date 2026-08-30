@@ -50,7 +50,7 @@ O corpus editorial aceita metadata de origem por bloco textual. O contrato atual
         "behavior": {
           "text": "Descrição original baseada em fatos confirmados.",
           "sources": [
-            {"type": "OFFICIAL_CODE", "ref": "..."}
+            {"type": "OFFICIAL_CODE", "ref": "src/main/java/exemplo/EntidadeExemplo.java"}
           ]
         }
       },
