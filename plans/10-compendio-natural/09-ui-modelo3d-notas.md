@@ -39,21 +39,32 @@ Filtros adicionais:
 
 ### A — Tela principal e lista virtualizada
 
-Criar posteriormente:
+Implementação atual:
 
 ```text
-src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumScreen.java
-src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumListView.java
+src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumBrowserModel.java
 src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumSearchIndex.java
 src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumFilterState.java
+src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumScreenLayout.java
+src/main/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumScreenSession.java
+src/main/java/dev/gustavopere/rpgskilltree/runtime/client/CompendiumScreen.java
 ```
 
-- [ ] não renderizar milhares de rows completas fora da viewport;
-- [ ] pesquisa local sobre snapshot já sincronizado;
-- [ ] normalizar acentos para pesquisa sem destruir display pt-BR;
-- [ ] buscar por nome localizado, ID técnico opcional, mod e aliases;
-- [ ] preservar filtro ao abrir/voltar da página;
-- [ ] suportar teclado, mouse e resolução/UI scale variável.
+- [x] não renderizar milhares de rows completas fora da viewport;
+- [x] pesquisa local sobre snapshot já sincronizado;
+- [x] normalizar acentos para pesquisa sem destruir display pt-BR;
+- [x] buscar por nome localizado, ID técnico opcional, mod e aliases;
+- [x] preservar query, filtro, scroll e seleção ao abrir/voltar da página;
+- [x] suportar teclado, mouse e geometria responsiva baseada na resolução escalada do cliente.
+
+Evidência automatizada:
+
+- `CompendiumBrowserModelTest` verifica viewport limitada com **1.505 entradas**, scroll, composição de pesquisa/filtros, teclado, clique e preservação do contexto da lista;
+- `CompendiumSearchIndexTest` verifica pesquisa sem acento por nome localizado, alias, mod e ID técnico sem alterar o texto exibido;
+- `CompendiumScreenLayoutTest` cobre layouts compacto, wide e ultrawide, limites mínimos e capacidade de rows;
+- `CompendiumScreenSessionTest` cobre tradução dos eventos de navegação para o modelo puro.
+
+A matriz manual de UI scale 1–4 e percepção de fluidez continua separada abaixo; os testes automatizados não substituem essa validação visual/client real.
 
 ### B — Página de entrada
 
@@ -75,7 +86,18 @@ Abas/Seções:
 - Notas
 ```
 
-Somente seções com dados devem aparecer. Não preencher UI com `N/A` repetitivo.
+Estado atual:
+
+- [x] cabeçalho mostra nome localizado, mod de origem e estado de descoberta;
+- [x] páginas ocultas permanecem shell/sem detalhes até a política de descoberta permitir;
+- [x] somente fatos confirmados e seções que sobreviveram ao filtro de visibilidade chegam à página do cliente;
+- [x] preview 3D de entidades e preview estático seguro são integrados à página;
+- [x] notas pessoais e favoritos são acessíveis pela própria página;
+- [x] proveniência administrativa permanece opt-in via debug;
+- [ ] `entryRelations` já são projetadas em `CompendiumPageModel`, mas ainda precisam de apresentação/navegação clicável na UI;
+- [ ] seletor de variantes depende da projeção segura de variantes descobertas no 10.13.
+
+A primeira versão física usa seções contínuas em vez de criar abas vazias. Abas reais podem ser introduzidas se a densidade final exigir, mas não devem gerar painéis `N/A` sem conteúdo.
 
 ### C — Modelo 3D de entidade
 
@@ -183,34 +205,46 @@ Em modo avançado/debug, permitir visualizar:
 
 ### H — Acesso
 
-Planejar:
+Estado atual:
 
-- keybind configurável para abrir o Compêndio;
-- botão opcional em UI do RPG quando fizer sentido;
-- item/livro físico é opcional e não deve ser a única forma de acesso;
-- dedicated server não registra classes client-only.
+- [x] keybind configurável `key.rpgskilltree.open_compendium`, registrado no menu de controles e com tecla padrão `J`;
+- [ ] botão adicional na UI do RPG continua opcional e só deve ser incluído se melhorar a navegação sem duplicar controles;
+- [x] item/livro físico continua opcional e não é a única forma de acesso, pois o keybind abre diretamente o Compêndio;
+- [x] registro do keybind e abertura da tela ficam em subscriber `Dist.CLIENT`; dedicated-server smoke permanece parte obrigatória do CI.
 
 ## Testes previstos
 
+Já existentes:
+
 ```text
+src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumBrowserModelTest.java
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumSearchIndexTest.java
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumFilterStateTest.java
-src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumPageModelTest.java
+src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumPageModelFactoryTest.java
+src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumScreenLayoutTest.java
+src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumScreenSessionTest.java
+src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumNotesModelTest.java
 ```
 
 Verificação manual/client test matrix:
 
-- [ ] 1.000+ entradas sem travamento perceptível ao scroll;
-- [ ] pesquisa com/sem acento;
-- [ ] nome duplicado de mods diferentes;
-- [ ] entrada desconhecida/oculta;
-- [ ] renderer 3D vanilla e modded;
-- [ ] renderer com falha usa fallback;
-- [ ] UI scale 1–4;
-- [ ] resolução pequena e ultrawide;
-- [ ] navegação por teclado/mouse;
+- [ ] 1.000+ entradas sem travamento perceptível ao scroll — viewport de 1.505 entradas é coberta automaticamente, mas percepção de fluidez exige cliente real;
+- [x] pesquisa com/sem acento — cobertura automatizada do índice;
+- [ ] nome duplicado de mods diferentes — comportamento de ordenação/filtro precisa de caso explícito/manual;
+- [x] entrada desconhecida/oculta — cobertura automatizada de shell e políticas de visibilidade;
+- [ ] renderer 3D vanilla e modded — requer teste visual/client real;
+- [x] renderer com falha usa fallback — contrato automatizado de fail-soft; validação visual ainda é desejável;
+- [ ] UI scale 1–4 — requer cliente real;
+- [x] resolução pequena e ultrawide — geometria coberta automaticamente; validação visual continua desejável;
+- [x] navegação por teclado/mouse — modelo/sessão cobertos automaticamente; smoke visual continua desejável;
 - [ ] notas persistem conforme contrato do 10.13.
 
 ## Acceptance
 
 O subplano fecha quando o jogador consegue pesquisar e navegar o catálogo de forma responsiva, visualizar entidades com fallback seguro e manter notas sem expor detalhes administrativos por padrão.
+
+Pendências funcionais conhecidas do 10.09 que não dependem de teste manual:
+
+1. apresentação e navegação clicável das `entryRelations` já projetadas no `CompendiumPageModel`;
+2. seletor seguro de variantes, bloqueado até o snapshot/protocolo do 10.13 transportar somente variantes descobertas/autorizadas;
+3. persistência das notas, explicitamente pertencente ao 10.13.
