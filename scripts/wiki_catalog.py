@@ -28,6 +28,7 @@ def replace_generated_block(document: str, marker: str, body: str) -> str:
 def build_catalog_sections(root: Path, locale: str = "pt_br") -> tuple[str, str]:
     root = Path(root)
     rules = _load_rules(root)
+    semantic_combat = _load_semantic_combat_snapshot(root)
     translations = _load_translations(root, locale)
     attributes, behaviors = _load_effects(root)
 
@@ -56,18 +57,26 @@ def build_catalog_sections(root: Path, locale: str = "pt_br") -> tuple[str, str]
             for effect in sorted(behaviors_by_node.get(node_id, []), key=lambda value: value["effectId"])
         )
         perk_lines.append(
-            "| " + " | ".join(
-                [
-                    _cell(f"`{tree_id}`"),
-                    _cell(f"`{node_id}`"),
-                    _cell(name),
-                    _cell(description),
-                    str(node["maxRank"]),
-                    str(node["costPerRank"]),
-                    _cell(requirements),
-                    _cell("; ".join(effects) if effects else "—"),
-                ]
-            ) + " |"
+            _format_perk_row(
+                tree_id,
+                node_id,
+                name,
+                description,
+                node,
+                "; ".join(effects) if effects else "—",
+            )
+        )
+
+    for tree_id, node in semantic_combat:
+        perk_lines.append(
+            _format_perk_row(
+                tree_id,
+                node["id"],
+                node["name"],
+                node.get("description") or "—",
+                node,
+                "—",
+            )
         )
 
     effect_lines = [
@@ -209,6 +218,46 @@ def _load_rules(root: Path) -> list[tuple[str, dict[str, Any]]]:
     return result
 
 
+def _load_semantic_combat_snapshot(root: Path) -> list[tuple[str, dict[str, Any]]]:
+    path = root / "wiki/generated/combat-perks.json"
+    if not path.is_file():
+        return []
+
+    payload = _read_json(path)
+    if not isinstance(payload, dict):
+        raise ValueError(f"semantic combat snapshot root must be an object: {path}")
+    tree_id = payload.get("treeId")
+    if not isinstance(tree_id, str) or not tree_id:
+        raise ValueError(f"semantic combat snapshot requires treeId: {path}")
+    nodes = payload.get("nodes")
+    if not isinstance(nodes, list):
+        raise ValueError(f"semantic combat snapshot requires nodes array: {path}")
+
+    result: list[tuple[str, dict[str, Any]]] = []
+    seen_ids: set[str] = set()
+    for index, node in enumerate(nodes):
+        if not isinstance(node, dict):
+            raise ValueError(f"semantic combat snapshot node {index} must be an object: {path}")
+        for field in ("id", "code", "name", "maxRank", "costPerRank"):
+            if field not in node:
+                raise ValueError(f"semantic combat snapshot node {index} missing {field}: {path}")
+        node_id = node["id"]
+        if not isinstance(node_id, str) or not node_id:
+            raise ValueError(f"semantic combat snapshot node {index} has invalid id: {path}")
+        if node_id in seen_ids:
+            raise ValueError(f"semantic combat snapshot has duplicate node id {node_id}: {path}")
+        seen_ids.add(node_id)
+        if not isinstance(node["name"], str) or not node["name"].strip():
+            raise ValueError(f"semantic combat snapshot node {node_id} has blank name: {path}")
+        description = node.get("description")
+        if description is not None and not isinstance(description, str):
+            raise ValueError(f"semantic combat snapshot node {node_id} has invalid description: {path}")
+        result.append((tree_id, node))
+
+    result.sort(key=lambda value: (value[0], value[1]["id"]))
+    return result
+
+
 def _load_effects(root: Path) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     effects_dir = root / "src/main/resources/data/rpgskilltree/node_effects"
     attributes: list[dict[str, Any]] = []
@@ -264,6 +313,28 @@ def _format_requirements(node: dict[str, Any]) -> str:
     if node.get("startingPoint", False):
         parts.append("Ponto inicial")
     return "; ".join(parts) if parts else "—"
+
+
+def _format_perk_row(
+    tree_id: str,
+    node_id: str,
+    name: str,
+    description: str,
+    node: dict[str, Any],
+    effects: str,
+) -> str:
+    return "| " + " | ".join(
+        [
+            _cell(f"`{tree_id}`"),
+            _cell(f"`{node_id}`"),
+            _cell(name),
+            _cell(description),
+            str(node["maxRank"]),
+            str(node["costPerRank"]),
+            _cell(_format_requirements(node)),
+            _cell(effects),
+        ]
+    ) + " |"
 
 
 def _format_attribute_summary(effect: dict[str, Any]) -> str:
