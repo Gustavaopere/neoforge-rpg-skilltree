@@ -70,3 +70,12 @@ Nenhuma divergência específica identificada. Novos adapters de lança devem re
 - [x] correlação NeoForge ↔ Epic Fight;
 - [x] classificação SPEAR no adapter;
 - [ ] revalidar quando o pipeline crítico ou a versão do Epic Fight mudar.
+
+## Fechamento Chat 1 V3 — ciclo exato A0011–A0020
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; dependência, chance, gate, hook, fallback e regra permanecem coerentes.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Pipeline canônico:** uma ação de lança pode produzir no máximo uma resolução crítica; NeoForge, Epic Fight e qualquer bridge futura precisam correlacionar a mesma root action.
+- **Providers de atributos:** Pufferfish/Apothic ou gear com crítico não autorizam uma segunda rolagem MARTIAL; integração futura deve entrar no resolvedor canônico ou permanecer separada quando semanticamente distinta.
+- **Fail-closed:** fontes não classificadas inequivocamente como SPEAR não recebem A0015.
+- **Resultado:** **APROVADA / FECHADA** no lote A0011–A0020.
