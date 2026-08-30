@@ -460,8 +460,17 @@ public final class CompendiumEditorialResourceLoader {
 
     private static int requireInt(JsonObject object, String key, ResourceLocation source, String label) {
         JsonElement element = requireElement(object, key, source, label);
+        if (!element.isJsonPrimitive() || !element.getAsJsonPrimitive().isNumber()) {
+            throw validation(source, label, label + " must be an integer");
+        }
         try {
-            return element.getAsInt();
+            java.math.BigDecimal value = element.getAsBigDecimal();
+            if (value.stripTrailingZeros().scale() > 0) {
+                throw validation(source, label, label + " must be an integer");
+            }
+            return value.intValueExact();
+        } catch (CompendiumEditorialValidationException failure) {
+            throw failure;
         } catch (RuntimeException failure) {
             throw validation(source, label, label + " must be an integer", failure);
         }
