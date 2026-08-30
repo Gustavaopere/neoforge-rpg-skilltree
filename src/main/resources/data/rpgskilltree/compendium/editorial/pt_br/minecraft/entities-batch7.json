@@ -270,7 +270,7 @@
           "sources": [
             {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/warden/Warden.java"},
             {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/warden/WardenAi.java"},
-            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/warden/SonicBoom.java"}
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/ai/behavior/warden/SonicBoom.java"}
           ]
         }
       },
