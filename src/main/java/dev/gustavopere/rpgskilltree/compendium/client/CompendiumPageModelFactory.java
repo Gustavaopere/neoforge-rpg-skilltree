@@ -1,16 +1,19 @@
 package dev.gustavopere.rpgskilltree.compendium.client;
 
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntry;
+import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryId;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumFact;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumRelation;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumRelationTargetKind;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumSection;
 import dev.gustavopere.rpgskilltree.compendium.api.FactVisibility;
 import dev.gustavopere.rpgskilltree.compendium.api.VisibilityPolicy;
+import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialContent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 /** Builds a client page without leaking undiscovered or administrative facts. */
 public final class CompendiumPageModelFactory {
@@ -21,11 +24,28 @@ public final class CompendiumPageModelFactory {
         CompendiumClientEntry clientEntry,
         boolean admin
     ) {
+        return create(entry, clientEntry, admin, Optional.empty(), Set.of());
+    }
+
+    public static Optional<CompendiumPageModel> create(
+        CompendiumEntry entry,
+        CompendiumClientEntry clientEntry,
+        boolean admin,
+        Optional<CompendiumEditorialContent> editorial,
+        Set<CompendiumEntryId> authorizedEntryIds
+    ) {
         Objects.requireNonNull(entry, "entry");
         Objects.requireNonNull(clientEntry, "clientEntry");
+        Objects.requireNonNull(editorial, "editorial");
+        Objects.requireNonNull(authorizedEntryIds, "authorizedEntryIds");
         if (!entry.id().equals(clientEntry.id())) {
             throw new IllegalArgumentException("client entry identity does not match canonical entry");
         }
+        editorial.ifPresent(content -> {
+            if (!entry.id().equals(content.entryId())) {
+                throw new IllegalArgumentException("editorial identity does not match canonical entry");
+            }
+        });
 
         boolean discovered = clientEntry.discovered();
         if (!admin && !discovered && entry.visibilityPolicy() == VisibilityPolicy.HIDE_ENTRY_UNTIL_DISCOVERED) {
@@ -42,6 +62,11 @@ public final class CompendiumPageModelFactory {
         List<CompendiumRelation> relations = detailsVisible
             ? entryRelations(entry.relations())
             : List.of();
+        Optional<CompendiumEditorialContent> projectedEditorial = detailsVisible
+            ? editorial.map(content -> content.withReferences(
+                content.references().stream().filter(authorizedEntryIds::contains).toList()
+            ))
+            : Optional.empty();
 
         CompendiumDebugInfo debugInfo = new CompendiumDebugInfo(
             entry.id().resourceLocation(),
@@ -59,7 +84,8 @@ public final class CompendiumPageModelFactory {
             detailsVisible,
             sections,
             relations,
-            debugInfo
+            debugInfo,
+            projectedEditorial
         ));
     }
 
