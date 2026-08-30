@@ -22,6 +22,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0021-A0030.md`
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0031-A0040.md`
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0041-A0050.md`
+- `AUDITORIA-RETROATIVA-PROVIDERS-A0051-A0060.md`
 
 Novos lotes devem ser criados aqui, nunca novamente na raiz de `perks/`.
 
