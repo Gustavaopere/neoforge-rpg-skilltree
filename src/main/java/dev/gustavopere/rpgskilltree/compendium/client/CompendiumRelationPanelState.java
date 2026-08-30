@@ -39,18 +39,17 @@ public final class CompendiumRelationPanelState {
         if (!open) firstVisibleRow = 0;
     }
 
-    /** Keeps an open panel attached to the current entry and closes it when no safe links remain. */
+    /**
+     * Keeps an open panel attached only to its original entry. Navigation to another entry, or
+     * losing all safe relation links for the same entry, closes the panel and resets its scroll.
+     */
     public void sync(CompendiumEntryId entryId, int relationCount) {
         Objects.requireNonNull(entryId, "entryId");
         requireCount(relationCount);
         if (!open) return;
-        if (relationCount == 0) {
+        if (!entryId.equals(owner) || relationCount == 0) {
             close();
             return;
-        }
-        if (!entryId.equals(owner)) {
-            owner = entryId;
-            firstVisibleRow = 0;
         }
         firstVisibleRow = Math.min(firstVisibleRow, Math.max(0, relationCount - 1));
     }
