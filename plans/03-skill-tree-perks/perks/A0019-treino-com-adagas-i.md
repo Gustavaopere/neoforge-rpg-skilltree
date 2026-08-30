@@ -47,3 +47,12 @@
 - [x] classificação `dagger` provider-native;
 - [x] fail-closed para categoria desconhecida;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Fechamento Chat 1 V3 — ciclo exato A0011–A0020
+
+- **Re-fetch canônico:** Notion consultado novamente em 2026-08-30; propriedades, gate, hook, fallback e regra permanecem alinhados.
+- **Mutação no Notion neste ciclo:** não necessária.
+- **Provider/versão:** Epic Fight 21.17.3.1 é o owner da família DAGGER; armas externas só entram quando a capability provider-native as classifica.
+- **Fail-closed:** item desconhecido permanece sem A0019; não inferir família por nome, material, aparência, velocidade ou dano-base.
+- **Cobertura periférica:** compats/addons de armas podem alimentar a capability Epic Fight, mas não recebem classificação paralela criada pelo RPG Skill Tree.
+- **Resultado:** **APROVADA / FECHADA** no lote A0011–A0020.
