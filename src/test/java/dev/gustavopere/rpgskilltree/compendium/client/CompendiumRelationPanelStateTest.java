@@ -2,13 +2,12 @@ package dev.gustavopere.rpgskilltree.compendium.client;
 
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryId;
 import dev.gustavopere.rpgskilltree.compendium.api.CompendiumEntryKind;
-import java.util.List;
 import java.util.Objects;
 
 public final class CompendiumRelationPanelStateTest {
     public static void main(String[] args) {
         panelOpensOnlyForAvailableRelations();
-        changingEntryResetsScrollAndMissingRelationsClosePanel();
+        changingEntryClosesPanelAndMissingRelationsClosePanel();
         viewportAndScrollStayBounded();
         System.out.println("CompendiumRelationPanelStateTest: PASS");
     }
@@ -29,7 +28,7 @@ public final class CompendiumRelationPanelStateTest {
         isFalse(state.isOpen());
     }
 
-    private static void changingEntryResetsScrollAndMissingRelationsClosePanel() {
+    private static void changingEntryClosesPanelAndMissingRelationsClosePanel() {
         CompendiumRelationPanelState state = new CompendiumRelationPanelState();
         CompendiumEntryId wolf = id("minecraft:wolf");
         CompendiumEntryId fox = id("minecraft:fox");
@@ -39,13 +38,16 @@ public final class CompendiumRelationPanelStateTest {
         eq(5, state.firstVisibleRow());
 
         state.sync(fox, 4);
-        isTrue(state.isOpen());
+        isFalse(state.isOpen());
         eq(0, state.firstVisibleRow());
-        eq(fox, state.owner().orElseThrow());
+        isTrue(state.owner().isEmpty());
 
+        state.toggle(fox, 4);
+        isTrue(state.isOpen());
         state.sync(fox, 0);
         isFalse(state.isOpen());
         eq(0, state.firstVisibleRow());
+        isTrue(state.owner().isEmpty());
     }
 
     private static void viewportAndScrollStayBounded() {
