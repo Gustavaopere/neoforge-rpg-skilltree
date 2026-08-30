@@ -56,3 +56,15 @@ A0016 é a Notable de Controle de Distância. Exige A0015 ≥2. Hit direto de la
 - **Volcanoes / Enshrouded:** NÃO DEVE SER INTEGRADO à geração de cargas; hazards, Shroud, Exposure ou Story não substituem distância/alcance do combate.
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
 - **Chat 2:** preservar direct-player provenance e o fail-closed de alcance; não atribuir cargas por eventos secundários ou companion-owned.
+
+## Chat 2 — revalidação de implementação — PR #237
+
+- [x] Gate A0015 ≥2, faixa 70–100%, cap 3 e duração 5/7 s preservados.
+- [x] Alcance continua provider-native/server-side; nenhuma heurística por animação.
+- [x] Miss e stagger forte usam receipts reconhecidos do Epic Fight `21.17.3.1` exato.
+- [x] `ARCANE_BACKLASH`, companions e demais fontes indiretas não geram/renovam cargas.
+- [x] Deduplicação, expiração e cleanup permanecem ativos.
+- [x] Regressões JUnit e NeoForge GameTests verdes no CI #2147 no mesmo HEAD revalidado.
+- [x] Build, JAR e dedicated-server smoke verdes no CI #2147 no mesmo HEAD revalidado.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #237 na `main`.

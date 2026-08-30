@@ -68,7 +68,7 @@ Nenhuma divergência específica identificada nesta leitura. A validade do event
 - [x] adapter `ModifyAttackSpeedEvent` presente;
 - [x] classificação SPEAR provider-native;
 - [x] fail-closed por ausência de família/hook;
-- [ ] revalidar integração e dedicated-server smoke após atualização do Epic Fight.
+- [x] revalidação de integração e dedicated-server smoke no CI #2147 para Epic Fight `21.17.3.1`.
 
 ## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
 
@@ -79,3 +79,15 @@ Nenhuma divergência específica identificada nesta leitura. A validade do event
 - **Notion:** re-fetch em 2026-08-30 sem drift; nenhuma mutação artificial.
 - **Fail-closed:** se o moveset/provider não expuser cadência estável, a perk fica inativa em vez de virar stamina, movimento, dano ou animação.
 - **Chat 2:** nenhuma nova implementação além de preservar a boundary existente.
+
+## Chat 2 — revalidação de implementação — PR #237
+
+- [x] Gate A0013 ≥2 e coeficiente +2%/rank preservados.
+- [x] `ModifyAttackSpeedEvent` continua o único hook semântico de cadência.
+- [x] Epic Fight é aceito somente em `21.17.3.1` exato.
+- [x] Sem família/hook seguro, o efeito permanece fail-closed; não migra para stamina, movimento, dano ou animação.
+- [x] Companions e fontes indiretas não herdam a perk do dono.
+- [x] Regressões JUnit e NeoForge GameTests verdes no CI #2147 no mesmo HEAD revalidado.
+- [x] Build, JAR e dedicated-server smoke verdes no CI #2147 no mesmo HEAD revalidado.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #237 na `main`.

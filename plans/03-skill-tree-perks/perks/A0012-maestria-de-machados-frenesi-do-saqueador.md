@@ -35,7 +35,7 @@
 ## Evidência técnica
 
 - `NotionCombatPerkRules`: threshold 75, pico 100, gasto 40, impacto 1,10/1,20, pressão 1,40, `CORE` 1,5, exhaustion 0,015 e stamina regen −0,15.
-- `ColdSweatFrenzyBridge`: verifica mod/version prefix 2.4.2, resolve `Temperature.add(..., Trait.CORE, ...)` e retorna sucesso/falha da escrita real.
+- `ColdSweatFrenzyBridge`: verifica Cold Sweat 2.4.2 por igualdade exata, resolve `Temperature.add(..., Trait.CORE, ...)` e retorna sucesso/falha da escrita real.
 - `A0001A0020EpicFightHooks.onDamagePre`: valida o mesmo evento server-authoritative, paga CORE primeiro, aplica exhaustion somente após sucesso e só então informa ao policy que o custo corporal foi pago.
 - `A0001A0020CombatPolicy.beforeHit`: baseline/pico exigem `frenzyBodyCostPaid`; o gasto de 40 Fúria do pico acontece somente depois desse receipt.
 - A0011 continua com precedência abaixo do pico; o adapter não cobra o custo corporal de A0012 se o gasto de A0011 derrubaria a Fúria abaixo de 75 antes de qualquer benefício de Frenesi.
@@ -67,3 +67,17 @@
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
 - **Fail-closed:** ausência/falha do bridge Cold Sweat continua desativando a parcela dependente; nenhuma capacidade dos quatro projetos próprios substitui esse requisito.
 - **Chat 2:** preservar a ordem CORE → exhaustion → benefício/gasto e validar que fontes ambientais Volcanoes não são debitadas/reaplicadas pelo adapter A0012.
+
+## Chat 2 — revalidação de implementação — PR #237
+
+- [x] Gate A0010/A0011/mastery e transação PRE preservados.
+- [x] Cold Sweat aceita somente a versão exata `2.4.2`; versões derivadas/prerelease são rejeitadas.
+- [x] Falha de versão, resolução da API ou invocação permanece fail-closed.
+- [x] Diagnósticos de compatibilidade são bounded/one-shot, sem spam.
+- [x] Não existe segunda temperatura nem double-charge de calor Volcanoes.
+- [x] CORE → exhaustion → benefício/gasto mantém a ordem causal aprovada.
+- [x] Provenance indireta/companion/magia é rejeitada antes de qualquer bônus ou gasto.
+- [x] Regressões JUnit e NeoForge GameTests verdes no CI #2147 no mesmo HEAD revalidado.
+- [x] Build, JAR e dedicated-server smoke verdes no CI #2147 no mesmo HEAD revalidado.
+
+**Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #237 na `main`.
