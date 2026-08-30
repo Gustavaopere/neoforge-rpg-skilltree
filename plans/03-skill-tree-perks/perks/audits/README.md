@@ -8,6 +8,10 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0001-A0020-REVALIDACAO-IMPLEMENTACAO-CHAT2.md`
 - `AUDITORIA-A0021-A0030-IMPLEMENTACAO-CHAT2.md`
 
+## Auditorias pós-merge e pendências técnicas — Chat 3
+
+- `AUDITORIA-CHAT3-A0001-A0010-PENDENCIAS-TECNICAS.md`
+
 ## Auditoria consolidada histórica
 
 - `AUDITORIA-A0001-A0020.md`
@@ -27,5 +31,5 @@ Novos lotes devem ser criados aqui, nunca novamente na raiz de `perks/`.
 1. Um arquivo por lote/ciclo quando a auditoria é operacionalmente distinta.
 2. Não consolidar tudo em um único arquivo gigante: isso piora diffs, revisão e rastreabilidade de PRs.
 3. `STATUS.md` é o índice de estado; esta pasta guarda a evidência detalhada.
-4. Chat 1 e Chat 2 devem procurar a auditoria correspondente em `plans/03-skill-tree-perks/perks/audits/`.
+4. Chat 1, Chat 2 e Chat 3 devem procurar a auditoria correspondente em `plans/03-skill-tree-perks/perks/audits/`.
 5. Dossiês `Axxxx-*.md` permanecem fora desta pasta para navegação direta por perk.
