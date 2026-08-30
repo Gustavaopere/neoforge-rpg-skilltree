@@ -6,6 +6,9 @@ import java.util.Objects;
 
 /** Server-authoritative transient state for A0021-A0040. Nothing here is persisted. */
 public final class A0021A0040CombatState {
+    private static final double FORCED_REPOSITION_MOTION_EPSILON_SQUARED = 1.0E-4D;
+    private static final int FORCED_REPOSITION_RELEASE_QUIET_TICKS = 3;
+
     private final Map<String, Actor> actors = new HashMap<>();
     private final Map<String, Long> claims = new HashMap<>();
 
@@ -36,7 +39,8 @@ public final class A0021A0040CombatState {
     /**
      * Samples the approved A0022 geometry on server positions. The angular term compares the
      * target-to-player horizontal vector at the baseline and current sample, so camera rotation
-     * alone cannot satisfy it. Teleport/knockback callers invalidate this route explicitly.
+     * alone cannot satisfy it. Teleports invalidate the route immediately; knockback suppresses
+     * sampling until forced horizontal motion has remained quiet for three consecutive ticks.
      */
     public synchronized boolean sampleFallbackReposition(
         String actorId,
@@ -48,6 +52,10 @@ public final class A0021A0040CombatState {
         long now
     ) {
         Actor a=actor(actorId);String target=require(targetId);
+        if(a.fallbackRepositionSuppressed){
+            clearFallbackReposition(a);
+            return false;
+        }
         RepositionSample sample=a.repositionSample;
         if(sample==null||!sample.targetId.equals(target)){
             a.repositionSample=new RepositionSample(target,playerX,playerZ,targetX,targetZ);
@@ -67,7 +75,40 @@ public final class A0021A0040CombatState {
         return true;
     }
 
-    public synchronized void invalidateFallbackReposition(String actorId){Actor a=actor(actorId);a.repositionSample=null;a.fallbackRepositionUntil=0L;a.fallbackDanceActivationUntil=0L;}
+    public synchronized void invalidateFallbackReposition(String actorId){clearFallbackReposition(actor(actorId));}
+
+    /** Starts a conservative exclusion window for knockback/other explicitly forced displacement. */
+    public synchronized void beginForcedRepositionSuppression(String actorId){
+        Actor a=actor(actorId);
+        a.fallbackRepositionSuppressed=true;
+        a.forcedRepositionQuietTicks=0;
+        clearFallbackReposition(a);
+    }
+
+    public synchronized boolean fallbackRepositionSuppressed(String actorId){
+        Actor a=actors.get(require(actorId));
+        return a!=null&&a.fallbackRepositionSuppressed;
+    }
+
+    /**
+     * Returns whether forced-motion suppression remains active after this server tick. A release
+     * requires three consecutive ticks with negligible horizontal velocity; any renewed movement
+     * resets the quiet counter. No geometric baseline survives the suppression window.
+     */
+    public synchronized boolean updateForcedRepositionSuppression(String actorId,double horizontalMotionSquared){
+        Actor a=actors.get(require(actorId));
+        if(a==null||!a.fallbackRepositionSuppressed)return false;
+        clearFallbackReposition(a);
+        if(!Double.isFinite(horizontalMotionSquared)||horizontalMotionSquared>FORCED_REPOSITION_MOTION_EPSILON_SQUARED){
+            a.forcedRepositionQuietTicks=0;
+            return true;
+        }
+        a.forcedRepositionQuietTicks++;
+        if(a.forcedRepositionQuietTicks<FORCED_REPOSITION_RELEASE_QUIET_TICKS)return true;
+        a.fallbackRepositionSuppressed=false;
+        a.forcedRepositionQuietTicks=0;
+        return false;
+    }
 
     public synchronized int abalo(String actorId,String target,long now){TargetStack s=actor(actorId).abalo.get(require(target));if(s==null)return 0;if(s.expiresAt<=now){actor(actorId).abalo.remove(target);return 0;}return s.count;}
     public synchronized int addAbalo(String actorId,String target,long now){Actor a=actor(actorId);String t=require(target);int count=Math.min(NotionCombatPerkRules.ABALO_CAP,abalo(actorId,t,now)+1);a.abalo.put(t,new TargetStack(count,Math.addExact(now,NotionCombatPerkRules.ABALO_DURATION_MILLIS)));return count;}
@@ -95,13 +136,14 @@ public final class A0021A0040CombatState {
     public synchronized void clearActor(String actorId){actors.remove(require(actorId));String prefix=actorId+'\0';claims.keySet().removeIf(k->k.startsWith(prefix));}
     public synchronized void clearAll(){actors.clear();claims.clear();}
 
+    private static void clearFallbackReposition(Actor a){a.repositionSample=null;a.fallbackRepositionUntil=0L;a.fallbackDanceActivationUntil=0L;}
     private Actor actor(String id){return actors.computeIfAbsent(require(id),k->new Actor());}
     private static String require(String s){Objects.requireNonNull(s);if(s.isBlank())throw new IllegalArgumentException("blank id");return s;}
     private record TargetStack(int count,long expiresAt){}
     private record ReapMark(long expiresAt,boolean mature,double lastHealthFraction){}
     private record RepositionSample(String targetId,double playerX,double playerZ,double targetX,double targetZ){}
     private static final class Actor{
-        int flow;long flowExpiresAt,nextIdleDecayAt,dodgeRepositionUntil,fallbackRepositionUntil,dodgeDanceActivationUntil,fallbackDanceActivationUntil,danceUntil;boolean danceMoveAvailable,danceHitAvailable;RepositionSample repositionSample;
+        int flow;long flowExpiresAt,nextIdleDecayAt,dodgeRepositionUntil,fallbackRepositionUntil,dodgeDanceActivationUntil,fallbackDanceActivationUntil,danceUntil;boolean danceMoveAvailable,danceHitAvailable,fallbackRepositionSuppressed;int forcedRepositionQuietTicks;RepositionSample repositionSample;
         final Map<String,Long> blindSpotCooldown=new HashMap<>(),demolitionWindow=new HashMap<>(),demolitionCooldown=new HashMap<>(),sunderedUntil=new HashMap<>(),bonebreakerCooldown=new HashMap<>();
         final Map<String,TargetStack> abalo=new HashMap<>(),trauma=new HashMap<>();final Map<String,ReapMark> reapMarks=new HashMap<>();
     }
