@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class ItemizationDomainContractTest {
     @Test
@@ -34,7 +33,12 @@ final class ItemizationDomainContractTest {
         );
 
         UUID raw = UUID.fromString("98ea7d65-995e-4a0d-b589-e68021060436");
-        assertEquals(raw, ItemizationIdentity.of(raw).instanceId());
+        ItemizationIdentity identity = ItemizationIdentity.of(raw, 0x5A17C0DEL, 1);
+        assertEquals(raw, identity.instanceId());
+        assertEquals(0x5A17C0DEL, identity.deterministicSeed());
+        assertEquals(1, identity.schemaVersion());
+        assertThrows(IllegalArgumentException.class, () -> ItemizationIdentity.of(raw, 1L, 0));
+
         assertEquals(420, ItemPower.of(420).value());
         assertThrows(IllegalArgumentException.class, () -> ItemPower.of(-1));
     }
@@ -130,7 +134,11 @@ final class ItemizationDomainContractTest {
 
     private static ItemizationState state(ItemRank rank, Map<ModifierFamily, List<RolledModifier>> modifiers) {
         return new ItemizationState(
-            ItemizationIdentity.of(UUID.fromString("17dd4eaf-8bee-4e10-86fe-22cb5c620601")),
+            ItemizationIdentity.of(
+                UUID.fromString("17dd4eaf-8bee-4e10-86fe-22cb5c620601"),
+                0x17DD4EAFL,
+                1
+            ),
             rank,
             ItemPower.of(100),
             GenerationSource.LOOT,
