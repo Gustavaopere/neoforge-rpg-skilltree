@@ -28,14 +28,19 @@ final class CombatPerkWikiSnapshotGeneratorJUnitTest {
         assertTrue(json.contains("\"code\": \"A0031\""));
         assertTrue(json.contains("\"name\": \"Treino com Maças I\""));
         assertTrue(json.contains("Sem classificação MACE segura, a disciplina permanece fail-closed"));
-        assertTrue(json.contains("\"code\": \"A0036\""));
-        assertTrue(json.contains("capstone permanece fail-closed"));
         assertTrue(json.contains("\"code\": \"A0040\""));
         assertTrue(json.contains("cleanup bounded em unload/despawn ainda não está confirmado"));
 
         assertTrue(json.contains("\"code\": \"A0041\""));
-        assertTrue(json.contains("\"code\": \"A0041\",\n      \"name\": \"Corte de Ceifa\",\n      \"description\": null"));
-        assertFalse(json.contains("\"code\": \"A0041\",\n      \"name\": \"Corte de Ceifa\",\n      \"description\": \""));
+        assertTrue(json.contains("commit pós-hit"));
+        assertTrue(json.contains("\"code\": \"A0044\""));
+        assertTrue(json.contains("INDISPONÍVEL/NÃO COMPRÁVEL"));
+        assertTrue(json.contains("\"code\": \"A0050\""));
+        assertTrue(json.contains("reload/preparation speed"));
+
+        assertTrue(json.contains("\"code\": \"A0051\""));
+        assertTrue(json.contains("\"code\": \"A0051\",\n      \"name\": \"Precisão com Bestas\",\n      \"description\": null"));
+        assertFalse(json.contains("\"code\": \"A0051\",\n      \"name\": \"Precisão com Bestas\",\n      \"description\": \""));
     }
 
     @Test

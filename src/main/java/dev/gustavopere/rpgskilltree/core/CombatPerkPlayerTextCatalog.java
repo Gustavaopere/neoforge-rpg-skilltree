@@ -157,6 +157,36 @@ public final class CombatPerkPlayerTextCatalog {
         add(entries, "A0040",
             "O primeiro hit direto SCYTHE aplica Marca da Ceifa por 8 s/10 s; reaplicar renova a mesma marca jogador→alvo. A Marca só amadurece quando o alvo já estava marcado e a vida cruza de ≥50% para <50%. Dano periódico, projétil derivado, proc encadeado, reflexão, companion/summon, fake player e callback duplicado não aplicam nem duplicam a Marca. A classificação SCYTHE continua fail-closed. Aplicação e maturação estão presentes, mas o cleanup bounded em unload/despawn ainda não está confirmado; A0040 é Notable, não terminal.",
             "Gateway `combat_scythe` acessível + A0039 Precisão com Foices ≥ 2 ranks.");
+        add(entries, "A0041",
+            "Com Marca da Ceifa Madura do mesmo jogador e alvo em ≤50% de vida, um hit direto SCYTHE confirmado pode consumir uma única Marca Madura para +12%/+20% de dano físico e +15%/+25% de impacto quando esse componente existir. A classificação SCYTHE é provider-native ou mapping versionado explícito; unknown falha fechada. O PRE pode apenas reservar a operação: o consumo irreversível da Marca exige commit pós-hit com dano efetivo >0. O runtime atual ainda consome no PRE, portanto a implementação permanece parcial até `P-A0041-01`.",
+            "A0038 Treino com Foices II ≥ 2 + A0039 Precisão com Foices ≥ 1 + gateway `combat_scythe`.");
+        add(entries, "A0042",
+            "Uma `eligible_kill` canônica por golpe direto SCYTHE contra inimigo com Marca Madura arma Colheita de Batalha por 6 s; o próximo hit direto SCYTHE contra alvo diferente aplica imediatamente Marca da Ceifa e encerra a janela. Cooldown 10/9/8 s em mastery 80/90/100. O `eligible_kill` precisa de anti-abuso e dedup causal entre producers; training/summon/companion/Backlash/hazard não qualificam. O refund de Stamina permanece 0 sem receipt causal pós-consumo do custo real; somente essa parcela é omitida.",
+            "A0040 Marca da Ceifa + A0041 Corte de Ceifa + mastery `combat:scythe` ≥ 80.");
+        add(entries, "A0043",
+            "+3% de dano com arcos por rank, máximo +9%, para projétil BOW físico com owner real. `BowItem`/subclasse é classificação segura; item externo exige capability/categoria provider-native ou mapping versionado explícito; unknown = fail-closed. A mastery canônica `epicfight:bow` concede +10 uma vez por tipo hostil inédito, mas o producer de Mastery BOW ainda não existe na rota vanilla/NeoForge; aquisição por esse gate permanece não confirmada. Não usar `combat:bow` como ledger paralela.",
+            "nível 8 + `epicfight:bow` ≥ 60 + Gateway `epic_bow`; 60 = 6 tipos hostis distintos.");
+        add(entries, "A0044",
+            "+2% de ritmo efetivo de preparo/disparo com arcos por rank, máximo +6%, somente com binding server-authoritative semântico de draw/preparation speed. Projectile speed, movimento, stamina, dano, tooltip e edição de animação não são substitutos. Sem binding válido, A0044 é INDISPONÍVEL/NÃO COMPRÁVEL: nenhum ponto pode ser gasto e nenhum rank pode existir como no-op; A0047 permanece estruturalmente bloqueada.",
+            "A0043 Treino com Arcos I ≥ 2 + gateway `epic_bow` + binding válido de draw/preparation speed.");
+        add(entries, "A0045",
+            "+3% de chance crítica com arcos por rank, máximo +9%, em projéteis BOW elegíveis. Cada projétil/root action participa de no máximo uma resolução crítica canônica; critical receipt do provider é consumido pelo mesmo resolver e nunca causa segunda rolagem. A compra continua dependente de mastery BOW alcançável pela correção `P-A0043-01`.",
+            "A0043 Treino com Arcos I ≥ 1 + gateway `epic_bow`.");
+        add(entries, "A0046",
+            "Foco é recurso transitório 0–100. Mira estável com BOW tensionado, sem sprint/interrupção, gera +8 Foco/s no rank 1; rank 2 aplica +25% apenas aos ganhos. Hit BOW confirmado a ≥12 blocos da origem registrada: +10/+12,5 Foco uma vez por projétil. Perdas incluem heavy impact hostil −25, cancelamento ≥80% −15, sprint com arco em uso −12/s e mudança angular acumulada >45°/5 ticks −10 com intervalo interno de 0,5 s. O heavy-impact receipt e os escalares corporais ainda são parciais; temperatura, hidratação e exhaustion só entram via providers canônicos e a ausência de um eixo omite somente seu escalar.",
+            "A0045 Precisão com Arcos ≥ 2 + gateway `epic_bow`; 2 ranks.");
+        add(entries, "A0047",
+            "Disparo totalmente tensionado com ≥25 Foco e ≥0,5 s de mira estável pode comprometer 25 Foco. Com provider seguro de launch/projectile speed, recebe +10%/+15% no lançamento; no impacto do mesmo projétil a ≥12 blocos da origem registrada, +8%/+12% de penetração física per-hit. Sem provider semântico de speed, essa parcela é omitida; `setDeltaMovement` não é substituto. A dependência de A0044 é estrutural: se A0044 estiver indisponível/não comprável, A0047 também fica indisponível/não comprável e não existe bypass.",
+            "A0044 Treino com Arcos II ≥ 2 + A0045 Precisão com Arcos ≥ 1 + gateway `epic_bow`; 2 ranks.");
+        add(entries, "A0048",
+            "Com ≥80 Foco e mira estável ≥1,25 s, o próximo disparo BOW totalmente tensionado consome 50 Foco. Se o mesmo projétil atingir alvo elegível a ≥15 blocos, recebe +20% de dano físico e +15% de penetração. Miss ou hit curto não devolve o custo. Cooldown 8/7/6 s em mastery 80/90/100. A implementação do shot existe, mas a aquisição depende do producer de Mastery BOW `P-A0043-01` e de prova gameplay/provider-present.",
+            "A0046 Foco de Mira + A0047 Distância Dominada + mastery `epicfight:bow` ≥ 80.");
+        add(entries, "A0049",
+            "+3% de dano com bestas por rank, máximo +9%, para projétil CROSSBOW físico com owner real. `CrossbowItem`/subclasse é classificação segura; item externo exige capability/categoria provider-native ou mapping versionado explícito; unknown = fail-closed. A mastery canônica `epicfight:crossbow` concede +10 uma vez por tipo hostil inédito, mas o producer de Mastery CROSSBOW ainda não existe na rota vanilla/NeoForge; aquisição por esse gate permanece não confirmada. Não usar `combat:crossbow` como ledger paralela.",
+            "nível 8 + `epicfight:crossbow` ≥ 60 + Gateway `epic_crossbow`; 60 = 6 tipos hostis distintos.");
+        add(entries, "A0050",
+            "+2% de ritmo efetivo de recarga/preparo com bestas por rank, máximo +6%, somente com binding server-authoritative semântico de reload/preparation speed. Projectile speed, mobilidade, stamina, dano, tooltip ou timers heurísticos não são substitutos. Sem binding válido, A0050 é INDISPONÍVEL/NÃO COMPRÁVEL: nenhum ponto pode ser gasto e nenhum rank fantasma/no-op pode existir; dependências posteriores permanecem insatisfeitas.",
+            "A0049 Treino com Bestas I ≥ 2 + gateway `epic_crossbow` + binding válido de reload/preparation speed.");
         return Map.copyOf(entries);
     }
 
