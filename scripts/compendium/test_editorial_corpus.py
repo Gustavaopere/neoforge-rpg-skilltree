@@ -177,6 +177,16 @@ class EditorialCorpusContractTest(unittest.TestCase):
             self.assertNotEqual(0, result.returncode)
             self.assertIn("placeholder", result.stderr.lower())
 
+    def test_source_reference_placeholder_is_rejected(self) -> None:
+        tmp, _, corpus, coverage_path = self.fixture_root()
+        with tmp:
+            broken = entry()
+            broken["summary"]["sources"][0]["ref"] = "..."
+            write_json(corpus / "minecraft/entities.json", pack([broken]))
+            result = run_validator(corpus, coverage_path)
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn("placeholder", result.stderr.lower())
+
     def test_prose_requires_explicit_sources(self) -> None:
         tmp, _, corpus, coverage_path = self.fixture_root()
         with tmp:
@@ -213,6 +223,16 @@ class EditorialCorpusContractTest(unittest.TestCase):
             self.assertNotEqual(0, result.returncode)
             self.assertIn("directory namespace", result.stderr.lower())
 
+    def test_availability_is_required(self) -> None:
+        tmp, _, corpus, coverage_path = self.fixture_root()
+        with tmp:
+            broken = entry()
+            del broken["availability"]
+            write_json(corpus / "minecraft/entities.json", pack([broken]))
+            result = run_validator(corpus, coverage_path)
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn("availability", result.stderr.lower())
+
     def test_runtime_absent_entry_requires_optional_or_legacy_reason(self) -> None:
         tmp, _, corpus, coverage_path = self.fixture_root()
         with tmp:
@@ -236,6 +256,24 @@ class EditorialCorpusContractTest(unittest.TestCase):
             )
             result = run_validator(corpus, coverage_path)
             self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+
+    def test_optional_or_legacy_must_not_mask_runtime_content(self) -> None:
+        tmp, _, corpus, coverage_path = self.fixture_root()
+        with tmp:
+            write_json(
+                corpus / "minecraft/entities.json",
+                pack(
+                    [
+                        entry(
+                            availability="LEGACY",
+                            availability_reason="Não deve ocultar conteúdo presente no runtime.",
+                        )
+                    ]
+                ),
+            )
+            result = run_validator(corpus, coverage_path)
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn("runtime", result.stderr.lower())
 
     def test_internal_references_must_resolve_to_runtime_or_corpus_entry(self) -> None:
         tmp, _, corpus, coverage_path = self.fixture_root()
@@ -324,6 +362,40 @@ class EditorialCorpusContractTest(unittest.TestCase):
             self.assertEqual(0, report["totals"]["reviewed"])
             self.assertEqual(3, report["totals"]["missing"])
             self.assertEqual(1, report["totals"]["blocked"])
+
+    def test_coverage_report_rejects_backlog_entries_absent_from_current_coverage(self) -> None:
+        tmp, root, corpus, coverage_path = self.fixture_root()
+        with tmp:
+            corpus.mkdir(parents=True, exist_ok=True)
+            backlog = backlog_fixture()
+            backlog["entries"][1] = {
+                "entry_id": "ENTITY:minecraft:creeper",
+                "source_mod": "minecraft",
+                "kind": "ENTITY",
+                "coverage": "AUTO",
+            }
+            backlog_path = root / "editorial-backlog.json"
+            write_json(backlog_path, backlog)
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(COVERAGE),
+                    str(corpus),
+                    str(backlog_path),
+                    "--coverage",
+                    str(coverage_path),
+                    "--json",
+                    str(root / "editorial-coverage.json"),
+                    "--markdown",
+                    str(root / "editorial-coverage.md"),
+                ],
+                cwd=ROOT,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn("coverage", result.stderr.lower())
 
 
 if __name__ == "__main__":
