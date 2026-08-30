@@ -95,11 +95,13 @@ public final class A0001A0020CombatPolicyTest {
         var ranks = CombatPerkRanks.of(Map.of("A0011", 2));
         var state = new NotionCombatPerkState();
         state.addFury("player", 40.0D);
-        var guarded = A0001A0020CombatPolicy.beforeHit(
-            facts("rupture-1", WeaponFamily.AXE, "guarded", true, true, true, false, false, 0L), ranks, state);
+        var guardedFacts = facts("rupture-1", WeaponFamily.AXE, "guarded", true, true, true, false, false, 0L);
+        var guarded = A0001A0020CombatPolicy.beforeHit(guardedFacts, ranks, state);
         require(close(guarded.impactMultiplier(), 1.35D), "A0011 rank 2 impact");
         require(close(guarded.physicalPenetrationFraction(), 0.10D), "A0011 rank 2 penetration");
-        require(close(state.fury("player"), 20.0D), "A0011 must spend 20 Fury");
+        require(close(state.fury("player"), 40.0D), "A0011 PRE must reserve rather than spend 20 Fury");
+        A0001A0020CombatPolicy.afterConfirmedHit(guardedFacts, ranks, state, false);
+        require(close(state.fury("player"), 20.0D), "A0011 confirmed POST must spend 20 Fury");
 
         state.addFury("player", 20.0D);
         var observableButUnguarded = A0001A0020CombatPolicy.beforeHit(
@@ -108,11 +110,13 @@ public final class A0001A0020CombatPolicyTest {
             "A0011 must not use armor fallback when provider can prove target is unguarded");
         require(close(state.fury("player"), 40.0D), "A0011 must not spend Fury on ineligible target");
 
-        var armoredFallback = A0001A0020CombatPolicy.beforeHit(
-            facts("rupture-3", WeaponFamily.AXE, "armored", false, true, false, false, false, 200L), ranks, state);
+        var armoredFallbackFacts = facts("rupture-3", WeaponFamily.AXE, "armored", false, true, false, false, false, 200L);
+        var armoredFallback = A0001A0020CombatPolicy.beforeHit(armoredFallbackFacts, ranks, state);
         require(close(armoredFallback.impactMultiplier(), 1.0D), "A0011 armor fallback must omit guard pressure");
         require(close(armoredFallback.physicalPenetrationFraction(), 0.10D), "A0011 armor fallback must keep safe penetration");
-        require(close(state.fury("player"), 20.0D), "A0011 armor fallback must spend 20 Fury once");
+        require(close(state.fury("player"), 40.0D), "A0011 armor fallback PRE must remain non-destructive");
+        A0001A0020CombatPolicy.afterConfirmedHit(armoredFallbackFacts, ranks, state, false);
+        require(close(state.fury("player"), 20.0D), "A0011 armor fallback must commit 20 Fury once after confirmed damage");
     }
 
     private static void frenzyUsesExplicitCoreCostAndPeakSpend() {
@@ -170,19 +174,26 @@ public final class A0001A0020CombatPolicyTest {
         state.addDistanceControl("player", 3, 0L, 7_000L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", false, false, capstoneRanks, state, 80, 100L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", true, true, capstoneRanks, state, 80, 200L);
-        var capstone = A0001A0020CombatPolicy.beforeHit(
-            facts("spear-cap", WeaponFamily.SPEAR, "target", false, false, true, true, false, 300L), capstoneRanks, state);
+        var capstoneFacts = facts("spear-cap", WeaponFamily.SPEAR, "target", false, false, true, true, false, 300L);
+        var capstone = A0001A0020CombatPolicy.beforeHit(capstoneFacts, capstoneRanks, state);
         require(close(capstone.damageMultiplier(), 1.15D), "A0013 rank 0 plus A0018 should produce 1.15 damage multiplier");
         require(close(capstone.impactMultiplier(), 1.40D), "A0018 impact must be +40%");
-        require(state.distanceControl("player", 300L) == 0, "A0018 must consume all three Distance Control charges");
+        require(state.distanceControl("player", 300L) == 3, "A0018 PRE must reserve rather than consume three Distance Control charges");
+        A0001A0020CombatPolicy.afterConfirmedHit(capstoneFacts, capstoneRanks, state, capstone.suppressMomentumGain());
+        require(state.distanceControl("player", 300L) == 1,
+            "A0018 POST must consume three charges before same-hit A0016 grants one new charge");
 
         state.addDistanceControl("player", 3, 400L, 7_000L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", false, false, capstoneRanks, state, 80, 500L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", true, true, capstoneRanks, state, 80, 600L);
-        var locked = A0001A0020CombatPolicy.beforeHit(
-            facts("spear-lock", WeaponFamily.SPEAR, "target", false, false, true, true, false, 700L), capstoneRanks, state);
+        var lockedFacts = facts("spear-lock", WeaponFamily.SPEAR, "target", false, false, true, true, false, 700L);
+        var locked = A0001A0020CombatPolicy.beforeHit(lockedFacts, capstoneRanks, state);
         require(close(locked.damageMultiplier(), 1.0D), "A0018 target lockout must prevent a second capstone window");
-        require(close(locked.impactMultiplier(), 1.35D), "A0017 may still consume its independent intercept window during A0018 lockout");
+        require(close(locked.impactMultiplier(), 1.35D), "A0017 may still reserve its independent intercept window during A0018 lockout");
+        require(state.distanceControl("player", 700L) == 3, "A0017 PRE must not consume its reserved Distance Control charge");
+        A0001A0020CombatPolicy.afterConfirmedHit(lockedFacts, capstoneRanks, state, locked.suppressMomentumGain());
+        require(state.distanceControl("player", 700L) == 3,
+            "A0017 POST spend must occur before same-hit A0016 gain, producing a net-zero charge change at cap");
 
         require(A0001A0020CombatPolicy.isIdealSpearRange(7.0D, 10.0D), "70% reach is ideal");
         require(A0001A0020CombatPolicy.isIdealSpearRange(10.0D, 10.0D), "100% reach is ideal");
