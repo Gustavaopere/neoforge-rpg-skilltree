@@ -27,6 +27,7 @@ Prosa editorial não é um fato técnico e não deve participar do sistema de pr
 Esta fatia NÃO implementa:
 
 - protocolo/sync definitivo cliente-servidor;
+- instalação live de snapshots no `ClientCompendiumState`;
 - `/reload` ou listener de reload de datapack;
 - hash/versionamento de catálogo para rede;
 - cache novo;
@@ -56,14 +57,14 @@ O formato lógico permanece compatível com o contrato offline do Stage 10.10:
       "entry_id": "ENTITY:minecraft:zombie",
       "title": "Zumbi",
       "summary": {
-        "text": "...",
+        "text": "Criatura hostil registrada no catálogo do Compêndio.",
         "sources": [
           {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:zombie"}
         ]
       },
       "sections": {
         "behavior": {
-          "text": "...",
+          "text": "A seção descreve somente comportamento sustentado pelas fontes declaradas.",
           "sources": [
             {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:zombie"}
           ]
@@ -157,7 +158,7 @@ Essa fronteira permite que o Stage 10.13 reaproveite exatamente o mesmo loader/c
 
 A composição deve ocorrer depois que o `CompendiumEntry` técnico já passou pelos providers e antes da exposição à UI.
 
-`CompendiumPageModel` será estendido para carregar um campo editorial separado, por exemplo `CompendiumEditorialContent editorialContent` ou `Optional<...>` normalizado pelo construtor.
+`CompendiumPageModel` será estendido para carregar conteúdo editorial separado. O construtor normalizará ausência para um valor explícito/imutável, evitando `null` como estado semântico.
 
 `CompendiumPageModelFactory` receberá o overlay editorial correspondente ao `entry.id()` e aplicará as políticas já existentes:
 
@@ -166,7 +167,9 @@ A composição deve ocorrer depois que o `CompendiumEntry` técnico já passou p
 - conteúdo editorial não sobrescreve `CompendiumSection` técnico;
 - título editorial pode ser usado como título enciclopédico da página sem alterar a identidade/translation key do catálogo;
 - ausência de editorial é válida e mantém fallback atual;
-- referências editoriais só viram links clicáveis quando o target existir no snapshot de cliente autorizado.
+- referências editoriais só viram links projetados quando o target estiver autorizado no conjunto de entradas de cliente correspondente.
+
+`CompendiumClientSnapshot` já é um contêiner protocol-agnostic de entradas e páginas. Nesta fatia, a composição editorial será comprovada até esse nível: páginas criadas pelo factory e snapshots construídos diretamente carregam o overlay corretamente. A rota de produção que instala/sincroniza esses snapshots em `ClientCompendiumState.install(...)` NÃO será criada aqui; ela pertence ao Stage 10.13. Portanto esta fatia torna o conteúdo editorial runtime-ready e page-model-ready, mas não afirma entrega live ao cliente físico antes da camada de transporte autorizada.
 
 A UI deve consumir o modelo composto, não acessar diretamente resources ou `ResourceManager`.
 
@@ -179,8 +182,8 @@ Portanto:
 - não serão inseridas automaticamente em `CompendiumEntry.relations()`;
 - não participam de `ProviderMerger`;
 - serão projetadas separadamente para a página;
-- alvo inexistente/oculto não é exposto ao cliente;
-- o Stage 10.13 decidirá a forma definitiva de transporte/autorização dessa projeção.
+- alvo inexistente/oculto não é exposto ao modelo de cliente;
+- o Stage 10.13 decidirá a forma definitiva de transporte dessa projeção, sem alterar a regra de autorização definida aqui.
 
 ## Separação editorial × técnico
 
@@ -247,7 +250,8 @@ Erros de parse/schema/identidade/referência devem:
 - fatos técnicos permanecem idênticos após composição;
 - conteúdo editorial não entra em `ProviderMerger`;
 - entrada não descoberta/oculta não vaza texto editorial;
-- referências editoriais não autorizadas não são expostas.
+- referências editoriais não autorizadas não são expostas;
+- `CompendiumClientSnapshot` preserva páginas compostas sem exigir transporte real.
 
 ## CI
 
@@ -274,9 +278,10 @@ A fatia fecha quando:
 2. resources pt-BR são decodificados e validados em runtime;
 3. existe snapshot editorial imutável/indexado por ID;
 4. publicação inválida preserva snapshot anterior e catálogo técnico;
-5. página composta recebe editorial sem alterar fatos técnicos;
+5. a projeção de página recebe editorial sem alterar fatos técnicos;
 6. políticas de descoberta/visibilidade não vazam editorial;
-7. testes obrigatórios passam no CI completo;
-8. o design continua sem implementar responsabilidades do Stage 10.13.
+7. `CompendiumClientSnapshot` consegue transportar internamente a página composta sem implementar o protocolo do 10.13;
+8. testes obrigatórios passam no CI completo;
+9. o design continua sem implementar responsabilidades do Stage 10.13.
 
 O Stage 10.10 continuará aberto após esta fatia porque ainda faltará produzir/revisar o corpus real pt-BR em escala, validar dados técnicos mutáveis por fontes apropriadas e concluir QA linguística/cobertura editorial do modpack.
