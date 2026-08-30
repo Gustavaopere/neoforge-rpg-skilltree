@@ -48,11 +48,13 @@ Fechamento dos Stages 02.03, 02.04 e 02.05 integrado em `main@7cfa1e988c81619ce8
 
 Reconciliação do Stage 03 confirma que `✅-01-data-schema-loaders.md` e `✅-02-graph-layout-validation.md` já estão materializados na `main`; seus heads funcionais `4a10cc875dc95b04474b85e00b4645fd3340be04` e `f641e99e87882575705b88b21fa68d582a1f9db8` passaram respectivamente os RPG Skill Tree CI `33275095434` / run #1676 e `33278390140` / run #1700 em GREEN completo. O fechamento do Stage 03.03 foi integrado pela PR #189 no merge `efe45b9e5ee15fd37169086ef5e17887e98d4059`; a PR #186 preserva o histórico de implementação/TDD e foi reconhecida pelo GitHub como merged quando o mesmo head entrou na `main`. Após quatro ciclos TDD RED, o head funcional `3b1d01a8829d3c99dc8b242e8ab538e46046eceb` passou o RPG Skill Tree CI `33280107469` / run #1728 GREEN completo; o head final `cde8b5dd0c0e19e91aa528f45bf227fcb0ecc1b3` passou novamente os CIs #1732 e #1737 em GREEN completo, incluindo Core, JUnit 5, todos os 11 NeoForge GameTests, validators, NeoForge build, verificação do JAR e dedicated-server smoke; os workflows Foundation/Compendium associados também fecharam GREEN.
 
+Fechamento do Stage 03.04 integrado pela PR #194 em `main@c1523ac5211543d26cdb54387eb2089510822ff3`. O runtime unificado `NodeEffectRuntime` passou a reconciliar efeitos numéricos e comportamentais pela mesma fronteira autoritativa; IDs gerados são estáveis e sensíveis à origem, mudanças de rank não criam identidade persistente nova, reload/login/compra/respec convergem no mesmo refresh e providers opcionais ausentes permanecem fail-soft. O head funcional `5611ebbf6a2052f4ac3a4f0ac41327376ee13463` passou o RPG Skill Tree CI `33287243581` / run #1845 GREEN completo, incluindo a aceitação NeoForge real de `ADD_FLAT`, `ADD_PERCENT_BASE` e `MULTIPLY_TOTAL`; o head documental final `c8950388e1de4281372e79f11e89a8f827ce3f5f` passou o CI `33287464600` / run #1855 GREEN completo, com Core, JUnit 5, NeoForge GameTests, validators, build, JAR e dedicated-server smoke, e todos os workflows Foundation/Compendium associados também fecharam GREEN.
+
 A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
 
 ## Resultado
 
-**30 / 90 subplanos concluídos formalmente.**
+**31 / 90 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -71,6 +73,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `03-skill-tree-perks/✅-01-data-schema-loaders.md`
 - `03-skill-tree-perks/✅-02-graph-layout-validation.md`
 - `03-skill-tree-perks/✅-03-purchase-ranks.md`
+- `03-skill-tree-perks/✅-04-effects-runtime.md`
 - `03-skill-tree-perks/✅-05-respec.md`
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
@@ -94,7 +97,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 00 Foundation | 4 | 4 | CONCLUÍDO |
 | 01 RPG Core | 5 | 5 | CONCLUÍDO |
 | 02 Progression & World Scaling | 5 | 5 | CONCLUÍDO |
-| 03 Skill Tree & Perks | 4 | 6 | EM ANDAMENTO |
+| 03 Skill Tree & Perks | 5 | 6 | EM ANDAMENTO |
 | 04 Classes, Masteries & Specializations | 1 | 6 | EM ANDAMENTO |
 | 05 Combat & Magic Hooks | 0 | 6 | EM ANDAMENTO |
 | 06 Integrations | 2 | 9 | EM ANDAMENTO |
@@ -103,7 +106,7 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
 | 11 Itemização & Progressão de Equipamentos | 0 | 15 | PLANEJADO |
-| **Total** | **30** | **90** | |
+| **Total** | **31** | **90** | |
 
 ## Por que os demais continuam abertos
 
@@ -121,7 +124,7 @@ Stage 02 concluído. `✅-01-relevant-player-level.md` fecha seleção bounded/l
 
 ### 03 — Skill Tree & Perks
 
-Schema/loaders, grafo/layout, compra/ranks e respec estão fechados. Permanecem abertos apenas `04-effects-runtime.md` e `06-content-wiki-generation.md`: composição/aplicação final dos efeitos e geração automática da `wiki/` ainda precisam de fechamento próprio.
+Schema/loaders, grafo/layout, compra/ranks, effects runtime e respec estão fechados. O runtime de efeitos agora possui precedência explícita, IDs determinísticos, publicação atômica, cleanup/reconciliação idempotente, suporte a behaviors e proteção fail-soft para providers opcionais. Permanece aberto apenas `06-content-wiki-generation.md`, responsável pela geração automática da `wiki/`.
 
 ### 04 — Classes, Masteries & Specializations
 
@@ -163,7 +166,7 @@ Os 15 subplanos adicionados pelo PR #188 permanecem abertos. O estágio cobre in
 
 ## Evidência de regressão atual
 
-O fechamento mais recente integrado é Stage 03.03 em `main@efe45b9e5ee15fd37169086ef5e17887e98d4059`. O head final `cde8b5dd0c0e19e91aa528f45bf227fcb0ecc1b3` passou o RPG Skill Tree CI `33280593275` / run #1737 GREEN completo no merge-ref corrente, incluindo Core, JUnit 5, todos os 11 NeoForge GameTests, validators, drift, build, JAR e dedicated-server smoke; todos os oito workflows Foundation/Compendium associados também fecharam GREEN. A mesma reconciliação incorpora os fechamentos 03.01 e 03.02 já materializados na `main`; os fechamentos anteriores de 01.04/01.05 e 02.01–02.05 permanecem preservados pelas mesmas matrizes de regressão.
+O fechamento mais recente integrado é Stage 03.04 em `main@c1523ac5211543d26cdb54387eb2089510822ff3`. O head funcional `5611ebbf6a2052f4ac3a4f0ac41327376ee13463` passou o RPG Skill Tree CI `33287243581` / run #1845 GREEN completo; o head documental final `c8950388e1de4281372e79f11e89a8f827ce3f5f` passou o CI `33287464600` / run #1855 GREEN completo no merge-ref corrente, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR e dedicated-server smoke. Todos os oito workflows Foundation/Compendium associados ao mesmo head também fecharam GREEN. A mesma reconciliação preserva os fechamentos 03.01–03.03 e 03.05 já materializados na `main`; os fechamentos anteriores de 01.04/01.05 e 02.01–02.05 permanecem preservados pelas mesmas matrizes de regressão.
 
 ## Convenção
 
