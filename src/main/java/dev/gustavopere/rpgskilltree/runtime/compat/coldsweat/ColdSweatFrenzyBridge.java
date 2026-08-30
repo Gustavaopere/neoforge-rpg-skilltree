@@ -13,7 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
  * No second temperature resource is created by RPG Skill Tree.</p>
  */
 public final class ColdSweatFrenzyBridge {
-    public static final String SUPPORTED_VERSION_PREFIX = "2.4.2";
+    public static final String SUPPORTED_VERSION = "2.4.2";
     private static final String TEMPERATURE_CLASS = "com.momosoftworks.coldsweat.api.util.Temperature";
     private static final String TRAIT_CLASS = "com.momosoftworks.coldsweat.api.util.Temperature$Trait";
 
@@ -22,7 +22,7 @@ public final class ColdSweatFrenzyBridge {
     private ColdSweatFrenzyBridge() {}
 
     public static boolean supportsVersion(String version) {
-        return version != null && version.startsWith(SUPPORTED_VERSION_PREFIX);
+        return SUPPORTED_VERSION.equals(version);
     }
 
     public static boolean available() {
