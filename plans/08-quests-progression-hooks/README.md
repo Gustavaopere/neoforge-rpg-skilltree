@@ -5,7 +5,7 @@ Permitir quests, NPCs e progressão narrativa consultarem/concederem progresso p
 O Stage 08 agora possui duas camadas:
 
 1. **Quest-facing foundation** — query API, rewards, condições, idempotência, adapters e diagnostics;
-2. **Narrative & Society Core** — estado narrativo persistente, cronologia, conhecimento parcial, relações, facções, governo, leis, opinião pública, consequências e campanha não linear.
+2. **Narrative & Society Core** — estado narrativo persistente, cronologia, conhecimento parcial, relações, facções, governo, leis, opinião pública, consequências, oportunidades possivelmente nunca descobertas, morte/retorno e campanha não linear.
 
 ## Perfil narrativo externo escolhido
 
@@ -48,7 +48,9 @@ Eles são requeridos para o perfil completo da campanha quando a feature corresp
 21. `21-campaign-eras-epilogues.md` — Crônicas da Concordância Quebrada, eras e finais;
 22. `22-data-schemas-localization-content-pack.md` — conteúdo data-driven/PT-BR;
 23. `23-network-ui-authoring-diagnostics.md` — sync seguro e debugging;
-24. `24-hardening-migrations-performance-tests.md` — migrations, performance, GameTests e dedicated server.
+24. `24-hardening-migrations-performance-tests.md` — migrations, performance, GameTests e dedicated server;
+25. `25-opportunity-discovery-lifecycle.md` — conteúdo elegível que pode nunca ser descoberto/oferecido, descoberta retrospectiva e resolução sem o jogador;
+26. `26-death-resurrection-identity-continuity.md` — morte, retorno, Mobstein e continuidade corporal/memória/identidade.
 
 ## Princípios permanentes
 
@@ -59,7 +61,12 @@ Eles são requeridos para o perfil completo da campanha quando a feature corresp
 - Uma causa, uma mutation/ledger entry canônica.
 - NPC/boss encontrado ou morto antecipadamente não deve quebrar a campanha.
 - `SIM`, `NÃO`, `ANTES` e `DEPOIS` são rotas de primeira classe.
+- Uma oportunidade pode existir sem nunca ser descoberta pelo jogador; `UNKNOWN` não deve vazar para journal/UI.
+- Recusar, ignorar, abandonar, nunca receber oferta e nunca desbloquear são estados diferentes.
+- O mundo pode resolver/transformar oportunidades sem o jogador quando o conteúdo declarar essa autonomia.
 - Knowledge é por ator; nenhuma facção sabe magicamente tudo.
+- Morte permanece no histórico mesmo após retorno.
+- Retorno via Mobstein ou outro provider não significa automaticamente restauração integral de memória, personalidade, knowledge, relações, alma ou identidade social/legal.
 - Failure-forward é requisito estrutural.
 - Provider-native first: narrativa não funde recursos/mecânicas distintas apenas por semelhança temática.
 - Todo conteúdo player-facing oficial deve possuir PT-BR.
