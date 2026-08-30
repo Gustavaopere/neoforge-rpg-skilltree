@@ -58,9 +58,9 @@
 - `NotionCombatPerkRules` define janela de 2 s, impacto 1,20/1,35 e multiplicador de deslocamento 0,80/0,70.
 - `A0001A0020EpicFightHooks.onEpicFightTick(...)` mede faixa ideal e usa `target.getDeltaMovement()` apenas para determinar aproximação geométrica via `isAdvancingToward(...)`.
 - `NotionCombatPerkState.recordSpearRange(...)` abre a janela A0017 na transição fora→dentro somente quando `targetAdvancing=true`.
-- `beforeHit(...)` consome janela + 1 Controle de Distância, deduplica por `A0017:consume` e aplica impacto/pressão quando disponível.
+- O pipeline PRE prepara o consumo por `rootActionId`; janela e 1 Controle de Distância só são efetivamente consumidos no POST confirmado.
 - O próprio policy contém comentário explícito de que a redução de deslocamento ofensivo está omitida até o provider fornecer receipt nativo reconhecido.
-- `A0001A0020CombatPolicyTest` verifica janela, consumo e impacto, além da direção geométrica de aproximação.
+- `A0001A0020CombatPolicyTest` e `A0011A0020CausalCommitJUnitTest` verificam janela, consumo causal, impacto e direção geométrica de aproximação.
 
 ## Pendências técnicas
 
@@ -72,15 +72,26 @@
 - **Estado atual:** a perk opera exatamente no fallback canônico: janela + impacto/pressão, sem reescrever movimento.
 - **Correção esperada:** integrar somente API/evento provider-native causal; se não existir, manter o componente omitido.
 
+### P-A0017-02 — consumo prematuro de janela/Controle de Distância
+
+- **Estado:** RESOLVIDA na PR #250; confirmação definitiva após merge.
+- **Defeito:** o runtime mergeado removia a janela de Interceptação e consumia 1 Controle de Distância no PRE, antes de confirmar dano efetivo. Cancelamento/dano zero podia destruir a oportunidade e o recurso.
+- **Correção:** PRE agora só reserva a janela e a carga por `rootActionId`; POST válido commita janela + 1 carga. POST sem dano descarta a reserva e preserva a janela enquanto ainda estiver dentro do tempo original.
+- **Concorrência/dedup:** reservas são bounded e impedem que outra root action use a mesma janela/carga reservada para o mesmo alvo.
+- **Ordem com A0016:** A0017 commita o custo antes do ganho de Controle de Distância de A0016 no mesmo POST; a própria carga criada pelo golpe não pode financiar o consumo.
+- **TDD RED:** CI #2256, commit `64e4abd9eacc45caf7f4af67b4015be9d7ef4bf9`, falhou em `a0017DefersWindowAndDistanceControlConsumptionUntilConfirmedDamage`.
+- **TDD GREEN:** CI #2269, HEAD `1698bdc518f84ae99da6a9f6da1a78ad5b9f3923`, verde em JUnit, GameTests, build/JAR e server smoke; nove auxiliares verdes.
+
 ## Testes obrigatórios
 
 - [x] detecção geométrica de aproximação;
 - [x] janela de 2 s por alvo;
-- [x] consumo de 1 Controle de Distância;
+- [x] consumo de 1 Controle de Distância somente após hit confirmado;
+- [x] cancelamento/dano zero preserva janela/carga;
 - [x] impacto/pressão 20%/35%;
 - [x] fallback sem alteração de movimento;
 - [ ] teste do componente de deslocamento somente se surgir receipt provider-native válido;
-- [x] dedicated-server smoke do fallback canônico no CI #2147.
+- [x] dedicated-server smoke do fallback canônico no CI #2269.
 
 ## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
 
