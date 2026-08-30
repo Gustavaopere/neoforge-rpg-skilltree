@@ -37,6 +37,7 @@ java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.FloraCatalogCovera
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.TfcFloraAdapterTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.flora.DynamicTreesAdapterTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialModelTest
+java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumEditorialDisplayModelTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumSearchIndexTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumFilterStateTest
 java -cp "$OUT" dev.gustavopere.rpgskilltree.compendium.client.CompendiumPageModelFactoryTest
