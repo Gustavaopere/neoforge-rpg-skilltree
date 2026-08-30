@@ -49,11 +49,11 @@ final class CombatPerkVisualLayoutJUnitTest {
         CombatPerkVisualLayout.Layout first = CombatPerkVisualLayout.project();
         assertEquals(first, CombatPerkVisualLayout.project());
 
-        Set<String> coordinates = new HashSet<>();
+        Set<Coordinate> coordinates = new HashSet<>();
         for (CombatPerkVisualLayout.Node node : first.nodes()) {
             assertTrue(Double.isFinite(node.x()));
             assertTrue(Double.isFinite(node.y()));
-            assertTrue(coordinates.add(node.x() + ":" + node.y()));
+            assertTrue(coordinates.add(Coordinate.of(node.x(), node.y())));
         }
     }
 
@@ -67,5 +67,18 @@ final class CombatPerkVisualLayoutJUnitTest {
 
     private static String edgeKey(String first, String second) {
         return first.compareTo(second) <= 0 ? first + "|" + second : second + "|" + first;
+    }
+
+    private record Coordinate(long xBits, long yBits) {
+        private static Coordinate of(double x, double y) {
+            return new Coordinate(
+                Double.doubleToLongBits(normalizeZero(x)),
+                Double.doubleToLongBits(normalizeZero(y))
+            );
+        }
+
+        private static double normalizeZero(double value) {
+            return value == 0.0D ? 0.0D : value;
+        }
     }
 }
