@@ -93,8 +93,8 @@ public final class CompendiumEditorialModelTest {
             List.of(WOLF_ID)
         );
 
-        CompendiumEditorialSnapshot snapshot = CompendiumEditorialSnapshot.fromEntries(List.of(taiga, wolf));
-        eq(List.of(wolf, taiga), snapshot.entries());
+        CompendiumEditorialSnapshot snapshot = CompendiumEditorialSnapshot.fromEntries(List.of(wolf, taiga));
+        eq(List.of(taiga, wolf), snapshot.entries());
         eq(wolf, snapshot.find(WOLF_ID).orElseThrow());
         isTrue(snapshot.find(CompendiumEntryId.of(CompendiumEntryKind.ENTITY, "minecraft:fox")).isEmpty());
         throwsUnsupported(() -> snapshot.entries().add(wolf));
