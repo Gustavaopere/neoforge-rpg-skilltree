@@ -7,7 +7,8 @@ Esta pasta substitui o checklist agregado `07-perk-implementation-checklist.md` 
 1. **Notion — Catálogo Mestre — Atributos e Passivos:** fonte canônica de design para código, nome, domínio, árvore, ramo, camada, função, tier, faixa de poder, ranks, custo, dependências, pré-requisitos, provider/mods, efeito, escalonamento, gate, hook, fallback e regra.
 2. **Notion — Critérios Obrigatórios para Aprovação de Perks — RPG Skill Tree:** protocolo canônico de auditoria em nove eixos, provider-native first, fail-closed, pipeline canônico único, anti-duplicação e anti-abuso de Mastery.
 3. **`CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`:** cópia versionada integral dos critérios para tornar a auditoria reproduzível no GitHub. O Notion continua canônico e prevalece em caso de divergência futura.
-4. **`main` do repositório:** fonte de verdade do estado técnico realmente implementado.
+4. **`../guides/projects/`:** snapshot operacional obrigatório dos projetos próprios **RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana**, incluindo a matriz de integração cruzada, regras de autoridade e checklist de providers. Estados planejados/preparatórios/bloqueados não podem ser promovidos a runtime disponível.
+5. **`main` do repositório:** fonte de verdade do estado técnico realmente implementado.
 
 O arquivo individual **não substitui silenciosamente o Notion**. Quando código e especificação divergirem, a divergência deve ser corrigida no design canônico ou registrada tecnicamente; nunca é permitido inventar um fallback para fazer o código parecer completo.
 
@@ -24,6 +25,8 @@ Cada perk deve registrar:
 - pendências e lacunas conhecidas;
 - testes existentes e testes ainda necessários;
 - status semântico separado de status de implementação.
+
+Quando qualquer projeto próprio for pertinente, o dossiê também deve registrar provider/consumer, authority, boundary/API/hook concreto, versão/evidência, causalidade, deduplicação, fallback, fail-closed e qual pipeline/estado não pode ser duplicado ou escrito diretamente.
 
 ## Estados
 
@@ -57,6 +60,8 @@ Dossiês individualizados e reauditoria obrigatória concluída neste recorte: *
 Documentos de controle:
 
 - `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md` — cópia local dos critérios canônicos.
+- `CHAT-1-PROJETOS-PROPRIOS-REGRA.md` — suplemento obrigatório para auditar os quatro projetos próprios.
+- `../guides/projects/README.md` — fonte operacional dos quatro dossiês e da matriz cruzada.
 - `AUDITORIA-A0001-A0020.md` — matriz consolidada da reauditoria dos vinte nodes.
 - `STATUS.md` — índice técnico resumido.
 
