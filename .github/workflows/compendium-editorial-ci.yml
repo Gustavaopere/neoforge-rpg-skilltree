@@ -48,6 +48,9 @@ jobs:
       - name: Editorial corpus schema and coverage tests
         run: python3 scripts/compendium/test_editorial_corpus.py
 
+      - name: PT-BR localization completeness tests
+        run: python3 scripts/compendium/test_ptbr_localization.py
+
       - name: Editorial model and locale contracts
         run: bash scripts/compendium/test_model_catalog.sh
 
