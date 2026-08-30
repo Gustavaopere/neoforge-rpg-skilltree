@@ -2,16 +2,18 @@ package dev.gustavopere.rpgskilltree.tools;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 final class CombatPerkWikiSnapshotGeneratorJUnitTest {
-    private static final Path SNAPSHOT = Path.of("wiki/generated/combat-perks.json");
-    private static final Path DIAGNOSTIC_SNAPSHOT = Path.of("build/generated-wiki/combat-perks.json");
+    @TempDir
+    Path temporaryDirectory;
 
     @Test
     void rendersExactlyTheCanonicalA0001A0100SemanticSnapshotWithoutInventingUnauditedText() {
@@ -24,19 +26,21 @@ final class CombatPerkWikiSnapshotGeneratorJUnitTest {
         assertTrue(json.contains("+3% de dano com espadas por rank, máximo +9%."));
         assertTrue(json.contains("\"code\": \"A0021\""));
         assertTrue(json.contains("\"name\": \"Precisão com Adagas\""));
+        assertTrue(json.contains("\"code\": \"A0021\",\n      \"name\": \"Precisão com Adagas\",\n      \"description\": null"));
         assertFalse(json.contains("\"code\": \"A0021\"\n      \"description\": \"chance de crítico"));
     }
 
     @Test
-    void checkedInSnapshotMatchesTheCanonicalGeneratorExactly() throws Exception {
+    void writesAndChecksDerivedSnapshotWithoutRequiringACommittedIntermediateFile() throws Exception {
+        Path snapshot = temporaryDirectory.resolve("combat-perks.json");
         String expected = CombatPerkWikiSnapshotGenerator.renderJson();
-        Files.createDirectories(DIAGNOSTIC_SNAPSHOT.getParent());
-        Files.writeString(DIAGNOSTIC_SNAPSHOT, expected, StandardCharsets.UTF_8);
-        if (!Files.isRegularFile(SNAPSHOT)) {
-            throw new AssertionError("semantic combat wiki snapshot is missing: " + SNAPSHOT);
-        }
-        String actual = Files.readString(SNAPSHOT, StandardCharsets.UTF_8);
-        assertEquals(expected, actual, "semantic combat wiki snapshot drifted from canonical model");
+
+        CombatPerkWikiSnapshotGenerator.write(snapshot);
+        assertEquals(expected, Files.readString(snapshot, StandardCharsets.UTF_8));
+        CombatPerkWikiSnapshotGenerator.check(snapshot);
+
+        Files.writeString(snapshot, expected.replace("Treino com Espadas I", "DRIFT", 1), StandardCharsets.UTF_8);
+        assertThrows(IllegalStateException.class, () -> CombatPerkWikiSnapshotGenerator.check(snapshot));
     }
 
     private static int occurrences(String value, String needle) {
