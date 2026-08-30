@@ -2,7 +2,7 @@
 
 **Fonte editorial no Notion:** https://app.notion.com/p/3cc69db9f0db810db57bf96c8168071e
 
-**Snapshot auditado:** `Gustavaopere/neoforge-rpg-skilltree@e49a1fa651abecfe096adb03c822482fcf9c3e7b`
+**Snapshot reconciliado:** análise extensa iniciada em `Gustavaopere/neoforge-rpg-skilltree@e49a1fa651abecfe096adb03c822482fcf9c3e7b` e reconciliada antes do fechamento com `main@55463a195f8c3a87436399f71db19f29c8e85488`.
 
 O próprio RPG Skill Tree é simultaneamente a plataforma das perks e provider de vários estados. Nunca registrar apenas `RPG Skill Tree` em `Provider/Mods` sem indicar qual serviço, boundary ou estado canônico é usado.
 
@@ -77,7 +77,7 @@ O Stage 03 está fechado para:
 4. effects runtime;
 5. respec.
 
-`06-content-wiki-generation.md` permanece aberto e não altera o fato de o runtime 03.01–03.05 estar fechado.
+`06-content-wiki-generation.md` permanece aberto como plano integral. A `main@55463a195f8c3a87436399f71db19f29c8e85488` já contém, porém, um subcomponente real e canônico desse Stage: o gate de drift do catálogo/wiki em CI, implementado e registrado pelos PRs #222/#223. Somente esse gate específico pode ser tratado como disponível; o Stage 03.06 inteiro não foi promovido a concluído.
 
 `NodeEffectRuntime` é a fronteira única de efeitos derivados:
 
