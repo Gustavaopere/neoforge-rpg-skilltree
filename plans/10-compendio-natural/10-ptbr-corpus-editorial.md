@@ -50,7 +50,7 @@ O corpus editorial aceita metadata de origem por bloco textual. O contrato atual
         "behavior": {
           "text": "Descrição original baseada em fatos confirmados.",
           "sources": [
-            {"type": "OFFICIAL_CODE", "ref": "..."}
+            {"type": "OFFICIAL_CODE", "ref": "github:autor/mod/src/Creature.java#comportamento"}
           ]
         }
       },
@@ -73,7 +73,9 @@ OFFICIAL_CHANGELOG
 VERIFIED_COMMUNITY
 ```
 
-`OPTIONAL` e `LEGACY` são permitidos somente com `availability_reason` explícito. `DRAFT` é permitido durante autoria, mas o modo `--release` exige `REVIEWED` para todas as entradas publicadas.
+`availability` é obrigatório. `RUNTIME` é usado para IDs presentes no coverage atual. `OPTIONAL` e `LEGACY` são permitidos somente para IDs ausentes do runtime atual e exigem `availability_reason` explícito. Não é permitido mascarar um ID presente como opcional/legado. `DRAFT` é permitido durante autoria, mas o modo `--release` exige `REVIEWED` para todas as entradas publicadas.
+
+`source.ref` também é obrigatório e não pode ser placeholder (`...`, `TODO`, `TBD`, `FIXME`, `PLACEHOLDER`). A presença da referência identifica a proveniência; ela não transforma automaticamente uma afirmação em verdadeira.
 
 Não copiar trechos extensos de documentação externa. O texto do Compêndio deve ser redação própria baseada nos fatos confirmados.
 
@@ -250,6 +252,7 @@ Estado implementado:
 - [x] o primeiro diretório abaixo de `pt_br/` deve ser exatamente o `namespace` declarado pelo pacote;
 - [x] `kind` e `namespace` do pacote devem coincidir com cada `entry_id`;
 - [x] IDs duplicados entre arquivos são rejeitados;
+- [x] `availability` deve ser declarado explicitamente em cada entrada;
 - [x] o nome exato dos namespaces vem dos IDs/runtime e não é inferido de uma lista manual fixa;
 - [ ] os pacotes editoriais reais do modpack ainda precisam ser produzidos e revisados em lotes;
 - [ ] o carregamento NeoForge/runtime desses pacotes para compor as páginas do jogo ainda não está implementado nesta fatia.
@@ -266,14 +269,16 @@ scripts/compendium/editorial_corpus.py
 
 Validar:
 
-- [x] ID existe no coverage/runtime ou está marcado `OPTIONAL`/`LEGACY` com justificativa explícita;
+- [x] ID presente no coverage/runtime deve usar `availability=RUNTIME`; ID ausente só pode permanecer como `OPTIONAL`/`LEGACY` com justificativa explícita;
 - [x] locale é obrigatoriamente `pt_br`;
 - [x] toda entrada editorial possui título e resumo não vazios;
 - [ ] seção que afirma stat mecânico aponta para provider/dado técnico adequado, sem repetir número hardcoded mutável;
 - [x] links internos referenciam IDs presentes no runtime ou no corpus consolidado;
 - [x] resumo e cada seção textual exigem ao menos uma fonte explícita de tipo reconhecido;
+- [x] referências de fonte vazias ou placeholders são rejeitadas;
 - [x] `TODO`, `TBD`, `FIXME` e `PLACEHOLDER` são rejeitados em texto editorial validado;
 - [x] autoria pode permanecer `DRAFT`, porém `validate_editorial_corpus.py --release` falha enquanto qualquer entrada não estiver `REVIEWED`;
+- [x] `editorial_coverage.py` exige correspondência exata entre o backlog ativo e o coverage atual (`entry_id`, `source_mod`, `kind` e estado de coverage), impedindo relatório silenciosamente baseado em backlog obsoleto;
 - [x] `editorial_coverage.py` produz JSON/Markdown determinísticos com `reviewed`, `draft`, `missing`, `blocked`, `ignored` e `optional_or_legacy` por namespace;
 - [x] cobertura pode ser calculada com corpus vazio, reportando o backlog relevante como `missing` em vez de abortar.
 
@@ -326,7 +331,10 @@ scripts/compendium/test_editorial_backlog.py
 scripts/compendium/test_inventory_modlist.py
 scripts/compendium/test_editorial_corpus.py
 .github/workflows/compendium-editorial-ci.yml
+.github/workflows/alpha2-build.yml
 ```
+
+O workflow editorial dedicado protege PRs que alteram o corpus/infra editorial; o aggregate `RPG Skill Tree CI` também executa `test_editorial_corpus.py`, inclusive nos pushes da `main` cobertos por esse workflow.
 
 Casos obrigatórios:
 
@@ -334,17 +342,21 @@ Casos obrigatórios:
 - [x] entrada editorial sem resumo válido falha;
 - [x] referência para ID inexistente falha; referência para entrada `OPTIONAL`/`LEGACY` é válida quando essa entrada existe explicitamente no corpus;
 - [x] placeholder `TODO`/`TBD`/`FIXME`/`PLACEHOLDER` bloqueia o corpus;
+- [x] `source.ref` vazio ou placeholder (`...` etc.) falha;
 - [x] pacote em diretório de namespace incorreto falha;
 - [x] IDs duplicados entre pacotes falham;
+- [x] `availability` ausente falha;
+- [x] `OPTIONAL`/`LEGACY` não pode mascarar ID presente no runtime;
 - [x] modo release rejeita `DRAFT`;
 - [x] relatório de cobertura funciona mesmo antes da primeira entrada editorial existir;
+- [x] backlog ativo divergente do coverage atual falha fechado;
 - [x] drift/rerun preserva progresso editorial e entradas órfãs em vez de resetar ou apagar silenciosamente;
 - [x] entrada `ERROR` malformada preservada pelo 10.02 permanece no backlog como `BLOCKED`;
 - [ ] textos técnicos usam valores do provider quando o valor puder mudar por config/runtime.
 
 ## Estado atual
 
-O **pipeline de backlog editorial**, o **schema/loader offline do corpus pt-BR**, a **validação estrutural/proveniência** e o **relatório de cobertura por namespace** estão implementados.
+O **pipeline de backlog editorial**, o **schema/loader offline do corpus pt-BR**, a **validação estrutural/proveniência**, o **relatório fail-closed de cobertura por namespace** e os respectivos gates de CI estão implementados.
 
 O subplano 10.10 permanece aberto. Ainda faltam principalmente:
 
