@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import org.slf4j.Logger;
 
@@ -20,6 +21,12 @@ public final class CompendiumEditorialCatalogEvents {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     private CompendiumEditorialCatalogEvents() {}
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onServerAboutToStart(ServerAboutToStartEvent event) {
+        Objects.requireNonNull(event, "event");
+        RuntimeCompendiumEditorialCatalog.beginServerLifecycle();
+    }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onServerStarted(ServerStartedEvent event) {
