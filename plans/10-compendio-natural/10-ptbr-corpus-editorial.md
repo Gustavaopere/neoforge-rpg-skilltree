@@ -328,6 +328,8 @@ Infraestrutura offline e runtime atualmente coberta por:
 scripts/compendium/test_editorial_backlog.py
 scripts/compendium/test_inventory_modlist.py
 scripts/compendium/test_editorial_corpus.py
+scripts/compendium/test_ptbr_localization.py
+scripts/compendium/validate_ptbr_localization.py
 scripts/compendium/test_model_catalog.sh
 src/test/java/dev/gustavopere/rpgskilltree/compendium/editorial/CompendiumEditorialModelTest.java
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumPageModelFactoryTest.java
@@ -338,11 +340,11 @@ src/test/java/dev/gustavopere/rpgskilltree/runtime/compendium/CompendiumEditoria
 .github/workflows/compendium-editorial-ci.yml
 ```
 
-O workflow editorial focado executa schema/cobertura Python, domínio/page-model headless + paridade de locale e JUnit `*Editorial*`. O smoke de dedicated server do aggregate exige a publicação do catálogo editorial no startup; corpus vazio continua sendo estado válido.
+O workflow editorial focado executa schema/cobertura Python, testes do contrato de localização pt-BR, domínio/page-model headless + validação global `pt_br`/`en_us` e JUnit `*Editorial*`. O mesmo validator de localização é executado por `test_model_catalog.sh`, portanto também integra o CI agregado. O smoke de dedicated server do aggregate exige a publicação do catálogo editorial no startup; corpus vazio continua sendo estado válido.
 
 Casos obrigatórios:
 
-- [ ] nenhuma chave própria da UI sem `pt_br`;
+- [x] nenhuma chave própria da UI sem `pt_br`; `validate_ptbr_localization.py` exige paridade explícita com `en_us`, verifica chaves literais próprias referenciadas em `src/main/java`/`src/main/resources` e ignora apenas prefixos dinâmicos que terminam em `.`;
 - [x] entrada editorial sem resumo válido falha;
 - [x] referência para ID inexistente falha; referência para entrada `OPTIONAL`/`LEGACY` é válida quando essa entrada existe explicitamente no corpus;
 - [x] placeholder `TODO`/`TBD`/`FIXME`/`PLACEHOLDER` bloqueia o corpus;
@@ -364,12 +366,11 @@ Casos obrigatórios:
 
 ## Estado atual
 
-O **pipeline de backlog editorial**, o **schema/loader offline do corpus pt-BR**, a **validação estrutural/proveniência**, o **relatório de cobertura por namespace** e a **infraestrutura Java/runtime de ingestão, snapshot, projeção e exibição editorial no startup** estão implementados e cobertos por gates offline, headless, JUnit, GameTests/build e dedicated-server smoke.
+O **pipeline de backlog editorial**, o **schema/loader offline do corpus pt-BR**, a **validação estrutural/proveniência**, o **relatório de cobertura por namespace**, a **infraestrutura Java/runtime de ingestão, snapshot, projeção e exibição editorial no startup** e o **gate global de completude de localização pt-BR com fallback en-US explícito** estão implementados e cobertos por gates offline, headless, JUnit, GameTests/build e dedicated-server smoke.
 
 O subplano 10.10 permanece aberto. Ainda faltam principalmente:
 
 1. produzir e revisar o corpus real pt-BR por namespace e alcançar cobertura integral da modlist;
 2. validar sistematicamente que stats mecânicos mutáveis venham de providers/dados técnicos em vez de prosa hardcoded;
 3. concluir revisão linguística/terminológica do corpus em escala;
-4. fechar a garantia global de completude pt-BR para todas as chaves próprias da UI/conteúdo;
-5. integrar no 10.13 o reload em runtime, transporte/sincronização e instalação de snapshots editoriais no cliente sem duplicar esta camada de domínio/validação.
+4. integrar no 10.13 o reload em runtime, transporte/sincronização e instalação de snapshots editoriais no cliente sem duplicar esta camada de domínio/validação.
