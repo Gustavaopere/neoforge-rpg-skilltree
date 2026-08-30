@@ -27,6 +27,7 @@ A opção por pasta, em vez de um único arquivo gigante, preserva rastreabilida
 - Catálogo Mestre do Notion com fetch fresco individual A0041–A0050.
 - Runtime real A0041–A0060 no RPG Skill Tree.
 - RPG Skill Tree `main@8b76a7cef1aa675fdd988bf694c876e751fb839d` na abertura do ciclo; este baseline já incorpora a revalidação Chat 2 A0001–A0020 da PR #237.
+- Fechamento rechecado contra RPG Skill Tree `main@d1c29b1acca488f14e0741073f90502621a5ed39`: o delta desde `8b76a7c` contém somente corpus editorial pt-BR do Compendium e teste correspondente, sem alteração de contrato MARTIAL, perks A0041–A0050, providers ou boundaries deste lote.
 - Volcanoes `main@7839db6d9b718e1e2becfe8b88e9b3d24282e2ef`.
 - Enshrouded `main@f8d4d54cb5b8f12aa2149568bfaa2e25f00ef5e5`.
 - Black Arcana `main@73c14ce55ff918bb8a81daeb99a352607ef11064`.
@@ -43,7 +44,7 @@ A opção por pasta, em vez de um único arquivo gigante, preserva rastreabilida
 
 ### Volcanoes
 
-- Sem delta novo desde o lote anterior.
+- Sem delta novo pertinente ao lote.
 - Geologia, prospecção, Atmosphere, gases, pressão e hazards são `NÃO DEVE SER INTEGRADO` ao dano/classificação BOW/CROSSBOW/SCYTHE.
 - Única composição legítima neste lote: A0046 pode receber efeito térmico **indiretamente** quando o estado corporal Cold Sweat já incorporou uma fonte ambiental Volcanoes. A0046 não consulta Volcanoes diretamente e não reaplica calor.
 
