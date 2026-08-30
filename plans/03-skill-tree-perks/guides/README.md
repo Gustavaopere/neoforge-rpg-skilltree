@@ -37,7 +37,7 @@ A navegação canônica de cada guia está no `README.md` de sua própria pasta.
 - Mods de Tecnologia: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff
 - Projetos Próprios do Modpack: https://app.notion.com/p/3cc69db9f0db81b09939eaca7c446fa2
 - Baseline amplo dos três guias temáticos: `modlist 28.08.26.txt`.
-- Delta incremental após esse baseline: **Mobstein 5.4.4**, adicionado em 2026-08-30 aos guias de Gameplay e Magia.
+- Delta incremental após esse baseline: **Mobstein 5.4.4**, adicionado em 2026-08-30 aos guias de Gameplay e Magia e explicitamente classificado no guia de Tecnologia como boundary **não tecnológico**.
 
 ## Regras de precisão
 
@@ -53,7 +53,7 @@ A navegação canônica de cada guia está no `README.md` de sua própria pasta.
 
 - Gameplay: 15 arquivos de conteúdo, incluindo projetos próprios e o capítulo incremental do Mobstein.
 - Magia: 19 arquivos de conteúdo, incluindo projetos próprios e o capítulo incremental do Mobstein.
-- Tecnologia: 20 arquivos de conteúdo, incluindo o apêndice final de projetos próprios.
+- Tecnologia: 21 arquivos de conteúdo, incluindo projetos próprios e o boundary incremental do Mobstein.
 - Projetos próprios: 4 dossiês completos + matriz cruzada + reconciliação + governança/checklists + matriz de delta de capacidades.
 - Cada guia temático foi originalmente reconstruído integralmente e repartido por headings de nível 1; atualizações incrementais recebem capítulos completos próprios.
 - Nenhum arquivo depende de continuar um parágrafo ou seção em outro arquivo.
