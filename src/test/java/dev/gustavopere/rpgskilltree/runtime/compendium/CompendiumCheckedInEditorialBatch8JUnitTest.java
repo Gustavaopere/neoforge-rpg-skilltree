@@ -3,7 +3,6 @@ package dev.gustavopere.rpgskilltree.runtime.compendium;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -46,7 +45,11 @@ final class CompendiumCheckedInEditorialBatch8JUnitTest {
 
     @Test
     void eighthMinecraftRemainingRegularMobBatchIsCheckedInReviewedAndLoadable() throws Exception {
-        JsonObject pack = loadPack();
+        JsonObject pack;
+        try (InputStream input = getClass().getResourceAsStream(CLASSPATH_RESOURCE)) {
+            assertNotNull(input, "Stage 10.10 must ship the eighth reviewed pt-BR vanilla regular-mob package");
+            pack = JsonParser.parseReader(new InputStreamReader(input, StandardCharsets.UTF_8)).getAsJsonObject();
+        }
 
         assertEquals(1, pack.get("schema").getAsInt());
         assertEquals("pt_br", pack.get("language").getAsString());
@@ -70,48 +73,6 @@ final class CompendiumCheckedInEditorialBatch8JUnitTest {
             List.copyOf(technicalEntries)
         );
         assertEquals(EXPECTED_IDS.size(), snapshot.entries().size());
-    }
-
-    @Test void diagnosticHoglinLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:hoglin"); }
-    @Test void diagnosticPiglinLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:piglin"); }
-    @Test void diagnosticPiglinBruteLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:piglin_brute"); }
-    @Test void diagnosticSlimeLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:slime"); }
-    @Test void diagnosticVillagerLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:villager"); }
-    @Test void diagnosticWanderingTraderLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:wandering_trader"); }
-    @Test void diagnosticZoglinLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:zoglin"); }
-    @Test void diagnosticZombieHorseLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:zombie_horse"); }
-    @Test void diagnosticZombieVillagerLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:zombie_villager"); }
-    @Test void diagnosticZombifiedPiglinLoads() throws Exception { assertSingleEntryLoads("ENTITY:minecraft:zombified_piglin"); }
-
-    private void assertSingleEntryLoads(String expectedId) throws Exception {
-        JsonObject sourcePack = loadPack();
-        JsonObject singlePack = new JsonObject();
-        singlePack.addProperty("schema", sourcePack.get("schema").getAsInt());
-        singlePack.addProperty("language", sourcePack.get("language").getAsString());
-        singlePack.addProperty("namespace", sourcePack.get("namespace").getAsString());
-        singlePack.addProperty("kind", sourcePack.get("kind").getAsString());
-        JsonArray singleEntries = new JsonArray();
-        for (JsonElement element : sourcePack.getAsJsonArray("entries")) {
-            JsonObject entry = element.getAsJsonObject();
-            if (expectedId.equals(entry.get("entry_id").getAsString())) {
-                singleEntries.add(entry.deepCopy());
-                break;
-            }
-        }
-        assertEquals(1, singleEntries.size(), expectedId);
-        singlePack.add("entries", singleEntries);
-        var snapshot = CompendiumEditorialResourceLoader.prepare(
-            Map.of(EDITORIAL_RESOURCE, singlePack),
-            List.of(technical(expectedId))
-        );
-        assertEquals(1, snapshot.entries().size(), expectedId);
-    }
-
-    private JsonObject loadPack() throws Exception {
-        try (InputStream input = getClass().getResourceAsStream(CLASSPATH_RESOURCE)) {
-            assertNotNull(input, "Stage 10.10 must ship the eighth reviewed pt-BR vanilla regular-mob package");
-            return JsonParser.parseReader(new InputStreamReader(input, StandardCharsets.UTF_8)).getAsJsonObject();
-        }
     }
 
     private static CompendiumEntry technical(String entryId) {
