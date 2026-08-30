@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO; re-fetch sem drift e sem mutação cosmética.
-- **Implementação:** presente via attack-speed provider-native; confirmação definitiva depende do Chat 2.
+- **Implementação:** VALIDADA EM CI na PR #242 via attack-speed provider-native; confirmação definitiva após merge em `main`.
 - **Notion:** `3c569db9-f0db-8178-adc8-e5831ed803a7`.
 
 ## Contrato canônico
@@ -28,10 +28,17 @@
 
 ## Evidência e boundaries
 
-- `A0021A0040EpicFightHooks` possui caminho de attack-speed para a família HAMMER.
+- `A0021A0040EpicFightHooks` possui caminho `ModifyAttackSpeedEvent` para a família HAMMER.
+- A correção de A0025 removeu a classificação paralela por tag: A0026 só alcança HAMMER quando a capability Epic Fight comprova a família.
 - Volcanoes, Enshrouded e Black Arcana não fornecem cadência de martelo.
 - Companions Mobstein não herdam A0026 do dono.
 
 ## Pendências
 
-Nenhuma de design. A validade do hook deve ser revalidada pelo Chat 2 junto da correção provider-native de A0025; se a família HAMMER não puder ser classificada com segurança, A0026 também fica fail-closed para o item.
+Nenhuma bloqueante após `P-A0025-01` ser resolvida na PR #242. Categoria desconhecida continua fail-closed.
+
+## Chat 2 — implementação e regressão — PR #242
+
+- Attack speed permaneceu no hook provider-native, sem conversão para stamina/movimento/dano/animação.
+- O boundary HAMMER agora é exclusivamente Epic Fight para este lote.
+- CI #2192 validou o caminho juntamente com GameTests, build e dedicated-server smoke.

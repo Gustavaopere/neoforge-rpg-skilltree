@@ -6,9 +6,11 @@ import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategory;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.WeakHashMap;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,7 +40,7 @@ import yesman.epicfight.world.capabilities.item.CapabilityItem;
  */
 public final class A0021A0040MasteryHooks {
     private static final String EPIC_POST_ID = "rpgskilltree:a0021_a0040/mastery";
-    private static final TagKey<Item> HAMMERS = tag("hammers");
+    // A0025 explicitly forbids a parallel HAMMER tag. MACE/SCYTHE stay unchanged until their lots.
     private static final TagKey<Item> MACES = tag("maces");
     private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final WeakHashMap<DamageSource, Map<String, WeaponFamily>> VANILLA_PENDING = new WeakHashMap<>();
@@ -68,6 +70,7 @@ public final class A0021A0040MasteryHooks {
         if (family.isEmpty()) return;
         award(
             player,
+            event.getTarget(),
             family.get(),
             event.getModifiedDamage(),
             "epicfight-gate/" + player.level().getGameTime() + "/" + event.getTarget().getUUID()
@@ -106,6 +109,7 @@ public final class A0021A0040MasteryHooks {
         if (family == null || event.getNewDamage() <= 0.0F || !hostile(player, event.getEntity())) return;
         award(
             player,
+            event.getEntity(),
             family,
             event.getNewDamage(),
             "vanilla-gate/" + player.level().getGameTime() + "/" + targetId
@@ -140,7 +144,28 @@ public final class A0021A0040MasteryHooks {
         }
     }
 
-    private static void award(ServerPlayer player, WeaponFamily family, double damage, String actionId) {
+    private static void award(
+        ServerPlayer player,
+        LivingEntity target,
+        WeaponFamily family,
+        double damage,
+        String actionId
+    ) {
+        if (family == WeaponFamily.HAMMER) {
+            String entityTypeId = BuiltInRegistries.ENTITY_TYPE.getKey(target.getType()).toString();
+            Optional<String> discoveryKey = A0021A0040MasteryPolicy.discoveryKey(family, entityTypeId);
+            if (discoveryKey.isEmpty()) return;
+            String key = discoveryKey.get();
+            boolean newlyDiscovered = !PlayerProgressionRuntime.get(player).discoveries().contains(key);
+            var awards = A0021A0040MasteryPolicy.forDistinctHostileTypeDiscovery(
+                family, true, true, damage, entityTypeId, newlyDiscovered
+            );
+            if (!awards.isEmpty()) {
+                PlayerProgressionRuntime.awardMasteryAndDiscoveries(player, awards, List.of(key));
+            }
+            return;
+        }
+
         var awards = A0021A0040MasteryPolicy.forConfirmedDirectHit(
             family, true, true, damage, actionId
         );
@@ -161,7 +186,6 @@ public final class A0021A0040MasteryHooks {
     }
 
     private static Optional<WeaponFamily> tagFamily(ItemStack stack) {
-        if (stack.is(HAMMERS)) return Optional.of(WeaponFamily.HAMMER);
         if (stack.is(MACES)) return Optional.of(WeaponFamily.MACE);
         if (stack.is(SCYTHES)) return Optional.of(WeaponFamily.SCYTHE);
         return Optional.empty();
