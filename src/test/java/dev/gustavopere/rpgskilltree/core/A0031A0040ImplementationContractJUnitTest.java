@@ -96,6 +96,18 @@ final class A0031A0040ImplementationContractJUnitTest {
             "a confirmed eligible root action must commit the cooldown");
     }
 
+    @Test
+    void a0040ExpiredMarksArePrunedWithoutRequeryingTheTarget() {
+        var state = new A0021A0040CombatState();
+        state.applyReapingMark("player", "target", 1, 0.75D, 0L);
+
+        assertEquals(0, state.pruneExpiredReapingMarks(7_999L));
+        assertEquals(1, state.pruneExpiredReapingMarks(8_000L),
+            "bounded lifecycle pruning must remove an expired mark without consulting its UUID again");
+        assertEquals(0, state.pruneExpiredReapingMarks(9_000L),
+            "the same expired mark must not be removed twice");
+    }
+
     private static A0021A0040CombatPolicy.HitFacts maceFacts(
         String root,
         boolean heavyConfirmed,
