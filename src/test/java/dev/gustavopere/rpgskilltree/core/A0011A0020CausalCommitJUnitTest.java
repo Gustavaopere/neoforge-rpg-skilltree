@@ -47,7 +47,7 @@ final class A0011A0020CausalCommitJUnitTest {
 
     @Test
     void a0017DefersWindowAndDistanceControlConsumptionUntilConfirmedDamage() {
-        var ranks = CombatPerkRanks.of(Map.of("A0016", 2, "A0017", 2));
+        var ranks = CombatPerkRanks.of(Map.of("A0017", 2));
         var state = new NotionCombatPerkState();
         state.addDistanceControl("player", 2, 0L, 7_000L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", false, false, ranks, state, 80, 100L);
@@ -76,7 +76,7 @@ final class A0011A0020CausalCommitJUnitTest {
 
     @Test
     void a0018DefersWindowChargesAndTargetLockoutUntilConfirmedDamage() {
-        var ranks = CombatPerkRanks.of(Map.of("A0016", 2, "A0018", 1));
+        var ranks = CombatPerkRanks.of(Map.of("A0018", 1));
         var state = new NotionCombatPerkState();
         state.addDistanceControl("player", 3, 0L, 7_000L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", false, false, ranks, state, 80, 100L);
