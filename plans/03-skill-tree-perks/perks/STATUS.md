@@ -6,16 +6,16 @@ A fonte canônica de design permanece o Notion. Este índice descreve o estado a
 
 | Código | Perk | Design | Estado técnico auditado | Pendências bloqueantes |
 |---|---|---|---|---|
-| A0001 | Treino com Espadas I | APROVADO após reauditoria | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; provider-native/fail-closed | nenhuma; confirmação após merge |
-| A0002 | Treino com Espadas II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; `ModifyAttackSpeedEvent` provider-native | nenhuma; confirmação após merge |
-| A0003 | Precisão com Espadas | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; crítico no pipeline canônico único | nenhuma; confirmação após merge |
-| A0004 | Ritmo do Duelista | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; hit/dodge/miss/decay/stagger forte provider-native | nenhuma; confirmação após merge |
-| A0005 | Abertura de Guarda | APROVADO após correção | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; defesa nativa + fallback estrito penetração-only | nenhuma; confirmação após merge |
-| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; receipt técnico, janela, cooldown, consumo e dedup | nenhuma; confirmação após merge |
-| A0007 | Treino com Machados I | APROVADO após reauditoria | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; classificação provider-native/fail-closed | nenhuma; confirmação após merge |
-| A0008 | Treino com Machados II | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; `ModifyAttackSpeedEvent` provider-native | nenhuma; confirmação após merge |
-| A0009 | Precisão com Machados | APROVADO | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; crítico no pipeline canônico único | nenhuma; confirmação após merge |
-| A0010 | Pressão do Carrasco | APROVADO após reauditoria | IMPLEMENTAÇÃO VALIDADA EM CI na PR #221; receipt server-authoritative + dedup | nenhuma; confirmação após merge |
+| A0001 | Treino com Espadas I | APROVADO após reauditoria | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; retroauditoria provider→árvore concluída | nenhuma |
+| A0002 | Treino com Espadas II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; retroauditoria provider→árvore concluída | nenhuma |
+| A0003 | Precisão com Espadas | APROVADO + boundary retroativo | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; Notion endurecido para Backlash/companions | nenhuma; preservar provenance direta/root action |
+| A0004 | Ritmo do Duelista | APROVADO + boundary retroativo | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; Notion endurecido para Backlash/companions | nenhuma; preservar autoria direta de Ímpeto |
+| A0005 | Abertura de Guarda | APROVADO após correção + boundary retroativo | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; Arcane Danger/Shroud não qualificam defesa física | nenhuma |
+| A0006 | Maestria de Espadas — Riposta Perfeita | APROVADO + boundary retroativo | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; Backlash/companions não armam/consomem Riposta | nenhuma |
+| A0007 | Treino com Machados I | APROVADO após reauditoria | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; retroauditoria provider→árvore concluída | nenhuma |
+| A0008 | Treino com Machados II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; retroauditoria provider→árvore concluída | nenhuma |
+| A0009 | Precisão com Machados | APROVADO + boundary retroativo | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; Notion endurecido para Backlash/companions | nenhuma; preservar provenance direta/root action |
+| A0010 | Pressão do Carrasco | APROVADO + boundary retroativo | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; Backlash/companions nunca geram Fúria/Mastery | nenhuma |
 | A0011 | Ruptura de Guarda | APROVADO após correção | Presente; condição heurística de “alvo pesado” removida do design | nenhuma |
 | A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO após correção + re-fetch | Implementado com transação PRE: CORE pago antes de exhaustion/bônus/pico; falha deixa o evento fail-closed | nenhuma, condicionado à CI/merge desta PR |
 | A0013 | Treino com Lanças I | APROVADO após reauditoria | Presente; classificação provider-native e fail-closed | nenhuma |
@@ -68,11 +68,23 @@ A matriz detalhada dos nove eixos está em `AUDITORIA-A0001-A0020.md`.
 - **INÍCIO:** A0001.
 - **FIM:** A0010.
 - **Quantidade:** 10 perks consecutivas.
-- **PR:** #221 — `test(perks): confirm A0001-A0010 implementation contracts`.
-- **Runtime:** preservado sem redesenho; código canônico existente foi auditado contra os dez contratos.
-- **Regressões novas:** A0006 (armamento/consumo/supressão/dedup) e A0010 (causalidade/dedup/target switch).
-- **Validação:** `RPG Skill Tree CI` #1996 GREEN no HEAD `b99ba35671dc92477c6b767ec4e4c5c22f0c71d0`; JUnit, NeoForge GameTests, build, built-JAR verification e dedicated-server smoke verdes.
-- **Estado pré-merge:** A0001–A0010 = `IMPLEMENTAÇÃO VALIDADA EM CI`.
-- **Estado definitivo:** alterar para `IMPLEMENTAÇÃO CONFIRMADA` somente após merge da #221 e confirmação da `main` pós-merge.
+- **PR:** #221 — `test(perks): confirm A0001-A0010 implementation contracts` — **MERGEADA** em 2026-08-30.
+- **Merge commit:** `d7aa65bf37bbe284cac5d92818ef0a1a23ffd14b`.
+- **Estado definitivo:** A0001–A0010 = `IMPLEMENTAÇÃO CONFIRMADA`.
 - **Fallback/fail-closed legítimos:** A0001/A0007 classificação desconhecida; A0005 penetração-only quando guarda não é observável mas defesa física é comprovável; A0006 receipts adicionais de aparo/guarda perfeita omitidos sem API causal; A0010 adapters sem receipt equivalente ficam inativos.
-- **Pendências bloqueantes:** nenhuma.
+
+## Auditoria retroativa de integração — A0001–A0010 — projetos próprios + Mobstein 5.4.4
+
+**Estado:** `LOTE RETROATIVO FECHADO NO DESIGN`; fechamento operacional depende da PR documental deste ciclo ficar verde/mergeada e da confirmação da `main` pós-merge.
+
+- **Escopo exclusivo:** RPG Skill Tree, Volcanoes, Enshrouded, Black Arcana e Mobstein 5.4.4. Nenhum outro mod foi reaudited geral.
+- **Arquivo canônico do ciclo:** `AUDITORIA-RETROATIVA-PROVIDERS-A0001-A0010.md`.
+- **Fetch fresco de projetos próprios:** realizado para `main` + `plans/STATUS.md`; deltas receberam disposição explícita antes de qualquer checkpoint.
+- **RPG Skill Tree:** capacidades canônicas do lote permanecem cobertas; Stages 11/12/13 planejados não foram promovidos a hook atual. Stage 12 bodies é `SEM HOOK SEGURO` para eventual relação futura com Mobstein.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO` às dez perks marciais; suas capacidades ambientais/geológicas pertencem a outros ramos/ciclos.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO` às dez perks; `MagicResistanceService`/Shroud/Exposure/Flame/Story não são defesa física nem recurso marcial.
+- **Black Arcana:** boundary causal obrigatório — `ARCANE_BACKLASH` terminal nunca crita/proca/concede Mastery, Ímpeto, Riposta ou Fúria neste lote; Arcane Resistance/Corruption Resistance/Strain não qualificam A0005.
+- **Mobstein 5.4.4:** combate direto contra mobs/bosses é `COBERTO POR SISTEMA UNIVERSAL`; ataques de allies/bodyguards ressuscitados permanecem Mobstein-owned e não herdam autoria marcial do dono; perks internas Attack/Health/Speed/Template continuam progressão nativa autoritativa.
+- **Notion alterado:** A0003, A0004, A0005, A0006, A0009 e A0010 — `Hook`, `Fallback` e `Regra`; re-fetch 6/6 PASS. A0001/A0002/A0007/A0008 não precisaram de mutação.
+- **Dossiês:** A0001–A0010 atualizados com authority, boundary, causalidade, deduplicação, fallback/fail-closed e classificação provider→árvore.
+- **A0011+:** não iniciado/não alterado por este ciclo retroativo.
