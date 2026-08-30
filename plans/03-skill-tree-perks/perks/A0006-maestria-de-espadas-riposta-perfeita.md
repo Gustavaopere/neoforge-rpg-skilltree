@@ -61,13 +61,13 @@
 - `NotionCombatPerkRules.riposteCooldownMillis(...)` implementa 10/9/8 s.
 - `A0001A0020CombatPolicy.onConfirmedTechnicalDefense(...)` exige espada, A0006, 5 de Ímpeto e cooldown pronto; então arma Riposta por 3 s.
 - `A0001A0020EpicFightHooks.onDodge(...)` fornece receipt provider-native e passa a mastery real de `epicfight:sword`.
-- `A0001A0020CombatPolicy.beforeHit(...)` consome a janela e 5 de Ímpeto, aplica +20% de dano quando o resultado é crítico, +20% de impacto/pressão quando disponível e ativa `suppressMomentumGain`.
-- A deduplicação usa `claimOnce(..., "A0006:consume", ...)`.
-- Testes de contrato/policy do bloco A0001–A0020 cobrem a infraestrutura usada pela perk.
+- Após a correção causal do Chat 3, `A0001A0020CombatPolicy.beforeHit(...)` apenas prepara a transação da Riposta para a ação raiz elegível; `afterConfirmedHit(...)` consome a janela e os 5 de Ímpeto somente depois de `direct && hostile && actualDamage`, mantendo +20% de dano apenas quando o resultado é crítico e +20% de impacto/pressão quando disponível.
+- A deduplicação usa `claimOnce(..., "A0006:consume", ...)` na preparação e commit único por `rootActionId`.
+- Testes de contrato/policy do bloco A0001–A0020 cobrem a infraestrutura usada pela perk, incluindo agora regressão explícita de dano zero/cancelado.
 
 ## Pendências técnicas
 
-Nenhuma pendência bloqueante foi identificada para o caminho comprovado de esquiva do Epic Fight 21.17.3.1.
+Nenhuma pendência bloqueante permanece para o caminho comprovado de esquiva do Epic Fight 21.17.3.1 após a correção causal da PR #244.
 
 ### Nota de cobertura — aparo e guarda perfeita
 
@@ -81,8 +81,9 @@ Nenhuma pendência bloqueante foi identificada para o caminho comprovado de esqu
 - [x] armamento por defesa técnica e consumo no policy;
 - [x] supressão de ganho de Ímpeto no hit consumidor;
 - [x] integração `ON_DODGE` presente;
-- [ ] adicionar testes específicos caso novos receipts de aparo/guarda perfeita sejam integrados;
-- [ ] revalidar dedicated-server smoke quando o adapter Epic Fight mudar.
+- [x] dano zero/cancelado não consome janela nem 5 de Ímpeto;
+- [x] JUnit, NeoForge GameTests, build, JAR e dedicated-server smoke revalidados na PR #244;
+- [ ] adicionar testes específicos caso novos receipts de aparo/guarda perfeita sejam integrados.
 
 ## Fechamento Chat 1 V3 — ciclo exato A0001–A0010
 
@@ -119,3 +120,15 @@ Nenhuma pendência bloqueante foi identificada para o caminho comprovado de esqu
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria; re-fetch confirmou persistência.
 - **Fail-closed:** qualquer defesa/evento sem receipt causal ou qualquer evento terminal/secundário permanece inelegível; não fabricar bridge por proximidade temática.
 - **Estado histórico:** implementação da #221 já mergeada; sem alteração runtime neste ciclo.
+
+## Chat 3 — auditoria pós-merge e correção causal — PR #244
+
+- **Pendência encontrada:** `P-A0006-01` — a implementação mergeada consumia a janela de Riposta e 5 de Ímpeto no `beforeHit`/PRE. Se o provider posteriormente cancelasse o golpe ou resolvesse dano efetivo zero, a oportunidade era perdida sem um acerto confirmado.
+- **Causa técnica:** o PRE fazia `consumeRiposte(...)` + `consumeMomentum(..., 5)` antes de existir receipt POST de dano real, contrariando o contrato causal atual do sistema.
+- **Correção:** o PRE agora apenas prepara uma transação transitória e limitada por `rootActionId`, mantendo os modificadores necessários para a resolução do golpe. O commit de janela + 5 Ímpeto só ocorre em `afterConfirmedHit(...)` após `direct && hostile && actualDamage`.
+- **Falha/cancelamento:** sem dano efetivo, não há commit irreversível; a preparação é descartável/limitada e a Riposta armada permanece disponível dentro de sua janela original para um próximo acerto válido.
+- **Supressão de Ímpeto:** o mesmo resultado só deixa de gerar A0004 quando o POST realmente confirma e commita uma `RIPOSTE`; um PRE que não chegar a dano confirmado não cria supressão fantasma.
+- **TDD RED:** `RPG Skill Tree CI` #2193 falhou intencionalmente em `a0006DefersRiposteAndFiveMomentumSpendUntilConfirmedDamagePost`, junto da regressão equivalente de A0005, totalizando exatamente 2 falhas em 120 testes.
+- **TDD GREEN:** `RPG Skill Tree CI` #2203 ficou integralmente verde no HEAD `cc7ba795437943a962cdb5e33cd350f92d0ac123`, incluindo core, JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke.
+- **Cobertura que permanece fail-closed:** aparo e guarda perfeita continuam sem bridge adicional enquanto não houver receipt público causal comprovado; `ON_DODGE` continua sendo o caminho provider-native confirmado e suficiente para a implementação atual.
+- **Estado da pendência:** `P-A0006-01 RESOLVIDA` na PR #244; confirmação definitiva ocorre com o merge desta PR na `main`.
