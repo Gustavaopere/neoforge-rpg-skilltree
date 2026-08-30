@@ -81,3 +81,14 @@
 - [x] fallback sem alteração de movimento;
 - [ ] teste do componente de deslocamento somente se surgir receipt provider-native válido;
 - [ ] dedicated-server smoke após eventual integração.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA; P-A0017-01 permanece o fail-closed correto e nenhum projeto próprio/Mobstein fornece substituto legítimo para o receipt ofensivo faltante.
+- **RPG Skill Tree:** janela, Controle de Distância, deduplicação e consumo continuam no pipeline MARTIAL canônico.
+- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não abre, consome nem aciona Interceptação.
+- **Mobstein 5.4.4:** movimento/ataque de ally/bodyguard ressuscitado permanece Mobstein-owned e não é ação do jogador; combate direto do jogador contra entidade Mobstein continua normal.
+- **Volcanoes / Enshrouded:** hazards, pressão, Shroud, Exposure, Flame ou Story não são receipt de corrida/investida Epic Fight. Associação temática com avanço/perigo não autoriza reescrita de movimento.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
+- **Fail-closed:** componente de redução de deslocamento continua omitido até API/evento provider-native causal; janela + impacto/pressão permanecem o fallback canônico aprovado.
+- **Chat 2:** não usar `deltaMovement`, velocidade vanilla ou estado de outro provider como autorização para a redução de deslocamento.

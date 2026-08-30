@@ -92,3 +92,14 @@ Nenhuma divergência específica foi identificada nesta leitura. Mudanças futur
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Pendências técnicas:** nenhuma no provider/versionamento atual.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; rank/gate seguem authority do RPG e cadência permanece authority do evento Epic Fight.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO`; hazards, pressão, Atmosphere e geologia não alteram cadência de machado.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO`; Shroud/Exposure/Flame/Story não fornecem attack-speed marcial.
+- **Black Arcana:** somente o ataque direto Epic Fight do jogador recebe A0008; casts/Backlash não recebem nem disparam o modificador.
+- **Mobstein 5.4.4:** ataque direto do jogador contra mobs/bosses é coberto universalmente; ataques dos ressuscitados seguem o próprio Mobstein e não herdam cadência do dono.
+- **Fallback/fail-closed:** nenhum bridge novo. Sem família `AXE` + evento de cadência seguro para a ação do jogador, a perk fica inativa.
+- **Notion:** nenhuma mutação necessária nesta perk.
+- **Estado histórico:** implementação da #221 já mergeada; sem alteração runtime.

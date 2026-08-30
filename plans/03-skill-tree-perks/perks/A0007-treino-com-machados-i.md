@@ -69,3 +69,14 @@
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Pendências técnicas:** nenhuma.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; authority de rank/efeito/deduplicação permanece no pipeline marcial canônico. Não criar storage ou multiplicador paralelo.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO`; geologia, Atmosphere, pressão, tremor e hazards não modificam dano basal de machado.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO`; Shroud/Exposure/Flame/Story não são source de dano de machado.
+- **Black Arcana:** ataques diretos do jogador contra entidades Black Arcana permanecem cobertos pelo combate universal; `ARCANE_BACKLASH` é terminal e não herda A0007 nem gera Mastery/proc.
+- **Mobstein 5.4.4:** golpe direto do jogador contra mob/boss Mobstein é coberto normalmente; dano de ally/bodyguard ressuscitado é Mobstein-owned e não herda A0007 por ownership.
+- **Fallback/fail-closed:** sem ação direta + família `AXE` provider-native, A0007 não aplica. Nenhum bridge adicional foi criado.
+- **Notion:** nenhuma mutação necessária; o contrato atual de ataque direto/classificação segura já é suficiente.
+- **Estado histórico:** implementação da #221 já mergeada; esta retroauditoria não altera runtime.

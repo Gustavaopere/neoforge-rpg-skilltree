@@ -46,3 +46,13 @@ A0016 é a Notable de Controle de Distância. Exige A0015 ≥2. Hit direto de la
 - [x] perda por stagger forte;
 - [x] lifecycle cleanup;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA com boundary de autoria retroativa; a geometria/alcance continuam Epic Fight/RPG-owned.
+- **RPG Skill Tree:** Controle de Distância é estado transitório do jogador, server-authoritative, deduplicado e alimentado apenas por ação marcial direta elegível.
+- **Black Arcana:** `ARCANE_BACKLASH` não é acerto direto de lança e não gera/renova Controle de Distância.
+- **Mobstein 5.4.4:** ataques de allies/bodyguards ressuscitados não geram cargas para o dono; ataques diretos do jogador contra entidades Mobstein continuam elegíveis quando cumprem família/alcance/receipt.
+- **Volcanoes / Enshrouded:** NÃO DEVE SER INTEGRADO à geração de cargas; hazards, Shroud, Exposure ou Story não substituem distância/alcance do combate.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
+- **Chat 2:** preservar direct-player provenance e o fail-closed de alcance; não atribuir cargas por eventos secundários ou companion-owned.

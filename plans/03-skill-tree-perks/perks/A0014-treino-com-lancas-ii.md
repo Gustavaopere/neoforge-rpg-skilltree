@@ -69,3 +69,13 @@ Nenhuma divergência específica identificada nesta leitura. A validade do event
 - [x] classificação SPEAR provider-native;
 - [x] fail-closed por ausência de família/hook;
 - [ ] revalidar integração e dedicated-server smoke após atualização do Epic Fight.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA sem mutação no Notion; nenhuma capacidade nova dos cinco providers altera o contrato de cadência.
+- **RPG Skill Tree:** apenas aplica o rank adquirido; a cadência efetiva continua resolvida pelo Epic Fight provider-native.
+- **Volcanoes / Enshrouded / Black Arcana:** NÃO DEVE SER INTEGRADO; hazards, Shroud/Flame e Arcane Danger não substituem attack speed/cadência da lança.
+- **Mobstein 5.4.4:** não fornece cadência marcial do jogador; companions não herdam A0014 do dono.
+- **Notion:** re-fetch em 2026-08-30 sem drift; nenhuma mutação artificial.
+- **Fail-closed:** se o moveset/provider não expuser cadência estável, a perk fica inativa em vez de virar stamina, movimento, dano ou animação.
+- **Chat 2:** nenhuma nova implementação além de preservar a boundary existente.

@@ -47,3 +47,13 @@
 - [x] rejeição de alvo observavelmente desprotegido;
 - [x] fallback de penetração-only;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA com boundary retroativo explícito; o efeito, ranks, gate e providers principais não mudaram.
+- **RPG Skill Tree:** continua authority exclusiva da Fúria e da deduplicação/consumo da perk; uma ação causal pode gastar Fúria uma única vez.
+- **Black Arcana / Enshrouded:** Arcane Resistance, Corruption Resistance, Arcane Strain, `ARCANE_BACKLASH`, Shroud, Exposure e Madness não qualificam como guarda/postura nem defesa física do fallback.
+- **Mobstein 5.4.4:** dano de ally/bodyguard ressuscitado permanece Mobstein-owned e não pode gastar Fúria do dono nem ativar A0011 em seu nome; ataque direto do jogador contra entidade Mobstein continua normal quando o receipt Epic Fight é válido.
+- **Volcanoes:** NÃO DEVE SER INTEGRADO a A0011; Atmosphere, pressão, gases, calor e prospecção não são defesa física/guarda da perk.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
+- **Chat 2:** revalidar apenas guards/provenance contra essas exclusões; não criar bridge nova nem converter resistência ambiental/arcana em defesa física.

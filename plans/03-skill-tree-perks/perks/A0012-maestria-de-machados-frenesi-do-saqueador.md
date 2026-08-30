@@ -56,3 +56,14 @@
 - [x] Queda de Ritmo 6/5/4 s;
 - [x] estado de Frenesi não é armado sem bridge CORE operacional;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA com clarificação de composição térmica; nenhum novo provider direto foi adicionado à perk.
+- **RPG Skill Tree:** Fúria, estado de Frenesi, deduplicação e gasto de pico continuam RPG-owned; a transação causal continua única no PRE.
+- **Volcanoes:** o projeto pode injetar calor ambiental bounded no **mesmo Cold Sweat 2.4.2** por sua bridge canônica. Essa fonte pode compor naturalmente com o +1,5 CORE de A0012 no estado corporal, mas A0012 **não chama Volcanoes, não consulta Atmosphere/gases/pressão e não reaplica nem cobra duas vezes o calor ambiental**. Cold Sweat segue authority exclusiva da temperatura corporal.
+- **Enshrouded / Black Arcana:** Shroud, Exposure, Madness, Arcane Strain, Corruption e `ARCANE_BACKLASH` não são proxies de CORE, exhaustion, stamina ou Fúria e não satisfazem custos/gates de Frenesi.
+- **Mobstein 5.4.4:** corpos/órgãos/ressuscitados não fornecem custo corporal alternativo; ataques de allies/bodyguards não recebem autoria do dono para baseline/pico.
+- **Notion:** `Hook`, `Fallback` e `Regra` corrigidos em 2026-08-30; re-fetch confirmou persistência.
+- **Fail-closed:** ausência/falha do bridge Cold Sweat continua desativando a parcela dependente; nenhuma capacidade dos quatro projetos próprios substitui esse requisito.
+- **Chat 2:** preservar a ordem CORE → exhaustion → benefício/gasto e validar que fontes ambientais Volcanoes não são debitadas/reaplicadas pelo adapter A0012.

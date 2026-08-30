@@ -92,3 +92,14 @@ Nenhuma pendência específica identificada nesta leitura. Isso não substitui C
 - [x] JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke verdes.
 
 **Pendências técnicas:** nenhuma no provider/versionamento atual.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — 2026-08-30
+
+- **RPG Skill Tree:** `COBERTA POR PERK EXISTENTE`; a árvore/gate/rank continua authority do RPG, enquanto a cadência efetiva é lida do evento provider-native do Epic Fight.
+- **Volcanoes:** `NÃO DEVE SER INTEGRADO`. Atmosphere, pressão, geologia, tremor ou hazards não alteram cadência de espada.
+- **Enshrouded:** `NÃO DEVE SER INTEGRADO`. Exposure/Flame/Shroud/Story não fornecem attack-speed marcial.
+- **Black Arcana:** `COBERTO POR SISTEMA UNIVERSAL` apenas quando o jogador executa o ataque Epic Fight; Backlash/casts não recebem nem disparam o modificador de cadência desta perk.
+- **Mobstein 5.4.4:** `COBERTO POR SISTEMA UNIVERSAL` para ataque direto do jogador contra mobs/bosses; companions ressuscitados têm seus próprios ataques Mobstein e não recebem a cadência de espada do dono.
+- **Fallback/fail-closed:** nenhum novo adapter. Se não houver `SWORD` + `ModifyAttackSpeedEvent` seguro para a ação do jogador, A0002 fica inativa.
+- **Notion:** nenhuma mutação necessária; o contrato atual já impede transformar outros estados em stamina/movimento/dano/animação.
+- **Estado histórico:** PR #221 já foi mergeada; implementação confirmada, sem alteração de runtime nesta retroauditoria.
