@@ -47,3 +47,13 @@
 - [x] classificação `dagger` provider-native;
 - [x] fail-closed para categoria desconhecida;
 - [x] CI/build e dedicated-server smoke exigidos antes do merge.
+
+## Auditoria retroativa de integração — projetos próprios + Mobstein 5.4.4 — lote A0011–A0020
+
+- **Resultado:** APROVADA sem mutação no Notion; nenhuma capacidade nova altera a classificação provider-native de adaga.
+- **RPG Skill Tree:** bônus permanece no pipeline MARTIAL canônico e exige ação direta do jogador com família DAGGER.
+- **Volcanoes / Enshrouded / Black Arcana:** NÃO DEVE SER INTEGRADO à classificação/dano basal da adaga; seus estados não classificam arma nem criam hit direto MARTIAL.
+- **Mobstein 5.4.4:** combate direto do jogador contra entidades Mobstein é coberto pelo sistema universal; companions ressuscitados não herdam o bônus do dono.
+- **Notion:** re-fetch em 2026-08-30 sem drift; nenhuma mutação cosmética.
+- **Fail-closed:** item sem classificação DAGGER segura permanece inelegível.
+- **Chat 2:** nenhuma bridge nova; preservar autoria e família provider-native.
