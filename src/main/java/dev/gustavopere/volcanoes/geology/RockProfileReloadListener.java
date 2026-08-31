@@ -3,7 +3,7 @@ package dev.gustavopere.volcanoes.geology;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.mojang.logging.LogUtils;
-import dev.gustavopere.volcanoes.VolcanoesMod;
+import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import java.util.Map;
 
 /** Server datapack reload bridge for rock profiles. */
-@EventBusSubscriber(modid = VolcanoesMod.MOD_ID)
+@EventBusSubscriber(modid = RpgSkillTreeMod.MOD_ID)
 public final class RockProfileReloadListener extends SimpleJsonResourceReloadListener {
     public static final String DIRECTORY = "rock_profiles";
 
