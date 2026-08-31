@@ -52,3 +52,13 @@
 - **Coexistência:** efeitos Simply podem ocorrer no mesmo root por seu pipeline, mas não consomem nem financiam as 3 cargas de Abalo e não criam uma segunda Quebra de Postura.
 - **Fail-closed:** `P-A0029-01` permanece integralmente aberta após esta reauditoria.
 - **Notion:** boundary Simply persistida e re-fetch PASS.
+
+## Chat 3 — auditoria pós-merge — PR #315
+
+- O provider continua sem `heavyConfirmed` seguro; `P-A0029-01` permanece aberta e o caminho real continua fail-closed.
+- Foi corrigida uma divergência latente no core: quando um receipt heavy seguro vier a existir, A0029 não pode consumir as 3 cargas de Abalo no PRE.
+- PRE agora apenas reserva 3 Abalo por root action e aplica pressão/impacto para o cálculo; POST confirmado commita exatamente 3 cargas.
+- POST cancelado/zero damage descarta a reserva sem consumo.
+- Abalo reservado não pode financiar outra root action concorrente.
+- Commit do consumidor ocorre antes do ganho A0028 do próprio hit, impedindo que a ação gere e consuma a mesma carga causalmente.
+- Nenhum heavy receipt foi fabricado e nenhuma heurística proibida foi introduzida.
