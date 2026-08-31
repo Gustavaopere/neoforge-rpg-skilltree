@@ -225,16 +225,20 @@ public final class A0021A0040EpicFightHooks {
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
         String targetId = event.getTarget().getUUID().toString();
         PendingHit pending = forget(event.getDamageSource(), targetId);
-        if (pending == null || event.getModifiedDamage() <= 0.0F || !hostile(player, event.getTarget())) return;
+        if (pending == null) return;
 
         long now = now(player);
         CombatPerkRanks ranks = ranks(player);
-        HitFacts facts = facts(
-            actor(player), targetId, pending.rootActionId, pending.family, pending.critical,
+        boolean hostileTarget = hostile(player, event.getTarget());
+        boolean actualDamage = hostileTarget && event.getModifiedDamage() > 0.0F;
+        HitFacts facts = new HitFacts(
+            actor(player), targetId, pending.rootActionId, pending.family,
+            true, hostileTarget, actualDamage, pending.critical,
             pending.reposition, pending.rear, false, pending.protectedTarget,
             false, true, true, true, healthFraction(event.getTarget()), pending.boss, now
         );
         A0021A0040CombatPolicy.afterConfirmedHit(facts, ranks, A0021A0040RuntimeState.state());
+        if (!actualDamage) return;
         if (pending.specialty.applyArmorSunder()) {
             applyArmorSunder(
                 event.getTarget(),
