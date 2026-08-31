@@ -13,6 +13,7 @@ EXPECTED = (
     "malum",
     "eidolon",
     "identity2",
+    "minecolonies",
 )
 PREFIX = "Optional integrations: "
 
