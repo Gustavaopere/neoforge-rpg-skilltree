@@ -7,7 +7,7 @@
 - **Estado de entrada:** lote previamente fechado/implementado, reaberto somente para cobertura da modlist nova.
 - **Base inicial do RPG Skill Tree:** `main@0a4aa6adb91572a34d90f51969217f875c803644`.
 - **Runtime alterado por este Chat 1:** **NÃO**.
-- **A0011+:** não iniciado neste ciclo.
+- **A0011+:** não iniciado neste sublote; a reauditoria acumulada prossegue separadamente até A0050.
 
 Esta reauditoria é dirigida pelo delta de cinco JARs adicionados ao pack:
 
@@ -21,11 +21,11 @@ Também foi considerado `Epic Fight - Mod Compat 1.1.0`, pois é a bridge instal
 
 ## Fontes obrigatórias
 
-Foram cruzados os critérios consolidados, os quatro guias completos, o protocolo Chat 1, os dez dossiês A0001–A0010, o `STATUS.md`, a implementação Epic Fight atual e as dez páginas canônicas do Notion.
+Foram cruzados os critérios consolidados, os quatro guias completos, o protocolo Chat 1, os dez dossiês A0001–A0010, o `STATUS.md`, a implementação Epic Fight atual e as dez páginas canônicas do Notion auditadas antes da instrução posterior de finalizar os registros somente no GitHub.
 
 ### Delta dos projetos próprios
 
-Fetch fresco antes do fechamento:
+Fetch fresco antes do fechamento inicial:
 
 | Projeto | `main` fresco | Disposição para A0001–A0010 |
 |---|---|---|
@@ -58,42 +58,42 @@ Nenhum baseline é usado para promover capacidade planejada como runtime dispon�
 
 Epic Fight/Epic Fight Compat são authority de **moveset/preset/capability de combate**, não de Implicit, Awakening, Runic Power, Unique ability, gem power ou trait Cataclysm. Inversamente, possuir um `weaponType` Simply não autoriza o RPG a inferir uma família Epic Fight por namespace, nome, modelo, material ou tooltip. Se a capability não provar a família requerida, a perk permanece fail-closed.
 
-Uma ação direta do jogador deve continuar tendo **um único root MARTIAL**. Bleed, double damage, double strike, execute, ability damage, gem power, chain/AoE e demais resultados derivados não se tornam novos roots apenas porque vieram de uma arma do jogador.
+O **contrato de design** exige que uma ação direta do jogador tenha um único root MARTIAL e que Bleed, double damage, double strike, execute, ability damage, gem power, chain/AoE e demais resultados derivados não se tornem novos roots apenas por terem vindo da arma do jogador. **A conformidade do stack real com essa deduplicação ainda depende do acceptance provider-present `P-SIMPLY-A0001-50-01`; não está sendo declarada como runtime comprovado por este Chat 1.**
 
 ## Decisão por perk
 
 | Perk | Resultado do delta |
 |---|---|
-| A0001 Treino com Espadas I | **CORRIGIDA NO DESIGN.** Armas Simply recebem o bônus somente quando Epic Fight Compat resolve `SWORD`; provider-derived hits não recebem A0001 novamente. |
+| A0001 Treino com Espadas I | **CORRIGIDA NO DESIGN.** Armas Simply recebem o bônus somente quando Epic Fight Compat resolve `SWORD`; provider-derived hits não devem receber A0001 novamente; validação provider-present permanece pendente. |
 | A0002 Treino com Espadas II | **CORRIGIDA NO DESIGN.** `ModifyAttackSpeedEvent` continua o boundary; proc nativo de attack speed compõe pelo valor efetivo uma vez, sem retrigger/recalc. |
-| A0003 Precisão com Espadas | **CORRIGIDA NO DESIGN.** Katana/double-strike/execute/abilities/gems não abrem nova rolagem crítica MARTIAL; Awakening/gem scaling não é duplicado. |
-| A0004 Ritmo do Duelista | **CORRIGIDA NO DESIGN.** no máximo 1 Ímpeto/root direto; fan-out/AoE/proc/ability não geram cargas extras. Deflect Simply não é defesa técnica sem receipt causal próprio. |
+| A0003 Precisão com Espadas | **CORRIGIDA NO DESIGN.** Katana/double-strike/execute/abilities/gems não devem abrir nova rolagem crítica MARTIAL; Awakening/gem scaling não é duplicado pelo contrato. |
+| A0004 Ritmo do Duelista | **CORRIGIDA NO DESIGN.** no máximo 1 Ímpeto/root direto; fan-out/AoE/proc/ability não devem gerar cargas extras. Deflect Simply não é defesa técnica sem receipt causal próprio. |
 | A0005 Abertura de Guarda | **CORRIGIDA NO DESIGN.** armor-ignore/sunder/Deflect/traits não são proof de guarda; A0005 aplica somente sua parcela canônica e não reexecuta Implicit. |
 | A0006 Riposta Perfeita | **CORRIGIDA NO DESIGN.** arma Simply pode consumir Riposta via `SWORD`, mas Deflect permanece fail-closed como gatilho técnico sem adapter causal. RPG não opera Awakening/Unique ability. |
-| A0007 Treino com Machados I | **CORRIGIDA NO DESIGN.** armas Simply entram só quando resolvidas como `AXE`; Bleed/procs não criam roots adicionais. |
+| A0007 Treino com Machados I | **CORRIGIDA NO DESIGN.** armas Simply entram só quando resolvidas como `AXE`; Bleed/procs não devem criar roots adicionais. |
 | A0008 Treino com Machados II | **CORRIGIDA NO DESIGN.** cadência segue Epic Fight; o RPG não retriggera proc de attack speed nem bypassa normalização Cataclysm baseada em attack speed. |
-| A0009 Precisão com Machados | **CORRIGIDA NO DESIGN.** Bleed/ability/gem/Cursium/Ignitium/Witherite derived effects não recebem nova resolução crítica. |
-| A0010 Pressão do Carrasco | **CORRIGIDA NO DESIGN.** Fúria exige `direct + hostile + actualDamage + AXE + autoria`; Bleed/Accursed Rage/Blazing Brand/Mecha Pulse/Smite/lifesteal/stun/regen não concedem Fúria separadamente. |
+| A0009 Precisão com Machados | **CORRIGIDA NO DESIGN.** Bleed/ability/gem/Cursium/Ignitium/Witherite derived effects não devem receber nova resolução crítica. |
+| A0010 Pressão do Carrasco | **CORRIGIDA NO DESIGN.** Fúria exige `direct + hostile + actualDamage + AXE + autoria`; Bleed/Accursed Rage/Blazing Brand/Mecha Pulse/Smite/lifesteal/stun/regen não devem conceder Fúria separadamente. |
 
-Nenhum coeficiente, rank, custo, gate, topologia ou dependência A0001–A0010 precisou ser alterado. O delta é de **provider coverage, authority, causalidade, deduplicação e fail-closed**.
+Nenhum coeficiente, rank, custo, gate, topologia ou dependência A0001–A0010 precisou ser alterado. O delta é de **provider coverage, authority, causalidade, deduplicação e fail-closed**, com acceptance provider-present ainda pendente para comprovar o comportamento real do stack.
 
-## Notion
+## Notion — evidência histórica
 
-Fetch fresco foi executado em A0001–A0010 antes da escrita. As **10/10 páginas** receberam correções em `Provider/Mods`, `Hook`, `Fallback` e `Regra` compatíveis com a responsabilidade de cada perk. Após a escrita foram feitos **10/10 re-fetchs**, todos PASS, confirmando persistência.
+Antes da instrução posterior de usar somente GitHub no fechamento, fetch fresco foi executado em A0001–A0010 e as **10/10 páginas** receberam correções em `Provider/Mods`, `Hook`, `Fallback` e `Regra`. Após a escrita foram feitos **10/10 re-fetchs**, todos PASS. Esta seção é somente registro histórico; não autoriza novas gravações no Notion.
 
 ## Nove eixos obrigatórios
 
 | Eixo | Estado do lote após o delta |
 |---|---|
 | 1. Dependências e bloqueios | ✅ PASS — inalterados e semanticamente válidos. |
-| 2. Integrações globais/modlist | ✅ PASS — stack Simply integrado sem duplicar pipelines provider-native. |
+| 2. Integrações globais/modlist | ✅ PASS NO DESIGN / ACCEPTANCE PENDENTE — stack Simply possui boundaries definidos, mas a classificação/event provenance real será provada por `P-SIMPLY-A0001-50-01`. |
 | 3. Qualidade/identidade | ✅ PASS — nenhuma perk foi convertida em bônus genérico ou em proxy de Implicit. |
 | 4. Ramificação/distância/topologia | ✅ PASS — nenhuma mudança topológica necessária. |
 | 5. Especializações | ✅ PASS — weapon types Simply são cobertura universal; não viram classes/perks nominais. |
 | 6. PT-BR | ✅ PASS — texto player-facing existente preservado; novos termos técnicos ficam no contrato. |
-| 7. Notion completo | ✅ PASS — 10/10 corrigidas + 10/10 re-fetched. |
+| 7. Registro canônico | ✅ PASS — dossiês/auditorias GitHub registram o contrato; evidência Notion anterior permanece histórica. |
 | 8. NeoVitae | ✅ PASS — ausente. |
-| 9. Cobertura modlist/providers | ✅ PASS — cinco novos mods receberam disposição explícita e Epic Fight Compat teve authority separada. |
+| 9. Cobertura modlist/providers | ✅ PASS NO DESIGN / ACCEPTANCE PENDENTE — cinco novos mods receberam disposição explícita e Epic Fight Compat teve authority separada; comportamento provider-present ainda precisa de prova. |
 
 ## Checklist técnica consolidada — 18 critérios
 
@@ -104,25 +104,27 @@ Fetch fresco foi executado em A0001–A0010 antes da escrita. As **10/10 página
 5. Fallback preserva identidade: PASS.
 6. Mastery por feitos discretos: N/A neste delta; nenhuma nova fonte de Mastery criada.
 7. Anti-farm/rebuild: N/A adicional; nenhuma progressão nova criada.
-8. Atribuição causal: PASS; somente root direto do jogador alimenta estas perks.
-9. Pipeline canônico único: PASS; crítico/Ímpeto/Fúria permanecem deduplicados.
-10. Custos/recursos reais: PASS; Ímpeto/Fúria continuam RPG-owned e recursos Simply não são clonados.
-11. Sem geração gratuita: PASS.
+8. Atribuição causal: **DESIGN PASS / ACCEPTANCE PENDENTE**; somente root direto deve alimentar as perks, mas a provenance real do stack precisa ser validada por `P-SIMPLY-A0001-50-01`.
+9. Pipeline canônico único: **DESIGN PASS / ACCEPTANCE PENDENTE**; o contrato proíbe segundo root para derived/proc/ability hits, porém a ausência de duplicate Epic Fight events do stack real ainda não foi comprovada.
+10. Custos/recursos reais: PASS no design; Ímpeto/Fúria continuam RPG-owned e recursos Simply não são clonados.
+11. Sem geração gratuita: PASS no design; acceptance provider-present deve confirmar que eventos delegados não geram recursos extras.
 12. Read-only: N/A.
 13. Versionamento explícito: PASS para Simply Swords 1.70.2, Simply More 1.3.0 ALPHA, Integrated 1.4.0, Cataclysm 1.0.2, Simply Tooltips 0.1.5, Epic Fight Compat 1.1.0 e Epic Fight 21.17.3.1.
 14. Coerência estrutural: PASS; topologia/ranks/custos inalterados.
 15. Dependências semanticamente corretas: PASS.
-16. Sem sobreposição indevida: PASS; efeitos Simply não concedem progressão em múltiplos roots.
+16. Sem sobreposição indevida: **DESIGN PASS / ACCEPTANCE PENDENTE**; ownership está especificado, mas ausência de double-root/double-dip no provider real pertence ao acceptance canônico.
 17. Implementabilidade: PASS no design; boundaries e fail-closed estão explícitos.
-18. Verificação pós-escrita: PASS 10/10 no Notion.
+18. Verificação pós-escrita: PASS para os registros GitHub deste fechamento; as 10/10 verificações Notion anteriores permanecem apenas evidência histórica.
 
 ## Pendências para Chat 2
 
-### `P-SIMPLY-A0001-10-01` — prova provider-present do stack
+### `P-SIMPLY-A0001-50-01` — acceptance provider-present do stack — cobertura SWORD/AXE deste sublote
 
-Adicionar teste/acceptance com os artifacts exatos instalados para provar que Simply Swords 1.70.2 + Simply More 1.3.0 ALPHA + Epic Fight Compat 1.1.0 entregam as categorias Epic Fight esperadas para amostras `SWORD`/`AXE` sem transformar Implicit/ability/gem/trait derived damage em novo root MARTIAL. Integrated Simply Swords e Simply Swords: Cataclysm devem entrar na matriz quando houver amostra representativa disponível.
+Este item **não é um handoff separado**: A0001–A0010 fornecem a cobertura SWORD/AXE do handoff canônico consolidado `P-SIMPLY-A0001-50-01`.
 
-**Comportamento até a prova:** o runtime existente continua provider-native/fail-closed; este Chat 1 não cria heurística nem adapter Simply direto.
+Adicionar teste/acceptance com os artifacts exatos instalados para provar que Simply Swords 1.70.2 + Simply More 1.3.0 ALPHA + Epic Fight Compat 1.1.0 entregam as categorias Epic Fight esperadas para amostras `SWORD`/`AXE` e que Implicit/ability/gem/trait derived damage não emerge como segundo root MARTIAL nem produz double-dip. Integrated Simply Swords e Simply Swords: Cataclysm devem entrar na matriz quando houver amostra representativa disponível.
+
+**Comportamento até a prova:** o runtime existente continua regido pelo contrato provider-native/fail-closed; este Chat 1 não afirma que o acceptance do stack já passou e não cria heurística nem adapter Simply direto.
 
 ### `P-SIMPLY-A0006-01` — Deflect como defesa técnica
 
@@ -136,10 +138,8 @@ O filename `simplymore-forge-1.3.0_alpha.jar` não prova qual revisão alpha/qua
 
 **Comportamento atual:** `SEM HOOK SEGURO / FAIL-CLOSED` para comportamento específico não provado.
 
-## Conclusão do ciclo
+## Conclusão do sublote
 
-**A0001–A0010: LOTE REAUDITADO E FECHADO NO DESIGN para o delta Simply Swords.**
+**A0001–A0010: SUBLOTE REAUDITADO E FECHADO NO DESIGN para o delta Simply Swords; acceptance provider-present permanece pendente sob `P-SIMPLY-A0001-50-01`.**
 
-Os novos mods não exigem novas perks nominais neste recorte. Eles exigem que as perks de arma existentes reconheçam a separação de authority: **Epic Fight/Epic Fight Compat classificam a ação marcial; Simply Swords e addons conservam seus Implicits/progressões/traits; o RPG processa somente seu root canônico e seus próprios recursos.**
-
-A0011–A0050 permanecem fora deste ciclo e deverão ser reavaliadas nos próximos lotes exatos de 10.
+Os novos mods não exigem novas perks nominais neste recorte. Eles exigem que as perks de arma existentes reconheçam a separação de authority: **Epic Fight/Epic Fight Compat classificam a ação marcial; Simply Swords e addons conservam seus Implicits/progressões/traits; o RPG processa somente seu root canônico e seus próprios recursos.** A comprovação de que o stack real preserva essa causalidade/deduplicação pertence ao Chat 2.
