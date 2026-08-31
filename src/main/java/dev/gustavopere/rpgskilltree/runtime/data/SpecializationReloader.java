@@ -46,7 +46,10 @@ public final class SpecializationReloader extends SimpleJsonResourceReloadListen
         load(
             resources,
             provider -> provider.equals("rpgskilltree") || ModList.get().isLoaded(provider),
-            SpecializationProviderRuntimePolicy::hasCompleteAdapter
+            provider -> SpecializationProviderRuntimePolicy.hasCompleteAdapter(
+                provider,
+                installedVersion(provider)
+            )
         );
     }
 
@@ -106,6 +109,13 @@ public final class SpecializationReloader extends SimpleJsonResourceReloadListen
             ));
         }
         SpecializationCatalog.replace(definitions, availability);
+    }
+
+    private static String installedVersion(String provider) {
+        if (provider.equals("rpgskilltree")) return "internal";
+        return ModList.get().getModContainerById(provider)
+            .map(container -> container.getModInfo().getVersion().toString())
+            .orElse("");
     }
 
     private static String requiredString(JsonObject root, String key, ResourceLocation resourceId) {
