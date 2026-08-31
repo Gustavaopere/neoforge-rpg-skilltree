@@ -14,6 +14,12 @@ Este ciclo especial foi executado em cinco sublotes exatos de 10, mantendo uma �
 
 Nenhuma perk A0051+ faz parte deste ciclo.
 
+## Registro operacional do fechamento
+
+A partir da fase final deste ciclo, por instrução explícita do usuário, **GitHub é a fonte de registro operacional desta reauditoria**. Não realizar novas gravações no Notion para este fechamento. Correções, review findings, estado de CI, reconciliações e resultado de merge devem ser registrados nesta PR, nos dossiês/auditorias do repositório ou em documentação GitHub pertinente.
+
+As referências ao Notion abaixo são somente evidência histórica das alterações já realizadas antes dessa instrução; não autorizam novas escritas no Notion.
+
 ## Stack auditado
 
 - Simply Swords `1.70.2`;
@@ -55,13 +61,13 @@ Simply Tooltips é estritamente apresentação e **NÃO DEVE SER INTEGRADO** com
 | A0043–A0048 | BOW | **NÃO DEVE SER INTEGRADO** — stack novo não fornece família BOW. |
 | A0049–A0050 | CROSSBOW | **NÃO DEVE SER INTEGRADO** — stack novo não fornece família CROSSBOW. |
 
-## Notion
+## Notion — evidência histórica anterior à finalização GitHub-only
 
 - Perks auditadas: **50/50**.
-- Páginas que exigiram mutação semântica: **19/50**.
-- Re-fetch pós-escrita: **19/19 PASS**.
+- Páginas que exigiram mutação semântica antes da instrução de cessar uso do Notion: **19/50**.
+- Re-fetch pós-escrita realizado naquele momento: **19/19 PASS**.
 
-### Mutadas
+### Mutadas antes da mudança de fluxo
 
 - A0001–A0010: 10/10;
 - A0023;
