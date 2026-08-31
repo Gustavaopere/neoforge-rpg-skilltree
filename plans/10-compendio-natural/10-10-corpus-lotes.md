@@ -504,13 +504,43 @@ Entradas:
 - todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
 - o TDD produziu RED válido na draft #316 pelo RPG Skill Tree CI #2683: compilação e checks prévios passaram e `171 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch17JUnitTest` pela ausência intencional de `trees-batch3.json` e `fauna-batch1.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #424 e pelo RPG Skill Tree CI #2697, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
+## Lote 18 — TerraFirmaCraft / peixes de água doce, segunda fatia
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:tfc:crappie` — Peixe crappie
+2. `ENTITY:tfc:lake_trout` — Peixe lake trout
+3. `ENTITY:tfc:largemouth_bass` — Peixe largemouth bass
+4. `ENTITY:tfc:rainbow_trout` — Peixe rainbow trout
+5. `ENTITY:tfc:salmon` — Peixe salmon
+6. `ENTITY:tfc:smallmouth_bass` — Peixe smallmouth bass
+7. `ENTITY:tfc:northern_pike` — Peixe northern pike
+8. `ENTITY:tfc:burbot` — Peixe burbot
+9. `ENTITY:tfc:arctic_char` — Peixe arctic char
+10. `ENTITY:tfc:muksun` — Peixe muksun
+
+### Critérios editoriais aplicados ao lote 18
+
+- o lote continua imediatamente `BLUEGILL` na ordem declarada por `Fish.java` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`, cobrindo exatamente `CRAPPIE`, `LAKE_TROUT`, `LARGEMOUTH_BASS`, `RAINBOW_TROUT`, `SALMON`, `SMALLMOUTH_BASS`, `NORTHERN_PIKE`, `BURBOT`, `ARCTIC_CHAR` e `MUKSUN`;
+- as dez constantes são registradas pelo mapa `FRESHWATER_FISH` como `FreshwaterFish` na categoria `WATER_AMBIENT`; a classificação deriva do runtime real e não do texto dos registry IDs;
+- o locale `pt_br` do provider ainda mantém os dez nomes de espécie em inglês, portanto o Compêndio usa aliases conservadores `Peixe ...`, traduzindo somente a categoria genérica e evitando importar nomes taxonômicos externos que o mod não adotou;
+- `FreshwaterFish` deriva de `Salmon`, usa `TFCFishMoveControl`, participa da lógica de pesca por `GetHookedGoal`, aceita água no contrato aquático e suporta coleta no recipiente configurado para a espécie;
+- `Fish.SALMON` preserva a exceção real do provider de reutilizar os eventos sonoros vanilla de salmão, enquanto as demais constantes registram seu conjunto de sons pelo TFC;
+- bioma, clima, frequência, dimensão, tamanho de grupo e demais parâmetros de spawn/worldgen permanecem sob autoridade do provider, da configuração e dos datapacks ativos; nenhum desses valores foi congelado na prosa editorial;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento tanto com TerraFirmaCraft ausente quanto presente;
+- o TDD produziu RED válido na draft #322 pelo RPG Skill Tree CI #2748: Core/wiki/coverage e compilação passaram e `182 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch18JUnitTest` pela ausência intencional de `fauna-batch2.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #471 e pelo RPG Skill Tree CI #2752, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **70**;
-- entradas editoriais totais: **170**;
-- lotes documentados: **17**;
+- entradas editoriais TFC reais no corpus: **80**;
+- entradas editoriais totais: **180**;
+- lotes documentados: **18**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
