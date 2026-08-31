@@ -11,6 +11,7 @@ public final class ClassRequirementPolicy {
         Objects.requireNonNull(state);
         Objects.requireNonNull(definition);
 
+        if (!ProviderClassAvailabilityRegistry.isAvailable(definition.classId())) return false;
         for (String nodeId : definition.requiredNodeIds()) {
             if (!state.passiveNodes().learned(nodeId)) return false;
         }

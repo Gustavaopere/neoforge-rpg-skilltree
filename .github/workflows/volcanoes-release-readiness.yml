@@ -1,0 +1,91 @@
+name: Volcanoes Consolidated Release Readiness
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: volcanoes-release-readiness-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Validate consolidated release evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/volcanoes-release-readiness
+          python3 scripts/verify-volcanoes-import-provenance.py \
+            | tee build/volcanoes-release-readiness/provenance.txt
+          python3 scripts/verify-volcanoes-release-readiness.py \
+            | tee build/volcanoes-release-readiness/readiness.txt
+
+      - name: Run release invariant contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon test \
+            --tests 'dev.gustavopere.rpgskilltree.runtime.volcanoes.NativeVolcanoesServicesContractTest' \
+            --tests 'dev.gustavopere.volcanoes.volcano.ExistingWorldVolcanoAdminSessionTest' \
+            --tests 'dev.gustavopere.volcanoes.environment.AtmosphereConfigContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.create.CreateRespirationDecisionContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.destroy.DestroyPollutionWriterContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.rns.RnsDepositProjectionPlannerContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.sable.SablePressureCompatContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.minecolonies.MineColoniesCompatTest'
+
+      - name: Upload release-readiness evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: volcanoes-release-readiness-${{ github.sha }}
+          path: |
+            build/volcanoes-release-readiness/
+            build/reports/tests/test/
+          if-no-files-found: warn
+          retention-days: 14
+
+  aggregate-exact-head:
+    if: github.event_name == 'pull_request'
+    needs: release-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify consolidated sibling gates on exact PR head
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          python3 scripts/volcanoes/verify_release_workflow_set.py \
+            --repo "$REPOSITORY" \
+            --sha "$HEAD_SHA" \
+            --event "$EVENT_NAME" \
+            --token "$GH_TOKEN"

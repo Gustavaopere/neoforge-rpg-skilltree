@@ -1,0 +1,70 @@
+name: Volcanoes MineColonies Claim Acceptance
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: volcanoes-minecolonies-claim-acceptance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  real-claim-gametest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+
+      - name: Install exact MineColonies runtime stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          MODS="$PWD/runs/gameTestServer/mods"
+          mkdir -p "$MODS"
+          rm -f "$MODS"/*.jar
+          rm -rf runs/gameTestServer/world
+          printf 'eula=true\n' > runs/gameTestServer/eula.txt
+
+          curl --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/minecolonies-245506/8621898/minecolonies-245506-8621898.jar' \
+            --output "$MODS/minecolonies-1.1.1374-1.21.1-snapshot.jar"
+          curl --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/structurize-298744/8610535/structurize-298744-8610535.jar' \
+            --output "$MODS/structurize-1.0.832-1.21.1.jar"
+          curl --fail --location --retry 3 \
+            'https://ldtteam.jfrog.io/ldtteam/modding/com/ldtteam/multipiston/1.2.51-1.21.1-snapshot/multipiston-1.2.51-1.21.1-snapshot.jar' \
+            --output "$MODS/multipiston-1.2.51-1.21.1-snapshot.jar"
+          curl --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/blockui-522992/6367809/blockui-522992-6367809.jar' \
+            --output "$MODS/blockui-1.0.199-1.21.1-snapshot.jar"
+          curl --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/domum-ornamentum-527361/7231908/domum-ornamentum-527361-7231908.jar' \
+            --output "$MODS/domum-ornamentum-1.0.223-snapshot.jar"
+
+          for mod in "$MODS"/*.jar; do
+            jar tf "$mod" >/dev/null
+          done
+
+      - name: Run real-claim GameTests
+        run: gradle --no-daemon runGameTestServer

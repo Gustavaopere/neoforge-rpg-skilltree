@@ -44,3 +44,22 @@ Nenhuma de design ou implementação bloqueante. A orientação server-side e au
 - A correção de A0022 tornou a rota geométrica server-side disponível sem relaxar os gates de A0023.
 - O consumo de Fluxo continua condicionado a flank/rear, cooldown por alvo e hooks físicos disponíveis.
 - CI #2192 validou JUnit, GameTests, build, JAR e dedicated-server smoke antes do fechamento documental.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura:** Dagger/Sai e armas do stack Simply só participam quando Epic Fight Compat resolve a capability como `DAGGER`; tipo Simply, namespace, nome e tooltip não classificam a arma.
+- **Overlap legítimo:** o backstab Implicit provider-native pode coexistir no mesmo root direto com A0023, mas cada sistema aplica somente sua parcela uma vez.
+- **Anti-double-dip:** A0023 não rerrola, reaplica, escala nem converte o backstab Implicit. Unique ability, gem power, Runic Power, Awakening, delegated/derived hit ou outro efeito Simply não cria segundo `rootActionId` A0023 e não consome Fluxo novamente.
+- **Simply More alpha:** Unique/efeito não comprovado no artifact `1.3.0 ALPHA` permanece fail-closed.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; apresentação não fornece família nem orientação.
+- **Notion:** `Provider/Mods`, `Hook`, `Fallback` e `Regra` atualizados; re-fetch confirmou persistência.
+- **Resultado:** design preservado, com boundary explícita para evitar dupla aplicação do mesmo conceito posicional.
+
+## Chat 3 — auditoria pós-merge — PR #315
+
+- Encontrada divergência causal: o PRE consumia 2 Fluxo e iniciava o cooldown por alvo antes de dano efetivo confirmado.
+- Corrigido para `reservation -> commit`: PRE apenas reserva os 2 Fluxo e aplica os modificadores necessários; POST `direct && hostile && actualDamage` consome exatamente 2 Fluxo e inicia o cooldown.
+- POST cancelado/zero damage descarta a reserva sem gasto nem cooldown fantasma.
+- Fluxo reservado deixa de ficar disponível para outra root action concorrente.
+- A ordem causal é `consumer -> gain`: o próprio hit não pode financiar A0023 com Fluxo que A0022 só concede no POST.
+- Design, valores, orientação server-authoritative e fail-closed permanecem inalterados.

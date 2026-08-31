@@ -39,8 +39,9 @@ public final class ProgressionStateCodec {
                 writeFinalTriads(out, state.finalTriads());
                 writeStringIntMap(out, state.passiveNodes().ranks());
                 writeStringSet(out, state.discoveries().discoveredKeys());
-                // Canonical-player schema v2 extends compatibility v4 with a bounded optional tail.
+                // Canonical-player schema v2 extends compatibility v4 with bounded optional tails.
                 writeMasteryReceipts(out, state.mastery().creditedAwards());
+                writeStringSet(out, state.classProgression().paidBridgeClassIds());
             }
             return bytes.toByteArray();
         } catch (IOException e) {
@@ -56,7 +57,7 @@ public final class ProgressionStateCodec {
             long totalXp = in.readLong();
             PassivePointLedger ledger = readLedger(in);
             BossProgress bosses = BossProgress.of(readStringSet(in));
-            ClassProgressionState classes = ClassProgressionState.of(readStringSet(in));
+            Set<String> unlockedClasses = readStringSet(in);
             Map<String, Integer> masteryExperience = readStringIntMap(in);
             ClassChoiceState choices = ClassChoiceState.of(readStringSetMap(in));
             SpecializationProgressionState specializations = SpecializationProgressionState.of(readStringSet(in));
@@ -66,7 +67,11 @@ public final class ProgressionStateCodec {
             Map<String, MasteryAwardReceipt> masteryReceipts = version >= 4 && in.available() > 0
                 ? readMasteryReceipts(in)
                 : Map.of();
+            Set<String> paidBridgeClasses = version >= 4 && in.available() > 0
+                ? readStringSet(in)
+                : Set.of();
             if (in.available() != 0) throw new IllegalArgumentException("progression state contains trailing bytes");
+            ClassProgressionState classes = ClassProgressionState.of(unlockedClasses, paidBridgeClasses);
             ProgressionState decoded = new ProgressionState(
                 totalXp,
                 ledger,

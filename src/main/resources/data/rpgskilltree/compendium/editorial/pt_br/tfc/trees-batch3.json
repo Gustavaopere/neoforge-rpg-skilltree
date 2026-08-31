@@ -1,0 +1,241 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "tfc",
+  "kind": "TREE",
+  "entries": [
+    {
+      "entry_id": "TREE:tfc:wood/sapling/oak",
+      "title": "Muda de carvalho",
+      "summary": {
+        "text": "Muda de carvalho é o bloco arbóreo `tfc:wood/sapling/oak`, registrado para `Wood.OAK`. O locale pt-BR do TerraFirmaCraft 4.2.8 fornece `Muda de carvalho `; o Compêndio remove apenas o espaço final e preserva o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/oak"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth_and_family": {
+          "text": "`Wood.OAK` integra a coleção de madeiras do TFC e sua muda usa `TFCSaplingBlock`. O crescimento permanece sob parâmetros de servidor e modificadores do provider; troncos, folhas, tábuas e demais derivados conservam registry IDs próprios. O Compêndio não congela duração, chance ou outros valores numéricos mutáveis em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/TFCBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "TREE:tfc:wood/sapling/palm",
+      "title": "Muda de palmeira",
+      "summary": {
+        "text": "Muda de palmeira é o bloco arbóreo `tfc:wood/sapling/palm`, registrado para `Wood.PALM`. O locale pt-BR do TerraFirmaCraft 4.2.8 fornece `Muda de palmeira `; o Compêndio remove apenas o espaço final e preserva o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/palm"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth_and_family": {
+          "text": "`Wood.PALM` integra a coleção de madeiras do TFC e usa `TFCSaplingBlock`. Na construção do bloco de muda, o provider marca especificamente a palmeira para também aceitar areia como substrato; os demais parâmetros de crescimento continuam sob autoridade do runtime e da configuração. Os derivados da madeira preservam registry IDs próprios.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "TREE:tfc:wood/sapling/pine",
+      "title": "Muda de pinheiro",
+      "summary": {
+        "text": "Muda de pinheiro é o bloco arbóreo `tfc:wood/sapling/pine`, registrado para `Wood.PINE`. O locale pt-BR do TerraFirmaCraft 4.2.8 fornece `Muda de pinheiro `; o Compêndio remove apenas o espaço final e preserva o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/pine"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth_and_family": {
+          "text": "`Wood.PINE` integra a coleção de madeiras do TFC e sua muda usa `TFCSaplingBlock`. O crescimento permanece configurável pelo provider, e o Compêndio não fixa duração, chance ou outros valores mutáveis. Troncos, folhas, tábuas e demais derivados continuam identidades técnicas independentes.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/TFCBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "TREE:tfc:wood/sapling/rosewood",
+      "title": "Muda de jacarandá",
+      "summary": {
+        "text": "Muda de jacarandá é o rótulo pt-BR fornecido pelo TerraFirmaCraft 4.2.8 para `tfc:wood/sapling/rosewood`, registrado tecnicamente como `Wood.ROSEWOOD`. O Compêndio preserva a associação oficial sem alterar o registry ID.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/rosewood"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth_and_family": {
+          "text": "`Wood.ROSEWOOD` integra a coleção de madeiras do TFC e sua muda usa `TFCSaplingBlock`. Parâmetros de crescimento permanecem no runtime/configuração; troncos, folhas, tábuas e demais derivados conservam suas identidades técnicas próprias.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/TFCBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "TREE:tfc:wood/sapling/sequoia",
+      "title": "Muda de sequoia",
+      "summary": {
+        "text": "Muda de sequoia é o bloco arbóreo `tfc:wood/sapling/sequoia`, registrado para `Wood.SEQUOIA`. O locale pt-BR do TerraFirmaCraft 4.2.8 fornece `Muda de sequoia `; o Compêndio remove apenas o espaço final e preserva o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/sequoia"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth_and_family": {
+          "text": "`Wood.SEQUOIA` integra a coleção de madeiras do TFC e sua muda usa `TFCSaplingBlock`. O crescimento e seus modificadores permanecem sob autoridade do provider, enquanto os componentes da família de madeira mantêm registry IDs independentes.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/TFCBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "TREE:tfc:wood/sapling/spruce",
+      "title": "Muda de espruce",
+      "summary": {
+        "text": "Muda de espruce é o bloco arbóreo `tfc:wood/sapling/spruce`, registrado para `Wood.SPRUCE`. O locale pt-BR do TerraFirmaCraft 4.2.8 fornece `Muda de espruce `; o Compêndio remove apenas o espaço final e preserva o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/spruce"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth_and_family": {
+          "text": "`Wood.SPRUCE` integra a coleção de madeiras do TFC e sua muda usa `TFCSaplingBlock`. O Compêndio deixa tempos, chances e modificadores de crescimento sob autoridade do runtime/configuração e mantém os derivados da madeira como identidades técnicas separadas.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/TFCBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "TREE:tfc:wood/sapling/sycamore",
+      "title": "Muda de sicômoro",
+      "summary": {
+        "text": "Muda de sicômoro é o bloco arbóreo `tfc:wood/sapling/sycamore`, registrado para `Wood.SYCAMORE`. O locale pt-BR do TerraFirmaCraft 4.2.8 fornece `Muda de sicômoro `; o Compêndio remove apenas o espaço final e preserva o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/sycamore"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth_and_family": {
+          "text": "`Wood.SYCAMORE` integra a coleção de madeiras do TFC e sua muda usa `TFCSaplingBlock`. O crescimento permanece configurável e os blocos derivados da família conservam registry IDs próprios; nenhum parâmetro numérico mutável é congelado pela ficha editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/TFCBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "TREE:tfc:wood/sapling/white_cedar",
+      "title": "Muda de cedro branco",
+      "summary": {
+        "text": "Muda de cedro branco é o bloco arbóreo `tfc:wood/sapling/white_cedar`, registrado para `Wood.WHITE_CEDAR`. O locale pt-BR do TerraFirmaCraft 4.2.8 fornece `Muda de cedro branco `; o Compêndio remove apenas o espaço final e preserva o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/white_cedar"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth_and_family": {
+          "text": "`Wood.WHITE_CEDAR` integra a coleção de madeiras do TFC e sua muda usa `TFCSaplingBlock`. Tempos e modificadores de crescimento permanecem na configuração/runtime; troncos, folhas, tábuas e demais derivados preservam identidades técnicas próprias.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/TFCBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "TREE:tfc:wood/sapling/willow",
+      "title": "Muda de salgueiro",
+      "summary": {
+        "text": "Muda de salgueiro é o bloco arbóreo `tfc:wood/sapling/willow`, registrado para `Wood.WILLOW`. O locale pt-BR do TerraFirmaCraft 4.2.8 fornece `Muda de salgueiro `; o Compêndio remove apenas o espaço final e preserva o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/willow"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth_and_family": {
+          "text": "`Wood.WILLOW` encerra a coleção `WOODS` após as mudas documentadas nos lotes anteriores. Sua muda usa `TFCSaplingBlock`; crescimento e modificadores permanecem no provider e os demais componentes da família mantêm registry IDs independentes.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/TFCBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    }
+  ]
+}

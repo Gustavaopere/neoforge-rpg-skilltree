@@ -78,6 +78,55 @@ public final class ProgressionService {
         return new AutomaticClassReconcileResult(current, newlyUnlocked, removed);
     }
 
+    public static PaidClassReconcileResult reconcilePaidClasses(
+        ProgressionState state,
+        java.util.Collection<ClassUnlockDefinition> definitions
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(definitions);
+        ProgressionState current = state;
+        Set<String> removed = new HashSet<>();
+        int refunded = 0;
+
+        for (ClassUnlockDefinition definition : definitions.stream()
+            .sorted(java.util.Comparator.comparing(ClassUnlockDefinition::classId))
+            .toList()) {
+            if (definition.nonAdjacentBridgeCost() <= 0) continue;
+            String classId = definition.classId();
+            if (!current.classProgression().isUnlocked(classId)) continue;
+
+            boolean domainsMet = definition.requiredCompletedDomains().stream()
+                .allMatch(current.finalTriads()::complete);
+            boolean contextualRequirementsMet = ClassRequirementPolicy.satisfied(current, definition);
+            if (domainsMet && contextualRequirementsMet) continue;
+
+            int bridgeCost = definition.nonAdjacentBridgeCost();
+            boolean bridgePaid = current.classProgression().bridgePaid(classId);
+            ClassProgressionState classes = current.classProgression().without(classId);
+            PassivePointLedger ledger = current.passivePoints();
+            int refund = 0;
+            if (bridgePaid && ledger.spent() >= bridgeCost) {
+                ledger = ledger.refund(bridgeCost);
+                refund = bridgeCost;
+            }
+            current = new ProgressionState(
+                current.totalCharacterXp(),
+                ledger,
+                current.bossProgress(),
+                classes,
+                current.mastery(),
+                current.classChoices(),
+                current.specializations(),
+                current.finalTriads(),
+                current.passiveNodes(),
+                current.discoveries()
+            );
+            refunded = Math.addExact(refunded, refund);
+            removed.add(classId);
+        }
+        return new PaidClassReconcileResult(current, removed, refunded);
+    }
+
     public static AutomaticClassUnlockResult unlockAutomaticClasses(
         ProgressionState state,
         java.util.Collection<ClassUnlockDefinition> definitions
@@ -118,7 +167,9 @@ public final class ProgressionService {
         }
         PassivePointLedger ledger = state.passivePoints();
         if (result.bridgeCost() > 0) ledger = ledger.spend(result.bridgeCost());
-        ClassProgressionState classes = state.classProgression().unlock(definition.classId());
+        ClassProgressionState classes = result.bridgeCost() > 0
+            ? state.classProgression().unlockWithBridgePayment(definition.classId())
+            : state.classProgression().unlock(definition.classId());
         ProgressionState next = new ProgressionState(state.totalCharacterXp(), ledger, state.bossProgress(), classes, state.mastery(), state.classChoices(), state.specializations(), state.finalTriads(), state.passiveNodes(), state.discoveries());
         return new ClassUnlockMutationResult(next, true, result.bridgeCost());
     }
@@ -307,13 +358,23 @@ public final class ProgressionService {
         ProgressionState state,
         java.util.Collection<NodeSpecializationGrant> grants
     ) {
+        return reconcileNodeSpecializations(state, grants, specializationId -> true);
+    }
+
+    public static ProgressionState reconcileNodeSpecializations(
+        ProgressionState state,
+        java.util.Collection<NodeSpecializationGrant> grants,
+        java.util.function.Predicate<String> specializationAvailable
+    ) {
         Objects.requireNonNull(state);
         Objects.requireNonNull(grants);
+        Objects.requireNonNull(specializationAvailable);
 
         // SpecializationProgressionState does not yet persist provenance. Preserve
         // only the stable IDs explicitly created by the legacy class -> specialization
         // migration; all other current entries are reconstructed from live node grants
-        // so removed datapack gateways cannot leave permanent stale unlocks behind.
+        // so removed datapack gateways or unavailable providers cannot leave stale
+        // specialization unlocks behind.
         Set<String> migratedIds = Set.copyOf(
             ProgressionStateMigrations.legacyClassSpecializations().values());
         SpecializationProgressionState specializations = SpecializationProgressionState.empty();
@@ -323,7 +384,8 @@ public final class ProgressionService {
             }
         }
         for (NodeSpecializationGrant grant : grants) {
-            if (state.passiveNodes().rank(grant.nodeId()) >= grant.requiredRank()) {
+            if (state.passiveNodes().rank(grant.nodeId()) >= grant.requiredRank()
+                && specializationAvailable.test(grant.specializationId())) {
                 specializations = specializations.unlock(grant.specializationId());
             }
         }

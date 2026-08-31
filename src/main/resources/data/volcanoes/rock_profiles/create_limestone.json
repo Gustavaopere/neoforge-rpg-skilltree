@@ -1,0 +1,10 @@
+{
+  "category": "SEDIMENTARY",
+  "hardness": 0.50,
+  "permeability": 0.50,
+  "thermal_conductivity": 1.3,
+  "lava_flow_multiplier": 0.85,
+  "erosion_resistance": 0.40,
+  "hydrothermal_reactivity": 0.90,
+  "blocks": ["create:limestone"]
+}

@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree;
 
+import dev.gustavopere.volcanoes.VolcanoesMod;
 import dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicy;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
@@ -57,12 +58,14 @@ import dev.gustavopere.rpgskilltree.runtime.events.EntityRewardEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.EntityScalingEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ExplorationProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.MiningProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.PhysicalProjectileMasteryEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.PlayerProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ProgressionOwnerSyncEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.RelevantPlayerCacheEvents;
 import dev.gustavopere.rpgskilltree.runtime.loot.ModLootModifiers;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
@@ -73,7 +76,8 @@ public final class RpgSkillTreeMod {
     public static final String MOD_ID = "rpgskilltree";
     private static final Logger LOGGER = LoggerFactory.getLogger(RpgSkillTreeMod.class);
 
-    public RpgSkillTreeMod(IEventBus modBus) {
+    public RpgSkillTreeMod(IEventBus modBus, ModContainer container) {
+        VolcanoesMod.initialize(modBus, container);
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);
         ModLootModifiers.register(modBus);
@@ -104,6 +108,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(ExplorationProgressionEvents.class);
         NeoForge.EVENT_BUS.register(MiningProgressionEvents.class);
         NeoForge.EVENT_BUS.register(A0041A0060ProjectileEvents.class);
+        NeoForge.EVENT_BUS.register(PhysicalProjectileMasteryEvents.class);
         NeoForge.EVENT_BUS.register(A0081A0100CombatEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumEntityCatalogEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumFloraCatalogEvents.class);
