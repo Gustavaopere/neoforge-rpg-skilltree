@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wait for the canonical sibling workflow set to be GREEN on one exact commit."""
+"""Wait for the consolidated Volcanoes sibling workflow set to be GREEN on one exact commit."""
 
 from __future__ import annotations
 
@@ -10,15 +10,16 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 EXPECTED = (
-    "Volcanoes CI",
-    "Cold Sweat Heat Acceptance",
-    "Performance Hardening Acceptance",
-    "MineColonies Claim Acceptance",
-    "Create Sable Acceptance",
-    "RNS Hydrothermal Acceptance",
-    "Full Pack Compatibility Acceptance",
-    "Third-Party Provenance Audit",
-    "Worldgen Compatibility Matrix",
+    "RPG Skill Tree CI",
+    "Volcanoes Consolidation Contract",
+    "Volcanoes Cold Sweat Heat Acceptance",
+    "Volcanoes Performance Hardening Acceptance",
+    "Volcanoes MineColonies Claim Acceptance",
+    "Volcanoes Create Sable Acceptance",
+    "Volcanoes RNS Hydrothermal Acceptance",
+    "Volcanoes Full Pack Compatibility Acceptance",
+    "Volcanoes Third-Party Provenance Audit",
+    "Volcanoes Worldgen Compatibility Matrix",
 )
 
 
@@ -30,7 +31,7 @@ def fetch_runs(repo: str, sha: str, event: str, token: str) -> list[dict]:
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {token}",
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "volcanoes-release-readiness",
+            "User-Agent": "rpgskilltree-volcanoes-release-readiness",
         },
     )
     with urlopen(request, timeout=30) as response:
@@ -72,7 +73,7 @@ def main() -> int:
     parser.add_argument("--sha", required=True)
     parser.add_argument("--event", required=True, choices=("pull_request", "push"))
     parser.add_argument("--token", required=True)
-    parser.add_argument("--timeout-seconds", type=int, default=2700)
+    parser.add_argument("--timeout-seconds", type=int, default=3600)
     parser.add_argument("--poll-seconds", type=int, default=15)
     args = parser.parse_args()
 
@@ -82,7 +83,7 @@ def main() -> int:
         latest = latest_by_name(fetch_runs(args.repo, args.sha, args.event, args.token))
         current = snapshot(latest)
         if current != previous:
-            print(f"CANONICAL_WORKFLOW_SET {current}", flush=True)
+            print(f"VOLCANOES_CONSOLIDATED_WORKFLOW_SET {current}", flush=True)
             previous = current
 
         if len(latest) == len(EXPECTED) and all(
@@ -90,7 +91,7 @@ def main() -> int:
             for run in latest.values()
         ):
             print(
-                f"CANONICAL_WORKFLOW_SET_RESULT status=GREEN sha={args.sha} "
+                f"VOLCANOES_CONSOLIDATED_WORKFLOW_SET_RESULT status=GREEN sha={args.sha} "
                 f"event={args.event} workflows={len(EXPECTED)}",
                 flush=True,
             )
@@ -98,7 +99,7 @@ def main() -> int:
 
         if time.monotonic() >= deadline:
             print(
-                f"CANONICAL_WORKFLOW_SET_RESULT status=FAIL sha={args.sha} "
+                f"VOLCANOES_CONSOLIDATED_WORKFLOW_SET_RESULT status=FAIL sha={args.sha} "
                 f"event={args.event} workflows={len(latest)}/{len(EXPECTED)}",
                 flush=True,
             )
