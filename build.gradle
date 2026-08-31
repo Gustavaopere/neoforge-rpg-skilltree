@@ -12,7 +12,8 @@ sonar {
     properties {
         property "sonar.projectKey", "Gustavaopere_neoforge-rpg-skilltree"
         property "sonar.organization", "gustavaopere"
-        property "sonar.projectVersion", "${mod_version}-sonar"
+        // Keep this stable until the next intentional Sonar new-code baseline cycle.
+        property "sonar.projectVersion", "${mod_version}-sonar.2"
         property "sonar.coverage.jacoco.xmlReportPaths", layout.buildDirectory.file('reports/jacoco/test/jacocoTestReport.xml').get().asFile.absolutePath
     }
 }
