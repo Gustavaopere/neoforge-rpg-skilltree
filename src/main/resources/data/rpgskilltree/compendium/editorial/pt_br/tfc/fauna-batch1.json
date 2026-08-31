@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "tfc",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:tfc:bluegill",
+      "title": "Peixe bluegill",
+      "summary": {
+        "text": "Peixe bluegill é a entrada editorial de `tfc:bluegill`, primeira espécie declarada no enum `Fish` do TerraFirmaCraft 4.2.8. O locale pt-BR do provider ainda fornece `Bluegill` em inglês; o Compêndio traduz somente a classificação genérica como `Peixe` e conserva `bluegill` para não inventar um nome comum brasileiro não declarado pelo mod.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:bluegill"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/aquatic/Fish.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "classification_and_behavior": {
+          "text": "O provider registra `Fish.BLUEGILL` no mapa de peixes de água doce como `FreshwaterFish` e categoria `WATER_AMBIENT`. Essa implementação deriva de `Salmon`, usa controle de movimento próprio do TFC, participa da lógica de pesca e pode ser recolhida em seu recipiente por meio do contrato de coleta em balde. A ficha não congela dimensões, chances, frequência de spawn ou outros parâmetros numéricos mutáveis.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/aquatic/FreshwaterFish.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/aquatic/Fish.java"}
+          ]
+        },
+        "water_and_capture": {
+          "text": "`FreshwaterFish` aceita água como fluido de spawn, fornece o item de balde configurado para a espécie e trata a interação de coleta sem substituir a mecânica vanilla herdada. O Compêndio descreve esses contratos estruturais sem transformar regras de fauna, bioma ou configuração em ocorrência universal.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/aquatic/FreshwaterFish.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    }
+  ]
+}

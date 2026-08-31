@@ -471,13 +471,46 @@ Entradas:
 - todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
 - o TDD produziu RED válido na draft #313 pelo RPG Skill Tree CI #2645: no merge-ref contra `main@9958caaabebff95bfbbd0a226ca571e5bfe5316c`, compilação e checks prévios passaram e `163 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch16JUnitTest` pela ausência intencional de `trees-batch2.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #381 e pelo RPG Skill Tree CI #2648, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
+## Lote 17 — TerraFirmaCraft / fechamento das árvores de madeira e início da fauna aquática
+
+Arquivos:
+
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/trees-batch3.json`
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `TREE:tfc:wood/sapling/oak` — Muda de carvalho
+2. `TREE:tfc:wood/sapling/palm` — Muda de palmeira
+3. `TREE:tfc:wood/sapling/pine` — Muda de pinheiro
+4. `TREE:tfc:wood/sapling/rosewood` — Muda de jacarandá
+5. `TREE:tfc:wood/sapling/sequoia` — Muda de sequoia
+6. `TREE:tfc:wood/sapling/spruce` — Muda de espruce
+7. `TREE:tfc:wood/sapling/sycamore` — Muda de sicômoro
+8. `TREE:tfc:wood/sapling/white_cedar` — Muda de cedro branco
+9. `TREE:tfc:wood/sapling/willow` — Muda de salgueiro
+10. `ENTITY:tfc:bluegill` — Peixe bluegill
+
+### Critérios editoriais aplicados ao lote 17
+
+- as nove árvores seguem imediatamente `MAPLE` na ordem declarada por `Wood.java` e fecham a coleção `WOODS` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8` com `OAK`, `PALM`, `PINE`, `ROSEWOOD`, `SEQUOIA`, `SPRUCE`, `SYCAMORE`, `WHITE_CEDAR` e `WILLOW`;
+- as nove mudas são registradas por `Wood.BlockType.SAPLING` com `TFCSaplingBlock`; a palmeira preserva a exceção real do provider que também permite areia como substrato, sem generalizar essa regra às demais madeiras;
+- os rótulos pt-BR das mudas foram confrontados com `pt_br.json`, normalizando somente espaços finais quando presentes e preservando associações oficiais como `rosewood` → `Muda de jacarandá`;
+- a décima entrada inicia a fauna aquática pela primeira constante do enum `Fish`, `BLUEGILL`, registrada pelo provider como `FreshwaterFish` na categoria `WATER_AMBIENT`;
+- `entity.tfc.bluegill` ainda possui o rótulo `Bluegill` em inglês no locale pt-BR; o Compêndio usa o alias conservador `Peixe bluegill`, traduzindo apenas a classificação genérica sem inventar um nome comum brasileiro que o mod não declara;
+- `FreshwaterFish` deriva de `Salmon`, usa controle de movimento do TFC, participa da lógica de pesca, aceita água no contrato de spawn e suporta coleta no recipiente configurado; biome, frequência, dimensões e demais números mutáveis permanecem fora da prosa editorial;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
+- o TDD produziu RED válido na draft #316 pelo RPG Skill Tree CI #2683: compilação e checks prévios passaram e `171 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch17JUnitTest` pela ausência intencional de `trees-batch3.json` e `fauna-batch1.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #424 e pelo RPG Skill Tree CI #2697, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **60**;
-- entradas editoriais totais: **160**;
-- lotes documentados: **16**;
+- entradas editoriais TFC reais no corpus: **70**;
+- entradas editoriais totais: **170**;
+- lotes documentados: **17**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
