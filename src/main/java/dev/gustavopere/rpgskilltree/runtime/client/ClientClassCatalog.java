@@ -39,7 +39,6 @@ public final class ClientClassCatalog {
                     state.passivePoints().available()
                 )
             ))
-            .filter(view -> view.result().triadRequirementsMet())
             .sorted(Comparator.comparing(view -> view.entry().definition().classId()))
             .toList();
     }
