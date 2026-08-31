@@ -29,6 +29,7 @@ final class MasteryLaneCatalogJUnitTest {
         assertEquals("malum:spirit/arcane", MasteryLaneCatalog.malumSpirit("arcane"));
         assertEquals("create:kinetics", MasteryLaneCatalog.create("kinetics"));
         assertEquals("epicfight:greatsword", MasteryLaneCatalog.epicFightWeaponCategory("greatsword"));
+        assertEquals("epicfight:addon/spear", MasteryLaneCatalog.epicFightWeaponCategory("addon/spear"));
 
         for (String lane : Set.of(
             MasteryLaneCatalog.ironsDiscipline("fire"),
@@ -36,7 +37,8 @@ final class MasteryLaneCatalogJUnitTest {
             MasteryLaneCatalog.goety("storm"),
             MasteryLaneCatalog.malumSpirit("sacred"),
             MasteryLaneCatalog.create("automation"),
-            MasteryLaneCatalog.epicFightWeaponCategory("bow")
+            MasteryLaneCatalog.epicFightWeaponCategory("bow"),
+            MasteryLaneCatalog.epicFightWeaponCategory("addon/spear")
         )) {
             assertTrue(MasteryLaneCatalog.isCanonical(lane), lane);
         }
@@ -54,5 +56,15 @@ final class MasteryLaneCatalogJUnitTest {
         assertThrows(IllegalArgumentException.class, () -> MasteryLaneCatalog.ironsDiscipline(""));
         assertThrows(IllegalArgumentException.class, () -> MasteryLaneCatalog.malumSpirit("spirit:arcane"));
         assertThrows(IllegalArgumentException.class, () -> MasteryLaneCatalog.epicFightWeaponCategory("great sword"));
+    }
+
+    @Test
+    void masteryPoliciesFailClosedBeforeTheyCanEmitMalformedDynamicLaneIds() {
+        ActionOrigin origin = new ActionOrigin("test:mastery", 0);
+        SpellAction malformedIron = new SpellAction(origin, "irons_spellbooks", "test:spell", "fire school", Set.of(), 10);
+        CombatAction malformedWeapon = new CombatAction(origin, "epicfight", "great sword", "test:skill", Set.of("hit", "milestone"), 4.0D);
+
+        assertThrows(IllegalArgumentException.class, () -> MasteryPolicies.forIron(malformedIron));
+        assertThrows(IllegalArgumentException.class, () -> MasteryPolicies.forEpicFight(malformedWeapon));
     }
 }
