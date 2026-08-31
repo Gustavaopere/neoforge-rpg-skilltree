@@ -17,7 +17,7 @@ Este suplemento executa o gate obrigatório **provider → árvore** para o lote
 
 | Projeto | Head auditado | Disposição para A0101–A0110 |
 |---|---|---|
-| RPG Skill Tree | `b32a4c85946807c38339c640614b44670c78643f` | progressão/gateways continuam authority; PR #308 tornou Volcanoes subsistema nativo do mesmo JAR; nenhuma capability nova fecha A0107/A0109/A0110 |
+| RPG Skill Tree | `66fcec7b163320cfb0d79943969aae33f3adf862` | progressão/gateways continuam authority; PR #308 tornou Volcanoes subsistema nativo do mesmo JAR; avanço final desde `b32a4c8...` alterou apenas `.github/workflows/sonarqube.yml` e não adicionou capability de gameplay |
 | Volcanoes — repositório fonte | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` | permanece preservado como fonte/migration baseline; sua implementação canônica foi consolidada no RPG pela PR #308; não executar como segundo pipeline |
 | Enshrouded | `29ae2d9b7a13bbdffd3291d2fe4213e0705eb8e3` | Stages 07.03–07.04: áudio/partículas e perfis de acessibilidade/configuração client-side; `NÃO DEVE SER INTEGRADO` como authority de perk |
 | Black Arcana | `e89df6dc2c204c269d8f1811c6b3f309644c864a` | forecast server-authored de Arcane Resistance é read-only; reforça separação de A0102, não cria reducer genérico |
@@ -59,6 +59,7 @@ A consolidação é **CAPABILITY CANÔNICA DE WIRING/OWNERSHIP**, mas não cria 
 - `DamageMitigationResolver` é o pipeline canônico a estender para A0101/A0102/A0103/A0106 e, quando adquiríveis, A0108/A0109; não criar cadeia defensiva paralela.
 - `gradle.properties` ainda fixa Ars Nouveau `5.13.0`, enquanto modlist/guia e design Notion de A0102 fixam `5.13.1`. Classificação: **DRIFT DE FIXTURE/BUILD**, pendência Chat 2; não rebaixa a versão canônica do design.
 - Nenhum avanço fecha A0093/A0100, P-0035 como capability canônica, body encumbrance ou P-0036.
+- O avanço `b32a4c8... → 66fcec7...` contém somente `workflow_dispatch` no workflow SonarQube; classificação: **SEM DELTA DE CAPABILITY PARA O LOTE**.
 
 ## Volcanoes — repositório fonte
 
@@ -78,7 +79,7 @@ Classificação: **MIGRADO PARA SUBSISTEMA NATIVO / SEM NOVA SEMÂNTICA DE PERK*
 
 ## Enshrouded
 
-O delta de `6642d4e...` para `29ae2d9...` fecha Stage 07.03 (áudio/partículas) e Stage 07.04 (perfis de acessibilidade/configuração client-side). O status fresco registra o Client Experience em 3/4 no snapshot lido antes do merge 07.04 e o head `29ae2d9...` contém a implementação/validação dessa quarta tarefa; Stage 08 Integrations continua não implementado.
+O delta de `6642d4e...` para `29ae2d9...` fecha Stage 07.03 (áudio/partículas) e Stage 07.04 (perfis de acessibilidade/configuração client-side). O head `29ae2d9...` contém a implementação/validação da quarta tarefa de Client Experience; Stage 08 Integrations continua não implementado.
 
 ### Disposição
 
@@ -138,7 +139,7 @@ Classificação: **PROVIDER NATIVO AUTORITATIVO, SOMENTE LEITURA PARA PRESENTATI
 
 Após a disposição acima, os próximos checkpoints documentais tornam-se:
 
-- RPG Skill Tree: `b32a4c85946807c38339c640614b44670c78643f`
+- RPG Skill Tree: `66fcec7b163320cfb0d79943969aae33f3adf862`
 - Volcanoes — source/migration baseline: `eaddc3232dfc600780769f4a5e7e45ff1e50181c`
 - Enshrouded: `29ae2d9b7a13bbdffd3291d2fe4213e0705eb8e3`
 - Black Arcana: `e89df6dc2c204c269d8f1811c6b3f309644c864a`
