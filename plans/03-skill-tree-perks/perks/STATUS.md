@@ -320,8 +320,11 @@ O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A
 
 ## Chat 1 — lote exato A0071–A0080
 
-**Estado:** `LOTE FECHADO NO DESIGN; BLOCKERS RUNTIME CATALOGADOS; AGUARDANDO PR/CI/MERGE`.
+**Estado:** `LOTE FECHADO NO DESIGN; PR #302 MERGEADA; CI GREEN; MAIN CONFIRMADA; BLOCKERS RUNTIME CATALOGADOS`.
 
+- **PR de fechamento:** #302 (`docs(perks): close Chat 1 audit A0071-A0080`).
+- **Merge/main:** `616a0dd36b943562ea64fa354a1a2fc49b09c77b`.
+- **CI:** RPG Skill Tree CI #2543 / run `33363516499` GREEN no head `289e31bae45b4586ce3c0f44b8445d6dd6987ea2`, incluindo Core, JUnit 5, NeoForge GameTests, validators, build, JAR e dedicated-server smoke; workflows auxiliares também concluídos sem falha.
 - **INÍCIO:** A0071.
 - **FIM:** A0080.
 - **Quantidade:** 10 perks consecutivas.
@@ -351,4 +354,4 @@ O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A
 10. `P-A0080-01` — unavailable até receipt de ataque hostil efetivamente evitado; `P-A0080-02` dedup Epic Fight/ParCool; `P-A0080-03` consumption reservation→POST commit.
 11. `P-A0071-80-TEST-01` — GameTest/harness transversal de classification, availability, root dedup, POST commit/rollback, stance networking, thermal all-or-nothing, movement/stationary, dodge-success, lifecycle, multiplayer e dedicated server.
 
-O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirmação da `main`; depois disso o Chat 1 deve PARAR e A0081–A0090 só pode começar mediante novo comando do usuário.
+O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN e confirmação da `main@616a0dd36b943562ea64fa354a1a2fc49b09c77b`. O Chat 1 deve PARAR aqui; A0081–A0090 só pode começar mediante novo comando do usuário.
