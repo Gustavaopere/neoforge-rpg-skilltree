@@ -171,7 +171,7 @@ Entradas:
 - heranças e contratos relevantes preservados, incluindo `Guardian` → `ElderGuardian`, `AbstractSkeleton` → `WitherSkeleton`, `SpellcasterIllager`, `NeutralMob`, `CrossbowAttackMob`, `InventoryCarrier`, `FlyingMob` e os behaviors do pacote `breeze`;
 - a referência de raid do Saqueador usa o pacote correto de 1.21.1, `net.minecraft.world.entity.raid.Raider`, sem transportar caminho de pacote incorreto;
 - nenhuma duração, chance, dano, alcance, cadência, força de explosão, tamanho de inventário ou outro parâmetro mecânico mutável foi congelado em prosa;
-- o corpus corrigido passou pelo CI editorial #210 e pelo CI agregado #2378, incluindo JUnit, GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+- o corpus corrigido passou pelo Compendium Editorial CI #210 e pelo CI agregado #2378, incluindo JUnit, GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
 ## Lote 7 — Vanilla / chefes e ameaças de estruturas
 
@@ -348,13 +348,43 @@ Entradas:
 - todas as dez fichas permanecem `REVIEWED`/`OPTIONAL`, válidas tanto com o provider ausente quanto presente conforme o contrato corrigido no lote anterior;
 - o TDD do lote reproduziu RED exclusivamente pela ausência de `crops-batch2.json`; após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #272 e pelo RPG Skill Tree CI #2493, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
+## Lote 13 — TerraFirmaCraft / fechamento dos cultivos e início dos arbustos frutíferos
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/agro-batch3.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `FLORA:tfc:crop/squash` — Moringa
+2. `FLORA:tfc:crop/pumpkin` — Abóbora
+3. `FLORA:tfc:crop/melon` — Melancia
+4. `FLORA:tfc:crop/canola` — Canola
+5. `FLORA:tfc:crop/radish` — Rabanete
+6. `FLORA:tfc:crop/alfalfa` — Alfafa
+7. `FLORA:tfc:crop/jute` — Juta
+8. `FLORA:tfc:crop/papyrus` — Papiro
+9. `FLORA:tfc:crop/sugarcane` — Cana de açúcar
+10. `FLORA:tfc:plant/blackberry_bush` — Arbusto de amora
+
+### Critérios editoriais aplicados ao lote 13
+
+- os nove cultivos do lote fecham todas as entradas restantes da coleção `CROPS` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8` depois dos lotes 11 e 12; o décimo verbete inicia a próxima fatia agro/flora com o primeiro arbusto frutífero auditado, `blackberry_bush`;
+- o rótulo `Moringa` para `tfc:crop/squash` é preservado exatamente como fornecido pelo `pt_br.json` do provider, sem corrigir silenciosamente a localização nem alterar o registry ID técnico;
+- onde o provider ainda deixa nomes em inglês, o Compêndio fornece aliases editoriais pt-BR próprios: `Pumpkin` → `Abóbora`, `Melon` → `Melancia`, `Radish` → `Rabanete`, `Alfalfa` → `Alfafa` e `Papyrus` → `Papiro`;
+- Abóbora e Melancia registram somente a mecânica comprovada de cultivo de propagação e produção de blocos de fruto adjacentes; quantidades, clima, hidratação e nutrientes não foram congelados em prosa;
+- Canola, Rabanete e Alfafa preservam o papel de culturas de cobertura que enriquecem o solo, enquanto Juta, Papiro e Cana de açúcar registram crescimento em dois blocos conforme o Field Guide, sem transportar limites numéricos mutáveis para o texto editorial;
+- o Arbusto de amora usa a localização pt-BR do próprio provider e registra apenas o ciclo sazonal geral e a associação oficial com áreas de poucas árvores, deixando calendário, clima e worldgen concretos sob autoridade do provider/datapacks;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e carregam tanto com o TerraFirmaCraft ausente quanto presente conforme o contrato do loader;
+- o TDD reproduziu RED exclusivamente pela ausência intencional de `agro-batch3.json` no RPG Skill Tree CI #2516 (`151 tests completed, 1 failed`); após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #289 e pelo RPG Skill Tree CI #2517, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **20**;
-- entradas editoriais totais: **120**;
-- lotes documentados: **12**;
+- entradas editoriais TFC reais no corpus: **30**;
+- entradas editoriais totais: **130**;
+- lotes documentados: **13**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
