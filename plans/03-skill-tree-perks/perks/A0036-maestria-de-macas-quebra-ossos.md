@@ -33,3 +33,12 @@
 ## Provider→árvore
 
 Backlash, Shroud/Exposure, hazards Volcanoes e companions Mobstein não fornecem heavy receipt nem autoria MARTIAL. TERMINAL_EXTERIOR: MARTIAL/MAÇAS permanece preservado.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura MACE:** Pernach/arma Simply More só entra quando a família `MACE` é comprovada pelo Epic Fight Compat ou mapping versionado; o nome do tipo não é suficiente.
+- **Preexistência RPG:** debuff/armor reduction provider-native não satisfaz a exigência de Armadura Fendida RPG já existente antes do root atual.
+- **Heavy permanece ausente:** Implicit, Unique ability, debuff, gem power, stun, dano alto ou animação Simply/Simply More não é heavy receipt e não fecha `P-A0036-01`.
+- **Sequencing:** a regra A0035→A0036 continua estrita; o mesmo golpe não pode criar `Sundered` e ativar Descompasso, independentemente de efeitos provider-owned no root.
+- **Alpha:** Unique/Implicit Simply More não comprovado permanece fail-closed; nenhuma inferência pelo namespace.
+- **Notion:** quatro propriedades corrigidas e re-fetch PASS.

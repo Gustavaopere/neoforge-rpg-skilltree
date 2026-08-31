@@ -46,3 +46,12 @@
 - Regressão JUnit prova que heavy isolado, sem uma janela previamente armada por guard-break causal, não ativa A0030.
 - CI #2192 validou o fail-closed e o restante do runtime.
 - Estado pós-merge permanece `NÃO CONFIRMADA / FAIL-CLOSED` até os receipts provider-native existirem; não há redesenho silencioso.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura:** Hammer/Greathammer Simply só participam quando Epic Fight Compat resolve `HAMMER`.
+- **Sunder não é guard-break:** armor sunder/ignore e demais Implicits/traits do Simply Swords não constituem quebra real de guarda/postura, heavy receipt ou causalidade para abrir/consumir Janela Demolidora.
+- **Mastery:** permanece finita e só avança por root HAMMER direto elegível conforme o contrato já aprovado; proc/ability/derived hit Simply não concede descoberta adicional.
+- **Fail-closed preservado:** a chegada do stack Simply não resolve `P-A0030-01`; inferência por queda de Armor, stun, dano, tooltip, animação ou stamina continua proibida.
+- **Ownership:** Runic/Awakening/sockets/gems/Cataclysm traits continuam provider-owned e não são escalados/reexecutados pelo capstone.
+- **Notion:** boundary Simply persistida em quatro propriedades e re-fetch PASS.

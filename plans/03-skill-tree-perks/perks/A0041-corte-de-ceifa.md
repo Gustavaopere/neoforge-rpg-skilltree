@@ -43,3 +43,12 @@ Implementar transação reservation→commit por `rootActionId`: reservar no PRE
 - impacto presente/ausente;
 - companion/Backlash inelegíveis;
 - lifecycle do target herdado de A0040.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura SCYTHE:** Scythe Simply só participa quando Epic Fight Compat resolve `SCYTHE` server-side.
+- **Execute no mesmo root:** o execute Implicit pode coexistir com A0041 somente sob a causalidade do mesmo root direto; A0041 processa esse root uma vez e o RPG não rerrola/reaplica o execute.
+- **Sem segundo consumo:** evento execute/ability/derived separado não constitui segundo Corte de Ceifa e não pode consumir outra Marca Madura.
+- **Transação preservada:** `P-A0041-01` continua obrigatória; reservation PRE e commit POST são independentes do pipeline Simply.
+- **Simply More/Cataclysm:** efeitos não comprovados/traits permanecem provider-owned e fail-closed para autoria A0041.
+- **Notion:** quatro propriedades corrigidas; re-fetch PASS.
