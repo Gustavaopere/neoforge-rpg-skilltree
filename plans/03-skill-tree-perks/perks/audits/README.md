@@ -26,6 +26,10 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0041-A0050.md`
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0051-A0060.md`
 
+## Auditorias de fechamento por lote — Chat 1
+
+- `AUDITORIA-A0061-A0070.md` — fechamento de design A0061–A0070, incluindo correção fail-closed/unavailable de A0067, cobertura BOSS de A0070 e gate de delta dos quatro projetos próprios.
+
 ## Auditorias de delta da modlist — Chat 1
 
 Reauditoria especial acumulada A0001–A0050 contra Simply Swords 1.70.2, Simply More 1.3.0 ALPHA, Integrated Simply Swords 1.4.0, Simply Swords: Cataclysm 1.0.2, Simply Tooltips 0.1.5 e Epic Fight Compat 1.1.0. O trabalho foi mantido em cinco sublotes exatos de 10 dentro da mesma PR para um único merge final.
