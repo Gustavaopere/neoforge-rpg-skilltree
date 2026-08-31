@@ -16,12 +16,14 @@ Esta pasta documenta os quatro projetos próprios que precisam ser tratados como
 12. [Matriz de cobertura e delta de capacidades](12-capability-delta-coverage.md)
 13. [Delta e baseline A0071–A0080](13-capability-delta-a0071-a0080.md)
 14. [Delta e baseline A0081–A0090](14-capability-delta-a0081-a0090.md)
+15. A0091–A0100: checkpoint registrado na PR #326 em `15-capability-delta-a0091-a0100.md`; essa PR ainda não estava integrada à `main` na abertura de A0101–A0110.
+16. [Delta e baseline A0101–A0110](16-capability-delta-a0101-a0110.md)
 
 **Fonte editorial canônica no Notion:** https://app.notion.com/p/3cc69db9f0db81b09939eaca7c446fa2
 
 ## Por que esta pasta existe
 
-Os três guias históricos descrevem muito bem os mods externos do pack, mas os quatro projetos próprios evoluem em repositórios separados e contêm sistemas que não podem ser inferidos por README, nome de classe ou intenção futura. O Chat 1 deve saber exatamente:
+Os três guias históricos descrevem os mods externos do pack, mas os quatro projetos próprios evoluem em repositórios separados e contêm sistemas que não podem ser inferidos por README, nome de classe ou intenção futura. O Chat 1 deve saber exatamente:
 
 - quais subsistemas já são autoridade de gameplay em `main`;
 - quais existem parcialmente;
@@ -44,18 +46,18 @@ A presença de um arquivo em `plans/` **não** prova disponibilidade de runtime.
 
 ## Baseline reconciliado para o próximo delta
 
-O checkpoint operacional mais recente está em [`14-capability-delta-a0081-a0090.md`](14-capability-delta-a0081-a0090.md), após disposição completa do lote A0081–A0090 e reconciliação dos avanços concorrentes da `main`, incluindo o gateway de availability de especializações da PR #307 sem impacto contratual sobre estas dez perks:
+O checkpoint operacional mais recente está em [`16-capability-delta-a0101-a0110.md`](16-capability-delta-a0101-a0110.md), após disposição completa do lote A0101–A0110. O lote anterior A0091–A0100 permanece rastreável pela PR #326 até sua integração na `main`.
 
 | Projeto | Baseline atual |
 |---|---|
-| RPG Skill Tree | `6975970d086d32985d83a0018c841cce9d1cbd63` |
+| RPG Skill Tree | `2e1c5b62f89d2311eb645882e3547944d0f68869` |
 | Volcanoes | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
-| Enshrouded | `391ea82203d30cb392a3397f92e2a3cbe7fb6128` |
-| Black Arcana | `710077da89da5eb4418d3ac676e148849727ff07` |
+| Enshrouded | `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec` |
+| Black Arcana | `e89df6dc2c204c269d8f1811c6b3f309644c864a` |
 
 Os SHAs registram somente um **checkpoint de comparação**. A verdade operacional continua sendo `main` + `plans/STATUS.md` frescos, reconciliados com plano/código/testes/CI quando necessário.
 
-Os dossiês 01–04 preservam a análise extensa do snapshot original. Quando houver divergência posterior, [`06-snapshot-reconciliation.md`](06-snapshot-reconciliation.md), [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md) e o suplemento mais recente [`14-capability-delta-a0081-a0090.md`](14-capability-delta-a0081-a0090.md) registram o delta que **substitui apenas os fatos afetados**, sem promover automaticamente o Stage inteiro.
+Os dossiês 01–04 preservam a análise extensa do snapshot original. Quando houver divergência posterior, [`06-snapshot-reconciliation.md`](06-snapshot-reconciliation.md), [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md) e o suplemento mais recente [`16-capability-delta-a0101-a0110.md`](16-capability-delta-a0101-a0110.md) registram o delta que **substitui apenas os fatos afetados**, sem promover automaticamente o Stage inteiro.
 
 ## Regra para o Chat 1 — dois sentidos obrigatórios
 
@@ -84,7 +86,7 @@ Detectar uma capacidade **não** significa criar automaticamente uma perk. Ela p
 
 A descoberta de uma lacuna também não altera a regra de **lotes exatos de 10**. Uma necessidade fora do lote atual é registrada para ciclo posterior; o Chat 1 não inicia uma décima primeira perk.
 
-O preenchimento operacional de providers está em [`07-chat1-provider-listing-checklist.md`](07-chat1-provider-listing-checklist.md); o delta global está em [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md), com o baseline substituto mais recente em [`14-capability-delta-a0081-a0090.md`](14-capability-delta-a0081-a0090.md).
+O preenchimento operacional de providers está em [`07-chat1-provider-listing-checklist.md`](07-chat1-provider-listing-checklist.md); o delta global está em [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md), com o baseline substituto mais recente em [`16-capability-delta-a0101-a0110.md`](16-capability-delta-a0101-a0110.md).
 
 ## Regra de autoridade
 
