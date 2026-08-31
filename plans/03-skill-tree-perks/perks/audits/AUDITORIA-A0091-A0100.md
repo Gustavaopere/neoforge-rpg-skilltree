@@ -99,7 +99,7 @@ A tag `rpgskilltree:physical` contém hoje tipos físicos vanilla explícitos. D
 
 Fetch fresco: **10/10**.
 
-Páginas mutadas neste ciclo: **6/10**:
+Páginas mutadas neste ciclo: **7/10**:
 
 - A0092;
 - A0093;
@@ -108,8 +108,6 @@ Páginas mutadas neste ciclo: **6/10**:
 - A0096;
 - A0097;
 - A0100.
-
-Total distinto correto: **7/10**.
 
 Re-fetch pós-escrita confirmado para as páginas críticas mutadas, incluindo A0092, A0093, A0094, A0095, A0096, A0097 e A0100.
 
