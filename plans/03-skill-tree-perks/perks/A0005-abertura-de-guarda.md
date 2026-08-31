@@ -93,3 +93,13 @@
 - **TDD RED:** `RPG Skill Tree CI` #2193 falhou intencionalmente em `a0005DefersMomentumSpendAndCooldownUntilConfirmedDamagePost`, provando o defeito antigo.
 - **TDD GREEN:** `RPG Skill Tree CI` #2203 ficou verde no HEAD `cc7ba795437943a962cdb5e33cd350f92d0ac123`, incluindo core, JUnit, NeoForge GameTests, build, JAR e dedicated-server smoke.
 - **Estado da pendência:** `P-A0005-02 RESOLVIDA` na PR #244; confirmação definitiva ocorre com o merge desta PR na `main`.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** armas Simply entram somente pela classificação `SWORD` do Epic Fight Compat; o material/provider não é prova de guarda.
+- **Anti-double-dip:** armor ignore/sunder, Deflect, Bleed, ability hit, gem power e traits Simply não são receipts de A0005 e não são reexecutados pelo RPG.
+- **Penetração:** se o mesmo root já possuir ignore/penetration provider-native, A0005 aplica somente sua parcela canônica uma vez e preserva caps/ordem globais.
+- **Derived hits:** ability/proc separado não reabre A0005 nem consome Ímpeto novamente.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; Simply More Unique não comprovada permanece FAIL-CLOSED.
+- **Notion:** provider/hook/fallback/regra atualizados e re-fetch PASS.
+- **Runtime:** inalterado; Chat 2 deve acrescentar regressão provider-present quando integrar o stack.
