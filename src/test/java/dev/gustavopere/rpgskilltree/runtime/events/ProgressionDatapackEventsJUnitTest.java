@@ -11,12 +11,14 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import org.junit.jupiter.api.Test;
 
 final class ProgressionDatapackEventsJUnitTest {
     @Test
     void datapackSyncIsRegisteredAsGameBusEventHook() throws Exception {
+        assertNotNull(ProgressionDatapackEvents.class.getAnnotation(EventBusSubscriber.class));
         Method method = ProgressionDatapackEvents.class.getDeclaredMethod(
             "onDatapackSync", OnDatapackSyncEvent.class
         );
