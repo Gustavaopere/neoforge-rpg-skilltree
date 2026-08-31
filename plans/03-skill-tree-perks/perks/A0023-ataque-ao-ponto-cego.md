@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** VALIDADA EM CI na PR #242; confirmação definitiva após merge em `main`.
+- **Implementação:** CONFIRMADA na `main` pela PR #248; reauditoria técnica abriu `P-A0023-01` para o Chat 2.
 - **Notion:** `3c569db9-f0db-814d-9dee-e20bca763f8c`.
 
 ## Contrato canônico
@@ -36,14 +36,14 @@
 
 ## Pendências
 
-Nenhuma de design ou implementação bloqueante. A orientação server-side e autoria direta permanecem obrigatórias; nenhuma heurística por câmera, dano ou movimento genérico foi adicionada.
+- `P-A0023-01` — **ABERTA PARA CHAT 2**: o runtime atual consome 2 Fluxo e inicia o cooldown por alvo no PRE. Deve migrar para reservation→commit por `rootActionId`: PRE apenas valida/reserva; gasto e cooldown só no POST direto/hostil/com dano efetivo >0; cancelamento/dano zero libera a reserva sem perda. No mesmo hit, o consumer A0023 deve commitar antes do producer A0022, resultando `4 → 2 → 3`.
+- Nenhuma outra pendência bloqueante foi encontrada neste lote. A orientação server-side e autoria direta permanecem obrigatórias; nenhuma heurística por câmera, dano ou movimento genérico deve ser adicionada.
 
-## Chat 2 — implementação e regressão — PR #242
+## Chat 2 — implementação e regressão — PR #248
 
 - O pipeline de A0023 foi preservado sem nova rolagem crítica.
 - A correção de A0022 tornou a rota geométrica server-side disponível sem relaxar os gates de A0023.
-- O consumo de Fluxo continua condicionado a flank/rear, cooldown por alvo e hooks físicos disponíveis.
-- CI #2192 validou JUnit, GameTests, build, JAR e dedicated-server smoke antes do fechamento documental.
+- A implementação foi mergeada pela PR #248.
 
 ## Reauditoria delta — Simply Swords stack — 2026-08-31
 
@@ -54,3 +54,9 @@ Nenhuma de design ou implementação bloqueante. A orientação server-side e au
 - **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; apresentação não fornece família nem orientação.
 - **Notion:** `Provider/Mods`, `Hook`, `Fallback` e `Regra` atualizados; re-fetch confirmou persistência.
 - **Resultado:** design preservado, com boundary explícita para evitar dupla aplicação do mesmo conceito posicional.
+
+## Auditoria técnica pré-Chat 2 — 2026-08-31
+
+- Reprodução transitória em CI #2302 confirmou o defeito causal de PRE; a implementação experimental usada para validar a hipótese foi descartada e não integra esta entrega.
+- O Chat 2 deve implementar `P-A0023-01` com teste RED→GREEN e preservar a ordem consumer→producer.
+- O merge/fechamento não pertence a este chat.

@@ -13,6 +13,10 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-CHAT3-A0001-A0010-PENDENCIAS-TECNICAS.md`
 - `AUDITORIA-CHAT3-A0011-A0020-PENDENCIAS-TECNICAS.md`
 
+## Handoffs de auditoria para implementação — Chat 2
+
+- `AUDITORIA-PRE-IMPLEMENTACAO-A0021-A0030-PARA-CHAT2.md` — findings causais A0023/A0024/A0029/A0030, contratos reservation→commit, testes mínimos e blockers provider que devem permanecer fail-closed. Este tracker é a fonte operacional do handoff deste ciclo; o merge/fechamento pertence ao Chat 3 conforme fluxo atualizado.
+
 ## Auditoria consolidada histórica
 
 - `AUDITORIA-A0001-A0020.md`

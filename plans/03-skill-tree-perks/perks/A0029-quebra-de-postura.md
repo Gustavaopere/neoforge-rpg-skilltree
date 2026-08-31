@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** NÃO CONFIRMADA / FAIL-CLOSED VALIDADO EM CI na PR #242; `P-A0029-01` permanece aberta. A restauração de stamina possui fallback canônico.
+- **Implementação:** NÃO CONFIRMADA / FAIL-CLOSED; `P-A0029-01` permanece aberta. Reauditoria técnica também abriu `P-A0029-02` para o Chat 2.
 - **Notion:** `3c569db9-f0db-81eb-8a3e-c67450cbc041`.
 
 ## Contrato canônico
@@ -28,21 +28,20 @@
 
 ## Evidência e pendências
 
-- `A0021A0040CombatPolicy` exige `abalo>=3 && heavyConfirmed` antes de consumir cargas.
 - O adapter continua enviando `heavyConfirmed=false`; A0029 não ativa no caminho Epic Fight real sem receipt seguro.
 - Na fonte real do Epic Fight 21.17.3.1, `PlayerPatch.getDamageSource(...)` define `chargeWeapon` quando a animação é combo/`ComboAttacks.COMBO`; `ServerPlayerPatch` usa `shouldChargeWeapon()` somente para carregar o recurso da Weapon Innate após o hit. Isso não é receipt de heavy attack.
-- **P-A0029-01 permanece aberta:** é proibido promover `shouldChargeWeapon`, animação, dano, arma lenta, impacto ou charge time estimado a heavy receipt.
+- **P-A0029-01 permanece ABERTA / BLOQUEANTE:** é proibido promover `shouldChargeWeapon`, animação, dano, arma lenta, impacto ou charge time estimado a heavy receipt.
+- `P-A0029-02` — **ABERTA PARA CHAT 2**: o código latente consome 3 Abalos no PRE quando `heavyConfirmed=true`. Mesmo enquanto A0029 permanece fail-closed, o state/policy deve ser endurecido para reservation→commit por actor/target/root; consumo apenas no POST direto/hostil/com dano >0. O consumer deve ocorrer antes de A0028 produzir Abalo do mesmo hit, resultando `3 → 0 → 1` quando ambos forem válidos.
 - A parcela de stamina continua fallback legítimo: sem custo exato da mesma ação, omitir somente a restauração de 10% sem redesenhar a perk.
 - `ARCANE_BACKLASH` e companions Mobstein não satisfazem heavy, guard-break ou stamina receipt.
 
-`P-A0029-01` continua bloqueando `IMPLEMENTAÇÃO CONFIRMADA`, não o design.
+`P-A0029-01` continua bloqueando `IMPLEMENTAÇÃO CONFIRMADA`. Corrigir `P-A0029-02` não autoriza remover o fail-closed provider-side.
 
-## Chat 2 — implementação e regressão — PR #242
+## Chat 2 — implementação e regressão — PR #248
 
 - A classificação HAMMER foi corrigida para provider-native, eliminando uma fonte paralela de falso positivo.
-- Regressão JUnit prova que 3 Abalo não são consumidos e os bônus não são aplicados quando `heavyConfirmed=false`.
-- CI #2192 validou o fail-closed completo.
-- Estado pós-merge permanece `NÃO CONFIRMADA / FAIL-CLOSED` até o provider expor um receipt inequívoco de heavy.
+- A rota real continua fail-closed quando `heavyConfirmed=false`.
+- A implementação/fail-closed foi mergeada pela PR #248.
 
 ## Reauditoria delta — Simply Swords stack — 2026-08-31
 
@@ -52,3 +51,10 @@
 - **Coexistência:** efeitos Simply podem ocorrer no mesmo root por seu pipeline, mas não consomem nem financiam as 3 cargas de Abalo e não criam uma segunda Quebra de Postura.
 - **Fail-closed:** `P-A0029-01` permanece integralmente aberta após esta reauditoria.
 - **Notion:** boundary Simply persistida e re-fetch PASS.
+
+## Auditoria técnica pré-Chat 2 — 2026-08-31
+
+- Reprodução transitória em CI #2302 confirmou `P-A0029-02`; a implementação experimental posterior foi descartada e não integra esta entrega.
+- O Chat 2 deve corrigir o sequencing latente mesmo sem resolver `P-A0029-01`, para que a futura disponibilidade de heavy receipt não ative consumo PRE incorreto.
+- Testes exigidos: PRE não destrutivo, POST válido, POST zero/cancelado e ordem A0029→A0028.
+- O merge/fechamento não pertence a este chat.
