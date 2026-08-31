@@ -116,10 +116,11 @@ for mod_id in sorted(optional):
         fail(f"missing optional provider metadata for {mod_id}")
     if fields.get("type") != "optional":
         fail(f"{mod_id} must be type=optional")
-    if fields.get("versionRange") != "":
-        fail(
-            f"{mod_id} versionRange must remain empty until the provider compatibility matrix is formally certified"
-        )
+    # NeoForge 21.1.248 rejected an explicitly empty optional versionRange during the
+    # provider-present Battle Mage boot. Keep metadata permissive and let each adapter's
+    # runtime compatibility contract decide whether the integration activates.
+    if fields.get("versionRange") != "[0,)":
+        fail(f"{mod_id} optional versionRange must remain the explicit permissive Maven range '[0,)'")
     if fields.get("ordering") != "NONE" or fields.get("side") != "BOTH":
         fail(f"{mod_id} must use ordering=NONE and side=BOTH")
 
