@@ -1,0 +1,287 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "tfc",
+  "kind": "FLORA",
+  "entries": [
+    {
+      "entry_id": "FLORA:tfc:plant/banana_sapling",
+      "title": "Muda de bananeira",
+      "summary": {
+        "text": "Muda de bananeira é o bloco de plantio `tfc:plant/banana_sapling` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/banana_sapling"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "A bananeira participa do ciclo sazonal das plantas frutíferas do TFC. O período exato de atividade, dormência e crescimento continua determinado pelo calendário, clima e configuração do provider, sem valores fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#banana"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitBlocks.java"}
+          ]
+        },
+        "growth_and_harvest": {
+          "text": "A bananeira é a exceção estrutural entre as frutíferas desta coleção: cresce verticalmente, não forma a copa de folhas das árvores frutíferas comuns e frutifica no segmento superior. O Field Guide também registra que mudas vêm da parte florida e que a planta morre após a colheita, exigindo novo plantio para outra produção.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#banana"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/BananaSaplingBlock.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/cherry_sapling",
+      "title": "Muda de cerejeira",
+      "summary": {
+        "text": "Muda de cerejeira é o bloco de plantio `tfc:plant/cherry_sapling` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/cherry_sapling"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "A cerejeira segue o ciclo sazonal das árvores frutíferas do TFC: a muda cresce para uma estrutura de galhos e folhas, e a folhagem pode passar por estados de floração, frutificação e dormência conforme a estação. Calendário e condições concretas permanecem sob autoridade do provider.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#fruit_trees"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#cherry"}
+          ]
+        },
+        "cultivation": {
+          "text": "O crescimento da muda é processado pelo sistema de árvores frutíferas do TFC, que considera tempo decorrido e faixa climática configurada antes de formar a árvore. O Compêndio não fixa tempo de crescimento, temperatura ou hidratação porque esses parâmetros continuam configuráveis no runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitTreeSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/green_apple_sapling",
+      "title": "Pé de maçã verde",
+      "summary": {
+        "text": "Pé de maçã verde é o nome localizado do bloco de plantio `tfc:plant/green_apple_sapling`. O Compêndio apenas remove o espaço final presente no arquivo pt-BR do TerraFirmaCraft 4.2.8, sem alterar o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/green_apple_sapling"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "A macieira verde segue o ciclo sazonal das árvores frutíferas do TFC: a muda cresce para uma estrutura de galhos e folhas, e a folhagem pode passar por estados de floração, frutificação e dormência conforme a estação. Calendário e condições concretas permanecem sob autoridade do provider.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#fruit_trees"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#green_apple"}
+          ]
+        },
+        "cultivation": {
+          "text": "O crescimento da muda é processado pelo sistema de árvores frutíferas do TFC, que considera tempo decorrido e faixa climática configurada antes de formar a árvore. Tempo, temperatura e hidratação exatos não são congelados no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitTreeSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/red_apple_sapling",
+      "title": "Pé de maça vermelha",
+      "summary": {
+        "text": "Pé de maça vermelha é o rótulo fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8 para `tfc:plant/red_apple_sapling`. A grafia do provider é preservada nesta ficha para não substituir silenciosamente a localização oficial, e o ID técnico permanece inalterado.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/red_apple_sapling"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "A macieira vermelha segue o ciclo sazonal das árvores frutíferas do TFC: a muda cresce para uma estrutura de galhos e folhas, e a folhagem pode passar por estados de floração, frutificação e dormência conforme a estação. Calendário e condições concretas permanecem sob autoridade do provider.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#fruit_trees"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#red_apple"}
+          ]
+        },
+        "cultivation": {
+          "text": "O crescimento da muda é processado pelo sistema de árvores frutíferas do TFC, que considera tempo decorrido e faixa climática configurada antes de formar a árvore. Tempo, temperatura e hidratação exatos não são congelados no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitTreeSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/lemon_sapling",
+      "title": "Muda de limoeiro",
+      "summary": {
+        "text": "Muda de limoeiro é o bloco de plantio `tfc:plant/lemon_sapling` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/lemon_sapling"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O limoeiro segue o ciclo sazonal das árvores frutíferas do TFC: a muda cresce para uma estrutura de galhos e folhas, e a folhagem pode passar por estados de floração, frutificação e dormência conforme a estação. Calendário e condições concretas permanecem sob autoridade do provider.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#fruit_trees"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#lemon"}
+          ]
+        },
+        "cultivation": {
+          "text": "O crescimento da muda é processado pelo sistema de árvores frutíferas do TFC, que considera tempo decorrido e faixa climática configurada antes de formar a árvore. Tempo, temperatura e hidratação exatos não são congelados no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitTreeSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/olive_sapling",
+      "title": "Muda de oliveira",
+      "summary": {
+        "text": "Muda de oliveira é o bloco de plantio `tfc:plant/olive_sapling` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/olive_sapling"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "A oliveira segue o ciclo sazonal das árvores frutíferas do TFC: a muda cresce para uma estrutura de galhos e folhas, e a folhagem pode passar por estados de floração, frutificação e dormência conforme a estação. Calendário e condições concretas permanecem sob autoridade do provider.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#fruit_trees"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#olive"}
+          ]
+        },
+        "cultivation": {
+          "text": "O crescimento da muda é processado pelo sistema de árvores frutíferas do TFC, que considera tempo decorrido e faixa climática configurada antes de formar a árvore. Tempo, temperatura e hidratação exatos não são congelados no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitTreeSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/orange_sapling",
+      "title": "Muda de laranjeira",
+      "summary": {
+        "text": "Muda de laranjeira é o bloco de plantio `tfc:plant/orange_sapling` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/orange_sapling"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "A laranjeira segue o ciclo sazonal das árvores frutíferas do TFC: a muda cresce para uma estrutura de galhos e folhas, e a folhagem pode passar por estados de floração, frutificação e dormência conforme a estação. Calendário e condições concretas permanecem sob autoridade do provider.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#fruit_trees"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#orange"}
+          ]
+        },
+        "cultivation": {
+          "text": "O crescimento da muda é processado pelo sistema de árvores frutíferas do TFC, que considera tempo decorrido e faixa climática configurada antes de formar a árvore. Tempo, temperatura e hidratação exatos não são congelados no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitTreeSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/peach_sapling",
+      "title": "Muda de pessegueiro",
+      "summary": {
+        "text": "Muda de pessegueiro é o bloco de plantio `tfc:plant/peach_sapling` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/peach_sapling"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O pessegueiro segue o ciclo sazonal das árvores frutíferas do TFC: a muda cresce para uma estrutura de galhos e folhas, e a folhagem pode passar por estados de floração, frutificação e dormência conforme a estação. Calendário e condições concretas permanecem sob autoridade do provider.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#fruit_trees"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#peach"}
+          ]
+        },
+        "cultivation": {
+          "text": "O crescimento da muda é processado pelo sistema de árvores frutíferas do TFC, que considera tempo decorrido e faixa climática configurada antes de formar a árvore. Tempo, temperatura e hidratação exatos não são congelados no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitTreeSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/plum_sapling",
+      "title": "Muda de ameixoeira",
+      "summary": {
+        "text": "Muda de ameixoeira é o bloco de plantio `tfc:plant/plum_sapling` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/plum_sapling"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "A ameixoeira segue o ciclo sazonal das árvores frutíferas do TFC: a muda cresce para uma estrutura de galhos e folhas, e a folhagem pode passar por estados de floração, frutificação e dormência conforme a estação. Calendário e condições concretas permanecem sob autoridade do provider.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#fruit_trees"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#plum"}
+          ]
+        },
+        "cultivation": {
+          "text": "O crescimento da muda é processado pelo sistema de árvores frutíferas do TFC, que considera tempo decorrido e faixa climática configurada antes de formar a árvore. Tempo, temperatura e hidratação exatos não são congelados no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitTreeSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/plant/fruit/FruitBlocks.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    }
+  ]
+}
