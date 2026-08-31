@@ -55,7 +55,7 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0047 | Distância Dominada | APROVADO após review | IMPLEMENTAÇÃO PARCIAL | `P-A0047-01`: remover projectile speed fabricado; depende de `P-A0044-01`; A0044 indisponível torna A0047 não comprável |
 | A0048 | Maestria de Arcos — Tiro Preparado | APROVADO | CÓDIGO PRESENTE | depende de Mastery BOW 80 e prova gameplay/provider-present |
 | A0049 | Treino com Bestas I | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0049-01`: Mastery CROSSBOW por discovery finita; `P-A0049-02`: reconciliar `combat:crossbow` vs `epicfight:crossbow`; teste provider-present |
-| A0050 | Treino com Bestas II | APROVADO após review | NÃO CONFORME: availability fail-closed não implementada | `P-A0050-01`: sem reload/preparation binding, nó deve ser indisponível/não comprável e não pode gastar pontos |
+| A0050 | Treino com Bestas II | APROVADO após review | NÃO CONFORME: availability fail-closed não implementada | `P-A0050-01`: sem reload/preparation binding seguro, A0050 é indisponível/não comprável; nenhum gasto/rank no-op |
 | A0051 | Precisão com Bestas | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL no crítico CROSSBOW | `P-A0051-01`: exigir launch provenance; herda `P-A0049-01/-02` producer/ledger CROSSBOW |
 | A0052 | Cadência de Recarga | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / estruturalmente indisponível | `P-A0052-01/-02/-04`: availability, mesma besta e Multishot; `P-A0052-05/-06`: launch provenance + lifecycle; herda A0049/A0050 |
 | A0053 | Virote Perfurante | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / nó indisponível | `P-A0053-01/-02`: availability + reservation→commit; `P-A0053-03/-04`: launch provenance + lifecycle; herda cadeia CROSSBOW |
@@ -313,7 +313,7 @@ O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirma
 
 **Estado:** `LOTE FECHADO NO DESIGN; PR #298 MERGEADA; CI GREEN; MAIN CONFIRMADA`.
 
-- **PR de fechamento:** #298 (`docs(perks): close Chat 1 audit A0061-A0070`).
+- **PR de fechamento:** #298 (`docs/perks): close Chat 1 audit A0061-A0070`).
 - **Merge/main:** `4cde1cf26dc1b4bb374f782b348ec3a2c3c5702a`.
 - **CI:** RPG Skill Tree CI #2521 e workflows auxiliares verdes, incluindo NeoForge GameTests, build, JAR e dedicated-server smoke.
 - **INÍCIO:** A0061.
@@ -354,7 +354,7 @@ O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A
 
 **Estado:** `LOTE FECHADO NO DESIGN; PR #302 MERGEADA; CI GREEN; MAIN CONFIRMADA; BLOCKERS RUNTIME CATALOGADOS`.
 
-- **PR de fechamento:** #302 (`docs(perks): close Chat 1 audit A0071-A0080`).
+- **PR de fechamento:** #302 (`docs/perks): close Chat 1 audit A0071-A0080`).
 - **Merge/main:** `616a0dd36b943562ea64fa354a1a2fc49b09c77b`.
 - **CI:** RPG Skill Tree CI #2543 / run `33363516499` GREEN no head `289e31bae45b4586ce3c0f44b8445d6dd6987ea2`, incluindo Core, JUnit 5, NeoForge GameTests, validators, build, JAR e dedicated-server smoke; workflows auxiliares também concluídos sem falha.
 - **INÍCIO:** A0071.
@@ -448,14 +448,16 @@ O lote A0091–A0100 já foi fechado pelo Chat 1 na PR #326 (`docs/perks: close 
 - **FIM:** A0110.
 - **Quantidade:** 10 perks consecutivas.
 - **Branch:** `docs/chat1-a0101-a0110-audit`.
-- **Base de abertura/freshness final pré-PR:** RPG Skill Tree `main@2e1c5b62f89d2311eb645882e3547944d0f68869`.
+- **Base de abertura:** RPG Skill Tree `main@2e1c5b62f89d2311eb645882e3547944d0f68869`.
+- **Freshness final pré-PR:** RPG Skill Tree `main@b32a4c85946807c38339c640614b44670c78643f`; inclui a consolidação Volcanoes da PR #308 e o baseline Sonar da PR #332, sem remover blockers do lote.
 - **Notion fetch fresco:** 10/10.
 - **Notion alterado neste ciclo:** A0103 somente, para congelar o allowlist ambiental que antes estava abstrato.
 - **Re-fetch pós-escrita:** A0103 1/1 PASS em 2026-08-31; persistência confirmada.
 - **Dossiês criados:** 10/10, A0101–A0110.
 - **Auditoria canônica:** `audits/AUDITORIA-A0101-A0110.md`.
 - **Capability delta:** `guides/projects/16-capability-delta-a0101-a0110.md`.
-- **Gate dos quatro projetos próprios:** RPG `2e1c5b62f89d2311eb645882e3547944d0f68869`; Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec`; Black Arcana `e89df6dc2c204c269d8f1811c6b3f309644c864a`.
+- **Gate dos quatro projetos próprios no início do ciclo:** RPG `2e1c5b62f89d2311eb645882e3547944d0f68869`; Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec`; Black Arcana `e89df6dc2c204c269d8f1811c6b3f309644c864a`.
+- **Gate final pós-consolidação:** RPG Skill Tree + Volcanoes sob a mesma authority executável `main@b32a4c85946807c38339c640614b44670c78643f`; `NativeVolcanoesServices` permanece read-only para geologia/vulcanismo/tectônica/atmosfera/pressão e não cria classifier ambiental implícito para A0103.
 - **Nove eixos:** PASS/N/A com justificativa em 10/10 dossiês e matriz consolidada.
 - **18 critérios técnicos:** 18/18 PASS/N/A no design; hooks ausentes foram convertidos em `UNAVAILABLE_NODE`, nunca em bônus substituto.
 - **NeoVitae:** busca ativa no repo = 0 ocorrências; ausente.
