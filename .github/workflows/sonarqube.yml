@@ -1,6 +1,8 @@
 name: SonarQube Cloud
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - main
