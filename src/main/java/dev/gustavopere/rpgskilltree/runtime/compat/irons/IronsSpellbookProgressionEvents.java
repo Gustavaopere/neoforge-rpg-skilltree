@@ -79,8 +79,12 @@ public final class IronsSpellbookProgressionEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpellCast(SpellOnCastEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        if (player instanceof FakePlayer) return;
-        if (!countsForMastery(event.getCastSource())) return;
+        if (!IronMasterySourcePolicy.counts(
+            player.isCreative(),
+            player.isSpectator(),
+            player instanceof FakePlayer,
+            castKind(event.getCastSource())
+        )) return;
 
         String discipline = normalizeSchool(event.getSchoolType().getId());
         SpellAction action = new SpellAction(
@@ -94,8 +98,10 @@ public final class IronsSpellbookProgressionEvents {
         PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forIron(action));
     }
 
-    static boolean countsForMastery(CastSource source) {
-        return source == CastSource.SPELLBOOK || source == CastSource.SCROLL;
+    private static IronMasterySourcePolicy.CastKind castKind(CastSource source) {
+        if (source == CastSource.SPELLBOOK) return IronMasterySourcePolicy.CastKind.SPELLBOOK;
+        if (source == CastSource.SCROLL) return IronMasterySourcePolicy.CastKind.SCROLL;
+        return IronMasterySourcePolicy.CastKind.OTHER;
     }
 
     static String normalizeSchool(ResourceLocation schoolId) {
