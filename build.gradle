@@ -76,7 +76,9 @@ runs {
         systemProperty 'neoforge.enabledGameTestNamespaces', "${mod_id},volcanoes"
     }
 
-    junit {}
+    junit {
+        unitTestSource project.sourceSets.test
+    }
 
     data {
         arguments.addAll '--mod', mod_id, '--all',
@@ -141,10 +143,22 @@ tasks.named('wrapper', Wrapper).configure {
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    extensions.configure(org.gradle.testing.jacoco.plugins.JacocoTaskExtension) {
+        // Instrument repository code only. Minecraft/NeoForge/provider bytecode is dependency code,
+        // and instrumenting Blocks.<clinit> exceeds ASM's method-size limit under the JUnit server.
+        includes = ['dev.gustavopere.*']
+    }
+}
+
+tasks.named('test', Test).configure {
+    // This adapter suite requires NeoForge's loaded JUnit runtime and is executed by testJunit below.
+    exclude '**/A0031A0040EpicFightAdapterCoverageJUnitTest.class'
 }
 
 tasks.named('jacocoTestReport').configure {
     dependsOn tasks.named('test')
+    dependsOn tasks.named('testJunit')
+    executionData(tasks.withType(Test))
     reports {
         xml.required = true
         html.required = true
