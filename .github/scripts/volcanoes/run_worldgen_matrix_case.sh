@@ -17,16 +17,21 @@ RCON_PASSWORD=volcanoes-ci
 mkdir -p "$MODS_DIR" "$BUILD_DIR"
 rm -f "$MODS_DIR"/*.jar
 
+curl_modrinth() {
+  curl --fail --silent --show-error --location \
+    --retry 5 --retry-all-errors --retry-delay 2 \
+    --connect-timeout 20 --max-time 180 --remove-on-error "$@"
+}
+
 modrinth_version() {
   local version_id="$1"
   local metadata="$BUILD_DIR/modrinth-$version_id.json"
-  curl --fail --silent --show-error --location --retry 3 \
-    "https://api.modrinth.com/v2/version/$version_id" -o "$metadata"
+  curl_modrinth "https://api.modrinth.com/v2/version/$version_id" -o "$metadata"
   local url filename
   url="$(jq -r '[.files[] | select(.primary == true)] | if length == 1 then .[0].url else empty end' "$metadata")"
   filename="$(jq -r '[.files[] | select(.primary == true)] | if length == 1 then .[0].filename else empty end' "$metadata")"
   test -n "$url" && test -n "$filename"
-  curl --fail --silent --show-error --location --retry 3 "$url" -o "$MODS_DIR/$filename"
+  curl_modrinth "$url" -o "$MODS_DIR/$filename"
   printf '%s\n' "$filename"
 }
 
@@ -34,7 +39,7 @@ modrinth_project_version() {
   local project="$1"
   local version_fragment="$2"
   local metadata="$BUILD_DIR/modrinth-$project.json"
-  curl --fail --silent --show-error --location --retry 3 \
+  curl_modrinth \
     "https://api.modrinth.com/v2/project/$project/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D" \
     -o "$metadata"
   local count url filename
@@ -47,7 +52,7 @@ modrinth_project_version() {
   url="$(jq -r --arg fragment "$version_fragment" '[.[] | select(.version_number | contains($fragment))][0].files | [.[] | select(.primary == true)] | if length == 1 then .[0].url else empty end' "$metadata")"
   filename="$(jq -r --arg fragment "$version_fragment" '[.[] | select(.version_number | contains($fragment))][0].files | [.[] | select(.primary == true)] | if length == 1 then .[0].filename else empty end' "$metadata")"
   test -n "$url" && test -n "$filename"
-  curl --fail --silent --show-error --location --retry 3 "$url" -o "$MODS_DIR/$filename"
+  curl_modrinth "$url" -o "$MODS_DIR/$filename"
   printf '%s\n' "$filename"
 }
 
