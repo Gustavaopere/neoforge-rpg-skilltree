@@ -46,9 +46,25 @@ jobs:
             ${{ runner.os }}-sonar
 
       - name: Build and analyze with SonarQube
+        shell: bash
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew --no-daemon build sonar --info
+        run: |
+          set -o pipefail
+          mkdir -p build
+          ./gradlew --no-daemon build sonar --info --stacktrace 2>&1 | tee build/sonar-gradle.log
+
+      - name: Upload Gradle diagnostic on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sonar-gradle-diagnostic-${{ github.sha }}
+          path: |
+            build/sonar-gradle.log
+            build/test-results/testJunit/**
+            build/reports/tests/testJunit/**
+          if-no-files-found: warn
+          retention-days: 1
 
       - name: Diagnostic - print JaCoCo coverage for A0031-A0040 changed classes
         shell: bash
