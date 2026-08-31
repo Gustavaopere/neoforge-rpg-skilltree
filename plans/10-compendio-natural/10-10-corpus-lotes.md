@@ -378,13 +378,43 @@ Entradas:
 - todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e carregam tanto com o TerraFirmaCraft ausente quanto presente conforme o contrato do loader;
 - o TDD reproduziu RED exclusivamente pela ausência intencional de `agro-batch3.json` no RPG Skill Tree CI #2516 (`151 tests completed, 1 failed`); após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #289 e pelo RPG Skill Tree CI #2517, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
+## Lote 14 — TerraFirmaCraft / arbustos frutíferos remanescentes
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/berries-batch4.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `FLORA:tfc:plant/raspberry_bush` — Arbusto de framboesa
+2. `FLORA:tfc:plant/blueberry_bush` — Arbusto de mirtilo
+3. `FLORA:tfc:plant/elderberry_bush` — Sabugueiro
+4. `FLORA:tfc:plant/snowberry_bush` — Arbusto de snowberry
+5. `FLORA:tfc:plant/bunchberry_bush` — Arbusto de bunchberry
+6. `FLORA:tfc:plant/gooseberry_bush` — Arbusto de groselha
+7. `FLORA:tfc:plant/cloudberry_bush` — Arbusto de cloudberry
+8. `FLORA:tfc:plant/strawberry_bush` — Morangueiro
+9. `FLORA:tfc:plant/wintergreen_berry_bush` — Arbusto de wintergreen berry
+10. `FLORA:tfc:plant/cranberry_bush` — Arbusto de cranberry
+
+### Critérios editoriais aplicados ao lote 14
+
+- o lote fecha as dez entradas restantes da coleção `BERRIES` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8` depois de `blackberry_bush` ter iniciado essa cobertura no lote 13;
+- registry IDs, classificação de crescimento e localização foram confrontados com `resources/constants.py`, o Field Guide e `pt_br.json` do provider; no caso da framboesa, o Compêndio normaliza apenas o espaço final e a capitalização da localização oficial;
+- `Snowberry Bush`, `Bunchberry Bush`, `Cloudberry Bush` e `Wintergreen Berry Bush` ainda permanecem em inglês no locale pt-BR do provider, portanto recebem aliases editoriais conservadores sem inventar espécie botânica que o mod não declare;
+- Framboesa, Mirtilo e Sabugueiro preservam o comportamento oficial de arbustos expansivos e a associação documentada a áreas com poucas árvores; os demais arbustos baixos usam somente as regras gerais confirmadas pelo Field Guide;
+- Cranberry mantém sua exceção real de berry aquática/submersa, sem transformar parâmetros de água, clima ou geração do mundo em constantes editoriais;
+- nenhum limite numérico de temperatura, hidratação, chuva, mês, estágio ou frequência de geração foi congelado em prosa;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e foram exercitadas com o TerraFirmaCraft ausente e presente pelo teste de regressão do lote;
+- o TDD reproduziu RED na PR draft #299 exclusivamente pela ausência intencional de `berries-batch4.json`; após o corpus, o head funcional `83fb191db9fe7d269a53ed3174c1e9cb1a87f62e` passou o Compendium Editorial CI #292 e o RPG Skill Tree CI #2524 completos, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, NeoForge build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **30**;
-- entradas editoriais totais: **130**;
-- lotes documentados: **13**;
+- entradas editoriais TFC reais no corpus: **40**;
+- entradas editoriais totais: **140**;
+- lotes documentados: **14**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.

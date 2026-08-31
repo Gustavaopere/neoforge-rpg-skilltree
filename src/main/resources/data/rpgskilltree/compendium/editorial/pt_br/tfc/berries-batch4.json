@@ -1,0 +1,317 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "tfc",
+  "kind": "FLORA",
+  "entries": [
+    {
+      "entry_id": "FLORA:tfc:plant/raspberry_bush",
+      "title": "Arbusto de framboesa",
+      "summary": {
+        "text": "Arbusto de framboesa é o bloco frutífero `tfc:plant/raspberry_bush`. O arquivo pt-BR do TerraFirmaCraft 4.2.8 traz `Arbusto de Framboesa`; o Compêndio apenas normaliza o espaço final e a capitalização, sem alterar o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/raspberry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#raspberry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "Esta variedade pertence ao grupo de arbustos expansivos. O Field Guide descreve esse grupo como capaz de crescer verticalmente e formar caules laterais que podem originar novos segmentos antes da maturidade. A variedade é associada a áreas com poucas árvores; propagação, colheita e ocorrência exata continuam governadas pela geração do mundo e pelas regras do TFC.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#tall_bushes"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#raspberry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/blueberry_bush",
+      "title": "Arbusto de mirtilo",
+      "summary": {
+        "text": "Arbusto de mirtilo é o bloco frutífero `tfc:plant/blueberry_bush` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/blueberry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#blueberry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "Esta variedade pertence ao grupo de arbustos expansivos. O Field Guide descreve esse grupo como capaz de crescer verticalmente e formar caules laterais que podem originar novos segmentos antes da maturidade. A variedade é associada a áreas com poucas árvores; propagação, colheita e ocorrência exata continuam governadas pela geração do mundo e pelas regras do TFC.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#tall_bushes"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#blueberry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/elderberry_bush",
+      "title": "Sabugueiro",
+      "summary": {
+        "text": "Sabugueiro é o bloco frutífero `tfc:plant/elderberry_bush` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/elderberry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#elderberry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "Esta variedade pertence ao grupo de arbustos expansivos. O Field Guide descreve esse grupo como capaz de crescer verticalmente e formar caules laterais que podem originar novos segmentos antes da maturidade. A variedade é associada a áreas com poucas árvores; propagação, colheita e ocorrência exata continuam governadas pela geração do mundo e pelas regras do TFC.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#tall_bushes"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#elderberry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/snowberry_bush",
+      "title": "Arbusto de snowberry",
+      "summary": {
+        "text": "Arbusto de snowberry é o nome editorial adotado para `tfc:plant/snowberry_bush`. A localização pt-BR do TerraFirmaCraft 4.2.8 ainda usa `Snowberry Bush`; o Compêndio preserva o ID técnico e não atribui uma espécie real que o mod não especifica.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/snowberry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#snowberry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "Esta variedade pertence ao grupo de arbustos baixos. O Field Guide descreve esses arbustos como plantas frutíferas de floresta que amadurecem localmente e podem se espalhar para blocos próximos quando o entorno comporta novas plantas; a colheita do fruto ocorre pela interação com o arbusto maduro. A ocorrência exata continua dependente da geração do mundo e do clima.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#small_bushes"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#snowberry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/bunchberry_bush",
+      "title": "Arbusto de bunchberry",
+      "summary": {
+        "text": "Arbusto de bunchberry é o nome editorial adotado para `tfc:plant/bunchberry_bush`. A localização pt-BR do TerraFirmaCraft 4.2.8 ainda usa `Bunchberry Bush`; o Compêndio preserva o ID técnico e não atribui uma espécie real que o mod não especifica.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/bunchberry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#bunchberry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "Esta variedade pertence ao grupo de arbustos baixos. O Field Guide descreve esses arbustos como plantas frutíferas de floresta que amadurecem localmente e podem se espalhar para blocos próximos quando o entorno comporta novas plantas; a colheita do fruto ocorre pela interação com o arbusto maduro. A ocorrência exata continua dependente da geração do mundo e do clima.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#small_bushes"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#bunchberry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/gooseberry_bush",
+      "title": "Arbusto de groselha",
+      "summary": {
+        "text": "Arbusto de groselha é o bloco frutífero `tfc:plant/gooseberry_bush` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/gooseberry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#gooseberry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "Esta variedade pertence ao grupo de arbustos baixos. O Field Guide descreve esses arbustos como plantas frutíferas de floresta que amadurecem localmente e podem se espalhar para blocos próximos quando o entorno comporta novas plantas; a colheita do fruto ocorre pela interação com o arbusto maduro. A ocorrência exata continua dependente da geração do mundo e do clima.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#small_bushes"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#gooseberry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/cloudberry_bush",
+      "title": "Arbusto de cloudberry",
+      "summary": {
+        "text": "Arbusto de cloudberry é o nome editorial adotado para `tfc:plant/cloudberry_bush`. A localização pt-BR do TerraFirmaCraft 4.2.8 ainda usa `Cloudberry Bush`; o Compêndio preserva o ID técnico e não atribui uma espécie real que o mod não especifica.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/cloudberry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#cloudberry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "Esta variedade pertence ao grupo de arbustos baixos. O Field Guide descreve esses arbustos como plantas frutíferas de floresta que amadurecem localmente e podem se espalhar para blocos próximos quando o entorno comporta novas plantas; a colheita do fruto ocorre pela interação com o arbusto maduro. A ocorrência exata continua dependente da geração do mundo e do clima.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#small_bushes"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#cloudberry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/strawberry_bush",
+      "title": "Morangueiro",
+      "summary": {
+        "text": "Morangueiro é o bloco frutífero `tfc:plant/strawberry_bush` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/strawberry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#strawberry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "Esta variedade pertence ao grupo de arbustos baixos. O Field Guide descreve esses arbustos como plantas frutíferas de floresta que amadurecem localmente e podem se espalhar para blocos próximos quando o entorno comporta novas plantas; a colheita do fruto ocorre pela interação com o arbusto maduro. A ocorrência exata continua dependente da geração do mundo e do clima.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#small_bushes"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#strawberry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/wintergreen_berry_bush",
+      "title": "Arbusto de wintergreen berry",
+      "summary": {
+        "text": "Arbusto de wintergreen berry é o nome editorial adotado para `tfc:plant/wintergreen_berry_bush`. A localização pt-BR do TerraFirmaCraft 4.2.8 ainda usa `Wintergreen Berry Bush`; o Compêndio preserva o ID técnico e não atribui uma espécie real que o mod não especifica.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/wintergreen_berry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#wintergreen_berry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "Esta variedade pertence ao grupo de arbustos baixos. O Field Guide descreve esses arbustos como plantas frutíferas de floresta que amadurecem localmente e podem se espalhar para blocos próximos quando o entorno comporta novas plantas; a colheita do fruto ocorre pela interação com o arbusto maduro. A ocorrência exata continua dependente da geração do mundo e do clima.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#small_bushes"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#wintergreen_berry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "FLORA:tfc:plant/cranberry_bush",
+      "title": "Arbusto de cranberry",
+      "summary": {
+        "text": "Arbusto de cranberry é o bloco frutífero `tfc:plant/cranberry_bush` e usa o nome fornecido pela localização pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:plant/cranberry_bush"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "lifecycle": {
+          "text": "O arbusto segue o ciclo sazonal comum das plantas frutíferas do TFC, passando por crescimento, floração, frutificação e dormência. Calendário, clima e hidratação concretos permanecem definidos pelo mod e pelos datapacks ativos, sem números fixados nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#cranberry"}
+          ]
+        },
+        "growth_and_habitat": {
+          "text": "O cranberry é a berry aquática da coleção do TFC. O Field Guide registra que, ao contrário da maioria dos arbustos baixos, esse arbusto é cultivado submerso em água e ocorre no contexto florestal; estado de água, crescimento e ocorrência concreta continuam controlados pelo mod.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:resources/constants.py#BERRIES"},
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_fruits.json#cranberry"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    }
+  ]
+}
