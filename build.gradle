@@ -75,8 +75,10 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
-    // Battle Mage needs the exact 3.16.3 MagicData/cooldown implementation surface in addition
-    // to Iron's public API. This remains compile-only and runtime-gated as an optional provider.
+    compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}:api"
+    // Battle Mage additionally compiles against the exact provider runtime JAR because the public
+    // MagicData API exposes cooldown/sync types from that artifact. Runtime remains optional and
+    // is guarded by the exact MineColonies/Iron's integration gate.
     compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}"
     compileOnly("maven.modrinth:TKB6INcv:${ars_nouveau_version_id}") {
         transitive = false
