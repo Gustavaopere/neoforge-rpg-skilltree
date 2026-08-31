@@ -1,0 +1,43 @@
+name: Sonar New Code Diagnostic
+
+on:
+  push:
+    branches:
+      - chore/sonar-new-code-diagnostic
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Inspect Sonar new-code configuration
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          auth_header="Authorization: Bearer ${SONAR_TOKEN}"
+          base="https://sonarcloud.io"
+
+          echo '=== New-code settings ==='
+          curl --silent --show-error --fail --location \
+            --header "$auth_header" \
+            "$base/api/settings/values?component=${SONAR_PROJECT}&keys=sonar.leak.period,sonar.leak.period.type" \
+            | jq '{settings: [.settings[] | {key, value, inherited}]}'
+
+          echo '=== Latest main analyses ==='
+          curl --silent --show-error --fail --location \
+            --header "$auth_header" \
+            "$base/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=5" \
+            | jq '{analyses: [.analyses[] | {key, date, projectVersion}]}'
+
+          echo '=== Current new issues ==='
+          curl --silent --show-error --fail --location \
+            --header "$auth_header" \
+            "$base/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&ps=1" \
+            | jq '{currentNewIssues: (.paging.total // .total)}'
