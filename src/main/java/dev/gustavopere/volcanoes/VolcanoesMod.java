@@ -40,7 +40,7 @@ public final class VolcanoesMod {
     private VolcanoesMod() {
     }
 
-    public static synchronized void initialize(IEventBus modBus, ModContainer container) {
+    public static void initialize(IEventBus modBus, ModContainer container) {
         if (initialized) {
             throw new IllegalStateException("Volcanoes subsystem initialized more than once");
         }
