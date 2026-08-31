@@ -108,7 +108,8 @@ def main() -> int:
         "GeologicalDepositSource",
         "VolcanicRegionService",
         "TectonicService",
-        "AtmosphereService",
+        "AtmosphereState",
+        "atmosphereAt",
         "pressureAtm",
     )
 
