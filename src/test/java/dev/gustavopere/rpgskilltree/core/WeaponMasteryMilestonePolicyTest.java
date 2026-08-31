@@ -8,6 +8,10 @@ public final class WeaponMasteryMilestonePolicyTest {
     public static void main(String[] args) {
         bowHitUsesCanonicalLaneAndPersistentDiscoveryIdentity();
         providerOriginsShareTheSameBowDiscoveryIdentity();
+        crossbowPhysicalHitUsesCanonicalLaneAndPersistentDiscoveryIdentity();
+        providerOriginsShareTheSameCrossbowDiscoveryIdentity();
+        uncorrelatedPhysicalProjectileFailsClosed();
+        unsupportedPhysicalProjectileCategoryFailsClosed();
         invalidDamageFailsClosed();
         System.out.println("WeaponMasteryMilestonePolicyTest: PASS");
     }
@@ -54,6 +58,82 @@ public final class WeaponMasteryMilestonePolicyTest {
             "the same semantic BOW outcome must deduplicate across vanilla and Epic Fight receipts"
         );
         require(!vanilla.action().provider().equals(epicFight.action().provider()), "provider provenance should remain distinct");
+    }
+
+    private static void crossbowPhysicalHitUsesCanonicalLaneAndPersistentDiscoveryIdentity() {
+        var milestone = WeaponMasteryMilestonePolicy.confirmedPhysicalProjectileHit(
+            "minecraft:projectile_damage_post",
+            "minecraft",
+            "crossbow",
+            "minecraft:pillager",
+            8.0D,
+            true
+        );
+
+        require(
+            milestone.discoveryKey().equals("mastery:epicfight:weapon/crossbow/hostile_type/minecraft:pillager"),
+            "CROSSBOW discovery identity must match the canonical Epic Fight-compatible ledger key"
+        );
+        require(milestone.action().weaponCategory().equals("crossbow"), "weapon category must stay crossbow");
+        require(hasAward(milestone.awards(), "epicfight:crossbow", 10), "canonical epicfight:crossbow +10 award missing");
+        require(hasAward(milestone.awards(), "epicfight:weapon", 5), "shared epicfight:weapon +5 award missing");
+    }
+
+    private static void providerOriginsShareTheSameCrossbowDiscoveryIdentity() {
+        var vanilla = WeaponMasteryMilestonePolicy.confirmedPhysicalProjectileHit(
+            "minecraft:projectile_damage_post",
+            "minecraft",
+            "crossbow",
+            "minecraft:witch",
+            6.0D,
+            true
+        );
+        var epicFight = WeaponMasteryMilestonePolicy.confirmedHit(
+            "epicfight:damage_post",
+            "epicfight",
+            "crossbow",
+            "minecraft:witch",
+            6.0D
+        );
+
+        require(
+            vanilla.discoveryKey().equals(epicFight.discoveryKey()),
+            "the same semantic CROSSBOW outcome must deduplicate across vanilla and Epic Fight receipts"
+        );
+    }
+
+    private static void uncorrelatedPhysicalProjectileFailsClosed() {
+        boolean rejected = false;
+        try {
+            WeaponMasteryMilestonePolicy.confirmedPhysicalProjectileHit(
+                "minecraft:projectile_damage_post",
+                "minecraft",
+                "crossbow",
+                "minecraft:pillager",
+                6.0D,
+                false
+            );
+        } catch (IllegalArgumentException expected) {
+            rejected = true;
+        }
+        require(rejected, "uncorrelated physical projectiles must not become mastery milestones");
+    }
+
+    private static void unsupportedPhysicalProjectileCategoryFailsClosed() {
+        boolean rejected = false;
+        try {
+            WeaponMasteryMilestonePolicy.confirmedPhysicalProjectileHit(
+                "minecraft:projectile_damage_post",
+                "minecraft",
+                "spell_arrow",
+                "minecraft:zombie",
+                6.0D,
+                true
+            );
+        } catch (IllegalArgumentException expected) {
+            rejected = true;
+        }
+        require(rejected, "unsupported projectile categories must fail closed");
     }
 
     private static void invalidDamageFailsClosed() {
