@@ -289,11 +289,43 @@ Entradas:
 - distribuição concreta continua condicionada por worldgen, biomas e datapacks ativos, sem frequência ou local universal inventado;
 - o corpus passou pelo Compendium Editorial CI #237 e pelo RPG Skill Tree CI #2425, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke antes deste registro.
 
+## Lote 11 — TerraFirmaCraft / cultivos básicos
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/crops-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `FLORA:tfc:crop/barley` — Cevada
+2. `FLORA:tfc:crop/oat` — Aveia
+3. `FLORA:tfc:crop/rye` — Centeio
+4. `FLORA:tfc:crop/maize` — Milho
+5. `FLORA:tfc:crop/wheat` — Trigo
+6. `FLORA:tfc:crop/rice` — Arroz
+7. `FLORA:tfc:crop/beet` — Beterraba
+8. `FLORA:tfc:crop/cabbage` — Alface
+9. `FLORA:tfc:crop/carrot` — Cenoura
+10. `FLORA:tfc:crop/garlic` — Alho
+
+### Critérios editoriais aplicados ao lote 11
+
+- o lote inicia a cobertura editorial não-vanilla pelo eixo TFC/ambiente/agro, após os 100 verbetes vanilla usados como referência de qualidade;
+- o provider foi fixado na versão instalada TerraFirmaCraft `1.21.1-4.2.8` e as evidências editoriais apontam para o tag upstream `v4.2.8`;
+- registry IDs e nomes pt-BR foram mantidos conforme o provider, inclusive `tfc:crop/cabbage` com o rótulo localizado `Alface`, sem reescrever a identidade técnica;
+- o texto de cultivo é sustentado pelo Field Guide do TFC e evita congelar em prosa limiares numéricos mutáveis de clima, hidratação ou nutrientes;
+- planta cultivada, forma silvestre, estado morto e sementes são tratadas como identidades técnicas distintas, sem fusão editorial de registry IDs;
+- as dez fichas usam `availability: OPTIONAL`, pois TerraFirmaCraft é um provider opcional: a ficha permanece carregável quando o provider está ausente e pode coexistir com a entrada técnica quando ele está presente;
+- o loader ganhou teste de regressão para essa semântica: `OPTIONAL` é aceito com provider ausente ou presente, `RUNTIME` continua exigindo presença e `LEGACY` continua fail-closed quando a entrada técnica existe;
+- antes deste registro, o HEAD funcional passou pelo Compendium Editorial CI #251 e pelo RPG Skill Tree CI #2463, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- lotes documentados: **10**;
-- namespace atual em produção: `minecraft`;
+- entradas editoriais TFC reais no corpus: **10**;
+- entradas editoriais totais: **110**;
+- lotes documentados: **11**;
+- namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.

@@ -272,19 +272,19 @@ public final class CompendiumEditorialResourceLoader {
                 );
             }
         } else {
-            if (present) {
-                throw validation(
-                    source,
-                    prefix + ".availability",
-                    editorialId(parsedId.id()) + " is present in the current technical catalog and must use RUNTIME"
-                );
-            }
             availabilityReason = requireProse(
                 raw,
                 "availability_reason",
                 source,
                 prefix + ".availability_reason"
             );
+            if (availability == EditorialAvailability.LEGACY && present) {
+                throw validation(
+                    source,
+                    prefix + ".availability",
+                    editorialId(parsedId.id()) + " is present in the current technical catalog and cannot use LEGACY"
+                );
+            }
         }
 
         try {
