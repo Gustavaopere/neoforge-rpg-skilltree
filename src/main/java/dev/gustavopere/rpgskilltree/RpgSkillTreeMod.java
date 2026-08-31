@@ -83,6 +83,8 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(ProgressionOwnerSyncEvents.class);
         NeoForge.EVENT_BUS.register(PlayerProgressionEvents.class);
         NeoForge.EVENT_BUS.register(RelevantPlayerCacheEvents.class);
+        // NodeRulesReloader.class and NodeEffectsReloader.class are retained as legacy source
+        // compatibility markers only; their independent registrations are intentionally retired.
         NeoForge.EVENT_BUS.register(SkillTreeDataReloader.class);
         NeoForge.EVENT_BUS.register(TreeArchitectureReloader.class);
         NeoForge.EVENT_BUS.register(TreeUnlockReloader.class);
