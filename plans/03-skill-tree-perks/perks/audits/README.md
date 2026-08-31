@@ -34,6 +34,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
 - A0091–A0100 foi fechado pelo Chat 1 na PR #326 em `AUDITORIA-A0091-A0100.md`; a PR ainda não estava integrada à `main` na abertura deste lote, por isso este branch não duplica aquele arquivo.
 - `AUDITORIA-A0101-A0110.md` — fechamento de design A0101–A0110, incluindo mitigação tipada, allowlist ambiental, low-health/emergency defense, availability transitiva e fail-closed de impact→Stamina, encumbrance corporal e durabilidade.
+- `AUDITORIA-A0101-A0110-FRESHNESS-FINAL.md` — gate final superveniente do mesmo lote; substitui somente os SHAs/fatos de freshness anteriores e registra RPG `66fcec7...`, Enshrouded `29ae2d9...`, Black Arcana `e89df6d...` e Volcanoes source `eaddc323...`, sem alterar os contratos.
 
 ## Auditorias de delta da modlist — Chat 1
 
