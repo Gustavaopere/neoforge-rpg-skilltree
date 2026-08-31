@@ -10,10 +10,12 @@ BOOTSTRAP = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "RpgSkillTreeMod.jav
 CENTRAL = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "runtime" / "compat" / "OptionalIntegrations.java"
 IDENTITY_MIXIN = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "runtime" / "compat" / "identity2" / "mixin" / "IdentityProgressionMixin.java"
 IDENTITY_PLUGIN = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "bootstrap" / "Identity2MixinPlugin.java"
+BATTLE_MAGE_PROVIDER_GAMETEST = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "gametest" / "BattleMageProviderGameTests.java"
 MIXIN_CONFIG = ROOT / "src" / "main" / "resources" / "rpgskilltree.mixins.json"
 METADATA = ROOT / "src" / "main" / "resources" / "META-INF" / "neoforge.mods.toml"
 WORKFLOW = ROOT / ".github" / "workflows" / "alpha2-build.yml"
 SMOKE_VERIFIER = ROOT / "scripts" / "verify-optional-provider-smoke.py"
+PROVIDER_GAMETEST_VERIFIER = ROOT / "scripts" / "verify-battle-mage-provider-runtime.py"
 
 PROVIDERS = {
     "IRONS_SPELLBOOKS": ("irons_spellbooks", "runtime/compat/irons/", "io.redspace.ironsspellbooks"),
@@ -106,6 +108,11 @@ for path in JAVA.rglob("*.java"):
             # but it must never import or otherwise link the provider package.
             if path == IDENTITY_PLUGIN and f'"{external_package}' in text and f"import {external_package}" not in text:
                 continue
+            # The provider-present GameTest intentionally uses reflection so the same test class
+            # remains loadable in the provider-free lane. Provider packages may occur only inside
+            # Class.forName strings; direct imports would violate optional classloading safety.
+            if path == BATTLE_MAGE_PROVIDER_GAMETEST and "Class.forName" in text and f"import {external_package}" not in text:
+                continue
             fail(f"external provider type {external_package} leaked outside isolated adapter path: {rel}")
 
 if not IDENTITY_MIXIN.is_file():
@@ -128,14 +135,38 @@ config = MIXIN_CONFIG.read_text(encoding="utf-8")
 if '"plugin": "dev.gustavopere.rpgskilltree.bootstrap.Identity2MixinPlugin"' not in config:
     fail("mixin config must install the early Identity2 target gate")
 
+if not BATTLE_MAGE_PROVIDER_GAMETEST.is_file():
+    fail("missing provider-present Battle Mage GameTest probe")
+provider_probe = BATTLE_MAGE_PROVIDER_GAMETEST.read_text(encoding="utf-8")
+for forbidden in (
+    "import com.minecolonies.",
+    "import io.redspace.ironsspellbooks",
+):
+    if forbidden in provider_probe:
+        fail(f"Battle Mage provider GameTest must remain provider-neutral at classload time: {forbidden}")
+for marker in (
+    'Class.forName("com.minecolonies.api.IMinecoloniesAPI")',
+    'Class.forName("io.redspace.ironsspellbooks.api.magic.MagicData")',
+):
+    if marker not in provider_probe:
+        fail(f"Battle Mage provider GameTest is missing reflection probe marker {marker!r}")
+
 if not SMOKE_VERIFIER.is_file():
     fail("missing dedicated-server optional-provider absence verifier")
 smoke = SMOKE_VERIFIER.read_text(encoding="utf-8")
 for marker in ("ClassNotFoundException", "NoClassDefFoundError"):
     if marker not in smoke:
         fail(f"server-smoke verifier must reject {marker}")
+if not PROVIDER_GAMETEST_VERIFIER.is_file():
+    fail("missing provider-present Battle Mage runtime verifier")
+provider_verifier = PROVIDER_GAMETEST_VERIFIER.read_text(encoding="utf-8")
+for marker in ("ModLoadingException", "MineColonies Battle Mage integration active", "All\\s+(\\d+)\\s+required tests passed"):
+    if marker not in provider_verifier:
+        fail(f"provider-present Battle Mage verifier is missing marker {marker!r}")
 workflow = WORKFLOW.read_text(encoding="utf-8")
 if 'python3 scripts/verify-optional-provider-smoke.py "$LOG"' not in workflow:
     fail("dedicated-server smoke must assert the optional-provider absence matrix")
+if 'python3 scripts/verify-battle-mage-provider-runtime.py "$LOG"' not in workflow:
+    fail("provider-present GameTests must validate the runtime log instead of trusting the Gradle exit code")
 
 print("Optional integration contract: PASS")
