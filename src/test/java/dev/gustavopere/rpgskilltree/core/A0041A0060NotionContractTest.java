@@ -14,7 +14,9 @@ public final class A0041A0060NotionContractTest {
         familiesAndGatesMatchFreshNotion();
         bowArchitectureUsesCanonicalMasteryLane();
         crossbowArchitectureUsesCanonicalMasteryLane();
+        fistArchitectureUsesCanonicalMasteryLane();
         WeaponMasteryMilestonePolicyTest.main(new String[0]);
+        FistMasteryMilestonePolicyTest.main(new String[0]);
         System.out.println("A0041A0060NotionContractTest: PASS");
     }
 
@@ -86,6 +88,23 @@ public final class A0041A0060NotionContractTest {
             );
             require(!architecture.contains("\"requiredMastery\":{\"combat:crossbow\":60}"),
                 "combat:crossbow must not remain as a parallel CROSSBOW mastery ledger");
+        } catch (IOException failure) {
+            throw new AssertionError("could not read combat tree architecture", failure);
+        }
+    }
+
+    private static void fistArchitectureUsesCanonicalMasteryLane() {
+        try {
+            String architecture = architecture();
+            require(
+                architecture.contains("\"id\":\"rpgskilltree:combat_fist\"")
+                    && architecture.contains("\"requiredMastery\":{\"combat:fist\":60}"),
+                "combat_fist architecture must use canonical combat:fist mastery"
+            );
+            require(!architecture.contains("\"requiredMastery\":{\"epicfight:fist\":60}"),
+                "epicfight:fist must not become a parallel FIST gate ledger");
+            require(!architecture.contains("\"requiredMastery\":{\"epicfight:knuckle\":60}"),
+                "epicfight:knuckle must not become a parallel FIST gate ledger");
         } catch (IOException failure) {
             throw new AssertionError("could not read combat tree architecture", failure);
         }
