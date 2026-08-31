@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** VALIDADA EM CI NO FALLBACK CANÔNICO na PR #242; confirmação definitiva após merge em `main`.
+- **Implementação:** CONFIRMADA NO FALLBACK CANÔNICO na `main` pela PR #248; reauditoria técnica abriu `P-A0024-01` para o Chat 2.
 - **Notion:** `3c569db9-f0db-81c1-9774-e31e4f891e57`.
 
 ## Contrato canônico
@@ -30,17 +30,24 @@
 
 - `A0021A0040CombatPolicy`/state modelam ativação e consumo único.
 - `A0021A0040EpicFightHooks.onSkillConsume` reduz o primeiro custo elegível da Dança quando existe receipt de movimento/dodge compatível.
-- A rota de reposicionamento geométrico de A0022 foi implementada server-side na PR #242 e agora pode satisfazer a janela sem depender de câmera.
+- A rota de reposicionamento geométrico de A0022 foi implementada server-side e pode satisfazer a janela sem depender de câmera.
 - A perk não converte Fúria, hunger/exhaustion, Cold Sweat CORE, Shroud/Exposure ou Arcane Strain em stamina.
 - `ARCANE_BACKLASH` e companions Mobstein não consomem Dança nem recebem os benefícios do dono.
 
 ## Pendências
 
-Nenhuma bloqueante dentro do contrato aprovado. Quando a ação concreta não expõe custo de stamina correlacionável com segurança, a redução de stamina permanece legitimamente omitida; os demais componentes seguros continuam ativos.
+- `P-A0024-01` — **ABERTA PARA CHAT 2**: o runtime atual consome 4 Fluxo/ativa Dança no PRE e também consome no PRE o one-shot do primeiro hit lateral/traseiro. Deve usar reservation→commit por `rootActionId`: ativação e benefício são apenas reservados no PRE e commitados no POST direto/hostil/com dano >0; cancelamento/dano zero preserva Fluxo e one-shot. No hit de ativação, A0024 deve commitar antes de A0022 produzir Fluxo, resultando `4 → 0 → 1`.
+- A redução de stamina continua fallback legítimo: se a ação concreta não expõe custo correlacionável com segurança, omitir apenas esse componente; não converter para outro recurso.
 
-## Chat 2 — implementação e regressão — PR #242
+## Chat 2 — implementação e regressão — PR #248
 
 - A dependência técnica da rota geométrica de A0022 foi resolvida sem heurística client-side.
-- Consumo único de Fluxo e benefícios únicos por ativação permanecem no state/policy canônicos.
 - O fallback de stamina não foi redesenhado nem convertido para outro recurso.
-- CI #2192 validou o runtime antes do fechamento documental.
+- A implementação foi mergeada pela PR #248.
+
+## Auditoria técnica pré-Chat 2 — 2026-08-31
+
+- Reprodução transitória em CI #2302 confirmou o consumo causal prematuro de A0024; a implementação experimental usada na validação foi descartada e não integra esta entrega.
+- O Chat 2 deve implementar `P-A0024-01` com testes RED→GREEN para ativação, one-shot e cancelamento/dano zero.
+- A ordem consumer→producer com A0022 é requisito de aceite.
+- O merge/fechamento não pertence a este chat.
