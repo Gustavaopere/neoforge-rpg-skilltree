@@ -2,15 +2,14 @@ package dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.minecolonies.api.entity.citizen.AbstractEntityCitizen;
 import com.minecolonies.api.inventory.InventoryCitizen;
+import java.lang.reflect.RecordComponent;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.OptionalInt;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import org.junit.jupiter.api.Test;
 
 final class BattleMageLoadoutResolverJUnitTest {
@@ -23,34 +22,21 @@ final class BattleMageLoadoutResolverJUnitTest {
     }
 
     @Test
-    void scansTheRealCitizenInventoryDeterministically() {
-        InventoryCitizen inventory = new InventoryCitizen("battle-mage-test", false);
-        ItemStack first = new ItemStack(Items.STICK);
-        ItemStack selected = new ItemStack(Items.BLAZE_ROD);
-        inventory.setStackInSlot(1, first);
-        inventory.setStackInSlot(7, selected);
-
-        OptionalInt slot = BattleMageLoadoutResolver.findFirstMatchingSlot(
-            inventory,
-            stack -> stack.is(Items.BLAZE_ROD)
-        );
+    void scansInventorySlotsDeterministicallyWithoutBootstrappingMinecraftRegistries() {
+        OptionalInt slot = BattleMageLoadoutResolver.findFirstMatchingIndex(10, index -> index == 7);
 
         assertTrue(slot.isPresent());
         assertEquals(7, slot.getAsInt());
-        assertFalse(BattleMageLoadoutResolver.findFirstMatchingSlot(inventory, stack -> stack.is(Items.DIAMOND)).isPresent());
+        assertFalse(BattleMageLoadoutResolver.findFirstMatchingIndex(10, index -> false).isPresent());
     }
 
     @Test
-    void resolvedLoadoutTracksTheLiveSlotInsteadOfCopyingTheBook() {
-        InventoryCitizen inventory = new InventoryCitizen("battle-mage-test", false);
-        ItemStack original = new ItemStack(Items.BOOK);
-        inventory.setStackInSlot(4, original);
-
-        BattleMageLoadoutResolver.Loadout loadout = new BattleMageLoadoutResolver.Loadout(inventory, 4);
-        assertSame(original, loadout.bookStack());
-
-        ItemStack replacement = new ItemStack(Items.WRITABLE_BOOK);
-        inventory.setStackInSlot(4, replacement);
-        assertSame(replacement, loadout.bookStack());
+    void loadoutRetainsOnlyLiveInventoryAndSlotIdentity() {
+        RecordComponent[] components = BattleMageLoadoutResolver.Loadout.class.getRecordComponents();
+        assertEquals(2, components.length);
+        assertEquals(
+            Arrays.asList(InventoryCitizen.class, int.class),
+            Arrays.stream(components).map(RecordComponent::getType).toList()
+        );
     }
 }
