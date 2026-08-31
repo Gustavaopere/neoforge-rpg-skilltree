@@ -1,0 +1,153 @@
+name: Third-Party Provenance Audit
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: third-party-provenance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+
+      - name: Verify validator syntax and exact build-input versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/validate_provenance.py
+          python3 scripts/validate_provenance.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          props = {}
+          for raw in Path('gradle.properties').read_text(encoding='utf-8').splitlines():
+              line = raw.strip()
+              if not line or line.startswith('#') or '=' not in line:
+                  continue
+              key, value = line.split('=', 1)
+              props[key.strip()] = value.strip()
+
+          inventory = json.loads(Path('docs/provenance/third-party-inventory.json').read_text(encoding='utf-8'))
+          projects = {project['id']: project for project in inventory['projects']}
+
+          expected_neoforge = props['neo_version']
+          actual_neoforge = projects['neoforge']['version_or_revision']
+          if actual_neoforge != expected_neoforge:
+              raise SystemExit(f'NeoForge inventory mismatch: gradle.properties={expected_neoforge}, inventory={actual_neoforge}')
+
+          expected_parchment = (
+              f"Minecraft {props['neogradle.subsystems.parchment.minecraftVersion']} / "
+              f"mappings {props['neogradle.subsystems.parchment.mappingsVersion']}"
+          )
+          actual_parchment = projects['parchment']['version_or_revision']
+          if actual_parchment != expected_parchment:
+              raise SystemExit(f'Parchment inventory mismatch: gradle.properties={expected_parchment}, inventory={actual_parchment}')
+
+          print(f'EXACT_BUILD_INPUTS NeoForge={actual_neoforge} Parchment={actual_parchment}')
+          PY
+
+      - name: Reconstruct pinned TFC Volcanoes reference baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/provenance/tfc-decompiled
+          UPSTREAM_JAR="$PWD/build/provenance/TFCVolcanoes-1.21.1-2.2.1.jar"
+          EXPECTED_SHA256='26e0acff330bc659c75270ad942b0d6ce60cff97d5fec2bd207d4486fb5b1b4e'
+          curl --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/tfc-volcanoes-962578/8710292/tfc-volcanoes-962578-8710292.jar' \
+            --output "$UPSTREAM_JAR"
+          ACTUAL_SHA256="$(sha256sum "$UPSTREAM_JAR" | awk '{print $1}')"
+          test "$ACTUAL_SHA256" = "$EXPECTED_SHA256"
+          printf '%s  %s\n' "$ACTUAL_SHA256" "$UPSTREAM_JAR" \
+            > build/provenance/TFC_VOLCANOES_SHA256.txt
+
+          CFR="$PWD/build/provenance/cfr-0.152.jar"
+          curl --fail --location --retry 3 \
+            'https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar' \
+            --output "$CFR"
+          java -jar "$CFR" "$UPSTREAM_JAR" \
+            --outputdir build/provenance/tfc-decompiled >/dev/null
+
+      - name: Restrict historical audit refs to release history and candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git update-ref refs/provenance/candidate HEAD
+          while IFS= read -r ref; do
+            if [[ "$ref" != 'refs/remotes/origin/main' ]]; then
+              git update-ref -d "$ref"
+            fi
+          done < <(git for-each-ref --format='%(refname)' refs/remotes/)
+          echo 'Historical audit refs:'
+          git for-each-ref --format='%(refname) %(objectname)' refs/remotes/origin/main refs/provenance/candidate refs/tags/
+
+      - name: Audit Stage 00-06 source and resource history
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/validate_provenance.py \
+            --history \
+            --tfc-upstream-dir "$PWD/build/provenance/tfc-decompiled" \
+            --tfc-upstream-jar "$PWD/build/provenance/TFCVolcanoes-1.21.1-2.2.1.jar" \
+            | tee build/provenance/audit-report.txt
+          grep -Fq 'PROVENANCE_AUDIT_SUMMARY errors=0' \
+            build/provenance/audit-report.txt
+
+      - name: Build release JAR and verify legal payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          gradle --no-daemon jar
+          JAR="$(find build/libs -maxdepth 1 -type f -name 'Volcanoes*.jar' | head -n 1)"
+          test -n "$JAR"
+          jar tf "$JAR" | grep -Fxq 'LICENSE'
+          jar tf "$JAR" | grep -Fxq 'THIRD_PARTY_NOTICES.md'
+          if jar tf "$JAR" | grep -Eq '\.jar$'; then
+            echo 'Unexpected nested JAR in Volcanoes release artifact' >&2
+            exit 1
+          fi
+          {
+            echo "JAR=$JAR"
+            sha256sum "$JAR"
+            jar tf "$JAR" | grep -E '^(LICENSE|THIRD_PARTY_NOTICES\.md)$'
+          } > build/provenance/release-jar-legal-evidence.txt
+
+      - name: Upload provenance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: third-party-provenance-${{ github.sha }}
+          path: |
+            build/provenance/audit-report.txt
+            build/provenance/TFC_VOLCANOES_SHA256.txt
+            build/provenance/release-jar-legal-evidence.txt
+          if-no-files-found: warn
+          retention-days: 30

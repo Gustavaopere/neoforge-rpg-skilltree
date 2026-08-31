@@ -1,0 +1,11 @@
+{
+  "dimensions": ["minecraft:the_nether"],
+  "baseline_y": 64.0,
+  "baseline_atm": 1.0,
+  "control_points": [
+    {"y": 0.0, "pressure_atm": 1.08},
+    {"y": 64.0, "pressure_atm": 1.0},
+    {"y": 128.0, "pressure_atm": 0.92},
+    {"y": 256.0, "pressure_atm": 0.80}
+  ]
+}
