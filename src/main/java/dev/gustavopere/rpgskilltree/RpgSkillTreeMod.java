@@ -21,6 +21,9 @@ import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEve
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationBootstrap;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationState;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.MineColoniesBattleMageRegistration;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumDiscoveryEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEditorialCatalogEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEntityCatalogEvents;
@@ -119,7 +122,42 @@ public final class RpgSkillTreeMod {
         );
         ColdSweatFrenzyBridge.initializeDiagnostics();
 
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)) {
+        boolean mineColoniesLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
+        boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
+        String mineColoniesVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
+        BattleMageIntegrationState battleMageState = BattleMageIntegrationBootstrap.evaluate(
+            mineColoniesLoaded,
+            ironsSpellbooksLoaded,
+            mineColoniesVersion
+        );
+        if (battleMageState == BattleMageIntegrationState.ACTIVE) {
+            battleMageState = BattleMageIntegrationBootstrap.install(
+                true,
+                true,
+                mineColoniesVersion,
+                () -> MineColoniesBattleMageRegistration.register(modBus)
+            );
+        }
+        if (battleMageState == BattleMageIntegrationState.ACTIVE) {
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPAT,
+                "minecolonies_battle_mage_active",
+                "MineColonies Battle Mage integration active for MineColonies {}",
+                mineColoniesVersion
+            );
+        } else if (battleMageState != BattleMageIntegrationState.ABSENT_PROVIDER) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "minecolonies_battle_mage_disabled",
+                "MineColonies Battle Mage integration disabled: state={}, version={}",
+                battleMageState,
+                mineColoniesVersion
+            );
+        }
+
+        if (ironsSpellbooksLoaded) {
             NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
         }
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.ARS_NOUVEAU)) {
