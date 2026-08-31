@@ -45,11 +45,11 @@ A presença de um arquivo em `plans/` **não** prova disponibilidade de runtime.
 
 ## Baseline reconciliado para o próximo delta
 
-O checkpoint operacional mais recente está em [`15-capability-delta-a0091-a0100.md`](15-capability-delta-a0091-a0100.md), após disposição completa do lote A0091–A0100 e classificação dos deltas próprios, incluindo a provenance autoritativa de bridges pagas do Stage 04.02, a centralização canônica de lanes de Mastery do Stage 04.03 sem impacto contratual neste lote e os avanços client/hardening sem impacto contratual de Enshrouded/Black Arcana:
+O checkpoint operacional mais recente está em [`15-capability-delta-a0091-a0100.md`](15-capability-delta-a0091-a0100.md), após disposição completa do lote A0091–A0100 e classificação dos deltas próprios, incluindo a provenance autoritativa de bridges pagas do Stage 04.02, a centralização canônica de lanes de Mastery do Stage 04.03 sem impacto contratual neste lote, a integração SonarQube classificada como infraestrutura sem delta de gameplay e os avanços client/hardening sem impacto contratual de Enshrouded/Black Arcana:
 
 | Projeto | Baseline atual |
 |---|---|
-| RPG Skill Tree | `19f6fa749348c6c7dc46887787fa718242f09af0` |
+| RPG Skill Tree | `cb95a527fa3b6138d674c74a09dc32d58885d523` |
 | Volcanoes | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
 | Enshrouded | `6642d4ed14bbae2a771075ca466e6749ac8f7fb8` |
 | Black Arcana | `462c5c4af403629a7092129cf7f3070472f03e59` |
