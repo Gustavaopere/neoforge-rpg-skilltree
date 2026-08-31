@@ -47,7 +47,7 @@ wait_for_log() {
 }
 
 rcon() {
-  python3 "$ROOT/.github/scripts/minecraft_rcon.py" \
+  python3 "$ROOT/.github/scripts/volcanoes/minecraft_rcon.py" \
     127.0.0.1 "$RCON_PORT" "$RCON_PASSWORD" "$@"
 }
 
@@ -90,7 +90,7 @@ run_round() {
   grep -Fq 'Loaded 7 Volcanoes rock profile definitions' "$log"
   grep -Fq 'Stopping server' "$log"
   test -f "$RUN_DIR/world/data/volcanoes_sites.dat"
-  python3 "$ROOT/.github/scripts/worldgen_site_digest.py" \
+  python3 "$ROOT/.github/scripts/volcanoes/worldgen_site_digest.py" \
     "$RUN_DIR/world/data/volcanoes_sites.dat" > "$BUILD_DIR/server-round-$round.digest"
 }
 
