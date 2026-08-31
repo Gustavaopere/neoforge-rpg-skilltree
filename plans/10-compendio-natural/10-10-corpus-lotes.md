@@ -408,13 +408,46 @@ Entradas:
 - todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e foram exercitadas com o TerraFirmaCraft ausente e presente pelo teste de regressão do lote;
 - o TDD reproduziu RED na PR draft #299 exclusivamente pela ausência intencional de `berries-batch4.json`; após o corpus, o head funcional `83fb191db9fe7d269a53ed3174c1e9cb1a87f62e` passou o Compendium Editorial CI #292 e o RPG Skill Tree CI #2524 completos, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, NeoForge build, verificação do JAR e dedicated-server smoke.
 
+## Lote 15 — TerraFirmaCraft / pomar e início das árvores de madeira
+
+Arquivos:
+
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/orchards-batch5.json`
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/trees-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `FLORA:tfc:plant/banana_sapling` — Muda de bananeira
+2. `FLORA:tfc:plant/cherry_sapling` — Muda de cerejeira
+3. `FLORA:tfc:plant/green_apple_sapling` — Pé de maçã verde
+4. `FLORA:tfc:plant/red_apple_sapling` — Pé de maça vermelha
+5. `FLORA:tfc:plant/lemon_sapling` — Muda de limoeiro
+6. `FLORA:tfc:plant/olive_sapling` — Muda de oliveira
+7. `FLORA:tfc:plant/orange_sapling` — Muda de laranjeira
+8. `FLORA:tfc:plant/peach_sapling` — Muda de pessegueiro
+9. `FLORA:tfc:plant/plum_sapling` — Muda de ameixoeira
+10. `TREE:tfc:wood/sapling/acacia` — Muda de acácia
+
+### Critérios editoriais aplicados ao lote 15
+
+- as nove primeiras entradas fecham a coleção `FRUITS` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`; como essa coleção possui exatamente nove frutíferas arbóreas, a décima entrada inicia a coleção `WOODS` pela primeira espécie declarada no provider, `ACACIA`;
+- a classificação foi determinada pelo runtime, não pelo nome: as mudas das frutíferas comuns usam `FruitTreeSaplingBlock`, derivado de `BushBlock`, e a bananeira possui implementação especializada, por isso entram como `FLORA`; a muda de acácia usa `TFCSaplingBlock`, derivado de `SaplingBlock`, sendo descoberta como `TREE` pelo coletor do Compêndio;
+- os rótulos pt-BR foram confrontados com `pt_br.json`; espaços finais do provider são apenas normalizados, enquanto `Pé de maça vermelha` preserva deliberadamente a grafia da localização oficial em vez de corrigi-la silenciosamente;
+- a bananeira mantém sua exceção estrutural real: crescimento vertical sem a copa de folhas das frutíferas comuns, frutificação no topo e necessidade de novo plantio após a colheita conforme o Field Guide;
+- as demais frutíferas registram somente o ciclo sazonal, formação de galhos/folhas e crescimento controlado pelo sistema do provider, sem congelar meses, temperatura, hidratação ou tempo de crescimento em prosa;
+- a acácia registra a identidade `Wood.ACACIA`, o uso de `TFCSaplingBlock` e sua família de blocos de madeira, mantendo timings e modificadores de crescimento sob autoridade da configuração/runtime;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
+- o TDD produziu RED válido na PR draft #309 pelo RPG Skill Tree CI #2600: após compilação e checks prévios verdes, `157 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch15JUnitTest` pela ausência intencional dos pacotes; após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #349 e pelo RPG Skill Tree CI #2610 completos, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **40**;
-- entradas editoriais totais: **140**;
-- lotes documentados: **14**;
+- entradas editoriais TFC reais no corpus: **50**;
+- entradas editoriais totais: **150**;
+- lotes documentados: **15**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
