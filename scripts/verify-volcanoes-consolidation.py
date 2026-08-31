@@ -18,17 +18,26 @@ def require(condition: bool, message: str) -> None:
 
 
 def main() -> int:
+    volcanoes_root = ROOT / "src/main/java/dev/gustavopere/volcanoes"
     volcanoes = text("src/main/java/dev/gustavopere/volcanoes/VolcanoesMod.java")
     rpg = text("src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java")
     mods_toml = text("src/main/resources/META-INF/neoforge.mods.toml")
     mixins = text("src/main/resources/volcanoes.mixins.json")
     build = text("build.gradle")
 
-    require('@Mod(' not in volcanoes, "Volcanoes must not declare an independent @Mod entry point")
+    stray_mods = []
+    for source in volcanoes_root.rglob("*.java"):
+        if "@Mod(" in source.read_text(encoding="utf-8"):
+            stray_mods.append(source.relative_to(ROOT).as_posix())
+    require(not stray_mods,
+            "Volcanoes must not declare any independent @Mod entry point: " + ", ".join(stray_mods))
+
     require('public static void initialize(IEventBus modBus, ModContainer container)' in volcanoes,
             "Volcanoes must expose the native subsystem initializer")
     require('public static final String MOD_ID = "volcanoes";' in volcanoes,
             "the legacy volcanoes namespace must remain stable for persistent/resource IDs")
+    require('"volcanoes-server.toml"' in volcanoes,
+            "the standalone Volcanoes server config filename must remain stable")
 
     require('import dev.gustavopere.volcanoes.VolcanoesMod;' in rpg,
             "RPG bootstrap must import the native Volcanoes subsystem")
