@@ -72,7 +72,7 @@ public final class BattleMageCombatController {
         for (Candidate candidate : orderCandidates(candidates, selfCritical)) {
             BattleMageSpellProfile profile = candidate.profile();
             SpellData spellData = spells.get(candidate.bookIndex());
-            if (!canUseProfile(caster, hostileTarget, profile, selfCritical)) continue;
+            if (!canUseProfile(caster, hostileTarget, spellData, profile, selfCritical)) continue;
 
             if (profile.targetMode() != BattleMageTargetMode.SELF && hostileTarget != null) {
                 caster.getLookControl().setLookAt(hostileTarget);
@@ -95,7 +95,8 @@ public final class BattleMageCombatController {
     ) {
         if (caster == null || !caster.isAlive() || !isRuntimeSupported(profile)) return false;
         if (profile.targetMode() == BattleMageTargetMode.SELF) return true;
-        return hostileContextSafe(caster, hostileTarget, profile);
+        SpellData castingSpell = IronsCitizenMagicBridge.magicData(caster).getCastingSpell();
+        return hostileContextSafe(caster, hostileTarget, castingSpell, profile);
     }
 
     public static double preferredAttackDistance(EntityCitizen caster) {
@@ -138,6 +139,7 @@ public final class BattleMageCombatController {
     private static boolean canUseProfile(
         EntityCitizen caster,
         LivingEntity hostileTarget,
+        SpellData spellData,
         BattleMageSpellProfile profile,
         boolean selfCritical
     ) {
@@ -145,12 +147,13 @@ public final class BattleMageCombatController {
         if (profile.targetMode() == BattleMageTargetMode.SELF) {
             return selfCritical && inRange(profile, 0.0);
         }
-        return hostileContextSafe(caster, hostileTarget, profile);
+        return hostileContextSafe(caster, hostileTarget, spellData, profile);
     }
 
     private static boolean hostileContextSafe(
         EntityCitizen caster,
         LivingEntity hostileTarget,
+        SpellData spellData,
         BattleMageSpellProfile profile
     ) {
         if (hostileTarget == null || !hostileTarget.isAlive()) return false;
@@ -158,12 +161,19 @@ public final class BattleMageCombatController {
         if (!caster.getSensing().hasLineOfSight(hostileTarget)) return false;
         if (!inRange(profile, caster.distanceTo(hostileTarget))) return false;
         return profile.targetMode() != BattleMageTargetMode.HOSTILE_AREA
-            || isAreaSafe(caster, hostileTarget, profile);
+            || isAreaSafe(caster, hostileTarget, spellData, profile);
     }
 
-    private static boolean isAreaSafe(EntityCitizen caster, LivingEntity target, BattleMageSpellProfile profile) {
-        if (profile.allySafe() || profile.friendlyFireRadius() <= 0.0) return true;
-        AABB danger = target.getBoundingBox().inflate(profile.friendlyFireRadius());
+    private static boolean isAreaSafe(
+        EntityCitizen caster,
+        LivingEntity target,
+        SpellData spellData,
+        BattleMageSpellProfile profile
+    ) {
+        if (profile.allySafe()) return true;
+        double radius = BattleMageSpellRuntimeSafety.friendlyFireRadius(caster, spellData, profile);
+        if (!Double.isFinite(radius) || radius <= 0.0) return false;
+        AABB danger = target.getBoundingBox().inflate(radius);
         return caster.level().getEntitiesOfClass(LivingEntity.class, danger, entity -> isProtectedAlly(caster, entity)).isEmpty();
     }
 
