@@ -1,0 +1,10 @@
+{
+  "spell": "irons_spellbooks:heal",
+  "target_mode": "SELF",
+  "priority": 100,
+  "min_range": 0.0,
+  "max_range": 0.0,
+  "friendly_fire_radius": 0.0,
+  "world_effect": false,
+  "ally_safe": true
+}
