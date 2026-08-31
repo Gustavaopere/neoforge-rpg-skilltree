@@ -31,6 +31,17 @@
 - [x] A identidade de descoberta coincide com a usada pelo adapter Epic Fight, impedindo dupla concessão quando os dois providers observam o mesmo resultado semântico.
 - [x] Contrato coberto por teste core; build NeoForge, GameTests e dedicated-server smoke permanecem gates de CI.
 
+## Progresso runtime confirmado — FIST
+
+- [x] `combat:fist` permanece o ledger canônico do gate FIST; categorias provider-native `fist` e `knuckle` não criam gates paralelos `epicfight:fist`/`epicfight:knuckle`.
+- [x] `rpgskilltree:combat_fist` está publicado no architecture catalog como especialização provider `epicfight`, domínio `MARTIAL`, nível mínimo 8 e gate `combat:fist` 60, alinhado ao `CombatPerkTreeModel` e ao contrato aprovado A0055–A0060.
+- [x] O produtor usa `EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST`: somente dano positivo confirmado contra alvo hostil pode gerar milestone.
+- [x] `fist` e `knuckle` convergem para a mesma categoria semântica `fist` e para a mesma identidade persistente: `mastery:combat:fist/hostile_type/<entity_type>`.
+- [x] Cada tipo hostil inédito concede `+10 combat:fist` e `+5 epicfight:weapon`; seis tipos distintos alcançam o gate 60 e oito alcançam o gate 80 sem permitir spam de hits no mesmo tipo.
+- [x] A concessão reutiliza `WeaponMasteryMilestoneRuntime.awardIfNew`, mantendo a mesma fronteira persistente de `DiscoveryProgress` usada nas lanes físicas já fechadas.
+- [x] Creative, spectator e `FakePlayer` continuam inelegíveis pelo adapter Epic Fight; categorias fora de `fist|knuckle` e dano não positivo falham fechado.
+- [x] Contrato coberto por teste core; build NeoForge, GameTests e dedicated-server smoke permanecem gates de CI.
+
 As caixas gerais acima permanecem abertas porque o fechamento é por catálogo/fonte completa de Mastery, não por uma única categoria de arma.
 
 **Acceptance:** repetir uma ação válida aumenta mastery exatamente uma vez e tentativas inválidas não aumentam.
