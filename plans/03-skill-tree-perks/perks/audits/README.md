@@ -12,6 +12,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 
 - `AUDITORIA-CHAT3-A0001-A0010-PENDENCIAS-TECNICAS.md`
 - `AUDITORIA-CHAT3-A0011-A0020-PENDENCIAS-TECNICAS.md`
+- `AUDITORIA-CHAT3-A0021-A0030-PENDENCIAS-TECNICAS.md`
 
 ## Auditoria consolidada histórica
 
@@ -30,6 +31,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 
 - `AUDITORIA-A0061-A0070.md` — fechamento de design A0061–A0070, incluindo correção fail-closed/unavailable de A0067, cobertura BOSS de A0070 e gate de delta dos quatro projetos próprios.
 - `AUDITORIA-A0071-A0080.md` — fechamento de design A0071–A0080, incluindo availability transitiva, reservation→commit, posturas server-authoritative, sustain all-or-nothing, movement/stationary e dodge-success fail-closed.
+- `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
 
 ## Auditorias de delta da modlist — Chat 1
 

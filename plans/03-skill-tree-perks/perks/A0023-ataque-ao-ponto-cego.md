@@ -54,3 +54,12 @@ Nenhuma de design ou implementação bloqueante. A orientação server-side e au
 - **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; apresentação não fornece família nem orientação.
 - **Notion:** `Provider/Mods`, `Hook`, `Fallback` e `Regra` atualizados; re-fetch confirmou persistência.
 - **Resultado:** design preservado, com boundary explícita para evitar dupla aplicação do mesmo conceito posicional.
+
+## Chat 3 — auditoria pós-merge — PR #315
+
+- Encontrada divergência causal: o PRE consumia 2 Fluxo e iniciava o cooldown por alvo antes de dano efetivo confirmado.
+- Corrigido para `reservation -> commit`: PRE apenas reserva os 2 Fluxo e aplica os modificadores necessários; POST `direct && hostile && actualDamage` consome exatamente 2 Fluxo e inicia o cooldown.
+- POST cancelado/zero damage descarta a reserva sem gasto nem cooldown fantasma.
+- Fluxo reservado deixa de ficar disponível para outra root action concorrente.
+- A ordem causal é `consumer -> gain`: o próprio hit não pode financiar A0023 com Fluxo que A0022 só concede no POST.
+- Design, valores, orientação server-authoritative e fail-closed permanecem inalterados.

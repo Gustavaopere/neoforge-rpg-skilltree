@@ -44,3 +44,13 @@ Nenhuma bloqueante dentro do contrato aprovado. Quando a ação concreta não ex
 - Consumo único de Fluxo e benefícios únicos por ativação permanecem no state/policy canônicos.
 - O fallback de stamina não foi redesenhado nem convertido para outro recurso.
 - CI #2192 validou o runtime antes do fechamento documental.
+
+## Chat 3 — auditoria pós-merge — PR #315
+
+- Encontrada divergência causal: o PRE podia consumir os 4 Fluxo, ativar Dança e queimar o primeiro bônus de hit antes de o dano ser efetivamente confirmado.
+- Corrigido para reserva bounded por `rootActionId`: PRE reserva ativação/primeiro hit e aplica somente os modificadores necessários ao cálculo.
+- POST confirmado consome os 4 Fluxo, ativa Dança e, quando o hit ativador é lateral/traseiro, marca aquele mesmo hit como o primeiro benefício consumido.
+- POST cancelado/zero damage descarta a reserva; Fluxo, janela de ativação e benefício de primeiro hit permanecem íntegros enquanto seus prazos originais forem válidos.
+- O benefício de movimento só fica disponível após a ativação ser commitada.
+- Ordem causal preservada: custo de 4 Fluxo é commitado antes do ganho A0022 do próprio hit confirmado.
+- Contrato, duração, valores e fallback de stamina não foram redesenhados.

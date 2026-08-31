@@ -194,15 +194,30 @@ Fetch fresco realizado antes da primeira perk do lote:
 
 O próximo Chat 1 deve comparar `main` fresco contra estes SHAs e registrar `SEM DELTA RELEVANTE` quando a diferença for apenas documental/merge sem nova capacidade jogável.
 
-## 13. Baseline canônico atual após o lote A0071–A0080 — 2026-08-31
+## 13. Baseline canônico após o lote A0071–A0080 — 2026-08-31
 
-O fechamento detalhado e a disposição provider→árvore deste lote estão em [`13-capability-delta-a0071-a0080.md`](13-capability-delta-a0071-a0080.md). Esta seção promove explicitamente os SHAs daquele suplemento como **baseline substituto vigente** para o próximo Chat 1.
+O fechamento detalhado e a disposição provider→árvore desse lote estão em [`13-capability-delta-a0071-a0080.md`](13-capability-delta-a0071-a0080.md). A seção permanece histórica; o baseline vigente foi posteriormente substituído pela seção 14.
 
-| Projeto | Baseline vigente |
+| Projeto | Baseline A0071–A0080 |
 |---|---|
 | RPG Skill Tree | `fd94cb8fce97a483f405820385758b7837285f09` |
 | Volcanoes | `bbb273d61984e2c9bb84e8f8a56668ae7e315532` |
 | Enshrouded | `391ea82203d30cb392a3397f92e2a3cbe7fb6128` |
 | Black Arcana | `526d8196087c863e9df64051d5d39d88c3050856` |
 
-A PR concorrente #301 do RPG Skill Tree foi reconciliada antes do fechamento da PR #302 e altera apenas a lane FIST/arquitetura/testes A0041–A0060; não existe delta jogável pertinente a A0071–A0080. O próximo ciclo deve partir destes SHAs, não dos baselines das seções 9 ou 12.
+A PR concorrente #301 do RPG Skill Tree foi reconciliada antes do fechamento da PR #302 e altera apenas a lane FIST/arquitetura/testes A0041–A0060; não existe delta jogável pertinente a A0071–A0080.
+
+## 14. Baseline canônico atual após o lote A0081–A0090 — 2026-08-31
+
+O fechamento detalhado e a disposição provider→árvore estão em [`14-capability-delta-a0081-a0090.md`](14-capability-delta-a0081-a0090.md). Esta seção promove seus SHAs como **baseline substituto vigente** para o próximo Chat 1.
+
+| Projeto | Baseline vigente |
+|---|---|
+| RPG Skill Tree | `6975970d086d32985d83a0018c841cce9d1cbd63` |
+| Volcanoes | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
+| Enshrouded | `391ea82203d30cb392a3397f92e2a3cbe7fb6128` |
+| Black Arcana | `710077da89da5eb4418d3ac676e148849727ff07` |
+
+Disposição do delta: os avanços concorrentes finais do RPG até `6975970d...` foram classificados antes do fechamento. As PRs #300, #306 e #311 são editoriais/instrumentais e não alteram A0081–A0090. A PR #307 adiciona gating server-side de especializações por availability de provider/adapter, uma capability arquitetural real, porém sem adicionar damage receipt, `BodyProvider`, correlação de lifesteal, producer de magia/elemento/DoT ou atributo requerido pelo lote; portanto os contratos e fail-closed A0081–A0090 permanecem inalterados. Volcanoes avançou apenas em release/hardening; Enshrouded permaneceu estável; Black Arcana endureceu Backlash/snapshots sem criar sustain ofensivo. Nenhuma dessas mudanças cria uma 11ª perk, bypassa availability ou transforma hazard/custo em dano ofensivo do jogador.
+
+O próximo ciclo deve comparar `main` fresco contra estes quatro SHAs e classificar qualquer novo avanço antes de auditar sua primeira perk.

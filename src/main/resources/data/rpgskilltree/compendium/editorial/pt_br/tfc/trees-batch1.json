@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "tfc",
+  "kind": "TREE",
+  "entries": [
+    {
+      "entry_id": "TREE:tfc:wood/sapling/acacia",
+      "title": "Muda de acácia",
+      "summary": {
+        "text": "Muda de acácia é o bloco arbóreo `tfc:wood/sapling/acacia`, registrado para `Wood.ACACIA`. A localização pt-BR do TerraFirmaCraft 4.2.8 fornece `Muda de acácia `; o Compêndio remove apenas o espaço final e preserva o ID técnico.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:wood/sapling/acacia"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "growth": {
+          "text": "As mudas de madeira do TFC usam `TFCSaplingBlock`: o tempo mínimo de crescimento vem da configuração do servidor e ainda é afetado por um modificador global antes de a muda avançar para a árvore configurada. O Compêndio mantém esses parâmetros no runtime em vez de congelar duração ou chance numérica na prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/TFCSaplingBlock.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"}
+          ]
+        },
+        "wood_family": {
+          "text": "A acácia integra a coleção de madeiras do TFC. A partir do mesmo tipo de madeira, o provider registra a muda e os demais componentes da família, incluindo troncos, folhas, tábuas e blocos derivados; cada componente conserva seu próprio registry ID.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/TFCBlocks.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/blocks/wood/Wood.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    }
+  ]
+}

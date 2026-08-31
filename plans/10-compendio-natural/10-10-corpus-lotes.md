@@ -408,13 +408,139 @@ Entradas:
 - todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e foram exercitadas com o TerraFirmaCraft ausente e presente pelo teste de regressão do lote;
 - o TDD reproduziu RED na PR draft #299 exclusivamente pela ausência intencional de `berries-batch4.json`; após o corpus, o head funcional `83fb191db9fe7d269a53ed3174c1e9cb1a87f62e` passou o Compendium Editorial CI #292 e o RPG Skill Tree CI #2524 completos, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, NeoForge build, verificação do JAR e dedicated-server smoke.
 
+## Lote 15 — TerraFirmaCraft / pomar e início das árvores de madeira
+
+Arquivos:
+
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/orchards-batch5.json`
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/trees-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `FLORA:tfc:plant/banana_sapling` — Muda de bananeira
+2. `FLORA:tfc:plant/cherry_sapling` — Muda de cerejeira
+3. `FLORA:tfc:plant/green_apple_sapling` — Pé de maçã verde
+4. `FLORA:tfc:plant/red_apple_sapling` — Pé de maça vermelha
+5. `FLORA:tfc:plant/lemon_sapling` — Muda de limoeiro
+6. `FLORA:tfc:plant/olive_sapling` — Muda de oliveira
+7. `FLORA:tfc:plant/orange_sapling` — Muda de laranjeira
+8. `FLORA:tfc:plant/peach_sapling` — Muda de pessegueiro
+9. `FLORA:tfc:plant/plum_sapling` — Muda de ameixoeira
+10. `TREE:tfc:wood/sapling/acacia` — Muda de acácia
+
+### Critérios editoriais aplicados ao lote 15
+
+- as nove primeiras entradas fecham a coleção `FRUITS` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`; como essa coleção possui exatamente nove frutíferas arbóreas, a décima entrada inicia a coleção `WOODS` pela primeira espécie declarada no provider, `ACACIA`;
+- a classificação foi determinada pelo runtime, não pelo nome: as mudas das frutíferas comuns usam `FruitTreeSaplingBlock`, derivado de `BushBlock`, e a bananeira possui implementação especializada, por isso entram como `FLORA`; a muda de acácia usa `TFCSaplingBlock`, derivado de `SaplingBlock`, sendo descoberta como `TREE` pelo coletor do Compêndio;
+- os rótulos pt-BR foram confrontados com `pt_br.json`; espaços finais do provider são apenas normalizados, enquanto `Pé de maça vermelha` preserva deliberadamente a grafia da localização oficial em vez de corrigi-la silenciosamente;
+- a bananeira mantém sua exceção estrutural real: crescimento vertical sem a copa de folhas das frutíferas comuns, frutificação no topo e necessidade de novo plantio após a colheita conforme o Field Guide;
+- as demais frutíferas registram somente o ciclo sazonal, formação de galhos/folhas e crescimento controlado pelo sistema do provider, sem congelar meses, temperatura, hidratação ou tempo de crescimento em prosa;
+- a acácia registra a identidade `Wood.ACACIA`, o uso de `TFCSaplingBlock` e sua família de blocos de madeira, mantendo timings e modificadores de crescimento sob autoridade da configuração/runtime;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
+- o TDD produziu RED válido na PR draft #309 pelo RPG Skill Tree CI #2600: após compilação e checks prévios verdes, `157 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch15JUnitTest` pela ausência intencional dos pacotes; após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #349 e pelo RPG Skill Tree CI #2610 completos, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
+## Lote 16 — TerraFirmaCraft / árvores de madeira, segunda fatia
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/trees-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `TREE:tfc:wood/sapling/ash` — Muda de ash
+2. `TREE:tfc:wood/sapling/aspen` — Muda de aspen
+3. `TREE:tfc:wood/sapling/birch` — Muda de eucalipto
+4. `TREE:tfc:wood/sapling/blackwood` — Muda de acácia-negra
+5. `TREE:tfc:wood/sapling/chestnut` — Muda de castanheira
+6. `TREE:tfc:wood/sapling/douglas_fir` — Muda de douglas fir
+7. `TREE:tfc:wood/sapling/hickory` — Muda de nogueira
+8. `TREE:tfc:wood/sapling/kapok` — Muda de sumaúma
+9. `TREE:tfc:wood/sapling/mangrove` — Propágulo de mangrove
+10. `TREE:tfc:wood/sapling/maple` — Muda de bordo
+
+### Critérios editoriais aplicados ao lote 16
+
+- o lote continua imediatamente a coleção `WOODS` depois de `ACACIA`, seguindo a ordem declarada por `Wood.java` no TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`: `ASH`, `ASPEN`, `BIRCH`, `BLACKWOOD`, `CHESTNUT`, `DOUGLAS_FIR`, `HICKORY`, `KAPOK`, `MANGROVE` e `MAPLE`;
+- as dez entradas são mudas registradas por `Wood.BlockType.SAPLING` com `TFCSaplingBlock`, sustentando a classificação `TREE` pelo runtime em vez de inferência textual do registry ID;
+- os rótulos foram confrontados com `pt_br.json` e os espaços finais do provider são apenas normalizados; a associação oficial `birch` → `Muda de eucalipto` é preservada explicitamente sem alterar `Wood.BIRCH` nem o registry ID;
+- `Mangrove Propagule` ainda permanece em inglês no locale pt-BR do provider, portanto recebe o alias editorial conservador `Propágulo de mangrove`, traduzindo somente o termo genérico sem inventar uma espécie botânica diferente;
+- o crescimento permanece sob autoridade de `TFCSaplingBlock`, das configurações por muda e do modificador global do provider; duração, chance e outros valores numéricos mutáveis não são congelados na prosa editorial;
+- troncos, folhas, tábuas e demais componentes de cada família continuam identidades técnicas próprias e são citados apenas como família de madeira, sem fundir seus registry IDs com a ficha da muda;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
+- o TDD produziu RED válido na draft #313 pelo RPG Skill Tree CI #2645: no merge-ref contra `main@9958caaabebff95bfbbd0a226ca571e5bfe5316c`, compilação e checks prévios passaram e `163 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch16JUnitTest` pela ausência intencional de `trees-batch2.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #381 e pelo RPG Skill Tree CI #2648, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
+## Lote 17 — TerraFirmaCraft / fechamento das árvores de madeira e início da fauna aquática
+
+Arquivos:
+
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/trees-batch3.json`
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `TREE:tfc:wood/sapling/oak` — Muda de carvalho
+2. `TREE:tfc:wood/sapling/palm` — Muda de palmeira
+3. `TREE:tfc:wood/sapling/pine` — Muda de pinheiro
+4. `TREE:tfc:wood/sapling/rosewood` — Muda de jacarandá
+5. `TREE:tfc:wood/sapling/sequoia` — Muda de sequoia
+6. `TREE:tfc:wood/sapling/spruce` — Muda de espruce
+7. `TREE:tfc:wood/sapling/sycamore` — Muda de sicômoro
+8. `TREE:tfc:wood/sapling/white_cedar` — Muda de cedro branco
+9. `TREE:tfc:wood/sapling/willow` — Muda de salgueiro
+10. `ENTITY:tfc:bluegill` — Peixe bluegill
+
+### Critérios editoriais aplicados ao lote 17
+
+- as nove árvores seguem imediatamente `MAPLE` na ordem declarada por `Wood.java` e fecham a coleção `WOODS` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8` com `OAK`, `PALM`, `PINE`, `ROSEWOOD`, `SEQUOIA`, `SPRUCE`, `SYCAMORE`, `WHITE_CEDAR` e `WILLOW`;
+- as nove mudas são registradas por `Wood.BlockType.SAPLING` com `TFCSaplingBlock`; a palmeira preserva a exceção real do provider que também permite areia como substrato, sem generalizar essa regra às demais madeiras;
+- os rótulos pt-BR das mudas foram confrontados com `pt_br.json`, normalizando somente espaços finais quando presentes e preservando associações oficiais como `rosewood` → `Muda de jacarandá`;
+- a décima entrada inicia a fauna aquática pela primeira constante do enum `Fish`, `BLUEGILL`, registrada pelo provider como `FreshwaterFish` na categoria `WATER_AMBIENT`;
+- `entity.tfc.bluegill` ainda possui o rótulo `Bluegill` em inglês no locale pt-BR; o Compêndio usa o alias conservador `Peixe bluegill`, traduzindo apenas a classificação genérica sem inventar um nome comum brasileiro que o mod não declara;
+- `FreshwaterFish` deriva de `Salmon`, usa controle de movimento do TFC, participa da lógica de pesca, aceita água no contrato de spawn e suporta coleta no recipiente configurado; biome, frequência, dimensões e demais números mutáveis permanecem fora da prosa editorial;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
+- o TDD produziu RED válido na draft #316 pelo RPG Skill Tree CI #2683: compilação e checks prévios passaram e `171 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch17JUnitTest` pela ausência intencional de `trees-batch3.json` e `fauna-batch1.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #424 e pelo RPG Skill Tree CI #2697, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
+## Lote 18 — TerraFirmaCraft / peixes de água doce, segunda fatia
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:tfc:crappie` — Peixe crappie
+2. `ENTITY:tfc:lake_trout` — Peixe lake trout
+3. `ENTITY:tfc:largemouth_bass` — Peixe largemouth bass
+4. `ENTITY:tfc:rainbow_trout` — Peixe rainbow trout
+5. `ENTITY:tfc:salmon` — Peixe salmon
+6. `ENTITY:tfc:smallmouth_bass` — Peixe smallmouth bass
+7. `ENTITY:tfc:northern_pike` — Peixe northern pike
+8. `ENTITY:tfc:burbot` — Peixe burbot
+9. `ENTITY:tfc:arctic_char` — Peixe arctic char
+10. `ENTITY:tfc:muksun` — Peixe muksun
+
+### Critérios editoriais aplicados ao lote 18
+
+- o lote continua imediatamente `BLUEGILL` na ordem declarada por `Fish.java` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`, cobrindo exatamente `CRAPPIE`, `LAKE_TROUT`, `LARGEMOUTH_BASS`, `RAINBOW_TROUT`, `SALMON`, `SMALLMOUTH_BASS`, `NORTHERN_PIKE`, `BURBOT`, `ARCTIC_CHAR` e `MUKSUN`;
+- as dez constantes são registradas pelo mapa `FRESHWATER_FISH` como `FreshwaterFish` na categoria `WATER_AMBIENT`; a classificação deriva do runtime real e não do texto dos registry IDs;
+- o locale `pt_br` do provider ainda mantém os dez nomes de espécie em inglês, portanto o Compêndio usa aliases conservadores `Peixe ...`, traduzindo somente a categoria genérica e evitando importar nomes taxonômicos externos que o mod não adotou;
+- `FreshwaterFish` deriva de `Salmon`, usa `TFCFishMoveControl`, participa da lógica de pesca por `GetHookedGoal`, aceita água no contrato aquático e suporta coleta no recipiente configurado para a espécie;
+- `Fish.SALMON` preserva a exceção real do provider de reutilizar os eventos sonoros vanilla de salmão, enquanto as demais constantes registram seu conjunto de sons pelo TFC;
+- bioma, clima, frequência, dimensão, tamanho de grupo e demais parâmetros de spawn/worldgen permanecem sob autoridade do provider, da configuração e dos datapacks ativos; nenhum desses valores foi congelado na prosa editorial;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento tanto com TerraFirmaCraft ausente quanto presente;
+- o TDD produziu RED válido na draft #322 pelo RPG Skill Tree CI #2748: Core/wiki/coverage e compilação passaram e `182 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch18JUnitTest` pela ausência intencional de `fauna-batch2.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #471 e pelo RPG Skill Tree CI #2752, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **40**;
-- entradas editoriais totais: **140**;
-- lotes documentados: **14**;
+- entradas editoriais TFC reais no corpus: **80**;
+- entradas editoriais totais: **180**;
+- lotes documentados: **18**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
