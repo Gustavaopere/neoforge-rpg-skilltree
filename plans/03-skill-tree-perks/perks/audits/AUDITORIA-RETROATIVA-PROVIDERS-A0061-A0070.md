@@ -6,6 +6,7 @@
 - **FIM:** A0070 — Dano contra Chefes
 - **Lote:** 10/10 perks consecutivas.
 - **Base de escrita:** RPG Skill Tree `main@52bd7bd340e21b4020b4465214779f1d6bea072a`.
+- **Freshness pré-PR:** `main@2b314f2a5d99b96c8dfda0463dd46f8f2fa35039`. O delta `52bd7bd...→2b314f2...` é exclusivamente de Mastery física/projéteis A0041–A0060 (`PhysicalProjectileMasteryEvents`, `WeaponMasteryMilestonePolicy`, architecture/testes relacionados). A0061–A0070 não possuem gate de Mastery; disposição neste lote = **NÃO DEVE SER INTEGRADO**, sem alteração de design.
 - **Runtime alterado por este Chat 1:** NÃO.
 - **A0071+:** fora do ciclo.
 - **Registro operacional:** GitHub; não há novas gravações no Notion por instrução do usuário.
@@ -68,6 +69,7 @@ Regras específicas deste lote:
 
 - Baseline consolidado: `f448aa0b4f9df400011873e9ad26771209876ad4`.
 - Fresh main usado para design: `52bd7bd340e21b4020b4465214779f1d6bea072a`.
+- Freshness pré-PR: `2b314f2a5d99b96c8dfda0463dd46f8f2fa35039`; o delta adicional é somente Mastery física A0041–A0060 e recebe `NÃO DEVE SER INTEGRADO` para A0061–A0070.
 - Houve avanço amplo. Capacidades pertinentes classificadas:
   - runtime/policy A0061–A0080 já existente: **COBERTA POR PERK EXISTENTE**, porém submetida a esta auditoria antes de ser canônica no design;
   - Class Resolution/query runtime: **COBERTO POR SISTEMA UNIVERSAL**, authority de resolução; não cria perk nova;
