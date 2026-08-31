@@ -1,0 +1,66 @@
+name: Sonar New Code Diagnostic
+
+on:
+  push:
+    branches:
+      - chore/sonar-new-code-diagnostic
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Inspect effective Sonar new-code period
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          sonar_get() {
+            local path="$1"
+            local out="$2"
+            local code
+            code=$(curl --silent --show-error --location \
+              --output "$out" --write-out '%{http_code}' \
+              --header "Authorization: Bearer ${SONAR_TOKEN}" \
+              "https://sonarcloud.io${path}")
+            if [[ "$code" != "200" ]]; then
+              code=$(curl --silent --show-error --location \
+                --output "$out" --write-out '%{http_code}' \
+                --user "${SONAR_TOKEN}:" \
+                "https://sonarcloud.io${path}")
+            fi
+            printf '%s' "$code"
+          }
+
+          echo '=== Effective new-code definition ==='
+          code=$(sonar_get "/api/new_code_periods/show?project=${SONAR_PROJECT}&branch=main" /tmp/new-code.json)
+          echo "HTTP ${code}"
+          if [[ "$code" == "200" ]]; then
+            jq '{projectKey, branchKey, type, value, inherited, effectiveValue, previousNonCompliantValue, updatedAt}' /tmp/new-code.json
+          else
+            jq '{errors}' /tmp/new-code.json 2>/dev/null || cat /tmp/new-code.json
+          fi
+
+          echo '=== Recent analyses ==='
+          code=$(sonar_get "/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=5" /tmp/analyses.json)
+          echo "HTTP ${code}"
+          if [[ "$code" == "200" ]]; then
+            jq '{analyses: [.analyses[] | {key, date, events}]}' /tmp/analyses.json
+          else
+            jq '{errors}' /tmp/analyses.json 2>/dev/null || cat /tmp/analyses.json
+          fi
+
+          echo '=== Issues currently considered new ==='
+          code=$(sonar_get "/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&ps=3" /tmp/issues.json)
+          echo "HTTP ${code}"
+          if [[ "$code" == "200" ]]; then
+            jq '{total: (.paging.total // .total), issues: [.issues[] | {key, rule, component, line, status, creationDate, updateDate}]}' /tmp/issues.json
+          else
+            jq '{errors}' /tmp/issues.json 2>/dev/null || cat /tmp/issues.json
+          fi
