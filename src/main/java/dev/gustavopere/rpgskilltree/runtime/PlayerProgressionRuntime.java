@@ -302,6 +302,8 @@ public final class PlayerProgressionRuntime {
 
             current = ProgressionService.reconcileAutomaticClasses(
                 current, ClassRuleCatalog.definitions()).state();
+            current = ProgressionService.reconcilePaidClasses(
+                current, ClassRuleCatalog.definitions()).state();
             current = ProgressionService.reconcileNodeSpecializations(
                 current,
                 TreeRuleCatalog.specializationGrants(),
