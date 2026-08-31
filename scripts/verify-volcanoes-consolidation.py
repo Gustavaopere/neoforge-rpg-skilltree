@@ -23,6 +23,7 @@ def main() -> int:
     rpg = text("src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java")
     mods_toml = text("src/main/resources/META-INF/neoforge.mods.toml")
     mixins = text("src/main/resources/volcanoes.mixins.json")
+    rns_mixin = text("src/main/java/dev/gustavopere/volcanoes/mixin/rns/CustomServerDepositLocationMixin.java")
     build = text("build.gradle")
 
     stray_mods = []
@@ -56,6 +57,8 @@ def main() -> int:
             "Volcanoes mixin config must be registered by the single artifact")
     require('"package": "dev.gustavopere.volcanoes.mixin"' in mixins,
             "imported Volcanoes mixin package must remain stable")
+    require('import org.spongepowered.asm.mixin.Pseudo;' in rns_mixin and '@Pseudo' in rns_mixin,
+            "the optional RNS mixin must be @Pseudo so core-only servers never require the RNS target class")
 
     require((ROOT / "src/main/resources/assets/volcanoes").is_dir(),
             "volcanoes asset namespace must be retained")
