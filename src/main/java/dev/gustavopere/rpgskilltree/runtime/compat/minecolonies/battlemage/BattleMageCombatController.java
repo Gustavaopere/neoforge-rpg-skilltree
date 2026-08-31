@@ -5,9 +5,7 @@ import com.minecolonies.core.entity.ai.workers.guard.AbstractEntityAIGuard;
 import com.minecolonies.core.entity.citizen.EntityCitizen;
 import io.redspace.ironsspellbooks.api.spells.SpellData;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
@@ -20,41 +18,6 @@ public final class BattleMageCombatController {
 
     private BattleMageCombatController() {}
 
-    public record Candidate(BattleMageSpellProfile profile, int bookIndex) {
-        public Candidate {
-            Objects.requireNonNull(profile, "profile");
-            if (bookIndex < 0) throw new IllegalArgumentException("bookIndex must be >= 0");
-        }
-    }
-
-    static List<Candidate> orderCandidates(List<Candidate> candidates, boolean selfCritical) {
-        Objects.requireNonNull(candidates, "candidates");
-        return candidates.stream()
-            .filter(Objects::nonNull)
-            .sorted(
-                Comparator.comparingInt((Candidate candidate) -> tacticalLane(candidate.profile(), selfCritical))
-                    .thenComparing(Comparator.comparingInt((Candidate candidate) -> candidate.profile().priority()).reversed())
-                    .thenComparingInt(Candidate::bookIndex)
-                    .thenComparing(candidate -> candidate.profile().spellId())
-            )
-            .toList();
-    }
-
-    static boolean inRange(BattleMageSpellProfile profile, double distance) {
-        return profile != null
-            && Double.isFinite(distance)
-            && distance >= profile.minRange()
-            && distance <= profile.maxRange();
-    }
-
-    static boolean isRuntimeSupported(BattleMageSpellProfile profile) {
-        if (profile == null || profile.worldEffect()) return false;
-        return switch (profile.targetMode()) {
-            case SELF, HOSTILE_ENTITY, HOSTILE_AREA -> true;
-            case ALLY_ENTITY -> false;
-        };
-    }
-
     public static boolean tryBeginCast(EntityCitizen caster, LivingEntity hostileTarget) {
         if (caster == null || caster.level().isClientSide || !caster.isAlive()) return false;
         if (IronsCitizenMagicBridge.magicData(caster).isCasting()) return false;
@@ -63,13 +26,13 @@ public final class BattleMageCombatController {
         if (loadout == null || !loadout.isStillUsable()) return false;
 
         List<SpellData> spells = loadout.activeSpells();
-        List<Candidate> candidates = candidatesFor(spells);
+        List<BattleMageSpellPolicy.Candidate> candidates = candidatesFor(spells);
         if (candidates.isEmpty()) return false;
 
         boolean selfCritical = caster.getMaxHealth() > 0.0f
             && caster.getHealth() / caster.getMaxHealth() <= CRITICAL_HEALTH_RATIO;
 
-        for (Candidate candidate : orderCandidates(candidates, selfCritical)) {
+        for (BattleMageSpellPolicy.Candidate candidate : BattleMageSpellPolicy.orderTacticalCandidates(candidates, selfCritical)) {
             BattleMageSpellProfile profile = candidate.profile();
             SpellData spellData = spells.get(candidate.bookIndex());
             if (!canUseProfile(caster, hostileTarget, spellData, profile, selfCritical)) continue;
@@ -88,12 +51,8 @@ public final class BattleMageCombatController {
     }
 
     /** Revalidates range/target/friendly-fire during an in-progress provider cast. */
-    static boolean canContinueCast(
-        EntityCitizen caster,
-        LivingEntity hostileTarget,
-        BattleMageSpellProfile profile
-    ) {
-        if (caster == null || !caster.isAlive() || !isRuntimeSupported(profile)) return false;
+    static boolean canContinueCast(EntityCitizen caster, LivingEntity hostileTarget, BattleMageSpellProfile profile) {
+        if (caster == null || !caster.isAlive() || !BattleMageSpellPolicy.isRuntimeSupported(profile)) return false;
         if (profile.targetMode() == BattleMageTargetMode.SELF) return true;
         SpellData castingSpell = IronsCitizenMagicBridge.magicData(caster).getCastingSpell();
         return hostileContextSafe(caster, hostileTarget, castingSpell, profile);
@@ -105,8 +64,8 @@ public final class BattleMageCombatController {
         if (loadout == null) return FALLBACK_ATTACK_DISTANCE;
 
         double max = candidatesFor(loadout.activeSpells()).stream()
-            .map(Candidate::profile)
-            .filter(BattleMageCombatController::isRuntimeSupported)
+            .map(BattleMageSpellPolicy.Candidate::profile)
+            .filter(BattleMageSpellPolicy::isRuntimeSupported)
             .filter(profile -> profile.targetMode() == BattleMageTargetMode.HOSTILE_ENTITY
                 || profile.targetMode() == BattleMageTargetMode.HOSTILE_AREA)
             .mapToDouble(BattleMageSpellProfile::maxRange)
@@ -119,19 +78,20 @@ public final class BattleMageCombatController {
         if (caster == null) return false;
         BattleMageLoadoutResolver.Loadout loadout = BattleMageLoadoutResolver.resolve(caster).orElse(null);
         return loadout != null
-            && candidatesFor(loadout.activeSpells()).stream().anyMatch(candidate -> isRuntimeSupported(candidate.profile()));
+            && candidatesFor(loadout.activeSpells()).stream()
+                .anyMatch(candidate -> BattleMageSpellPolicy.isRuntimeSupported(candidate.profile()));
     }
 
-    private static List<Candidate> candidatesFor(List<SpellData> spells) {
-        List<Candidate> candidates = new ArrayList<>();
+    private static List<BattleMageSpellPolicy.Candidate> candidatesFor(List<SpellData> spells) {
+        List<BattleMageSpellPolicy.Candidate> candidates = new ArrayList<>();
         for (int index = 0; index < spells.size(); index++) {
             SpellData spellData = spells.get(index);
             if (spellData == null || spellData.getSpell() == null) continue;
             String spellId = spellData.getSpell().getSpellId();
             int bookIndex = index;
             BattleMageSpellProfileCatalog.find(spellId)
-                .filter(BattleMageCombatController::isRuntimeSupported)
-                .ifPresent(profile -> candidates.add(new Candidate(profile, bookIndex)));
+                .filter(BattleMageSpellPolicy::isRuntimeSupported)
+                .ifPresent(profile -> candidates.add(new BattleMageSpellPolicy.Candidate(profile, bookIndex)));
         }
         return List.copyOf(candidates);
     }
@@ -143,9 +103,9 @@ public final class BattleMageCombatController {
         BattleMageSpellProfile profile,
         boolean selfCritical
     ) {
-        if (!isRuntimeSupported(profile)) return false;
+        if (!BattleMageSpellPolicy.isRuntimeSupported(profile)) return false;
         if (profile.targetMode() == BattleMageTargetMode.SELF) {
-            return selfCritical && inRange(profile, 0.0);
+            return selfCritical && BattleMageSpellPolicy.inRange(profile, 0.0);
         }
         return hostileContextSafe(caster, hostileTarget, spellData, profile);
     }
@@ -159,7 +119,7 @@ public final class BattleMageCombatController {
         if (hostileTarget == null || !hostileTarget.isAlive()) return false;
         if (!AbstractEntityAIGuard.isAttackableTarget(caster, hostileTarget)) return false;
         if (!caster.getSensing().hasLineOfSight(hostileTarget)) return false;
-        if (!inRange(profile, caster.distanceTo(hostileTarget))) return false;
+        if (!BattleMageSpellPolicy.inRange(profile, caster.distanceTo(hostileTarget))) return false;
         return profile.targetMode() != BattleMageTargetMode.HOSTILE_AREA
             || isAreaSafe(caster, hostileTarget, spellData, profile);
     }
@@ -182,13 +142,5 @@ public final class BattleMageCombatController {
         if (entity == caster) return true;
         if (!(entity instanceof AbstractEntityCitizen) && !(entity instanceof Player)) return false;
         return !AbstractEntityAIGuard.isAttackableTarget(caster, entity);
-    }
-
-    private static int tacticalLane(BattleMageSpellProfile profile, boolean selfCritical) {
-        if (selfCritical && profile.targetMode() == BattleMageTargetMode.SELF) return 0;
-        if (profile.targetMode() == BattleMageTargetMode.HOSTILE_ENTITY
-            || profile.targetMode() == BattleMageTargetMode.HOSTILE_AREA) return 1;
-        if (profile.targetMode() == BattleMageTargetMode.ALLY_ENTITY) return 2;
-        return 3;
     }
 }
