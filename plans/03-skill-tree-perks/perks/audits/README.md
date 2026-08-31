@@ -25,6 +25,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0031-A0040.md`
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0041-A0050.md`
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0051-A0060.md`
+- `AUDITORIA-RETROATIVA-PROVIDERS-A0061-A0070.md` — fechamento Chat 1 das fundações MARTIAL, incluindo availability de A0067 e taxonomia de bosses de A0070.
 
 ## Auditorias de delta da modlist — Chat 1
 

@@ -1,8 +1,8 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0060** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
+Reauditoria obrigatória do recorte **A0001–A0070** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
-A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
+Para novos ciclos deste chat, o registro operacional canônico é o GitHub: dossiês `Axxxx-*.md`, `STATUS.md` e auditorias em `perks/audits/`. Referências ao Notion abaixo são evidência histórica de ciclos anteriores; por instrução do usuário, este ciclo não faz novas gravações no Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
 
 | Código | Perk | Design | Estado técnico auditado | Pendências bloqueantes |
 |---|---|---|---|---|
@@ -66,6 +66,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0058 | Sequência Limpa | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL | `P-A0058-01`: heavy-impact; `P-A0058-02`: body modulation opcional; `P-A0058-03`: lifecycle rank/respec/rules reload; depende de A0055 |
 | A0059 | Quebra de Ritmo | APROVADO | FAIL-CLOSED CORRETO | `P-A0059-01`: heavy/finalizer; `P-A0059-02`: guard-break movement; `P-A0059-03`: lifecycle próprio; depende de A0055/A0058 |
 | A0060 | Maestria de Armas de Punho — Combinação Final | APROVADO após review de lifecycle | FAIL-CLOSED CORRETO | `P-A0060-01`: heavy/finalizer; `P-A0060-02`: Stamina ledger; `P-A0060-03`: gate80 `combat:fist`; `P-A0060-04`: lifecycle cooldown/reserva |
+| A0061 | Força Aplicada | APROVADO + boundary | CÓDIGO PRESENTE / IMPLEMENTAÇÃO PARCIAL | `P-A0061-01`: remover classifiers melee por tags paralelas; capability/mapping versionado only |
+| A0062 | Golpe Preciso | APROVADO + boundary | CÓDIGO PRESENTE no resolver crítico canônico | herda `P-A0061-01`; uma única resolução/root |
+| A0063 | Impacto Crítico | APROVADO + boundary | CÓDIGO PRESENTE nos adapters críticos | herda `P-A0061-01`; somente `canonicalCritical=true` |
+| A0064 | Ritmo de Combate | APROVADO + boundary | CÓDIGO PRESENTE via `ModifyAttackSpeedEvent` onde semântico | herda `P-A0061-01`; não fabricar draw/reload/projectile speed |
+| A0065 | Penetração Física | APROVADO + boundary | CÓDIGO PRESENTE em melee e projectile físico | herda `P-A0061-01`; provider armor-ignore/sunder permanece provider-owned |
+| A0066 | Impacto Marcial | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL: melee Impact presente; projectile corretamente fail-closed | herda `P-A0061-01`; sem equivalência por knockback/stun |
+| A0067 | Firmeza Ofensiva | APROVADO EM FAIL-CLOSED | NÃO CONFORME: coeficiente existe, binding/availability não | `P-A0067-01`: safe offensive interruption/stun-armor receipt ou nó indisponível/não comprável |
+| A0068 | Dano contra Feridos | APROVADO + boundary | CÓDIGO PRESENTE | herda `P-A0061-01`; pre-impact HP <35% estrito |
+| A0069 | Dano contra Íntegros | APROVADO + boundary | CÓDIGO PRESENTE | herda `P-A0061-01`; pre-impact HP >85% estrito |
+| A0070 | Dano contra Chefes | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL: vanilla/Cataclysm/Apothic cobertos | `P-A0070-01`: `enshrouded:shroud_lich`; `P-A0070-02`: inventário boss provider-present; herda `P-A0061-01` |
 
 ## Regras sistêmicas vigentes
 
@@ -87,11 +97,14 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Commit causal:** consumo irreversível de recurso/estado condicionado a resultado real ocorre no commit pós-hit confirmado; cancelamento/dano zero não deixa estado fantasma. Para ações de lançamento A0053/A0054, o commit específico ocorre somente após criação confirmada do projectile/root correlacionado.
 - **Lifecycle:** estados por alvo precisam cleanup bounded quando alvo morre, é removido, descarrega ou desaparece sem evento terminal equivalente. Estados por ator do lote A0051–A0060 também precisam cleanup bounded em logout/dimensão/respawn/shutdown e reconciliação em rank loss, respec e rules reload que invalide perk/pré-requisito; Cadência, Sequência, receipts, reservas, janelas e cooldowns não podem reaparecer após recompra.
 - **Proteção física:** Armor/guard/posture física não se confunde com Arcane Resistance, MagicResistance, Shroud ou hazards ambientais.
-- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill; para A0051–A0060 também não gera Cadência, Sequência ou heavy/finalizer receipt.
-- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam arma, projectile root, Focus ou proteção física destas perks; para A0051–A0060 também não classificam Cadência, Sequência ou heavy/finalizer.
-- **Volcanoes:** hazards/geologia/prospecção permanecem fora do pipeline MARTIAL; A0046 só pode refletir temperatura Volcanoes indiretamente se o provider corporal Cold Sweat já a incorporou. O delta RNS `7839db6...→c26e97c...` foi decomposto por capacidade e todas receberam `NÃO DEVE SER INTEGRADO` para A0051–A0060.
-- **Mobstein 5.4.4:** companion damage/projectiles/kills são provider-owned; ataque direto do jogador contra entidade Mobstein continua cobertura universal quando receipt real e anti-abuso forem satisfeitos. Companions não geram autoria CROSSBOW/FIST, Cadência ou Sequência do dono.
-- **Stage 11.01 itemização:** authority própria de identidade/rolls; projeções de efeitos ainda não são contrato destas perks, portanto `SEM HOOK SEGURO` para dano/crítico/Focus/penetration/reload e também para Cadência/Sequência.
+- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill; para A0051–A0060 também não gera Cadência, Sequência ou heavy/finalizer receipt. Para A0061–A0070 também não recebe dano, crítico, penetração, Impact ou anti-boss MARTIAL.
+- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam arma, projectile root, Focus ou proteção física destas perks; para A0051–A0060 também não classificam Cadência, Sequência ou heavy/finalizer. `enshrouded:shroud_lich` é identidade física explícita de boss para A0070, não regra de namespace.
+- **Volcanoes:** hazards/geologia/prospecção permanecem fora do pipeline MARTIAL; A0046 só pode refletir temperatura Volcanoes indiretamente se o provider corporal Cold Sweat já a incorporou. O delta RNS `7839db6...→c26e97c...` foi decomposto por capacidade e todas receberam `NÃO DEVE SER INTEGRADO` para A0051–A0060. O delta posterior de hardening/RNS também não cria root MARTIAL A0061–A0070.
+- **Mobstein 5.4.4:** companion damage/projectiles/kills são provider-owned; ataque direto do jogador contra entidade Mobstein continua cobertura universal quando receipt real e anti-abuso forem satisfeitos. Companions não geram autoria CROSSBOW/FIST, Cadência ou Sequência do dono. Witherstein só entra em A0070 após identidade/registry prova explícita, nunca por nome/aparência.
+- **Stage 11.01 itemização:** authority própria de identidade/rolls; projeções de efeitos ainda não são contrato destas perks, portanto `SEM HOOK SEGURO` para dano/crítico/Focus/penetration/reload e também para Cadência/Sequência. A0061–A0070 não leem rolled modifiers para fabricar dano/crítico/cadência/penetração/Impact.
+- **Simply Swords:** Implicits, Runic Powers, Awakening, Uniques, sockets/gems e traits continuam provider-owned; derived hits não viram novo root MARTIAL. `P-SIMPLY-A0001-50-01` permanece acceptance provider-present.
+- **A0067 availability:** sem binding seguro de janela ofensiva + resistência à interrupção, nó indisponível/não comprável; nenhum rank no-op.
+- **A0070 boss taxonomy:** classificação por EntityType/tag/marker provider-native explícito. HP, nome, bossbar, tamanho, aparência e namespace isolado são proibidos como heurística.
 - **NeoVitae:** removido/ausente.
 
 ## Ciclos fechados anteriores
@@ -208,7 +221,7 @@ O estado de CI/merge da PR de fechamento é confirmado no GitHub; este arquivo r
 - **Sem mutação funcional:** A0056 e A0059.
 - **Arquivo canônico do lote:** `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0051-A0060.md`.
 - **Runtime alterado neste Chat 1:** nenhum.
-- **A0061+:** não iniciado.
+- **A0061+:** não iniciado naquele ciclo.
 
 ### Pendências destinadas ao Chat 2
 
@@ -247,3 +260,29 @@ O estado de CI/merge da PR de fechamento é confirmado no GitHub; este arquivo r
 33. `P-A0051-60-TEST-01` — GameTest/harness CROSSBOW/FIST, availability, Mastery, same-weapon correlation, projectile derivado sem launch receipt, Multishot root outcome, launch cancellation/rollback, rank loss/respec/rules reload, heavy/finalizer fail-closed, dedup, lifecycle, multiplayer e dedicated server.
 
 O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirmação da `main`; após isso o ciclo encerra e A0061+ só pode começar mediante novo comando do usuário.
+
+## Chat 1 — lote exato A0061–A0070
+
+**Estado:** `LOTE FECHADO NO DESIGN; BLOCKERS RUNTIME/PROVIDER CATALOGADOS`.
+
+- **INÍCIO:** A0061.
+- **FIM:** A0070.
+- **Quantidade:** 10 perks consecutivas.
+- **Base de escrita:** RPG Skill Tree `main@52bd7bd340e21b4020b4465214779f1d6bea072a`.
+- **Registro operacional:** GitHub apenas; sem novas gravações no Notion.
+- **Providers/deltas auditados:** RPG Skill Tree baseline `f448aa0...→52bd7bd...`; Volcanoes `602e018...→a47bb86...`; Enshrouded `77552a3...→ffc5007...`; Black Arcana `07263ae...→b2bf5e9...`; Simply stack conforme guia atual.
+- **Qualidade:** A0061/A0062/A0064 aprovadas como Ranked Passives de fundação por serem starting points concorrentes de corredores distintos; A0063/A0065/A0066/A0068/A0069/A0070 são especializações condicionais; A0067 só é adquirível com effect binding real.
+- **Arquivo canônico:** `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0061-A0070.md`.
+- **Runtime alterado por este Chat 1:** nenhum.
+- **A0071+:** não iniciado.
+
+### Pendências destinadas ao Chat 2
+
+1. `P-A0061-01` — remover `rpgskilltree:hammers/maces/scythes` como fallback classifier em A0061–A0080; capability/classification provider-native ou mapping versionado apenas.
+2. `P-A0067-01` — integrar receipt seguro de janela ofensiva + interruption/stun-armor ou manter A0067 indisponível/não comprável sem gasto/rank fantasma.
+3. `P-A0070-01` — adicionar/testar `enshrouded:shroud_lich` como boss explícito opcional.
+4. `P-A0070-02` — fechar matriz de identidades de bosses dos demais providers pertinentes da modlist; sem heurísticas.
+5. `P-SIMPLY-A0001-50-01` — acceptance provider-present continua necessária para provar que derived Simply não cria novo root MARTIAL.
+6. Adicionar textos PT-BR A0061–A0070 ao catálogo player-facing durante implementação, sem usar texto como authority de gameplay.
+
+O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirmação da `main`; após isso o ciclo encerra e A0071+ só pode começar mediante novo comando do usuário.
