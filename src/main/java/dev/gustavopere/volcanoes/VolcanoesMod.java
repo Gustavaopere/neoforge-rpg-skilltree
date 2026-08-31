@@ -21,17 +21,34 @@ import dev.gustavopere.volcanoes.volcano.VolcanoWorldgenRuntime;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.NeoForge;
 
-@Mod(VolcanoesMod.MOD_ID)
+/**
+ * Native Volcanoes subsystem bootstrap for the single {@code rpgskilltree} mod.
+ *
+ * <p>{@link #MOD_ID} intentionally remains {@code volcanoes}: it is a stable data/resource namespace,
+ * not a second NeoForge mod id. Existing worlds, registries, datapacks, networking identifiers and
+ * integrations may already persist this namespace.</p>
+ */
 public final class VolcanoesMod {
     public static final String MOD_ID = "volcanoes";
     public static final String MINECRAFT_LINE = "1.21.1";
 
-    public VolcanoesMod(IEventBus modBus, ModContainer container) {
-        container.registerConfig(ModConfig.Type.SERVER, AtmosphereConfig.SPEC);
+    private static boolean initialized;
+
+    private VolcanoesMod() {
+    }
+
+    public static synchronized void initialize(IEventBus modBus, ModContainer container) {
+        if (initialized) {
+            throw new IllegalStateException("Volcanoes subsystem initialized more than once");
+        }
+        initialized = true;
+
+        // Preserve the standalone configuration filename even though the owning ModContainer is now
+        // rpgskilltree. Existing installations can therefore keep volcanoes-server.toml unchanged.
+        container.registerConfig(ModConfig.Type.SERVER, AtmosphereConfig.SPEC, "volcanoes-server.toml");
         VolcanoBlocks.register(modBus);
         VolcanoItems.register(modBus);
         VolcanoAttachments.register(modBus);
