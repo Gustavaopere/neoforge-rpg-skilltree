@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
+import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 import net.minecraft.world.item.ItemStack;
 
@@ -40,9 +41,23 @@ public final class BattleMageLoadoutResolver {
     static OptionalInt findFirstMatchingSlot(InventoryCitizen inventory, Predicate<ItemStack> predicate) {
         Objects.requireNonNull(inventory, "inventory");
         Objects.requireNonNull(predicate, "predicate");
+        return findFirstMatchingIndex(
+            inventory.getSlots(),
+            slot -> predicate.test(inventory.getStackInSlot(slot))
+        );
+    }
 
-        for (int slot = 0; slot < inventory.getSlots(); slot++) {
-            if (predicate.test(inventory.getStackInSlot(slot))) {
+    /**
+     * Pure deterministic scan seam kept independent from MineColonies/Minecraft runtime bootstrap.
+     */
+    static OptionalInt findFirstMatchingIndex(int slotCount, IntPredicate predicate) {
+        if (slotCount < 0) {
+            throw new IllegalArgumentException("slotCount must be non-negative");
+        }
+        Objects.requireNonNull(predicate, "predicate");
+
+        for (int slot = 0; slot < slotCount; slot++) {
+            if (predicate.test(slot)) {
                 return OptionalInt.of(slot);
             }
         }
