@@ -28,7 +28,8 @@ class MineColoniesBattleMageRegistryJUnitTest {
         );
         assertEquals(Skill.Mana, MineColoniesBattleMageRegistries.PRIMARY_SKILL);
         assertEquals(Skill.Focus, MineColoniesBattleMageRegistries.SECONDARY_SKILL);
-        assertEquals("com.minecolonies.job.battle_mage", MineColoniesBattleMageRegistries.JOB_TRANSLATION_KEY);
-        assertEquals("com.minecolonies.coremod.gui.workerhuts.battle_mage", MineColoniesBattleMageRegistries.BUTTON_TRANSLATION_KEY);
+        assertEquals("com.rpgskilltree.job.battle_mage", MineColoniesBattleMageRegistries.JOB_TRANSLATION_KEY);
+        assertEquals("com.rpgskilltree.coremod.gui.workerhuts.battle_mage", MineColoniesBattleMageRegistries.BUTTON_TRANSLATION_KEY);
+        assertEquals("battle_mage", MineColoniesBattleMageRegistries.WORKER_SOUND_NAME);
     }
 }
