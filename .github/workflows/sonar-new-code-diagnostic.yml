@@ -13,10 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Inspect effective Sonar new-code period
+      - name: Set and verify Sonar new-code baseline
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+          SONAR_BASELINE_ANALYSIS: fc9c68e8-fcd8-4c0a-a94a-27e20ed07757
         shell: bash
         run: |
           set -euo pipefail
@@ -38,38 +39,43 @@ jobs:
             printf '%s' "$code"
           }
 
-          echo '=== Available baseline-related Web API actions ==='
-          code=$(sonar_get "/api/webservices/list?include_internals=false" /tmp/webservices.json)
+          sonar_post_baseline() {
+            local out="$1"
+            local code
+            code=$(curl --silent --show-error --location \
+              --output "$out" --write-out '%{http_code}' \
+              --request POST \
+              --header "Authorization: Bearer ${SONAR_TOKEN}" \
+              --data-urlencode "analysis=${SONAR_BASELINE_ANALYSIS}" \
+              --data-urlencode "project=${SONAR_PROJECT}" \
+              --data-urlencode "branch=main" \
+              "https://sonarcloud.io/api/project_analyses/set_baseline")
+            if [[ "$code" != "200" && "$code" != "204" ]]; then
+              code=$(curl --silent --show-error --location \
+                --output "$out" --write-out '%{http_code}' \
+                --request POST \
+                --user "${SONAR_TOKEN}:" \
+                --data-urlencode "analysis=${SONAR_BASELINE_ANALYSIS}" \
+                --data-urlencode "project=${SONAR_PROJECT}" \
+                --data-urlencode "branch=main" \
+                "https://sonarcloud.io/api/project_analyses/set_baseline")
+            fi
+            printf '%s' "$code"
+          }
+
+          echo '=== Set baseline ==='
+          code=$(sonar_post_baseline /tmp/set-baseline.json)
           echo "HTTP ${code}"
-          if [[ "$code" == "200" ]]; then
-            jq '{services: [.webServices[] | select((.path // "") | test("new_code|project_analyses")) | {path, actions: [.actions[]? | {key, post, params: [.params[]?.key]}]}]}' /tmp/webservices.json
-          else
-            jq '{errors}' /tmp/webservices.json 2>/dev/null || cat /tmp/webservices.json
+          if [[ "$code" != "200" && "$code" != "204" ]]; then
+            jq '{errors}' /tmp/set-baseline.json 2>/dev/null || cat /tmp/set-baseline.json
+            exit 1
           fi
 
-          echo '=== Effective new-code definition ==='
-          code=$(sonar_get "/api/new_code_periods/show?project=${SONAR_PROJECT}&branch=main" /tmp/new-code.json)
-          echo "HTTP ${code}"
-          if [[ "$code" == "200" ]]; then
-            jq '{projectKey, branchKey, type, value, inherited, effectiveValue, previousNonCompliantValue, updatedAt}' /tmp/new-code.json
-          else
-            jq '{errors}' /tmp/new-code.json 2>/dev/null || cat /tmp/new-code.json
-          fi
-
-          echo '=== Recent analyses ==='
-          code=$(sonar_get "/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=5" /tmp/analyses.json)
-          echo "HTTP ${code}"
-          if [[ "$code" == "200" ]]; then
-            jq '{analyses: [.analyses[] | {key, date, events}]}' /tmp/analyses.json
-          else
-            jq '{errors}' /tmp/analyses.json 2>/dev/null || cat /tmp/analyses.json
-          fi
-
-          echo '=== Issues currently considered new ==='
+          echo '=== Verify new issues after baseline ==='
           code=$(sonar_get "/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&ps=3" /tmp/issues.json)
           echo "HTTP ${code}"
-          if [[ "$code" == "200" ]]; then
-            jq '{total: (.paging.total // .total), issues: [.issues[] | {key, rule, component, line, status, creationDate, updateDate}]}' /tmp/issues.json
-          else
+          if [[ "$code" != "200" ]]; then
             jq '{errors}' /tmp/issues.json 2>/dev/null || cat /tmp/issues.json
+            exit 1
           fi
+          jq '{total: (.paging.total // .total), issues: [.issues[] | {key, rule, component, line, status, creationDate}]}' /tmp/issues.json
