@@ -30,3 +30,12 @@ O design já exclui explicitamente companion/summon e procs, cobrindo Mobstein e
 - **P-A0040-01:** completar o lifecycle de `reapMarks` para alvos removidos/despawnados/chunks descarregados sem `LivingDeathEvent`, por hook seguro de remoção ou varredura periódica de expirados. A solução deve ser bounded, server-authoritative e não depender de o mesmo UUID ser consultado novamente.
 - Depende também de `P-A0037-01` para classificação SCYTHE segura.
 - Não iniciar A0041 neste ciclo.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura SCYTHE:** Scythe Simply só participa quando Epic Fight Compat resolve `SCYTHE`; namespace, tooltip e aparência não classificam a arma.
+- **Execute provider-owned:** o execute Implicit da Scythe pode alterar a vida ou matar pelo pipeline Simply, mas não aplica/duplica Marca, não cria novo `rootActionId` SCYTHE e não contorna deduplicação.
+- **Maturação preservada:** uma Marca RPG já existente continua podendo observar o crossing server-side de vida causado por qualquer dano real conforme o contrato; isso não transfere autoria do dano externo para A0040 e não reaplica a Marca.
+- **Derived effects:** Unique ability, gem power, Runic Power, Awakening e traits Cataclysm permanecem provider-owned e não criam nova Marca.
+- **Lifecycle:** `P-A0040-01` permanece aberta; a chegada do stack Simply não resolve cleanup de target unload/despawn.
+- **Notion:** boundary Simply registrada em quatro propriedades; re-fetch PASS.
