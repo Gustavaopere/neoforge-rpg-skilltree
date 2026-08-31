@@ -7,12 +7,7 @@ import com.minecolonies.core.colony.jobs.AbstractJobGuard;
 import com.minecolonies.core.entity.ai.workers.guard.AbstractEntityAIGuard;
 import net.minecraft.resources.ResourceLocation;
 
-/**
- * MineColonies-owned guard job for the Battle Mage.
- *
- * <p>The combat AI is deliberately introduced in the following TDD slice. Registration is not
- * activated until the job has a functional provider-native combat implementation.</p>
- */
+/** MineColonies-owned guard job for the Battle Mage. */
 public final class JobBattleMage extends AbstractJobGuard<JobBattleMage> {
     public JobBattleMage(ICitizenData citizen) {
         super(citizen);
@@ -20,11 +15,13 @@ public final class JobBattleMage extends AbstractJobGuard<JobBattleMage> {
 
     @Override
     protected AbstractEntityAIGuard<JobBattleMage, ? extends AbstractBuildingGuards> generateGuardAI() {
-        throw new IllegalStateException("Battle Mage combat AI not installed yet");
+        return new EntityAIBattleMage(this);
     }
 
     @Override
     public ResourceLocation getModel() {
+        // Reuse a native MineColonies humanoid caster-compatible guard model until an optional
+        // presentation layer supplies dedicated visuals. Model choice is not cast authority.
         return ModModelTypes.DRUID_ID;
     }
 }
