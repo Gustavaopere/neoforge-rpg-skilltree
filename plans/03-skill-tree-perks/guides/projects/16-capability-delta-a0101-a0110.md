@@ -2,7 +2,7 @@
 
 Data de reconciliação: 2026-08-31.
 
-Este suplemento executa o gate obrigatório **provider → árvore** para o lote A0101–A0110. O checkpoint imediatamente anterior está no lote A0091–A0100, PR #326, arquivo `15-capability-delta-a0091-a0100.md`; como essa PR ainda não está integrada na `main` no momento deste fechamento, este arquivo não duplica seus dossiês e usa explicitamente seus baselines promovidos como origem de comparação.
+Este suplemento executa o gate obrigatório **provider → árvore** para o lote A0101–A0110. O checkpoint imediatamente anterior está no lote A0091–A0100, PR #326, arquivo `15-capability-delta-a0091-a0100.md`; como essa PR ainda não estava integrada na `main` na abertura deste lote, seus baselines promovidos foram usados como origem de comparação sem duplicar os dez dossiês anteriores.
 
 ## Baselines anteriores — lote A0091–A0100
 
@@ -13,41 +13,68 @@ Este suplemento executa o gate obrigatório **provider → árvore** para o lote
 | Enshrouded | `6642d4ed14bbae2a771075ca466e6749ac8f7fb8` |
 | Black Arcana | `462c5c4af403629a7092129cf7f3070472f03e59` |
 
-## Heads frescos auditados
+## Heads frescos auditados e freshness final
 
-| Projeto | `main` fresco | Disposição para A0101–A0110 |
+| Projeto | Head auditado | Disposição para A0101–A0110 |
 |---|---|---|
-| RPG Skill Tree | `2e1c5b62f89d2311eb645882e3547944d0f68869` | progressão/classes/gateways continuam authority; avanços posteriores não criam hook ausente de impacto/encumbrance/durabilidade |
-| Volcanoes | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` | `SEM DELTA`; hazards ambientais continuam provider-owned |
+| RPG Skill Tree | `b32a4c85946807c38339c640614b44670c78643f` | progressão/gateways continuam authority; PR #308 tornou Volcanoes subsistema nativo do mesmo JAR; nenhuma capability nova fecha A0107/A0109/A0110 |
+| Volcanoes — repositório fonte | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` | permanece preservado como fonte/migration baseline; sua implementação canônica foi consolidada no RPG pela PR #308; não executar como segundo pipeline |
 | Enshrouded | `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec` | Stage 07.03 áudio/partículas client-side; `NÃO DEVE SER INTEGRADO` como authority de perk |
 | Black Arcana | `e89df6dc2c204c269d8f1811c6b3f309644c864a` | forecast server-authored de Arcane Resistance é read-only; reforça separação de A0102, não cria reducer genérico |
 
-A verificação usou `main` e `plans/STATUS.md` frescos dos quatro projetos. Estados preparatórios/branches não foram promovidos por nome ou intenção.
+A verificação usou `main` e `plans/STATUS.md` frescos dos quatro projetos. O avanço concorrente da `main` foi reavaliado até o head acima; estados preparatórios não foram promovidos por nome ou intenção.
 
 ## RPG Skill Tree
 
-Desde `cb95a527...`, a `main` consolidou ainda mais a authority live de progressão/classes e especializações, além de trabalho paralelo do Compendium e infraestrutura Sonar/JaCoCo. O avanço final até `2e1c5b6...` inclui cobertura do hook de datapack sync, sem alteração de gameplay de perk.
+Desde `cb95a527...`, a `main` consolidou a authority live de progressão/classes/especializações, recebeu trabalho paralelo do Compendium/CI e, durante o fechamento deste lote, mergeou a PR #308 (`feat: consolidate Volcanoes into RPG Skill Tree`).
 
-### Disposição
+### PR #308 — consolidação Volcanoes
+
+A PR #308 foi mergeada com merge commit `f613dac5a15b26c7a92e07a9d9cb537c2412ddf2` usando como fonte canônica Volcanoes `eaddc323...`.
+
+O estado pós-merge relevante é:
+
+- `rpgskilltree` permanece o único `@Mod` e o único JAR distribuído;
+- `RpgSkillTreeMod` chama `VolcanoesMod.initialize(...)` como bootstrap interno;
+- `VolcanoesMod` preserva o namespace `volcanoes:*`, mas não é segundo `@Mod`;
+- a simulação de geologia, tectônica, vulcanismo, atmosfera, pressão e integrações foi internalizada preservando suas próprias authorities e anti-double-processing;
+- `NativeVolcanoesServices` publica superfícies **read-only** para depósitos, regiões vulcânicas, tectônica, atmosfera e pressão;
+- o repositório fonte `Gustavaopere/Volcanoes` permanece em `eaddc323...` enquanto a limpeza separada não ocorre; isso é fonte histórica/migração, não autorização para instalar/executar dois providers simultaneamente.
+
+### Disposição da consolidação no lote
+
+A consolidação é **CAPABILITY CANÔNICA DE WIRING/OWNERSHIP**, mas não cria semântica defensiva nova para A0101–A0110. A implementação internalizada é a mesma fonte Volcanoes já auditada em `eaddc323...`.
+
+- `NativeVolcanoesServices` é classificado como **BRIDGE READ-ONLY**.
+- Geologia/tectônica/atmosfera/pressão são **COBERTAS PELO SUBSISTEMA NATIVO VOLCANOES**, não por perks defensivas deste lote.
+- Para A0103, esses dados são **NÃO DEVE SER INTEGRADO** como classifier implícito: atmosfera/pressão/localização não provam `DamageType` ambiental allowlisted.
+- A0109 não pode converter pressão, massa de veículo, Sable/Create ou equipamento Volcanoes em body encumbrance.
+- A0110 não pode tratar equipamentos do subsistema como elegíveis sem o seam global de durabilidade exigido.
+- Nenhum pipeline Volcanoes pode ser duplicado pelo Chat 2 apenas porque agora está no mesmo source tree/JAR.
+
+### Outras dispositions RPG
 
 - `ProgressionService`/Stage 04 continua **PROGRESSÃO NATIVA AUTORITATIVA** para gateway, predecessor, compra, respec e derived state. A0101–A0110 não criam segundo ledger de classe/bridge.
 - Availability transitiva de A0107/A0108/A0109 deve usar a mesma authority; fórmula local não pode tornar predecessor indisponível comprável.
 - `DamageMitigationResolver` é o pipeline canônico a estender para A0101/A0102/A0103/A0106 e, quando adquiríveis, A0108/A0109; não criar cadeia defensiva paralela.
-- O repositório ainda fixa Ars Nouveau `5.13.0` em `gradle.properties`, enquanto modlist/guia e design Notion de A0102 fixam `5.13.1`. Classificação: **DRIFT DE FIXTURE/BUILD**, pendência Chat 2; não rebaixa a versão canônica do design.
+- `gradle.properties` ainda fixa Ars Nouveau `5.13.0`, enquanto modlist/guia e design Notion de A0102 fixam `5.13.1`. Classificação: **DRIFT DE FIXTURE/BUILD**, pendência Chat 2; não rebaixa a versão canônica do design.
 - Nenhum avanço fecha A0093/A0100, P-0035 como capability canônica, body encumbrance ou P-0036.
 
-## Volcanoes
+## Volcanoes — repositório fonte
 
-Não houve avanço desde o baseline anterior. `plans/STATUS.md` confirma os estágios canônicos de Volcanoes/Atmosphere/Pressure/Integrations/Hardening e seus boundaries próprios.
+O repositório fonte continua em `eaddc323...`; não houve novo commit após o baseline. A diferença operacional é que essa implementação foi incorporada no RPG Skill Tree pela PR #308.
 
 ### Disposição
 
-- pressão, gases, lava, calor e proteção ambiental permanecem authority do Volcanoes/integrações correspondentes;
+- o source repo continua referência de provenance/migração até sua limpeza formal;
+- a authority executável do modpack passa a estar no subsistema nativo consolidado do `rpgskilltree`;
+- pressão, gases, lava, calor e proteção ambiental permanecem semantics/provider-owned de Volcanoes mesmo dentro do mesmo JAR;
 - não entram genericamente em A0103 por tema;
 - equipamentos de pressão/respiração não são ferramentas manuais elegíveis de A0110 por default;
-- massa/veículo não fornece encumbrance corporal de A0109.
+- massa/veículo não fornece encumbrance corporal de A0109;
+- executar a fonte antiga como segundo mod/provider em paralelo é proibido.
 
-Classificação: **SEM DELTA / NÃO DEVE SER INTEGRADO** onde a relação seria somente temática.
+Classificação: **MIGRADO PARA SUBSISTEMA NATIVO / SEM NOVA SEMÂNTICA DE PERK**.
 
 ## Enshrouded
 
@@ -63,7 +90,7 @@ Classificação: **NÃO DEVE SER INTEGRADO AO LOTE**.
 
 ## Black Arcana
 
-O delta de `462c5c4...` para `e89df6d...` adiciona um forecast server-authored de Arcane Resistance para apresentação contextual. O próprio status declara que ele espelha apenas providers side-effect-free, falha fechado e nunca vira cast authority; Stage 05A continua ativo/parcial.
+O delta de `462c5c4...` para `e89df6d...` adiciona um forecast server-authored de Arcane Resistance para apresentação contextual. O próprio status declara que ele espelha somente providers side-effect-free, falha fechado e nunca vira cast authority; Stage 05A continua ativo/parcial.
 
 ### Disposição
 
@@ -80,6 +107,8 @@ Classificação: **PROVIDER NATIVO AUTORITATIVO, SOMENTE LEITURA PARA PRESENTATI
 |---|---|---|---|
 | Progression/gateway/class authority RPG | canônico | sistema universal | usar authority existente; nenhuma perk duplica ledger |
 | Damage mitigation RPG-owned | infraestrutura canônica | A0092/A0096 e futuras A0101/A0102/A0103/A0106/A0108/A0109 | estender um único resolver, once/root |
+| Volcanoes consolidado no mesmo JAR | canônico via PR #308 | subsistema nativo | preservar simulação/authority; não criar segundo provider |
+| `NativeVolcanoesServices` | canônico read-only | bridge/query universal | não usar atmosfera/pressão como classifier implícito A0103 |
 | Ars fixture 5.13.0 vs design 5.13.1 | drift de build | A0102 | Chat 2 reconcilia fixture/API; fail-closed se incompatível |
 | Volcanoes pressure/gas/heat/hazards | canônico | sistemas próprios | não classificar em A0103 por analogia |
 | Enshrouded audio/particles | canônico client-side | apresentação própria | não integrar como gameplay |
@@ -95,7 +124,7 @@ Classificação: **PROVIDER NATIVO AUTORITATIVO, SOMENTE LEITURA PARA PRESENTATI
 |---|---|---|---|
 | A0101 | NeoForge DamageSource + RPG mitigation | Epic Fight adapter causal | consumer/classifier ausente |
 | A0102 | `neoforge:is_magic` + RPG mitigation | Iron's/Ars adapters versionados | source unknown/version mismatch |
-| A0103 | allowlist vanilla + RPG mitigation | adapter específico por DamageType | fora do allowlist |
+| A0103 | allowlist vanilla + RPG mitigation | adapter específico por DamageType; Volcanoes native queries são read-only | fora do allowlist; nenhuma inferência por atmosphere/pressure |
 | A0104 | NeoForge `LivingDamageEvent.Post` + RPG scheduler/healing | nenhum necessário | scheduler/state ausente |
 | A0105 | NeoForge Post + RPG attribute runtime | root receipt provider-native | state/attribute consumer ausente |
 | A0106 | NeoForge Pre + RPG mitigation/state | Epic Fight apenas por DamageSource causal | consumer/state ausente |
@@ -108,9 +137,11 @@ Classificação: **PROVIDER NATIVO AUTORITATIVO, SOMENTE LEITURA PARA PRESENTATI
 
 Após a disposição acima, os próximos checkpoints documentais tornam-se:
 
-- RPG Skill Tree: `2e1c5b62f89d2311eb645882e3547944d0f68869`
-- Volcanoes: `eaddc3232dfc600780769f4a5e7e45ff1e50181c`
+- RPG Skill Tree: `b32a4c85946807c38339c640614b44670c78643f`
+- Volcanoes — source/migration baseline: `eaddc3232dfc600780769f4a5e7e45ff1e50181c`
 - Enshrouded: `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec`
 - Black Arcana: `e89df6dc2c204c269d8f1811c6b3f309644c864a`
+
+A authority executável do Volcanoes está agora no mesmo `rpgskilltree` JAR; o SHA do repositório fonte permanece registrado apenas para provenance/migração enquanto a limpeza separada não ocorre.
 
 Esses SHAs são checkpoints de comparação, não promoção de conteúdo preparatório. No próximo lote, `main` + `plans/STATUS.md` frescos prevalecem novamente.
