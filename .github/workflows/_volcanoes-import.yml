@@ -1,17 +1,17 @@
 name: Volcanoes Canonical Import
 
 on:
-  push:
+  pull_request:
     branches:
-      - feat/consolidate-volcanoes
-    paths:
-      - .github/workflows/_volcanoes-import.yml
+      - main
+    types: [opened]
 
 permissions:
   contents: write
 
 jobs:
   import:
+    if: github.event.pull_request.head.ref == 'feat/consolidate-volcanoes' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - name: Checkout consolidation branch
@@ -79,7 +79,7 @@ jobs:
           it is not a second mod distribution.
           EOF
 
-      - name: Commit imported canonical snapshot
+      - name: Commit imported canonical snapshot and remove one-shot importer
         shell: bash
         run: |
           set -euo pipefail
@@ -92,6 +92,7 @@ jobs:
                   src/main/resources/volcanoes.mixins.json \
                   docs/volcanoes plans/volcanoes integration-templates/volcanoes \
                   scripts/volcanoes .github/scripts/volcanoes licenses/Volcanoes-BSD-2-Clause.txt
+          git rm .github/workflows/_volcanoes-import.yml
           git diff --cached --quiet && { echo 'Import produced no changes'; exit 1; }
           git commit -m 'chore: import Volcanoes canonical source [volcanoes-import]'
           git push origin HEAD:feat/consolidate-volcanoes
