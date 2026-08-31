@@ -11,7 +11,27 @@ import java.util.Set;
  * Epic Fight both observe the same semantic hit, they converge on one persisted anti-farm key.
  */
 public final class WeaponMasteryMilestonePolicy {
+    private static final Set<String> PHYSICAL_PROJECTILE_CATEGORIES = Set.of("bow", "crossbow");
+
     private WeaponMasteryMilestonePolicy() {}
+
+    public static Milestone confirmedPhysicalProjectileHit(
+        String originId,
+        String providerId,
+        String weaponCategory,
+        String targetType,
+        double damage,
+        boolean correlatedRelease
+    ) {
+        requireNonBlank(weaponCategory, "weaponCategory");
+        if (!correlatedRelease) {
+            throw new IllegalArgumentException("physical projectile mastery requires a correlated release");
+        }
+        if (!PHYSICAL_PROJECTILE_CATEGORIES.contains(weaponCategory)) {
+            throw new IllegalArgumentException("unsupported physical projectile mastery category: " + weaponCategory);
+        }
+        return confirmedHit(originId, providerId, weaponCategory, targetType, damage);
+    }
 
     public static Milestone confirmedHit(
         String originId,
