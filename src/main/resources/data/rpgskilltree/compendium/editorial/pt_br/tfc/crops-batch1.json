@@ -1,0 +1,288 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "tfc",
+  "kind": "FLORA",
+  "entries": [
+    {
+      "entry_id": "FLORA:tfc:crop/barley",
+      "title": "Cevada",
+      "summary": {
+        "text": "Cevada é um cultivo do TerraFirmaCraft registrado como `tfc:crop/barley`; o nome desta ficha acompanha a localização pt-BR fornecida pelo próprio TFC 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/barley"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O cultivo participa do sistema agrícola nativo do TFC: sementes são plantadas em farmland, enquanto condições de clima, hidratação e nutrientes permanecem definidas pelo provider e podem variar entre cultivos.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o Compêndio não funde esses objetos técnicos em um único registry ID.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:tfc:crop/oat",
+      "title": "Aveia",
+      "summary": {
+        "text": "Aveia é um cultivo do TerraFirmaCraft registrado como `tfc:crop/oat`; o nome desta ficha acompanha a localização pt-BR fornecida pelo próprio TFC 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/oat"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O cultivo participa do sistema agrícola nativo do TFC: sementes são plantadas em farmland, enquanto condições de clima, hidratação e nutrientes permanecem definidas pelo provider e podem variar entre cultivos.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o Compêndio preserva essa distinção técnica.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:tfc:crop/rye",
+      "title": "Centeio",
+      "summary": {
+        "text": "Centeio é um cultivo do TerraFirmaCraft registrado como `tfc:crop/rye`; o nome desta ficha acompanha a localização pt-BR fornecida pelo próprio TFC 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/rye"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O cultivo participa do sistema agrícola nativo do TFC: sementes são plantadas em farmland, enquanto condições de clima, hidratação e nutrientes permanecem definidas pelo provider e podem variar entre cultivos.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o Compêndio preserva essa distinção técnica.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:tfc:crop/maize",
+      "title": "Milho",
+      "summary": {
+        "text": "Milho é um cultivo do TerraFirmaCraft registrado como `tfc:crop/maize`; o nome desta ficha acompanha a localização pt-BR fornecida pelo próprio TFC 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/maize"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O cultivo participa do sistema agrícola nativo do TFC: sementes são plantadas em farmland, enquanto condições de clima, hidratação e nutrientes permanecem definidas pelo provider e podem variar entre cultivos.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o Compêndio preserva essa distinção técnica.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:tfc:crop/wheat",
+      "title": "Trigo",
+      "summary": {
+        "text": "Trigo é um cultivo do TerraFirmaCraft registrado como `tfc:crop/wheat`; esta ficha representa o cultivo do namespace TFC, não o bloco vanilla de trigo.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/wheat"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O cultivo participa do sistema agrícola nativo do TFC: sementes são plantadas em farmland, enquanto condições de clima, hidratação e nutrientes permanecem definidas pelo provider e podem variar entre cultivos.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o namespace e o registry ID evitam confusão com conteúdo vanilla.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:tfc:crop/rice",
+      "title": "Arroz",
+      "summary": {
+        "text": "Arroz é um cultivo do TerraFirmaCraft registrado como `tfc:crop/rice`; o nome desta ficha acompanha a localização pt-BR fornecida pelo próprio TFC 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/rice"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O arroz participa do sistema agrícola nativo do TFC e possui requisitos próprios definidos pelo provider. A ficha evita generalizar para ele condições de outros cultivos ou congelar parâmetros de clima e hidratação em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o Compêndio preserva essa distinção técnica.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:tfc:crop/beet",
+      "title": "Beterraba",
+      "summary": {
+        "text": "Beterraba é um cultivo do TerraFirmaCraft registrado como `tfc:crop/beet`; o nome desta ficha acompanha a localização pt-BR fornecida pelo próprio TFC 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/beet"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O cultivo participa do sistema agrícola nativo do TFC: sementes são plantadas em farmland, enquanto condições de clima, hidratação e nutrientes permanecem definidas pelo provider e podem variar entre cultivos.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o Compêndio preserva essa distinção técnica.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:tfc:crop/cabbage",
+      "title": "Alface",
+      "summary": {
+        "text": "Alface é o nome pt-BR fornecido pelo TerraFirmaCraft 4.2.8 para o cultivo registrado como `tfc:crop/cabbage`; a ficha preserva a tradução do provider sem renomear o registry ID.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/cabbage"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O cultivo participa do sistema agrícola nativo do TFC: sementes são plantadas em farmland, enquanto condições de clima, hidratação e nutrientes permanecem definidas pelo provider e podem variar entre cultivos.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o nome localizado não altera essa identidade técnica.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:tfc:crop/carrot",
+      "title": "Cenoura",
+      "summary": {
+        "text": "Cenoura é um cultivo do TerraFirmaCraft registrado como `tfc:crop/carrot`; esta ficha representa o cultivo do namespace TFC e conserva a localização pt-BR oficial da versão 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/carrot"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O cultivo participa do sistema agrícola nativo do TFC: sementes são plantadas em farmland, enquanto condições de clima, hidratação e nutrientes permanecem definidas pelo provider e podem variar entre cultivos.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o namespace evita confusão com a cenoura vanilla.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:tfc:crop/garlic",
+      "title": "Alho",
+      "summary": {
+        "text": "Alho é um cultivo do TerraFirmaCraft registrado como `tfc:crop/garlic`; o nome desta ficha acompanha a localização pt-BR fornecida pelo próprio TFC 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:block/tfc:crop/garlic"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "cultivation": {
+          "text": "O cultivo participa do sistema agrícola nativo do TFC: sementes são plantadas em farmland, enquanto condições de clima, hidratação e nutrientes permanecem definidas pelo provider e podem variar entre cultivos.",
+          "sources": [
+            {"type": "OFFICIAL_DOCS", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/crops.json"}
+          ]
+        },
+        "states": {
+          "text": "A versão 4.2.8 mantém identidades separadas para a planta cultivada, sua forma silvestre, seu estado morto e suas sementes; o Compêndio preserva essa distinção técnica.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/lang/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}
