@@ -116,6 +116,26 @@ public final class AtmosphereRuntime {
         return fieldFor(Objects.requireNonNull(level, "level"));
     }
 
+    /**
+     * Read-only native sampling surface for consumers inside the consolidated RPG artifact.
+     * The authoritative atmosphere field remains owned by Volcanoes; callers receive only the
+     * immutable sampled state and never create or advance a second simulation.
+     */
+    public static AtmosphereState sample(
+            ServerLevel level,
+            double x,
+            double y,
+            double z
+    ) {
+        ServerLevel checkedLevel = Objects.requireNonNull(level, "level");
+        return fieldFor(checkedLevel).sample(
+                checkedLevel.dimension().location().toString(),
+                checkedLevel.getSeed(),
+                x,
+                y,
+                z);
+    }
+
     public static void installExternalContributionProvider(
             ServerLevel level,
             AtmosphereExternalContributionProvider provider
