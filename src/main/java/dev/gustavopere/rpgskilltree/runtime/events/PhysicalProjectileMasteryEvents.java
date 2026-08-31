@@ -45,10 +45,9 @@ public final class PhysicalProjectileMasteryEvents {
     public static void onArrowLoose(ArrowLooseEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)
             || !eligible(player)
-            || event.isCanceled()
-            || !event.hasAmmo()) return;
+            || event.isCanceled()) return;
         String category = physicalCategory(event.getBow());
-        if (category == null) return;
+        if (!WeaponMasteryMilestonePolicy.acceptsPhysicalProjectileRelease(category, event.hasAmmo())) return;
         PENDING_RELEASES.put(
             player.getUUID(),
             new PendingRelease(category, now(player) + LAUNCH_CORRELATION_MILLIS)
