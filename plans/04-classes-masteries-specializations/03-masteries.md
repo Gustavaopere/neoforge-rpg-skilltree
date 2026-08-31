@@ -34,6 +34,7 @@
 ## Progresso runtime confirmado — FIST
 
 - [x] `combat:fist` permanece o ledger canônico do gate FIST; categorias provider-native `fist` e `knuckle` não criam gates paralelos `epicfight:fist`/`epicfight:knuckle`.
+- [x] `rpgskilltree:combat_fist` está publicado no architecture catalog como especialização provider `epicfight`, domínio `MARTIAL`, nível mínimo 8 e gate `combat:fist` 60, alinhado ao `CombatPerkTreeModel` e ao contrato aprovado A0055–A0060.
 - [x] O produtor usa `EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST`: somente dano positivo confirmado contra alvo hostil pode gerar milestone.
 - [x] `fist` e `knuckle` convergem para a mesma categoria semântica `fist` e para a mesma identidade persistente: `mastery:combat:fist/hostile_type/<entity_type>`.
 - [x] Cada tipo hostil inédito concede `+10 combat:fist` e `+5 epicfight:weapon`; seis tipos distintos alcançam o gate 60 e oito alcançam o gate 80 sem permitir spam de hits no mesmo tipo.
