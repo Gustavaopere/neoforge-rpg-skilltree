@@ -40,7 +40,7 @@ final class A0031A0040Chat3RegressionJUnitTest {
         assertEquals(3, state.trauma("player", "target", 1_000L));
         assertFalse(state.isSundered("player", "target", 1_000L));
 
-        assertTrue(state.prepareSunder("player", "other-target", "sunder-root", 2, 1_001L),
+        assertTrue(state.prepareSunder("player", "target", "sunder-root", 2, 1_001L),
             "terminal cancellation must release the root reservation instead of retaining it until TTL");
     }
 
