@@ -1,6 +1,6 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0070** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
+Reauditoria obrigatória do recorte **A0001–A0080** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
 A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
 
@@ -76,6 +76,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0068 | Dano contra Feridos | APROVADO | CÓDIGO PRESENTE melee + projectile | `P-A0068-01/-02`: snapshot pré-impacto <35%, borda e dedup |
 | A0069 | Dano contra Íntegros | APROVADO | CÓDIGO PRESENTE melee + projectile | `P-A0069-01/-02`: snapshot pré-impacto >85%, borda e dedup |
 | A0070 | Dano contra Chefes | APROVADO após correção de cobertura | IMPLEMENTAÇÃO PARCIAL: vanilla/Cataclysm tag + Apothic; Enshrouded identity ainda sem adapter | `P-A0070-01`: `enshrouded:shroud_lich`; `P-A0070-02`: demais bosses fail-closed até IDs; `P-A0070-03/-04` dedup/fases |
+| A0071 | Dano contra Elites | APROVADO | CÓDIGO PRESENTE via classificador canônico | `P-A0071-01/-02`: Apothic provider-present + BOSS>ELITE; externos somente com identidade exata |
+| A0072 | Retaliação | APROVADO após availability | EFEITO PRESENTE, MAS ESTRUTURALMENTE INDISPONÍVEL | `P-A0072-01`: A0067 indisponível → A0072 indisponível/não comprável; testar refresh/dedup |
+| A0073 | Janela de Execução | APROVADO após reservation→commit | NÃO CONFORME: PRE arma/consome cedo demais | `P-A0073-01`: POST commit/rollback; `P-A0073-02`: Stamina receipt; lifecycle/dedup |
+| A0074 | Primeiro Sangue | APROVADO após reservation→commit | NÃO CONFORME: PRE atualiza/consome cedo demais | `P-A0074-01`: POST commit/rollback; lifecycle e bordas de opener/cooldown |
+| A0075 | Ritmo Sustentado | APROVADO EM FAIL-CLOSED | CORE PRESENTE; NODE INDISPONÍVEL | `P-A0075-01`: unavailable; `P-A0075-02`: Cold Sweat metabolic boundary; all-or-nothing provider binding |
+| A0076 | Postura Agressiva | APROVADO após boundary de ativação | STATE PURO PRESENTE; SEM INPUT/PAYLOAD | `P-A0076-01`: controle remapeável + payload serverbound + availability; transição/lifecycle |
+| A0077 | Postura Cautelosa | APROVADO após availability | ESTRUTURALMENTE INDISPONÍVEL | `P-A0077-01`: herda A0067 e depende do stance binding de A0076 |
+| A0078 | Ataque em Movimento | APROVADO | CÓDIGO PRESENTE no sprint vanilla; ParCool extra fail-closed | `P-A0078-01/-03`: forced movement/bridge PP; ParCool só por receipt real |
+| A0079 | Ataque Estacionário | APROVADO após hardening | IMPLEMENTAÇÃO PARCIAL: detector presente, forced invalidation incompleta | `P-A0079-01`: teleport/mount/vehicle/contraption/belt/forced receipts; bridge PP/testes |
+| A0080 | Golpe de Oportunidade | APROVADO EM FAIL-CLOSED | NODE INDISPONÍVEL; SEM DODGE-SUCCESS RECEIPT | `P-A0080-01`: unavailable; `P-A0080-02`: avoidedAttack receipt/dedup; `P-A0080-03`: POST commit |
 
 ## Regras sistêmicas vigentes
 
@@ -95,16 +105,22 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Root outcome CROSSBOW:** Multishot compartilha uma única root action; projéteis irmãos produzem no máximo um success/failure e uma perda de Cadência por disparo. Success do root bloqueia failures tardios de irmãos.
 - **Reservation→commit em lançamento:** Cadência/janela de A0053/A0054 só são consumidas quando o projectile/root correlacionado é realmente criado; cancelamento tardio ou ausência de spawn faz rollback.
 - **Commit causal:** consumo irreversível de recurso/estado condicionado a resultado real ocorre no commit pós-hit confirmado; cancelamento/dano zero não deixa estado fantasma. Para ações de lançamento A0053/A0054, o commit específico ocorre somente após criação confirmada do projectile/root correlacionado.
-- **Lifecycle:** estados por alvo precisam cleanup bounded quando alvo morre, é removido, descarrega ou desaparece sem evento terminal equivalente. Estados por ator do lote A0051–A0060 também precisam cleanup bounded em logout/dimensão/respawn/shutdown e reconciliação em rank loss, respec e rules reload que invalide perk/pré-requisito; Cadência, Sequência, receipts, reservas, janelas e cooldowns não podem reaparecer após recompra.
+- **Lifecycle:** estados por alvo precisam cleanup bounded quando alvo morre, é removido, descarrega ou desaparece sem evento terminal equivalente. Estados por ator precisam cleanup bounded em logout/dimensão/respawn/shutdown e reconciliação em rank loss, respec e rules reload que invalide perk/pré-requisito.
 - **Proteção física:** Armor/guard/posture física não se confunde com Arcane Resistance, MagicResistance, Shroud ou hazards ambientais.
 - **A0061–A0070:** dano físico direto, crítico, ritmo, penetração e Impact usam boundaries canônicos e identidades distintas; nenhuma contribuição pode ser aplicada duas vezes por bridges paralelas.
 - **A0067:** sem lifetime provider-native seguro da janela ofensiva, o node é indisponível/não comprável; matemática pura não é binding.
-- **A0070:** BOSS > ELITE > HOSTILE; bossbar/nome/tamanho/max health/estrutura não são prova. `enshrouded:shroud_lich` é exact identity read-only; demais providers sem ID verificado ficam fail-closed.
-- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill; para A0051–A0070 também não gera Cadência, Sequência, heavy/finalizer nem dano físico direto elegível.
-- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam arma, projectile root, Focus ou proteção física; para A0070 apenas a registry identity nativa do Shroud Lich pode alimentar o classificador BOSS, sem mutar Story/fase/reward.
-- **Volcanoes:** hazards/geologia/prospecção permanecem fora do pipeline MARTIAL; nenhuma perk A0061–A0070 transforma Atmosphere/pressão/RNS em dano físico do jogador.
-- **Mobstein 5.4.4:** companion damage/projectiles/kills são provider-owned; Witherstein não entra em A0070 por nome/tema e permanece fail-closed até registry ID/adapter comprovado.
-- **Stage 11.01 itemização:** authority própria de identidade/rolls; projeções de efeitos ainda não são contrato destas perks, portanto `SEM HOOK SEGURO` para efeitos não provados.
+- **A0070/A0071:** BOSS > ELITE > HOSTILE; classificações são explícitas e nunca acumulam no mesmo root. Heurística visual/estatística é proibida.
+- **A0072/A0077:** availability transitiva é obrigatória; A0067 indisponível torna ambos indisponíveis.
+- **A0073/A0074/A0080:** estados consumíveis usam reservation→commit; PRE pode reservar, POST com dano efetivo >0 commita, cancelamento/zero faz rollback.
+- **A0075:** Stamina regen, Cold Sweat thermal contribution e exhaustion formam contrato all-or-nothing; ausência de qualquer binding torna o node indisponível/não comprável. Thirst é eixo separado.
+- **A0076/A0077:** `MARTIAL_STANCE` é RPG-owned; cliente envia intenção por controle remapeável/payload, servidor valida e efetiva. Sem binding de ativação, node de postura não é comprável.
+- **A0078/A0079:** movimento autopropelido e estacionário são estados distintos; mount/vehicle/contraption/belt/knockback/forced movement não podem satisfazer gates por simples delta de posição.
+- **A0080:** dodge executado não prova dodge-success; exige receipt de ataque hostil efetivamente evitado e dedup cross-provider.
+- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill; também não abre Retaliação por self-cost nem vira ação física elegível.
+- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam movimento, stance, dodge, Stamina ou dano físico destas perks; bridge Shroud Lich permanece somente A0070 read-only.
+- **Volcanoes:** hazards/geologia/prospecção permanecem fora do pipeline MARTIAL; o delta mais recente é apenas hardening de proveniência/licenças e não cria capacidade de perk.
+- **Mobstein 5.4.4:** companions não geram autoria física do dono; Witherstein não entra em A0070/A0071 por nome/tema sem identity adapter real.
+- **Stage 11.01 itemização:** authority própria de identidade/rolls; projeções de efeitos sem hook comprovado continuam `SEM HOOK SEGURO`.
 - **NeoVitae:** removido/ausente.
 
 ## Ciclos fechados anteriores
@@ -263,8 +279,11 @@ O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirma
 
 ## Chat 1 — lote exato A0061–A0070
 
-**Estado:** `LOTE FECHADO NO DESIGN; A0067 FAIL-CLOSED/INDISPONÍVEL; A0070 COVERAGE FAIL-CLOSED PARCIAL; AGUARDANDO PR/CI/MERGE`.
+**Estado:** `LOTE FECHADO NO DESIGN; PR #298 MERGEADA; CI GREEN; MAIN CONFIRMADA`.
 
+- **PR de fechamento:** #298 (`docs(perks): close Chat 1 audit A0061-A0070`).
+- **Merge/main:** `4cde1cf26dc1b4bb374f782b348ec3a2c3c5702a`.
+- **CI:** RPG Skill Tree CI #2521 e workflows auxiliares verdes, incluindo NeoForge GameTests, build, JAR e dedicated-server smoke.
 - **INÍCIO:** A0061.
 - **FIM:** A0070.
 - **Quantidade:** 10 perks consecutivas.
@@ -279,7 +298,7 @@ O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirma
 - **A0070:** `enshrouded:shroud_lich` é bridge read-only comprovada; Mowzie/Legendary Monsters/Born in Chaos/Mobstein permanecem fail-closed até registry ID/adapter exato.
 - **Arquivo canônico do lote:** `audits/AUDITORIA-A0061-A0070.md`.
 - **Runtime alterado neste Chat 1:** nenhum.
-- **A0071+:** não iniciado.
+- **A0071+:** não iniciado naquele ciclo.
 
 ### Pendências destinadas ao Chat 2
 
@@ -297,4 +316,39 @@ O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirma
 12. `P-A0070-02` — Mowzie/Legendary/Born in Chaos/Mobstein fail-closed até IDs comprovados.
 13. `P-A0070-03/-04` — BOSS > ELITE e preservação de fases/imunidades provider-native.
 
-Após merge e confirmação da `main`, este ciclo encerra e o Chat 1 deve PARAR; A0071–A0080 só pode começar mediante novo comando do usuário.
+O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A0080 só foi iniciado após novo comando do usuário.
+
+## Chat 1 — lote exato A0071–A0080
+
+**Estado:** `LOTE FECHADO NO DESIGN; BLOCKERS RUNTIME CATALOGADOS; AGUARDANDO PR/CI/MERGE`.
+
+- **INÍCIO:** A0071.
+- **FIM:** A0080.
+- **Quantidade:** 10 perks consecutivas.
+- **Base de abertura:** RPG Skill Tree `main@4cde1cf26dc1b4bb374f782b348ec3a2c3c5702a`.
+- **Gate de delta:** RPG `4cde1cf...` (somente docs desde baseline); Volcanoes `bbb273d61984e2c9bb84e8f8a56668ae7e315532` (hardening proveniência/licenças); Enshrouded `391ea822...` sem delta; Black Arcana `526d819...` sem delta.
+- **Delta canônico do ciclo:** `guides/projects/13-capability-delta-a0071-a0080.md`.
+- **Notion fetch fresco:** 10/10.
+- **Notion alterado:** A0072, A0073, A0074, A0075, A0076, A0077, A0079, A0080.
+- **Re-fetch pós-escrita:** 8/8 PASS em 2026-08-31.
+- **Sem mutação funcional:** A0071, A0078.
+- **Dossiês criados:** 10/10.
+- **Nove eixos / 18 critérios:** PASS no design.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **A0081+:** não iniciado.
+
+### Pendências destinadas ao Chat 2
+
+1. `P-A0071-01/-02` — validar Apothic ELITE e BOSS > ELITE; providers externos somente por identidade exata.
+2. `P-A0072-01` — availability transitiva A0067→A0072; refresh/dedup/anti-recursion.
+3. `P-A0073-01` — opener/consumer/cooldown por reservation→POST commit; `P-A0073-02` Stamina receipt; lifecycle/dedup.
+4. `P-A0074-01` — last-attack/opener/consumer/cooldown por reservation→POST commit; lifecycle/bordas.
+5. `P-A0075-01` — unavailable-node invariant; `P-A0075-02` boundary Cold Sweat thermal; contrato all-or-nothing com STAMINA_REGEN/exhaustion.
+6. `P-A0076-01` — controle `Alternar Postura Marcial` + payload serverbound + availability; atomic transition/lifecycle.
+7. `P-A0077-01` — availability A0067 + stance binding.
+8. `P-A0078-01/-03` — sprint/forced movement e bridge PP; ParCool apenas por receipt real.
+9. `P-A0079-01` — propagar forced transition/invalidation para teleport, mount/vehicle, contraption/belt e deslocamentos provider-identificados.
+10. `P-A0080-01` — unavailable até receipt de ataque hostil efetivamente evitado; `P-A0080-02` dedup Epic Fight/ParCool; `P-A0080-03` consumption reservation→POST commit.
+11. `P-A0071-80-TEST-01` — GameTest/harness transversal de classification, availability, root dedup, POST commit/rollback, stance networking, thermal all-or-nothing, movement/stationary, dodge-success, lifecycle, multiplayer e dedicated server.
+
+O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirmação da `main`; depois disso o Chat 1 deve PARAR e A0081–A0090 só pode começar mediante novo comando do usuário.
