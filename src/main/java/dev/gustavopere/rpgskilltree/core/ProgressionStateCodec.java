@@ -18,7 +18,7 @@ import java.util.Set;
 
 public final class ProgressionStateCodec {
     /** Legacy compatibility payload version. New normal saves are versioned by CanonicalPlayerStateCodec. */
-    public static final int CURRENT_VERSION = 4;
+    public static final int CURRENT_VERSION = 5;
     private static final int MAX_COLLECTION_SIZE = 16_384;
     private static final int MAX_STRING_BYTES = 4_096;
 
@@ -33,13 +33,14 @@ public final class ProgressionStateCodec {
                 writeLedger(out, state.passivePoints());
                 writeStringSet(out, state.bossProgress().creditedRewardKeys());
                 writeStringSet(out, state.classProgression().unlockedClassIds());
+                writeStringSet(out, state.classProgression().paidBridgeClassIds());
                 writeStringIntMap(out, state.mastery().experience());
                 writeStringSetMap(out, state.classChoices().selections());
                 writeStringSet(out, state.specializations().unlockedSpecializationIds());
                 writeFinalTriads(out, state.finalTriads());
                 writeStringIntMap(out, state.passiveNodes().ranks());
                 writeStringSet(out, state.discoveries().discoveredKeys());
-                // Canonical-player schema v2 extends compatibility v4 with a bounded optional tail.
+                // Canonical-player schema v2 extends compatibility payloads with a bounded optional tail.
                 writeMasteryReceipts(out, state.mastery().creditedAwards());
             }
             return bytes.toByteArray();
@@ -56,7 +57,9 @@ public final class ProgressionStateCodec {
             long totalXp = in.readLong();
             PassivePointLedger ledger = readLedger(in);
             BossProgress bosses = BossProgress.of(readStringSet(in));
-            ClassProgressionState classes = ClassProgressionState.of(readStringSet(in));
+            Set<String> unlockedClasses = readStringSet(in);
+            Set<String> paidBridgeClasses = version >= 5 ? readStringSet(in) : Set.of();
+            ClassProgressionState classes = ClassProgressionState.of(unlockedClasses, paidBridgeClasses);
             Map<String, Integer> masteryExperience = readStringIntMap(in);
             ClassChoiceState choices = ClassChoiceState.of(readStringSetMap(in));
             SpecializationProgressionState specializations = SpecializationProgressionState.of(readStringSet(in));
