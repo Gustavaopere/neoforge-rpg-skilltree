@@ -10,6 +10,7 @@ public final class WeaponMasteryMilestonePolicyTest {
         providerOriginsShareTheSameBowDiscoveryIdentity();
         crossbowPhysicalHitUsesCanonicalLaneAndPersistentDiscoveryIdentity();
         providerOriginsShareTheSameCrossbowDiscoveryIdentity();
+        releaseEligibilityKeepsBowStrictAndAllowsLoadedCrossbow();
         uncorrelatedPhysicalProjectileFailsClosed();
         unsupportedPhysicalProjectileCategoryFailsClosed();
         invalidDamageFailsClosed();
@@ -99,6 +100,25 @@ public final class WeaponMasteryMilestonePolicyTest {
         require(
             vanilla.discoveryKey().equals(epicFight.discoveryKey()),
             "the same semantic CROSSBOW outcome must deduplicate across vanilla and Epic Fight receipts"
+        );
+    }
+
+    private static void releaseEligibilityKeepsBowStrictAndAllowsLoadedCrossbow() {
+        require(
+            WeaponMasteryMilestonePolicy.acceptsPhysicalProjectileRelease("bow", true),
+            "BOW release with ammunition must be eligible"
+        );
+        require(
+            !WeaponMasteryMilestonePolicy.acceptsPhysicalProjectileRelease("bow", false),
+            "BOW release without ammunition must fail closed"
+        );
+        require(
+            WeaponMasteryMilestonePolicy.acceptsPhysicalProjectileRelease("crossbow", false),
+            "a loaded CROSSBOW release must not depend on inventory-ammo state"
+        );
+        require(
+            !WeaponMasteryMilestonePolicy.acceptsPhysicalProjectileRelease("spell_arrow", true),
+            "unsupported release categories must fail closed"
         );
     }
 
