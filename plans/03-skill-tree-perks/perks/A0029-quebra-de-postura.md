@@ -43,3 +43,12 @@
 - Regressão JUnit prova que 3 Abalo não são consumidos e os bônus não são aplicados quando `heavyConfirmed=false`.
 - CI #2192 validou o fail-closed completo.
 - Estado pós-merge permanece `NÃO CONFIRMADA / FAIL-CLOSED` até o provider expor um receipt inequívoco de heavy.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura:** Hammer/Greathammer Simply só entram quando Epic Fight Compat resolve a arma como `HAMMER`.
+- **Receipts não herdados:** armor sunder/ignore, attack-speed proc, Unique ability, Runic Power, Awakening, gem power ou trait Cataclysm não satisfaz `heavyConfirmed`, guard pressure, guard break ou custo causal de stamina.
+- **Sem inferência por efeito:** queda de Armor, stun, dano elevado, tooltip, animação ou o próprio sunder do provider não podem ativar A0029.
+- **Coexistência:** efeitos Simply podem ocorrer no mesmo root por seu pipeline, mas não consomem nem financiam as 3 cargas de Abalo e não criam uma segunda Quebra de Postura.
+- **Fail-closed:** `P-A0029-01` permanece integralmente aberta após esta reauditoria.
+- **Notion:** boundary Simply persistida e re-fetch PASS.
