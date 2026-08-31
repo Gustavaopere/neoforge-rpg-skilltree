@@ -18,7 +18,7 @@ import java.util.Set;
 
 public final class ProgressionStateCodec {
     /** Legacy compatibility payload version. New normal saves are versioned by CanonicalPlayerStateCodec. */
-    public static final int CURRENT_VERSION = 5;
+    public static final int CURRENT_VERSION = 4;
     private static final int MAX_COLLECTION_SIZE = 16_384;
     private static final int MAX_STRING_BYTES = 4_096;
 
@@ -33,15 +33,15 @@ public final class ProgressionStateCodec {
                 writeLedger(out, state.passivePoints());
                 writeStringSet(out, state.bossProgress().creditedRewardKeys());
                 writeStringSet(out, state.classProgression().unlockedClassIds());
-                writeStringSet(out, state.classProgression().paidBridgeClassIds());
                 writeStringIntMap(out, state.mastery().experience());
                 writeStringSetMap(out, state.classChoices().selections());
                 writeStringSet(out, state.specializations().unlockedSpecializationIds());
                 writeFinalTriads(out, state.finalTriads());
                 writeStringIntMap(out, state.passiveNodes().ranks());
                 writeStringSet(out, state.discoveries().discoveredKeys());
-                // Canonical-player schema v2 extends compatibility payloads with a bounded optional tail.
+                // Canonical-player schema v2 extends compatibility v4 with bounded optional tails.
                 writeMasteryReceipts(out, state.mastery().creditedAwards());
+                writeStringSet(out, state.classProgression().paidBridgeClassIds());
             }
             return bytes.toByteArray();
         } catch (IOException e) {
@@ -58,8 +58,6 @@ public final class ProgressionStateCodec {
             PassivePointLedger ledger = readLedger(in);
             BossProgress bosses = BossProgress.of(readStringSet(in));
             Set<String> unlockedClasses = readStringSet(in);
-            Set<String> paidBridgeClasses = version >= 5 ? readStringSet(in) : Set.of();
-            ClassProgressionState classes = ClassProgressionState.of(unlockedClasses, paidBridgeClasses);
             Map<String, Integer> masteryExperience = readStringIntMap(in);
             ClassChoiceState choices = ClassChoiceState.of(readStringSetMap(in));
             SpecializationProgressionState specializations = SpecializationProgressionState.of(readStringSet(in));
@@ -69,7 +67,11 @@ public final class ProgressionStateCodec {
             Map<String, MasteryAwardReceipt> masteryReceipts = version >= 4 && in.available() > 0
                 ? readMasteryReceipts(in)
                 : Map.of();
+            Set<String> paidBridgeClasses = version >= 4 && in.available() > 0
+                ? readStringSet(in)
+                : Set.of();
             if (in.available() != 0) throw new IllegalArgumentException("progression state contains trailing bytes");
+            ClassProgressionState classes = ClassProgressionState.of(unlockedClasses, paidBridgeClasses);
             ProgressionState decoded = new ProgressionState(
                 totalXp,
                 ledger,
