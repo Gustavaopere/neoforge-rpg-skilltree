@@ -307,13 +307,23 @@ public final class ProgressionService {
         ProgressionState state,
         java.util.Collection<NodeSpecializationGrant> grants
     ) {
+        return reconcileNodeSpecializations(state, grants, specializationId -> true);
+    }
+
+    public static ProgressionState reconcileNodeSpecializations(
+        ProgressionState state,
+        java.util.Collection<NodeSpecializationGrant> grants,
+        java.util.function.Predicate<String> specializationAvailable
+    ) {
         Objects.requireNonNull(state);
         Objects.requireNonNull(grants);
+        Objects.requireNonNull(specializationAvailable);
 
         // SpecializationProgressionState does not yet persist provenance. Preserve
         // only the stable IDs explicitly created by the legacy class -> specialization
         // migration; all other current entries are reconstructed from live node grants
-        // so removed datapack gateways cannot leave permanent stale unlocks behind.
+        // so removed datapack gateways or unavailable providers cannot leave stale
+        // specialization unlocks behind.
         Set<String> migratedIds = Set.copyOf(
             ProgressionStateMigrations.legacyClassSpecializations().values());
         SpecializationProgressionState specializations = SpecializationProgressionState.empty();
@@ -323,7 +333,8 @@ public final class ProgressionService {
             }
         }
         for (NodeSpecializationGrant grant : grants) {
-            if (state.passiveNodes().rank(grant.nodeId()) >= grant.requiredRank()) {
+            if (state.passiveNodes().rank(grant.nodeId()) >= grant.requiredRank()
+                && specializationAvailable.test(grant.specializationId())) {
                 specializations = specializations.unlock(grant.specializationId());
             }
         }
