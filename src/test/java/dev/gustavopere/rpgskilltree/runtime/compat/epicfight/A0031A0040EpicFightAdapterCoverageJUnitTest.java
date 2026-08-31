@@ -167,7 +167,7 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
     }
 
     @Test
-    void vanillaPostCommitsPreparedSunderAndBonebreakerOnlyAfterActualDamage() throws Exception {
+    void vanillaPostCommitsPreparedSunderAfterActualDamage() throws Exception {
         UUID actorUuid = UUID.randomUUID();
         UUID targetUuid = UUID.randomUUID();
         ServerPlayer player = mock(ServerPlayer.class);
@@ -176,7 +176,6 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         DamageSource source = mock(DamageSource.class);
         LivingDamageEvent.Post event = mock(LivingDamageEvent.Post.class);
         AttributeInstance armor = mock(AttributeInstance.class);
-        AttributeInstance movement = mock(AttributeInstance.class);
         when(player.getUUID()).thenReturn(actorUuid);
         when(player.level()).thenReturn(level);
         when(player.isCreative()).thenReturn(false);
@@ -188,9 +187,7 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         when(target.getHealth()).thenReturn(10.0F);
         when(target.getMaxHealth()).thenReturn(20.0F);
         when(target.getAttribute(Attributes.ARMOR)).thenReturn(armor);
-        when(target.getAttribute(Attributes.MOVEMENT_SPEED)).thenReturn(movement);
         when(armor.getModifier(any(ResourceLocation.class))).thenReturn(null);
-        when(movement.getModifier(any(ResourceLocation.class))).thenReturn(null);
         when(level.isClientSide()).thenReturn(false);
         when(level.getGameTime()).thenReturn(20L);
         when(event.getEntity()).thenReturn(target);
@@ -205,15 +202,14 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         A0021A0040CombatState state = new A0021A0040CombatState();
         for (int i = 0; i < 3; i++) state.addTrauma(actor, targetId, 2, i);
         assertTrue(state.prepareSunder(actor, targetId, root, 2, now));
-        assertTrue(state.prepareBonebreaker(actor, targetId, root, 80, now));
 
         BeforeResult specialty = new BeforeResult(
             1.0D, 1.0D, 1.0D, 0.0D,
             true, 0.12D, 6_000L,
-            true, 0.92D, 0.90D, 3_000L
+            false, 1.0D, 1.0D, 0L
         );
         putVanillaPending(actor, targetId, root, specialty, 31_000L);
-        CombatPerkRanks ranks = CombatPerkRanks.of(Map.of("A0035", 2, "A0036", 1));
+        CombatPerkRanks ranks = CombatPerkRanks.of(Map.of("A0035", 2));
 
         try (MockedStatic<A0021A0040RuntimeState> runtime = mockStatic(A0021A0040RuntimeState.class)) {
             runtime.when(A0021A0040RuntimeState::state).thenReturn(state);
@@ -222,13 +218,11 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         }
 
         assertTrue(state.isSundered(actor, targetId, now));
-        assertFalse(state.bonebreakerReady(actor, targetId, now));
         verify(armor).addOrUpdateTransientModifier(any(AttributeModifier.class));
-        verify(movement).addOrUpdateTransientModifier(any(AttributeModifier.class));
     }
 
     @Test
-    void vanillaPostZeroDamageRollsBackPreparedMaceActions() throws Exception {
+    void vanillaPostZeroDamageRollsBackPreparedSunder() throws Exception {
         UUID actorUuid = UUID.randomUUID();
         UUID targetUuid = UUID.randomUUID();
         ServerPlayer player = mock(ServerPlayer.class);
@@ -258,21 +252,18 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         A0021A0040CombatState state = new A0021A0040CombatState();
         for (int i = 0; i < 3; i++) state.addTrauma(actor, targetId, 2, i);
         assertTrue(state.prepareSunder(actor, targetId, root, 2, now));
-        assertTrue(state.prepareBonebreaker(actor, targetId, root, 80, now));
         putVanillaPending(actor, targetId, root, neutralBefore(), 31_000L);
 
         try (MockedStatic<A0021A0040RuntimeState> runtime = mockStatic(A0021A0040RuntimeState.class)) {
             runtime.when(A0021A0040RuntimeState::state).thenReturn(state);
             runtime.when(() -> A0021A0040RuntimeState.ranks(player))
-                .thenReturn(CombatPerkRanks.of(Map.of("A0035", 2, "A0036", 1)));
+                .thenReturn(CombatPerkRanks.of(Map.of("A0035", 2)));
             A0021A0040EpicFightHooks.onLivingDamagePost(event);
         }
 
         assertEquals(3, state.trauma(actor, targetId, now));
         assertFalse(state.isSundered(actor, targetId, now));
-        assertTrue(state.bonebreakerReady(actor, targetId, now));
         assertTrue(state.prepareSunder(actor, targetId, root, 2, now));
-        assertTrue(state.prepareBonebreaker(actor, targetId, root, 80, now));
     }
 
     @Test
