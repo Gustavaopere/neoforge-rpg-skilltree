@@ -19,10 +19,10 @@ Este suplemento executa o gate obrigatório **provider → árvore** para o lote
 |---|---|---|
 | RPG Skill Tree | `b32a4c85946807c38339c640614b44670c78643f` | progressão/gateways continuam authority; PR #308 tornou Volcanoes subsistema nativo do mesmo JAR; nenhuma capability nova fecha A0107/A0109/A0110 |
 | Volcanoes — repositório fonte | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` | permanece preservado como fonte/migration baseline; sua implementação canônica foi consolidada no RPG pela PR #308; não executar como segundo pipeline |
-| Enshrouded | `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec` | Stage 07.03 áudio/partículas client-side; `NÃO DEVE SER INTEGRADO` como authority de perk |
+| Enshrouded | `29ae2d9b7a13bbdffd3291d2fe4213e0705eb8e3` | Stages 07.03–07.04: áudio/partículas e perfis de acessibilidade/configuração client-side; `NÃO DEVE SER INTEGRADO` como authority de perk |
 | Black Arcana | `e89df6dc2c204c269d8f1811c6b3f309644c864a` | forecast server-authored de Arcane Resistance é read-only; reforça separação de A0102, não cria reducer genérico |
 
-A verificação usou `main` e `plans/STATUS.md` frescos dos quatro projetos. O avanço concorrente da `main` foi reavaliado até o head acima; estados preparatórios não foram promovidos por nome ou intenção.
+A verificação usou `main` e `plans/STATUS.md` frescos dos quatro projetos. O avanço concorrente da `main` foi reavaliado até os heads acima; estados preparatórios não foram promovidos por nome ou intenção.
 
 ## RPG Skill Tree
 
@@ -78,12 +78,13 @@ Classificação: **MIGRADO PARA SUBSISTEMA NATIVO / SEM NOVA SEMÂNTICA DE PERK*
 
 ## Enshrouded
 
-O delta de `6642d4e...` para `5a25b03...` fecha Stage 07.03 áudio/partículas e documentação de Client Experience. O status fresco marca Stage 07 em 3/4 e Stage 08 Integrations ainda não implementado.
+O delta de `6642d4e...` para `29ae2d9...` fecha Stage 07.03 (áudio/partículas) e Stage 07.04 (perfis de acessibilidade/configuração client-side). O status fresco registra o Client Experience em 3/4 no snapshot lido antes do merge 07.04 e o head `29ae2d9...` contém a implementação/validação dessa quarta tarefa; Stage 08 Integrations continua não implementado.
 
 ### Disposição
 
-- áudio, partículas, fog e config client-side não são gameplay authority;
+- áudio, partículas, fog, perfis de acessibilidade e config client-side não são gameplay authority;
 - Shroud/Exposure/Madness permanecem sistemas próprios e não entram no allowlist A0103;
+- nenhuma configuração de acessibilidade altera a authority server-side dos estados de gameplay;
 - nenhum novo provider de incoming physical, encumbrance corporal, impact→Stamina ou durability seam surgiu.
 
 Classificação: **NÃO DEVE SER INTEGRADO AO LOTE**.
@@ -111,7 +112,7 @@ Classificação: **PROVIDER NATIVO AUTORITATIVO, SOMENTE LEITURA PARA PRESENTATI
 | `NativeVolcanoesServices` | canônico read-only | bridge/query universal | não usar atmosfera/pressão como classifier implícito A0103 |
 | Ars fixture 5.13.0 vs design 5.13.1 | drift de build | A0102 | Chat 2 reconcilia fixture/API; fail-closed se incompatível |
 | Volcanoes pressure/gas/heat/hazards | canônico | sistemas próprios | não classificar em A0103 por analogia |
-| Enshrouded audio/particles | canônico client-side | apresentação própria | não integrar como gameplay |
+| Enshrouded audio/particles/accessibility | canônico client-side | apresentação própria | não integrar como gameplay |
 | Enshrouded Shroud/Exposure | canônico | sistema próprio | não classificar em A0103 |
 | Black Arcana Arcane Resistance forecast | parcial/canônico read-only | apresentação/hazard próprio | não integrar como reducer A0102 |
 | Impact→Stamina P-0035 draft | preparatório/não canônico | A0107 | não habilita node; A0093 continua blocker |
@@ -139,7 +140,7 @@ Após a disposição acima, os próximos checkpoints documentais tornam-se:
 
 - RPG Skill Tree: `b32a4c85946807c38339c640614b44670c78643f`
 - Volcanoes — source/migration baseline: `eaddc3232dfc600780769f4a5e7e45ff1e50181c`
-- Enshrouded: `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec`
+- Enshrouded: `29ae2d9b7a13bbdffd3291d2fe4213e0705eb8e3`
 - Black Arcana: `e89df6dc2c204c269d8f1811c6b3f309644c864a`
 
 A authority executável do Volcanoes está agora no mesmo `rpgskilltree` JAR; o SHA do repositório fonte permanece registrado apenas para provenance/migração enquanto a limpeza separada não ocorre.
