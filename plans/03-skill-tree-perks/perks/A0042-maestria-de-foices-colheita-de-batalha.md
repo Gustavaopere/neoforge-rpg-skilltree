@@ -52,3 +52,12 @@ Sem receipt real de Stamina, a transferência da Marca continua válida e o refu
 - alvo diferente obrigatório;
 - cooldown 10/9/8;
 - refund omitido sem receipt causal.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura SCYTHE:** Scythe Simply só entra quando Epic Fight Compat resolve `SCYTHE`.
+- **Execute provider-owned:** o execute Implicit não cria por si só `eligible_kill` nem uma segunda ativação de Colheita.
+- **Causalidade permitida:** se o provider comprovar que a morte por execute pertence inequivocamente ao mesmo root direto SCYTHE do jogador, esse único abate pode ser submetido uma vez ao serviço anti-abuso `eligible_kill`; evento execute/derived separado ou apenas ownership da arma permanece inelegível.
+- **Deduplicação:** `P-A0042-02` continua obrigatória inclusive nessa rota; dois listeners não podem armar duas vezes a mesma morte.
+- **Stamina:** execute/ability do Simply não fornece receipt do custo de stamina da ação consumidora.
+- **Notion:** `Provider/Mods`, `Hook`, `Fallback` e `Regra` corrigidos; re-fetch PASS.
