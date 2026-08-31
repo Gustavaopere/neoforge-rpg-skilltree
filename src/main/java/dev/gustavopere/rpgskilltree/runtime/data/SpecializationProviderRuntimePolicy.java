@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.data;
 
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import java.util.Set;
 
 /**
@@ -9,16 +10,20 @@ import java.util.Set;
  * gateway until the RPG runtime has a complete provider adapter for that specialization family.</p>
  */
 public final class SpecializationProviderRuntimePolicy {
-    private static final Set<String> COMPLETE_ADAPTERS = Set.of(
+    private static final Set<String> VERSION_AGNOSTIC_COMPLETE_ADAPTERS = Set.of(
         "rpgskilltree",
         "irons_spellbooks",
-        "ars_nouveau",
-        "epicfight"
+        "ars_nouveau"
     );
 
     private SpecializationProviderRuntimePolicy() {}
 
-    public static boolean hasCompleteAdapter(String providerId) {
-        return providerId != null && COMPLETE_ADAPTERS.contains(providerId);
+    public static boolean hasCompleteAdapter(String providerId, String installedVersion) {
+        if (providerId == null) return false;
+        if (VERSION_AGNOSTIC_COMPLETE_ADAPTERS.contains(providerId)) return true;
+        if (providerId.equals("epicfight")) {
+            return EpicFightVersionContract.supportsVersion(installedVersion);
+        }
+        return false;
     }
 }
