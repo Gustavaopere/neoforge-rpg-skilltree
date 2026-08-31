@@ -3,6 +3,7 @@
 **Intervalo fechado:** A0101–A0110, exatamente 10 perks consecutivas.  
 **Data:** 2026-08-31.  
 **Base de abertura:** `main@2e1c5b62f89d2311eb645882e3547944d0f68869`.  
+**Freshness final auditada:** `main@b32a4c85946807c38339c640614b44670c78643f`.  
 **Responsabilidade:** auditoria/design/documentação. Nenhum runtime foi implementado por este Chat 1.
 
 ## Fontes obrigatórias
@@ -50,6 +51,30 @@ Exclusões explícitas incluem fall/cramming/in-wall, drown/starve/freeze, fogo/
 
 A página foi re-fetched após a escrita e a persistência foi confirmada. As outras nove já apresentavam contrato suficiente no fetch fresco e não foram regravadas desnecessariamente.
 
+## Freshness superveniente — consolidação Volcanoes
+
+Durante o fechamento, a `main` avançou e mergeou a PR #308 (`feat: consolidate Volcanoes into RPG Skill Tree`) com merge commit `f613dac5a15b26c7a92e07a9d9cb537c2412ddf2`, seguida de ajustes de Sonar/infra até `b32a4c85946807c38339c640614b44670c78643f`.
+
+A PR #308 usa como fonte canônica Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c` e transforma Volcanoes em subsistema nativo do mesmo JAR `rpgskilltree`:
+
+- `RpgSkillTreeMod` inicializa `VolcanoesMod.initialize(...)`;
+- `VolcanoesMod` não é segundo `@Mod`; `volcanoes:*` permanece namespace estável;
+- `NativeVolcanoesServices` fornece somente consultas read-only para geologia, regiões vulcânicas, tectônica, atmosfera e pressão;
+- simulação/authority/anti-double-processing de Volcanoes permanecem próprios, mesmo dentro do mesmo artefato;
+- o repositório fonte continua preservado em `eaddc323...` enquanto a limpeza separada não ocorre, mas não deve ser tratado como segundo runtime a instalar/executar em paralelo.
+
+### Impacto no lote
+
+A consolidação altera wiring/ownership, **não a identidade mecânica das dez perks**:
+
+- A0103 não pode inferir `environmental` de `NativeVolcanoesServices.atmosphereAt(...)`, pressão, geologia ou localização. Apenas o `DamageType` allowlisted/adaptado explicitamente autoriza a perk.
+- A0109 continua sem provider de body encumbrance; pressão, veículo, Sable/Create ou equipamento Volcanoes não substituem esse provider.
+- A0110 continua sem seam global pós-Unbreaking/pré-decremento.
+- A0107 continua bloqueada por A0093 + P-0035 não canônico.
+- nenhum blocker foi removido e nenhum bônus novo foi criado.
+
+O delta bidirecional completo está em `guides/projects/16-capability-delta-a0101-a0110.md`.
+
 ## Decisões estruturais por perk
 
 ### A0101 — projétil físico
@@ -62,7 +87,7 @@ Owner primário: `neoforge:is_magic`, adapters Iron's/Ars somente por fonte caus
 
 ### A0103 — ambiente não elemental
 
-Somente o allowlist enumerado é canônico inicialmente. Não usar `source.getEntity()==null`, namespace ou tema. Volcanoes, Enshrouded, Cold Sweat e Thirst mantêm suas authorities.
+Somente o allowlist enumerado é canônico inicialmente. Não usar `source.getEntity()==null`, namespace, tema, `NativeVolcanoesServices`, atmosfera, pressão ou posição como classifier. Volcanoes, Enshrouded, Cold Sweat e Thirst mantêm suas authorities.
 
 ### A0104 — crossing confirmado
 
@@ -78,7 +103,7 @@ Três eventos hostis diretos confirmados em 80 ticks ativam por 120 ticks +15% A
 
 ### A0107 — conversão impacto→Stamina
 
-Sem taxa universal. Exige quote provider-native versionado e débito/redução atômicos. A0093 unavailable e P-0035 permanece apenas no draft PR #15; node atual indisponível.
+Sem taxa universal. Exige quote provider-native versionado e débito/redução atômicos. A0093 unavailable e P-0035 permanece apenas no draft histórico; node atual indisponível.
 
 ### A0108 — tradeoff inseparável
 
@@ -86,7 +111,7 @@ Sem taxa universal. Exige quote provider-native versionado e débito/redução a
 
 ### A0109 — encumbrance corporal real
 
-HEAVY/EXTREME numbers ficam congelados, mas nenhum threshold é inventado. Weight/Create Aeronautics/Sable/Armor/inventário/velocidade não são provider de carga corporal. A0108 + provider ausente bloqueiam o node.
+HEAVY/EXTREME numbers ficam congelados, mas nenhum threshold é inventado. Weight/Create Aeronautics/Sable/Armor/inventário/velocidade/pressão não são provider de carga corporal. A0108 + provider ausente bloqueiam o node.
 
 ### A0110 — conservação antes do decremento final
 
@@ -97,32 +122,32 @@ Precisa seam após prevenção nativa/Unbreaking e antes do `setDamageValue`/bre
 | Eixo | Resultado | Evidência/decisão |
 |---|---|---|
 | 1. Dependências, bloqueios e gates | PASS | predecessors/gateways e availability transitiva definidos; A0107–A0110 não gastam PP indisponíveis |
-| 2. Integração global | PASS | um DamageMitigationResolver, healing/attribute/progression pipelines canônicos; sem segundo ledger |
+| 2. Integração global | PASS | um DamageMitigationResolver, healing/attribute/progression pipelines canônicos; Volcanoes nativo preserva pipeline próprio sem duplicação |
 | 3. Qualidade e identidade | PASS | todas possuem identidade mecânica; fail-closed preserva a identidade em vez de trocar por bônus |
 | 4. Ramificação/distância/topologia | PASS | VITALITY, bridges ARCANE/SURVIVAL/MARTIAL, Fortaleza e início SURVIVAL coerentes |
 | 5. Especializações | PASS/N/A | nenhuma perk cria grant paralelo; gateways continuam ProgressionService/Stage04 |
 | 6. Tradução PT-BR | PASS | nomes/efeitos/regras player-facing em PT-BR |
 | 7. Notion completo | PASS | 10/10 fetch; A0103 corrigida e re-fetch persistido |
 | 8. Remoção total do NeoVitae | PASS/N/A | nenhum contrato do lote depende de NeoVitae |
-| 9. Cobertura completa da modlist/integrations | PASS | providers pertinentes auditados; capability delta e matriz bidirecional registradas |
+| 9. Cobertura completa da modlist/integrations | PASS | providers pertinentes auditados; consolidação Volcanoes e capability delta bidirecional registrados |
 
 ## Checklist técnico consolidado — 18/18
 
 | # | Critério obrigatório | Resultado |
 |---:|---|---|
 | 1 | O efeito precisa existir de verdade | PASS — hooks reais especificados; o que não existe permanece unavailable |
-| 2 | Provider-native first | PASS — magia, Stamina, hazards, body state e durability preservam owners |
-| 3 | Sem mecânica inventada disfarçada de integração | PASS — nenhum 1:1 impact/Stamina, encumbrance inventado ou repair pós-fato |
+| 2 | Provider-native first | PASS — magia, Stamina, hazards, body state, Volcanoes e durability preservam owners |
+| 3 | Sem mecânica inventada disfarçada de integração | PASS — nenhum 1:1 impact/Stamina, encumbrance inventado, classifier por atmosphere/pressure ou repair pós-fato |
 | 4 | Fail-closed | PASS — A0107/A0108/A0109/A0110 explicitamente unavailable; demais nodes não compráveis antes dos consumers |
 | 5 | Fallback não muda identidade | PASS — unknown sources são omitidas; nenhum bônus genérico substitui hook ausente |
 | 6 | Mastery somente por feitos discretos | PASS/N/A — lote não concede Mastery |
 | 7 | Anti-farm e anti-rebuild | PASS/N/A + causal dedup — nenhum loop de construção/throughput; roots/uses deduplicados |
 | 8 | Atribuição causal ao jogador | PASS — hostilidade/root/use causal explícitos quando aplicável |
-| 9 | Não duplicar pipelines canônicos | PASS — mitigation/healing/attributes/progression únicos |
+| 9 | Não duplicar pipelines canônicos | PASS — mitigation/healing/attributes/progression únicos; Volcanoes consolidado não é duplicado |
 | 10 | Custos e recursos têm que ser reais | PASS — Stamina A0107 só provider-native; durabilidade A0110 só decremento real |
 | 11 | Sem geração gratuita ou duplicação acidental | PASS — healing bounded, modifier uniqueness, no repair/refund/free resources |
-| 12 | Read-only realmente read-only | PASS — Black Arcana forecast permanece somente leitura |
-| 13 | Versionamento explícito | PASS — NeoForge 21.1.248, Epic Fight 21.17.3.1, Iron's 3.16.3, Ars 5.13.1; drift de fixture registrado |
+| 12 | Read-only realmente read-only | PASS — Black Arcana forecast e `NativeVolcanoesServices` permanecem consulta, não authority de mutação da perk |
+| 13 | Versionamento explícito | PASS — NeoForge 21.1.248, Epic Fight 21.17.3.1, Iron's 3.16.3, Ars 5.13.1; drift de fixture registrado; Volcanoes source `eaddc323...` migrado pela #308 |
 | 14 | Coerência estrutural da árvore | PASS — função/camada/custo/ranks/power/topologia revisados |
 | 15 | Dependências com semântica correta | PASS — blockers A0093/A0100 e gateways não são bypassados |
 | 16 | Sem sobreposição indevida | PASS — magia genérica ≠ Arcane Resistance; ambiente ≠ temperatura/pressão/Shroud; weight ≠ body encumbrance |
@@ -135,10 +160,12 @@ O suplemento `guides/projects/16-capability-delta-a0101-a0110.md` registra `main
 
 Resumo:
 
-- RPG Skill Tree: progressão/classes/gateways = **PROGRESSÃO NATIVA AUTORITATIVA**; nenhum novo hook fecha A0107/A0109/A0110.
-- Volcanoes: **SEM DELTA**; hazards não entram em A0103 por analogia.
+- RPG Skill Tree: progressão/classes/gateways = **PROGRESSÃO NATIVA AUTORITATIVA**.
+- Volcanoes PR #308: **SUBSISTEMA NATIVO CANÔNICO / BRIDGE READ-ONLY**, sem nova classificação defensiva; não duplicar o provider.
+- Volcanoes source repo: baseline/provenance `eaddc323...`, não segundo runtime.
 - Enshrouded: Stage07.03 áudio/partículas = **NÃO DEVE SER INTEGRADO** como gameplay.
 - Black Arcana: Arcane Resistance forecast = provider próprio **READ-ONLY**; não é reducer A0102.
+- nenhum novo hook fecha A0107/A0109/A0110.
 
 ## Handoff obrigatório ao Chat 2
 
@@ -147,7 +174,8 @@ O Chat 2 deve implementar exatamente os contracts dos dez dossiês, sem reabrir 
 - implementar consumers/availability de A0101–A0106 conforme dossiê;
 - reconciliar Ars fixture 5.13.0 → design 5.13.1 com evidência de API;
 - preservar A0107/A0108/A0109/A0110 fail-closed enquanto blockers reais persistirem;
-- não promover draft PR #15, Weight/Create/Sable ou `damageItem` como hooks suficientes;
+- não promover draft P-0035, Weight/Create/Sable/Volcanoes pressure ou `damageItem` como hooks suficientes;
+- tratar Volcanoes como subsistema nativo do mesmo JAR e nunca criar segundo runtime/pipeline ou inferir A0103 por `NativeVolcanoesServices`;
 - atualizar dossiês/auditoria/STATUS com o estado real do código e pendências técnicas.
 
 Se API/código real divergir semanticamente, Chat 2 não inventa solução: registra evidência, aplica fail-closed e devolve redesign ao Chat 1 quando necessário.
@@ -160,12 +188,14 @@ Além dos testes específicos em cada dossiê:
 - causalidade e one-root/one-use dedup;
 - provider present/absent/version mismatch;
 - ordering de mitigation A0101/A0102/A0103 → A0106;
+- A0103 não classifica por `NativeVolcanoesServices`, atmosphere/pressure/localização;
 - A0104 scheduler/cancelamento/reload;
 - A0105 attribute uniqueness/lifecycle;
 - A0106 token/cooldown/exclusions/anti-reset;
 - A0107 atomic quote/debit caso venha a existir; caso contrário unavailable;
 - A0108/A0109 availability transitiva e atomicidade de tradeoffs;
 - A0110 ausência de hook falso e, futuramente, ordem pós-Unbreaking/pre-write;
+- single-JAR/sem segundo Volcanoes provider no acceptance pertinente;
 - unit tests, NeoForge GameTests, validators pertinentes, NeoForge build, JAR e dedicated-server smoke.
 
 ## Estado final Chat 1
