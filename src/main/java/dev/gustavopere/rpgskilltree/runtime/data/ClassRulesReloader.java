@@ -19,6 +19,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -51,6 +52,21 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
         for (JsonElement element : resources.values()) {
             JsonObject root = element.getAsJsonObject();
             String classId = root.get("class_id").getAsString();
+
+            Set<String> requiredProviderMods = new HashSet<>();
+            if (root.has("required_provider_mods")) {
+                root.getAsJsonArray("required_provider_mods")
+                    .forEach(value -> requiredProviderMods.add(value.getAsString()));
+            }
+            if (!ProviderAvailabilityPolicy.allAvailable(
+                requiredProviderMods,
+                modId -> ModList.get().isLoaded(modId)
+            )) {
+                LOGGER.debug("Class {} unavailable because a required provider mod is not loaded: {}",
+                    classId, requiredProviderMods);
+                continue;
+            }
+
             EnumSet<ProgressionDomain> domains = EnumSet.noneOf(ProgressionDomain.class);
             root.getAsJsonArray("required_completed_domains")
                 .forEach(value -> domains.add(ProgressionDomain.valueOf(value.getAsString())));
