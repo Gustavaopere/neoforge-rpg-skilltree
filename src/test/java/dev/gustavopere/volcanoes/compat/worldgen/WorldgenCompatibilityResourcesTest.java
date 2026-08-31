@@ -45,8 +45,8 @@ final class WorldgenCompatibilityResourcesTest {
 
     @Test
     void matrixPinsVerifiedWorldgenStackAndDoesNotDeleteHostContent() throws Exception {
-        String script = Files.readString(Path.of(".github/scripts/run_worldgen_matrix_case.sh"));
-        String workflow = Files.readString(Path.of(".github/workflows/worldgen-compatibility-matrix.yml"));
+        String script = Files.readString(Path.of(".github/scripts/volcanoes/run_worldgen_matrix_case.sh"));
+        String workflow = Files.readString(Path.of(".github/workflows/volcanoes-worldgen-compatibility-matrix.yml"));
 
         assertTrue(script.contains("modrinth_version IY93YaEe"), "Terralith 2.6.2 must stay pinned");
         assertTrue(script.contains("modrinth_version vNrkxC3z"), "Tectonic 3.0.26 must stay pinned");
