@@ -20,4 +20,41 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo diagnostic
+
+          auth_header="Authorization: Bearer ${SONAR_TOKEN}"
+          base="https://sonarcloud.io"
+
+          curl --silent --show-error --fail --location \
+            --header "$auth_header" \
+            "$base/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=1" \
+            > /tmp/analyses.json
+
+          analysis=$(jq -r '.analyses[0].key // empty' /tmp/analyses.json)
+          analysis_date=$(jq -r '.analyses[0].date // empty' /tmp/analyses.json)
+          if [[ -z "$analysis" ]]; then
+            echo 'No main analysis returned by SonarQube Cloud.' >&2
+            exit 1
+          fi
+
+          echo "Latest main analysis: ${analysis} at ${analysis_date}"
+
+          code=$(curl --silent --show-error --location \
+            --output /tmp/set-baseline.json --write-out '%{http_code}' \
+            --request POST \
+            --header "$auth_header" \
+            --data-urlencode "analysis=${analysis}" \
+            --data-urlencode "project=${SONAR_PROJECT}" \
+            --data-urlencode "branch=main" \
+            "$base/api/project_analyses/set_baseline")
+
+          echo "set_baseline HTTP ${code}"
+          if [[ "$code" != "200" && "$code" != "204" ]]; then
+            cat /tmp/set-baseline.json
+            exit 1
+          fi
+
+          curl --silent --show-error --fail --location \
+            --header "$auth_header" \
+            "$base/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&ps=1" \
+            > /tmp/issues.json
+          jq '{currentNewIssues: (.paging.total // .total)}' /tmp/issues.json
