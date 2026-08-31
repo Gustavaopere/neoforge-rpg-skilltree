@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,8 +18,11 @@ import java.util.UUID;
  *
  * <p>The target class otherwise persists only deposit id plus BlockPos. Without a marker stored in
  * that host record, an exact-value foreign replacement is information-theoretically indistinguishable
- * after restart. This mixin is passive unless the exact-version Volcanoes RNS writer sets a marker.</p>
+ * after restart. This mixin is passive unless the exact-version Volcanoes RNS writer sets a marker.
+ * The target belongs to an optional provider, so {@link Pseudo} keeps core-only servers from requiring
+ * the RNS class while still applying the mixin when the compatible host is present.</p>
  */
+@Pseudo
 @Mixin(targets = "com.bmaster.createrns.content.deposit.info.CustomServerDepositLocation", remap = false)
 abstract class CustomServerDepositLocationMixin implements RnsProjectionOwnerMarker {
     @Unique
