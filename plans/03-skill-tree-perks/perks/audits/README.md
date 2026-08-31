@@ -29,6 +29,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 ## Auditorias de fechamento por lote — Chat 1
 
 - `AUDITORIA-A0061-A0070.md` — fechamento de design A0061–A0070, incluindo correção fail-closed/unavailable de A0067, cobertura BOSS de A0070 e gate de delta dos quatro projetos próprios.
+- `AUDITORIA-A0071-A0080.md` — fechamento de design A0071–A0080, incluindo availability transitiva, reservation→commit, posturas server-authoritative, sustain all-or-nothing, movement/stationary e dodge-success fail-closed.
 
 ## Auditorias de delta da modlist — Chat 1
 
