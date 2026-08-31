@@ -119,16 +119,19 @@ public final class RpgSkillTreeMod {
         boolean mineColoniesLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
         boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
         String mineColoniesVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
+        String ironsSpellbooksVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
         BattleMageIntegrationState battleMageState = BattleMageIntegrationBootstrap.evaluate(
             mineColoniesLoaded,
             ironsSpellbooksLoaded,
-            mineColoniesVersion
+            mineColoniesVersion,
+            ironsSpellbooksVersion
         );
         if (battleMageState == BattleMageIntegrationState.ACTIVE) {
             battleMageState = BattleMageIntegrationBootstrap.install(
                 true,
                 true,
                 mineColoniesVersion,
+                ironsSpellbooksVersion,
                 () -> {
                     MineColoniesBattleMageRegistration.register(modBus);
                     NeoForge.EVENT_BUS.register(BattleMageSpellProfileReloader.class);
@@ -141,17 +144,19 @@ public final class RpgSkillTreeMod {
                 LOGGER,
                 Category.COMPAT,
                 "minecolonies_battle_mage_active",
-                "MineColonies Battle Mage integration active for MineColonies {}",
-                mineColoniesVersion
+                "MineColonies Battle Mage integration active: MineColonies {}, Iron's {}",
+                mineColoniesVersion,
+                ironsSpellbooksVersion
             );
         } else if (battleMageState != BattleMageIntegrationState.ABSENT_PROVIDER) {
             RuntimeDiagnostics.warn(
                 LOGGER,
                 Category.COMPAT,
                 "minecolonies_battle_mage_disabled",
-                "MineColonies Battle Mage integration disabled: state={}, version={}",
+                "MineColonies Battle Mage integration disabled: state={}, MineColonies={}, Iron's={}",
                 battleMageState,
-                mineColoniesVersion
+                mineColoniesVersion,
+                ironsSpellbooksVersion
             );
         }
 
