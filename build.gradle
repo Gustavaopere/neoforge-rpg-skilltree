@@ -131,6 +131,7 @@ dependencies {
 
     testImplementation('curse.maven:cold-sweat-506194:8302211') { transitive = false }
     testImplementation("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") { transitive = false }
+    testImplementation "net.neoforged:testframework:${neo_version}"
     testImplementation 'org.mockito:mockito-core:5.23.0'
     testImplementation platform("org.junit:junit-bom:${junit_version}")
     testImplementation 'org.junit.jupiter:junit-jupiter'
