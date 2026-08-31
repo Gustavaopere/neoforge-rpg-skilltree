@@ -32,6 +32,8 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0061-A0070.md` — fechamento de design A0061–A0070, incluindo correção fail-closed/unavailable de A0067, cobertura BOSS de A0070 e gate de delta dos quatro projetos próprios.
 - `AUDITORIA-A0071-A0080.md` — fechamento de design A0071–A0080, incluindo availability transitiva, reservation→commit, posturas server-authoritative, sustain all-or-nothing, movement/stationary e dodge-success fail-closed.
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
+- A0091–A0100 foi fechado pelo Chat 1 na PR #326 em `AUDITORIA-A0091-A0100.md`; a PR ainda não estava integrada à `main` na abertura deste lote, por isso este branch não duplica aquele arquivo.
+- `AUDITORIA-A0101-A0110.md` — fechamento de design A0101–A0110, incluindo mitigação tipada, allowlist ambiental, low-health/emergency defense, availability transitiva e fail-closed de impact→Stamina, encumbrance corporal e durabilidade.
 
 ## Auditorias de delta da modlist — Chat 1
 
