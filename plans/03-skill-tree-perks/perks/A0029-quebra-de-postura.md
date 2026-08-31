@@ -43,3 +43,22 @@
 - Regressão JUnit prova que 3 Abalo não são consumidos e os bônus não são aplicados quando `heavyConfirmed=false`.
 - CI #2192 validou o fail-closed completo.
 - Estado pós-merge permanece `NÃO CONFIRMADA / FAIL-CLOSED` até o provider expor um receipt inequívoco de heavy.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura:** Hammer/Greathammer Simply só entram quando Epic Fight Compat resolve a arma como `HAMMER`.
+- **Receipts não herdados:** armor sunder/ignore, attack-speed proc, Unique ability, Runic Power, Awakening, gem power ou trait Cataclysm não satisfaz `heavyConfirmed`, guard pressure, guard break ou custo causal de stamina.
+- **Sem inferência por efeito:** queda de Armor, stun, dano elevado, tooltip, animação ou o próprio sunder do provider não podem ativar A0029.
+- **Coexistência:** efeitos Simply podem ocorrer no mesmo root por seu pipeline, mas não consomem nem financiam as 3 cargas de Abalo e não criam uma segunda Quebra de Postura.
+- **Fail-closed:** `P-A0029-01` permanece integralmente aberta após esta reauditoria.
+- **Notion:** boundary Simply persistida e re-fetch PASS.
+
+## Chat 3 — auditoria pós-merge — PR #315
+
+- O provider continua sem `heavyConfirmed` seguro; `P-A0029-01` permanece aberta e o caminho real continua fail-closed.
+- Foi corrigida uma divergência latente no core: quando um receipt heavy seguro vier a existir, A0029 não pode consumir as 3 cargas de Abalo no PRE.
+- PRE agora apenas reserva 3 Abalo por root action e aplica pressão/impacto para o cálculo; POST confirmado commita exatamente 3 cargas.
+- POST cancelado/zero damage descarta a reserva sem consumo.
+- Abalo reservado não pode financiar outra root action concorrente.
+- Commit do consumidor ocorre antes do ganho A0028 do próprio hit, impedindo que a ação gere e consuma a mesma carga causalmente.
+- Nenhum heavy receipt foi fabricado e nenhuma heurística proibida foi introduzida.

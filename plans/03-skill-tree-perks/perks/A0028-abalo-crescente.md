@@ -44,3 +44,13 @@
 - Regressão JUnit prova que, sem `guardPressureAvailable`, A0028 não substitui o benefício por dano ou impacto e não consome as cargas indevidamente.
 - CI #2192 validou o fail-closed junto de JUnit, GameTests, build, JAR e dedicated-server smoke.
 - Estado pós-merge deve permanecer `IMPLEMENTAÇÃO PARCIAL / FAIL-CLOSED`, não `IMPLEMENTAÇÃO CONFIRMADA`, até existir receipt seguro.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura:** Hammer/Greathammer Simply entram somente se Epic Fight Compat resolver `HAMMER` server-side.
+- **Sunder não é postura:** o armor sunder Implicit do Simply Swords permanece provider-owned e não constitui guard/posture pressure, Abalo, heavy receipt ou Armor Negation de A0028.
+- **Anti-double-dip:** o mesmo root HAMMER pode executar o sunder do provider e registrar no máximo um ganho A0028, mas o RPG não lê queda de Armor/debuff/tooltip para fabricar pressão de guarda.
+- **Fail-closed preservado:** `P-A0028-01` continua aberta; a chegada do Simply Swords não fornece o receipt causal que faltava no Epic Fight.
+- **Simply More/Cataclysm:** effects/traits permanecem provider-owned; especificidade alpha não comprovada é fail-closed.
+- **Simply Tooltips:** não é provider mecânico.
+- **Notion:** boundary Simply registrada em `Provider/Mods`, `Hook`, `Fallback` e `Regra`; re-fetch PASS.

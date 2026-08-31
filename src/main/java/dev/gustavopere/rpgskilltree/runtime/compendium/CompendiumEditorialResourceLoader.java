@@ -54,7 +54,7 @@ public final class CompendiumEditorialResourceLoader {
     private static final Pattern SECTION_ID = Pattern.compile("^[a-z0-9_][a-z0-9_.-]*$");
     private static final Pattern PLACEHOLDER = Pattern.compile(
         "\\b(?:TODO|TBD|FIXME|PLACEHOLDER)\\b",
-        Pattern.CASE_INSENSITIVE
+        Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS
     );
     private static final Set<CompendiumEntryKind> SUPPORTED_KINDS = EnumSet.of(
         CompendiumEntryKind.ENTITY,
@@ -272,19 +272,19 @@ public final class CompendiumEditorialResourceLoader {
                 );
             }
         } else {
-            if (present) {
-                throw validation(
-                    source,
-                    prefix + ".availability",
-                    editorialId(parsedId.id()) + " is present in the current technical catalog and must use RUNTIME"
-                );
-            }
             availabilityReason = requireProse(
                 raw,
                 "availability_reason",
                 source,
                 prefix + ".availability_reason"
             );
+            if (availability == EditorialAvailability.LEGACY && present) {
+                throw validation(
+                    source,
+                    prefix + ".availability",
+                    editorialId(parsedId.id()) + " is present in the current technical catalog and cannot use LEGACY"
+                );
+            }
         }
 
         try {

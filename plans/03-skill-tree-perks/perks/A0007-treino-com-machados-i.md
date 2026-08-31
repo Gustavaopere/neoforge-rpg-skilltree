@@ -80,3 +80,13 @@
 - **Fallback/fail-closed:** sem ação direta + família `AXE` provider-native, A0007 não aplica. Nenhum bridge adicional foi criado.
 - **Notion:** nenhuma mutação necessária; o contrato atual de ataque direto/classificação segura já é suficiente.
 - **Estado histórico:** implementação da #221 já mergeada; esta retroauditoria não altera runtime.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** Simply Swords/Simply More/Integrated/Cataclysm são cobertos universalmente quando Epic Fight Compat resolve a arma como `AXE`.
+- **Provider-native:** Bleed de Greataxe e demais Implicits/Unique/gem/Runic/traits não são reimplementados e não criam roots MARTIAL adicionais.
+- **Classificação:** namespace, nome, material, tooltip ou aparência de Greataxe não substituem a capability Epic Fight.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`.
+- **Simply More alpha:** Unique sem efeito comprovado no artifact instalado fica FAIL-CLOSED.
+- **Notion:** provider/hook/fallback/regra atualizados e re-fetch PASS.
+- **Runtime:** inalterado; teste provider-present fica para Chat 2.

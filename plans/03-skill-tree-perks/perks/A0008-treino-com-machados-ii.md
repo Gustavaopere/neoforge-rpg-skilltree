@@ -103,3 +103,13 @@ Nenhuma divergência específica foi identificada nesta leitura. Mudanças futur
 - **Fallback/fail-closed:** nenhum bridge novo. Sem família `AXE` + evento de cadência seguro para a ação do jogador, a perk fica inativa.
 - **Notion:** nenhuma mutação necessária nesta perk.
 - **Estado histórico:** implementação da #221 já mergeada; sem alteração runtime.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** armas Simply participam somente por `AXE` provider-native via Epic Fight Compat + `ModifyAttackSpeedEvent`.
+- **Composição:** A0008 não retriggera/recalcula procs Simply de attack speed; atua uma vez sobre a cadência efetiva do Epic Fight.
+- **Cataclysm:** normalizações provider-native que dependam de attack speed, como o lifesteal do Ignitium, continuam sob authority do addon e observam naturalmente o valor efetivo; o RPG não bypassa a normalização.
+- **Integrated:** cobertura universal por família/material, sem node nominal.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; Simply More Unique não comprovada permanece FAIL-CLOSED.
+- **Notion:** provider/hook/fallback/regra atualizados e re-fetch PASS.
+- **Runtime:** inalterado; prova provider-present fica para Chat 2.

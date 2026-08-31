@@ -6,7 +6,7 @@ Os projetos próprios estão em desenvolvimento contínuo. O Chat 1 não pode li
 
 ## 1. Objetivo
 
-Impedir que uma mecânica nova ou alterada de RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana fique fora da árvore apenas porque nenhuma perk antiga já a menciona.
+Impedir que uma mecânica nova ou alterada de RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana fique fora da árvore apenas porque nenhuma perk antiga já a mencione.
 
 ## 2. Gate obrigatório por lote
 
@@ -153,3 +153,71 @@ Desde `de145be7...` até `77552a3d...`:
 - isso não promove Stage 06 inteiro: boss provider, manifestação e demais tasks continuam dependendo de fechamento próprio.
 
 Esses dois casos são a prova operacional de por que o delta deve ser executado em todo lote.
+
+## 11. Delta do lote A0061–A0070 — 2026-08-31
+
+Fetch fresco realizado antes da primeira perk do lote:
+
+- RPG Skill Tree: `main@6ed628864199e74af23e6234d126959829f3c968`;
+- Volcanoes: `main@a47bb868de9b4846d8ae9afb94374f9672ab381e`;
+- Enshrouded: `main@391ea82203d30cb392a3397f92e2a3cbe7fb6128`;
+- Black Arcana: `main@526d8196087c863e9df64051d5d39d88c3050856`.
+
+| Projeto | Capacidade nova/alterada desde o baseline | Estado real / evidência | Decisão principal | Perk(s)/ação | Hook/boundary / authority | Fail-closed |
+|---|---|---|---|---|---|---|
+| RPG Skill Tree | runtime geral A0061–A0080 para dano físico, penetração, Impact, condições de vida e classificação BOSS/ELITE | CANÔNICO no código de `main@6ed6288...`: `A0061A0080CombatPolicy`, `A0061A0080EpicFightHooks`, `MartialTargetClassifier` | **COBERTA POR PERK EXISTENTE** | A0061–A0070 neste lote; A0071+ permanece fora do lote | root action físico e resolvedores canônicos do RPG; uma contribuição por identidade | rotas sem provider/binding real permanecem zero; A0067 explicitamente sem binding de janela ofensiva |
+| RPG Skill Tree | bridge de projéteis físicos reaproveitando A0061–A0080 | CANÔNICO no projectile runtime; hits bow/crossbow com provenance correlacionada | **COBERTO POR SISTEMA UNIVERSAL** | A0061/A0062/A0063/A0065/A0068/A0069/A0070 podem consumir; A0066 não inventa Impact em projectile | projectile/root provenance canônica; provider do projétil mantém mechanics nativas | sem receipt físico/Impact seguro, parcela dependente não aplica |
+| RPG Skill Tree | avanços paralelos de Compêndio/itemização/classes fora do contrato destas dez perks | estado misto conforme `plans/STATUS.md`; não altera o root physical contract A0061–A0070 | **NÃO DEVE SER INTEGRADO** neste lote | nenhuma perk adicional | subsistemas próprios preservam authority | não usar plano/feature não pertinente como atalho para o lote |
+| Volcanoes | coexistência hidrotermal/RNS amadurecida: Volcanoes mantém corpos hidrotermais bounded/authoritative e integração de prospecção sem transferir genericamente worldgen | CANÔNICO/PARCIAL conforme `main@a47bb86...` e `plans/STATUS.md` | **PROGRESSÃO NATIVA AUTORITATIVA** | nenhuma A0061–A0070; perks geológicas futuras só por boundary read-only | Volcanoes-owned deposit/geology; RNS continua authority do worldgen nativo que lhe pertence | perks não produzem minério, não escrevem ownership e não inferem depósito |
+| Volcanoes | hardening/performance/world-upgrade/admin avançados | infraestrutura, não nova capacidade de combate MARTIAL | **NÃO DEVE SER INTEGRADO** | nenhuma | infrastructure provider-owned | N/A |
+| Enshrouded | Stage 06 Lich & Story avançou de Story State parcial para boss provider, manifestação, Lich Skull/reward e ritual canônicos | CANÔNICO em `main@391ea82...`; `enshrouded:shroud_lich` é registry identity nativa | **BRIDGE** apenas para identidade BOSS read-only de A0070 | A0070 pode classificar somente `enshrouded:shroud_lich` | RPG lê registry identity; Enshrouded conserva manifestação, arena, fases, Exposure, morte, Story, reward e ritual | sem exact identity/adapter, A0070 não aplica; bossbar/fase não são prova |
+| Enshrouded | Lich Skull, reward issuance, ritual e Story lifecycle | CANÔNICO no Stage 06 atual | **PROGRESSÃO NATIVA AUTORITATIVA** | nenhuma mutação A0070 | serviços Story/reward/ritual do Enshrouded | RPG não concede reward, não avança Story e não replica ledger |
+| Enshrouded | HUD de Exposure/Shroud | client experience canônica, read-only | **NÃO DEVE SER INTEGRADO** como gameplay provider | nenhuma | client presentation only | HUD nunca autoriza dano/gate/Story |
+| Black Arcana | hardening de Arcane Danger, inclusive gateway protegido para dano arcano hostil e regressões de persistence/fail-closed | CANÔNICO em `main@526d819...` | **PROGRESSÃO NATIVA AUTORITATIVA** | nenhuma perk MARTIAL nova | Black Arcana mantém Arcane Danger/Backlash/protection authority | `ARCANE_BACKLASH`, hazards e dano arcano não viram “ataque físico direto do jogador” para A0061–A0070 |
+| Black Arcana | release/provenance/hardening documental | infraestrutura | **NÃO DEVE SER INTEGRADO** | nenhuma | project hardening | N/A |
+
+### Resultado provider → árvore
+
+- Nenhuma capacidade detectada exige uma 11ª perk no lote A0061–A0070.
+- O único bridge novo diretamente pertinente é **Enshrouded Shroud Lich → classificação BOSS read-only de A0070**.
+- A0067 permanece `SEM HOOK SEGURO` no runtime atual e, por isso, o design exige node indisponível/não comprável até o binding existir.
+- Volcanoes e Black Arcana não ganham integração MARTIAL artificial apenas por possuírem hazards/dano.
+
+## 12. Baseline operacional após disposição completa do delta — 2026-08-31
+
+| Projeto | Baseline para o próximo delta | Observação |
+|---|---|---|
+| RPG Skill Tree | `6ed628864199e74af23e6234d126959829f3c968` | snapshot fresco de gameplay usado para o lote; o PR de auditoria deste lote é documental e não cria nova capacidade jogável por si. |
+| Volcanoes | `a47bb868de9b4846d8ae9afb94374f9672ab381e` | delta RNS/hardening classificado integralmente acima. |
+| Enshrouded | `391ea82203d30cb392a3397f92e2a3cbe7fb6128` | Stage 06/Lich + HUD classificados integralmente; bridge A0070 limitada à registry identity. |
+| Black Arcana | `526d8196087c863e9df64051d5d39d88c3050856` | hardening Arcane Danger classificado; nenhuma falsa integração MARTIAL. |
+
+O próximo Chat 1 deve comparar `main` fresco contra estes SHAs e registrar `SEM DELTA RELEVANTE` quando a diferença for apenas documental/merge sem nova capacidade jogável.
+
+## 13. Baseline canônico após o lote A0071–A0080 — 2026-08-31
+
+O fechamento detalhado e a disposição provider→árvore desse lote estão em [`13-capability-delta-a0071-a0080.md`](13-capability-delta-a0071-a0080.md). A seção permanece histórica; o baseline vigente foi posteriormente substituído pela seção 14.
+
+| Projeto | Baseline A0071–A0080 |
+|---|---|
+| RPG Skill Tree | `fd94cb8fce97a483f405820385758b7837285f09` |
+| Volcanoes | `bbb273d61984e2c9bb84e8f8a56668ae7e315532` |
+| Enshrouded | `391ea82203d30cb392a3397f92e2a3cbe7fb6128` |
+| Black Arcana | `526d8196087c863e9df64051d5d39d88c3050856` |
+
+A PR concorrente #301 do RPG Skill Tree foi reconciliada antes do fechamento da PR #302 e altera apenas a lane FIST/arquitetura/testes A0041–A0060; não existe delta jogável pertinente a A0071–A0080.
+
+## 14. Baseline canônico atual após o lote A0081–A0090 — 2026-08-31
+
+O fechamento detalhado e a disposição provider→árvore estão em [`14-capability-delta-a0081-a0090.md`](14-capability-delta-a0081-a0090.md). Esta seção promove seus SHAs como **baseline substituto vigente** para o próximo Chat 1.
+
+| Projeto | Baseline vigente |
+|---|---|
+| RPG Skill Tree | `6975970d086d32985d83a0018c841cce9d1cbd63` |
+| Volcanoes | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
+| Enshrouded | `391ea82203d30cb392a3397f92e2a3cbe7fb6128` |
+| Black Arcana | `710077da89da5eb4418d3ac676e148849727ff07` |
+
+Disposição do delta: os avanços concorrentes finais do RPG até `6975970d...` foram classificados antes do fechamento. As PRs #300, #306 e #311 são editoriais/instrumentais e não alteram A0081–A0090. A PR #307 adiciona gating server-side de especializações por availability de provider/adapter, uma capability arquitetural real, porém sem adicionar damage receipt, `BodyProvider`, correlação de lifesteal, producer de magia/elemento/DoT ou atributo requerido pelo lote; portanto os contratos e fail-closed A0081–A0090 permanecem inalterados. Volcanoes avançou apenas em release/hardening; Enshrouded permaneceu estável; Black Arcana endureceu Backlash/snapshots sem criar sustain ofensivo. Nenhuma dessas mudanças cria uma 11ª perk, bypassa availability ou transforma hazard/custo em dano ofensivo do jogador.
+
+O próximo ciclo deve comparar `main` fresco contra estes quatro SHAs e classificar qualquer novo avanço antes de auditar sua primeira perk.

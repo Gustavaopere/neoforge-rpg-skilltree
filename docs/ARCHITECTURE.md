@@ -41,6 +41,8 @@ The first semantic pass materializes **83 tree definitions** covering the main t
 3. display priority;
 4. stable archetype ID.
 
+`ClassResolutionQueryService` is the pure read-only boundary for this modern resolver. It snapshots the supplied archetype definitions, rejects duplicate IDs and resolves only from an already-authoritative `InvestmentState`. `ClassResolutionRuntime` binds that query to the current `ArchetypeCatalog`, but intentionally accepts `InvestmentState` rather than `ServerPlayer`; catalog-backed resolution therefore exists without creating a second player-state authority.
+
 The modern resolver is intentionally **not yet the live player-class authority**. Purchased nodes do not yet expose the canonical domain/tag/mastery contribution metadata required to build a faithful `InvestmentState`. Wiring it earlier would invent progression weights or duplicate the legacy class system.
 
 Until perk reconciliation supplies those contributions, `data/rpgskilltree/classes/`, `ClassRulesReloader` and `ClassRuleCatalog` remain the compatibility/runtime class path. This is transitional architecture, not a second desired class system.

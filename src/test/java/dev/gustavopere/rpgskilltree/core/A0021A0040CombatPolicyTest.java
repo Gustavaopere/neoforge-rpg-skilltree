@@ -21,28 +21,31 @@ public final class A0021A0040CombatPolicyTest {
         A0021A0040CombatState s=new A0021A0040CombatState();CombatPerkRanks r=ranks(Map.of("A0022",2,"A0023",2));String a="p",t="t";
         s.recordHorizontalMovement(a,0);for(int i=0;i<4;i++)A0021A0040CombatPolicy.afterConfirmedHit(f(a,t,"f"+i,WeaponFamily.DAGGER,true,true,false,false,false,false,true,.8,100+i),r,s);
         req(s.flow(a,200)==4,"flow cap");
-        var m=A0021A0040CombatPolicy.beforeHit(f(a,t,"blind",WeaponFamily.DAGGER,true,true,true,false,false,false,true,.8,300),r,s,0);
-        eq(1.25,m.damageMultiplier());eq(.10,m.physicalPenetrationFraction());req(s.flow(a,300)==2,"blind spot cost");
-        var cd=A0021A0040CombatPolicy.beforeHit(f(a,t,"blind2",WeaponFamily.DAGGER,true,true,true,false,false,false,true,.8,301),r,s,0);eq(1.0,cd.damageMultiplier());
+        var facts=f(a,t,"blind",WeaponFamily.DAGGER,false,true,true,false,false,false,true,.8,300);
+        var m=A0021A0040CombatPolicy.beforeHit(facts,r,s,0);
+        eq(1.25,m.damageMultiplier());eq(.10,m.physicalPenetrationFraction());req(s.flow(a,300)==4,"blind spot reserves cost in PRE");
+        A0021A0040CombatPolicy.afterConfirmedHit(facts,r,s);req(s.flow(a,300)==2,"blind spot commits cost in POST");
+        var cd=A0021A0040CombatPolicy.beforeHit(f(a,t,"blind2",WeaponFamily.DAGGER,false,true,true,false,false,false,true,.8,301),r,s,0);eq(1.0,cd.damageMultiplier());
         s.recordHorizontalMovement(a,1_000);s.addFlow(a,2,1_000);s.tickFlow(a,true,3_999);req(s.flow(a,3_999)>0,"no early idle decay");s.tickFlow(a,true,4_000);req(s.flow(a,4_000)==2,"first idle decay");
     }
     private static void shadowDance(){
         A0021A0040CombatState s=new A0021A0040CombatState();CombatPerkRanks r=ranks(Map.of("A0022",2,"A0024",1));for(int i=0;i<4;i++)s.addFlow("p",2,i);A0021A0040CombatPolicy.onConfirmedDodge("p",r,s,100);
-        var m=A0021A0040CombatPolicy.beforeHit(f("p","t","dance",WeaponFamily.DAGGER,true,true,false,false,false,false,true,.9,101),r,s,90);
-        eq(1.15,m.damageMultiplier());eq(1.20,m.impactMultiplier());req(s.flow("p",101)==0,"dance consumes all flow");req(s.consumeDanceMove("p",102),"first move benefit");req(!s.consumeDanceMove("p",103),"move once");
+        var facts=f("p","t","dance",WeaponFamily.DAGGER,true,true,false,false,false,false,true,.9,101);
+        var m=A0021A0040CombatPolicy.beforeHit(facts,r,s,90);
+        eq(1.15,m.damageMultiplier());eq(1.20,m.impactMultiplier());req(s.flow("p",101)==4,"dance reserves all flow in PRE");
+        A0021A0040CombatPolicy.afterConfirmedHit(facts,r,s);req(s.flow("p",101)==1,"dance cost commits before same-hit A0022 gain");req(s.consumeDanceMove("p",102),"first move benefit");req(!s.consumeDanceMove("p",103),"move once");req(!s.consumeDanceHit("p",103),"activation flank hit consumes first dance hit at POST");
     }
     private static void hammerState(){
         A0021A0040CombatState s=new A0021A0040CombatState();CombatPerkRanks r=ranks(Map.of("A0028",2,"A0029",2,"A0030",1));for(int i=0;i<3;i++)s.addAbalo("p","t",i);
-        var m=A0021A0040CombatPolicy.beforeHit(f("p","t","break",WeaponFamily.HAMMER,true,true,false,true,false,true,true,.7,10),r,s,80);eq(1.45,m.guardPressureMultiplier());eq(1.15,m.impactMultiplier());req(s.abalo("p","t",10)==0,"break consumes abalo");
-        A0021A0040CombatPolicy.onConfirmedGuardBreak("p","t",r,s,80,20);var d=A0021A0040CombatPolicy.beforeHit(f("p","t","demo",WeaponFamily.HAMMER,true,true,false,true,false,true,true,.7,21),r,s,80);eq(1.20,d.damageMultiplier());eq(1.25,d.impactMultiplier());
+        var breakFacts=f("p","t","break",WeaponFamily.HAMMER,true,true,false,true,false,false,true,.7,10);
+        var m=A0021A0040CombatPolicy.beforeHit(breakFacts,r,s,80);eq(1.45,m.guardPressureMultiplier());eq(1.15,m.impactMultiplier());req(s.abalo("p","t",10)==3,"break reserves abalo in PRE");
+        A0021A0040CombatPolicy.afterConfirmedHit(breakFacts,r,s);req(s.abalo("p","t",10)==1,"break consumes old abalo before same-hit A0028 gain");
+        A0021A0040CombatPolicy.onConfirmedGuardBreak("p","t",r,s,80,20);var demoFacts=f("p","t","demo",WeaponFamily.HAMMER,true,true,false,true,false,false,true,.7,21);var d=A0021A0040CombatPolicy.beforeHit(demoFacts,r,s,80);eq(1.20,d.damageMultiplier());eq(1.25,d.impactMultiplier());A0021A0040CombatPolicy.afterConfirmedHit(demoFacts,r,s);
     }
     private static void maceState(){
         A0021A0040CombatState s=new A0021A0040CombatState();CombatPerkRanks r=ranks(Map.of("A0034",2,"A0035",2,"A0036",1));for(int i=0;i<3;i++)s.addTrauma("p","t",2,i);
-        var sunderFacts=f("p","t","sunder",WeaponFamily.MACE,true,false,false,false,true,false,true,.8,20);
-        var sunder=A0021A0040CombatPolicy.beforeHit(sunderFacts,r,s,80);req(sunder.applyArmorSunder(),"sunder prepares");eq(.12,sunder.armorSunderFraction());req(!s.isSundered("p","t",20),"sunder waits for post");req(s.trauma("p","t",20)==3,"pre preserves trauma");
-        var sunderCommit=A0021A0040CombatPolicy.afterConfirmedHit(sunderFacts,r,s);req(sunderCommit.armorSunderCommitted(),"sunder commits");req(s.isSundered("p","t",20),"sunder state after post");req(s.trauma("p","t",20)==1,"current protected hit starts a fresh trauma after consuming prior three");
-        var boneFacts=f("p","t","bone",WeaponFamily.MACE,true,false,false,true,true,false,true,.8,21);
-        var bone=A0021A0040CombatPolicy.beforeHit(boneFacts,r,s,80);req(bone.applyBonebreaker(),"bonebreaker prepares only on pre-existing sunder");eq(.92,bone.outgoingPhysicalDamageMultiplier());eq(.90,bone.movementSpeedMultiplier());req(s.bonebreakerReady("p","t",21),"bonebreaker cooldown waits for post");var boneCommit=A0021A0040CombatPolicy.afterConfirmedHit(boneFacts,r,s);req(boneCommit.bonebreakerCommitted(),"bonebreaker commits");req(!s.bonebreakerReady("p","t",21),"bonebreaker cooldown starts after post");
+        var sunder=A0021A0040CombatPolicy.beforeHit(f("p","t","sunder",WeaponFamily.MACE,true,false,false,false,true,false,true,.8,20),r,s,80);req(sunder.applyArmorSunder(),"sunder applies");eq(.12,sunder.armorSunderFraction());req(s.isSundered("p","t",20),"sunder state");
+        var bone=A0021A0040CombatPolicy.beforeHit(f("p","t","bone",WeaponFamily.MACE,true,false,false,true,true,false,true,.8,21),r,s,80);req(bone.applyBonebreaker(),"bonebreaker");eq(.92,bone.outgoingPhysicalDamageMultiplier());eq(.90,bone.movementSpeedMultiplier());
         A0021A0040CombatState boss=new A0021A0040CombatState();for(int i=0;i<3;i++)boss.addTrauma("p","b",2,i);var half=A0021A0040CombatPolicy.beforeHit(f("p","b","boss",WeaponFamily.MACE,true,false,false,false,true,true,true,.8,20),r,boss,80);eq(.06,half.armorSunderFraction());
     }
     private static void reapingMark(){

@@ -1,0 +1,312 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:minecraft:ender_dragon",
+      "title": "Dragão Ender",
+      "summary": {
+        "text": "O Dragão Ender é o chefe ligado à progressão do End. Sua implementação usa um sistema de fases para alternar padrões de voo, aproximação, pouso e ataque conforme o estado do encontro.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:ender_dragon"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/enderdragon/EnderDragon.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/enderdragon/phases/EnderDragonPhaseManager.java"}
+        ]
+      },
+      "sections": {
+        "fases": {
+          "text": "O comportamento do chefe é delegado a fases especializadas da hierarquia de EnderDragonPhase. O Compêndio registra a existência desse ciclo sem congelar duração, velocidade, alcance ou critérios numéricos de transição.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/enderdragon/EnderDragon.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/enderdragon/phases/EnderDragonPhase.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/enderdragon/phases/EnderDragonPhaseManager.java"}
+          ]
+        },
+        "encontro": {
+          "text": "A entidade mantém lógica própria de chefe e interação com o encontro do End, incluindo estado de combate e relação com cristais do End. Cura, dano e demais parâmetros permanecem definidos pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/enderdragon/EnderDragon.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/enderdragon/EndCrystal.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:endermite",
+      "title": "Endermite",
+      "summary": {
+        "text": "A Endermite é uma pequena criatura hostil da família Monster. Sua classe mantém estado próprio de tempo de vida e registra objetivos de combate e deslocamento separados de outras criaturas do End.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:endermite"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Endermite.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "A entidade usa objetivos de IA próprios para perseguir e atacar alvos válidos. Dano, velocidade e distância de detecção continuam sob os atributos e goals carregados pelo jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Endermite.java"}
+          ]
+        },
+        "persistencia": {
+          "text": "Endermite mantém um contador de vida utilizado por sua lógica de remoção natural. O texto editorial não fixa o limite em ticks nem transforma esse detalhe de implementação em duração universal.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Endermite.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:magma_cube",
+      "title": "Cubo de magma",
+      "summary": {
+        "text": "O Cubo de magma é uma especialização de Slime adaptada ao conjunto de regras do Nether. Ele herda a base de tamanho, salto e comportamento da classe Slime e substitui partes dessa lógica em sua própria implementação.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:magma_cube"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/MagmaCube.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Slime.java"}
+        ]
+      },
+      "sections": {
+        "heranca": {
+          "text": "MagmaCube deriva diretamente de Slime, preservando a estrutura de tamanho e movimento por saltos da classe-base. A variante redefine comportamento e atributos sem exigir uma ficha duplicada do Slime comum.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/MagmaCube.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Slime.java"}
+          ]
+        },
+        "movimento": {
+          "text": "A classe do Cubo de magma possui ajustes próprios de salto, deslocamento e contato ofensivo. Força do salto, dano, intervalo e demais coeficientes permanecem definidos no runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/MagmaCube.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:ravager",
+      "title": "Devastador",
+      "summary": {
+        "text": "O Devastador é uma criatura hostil da hierarquia Raider usada em encontros de invasão. Sua classe combina ataque corpo a corpo com estados próprios de atordoamento, preparação e rugido.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:ravager"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Ravager.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/raid/Raider.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "Ravager mantém estados sincronizados para ataque e atordoamento e possui uma rotina própria de rugido que afeta entidades conforme regras internas e configurações do mundo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Ravager.java"}
+          ]
+        },
+        "invasao": {
+          "text": "Por derivar de Raider, participa da infraestrutura de invasões e celebração usada por essa hierarquia. Composição de ondas, frequência e demais regras da invasão não são reproduzidas como constantes editoriais.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Ravager.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/raid/Raider.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:shulker",
+      "title": "Shulker",
+      "summary": {
+        "text": "O Shulker é uma criatura hostil ligada às estruturas do End. Sua implementação combina fixação a faces de blocos, abertura da carapaça, reposicionamento e ataque à distância com projéteis próprios.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:shulker"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Shulker.java"}
+        ]
+      },
+      "sections": {
+        "carapaca": {
+          "text": "Shulker deriva de AbstractGolem e mantém dados sincronizados para a face de fixação e o estado de abertura. A implementação também modifica sua defesa conforme o estado da carapaça, sem que o Compêndio fixe valores de armadura.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Shulker.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/AbstractGolem.java"}
+          ]
+        },
+        "combate": {
+          "text": "A IA possui objetivos específicos de ataque e defesa e utiliza projéteis de Shulker. Cadência, alcance, dano e duração dos efeitos produzidos pelo projétil permanecem sob o runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Shulker.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/projectile/ShulkerBullet.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:silverfish",
+      "title": "Traça",
+      "summary": {
+        "text": "A Traça é uma criatura hostil pequena cuja IA possui integração própria com blocos infestados e com outras traças próximas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:silverfish"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Silverfish.java"}
+        ]
+      },
+      "sections": {
+        "blocos_infestados": {
+          "text": "Silverfish registra um objetivo específico para se integrar a blocos compatíveis. Quais blocos são válidos e como a transformação ocorre permanecem definidos pelas regras e tags do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Silverfish$SilverfishMergeWithStoneGoal.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Silverfish.java"}
+          ]
+        },
+        "grupo": {
+          "text": "A classe também possui um objetivo de despertar outras traças a partir de blocos infestados quando sua lógica é acionada. Quantidade, alcance e temporização não são congelados em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Silverfish$SilverfishWakeUpFriendsGoal.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Silverfish.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:vex",
+      "title": "Vex",
+      "summary": {
+        "text": "O Vex é uma criatura hostil voadora com vínculo opcional a uma entidade dona, origem delimitadora e estado próprio de investida. Sua IA foi construída para deslocamento livre e ataques rápidos.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:vex"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vex.java"}
+        ]
+      },
+      "sections": {
+        "vinculo": {
+          "text": "Vex mantém referência de dono e uma posição de origem opcional usada por sua IA. Também pode copiar o alvo de seu dono por meio de um objetivo dedicado.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vex.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vex$VexCopyOwnerTargetGoal.java"}
+          ]
+        },
+        "combate": {
+          "text": "A entidade possui um estado sincronizado de investida e um objetivo específico de ataque em carga. Velocidade, dano e frequência são responsabilidade do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vex.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vex$VexChargeAttackGoal.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:vindicator",
+      "title": "Vingador",
+      "summary": {
+        "text": "O Vingador é um illager hostil orientado a combate corpo a corpo. Sua classe deriva de AbstractIllager e inclui objetivos próprios para perseguição, ataque e situações especiais de agressividade.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:vindicator"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vindicator.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/AbstractIllager.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "A IA do Vingador registra combate corpo a corpo e pode ativar lógica de quebra de portas quando as condições do jogo permitem. Dano, velocidade e dificuldades elegíveis não são fixados no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vindicator.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vindicator$VindicatorBreakDoorGoal.java"}
+          ]
+        },
+        "estado_especial": {
+          "text": "A classe reconhece o estado especial associado ao nome Johnny e registra um objetivo de alvo próprio para essa condição. O Compêndio descreve o comportamento sem reproduzir listas internas de alvos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vindicator.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Vindicator$VindicatorJohnnyAttackGoal.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:warden",
+      "title": "Defensor",
+      "summary": {
+        "text": "O Defensor é uma criatura hostil cuja IA combina percepção por vibrações, gerenciamento de raiva e estados de investigação e combate. A implementação usa Brain e componentes especializados do pacote warden.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:warden"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/warden/Warden.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/warden/WardenAi.java"}
+        ]
+      },
+      "sections": {
+        "percepcao": {
+          "text": "Warden implementa VibrationSystem e integra eventos de vibração à sua lógica de percepção. O gerenciamento de raiva classifica ameaças e influencia a escolha de alvo sem que o Compêndio congele limiares numéricos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/warden/Warden.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/warden/AngerManagement.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/level/gameevent/vibrations/VibrationSystem.java"}
+          ]
+        },
+        "combate": {
+          "text": "Além do ataque corpo a corpo, a IA possui comportamento dedicado ao ataque sônico quando suas condições internas são satisfeitas. Alcance, dano, recarga e critérios exatos permanecem no runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/warden/Warden.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/warden/WardenAi.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/ai/behavior/warden/SonicBoom.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:wither",
+      "title": "Wither",
+      "summary": {
+        "text": "O Wither é um chefe hostil implementado por WitherBoss. Ele combina múltiplos alvos sincronizados, ataque à distância, estado de invulnerabilidade de invocação e lógica própria de chefe.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:wither"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/wither/WitherBoss.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "WitherBoss implementa RangedAttackMob e mantém alvos independentes para suas cabeças. A entidade dispara crânios do Wither e possui estado energizado próprio, sem que cadência, dano ou probabilidade sejam fixados editorialmente.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/wither/WitherBoss.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/projectile/WitherSkull.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/RangedAttackMob.java"}
+          ]
+        },
+        "chefe": {
+          "text": "A classe mantém barra de chefe, temporizador de invulnerabilidade de invocação e rotina própria capaz de interagir destrutivamente com blocos permitidos. Durações, raios e listas internas de exceção permanecem definidos pela implementação.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/boss/wither/WitherBoss.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

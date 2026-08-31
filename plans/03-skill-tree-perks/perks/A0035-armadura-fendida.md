@@ -31,3 +31,12 @@
 - **P-A0035-01:** verificar Mobstein 5.4.4 e provar se Witherstein está no boss tag/canonical classification. Se não estiver, criar somente mapping versionado pelo registry id comprovado. Não inferir por nome/aparência. Até lá, a atenuação específica de boss Mobstein permanece `SEM HOOK SEGURO`/não confirmada.
 - **P-A0035-02:** transformar A0035 em transação de commit pós-hit confirmado. O PRE pode preparar/autorizar o efeito, mas não pode consumir definitivamente as 3 cargas nem marcar `Sundered` antes de saber que o mesmo root action produziu dano real. Em cancelamento/dano zero, Trauma e estado devem permanecer coerentes e o debuff não pode existir apenas no state interno.
 - Preservar o modifier físico existente e seu cleanup; não alterar resistências mágicas.
+
+## Reauditoria delta — Simply Swords stack — 2026-08-31
+
+- **Cobertura MACE:** Pernach/arma Simply More só participa quando Epic Fight Compat ou mapping explicitamente versionado resolve a arma como `MACE`; aparência, nome e namespace não bastam.
+- **Debuffs separados:** qualquer armor reduction/ignore/sunder ou outro Implicit/Unique do provider permanece provider-owned e não conta como Trauma, `Sundered` RPG ou receipt de A0035.
+- **Transação:** a chegada do stack Simply não altera `P-A0035-02`; Armadura Fendida ainda precisa ser commitada somente após o mesmo root MACE produzir hit confirmado.
+- **Alpha:** efeito específico não comprovado do `simplymore-forge-1.3.0_alpha.jar` permanece fail-closed.
+- **Simply Tooltips:** não é provider mecânico.
+- **Notion:** `Provider/Mods`, `Hook`, `Fallback` e `Regra` atualizados; re-fetch PASS.

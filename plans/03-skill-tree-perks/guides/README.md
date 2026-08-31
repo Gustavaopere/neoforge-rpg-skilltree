@@ -1,18 +1,20 @@
-# Snapshots Canônicos dos Guias do Modpack
+# Guias Canônicos do Modpack
 
-Esta pasta versiona os três guias temáticos canônicos usados na auditoria e no design das perks e a coleção transversal dos **quatro projetos próprios** do modpack. O Notion continua sendo a fonte editorial de verdade; os arquivos daqui são snapshots auditáveis para leitura técnica e revisão no GitHub.
+Esta pasta versiona os três guias temáticos canônicos usados na auditoria e no design das perks e a coleção transversal dos **quatro projetos próprios** do modpack.
+
+Para **Gameplay e Sistemas**, **Mods de Magia** e **Mods de Tecnologia**, o **GitHub é a fonte editorial e técnica canônica**. Não deve existir uma segunda cópia editorial concorrente desses três guias no Notion.
 
 ## Guias temáticos
 
-1. [Gameplay e Sistemas](gameplay/README.md)
-2. [Mods de Magia](magic/README.md)
-3. [Mods de Tecnologia](technology/README.md)
+1. [Gameplay e Sistemas](gameplay/README.md) — [inventário atual da modlist](gameplay/CURRENT-MODLIST.md)
+2. [Mods de Magia](magic/README.md) — [inventário atual da modlist](magic/CURRENT-MODLIST.md)
+3. [Mods de Tecnologia](technology/README.md) — [inventário atual da modlist](technology/CURRENT-MODLIST.md)
 
 ## Projetos próprios — leitura obrigatória para o Chat 1
 
 4. [Projetos Próprios do Modpack](projects/README.md)
 
-A coleção `projects/` documenta integralmente, com estado técnico explícito:
+A coleção `projects/` permanece separada dos três guias temáticos. Ela documenta integralmente, com estado técnico explícito:
 
 - RPG Skill Tree;
 - Volcanoes;
@@ -24,20 +26,23 @@ A coleção `projects/` documenta integralmente, com estado técnico explícito:
 
 Ela é a fonte transversal para decidir se um projeto próprio deve aparecer em `Provider/Mods`, qual boundary/hook é legítimo, qual projeto conserva a autoridade, se a integração está `IMPLEMENTADO E CANÔNICO`, `IMPLEMENTADO PARCIALMENTE`, `PREPARATÓRIO / NÃO CANÔNICO`, `PLANEJADO`, `BLOQUEADO / FAIL-CLOSED` ou `NÃO APLICÁVEL`, e se uma capacidade nova exige perk, especialização, bridge, cobertura universal, progressão nativa, fail-closed ou nenhuma integração.
 
+## Autoridade de modlist
+
+A referência atual dos três guias temáticos é a `modlist.txt` reconciliada em **2026-08-30**:
+
+- **573 entradas top-level**, incluindo NeoForge;
+- **572 arquivos `.jar`**;
+- a união dos inventários atuais dos três guias cobre **572/572 JARs**;
+- NeoForge `21.1.248` é registrado separadamente como modloader;
+- sobreposição de JAR entre guias é intencional quando um mod pertence a mais de um domínio.
+
+Cada guia possui um `CURRENT-MODLIST.md`. Esse arquivo é a autoridade imediata de **presença, filename JAR e versão**. Se um capítulo histórico ainda contiver uma versão anterior, o inventário atual prevalece até a atualização editorial daquele parágrafo.
+
 ## Regra estrutural
 
-Os snapshots **não são divididos por tamanho bruto**. Cada arquivo contém uma seção completa. Isso evita títulos soltos, parágrafos começando em um arquivo e terminando em outro e Markdown quebrado por limites artificiais de captura.
+Os guias **não são divididos por tamanho bruto**. Cada arquivo contém uma seção completa. Isso evita títulos soltos, parágrafos começando em um arquivo e terminando em outro e Markdown quebrado por limites artificiais de captura.
 
 A navegação canônica de cada guia está no `README.md` de sua própria pasta. A coleção `projects/` é deliberadamente separada para impedir quatro cópias divergentes dos mesmos contratos nos três guias temáticos; cada guia possui apenas um apêndice final com o recorte pertinente.
-
-## Autoridade e referência
-
-- Gameplay e Sistemas: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6
-- Mods de Magia: https://app.notion.com/p/3c569db9f0db819e9572fd43820f9c03
-- Mods de Tecnologia: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff
-- Projetos Próprios do Modpack: https://app.notion.com/p/3cc69db9f0db81b09939eaca7c446fa2
-- Baseline amplo dos três guias temáticos: `modlist 28.08.26.txt`.
-- Delta incremental após esse baseline: **Mobstein 5.4.4**, adicionado em 2026-08-30 aos guias de Gameplay e Magia e explicitamente classificado no guia de Tecnologia como boundary **não tecnológico**.
 
 ## Regras de precisão
 
@@ -47,13 +52,12 @@ A navegação canônica de cada guia está no `README.md` de sua própria pasta.
 - Similaridade temática não cria bridge. Shroud, Corruption, Atmosphere, pressão, temperatura e Arcane Resistance permanecem autoridades distintas salvo contrato explícito.
 - O Chat 1 deve ler `projects/README.md`, os quatro dossiês, a matriz cruzada, a reconciliação e `projects/12-capability-delta-coverage.md` antes de fechar qualquer lote.
 - O Chat 1 deve fazer fetch fresco dos quatro projetos próprios por lote para detectar **capacidades novas ou alteradas mesmo que nenhuma perk já as mencione**.
-- Mods adicionados à modlist depois do snapshot devem ser incorporados incrementalmente aos guias pertinentes antes do próximo fechamento de lote.
+- Mods adicionados ou atualizados na modlist devem ser reconciliados nos `CURRENT-MODLIST.md` antes do próximo fechamento de lote.
 
 ## Integridade da organização
 
-- Gameplay: 15 arquivos de conteúdo, incluindo projetos próprios e o capítulo incremental do Mobstein.
-- Magia: 19 arquivos de conteúdo, incluindo projetos próprios e o capítulo incremental do Mobstein.
-- Tecnologia: 21 arquivos de conteúdo, incluindo projetos próprios e o boundary incremental do Mobstein.
+- Gameplay: capítulos temáticos + `CURRENT-MODLIST.md`.
+- Magia: capítulos temáticos + `CURRENT-MODLIST.md`.
+- Tecnologia: capítulos temáticos + `CURRENT-MODLIST.md`.
 - Projetos próprios: 4 dossiês completos + matriz cruzada + reconciliação + governança/checklists + matriz de delta de capacidades.
-- Cada guia temático foi originalmente reconstruído integralmente e repartido por headings de nível 1; atualizações incrementais recebem capítulos completos próprios.
 - Nenhum arquivo depende de continuar um parágrafo ou seção em outro arquivo.

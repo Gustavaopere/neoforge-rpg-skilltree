@@ -106,3 +106,14 @@ Nenhuma divergência específica encontrada. Qualquer novo adapter de arma/mod d
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria para tornar essas exclusions implementáveis sem transformar Black Arcana/Mobstein em providers da perk; re-fetch 2026-08-30 confirmou persistência.
 - **Fail-closed:** origem terminal/secundária/companion ou fonte sem `SWORD` inequívoca fica inelegível; não há bridge substituta.
 - **Estado histórico:** implementação da PR #221 já mergeada; retroauditoria não altera runtime.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** arma Simply só entra quando Epic Fight Compat resolve `SWORD` para o root direto do jogador.
+- **Crítico:** Katana double damage, Warglaive double strike, execute, ability hit, Implicit e gem power não criam uma segunda resolução crítica MARTIAL.
+- **Scaling:** helpers de Awakening/gem já escalados pelo provider não recebem scaling adicional do RPG.
+- **Integrated/Cataclysm:** material/trait não muda autoria nem cria novo root.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`.
+- **Simply More alpha:** Unique não comprovada permanece FAIL-CLOSED.
+- **Notion:** provider/hook/fallback/regra corrigidos e re-fetch PASS.
+- **Runtime:** inalterado; Chat 2 deve provar deduplicação provider-present.

@@ -132,3 +132,14 @@ Nenhuma pendência bloqueante permanece para o caminho comprovado de esquiva do 
 - **TDD GREEN:** `RPG Skill Tree CI` #2203 ficou integralmente verde no HEAD `cc7ba795437943a962cdb5e33cd350f92d0ac123`, incluindo core, JUnit, NeoForge GameTests, build, verificação do JAR e dedicated-server smoke.
 - **Cobertura que permanece fail-closed:** aparo e guarda perfeita continuam sem bridge adicional enquanto não houver receipt público causal comprovado; `ON_DODGE` continua sendo o caminho provider-native confirmado e suficiente para a implementação atual.
 - **Estado da pendência:** `P-A0006-01 RESOLVIDA` na PR #244; confirmação definitiva ocorre com o merge desta PR na `main`.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** arma Simply pode consumir Riposta apenas quando Epic Fight Compat resolve `SWORD` para o root direto.
+- **Defesa:** Deflect de Claymore/Longsword e outras defesas Simply permanecem FAIL-CLOSED como gatilho técnico até existir adapter causal público/versionado.
+- **Authority:** A0006 não desbloqueia, escala, ativa nem reduz cooldown de Unique abilities/Awakening; Implicits, Runic, sockets/gems e traits Cataclysm seguem provider-owned.
+- **Derived hits:** ability/proc separado não consome Riposta sem root direto SWORD confirmado.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; Simply More Unique não comprovada permanece FAIL-CLOSED.
+- **Notion:** provider/hook/fallback/regra atualizados e re-fetch PASS.
+- **Pendência Chat 2:** `P-SIMPLY-A0006-01` — manter Deflect→defesa técnica fail-closed salvo receipt causal comprovado; a rota `ON_DODGE` continua suficiente.
+- **Runtime:** inalterado neste Chat 1.

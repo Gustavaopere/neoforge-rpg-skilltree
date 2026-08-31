@@ -1,0 +1,304 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:minecraft:bogged",
+      "title": "Pantanoso",
+      "summary": {
+        "text": "O pantanoso é uma variante hostil da família dos esqueletos. Ele reutiliza a infraestrutura de combate à distância de AbstractSkeleton e acrescenta comportamento próprio relacionado a flechas envenenadas e corte de sua vegetação.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:bogged"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Bogged.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "Como descendente de AbstractSkeleton, usa a lógica de ataque à distância dessa hierarquia. A classe Bogged altera o projétil disparado com seu efeito próprio, sem que o Compêndio fixe duração ou intensidade em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Bogged.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/AbstractSkeleton.java"}
+          ]
+        },
+        "interacao": {
+          "text": "A entidade implementa o contrato Shearable. A interação de corte e a regeneração visual correspondente permanecem governadas pelo runtime vanilla.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Bogged.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/Shearable.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:cave_spider",
+      "title": "Aranha das Cavernas",
+      "summary": {
+        "text": "A aranha das cavernas é uma criatura hostil derivada de Spider. Ela preserva a mobilidade e a lógica básica de ataque das aranhas e adiciona um efeito próprio ao acertar alvos.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:cave_spider"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/CaveSpider.java"}
+        ]
+      },
+      "sections": {
+        "mobilidade": {
+          "text": "Por herdar Spider, participa da lógica vanilla de escalada e navegação dessa entidade. O Compêndio não presume que toda superfície ou situação permita o mesmo deslocamento fora das regras carregadas pelo jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/CaveSpider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Spider.java"}
+          ]
+        },
+        "ataque": {
+          "text": "Seu ataque corpo a corpo pode aplicar veneno conforme as condições definidas pela implementação da CaveSpider. Duração e intensidade não são congeladas no texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/CaveSpider.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:creeper",
+      "title": "Creeper",
+      "summary": {
+        "text": "O creeper é uma criatura hostil cuja principal rotina ofensiva gira em torno de aproximação, ignição e explosão. A entidade mantém estados sincronizados específicos para esse ciclo.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:creeper"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Creeper.java"}
+        ]
+      },
+      "sections": {
+        "explosao": {
+          "text": "O runtime controla o inchaço progressivo, o estado de ignição e a detonação. Raio, temporização e demais parâmetros permanecem dados mecânicos da implementação, não valores editoriais fixos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Creeper.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/ai/goal/SwellGoal.java"}
+          ]
+        },
+        "carga": {
+          "text": "A entidade também registra um estado carregado distinto do estado comum. Essa condição modifica o comportamento da explosão conforme as regras vanilla vigentes.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Creeper.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:drowned",
+      "title": "Afogado",
+      "summary": {
+        "text": "O afogado é uma variante de Zombie adaptada ao ambiente aquático. Sua classe combina a base de zumbi com controles e objetivos próprios para água, praia e combate.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:drowned"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Drowned.java"}
+        ]
+      },
+      "sections": {
+        "aquatico": {
+          "text": "A entidade possui navegação e objetivos específicos de deslocamento na água, subida e retorno entre água e terra. As decisões exatas dependem do estado e das condições avaliadas pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Drowned.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Drowned$DrownedSwimUpGoal.java"}
+          ]
+        },
+        "combate": {
+          "text": "O afogado mantém rotinas próprias de ataque, incluindo suporte a combate com tridente quando equipado de forma compatível. Equipamento, alcance e frequência continuam sob as regras vanilla.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Drowned.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Drowned$DrownedTridentAttackGoal.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:husk",
+      "title": "Zumbi-Múmia",
+      "summary": {
+        "text": "O zumbi-múmia é uma variante de Zombie com comportamento próprio de ataque e sobrevivência ambiental. Ele preserva a maior parte da infraestrutura de zumbis e acrescenta regras específicas em sua classe.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:husk"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Husk.java"}
+        ]
+      },
+      "sections": {
+        "ataque": {
+          "text": "Ao acertar um alvo em combate corpo a corpo, a classe Husk pode aplicar um efeito adicional conforme as condições vanilla. O texto não fixa duração nem intensidade desse efeito.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Husk.java"}
+          ]
+        },
+        "heranca": {
+          "text": "Como descendente de Zombie, compartilha estados e rotinas da família de zumbis, enquanto sobrescreve pontos específicos de comportamento. Diferenças efetivas são resolvidas pelo runtime, não inferidas apenas pelo nome da variante.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Husk.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Zombie.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:skeleton",
+      "title": "Esqueleto",
+      "summary": {
+        "text": "O esqueleto é uma criatura hostil especializada em combate à distância. Sua classe deriva de AbstractSkeleton, que centraliza a infraestrutura compartilhada por várias criaturas esqueléticas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:skeleton"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Skeleton.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "A hierarquia AbstractSkeleton seleciona objetivos de ataque e coordena o uso de arma à distância quando a entidade está equipada para isso. Distância, cadência e dano permanecem mecânicas do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Skeleton.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/AbstractSkeleton.java"}
+          ]
+        },
+        "variantes": {
+          "text": "Pantanoso e Errante pertencem à mesma família técnica de AbstractSkeleton, mas possuem classes e comportamentos próprios. O Compêndio mantém cada ID como entrada independente.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/AbstractSkeleton.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Bogged.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Stray.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:spider",
+      "title": "Aranha",
+      "summary": {
+        "text": "A aranha é uma criatura hostil com mobilidade própria de escalada e uma IA de ataque baseada em aproximação ao alvo. Sua classe também serve de base para a Aranha das Cavernas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:spider"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Spider.java"}
+        ]
+      },
+      "sections": {
+        "mobilidade": {
+          "text": "A entidade sincroniza um estado de escalada e ajusta seu deslocamento conforme colisões e superfície. O comportamento concreto continua condicionado ao ambiente processado pelo jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Spider.java"}
+          ]
+        },
+        "ataque": {
+          "text": "Spider registra objetivos próprios de ataque e seleção de alvo. A agressividade efetiva depende das condições avaliadas pela IA vanilla, em vez de uma classificação editorial estática além do seu tipo hostil.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Spider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Spider$SpiderAttackGoal.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:stray",
+      "title": "Errante",
+      "summary": {
+        "text": "O errante é uma variante hostil da família dos esqueletos. Ele deriva de AbstractSkeleton e modifica o projétil usado em seu combate à distância.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:stray"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Stray.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "A entidade compartilha o sistema de ataque à distância de AbstractSkeleton, mas produz uma flecha com efeito próprio por meio da implementação de Stray. Duração e intensidade não são fixadas editorialmente.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Stray.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/AbstractSkeleton.java"}
+          ]
+        },
+        "familia": {
+          "text": "Apesar da herança compartilhada com Esqueleto e Pantanoso, o errante possui ID, classe e comportamento de projétil próprios, portanto permanece uma entrada editorial separada.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Stray.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:witch",
+      "title": "Bruxa",
+      "summary": {
+        "text": "A bruxa é uma criatura hostil que alterna entre uso defensivo de poções e ataque à distância com poções arremessáveis. A própria classe decide qual ação é adequada ao estado atual.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:witch"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Witch.java"}
+        ]
+      },
+      "sections": {
+        "defesa": {
+          "text": "A entidade possui lógica para selecionar e beber poções em resposta a condições do ambiente e do próprio estado. Probabilidades, escolha específica e duração dos efeitos permanecem controladas pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Witch.java"}
+          ]
+        },
+        "ataque": {
+          "text": "Witch implementa RangedAttackMob e arremessa poções contra alvos. A poção escolhida depende das condições avaliadas durante o ataque, sem uma tabela editorial fixa de prioridades.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Witch.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/RangedAttackMob.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:zombie",
+      "title": "Zumbi",
+      "summary": {
+        "text": "O zumbi é uma criatura hostil que serve de base técnica para diversas variantes. Sua implementação reúne combate corpo a corpo, estado de bebê, equipamentos e rotinas condicionais de conversão e navegação.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:zombie"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Zombie.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "Zombie registra objetivos de ataque e pode habilitar comportamentos adicionais, como interação com portas, conforme dificuldade e condições permitidas pelo runtime. O texto não transforma essas possibilidades em regras universais.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Zombie.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/ai/goal/BreakDoorGoal.java"}
+          ]
+        },
+        "variantes": {
+          "text": "Afogado e Zumbi-Múmia derivam diretamente de Zombie, mas sobrescrevem partes do comportamento da classe-base. Cada variante é tratada pelo Compêndio como entidade independente quando possui registry ID próprio.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Zombie.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Drowned.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Husk.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

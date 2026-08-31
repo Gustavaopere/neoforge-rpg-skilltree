@@ -52,6 +52,7 @@ import dev.gustavopere.rpgskilltree.runtime.events.EntityRewardEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.EntityScalingEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ExplorationProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.MiningProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.PhysicalProjectileMasteryEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.PlayerProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ProgressionOwnerSyncEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.RelevantPlayerCacheEvents;
@@ -99,6 +100,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(ExplorationProgressionEvents.class);
         NeoForge.EVENT_BUS.register(MiningProgressionEvents.class);
         NeoForge.EVENT_BUS.register(A0041A0060ProjectileEvents.class);
+        NeoForge.EVENT_BUS.register(PhysicalProjectileMasteryEvents.class);
         NeoForge.EVENT_BUS.register(A0081A0100CombatEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumEntityCatalogEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumFloraCatalogEvents.class);
