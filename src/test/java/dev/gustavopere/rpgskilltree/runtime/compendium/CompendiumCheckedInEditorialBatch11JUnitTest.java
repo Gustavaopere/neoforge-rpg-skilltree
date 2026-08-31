@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.compendium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.google.gson.JsonElement;
@@ -63,16 +64,24 @@ final class CompendiumCheckedInEditorialBatch11JUnitTest {
             String entryId = entry.get("entry_id").getAsString();
             actualIds.add(entryId);
             assertEquals("REVIEWED", entry.get("review_status").getAsString(), entryId);
-            assertEquals("RUNTIME", entry.get("availability").getAsString(), entryId);
+            assertEquals("OPTIONAL", entry.get("availability").getAsString(), entryId);
+            assertFalse(entry.get("availability_reason").getAsString().isBlank(), entryId);
             technicalEntries.add(technical(entryId));
         }
 
         assertEquals(EXPECTED_IDS, actualIds);
-        var snapshot = CompendiumEditorialResourceLoader.prepare(
+
+        var providerAbsent = CompendiumEditorialResourceLoader.prepare(
+            Map.of(EDITORIAL_RESOURCE, pack),
+            List.of()
+        );
+        assertEquals(EXPECTED_IDS.size(), providerAbsent.entries().size());
+
+        var providerPresent = CompendiumEditorialResourceLoader.prepare(
             Map.of(EDITORIAL_RESOURCE, pack),
             List.copyOf(technicalEntries)
         );
-        assertEquals(EXPECTED_IDS.size(), snapshot.entries().size());
+        assertEquals(EXPECTED_IDS.size(), providerPresent.entries().size());
     }
 
     private static CompendiumEntry technical(String entryId) {
