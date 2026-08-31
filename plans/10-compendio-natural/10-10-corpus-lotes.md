@@ -319,13 +319,42 @@ Entradas:
 - o loader ganhou teste de regressão para essa semântica: `OPTIONAL` é aceito com provider ausente ou presente, `RUNTIME` continua exigindo presença e `LEGACY` continua fail-closed quando a entrada técnica existe;
 - antes deste registro, o HEAD funcional passou pelo Compendium Editorial CI #251 e pelo RPG Skill Tree CI #2463, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
+## Lote 12 — TerraFirmaCraft / cultivos alimentares complementares
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/crops-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `FLORA:tfc:crop/cassava` — Mandioca
+2. `FLORA:tfc:crop/green_bean` — Vagem
+3. `FLORA:tfc:crop/lentil` — Lentilha
+4. `FLORA:tfc:crop/peanut` — Amendoim
+5. `FLORA:tfc:crop/soybean` — Soja
+6. `FLORA:tfc:crop/onion` — Cebola
+7. `FLORA:tfc:crop/potato` — Batata
+8. `FLORA:tfc:crop/tomato` — Tomate
+9. `FLORA:tfc:crop/red_bell_pepper` — Pimentão vermelho
+10. `FLORA:tfc:crop/yellow_bell_pepper` — Pimentão amarelo
+
+### Critérios editoriais aplicados ao lote 12
+
+- o provider permanece fixado no TerraFirmaCraft `1.21.1-4.2.8`, com registry IDs, localização e Field Guide auditados no tag upstream `v4.2.8`;
+- `Vagem`, `Soja`, `Cebola`, `Batata` e `Tomate` preservam a localização pt-BR do provider, normalizando apenas capitalização quando necessário;
+- onde o arquivo `pt_br.json` ainda mantém o rótulo em inglês (`Cassava`, `Lentil`, `Peanut`, `Red Bell Pepper` e `Yellow Bell Pepper`), o Compêndio fornece os aliases editoriais `Mandioca`, `Lentilha`, `Amendoim`, `Pimentão vermelho` e `Pimentão amarelo`, sem alterar nenhum registry ID;
+- Vagem e Tomate registram a mecânica comprovada de cultivo trepador em dois blocos com graveto de suporte, mas nenhum limite numérico de clima, hidratação, nutrientes ou estágio foi congelado em prosa;
+- planta cultivada, forma silvestre, estado morto e sementes continuam tratadas como identidades técnicas distintas;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL`, válidas tanto com o provider ausente quanto presente conforme o contrato corrigido no lote anterior;
+- o TDD do lote reproduziu RED exclusivamente pela ausência de `crops-batch2.json`; após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #272 e pelo RPG Skill Tree CI #2493, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **10**;
-- entradas editoriais totais: **110**;
-- lotes documentados: **11**;
+- entradas editoriais TFC reais no corpus: **20**;
+- entradas editoriais totais: **120**;
+- lotes documentados: **12**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
