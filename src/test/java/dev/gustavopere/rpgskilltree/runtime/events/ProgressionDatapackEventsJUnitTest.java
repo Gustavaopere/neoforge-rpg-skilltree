@@ -1,8 +1,10 @@
 package dev.gustavopere.rpgskilltree.runtime.events;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Method;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
+import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
@@ -41,5 +44,22 @@ final class ProgressionDatapackEventsJUnitTest {
         );
 
         assertEquals(List.of("alpha", "beta", "gamma"), reconciled);
+    }
+
+    @Test
+    void fullReloadHookExecutesRelevantPlayerBoundary() {
+        OnDatapackSyncEvent event = new OnDatapackSyncEvent(null, null) {
+            @Override
+            public Stream<ServerPlayer> getRelevantPlayers() {
+                return Stream.empty();
+            }
+        };
+
+        assertDoesNotThrow(() -> ProgressionDatapackEvents.onDatapackSync(event));
+    }
+
+    @Test
+    void nullDatapackEventIsRejected() {
+        assertThrows(NullPointerException.class, () -> ProgressionDatapackEvents.onDatapackSync(null));
     }
 }
