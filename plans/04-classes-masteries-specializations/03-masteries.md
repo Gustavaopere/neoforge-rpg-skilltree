@@ -2,7 +2,7 @@
 
 **Goal:** medir domínio por ações reais, não por posse de item ou eventos auxiliares.
 
-- [ ] Manter catálogo canônico de mastery IDs.
+- [x] Manter catálogo canônico de mastery IDs.
 - [ ] Definir evento semântico confirmado para cada fonte.
 - [ ] Ignorar ações canceladas/falhas.
 - [ ] Impedir dupla concessão por eventos que representam a mesma ação.
@@ -42,6 +42,6 @@
 - [x] Creative, spectator e `FakePlayer` continuam inelegíveis pelo adapter Epic Fight; categorias fora de `fist|knuckle` e dano não positivo falham fechado.
 - [x] Contrato coberto por teste core; build NeoForge, GameTests e dedicated-server smoke permanecem gates de CI.
 
-As caixas gerais acima permanecem abertas porque o fechamento é por catálogo/fonte completa de Mastery, não por uma única categoria de arma.
+As demais caixas gerais acima permanecem abertas porque o fechamento é por fonte completa de Mastery, não por uma única categoria de arma.
 
 **Acceptance:** repetir uma ação válida aumenta mastery exatamente uma vez e tentativas inválidas não aumentam.
