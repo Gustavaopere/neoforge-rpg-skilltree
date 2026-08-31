@@ -62,7 +62,7 @@ O checkpoint operacional mais recente está em [`16-capability-delta-a0101-a0110
 
 | Projeto | Baseline atual |
 |---|---|
-| RPG Skill Tree — inclui Volcanoes nativo | `b32a4c85946807c38339c640614b44670c78643f` |
+| RPG Skill Tree — inclui Volcanoes nativo | `66fcec7b163320cfb0d79943969aae33f3adf862` |
 | Volcanoes — source/migration baseline | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
 | Enshrouded | `29ae2d9b7a13bbdffd3291d2fe4213e0705eb8e3` |
 | Black Arcana | `e89df6dc2c204c269d8f1811c6b3f309644c864a` |
