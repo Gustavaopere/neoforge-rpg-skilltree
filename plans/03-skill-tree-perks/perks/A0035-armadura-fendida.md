@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO + boundary retroativo.
-- **Implementação:** PARCIAL / NÃO CONFIRMADA; o modifier físico existe, mas `P-A0035-02` impede considerar a transação correta. `P-A0035-01` permanece aberta para classificação boss específica do Mobstein.
+- **Implementação:** IMPLEMENTAÇÃO CONFIRMADA para o contrato canônico genérico pela PR #252; `P-A0035-02` resolvida. `P-A0035-01` permanece como extensão provider-specific Mobstein sem hook seguro comprovado.
 - **Notion:** `3c569db9-f0db-8136-89ac-e4bbcf6ab6f1`.
 
 ## Contrato canônico
@@ -15,28 +15,37 @@
 
 ## Evidência runtime
 
-- `A0021A0040CombatPolicy.beforeHit` hoje consome Trauma, marca Sundered e calcula 8/12% ainda no PRE.
-- `A0021A0040EpicFightHooks.applyArmorSunder` aplica `ADD_MULTIPLIED_TOTAL` transitório em `Attributes.ARMOR`, mantém expiry e remove no lifecycle, mas só é chamado no POST quando houve dano confirmado.
-- Portanto existe gap transacional: se a ação for cancelada ou terminar com dano ≤ 0 após o PRE, as 3 cargas já foram consumidas e o estado interno já foi marcado como Sundered, embora o modifier de Armor nunca tenha sido aplicado.
-- Adapter usa `Tags.EntityTypes.BOSSES` para a escala de boss.
+- `A0021A0040CombatPolicy.beforeHit` agora apenas prepara/reserva A0035 por `rootActionId`; não consome Trauma nem marca `Sundered` no PRE.
+- `A0021A0040CombatState.commitPreparedSunder(...)` consome exatamente 3 Trauma e marca `Sundered` somente após o mesmo root produzir hit direto/hostil com dano real.
+- Em cancelamento/dano zero, `afterConfirmedHit(...)` chama `discardPreparedMaceActions(...)`; Trauma e estado permanecem intactos e a reserva é liberada imediatamente, sem aguardar TTL.
+- `A0021A0040EpicFightHooks.applyArmorSunder` aplica `ADD_MULTIPLIED_TOTAL` transitório em `Attributes.ARMOR`, mantém expiry e remove no lifecycle; o modifier só é aplicado quando o commit POST retorna `armorSunderCommitted=true`.
+- Boss genérico usa `Tags.EntityTypes.BOSSES` e recebe metade da fração; testes do lote confirmam 12% → 6% no rank 2.
 
 ## Provider→árvore
 
 - Black Arcana/Enshrouded resistências mágicas e Shroud não são Armor física.
 - Volcanoes hazards não são Armor.
-- Mobstein documenta Witherstein como boss, mas as fontes auditadas não comprovam seu registry id nem membership em `Tags.EntityTypes.BOSSES`.
+- Mobstein documenta Witherstein como boss, mas a auditoria Chat 3 não obteve registry id nem prova de membership em `Tags.EntityTypes.BOSSES`; nenhuma classificação específica foi inventada.
 
-## Pendências Chat 2
+## Pendências Chat 2 / resolução Chat 3
 
-- **P-A0035-01:** verificar Mobstein 5.4.4 e provar se Witherstein está no boss tag/canonical classification. Se não estiver, criar somente mapping versionado pelo registry id comprovado. Não inferir por nome/aparência. Até lá, a atenuação específica de boss Mobstein permanece `SEM HOOK SEGURO`/não confirmada.
-- **P-A0035-02:** transformar A0035 em transação de commit pós-hit confirmado. O PRE pode preparar/autorizar o efeito, mas não pode consumir definitivamente as 3 cargas nem marcar `Sundered` antes de saber que o mesmo root action produziu dano real. Em cancelamento/dano zero, Trauma e estado devem permanecer coerentes e o debuff não pode existir apenas no state interno.
-- Preservar o modifier físico existente e seu cleanup; não alterar resistências mágicas.
+- **P-A0035-01 — ABERTA, NÃO BLOQUEANTE PARA O CONTRATO GENÉRICO:** Witherstein permanece `SEM HOOK SEGURO` para atenuação específica até existir registry id/tag comprovado e versionado. O boss-half genérico funciona para qualquer entidade realmente presente em `Tags.EntityTypes.BOSSES`.
+- **P-A0035-02 — RESOLVIDA:** A0035 usa reservation→POST commit; cancelamento/dano zero preserva Trauma/Sundered e libera reserva.
+- Modifier físico e cleanup foram preservados; nenhuma resistência mágica foi alterada.
 
 ## Reauditoria delta — Simply Swords stack — 2026-08-31
 
 - **Cobertura MACE:** Pernach/arma Simply More só participa quando Epic Fight Compat ou mapping explicitamente versionado resolve a arma como `MACE`; aparência, nome e namespace não bastam.
 - **Debuffs separados:** qualquer armor reduction/ignore/sunder ou outro Implicit/Unique do provider permanece provider-owned e não conta como Trauma, `Sundered` RPG ou receipt de A0035.
-- **Transação:** a chegada do stack Simply não altera `P-A0035-02`; Armadura Fendida ainda precisa ser commitada somente após o mesmo root MACE produzir hit confirmado.
+- **Transação:** Armadura Fendida é commitada somente após o mesmo root MACE produzir hit confirmado.
 - **Alpha:** efeito específico não comprovado do `simplymore-forge-1.3.0_alpha.jar` permanece fail-closed.
 - **Simply Tooltips:** não é provider mecânico.
 - **Notion:** `Provider/Mods`, `Hook`, `Fallback` e `Regra` atualizados; re-fetch PASS.
+
+## Validação Chat 3 — PR #252
+
+- `A0031A0040Chat3RegressionJUnitTest`: rollback de A0035 preserva 3 Trauma, não marca Sundered e permite nova preparação do mesmo root após término inválido.
+- `A0031A0040ImplementationContractJUnitTest`: PRE preserva estado, POST confirmado consome Trauma/marca Sundered, boss-half validado.
+- `RPG Skill Tree CI` #2806: Core, JUnit 5, NeoForge GameTests, runtime/data validations, build, JAR e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #41: **GREEN**.
+- Resultado: contrato genérico A0035 validado; apta ao merge da PR #252. A extensão Witherstein continua fail-closed documentada.
