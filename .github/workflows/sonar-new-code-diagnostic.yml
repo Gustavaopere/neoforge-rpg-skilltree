@@ -1,0 +1,23 @@
+name: Sonar New Code Diagnostic
+
+on:
+  push:
+    branches:
+      - chore/sonar-new-code-diagnostic
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Re-anchor Sonar baseline to current main
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo diagnostic
