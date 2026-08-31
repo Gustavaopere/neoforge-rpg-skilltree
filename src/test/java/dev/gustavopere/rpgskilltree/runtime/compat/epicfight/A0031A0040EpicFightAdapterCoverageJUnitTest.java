@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.Bootstrap;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -33,6 +34,7 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.MockedStatic;
@@ -56,6 +58,11 @@ import static org.mockito.Mockito.when;
 
 /** Adapter-level tests for the A0031-A0040 paths that plain domain tests cannot execute. */
 final class A0031A0040EpicFightAdapterCoverageJUnitTest {
+    @BeforeAll
+    static void bootstrapMinecraftRegistries() {
+        Bootstrap.bootStrap();
+    }
+
     @AfterEach
     void clearStaticAdapterState() {
         A0021A0040EpicFightHooks.onServerStopped(mock(ServerStoppedEvent.class));
