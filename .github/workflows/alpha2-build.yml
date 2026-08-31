@@ -84,7 +84,22 @@ jobs:
         run: ./gradlew --no-daemon runGameTestServer
 
       - name: Battle Mage provider-present GameTests
-        run: ./gradlew --no-daemon runGameTestServer -PbattleMageProviderRuntime=true
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          LOG="$PWD/build/battle-mage-provider-gametest.log"
+          rm -f "$LOG"
+          set +e
+          ./gradlew --no-daemon runGameTestServer -PbattleMageProviderRuntime=true >"$LOG" 2>&1
+          GRADLE_STATUS=$?
+          set -e
+          cat "$LOG"
+          if [[ "$GRADLE_STATUS" -ne 0 ]]; then
+            echo "Provider-present GameTest Gradle invocation failed with status $GRADLE_STATUS"
+            exit "$GRADLE_STATUS"
+          fi
+          python3 scripts/verify-battle-mage-provider-runtime.py "$LOG"
 
       - name: Compendium provenance tests
         run: python3 scripts/compendium/test_provenance.py
@@ -225,6 +240,15 @@ jobs:
           path: ${{ steps.jar.outputs.jar_path }}
           if-no-files-found: error
           retention-days: 30
+
+      - name: Upload provider GameTest log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: battle-mage-provider-gametest-${{ github.sha }}
+          path: build/battle-mage-provider-gametest.log
+          if-no-files-found: ignore
+          retention-days: 14
 
       - name: Upload server smoke log on failure
         if: failure() && github.event_name == 'push' && github.ref == 'refs/heads/main'
