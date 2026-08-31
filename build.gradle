@@ -78,6 +78,9 @@ runs {
 
     junit {
         unitTestSource project.sourceSets.test
+        testScope {
+            className = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFightAdapterCoverageJUnitTest'
+        }
     }
 
     data {
