@@ -49,3 +49,25 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew --no-daemon build sonar --info
+
+      - name: Diagnostic - print PR new-code coverage by file
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://sonarcloud.io/api/measures/component_tree?component=Gustavaopere_neoforge-rpg-skilltree&pullRequest=252&metricKeys=new_coverage,new_lines_to_cover,new_uncovered_lines&qualifiers=FIL&p=1&ps=100'
+          for attempt in {1..12}; do
+            if curl --fail --silent --show-error "$url" -o /tmp/sonar-coverage.json; then
+              python3 - <<'PY'
+          import json
+          with open('/tmp/sonar-coverage.json', encoding='utf-8') as f:
+              data = json.load(f)
+          for component in data.get('components', []):
+              path = component.get('path') or component.get('name') or component.get('key')
+              measures = {m['metric']: m.get('value', '') for m in component.get('measures', [])}
+              if any(measures.values()):
+                  print(f"SONAR_COVERAGE_FILE path={path} new_coverage={measures.get('new_coverage','')} new_lines_to_cover={measures.get('new_lines_to_cover','')} new_uncovered_lines={measures.get('new_uncovered_lines','')}")
+          PY
+              break
+            fi
+            sleep 5
+          done
