@@ -1,6 +1,6 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0080** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
+Reauditoria obrigatória do recorte **A0001–A0090** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
 A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
 
@@ -86,6 +86,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0078 | Ataque em Movimento | APROVADO | CÓDIGO PRESENTE no sprint vanilla; ParCool extra fail-closed | `P-A0078-01/-03`: forced movement/bridge PP; ParCool só por receipt real |
 | A0079 | Ataque Estacionário | APROVADO após hardening | IMPLEMENTAÇÃO PARCIAL: detector presente, forced invalidation incompleta | `P-A0079-01`: teleport/mount/vehicle/contraption/belt/forced receipts; bridge PP/testes |
 | A0080 | Golpe de Oportunidade | APROVADO EM FAIL-CLOSED | NODE INDISPONÍVEL; SEM DODGE-SUCCESS RECEIPT | `P-A0080-01`: unavailable; `P-A0080-02`: avoidedAttack receipt/dedup; `P-A0080-03`: POST commit |
+| A0081 | Recuperação de Combate | APROVADO EM FAIL-CLOSED após availability transitiva | CORE PRESENTE; NODE DEVE SER ESTRUTURALMENTE INDISPONÍVEL | `P-A0081-01` BLOQUEANTE: herdar availability A0075 no purchase/gate; `P-A0081-02`: lifecycle da reserva |
+| A0082 | Vampirismo de Arma | APROVADO após boundary de correlação nativa | CÓDIGO PRESENTE para raízes físicas comprovadas; Ignitium exige fail-closed específico | `P-A0082-01`: correlacionar lifesteal nativo Ignitium no mesmo root; `P-A0082-02`: cap/dedup/provenance |
+| A0083 | Vampirismo Mágico | APROVADO EM FAIL-CLOSED | RESOLVER PRESENTE; NODE INDISPONÍVEL SEM PRODUCER `DIRECT_MAGIC` | `P-A0083-01` BLOQUEANTE: availability + adapter causal Iron's/Ars |
+| A0084 | Sifão Elemental | APROVADO EM FAIL-CLOSED | RESOLVER PRESENTE; NODE INDISPONÍVEL SEM PRODUCER ELEMENTAL | `P-A0084-01` BLOQUEANTE: availability + element/root adapter provider-native |
+| A0085 | Sifão de Dano Periódico | APROVADO EM FAIL-CLOSED | RESOLVER PRESENTE; NODE INDISPONÍVEL SEM LEDGER APPLICATION/PULSE | `P-A0085-01` BLOQUEANTE: owner/application/pulse causal + availability |
+| A0086 | Vampirismo Universal | APROVADO após availability transitiva | CORE PRESENTE; ESTRUTURALMENTE INDISPONÍVEL | `P-A0086-01` BLOQUEANTE: A0083/A0085 indisponíveis → A0086 indisponível; não sintetizar classifiers |
+| A0087 | Sede de Sangue | APROVADO EM FAIL-CLOSED após BodyProvider/healing boundary | CORE PRESENTE com `BodyProvider(null)`; NODE INDISPONÍVEL | `P-A0087-01` BLOQUEANTE: BodyProvider Cold Sweat+exhaustion + availability A0075/A0081; `P-A0087-02/-03`: healing-received/Thirst |
+| A0088 | Constituição | APROVADO | CÓDIGO PRESENTE data-driven + `preserveHealthRatio` ligado ao refresh | `P-A0088-01`: regressões rank/respec/reload/no-free-heal/modifier uniqueness |
+| A0089 | Couro Endurecido | APROVADO | CÓDIGO PRESENTE no `Attributes.ARMOR` relativo | `P-A0089-01`: regressões zero-base/modificador relativo/não confundir STUN_ARMOR |
+| A0090 | Têmpera | APROVADO | CÓDIGO PRESENTE no `Attributes.ARMOR_TOUGHNESS` relativo | `P-A0090-01`: regressões zero-base/modificador relativo/fontes que ignoram armadura |
 
 ## Regras sistêmicas vigentes
 
@@ -116,9 +126,17 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **A0076/A0077:** `MARTIAL_STANCE` é RPG-owned; cliente envia intenção por controle remapeável/payload, servidor valida e efetiva. Sem binding de ativação, node de postura não é comprável.
 - **A0078/A0079:** movimento autopropelido e estacionário são estados distintos; mount/vehicle/contraption/belt/knockback/forced movement não podem satisfazer gates por simples delta de posição.
 - **A0080:** dodge executado não prova dodge-success; exige receipt de ataque hostil efetivamente evitado e dedup cross-provider.
-- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill; também não abre Retaliação por self-cost nem vira ação física elegível.
-- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam movimento, stance, dodge, Stamina ou dano físico destas perks; bridge Shroud Lich permanece somente A0070 read-only.
-- **Volcanoes:** hazards/geologia/prospecção permanecem fora do pipeline MARTIAL; o delta mais recente é apenas hardening de proveniência/licenças e não cria capacidade de perk.
+- **A0081:** availability é transitiva de A0075; a reserva de Recuperação é separada do `SustainResolver` e deve ser invalidada em rank loss/respec/rules reload/perda do pré-requisito.
+- **A0082–A0086:** uma única resolução de sustain por root/pulso elegível; teto móvel compartilhado de 3% da vida máxima/20 ticks; maior coeficiente elegível vence; cura nativa exata é contabilizada primeiro; correlação ambígua falha fechado.
+- **A0083/A0084/A0085:** fórmula/resolvedor sem producer provider-native não é binding; sem ao menos uma rota causal segura o node é indisponível/não comprável.
+- **A0086:** keystone não sintetiza classificadores nem bypassa predecessors indisponíveis; availability é transitiva.
+- **A0087:** benefício existe somente com BodyProvider capaz de manter calor metabólico Cold Sweat + exhaustion vanilla na mesma atividade; hidratação é eixo opcional separado por receipt causal; +8% healing received aplica uma única vez no pipeline geral de curas elegíveis, não apenas no sustain.
+- **A0088–A0090:** owner canônico é Minecraft/NeoForge; A0088 preserva proporção de vida ao recalcular max health; A0089/A0090 são bônus relativos sobre Armor/Toughness existentes e não criam STUN_ARMOR, resistência física paralela ou proteção quando a base é zero.
+- **Sustain exclusions:** `ARCANE_BACKLASH`, `BLOOD_MAGIC_COST`, dano ambiental/Volcanoes/Enshrouded, máquina, summon/companion sem autoria direta e efeitos recursivos não são dano ofensivo do jogador para A0082–A0087.
+- **Ignitium:** lifesteal nativo permanece provider-owned; sem correlação exata da cura final ao mesmo root, a fonte específica falha fechado e é proibido usar `NativeCorrelation.NONE`; armas comuns comprovadas continuam elegíveis.
+- **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill; também não abre Retaliação por self-cost nem vira ação física/mágica ofensiva elegível.
+- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam movimento, stance, dodge, Stamina ou sustain ofensivo destas perks; bridge Shroud Lich permanece somente A0070 read-only.
+- **Volcanoes:** hazards/geologia/prospecção permanecem fora dos pipelines MARTIAL/sustain; o delta mais recente é release/hardening e não cria capacidade de perk.
 - **Mobstein 5.4.4:** companions não geram autoria física do dono; Witherstein não entra em A0070/A0071 por nome/tema sem identity adapter real.
 - **Stage 11.01 itemização:** authority própria de identidade/rolls; projeções de efeitos sem hook comprovado continuam `SEM HOOK SEGURO`.
 - **NeoVitae:** removido/ausente.
@@ -338,7 +356,7 @@ O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A
 - **Dossiês criados:** 10/10.
 - **Nove eixos / 18 critérios:** PASS no design.
 - **Runtime alterado neste Chat 1:** nenhum.
-- **A0081+:** não iniciado.
+- **A0081+:** não iniciado naquele ciclo.
 
 ### Pendências destinadas ao Chat 2
 
@@ -355,3 +373,51 @@ O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A
 11. `P-A0071-80-TEST-01` — GameTest/harness transversal de classification, availability, root dedup, POST commit/rollback, stance networking, thermal all-or-nothing, movement/stationary, dodge-success, lifecycle, multiplayer e dedicated server.
 
 O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN e confirmação da `main@616a0dd36b943562ea64fa354a1a2fc49b09c77b`. O Chat 1 deve PARAR aqui; A0081–A0090 só pode começar mediante novo comando do usuário.
+
+## Chat 1 — lote exato A0081–A0090
+
+**Estado:** `LOTE FECHADO NO DESIGN; BLOCKERS RUNTIME CATALOGADOS; PR/CI/MERGE EM FECHAMENTO OPERACIONAL`.
+
+- **INÍCIO:** A0081.
+- **FIM:** A0090.
+- **Quantidade:** 10 perks consecutivas.
+- **Base de abertura do ciclo:** RPG Skill Tree `main@877120acf4f20a693e971282e8fca35bef72c6e7`.
+- **Fresh gameplay/runtime auditado:** `main@d20e7d666b627615f4af26dffb7c794b9a0b0fbd`.
+- **Freshness final pré-PR:** RPG Skill Tree `main@bc8b3d571b1a3cc85a21b7b206543a47c9a8eab4`; avanços concorrentes #300 (corpus/teste TFC do Compêndio) e #306 (narrative continuity auditor) foram classificados `SEM DELTA DE CAPABILITY PARA O LOTE`.
+- **Gate de delta próprio promovido:** Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `391ea82203d30cb392a3397f92e2a3cbe7fb6128`; Black Arcana `710077da89da5eb4418d3ac676e148849727ff07`.
+- **Delta canônico do ciclo:** `guides/projects/14-capability-delta-a0081-a0090.md`.
+- **Notion fetch fresco:** 10/10.
+- **Notion alterado:** A0081, A0082, A0083, A0084, A0085, A0086, A0087.
+- **Re-fetch pós-escrita:** 7/7 PASS em 2026-08-31.
+- **Sem mutação funcional:** A0088, A0089, A0090.
+- **Dossiês criados:** 10/10.
+- **Nove eixos / 18 critérios:** PASS no design; availability/fail-closed explícitos onde runtime/provider não prova o binding.
+- **A0081:** herda indisponibilidade de A0075 e não pode comprar rank enquanto o pré-requisito estiver estruturalmente indisponível.
+- **A0082:** caminho físico comum permanece válido; Ignitium e qualquer lifesteal nativo exigem correlação exata da cura provider-native ao mesmo root antes da parcela Skill Tree.
+- **A0083/A0084/A0085:** `SustainResolver` puro não torna os nodes implementáveis; cada um exige producer causal próprio e fica indisponível/não comprável enquanto nenhum provider seguro estiver ligado.
+- **A0086:** availability transitiva de A0083/A0085; a keystone não cria classificadores faltantes.
+- **A0087:** runtime já é fail-closed com `BloodThirstService(null)`; o purchase/gate também deve ser unavailable até BodyProvider Cold Sweat+exhaustion e disponibilidade A0075/A0081. O +8% de healing received pertence ao pipeline geral de curas elegíveis.
+- **A0088/A0089/A0090:** bindings vanilla/NeoForge reais presentes; A0088 preserva a razão de vida durante refresh e A0089/A0090 usam modifiers relativos sobre Armor/Toughness existentes.
+- **Arquivo canônico do lote:** `audits/AUDITORIA-A0081-A0090.md`.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **A0091+:** não iniciado.
+
+### Pendências destinadas ao Chat 2
+
+1. `P-A0081-01` — **BLOQUEANTE:** unavailable-node transitivo A0075→A0081; nenhum purchase/rank enquanto A0075 estiver indisponível.
+2. `P-A0081-02` — limpar reserve/snapshot/pending/claims em rank loss, respec, rules reload e perda do pré-requisito; testar cura diferida, no-overheal e não recursão no sustain.
+3. `P-A0082-01` — interceptar e correlacionar a cura nativa final de Ignitium ao mesmo root (`EXACT_INTERCEPTED` ou equivalente); sem prova, aquele root fica inelegível; nunca `NativeCorrelation.NONE` para fonte nativa conhecida.
+4. `P-A0082-02` — regressões melee/projectile físico, overkill clipping, um root/uma cura, cap móvel, projectile derivado, fake player/summon e dedup.
+5. `P-A0083-01` — **BLOQUEANTE:** availability + producer `DIRECT_MAGIC`; Iron's `SpellDamageSource` é boundary provider-native candidato e Ars precisa prova causal equivalente.
+6. `P-A0084-01` — **BLOQUEANTE:** availability + classificação elemental/root provider-native; nenhum elemento fabricado por heurística.
+7. `P-A0085-01` — **BLOQUEANTE:** ledger causal `owner + application + pulse` para DoT direto; lifecycle de alvo/ator/rank/respec/rules reload.
+8. `P-A0086-01` — **BLOQUEANTE/transitivo:** availability depende de A0083/A0085 e ranks obrigatórios; universal path não sintetiza producers ausentes.
+9. `P-A0087-01` — **BLOQUEANTE:** BodyProvider real para calor metabólico Cold Sweat + exhaustion vanilla na mesma atividade, `maintain/release`, availability herdada A0075/A0081.
+10. `P-A0087-02` — pipeline canônico geral de `healing received +8%` exatamente uma vez durante Sede de Sangue; interação com o cap de sustain sem duplicação.
+11. `P-A0087-03` — Thirst Was Reclaimed somente por adapter causal da mesma atividade; ausência omite hidratação e nunca a infere de exhaustion.
+12. `P-A0088-01` — testes de rank/respec/rules reload, preservação de razão, ausência de cura gratuita e unicidade do modifier.
+13. `P-A0089-01` — testes de zero-base, modifier relativo e separação de `STUN_ARMOR`/resistência física.
+14. `P-A0090-01` — testes de zero-base, modifier relativo e fontes que ignoram armadura/toughness.
+15. `P-A0081-90-TEST-01` — GameTest/harness transversal provider-present/absent para sustain, native heal correlation, magic/element/DoT availability, BodyProvider, attributes, lifecycle, dedup, multiplayer e dedicated server.
+
+O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige a PR desta auditoria, review resolvido, CI GREEN, merge e confirmação fresca da `main`; após isso o Chat 1 deve **PARAR**. A0091–A0100 só pode começar mediante novo comando do usuário.
