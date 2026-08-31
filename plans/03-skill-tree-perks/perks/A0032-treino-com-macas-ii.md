@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO; re-fetch sem drift, nenhuma mutação cosmética.
-- **Implementação:** PRESENTE, condicionada à classificação MACE segura de A0031.
+- **Implementação:** IMPLEMENTAÇÃO CONFIRMADA para fechamento pela PR #252 após a classificação MACE segura de A0031.
 - **Notion:** `3c569db9-f0db-81d7-8dcf-c065f2787d91`.
 
 ## Contrato canônico
@@ -17,7 +17,7 @@
 
 - `NotionCombatPerkRules.rhythmBonus(MACE)` mapeia A0032.
 - `A0021A0040EpicFightHooks.onAttackSpeed(...)` aplica o bônus provider-native.
-- O adapter depende da resolução de família MACE; portanto herda `P-A0031-01` até a tag paralela ser removida.
+- A resolução de família MACE foi corrigida na PR #252: capability/categoria Epic Fight primeiro; fallback NeoForge somente para `Items.MACE`; tag paralela removida.
 
 ## Provider→árvore
 
@@ -25,6 +25,14 @@
 - Mobstein companions não herdam a cadence do dono.
 - Nenhuma bridge nova é necessária.
 
-## Pendência Chat 2
+## Pendência Chat 2 / resolução Chat 3
 
-A0032 não exige implementação própria nova, mas só pode ser marcada confirmada após `P-A0031-01` preservar MACE com classificação provider-native/exata.
+A dependência de `P-A0031-01` foi encerrada. Nenhuma pendência própria bloqueante permanece para A0032.
+
+## Validação Chat 3 — PR #252
+
+- Classificação MACE revalidada sem tag paralela.
+- Cadence continua limitada ao `ModifyAttackSpeedEvent` provider-native; ausência de hook continua fail-closed.
+- `RPG Skill Tree CI` #2806: JUnit 5, NeoForge GameTests, build e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #41: **GREEN**.
+- Resultado: contrato A0032 validado; apta ao merge da PR #252.
