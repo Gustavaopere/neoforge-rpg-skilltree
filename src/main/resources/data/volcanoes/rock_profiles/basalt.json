@@ -1,0 +1,10 @@
+{
+  "category": "IGNEOUS_EXTRUSIVE",
+  "hardness": 0.82,
+  "permeability": 0.18,
+  "thermal_conductivity": 1.9,
+  "lava_flow_multiplier": 1.25,
+  "erosion_resistance": 0.85,
+  "hydrothermal_reactivity": 0.30,
+  "blocks": ["minecraft:basalt"]
+}

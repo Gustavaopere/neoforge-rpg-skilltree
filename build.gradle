@@ -29,6 +29,12 @@ repositories {
     mavenCentral()
     maven { url = 'https://maven.neoforged.net/releases' }
     maven { url = 'https://maven.parchmentmc.org' }
+    maven { url = 'https://maven.createmod.net' }
+    maven { url = 'https://maven.theillusivec4.top/' }
+    maven {
+        url = 'https://maven.ryanhcode.dev/releases'
+        content { includeGroup 'dev.ryanhcode.sable-companion' }
+    }
     maven {
         name = "Iron's Maven - Release"
         url = 'https://code.redspace.io/releases'
@@ -69,7 +75,7 @@ runs {
     server {}
 
     gameTestServer {
-        systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+        systemProperty 'neoforge.enabledGameTestNamespaces', "${mod_id},volcanoes"
     }
 
     junit {}
@@ -91,6 +97,8 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
+
+    // RPG progression providers.
     compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}:api"
     compileOnly("maven.modrinth:TKB6INcv:${ars_nouveau_version_id}") {
         transitive = false
@@ -111,6 +119,17 @@ dependencies {
         transitive = false
     }
 
+    // Native Volcanoes subsystem hosts. These remain optional at runtime.
+    compileOnly('curse.maven:minecolonies-245506:8621898') { transitive = false }
+    compileOnly('curse.maven:cold-sweat-506194:8302211') { transitive = false }
+    compileOnly('curse.maven:create-rns-1370563:8729955') { transitive = false }
+    compileOnly('curse.maven:sable-1312371:8673825') { transitive = false }
+    compileOnly('dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:1.6.0') { transitive = false }
+    compileOnly('com.simibubi.create:create-1.21.1:6.0.10-280:slim') { transitive = false }
+    compileOnly('net.createmod.ponder:ponder-neoforge:1.0.82+mc1.21.1') { transitive = false }
+    compileOnly('top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api') { transitive = false }
+
+    testImplementation('curse.maven:cold-sweat-506194:8302211') { transitive = false }
     testImplementation platform("org.junit:junit-bom:${junit_version}")
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -135,6 +154,13 @@ tasks.named('jacocoTestReport').configure {
 
 tasks.named('sonar').configure {
     dependsOn tasks.named('jacocoTestReport')
+}
+
+tasks.named('jar', Jar).configure {
+    from('THIRD_PARTY_NOTICES.md')
+    from('licenses/Volcanoes-BSD-2-Clause.txt') {
+        into('META-INF/licenses')
+    }
 }
 
 tasks.register('generateCombatPerkWikiSnapshot', JavaExec) {

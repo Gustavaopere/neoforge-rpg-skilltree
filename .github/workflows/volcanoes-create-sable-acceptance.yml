@@ -1,0 +1,89 @@
+name: Volcanoes Create Sable Acceptance
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: volcanoes-create-sable-acceptance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  exact-host-gametest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+
+      - name: Install exact Create, Sable and Aeronautics runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN="$PWD/runs/gameTestServer"
+          MODS="$RUN/mods"
+          META="$PWD/build/create-sable-acceptance"
+          mkdir -p "$MODS" "$META"
+          rm -rf "$RUN/world"
+          rm -f "$MODS"/*.jar
+          printf 'eula=true\n' > "$RUN/eula.txt"
+
+          curl --fail --location --retry 3 \
+            'https://maven.createmod.net/com/simibubi/create/create-1.21.1/6.0.10-280/create-1.21.1-6.0.10-280.jar' \
+            --output "$MODS/create-1.21.1-6.0.10-280.jar"
+          curl --fail --location --retry 3 \
+            'https://maven.createmod.net/net/createmod/ponder/ponder-neoforge/1.0.82+mc1.21.1/ponder-neoforge-1.0.82+mc1.21.1.jar' \
+            --output "$MODS/ponder-neoforge-1.0.82+mc1.21.1.jar"
+
+          download_modrinth_version() {
+            local version_id="$1"
+            local expected_version="$2"
+            local metadata="$META/$version_id.json"
+            curl --fail --silent --show-error --location --retry 3 \
+              "https://api.modrinth.com/v2/version/$version_id" -o "$metadata"
+            test "$(jq -r '.version_number' "$metadata")" = "$expected_version"
+            local url filename
+            url="$(jq -r '[.files[] | select(.primary == true)] | if length == 1 then .[0].url else empty end' "$metadata")"
+            filename="$(jq -r '[.files[] | select(.primary == true)] | if length == 1 then .[0].filename else empty end' "$metadata")"
+            test -n "$url" && test -n "$filename"
+            curl --fail --silent --show-error --location --retry 3 "$url" -o "$MODS/$filename"
+          }
+
+          download_modrinth_version U678xqle '2.0.5+mc1.21.1'
+          download_modrinth_version Vzp221Un '1.3.1+mc1.21.1'
+
+          for jar in "$MODS"/*.jar; do
+            jar tf "$jar" >/dev/null
+            printf 'acceptance mod: %s\n' "$(basename "$jar")"
+          done
+
+      - name: Run exact-host Create Sable Aeronautics GameTests
+        shell: bash
+        run: |
+          set -euo pipefail
+          LOG="$PWD/build/create-sable-acceptance/gametest.log"
+          gradle --no-daemon runGameTestServer 2>&1 | tee "$LOG"
+          grep -Fq 'Create 6.0.10 (create)' "$LOG"
+          grep -Fq 'Sable 2.0.5 (sable)' "$LOG"
+          grep -Fq 'Create Aeronautics 1.3.1 (aeronautics_bundled)' "$LOG"
+          grep -Eq 'All [0-9]+ required tests passed' "$LOG"
