@@ -435,3 +435,52 @@ O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN 
 15. `P-A0081-90-TEST-01` — GameTest/harness transversal provider-present/absent para sustain, native heal correlation, magic/element/DoT availability, BodyProvider, attributes, lifecycle, dedup, multiplayer e dedicated server.
 
 O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige a PR desta auditoria, review resolvido, CI GREEN, merge e confirmação fresca da `main`; após isso o Chat 1 deve **PARAR**. A0091–A0100 só pode começar mediante novo comando do usuário.
+
+## Sequência documental A0091–A0100
+
+O lote A0091–A0100 já foi fechado pelo Chat 1 na PR #326 (`docs/perks: close Chat 1 audit A0091-A0100`), mas ainda não estava integrado à `main` quando A0101–A0110 foi aberto. Esta branch não duplica os dez dossiês daquele lote. A PR #326 continua sendo a fonte do design A0091–A0100 até sua integração; A0107/A0108/A0109 respeitam explicitamente os blockers A0093/A0100 definidos ali.
+
+## Chat 1 — lote exato A0101–A0110
+
+**Estado:** `DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 / AGUARDANDO IMPLEMENTAÇÃO CHAT 2`.
+
+- **INÍCIO:** A0101.
+- **FIM:** A0110.
+- **Quantidade:** 10 perks consecutivas.
+- **Branch:** `docs/chat1-a0101-a0110-audit`.
+- **Base de abertura/freshness final pré-PR:** RPG Skill Tree `main@2e1c5b62f89d2311eb645882e3547944d0f68869`.
+- **Notion fetch fresco:** 10/10.
+- **Notion alterado neste ciclo:** A0103 somente, para congelar o allowlist ambiental que antes estava abstrato.
+- **Re-fetch pós-escrita:** A0103 1/1 PASS em 2026-08-31; persistência confirmada.
+- **Dossiês criados:** 10/10, A0101–A0110.
+- **Auditoria canônica:** `audits/AUDITORIA-A0101-A0110.md`.
+- **Capability delta:** `guides/projects/16-capability-delta-a0101-a0110.md`.
+- **Gate dos quatro projetos próprios:** RPG `2e1c5b62f89d2311eb645882e3547944d0f68869`; Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec`; Black Arcana `e89df6dc2c204c269d8f1811c6b3f309644c864a`.
+- **Nove eixos:** PASS/N/A com justificativa em 10/10 dossiês e matriz consolidada.
+- **18 critérios técnicos:** 18/18 PASS/N/A no design; hooks ausentes foram convertidos em `UNAVAILABLE_NODE`, nunca em bônus substituto.
+- **NeoVitae:** busca ativa no repo = 0 ocorrências; ausente.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **A0111+:** não iniciado; busca `A0111` no repo = 0 resultados no fechamento.
+
+### Estado e pendências por perk
+
+1. **A0101 Fortificação contra Projéteis** — aprovada; Chat 2 implementa `PROJECTILE + PHYSICAL`, one/root e availability.
+2. **A0102 Proteção Arcana** — aprovada; `neoforge:is_magic` + adapters causais; fixture Ars do repo está 5.13.0 e o design/modlist canônico 5.13.1, exigindo reconciliação sem redesign.
+3. **A0103 Proteção Ambiental** — aprovada após correção; allowlist vanilla inicial: cactus, sweet berry bush, stalagmite, falling block/anvil/stalactite e fly_into_wall; hazards provider-owned ficam fora.
+4. **A0104 Segundo Vento** — aprovada; crossing confirmado em Post, cinco pulsos e cancelamento one/root.
+5. **A0105 Casca Reativa** — aprovada; 3 hits/80 ticks, 120 ticks de efeito, modifiers relativos e lifecycle idempotente.
+6. **A0106 Guarda de Emergência** — aprovada; reducers anteriores → threshold → 0.65 → token/clamp a 1 HP, cooldown 3600 ticks.
+7. **A0107 Conversão de Impacto** — aprovada em fail-closed; `UNAVAILABLE_NODE` por A0093 + P-0035 não canônico/draft #15.
+8. **A0108 Pele de Pedra** — aprovada em fail-closed transitivo; `UNAVAILABLE_NODE` enquanto A0100 estiver indisponível; +15% físico e −8% movimento são inseparáveis.
+9. **A0109 Fortaleza Ambulante** — aprovada em fail-closed duplo; A0108 indisponível + ausência de provider real de encumbrance corporal; Weight/Create/Sable/inventário não substituem.
+10. **A0110 Conservação de Equipamento I** — aprovada em fail-closed; P-0036 bloqueante até seam pós-Unbreaking/pré-decremento; `damageItem`, repair/refund, polling e armor-only não são fallback válido.
+
+### Handoff Chat 2
+
+O Chat 2 deve continuar esta mesma branch/PR, implementar exatamente os contracts dos dossiês e manter A0107–A0110 indisponíveis enquanto os blockers reais persistirem. A0101–A0106 também devem permanecer não compráveis até seus consumers/availability estarem materializados, evitando rank no-op. Se API/provider real divergir semanticamente, registrar evidência, aplicar fail-closed e devolver ao Chat 1 o que exigir redesign.
+
+### Testes definidos para Chat 3
+
+Provider present/absent/version mismatch; purchase fail-before-spend; one-root/one-use dedup; ordering do DamageMitigationResolver; A0104 scheduler/cancelamento/reload; A0105 modifier uniqueness/lifecycle; A0106 threshold/token/cooldown/exclusions/anti-reset; availability transitiva A0107–A0109; A0110 sem hook falso; multiplayer isolation, NeoForge GameTests, validators pertinentes, build, JAR e dedicated-server smoke.
+
+O Chat 1 encerra o ciclo neste lote e **não inicia A0111+** sem novo comando do usuário.
