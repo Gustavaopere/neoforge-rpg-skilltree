@@ -8,13 +8,16 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import dev.gustavopere.rpgskilltree.core.InvestmentState;
 import dev.gustavopere.rpgskilltree.core.MasteryState;
+import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodeInvestment;
+import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.NodeSpecializationGrant;
 import dev.gustavopere.rpgskilltree.core.PassiveNodeProgress;
-import dev.gustavopere.rpgskilltree.core.ProgressionService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.core.SpecializationAvailability;
 import dev.gustavopere.rpgskilltree.core.SpecializationResolver;
+import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,7 +25,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.AfterEach;
@@ -60,8 +62,10 @@ final class SpecializationGatewayAvailabilityJUnitTest {
     );
 
     @AfterEach
-    void resetCatalog() {
+    void resetCatalogs() {
         SpecializationCatalog.replace(List.of());
+        TreeRuleCatalog.replace(List.of());
+        ClassRuleCatalog.replace(List.of());
     }
 
     @Test
@@ -94,7 +98,10 @@ final class SpecializationGatewayAvailabilityJUnitTest {
         SpecializationReloader.load(
             specializationResources(),
             loadedProviders::contains,
-            SpecializationProviderRuntimePolicy::hasCompleteAdapter
+            provider -> SpecializationProviderRuntimePolicy.hasCompleteAdapter(
+                provider,
+                versionFor(provider)
+            )
         );
 
         assertTrue(SpecializationCatalog.definition("irons_fire").isPresent());
@@ -149,9 +156,18 @@ final class SpecializationGatewayAvailabilityJUnitTest {
     }
 
     @Test
-    void nodeOwnedGatewayUnlockAndRevocationFollowCurrentAvailability() throws IOException {
+    void liveNodeOwnedGatewayUnlockAndRevocationFollowCurrentAvailability() throws Exception {
         String nodeId = "rpgskilltree:technomancer/create_gateway";
         var grant = new NodeSpecializationGrant(nodeId, "create_kinetics", 1);
+        TreeRuleCatalog.replace(List.of(new TreeRuleCatalog.NodeRule(
+            ResourceLocation.parse(nodeId),
+            new NodePurchaseDefinition(nodeId, 1, 1, true),
+            NodeAccessRequirement.none(),
+            grant,
+            Set.of()
+        )));
+        ClassRuleCatalog.replace(List.of());
+
         var state = ProgressionState.empty()
             .withPassiveNodes(PassiveNodeProgress.of(Map.of(nodeId, 1)))
             .withMastery(MasteryState.of(Map.of("create:kinetics", 80)));
@@ -161,8 +177,7 @@ final class SpecializationGatewayAvailabilityJUnitTest {
             Set.of("create")::contains,
             provider -> false
         );
-        ProgressionState blocked = ProgressionService.reconcileNodeSpecializations(
-            state, List.of(grant), SpecializationCatalog::gatewayAvailable);
+        ProgressionState blocked = reconcileLive(state);
         assertFalse(blocked.specializations().isUnlocked("create_kinetics"));
         assertTrue(blocked.passiveNodes().learned(nodeId));
 
@@ -171,8 +186,7 @@ final class SpecializationGatewayAvailabilityJUnitTest {
             Set.of("create")::contains,
             provider -> provider.equals("create")
         );
-        ProgressionState unlocked = ProgressionService.reconcileNodeSpecializations(
-            blocked, List.of(grant), SpecializationCatalog::gatewayAvailable);
+        ProgressionState unlocked = reconcileLive(blocked);
         assertTrue(unlocked.specializations().isUnlocked("create_kinetics"));
 
         SpecializationReloader.load(
@@ -180,8 +194,7 @@ final class SpecializationGatewayAvailabilityJUnitTest {
             provider -> false,
             provider -> provider.equals("create")
         );
-        ProgressionState revoked = ProgressionService.reconcileNodeSpecializations(
-            unlocked, List.of(grant), SpecializationCatalog::gatewayAvailable);
+        ProgressionState revoked = reconcileLive(unlocked);
         assertFalse(revoked.specializations().isUnlocked("create_kinetics"));
         assertTrue(revoked.passiveNodes().learned(nodeId),
             "provider loss revokes only derived specialization state");
@@ -190,14 +203,27 @@ final class SpecializationGatewayAvailabilityJUnitTest {
     }
 
     @Test
-    void currentAdapterPolicyDoesNotPromiseTechnologyIntegrationsThatDoNotExist() {
-        assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter("irons_spellbooks"));
-        assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter("ars_nouveau"));
-        assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter("epicfight"));
-        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("create"));
-        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("ae2"));
-        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("oritech"));
-        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("unknown_provider"));
+    void currentAdapterPolicyDoesNotPromiseUnsupportedProviderRuntime() {
+        assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter("irons_spellbooks", ""));
+        assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter("ars_nouveau", ""));
+        assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter(
+            "epicfight", EpicFightVersionContract.SUPPORTED_VERSION));
+        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("epicfight", "unsupported"));
+        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("create", ""));
+        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("ae2", ""));
+        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("oritech", ""));
+        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("unknown_provider", ""));
+    }
+
+    private static ProgressionState reconcileLive(ProgressionState state) throws Exception {
+        var method = PlayerProgressionRuntime.class.getDeclaredMethod(
+            "reconcileDerivedState", ProgressionState.class);
+        method.setAccessible(true);
+        return (ProgressionState) method.invoke(null, state);
+    }
+
+    private static String versionFor(String provider) {
+        return provider.equals("epicfight") ? EpicFightVersionContract.SUPPORTED_VERSION : "";
     }
 
     private static Map<ResourceLocation, JsonElement> specializationResources() throws IOException {
