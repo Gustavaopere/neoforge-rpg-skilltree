@@ -13,6 +13,8 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.CrossbowItem;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
@@ -24,40 +26,45 @@ import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 /**
- * Server-authoritative BOW Mastery producer for physical bow shots.
+ * Server-authoritative mastery producer for physical bow and crossbow shots.
  *
  * <p>A projectile is eligible only when it can be correlated to a real, non-cancelled player
- * {@link ArrowLooseEvent}. Synthetic/spell/derived arrows that merely carry an owner fail closed.
- * The confirmed post-damage receipt then uses the same persisted discovery identity as the Epic
- * Fight adapter, so the same semantic hit cannot award twice when both providers observe it.
+ * {@link ArrowLooseEvent} for the same physical weapon category. The correlation remains valid
+ * briefly so vanilla/modded multishot can associate every projectile from one release. Synthetic,
+ * spell-derived, owner-only or otherwise uncorrelated arrows fail closed. The post-damage receipt
+ * shares the persisted discovery identity used by the Epic Fight adapter.
  */
-public final class BowMasteryProjectileEvents {
+public final class PhysicalProjectileMasteryEvents {
     private static final long LAUNCH_CORRELATION_MILLIS = 250L;
-    private static final Map<UUID, Long> PENDING_RELEASES = new HashMap<>();
-    private static final WeakHashMap<AbstractArrow, Boolean> PLAYER_LAUNCHED = new WeakHashMap<>();
+    private static final Map<UUID, PendingRelease> PENDING_RELEASES = new HashMap<>();
+    private static final WeakHashMap<AbstractArrow, String> PLAYER_LAUNCHED = new WeakHashMap<>();
 
-    private BowMasteryProjectileEvents() {}
+    private PhysicalProjectileMasteryEvents() {}
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onArrowLoose(ArrowLooseEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)
             || !eligible(player)
-            || event.isCanceled()
-            || !(event.getBow().getItem() instanceof BowItem)
-            || !event.hasAmmo()) return;
-        PENDING_RELEASES.put(player.getUUID(), now(player) + LAUNCH_CORRELATION_MILLIS);
+            || event.isCanceled()) return;
+        String category = physicalCategory(event.getBow());
+        if (!WeaponMasteryMilestonePolicy.acceptsPhysicalProjectileRelease(category, event.hasAmmo())) return;
+        PENDING_RELEASES.put(
+            player.getUUID(),
+            new PendingRelease(category, now(player) + LAUNCH_CORRELATION_MILLIS)
+        );
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         if (!(event.getEntity() instanceof AbstractArrow arrow)
             || !(arrow.getOwner() instanceof ServerPlayer player)
-            || !eligible(player)
-            || !(arrow.getWeaponItem().getItem() instanceof BowItem)) return;
-        Long expiresAt = PENDING_RELEASES.get(player.getUUID());
-        if (expiresAt == null || expiresAt < now(player)) return;
+            || !eligible(player)) return;
+        String category = physicalCategory(arrow.getWeaponItem());
+        if (category == null) return;
+        PendingRelease pending = PENDING_RELEASES.get(player.getUUID());
+        if (pending == null || pending.expiresAt() < now(player) || !pending.category().equals(category)) return;
         synchronized (PLAYER_LAUNCHED) {
-            PLAYER_LAUNCHED.put(arrow, Boolean.TRUE);
+            PLAYER_LAUNCHED.put(arrow, category);
         }
     }
 
@@ -67,16 +74,18 @@ public final class BowMasteryProjectileEvents {
             || !(arrow.getOwner() instanceof ServerPlayer player)
             || !eligible(player)
             || event.getNewDamage() <= 0.0F
-            || !hostile(player, event.getEntity())
-            || !confirmedPlayerLaunch(arrow)) return;
+            || !hostile(player, event.getEntity())) return;
+        String category = confirmedPlayerLaunch(arrow);
+        if (category == null) return;
 
         String targetType = BuiltInRegistries.ENTITY_TYPE.getKey(event.getEntity().getType()).toString();
-        var milestone = WeaponMasteryMilestonePolicy.confirmedHit(
+        var milestone = WeaponMasteryMilestonePolicy.confirmedPhysicalProjectileHit(
             "minecraft:projectile_damage_post",
             "minecraft",
-            "bow",
+            category,
             targetType,
-            event.getNewDamage()
+            event.getNewDamage(),
+            true
         );
         WeaponMasteryMilestoneRuntime.awardIfNew(player, milestone);
     }
@@ -84,7 +93,7 @@ public final class BowMasteryProjectileEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onServerTick(ServerTickEvent.Post event) {
         long now = event.getServer().overworld().getGameTime() * 50L;
-        PENDING_RELEASES.entrySet().removeIf(entry -> entry.getValue() < now);
+        PENDING_RELEASES.entrySet().removeIf(entry -> entry.getValue().expiresAt() < now);
     }
 
     @SubscribeEvent
@@ -110,10 +119,17 @@ public final class BowMasteryProjectileEvents {
         }
     }
 
-    private static boolean confirmedPlayerLaunch(AbstractArrow arrow) {
+    private static String confirmedPlayerLaunch(AbstractArrow arrow) {
         synchronized (PLAYER_LAUNCHED) {
-            return PLAYER_LAUNCHED.containsKey(arrow);
+            return PLAYER_LAUNCHED.get(arrow);
         }
+    }
+
+    private static String physicalCategory(ItemStack stack) {
+        if (stack == null || stack.isEmpty()) return null;
+        if (stack.getItem() instanceof BowItem) return "bow";
+        if (stack.getItem() instanceof CrossbowItem) return "crossbow";
+        return null;
     }
 
     private static boolean eligible(ServerPlayer player) {
@@ -134,4 +150,6 @@ public final class BowMasteryProjectileEvents {
     private static long now(ServerPlayer player) {
         return player.level().getGameTime() * 50L;
     }
+
+    private record PendingRelease(String category, long expiresAt) {}
 }

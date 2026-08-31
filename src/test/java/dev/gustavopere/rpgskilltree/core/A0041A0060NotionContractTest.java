@@ -13,6 +13,7 @@ public final class A0041A0060NotionContractTest {
         ranksCostsDependenciesMatchFreshNotion();
         familiesAndGatesMatchFreshNotion();
         bowArchitectureUsesCanonicalMasteryLane();
+        crossbowArchitectureUsesCanonicalMasteryLane();
         WeaponMasteryMilestonePolicyTest.main(new String[0]);
         System.out.println("A0041A0060NotionContractTest: PASS");
     }
@@ -62,9 +63,7 @@ public final class A0041A0060NotionContractTest {
 
     private static void bowArchitectureUsesCanonicalMasteryLane() {
         try {
-            String architecture = Files.readString(Path.of(
-                "src/main/resources/data/rpgskilltree/tree_architecture/combat.json"
-            ));
+            String architecture = architecture();
             require(
                 architecture.contains("\"id\":\"rpgskilltree:epic_bow\"")
                     && architecture.contains("\"requiredMastery\":{\"epicfight:bow\":60}"),
@@ -75,6 +74,25 @@ public final class A0041A0060NotionContractTest {
         } catch (IOException failure) {
             throw new AssertionError("could not read combat tree architecture", failure);
         }
+    }
+
+    private static void crossbowArchitectureUsesCanonicalMasteryLane() {
+        try {
+            String architecture = architecture();
+            require(
+                architecture.contains("\"id\":\"rpgskilltree:epic_crossbow\"")
+                    && architecture.contains("\"requiredMastery\":{\"epicfight:crossbow\":60}"),
+                "epic_crossbow architecture must use canonical epicfight:crossbow mastery"
+            );
+            require(!architecture.contains("\"requiredMastery\":{\"combat:crossbow\":60}"),
+                "combat:crossbow must not remain as a parallel CROSSBOW mastery ledger");
+        } catch (IOException failure) {
+            throw new AssertionError("could not read combat tree architecture", failure);
+        }
+    }
+
+    private static String architecture() throws IOException {
+        return Files.readString(Path.of("src/main/resources/data/rpgskilltree/tree_architecture/combat.json"));
     }
 
     private static void expect(String code, int maxRank, int cost, Map<String,Integer> dependencies) {
