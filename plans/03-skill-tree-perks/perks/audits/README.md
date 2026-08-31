@@ -26,6 +26,10 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0041-A0050.md`
 - `AUDITORIA-RETROATIVA-PROVIDERS-A0051-A0060.md`
 
+## Auditorias de delta da modlist — Chat 1
+
+- `AUDITORIA-DELTA-SIMPLY-SWORDS-A0001-A0010.md` — reauditoria dirigida por Simply Swords 1.70.2, Simply More 1.3.0 ALPHA, Integrated Simply Swords 1.4.0, Simply Swords: Cataclysm 1.0.2, Simply Tooltips 0.1.5 e a bridge Epic Fight Compat 1.1.0.
+
 Novos lotes devem ser criados aqui, nunca novamente na raiz de `perks/`.
 
 ## Convenção
