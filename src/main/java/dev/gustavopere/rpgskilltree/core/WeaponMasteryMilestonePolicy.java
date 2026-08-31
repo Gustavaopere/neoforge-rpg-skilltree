@@ -15,6 +15,11 @@ public final class WeaponMasteryMilestonePolicy {
 
     private WeaponMasteryMilestonePolicy() {}
 
+    public static boolean acceptsPhysicalProjectileRelease(String weaponCategory, boolean hasAmmo) {
+        if (weaponCategory == null || !PHYSICAL_PROJECTILE_CATEGORIES.contains(weaponCategory)) return false;
+        return !"bow".equals(weaponCategory) || hasAmmo;
+    }
+
     public static Milestone confirmedPhysicalProjectileHit(
         String originId,
         String providerId,
