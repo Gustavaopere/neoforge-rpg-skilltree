@@ -47,6 +47,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.clearInvocations;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.never;
@@ -294,7 +295,7 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
     void masteryAdapterCreditsFiniteDiscoveryOnce() throws Exception {
         ServerPlayer player = mock(ServerPlayer.class);
         LivingEntity target = mock(LivingEntity.class);
-        when(target.getType()).thenReturn(EntityType.ZOMBIE);
+        doReturn(EntityType.ZOMBIE).when(target).getType();
         ProgressionState progression = mock(ProgressionState.class, RETURNS_DEEP_STUBS);
         when(progression.discoveries().contains(anyString())).thenReturn(false);
 
