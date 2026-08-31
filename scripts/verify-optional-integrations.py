@@ -74,6 +74,14 @@ if summary_position < 0 or summary_value_position < summary_position:
 if first_optional_guard < 0 or first_optional_guard <= summary_value_position:
     fail("optional-provider summary must be emitted before optional adapter registration")
 
+for marker in (
+    "OptionalIntegrations.Provider.MINECOLONIES",
+    "BattleMageIntegrationBootstrap",
+    "MineColoniesBattleMageRegistration.register(modBus)",
+):
+    if marker not in bootstrap:
+        fail(f"Battle Mage runtime bootstrap is missing semantic marker {marker!r}")
+
 metadata = METADATA.read_text(encoding="utf-8")
 metadata_optional = set()
 for block in metadata.split("[[dependencies.${mod_id}]]")[1:]:
