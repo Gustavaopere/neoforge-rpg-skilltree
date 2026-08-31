@@ -44,7 +44,7 @@ jobs:
           test -n "$JAR"
           jar tf "$JAR" > build/volcanoes-unified-jar-entries.txt
           grep -Fxq 'META-INF/licenses/Volcanoes-BSD-2-Clause.txt' build/volcanoes-unified-jar-entries.txt
-          grep -Fxq 'META-INF/THIRD_PARTY_NOTICES.md' build/volcanoes-unified-jar-entries.txt
+          grep -Fxq 'THIRD_PARTY_NOTICES.md' build/volcanoes-unified-jar-entries.txt
           test "$(grep -c '^META-INF/neoforge.mods.toml$' build/volcanoes-unified-jar-entries.txt)" -eq 1
           if jar tf "$JAR" | grep -Eq '(^|/)Volcanoes[^/]*\.jar$|META-INF/jarjar/.+[Vv]olcanoes.+\.jar$'; then
             echo 'Nested/second Volcanoes JAR detected in unified artifact' >&2
