@@ -118,20 +118,35 @@ final class CompendiumEditorialResourceLoaderJUnitTest {
         assertFailureContains(packageJson("minecraft", "ENTITY", missingAvailability), List.of(wolf()), "availability");
         assertFailureContains(packageJson("minecraft", "ENTITY", validWolfEntry()), List.of(), "absent");
 
-        String optional = validWolfEntry()
+        String optionalAbsent = validWolfEntry()
             .replace("ENTITY:minecraft:wolf", "ENTITY:minecraft:future_wolf")
-            .replace("\"availability\":\"RUNTIME\"", "\"availability\":\"OPTIONAL\",\"availability_reason\":\"Addon não instalado.\"");
-        var optionalSnapshot = CompendiumEditorialResourceLoader.prepare(
-            Map.of(MINECRAFT_ENTITIES, json(packageJson("minecraft", "ENTITY", optional))),
+            .replace("\"availability\":\"RUNTIME\"", "\"availability\":\"OPTIONAL\",\"availability_reason\":\"Provider opcional pode estar ausente.\"");
+        var optionalAbsentSnapshot = CompendiumEditorialResourceLoader.prepare(
+            Map.of(MINECRAFT_ENTITIES, json(packageJson("minecraft", "ENTITY", optionalAbsent))),
             List.of(wolf())
         );
-        assertEquals(EditorialAvailability.OPTIONAL, optionalSnapshot.entries().getFirst().availability());
+        assertEquals(EditorialAvailability.OPTIONAL, optionalAbsentSnapshot.entries().getFirst().availability());
 
-        String maskedPresent = validWolfEntry().replace(
+        String optionalPresent = validWolfEntry().replace(
             "\"availability\":\"RUNTIME\"",
-            "\"availability\":\"OPTIONAL\",\"availability_reason\":\"Não deveria mascarar runtime.\""
+            "\"availability\":\"OPTIONAL\",\"availability_reason\":\"Provider opcional pode estar carregado neste runtime.\""
         );
-        assertFailureContains(packageJson("minecraft", "ENTITY", maskedPresent), List.of(wolf()), "present");
+        var optionalPresentSnapshot = CompendiumEditorialResourceLoader.prepare(
+            Map.of(MINECRAFT_ENTITIES, json(packageJson("minecraft", "ENTITY", optionalPresent))),
+            List.of(wolf())
+        );
+        assertEquals(EditorialAvailability.OPTIONAL, optionalPresentSnapshot.entries().getFirst().availability());
+
+        String optionalWithoutReason = validWolfEntry()
+            .replace("ENTITY:minecraft:wolf", "ENTITY:minecraft:future_wolf")
+            .replace("\"availability\":\"RUNTIME\"", "\"availability\":\"OPTIONAL\"");
+        assertFailureContains(packageJson("minecraft", "ENTITY", optionalWithoutReason), List.of(wolf()), "availability_reason");
+
+        String legacyPresent = validWolfEntry().replace(
+            "\"availability\":\"RUNTIME\"",
+            "\"availability\":\"LEGACY\",\"availability_reason\":\"Conteúdo legado.\""
+        );
+        assertFailureContains(packageJson("minecraft", "ENTITY", legacyPresent), List.of(wolf()), "present");
 
         String legacyWithoutReason = validWolfEntry().replace("\"availability\":\"RUNTIME\"", "\"availability\":\"LEGACY\"");
         legacyWithoutReason = legacyWithoutReason.replace("ENTITY:minecraft:wolf", "ENTITY:minecraft:old_wolf");
