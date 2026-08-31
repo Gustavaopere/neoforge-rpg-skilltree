@@ -1,7 +1,5 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.minecolonies;
 
-import com.minecolonies.api.colony.jobs.registry.JobEntry;
-import com.minecolonies.api.colony.requestsystem.locationguard.GuardType;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
@@ -16,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 final class MineColoniesApiSurfaceProbeJUnitTest {
     @Test
     void reportsExactSnapshotRegistrationSurface() {
-        String report = "\nJobEntry constructors:\n" + constructors(JobEntry.class)
-                + "\nJobEntry public static methods:\n" + staticMethods(JobEntry.class)
-                + "\nGuardType constructors:\n" + constructors(GuardType.class)
-                + "\nGuardType public static methods:\n" + staticMethods(GuardType.class)
-                + "\nKnown classes:\n" + classPresence(
+        String report = "\nExact MineColonies class surface:\n" + classSurface(
                 "com.minecolonies.api.IMinecoloniesAPI",
+                "com.minecolonies.api.colony.jobs.registry.JobEntry",
                 "com.minecolonies.api.colony.jobs.registry.JobRegistry",
+                "com.minecolonies.api.colony.requestsystem.locationguard.GuardType",
+                "com.minecolonies.api.colony.guardtype.GuardType",
+                "com.minecolonies.api.colony.guard.GuardType",
                 "com.minecolonies.core.colony.jobs.AbstractJobGuard",
                 "com.minecolonies.core.colony.jobs.JobKnight",
                 "com.minecolonies.core.colony.jobs.JobRanger",
@@ -31,6 +29,23 @@ final class MineColoniesApiSurfaceProbeJUnitTest {
                 "com.minecolonies.core.colony.requestsystem.locationguard.ModGuardTypes"
         );
         fail(report);
+    }
+
+    private static String classSurface(String... names) {
+        return Arrays.stream(names)
+                .map(MineColoniesApiSurfaceProbeJUnitTest::describe)
+                .collect(Collectors.joining("\n\n"));
+    }
+
+    private static String describe(String name) {
+        try {
+            Class<?> type = Class.forName(name, false, MineColoniesApiSurfaceProbeJUnitTest.class.getClassLoader());
+            return name + " = PRESENT"
+                    + "\nconstructors:\n" + constructors(type)
+                    + "\npublic static methods:\n" + staticMethods(type);
+        } catch (Throwable throwable) {
+            return name + " = ABSENT (" + throwable.getClass().getSimpleName() + ")";
+        }
     }
 
     private static String constructors(Class<?> type) {
@@ -46,20 +61,5 @@ final class MineColoniesApiSurfaceProbeJUnitTest {
                 .sorted(Comparator.comparing(Method::toString))
                 .map(Method::toString)
                 .collect(Collectors.joining("\n"));
-    }
-
-    private static String classPresence(String... names) {
-        return Arrays.stream(names)
-                .map(name -> name + " = " + present(name))
-                .collect(Collectors.joining("\n"));
-    }
-
-    private static boolean present(String name) {
-        try {
-            Class.forName(name, false, MineColoniesApiSurfaceProbeJUnitTest.class.getClassLoader());
-            return true;
-        } catch (Throwable ignored) {
-            return false;
-        }
     }
 }
