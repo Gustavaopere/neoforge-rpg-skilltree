@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 /** Canonical identifiers emitted by the mastery policy layer. */
 public final class MasteryLaneCatalog {
     private static final Pattern MEMBER = Pattern.compile("[a-z0-9_]+(?:-[a-z0-9_]+)*");
+    private static final Pattern EPICFIGHT_MEMBER = Pattern.compile(
+        "[a-z0-9_]+(?:-[a-z0-9_]+)*(?:/[a-z0-9_]+(?:-[a-z0-9_]+)*)?"
+    );
 
     private static final Set<String> ARS_MEMBERS = Set.of(
         "projectile", "amplification", "aoe", "duration", "summoning", "control"
@@ -97,15 +100,18 @@ public final class MasteryLaneCatalog {
     }
 
     public static String epicFightWeaponCategory(String category) {
-        return "epicfight:" + dynamicMember(category, "Epic Fight weapon category");
+        if (category == null || !EPICFIGHT_MEMBER.matcher(category).matches()) {
+            throw new IllegalArgumentException("Epic Fight weapon category must be a canonical normalized token");
+        }
+        return "epicfight:" + category;
     }
 
     public static boolean isCanonical(String laneId) {
         if (laneId == null || laneId.isBlank()) return false;
         if (FIXED.contains(laneId)) return true;
-        if (matchesDynamic(laneId, "irons:")) return true;
-        if (matchesDynamic(laneId, "malum:spirit/")) return true;
-        if (matchesDynamic(laneId, "epicfight:")) return true;
+        if (matchesDynamic(laneId, "irons:", MEMBER)) return true;
+        if (matchesDynamic(laneId, "malum:spirit/", MEMBER)) return true;
+        if (matchesDynamic(laneId, "epicfight:", EPICFIGHT_MEMBER)) return true;
         return matchesBounded(laneId, "ars:", ARS_MEMBERS)
             || matchesBounded(laneId, "goety:", GOETY_MEMBERS)
             || matchesBounded(laneId, "create:", CREATE_MEMBERS);
@@ -126,10 +132,10 @@ public final class MasteryLaneCatalog {
         return value;
     }
 
-    private static boolean matchesDynamic(String laneId, String prefix) {
+    private static boolean matchesDynamic(String laneId, String prefix, Pattern pattern) {
         if (!laneId.startsWith(prefix)) return false;
         String member = laneId.substring(prefix.length());
-        return MEMBER.matcher(member).matches();
+        return pattern.matcher(member).matches();
     }
 
     private static boolean matchesBounded(String laneId, String prefix, Set<String> allowed) {
