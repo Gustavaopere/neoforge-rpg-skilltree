@@ -42,6 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
+import static org.mockito.ArgumentMatchers.anyFloat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
@@ -75,7 +76,7 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
     }
 
     @Test
-    void descompassoAppliesStrongestMovementAndOnlyScalesCanonicalPhysicalDamage() throws Exception {
+    void descompassoAppliesMovementAndOnlyScalesCanonicalPhysicalDamage() throws Exception {
         UUID id = UUID.randomUUID();
         ServerPlayer target = mock(ServerPlayer.class);
         ServerLevel level = mock(ServerLevel.class);
@@ -99,7 +100,6 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
 
         LivingIncomingDamageEvent physical = mock(LivingIncomingDamageEvent.class);
         DamageSource source = mock(DamageSource.class);
-        when(physical.isCanceled()).thenReturn(false);
         when(physical.getAmount()).thenReturn(10.0F);
         when(physical.getSource()).thenReturn(source);
         when(source.is(any(TagKey.class))).thenReturn(true);
@@ -114,7 +114,7 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         when(nonPhysical.getSource()).thenReturn(nonPhysicalSource);
         when(nonPhysicalSource.is(any(TagKey.class))).thenReturn(false);
         A0021A0040EpicFightHooks.onDescompassoOutgoingDamage(nonPhysical);
-        verify(nonPhysical, never()).setAmount(any(Float.class));
+        verify(nonPhysical, never()).setAmount(anyFloat());
 
         when(level.getGameTime()).thenReturn(100L);
         A0021A0040EpicFightHooks.onDescompassoOutgoingDamage(physical);
@@ -251,7 +251,7 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         for (int i = 0; i < 3; i++) state.addTrauma(actor, targetId, 2, i);
         assertTrue(state.prepareSunder(actor, targetId, root, 2, now));
         assertTrue(state.prepareBonebreaker(actor, targetId, root, 80, now));
-        putVanillaPending(actor, targetId, root, BeforeResult.neutral(), 31_000L);
+        putVanillaPending(actor, targetId, root, neutralBefore(), 31_000L);
 
         try (MockedStatic<A0021A0040RuntimeState> runtime = mockStatic(A0021A0040RuntimeState.class)) {
             runtime.when(A0021A0040RuntimeState::state).thenReturn(state);
@@ -336,6 +336,10 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         field.setAccessible(true);
         Map map = (Map) field.get(null);
         map.put(actor + '\0' + target, pending);
+    }
+
+    private static BeforeResult neutralBefore() {
+        return new BeforeResult(1.0D, 1.0D, 1.0D, 0.0D, false, 0.0D, 0L, false, 1.0D, 1.0D, 0L);
     }
 
     private static Method privateMethod(Class<?> owner, String name, Class<?>... parameterTypes) throws Exception {
