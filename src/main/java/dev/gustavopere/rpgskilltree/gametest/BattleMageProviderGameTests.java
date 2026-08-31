@@ -16,6 +16,7 @@ import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -24,6 +25,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
+import net.neoforged.neoforge.event.entity.EntityLeaveLevelEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -34,14 +37,26 @@ public final class BattleMageProviderGameTests {
     private static final ResourceLocation BATTLE_MAGE =
         ResourceLocation.fromNamespaceAndPath("rpgskilltree", "battle_mage");
     private static final String ABSTRACT_CITIZEN = "com.minecolonies.api.entity.citizen.AbstractEntityCitizen";
+    private static final String ENTITY_CITIZEN = "com.minecolonies.core.entity.citizen.EntityCitizen";
     private static final String COLONY_MANAGER = "com.minecolonies.api.colony.IColonyManager";
     private static final String CITIZEN_DATA = "com.minecolonies.api.colony.ICitizenData";
+    private static final String I_JOB = "com.minecolonies.api.colony.jobs.IJob";
     private static final String SPELL_CONTAINER = "io.redspace.ironsspellbooks.api.spells.ISpellContainer";
     private static final String SPELL_CONTAINER_MUTABLE = "io.redspace.ironsspellbooks.api.spells.ISpellContainerMutable";
     private static final String ABSTRACT_SPELL = "io.redspace.ironsspellbooks.api.spells.AbstractSpell";
+    private static final String SPELL_DATA = "io.redspace.ironsspellbooks.api.spells.SpellData";
     private static final String SPELL_REGISTRY = "io.redspace.ironsspellbooks.api.registry.SpellRegistry";
+    private static final String MAGIC_DATA = "io.redspace.ironsspellbooks.api.magic.MagicData";
     private static final String LOADOUT_RESOLVER =
         "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageLoadoutResolver";
+    private static final String MAGIC_BRIDGE =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.IronsCitizenMagicBridge";
+    private static final String COMBAT_CONTROLLER =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageCombatController";
+    private static final String LIFECYCLE_EVENTS =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageLifecycleEvents";
+    private static final String JOB_BATTLE_MAGE =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.JobBattleMage";
 
     private BattleMageProviderGameTests() {
     }
@@ -75,11 +90,8 @@ public final class BattleMageProviderGameTests {
 
             Object citizen = newStandaloneCitizen(helper.getLevel());
             helper.assertTrue(citizen instanceof LivingEntity, "MineColonies citizen must be a LivingEntity");
-
-            Class<?> magicDataType = Class.forName("io.redspace.ironsspellbooks.api.magic.MagicData");
-            Method getMagicData = magicDataType.getMethod("getPlayerMagicData", LivingEntity.class);
-            Object magicData = getMagicData.invoke(null, (LivingEntity) citizen);
-            helper.assertTrue(magicData != null, "Iron's native MagicData attachment was not available on a MineColonies citizen");
+            helper.assertTrue(nativeMagicData((LivingEntity) citizen) != null,
+                "Iron's native MagicData attachment was not available on a MineColonies citizen");
 
             helper.succeed();
         } catch (ReflectiveOperationException | LinkageError failure) {
@@ -97,7 +109,7 @@ public final class BattleMageProviderGameTests {
         ColonyFixture fixture = null;
         try {
             fixture = createColonyCitizen(helper);
-            Object inventory = fixture.citizen().getClass().getMethod("getInventoryCitizen").invoke(fixture.citizen());
+            Object inventory = citizenInventory(fixture.citizen());
             Method setStack = inventory.getClass().getMethod("setStackInSlot", int.class, ItemStack.class);
 
             ItemStack bookA = spellbook(
@@ -153,6 +165,160 @@ public final class BattleMageProviderGameTests {
         }
     }
 
+    @GameTest(template = "foundation_empty", timeoutTicks = 200)
+    public static void providerNativeHealConsumesManaAndCompletesExactlyOnce(GameTestHelper helper) {
+        if (!providersPresent()) {
+            helper.succeed();
+            return;
+        }
+
+        ColonyFixture fixture = null;
+        try {
+            fixture = createColonyCitizen(helper);
+            LivingEntity citizen = (LivingEntity) fixture.citizen();
+            Object inventory = citizenInventory(citizen);
+            inventory.getClass().getMethod("setStackInSlot", int.class, ItemStack.class).invoke(
+                inventory,
+                0,
+                spellbook("iron_spell_book", new String[]{"irons_spellbooks:heal"}, new int[]{1})
+            );
+
+            Object loadout = resolveLoadout(citizen).orElseThrow();
+            Object spellData = firstSpellData(loadout);
+            Object spell = spellData.getClass().getMethod("getSpell").invoke(spellData);
+            int level = (int) spellData.getClass().getMethod("getLevel").invoke(spellData);
+            int manaCost = (int) spell.getClass().getMethod("getManaCost", int.class).invoke(spell, level);
+
+            Object magicData = nativeMagicData(citizen);
+            magicData.getClass().getMethod("setMana", float.class).invoke(magicData, 100.0f);
+            float manaBefore = (float) magicData.getClass().getMethod("getMana").invoke(magicData);
+            citizen.setHealth(Math.max(1.0f, citizen.getMaxHealth() - 8.0f));
+            float healthBefore = citizen.getHealth();
+
+            Class<?> bridge = Class.forName(MAGIC_BRIDGE);
+            boolean began = (boolean) bridge.getMethod("beginCast", LivingEntity.class, Class.forName(SPELL_DATA))
+                .invoke(null, citizen, spellData);
+            helper.assertTrue(began, "provider-native heal cast must begin on the real colony citizen");
+            helper.assertTrue(
+                Float.compare(manaBefore, (float) magicData.getClass().getMethod("getMana").invoke(magicData)) == 0,
+                "mana must not be charged before the provider cast completes"
+            );
+
+            Object result = bridge.getMethod("tickCast", LivingEntity.class).invoke(null, citizen);
+            helper.assertTrue("COMPLETED".equals(result.toString()), "instant provider heal cast must complete once");
+            float manaAfter = (float) magicData.getClass().getMethod("getMana").invoke(magicData);
+            helper.assertTrue(
+                Math.abs(manaAfter - (manaBefore - manaCost)) < 0.001f,
+                "provider MagicData mana must be charged by the real Iron's mana cost exactly once"
+            );
+            helper.assertTrue(citizen.getHealth() > healthBefore, "provider heal effect must execute on the real citizen");
+            float healthAfter = citizen.getHealth();
+
+            Object secondResult = bridge.getMethod("tickCast", LivingEntity.class).invoke(null, citizen);
+            helper.assertTrue("IDLE".equals(secondResult.toString()), "completed cast must not re-enter on a second tick");
+            helper.assertTrue(
+                Math.abs((float) magicData.getClass().getMethod("getMana").invoke(magicData) - manaAfter) < 0.001f,
+                "completed cast must not charge mana twice"
+            );
+            helper.assertTrue(
+                Math.abs(citizen.getHealth() - healthAfter) < 0.001f,
+                "completed cast must not execute the heal effect twice"
+            );
+
+            Object cooldowns = magicData.getClass().getMethod("getPlayerCooldowns").invoke(magicData);
+            boolean onCooldown = (boolean) cooldowns.getClass().getMethod("isOnCooldown", Class.forName(ABSTRACT_SPELL))
+                .invoke(cooldowns, spell);
+            helper.assertTrue(onCooldown, "completed autonomous cast must use Iron's provider cooldown state");
+
+            helper.succeed();
+        } catch (ReflectiveOperationException | LinkageError failure) {
+            throw new AssertionError("Battle Mage provider-native cast GameTest failed", failure);
+        } finally {
+            deleteFixture(fixture, helper.getLevel());
+        }
+    }
+
+    @GameTest(template = "foundation_empty", timeoutTicks = 200)
+    public static void bookRemovalAndUnloadCancelTrackedCastWithoutChargeOrEffect(GameTestHelper helper) {
+        if (!providersPresent()) {
+            helper.succeed();
+            return;
+        }
+
+        ColonyFixture fixture = null;
+        try {
+            fixture = createColonyCitizen(helper);
+            assignBattleMageJob(fixture);
+            LivingEntity citizen = (LivingEntity) fixture.citizen();
+            Object inventory = citizenInventory(citizen);
+            Method setStack = inventory.getClass().getMethod("setStackInSlot", int.class, ItemStack.class);
+            setStack.invoke(
+                inventory,
+                0,
+                spellbook("iron_spell_book", new String[]{"irons_spellbooks:heal"}, new int[]{1})
+            );
+
+            Object magicData = nativeMagicData(citizen);
+            magicData.getClass().getMethod("setMana", float.class).invoke(magicData, 100.0f);
+            float manaBefore = (float) magicData.getClass().getMethod("getMana").invoke(magicData);
+            citizen.setHealth(Math.max(1.0f, citizen.getMaxHealth() * 0.25f));
+            float healthBefore = citizen.getHealth();
+
+            Class<?> controller = Class.forName(COMBAT_CONTROLLER);
+            boolean began = (boolean) controller.getMethod(
+                "tryBeginCast",
+                Class.forName(ENTITY_CITIZEN),
+                LivingEntity.class
+            ).invoke(null, citizen, null);
+            helper.assertTrue(began, "critical real Battle Mage citizen must begin the supported self-heal cast");
+            helper.assertTrue((boolean) magicData.getClass().getMethod("isCasting").invoke(magicData),
+                "tracked provider cast must be active before lifecycle invalidation");
+
+            setStack.invoke(inventory, 0, ItemStack.EMPTY);
+            Class.forName(LIFECYCLE_EVENTS)
+                .getMethod("onEntityTick", EntityTickEvent.Post.class)
+                .invoke(null, new EntityTickEvent.Post((Entity) citizen));
+            helper.assertTrue(!(boolean) magicData.getClass().getMethod("isCasting").invoke(magicData),
+                "removing the authoritative spellbook must cancel the tracked cast immediately");
+            helper.assertTrue(
+                Math.abs((float) magicData.getClass().getMethod("getMana").invoke(magicData) - manaBefore) < 0.001f,
+                "book-removal cancellation must not charge mana"
+            );
+            helper.assertTrue(Math.abs(citizen.getHealth() - healthBefore) < 0.001f,
+                "book-removal cancellation must not execute the heal effect");
+
+            // Start a second tracked cast, then exercise the explicit unload seam.
+            setStack.invoke(
+                inventory,
+                0,
+                spellbook("iron_spell_book", new String[]{"irons_spellbooks:heal"}, new int[]{1})
+            );
+            boolean beganAgain = (boolean) controller.getMethod(
+                "tryBeginCast",
+                Class.forName(ENTITY_CITIZEN),
+                LivingEntity.class
+            ).invoke(null, citizen, null);
+            helper.assertTrue(beganAgain, "Battle Mage must be able to start a fresh cast after clean cancellation");
+            Class.forName(LIFECYCLE_EVENTS)
+                .getMethod("onEntityLeaveLevel", EntityLeaveLevelEvent.class)
+                .invoke(null, new EntityLeaveLevelEvent((Entity) citizen, helper.getLevel()));
+            helper.assertTrue(!(boolean) magicData.getClass().getMethod("isCasting").invoke(magicData),
+                "entity unload must cancel the tracked provider cast");
+            helper.assertTrue(
+                Math.abs((float) magicData.getClass().getMethod("getMana").invoke(magicData) - manaBefore) < 0.001f,
+                "unload cancellation must not charge mana or duplicate the previous cancellation"
+            );
+            helper.assertTrue(Math.abs(citizen.getHealth() - healthBefore) < 0.001f,
+                "unload cancellation must not execute an orphaned heal effect");
+
+            helper.succeed();
+        } catch (ReflectiveOperationException | LinkageError failure) {
+            throw new AssertionError("Battle Mage lifecycle cancellation GameTest failed", failure);
+        } finally {
+            deleteFixture(fixture, helper.getLevel());
+        }
+    }
+
     private static boolean providersPresent() {
         return ModList.get().isLoaded("minecolonies") && ModList.get().isLoaded("irons_spellbooks");
     }
@@ -165,7 +331,7 @@ public final class BattleMageProviderGameTests {
             throw new AssertionError("MineColonies CITIZEN EntityType was not initialized");
         }
 
-        Class<?> citizenClass = Class.forName("com.minecolonies.core.entity.citizen.EntityCitizen");
+        Class<?> citizenClass = Class.forName(ENTITY_CITIZEN);
         Constructor<?> constructor = citizenClass.getConstructor(EntityType.class, Level.class);
         return constructor.newInstance(citizenType, level);
     }
@@ -205,7 +371,21 @@ public final class BattleMageProviderGameTests {
         if (!(citizen instanceof LivingEntity)) {
             throw new AssertionError("spawned MineColonies colony citizen is not a LivingEntity");
         }
-        return new ColonyFixture(manager, colony, citizen);
+        return new ColonyFixture(manager, colony, spawnedData, citizen);
+    }
+
+    private static void assignBattleMageJob(ColonyFixture fixture) throws ReflectiveOperationException {
+        Class<?> citizenDataType = Class.forName(CITIZEN_DATA);
+        Class<?> jobInterface = Class.forName(I_JOB);
+        Class<?> battleMageJob = Class.forName(JOB_BATTLE_MAGE);
+        Object job = battleMageJob.getConstructor(citizenDataType).newInstance(fixture.citizenData());
+        citizenDataType.getMethod("setJob", jobInterface).invoke(fixture.citizenData(), job);
+
+        Object jobHandler = fixture.citizen().getClass().getMethod("getCitizenJobHandler").invoke(fixture.citizen());
+        Object currentJob = jobHandler.getClass().getMethod("getColonyJob").invoke(jobHandler);
+        if (!battleMageJob.isInstance(currentJob)) {
+            throw new AssertionError("MineColonies citizen did not persist the Battle Mage job assignment");
+        }
     }
 
     private static void deleteFixture(ColonyFixture fixture, ServerLevel level) {
@@ -218,6 +398,15 @@ public final class BattleMageProviderGameTests {
         } catch (ReflectiveOperationException ignored) {
             // Test server teardown still isolates the fixture; do not hide the primary assertion failure.
         }
+    }
+
+    private static Object citizenInventory(Object citizen) throws ReflectiveOperationException {
+        return citizen.getClass().getMethod("getInventoryCitizen").invoke(citizen);
+    }
+
+    private static Object nativeMagicData(LivingEntity citizen) throws ReflectiveOperationException {
+        Class<?> magicDataType = Class.forName(MAGIC_DATA);
+        return magicDataType.getMethod("getPlayerMagicData", LivingEntity.class).invoke(null, citizen);
     }
 
     private static ItemStack spellbook(String itemPath, String[] spellIds, int[] levels) throws ReflectiveOperationException {
@@ -264,6 +453,13 @@ public final class BattleMageProviderGameTests {
         return (Optional<?>) resolverType.getMethod("resolve", abstractCitizenType).invoke(null, citizen);
     }
 
+    private static Object firstSpellData(Object loadout) throws ReflectiveOperationException {
+        @SuppressWarnings("unchecked")
+        List<Object> spells = (List<Object>) loadout.getClass().getMethod("activeSpells").invoke(loadout);
+        if (spells.isEmpty()) throw new AssertionError("expected at least one active spell in provider loadout");
+        return spells.getFirst();
+    }
+
     private static List<String> spellSignatures(Object loadout) throws ReflectiveOperationException {
         @SuppressWarnings("unchecked")
         List<Object> spells = (List<Object>) loadout.getClass().getMethod("activeSpells").invoke(loadout);
@@ -277,6 +473,6 @@ public final class BattleMageProviderGameTests {
         return List.copyOf(signatures);
     }
 
-    private record ColonyFixture(Object manager, Object colony, Object citizen) {
+    private record ColonyFixture(Object manager, Object colony, Object citizenData, Object citizen) {
     }
 }
