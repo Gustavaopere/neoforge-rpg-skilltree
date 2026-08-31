@@ -127,9 +127,10 @@ public final class BattleMageCombatController {
             SpellData spellData = spells.get(index);
             if (spellData == null || spellData.getSpell() == null) continue;
             String spellId = spellData.getSpell().getSpellId();
+            int bookIndex = index;
             BattleMageSpellProfileCatalog.find(spellId)
                 .filter(BattleMageCombatController::isRuntimeSupported)
-                .ifPresent(profile -> candidates.add(new Candidate(profile, index)));
+                .ifPresent(profile -> candidates.add(new Candidate(profile, bookIndex)));
         }
         return List.copyOf(candidates);
     }
