@@ -50,32 +50,37 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew --no-daemon build sonar --info
 
-      - name: Diagnostic - print PR new-code coverage by file
+      - name: Diagnostic - print JaCoCo coverage for A0031-A0040 changed classes
         shell: bash
         run: |
           set -euo pipefail
-          ce_task_url=$(grep '^ceTaskUrl=' build/sonar/report-task.txt | cut -d= -f2-)
-          for attempt in {1..30}; do
-            status=$(curl --fail --silent --show-error "$ce_task_url" | python3 -c 'import json,sys; print(json.load(sys.stdin)["task"]["status"])')
-            echo "Sonar CE status: $status"
-            if [ "$status" = SUCCESS ]; then
-              break
-            fi
-            if [ "$status" = FAILED ] || [ "$status" = CANCELED ]; then
-              exit 1
-            fi
-            sleep 2
-          done
-          url='https://sonarcloud.io/api/measures/component_tree?component=Gustavaopere_neoforge-rpg-skilltree&pullRequest=252&metricKeys=new_coverage,new_lines_to_cover,new_uncovered_lines&qualifiers=FIL&p=1&ps=100'
-          curl --fail --silent --show-error "$url" -o /tmp/sonar-coverage.json
           python3 - <<'PY'
-          import json
-          with open('/tmp/sonar-coverage.json', encoding='utf-8') as f:
-              data = json.load(f)
-          print('SONAR_COVERAGE_COMPONENTS', len(data.get('components', [])))
-          for component in data.get('components', []):
-              path = component.get('path') or component.get('name') or component.get('key')
-              measures = {m['metric']: m.get('value', '') for m in component.get('measures', [])}
-              if any(measures.values()):
-                  print(f"SONAR_COVERAGE_FILE path={path} new_coverage={measures.get('new_coverage','')} new_lines_to_cover={measures.get('new_lines_to_cover','')} new_uncovered_lines={measures.get('new_uncovered_lines','')}")
+          import xml.etree.ElementTree as ET
+          report = 'build/reports/jacoco/test/jacocoTestReport.xml'
+          targets = {
+              'dev/gustavopere/rpgskilltree/core/A0021A0040CombatPolicy',
+              'dev/gustavopere/rpgskilltree/core/A0021A0040CombatState',
+              'dev/gustavopere/rpgskilltree/core/A0021A0040MasteryPolicy',
+              'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0021A0040EpicFightHooks',
+              'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0021A0040MasteryHooks',
+          }
+          root = ET.parse(report).getroot()
+          found = set()
+          for package in root.findall('package'):
+              for clazz in package.findall('class'):
+                  name = clazz.attrib['name']
+                  if name not in targets:
+                      continue
+                  found.add(name)
+                  counters = {c.attrib['type']: (int(c.attrib['missed']), int(c.attrib['covered'])) for c in clazz.findall('counter')}
+                  parts = []
+                  for metric in ('LINE', 'BRANCH', 'INSTRUCTION'):
+                      missed, covered = counters.get(metric, (0, 0))
+                      total = missed + covered
+                      pct = 100.0 if total == 0 else 100.0 * covered / total
+                      parts.append(f'{metric.lower()}={covered}/{total}({pct:.1f}%)')
+                  print('JACOCO_CLASS', name, *parts)
+          missing = targets - found
+          for name in sorted(missing):
+              print('JACOCO_CLASS_MISSING', name)
           PY
