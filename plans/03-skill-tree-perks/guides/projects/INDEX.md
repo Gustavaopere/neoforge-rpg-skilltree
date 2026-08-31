@@ -13,3 +13,4 @@
 - [Regra de autoridade](10-authority-rule.md)
 - [Não inferir hooks](11-do-not-infer-hooks.md)
 - [Matriz de cobertura e delta de capacidades](12-capability-delta-coverage.md)
+- [Delta e baseline A0071–A0080](13-capability-delta-a0071-a0080.md)
