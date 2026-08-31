@@ -23,7 +23,7 @@ Esta pasta documenta os quatro projetos próprios que precisam ser tratados como
 
 ## Por que esta pasta existe
 
-Os três guias históricos descrevem os mods externos do pack, mas os quatro projetos próprios evoluem em repositórios separados e contêm sistemas que não podem ser inferidos por README, nome de classe ou intenção futura. O Chat 1 deve saber exatamente:
+Os guias históricos descrevem os mods externos e os quatro projetos próprios, mas esses projetos evoluem continuamente e podem inclusive mudar de forma de distribuição. O Chat 1 deve saber exatamente:
 
 - quais subsistemas já são autoridade de gameplay em `main`;
 - quais existem parcialmente;
@@ -37,21 +37,33 @@ Os três guias históricos descrevem os mods externos do pack, mas os quatro pro
 
 - **IMPLEMENTADO E CANÔNICO:** presente em `main`, com contrato/runtime fechado e evidência suficiente.
 - **IMPLEMENTADO PARCIALMENTE:** código útil presente em `main`, mas o estágio/contrato ainda possui fechamento pendente.
-- **PREPARATÓRIO / NÃO CANÔNICO:** existe em branch/protótipo/trabalho downstream, mas não é autoridade da `main`.
+- **PREPARATÓRIO / NÃO CANÔNICO:** existe em branch/protótipo/trabalho downstream, mas não é authority da `main`.
 - **PLANEJADO:** especificação futura; não pode ser usada como hook implementável pelo Chat 2.
 - **BLOQUEADO / FAIL-CLOSED:** integração intencionalmente inativa até existir API/evidência segura.
 - **NÃO APLICÁVEL:** não existe relação semântica legítima no estado auditado.
 
 A presença de um arquivo em `plans/` **não** prova disponibilidade de runtime.
 
+## Atualização estrutural — Volcanoes consolidado
+
+A PR #308 do RPG Skill Tree foi mergeada em 2026-08-31 e internalizou a implementação canônica de Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c` no mesmo JAR `rpgskilltree`.
+
+Consequências para auditorias futuras:
+
+- `rpgskilltree` é o único `@Mod`/JAR distribuído;
+- Volcanoes continua sendo um **subsistema/provider semanticamente próprio**, preservando `volcanoes:*`, simulação, authorities e pipelines anti-duplicação;
+- `NativeVolcanoesServices` é uma bridge **read-only** para geologia, vulcanismo, tectônica, atmosfera e pressão;
+- o repositório `Gustavaopere/Volcanoes` permanece enquanto a limpeza separada não ocorre e deve ser tratado como **source/provenance/migration baseline**, não como segundo runtime a executar em paralelo;
+- compartilhar o mesmo JAR não autoriza perks a inferir classifications a partir de atmosfera, pressão, geologia ou localização.
+
 ## Baseline reconciliado para o próximo delta
 
-O checkpoint operacional mais recente está em [`16-capability-delta-a0101-a0110.md`](16-capability-delta-a0101-a0110.md), após disposição completa do lote A0101–A0110. O lote anterior A0091–A0100 permanece rastreável pela PR #326 até sua integração na `main`.
+O checkpoint operacional mais recente está em [`16-capability-delta-a0101-a0110.md`](16-capability-delta-a0101-a0110.md), após disposição completa do lote A0101–A0110 e reconciliação do merge #308.
 
 | Projeto | Baseline atual |
 |---|---|
-| RPG Skill Tree | `2e1c5b62f89d2311eb645882e3547944d0f68869` |
-| Volcanoes | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
+| RPG Skill Tree — inclui Volcanoes nativo | `b32a4c85946807c38339c640614b44670c78643f` |
+| Volcanoes — source/migration baseline | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
 | Enshrouded | `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec` |
 | Black Arcana | `e89df6dc2c204c269d8f1811c6b3f309644c864a` |
 
@@ -80,7 +92,7 @@ Além dessa auditoria **perk → provider**, cada lote deve executar obrigatoria
 3. extração de toda capacidade jogável nova ou semanticamente alterada, **mesmo que nenhuma perk atual a cite**;
 4. classificação de cobertura antes do fechamento do lote.
 
-Isso inclui, quando existirem ou mudarem, capacidades como O₂/respiração/pressão/proteção do Volcanoes, Arcane Resistance/Corruption Resistance/Strain do Black Arcana, Exposure/Flame/Sanctuary/Story do Enshrouded e novas superfícies públicas do próprio RPG Skill Tree.
+Isso inclui, quando existirem ou mudarem, capacidades como O₂/respiração/pressão/proteção do Volcanoes nativo, Arcane Resistance/Corruption Resistance/Strain do Black Arcana, Exposure/Flame/Sanctuary/Story do Enshrouded e novas superfícies públicas do próprio RPG Skill Tree.
 
 Detectar uma capacidade **não** significa criar automaticamente uma perk. Ela pode ser coberta por perk existente, perk própria, especialização, bridge, sistema universal, progressão nativa autoritativa, `SEM HOOK SEGURO` ou `NÃO DEVE SER INTEGRADO`.
 
@@ -90,14 +102,15 @@ O preenchimento operacional de providers está em [`07-chat1-provider-listing-ch
 
 ## Regra de autoridade
 
-Integração temática não cria um hook. Não converter automaticamente:
+Integração temática ou co-localização no mesmo JAR não cria hook. Não converter automaticamente:
 
 - Black Arcana Corruption em Enshrouded Shroud;
 - Volcanoes Atmosphere em Shroud;
 - pressão/temperatura/gases em Arcane Resistance;
+- Volcanoes atmosphere/pressure/geology em classifier de dano ambiental A0103;
 - Flame Passage em resistência arcana;
 - estado de veículos em encumbrance do jogador;
-- dados client-side/HUD em autoridade de gameplay.
+- dados client-side/HUD em authority de gameplay.
 
 Quando um provider não expõe um hook seguro, a parte dependente permanece inativa/pending em vez de receber um bônus genérico substituto.
 
