@@ -1,5 +1,6 @@
 package dev.gustavopere.volcanoes.environment;
 
+import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.volcanoes.VolcanoesMod;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -27,7 +28,8 @@ final class AtmosphereConfigContractTest {
     }
 
     @Test
-    void modConstructorAcceptsContainerSoServerConfigCanBeRegistered() throws Exception {
-        assertNotNull(VolcanoesMod.class.getConstructor(IEventBus.class, ModContainer.class));
+    void unifiedModConstructorOwnsContainerAndVolcanoesInitializerAcceptsIt() throws Exception {
+        assertNotNull(RpgSkillTreeMod.class.getConstructor(IEventBus.class, ModContainer.class));
+        assertNotNull(VolcanoesMod.class.getMethod("initialize", IEventBus.class, ModContainer.class));
     }
 }
