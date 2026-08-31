@@ -117,7 +117,7 @@ wait_for_log() {
 }
 
 rcon() {
-  python3 "$ROOT/.github/scripts/minecraft_rcon.py" \
+  python3 "$ROOT/.github/scripts/volcanoes/minecraft_rcon.py" \
     127.0.0.1 "$RCON_PORT" "$RCON_PASSWORD" "$@"
 }
 
@@ -176,7 +176,7 @@ run_once() {
     cat "$log"
     return 1
   }
-  python3 "$ROOT/.github/scripts/worldgen_site_digest.py" \
+  python3 "$ROOT/.github/scripts/volcanoes/worldgen_site_digest.py" \
     "$RUN_DIR/world/data/volcanoes_sites.dat" > "$digest"
   printf '%s round %s digest: %s\n' "$CASE_ID" "$round" "$(cat "$digest")"
 }
