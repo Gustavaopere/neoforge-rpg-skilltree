@@ -4,8 +4,10 @@ import dev.gustavopere.rpgskilltree.core.ActionOrigin;
 import dev.gustavopere.rpgskilltree.core.CombatAction;
 import dev.gustavopere.rpgskilltree.core.EpicFightStaminaPolicy;
 import dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategory;
+import dev.gustavopere.rpgskilltree.core.FistMasteryMilestonePolicy;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import dev.gustavopere.rpgskilltree.runtime.WeaponMasteryMilestoneRuntime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -67,8 +69,20 @@ public final class EpicFightProgressionHooks {
         if (weaponCapability == null || weaponCapability.isEmpty()) return;
         String category = masteryCategory(EpicFightWeaponCategory.normalize(weaponCapability.getWeaponCategory().toString()));
         String targetType = BuiltInRegistries.ENTITY_TYPE.getKey(target.getType()).toString();
-        String discoveryKey = "mastery:epicfight:weapon/" + category + "/hostile_type/" + targetType;
 
+        if (FistMasteryMilestonePolicy.supportsProviderCategory(category)) {
+            var milestone = FistMasteryMilestonePolicy.confirmedHit(
+                "epicfight:damage_post",
+                "epicfight",
+                category,
+                targetType,
+                damage
+            );
+            WeaponMasteryMilestoneRuntime.awardIfNew(player, milestone);
+            return;
+        }
+
+        String discoveryKey = "mastery:epicfight:weapon/" + category + "/hostile_type/" + targetType;
         CombatAction action = new CombatAction(
             new ActionOrigin("epicfight:damage_post", 0),
             "epicfight",
