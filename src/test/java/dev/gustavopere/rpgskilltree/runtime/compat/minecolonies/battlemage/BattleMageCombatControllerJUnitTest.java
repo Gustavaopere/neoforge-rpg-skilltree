@@ -14,11 +14,11 @@ final class BattleMageCombatControllerJUnitTest {
         BattleMageSpellProfile fireball = profile("irons_spellbooks:fireball", BattleMageTargetMode.HOSTILE_AREA, 80, 4.0, 28.0);
         BattleMageSpellProfile arrow = profile("irons_spellbooks:magic_arrow", BattleMageTargetMode.HOSTILE_ENTITY, 80, 2.0, 30.0);
 
-        List<BattleMageCombatController.Candidate> ordered = BattleMageCombatController.orderCandidates(
+        List<BattleMageSpellPolicy.Candidate> ordered = BattleMageSpellPolicy.orderTacticalCandidates(
             List.of(
-                new BattleMageCombatController.Candidate(fireball, 1),
-                new BattleMageCombatController.Candidate(heal, 2),
-                new BattleMageCombatController.Candidate(arrow, 0)
+                new BattleMageSpellPolicy.Candidate(fireball, 1),
+                new BattleMageSpellPolicy.Candidate(heal, 2),
+                new BattleMageSpellPolicy.Candidate(arrow, 0)
             ),
             true
         );
@@ -33,10 +33,10 @@ final class BattleMageCombatControllerJUnitTest {
         BattleMageSpellProfile heal = profile("irons_spellbooks:heal", BattleMageTargetMode.SELF, 100, 0.0, 0.0);
         BattleMageSpellProfile arrow = profile("irons_spellbooks:magic_arrow", BattleMageTargetMode.HOSTILE_ENTITY, 20, 2.0, 30.0);
 
-        List<BattleMageCombatController.Candidate> ordered = BattleMageCombatController.orderCandidates(
+        List<BattleMageSpellPolicy.Candidate> ordered = BattleMageSpellPolicy.orderTacticalCandidates(
             List.of(
-                new BattleMageCombatController.Candidate(heal, 0),
-                new BattleMageCombatController.Candidate(arrow, 1)
+                new BattleMageSpellPolicy.Candidate(heal, 0),
+                new BattleMageSpellPolicy.Candidate(arrow, 1)
             ),
             false
         );
@@ -48,10 +48,10 @@ final class BattleMageCombatControllerJUnitTest {
     @Test
     void rangeAndWorldEffectChecksAreFailClosed() {
         BattleMageSpellProfile arrow = profile("irons_spellbooks:magic_arrow", BattleMageTargetMode.HOSTILE_ENTITY, 20, 3.0, 25.0);
-        assertFalse(BattleMageCombatController.inRange(arrow, 2.99));
-        assertTrue(BattleMageCombatController.inRange(arrow, 3.0));
-        assertTrue(BattleMageCombatController.inRange(arrow, 25.0));
-        assertFalse(BattleMageCombatController.inRange(arrow, 25.01));
+        assertFalse(BattleMageSpellPolicy.inRange(arrow, 2.99));
+        assertTrue(BattleMageSpellPolicy.inRange(arrow, 3.0));
+        assertTrue(BattleMageSpellPolicy.inRange(arrow, 25.0));
+        assertFalse(BattleMageSpellPolicy.inRange(arrow, 25.01));
 
         BattleMageSpellProfile worldEffect = new BattleMageSpellProfile(
             "irons_spellbooks:test_world",
@@ -63,8 +63,8 @@ final class BattleMageCombatControllerJUnitTest {
             true,
             false
         );
-        assertFalse(BattleMageCombatController.isRuntimeSupported(worldEffect));
-        assertTrue(BattleMageCombatController.isRuntimeSupported(arrow));
+        assertFalse(BattleMageSpellPolicy.isRuntimeSupported(worldEffect));
+        assertTrue(BattleMageSpellPolicy.isRuntimeSupported(arrow));
     }
 
     private static BattleMageSpellProfile profile(
