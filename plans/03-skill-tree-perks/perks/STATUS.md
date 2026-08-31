@@ -1,6 +1,6 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0090** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
+Reauditoria obrigatória do recorte **A0001–A0100** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
 A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
 
@@ -96,6 +96,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0088 | Constituição | APROVADO | CÓDIGO PRESENTE data-driven + `preserveHealthRatio` ligado ao refresh | `P-A0088-01`: regressões rank/respec/reload/no-free-heal/modifier uniqueness |
 | A0089 | Couro Endurecido | APROVADO | CÓDIGO PRESENTE no `Attributes.ARMOR` relativo | `P-A0089-01`: regressões zero-base/modificador relativo/não confundir STUN_ARMOR |
 | A0090 | Têmpera | APROVADO | CÓDIGO PRESENTE no `Attributes.ARMOR_TOUGHNESS` relativo | `P-A0090-01`: regressões zero-base/modificador relativo/fontes que ignoram armadura |
+| A0091 | Base Firme | APROVADO | CÓDIGO PRESENTE data-driven em `KNOCKBACK_RESISTANCE` | `P-A0091-01/-02`: lifecycle/cap +0,15 e separação de Stun Armor/Impact |
+| A0092 | Resistência Física | APROVADO após hardening | CÓDIGO PRESENTE na tag/pipeline físico vanilla | `P-A0092-01/-02`: modded unknown fail-closed, composição/dedup/lifecycle |
+| A0093 | Guarda Econômica | APROVADO EM FAIL-CLOSED | NODE DEVE SER ESTRUTURALMENTE INDISPONÍVEL | `P-A0093-01` BLOQUEANTE: unavailable no purchase/gate; futuro debit modifier causal |
+| A0094 | Recuperação de Guarda | APROVADO EM FAIL-CLOSED | NODE DEVE SER ESTRUTURALMENTE INDISPONÍVEL | `P-A0094-01` BLOQUEANTE: availability transitiva A0093; sem recovery hook seguro |
+| A0095 | Tenacidade | APROVADO APÓS REDESIGN | RUNTIME ATUAL NÃO CONFORME AO DESIGN NOVO | `P-A0095-01` BLOQUEANTE: migrar para `epicfight:stun_armor` +0,25/rank; remover dependência A0094 |
+| A0096 | Último Fôlego | APROVADO após hardening | CÓDIGO PRESENTE no physical pipeline | `P-A0096-01/-03`: pre-impact <30%, hostilidade/classificação/dedup/lifecycle |
+| A0097 | Primeira Defesa | APROVADO após hardening | STATE PRESENTE; CLASSIFICADOR HOSTIL INCOMPLETO | `P-A0097-01` BLOQUEANTE DE CONFORMIDADE: substituir `Enemy || Player` por attacker causal não aliado |
+| A0098 | Defesa em Movimento | APROVADO | FALLBACK SPRINT VANILLA PRESENTE | `P-A0098-01/-03`: forced movement/ParCool/bridge PP |
+| A0099 | Defesa Estacionária | APROVADO após hardening | DETECTOR CANÔNICO PRESENTE; FORCED INVALIDATION INCOMPLETA | `P-A0099-01`: forced transitions compartilhadas com A0079 + bridge PP/testes |
+| A0100 | Anti-Crítico | APROVADO EM FAIL-CLOSED | NODE DEVE SER ESTRUTURALMENTE INDISPONÍVEL | `P-A0100-01` BLOQUEANTE: sem incoming critical decomposition |
 
 ## Regras sistêmicas vigentes
 
@@ -132,6 +142,14 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **A0086:** keystone não sintetiza classificadores nem bypassa predecessors indisponíveis; availability é transitiva.
 - **A0087:** benefício existe somente com BodyProvider capaz de manter calor metabólico Cold Sweat + exhaustion vanilla na mesma atividade; hidratação é eixo opcional separado por receipt causal; +8% healing received aplica uma única vez no pipeline geral de curas elegíveis, não apenas no sustain.
 - **A0088–A0090:** owner canônico é Minecraft/NeoForge; A0088 preserva proporção de vida ao recalcular max health; A0089/A0090 são bônus relativos sobre Armor/Toughness existentes e não criam STUN_ARMOR, resistência física paralela ou proteção quando a base é zero.
+- **A0091:** Knockback Resistance é atributo vanilla e permanece separado de `epicfight:stun_armor`, `IMPACT`, Armor e Toughness.
+- **A0092/A0096:** classificação física é governada pela tag canônica `rpgskilltree:physical` e adapters explícitos; DamageTypes modded desconhecidos falham fechado, sem inferência por namespace/arma/VFX.
+- **A0093/A0094:** sem hooks provider-native causais de débito de guarda e recovery pós-GUARD_BREAK, ambos são `UNAVAILABLE_NODE`; refund pós-fato e heurísticas são proibidos.
+- **A0095:** Epic Fight `epicfight:stun_armor` é owner da tenacidade/stun reduction; A0095 adiciona somente +0,25 Stun Armor/rank e não mantém scalar paralelo de interrupção.
+- **A0097:** hostilidade defensiva é definida por atacante `LivingEntity` causal diferente do jogador e não aliado; hierarquia `Enemy` não é authority universal e environment/self/resource costs ficam fora.
+- **A0098/A0099:** movimento autopropelido e stationary reutilizam authorities server-side existentes; forced movement/mount/vehicle/contraption não pode ativar A0098 nem sobreviver indevidamente em A0099.
+- **A0100:** sem incoming critical receipt que separe `baseDamage` e `additionalCriticalDamage` no mesmo root, o node é indisponível/não comprável; crítico recebido nunca é reconstruído por heurística.
+- **Bridge governance Stage 04.02:** Bridge Node/PP da árvore não é o mesmo que pagamento de confluência de classe. Provenance/custo/reembolso de confluência permanecem autoridade do Stage 04.02; PP de bridge conta para no máximo um domínio explicitamente whitelisted, nunca ambos.
 - **Sustain exclusions:** `ARCANE_BACKLASH`, `BLOOD_MAGIC_COST`, dano ambiental/Volcanoes/Enshrouded, máquina, summon/companion sem autoria direta e efeitos recursivos não são dano ofensivo do jogador para A0082–A0087.
 - **Ignitium:** lifesteal nativo permanece provider-owned; sem correlação exata da cura final ao mesmo root, a fonte específica falha fechado e é proibido usar `NativeCorrelation.NONE`; armas comuns comprovadas continuam elegíveis.
 - **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill; também não abre Retaliação por self-cost nem vira ação física/mágica ofensiva elegível.
@@ -421,3 +439,48 @@ O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN 
 15. `P-A0081-90-TEST-01` — GameTest/harness transversal provider-present/absent para sustain, native heal correlation, magic/element/DoT availability, BodyProvider, attributes, lifecycle, dedup, multiplayer e dedicated server.
 
 O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige a PR desta auditoria, review resolvido, CI GREEN, merge e confirmação fresca da `main`; após isso o Chat 1 deve **PARAR**. A0091–A0100 só pode começar mediante novo comando do usuário.
+
+## Chat 1 — lote exato A0091–A0100
+
+**Estado:** `LOTE FECHADO NO DESIGN; PR PREPARADA PARA CHAT 2; MERGE RESERVADO AO CHAT 3`.
+
+- **INÍCIO:** A0091.
+- **FIM:** A0100.
+- **Quantidade:** 10 perks consecutivas.
+- **Base de abertura e branch:** RPG Skill Tree `main@5098e38cbfb0e90d788de0722dd7e2f68753261d`; branch `docs/chat1-a0091-a0100-v6`.
+- **Delta canônico do ciclo:** `guides/projects/15-capability-delta-a0091-a0100.md`.
+- **Baselines promovidos:** RPG `5098e38cbfb0e90d788de0722dd7e2f68753261d`; Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `6642d4ed14bbae2a771075ca466e6749ac8f7fb8`; Black Arcana `462c5c4af403629a7092129cf7f3070472f03e59`.
+- **Notion fetch fresco:** 10/10.
+- **Notion alterado:** 7/10 — A0092, A0093, A0094, A0095, A0096, A0097 e A0100.
+- **Re-fetch pós-escrita:** 7/7 PASS em 2026-08-31.
+- **Sem mutação funcional:** A0091, A0098, A0099.
+- **Dossiês criados:** 10/10.
+- **Nove eixos / 18 critérios:** PASS no design; `UNAVAILABLE_NODE` é o resultado correto quando o provider não expõe binding obrigatório.
+- **A0091:** binding data-driven vanilla de Knockback Resistance já presente; precisa somente revalidação de lifecycle/cap/separação semântica.
+- **A0092/A0096:** tag física governada + adapters explícitos; modded unknown falha fechado e A0096 usa snapshot pré-impacto <30% com hostilidade causal.
+- **A0093/A0094:** nodes indisponíveis/não compráveis até hooks provider-native causais de guard debit/recovery; nenhuma heurística/refund é aceita.
+- **A0095:** redesign provider-native para `epicfight:stun_armor` +0,25/rank; remover dependência A0094 e reducer paralelo antigo.
+- **A0097:** classificador hostil deve ser attacker causal não aliado; `Enemy || Player` não é authority universal.
+- **A0098:** sprint vanilla server-side é fallback válido; ParCool só por adapter mecânico real; forced movement fica fora.
+- **A0099:** reutiliza `StationaryStateService`; fechar forced-transition invalidation sem criar segundo detector.
+- **A0100:** node indisponível/não comprável até incoming critical receipt com `critical + baseDamage + additionalCriticalDamage` no mesmo root.
+- **Stage 04.02:** provenance/custo/reembolso de confluências é authority; Bridge Nodes deste lote não duplicam pagamento nem PP entre os dois domínios.
+- **Arquivo canônico do lote:** `audits/AUDITORIA-A0091-A0100.md`.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **A0101+:** não iniciado.
+
+### Pendências destinadas ao Chat 2
+
+1. `P-A0091-01/-02` — modifier uniqueness/lifecycle/cap +0,15 e separação de Stun Armor/Impact.
+2. `P-A0092-01/-02` — tag física, modded unknown fail-closed, composição única e lifecycle.
+3. `P-A0093-01` **BLOQUEANTE** — unavailable-node no purchase/gate; `P-A0093-02/-03` futuro debit modifier causal e bridge PP/testes.
+4. `P-A0094-01` **BLOQUEANTE** — unavailable transitivo A0093; `P-A0094-02/-03` GUARD_BREAK + recovery extension point causal.
+5. `P-A0095-01` **BLOQUEANTE DE CONFORMIDADE** — migrar para `epicfight:stun_armor` +0,25/rank; `P-A0095-02` remover dependência A0094; `P-A0095-03/-04` availability/lifecycle/regressões.
+6. `P-A0096-01/-03` — bordas de 30%, snapshot pré-impacto, hostilidade/classificação/dedup/lifecycle.
+7. `P-A0097-01` **BLOQUEANTE DE CONFORMIDADE** — classificador causal; `P-A0097-02/-03` consumo único, PvE/PvP/modded/environment/self-cost/lifecycle.
+8. `P-A0098-01/-03` — sprint/forced movement/ParCool adapter e bridge PP Stage 04.02.
+9. `P-A0099-01` — forced-transition invalidation compartilhada com A0079; `P-A0099-02/-03` thresholds/lifecycle/multiplayer/bridge PP.
+10. `P-A0100-01` **BLOQUEANTE** — unavailable sem incoming critical decomposition; `P-A0100-02/-03` futuro receipt causal/single application/testes negativos.
+11. `P-A0091-100-TEST-01` — GameTest/harness transversal provider-present/absent, attributes, physical classification, guard availability, Stun Armor, low-health snapshot, hostile opener, movement/stationary, incoming crit fail-closed, lifecycle, multiplayer e dedicated server.
+
+O design A0091–A0100 está fechado e suficientemente especificado para o Chat 2 implementar sem redesign. O Chat 1 deve deixar a PR pronta e **PARAR**; este Chat 1 **não faz merge**. O merge pertence ao Chat 3 conforme a regra operacional atual. A0101+ só pode começar mediante novo comando do usuário.
