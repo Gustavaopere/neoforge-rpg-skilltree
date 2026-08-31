@@ -27,11 +27,19 @@ def main() -> int:
     build = text("build.gradle")
 
     stray_mods = []
+    stale_subscribers = []
     for source in volcanoes_root.rglob("*.java"):
-        if "@Mod(" in source.read_text(encoding="utf-8"):
-            stray_mods.append(source.relative_to(ROOT).as_posix())
+        source_text = source.read_text(encoding="utf-8")
+        relative = source.relative_to(ROOT).as_posix()
+        if "@Mod(" in source_text:
+            stray_mods.append(relative)
+        if "@EventBusSubscriber(modid = VolcanoesMod.MOD_ID" in source_text:
+            stale_subscribers.append(relative)
     require(not stray_mods,
             "Volcanoes must not declare any independent @Mod entry point: " + ", ".join(stray_mods))
+    require(not stale_subscribers,
+            "Volcanoes event subscribers must be owned by rpgskilltree, not the removed standalone mod id: "
+            + ", ".join(stale_subscribers))
 
     require('public static void initialize(IEventBus modBus, ModContainer container)' in volcanoes,
             "Volcanoes must expose the native subsystem initializer")
