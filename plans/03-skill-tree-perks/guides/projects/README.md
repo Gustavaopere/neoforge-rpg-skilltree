@@ -64,7 +64,7 @@ O checkpoint operacional mais recente está em [`16-capability-delta-a0101-a0110
 |---|---|
 | RPG Skill Tree — inclui Volcanoes nativo | `b32a4c85946807c38339c640614b44670c78643f` |
 | Volcanoes — source/migration baseline | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
-| Enshrouded | `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec` |
+| Enshrouded | `29ae2d9b7a13bbdffd3291d2fe4213e0705eb8e3` |
 | Black Arcana | `e89df6dc2c204c269d8f1811c6b3f309644c864a` |
 
 Os SHAs registram somente um **checkpoint de comparação**. A verdade operacional continua sendo `main` + `plans/STATUS.md` frescos, reconciliados com plano/código/testes/CI quando necessário.
