@@ -10,7 +10,6 @@
 - Primeiro NPC sistêmico: **REGISTRADO**
 - Primeira oportunidade/quest de referência: **REGISTRADA**
 - Pipeline de autoria assistida: **REGISTRADO**
-- Narrative Auditor determinístico: **IMPLEMENTADO / CI SPOILER-SAFE**
 - Diretor narrativo IA in-game: **OPCIONAL / PLANEJADO / NÃO É AUTORIDADE**
 
 ## Regra de atualização
@@ -23,9 +22,7 @@ Ao adicionar conteúdo:
 4. preservar o modo sem spoilers no chat;
 5. nunca transformar plano técnico em fato narrativo sem decisão editorial;
 6. nunca inventar mecânica de provider para justificar história;
-7. executar o Narrative Auditor e corrigir todos os erros bloqueantes antes do merge;
-8. tratar alertas editoriais como backlog de revisão, sem convertê-los automaticamente em fatos ou bloqueios;
-9. atualizar este arquivo apenas com progresso estrutural, sem revelar spoilers.
+7. atualizar este arquivo apenas com progresso estrutural, sem revelar spoilers.
 
 ## Próximos blocos editoriais
 
@@ -36,5 +33,4 @@ Ao adicionar conteúdo:
 - criar arcos por era;
 - criar quests âncora e oportunidades emergentes;
 - criar matriz de finais/epílogos;
-- conectar cada conteúdo aos providers reais do modpack quando pertinente;
-- evoluir a auditoria subjetiva assistida por IA como revisão editorial separada, nunca como gate não determinístico de CI.
+- conectar cada conteúdo aos providers reais do modpack quando pertinente.

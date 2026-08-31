@@ -23,7 +23,7 @@ Quando a história for produzida em chat, o padrão é **MODO SEM SPOILERS**: o 
 - `08-eventos/` — eventos históricos, emergentes e recorrentes.
 - `09-rumores-documentos-e-evidencias/` — canais de descoberta e conhecimento.
 - `10-finais-e-epilogos/` — resoluções e combinações de epílogo.
-- `11-ia-e-autoria/` — protocolo de autoria assistida, auditor narrativo e IA in-game opcional.
+- `11-ia-e-autoria/` — protocolo de autoria assistida e IA in-game opcional.
 - `templates/` — formatos canônicos para novos registros.
 
 ## IDs estáveis
@@ -40,16 +40,6 @@ Quando a história for produzida em chat, o padrão é **MODO SEM SPOILERS**: o 
 - Final/epílogo: `END-####`
 
 IDs não devem ser reciclados depois que entrarem em `main`.
-
-## Auditoria automática
-
-O corpus é protegido pelo `Narrative Auditor` em `scripts/narrative_auditor.py`.
-
-O auditor bloqueia erros estruturais objetivos — como IDs duplicados, referências explícitas quebradas e divergência entre nome de arquivo e ID canônico — e mantém questões editoriais subjetivas como alertas não bloqueantes.
-
-A saída padrão é **spoiler-safe**: não revela nomes, IDs narrativos, caminhos ou conteúdo. Detalhes só aparecem com `--reveal`, destinado a edição/depuração.
-
-Contrato completo: `11-ia-e-autoria/04-narrative-auditor.md`.
 
 ## Princípios obrigatórios
 

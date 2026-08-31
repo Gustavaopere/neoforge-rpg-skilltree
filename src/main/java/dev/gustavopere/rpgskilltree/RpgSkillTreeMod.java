@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree;
 
+import dev.gustavopere.volcanoes.VolcanoesMod;
 import dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicy;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
@@ -59,6 +60,7 @@ import dev.gustavopere.rpgskilltree.runtime.events.RelevantPlayerCacheEvents;
 import dev.gustavopere.rpgskilltree.runtime.loot.ModLootModifiers;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
@@ -69,7 +71,8 @@ public final class RpgSkillTreeMod {
     public static final String MOD_ID = "rpgskilltree";
     private static final Logger LOGGER = LoggerFactory.getLogger(RpgSkillTreeMod.class);
 
-    public RpgSkillTreeMod(IEventBus modBus) {
+    public RpgSkillTreeMod(IEventBus modBus, ModContainer container) {
+        VolcanoesMod.initialize(modBus, container);
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);
         ModLootModifiers.register(modBus);

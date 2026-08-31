@@ -1,0 +1,153 @@
+name: Volcanoes CI
+
+on:
+  push:
+    branches:
+      - main
+      - round-1-foundation
+      - 'feat/**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: volcanoes-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+
+      - name: Unit tests
+        run: gradle --no-daemon test
+
+      - name: Diff sanity
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main:refs/remotes/origin/main
+          if [[ "$GITHUB_REF" == 'refs/heads/main' ]]; then
+            git diff --check HEAD^ HEAD
+          else
+            BASE="$(git merge-base origin/main HEAD)"
+            git diff --check "$BASE" HEAD
+          fi
+
+      - name: NeoForge build
+        run: gradle --no-daemon build
+
+      - name: Verify built JAR
+        shell: bash
+        run: |
+          set -euo pipefail
+          JAR="$(find build/libs -maxdepth 1 -type f -name 'Volcanoes*.jar' | head -n 1)"
+          test -n "$JAR"
+          jar tf "$JAR" | grep -Fx 'META-INF/neoforge.mods.toml'
+          jar tf "$JAR" | grep -Fx 'dev/gustavopere/volcanoes/VolcanoesMod.class'
+
+      - name: Eruption GameTest server
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs/gameTestServer
+          printf 'eula=true\n' > runs/gameTestServer/eula.txt
+          gradle --no-daemon runGameTestServer
+
+      - name: Inspect TFC Volcanoes 2.2.1 upstream
+        if: github.ref == 'refs/heads/round-1-foundation'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/upstream/decompiled
+          UPSTREAM_JAR="$PWD/build/upstream/TFCVolcanoes-1.21.1-2.2.1.jar"
+          EXPECTED_SHA256='26e0acff330bc659c75270ad942b0d6ce60cff97d5fec2bd207d4486fb5b1b4e'
+          curl --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/tfc-volcanoes-962578/8710292/tfc-volcanoes-962578-8710292.jar' \
+            --output "$UPSTREAM_JAR"
+          ACTUAL_SHA256="$(sha256sum "$UPSTREAM_JAR" | awk '{print $1}')"
+          printf '%s  %s\n' "$ACTUAL_SHA256" "$UPSTREAM_JAR" | tee build/upstream/SHA256.txt
+          test "$ACTUAL_SHA256" = "$EXPECTED_SHA256"
+          jar tf "$UPSTREAM_JAR" | sort > build/upstream/JAR_CONTENTS.txt
+          jar tf "$UPSTREAM_JAR" | grep '\.class$' | sort > build/upstream/CLASSES.txt
+          grep -Fx 'tfcvolcanoes/util/TremorEvent.class' build/upstream/CLASSES.txt
+
+          CFR="$PWD/build/upstream/cfr-0.152.jar"
+          curl --fail --location --retry 3 \
+            'https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar' \
+            --output "$CFR"
+          java -jar "$CFR" "$UPSTREAM_JAR" --outputdir build/upstream/decompiled >/dev/null
+          find build/upstream/decompiled -type f -name '*.java' | sort > build/upstream/DECOMPILED_SOURCES.txt
+
+          echo '=== upstream package/class summary ==='
+          sed -n '1,240p' build/upstream/CLASSES.txt
+          echo '=== direct TFC references (first 240) ==='
+          grep -R -n -E 'net\.dries007\.tfc|tfc.?registry' build/upstream/decompiled | head -n 240 || true
+
+      - name: Upload upstream inspection artifact
+        if: github.ref == 'refs/heads/round-1-foundation'
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfc-volcanoes-2.2.1-upstream-inspection
+          path: |
+            build/upstream/SHA256.txt
+            build/upstream/JAR_CONTENTS.txt
+            build/upstream/CLASSES.txt
+            build/upstream/DECOMPILED_SOURCES.txt
+            build/upstream/decompiled/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Dedicated-server smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs/server build
+          printf 'eula=true\n' > runs/server/eula.txt
+          LOG="$PWD/build/server-smoke.log"
+          gradle --no-daemon runServer >"$LOG" 2>&1 &
+          PID=$!
+          cleanup() {
+            kill "$PID" 2>/dev/null || true
+            wait "$PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+          for _ in $(seq 1 150); do
+            if grep -Fq 'Rejected Volcanoes rock profile reload' "$LOG"; then
+              cat "$LOG"
+              exit 1
+            fi
+            if grep -Eq 'Done \([0-9.]+s\)! For help, type "help"' "$LOG"; then
+              grep -Fq 'Loaded 7 Volcanoes rock profile definitions' "$LOG" || {
+                cat "$LOG"
+                exit 1
+              }
+              echo 'Dedicated-server smoke test: PASS'
+              exit 0
+            fi
+            if ! kill -0 "$PID" 2>/dev/null; then
+              cat "$LOG"
+              exit 1
+            fi
+            sleep 1
+          done
+          cat "$LOG"
+          exit 1
