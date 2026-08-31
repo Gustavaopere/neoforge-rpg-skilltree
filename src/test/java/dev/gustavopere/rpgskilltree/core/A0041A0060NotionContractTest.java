@@ -1,5 +1,8 @@
 package dev.gustavopere.rpgskilltree.core;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 
 public final class A0041A0060NotionContractTest {
@@ -9,6 +12,8 @@ public final class A0041A0060NotionContractTest {
         closedRangeIsPresent();
         ranksCostsDependenciesMatchFreshNotion();
         familiesAndGatesMatchFreshNotion();
+        bowArchitectureUsesCanonicalMasteryLane();
+        WeaponMasteryMilestonePolicyTest.main(new String[0]);
         System.out.println("A0041A0060NotionContractTest: PASS");
     }
 
@@ -53,6 +58,23 @@ public final class A0041A0060NotionContractTest {
         gate("A0054","epic_crossbow","epicfight:crossbow",80,true);
         gate("A0055","combat_fist","combat:fist",60,false);
         gate("A0060","combat_fist","combat:fist",80,true);
+    }
+
+    private static void bowArchitectureUsesCanonicalMasteryLane() {
+        try {
+            String architecture = Files.readString(Path.of(
+                "src/main/resources/data/rpgskilltree/tree_architecture/combat.json"
+            ));
+            require(
+                architecture.contains("\"id\":\"rpgskilltree:epic_bow\"")
+                    && architecture.contains("\"requiredMastery\":{\"epicfight:bow\":60}"),
+                "epic_bow architecture must use canonical epicfight:bow mastery"
+            );
+            require(!architecture.contains("\"requiredMastery\":{\"combat:bow\":60}"),
+                "combat:bow must not remain as a parallel BOW mastery ledger");
+        } catch (IOException failure) {
+            throw new AssertionError("could not read combat tree architecture", failure);
+        }
     }
 
     private static void expect(String code, int maxRank, int cost, Map<String,Integer> dependencies) {
