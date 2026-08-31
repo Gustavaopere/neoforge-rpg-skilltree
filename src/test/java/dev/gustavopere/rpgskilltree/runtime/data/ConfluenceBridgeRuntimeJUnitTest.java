@@ -85,6 +85,38 @@ final class ConfluenceBridgeRuntimeJUnitTest {
     }
 
     @Test
+    void clientStatusDistinguishesMissingDomainsFromMissingBridgePoints() {
+        var missingDomainView = ClientClassCatalog.visibleFor(ProgressionState.empty()).getFirst();
+        var missingDomainStatus = ClientClassCatalog.statusFor(missingDomainView);
+        assertEquals(ClientClassCatalog.StatusKind.MISSING_DOMAINS, missingDomainStatus.kind());
+        assertEquals(missingDomainView.result().missingCompletedDomains(), missingDomainStatus.missingCompletedDomains());
+
+        var definition = missingDomainView.entry().definition();
+        Map<ProgressionDomain, List<Integer>> completed = new LinkedHashMap<>();
+        for (ProgressionDomain domain : definition.requiredCompletedDomains()) {
+            completed.put(domain, List.of(3, 3, 3));
+        }
+        ProgressionState completedPath = ProgressionState.empty()
+            .withFinalTriads(FinalTriadProgress.of(completed));
+        var missingPointsView = ClientClassCatalog.visibleFor(completedPath).stream()
+            .filter(view -> view.entry().definition().classId().equals(definition.classId()))
+            .findFirst()
+            .orElseThrow();
+        var missingPointsStatus = ClientClassCatalog.statusFor(missingPointsView);
+        assertEquals(ClientClassCatalog.StatusKind.MISSING_BRIDGE_POINTS, missingPointsStatus.kind());
+        assertEquals(definition.nonAdjacentBridgeCost(), missingPointsStatus.missingBridgePoints());
+
+        ProgressionState fundedPath = completedPath.withPassivePoints(
+            PassivePointLedger.empty().award(PassivePointSource.ADMIN, definition.nonAdjacentBridgeCost())
+        );
+        var readyView = ClientClassCatalog.visibleFor(fundedPath).stream()
+            .filter(view -> view.entry().definition().classId().equals(definition.classId()))
+            .findFirst()
+            .orElseThrow();
+        assertEquals(ClientClassCatalog.StatusKind.READY, ClientClassCatalog.statusFor(readyView).kind());
+    }
+
+    @Test
     void liveDerivedReconciliationRevokesBrokenPaidBridgeAndRefundsItsInvestment() throws Exception {
         ClassUnlockDefinition geomancer = new ClassUnlockDefinition(
             "geomancer",
