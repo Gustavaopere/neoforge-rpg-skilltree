@@ -38,6 +38,15 @@ jobs:
             printf '%s' "$code"
           }
 
+          echo '=== Available baseline-related Web API actions ==='
+          code=$(sonar_get "/api/webservices/list?include_internals=false" /tmp/webservices.json)
+          echo "HTTP ${code}"
+          if [[ "$code" == "200" ]]; then
+            jq '{services: [.webServices[] | select((.path // "") | test("new_code|project_analyses")) | {path, actions: [.actions[]? | {key, post, params: [.params[]?.key]}]}]}' /tmp/webservices.json
+          else
+            jq '{errors}' /tmp/webservices.json 2>/dev/null || cat /tmp/webservices.json
+          fi
+
           echo '=== Effective new-code definition ==='
           code=$(sonar_get "/api/new_code_periods/show?project=${SONAR_PROJECT}&branch=main" /tmp/new-code.json)
           echo "HTTP ${code}"
