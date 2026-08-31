@@ -97,14 +97,21 @@ O caminho de core consumia 3 Abalo no PRE quando `heavyConfirmed=true`. Hoje o a
 ### RED
 
 - Commit de testes: `53f469c3f8943b1b011a306e8b6a497256d3a778`.
-- `RPG Skill Tree CI` #2656.
+- `RPG Skill Tree CI` #2656 / run `33393390999`.
 - Core histórico permaneceu verde; JUnit falhou após a introdução dos testes causais, confirmando divergência no comportamento mergeado.
 
 ### Iteração de correção
 
 - Estado/Policy/adapter migrados para reservation→commit.
-- Um erro de fixture no novo teste A0023 foi identificado pelo CI: o teste criava 2 Fluxo, mas esperava 4. A expectativa foi corrigida sem alterar produção.
-- HEAD de código+documentação continuará sendo validado integralmente antes do merge.
+- Um erro de fixture no novo teste A0023 foi identificado pelo CI: o teste criava 2 Fluxo, mas esperava 4. A expectativa foi corrigida sem alterar produção no commit `704921491a92ea57fe73e0fd94493fab7d88a4d4`.
+
+### GREEN pré-fechamento documental
+
+- HEAD validado: `e32d72bb1280b667c12057bfe1f17cdfbfad0b57`.
+- `RPG Skill Tree CI` #2691 / run `33399375858`: **SUCCESS**.
+- Verificados com sucesso: Core tests, JUnit 5, NeoForge GameTests, Compendium, validações de dados/árvore/runtime/providers, NeoForge build, JAR e dedicated-server smoke.
+- Workflows auxiliares do mesmo HEAD: Bootstrap, Diagnostics, Optional Integrations, Discovery, Ecology, World, Entities, Flora e Editorial concluídos com sucesso.
+- O commit documental/status final ainda deve receber sua própria rodada de CI antes do merge.
 
 ## Estado de fechamento
 
