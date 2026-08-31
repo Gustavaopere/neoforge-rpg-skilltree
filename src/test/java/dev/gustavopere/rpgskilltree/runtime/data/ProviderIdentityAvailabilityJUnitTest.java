@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree.runtime.data;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dev.gustavopere.rpgskilltree.core.ClassRequirementPolicy;
@@ -15,9 +16,10 @@ import dev.gustavopere.rpgskilltree.core.ProviderClassAvailabilityRegistry;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +29,7 @@ final class ProviderIdentityAvailabilityJUnitTest {
     @AfterEach
     void resetAvailability() {
         ProviderClassAvailabilityRegistry.replace(Map.of());
+        ClassRuleCatalog.replace(java.util.List.of());
     }
 
     @Test
@@ -57,25 +60,42 @@ final class ProviderIdentityAvailabilityJUnitTest {
     }
 
     @Test
-    void unavailableProviderRevokesDerivedIdentityButPreservesMastery() throws IOException {
-        JsonObject mage = classJson("mage");
-        int threshold = mage.getAsJsonObject("minimum_mastery_experience").get("irons:casting").getAsInt();
-        ClassUnlockDefinition definition = definition(mage, "irons:casting", threshold);
-        ProgressionState eligible = ProgressionState.empty()
+    void loaderPublishesProviderAvailabilityIntoCanonicalClassResolution() throws IOException {
+        JsonObject mageJson = classJson("mage");
+        JsonObject sorcererJson = classJson("sorcerer");
+        int ironThreshold = mageJson.getAsJsonObject("minimum_mastery_experience").get("irons:casting").getAsInt();
+        int arsThreshold = sorcererJson.getAsJsonObject("minimum_mastery_experience").get("ars:casting").getAsInt();
+
+        Map<ResourceLocation, JsonElement> resources = new LinkedHashMap<>();
+        resources.put(ResourceLocation.fromNamespaceAndPath("rpgskilltree", "mage"), mageJson);
+        resources.put(ResourceLocation.fromNamespaceAndPath("rpgskilltree", "sorcerer"), sorcererJson);
+
+        ClassRulesReloader.load(resources, Set.of("irons_spellbooks")::contains);
+        assertTrue(ProviderClassAvailabilityRegistry.isAvailable("mage"));
+        assertFalse(ProviderClassAvailabilityRegistry.isAvailable("sorcerer"));
+        assertTrue(ClassRuleCatalog.definition("mage").isPresent());
+        assertTrue(ClassRuleCatalog.definition("sorcerer").isPresent());
+
+        ProgressionState practicedBoth = ProgressionState.empty()
             .withPassiveNodes(PassiveNodeProgress.of(Map.of(ARCANE_AWAKENING, 1)))
-            .withMastery(MasteryState.of(Map.of("irons:casting", threshold)));
+            .withMastery(MasteryState.of(Map.of(
+                "irons:casting", ironThreshold,
+                "ars:casting", arsThreshold
+            )));
+        ProgressionState ironLoaded = ProgressionService.reconcileAutomaticClasses(
+            practicedBoth, ClassRuleCatalog.definitions()).state();
+        assertTrue(ironLoaded.classProgression().isUnlocked("mage"));
+        assertFalse(ironLoaded.classProgression().isUnlocked("sorcerer"));
 
-        ProviderClassAvailabilityRegistry.replace(Map.of("mage", true));
-        ProgressionState unlocked = ProgressionService.reconcileAutomaticClasses(
-            eligible, List.of(definition)).state();
-        assertTrue(unlocked.classProgression().isUnlocked("mage"));
-
-        ProviderClassAvailabilityRegistry.replace(Map.of("mage", false));
-        ProgressionState revoked = ProgressionService.reconcileAutomaticClasses(
-            unlocked, List.of(definition)).state();
-        assertFalse(revoked.classProgression().isUnlocked("mage"));
-        assertTrue(revoked.mastery().experience("irons:casting") == threshold,
-            "provider absence must not erase earned mastery");
+        ClassRulesReloader.load(resources, Set.of("ars_nouveau")::contains);
+        ProgressionState arsLoaded = ProgressionService.reconcileAutomaticClasses(
+            ironLoaded, ClassRuleCatalog.definitions()).state();
+        assertFalse(arsLoaded.classProgression().isUnlocked("mage"));
+        assertTrue(arsLoaded.classProgression().isUnlocked("sorcerer"));
+        assertTrue(arsLoaded.mastery().experience("irons:casting") == ironThreshold,
+            "revoking Mage must preserve Iron mastery");
+        assertTrue(arsLoaded.mastery().experience("ars:casting") == arsThreshold,
+            "unlocking Sorcerer must preserve Ars mastery");
     }
 
     private static void assertThresholdBoundary(JsonObject root, String masteryLane) {
