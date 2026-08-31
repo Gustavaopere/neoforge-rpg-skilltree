@@ -160,6 +160,7 @@ public final class RpgSkillTreeScreen extends Screen {
         for (var view : views) {
             var entry = view.entry();
             var result = view.result();
+            var statusModel = ClientClassCatalog.statusFor(view);
             int rowX = x + 6;
             int rowW = panelWidth - 12;
             boolean hovered = mouseX >= rowX && mouseX < rowX + rowW && mouseY >= rowY && mouseY < rowY + rowHeight - 2;
@@ -168,9 +169,23 @@ public final class RpgSkillTreeScreen extends Screen {
 
             String name = Component.translatable(entry.displayKey()).getString();
             graphics.drawString(font, name, rowX + 6, rowY + 4, result.unlockable() ? 0xFFFFFFFF : 0xFFB7BEC8);
-            String status = result.unlockable()
-                ? Component.translatable("screen.rpgskilltree.bridge_ready", result.bridgeCost()).getString()
-                : Component.translatable("screen.rpgskilltree.bridge_missing_points", result.missingBridgePoints()).getString();
+            String status = switch (statusModel.kind()) {
+                case MISSING_DOMAINS -> {
+                    String domains = String.join(" + ", statusModel.missingCompletedDomains().stream()
+                        .sorted()
+                        .map(Enum::name)
+                        .toList());
+                    yield Component.translatable("screen.rpgskilltree.tooltip.requirement", domains).getString();
+                }
+                case MISSING_BRIDGE_POINTS -> Component.translatable(
+                    "screen.rpgskilltree.bridge_missing_points",
+                    statusModel.missingBridgePoints()
+                ).getString();
+                case READY -> Component.translatable(
+                    "screen.rpgskilltree.bridge_ready",
+                    statusModel.bridgeCost()
+                ).getString();
+            };
             graphics.drawString(font, status, rowX + 6, rowY + 15, result.unlockable() ? 0xFFD7C978 : 0xFF8F98A5);
 
             nextButtons.add(new PaidClassButton(
