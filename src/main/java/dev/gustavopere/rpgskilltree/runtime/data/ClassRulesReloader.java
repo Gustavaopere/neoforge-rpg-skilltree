@@ -14,7 +14,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -49,6 +51,12 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
     }
 
     private static void load(Map<ResourceLocation, JsonElement> resources) {
+        load(resources, modId -> ModList.get().isLoaded(modId));
+    }
+
+    static void load(Map<ResourceLocation, JsonElement> resources, Predicate<String> isLoaded) {
+        Objects.requireNonNull(resources, "resources");
+        Objects.requireNonNull(isLoaded, "isLoaded");
         List<ClassUnlockDefinition> definitions = new ArrayList<>();
         Map<String, Boolean> providerAvailability = new HashMap<>();
         for (JsonElement element : resources.values()) {
@@ -62,7 +70,7 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
             }
             boolean providersAvailable = ProviderAvailabilityPolicy.allAvailable(
                 requiredProviderMods,
-                modId -> ModList.get().isLoaded(modId)
+                isLoaded
             );
             providerAvailability.put(classId, providersAvailable);
             if (!providersAvailable) {
