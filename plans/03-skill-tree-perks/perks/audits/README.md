@@ -28,7 +28,13 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 
 ## Auditorias de delta da modlist — Chat 1
 
-- `AUDITORIA-DELTA-SIMPLY-SWORDS-A0001-A0010.md` — reauditoria dirigida por Simply Swords 1.70.2, Simply More 1.3.0 ALPHA, Integrated Simply Swords 1.4.0, Simply Swords: Cataclysm 1.0.2, Simply Tooltips 0.1.5 e a bridge Epic Fight Compat 1.1.0.
+Reauditoria especial acumulada A0001–A0050 contra Simply Swords 1.70.2, Simply More 1.3.0 ALPHA, Integrated Simply Swords 1.4.0, Simply Swords: Cataclysm 1.0.2, Simply Tooltips 0.1.5 e Epic Fight Compat 1.1.0. O trabalho foi mantido em cinco sublotes exatos de 10 dentro da mesma PR para um único merge final.
+
+- `AUDITORIA-DELTA-SIMPLY-SWORDS-A0001-A0010.md`
+- `AUDITORIA-DELTA-SIMPLY-SWORDS-A0011-A0020.md`
+- `AUDITORIA-DELTA-SIMPLY-SWORDS-A0021-A0030.md`
+- `AUDITORIA-DELTA-SIMPLY-SWORDS-A0031-A0040.md`
+- `AUDITORIA-DELTA-SIMPLY-SWORDS-A0041-A0050.md`
 
 Novos lotes devem ser criados aqui, nunca novamente na raiz de `perks/`.
 
