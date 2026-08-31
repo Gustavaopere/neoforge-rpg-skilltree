@@ -1,6 +1,8 @@
 package dev.gustavopere.rpgskilltree.core;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public final class FistMasteryMilestonePolicyTest {
     private FistMasteryMilestonePolicyTest() {}
@@ -27,9 +29,7 @@ public final class FistMasteryMilestonePolicyTest {
             "FIST discovery identity must use the canonical combat:fist ledger"
         );
         require(milestone.action().weaponCategory().equals("fist"), "canonical weapon category must be fist");
-        require(hasAward(milestone.awards(), "combat:fist", 10), "canonical combat:fist +10 award missing");
-        require(hasAward(milestone.awards(), "epicfight:weapon", 5), "shared epicfight:weapon +5 award missing");
-        require(!hasLane(milestone.awards(), "epicfight:fist"), "epicfight:fist must not become a parallel gate ledger");
+        requireCanonicalAwards(milestone.awards(), "fist");
     }
 
     private static void knuckleAndFistShareDiscoveryIdentity() {
@@ -53,7 +53,7 @@ public final class FistMasteryMilestonePolicyTest {
             "fist and knuckle must deduplicate as the same semantic weapon family"
         );
         require(knuckle.action().weaponCategory().equals("fist"), "knuckle must normalize to canonical fist category");
-        require(!hasLane(knuckle.awards(), "epicfight:knuckle"), "epicfight:knuckle must not become a parallel gate ledger");
+        requireCanonicalAwards(knuckle.awards(), "knuckle");
     }
 
     private static void unsupportedCategoryFailsClosed() {
@@ -88,12 +88,19 @@ public final class FistMasteryMilestonePolicyTest {
         require(rejected, "zero-damage fist attempts must not become mastery milestones");
     }
 
-    private static boolean hasAward(List<MasteryAward> awards, String lane, int experience) {
-        return awards.stream().anyMatch(award -> award.laneId().equals(lane) && award.experience() == experience);
+    private static void requireCanonicalAwards(List<MasteryAward> awards, String sourceCategory) {
+        require(awards.size() == 2, sourceCategory + " must emit exactly two canonical mastery awards");
+        require(hasAward(awards, "combat:fist", 10), "canonical combat:fist +10 award missing for " + sourceCategory);
+        require(hasAward(awards, "epicfight:weapon", 5), "shared epicfight:weapon +5 award missing for " + sourceCategory);
+        Set<String> lanes = awards.stream().map(MasteryAward::laneId).collect(Collectors.toUnmodifiableSet());
+        require(
+            lanes.equals(Set.of("combat:fist", "epicfight:weapon")),
+            sourceCategory + " must not emit any parallel FIST mastery ledger: " + lanes
+        );
     }
 
-    private static boolean hasLane(List<MasteryAward> awards, String lane) {
-        return awards.stream().anyMatch(award -> award.laneId().equals(lane));
+    private static boolean hasAward(List<MasteryAward> awards, String lane, int experience) {
+        return awards.stream().anyMatch(award -> award.laneId().equals(lane) && award.experience() == experience);
     }
 
     private static void require(boolean value, String message) {
