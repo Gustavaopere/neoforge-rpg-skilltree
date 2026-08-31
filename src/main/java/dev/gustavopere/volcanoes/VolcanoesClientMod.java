@@ -1,20 +1,20 @@
 package dev.gustavopere.volcanoes;
 
+import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.volcanoes.tectonics.SeismicNetworking;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ViewportEvent;
-import net.neoforged.neoforge.common.NeoForge;
 
 /** Physical-client-only registration for rendering the packet-driven seismic camera shake. */
-@Mod(value = VolcanoesMod.MOD_ID, dist = Dist.CLIENT)
+@EventBusSubscriber(modid = RpgSkillTreeMod.MOD_ID, value = Dist.CLIENT)
 public final class VolcanoesClientMod {
-    public VolcanoesClientMod(IEventBus modBus) {
-        NeoForge.EVENT_BUS.addListener(VolcanoesClientMod::onCameraAngles);
+    private VolcanoesClientMod() {
     }
 
-    private static void onCameraAngles(ViewportEvent.ComputeCameraAngles event) {
+    @SubscribeEvent
+    public static void onCameraAngles(ViewportEvent.ComputeCameraAngles event) {
         long nowNanos = System.nanoTime();
         double amplitude = SeismicNetworking.clientShakeState().amplitudeAt(nowNanos);
         if (amplitude <= 0.0) {
