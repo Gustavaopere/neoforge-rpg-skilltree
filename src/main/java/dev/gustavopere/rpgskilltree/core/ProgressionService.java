@@ -78,6 +78,55 @@ public final class ProgressionService {
         return new AutomaticClassReconcileResult(current, newlyUnlocked, removed);
     }
 
+    public static PaidClassReconcileResult reconcilePaidClasses(
+        ProgressionState state,
+        java.util.Collection<ClassUnlockDefinition> definitions
+    ) {
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(definitions);
+        ProgressionState current = state;
+        Set<String> removed = new HashSet<>();
+        int refunded = 0;
+
+        for (ClassUnlockDefinition definition : definitions.stream()
+            .sorted(java.util.Comparator.comparing(ClassUnlockDefinition::classId))
+            .toList()) {
+            if (definition.nonAdjacentBridgeCost() <= 0) continue;
+            String classId = definition.classId();
+            if (!current.classProgression().isUnlocked(classId)) continue;
+
+            boolean domainsMet = definition.requiredCompletedDomains().stream()
+                .allMatch(current.finalTriads()::complete);
+            boolean contextualRequirementsMet = ClassRequirementPolicy.satisfied(current, definition);
+            if (domainsMet && contextualRequirementsMet) continue;
+
+            int bridgeCost = definition.nonAdjacentBridgeCost();
+            boolean bridgePaid = current.classProgression().bridgePaid(classId);
+            ClassProgressionState classes = current.classProgression().without(classId);
+            PassivePointLedger ledger = current.passivePoints();
+            int refund = 0;
+            if (bridgePaid && ledger.spent() >= bridgeCost) {
+                ledger = ledger.refund(bridgeCost);
+                refund = bridgeCost;
+            }
+            current = new ProgressionState(
+                current.totalCharacterXp(),
+                ledger,
+                current.bossProgress(),
+                classes,
+                current.mastery(),
+                current.classChoices(),
+                current.specializations(),
+                current.finalTriads(),
+                current.passiveNodes(),
+                current.discoveries()
+            );
+            refunded = Math.addExact(refunded, refund);
+            removed.add(classId);
+        }
+        return new PaidClassReconcileResult(current, removed, refunded);
+    }
+
     public static AutomaticClassUnlockResult unlockAutomaticClasses(
         ProgressionState state,
         java.util.Collection<ClassUnlockDefinition> definitions
@@ -118,7 +167,9 @@ public final class ProgressionService {
         }
         PassivePointLedger ledger = state.passivePoints();
         if (result.bridgeCost() > 0) ledger = ledger.spend(result.bridgeCost());
-        ClassProgressionState classes = state.classProgression().unlock(definition.classId());
+        ClassProgressionState classes = result.bridgeCost() > 0
+            ? state.classProgression().unlockWithBridgePayment(definition.classId())
+            : state.classProgression().unlock(definition.classId());
         ProgressionState next = new ProgressionState(state.totalCharacterXp(), ledger, state.bossProgress(), classes, state.mastery(), state.classChoices(), state.specializations(), state.finalTriads(), state.passiveNodes(), state.discoveries());
         return new ClassUnlockMutationResult(next, true, result.bridgeCost());
     }
