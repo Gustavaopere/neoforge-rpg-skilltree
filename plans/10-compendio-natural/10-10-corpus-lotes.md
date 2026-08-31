@@ -441,13 +441,43 @@ Entradas:
 - todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
 - o TDD produziu RED válido na PR draft #309 pelo RPG Skill Tree CI #2600: após compilação e checks prévios verdes, `157 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch15JUnitTest` pela ausência intencional dos pacotes; após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #349 e pelo RPG Skill Tree CI #2610 completos, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
+## Lote 16 — TerraFirmaCraft / árvores de madeira, segunda fatia
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/trees-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `TREE:tfc:wood/sapling/ash` — Muda de ash
+2. `TREE:tfc:wood/sapling/aspen` — Muda de aspen
+3. `TREE:tfc:wood/sapling/birch` — Muda de eucalipto
+4. `TREE:tfc:wood/sapling/blackwood` — Muda de acácia-negra
+5. `TREE:tfc:wood/sapling/chestnut` — Muda de castanheira
+6. `TREE:tfc:wood/sapling/douglas_fir` — Muda de douglas fir
+7. `TREE:tfc:wood/sapling/hickory` — Muda de nogueira
+8. `TREE:tfc:wood/sapling/kapok` — Muda de sumaúma
+9. `TREE:tfc:wood/sapling/mangrove` — Propágulo de mangrove
+10. `TREE:tfc:wood/sapling/maple` — Muda de bordo
+
+### Critérios editoriais aplicados ao lote 16
+
+- o lote continua imediatamente a coleção `WOODS` depois de `ACACIA`, seguindo a ordem declarada por `Wood.java` no TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`: `ASH`, `ASPEN`, `BIRCH`, `BLACKWOOD`, `CHESTNUT`, `DOUGLAS_FIR`, `HICKORY`, `KAPOK`, `MANGROVE` e `MAPLE`;
+- as dez entradas são mudas registradas por `Wood.BlockType.SAPLING` com `TFCSaplingBlock`, sustentando a classificação `TREE` pelo runtime em vez de inferência textual do registry ID;
+- os rótulos foram confrontados com `pt_br.json` e os espaços finais do provider são apenas normalizados; a associação oficial `birch` → `Muda de eucalipto` é preservada explicitamente sem alterar `Wood.BIRCH` nem o registry ID;
+- `Mangrove Propagule` ainda permanece em inglês no locale pt-BR do provider, portanto recebe o alias editorial conservador `Propágulo de mangrove`, traduzindo somente o termo genérico sem inventar uma espécie botânica diferente;
+- o crescimento permanece sob autoridade de `TFCSaplingBlock`, das configurações por muda e do modificador global do provider; duração, chance e outros valores numéricos mutáveis não são congelados na prosa editorial;
+- troncos, folhas, tábuas e demais componentes de cada família continuam identidades técnicas próprias e são citados apenas como família de madeira, sem fundir seus registry IDs com a ficha da muda;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
+- o TDD produziu RED válido na draft #313 pelo RPG Skill Tree CI #2645: no merge-ref contra `main@9958caaabebff95bfbbd0a226ca571e5bfe5316c`, compilação e checks prévios passaram e `163 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch16JUnitTest` pela ausência intencional de `trees-batch2.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #381 e pelo RPG Skill Tree CI #2648, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **50**;
-- entradas editoriais totais: **150**;
-- lotes documentados: **15**;
+- entradas editoriais TFC reais no corpus: **60**;
+- entradas editoriais totais: **160**;
+- lotes documentados: **16**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
