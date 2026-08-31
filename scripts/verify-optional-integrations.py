@@ -25,6 +25,12 @@ PROVIDERS = {
     "IDENTITY2": ("identity2", "runtime/compat/identity2/", "net.Gabou.identity2"),
 }
 
+# Cross-provider adapters remain narrow and explicit. Battle Mage is a MineColonies-owned
+# integration whose spellbook seam necessarily links Iron's after both provider gates pass.
+CROSS_PROVIDER_ALLOWED = {
+    "io.redspace.ironsspellbooks": ("runtime/compat/minecolonies/battlemage/",),
+}
+
 
 def fail(message: str) -> None:
     raise SystemExit(f"Optional integration contract: {message}")
@@ -86,7 +92,8 @@ for path in JAVA.rglob("*.java"):
     for _, (_, allowed_suffix, external_package) in PROVIDERS.items():
         if external_package not in text:
             continue
-        if allowed_suffix not in rel:
+        cross_provider_allowed = CROSS_PROVIDER_ALLOWED.get(external_package, ())
+        if allowed_suffix not in rel and not any(suffix in rel for suffix in cross_provider_allowed):
             # A standalone early Mixin plugin may carry the provider target as an inert string,
             # but it must never import or otherwise link the provider package.
             if path == IDENTITY_PLUGIN and f'"{external_package}' in text and f"import {external_package}" not in text:
