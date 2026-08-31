@@ -31,7 +31,9 @@ Freshness de abertura:
 - Enshrouded: `6642d4ed14bbae2a771075ca466e6749ac8f7fb8` — delta de fog/render client-side e pequeno hardening de reload; nenhuma nova authority de gameplay para A0091–A0100.
 - Black Arcana: `462c5c4af403629a7092129cf7f3070472f03e59` — hardening/testes de Backlash, resistência numérica e exclusão de offensive credit/mastery; reforça que `ARCANE_BACKLASH` é terminal/hazard e não fornece receipt defensivo novo ao lote.
 
-Durante o fechamento, a `main` do RPG avançou para `5530667f5303c3f628ea9f69dd947dbfed888915` pelo fechamento Chat 3 A0021–A0030. A branch deste lote foi reconciliada explicitamente com esse head antes de editar arquivos compartilhados. Esse avanço não cria capability A0091–A0100.
+Durante o fechamento, a `main` do RPG avançou primeiro para `5530667f5303c3f628ea9f69dd947dbfed888915` pelo fechamento Chat 3 A0021–A0030. A branch deste lote foi reconciliada explicitamente com esse head antes de editar arquivos compartilhados. Esse avanço não cria capability A0091–A0100.
+
+A freshness final antes da PR é `main@19f6fa749348c6c7dc46887787fa718242f09af0`. Entre `5530667...` e `19f6fa7...`, o compare mostrou dois lotes editoriais TFC do Compêndio e a centralização canônica de IDs de Mastery (`MasteryLaneCatalog` + migração de `MasteryPolicies`, PR #317). A centralização é capability arquitetural real, mas nenhuma perk A0091–A0100 consome Mastery lane/gate; não altera `rpgskilltree:physical`, guard stamina/recovery, `epicfight:stun_armor`, hostile receipt, sprint, `StationaryStateService` ou incoming critical decomposition. Classificação: **DELTA ARQUITETURAL SEM IMPACTO CONTRATUAL NESTE LOTE**. A branch foi reconciliada com esse head no commit `158ba7dcc75449fc3a7bbb8fd129b8997da237b3` antes da revisão final.
 
 ## 3. Resultado por perk
 
