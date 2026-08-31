@@ -15,6 +15,7 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public final class ClientClassCatalog {
     private static final Gson GSON = new Gson();
@@ -41,6 +42,28 @@ public final class ClientClassCatalog {
             ))
             .sorted(Comparator.comparing(view -> view.entry().definition().classId()))
             .toList();
+    }
+
+    public static Status statusFor(View view) {
+        Objects.requireNonNull(view);
+        ClassUnlockResult result = view.result();
+        if (!result.missingCompletedDomains().isEmpty()) {
+            return new Status(
+                StatusKind.MISSING_DOMAINS,
+                result.missingCompletedDomains(),
+                result.missingBridgePoints(),
+                result.bridgeCost()
+            );
+        }
+        if (result.missingBridgePoints() > 0) {
+            return new Status(
+                StatusKind.MISSING_BRIDGE_POINTS,
+                Set.of(),
+                result.missingBridgePoints(),
+                result.bridgeCost()
+            );
+        }
+        return new Status(StatusKind.READY, Set.of(), 0, result.bridgeCost());
     }
 
     private static List<Entry> load() {
@@ -81,6 +104,27 @@ public final class ClientClassCatalog {
         public View {
             Objects.requireNonNull(entry);
             Objects.requireNonNull(result);
+        }
+    }
+
+    public enum StatusKind {
+        MISSING_DOMAINS,
+        MISSING_BRIDGE_POINTS,
+        READY
+    }
+
+    public record Status(
+        StatusKind kind,
+        Set<ProgressionDomain> missingCompletedDomains,
+        int missingBridgePoints,
+        int bridgeCost
+    ) {
+        public Status {
+            Objects.requireNonNull(kind);
+            missingCompletedDomains = Set.copyOf(missingCompletedDomains);
+            if (missingBridgePoints < 0 || bridgeCost < 0) {
+                throw new IllegalArgumentException("bridge point values must be >= 0");
+            }
         }
     }
 }
