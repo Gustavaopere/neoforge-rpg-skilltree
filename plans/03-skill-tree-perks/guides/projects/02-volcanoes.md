@@ -2,19 +2,27 @@
 
 **Fonte editorial no Notion:** https://app.notion.com/p/3cc69db9f0db8178b64fe5400b66abc9
 
-**Snapshot auditado:** `Gustavaopere/Volcanoes@1d0da7ae7f19e06f60390fdeb0835720e2e40f1b`
+**Proveniência canônica do código consolidado:** `Gustavaopere/Volcanoes@eaddc3232dfc600780769f4a5e7e45ff1e50181c`.
 
-Stages 00–05 estão fechados no snapshot. Stage 06 possui integrações canônicas e uma frente RNS parcialmente fail-closed. Stage 07 Hardening permanece aberto.
+**Consolidação no runtime atual:** PR `Gustavaopere/neoforge-rpg-skilltree#308`, merge `f613dac5a15b26c7a92e07a9d9cb537c2412ddf2`.
+
+**Local operacional atual:** o Volcanoes não é mais um segundo mod distribuído. Ele é um subsistema nativo do único mod/JAR `rpgskilltree`; seus planos vivem em `plans/volcanoes/`, o runtime permanece sob o namespace Java `dev.gustavopere.volcanoes` dentro deste repositório e o boundary RPG-facing é exposto por serviços nativos, incluindo `NativeVolcanoesServices`.
+
+Stages 00–07 estão fechados no snapshot fonte consolidado. A integração RNS está fechada como coexistência segura, sem transferência indevida da autoridade do worldgen nativo do RNS.
 
 ## 1. Identidade e autoridade
 
 Volcanoes é o provider ambiental/geológico do pack. Seu domínio não se limita à geração de vulcões: inclui geologia, depósitos, tectônica, terremotos, ciclo vulcânico, erupções, cinzas/piroclastos, geotermia, Atmosphere, respiração/gases/poluição e pressão.
 
-Perks não devem recriar estados físicos paralelos nem assumir ownership de sistemas que o Volcanoes deliberadamente deixa em providers externos.
+A consolidação de repositório não altera essa authority. `rpgskilltree` é o container/distribuição; Volcanoes continua autoridade dos estados físicos e serviços ambientais/geológicos que implementa. Perks não devem recriar estados físicos paralelos nem assumir ownership de sistemas que Volcanoes deliberadamente deixa em providers externos.
+
+Identificadores persistentes e de recursos `volcanoes:*` foram preservados na consolidação quando necessários para compatibilidade de mundos, datapacks, SavedData, registries, rede e integrações.
 
 ## 2. Foundation — IMPLEMENTADO E CANÔNICO
 
 O Stage 00 estabelece contratos base, configuração, segurança de mundo e boundaries usados pelos demais estágios. Consumers devem preferir esses contracts em vez de classes internas.
+
+A distribuição consolidada possui apenas o entrypoint de `rpgskilltree`; Volcanoes é inicializado internamente por `RpgSkillTreeMod`, não por um segundo `@Mod("volcanoes")`.
 
 ## 3. Geologia — IMPLEMENTADO E CANÔNICO
 
@@ -35,7 +43,7 @@ Origens canônicas incluem `MAGMATIC`, `HYDROTHERMAL`, `SEDIMENTARY` e `GENERIC`
 
 `GeologicalDepositSource` é a SPI read-only para consumers, com consulta integral e `nearby(BlockPos, radius)` bounded.
 
-O core Volcanoes **não** instala um segundo scanner de jogador. Prospecção visual permanece no provider adequado, especialmente RNS quando a integração é segura.
+O core Volcanoes não instala um segundo scanner de jogador. Prospecção visual permanece no provider adequado, especialmente RNS quando a integração é segura.
 
 ### Perks legítimas
 
@@ -77,6 +85,8 @@ O Stage 03 fecha:
 
 O ciclo de erupção é server-owned e bounded. Cinzas/piroclastos e calor se integram aos sistemas ambientais em vez de criarem pipelines concorrentes. Geothermal lifecycle alimenta o domínio ambiental por bridges canônicas.
 
+O estado final inclui worldgen físico bounded e determinístico para corpos hidrotermais de Cu/Fe/Au quando a causalidade vulcânica é comprovada, com prova explícita de realização física, rollback/prevalidation e recovery testados. Isso não autoriza perks a produzir minério nem a assumir o pipeline de worldgen.
+
 ### Perks legítimas
 
 - observação/previsão de atividade quando houver boundary real;
@@ -88,7 +98,7 @@ A perk não possui scheduler de erupção nem cria uma segunda fonte de hazard.
 
 ## 6. Atmosphere — IMPLEMENTADO E CANÔNICO
 
-`AtmosphereState` é um vetor físico/químico composável, não um único número de “qualidade do ar”. O snapshot auditado inclui grandezas como:
+`AtmosphereState` é um vetor físico/químico composável, não um único número de “qualidade do ar”. O estado canônico inclui grandezas como:
 
 - pressão total/baseline;
 - fração de O₂;
@@ -110,9 +120,11 @@ Perks podem consultar/alterar resposta do jogador a canais ambientais apenas pel
 
 Respiração, volcanic gases e seus efeitos pertencem ao Stage 04. Proteção/consumo deve passar pelo pipeline canônico de respiração/equipment/protection. Uma perk não deve consumir filtro, ar ou durabilidade pela segunda vez.
 
+Create Diving Helmet + Backtank participam da oferta de oxigênio através do adapter canônico e o ar é debitado uma única vez.
+
 ## 8. Poluição e chuva ácida — IMPLEMENTADO E CANÔNICO
 
-Volcanoes possui integração com Destroy para o domínio de poluição/acid rain. A bridge preserva a autoridade de cada lado; não se deve inventar feedback agregado ou segundo pollution engine apenas para “conectar” sistemas.
+Volcanoes possui integração canônica com Destroy para o domínio de poluição/acid rain, incluindo routing e retry safety. A bridge preserva a autoridade de cada lado; não se deve inventar feedback agregado ou segundo pollution engine apenas para “conectar” sistemas.
 
 ## 9. Pressão — IMPLEMENTADO E CANÔNICO
 
@@ -127,13 +139,15 @@ Pressão atmosférica é uma grandeza física distinta do vetor químico da Atmo
 
 Equipamentos possuem capacidades modulares de proteção e o runtime evita consumo concorrente entre Pressure e Atmosphere.
 
-O contrato de Stage 05 usa Curios `9.5.1+1.21.1` no snapshot auditado.
+O contrato consolidado preserva a integração Curios `9.5.1+1.21.1` auditada no Stage 05.
 
 ### Perks legítimas
 
 Tolerância, eficiência ou diagnóstico só devem ser acoplados quando houver extension point real. Não duplicar equipment provider nem conceder proteção grátis se uma bridge falhar.
 
-## 10. Stage 06 — integrações
+## 10. Stage 06 — Integrações — IMPLEMENTADO E CANÔNICO
+
+Todos os seis planos de integração estão fechados no estado fonte consolidado.
 
 ### Worldgen — IMPLEMENTADO E CANÔNICO
 
@@ -142,18 +156,18 @@ Tolerância, eficiência ou diagnóstico só devem ser acoplados quando houver e
 - BWG entra por regras genéricas de suitability;
 - nenhum desses mods se torna hard dependency desnecessária.
 
+A matriz de worldgen WG-00–WG-07 faz parte dos gates canônicos de aceitação.
+
 ### Create / Sable / Aeronautics — IMPLEMENTADO E CANÔNICO
 
-Versões verificadas no plano fechado:
+Versões verificadas no contrato consolidado:
 
 - Sable `2.0.5`;
 - Aeronautics `1.3.1`.
 
 `SablePressureIntegration` usa API Sable verificada para projetar posições de sublevel no level físico e consultar a pressão canônica.
 
-Aeronautics não expõe, nessa versão, um contrato genérico confiável para “cabine selada/leak/flood”. Por isso Volcanoes deliberadamente **não inventa cabine protegida** e cai para a atmosfera/pressão externa quando não consegue provar proteção.
-
-Create Diving Helmet + Backtank participam da oferta de oxigênio e o ar é consumido pelo adapter uma única vez.
+Aeronautics não expõe, nessa versão, um contrato genérico confiável para “cabine selada/leak/flood”. Por isso Volcanoes deliberadamente não inventa cabine protegida e cai para a atmosfera/pressão externa quando não consegue provar proteção.
 
 ### Cold Sweat — IMPLEMENTADO E CANÔNICO
 
@@ -167,26 +181,57 @@ Bridge de poluição/acid rain fechada com routing/retry safety. Destroy mantém
 
 Claims alimentam `ProtectedAreaService` com comportamento fail-closed. Perks, rituais ou world effects não podem contornar protected areas.
 
-### RNS — IMPLEMENTADO PARCIALMENTE / FAIL-CLOSED NO WORLDGEN FÍSICO
+### RNS — IMPLEMENTADO E CANÔNICO COMO COEXISTÊNCIA SEGURA
 
-A integração resolve identidade hidrotermal de metais apenas quando a causalidade é comprovada:
+O estado final fecha a integração sem transferir de forma ampla a autoridade do worldgen metálico do RNS.
 
-- shield/fissure → iron;
-- stratovolcano → copper;
-- caldera → gold;
-- tectonic-only → generic.
+Volcanoes:
 
-RNS continua autoridade de prospecção e de worldgen físico de metais enquanto Volcanoes não demonstrar placement determinístico próprio de Cu/Fe/Au. A lifecycle bridge de ownership permanece desabilitada no estado auditado. Tin/nickel/zinc/silver permanecem RNS-owned.
+- produz fisicamente apenas seus corpos hidrotermais bounded/determinísticos de Cu/Fe/Au quando há causalidade vulcânica provada;
+- mantém as identidades Stage 01 determinísticas: shield/fissure → iron, stratovolcano → copper, caldera → gold; tectonic-only → generic;
+- projeta para o RNS somente depósitos físicos já autoritativos do Volcanoes, como custom/scannable locations;
+- persiste marcador de ownership/proveniência suficiente para não adotar nem remover, após restart, um registro estrangeiro de mesmo valor/posição;
+- preserva fail-closed diante de colisão, conteúdo divergente ou ausência de prova física.
+
+RNS:
+
+- continua autoridade de prospecção;
+- mantém seu native deposit worldgen habilitado para Cu/Fe/Au/Sn/Ni/Zn/Ag;
+- conserva Sn/Ni/Zn/Ag inteiramente RNS-owned.
+
+Não existe autorização para uma perk escrever no lifecycle/ownership de worldgen de nenhum dos dois providers.
 
 ### Regra para perks
 
-Não listar Volcanoes como autoridade de worldgen mineral RNS além do que a integração realmente prova.
+Não tratar “integração RNS fechada” como transferência global de authority. Perks podem consumir apenas boundaries read-only/diagnósticos/discovery aprovados; não podem invocar o produtor físico, criar depósitos, mutar `LevelDepositData`, reescrever ownership ou duplicar prospecção.
 
-## 11. Hardening — PLANEJADO / ABERTO
+## 11. Stage 07 — Hardening — IMPLEMENTADO E CANÔNICO
 
-O Stage 07 cobre compatibility matrix, performance, world-upgrade/persistence e release checklist. Não é provider de perk.
+Stage 07 está fechado no snapshot fonte `eaddc3232dfc600780769f4a5e7e45ff1e50181c` e seus artefatos foram consolidados no RPG Skill Tree.
 
-## 12. Anti-abuso e deduplicação
+O fechamento cobre:
+
+- matriz completa de compatibilidade/optional hosts;
+- hardening e profiling de performance com budgets bounded;
+- world-upgrade/persistence, incluindo políticas fail-closed para schemas futuros/corruptos e comando administrativo explícito de upgrade;
+- release readiness agregada e executável;
+- auditoria de licenças/proveniência de terceiros.
+
+Esses gates são evidência de confiabilidade do provider; não são capacidades de perk nem justificam bônus próprios.
+
+## 12. Consolidação — IMPLEMENTADO E CANÔNICO
+
+A PR #308 consolidou o snapshot fonte final do Volcanoes no repositório do RPG Skill Tree e preservou o contrato de distribuição de um único mod/JAR.
+
+Regras pós-consolidação:
+
+1. Para runtime, código, testes, plans e CI do Volcanoes, a fonte operacional é `Gustavaopere/neoforge-rpg-skilltree`.
+2. `plans/volcanoes/STATUS.md` é o status operacional do subsistema.
+3. O repositório standalone `Gustavaopere/Volcanoes@eaddc323...` é proveniência histórica do import enquanto permanecer existente; ele não deve ser usado como autoridade mais nova que a `main` consolidada.
+4. Mudanças futuras de capability do Volcanoes devem ser detectadas no repositório unificado, com atenção aos paths `plans/volcanoes/**`, `src/main/java/dev/gustavopere/volcanoes/**`, `src/main/java/dev/gustavopere/rpgskilltree/runtime/volcanoes/**`, recursos `volcanoes:*`, workflows/scripts/docs do Volcanoes e integrações que consumam esses boundaries.
+5. Avanço de `main` causado apenas por outro subsistema do RPG Skill Tree não deve ser classificado automaticamente como delta de capability do Volcanoes; o diff pertinente precisa tocar a superfície acima ou alterar um contrato compartilhado consumido pelo Volcanoes.
+
+## 13. Anti-abuso e deduplicação
 
 1. Nenhum hazard ambiental contínuo gera Mastery por tick.
 2. Descobertas usam UUID/milestone persistente ou identidade equivalente.
@@ -194,15 +239,22 @@ O Stage 07 cobre compatibility matrix, performance, world-upgrade/persistence e 
 4. Equipment/filter consumption acontece uma única vez pelo pipeline canônico.
 5. Não inferir cabine selada, proteção, concentração de gás ou mineral ownership por aparência/nome.
 6. Bridge opcional ausente desativa apenas a parcela dependente e nunca concede proteção gratuita.
+7. Consolidação de módulo não cria um segundo pipeline: RPG-facing consumers devem delegar aos serviços nativos do Volcanoes, não duplicar a simulação.
 
-## 13. Fontes principais
+## 14. Fontes principais atuais
 
-- `plans/STATUS.md`
-- `plans/00-foundation/`
-- `plans/01-geology/`
-- `plans/02-tectonics/`
-- `plans/03-volcanoes/`
-- `plans/04-atmosphere/`
-- `plans/05-pressure/`
-- `plans/06-integrations/`
-- `plans/07-hardening/`
+- `plans/volcanoes/STATUS.md`
+- `plans/volcanoes/00-foundation/`
+- `plans/volcanoes/01-geology/`
+- `plans/volcanoes/02-tectonics/`
+- `plans/volcanoes/03-volcanoes/`
+- `plans/volcanoes/04-atmosphere/`
+- `plans/volcanoes/05-pressure/`
+- `plans/volcanoes/06-integrations/`
+- `plans/volcanoes/07-hardening/`
+- `src/main/java/dev/gustavopere/volcanoes/`
+- `src/main/java/dev/gustavopere/rpgskilltree/runtime/volcanoes/`
+- `docs/volcanoes/`
+- `.github/workflows/volcanoes-*.yml`
+- `scripts/verify-volcanoes-consolidation.py`
+- `scripts/verify-volcanoes-release-readiness.py`
