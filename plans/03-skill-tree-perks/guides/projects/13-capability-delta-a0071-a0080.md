@@ -24,13 +24,19 @@ Nenhuma capacidade detectada exige uma 11ª perk. As capacidades jogáveis relev
 - `StationaryStateService` → A0079, com invalidation forçada ainda parcial;
 - dodge-success causal → A0080, `SEM HOOK SEGURO` no adapter atual.
 
+## Reconciliação de freshness antes do fechamento da PR #302
+
+Durante o fechamento deste mesmo ciclo, a `main` do RPG Skill Tree avançou de `4cde1cf26dc1b4bb374f782b348ec3a2c3c5702a` para `fd94cb8fce97a483f405820385758b7837285f09` pela PR #301 (`feat(mastery): close FIST milestone lane`). O delta concorrente altera exclusivamente a lane de Mastery FIST/arquitetura/testes de A0041–A0060 e não modifica dossiês, contratos, providers ou runtime A0071–A0080. Classificação: **COBERTA POR SISTEMA/LOTE ANTERIOR; NÃO DEVE SER INTEGRADO NESTE LOTE**. Não existe capacidade nova pertinente que exija reabrir o design das dez perks.
+
+A branch da PR #302 foi reconciliada linearmente sobre `main@fd94cb8fce97a483f405820385758b7837285f09`, preservando integralmente a PR #301 e mantendo no diff somente os 14 artefatos documentais deste ciclo.
+
 ## Baseline operacional para o próximo delta
 
-Os baselines abaixo só avançam porque todo delta acima recebeu disposição explícita:
+Os baselines abaixo só avançam porque todo delta acima, inclusive a freshness concorrente da PR #301, recebeu disposição explícita:
 
 | Projeto | Novo baseline |
 |---|---|
-| RPG Skill Tree | `4cde1cf26dc1b4bb374f782b348ec3a2c3c5702a` |
+| RPG Skill Tree | `fd94cb8fce97a483f405820385758b7837285f09` |
 | Volcanoes | `bbb273d61984e2c9bb84e8f8a56668ae7e315532` |
 | Enshrouded | `391ea82203d30cb392a3397f92e2a3cbe7fb6128` |
 | Black Arcana | `526d8196087c863e9df64051d5d39d88c3050856` |
