@@ -9,6 +9,10 @@ group = mod_group_id
 
 repositories {
     mavenCentral()
+    maven {
+        name = "Iron's Maven - Release"
+        url = 'https://code.redspace.io/releases'
+    }
     maven { url = 'https://maven.blamejared.com' }
     maven { url = 'https://maven.theillusivec4.top/' }
     maven { url = 'https://maven.kosmx.dev/' }
