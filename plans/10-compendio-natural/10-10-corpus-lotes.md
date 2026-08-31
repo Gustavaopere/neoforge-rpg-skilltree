@@ -260,11 +260,40 @@ Entradas:
 - nenhuma frequência de geração, chance, condição numérica de sobrevivência, quantidade de resultado ou outro parâmetro mutável foi congelado em prosa;
 - o corpus passou pelo Compendium Editorial CI #232 e pelo RPG Skill Tree CI #2413, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke antes deste registro.
 
+## Lote 10 — Vanilla / flores remanescentes e flora decorativa
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/flora-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `FLORA:minecraft:cornflower` — Centáurea
+2. `FLORA:minecraft:lily_of_the_valley` — Lírio-do-vale
+3. `FLORA:minecraft:wither_rose` — Rosa do Wither
+4. `FLORA:minecraft:torchflower` — Plantocha
+5. `FLORA:minecraft:sunflower` — Girassol
+6. `FLORA:minecraft:lilac` — Lilás
+7. `FLORA:minecraft:peony` — Peônia
+8. `FLORA:minecraft:rose_bush` — Roseira
+9. `FLORA:minecraft:pitcher_plant` — Planta ancestral
+10. `FLORA:minecraft:pink_petals` — Pétalas rosas
+
+### Critérios editoriais aplicados ao lote 10
+
+- o lote completa as entradas ainda não cobertas de `minecraft:small_flowers` e `minecraft:tall_flowers` na linha 1.21.1 e acrescenta `minecraft:pink_petals`, integrante explícito de `minecraft:flowers`;
+- nomes pt-BR foram conferidos contra os assets da linha Minecraft 1.21.1, incluindo `Centáurea`, `Lírio-do-vale`, `Rosa do Wither`, `Plantocha` e `Planta ancestral`;
+- classificação `FLORA` usa presença explícita nos tags vanilla e identidade de bloco em runtime, sem inferência pelo texto do ID;
+- Plantocha e Planta ancestral registram a existência dos blocos técnicos de plantio `minecraft:torchflower_crop` e `minecraft:pitcher_crop`, mas não congelam duração, estágio nem condição de crescimento;
+- conversões de corante foram registradas somente após confirmação dos recipes exatos de 1.21.1 para as dez entradas; quantidades de saída permanecem fora da prosa editorial;
+- distribuição concreta continua condicionada por worldgen, biomas e datapacks ativos, sem frequência ou local universal inventado;
+- o corpus passou pelo Compendium Editorial CI #237 e pelo RPG Skill Tree CI #2425, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke antes deste registro.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
-- entradas de flora vanilla reais no corpus: **10**;
-- entradas editoriais vanilla totais: **90**;
-- lotes documentados: **9**;
+- entradas de flora vanilla reais no corpus: **20**;
+- entradas editoriais vanilla totais: **100**;
+- lotes documentados: **10**;
 - namespace atual em produção: `minecraft`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
