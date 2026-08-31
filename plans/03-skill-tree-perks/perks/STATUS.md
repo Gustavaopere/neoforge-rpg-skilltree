@@ -462,7 +462,8 @@ O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige
 - **Quantidade:** 10 perks consecutivas.
 - **Base de abertura:** RPG Skill Tree `main@5098e38cbfb0e90d788de0722dd7e2f68753261d`.
 - **Reconciliado antes dos arquivos compartilhados com:** `main@5530667f5303c3f628ea9f69dd947dbfed888915`, preservando o fechamento Chat 3 A0021–A0030.
-- **Gate de delta próprio promovido:** RPG `5530667f5303c3f628ea9f69dd947dbfed888915`; Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `6642d4ed14bbae2a771075ca466e6749ac8f7fb8`; Black Arcana `462c5c4af403629a7092129cf7f3070472f03e59`.
+- **Freshness final pré-PR/reconciliação final:** RPG Skill Tree `main@19f6fa749348c6c7dc46887787fa718242f09af0`; entre `5530667...` e `19f6fa7...`, dois lotes editoriais TFC do Compêndio e a centralização canônica de Mastery IDs (#317) foram classificados sem impacto contratual nas dez perks.
+- **Gate de delta próprio promovido:** RPG `19f6fa749348c6c7dc46887787fa718242f09af0`; Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `6642d4ed14bbae2a771075ca466e6749ac8f7fb8`; Black Arcana `462c5c4af403629a7092129cf7f3070472f03e59`.
 - **Delta canônico do ciclo:** `guides/projects/15-capability-delta-a0091-a0100.md`.
 - **Notion fetch fresco:** 10/10.
 - **Notion alterado:** A0092, A0096, A0097, A0098, A0099.
