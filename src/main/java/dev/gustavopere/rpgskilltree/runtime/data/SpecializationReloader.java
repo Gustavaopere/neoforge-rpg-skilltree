@@ -5,18 +5,22 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.gustavopere.rpgskilltree.core.SpecializationAvailability;
 import dev.gustavopere.rpgskilltree.core.SpecializationDefinition;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -39,13 +43,31 @@ public final class SpecializationReloader extends SimpleJsonResourceReloadListen
         @NotNull ResourceManager resourceManager,
         @NotNull ProfilerFiller profiler
     ) {
+        load(
+            resources,
+            provider -> provider.equals("rpgskilltree") || ModList.get().isLoaded(provider),
+            SpecializationProviderRuntimePolicy::hasCompleteAdapter
+        );
+    }
+
+    static void load(
+        Map<ResourceLocation, JsonElement> resources,
+        Predicate<String> isProviderLoaded,
+        Predicate<String> hasCompleteAdapter
+    ) {
+        Objects.requireNonNull(resources, "resources");
+        Objects.requireNonNull(isProviderLoaded, "isProviderLoaded");
+        Objects.requireNonNull(hasCompleteAdapter, "hasCompleteAdapter");
+
         List<SpecializationDefinition> definitions = new ArrayList<>();
+        Map<String, SpecializationAvailability> availability = new HashMap<>();
         for (Map.Entry<ResourceLocation, JsonElement> resource : resources.entrySet()) {
             if (!resource.getValue().isJsonObject()) {
                 throw new IllegalArgumentException(resource.getKey() + ": specialization root must be an object");
             }
             JsonObject root = resource.getValue().getAsJsonObject();
             String id = requiredString(root, "specialization_id", resource.getKey());
+            String provider = requiredString(root, "provider", resource.getKey());
             Set<String> eligibleClasses = stringSet(root, "eligible_class_ids", resource.getKey());
             Set<String> requiredTags = stringSet(root, "required_tags", resource.getKey());
 
@@ -71,9 +93,19 @@ public final class SpecializationReloader extends SimpleJsonResourceReloadListen
                 }
             }
 
-            definitions.add(new SpecializationDefinition(id, eligibleClasses, mastery, requiredTags));
+            definitions.add(new SpecializationDefinition(
+                id,
+                provider,
+                eligibleClasses,
+                mastery,
+                requiredTags
+            ));
+            availability.put(id, new SpecializationAvailability(
+                provider.equals("rpgskilltree") || isProviderLoaded.test(provider),
+                hasCompleteAdapter.test(provider)
+            ));
         }
-        SpecializationCatalog.replace(definitions);
+        SpecializationCatalog.replace(definitions, availability);
     }
 
     private static String requiredString(JsonObject root, String key, ResourceLocation resourceId) {
