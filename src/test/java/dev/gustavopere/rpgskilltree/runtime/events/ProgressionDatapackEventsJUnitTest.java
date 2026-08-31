@@ -1,7 +1,9 @@
 package dev.gustavopere.rpgskilltree.runtime.events;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -19,6 +21,12 @@ final class ProgressionDatapackEventsJUnitTest {
             "onDatapackSync", OnDatapackSyncEvent.class
         );
         assertNotNull(method.getAnnotation(SubscribeEvent.class));
+    }
+
+    @Test
+    void onlyFullDatapackReloadRequiresReconciliation() {
+        assertTrue(ProgressionDatapackEvents.shouldReconcile(false));
+        assertFalse(ProgressionDatapackEvents.shouldReconcile(true));
     }
 
     @Test
