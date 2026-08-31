@@ -26,9 +26,10 @@ public final class MineColoniesBattleMageRegistries {
     public static final Skill PRIMARY_SKILL = Skill.Mana;
     public static final Skill SECONDARY_SKILL = Skill.Focus;
 
-    public static final String JOB_TRANSLATION_KEY = "com.minecolonies.job.battle_mage";
+    public static final String JOB_TRANSLATION_KEY = "com.rpgskilltree.job.battle_mage";
     public static final String BUTTON_TRANSLATION_KEY =
-        "com.minecolonies.coremod.gui.workerhuts.battle_mage";
+        "com.rpgskilltree.coremod.gui.workerhuts.battle_mage";
+    public static final String WORKER_SOUND_NAME = "battle_mage";
 
     private MineColoniesBattleMageRegistries() {}
 }
