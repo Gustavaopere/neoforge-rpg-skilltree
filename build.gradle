@@ -11,6 +11,7 @@ sonar {
     properties {
         property "sonar.projectKey", "Gustavaopere_neoforge-rpg-skilltree"
         property "sonar.organization", "gustavaopere"
+        property "sonar.projectVersion", "${mod_version}-sonar"
     }
 }
 
