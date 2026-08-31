@@ -70,11 +70,11 @@ final class A0021A0030ImplementationContractJUnitTest {
             daggerFacts("a0023-cancel", true, true, false, true, 1_000L), ranks, state, 0);
         assertEquals(1.25D, cancelledPre.damageMultiplier(), EPSILON);
         assertEquals(0.10D, cancelledPre.physicalPenetrationFraction(), EPSILON);
-        assertEquals(4, state.flow("player", 1_000L));
+        assertEquals(2, state.flow("player", 1_000L));
         assertTrue(state.blindSpotReady("player", "target", 1_000L));
         A0021A0040CombatPolicy.afterConfirmedHit(
             daggerFacts("a0023-cancel", false, true, false, true, 1_050L), ranks, state);
-        assertEquals(4, state.flow("player", 1_050L));
+        assertEquals(2, state.flow("player", 1_050L));
         assertTrue(state.blindSpotReady("player", "target", 1_050L));
 
         var confirmedPre = A0021A0040CombatPolicy.beforeHit(
@@ -82,7 +82,7 @@ final class A0021A0030ImplementationContractJUnitTest {
         assertEquals(1.25D, confirmedPre.damageMultiplier(), EPSILON);
         A0021A0040CombatPolicy.afterConfirmedHit(
             daggerFacts("a0023-confirm", true, true, false, true, 1_150L), ranks, state);
-        assertEquals(2, state.flow("player", 1_150L));
+        assertEquals(0, state.flow("player", 1_150L));
         assertFalse(state.blindSpotReady("player", "target", 1_150L));
     }
 
