@@ -1,0 +1,36 @@
+name: Narrative Auditor
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'historia/**'
+      - 'scripts/narrative_auditor.py'
+      - 'scripts/test_narrative_auditor.py'
+      - '.github/workflows/narrative-auditor.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'historia/**'
+      - 'scripts/narrative_auditor.py'
+      - 'scripts/test_narrative_auditor.py'
+      - '.github/workflows/narrative-auditor.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test narrative auditor
+        run: python3 scripts/test_narrative_auditor.py
+
+      - name: Audit canonical narrative corpus
+        run: python3 scripts/narrative_auditor.py --root historia
