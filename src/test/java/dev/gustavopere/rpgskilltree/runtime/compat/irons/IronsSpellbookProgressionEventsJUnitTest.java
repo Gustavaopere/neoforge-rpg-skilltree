@@ -3,18 +3,18 @@ package dev.gustavopere.rpgskilltree.runtime.compat.irons;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.redspace.ironsspellbooks.api.spells.CastSource;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronMasterySourcePolicy.CastKind;
 import org.junit.jupiter.api.Test;
 
 final class IronsSpellbookProgressionEventsJUnitTest {
     @Test
     void onlyRealSurvivalSpellbookAndScrollCastsCountForMastery() {
-        assertTrue(IronsSpellbookProgressionEvents.countsForMastery(false, false, false, CastSource.SPELLBOOK));
-        assertTrue(IronsSpellbookProgressionEvents.countsForMastery(false, false, false, CastSource.SCROLL));
+        assertTrue(IronMasterySourcePolicy.counts(false, false, false, CastKind.SPELLBOOK));
+        assertTrue(IronMasterySourcePolicy.counts(false, false, false, CastKind.SCROLL));
 
-        assertFalse(IronsSpellbookProgressionEvents.countsForMastery(true, false, false, CastSource.SPELLBOOK));
-        assertFalse(IronsSpellbookProgressionEvents.countsForMastery(false, true, false, CastSource.SPELLBOOK));
-        assertFalse(IronsSpellbookProgressionEvents.countsForMastery(false, false, true, CastSource.SPELLBOOK));
-        assertFalse(IronsSpellbookProgressionEvents.countsForMastery(false, false, false, CastSource.COMMAND));
+        assertFalse(IronMasterySourcePolicy.counts(true, false, false, CastKind.SPELLBOOK));
+        assertFalse(IronMasterySourcePolicy.counts(false, true, false, CastKind.SPELLBOOK));
+        assertFalse(IronMasterySourcePolicy.counts(false, false, true, CastKind.SPELLBOOK));
+        assertFalse(IronMasterySourcePolicy.counts(false, false, false, CastKind.OTHER));
     }
 }
