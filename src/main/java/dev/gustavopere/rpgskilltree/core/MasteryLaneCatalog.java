@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /** Canonical identifiers emitted by the mastery policy layer. */
 public final class MasteryLaneCatalog {
     private static final Pattern MEMBER = Pattern.compile("[a-z0-9_]+(?:-[a-z0-9_]+)*");
-    private static final Pattern EPICFIGHT_MEMBER = Pattern.compile(
+    private static final Pattern SCOPED_MEMBER = Pattern.compile(
         "[a-z0-9_]+(?:-[a-z0-9_]+)*(?:/[a-z0-9_]+(?:-[a-z0-9_]+)*)?"
     );
 
@@ -92,7 +92,7 @@ public final class MasteryLaneCatalog {
     }
 
     public static String malumSpirit(String affinity) {
-        return "malum:spirit/" + dynamicMember(affinity, "Malum spirit affinity");
+        return "malum:spirit/" + scopedMember(affinity, "Malum spirit affinity");
     }
 
     public static String create(String member) {
@@ -100,18 +100,15 @@ public final class MasteryLaneCatalog {
     }
 
     public static String epicFightWeaponCategory(String category) {
-        if (category == null || !EPICFIGHT_MEMBER.matcher(category).matches()) {
-            throw new IllegalArgumentException("Epic Fight weapon category must be a canonical normalized token");
-        }
-        return "epicfight:" + category;
+        return "epicfight:" + scopedMember(category, "Epic Fight weapon category");
     }
 
     public static boolean isCanonical(String laneId) {
         if (laneId == null || laneId.isBlank()) return false;
         if (FIXED.contains(laneId)) return true;
         if (matchesDynamic(laneId, "irons:", MEMBER)) return true;
-        if (matchesDynamic(laneId, "malum:spirit/", MEMBER)) return true;
-        if (matchesDynamic(laneId, "epicfight:", EPICFIGHT_MEMBER)) return true;
+        if (matchesDynamic(laneId, "malum:spirit/", SCOPED_MEMBER)) return true;
+        if (matchesDynamic(laneId, "epicfight:", SCOPED_MEMBER)) return true;
         return matchesBounded(laneId, "ars:", ARS_MEMBERS)
             || matchesBounded(laneId, "goety:", GOETY_MEMBERS)
             || matchesBounded(laneId, "create:", CREATE_MEMBERS);
@@ -128,6 +125,13 @@ public final class MasteryLaneCatalog {
     private static String dynamicMember(String value, String label) {
         if (value == null || !MEMBER.matcher(value).matches()) {
             throw new IllegalArgumentException(label + " must be a canonical lowercase token");
+        }
+        return value;
+    }
+
+    private static String scopedMember(String value, String label) {
+        if (value == null || !SCOPED_MEMBER.matcher(value).matches()) {
+            throw new IllegalArgumentException(label + " must be a canonical normalized token");
         }
         return value;
     }
