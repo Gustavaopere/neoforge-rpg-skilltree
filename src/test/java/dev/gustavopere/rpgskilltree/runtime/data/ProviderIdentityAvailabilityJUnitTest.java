@@ -11,16 +11,23 @@ import dev.gustavopere.rpgskilltree.core.MasteryState;
 import dev.gustavopere.rpgskilltree.core.PassiveNodeProgress;
 import dev.gustavopere.rpgskilltree.core.ProgressionService;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
+import dev.gustavopere.rpgskilltree.core.ProviderClassAvailabilityRegistry;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 final class ProviderIdentityAvailabilityJUnitTest {
     private static final String ARCANE_AWAKENING = "rpgskilltree:arcane_000";
+
+    @AfterEach
+    void resetAvailability() {
+        ProviderClassAvailabilityRegistry.replace(Map.of());
+    }
 
     @Test
     void providerAvailabilityFailsClosedGenerically() {
@@ -57,12 +64,15 @@ final class ProviderIdentityAvailabilityJUnitTest {
         ProgressionState eligible = ProgressionState.empty()
             .withPassiveNodes(PassiveNodeProgress.of(Map.of(ARCANE_AWAKENING, 1)))
             .withMastery(MasteryState.of(Map.of("irons:casting", threshold)));
+
+        ProviderClassAvailabilityRegistry.replace(Map.of("mage", true));
         ProgressionState unlocked = ProgressionService.reconcileAutomaticClasses(
             eligible, List.of(definition)).state();
         assertTrue(unlocked.classProgression().isUnlocked("mage"));
 
-        ProgressionState revoked = ProgressionService.reconcileUnavailableAutomaticClasses(
-            unlocked, Set.of("mage"));
+        ProviderClassAvailabilityRegistry.replace(Map.of("mage", false));
+        ProgressionState revoked = ProgressionService.reconcileAutomaticClasses(
+            unlocked, List.of(definition)).state();
         assertFalse(revoked.classProgression().isUnlocked("mage"));
         assertTrue(revoked.mastery().experience("irons:casting") == threshold,
             "provider absence must not erase earned mastery");
