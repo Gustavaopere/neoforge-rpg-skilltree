@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.gustavopere.rpgskilltree.core.ClassUnlockDefinition;
 import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
+import dev.gustavopere.rpgskilltree.core.ProviderClassAvailabilityRegistry;
 import dev.gustavopere.rpgskilltree.runtime.diagnostics.ReloadDiagnostics;
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -49,6 +50,7 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
 
     private static void load(Map<ResourceLocation, JsonElement> resources) {
         List<ClassUnlockDefinition> definitions = new ArrayList<>();
+        Map<String, Boolean> providerAvailability = new HashMap<>();
         for (JsonElement element : resources.values()) {
             JsonObject root = element.getAsJsonObject();
             String classId = root.get("class_id").getAsString();
@@ -58,13 +60,14 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
                 root.getAsJsonArray("required_provider_mods")
                     .forEach(value -> requiredProviderMods.add(value.getAsString()));
             }
-            if (!ProviderAvailabilityPolicy.allAvailable(
+            boolean providersAvailable = ProviderAvailabilityPolicy.allAvailable(
                 requiredProviderMods,
                 modId -> ModList.get().isLoaded(modId)
-            )) {
+            );
+            providerAvailability.put(classId, providersAvailable);
+            if (!providersAvailable) {
                 LOGGER.debug("Class {} unavailable because a required provider mod is not loaded: {}",
                     classId, requiredProviderMods);
-                continue;
             }
 
             EnumSet<ProgressionDomain> domains = EnumSet.noneOf(ProgressionDomain.class);
@@ -93,5 +96,6 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
             ));
         }
         ClassRuleCatalog.replace(definitions);
+        ProviderClassAvailabilityRegistry.replace(providerAvailability);
     }
 }
