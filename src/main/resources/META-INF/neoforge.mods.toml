@@ -23,14 +23,15 @@ versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
 
-# Provider integrations are artifact-level optional. Runtime adapters must remain
-# classloading-safe when absent; certified provider version ranges belong to the
-# integration compatibility matrix and are not guessed here.
+# Provider integrations are artifact-level optional. Runtime adapters remain classloading-safe
+# when absent and apply their own exact compatibility gates. Use an explicit permissive Maven
+# range here instead of an empty range: NeoForge 21.1.248 treated the explicit empty string as an
+# unsatisfied optional dependency during provider-present verification.
 [[dependencies.${mod_id}]]
 modId="irons_spellbooks"
 type="optional"
 reason="Optional Iron's Spells 'n Spellbooks progression integration"
-versionRange=""
+versionRange="[0,)"
 ordering="NONE"
 side="BOTH"
 
@@ -38,7 +39,7 @@ side="BOTH"
 modId="ars_nouveau"
 type="optional"
 reason="Optional Ars Nouveau progression integration"
-versionRange=""
+versionRange="[0,)"
 ordering="NONE"
 side="BOTH"
 
@@ -46,7 +47,7 @@ side="BOTH"
 modId="epicfight"
 type="optional"
 reason="Optional Epic Fight combat progression integration"
-versionRange=""
+versionRange="[0,)"
 ordering="NONE"
 side="BOTH"
 
@@ -54,7 +55,7 @@ side="BOTH"
 modId="goety"
 type="optional"
 reason="Optional Goety progression integration"
-versionRange=""
+versionRange="[0,)"
 ordering="NONE"
 side="BOTH"
 
@@ -62,7 +63,7 @@ side="BOTH"
 modId="malum"
 type="optional"
 reason="Optional Malum progression integration"
-versionRange=""
+versionRange="[0,)"
 ordering="NONE"
 side="BOTH"
 
@@ -70,7 +71,7 @@ side="BOTH"
 modId="eidolon"
 type="optional"
 reason="Optional Eidolon progression integration"
-versionRange=""
+versionRange="[0,)"
 ordering="NONE"
 side="BOTH"
 
@@ -78,7 +79,7 @@ side="BOTH"
 modId="identity2"
 type="optional"
 reason="Optional Identity 2 morph/ecology integration"
-versionRange=""
+versionRange="[0,)"
 ordering="NONE"
 side="BOTH"
 
