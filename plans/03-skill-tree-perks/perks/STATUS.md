@@ -18,7 +18,7 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0010 | Pressão do Carrasco | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação Fúria/autoria mergeada pela PR #237 | nenhuma |
 | A0011 | Ruptura de Guarda | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; `P-A0011-02` corrigida na PR #250 | nenhuma |
 | A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; Cold Sweat 2.4.2 exato + diagnóstico bounded; transação PRE preservada conforme contrato | nenhuma |
-| A0013 | Treino com Lanças I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; classificação provider-native/fail-closed | nenhuma |
+| A0013 | Treino com Lanças I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; classificação provider→árvore mergeada pela PR #237 | nenhuma |
 | A0014 | Treino com Lanças II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #237 via attack-speed provider-native | nenhuma |
 | A0015 | Precisão com Lanças | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; crítico canônico direto | nenhuma |
 | A0016 | Distância Ideal | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; cargas direct-player; ordem consumer→gain endurecida na PR #250 | nenhuma |
@@ -36,16 +36,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0028 | Abalo Crescente | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL VALIDADA FAIL-CLOSED pela PR #248 e preservada na reauditoria #315 | `P-A0028-01`: Epic Fight 21.17.3.1 sem receipt causal separado de guard pressure |
 | A0029 | Quebra de Postura | APROVADO + boundary | NÃO CONFIRMADA; fail-closed preservado; `P-A0029-02` causal latente corrigida na PR #315 | `P-A0029-01`: Epic Fight 21.17.3.1 sem heavy receipt inequívoco |
 | A0030 | Maestria de Martelos — Golpe Demolidor | APROVADO + boundary | NÃO CONFIRMADA; fail-closed preservado; `P-A0030-02` causal latente corrigida na PR #315 | `P-A0030-01`: guard-break causal attacker-side + heavy receipt ausentes |
-| A0031 | Treino com Maças I | APROVADO após correção | NÃO CONFIRMADA | `P-A0031-01`: remover tag MACE; `P-A0031-02`: Mastery anti-farm |
-| A0032 | Treino com Maças II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende de `P-A0031-01` |
-| A0033 | Precisão com Maças | APROVADO + boundary | CÓDIGO PRESENTE no crítico canônico | depende de `P-A0031-01` |
-| A0034 | Trauma Contundente | APROVADO + boundary | CÓDIGO PRESENTE no fallback Armor física | rotas extras guard/posture permanecem fail-closed sem receipt |
-| A0035 | Armadura Fendida | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0035-01`: boss Witherstein; `P-A0035-02`: commit Trauma/Sunder somente após hit confirmado |
-| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | NÃO CONFIRMADA | `P-A0036-01`: heavy receipt; `P-A0036-02`: aplicar Descompasso; `P-A0036-03`: Sunder deve preexistir ao root; depende de Mastery anti-farm |
-| A0037 | Treino com Foices I | APROVADO após correção | NÃO CONFIRMADA | `P-A0037-01`: remover tag SCYTHE; `P-A0037-02`: Mastery anti-farm |
-| A0038 | Treino com Foices II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende de `P-A0037-01` |
-| A0039 | Precisão com Foices | APROVADO + boundary | CÓDIGO PRESENTE no crítico canônico | depende de `P-A0037-01` |
-| A0040 | Marca da Ceifa | APROVADO | IMPLEMENTAÇÃO PARCIAL | `P-A0040-01`: cleanup de marca em target unload/despawn; depende de família SCYTHE segura |
+| A0031 | Treino com Maças I | APROVADO após correção | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | classificação MACE provider-native/exata + Mastery finite-discovery implementadas; validar no Chat 3 |
+| A0032 | Treino com Maças II | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | cadence existente revalidada sobre família MACE segura |
+| A0033 | Precisão com Maças | APROVADO + boundary | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | crítico canônico existente revalidado sobre família MACE segura |
+| A0034 | Trauma Contundente | APROVADO + boundary | CÓDIGO PRESENTE NO FALLBACK CANÔNICO / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | rotas extras guard/posture permanecem fail-closed sem receipt |
+| A0035 | Armadura Fendida | APROVADO + boundary | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `P-A0035-02` resolvida por reservation→POST commit; Witherstein específico segue fail-closed sem registry/tag comprovado |
+| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | consumer Descompasso/sequencing presentes; `P-A0036-01` heavy receipt continua ausente e a perk permanece inativa |
+| A0037 | Treino com Foices I | APROVADO após correção | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | classificação SCYTHE provider-native + Mastery finite-discovery implementadas |
+| A0038 | Treino com Foices II | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | cadence existente revalidada sobre família SCYTHE segura |
+| A0039 | Precisão com Foices | APROVADO + boundary | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | crítico canônico existente revalidado sobre família SCYTHE segura |
+| A0040 | Marca da Ceifa | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `P-A0040-01` resolvida por prune periódico bounded; validar lifecycle no Chat 3 |
 | A0041 | Corte de Ceifa | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0041-01`: reservation→commit da Marca somente após hit confirmado; depende de família SCYTHE segura |
 | A0042 | Maestria de Foices — Colheita de Batalha | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0042-01`: `eligible_kill` anti-abuso; `P-A0042-02`: unificar/deduplicar producers de death; teste transversal |
 | A0043 | Treino com Arcos I | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0043-01`: Mastery BOW por discovery finita; `P-A0043-02`: reconciliar `combat:bow` vs `epicfight:bow`; teste provider-present |
@@ -203,6 +203,18 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - Design fechado; review incorporou `P-A0035-02`, `P-A0036-03` e `P-A0040-01`.
 - Auditoria: `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0031-A0040.md`.
 - Runtime não foi alterado pelo Chat 1.
+
+### A0031–A0040 — Chat 2 retroativo
+- Seleção refeita por ordem do usuário desde A0001: A0001–A0020 já confirmadas; A0021–A0030 já passaram por Chat 2/Chat 3; A0031–A0040 foi o primeiro lote exato elegível.
+- Branch substituta: `feat/chat2-a0031-a0040-retro-implementation`, criada da `main@452e8b23e374179c1f616f9beedce6e3dea66ef5` porque os refs históricos Chat 2 não continham uma implementação ativa/usável deste lote.
+- A0031/A0037: removidas tags paralelas MACE/SCYTHE e Mastery convertida para discovery finita +10/tipo; `minecraft:mace` é o único fallback vanilla; SCYTHE externa exige provider/mapping explícito.
+- A0035: `P-A0035-02` resolvida por reservation→POST commit; Trauma/Sunder não são mais consumidos/criados no PRE.
+- A0036: `P-A0036-02/-03` implementadas no consumer/sequencing; Sunder precisa preexistir ao root; Descompasso possui ambos debuffs/cooldown/cleanup. `P-A0036-01` permanece fail-closed porque heavy receipt inequívoco continua ausente.
+- A0040: `P-A0040-01` resolvida por prune periódico bounded de marcas expiradas.
+- A0032/A0033/A0034/A0038/A0039 preservam os pipelines aprovados e passam a operar sobre classificação de família endurecida.
+- Auditoria Chat 2: `audits/AUDITORIA-A0031-A0040-IMPLEMENTACAO-CHAT2.md`.
+- Estado: **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**; A0036 permanece intencionalmente `CÓDIGO PRESENTE EM FAIL-CLOSED`.
+- Chat 2 não executou unit tests, GameTests, build, dedicated-server smoke ou CI final e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
 
 ## Chat 1 — lote exato A0041–A0050
 
