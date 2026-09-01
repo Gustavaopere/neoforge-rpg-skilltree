@@ -46,6 +46,6 @@ O design exclui companion/summon e procs, cobrindo Mobstein e `ARCANE_BACKLASH` 
 
 - `A0031A0040ImplementationContractJUnitTest` prova remoção em 8.000 ms no rank 1, nenhuma remoção antecipada em 7.999 ms e idempotência do pruning após expiração.
 - Regressões existentes continuam validando crossing estrito ≥50→<50 e duração rank 2 de 10 s.
-- `RPG Skill Tree CI` #2806: JUnit 5, NeoForge GameTests, runtime/data validations, build, JAR e dedicated-server smoke **GREEN**.
-- `SonarQube Cloud` #41: **GREEN**.
+- `RPG Skill Tree CI` #2879 (run `33463430832`, HEAD `4813b2fd`): JUnit 5, **NeoForge JUnit adapter tests**, NeoForge GameTests, runtime/data validations, build, JAR e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #114 (run `33463430893`, HEAD `4813b2fd`): **GREEN**.
 - Resultado: contrato A0040 validado; apta ao merge da PR #252. Nenhuma perk A0041+ foi iniciada.
