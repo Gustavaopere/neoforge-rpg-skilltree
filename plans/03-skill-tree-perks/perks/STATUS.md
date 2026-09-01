@@ -501,14 +501,14 @@ O usuário autorizou explicitamente o Chat 1 a trabalhar de A0200 a A0299 em um 
 - **Início:** A0200.
 - **Fim:** A0299.
 - **Quantidade:** 100 perks consecutivas.
-- **A0300:** não iniciada; apenas sinalizada em A0298 como referência posterior.
+- **A0300:** não iniciada; citada em A0298 somente como sucessora downstream/capstone final, nunca como dependência.
 - **Outros chats/upstream:** A0144–A0176, A0198 e A0199 não são presumidos como concluídos.
 - **Notion fetch fresco:** 100/100 páginas individuais.
 - **Notion alterado:** Custo Extra vazio para 0 em 100/100.
-- **Re-fetch pós-escrita:** 100/100 PASS em 2026-09-01.
+- **Re-fetch pós-escrita:** 100/100 PASS em 2026-09-01; A0210/A0211/A0218 relidas novamente após as correções pós-review.
 - **Dossiês individuais:** 100/100, cada um com 21 propriedades, providers, quatro projetos próprios, testes, nove eixos e 18 critérios.
-- **Classificação:** 10 UNAVAILABLE_NODE atuais; 68 bloqueadas por capability/contrato futuro; 22 sem blocker nomeado, mas ainda sem implementação confirmada.
-- **Freshness dos projetos:** RPG <code>c1597a34787b602e85139d565b9c1e1eb3481cda</code>; Volcanoes <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code>; Enshrouded <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code>; Black Arcana <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code>.
+- **Classificação:** 13 UNAVAILABLE_NODE atuais; 68 bloqueadas por capability/contrato futuro; 19 sem blocker nomeado, mas ainda sem implementação confirmada.
+- **Freshness dos projetos:** RPG <code>eed066e418a9968bcfbbd61df32dcfbf2683ca37</code>; Volcanoes <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code>; Enshrouded <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code>; Black Arcana <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code>.
 - **Delta canônico:** guides/projects/16-capability-delta-a0200-a0299.md.
 - **Auditoria canônica:** audits/AUDITORIA-A0200-A0299.md.
 - **Runtime alterado:** nenhum.
@@ -527,15 +527,15 @@ O usuário autorizou explicitamente o Chat 1 a trabalhar de A0200 a A0299 em um 
 | <code>A0207</code> | Resistência a Ender I | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
 | <code>A0208</code> | Resistência a Ender II | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
 | <code>A0209</code> | Imbuimento de Ender | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
-| <code>A0210</code> | Afinidade de Ender | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0211</code> | Maestria de Ender | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0210</code> | Afinidade de Ender | APROVADO | UNAVAILABLE_NODE / não comprável | <code>ENDER_MASTERY_LANE_V1</code> |
+| <code>A0211</code> | Maestria de Ender | APROVADO | UNAVAILABLE_NODE / não comprável | <code>ENDER_MASTERY_LANE_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code> |
 | <code>A0212</code> | Dano de Terra I | APROVADO | implementação não confirmada | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> |
 | <code>A0213</code> | Dano de Terra II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
 | <code>A0214</code> | Resistência a Terra I | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
 | <code>A0215</code> | Resistência a Terra II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
 | <code>A0216</code> | Imbuimento de Terra | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
 | <code>A0217</code> | Domínio Geomântico | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0218</code> | Maestria de Terra | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0218</code> | Maestria de Terra | APROVADO | UNAVAILABLE_NODE / não comprável | <code>SPECIALIST_GATE_RESOLVER_V1</code> |
 | <code>A0219</code> | Dano de Água I | APROVADO | implementação não confirmada | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> |
 | <code>A0220</code> | Dano de Água II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
 | <code>A0221</code> | Resistência a Água I | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
@@ -615,18 +615,19 @@ O usuário autorizou explicitamente o Chat 1 a trabalhar de A0200 a A0299 em um 
 | <code>A0295</code> | Campo Estático | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code> |
 | <code>A0296</code> | Condução pela Água | APROVADO | implementação não confirmada | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>WET_STATE_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code> |
 | <code>A0297</code> | Passo de Relâmpago | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DODGE_CONTROL_MODIFIER_V1</code> |
-| <code>A0298</code> | Tempestade Encadeada | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>A0300</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code> |
+| <code>A0298</code> | Tempestade Encadeada | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code> |
 | <code>A0299</code> | Corpo de Tempestade | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>HOSTILE_DAMAGE_RECEIPT_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>STAMINA_REGEN_MODIFIER_V1</code> |
 
 ### Handoff sistêmico para o Chat 2
 
 1. Nenhuma das 100 perks possui implementação confirmada por este ciclo.
-2. A0200–A0209 permanecem UNAVAILABLE_NODE até classifiers, buckets, lanes e receipts próprios.
-3. A0224/A0225, A0231/A0232 e A0233–A0299 possuem contracts futuros ou version-status explicitamente bloqueantes conforme o dossiê individual.
-4. A0210–A0223, A0226–A0230, A0273, A0275 e A0296 ainda exigem prova real dos adapters/hooks mesmo sem FUTURE_PROVIDER_CONTRACT no registro.
-5. Ausência de capability nunca autoriza no-op comprável, bônus genérico ou API inventada.
-6. Todo provider present/absent precisa de causalidade, dedup, rollback, lifecycle, multiplayer e dedicated-server tests.
-7. Se a API real contradizer o contrato, o ponto volta ao Chat 1; não redesenhar silenciosamente.
-8. A0300 não faz parte deste handoff.
+2. A0200–A0211 e A0218 permanecem UNAVAILABLE_NODE até classifiers, buckets, lanes, resolver e receipts próprios conforme cada dossiê.
+3. A0210/A0211 exigem <code>ENDER_MASTERY_LANE_V1</code> exata; A0211/A0218 também exigem <code>SPECIALIST_GATE_RESOLVER_V1</code>. Ausência de qualquer contrato mantém o node não comprável.
+4. A0224/A0225, A0231/A0232 e as demais perks bloqueadas entre A0233–A0299 possuem contracts futuros ou version-status explicitamente bloqueantes conforme o dossiê individual.
+5. A0212–A0217, A0219–A0223, A0226–A0230, A0273, A0275 e A0296 ainda exigem prova real dos adapters/hooks mesmo sem blocker novo além dos registrados.
+6. Ausência de capability nunca autoriza no-op comprável, bônus genérico ou API inventada.
+7. Todo provider present/absent precisa de causalidade, dedup, rollback, lifecycle, multiplayer e dedicated-server tests.
+8. Se a API real contradizer o contrato, o ponto volta ao Chat 1; não redesenhar silenciosamente.
+9. A0300 não faz parte deste handoff.
 
 O design A0200–A0299 está fechado. O fechamento operacional deste ciclo exige PR, review resolvido, CI GREEN, merge e confirmação fresca da main; depois disso o Chat 1 deve parar.

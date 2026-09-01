@@ -2,12 +2,12 @@
 
 ## 1. Estado, origem e decisão
 
-- **Decisão do Chat 1:** DESIGN APROVADO; IMPLEMENTAÇÃO NÃO CONFIRMADA.
-- **Disponibilidade operacional:** Nenhum runtime foi alterado por este trabalho de Chat 1. A habilitação futura depende de prova dos adapters, gates e hooks descritos no registro canônico.
+- **Decisão do Chat 1:** DESIGN APROVADO — UNAVAILABLE_NODE.
+- **Disponibilidade operacional:** Não comprável no runtime atual. O node só pode ser habilitado depois que dependências e capabilities exatas forem comprovadas; componente não classificado continua inerte.
 - **Escopo desta entrega:** auditoria e design apenas; nenhum catálogo/runtime, compra, atributo ou integração foi implementado.
 - **Fonte canônica:** [registro A0211 no Catálogo Mestre do Notion](https://app.notion.com/3c569db9f0db81789ec5d0db77067a8e).
 - **Leitura fresca do registro:** 2026-09-01; página individual buscada antes da auditoria.
-- **Persistência verificada:** Custo Extra normalizado para 0 e página individual relida após a escrita.
+- **Persistência verificada:** Custo Extra=0 e correções pós-review de ENDER_MASTERY_LANE_V1/SPECIALIST_GATE_RESOLVER_V1 foram relidas na página individual.
 - **Dependências externas à faixa:** nenhuma dependência fora de A0200–A0299. Elas permanecem sinalizadas e não são presumidas como concluídas.
 - **Identidade preservada:** ENDER é classificação explícita de ação/componente. Não equivale a Void, dimensão End, teleporte genérico, deslocamento, frio ou estética dimensional.
 
@@ -27,15 +27,15 @@
 | Ranks Máx. | 1 |
 | Custo por Rank | 3 Passive Point(s) |
 | Custo Extra | 0 — nenhum custo extra de compra |
-| Dependências Obrigatórias | A0210 Afinidade de Ender + Ender Mastery ≥80 + pelo menos uma rota profunda: A0206 =1 OU A0208 =1 OU A0209 ≥2. Requisitos locais da terminal não substituem Gate A/B/C da Specialist; AGILITY/VITALITY/topologia não reduzem o threshold semântico. |
-| Pré-requisitos | A0210 Afinidade de Ender + Ender Mastery ≥80 + pelo menos uma rota profunda entre A0206/A0208/A0209. |
-| Provider/Mods | RPG Skill Tree — SpecialistGateResolver + Ender Mastery canônica. Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3 fornecem gameplay ENDER apenas aos nodes com adapters próprios; nenhum provider externo possui o gate da Specialist. |
+| Dependências Obrigatórias | A0210 Afinidade de Ender + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + pelo menos uma rota profunda: A0206 =1 OU A0208 =1 OU A0209 ≥2. ENDER_MASTERY_LANE_V1 e SPECIALIST_GATE_RESOLVER_V1 são capabilities obrigatórias; requisitos locais não substituem Gate A/B/C. |
+| Pré-requisitos | A0210 Afinidade de Ender + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + pelo menos uma rota profunda entre A0206/A0208/A0209 + SPECIALIST_GATE_RESOLVER_V1 disponível. |
+| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS ENDER_MASTERY_LANE_V1 e SPECIALIST_GATE_RESOLVER_V1. A lane tem lane_id=rpgskilltree:ender e aceita somente IDs completos versionados de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3; nenhum alias agregado/namespace removido. O resolver é owner dos Gates A/B/C e PP semânticos; nenhum provider externo possui o gate. VERSION-STATUS: ambos os contratos não foram encontrados no runtime/main auditado em 2026-09-01. |
 | Efeito | Terminal exterior do corredor ENDER. Possuir A0211 satisfaz somente Gate C da Árvore de Especialista Ender. A Specialist Ender só é liberada quando SpecialistGateResolver confirmar simultaneamente fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:ENDER e A0211. Não concede Ruptura, teleporte, reposicionamento, afinidade térmica, dano ou resistência por si só. |
 | Escalonamento | 1 rank. Desbloqueio binário da especialização ENDER; não adiciona dano, mobilidade, teleporte, estado, recurso, duração, resistência, afinidade ou mitigação por si só. |
-| Gate | COMPRA DA TERMINAL: A0210 + Ender Mastery ≥80 + (A0206=1 OU A0208=1 OU A0209≥2). DESBLOQUEIO SPECIALIST ENDER: Gate A = fundamentos exteriores ARCANE/POWER e ARCANE/ENDER exigidos pelo mapeamento; Gate B = ≥100 Passive Points válidos em SPECIALIST_REGION:ENDER; Gate C = A0211 possuída. Híbridos ENDER↔AGILITY/VITALITY/MARTIAL exigem integralmente os gates dos dois pais e não reutilizam PP de bridge. |
-| Hook | SpecialistGateResolver server-side: A0211 apenas publica terminal_id=ARCANE/ENDER. Reavaliar Gate A/B/C em compra, respec, migração e mudança de provider/capability. Liberar avaliação da Specialist Ender somente enquanto os três gates permanecerem válidos; mobilidade/topologia visual não substituem gates. |
-| Fallback | FAIL-CLOSED: se fundamentos, cálculo de PP semântico ou terminal não puderem ser validados, Specialist Ender permanece bloqueada. Perks internas dependentes de teleporte/ENDER/providers falham fechado individualmente; nunca retornar aos antigos gates de 8 PP, ARCANE ≥8 + ARCANE+AGILITY ≥12 ou criar deslocamento como fallback. |
-| Regra | TERMINAL_EXTERIOR: ARCANE/ENDER. PP_REGION: ARCANE/ENDER. A0211 não pertence às 30 perks internas da Specialist Ender. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:ENDER; os antigos gates 8 PP ENDER, ARCANE ≥8 e ARCANE+AGILITY ≥12 são removidos como desbloqueio da Specialist. BORDER_HOPPING: proibido. RESPEC_SEGURO: enquanto qualquer perk interna estiver possuída, bloquear refund de A0211, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. |
+| Gate | COMPRA DA TERMINAL: A0210 + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + (A0206=1 OU A0208=1 OU A0209≥2) + SPECIALIST_GATE_RESOLVER_V1 disponível; sem qualquer capability, A0211 é UNAVAILABLE_NODE/não comprável. DESBLOQUEIO SPECIALIST ENDER: Gate A = fundamentos exteriores exigidos; Gate B = ≥100 PP válidos em SPECIALIST_REGION:ENDER; Gate C = A0211 possuída. |
+| Hook | FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 server-side: A0211 publica somente terminal_id=ARCANE/ENDER; o resolver reavalia Gate A/B/C em compra, respec, migração e mudança de capability. ENDER_MASTERY_LANE_V1 fornece mastery_value(rpgskilltree:ender) com mapping exato/deduplicado. Mobilidade/topologia visual não substituem gates. |
+| Fallback | UNAVAILABLE_NODE/não comprável enquanto ENDER_MASTERY_LANE_V1 ou SPECIALIST_GATE_RESOLVER_V1 estiver ausente/incompatível. Se fundamentos, PP semântico ou terminal não puderem ser validados, Specialist Ender permanece bloqueada. Nunca retornar aos antigos gates de 8 PP, ARCANE ≥8 + ARCANE+AGILITY ≥12, usar alias genérico ou criar deslocamento como fallback. |
+| Regra | TERMINAL_EXTERIOR: ARCANE/ENDER. MASTERY_LANE_ID: rpgskilltree:ender via ENDER_MASTERY_LANE_V1, com IDs completos e sem alias genérico. PP_REGION: ARCANE/ENDER. A0211 não pertence às 30 perks internas. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:ENDER; BORDER_HOPPING proibido. RESPEC_SEGURO: Specialist interna deve ser reembolsada antes de quebrar terminal/fundamentals/Gate B. |
 
 As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função Efetiva, Provider Efetivo, Gate Efetivo, Hook Efetivo, Fallback Efetivo, Pré-requisitos Efetivos e Status Estrutural continuam sob autoridade do schema do Notion. Este dossiê não duplica nem falsifica o cálculo dessas fórmulas.
 
@@ -51,15 +51,15 @@ Terminal exterior do corredor ENDER. Possuir A0211 satisfaz somente Gate C da Á
 
 ### Gate de compra/ativação
 
-COMPRA DA TERMINAL: A0210 + Ender Mastery ≥80 + (A0206=1 OU A0208=1 OU A0209≥2). DESBLOQUEIO SPECIALIST ENDER: Gate A = fundamentos exteriores ARCANE/POWER e ARCANE/ENDER exigidos pelo mapeamento; Gate B = ≥100 Passive Points válidos em SPECIALIST_REGION:ENDER; Gate C = A0211 possuída. Híbridos ENDER↔AGILITY/VITALITY/MARTIAL exigem integralmente os gates dos dois pais e não reutilizam PP de bridge.
+COMPRA DA TERMINAL: A0210 + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + (A0206=1 OU A0208=1 OU A0209≥2) + SPECIALIST_GATE_RESOLVER_V1 disponível; sem qualquer capability, A0211 é UNAVAILABLE_NODE/não comprável. DESBLOQUEIO SPECIALIST ENDER: Gate A = fundamentos exteriores exigidos; Gate B = ≥100 PP válidos em SPECIALIST_REGION:ENDER; Gate C = A0211 possuída.
 
 ### Hook e ordem de execução
 
-SpecialistGateResolver server-side: A0211 apenas publica terminal_id=ARCANE/ENDER. Reavaliar Gate A/B/C em compra, respec, migração e mudança de provider/capability. Liberar avaliação da Specialist Ender somente enquanto os três gates permanecerem válidos; mobilidade/topologia visual não substituem gates.
+FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 server-side: A0211 publica somente terminal_id=ARCANE/ENDER; o resolver reavalia Gate A/B/C em compra, respec, migração e mudança de capability. ENDER_MASTERY_LANE_V1 fornece mastery_value(rpgskilltree:ender) com mapping exato/deduplicado. Mobilidade/topologia visual não substituem gates.
 
 ### Fallback sem trocar a identidade
 
-FAIL-CLOSED: se fundamentos, cálculo de PP semântico ou terminal não puderem ser validados, Specialist Ender permanece bloqueada. Perks internas dependentes de teleporte/ENDER/providers falham fechado individualmente; nunca retornar aos antigos gates de 8 PP, ARCANE ≥8 + ARCANE+AGILITY ≥12 ou criar deslocamento como fallback.
+UNAVAILABLE_NODE/não comprável enquanto ENDER_MASTERY_LANE_V1 ou SPECIALIST_GATE_RESOLVER_V1 estiver ausente/incompatível. Se fundamentos, PP semântico ou terminal não puderem ser validados, Specialist Ender permanece bloqueada. Nunca retornar aos antigos gates de 8 PP, ARCANE ≥8 + ARCANE+AGILITY ≥12, usar alias genérico ou criar deslocamento como fallback.
 
 ### Invariantes semânticos
 
@@ -74,10 +74,10 @@ FAIL-CLOSED: se fundamentos, cálculo de PP semântico ou terminal não puderem 
 |---|---|
 | Região | Principal — ARCANE / Ender — Terminal |
 | Camada e papel | Camada 7; Capstone |
-| Pré-requisito visual/estrutural | A0210 Afinidade de Ender + Ender Mastery ≥80 + pelo menos uma rota profunda entre A0206/A0208/A0209. |
-| Dependência semântica completa | A0210 Afinidade de Ender + Ender Mastery ≥80 + pelo menos uma rota profunda: A0206 =1 OU A0208 =1 OU A0209 ≥2. Requisitos locais da terminal não substituem Gate A/B/C da Specialist; AGILITY/VITALITY/topologia não reduzem o threshold semântico. |
+| Pré-requisito visual/estrutural | A0210 Afinidade de Ender + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + pelo menos uma rota profunda entre A0206/A0208/A0209 + SPECIALIST_GATE_RESOLVER_V1 disponível. |
+| Dependência semântica completa | A0210 Afinidade de Ender + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + pelo menos uma rota profunda: A0206 =1 OU A0208 =1 OU A0209 ≥2. ENDER_MASTERY_LANE_V1 e SPECIALIST_GATE_RESOLVER_V1 são capabilities obrigatórias; requisitos locais não substituem Gate A/B/C. |
 | Custo topológico | 3 PP por rank; 1 rank(s); extra 0 |
-| Regra de região/PP | TERMINAL_EXTERIOR: ARCANE/ENDER. PP_REGION: ARCANE/ENDER. A0211 não pertence às 30 perks internas da Specialist Ender. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:ENDER; os antigos gates 8 PP ENDER, ARCANE ≥8 e ARCANE+AGILITY ≥12 são removidos como desbloqueio da Specialist. BORDER_HOPPING: proibido. RESPEC_SEGURO: enquanto qualquer perk interna estiver possuída, bloquear refund de A0211, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. |
+| Regra de região/PP | TERMINAL_EXTERIOR: ARCANE/ENDER. MASTERY_LANE_ID: rpgskilltree:ender via ENDER_MASTERY_LANE_V1, com IDs completos e sem alias genérico. PP_REGION: ARCANE/ENDER. A0211 não pertence às 30 perks internas. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:ENDER; BORDER_HOPPING proibido. RESPEC_SEGURO: Specialist interna deve ser reembolsada antes de quebrar terminal/fundamentals/Gate B. |
 | Border hopping | Proibido contar a mesma compra em regiões incompatíveis ou usar bridge para satisfazer dois thresholds, salvo whitelist explícita de um único lado semântico. |
 | Respec | O refund deve respeitar dependency closure, gate de região/terminal e estado owned pela perk; perks internas dependentes são reembolsadas antes de quebrar o gate. |
 
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree — SpecialistGateResolver + Ender Mastery canônica. Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3 fornecem gameplay ENDER apenas aos nodes com adapters próprios; nenhum provider externo possui o gate da Specialist.
+RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS ENDER_MASTERY_LANE_V1 e SPECIALIST_GATE_RESOLVER_V1. A lane tem lane_id=rpgskilltree:ender e aceita somente IDs completos versionados de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3; nenhum alias agregado/namespace removido. O resolver é owner dos Gates A/B/C e PP semânticos; nenhum provider externo possui o gate. VERSION-STATUS: ambos os contratos não foram encontrados no runtime/main auditado em 2026-09-01.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Fire's Ender Expansion, Somake Spells e Iron's Spells somente por SchoolType/action id exato e adapter versionado; Cold Sweat apenas quando existir parcel térmico frio explícito.
 - **Exclusões obrigatórias:** EntityTeleportEvent isolado não prova deslocamento da própria ação. AGILITY, estar no End, Void, mudança de dimensão e temperatura não criam outcome ENDER.
-- **Contratos/capabilities nomeados no registro:** nenhum contrato nomeado adicional; ainda é obrigatória a prova do adapter/hook real.
+- **Contratos/capabilities nomeados no registro:** <code>ENDER_MASTERY_LANE_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -136,8 +136,8 @@ RPG Skill Tree — SpecialistGateResolver + Ender Mastery canônica. Fire's Ende
 
 ## 8. Fail-closed, lifecycle e perda de capability
 
-- **Decisão atual:** Nenhum runtime foi alterado por este trabalho de Chat 1. A habilitação futura depende de prova dos adapters, gates e hooks descritos no registro canônico.
-- **Fallback normativo:** FAIL-CLOSED: se fundamentos, cálculo de PP semântico ou terminal não puderem ser validados, Specialist Ender permanece bloqueada. Perks internas dependentes de teleporte/ENDER/providers falham fechado individualmente; nunca retornar aos antigos gates de 8 PP, ARCANE ≥8 + ARCANE+AGILITY ≥12 ou criar deslocamento como fallback.
+- **Decisão atual:** Não comprável no runtime atual. O node só pode ser habilitado depois que dependências e capabilities exatas forem comprovadas; componente não classificado continua inerte.
+- **Fallback normativo:** UNAVAILABLE_NODE/não comprável enquanto ENDER_MASTERY_LANE_V1 ou SPECIALIST_GATE_RESOLVER_V1 estiver ausente/incompatível. Se fundamentos, PP semântico ou terminal não puderem ser validados, Specialist Ender permanece bloqueada. Nunca retornar aos antigos gates de 8 PP, ARCANE ≥8 + ARCANE+AGILITY ≥12, usar alias genérico ou criar deslocamento como fallback.
 - Reavaliar gate/availability em login, load/save, datapack/rules reload, respec, mudança/remoção de provider, alteração de capability e migração de schema.
 - Perda de provider ou dependência remove/desativa somente a parcela dependente e executa cleanup do estado próprio, sem tocar estado autoritativo de terceiros.
 - Estado desconhecido ou erro de query nunca concede compra, unlock, proteção, dano, recurso, temperatura favorável ou progressão.
@@ -192,7 +192,7 @@ RPG Skill Tree — SpecialistGateResolver + Ender Mastery canônica. Fire's Ende
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** nenhum contrato nomeado adicional; ainda é obrigatória a prova do adapter/hook real.
+- **Capabilities/contracts a provar:** <code>ENDER_MASTERY_LANE_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.
@@ -233,14 +233,14 @@ RPG Skill Tree — SpecialistGateResolver + Ender Mastery canônica. Fire's Ende
 | 15 | Dependências semânticas | **APROVADO** — closure e upstream/future refs estão explícitos e não presumidos. |
 | 16 | Sem sobreposição/double-dip | **APROVADO** — Mantém dano, resistência, deslocamento causal e parcel térmico em pipelines separados. |
 | 17 | Implementável | **APROVADO COMO CONTRATO** — hook, estado, owner, fallback e testes estão fechados; capability futura bloqueia runtime sem bloquear o design. |
-| 18 | Pós-escrita relido | **APROVADO** — registro individual foi relido após Custo Extra=0; nenhum sucesso foi presumido. |
+| 18 | Pós-escrita relido | **APROVADO** — registro individual foi relido após Custo Extra=0 e após as correções pós-review; nenhum sucesso foi presumido. |
 
 ## 16. Evidência de persistência no Notion
 
 - Página: [A0211 — Maestria de Ender](https://app.notion.com/3c569db9f0db81789ec5d0db77067a8e)
 - Data source: collection://ade1ec0c-b055-4b84-8004-45ae80c45119
-- Operação material desta auditoria: Custo Extra, vazio para 0.
-- Verificação: fetch individual pós-escrita em 2026-09-01 confirmou Custo Extra=0.
+- Operações materiais: Custo Extra vazio para 0; contrato/gate/fallback pós-review corrigidos para ENDER_MASTERY_LANE_V1 + SPECIALIST_GATE_RESOLVER_V1 fail-closed.
+- Verificação: fetch individual pós-escrita e pós-review em 2026-09-01 confirmou Custo Extra=0 e os contracts/gates/fallbacks corrigidos.
 - Os demais valores materiais desta página são transcritos integralmente na seção 2.
 - A página não possui corpo editorial; a autoridade é o conjunto de propriedades do catálogo e suas fórmulas.
 

@@ -11,30 +11,30 @@ A faixa A0200–A0299 foi auditada perk por perk contra o Catálogo Mestre do No
 - **Exceção de ciclo:** o usuário autorizou explicitamente esta entrega especial de 100 perks para o Chat 1.
 - **Notion:** 100 páginas individuais buscadas antes da decisão.
 - **Correção persistida:** Custo Extra estava vazio em 100/100; foi normalizado para 0 em 100/100.
-- **Re-fetch pós-escrita:** 100/100 páginas confirmaram Custo Extra=0.
+- **Re-fetch pós-escrita:** 100/100 páginas confirmaram Custo Extra=0; A0210, A0211 e A0218 também foram relidas após a correção dos contratos pós-review.
 - **Dossiês individuais:** 100/100 presentes em plans/03-skill-tree-perks/perks.
 - **Runtime:** nenhum arquivo de implementação foi alterado; este ciclo é exclusivamente auditoria/design.
-- **Limite:** A0300 não foi iniciada. A referência em A0298 foi somente sinalizada como dependência posterior.
+- **Limite:** A0300 não foi iniciada. A menção em A0298 identifica somente a sucessora downstream/capstone final, não uma dependência de A0298.
 - **Critérios:** cada dossiê contém as 21 propriedades materiais, nove eixos, 18 critérios, providers, quatro projetos próprios, causalidade, recursos, testes, proibições e pendências.
 
 ## Classificação operacional
 
 | Estado | Quantidade | Faixa/códigos |
 |---|---:|---|
-| Design aprovado, UNAVAILABLE_NODE atual | 10 | A0200–A0209 |
+| Design aprovado, UNAVAILABLE_NODE atual | 13 | A0200–A0211 e A0218 |
 | Design aprovado com capability/contrato futuro fail-closed | 68 | ver tracker individual |
-| Design aprovado, implementação ainda não confirmada | 22 | A0210–A0223, A0226–A0230, A0273, A0275 e A0296 |
+| Design aprovado, implementação ainda não confirmada | 19 | A0212–A0217, A0219–A0223, A0226–A0230, A0273, A0275 e A0296 |
 | Implementação confirmada neste ciclo | 0 | Chat 1 não implementa runtime |
 
-Os 78 registros com bloqueio de capability não foram redesenhados para um bônus genérico. O contrato permanece congelado e a compra/parcela dependente falha fechado até a prova do provider real.
+Os 81 registros com bloqueio de capability não foram redesenhados para um bônus genérico. O contrato permanece congelado e a compra/parcela dependente falha fechado até a prova do provider real.
 
 ## Cobertura por família
 
 | Família | Intervalo | Perks | Bloqueadas por capability atual | Sem blocker nomeado, mas implementação pendente |
 |---|---|---:|---:|---:|
 | Eldritch | <code>A0200</code>–<code>A0204</code> | 5 | 5 | 0 |
-| Ender | <code>A0205</code>–<code>A0211</code> | 7 | 5 | 2 |
-| Terra | <code>A0212</code>–<code>A0218</code> | 7 | 0 | 7 |
+| Ender | <code>A0205</code>–<code>A0211</code> | 7 | 7 | 0 |
+| Terra | <code>A0212</code>–<code>A0218</code> | 7 | 1 | 6 |
 | Água | <code>A0219</code>–<code>A0225</code> | 7 | 2 | 5 |
 | Vento | <code>A0226</code>–<code>A0232</code> | 7 | 2 | 5 |
 | Convergência Elemental | <code>A0233</code>–<code>A0242</code> | 10 | 10 | 0 |
@@ -47,7 +47,7 @@ Os 78 registros com bloqueio de capability não foram redesenhados para um bônu
 | Fonte | Evidência usada | Decisão |
 |---|---|---|
 | Catálogo Mestre do Notion | data source collection://ade1ec0c-b055-4b84-8004-45ae80c45119; fetch e refetch individual | autoridade para propriedades canônicas |
-| RPG Skill Tree | <code>c1597a34787b602e85139d565b9c1e1eb3481cda</code> | owner de perks/gates/ledgers; nenhuma implementação A0210–A0299 encontrada |
+| RPG Skill Tree | <code>eed066e418a9968bcfbbd61df32dcfbf2683ca37</code> | owner de perks/gates/ledgers; delta posterior limitado ao workflow Sonar, sem implementação A0210–A0299 |
 | Volcanoes | <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code> | sem delta; geologia/vulcanismo/atmosfera não classificam magia EARTH/FIRE |
 | Enshrouded | <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code> | delta de accessibility client-side e hardening de reload; não cria provider para a faixa |
 | Black Arcana | <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code> | delta de preflight/forecast/HUD read-only; não cria outcome ELDRITCH/elemental |
@@ -81,15 +81,14 @@ Os 78 registros com bloqueio de capability não foram redesenhados para um bônu
 | <code>A0176</code> | <code>A0283</code>, <code>A0284</code>, <code>A0285</code>, <code>A0286</code>, <code>A0287</code>, <code>A0288</code>, <code>A0289</code>, <code>A0290</code>, <code>A0291</code>, <code>A0292</code>, <code>A0293</code>, <code>A0294</code>, <code>A0295</code>, <code>A0296</code>, <code>A0297</code>, <code>A0298</code>, <code>A0299</code> | Upstream ou referência além do lote; não presumida como concluída. |
 | <code>A0198</code> | <code>A0200</code>, <code>A0202</code>, <code>A0203</code>, <code>A0204</code> | Upstream ou referência além do lote; não presumida como concluída. |
 | <code>A0199</code> | <code>A0203</code>, <code>A0204</code> | Upstream ou referência além do lote; não presumida como concluída. |
-| <code>A0300</code> | <code>A0298</code> | Upstream ou referência além do lote; não presumida como concluída. |
-
-A0198/A0199 e as famílias A0144–A0176 são upstream real dos novos ramos. A0300 é downstream e permanece fora do escopo. Nenhuma dessas referências foi marcada como implementada por este ciclo.
+A0198/A0199 e as famílias A0144–A0176 são upstream real dos novos ramos. A0300 é sucessora downstream de A0298 e permanece fora do escopo; portanto, não aparece como dependência. Nenhuma referência upstream foi marcada como implementada por este ciclo.
 
 ## Contratos/capabilities nomeados
 
 | Contrato | Perks que o citam | Política |
 |---|---:|---|
-| <code>SPECIALIST_GATE_RESOLVER_V1</code> | 59 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
+| <code>SPECIALIST_GATE_RESOLVER_V1</code> | 61 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
+| <code>ENDER_MASTERY_LANE_V1</code> | 2 | Lane exata <code>rpgskilltree:ender</code>; exige IDs completos/versionados, causalidade e dedup sem alias genérico. |
 | <code>FIRE_IGNITION_RESOLVER_V1</code> | 11 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
 | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> | 10 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
 | <code>DAMAGE_MITIGATION_RESOLVER_V1</code> | 8 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
@@ -161,15 +160,15 @@ Os nomes acima são especificações de boundary. Eles não são afirmações de
 | <code>A0207</code> | Resistência a Ender I | Ender | UNAVAILABLE_NODE | prova do adapter/hook descrito no dossiê | [dossiê](../A0207-resistencia-a-ender-i.md) |
 | <code>A0208</code> | Resistência a Ender II | Ender | UNAVAILABLE_NODE | prova do adapter/hook descrito no dossiê | [dossiê](../A0208-resistencia-a-ender-ii.md) |
 | <code>A0209</code> | Imbuimento de Ender | Ender | UNAVAILABLE_NODE | prova do adapter/hook descrito no dossiê | [dossiê](../A0209-imbuimento-de-ender.md) |
-| <code>A0210</code> | Afinidade de Ender | Ender | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0210-afinidade-de-ender.md) |
-| <code>A0211</code> | Maestria de Ender | Ender | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0211-maestria-de-ender.md) |
+| <code>A0210</code> | Afinidade de Ender | Ender | UNAVAILABLE_NODE | <code>ENDER_MASTERY_LANE_V1</code> | [dossiê](../A0210-afinidade-de-ender.md) |
+| <code>A0211</code> | Maestria de Ender | Ender | UNAVAILABLE_NODE | <code>ENDER_MASTERY_LANE_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code> | [dossiê](../A0211-maestria-de-ender.md) |
 | <code>A0212</code> | Dano de Terra I | Terra | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> | [dossiê](../A0212-dano-de-terra-i.md) |
 | <code>A0213</code> | Dano de Terra II | Terra | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0213-dano-de-terra-ii.md) |
 | <code>A0214</code> | Resistência a Terra I | Terra | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0214-resistencia-a-terra-i.md) |
 | <code>A0215</code> | Resistência a Terra II | Terra | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0215-resistencia-a-terra-ii.md) |
 | <code>A0216</code> | Imbuimento de Terra | Terra | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0216-imbuimento-de-terra.md) |
 | <code>A0217</code> | Domínio Geomântico | Terra | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0217-dominio-geomantico.md) |
-| <code>A0218</code> | Maestria de Terra | Terra | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0218-maestria-de-terra.md) |
+| <code>A0218</code> | Maestria de Terra | Terra | UNAVAILABLE_NODE | <code>SPECIALIST_GATE_RESOLVER_V1</code> | [dossiê](../A0218-maestria-de-terra.md) |
 | <code>A0219</code> | Dano de Água I | Água | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> | [dossiê](../A0219-dano-de-agua-i.md) |
 | <code>A0220</code> | Dano de Água II | Água | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0220-dano-de-agua-ii.md) |
 | <code>A0221</code> | Resistência a Água I | Água | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | prova do adapter/hook descrito no dossiê | [dossiê](../A0221-resistencia-a-agua-i.md) |
@@ -249,7 +248,7 @@ Os nomes acima são especificações de boundary. Eles não são afirmações de
 | <code>A0295</code> | Campo Estático | Especialista Relâmpago | DESIGN APROVADO / CAPABILITY FUTURA | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>, <code>A0176</code> | [dossiê](../A0295-campo-estatico.md) |
 | <code>A0296</code> | Condução pela Água | Especialista Relâmpago | DESIGN APROVADO / IMPLEMENTAÇÃO PENDENTE | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>WET_STATE_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>, <code>A0176</code> | [dossiê](../A0296-conducao-pela-agua.md) |
 | <code>A0297</code> | Passo de Relâmpago | Especialista Relâmpago | DESIGN APROVADO / CAPABILITY FUTURA | <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DODGE_CONTROL_MODIFIER_V1</code>, <code>A0176</code> | [dossiê](../A0297-passo-de-relampago.md) |
-| <code>A0298</code> | Tempestade Encadeada | Especialista Relâmpago | DESIGN APROVADO / CAPABILITY FUTURA | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>, <code>A0176</code>, <code>A0300</code> | [dossiê](../A0298-tempestade-encadeada.md) |
+| <code>A0298</code> | Tempestade Encadeada | Especialista Relâmpago | DESIGN APROVADO / CAPABILITY FUTURA | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>, <code>A0176</code> | [dossiê](../A0298-tempestade-encadeada.md) |
 | <code>A0299</code> | Corpo de Tempestade | Especialista Relâmpago | DESIGN APROVADO / CAPABILITY FUTURA | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>HOSTILE_DAMAGE_RECEIPT_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>STAMINA_REGEN_MODIFIER_V1</code>, <code>A0176</code> | [dossiê](../A0299-corpo-de-tempestade.md) |
 
 ## Auditoria consolidada dos nove eixos
@@ -260,7 +259,7 @@ Os nomes acima são especificações de boundary. Eles não são afirmações de
 4. **Topologia:** 100/100 registram árvore, ramo, camada, função, PP regionais e border hopping.
 5. **Especializações:** terminals/fundamentals/Gate A-B-C e refund order preservados quando aplicáveis.
 6. **PT-BR:** 100/100.
-7. **Notion completo:** 100/100 após Custo Extra=0 e refetch.
+7. **Notion completo:** 100/100 após Custo Extra=0 e refetch; A0210/A0211/A0218 confirmadas novamente após congelar <code>ENDER_MASTERY_LANE_V1</code>/<code>SPECIALIST_GATE_RESOLVER_V1</code>.
 8. **NeoVitae:** 0 referências operacionais.
 9. **Providers/projetos próprios:** perk→provider e provider→árvore documentados em 100/100; capabilities ausentes não foram inventadas.
 

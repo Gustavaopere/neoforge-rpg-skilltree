@@ -2,12 +2,12 @@
 
 ## 1. Estado, origem e decisão
 
-- **Decisão do Chat 1:** DESIGN APROVADO; IMPLEMENTAÇÃO NÃO CONFIRMADA.
-- **Disponibilidade operacional:** Nenhum runtime foi alterado por este trabalho de Chat 1. A habilitação futura depende de prova dos adapters, gates e hooks descritos no registro canônico.
+- **Decisão do Chat 1:** DESIGN APROVADO — UNAVAILABLE_NODE.
+- **Disponibilidade operacional:** Não comprável no runtime atual. O node só pode ser habilitado depois que dependências e capabilities exatas forem comprovadas; componente não classificado continua inerte.
 - **Escopo desta entrega:** auditoria e design apenas; nenhum catálogo/runtime, compra, atributo ou integração foi implementado.
 - **Fonte canônica:** [registro A0210 no Catálogo Mestre do Notion](https://app.notion.com/3c569db9f0db81629795cf485b78342f).
 - **Leitura fresca do registro:** 2026-09-01; página individual buscada antes da auditoria.
-- **Persistência verificada:** Custo Extra normalizado para 0 e página individual relida após a escrita.
+- **Persistência verificada:** Custo Extra=0 e correções pós-review de ENDER_MASTERY_LANE_V1 foram relidas na página individual.
 - **Dependências externas à faixa:** nenhuma dependência fora de A0200–A0299. Elas permanecem sinalizadas e não são presumidas como concluídas.
 - **Identidade preservada:** ENDER é classificação explícita de ação/componente. Não equivale a Void, dimensão End, teleporte genérico, deslocamento, frio ou estética dimensional.
 
@@ -27,15 +27,15 @@
 | Ranks Máx. | 1 |
 | Custo por Rank | 2 Passive Point(s) |
 | Custo Extra | 0 — nenhum custo extra de compra |
-| Dependências Obrigatórias | A0205 Dano de Ender I ≥ 3 ranks + Ender Mastery ≥ 30 + pelo menos um dos seguintes: A0206 = 1 rank, A0208 = 1 rank ou A0209 ≥ 1 rank. Exige histórico real de uso ENDER; ponte defensiva isolada não basta. |
-| Pré-requisitos | A0205 Dano de Ender I ≥ 3 ranks + pelo menos um caminho secundário entre A0206/A0208/A0209. |
-| Provider/Mods | RPG Skill Tree + Fire's Ender Expansion 2.4.1/Somake Spells 1.0.8-1.21.1-fix somente para fontes ENDER explicitamente classificadas + Iron's Spells 'n Spellbooks 3.16.3 como framework + Cold Sweat 2.4.2 como owner térmico somente quando o adapter da ação expuser parcel térmico frio explícito. ENDER permanece termicamente neutro por padrão. |
+| Dependências Obrigatórias | A0205 Dano de Ender I ≥ 3 ranks + mastery_value(rpgskilltree:ender) ≥ 30 publicado por ENDER_MASTERY_LANE_V1 + pelo menos um dos seguintes: A0206 = 1 rank, A0208 = 1 rank ou A0209 ≥ 1 rank. A lane só recebe ações ENDER reais por mapping versionado do ID completo do provider; ponte defensiva isolada, alias genérico ou soma de schools não mapeadas não basta. |
+| Pré-requisitos | A0205 Dano de Ender I ≥ 3 ranks + ENDER_MASTERY_LANE_V1 disponível com mastery_value(rpgskilltree:ender) ≥30 + pelo menos um caminho secundário entre A0206/A0208/A0209. |
+| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACT ENDER_MASTERY_LANE_V1. OWNER: RPG Mastery service; LANE_ID: rpgskilltree:ender; PRODUCERS: adapters versionados que mapeiem o ID completo SchoolType.getId()/action id de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3 sem remover namespace/path; DEDUP: uma ação causal, um crédito; EXCLUSÕES: Void, teleporte, End, estética e alias agregado; VERSION-STATUS: contrato/representação de addon ainda não existem no MasteryLaneCatalog da main auditada em 2026-09-01. Cold Sweat 2.4.2 é owner térmico somente quando o adapter da ação expuser parcel térmico frio explícito. |
 | Efeito | Afinidade de Ender reduz em 25% o deslocamento da temperatura corporal para frio causado por conjurações ENDER próprias e em 10% o deslocamento térmico frio compatível causado por exposição mágica ENDER reconhecida. Não aumenta dano, mobilidade nem Resistência a Ender. |
 | Escalonamento | 1 rank. Parcel térmico frio de ação ENDER própria elegível: ×0,75. Exposição mágica ENDER externa reconhecida e termicamente fria: ×0,90. Dano ENDER, Resistência a Ender, mobilidade e demais fontes térmicas não são modificados. |
-| Gate | A0205 ≥3 + Ender Mastery ≥30 + caminho secundário exigido + fonte ENDER cujo adapter versionado declare explicitamente parcel térmico frio. Teleporte sem parcel térmico, dano ENDER neutro, Vazio e mudança de dimensão não recebem Afinidade. |
+| Gate | A0205 ≥3 + mastery_value(rpgskilltree:ender) ≥30 via ENDER_MASTERY_LANE_V1 + caminho secundário exigido + fonte ENDER cujo adapter versionado declare explicitamente parcel térmico frio. Sem lane canônica exata, A0210 é UNAVAILABLE_NODE/não comprável. Teleporte sem parcel térmico, dano ENDER neutro, Vazio e mudança de dimensão não recebem Afinidade. |
 | Hook | Quando uma fonte ENDER elegível produzir parcel térmico corporal frio explicitamente classificado, interceptar somente esse novo parcel antes da aplicação ao Cold Sweat. Ação própria: magnitude ×0,75; exposição mágica externa adaptada: ×0,90. Preservar o sinal, thresholds e temperatura acumulada; dano ENDER e mobilidade seguem pipelines separados. Proibido escrever diretamente traits corporais ou thresholds. |
-| Fallback | Sem adapter versionado que exponha parcel térmico frio explícito da ação ENDER antes da aplicação ao Cold Sweat, A0210 fica termicamente inativa naquela fonte. Não inferir frio por End, teleporte, Vazio, dano ENDER, dimensão, estética, temperatura atual ou diferença before/after de BODY. |
-| Regra | PP_REGION: ARCANE/ENDER. Keystone da Árvore Exterior, não Specialist e não terminal. ENDER não é frio por definição; apenas parcel térmico frio explícito, causal e adaptado pode ser reduzido. SPECIALIST_REGION:ENDER = núcleo ARCANE compartilhado elegível + PP ARCANE/ENDER; PP de VITALITY/AGILITY/bridges não contam por padrão e qualquer whitelist de bridge vale para no máximo um threshold semântico. |
+| Fallback | UNAVAILABLE_NODE/não comprável enquanto ENDER_MASTERY_LANE_V1 não existir com lane_id=rpgskilltree:ender e mappings versionados dos IDs completos dos providers. Após a lane existir, fonte sem adapter de parcel térmico frio explícito deixa somente a parcela térmica inativa. Não inferir mastery/frio por End, teleporte, Vazio, dano ENDER, dimensão, estética, temperatura atual, alias genérico ou diferença before/after de BODY. |
+| Regra | PP_REGION: ARCANE/ENDER. Keystone da Árvore Exterior, não Specialist e não terminal. ENDER_MASTERY_LANE_V1 usa lane_id=rpgskilltree:ender e mappings exatos dos IDs completos; proibido remover namespace/path, somar schools não mapeadas ou usar alias 'Ender Mastery'. ENDER não é frio por definição; apenas parcel térmico frio explícito, causal e adaptado pode ser reduzido. SPECIALIST_REGION:ENDER = núcleo ARCANE compartilhado elegível + PP ARCANE/ENDER; PP de VITALITY/AGILITY/bridges não contam por padrão. |
 
 As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função Efetiva, Provider Efetivo, Gate Efetivo, Hook Efetivo, Fallback Efetivo, Pré-requisitos Efetivos e Status Estrutural continuam sob autoridade do schema do Notion. Este dossiê não duplica nem falsifica o cálculo dessas fórmulas.
 
@@ -51,7 +51,7 @@ Afinidade de Ender reduz em 25% o deslocamento da temperatura corporal para frio
 
 ### Gate de compra/ativação
 
-A0205 ≥3 + Ender Mastery ≥30 + caminho secundário exigido + fonte ENDER cujo adapter versionado declare explicitamente parcel térmico frio. Teleporte sem parcel térmico, dano ENDER neutro, Vazio e mudança de dimensão não recebem Afinidade.
+A0205 ≥3 + mastery_value(rpgskilltree:ender) ≥30 via ENDER_MASTERY_LANE_V1 + caminho secundário exigido + fonte ENDER cujo adapter versionado declare explicitamente parcel térmico frio. Sem lane canônica exata, A0210 é UNAVAILABLE_NODE/não comprável. Teleporte sem parcel térmico, dano ENDER neutro, Vazio e mudança de dimensão não recebem Afinidade.
 
 ### Hook e ordem de execução
 
@@ -59,7 +59,7 @@ Quando uma fonte ENDER elegível produzir parcel térmico corporal frio explicit
 
 ### Fallback sem trocar a identidade
 
-Sem adapter versionado que exponha parcel térmico frio explícito da ação ENDER antes da aplicação ao Cold Sweat, A0210 fica termicamente inativa naquela fonte. Não inferir frio por End, teleporte, Vazio, dano ENDER, dimensão, estética, temperatura atual ou diferença before/after de BODY.
+UNAVAILABLE_NODE/não comprável enquanto ENDER_MASTERY_LANE_V1 não existir com lane_id=rpgskilltree:ender e mappings versionados dos IDs completos dos providers. Após a lane existir, fonte sem adapter de parcel térmico frio explícito deixa somente a parcela térmica inativa. Não inferir mastery/frio por End, teleporte, Vazio, dano ENDER, dimensão, estética, temperatura atual, alias genérico ou diferença before/after de BODY.
 
 ### Invariantes semânticos
 
@@ -74,10 +74,10 @@ Sem adapter versionado que exponha parcel térmico frio explícito da ação END
 |---|---|
 | Região | Principal — ARCANE ↔ AGILITY / Ender — Afinidade Dimensional |
 | Camada e papel | Camada 6; Keystone |
-| Pré-requisito visual/estrutural | A0205 Dano de Ender I ≥ 3 ranks + pelo menos um caminho secundário entre A0206/A0208/A0209. |
-| Dependência semântica completa | A0205 Dano de Ender I ≥ 3 ranks + Ender Mastery ≥ 30 + pelo menos um dos seguintes: A0206 = 1 rank, A0208 = 1 rank ou A0209 ≥ 1 rank. Exige histórico real de uso ENDER; ponte defensiva isolada não basta. |
+| Pré-requisito visual/estrutural | A0205 Dano de Ender I ≥ 3 ranks + ENDER_MASTERY_LANE_V1 disponível com mastery_value(rpgskilltree:ender) ≥30 + pelo menos um caminho secundário entre A0206/A0208/A0209. |
+| Dependência semântica completa | A0205 Dano de Ender I ≥ 3 ranks + mastery_value(rpgskilltree:ender) ≥ 30 publicado por ENDER_MASTERY_LANE_V1 + pelo menos um dos seguintes: A0206 = 1 rank, A0208 = 1 rank ou A0209 ≥ 1 rank. A lane só recebe ações ENDER reais por mapping versionado do ID completo do provider; ponte defensiva isolada, alias genérico ou soma de schools não mapeadas não basta. |
 | Custo topológico | 2 PP por rank; 1 rank(s); extra 0 |
-| Regra de região/PP | PP_REGION: ARCANE/ENDER. Keystone da Árvore Exterior, não Specialist e não terminal. ENDER não é frio por definição; apenas parcel térmico frio explícito, causal e adaptado pode ser reduzido. SPECIALIST_REGION:ENDER = núcleo ARCANE compartilhado elegível + PP ARCANE/ENDER; PP de VITALITY/AGILITY/bridges não contam por padrão e qualquer whitelist de bridge vale para no máximo um threshold semântico. |
+| Regra de região/PP | PP_REGION: ARCANE/ENDER. Keystone da Árvore Exterior, não Specialist e não terminal. ENDER_MASTERY_LANE_V1 usa lane_id=rpgskilltree:ender e mappings exatos dos IDs completos; proibido remover namespace/path, somar schools não mapeadas ou usar alias 'Ender Mastery'. ENDER não é frio por definição; apenas parcel térmico frio explícito, causal e adaptado pode ser reduzido. SPECIALIST_REGION:ENDER = núcleo ARCANE compartilhado elegível + PP ARCANE/ENDER; PP de VITALITY/AGILITY/bridges não contam por padrão. |
 | Border hopping | Proibido contar a mesma compra em regiões incompatíveis ou usar bridge para satisfazer dois thresholds, salvo whitelist explícita de um único lado semântico. |
 | Respec | O refund deve respeitar dependency closure, gate de região/terminal e estado owned pela perk; perks internas dependentes são reembolsadas antes de quebrar o gate. |
 
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + Fire's Ender Expansion 2.4.1/Somake Spells 1.0.8-1.21.1-fix somente para fontes ENDER explicitamente classificadas + Iron's Spells 'n Spellbooks 3.16.3 como framework + Cold Sweat 2.4.2 como owner térmico somente quando o adapter da ação expuser parcel térmico frio explícito. ENDER permanece termicamente neutro por padrão.
+RPG Skill Tree + FUTURE_PROVIDER_CONTRACT ENDER_MASTERY_LANE_V1. OWNER: RPG Mastery service; LANE_ID: rpgskilltree:ender; PRODUCERS: adapters versionados que mapeiem o ID completo SchoolType.getId()/action id de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3 sem remover namespace/path; DEDUP: uma ação causal, um crédito; EXCLUSÕES: Void, teleporte, End, estética e alias agregado; VERSION-STATUS: contrato/representação de addon ainda não existem no MasteryLaneCatalog da main auditada em 2026-09-01. Cold Sweat 2.4.2 é owner térmico somente quando o adapter da ação expuser parcel térmico frio explícito.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Fire's Ender Expansion, Somake Spells e Iron's Spells somente por SchoolType/action id exato e adapter versionado; Cold Sweat apenas quando existir parcel térmico frio explícito.
 - **Exclusões obrigatórias:** EntityTeleportEvent isolado não prova deslocamento da própria ação. AGILITY, estar no End, Void, mudança de dimensão e temperatura não criam outcome ENDER.
-- **Contratos/capabilities nomeados no registro:** nenhum contrato nomeado adicional; ainda é obrigatória a prova do adapter/hook real.
+- **Contratos/capabilities nomeados no registro:** <code>ENDER_MASTERY_LANE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -136,8 +136,8 @@ RPG Skill Tree + Fire's Ender Expansion 2.4.1/Somake Spells 1.0.8-1.21.1-fix som
 
 ## 8. Fail-closed, lifecycle e perda de capability
 
-- **Decisão atual:** Nenhum runtime foi alterado por este trabalho de Chat 1. A habilitação futura depende de prova dos adapters, gates e hooks descritos no registro canônico.
-- **Fallback normativo:** Sem adapter versionado que exponha parcel térmico frio explícito da ação ENDER antes da aplicação ao Cold Sweat, A0210 fica termicamente inativa naquela fonte. Não inferir frio por End, teleporte, Vazio, dano ENDER, dimensão, estética, temperatura atual ou diferença before/after de BODY.
+- **Decisão atual:** Não comprável no runtime atual. O node só pode ser habilitado depois que dependências e capabilities exatas forem comprovadas; componente não classificado continua inerte.
+- **Fallback normativo:** UNAVAILABLE_NODE/não comprável enquanto ENDER_MASTERY_LANE_V1 não existir com lane_id=rpgskilltree:ender e mappings versionados dos IDs completos dos providers. Após a lane existir, fonte sem adapter de parcel térmico frio explícito deixa somente a parcela térmica inativa. Não inferir mastery/frio por End, teleporte, Vazio, dano ENDER, dimensão, estética, temperatura atual, alias genérico ou diferença before/after de BODY.
 - Reavaliar gate/availability em login, load/save, datapack/rules reload, respec, mudança/remoção de provider, alteração de capability e migração de schema.
 - Perda de provider ou dependência remove/desativa somente a parcela dependente e executa cleanup do estado próprio, sem tocar estado autoritativo de terceiros.
 - Estado desconhecido ou erro de query nunca concede compra, unlock, proteção, dano, recurso, temperatura favorável ou progressão.
@@ -192,7 +192,7 @@ RPG Skill Tree + Fire's Ender Expansion 2.4.1/Somake Spells 1.0.8-1.21.1-fix som
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** nenhum contrato nomeado adicional; ainda é obrigatória a prova do adapter/hook real.
+- **Capabilities/contracts a provar:** <code>ENDER_MASTERY_LANE_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.
@@ -233,14 +233,14 @@ RPG Skill Tree + Fire's Ender Expansion 2.4.1/Somake Spells 1.0.8-1.21.1-fix som
 | 15 | Dependências semânticas | **APROVADO** — closure e upstream/future refs estão explícitos e não presumidos. |
 | 16 | Sem sobreposição/double-dip | **APROVADO** — Mantém dano, resistência, deslocamento causal e parcel térmico em pipelines separados. |
 | 17 | Implementável | **APROVADO COMO CONTRATO** — hook, estado, owner, fallback e testes estão fechados; capability futura bloqueia runtime sem bloquear o design. |
-| 18 | Pós-escrita relido | **APROVADO** — registro individual foi relido após Custo Extra=0; nenhum sucesso foi presumido. |
+| 18 | Pós-escrita relido | **APROVADO** — registro individual foi relido após Custo Extra=0 e após as correções pós-review; nenhum sucesso foi presumido. |
 
 ## 16. Evidência de persistência no Notion
 
 - Página: [A0210 — Afinidade de Ender](https://app.notion.com/3c569db9f0db81629795cf485b78342f)
 - Data source: collection://ade1ec0c-b055-4b84-8004-45ae80c45119
-- Operação material desta auditoria: Custo Extra, vazio para 0.
-- Verificação: fetch individual pós-escrita em 2026-09-01 confirmou Custo Extra=0.
+- Operações materiais: Custo Extra vazio para 0; contrato/gate/fallback pós-review corrigidos para ENDER_MASTERY_LANE_V1 fail-closed.
+- Verificação: fetch individual pós-escrita e pós-review em 2026-09-01 confirmou Custo Extra=0 e os contracts/gates/fallbacks corrigidos.
 - Os demais valores materiais desta página são transcritos integralmente na seção 2.
 - A página não possui corpo editorial; a autoridade é o conjunto de propriedades do catálogo e suas fórmulas.
 

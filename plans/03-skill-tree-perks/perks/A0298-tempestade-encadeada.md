@@ -8,7 +8,7 @@
 - **Fonte canônica:** [registro A0298 no Catálogo Mestre do Notion](https://app.notion.com/3c569db9f0db81128f87d56c46bf1dfa).
 - **Leitura fresca do registro:** 2026-09-01; página individual buscada antes da auditoria.
 - **Persistência verificada:** Custo Extra normalizado para 0 e página individual relida após a escrita.
-- **Dependências externas à faixa:** <code>A0176</code>, <code>A0300</code>. Elas permanecem sinalizadas e não são presumidas como concluídas.
+- **Dependências externas à faixa:** <code>A0176</code>. Elas permanecem sinalizadas e não são presumidas como concluídas.
 - **Identidade preservada:** LIGHTNING exige ação/componente explícito. Não equivale a FE, energia tecnológica, Oritech/Create New Age, tempestade visual, WET, velocidade ou eletricidade estética.
 
 ## 2. Registro canônico completo do catálogo
@@ -193,7 +193,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNIN
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
 - **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>.
-- **Dependências fora desta faixa:** <code>A0176</code>, <code>A0300</code>.
+- **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** A0300 foi apenas sinalizada; não foi auditada, criada nem iniciada neste trabalho.
 - Estas pendências não autorizam redesign silencioso. Se API/código real contradizer o contrato, implementar fail-closed e devolver o ponto ao Chat 1.

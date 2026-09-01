@@ -8,7 +8,7 @@ Este suplemento amplia o checkpoint histórico A0200–A0209 para a faixa especi
 
 | Projeto | Baseline anterior | Head fresco | Delta |
 |---|---|---|---|
-| RPG Skill Tree | <code>54b6cdc1de923732c3ec7d99c660f8fdefdb0610</code> | <code>c1597a34787b602e85139d565b9c1e1eb3481cda</code> | somente documentação A0200–A0209 e WIP marker removido; nenhum provider/runtime novo para A0210–A0299 |
+| RPG Skill Tree | <code>54b6cdc1de923732c3ec7d99c660f8fdefdb0610</code> | <code>eed066e418a9968bcfbbd61df32dcfbf2683ca37</code> | documentação A0200–A0209, remoção do WIP marker e workflow Sonar; nenhum provider/runtime novo para A0210–A0299 |
 | Volcanoes | <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code> | <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code> | sem delta |
 | Enshrouded | <code>5a25b03a23ae81c111bbe1d5c23f85d8abd066ec</code> | <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code> | accessibility profiles client-side e hardening do teste de reload da corrupção; sem gameplay boundary novo para a faixa |
 | Black Arcana | <code>e89df6dc2c204c269d8f1811c6b3f309644c864a</code> | <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code> | preflight server-owned read-only, forecast packet, HUD/tooltip e documentação; nenhuma assinatura ELDRITCH/elemental nova |
@@ -19,7 +19,9 @@ Este suplemento amplia o checkpoint histórico A0200–A0209 para a faixa especi
 |---|---|---|---|
 | RPG — catálogo/implementação A0200–A0209 | somente dossiês; runtime não criado | preservar UNAVAILABLE_NODE já aprovado | nenhum rank/efeito até capabilities e upstream |
 | RPG — A0210–A0299 | nenhum runtime encontrado | 100 dossiês congelam contratos; Chat 2 implementará posteriormente | adapter/contract ausente produz zero ou node não comprável |
-| RPG — SpecialistGateResolver e ledgers elementais futuros | contratos de design, não APIs comprovadas | 59 perks citam gate V1; convergência usa registry/ledger nomeados | Gate A/B/C e PP regionais não podem ser simulados por topologia |
+| RPG — SpecialistGateResolver e ledgers elementais futuros | contratos de design, não APIs comprovadas | 61 perks citam gate V1; convergência usa registry/ledger nomeados | Gate A/B/C e PP regionais não podem ser simulados por topologia |
+| RPG — <code>ENDER_MASTERY_LANE_V1</code> | contrato futuro; lane ausente no catálogo/runtime auditado | A0210/A0211 congeladas em <code>lane_id=rpgskilltree:ender</code>, IDs completos versionados e um crédito por ação causal | A0210/A0211 são <code>UNAVAILABLE_NODE</code>; alias “Ender Mastery”, namespace removido, teleporte, End ou Void não contam |
+| RPG — terminais A0211/A0218 | <code>SPECIALIST_GATE_RESOLVER_V1</code> ausente | terminal publica somente seu <code>terminal_id</code>; resolver futuro é owner de Gate A/B/C e PP semânticos | A0211/A0218 são <code>UNAVAILABLE_NODE</code> até resolver, fundamentos e PP válidos serem provados |
 | Volcanoes — geologia/vulcanismo/atmosfera/pressão | canônico, sem delta | NÃO INTEGRAR como classificador EARTH/FIRE; perks de lava/temperatura seguem owner indicado no dossiê | tema geológico ou calor não cria magia/receipt |
 | Enshrouded — accessibility e corruption reload | apresentação/hardening | NÃO INTEGRAR; Shroud/Exposure/ecologia continuam sem relação semântica automática | VFX, fog, áudio e client config geram zero |
 | Black Arcana — gate preflight/forecast/HUD | read-only e server-authored | NÃO INTEGRAR como outcome; útil apenas como prova de que forecast não é authority de gameplay | preflight/tooltip não classifica ELDRITCH/FIRE/ICE/LIGHTNING |
@@ -43,7 +45,8 @@ Este suplemento amplia o checkpoint histórico A0200–A0209 para a faixa especi
 
 | Contrato | Ocorrências | Estado |
 |---|---:|---|
-| <code>SPECIALIST_GATE_RESOLVER_V1</code> | 59 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
+| <code>SPECIALIST_GATE_RESOLVER_V1</code> | 61 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
+| <code>ENDER_MASTERY_LANE_V1</code> | 2 | Lane exata <code>rpgskilltree:ender</code>; exige IDs completos/versionados, causalidade e dedup sem alias genérico. |
 | <code>FIRE_IGNITION_RESOLVER_V1</code> | 11 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
 | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> | 10 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
 | <code>DAMAGE_MITIGATION_RESOLVER_V1</code> | 8 | Contrato nomeado; só é considerado disponível após prova no runtime/API e testes da versão exata. |
@@ -115,9 +118,8 @@ Este suplemento amplia o checkpoint histórico A0200–A0209 para a faixa especi
 | <code>A0176</code> | <code>A0283</code>, <code>A0284</code>, <code>A0285</code>, <code>A0286</code>, <code>A0287</code>, <code>A0288</code>, <code>A0289</code>, <code>A0290</code>, <code>A0291</code>, <code>A0292</code>, <code>A0293</code>, <code>A0294</code>, <code>A0295</code>, <code>A0296</code>, <code>A0297</code>, <code>A0298</code>, <code>A0299</code> | Upstream ou referência além do lote; não presumida como concluída. |
 | <code>A0198</code> | <code>A0200</code>, <code>A0202</code>, <code>A0203</code>, <code>A0204</code> | Upstream ou referência além do lote; não presumida como concluída. |
 | <code>A0199</code> | <code>A0203</code>, <code>A0204</code> | Upstream ou referência além do lote; não presumida como concluída. |
-| <code>A0300</code> | <code>A0298</code> | Upstream ou referência além do lote; não presumida como concluída. |
 
-A0200–A0299 não fecham nem simulam essas dependencies. O estado dos outros chats fica preservado. A0300 é referência posterior da árvore Specialist e não foi criada.
+A0200–A0299 não fecham nem simulam essas dependencies. O estado dos outros chats fica preservado. A0300 é sucessora downstream/capstone final após A0298, não uma dependência de A0298, e não foi criada.
 
 ## Notion e artefatos
 
@@ -125,6 +127,8 @@ A0200–A0299 não fecham nem simulam essas dependencies. O estado dos outros ch
 - Custo Extra vazio detectado: 100/100;
 - update Custo Extra=0: 100/100;
 - refetch pós-escrita: 100/100;
+- correção pós-review: A0210/A0211 receberam <code>ENDER_MASTERY_LANE_V1</code>; A0211/A0218 receberam <code>SPECIALIST_GATE_RESOLVER_V1</code> e estado <code>UNAVAILABLE_NODE</code>;
+- refetch pós-review: A0210/A0211/A0218 confirmadas individualmente com contratos, gates e fallbacks corrigidos;
 - dossiês completos: 100/100;
 - runtime alterado: nenhum;
 - A0300 criada: não.
@@ -133,7 +137,7 @@ A0200–A0299 não fecham nem simulam essas dependencies. O estado dos outros ch
 
 Após esta disposição, os heads abaixo são o novo baseline documental para auditorias posteriores:
 
-- RPG Skill Tree: <code>c1597a34787b602e85139d565b9c1e1eb3481cda</code>
+- RPG Skill Tree: <code>eed066e418a9968bcfbbd61df32dcfbf2683ca37</code>
 - Volcanoes: <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code>
 - Enshrouded: <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code>
 - Black Arcana: <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code>
