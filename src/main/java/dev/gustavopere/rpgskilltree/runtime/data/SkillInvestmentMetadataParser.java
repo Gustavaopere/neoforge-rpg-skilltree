@@ -47,7 +47,7 @@ public final class SkillInvestmentMetadataParser {
         String id = requiredString(source, null, skill, "id");
         try {
             ResourceLocation.parse(id);
-        } catch (IllegalArgumentException failure) {
+        } catch (RuntimeException failure) {
             throw new SkillTreeDataValidationException(source, id, "id", "must be a namespaced id", failure);
         }
 
