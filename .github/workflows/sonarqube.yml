@@ -59,6 +59,35 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew --no-daemon -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300 build sonar --info
 
+      - name: Report Sonar PR issues after quality-gate failure
+        if: failure() && github.event_name == 'pull_request'
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+          SONAR_PR: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          response="$(curl --silent --show-error --fail --get \
+            --header "Authorization: Bearer ${SONAR_TOKEN}" \
+            --data-urlencode "componentKeys=${SONAR_PROJECT}" \
+            --data-urlencode "pullRequest=${SONAR_PR}" \
+            --data-urlencode 'sinceLeakPeriod=true' \
+            --data-urlencode 'issueStatuses=OPEN,CONFIRMED' \
+            --data-urlencode 'ps=100' \
+            'https://sonarcloud.io/api/issues/search')"
+
+          echo "Sonar open/confirmed PR issues on New Code: $(jq -r '.paging.total // .total' <<<"$response")"
+          jq -r '.issues[] | [
+            (.severity // "?"),
+            (.type // "?"),
+            (.rule // "?"),
+            (.component // "?"),
+            ((.line // 0) | tostring),
+            (.message // "?")
+          ] | @tsv' <<<"$response"
+
       - name: Verify Sonar new-code issue count on main
         if: github.event_name != 'pull_request'
         env:
