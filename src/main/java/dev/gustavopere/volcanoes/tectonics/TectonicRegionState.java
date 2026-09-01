@@ -89,16 +89,20 @@ public final class TectonicRegionState extends SavedData {
 
     public static TectonicRegionState fromTag(CompoundTag tag) {
         Objects.requireNonNull(tag, "tag");
-        int schemaVersion = readSchemaVersion(tag);
-        if (schemaVersion > CURRENT_SCHEMA_VERSION) {
+        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)) {
             LOGGER.error(
-                    "Cannot read tectonic stress SavedData schema {} (current {}). Preserving payload fail-closed/read-only; no saved entries will be overwritten.",
-                    schemaVersion,
-                    CURRENT_SCHEMA_VERSION);
+                    "Tectonic stress SavedData has an invalid schema_version NBT type. Preserving payload fail-closed/read-only.");
             return preserveReadOnly(tag);
         }
-        if (schemaVersion < LEGACY_SCHEMA_VERSION) {
-            LOGGER.warn("Invalid tectonic stress SavedData schema {}. Treating payload as legacy v1.", schemaVersion);
+
+        int schemaVersion = readSchemaVersion(tag);
+        if (schemaVersion < LEGACY_SCHEMA_VERSION || schemaVersion > CURRENT_SCHEMA_VERSION) {
+            LOGGER.error(
+                    "Cannot read tectonic stress SavedData schema {} (supported {}..{}). Preserving payload fail-closed/read-only; no saved entries will be overwritten.",
+                    schemaVersion,
+                    LEGACY_SCHEMA_VERSION,
+                    CURRENT_SCHEMA_VERSION);
+            return preserveReadOnly(tag);
         }
 
         if (tag.contains(REGIONS) && !tag.contains(REGIONS, CompoundTag.TAG_LIST)) {
