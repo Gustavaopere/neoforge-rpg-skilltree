@@ -76,12 +76,9 @@ runs {
         systemProperty 'neoforge.enabledGameTestNamespaces', "${mod_id},volcanoes"
     }
 
-    junit {
-        unitTestSource project.sourceSets.test
-        testScope {
-            className = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFightAdapterCoverageJUnitTest'
-        }
-    }
+    // Keep NeoGradle's canonical JUnit source wiring intact. Task-level TestFilter rules
+    // below isolate the adapter suite without mutating the shared test class file tree.
+    junit {}
 
     data {
         arguments.addAll '--mod', mod_id, '--all',
@@ -145,6 +142,8 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
+def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFightAdapterCoverageJUnitTest'
+
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
     extensions.configure(org.gradle.testing.jacoco.plugins.JacocoTaskExtension) {
@@ -155,8 +154,18 @@ tasks.withType(Test).configureEach {
 }
 
 tasks.named('test', Test).configure {
-    // This adapter suite requires NeoForge's loaded JUnit runtime and is executed by testJunit below.
-    exclude '**/A0031A0040EpicFightAdapterCoverageJUnitTest.class'
+    // The adapter suite needs NeoForge's loaded JUnit runtime. Filter at the JUnit layer so
+    // ordinary test class discovery (including --tests filters used by acceptance workflows)
+    // remains intact.
+    filter {
+        excludeTestsMatching epicFightAdapterCoverageTest
+    }
+}
+
+tasks.named('testJunit', Test).configure {
+    filter {
+        includeTestsMatching epicFightAdapterCoverageTest
+    }
 }
 
 tasks.named('jacocoTestReport').configure {
