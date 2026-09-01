@@ -25,6 +25,8 @@ def main() -> int:
     mixins = text("src/main/resources/volcanoes.mixins.json")
     rns_mixin = text("src/main/java/dev/gustavopere/volcanoes/mixin/rns/CustomServerDepositLocationMixin.java")
     build = text("build.gradle")
+    create_sable_acceptance = text(".github/workflows/volcanoes-create-sable-acceptance.yml")
+    minecolonies_acceptance = text(".github/workflows/volcanoes-minecolonies-claim-acceptance.yml")
 
     stray_mods = []
     stale_subscribers = []
@@ -76,7 +78,7 @@ def main() -> int:
             "Volcanoes BSD license evidence must ship in the unified repository")
 
     for dependency in (
-        "minecolonies-245506:8621898",
+        "minecolonies-245506:8765939",
         "cold-sweat-506194:8302211",
         "create-rns-1370563:8729955",
         "sable-1312371:8673825",
@@ -87,7 +89,16 @@ def main() -> int:
     ):
         require(dependency in build, f"missing imported optional build contract: {dependency}")
 
-    print("VOLCANOES_CONSOLIDATION_CONTRACT status=GREEN mod=rpgskilltree namespace=volcanoes jars=1")
+    require("download_modrinth_version 44pLdPGg '1.3.2+mc1.21.1'" in create_sable_acceptance,
+            "Create/Sable acceptance must pin current Create Aeronautics 1.3.2 (Modrinth 44pLdPGg)")
+    require("Create Aeronautics 1.3.2 (aeronautics_bundled)" in create_sable_acceptance,
+            "Create/Sable acceptance log contract must assert Create Aeronautics 1.3.2")
+    require("minecolonies-245506/8765939" in minecolonies_acceptance,
+            "MineColonies acceptance must download current file 8765939")
+    require("minecolonies-1.1.1375-1.21.1-snapshot.jar" in minecolonies_acceptance,
+            "MineColonies acceptance must expose the current 1.1.1375 runtime filename")
+
+    print("VOLCANOES_CONSOLIDATION_CONTRACT status=GREEN mod=rpgskilltree namespace=volcanoes jars=1 providers=current")
     return 0
 
 
