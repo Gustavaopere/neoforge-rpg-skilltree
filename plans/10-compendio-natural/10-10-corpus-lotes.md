@@ -534,13 +534,45 @@ Entradas:
 - todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento tanto com TerraFirmaCraft ausente quanto presente;
 - o TDD produziu RED válido na draft #322 pelo RPG Skill Tree CI #2748: Core/wiki/coverage e compilação passaram e `182 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch18JUnitTest` pela ausência intencional de `fauna-batch2.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #471 e pelo RPG Skill Tree CI #2752, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
 
+## Lote 19 — TerraFirmaCraft / fechamento dos peixes de água doce e continuação da fauna aquática
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch3.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:tfc:tilapia` — Peixe tilapia
+2. `ENTITY:tfc:spotted_gudgeon` — Peixe spotted gudgeon
+3. `ENTITY:tfc:peacock_bass` — Peixe peacock bass
+4. `ENTITY:tfc:pacu` — Peixe pacu
+5. `ENTITY:tfc:red_piranha` — Peixe red piranha
+6. `ENTITY:tfc:cod` — Peixe cod
+7. `ENTITY:tfc:tropical_fish` — Peixe tropical fish
+8. `ENTITY:tfc:pufferfish` — Peixe pufferfish
+9. `ENTITY:tfc:jellyfish` — Água-viva jellyfish
+10. `ENTITY:tfc:isopod` — Isópode isopod
+
+### Critérios editoriais aplicados ao lote 19
+
+- as cinco primeiras entradas continuam imediatamente `MUKSUN` e fecham, na ordem de `Fish.java` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`, as constantes restantes de `FRESHWATER_FISH`: `TILAPIA`, `SPOTTED_GUDGEON`, `PEACOCK_BASS`, `PACU` e `RED_PIRANHA`;
+- as cinco seguintes continuam a ordem de registros aquáticos `WATER_AMBIENT` de `TFCEntities.java` sem saltos, cobrindo `COD`, `TROPICAL_FISH`, `PUFFERFISH`, `JELLYFISH` e `ISOPOD`;
+- o locale `pt_br` do provider mantém os nomes específicos dessas entidades em inglês; os aliases editoriais traduzem somente a classificação genérica e não inventam nomenclatura taxonômica externa;
+- `COD`, `TROPICAL_FISH` e `PUFFERFISH` preservam as classes correspondentes usadas pelo TFC, o contrato de água salgada, o movimento do provider, a interação com pesca e a coleta em balde sem congelar parâmetros numéricos mutáveis;
+- `JELLYFISH` preserva variantes persistidas, coleta em balde, água salgada e dano por contato comprovado pelo runtime, sem fixar em prosa o valor numérico desse dano;
+- `ISOPOD` usa o contrato `AquaticCritter::salty`, mantém a evasão e o deslocamento pelo fundo comprovados pelo provider e não recebe comportamento de coleta, reprodução ou alimentação que o código auditado não declare;
+- clima, bioma, frequência, grupo e demais parâmetros de spawn/worldgen permanecem sob autoridade do TerraFirmaCraft, da configuração e dos datapacks ativos;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL`, e `CompendiumCheckedInEditorialBatch19JUnitTest` valida exatamente essas dez entradas tanto com o provider ausente quanto presente;
+- o TDD produziu RED válido na draft #334 contra `main@f613dac5a15b26c7a92e07a9d9cb537c2412ddf2`: o RPG Skill Tree CI #2834 chegou a `871 tests completed, 1 failed`, exclusivamente pela ausência intencional de `fauna-batch3.json`;
+- durante a validação funcional foi identificado um desalinhamento pré-existente de CI: `Volcanoes Consolidated Release Readiness` exigia `Volcanoes Consolidation Contract` em toda PR, enquanto este último tinha filtros `paths` e não disparava em mudanças editoriais. A correção mínima removeu somente esses filtros; no head `6bcbd5f6ae39226417ef9f59844df5e76c983b3f`, `Volcanoes Consolidation Contract` #80, Compendium Editorial CI #564, RPG Skill Tree CI #2900, SonarQube #135, Worldgen Compatibility Matrix #102 e `Volcanoes Consolidated Release Readiness` #84 concluíram com `success`, incluindo o `aggregate-exact-head` 10/10.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **80**;
-- entradas editoriais totais: **180**;
-- lotes documentados: **18**;
+- entradas editoriais TFC reais no corpus: **90**;
+- entradas editoriais totais: **190**;
+- lotes documentados: **19**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
