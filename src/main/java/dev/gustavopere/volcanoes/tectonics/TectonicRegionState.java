@@ -3,6 +3,7 @@ package dev.gustavopere.volcanoes.tectonics;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 import org.slf4j.Logger;
@@ -30,7 +31,17 @@ public final class TectonicRegionState extends SavedData {
             new Factory<>(TectonicRegionState::new, TectonicRegionState::load);
 
     private final Map<RegionKey, Double> stressByRegion = new LinkedHashMap<>();
-    private boolean writable = true;
+    private final CompoundTag preservedPayload;
+    private boolean writable;
+
+    public TectonicRegionState() {
+        this(null);
+    }
+
+    private TectonicRegionState(CompoundTag preservedPayload) {
+        this.preservedPayload = preservedPayload;
+        this.writable = preservedPayload == null;
+    }
 
     public static TectonicRegionState get(ServerLevel level) {
         Objects.requireNonNull(level, "level");
@@ -79,20 +90,37 @@ public final class TectonicRegionState extends SavedData {
 
     public static TectonicRegionState fromTag(CompoundTag tag) {
         Objects.requireNonNull(tag, "tag");
-        TectonicRegionState state = new TectonicRegionState();
-        int schemaVersion = readSchemaVersion(tag);
-        if (schemaVersion > CURRENT_SCHEMA_VERSION) {
+        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, Tag.TAG_INT)) {
             LOGGER.error(
-                    "Cannot read tectonic stress SavedData schema {} (current {}). Loading fail-closed/read-only; no saved entries will be overwritten.",
-                    schemaVersion,
-                    CURRENT_SCHEMA_VERSION);
-            state.writable = false;
-            return state;
-        }
-        if (schemaVersion < LEGACY_SCHEMA_VERSION) {
-            LOGGER.warn("Invalid tectonic stress SavedData schema {}. Treating payload as legacy v1.", schemaVersion);
+                    "Tectonic stress SavedData has an invalid schema_version NBT type. Preserving payload fail-closed/read-only.");
+            return preserveReadOnly(tag);
         }
 
+        int schemaVersion = readSchemaVersion(tag);
+        if (schemaVersion < LEGACY_SCHEMA_VERSION || schemaVersion > CURRENT_SCHEMA_VERSION) {
+            LOGGER.error(
+                    "Cannot read tectonic stress SavedData schema {} (supported {}..{}). Preserving payload fail-closed/read-only; no saved entries will be overwritten.",
+                    schemaVersion,
+                    LEGACY_SCHEMA_VERSION,
+                    CURRENT_SCHEMA_VERSION);
+            return preserveReadOnly(tag);
+        }
+
+        if (tag.contains(REGIONS) && !tag.contains(REGIONS, CompoundTag.TAG_LIST)) {
+            LOGGER.error(
+                    "Tectonic stress SavedData has an invalid regions NBT type. Preserving payload fail-closed/read-only.");
+            return preserveReadOnly(tag);
+        }
+        if (tag.contains(REGIONS, CompoundTag.TAG_LIST)) {
+            ListTag rawRegions = (ListTag) tag.get(REGIONS);
+            if (!rawRegions.isEmpty() && rawRegions.getElementType() != CompoundTag.TAG_COMPOUND) {
+                LOGGER.error(
+                        "Tectonic stress SavedData regions list has a non-compound element type. Preserving payload fail-closed/read-only.");
+                return preserveReadOnly(tag);
+            }
+        }
+
+        TectonicRegionState state = new TectonicRegionState();
         ListTag regions = tag.getList(REGIONS, CompoundTag.TAG_COMPOUND);
         for (int index = 0; index < regions.size(); index++) {
             CompoundTag region = regions.getCompound(index);
@@ -109,13 +137,20 @@ public final class TectonicRegionState extends SavedData {
                         exception.getMessage());
             }
         }
+        if (schemaVersion < CURRENT_SCHEMA_VERSION) {
+            state.setDirty();
+        }
         return state;
     }
 
     private static int readSchemaVersion(CompoundTag tag) {
-        return tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)
+        return tag.contains(SCHEMA_VERSION, Tag.TAG_INT)
                 ? tag.getInt(SCHEMA_VERSION)
                 : LEGACY_SCHEMA_VERSION;
+    }
+
+    private static TectonicRegionState preserveReadOnly(CompoundTag tag) {
+        return new TectonicRegionState(tag.copy());
     }
 
     private static TectonicRegionState load(CompoundTag tag, HolderLookup.Provider registries) {
@@ -128,6 +163,9 @@ public final class TectonicRegionState extends SavedData {
     }
 
     private CompoundTag writeTo(CompoundTag tag) {
+        if (preservedPayload != null) {
+            return preservedPayload.copy();
+        }
         tag.putInt(SCHEMA_VERSION, CURRENT_SCHEMA_VERSION);
         ListTag regions = new ListTag();
         for (RegionStress entry : entries()) {
