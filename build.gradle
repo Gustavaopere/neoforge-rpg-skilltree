@@ -168,7 +168,6 @@ dependencies {
     }
 
     // Native Volcanoes subsystem hosts. These remain optional at runtime.
-    compileOnly('curse.maven:minecolonies-245506:8621898') { transitive = false }
     compileOnly('curse.maven:cold-sweat-506194:8302211') { transitive = false }
     compileOnly('curse.maven:create-rns-1370563:8729955') { transitive = false }
     compileOnly('curse.maven:sable-1312371:8673825') { transitive = false }
