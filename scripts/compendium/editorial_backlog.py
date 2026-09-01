@@ -202,8 +202,6 @@ def default_priority(entry: dict[str, Any]) -> int:
         return 999
     if namespace == "minecraft":
         return 10
-    if namespace in {"tfc", "terrafirmacraft"}:
-        return 40
     if kind in {"BIOME", "DIMENSION"}:
         return 50
     if kind == "STRUCTURE":
