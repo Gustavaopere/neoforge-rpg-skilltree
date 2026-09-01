@@ -21,7 +21,7 @@ A0122 não cria sede artificial. Como Thirst Was Reclaimed deriva seu custo corp
 
 - HYDRATION owner: **Thirst Was Reclaimed 3.0.4**.
 - Thirst Was Fixed 2.1.5 é compat/fix, nunca owner paralelo.
-- ParCool **4.0.0.3** + Epic ParCool 21.0.0 apenas identificam/classificam a ação.
+- ParCool **4.0.0.2** + Epic ParCool 21.0.0 apenas identificam/classificam a ação.
 - RPG Skill Tree pode agregar a eficiência somente por adapter causal versionado.
 
 Ordem: `CLIMB action_id -> METABOLIC causal resolvido -> TWR produz/cota HYDRATION da mesma ação -> agregar eficiências HYDRATION -> cap 30% -> commit provider uma vez`.
@@ -51,4 +51,4 @@ RPG Skill Tree é consumer/resolver futuro; Volcanoes não converte pressão/cal
 
 ## Testes exigidos ao Chat 3
 
-Purchase fail-before-spend; PP legado 0; predecessor/provider absent; ParCool 4.0.0.3; escalada com e sem parcela corporal; TWF não-owner; Stamina não convertida; mesma action METABOLIC→HYDRATION; cap 30%; dedup; rollback; multiplayer; lifecycle; GameTests/build/JAR/dedicated-server smoke quando aplicável.
+Purchase fail-before-spend; PP legado 0; predecessor/provider absent; ParCool 4.0.0.2; escalada com e sem parcela corporal; Thirst Was Fixed não-owner; Stamina não convertida; mesma action METABOLIC→HYDRATION; cap 30%; dedup; rollback; multiplayer; lifecycle; GameTests/build/JAR/dedicated-server smoke quando aplicável.
