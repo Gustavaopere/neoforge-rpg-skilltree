@@ -1,7 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage;
 
 import java.util.Objects;
-import java.util.regex.Pattern;
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * Data-driven safety/targeting metadata for one Iron's spell.
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * cooldown. Those values remain authoritative in Iron's Spells 'n Spellbooks.</p>
  */
 public record BattleMageSpellProfile(
-    String spellId,
+    ResourceLocation spellId,
     BattleMageTargetMode targetMode,
     int priority,
     double minRange,
@@ -19,14 +19,9 @@ public record BattleMageSpellProfile(
     boolean worldEffect,
     boolean allySafe
 ) {
-    private static final Pattern RESOURCE_ID = Pattern.compile("[a-z0-9_.-]+:[a-z0-9_./-]+");
-
     public BattleMageSpellProfile {
         Objects.requireNonNull(spellId, "spellId");
         Objects.requireNonNull(targetMode, "targetMode");
-        if (!RESOURCE_ID.matcher(spellId).matches()) {
-            throw new IllegalArgumentException("invalid spell id: " + spellId);
-        }
         if (priority < 0 || priority > 10_000) {
             throw new IllegalArgumentException("priority out of range: " + priority);
         }
@@ -37,5 +32,32 @@ public record BattleMageSpellProfile(
         if (!Double.isFinite(friendlyFireRadius) || friendlyFireRadius < 0.0) {
             throw new IllegalArgumentException("invalid friendly-fire radius: " + friendlyFireRadius);
         }
+    }
+
+    /** Convenience boundary for tests and provider APIs that expose registry ids as strings. */
+    public BattleMageSpellProfile(
+        String spellId,
+        BattleMageTargetMode targetMode,
+        int priority,
+        double minRange,
+        double maxRange,
+        double friendlyFireRadius,
+        boolean worldEffect,
+        boolean allySafe
+    ) {
+        this(parseNamespacedId(spellId), targetMode, priority, minRange, maxRange,
+            friendlyFireRadius, worldEffect, allySafe);
+    }
+
+    static ResourceLocation parseNamespacedId(String raw) {
+        Objects.requireNonNull(raw, "spellId");
+        if (raw.indexOf(':') <= 0) {
+            throw new IllegalArgumentException("spellId must be namespaced: " + raw);
+        }
+        ResourceLocation parsed = ResourceLocation.tryParse(raw);
+        if (parsed == null) {
+            throw new IllegalArgumentException("invalid spell id: " + raw);
+        }
+        return parsed;
     }
 }

@@ -23,7 +23,7 @@ final class MineColoniesBattleMageContractJUnitTest {
     }
 
     @Test
-    void spellProfilesAreFailClosedAndDeterministicallyOrdered() {
+    void tacticalOrderingPreservesBookPositionBeforeSpellIdTieBreaker() {
         BattleMageSpellProfile fireball = new BattleMageSpellProfile(
             "irons_spellbooks:fireball",
             BattleMageTargetMode.HOSTILE_ENTITY,
@@ -34,8 +34,8 @@ final class MineColoniesBattleMageContractJUnitTest {
             false,
             true
         );
-        BattleMageSpellProfile ray = new BattleMageSpellProfile(
-            "irons_spellbooks:ray_of_siphoning",
+        BattleMageSpellProfile blazeStorm = new BattleMageSpellProfile(
+            "irons_spellbooks:blaze_storm",
             BattleMageTargetMode.HOSTILE_ENTITY,
             70,
             2.0,
@@ -45,11 +45,14 @@ final class MineColoniesBattleMageContractJUnitTest {
             true
         );
 
+        BattleMageSpellPolicy.Candidate fireballFirstInBook = new BattleMageSpellPolicy.Candidate(fireball, 0);
+        BattleMageSpellPolicy.Candidate blazeStormSecondInBook = new BattleMageSpellPolicy.Candidate(blazeStorm, 1);
         assertEquals(
-            List.of("irons_spellbooks:fireball", "irons_spellbooks:ray_of_siphoning"),
-            BattleMageSpellPolicy.orderCandidates(List.of(ray, fireball)).stream()
-                .map(BattleMageSpellProfile::spellId)
-                .toList()
+            List.of(fireballFirstInBook, blazeStormSecondInBook),
+            BattleMageSpellPolicy.orderTacticalCandidates(
+                List.of(blazeStormSecondInBook, fireballFirstInBook),
+                false
+            )
         );
         assertTrue(BattleMageSpellPolicy.isSupported(fireball));
         assertFalse(BattleMageSpellPolicy.isSupported(null));

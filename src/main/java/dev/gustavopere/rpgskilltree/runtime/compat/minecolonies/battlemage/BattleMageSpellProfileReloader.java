@@ -33,7 +33,7 @@ public final class BattleMageSpellProfileReloader extends SimpleJsonResourceRelo
         @NotNull ResourceManager manager,
         @NotNull ProfilerFiller profiler
     ) {
-        LinkedHashMap<String, BattleMageSpellProfile> profiles = new LinkedHashMap<>();
+        LinkedHashMap<ResourceLocation, BattleMageSpellProfile> profiles = new LinkedHashMap<>();
         resources.entrySet().stream()
             .sorted(Map.Entry.comparingByKey())
             .forEach(entry -> {
@@ -50,7 +50,13 @@ public final class BattleMageSpellProfileReloader extends SimpleJsonResourceRelo
             throw new IllegalArgumentException(resourceId + ": Battle Mage spell profile root must be an object");
         }
         JsonObject root = element.getAsJsonObject();
-        String spell = requireString(root, "spell", resourceId);
+        ResourceLocation spell;
+        try {
+            spell = BattleMageSpellProfile.parseNamespacedId(requireString(root, "spell", resourceId));
+        } catch (RuntimeException exception) {
+            throw new IllegalArgumentException(resourceId + ": invalid provider spell id", exception);
+        }
+
         BattleMageTargetMode targetMode;
         try {
             targetMode = BattleMageTargetMode.valueOf(requireString(root, "target_mode", resourceId));

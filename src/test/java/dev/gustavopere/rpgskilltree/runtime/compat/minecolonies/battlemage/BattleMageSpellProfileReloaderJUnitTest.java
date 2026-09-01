@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 final class BattleMageSpellProfileReloaderJUnitTest {
     private static final ResourceLocation RESOURCE =
         ResourceLocation.fromNamespaceAndPath("rpgskilltree", "battle_mage_spell_profiles/fireball");
+    private static final ResourceLocation FIREBALL =
+        ResourceLocation.fromNamespaceAndPath("irons_spellbooks", "fireball");
 
     @Test
     void profileUsesResourceLocationAsItsExtensibleSpellIdentity() {
@@ -36,7 +38,7 @@ final class BattleMageSpellProfileReloaderJUnitTest {
                 """)
         );
 
-        assertEquals("irons_spellbooks:fireball", profile.spellId());
+        assertEquals(FIREBALL, profile.spellId());
         assertEquals(BattleMageTargetMode.HOSTILE_AREA, profile.targetMode());
         assertEquals(80, profile.priority());
         assertFalse(profile.worldEffect());
@@ -45,7 +47,26 @@ final class BattleMageSpellProfileReloaderJUnitTest {
     @Test
     void unknownSpellRemainsUnsupportedUntilCatalogExplicitlyContainsIt() {
         BattleMageSpellProfileCatalog.replace(Map.of());
-        assertFalse(BattleMageSpellProfileCatalog.find("irons_spellbooks:unknown").isPresent());
+        assertFalse(BattleMageSpellProfileCatalog.find(
+            ResourceLocation.fromNamespaceAndPath("irons_spellbooks", "unknown")
+        ).isPresent());
+    }
+
+    @Test
+    void rejectsUnqualifiedProviderSpellIdInsteadOfDefaultingNamespace() {
+        assertThrows(IllegalArgumentException.class, () -> BattleMageSpellProfileReloader.parse(
+            RESOURCE,
+            JsonParser.parseString("""
+                {
+                  "spell": "fireball",
+                  "target_mode": "HOSTILE_AREA",
+                  "priority": 80,
+                  "min_range": 4.0,
+                  "max_range": 28.0,
+                  "friendly_fire_radius": 4.0
+                }
+                """)
+        ));
     }
 
     @Test

@@ -23,9 +23,9 @@ final class BattleMageCombatControllerJUnitTest {
             true
         );
 
-        assertEquals("irons_spellbooks:heal", ordered.get(0).profile().spellId());
-        assertEquals("irons_spellbooks:magic_arrow", ordered.get(1).profile().spellId());
-        assertEquals("irons_spellbooks:fireball", ordered.get(2).profile().spellId());
+        assertEquals("irons_spellbooks:heal", ordered.get(0).profile().spellId().toString());
+        assertEquals("irons_spellbooks:magic_arrow", ordered.get(1).profile().spellId().toString());
+        assertEquals("irons_spellbooks:fireball", ordered.get(2).profile().spellId().toString());
     }
 
     @Test
@@ -41,8 +41,8 @@ final class BattleMageCombatControllerJUnitTest {
             false
         );
 
-        assertEquals("irons_spellbooks:magic_arrow", ordered.get(0).profile().spellId());
-        assertEquals("irons_spellbooks:heal", ordered.get(1).profile().spellId());
+        assertEquals("irons_spellbooks:magic_arrow", ordered.get(0).profile().spellId().toString());
+        assertEquals("irons_spellbooks:heal", ordered.get(1).profile().spellId().toString());
     }
 
     @Test

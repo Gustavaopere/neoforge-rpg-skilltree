@@ -36,15 +36,6 @@ public final class BattleMageSpellPolicy {
             && distance <= profile.maxRange();
     }
 
-    public static List<BattleMageSpellProfile> orderCandidates(List<BattleMageSpellProfile> profiles) {
-        Objects.requireNonNull(profiles, "profiles");
-        return profiles.stream()
-            .filter(Objects::nonNull)
-            .sorted(Comparator.comparingInt(BattleMageSpellProfile::priority).reversed()
-                .thenComparing(BattleMageSpellProfile::spellId))
-            .toList();
-    }
-
     /**
      * Tactical order is deterministic: urgent SELF first, hostile profiles next, unsupported ally
      * lane after that, then non-urgent SELF. Within a lane profile priority wins, followed by real
@@ -58,7 +49,7 @@ public final class BattleMageSpellPolicy {
                 Comparator.comparingInt((Candidate candidate) -> tacticalLane(candidate.profile(), selfCritical))
                     .thenComparing(Comparator.comparingInt((Candidate candidate) -> candidate.profile().priority()).reversed())
                     .thenComparingInt(Candidate::bookIndex)
-                    .thenComparing(candidate -> candidate.profile().spellId())
+                    .thenComparing(candidate -> candidate.profile().spellId().toString())
             )
             .toList();
     }
