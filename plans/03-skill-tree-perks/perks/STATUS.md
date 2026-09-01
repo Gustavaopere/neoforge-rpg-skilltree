@@ -491,3 +491,62 @@ Este lote foi iniciado diretamente em A0200 por ordem do usuário, enquanto outr
 12. `P-A0200-09-TEST-01` — matriz transversal provider present/absent, upstream, availability, IDs, rollback, teleport provenance, lifecycle, multiplayer e dedicated server.
 
 O design A0200–A0209 está fechado sem implementar runtime. O fechamento operacional exige PR, review resolvido, CI GREEN, merge e confirmação fresca da `main`. Depois disso o Chat 1 deve **PARAR**.
+
+## Chat 1 — lote exato A0121–A0130
+
+**Estado:** `DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 / IMPLEMENTAÇÃO DIFERIDA POR GATES GLOBAIS E PREDECESSORES`.
+
+- **INÍCIO:** A0121.
+- **FIM:** A0130.
+- **Quantidade:** 10 perks consecutivas.
+- **Base documental reconciliada:** RPG Skill Tree `main@c1597a34787b602e85139d565b9c1e1eb3481cda`.
+- **Predecessores documentais ainda abertos:** PR #326 A0091–A0100, PR #340 A0101–A0110 e PR #341 A0111–A0120; nenhum deles é tratado como runtime integrado.
+- **Exceção A0200–A0209:** a PR #331 já integrada é apenas fechamento documental adiantado e não fecha, implementa nem substitui A0091–A0199.
+- **Notion fetch fresco:** 10/10.
+- **Notion alterado:** A0123–A0128, 6/10.
+- **Re-fetch pós-escrita:** 6/6 PASS em 2026-09-01.
+- **Sem mutação:** A0121, A0122, A0129 e A0130.
+- **Dossiês:** 10/10 completos.
+- **Nove eixos / 18 critérios:** PASS no design.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **Estado runtime atual:** 10/10 `UNAVAILABLE_NODE` até que P-0037/BodyCostResolver, predecessors e/ou capabilities específicas existam de forma causal e segura.
+- **Versões relevantes:** ParCool 4.0.0.2; Epic ParCool 21.0.0; Epic Fight 21.17.3.1; Thirst Was Reclaimed 3.0.4; Thirst Was Fixed 2.1.5 compat/fix.
+- **Delta canônico:** `guides/projects/18-capability-delta-a0121-a0130.md`.
+- **Auditoria canônica:** `audits/AUDITORIA-A0121-A0130.md`.
+- **A0131+:** não iniciado neste ciclo.
+
+### Decisões estruturais
+
+1. A0121/A0122: ParCool/Epic ParCool classificam CLIMB, mas não são owner de custo corporal; sem `METABOLIC_CLIMB` não se fabrica exhaustion e sem custo metabólico não existe `HYDRATION_CLIMB` causal.
+2. A0123/A0125/A0127: `UNAVAILABLE_NODE` enquanto P-0037/BodyCostResolver METABOLIC estiver ausente/incompatível; depois do binding global, apenas actions com receipt corporal causal recebem economia.
+3. A0124/A0126/A0128: availability transitiva do predecessor + P-0037 HYDRATION + adapter causal TWR 3.0.4; ausência de qualquer binding obrigatório impede compra e zera PP legado para gates.
+4. A0129/A0130: launch de arco/besta prova a ação, não custo corporal; sem `METABOLIC_RANGED` é proibido substituir por Stamina, munição, draw/reload, Focus/Cadence, mana ou durabilidade.
+5. METABOLIC e HYDRATION usam `action_id`/root causal, caps compartilhados independentes de 30% por lane e commit provider exatamente uma vez.
+6. Volcanoes, Enshrouded e Black Arcana não são convertidos por associação temática em providers corporais deste lote.
+
+### Pendências destinadas ao Chat 2
+
+1. Materializar unavailable-node/fail-before-spend e legacy PP 0 para os blockers descritos em cada dossiê.
+2. Implementar P-0037/BodyCostResolver somente com seam causal/transacional seguro; sem hook, manter fail-closed.
+3. Classifiers MINING/FORESTRY/MELEE/CLIMB/RANGED não podem assumir ownership do custo corporal.
+4. Adapter TWR 3.0.4 deve correlacionar HYDRATION à mesma action após METABOLIC; sem direct writes, polling ou refund heurístico.
+5. Preservar dedup de root, bulk/tree-felling/Multishot e exclusões forced/passive/automation/fake-player.
+6. Respeitar lifecycle de rank loss, respec, rules reload, logout, dimensão e remoção/incompatibilidade de provider.
+7. Não iniciar runtime do lote antes de #326/#340/#341 atravessarem Chat 2 + Chat 3 e chegarem à `main`, além dos gates globais de `AGENTS.md`.
+
+### Testes destinados ao Chat 3
+
+- purchase fail-before-spend + legacy PP 0;
+- provider/version present/absent;
+- causalidade e dedup cross-adapter;
+- caps METABOLIC/HYDRATION 30% independentes;
+- ordem METABOLIC→HYDRATION same-action;
+- zero/cancel/rollback;
+- forced/passive/automation/fake-player exclusions;
+- bulk/tree-felling/Multishot/root dedup;
+- recursos paralelos não substituem BodyCost;
+- TWR causal e TWF não-owner;
+- lifecycle/multiplayer;
+- JUnit, NeoForge GameTests, validators, build, JAR e dedicated-server smoke quando houver implementação.
+
+O lote A0121–A0130 está fechado no **design** pelo Chat 1. Esta etapa não declara `CÓDIGO PRESENTE`, não declara `IMPLEMENTAÇÃO CONFIRMADA` e não autoriza merge pelo Chat 1. A0131+ só pode iniciar mediante novo comando do usuário.

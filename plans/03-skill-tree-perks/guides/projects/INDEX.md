@@ -15,4 +15,8 @@
 - [Matriz de cobertura e delta de capacidades](12-capability-delta-coverage.md)
 - [Delta e baseline A0071–A0080](13-capability-delta-a0071-a0080.md)
 - [Delta e baseline A0081–A0090](14-capability-delta-a0081-a0090.md)
-- [Delta e baseline A0200–A0209](15-capability-delta-a0200-a0209.md)
+- A0091–A0100 — `15-capability-delta-a0091-a0100.md` permanece na PR #326 enquanto não integrado à `main`.
+- A0101–A0110 — `16-capability-delta-a0101-a0110.md` permanece na PR #340 enquanto não integrado à `main`.
+- A0111–A0120 — `17-capability-delta-a0111-a0120.md` permanece na PR #341 enquanto não integrado à `main`.
+- [Delta e baseline A0121–A0130](18-capability-delta-a0121-a0130.md)
+- [Delta e baseline A0200–A0209](15-capability-delta-a0200-a0209.md) — lote adiantado documental já integrado na `main`; numeração de arquivo histórica preservada.
