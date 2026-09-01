@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO; re-fetch sem drift, nenhuma mutação cosmética.
-- **Implementação:** PRESENTE via cadence Epic Fight, condicionada à classificação SCYTHE segura.
+- **Implementação:** IMPLEMENTAÇÃO CONFIRMADA para fechamento pela PR #252 após classificação SCYTHE segura.
 - **Notion:** `3c569db9-f0db-81d5-b2c4-ca1fdde18212`.
 
 ## Contrato canônico
@@ -16,13 +16,20 @@
 ## Evidência runtime
 
 - `NotionCombatPerkRules.rhythmBonus(SCYTHE)` mapeia A0038.
-- `A0021A0040EpicFightHooks.onAttackSpeed(...)` aplica o bônus às famílias do lote.
-- A segurança depende da classificação SCYTHE corrigida em `P-A0037-01`.
+- `A0021A0040EpicFightHooks.onAttackSpeed(...)` aplica o bônus provider-native às famílias classificadas.
+- A família SCYTHE da PR #252 depende exclusivamente da capability/categoria Epic Fight ou mapping explícito; nenhum fallback por tag/nome/aparência permanece.
 
 ## Provider→árvore
 
 Volcanoes, Enshrouded e Black Arcana não fornecem cadence SCYTHE. Companions Mobstein não herdam A0038 do dono.
 
-## Pendência Chat 2
+## Pendência Chat 2 / resolução Chat 3
 
-Nenhuma nova além de `P-A0037-01`; revalidar cadence após a correção de família.
+A dependência `P-A0037-01` foi encerrada. Nenhuma pendência própria bloqueante permanece para A0038; movesets sem cadence hook seguro continuam fail-closed por contrato.
+
+## Validação Chat 3 — PR #252
+
+- Classificação SCYTHE revalidada após remoção do tag paralelo.
+- `RPG Skill Tree CI` #2879 (run `33463430832`, HEAD `4813b2fd`): JUnit 5, **NeoForge JUnit adapter tests**, NeoForge GameTests, build e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #114 (run `33463430893`, HEAD `4813b2fd`): **GREEN**.
+- Resultado: contrato A0038 validado; apta ao merge da PR #252.

@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO; re-fetch sem drift, nenhuma mutação necessária.
-- **Implementação:** PARCIAL; aplicação/maturação existem, mas `P-A0040-01` impede considerar o lifecycle completo. Continua condicionada à família SCYTHE segura.
+- **Implementação:** IMPLEMENTAÇÃO CONFIRMADA para fechamento pela PR #252; `P-A0040-01` resolvida com pruning bounded e a dependência da família SCYTHE segura foi encerrada.
 - **Notion:** `3c569db9-f0db-81f4-86a9-e0b677dd2996`.
 
 ## Contrato canônico
@@ -18,18 +18,20 @@
 
 - `A0021A0040CombatPolicy.afterConfirmedHit` aplica A0040 somente em hit direto/hostil/dano real e usa claim por root action.
 - `A0021A0040CombatState.applyReapingMark` inicia marcas abaixo de 50% como imaturas; somente crossing posterior ≥50→<50 amadurece.
-- `A0021A0040EpicFightHooks.onLivingDamagePost` chama `updateReapingMaturityForTarget` para todo dano real, permitindo que dano externo ao golpe de foice amadureça uma marca já existente.
-- `clearTarget` limpa a marca em `LivingDeathEvent`, e o ator é limpo em logout/dimension/respawn; porém um alvo que despawna ou tem chunk descarregado sem morte pode deixar `reapMarks` retida no mapa do ator. A expiração só remove a entrada quando o mesmo UUID volta a ser consultado ou quando o ator é limpo.
+- `A0021A0040EpicFightHooks.onLivingDamagePost` chama `updateReapingMaturityForTarget` para dano real, permitindo que dano externo amadureça uma marca já existente sem transferir autoria nem reaplicar a Marca.
+- `clearTarget` remove marcas em death; ator é limpo em logout/dimension/respawn.
+- A PR #252 adiciona `pruneExpiredReapingMarks(now)`: varredura bounded remove marcas expiradas de todos os atores sem consultar novamente o UUID do target. `onServerTickPost` chama esse pruning a cada 1.000 ms de game time.
+- SCYTHE agora só é resolvida por capability/categoria Epic Fight ou mapping versionado explícito; tag paralelo removido.
 
 ## Provider→árvore
 
-O design já exclui explicitamente companion/summon e procs, cobrindo Mobstein e `ARCANE_BACKLASH` sem mutação adicional. Volcanoes/Enshrouded podem causar outros danos/estados no alvo, mas não recebem autoria de A0040; apenas uma Marca já aplicada pode observar a vida cair pelo estado canônico do Minecraft.
+O design exclui companion/summon e procs, cobrindo Mobstein e `ARCANE_BACKLASH` sem mutação adicional. Volcanoes/Enshrouded podem causar outros danos/estados no alvo, mas não recebem autoria de A0040; apenas uma Marca já aplicada pode observar a vida cair pelo estado canônico do Minecraft.
 
-## Pendências Chat 2
+## Pendências Chat 2 / resolução Chat 3
 
-- **P-A0040-01:** completar o lifecycle de `reapMarks` para alvos removidos/despawnados/chunks descarregados sem `LivingDeathEvent`, por hook seguro de remoção ou varredura periódica de expirados. A solução deve ser bounded, server-authoritative e não depender de o mesmo UUID ser consultado novamente.
-- Depende também de `P-A0037-01` para classificação SCYTHE segura.
-- Não iniciar A0041 neste ciclo.
+- **P-A0040-01 — RESOLVIDA:** lifecycle de `reapMarks` passou a ter varredura periódica bounded de expirados, server-authoritative e independente de reconsulta do UUID.
+- Dependência `P-A0037-01 — RESOLVIDA`: família SCYTHE segura sem classificador paralelo.
+- A0041 não foi iniciada neste ciclo.
 
 ## Reauditoria delta — Simply Swords stack — 2026-08-31
 
@@ -37,5 +39,13 @@ O design já exclui explicitamente companion/summon e procs, cobrindo Mobstein e
 - **Execute provider-owned:** o execute Implicit da Scythe pode alterar a vida ou matar pelo pipeline Simply, mas não aplica/duplica Marca, não cria novo `rootActionId` SCYTHE e não contorna deduplicação.
 - **Maturação preservada:** uma Marca RPG já existente continua podendo observar o crossing server-side de vida causado por qualquer dano real conforme o contrato; isso não transfere autoria do dano externo para A0040 e não reaplica a Marca.
 - **Derived effects:** Unique ability, gem power, Runic Power, Awakening e traits Cataclysm permanecem provider-owned e não criam nova Marca.
-- **Lifecycle:** `P-A0040-01` permanece aberta; a chegada do stack Simply não resolve cleanup de target unload/despawn.
+- **Lifecycle:** pruning bounded da PR #252 encerra `P-A0040-01` sem depender do target voltar a ser consultado.
 - **Notion:** boundary Simply registrada em quatro propriedades; re-fetch PASS.
+
+## Validação Chat 3 — PR #252
+
+- `A0031A0040ImplementationContractJUnitTest` prova remoção em 8.000 ms no rank 1, nenhuma remoção antecipada em 7.999 ms e idempotência do pruning após expiração.
+- Regressões existentes continuam validando crossing estrito ≥50→<50 e duração rank 2 de 10 s.
+- `RPG Skill Tree CI` #2879 (run `33463430832`, HEAD `4813b2fd`): JUnit 5, **NeoForge JUnit adapter tests**, NeoForge GameTests, runtime/data validations, build, JAR e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #114 (run `33463430893`, HEAD `4813b2fd`): **GREEN**.
+- Resultado: contrato A0040 validado; apta ao merge da PR #252. Nenhuma perk A0041+ foi iniciada.

@@ -76,7 +76,11 @@ runs {
         systemProperty 'neoforge.enabledGameTestNamespaces', "${mod_id},volcanoes"
     }
 
-    junit {}
+    // NeoGradle's canonical unit-test wiring requires both the mod source and the test source.
+    junit {
+        modSource project.sourceSets.main
+        unitTestSource project.sourceSets.test
+    }
 
     data {
         arguments.addAll '--mod', mod_id, '--all',
@@ -128,6 +132,9 @@ dependencies {
     compileOnly('top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api') { transitive = false }
 
     testImplementation('curse.maven:cold-sweat-506194:8302211') { transitive = false }
+    testImplementation("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") { transitive = false }
+    testImplementation "net.neoforged:testframework:${neo_version}"
+    testImplementation 'org.mockito:mockito-core:5.23.0'
     testImplementation platform("org.junit:junit-bom:${junit_version}")
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -137,17 +144,56 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
+def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFightAdapterCoverageJUnitTest'
+
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    extensions.configure(org.gradle.testing.jacoco.plugins.JacocoTaskExtension) {
+        // Instrument repository code only. Minecraft/NeoForge/provider bytecode is dependency code,
+        // and instrumenting Blocks.<clinit> exceeds ASM's method-size limit under the JUnit server.
+        includes = ['dev.gustavopere.*']
+    }
+}
+
+tasks.named('test', Test).configure {
+    // NeoGradle's JUnit convention clears the stock Test task's source wiring. Restore it
+    // explicitly so ordinary JUnit and workflow --tests filters execute compiled test classes.
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    filter {
+        // This adapter suite requires NeoForge's loaded JUnit runtime and runs under testJunit.
+        excludeTestsMatching epicFightAdapterCoverageTest
+    }
+}
+
+// NeoGradle materializes the run-backed test task after this script's eager task lookup phase.
+// Configure it lazily so the canonical junit run can create the task first.
+tasks.matching { it.name == 'testJunit' }.configureEach {
+    if (it instanceof Test) {
+        filter {
+            includeTestsMatching epicFightAdapterCoverageTest
+        }
+    }
 }
 
 tasks.named('jacocoTestReport').configure {
     dependsOn tasks.named('test')
+    dependsOn 'testJunit'
+    executionData(
+        layout.buildDirectory.file('jacoco/test.exec'),
+        layout.buildDirectory.file('jacoco/testJunit.exec')
+    )
     reports {
         xml.required = true
         html.required = true
         csv.required = false
     }
+}
+
+tasks.named('check').configure {
+    // Make `build` a real test gate even though NeoGradle creates testJunit from a run definition.
+    dependsOn tasks.named('test')
+    dependsOn 'testJunit'
 }
 
 tasks.named('sonar').configure {
