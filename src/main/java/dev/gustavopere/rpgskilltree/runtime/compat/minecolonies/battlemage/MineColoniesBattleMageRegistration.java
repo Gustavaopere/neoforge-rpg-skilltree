@@ -1,8 +1,13 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage;
 
+import com.minecolonies.api.colony.buildings.ModBuildings;
+import com.minecolonies.api.colony.buildings.registry.BuildingEntry;
 import com.minecolonies.api.colony.guardtype.GuardType;
+import com.minecolonies.api.colony.guardtype.registry.IGuardTypeRegistry;
 import com.minecolonies.api.colony.jobs.registry.IJobRegistry;
 import com.minecolonies.api.colony.jobs.registry.JobEntry;
+import com.minecolonies.core.colony.buildings.modules.GuardBuildingModule;
+import com.minecolonies.core.colony.buildings.moduleviews.CombinedHiringLimitModuleView;
 import com.minecolonies.core.colony.jobs.views.DefaultJobView;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -19,6 +24,15 @@ import net.neoforged.neoforge.registries.RegisterEvent;
  * registries exist, rather than creating eager holders against registries owned by another mod.</p>
  */
 public final class MineColoniesBattleMageRegistration {
+    public static final String BATTLE_MAGE_TOWER_WORK_KEY = "battle_mage_tower_work";
+
+    private static final BuildingEntry.ModuleProducer<GuardBuildingModule, CombinedHiringLimitModuleView>
+        BATTLE_MAGE_TOWER_WORK = new BuildingEntry.ModuleProducer<>(
+            BATTLE_MAGE_TOWER_WORK_KEY,
+            () -> new GuardBuildingModule(registeredGuardType(), true, building -> 1),
+            () -> CombinedHiringLimitModuleView::new
+        );
+
     private MineColoniesBattleMageRegistration() {}
 
     /** Registers the foreign-registry listener on the mod event bus. */
@@ -43,6 +57,10 @@ public final class MineColoniesBattleMageRegistration {
             MineColoniesBattleMageRegistries.BATTLE_MAGE_ID,
             () -> createGuardType(MineColoniesBattleMageRegistration::registeredJobEntry)
         );
+
+        if (MineColoniesBattleMageRegistries.GUARD_TYPE_REGISTRY_KEY.equals(event.getRegistryKey())) {
+            installGuardTowerWorkModule();
+        }
     }
 
     private static JobEntry registeredJobEntry() {
@@ -51,6 +69,28 @@ public final class MineColoniesBattleMageRegistration {
             throw new IllegalStateException("Battle Mage JobEntry requested before MineColonies job registration completed");
         }
         return entry;
+    }
+
+    private static GuardType registeredGuardType() {
+        GuardType type = IGuardTypeRegistry.getInstance().get(MineColoniesBattleMageRegistries.BATTLE_MAGE_ID);
+        if (type == null) {
+            throw new IllegalStateException("Battle Mage GuardType requested before MineColonies guard registration completed");
+        }
+        return type;
+    }
+
+    private static void installGuardTowerWorkModule() {
+        BuildingEntry guardTower = ModBuildings.guardTower.get();
+        boolean alreadyInstalled = guardTower.getModuleProducers().stream()
+            .anyMatch(producer -> BATTLE_MAGE_TOWER_WORK_KEY.equals(producer.key));
+        if (!alreadyInstalled) {
+            guardTower.getModuleProducers().add(BATTLE_MAGE_TOWER_WORK);
+        }
+    }
+
+    /** Exposed for contract tests and provider-present fixture discovery. */
+    public static BuildingEntry.ModuleProducer<GuardBuildingModule, CombinedHiringLimitModuleView> guardTowerWorkModule() {
+        return BATTLE_MAGE_TOWER_WORK;
     }
 
     public static JobEntry createJobEntry() {
