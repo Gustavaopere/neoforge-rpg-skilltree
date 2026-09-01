@@ -21,7 +21,7 @@ Epic Fight, ParCool e Epic ParCool só podem convergir quando existir a mesma id
 
 ## Reservation → commit do golpe consumidor
 
-O state service já suporta reserva do próximo hit no PRE e commit/rollback no POST. Esse seam permanece latente enquanto o node está indisponível; nenhum producer falso é criado só para exercitar a matemática.
+O state service suporta reserva do próximo hit no PRE e commit/rollback no POST. Esse seam permanece latente enquanto o node está indisponível; nenhum producer falso é criado só para exercitar a matemática.
 
 ## Implementação Chat 2 — 2026-09-01
 
@@ -29,6 +29,7 @@ O state service já suporta reserva do próximo hit no PRE e commit/rollback no 
 - purchase server-authoritative recusa o node enquanto o receipt de dodge-success não existir;
 - `A0061A0080CombatState` recebeu `reserveOpportunity`, `commitOpportunity`, `rollbackOpportunity` e helpers bounded para o caminho de projectile;
 - Epic Fight e projectile físicos possuem seam PRE→POST para o futuro consumer, mas com rank efetivo zero no estado atual;
+- review P1 da PR #355 detectou que o antigo POST de projétil usava consumo actor-wide e poderia consumir a reservation de outra flecha/root; corrigido nos commits `b3fd4516a06ec7de3049ed64732b26cbcc5a4720` e `e7a102e9ca22c1065cfd62045fc4e5bb8689576a`: cada `arrow + target` guarda o `rootActionId` canônico e `commitOpportunity`/`rollbackOpportunity` recebem exatamente esse root;
 - nenhum callback de dodge executado, tecla, animação ou ausência de dano foi promovido a `onConfirmedDodgeAvoidance`;
 - Better Lock On/Lock-On Movement Fix continuam fora da authority de dodge-success.
 
@@ -36,7 +37,7 @@ O state service já suporta reserva do próximo hit no PRE e commit/rollback no 
 
 - validar purchase recusada e contribuição runtime zero mesmo com rank persistido;
 - validar que nenhum dodge genérico/tecla/i-frame/posição abre janela;
-- validar o consumer latente reservation→POST commit/rollback sem falso consumo em dano zero/cancelamento;
+- validar o consumer latente reservation→POST commit/rollback sem falso consumo em dano zero/cancelamento e sem consumo cruzado entre projéteis/root simultâneos;
 - quando/SE existir provider receipt real de `avoidedAttackId`, validar dedup Epic Fight/ParCool/Epic ParCool; se a solução alterar provider/gate/semântica, devolver ao Chat 1;
 - validar lifecycle/expiry/cooldown e bridge PP AGILITY em cenário controlado.
 
