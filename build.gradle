@@ -170,10 +170,10 @@ def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
-    extensions.configure(org.gradle.testing.jacoco.plugins.JacocoTaskExtension) {
+    extensions.configure(org.gradle.testing.jacoco.plugins.JacocoTaskExtension) { jacocoExtension ->
         // Instrument repository code only. Minecraft/NeoForge/provider bytecode is dependency code,
         // and instrumenting Blocks.<clinit> exceeds ASM's method-size limit under the JUnit server.
-        includes = ['dev.gustavopere.*']
+        jacocoExtension.includes = ['dev.gustavopere.*']
     }
 }
 
@@ -206,52 +206,6 @@ gradle.taskGraph.whenReady { graph ->
         File loadedDir = tasks.named('compileNeoForgeTestJava', JavaCompile).get().destinationDirectory.get().asFile
         ((Test) loadedCandidate).setTestClassesDirs(files(loadedDir))
     }
-}
-
-def diagnosePlainJUnitInputs = tasks.register('diagnosePlainJUnitInputs') {
-    group = 'verification'
-    dependsOn tasks.named('compileTestJava')
-    doLast {
-        Test plain = tasks.named('test', Test).get()
-        File classesDir = tasks.named('compileTestJava', JavaCompile).get().destinationDirectory.get().asFile
-        def candidateFiles = plain.candidateClassFiles.files
-        logger.lifecycle("JUnit diagnostics plain: compileDir=${classesDir}")
-        logger.lifecycle("JUnit diagnostics plain: testClassesDirs=${plain.testClassesDirs.files}")
-        logger.lifecycle("JUnit diagnostics plain: compiledClasses=${fileTree(classesDir).matching { include '**/*.class' }.files.size()}")
-        logger.lifecycle("JUnit diagnostics plain: candidateClassFiles=${candidateFiles.size()}")
-        logger.lifecycle("JUnit diagnostics plain: taskIncludes=${plain.includes}; taskExcludes=${plain.excludes}")
-        logger.lifecycle("JUnit diagnostics plain: filterIncludes=${plain.filter.includePatterns}; filterExcludes=${plain.filter.excludePatterns}")
-        logger.lifecycle("JUnit diagnostics plain: candidateSample=${candidateFiles.take(10)}")
-    }
-}
-
-def diagnoseNeoForgeJUnitInputs = tasks.register('diagnoseNeoForgeJUnitInputs') {
-    group = 'verification'
-    dependsOn tasks.named('compileNeoForgeTestJava')
-    doLast {
-        Task candidate = tasks.findByName('testJunit')
-        if (!(candidate instanceof Test)) {
-            throw new GradleException('JUnit diagnostics failed: :testJunit was not materialized as a Test task.')
-        }
-        Test loaded = (Test) candidate
-        File classesDir = tasks.named('compileNeoForgeTestJava', JavaCompile).get().destinationDirectory.get().asFile
-        def candidateFiles = loaded.candidateClassFiles.files
-        logger.lifecycle("JUnit diagnostics loaded: compileDir=${classesDir}")
-        logger.lifecycle("JUnit diagnostics loaded: testClassesDirs=${loaded.testClassesDirs.files}")
-        logger.lifecycle("JUnit diagnostics loaded: compiledClasses=${fileTree(classesDir).matching { include '**/*.class' }.files.size()}")
-        logger.lifecycle("JUnit diagnostics loaded: candidateClassFiles=${candidateFiles.size()}")
-        logger.lifecycle("JUnit diagnostics loaded: taskIncludes=${loaded.includes}; taskExcludes=${loaded.excludes}")
-        logger.lifecycle("JUnit diagnostics loaded: filterIncludes=${loaded.filter.includePatterns}; filterExcludes=${loaded.filter.excludePatterns}")
-        logger.lifecycle("JUnit diagnostics loaded: candidateSample=${candidateFiles.take(10)}")
-    }
-}
-
-tasks.named('test', Test).configure {
-    dependsOn diagnosePlainJUnitInputs
-}
-
-tasks.matching { it.name == 'testJunit' }.configureEach {
-    dependsOn diagnoseNeoForgeJUnitInputs
 }
 
 def verifyPlainJUnitExecution = tasks.register('verifyPlainJUnitExecution') {
