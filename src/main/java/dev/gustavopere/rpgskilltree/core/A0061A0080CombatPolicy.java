@@ -100,42 +100,82 @@ public final class A0061A0080CombatPolicy {
         return state.retaliationActive(actorId, now) ? 1.0D + 0.04D * ranks.rank("A0072") : 1.0D;
     }
 
+    /**
+     * A0073. Provider-Impact paths keep the historical eager helper only for compatibility tests;
+     * runtime projectile paths (impactAvailable=false) use bounded reservation and are committed by
+     * the POST bridge. Epic Fight runtime uses the explicit reserve/commit methods directly.
+     */
     public static SpecialResult execution(
         String actorId, String targetId, String rootActionId, double preImpactHealthFraction, boolean boss,
         CombatPerkRanks ranks, A0061A0080CombatState state, boolean impactAvailable, long now
     ) {
         Objects.requireNonNull(ranks); Objects.requireNonNull(state);
         if (ranks.rank("A0073") <= 0) return SpecialResult.neutral();
-        if (state.consumeExecution(actorId, targetId, rootActionId, now)) {
-            return new SpecialResult(true, boss ? 1.09D : 1.18D, impactAvailable ? 1.20D : 1.0D, 0.0D);
+
+        if (impactAvailable) {
+            if (state.consumeExecution(actorId, targetId, rootActionId, now)) {
+                return new SpecialResult(true, boss ? 1.09D : 1.18D, 1.20D, 0.0D);
+            }
+            if (preImpactHealthFraction < 0.20D && !state.executionCoolingDown(actorId, targetId, now)) {
+                state.armExecution(actorId, targetId, rootActionId, now);
+            }
+            return SpecialResult.neutral();
         }
-        if (preImpactHealthFraction < 0.20D && !state.executionCoolingDown(actorId, targetId, now)) {
-            state.armExecution(actorId, targetId, rootActionId, now);
+
+        if (state.reserveExecution(actorId, targetId, rootActionId, now)) {
+            return new SpecialResult(true, boss ? 1.09D : 1.18D, 1.0D, 0.0D);
+        }
+        if (preImpactHealthFraction < 0.20D
+            && !state.executionWindowActive(actorId, targetId, now)
+            && !state.executionCoolingDown(actorId, targetId, now)) {
+            state.reserveExecutionArmCandidate(actorId, targetId, rootActionId, now);
         }
         return SpecialResult.neutral();
     }
 
+    /**
+     * A0074. Vanilla projectile PRE only reserves/history-marks; POST performs the irreversible
+     * lastAttack/arm/consume transition. Provider-Impact legacy behavior remains isolated to the
+     * compatibility branch used by historical pure tests.
+     */
     public static SpecialResult firstBlood(
         String actorId, String targetId, String rootActionId, double preImpactHealthFraction,
         CombatPerkRanks ranks, A0061A0080CombatState state, boolean impactAvailable, long now
     ) {
         Objects.requireNonNull(ranks); Objects.requireNonNull(state);
         if (ranks.rank("A0074") <= 0) {
-            state.recordAttackWithoutFirstBloodArm(actorId, targetId, now);
+            if (impactAvailable) state.recordAttackWithoutFirstBloodArm(actorId, targetId, now);
             return SpecialResult.neutral();
         }
 
-        if (state.firstBloodWindowActive(actorId, targetId, now)) {
-            A0061A0080CombatState.FirstBloodStage stage = state.firstBloodStage(actorId, targetId, rootActionId, now);
-            if (stage == A0061A0080CombatState.FirstBloodStage.CONSUMED) {
-                return new SpecialResult(true, 1.10D, impactAvailable ? 1.20D : 1.0D, 0.0D);
+        if (impactAvailable) {
+            if (state.firstBloodWindowActive(actorId, targetId, now)) {
+                A0061A0080CombatState.FirstBloodStage stage = state.firstBloodStage(actorId, targetId, rootActionId, now);
+                if (stage == A0061A0080CombatState.FirstBloodStage.CONSUMED) {
+                    return new SpecialResult(true, 1.10D, 1.20D, 0.0D);
+                }
+                return SpecialResult.neutral();
+            }
+            if (preImpactHealthFraction >= 0.85D) {
+                state.firstBloodStage(actorId, targetId, rootActionId, now);
+            } else {
+                state.recordAttackWithoutFirstBloodArm(actorId, targetId, now);
             }
             return SpecialResult.neutral();
         }
-        if (preImpactHealthFraction >= 0.85D) {
-            state.firstBloodStage(actorId, targetId, rootActionId, now);
-        } else {
-            state.recordAttackWithoutFirstBloodArm(actorId, targetId, now);
+
+        A0061A0080CombatState.FirstBloodReservation reservation = state.reserveFirstBlood(
+            actorId,
+            targetId,
+            rootActionId,
+            preImpactHealthFraction,
+            now
+        );
+        if (reservation == A0061A0080CombatState.FirstBloodReservation.FINISHER) {
+            return new SpecialResult(true, 1.10D, 1.0D, 0.0D);
+        }
+        if (reservation == A0061A0080CombatState.FirstBloodReservation.NONE) {
+            state.markFirstBloodHitPending(actorId, targetId, rootActionId, now);
         }
         return SpecialResult.neutral();
     }
@@ -210,12 +250,13 @@ public final class A0061A0080CombatPolicy {
         return state.armOpportunity(actorId, now);
     }
 
+    /** A0080 PRE reservation; irreversible consumption belongs to the confirmed POST boundary. */
     public static double consumeOpportunityDamageMultiplier(
         String actorId, String rootActionId, CombatPerkRanks ranks, A0061A0080CombatState state, long now
     ) {
         Objects.requireNonNull(ranks); Objects.requireNonNull(state);
-        if (ranks.rank("A0080") <= 0 || !state.claimOnce(actorId, rootActionId, "A0080:hit", now)) return 1.0D;
-        return state.consumeOpportunity(actorId, now) ? 1.15D : 1.0D;
+        if (ranks.rank("A0080") <= 0) return 1.0D;
+        return state.reserveOpportunity(actorId, rootActionId, now) ? 1.15D : 1.0D;
     }
 
     private static boolean finitePositive(double value) { return Double.isFinite(value) && value > 0.0D; }
