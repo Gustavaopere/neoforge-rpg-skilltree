@@ -33,6 +33,6 @@ A dependência de `P-A0031-01` foi encerrada. Nenhuma pendência própria bloque
 
 - Classificação MACE revalidada sem tag paralela.
 - Cadence continua limitada ao `ModifyAttackSpeedEvent` provider-native; ausência de hook continua fail-closed.
-- `RPG Skill Tree CI` #2806: JUnit 5, NeoForge GameTests, build e dedicated-server smoke **GREEN**.
-- `SonarQube Cloud` #41: **GREEN**.
+- `RPG Skill Tree CI` #2879 (run `33463430832`, HEAD `4813b2fd`): JUnit 5, **NeoForge JUnit adapter tests**, NeoForge GameTests, build e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #114 (run `33463430893`, HEAD `4813b2fd`): **GREEN**.
 - Resultado: contrato A0032 validado; apta ao merge da PR #252.
