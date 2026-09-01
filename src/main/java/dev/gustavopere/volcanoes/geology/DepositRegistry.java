@@ -42,7 +42,17 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
 
     private final Map<UUID, GeologicalDeposit> deposits = new LinkedHashMap<>();
     private final Set<DepositLifecycleSink> lifecycleSinks = new LinkedHashSet<>();
-    private boolean writable = true;
+    private final CompoundTag preservedPayload;
+    private boolean writable;
+
+    public DepositRegistry() {
+        this(null);
+    }
+
+    private DepositRegistry(CompoundTag preservedPayload) {
+        this.preservedPayload = preservedPayload;
+        this.writable = preservedPayload == null;
+    }
 
     public static DepositRegistry get(ServerLevel level) {
         Objects.requireNonNull(level, "level");
@@ -146,20 +156,37 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
 
     public static DepositRegistry fromTag(CompoundTag tag) {
         Objects.requireNonNull(tag, "tag");
-        DepositRegistry registry = new DepositRegistry();
-        int schemaVersion = readSchemaVersion(tag);
-        if (schemaVersion > CURRENT_SCHEMA_VERSION) {
+        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)) {
             LOGGER.error(
-                    "Cannot read geological deposit SavedData schema {} (current {}). Loading fail-closed/read-only; no saved entries will be overwritten.",
-                    schemaVersion,
-                    CURRENT_SCHEMA_VERSION);
-            registry.writable = false;
-            return registry;
-        }
-        if (schemaVersion < LEGACY_SCHEMA_VERSION) {
-            LOGGER.warn("Invalid geological deposit SavedData schema {}. Treating payload as legacy v1.", schemaVersion);
+                    "Geological deposit SavedData has an invalid schema_version NBT type. Preserving payload fail-closed/read-only.");
+            return preserveReadOnly(tag);
         }
 
+        int schemaVersion = readSchemaVersion(tag);
+        if (schemaVersion < LEGACY_SCHEMA_VERSION || schemaVersion > CURRENT_SCHEMA_VERSION) {
+            LOGGER.error(
+                    "Cannot read geological deposit SavedData schema {} (supported {}..{}). Preserving payload fail-closed/read-only; no saved entries will be overwritten.",
+                    schemaVersion,
+                    LEGACY_SCHEMA_VERSION,
+                    CURRENT_SCHEMA_VERSION);
+            return preserveReadOnly(tag);
+        }
+
+        if (tag.contains(DEPOSITS) && !tag.contains(DEPOSITS, CompoundTag.TAG_LIST)) {
+            LOGGER.error(
+                    "Geological deposit SavedData has an invalid deposits NBT type. Preserving payload fail-closed/read-only.");
+            return preserveReadOnly(tag);
+        }
+        if (tag.contains(DEPOSITS, CompoundTag.TAG_LIST)) {
+            ListTag rawDeposits = (ListTag) tag.get(DEPOSITS);
+            if (!rawDeposits.isEmpty() && rawDeposits.getElementType() != CompoundTag.TAG_COMPOUND) {
+                LOGGER.error(
+                        "Geological deposit SavedData deposits list has a non-compound element type. Preserving payload fail-closed/read-only.");
+                return preserveReadOnly(tag);
+            }
+        }
+
+        DepositRegistry registry = new DepositRegistry();
         ListTag list = tag.getList(DEPOSITS, CompoundTag.TAG_COMPOUND);
         for (int index = 0; index < list.size(); index++) {
             try {
@@ -173,6 +200,9 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
                         exception.getMessage());
             }
         }
+        if (schemaVersion < CURRENT_SCHEMA_VERSION) {
+            registry.setDirty();
+        }
         return registry;
     }
 
@@ -180,6 +210,10 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
         return tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)
                 ? tag.getInt(SCHEMA_VERSION)
                 : LEGACY_SCHEMA_VERSION;
+    }
+
+    private static DepositRegistry preserveReadOnly(CompoundTag tag) {
+        return new DepositRegistry(tag.copy());
     }
 
     private static DepositRegistry load(CompoundTag tag, HolderLookup.Provider registries) {
@@ -192,6 +226,9 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
     }
 
     private CompoundTag writeTo(CompoundTag tag) {
+        if (preservedPayload != null) {
+            return preservedPayload.copy();
+        }
         tag.putInt(SCHEMA_VERSION, CURRENT_SCHEMA_VERSION);
         ListTag list = new ListTag();
         for (GeologicalDeposit deposit : all()) {
