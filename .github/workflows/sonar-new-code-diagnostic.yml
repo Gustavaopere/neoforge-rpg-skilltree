@@ -19,7 +19,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
           GH_TOKEN: ${{ github.token }}
-          EXPECTED_MAIN_SHA: 66fcec7b163320cfb0d79943969aae33f3adf862
+          ONBOARDING_SHA: 66fcec7b163320cfb0d79943969aae33f3adf862
           NEW_CODE_DATE: '2026-09-01'
         shell: bash
         run: |
@@ -29,7 +29,7 @@ jobs:
           gh_auth="Authorization: Bearer ${GH_TOKEN}"
           sonar="https://sonarcloud.io"
 
-          echo '=== Guard current main SHA ==='
+          echo '=== Resolve current main and guard onboarding ancestry ==='
           current_main="$({
             curl --silent --show-error --fail --location \
               --header "$gh_auth" \
@@ -37,7 +37,20 @@ jobs:
               "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/git/ref/heads/main"
           } | jq -r '.object.sha')"
           echo "currentMainSha=${current_main}"
-          test "$current_main" = "$EXPECTED_MAIN_SHA"
+
+          comparison="$({
+            curl --silent --show-error --fail --location \
+              --header "$gh_auth" \
+              --header 'Accept: application/vnd.github+json' \
+              "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/compare/${ONBOARDING_SHA}...${current_main}"
+          })"
+          echo "$comparison" | jq '{status, ahead_by, behind_by, mergeBase: .merge_base_commit.sha}'
+          test "$(echo "$comparison" | jq -r '.merge_base_commit.sha')" = "$ONBOARDING_SHA"
+          test "$(echo "$comparison" | jq -r '.behind_by')" = '0'
+          case "$(echo "$comparison" | jq -r '.status')" in
+            identical|ahead) ;;
+            *) echo 'Current main is not a descendant of the onboarding SHA.' >&2; exit 1 ;;
+          esac
 
           echo '=== Remove legacy manual analysis baseline from main ==='
           curl --silent --show-error --fail --location \
@@ -80,7 +93,7 @@ jobs:
           analyses="$({
             curl --silent --show-error --fail --location \
               --header "$sonar_auth" \
-              "$sonar/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=5"
+              "$sonar/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=10"
           })"
           echo "$analyses" | jq '{analyses: [.analyses[] | {key, date, projectVersion, revision, manualNewCodePeriodBaseline}]}'
           test "$(echo "$analyses" | jq '[.analyses[] | select(.manualNewCodePeriodBaseline == true)] | length')" = '0'
