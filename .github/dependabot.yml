@@ -10,6 +10,9 @@ updates:
       timezone: "America/Sao_Paulo"
     open-pull-requests-limit: 3
     groups:
-      github-actions:
+      github-actions-minor-patch:
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
