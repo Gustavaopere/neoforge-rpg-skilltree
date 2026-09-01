@@ -117,11 +117,11 @@ public final class BattleMageSafetyGameTests {
             LivingEntity citizen = (LivingEntity) fixture.citizen();
             BlockPos casterPos = citizen.blockPosition();
 
-            // Spawn through MineColonies at the already-proven valid arrival point, then position
-            // the registered same-colony citizen inside the actual AoE danger zone. Asking the
-            // provider to find a brand-new spawn point 11 blocks outside the tiny GameTest template
-            // makes EntityUtils.getSpawnPoint fail before the friendly-fire contract is exercised.
-            allyEntity = (Entity) spawnCitizen(fixture.colony(), helper.getLevel(), casterPos);
+            // Spawn through MineColonies from the exact arrival coordinate that already produced
+            // the Battle Mage. The provider resolves a safe point within its own five-block scan;
+            // reusing the entity's resolved position can move that scan to the edge of this tiny template.
+            allyEntity = (Entity) spawnCitizen(
+                fixture.colony(), helper.getLevel(), helper.absolutePos(BlockPos.ZERO).above());
             LivingEntity ally = (LivingEntity) allyEntity;
             BlockPos allyPos = casterPos.offset(11, 0, 0);
             ally.moveTo(allyPos.getX() + 0.5, allyPos.getY(), allyPos.getZ() + 0.5, 0.0f, 0.0f);
