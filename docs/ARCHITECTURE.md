@@ -41,18 +41,18 @@ The first semantic pass materializes **83 tree definitions** covering the main t
 3. display priority;
 4. stable archetype ID.
 
-`ClassResolutionQueryService` is the pure read-only boundary for this modern resolver. It snapshots the supplied archetype definitions, rejects duplicate IDs and resolves only from an already-authoritative `InvestmentState`. `ClassResolutionRuntime` binds that query to the current `ArchetypeCatalog`, but intentionally accepts `InvestmentState` rather than `ServerPlayer`; catalog-backed resolution therefore exists without creating a second player-state authority.
+`ClassResolutionQueryService` is the pure read-only boundary for this modern resolver. It snapshots the supplied archetype definitions, rejects duplicate IDs and can resolve either an already-authoritative `InvestmentState` or a canonical `ProgressionState` projected through explicit contribution metadata. `ClassResolutionRuntime` remains a read boundary and does not persist or mutate player class state.
 
-The modern resolver is intentionally **not yet the live player-class authority**. Purchased nodes do not yet expose the canonical domain/tag/mastery contribution metadata required to build a faithful `InvestmentState`. Wiring it earlier would invent progression weights or duplicate the legacy class system.
+Canonical purchased-node contribution metadata is now derived only from the explicit tags already carried by `data/rpgskilltree/skills/`: each purchased rank contributes one point to every declared `rpgskilltree:domain/<domain>` tag, while `rpgskilltree:domain/core` is explicitly neutral. `SkillInvestmentMetadataParser` never inspects node IDs, coordinates or graph topology. Unknown domain tags reject the reload instead of being guessed. `ClassInvestmentMetadataCatalog` publishes this metadata with the same skill-tree revision, and canonical class resolution rejects revision mismatch rather than mixing snapshots.
 
-Until perk reconciliation supplies those contributions, `data/rpgskilltree/classes/`, `ClassRulesReloader` and `ClassRuleCatalog` remain the compatibility/runtime class path. This is transitional architecture, not a second desired class system.
+The modern resolver is intentionally **not a second live player-class authority**. `data/rpgskilltree/classes/`, `ClassRulesReloader` and `ClassRuleCatalog` remain the authoritative persisted/reconciled class path. Mastery-to-archetype contribution thresholds are accepted only as explicit `MasteryInvestmentMetadata`; Stage 04.03 must define their canonical semantics before the runtime invents any automatic Mastery tag/weight mapping.
 
 ## Data-driven eligibility definitions
-`data/rpgskilltree/specializations/` is loaded by `SpecializationReloader` into `SpecializationCatalog`. These definitions describe eligible classes, mastery requirements and required investment tags. The core `SpecializationResolver` can evaluate them once a trustworthy `InvestmentState` is available.
+`data/rpgskilltree/specializations/` is loaded by `SpecializationReloader` into `SpecializationCatalog`. These definitions describe eligible classes, mastery requirements and required investment tags. The core `SpecializationResolver` can evaluate them from a trustworthy `InvestmentState`.
 
 `data/rpgskilltree/tree_unlocks/` is loaded independently by `TreeUnlockReloader` into `TreeUnlockCatalog`. These definitions describe domain-score, tag and mastery gates for specialist trees and are consumed by the core `TreeUnlockResolver` contract.
 
-Loading these datasets does **not** make them automatic player-state authorities by itself. Their domain/tag portions depend on the same purchased-node contribution model that is intentionally deferred to the perk/topology reconciliation. This keeps datapack definitions live and validated without inventing progression weights prematurely.
+Purchased-node domain scores and tags now have a canonical read-only projection from the skill resources. Mastery remains a separate canonical ledger; any conversion of Mastery thresholds into archetype tags/weights must stay explicit until Stage 04.03 defines that mapping. Loading eligibility datasets does not by itself make them player-state authorities.
 
 `data/rpgskilltree/progression/defaults.json` remains a validated declaration of the current stable progression defaults rather than a hot-reloadable economy. Character level is derived from total stored XP and level gains award passive points; changing those rules during a datapack reload would require an explicit save/economy migration policy that does not currently exist in the master design.
 
