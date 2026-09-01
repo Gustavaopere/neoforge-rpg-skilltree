@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO.
 - **Notion:** `3c569db9-f0db-8113-8673-e9135aa4d84d`; fetch fresco em 2026-08-31 sem drift funcional.
-- **Runtime observado:** CÓDIGO PRESENTE para sprint vanilla server-side; extensões ParCool permanecem fail-closed sem receipt específico.
+- **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -19,19 +19,21 @@
 - ParCool 4.0.0.3 / Epic ParCool 21.0.0 só entram quando adapter provar estado real server-authoritative de locomoção ativa do próprio jogador.
 - Knockback, queda, mount/vehicle, Sable/Create contraption, belt, grappling ou outro deslocamento externo não contam.
 
-## Evidência runtime
+## Implementação Chat 2 — 2026-09-01
 
-`A0061A0080EpicFightHooks` constrói `HitFacts.sprinting` de `player.isSprinting()` e a policy aplica A0078 uma vez no root físico. Nenhum estado ParCool é inferido por câmera/animação/velocidade.
+- o caminho canônico de hit físico usa `player.isSprinting()` no servidor para preencher `HitFacts.sprinting`;
+- a policy aplica A0078 apenas no root físico direto elegível, com `effectiveRanks` reconciliado;
+- nenhuma extensão ParCool/Epic ParCool foi inventada sem receipt server-authoritative;
+- deslocamento externo não é inferido por delta de posição, animação ou câmera;
+- transporte/forced movement permanece separado do sinal de sprint e das invalidações de A0079.
 
-## Fallback e anti-abuso
+## Pendências para Chat 3
 
-Sem provider de movimento adicional, usar apenas sprint vanilla. Não inferir por delta de posição. Dano indireto/procs/summons/fake players permanecem inelegíveis.
-
-## Pendências para Chat 2
-
-- **P-A0078-01:** validar sprint provider-present e exclusão de forced/passive movement.
-- **P-A0078-02:** ParCool/Epic ParCool só podem ampliar cobertura com receipt real, versionado e deduplicado; ausência continua fail-closed.
-- **P-A0078-03:** testar policy de bridge PP MARTIAL↔AGILITY e impossibilidade de border hopping.
+- validar sprint vanilla provider-present e ausência de bônus quando `isSprinting()==false`;
+- validar knockback, queda, mount/vehicle, Create/Sable transport e demais deslocamentos passivos sem falso positivo;
+- validar uma única aplicação por root físico;
+- validar bridge PP MARTIAL↔AGILITY sem dupla contagem/border hopping;
+- manter ParCool/Epic ParCool fail-closed até existir receipt real, versionado e deduplicável.
 
 ## Nove eixos obrigatórios
 
@@ -47,4 +49,4 @@ Sem provider de movimento adicional, usar apenas sprint vanilla. Não inferir po
 | NeoVitae | PASS | Ausente. |
 | Providers | PASS | vanilla seguro; ParCool fail-closed sem receipt. |
 
-Os 18 critérios passam **no design**.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
