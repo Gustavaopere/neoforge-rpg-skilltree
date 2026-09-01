@@ -9,13 +9,15 @@
 
 Foram lidos/reconsultados o protocolo Chat 1, `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`, os guias completos de Gameplay/Sistemas, Magia, Tecnologia e Projetos Próprios. O Catálogo Mestre do Notion foi consultado diretamente em 10/10 páginas e os quatro projetos próprios tiveram `main` + `plans/STATUS.md` re-fetched.
 
+A autoridade de presença/JAR/versão dos guias atuais confirma Oritech `1.2.11`, Thirst Was Reclaimed `3.0.4`, Thirst Was Fixed `2.1.5`, Relics `0.12.8`, Artifacts `13.2.3`, Reliquified Artifacts `1.0.8`, ParCool `4.0.0.2` e Epic ParCool `21.0.0`. O capítulo tecnológico que ainda menciona Oritech `1.2.10` é histórico e é superado pelo `CURRENT-MODLIST.md`.
+
 ## Resultado executivo
 
 | Código | Perk | Resultado Chat 1 | Runtime esperado após Chat 1 |
 |---|---|---|---|
 | A0111 | Conservação de Equipamento II | DESIGN APROVADO EM FAIL-CLOSED | `UNAVAILABLE_NODE` — A0110/P-0036 |
 | A0112 | Auto-Manutenção | DESIGN APROVADO EM FAIL-CLOSED TRANSITIVO | `UNAVAILABLE_NODE` — A0111→A0110/P-0036 |
-| A0113 | Reforço de Campo | DESIGN APROVADO EM FAIL-CLOSED TRANSITIVO | `UNAVAILABLE_NODE` — A0110/P-0036; identity/repair runtime ausentes |
+| A0113 | Reforço de Campo | DESIGN APROVADO APÓS HARDENING ANTI-CLONE | `UNAVAILABLE_NODE` — A0110/P-0036; identity/repair runtime ausentes |
 | A0114 | Manutenção de Relíquia Vinculada | DESIGN APROVADO EM FAIL-CLOSED DUPLO | `UNAVAILABLE_NODE` — cadeia de manutenção + Attunement Socket ausente |
 | A0115 | Economia Metabólica: Correr | DESIGN APROVADO APÓS HARDENING | `UNAVAILABLE_NODE` — P-0037/BodyCostResolver METABOLIC ausente |
 | A0116 | Conservação Hídrica: Correr | DESIGN APROVADO APÓS HARDENING | `UNAVAILABLE_NODE` — P-0037 HYDRATION + TWR adapter ausentes |
@@ -30,17 +32,30 @@ Foram lidos/reconsultados o protocolo Chat 1, `CRITERIOS-OBRIGATORIOS-PARA-APROV
 
 Fetch fresco: **10/10**.
 
-A0111–A0114 já continham provider gate estrutural correto. A0115–A0120 ainda descreviam ausência de P-0037 como “efeito inativo para o evento”, apesar de o resolver ser obrigatório para o único efeito da perk. Isso permitiria rank no-op e contrariaria o unavailable-node invariant.
+### Hardening estrutural A0115–A0120
 
-### Hardening aplicado A0115–A0120
+A0115–A0120 ainda descreviam ausência de P-0037 como “efeito inativo para o evento”, apesar de o resolver ser obrigatório para o único efeito da perk. Isso permitiria rank no-op e contrariaria o unavailable-node invariant.
 
-- P-0037/BodyCostResolver ausente ou incompatível => node estruturalmente indisponível/não comprável/0 PP legado.
-- A0117/A0119 herdam availability de A0115.
-- A0118/A0120 herdam availability de A0116.
-- Lanes HYDRATION também exigem adapter versionado Thirst Was Reclaimed `3.0.4`.
-- Depois que os bindings existirem, um receipt ausente apenas para uma ação específica pode omitir o proc; isso é diferente de permitir compra sem consumer global.
+Foi congelado:
 
-Re-fetch pós-escrita: **6/6 PASS** em A0115–A0120; persistência confirmada.
+- P-0037/BodyCostResolver ausente ou incompatível => node estruturalmente indisponível/não comprável/0 PP legado;
+- A0117/A0119 herdam availability de A0115;
+- A0118/A0120 herdam availability de A0116;
+- lanes HYDRATION também exigem adapter versionado Thirst Was Reclaimed `3.0.4`;
+- depois que os bindings existirem, um receipt ausente apenas para uma ação específica pode omitir o proc; isso é diferente de permitir compra sem consumer global.
+
+### Hardening anti-clone A0113
+
+A0113 já exigia identidade persistente, mas a política para cópia/transferência precisava deixar de ser genérica. O Notion foi corrigido para congelar um `ToolIdentityLedger` server-side:
+
+- identidade efetiva = `player_uuid + tool_instance_id`;
+- duas cópias carregadas com o mesmo id para o mesmo jogador => a cópia atuante é reidentificada antes do ganho;
+- owner mismatch/transferência => a cópia atuante é reidentificada da mesma forma;
+- o novo UUID inicia A0113 com contador 0 e sem `Reforço Pronto`;
+- progresso/janela nunca são copiados, fundidos ou transferidos;
+- a identidade original preserva seu próprio ledger.
+
+Re-fetch pós-escrita total: **7/7 PASS** em A0113 e A0115–A0120; persistência confirmada.
 
 ## Capability delta dos quatro projetos próprios
 
@@ -61,11 +76,11 @@ Mesmo seam residual de A0110: prevenção nativa/Unbreaking/provider primeiro; s
 
 ### A0112 — manutenção transacional
 
-Um ciclo/player, 200 ticks fora de dano hostil, intervalo 600/480/360. Somente posições ativas; sem inventory scan. Seleção deterministic por menor durability ratio; provider define custo/reparo. Debit-before-repair, zero cooldown em falha.
+Um ciclo/player, 200 ticks fora de dano hostil, intervalo 600/480/360. Somente posições ativas; sem inventory scan. Seleção determinística por menor durability ratio; provider define custo/reparo. Debit-before-repair, zero cooldown em falha.
 
 ### A0113 — identidade de ferramenta
 
-`player_uuid + tool_instance_id`; 12 coletas legítimas abrem 600 ticks; próximo reparo da mesma instância recebe +15/+25/+35% sobre quantidade realmente restaurada, com custo integral. Anti-clone e anti-rebuild obrigatórios.
+`player_uuid + tool_instance_id`; 12 coletas legítimas abrem 600 ticks; próximo reparo da mesma instância recebe +15/+25/+35% sobre quantidade realmente restaurada, com custo integral. `ToolIdentityLedger` reidentifica somente a cópia atuante em clone/owner mismatch e zera somente o progresso da nova identidade. Anti-clone e anti-rebuild são obrigatórios.
 
 ### A0114 — attunement real
 
@@ -85,7 +100,7 @@ METABOLIC usa somente parcel positivo FoodData causal da ação. HYDRATION usa r
 | 4. Ramificação/distância/topologia | PASS | ENGINEERING/SURVIVAL/LOGISTICS e bridges coerentes |
 | 5. Especializações | PASS/N/A | PP só conta quando mapeado semanticamente; nenhum grant paralelo |
 | 6. Tradução PT-BR | PASS | nomes/regras/effects mantidos em PT-BR |
-| 7. Notion completo | PASS | 10/10 fetch; 6 páginas endurecidas; 6/6 re-fetch |
+| 7. Notion completo | PASS | 10/10 fetch; 7 páginas endurecidas; 7/7 re-fetch |
 | 8. Remoção NeoVitae | PASS/N/A | nenhum contrato depende de NeoVitae |
 | 9. Cobertura modlist/providers | PASS | Oritech, Protection Pixel, Relics/Artifacts, ParCool, TWR/TWF e projetos próprios classificados |
 
@@ -99,7 +114,7 @@ METABOLIC usa somente parcel positivo FoodData causal da ação. HYDRATION usa r
 | 4 | fail-closed | PASS — 10/10 nodes indisponíveis no snapshot atual |
 | 5 | fallback não muda identidade | PASS — ausência omite/habilita unavailable, nunca troca efeito |
 | 6 | Mastery por feitos discretos | N/A — lote não concede Mastery |
-| 7 | anti-farm/rebuild | PASS — A0113 bloqueia placed/automation/clone; actions deduplicadas |
+| 7 | anti-farm/rebuild | PASS — A0113 bloqueia placed/automation/clone e reidentifica conflito; actions deduplicadas |
 | 8 | atribuição causal | PASS — harvest/action_id/player_uuid explícitos |
 | 9 | não duplicar pipelines | PASS — owners únicos e lanes tipadas |
 | 10 | custos reais | PASS — resource debit provider-native e FoodData/TWR reais |
@@ -110,11 +125,13 @@ METABOLIC usa somente parcel positivo FoodData causal da ação. HYDRATION usa r
 | 15 | dependências semânticas | PASS | predecessors indisponíveis propagam availability |
 | 16 | sem sobreposição indevida | PASS | METABOLIC ≠ HYDRATION; slot ≠ attunement; FE ≠ durability |
 | 17 | implementável posteriormente | PASS | cada dossier fecha hooks/gates/order/authority/pending/tests |
-| 18 | verificação pós-escrita | PASS | 6/6 Notion re-fetch após hardening |
+| 18 | verificação pós-escrita | PASS | 7/7 Notion re-fetch após hardening |
 
 ## Handoff Chat 2
 
 O Chat 2 deve implementar exatamente os contracts dos dossiês. Prioridade imediata no snapshot atual: materializar availability fail-closed para todos os dez nodes. P-0036/P-0037 ou Attunement só podem ser implementados se código/API real suportar exatamente os boundaries documentados; não usar repair/refund, polling, direct thirst writes, heurística de movimento, Curios-as-attunement ou resource substitution.
+
+Para A0113, o Chat 2 não pode inventar merge de progresso entre IDs conflitantes: reidentificação da cópia atuante e reset local da nova identidade são parte do contrato aprovado.
 
 Se a API real exigir mudança de identidade/provider/gate/semântica, registrar evidência e devolver ao Chat 1.
 
@@ -125,7 +142,7 @@ Se a API real exigir mudança de identidade/provider/gate/semântica, registrar 
 - provider absent/version mismatch;
 - one-use/action/cycle dedup;
 - debit-before-repair e rollback;
-- A0113 anti-clone/anti-rebuild;
+- A0113 anti-clone/anti-rebuild, incluindo same-id duplicate, owner mismatch, reidentificação da cópia atuante e reset local;
 - METABOLIC/HYDRATION ordering, cap 30% e action identity;
 - forced/passive movement exclusions;
 - no direct thirst writes/polling/resource substitution;
@@ -136,4 +153,4 @@ Se a API real exigir mudança de identidade/provider/gate/semântica, registrar 
 
 **DESIGN APROVADO / LOTE A0111–A0120 FECHADO PELO CHAT 1 / AGUARDANDO IMPLEMENTAÇÃO CHAT 2.**
 
-A0121+ não foi iniciado.
+Chat 1 **não faz merge**. A PR do lote deve permanecer aberta para o Chat 2 continuar na mesma branch; o Chat 3 executa validação final/CI/merge. A0121+ não foi iniciado.
