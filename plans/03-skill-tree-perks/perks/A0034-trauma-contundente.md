@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO + boundary retroativo.
-- **Implementação:** PRESENTE no fallback canônico por Armor; guard/posture/physical-reduction extras não estão confirmados.
+- **Implementação:** **CÓDIGO PRESENTE NO FALLBACK CANÔNICO / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 - **Notion:** `3c569db9-f0db-81d8-a04d-cdb2c11aba4b`.
 
 ## Contrato canônico
@@ -18,14 +18,15 @@
 ## Evidência runtime
 
 - `A0021A0040CombatPolicy.afterConfirmedHit` adiciona Trauma por ator→alvo, deduplicado por root action.
-- Adapter atual define `protectedTarget = target.getArmorValue() > 0`, portanto implementa exatamente o fallback Armor.
-- Não foi comprovado receipt adicional de guard/posture para MACE nesse adapter.
+- Adapter define `protectedTarget = target.getArmorValue() > 0`, implementando exatamente o fallback Armor.
+- Não foi comprovado receipt adicional de guard/posture para MACE e o Chat 2 não inventou um.
+- A classificação MACE subjacente foi corrigida para provider-native/exata.
 
 ## Provider→árvore
 
 - Black Arcana/Enshrouded/Volcanoes: estados próprios não são proteção física da perk.
 - Mobstein: ataque direto do jogador contra mob/boss é universalmente coberto; companion não transfere autoria.
 
-## Pendência Chat 2
+## Fechamento Chat 2
 
-Nenhuma blocker para o fallback Armor. Qualquer rota de guard/posture/redução física adicional só pode ser ativada com receipt provider-native seguro.
+Nenhuma blocker permanece para o fallback Armor aprovado. Rotas adicionais de guard/posture/redução física seguem fail-closed até receipt real. Chat 3 deve validar cap/duração, dedup/root, Armor zero, exclusões mágicas/ambientais e lifecycle. O Chat 2 não executou a bateria final.
