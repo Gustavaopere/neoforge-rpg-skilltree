@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Refresh SonarQube Cloud's SPECIFIC_ANALYSIS baseline to a live main analysis.
+"""Refresh SonarQube Cloud's manual new-code baseline to a live main analysis.
 
-SonarQube's SPECIFIC_ANALYSIS new-code definition stores an analysis UUID. If
-housekeeping removes that analysis, subsequent main analyses fail before the
-quality gate can run. This helper queries the currently retained analyses for
-`main`, selects the newest existing one, and atomically asks SonarQube to use it
-as the new-code baseline.
+SonarQube Cloud's manually selected new-code baseline stores an analysis UUID.
+If housekeeping removes that analysis, subsequent main analyses can fail before
+the quality gate runs. This helper queries the currently retained analyses for
+`main`, selects the newest existing one, and asks SonarQube Cloud to use it as
+the manual baseline through the Cloud Web API.
 
 The operation is intentionally fail-closed: missing credentials, an empty
 analysis history, malformed API responses, or insufficient permissions make the
@@ -76,13 +76,12 @@ def newest_retained_analysis(token: str) -> str:
 
 def set_specific_analysis_baseline(token: str, analysis_key: str) -> None:
     api_request(
-        "/api/new_code_periods/set",
+        "/api/project_analyses/set_baseline",
         token,
         method="POST",
         data={
             "project": SONAR_PROJECT_KEY,
             "branch": SONAR_BASELINE_BRANCH,
-            "type": "SPECIFIC_ANALYSIS",
             "analysis": analysis_key,
         },
     )
