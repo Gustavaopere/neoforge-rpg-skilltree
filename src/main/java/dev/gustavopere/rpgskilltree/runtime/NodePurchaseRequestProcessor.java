@@ -33,6 +33,12 @@ public final class NodePurchaseRequestProcessor {
         Objects.requireNonNull(graph, "graph");
         Objects.requireNonNull(definition, "definition");
 
+        // Availability is checked before replay reservation or any purchase mutation. Missing
+        // mandatory provider/binding support must never consume points or create a ghost rank.
+        if (!CombatPerkAvailabilityRuntime.isAvailable(nodeId)) {
+            return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.UNAVAILABLE_NODE);
+        }
+
         NodePurchaseRequestTracker.Decision decision = tracker.checkAndRecord(
             playerId,
             requestId,

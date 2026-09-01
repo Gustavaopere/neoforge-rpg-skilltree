@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após hardening do boundary do detector em 2026-08-31.
 - **Notion:** `3c569db9-f0db-818c-bbf0-e5918a79c25b`; Hook/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** IMPLEMENTAÇÃO PARCIAL: `StationaryStateService` e bônus existem, mas o sampler atual não propaga todas as invalidações forçadas exigidas.
+- **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -15,21 +15,26 @@
 
 ## Boundary único
 
-`StationaryStateService` é o detector exclusivo. Teleporte, troca de dimensão, mount/vehicle transition, contraption/belt e deslocamento forçado identificado devem invalidar imediatamente, mesmo se o delta cair dentro de 0,10 bloco. Nenhuma perk pode manter threshold/detector paralelo.
+`StationaryStateService` é o detector exclusivo. Teleporte, troca de dimensão, mount/vehicle transition, contraption/belt e deslocamento forçado identificado invalidam imediatamente, mesmo se o delta cair dentro de 0,10 bloco. Nenhuma perk mantém threshold/detector paralelo.
 
-## Evidência runtime
+## Implementação Chat 2 — 2026-09-01
 
-O service implementa `forcedTransition` e threshold canônico. Contudo `A0061A0080EpicFightHooks.onServerTick` atualmente chama `sample(..., false)` para todos os ticks; dimensão é limpa separadamente, mas mount/vehicle/contraption/forced movement ainda precisam receipts/invalidation apropriados.
+- sampling canônico continua centralizado em `StationaryStateService`;
+- tick server-side passa `player.isPassenger()` como forced transition;
+- teleport e knockback possuem invalidação explícita;
+- `MartialStanceRuntime.reconcile(...)` também invalida stationarity quando detecta transporte externo;
+- `A0079ForcedMovementCompat` faz gates exatos para Create 6.0.10 e Sable 2.0.5 e falha fechado em versão desconhecida, linkage error ou exceção;
+- compat classes específicas ficam isoladas e só são carregadas depois do gate do provider;
+- Create reconhece belt ativo por `BeltBlockEntity`; Sable reconhece jogador contido em sublevel por `Sable.HELPER.getContaining(player)`;
+- quando Epic Fight não é o owner do tick, o sampler fallback existente de A0081–A0100 continua sendo o único sampler; o subscriber geral A0076–A0079 apenas invalida, evitando dupla contagem de ticks.
 
-## Fallback e anti-abuso
+## Pendências para Chat 3
 
-Não aproximar “parado” por velocidade client-side, animação ou input. Movimento externo não pode contar como preparação estacionária. Sem receipt de forced transition em uma integração específica, essa rota deve invalidar/falhar fechado, não ser tratada como estacionária por tolerância local.
-
-## Pendências para Chat 2
-
-- **P-A0079-01:** propagar invalidações forçadas para teleport, mount/vehicle, contraption/belt e deslocamentos provider-identificados; não usar sempre `false`.
-- **P-A0079-02:** testes 30 ticks/0,10 bloco, reset imediato, lifecycle e multiplayer.
-- **P-A0079-03:** testar bridge PP MARTIAL↔VITALITY sem dupla contagem/border hopping.
+- validar exatamente 30 ticks e path length total 3D `<=0,10`, inclusive reset ao ultrapassar o limiar;
+- validar invalidation imediata por teleport, knockback, mount/passenger, Create belt/contraption e Sable sublevel;
+- validar providers ausentes, presentes na versão exata e presentes em versão divergente/fail-closed;
+- validar ausência de sampler duplicado com/sem Epic Fight;
+- validar lifecycle e bridge PP MARTIAL↔VITALITY sem dupla contagem/border hopping.
 
 ## Nove eixos obrigatórios
 
@@ -43,6 +48,6 @@ Não aproximar “parado” por velocidade client-side, animação ou input. Mov
 | PT-BR | PASS | Texto em PT-BR. |
 | Notion | PASS após correção | Re-fetch confirmado. |
 | NeoVitae | PASS | Ausente. |
-| Providers | PASS | NeoForge/RPG; movimento externo só por invalidation real. |
+| Providers | PASS | NeoForge/RPG + gates Create/Sable; movimento externo só por invalidation real. |
 
-Os 18 critérios passam **no design**; runtime atual tem pendência de cobertura de invalidation.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.

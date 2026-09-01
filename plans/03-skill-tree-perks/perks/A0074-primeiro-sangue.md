@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após correção causal reservation→commit em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8173-b2ac-eb0a2bd12cc8`; Hook/Fallback/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** NÃO CONFORME no lifecycle atual: last-attack/arm/consume são mutados no PRE; Chat 2 deve corrigir.
+- **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -24,11 +24,24 @@
 
 Minecraft/NeoForge fornece vida; Epic Fight fornece root/Impact quando aplicável; RPG Skill Tree possui o estado. Dano de terceiros pode remover elegibilidade antes do opener. Procs, DoT, summons, fake players e reflexão não contam.
 
-## Pendências para Chat 2
+## Implementação Chat 2 — 2026-09-01
 
-- **P-A0074-01 BLOQUEANTE:** migrar opener/consume/cooldown para reservation→POST commit.
-- **P-A0074-02:** lifecycle bounded de estado por alvo e histórico em death/removal/unload + actor lifecycle/rank loss/respec/rules reload.
-- **P-A0074-03:** testes de borda ≥85%, idle 8 s, cooldown 12 s, cancel/zero e root distinto.
+- `A0061A0080CombatState` recebeu reserva explícita `OPENER`/`FINISHER`, commit e rollback;
+- o PRE registra apenas reserva/histórico pendente bounded; `lastAttackAt` definitivo só é atualizado no POST confirmado;
+- Epic Fight POST positivo commita opener/finisher; zero/ineligibilidade executa rollback;
+- projéteis físicos recebem commit/rollback no subscriber pós-dano dedicado;
+- review P1 da PR #355 detectou correlação insuficiente no POST de projéteis simultâneos; corrigido nos commits `b3fd4516a06ec7de3049ed64732b26cbcc5a4720` e `e7a102e9ca22c1065cfd62045fc4e5bb8689576a`: o PRE guarda `PendingPerkHit` por `arrow + target` com o root exato e o POST/cancel só altera o histórico/reservation daquele root;
+- janela 4 s e cooldown 12 s permanecem target-scoped e só são consumidos após dano efetivo;
+- pending hit possui retenção bounded de 1 s para evitar estado órfão quando a cadeia PRE→POST não conclui;
+- death/removal e lifecycle do ator/rank efetivo limpam estado transitório.
+
+## Pendências para Chat 3
+
+- validar bordas de vida `>=85%`, idle `>=8 s`, janela 4 s e cooldown 12 s;
+- validar que opener não recebe o bônus e que apenas root distinto pode consumir;
+- validar cancelamento/dano zero/expiração, concorrência, multishot e projéteis simultâneos, incluindo ordem de chegada invertida;
+- validar cleanup por morte/removal/unload, logout/dimensão/respawn e rank loss/respec/rules reload;
+- validar que procs/DoT/summons/fake players/reflexão não alteram histórico nem consomem a janela.
 
 ## Nove eixos obrigatórios
 
@@ -44,4 +57,4 @@ Minecraft/NeoForge fornece vida; Epic Fight fornece root/Impact quando aplicáve
 | NeoVitae | PASS | Ausente. |
 | Providers | PASS | NeoForge/Epic Fight/RPG delimitados. |
 
-Os 18 critérios passam **no design**; implementação atual necessita correção causal.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.

@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após fechamento do boundary de ativação em 2026-08-31.
 - **Notion:** `3c569db9-f0db-81a3-b3b3-f3901dbb0937`; Gate/Hook/Fallback/Provider/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** state/cooldown puro já existe, porém não há caller/input/payload; até esse binding ser implementado, node indisponível/não comprável.
+- **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -15,39 +15,43 @@
 
 ## Boundary de ativação fechado
 
-RPG Skill Tree é owner da stance e do comando. Implementar controle remapeável `Alternar Postura Marcial` que envia somente intenção por payload serverbound. O servidor valida ranks, disponibilidade e cooldown, então efetiva a transição atômica:
+RPG Skill Tree é owner da stance e do comando. O controle remapeável `Alternar Postura Marcial` envia somente intenção por payload serverbound. O servidor valida ranks, disponibilidade e cooldown, então efetiva a transição atômica:
 
 - se só A0076 estiver disponível: `NONE ↔ AGGRESSIVE`;
 - quando A0076 e A0077 estiverem legitimamente disponíveis: `NONE → AGGRESSIVE → CAUTIOUS → NONE`.
 
 Cliente nunca é authority. A stance nativa de Epic Fight não substitui o slot RPG e só pode coexistir por adapter explícito sem duplicação.
 
-## Evidência runtime
+## Implementação Chat 2 — 2026-09-01
 
-`A0061A0080CombatState.switchStance(...)` já possui slot e cooldown. `ClientKeyMappings` e `ModNetworking` demonstram infraestrutura de keybind/payload no mod, mas não existe binding específico da postura.
+- `MartialStanceIntentPayload` foi criado como payload serverbound de intenção;
+- `ClientKeyMappings` expõe controle remapeável para alternar postura;
+- `ModNetworking` registra o payload e o servidor delega a transição a `MartialStanceRuntime`;
+- `MartialStanceRuntime` valida `effectiveRanks`, availability, exclusividade e cooldown de 1,5 s;
+- com A0077 mascarada por A0067, o ciclo efetivo atual é `NONE ↔ AGGRESSIVE`;
+- dano físico de saída aplica +8% pela policy canônica; dano físico recebido aplica o tradeoff −5% de resistência no boundary `rpgskilltree:physical`;
+- stance é reconciliada/limpa quando ranks deixam de ser efetivos e nos lifecycles já ligados ao runtime;
+- nenhuma potion effect, client flag ou stance nativa de outro provider substitui `MARTIAL_STANCE`.
 
-## Fallback e lifecycle
+## Pendências para Chat 3
 
-Sem comando/payload server-authoritative, A0076 fica indisponível/não comprável. Limpar stance em morte, respawn, logout/login inconsistente, dimensão, rank loss/respec/rules reload e perda do binding. Não usar potion, item, animação ou flag client-side como substituto.
-
-## Pendências para Chat 2
-
-- **P-A0076-01 BLOQUEANTE:** implementar control/payload serverbound e availability gate antes de permitir compra.
-- **P-A0076-02:** aplicar/remover efeitos atômicos e validar cooldown/exclusividade/lifecycle.
-- **P-A0076-03:** testes multiplayer/client-server para spoofed payload, rank ausente, spam e troca de stance.
+- validar payload spoofado, spam, rank ausente, cooldown e authority servidor em multiplayer;
+- validar aplicação única de +8% dano e −5% resistência física, sem confundir Armor/Stun Armor/magic resistance;
+- validar limpeza sem resíduos em morte/respawn/logout/dimensão/rank loss/respec/rules reload;
+- normalizar a tradução do keybind em `lang` se o review exigir chave de localização em vez de literal funcional.
 
 ## Nove eixos obrigatórios
 
 | Eixo | Resultado | Decisão |
 |---|---|---|
-| Dependências/gates | PASS no design | ranks + binding de ativação. |
+| Dependências/gates | PASS | ranks + binding de ativação server-authoritative. |
 | Integração global | PASS | resistência física não é Armor/magic/Shroud. |
 | Qualidade/identidade | PASS | stance de risco ofensivo. |
 | Topologia | PASS | Camada 3, `MARTIAL/POSTURE`. |
 | Especializações | PASS | região de posturas explícita. |
-| PT-BR | PASS | controle/nome player-facing em PT-BR. |
+| PT-BR | PASS funcional | controle exposto em PT-BR; localização pode ser normalizada no Chat 3. |
 | Notion | PASS após correção | Re-fetch confirmado. |
 | NeoVitae | PASS | Ausente. |
 | Providers | PASS | RPG authority; Epic Fight apenas coexistência explícita. |
 
-Os 18 critérios passam **no design**; implementação depende do binding de ativação especificado.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.

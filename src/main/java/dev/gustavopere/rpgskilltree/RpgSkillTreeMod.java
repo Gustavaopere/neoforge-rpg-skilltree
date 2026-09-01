@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree;
 
+import dev.gustavopere.volcanoes.VolcanoesMod;
 import dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicy;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
@@ -20,6 +21,8 @@ import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumDiscoveryEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEditorialCatalogEvents;
@@ -59,6 +62,7 @@ import dev.gustavopere.rpgskilltree.runtime.events.RelevantPlayerCacheEvents;
 import dev.gustavopere.rpgskilltree.runtime.loot.ModLootModifiers;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
@@ -69,7 +73,8 @@ public final class RpgSkillTreeMod {
     public static final String MOD_ID = "rpgskilltree";
     private static final Logger LOGGER = LoggerFactory.getLogger(RpgSkillTreeMod.class);
 
-    public RpgSkillTreeMod(IEventBus modBus) {
+    public RpgSkillTreeMod(IEventBus modBus, ModContainer container) {
+        VolcanoesMod.initialize(modBus, container);
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);
         ModLootModifiers.register(modBus);
@@ -123,6 +128,19 @@ public final class RpgSkillTreeMod {
 
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)) {
             NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
+            if (IronsSustainEvents.operational()) {
+                NeoForge.EVENT_BUS.register(IronsSustainEvents.class);
+            } else {
+                RuntimeDiagnostics.warn(
+                    LOGGER,
+                    Category.COMPAT,
+                    "irons_sustain_contract_unsupported",
+                    "A0083 Iron's direct-magic sustain disabled: expected release {} and {}, found version {}",
+                    IronsSustainVersionContract.SUPPORTED_RELEASE,
+                    IronsSustainVersionContract.DAMAGE_SOURCE_CLASS,
+                    OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)
+                );
+            }
         }
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.ARS_NOUVEAU)) {
             NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);

@@ -1,0 +1,118 @@
+name: Volcanoes Worldgen Compatibility Matrix
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: volcanoes-worldgen-compatibility-matrix-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  worldgen-matrix:
+    name: ${{ matrix.id }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          - id: WG-00
+            terralith: 'false'
+            tectonic: 'false'
+            bwg: 'false'
+            biolith: 'false'
+          - id: WG-01
+            terralith: 'true'
+            tectonic: 'false'
+            bwg: 'false'
+            biolith: 'false'
+          - id: WG-02
+            terralith: 'false'
+            tectonic: 'true'
+            bwg: 'false'
+            biolith: 'false'
+          - id: WG-03
+            terralith: 'false'
+            tectonic: 'false'
+            bwg: 'true'
+            biolith: 'false'
+          - id: WG-04
+            terralith: 'true'
+            tectonic: 'true'
+            bwg: 'false'
+            biolith: 'false'
+          - id: WG-05
+            terralith: 'true'
+            tectonic: 'false'
+            bwg: 'true'
+            biolith: 'true'
+          - id: WG-06
+            terralith: 'false'
+            tectonic: 'true'
+            bwg: 'true'
+            biolith: 'false'
+          - id: WG-07
+            terralith: 'true'
+            tectonic: 'true'
+            bwg: 'true'
+            biolith: 'true'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+          cache-read-only: true
+
+      - name: Verify matrix tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          jq --version
+          python3 --version
+          bash -n .github/scripts/volcanoes/run_worldgen_matrix_case.sh
+          python3 -m py_compile \
+            .github/scripts/volcanoes/minecraft_rcon.py \
+            .github/scripts/volcanoes/worldgen_site_digest.py
+
+      - name: Run bounded worldgen compatibility case
+        shell: bash
+        env:
+          CASE_ID: ${{ matrix.id }}
+          WITH_TERRALITH: ${{ matrix.terralith }}
+          WITH_TECTONIC: ${{ matrix.tectonic }}
+          WITH_BWG: ${{ matrix.bwg }}
+          WITH_BIOLITH: ${{ matrix.biolith }}
+        run: bash .github/scripts/volcanoes/run_worldgen_matrix_case.sh
+
+      - name: Upload matrix evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: volcanoes-worldgen-${{ matrix.id }}-${{ github.sha }}
+          path: |
+            build/worldgen-matrix/${{ matrix.id }}/
+            runs/server/logs/
+            runs/server/crash-reports/
+          if-no-files-found: warn
+          retention-days: 14

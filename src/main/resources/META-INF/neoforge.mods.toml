@@ -84,3 +84,6 @@ side="BOTH"
 
 [[mixins]]
 config="rpgskilltree.mixins.json"
+
+[[mixins]]
+config="volcanoes.mixins.json"
