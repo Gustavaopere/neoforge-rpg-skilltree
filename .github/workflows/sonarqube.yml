@@ -47,6 +47,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-sonar
 
+      - name: Sonar workflow policy test
+        run: python3 scripts/test_sonar_workflow_policy.py
+
       - name: Refresh live SonarQube new-code baseline
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
