@@ -8,6 +8,8 @@ import java.util.Objects;
 /** Server-authoritative transient state for A0061-A0080. Nothing here is persisted. */
 public final class A0061A0080CombatState {
     public enum Stance { NONE, AGGRESSIVE, CAUTIOUS }
+    public enum FirstBloodStage { NONE, ARMED, CONSUMED }
+    public enum FirstBloodReservation { NONE, OPENER, FINISHER }
 
     public static final long RETALIATION_WINDOW_MILLIS = 3_000L;
     public static final long EXECUTION_WINDOW_MILLIS = 3_000L;
@@ -46,15 +48,22 @@ public final class A0061A0080CombatState {
         return actor(actorId).retaliationUntil > now;
     }
 
+    /**
+     * Legacy eager mutation retained only for source compatibility with historical tests.
+     * Runtime adapters must use reserve/commit methods below.
+     */
+    @Deprecated
     public synchronized boolean armExecution(String actorId, String targetId, String rootActionId, long now) {
         TargetState target = target(actorId, targetId);
         expireExecution(target, now);
-        if (target.executionCooldownUntil > now || target.executionUntil > now) return false;
+        if (target.executionCooldownUntil > now || target.executionUntil > now || target.executionReservedRoot != null) return false;
         target.executionRoot = require(rootActionId);
         target.executionUntil = Math.addExact(now, EXECUTION_WINDOW_MILLIS);
         return true;
     }
 
+    /** Legacy eager mutation; runtime adapters must use reserveExecution/commitExecution. */
+    @Deprecated
     public synchronized boolean consumeExecution(String actorId, String targetId, String rootActionId, long now) {
         TargetState target = target(actorId, targetId);
         expireExecution(target, now);
@@ -65,8 +74,52 @@ public final class A0061A0080CombatState {
         return true;
     }
 
+    public synchronized boolean reserveExecution(String actorId, String targetId, String rootActionId, long now) {
+        TargetState target = target(actorId, targetId);
+        expireExecution(target, now);
+        String root = require(rootActionId);
+        if (target.executionUntil <= now || target.executionRoot == null || target.executionRoot.equals(root)) return false;
+        if (target.executionReservedRoot != null && !target.executionReservedRoot.equals(root)) return false;
+        target.executionReservedRoot = root;
+        return true;
+    }
+
+    public synchronized boolean commitExecution(String actorId, String targetId, String rootActionId, long now) {
+        TargetState target = target(actorId, targetId);
+        String root = require(rootActionId);
+        if (!root.equals(target.executionReservedRoot)) return false;
+        target.executionReservedRoot = null;
+        expireExecution(target, now);
+        if (target.executionUntil <= now || target.executionRoot == null || target.executionRoot.equals(root)) return false;
+        target.executionRoot = null;
+        target.executionUntil = 0L;
+        target.executionCooldownUntil = Math.addExact(now, EXECUTION_TARGET_COOLDOWN_MILLIS);
+        return true;
+    }
+
+    public synchronized void rollbackExecution(String actorId, String targetId, String rootActionId) {
+        TargetState target = target(actorId, targetId);
+        String root = require(rootActionId);
+        if (root.equals(target.executionReservedRoot)) target.executionReservedRoot = null;
+    }
+
+    public synchronized boolean armExecutionConfirmed(String actorId, String targetId, String rootActionId, long now) {
+        TargetState target = target(actorId, targetId);
+        expireExecution(target, now);
+        if (target.executionCooldownUntil > now || target.executionUntil > now || target.executionReservedRoot != null) return false;
+        target.executionRoot = require(rootActionId);
+        target.executionUntil = Math.addExact(now, EXECUTION_WINDOW_MILLIS);
+        return true;
+    }
+
     public synchronized boolean executionCoolingDown(String actorId, String targetId, long now) {
         return target(actorId, targetId).executionCooldownUntil > now;
+    }
+
+    public synchronized boolean executionWindowActive(String actorId, String targetId, long now) {
+        TargetState target = target(actorId, targetId);
+        expireExecution(target, now);
+        return target.executionUntil > now && target.executionRoot != null;
     }
 
     public synchronized boolean firstBloodWindowActive(String actorId, String targetId, long now) {
@@ -75,6 +128,11 @@ public final class A0061A0080CombatState {
         return target.firstBloodUntil > now && target.firstBloodRoot != null;
     }
 
+    /**
+     * Legacy eager mutation retained only for source compatibility with historical tests.
+     * Runtime adapters must use reserveFirstBlood/commitFirstBlood.
+     */
+    @Deprecated
     public synchronized FirstBloodStage firstBloodStage(String actorId, String targetId, String rootActionId, long now) {
         TargetState target = target(actorId, targetId);
         expireFirstBlood(target, now);
@@ -95,11 +153,91 @@ public final class A0061A0080CombatState {
         return FirstBloodStage.ARMED;
     }
 
+    @Deprecated
     public synchronized void recordAttackWithoutFirstBloodArm(String actorId, String targetId, long now) {
         target(actorId, targetId).lastAttackAt = now;
     }
 
-    public enum FirstBloodStage { NONE, ARMED, CONSUMED }
+    public synchronized FirstBloodReservation reserveFirstBlood(
+        String actorId,
+        String targetId,
+        String rootActionId,
+        double preImpactHealthFraction,
+        long now
+    ) {
+        TargetState target = target(actorId, targetId);
+        expireFirstBlood(target, now);
+        String root = require(rootActionId);
+
+        if (target.firstBloodReservedRoot != null) {
+            return target.firstBloodReservedRoot.equals(root)
+                ? target.firstBloodReservation
+                : FirstBloodReservation.NONE;
+        }
+
+        if (target.firstBloodUntil > now && target.firstBloodRoot != null && !target.firstBloodRoot.equals(root)) {
+            target.firstBloodReservedRoot = root;
+            target.firstBloodReservation = FirstBloodReservation.FINISHER;
+            return FirstBloodReservation.FINISHER;
+        }
+
+        boolean idleEligible = target.lastAttackAt == Long.MIN_VALUE || now - target.lastAttackAt >= FIRST_BLOOD_IDLE_MILLIS;
+        boolean canArm = preImpactHealthFraction >= 0.85D
+            && target.firstBloodCooldownUntil <= now
+            && target.firstBloodUntil <= now
+            && idleEligible;
+        if (!canArm) return FirstBloodReservation.NONE;
+
+        target.firstBloodReservedRoot = root;
+        target.firstBloodReservation = FirstBloodReservation.OPENER;
+        return FirstBloodReservation.OPENER;
+    }
+
+    public synchronized boolean commitFirstBlood(
+        String actorId,
+        String targetId,
+        String rootActionId,
+        FirstBloodReservation reservation,
+        long now
+    ) {
+        Objects.requireNonNull(reservation, "reservation");
+        TargetState target = target(actorId, targetId);
+        String root = require(rootActionId);
+        if (!root.equals(target.firstBloodReservedRoot) || target.firstBloodReservation != reservation) return false;
+
+        target.firstBloodReservedRoot = null;
+        target.firstBloodReservation = FirstBloodReservation.NONE;
+        expireFirstBlood(target, now);
+        target.lastAttackAt = now;
+
+        if (reservation == FirstBloodReservation.OPENER) {
+            if (target.firstBloodCooldownUntil > now || target.firstBloodUntil > now) return false;
+            target.firstBloodRoot = root;
+            target.firstBloodUntil = Math.addExact(now, FIRST_BLOOD_WINDOW_MILLIS);
+            return true;
+        }
+        if (reservation == FirstBloodReservation.FINISHER) {
+            if (target.firstBloodUntil <= now || target.firstBloodRoot == null || target.firstBloodRoot.equals(root)) return false;
+            target.firstBloodRoot = null;
+            target.firstBloodUntil = 0L;
+            target.firstBloodCooldownUntil = Math.addExact(now, FIRST_BLOOD_TARGET_COOLDOWN_MILLIS);
+            return true;
+        }
+        return false;
+    }
+
+    public synchronized void rollbackFirstBlood(String actorId, String targetId, String rootActionId) {
+        TargetState target = target(actorId, targetId);
+        String root = require(rootActionId);
+        if (root.equals(target.firstBloodReservedRoot)) {
+            target.firstBloodReservedRoot = null;
+            target.firstBloodReservation = FirstBloodReservation.NONE;
+        }
+    }
+
+    public synchronized void recordConfirmedAttack(String actorId, String targetId, long now) {
+        target(actorId, targetId).lastAttackAt = now;
+    }
 
     public synchronized boolean recordSustainedAction(String actorId, String familyId, long now) {
         Actor actor = actor(actorId);
@@ -134,6 +272,12 @@ public final class A0061A0080CombatState {
         return true;
     }
 
+    public synchronized void resetStance(String actorId) {
+        Actor actor = actor(actorId);
+        actor.stance = Stance.NONE;
+        actor.stanceChangedAt = Long.MIN_VALUE;
+    }
+
     public synchronized Stance stance(String actorId) { return actor(actorId).stance; }
 
     public synchronized boolean armOpportunity(String actorId, long now) {
@@ -144,6 +288,8 @@ public final class A0061A0080CombatState {
         return true;
     }
 
+    /** Legacy eager mutation; runtime adapters must use reserveOpportunity/commitOpportunity. */
+    @Deprecated
     public synchronized boolean consumeOpportunity(String actorId, long now) {
         Actor actor = actor(actorId);
         expireOpportunity(actor, now);
@@ -151,6 +297,39 @@ public final class A0061A0080CombatState {
         actor.opportunityUntil = 0L;
         actor.opportunityCooldownUntil = Math.addExact(now, OPPORTUNITY_COOLDOWN_MILLIS);
         return true;
+    }
+
+    public synchronized boolean reserveOpportunity(String actorId, String rootActionId, long now) {
+        Actor actor = actor(actorId);
+        expireOpportunity(actor, now);
+        String root = require(rootActionId);
+        if (actor.opportunityUntil <= now) return false;
+        if (actor.opportunityReservedRoot != null && !actor.opportunityReservedRoot.equals(root)) return false;
+        actor.opportunityReservedRoot = root;
+        return true;
+    }
+
+    public synchronized boolean commitOpportunity(String actorId, String rootActionId, long now) {
+        Actor actor = actor(actorId);
+        String root = require(rootActionId);
+        if (!root.equals(actor.opportunityReservedRoot)) return false;
+        actor.opportunityReservedRoot = null;
+        expireOpportunity(actor, now);
+        if (actor.opportunityUntil <= now) return false;
+        actor.opportunityUntil = 0L;
+        actor.opportunityCooldownUntil = Math.addExact(now, OPPORTUNITY_COOLDOWN_MILLIS);
+        return true;
+    }
+
+    public synchronized void rollbackOpportunity(String actorId, String rootActionId) {
+        Actor actor = actor(actorId);
+        String root = require(rootActionId);
+        if (root.equals(actor.opportunityReservedRoot)) actor.opportunityReservedRoot = null;
+    }
+
+    public synchronized void clearTarget(String targetId) {
+        String suffix = "\0" + require(targetId);
+        targets.keySet().removeIf(key -> key.endsWith(suffix));
     }
 
     public synchronized void clearActor(String actorId) {
@@ -177,6 +356,7 @@ public final class A0061A0080CombatState {
         if (target.executionUntil > 0L && target.executionUntil <= now) {
             target.executionRoot = null;
             target.executionUntil = 0L;
+            target.executionReservedRoot = null;
         }
     }
 
@@ -184,6 +364,10 @@ public final class A0061A0080CombatState {
         if (target.firstBloodUntil > 0L && target.firstBloodUntil <= now) {
             target.firstBloodRoot = null;
             target.firstBloodUntil = 0L;
+            if (target.firstBloodReservation == FirstBloodReservation.FINISHER) {
+                target.firstBloodReservedRoot = null;
+                target.firstBloodReservation = FirstBloodReservation.NONE;
+            }
         }
     }
 
@@ -195,6 +379,7 @@ public final class A0061A0080CombatState {
         if (actor.opportunityUntil > 0L && actor.opportunityUntil <= now) {
             long expiredAt = actor.opportunityUntil;
             actor.opportunityUntil = 0L;
+            actor.opportunityReservedRoot = null;
             actor.opportunityCooldownUntil = Math.max(actor.opportunityCooldownUntil, Math.addExact(expiredAt, OPPORTUNITY_COOLDOWN_MILLIS));
         }
     }
@@ -214,15 +399,19 @@ public final class A0061A0080CombatState {
         long stanceChangedAt = Long.MIN_VALUE;
         long opportunityUntil;
         long opportunityCooldownUntil;
+        String opportunityReservedRoot;
     }
 
     private static final class TargetState {
         String executionRoot;
         long executionUntil;
         long executionCooldownUntil;
+        String executionReservedRoot;
         long lastAttackAt = Long.MIN_VALUE;
         String firstBloodRoot;
         long firstBloodUntil;
         long firstBloodCooldownUntil;
+        String firstBloodReservedRoot;
+        FirstBloodReservation firstBloodReservation = FirstBloodReservation.NONE;
     }
 }
