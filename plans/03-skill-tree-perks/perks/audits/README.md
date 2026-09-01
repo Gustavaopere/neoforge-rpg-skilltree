@@ -32,6 +32,11 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0061-A0070.md` — fechamento de design A0061–A0070, incluindo correção fail-closed/unavailable de A0067, cobertura BOSS de A0070 e gate de delta dos quatro projetos próprios.
 - `AUDITORIA-A0071-A0080.md` — fechamento de design A0071–A0080, incluindo availability transitiva, reservation→commit, posturas server-authoritative, sustain all-or-nothing, movement/stationary e dodge-success fail-closed.
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
+- A0091–A0100 — `AUDITORIA-A0091-A0100.md` permanece na PR #326 enquanto não integrado à `main`.
+- A0101–A0110 — `AUDITORIA-A0101-A0110.md` permanece na PR #340 enquanto não integrado à `main`.
+- A0111–A0120 — `AUDITORIA-A0111-A0120.md` permanece na PR #341 enquanto não integrado à `main`.
+- `AUDITORIA-A0121-A0130.md` — fechamento de design A0121–A0130; BodyCost METABOLIC/HYDRATION, ParCool 4.0.0.2, TWR 3.0.4, availability estrutural/transitiva e capability delta 18.
+- `AUDITORIA-A0200-A0209.md` — lote adiantado documental já integrado pela PR #331; a exceção não fecha nem substitui A0091–A0199.
 
 ## Auditorias de delta da modlist — Chat 1
 
@@ -52,4 +57,5 @@ Novos lotes devem ser criados aqui, nunca novamente na raiz de `perks/`.
 2. Não consolidar tudo em um único arquivo gigante: isso piora diffs, revisão e rastreabilidade de PRs.
 3. `STATUS.md` é o índice de estado geral. Quando uma auditoria especial declarar explicitamente um tracker canônico complementar no índice desta pasta, esse tracker também é fonte obrigatória para os handoffs daquele ciclo.
 4. Chat 1, Chat 2 e Chat 3 devem procurar a auditoria correspondente em `plans/03-skill-tree-perks/perks/audits/`; para o delta Simply A0001–A0050, o consolidado acima é leitura obrigatória junto ao `STATUS.md`.
-5. Dossiês `Axxxx-*.md` permanecem fora desta pasta para navegação direta por perk.
+5. Enquanto A0091–A0120 não estiver em `main`, as PRs #326/#340/#341 permanecem fontes documentais complementares; isso nunca transforma design aberto em runtime.
+6. Dossiês `Axxxx-*.md` permanecem fora desta pasta para navegação direta por perk.
