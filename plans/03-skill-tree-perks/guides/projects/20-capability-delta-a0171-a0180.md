@@ -2,13 +2,16 @@
 
 **Data:** 2026-09-01  
 **Lote:** A0171–A0180  
-**Objetivo:** aplicar o gate obrigatório de delta dos quatro projetos próprios antes de fechar design de LIGHTNING/NATURE.
+**Objetivo:** aplicar o gate obrigatório de delta dos quatro projetos próprios antes de fechar design de LIGHTNING/NATURE.  
+**Freshness final antes da PR:** `main@d4ce3176c1cba5a921a80fbf5153af7a46da4369`.
+
+A branch abriu em `c6677431a5c7cb2050ffc445834286a6001026fe`. Durante o fechamento, `main` avançou quatro commits até `d4ce3176...` pela PR #371. O compare `c667743... -> d4ce317...` altera somente `.github/SECURITY.md`, `.github/dependabot.yml` e uma linha do workflow `sonarqube.yml`; **não há nova capability de perk/provider, runtime LIGHTNING/NATURE ou mudança de authority**. Portanto o design abaixo permanece válido sem reclassificação.
 
 ## 1. Baseline e heads auditados
 
 | Projeto | Head usado | Delta desde o lote anterior | Disposição |
 |---|---|---|---|
-| RPG Skill Tree | `c6677431a5c7cb2050ffc445834286a6001026fe` | `main` avançou desde `0be05cb9...`; inclui Stage 04.01 canonical investment projection (PR #365) e consolidação Volcanoes #369 | **INTEGRAR somente a infraestrutura canônica de investimento/unlock pertinente a A0176; não promover consolidação Volcanoes a capability elemental** |
+| RPG Skill Tree | capability audit em `c6677431a5c7cb2050ffc445834286a6001026fe`; freshness final `d4ce3176c1cba5a921a80fbf5153af7a46da4369` | `main` avançou desde `0be05cb9...`; inclui Stage 04.01 canonical investment projection (PR #365), consolidação Volcanoes #369 e depois hardening de segurança #371 | **INTEGRAR somente a infraestrutura canônica de investimento/unlock pertinente a A0176; #369/#371 não viram capability elemental** |
 | Volcanoes | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` | sem nova capability funcional do standalone desde o checkpoint do lote anterior | **NÃO DEVE SER INTEGRADO** como LIGHTNING/NATURE por tema |
 | Enshrouded | `5671114c361be8cbb6fd2dadafdaa05f27d1fe2c` | sem nova capability funcional pertinente após a correção documental/proveniência Stage 08.02 já classificada | **NÃO DEVE SER INTEGRADO** como perk LIGHTNING/NATURE |
 | Black Arcana | `d8fb667cc5954d5811dacbbef4da1053fa296581` | sem nova capability jogável pertinente; mudanças já classificadas como governança/sequencing planejado | **NÃO DEVE SER INTEGRADO** como perk LIGHTNING/NATURE |
@@ -41,6 +44,10 @@ A `main` já possuía `TreeUnlockResolver`/`TreeUnlockDefinition`, que avaliam d
 ### Merge #369 — consolidação Volcanoes
 
 A `main` atualiza pins de acceptance, arquiva planos concluídos do Volcanoes e adiciona verificação de paridade standalone. Isso não cria uma nova semântica LIGHTNING/NATURE, não fornece direct magic outcome, state receipt ou thermal parcel e não deve ser transformado em perk elemental.
+
+### Merge #371 — segurança/Dependabot
+
+O avanço final até `d4ce3176...` adiciona política de segurança, configuração Dependabot e hardening do workflow Sonar. Não toca `src/`, providers mágicos, progressão, gates ou pipelines elementais. **Sem delta de capability para A0171–A0180.**
 
 ## 3. Provider → árvore
 
@@ -96,4 +103,4 @@ Continuam necessárias, mas não foram inventadas neste lote:
 
 ## 7. Fechamento do gate
 
-**PASS.** Todos os deltas dos quatro projetos próprios receberam disposição explícita. Nenhuma capability ficou sem classificação provider→árvore ou perk→provider. Nenhuma feature planejada foi tratada como runtime e nenhum sistema foi convertido em LIGHTNING/NATURE somente por tema.
+**PASS.** Todos os deltas dos quatro projetos próprios receberam disposição explícita. Nenhuma capability ficou sem classificação provider→árvore ou perk→provider. Nenhuma feature planejada foi tratada como runtime e nenhum sistema foi convertido em LIGHTNING/NATURE somente por tema. O avanço final de `main` até `d4ce3176...` foi reclassificado e confirmado como security-only, sem alterar este resultado.
