@@ -78,7 +78,7 @@ public final class A0041A0060ProjectileEvents {
             if (!shot.active()) {
                 shot = A0041A0060CombatPolicy.tryDominatedShot(
                     actor, root, ranks, A0041A0060RuntimeState.state(), fullyDrawn, stableAim,
-                    true, true, now
+                    false, true, now
                 );
             }
             PENDING.put(player.getUUID(), PendingLaunch.bow(root, now, shot));
@@ -126,9 +126,6 @@ public final class A0041A0060ProjectileEvents {
         if (special && pending.hasSpecial()) pending.specialProjectileClaimed = true;
         BowShot bowShot = special ? pending.bowShot : BowShot.neutral();
         CombatResult crossbowShot = special ? pending.crossbowShot() : CombatResult.neutral();
-        if (bowShot.active() && bowShot.launchSpeedMultiplier() != 1.0D) {
-            arrow.setDeltaMovement(arrow.getDeltaMovement().scale(bowShot.launchSpeedMultiplier()));
-        }
 
         ProjectileMeta meta = new ProjectileMeta(
             family,
