@@ -26,6 +26,7 @@ final class A0031A0040StateEdgeCoverageJUnitTest {
         assertEquals(3, state.trauma("player", "target", 1_003L));
 
         assertTrue(state.prepareSunder("player", "target", "root-c", 2, 1_004L));
+        for (int i = 0; i < 3; i++) state.addTrauma("player", "target", 2, 31_000L + i);
         assertTrue(state.prepareSunder("player", "target", "root-d", 2, 31_005L));
     }
 
