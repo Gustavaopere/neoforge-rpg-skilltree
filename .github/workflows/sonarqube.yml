@@ -15,6 +15,10 @@ on:
       - synchronize
       - reopened
 
+concurrency:
+  group: sonar-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 permissions:
   contents: read
 
@@ -47,10 +51,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-sonar
 
-      - name: Refresh live SonarQube new-code baseline
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: python3 scripts/refresh-sonar-new-code-baseline.py
+      - name: Sonar workflow policy test
+        run: python3 scripts/test_sonar_workflow_policy.py
 
       - name: Build and analyze with SonarQube
         env:
