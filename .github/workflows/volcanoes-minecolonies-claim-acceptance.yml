@@ -47,8 +47,8 @@ jobs:
           printf 'eula=true\n' > runs/gameTestServer/eula.txt
 
           curl --fail --location --retry 3 \
-            'https://www.cursemaven.com/curse/maven/minecolonies-245506/8621898/minecolonies-245506-8621898.jar' \
-            --output "$MODS/minecolonies-1.1.1374-1.21.1-snapshot.jar"
+            'https://www.cursemaven.com/curse/maven/minecolonies-245506/8765939/minecolonies-245506-8765939.jar' \
+            --output "$MODS/minecolonies-1.1.1375-1.21.1-snapshot.jar"
           curl --fail --location --retry 3 \
             'https://www.cursemaven.com/curse/maven/structurize-298744/8610535/structurize-298744-8610535.jar' \
             --output "$MODS/structurize-1.0.832-1.21.1.jar"
