@@ -59,6 +59,26 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew --no-daemon -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300 build sonar --info
 
+      - name: Diagnose Sonar main New Code issues
+        if: github.event_name == 'pull_request'
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          response="$(curl --silent --show-error --fail --get \
+            --header "Authorization: Bearer ${SONAR_TOKEN}" \
+            --data-urlencode "componentKeys=${SONAR_PROJECT}" \
+            --data-urlencode 'branch=main' \
+            --data-urlencode 'sinceLeakPeriod=true' \
+            --data-urlencode 'issueStatuses=OPEN,CONFIRMED' \
+            --data-urlencode 'ps=100' \
+            'https://sonarcloud.io/api/issues/search')"
+
+          jq -r '.issues[] | ["SONAR_NEW_CODE_DIAGNOSTIC", .key, .rule, .component, (.line // 0), .message] | @tsv' <<<"$response"
+
       - name: Verify Sonar new-code issue count on main
         if: github.event_name != 'pull_request'
         env:
