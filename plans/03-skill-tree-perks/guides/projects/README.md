@@ -58,7 +58,19 @@ O checkpoint documental mais recente está em [`17-capability-delta-a0111-a0120.
 
 Os SHAs registram somente um **checkpoint de comparação**. A verdade operacional continua sendo `main` + `plans/STATUS.md` frescos, reconciliados com plano/código/testes/CI quando necessário.
 
-Os lotes A0091–A0100 e A0101–A0110 possuem fechamentos de Chat 1 ainda em PRs abertas (#326 e #340). Enquanto essas PRs não estiverem integradas, seus dossiês/deltas continuam fontes documentais complementares e não podem ser confundidos com runtime canônico da `main`.
+Os lotes A0091–A0100 e A0101–A0110 possuem fechamentos de **design** do Chat 1 ainda em PRs abertas (#326 e #340). Enquanto essas PRs não estiverem integradas, seus dossiês/deltas são fontes documentais complementares para auditoria, **não runtime canônico e não autorização para implementar um lote dependente**.
+
+### Gate de continuidade para A0111–A0120
+
+O protocolo permanente permite ao Chat 1 selecionar o próximo lote ainda não fechado pelo próprio Chat 1 e proíbe este chat de fazer merge. Isso permite fechar documentalmente A0111–A0120 na PR #341 sem fingir que #326/#340 já estão em `main`.
+
+A implementação é uma etapa distinta e permanece bloqueada:
+
+1. `AGENTS.md` exige revalidar o gate mínimo “Before expanding content” antes de expansão de runtime;
+2. A0091–A0100 (#326) e A0101–A0110 (#340) precisam antes atravessar Chat 2/Chat 3 e chegar à `main`;
+3. só então a branch/PR #341 deve ser reconciliada com essa `main` e entregue ao Chat 2 para runtime A0111–A0120.
+
+Portanto **PR aberta de Chat 1 é fonte de design, não predecessor implementado**. Nenhum Chat deve usar #326/#340 apenas como substituto de integração quando o contrato dependente precisa de código/estado anterior na `main`.
 
 Os dossiês 01–04 preservam a análise extensa do snapshot original. Quando houver divergência posterior, [`06-snapshot-reconciliation.md`](06-snapshot-reconciliation.md), [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md) e o suplemento mais recente registrado em [`INDEX.md`](INDEX.md) substituem apenas os fatos afetados, sem promover automaticamente o Stage inteiro.
 
