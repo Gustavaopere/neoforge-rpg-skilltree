@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO + boundary retroativo.
-- **Implementação:** PARCIAL / NÃO CONFIRMADA; o modifier físico existe, mas `P-A0035-02` impede considerar a transação correta. `P-A0035-01` permanece aberta para classificação boss específica do Mobstein.
+- **Implementação:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**; Witherstein permanece sem classificação boss específica até prova versionada.
 - **Notion:** `3c569db9-f0db-8136-89ac-e4bbcf6ab6f1`.
 
 ## Contrato canônico
@@ -13,12 +13,13 @@
 - Boss recebe metade; classificação deve ser server-side comprovada.
 - Nunca substituir por Armor Negation do atacante, dano adicional ou redução mágica/arcana.
 
-## Evidência runtime
+## Evidência runtime após Chat 2
 
-- `A0021A0040CombatPolicy.beforeHit` hoje consome Trauma, marca Sundered e calcula 8/12% ainda no PRE.
-- `A0021A0040EpicFightHooks.applyArmorSunder` aplica `ADD_MULTIPLIED_TOTAL` transitório em `Attributes.ARMOR`, mantém expiry e remove no lifecycle, mas só é chamado no POST quando houve dano confirmado.
-- Portanto existe gap transacional: se a ação for cancelada ou terminar com dano ≤ 0 após o PRE, as 3 cargas já foram consumidas e o estado interno já foi marcado como Sundered, embora o modifier de Armor nunca tenha sido aplicado.
-- Adapter usa `Tags.EntityTypes.BOSSES` para a escala de boss.
+- PRE não consome mais Trauma nem marca `Sundered`: `availableTrauma(...)` + `prepareSunder(...)` reservam o consumo por `rootActionId`.
+- `afterConfirmedHit(...)` faz `commitPreparedSunder(...)` somente quando o mesmo root é direto, hostil e produziu dano real; cancelamento/dano zero descarta a preparação sem perder Trauma.
+- O commit consome exatamente 3 Trauma e só então marca `Sundered`.
+- `A0021A0040EpicFightHooks` aplica o modifier transitório `ADD_MULTIPLIED_TOTAL` em `Attributes.ARMOR` somente quando o commit foi confirmado.
+- Boss genérico continua usando `Tags.EntityTypes.BOSSES`; não foi inventado mapping para Witherstein.
 
 ## Provider→árvore
 
@@ -28,15 +29,17 @@
 
 ## Pendências Chat 2
 
-- **P-A0035-01:** verificar Mobstein 5.4.4 e provar se Witherstein está no boss tag/canonical classification. Se não estiver, criar somente mapping versionado pelo registry id comprovado. Não inferir por nome/aparência. Até lá, a atenuação específica de boss Mobstein permanece `SEM HOOK SEGURO`/não confirmada.
-- **P-A0035-02:** transformar A0035 em transação de commit pós-hit confirmado. O PRE pode preparar/autorizar o efeito, mas não pode consumir definitivamente as 3 cargas nem marcar `Sundered` antes de saber que o mesmo root action produziu dano real. Em cancelamento/dano zero, Trauma e estado devem permanecer coerentes e o debuff não pode existir apenas no state interno.
-- Preservar o modifier físico existente e seu cleanup; não alterar resistências mágicas.
+- **P-A0035-02 — RESOLVIDA NO CÓDIGO:** transação movida para reservation→POST commit; cancelamento/dano zero preserva Trauma e não cria `Sundered` fantasma.
+- **P-A0035-01 — FAIL-CLOSED PRESERVADO:** atenuação específica de Witherstein só poderá ser confirmada com registry/tag versionado real. A ausência desse mapping não desativa a rota boss canônica já comprovada para entidades no tag.
 
 ## Reauditoria delta — Simply Swords stack — 2026-08-31
 
 - **Cobertura MACE:** Pernach/arma Simply More só participa quando Epic Fight Compat ou mapping explicitamente versionado resolve a arma como `MACE`; aparência, nome e namespace não bastam.
-- **Debuffs separados:** qualquer armor reduction/ignore/sunder ou outro Implicit/Unique do provider permanece provider-owned e não conta como Trauma, `Sundered` RPG ou receipt de A0035.
-- **Transação:** a chegada do stack Simply não altera `P-A0035-02`; Armadura Fendida ainda precisa ser commitada somente após o mesmo root MACE produzir hit confirmado.
+- **Debuffs separados:** armor reduction/ignore/sunder provider-native permanece provider-owned e não conta como Trauma ou `Sundered` RPG.
+- **Transação:** o commit da Armadura Fendida ocorre somente após o mesmo root MACE produzir hit confirmado.
 - **Alpha:** efeito específico não comprovado do `simplymore-forge-1.3.0_alpha.jar` permanece fail-closed.
 - **Simply Tooltips:** não é provider mecânico.
-- **Notion:** `Provider/Mods`, `Hook`, `Fallback` e `Regra` atualizados; re-fetch PASS.
+
+## Handoff Chat 3
+
+Validar PRE→POST, rollback em cancel/zero, concorrência de roots, consumo único de 3 Trauma, modifier/expiry/cleanup, boss half e ausência de classificação heurística do Witherstein. O Chat 2 não executou a bateria final.
