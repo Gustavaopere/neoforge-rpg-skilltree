@@ -7,102 +7,74 @@ on:
 
 permissions:
   contents: read
-  actions: write
 
 jobs:
   inspect:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Configure SonarCloud fixed onboarding date and verify
+      - name: Diagnose SonarCloud new issue classification
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
-          GH_TOKEN: ${{ github.token }}
-          ONBOARDING_SHA: 66fcec7b163320cfb0d79943969aae33f3adf862
-          NEW_CODE_DATE: '2026-09-01'
         shell: bash
         run: |
           set -euo pipefail
 
-          sonar_auth="Authorization: Bearer ${SONAR_TOKEN}"
-          gh_auth="Authorization: Bearer ${GH_TOKEN}"
+          auth="Authorization: Bearer ${SONAR_TOKEN}"
           sonar="https://sonarcloud.io"
 
-          echo '=== Resolve current main and guard onboarding ancestry ==='
-          current_main="$({
-            curl --silent --show-error --fail --location \
-              --header "$gh_auth" \
-              --header 'Accept: application/vnd.github+json' \
-              "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/git/ref/heads/main"
-          } | jq -r '.object.sha')"
-          echo "currentMainSha=${current_main}"
-
-          comparison="$({
-            curl --silent --show-error --fail --location \
-              --header "$gh_auth" \
-              --header 'Accept: application/vnd.github+json' \
-              "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/compare/${ONBOARDING_SHA}...${current_main}"
-          })"
-          echo "$comparison" | jq '{status, ahead_by, behind_by, mergeBase: .merge_base_commit.sha}'
-          test "$(echo "$comparison" | jq -r '.merge_base_commit.sha')" = "$ONBOARDING_SHA"
-          test "$(echo "$comparison" | jq -r '.behind_by')" = '0'
-          case "$(echo "$comparison" | jq -r '.status')" in
-            identical|ahead) ;;
-            *) echo 'Current main is not a descendant of the onboarding SHA.' >&2; exit 1 ;;
-          esac
-
-          echo '=== Remove legacy manual analysis baseline from main ==='
+          echo '=== Persisted new-code settings ==='
           curl --silent --show-error --fail --location \
-            --request POST \
-            --header "$sonar_auth" \
-            --data-urlencode "project=${SONAR_PROJECT}" \
-            --data-urlencode 'branch=main' \
-            "$sonar/api/project_analyses/unset_baseline"
+            --header "$auth" \
+            "$sonar/api/settings/values?component=${SONAR_PROJECT}&keys=sonar.leak.period,sonar.leak.period.type" \
+            | jq '{settings: [.settings[] | {key, value, inherited}]}'
 
-          echo '=== Configure Cloud-supported specific date ==='
+          echo '=== Setting definitions exposed by SonarCloud ==='
           curl --silent --show-error --fail --location \
-            --request POST \
-            --header "$sonar_auth" \
-            --data-urlencode "component=${SONAR_PROJECT}" \
-            --data-urlencode 'key=sonar.leak.period' \
-            --data-urlencode "value=${NEW_CODE_DATE}" \
-            "$sonar/api/settings/set"
+            --header "$auth" \
+            "$sonar/api/settings/list_definitions?component=${SONAR_PROJECT}" \
+            | jq '{definitions: [.definitions[] | select(.key == "sonar.leak.period" or .key == "sonar.leak.period.type") | {key, name, description, type, defaultValue, options, category, subCategory}]}'
 
+          echo '=== Latest main analyses ==='
           curl --silent --show-error --fail --location \
-            --request POST \
-            --header "$sonar_auth" \
-            --data-urlencode "component=${SONAR_PROJECT}" \
-            --data-urlencode 'key=sonar.leak.period.type' \
-            --data-urlencode 'value=date' \
-            "$sonar/api/settings/set"
+            --header "$auth" \
+            "$sonar/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=10" \
+            | jq '{analyses: [.analyses[] | {key, date, projectVersion, revision, manualNewCodePeriodBaseline, events}]}'
 
-          echo '=== Verify effective project settings ==='
-          settings="$({
-            curl --silent --show-error --fail --location \
-              --header "$sonar_auth" \
-              "$sonar/api/settings/values?component=${SONAR_PROJECT}&keys=sonar.leak.period,sonar.leak.period.type"
-          })"
-          echo "$settings" | jq '{settings: [.settings[] | {key, value, inherited}]}'
-          period="$(echo "$settings" | jq -r '.settings[] | select(.key == "sonar.leak.period") | .value')"
-          period_type="$(echo "$settings" | jq -r '.settings[] | select(.key == "sonar.leak.period.type") | .value')"
-          test "$period" = "$NEW_CODE_DATE"
-          test "$period_type" = 'date'
+          echo '=== Fetch current New Code issues ==='
+          page1="$(curl --silent --show-error --fail --location \
+            --header "$auth" \
+            "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&issueStatuses=OPEN,CONFIRMED&ps=500&p=1")"
+          total="$(echo "$page1" | jq -r '.paging.total // .total')"
+          if [ "$total" -gt 500 ]; then
+            page2="$(curl --silent --show-error --fail --location \
+              --header "$auth" \
+              "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&issueStatuses=OPEN,CONFIRMED&ps=500&p=2")"
+          else
+            page2='{"issues":[]}'
+          fi
 
-          echo '=== Verify legacy manual baseline is unset ==='
-          analyses="$({
-            curl --silent --show-error --fail --location \
-              --header "$sonar_auth" \
-              "$sonar/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=10"
-          })"
-          echo "$analyses" | jq '{analyses: [.analyses[] | {key, date, projectVersion, revision, manualNewCodePeriodBaseline}]}'
-          test "$(echo "$analyses" | jq '[.analyses[] | select(.manualNewCodePeriodBaseline == true)] | length')" = '0'
+          issues="$(jq -n --argjson a "$page1" --argjson b "$page2" '{total: ($a.paging.total // $a.total), issues: ($a.issues + $b.issues)}')"
+          echo "$issues" | jq '{
+            total,
+            returned: (.issues | length),
+            creationDateCounts: ([.issues[].creationDate[0:10]] | group_by(.) | map({date: .[0], count: length})),
+            updateDateCounts: ([.issues[].updateDate[0:10]] | group_by(.) | map({date: .[0], count: length})),
+            earliestCreation: ([.issues[].creationDate] | min),
+            latestCreation: ([.issues[].creationDate] | max),
+            topRules: ([.issues[].rule] | group_by(.) | map({rule: .[0], count: length}) | sort_by(-.count) | .[:15]),
+            topComponents: ([.issues[].component] | group_by(.) | map({component: .[0], count: length}) | sort_by(-.count) | .[:15])
+          }'
 
-          echo '=== Dispatch fresh main Sonar analysis ==='
+          echo '=== Sample oldest and newest New Code issues ==='
+          echo "$issues" | jq '{
+            oldest: ([.issues[] | {key, rule, component, line, creationDate, updateDate, message}] | sort_by(.creationDate) | .[:5]),
+            newest: ([.issues[] | {key, rule, component, line, creationDate, updateDate, message}] | sort_by(.creationDate) | reverse | .[:5])
+          }'
+
+          echo '=== All open/confirmed issue count for comparison ==='
           curl --silent --show-error --fail --location \
-            --request POST \
-            --header "$gh_auth" \
-            --header 'Accept: application/vnd.github+json' \
-            --header 'X-GitHub-Api-Version: 2022-11-28' \
-            --data '{"ref":"main"}' \
-            "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/workflows/sonarqube.yml/dispatches"
+            --header "$auth" \
+            "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&issueStatuses=OPEN,CONFIRMED&ps=1" \
+            | jq '{allOpenConfirmed: (.paging.total // .total)}'
