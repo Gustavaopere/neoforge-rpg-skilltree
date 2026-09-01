@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 /** Optional MineColonies bootstrap that never resolves host classes while the mod is absent or unverified. */
 public final class MineColoniesCompat {
     public static final String MOD_ID = "minecolonies";
-    public static final String VERIFIED_ARTIFACT_VERSION = "1.1.1374-1.21.1-snapshot";
+    public static final String VERIFIED_ARTIFACT_VERSION = "1.1.1375-1.21.1-snapshot";
 
     private MineColoniesCompat() {
     }
