@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Inspect effective Sonar new-code measures
+      - name: Verify Sonar issue filters and quality gate
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
@@ -23,31 +23,26 @@ jobs:
           auth="Authorization: Bearer ${SONAR_TOKEN}"
           sonar="https://sonarcloud.io"
 
-          echo '=== Persisted definition ==='
+          echo '=== SonarCloud api/issues/search parameter surface ==='
           curl --silent --show-error --fail --location \
             --header "$auth" \
-            "$sonar/api/settings/values?component=${SONAR_PROJECT}&keys=sonar.leak.period,sonar.leak.period.type" \
-            | jq '{settings: [.settings[] | {key, value, inherited}]}'
+            "$sonar/api/webservices/list" \
+            | jq '{issuesSearch: ([.webServices[] | select(.path == "api/issues") | .actions[] | select(.key == "search") | {key, post, params: [.params[] | {key, required, possibleValues}]}][0])}'
 
-          echo '=== Effective project measures and period metadata ==='
+          echo '=== Quality Gate project status ==='
           curl --silent --show-error --fail --location \
             --header "$auth" \
-            "$sonar/api/measures/component?component=${SONAR_PROJECT}&branch=main&metricKeys=ncloc,new_ncloc,new_lines,new_violations,violations,new_code_smells,code_smells,new_bugs,bugs,new_vulnerabilities,vulnerabilities,new_coverage,new_duplicated_lines_density" \
-            | jq '{period, component: {key: .component.key, measures: [.component.measures[] | {metric, value, period, periods}]}}'
+            "$sonar/api/qualitygates/project_status?projectKey=${SONAR_PROJECT}&branch=main" \
+            | jq '{projectStatus: {status: .projectStatus.status, conditions: [.projectStatus.conditions[] | {status, metricKey, comparator, errorThreshold, actualValue}], periods: .projectStatus.periods, ignoredConditions: .projectStatus.ignoredConditions, caycStatus: .projectStatus.caycStatus}}'
 
-          echo '=== Component metadata ==='
+          echo '=== Current measures authoritative new/overall ==='
           curl --silent --show-error --fail --location \
             --header "$auth" \
-            "$sonar/api/components/show?component=${SONAR_PROJECT}&branch=main" \
-            | jq '{component: {key: .component.key, analysisDate: .component.analysisDate, leakPeriodDate: .component.leakPeriodDate, version: .component.version}}'
+            "$sonar/api/measures/component?component=${SONAR_PROJECT}&branch=main&metricKeys=new_violations,violations,new_code_smells,code_smells,new_bugs,bugs,new_vulnerabilities,vulnerabilities,new_lines,new_ncloc" \
+            | jq '{measures: [.component.measures[] | {metric, value, periods}]}'
 
-          echo '=== Latest analysis ==='
-          curl --silent --show-error --fail --location \
-            --header "$auth" \
-            "$sonar/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=1" \
-            | jq '{analysis: (.analyses[0] | {key, date, projectVersion, revision, manualNewCodePeriodBaseline, events})}'
-
-          echo '=== New vs overall issues ==='
-          new_total="$(curl --silent --show-error --fail --location --header "$auth" "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&issueStatuses=OPEN,CONFIRMED&ps=1" | jq -r '.paging.total // .total')"
-          all_total="$(curl --silent --show-error --fail --location --header "$auth" "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&issueStatuses=OPEN,CONFIRMED&ps=1" | jq -r '.paging.total // .total')"
-          jq -n --argjson new "$new_total" --argjson all "$all_total" '{newOpenConfirmed: $new, allOpenConfirmed: $all}'
+          echo '=== Compare issue query parameters ==='
+          all="$(curl --silent --show-error --fail --location --header "$auth" "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&issueStatuses=OPEN,CONFIRMED&ps=1" | jq -r '.paging.total // .total')"
+          current="$(curl --silent --show-error --fail --location --header "$auth" "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&issueStatuses=OPEN,CONFIRMED&ps=1" | jq -r '.paging.total // .total')"
+          legacy="$(curl --silent --show-error --fail --location --header "$auth" "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&sinceLeakPeriod=true&issueStatuses=OPEN,CONFIRMED&ps=1" | jq -r '.paging.total // .total')"
+          jq -n --argjson all "$all" --argjson current "$current" --argjson legacy "$legacy" '{overall: $all, inNewCodePeriod: $current, sinceLeakPeriod: $legacy}'
