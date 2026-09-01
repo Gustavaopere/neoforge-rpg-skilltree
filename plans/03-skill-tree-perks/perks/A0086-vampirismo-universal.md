@@ -4,7 +4,8 @@
 
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability transitiva em 2026-08-31.
 - **Notion:** `3c569db9-f0db-819f-8216-fbbafe17b035`; Gate/Fallback/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** regra de convergência existe no core, mas A0086 está **indisponível/não comprável** enquanto A0083/A0085 estiverem indisponíveis.
+- **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- A0086 permanece **indisponível/não comprável** enquanto A0085 não possuir binding causal, mesmo com A0083 agora disponível para Iron's exato.
 
 ## Contrato canônico
 
@@ -14,32 +15,32 @@
 - Se houver coeficiente especializado elegível, usa-se o maior. A fonte universal de 1% só cobre root elegível sem coeficiente especializado.
 - Uma root/pulse cura no máximo uma vez; cap global 3% max health/20 ticks; sem carry-over.
 
-## Availability transitiva
+## Implementação Chat 2 — 2026-09-01
 
-A0086 não cria classificadores. Ela só converge fontes que já possuem autoria/tipo/root válidos. Logo não pode contornar a indisponibilidade de A0083 ou A0085 para “habilitar” magic/DoT por um fallback universal.
+- `CombatPerkAvailabilityRuntime` mantém A0086 unavailable por dependência estrutural de A0085;
+- `effectiveRanks` mascara rank persistido, impedindo que a fórmula universal seja usada como bypass dos classifiers ausentes;
+- `A0081A0100CombatPolicy.sustainCoefficient(...)` continua usando `max(...)` e só considera universal 1% quando a root já foi classificada como weapon/magic/elemental/periodic;
+- A0082 físico e A0083 Iron's convergem no mesmo `SustainResolver`; nenhuma soma integral foi criada;
+- A0086 não classifica origem desconhecida e não converte hazard/summon/machine/source ambígua em sustain.
 
-Enquanto qualquer predecessor obrigatório for estruturalmente indisponível, A0086 também é indisponível/não comprável. Quando os predecessors existirem, providers individuais ainda podem falhar fechado sem derrubar fontes seguras de outras famílias.
+## Checklist Chat 2
 
-## Cobertura global de providers
-
-- MARTIAL: vanilla/Epic Fight/Simply somente com provenance de arma e native lifesteal dedup.
-- ARCANE: Iron's/Ars/addons somente por direct-magic receipt real.
-- ELEMENTAL: A0084 continua bridge opcional; se aplicável à mesma root, maior coeficiente vence.
-- OCCULT/DoT: Goety/Malum/Eidolon/Iron's/Ars somente por application+pulse receipt.
-- Vampirism 1.10.12: native lifesteal só com correlação exata.
-- Pufferfish's Attributes 0.8.3 não é provider genérico de sustain.
-- Summons/companions, fake players, machines, contraptions, Black Arcana Backlash, Enshrouded/Volcanoes hazards e custos de vida/recurso permanecem inelegíveis.
-
-## Evidência runtime
-
-`A0081A0100CombatPolicy.sustainCoefficient(...)` já implementa `max(especializados, universal 1%)`. `SustainResolver` implementa uma claim por root, native correlation e cap. O bridge atual, porém, só produz roots físicos; portanto a keystone não pode ser considerada alcançável enquanto seus predecessores magic/DoT não forem implementáveis.
-
-## Pendências para Chat 2
-
-- **P-A0086-01 BLOQUEANTE:** availability transitiva A0083/A0085→A0086 no purchase/gate; não permitir bypass universal.
-- **P-A0086-02:** preservar `max coefficient`, nunca soma integral A0082/A0083/A0084/A0085/native.
-- **P-A0086-03:** fonte universal de 1% apenas quando a root já é causalmente elegível, mas nenhuma especialização se aplica; não usar 1% para classificar origem desconhecida.
-- **P-A0086-04:** lifecycle/dedup cross-provider e testes de roots híbridas, native heal, cap e multiplayer.
+- [x] Availability transitiva implementada
+- [x] Purchase sem bypass universal
+- [x] Rank efetivo mascarado
+- [x] `max coefficient` preservado
+- [x] Universal 1% continua dependente de root previamente elegível
+- [x] Um único `SustainResolver` preservado
+- [x] Código presente em fail-closed
+- [ ] **PENDÊNCIA:** A0085 continua sem provider receipt e bloqueia a keystone
+- [ ] **VALIDAÇÃO CHAT 3:** A0086 purchase recusada enquanto A0085 unavailable
+- [ ] **VALIDAÇÃO CHAT 3:** rank persistido A0086 produz zero efeito
+- [ ] **VALIDAÇÃO CHAT 3:** roots A0082/A0083 não somam coeficientes
+- [ ] **VALIDAÇÃO CHAT 3:** GameTests/testes de integração
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
 
 ## Nove eixos obrigatórios
 
@@ -55,4 +56,4 @@ Enquanto qualquer predecessor obrigatório for estruturalmente indisponível, A0
 | NeoVitae | PASS | ausente. |
 | Providers | PASS no design | apenas providers já integrados causalmente. |
 
-Os 18 critérios passam **no design** com availability transitiva explícita.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.

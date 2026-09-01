@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO sem mutação funcional no Notion em 2026-08-31.
 - **Notion:** `3c569db9-f0db-810d-a0d7-e8926be6ae33`; fetch fresco PASS.
-- **Runtime observado:** modifier data-driven presente em `minecraft:generic.armor`, `MULTIPLY_TOTAL` +2%/rank.
+- **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -13,23 +13,30 @@
 - Se armor elegível for 0, bônus percentual permanece 0; A0089 não cria proteção flat.
 - Não altera NBT, durabilidade, reparo, item tier, `STUN_ARMOR` do Epic Fight nem Resistência Física do RPG.
 
-## Evidência runtime
+## Implementação Chat 2 — estado confirmado em código
 
-`a0081_a0100.json` publica `rpgskilltree:node/combat/a0089/armor` em `minecraft:generic.armor`, operação `MULTIPLY_TOTAL`, 0.02/rank. `AttributeNodeEffectRuntime` resolve e aplica o modifier pelo registro vanilla com effectId estável, removendo o anterior antes de reaplicar.
+- binding data-driven existente publica `rpgskilltree:node/combat/a0089/armor` em `minecraft:generic.armor`;
+- operação `MULTIPLY_TOTAL` +0,02/rank preserva zero armor→zero bônus;
+- `AttributeNodeEffectRuntime` remove o effectId anterior antes de reaplicar, evitando stacking/órfãos;
+- nenhum código deste lote liga A0089 a `STUN_ARMOR`, Resistência Física, NBT, durabilidade, afixos ou sockets;
+- providers externos continuam compondo pela pilha vanilla de `ARMOR`.
 
-## Cobertura de providers
+## Checklist Chat 2
 
-- Armaduras vanilla, Apotheosis/Apothic e equipamentos de outros mods continuam donos de seus próprios modifiers; A0089 compõe pelo valor final de `ARMOR` e não reimplementa afixos/socket/raridade.
-- Epic Fight `STUN_ARMOR` é eixo distinto e não recebe A0089.
-- Simply Swords e suas bridges não são provider de armor por estarem no stack de combate.
-- Iron's/Ars/Goety/Malum/Eidolon, Enshrouded, Black Arcana, Volcanoes e tecnologia não substituem o atributo canônico para esta perk sem adapter semântico explícito futuro.
-- Pufferfish's Attributes 0.8.3 não é owner de A0089.
-
-## Pendências para Chat 2
-
-- **P-A0089-01:** testes de composição com armor de equipamento/afixos providers, zero armor→zero bonus e modifier idempotente.
-- **P-A0089-02:** regressão garantindo ausência de alteração em `STUN_ARMOR`, Resistência Física, durabilidade/NBT e damage sources que ignoram armor.
-- **P-A0089-03:** rank loss/respec/relog/respawn sem modifier órfão ou duplicado.
+- [x] Binding `ARMOR` presente
+- [x] +2% relativo/rank presente
+- [x] zero armor→zero bonus preservado
+- [x] Modifier idempotente por effectId presente
+- [x] Sem `STUN_ARMOR`/Resistência Física/NBT/durabilidade
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** composição com equipment/Apothic/outros modifiers
+- [ ] **VALIDAÇÃO CHAT 3:** sources que ignoram armor não são alteradas artificialmente
+- [ ] **VALIDAÇÃO CHAT 3:** rank loss/respec/relog/respawn sem modifier órfão
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests aplicáveis
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
 
 ## Nove eixos obrigatórios
 
@@ -45,4 +52,4 @@
 | NeoVitae | PASS | ausente. |
 | Providers | PASS | terceiros compõem nativamente; sem duplicação. |
 
-Os 18 critérios passam no design e o binding principal já está presente.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
