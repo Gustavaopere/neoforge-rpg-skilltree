@@ -103,10 +103,10 @@ curl_jar \
   'https://www.cursemaven.com/curse/maven/create-rns-1370563/8729955/create-rns-1370563-8729955.jar' \
   'create_rns-1.3.1-1.21.1-6.jar'
 
-# MineColonies exact protected-area acceptance stack.
+# MineColonies exact protected-area acceptance stack. Keep this identical to the Battle Mage provider runtime.
 curl_jar \
-  'https://www.cursemaven.com/curse/maven/minecolonies-245506/8621898/minecolonies-245506-8621898.jar' \
-  'minecolonies-1.1.1374-1.21.1-snapshot.jar'
+  'https://www.cursemaven.com/curse/maven/minecolonies-245506/8765939/minecolonies-245506-8765939.jar' \
+  'minecolonies-1.1.1375-1.21.1-snapshot.jar'
 curl_jar \
   'https://www.cursemaven.com/curse/maven/structurize-298744/8610535/structurize-298744-8610535.jar' \
   'structurize-1.0.832-1.21.1.jar'
