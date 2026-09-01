@@ -17,3 +17,14 @@
 - [Delta e baseline A0081–A0090](14-capability-delta-a0081-a0090.md)
 - [Delta e baseline A0200–A0209](15-capability-delta-a0200-a0209.md)
 - [Delta e baseline especial A0200–A0299](16-capability-delta-a0200-a0299.md)
+- [Delta e baseline A0171–A0180](20-capability-delta-a0171-a0180.md)
+
+## Deltas concorrentes ainda não integrados na `main`
+
+Os números 17–19 estão reservados e materializados nas PRs predecessoras abertas; não devem ser duplicados nesta branch:
+
+- `17-capability-delta-a0141-a0150.md` — PR #361;
+- `18-capability-delta-a0151-a0160.md` — PR #366;
+- `19-capability-delta-a0161-a0170.md` — PR #368.
+
+Quando a cadeia documental for integrada/rebaseada, o índice deve reconciliar esses três links preservando a numeração e o histórico.
