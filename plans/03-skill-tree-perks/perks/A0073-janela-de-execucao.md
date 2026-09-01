@@ -30,6 +30,7 @@ Epic Fight 21.17.3.1 fornece Impact quando a ação concreta expõe essa grandez
 - state causal recebeu reservation/commit/rollback separados para opener e finisher;
 - Epic Fight PRE mantém somente `PendingHit`/reserva reversível; POST positivo arma/consome e inicia cooldown, enquanto zero/cancel faz rollback;
 - projectile físico usa PRE canônico já existente + `A0073A0080ProjectileCommitEvents` para commit/rollback pós-dano;
+- review P1 da PR #355 detectou que o POST de projétil ainda podia consumir a reservation pendente de outro projétil/root; corrigido nos commits `b3fd4516a06ec7de3049ed64732b26cbcc5a4720` e `e7a102e9ca22c1065cfd62045fc4e5bb8689576a`: cada `arrow + target` agora carrega `PendingPerkHit` com o `rootActionId` canônico e o POST/cancel usa somente commit/rollback root-specific daquela flecha;
 - reservas pendentes possuem retenção bounded de 1 s para impedir vazamento quando um PRE não receber POST;
 - death/removal, logout, dimensão, respawn, server stop e mudança de rank efetivo limpam estado transitório;
 - bônus de Impact continua somente onde o provider oferece Impact seguro;
@@ -39,7 +40,7 @@ Epic Fight 21.17.3.1 fornece Impact quando a ação concreta expõe essa grandez
 ## Pendências para Chat 3
 
 - validar opener abaixo de 20%, janela 3 s, finisher root distinto, +18%/+9% boss e cooldown 8 s somente após POST confirmado;
-- validar cancelamento/dano zero/expiração e concorrência de raízes, inclusive projéteis simultâneos;
+- validar cancelamento/dano zero/expiração e concorrência de raízes, incluindo multishot/projéteis simultâneos e prova de que um arrow/root não consome a reservation de outro;
 - validar que ausência de Stamina receipt produz refund exatamente zero;
 - validar cleanup por target unload/death e actor lifecycle/rank loss/respec/rules reload;
 - validar ausência de duplicação com Simply Swords/native execute e callbacks múltiplos.
