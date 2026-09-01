@@ -115,6 +115,7 @@ configurations {
 }
 
 def battleMageProviderRuntimeEnabled = (findProperty('battleMageProviderRuntime') ?: 'false').toString().toBoolean()
+def battleMageEpicRuntimeEnabled = (findProperty('battleMageEpicRuntime') ?: 'false').toString().toBoolean()
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
@@ -148,9 +149,9 @@ dependencies {
     }
 
     // Opt-in provider-present verification runtime. Normal dev/GameTest/server runs intentionally
-    // stay provider-free so optional classloading remains covered. CI enables this property only
-    // for the dedicated MineColonies x Iron's compatibility boot.
-    if (battleMageProviderRuntimeEnabled) {
+    // stay provider-free so optional classloading remains covered. The Epic lane reuses this exact
+    // certified provider base, then layers only the pack's combat/animation compatibility mods.
+    if (battleMageProviderRuntimeEnabled || battleMageEpicRuntimeEnabled) {
         localRuntime("curse.maven:minecolonies-245506:${minecolonies_file_id}") {
             transitive = false
         }
@@ -165,6 +166,18 @@ dependencies {
         localRuntime "dev.kosmx.player-anim:player-animation-lib-forge:2.0.1+1.21.1"
         localRuntime "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1"
         localRuntime "io.redspace:irons_lib:1.21.1-2.1.0-SNAPSHOT"
+    }
+
+    if (battleMageEpicRuntimeEnabled) {
+        localRuntime("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
+            transitive = false
+        }
+        localRuntime("curse.maven:minecolonies-epicfied-epic-colonies-1610923:${epic_colonies_file_id}") {
+            transitive = false
+        }
+        localRuntime("curse.maven:epic-fight-x-irons-spells-enhanced-animations-1109064:${efis_file_id}") {
+            transitive = false
+        }
     }
 
     // Native Volcanoes subsystem hosts. These remain optional at runtime.
