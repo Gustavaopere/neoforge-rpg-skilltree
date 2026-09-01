@@ -26,6 +26,28 @@ final class A0031A0040ImplementationContractJUnitTest {
     }
 
     @Test
+    void distinctHostileTypeMilestonesReachTheApprovedSixtyAndEightyGates() {
+        int maceXp = 0;
+        for (int i = 0; i < 8; i++) {
+            var awards = A0021A0040MasteryPolicy.forDistinctHostileTypeDiscovery(
+                WeaponFamily.MACE, true, true, 4.0D, "test:mace_hostile_" + i, true);
+            assertEquals(1, awards.size());
+            maceXp += awards.getFirst().experience();
+            if (i == 5) assertEquals(60, maceXp);
+        }
+        assertEquals(80, maceXp);
+
+        int scytheXp = 0;
+        for (int i = 0; i < 6; i++) {
+            var awards = A0021A0040MasteryPolicy.forDistinctHostileTypeDiscovery(
+                WeaponFamily.SCYTHE, true, true, 4.0D, "test:scythe_hostile_" + i, true);
+            assertEquals(1, awards.size());
+            scytheXp += awards.getFirst().experience();
+        }
+        assertEquals(60, scytheXp);
+    }
+
+    @Test
     void a0035CommitsTraumaAndSunderOnlyAfterConfirmedDamage() {
         var state = new A0021A0040CombatState();
         var ranks = CombatPerkRanks.of(Map.of("A0035", 2));
@@ -63,6 +85,34 @@ final class A0031A0040ImplementationContractJUnitTest {
         var committed = A0021A0040CombatPolicy.afterConfirmedHit(nextRootFacts, ranks, state);
         assertTrue(committed.bonebreakerCommitted());
         assertFalse(state.bonebreakerReady("player", "target", 1_001L));
+    }
+
+    @Test
+    void a0036BossHalfAndCooldownCurveRemainExact() {
+        var state = new A0021A0040CombatState();
+        var ranks = CombatPerkRanks.of(Map.of("A0036", 1));
+        state.markSundered("player", "boss", 2, 0L);
+        var bossFacts = new A0021A0040CombatPolicy.HitFacts(
+            "player", "boss", "bone-boss", WeaponFamily.MACE,
+            true, true, true, false, false, false, true, true,
+            false, true, true, true, 0.75D, true, 1_000L);
+        var bossPlan = A0021A0040CombatPolicy.beforeHit(bossFacts, ranks, state, 80);
+        assertTrue(bossPlan.applyBonebreaker());
+        assertEquals(0.96D, bossPlan.outgoingPhysicalDamageMultiplier(), 1.0E-9D);
+        assertEquals(0.95D, bossPlan.movementSpeedMultiplier(), 1.0E-9D);
+        assertEquals(3_000L, bossPlan.bonebreakerDurationMillis());
+
+        for (int mastery : new int[]{80, 90, 100}) {
+            var cooldownState = new A0021A0040CombatState();
+            long now = 10_000L;
+            long duration = NotionCombatPerkRules.bonebreakerCooldownMillis(mastery);
+            cooldownState.startBonebreakerCooldown("player", "target", mastery, now);
+            assertFalse(cooldownState.bonebreakerReady("player", "target", now + duration - 1L));
+            assertTrue(cooldownState.bonebreakerReady("player", "target", now + duration));
+        }
+        assertEquals(12_000L, NotionCombatPerkRules.bonebreakerCooldownMillis(80));
+        assertEquals(11_000L, NotionCombatPerkRules.bonebreakerCooldownMillis(90));
+        assertEquals(10_000L, NotionCombatPerkRules.bonebreakerCooldownMillis(100));
     }
 
     @Test
