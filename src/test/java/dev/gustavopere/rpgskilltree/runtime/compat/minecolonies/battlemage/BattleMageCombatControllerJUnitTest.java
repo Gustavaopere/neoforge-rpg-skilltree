@@ -67,6 +67,47 @@ final class BattleMageCombatControllerJUnitTest {
         assertTrue(BattleMageSpellPolicy.isRuntimeSupported(arrow));
     }
 
+    @Test
+    void allyTargetModeIsExplicitlyFailClosedUntilItHasAProviderHandler() {
+        BattleMageSpellProfile ally = profile(
+            "irons_spellbooks:test_ally",
+            BattleMageTargetMode.ALLY_ENTITY,
+            90,
+            0.0,
+            18.0
+        );
+
+        assertFalse(BattleMageSpellPolicy.isRuntimeSupported(ally));
+    }
+
+    @Test
+    void protectedAllyBlocksUnsafeHostileAreaBeforeAnyProviderCast() {
+        BattleMageSpellProfile unsafeArea = new BattleMageSpellProfile(
+            "irons_spellbooks:fireball",
+            BattleMageTargetMode.HOSTILE_AREA,
+            80,
+            4.0,
+            28.0,
+            6.0,
+            false,
+            false
+        );
+        BattleMageSpellProfile allySafeArea = new BattleMageSpellProfile(
+            "irons_spellbooks:test_safe_area",
+            BattleMageTargetMode.HOSTILE_AREA,
+            80,
+            4.0,
+            28.0,
+            6.0,
+            false,
+            true
+        );
+
+        assertFalse(BattleMageSpellPolicy.isAreaSafe(unsafeArea, true));
+        assertTrue(BattleMageSpellPolicy.isAreaSafe(unsafeArea, false));
+        assertTrue(BattleMageSpellPolicy.isAreaSafe(allySafeArea, true));
+    }
+
     private static BattleMageSpellProfile profile(
         String id,
         BattleMageTargetMode mode,
