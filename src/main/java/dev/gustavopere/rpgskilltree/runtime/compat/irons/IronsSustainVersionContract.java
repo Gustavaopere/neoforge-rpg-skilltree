@@ -2,19 +2,18 @@ package dev.gustavopere.rpgskilltree.runtime.compat.irons;
 
 import java.lang.reflect.Method;
 
-/** Exact audited provider contract for A0083 direct-magic sustain on Iron's 3.16.3. */
+/** Exact audited provider contract for A0083 direct-magic sustain on Iron's 1.21.1-3.16.3. */
 public final class IronsSustainVersionContract {
-    public static final String SUPPORTED_RELEASE = "3.16.3";
+    public static final String SUPPORTED_RELEASE = "1.21.1-3.16.3";
     public static final String DAMAGE_SOURCE_CLASS = "io.redspace.ironsspellbooks.damage.SpellDamageSource";
 
     private static final RuntimeContract CONTRACT = inspectRuntimeContract();
 
     private IronsSustainVersionContract() {}
 
-    /** Accepts the two metadata spellings used by the audited 1.21.1 artifact for the same release. */
+    /** Exact-match only: provider version drift disables A0083 rather than widening the contract. */
     public static boolean supportsVersion(String version) {
-        if (version == null) return false;
-        return version.equals(SUPPORTED_RELEASE) || version.equals("1.21.1-" + SUPPORTED_RELEASE);
+        return SUPPORTED_RELEASE.equals(version);
     }
 
     /**
