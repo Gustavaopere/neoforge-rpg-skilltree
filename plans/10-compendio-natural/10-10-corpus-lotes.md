@@ -566,13 +566,45 @@ Entradas:
 - o TDD produziu RED válido na draft #334 contra `main@f613dac5a15b26c7a92e07a9d9cb537c2412ddf2`: o RPG Skill Tree CI #2834 chegou a `871 tests completed, 1 failed`, exclusivamente pela ausência intencional de `fauna-batch3.json`;
 - durante a validação funcional foi identificado um desalinhamento pré-existente de CI: `Volcanoes Consolidated Release Readiness` exigia `Volcanoes Consolidation Contract` em toda PR, enquanto este último tinha filtros `paths` e não disparava em mudanças editoriais. A correção mínima removeu somente esses filtros; no head `6bcbd5f6ae39226417ef9f59844df5e76c983b3f`, `Volcanoes Consolidation Contract` #80, Compendium Editorial CI #564, RPG Skill Tree CI #2900, SonarQube #135, Worldgen Compatibility Matrix #102 e `Volcanoes Consolidated Release Readiness` #84 concluíram com `success`, incluindo o `aggregate-exact-head` 10/10.
 
+## Lote 20 — TerraFirmaCraft / continuação da fauna aquática e início da fauna anfíbia
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch4.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:tfc:lobster` — Lagosta lobster
+2. `ENTITY:tfc:crayfish` — Lagostim crayfish
+3. `ENTITY:tfc:horseshoe_crab` — Caranguejo-ferradura horseshoe crab
+4. `ENTITY:tfc:dolphin` — Golfinho dolphin
+5. `ENTITY:tfc:orca` — Orca
+6. `ENTITY:tfc:manatee` — Peixe-boi manatee
+7. `ENTITY:tfc:squid` — Lula squid
+8. `ENTITY:tfc:octopoteuthis` — Lula octopoteuthis
+9. `ENTITY:tfc:turtle` — Tartaruga turtle
+10. `ENTITY:tfc:penguin` — Pinguim penguin
+
+### Critérios editoriais aplicados ao lote 20
+
+- o lote continua imediatamente `ISOPOD` na ordem real de registros de `TFCEntities.java` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`, atravessando `WATER_AMBIENT`, `WATER_CREATURE`, `UNDERGROUND_WATER_CREATURE` e `CREATURE` sem saltos;
+- `LOBSTER` e `HORSESHOE_CRAB` usam `AquaticCritter::salty`, enquanto `CRAYFISH` usa `AquaticCritter::fresh`; a ficha preserva evasão, fuga após agressão e deslocamento pelo fundo comprovados pela classe compartilhada sem inventar alimentação, reprodução ou captura;
+- `DOLPHIN` e `ORCA` reutilizam `TFCDolphin` e seu contrato de água salgada, mantendo respiração, procura por água, pesca, ataque, nado, salto e acompanhamento de barcos apenas no nível demonstrado pelo código;
+- `MANATEE` usa a implementação própria `Manatee`, aceita água comum e registra somente os comportamentos de nado, pânico, evasão e debater-se comprovados pelo runtime;
+- `SQUID` usa `TFCSquid`, enquanto `OCTOPOTEUTHIS` estende essa implementação e acrescenta o contrato de brilho `IGlow`; tamanho dinâmico, tinta, persistência de estado e escurecimento permanecem descritos sem congelar probabilidades, durações ou intensidades numéricas;
+- `TURTLE` e `PENGUIN` usam a base `AmphibiousAnimal`/`AmphibianAi`; a tartaruga mantém a atividade de `PLAY_DEAD`, e o pinguim sobrescreve `isPlayingDeadEffective()` para `false`, de modo que a atividade ainda pode operar sobre memórias/alvos, mas os efeitos adicionais de regeneração e resistência de `AmphibianPlayDeadBehavior` não são concedidos ao pinguim;
+- o locale `pt_br` do provider mantém os nomes específicos do lote em inglês, salvo `Orca`; por isso os aliases editoriais traduzem apenas a categoria comum quando útil e preservam o token oficial do mod para rastreabilidade, sem importar taxonomia externa;
+- bioma, clima, frequência, tamanho de grupo e demais parâmetros de spawn/worldgen permanecem sob autoridade do provider, da configuração e dos datapacks ativos; nenhum desses valores foi congelado na prosa editorial;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL`, e `CompendiumCheckedInEditorialBatch20JUnitTest` valida exatamente essas dez entradas com TerraFirmaCraft ausente e presente;
+- o TDD produziu RED válido na draft #350 contra `main@a20b9efe0b1b5e6c7dc2a1e9fa386440e8469482`: o teste compilou normalmente e o RPG Skill Tree CI #2963 executou `872 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch20JUnitTest` no `assertNotNull` do recurso intencionalmente ausente `fauna-batch4.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #604 e pelo RPG Skill Tree CI #2968, incluindo JUnit, NeoForge GameTests, todos os validadores do Compêndio/runtime, NeoForge build, verificação do JAR e dedicated-server smoke.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **90**;
-- entradas editoriais totais: **190**;
-- lotes documentados: **19**;
+- entradas editoriais TFC reais no corpus: **100**;
+- entradas editoriais totais: **200**;
+- lotes documentados: **20**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
