@@ -1,6 +1,6 @@
 # Projetos Próprios do Modpack — Fonte Canônica para Perks
 
-Esta pasta documenta os quatro projetos próprios que precisam ser tratados como providers/sistemas de primeira classe durante a auditoria de perks:
+Esta pasta documenta quatro projetos/sistemas próprios que precisam ser tratados como providers/sistemas de primeira classe durante a auditoria de perks:
 
 1. [RPG Skill Tree](01-rpg-skill-tree.md)
 2. [Volcanoes](02-volcanoes.md)
@@ -19,9 +19,22 @@ Esta pasta documenta os quatro projetos próprios que precisam ser tratados como
 
 **Fonte editorial canônica no Notion:** https://app.notion.com/p/3cc69db9f0db81b09939eaca7c446fa2
 
+## Topologia operacional dos projetos
+
+Desde a consolidação da PR #308, **Volcanoes não possui mais um repositório operacional independente para evolução de runtime**. O código canônico do Volcanoes é um subsistema nativo do próprio `Gustavaopere/neoforge-rpg-skilltree`, preservando seus namespaces/authority ambientais e geológicos dentro do único mod/JAR `rpgskilltree`.
+
+Portanto, para freshness/delta:
+
+- **RPG Skill Tree:** `Gustavaopere/neoforge-rpg-skilltree/main` + `plans/STATUS.md` e os paths do estágio pertinente;
+- **Volcanoes:** o mesmo `Gustavaopere/neoforge-rpg-skilltree/main`, mas o delta deve ser filtrado pelas superfícies Volcanoes (`plans/volcanoes/**`, `src/main/java/dev/gustavopere/volcanoes/**`, `src/main/java/dev/gustavopere/rpgskilltree/runtime/volcanoes/**`, recursos `volcanoes:*`, `docs/volcanoes/**`, workflows/scripts Volcanoes e contratos compartilhados que o subsystem realmente consuma) + `plans/volcanoes/STATUS.md`;
+- **Enshrouded:** seu repositório próprio + `plans/STATUS.md` enquanto continuar separado;
+- **Black Arcana:** seu repositório próprio + `plans/STATUS.md` enquanto continuar separado.
+
+O antigo `Gustavaopere/Volcanoes@eaddc3232dfc600780769f4a5e7e45ff1e50181c` permanece somente como **proveniência do snapshot importado**. Ele não é a fonte de mudanças posteriores à consolidação e não deve ser usado para concluir `SEM DELTA` no Volcanoes atual.
+
 ## Por que esta pasta existe
 
-Os três guias históricos descrevem muito bem os mods externos do pack, mas os quatro projetos próprios evoluem em repositórios separados e contêm sistemas que não podem ser inferidos por README, nome de classe ou intenção futura. O Chat 1 deve saber exatamente:
+Os guias históricos descrevem os mods externos do pack, mas os quatro projetos/sistemas próprios evoluem continuamente e contêm sistemas que não podem ser inferidos por README, nome de classe ou intenção futura. O Chat 1 deve saber exatamente:
 
 - quais subsistemas já são autoridade de gameplay em `main`;
 - quais existem parcialmente;
@@ -33,8 +46,8 @@ Os três guias históricos descrevem muito bem os mods externos do pack, mas os 
 
 ## Taxonomia obrigatória de estado
 
-- **IMPLEMENTADO E CANÔNICO:** presente em `main`, com contrato/runtime fechado e evidência suficiente.
-- **IMPLEMENTADO PARCIALMENTE:** código útil presente em `main`, mas o estágio/contrato ainda possui fechamento pendente.
+- **IMPLEMENTADO E CANÔNICO:** presente na fonte operacional atual, com contrato/runtime fechado e evidência suficiente.
+- **IMPLEMENTADO PARCIALMENTE:** código útil presente, mas o estágio/contrato ainda possui fechamento pendente.
 - **PREPARATÓRIO / NÃO CANÔNICO:** existe em branch/protótipo/trabalho downstream, mas não é autoridade da `main`.
 - **PLANEJADO:** especificação futura; não pode ser usada como hook implementável pelo Chat 2.
 - **BLOQUEADO / FAIL-CLOSED:** integração intencionalmente inativa até existir API/evidência segura.
@@ -42,24 +55,26 @@ Os três guias históricos descrevem muito bem os mods externos do pack, mas os 
 
 A presença de um arquivo em `plans/` **não** prova disponibilidade de runtime.
 
-## Baseline reconciliado para o próximo delta
+## Baseline reconciliado e regra pós-consolidação
 
-O checkpoint operacional mais recente está em [`14-capability-delta-a0081-a0090.md`](14-capability-delta-a0081-a0090.md), após disposição completa do lote A0081–A0090 e reconciliação dos avanços concorrentes da `main`, incluindo o gateway de availability de especializações da PR #307 sem impacto contratual sobre estas dez perks:
+O último checkpoint pré-consolidação está em [`14-capability-delta-a0081-a0090.md`](14-capability-delta-a0081-a0090.md):
 
-| Projeto | Baseline atual |
+| Projeto | Baseline histórico do fechamento A0081–A0090 |
 |---|---|
 | RPG Skill Tree | `6975970d086d32985d83a0018c841cce9d1cbd63` |
-| Volcanoes | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
+| Volcanoes standalone | `eaddc3232dfc600780769f4a5e7e45ff1e50181c` |
 | Enshrouded | `391ea82203d30cb392a3397f92e2a3cbe7fb6128` |
 | Black Arcana | `710077da89da5eb4418d3ac676e148849727ff07` |
 
-Os SHAs registram somente um **checkpoint de comparação**. A verdade operacional continua sendo `main` + `plans/STATUS.md` frescos, reconciliados com plano/código/testes/CI quando necessário.
+Para Volcanoes, esse SHA **não é mais um baseline operacional de repositório**. Ele é a proveniência exata importada pela consolidação. A PR #308, merge `f613dac5a15b26c7a92e07a9d9cb537c2412ddf2`, é o boundary de transição: depois dele, o próximo gate deve comparar a superfície Volcanoes dentro da `main` unificada contra o estado consolidado, e não consultar o standalone para procurar mudanças novas.
 
-Os dossiês 01–04 preservam a análise extensa do snapshot original. Quando houver divergência posterior, [`06-snapshot-reconciliation.md`](06-snapshot-reconciliation.md), [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md) e o suplemento mais recente [`14-capability-delta-a0081-a0090.md`](14-capability-delta-a0081-a0090.md) registram o delta que **substitui apenas os fatos afetados**, sem promover automaticamente o Stage inteiro.
+Os SHAs registram checkpoints de comparação/proveniência, não congelamento de verdade. A fonte operacional fresca e seus status/plans/código/testes/CI prevalecem em todo novo lote.
+
+Os dossiês 01–04 preservam análises extensas e seus deltas. Quando houver divergência posterior, [`06-snapshot-reconciliation.md`](06-snapshot-reconciliation.md), [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md) e o suplemento mais recente registram o delta que **substitui apenas os fatos afetados**, sem promover automaticamente o Stage inteiro.
 
 ## Regra para o Chat 1 — dois sentidos obrigatórios
 
-Antes de fechar qualquer perk, o Chat 1 deve cruzá-la com os quatro dossiês e a matriz. Para cada projeto próprio, classificar a relação como uma destas opções:
+Antes de fechar qualquer perk, o Chat 1 deve cruzá-la com os quatro dossiês e a matriz. Para cada projeto próprio pertinente, classificar a relação como uma destas opções:
 
 - provider direto;
 - bridge/consumer secundário;
@@ -73,8 +88,8 @@ Se uma perk toca mais de um projeto, o dossiê individual precisa declarar um **
 
 Além dessa auditoria **perk → provider**, cada lote deve executar obrigatoriamente a auditoria **provider → árvore** definida em [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md):
 
-1. fetch fresco de `main` e `plans/STATUS.md` dos quatro projetos;
-2. comparação contra o baseline reconciliado;
+1. fetch fresco das fontes operacionais e status dos quatro projetos/sistemas;
+2. comparação contra o baseline/boundary reconciliado pertinente;
 3. extração de toda capacidade jogável nova ou semanticamente alterada, **mesmo que nenhuma perk atual a cite**;
 4. classificação de cobertura antes do fechamento do lote.
 
@@ -84,11 +99,13 @@ Detectar uma capacidade **não** significa criar automaticamente uma perk. Ela p
 
 A descoberta de uma lacuna também não altera a regra de **lotes exatos de 10**. Uma necessidade fora do lote atual é registrada para ciclo posterior; o Chat 1 não inicia uma décima primeira perk.
 
-O preenchimento operacional de providers está em [`07-chat1-provider-listing-checklist.md`](07-chat1-provider-listing-checklist.md); o delta global está em [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md), com o baseline substituto mais recente em [`14-capability-delta-a0081-a0090.md`](14-capability-delta-a0081-a0090.md).
+O preenchimento operacional de providers está em [`07-chat1-provider-listing-checklist.md`](07-chat1-provider-listing-checklist.md); o delta global está em [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md).
 
 ## Regra de autoridade
 
-Integração temática não cria um hook. Não converter automaticamente:
+Integração temática não cria hook nem copropriedade. A consolidação também não muda a authority semântica: `rpgskilltree` hospedar Volcanoes não transforma progressão RPG em dona da Atmosphere, pressão, tectônica, erupções ou depósitos.
+
+Não converter automaticamente:
 
 - Black Arcana Corruption em Enshrouded Shroud;
 - Volcanoes Atmosphere em Shroud;
@@ -101,10 +118,10 @@ Quando um provider não expõe um hook seguro, a parte dependente permanece inat
 
 ## Relação com os três guias
 
-Os três guias continuam obrigatórios e recebem um apêndice final com o recorte pertinente destes quatro projetos:
+Os três guias continuam obrigatórios e recebem apêndices com o recorte pertinente destes quatro projetos/sistemas:
 
 - [Gameplay e Sistemas](../gameplay/13-projetos-proprios-do-modpack.md)
 - [Mods de Magia](../magic/17-projetos-proprios-do-modpack.md)
 - [Mods de Tecnologia](../technology/19-projetos-proprios-do-modpack.md)
 
-Os apêndices são mapas temáticos. Para decidir provider, hook, status, delta ou fail-closed, estes dossiês, a reconciliação, a matriz de delta e a evidência fresca da `main` prevalecem.
+Os apêndices são mapas temáticos. Para decidir provider, hook, status ou fail-closed, estes dossiês e a evidência fresca da fonte operacional prevalecem.
