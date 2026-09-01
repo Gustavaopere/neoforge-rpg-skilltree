@@ -111,11 +111,21 @@ public final class BattleMageSafetyGameTests {
 
         HiredFixture fixture = null;
         Entity target = null;
+        Entity allyEntity = null;
         try {
             fixture = createHiredBattleMage(helper);
             LivingEntity citizen = (LivingEntity) fixture.citizen();
             BlockPos casterPos = citizen.blockPosition();
-            LivingEntity ally = (LivingEntity) spawnCitizen(fixture.colony(), helper.getLevel(), casterPos.offset(11, 0, 0));
+
+            // Spawn through MineColonies at the already-proven valid arrival point, then position
+            // the registered same-colony citizen inside the actual AoE danger zone. Asking the
+            // provider to find a brand-new spawn point 11 blocks outside the tiny GameTest template
+            // makes EntityUtils.getSpawnPoint fail before the friendly-fire contract is exercised.
+            allyEntity = (Entity) spawnCitizen(fixture.colony(), helper.getLevel(), casterPos);
+            LivingEntity ally = (LivingEntity) allyEntity;
+            BlockPos allyPos = casterPos.offset(11, 0, 0);
+            ally.moveTo(allyPos.getX() + 0.5, allyPos.getY(), allyPos.getZ() + 0.5, 0.0f, 0.0f);
+
             target = spawnZombie(helper.getLevel(), casterPos.offset(10, 0, 0));
             LivingEntity hostile = (LivingEntity) target;
 
@@ -154,6 +164,7 @@ public final class BattleMageSafetyGameTests {
             throw new AssertionError("Battle Mage friendly-fire provider probe failed", failure);
         } finally {
             if (target != null) target.discard();
+            if (allyEntity != null) allyEntity.discard();
             deleteFixture(fixture, helper.getLevel());
         }
     }
