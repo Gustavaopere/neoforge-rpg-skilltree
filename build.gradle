@@ -64,6 +64,24 @@ jacoco {
     toolVersion = '0.8.14'
 }
 
+def epicFightAdapterCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0031A0040EpicFightAdapterCoverageJUnitTest.java'
+
+sourceSets {
+    test {
+        // Plain Gradle JUnit must remain independent from NeoGradle's loaded-game test run.
+        java.exclude epicFightAdapterCoveragePath
+    }
+    neoForgeTest {
+        // Reuse the existing source location but isolate the one test that requires a loaded NeoForge server.
+        java.srcDir 'src/test/java'
+        java.include epicFightAdapterCoveragePath
+        resources.srcDir 'src/test/resources'
+        resources.include 'META-INF/MANIFEST.MF'
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
 runs {
     configureEach {
         workingDirectory project.layout.projectDirectory.dir('runs').dir(name)
@@ -77,10 +95,11 @@ runs {
         systemProperty 'neoforge.enabledGameTestNamespaces', "${mod_id},volcanoes"
     }
 
-    // NeoGradle's canonical unit-test wiring requires both the mod source and the test source.
+    // Keep the NeoForge-loaded adapter suite on a dedicated source set so NeoGradle cannot
+    // consume or rewrite the ordinary Gradle test source set/task.
     junit {
         modSource project.sourceSets.main
-        unitTestSource project.sourceSets.test
+        unitTestSource project.sourceSets.neoForgeTest
     }
 
     data {
@@ -96,6 +115,9 @@ sourceSets.main.resources {
 
 configurations {
     runtimeClasspath.extendsFrom localRuntime
+    neoForgeTestImplementation.extendsFrom testImplementation
+    neoForgeTestCompileOnly.extendsFrom testCompileOnly
+    neoForgeTestRuntimeOnly.extendsFrom testRuntimeOnly
 }
 
 dependencies {
@@ -157,18 +179,14 @@ tasks.withType(Test).configureEach {
 }
 
 tasks.named('test', Test).configure {
-    // NeoGradle's JUnit convention clears the stock Test task's source wiring. Restore it
-    // explicitly so ordinary JUnit and workflow --tests filters execute compiled test classes.
+    // Explicitly bind the stock Test task to the plain test source set. The adapter class is
+    // excluded at SourceSet level above and executes only under testJunit.
     testClassesDirs = sourceSets.test.output.classesDirs
     classpath = sourceSets.test.runtimeClasspath
-    filter {
-        // This adapter suite requires NeoForge's loaded JUnit runtime and runs under testJunit.
-        excludeTestsMatching epicFightAdapterCoverageTest
-    }
 }
 
 // NeoGradle materializes the run-backed test task after this script's eager task lookup phase.
-// Configure it lazily so the canonical junit run can create the task first.
+// Configure it lazily so the dedicated neoForgeTest source set remains the only adapter input.
 tasks.matching { it.name == 'testJunit' }.configureEach {
     if (it instanceof Test) {
         filter {
