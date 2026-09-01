@@ -42,6 +42,16 @@
 - [x] Creative, spectator e `FakePlayer` continuam inelegíveis pelo adapter Epic Fight; categorias fora de `fist|knuckle` e dano não positivo falham fechado.
 - [x] Contrato coberto por teste core; build NeoForge, GameTests e dedicated-server smoke permanecem gates de CI.
 
-As demais caixas gerais acima permanecem abertas porque o fechamento é por fonte completa de Mastery, não por uma única categoria de arma.
+## Progresso runtime confirmado — IRON'S SPELLS
+
+- [x] Provider alvo confirmado no build: Iron's Spells 'n Spellbooks `1.21.1-3.16.3`.
+- [x] A fonte semântica é `SpellOnCastEvent`; upstream dispara esse evento somente depois de `SpellPreCastEvent` permitir o cast, portanto tentativa cancelada não chega ao produtor de Mastery.
+- [x] Apenas origens `SPELLBOOK` e `SCROLL` contam como prática; `COMMAND` e demais origens falham fechado.
+- [x] Creative, spectator e `FakePlayer` são inelegíveis para Mastery, mesmo quando o provider emite um cast válido.
+- [x] Há um único produtor Iron's no runtime. A concessão segue `SpellOnCastEvent` → `MasteryPolicies.forIron` → `PlayerProgressionRuntime.awardMastery`, sem ledger paralelo nem segundo evento que represente o mesmo cast.
+- [x] O cast continua concedendo os ledgers canônicos existentes (`magic:casting`, `irons:casting` e `irons:<discipline>`) sem alterar curvas, thresholds ou intensidade já aprovados.
+- [x] O contrato de elegibilidade é isolado de tipos do provider em `IronMasterySourcePolicy`, permitindo teste JUnit sem promover Iron's de integração opcional para dependência runtime obrigatória.
+
+As demais caixas gerais acima permanecem abertas porque o fechamento é por fonte completa de Mastery, não por uma única categoria de arma ou provider.
 
 **Acceptance:** repetir uma ação válida aumenta mastery exatamente uma vez e tentativas inválidas não aumentam.
