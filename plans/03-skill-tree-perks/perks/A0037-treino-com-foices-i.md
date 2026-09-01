@@ -34,6 +34,6 @@ Weapons of Miracles/Epic Fight Compat só participam quando a capability final c
 
 - Contratos JUnit confirmam Mastery SCYTHE finita, replay-safe e não-farmável.
 - Busca de código confirma ausência do classificador paralelo.
-- `RPG Skill Tree CI` #2806: Core, JUnit 5, NeoForge GameTests, runtime/data validations, build, JAR e dedicated-server smoke **GREEN**.
-- `SonarQube Cloud` #41: **GREEN**.
+- `RPG Skill Tree CI` #2879 (run `33463430832`, HEAD `4813b2fd`): Core, JUnit 5, **NeoForge JUnit adapter tests**, NeoForge GameTests, runtime/data validations, build, JAR e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #114 (run `33463430893`, HEAD `4813b2fd`): **GREEN**.
 - Resultado: contrato A0037 validado; apta ao merge da PR #252.
