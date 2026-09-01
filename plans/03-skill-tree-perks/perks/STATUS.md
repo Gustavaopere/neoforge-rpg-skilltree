@@ -435,3 +435,59 @@ O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN 
 15. `P-A0081-90-TEST-01` — GameTest/harness transversal provider-present/absent para sustain, native heal correlation, magic/element/DoT availability, BodyProvider, attributes, lifecycle, dedup, multiplayer e dedicated server.
 
 O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige a PR desta auditoria, review resolvido, CI GREEN, merge e confirmação fresca da `main`; após isso o Chat 1 deve **PARAR**. A0091–A0100 só pode começar mediante novo comando do usuário.
+
+## Chat 1 — lote adiantado exato A0200–A0209
+
+**Estado:** `LOTE FECHADO NO DESIGN; 10/10 UNAVAILABLE_NODE ATÉ CAPABILITIES/DEPENDÊNCIAS; PR/CI/MERGE EM FECHAMENTO OPERACIONAL`.
+
+Este lote foi iniciado diretamente em A0200 por ordem do usuário, enquanto outros chats ainda trabalham na faixa dos 100.
+
+**Exceção de sequência:** a ordem específica do usuário autorizou este lote adiantado apesar da regra permanente 26. A exceção vale somente para design/documentação A0200–A0209: nenhum catálogo/runtime foi adicionado, nenhum node ficou comprável, A0091–A0199/Fases 0–4 não foram fechadas e A0210+ continua proibido sem novo comando.
+
+- **INÍCIO:** A0200.
+- **FIM:** A0209.
+- **Quantidade:** 10 perks consecutivas.
+- **Faixa A0091–A0199:** não foi pulada nem fechada; permanece fora deste ciclo.
+- **Dependências anteriores explicitamente abertas:** A0144, A0148–A0155, A0198 e A0199.
+- **Base de abertura da branch:** RPG Skill Tree `main@80df3a2e626e85a386f12560a3672cb0486e426c`.
+- **Main reconciliada na freshness final de 2026-09-01:** `54b6cdc1de923732c3ec7d99c660f8fdefdb0610`; o delta classifica transações PRE→POST A0023/A0024/A0029/A0030, classes/Mastery/datapack sync, consolidação nativa e reconciliação pós-merge do Volcanoes e manutenção Compêndio/CI/Sonar, sem nova capability A0200–A0209.
+- **Freshness documental final:** RPG `main@54b6cdc1de923732c3ec7d99c660f8fdefdb0610`; Volcanoes standalone/source `eaddc3232dfc600780769f4a5e7e45ff1e50181c` consolidado no RPG pela PR #308 e reconciliado pela PR #337; Enshrouded `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec`; Black Arcana `e89df6dc2c204c269d8f1811c6b3f309644c864a`.
+- **Delta canônico:** `guides/projects/15-capability-delta-a0200-a0209.md`.
+- **Notion fetch fresco:** 10/10.
+- **Notion alterado:** A0200–A0209, 10/10.
+- **Re-fetch pós-escrita:** 10/10 PASS em 2026-08-31.
+- **Dossiês criados:** 10/10.
+- **Nove eixos / 18 critérios:** PASS no design para 10/10.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **Arquivo canônico:** `audits/AUDITORIA-A0200-A0209.md`.
+- **A0210+:** não iniciado.
+
+### Decisões bloqueantes
+
+1. A0200/A0201 dependem de classifier hostil ELDRITCH, bucket e outcome ledger inexistentes.
+2. A0202/A0203/A0204 dependem de school lane ELDRITCH exata, HealingResolver/categories e upstream.
+3. A0205 depende de A0144/A0148–A0155 e direct ENDER classifier.
+4. A0206/A0208 dependem de receipt causal de deslocamento próprio; `EntityTeleportEvent` genérico é insuficiente.
+5. A0207 depende de hostile ENDER classifier e bucket.
+6. A0209 depende de producer ENDER e direct melee component hook.
+7. O producer Iron's normaliza escola addon como `namespace/path`, mas `MasteryLaneCatalog` rejeita essa forma hoje. Não usar aliases genéricos nem remover namespace.
+8. Black Arcana atual integra hazard/progression/mastery e forecast de Arcane Resistance, mas não publica `BLACK_ARCANA_ELDRITCH_OUTCOME`.
+9. A0023/A0024/A0029/A0030 usam reservation→POST commit/rollback na main atual e permanecem cobertas por suas próprias perks; A0029/A0030 continuam fail-closed sem receipts provider-native.
+10. Volcanoes agora é subsistema nativo do artefato RPG com facade read-only, mas seus serviços de geologia/atmosfera/pressão não publicam ELDRITCH/ENDER.
+
+### Pendências destinadas ao Chat 2
+
+1. `P-A0200-01/-05` — unavailable-node, classifier e bucket ELDRITCH.
+2. `P-A0201-01/-05` — Anchor por outcomes distintos, transaction e lifecycle.
+3. `P-A0202-01/-06` — upstream, school lane, HealingResolver e melee component.
+4. `P-A0203-01/-06` — upstream, três categories, healing/state e ledger.
+5. `P-A0204-01/-05` — terminal availability, lane80, Gate A/B/C e respec.
+6. `P-A0205-01/-05` — upstream, direct ENDER outcome e magic pipeline.
+7. `P-A0206-01/-05` — exact lane, displacement receipt e Rupture.
+8. `P-A0207-01/-04` — hostile ENDER classifier/bucket.
+9. `P-A0208-01/-05` — Veil, displacement ordering e transaction.
+10. `P-A0209-01/-05` — producer ENDER, direct melee component e lanes.
+11. `P-A0200-09-01` — reconciliar school addon namespace/path no MasteryLaneCatalog com migração/testes.
+12. `P-A0200-09-TEST-01` — matriz transversal provider present/absent, upstream, availability, IDs, rollback, teleport provenance, lifecycle, multiplayer e dedicated server.
+
+O design A0200–A0209 está fechado sem implementar runtime. O fechamento operacional exige PR, review resolvido, CI GREEN, merge e confirmação fresca da `main`. Depois disso o Chat 1 deve **PARAR**.

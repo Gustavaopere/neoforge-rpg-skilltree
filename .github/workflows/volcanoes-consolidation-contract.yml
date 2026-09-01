@@ -3,30 +3,8 @@ name: Volcanoes Consolidation Contract
 on:
   pull_request:
     branches: [main]
-    paths:
-      - 'src/main/java/dev/gustavopere/volcanoes/**'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java'
-      - 'src/main/resources/assets/volcanoes/**'
-      - 'src/main/resources/data/volcanoes/**'
-      - 'src/main/resources/volcanoes.mixins.json'
-      - 'src/main/resources/META-INF/neoforge.mods.toml'
-      - 'build.gradle'
-      - 'licenses/Volcanoes-BSD-2-Clause.txt'
-      - 'scripts/verify-volcanoes-consolidation.py'
-      - '.github/workflows/volcanoes-consolidation-contract.yml'
   push:
     branches: [main]
-    paths:
-      - 'src/main/java/dev/gustavopere/volcanoes/**'
-      - 'src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java'
-      - 'src/main/resources/assets/volcanoes/**'
-      - 'src/main/resources/data/volcanoes/**'
-      - 'src/main/resources/volcanoes.mixins.json'
-      - 'src/main/resources/META-INF/neoforge.mods.toml'
-      - 'build.gradle'
-      - 'licenses/Volcanoes-BSD-2-Clause.txt'
-      - 'scripts/verify-volcanoes-consolidation.py'
-      - '.github/workflows/volcanoes-consolidation-contract.yml'
 
 jobs:
   contract:
