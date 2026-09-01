@@ -37,6 +37,6 @@
 ## Validação Chat 3 — PR #252
 
 - Regressões de Mastery confirmam +10 por tipo hostil distinto, replay-safe, e 0 XP por hit repetido.
-- `RPG Skill Tree CI` #2806: Core tests, JUnit 5, NeoForge GameTests, validações de runtime/dados, build, JAR e dedicated-server smoke **GREEN**.
-- `SonarQube Cloud` #41: **GREEN**.
+- `RPG Skill Tree CI` #2879 (run `33463430832`, HEAD `4813b2fd`): JUnit 5, **NeoForge JUnit adapter tests**, NeoForge GameTests, validações de runtime/dados, build, JAR e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #114 (run `33463430893`, HEAD `4813b2fd`): **GREEN**.
 - Resultado: contrato canônico A0031 validado; apta ao merge da PR #252.
