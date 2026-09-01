@@ -76,7 +76,7 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0068 | Dano contra Feridos | APROVADO | CÓDIGO PRESENTE melee + projectile | `P-A0068-01/-02`: snapshot pré-impacto <35%, borda e dedup |
 | A0069 | Dano contra Íntegros | APROVADO | CÓDIGO PRESENTE melee + projectile | `P-A0069-01/-02`: snapshot pré-impacto >85%, borda e dedup |
 | A0070 | Dano contra Chefes | APROVADO após correção de cobertura | IMPLEMENTAÇÃO PARCIAL: vanilla/Cataclysm tag + Apothic; Enshrouded identity ainda sem adapter | `P-A0070-01`: `enshrouded:shroud_lich`; `P-A0070-02`: demais bosses fail-closed até IDs; `P-A0070-03/-04` dedup/fases |
-| A0071 | Dano contra Elites | APROVADO | CÓDIGO PRESENTE via classificador canônico | `P-A0071-01/-02`: Apothic provider-present + BOSS>ELITE; externos somente com identidade exata |
+| A0071 | Dano contra Elites | APROVADO | CÓDIGO PRESENTE via classificador canônico | `P-A0071-01/-02`: Apothic provider-present + BOSS>ELITE; externos somente por identidade exata |
 | A0072 | Retaliação | APROVADO após availability | EFEITO PRESENTE, MAS ESTRUTURALMENTE INDISPONÍVEL | `P-A0072-01`: A0067 indisponível → A0072 indisponível/não comprável; testar refresh/dedup |
 | A0073 | Janela de Execução | APROVADO após reservation→commit | NÃO CONFORME: PRE arma/consome cedo demais | `P-A0073-01`: POST commit/rollback; `P-A0073-02`: Stamina receipt; lifecycle/dedup |
 | A0074 | Primeiro Sangue | APROVADO após reservation→commit | NÃO CONFORME: PRE atualiza/consome cedo demais | `P-A0074-01`: POST commit/rollback; lifecycle e bordas de opener/cooldown |
@@ -150,7 +150,7 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - Ambas foram corrigidas sem redesenho: PRE apenas prepara; POST direto/hostil/com dano efetiva os consumos irreversíveis.
 - TDD RED no CI #2193: 120 testes, exatamente 2 falhas correspondentes aos defeitos antigos.
 - GREEN de código no CI #2203 e GREEN integral do HEAD documental pré-reconciliação no CI #2220, incluindo NeoForge GameTests, build, JAR e dedicated-server smoke.
-- A PR #244 foi reconciliada com `main@5e9dd777722014596641cb77d7be5c51df410e4e` pelo merge commit `f110492c68e67efcb4848fbee99dc522f7cf0307`, preservando o fechamento A0041–A0050 da PR #243.
+- A PR #244 foi reconciliada com `main@5e9dd777722014596641cb77d7be5c51df410e4e` pelo merge commit `f110492c68e67efb4848fbee99dc522f7cf0307`, preservando o fechamento A0041–A0050 da PR #243.
 - Auditoria Chat 3: `audits/AUDITORIA-CHAT3-A0001-A0010-PENDENCIAS-TECNICAS.md`.
 - Aparo/guarda perfeita adicionais de A0006 continuam expansão condicional não bloqueante e fail-closed sem receipt público causal.
 
@@ -438,7 +438,7 @@ O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige
 
 ## Continuidade documental posterior ainda fora da `main`
 
-Os lotes abaixo já foram fechados pelo Chat 1, mas permanecem em PRs abertas para que Chat 2 implemente e Chat 3 valide/merge. A ausência deles na `main` **não** significa design pendente e também **não** promove runtime inexistente.
+Os lotes abaixo já foram fechados pelo Chat 1, mas permanecem em PRs abertas. A ausência deles na `main` **não** significa design pendente e também **não** promove runtime inexistente.
 
 ### A0091–A0100 — Chat 1
 
@@ -447,12 +447,11 @@ Os lotes abaixo já foram fechados pelo Chat 1, mas permanecem em PRs abertas pa
 - **Branch:** `docs/chat1-a0091-a0100-audit`.
 - **Head documental observado:** `22a7f16b27c6781f8571e8a1de1d899cfaff5c7a`.
 - **Runtime alterado pelo Chat 1:** nenhum.
-- **Próximo lote desse ciclo:** não iniciar automaticamente.
 
 ### A0101–A0110 — Chat 1
 
 - **Estado:** `DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 / AGUARDANDO IMPLEMENTAÇÃO CHAT 2`.
-- **PR:** #340 — `docs(perks): close Chat 1 audit A0101-A0110`.
+- **PR:** #340 — `docs/perks): close Chat 1 audit A0101-A0110`.
 - **Branch:** `docs/chat1-a0101-a0110-audit`.
 - **Head documental observado:** `8f3a27da72725fe7db021ace9ebbdb0869a455c5`.
 - **Runtime alterado pelo Chat 1:** nenhum.
@@ -460,17 +459,19 @@ Os lotes abaixo já foram fechados pelo Chat 1, mas permanecem em PRs abertas pa
 
 ### A0111–A0120 — Chat 1
 
-- **Estado:** `DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 / AGUARDANDO IMPLEMENTAÇÃO CHAT 2`.
+- **Estado:** `DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 / IMPLEMENTAÇÃO DIFERIDA POR GATES GLOBAIS E PREDECESSORES`.
 - **PR:** #341 — `docs(perks): close Chat 1 audit A0111-A0120`.
 - **Branch:** `docs/chat1-a0111-a0120-audit`.
 - **Base/freshness:** `main@66fcec7b163320cfb0d79943969aae33f3adf862`; Volcanoes source `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `29ae2d9b7a13bbdffd3291d2fe4213e0705eb8e3`; Black Arcana `e89df6dc2c204c269d8f1811c6b3f309644c864a`; **SEM DELTA DE CAPABILITY**.
-- **Notion:** fetch 10/10; hardening em A0113 e A0115–A0120; re-fetch pós-escrita 7/7 PASS.
+- **Notion:** fetch 10/10; 7 páginas distintas endurecidas (A0113 e A0115–A0120); re-fetch 7/7 PASS; A0113 V2 recebeu re-fetch adicional após review.
 - **A0111–A0114:** cadeia de manutenção/durabilidade/attunement permanece fail-closed. P-0036 e Attunement Socket não possuem binding live suficiente.
-- **A0113:** `ToolIdentityLedger` é obrigatório; duplicate same-id/owner mismatch reidentifica somente a cópia atuante, que começa com 0 progresso e sem `Reforço Pronto`; o ledger original é preservado.
+- **A0113:** `ToolIdentityLedger` usa `tool_instance_id + tool_lease_nonce` single-writer. A nonce rotaciona atomicamente após ação A0113 aceita e somente o stack atuante recebe a nova lease; cópia stale ou owner mismatch é reidentificada/resetada. Não se promete identificar o stack físico original; no máximo uma cópia continua a linhagem prévia.
 - **A0115–A0120:** P-0037/BodyCostResolver ausente = `UNAVAILABLE_NODE`; lanes HYDRATION também exigem adapter causal Thirst Was Reclaimed `3.0.4`. Allocation legado vale 0 PP enquanto o gate estrutural estiver ausente.
+- **Gate global:** antes de runtime A0111–A0120, `AGENTS.md`/`Before expanding content` deve ser revalidado na `main` por código/testes/CI, e os lotes A0091–A0100 (#326) e A0101–A0110 (#340) devem ter passado Chat 2 + Chat 3 e sido integrados.
+- **Handoff:** após esses gates, Chat 2 reconcilia esta mesma branch/PR #341 com a `main` e só então implementa.
 - **Arquivo canônico:** `audits/AUDITORIA-A0111-A0120.md`.
 - **Delta canônico:** `guides/projects/17-capability-delta-a0111-a0120.md`.
 - **Runtime alterado neste Chat 1:** nenhum.
 - **A0121+:** não iniciado.
 
-O Chat 1 **não faz merge** destes três lotes documentais abertos. Chat 2 continua a branch/PR correspondente; Chat 3 valida, corrige tecnicamente quando não exigir redesign, obtém CI verde quando aplicável, faz merge e confirma a `main`.
+O Chat 1 **não faz merge** destes lotes documentais. #341 permanece aberta e bloqueada para runtime até os gates acima; Chat 3 continua sendo o responsável por validação final/CI/merge quando o lote alcançar essa etapa.
