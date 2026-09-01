@@ -55,6 +55,7 @@ Backlash, Shroud/Exposure, hazards Volcanoes e companions Mobstein não fornecem
 
 - `A0031A0040Chat3RegressionJUnitTest`: root cancelado não inicia cooldown e libera a reserva A0036.
 - `A0031A0040ImplementationContractJUnitTest`: mesmo root que cria Sunder não ativa A0036; root subsequente pre-sundered prepara/commita cooldown corretamente.
-- `RPG Skill Tree CI` #2806: JUnit 5, NeoForge GameTests, build e dedicated-server smoke **GREEN**.
-- `SonarQube Cloud` #41: **GREEN**.
-- Resultado: infraestrutura A0036 está validada, mas a perk permanece **NÃO CONFIRMADA / FAIL-CLOSED CORRETO** por `P-A0036-01`. Não declarar implementação operacional enquanto o provider não expuser receipt heavy inequívoco.
+- `A0031A0040EpicFightAdapterCoverageJUnitTest` roda no harness NeoForge e valida Descompasso, expiry/cleanup e a fronteira fail-closed do adapter.
+- `RPG Skill Tree CI` #2879 (run `33463430832`, HEAD `4813b2fd`): JUnit 5, **NeoForge JUnit adapter tests**, NeoForge GameTests, build e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #114 (run `33463430893`, HEAD `4813b2fd`): **GREEN**.
+- Resultado: infraestrutura A0036 validada, mas a perk permanece **NÃO CONFIRMADA / FAIL-CLOSED CORRETO** por `P-A0036-01`. Não declarar implementação operacional enquanto o provider não expuser receipt heavy inequívoco.
