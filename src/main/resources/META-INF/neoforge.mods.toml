@@ -24,8 +24,8 @@ ordering="NONE"
 side="BOTH"
 
 # Provider integrations are artifact-level optional. Runtime adapters must remain
-# classloading-safe when absent. A version range is declared only after the corresponding
-# provider compatibility matrix has been formally certified.
+# classloading-safe when absent; certified provider version ranges belong to the
+# integration compatibility matrix and are not guessed here.
 [[dependencies.${mod_id}]]
 modId="irons_spellbooks"
 type="optional"
@@ -46,7 +46,7 @@ side="BOTH"
 modId="epicfight"
 type="optional"
 reason="Optional Epic Fight combat progression integration"
-versionRange="${epicfight_version_range}"
+versionRange=""
 ordering="NONE"
 side="BOTH"
 
