@@ -36,30 +36,30 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0028 | Abalo Crescente | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL VALIDADA FAIL-CLOSED pela PR #248 e preservada na reauditoria #315 | `P-A0028-01`: Epic Fight 21.17.3.1 sem receipt causal separado de guard pressure |
 | A0029 | Quebra de Postura | APROVADO + boundary | NÃO CONFIRMADA; fail-closed preservado; `P-A0029-02` causal latente corrigida na PR #315 | `P-A0029-01`: Epic Fight 21.17.3.1 sem heavy receipt inequívoco |
 | A0030 | Maestria de Martelos — Golpe Demolidor | APROVADO + boundary | NÃO CONFIRMADA; fail-closed preservado; `P-A0030-02` causal latente corrigida na PR #315 | `P-A0030-01`: guard-break causal attacker-side + heavy receipt ausentes |
-| A0031 | Treino com Maças I | APROVADO após correção | NÃO CONFIRMADA | `P-A0031-01`: remover tag MACE; `P-A0031-02`: Mastery anti-farm |
-| A0032 | Treino com Maças II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende de `P-A0031-01` |
-| A0033 | Precisão com Maças | APROVADO + boundary | CÓDIGO PRESENTE no crítico canônico | depende de `P-A0031-01` |
-| A0034 | Trauma Contundente | APROVADO + boundary | CÓDIGO PRESENTE no fallback Armor física | rotas extras guard/posture permanecem fail-closed sem receipt |
-| A0035 | Armadura Fendida | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0035-01`: boss Witherstein; `P-A0035-02`: commit Trauma/Sunder somente após hit confirmado |
-| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | NÃO CONFIRMADA | `P-A0036-01`: heavy receipt; `P-A0036-02`: aplicar Descompasso; `P-A0036-03`: Sunder deve preexistir ao root; depende de Mastery anti-farm |
-| A0037 | Treino com Foices I | APROVADO após correção | NÃO CONFIRMADA | `P-A0037-01`: remover tag SCYTHE; `P-A0037-02`: Mastery anti-farm |
-| A0038 | Treino com Foices II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende de `P-A0037-01` |
-| A0039 | Precisão com Foices | APROVADO + boundary | CÓDIGO PRESENTE no crítico canônico | depende de `P-A0037-01` |
-| A0040 | Marca da Ceifa | APROVADO | IMPLEMENTAÇÃO PARCIAL | `P-A0040-01`: cleanup de marca em target unload/despawn; depende de família SCYTHE segura |
-| A0041 | Corte de Ceifa | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0041-01`: reservation→commit da Marca somente após hit confirmado; depende de família SCYTHE segura |
-| A0042 | Maestria de Foices — Colheita de Batalha | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0042-01`: `eligible_kill` anti-abuso; `P-A0042-02`: unificar/deduplicar producers de death; teste transversal |
-| A0043 | Treino com Arcos I | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0043-01`: Mastery BOW por discovery finita; `P-A0043-02`: reconciliar `combat:bow` vs `epicfight:bow`; teste provider-present |
-| A0044 | Treino com Arcos II | APROVADO após review | NÃO CONFORME: availability fail-closed não implementada | `P-A0044-01`: sem draw/preparation binding, nó deve ser indisponível/não comprável e não pode gastar pontos |
-| A0045 | Precisão com Arcos | APROVADO | CÓDIGO PRESENTE no crítico canônico | depende de A0043 alcançar Mastery 60 e de prova gameplay transversal |
-| A0046 | Foco de Mira | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0046-01`: heavy-impact −25 Focus; `P-A0046-02`: escalares corporais reais; teste provider-present |
-| A0047 | Distância Dominada | APROVADO após review | IMPLEMENTAÇÃO PARCIAL | `P-A0047-01`: remover projectile speed fabricado; depende de `P-A0044-01`; A0044 indisponível torna A0047 não comprável |
-| A0048 | Maestria de Arcos — Tiro Preparado | APROVADO | CÓDIGO PRESENTE | depende de Mastery BOW 80 e prova gameplay/provider-present |
-| A0049 | Treino com Bestas I | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0049-01`: Mastery CROSSBOW por discovery finita; `P-A0049-02`: reconciliar `combat:crossbow` vs `epicfight:crossbow`; teste provider-present |
-| A0050 | Treino com Bestas II | APROVADO após review | NÃO CONFORME: availability fail-closed não implementada | `P-A0050-01`: sem reload/preparation binding, nó deve ser indisponível/não comprável e não pode gastar pontos |
-| A0051 | Precisão com Bestas | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL no crítico CROSSBOW | `P-A0051-01`: exigir launch provenance; herda `P-A0049-01/-02` producer/ledger CROSSBOW |
-| A0052 | Cadência de Recarga | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / estruturalmente indisponível | `P-A0052-01/-02/-04`: availability, mesma besta e Multishot; `P-A0052-05/-06`: launch provenance + lifecycle; herda A0049/A0050 |
+| A0031 | Treino com Maças I | APROVADO após correção | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | classificação MACE provider-native/exata + Mastery finite-discovery implementadas; validar no Chat 3 |
+| A0032 | Treino com Maças II | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | cadence existente revalidada sobre família MACE segura |
+| A0033 | Precisão com Maças | APROVADO + boundary | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | crítico canônico existente revalidado sobre família MACE segura |
+| A0034 | Trauma Contundente | APROVADO + boundary | CÓDIGO PRESENTE NO FALLBACK CANÔNICO / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | rotas extras guard/posture permanecem fail-closed sem receipt |
+| A0035 | Armadura Fendida | APROVADO + boundary | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `P-A0035-02` resolvida por reservation→POST commit; Witherstein específico segue fail-closed sem registry/tag comprovado |
+| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | consumer Descompasso/sequencing presentes; `P-A0036-01` heavy receipt continua ausente e a perk permanece inativa |
+| A0037 | Treino com Foices I | APROVADO após correção | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | classificação SCYTHE provider-native + Mastery finite-discovery implementadas |
+| A0038 | Treino com Foices II | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | cadence existente revalidada sobre família SCYTHE segura |
+| A0039 | Precisão com Foices | APROVADO + boundary | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | crítico canônico existente revalidado sobre família SCYTHE segura |
+| A0040 | Marca da Ceifa | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `P-A0040-01` resolvida por prune periódico bounded; validar lifecycle no Chat 3 |
+| A0041 | Corte de Ceifa | APROVADO após correção | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `P-A0041-01` resolvida por reserva PRE exclusiva + commit POST; Chat 3 valida zero/letal/duplicado/concorrência |
+| A0042 | Maestria de Foices — Colheita de Batalha | APROVADO após correção | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `UNAVAILABLE_NODE`: falta `eligible_kill` anti-abuso canônico; producers de death ficam inertes até capability real |
+| A0043 | Treino com Arcos I | APROVADO após correção | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Mastery BOW finite-discovery e namespace `epicfight:bow` já resolvidos na main; Chat 3 valida provider/dedup/gates |
+| A0044 | Treino com Arcos II | APROVADO após review | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `UNAVAILABLE_NODE`: sem draw/preparation-speed semântico; nenhum ponto/rank no-op |
+| A0045 | Precisão com Arcos | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | resolver crítico canônico preservado; validar uma rolagem/root e provider-critical |
+| A0046 | Foco de Mira | APROVADO após correção | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | producers seguros ativos; heavy-impact e body scalars permanecem component-wise fail-closed sem receipts reais |
+| A0047 | Distância Dominada | APROVADO após review | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | herda A0044 indisponível; projectile-speed sintético removido e `projectileSpeedAvailable=false` |
+| A0048 | Maestria de Arcos — Tiro Preparado | APROVADO | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | core preservado; indisponível transitivamente por predecessor obrigatório A0047 |
+| A0049 | Treino com Bestas I | APROVADO após correção | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Mastery CROSSBOW finite-discovery e namespace `epicfight:crossbow` já resolvidos na main; Chat 3 valida provider/dedup/gates |
+| A0050 | Treino com Bestas II | APROVADO após review | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `UNAVAILABLE_NODE`: sem reload/preparation-speed semântico; dependências posteriores não podem bypassar |
+| A0051 | Precisão com Bestas | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL no crítico CROSSBOW | `P-A0051-01`: exigir launch provenance; producer/ledger CROSSBOW de A0049 já existe |
+| A0052 | Cadência de Recarga | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / estruturalmente indisponível | `P-A0052-01/-02/-04`: availability, mesma besta e Multishot; `P-A0052-05/-06`: launch provenance + lifecycle; herda A0050 |
 | A0053 | Virote Perfurante | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / nó indisponível | `P-A0053-01/-02`: availability + reservation→commit; `P-A0053-03/-04`: launch provenance + lifecycle; herda cadeia CROSSBOW |
-| A0054 | Maestria de Bestas — Mecanismo Ajustado | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / estruturalmente indisponível | `P-A0054-01/-04`: consumo/rollback; `P-A0054-02/-03`: availability/ledger; `P-A0054-05/-06`: launch provenance + lifecycle |
+| A0054 | Maestria de Bestas — Mecanismo Ajustado | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / estruturalmente indisponível | `P-A0054-01/-04`: consumo/rollback; `P-A0054-02`: availability; `P-A0054-03` ledger CROSSBOW já possui chave canônica; `P-A0054-05/-06`: launch provenance + lifecycle |
 | A0055 | Treino com Armas de Punho I | APROVADO após correção | NÃO CONFIRMADO como adquirível | `P-A0055-01`: producer único `combat:fist`; `P-A0055-02`: architecture `combat_fist`; `P-A0055-03`: regressão cruzada |
 | A0056 | Treino com Armas de Punho II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende do fechamento de A0055 e reconciliação de rank/gateway |
 | A0057 | Precisão com Armas de Punho | APROVADO após correção | CÓDIGO PRESENTE no crítico FIST | depende do fechamento de A0055 e reconciliação de rank/gateway |
@@ -106,12 +106,12 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Launch provenance CROSSBOW:** `owner + CrossbowItem` não bastam; A0051–A0054 exigem launch receipt CROSSBOW confirmado e projectile/root correlacionado. Projectile derivado/reemitido sem receipt fica fail-closed.
 - **Crítico:** uma única resolução/root action; `ARCANE_BACKLASH` e companion-owned damage não entram como ataque direto.
 - **Mastery:** não pode vir de spam de dano. Famílias sem producer provider-native comprovado usam discovery/milestones finitos e deduplicados.
-- **Mastery BOW/CROSSBOW:** fonte canônica do lote é `epicfight:bow` / `epicfight:crossbow`, conforme Notion + `CombatPerkTreeModel` + projectile runtime. `combat:bow` / `combat:crossbow` em `tree_architecture/combat.json` são divergência runtime/catalog a corrigir, não uma segunda ledger válida.
+- **Mastery BOW/CROSSBOW:** fonte canônica é `epicfight:bow` / `epicfight:crossbow`. `PhysicalProjectileMasteryEvents` + `WeaponMasteryMilestoneRuntime` implementam discovery persistente por tipo hostil, e `tree_architecture/combat.json` atual já usa essas mesmas chaves; não existe segunda ledger `combat:bow/crossbow` válida.
 - **Mastery FIST:** fonte canônica do ramo A0055–A0060 é `combat:fist`, +10 por tipo hostil inédito; 6 tipos→60 e 8→80. O producer genérico `epicfight:fist` deve ser reconciliado/suprimido; `tree_architecture/combat.json` precisa publicar `combat_fist` antes de o gate ser considerado alinhado.
 - **HAMMER/MACE/SCYTHE:** externos exigem capability/mapping provider-native seguro; não inferir por nome, aparência ou tag paralela não governada.
 - **FIST:** externos exigem capability/mapping provider-native seguro; não inferir por nome, aparência ou tag paralela não governada. Mãos vazias só entram em FIST por mapping explícito/versionado.
 - **BOW/CROSSBOW:** vanilla é classificado por `BowItem`/`CrossbowItem`; externos exigem provider-native/mapping explícito. Mastery 60 = 6 tipos hostis inéditos; Mastery 80 = 8 tipos quando o contrato terminal exigir.
-- **Availability em Bestas:** enquanto A0050 estiver indisponível/não comprável, A0052, A0053 e A0054 ficam estruturalmente indisponíveis; fallback não pode bypassar dependência. A ausência de `P-A0049-01` também bloqueia a alcançabilidade da cadeia por Mastery legítima.
+- **Availability em Bestas:** A0049/Mastery CROSSBOW já possui producer/ledger canônico. Enquanto A0050 estiver indisponível/não comprável, A0052, A0053 e A0054 continuam estruturalmente indisponíveis; fallback não pode bypassar dependência.
 - **Root outcome CROSSBOW:** Multishot compartilha uma única root action; projéteis irmãos produzem no máximo um success/failure e uma perda de Cadência por disparo. Success do root bloqueia failures tardios de irmãos.
 - **Reservation→commit em lançamento:** Cadência/janela de A0053/A0054 só são consumidas quando o projectile/root correlacionado é realmente criado; cancelamento tardio ou ausência de spawn faz rollback.
 - **Commit causal:** consumo irreversível de recurso/estado condicionado a resultado real ocorre no commit pós-hit confirmado; cancelamento/dano zero não deixa estado fantasma. Para ações de lançamento A0053/A0054, o commit específico ocorre somente após criação confirmada do projectile/root correlacionado.
@@ -204,6 +204,18 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - Auditoria: `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0031-A0040.md`.
 - Runtime não foi alterado pelo Chat 1.
 
+### A0031–A0040 — Chat 2 retroativo
+- Seleção refeita por ordem do usuário desde A0001: A0001–A0020 já confirmadas; A0021–A0030 já passaram por Chat 2/Chat 3; A0031–A0040 foi o primeiro lote exato elegível.
+- Branch/PR: `feat/chat2-a0031-a0040-retro-implementation` / #359.
+- A0031/A0037: removidas tags paralelas MACE/SCYTHE e Mastery convertida para discovery finita +10/tipo; `minecraft:mace` é o único fallback vanilla; SCYTHE externa exige provider/mapping explícito.
+- A0035: `P-A0035-02` resolvida por reservation→POST commit; Trauma/Sunder não são mais consumidos/criados no PRE.
+- A0036: `P-A0036-02/-03` implementadas no consumer/sequencing; Sunder precisa preexistir ao root; Descompasso possui ambos debuffs/cooldown/cleanup. `P-A0036-01` permanece fail-closed porque heavy receipt inequívoco continua ausente.
+- A0040: `P-A0040-01` resolvida por prune periódico bounded de marcas expiradas.
+- A0032/A0033/A0034/A0038/A0039 preservam os pipelines aprovados e passam a operar sobre classificação de família endurecida.
+- Auditoria Chat 2: `audits/AUDITORIA-A0031-A0040-IMPLEMENTACAO-CHAT2.md`.
+- Estado: **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**; A0036 permanece intencionalmente `CÓDIGO PRESENTE EM FAIL-CLOSED`.
+- Chat 2 não declara `IMPLEMENTAÇÃO CONFIRMADA` nem faz merge; a bateria final pertence ao Chat 3.
+
 ## Chat 1 — lote exato A0041–A0050
 
 **Estado:** `LOTE FECHADO NO DESIGN; BLOCKERS RUNTIME CATALOGADOS`.
@@ -245,6 +257,20 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 13. `P-A0041-50-TEST-01` — GameTest/harness server-side provider-present/absent para SCYTHE/BOW/CROSSBOW, Mastery, Focus, availability, dedup, lifecycle e multiplayer.
 
 O estado de CI/merge da PR de fechamento é confirmado no GitHub; este arquivo registra o design canônico e as pendências técnicas. Após o merge da PR #243, o ciclo A0041–A0050 está operacionalmente encerrado e o próximo lote só pode começar mediante novo comando do usuário.
+
+### A0041–A0050 — Chat 2 retroativo
+- Seleção sequencial autorizada pelo usuário após o lote A0031–A0040; predecessor técnico é a PR #359.
+- Branch/PR: `feat/chat2-a0041-a0050-retro-implementation` / #360.
+- `P-A0041-01` resolvida: PRE reserva uma Marca Madura por actor+target+root; repetição do mesmo root fica neutra; POST Epic Fight com dano positivo consome; zero/outcome inválido descarta; hit letal não depende de `target.isAlive()`.
+- A0042 ficou `UNAVAILABLE_NODE`: o repositório ainda não publica `eligible_kill` anti-abuso canônico, portanto nenhum listener de death pode armar a perk por heurística local.
+- A0043/A0049 reutilizam `PhysicalProjectileMasteryEvents` + `WeaponMasteryMilestoneRuntime`; `tree_architecture/combat.json` atual já está alinhado a `epicfight:bow`/`epicfight:crossbow`.
+- A0044 e A0050 ficaram `UNAVAILABLE_NODE` antes de replay/mutação; ranks legados são mascarados no runtime.
+- A0047 herda A0044 e teve o projectile-speed sintético removido; A0048 herda a indisponibilidade de A0047.
+- A0045 preserva o resolvedor crítico canônico. A0046 mantém apenas producers comprovados; heavy-impact/body scalars continuam component-wise fail-closed.
+- Auditoria Chat 2: `audits/AUDITORIA-CHAT2-A0041-A0050-IMPLEMENTACAO.md`.
+- TDD focal: CI RED inicial #3031 comprovou o consumo PRE antigo de A0041; uma segunda rodada encontrou repetição de modifier no mesmo root e o state foi endurecido para primeira observação apenas.
+- Estado: **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**, com A0042/A0044/A0047/A0048/A0050 explicitamente em fail-closed operacional.
+- A PR #360 deve ser validada pelo Chat 3 após/sobre a PR #359 para preservar a classificação SCYTHE/Mastery/lifecycle do predecessor. O Chat 2 não declara `IMPLEMENTAÇÃO CONFIRMADA`, não faz merge e não substitui a bateria final do Chat 3.
 
 ## Chat 1 — lote exato A0051–A0060
 
