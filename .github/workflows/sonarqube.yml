@@ -46,57 +46,6 @@ jobs:
             ${{ runner.os }}-sonar
 
       - name: Build and analyze with SonarQube
-        shell: bash
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          set -o pipefail
-          mkdir -p build
-          ./gradlew --no-daemon build sonar --info --stacktrace 2>&1 | tee build/sonar-gradle.log
-
-      - name: Upload Gradle diagnostic on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: sonar-gradle-diagnostic-${{ github.sha }}
-          path: |
-            build/sonar-gradle.log
-            build/test-results/testJunit/**
-            build/reports/tests/testJunit/**
-          if-no-files-found: warn
-          retention-days: 1
-
-      - name: Diagnostic - print JaCoCo coverage for A0031-A0040 changed classes
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          import xml.etree.ElementTree as ET
-          report = 'build/reports/jacoco/test/jacocoTestReport.xml'
-          targets = {
-              'dev/gustavopere/rpgskilltree/core/A0021A0040CombatPolicy',
-              'dev/gustavopere/rpgskilltree/core/A0021A0040CombatState',
-              'dev/gustavopere/rpgskilltree/core/A0021A0040MasteryPolicy',
-              'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0021A0040EpicFightHooks',
-              'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0021A0040MasteryHooks',
-          }
-          root = ET.parse(report).getroot()
-          found = set()
-          for package in root.findall('package'):
-              for clazz in package.findall('class'):
-                  name = clazz.attrib['name']
-                  if name not in targets:
-                      continue
-                  found.add(name)
-                  counters = {c.attrib['type']: (int(c.attrib['missed']), int(c.attrib['covered'])) for c in clazz.findall('counter')}
-                  parts = []
-                  for metric in ('LINE', 'BRANCH', 'INSTRUCTION'):
-                      missed, covered = counters.get(metric, (0, 0))
-                      total = missed + covered
-                      pct = 100.0 if total == 0 else 100.0 * covered / total
-                      parts.append(f'{metric.lower()}={covered}/{total}({pct:.1f}%)')
-                  print('JACOCO_CLASS', name, *parts)
-          missing = targets - found
-          for name in sorted(missing):
-              print('JACOCO_CLASS_MISSING', name)
-          PY
+        run: ./gradlew --no-daemon build sonar --info
