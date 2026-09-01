@@ -156,16 +156,20 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
 
     public static DepositRegistry fromTag(CompoundTag tag) {
         Objects.requireNonNull(tag, "tag");
-        int schemaVersion = readSchemaVersion(tag);
-        if (schemaVersion > CURRENT_SCHEMA_VERSION) {
+        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)) {
             LOGGER.error(
-                    "Cannot read geological deposit SavedData schema {} (current {}). Preserving payload fail-closed/read-only; no saved entries will be overwritten.",
-                    schemaVersion,
-                    CURRENT_SCHEMA_VERSION);
+                    "Geological deposit SavedData has an invalid schema_version NBT type. Preserving payload fail-closed/read-only.");
             return preserveReadOnly(tag);
         }
-        if (schemaVersion < LEGACY_SCHEMA_VERSION) {
-            LOGGER.warn("Invalid geological deposit SavedData schema {}. Treating payload as legacy v1.", schemaVersion);
+
+        int schemaVersion = readSchemaVersion(tag);
+        if (schemaVersion < LEGACY_SCHEMA_VERSION || schemaVersion > CURRENT_SCHEMA_VERSION) {
+            LOGGER.error(
+                    "Cannot read geological deposit SavedData schema {} (supported {}..{}). Preserving payload fail-closed/read-only; no saved entries will be overwritten.",
+                    schemaVersion,
+                    LEGACY_SCHEMA_VERSION,
+                    CURRENT_SCHEMA_VERSION);
+            return preserveReadOnly(tag);
         }
 
         if (tag.contains(DEPOSITS) && !tag.contains(DEPOSITS, CompoundTag.TAG_LIST)) {
