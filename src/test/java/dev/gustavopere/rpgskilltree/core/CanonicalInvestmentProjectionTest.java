@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree.core;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public final class CanonicalInvestmentProjectionTest {
@@ -10,6 +11,9 @@ public final class CanonicalInvestmentProjectionTest {
         purchasedRanksAndMasteryThresholdsProjectDeterministically();
         unknownPurchasedNodesFailClosedWithoutIdInference();
         canonicalClassResolutionRefusesIncompleteProjection();
+        canonicalClassResolutionResolvesCompleteProjection();
+        metadataContractsRejectInvalidContributionData();
+        projectionContractsRejectImpossibleResolution();
         System.out.println("CanonicalInvestmentProjectionTest: PASS");
     }
 
@@ -90,6 +94,82 @@ public final class CanonicalInvestmentProjectionTest {
         eq(false, projection.complete());
         eq(Set.of("rpgskilltree:unknown"), projection.missingNodeIds());
         eq(false, projection.resolution().isPresent());
+    }
+
+    private static void canonicalClassResolutionResolvesCompleteProjection() {
+        ProgressionState state = ProgressionState.empty()
+            .withPassiveNodes(PassiveNodeProgress.of(Map.of("rpgskilltree:arcane_001", 2)));
+        ArchetypeDefinition mage = new ArchetypeDefinition(
+            "rpgskilltree:mage", 10, 1,
+            Map.of(ProgressionDomain.ARCANE, 12), Set.of(), Set.of()
+        );
+
+        CanonicalClassResolutionProjection projection = ClassResolutionQueryService.resolveCanonical(
+            state,
+            Map.of(
+                "rpgskilltree:arcane_001",
+                new NodeInvestmentMetadata(Map.of(ProgressionDomain.ARCANE, 6), Set.of("school:arcane"))
+            ),
+            List.of(),
+            List.of(mage)
+        );
+
+        eq(true, projection.complete());
+        eq(Set.of(), projection.missingNodeIds());
+        eq(true, projection.resolution().isPresent());
+        eq(Optional.of("rpgskilltree:mage"), projection.resolution().orElseThrow().primaryClassId());
+    }
+
+    private static void metadataContractsRejectInvalidContributionData() {
+        NodeInvestmentMetadata neutral = NodeInvestmentMetadata.neutral();
+        eq(Map.of(), neutral.domainWeightsPerRank());
+        eq(Set.of(), neutral.tags());
+
+        expectThrows(IllegalArgumentException.class, () ->
+            new NodeInvestmentMetadata(Map.of(ProgressionDomain.ARCANE, 0), Set.of())
+        );
+        expectThrows(IllegalArgumentException.class, () ->
+            new NodeInvestmentMetadata(Map.of(), Set.of(" "))
+        );
+        expectThrows(IllegalArgumentException.class, () ->
+            new MasteryInvestmentMetadata(" ", 1, Map.of(), Set.of())
+        );
+        expectThrows(IllegalArgumentException.class, () ->
+            new MasteryInvestmentMetadata("rpgskilltree:spellcraft", 0, Map.of(), Set.of())
+        );
+        expectThrows(IllegalArgumentException.class, () ->
+            new MasteryInvestmentMetadata(
+                "rpgskilltree:spellcraft", 1,
+                Map.of(ProgressionDomain.ARCANE, 0), Set.of()
+            )
+        );
+        expectThrows(IllegalArgumentException.class, () ->
+            new MasteryInvestmentMetadata("rpgskilltree:spellcraft", 1, Map.of(), Set.of(" "))
+        );
+    }
+
+    private static void projectionContractsRejectImpossibleResolution() {
+        InvestmentState empty = InvestmentState.of(List.of());
+        CanonicalInvestmentProjection projection = new CanonicalInvestmentProjection(empty, Set.of("missing"));
+        eq(false, projection.complete());
+
+        expectThrows(IllegalArgumentException.class, () ->
+            new CanonicalClassResolutionProjection(
+                empty,
+                Set.of("missing"),
+                Optional.of(EmergentClassResolution.fromOrderedMatches(List.of()))
+            )
+        );
+    }
+
+    private static void expectThrows(Class<? extends Throwable> expected, Runnable action) {
+        try {
+            action.run();
+        } catch (Throwable failure) {
+            if (expected.isInstance(failure)) return;
+            throw new AssertionError("expected " + expected.getSimpleName() + " but got " + failure, failure);
+        }
+        throw new AssertionError("expected " + expected.getSimpleName() + " to be thrown");
     }
 
     private static void eq(Object expected, Object actual) {
