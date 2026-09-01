@@ -1,0 +1,58 @@
+name: Battle Mage Epic Compatibility
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: battle-mage-epic-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle cache
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Run Battle Mage GameTests with Epic stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          LOG="$PWD/build/battle-mage-epic-gametest.log"
+          rm -f "$LOG"
+          set +e
+          ./gradlew --no-daemon runGameTestServer -PbattleMageEpicRuntime=true >"$LOG" 2>&1
+          GRADLE_STATUS=$?
+          set -e
+          cat "$LOG"
+          if [[ "$GRADLE_STATUS" -ne 0 ]]; then
+            echo "Battle Mage Epic GameTest Gradle invocation failed with status $GRADLE_STATUS"
+            exit "$GRADLE_STATUS"
+          fi
+          python3 scripts/verify-battle-mage-epic-runtime.py "$LOG"
+
+      - name: Upload Epic GameTest log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: battle-mage-epic-gametest-${{ github.sha }}
+          path: build/battle-mage-epic-gametest.log
+          if-no-files-found: ignore
+          retention-days: 14
