@@ -30,12 +30,6 @@ jobs:
             "$sonar/api/settings/values?component=${SONAR_PROJECT}&keys=sonar.leak.period,sonar.leak.period.type" \
             | jq '{settings: [.settings[] | {key, value, inherited}]}'
 
-          echo '=== Setting definitions exposed by SonarCloud ==='
-          curl --silent --show-error --fail --location \
-            --header "$auth" \
-            "$sonar/api/settings/list_definitions?component=${SONAR_PROJECT}" \
-            | jq '{definitions: [.definitions[] | select(.key == "sonar.leak.period" or .key == "sonar.leak.period.type") | {key, name, description, type, defaultValue, options, category, subCategory}]}'
-
           echo '=== Latest main analyses ==='
           curl --silent --show-error --fail --location \
             --header "$auth" \
@@ -43,38 +37,50 @@ jobs:
             | jq '{analyses: [.analyses[] | {key, date, projectVersion, revision, manualNewCodePeriodBaseline, events}]}'
 
           echo '=== Fetch current New Code issues ==='
-          page1="$(curl --silent --show-error --fail --location \
+          curl --silent --show-error --fail --location \
             --header "$auth" \
-            "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&issueStatuses=OPEN,CONFIRMED&ps=500&p=1")"
-          total="$(echo "$page1" | jq -r '.paging.total // .total')"
+            "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&issueStatuses=OPEN,CONFIRMED&ps=500&p=1" \
+            > "$RUNNER_TEMP/new-issues-1.json"
+
+          total="$(jq -r '.paging.total // .total' "$RUNNER_TEMP/new-issues-1.json")"
           if [ "$total" -gt 500 ]; then
-            page2="$(curl --silent --show-error --fail --location \
+            curl --silent --show-error --fail --location \
               --header "$auth" \
-              "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&issueStatuses=OPEN,CONFIRMED&ps=500&p=2")"
+              "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&issueStatuses=OPEN,CONFIRMED&ps=500&p=2" \
+              > "$RUNNER_TEMP/new-issues-2.json"
           else
-            page2='{"issues":[]}'
+            printf '%s\n' '{"issues":[]}' > "$RUNNER_TEMP/new-issues-2.json"
           fi
 
-          issues="$(jq -n --argjson a "$page1" --argjson b "$page2" '{total: ($a.paging.total // $a.total), issues: ($a.issues + $b.issues)}')"
-          echo "$issues" | jq '{
+          jq -s '{total: (.[0].paging.total // .[0].total), issues: (.[0].issues + .[1].issues)}' \
+            "$RUNNER_TEMP/new-issues-1.json" "$RUNNER_TEMP/new-issues-2.json" \
+            > "$RUNNER_TEMP/new-issues-all.json"
+
+          jq '{
             total,
             returned: (.issues | length),
             creationDateCounts: ([.issues[].creationDate[0:10]] | group_by(.) | map({date: .[0], count: length})),
             updateDateCounts: ([.issues[].updateDate[0:10]] | group_by(.) | map({date: .[0], count: length})),
             earliestCreation: ([.issues[].creationDate] | min),
             latestCreation: ([.issues[].creationDate] | max),
-            topRules: ([.issues[].rule] | group_by(.) | map({rule: .[0], count: length}) | sort_by(-.count) | .[:15]),
-            topComponents: ([.issues[].component] | group_by(.) | map({component: .[0], count: length}) | sort_by(-.count) | .[:15])
-          }'
+            topRules: ([.issues[].rule] | sort | group_by(.) | map({rule: .[0], count: length}) | sort_by(-.count) | .[:15]),
+            topComponents: ([.issues[].component] | sort | group_by(.) | map({component: .[0], count: length}) | sort_by(-.count) | .[:15])
+          }' "$RUNNER_TEMP/new-issues-all.json"
 
           echo '=== Sample oldest and newest New Code issues ==='
-          echo "$issues" | jq '{
+          jq '{
             oldest: ([.issues[] | {key, rule, component, line, creationDate, updateDate, message}] | sort_by(.creationDate) | .[:5]),
             newest: ([.issues[] | {key, rule, component, line, creationDate, updateDate, message}] | sort_by(.creationDate) | reverse | .[:5])
-          }'
+          }' "$RUNNER_TEMP/new-issues-all.json"
 
           echo '=== All open/confirmed issue count for comparison ==='
           curl --silent --show-error --fail --location \
             --header "$auth" \
             "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&issueStatuses=OPEN,CONFIRMED&ps=1" \
             | jq '{allOpenConfirmed: (.paging.total // .total)}'
+
+          echo '=== Relevant new-code metrics exposed by SonarCloud ==='
+          curl --silent --show-error --fail --location \
+            --header "$auth" \
+            "$sonar/api/metrics/search?ps=500&p=1" \
+            | jq '{metrics: [.metrics[] | select(.key | startswith("new_")) | {key, name, type, domain}]}'
