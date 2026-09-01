@@ -27,6 +27,7 @@ def main() -> int:
     build = text("build.gradle")
     create_sable_acceptance = text(".github/workflows/volcanoes-create-sable-acceptance.yml")
     minecolonies_acceptance = text(".github/workflows/volcanoes-minecolonies-claim-acceptance.yml")
+    full_pack_installer = text(".github/scripts/volcanoes/install_full_pack_acceptance.sh")
 
     stray_mods = []
     stale_subscribers = []
@@ -97,6 +98,21 @@ def main() -> int:
             "MineColonies acceptance must download current file 8765939")
     require("minecolonies-1.1.1375-1.21.1-snapshot.jar" in minecolonies_acceptance,
             "MineColonies acceptance must expose the current 1.1.1375 runtime filename")
+
+    require("modrinth_version 44pLdPGg '1.3.2+mc1.21.1'" in full_pack_installer,
+            "Full-pack acceptance must pin current Create Aeronautics 1.3.2 (Modrinth 44pLdPGg)")
+    require("minecolonies-245506/8765939" in full_pack_installer,
+            "Full-pack acceptance must download current MineColonies file 8765939")
+    require("minecolonies-1.1.1375-1.21.1-snapshot.jar" in full_pack_installer,
+            "Full-pack acceptance must expose current MineColonies 1.1.1375 runtime filename")
+
+    for obsolete in (
+        "Vzp221Un",
+        "minecolonies-245506/8621898",
+        "minecolonies-1.1.1374-1.21.1-snapshot.jar",
+    ):
+        require(obsolete not in create_sable_acceptance + minecolonies_acceptance + full_pack_installer,
+                f"obsolete Volcanoes acceptance provider pin remains: {obsolete}")
 
     print("VOLCANOES_CONSOLIDATION_CONTRACT status=GREEN mod=rpgskilltree namespace=volcanoes jars=1 providers=current")
     return 0
