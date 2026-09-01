@@ -1,0 +1,26 @@
+allprojects { project ->
+    afterEvaluate {
+        if (!project.plugins.hasPlugin('jacoco')) {
+            return
+        }
+
+        def coverageName = (project.findProperty('gameTestCoverageName') ?: 'gametest').toString()
+        def coverageFile = project.layout.buildDirectory.file("jacoco/${coverageName}.exec").get().asFile
+        def jacocoAgent = project.configurations.jacocoAgent.singleFile
+        def runsExtension = project.extensions.findByName('runs')
+
+        if (runsExtension != null) {
+            runsExtension.named('gameTestServer').configure { run ->
+                run.jvmArguments(
+                    "-javaagent:${jacocoAgent.absolutePath}=destfile=${coverageFile.absolutePath},append=false,inclnolocationclasses=false,dumponexit=true,output=file,jmx=false,includes=dev.gustavopere.*"
+                )
+            }
+        }
+
+        project.tasks.named('jacocoTestReport').configure { report ->
+            report.executionData.from(project.fileTree(project.layout.buildDirectory.dir('jacoco')) {
+                include '*.exec'
+            })
+        }
+    }
+}
