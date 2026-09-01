@@ -26,7 +26,7 @@ public final class ClientKeyMappings {
         "key.categories.rpgskilltree"
     );
     private static final KeyMapping TOGGLE_MARTIAL_STANCE = new KeyMapping(
-        "key.rpgskilltree.toggle_martial_stance",
+        "Alternar Postura Marcial",
         GLFW.GLFW_KEY_G,
         "key.categories.rpgskilltree"
     );
