@@ -36,16 +36,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0028 | Abalo Crescente | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL VALIDADA FAIL-CLOSED pela PR #248 e preservada na reauditoria #315 | `P-A0028-01`: Epic Fight 21.17.3.1 sem receipt causal separado de guard pressure |
 | A0029 | Quebra de Postura | APROVADO + boundary | NÃO CONFIRMADA; fail-closed preservado; `P-A0029-02` causal latente corrigida na PR #315 | `P-A0029-01`: Epic Fight 21.17.3.1 sem heavy receipt inequívoco |
 | A0030 | Maestria de Martelos — Golpe Demolidor | APROVADO + boundary | NÃO CONFIRMADA; fail-closed preservado; `P-A0030-02` causal latente corrigida na PR #315 | `P-A0030-01`: guard-break causal attacker-side + heavy receipt ausentes |
-| A0031 | Treino com Maças I | APROVADO após correção | NÃO CONFIRMADA | `P-A0031-01`: remover tag MACE; `P-A0031-02`: Mastery anti-farm |
-| A0032 | Treino com Maças II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende de `P-A0031-01` |
-| A0033 | Precisão com Maças | APROVADO + boundary | CÓDIGO PRESENTE no crítico canônico | depende de `P-A0031-01` |
-| A0034 | Trauma Contundente | APROVADO + boundary | CÓDIGO PRESENTE no fallback Armor física | rotas extras guard/posture permanecem fail-closed sem receipt |
-| A0035 | Armadura Fendida | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0035-01`: boss Witherstein; `P-A0035-02`: commit Trauma/Sunder somente após hit confirmado |
-| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | NÃO CONFIRMADA | `P-A0036-01`: heavy receipt; `P-A0036-02`: aplicar Descompasso; `P-A0036-03`: Sunder deve preexistir ao root; depende de Mastery anti-farm |
-| A0037 | Treino com Foices I | APROVADO após correção | NÃO CONFIRMADA | `P-A0037-01`: remover tag SCYTHE; `P-A0037-02`: Mastery anti-farm |
-| A0038 | Treino com Foices II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende de `P-A0037-01` |
-| A0039 | Precisão com Foices | APROVADO + boundary | CÓDIGO PRESENTE no crítico canônico | depende de `P-A0037-01` |
-| A0040 | Marca da Ceifa | APROVADO | IMPLEMENTAÇÃO PARCIAL | `P-A0040-01`: cleanup de marca em target unload/despawn; depende de família SCYTHE segura |
+| A0031 | Treino com Maças I | APROVADO após correção | VALIDAÇÃO CHAT 3 CONCLUÍDA na PR #252; família MACE segura e Mastery anti-farm confirmadas; aguardando merge | nenhuma |
+| A0032 | Treino com Maças II | APROVADO | VALIDAÇÃO CHAT 3 CONCLUÍDA na PR #252 via attack-speed provider-native e família MACE segura; aguardando merge | nenhuma |
+| A0033 | Precisão com Maças | APROVADO + boundary | VALIDAÇÃO CHAT 3 CONCLUÍDA na PR #252 no crítico/root canônico; aguardando merge | nenhuma |
+| A0034 | Trauma Contundente | APROVADO + boundary | VALIDAÇÃO CHAT 3 CONCLUÍDA NO FALLBACK CANÔNICO Armor física na PR #252; aguardando merge | nenhuma bloqueante; guard/posture extras seguem fail-closed sem receipt |
+| A0035 | Armadura Fendida | APROVADO + boundary | VALIDAÇÃO CHAT 3 CONCLUÍDA no contrato genérico na PR #252; `P-A0035-02` resolvida por reservation→POST commit; aguardando merge | nenhuma bloqueante; `P-A0035-01` Witherstein específico segue sem hook seguro |
+| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | NÃO CONFIRMADA / FAIL-CLOSED CORRETO; infraestrutura Descompasso e sequenciamento validada na PR #252; `P-A0036-02/-03` resolvidas | `P-A0036-01`: Epic Fight 21.17.3.1 sem heavy receipt inequívoco |
+| A0037 | Treino com Foices I | APROVADO após correção | VALIDAÇÃO CHAT 3 CONCLUÍDA na PR #252; família SCYTHE segura e Mastery anti-farm confirmadas; aguardando merge | nenhuma |
+| A0038 | Treino com Foices II | APROVADO | VALIDAÇÃO CHAT 3 CONCLUÍDA na PR #252 via attack-speed provider-native e família SCYTHE segura; aguardando merge | nenhuma |
+| A0039 | Precisão com Foices | APROVADO + boundary | VALIDAÇÃO CHAT 3 CONCLUÍDA na PR #252 no crítico/root canônico; aguardando merge | nenhuma |
+| A0040 | Marca da Ceifa | APROVADO | VALIDAÇÃO CHAT 3 CONCLUÍDA na PR #252; `P-A0040-01` resolvida por pruning bounded; aguardando merge | nenhuma |
 | A0041 | Corte de Ceifa | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0041-01`: reservation→commit da Marca somente após hit confirmado; depende de família SCYTHE segura |
 | A0042 | Maestria de Foices — Colheita de Batalha | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0042-01`: `eligible_kill` anti-abuso; `P-A0042-02`: unificar/deduplicar producers de death; teste transversal |
 | A0043 | Treino com Arcos I | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0043-01`: Mastery BOW por discovery finita; `P-A0043-02`: reconciliar `combat:bow` vs `epicfight:bow`; teste provider-present |
@@ -53,7 +53,7 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0045 | Precisão com Arcos | APROVADO | CÓDIGO PRESENTE no crítico canônico | depende de A0043 alcançar Mastery 60 e de prova gameplay transversal |
 | A0046 | Foco de Mira | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0046-01`: heavy-impact −25 Focus; `P-A0046-02`: escalares corporais reais; teste provider-present |
 | A0047 | Distância Dominada | APROVADO após review | IMPLEMENTAÇÃO PARCIAL | `P-A0047-01`: remover projectile speed fabricado; depende de `P-A0044-01`; A0044 indisponível torna A0047 não comprável |
-| A0048 | Maestria de Arcos — Tiro Preparado | APROVADO | CÓDIGO PRESENTE | depende de Mastery BOW 80 e prova gameplay/provider-present |
+| A0048 | Maestria de Arcos — Tiro Preparado | APROVADO | CÓDIGO PRESENTE | depende de Mastery BOW 80 e de prova gameplay transversal |
 | A0049 | Treino com Bestas I | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0049-01`: Mastery CROSSBOW por discovery finita; `P-A0049-02`: reconciliar `combat:crossbow` vs `epicfight:crossbow`; teste provider-present |
 | A0050 | Treino com Bestas II | APROVADO após review | NÃO CONFORME: availability fail-closed não implementada | `P-A0050-01`: sem reload/preparation binding, nó deve ser indisponível/não comprável e não pode gastar pontos |
 | A0051 | Precisão com Bestas | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL no crítico CROSSBOW | `P-A0051-01`: exigir launch provenance; herda `P-A0049-01/-02` producer/ledger CROSSBOW |
@@ -203,6 +203,20 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - Design fechado; review incorporou `P-A0035-02`, `P-A0036-03` e `P-A0040-01`.
 - Auditoria: `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0031-A0040.md`.
 - Runtime não foi alterado pelo Chat 1.
+
+### A0031–A0040 — Chat 3
+- PR #252 continua a mesma linha de implementação do Chat 2 e cobre exclusivamente o lote exato A0031–A0040; A0041+ permaneceu fora do escopo.
+- A0031/A0037: classificadores paralelos MACE/SCYTHE foram removidos; famílias externas dependem de capability/categoria provider-native ou mapping explicitamente versionado; MACE mantém somente `minecraft:mace` como fallback vanilla exato.
+- `combat:mace` e `combat:scythe` passaram a discovery finita +10 por tipo hostil inédito, sem XP repetível por hit.
+- A0035: `P-A0035-02` resolvida por reservation→POST commit; PRE não consome Trauma nem marca Sundered, cancelamento/zero faz rollback e modifier de Armor só nasce após commit válido.
+- A0036: `P-A0036-02/-03` resolvidas; Descompasso e sequenciamento por `preexistingSunder` estão implementados/testados, porém `P-A0036-01` permanece bloqueante porque Epic Fight 21.17.3.1 não expõe heavy receipt inequívoco; a perk continua NÃO CONFIRMADA / FAIL-CLOSED CORRETO.
+- A0040: `P-A0040-01` resolvida por pruning bounded periódico de marcas expiradas, sem depender de novo lookup do target.
+- `P-A0035-01` permanece não bloqueante: Witherstein específico continua sem registry id/tag canônico comprovado; nenhuma heurística por nome/tema foi introduzida.
+- Baseline comportamental validada antes da reconciliação documental: HEAD `4813b2fd5110f0ec523aaf38e9935f8e1bb894c3`, RPG Skill Tree CI #2879 GREEN com Core, JUnit 5, `testJunit` NeoForge explícito, GameTests, validações, build, JAR e dedicated-server smoke; SonarQube Cloud #114 GREEN.
+- O harness foi endurecido: JaCoCo usa execution data determinístico (`build/jacoco/test.exec` + `build/jacoco/testJunit.exec`) e o workflow principal executa `testJunit` explicitamente.
+- `STATUS.md` desta branch foi reconciliado sobre `main@66fcec7b163320cfb0d79943969aae33f3adf862` para preservar integralmente atualizações concorrentes e eliminar a deleção acidental de 307 linhas detectada no diff pré-merge.
+- Auditoria Chat 3: `audits/AUDITORIA-CHAT3-A0031-A0040-PENDENCIAS-TECNICAS.md`.
+- Fechamento operacional restante: CI verde da HEAD reconciliada, PR #252 não-draft/mergeable, merge em `main` e confirmação fresca do SHA da `main`; depois disso o Chat 3 deve PARAR.
 
 ## Chat 1 — lote exato A0041–A0050
 
@@ -386,7 +400,7 @@ O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A
 10. `P-A0080-01` — unavailable até receipt de ataque hostil efetivamente evitado; `P-A0080-02` dedup Epic Fight/ParCool; `P-A0080-03` consumption reservation→POST commit.
 11. `P-A0071-80-TEST-01` — GameTest/harness transversal de classification, availability, root dedup, POST commit/rollback, stance networking, thermal all-or-nothing, movement/stationary, dodge-success, lifecycle, multiplayer e dedicated server.
 
-O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN e confirmação da `main@616a0dd36b943562ea64fa354a1a2fc49b09c77b`. O Chat 1 deve PARAR aqui; A0081–A0090 só pode começar mediante novo comando do usuário.
+O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN e confirmação da `main@616a0dd36b943562ea64fa354a1a2fc49b09c77b`. O Chat 1 deve PARAR aqui; A0081–A0090 só foi iniciado após novo comando do usuário.
 
 ## Chat 1 — lote exato A0081–A0090
 
@@ -435,59 +449,3 @@ O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN 
 15. `P-A0081-90-TEST-01` — GameTest/harness transversal provider-present/absent para sustain, native heal correlation, magic/element/DoT availability, BodyProvider, attributes, lifecycle, dedup, multiplayer e dedicated server.
 
 O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige a PR desta auditoria, review resolvido, CI GREEN, merge e confirmação fresca da `main`; após isso o Chat 1 deve **PARAR**. A0091–A0100 só pode começar mediante novo comando do usuário.
-
-## Chat 1 — lote adiantado exato A0200–A0209
-
-**Estado:** `LOTE FECHADO NO DESIGN; 10/10 UNAVAILABLE_NODE ATÉ CAPABILITIES/DEPENDÊNCIAS; PR/CI/MERGE EM FECHAMENTO OPERACIONAL`.
-
-Este lote foi iniciado diretamente em A0200 por ordem do usuário, enquanto outros chats ainda trabalham na faixa dos 100.
-
-**Exceção de sequência:** a ordem específica do usuário autorizou este lote adiantado apesar da regra permanente 26. A exceção vale somente para design/documentação A0200–A0209: nenhum catálogo/runtime foi adicionado, nenhum node ficou comprável, A0091–A0199/Fases 0–4 não foram fechadas e A0210+ continua proibido sem novo comando.
-
-- **INÍCIO:** A0200.
-- **FIM:** A0209.
-- **Quantidade:** 10 perks consecutivas.
-- **Faixa A0091–A0199:** não foi pulada nem fechada; permanece fora deste ciclo.
-- **Dependências anteriores explicitamente abertas:** A0144, A0148–A0155, A0198 e A0199.
-- **Base de abertura da branch:** RPG Skill Tree `main@80df3a2e626e85a386f12560a3672cb0486e426c`.
-- **Main reconciliada na freshness final de 2026-09-01:** `54b6cdc1de923732c3ec7d99c660f8fdefdb0610`; o delta classifica transações PRE→POST A0023/A0024/A0029/A0030, classes/Mastery/datapack sync, consolidação nativa e reconciliação pós-merge do Volcanoes e manutenção Compêndio/CI/Sonar, sem nova capability A0200–A0209.
-- **Freshness documental final:** RPG `main@54b6cdc1de923732c3ec7d99c660f8fdefdb0610`; Volcanoes standalone/source `eaddc3232dfc600780769f4a5e7e45ff1e50181c` consolidado no RPG pela PR #308 e reconciliado pela PR #337; Enshrouded `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec`; Black Arcana `e89df6dc2c204c269d8f1811c6b3f309644c864a`.
-- **Delta canônico:** `guides/projects/15-capability-delta-a0200-a0209.md`.
-- **Notion fetch fresco:** 10/10.
-- **Notion alterado:** A0200–A0209, 10/10.
-- **Re-fetch pós-escrita:** 10/10 PASS em 2026-08-31.
-- **Dossiês criados:** 10/10.
-- **Nove eixos / 18 critérios:** PASS no design para 10/10.
-- **Runtime alterado neste Chat 1:** nenhum.
-- **Arquivo canônico:** `audits/AUDITORIA-A0200-A0209.md`.
-- **A0210+:** não iniciado.
-
-### Decisões bloqueantes
-
-1. A0200/A0201 dependem de classifier hostil ELDRITCH, bucket e outcome ledger inexistentes.
-2. A0202/A0203/A0204 dependem de school lane ELDRITCH exata, HealingResolver/categories e upstream.
-3. A0205 depende de A0144/A0148–A0155 e direct ENDER classifier.
-4. A0206/A0208 dependem de receipt causal de deslocamento próprio; `EntityTeleportEvent` genérico é insuficiente.
-5. A0207 depende de hostile ENDER classifier e bucket.
-6. A0209 depende de producer ENDER e direct melee component hook.
-7. O producer Iron's normaliza escola addon como `namespace/path`, mas `MasteryLaneCatalog` rejeita essa forma hoje. Não usar aliases genéricos nem remover namespace.
-8. Black Arcana atual integra hazard/progression/mastery e forecast de Arcane Resistance, mas não publica `BLACK_ARCANA_ELDRITCH_OUTCOME`.
-9. A0023/A0024/A0029/A0030 usam reservation→POST commit/rollback na main atual e permanecem cobertas por suas próprias perks; A0029/A0030 continuam fail-closed sem receipts provider-native.
-10. Volcanoes agora é subsistema nativo do artefato RPG com facade read-only, mas seus serviços de geologia/atmosfera/pressão não publicam ELDRITCH/ENDER.
-
-### Pendências destinadas ao Chat 2
-
-1. `P-A0200-01/-05` — unavailable-node, classifier e bucket ELDRITCH.
-2. `P-A0201-01/-05` — Anchor por outcomes distintos, transaction e lifecycle.
-3. `P-A0202-01/-06` — upstream, school lane, HealingResolver e melee component.
-4. `P-A0203-01/-06` — upstream, três categories, healing/state e ledger.
-5. `P-A0204-01/-05` — terminal availability, lane80, Gate A/B/C e respec.
-6. `P-A0205-01/-05` — upstream, direct ENDER outcome e magic pipeline.
-7. `P-A0206-01/-05` — exact lane, displacement receipt e Rupture.
-8. `P-A0207-01/-04` — hostile ENDER classifier/bucket.
-9. `P-A0208-01/-05` — Veil, displacement ordering e transaction.
-10. `P-A0209-01/-05` — producer ENDER, direct melee component e lanes.
-11. `P-A0200-09-01` — reconciliar school addon namespace/path no MasteryLaneCatalog com migração/testes.
-12. `P-A0200-09-TEST-01` — matriz transversal provider present/absent, upstream, availability, IDs, rollback, teleport provenance, lifecycle, multiplayer e dedicated server.
-
-O design A0200–A0209 está fechado sem implementar runtime. O fechamento operacional exige PR, review resolvido, CI GREEN, merge e confirmação fresca da `main`. Depois disso o Chat 1 deve **PARAR**.
