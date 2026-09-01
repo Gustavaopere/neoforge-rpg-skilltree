@@ -4,6 +4,8 @@ import dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicy.BowShot;
 import dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicy.CombatResult;
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy;
+import dev.gustavopere.rpgskilltree.core.A0061A0080CombatState;
+import dev.gustavopere.rpgskilltree.core.A0061A0080CombatState.FirstBloodReservation;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.NotionCombatPerkRules;
@@ -159,11 +161,13 @@ public final class A0041A0060ProjectileEvents {
 
         CombatPerkRanks ranks = A0061A0080RuntimeState.ranks(player);
         LivingEntity target = event.getEntity();
+        String targetId = target.getUUID().toString();
         TargetClass targetClass = MartialTargetClassifier.classify(target);
         long now = now(player);
+        A0061A0080CombatState state = A0061A0080RuntimeState.state();
         A0061A0080CombatPolicy.HitFacts facts = new A0061A0080CombatPolicy.HitFacts(
             meta.actorId,
-            target.getUUID().toString(),
+            targetId,
             meta.rootActionId,
             healthFraction(target),
             targetClass == TargetClass.BOSS,
@@ -176,32 +180,57 @@ public final class A0041A0060ProjectileEvents {
             now
         );
         A0061A0080CombatPolicy.PhysicalModifiers general = A0061A0080CombatPolicy.beforePhysicalHit(
-            facts, ranks, A0061A0080RuntimeState.state()
+            facts, ranks, state
         );
-        A0061A0080CombatPolicy.SpecialResult execution = A0061A0080CombatPolicy.execution(
-            meta.actorId,
-            target.getUUID().toString(),
-            meta.rootActionId,
-            facts.preImpactHealthFraction(),
-            targetClass == TargetClass.BOSS,
-            ranks,
-            A0061A0080RuntimeState.state(),
-            false,
-            now
-        );
-        A0061A0080CombatPolicy.SpecialResult firstBlood = A0061A0080CombatPolicy.firstBlood(
-            meta.actorId,
-            target.getUUID().toString(),
-            meta.rootActionId,
-            facts.preImpactHealthFraction(),
-            ranks,
-            A0061A0080RuntimeState.state(),
-            false,
-            now
-        );
-        double opportunity = A0061A0080CombatPolicy.consumeOpportunityDamageMultiplier(
-            meta.actorId, meta.rootActionId, ranks, A0061A0080RuntimeState.state(), now
-        );
+
+        boolean executionReserved = ranks.rank("A0073") > 0
+            && state.reserveExecution(meta.actorId, targetId, meta.rootActionId, now);
+        boolean executionArmCandidate = ranks.rank("A0073") > 0
+            && !executionReserved
+            && facts.preImpactHealthFraction() < 0.20D
+            && !state.executionWindowActive(meta.actorId, targetId, now)
+            && !state.executionCoolingDown(meta.actorId, targetId, now)
+            && state.reserveExecutionArmCandidate(meta.actorId, targetId, meta.rootActionId, now);
+        A0061A0080CombatPolicy.SpecialResult execution = executionReserved
+            ? new A0061A0080CombatPolicy.SpecialResult(
+                true,
+                targetClass == TargetClass.BOSS ? 1.09D : 1.18D,
+                1.0D,
+                0.0D
+            )
+            : A0061A0080CombatPolicy.SpecialResult.neutral();
+
+        boolean firstBloodTracked = ranks.rank("A0074") > 0;
+        FirstBloodReservation firstBloodReservation = firstBloodTracked
+            ? state.reserveFirstBlood(
+                meta.actorId,
+                targetId,
+                meta.rootActionId,
+                facts.preImpactHealthFraction(),
+                now
+            )
+            : FirstBloodReservation.NONE;
+        A0061A0080CombatPolicy.SpecialResult firstBlood = firstBloodReservation == FirstBloodReservation.FINISHER
+            ? new A0061A0080CombatPolicy.SpecialResult(true, 1.10D, 1.0D, 0.0D)
+            : A0061A0080CombatPolicy.SpecialResult.neutral();
+
+        boolean opportunityReserved = ranks.rank("A0080") > 0
+            && state.reserveOpportunity(meta.actorId, meta.rootActionId, now);
+        double opportunity = opportunityReserved ? 1.15D : 1.0D;
+
+        if (executionReserved || executionArmCandidate || firstBloodTracked || opportunityReserved) {
+            meta.pendingPerkHits.put(
+                targetId,
+                new PendingPerkHit(
+                    meta.rootActionId,
+                    executionReserved,
+                    executionArmCandidate,
+                    firstBloodReservation,
+                    firstBloodTracked,
+                    opportunityReserved
+                )
+            );
+        }
 
         double multiplier = meta.baseDamageMultiplier
             * (meta.criticalMultiplierNeeded ? 1.5D : 1.0D)
@@ -316,7 +345,7 @@ public final class A0041A0060ProjectileEvents {
             track.start(now, yaw, pitch);
         } else {
             double dyaw = Math.abs(Mth.wrapDegrees(yaw - track.lastYaw));
-            double dpitch = Math.abs(pitch - track.lastPitch);
+            double dpitch = Math.abs(track.lastPitch - pitch);
             double angular = Math.hypot(dyaw, dpitch);
             track.pushAngular(angular);
             if (track.angularSum > 45.0D && now >= track.abruptCooldownUntil && rank > 0) {
@@ -416,6 +445,13 @@ public final class A0041A0060ProjectileEvents {
         }
     }
 
+    static PendingPerkHit takePendingPerkHit(AbstractArrow arrow, String targetId) {
+        synchronized (PROJECTILES) {
+            ProjectileMeta meta = PROJECTILES.get(arrow);
+            return meta == null ? null : meta.pendingPerkHits.remove(targetId);
+        }
+    }
+
     @SubscribeEvent
     public static void onLogout(PlayerEvent.PlayerLoggedOutEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) clear(player);
@@ -464,6 +500,15 @@ public final class A0041A0060ProjectileEvents {
     private static String actor(ServerPlayer player) { return player.getUUID().toString(); }
     private static long now(ServerPlayer player) { return player.level().getGameTime() * 50L; }
 
+    static record PendingPerkHit(
+        String rootActionId,
+        boolean executionReserved,
+        boolean executionArmCandidate,
+        FirstBloodReservation firstBloodReservation,
+        boolean firstBloodTracked,
+        boolean opportunityReserved
+    ) {}
+
     private static final class PendingLaunch {
         final WeaponFamily family;
         final String rootActionId;
@@ -511,6 +556,7 @@ public final class A0041A0060ProjectileEvents {
         final boolean stationaryAtLaunch;
         final BowShot bowShot;
         final CombatResult crossbowShot;
+        final Map<String, PendingPerkHit> pendingPerkHits = new HashMap<>();
         boolean specialImpactClaimed;
         boolean focusHitCredited;
         boolean confirmedHit;
