@@ -74,7 +74,7 @@ public final class A0021A0040MasteryHooks {
         ItemStack stack = player.getMainHandItem();
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(stack);
         if (providerFamily(capability).isPresent()) return;
-        Optional<WeaponFamily> family = vanillaFamily(stack);
+        Optional<WeaponFamily> family = vanillaFallbackFamily(stack);
         if (family.isEmpty()) return;
         synchronized (VANILLA_PENDING) {
             VANILLA_PENDING.computeIfAbsent(event.getSource(), ignored -> new HashMap<>())
@@ -158,7 +158,7 @@ public final class A0021A0040MasteryHooks {
     }
 
     /** Vanilla fallback exists only for the exact Minecraft mace identity; SCYTHE has no vanilla fallback. */
-    private static Optional<WeaponFamily> vanillaFamily(ItemStack stack) {
+    private static Optional<WeaponFamily> vanillaFallbackFamily(ItemStack stack) {
         return stack.is(Items.MACE) ? Optional.of(WeaponFamily.MACE) : Optional.empty();
     }
 
