@@ -35,6 +35,12 @@ public final class BattleMageReloadAndAuthorityGameTests {
     private static final String ABSTRACT_SPELL = "io.redspace.ironsspellbooks.api.spells.AbstractSpell";
     private static final String SPELL_REGISTRY = "io.redspace.ironsspellbooks.api.registry.SpellRegistry";
     private static final String MAGIC_DATA = "io.redspace.ironsspellbooks.api.magic.MagicData";
+    private static final String CONTROLLER =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageCombatController";
+    private static final String JOB_BATTLE_MAGE =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.JobBattleMage";
+    private static final String REGISTRATION =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.MineColoniesBattleMageRegistration";
 
     private BattleMageReloadAndAuthorityGameTests() {
     }
@@ -65,12 +71,14 @@ public final class BattleMageReloadAndAuthorityGameTests {
             LivingEntity hostile = (LivingEntity) hostileEntity;
             float hostileHealthBefore = hostile.getHealth();
 
-            helper.assertTrue(BattleMageCombatController.hasSupportedSpell((com.minecolonies.core.entity.citizen.EntityCitizen) citizen),
+            Class<?> controller = Class.forName(CONTROLLER);
+            Class<?> entityCitizen = Class.forName(ENTITY_CITIZEN);
+            boolean hasSupported = (boolean) controller.getMethod("hasSupportedSpell", entityCitizen)
+                .invoke(null, citizen);
+            helper.assertTrue(hasSupported,
                 "heal-only spellbook must still be recognized as containing an explicitly supported spell");
-            boolean began = BattleMageCombatController.tryBeginCast(
-                (com.minecolonies.core.entity.citizen.EntityCitizen) citizen,
-                hostile
-            );
+            boolean began = (boolean) controller.getMethod("tryBeginCast", entityCitizen, LivingEntity.class)
+                .invoke(null, citizen, hostile);
             helper.assertTrue(!began,
                 "controller must not fabricate magic_arrow/fireball merely because hostile profiles exist globally");
             helper.assertTrue(!(boolean) magicData.getClass().getMethod("isCasting").invoke(magicData),
@@ -105,9 +113,10 @@ public final class BattleMageReloadAndAuthorityGameTests {
             Object inventory = citizenInventory(citizen);
             ItemStack book = spellbook("irons_spellbooks:magic_arrow", 1);
             inventory.getClass().getMethod("setStackInSlot", int.class, ItemStack.class).invoke(inventory, 0, book);
-            var battleMage = (com.minecolonies.core.entity.citizen.EntityCitizen) citizen;
 
-            helper.assertTrue(BattleMageCombatController.hasSupportedSpell(battleMage),
+            Class<?> controller = Class.forName(CONTROLLER);
+            Class<?> entityCitizen = Class.forName(ENTITY_CITIZEN);
+            helper.assertTrue((boolean) controller.getMethod("hasSupportedSpell", entityCitizen).invoke(null, citizen),
                 "baseline datapack profiles must support magic_arrow for the online Battle Mage");
 
             BattleMageSpellProfileReloader reloader = new BattleMageSpellProfileReloader();
@@ -130,7 +139,7 @@ public final class BattleMageReloadAndAuthorityGameTests {
                     """)
             );
             reloader.apply(healOnly, null, null);
-            helper.assertTrue(!BattleMageCombatController.hasSupportedSpell(battleMage),
+            helper.assertTrue(!(boolean) controller.getMethod("hasSupportedSpell", entityCitizen).invoke(null, citizen),
                 "online citizen must immediately stop treating removed magic_arrow profile as supported");
             helper.assertTrue(inventory.getClass().getMethod("getStackInSlot", int.class).invoke(inventory, 0) == book,
                 "profile reload must not replace or mutate the authoritative spellbook ItemStack");
@@ -179,7 +188,7 @@ public final class BattleMageReloadAndAuthorityGameTests {
                     }
                     """)
             ), null, null);
-            helper.assertTrue(BattleMageCombatController.hasSupportedSpell(battleMage),
+            helper.assertTrue((boolean) controller.getMethod("hasSupportedSpell", entityCitizen).invoke(null, citizen),
                 "same online citizen must see a later valid magic_arrow profile reload without restart");
             helper.assertTrue(citizen.isAlive(), "profile reload must not replace the live MineColonies citizen entity");
             helper.succeed();
@@ -226,7 +235,7 @@ public final class BattleMageReloadAndAuthorityGameTests {
         addBuilding.setAccessible(true);
         addBuilding.invoke(structureManager, tower);
 
-        Object producer = MineColoniesBattleMageRegistration.guardTowerWorkModule();
+        Object producer = Class.forName(REGISTRATION).getMethod("guardTowerWorkModule").invoke(null);
         Object workModule = tower.getClass().getMethod("getModule", moduleProducerType).invoke(tower, producer);
         if (workModule == null) throw new AssertionError("Guard Tower missing Battle Mage work module");
         boolean assigned = (boolean) workModule.getClass().getMethod("assignCitizen", Class.forName(CITIZEN_DATA))
@@ -235,7 +244,7 @@ public final class BattleMageReloadAndAuthorityGameTests {
 
         Object jobHandler = citizen.getClass().getMethod("getCitizenJobHandler").invoke(citizen);
         Object job = jobHandler.getClass().getMethod("getColonyJob").invoke(jobHandler);
-        if (!(job instanceof JobBattleMage)) {
+        if (!Class.forName(JOB_BATTLE_MAGE).isInstance(job)) {
             throw new AssertionError("native Guard Tower assignment did not create JobBattleMage");
         }
         return new HiredFixture(manager, colony, citizenData, citizen);
