@@ -54,6 +54,22 @@ jobs:
       - name: Sonar workflow policy test
         run: python3 scripts/test_sonar_workflow_policy.py
 
+      - name: Clear legacy manual Sonar baseline once
+        if: github.event_name == 'pull_request' && github.head_ref == 'fix/sonar-new-code-baseline-race'
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --silent --show-error --fail \
+            --request POST \
+            --header "Authorization: Bearer ${SONAR_TOKEN}" \
+            --data-urlencode "project=${SONAR_PROJECT}" \
+            --data-urlencode 'branch=main' \
+            'https://sonarcloud.io/api/project_analyses/unset_baseline'
+          echo "Legacy manual Sonar New Code baseline cleared for main."
+
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
