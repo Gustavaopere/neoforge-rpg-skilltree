@@ -35,6 +35,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - A0091–A0100 — fechamento documental na PR #326 (`docs/chat1-a0091-a0100-audit`); permanece aberto para continuação pelo Chat 2/Chat 3 e ainda não integra a `main`.
 - A0101–A0110 — fechamento documental na PR #340 (`docs/chat1-a0101-a0110-audit`); permanece aberto para continuação pelo Chat 2/Chat 3 e ainda não integra a `main`.
 - `AUDITORIA-A0111-A0120.md` — fechamento de design A0111–A0120, incluindo manutenção/durabilidade fail-closed, `ToolIdentityLedger` anti-clone, Attunement ausente, BodyCostResolver METABOLIC/HYDRATION e provider gate TWR.
+- `AUDITORIA-A0111-A0120-CI-NOTE.md` — evidência da exceção de orquestração no `Volcanoes Consolidated Release Readiness`: 9/10 siblings verdes e `Volcanoes Consolidation Contract` ausente por `paths:` incompatível com PR docs-only.
 
 ## Auditorias de delta da modlist — Chat 1
 
