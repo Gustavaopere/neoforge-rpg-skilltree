@@ -15,3 +15,4 @@
 - [Matriz de cobertura e delta de capacidades](12-capability-delta-coverage.md)
 - [Delta e baseline A0071–A0080](13-capability-delta-a0071-a0080.md)
 - [Delta e baseline A0081–A0090](14-capability-delta-a0081-a0090.md)
+- [Delta e baseline A0200–A0209](15-capability-delta-a0200-a0209.md)
