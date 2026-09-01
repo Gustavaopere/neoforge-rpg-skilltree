@@ -3,6 +3,7 @@ package dev.gustavopere.volcanoes.tectonics;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 import org.slf4j.Logger;
@@ -89,7 +90,7 @@ public final class TectonicRegionState extends SavedData {
 
     public static TectonicRegionState fromTag(CompoundTag tag) {
         Objects.requireNonNull(tag, "tag");
-        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)) {
+        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, Tag.TAG_INT)) {
             LOGGER.error(
                     "Tectonic stress SavedData has an invalid schema_version NBT type. Preserving payload fail-closed/read-only.");
             return preserveReadOnly(tag);
