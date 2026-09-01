@@ -167,8 +167,6 @@ tasks.named('wrapper', Wrapper).configure {
 }
 
 def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFightAdapterCoverageJUnitTest'
-def plainTestClasses = tasks.named('compileTestJava', JavaCompile).flatMap { it.destinationDirectory }
-def neoForgeTestClasses = tasks.named('compileNeoForgeTestJava', JavaCompile).flatMap { it.destinationDirectory }
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
@@ -180,15 +178,11 @@ tasks.withType(Test).configureEach {
 }
 
 tasks.named('test', Test).configure {
-    // Keep the stock Test task on the plain source set. Task-graph wiring below reapplies the
-    // compiler's actual destination after NeoGradle has completed its lazy run configuration.
-    testClassesDirs = files(plainTestClasses)
+    testClassesDirs = sourceSets.test.output.classesDirs
     classpath = sourceSets.test.runtimeClasspath
 }
 
-// NeoGradle materializes the run-backed test task lazily. Keep its filter narrow; the task-graph
-// hook below only restores the compiled class directory and leaves NeoGradle's loaded-game
-// classpath/system properties intact.
+// NeoGradle materializes the run-backed test task lazily. Keep its filter narrow.
 tasks.matching { it.name == 'testJunit' }.configureEach {
     if (it instanceof Test) {
         filter {
@@ -197,21 +191,67 @@ tasks.matching { it.name == 'testJunit' }.configureEach {
     }
 }
 
-// NeoGradle can rewrite Test inputs after ordinary task configuration. Rebind the compiler's
-// actual output directories only after the execution graph is final, before skip/no-source
-// evaluation. This keeps plain Gradle JUnit and the loaded NeoForge adapter genuinely separate.
+// NeoGradle can rewrite Test inputs after ordinary task configuration. Rebind concrete compiler
+// destinations only after the execution graph is final, before skip/no-source evaluation.
 gradle.taskGraph.whenReady { graph ->
     Test plain = tasks.named('test', Test).get()
     if (graph.hasTask(plain)) {
-        plain.setTestClassesDirs(files(plainTestClasses))
+        File plainDir = tasks.named('compileTestJava', JavaCompile).get().destinationDirectory.get().asFile
+        plain.setTestClassesDirs(files(plainDir))
         plain.setClasspath(sourceSets.test.runtimeClasspath)
     }
 
     Task loadedCandidate = tasks.findByName('testJunit')
     if (loadedCandidate instanceof Test && graph.hasTask(loadedCandidate)) {
-        Test loaded = (Test) loadedCandidate
-        loaded.setTestClassesDirs(files(neoForgeTestClasses))
+        File loadedDir = tasks.named('compileNeoForgeTestJava', JavaCompile).get().destinationDirectory.get().asFile
+        ((Test) loadedCandidate).setTestClassesDirs(files(loadedDir))
     }
+}
+
+def diagnosePlainJUnitInputs = tasks.register('diagnosePlainJUnitInputs') {
+    group = 'verification'
+    dependsOn tasks.named('compileTestJava')
+    doLast {
+        Test plain = tasks.named('test', Test).get()
+        File classesDir = tasks.named('compileTestJava', JavaCompile).get().destinationDirectory.get().asFile
+        def candidateFiles = plain.candidateClassFiles.files
+        logger.lifecycle("JUnit diagnostics plain: compileDir=${classesDir}")
+        logger.lifecycle("JUnit diagnostics plain: testClassesDirs=${plain.testClassesDirs.files}")
+        logger.lifecycle("JUnit diagnostics plain: compiledClasses=${fileTree(classesDir).matching { include '**/*.class' }.files.size()}")
+        logger.lifecycle("JUnit diagnostics plain: candidateClassFiles=${candidateFiles.size()}")
+        logger.lifecycle("JUnit diagnostics plain: taskIncludes=${plain.includes}; taskExcludes=${plain.excludes}")
+        logger.lifecycle("JUnit diagnostics plain: filterIncludes=${plain.filter.includePatterns}; filterExcludes=${plain.filter.excludePatterns}")
+        logger.lifecycle("JUnit diagnostics plain: candidateSample=${candidateFiles.take(10)}")
+    }
+}
+
+def diagnoseNeoForgeJUnitInputs = tasks.register('diagnoseNeoForgeJUnitInputs') {
+    group = 'verification'
+    dependsOn tasks.named('compileNeoForgeTestJava')
+    doLast {
+        Task candidate = tasks.findByName('testJunit')
+        if (!(candidate instanceof Test)) {
+            throw new GradleException('JUnit diagnostics failed: :testJunit was not materialized as a Test task.')
+        }
+        Test loaded = (Test) candidate
+        File classesDir = tasks.named('compileNeoForgeTestJava', JavaCompile).get().destinationDirectory.get().asFile
+        def candidateFiles = loaded.candidateClassFiles.files
+        logger.lifecycle("JUnit diagnostics loaded: compileDir=${classesDir}")
+        logger.lifecycle("JUnit diagnostics loaded: testClassesDirs=${loaded.testClassesDirs.files}")
+        logger.lifecycle("JUnit diagnostics loaded: compiledClasses=${fileTree(classesDir).matching { include '**/*.class' }.files.size()}")
+        logger.lifecycle("JUnit diagnostics loaded: candidateClassFiles=${candidateFiles.size()}")
+        logger.lifecycle("JUnit diagnostics loaded: taskIncludes=${loaded.includes}; taskExcludes=${loaded.excludes}")
+        logger.lifecycle("JUnit diagnostics loaded: filterIncludes=${loaded.filter.includePatterns}; filterExcludes=${loaded.filter.excludePatterns}")
+        logger.lifecycle("JUnit diagnostics loaded: candidateSample=${candidateFiles.take(10)}")
+    }
+}
+
+tasks.named('test', Test).configure {
+    dependsOn diagnosePlainJUnitInputs
+}
+
+tasks.matching { it.name == 'testJunit' }.configureEach {
+    dependsOn diagnoseNeoForgeJUnitInputs
 }
 
 def verifyPlainJUnitExecution = tasks.register('verifyPlainJUnitExecution') {
@@ -222,7 +262,7 @@ def verifyPlainJUnitExecution = tasks.register('verifyPlainJUnitExecution') {
         File classesDir = tasks.named('compileTestJava', JavaCompile).get().destinationDirectory.get().asFile
         int classCount = fileTree(classesDir).matching { include '**/*.class' }.files.size()
         if (plain.state.noSource) {
-            throw new GradleException("JUnit gate failed: :test finished NO-SOURCE; compileTestJava destination=${classesDir}; compiledClasses=${classCount}.")
+            throw new GradleException("JUnit gate failed: :test finished NO-SOURCE; compileTestJava destination=${classesDir}; compiledClasses=${classCount}; candidateClassFiles=${plain.candidateClassFiles.files.size()}; testClassesDirs=${plain.testClassesDirs.files}; taskIncludes=${plain.includes}; taskExcludes=${plain.excludes}.")
         }
     }
 }
@@ -238,7 +278,8 @@ def verifyNeoForgeJUnitExecution = tasks.register('verifyNeoForgeJUnitExecution'
         File classesDir = tasks.named('compileNeoForgeTestJava', JavaCompile).get().destinationDirectory.get().asFile
         int classCount = fileTree(classesDir).matching { include '**/*.class' }.files.size()
         if (((Test) candidate).state.noSource) {
-            throw new GradleException("JUnit gate failed: :testJunit finished NO-SOURCE; compileNeoForgeTestJava destination=${classesDir}; compiledClasses=${classCount}.")
+            Test loaded = (Test) candidate
+            throw new GradleException("JUnit gate failed: :testJunit finished NO-SOURCE; compileNeoForgeTestJava destination=${classesDir}; compiledClasses=${classCount}; candidateClassFiles=${loaded.candidateClassFiles.files.size()}; testClassesDirs=${loaded.testClassesDirs.files}; taskIncludes=${loaded.includes}; taskExcludes=${loaded.excludes}.")
         }
     }
 }
@@ -266,7 +307,6 @@ tasks.named('jacocoTestReport').configure {
 }
 
 tasks.named('check').configure {
-    // Make `build` a real test gate even though NeoGradle creates testJunit from a run definition.
     dependsOn tasks.named('test')
     dependsOn 'testJunit'
 }
