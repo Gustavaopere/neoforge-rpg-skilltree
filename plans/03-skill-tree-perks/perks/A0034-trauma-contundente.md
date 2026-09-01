@@ -34,6 +34,6 @@ Nenhuma blocker permanece para o fallback Armor. Qualquer rota de guard/posture/
 ## Validação Chat 3 — PR #252
 
 - Regressões de A0035 verificam que Trauma não é consumido no PRE e que rollback de hit cancelado/dano zero preserva as cargas.
-- `RPG Skill Tree CI` #2806: JUnit 5, NeoForge GameTests, build e dedicated-server smoke **GREEN**.
-- `SonarQube Cloud` #41: **GREEN**.
+- `RPG Skill Tree CI` #2879 (run `33463430832`, HEAD `4813b2fd`): JUnit 5, **NeoForge JUnit adapter tests**, NeoForge GameTests, build e dedicated-server smoke **GREEN**.
+- `SonarQube Cloud` #114 (run `33463430893`, HEAD `4813b2fd`): **GREEN**.
 - Resultado: fallback canônico A0034 validado; apta ao merge da PR #252.
