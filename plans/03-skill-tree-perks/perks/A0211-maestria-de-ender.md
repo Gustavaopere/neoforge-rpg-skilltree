@@ -7,7 +7,7 @@
 - **Escopo desta entrega:** auditoria e design apenas; nenhum catálogo/runtime, compra, atributo ou integração foi implementado.
 - **Fonte canônica:** [registro A0211 no Catálogo Mestre do Notion](https://app.notion.com/3c569db9f0db81789ec5d0db77067a8e).
 - **Leitura fresca do registro:** 2026-09-01; página individual buscada antes da auditoria.
-- **Persistência verificada:** Custo Extra=0 e correções pós-review de ENDER_MASTERY_LANE_V1/SPECIALIST_GATE_RESOLVER_V1 foram relidas na página individual.
+- **Persistência verificada:** Custo Extra=0, correções pós-review e o delta de provider em <code>main@c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code> foram relidos na página individual.
 - **Dependências externas à faixa:** nenhuma dependência fora de A0200–A0299. Elas permanecem sinalizadas e não são presumidas como concluídas.
 - **Identidade preservada:** ENDER é classificação explícita de ação/componente. Não equivale a Void, dimensão End, teleporte genérico, deslocamento, frio ou estética dimensional.
 
@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | A0210 Afinidade de Ender + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + pelo menos uma rota profunda: A0206 =1 OU A0208 =1 OU A0209 ≥2. ENDER_MASTERY_LANE_V1 e SPECIALIST_GATE_RESOLVER_V1 são capabilities obrigatórias; requisitos locais não substituem Gate A/B/C. |
 | Pré-requisitos | A0210 Afinidade de Ender + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + pelo menos uma rota profunda entre A0206/A0208/A0209 + SPECIALIST_GATE_RESOLVER_V1 disponível. |
-| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS ENDER_MASTERY_LANE_V1 e SPECIALIST_GATE_RESOLVER_V1. A lane tem lane_id=rpgskilltree:ender e aceita somente IDs completos versionados de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3; nenhum alias agregado/namespace removido. O resolver é owner dos Gates A/B/C e PP semânticos; nenhum provider externo possui o gate. VERSION-STATUS: ambos os contratos não foram encontrados no runtime/main auditado em 2026-09-01. |
+| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS ENDER_MASTERY_LANE_V1 e SPECIALIST_GATE_RESOLVER_V1. A lane tem lane_id=rpgskilltree:ender e aceita somente IDs completos versionados de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3; nenhum alias agregado/namespace removido. O resolver é owner dos Gates A/B/C e PP semânticos; nenhum provider externo possui o gate. VERSION-STATUS: main@c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9 endurece a origem semântica de Mastery do Iron's, mas continua publicando apenas magic:casting, irons:casting e irons:{discipline}; não cria rpgskilltree:ender, mapping exato de addon nem SPECIALIST_GATE_RESOLVER_V1. Ambos os contratos permanecem ausentes. |
 | Efeito | Terminal exterior do corredor ENDER. Possuir A0211 satisfaz somente Gate C da Árvore de Especialista Ender. A Specialist Ender só é liberada quando SpecialistGateResolver confirmar simultaneamente fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:ENDER e A0211. Não concede Ruptura, teleporte, reposicionamento, afinidade térmica, dano ou resistência por si só. |
 | Escalonamento | 1 rank. Desbloqueio binário da especialização ENDER; não adiciona dano, mobilidade, teleporte, estado, recurso, duração, resistência, afinidade ou mitigação por si só. |
 | Gate | COMPRA DA TERMINAL: A0210 + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + (A0206=1 OU A0208=1 OU A0209≥2) + SPECIALIST_GATE_RESOLVER_V1 disponível; sem qualquer capability, A0211 é UNAVAILABLE_NODE/não comprável. DESBLOQUEIO SPECIALIST ENDER: Gate A = fundamentos exteriores exigidos; Gate B = ≥100 PP válidos em SPECIALIST_REGION:ENDER; Gate C = A0211 possuída. |
@@ -87,7 +87,7 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS ENDER_MASTERY_LANE_V1 e SPECIALIST_GATE_RESOLVER_V1. A lane tem lane_id=rpgskilltree:ender e aceita somente IDs completos versionados de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3; nenhum alias agregado/namespace removido. O resolver é owner dos Gates A/B/C e PP semânticos; nenhum provider externo possui o gate. VERSION-STATUS: ambos os contratos não foram encontrados no runtime/main auditado em 2026-09-01.
+RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS ENDER_MASTERY_LANE_V1 e SPECIALIST_GATE_RESOLVER_V1. A lane tem lane_id=rpgskilltree:ender e aceita somente IDs completos versionados de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3; nenhum alias agregado/namespace removido. O resolver é owner dos Gates A/B/C e PP semânticos; nenhum provider externo possui o gate. VERSION-STATUS: main@c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9 endurece a origem semântica de Mastery do Iron's, mas continua publicando apenas magic:casting, irons:casting e irons:{discipline}; não cria rpgskilltree:ender, mapping exato de addon nem SPECIALIST_GATE_RESOLVER_V1. Ambos os contratos permanecem ausentes.
 
 ### Disposição por família
 
@@ -100,7 +100,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS ENDER_MASTERY_LANE_V1 e SPECIALIST_GA
 
 | Projeto | Head auditado | Decisão para A0211 | Authority/boundary |
 |---|---|---|---|
-| RPG Skill Tree | <code>c1597a34787b602e85139d565b9c1e1eb3481cda</code> | OWNER/CONSUMER CANÔNICO | Possui a perk, gates, PP/Mastery e composição RPG; deve delegar ao provider nativo e falhar fechado. |
+| RPG Skill Tree | <code>c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code> | OWNER/CONSUMER CANÔNICO | Possui a perk, gates, PP/Mastery e composição RPG; deve delegar ao provider nativo e falhar fechado. |
 | Volcanoes | <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code> | NÃO INTEGRAR — nenhuma capability do head auditado publica a assinatura/receipt exigida por esta perk. | Nenhuma escrita em geologia, atmosfera, pressão ou worldgen é autorizada. |
 | Enshrouded | <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code> | NÃO INTEGRAR | Shroud/Exposure, apresentação e ecologia são semânticas próprias; não classificam esta ação/perk. |
 | Black Arcana | <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code> | NÃO INTEGRAR — cast/danger/forecast do head atual não publica a assinatura desta perk; apresentação e domínios planejados não criam provider. | Arcane/Corruption Resistance, Strain, Backlash e forecast permanecem provider-owned e distintos. |
@@ -239,8 +239,8 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS ENDER_MASTERY_LANE_V1 e SPECIALIST_GA
 
 - Página: [A0211 — Maestria de Ender](https://app.notion.com/3c569db9f0db81789ec5d0db77067a8e)
 - Data source: collection://ade1ec0c-b055-4b84-8004-45ae80c45119
-- Operações materiais: Custo Extra vazio para 0; contrato/gate/fallback pós-review corrigidos para ENDER_MASTERY_LANE_V1 + SPECIALIST_GATE_RESOLVER_V1 fail-closed.
-- Verificação: fetch individual pós-escrita e pós-review em 2026-09-01 confirmou Custo Extra=0 e os contracts/gates/fallbacks corrigidos.
+- Operações materiais: Custo Extra vazio para 0; contrato/gate/fallback pós-review corrigidos para ENDER_MASTERY_LANE_V1 + SPECIALIST_GATE_RESOLVER_V1 fail-closed; Provider/Mods reconciliado com <code>main@c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code>.
+- Verificação: fetch individual pós-escrita, pós-review e pós-delta em 2026-09-01 confirmou Custo Extra=0, contracts/gates/fallbacks corrigidos e a ausência persistente dos dois contratos.
 - Os demais valores materiais desta página são transcritos integralmente na seção 2.
 - A página não possui corpo editorial; a autoridade é o conjunto de propriedades do catálogo e suas fórmulas.
 

@@ -505,10 +505,10 @@ O usuário autorizou explicitamente o Chat 1 a trabalhar de A0200 a A0299 em um 
 - **Outros chats/upstream:** A0144–A0176, A0198 e A0199 não são presumidos como concluídos.
 - **Notion fetch fresco:** 100/100 páginas individuais.
 - **Notion alterado:** Custo Extra vazio para 0 em 100/100.
-- **Re-fetch pós-escrita:** 100/100 PASS em 2026-09-01; A0210/A0211/A0218 relidas novamente após as correções pós-review.
+- **Re-fetch pós-escrita:** 100/100 PASS em 2026-09-01; A0210/A0211/A0218 relidas após as correções pós-review; A0210/A0211 relidas novamente após o delta de Mastery da PR #335.
 - **Dossiês individuais:** 100/100, cada um com 21 propriedades, providers, quatro projetos próprios, testes, nove eixos e 18 critérios.
 - **Classificação:** 13 UNAVAILABLE_NODE atuais; 68 bloqueadas por capability/contrato futuro; 19 sem blocker nomeado, mas ainda sem implementação confirmada.
-- **Freshness dos projetos:** RPG <code>eed066e418a9968bcfbbd61df32dcfbf2683ca37</code>; Volcanoes <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code>; Enshrouded <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code>; Black Arcana <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code>.
+- **Freshness dos projetos:** RPG <code>c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code>; Volcanoes <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code>; Enshrouded <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code>; Black Arcana <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code>.
 - **Delta canônico:** guides/projects/16-capability-delta-a0200-a0299.md.
 - **Auditoria canônica:** audits/AUDITORIA-A0200-A0299.md.
 - **Runtime alterado:** nenhum.

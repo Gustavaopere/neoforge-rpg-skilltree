@@ -11,7 +11,7 @@ A faixa A0200–A0299 foi auditada perk por perk contra o Catálogo Mestre do No
 - **Exceção de ciclo:** o usuário autorizou explicitamente esta entrega especial de 100 perks para o Chat 1.
 - **Notion:** 100 páginas individuais buscadas antes da decisão.
 - **Correção persistida:** Custo Extra estava vazio em 100/100; foi normalizado para 0 em 100/100.
-- **Re-fetch pós-escrita:** 100/100 páginas confirmaram Custo Extra=0; A0210, A0211 e A0218 também foram relidas após a correção dos contratos pós-review.
+- **Re-fetch pós-escrita:** 100/100 páginas confirmaram Custo Extra=0; A0210, A0211 e A0218 também foram relidas após a correção dos contratos pós-review; A0210/A0211 foram relidas outra vez após reconciliar o delta de Mastery da <code>main@c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code>.
 - **Dossiês individuais:** 100/100 presentes em plans/03-skill-tree-perks/perks.
 - **Runtime:** nenhum arquivo de implementação foi alterado; este ciclo é exclusivamente auditoria/design.
 - **Limite:** A0300 não foi iniciada. A menção em A0298 identifica somente a sucessora downstream/capstone final, não uma dependência de A0298.
@@ -47,7 +47,7 @@ Os 81 registros com bloqueio de capability não foram redesenhados para um bônu
 | Fonte | Evidência usada | Decisão |
 |---|---|---|
 | Catálogo Mestre do Notion | data source collection://ade1ec0c-b055-4b84-8004-45ae80c45119; fetch e refetch individual | autoridade para propriedades canônicas |
-| RPG Skill Tree | <code>eed066e418a9968bcfbbd61df32dcfbf2683ca37</code> | owner de perks/gates/ledgers; delta posterior limitado ao workflow Sonar, sem implementação A0210–A0299 |
+| RPG Skill Tree | <code>c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code> | Iron's Mastery agora restringe a origem semântica do cast, mas ainda publica ledgers genéricos/discipline; não cria perk runtime, <code>rpgskilltree:ender</code> nem resolver de gates |
 | Volcanoes | <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code> | sem delta; geologia/vulcanismo/atmosfera não classificam magia EARTH/FIRE |
 | Enshrouded | <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code> | delta de accessibility client-side e hardening de reload; não cria provider para a faixa |
 | Black Arcana | <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code> | delta de preflight/forecast/HUD read-only; não cria outcome ELDRITCH/elemental |
@@ -259,7 +259,7 @@ Os nomes acima são especificações de boundary. Eles não são afirmações de
 4. **Topologia:** 100/100 registram árvore, ramo, camada, função, PP regionais e border hopping.
 5. **Especializações:** terminals/fundamentals/Gate A-B-C e refund order preservados quando aplicáveis.
 6. **PT-BR:** 100/100.
-7. **Notion completo:** 100/100 após Custo Extra=0 e refetch; A0210/A0211/A0218 confirmadas novamente após congelar <code>ENDER_MASTERY_LANE_V1</code>/<code>SPECIALIST_GATE_RESOLVER_V1</code>.
+7. **Notion completo:** 100/100 após Custo Extra=0 e refetch; A0210/A0211/A0218 confirmadas novamente após congelar <code>ENDER_MASTERY_LANE_V1</code>/<code>SPECIALIST_GATE_RESOLVER_V1</code>; A0210/A0211 relidas após registrar o delta <code>c92304bb</code> sem remover o bloqueio.
 8. **NeoVitae:** 0 referências operacionais.
 9. **Providers/projetos próprios:** perk→provider e provider→árvore documentados em 100/100; capabilities ausentes não foram inventadas.
 

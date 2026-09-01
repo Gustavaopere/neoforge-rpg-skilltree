@@ -7,7 +7,7 @@
 - **Escopo desta entrega:** auditoria e design apenas; nenhum catálogo/runtime, compra, atributo ou integração foi implementado.
 - **Fonte canônica:** [registro A0210 no Catálogo Mestre do Notion](https://app.notion.com/3c569db9f0db81629795cf485b78342f).
 - **Leitura fresca do registro:** 2026-09-01; página individual buscada antes da auditoria.
-- **Persistência verificada:** Custo Extra=0 e correções pós-review de ENDER_MASTERY_LANE_V1 foram relidas na página individual.
+- **Persistência verificada:** Custo Extra=0, correções pós-review e o delta de provider em <code>main@c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code> foram relidos na página individual.
 - **Dependências externas à faixa:** nenhuma dependência fora de A0200–A0299. Elas permanecem sinalizadas e não são presumidas como concluídas.
 - **Identidade preservada:** ENDER é classificação explícita de ação/componente. Não equivale a Void, dimensão End, teleporte genérico, deslocamento, frio ou estética dimensional.
 
@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | A0205 Dano de Ender I ≥ 3 ranks + mastery_value(rpgskilltree:ender) ≥ 30 publicado por ENDER_MASTERY_LANE_V1 + pelo menos um dos seguintes: A0206 = 1 rank, A0208 = 1 rank ou A0209 ≥ 1 rank. A lane só recebe ações ENDER reais por mapping versionado do ID completo do provider; ponte defensiva isolada, alias genérico ou soma de schools não mapeadas não basta. |
 | Pré-requisitos | A0205 Dano de Ender I ≥ 3 ranks + ENDER_MASTERY_LANE_V1 disponível com mastery_value(rpgskilltree:ender) ≥30 + pelo menos um caminho secundário entre A0206/A0208/A0209. |
-| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACT ENDER_MASTERY_LANE_V1. OWNER: RPG Mastery service; LANE_ID: rpgskilltree:ender; PRODUCERS: adapters versionados que mapeiem o ID completo SchoolType.getId()/action id de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3 sem remover namespace/path; DEDUP: uma ação causal, um crédito; EXCLUSÕES: Void, teleporte, End, estética e alias agregado; VERSION-STATUS: contrato/representação de addon ainda não existem no MasteryLaneCatalog da main auditada em 2026-09-01. Cold Sweat 2.4.2 é owner térmico somente quando o adapter da ação expuser parcel térmico frio explícito. |
+| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACT ENDER_MASTERY_LANE_V1. OWNER: RPG Mastery service; LANE_ID: rpgskilltree:ender; PRODUCERS: adapters versionados que mapeiem o ID completo SchoolType.getId()/action id de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3 sem remover namespace/path; DEDUP: uma ação causal, um crédito; EXCLUSÕES: Void, teleporte, End, estética e alias agregado; VERSION-STATUS: main@c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9 endurece a elegibilidade de SpellOnCastEvent e preserva os ledgers magic:casting, irons:casting e irons:{discipline}, mas não publica rpgskilltree:ender, mapping exato dos IDs completos ou lane de addon; ENDER_MASTERY_LANE_V1 permanece ausente. Cold Sweat 2.4.2 é owner térmico somente quando o adapter da ação expuser parcel térmico frio explícito. |
 | Efeito | Afinidade de Ender reduz em 25% o deslocamento da temperatura corporal para frio causado por conjurações ENDER próprias e em 10% o deslocamento térmico frio compatível causado por exposição mágica ENDER reconhecida. Não aumenta dano, mobilidade nem Resistência a Ender. |
 | Escalonamento | 1 rank. Parcel térmico frio de ação ENDER própria elegível: ×0,75. Exposição mágica ENDER externa reconhecida e termicamente fria: ×0,90. Dano ENDER, Resistência a Ender, mobilidade e demais fontes térmicas não são modificados. |
 | Gate | A0205 ≥3 + mastery_value(rpgskilltree:ender) ≥30 via ENDER_MASTERY_LANE_V1 + caminho secundário exigido + fonte ENDER cujo adapter versionado declare explicitamente parcel térmico frio. Sem lane canônica exata, A0210 é UNAVAILABLE_NODE/não comprável. Teleporte sem parcel térmico, dano ENDER neutro, Vazio e mudança de dimensão não recebem Afinidade. |
@@ -87,7 +87,7 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + FUTURE_PROVIDER_CONTRACT ENDER_MASTERY_LANE_V1. OWNER: RPG Mastery service; LANE_ID: rpgskilltree:ender; PRODUCERS: adapters versionados que mapeiem o ID completo SchoolType.getId()/action id de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3 sem remover namespace/path; DEDUP: uma ação causal, um crédito; EXCLUSÕES: Void, teleporte, End, estética e alias agregado; VERSION-STATUS: contrato/representação de addon ainda não existem no MasteryLaneCatalog da main auditada em 2026-09-01. Cold Sweat 2.4.2 é owner térmico somente quando o adapter da ação expuser parcel térmico frio explícito.
+RPG Skill Tree + FUTURE_PROVIDER_CONTRACT ENDER_MASTERY_LANE_V1. OWNER: RPG Mastery service; LANE_ID: rpgskilltree:ender; PRODUCERS: adapters versionados que mapeiem o ID completo SchoolType.getId()/action id de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3 sem remover namespace/path; DEDUP: uma ação causal, um crédito; EXCLUSÕES: Void, teleporte, End, estética e alias agregado; VERSION-STATUS: main@c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9 endurece a elegibilidade de SpellOnCastEvent e preserva os ledgers magic:casting, irons:casting e irons:{discipline}, mas não publica rpgskilltree:ender, mapping exato dos IDs completos ou lane de addon; ENDER_MASTERY_LANE_V1 permanece ausente. Cold Sweat 2.4.2 é owner térmico somente quando o adapter da ação expuser parcel térmico frio explícito.
 
 ### Disposição por família
 
@@ -100,7 +100,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACT ENDER_MASTERY_LANE_V1. OWNER: RPG Mast
 
 | Projeto | Head auditado | Decisão para A0210 | Authority/boundary |
 |---|---|---|---|
-| RPG Skill Tree | <code>c1597a34787b602e85139d565b9c1e1eb3481cda</code> | OWNER/CONSUMER CANÔNICO | Possui a perk, gates, PP/Mastery e composição RPG; deve delegar ao provider nativo e falhar fechado. |
+| RPG Skill Tree | <code>c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code> | OWNER/CONSUMER CANÔNICO | Possui a perk, gates, PP/Mastery e composição RPG; deve delegar ao provider nativo e falhar fechado. |
 | Volcanoes | <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code> | NÃO INTEGRAR — nenhuma capability do head auditado publica a assinatura/receipt exigida por esta perk. | Nenhuma escrita em geologia, atmosfera, pressão ou worldgen é autorizada. |
 | Enshrouded | <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code> | NÃO INTEGRAR | Shroud/Exposure, apresentação e ecologia são semânticas próprias; não classificam esta ação/perk. |
 | Black Arcana | <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code> | NÃO INTEGRAR — cast/danger/forecast do head atual não publica a assinatura desta perk; apresentação e domínios planejados não criam provider. | Arcane/Corruption Resistance, Strain, Backlash e forecast permanecem provider-owned e distintos. |
@@ -239,8 +239,8 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACT ENDER_MASTERY_LANE_V1. OWNER: RPG Mast
 
 - Página: [A0210 — Afinidade de Ender](https://app.notion.com/3c569db9f0db81629795cf485b78342f)
 - Data source: collection://ade1ec0c-b055-4b84-8004-45ae80c45119
-- Operações materiais: Custo Extra vazio para 0; contrato/gate/fallback pós-review corrigidos para ENDER_MASTERY_LANE_V1 fail-closed.
-- Verificação: fetch individual pós-escrita e pós-review em 2026-09-01 confirmou Custo Extra=0 e os contracts/gates/fallbacks corrigidos.
+- Operações materiais: Custo Extra vazio para 0; contrato/gate/fallback pós-review corrigidos para ENDER_MASTERY_LANE_V1 fail-closed; Provider/Mods reconciliado com <code>main@c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code>.
+- Verificação: fetch individual pós-escrita, pós-review e pós-delta em 2026-09-01 confirmou Custo Extra=0, contracts/gates/fallbacks corrigidos e a ausência persistente da lane exata.
 - Os demais valores materiais desta página são transcritos integralmente na seção 2.
 - A página não possui corpo editorial; a autoridade é o conjunto de propriedades do catálogo e suas fórmulas.
 
