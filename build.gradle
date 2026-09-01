@@ -162,15 +162,19 @@ tasks.named('test', Test).configure {
     }
 }
 
-tasks.named('testJunit', Test).configure {
-    filter {
-        includeTestsMatching epicFightAdapterCoverageTest
+// NeoGradle materializes the run-backed test task after this script's eager task lookup phase.
+// Configure it lazily so canonical junit {} wiring can create the task first.
+tasks.matching { it.name == 'testJunit' }.configureEach {
+    if (it instanceof Test) {
+        filter {
+            includeTestsMatching epicFightAdapterCoverageTest
+        }
     }
 }
 
 tasks.named('jacocoTestReport').configure {
     dependsOn tasks.named('test')
-    dependsOn tasks.named('testJunit')
+    dependsOn 'testJunit'
     // Avoid querying a live TaskCollection while Gradle resolves sonar task dependencies.
     // JaCoCo's documented default destination is build/jacoco/${taskName}.exec for Test tasks.
     executionData(
