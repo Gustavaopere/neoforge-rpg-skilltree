@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatState;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
+import dev.gustavopere.rpgskilltree.runtime.compat.A0079ForcedMovementCompat;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.common.util.FakePlayer;
 
@@ -33,7 +34,7 @@ public final class MartialStanceRuntime {
         return state.switchStance(actor, requested, now(player));
     }
 
-    /** Clears stale stance state immediately after rank loss/respec/rules availability changes. */
+    /** Clears stale stance state and invalidates stationary progress on proven/unknown transport. */
     public static void reconcile(ServerPlayer player) {
         if (!eligible(player)) return;
         CombatPerkRanks ranks = A0061A0080RuntimeState.ranks(player);
@@ -44,6 +45,10 @@ public final class MartialStanceRuntime {
             state.resetStance(actor);
         } else if (current == A0061A0080CombatState.Stance.CAUTIOUS && ranks.rank("A0077") <= 0) {
             state.resetStance(actor);
+        }
+
+        if (A0079ForcedMovementCompat.forcedOrUnclassified(player)) {
+            A0061A0080RuntimeState.stationary().invalidate(actor);
         }
     }
 
