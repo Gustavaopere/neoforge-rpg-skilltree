@@ -33,6 +33,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0071-A0080.md` — fechamento de design A0071–A0080, incluindo availability transitiva, reservation→commit, posturas server-authoritative, sustain all-or-nothing, movement/stationary e dodge-success fail-closed.
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
 - `AUDITORIA-A0161-A0170.md` — fechamento de design A0161–A0170, com afinidade térmica causal fail-closed, direct-magic/ICE/LIGHTNING availability, mitigação ICE implementável em NeoForge, same-outcome imbuement gate e terminais Specialist fail-closed.
+- `STATUS-A0161-A0170.md` — tracker complementar autoritativo do lote enquanto `STATUS.md` raiz não pode ser reconciliado sem conflitar com as PRs predecessoras #361/#366.
 - `AUDITORIA-A0200-A0209.md` — checkpoint histórico inicial Eldritch/Ender, preservado para rastreabilidade.
 - `AUDITORIA-A0200-A0299.md` — auditoria especial autorizada de 100 perks, com tracker individual A0200–A0299, Notion 100/100, providers, projetos próprios, blockers e handoff fail-closed.
 
