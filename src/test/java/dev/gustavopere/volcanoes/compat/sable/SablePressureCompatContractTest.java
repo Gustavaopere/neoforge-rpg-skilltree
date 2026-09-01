@@ -16,7 +16,7 @@ final class SablePressureCompatContractTest {
         assertEquals("sable", SablePressureCompat.MOD_ID);
         assertEquals("2.0.5", SablePressureCompat.VERIFIED_ARTIFACT_VERSION);
         assertEquals("aeronautics_bundled", SablePressureCompat.AERONAUTICS_MOD_ID);
-        assertEquals("1.3.1", SablePressureCompat.VERIFIED_AERONAUTICS_VERSION);
+        assertEquals("1.3.2", SablePressureCompat.VERIFIED_AERONAUTICS_VERSION);
     }
 
     @Test
@@ -51,7 +51,7 @@ final class SablePressureCompatContractTest {
     }
 
     @Test
-    void aeronautics131DoesNotPretendToExposeGenericCabinSealState() {
+    void aeronautics132DoesNotPretendToExposeGenericCabinSealState() {
         assertFalse(SablePressureCompat.verifiedAeronauticsHasGenericCabinSealApi());
     }
 }
