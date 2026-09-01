@@ -29,11 +29,11 @@ A PR #252 havia sido implementada antes das correções causais A0021–A0030 po
 - CI #2799: após reintrodução controlada da implementação sobre a `main`, o core chegou até o teste histórico de MACE e falhou porque ele ainda esperava `Sundered` no PRE; produção anterior já não correspondia mais à expectativa antiga.
 - CI #2804: Core/wiki/coverage passaram e JUnit atingiu a regressão Chat 3. A única falha foi uma fixture de rollback A0035 que tentava preparar Sunder em outro target sem 3 Trauma. O teste foi corrigido para provar liberação da reserva no target original, sem alterar produção.
 
-### GREEN comportamental
+### GREEN comportamental e harness NeoForge
 
-HEAD comportamental validada antes do fechamento documental: `ca29482dbeeb488e5a823ac2428b44ec3f4b33fb`.
+Baseline comportamental validada antes dos commits exclusivamente documentais: `4813b2fdcfcc805a87d76a8415c90dc3f68a9550`.
 
-`RPG Skill Tree CI` **#2806 — GREEN**:
+`RPG Skill Tree CI` **#2879 — GREEN** (run `33463430832`):
 
 - Gradle wrapper contract;
 - geração de dados;
@@ -41,6 +41,7 @@ HEAD comportamental validada antes do fechamento documental: `ca29482dbeeb488e5a
 - wiki generator + drift;
 - content coverage;
 - JUnit 5;
+- **NeoForge JUnit adapter tests (`testJunit`)**;
 - NeoForge GameTests;
 - compendium/provenance/inventory/model/parser/runtime/editorial tests;
 - data/client/node/passive/runtime/attribute/provider validations;
@@ -49,7 +50,11 @@ HEAD comportamental validada antes do fechamento documental: `ca29482dbeeb488e5a
 - built JAR verification;
 - NeoForge dedicated-server smoke.
 
-`SonarQube Cloud` **#41 — GREEN** na mesma HEAD comportamental.
+`SonarQube Cloud` **#114 — GREEN** (run `33463430893`) na mesma baseline comportamental.
+
+A suíte `A0031A0040EpicFightAdapterCoverageJUnitTest` foi migrada do `Bootstrap.bootStrap()` manual para o harness oficial NeoForge `EphemeralTestServerProvider`, com `testJunit` restrito à classe pelo `RunTestScope.className`. O workflow principal passou a executar `./gradlew --no-daemon testJunit` explicitamente.
+
+Durante a migração, o primeiro blocker do Sonar não era falha de perk: `jacocoTestReport` consultava `executionData(tasks.withType(Test))` durante resolução de dependências e acionava o mutation guard do Gradle 8.14. O wiring foi corrigido para os arquivos de execução determinísticos `build/jacoco/test.exec` e `build/jacoco/testJunit.exec`. Após a correção, `testJunit`, JaCoCo e Sonar passaram. Instrumentação diagnóstica temporária do workflow Sonar foi removida antes da baseline verde final.
 
 ## Correções técnicas aplicadas
 
@@ -127,9 +132,14 @@ Consequência: A0036 continua **NÃO CONFIRMADA / FAIL-CLOSED CORRETO** até exi
   - preexistência de Sunder e cooldown POST de A0036;
   - boss-half A0035;
   - pruning bounded A0040.
+- `A0031A0040EpicFightAdapterCoverageJUnitTest`
+  - fallback MACE exato + externos desconhecidos fail-closed;
+  - Descompasso físico/movimento, expiry e cleanup;
+  - A0035 POST commit e rollback com dano zero;
+  - Mastery adapter por discovery finita.
 - `A0021A0040CombatPolicyTest` atualizado para semântica transaction-safe sem regredir Dagger/Hammer.
 - `A0021A0040MasteryPolicyTest` atualizado para HAMMER/MACE/SCYTHE finite discovery.
 
 ## Critério de merge
 
-Após este fechamento documental, a PR #252 deve executar novamente a CI sobre a HEAD final. Só com `RPG Skill Tree CI` e checks aplicáveis verdes, PR não-draft/mergeable e diff final revisado o Chat 3 realizará o merge e confirmará o SHA da `main`.
+Após este fechamento documental, a PR #252 deve executar novamente a CI sobre a HEAD final. Só com `RPG Skill Tree CI`, Sonar e checks obrigatórios aplicáveis verdes, PR não-draft/mergeable e diff final revisado o Chat 3 realizará o merge e confirmará o SHA da `main`.
