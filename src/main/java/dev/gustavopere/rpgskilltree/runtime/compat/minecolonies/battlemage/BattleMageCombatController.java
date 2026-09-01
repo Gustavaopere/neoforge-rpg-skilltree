@@ -20,6 +20,7 @@ public final class BattleMageCombatController {
 
     public static boolean tryBeginCast(EntityCitizen caster, LivingEntity hostileTarget) {
         if (caster == null || caster.level().isClientSide || !caster.isAlive()) return false;
+        if (!(caster.getCitizenJobHandler().getColonyJob() instanceof JobBattleMage)) return false;
         if (IronsCitizenMagicBridge.magicData(caster).isCasting()) return false;
 
         BattleMageLoadoutResolver.Loadout loadout = BattleMageLoadoutResolver.resolve(caster).orElse(null);
