@@ -14,6 +14,11 @@ final class BattleMageSpellProfileReloaderJUnitTest {
         ResourceLocation.fromNamespaceAndPath("rpgskilltree", "battle_mage_spell_profiles/fireball");
 
     @Test
+    void profileUsesResourceLocationAsItsExtensibleSpellIdentity() {
+        assertEquals(ResourceLocation.class, BattleMageSpellProfile.class.getRecordComponents()[0].getType());
+    }
+
+    @Test
     void parsesExplicitProfileWithoutInventingProviderValues() {
         BattleMageSpellProfile profile = BattleMageSpellProfileReloader.parse(
             RESOURCE,
