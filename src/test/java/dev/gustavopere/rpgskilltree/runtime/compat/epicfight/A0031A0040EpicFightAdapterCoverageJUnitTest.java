@@ -36,6 +36,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.MockedStatic;
+import yesman.epicfight.world.capabilities.EpicFightCapabilities;
+import yesman.epicfight.world.capabilities.item.CapabilityItem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -51,6 +53,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -157,6 +160,142 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
 
         A0021A0040EpicFightHooks.onServerTickPost(tick);
         verify(movement).removeModifier(any(ResourceLocation.class));
+    }
+
+    @Test
+    void vanillaIncomingCapturesExactMaceAndPostConsumesTheSameRoot() throws Exception {
+        UUID actorUuid = UUID.randomUUID();
+        UUID targetUuid = UUID.randomUUID();
+        ServerPlayer player = mock(ServerPlayer.class);
+        ServerPlayer target = mock(ServerPlayer.class);
+        ServerLevel level = mock(ServerLevel.class);
+        DamageSource source = mock(DamageSource.class);
+        ItemStack mace = mock(ItemStack.class);
+        CapabilityItem capability = mock(CapabilityItem.class);
+        LivingIncomingDamageEvent incoming = mock(LivingIncomingDamageEvent.class);
+        LivingDamageEvent.Post post = mock(LivingDamageEvent.Post.class);
+        ProgressionState progression = mock(ProgressionState.class, RETURNS_DEEP_STUBS);
+        A0021A0040CombatState state = new A0021A0040CombatState();
+        CombatPerkRanks ranks = CombatPerkRanks.of(Map.of());
+
+        when(player.getUUID()).thenReturn(actorUuid);
+        when(player.level()).thenReturn(level);
+        when(player.isCreative()).thenReturn(false);
+        when(player.isSpectator()).thenReturn(false);
+        when(player.isAlliedTo(target)).thenReturn(false);
+        when(player.getMainHandItem()).thenReturn(mace);
+        when(target.getUUID()).thenReturn(targetUuid);
+        when(target.level()).thenReturn(level);
+        when(target.isInvulnerable()).thenReturn(false);
+        when(target.getArmorValue()).thenReturn(0);
+        when(target.getHealth()).thenReturn(20.0F);
+        when(target.getMaxHealth()).thenReturn(20.0F);
+        doReturn(EntityType.ZOMBIE).when(target).getType();
+        when(level.isClientSide()).thenReturn(false);
+        when(level.getGameTime()).thenReturn(20L);
+        when(source.getDirectEntity()).thenReturn(player);
+        when(incoming.getSource()).thenReturn(source);
+        when(incoming.getEntity()).thenReturn(target);
+        when(incoming.getAmount()).thenReturn(10.0F);
+        when(post.getSource()).thenReturn(source);
+        when(post.getEntity()).thenReturn(target);
+        when(post.getNewDamage()).thenReturn(4.0F);
+        when(mace.is(Items.MACE)).thenReturn(true);
+        when(capability.isEmpty()).thenReturn(true);
+
+        try (MockedStatic<EpicFightCapabilities> capabilities = mockStatic(EpicFightCapabilities.class);
+             MockedStatic<A0021A0040RuntimeState> runtime = mockStatic(A0021A0040RuntimeState.class);
+             MockedStatic<PlayerProgressionRuntime> progressionRuntime = mockStatic(PlayerProgressionRuntime.class)) {
+            capabilities.when(() -> EpicFightCapabilities.getItemStackCapability(mace)).thenReturn(capability);
+            runtime.when(A0021A0040RuntimeState::state).thenReturn(state);
+            runtime.when(() -> A0021A0040RuntimeState.ranks(player)).thenReturn(ranks);
+            progressionRuntime.when(() -> PlayerProgressionRuntime.get(player)).thenReturn(progression);
+
+            A0021A0040EpicFightHooks.onVanillaIncoming(incoming);
+            assertEquals(1, staticMapSize(A0021A0040EpicFightHooks.class, "VANILLA_PENDING"));
+
+            A0021A0040EpicFightHooks.onLivingDamagePost(post);
+            assertEquals(0, staticMapSize(A0021A0040EpicFightHooks.class, "VANILLA_PENDING"));
+        }
+    }
+
+    @Test
+    void vanillaMasteryCapturesPreHitMaceAndAwardsAfterHandSwapOnlyOnce() throws Exception {
+        ServerPlayer player = mock(ServerPlayer.class);
+        ServerPlayer target = mock(ServerPlayer.class);
+        ServerLevel level = mock(ServerLevel.class);
+        DamageSource source = mock(DamageSource.class);
+        ItemStack mace = mock(ItemStack.class);
+        ItemStack swapped = mock(ItemStack.class);
+        CapabilityItem capability = mock(CapabilityItem.class);
+        LivingIncomingDamageEvent incoming = mock(LivingIncomingDamageEvent.class);
+        LivingDamageEvent.Post post = mock(LivingDamageEvent.Post.class);
+        ProgressionState progression = mock(ProgressionState.class, RETURNS_DEEP_STUBS);
+
+        when(player.level()).thenReturn(level);
+        when(player.isCreative()).thenReturn(false);
+        when(player.isSpectator()).thenReturn(false);
+        when(player.isAlliedTo(target)).thenReturn(false);
+        when(player.getMainHandItem()).thenReturn(mace, swapped);
+        when(target.getUUID()).thenReturn(UUID.randomUUID());
+        when(target.isInvulnerable()).thenReturn(false);
+        doReturn(EntityType.ZOMBIE).when(target).getType();
+        when(level.isClientSide()).thenReturn(false);
+        when(source.getDirectEntity()).thenReturn(player);
+        when(incoming.getSource()).thenReturn(source);
+        when(incoming.getEntity()).thenReturn(target);
+        when(post.getSource()).thenReturn(source);
+        when(post.getEntity()).thenReturn(target);
+        when(post.getNewDamage()).thenReturn(4.0F);
+        when(mace.is(Items.MACE)).thenReturn(true);
+        when(capability.isEmpty()).thenReturn(true);
+        when(progression.discoveries().contains(anyString())).thenReturn(false);
+
+        try (MockedStatic<EpicFightCapabilities> capabilities = mockStatic(EpicFightCapabilities.class);
+             MockedStatic<PlayerProgressionRuntime> runtime = mockStatic(PlayerProgressionRuntime.class)) {
+            capabilities.when(() -> EpicFightCapabilities.getItemStackCapability(mace)).thenReturn(capability);
+            runtime.when(() -> PlayerProgressionRuntime.get(player)).thenReturn(progression);
+
+            A0021A0040MasteryHooks.onVanillaIncoming(incoming);
+            assertEquals(1, staticMapSize(A0021A0040MasteryHooks.class, "VANILLA_PENDING"));
+
+            A0021A0040MasteryHooks.onVanillaDamagePost(post);
+            assertEquals(0, staticMapSize(A0021A0040MasteryHooks.class, "VANILLA_PENDING"));
+            A0021A0040MasteryHooks.onVanillaDamagePost(post);
+
+            runtime.verify(() -> PlayerProgressionRuntime.awardMasteryAndDiscoveries(
+                eq(player), anyCollection(), anyCollection()
+            ), times(1));
+        }
+    }
+
+    @Test
+    void armorSunderExpiresThroughServerTickAndRemovesTransientModifier() throws Exception {
+        UUID id = UUID.randomUUID();
+        LivingEntity target = mock(LivingEntity.class);
+        AttributeInstance armor = mock(AttributeInstance.class);
+        MinecraftServer server = mock(MinecraftServer.class);
+        ServerLevel level = mock(ServerLevel.class);
+        ServerTickEvent.Post tick = mock(ServerTickEvent.Post.class);
+
+        when(target.getUUID()).thenReturn(id);
+        when(target.getAttribute(Attributes.ARMOR)).thenReturn(armor);
+        when(armor.getModifier(any(ResourceLocation.class))).thenReturn(null);
+        when(tick.getServer()).thenReturn(server);
+        when(server.overworld()).thenReturn(level);
+        when(level.getGameTime()).thenReturn(100L);
+        when(server.getAllLevels()).thenReturn(List.of(level));
+        when(level.getEntity(id)).thenReturn(target);
+
+        privateMethod(
+            A0021A0040EpicFightHooks.class,
+            "applyArmorSunder",
+            LivingEntity.class, double.class, long.class, long.class
+        ).invoke(null, target, 0.12D, 1_000L, 0L);
+
+        verify(armor).addOrUpdateTransientModifier(any(AttributeModifier.class));
+        A0021A0040EpicFightHooks.onServerTickPost(tick);
+        verify(armor).removeModifier(any(ResourceLocation.class));
     }
 
     @Test
@@ -304,6 +443,28 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         }
     }
 
+    @Test
+    void masteryAdapterDoesNotReawardAnAlreadyKnownEntityType() throws Exception {
+        ServerPlayer player = mock(ServerPlayer.class);
+        LivingEntity target = mock(LivingEntity.class);
+        doReturn(EntityType.ZOMBIE).when(target).getType();
+        ProgressionState progression = mock(ProgressionState.class, RETURNS_DEEP_STUBS);
+        when(progression.discoveries().contains(anyString())).thenReturn(true);
+
+        Method award = privateMethod(
+            A0021A0040MasteryHooks.class,
+            "award",
+            ServerPlayer.class, LivingEntity.class, WeaponFamily.class, double.class
+        );
+        try (MockedStatic<PlayerProgressionRuntime> runtime = mockStatic(PlayerProgressionRuntime.class)) {
+            runtime.when(() -> PlayerProgressionRuntime.get(player)).thenReturn(progression);
+            award.invoke(null, player, target, WeaponFamily.MACE, 4.0D);
+            runtime.verify(() -> PlayerProgressionRuntime.awardMasteryAndDiscoveries(
+                eq(player), anyCollection(), anyCollection()
+            ), never());
+        }
+    }
+
     @SuppressWarnings("unchecked")
     private static Optional<WeaponFamily> invokeFallback(Class<?> owner, ItemStack stack) throws Exception {
         Method method = privateMethod(owner, "vanillaFallbackFamily", ItemStack.class);
@@ -328,6 +489,12 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         field.setAccessible(true);
         Map map = (Map) field.get(null);
         map.put(actor + '\0' + target, pending);
+    }
+
+    private static int staticMapSize(Class<?> owner, String fieldName) throws Exception {
+        Field field = owner.getDeclaredField(fieldName);
+        field.setAccessible(true);
+        return ((Map<?, ?>) field.get(null)).size();
     }
 
     private static BeforeResult neutralBefore() {
