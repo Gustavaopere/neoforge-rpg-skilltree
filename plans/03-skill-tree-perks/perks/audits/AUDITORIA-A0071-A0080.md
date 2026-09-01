@@ -43,16 +43,16 @@ Mudanças externas detectadas depois do fechamento original:
 
 | Código | Perk | Design | Estado após Chat 2 | Handoff principal para Chat 3 |
 |---|---|---|---|---|
-| A0071 | Dano contra Elites | APROVADA | **CÓDIGO PRESENTE** | provider-present Apothic + BOSS>ELITE + externos fail-closed |
-| A0072 | Retaliação | APROVADA após availability | **CÓDIGO PRESENTE EM FAIL-CLOSED** | validar A0067→A0072 unavailable, refresh/dedup/exclusões |
-| A0073 | Janela de Execução | APROVADA após reservation→commit | **CÓDIGO PRESENTE** | POST commit/rollback, concorrência, boss half-bonus, Stamina refund=0 sem receipt |
-| A0074 | Primeiro Sangue | APROVADA após reservation→commit | **CÓDIGO PRESENTE** | opener/history/consume POST, bordas 85%/8s/4s/12s, concorrência |
-| A0075 | Ritmo Sustentado | APROVADA EM FAIL-CLOSED | **CÓDIGO PRESENTE EM FAIL-CLOSED** | compra recusada, benefício parcial zero, thermal receipt ainda ausente |
-| A0076 | Postura Agressiva | APROVADA após boundary | **CÓDIGO PRESENTE** | payload/authority/cooldown/exclusividade/cleanup/resistência física |
-| A0077 | Postura Cautelosa | APROVADA após availability | **CÓDIGO PRESENTE EM FAIL-CLOSED** | A0067 unavailable + stance binding, nenhum resíduo |
-| A0078 | Ataque em Movimento | APROVADA | **CÓDIGO PRESENTE** | sprint vanilla server-side, forced/passive movement, bridge PP |
-| A0079 | Ataque Estacionário | APROVADA após hardening | **CÓDIGO PRESENTE** | 30 ticks/0,10, teleport/knockback/passenger/Create/Sable, provider mismatch |
-| A0080 | Golpe de Oportunidade | APROVADA EM FAIL-CLOSED | **CÓDIGO PRESENTE EM FAIL-CLOSED** | node unavailable sem dodge-success receipt; consumer latente reservation→commit |
+| A0071 | Dano contra Elites | **APROVADA** | **CÓDIGO PRESENTE** | provider-present Apothic + BOSS>ELITE + externos fail-closed |
+| A0072 | Retaliação | **APROVADA após availability** | **CÓDIGO PRESENTE EM FAIL-CLOSED** | validar A0067→A0072 unavailable, refresh/dedup/exclusões |
+| A0073 | Janela de Execução | **APROVADA após reservation→commit** | **CÓDIGO PRESENTE** | POST commit/rollback, concorrência, boss half-bonus, Stamina refund=0 sem receipt |
+| A0074 | Primeiro Sangue | **APROVADA após reservation→commit** | **CÓDIGO PRESENTE** | opener/history/consume POST, bordas 85%/8s/4s/12s, concorrência |
+| A0075 | Ritmo Sustentado | **APROVADA EM FAIL-CLOSED** | **CÓDIGO PRESENTE EM FAIL-CLOSED** | compra recusada, benefício parcial zero, thermal receipt ainda ausente |
+| A0076 | Postura Agressiva | **APROVADA após boundary** | **CÓDIGO PRESENTE** | payload/authority/cooldown/exclusividade/cleanup/resistência física |
+| A0077 | Postura Cautelosa | **APROVADA após availability** | **CÓDIGO PRESENTE EM FAIL-CLOSED** | A0067 unavailable + stance binding, nenhum resíduo |
+| A0078 | Ataque em Movimento | **APROVADA** | **CÓDIGO PRESENTE** | sprint vanilla server-side, forced/passive movement, bridge PP |
+| A0079 | Ataque Estacionário | **APROVADA após hardening** | **CÓDIGO PRESENTE** | 30 ticks/0,10, teleport/knockback/passenger/Create/Sable, provider mismatch |
+| A0080 | Golpe de Oportunidade | **APROVADA EM FAIL-CLOSED** | **CÓDIGO PRESENTE EM FAIL-CLOSED** | node unavailable sem dodge-success receipt; consumer latente reservation→commit |
 
 ## Implementação transversal do Chat 2
 
@@ -116,6 +116,14 @@ Foram adicionados gates exatos e adapters isolados:
 - `scripts/verify-a0061-a0080-runtime.py` ainda valida invariantes estruturais históricas; o Chat 3 deve executá-lo/ajustá-lo somente se a validação real demonstrar que alguma expectativa textual ficou obsoleta. Chat 2 não usa o script como substituto de build/teste.
 - O keybind funciona com literal PT-BR; normalização para chave `lang` é melhoria de apresentação que o Chat 3 pode aplicar sem mudar semântica.
 
+## Concorrência com a `main` no fechamento do Chat 2
+
+No fechamento desta implementação, a `main` já havia avançado de `c89bc8d8add05786b22d7bd1f1ca0e99ecaa897c` para `452e8b23e374179c1f616f9beedce6e3dea66ef5`, 18 commits à frente do merge-base da branch.
+
+A comparação mostrou que os commits concorrentes não alteraram o runtime A0071–A0080, os dez dossiês deste lote nem esta auditoria. O único path compartilhado é `plans/03-skill-tree-perks/perks/STATUS.md`, porque outro Chat 1 ampliou a documentação até A0200–A0299.
+
+O `STATUS.md` desta branch foi atualizado com o estado real A0071–A0080, porém **não deve ser usado para sobrescrever silenciosamente a versão mais nova da `main`**. No Chat 3, a reconciliação deverá preservar integralmente as seções A0200–A0299 atuais da `main` e reaplicar apenas o delta A0067/A0070/A0071–A0080 + seção Chat 2 desta branch. Esse conflito documental é conhecido e não exige redesign/runtime novo.
+
 ## Matriz dos nove eixos
 
 | Eixo | Resultado do lote | Evidência |
@@ -153,6 +161,7 @@ Foram adicionados gates exatos e adapters isolados:
 
 ## Pendências obrigatórias para Chat 3
 
+- reconciliar `STATUS.md` com a `main@452e8b23e374179c1f616f9beedce6e3dea66ef5` ou mais nova, preservando A0200–A0299 e reaplicando apenas o delta deste lote;
 - criar/completar testes explícitos de reservation→commit/rollback de A0073/A0074/A0080;
 - validar concorrência de roots/projéteis e ausência de duplicação;
 - validar unavailable-node purchase pelos caminhos server-authoritative;
