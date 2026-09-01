@@ -144,7 +144,7 @@ public final class TectonicRegionState extends SavedData {
     }
 
     private static int readSchemaVersion(CompoundTag tag) {
-        return tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)
+        return tag.contains(SCHEMA_VERSION, Tag.TAG_INT)
                 ? tag.getInt(SCHEMA_VERSION)
                 : LEGACY_SCHEMA_VERSION;
     }
