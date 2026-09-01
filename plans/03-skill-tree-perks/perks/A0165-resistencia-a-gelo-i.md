@@ -4,7 +4,7 @@
 
 **DESIGN APROVADO / IMPLEMENTÁVEL NO BOUNDARY NEOFORGE.**
 
-Chat 1 não implementa runtime. O contrato está suficientemente fechado para o Chat 2 porque NeoForge 1.21.1 fornece um pre-damage boundary mutável e os classifiers iniciais seguros podem ser definidos sem inventar mecânica de provider.
+Chat 1 não implementa runtime. O contrato está suficientemente fechado para o Chat 2 porque NeoForge 1.21.1 fornece um pre-damage boundary mutável e a classificação ICE base pode usar uma tag semântica canônica sem inventar mecânica de provider.
 
 Notion revalidado após correção: `https://app.notion.com/p/3c569db9f0db81da9c6ce0e845350cd5`.
 
@@ -21,11 +21,14 @@ Notion revalidado após correção: `https://app.notion.com/p/3c569db9f0db81da9c
 
 NeoForge 1.21.1 `LivingDamageEvent.Pre` fornece o dano corrente mutável via `getNewDamage()`/`setNewDamage(...)` antes da perda final de vida. Chat 2 deve introduzir/usar **um único** `ElementalDamageMitigationResolver` para a família elemental defensiva.
 
-Classificação ICE inicial segura:
+Classificação ICE segura:
 
-1. vanilla: `DamageTypeTags.IS_FREEZING` — em 1.21.1 contém `minecraft:freeze`;
-2. Iron's Spells 'n Spellbooks 3.16.3: adapter exato para `irons_spellbooks:ice_magic`;
-3. demais providers: somente adapters versionados que provem o DamageSource ICE correspondente.
+1. qualquer `DamageSource` que satisfaça `DamageTypeTags.IS_FREEZING` é ICE para esta resistência;
+2. isso cobre `minecraft:freeze` e também `ars_nouveau:cold_snap` em Ars Nouveau 5.13.1, pois o próprio provider registra `COLD_SNAP` em `IS_FREEZING`;
+3. Iron's Spells 'n Spellbooks 3.16.3: adapter exato para `irons_spellbooks:ice_magic`, porque esse DamageType não foi provado em `IS_FREEZING`;
+4. outros providers: somente a tag semântica canônica ou adapters versionados que provem o DamageSource ICE correspondente.
+
+`IS_FREEZING` aqui é classificação de **dano ICE defensivo**. Ela não prova magia direta e não autoriza A0163/A0164.
 
 Adapters classificam; não aplicam mitigação paralela.
 
@@ -47,7 +50,7 @@ O clamp [0,1] é segurança matemática, não um novo cap de design.
 
 ## Fallback
 
-Fonte não reconhecida inequivocamente como ICE fica sem benefício. A perk continua funcional nos classifiers seguros presentes.
+Fonte não reconhecida por `IS_FREEZING` nem por adapter ICE versionado explícito fica sem benefício. Ausência do adapter do Iron's desativa somente `ice_magic`; não desabilita vanilla nem Ars Cold Snap já cobertos pela tag.
 
 Proibido inferir ICE por:
 
@@ -68,15 +71,15 @@ O mesmo PP não satisfaz simultaneamente thresholds puros VITALITY e ARCANE como
 
 ## Handoff Chat 2
 
-Implementar A0165 e a infraestrutura compartilhada `ElementalDamageMitigationResolver` sem criar segundo reducer. Começar pelos classifiers vanilla `IS_FREEZING` e Iron's `ice_magic`; providers sem adapter completo permanecem fail-closed.
+Implementar A0165 e a infraestrutura compartilhada `ElementalDamageMitigationResolver` sem criar segundo reducer. O classifier base é `source.is(DamageTypeTags.IS_FREEZING)`; adicionar adapter exato para Iron's `ice_magic`. Providers sem tag/adaptor completo permanecem fail-closed.
 
 ## Testes obrigatórios para Chat 3
 
 1. ranks 0–4 = 0/4/8/12/16%;
 2. `minecraft:freeze`/`IS_FREEZING` positivo;
-3. Iron's `ice_magic` positivo quando o provider/adaptor está presente;
-4. dano não-ICE negativo;
-5. provider desconhecido/mismatch negativo;
+3. Ars Nouveau 5.13.1 `ars_nouveau:cold_snap` positivo pela mesma tag, sem adapter redundante;
+4. Iron's `ice_magic` positivo quando provider/adapter está presente;
+5. dano não-ICE e provider desconhecido/mismatch negativos;
 6. bucket aplicado exatamente uma vez;
 7. composição com mitigadores de identidade distinta sem double-processing;
 8. Cold Sweat temperature/CHILL/Slowness não entram;
