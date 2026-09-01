@@ -17,4 +17,4 @@
 - [Delta e baseline A0081–A0090](14-capability-delta-a0081-a0090.md)
 - A0091–A0100: checkpoint documental na PR #326 (`15-capability-delta-a0091-a0100.md`) enquanto não integrado à `main`.
 - A0101–A0110: checkpoint documental na PR #340 (`16-capability-delta-a0101-a0110.md`) enquanto não integrado à `main`.
-- [Delta e baseline A0111–A0120](17-capability-delta-a0111-a0120.md)
+- A0111–A0120: [Delta e baseline](17-capability-delta-a0111-a0120.md), PR #341; Chat 1 fechado, aguardando implementação Chat 2.
