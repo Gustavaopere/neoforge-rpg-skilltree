@@ -1,6 +1,6 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0090** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
+Reauditoria obrigatória do recorte histórico **A0001–A0090** e dos ciclos especiais autorizados, incluindo **A0200–A0299**, contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
 A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
 
@@ -436,13 +436,13 @@ O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN 
 
 O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige a PR desta auditoria, review resolvido, CI GREEN, merge e confirmação fresca da `main`; após isso o Chat 1 deve **PARAR**. A0091–A0100 só pode começar mediante novo comando do usuário.
 
-## Chat 1 — lote adiantado exato A0200–A0209
+## Chat 1 — checkpoint histórico A0200–A0209, superado pela auditoria A0200–A0299
 
 **Estado:** `LOTE FECHADO NO DESIGN; 10/10 UNAVAILABLE_NODE ATÉ CAPABILITIES/DEPENDÊNCIAS; PR/CI/MERGE EM FECHAMENTO OPERACIONAL`.
 
 Este lote foi iniciado diretamente em A0200 por ordem do usuário, enquanto outros chats ainda trabalham na faixa dos 100.
 
-**Exceção de sequência:** a ordem específica do usuário autorizou este lote adiantado apesar da regra permanente 26. A exceção vale somente para design/documentação A0200–A0209: nenhum catálogo/runtime foi adicionado, nenhum node ficou comprável, A0091–A0199/Fases 0–4 não foram fechadas e A0210+ continua proibido sem novo comando.
+**Exceção histórica de sequência:** a ordem específica do usuário autorizou este checkpoint adiantado apesar da regra permanente 26. Naquele momento a exceção valia somente para A0200–A0209. A autorização posterior para A0200–A0299 está registrada na seção seguinte; nenhum catálogo/runtime foi adicionado e A0091–A0199/Fases 0–4 não foram fechadas.
 
 - **INÍCIO:** A0200.
 - **FIM:** A0209.
@@ -460,7 +460,7 @@ Este lote foi iniciado diretamente em A0200 por ordem do usuário, enquanto outr
 - **Nove eixos / 18 critérios:** PASS no design para 10/10.
 - **Runtime alterado neste Chat 1:** nenhum.
 - **Arquivo canônico:** `audits/AUDITORIA-A0200-A0209.md`.
-- **A0210+:** não iniciado.
+- **Estado histórico de A0210+:** não iniciado naquele checkpoint; superado pela autorização posterior A0200–A0299.
 
 ### Decisões bloqueantes
 
@@ -490,4 +490,143 @@ Este lote foi iniciado diretamente em A0200 por ordem do usuário, enquanto outr
 11. `P-A0200-09-01` — reconciliar school addon namespace/path no MasteryLaneCatalog com migração/testes.
 12. `P-A0200-09-TEST-01` — matriz transversal provider present/absent, upstream, availability, IDs, rollback, teleport provenance, lifecycle, multiplayer e dedicated server.
 
-O design A0200–A0209 está fechado sem implementar runtime. O fechamento operacional exige PR, review resolvido, CI GREEN, merge e confirmação fresca da `main`. Depois disso o Chat 1 deve **PARAR**.
+O checkpoint A0200–A0209 permanece preservado para rastreabilidade e foi ampliado pela auditoria especial A0200–A0299 abaixo.
+
+## Chat 1 — auditoria especial autorizada A0200–A0299
+
+**Estado:** DESIGN FECHADO PARA 100/100; NOTION CORRIGIDO E RELIDO; RUNTIME NÃO IMPLEMENTADO; PR/CI/MERGE EM FECHAMENTO OPERACIONAL.
+
+O usuário autorizou explicitamente o Chat 1 a trabalhar de A0200 a A0299 em um único ciclo especial de 100 perks. Esta autorização substitui, somente para esta entrega, a regra normal de lotes de 10. O trabalho permanece exclusivamente de auditoria/design.
+
+- **Início:** A0200.
+- **Fim:** A0299.
+- **Quantidade:** 100 perks consecutivas.
+- **A0300:** não iniciada; apenas sinalizada em A0298 como referência posterior.
+- **Outros chats/upstream:** A0144–A0176, A0198 e A0199 não são presumidos como concluídos.
+- **Notion fetch fresco:** 100/100 páginas individuais.
+- **Notion alterado:** Custo Extra vazio para 0 em 100/100.
+- **Re-fetch pós-escrita:** 100/100 PASS em 2026-09-01.
+- **Dossiês individuais:** 100/100, cada um com 21 propriedades, providers, quatro projetos próprios, testes, nove eixos e 18 critérios.
+- **Classificação:** 10 UNAVAILABLE_NODE atuais; 68 bloqueadas por capability/contrato futuro; 22 sem blocker nomeado, mas ainda sem implementação confirmada.
+- **Freshness dos projetos:** RPG <code>c1597a34787b602e85139d565b9c1e1eb3481cda</code>; Volcanoes <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code>; Enshrouded <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code>; Black Arcana <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code>.
+- **Delta canônico:** guides/projects/16-capability-delta-a0200-a0299.md.
+- **Auditoria canônica:** audits/AUDITORIA-A0200-A0299.md.
+- **Runtime alterado:** nenhum.
+
+### Estado perk por perk
+
+| Código | Perk | Design | Estado técnico | Dependências/blockers principais |
+|---|---|---|---|---|
+| <code>A0200</code> | Resistência a Eldritch I | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0198</code> |
+| <code>A0201</code> | Resistência a Eldritch II | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
+| <code>A0202</code> | Imbuimento de Eldritch | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0198</code> |
+| <code>A0203</code> | Conhecimento Proibido | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0198</code>, <code>A0199</code> |
+| <code>A0204</code> | Maestria de Eldritch | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0199</code>, <code>A0198</code> |
+| <code>A0205</code> | Dano de Ender I | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0144</code>, <code>A0148</code>, <code>A0155</code> |
+| <code>A0206</code> | Dano de Ender II | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
+| <code>A0207</code> | Resistência a Ender I | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
+| <code>A0208</code> | Resistência a Ender II | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
+| <code>A0209</code> | Imbuimento de Ender | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
+| <code>A0210</code> | Afinidade de Ender | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0211</code> | Maestria de Ender | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0212</code> | Dano de Terra I | APROVADO | implementação não confirmada | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> |
+| <code>A0213</code> | Dano de Terra II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0214</code> | Resistência a Terra I | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0215</code> | Resistência a Terra II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0216</code> | Imbuimento de Terra | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0217</code> | Domínio Geomântico | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0218</code> | Maestria de Terra | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0219</code> | Dano de Água I | APROVADO | implementação não confirmada | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> |
+| <code>A0220</code> | Dano de Água II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0221</code> | Resistência a Água I | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0222</code> | Resistência a Água II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0223</code> | Imbuimento de Água | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0224</code> | Domínio Fluido | APROVADO | capability futura / fail-closed | <code>RESOURCE_DEBIT_RECEIPT_V1</code> |
+| <code>A0225</code> | Maestria de Água | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code> |
+| <code>A0226</code> | Dano de Vento I | APROVADO | implementação não confirmada | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> |
+| <code>A0227</code> | Dano de Vento II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0228</code> | Resistência a Vento I | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0229</code> | Resistência a Vento II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0230</code> | Imbuimento de Vento | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
+| <code>A0231</code> | Domínio Aerocinético | APROVADO | capability futura / fail-closed | <code>RESOURCE_COST_MODIFIER_V1</code> |
+| <code>A0232</code> | Maestria de Vento | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code> |
+| <code>A0233</code> | Fundamento Elemental | APROVADO | capability futura / fail-closed | <code>A0144</code>, <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> |
+| <code>A0234</code> | Fundamento Defensivo Elemental | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> |
+| <code>A0235</code> | Ressonância Elemental | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
+| <code>A0236</code> | Memória Elemental | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
+| <code>A0237</code> | Cadeia Prismática | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
+| <code>A0238</code> | Adaptação Cruzada | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
+| <code>A0239</code> | Convergência Ofensiva | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
+| <code>A0240</code> | Matriz Adaptativa | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
+| <code>A0241</code> | Prisma Ofensivo | APROVADO | capability futura / fail-closed | <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code>, <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> |
+| <code>A0242</code> | Prisma Defensivo | APROVADO | capability futura / fail-closed | <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code>, <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> |
+| <code>A0243</code> | Ignição | APROVADO | capability futura / fail-closed | <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
+| <code>A0244</code> | Combustão | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
+| <code>A0245</code> | Queima Persistente | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
+| <code>A0246</code> | Calor Crescente | APROVADO | capability futura / fail-closed | <code>A0157</code>, <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code> |
+| <code>A0247</code> | Fagulha Crítica | APROVADO | capability futura / fail-closed | <code>A0151</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
+| <code>A0248</code> | Fogo em Alvo Ferido | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
+| <code>A0249</code> | Fogo em Alvo Íntegro | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
+| <code>A0250</code> | Resistência ao Calor | APROVADO | capability futura / fail-closed | <code>A0158</code>, <code>A0159</code>, <code>A0161</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code> |
+| <code>A0251</code> | Passos Quentes | APROVADO | capability futura / fail-closed | <code>A0161</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code> |
+| <code>A0252</code> | Mana Incandescente | APROVADO | capability futura / fail-closed | <code>A0145</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code> |
+| <code>A0253</code> | Propagação de Chamas | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
+| <code>A0254</code> | Aura de Brasas | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
+| <code>A0255</code> | Condução Incandescente | APROVADO | capability futura / fail-closed | <code>A0160</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
+| <code>A0256</code> | Armadura Incandescente | APROVADO | capability futura / fail-closed | <code>A0158</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
+| <code>A0257</code> | Marca Carbonizada | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
+| <code>A0258</code> | Combustão Súbita | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
+| <code>A0259</code> | Nascido das Chamas | APROVADO | capability futura / fail-closed | <code>A0161</code>, <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code> |
+| <code>A0260</code> | Nadador de Lava | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LAVA_SWIM_MOVEMENT_BRIDGE_V1</code> |
+| <code>A0261</code> | Passos de Obsidiana | APROVADO | capability futura / fail-closed | <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TEMPORARY_WORLD_MUTATION_GUARD_V1</code> |
+| <code>A0262</code> | Coração de Magma | APROVADO | capability futura / fail-closed | <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code> |
+| <code>A0263</code> | Inferno Ambulante | APROVADO | capability futura / fail-closed | <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
+| <code>A0264</code> | Frio Cortante | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code> |
+| <code>A0265</code> | Geada | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code> |
+| <code>A0266</code> | Congelamento Progressivo | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
+| <code>A0267</code> | Gelo Crítico | APROVADO | capability futura / fail-closed | <code>A0151</code>, <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
+| <code>A0268</code> | Pele Glacial | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>A0168</code>, <code>A0165</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code> |
+| <code>A0269</code> | Passo Seguro no Gelo | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>SLIPPERY_SURFACE_REGISTRY_V1</code>, <code>GROUND_SURFACE_CONTEXT_V1</code> |
+| <code>A0270</code> | Frio Persistente | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_DURATION_MODIFIER_V1</code> |
+| <code>A0271</code> | Quebra de Gelo | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code> |
+| <code>A0272</code> | Mana Frígida | APROVADO | capability futura / fail-closed | <code>A0145</code>, <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code>, <code>FULL_FREEZE_TRANSITION_RECEIPT_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code> |
+| <code>A0273</code> | Arma Gélida | APROVADO | implementação não confirmada | <code>A0167</code>, <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
+| <code>A0274</code> | Retaliação Gélida | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
+| <code>A0275</code> | Congelamento por Sequência | APROVADO | implementação não confirmada | <code>A0169</code>, <code>A0167</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
+| <code>A0276</code> | Estilhaçar | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code>, <code>FULL_FREEZE_CONSUME_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code> |
+| <code>A0277</code> | Aura de Geada | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code> |
+| <code>A0278</code> | Escudo de Gelo | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ABSORPTION_SOURCE_LEDGER_V1</code> |
+| <code>A0279</code> | Coração Glacial | APROVADO | capability futura / fail-closed | <code>A0168</code>, <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>BODY_COLD_STATE_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code> |
+| <code>A0280</code> | Caminho Congelante | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TEMPORARY_WORLD_MUTATION_GUARD_V1</code> |
+| <code>A0281</code> | Permafrost | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_DURATION_MODIFIER_V1</code>, <code>FREEZE_DECAY_MODIFIER_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code> |
+| <code>A0282</code> | Zero Absoluto | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code>, <code>FULL_FREEZE_TRANSITION_RECEIPT_V1</code>, <code>DAMAGE_VULNERABILITY_RESOLVER_V1</code>, <code>BOSS_CLASSIFIER_V1</code> |
+| <code>A0283</code> | Condutividade | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>WET_STATE_V1</code> |
+| <code>A0284</code> | Carga | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code> |
+| <code>A0285</code> | Arco Elétrico | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code> |
+| <code>A0286</code> | Sobrecarga | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code> |
+| <code>A0287</code> | Impulso Elétrico | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code> |
+| <code>A0288</code> | Reflexo Carregado | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code> |
+| <code>A0289</code> | Resistência Elétrica | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>A0172</code>, <code>A0173</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code> |
+| <code>A0290</code> | Crítico Condutor | APROVADO | capability futura / fail-closed | <code>A0151</code>, <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code> |
+| <code>A0291</code> | Mana Estática | APROVADO | capability futura / fail-closed | <code>A0145</code>, <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ROOT_ACTION_TARGET_LEDGER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code> |
+| <code>A0292</code> | Arma Carregada | APROVADO | capability futura / fail-closed | <code>A0174</code>, <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code> |
+| <code>A0293</code> | Raio Ramificado | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ROOT_ACTION_CARDINALITY_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code> |
+| <code>A0294</code> | Sobrecarga Crítica | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>POSTURE_PRESSURE_V1</code> |
+| <code>A0295</code> | Campo Estático | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code> |
+| <code>A0296</code> | Condução pela Água | APROVADO | implementação não confirmada | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>WET_STATE_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code> |
+| <code>A0297</code> | Passo de Relâmpago | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DODGE_CONTROL_MODIFIER_V1</code> |
+| <code>A0298</code> | Tempestade Encadeada | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>A0300</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code> |
+| <code>A0299</code> | Corpo de Tempestade | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>HOSTILE_DAMAGE_RECEIPT_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>STAMINA_REGEN_MODIFIER_V1</code> |
+
+### Handoff sistêmico para o Chat 2
+
+1. Nenhuma das 100 perks possui implementação confirmada por este ciclo.
+2. A0200–A0209 permanecem UNAVAILABLE_NODE até classifiers, buckets, lanes e receipts próprios.
+3. A0224/A0225, A0231/A0232 e A0233–A0299 possuem contracts futuros ou version-status explicitamente bloqueantes conforme o dossiê individual.
+4. A0210–A0223, A0226–A0230, A0273, A0275 e A0296 ainda exigem prova real dos adapters/hooks mesmo sem FUTURE_PROVIDER_CONTRACT no registro.
+5. Ausência de capability nunca autoriza no-op comprável, bônus genérico ou API inventada.
+6. Todo provider present/absent precisa de causalidade, dedup, rollback, lifecycle, multiplayer e dedicated-server tests.
+7. Se a API real contradizer o contrato, o ponto volta ao Chat 1; não redesenhar silenciosamente.
+8. A0300 não faz parte deste handoff.
+
+O design A0200–A0299 está fechado. O fechamento operacional deste ciclo exige PR, review resolvido, CI GREEN, merge e confirmação fresca da main; depois disso o Chat 1 deve parar.
