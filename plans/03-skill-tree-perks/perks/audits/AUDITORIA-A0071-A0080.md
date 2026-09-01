@@ -76,7 +76,7 @@ Mudanças externas detectadas depois do fechamento original:
 
 ### A0073/A0074/A0080 — causalidade
 
-`A0061A0080CombatState` passou a modelar reservations e commits separados:
+`A0061A0080CombatState` modela reservations e commits separados:
 
 - execution opener/finisher;
 - first-blood opener/finisher;
@@ -84,7 +84,9 @@ Mudanças externas detectadas depois do fechamento original:
 
 PRE mantém somente informação reversível/reservada; POST positivo confirma transições. Cancelamento/zero executa rollback. Pending hit possui retenção bounded de 1 s para impedir vazamento quando um PRE não completa a cadeia.
 
-Epic Fight usa `PendingHit` por source/target como reserva de root. Projectile físico reutiliza o PRE canônico existente e `A0073A0080ProjectileCommitEvents` como boundary de commit/rollback pós-dano. A estratégia é conservadora sob impactos simultâneos: não deve produzir bônus duplicado; cenário de concorrência precisa ser exercitado pelo Chat 3.
+Epic Fight usa `PendingHit` por source/target como reserva de root. No caminho de projétil físico, uma revisão P1 da PR #355 detectou que o subscriber POST ainda usava helpers `commitPending*`/`rollbackPendingPhysicalHit` amplos demais: com arrows concorrentes, um POST poderia consumir a reservation pertencente a outro projétil/root. O defeito foi corrigido nos commits `b3fd4516a06ec7de3049ed64732b26cbcc5a4720` e `e7a102e9ca22c1065cfd62045fc4e5bb8689576a`.
+
+Após a correção, o PRE registra em `ProjectileMeta` um `PendingPerkHit` por `arrow + target`, contendo o `rootActionId` canônico e exatamente quais transições A0073/A0074/A0080 aquela flecha reservou. O POST/cancel remove somente esse registro e chama `commitExecution`/`rollbackExecution`, `commitFirstBlood`/`rollbackFirstBlood` e `commitOpportunity`/`rollbackOpportunity` com o root exato. O thread P1 foi respondido e resolvido. O Chat 3 ainda deve exercitar multishot, ordem invertida de impacto, cancelamento e roots simultâneos para confirmar a correção dinamicamente.
 
 ### A0076/A0077 — MARTIAL_STANCE
 
@@ -113,6 +115,7 @@ Foram adicionados gates exatos e adapters isolados:
 
 - `NodePurchaseResult` contém o novo enum no único switch exaustivo conhecido do tipo; não foi encontrado outro switch exaustivo em `Status` que precise de novo case.
 - `ModNetworking` foi versionado de `4` para `5` juntamente com o novo payload de stance; não foi encontrado outro hardcode de versão de rede no código indexado.
+- o P1 de correlação de projéteis foi corrigido por identidade `arrow + target + rootActionId` e o review thread correspondente foi resolvido; isso é evidência estática de correção, não substitui os testes de concorrência do Chat 3.
 - `scripts/verify-a0061-a0080-runtime.py` ainda valida invariantes estruturais históricas; o Chat 3 deve executá-lo/ajustá-lo somente se a validação real demonstrar que alguma expectativa textual ficou obsoleta. Chat 2 não usa o script como substituto de build/teste.
 - O keybind funciona com literal PT-BR; normalização para chave `lang` é melhoria de apresentação que o Chat 3 pode aplicar sem mudar semântica.
 
@@ -146,7 +149,7 @@ O `STATUS.md` desta branch foi atualizado com o estado real A0071–A0080, poré
 4. Fail-closed — A0072/A0075/A0077/A0080 e extensões não provadas.
 5. Fallbacks preservam identidade — sim.
 6. Sem Mastery por tick/spam neste lote — sim.
-7. Dedup/root/action — state e reservations presentes; concorrência final para Chat 3.
+7. Dedup/root/action — state e reservations presentes; correlação de projéteis agora é `arrow + target + rootActionId`; concorrência dinâmica final para Chat 3.
 8. Autoria jogador real/source direta — preservada nos bridges.
 9. Pipelines canônicos — sem duplicar Stamina/Impact/stance/stationary.
 10. Sem custo/recurso fictício — sim.
@@ -156,14 +159,14 @@ O `STATUS.md` desta branch foi atualizado com o estado real A0071–A0080, poré
 14. Ranks/custos/camadas — não alterados.
 15. Availability transitiva — implementada nos nodes bloqueados deste lote.
 16. BOSS > ELITE / stance exclusiva / movement ≠ dodge — preservado.
-17. Dossiês — 10/10 atualizados para handoff Chat 3.
+17. Dossiês — 10/10 atualizados para handoff Chat 3; A0073/A0074/A0080 registram o hardening P1 de correlação de projéteis.
 18. Notion — nenhuma nova mutação necessária após reauditoria.
 
 ## Pendências obrigatórias para Chat 3
 
-- conferir a reconciliação/auto-merge de `STATUS.md` com a `main@452e8b23e374179c1f616f9beedce6e3dea66ef5` ou mais nova, preservando A0200–A0299 e o delta deste lote;
+- conferir a reconciliação/auto-merge de `STATUS.md` com a `main` mais nova, preservando A0200–A0299 e o delta deste lote;
 - criar/completar testes explícitos de reservation→commit/rollback de A0073/A0074/A0080;
-- validar concorrência de roots/projéteis e ausência de duplicação;
+- validar multishot, ordem invertida de impacto, cancelamento/dano zero e roots/projéteis concorrentes, provando ausência de consumo cruzado e double benefit;
 - validar unavailable-node purchase pelos caminhos server-authoritative;
 - validar provider-present/absent/mismatch de Create/Sable e Apothic;
 - validar stance multiplayer/spoof/spam/cooldown/cleanup;
