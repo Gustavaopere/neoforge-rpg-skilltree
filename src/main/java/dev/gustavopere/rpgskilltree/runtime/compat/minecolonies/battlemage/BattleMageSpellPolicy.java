@@ -66,8 +66,9 @@ public final class BattleMageSpellPolicy {
     public static boolean isAreaSafe(BattleMageSpellProfile profile, boolean protectedAllyInRadius) {
         if (profile == null) return false;
         if (profile.targetMode() != BattleMageTargetMode.HOSTILE_AREA) return true;
-        if (!protectedAllyInRadius) return true;
-        return profile.allySafe() || profile.friendlyFireRadius() <= 0.0;
+        if (profile.allySafe()) return true;
+        if (profile.friendlyFireRadius() <= 0.0) return false;
+        return !protectedAllyInRadius;
     }
 
     private static int tacticalLane(BattleMageSpellProfile profile, boolean selfCritical) {
