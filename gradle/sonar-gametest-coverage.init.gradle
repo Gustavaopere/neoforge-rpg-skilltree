@@ -6,7 +6,10 @@ allprojects { project ->
 
         def coverageName = (project.findProperty('gameTestCoverageName') ?: 'gametest').toString()
         def coverageFile = project.layout.buildDirectory.file("jacoco/${coverageName}.exec").get().asFile
-        def jacocoAgent = project.configurations.jacocoAgent.singleFile
+        def jacocoExtension = project.extensions.getByName('jacoco')
+        def jacocoAgent = project.configurations.detachedConfiguration(
+            project.dependencies.create("org.jacoco:org.jacoco.agent:${jacocoExtension.toolVersion}:runtime")
+        ).singleFile
         def runsExtension = project.extensions.findByName('runs')
 
         if (runsExtension != null) {
