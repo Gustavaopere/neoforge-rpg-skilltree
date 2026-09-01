@@ -32,17 +32,13 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
-import net.neoforged.testframework.junit.EphemeralTestServerProvider;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.MockedStatic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
@@ -59,13 +55,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /** Adapter-level tests for the A0031-A0040 paths that plain domain tests cannot execute. */
-@ExtendWith(EphemeralTestServerProvider.class)
 final class A0031A0040EpicFightAdapterCoverageJUnitTest {
-    @BeforeAll
-    static void ensureMinecraftServer(MinecraftServer server) {
-        assertNotNull(server.registryAccess());
-    }
-
     @AfterEach
     void clearStaticAdapterState() {
         A0021A0040EpicFightHooks.onServerStopped(mock(ServerStoppedEvent.class));
