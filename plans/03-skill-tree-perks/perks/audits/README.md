@@ -32,8 +32,11 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0061-A0070.md` — fechamento de design A0061–A0070, incluindo correção fail-closed/unavailable de A0067, cobertura BOSS de A0070 e gate de delta dos quatro projetos próprios.
 - `AUDITORIA-A0071-A0080.md` — fechamento de design A0071–A0080, incluindo availability transitiva, reservation→commit, posturas server-authoritative, sustain all-or-nothing, movement/stationary e dodge-success fail-closed.
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
+- `AUDITORIA-A0161-A0170.md` — fechamento de design A0161–A0170, com afinidade térmica causal fail-closed, direct-magic/ICE/LIGHTNING availability, mitigação ICE implementável em NeoForge, same-outcome imbuement gate e terminais Specialist fail-closed.
 - `AUDITORIA-A0200-A0209.md` — checkpoint histórico inicial Eldritch/Ender, preservado para rastreabilidade.
 - `AUDITORIA-A0200-A0299.md` — auditoria especial autorizada de 100 perks, com tracker individual A0200–A0299, Notion 100/100, providers, projetos próprios, blockers e handoff fail-closed.
+
+> `AUDITORIA-A0141-A0150.md` e `AUDITORIA-A0151-A0160.md` permanecem nas PRs documentais concorrentes #361 e #366. Este branch não duplica auditorias ainda não integradas à `main`; a reconciliação posterior deve preservar a ordem A0141–A0170.
 
 ## Auditorias de delta da modlist — Chat 1
 
