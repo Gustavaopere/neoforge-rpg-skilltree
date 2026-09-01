@@ -25,6 +25,7 @@ def main() -> int:
     mixins = text("src/main/resources/volcanoes.mixins.json")
     rns_mixin = text("src/main/java/dev/gustavopere/volcanoes/mixin/rns/CustomServerDepositLocationMixin.java")
     build = text("build.gradle")
+    properties = text("gradle.properties")
 
     stray_mods = []
     stale_subscribers = []
@@ -75,8 +76,14 @@ def main() -> int:
     require((ROOT / "licenses/Volcanoes-BSD-2-Clause.txt").is_file(),
             "Volcanoes BSD license evidence must ship in the unified repository")
 
+    require('minecolonies_file_id=8765939' in properties,
+            "canonical MineColonies file id must remain pinned to 8765939")
+    require('curse.maven:minecolonies-245506:${minecolonies_file_id}' in build,
+            "Volcanoes and RPG integrations must share the canonical MineColonies build property")
+    require('minecolonies-245506:8621898' not in build,
+            "obsolete MineColonies 1.1.1374 artifact must not remain on the unified classpath")
+
     for dependency in (
-        "minecolonies-245506:8621898",
         "cold-sweat-506194:8302211",
         "create-rns-1370563:8729955",
         "sable-1312371:8673825",
