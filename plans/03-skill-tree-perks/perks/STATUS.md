@@ -491,3 +491,60 @@ Este lote foi iniciado diretamente em A0200 por ordem do usuário, enquanto outr
 12. `P-A0200-09-TEST-01` — matriz transversal provider present/absent, upstream, availability, IDs, rollback, teleport provenance, lifecycle, multiplayer e dedicated server.
 
 O design A0200–A0209 está fechado sem implementar runtime. O fechamento operacional exige PR, review resolvido, CI GREEN, merge e confirmação fresca da `main`. Depois disso o Chat 1 deve **PARAR**.
+
+## Chat 1 — lote exato A0131–A0140
+
+**Estado:** `DESIGN APROVADO / LOTE FECHADO PELO CHAT 1; 10/10 UNAVAILABLE_NODE NO SNAPSHOT ATUAL; AGUARDANDO CHAT 2 APÓS PREDECESSORES E CAPABILITIES`.
+
+- **INÍCIO:** A0131.
+- **FIM:** A0140.
+- **Quantidade:** 10 perks consecutivas.
+- **Base de gameplay/runtime auditada:** RPG Skill Tree `main@eed066e418a9968bcfbbd61df32dcfbf2683ca37`.
+- **Freshness final pré-PR:** RPG Skill Tree `main@c89bc8d8add05786b22d7bd1f1ca0e99ecaa897c`; `eed066e…→c89bc8d8…` contém apenas CI/Sonar e não altera capabilities A0131–A0140.
+- **Gate de delta próprio:** Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2`; Black Arcana `d069190fedea1f7cb788a2c67e517eed6a9b3729`.
+- **Delta canônico:** `guides/projects/16-capability-delta-a0131-a0140.md`.
+- **Notion fetch fresco:** 10/10.
+- **Notion alterado:** A0135, A0136, A0137, A0138, A0140.
+- **Re-fetch pós-escrita:** 5/5 PASS em 2026-09-01.
+- **Sem mutação funcional:** A0131, A0132, A0133, A0134, A0139.
+- **Dossiês criados:** 10/10.
+- **Nove eixos / 18 critérios:** PASS no design; fail-closed explícito em todos os bindings ausentes.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **Arquivo canônico do lote:** `audits/AUDITORIA-A0131-A0140.md`.
+- **A0141+:** não iniciado.
+
+### Decisões bloqueantes
+
+1. A0131/A0132 exigem receipt pós-cast real e custo corporal causal; Mana, Source, Soul Energy, sangue/HP, cooldown e Arcane Strain não viram FoodData/HYDRATION.
+2. A0133/A0134 exigem provider real de encumbrance do jogador; inventário, Armor, movement speed e massa de contraption não podem ser usados como heurística.
+3. A0135–A0138 exigem BodyCostResolver + AcclimationLedger + adapters térmicos Cold Sweat versionados; ADVERSE_HOT/COLD e ENVIRONMENTAL_HOT/COLD são estados distintos.
+4. A0136/A0138 e A0140 exigem integração TWR causal; A0140 especificamente requer seam que isole `HYDRATION_ENVIRONMENTAL_HOT_SURCHARGE` antes do settlement, pois o TWR atual aplica o modificador ambiental internamente e não publica esse receipt separado.
+5. A0139 é all-or-nothing: o benefício corporal não pode existir sem o tradeoff de −8% da regeneração natural de Stamina por boundary Epic Fight versionado.
+6. Enquanto qualquer binding obrigatório estiver ausente, purchase falha antes do gasto e allocation legado vale 0 PP para gates.
+
+### Handoff destinado ao Chat 2
+
+1. Implementar um único pipeline BodyCost, tipado por `action_id`, sem reducers paralelos.
+2. Manter Cold Sweat read-only e Thirst Was Reclaimed como owner de HYDRATION.
+3. Exigir receipt pós-cast real para A0131/A0132; `ArcanaGatePreflight` Black Arcana é apenas projeção read-only parcial.
+4. Não sintetizar encumbrance por heurística.
+5. Preservar availability transitiva e fail-before-spend de A0131–A0140.
+6. A0139 só se torna adquirível quando natural Stamina regen for modulável com boundary seguro.
+7. A0140 só se torna adquirível quando o surcharge hídrico ambiental quente puder ser isolado causalmente; nenhum polling/refund posterior.
+
+### Testes definidos para o Chat 3
+
+- purchase fail-before-spend e legacy PP 0 para todos os blockers;
+- provider/version present/absent e remoção em runtime;
+- action identity, dedup e rollback;
+- caps METABOLIC/HYDRATION independentes de 30%;
+- cast cancel/preflight sem sucesso não proca;
+- negativas de heurística de encumbrance;
+- distinção ADVERSE vs ENVIRONMENTAL;
+- ledger 0–5, janelas 10/20/5 min, sem progresso offline e lifecycle completo;
+- A0139 modula somente natural regen;
+- TWR hot surcharge isolado sem direct thirst write;
+- componente fisiológico A0140 opcional e fail-closed;
+- multiplayer, reload, respec, logout/dimensão/restart, GameTests, build e dedicated-server smoke quando houver código.
+
+O design A0131–A0140 está fechado. Chat 1 deve **PARAR** após criar/atualizar a PR do lote; não faz merge. A0141+ só pode começar mediante novo comando do usuário.
