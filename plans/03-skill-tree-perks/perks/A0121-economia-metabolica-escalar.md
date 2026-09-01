@@ -20,7 +20,7 @@ ParCool pode identificar/classificar a ação de escalada, mas não cria hunger/
 ## Authority e pipeline
 
 - Owner do custo corporal: Minecraft/NeoForge `FoodData` ou outro provider corporal explicitamente mapeado.
-- ParCool **4.0.0.3** + Epic ParCool 21.0.0: somente identidade/classificação da escalada.
+- ParCool **4.0.0.2** + Epic ParCool 21.0.0: somente identidade/classificação da escalada.
 - RPG Skill Tree: `BodyCostResolver` futuro e aplicação da eficiência, sem inventar custo base.
 
 Pipeline canônico futuro:
@@ -52,7 +52,7 @@ Depois de existir binding global, ausência de receipt em uma ação específica
 
 - `P-A0121-01` — materializar `UNAVAILABLE_NODE` transitivo de A0115/A0117 e da capability `METABOLIC_CLIMB`.
 - `P-A0121-02` — implementar somente se existir boundary real para `BodyCostResolver` METABOLIC com quote/receipt/commit causal; sem hook, manter indisponível.
-- `P-A0121-03` — adapter ParCool 4.0.0.3/Epic ParCool apenas para identidade da ação, com exclusões forced/passive.
+- `P-A0121-03` — adapter ParCool 4.0.0.2/Epic ParCool apenas para identidade da ação, com exclusões forced/passive.
 - `P-A0121-04` — dedup por `action_id`, cap compartilhado 30%, lifecycle/rules reload/respec.
 
 ## Testes exigidos ao Chat 3
