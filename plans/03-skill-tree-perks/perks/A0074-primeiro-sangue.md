@@ -30,6 +30,7 @@ Minecraft/NeoForge fornece vida; Epic Fight fornece root/Impact quando aplicáve
 - o PRE registra apenas reserva/histórico pendente bounded; `lastAttackAt` definitivo só é atualizado no POST confirmado;
 - Epic Fight POST positivo commita opener/finisher; zero/ineligibilidade executa rollback;
 - projéteis físicos recebem commit/rollback no subscriber pós-dano dedicado;
+- review P1 da PR #355 detectou correlação insuficiente no POST de projéteis simultâneos; corrigido nos commits `b3fd4516a06ec7de3049ed64732b26cbcc5a4720` e `e7a102e9ca22c1065cfd62045fc4e5bb8689576a`: o PRE guarda `PendingPerkHit` por `arrow + target` com o root exato e o POST/cancel só altera o histórico/reservation daquele root;
 - janela 4 s e cooldown 12 s permanecem target-scoped e só são consumidos após dano efetivo;
 - pending hit possui retenção bounded de 1 s para evitar estado órfão quando a cadeia PRE→POST não conclui;
 - death/removal e lifecycle do ator/rank efetivo limpam estado transitório.
@@ -38,7 +39,7 @@ Minecraft/NeoForge fornece vida; Epic Fight fornece root/Impact quando aplicáve
 
 - validar bordas de vida `>=85%`, idle `>=8 s`, janela 4 s e cooldown 12 s;
 - validar que opener não recebe o bônus e que apenas root distinto pode consumir;
-- validar cancelamento/dano zero/expiração, concorrência e projéteis simultâneos;
+- validar cancelamento/dano zero/expiração, concorrência, multishot e projéteis simultâneos, incluindo ordem de chegada invertida;
 - validar cleanup por morte/removal/unload, logout/dimensão/respawn e rank loss/respec/rules reload;
 - validar que procs/DoT/summons/fake players/reflexão não alteram histórico nem consomem a janela.
 
