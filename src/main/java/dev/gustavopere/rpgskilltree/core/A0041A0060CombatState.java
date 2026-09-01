@@ -23,7 +23,8 @@ public final class A0041A0060CombatState {
 
     /**
      * Reserves one mature A0041 mark for exactly one causal root without mutating the legacy mark.
-     * A second root cannot reserve the same actor+target while the first outcome is unresolved.
+     * A second observation of the same root is neutral, and a second root cannot reserve the same
+     * actor+target while the first outcome is unresolved.
      */
     public synchronized boolean reserveScytheCut(String actorId, String targetId, String rootActionId, long now) {
         String actor = require(actorId);
@@ -32,7 +33,7 @@ public final class A0041A0060CombatState {
         pruneScytheReservations(now);
         String rootKey = actor + '\0' + root;
         ScytheReservation existing = scytheReservations.get(rootKey);
-        if (existing != null) return existing.targetId.equals(target);
+        if (existing != null) return false;
         boolean targetReserved = scytheReservations.values().stream()
             .anyMatch(reservation -> reservation.actorId.equals(actor) && reservation.targetId.equals(target));
         if (targetReserved) return false;
