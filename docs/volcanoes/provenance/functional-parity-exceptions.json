@@ -1,0 +1,6 @@
+{
+  "source_sha": "eaddc3232dfc600780769f4a5e7e45ff1e50181c",
+  "adapted_files": {
+    "src/main/java/dev/gustavopere/volcanoes/VolcanoesMod.java": "Standalone @Mod bootstrap was intentionally converted into the rpgskilltree-owned native subsystem initializer during single-artifact consolidation."
+  }
+}
