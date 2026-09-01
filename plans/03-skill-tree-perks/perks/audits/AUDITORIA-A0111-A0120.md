@@ -17,7 +17,7 @@ A autoridade de presença/JAR/versão dos guias atuais confirma Oritech `1.2.11`
 |---|---|---|---|
 | A0111 | Conservação de Equipamento II | DESIGN APROVADO EM FAIL-CLOSED | `UNAVAILABLE_NODE` — A0110/P-0036 |
 | A0112 | Auto-Manutenção | DESIGN APROVADO EM FAIL-CLOSED TRANSITIVO | `UNAVAILABLE_NODE` — A0111→A0110/P-0036 |
-| A0113 | Reforço de Campo | DESIGN APROVADO APÓS HARDENING ANTI-CLONE | `UNAVAILABLE_NODE` — A0110/P-0036; identity/repair runtime ausentes |
+| A0113 | Reforço de Campo | DESIGN APROVADO APÓS HARDENING ANTI-CLONE V2 | `UNAVAILABLE_NODE` — A0110/P-0036; identity/lease/repair runtime ausentes |
 | A0114 | Manutenção de Relíquia Vinculada | DESIGN APROVADO EM FAIL-CLOSED DUPLO | `UNAVAILABLE_NODE` — cadeia de manutenção + Attunement Socket ausente |
 | A0115 | Economia Metabólica: Correr | DESIGN APROVADO APÓS HARDENING | `UNAVAILABLE_NODE` — P-0037/BodyCostResolver METABOLIC ausente |
 | A0116 | Conservação Hídrica: Correr | DESIGN APROVADO APÓS HARDENING | `UNAVAILABLE_NODE` — P-0037 HYDRATION + TWR adapter ausentes |
@@ -44,18 +44,22 @@ Foi congelado:
 - lanes HYDRATION também exigem adapter versionado Thirst Was Reclaimed `3.0.4`;
 - depois que os bindings existirem, um receipt ausente apenas para uma ação específica pode omitir o proc; isso é diferente de permitir compra sem consumer global.
 
-### Hardening anti-clone A0113
+### Hardening anti-clone A0113 — V2 após review da PR #341
 
-A0113 já exigia identidade persistente, mas a política para cópia/transferência precisava deixar de ser genérica. O Notion foi corrigido para congelar um `ToolIdentityLedger` server-side:
+A versão inicial do hardening ainda prometia preservar a “cópia original” em um conflito de `tool_instance_id`. O review apontou corretamente que duas cópias idênticas do mesmo DataComponent não permitem distinguir qual stack físico era o original.
 
-- identidade efetiva = `player_uuid + tool_instance_id`;
-- duas cópias carregadas com o mesmo id para o mesmo jogador => a cópia atuante é reidentificada antes do ganho;
-- owner mismatch/transferência => a cópia atuante é reidentificada da mesma forma;
-- o novo UUID inicia A0113 com contador 0 e sem `Reforço Pronto`;
-- progresso/janela nunca são copiados, fundidos ou transferidos;
-- a identidade original preserva seu próprio ledger.
+O contrato foi substituído por uma **linhagem lógica single-writer**:
 
-Re-fetch pós-escrita total: **7/7 PASS** em A0113 e A0115–A0120; persistência confirmada.
+- DataComponents: `tool_instance_id` + `tool_lease_nonce`;
+- ledger: `owner_uuid + tool_instance_id + current_nonce`;
+- antes de cada ação A0113, owner e nonce precisam coincidir com a lease vigente;
+- após uma ação A0113 aceita, a nonce rotaciona atomicamente e a nova nonce é escrita somente no stack atuante;
+- qualquer cópia com nonce anterior fica stale e, ao tentar participar de A0113, recebe novo id/nonce e começa com contador 0 e sem `Reforço Pronto`;
+- owner mismatch também reidentifica/reset;
+- não existe promessa de reconhecer o stack físico original;
+- no máximo uma cópia continua a linhagem prévia, inclusive quando clones não estão simultaneamente carregados.
+
+Páginas distintas alteradas no lote: **7/10** — A0113 e A0115–A0120. Re-fetch pós-escrita das sete páginas: **7/7 PASS**; A0113 recebeu ainda re-fetch específico após o hardening V2 e persistiu corretamente.
 
 ## Capability delta dos quatro projetos próprios
 
@@ -67,6 +71,20 @@ Heads frescos são idênticos aos checkpoints do lote anterior:
 - Black Arcana `e89df6dc2c204c269d8f1811c6b3f309644c864a`
 
 Resultado: **SEM DELTA DE CAPABILITY**. A matriz completa está em `guides/projects/17-capability-delta-a0111-a0120.md`.
+
+## Gate global de implementação — AGENTS.md / predecessores
+
+O review da PR #341 também apontou que `AGENTS.md` proíbe expansão de conteúdo antes das fundações mínimas e que A0091–A0110 ainda estão em PRs documentais abertas.
+
+A distinção operacional fica congelada assim:
+
+1. **Chat 1 pode fechar o design** A0111–A0120 porque o protocolo do projeto seleciona o próximo lote pela condição “ainda não fechado pelo Chat 1”, não por merge; Chat 1 é expressamente proibido de fazer merge.
+2. **Chat 2 NÃO deve iniciar a implementação A0111–A0120 ainda.** Antes disso, a `main` corrente deve demonstrar, por código/testes/CI, os requisitos mínimos de `AGENTS.md` em “Before expanding content”: baseline reprodutível, correções 1.21.1, save reconciliation/migration seguro, rules snapshot atômico + view server→client, canonical stat runtime, mutation/sync coalescido e dedupe central.
+3. Os lotes predecessores **A0091–A0100 (#326) e A0101–A0110 (#340)** devem antes passar pelos seus Chat 2 + Chat 3 e chegar à `main`, porque A0111–A0114 dependem diretamente da cadeia que culmina em A0110.
+4. Quando ambos os gates estiverem satisfeitos, o Chat 2 deve reconciliar esta mesma branch/PR #341 com a `main` então corrente e somente depois implementar A0111–A0120.
+5. Este gate não autoriza Chat 1 a mergear #326/#340/#341 nem a implementar fundações/runtime neste ciclo.
+
+Assim, o lote fica **fechado no design**, mas o handoff de implementação permanece **BLOQUEADO POR PRÉ-REQUISITOS GLOBAIS/PREDECESSORES** até a evidência acima existir.
 
 ## Decisões estruturais
 
@@ -80,7 +98,7 @@ Um ciclo/player, 200 ticks fora de dano hostil, intervalo 600/480/360. Somente p
 
 ### A0113 — identidade de ferramenta
 
-`player_uuid + tool_instance_id`; 12 coletas legítimas abrem 600 ticks; próximo reparo da mesma instância recebe +15/+25/+35% sobre quantidade realmente restaurada, com custo integral. `ToolIdentityLedger` reidentifica somente a cópia atuante em clone/owner mismatch e zera somente o progresso da nova identidade. Anti-clone e anti-rebuild são obrigatórios.
+`owner_uuid + tool_instance_id + current_nonce`; 12 coletas legítimas com lease válida abrem 600 ticks; próximo reparo com lease vigente recebe +15/+25/+35% sobre quantidade realmente restaurada, com custo integral. A lease rotativa garante uma única continuidade lógica sem alegar distinguir clone físico de original.
 
 ### A0114 — attunement real
 
@@ -94,13 +112,13 @@ METABOLIC usa somente parcel positivo FoodData causal da ação. HYDRATION usa r
 
 | Eixo | Resultado | Decisão |
 |---|---|---|
-| 1. Dependências, bloqueios e gates | PASS | availability transitiva completa; todos os blockers atuais resultam em node não comprável |
+| 1. Dependências, bloqueios e gates | PASS | availability transitiva + gate global de implementação explícitos |
 | 2. Integração global | PASS | durability/repair/BodyCost usam owners canônicos; nenhum pipeline paralelo |
 | 3. Qualidade e identidade | PASS | conservação, reparo, reforço, attunement, metabolismo e hidratação são mecanismos distintos |
 | 4. Ramificação/distância/topologia | PASS | ENGINEERING/SURVIVAL/LOGISTICS e bridges coerentes |
 | 5. Especializações | PASS/N/A | PP só conta quando mapeado semanticamente; nenhum grant paralelo |
 | 6. Tradução PT-BR | PASS | nomes/regras/effects mantidos em PT-BR |
-| 7. Notion completo | PASS | 10/10 fetch; 7 páginas endurecidas; 7/7 re-fetch |
+| 7. Notion completo | PASS | 10/10 fetch; 7 páginas distintas endurecidas; 7/7 re-fetch + A0113 V2 re-fetch |
 | 8. Remoção NeoVitae | PASS/N/A | nenhum contrato depende de NeoVitae |
 | 9. Cobertura modlist/providers | PASS | Oritech, Protection Pixel, Relics/Artifacts, ParCool, TWR/TWF e projetos próprios classificados |
 
@@ -114,35 +132,40 @@ METABOLIC usa somente parcel positivo FoodData causal da ação. HYDRATION usa r
 | 4 | fail-closed | PASS — 10/10 nodes indisponíveis no snapshot atual |
 | 5 | fallback não muda identidade | PASS — ausência omite/habilita unavailable, nunca troca efeito |
 | 6 | Mastery por feitos discretos | N/A — lote não concede Mastery |
-| 7 | anti-farm/rebuild | PASS — A0113 bloqueia placed/automation/clone e reidentifica conflito; actions deduplicadas |
-| 8 | atribuição causal | PASS — harvest/action_id/player_uuid explícitos |
+| 7 | anti-farm/rebuild | PASS — A0113 usa lease single-writer e bloqueia placed/automation; actions deduplicadas |
+| 8 | atribuição causal | PASS — harvest/action_id/owner explícitos |
 | 9 | não duplicar pipelines | PASS — owners únicos e lanes tipadas |
 | 10 | custos reais | PASS — resource debit provider-native e FoodData/TWR reais |
 | 11 | sem geração gratuita | PASS — zero free repair/hydration/energy |
 | 12 | read-only correto | PASS/N/A — queries de providers não viram mutação authority |
 | 13 | versionamento explícito | PASS — NeoForge 21.1.248; Oritech 1.2.11; Protection Pixel 2.2.1; Relics 0.12.8; Artifacts 13.2.3; Reliquified 1.0.8; TWR 3.0.4; TWF 2.1.5; ParCool 4.0.0.2; Epic ParCool 21.0.0 |
 | 14 | coerência estrutural | PASS | ranks/custos/camadas/gates preservados |
-| 15 | dependências semânticas | PASS | predecessors indisponíveis propagam availability |
+| 15 | dependências semânticas | PASS | predecessors indisponíveis propagam availability; predecessors documentais bloqueiam implementação até integração |
 | 16 | sem sobreposição indevida | PASS | METABOLIC ≠ HYDRATION; slot ≠ attunement; FE ≠ durability |
-| 17 | implementável posteriormente | PASS | cada dossier fecha hooks/gates/order/authority/pending/tests |
-| 18 | verificação pós-escrita | PASS | 7/7 Notion re-fetch após hardening |
+| 17 | implementável posteriormente | PASS | contracts fechados; execução explicitamente diferida até gates globais/predecessores |
+| 18 | verificação pós-escrita | PASS | 7/7 páginas distintas + A0113 V2 re-fetch |
 
-## Handoff Chat 2
+## Handoff Chat 2 — DIFERIDO
 
-O Chat 2 deve implementar exatamente os contracts dos dossiês. Prioridade imediata no snapshot atual: materializar availability fail-closed para todos os dez nodes. P-0036/P-0037 ou Attunement só podem ser implementados se código/API real suportar exatamente os boundaries documentados; não usar repair/refund, polling, direct thirst writes, heurística de movimento, Curios-as-attunement ou resource substitution.
+O contrato dos dez dossiês está fechado, mas **não iniciar runtime de A0111–A0120 enquanto o gate global acima estiver aberto**.
 
-Para A0113, o Chat 2 não pode inventar merge de progresso entre IDs conflitantes: reidentificação da cópia atuante e reset local da nova identidade são parte do contrato aprovado.
+Quando os requisitos de `AGENTS.md` e a integração dos lotes A0091–A0110 estiverem comprovados na `main`, o Chat 2 deve continuar **esta mesma branch/PR #341**, primeiro reconciliá-la com a `main` e então implementar exatamente os contracts aprovados.
+
+P-0036/P-0037 ou Attunement só podem ser implementados se código/API real suportar exatamente os boundaries documentados; não usar repair/refund, polling, direct thirst writes, heurística de movimento, Curios-as-attunement ou resource substitution.
+
+Para A0113, não existe “detecção do original”: implementar a lease single-writer e reidentificar/resetar somente uma cópia que apresente lease stale ou owner incompatível.
 
 Se a API real exigir mudança de identidade/provider/gate/semântica, registrar evidência e devolver ao Chat 1.
 
 ## Testes para Chat 3
 
+- gate global/predecessores não pode ser bypassado por implementação antecipada;
 - purchase fail-before-spend e legacy PP=0 em todos os blockers;
 - availability transitiva A0110→A0111→A0112→A0114 e A0115/A0116→A0117–A0120;
 - provider absent/version mismatch;
 - one-use/action/cycle dedup;
 - debit-before-repair e rollback;
-- A0113 anti-clone/anti-rebuild, incluindo same-id duplicate, owner mismatch, reidentificação da cópia atuante e reset local;
+- A0113 lease single-writer: stale nonce, owner mismatch, clone não simultâneo, rotação atômica, uma única continuidade lógica;
 - METABOLIC/HYDRATION ordering, cap 30% e action identity;
 - forced/passive movement exclusions;
 - no direct thirst writes/polling/resource substitution;
@@ -151,6 +174,6 @@ Se a API real exigir mudança de identidade/provider/gate/semântica, registrar 
 
 ## Estado final Chat 1
 
-**DESIGN APROVADO / LOTE A0111–A0120 FECHADO PELO CHAT 1 / AGUARDANDO IMPLEMENTAÇÃO CHAT 2.**
+**DESIGN APROVADO / LOTE A0111–A0120 FECHADO PELO CHAT 1 / IMPLEMENTAÇÃO DIFERIDA POR GATES GLOBAIS E PREDECESSORES.**
 
-Chat 1 **não faz merge**. A PR do lote deve permanecer aberta para o Chat 2 continuar na mesma branch; o Chat 3 executa validação final/CI/merge. A0121+ não foi iniciado.
+Chat 1 **não faz merge**. A PR #341 permanece aberta; após os gates, o Chat 2 continua nela. O Chat 3 executa validação final/CI/merge. A0121+ não foi iniciado.
