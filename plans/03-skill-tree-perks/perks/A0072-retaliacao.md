@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após correção de availability em 2026-08-31.
 - **Notion:** `3c569db9-f0db-813a-945d-f4f198f1c038`; Gate/Fallback/Regra corrigidos; re-fetch pós-escrita PASS.
-- **Runtime observado:** efeito possui hook POST adequado, porém a perk é estruturalmente indisponível enquanto A0067 for indisponível.
+- **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -19,22 +19,32 @@
 
 ## Evidência runtime
 
-`A0061A0080EpicFightHooks.onDirectHostileDamageTaken(...)` já usa POST, exige dano positivo e atacante direto hostil. A policy deduplica evento causal e mantém uma única janela.
+`A0061A0080EpicFightHooks.onDirectHostileDamageTaken(...)` usa POST, exige dano positivo e atacante direto hostil. A policy deduplica evento causal e mantém uma única janela.
 
 ## Availability
 
-A0067 foi fechada no design como indisponível/não comprável até existir offensive attack-window binding seguro. Pela dependência obrigatória, **A0072 também deve permanecer indisponível/não comprável**. Fallback não pode bypassar a cadeia.
+A0067 permanece indisponível/não comprável até existir offensive attack-window binding seguro. Pela dependência obrigatória, **A0072 também permanece indisponível/não comprável**. `CombatPerkAvailabilityRuntime` mascara o rank efetivo e `NodePurchaseRequestProcessor`/`PlayerProgressionRuntime` recusam aquisição do node indisponível, preservando alocações persistidas preexistentes sem efeito runtime.
 
-## Pendências para Chat 2
+## Implementação Chat 2 — 2026-09-01
 
-- **P-A0072-01 BLOQUEANTE:** propagar unavailable-node invariant A0067 → A0072 no purchase/gate.
-- **P-A0072-02:** testar refresh sem stacking, recursão, self/hazard/BLOOD_MAGIC_COST e callbacks duplicados.
+- unavailable-node invariant A0067 → A0072 implementado no purchase/gate runtime;
+- `effectiveRanks` garante contribuição runtime zero enquanto a cadeia estiver indisponível;
+- hook POST hostil existente foi preservado, sem abrir fallback por PRE, self-damage, hazard ou custo de recurso;
+- alteração de disponibilidade/rank efetivo limpa estado transitório por `A0061A0080RuntimeState`;
+- nenhuma solução genérica foi inventada para tornar A0067 adquirível.
+
+## Pendências para Chat 3
+
+- validar compra recusada quando A0067 estiver indisponível, inclusive pelos dois caminhos server-authoritative de purchase;
+- validar refresh de 3 s sem stacking de magnitude;
+- validar exclusões de self/hazard/BLOOD_MAGIC_COST, recursão e callbacks duplicados;
+- validar limpeza de estado em rank loss/respec/rules reload/lifecycle.
 
 ## Nove eixos obrigatórios
 
 | Eixo | Resultado | Decisão |
 |---|---|---|
-| Dependências/gates | PASS no design | availability de A0067 é herdada. |
+| Dependências/gates | PASS | availability de A0067 é herdada. |
 | Integração global | PASS | ameaça externa real; Black Arcana/custos excluídos. |
 | Qualidade/identidade | PASS | reação temporal sem stacking. |
 | Topologia | PASS | Camada 2, `MARTIAL/RETALIATION`. |
@@ -44,4 +54,4 @@ A0067 foi fechada no design como indisponível/não comprável até existir offe
 | NeoVitae | PASS | Ausente. |
 | Providers | PASS | NeoForge/Epic Fight/RPG; outros não inventados. |
 
-Os 18 critérios passam **no design**; implementação não pode ser confirmada enquanto A0067 continuar indisponível.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
