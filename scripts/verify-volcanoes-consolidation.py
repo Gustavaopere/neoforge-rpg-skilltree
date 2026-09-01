@@ -76,7 +76,7 @@ def main() -> int:
             "Volcanoes BSD license evidence must ship in the unified repository")
 
     for dependency in (
-        "minecolonies-245506:8621898",
+        "minecolonies-245506:8765939",
         "cold-sweat-506194:8302211",
         "create-rns-1370563:8729955",
         "sable-1312371:8673825",
