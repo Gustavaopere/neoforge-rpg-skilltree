@@ -1,0 +1,324 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "tfc",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:tfc:leopard_seal",
+      "title": "Leopard Seal",
+      "summary": {
+        "text": "Leopard Seal documenta `tfc:leopard_seal`, registro que sucede imediatamente `tfc:penguin` em `TFCEntities.java` do TerraFirmaCraft 4.2.8. O Field Guide pt-BR do próprio provider mantém o nome `Leopard Seal`, por isso a ficha preserva esse rótulo em vez de introduzir uma tradução externa.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:leopard_seal"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+        ]
+      },
+      "sections": {
+        "classification_and_behavior": {
+          "text": "`LEOPARD_SEAL` usa a classe `LeopardSeal`, derivada de `AmphibiousAnimal`, com cérebro baseado em `PinnipedAI`. A entidade reconhece `tfc:seal_food` como alimento e sobrescreve `isPlayingDeadEffective()` para `false`; portanto a ficha não atribui os efeitos adicionais de fingir-se de morta nem transforma o comentário pendente do código em comportamento implementado.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/aquatic/LeopardSeal.java"}
+          ]
+        },
+        "habitat_and_authority": {
+          "text": "O Field Guide classifica a foca-leopardo entre os animais costeiros e a associa a praias frias, bordas de mantos de gelo e gelo marinho. Limites numéricos de clima, frequência, tamanho de grupo e demais condições de geração permanecem sob autoridade dos dados, configurações e datapacks do TerraFirmaCraft e não são congelados nesta prosa editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "ENTITY:tfc:frog",
+      "title": "Frog",
+      "summary": {
+        "text": "Frog representa `tfc:frog`, registro imediatamente posterior a `LEOPARD_SEAL` no TerraFirmaCraft 4.2.8. Os materiais pt-BR auditados do provider ainda deixam a apresentação da rã parcialmente em inglês; a ficha conserva `Frog` para rastreabilidade em vez de normalizar silenciosamente a tradução.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:frog"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/food/animal_husbandry.json"}
+        ]
+      },
+      "sections": {
+        "husbandry_and_state": {
+          "text": "`TFCFrog` estende a rã vanilla e persiste sexo, familiaridade, último acasalamento e janela de alimentação. O acasalamento exige sexos diferentes, familiaridade suficiente, alimentação recente e o intervalo temporal definido pelo runtime; alimentos precisam não estar podres e pertencer à tag `tfc:frog_food`. A ficha preserva essas regras sem congelar seus valores numéricos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/prey/TFCFrog.java"}
+          ]
+        },
+        "variant_and_generation": {
+          "text": "Ao finalizar o spawn, `TFCFrog` seleciona a variante fria, temperada ou quente a partir da temperatura média ao nível do mar obtida dos dados de chunk do TFC. Biomas, frequência, grupos e faixas climáticas de geração continuam sendo definidos pelo provider e seus dados configuráveis, não pela ficha editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/prey/TFCFrog.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "ENTITY:tfc:polar_bear",
+      "title": "Urso polar",
+      "summary": {
+        "text": "Urso polar corresponde a `tfc:polar_bear`, primeiro dos três ursos consecutivos após `FROG` em `TFCEntities.java`. O título segue exatamente o Field Guide pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:polar_bear"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+        ]
+      },
+      "sections": {
+        "predator_behavior": {
+          "text": "`POLAR_BEAR` é criado por `Predator::createBear`. Essa fábrica configura os ursos como predadores diurnos; o cérebro compartilhado mantém atividades de caça e combate, estado de sono persistido e uma posição de lar registrada no spawn. Ser ferido por uma entidade viva válida pode definir um alvo de ataque e despertar o predador.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/Predator.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"}
+          ]
+        },
+        "environment_and_authority": {
+          "text": "O registro torna o urso polar imune à neve fofa, e o Field Guide o associa às regiões mais frias. Os limites concretos de temperatura, chuva, bioma, abundância e grupo permanecem sob autoridade do TerraFirmaCraft, de sua configuração e de seus datapacks.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "ENTITY:tfc:grizzly_bear",
+      "title": "Urso pardo",
+      "summary": {
+        "text": "Urso pardo documenta `tfc:grizzly_bear`, segundo registro de urso consecutivo no TerraFirmaCraft 4.2.8. O rótulo é o empregado pelo Field Guide pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:grizzly_bear"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+        ]
+      },
+      "sections": {
+        "predator_behavior": {
+          "text": "Assim como os demais ursos do lote, `GRIZZLY_BEAR` usa `Predator::createBear`: agenda diurna, cérebro de `PredatorAi`, memória de lar, sono persistente e transição para combate quando as condições do runtime exigem. A ficha não transforma esses estados em probabilidades ou distâncias fixas.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/Predator.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"}
+          ]
+        },
+        "environment_and_authority": {
+          "text": "O registro também concede imunidade à neve fofa. O Field Guide associa o urso pardo a florestas de clima moderado, enquanto os parâmetros exatos de geração continuam pertencendo aos dados e configurações do provider.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "ENTITY:tfc:black_bear",
+      "title": "Urso preto",
+      "summary": {
+        "text": "Urso preto corresponde a `tfc:black_bear`, terceiro e último registro consecutivo de urso antes dos felinos do lote. O título reproduz o Field Guide pt-BR do TerraFirmaCraft 4.2.8.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:black_bear"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+        ]
+      },
+      "sections": {
+        "predator_behavior": {
+          "text": "`BLACK_BEAR` compartilha `Predator::createBear` com os outros ursos: é configurado como diurno e usa o mesmo contrato de caça, combate, sono e território doméstico do `Predator`. Os valores de atributos permanecem definidos pelo código do provider e não são duplicados na prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/Predator.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"}
+          ]
+        },
+        "environment_and_authority": {
+          "text": "A entidade é registrada como imune à neve fofa; o Field Guide a associa a florestas de clima mais quente e úmido. Faixas climáticas, biomas, frequência e grupos continuam data-driven e sob autoridade do TerraFirmaCraft.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "ENTITY:tfc:cougar",
+      "title": "Puma",
+      "summary": {
+        "text": "Puma documenta `tfc:cougar`, primeiro `FelinePredator` após os três ursos em `TFCEntities.java`. O Field Guide pt-BR do TerraFirmaCraft usa explicitamente `Puma` para essa entidade.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:cougar"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+        ]
+      },
+      "sections": {
+        "feline_behavior": {
+          "text": "`COUGAR` usa `FelinePredator::createCougar`. Essa fábrica cria um predador noturno; `FelinePredator` acrescenta estados de agachar e correr usados pelo comportamento, marca escalada quando encontra colisão horizontal e usa `TFCClimberNavigation` para navegação em superfícies escaláveis.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/FelinePredator.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/Predator.java"}
+          ]
+        },
+        "habitat_and_authority": {
+          "text": "O Field Guide associa o puma a climas moderados. Bioma, temperatura, chuva, frequência de encontro e composição de grupos continuam definidos pelo provider/configuração/datapacks, sem valores numéricos congelados na ficha.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "ENTITY:tfc:panther",
+      "title": "Pantera",
+      "summary": {
+        "text": "Pantera corresponde a `tfc:panther`, registro que sucede `COUGAR`. O Field Guide pt-BR usa `Pantera`, e o runtime registra essa entidade com a mesma fábrica `FelinePredator::createCougar` usada pelo puma.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:panther"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+        ]
+      },
+      "sections": {
+        "feline_behavior": {
+          "text": "Como `PANTHER` chama `createCougar`, o contrato auditado é o mesmo perfil felino noturno do puma: comportamento herdado de `Predator`, navegação de escalada, estado sincronizado de escalada e modificadores de movimento controlados pela classe. A ficha não inventa diferenças comportamentais que a fábrica compartilhada não demonstra.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/FelinePredator.java"}
+          ]
+        },
+        "habitat_and_authority": {
+          "text": "O Field Guide pt-BR associa a pantera ao mesmo perfil climático moderado apresentado para o puma. Regras concretas de spawn e distribuição permanecem sob autoridade dos dados configuráveis do TerraFirmaCraft.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "ENTITY:tfc:lion",
+      "title": "Leoa",
+      "summary": {
+        "text": "Leoa documenta `tfc:lion`. O rótulo pode parecer assimétrico em relação ao registry ID, mas é exatamente o nome presente no Field Guide pt-BR do TerraFirmaCraft 4.2.8; o Compêndio o preserva em vez de corrigir silenciosamente a tradução oficial do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:lion"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+        ]
+      },
+      "sections": {
+        "feline_behavior": {
+          "text": "`LION` usa `FelinePredator::createLion`, que cria um felino predador noturno. Ele herda território doméstico, caça, combate e sono de `Predator`, além da navegação de escalada e dos estados de movimento definidos em `FelinePredator`.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/FelinePredator.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/Predator.java"}
+          ]
+        },
+        "habitat_and_authority": {
+          "text": "O Field Guide relaciona essa entidade a planícies de clima quente. Os limites climáticos, a chuva, a distribuição por bioma, a frequência e os grupos continuam sob autoridade do provider e não são duplicados numericamente no corpus.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "ENTITY:tfc:sabertooth",
+      "title": "Sabertooth",
+      "summary": {
+        "text": "Sabertooth corresponde a `tfc:sabertooth`, registro seguinte a `LION`. O Field Guide pt-BR mantém `Sabertooth` em inglês, e a ficha conserva esse rótulo do provider em vez de importar uma nomenclatura externa.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:sabertooth"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+        ]
+      },
+      "sections": {
+        "feline_behavior": {
+          "text": "`SABERTOOTH` usa `FelinePredator::createSabertooth`. A fábrica o configura como predador noturno; o restante do contrato segue `FelinePredator` e `Predator`, incluindo escalada, navegação especializada, estados de caça/combate, sono e memória de lar.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/FelinePredator.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/Predator.java"}
+          ]
+        },
+        "habitat_and_authority": {
+          "text": "O Field Guide fornece critérios climáticos próprios para o sabertooth, mas a ficha não congela esses números. Clima, bioma, frequência, grupo e demais parâmetros de geração permanecem sob autoridade dos dados e configurações do TerraFirmaCraft.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    },
+    {
+      "entry_id": "ENTITY:tfc:tiger",
+      "title": "Tiger",
+      "summary": {
+        "text": "Tiger representa `tfc:tiger`, décima entrada do Lote 21 e último registro antes de `tfc:crocodile` na sequência auditada de `TFCEntities.java`. O Field Guide pt-BR ainda usa `Tiger`, portanto o Compêndio preserva esse nome oficial do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "tfc:entity_type/tfc:tiger"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"},
+          {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"}
+        ]
+      },
+      "sections": {
+        "feline_behavior": {
+          "text": "`TIGER` usa `FelinePredator::createTiger`, configurado como predador noturno. O comportamento auditado inclui a base territorial e de combate de `Predator` e a capacidade de escalada/navegação de `FelinePredator`; números de atributos e distâncias de comportamento continuam pertencendo ao runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/FelinePredator.java"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/predator/Predator.java"}
+          ]
+        },
+        "habitat_and_authority": {
+          "text": "O Field Guide associa o tigre a florestas quentes e úmidas. As faixas exatas, regras de bioma, frequência e agrupamento permanecem data-driven e podem variar com configuração ou datapacks, por isso não são fixadas nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/resources/assets/tfc/patchouli_books/field_guide/pt_br/entries/the_world/wild_animals.json"},
+            {"type": "OFFICIAL_CODE", "ref": "TerraFirmaCraft/TerraFirmaCraft@v4.2.8:src/main/java/net/dries007/tfc/common/entities/TFCEntities.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "OPTIONAL",
+      "availability_reason": "TerraFirmaCraft é um provider opcional; a ficha editorial permanece válida sem o mod carregado e pode coexistir com a entrada técnica quando ele está presente."
+    }
+  ]
+}

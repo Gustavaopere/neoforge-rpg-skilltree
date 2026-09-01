@@ -598,13 +598,45 @@ Entradas:
 - todas as dez fichas permanecem `REVIEWED`/`OPTIONAL`, e `CompendiumCheckedInEditorialBatch20JUnitTest` valida exatamente essas dez entradas com TerraFirmaCraft ausente e presente;
 - o TDD produziu RED válido na draft #350 contra `main@a20b9efe0b1b5e6c7dc2a1e9fa386440e8469482`: o teste compilou normalmente e o RPG Skill Tree CI #2963 executou `872 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch20JUnitTest` no `assertNotNull` do recurso intencionalmente ausente `fauna-batch4.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #604 e pelo RPG Skill Tree CI #2968, incluindo JUnit, NeoForge GameTests, todos os validadores do Compêndio/runtime, NeoForge build, verificação do JAR e dedicated-server smoke.
 
+## Lote 21 — TerraFirmaCraft / fechamento da fauna costeira e início dos predadores
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch5.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `ENTITY:tfc:leopard_seal` — Leopard Seal
+2. `ENTITY:tfc:frog` — Frog
+3. `ENTITY:tfc:polar_bear` — Urso polar
+4. `ENTITY:tfc:grizzly_bear` — Urso pardo
+5. `ENTITY:tfc:black_bear` — Urso preto
+6. `ENTITY:tfc:cougar` — Puma
+7. `ENTITY:tfc:panther` — Pantera
+8. `ENTITY:tfc:lion` — Leoa
+9. `ENTITY:tfc:sabertooth` — Sabertooth
+10. `ENTITY:tfc:tiger` — Tiger
+
+### Critérios editoriais aplicados ao lote 21
+
+- o lote continua imediatamente `PENGUIN` na ordem real de registros de `TFCEntities.java` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`, cobrindo exatamente `LEOPARD_SEAL`, `FROG`, `POLAR_BEAR`, `GRIZZLY_BEAR`, `BLACK_BEAR`, `COUGAR`, `PANTHER`, `LION`, `SABERTOOTH` e `TIGER` e encerrando antes de `CROCODILE`;
+- `LEOPARD_SEAL` usa `LeopardSeal`, derivada de `AmphibiousAnimal`, com `PinnipedAI`, alimento em `tfc:seal_food` e `isPlayingDeadEffective()` retornando `false`; a ficha não converte comentários pendentes do upstream em comportamento implementado;
+- `TFCFrog` persiste sexo, familiaridade, alimentação e estado temporal de acasalamento, exige alimento não apodrecido pertencente a `tfc:frog_food` e escolhe sua variante de spawn a partir da temperatura média consultada pelo runtime, sem congelar limiares numéricos na prosa;
+- `POLAR_BEAR`, `GRIZZLY_BEAR` e `BLACK_BEAR` usam `Predator::createBear`, compartilhando perfil diurno, caça/combate, sono persistido e memória de lar; os três registros preservam também a imunidade à neve fofa declarada pelo provider;
+- `COUGAR` e `PANTHER` compartilham `FelinePredator::createCougar`, enquanto `LION`, `SABERTOOTH` e `TIGER` usam suas fábricas específicas; os cinco felinos são criados com perfil noturno e herdam escalada, navegação especializada e estados de movimento de `FelinePredator` sem diferenças inventadas além das demonstradas pelo código;
+- os títulos preservam a localização efetivamente fornecida pelo provider: `Urso polar`, `Urso pardo`, `Urso preto`, `Puma`, `Pantera` e inclusive `Leoa` para `tfc:lion`; `Leopard Seal`, `Frog`, `Sabertooth` e `Tiger` permanecem em inglês quando os materiais pt-BR auditados não fornecem uma tradução consolidada, sem importar nomenclatura taxonômica externa;
+- clima, bioma, frequência, tamanho de grupo e demais parâmetros de spawn/worldgen permanecem sob autoridade do TerraFirmaCraft, da configuração e dos datapacks ativos; nenhum desses valores foi congelado na prosa editorial;
+- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL`, e `CompendiumCheckedInEditorialBatch21JUnitTest` valida exatamente essas dez entradas com TerraFirmaCraft ausente e presente;
+- o TDD produziu RED válido na draft #362 no head `d3f8fa6adb3a0bff6dab728386da04dffe37d63c`: o RPG Skill Tree CI #3050 chegou à etapa JUnit com os checks anteriores verdes, e o build executado pelo audit de provenance registrou `884 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch21JUnitTest` pela ausência intencional de `fauna-batch5.json`;
+- após o corpus, a primeira validação expôs um único conflito contratual: a prosa citava literalmente o token reservado `TODO`, rejeitado pelo `CompendiumEditorialResourceLoader`; a correção mínima substituiu somente esse token por `pendente`, sem alterar identidade, fonte ou semântica factual. No head `174e5b7966d8633304c405dfbd02c5c7f660ce0c`, o Compendium Editorial CI #672 e o Volcanoes Third-Party Provenance Audit #252 concluíram com `success`, comprovando o GREEN funcional antes do fechamento documental.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **100**;
-- entradas editoriais totais: **200**;
-- lotes documentados: **20**;
+- entradas editoriais TFC reais no corpus: **110**;
+- entradas editoriais totais: **210**;
+- lotes documentados: **21**;
 - namespaces em produção: `minecraft`, `tfc`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
