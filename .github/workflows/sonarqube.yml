@@ -52,10 +52,30 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: python3 scripts/refresh-sonar-new-code-baseline.py
 
+      - name: Collect provider-free GameTest coverage
+        run: >-
+          ./gradlew --no-daemon
+          -I gradle/sonar-gametest-coverage.init.gradle
+          runGameTestServer
+          -PgameTestCoverageName=provider-free
+
+      - name: Collect Battle Mage provider GameTest coverage
+        run: >-
+          ./gradlew --no-daemon
+          -I gradle/sonar-gametest-coverage.init.gradle
+          runGameTestServer
+          -PbattleMageProviderRuntime=true
+          -PgameTestCoverageName=battle-mage-provider
+
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew --no-daemon -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300 build sonar --info
+        run: >-
+          ./gradlew --no-daemon
+          -I gradle/sonar-gametest-coverage.init.gradle
+          -Dsonar.qualitygate.wait=true
+          -Dsonar.qualitygate.timeout=300
+          build sonar --info
 
       - name: Verify Sonar new-code issue count on main
         if: github.event_name != 'pull_request'
