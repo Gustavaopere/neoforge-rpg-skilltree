@@ -47,7 +47,7 @@ public final class MartialStanceRuntime {
             state.resetStance(actor);
         }
 
-        if (A0079ForcedMovementCompat.forcedOrUnclassified(player)) {
+        if (player.isPassenger() || A0079ForcedMovementCompat.forcedOrUnclassified(player)) {
             A0061A0080RuntimeState.stationary().invalidate(actor);
         }
     }
