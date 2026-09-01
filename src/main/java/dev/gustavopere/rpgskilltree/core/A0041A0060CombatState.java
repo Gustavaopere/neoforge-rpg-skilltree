@@ -7,7 +7,7 @@ import java.util.Objects;
 /** Server-authoritative transient resources for A0041-A0060. Nothing here is persisted. */
 public final class A0041A0060CombatState {
     private static final long CLAIM_RETENTION_MILLIS = 30_000L;
-    private static final long SCYTHE_RESERVATION_RETENTION_MILLIS = 1_000L;
+    private static final long SCYTHE_RESERVATION_RETENTION_MILLIS = 250L;
     private final Map<String, Actor> actors = new HashMap<>();
     private final Map<String, Long> claims = new HashMap<>();
     private final Map<String, ScytheReservation> scytheReservations = new HashMap<>();
@@ -38,7 +38,7 @@ public final class A0041A0060CombatState {
         if (targetReserved) return false;
         scytheReservations.put(
             rootKey,
-            new ScytheReservation(actor, target, Math.addExact(now, SCYTHE_RESERVATION_RETENTION_MILLIS))
+            new ScytheReservation(actor, target, root, Math.addExact(now, SCYTHE_RESERVATION_RETENTION_MILLIS))
         );
         return true;
     }
@@ -56,8 +56,37 @@ public final class A0041A0060CombatState {
             && reservation.targetId.equals(target);
     }
 
+    /** Returns the reserved root for this actor+target and consumes the reservation. */
+    public synchronized String takeScytheCutReservationForTarget(String actorId, String targetId, long now) {
+        String actor = require(actorId);
+        String target = require(targetId);
+        pruneScytheReservations(now);
+        String key = null;
+        ScytheReservation matched = null;
+        for (Map.Entry<String, ScytheReservation> entry : scytheReservations.entrySet()) {
+            ScytheReservation reservation = entry.getValue();
+            if (reservation.actorId.equals(actor) && reservation.targetId.equals(target)) {
+                key = entry.getKey();
+                matched = reservation;
+                break;
+            }
+        }
+        if (key == null) return null;
+        scytheReservations.remove(key);
+        return matched.rootActionId;
+    }
+
     public synchronized void discardScytheCutReservation(String actorId, String rootActionId) {
         scytheReservations.remove(require(actorId) + '\0' + require(rootActionId));
+    }
+
+    public synchronized void discardScytheCutReservationForTarget(String actorId, String targetId) {
+        String actor = require(actorId);
+        String target = require(targetId);
+        scytheReservations.entrySet().removeIf(entry -> {
+            ScytheReservation reservation = entry.getValue();
+            return reservation.actorId.equals(actor) && reservation.targetId.equals(target);
+        });
     }
 
     private void pruneScytheReservations(long now) {
@@ -253,7 +282,7 @@ public final class A0041A0060CombatState {
         return Math.max(min, Math.min(max, value));
     }
 
-    private record ScytheReservation(String actorId, String targetId, long expiresAt) {}
+    private record ScytheReservation(String actorId, String targetId, String rootActionId, long expiresAt) {}
 
     private static final class Actor {
         double focus;
