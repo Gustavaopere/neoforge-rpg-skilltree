@@ -4,7 +4,8 @@
 
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability/autoria em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8148-9fef-e7b4a708330b`; Gate/Fallback/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** coeficiente existe no core, mas não há producer de autoria persistente + pulse identity; A0085 fica **indisponível/não comprável**.
+- **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- A0085 permanece **indisponível/não comprável** porque nenhum provider auditado fornece o conjunto owner + applicationId + pulseId exigido.
 
 ## Contrato canônico
 
@@ -23,28 +24,39 @@ O adapter por provider deve produzir equivalente a:
 
 ## Cobertura de providers
 
-- Goety 3.1.4: somente DoT cuja aplicação direta pelo jogador e pulsos possam ser correlacionados; dano de servos/summons não herda autoria.
-- Malum 1.8.2: efeitos spirit/occult entram apenas por aplicação e pulse provider-native comprovadas.
-- Eidolon: Repraised 0.5.0.2: mesma exigência de autoria persistente.
-- Iron's 3.16.3 / Ars Nouveau 5.13.1: um hit direto pertence a A0083/A0084; somente efeitos explicitamente periódicos e com owner persistente podem entrar em A0085.
-- Vampirism 1.10.12: heal nativo só entra se correlacionável ao mesmo pulso.
+- Goety 3.1.4: sem integração enquanto aplicação direta + pulses não forem correlacionáveis.
+- Malum 1.8.2: sem integração enquanto aplicação/pulse provider-native não forem comprovadas.
+- Eidolon: Repraised 0.5.0.2: mesma exigência.
+- Iron's 1.21.1-3.16.3 / Ars Nouveau 5.13.1: hit direto pertence a A0083/A0084; ticks derivados não são convertidos em A0085 automaticamente.
+- Vampirism 1.10.12: heal nativo não entra sem correlação ao mesmo pulso.
 - Black Arcana `ARCANE_BACKLASH`, Enshrouded/Shroud, Volcanoes hazards, fogo/lava/ambiente e máquinas/turrets/fake players: inelegíveis.
 
-## Lifecycle
+## Implementação Chat 2 — 2026-09-01
 
-Ledger de application/pulse deve ser bounded e removida em expiração do efeito, morte/remoção/unload do alvo, logout/dimensão/respawn do ator, rank loss, respec, rules reload e shutdown. Reaplicação deve criar/renovar identidade conforme semântica provider-native sem ressuscitar pulses antigos.
+- `CombatPerkAvailabilityRuntime` marca A0085 unavailable e `effectiveRanks` remove qualquer contribuição de rank persistido;
+- purchase server-authoritative recusa o node antes de mutação de pontos;
+- `A0081A0100CombatPolicy` mantém a fórmula pura, mas nenhum adapter chama o resolver com `periodic=true`;
+- o adapter A0083 do Iron's aceita somente `SpellDamageSource.isDirect()==true`, portanto não transforma automaticamente `indirect()`/DoT em sustain periódico;
+- nenhum ledger de application/pulse foi inventado porque o dossiê exige que sua identidade venha do provider real;
+- summons/companions/hazards continuam sem owner inheritance.
 
-## Evidência runtime
+## Checklist Chat 2
 
-`A0081A0100CombatPolicy` contém A0085, mas `A0081A0100CombatEvents` não captura dano periódico nem mantém owner ledger. Logo nenhuma fonte atual pode chegar ao `SustainResolver` com as provas exigidas.
-
-## Pendências para Chat 2
-
-- **P-A0085-01 BLOQUEANTE:** unavailable-node invariant até existir ao menos um adapter com owner persistente + application/pulse identity.
-- **P-A0085-02:** definir interface canônica de receipt e integrar providers um a um; sem heurística por namespace.
-- **P-A0085-03:** lifecycle bounded de aplicações/pulsos e dedup de refresh/reapply/multi-target.
-- **P-A0085-04:** excluir summons/companions/hazards/Backlash/tech damage e impedir owner inheritance indireto.
-- **P-A0085-05:** testes DoT direto vs summon, expiração/unload, multi-target, duplicate pulse, native heal, cap e multiplayer.
+- [x] Availability fail-closed implementada
+- [x] Rank efetivo mascarado
+- [x] Purchase sem gasto/rank fantasma
+- [x] Fórmula latente preservada sem producer falso
+- [x] Direct magic não é reciclada como DoT
+- [x] Sem owner inheritance indireto
+- [x] Código presente em fail-closed
+- [ ] **PENDÊNCIA / RETORNO AO CHAT 1 QUANDO HOUVER PROVIDER:** aprovar primeiro provider que exponha applicationId+pulseId+owner persistente
+- [ ] **VALIDAÇÃO CHAT 3:** purchase unavailable/rank persistido=efeito zero
+- [ ] **VALIDAÇÃO CHAT 3:** DoT/summon/hazard não chama SustainResolver
+- [ ] **VALIDAÇÃO CHAT 3:** GameTests/testes de integração
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
 
 ## Nove eixos obrigatórios
 
@@ -60,4 +72,4 @@ Ledger de application/pulse deve ser bounded e removida em expiração do efeito
 | NeoVitae | PASS | ausente. |
 | Providers | PASS no design | Goety/Malum/Eidolon/Iron's/Ars somente com receipt real. |
 
-Os 18 critérios passam **no design** porque ausência de producer bloqueia aquisição em vez de gerar no-op.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
