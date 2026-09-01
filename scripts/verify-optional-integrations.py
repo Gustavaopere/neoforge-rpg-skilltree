@@ -109,8 +109,8 @@ for path in JAVA.rglob("*.java"):
             if path == IDENTITY_PLUGIN and f'"{external_package}' in text and f"import {external_package}" not in text:
                 continue
             # The provider-present GameTest intentionally uses reflection so the same test class
-            # remains loadable in the provider-free lane. Provider packages may occur only inside
-            # Class.forName strings; direct imports would violate optional classloading safety.
+            # remains loadable in the provider-free lane. Provider packages may occur only as
+            # inert class-name strings resolved through Class.forName; direct imports remain banned.
             if path == BATTLE_MAGE_PROVIDER_GAMETEST and "Class.forName" in text and f"import {external_package}" not in text:
                 continue
             fail(f"external provider type {external_package} leaked outside isolated adapter path: {rel}")
@@ -144,12 +144,14 @@ for forbidden in (
 ):
     if forbidden in provider_probe:
         fail(f"Battle Mage provider GameTest must remain provider-neutral at classload time: {forbidden}")
-for marker in (
-    'Class.forName("com.minecolonies.api.IMinecoloniesAPI")',
-    'Class.forName("io.redspace.ironsspellbooks.api.magic.MagicData")',
+if "Class.forName" not in provider_probe:
+    fail("Battle Mage provider GameTest must resolve optional provider classes reflectively")
+for provider_class in (
+    "com.minecolonies.api.IMinecoloniesAPI",
+    "io.redspace.ironsspellbooks.api.magic.MagicData",
 ):
-    if marker not in provider_probe:
-        fail(f"Battle Mage provider GameTest is missing reflection probe marker {marker!r}")
+    if provider_class not in provider_probe:
+        fail(f"Battle Mage provider GameTest is missing provider class-name marker {provider_class!r}")
 
 if not SMOKE_VERIFIER.is_file():
     fail("missing dedicated-server optional-provider absence verifier")
