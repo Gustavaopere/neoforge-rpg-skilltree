@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após correção de availability/boundary em 2026-08-31.
 - **Notion:** `3c569db9-f0db-81b7-aaac-d1f391ec10aa`; Gate/Hook/Fallback/Provider/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** state puro existe, mas a perk está bloqueada por A0067 indisponível e pelo binding de postura ainda ausente.
+- **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -15,25 +15,29 @@
 
 ## Availability e ativação
 
-A0067 continua indisponível/não comprável até existir attack-window binding seguro, então A0077 herda esse bloqueio. Mesmo depois de A0067, A0077 só pode ser comprável quando o comando server-authoritative de postura definido em A0076 existir.
+A0067 continua indisponível/não comprável até existir attack-window binding seguro, então A0077 herda esse bloqueio. O mesmo slot/runtime de A0076 já suporta `CAUTIOUS`, mas `CombatPerkAvailabilityRuntime` mantém o rank efetivo de A0077 em zero enquanto a cadeia A0067 não estiver legitimamente disponível.
 
-O mesmo controle `Alternar Postura Marcial` usa payload serverbound e validação do servidor. Com ambas disponíveis: `NONE → AGGRESSIVE → CAUTIOUS → NONE`.
+## Implementação Chat 2 — 2026-09-01
 
-## Fallback e lifecycle
+- infraestrutura compartilhada `MARTIAL_STANCE` implementada com payload serverbound e authority do servidor;
+- `MartialStanceRuntime` suporta ciclo determinístico `NONE → AGGRESSIVE → CAUTIOUS → NONE` quando ambas as perks estiverem disponíveis;
+- no estado atual, A0077 é não comprável e não ativável porque A0067 permanece fail-closed;
+- `effectiveRanks` impede benefício residual mesmo se existir alocação persistida antiga;
+- policy/runtime já modelam −5% dano físico e +8% resistência física de `CAUTIOUS` sem confundir o canal com Armor, Stun Armor ou resistências mágicas;
+- nenhuma regra genérica contorna A0067.
 
-Sem A0067 ou sem binding de stance: node indisponível/não comprável. Nenhum fallback contorna dependência. Resistência física não equivale a Armor, Stun Armor, Magic/Arcane/Corruption/Shroud Resistance. Limpar stance em todo lifecycle e invalidação de rank/rules.
+## Pendências para Chat 3
 
-## Pendências para Chat 2
-
-- **P-A0077-01 BLOQUEANTE:** propagar availability de A0067 e do stance binding para purchase/gate.
-- **P-A0077-02:** implementar junto ao protocolo A0076, com exclusividade/cooldown/cleanup e resistência física correta.
-- **P-A0077-03:** testes de cadeia A0067→A0077, troca de stance e ausência de resíduos.
+- validar purchase fail-closed e rank efetivo zero enquanto A0067 estiver indisponível;
+- validar que `CAUTIOUS` não pode ser ativada no estado atual e que nenhum resíduo de stance sobrevive a perda de availability;
+- validar exclusividade/cooldown/ciclo quando a infraestrutura for exercitada em cenário controlado;
+- se tornar A0067 adquirível exigir redesign de provider/gate, devolver ao Chat 1 em vez de liberar A0077 por aproximação.
 
 ## Nove eixos obrigatórios
 
 | Eixo | Resultado | Decisão |
 |---|---|---|
-| Dependências/gates | PASS no design | A0067 + binding são obrigatórios. |
+| Dependências/gates | PASS | A0067 + binding são obrigatórios. |
 | Integração global | PASS | canal físico separado de outros sistemas. |
 | Qualidade/identidade | PASS | stance defensiva com tradeoff ofensivo. |
 | Topologia | PASS | Camada 3, `MARTIAL/POSTURE`. |
@@ -43,4 +47,4 @@ Sem A0067 ou sem binding de stance: node indisponível/não comprável. Nenhum f
 | NeoVitae | PASS | Ausente. |
 | Providers | PASS | RPG authority; Epic Fight não duplicado. |
 
-Os 18 critérios passam **no design**, com indisponibilidade estrutural explícita.
+Chat 2 conclui corretamente A0077 em fail-closed; não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
