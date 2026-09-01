@@ -6,7 +6,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-public final class CanonicalInvestmentProjectionTest {
+public final class CanonicalInvestmentProjectionContract {
+    private CanonicalInvestmentProjectionContract() {}
+
     public static void main(String[] args) {
         purchasedRanksAndMasteryThresholdsProjectDeterministically();
         unknownPurchasedNodesFailClosedWithoutIdInference();
@@ -14,7 +16,7 @@ public final class CanonicalInvestmentProjectionTest {
         canonicalClassResolutionResolvesCompleteProjection();
         metadataContractsRejectInvalidContributionData();
         projectionContractsRejectImpossibleResolution();
-        System.out.println("CanonicalInvestmentProjectionTest: PASS");
+        System.out.println("CanonicalInvestmentProjectionContract: PASS");
     }
 
     private static void purchasedRanksAndMasteryThresholdsProjectDeterministically() {
