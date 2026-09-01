@@ -45,20 +45,35 @@ public final class SkillInvestmentMetadataParser {
         }
         JsonObject skill = element.getAsJsonObject();
         String id = requiredString(source, null, skill, "id");
+        validateId(source, id);
+
+        Set<String> tags = parseTags(source, id, skill);
+        EnumMap<ProgressionDomain, Integer> weights = parseDomainWeights(source, id, tags);
+
+        NodeInvestmentMetadata previous = result.putIfAbsent(
+            id,
+            new NodeInvestmentMetadata(weights, tags)
+        );
+        if (previous != null) {
+            throw validation(source, id, "id", "duplicate skill investment metadata id");
+        }
+    }
+
+    private static void validateId(ResourceLocation source, String id) {
         try {
             ResourceLocation.parse(id);
         } catch (RuntimeException failure) {
             throw new SkillTreeDataValidationException(source, id, "id", "must be a namespaced id", failure);
         }
+    }
 
+    private static Set<String> parseTags(ResourceLocation source, String id, JsonObject skill) {
         JsonElement tagsElement = skill.get("tags");
         if (tagsElement == null || !tagsElement.isJsonArray()) {
             throw validation(source, id, "tags", "must be a JSON array");
         }
         JsonArray tagsArray = tagsElement.getAsJsonArray();
         Set<String> tags = new LinkedHashSet<>();
-        EnumMap<ProgressionDomain, Integer> weights = new EnumMap<>(ProgressionDomain.class);
-
         for (JsonElement tagElement : tagsArray) {
             if (!tagElement.isJsonPrimitive() || !tagElement.getAsJsonPrimitive().isString()) {
                 throw validation(source, id, "tags", "entries must be strings");
@@ -67,28 +82,36 @@ public final class SkillInvestmentMetadataParser {
             if (tag.isBlank()) throw validation(source, id, "tags", "entries must not be blank");
             tags.add(tag);
         }
+        return tags;
+    }
 
+    private static EnumMap<ProgressionDomain, Integer> parseDomainWeights(
+        ResourceLocation source,
+        String id,
+        Set<String> tags
+    ) {
+        EnumMap<ProgressionDomain, Integer> weights = new EnumMap<>(ProgressionDomain.class);
         for (String tag : tags) {
             if (!tag.startsWith(DOMAIN_PREFIX)) continue;
             String domainToken = tag.substring(DOMAIN_PREFIX.length());
             if (domainToken.equals("core")) continue;
-            ProgressionDomain domain;
-            try {
-                domain = ProgressionDomain.valueOf(domainToken.toUpperCase(Locale.ROOT));
-            } catch (IllegalArgumentException failure) {
-                throw new SkillTreeDataValidationException(
-                    source, id, "tags", "unknown class-investment domain tag " + tag, failure
-                );
-            }
-            weights.put(domain, 1);
+            weights.put(parseDomain(source, id, tag, domainToken), 1);
         }
+        return weights;
+    }
 
-        NodeInvestmentMetadata previous = result.putIfAbsent(
-            id,
-            new NodeInvestmentMetadata(weights, tags)
-        );
-        if (previous != null) {
-            throw validation(source, id, "id", "duplicate skill investment metadata id");
+    private static ProgressionDomain parseDomain(
+        ResourceLocation source,
+        String id,
+        String tag,
+        String domainToken
+    ) {
+        try {
+            return ProgressionDomain.valueOf(domainToken.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException failure) {
+            throw new SkillTreeDataValidationException(
+                source, id, "tags", "unknown class-investment domain tag " + tag, failure
+            );
         }
     }
 

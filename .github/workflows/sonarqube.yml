@@ -55,6 +55,9 @@ jobs:
       - name: Sonar workflow policy test
         run: python3 scripts/test_sonar_workflow_policy.py
 
+      - name: Sonar New Code hotspot regression test
+        run: python3 scripts/test_sonar_new_code_hotspots.py
+
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
