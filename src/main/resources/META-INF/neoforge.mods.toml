@@ -46,7 +46,7 @@ side="BOTH"
 modId="epicfight"
 type="optional"
 reason="Optional Epic Fight combat progression integration"
-versionRange=""
+versionRange="${epicfight_version_range}"
 ordering="NONE"
 side="BOTH"
 
