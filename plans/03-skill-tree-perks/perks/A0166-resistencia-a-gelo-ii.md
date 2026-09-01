@@ -21,9 +21,10 @@ Notion revalidado após correção: `https://app.notion.com/p/3c569db9f0db81f39a
 
 Usar exatamente o mesmo `LivingDamageEvent.Pre` e o mesmo classifier/resolver de A0165:
 
-- vanilla `DamageTypeTags.IS_FREEZING`;
-- Iron's 3.16.3 `irons_spellbooks:ice_magic` via adapter exato;
-- demais providers apenas com adapters versionados.
+- `source.is(DamageTypeTags.IS_FREEZING)` é a classificação base canônica;
+- isso cobre `minecraft:freeze` e `ars_nouveau:cold_snap` em Ars Nouveau 5.13.1;
+- Iron's 3.16.3 `irons_spellbooks:ice_magic` entra via adapter exato enquanto não houver prova de membership em `IS_FREEZING`;
+- outros providers somente por tag canônica ou adapters versionados explícitos.
 
 A leitura `health/maxHealth` é server-authoritative e acontece antes de A0166 modificar o dano. Não usar vida pós-impacto ou previsão de vida restante.
 
@@ -47,7 +48,7 @@ Não ativar A0166 por:
 
 ## Fallback
 
-Se a fonte não for classificada com segurança como ICE, A0166 não contribui. A0165 continua funcionando onde seu classifier for válido. Ausência/version mismatch de adapter externo desativa apenas aquele adapter.
+Se a fonte não for classificada por `IS_FREEZING` nem por adapter ICE explícito, A0166 não contribui. A0165 continua funcionando onde seu classifier for válido. Ausência/version mismatch de adapter externo desativa apenas aquele adapter e nunca desabilita a cobertura da tag canônica.
 
 ## Deduplicação e bridge PP
 
@@ -58,7 +59,7 @@ Se a fonte não for classificada com segurança como ICE, A0166 não contribui. 
 
 ## Handoff Chat 2
 
-Implementar A0166 como termo condicional dentro do mesmo resolver criado/expandido para A0165. Não criar segundo listener nem stateful cooldown.
+Implementar A0166 como termo condicional dentro do mesmo resolver criado/expandido para A0165. Não criar segundo listener nem stateful cooldown. Reutilizar integralmente o classifier corrigido de A0165.
 
 ## Testes obrigatórios para Chat 3
 
@@ -68,7 +69,7 @@ Implementar A0166 como termo condicional dentro do mesmo resolver criado/expandi
 4. vida lida antes do dano atual;
 5. A0165=4 + A0166=3 = 28% local sob gate;
 6. A0165 mantém sua contribuição fora do gate de A0166;
-7. ICE classifiers iguais aos de A0165;
+7. `minecraft:freeze` e Ars Cold Snap seguem o mesmo `IS_FREEZING`; Iron's `ice_magic` usa adapter exato;
 8. uma aplicação do bucket por evento;
 9. Cold Sweat/CHILL/Slowness negativos;
 10. respec/reload/dedicated server e multiplayer.
