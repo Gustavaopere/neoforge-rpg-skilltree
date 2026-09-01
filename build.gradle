@@ -178,20 +178,71 @@ tasks.withType(Test).configureEach {
 }
 
 tasks.named('test', Test).configure {
-    // Explicitly bind the stock Test task to the plain test source set. The adapter class is
-    // excluded at SourceSet level above and executes only under testJunit.
+    // Keep the stock Test task on the plain source set. Task-graph wiring below reapplies the
+    // physical classes directory after NeoGradle has completed its lazy run configuration.
     testClassesDirs = sourceSets.test.output.classesDirs
     classpath = sourceSets.test.runtimeClasspath
 }
 
-// NeoGradle materializes the run-backed test task after this script's eager task lookup phase.
-// Configure it lazily so the dedicated neoForgeTest source set remains the only adapter input.
+// NeoGradle materializes the run-backed test task lazily. Keep its filter narrow; the task-graph
+// hook below only restores the compiled class directory and leaves NeoGradle's loaded-game
+// classpath/system properties intact.
 tasks.matching { it.name == 'testJunit' }.configureEach {
     if (it instanceof Test) {
         filter {
             includeTestsMatching epicFightAdapterCoverageTest
         }
     }
+}
+
+// NeoGradle can rewrite Test inputs after ordinary task configuration. Rebind the physical
+// compiled class directories only after the execution graph is final, before skip/no-source
+// evaluation. This keeps plain Gradle JUnit and the loaded NeoForge adapter genuinely separate.
+gradle.taskGraph.whenReady { graph ->
+    Test plain = tasks.named('test', Test).get()
+    if (graph.hasTask(plain)) {
+        plain.setTestClassesDirs(files(layout.buildDirectory.dir('classes/java/test')))
+        plain.setClasspath(sourceSets.test.runtimeClasspath)
+    }
+
+    Task loadedCandidate = tasks.findByName('testJunit')
+    if (loadedCandidate instanceof Test && graph.hasTask(loadedCandidate)) {
+        Test loaded = (Test) loadedCandidate
+        loaded.setTestClassesDirs(files(layout.buildDirectory.dir('classes/java/neoForgeTest')))
+    }
+}
+
+def verifyPlainJUnitExecution = tasks.register('verifyPlainJUnitExecution') {
+    group = 'verification'
+    description = 'Fails if the ordinary JUnit task was skipped as NO-SOURCE.'
+    doLast {
+        Test plain = tasks.named('test', Test).get()
+        if (plain.state.noSource) {
+            throw new GradleException('JUnit gate failed: :test finished NO-SOURCE instead of executing compiled tests.')
+        }
+    }
+}
+
+def verifyNeoForgeJUnitExecution = tasks.register('verifyNeoForgeJUnitExecution') {
+    group = 'verification'
+    description = 'Fails if the NeoForge-loaded JUnit task was skipped as NO-SOURCE.'
+    doLast {
+        Task candidate = tasks.findByName('testJunit')
+        if (!(candidate instanceof Test)) {
+            throw new GradleException('JUnit gate failed: :testJunit was not materialized as a Test task.')
+        }
+        if (((Test) candidate).state.noSource) {
+            throw new GradleException('JUnit gate failed: :testJunit finished NO-SOURCE instead of executing the adapter suite.')
+        }
+    }
+}
+
+tasks.named('test', Test).configure {
+    finalizedBy verifyPlainJUnitExecution
+}
+
+tasks.matching { it.name == 'testJunit' }.configureEach {
+    finalizedBy verifyNeoForgeJUnitExecution
 }
 
 tasks.named('jacocoTestReport').configure {
