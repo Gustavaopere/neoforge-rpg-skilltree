@@ -70,7 +70,7 @@ jobs:
           }
 
           download_modrinth_version U678xqle '2.0.5+mc1.21.1'
-          download_modrinth_version Vzp221Un '1.3.1+mc1.21.1'
+          download_modrinth_version 44pLdPGg '1.3.2+mc1.21.1'
 
           for jar in "$MODS"/*.jar; do
             jar tf "$jar" >/dev/null
@@ -85,5 +85,5 @@ jobs:
           gradle --no-daemon runGameTestServer 2>&1 | tee "$LOG"
           grep -Fq 'Create 6.0.10 (create)' "$LOG"
           grep -Fq 'Sable 2.0.5 (sable)' "$LOG"
-          grep -Fq 'Create Aeronautics 1.3.1 (aeronautics_bundled)' "$LOG"
+          grep -Fq 'Create Aeronautics 1.3.2 (aeronautics_bundled)' "$LOG"
           grep -Eq 'All [0-9]+ required tests passed' "$LOG"
