@@ -1,6 +1,7 @@
 package dev.gustavopere.volcanoes.geology;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -36,6 +37,64 @@ final class DepositRegistryTest {
         assertEquals(copper, restored.get(COPPER_ID).orElseThrow());
         assertFalse(restored.register(copper), "chunk reload must not duplicate an existing persistence ID");
         assertEquals(1, restored.size());
+    }
+
+    @Test
+    void legacySchemaLoadIsMarkedDirtyForCurrentSchemaRewrite() {
+        GeologicalDeposit copper = deposit(
+                COPPER_ID,
+                "c:ores/copper",
+                new BlockPos(16, 32, 16),
+                DepositOrigin.HYDROTHERMAL);
+        DepositRegistry source = new DepositRegistry();
+        assertTrue(source.register(copper));
+
+        CompoundTag legacy = source.toTag();
+        legacy.putInt("schema_version", 1);
+
+        DepositRegistry restored = DepositRegistry.fromTag(legacy);
+
+        assertEquals(copper, restored.get(COPPER_ID).orElseThrow());
+        assertTrue(restored.isDirty(), "schema v1 load must schedule persistence of schema v2");
+        assertEquals(2, restored.toTag().getInt("schema_version"));
+    }
+
+    @Test
+    void unversionedLegacyLoadIsMarkedDirtyForCurrentSchemaRewrite() {
+        GeologicalDeposit copper = deposit(
+                COPPER_ID,
+                "c:ores/copper",
+                new BlockPos(16, 32, 16),
+                DepositOrigin.HYDROTHERMAL);
+        DepositRegistry source = new DepositRegistry();
+        assertTrue(source.register(copper));
+
+        CompoundTag unversioned = source.toTag();
+        unversioned.remove("schema_version");
+
+        DepositRegistry restored = DepositRegistry.fromTag(unversioned);
+
+        assertEquals(copper, restored.get(COPPER_ID).orElseThrow());
+        assertTrue(restored.isDirty(), "unversioned legacy load must schedule persistence of schema v2");
+        assertEquals(2, restored.toTag().getInt("schema_version"));
+    }
+
+    @Test
+    void malformedDepositsContainerIsPreservedReadOnly() {
+        CompoundTag malformed = new CompoundTag();
+        malformed.putInt("schema_version", 2);
+        malformed.putString("deposits", "not-a-list");
+
+        DepositRegistry restored = DepositRegistry.fromTag(malformed);
+
+        assertEquals(0, restored.size());
+        assertFalse(restored.isDirty(), "malformed top-level payload must not be normalized destructively");
+        assertEquals(malformed, restored.toTag(), "malformed deposits payload must round-trip opaquely");
+        assertFalse(restored.register(deposit(
+                COPPER_ID,
+                "c:ores/copper",
+                new BlockPos(16, 32, 16),
+                DepositOrigin.HYDROTHERMAL)), "malformed payload must remain read-only/fail-closed");
     }
 
     @Test
