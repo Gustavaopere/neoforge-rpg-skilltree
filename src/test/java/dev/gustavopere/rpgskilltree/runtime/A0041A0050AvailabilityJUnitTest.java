@@ -20,11 +20,11 @@ final class A0041A0050AvailabilityJUnitTest {
         assertFalse((boolean) available.invoke(null, "A0042"), "A0042 must fail closed until canonical eligible_kill anti-abuse exists");
         assertFalse((boolean) available.invoke(null, "A0044"), "A0044 lacks semantic draw/preparation binding");
         assertFalse((boolean) available.invoke(null, "A0047"), "A0047 inherits structural unavailability from A0044");
+        assertFalse((boolean) available.invoke(null, "A0048"), "A0048 inherits structural unavailability from required predecessor A0047");
         assertFalse((boolean) available.invoke(null, "A0050"), "A0050 lacks semantic reload/preparation binding");
         assertTrue((boolean) available.invoke(null, "A0043"), "A0043 has a real BOW damage/mastery path");
         assertTrue((boolean) available.invoke(null, "A0045"), "A0045 has a canonical critical path");
         assertTrue((boolean) available.invoke(null, "A0046"), "A0046 has valid Focus producers even while optional heavy/body components stay fail closed");
-        assertTrue((boolean) available.invoke(null, "A0048"), "A0048 has a real prepared-shot path once its normal gates are met");
         assertTrue((boolean) available.invoke(null, "A0049"), "A0049 has a real CROSSBOW damage/mastery path");
     }
 
