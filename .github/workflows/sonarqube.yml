@@ -47,6 +47,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-sonar
 
+      - name: Refresh live SonarQube new-code baseline
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: python3 scripts/refresh-sonar-new-code-baseline.py
+
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
