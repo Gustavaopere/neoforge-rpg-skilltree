@@ -13,6 +13,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgress
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0022RuntimeHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0041A0060EpicFightHooks;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0041ScytheCommitHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0042ScytheKillHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0061A0080EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
@@ -151,6 +152,7 @@ public final class RpgSkillTreeMod {
                 A0022RuntimeHooks.register();
                 A0042ScytheKillHooks.register();
                 A0041A0060EpicFightHooks.register();
+                A0041ScytheCommitHooks.register();
                 A0061A0080EpicFightHooks.register();
                 NeoForge.EVENT_BUS.register(A0001A0020EpicFightHooks.class);
                 NeoForge.EVENT_BUS.register(A0022RuntimeHooks.class);
