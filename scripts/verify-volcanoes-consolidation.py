@@ -26,6 +26,9 @@ def main() -> int:
     rns_mixin = text("src/main/java/dev/gustavopere/volcanoes/mixin/rns/CustomServerDepositLocationMixin.java")
     build = text("build.gradle")
     properties = text("gradle.properties")
+    create_sable_acceptance = text(".github/workflows/volcanoes-create-sable-acceptance.yml")
+    minecolonies_acceptance = text(".github/workflows/volcanoes-minecolonies-claim-acceptance.yml")
+    full_pack_installer = text(".github/scripts/volcanoes/install_full_pack_acceptance.sh")
 
     stray_mods = []
     stale_subscribers = []
@@ -94,7 +97,36 @@ def main() -> int:
     ):
         require(dependency in build, f"missing imported optional build contract: {dependency}")
 
-    print("VOLCANOES_CONSOLIDATION_CONTRACT status=GREEN mod=rpgskilltree namespace=volcanoes jars=1")
+    require("download_modrinth_version 44pLdPGg '1.3.2+mc1.21.1'" in create_sable_acceptance,
+            "Create/Sable acceptance must pin current Create Aeronautics 1.3.2 (Modrinth 44pLdPGg)")
+    require("Create Aeronautics 1.3.2 (aeronautics_bundled)" in create_sable_acceptance,
+            "Create/Sable acceptance log contract must assert Create Aeronautics 1.3.2")
+    require("minecolonies-245506/8765939" in minecolonies_acceptance,
+            "MineColonies acceptance must download current file 8765939")
+    require("minecolonies-1.1.1375-1.21.1-snapshot.jar" in minecolonies_acceptance,
+            "MineColonies acceptance must expose the current 1.1.1375 runtime filename")
+
+    require("modrinth_version 44pLdPGg '1.3.2+mc1.21.1'" in full_pack_installer,
+            "Full-pack acceptance must pin current Create Aeronautics 1.3.2 (Modrinth 44pLdPGg)")
+    require("minecolonies-245506/8765939" in full_pack_installer,
+            "Full-pack acceptance must download current MineColonies file 8765939")
+    require("minecolonies-1.1.1375-1.21.1-snapshot.jar" in full_pack_installer,
+            "Full-pack acceptance must expose current MineColonies 1.1.1375 runtime filename")
+
+    for obsolete in (
+        "Vzp221Un",
+        "minecolonies-245506/8621898",
+        "minecolonies-1.1.1374-1.21.1-snapshot.jar",
+    ):
+        require(obsolete not in create_sable_acceptance + minecolonies_acceptance + full_pack_installer,
+                f"obsolete Volcanoes acceptance provider pin remains: {obsolete}")
+
+    require(not (ROOT / "plans/volcanoes").exists(),
+            "completed Volcanoes plans must not remain in active plans/")
+    require((ROOT / "docs/archive/volcanoes").is_dir(),
+            "completed Volcanoes plans must be archived under docs/archive/volcanoes/")
+
+    print("VOLCANOES_CONSOLIDATION_CONTRACT status=GREEN mod=rpgskilltree namespace=volcanoes jars=1 providers=current plans=archived")
     return 0
 
 

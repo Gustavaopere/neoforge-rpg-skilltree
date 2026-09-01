@@ -72,7 +72,7 @@ curl_jar \
 
 # Sable / Aeronautics exact Stage-06 host contract.
 modrinth_version U678xqle '2.0.5+mc1.21.1'
-modrinth_version Vzp221Un '1.3.1+mc1.21.1'
+modrinth_version 44pLdPGg '1.3.2+mc1.21.1'
 
 # Destroy exact installed pack release and the canonical Petrolpark 1.5.0 release it expects.
 curl_jar \
@@ -103,7 +103,7 @@ curl_jar \
   'https://www.cursemaven.com/curse/maven/create-rns-1370563/8729955/create-rns-1370563-8729955.jar' \
   'create_rns-1.3.1-1.21.1-6.jar'
 
-# MineColonies exact protected-area acceptance stack. Keep this identical to the Battle Mage provider runtime.
+# MineColonies exact protected-area acceptance stack.
 curl_jar \
   'https://www.cursemaven.com/curse/maven/minecolonies-245506/8765939/minecolonies-245506-8765939.jar' \
   'minecolonies-1.1.1375-1.21.1-snapshot.jar'

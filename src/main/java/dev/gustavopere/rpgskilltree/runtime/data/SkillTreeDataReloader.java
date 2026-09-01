@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  * Owns the authoritative skill-tree datapack transaction. The complete candidate is prepared
  * and validated before apply publishes one revision, so a failed reload leaves the prior state intact.
  */
-public final class SkillTreeDataReloader extends SimplePreparableReloadListener<PreparedSkillTreeData> {
+public final class SkillTreeDataReloader extends SimplePreparableReloadListener<PreparedSkillTreeReload> {
     private static final Logger LOGGER = LoggerFactory.getLogger(SkillTreeDataReloader.class);
 
     @SubscribeEvent
@@ -33,16 +33,21 @@ public final class SkillTreeDataReloader extends SimplePreparableReloadListener<
     }
 
     @Override
-    protected @NotNull PreparedSkillTreeData prepare(
+    protected @NotNull PreparedSkillTreeReload prepare(
         @NotNull ResourceManager resourceManager,
         @NotNull ProfilerFiller profiler
     ) {
         try {
-            return SkillTreeDataLoader.prepare(
+            Map<ResourceLocation, JsonElement> skillResources = readJsonResources(resourceManager, "skills");
+            PreparedSkillTreeData skillTreeData = SkillTreeDataLoader.prepare(
                 readJsonResources(resourceManager, "node_rules"),
                 readJsonResources(resourceManager, "node_effects"),
-                readJsonResources(resourceManager, "skills"),
+                skillResources,
                 SkillTreeDataLoader.closedCombatRules()
+            );
+            return new PreparedSkillTreeReload(
+                skillTreeData,
+                SkillInvestmentMetadataParser.parse(skillResources)
             );
         } catch (RuntimeException failure) {
             LOGGER.error("Authoritative skill-tree datapack preparation failed; preserving previous revision", failure);
@@ -52,11 +57,15 @@ public final class SkillTreeDataReloader extends SimplePreparableReloadListener<
 
     @Override
     protected void apply(
-        @NotNull PreparedSkillTreeData prepared,
+        @NotNull PreparedSkillTreeReload prepared,
         @NotNull ResourceManager resourceManager,
         @NotNull ProfilerFiller profiler
     ) {
-        SkillTreeDataCatalog.publish(prepared);
+        SkillTreeDataCatalog.publish(prepared.skillTreeData());
+        ClassInvestmentMetadataCatalog.install(
+            SkillTreeDataCatalog.current().revision(),
+            prepared.classInvestmentMetadata()
+        );
         AttributeEffectDiagnostics.clear();
 
         var server = ServerLifecycleHooks.getCurrentServer();
@@ -66,9 +75,10 @@ public final class SkillTreeDataReloader extends SimplePreparableReloadListener<
             );
         }
         LOGGER.info(
-            "Published authoritative skill-tree revision {} with {} nodes, {} attribute effects and {} behavior effects",
+            "Published authoritative skill-tree revision {} with {} nodes, {} class-investment metadata entries, {} attribute effects and {} behavior effects",
             SkillTreeDataCatalog.current().revision(),
             SkillTreeDataCatalog.current().definitions().size(),
+            ClassInvestmentMetadataCatalog.current().nodeMetadata().size(),
             SkillTreeDataCatalog.current().attributeEffects().size(),
             SkillTreeDataCatalog.current().behaviorEffects().size()
         );
