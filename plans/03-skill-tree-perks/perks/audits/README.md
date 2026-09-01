@@ -32,6 +32,9 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0061-A0070.md` — fechamento de design A0061–A0070, incluindo correção fail-closed/unavailable de A0067, cobertura BOSS de A0070 e gate de delta dos quatro projetos próprios.
 - `AUDITORIA-A0071-A0080.md` — fechamento de design A0071–A0080, incluindo availability transitiva, reservation→commit, posturas server-authoritative, sustain all-or-nothing, movement/stationary e dodge-success fail-closed.
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
+- A0091–A0100 — fechamento documental na PR #326 (`docs/chat1-a0091-a0100-audit`); permanece aberto para continuação pelo Chat 2/Chat 3 e ainda não integra a `main`.
+- A0101–A0110 — fechamento documental na PR #340 (`docs/chat1-a0101-a0110-audit`); permanece aberto para continuação pelo Chat 2/Chat 3 e ainda não integra a `main`.
+- `AUDITORIA-A0111-A0120.md` — fechamento de design A0111–A0120, incluindo manutenção/durabilidade fail-closed, `ToolIdentityLedger` anti-clone, Attunement ausente, BodyCostResolver METABOLIC/HYDRATION e provider gate TWR.
 
 ## Auditorias de delta da modlist — Chat 1
 
@@ -52,4 +55,5 @@ Novos lotes devem ser criados aqui, nunca novamente na raiz de `perks/`.
 2. Não consolidar tudo em um único arquivo gigante: isso piora diffs, revisão e rastreabilidade de PRs.
 3. `STATUS.md` é o índice de estado geral. Quando uma auditoria especial declarar explicitamente um tracker canônico complementar no índice desta pasta, esse tracker também é fonte obrigatória para os handoffs daquele ciclo.
 4. Chat 1, Chat 2 e Chat 3 devem procurar a auditoria correspondente em `plans/03-skill-tree-perks/perks/audits/`; para o delta Simply A0001–A0050, o consolidado acima é leitura obrigatória junto ao `STATUS.md`.
-5. Dossiês `Axxxx-*.md` permanecem fora desta pasta para navegação direta por perk.
+5. Enquanto um lote documental posterior ainda não estiver em `main`, sua PR/branch explicitamente listada aqui é fonte operacional complementar; não inferir ausência de design apenas porque a `main` ainda não contém o dossiê.
+6. Dossiês `Axxxx-*.md` permanecem fora desta pasta para navegação direta por perk.
