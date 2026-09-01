@@ -71,7 +71,7 @@ def run_generator(
 
 
 class EditorialBacklogTest(unittest.TestCase):
-    def test_generates_required_fields_and_safe_default_priorities(self) -> None:
+    def test_generates_required_fields_and_provider_neutral_default_priorities(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             coverage = root / "coverage.json"
@@ -96,14 +96,14 @@ class EditorialBacklogTest(unittest.TestCase):
             self.assertEqual(
                 [
                     "ENTITY:minecraft:zombie",
-                    "TREE:tfc:oak",
                     "BIOME:biomesoplenty:redwood_forest",
                     "STRUCTURE:yungsapi:sample_structure",
                     "FLORA:botania:mystical_flower",
+                    "TREE:tfc:oak",
                 ],
                 [entry["entry_id"] for entry in payload["entries"]],
             )
-            self.assertEqual([10, 40, 50, 60, 70], [entry["priority"] for entry in payload["entries"]])
+            self.assertEqual([10, 50, 60, 70, 70], [entry["priority"] for entry in payload["entries"]])
 
             required = {
                 "entry_id", "source_mod", "kind", "coverage", "priority",
