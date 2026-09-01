@@ -92,6 +92,16 @@ final class BattleMageCombatControllerJUnitTest {
             false,
             false
         );
+        BattleMageSpellProfile unknownFootprint = new BattleMageSpellProfile(
+            "irons_spellbooks:test_unknown_area",
+            BattleMageTargetMode.HOSTILE_AREA,
+            80,
+            4.0,
+            28.0,
+            0.0,
+            false,
+            false
+        );
         BattleMageSpellProfile allySafeArea = new BattleMageSpellProfile(
             "irons_spellbooks:test_safe_area",
             BattleMageTargetMode.HOSTILE_AREA,
@@ -105,6 +115,7 @@ final class BattleMageCombatControllerJUnitTest {
 
         assertFalse(BattleMageSpellPolicy.isAreaSafe(unsafeArea, true));
         assertTrue(BattleMageSpellPolicy.isAreaSafe(unsafeArea, false));
+        assertFalse(BattleMageSpellPolicy.isAreaSafe(unknownFootprint, true));
         assertTrue(BattleMageSpellPolicy.isAreaSafe(allySafeArea, true));
     }
 
