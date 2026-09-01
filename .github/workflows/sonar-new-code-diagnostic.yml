@@ -24,23 +24,17 @@ jobs:
           auth_header="Authorization: Bearer ${SONAR_TOKEN}"
           base="https://sonarcloud.io"
 
-          echo '=== Legacy new-code settings ==='
+          echo '=== New-code settings ==='
           curl --silent --show-error --fail --location \
             --header "$auth_header" \
             "$base/api/settings/values?component=${SONAR_PROJECT}&keys=sonar.leak.period,sonar.leak.period.type" \
             | jq '{settings: [.settings[] | {key, value, inherited}]}'
 
-          echo '=== Effective new-code period for main ==='
+          echo '=== SonarCloud Web API services related to new code / settings / analyses ==='
           curl --silent --show-error --fail --location \
             --header "$auth_header" \
-            "$base/api/new_code_periods/show?project=${SONAR_PROJECT}&branch=main" \
-            | jq '{projectKey, branchKey, type, value, inherited, effectiveValue, previousNonCompliantValue, updatedAt}'
-
-          echo '=== Project new-code definitions ==='
-          curl --silent --show-error --fail --location \
-            --header "$auth_header" \
-            "$base/api/new_code_periods/list?project=${SONAR_PROJECT}" \
-            | jq '{newCodePeriods: [.newCodePeriods[] | {projectKey, branchKey, type, value, inherited, effectiveValue, previousNonCompliantValue, updatedAt}]}'
+            "$base/api/webservices/list" \
+            | jq '{webServices: [.webServices[] | select((.path | test("new_code|settings|project_analyses"; "i"))) | {path, actions: [.actions[] | {key, post, since, params: [.params[]? | {key, required, possibleValues}]}]}]}'
 
           echo '=== Latest main analyses ==='
           curl --silent --show-error --fail --location \
