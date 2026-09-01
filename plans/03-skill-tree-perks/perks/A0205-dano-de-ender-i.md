@@ -1,59 +1,249 @@
 # A0205 — Dano de Ender I
 
-## Estado
+## 1. Estado, origem e decisão
 
-- **Design:** APROVADO EM FAIL-CLOSED em 2026-08-31.
-- **Notion:** 3c569db9-f0db-81cf-84ea-cc3a6d50413a; dependências adiantadas, availability, classifier e lifecycle corrigidos; re-fetch PASS.
-- **Runtime observado:** não há direct_ender_outcome/classificador ENDER ligado ao pipeline do RPG. A0205 é **UNAVAILABLE_NODE/não comprável**.
-- **Dependências adiantadas:** A0144 e A0148–A0155 estão antes do lote e não são presumidas concluídas.
+- **Decisão do Chat 1:** DESIGN APROVADO — UNAVAILABLE_NODE.
+- **Disponibilidade operacional:** Não comprável no runtime atual. O node só pode ser habilitado depois que dependências e capabilities exatas forem comprovadas; componente não classificado continua inerte.
+- **Escopo desta entrega:** auditoria e design apenas; nenhum catálogo/runtime, compra, atributo ou integração foi implementado.
+- **Fonte canônica:** [registro A0205 no Catálogo Mestre do Notion](https://app.notion.com/3c569db9f0db81cf84eacc3a6d50413a).
+- **Leitura fresca do registro:** 2026-09-01; página individual buscada antes da auditoria.
+- **Persistência verificada:** Custo Extra normalizado para 0 e página individual relida após a escrita.
+- **Dependências externas à faixa:** <code>A0144</code>, <code>A0148</code>, <code>A0155</code>. Elas permanecem sinalizadas e não são presumidas como concluídas.
+- **Identidade preservada:** ENDER é classificação explícita de ação/componente. Não equivale a Void, dimensão End, teleporte genérico, deslocamento, frio ou estética dimensional.
 
-## Contrato canônico
+## 2. Registro canônico completo do catálogo
 
-- Até 4 ranks: +3% / +6% / +9% / +12%.
-- Atua somente sobre componente mágico ENDER direto, positivo e atribuído ao jogador.
-- Pipeline: Potência Mágica universal → camada específica ENDER A0205 uma vez → especializações posteriores.
-- Preserva action_id/outcome_id e não reaplica em DoT ou derived component já escalado.
-- Parcel térmico eventualmente declarado pelo provider é separado; A0205 não o cria nem amplia.
+| Propriedade | Valor persistido |
+|---|---|
+| Código | A0205 |
+| Nome | Dano de Ender I |
+| Domínio | ARCANE |
+| Árvore | Principal — ARCANE ↔ AGILITY |
+| Ramo | Ender — Potência Dimensional |
+| Camada | 4 |
+| Função na Árvore | Ramo |
+| Tier | Pequeno |
+| Faixa de Poder | Médio |
+| Ranks Máx. | 4 |
+| Custo por Rank | 1 Passive Point(s) |
+| Custo Extra | 0 — nenhum custo extra de compra |
+| Dependências Obrigatórias | A0144 Poder Mágico ≥2 + Gateway ARCANE + ≥1 técnica A0148–A0155, todos disponíveis, mais adapter versionado que publique direct_ender_outcome do jogador. A0144/A0148–A0155 são dependências externas deste lote adiantado e não são presumidas concluídas. |
+| Pré-requisitos | A0144 Poder Mágico ≥ 2 ranks + Gateway ARCANE + ≥1 técnica arcana da lista A0148–A0155. |
+| Provider/Mods | Iron's 3.16.3 + Fire's Ender Expansion 2.4.1 e Somake Spells 1.0.8 somente após provar SchoolType.getId()/ação concreta e adapter ENDER versionado. Nenhum desses mods está ligado ao runtime atual do RPG para A0205; Ars/outros somente por adapter explícito. Teleporte, End e Void não bastam. |
+| Efeito | +3% de dano ENDER por rank (máx. +12%) em componentes mágicos ENDER diretos elegíveis e atribuídos ao jogador. A0205 atua somente na camada específica ENDER depois da Potência Mágica universal. Qualquer deslocamento térmico só existe quando o adapter da ação declarar um parcel térmico concreto; A0205 não o amplia nem o cria. |
+| Escalonamento | Até 4 ranks; multiplicador da camada ENDER direta: ×1,03 / ×1,06 / ×1,09 / ×1,12. Teto próprio de A0205: +12%. |
+| Gate | Gateway ARCANE + A0144 ≥2 + técnica A0148–A0155 + direct_ender_outcome causal de adapter versionado. Deve existir binding server-side que preserve action_id/outcome_id e a escola/ação exata. Sem dependências ou classifier, A0205 é UNAVAILABLE_NODE/não comprável. Teleporte, End, Void, frio, tema e namespace não classificam ENDER. |
+| Hook | AvailabilityResolver exige dependency closure + adapter direct_ender_outcome. Pipeline do resultado mágico: Potência Mágica universal → camada específica ENDER A0205 uma vez por componente direto → especializações posteriores, preservando action_id/outcome_id. Reavaliar availability em login, provider/datapack reload, respec e perda de dependência. |
+| Fallback | UNAVAILABLE_NODE enquanto A0144/A0148–A0155 não estiverem disponíveis ou não existir classificador/producer ENDER direto confiável. Quando disponível, componente desconhecido falha fechado. Não converter para dano mágico genérico nem inferir por teleporte, dimensão, entidade, item, partículas, Void ou cold. |
+| Regra | FUNDAMENTO_EXTERIOR: ARCANE/ENDER; PP_REGION: ARCANE/ENDER. ENDER é classificação explícita de outcome mágico direto. A0205 é UNAVAILABLE_NODE sem dependency closure+adapter; não é no-op comprável. Cada action_id/outcome_id escala uma vez; DoT/derived já escalado não recebe nova camada. |
 
-## Gate e availability
+As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função Efetiva, Provider Efetivo, Gate Efetivo, Hook Efetivo, Fallback Efetivo, Pré-requisitos Efetivos e Status Estrutural continuam sob autoridade do schema do Notion. Este dossiê não duplica nem falsifica o cálculo dessas fórmulas.
 
-A compra exige Gateway ARCANE, A0144 ≥2, pelo menos uma técnica com rank entre A0148–A0155 e um adapter versionado que publique direct_ender_outcome. Sem dependency closure ou classifier, o node fica indisponível.
+## 3. Contrato final do efeito
 
-Teleporte, mudança de dimensão, entidade/item do End, Void, cold, partículas, nome, gear e namespace não classificam ENDER.
+### Efeito aprovado
 
-## Providers
++3% de dano ENDER por rank (máx. +12%) em componentes mágicos ENDER diretos elegíveis e atribuídos ao jogador. A0205 atua somente na camada específica ENDER depois da Potência Mágica universal. Qualquer deslocamento térmico só existe quando o adapter da ação declarar um parcel térmico concreto; A0205 não o amplia nem o cria.
 
-- Iron's 3.16.3: framework e SchoolType/action identity.
-- Fire's Ender Expansion 2.4.1: provider candidato principal, ainda sem adapter comprovado no RPG.
-- Somake Spells 1.0.8: apenas conteúdo explicitamente mapeado.
-- Ars e outros: somente por adapter de ação concreta.
-- Black Arcana/Enshrouded/Volcanoes: nenhuma capability atual classifica ENDER.
-- Tecnologia, summons e fake players: N/A/excluídos.
+### Escalonamento aprovado
 
-## Mastery futura
+Até 4 ranks; multiplicador da camada ENDER direta: ×1,03 / ×1,06 / ×1,09 / ×1,12. Teto próprio de A0205: +12%.
 
-A0205 não exige Ender Mastery, mas estabelece o primeiro outcome ENDER que A0206+ consomem. O adapter deve publicar também school/action ID suficiente para uma futura ender_mastery_lane_id exata; não criar ledger genérica.
+### Gate de compra/ativação
 
-## Pendências para Chat 2
+Gateway ARCANE + A0144 ≥2 + técnica A0148–A0155 + direct_ender_outcome causal de adapter versionado. Deve existir binding server-side que preserve action_id/outcome_id e a escola/ação exata. Sem dependências ou classifier, A0205 é UNAVAILABLE_NODE/não comprável. Teleporte, End, Void, frio, tema e namespace não classificam ENDER.
 
-- **P-A0205-01 BLOQUEANTE:** availability e dependency closure A0144/A0148–A0155.
-- **P-A0205-02 BLOQUEANTE:** adapter direct_ender_outcome para versão exata do provider.
-- **P-A0205-03:** binding da camada ENDER no magic outcome pipeline, uma vez por componente.
-- **P-A0205-04:** school/action identity para mastery posterior, sem alias temático.
-- **P-A0205-05:** testes direct/DoT/derived/summon/End/Void/cold/dedup.
+### Hook e ordem de execução
 
-## Nove eixos obrigatórios
+AvailabilityResolver exige dependency closure + adapter direct_ender_outcome. Pipeline do resultado mágico: Potência Mágica universal → camada específica ENDER A0205 uma vez por componente direto → especializações posteriores, preservando action_id/outcome_id. Reavaliar availability em login, provider/datapack reload, respec e perda de dependência.
 
-| Eixo | Resultado | Decisão |
-|---|---|---|
-| Dependências/gates | PASS no design | cadeia anterior é blocker, não bypass. |
-| Integração global | PASS | camada ENDER depois de Potência universal. |
-| Qualidade/identidade | PASS | dano dimensional direto, não todo dano do End. |
-| Topologia | PASS | fundamento ARCANE/ENDER. |
-| Especializações | PASS | pode compor Gate A; não satisfaz Gate B/C. |
-| PT-BR | PASS | Dano de Ender permanece classificação explícita. |
-| Notion | PASS após correção | dependency/availability regravados. |
-| NeoVitae | PASS | ausente. |
-| Providers | PASS no design | Fire's/Somake somente por action id real. |
+### Fallback sem trocar a identidade
 
-Os 18 critérios passam **no design** com classifier obrigatório e no-op purchase proibido.
+UNAVAILABLE_NODE enquanto A0144/A0148–A0155 não estiverem disponíveis ou não existir classificador/producer ENDER direto confiável. Quando disponível, componente desconhecido falha fechado. Não converter para dano mágico genérico nem inferir por teleporte, dimensão, entidade, item, partículas, Void ou cold.
+
+### Invariantes semânticos
+
+- ENDER é classificação explícita de ação/componente. Não equivale a Void, dimensão End, teleporte genérico, deslocamento, frio ou estética dimensional.
+- Mantém dano, resistência, deslocamento causal e parcel térmico em pipelines separados.
+- A parcela dependente de provider só existe quando o provider e o adapter da versão auditada entregarem a evidência exigida.
+- Ausência de hook não autoriza converter a perk em bônus genérico, atributo vanilla, dano físico, resistência genérica ou outro recurso.
+
+## 4. Topologia, dependências e especialização
+
+| Item | Decisão |
+|---|---|
+| Região | Principal — ARCANE ↔ AGILITY / Ender — Potência Dimensional |
+| Camada e papel | Camada 4; Ramo |
+| Pré-requisito visual/estrutural | A0144 Poder Mágico ≥ 2 ranks + Gateway ARCANE + ≥1 técnica arcana da lista A0148–A0155. |
+| Dependência semântica completa | A0144 Poder Mágico ≥2 + Gateway ARCANE + ≥1 técnica A0148–A0155, todos disponíveis, mais adapter versionado que publique direct_ender_outcome do jogador. A0144/A0148–A0155 são dependências externas deste lote adiantado e não são presumidas concluídas. |
+| Custo topológico | 1 PP por rank; 4 rank(s); extra 0 |
+| Regra de região/PP | FUNDAMENTO_EXTERIOR: ARCANE/ENDER; PP_REGION: ARCANE/ENDER. ENDER é classificação explícita de outcome mágico direto. A0205 é UNAVAILABLE_NODE sem dependency closure+adapter; não é no-op comprável. Cada action_id/outcome_id escala uma vez; DoT/derived já escalado não recebe nova camada. |
+| Border hopping | Proibido contar a mesma compra em regiões incompatíveis ou usar bridge para satisfazer dois thresholds, salvo whitelist explícita de um único lado semântico. |
+| Respec | O refund deve respeitar dependency closure, gate de região/terminal e estado owned pela perk; perks internas dependentes são reembolsadas antes de quebrar o gate. |
+
+A topologia não concede a mecânica por si só. Gateway, proximidade visual, atributo secundário ou investimento em bridge não substituem o provider/hook causal.
+
+## 5. Providers, autoridade e boundaries
+
+### Provider/modlist aprovado
+
+Iron's 3.16.3 + Fire's Ender Expansion 2.4.1 e Somake Spells 1.0.8 somente após provar SchoolType.getId()/ação concreta e adapter ENDER versionado. Nenhum desses mods está ligado ao runtime atual do RPG para A0205; Ars/outros somente por adapter explícito. Teleporte, End e Void não bastam.
+
+### Disposição por família
+
+- **Providers/mods pertinentes:** Fire's Ender Expansion, Somake Spells e Iron's Spells somente por SchoolType/action id exato e adapter versionado; Cold Sweat apenas quando existir parcel térmico frio explícito.
+- **Exclusões obrigatórias:** EntityTeleportEvent isolado não prova deslocamento da própria ação. AGILITY, estar no End, Void, mudança de dimensão e temperatura não criam outcome ENDER.
+- **Contratos/capabilities nomeados no registro:** nenhum contrato nomeado adicional; ainda é obrigatória a prova do adapter/hook real.
+- **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
+
+### Matriz dos quatro projetos próprios
+
+| Projeto | Head auditado | Decisão para A0205 | Authority/boundary |
+|---|---|---|---|
+| RPG Skill Tree | <code>c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code> | OWNER/CONSUMER CANÔNICO | Possui a perk, gates, PP/Mastery e composição RPG; deve delegar ao provider nativo e falhar fechado. |
+| Volcanoes | <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code> | NÃO INTEGRAR — nenhuma capability do head auditado publica a assinatura/receipt exigida por esta perk. | Nenhuma escrita em geologia, atmosfera, pressão ou worldgen é autorizada. |
+| Enshrouded | <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code> | NÃO INTEGRAR | Shroud/Exposure, apresentação e ecologia são semânticas próprias; não classificam esta ação/perk. |
+| Black Arcana | <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code> | NÃO INTEGRAR — cast/danger/forecast do head atual não publica a assinatura desta perk; apresentação e domínios planejados não criam provider. | Arcane/Corruption Resistance, Strain, Backlash e forecast permanecem provider-owned e distintos. |
+
+### Contrato obrigatório para qualquer projeto próprio ou mod externo
+
+- **Relação:** produtor de evidência nativa → adapter versionado → consumidor RPG da perk.
+- **Estado autoritativo:** permanece no provider dono; o RPG só mantém estado próprio da perk/ledger explicitamente descrito.
+- **Boundary:** evento/query/receipt/operação atômica indicada em Hook, nunca leitura de internals nem heurística visual.
+- **Evidência causal:** <code>action_id</code>, <code>outcome_id</code>.
+- **Deduplicação:** uma aplicação/claim/commit por identidade canônica; callbacks auxiliares não criam um segundo resultado.
+- **Fallback:** a parcela dependente é omitida ou o node fica não comprável, conforme o contrato canônico.
+- **Escritas proibidas:** nada de escrever diretamente recursos, temperatura, freeze, mundo, progressão, claims, hazard ou estado privado do provider fora da operação pública versionada.
+
+## 6. Causalidade, deduplicação e ordem de composição
+
+- **Chaves que o adapter precisa preservar:** <code>action_id</code>, <code>outcome_id</code>.
+- **Produtor:** o provider que confirma a ação/estado/componente nativo descrito em Provider/Mods.
+- **Consumidor:** o serviço RPG indicado no Hook; ele aplica somente a contribuição de A0205.
+- **Ordem:** classificar e validar pré-condições → obter receipt/estado autoritativo → aplicar a parcela uma única vez no ponto de composição indicado → confirmar commit → só então consumir marca/custo/claim próprio.
+- **Rollback:** cancelamento, dano zero, target inválido, provider ausente, falha de commit ou mudança de autoridade descartam a reserva/parcela sem benefício fantasma.
+- **Double-dip:** root, hit, projectile, spell callback, derived component, DoT e evento auxiliar não podem contar o mesmo outcome duas vezes.
+- **Derived outcomes:** somente entram quando o contrato os allowlistar e preservar parent/root id; caso contrário contribuem zero.
+
+## 7. Custos, recursos e economia
+
+- **Compra:** 1 Passive Point(s) por rank, máximo de 4 rank(s).
+- **Custo extra:** 0; não há débito adicional para comprar esta perk.
+- **Recursos/eixos tocados pelo contrato:** <code>PARCEL TÉRMICO</code>.
+- Qualquer débito, reembolso, regeneração, custo reduzido ou consumo usa o mesmo resource_id, quantum e pipeline do provider.
+- Não existe geração gratuita, conversão silenciosa entre MANA/STAMINA/FE/Soul Energy/Source/Spirit, nem crédito baseado em custo nominal quando o débito real falha.
+- Ranks e PP não são recurso de combate e não podem ser reembolsados por callbacks de gameplay.
+
+## 8. Fail-closed, lifecycle e perda de capability
+
+- **Decisão atual:** Não comprável no runtime atual. O node só pode ser habilitado depois que dependências e capabilities exatas forem comprovadas; componente não classificado continua inerte.
+- **Fallback normativo:** UNAVAILABLE_NODE enquanto A0144/A0148–A0155 não estiverem disponíveis ou não existir classificador/producer ENDER direto confiável. Quando disponível, componente desconhecido falha fechado. Não converter para dano mágico genérico nem inferir por teleporte, dimensão, entidade, item, partículas, Void ou cold.
+- Reavaliar gate/availability em login, load/save, datapack/rules reload, respec, mudança/remoção de provider, alteração de capability e migração de schema.
+- Perda de provider ou dependência remove/desativa somente a parcela dependente e executa cleanup do estado próprio, sem tocar estado autoritativo de terceiros.
+- Estado desconhecido ou erro de query nunca concede compra, unlock, proteção, dano, recurso, temperatura favorável ou progressão.
+- Cliente, HUD, tooltip, forecast e animação são apresentação/read-only; o servidor confirma toda decisão jogável.
+
+## 9. Mastery, anti-farm e anti-rebuild
+
+- Mastery usada em qualquer gate vem apenas de ação discreta, atribuível e confirmada do lane/provider correto.
+- Tick, AFK, equipamento vestido, aura passiva, permanência em área, temperatura, mineração/automação, throughput de máquina e callback visual concedem 0 Mastery.
+- Um action_id/outcome_id/receipt concede no máximo um crédito no consumidor autorizado; procs derivados não voltam ao produtor de Mastery.
+- Rebuild, relog, restart, chunk unload, troca de dimensão e respec não recriam stacks, refunds, one-time rewards ou cooldowns consumidos.
+- Dependências/PP são recalculados a partir do estado autoritativo; caches não mantêm unlock órfão.
+- Quando a ação não puder ser atribuída inequivocamente ao jogador, a contribuição é zero.
+
+## 10. Integração global e cobertura da modlist
+
+- A busca de providers considera a modlist e os guias completos de gameplay, magia, tecnologia e projetos próprios.
+- Fire's Ender Expansion, Somake Spells e Iron's Spells somente por SchoolType/action id exato e adapter versionado; Cold Sweat apenas quando existir parcel térmico frio explícito.
+- EntityTeleportEvent isolado não prova deslocamento da própria ação. AGILITY, estar no End, Void, mudança de dimensão e temperatura não criam outcome ENDER.
+- Relações somente temáticas foram deliberadamente recusadas; cada provider listado possui papel limitado ao subcontrato descrito.
+- Provider não listado não é automaticamente incompatível: ele só entra futuramente após adapter versionado, classificação explícita, authority definida, testes e atualização do catálogo/dossiê.
+- NeoVitae não é requisito, provider, fallback nem authority desta perk.
+
+## 11. Plano obrigatório de testes para o Chat 2
+
+1. **Compra válida:** provar ranks, PP, dependencies, mastery/gateway e provider/capability; então comprar exatamente até o máximo.
+2. **Compra inválida:** faltar cada requisito isoladamente e comprovar recusa sem gasto, estado ou unlock residual.
+3. **Escalonamento:** validar cada rank/coeficiente/TTL/cap exato de Até 4 ranks; multiplicador da camada ENDER direta: ×1,03 / ×1,06 / ×1,09 / ×1,12. Teto próprio de A0205: +12%..
+4. **Provider positivo:** executar uma fonte explicitamente mapeada e confirmar somente o componente/estado correto.
+5. **Provider negativo:** mesma temática sem adapter, source diferente, derived não allowlisted ou classifier unknown deve produzir zero.
+6. **Causalidade:** correlacionar <code>action_id</code>, <code>outcome_id</code>; callback duplicado, reordenado, cancelado ou target trocado não reaplica.
+7. **Composição:** provar ordem com bônus/mitigadores distintos e ausência de bucket/crit/dano/estado duplicado.
+8. **Rollback:** cancelar/falhar antes do commit e verificar ausência de custo, consumo, cooldown, stack ou benefício fantasma.
+9. **Recursos:** quando aplicável, confirmar débito/regen/refund somente no mesmo recurso e quantum; provider ausente gera zero.
+10. **Lifecycle:** save/load, relog, restart, respec, datapack reload e remoção/reentrada do provider.
+11. **Exploit:** AFK, tick spam, equipamento, automação, multi-projectile, DoT, summon, rebuild e dupla emissão de evento.
+12. **Projetos próprios:** confirmar que Volcanoes, Enshrouded e Black Arcana permanecem fora salvo boundary explicitamente aprovado; ausência não impede o restante independente.
+13. **Topologia/Specialist:** validar PP regionais, terminal, fundamentals, bridges e refund order sem border hopping.
+14. **Fallback:** remover cada capability indicada e comprovar exatamente o comportamento fail-closed descrito, nunca um bônus substituto.
+
+## 12. Proibições de implementação
+
+- Não inventar evento, capability, classificador, state id, resource id, metric ou API.
+- Não duplicar dano, mitigação, resistência, crítico, freeze, temperatura, world mutation, resource ledger ou progressão owned por provider.
+- Não usar client/tooltip/forecast/animação como authority.
+- Não inferir provider por nome, namespace, dimensão, bioma, bloco, item, cor, VFX ou tema.
+- Não trocar fallback por bônus vanilla/genérico parecido.
+- Não conceder Mastery/proc/sustain a partir de Backlash, derived outcome não autorizado ou callback intermediário.
+- Não escrever diretamente internals de Cold Sweat, Black Arcana, Enshrouded, Volcanoes, claims, recursos mágicos ou estados de outros mods.
+- Não adicionar dependência de NeoVitae.
+
+## 13. Pendências técnicas e dependências futuras
+
+- **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
+- **Capabilities/contracts a provar:** nenhum contrato nomeado adicional; ainda é obrigatória a prova do adapter/hook real.
+- **Dependências fora desta faixa:** <code>A0144</code>, <code>A0148</code>, <code>A0155</code>.
+- **Referências internas posteriores:** nenhuma.
+- **Referência além do escopo:** nenhuma além das dependências listadas.
+- Estas pendências não autorizam redesign silencioso. Se API/código real contradizer o contrato, implementar fail-closed e devolver o ponto ao Chat 1.
+
+## 14. Auditoria dos nove eixos obrigatórios
+
+| Eixo | Veredito e evidência |
+|---|---|
+| 1. Dependências e gates | **APROVADO NO DESIGN** — dependências, pré-requisitos, gate, PP/Mastery e comportamento na ausência estão explícitos. |
+| 2. Integração global | **APROVADO NO DESIGN** — provider/modlist, authority, projetos próprios e exclusões foram dispostos; EntityTeleportEvent isolado não prova deslocamento da própria ação. AGILITY, estar no End, Void, mudança de dimensão e temperatura não criam outcome ENDER. |
+| 3. Qualidade e identidade | **APROVADO** — ENDER é classificação explícita de ação/componente. Não equivale a Void, dimensão End, teleporte genérico, deslocamento, frio ou estética dimensional. |
+| 4. Topologia/distância/ramificação | **APROVADO** — árvore, ramo, camada, função, região de PP e border-hopping estão documentados. |
+| 5. Especializações | **APROVADO** — terminal/fundamentals/PP regionais são preservados quando aplicáveis; nodes externos/bridges não viram perks internas. |
+| 6. PT-BR | **APROVADO** — nome, efeito, gate, hook, fallback, testes e proibições estão em PT-BR. |
+| 7. Campos completos no Notion | **APROVADO APÓS CORREÇÃO** — 21 propriedades materiais preenchidas; Custo Extra=0 relido após escrita. |
+| 8. Ausência de NeoVitae | **APROVADO** — sem dependência, provider, fallback ou referência operacional. |
+| 9. Providers e projetos próprios | **APROVADO NO DESIGN / FAIL-CLOSED NO RUNTIME** — cobertura perk→provider e provider→árvore explícita; capability ausente não é inventada. |
+
+## 15. Auditoria dos 18 critérios técnicos
+
+| # | Critério | Veredito |
+|---:|---|---|
+| 1 | Efeito real | **APROVADO NO DESIGN** — efeito mensurável, coeficiente/rank e alvo de composição definidos. |
+| 2 | Provider-native first | **APROVADO** — authority permanece no provider; RPG consome boundary/receipt. |
+| 3 | Sem mecânica inventada | **APROVADO** — contratos futuros estão nomeados e bloqueados, não declarados como API existente. |
+| 4 | Fail-closed | **APROVADO** — ausência/unknown/erro produz zero ou node não comprável conforme o fallback. |
+| 5 | Fallback preserva identidade | **APROVADO** — não converte a perk em bônus genérico ou outro eixo. |
+| 6 | Mastery discreta/atribuível | **APROVADO** — somente ação confirmada do lane correto; passividade concede zero. |
+| 7 | Anti-farm/anti-rebuild | **APROVADO** — dedup, lifecycle e persistência impedem AFK/relog/rebuild. |
+| 8 | Atribuição causal | **APROVADO** — chaves/receipt exigidos: <code>action_id</code>, <code>outcome_id</code>. |
+| 9 | Sem pipelines duplicados | **APROVADO** — um owner, um bucket/ledger/commit e composição única. |
+| 10 | Custos/recursos reais | **APROVADO** — PP e recursos nativos usam débito/quantum/provider reais. |
+| 11 | Sem geração gratuita | **APROVADO/NÃO APLICÁVEL** — não há recurso grátis; ganho/refund eventual exige receipt e mesmo resource_id. |
+| 12 | Read-only verdadeiro | **APROVADO/NÃO APLICÁVEL** — queries/forecast são read-only; mutações só pela operação pública do owner. |
+| 13 | Versões exatas | **APROVADO NO DESIGN** — versões externas permanecem no campo Provider/Mods; projetos próprios estão pinados por SHA. |
+| 14 | Coerência estrutural | **APROVADO** — domínio, árvore, ramo, camada, função e custo são coerentes. |
+| 15 | Dependências semânticas | **APROVADO** — closure e upstream/future refs estão explícitos e não presumidos. |
+| 16 | Sem sobreposição/double-dip | **APROVADO** — Mantém dano, resistência, deslocamento causal e parcel térmico em pipelines separados. |
+| 17 | Implementável | **APROVADO COMO CONTRATO** — hook, estado, owner, fallback e testes estão fechados; capability futura bloqueia runtime sem bloquear o design. |
+| 18 | Pós-escrita relido | **APROVADO** — registro individual foi relido após Custo Extra=0; nenhum sucesso foi presumido. |
+
+## 16. Evidência de persistência no Notion
+
+- Página: [A0205 — Dano de Ender I](https://app.notion.com/3c569db9f0db81cf84eacc3a6d50413a)
+- Data source: collection://ade1ec0c-b055-4b84-8004-45ae80c45119
+- Operação material desta auditoria: Custo Extra, vazio para 0.
+- Verificação: fetch individual pós-escrita em 2026-09-01 confirmou Custo Extra=0.
+- Os demais valores materiais desta página são transcritos integralmente na seção 2.
+- A página não possui corpo editorial; a autoridade é o conjunto de propriedades do catálogo e suas fórmulas.
+
+---
+
+**Resultado final do Chat 1 para A0205:** design suficientemente especificado para implementação sem redesign; qualquer capability/dependência ausente mantém a perk ou sua parcela dependente fail-closed.
