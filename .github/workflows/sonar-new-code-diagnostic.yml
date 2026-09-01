@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Re-anchor main Sonar baseline and verify
+      - name: Configure SonarCloud fixed onboarding date and verify
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
           GH_TOKEN: ${{ github.token }}
           EXPECTED_MAIN_SHA: 66fcec7b163320cfb0d79943969aae33f3adf862
+          NEW_CODE_DATE: '2026-09-01'
         shell: bash
         run: |
           set -euo pipefail
@@ -38,48 +39,53 @@ jobs:
           echo "currentMainSha=${current_main}"
           test "$current_main" = "$EXPECTED_MAIN_SHA"
 
-          echo '=== Resolve latest main Sonar analysis ==='
+          echo '=== Remove legacy manual analysis baseline from main ==='
+          curl --silent --show-error --fail --location \
+            --request POST \
+            --header "$sonar_auth" \
+            --data-urlencode "project=${SONAR_PROJECT}" \
+            --data-urlencode 'branch=main' \
+            "$sonar/api/project_analyses/unset_baseline"
+
+          echo '=== Configure Cloud-supported specific date ==='
+          curl --silent --show-error --fail --location \
+            --request POST \
+            --header "$sonar_auth" \
+            --data-urlencode "component=${SONAR_PROJECT}" \
+            --data-urlencode 'key=sonar.leak.period' \
+            --data-urlencode "value=${NEW_CODE_DATE}" \
+            "$sonar/api/settings/set"
+
+          curl --silent --show-error --fail --location \
+            --request POST \
+            --header "$sonar_auth" \
+            --data-urlencode "component=${SONAR_PROJECT}" \
+            --data-urlencode 'key=sonar.leak.period.type' \
+            --data-urlencode 'value=date' \
+            "$sonar/api/settings/set"
+
+          echo '=== Verify effective project settings ==='
+          settings="$({
+            curl --silent --show-error --fail --location \
+              --header "$sonar_auth" \
+              "$sonar/api/settings/values?component=${SONAR_PROJECT}&keys=sonar.leak.period,sonar.leak.period.type"
+          })"
+          echo "$settings" | jq '{settings: [.settings[] | {key, value, inherited}]}'
+          period="$(echo "$settings" | jq -r '.settings[] | select(.key == "sonar.leak.period") | .value')"
+          period_type="$(echo "$settings" | jq -r '.settings[] | select(.key == "sonar.leak.period.type") | .value')"
+          test "$period" = "$NEW_CODE_DATE"
+          test "$period_type" = 'date'
+
+          echo '=== Verify legacy manual baseline is unset ==='
           analyses="$({
             curl --silent --show-error --fail --location \
               --header "$sonar_auth" \
               "$sonar/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=5"
           })"
           echo "$analyses" | jq '{analyses: [.analyses[] | {key, date, projectVersion, revision, manualNewCodePeriodBaseline}]}'
+          test "$(echo "$analyses" | jq '[.analyses[] | select(.manualNewCodePeriodBaseline == true)] | length')" = '0'
 
-          baseline_key="$(echo "$analyses" | jq -r '.analyses[0].key')"
-          baseline_revision="$(echo "$analyses" | jq -r '.analyses[0].revision // empty')"
-          echo "baselineAnalysis=${baseline_key}"
-          echo "baselineRevision=${baseline_revision}"
-          test -n "$baseline_key"
-          test "$baseline_revision" = "$EXPECTED_MAIN_SHA"
-
-          echo '=== Set explicit manual baseline for main ==='
-          curl --silent --show-error --fail --location \
-            --request POST \
-            --header "$sonar_auth" \
-            --data-urlencode "project=${SONAR_PROJECT}" \
-            --data-urlencode 'branch=main' \
-            --data-urlencode "analysis=${baseline_key}" \
-            "$sonar/api/project_analyses/set_baseline"
-
-          echo '=== Verify manual baseline flag ==='
-          after="$({
-            curl --silent --show-error --fail --location \
-              --header "$sonar_auth" \
-              "$sonar/api/project_analyses/search?project=${SONAR_PROJECT}&branch=main&ps=5"
-          })"
-          echo "$after" | jq '{analyses: [.analyses[] | {key, date, projectVersion, revision, manualNewCodePeriodBaseline}]}'
-          selected="$(echo "$after" | jq -r --arg key "$baseline_key" '.analyses[] | select(.key == $key) | .manualNewCodePeriodBaseline')"
-          echo "manualNewCodePeriodBaseline=${selected}"
-          test "$selected" = 'true'
-
-          echo '=== New issues immediately after baseline ==='
-          curl --silent --show-error --fail --location \
-            --header "$sonar_auth" \
-            "$sonar/api/issues/search?componentKeys=${SONAR_PROJECT}&branch=main&inNewCodePeriod=true&ps=1" \
-            | jq '{currentNewIssues: (.paging.total // .total)}'
-
-          echo '=== Dispatch a fresh main Sonar analysis ==='
+          echo '=== Dispatch fresh main Sonar analysis ==='
           curl --silent --show-error --fail --location \
             --request POST \
             --header "$gh_auth" \
