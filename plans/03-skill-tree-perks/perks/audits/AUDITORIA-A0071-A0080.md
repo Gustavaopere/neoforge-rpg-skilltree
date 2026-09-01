@@ -122,7 +122,7 @@ No fechamento desta implementação, a `main` já havia avançado de `c89bc8d8ad
 
 A comparação mostrou que os commits concorrentes não alteraram o runtime A0071–A0080, os dez dossiês deste lote nem esta auditoria. O único path compartilhado é `plans/03-skill-tree-perks/perks/STATUS.md`, porque outro Chat 1 ampliou a documentação até A0200–A0299.
 
-O `STATUS.md` desta branch foi atualizado com o estado real A0071–A0080, porém **não deve ser usado para sobrescrever silenciosamente a versão mais nova da `main`**. No Chat 3, a reconciliação deverá preservar integralmente as seções A0200–A0299 atuais da `main` e reaplicar apenas o delta A0067/A0070/A0071–A0080 + seção Chat 2 desta branch. Esse conflito documental é conhecido e não exige redesign/runtime novo.
+O `STATUS.md` desta branch foi atualizado com o estado real A0071–A0080, porém **não deve ser usado para sobrescrever silenciosamente a versão mais nova da `main`**. A PR #355 passou a ser reportada pelo GitHub como `mergeable=true`, portanto não há conflito textual bloqueante conhecido neste momento. Ainda assim, existe sobreposição documental no mesmo path: o Chat 3 deve conferir o resultado da reconciliação/auto-merge e garantir que as seções A0200–A0299 atuais da `main` sejam preservadas junto ao delta A0067/A0070/A0071–A0080 + seção Chat 2 desta branch.
 
 ## Matriz dos nove eixos
 
@@ -161,7 +161,7 @@ O `STATUS.md` desta branch foi atualizado com o estado real A0071–A0080, poré
 
 ## Pendências obrigatórias para Chat 3
 
-- reconciliar `STATUS.md` com a `main@452e8b23e374179c1f616f9beedce6e3dea66ef5` ou mais nova, preservando A0200–A0299 e reaplicando apenas o delta deste lote;
+- conferir a reconciliação/auto-merge de `STATUS.md` com a `main@452e8b23e374179c1f616f9beedce6e3dea66ef5` ou mais nova, preservando A0200–A0299 e o delta deste lote;
 - criar/completar testes explícitos de reservation→commit/rollback de A0073/A0074/A0080;
 - validar concorrência de roots/projéteis e ausência de duplicação;
 - validar unavailable-node purchase pelos caminhos server-authoritative;
