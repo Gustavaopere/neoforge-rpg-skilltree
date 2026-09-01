@@ -162,7 +162,12 @@ tasks.named('test', Test).configure {
 tasks.named('jacocoTestReport').configure {
     dependsOn tasks.named('test')
     dependsOn tasks.named('testJunit')
-    executionData(tasks.withType(Test))
+    // Avoid querying a live TaskCollection while Gradle resolves sonar task dependencies.
+    // JaCoCo's documented default destination is build/jacoco/${taskName}.exec for Test tasks.
+    executionData(
+        layout.buildDirectory.file('jacoco/test.exec'),
+        layout.buildDirectory.file('jacoco/testJunit.exec')
+    )
     reports {
         xml.required = true
         html.required = true
