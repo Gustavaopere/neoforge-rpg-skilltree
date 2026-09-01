@@ -435,3 +435,42 @@ O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN 
 15. `P-A0081-90-TEST-01` — GameTest/harness transversal provider-present/absent para sustain, native heal correlation, magic/element/DoT availability, BodyProvider, attributes, lifecycle, dedup, multiplayer e dedicated server.
 
 O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige a PR desta auditoria, review resolvido, CI GREEN, merge e confirmação fresca da `main`; após isso o Chat 1 deve **PARAR**. A0091–A0100 só pode começar mediante novo comando do usuário.
+
+## Continuidade documental posterior ainda fora da `main`
+
+Os lotes abaixo já foram fechados pelo Chat 1, mas permanecem em PRs abertas para que Chat 2 implemente e Chat 3 valide/merge. A ausência deles na `main` **não** significa design pendente e também **não** promove runtime inexistente.
+
+### A0091–A0100 — Chat 1
+
+- **Estado:** `DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 / AGUARDANDO IMPLEMENTAÇÃO CHAT 2`.
+- **PR:** #326 — `docs/perks: close Chat 1 audit A0091-A0100`.
+- **Branch:** `docs/chat1-a0091-a0100-audit`.
+- **Head documental observado:** `22a7f16b27c6781f8571e8a1de1d899cfaff5c7a`.
+- **Runtime alterado pelo Chat 1:** nenhum.
+- **Próximo lote desse ciclo:** não iniciar automaticamente.
+
+### A0101–A0110 — Chat 1
+
+- **Estado:** `DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 / AGUARDANDO IMPLEMENTAÇÃO CHAT 2`.
+- **PR:** #340 — `docs(perks): close Chat 1 audit A0101-A0110`.
+- **Branch:** `docs/chat1-a0101-a0110-audit`.
+- **Head documental observado:** `8f3a27da72725fe7db021ace9ebbdb0869a455c5`.
+- **Runtime alterado pelo Chat 1:** nenhum.
+- **A0110:** `UNAVAILABLE_NODE` por P-0036; nenhuma conservação por `damageItem`, repair/refund, polling ou armor-only hook.
+
+### A0111–A0120 — Chat 1
+
+- **Estado:** `DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 / AGUARDANDO IMPLEMENTAÇÃO CHAT 2`.
+- **PR:** #341 — `docs(perks): close Chat 1 audit A0111-A0120`.
+- **Branch:** `docs/chat1-a0111-a0120-audit`.
+- **Base/freshness:** `main@66fcec7b163320cfb0d79943969aae33f3adf862`; Volcanoes source `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `29ae2d9b7a13bbdffd3291d2fe4213e0705eb8e3`; Black Arcana `e89df6dc2c204c269d8f1811c6b3f309644c864a`; **SEM DELTA DE CAPABILITY**.
+- **Notion:** fetch 10/10; hardening em A0113 e A0115–A0120; re-fetch pós-escrita 7/7 PASS.
+- **A0111–A0114:** cadeia de manutenção/durabilidade/attunement permanece fail-closed. P-0036 e Attunement Socket não possuem binding live suficiente.
+- **A0113:** `ToolIdentityLedger` é obrigatório; duplicate same-id/owner mismatch reidentifica somente a cópia atuante, que começa com 0 progresso e sem `Reforço Pronto`; o ledger original é preservado.
+- **A0115–A0120:** P-0037/BodyCostResolver ausente = `UNAVAILABLE_NODE`; lanes HYDRATION também exigem adapter causal Thirst Was Reclaimed `3.0.4`. Allocation legado vale 0 PP enquanto o gate estrutural estiver ausente.
+- **Arquivo canônico:** `audits/AUDITORIA-A0111-A0120.md`.
+- **Delta canônico:** `guides/projects/17-capability-delta-a0111-a0120.md`.
+- **Runtime alterado neste Chat 1:** nenhum.
+- **A0121+:** não iniciado.
+
+O Chat 1 **não faz merge** destes três lotes documentais abertos. Chat 2 continua a branch/PR correspondente; Chat 3 valida, corrige tecnicamente quando não exigir redesign, obtém CI verde quando aplicável, faz merge e confirma a `main`.
