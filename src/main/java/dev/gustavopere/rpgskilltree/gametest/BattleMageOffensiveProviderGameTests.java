@@ -1,7 +1,5 @@
 package dev.gustavopere.rpgskilltree.gametest;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Optional;
@@ -10,13 +8,15 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.common.util.FakePlayerFactory;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -24,8 +24,9 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder("rpgskilltree")
 @PrefixGameTestTemplate(false)
 public final class BattleMageOffensiveProviderGameTests {
-    private static final String ENTITY_CITIZEN = "com.minecolonies.core.entity.citizen.EntityCitizen";
     private static final String ABSTRACT_CITIZEN = "com.minecolonies.api.entity.citizen.AbstractEntityCitizen";
+    private static final String COLONY_MANAGER = "com.minecolonies.api.colony.IColonyManager";
+    private static final String CITIZEN_DATA = "com.minecolonies.api.colony.ICitizenData";
     private static final String SPELL_CONTAINER = "io.redspace.ironsspellbooks.api.spells.ISpellContainer";
     private static final String SPELL_CONTAINER_MUTABLE = "io.redspace.ironsspellbooks.api.spells.ISpellContainerMutable";
     private static final String ABSTRACT_SPELL = "io.redspace.ironsspellbooks.api.spells.AbstractSpell";
@@ -48,18 +49,18 @@ public final class BattleMageOffensiveProviderGameTests {
             return;
         }
 
+        ColonyFixture fixture = null;
         Entity spawnedProjectile = null;
         try {
-            LivingEntity citizen = (LivingEntity) newStandaloneCitizen(helper.getLevel());
-            BlockPos origin = helper.absolutePos(BlockPos.ZERO).above();
-            citizen.moveTo(origin.getX() + 0.5, origin.getY(), origin.getZ() + 0.5, 0.0f, 0.0f);
+            fixture = createColonyCitizen(helper);
+            LivingEntity citizen = (LivingEntity) fixture.citizen();
 
             Object inventory = citizen.getClass().getMethod("getInventoryCitizen").invoke(citizen);
             inventory.getClass().getMethod("setStackInSlot", int.class, ItemStack.class)
                 .invoke(inventory, 0, spellbook("irons_spellbooks:magic_arrow", 1));
 
             Object loadout = resolveLoadout(citizen).orElseThrow(
-                () -> new AssertionError("standalone provider citizen did not resolve the real magic_arrow spellbook")
+                () -> new AssertionError("registered MineColonies citizen did not resolve the real magic_arrow spellbook")
             );
             Object spellData = firstSpellData(loadout);
             Object spell = spellData.getClass().getMethod("getSpell").invoke(spellData);
@@ -75,7 +76,7 @@ public final class BattleMageOffensiveProviderGameTests {
             boolean began = (boolean) bridge
                 .getMethod("beginCast", LivingEntity.class, Class.forName("io.redspace.ironsspellbooks.api.spells.SpellData"))
                 .invoke(null, citizen, spellData);
-            helper.assertTrue(began, "real Iron's magic_arrow cast must begin on the MineColonies citizen");
+            helper.assertTrue(began, "real Iron's magic_arrow cast must begin on the registered MineColonies citizen");
             helper.assertTrue((boolean) magicData.getClass().getMethod("isCasting").invoke(magicData),
                 "offensive provider cast must enter MagicData casting state");
 
@@ -123,6 +124,7 @@ public final class BattleMageOffensiveProviderGameTests {
             throw new AssertionError("Battle Mage offensive provider pipeline probe failed", failure);
         } finally {
             if (spawnedProjectile != null) spawnedProjectile.discard();
+            deleteFixture(fixture, helper.getLevel());
         }
     }
 
@@ -130,14 +132,56 @@ public final class BattleMageOffensiveProviderGameTests {
         return ModList.get().isLoaded("minecolonies") && ModList.get().isLoaded("irons_spellbooks");
     }
 
-    private static Object newStandaloneCitizen(Level level) throws ReflectiveOperationException {
-        Class<?> modEntitiesType = Class.forName("com.minecolonies.api.entity.ModEntities");
-        Field citizenField = modEntitiesType.getField("CITIZEN");
-        EntityType<?> citizenType = (EntityType<?>) citizenField.get(null);
-        if (citizenType == null) throw new AssertionError("MineColonies CITIZEN EntityType was not initialized");
-        Class<?> citizenClass = Class.forName(ENTITY_CITIZEN);
-        Constructor<?> constructor = citizenClass.getConstructor(EntityType.class, Level.class);
-        return constructor.newInstance(citizenType, level);
+    private static ColonyFixture createColonyCitizen(GameTestHelper helper) throws ReflectiveOperationException {
+        ServerLevel level = helper.getLevel();
+        Player owner = FakePlayerFactory.getMinecraft(level);
+        BlockPos center = helper.absolutePos(BlockPos.ZERO);
+
+        Class<?> managerType = Class.forName(COLONY_MANAGER);
+        Object manager = managerType.getMethod("getInstance").invoke(null);
+        Object colony = managerType.getMethod(
+            "createColony",
+            ServerLevel.class,
+            BlockPos.class,
+            Player.class,
+            String.class,
+            String.class
+        ).invoke(manager, level, center, owner, "Battle Mage Offensive GameTest", "default");
+        if (colony == null) {
+            throw new AssertionError("MineColonies failed to create the offensive GameTest colony");
+        }
+
+        Object citizenManager = colony.getClass().getMethod("getCitizenManager").invoke(colony);
+        Class<?> citizenDataType = Class.forName(CITIZEN_DATA);
+        Object citizenData = citizenManager.getClass().getMethod("createAndRegisterCivilianData").invoke(citizenManager);
+        Object spawnedData = citizenManager.getClass().getMethod(
+            "spawnOrCreateCitizen",
+            citizenDataType,
+            Level.class,
+            BlockPos.class
+        ).invoke(citizenManager, citizenData, level, center.above());
+
+        @SuppressWarnings("unchecked")
+        Optional<Object> entity = (Optional<Object>) citizenDataType.getMethod("getEntity").invoke(spawnedData);
+        Object citizen = entity.orElseThrow(
+            () -> new AssertionError("MineColonies citizen manager did not spawn the offensive test citizen")
+        );
+        if (!(citizen instanceof LivingEntity)) {
+            throw new AssertionError("spawned offensive MineColonies citizen is not a LivingEntity");
+        }
+        return new ColonyFixture(manager, colony, citizen);
+    }
+
+    private static void deleteFixture(ColonyFixture fixture, ServerLevel level) {
+        if (fixture == null) return;
+        try {
+            int colonyId = (int) fixture.colony().getClass().getMethod("getID").invoke(fixture.colony());
+            Class.forName(COLONY_MANAGER)
+                .getMethod("deleteColonyByWorld", int.class, boolean.class, ServerLevel.class)
+                .invoke(fixture.manager(), colonyId, false, level);
+        } catch (ReflectiveOperationException ignored) {
+            // GameTest server teardown still isolates the fixture; preserve the primary assertion failure.
+        }
     }
 
     private static Optional<?> resolveLoadout(Object citizen) throws ReflectiveOperationException {
@@ -179,10 +223,13 @@ public final class BattleMageOffensiveProviderGameTests {
 
     private static int countMagicArrowProjectiles(Level level) {
         int count = 0;
-        if (!(level instanceof net.minecraft.server.level.ServerLevel serverLevel)) return count;
+        if (!(level instanceof ServerLevel serverLevel)) return count;
         for (Entity entity : serverLevel.getAllEntities()) {
             if (MAGIC_ARROW_PROJECTILE.equals(entity.getClass().getName())) count++;
         }
         return count;
+    }
+
+    private record ColonyFixture(Object manager, Object colony, Object citizen) {
     }
 }
