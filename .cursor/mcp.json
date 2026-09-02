@@ -5,7 +5,8 @@
       "command": "${userHome}${/}.local${/}share${/}github-mcp-server${/}github-mcp-server.exe",
       "args": ["stdio"],
       "env": {
-        "GITHUB_TOOLSETS": "context,repos,issues,pull_requests,users,actions,code_quality,code_security,dependabot,secret_protection"
+        "GITHUB_TOOLSETS": "context,repos,issues,pull_requests,users,actions,code_quality,code_security,dependabot,secret_protection",
+        "GITHUB_OAUTH_SCOPES": "public_repo,workflow,security_events"
       }
     },
     "context7": {
