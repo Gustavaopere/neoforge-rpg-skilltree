@@ -3,7 +3,8 @@
 ## Estado
 
 - **Chat 1:** DESIGN APROVADO após hardening causal.
-- **Implementação:** runtime preparatório diverge do contrato em consumo PRE e hostilidade; **não confirmado**.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** reservation→commit causal, rollback de zero/cancel e hostilidade compartilhada estão presentes; **não é IMPLEMENTAÇÃO CONFIRMADA**.
 - **Notion:** `3c569db9-f0db-814d-a37e-c21276901665`; corrigido e re-fetch confirmado.
 - **Domínio:** VITALITY; Camada 2; Ramo Defesa de Abertura.
 - **Ranks:** 3; custo 1 PP/rank.
@@ -37,17 +38,14 @@
 - Rank loss/respec/rules reload que remova A0097 ou A0088 também deve limpar preparação/reservas.
 - Dedup por identidade causal/root: callbacks repetidos do mesmo resultado não podem consumir duas vezes.
 
-## Divergências do runtime atual — handoff Chat 2
+## Evidência após Chat 2
 
-- `A0081A0100DefenseState.consumeOpeningDefense` atualiza imediatamente o timestamp durante PRE.
-- `A0081A0100CombatEvents.applyIncomingDefense` chama esse consumo ainda em `LivingIncomingDamageEvent`; dano posterior zerado/cancelado pode gastar preparação fantasma.
-- `hostile(...)` exige `(target instanceof Enemy || target instanceof Player)`, contrariando o contrato causal mais amplo.
-
-### Pendências Chat 2
-
-- **P-A0097-01:** implementar reserva bounded por actor/root/event e commit somente no `LivingDamageEvent.Post` com dano >0; rollback em cancel/zero.
-- **P-A0097-02:** reconciliar hostilidade para `LivingEntity` causal não-self/não-ally; remover `Enemy` como requisito de elegibilidade.
-- **P-A0097-03:** lifecycle completo em rank loss/respec/rules reload além dos eventos de entidade/jogador.
+- O owner defensivo reserva A0097 no PRE por identidade causal `DamageSource + target`, sem atualizar definitivamente o timestamp nessa fase.
+- `LivingDamageEvent.Post` só commita quando o dano hostil efetivo é >0; cancelamento/dano zero faz rollback/descarta a reserva.
+- O classifier hostil foi reconciliado para atacante causal `LivingEntity` não-self/não-ally, sem `Enemy` como requisito.
+- O contrato de teste stale que ainda chamava `consumeOpeningDefense(...)` foi substituído pela semântica reservation→commit no commit `cbe8de4c59983512fdc3d44f9155669c40b3d2a1`.
+- O state é bounded e integrado ao lifecycle compartilhado; rank loss/respec/rules reload ainda precisam de prova comportamental pelo Chat 3.
+- O Chat 2 **não executou** unit tests, GameTests, multiplayer tests, build NeoForge, dedicated-server smoke ou CI.
 
 ## Testes obrigatórios Chat 3
 
@@ -79,10 +77,10 @@
 ## Checklist
 
 - [x] Design aprovado pelo Chat 1
-- [ ] P-A0097-01 reservation→commit implementado
-- [ ] P-A0097-02 classifier hostil reconciliado
-- [ ] P-A0097-03 lifecycle completo implementado
-- [ ] Código presente / Chat 2 concluído
+- [x] Reservation→commit implementado
+- [x] Classifier hostil reconciliado
+- [x] Lifecycle estrutural integrado
+- [x] Código presente / Chat 2 concluído
 - [ ] VALIDAÇÃO CHAT 3: unit/GameTests/multiplayer/lifecycle
 - [ ] VALIDAÇÃO CHAT 3: build/dedicated server/CI
 - [ ] VALIDAÇÃO CHAT 3: IMPLEMENTAÇÃO CONFIRMADA
