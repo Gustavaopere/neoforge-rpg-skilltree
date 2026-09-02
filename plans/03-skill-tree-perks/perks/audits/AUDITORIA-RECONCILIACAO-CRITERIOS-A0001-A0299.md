@@ -93,6 +93,16 @@ Para **todas A0243–A0299**, qualquer referência histórica a `SPECIALIST_GATE
 
 Isso remove **somente** o falso blocker/contrato duplicado de gate. Todos os contratos específicos de gameplay permanecem exatamente como documentados.
 
+A correção também foi persistida diretamente no Catálogo Mestre do Notion. Verificação pós-escrita de A0243–A0299:
+
+- **57/57** páginas apontam para TreeUnlock canônico;
+- **0/57** mantêm o padrão antigo como provider/dependência;
+- **0** referências ao identificador legado permanecem em `Provider/Mods`;
+- blockers/contracts próprios de cada perk foram preservados;
+- a view temporariamente filtrada durante a revisão foi restaurada ao estado original.
+
+Os dossiês individuais do GitHub permanecem como snapshots históricos e podem ainda conter a string antiga em trechos transcritos. Por isso `perks/README.md` e `audits/README.md` tornam esta reconciliação leitura obrigatória e estabelecem precedência operacional explícita antes de qualquer implementação/validação da faixa.
+
 Exemplos que **continuam blockers reais quando ausentes**:
 
 - `FIRE_IGNITION_RESOLVER_V1`;
@@ -184,5 +194,5 @@ Escopo efetivamente corrigido:
 - 9 campos formais do Notion A0001/A0007/A0013/A0019/A0025/A0031/A0037/A0043/A0049;
 - authority de Specialist em A0162/A0169;
 - authority de Specialist em A0204/A0211/A0218/A0225/A0232;
-- precedência normativa para o antigo resolver Specialist em A0243–A0299;
+- authority de Specialist persistida no Notion para **57/57 A0243–A0299**, com precedência normativa para os snapshots históricos do GitHub;
 - A0044/A0050 preservadas como pendências reais de runtime.
