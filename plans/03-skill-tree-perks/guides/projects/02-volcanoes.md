@@ -6,7 +6,7 @@
 
 **Consolidação no runtime atual:** PR `Gustavaopere/neoforge-rpg-skilltree#308`, merge `f613dac5a15b26c7a92e07a9d9cb537c2412ddf2`.
 
-**Local operacional atual:** o Volcanoes não é mais um segundo mod distribuído. Ele é um subsistema nativo do único mod/JAR `rpgskilltree`; seus planos vivem em `plans/volcanoes/`, o runtime permanece sob o namespace Java `dev.gustavopere.volcanoes` dentro deste repositório e o boundary RPG-facing é exposto por serviços nativos, incluindo `NativeVolcanoesServices`.
+**Local operacional atual:** o Volcanoes não é mais um segundo mod distribuído. Ele é um subsistema nativo do único mod/JAR `rpgskilltree`; seus planos vivem em `docs/archive/volcanoes/`, o runtime permanece sob o namespace Java `dev.gustavopere.volcanoes` dentro deste repositório e o boundary RPG-facing é exposto por serviços nativos, incluindo `NativeVolcanoesServices`.
 
 Stages 00–07 estão fechados no snapshot fonte consolidado. A integração RNS está fechada como coexistência segura, sem transferência indevida da autoridade do worldgen nativo do RNS.
 
@@ -226,9 +226,9 @@ A PR #308 consolidou o snapshot fonte final do Volcanoes no repositório do RPG 
 Regras pós-consolidação:
 
 1. Para runtime, código, testes, plans e CI do Volcanoes, a fonte operacional é `Gustavaopere/neoforge-rpg-skilltree`.
-2. `plans/volcanoes/STATUS.md` é o status operacional do subsistema.
+2. `docs/archive/volcanoes/STATUS.md` é o status operacional do subsistema.
 3. O repositório standalone `Gustavaopere/Volcanoes@eaddc323...` é proveniência histórica do import enquanto permanecer existente; ele não deve ser usado como autoridade mais nova que a `main` consolidada.
-4. Mudanças futuras de capability do Volcanoes devem ser detectadas no repositório unificado, com atenção aos paths `plans/volcanoes/**`, `src/main/java/dev/gustavopere/volcanoes/**`, `src/main/java/dev/gustavopere/rpgskilltree/runtime/volcanoes/**`, recursos `volcanoes:*`, workflows/scripts/docs do Volcanoes e integrações que consumam esses boundaries.
+4. Mudanças futuras de capability do Volcanoes devem ser detectadas no repositório unificado, com atenção aos paths `docs/archive/volcanoes/**`, `src/main/java/dev/gustavopere/volcanoes/**`, `src/main/java/dev/gustavopere/rpgskilltree/runtime/volcanoes/**`, recursos `volcanoes:*`, workflows/scripts/docs do Volcanoes e integrações que consumam esses boundaries.
 5. Avanço de `main` causado apenas por outro subsistema do RPG Skill Tree não deve ser classificado automaticamente como delta de capability do Volcanoes; o diff pertinente precisa tocar a superfície acima ou alterar um contrato compartilhado consumido pelo Volcanoes.
 
 ## 13. Anti-abuso e deduplicação
@@ -243,15 +243,15 @@ Regras pós-consolidação:
 
 ## 14. Fontes principais atuais
 
-- `plans/volcanoes/STATUS.md`
-- `plans/volcanoes/00-foundation/`
-- `plans/volcanoes/01-geology/`
-- `plans/volcanoes/02-tectonics/`
-- `plans/volcanoes/03-volcanoes/`
-- `plans/volcanoes/04-atmosphere/`
-- `plans/volcanoes/05-pressure/`
-- `plans/volcanoes/06-integrations/`
-- `plans/volcanoes/07-hardening/`
+- `docs/archive/volcanoes/STATUS.md`
+- `docs/archive/volcanoes/00-foundation/`
+- `docs/archive/volcanoes/01-geology/`
+- `docs/archive/volcanoes/02-tectonics/`
+- `docs/archive/volcanoes/03-volcanoes/`
+- `docs/archive/volcanoes/04-atmosphere/`
+- `docs/archive/volcanoes/05-pressure/`
+- `docs/archive/volcanoes/06-integrations/`
+- `docs/archive/volcanoes/07-hardening/`
 - `src/main/java/dev/gustavopere/volcanoes/`
 - `src/main/java/dev/gustavopere/rpgskilltree/runtime/volcanoes/`
 - `docs/volcanoes/`

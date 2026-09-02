@@ -114,7 +114,7 @@ def main() -> int:
         require(obsolete not in create_sable_acceptance + minecolonies_acceptance + full_pack_installer,
                 f"obsolete Volcanoes acceptance provider pin remains: {obsolete}")
 
-    require(not (ROOT / "plans/volcanoes").exists(),
+    require(not (ROOT / "plans" / "volcanoes").exists(),
             "completed Volcanoes plans must not remain in active plans/")
     require((ROOT / "docs/archive/volcanoes").is_dir(),
             "completed Volcanoes plans must be archived under docs/archive/volcanoes/")
