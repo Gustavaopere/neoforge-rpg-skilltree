@@ -7,6 +7,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0001-A0010-IMPLEMENTACAO-CHAT2.md`
 - `AUDITORIA-A0001-A0020-REVALIDACAO-IMPLEMENTACAO-CHAT2.md`
 - `AUDITORIA-A0021-A0030-IMPLEMENTACAO-CHAT2.md`
+- `AUDITORIA-CHAT2-A0061-A0070-IMPLEMENTACAO.md` — handoff do lote A0061–A0070 na PR #391; A0067 estruturalmente `UNAVAILABLE_NODE` e A0070 com bridge opcional exata `enshrouded:shroud_lich`.
 
 ## Auditorias pós-merge e pendências técnicas — Chat 3
 
