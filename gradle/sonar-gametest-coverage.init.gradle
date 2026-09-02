@@ -6,6 +6,7 @@ allprojects { project ->
 
         def coverageName = (project.findProperty('gameTestCoverageName') ?: 'gametest').toString()
         def coverageFile = project.layout.buildDirectory.file("jacoco/${coverageName}.exec").get().asFile
+        def classDumpDir = project.layout.buildDirectory.dir("jacoco/classdump/${coverageName}").get().asFile
         def jacocoExtension = project.extensions.getByName('jacoco')
         def jacocoAgent = project.configurations.detachedConfiguration(
             project.dependencies.create("org.jacoco:org.jacoco.agent:${jacocoExtension.toolVersion}:runtime")
@@ -15,15 +16,38 @@ allprojects { project ->
         if (runsExtension != null) {
             runsExtension.named('gameTestServer').configure { run ->
                 run.jvmArguments(
-                    "-javaagent:${jacocoAgent.absolutePath}=destfile=${coverageFile.absolutePath},append=false,inclnolocationclasses=false,dumponexit=true,output=file,jmx=false,includes=dev.gustavopere.*"
+                    "-javaagent:${jacocoAgent.absolutePath}=destfile=${coverageFile.absolutePath},append=false,inclnolocationclasses=false,dumponexit=true,output=file,jmx=false,includes=dev.gustavopere.*,classdumpdir=${classDumpDir.absolutePath}"
                 )
             }
         }
 
-        project.tasks.named('jacocoTestReport').configure { report ->
-            report.executionData.from(project.fileTree(project.layout.buildDirectory.dir('jacoco')) {
-                include '*.exec'
-            })
+        def gameTestCoverageLanes = ['provider-free', 'battle-mage-provider']
+        def gameTestReportTasks = gameTestCoverageLanes.collect { lane ->
+            def taskSuffix = lane.split('-').collect { token -> token.capitalize() }.join('')
+            def laneExec = project.layout.buildDirectory.file("jacoco/${lane}.exec").get().asFile
+            def laneClassDump = project.layout.buildDirectory.dir("jacoco/classdump/${lane}").get().asFile
+            def laneXml = project.layout.buildDirectory.file("reports/jacoco/${lane}/${lane}.xml").get().asFile
+
+            project.tasks.register("jacoco${taskSuffix}GameTestReport", org.gradle.testing.jacoco.tasks.JacocoReport) { report ->
+                report.executionData.from(laneExec)
+                report.classDirectories.from(project.fileTree(laneClassDump) {
+                    include '**/*.class'
+                })
+                report.sourceDirectories.from(project.sourceSets.main.allSource.srcDirs)
+                report.reports {
+                    xml.required = true
+                    xml.outputLocation = laneXml
+                    html.required = false
+                    csv.required = false
+                }
+                report.onlyIf {
+                    laneExec.isFile() && laneClassDump.isDirectory()
+                }
+            }
+        }
+
+        project.tasks.named('sonar').configure { sonarTask ->
+            sonarTask.dependsOn(gameTestReportTasks)
         }
     }
 }

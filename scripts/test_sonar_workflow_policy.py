@@ -3,6 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "sonarqube.yml"
+GAME_TEST_COVERAGE_INIT = ROOT / "gradle" / "sonar-gametest-coverage.init.gradle"
 LEGACY_BASELINE_SCRIPT = ROOT / "scripts" / "refresh-sonar-new-code-baseline.py"
 
 
@@ -13,6 +14,7 @@ def require(condition: bool, message: str) -> None:
 
 def main() -> None:
     workflow = WORKFLOW.read_text(encoding="utf-8")
+    game_test_coverage = GAME_TEST_COVERAGE_INIT.read_text(encoding="utf-8")
 
     require(
         "refresh-sonar-new-code-baseline.py" not in workflow,
@@ -30,8 +32,24 @@ def main() -> None:
         "cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}" in workflow,
         "Sonar CI must queue main analyses instead of cancelling an in-flight main verification.",
     )
+    require(
+        "classdumpdir=" in game_test_coverage,
+        "NeoForge GameTest coverage must dump the transformed runtime classes used by JaCoCo execution data.",
+    )
+    require(
+        "provider-free/provider-free.xml" in workflow,
+        "Sonar CI must import the provider-free transformed-class GameTest report.",
+    )
+    require(
+        "battle-mage-provider/battle-mage-provider.xml" in workflow,
+        "Sonar CI must import the provider-present Battle Mage transformed-class GameTest report.",
+    )
+    require(
+        "JacocoReport" in game_test_coverage and "classDirectories" in game_test_coverage,
+        "GameTest coverage must render dedicated JaCoCo XML reports from runtime class dumps.",
+    )
 
-    print("Sonar workflow policy is race-safe and does not install a manual New Code baseline.")
+    print("Sonar workflow policy is race-safe and imports transformed NeoForge GameTest coverage.")
 
 
 if __name__ == "__main__":

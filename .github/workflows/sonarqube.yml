@@ -79,6 +79,7 @@ jobs:
         run: >-
           ./gradlew --no-daemon
           -I gradle/sonar-gametest-coverage.init.gradle
+          -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml,build/reports/jacoco/provider-free/provider-free.xml,build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml
           -Dsonar.qualitygate.wait=true
           -Dsonar.qualitygate.timeout=300
           build sonar --info
