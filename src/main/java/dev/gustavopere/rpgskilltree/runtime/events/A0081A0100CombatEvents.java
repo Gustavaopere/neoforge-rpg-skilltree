@@ -1,7 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.events;
 
 import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
-import dev.gustavopere.rpgskilltree.core.A0081A0100CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.A0081A0100DefenseState;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.CombatRecoveryService;
@@ -10,6 +9,8 @@ import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry.PhysicalHitReceipt;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0090SustainRuntime;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0100RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.A0101A0110DefenseRuntime;
+import dev.gustavopere.rpgskilltree.runtime.A0101A0110DefenseRuntime.PreResult;
 import dev.gustavopere.rpgskilltree.runtime.compat.A0079ForcedMovementCompat;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
@@ -45,12 +46,13 @@ import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 /**
- * Server-authoritative runtime bridge for the canonical Notion batch A0081-A0100.
+ * Server-authoritative combat bridge for A0081-A0110.
  *
- * <p>Only provider-proven roots enter sustain. Incoming A0097 reservations are correlated by the
- * concrete DamageSource+target root and commit only after positive post-mitigation damage. A0098
- * and A0099 share the A0079 forced-movement boundary instead of inferring locomotion from client
- * animation or velocity.</p>
+ * <p>Outgoing sustain still enters from provider-proven roots. Incoming RPG mitigation is now
+ * centralized at LivingDamageEvent.Pre through A0101A0110DefenseRuntime, so the A0092/A0096 and
+ * A0097-A0099 reducers compose with A0101-A0103 before A0106 instead of mutating pre-armor damage.
+ * A0097 reservations and A0104/A0105 confirmed-hit state share one concrete DamageSource+target
+ * correlation root.</p>
  */
 public final class A0081A0100CombatEvents {
     private static final long LAUNCH_CORRELATION_MILLIS = 250L;
@@ -102,9 +104,25 @@ public final class A0081A0100CombatEvents {
     public static void onIncomingDamage(LivingIncomingDamageEvent event) {
         if (event.isCanceled() || event.getAmount() <= 0.0F) return;
         captureOutgoing(event);
+    }
 
-        if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
-        applyIncomingDefense(player, event);
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onDamagePre(LivingDamageEvent.Pre event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)
+            || !eligible(player)
+            || event.getNewDamage() <= 0.0F) return;
+
+        String root = "incoming-defense/" + player.level().getGameTime() + "/" + ACTION_SEQUENCE.incrementAndGet();
+        PreResult result = A0101A0110DefenseRuntime.applyPre(player, event, root);
+        rememberIncomingDefense(
+            event.getSource(),
+            player.getUUID(),
+            new PendingIncomingDefense(
+                root,
+                Math.addExact(nowMillis(player), A0081A0100DefenseState.RESERVATION_RETENTION_MILLIS),
+                result.openingReserved()
+            )
+        );
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -135,7 +153,7 @@ public final class A0081A0100CombatEvents {
             }
         }
 
-        PendingIncomingDefense pendingOpening = takeIncomingDefense(
+        PendingIncomingDefense pending = takeIncomingDefense(
             event.getSource(), event.getEntity().getUUID()
         );
         if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
@@ -146,20 +164,26 @@ public final class A0081A0100CombatEvents {
         boolean hostile = hostileSource(player, event.getSource());
         CombatPerkRanks ranks = A0081A0100RuntimeState.ranks(player);
 
-        if (pendingOpening != null) {
+        if (pending != null && pending.openingReserved()) {
             if (event.getNewDamage() > 0.0F && hostile && ranks.rank("A0097") > 0) {
-                defense.commitOpeningDefense(actor, pendingOpening.rootActionId(), nowMillis);
+                defense.commitOpeningDefense(actor, pending.rootActionId(), nowMillis);
             } else {
-                defense.rollbackOpeningDefense(actor, pendingOpening.rootActionId());
+                defense.rollbackOpeningDefense(actor, pending.rootActionId());
             }
+        }
+
+        if (pending != null) {
+            A0101A0110DefenseRuntime.onConfirmedPost(
+                player,
+                event.getSource(),
+                pending.rootActionId(),
+                event.getNewDamage()
+            );
         }
 
         if (event.getNewDamage() <= 0.0F || !hostile) return;
 
         long nowTick = player.level().getGameTime();
-        // Every effective eligible hostile hit restarts A0097's timer, independently of whether
-        // that particular hit held the opening reservation. Commit above is root-specific and
-        // idempotent; recording the same timestamp here is deliberate.
         defense.recordEligibleHostileDamage(actor, nowMillis);
 
         if (ranks.rank("A0081") > 0) {
@@ -212,6 +236,8 @@ public final class A0081A0100CombatEvents {
             if (ranks.rank("A0087") <= 0) {
                 A0081A0100RuntimeState.bloodThirst().clearActor(actor);
             }
+
+            A0101A0110DefenseRuntime.tickPlayer(player);
         }
     }
 
@@ -238,6 +264,7 @@ public final class A0081A0100CombatEvents {
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
         A0081A0100RuntimeState.clearAll();
+        A0101A0110DefenseRuntime.clearAll();
         A0061A0080RuntimeState.clearAll();
         A0079ForcedMovementCompat.clearAll();
         PENDING_PROJECTILE_LAUNCHES.clear();
@@ -290,60 +317,6 @@ public final class A0081A0100CombatEvents {
         }
     }
 
-    private static void applyIncomingDefense(ServerPlayer player, LivingIncomingDamageEvent event) {
-        CombatPerkRanks ranks = A0081A0100RuntimeState.ranks(player);
-        boolean physical = event.getSource().is(PHYSICAL_DAMAGE);
-        boolean hostile = hostileSource(player, event.getSource());
-        String actor = A0081A0100RuntimeState.actorId(player);
-        long now = nowMillis(player);
-        double multiplier = 1.0D;
-
-        if (physical) {
-            double preImpactHealthFraction = player.getMaxHealth() <= 0.0F
-                ? 0.0D
-                : Math.max(0.0D, Math.min(1.0D, player.getHealth() / player.getMaxHealth()));
-            // A0092 remains physical-channel based. A0096 is hostile-only; passing 1.0 for a
-            // non-hostile physical source suppresses only A0096 without creating a second formula.
-            multiplier *= A0081A0100CombatPolicy.physicalDamageMultiplier(
-                ranks,
-                hostile ? preImpactHealthFraction : 1.0D
-            );
-        }
-
-        if (hostile) {
-            A0081A0100DefenseState defense = A0081A0100RuntimeState.defense();
-            double opening = A0081A0100CombatPolicy.openingDefenseMultiplier(actor, ranks, defense, now);
-            if (Double.compare(opening, 1.0D) != 0
-                && peekIncomingDefense(event.getSource(), player.getUUID()) == null) {
-                String root = "incoming-defense/" + player.level().getGameTime() + "/" + ACTION_SEQUENCE.incrementAndGet();
-                if (defense.reserveOpeningDefense(actor, root, now)) {
-                    rememberIncomingDefense(
-                        event.getSource(),
-                        player.getUUID(),
-                        new PendingIncomingDefense(root, Math.addExact(now, A0081A0100DefenseState.RESERVATION_RETENTION_MILLIS))
-                    );
-                    multiplier *= opening;
-                }
-            }
-
-            multiplier *= A0081A0100CombatPolicy.movingDefenseMultiplier(
-                ranks,
-                A0079ForcedMovementCompat.selfPropelledSprintEligible(player)
-            );
-            multiplier *= A0081A0100CombatPolicy.stationaryDefenseMultiplier(
-                ranks,
-                A0061A0080RuntimeState.stationary().isStationary(actor)
-                    && !A0079ForcedMovementCompat.forcedOrUnclassified(player)
-            );
-        }
-
-        // A0093/A0094/A0100 are masked to rank zero by CombatPerkAvailabilityRuntime. A0095 is
-        // provider-native through epicfight:stun_armor and therefore has no damage-event heuristic.
-        if (Double.compare(multiplier, 1.0D) != 0) {
-            event.setAmount((float) Math.max(0.0D, event.getAmount() * multiplier));
-        }
-    }
-
     private static void offerRecoveryInstallment(ServerPlayer player) {
         CombatRecoveryService recovery = A0081A0100RuntimeState.recovery();
         double missingHealth = Math.max(0.0D, player.getMaxHealth() - player.getHealth());
@@ -390,13 +363,6 @@ public final class A0081A0100CombatEvents {
     private static void rememberIncomingDefense(DamageSource source, UUID targetId, PendingIncomingDefense pending) {
         synchronized (INCOMING_DEFENSE) {
             INCOMING_DEFENSE.computeIfAbsent(source, ignored -> new HashMap<>()).put(targetId, pending);
-        }
-    }
-
-    private static PendingIncomingDefense peekIncomingDefense(DamageSource source, UUID targetId) {
-        synchronized (INCOMING_DEFENSE) {
-            Map<UUID, PendingIncomingDefense> byTarget = INCOMING_DEFENSE.get(source);
-            return byTarget == null ? null : byTarget.get(targetId);
         }
     }
 
@@ -479,6 +445,7 @@ public final class A0081A0100CombatEvents {
     }
 
     private static void clearPlayer(ServerPlayer player) {
+        A0101A0110DefenseRuntime.reconcilePlayerBoundary(player);
         A0081A0100RuntimeState.clear(player);
         A0061A0080RuntimeState.clear(player);
         A0079ForcedMovementCompat.clearPlayer(player);
@@ -508,5 +475,9 @@ public final class A0081A0100CombatEvents {
         ItemStack weaponStack
     ) {}
 
-    private record PendingIncomingDefense(String rootActionId, long expiresAtMillis) {}
+    private record PendingIncomingDefense(
+        String rootActionId,
+        long expiresAtMillis,
+        boolean openingReserved
+    ) {}
 }
