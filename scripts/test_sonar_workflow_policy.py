@@ -73,10 +73,29 @@ def main() -> None:
         "gradle/actions/setup-gradle@" in workflow and "cache-provider: basic" in workflow,
         "Sonar CI must use Gradle Actions with the explicit open-source basic cache provider.",
     )
+    require(
+        "Diagnose current main Sonar new-code issues on internal PR" in workflow,
+        "Internal PR Sonar runs must report the current main New Code issue set for post-merge diagnosis.",
+    )
+    require(
+        "github.event.pull_request.head.repo.full_name == github.repository" in workflow,
+        "Current-main Sonar diagnostics must only use secrets for same-repository pull requests.",
+    )
+    require(
+        "--data-urlencode 'facets=rules'" in workflow
+        and "--data-urlencode 'ps=100'" in workflow,
+        "Sonar diagnostics must request rule facets and a bounded issue sample.",
+    )
+    require(
+        "Sonar New Code issue counts by rule:" in workflow
+        and "Sonar New Code issue details (up to 100):" in workflow
+        and ".issues[]?" in workflow,
+        "Sonar diagnostics must print rule counts and actionable issue details.",
+    )
 
     print(
         "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
-        "uses basic Gradle caching, and does not install a manual analysis baseline."
+        "uses basic Gradle caching, exposes bounded New Code diagnostics, and does not install a manual analysis baseline."
     )
 
 
