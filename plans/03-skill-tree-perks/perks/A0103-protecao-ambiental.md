@@ -89,3 +89,12 @@ Causalidade, dedup, anti-abuso, fallback, authority, versões, purchase fail-clo
 ## Testes exigidos ao Chat 3
 
 Validar allowlist exato, exclusões, unknown modded fail-closed, nenhuma inferência por ausência de atacante, provider boundaries Volcanoes/Enshrouded/Black Arcana, `NativeVolcanoesServices` read-only para este contrato, one-application/root, rank/respec/reload, multiplayer, GameTests, build, JAR e dedicated-server smoke.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+**Estado:** `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `P-A0103-01` e `P-A0103-02` foram resolvidas: `data/rpgskilltree/tags/damage_type/environmental.json` materializa exatamente os sete DamageTypes aprovados e o runtime consome somente essa tag no `DamageMitigationResolver`.
+- Não há classifier por ausência de atacante, namespace, Volcanoes atmosphere/pressure, Shroud, temperatura ou tema visual.
+- A composição com A0092 permanece no mesmo resolver multiplicativo e sem cap defensivo oculto.
+- `P-A0103-03`, `P-A0103-04` e `P-A0103-05` permanecem como validações finais do Chat 3. Chat 2 não executou GameTests/build/smoke/CI, não declarou `IMPLEMENTAÇÃO CONFIRMADA` e não fez merge.
