@@ -4,13 +4,12 @@
 
 - **Design:** APROVADO após correção estrutural de availability, provenance, deduplicação por root action e lifecycle.
 - **Notion:** `3c569db9-f0db-81a0-a005-cc586dfc6395`.
-- **Runtime:** IMPLEMENTAÇÃO PARCIAL; não pode ser considerada adquirível enquanto A0050 estiver indisponível e ainda possui gaps de identidade da arma, launch provenance, Multishot e limpeza de estado em reconciliação.
+- **Runtime:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**. A0052 agora herda `UNAVAILABLE_NODE` de A0050, portanto não pode criar ghost rank nem ativar Cadência enquanto faltar binding semântico de reload/preparation speed.
 
 ## Contrato canônico
 
 - Depende de A0050 ≥2 + A0051 ≥2 + gateway `epic_crossbow`.
 - Como A0050 exige binding semântico de reload/preparation speed e hoje está indisponível/não comprável sem esse binding, **A0052 herda essa indisponibilidade**.
-- A cadeia também herda de A0049 o producer finite-discovery ausente e a reconciliação da ledger CROSSBOW.
 - Quando a cadeia estiver disponível: launch CROSSBOW confirmado → hit correlacionado → recarga completa da **mesma** besta/ItemStack dentro de 6/8 s gera 1 Cadência, cap 3.
 - Só conta recarga com ação nativa e consumo real de munição/recurso.
 - Miss, cancelamento após >50% ou troca de arma elegível remove 1 carga.
@@ -20,21 +19,35 @@
 
 ## Evidência runtime
 
-`A0041A0060ProjectileEvents` registra hit CROSSBOW pós-dano e detecta transição descarregada→carregada durante uso real. Porém o receipt de hit em `A0041A0060CombatState` não registra a identidade da besta; `onCrossbowReloadComplete(...)` recebe `weaponId`, mas a policy não o correlaciona com o hit anterior. Assim, trocar de besta pode deixar receipt antigo consumível por recarga posterior.
+O Chat 2 passou o receipt CROSSBOW a carregar `weaponId` estável do `CrossbowTrack`: hit e reload só fecham Cadência quando pertencem à mesma identidade de besta. Troca/remoção da arma limpa receipt pendente, e hit só é registrado quando `ProjectileMeta.launchConfirmed` prova um lançamento CROSSBOW correlacionado.
 
-Há defeito explícito de Multishot: cada `AbstractArrow` mantém seu próprio `ProjectileMeta.failureRecorded`, embora os projéteis compartilhem `rootActionId`; irmãos que atingem blocos podem remover várias Cadências e até registrar failure após outro irmão confirmar hit.
+`CombatPerkAvailabilityRuntime` mascara A0052 enquanto A0050 estiver indisponível, tanto para compra direta quanto para request network/server-authoritative. `A0041A0060RuntimeState.ranks(...)` também reconcilia o state transiente e limpa Cadência/receipts quando rank/pré-requisito efetivo deixa de existir.
 
-Também há gap de provenance herdado do bridge CROSSBOW: projectile com owner/metadata de besta, mas sem launch receipt real, não pode gerar hit receipt para A0052. Finalmente, o state auditado é limpo em lifecycle amplo (logout/dimensão/respawn/server stop), mas não há reconciliação específica quando ranks/pré-requisitos são removidos; isso permitiria carry-over de Cadência após respec/recompra.
+Para Multishot, o Chat 2 endureceu a perda com claim `A0052:failure` por `rootActionId`, impedindo múltiplas perdas idênticas pelo mesmo root. Ainda existe uma pendência técnica futura: um projétil irmão pode atingir bloco antes de outro irmão confirmar hit; o outcome agregado `success-wins` deve ser fechado antes de A0052 ser habilitada. Como A0050 mantém a cadeia `UNAVAILABLE_NODE`, essa lacuna permanece fail-closed e não é explorável no estado atual.
 
 ## Pendências para Chat 2
 
-- **P-A0052-01:** availability server-authoritative deve propagar A0050→A0052; sem A0050 comprável, compra/rank de A0052 é impossível.
-- **P-A0052-02:** correlacionar hit e reload pela mesma identidade causal de `ItemStack`/arma; limpar receipt ao trocar/clonar a besta e rejeitar reload de outra arma.
-- **P-A0052-03:** testar cancelamento >50%, miss, troca, reload legítimo, estado carregado externo e callbacks duplicados.
-- **P-A0052-04:** deduplicar sucesso/falha de Multishot pelo `rootActionId`: no máximo um outcome e uma perda de Cadência por disparo; sucesso de qualquer projétil encerra possibilidade de failure por irmãos.
-- **P-A0052-05:** só criar hit receipt a partir de projectile correlacionado a launch CROSSBOW confirmado; owner/metadata isolados ficam fail-closed.
-- **P-A0052-06:** em rank loss, respec ou rules reload bem-sucedido que invalide A0052/pré-requisitos, limpar/reconciliar Cadência, hit receipts e root outcomes antes de qualquer recompra.
-- **Herdadas de A0049:** producer finite-discovery `epicfight:crossbow` e reconciliação `combat:crossbow` ↔ `epicfight:crossbow` permanecem blockers de aquisição.
+- **RESOLVIDA P-A0052-01:** availability A0050→A0052 propagada server-authoritative.
+- **RESOLVIDA P-A0052-02:** hit/reload correlacionados pela mesma identidade de besta.
+- **PARCIAL P-A0052-03:** hooks de cancelamento >50%, miss, troca e reload legítimo estão presentes; execução final/regressões ficam para Chat 3.
+- **PENDÊNCIA TÉCNICA P-A0052-04:** outcome Multishot agregado ainda precisa de política `success-wins` antes de futura habilitação; o estado atual permanece indisponível por A0050.
+- **RESOLVIDA P-A0052-05:** hit receipt só nasce de projectile com launch CROSSBOW confirmado.
+- **RESOLVIDA P-A0052-06:** reconciliation de rank/pré-requisito limpa Cadência/receipts/reservas próprias.
+- As pendências antigas de producer/namespace CROSSBOW de A0049 já estão resolvidas na linha predecessora.
+
+## Implementação Chat 2 — PR #386
+
+- [x] Availability/fail-closed implementada.
+- [x] Identidade causal da besta implementada.
+- [x] Launch provenance implementada.
+- [x] Lifecycle rank/respec/rules reload implementado no owner transiente.
+- [x] Deduplicação de perda por root implementada.
+- [x] Código presente.
+- [ ] **PENDÊNCIA TÉCNICA:** agregar outcome Multishot `success-wins` antes de qualquer futura habilitação de A0052.
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/JUnit e cenários miss/cancel/switch/reload.
+- [ ] **VALIDAÇÃO CHAT 3:** GameTests/integração Multishot.
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge / dedicated-server smoke / CI GREEN.
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA.
 
 ## Boundaries
 
@@ -44,8 +57,8 @@ Black Arcana/Enshrouded/Volcanoes não fornecem reload receipt nem Cadência. Co
 
 | Eixo | Resultado individual | Evidência / decisão |
 |---|---|---|
-| 1. Dependências, bloqueios e gates | **PASS no design** | A0050 ≥2 + A0051 ≥2 + `epic_crossbow`; indisponibilidade de A0050 e blockers A0049 propagam-se sem bypass. |
-| 2. Integração global | **PASS** | Cadência é recurso próprio do RPG; exhaustion/fome só modulam opcionalmente a janela, Stamina não substitui; magia/hazards/companions não geram receipt. |
+| 1. Dependências, bloqueios e gates | **PASS no design e código fail-closed** | A0050 ≥2 + A0051 ≥2 + `epic_crossbow`; `UNAVAILABLE_NODE` impede bypass enquanto A0050 não possui binding seguro. |
+| 2. Integração global | **PASS** | Cadência é recurso próprio do RPG; Stamina não substitui; magia/hazards/companions não geram receipt. |
 | 3. Qualidade e identidade | **PASS** | Notable de execução que recompensa ciclo hit→reload e cria decisão/ritmo, não mero percentual genérico. |
 | 4. Ramificação, distância e topologia | **PASS** | Camada 3 no ramo de Bestas, dependente da progressão A0049–A0051; sem atalho topológico. |
 | 5. Especializações | **PASS** | É progressão MARTIAL/BESTAS, não classe automática; mantém authority de reload/arma no provider. |
@@ -54,7 +67,7 @@ Black Arcana/Enshrouded/Volcanoes não fornecem reload receipt nem Cadência. Co
 | 8. NeoVitae | **PASS** | Nenhuma referência ou dependência ativa. |
 | 9. Cobertura modlist/providers | **PASS** | Epic Fight/Minecraft/RPG e boundaries Black Arcana/Enshrouded/Volcanoes/Mobstein dispostos; nenhum provider periférico foi promovido artificialmente a Cadência. |
 
-Os 18 critérios técnicos cumulativos passam **no design**; blockers runtime permanecem explícitos, fail-closed e testáveis, portanto não são tratados como implementação confirmada.
+Os critérios técnicos permanecem satisfeitos no design; o runtime atual falha fechado até A0050 possuir capability real e até a pendência Multishot ser resolvida/validada.
 
 ## Notion
 
