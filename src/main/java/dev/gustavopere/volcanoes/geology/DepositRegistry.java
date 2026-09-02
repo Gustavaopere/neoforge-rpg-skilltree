@@ -173,14 +173,14 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
             return preserveReadOnly(tag);
         }
 
-        if (tag.contains(DEPOSITS) && !tag.contains(DEPOSITS, CompoundTag.TAG_LIST)) {
+        if (tag.contains(DEPOSITS) && !tag.contains(DEPOSITS, Tag.TAG_LIST)) {
             LOGGER.error(
                     "Geological deposit SavedData has an invalid deposits NBT type. Preserving payload fail-closed/read-only.");
             return preserveReadOnly(tag);
         }
-        if (tag.contains(DEPOSITS, CompoundTag.TAG_LIST)) {
+        if (tag.contains(DEPOSITS, Tag.TAG_LIST)) {
             ListTag rawDeposits = (ListTag) tag.get(DEPOSITS);
-            if (!rawDeposits.isEmpty() && rawDeposits.getElementType() != CompoundTag.TAG_COMPOUND) {
+            if (!rawDeposits.isEmpty() && rawDeposits.getElementType() != Tag.TAG_COMPOUND) {
                 LOGGER.error(
                         "Geological deposit SavedData deposits list has a non-compound element type. Preserving payload fail-closed/read-only.");
                 return preserveReadOnly(tag);
@@ -188,7 +188,7 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
         }
 
         DepositRegistry registry = new DepositRegistry();
-        ListTag list = tag.getList(DEPOSITS, CompoundTag.TAG_COMPOUND);
+        ListTag list = tag.getList(DEPOSITS, Tag.TAG_COMPOUND);
         for (int index = 0; index < list.size(); index++) {
             try {
                 GeologicalDeposit deposit = GeologicalDeposit.fromTag(list.getCompound(index));
