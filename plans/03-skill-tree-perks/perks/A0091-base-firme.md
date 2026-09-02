@@ -3,7 +3,8 @@
 ## Estado
 
 - **Chat 1:** DESIGN APROVADO / CONTRATO FECHADO.
-- **Implementação:** preparatória/parcial já existe na `main`, mas **não é IMPLEMENTAÇÃO CONFIRMADA**.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** binding data-driven no pipeline canônico está presente; **não é IMPLEMENTAÇÃO CONFIRMADA** até a validação do Chat 3.
 - **Notion:** `3c569db9-f0db-8123-a26b-d937658a3173`; fetch fresco no ciclo A0091–A0100.
 - **Domínio:** VITALITY.
 - **Árvore:** Principal — VITALITY.
@@ -41,11 +42,12 @@
 - Se o target de atributo não puder ser resolvido, a contribuição do node falha fechado; não converter para Stun Armor, Armor, Toughness ou redução de dano.
 - Deslocamentos especiais marcados como inevitáveis, teleporte, agarrões e movimentos roteirizados não são anulados por este node.
 
-## Evidência atual e handoff para o Chat 2
+## Evidência após Chat 2
 
-- `data/rpgskilltree/node_effects/a0081_a0100.json` já contém A0091 com `ADD_FLAT`, `amountPerRank=0.03`.
-- `A0081A0100CombatPolicy.knockbackResistanceDelta` também limita a contribuição própria a 0,15, mas a authority de efeito persistente deve continuar no node-effect runtime.
-- O Chat 2 deve reconciliar aquisição/gateway e garantir que a fórmula auxiliar não crie segundo modifier/pipeline.
+- `data/rpgskilltree/node_effects/a0081_a0100.json` contém A0091 com `ADD_FLAT`, `amountPerRank=0.03` e `effectId` estável.
+- `A0081A0100CombatPolicy.knockbackResistanceDelta` permanece apenas como fórmula auxiliar/cap próprio; a authority do efeito persistente continua no node-effect runtime, sem segundo modifier por evento.
+- O Chat 2 revisou o fluxo para evitar pipeline paralelo; aquisição/gateway e idempotência ficam para validação efetiva do Chat 3.
+- O Chat 2 **não executou** a bateria final, GameTests, build NeoForge, dedicated-server smoke ou CI.
 
 ## Deduplicação e anti-abuso
 
@@ -82,8 +84,8 @@
 ## Checklist de implementação
 
 - [x] Design aprovado pelo Chat 1
-- [ ] Hook/gateway reconciliado pelo Chat 2
-- [ ] Código presente / Chat 2 concluído
+- [x] Hook/binding canônico reconciliado pelo Chat 2
+- [x] Código presente / Chat 2 concluído
 - [ ] VALIDAÇÃO CHAT 3: testes unitários
 - [ ] VALIDAÇÃO CHAT 3: GameTests/provider-present/absent
 - [ ] VALIDAÇÃO CHAT 3: build NeoForge
