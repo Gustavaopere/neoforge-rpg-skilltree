@@ -16,7 +16,7 @@ final class MineColoniesBattleMageContractJUnitTest {
     @Test
     void exactMineColoniesSnapshotIsTheOnlySupportedBaseline() {
         assertTrue(MineColoniesVersionContract.supports("1.1.1375-1.21.1-snapshot"));
-        assertTrue(MineColoniesVersionContract.supports("1.1.1375"));
+        assertFalse(MineColoniesVersionContract.supports("1.1.1375"));
         assertFalse(MineColoniesVersionContract.supports("1.1.1374-1.21.1-snapshot"));
         assertFalse(MineColoniesVersionContract.supports("1.1.1376-1.21.1-snapshot"));
         assertFalse(MineColoniesVersionContract.supports("unknown"));
