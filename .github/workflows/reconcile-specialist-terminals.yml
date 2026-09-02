@@ -1,0 +1,147 @@
+name: Temporary Specialist terminal reconciliation
+
+on:
+  push:
+    branches:
+      - docs/reconcile-specialist-gates-a0001-a0299
+    paths:
+      - .github/workflows/reconcile-specialist-terminals.yml
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout reconciliation branch
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Synchronize terminal dossiers with canonical Notion authority
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path('plans/03-skill-tree-perks/perks')
+          targets = {
+              'A0204-maestria-de-eldritch.md': {
+                  'Provider/Mods': "RPG Skill Tree: AvailabilityResolver, MasteryLaneCatalog, TreeUnlockResolver, TreeUnlockDefinition e projeção canônica de investimento do Stage 04.01. Iron's 3.16.3/Discerning 1.4.3/Deeper Darker Spellbooks 1.3.3 só fornecem a lane quando SchoolType.getId() exato estiver mapeado e aceito; nenhum provider externo possui o gate. Black Arcana atual não prova ELDRITCH outcome.",
+                  'Efeito': 'Terminal exterior do corredor ELDRITCH. Possuir A0204 satisfaz somente Gate C da Árvore de Especialista Eldritch. O unlock Specialist usa a pipeline canônica existente do RPG Skill Tree: TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar fundamentos, ≥100 Passive Points válidos em SPECIALIST_REGION:ELDRITCH e A0204. Não concede Ruína, estados mentais, fome abissal, recurso, dano, resistência ou tradeoff por si só.',
+                  'Gate': 'COMPRA: A0203 disponível + lane ELDRITCH exata aceita pelo MasteryLaneCatalog ≥80 + rota profunda disponível. Sem catálogo/producer da lane ou qualquer dependency closure, A0204 é UNAVAILABLE_NODE/não comprável. SPECIALIST: TreeUnlockResolver avalia TreeUnlockDefinition com Gate A + ≥100 PP válidos em SPECIALIST_REGION:ELDRITCH + Gate C=A0204; terminal não bypassa A/B.',
+                  'Hook': 'AvailabilityResolver reavalia dependency closure e lane exata em compra/login/datapack-provider reload. Para Specialist, A0204 publica/representa somente terminal_id=ARCANE/ELDRITCH na TreeUnlockDefinition; TreeUnlockResolver usa o estado canônico + projeção de investimento Stage 04.01 e reavalia nos lifecycle boundaries canônicos. Respec seguro exige reembolsar Specialist antes do terminal/dependências. Não criar resolver Specialist paralelo.',
+                  'Fallback': 'UNAVAILABLE_NODE enquanto prerequisites, lane ELDRITCH exata ou dependency closure não forem verificáveis. A infraestrutura de Specialist não é blocker ausente: reutilizar TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01. Se a definição/snapshot canônico de unlock estiver inválido ou incompatível, a Specialist permanece bloqueada. Nunca usar strings genéricas, somar escolas, retornar a gates antigos ou deixar comprar terminal no-op.',
+                  'Regra': 'TERMINAL_EXTERIOR: ARCANE/ELDRITCH; PP_REGION: ARCANE/ELDRITCH. A0204 satisfaz só Gate C. A mastery é uma lane school exata, não agregação genérica. UNAVAILABLE_NODE transitivo até A0198/A0199 e A0203 estarem resolvidas. BORDER_HOPPING proibido; RESPEC_SEGURO mantém dependency closure e Gate B ≥100. TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 são authority; resolver Specialist paralelo é proibido.',
+              },
+              'A0211-maestria-de-ender.md': {
+                  'Dependências Obrigatórias': 'A0210 Afinidade de Ender + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + pelo menos uma rota profunda: A0206=1 OU A0208=1 OU A0209≥2. ENDER_MASTERY_LANE_V1 permanece capability obrigatória. O gate Specialist usa a pipeline canônica TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 e não é um contrato futuro separado.',
+                  'Pré-requisitos': 'A0210 Afinidade de Ender + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + pelo menos uma rota profunda entre A0206/A0208/A0209.',
+                  'Provider/Mods': "RPG Skill Tree + ENDER_MASTERY_LANE_V1 + TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01. A lane tem lane_id=rpgskilltree:ender e aceita somente IDs completos versionados de Fire's Ender Expansion 2.4.1, Somake Spells 1.0.8-1.21.1-fix e Iron's Spells 'n Spellbooks 3.16.3; nenhum alias agregado. Nenhum provider externo possui o gate. O blocker real preservado é a lane ENDER exata/dependency closure, não ausência de resolver Specialist.",
+                  'Efeito': 'Terminal exterior do corredor ENDER. Possuir A0211 satisfaz somente Gate C da Árvore de Especialista Ender. A Specialist Ender usa TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:ENDER e A0211. Não concede Ruptura, teleporte, reposicionamento, afinidade térmica, dano ou resistência por si só.',
+                  'Gate': 'COMPRA DA TERMINAL: A0210 + mastery_value(rpgskilltree:ender) ≥80 via ENDER_MASTERY_LANE_V1 + (A0206=1 OU A0208=1 OU A0209≥2). Sem a lane ou dependency closure, A0211 é UNAVAILABLE_NODE/não comprável. DESBLOQUEIO SPECIALIST ENDER: TreeUnlockResolver avalia TreeUnlockDefinition com Gate A = fundamentos exteriores exigidos; Gate B = ≥100 PP válidos em SPECIALIST_REGION:ENDER; Gate C = A0211 possuída.',
+                  'Hook': 'ENDER_MASTERY_LANE_V1 fornece mastery_value(rpgskilltree:ender) com mapping exato/deduplicado. A0211 publica/representa apenas terminal_id=ARCANE/ENDER na TreeUnlockDefinition; TreeUnlockResolver usa estado canônico + projeção Stage 04.01 e reavalia nos lifecycle boundaries canônicos. Mobilidade/topologia visual não substituem gates. Não criar resolver Specialist paralelo.',
+                  'Fallback': 'UNAVAILABLE_NODE/não comprável enquanto ENDER_MASTERY_LANE_V1, A0210 ou a dependency closure necessária estiver ausente/incompatível. A infraestrutura de Specialist já existe na pipeline TreeUnlock; definição/snapshot inválido ainda falha fechado. Nunca retornar aos antigos gates de 8 PP, ARCANE ≥8 + ARCANE+AGILITY ≥12, usar alias genérico ou criar deslocamento como fallback.',
+                  'Regra': 'TERMINAL_EXTERIOR: ARCANE/ENDER. MASTERY_LANE_ID: rpgskilltree:ender via ENDER_MASTERY_LANE_V1, com IDs completos e sem alias genérico. PP_REGION: ARCANE/ENDER. A0211 não pertence às perks internas. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:ENDER; BORDER_HOPPING proibido. RESPEC_SEGURO: Specialist interna deve ser reembolsada antes de quebrar terminal/fundamentals/Gate B. TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 são authority; resolver Specialist paralelo é proibido.',
+              },
+              'A0218-maestria-de-terra.md': {
+                  'Provider/Mods': "RPG Skill Tree: TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 + Earth Mastery canônica. GTBC's Geomancy Plus runtime 1.1.0-1.21.1 e Iron's Spells 'n Spellbooks 3.16.3 fornecem gameplay EARTH apenas aos nodes com adapters próprios; nenhum provider externo possui o gate.",
+                  'Efeito': 'Terminal exterior do corredor EARTH/Geomancia. Possuir A0218 satisfaz somente Gate C da Árvore de Especialista Terra. A Specialist Terra usa a pipeline canônica existente TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:EARTH e A0218. Não concede controle geomântico, defesa mineral, impacto, terreno, mineração ou dano por si só.',
+                  'Gate': 'COMPRA DA TERMINAL: A0217 + Earth Mastery ≥80 + (A0213=1 OU A0215=1 OU A0216≥2), todos legitimamente disponíveis. DESBLOQUEIO SPECIALIST TERRA: TreeUnlockResolver avalia TreeUnlockDefinition com Gate A = fundamentos exteriores ARCANE/POWER e ARCANE/EARTH; Gate B = ≥100 PP válidos em SPECIALIST_REGION:EARTH; Gate C = A0218 possuída. A ausência de um resolver Specialist separado não é blocker.',
+                  'Hook': 'A0218 publica/representa somente terminal_id=ARCANE/EARTH na TreeUnlockDefinition. TreeUnlockResolver usa estado canônico + projeção de investimento do Stage 04.01 e reavalia nos lifecycle boundaries canônicos de compra, respec, migração e reload. Investimento MINING e proximidade visual não substituem gates. Não criar resolver Specialist paralelo.',
+                  'Fallback': 'A infraestrutura Specialist não é blocker ausente: reutilizar TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01. A0218 falha fechado somente quando A0217, Earth Mastery, a rota profunda ou outro requisito real da dependency closure não puder ser validado; definição/snapshot canônico de unlock inválido também mantém a Specialist bloqueada. Nunca retornar aos antigos gates de 8 PP, ARCANE ≥12 ou ARCANE ≥8 + MINING ≥4.',
+                  'Regra': 'TERMINAL_EXTERIOR: ARCANE/EARTH. PP_REGION: ARCANE/EARTH. A0218 não pertence às perks internas da Specialist Terra. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:EARTH; BORDER_HOPPING proibido. RESPEC_SEGURO: Specialist interna deve ser reembolsada antes de quebrar terminal/fundamentals/Gate B. TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 são authority; resolver Specialist paralelo é proibido.',
+              },
+              'A0225-maestria-de-agua.md': {
+                  'Provider/Mods': "RPG Skill Tree: TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 + Water Mastery canônica. Somake Spells 1.0.8-1.21.1-fix, Iron's Spells 3.16.3, Ars Elemental 0.7.10.1 e demais providers fornecem gameplay WATER somente aos nodes com adapters próprios; nenhum mod externo é owner do gate da Specialist.",
+                  'Efeito': 'Terminal exterior do corredor WATER. Possuir A0225 satisfaz somente Gate C da Árvore de Especialista Água. A Specialist Water usa a pipeline canônica existente TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WATER e A0225. Não concede fluxo, WET, respiração, mobilidade hídrica, recurso, dano ou resistência por si só.',
+                  'Hook': 'A0225 publica/representa apenas terminal_id=ARCANE/WATER na TreeUnlockDefinition. TreeUnlockResolver usa estado canônico + projeção de investimento do Stage 04.01 para validar Gate A/B/C server-side nos lifecycle boundaries canônicos. Nenhum resolver Specialist paralelo deve ser criado.',
+                  'Fallback': 'FAIL-CLOSED: a infraestrutura Specialist já existe na pipeline TreeUnlock. Se fundamentos, PP semântico, terminal ou outro requisito real da dependency closure não puderem ser validados, a Specialist Water permanece bloqueada. Perks internas dependentes de WATER/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WATER, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar WET/recurso/respiração como fallback.',
+                  'Regra': 'TERMINAL_EXTERIOR: ARCANE/WATER. PP_REGION: ARCANE/WATER. A0225 não pertence às perks internas da Specialist Water. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WATER; antigos gates pequenos não substituem a Specialist. BORDER_HOPPING proibido. RESPEC_SEGURO: enquanto qualquer perk interna estiver possuída, bloquear refund de A0225, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 são authority.',
+              },
+              'A0232-maestria-de-vento.md': {
+                  'Provider/Mods': "RPG Skill Tree: TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 + Wind Mastery canônica. SnackPirate's Aeromancy Additions 1.2.8, Wind's Spellbooks 1.0.5, Iron's Spells 3.16.3 e demais providers fornecem gameplay WIND somente aos nodes com adapters próprios; ParCool/Epic Fight são bridges de mobilidade, não owners do gate.",
+                  'Efeito': 'Terminal exterior do corredor WIND. Possuir A0232 satisfaz somente Gate C da Árvore de Especialista Vento. A Specialist Wind usa a pipeline canônica existente TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WIND e A0232. Não concede voo, mobilidade, pressão, controle, recurso, dano ou resistência por si só.',
+                  'Hook': 'A0232 publica/representa apenas terminal_id=ARCANE/WIND na TreeUnlockDefinition. TreeUnlockResolver usa estado canônico + projeção de investimento do Stage 04.01 para validar Gate A/B/C server-side nos lifecycle boundaries canônicos. Nenhum resolver Specialist paralelo deve ser criado.',
+                  'Fallback': 'FAIL-CLOSED: a infraestrutura Specialist já existe na pipeline TreeUnlock. Se fundamentos, PP semântico, terminal ou outro requisito real da dependency closure não puderem ser validados, a Specialist Wind permanece bloqueada. Perks internas dependentes de WIND/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WIND, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar voo/mobilidade/recurso como fallback.',
+                  'Regra': 'TERMINAL_EXTERIOR: ARCANE/WIND. PP_REGION: ARCANE/WIND. A0232 não pertence às perks internas da Specialist Wind. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WIND; antigos gates pequenos não substituem a Specialist. BORDER_HOPPING proibido. RESPEC_SEGURO: enquanto qualquer perk interna estiver possuída, bloquear refund de A0232, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 são authority.',
+              },
+          }
+
+          old_tokens = ('SPECIALIST_GATE_RESOLVER_V1', 'SPECIALIST_GATE_V1', 'SpecialistGateResolver')
+          paths = [root / name for name in targets]
+          if not all(p.exists() for p in paths):
+              raise SystemExit('one or more target terminal dossiers missing')
+
+          for path in paths:
+              text = path.read_text(encoding='utf-8')
+              fields = targets[path.name]
+              for field, value in fields.items():
+                  # Replace the persisted property in the dossier table.
+                  import re
+                  pattern = rf'(\| {re.escape(field)} \| ).*?( \|\n)'
+                  text, n = re.subn(pattern, lambda m: m.group(1) + value + m.group(2), text, count=1)
+                  if n != 1:
+                      raise SystemExit(f'{path.name}: failed to replace table field {field}')
+
+                  # Replace the corresponding narrative subsection where present.
+                  headings = {
+                      'Efeito': '### Efeito aprovado',
+                      'Gate': '### Gate de compra/ativação',
+                      'Hook': '### Hook e ordem de execução',
+                      'Fallback': '### Fallback sem trocar a identidade',
+                  }
+                  if field in headings:
+                      h = headings[field]
+                      pat = rf'({re.escape(h)}\n\n).*?(\n\n### |\n\n## )'
+                      text, n2 = re.subn(pat, lambda m: m.group(1) + value + m.group(2), text, count=1, flags=re.S)
+                      if n2 != 1:
+                          raise SystemExit(f'{path.name}: failed to replace narrative field {field}')
+
+              # Any remaining references are historical prose/tests. Normalize them without
+              # preserving the obsolete identifier or treating the canonical gate as future.
+              text = text.replace('FUTURE_PROVIDER_CONTRACTS SPECIALIST_GATE_RESOLVER_V1', 'pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01')
+              text = text.replace('FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1', 'pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01')
+              text = text.replace('SPECIALIST_GATE_RESOLVER_V1', 'pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01')
+              text = text.replace('SPECIALIST_GATE_V1', 'pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01')
+              text = text.replace('SpecialistGateResolver', 'TreeUnlockResolver')
+
+              # Remove stale absence claims that would invert the canonical authority.
+              text = text.replace('TreeUnlockResolver não encontrado', 'TreeUnlockResolver canônico presente')
+              text = text.replace('resolver não encontrado', 'resolver canônico presente')
+              text = text.replace('contrato não encontrado no runtime/main auditado', 'pipeline canônica já materializada no runtime/main auditado')
+              text = text.replace('é contrato futuro, não API runtime existente', 'não é contrato futuro separado; reutiliza a pipeline TreeUnlock existente')
+
+              path.write_text(text, encoding='utf-8')
+
+          for path in paths:
+              text = path.read_text(encoding='utf-8')
+              if any(token in text for token in old_tokens):
+                  raise SystemExit(f'{path.name}: legacy Specialist token remains')
+              for required in ('TreeUnlockResolver', 'TreeUnlockDefinition', 'Stage 04.01'):
+                  if required not in text:
+                      raise SystemExit(f'{path.name}: missing {required}')
+
+          print('validated: 5/5 terminal dossiers synchronized; legacy resolver = 0; canonical TreeUnlock authority = 5/5')
+          PY
+
+          git diff --check
+          changed="$(git diff --name-only -- 'plans/03-skill-tree-perks/perks/A0204-*' 'plans/03-skill-tree-perks/perks/A0211-*' 'plans/03-skill-tree-perks/perks/A0218-*' 'plans/03-skill-tree-perks/perks/A0225-*' 'plans/03-skill-tree-perks/perks/A0232-*' | wc -l | tr -d ' ')"
+          test "$changed" = "5"
+          if git diff --name-only | grep -Ev '^plans/03-skill-tree-perks/perks/A0(204|211|218|225|232)-.*\.md$' | grep -q .; then
+            echo 'unexpected dossier changed by terminal reconciliation' >&2
+            git diff --name-only >&2
+            exit 1
+          fi
+
+      - name: Commit terminals and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm .github/workflows/reconcile-specialist-terminals.yml
+          git add plans/03-skill-tree-perks/perks/A0204-* plans/03-skill-tree-perks/perks/A0211-* plans/03-skill-tree-perks/perks/A0218-* plans/03-skill-tree-perks/perks/A0225-* plans/03-skill-tree-perks/perks/A0232-* .github/workflows/reconcile-specialist-terminals.yml
+          git commit -m 'docs(perks): synchronize Specialist terminal authority'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
