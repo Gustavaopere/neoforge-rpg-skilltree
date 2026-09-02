@@ -75,3 +75,13 @@ Authority, versões, causalidade, dedup, anti-abuso, fallback, availability, lif
 ## Testes exigidos ao Chat 3
 
 Validar uma aplicação/root, fontes vanilla tagueadas, adapters Iron's/Ars realmente causais, provider/version gates, Black Arcana excluído do reducer genérico, purchase sem gasto quando indisponível, rank/respec/reload, multiplayer isolation, NeoForge GameTests, build, JAR e dedicated-server smoke.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+**Estado:** `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `P-A0102-01` e `P-A0102-02` foram resolvidas com classifier conservador: a fonte precisa ser `neoforge:is_magic`, não técnica e possuir atacante `LivingEntity` hostil causal explícito. Self, attackerless terminal, resource-cost e roots desconhecidos não são promovidos por heurística.
+- Black Arcana continua fora do reducer genérico; nenhum ID/tag interno de Backlash foi inventado. `ARCANE_BACKLASH` terminal/sem autoria ofensiva continua inelegível pelo fail-closed causal.
+- `P-A0102-03` foi resolvida: a fixture Ars Nouveau foi alinhada ao contrato canônico `5.13.1`.
+- A0102 foi retirada de `UNAVAILABLE_NODE` somente após esse endurecimento. `P-A0102-04` permanece para validação final do Chat 3, incluindo provider present/absent, aliases e resource-cost exclusions.
+- Chat 2 não executou a bateria final, não declarou `IMPLEMENTAÇÃO CONFIRMADA` e não fez merge.
