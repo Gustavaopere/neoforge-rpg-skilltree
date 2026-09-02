@@ -34,21 +34,7 @@ public record BattleMageSpellProfile(
         }
     }
 
-    /** Convenience boundary for tests and provider APIs that expose registry ids as strings. */
-    public BattleMageSpellProfile(
-        String spellId,
-        BattleMageTargetMode targetMode,
-        int priority,
-        double minRange,
-        double maxRange,
-        double friendlyFireRadius,
-        boolean worldEffect,
-        boolean allySafe
-    ) {
-        this(parseNamespacedId(spellId), targetMode, priority, minRange, maxRange,
-            friendlyFireRadius, worldEffect, allySafe);
-    }
-
+    /** Parses a provider/config boundary value; runtime identity remains ResourceLocation-only. */
     static ResourceLocation parseNamespacedId(String raw) {
         Objects.requireNonNull(raw, "spellId");
         if (raw.indexOf(':') <= 0) {

@@ -9,6 +9,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.Battl
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageSpellProfile;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageTargetMode;
 import java.util.List;
+import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.Test;
 
 final class MineColoniesBattleMageContractJUnitTest {
@@ -25,7 +26,7 @@ final class MineColoniesBattleMageContractJUnitTest {
     @Test
     void tacticalOrderingPreservesBookPositionBeforeSpellIdTieBreaker() {
         BattleMageSpellProfile fireball = new BattleMageSpellProfile(
-            "irons_spellbooks:fireball",
+            ResourceLocation.fromNamespaceAndPath("irons_spellbooks", "fireball"),
             BattleMageTargetMode.HOSTILE_ENTITY,
             70,
             4.0,
@@ -35,7 +36,7 @@ final class MineColoniesBattleMageContractJUnitTest {
             true
         );
         BattleMageSpellProfile blazeStorm = new BattleMageSpellProfile(
-            "irons_spellbooks:blaze_storm",
+            ResourceLocation.fromNamespaceAndPath("irons_spellbooks", "blaze_storm"),
             BattleMageTargetMode.HOSTILE_ENTITY,
             70,
             2.0,
@@ -59,9 +60,9 @@ final class MineColoniesBattleMageContractJUnitTest {
     }
 
     @Test
-    void unsafeProfilesAreRejectedAtConstruction() {
+    void unsafeProfileRangesAreRejectedAtConstruction() {
         assertThrows(IllegalArgumentException.class, () -> new BattleMageSpellProfile(
-            "bad id",
+            ResourceLocation.fromNamespaceAndPath("irons_spellbooks", "invalid_range_probe"),
             BattleMageTargetMode.HOSTILE_AREA,
             10,
             12.0,
@@ -75,7 +76,7 @@ final class MineColoniesBattleMageContractJUnitTest {
     @Test
     void friendlyFireBlocksUnsafeAreaSpell() {
         BattleMageSpellProfile area = new BattleMageSpellProfile(
-            "irons_spellbooks:fire_breath",
+            ResourceLocation.fromNamespaceAndPath("irons_spellbooks", "fire_breath"),
             BattleMageTargetMode.HOSTILE_AREA,
             80,
             2.0,

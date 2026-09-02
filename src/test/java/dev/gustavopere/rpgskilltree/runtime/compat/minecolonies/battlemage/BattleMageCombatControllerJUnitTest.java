@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.Test;
 
 final class BattleMageCombatControllerJUnitTest {
@@ -54,7 +55,7 @@ final class BattleMageCombatControllerJUnitTest {
         assertFalse(BattleMageSpellPolicy.inRange(arrow, 25.01));
 
         BattleMageSpellProfile worldEffect = new BattleMageSpellProfile(
-            "irons_spellbooks:test_world",
+            id("irons_spellbooks:test_world"),
             BattleMageTargetMode.HOSTILE_AREA,
             100,
             0.0,
@@ -83,7 +84,7 @@ final class BattleMageCombatControllerJUnitTest {
     @Test
     void protectedAllyBlocksUnsafeHostileAreaBeforeAnyProviderCast() {
         BattleMageSpellProfile unsafeArea = new BattleMageSpellProfile(
-            "irons_spellbooks:fireball",
+            id("irons_spellbooks:fireball"),
             BattleMageTargetMode.HOSTILE_AREA,
             80,
             4.0,
@@ -93,7 +94,7 @@ final class BattleMageCombatControllerJUnitTest {
             false
         );
         BattleMageSpellProfile unknownFootprint = new BattleMageSpellProfile(
-            "irons_spellbooks:test_unknown_area",
+            id("irons_spellbooks:test_unknown_area"),
             BattleMageTargetMode.HOSTILE_AREA,
             80,
             4.0,
@@ -103,7 +104,7 @@ final class BattleMageCombatControllerJUnitTest {
             false
         );
         BattleMageSpellProfile allySafeArea = new BattleMageSpellProfile(
-            "irons_spellbooks:test_safe_area",
+            id("irons_spellbooks:test_safe_area"),
             BattleMageTargetMode.HOSTILE_AREA,
             80,
             4.0,
@@ -126,6 +127,10 @@ final class BattleMageCombatControllerJUnitTest {
         double minRange,
         double maxRange
     ) {
-        return new BattleMageSpellProfile(id, mode, priority, minRange, maxRange, 0.0, false, false);
+        return new BattleMageSpellProfile(id(id), mode, priority, minRange, maxRange, 0.0, false, false);
+    }
+
+    private static ResourceLocation id(String raw) {
+        return BattleMageSpellProfile.parseNamespacedId(raw);
     }
 }

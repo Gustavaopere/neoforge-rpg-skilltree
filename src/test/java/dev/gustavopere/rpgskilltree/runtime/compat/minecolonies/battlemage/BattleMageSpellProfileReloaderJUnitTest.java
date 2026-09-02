@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.google.gson.JsonParser;
+import java.util.Arrays;
 import java.util.Map;
 import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,9 @@ final class BattleMageSpellProfileReloaderJUnitTest {
     @Test
     void profileUsesResourceLocationAsItsExtensibleSpellIdentity() {
         assertEquals(ResourceLocation.class, BattleMageSpellProfile.class.getRecordComponents()[0].getType());
+        assertFalse(Arrays.stream(BattleMageSpellProfile.class.getConstructors())
+            .anyMatch(constructor -> constructor.getParameterCount() > 0
+                && constructor.getParameterTypes()[0] == String.class));
     }
 
     @Test
