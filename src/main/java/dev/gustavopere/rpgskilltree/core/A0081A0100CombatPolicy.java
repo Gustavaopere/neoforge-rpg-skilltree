@@ -28,14 +28,25 @@ public final class A0081A0100CombatPolicy {
         return Math.min(0.15D, 0.03D * ranks.rank("A0091"));
     }
 
-    /** A0092 and A0096 are independent multiplicative contributors; preImpactHealthFraction is sampled before the hit. */
-    public static double physicalDamageMultiplier(CombatPerkRanks ranks, double preImpactHealthFraction) {
+    public static double physicalResistanceReductionFraction(CombatPerkRanks ranks) {
+        Objects.requireNonNull(ranks);
+        return Math.min(1.0D, 0.02D * ranks.rank("A0092"));
+    }
+
+    public static double lastBreathReductionFraction(CombatPerkRanks ranks, double preImpactHealthFraction) {
         Objects.requireNonNull(ranks);
         if (!Double.isFinite(preImpactHealthFraction) || preImpactHealthFraction < 0.0D) {
             throw new IllegalArgumentException("preImpactHealthFraction");
         }
-        double result = 1.0D - 0.02D * ranks.rank("A0092");
-        if (preImpactHealthFraction < 0.30D) result *= 1.0D - 0.04D * ranks.rank("A0096");
+        return preImpactHealthFraction < 0.30D
+            ? Math.min(1.0D, 0.04D * ranks.rank("A0096"))
+            : 0.0D;
+    }
+
+    /** A0092 and A0096 are independent multiplicative contributors; preImpactHealthFraction is sampled before the hit. */
+    public static double physicalDamageMultiplier(CombatPerkRanks ranks, double preImpactHealthFraction) {
+        double result = 1.0D - physicalResistanceReductionFraction(ranks);
+        result *= 1.0D - lastBreathReductionFraction(ranks, preImpactHealthFraction);
         return Math.max(0.0D, result);
     }
 
