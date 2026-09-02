@@ -130,6 +130,46 @@ final class A0031A0040StateEdgeCoverageJUnitTest {
     }
 
     @Test
+    void maceStatePartialConsumptionExpiryAndActorCleanupStayBounded() {
+        var state = new A0021A0040CombatState();
+        assertEquals(1, state.addTrauma("player", "target", 2, 0L));
+        assertEquals(2, state.addTrauma("player", "target", 2, 1L));
+        assertEquals(1, state.consumeTrauma("player", "target", 1, 2L));
+        assertEquals(1, state.trauma("player", "target", 2L));
+        assertEquals(1, state.consumeTrauma("player", "target", 99, 3L));
+        assertEquals(0, state.trauma("player", "target", 3L));
+
+        state.addTrauma("player", "expiring", 1, 0L);
+        assertEquals(0, state.trauma("player", "expiring", 8_000L));
+
+        state.markSundered("player", "target", 1, 10L);
+        assertTrue(state.isSundered("player", "target", 11L));
+        assertFalse(state.isSundered("player", "target", 8_010L));
+
+        state.startBonebreakerCooldown("player", "target", 80, 20L);
+        assertFalse(state.bonebreakerReady("player", "target", 21L));
+
+        assertTrue(state.claimOnce("player", "actor-root", "consumer", 30L));
+        state.clearActor("player");
+        assertTrue(state.claimOnce("player", "actor-root", "consumer", 31L));
+        assertTrue(state.bonebreakerReady("player", "target", 31L));
+    }
+
+    @Test
+    void reapingRefreshCanMatureDuringApplyAndPruneReturnsExactCount() {
+        var state = new A0021A0040CombatState();
+        state.applyReapingMark("player", "target", 1, 0.75D, 0L);
+        state.applyReapingMark("player", "target", 1, 0.49D, 1L);
+        assertTrue(state.reapMature("player", "target", 0.49D, 2L));
+
+        state.applyReapingMark("player", "expired-a", 1, 0.75D, 0L);
+        state.applyReapingMark("other", "expired-b", 1, 0.75D, 0L);
+        assertEquals(2, state.pruneExpiredReapingMarks(8_000L));
+        assertFalse(state.reapMarked("player", "expired-a", 8_000L));
+        assertFalse(state.reapMarked("other", "expired-b", 8_000L));
+    }
+
+    @Test
     void finiteDiscoveryRejectsInvalidOrRepeatedInputs() {
         assertTrue(A0021A0040MasteryPolicy.discoveryKey(WeaponFamily.DAGGER, "minecraft:zombie").isEmpty());
         assertTrue(A0021A0040MasteryPolicy.discoveryKey(WeaponFamily.MACE, "").isEmpty());
