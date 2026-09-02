@@ -3,6 +3,7 @@
 ## Estado
 
 - **Chat 1:** DESIGN APROVADO / BRIDGE CONTRATUAL FECHADA COM DEPENDÊNCIA TÉCNICA TRANSVERSAL.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 - **Notion:** `3c569db9-f0db-81e9-97e9-fd9303618c3a`; corrigido e re-fetch confirmado.
 - **Domínio:** VITALITY ↔ MARTIAL; Camada 2; Função Ponte.
 - **Ranks:** 3; custo 1 PP/rank.
@@ -17,9 +18,9 @@
 
 ## Dependência técnica transversal
 
-- **P-A0079-02** permanece requisito técnico de A0099: a integração runtime precisa propagar de forma completa as invalidações forçadas para o único `StationaryStateService`.
-- Enquanto essa integração não estiver fechada, o método puro `stationaryDefenseMultiplier(...)` e a existência do serviço não constituem implementação completa de A0099.
-- É proibido criar detector paralelo, threshold alternativo ou compensação local só para A0099.
+- **P-A0079-02** é fechada estruturalmente para A0099 pela reutilização do único `StationaryStateService` e pelo boundary compartilhado de invalidação de movimento forçado.
+- A0099 não possui detector paralelo, threshold alternativo ou compensação local.
+- A prova efetiva de todos os contextos de forced movement permanece obrigatória no Chat 3.
 
 ## Provider / authority
 
@@ -39,25 +40,24 @@
 ## Dano elegível / causalidade
 
 - O bônus só compõe no pipeline defensivo canônico sobre dano hostil elegível efetivamente recebido.
-- Ambiente, self-damage, custos de recurso e aliados não devem ganhar classificação hostil por inferência.
+- Ambiente, self-damage, custos de recurso e aliados não ganham classificação hostil por inferência.
 - A0099 não cria tag de dano própria nem transforma redução condicional em resistência universal.
 - Cada evento causal aplica A0099 no máximo uma vez.
 
-## Evidência atual e pendências Chat 2
+## Evidência após Chat 2
 
-- `StationaryStateService` já existe com `REQUIRED_TICKS=30` e `MAX_PATH_LENGTH=0.10`.
-- `A0081A0100CombatPolicy.stationaryDefenseMultiplier` já aceita o boolean canônico.
-- `A0081A0100CombatEvents` consulta `A0061A0080RuntimeState.stationary().isStationary(actor)`.
-- O sampler atual ainda passa `forcedTransition=false` no fallback de tick e depende do lifecycle compartilhado, portanto não prova todas as invalidações exigidas pelo design.
-- **P-A0099-01:** fechar/reutilizar P-A0079-02 sem segundo detector.
-- **P-A0099-02:** consolidar classificação de dano hostil elegível com os demais consumers defensivos, sem `Enemy`-only drift.
-- **P-A0099-03:** implementar/validar bridge PP sem tocar ledger Stage 04.02.
+- `StationaryStateService` continua a única authority para A0079+A0099, com `REQUIRED_TICKS=30` e `MAX_PATH_LENGTH=0.10`.
+- O owner defensivo consulta `A0061A0080RuntimeState.stationary().isStationary(actor)`; não foi criado detector paralelo para A0099.
+- O boundary compartilhado propaga invalidações conhecidas de forced movement para `StationaryStateService.invalidate(actor)` e usa o mesmo `actorId(player)` do state owner.
+- O classifier de dano hostil elegível é compartilhado com A0096/A0097, sem requisito `Enemy`-only.
+- A bridge PP permanece no mecanismo de progressão já existente; não há segundo ledger Stage 04.02.
+- O Chat 2 **não executou** unit tests, GameTests de forced movement/lifecycle, build NeoForge, dedicated-server smoke ou CI.
 
 ## Dedup / lifecycle / anti-abuso
 
 - Um único `StationaryStateService` por actor/servidor para A0079+A0099.
 - Logout, morte, respawn, troca de dimensão e server stop limpam/invalidate state conforme lifecycle canônico.
-- Forced movement não pode manter preparação por falta de amostragem.
+- Forced movement não pode manter preparação por falta de amostragem quando houver receipt conhecido.
 - Múltiplos callbacks do mesmo dano não podem multiplicar o bônus.
 
 ## Testes obrigatórios Chat 3
@@ -78,7 +78,7 @@
 | Eixo | Resultado | Decisão |
 |---|---|---|
 | Dependências/gates | PASS | A0089≥2 + VITALITY/MARTIAL semantic access. |
-| Integração global | PASS condicionado | Reutiliza A0079; P-A0079-02 deve ser fechado no runtime. |
+| Integração global | PASS condicionado | Reutiliza A0079; validação efetiva de forced movement fica para Chat 3. |
 | Qualidade/identidade | PASS | Defesa plantada distinta de knockback/stun/armor. |
 | Topologia | PASS | Bridge VITALITY↔MARTIAL. |
 | Especializações | PASS | PP policy sem double threshold. |
@@ -90,10 +90,10 @@
 ## Checklist
 
 - [x] Design aprovado pelo Chat 1
-- [ ] P-A0099-01 / P-A0079-02 fechado pelo Chat 2
-- [ ] P-A0099-02 classifier hostil compartilhado implementado
-- [ ] P-A0099-03 bridge PP implementada/validada
-- [ ] Código presente / Chat 2 concluído
+- [x] P-A0099-01 / P-A0079-02 fechado estruturalmente pelo Chat 2
+- [x] Classifier hostil compartilhado implementado
+- [x] Bridge PP preservada sem ledger paralelo
+- [x] Código presente / Chat 2 concluído
 - [ ] VALIDAÇÃO CHAT 3: unit/GameTests/lifecycle/forced movement
 - [ ] VALIDAÇÃO CHAT 3: build/dedicated server/CI
 - [ ] VALIDAÇÃO CHAT 3: IMPLEMENTAÇÃO CONFIRMADA
