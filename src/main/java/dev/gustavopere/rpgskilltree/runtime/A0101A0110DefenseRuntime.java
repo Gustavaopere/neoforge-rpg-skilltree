@@ -27,7 +27,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 /**
  * Canonical incoming-defense runtime for A0092/A0096/A0097-A0099 and A0101-A0106.
  *
- * <p>All RPG-owned damage reducers now enter {@link DamageMitigationResolver} from the single
+ * <p>All RPG-owned damage reducers enter {@link DamageMitigationResolver} from the single
  * {@link LivingDamageEvent.Pre} boundary. A0106 executes only after those contributions have been
  * composed, matching the frozen ordering contract and avoiding a second independent reducer
  * pipeline.</p>
@@ -125,7 +125,7 @@ public final class A0101A0110DefenseRuntime {
         double damage = resolved.damage();
 
         A0101A0110DefenseState.EmergencyGuardResult emergency =
-            A0101A0110RuntimeState.defense().applyEmergencyGuard(
+            A0101A0110RuntimeState.defense(player).applyEmergencyGuard(
                 A0101A0110RuntimeState.actorId(player),
                 player.level().getGameTime(),
                 player.getHealth(),
@@ -134,6 +134,9 @@ public final class A0101A0110DefenseRuntime {
                 ranks.rank("A0106") > 0,
                 directHostileDamage(player, source)
             );
+        if (emergency.activated()) {
+            A0101A0110RuntimeState.persistCooldowns(player);
+        }
         event.setNewDamage((float) emergency.damage());
         return new PreResult(openingReserved);
     }
@@ -148,7 +151,7 @@ public final class A0101A0110DefenseRuntime {
         if (healthDamage <= 0.0F || !directHostileDamage(player, source)) return;
 
         CombatPerkRanks ranks = A0101A0110RuntimeState.ranks(player);
-        A0101A0110DefenseState state = A0101A0110RuntimeState.defense();
+        A0101A0110DefenseState state = A0101A0110RuntimeState.defense(player);
         String actor = A0101A0110RuntimeState.actorId(player);
         long nowTick = player.level().getGameTime();
         double maxHealth = player.getMaxHealth();
@@ -159,7 +162,7 @@ public final class A0101A0110DefenseRuntime {
             0.0D,
             Math.min(1.0D, (player.getHealth() + healthDamage) / maxHealth)
         );
-        state.recordSecondWindHit(
+        boolean secondWindActivated = state.recordSecondWindHit(
             actor,
             rootActionId,
             nowTick,
@@ -167,12 +170,15 @@ public final class A0101A0110DefenseRuntime {
             postRatio,
             ranks.rank("A0104") > 0
         );
-        state.recordReactiveShellHit(
+        boolean reactiveShellActivated = state.recordReactiveShellHit(
             actor,
             rootActionId,
             nowTick,
             ranks.rank("A0105") > 0
         );
+        if (secondWindActivated || reactiveShellActivated) {
+            A0101A0110RuntimeState.persistCooldowns(player);
+        }
         syncReactiveShellModifiers(player, state.reactiveShellActive(
             actor,
             nowTick,
@@ -182,7 +188,7 @@ public final class A0101A0110DefenseRuntime {
 
     public static void tickPlayer(ServerPlayer player) {
         CombatPerkRanks ranks = A0101A0110RuntimeState.ranks(player);
-        A0101A0110DefenseState state = A0101A0110RuntimeState.defense();
+        A0101A0110DefenseState state = A0101A0110RuntimeState.defense(player);
         String actor = A0101A0110RuntimeState.actorId(player);
         long nowTick = player.level().getGameTime();
 
@@ -233,11 +239,15 @@ public final class A0101A0110DefenseRuntime {
         contributions.add(new Contribution(id, fraction));
     }
 
+    /**
+     * Generic magic is intentionally narrower than provider Arcane Resistance: only a tagged magic
+     * root with an explicit hostile living attacker is eligible. Self, attackerless terminal,
+     * technical, resource-cost and unknown roots fail closed instead of being guessed from visuals.
+     */
     private static boolean genericMagicEligible(ServerPlayer player, DamageSource source) {
         if (!source.is(Tags.DamageTypes.IS_MAGIC)) return false;
         if (source.is(Tags.DamageTypes.IS_TECHNICAL)) return false;
-        if (source.getEntity() == player || source.getDirectEntity() == player) return false;
-        return true;
+        return hostileSource(player, source);
     }
 
     /** Strict combat receipt used by A0104-A0106; periodic/environmental/technical roots fail closed. */
