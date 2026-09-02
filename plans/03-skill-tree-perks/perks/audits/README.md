@@ -4,7 +4,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 
 ## Reconciliações normativas com precedência
 
-- `AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md` — errata pós-auditoria A0001–A0299. Tem precedência **somente** sobre referências históricas a `SPECIALIST_GATE_V1`, `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver` como infraestrutura futura/ausente: o gate canônico já é `TreeUnlockResolver` + `TreeUnlockDefinition` + projeção de investimento do Stage 04.01. Também registra os nove campos formais `Dependências Obrigatórias` corrigidos no Notion e preserva A0044/A0050 como pendências reais de runtime. Todos os demais blockers/contracts dos dossiês históricos continuam válidos.
+- `AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md` — errata pós-auditoria A0001–A0299. Tem precedência **somente** sobre referências históricas a `SPECIALIST_GATE_V1`, `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver` como infraestrutura futura/ausente: o gate canônico já é `TreeUnlockResolver` + `TreeUnlockDefinition` + projeção de investimento do Stage 04.01. A PR de reconciliação materializa essa authority em **62 dossiês** do escopo mergeado (A0204/A0211/A0218/A0225/A0232 + A0243–A0299); A0162/A0169 permanecem na PR #368. Também registra os nove campos formais `Dependências Obrigatórias` corrigidos no Notion e preserva A0044/A0050 como pendências reais de runtime. Todos os demais blockers/contracts continuam válidos.
 
 ## Auditorias de implementação — Chat 2
 

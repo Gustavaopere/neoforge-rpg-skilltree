@@ -65,7 +65,7 @@ Estado após correção:
 
 ### 4.2 Terminais A0200–A0232
 
-Referências históricas corrigidas no Catálogo Mestre:
+Referências históricas corrigidas no Catálogo Mestre e materializadas nos cinco dossiês desta PR:
 
 - `A0204` — Maestria de Eldritch;
 - `A0211` — Maestria de Ender;
@@ -81,17 +81,15 @@ Disposição:
 - A0225 passa a ter availability decidida apenas por A0224, Water Mastery, rota profunda e demais requisitos reais;
 - A0232 passa a ter availability decidida apenas por A0231, Wind Mastery, rota profunda e demais requisitos reais.
 
-Nenhuma das cinco recebe implementação confirmada por esta errata.
+Nenhuma das cinco recebe implementação confirmada por esta errata. Verificação pós-escrita no GitHub: **5/5** dossiês com `TreeUnlockResolver` + `TreeUnlockDefinition` + Stage 04.01; **0/5** identificadores legados de resolver Specialist.
 
 ### 4.3 Perks internas Specialist A0243–A0299
 
 A auditoria especial A0200–A0299 registrou `SPECIALIST_GATE_RESOLVER_V1` em 61 perks; quatro delas são terminais acima e **57** são perks internas A0243–A0299.
 
-Para **todas A0243–A0299**, qualquer referência histórica a `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver` deve ser interpretada como:
+Os **57 dossiês A0243–A0299 foram materializados nesta PR**. Em todos eles, `SPECIALIST_UNLOCK:<FAMILY>` é comprovado pela pipeline canônica `TreeUnlockResolver` + `TreeUnlockDefinition` + projeção de investimento Stage 04.01.
 
-> `SPECIALIST_UNLOCK:<FAMILY>` comprovado pela pipeline canônica `TreeUnlockResolver` + `TreeUnlockDefinition` + projeção de investimento Stage 04.01.
-
-Isso remove **somente** o falso blocker/contrato duplicado de gate. Todos os contratos específicos de gameplay permanecem exatamente como documentados.
+A materialização remove **somente** o falso blocker/contrato duplicado de gate. Todos os contratos específicos de gameplay permanecem exatamente como documentados.
 
 A correção também foi persistida diretamente no Catálogo Mestre do Notion. Verificação pós-escrita de A0243–A0299:
 
@@ -101,7 +99,7 @@ A correção também foi persistida diretamente no Catálogo Mestre do Notion. V
 - blockers/contracts próprios de cada perk foram preservados;
 - a view temporariamente filtrada durante a revisão foi restaurada ao estado original.
 
-Os dossiês individuais do GitHub permanecem como snapshots históricos e podem ainda conter a string antiga em trechos transcritos. Por isso `perks/README.md` e `audits/README.md` tornam esta reconciliação leitura obrigatória e estabelecem precedência operacional explícita antes de qualquer implementação/validação da faixa.
+Os **57 dossiês individuais A0243–A0299** foram sincronizados no GitHub nesta PR. Verificação automática pós-escrita: **57/57** com authority TreeUnlock canônica, **0/57** com identificador legado e nenhum arquivo fora da faixa alterado pelo passo de materialização. `perks/README.md` e `audits/README.md` continuam indexando esta reconciliação para dar precedência sobre auditorias históricas anteriores.
 
 Exemplos que **continuam blockers reais quando ausentes**:
 
@@ -180,7 +178,7 @@ Chat 2/Chat 3 devem consultar esta reconciliação junto dos dossiês/auditorias
 
 Regra de precedência:
 
-- se um dossiê A0162–A0299 disser que falta `SPECIALIST_GATE_V1`, `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver`, **ignorar somente essa afirmação** e usar TreeUnlock canônico;
+- os dossiês A0204/A0211/A0218/A0225/A0232 e A0243–A0299 nesta PR já usam TreeUnlock canônico; A0162/A0169 permanecem sob a PR #368; auditorias históricas que ainda citem o resolver Specialist antigo ficam supersedidas **somente nesse ponto**;
 - preservar todas as demais dependencies/capabilities do mesmo dossiê;
 - não implementar um segundo resolver Specialist;
 - não declarar a perk disponível apenas porque o falso blocker Specialist foi removido; reavaliar a dependency closure real.
@@ -193,6 +191,7 @@ Escopo efetivamente corrigido:
 
 - 9 campos formais do Notion A0001/A0007/A0013/A0019/A0025/A0031/A0037/A0043/A0049;
 - authority de Specialist em A0162/A0169;
-- authority de Specialist em A0204/A0211/A0218/A0225/A0232;
-- authority de Specialist persistida no Notion para **57/57 A0243–A0299**, com precedência normativa para os snapshots históricos do GitHub;
+- authority de Specialist em A0204/A0211/A0218/A0225/A0232, sincronizada em Notion + dossiês GitHub (**5/5**);
+- authority de Specialist persistida no Notion e materializada nos dossiês GitHub para **57/57 A0243–A0299**;
+- total materializado nesta PR: **62 dossiês** do escopo mergeado, todos reutilizando TreeUnlock canônico; A0162/A0169 permanecem na PR #368;
 - A0044/A0050 preservadas como pendências reais de runtime.
