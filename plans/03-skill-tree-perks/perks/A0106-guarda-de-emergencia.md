@@ -86,3 +86,14 @@ Authority, ordem, causalidade, dedup, anti-abuso, exclusões, lifecycle, cooldow
 ## Testes exigidos ao Chat 3
 
 Threshold estrito abaixo de 15%, exatamente 15%, golpe gatilho reduzido, lethal clamp para 1 HP, token único, janela após token, cooldown, exclusions, interação com reducers anteriores, ausência de resurrection/absorption prediction, death/logout/dimension/respec/reload anti-reset, multiplayer, GameTests, build, JAR e dedicated-server smoke.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+**Estado:** `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `P-A0106-01` foi implementada no `LivingDamageEvent.Pre`: o `DamageMitigationResolver` resolve primeiro A0092/A0096/A0097-A0099/A0101-A0103 e só então A0106 avalia o threshold e aplica `×0,65`.
+- O token fatal é criado uma vez na ativação e, se necessário, limita o dano a `health - 1` depois da redução, sem resurrection em `Post` e sem prediction de absorption.
+- `P-A0106-02` foi fechada no escopo do Chat 2: janela 60 ticks, cooldown 3600 ticks e deadline persistido no attachment canônico v2; active window/token são reconciliados como estado transitório.
+- `P-A0106-03` usa somente dano hostil causal direto e exclui technical e `BYPASSES_INVULNERABILITY`; self/attackerless/resource roots não passam pelo classifier. A validação exaustiva de `/kill`, Void/final kill e providers permanece para o Chat 3.
+- A0106 foi retirada de `UNAVAILABLE_NODE` após a persistência. `P-A0106-04` deixa de bloquear aquisição no runtime atual.
+- Chat 2 não executou a bateria final, não declarou `IMPLEMENTAÇÃO CONFIRMADA` e não fez merge.
