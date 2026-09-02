@@ -1,27 +1,20 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import hashlib
-import json
 from pathlib import Path
 import sys
-import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-STANDALONE_REPO = "Gustavaopere/Volcanoes"
 STANDALONE_COMMIT = "eaddc3232dfc600780769f4a5e7e45ff1e50181c"
-STANDALONE_TREE = "c87fb2c5aede57d6eab69592e3377d76f3a3c232"
-TREE_URL = (
-    f"https://api.github.com/repos/{STANDALONE_REPO}/git/trees/"
-    f"{STANDALONE_TREE}?recursive=1"
-)
 
 FUNCTIONAL_PREFIXES = (
-    "src/main/java/dev/gustavopere/volcanoes/",
-    "src/main/resources/assets/volcanoes/",
-    "src/main/resources/data/volcanoes/",
-    "src/test/java/dev/gustavopere/volcanoes/",
-    "src/test/resources/",
+    "src/main/java/dev/gustavopere/volcanoes",
+    "src/main/resources/assets/volcanoes",
+    "src/main/resources/data/volcanoes",
+    "src/test/java/dev/gustavopere/volcanoes",
+    "src/test/resources",
 )
 RESOURCE_PREFIXES = (
     "src/main/resources/assets/volcanoes/",
@@ -47,34 +40,30 @@ def git_blob_sha(path: Path) -> str:
     return hashlib.sha1(header + data, usedforsecurity=False).hexdigest()
 
 
-def fetch_tree() -> list[dict[str, object]]:
-    request = urllib.request.Request(
-        TREE_URL,
-        headers={
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "rpgskilltree-volcanoes-consolidation-audit",
-        },
-    )
-    with urllib.request.urlopen(request, timeout=30) as response:
-        payload = json.load(response)
-    if payload.get("truncated"):
-        raise AssertionError("standalone recursive Git tree was truncated")
-    return payload["tree"]
+def functional_files(source_root: Path) -> list[Path]:
+    files: list[Path] = []
+    for relative in FUNCTIONAL_PREFIXES:
+        base = source_root / relative
+        if not base.is_dir():
+            raise AssertionError(f"standalone source root missing: {relative}")
+        files.extend(path for path in base.rglob("*") if path.is_file())
+    return files
 
 
 def main() -> int:
-    tree = fetch_tree()
-    blobs = {
-        str(entry["path"]): str(entry["sha"])
-        for entry in tree
-        if entry.get("type") == "blob"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("source_root", type=Path, help="restored frozen standalone Volcanoes source")
+    args = parser.parse_args()
+    source_root = args.source_root.resolve()
+    if not source_root.is_dir():
+        raise AssertionError(f"standalone source checkout does not exist: {source_root}")
+
+    source_paths = functional_files(source_root)
+    functional = {
+        path.relative_to(source_root).as_posix(): git_blob_sha(path)
+        for path in source_paths
     }
 
-    functional = {
-        path: sha
-        for path, sha in blobs.items()
-        if path.startswith(FUNCTIONAL_PREFIXES)
-    }
     missing = [path for path in sorted(functional) if not (ROOT / path).is_file()]
     if missing:
         raise AssertionError(
@@ -96,20 +85,21 @@ def main() -> int:
 
     missing_workflows = []
     for standalone_name, unified_name in WORKFLOW_MAP.items():
-        standalone_path = f".github/workflows/{standalone_name}"
-        if standalone_path in blobs and not (ROOT / ".github/workflows" / unified_name).is_file():
+        standalone_path = source_root / ".github/workflows" / standalone_name
+        if standalone_path.is_file() and not (ROOT / ".github/workflows" / unified_name).is_file():
             missing_workflows.append(f"{standalone_name}->{unified_name}")
     if missing_workflows:
         raise AssertionError("standalone acceptance workflow mappings missing: " + ", ".join(missing_workflows))
 
-    standalone_scripts = sorted(
-        path for path in blobs if path.startswith(".github/scripts/")
-    )
+    standalone_scripts_root = source_root / ".github/scripts"
+    if not standalone_scripts_root.is_dir():
+        raise AssertionError("standalone .github/scripts directory is missing")
+    standalone_scripts = sorted(path for path in standalone_scripts_root.rglob("*") if path.is_file())
     missing_scripts = []
     for path in standalone_scripts:
-        relative = path.removeprefix(".github/scripts/")
+        relative = path.relative_to(standalone_scripts_root)
         if not (ROOT / ".github/scripts/volcanoes" / relative).is_file():
-            missing_scripts.append(path)
+            missing_scripts.append(path.relative_to(source_root).as_posix())
     if missing_scripts:
         raise AssertionError(
             "standalone CI helper scripts missing from unified Volcanoes namespace: "
@@ -137,6 +127,6 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (AssertionError, OSError, urllib.error.URLError) as exc:
+    except (AssertionError, OSError, ValueError) as exc:
         print(f"VOLCANOES_STANDALONE_PARITY status=RED reason={exc}", file=sys.stderr)
         raise SystemExit(1)
