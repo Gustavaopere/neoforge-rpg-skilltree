@@ -3,6 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "sonarqube.yml"
+BUILD_GRADLE = ROOT / "build.gradle"
 LEGACY_BASELINE_SCRIPT = ROOT / "scripts" / "refresh-sonar-new-code-baseline.py"
 NEW_CODE_POLICY_HELPER = ROOT / "scripts" / "ensure_sonar_new_code_period.py"
 
@@ -14,6 +15,7 @@ def require(condition: bool, message: str) -> None:
 
 def main() -> None:
     workflow = WORKFLOW.read_text(encoding="utf-8")
+    build_gradle = BUILD_GRADLE.read_text(encoding="utf-8")
 
     require(
         "refresh-sonar-new-code-baseline.py" not in workflow,
@@ -62,6 +64,16 @@ def main() -> None:
         "Sonar CI must never select or persist an analysis UUID as the New Code baseline.",
     )
     require(
+        'property "sonar.projectVersion", "${mod_version}-sonar.3"' in build_gradle,
+        "Sonar Previous version must use the stable alpha.6 Sonar release marker, not the long-lived Gradle dev version.",
+    )
+    require(
+        "GITHUB_SHA" not in build_gradle
+        and "GITHUB_RUN" not in build_gradle
+        and "github.run" not in build_gradle,
+        "Sonar projectVersion must remain stable across CI builds; commit/run identifiers are forbidden.",
+    )
+    require(
         "concurrency:" in workflow,
         "Sonar CI must declare concurrency so main analyses cannot overtake one another.",
     )
@@ -76,7 +88,7 @@ def main() -> None:
 
     print(
         "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
-        "uses basic Gradle caching, and does not install a manual analysis baseline."
+        "uses a stable Sonar release marker and basic Gradle caching, and does not install a manual analysis baseline."
     )
 
 
