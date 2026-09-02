@@ -46,19 +46,15 @@ jobs:
               if 'plans/volcanoes' in path.read_text(encoding='utf-8'):
                   raise SystemExit(f'retired Volcanoes path remains in {path}')
           PY
+          rm .github/workflows/tmp-volcanoes-retired-path-fix.yml
           python3 scripts/verify-volcanoes-consolidation.py
           python3 scripts/verify-volcanoes-plan-archive.py
-      - name: Commit migration and remove temporary workflow
+      - name: Commit verified migration
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'Gustavaopere'
           git config user.email 'gustavaopere@gmail.com'
-          git rm .github/workflows/tmp-volcanoes-retired-path-fix.yml
-          git add plans/00-project/volcanoes-consolidation.md \
-                  plans/03-skill-tree-perks/guides/projects/02-volcanoes.md \
-                  plans/03-skill-tree-perks/guides/projects/15-capability-delta-a0200-a0209.md \
-                  plans/03-skill-tree-perks/guides/projects/README.md \
-                  scripts/verify-volcanoes-consolidation.py
+          git add -A
           git commit -m 'docs(volcanoes): retire active plan path references'
           git push origin HEAD:${GITHUB_REF_NAME}
