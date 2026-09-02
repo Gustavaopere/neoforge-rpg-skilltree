@@ -40,6 +40,11 @@ public final class CombatPerkAvailabilityRuntime {
             // Availability is therefore propagated transitively instead of allowing ghost ranks.
             case "A0050", "A0052", "A0053", "A0054" -> false;
 
+            // A0067 requires the provider-native lifetime of an Epic Fight attack window. The
+            // audited Epic Fight 21.17.3.1 surface does not expose a safe binding for that lifetime;
+            // timestamps/cooldowns/heuristics would change the approved semantics, so fail closed.
+            case "A0067" -> false;
+
             default -> true;
         };
     }
