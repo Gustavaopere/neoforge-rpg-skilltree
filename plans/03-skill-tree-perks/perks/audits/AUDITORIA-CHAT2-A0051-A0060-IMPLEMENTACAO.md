@@ -5,12 +5,13 @@
 **Lote:** exatamente 10 perks consecutivas  
 **Função:** Chat 2 — implementação, sem redesign, sem validação final, sem merge.  
 **Branch:** `feat/chat2-a0051-a0060-stacked-handoff`  
-**PR:** #386  
+**PR operacional:** #387  
+**PR histórica/TDD:** #386, fechada sem merge após falha repetida do endpoint de retarget  
 **Base lógica:** HEAD do lote predecessor A0041–A0050 (`2fcbb802ed1f02b8cea6acf938ce8de7c6ddea9a`).
 
 ## Anomalia de continuidade
 
-O Chat 1 fechou o design A0051–A0060 na PR #249, porém essa PR documental já havia sido mergeada/encerrada. Não era possível continuar a mesma PR. O Chat 2 criou uma PR substituta empilhada sobre o HEAD real do lote predecessor A0041–A0050, preservando a cadeia de código. Nenhum merge é feito nesta etapa.
+O Chat 1 fechou o design A0051–A0060 na PR #249, porém essa PR documental já havia sido mergeada/encerrada. Não era possível continuar a mesma PR. O Chat 2 criou inicialmente a PR #386 para materializar TDD/implementação; como o retarget da #386 para a branch predecessora retornou 502 repetidamente e a transição ready-for-review também encontrou limitação do conector, a #386 foi fechada **sem merge** e substituída operacionalmente pela PR #387. A #387 usa a mesma branch de implementação e a base correta `feat/chat2-a0041-a0050-stacked-handoff` / PR #364, preservando a cadeia real de código. Nenhum merge é feito nesta etapa.
 
 ## Fontes e estado de entrada
 
