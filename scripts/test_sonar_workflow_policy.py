@@ -30,8 +30,12 @@ def main() -> None:
         "cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}" in workflow,
         "Sonar CI must queue main analyses instead of cancelling an in-flight main verification.",
     )
+    require(
+        "gradle/actions/setup-gradle@" in workflow and "cache-provider: basic" in workflow,
+        "Sonar CI must use Gradle Actions with the explicit open-source basic cache provider.",
+    )
 
-    print("Sonar workflow policy is race-safe and does not install a manual New Code baseline.")
+    print("Sonar workflow policy is race-safe, uses basic Gradle caching, and does not install a manual New Code baseline.")
 
 
 if __name__ == "__main__":
