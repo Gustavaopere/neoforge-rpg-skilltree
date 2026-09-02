@@ -1,6 +1,6 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0090** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
+Reauditoria obrigatória do recorte **A0001–A0100** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
 A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
 
@@ -96,6 +96,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0088 | Constituição | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar composição `MAX_HEALTH`, preserveHealthRatio, rank/respec/reload e modifier uniqueness |
 | A0089 | Couro Endurecido | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar composição `ARMOR`, zero-base→zero, idempotência e ausência de STUN_ARMOR/Resistência Física |
 | A0090 | Têmpera | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar A0089≥2, composição `ARMOR_TOUGHNESS`, zero-base→zero e isolamento de outros eixos |
+| A0091 | Base Firme | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar 0,03/rank até 0,15, modifier único, rank/respec/reload e ausência de STUN_ARMOR/Armor/Toughness |
+| A0092 | Resistência Física | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar seed de 17 `DamageType`, exclusões fire/magic/wither/sonic/explosion, uma aplicação por evento e fontes modded desconhecidas fail-closed |
+| A0093 | Guarda Econômica | APROVADO EM FAIL-CLOSED | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar `UNAVAILABLE_NODE`, compra sem gasto e ausência de refund/heurística enquanto não houver guard-stamina hook causal |
+| A0094 | Recuperação de Guarda | APROVADO EM FAIL-CLOSED transitivo | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar A0093→A0094 unavailable, sem PP/rank e ausência de proxy por animação/knockback/stamina |
+| A0095 | Tenacidade | APROVADO após correção | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar dependência única A0091≥2, Epic Fight 21.17.3.1, `epicfight:stun_armor` +0,25/rank, version/attribute fail-closed e ausência do antigo reducer genérico |
+| A0096 | Último Fôlego | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar snapshot pré-impacto <30%, borda 30%, composição multiplicativa A0092→A0096, hostilidade causal e exclusões environment/self/resource-cost/ally |
+| A0097 | Primeira Defesa | APROVADO após hardening causal | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar 200 ticks, reservation PRE→commit POST, rollback em zero/cancel, dedup por root, hostilidade causal e lifecycle |
+| A0098 | Defesa em Movimento | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar sprint vanilla 3/6/9%, forced/passive movement exclusions, ParCool extra fail-closed e bridge PP sem tocar Stage04.02 |
+| A0099 | Defesa Estacionária | APROVADO com dependência transversal A0079 | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar detector único A0079/A0099, 30 ticks/0,10, teleport/dimensão/passenger/forced movement, hostilidade causal e bridge PP |
+| A0100 | Anti-Crítico | APROVADO EM FAIL-CLOSED | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar `UNAVAILABLE_NODE`, compra sem gasto e ausência de heurística/universal reduction enquanto não houver receipt incoming `critical + base + extra` |
 
 ## Regras sistêmicas vigentes
 
@@ -132,6 +142,12 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **A0086:** keystone não sintetiza classificadores nem bypassa predecessors indisponíveis; availability é transitiva.
 - **A0087:** benefício existe somente com BodyProvider capaz de manter calor metabólico Cold Sweat + exhaustion vanilla na mesma atividade; hidratação é eixo opcional separado por receipt causal; +8% healing received aplica uma única vez no pipeline geral de curas elegíveis, não apenas no sustain.
 - **A0088–A0090:** owner canônico é Minecraft/NeoForge; A0088 preserva proporção de vida ao recalcular max health; A0089/A0090 são bônus relativos sobre Armor/Toughness existentes e não criam STUN_ARMOR, resistência física paralela ou proteção quando a base é zero.
+- **A0091:** `minecraft:generic.knockback_resistance` é o único eixo da perk; não converter em Stun Armor, Armor, Toughness ou redução de dano.
+- **A0092/A0096:** `rpgskilltree:physical` é classifier físico único; A0096 usa snapshot pré-impacto e composição multiplicativa depois de A0092; ambiente/self/resource-cost/ally não recebem hostilidade por heurística.
+- **A0093/A0094/A0100:** provider binding obrigatório ausente mantém `UNAVAILABLE_NODE`, rank efetivo zero e purchase rejection antes de qualquer gasto.
+- **A0095:** único caminho positivo é `epicfight:stun_armor` provider-native com Epic Fight suportado; reducer genérico de interrupção não é segundo pipeline.
+- **A0097:** abertura defensiva usa reservation PRE→commit POST com dano efetivo; cancelamento/zero faz rollback e não reinicia janela.
+- **A0098/A0099:** movimento autopropelido e stationarity usam boundaries compartilhados; forced/passive movement não pode ativar por simples delta; A0099 reutiliza o `StationaryStateService` de A0079.
 - **Sustain exclusions:** `ARCANE_BACKLASH`, `BLOOD_MAGIC_COST`, dano ambiental/Volcanoes/Enshrouded, máquina, summon/companion sem autoria direta e efeitos recursivos não são dano ofensivo do jogador para A0082–A0087.
 - **Ignitium:** lifesteal nativo permanece provider-owned; sem correlação exata da cura final ao mesmo root, a fonte específica falha fechado e é proibido usar `NativeCorrelation.NONE`; armas comuns comprovadas continuam elegíveis.
 - **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill; também não abre Retaliação por self-cost nem vira ação física/mágica ofensiva elegível.
@@ -440,6 +456,31 @@ O Chat 2 para neste lote. A0081+ não é iniciado automaticamente.
 15. `P-A0081-90-TEST-01` — GameTest/harness transversal provider-present/absent para sustain, native heal correlation, magic/element/DoT availability, BodyProvider, attributes, lifecycle, dedup, multiplayer e dedicated server.
 
 O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige a PR desta auditoria, review resolvido, CI GREEN, merge e confirmação fresca da `main`; após isso o Chat 1 deve **PARAR**. A0091–A0100 só pode começar mediante novo comando do usuário.
+
+## Chat 2 — lote exato A0091–A0100
+
+**Estado:** `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- **PR/branch:** #326 / `docs/chat1-a0091-a0100-audit`, continuada da etapa de design.
+- **Base operacional empilhada:** PR #372, `feat/chat2-a0081-a0090-implementation@a7d9c7b9a2df6589720b91ac68d463f15bfc4a52`.
+- **Cadeia:** #355 A0071–A0080 → #372 A0081–A0090 → #326 A0091–A0100.
+- **A0091:** node-effect único `minecraft:generic.knockback_resistance`, +0,03/rank até +0,15.
+- **A0092:** `rpgskilltree:physical` materializada com seed de 17 `DamageType`; classifier único e unknown modded fail-closed.
+- **A0093:** `UNAVAILABLE_NODE`; nenhum hook seguro de guard-stamina, nenhum refund/heurística.
+- **A0094:** `UNAVAILABLE_NODE` transitivo e próprio; sem `GUARD_BREAK + recovery` correlacionados.
+- **A0095:** dependência única A0091≥2; `epicfight:stun_armor` `ADD_FLAT` +0,25/rank; reducer genérico antigo desautorizado.
+- **A0096:** classifier físico compartilhado; snapshot pré-impacto; composição A0092→A0096 multiplicativa; hostilidade causal não-self/não-ally.
+- **A0097:** reservation PRE→commit POST positivo; zero/cancel rollback; lifecycle bounded.
+- **A0098:** sprint vanilla server-side + exclusão canônica de forced/passive movement; ParCool extra fail-closed sem receipt real.
+- **A0099:** reutiliza exclusivamente A0079/`StationaryStateService`; forced invalidation converge no detector único.
+- **A0100:** `UNAVAILABLE_NODE`; sem incoming receipt `critical + base + extra`, nenhuma heurística.
+- **Auditoria de implementação:** `audits/AUDITORIA-A0091-A0100-IMPLEMENTACAO-CHAT2.md`.
+- **Dossiês:** 10/10 atualizados para o estado real de Chat 2.
+- **Testes/build/GameTests/smoke/CI finais:** **NÃO executados pelo Chat 2**.
+- **Implementação confirmada:** **NÃO**.
+- **Merge:** **NÃO**; responsabilidade do Chat 3 após validação e CI.
+
+O Chat 2 para neste lote. A0101+ não foi iniciado.
 
 ## Chat 1 — lote adiantado exato A0200–A0209
 

@@ -5,6 +5,7 @@ import dev.gustavopere.rpgskilltree.core.A0081A0100CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.ModifierOperation;
 import dev.gustavopere.rpgskilltree.core.NodeEffectResolver;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.CombatPerkAvailabilityRuntime;
 import dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalog;
 import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
 import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
@@ -47,6 +48,9 @@ public final class AttributeNodeEffectRuntime {
         }
 
         for (var effect : NodeEffectResolver.resolveAttributes(state.passiveNodes(), NodeEffectCatalog.attributeEffects())) {
+            ResourceLocation nodeId = ResourceLocation.parse(effect.nodeId());
+            if (!CombatPerkAvailabilityRuntime.isAvailable(nodeId)) continue;
+
             var attributeId = ResourceLocation.parse(effect.attributeId());
             var holder = BuiltInRegistries.ATTRIBUTE.getHolder(attributeId).orElse(null);
             if (holder == null) {

@@ -58,6 +58,9 @@ public final class A0081A0100RuntimeState {
             BLOOD_THIRST.clearActor(actor);
             A0081A0090ProviderHitRegistry.clearActor(actor);
         }
+        if (effective.rank("A0097") > 0) {
+            DEFENSE.ensureActor(actor, Math.multiplyExact(player.level().getGameTime(), 50L));
+        }
         return effective;
     }
 

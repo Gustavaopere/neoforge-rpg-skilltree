@@ -3,10 +3,12 @@ package dev.gustavopere.rpgskilltree.runtime;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
+import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainVersionContract;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 
 /**
@@ -18,6 +20,9 @@ import net.minecraft.resources.ResourceLocation;
  * recoverable/refundable, but unavailable ranks are masked to zero for gameplay.</p>
  */
 public final class CombatPerkAvailabilityRuntime {
+    private static final ResourceLocation EPIC_FIGHT_STUN_ARMOR =
+        ResourceLocation.fromNamespaceAndPath("epicfight", "stun_armor");
+
     private CombatPerkAvailabilityRuntime() {}
 
     public static boolean isAvailable(ResourceLocation nodeId) {
@@ -63,6 +68,17 @@ public final class CombatPerkAvailabilityRuntime {
             // Cold Sweat metabolic heat + vanilla exhaustion BodyProvider/general-heal boundary.
             case "A0087" -> false;
 
+            // A0093 requires a causal guard-stamina-cost hook; A0094 requires a canonical
+            // guard-break/recovery receipt. A0100 requires decomposition of incoming critical
+            // damage into base and additional-critical portions. None of those audited contracts
+            // currently has a safe producer, so purchase must fail before spending points.
+            case "A0093", "A0094", "A0100" -> false;
+
+            // A0095 is provider-native. It is purchasable only when the exact audited Epic Fight
+            // version is present and its stun_armor attribute is actually registered. No generic
+            // interruption/knockback/armor approximation is allowed.
+            case "A0095" -> epicFightStunArmorAvailable();
+
             default -> true;
         };
     }
@@ -83,5 +99,13 @@ public final class CombatPerkAvailabilityRuntime {
                 OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)
             )
             && IronsSustainVersionContract.runtimeContractPresent();
+    }
+
+    private static boolean epicFightStunArmorAvailable() {
+        return OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EPIC_FIGHT)
+            && EpicFightVersionContract.supportsVersion(
+                OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT)
+            )
+            && BuiltInRegistries.ATTRIBUTE.getHolder(EPIC_FIGHT_STUN_ARMOR).isPresent();
     }
 }
