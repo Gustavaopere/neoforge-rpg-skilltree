@@ -3,7 +3,8 @@
 ## Estado
 
 - **Chat 1:** DESIGN APROVADO / CONTRATO FECHADO.
-- **Implementação:** fórmula preparatória existe, mas depende do classifier físico ainda não materializado; **não confirmado**.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** classifier físico compartilhado, hostilidade causal e snapshot pré-impacto estão presentes; **não é IMPLEMENTAÇÃO CONFIRMADA**.
 - **Notion:** `3c569db9-f0db-81a4-962f-c0e807dda1af`; corrigido e re-fetch confirmado no ciclo A0091–A0100.
 - **Domínio:** VITALITY; Camada 3; Ramo Sobrevivência em Baixa Vida.
 - **Ranks:** 3; custo 1 PP/rank.
@@ -32,18 +33,17 @@
 
 ## Fallback / fail-closed
 
-- Enquanto A0092 não materializar `rpgskilltree:physical`, A0096 não cria classifier alternativo e fica sem cobertura física real.
+- A0096 herda exclusivamente `rpgskilltree:physical`; não cria classifier alternativo.
 - Fontes modded desconhecidas permanecem fail-closed.
 - Não medir vida depois do impacto, não usar previsão client-side e não transformar o efeito em redução universal.
 
-## Evidência atual e pendências para Chat 2
+## Evidência após Chat 2
 
-- `A0081A0100CombatPolicy.physicalDamageMultiplier` já usa snapshot pré-impacto e composição multiplicativa A0092→A0096.
-- `A0081A0100CombatEvents` chama essa fórmula, mas o classifier `PHYSICAL_DAMAGE` ainda depende da tag ausente.
-- O classifier atual de hostilidade do runtime restringe `(Enemy || Player)` e diverge do contrato causal do Notion.
-- **P-A0096-01:** herdar/materializar o classifier de A0092; sem segunda tag.
-- **P-A0096-02:** compartilhar o classificador causal de hostilidade A0096/A0097, sem `Enemy` como requisito.
-- **P-A0096-03:** preservar snapshot pré-impacto e garantir uma aplicação por evento/root.
+- O classifier `rpgskilltree:physical` materializado por A0092 é reutilizado diretamente por A0096; não existe segunda tag.
+- O runtime defensivo compartilha o classificador causal de hostilidade baseado em `LivingEntity` não-self/não-ally, removendo o drift `Enemy || Player` identificado pelo Chat 1.
+- `A0081A0100CombatPolicy.physicalDamageMultiplier` preserva snapshot pré-impacto e composição multiplicativa A0092→A0096.
+- O efeito é resolvido no mesmo pipeline incoming, evitando contributor/evento paralelo.
+- O Chat 2 **não executou** testes de borda, GameTests, build NeoForge, dedicated-server smoke ou CI.
 
 ## Deduplicação / anti-abuso
 
@@ -80,10 +80,10 @@
 ## Checklist
 
 - [x] Design aprovado pelo Chat 1
-- [ ] P-A0096-01 classifier compartilhado implementado
-- [ ] P-A0096-02 hostilidade causal reconciliada
-- [ ] P-A0096-03 snapshot/dedup reconciliados
-- [ ] Código presente / Chat 2 concluído
+- [x] Classifier compartilhado implementado
+- [x] Hostilidade causal reconciliada
+- [x] Snapshot/dedup estrutural reconciliados
+- [x] Código presente / Chat 2 concluído
 - [ ] VALIDAÇÃO CHAT 3: unit/GameTests/boundaries
 - [ ] VALIDAÇÃO CHAT 3: build/dedicated server/CI
 - [ ] VALIDAÇÃO CHAT 3: IMPLEMENTAÇÃO CONFIRMADA
