@@ -23,7 +23,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Publish pending build status
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
