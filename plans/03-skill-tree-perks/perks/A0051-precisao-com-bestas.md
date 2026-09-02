@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após reauditoria provider→árvore e correção de provenance de lançamento.
 - **Notion:** `3c569db9-f0db-8135-903d-db954d9f8087`.
-- **Runtime:** IMPLEMENTAÇÃO PARCIAL; o crítico físico existe, mas precisa exigir launch receipt CROSSBOW confirmado e a linha continua dependente dos blockers de Mastery/alcançabilidade de A0049.
+- **Runtime:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**. O bônus crítico CROSSBOW agora exige receipt de lançamento correlacionado; projétil derivado/reemitido sem launch receipt não recebe o bônus A0051.
 
 ## Contrato canônico
 
@@ -18,11 +18,11 @@
 
 ## Auditoria técnica
 
-O adapter classifica vanilla por `CrossbowItem` e preserva owner real, mas o review da PR #249 identificou um gap: quando um add-on cria `AbstractArrow` derivado com owner jogador e metadata de besta sem `ArrowLooseEvent` correlacionado, o bridge pode sintetizar um pending launch neutro e ainda chegar ao resolver crítico. Portanto, o caminho não pode ser tratado como plenamente coerente até exigir provenance `ServerPlayer → launch CROSSBOW confirmado → projectile correlacionado → impacto`.
+O adapter classifica vanilla por `CrossbowItem` e preserva owner real, mas o review da PR #249 identificou um gap: quando um add-on cria `AbstractArrow` derivado com owner jogador e metadata de besta sem `ArrowLooseEvent` correlacionado, o bridge pode sintetizar um pending launch neutro e ainda chegar ao resolver crítico. O Chat 2 fechou esse gap exigindo `PendingLaunch.launchConfirmed`: sem correlação válida, a parcela de chance crítica de A0051 é removida antes do resolver canônico, preservando apenas crítico nativo/outros efeitos independentes realmente aplicáveis.
 
 O antigo fallback documental `rpgskilltree:crossbows` permanece removido: tag paralela não governada não é classificador canônico.
 
-A0051 herda integralmente a alcançabilidade de A0049. Corrigir somente o namespace `combat:crossbow` ↔ `epicfight:crossbow` não basta: enquanto `P-A0049-01` não existir no runtime, jogador novo não possui producer finite-discovery para alcançar Mastery CROSSBOW 60 e não chega legitimamente a A0051/A0052–A0054.
+A alcançabilidade de A0049 já possui producer finite-discovery e ledger canônica `epicfight:crossbow` na linha predecessora; o Chat 2 não criou segunda Mastery.
 
 ### Provider→árvore
 
@@ -33,16 +33,29 @@ A0051 herda integralmente a alcançabilidade de A0049. Corrigir somente o namesp
 
 ## Pendências para Chat 2
 
-- **P-A0051-01:** exigir launch receipt CROSSBOW server-authoritative antes de aplicar bônus crítico; projectile derivado/reemitido sem correlação de lançamento fica fail-closed mesmo com owner jogador e metadata `CrossbowItem`.
-- **Herdada P-A0049-01:** implementar producer finite-discovery da Mastery canônica `epicfight:crossbow`, deduplicado por tipo hostil inédito; 6 tipos → 60, 8 → 80.
-- **Herdada P-A0049-02:** reconciliar `combat:crossbow` do architecture catalog com `epicfight:crossbow`; não criar duas Masteries.
-- Adicionar/regredir teste provider-present/absent para classificação CROSSBOW, projectile derivado sem launch receipt, produção de Mastery, gate A0049→A0051 e resolução crítica única.
+- **RESOLVIDA P-A0051-01:** launch receipt CROSSBOW server-authoritative passou a ser obrigatório para a parcela A0051 do crítico.
+- **RESOLVIDAS herdadas P-A0049-01/02:** producer finite-discovery e namespace único `epicfight:crossbow` já existem na linha predecessora usada por esta branch.
+- A validação provider-present/absent, derivado sem receipt e resolução crítica única permanece reservada ao Chat 3.
+
+## Implementação Chat 2 — PR #386
+
+- [x] Hook implementado sobre `ArrowLooseEvent → PendingLaunch confirmado → EntityJoinLevelEvent`.
+- [x] Gate/provenance implementados para a parcela crítica A0051.
+- [x] Provider-native / resolver crítico canônico preservado.
+- [x] Fallback/fail-closed implementado para projectile sem launch receipt.
+- [x] Deduplicação/root compartilhado preservados para Multishot correlacionado.
+- [x] Código presente.
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/JUnit e regressões provider-present/absent.
+- [ ] **VALIDAÇÃO CHAT 3:** GameTests / integração de lançamento real.
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge e dedicated-server smoke.
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN de fechamento.
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA.
 
 ## Nove eixos obrigatórios de aprovação
 
 | Eixo | Resultado individual | Evidência / decisão |
 |---|---|---|
-| 1. Dependências, bloqueios e gates | **PASS no design** | A0049 ≥1 + gateway `epic_crossbow`; blockers `P-A0049-01/02` impedem considerar a progressão runtime alcançável antes da correção. |
+| 1. Dependências, bloqueios e gates | **PASS no design** | A0049 ≥1 + gateway `epic_crossbow`; a linha predecessora já fornece a Mastery/gateway necessários. |
 | 2. Integração global | **PASS** | Usa o resolver crítico canônico; não lê/escreve Shroud, Arcane state, hazards, Stamina ou recursos paralelos. Backlash/companions/derived projectiles ficam fora. |
 | 3. Qualidade e identidade | **PASS** | É o node incremental de precisão do ramo CROSSBOW, com bônus pequeno e função de caminho; não se apresenta como Notable/Capstone e não duplica uma segunda rolagem. |
 | 4. Ramificação, distância e topologia | **PASS** | Camada 2 após A0049 no gateway de Bestas; sem teleporte de região ou dependência circular. |
@@ -52,7 +65,7 @@ A0051 herda integralmente a alcançabilidade de A0049. Corrigir somente o namesp
 | 8. NeoVitae | **PASS** | Nenhuma dependência, provider ou fallback NeoVitae. |
 | 9. Cobertura modlist/providers | **PASS** | RPG, Epic Fight, Apothic/WoM quando aplicáveis, Black Arcana, Enshrouded, Volcanoes e Mobstein foram dispostos; não há bridge temática inventada. |
 
-Os 18 critérios técnicos cumulativos permanecem satisfeitos **no design**, com os gaps de implementação acima explicitamente fail-closed e destinados ao Chat 2; nenhum deles é ocultado como implementação confirmada.
+Os 18 critérios técnicos cumulativos permanecem satisfeitos **no design**. O Chat 2 materializou o hook aprovado, mas a confirmação final depende das validações do Chat 3.
 
 ## Notion
 
