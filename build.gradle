@@ -61,10 +61,6 @@ repositories {
         content { includeGroup 'software.bernie.geckolib' }
     }
     maven {
-        name = 'Curios'
-        url = 'https://maven.theillusivec4.top'
-    }
-    maven {
         name = 'KosmX'
         url = 'https://maven.kosmx.dev/'
     }
@@ -94,6 +90,24 @@ jacoco {
     toolVersion = '0.8.14'
 }
 
+def epicFightAdapterCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0031A0040EpicFight*CoverageJUnitTest.java'
+
+sourceSets {
+    test {
+        // Plain Gradle JUnit must remain independent from NeoGradle's loaded-game test run.
+        java.exclude epicFightAdapterCoveragePath
+    }
+    neoForgeTest {
+        // Reuse the existing source location but isolate the adapter tests that require a loaded NeoForge server.
+        java.srcDir 'src/test/java'
+        java.include epicFightAdapterCoveragePath
+        resources.srcDir 'src/test/resources'
+        resources.include 'META-INF/MANIFEST.MF'
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
 runs {
     configureEach {
         workingDirectory project.layout.projectDirectory.dir('runs').dir(name)
@@ -107,7 +121,12 @@ runs {
         systemProperty 'neoforge.enabledGameTestNamespaces', "${mod_id},volcanoes"
     }
 
-    junit {}
+    // Keep the NeoForge-loaded adapter suite on a dedicated source set so NeoGradle cannot
+    // consume or rewrite the ordinary Gradle test source set/task.
+    junit {
+        modSource project.sourceSets.main
+        unitTestSource project.sourceSets.neoForgeTest
+    }
 
     data {
         arguments.addAll '--mod', mod_id, '--all',
@@ -122,6 +141,9 @@ sourceSets.main.resources {
 
 configurations {
     runtimeClasspath.extendsFrom localRuntime
+    neoForgeTestImplementation.extendsFrom testImplementation
+    neoForgeTestCompileOnly.extendsFrom testCompileOnly
+    neoForgeTestRuntimeOnly.extendsFrom testRuntimeOnly
 }
 
 def battleMageProviderRuntimeEnabled = (findProperty('battleMageProviderRuntime') ?: 'false').toString().toBoolean()
@@ -205,6 +227,9 @@ dependencies {
     compileOnly('top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api') { transitive = false }
 
     testImplementation('curse.maven:cold-sweat-506194:8302211') { transitive = false }
+    testImplementation("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") { transitive = false }
+    testImplementation "net.neoforged:testframework:${neo_version}"
+    testImplementation 'org.mockito:mockito-core:5.23.0'
     testImplementation platform("org.junit:junit-bom:${junit_version}")
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation("curse.maven:irons-spells-n-spellbooks-855414:${irons_spells_file_id}") {
@@ -220,17 +245,103 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
+def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFight*CoverageJUnitTest'
+
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    extensions.configure(org.gradle.testing.jacoco.plugins.JacocoTaskExtension) { jacocoExtension ->
+        // Instrument repository code only. Minecraft/NeoForge/provider bytecode is dependency code,
+        // and instrumenting Blocks.<clinit> exceeds ASM's method-size limit under the JUnit server.
+        jacocoExtension.includes = ['dev.gustavopere.*']
+    }
+}
+
+tasks.named('test', Test).configure {
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+}
+
+// NeoGradle materializes the run-backed test task lazily. Keep its filter narrow.
+tasks.matching { it.name == 'testJunit' }.configureEach {
+    if (it instanceof Test) {
+        filter {
+            includeTestsMatching epicFightAdapterCoverageTest
+        }
+    }
+}
+
+// NeoGradle can rewrite Test inputs after ordinary task configuration. Rebind concrete compiler
+// destinations only after the execution graph is final, before skip/no-source evaluation.
+gradle.taskGraph.whenReady { graph ->
+    Test plain = tasks.named('test', Test).get()
+    if (graph.hasTask(plain)) {
+        File plainDir = tasks.named('compileTestJava', JavaCompile).get().destinationDirectory.get().asFile
+        plain.setTestClassesDirs(files(plainDir))
+        plain.setClasspath(sourceSets.test.runtimeClasspath)
+    }
+
+    Task loadedCandidate = tasks.findByName('testJunit')
+    if (loadedCandidate instanceof Test && graph.hasTask(loadedCandidate)) {
+        File loadedDir = tasks.named('compileNeoForgeTestJava', JavaCompile).get().destinationDirectory.get().asFile
+        ((Test) loadedCandidate).setTestClassesDirs(files(loadedDir))
+    }
+}
+
+def verifyPlainJUnitExecution = tasks.register('verifyPlainJUnitExecution') {
+    group = 'verification'
+    description = 'Fails if the ordinary JUnit task was skipped as NO-SOURCE.'
+    doLast {
+        Test plain = tasks.named('test', Test).get()
+        File classesDir = tasks.named('compileTestJava', JavaCompile).get().destinationDirectory.get().asFile
+        int classCount = fileTree(classesDir).matching { include '**/*.class' }.files.size()
+        if (plain.state.noSource) {
+            throw new GradleException("JUnit gate failed: :test finished NO-SOURCE; compileTestJava destination=${classesDir}; compiledClasses=${classCount}; candidateClassFiles=${plain.candidateClassFiles.files.size()}; testClassesDirs=${plain.testClassesDirs.files}; taskIncludes=${plain.includes}; taskExcludes=${plain.excludes}.")
+        }
+    }
+}
+
+def verifyNeoForgeJUnitExecution = tasks.register('verifyNeoForgeJUnitExecution') {
+    group = 'verification'
+    description = 'Fails if the NeoForge-loaded JUnit task was skipped as NO-SOURCE.'
+    doLast {
+        Task candidate = tasks.findByName('testJunit')
+        if (!(candidate instanceof Test)) {
+            throw new GradleException('JUnit gate failed: :testJunit was not materialized as a Test task.')
+        }
+        File classesDir = tasks.named('compileNeoForgeTestJava', JavaCompile).get().destinationDirectory.get().asFile
+        int classCount = fileTree(classesDir).matching { include '**/*.class' }.files.size()
+        if (((Test) candidate).state.noSource) {
+            Test loaded = (Test) candidate
+            throw new GradleException("JUnit gate failed: :testJunit finished NO-SOURCE; compileNeoForgeTestJava destination=${classesDir}; compiledClasses=${classCount}; candidateClassFiles=${loaded.candidateClassFiles.files.size()}; testClassesDirs=${loaded.testClassesDirs.files}; taskIncludes=${loaded.includes}; taskExcludes=${loaded.excludes}.")
+        }
+    }
+}
+
+tasks.named('test', Test).configure {
+    finalizedBy verifyPlainJUnitExecution
+}
+
+tasks.matching { it.name == 'testJunit' }.configureEach {
+    finalizedBy verifyNeoForgeJUnitExecution
 }
 
 tasks.named('jacocoTestReport').configure {
     dependsOn tasks.named('test')
+    dependsOn 'testJunit'
+    executionData(
+        layout.buildDirectory.file('jacoco/test.exec'),
+        layout.buildDirectory.file('jacoco/testJunit.exec')
+    )
     reports {
         xml.required = true
         html.required = true
         csv.required = false
     }
+}
+
+tasks.named('check').configure {
+    dependsOn tasks.named('test')
+    dependsOn 'testJunit'
 }
 
 tasks.named('sonar').configure {
@@ -268,6 +379,7 @@ tasks.withType(ProcessResources).configureEach {
         minecraft_version_range: minecraft_version_range,
         neo_version: neo_version,
         loader_version_range: loader_version_range,
+        epicfight_version_range: epicfight_version_range,
         mod_id: mod_id,
         mod_name: mod_name,
         mod_license: mod_license,

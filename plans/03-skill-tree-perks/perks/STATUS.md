@@ -18,7 +18,7 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0010 | Pressão do Carrasco | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #221; revalidação Fúria/autoria mergeada pela PR #237 | nenhuma |
 | A0011 | Ruptura de Guarda | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; `P-A0011-02` corrigida na PR #250 | nenhuma |
 | A0012 | Maestria de Machados — Frenesi do Saqueador | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; Cold Sweat 2.4.2 exato + diagnóstico bounded; transação PRE preservada conforme contrato | nenhuma |
-| A0013 | Treino com Lanças I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; classificação provider-native/fail-closed | nenhuma |
+| A0013 | Treino com Lanças I | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; classificação provider→árvore mergeada pela PR #237 | nenhuma |
 | A0014 | Treino com Lanças II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pela PR #237 via attack-speed provider-native | nenhuma |
 | A0015 | Precisão com Lanças | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; crítico canônico direto | nenhuma |
 | A0016 | Distância Ideal | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pela PR #237; cargas direct-player; ordem consumer→gain endurecida na PR #250 | nenhuma |
@@ -36,16 +36,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0028 | Abalo Crescente | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL VALIDADA FAIL-CLOSED pela PR #248 e preservada na reauditoria #315 | `P-A0028-01`: Epic Fight 21.17.3.1 sem receipt causal separado de guard pressure |
 | A0029 | Quebra de Postura | APROVADO + boundary | NÃO CONFIRMADA; fail-closed preservado; `P-A0029-02` causal latente corrigida na PR #315 | `P-A0029-01`: Epic Fight 21.17.3.1 sem heavy receipt inequívoco |
 | A0030 | Maestria de Martelos — Golpe Demolidor | APROVADO + boundary | NÃO CONFIRMADA; fail-closed preservado; `P-A0030-02` causal latente corrigida na PR #315 | `P-A0030-01`: guard-break causal attacker-side + heavy receipt ausentes |
-| A0031 | Treino com Maças I | APROVADO após correção | NÃO CONFIRMADA | `P-A0031-01`: remover tag MACE; `P-A0031-02`: Mastery anti-farm |
-| A0032 | Treino com Maças II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende de `P-A0031-01` |
-| A0033 | Precisão com Maças | APROVADO + boundary | CÓDIGO PRESENTE no crítico canônico | depende de `P-A0031-01` |
-| A0034 | Trauma Contundente | APROVADO + boundary | CÓDIGO PRESENTE no fallback Armor física | rotas extras guard/posture permanecem fail-closed sem receipt |
-| A0035 | Armadura Fendida | APROVADO + boundary | IMPLEMENTAÇÃO PARCIAL | `P-A0035-01`: boss Witherstein; `P-A0035-02`: commit Trauma/Sunder somente após hit confirmado |
-| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | NÃO CONFIRMADA | `P-A0036-01`: heavy receipt; `P-A0036-02`: aplicar Descompasso; `P-A0036-03`: Sunder deve preexistir ao root; depende de Mastery anti-farm |
-| A0037 | Treino com Foices I | APROVADO após correção | NÃO CONFIRMADA | `P-A0037-01`: remover tag SCYTHE; `P-A0037-02`: Mastery anti-farm |
-| A0038 | Treino com Foices II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende de `P-A0037-01` |
-| A0039 | Precisão com Foices | APROVADO + boundary | CÓDIGO PRESENTE no crítico canônico | depende de `P-A0037-01` |
-| A0040 | Marca da Ceifa | APROVADO | IMPLEMENTAÇÃO PARCIAL | `P-A0040-01`: cleanup de marca em target unload/despawn; depende de família SCYTHE segura |
+| A0031 | Treino com Maças I | APROVADO após correção | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359 | nenhuma |
+| A0032 | Treino com Maças II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359 | nenhuma |
+| A0033 | Precisão com Maças | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359 | nenhuma |
+| A0034 | Trauma Contundente | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA NO FALLBACK CANÔNICO pelo Chat 3 na PR #359 | nenhuma bloqueante; guard/posture extras seguem fail-closed sem receipt |
+| A0035 | Armadura Fendida | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA no contrato genérico pelo Chat 3 na PR #359; `P-A0035-02` resolvida | nenhuma bloqueante; `P-A0035-01` Witherstein específico segue fail-closed sem registry/tag versionado |
+| A0036 | Maestria de Maças — Quebra-Ossos | APROVADO após correção | NÃO CONFIRMADA / FAIL-CLOSED CORRETO; consumer Descompasso/sequencing validado pelo Chat 3 na PR #359 | `P-A0036-01`: heavy receipt inequívoco continua ausente no Epic Fight 21.17.3.1 |
+| A0037 | Treino com Foices I | APROVADO após correção | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359 | nenhuma |
+| A0038 | Treino com Foices II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359 | nenhuma |
+| A0039 | Precisão com Foices | APROVADO + boundary | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359 | nenhuma |
+| A0040 | Marca da Ceifa | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359; `P-A0040-01` resolvida | nenhuma |
 | A0041 | Corte de Ceifa | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0041-01`: reservation→commit da Marca somente após hit confirmado; depende de família SCYTHE segura |
 | A0042 | Maestria de Foices — Colheita de Batalha | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0042-01`: `eligible_kill` anti-abuso; `P-A0042-02`: unificar/deduplicar producers de death; teste transversal |
 | A0043 | Treino com Arcos I | APROVADO após correção | IMPLEMENTAÇÃO PARCIAL | `P-A0043-01`: Mastery BOW por discovery finita; `P-A0043-02`: reconciliar `combat:bow` vs `epicfight:bow`; teste provider-present |
@@ -204,6 +204,29 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - Auditoria: `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0031-A0040.md`.
 - Runtime não foi alterado pelo Chat 1.
 
+### A0031–A0040 — Chat 2 retroativo
+- Seleção refeita por ordem do usuário desde A0001: A0001–A0020 já confirmadas; A0021–A0030 já passaram por Chat 2/Chat 3; A0031–A0040 foi o primeiro lote exato elegível.
+- Branch substituta: `feat/chat2-a0031-a0040-retro-implementation`, criada da `main@452e8b23e374179c1f616f9beedce6e3dea66ef5` porque os refs históricos Chat 2 não continham uma implementação ativa/usável deste lote.
+- A0031/A0037: removidas tags paralelas MACE/SCYTHE e Mastery convertida para discovery finita +10/tipo; `minecraft:mace` é o único fallback vanilla; SCYTHE externa exige provider/mapping explícito.
+- A0035: `P-A0035-02` resolvida por reservation→POST commit; Trauma/Sunder não são mais consumidos/criados no PRE.
+- A0036: `P-A0036-02/-03` implementadas no consumer/sequencing; Sunder precisa preexistir ao root; Descompasso possui ambos debuffs/cooldown/cleanup. `P-A0036-01` permanece fail-closed porque heavy receipt inequívoco continua ausente.
+- A0040: `P-A0040-01` resolvida por prune periódico bounded de marcas expiradas.
+- A0032/A0033/A0034/A0038/A0039 preservam os pipelines aprovados e passam a operar sobre classificação de família endurecida.
+- Auditoria Chat 2: `audits/AUDITORIA-A0031-A0040-IMPLEMENTACAO-CHAT2.md`.
+- Estado de handoff: **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**; A0036 permaneceu intencionalmente `CÓDIGO PRESENTE EM FAIL-CLOSED`.
+
+### A0031–A0040 — Chat 3
+- PR oficial continuada: **#359**, branch `feat/chat2-a0031-a0040-retro-implementation`; nenhuma terceira linha paralela foi criada.
+- O HEAD antigo `ee600298df6791c13be7a327442ed6be5dbb8d75` foi sincronizado com `main@5213d068a91c95f45b9e119dec0be0636abc426d` pelo merge exato `8cf156294c7dd5922f6138a108a544f3ddeeddea`, promovido por fast-forward.
+- Findings antigos do review #359 foram rechecados: testes PRE→POST e Mastery foram atualizados; o consumer A0061–A0080 usa fallback exato `Items.MACE`, sem depender da tag removida.
+- `RPG Skill Tree CI` #3361 / run `33657496252` no HEAD sincronizado `8cf156294c7dd5922f6138a108a544f3ddeeddea`: **SUCCESS**, incluindo JUnit 5, NeoForge JUnit adapter tests, GameTests, validações, build, JAR e dedicated-server smoke.
+- A0031/A0032/A0033/A0037/A0038/A0039/A0040: **IMPLEMENTAÇÃO CONFIRMADA**.
+- A0034: **IMPLEMENTAÇÃO CONFIRMADA NO FALLBACK CANÔNICO**; guard/posture extras permanecem fail-closed não bloqueantes.
+- A0035: **IMPLEMENTAÇÃO CONFIRMADA no contrato genérico**; `P-A0035-01` Witherstein específico permanece fail-closed não bloqueante sem identidade/tag versionada.
+- A0036: **NÃO CONFIRMADA / FAIL-CLOSED CORRETO**; `P-A0036-01` continua aberta porque Epic Fight 21.17.3.1 não oferece heavy receipt inequívoco; o consumer latente de Descompasso foi validado sem inventar detecção heavy.
+- Auditoria Chat 3: `audits/AUDITORIA-CHAT3-A0031-A0040-PENDENCIAS-TECNICAS.md`.
+- Nenhuma perk A0041+ foi iniciada neste ciclo. O merge só ocorre após CI verde do HEAD documental final e confirmação de base fresca/mergeabilidade.
+
 ## Chat 1 — lote exato A0041–A0050
 
 **Estado:** `LOTE FECHADO NO DESIGN; BLOCKERS RUNTIME CATALOGADOS`.
@@ -245,389 +268,3 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 13. `P-A0041-50-TEST-01` — GameTest/harness server-side provider-present/absent para SCYTHE/BOW/CROSSBOW, Mastery, Focus, availability, dedup, lifecycle e multiplayer.
 
 O estado de CI/merge da PR de fechamento é confirmado no GitHub; este arquivo registra o design canônico e as pendências técnicas. Após o merge da PR #243, o ciclo A0041–A0050 está operacionalmente encerrado e o próximo lote só pode começar mediante novo comando do usuário.
-
-## Chat 1 — lote exato A0051–A0060
-
-**Estado:** `LOTE FECHADO NO DESIGN; NOVE EIXOS 10/10 REGISTRADOS; BLOCKERS RUNTIME CATALOGADOS`.
-
-- **INÍCIO:** A0051.
-- **FIM:** A0060.
-- **Quantidade:** 10 perks consecutivas.
-- **Base de abertura:** RPG Skill Tree `main@5e9dd777722014596641cb77d7be5c51df410e4e`.
-- **Base efetiva original da branch:** `main@2e6cf57d5c12630d55280d1c4ff0177f536dce96`; depois a branch foi reconciliada com a `main@1dfcbb3b567e213e6feed4cf254bba2989685454`, preservando integralmente os trabalhos concorrentes de Chat 2/Chat 3 e narrativa.
-- **Providers rechecados:** Volcanoes `c26e97c136b543f1fa0ef2ebb12044d10d8af816`; Enshrouded `f8d4d54cb5b8f12aa2149568bfaa2e25f00ef5e5`; Black Arcana `73c14ce55ff918bb8a81daeb99a352607ef11064`; Mobstein 5.4.4 conforme guia obrigatório.
-- **Matriz de delta obrigatória:** registrada por capacidade na auditoria; Volcanoes `7839db6...→c26e97c...` decomposto em ownership marker, persistência NBT/restart, foreign replacement safety e side-ledger recovery, todos `NÃO DEVE SER INTEGRADO` ao lote CROSSBOW/FIST.
-- **Nove eixos:** registrados individualmente nos 10 dossiês; 10/10 perks possuem resultado/evidência para Dependências/Gates, Integração Global, Qualidade/Identidade, Topologia, Especializações, PT-BR, Notion, NeoVitae e Cobertura de Providers.
-- **Notion fetch fresco:** 10/10.
-- **Notion alterado no fechamento inicial:** A0051, A0052, A0053, A0054, A0055, A0057, A0058.
-- **Re-fetch inicial:** 7/7 PASS.
-- **Primeiro review PR #249:** quatro findings válidos incorporados — `P-A0049-01`; reservation→commit A0053/A0054; Multishot/root outcome A0052; matriz per-capability do Volcanoes.
-- **Notion alterado no primeiro review:** A0052, A0053, A0054; re-fetch 3/3 PASS.
-- **Segundo review PR #249:** três findings válidos incorporados — launch provenance CROSSBOW; lifecycle de rank loss/respec/rules reload; nove eixos individualizados por perk.
-- **Notion alterado no segundo review:** A0051, A0052, A0053, A0054, A0058, A0060; re-fetch 6/6 PASS.
-- **Total de páginas Notion distintas mutadas no ciclo:** 8/10 — A0051, A0052, A0053, A0054, A0055, A0057, A0058, A0060.
-- **Sem mutação funcional:** A0056 e A0059.
-- **Arquivo canônico do lote:** `audits/AUDITORIA-RETROATIVA-PROVIDERS-A0051-A0060.md`.
-- **Runtime alterado neste Chat 1:** nenhum.
-- **A0061+:** não iniciado naquele ciclo.
-
-### Pendências destinadas ao Chat 2
-
-1. `P-A0049-01` — producer finite-discovery `epicfight:crossbow`: +10 por tipo hostil inédito; 6→60, 8→80.
-2. `P-A0049-02` — reconciliar `combat:crossbow` vs `epicfight:crossbow`; uma ledger.
-3. `P-A0051-01` — launch receipt CROSSBOW real antes do crítico; projectile derivado sem correlação fail-closed.
-4. `P-A0052-01` — availability A0050→A0052.
-5. `P-A0052-02` — mesma identidade causal de besta entre hit e reload.
-6. `P-A0052-03` — regressões de miss/cancel/troca/reload/estado externo/dedup.
-7. `P-A0052-04` — Multishot dedup por `rootActionId`.
-8. `P-A0052-05` — hit receipt somente de projectile correlacionado a launch CROSSBOW.
-9. `P-A0052-06` — limpar Cadência/receipts/root outcomes em rank loss/respec/rules reload.
-10. `P-A0053-01` — availability A0052→A0053.
-11. `P-A0053-02` — reservation→commit/rollback das 2 Cadências até projectile/root confirmado.
-12. `P-A0053-03` — launch provenance real da ação especial.
-13. `P-A0053-04` — descartar reservas em rank loss/respec/rules reload.
-14. `P-A0054-01` — consumir Cadência no disparo, não ao armar janela.
-15. `P-A0054-02` — availability A0050/A0052/A0053→A0054.
-16. `P-A0054-03` — uma ledger CROSSBOW `epicfight:crossbow`.
-17. `P-A0054-04` — reservation→commit/rollback da janela até projectile/root confirmado.
-18. `P-A0054-05` — launch provenance CROSSBOW no disparo consumidor.
-19. `P-A0054-06` — limpar janela/reservas do capstone em rank loss/respec/rules reload; Cadência por A0052.
-20. `P-A0055-01` — producer `combat:fist` por discovery finita; 6→60, 8→80; suprimir/migrar `epicfight:fist` paralelo.
-21. `P-A0055-02` — publicar/reconciliar `combat_fist` no architecture catalog.
-22. `P-A0055-03` — teste architecture↔model↔Notion↔producer + provider-present/absent.
-23. `P-A0058-01` — reset da Sequência por receipt provider-native de heavy impact.
-24. `P-A0058-02` — body modulation opcional somente por hunger/exhaustion real.
-25. `P-A0058-03` — limpar Sequência/janela em rank loss/respec/rules reload.
-26. `P-A0059-01` — heavy/finalizer receipt para Quebra de Ritmo.
-27. `P-A0059-02` — guard-break receipt + −8% movement por 2 s.
-28. `P-A0059-03` — limpar reserva/estado próprio em rank loss/respec/rules reload; Sequência por A0058.
-29. `P-A0060-01` — heavy/finalizer receipt para Combinação Final.
-30. `P-A0060-02` — Stamina refund somente por ledger causal pós-consumo das cinco ações.
-31. `P-A0060-03` — gate80 usa exclusivamente `combat:fist`.
-32. `P-A0060-04` — limpar cooldown/reserva do capstone em rank loss/respec/rules reload; Sequência por A0058.
-33. `P-A0051-60-TEST-01` — GameTest/harness CROSSBOW/FIST, availability, Mastery, same-weapon correlation, projectile derivado sem launch receipt, Multishot root outcome, launch cancellation/rollback, rank loss/respec/rules reload, heavy/finalizer fail-closed, dedup, lifecycle, multiplayer e dedicated server.
-
-O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirmação da `main`; após isso o ciclo encerra e A0061+ só pode começar mediante novo comando do usuário.
-
-## Chat 1 — lote exato A0061–A0070
-
-**Estado:** `LOTE FECHADO NO DESIGN; PR #298 MERGEADA; CI GREEN; MAIN CONFIRMADA`.
-
-- **PR de fechamento:** #298 (`docs(perks): close Chat 1 audit A0061-A0070`).
-- **Merge/main:** `4cde1cf26dc1b4bb374f782b348ec3a2c3c5702a`.
-- **CI:** RPG Skill Tree CI #2521 e workflows auxiliares verdes, incluindo NeoForge GameTests, build, JAR e dedicated-server smoke.
-- **INÍCIO:** A0061.
-- **FIM:** A0070.
-- **Quantidade:** 10 perks consecutivas.
-- **Base de abertura/fresh gameplay:** RPG Skill Tree `main@6ed628864199e74af23e6234d126959829f3c968`.
-- **Gate de delta próprio:** Volcanoes `a47bb868de9b4846d8ae9afb94374f9672ab381e`; Enshrouded `391ea82203d30cb392a3397f92e2a3cbe7fb6128`; Black Arcana `526d8196087c863e9df64051d5d39d88c3050856`.
-- **Notion fetch fresco:** 10/10.
-- **Notion alterado:** A0067 e A0070.
-- **Re-fetch pós-escrita:** 2/2 PASS em 2026-08-31.
-- **Dossiês criados:** 10/10.
-- **Nove eixos / 18 critérios:** PASS no design; fail-closed explícito onde runtime/API não prova o binding.
-- **A0067:** sem attack-window lifetime seguro no Epic Fight 21.17.3.1 atual, o node deve ser indisponível/não comprável; matemática sem binding não habilita aquisição.
-- **A0070:** `enshrouded:shroud_lich` é bridge read-only comprovada; Mowzie/Legendary Monsters/Born in Chaos/Mobstein permanecem fail-closed até registry ID/adapter exato.
-- **Arquivo canônico do lote:** `audits/AUDITORIA-A0061-A0070.md`.
-- **Runtime alterado neste Chat 1:** nenhum.
-- **A0071+:** não iniciado naquele ciclo.
-
-### Pendências destinadas ao Chat 2
-
-1. `P-A0061-01/-02` — dedup/root da contribuição física universal e Simply Swords provider-native.
-2. `P-A0062-01/-02` — uma única resolução crítica; adapters Apothic convergem no mesmo resolver.
-3. `P-A0063-01/-02` — uma aplicação de critical damage por root, sem double multiplier.
-4. `P-A0064-01/-02` — provider-present attack speed; movesets sem equivalência ficam fail-closed.
-5. `P-A0065-01/-02` — backend único de penetração; não duplicar armor ignore/pierce/shred.
-6. `P-A0066-01/-02` — Impact melee provider-present; projectile sem receipt continua fail-closed.
-7. `P-A0067-01` — **BLOQUEANTE:** unavailable-node invariant no purchase/gate.
-8. `P-A0067-02/-03` — lifetime/cleanup futuro e testes negativos de no-op purchase/STUN_ARMOR permanente.
-9. `P-A0068-01/-02` — snapshot pré-impacto <35%, borda e dedup.
-10. `P-A0069-01/-02` — snapshot pré-impacto >85%, borda e dedup.
-11. `P-A0070-01` — exact adapter/tag `enshrouded:shroud_lich`, read-only.
-12. `P-A0070-02` — Mowzie/Legendary/Born in Chaos/Mobstein fail-closed até IDs comprovados.
-13. `P-A0070-03/-04` — BOSS > ELITE e preservação de fases/imunidades provider-native.
-
-O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A0080 só foi iniciado após novo comando do usuário.
-
-## Chat 1 — lote exato A0071–A0080
-
-**Estado:** `LOTE FECHADO NO DESIGN; PR #302 MERGEADA; CI GREEN; MAIN CONFIRMADA; BLOCKERS RUNTIME CATALOGADOS`.
-
-- **PR de fechamento:** #302 (`docs(perks): close Chat 1 audit A0071-A0080`).
-- **Merge/main:** `616a0dd36b943562ea64fa354a1a2fc49b09c77b`.
-- **CI:** RPG Skill Tree CI #2543 / run `33363516499` GREEN no head `289e31bae45b4586ce3c0f44b8445d6dd6987ea2`, incluindo Core, JUnit 5, NeoForge GameTests, validators, build, JAR e dedicated-server smoke; workflows auxiliares também concluídos sem falha.
-- **INÍCIO:** A0071.
-- **FIM:** A0080.
-- **Quantidade:** 10 perks consecutivas.
-- **Base de abertura:** RPG Skill Tree `main@4cde1cf26dc1b4bb374f782b348ec3a2c3c5702a`.
-- **Gate de delta:** RPG `4cde1cf...` (somente docs desde baseline); Volcanoes `bbb273d61984e2c9bb84e8f8a56668ae7e315532` (hardening proveniência/licenças); Enshrouded `391ea822...` sem delta; Black Arcana `526d819...` sem delta.
-- **Delta canônico do ciclo:** `guides/projects/13-capability-delta-a0071-a0080.md`.
-- **Notion fetch fresco:** 10/10.
-- **Notion alterado:** A0072, A0073, A0074, A0075, A0076, A0077, A0079, A0080.
-- **Re-fetch pós-escrita:** 8/8 PASS em 2026-08-31.
-- **Sem mutação funcional:** A0071, A0078.
-- **Dossiês criados:** 10/10.
-- **Nove eixos / 18 critérios:** PASS no design.
-- **Runtime alterado neste Chat 1:** nenhum.
-- **A0081+:** não iniciado naquele ciclo.
-
-### Pendências destinadas ao Chat 2
-
-1. `P-A0071-01/-02` — validar Apothic ELITE e BOSS > ELITE; providers externos somente por identidade exata.
-2. `P-A0072-01` — availability transitiva A0067→A0072; refresh/dedup/anti-recursion.
-3. `P-A0073-01` — opener/consumer/cooldown por reservation→POST commit; `P-A0073-02` Stamina receipt; lifecycle/dedup.
-4. `P-A0074-01` — last-attack/opener/consumer/cooldown por reservation→POST commit; lifecycle/bordas.
-5. `P-A0075-01` — unavailable-node invariant; `P-A0075-02` boundary Cold Sweat thermal; contrato all-or-nothing com STAMINA_REGEN/exhaustion.
-6. `P-A0076-01` — controle `Alternar Postura Marcial` + payload serverbound + availability; atomic transition/lifecycle.
-7. `P-A0077-01` — availability A0067 + stance binding.
-8. `P-A0078-01/-03` — sprint/forced movement e bridge PP; ParCool apenas por receipt real.
-9. `P-A0079-01` — propagar forced transition/invalidation para teleport, mount/vehicle, contraption/belt e deslocamentos provider-identificados.
-10. `P-A0080-01` — unavailable até receipt de ataque hostil efetivamente evitado; `P-A0080-02` dedup Epic Fight/ParCool; `P-A0080-03` consumption reservation→POST commit.
-11. `P-A0071-80-TEST-01` — GameTest/harness transversal de classification, availability, root dedup, POST commit/rollback, stance networking, thermal all-or-nothing, movement/stationary, dodge-success, lifecycle, multiplayer e dedicated server.
-
-O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN e confirmação da `main@616a0dd36b943562ea64fa354a1a2fc49b09c77b`. O Chat 1 deve PARAR aqui; A0081–A0090 só pode começar mediante novo comando do usuário.
-
-## Chat 1 — lote exato A0081–A0090
-
-**Estado:** `LOTE FECHADO NO DESIGN; BLOCKERS RUNTIME CATALOGADOS; PR/CI/MERGE EM FECHAMENTO OPERACIONAL`.
-
-- **INÍCIO:** A0081.
-- **FIM:** A0090.
-- **Quantidade:** 10 perks consecutivas.
-- **Base de abertura do ciclo:** RPG Skill Tree `main@877120acf4f20a693e971282e8fca35bef72c6e7`.
-- **Fresh gameplay/runtime auditado:** `main@d20e7d666b627615f4af26dffb7c794b9a0b0fbd`.
-- **Freshness final pré-PR:** RPG Skill Tree `main@bc8b3d571b1a3cc85a21b7b206543a47c9a8eab4`; avanços concorrentes #300 (corpus/teste TFC do Compêndio) e #306 (narrative continuity auditor) foram classificados `SEM DELTA DE CAPABILITY PARA O LOTE`.
-- **Gate de delta próprio promovido:** Volcanoes `eaddc3232dfc600780769f4a5e7e45ff1e50181c`; Enshrouded `391ea82203d30cb392a3397f92e2a3cbe7fb6128`; Black Arcana `710077da89da5eb4418d3ac676e148849727ff07`.
-- **Delta canônico do ciclo:** `guides/projects/14-capability-delta-a0081-a0090.md`.
-- **Notion fetch fresco:** 10/10.
-- **Notion alterado:** A0081, A0082, A0083, A0084, A0085, A0086, A0087.
-- **Re-fetch pós-escrita:** 7/7 PASS em 2026-08-31.
-- **Sem mutação funcional:** A0088, A0089, A0090.
-- **Dossiês criados:** 10/10.
-- **Nove eixos / 18 critérios:** PASS no design; availability/fail-closed explícitos onde runtime/provider não prova o binding.
-- **A0081:** herda indisponibilidade de A0075 e não pode comprar rank enquanto o pré-requisito estiver estruturalmente indisponível.
-- **A0082:** caminho físico comum permanece válido; Ignitium e qualquer lifesteal nativo exigem correlação exata da cura provider-native ao mesmo root antes da parcela Skill Tree.
-- **A0083/A0084/A0085:** `SustainResolver` puro não torna os nodes implementáveis; cada um exige producer causal próprio e fica indisponível/não comprável enquanto nenhum provider seguro estiver ligado.
-- **A0086:** availability transitiva de A0083/A0085; a keystone não cria classificadores faltantes.
-- **A0087:** runtime já é fail-closed com `BloodThirstService(null)`; o purchase/gate também deve ser unavailable até BodyProvider Cold Sweat+exhaustion e disponibilidade A0075/A0081. O +8% de healing received pertence ao pipeline geral de curas elegíveis.
-- **A0088/A0089/A0090:** bindings vanilla/NeoForge reais presentes; A0088 preserva a razão de vida durante refresh e A0089/A0090 usam modifiers relativos sobre Armor/Toughness existentes.
-- **Arquivo canônico do lote:** `audits/AUDITORIA-A0081-A0090.md`.
-- **Runtime alterado neste Chat 1:** nenhum.
-- **A0091+:** não iniciado.
-
-### Pendências destinadas ao Chat 2
-
-1. `P-A0081-01` — **BLOQUEANTE:** unavailable-node transitivo A0075→A0081; nenhum purchase/rank enquanto A0075 estiver indisponível.
-2. `P-A0081-02` — limpar reserve/snapshot/pending/claims em rank loss, respec, rules reload e perda do pré-requisito; testar cura diferida, no-overheal e não recursão no sustain.
-3. `P-A0082-01` — interceptar e correlacionar a cura nativa final de Ignitium ao mesmo root (`EXACT_INTERCEPTED` ou equivalente); sem prova, aquele root fica inelegível; nunca `NativeCorrelation.NONE` para fonte nativa conhecida.
-4. `P-A0082-02` — regressões melee/projectile físico, overkill clipping, um root/uma cura, cap móvel, projectile derivado, fake player/summon e dedup.
-5. `P-A0083-01` — **BLOQUEANTE:** availability + producer `DIRECT_MAGIC`; Iron's `SpellDamageSource` é boundary provider-native candidato e Ars precisa prova causal equivalente.
-6. `P-A0084-01` — **BLOQUEANTE:** availability + classificação elemental/root provider-native; nenhum elemento fabricado por heurística.
-7. `P-A0085-01` — **BLOQUEANTE:** ledger causal `owner + application + pulse` para DoT direto; lifecycle de alvo/ator/rank/respec/rules reload.
-8. `P-A0086-01` — **BLOQUEANTE/transitivo:** availability depende de A0083/A0085 e ranks obrigatórios; universal path não sintetiza producers ausentes.
-9. `P-A0087-01` — **BLOQUEANTE:** BodyProvider real para calor metabólico Cold Sweat + exhaustion vanilla na mesma atividade, `maintain/release`, availability herdada A0075/A0081.
-10. `P-A0087-02` — pipeline canônico geral de `healing received +8%` exatamente uma vez durante Sede de Sangue; interação com o cap de sustain sem duplicação.
-11. `P-A0087-03` — Thirst Was Reclaimed somente por adapter causal da mesma atividade; ausência omite hidratação e nunca a infere de exhaustion.
-12. `P-A0088-01` — testes de rank/respec/rules reload, preservação de razão, ausência de cura gratuita e unicidade do modifier.
-13. `P-A0089-01` — testes de zero-base, modifier relativo e separação de `STUN_ARMOR`/resistência física.
-14. `P-A0090-01` — testes de zero-base, modifier relativo e fontes que ignoram armadura/toughness.
-15. `P-A0081-90-TEST-01` — GameTest/harness transversal provider-present/absent para sustain, native heal correlation, magic/element/DoT availability, BodyProvider, attributes, lifecycle, dedup, multiplayer e dedicated server.
-
-O design A0081–A0090 está fechado. O fechamento operacional deste ciclo exige a PR desta auditoria, review resolvido, CI GREEN, merge e confirmação fresca da `main`; após isso o Chat 1 deve **PARAR**. A0091–A0100 só pode começar mediante novo comando do usuário.
-
-## Chat 1 — checkpoint histórico A0200–A0209, superado pela auditoria A0200–A0299
-
-**Estado:** `LOTE FECHADO NO DESIGN; 10/10 UNAVAILABLE_NODE ATÉ CAPABILITIES/DEPENDÊNCIAS; PR/CI/MERGE EM FECHAMENTO OPERACIONAL`.
-
-Este lote foi iniciado diretamente em A0200 por ordem do usuário, enquanto outros chats ainda trabalham na faixa dos 100.
-
-**Exceção histórica de sequência:** a ordem específica do usuário autorizou este checkpoint adiantado apesar da regra permanente 26. Naquele momento a exceção valia somente para A0200–A0209. A autorização posterior para A0200–A0299 está registrada na seção seguinte; nenhum catálogo/runtime foi adicionado e A0091–A0199/Fases 0–4 não foram fechadas.
-
-- **INÍCIO:** A0200.
-- **FIM:** A0209.
-- **Quantidade:** 10 perks consecutivas.
-- **Faixa A0091–A0199:** não foi pulada nem fechada; permanece fora deste ciclo.
-- **Dependências anteriores explicitamente abertas:** A0144, A0148–A0155, A0198 e A0199.
-- **Base de abertura da branch:** RPG Skill Tree `main@80df3a2e626e85a386f12560a3672cb0486e426c`.
-- **Main reconciliada na freshness final de 2026-09-01:** `54b6cdc1de923732c3ec7d99c660f8fdefdb0610`; o delta classifica transações PRE→POST A0023/A0024/A0029/A0030, classes/Mastery/datapack sync, consolidação nativa e reconciliação pós-merge do Volcanoes e manutenção Compêndio/CI/Sonar, sem nova capability A0200–A0209.
-- **Freshness documental final:** RPG `main@54b6cdc1de923732c3ec7d99c660f8fdefdb0610`; Volcanoes standalone/source `eaddc3232dfc600780769f4a5e7e45ff1e50181c` consolidado no RPG pela PR #308 e reconciliado pela PR #337; Enshrouded `5a25b03a23ae81c111bbe1d5c23f85d8abd066ec`; Black Arcana `e89df6dc2c204c269d8f1811c6b3f309644c864a`.
-- **Delta canônico:** `guides/projects/15-capability-delta-a0200-a0209.md`.
-- **Notion fetch fresco:** 10/10.
-- **Notion alterado:** A0200–A0209, 10/10.
-- **Re-fetch pós-escrita:** 10/10 PASS em 2026-08-31.
-- **Dossiês criados:** 10/10.
-- **Nove eixos / 18 critérios:** PASS no design para 10/10.
-- **Runtime alterado neste Chat 1:** nenhum.
-- **Arquivo canônico:** `audits/AUDITORIA-A0200-A0209.md`.
-- **Estado histórico de A0210+:** não iniciado naquele checkpoint; superado pela autorização posterior A0200–A0299.
-
-### Decisões bloqueantes
-
-1. A0200/A0201 dependem de classifier hostil ELDRITCH, bucket e outcome ledger inexistentes.
-2. A0202/A0203/A0204 dependem de school lane ELDRITCH exata, HealingResolver/categories e upstream.
-3. A0205 depende de A0144/A0148–A0155 e direct ENDER classifier.
-4. A0206/A0208 dependem de receipt causal de deslocamento próprio; `EntityTeleportEvent` genérico é insuficiente.
-5. A0207 depende de hostile ENDER classifier e bucket.
-6. A0209 depende de producer ENDER e direct melee component hook.
-7. O producer Iron's normaliza escola addon como `namespace/path`, mas `MasteryLaneCatalog` rejeita essa forma hoje. Não usar aliases genéricos nem remover namespace.
-8. Black Arcana atual integra hazard/progression/mastery e forecast de Arcane Resistance, mas não publica `BLACK_ARCANA_ELDRITCH_OUTCOME`.
-9. A0023/A0024/A0029/A0030 usam reservation→POST commit/rollback na main atual e permanecem cobertas por suas próprias perks; A0029/A0030 continuam fail-closed sem receipts provider-native.
-10. Volcanoes agora é subsistema nativo do artefato RPG com facade read-only, mas seus serviços de geologia/atmosfera/pressão não publicam ELDRITCH/ENDER.
-
-### Pendências destinadas ao Chat 2
-
-1. `P-A0200-01/-05` — unavailable-node, classifier e bucket ELDRITCH.
-2. `P-A0201-01/-05` — Anchor por outcomes distintos, transaction e lifecycle.
-3. `P-A0202-01/-06` — upstream, school lane, HealingResolver e melee component.
-4. `P-A0203-01/-06` — upstream, três categories, healing/state e ledger.
-5. `P-A0204-01/-05` — terminal availability, lane80, Gate A/B/C e respec.
-6. `P-A0205-01/-05` — upstream, direct ENDER outcome e magic pipeline.
-7. `P-A0206-01/-05` — exact lane, displacement receipt e Rupture.
-8. `P-A0207-01/-04` — hostile ENDER classifier/bucket.
-9. `P-A0208-01/-05` — Veil, displacement ordering e transaction.
-10. `P-A0209-01/-05` — producer ENDER, direct melee component e lanes.
-11. `P-A0200-09-01` — reconciliar school addon namespace/path no MasteryLaneCatalog com migração/testes.
-12. `P-A0200-09-TEST-01` — matriz transversal provider present/absent, upstream, availability, IDs, rollback, teleport provenance, lifecycle, multiplayer e dedicated server.
-
-O checkpoint A0200–A0209 permanece preservado para rastreabilidade e foi ampliado pela auditoria especial A0200–A0299 abaixo.
-
-## Chat 1 — auditoria especial autorizada A0200–A0299
-
-**Estado:** DESIGN FECHADO PARA 100/100; NOTION CORRIGIDO E RELIDO; RUNTIME NÃO IMPLEMENTADO; PR/CI/MERGE EM FECHAMENTO OPERACIONAL.
-
-O usuário autorizou explicitamente o Chat 1 a trabalhar de A0200 a A0299 em um único ciclo especial de 100 perks. Esta autorização substitui, somente para esta entrega, a regra normal de lotes de 10. O trabalho permanece exclusivamente de auditoria/design.
-
-- **Início:** A0200.
-- **Fim:** A0299.
-- **Quantidade:** 100 perks consecutivas.
-- **A0300:** não iniciada; citada em A0298 somente como sucessora downstream/capstone final, nunca como dependência.
-- **Outros chats/upstream:** A0144–A0176, A0198 e A0199 não são presumidos como concluídos.
-- **Notion fetch fresco:** 100/100 páginas individuais.
-- **Notion alterado:** Custo Extra vazio para 0 em 100/100.
-- **Re-fetch pós-escrita:** 100/100 PASS em 2026-09-01; A0210/A0211/A0218 relidas após as correções pós-review; A0210/A0211 relidas novamente após o delta de Mastery da PR #335.
-- **Dossiês individuais:** 100/100, cada um com 21 propriedades, providers, quatro projetos próprios, testes, nove eixos e 18 critérios.
-- **Classificação:** 13 UNAVAILABLE_NODE atuais; 68 bloqueadas por capability/contrato futuro; 19 sem blocker nomeado, mas ainda sem implementação confirmada.
-- **Freshness dos projetos:** RPG <code>c92304bb22c0c5cec3358a6cc6bc0dbb24cc15c9</code>; Volcanoes <code>eaddc3232dfc600780769f4a5e7e45ff1e50181c</code>; Enshrouded <code>a08ff919463cb6ce3ea2a8eda59d74feffa6b6b2</code>; Black Arcana <code>d069190fedea1f7cb788a2c67e517eed6a9b3729</code>.
-- **Delta canônico:** guides/projects/16-capability-delta-a0200-a0299.md.
-- **Auditoria canônica:** audits/AUDITORIA-A0200-A0299.md.
-- **Runtime alterado:** nenhum.
-
-### Estado perk por perk
-
-| Código | Perk | Design | Estado técnico | Dependências/blockers principais |
-|---|---|---|---|---|
-| <code>A0200</code> | Resistência a Eldritch I | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0198</code> |
-| <code>A0201</code> | Resistência a Eldritch II | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
-| <code>A0202</code> | Imbuimento de Eldritch | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0198</code> |
-| <code>A0203</code> | Conhecimento Proibido | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0198</code>, <code>A0199</code> |
-| <code>A0204</code> | Maestria de Eldritch | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0199</code>, <code>A0198</code> |
-| <code>A0205</code> | Dano de Ender I | APROVADO | UNAVAILABLE_NODE / não comprável | <code>A0144</code>, <code>A0148</code>, <code>A0155</code> |
-| <code>A0206</code> | Dano de Ender II | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
-| <code>A0207</code> | Resistência a Ender I | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
-| <code>A0208</code> | Resistência a Ender II | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
-| <code>A0209</code> | Imbuimento de Ender | APROVADO | UNAVAILABLE_NODE / não comprável | prova dos adapters/hooks do dossiê |
-| <code>A0210</code> | Afinidade de Ender | APROVADO | UNAVAILABLE_NODE / não comprável | <code>ENDER_MASTERY_LANE_V1</code> |
-| <code>A0211</code> | Maestria de Ender | APROVADO | UNAVAILABLE_NODE / não comprável | <code>ENDER_MASTERY_LANE_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code> |
-| <code>A0212</code> | Dano de Terra I | APROVADO | implementação não confirmada | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> |
-| <code>A0213</code> | Dano de Terra II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0214</code> | Resistência a Terra I | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0215</code> | Resistência a Terra II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0216</code> | Imbuimento de Terra | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0217</code> | Domínio Geomântico | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0218</code> | Maestria de Terra | APROVADO | UNAVAILABLE_NODE / não comprável | <code>SPECIALIST_GATE_RESOLVER_V1</code> |
-| <code>A0219</code> | Dano de Água I | APROVADO | implementação não confirmada | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> |
-| <code>A0220</code> | Dano de Água II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0221</code> | Resistência a Água I | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0222</code> | Resistência a Água II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0223</code> | Imbuimento de Água | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0224</code> | Domínio Fluido | APROVADO | capability futura / fail-closed | <code>RESOURCE_DEBIT_RECEIPT_V1</code> |
-| <code>A0225</code> | Maestria de Água | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code> |
-| <code>A0226</code> | Dano de Vento I | APROVADO | implementação não confirmada | <code>A0144</code>, <code>A0148</code>, <code>A0149</code>, <code>A0150</code>, <code>A0151</code>, <code>A0152</code>, <code>A0153</code>, <code>A0154</code>, <code>A0155</code> |
-| <code>A0227</code> | Dano de Vento II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0228</code> | Resistência a Vento I | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0229</code> | Resistência a Vento II | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0230</code> | Imbuimento de Vento | APROVADO | implementação não confirmada | prova dos adapters/hooks do dossiê |
-| <code>A0231</code> | Domínio Aerocinético | APROVADO | capability futura / fail-closed | <code>RESOURCE_COST_MODIFIER_V1</code> |
-| <code>A0232</code> | Maestria de Vento | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code> |
-| <code>A0233</code> | Fundamento Elemental | APROVADO | capability futura / fail-closed | <code>A0144</code>, <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> |
-| <code>A0234</code> | Fundamento Defensivo Elemental | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> |
-| <code>A0235</code> | Ressonância Elemental | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
-| <code>A0236</code> | Memória Elemental | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
-| <code>A0237</code> | Cadeia Prismática | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
-| <code>A0238</code> | Adaptação Cruzada | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
-| <code>A0239</code> | Convergência Ofensiva | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
-| <code>A0240</code> | Matriz Adaptativa | APROVADO | capability futura / fail-closed | <code>ELEMENT_SIGNATURE_REGISTRY_V1</code>, <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code> |
-| <code>A0241</code> | Prisma Ofensivo | APROVADO | capability futura / fail-closed | <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code>, <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> |
-| <code>A0242</code> | Prisma Defensivo | APROVADO | capability futura / fail-closed | <code>ELEMENTAL_DIVERSITY_LEDGER_V1</code>, <code>ELEMENT_SIGNATURE_REGISTRY_V1</code> |
-| <code>A0243</code> | Ignição | APROVADO | capability futura / fail-closed | <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
-| <code>A0244</code> | Combustão | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
-| <code>A0245</code> | Queima Persistente | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
-| <code>A0246</code> | Calor Crescente | APROVADO | capability futura / fail-closed | <code>A0157</code>, <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code> |
-| <code>A0247</code> | Fagulha Crítica | APROVADO | capability futura / fail-closed | <code>A0151</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
-| <code>A0248</code> | Fogo em Alvo Ferido | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
-| <code>A0249</code> | Fogo em Alvo Íntegro | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
-| <code>A0250</code> | Resistência ao Calor | APROVADO | capability futura / fail-closed | <code>A0158</code>, <code>A0159</code>, <code>A0161</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code> |
-| <code>A0251</code> | Passos Quentes | APROVADO | capability futura / fail-closed | <code>A0161</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code> |
-| <code>A0252</code> | Mana Incandescente | APROVADO | capability futura / fail-closed | <code>A0145</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code> |
-| <code>A0253</code> | Propagação de Chamas | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
-| <code>A0254</code> | Aura de Brasas | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
-| <code>A0255</code> | Condução Incandescente | APROVADO | capability futura / fail-closed | <code>A0160</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
-| <code>A0256</code> | Armadura Incandescente | APROVADO | capability futura / fail-closed | <code>A0158</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
-| <code>A0257</code> | Marca Carbonizada | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
-| <code>A0258</code> | Combustão Súbita | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code> |
-| <code>A0259</code> | Nascido das Chamas | APROVADO | capability futura / fail-closed | <code>A0161</code>, <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code> |
-| <code>A0260</code> | Nadador de Lava | APROVADO | capability futura / fail-closed | <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LAVA_SWIM_MOVEMENT_BRIDGE_V1</code> |
-| <code>A0261</code> | Passos de Obsidiana | APROVADO | capability futura / fail-closed | <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TEMPORARY_WORLD_MUTATION_GUARD_V1</code> |
-| <code>A0262</code> | Coração de Magma | APROVADO | capability futura / fail-closed | <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code> |
-| <code>A0263</code> | Inferno Ambulante | APROVADO | capability futura / fail-closed | <code>A0162</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code> |
-| <code>A0264</code> | Frio Cortante | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code> |
-| <code>A0265</code> | Geada | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code> |
-| <code>A0266</code> | Congelamento Progressivo | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
-| <code>A0267</code> | Gelo Crítico | APROVADO | capability futura / fail-closed | <code>A0151</code>, <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
-| <code>A0268</code> | Pele Glacial | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>A0168</code>, <code>A0165</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code> |
-| <code>A0269</code> | Passo Seguro no Gelo | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>SLIPPERY_SURFACE_REGISTRY_V1</code>, <code>GROUND_SURFACE_CONTEXT_V1</code> |
-| <code>A0270</code> | Frio Persistente | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_DURATION_MODIFIER_V1</code> |
-| <code>A0271</code> | Quebra de Gelo | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code> |
-| <code>A0272</code> | Mana Frígida | APROVADO | capability futura / fail-closed | <code>A0145</code>, <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code>, <code>FULL_FREEZE_TRANSITION_RECEIPT_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code> |
-| <code>A0273</code> | Arma Gélida | APROVADO | implementação não confirmada | <code>A0167</code>, <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
-| <code>A0274</code> | Retaliação Gélida | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
-| <code>A0275</code> | Congelamento por Sequência | APROVADO | implementação não confirmada | <code>A0169</code>, <code>A0167</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code> |
-| <code>A0276</code> | Estilhaçar | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code>, <code>FULL_FREEZE_CONSUME_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code> |
-| <code>A0277</code> | Aura de Geada | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code> |
-| <code>A0278</code> | Escudo de Gelo | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ABSORPTION_SOURCE_LEDGER_V1</code> |
-| <code>A0279</code> | Coração Glacial | APROVADO | capability futura / fail-closed | <code>A0168</code>, <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>BODY_COLD_STATE_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code> |
-| <code>A0280</code> | Caminho Congelante | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TEMPORARY_WORLD_MUTATION_GUARD_V1</code> |
-| <code>A0281</code> | Permafrost | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_DURATION_MODIFIER_V1</code>, <code>FREEZE_DECAY_MODIFIER_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code> |
-| <code>A0282</code> | Zero Absoluto | APROVADO | capability futura / fail-closed | <code>A0169</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code>, <code>FULL_FREEZE_TRANSITION_RECEIPT_V1</code>, <code>DAMAGE_VULNERABILITY_RESOLVER_V1</code>, <code>BOSS_CLASSIFIER_V1</code> |
-| <code>A0283</code> | Condutividade | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>WET_STATE_V1</code> |
-| <code>A0284</code> | Carga | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code> |
-| <code>A0285</code> | Arco Elétrico | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code> |
-| <code>A0286</code> | Sobrecarga | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code> |
-| <code>A0287</code> | Impulso Elétrico | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code> |
-| <code>A0288</code> | Reflexo Carregado | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code> |
-| <code>A0289</code> | Resistência Elétrica | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>A0172</code>, <code>A0173</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code> |
-| <code>A0290</code> | Crítico Condutor | APROVADO | capability futura / fail-closed | <code>A0151</code>, <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code> |
-| <code>A0291</code> | Mana Estática | APROVADO | capability futura / fail-closed | <code>A0145</code>, <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ROOT_ACTION_TARGET_LEDGER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code> |
-| <code>A0292</code> | Arma Carregada | APROVADO | capability futura / fail-closed | <code>A0174</code>, <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code> |
-| <code>A0293</code> | Raio Ramificado | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ROOT_ACTION_CARDINALITY_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code> |
-| <code>A0294</code> | Sobrecarga Crítica | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>POSTURE_PRESSURE_V1</code> |
-| <code>A0295</code> | Campo Estático | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code> |
-| <code>A0296</code> | Condução pela Água | APROVADO | implementação não confirmada | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>WET_STATE_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code> |
-| <code>A0297</code> | Passo de Relâmpago | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DODGE_CONTROL_MODIFIER_V1</code> |
-| <code>A0298</code> | Tempestade Encadeada | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code> |
-| <code>A0299</code> | Corpo de Tempestade | APROVADO | capability futura / fail-closed | <code>A0176</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>HOSTILE_DAMAGE_RECEIPT_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>STAMINA_REGEN_MODIFIER_V1</code> |
-
-### Handoff sistêmico para o Chat 2
-
-1. Nenhuma das 100 perks possui implementação confirmada por este ciclo.
-2. A0200–A0211 e A0218 permanecem UNAVAILABLE_NODE até classifiers, buckets, lanes, resolver e receipts próprios conforme cada dossiê.
-3. A0210/A0211 exigem <code>ENDER_MASTERY_LANE_V1</code> exata; A0211/A0218 também exigem <code>SPECIALIST_GATE_RESOLVER_V1</code>. Ausência de qualquer contrato mantém o node não comprável.
-4. A0224/A0225, A0231/A0232 e as demais perks bloqueadas entre A0233–A0299 possuem contracts futuros ou version-status explicitamente bloqueantes conforme o dossiê individual.
-5. A0212–A0217, A0219–A0223, A0226–A0230, A0273, A0275 e A0296 ainda exigem prova real dos adapters/hooks mesmo sem blocker novo além dos registrados.
-6. Ausência de capability nunca autoriza no-op comprável, bônus genérico ou API inventada.
-7. Todo provider present/absent precisa de causalidade, dedup, rollback, lifecycle, multiplayer e dedicated-server tests.
-8. Se a API real contradizer o contrato, o ponto volta ao Chat 1; não redesenhar silenciosamente.
-9. A0300 não faz parte deste handoff.
-
-O design A0200–A0299 está fechado. O fechamento operacional deste ciclo exige PR, review resolvido, CI GREEN, merge e confirmação fresca da main; depois disso o Chat 1 deve parar.
