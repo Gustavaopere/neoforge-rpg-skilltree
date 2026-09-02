@@ -23,70 +23,100 @@ def load_helper():
     return module
 
 
-def list_payload(module, period_type: str) -> bytes:
+def settings_payload(values: dict[str, str]) -> bytes:
     return json.dumps(
         {
-            "newCodePeriods": [
-                {
-                    "projectKey": module.SONAR_PROJECT_KEY,
-                    "branchKey": module.SONAR_BASELINE_BRANCH,
-                    "type": period_type,
-                    "inherited": False,
-                }
+            "settings": [
+                {"key": key, "value": value, "inherited": False}
+                for key, value in values.items()
             ]
         }
     ).encode("utf-8")
 
 
-def test_previous_version_is_noop(module) -> None:
+def test_previous_version_remains_idempotent(module) -> None:
     calls = []
+    reads = 0
 
     def fake_request(path, token, *, method="GET", data=None):
+        nonlocal reads
         calls.append((path, method, data))
-        require(token == "token", "Unexpected token in no-op test")
-        require(method == "GET", "PREVIOUS_VERSION must not trigger a mutation")
-        require(path.startswith("/api/new_code_periods/list?"), "Cloud reads must use list endpoint")
-        return list_payload(module, "PREVIOUS_VERSION")
-
-    module.api_request = fake_request
-    repaired = module.ensure_previous_version("token")
-    require(repaired is False, "PREVIOUS_VERSION should be a no-op")
-    require(len(calls) == 1, "PREVIOUS_VERSION should require exactly one read")
-
-
-def test_stale_manual_baseline_repairs_to_previous_version(module) -> None:
-    calls = []
-    list_count = 0
-
-    def fake_request(path, token, *, method="GET", data=None):
-        nonlocal list_count
-        calls.append((path, method, data))
-        require(token == "token", "Unexpected token in repair test")
-        if path.startswith("/api/new_code_periods/list?"):
-            list_count += 1
-            period_type = "SPECIFIC_ANALYSIS" if list_count == 1 else "PREVIOUS_VERSION"
-            return list_payload(module, period_type)
-        require(path == "/api/new_code_periods/set", "Unexpected Sonar mutation endpoint")
-        require(method == "POST", "New Code period repair must use POST")
-        require(
-            data
-            == {
-                "project": module.SONAR_PROJECT_KEY,
-                "branch": module.SONAR_BASELINE_BRANCH,
-                "type": "PREVIOUS_VERSION",
-            },
-            "Repair must set PREVIOUS_VERSION without an analysis UUID/value",
-        )
+        require(token == "token", "Unexpected token in idempotency test")
+        if path.startswith("/api/settings/values?"):
+            reads += 1
+            return settings_payload(module.EXPECTED_SETTINGS)
+        require(path == "/api/settings/set", "Unexpected Sonar mutation endpoint")
+        require(method == "POST", "Cloud setting writes must use POST")
+        require(data["component"] == module.SONAR_PROJECT_KEY, "Wrong project component")
+        require(data["key"] in module.EXPECTED_SETTINGS, "Unexpected setting key")
+        require(data["value"] == module.EXPECTED_VALUE, "Unexpected setting value")
         return b""
 
     module.api_request = fake_request
     repaired = module.ensure_previous_version("token")
-    require(repaired is True, "Stale manual baseline must be repaired")
-    require(list_count == 2, "Repair must verify persisted policy after mutation")
-    require(len(calls) == 3, "Repair must perform read, mutation, verification read")
+    require(repaired is False, "Already-correct settings should report no drift")
+    require(reads == 2, "Helper must verify settings after idempotent writes")
+    require(len(calls) == 4, "Helper must read, write both settings, and verify")
 
 
-def test_malformed_list_response_fails_closed(module) -> None:
+def test_stale_manual_baseline_repairs_to_previous_version(module) -> None:
+    calls = []
+    reads = 0
+
+    stale = {
+        "sonar.leak.period": "27a14430-6921-4c63-ab5f-ab2bf23e15db",
+        "sonar.leak.period.type": "specific_analysis",
+    }
+
+    def fake_request(path, token, *, method="GET", data=None):
+        nonlocal reads
+        calls.append((path, method, data))
+        require(token == "token", "Unexpected token in repair test")
+        if path.startswith("/api/settings/values?"):
+            reads += 1
+            return settings_payload(stale if reads == 1 else module.EXPECTED_SETTINGS)
+        require(path == "/api/settings/set", "Unexpected Sonar mutation endpoint")
+        require(method == "POST", "New Code repair must use POST")
+        require(
+            data
+            == {
+                "component": module.SONAR_PROJECT_KEY,
+                "key": data["key"],
+                "value": "previous_version",
+            },
+            "Repair must use project settings without an analysis UUID",
+        )
+        require(data["key"] in module.EXPECTED_SETTINGS, "Unexpected setting key")
+        return b""
+
+    module.api_request = fake_request
+    repaired = module.ensure_previous_version("token")
+    require(repaired is True, "Stale manual baseline must be reported as repaired")
+    require(reads == 2, "Repair must verify persisted settings")
+    require(len(calls) == 4, "Repair must perform read, two writes, verification read")
+
+
+def test_partial_setting_drift_repairs_both_keys(module) -> None:
+    reads = 0
+    writes = []
+
+    def fake_request(path, token, *, method="GET", data=None):
+        nonlocal reads
+        if path.startswith("/api/settings/values?"):
+            reads += 1
+            if reads == 1:
+                return settings_payload({"sonar.leak.period": "previous_version"})
+            return settings_payload(module.EXPECTED_SETTINGS)
+        writes.append(data)
+        return b""
+
+    module.api_request = fake_request
+    repaired = module.ensure_previous_version("token")
+    require(repaired is True, "Partial configuration must be treated as drift")
+    require(len(writes) == 2, "Both documented Cloud settings must be written atomically-by-contract")
+
+
+def test_malformed_settings_response_fails_closed(module) -> None:
     def fake_request(path, token, *, method="GET", data=None):
         return b"not-json"
 
@@ -95,36 +125,18 @@ def test_malformed_list_response_fails_closed(module) -> None:
         module.ensure_previous_version("token")
     except RuntimeError:
         return
-    raise AssertionError("Malformed Sonar New Code response must fail closed")
-
-
-def test_missing_baseline_branch_fails_closed(module) -> None:
-    def fake_request(path, token, *, method="GET", data=None):
-        return json.dumps(
-            {
-                "newCodePeriods": [
-                    {
-                        "projectKey": module.SONAR_PROJECT_KEY,
-                        "branchKey": "other",
-                        "type": "PREVIOUS_VERSION",
-                    }
-                ]
-            }
-        ).encode("utf-8")
-
-    module.api_request = fake_request
-    try:
-        module.ensure_previous_version("token")
-    except RuntimeError as exc:
-        require("baseline branch" in str(exc), "Missing branch failure should be explicit")
-        return
-    raise AssertionError("Missing main New Code period must fail closed")
+    raise AssertionError("Malformed Sonar settings response must fail closed")
 
 
 def test_non_persistent_repair_fails_closed(module) -> None:
+    stale = {
+        "sonar.leak.period": "old",
+        "sonar.leak.period.type": "version",
+    }
+
     def fake_request(path, token, *, method="GET", data=None):
-        if path.startswith("/api/new_code_periods/list?"):
-            return list_payload(module, "SPECIFIC_ANALYSIS")
+        if path.startswith("/api/settings/values?"):
+            return settings_payload(stale)
         return b""
 
     module.api_request = fake_request
@@ -138,12 +150,12 @@ def test_non_persistent_repair_fails_closed(module) -> None:
 
 def main() -> None:
     module = load_helper()
-    test_previous_version_is_noop(module)
+    test_previous_version_remains_idempotent(module)
     test_stale_manual_baseline_repairs_to_previous_version(module)
-    test_malformed_list_response_fails_closed(module)
-    test_missing_baseline_branch_fails_closed(module)
+    test_partial_setting_drift_repairs_both_keys(module)
+    test_malformed_settings_response_fails_closed(module)
     test_non_persistent_repair_fails_closed(module)
-    print("Sonar New Code period self-healing contract: PASS")
+    print("SonarQube Cloud New Code settings self-healing contract: PASS")
 
 
 if __name__ == "__main__":
