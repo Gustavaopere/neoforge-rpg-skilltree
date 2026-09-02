@@ -467,8 +467,7 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
 
     @SuppressWarnings("unchecked")
     private static Optional<WeaponFamily> invokeFallback(Class<?> owner, ItemStack stack) throws Exception {
-        String methodName = owner == A0021A0040MasteryHooks.class ? "vanillaFamily" : "vanillaFallbackFamily";
-        Method method = privateMethod(owner, methodName, ItemStack.class);
+        Method method = privateMethod(owner, "vanillaFallbackFamily", ItemStack.class);
         return (Optional<WeaponFamily>) method.invoke(null, stack);
     }
 
