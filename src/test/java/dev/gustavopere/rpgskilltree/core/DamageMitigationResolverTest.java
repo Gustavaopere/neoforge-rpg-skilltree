@@ -4,6 +4,7 @@ import java.util.List;
 
 /** Focused RED/GREEN contract for the canonical incoming mitigation combiner. */
 public final class DamageMitigationResolverTest {
+    // Chat 2 TDD trigger: production resolver is intentionally absent at this checkpoint.
     public static void main(String[] args) {
         DamageMitigationResolver.Result result = DamageMitigationResolver.resolve(100.0D, List.of(
             new DamageMitigationResolver.Contribution("a0092", 0.08D),
