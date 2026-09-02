@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
-"""Ensure SonarQube Cloud main uses the race-safe PREVIOUS_VERSION New Code policy.
+"""Ensure SonarQube Cloud uses the race-safe Previous version New Code policy.
 
-The project previously drifted to a SPECIFIC_ANALYSIS policy whose referenced
-analysis was later removed by SonarQube housekeeping. That makes new analyses
-fail before the Quality Gate can run. This helper repairs configuration drift to
-the deterministic PREVIOUS_VERSION policy without storing or selecting analysis
-UUIDs.
+SonarQube Cloud configures project New Code definitions through the settings
+Web API rather than the SonarQube Server ``new_code_periods`` endpoints. This
+helper writes the two documented project settings for Previous version and then
+reads them back to verify persistence.
 
-SonarQube Cloud exposes New Code period reads through
-``/api/new_code_periods/list``. The operation is idempotent and fail-closed:
-malformed responses, API failures, missing credentials, a missing main-branch
-period, or a mutation that does not persist all make CI fail.
+The operation is idempotent at the configuration level and fail-closed: missing
+credentials, API failures, malformed responses, missing settings, or values that
+do not persist all make CI fail. It never selects or stores an analysis UUID.
 """
 
 from __future__ import annotations
@@ -24,8 +22,11 @@ import urllib.request
 
 SONAR_HOST_URL = os.environ.get("SONAR_HOST_URL", "https://sonarcloud.io").rstrip("/")
 SONAR_PROJECT_KEY = os.environ.get("SONAR_PROJECT_KEY", "Gustavaopere_neoforge-rpg-skilltree")
-SONAR_BASELINE_BRANCH = os.environ.get("SONAR_BASELINE_BRANCH", "main")
-EXPECTED_TYPE = "PREVIOUS_VERSION"
+EXPECTED_VALUE = "previous_version"
+EXPECTED_SETTINGS = {
+    "sonar.leak.period": EXPECTED_VALUE,
+    "sonar.leak.period.type": EXPECTED_VALUE,
+}
 
 
 def api_request(
@@ -58,81 +59,91 @@ def api_request(
         raise RuntimeError(f"SonarQube API {method} {path} failed: {exc.reason}") from exc
 
 
-def load_period(token: str) -> dict[str, object]:
-    query = urllib.parse.urlencode({"project": SONAR_PROJECT_KEY})
-    raw = api_request(f"/api/new_code_periods/list?{query}", token)
+def load_settings(token: str) -> dict[str, str]:
+    query = urllib.parse.urlencode(
+        {
+            "component": SONAR_PROJECT_KEY,
+            "keys": ",".join(EXPECTED_SETTINGS),
+        }
+    )
+    raw = api_request(f"/api/settings/values?{query}", token)
     try:
         payload = json.loads(raw.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-        raise RuntimeError("SonarQube New Code period response was not valid JSON") from exc
+        raise RuntimeError("SonarQube settings response was not valid JSON") from exc
 
     if not isinstance(payload, dict):
-        raise RuntimeError("SonarQube New Code period response was not an object")
+        raise RuntimeError("SonarQube settings response was not an object")
 
-    periods = payload.get("newCodePeriods")
-    if not isinstance(periods, list):
-        raise RuntimeError("SonarQube New Code period response did not expose newCodePeriods")
+    settings = payload.get("settings")
+    if not isinstance(settings, list):
+        raise RuntimeError("SonarQube settings response did not expose settings")
 
-    for period in periods:
-        if not isinstance(period, dict):
+    resolved: dict[str, str] = {}
+    for setting in settings:
+        if not isinstance(setting, dict):
             continue
-        if period.get("branchKey") != SONAR_BASELINE_BRANCH:
-            continue
-
-        period_type = period.get("type")
-        if not isinstance(period_type, str) or not period_type:
-            raise RuntimeError(
-                f"SonarQube New Code period for {SONAR_BASELINE_BRANCH} did not expose a valid type"
-            )
-        return period
-
-    raise RuntimeError(
-        "SonarQube New Code period response did not contain the configured baseline branch: "
-        f"{SONAR_BASELINE_BRANCH}"
-    )
+        key = setting.get("key")
+        value = setting.get("value")
+        if isinstance(key, str) and key in EXPECTED_SETTINGS and isinstance(value, str):
+            resolved[key] = value
+    return resolved
 
 
-def set_previous_version(token: str) -> None:
+def set_setting(token: str, key: str, value: str) -> None:
     api_request(
-        "/api/new_code_periods/set",
+        "/api/settings/set",
         token,
         method="POST",
         data={
-            "project": SONAR_PROJECT_KEY,
-            "branch": SONAR_BASELINE_BRANCH,
-            "type": EXPECTED_TYPE,
+            "component": SONAR_PROJECT_KEY,
+            "key": key,
+            "value": value,
         },
     )
 
 
 def ensure_previous_version(token: str) -> bool:
-    before = load_period(token)
-    before_type = before["type"]
-    if before_type == EXPECTED_TYPE:
-        return False
+    before = load_settings(token)
+    repaired = any(before.get(key) != value for key, value in EXPECTED_SETTINGS.items())
 
-    print(
-        "Sonar New Code period drift detected: "
-        f"project={SONAR_PROJECT_KEY} branch={SONAR_BASELINE_BRANCH} "
-        f"current={before_type} expected={EXPECTED_TYPE}"
-    )
-    set_previous_version(token)
-
-    after = load_period(token)
-    after_type = after["type"]
-    if after_type != EXPECTED_TYPE:
-        raise RuntimeError(
-            "Sonar New Code period repair did not persist: "
-            f"expected {EXPECTED_TYPE}, got {after_type}"
+    if repaired:
+        current = ", ".join(
+            f"{key}={before.get(key, '<unset>')}" for key in EXPECTED_SETTINGS
+        )
+        print(
+            "Sonar New Code settings drift detected: "
+            f"project={SONAR_PROJECT_KEY} current=[{current}] expected={EXPECTED_VALUE}"
         )
 
-    return True
+    # SonarQube Cloud documents Previous version as two project settings. Writing
+    # both on every run is intentional: the operation is idempotent and avoids
+    # partial configuration if a prior manual change touched only one key.
+    for key, value in EXPECTED_SETTINGS.items():
+        set_setting(token, key, value)
+
+    after = load_settings(token)
+    mismatches = {
+        key: after.get(key)
+        for key, value in EXPECTED_SETTINGS.items()
+        if after.get(key) != value
+    }
+    if mismatches:
+        raise RuntimeError(
+            "Sonar New Code settings repair did not persist: "
+            + ", ".join(
+                f"{key}=expected:{EXPECTED_SETTINGS[key]},actual:{actual!r}"
+                for key, actual in mismatches.items()
+            )
+        )
+
+    return repaired
 
 
 def main() -> int:
     token = os.environ.get("SONAR_TOKEN", "").strip()
     if not token:
-        print("SONAR_TOKEN is required to enforce the Sonar New Code period", file=sys.stderr)
+        print("SONAR_TOKEN is required to enforce the Sonar New Code settings", file=sys.stderr)
         return 2
 
     try:
@@ -142,9 +153,9 @@ def main() -> int:
         return 1
 
     print(
-        "SONAR_NEW_CODE_PERIOD "
-        f"project={SONAR_PROJECT_KEY} branch={SONAR_BASELINE_BRANCH} "
-        f"type={EXPECTED_TYPE} repaired={'true' if repaired else 'false'}"
+        "SONAR_NEW_CODE_SETTINGS "
+        f"project={SONAR_PROJECT_KEY} value={EXPECTED_VALUE} "
+        f"repaired={'true' if repaired else 'false'}"
     )
     return 0
 
