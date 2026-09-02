@@ -2,11 +2,11 @@
 
 ## Estado Chat 1
 
-**DESIGN APROVADO EM FAIL-CLOSED / `UNAVAILABLE_NODE`.**
+**DESIGN APROVADO EM FAIL-CLOSED / `UNAVAILABLE_NODE` TRANSITIVO.**
 
-A0169 é a terminal exterior do corredor ICE. Ela não concede poder bruto e só poderá satisfazer o Gate C da Specialist Gelo quando existir um resolver semântico canônico de Specialist. Esse boundary não está comprovado na `main` atual.
+A0169 é a terminal exterior do corredor ICE. Ela não concede poder bruto e satisfaz somente o Gate C da Specialist Gelo. A correção desta auditoria remove a premissa antiga de que faltaria um `SPECIALIST_GATE_V1`: o RPG Skill Tree já possui a pipeline canônica `TreeUnlockResolver` + `TreeUnlockDefinition`, alimentada pela projeção canônica de investimento do Stage 04.01.
 
-Notion revalidado após correção: `https://app.notion.com/p/3c569db9f0db8154b807ce1825d5aeb8`.
+Notion reconciliado com esta correção: `https://app.notion.com/p/3c569db9f0db8154b807ce1825d5aeb8`.
 
 ## Contrato
 
@@ -16,33 +16,29 @@ Notion revalidado após correção: `https://app.notion.com/p/3c569db9f0db8154b8
 - Não concede dano ICE, `RPG_ICE_RESISTANCE`, CHILL, Congelamento, imunidade, afinidade adicional ou Mastery.
 - A0169 não pertence às perks internas da Specialist Gelo.
 
-## Authority e capability ausente
+## Authority e pipeline canônica
 
-A autoridade do Specialist/gating pertence ao RPG Skill Tree. Iron's Spells 'n Spellbooks, Ars Nouveau e Ars Elemental são providers de gameplay ICE, não authority do gate estrutural.
+A authority do Specialist/gating pertence ao RPG Skill Tree. Iron's Spells 'n Spellbooks, Ars Nouveau e Ars Elemental são providers de gameplay ICE, não authority do gate estrutural.
 
-Capacidade requerida: `SPECIALIST_GATE_V1`.
+Reutilizar exclusivamente:
 
-Contrato futuro mínimo:
+- `TreeUnlockResolver`;
+- `TreeUnlockDefinition`;
+- projeção canônica de investimento do Stage 04.01.
 
-- Gate A = fundamentos exteriores semanticamente mapeados e disponíveis;
-- Gate B = pelo menos 100 PP **válidos** em `SPECIALIST_REGION:ICE`;
-- Gate C = A0169 possuída;
-- avaliação server-side a partir do estado canônico;
-- reavaliação em compra, respec, migração e mudança de capability/provider;
-- `UNAVAILABLE_NODE` conta 0 PP para Gate B;
-- bridge PP não pode ser contado duas vezes.
+Gate A = fundamentos exteriores semanticamente mapeados e disponíveis. Gate B = pelo menos 100 PP válidos em `SPECIALIST_REGION:ICE`. Gate C = A0169 possuída. `UNAVAILABLE_NODE` conta 0 PP no Gate B e bridge PP não pode ser contado duas vezes.
 
-A busca na `main` não encontrou `SpecialistGateResolver` nem boundary equivalente comprovado. O nome presente no catálogo anterior era contrato aspiracional, não evidência de runtime.
+É proibido criar `SpecialistGateResolver`, `SPECIALIST_GATE_V1` ou qualquer resolver paralelo para este caso.
 
 ## Availability transitiva
 
-A0168 está `UNAVAILABLE_NODE` porque exige `MAGIC_THERMAL_PARCEL_V1` e porque sua cadeia passa por A0163, atualmente indisponível sem `DIRECT_MAGIC_OUTCOME_V1`. Portanto A0169 permanece não adquirível antes mesmo de considerar a ausência de `SPECIALIST_GATE_V1`.
+A0168 continua `UNAVAILABLE_NODE` porque exige `MAGIC_THERMAL_PARCEL_V1` e sua cadeia passa por A0163, indisponível sem `DIRECT_MAGIC_OUTCOME_V1`. Portanto A0169 permanece não adquirível **por dependency closure**, não por ausência de infraestrutura Specialist.
 
 Ice Mastery também precisa de producer canônico causal. Não criar grant por tick, tempo congelando, temperatura corporal, duração de efeito ou mera conjuração sem outcome/milestone auditado.
 
-## Respec seguro futuro
+## Respec seguro
 
-Quando `SPECIALIST_GATE_V1` existir e houver perk interna ICE possuída:
+Enquanto houver perk interna ICE possuída:
 
 - bloquear refund de A0169;
 - bloquear refund de fundamentos/dependency closure necessários ao Gate A;
@@ -53,24 +49,28 @@ Quando `SPECIALIST_GATE_V1` existir e houver perk interna ICE possuída:
 
 ## Fail-closed
 
-Enquanto A0168, Ice Mastery causal ou `SPECIALIST_GATE_V1` estiverem indisponíveis:
+Enquanto A0168 ou Ice Mastery causal estiverem indisponíveis:
 
 - compra falha antes do gasto;
 - rank legado indisponível vale 0 PP para gates e permanece reembolsável/migrável;
+- definição/snapshot de unlock inválido ou incompatível falha fechado na pipeline canônica;
 - não retornar aos gates legados de 8 PP ICE/ARCANE total 12;
 - não conceder efeitos substitutos.
 
 ## Handoff Chat 2
 
-Implementar somente o estado de disponibilidade/fail-closed previsto neste dossiê. Não criar Specialist ad hoc, não usar geometria da UI como gate e não transformar a terminal em bônus de combate/controle. Qualquer mudança estrutural no sistema de Specialist que altere Gates A/B/C deve voltar ao Chat 1.
+Preservar A0169 como `UNAVAILABLE_NODE` transitivo enquanto A0168/dependencies estiverem bloqueadas. Não criar resolver Specialist novo. Quando a dependency closure deixar de bloquear a terminal, o unlock deve reutilizar `TreeUnlockResolver`/`TreeUnlockDefinition` + Stage 04.01.
 
 ## Testes obrigatórios para Chat 3
 
 1. purchase fail-before-spend com A0168 unavailable;
-2. purchase fail-before-spend sem `SPECIALIST_GATE_V1`;
-3. rank legado unavailable vale 0 PP no Gate B;
-4. nenhum efeito bruto ao possuir a terminal;
-5. futuramente: Gates A/B/C devem ser simultâneos;
-6. Gate B usa PP semanticamente válidos, sem bridge double-count;
-7. respec seguro bloqueia quebra do gate com Specialist interna possuída;
-8. nenhum retorno silencioso aos thresholds legados.
+2. rank legado unavailable vale 0 PP no Gate B e permanece reembolsável/migrável;
+3. A0169 isolada nunca libera Specialist;
+4. Gate A sem Gate B/C falha;
+5. Gate B sem Gate A/C falha;
+6. Gate A + Gate B + A0169 válidos liberam somente pela pipeline canônica;
+7. 99 PP falha e 100 PP passa quando os demais gates forem válidos;
+8. bridge PP não é contado duas vezes;
+9. respec seguro bloqueia quebra do gate com perks internas possuídas;
+10. nenhuma geometria/UI substitui o gate;
+11. ausência de resolver Specialist paralelo.
