@@ -7,10 +7,17 @@ import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class MineColoniesCompatTest {
+    @Test
+    void adapterIsPinnedToCurrentTargetPackArtifact() {
+        assertEquals("minecolonies", MineColoniesCompat.MOD_ID);
+        assertEquals("1.1.1375-1.21.1-snapshot", MineColoniesCompat.VERIFIED_ARTIFACT_VERSION);
+    }
+
     @Test
     void absentHostEstablishesAuthoritativeZeroProviderWithoutResolvingFactory() {
         AtomicBoolean factoryCalled = new AtomicBoolean(false);
