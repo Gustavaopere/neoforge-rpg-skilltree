@@ -113,7 +113,7 @@ final class A0051A0060Chat2ContractJUnitTest {
         Method reconcile = A0041A0060CombatState.class.getMethod(
             "reconcileForRanks", String.class, CombatPerkRanks.class, long.class
         );
-        reconcile.invoke(null, "p", CombatPerkRanks.empty(), 40_100L);
+        reconcile.invoke(state, "p", CombatPerkRanks.empty(), 40_100L);
 
         assertEquals(0, state.cadence("p"));
         assertEquals(0, state.sequence("p", 40_100L));
