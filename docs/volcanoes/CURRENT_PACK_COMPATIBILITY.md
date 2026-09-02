@@ -2,6 +2,8 @@
 
 > Autoridade operacional após a consolidação. Os planos históricos do antigo projeto Volcanoes estão arquivados em `docs/archive/volcanoes/` e não são mais uma fila de implementação ativa.
 
+O subtree histórico foi movido preservando o tree Git `0909026d4ba3ce5ef9853c8d35a893fa0fab596d`. O `Volcanoes Consolidation Contract` exige que o caminho de planejamento aposentado permaneça ausente da superfície ativa e que arquivos operacionais não mantenham referências obsoletas a ele.
+
 ## Estado do artefato
 
 Volcanoes é um subsistema nativo do único artefato/mod `rpgskilltree`. Não existe um segundo `@Mod` Volcanoes nem um segundo ciclo de bootstrap.
