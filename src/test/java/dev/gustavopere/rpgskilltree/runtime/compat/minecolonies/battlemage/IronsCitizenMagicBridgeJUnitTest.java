@@ -24,13 +24,22 @@ final class IronsCitizenMagicBridgeJUnitTest {
         assertEquals(0.0f, IronsCitizenMagicBridge.clampMana(-5.0f, 100.0f));
         assertEquals(35.0f, IronsCitizenMagicBridge.clampMana(35.0f, 100.0f));
         assertEquals(100.0f, IronsCitizenMagicBridge.clampMana(140.0f, 100.0f));
+        assertEquals(0.0f, IronsCitizenMagicBridge.clampMana(Float.NaN, 100.0f));
+        assertEquals(0.0f, IronsCitizenMagicBridge.clampMana(Float.POSITIVE_INFINITY, 100.0f));
+        assertEquals(0.0f, IronsCitizenMagicBridge.clampMana(10.0f, Float.NaN));
+        assertEquals(0.0f, IronsCitizenMagicBridge.clampMana(10.0f, Float.POSITIVE_INFINITY));
+        assertEquals(0.0f, IronsCitizenMagicBridge.clampMana(10.0f, 0.0f));
+        assertEquals(0.0f, IronsCitizenMagicBridge.clampMana(10.0f, -1.0f));
     }
 
     @Test
     void affordabilityIsFailClosed() {
         assertFalse(IronsCitizenMagicBridge.hasMana(9.99f, 10));
         assertTrue(IronsCitizenMagicBridge.hasMana(10.0f, 10));
+        assertTrue(IronsCitizenMagicBridge.hasMana(100.0f, 0));
         assertFalse(IronsCitizenMagicBridge.hasMana(Float.NaN, 1));
+        assertFalse(IronsCitizenMagicBridge.hasMana(Float.POSITIVE_INFINITY, 1));
+        assertFalse(IronsCitizenMagicBridge.hasMana(Float.NEGATIVE_INFINITY, 1));
         assertFalse(IronsCitizenMagicBridge.hasMana(100.0f, -1));
     }
 }
