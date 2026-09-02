@@ -21,12 +21,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
+import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.verify;
@@ -50,7 +50,7 @@ final class A0031A0040EpicFightProviderPostCoverageJUnitTest {
         AttributeInstance armor = mock(AttributeInstance.class);
         AttributeInstance movement = mock(AttributeInstance.class);
         EpicFightDamageSource source = mock(EpicFightDamageSource.class);
-        DealDamageEvent.Post event = mock(DealDamageEvent.Post.class, RETURNS_DEEP_STUBS);
+        ServerPlayerPatch patch = mock(ServerPlayerPatch.class);
 
         when(player.getUUID()).thenReturn(actorUuid);
         when(player.level()).thenReturn(level);
@@ -68,10 +68,9 @@ final class A0031A0040EpicFightProviderPostCoverageJUnitTest {
         when(movement.getModifier(any(ResourceLocation.class))).thenReturn(null);
         when(level.isClientSide()).thenReturn(false);
         when(level.getGameTime()).thenReturn(20L);
-        when(event.getEntityPatch().getOriginal()).thenReturn(player);
-        when(event.getTarget()).thenReturn(target);
-        when(event.getDamageSource()).thenReturn(source);
-        when(event.getModifiedDamage()).thenReturn(4.0F);
+        when(patch.getOriginal()).thenReturn(player);
+
+        DealDamageEvent.Post event = new DealDamageEvent.Post(patch, target, source, 4.0F);
 
         String actor = actorUuid.toString();
         String targetId = targetUuid.toString();
