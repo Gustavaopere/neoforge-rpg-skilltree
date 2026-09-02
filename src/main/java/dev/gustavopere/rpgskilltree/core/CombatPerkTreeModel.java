@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-/** Acquisition topology/gates for the currently closed A0001-A0100 range. */
+/** Acquisition topology/gates for the currently closed A0001-A0110 range. */
 public final class CombatPerkTreeModel {
     public static final String MARTIAL_GATEWAY_NODE = "rpgskilltree:martial_000";
     public static final String ARCANE_GATEWAY_NODE = "rpgskilltree:arcane_000";
@@ -15,6 +15,7 @@ public final class CombatPerkTreeModel {
     public static final String AGILITY_GATEWAY_NODE = "rpgskilltree:agility_000";
     public static final String AGILITY_DODGE_NODE = "rpgskilltree:agility_002";
     public static final String VITALITY_GATEWAY_NODE = "rpgskilltree:vitality_000";
+    public static final String SURVIVAL_GATEWAY_NODE = "rpgskilltree:survival_000";
     private static final Map<String, Node> NODES = build();
     private CombatPerkTreeModel() {}
 
@@ -59,6 +60,7 @@ public final class CombatPerkTreeModel {
             new String[][]{{"A0055","A0056"},{"A0055","A0057"},{"A0057","A0058"},{"A0056","A0059"},{"A0058","A0059"},{"A0058","A0060"},{"A0059","A0060"}});
         martialFoundations(map);
         sustainAndVitality(map);
+        vitalityBridgesAndSurvival(map);
         return Map.copyOf(map);
     }
 
@@ -165,6 +167,56 @@ public final class CombatPerkTreeModel {
             target.put(perk, new Node(
                 perk, CombatPerkNodeBinding.nodeIdUnchecked(perk), definition.maxRank(), definition.rankCost(),
                 definition.dependencies().isEmpty(), 1, Map.of(), gatewayId, Map.copyOf(gates),
+                adjacency.get(perk).stream().map(CombatPerkNodeBinding::nodeIdUnchecked).collect(java.util.stream.Collectors.toUnmodifiableSet()),
+                terminal
+            ));
+        }
+    }
+
+    private static void vitalityBridgesAndSurvival(Map<String, Node> target) {
+        Map<String, LinkedHashSet<String>> adjacency = new LinkedHashMap<>();
+        for (int i = 101; i <= 110; i++) adjacency.put(code(i), new LinkedHashSet<>());
+
+        for (int i = 101; i <= 110; i++) {
+            String child = code(i);
+            for (String parent : NotionCombatPerkCatalog.definition(child).orElseThrow().dependencies().keySet()) {
+                if (adjacency.containsKey(parent)) {
+                    adjacency.get(parent).add(child);
+                    adjacency.get(child).add(parent);
+                } else if (target.containsKey(parent)) {
+                    adjacency.get(child).add(parent);
+                    addExistingNeighbor(target, parent, child);
+                }
+            }
+        }
+
+        for (int i = 101; i <= 110; i++) {
+            String perk = code(i);
+            CombatPerkDefinition definition = NotionCombatPerkCatalog.definition(perk).orElseThrow();
+            LinkedHashMap<String,Integer> gates = dependencyRanksOnly(definition.dependencies());
+            String gatewayId;
+
+            if (perk.equals("A0102")) {
+                gates.put(VITALITY_GATEWAY_NODE, 1);
+                gates.put(ARCANE_GATEWAY_NODE, 1);
+                gatewayId = "vitality_arcane_bridge";
+            } else if (perk.equals("A0103")) {
+                gates.put(VITALITY_GATEWAY_NODE, 1);
+                gates.put(SURVIVAL_GATEWAY_NODE, 1);
+                gatewayId = "vitality_survival_bridge";
+            } else if (perk.equals("A0110")) {
+                gates.put(SURVIVAL_GATEWAY_NODE, 1);
+                gatewayId = "survival_maintenance";
+            } else {
+                gates.put(VITALITY_GATEWAY_NODE, 1);
+                if (perk.equals("A0107")) gates.put(MARTIAL_GATEWAY_NODE, 1);
+                gatewayId = perk.equals("A0107") ? "vitality_martial_bridge" : "vitality_core";
+            }
+
+            boolean terminal = perk.equals("A0106") || perk.equals("A0109");
+            target.put(perk, new Node(
+                perk, CombatPerkNodeBinding.nodeIdUnchecked(perk), definition.maxRank(), definition.rankCost(),
+                perk.equals("A0110"), 1, Map.of(), gatewayId, Map.copyOf(gates),
                 adjacency.get(perk).stream().map(CombatPerkNodeBinding::nodeIdUnchecked).collect(java.util.stream.Collectors.toUnmodifiableSet()),
                 terminal
             ));
