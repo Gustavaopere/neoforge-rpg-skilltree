@@ -30,7 +30,6 @@ import java.util.function.Supplier;
 @PrefixGameTestTemplate(false)
 public final class RnsIntegrationGameTests {
     private static final String KUBEJS_MOD_ID = "kubejs";
-    private static final String KUBEJS_VERSION = "2101.7.2-build.368";
     private static final String RNS_MISC_CLASS = "com.bmaster.createrns.RNSMisc";
     private static final String CUSTOM_LOCATION_CLASS =
             "com.bmaster.createrns.content.deposit.info.CustomServerDepositLocation";
@@ -224,7 +223,7 @@ public final class RnsIntegrationGameTests {
     private static void assertExactHost(GameTestHelper helper) {
         helper.assertTrue(RnsCompat.SUPPORTED_VERSION.equals(versionOf(RnsCompat.MOD_ID)),
                 "acceptance host must be exact Create: Rock & Stone 1.3.1-1.21.1-6");
-        helper.assertTrue(KUBEJS_VERSION.equals(versionOf(KUBEJS_MOD_ID)),
+        helper.assertTrue(RnsCompat.SUPPORTED_KUBEJS_VERSION.equals(versionOf(KUBEJS_MOD_ID)),
                 "acceptance host must load the pinned KubeJS startup runtime");
     }
 
