@@ -1,5 +1,15 @@
 # Volcanoes — Master Plan
 
+## Consolidation status
+
+The active Volcanoes runtime is now part of this unified repository. The former standalone `Gustavaopere/Volcanoes` repository was retired to a three-file migration tombstone after post-consolidation Full Pack, Sonar New Code, and worldgen gates passed. See [`MIGRATION_CLOSEOUT.md`](MIGRATION_CLOSEOUT.md) for the pinned standalone checkpoint, validation runs, tombstone SHA, and ongoing authority rules.
+
+## Standalone history preservation
+
+Before deletion of the retired standalone repository, its complete Git object history was archived at [`standalone-git-history`](standalone-git-history/), including all exported branches/tags and the last complete standalone source checkpoint. GitHub-native project metadata was separately archived at [`standalone-github-metadata`](standalone-github-metadata/), including pull requests, issue/PR comments, review comments, review submissions, issue events, workflow definitions and workflow-run summaries.
+
+The Git bundle is the canonical disaster-recovery source. All 97 recorded pull-request head and base commits are addressable from that bundle; no fallback patch was required. Hosted GitHub Actions job logs and artifact binaries are intentionally not retained in Git. The metadata snapshot records 1,386 non-expired artifact records totaling 9,166,912,583 bytes at export time; these are transient CI outputs rather than canonical source/history and may disappear when the standalone repository is deleted.
+
 This directory is the canonical memory for the project. A new ChatGPT/Codex session must read this file, `STATUS.md`, `DECISIONS.md`, then the README and task files of the currently active subsystem before changing code.
 
 ## Completion convention

@@ -25,12 +25,13 @@ permissions:
 jobs:
   sonar:
     name: SonarQube Analysis
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -41,7 +42,9 @@ jobs:
           java-version: '21'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+        with:
+          cache-provider: basic
 
       - name: Cache SonarQube packages
         uses: actions/cache@v4
@@ -53,6 +56,17 @@ jobs:
 
       - name: Sonar workflow policy test
         run: python3 scripts/test_sonar_workflow_policy.py
+
+      - name: Sonar New Code period self-healing regression test
+        run: python3 scripts/test_sonar_new_code_period_policy.py
+
+      - name: Ensure Sonar New Code period is Previous version
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: python3 scripts/ensure_sonar_new_code_period.py
+
+      - name: Sonar New Code hotspot regression test
+        run: python3 scripts/test_sonar_new_code_hotspots.py
 
       - name: Build and analyze with SonarQube
         env:

@@ -8,7 +8,7 @@ on:
       - 'scripts/compendium/**'
       - 'src/main/java/**'
       - 'src/main/resources/**'
-      - 'plans/10-compendio-natural/10-ptbr-corpus-editorial.md'
+      - 'plans/10-compendio-natural/**'
       - '.github/workflows/compendium-editorial-ci.yml'
 
 permissions:
@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 12
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Java 21
         uses: actions/setup-java@v4
@@ -30,6 +30,9 @@ jobs:
 
       - name: Set up Gradle cache
         uses: gradle/actions/setup-gradle@v4
+
+      - name: Permanent provider exclusions
+        run: python3 scripts/compendium/test_forbidden_editorial_providers.py
 
       - name: Editorial corpus schema and coverage tests
         run: python3 scripts/compendium/test_editorial_corpus.py
