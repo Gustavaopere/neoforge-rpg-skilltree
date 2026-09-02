@@ -6,7 +6,7 @@ import java.util.List;
 /** Canonical registry for outer player-attachment schema migrations. */
 public final class CanonicalPlayerAttachmentMigrations {
     private static final int MAX_PAYLOAD_BYTES = (32 * 1024 * 1024) + 128;
-    private static final CanonicalPlayerAttachmentMigration V1_TO_V2 =
+    private static final CanonicalPlayerAttachmentMigrationStep V1_TO_V2 =
         new CanonicalPlayerAttachmentMigrationStep(1, 2, CanonicalPlayerAttachmentMigrations::migrateV1ToV2);
     private static final CanonicalPlayerAttachmentMigrationChain CHAIN =
         new CanonicalPlayerAttachmentMigrationChain(
