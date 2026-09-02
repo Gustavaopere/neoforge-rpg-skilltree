@@ -47,8 +47,12 @@ def main() -> None:
         "Sonar policy repair must explicitly set PREVIOUS_VERSION.",
     )
     require(
-        "/api/new_code_periods/show" in helper and "/api/new_code_periods/set" in helper,
-        "Sonar policy helper must read, repair, and verify the New Code period through supported APIs.",
+        "/api/new_code_periods/list" in helper and "/api/new_code_periods/set" in helper,
+        "Sonar Cloud policy helper must read through list and repair through set.",
+    )
+    require(
+        "/api/new_code_periods/show" not in helper,
+        "Sonar Cloud policy helper must not depend on the unavailable show endpoint.",
     )
     require(
         "/api/project_analyses" not in helper
@@ -70,7 +74,7 @@ def main() -> None:
     )
 
     print(
-        "Sonar workflow policy is race-safe, self-heals to Previous version, "
+        "Sonar workflow policy is race-safe, self-heals to Previous version through the Cloud list API, "
         "uses basic Gradle caching, and does not install a manual analysis baseline."
     )
 
