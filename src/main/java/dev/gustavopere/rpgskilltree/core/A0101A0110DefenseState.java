@@ -12,7 +12,8 @@ import java.util.Set;
  *
  * <p>The state is keyed by canonical actor id so it survives ordinary player-object replacement
  * (respawn/dimension/logout-relogin while the server stays alive). Rank reconciliation removes
- * active effects without erasing cooldown deadlines, preventing respec/rank-loss reset exploits.</p>
+ * active effects without erasing cooldown deadlines. Cooldown snapshots can be hydrated from the
+ * canonical player attachment so a full server restart cannot reset them either.</p>
  */
 public final class A0101A0110DefenseState {
     public static final long SECOND_WIND_COOLDOWN_TICKS = 1200L;
@@ -27,6 +28,37 @@ public final class A0101A0110DefenseState {
     public static final long EMERGENCY_GUARD_COOLDOWN_TICKS = 3600L;
 
     private final Map<String, ActorState> actors = new HashMap<>();
+
+    /** Hydrates only anti-reset cooldown deadlines; active windows/receipts remain runtime-local. */
+    public synchronized void hydrateCooldowns(String actorId, CombatPerkCooldownState persisted) {
+        Objects.requireNonNull(actorId, "actorId");
+        Objects.requireNonNull(persisted, "persisted");
+        ActorState actor = actor(actorId);
+        actor.secondWind.cooldownUntilTick = Math.max(
+            actor.secondWind.cooldownUntilTick,
+            persisted.secondWindCooldownUntilTick()
+        );
+        actor.reactiveShell.cooldownUntilTick = Math.max(
+            actor.reactiveShell.cooldownUntilTick,
+            persisted.reactiveShellCooldownUntilTick()
+        );
+        actor.emergencyGuard.cooldownUntilTick = Math.max(
+            actor.emergencyGuard.cooldownUntilTick,
+            persisted.emergencyGuardCooldownUntilTick()
+        );
+        pruneActorIfEmpty(actorId, actor);
+    }
+
+    public synchronized CombatPerkCooldownState cooldownSnapshot(String actorId) {
+        Objects.requireNonNull(actorId, "actorId");
+        ActorState actor = actors.get(actorId);
+        if (actor == null) return CombatPerkCooldownState.empty();
+        return new CombatPerkCooldownState(
+            actor.secondWind.cooldownUntilTick,
+            actor.reactiveShell.cooldownUntilTick,
+            actor.emergencyGuard.cooldownUntilTick
+        );
+    }
 
     public synchronized void reconcileRanks(
         String actorId,
@@ -112,7 +144,7 @@ public final class A0101A0110DefenseState {
         }
 
         shell.expireActive(nowTick);
-        if (shell.active(nowTick)) return false; // hits during the 120-tick window never refresh it
+        if (shell.active(nowTick)) return false;
 
         shell.pruneReceipts(nowTick);
         if (shell.receipts.stream().anyMatch(receipt -> receipt.rootActionId.equals(rootActionId))) {
@@ -277,7 +309,7 @@ public final class A0101A0110DefenseState {
             nextPulseIndex = 0;
             cancelledPulseIndexes.clear();
             cancellationRoots.clear();
-            cancellationRoots.add(triggerRoot); // the crossing hit cannot cancel its own schedule
+            cancellationRoots.add(triggerRoot);
         }
 
         void cancelNextUnpaidPulse(String rootActionId) {
