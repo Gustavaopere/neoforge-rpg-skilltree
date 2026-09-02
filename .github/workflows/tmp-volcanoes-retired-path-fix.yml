@@ -1,0 +1,64 @@
+name: Temporary Volcanoes retired-path migration
+
+on:
+  push:
+    branches:
+      - tmp/volcanoes-retired-path-fix-final
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Rewrite retired Volcanoes plan references
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          docs = [
+              Path('plans/00-project/volcanoes-consolidation.md'),
+              Path('plans/03-skill-tree-perks/guides/projects/02-volcanoes.md'),
+              Path('plans/03-skill-tree-perks/guides/projects/15-capability-delta-a0200-a0209.md'),
+              Path('plans/03-skill-tree-perks/guides/projects/README.md'),
+          ]
+          for path in docs:
+              text = path.read_text(encoding='utf-8')
+              if 'plans/volcanoes' not in text:
+                  raise SystemExit(f'expected retired Volcanoes path missing from {path}')
+              path.write_text(text.replace('plans/volcanoes', 'docs/archive/volcanoes'), encoding='utf-8')
+
+          verifier = Path('scripts/verify-volcanoes-consolidation.py')
+          text = verifier.read_text(encoding='utf-8')
+          old = '(ROOT / "plans/volcanoes").exists()'
+          new = '(ROOT / "plans" / "volcanoes").exists()'
+          if old not in text:
+              raise SystemExit('expected contiguous retired path check missing from consolidation verifier')
+          verifier.write_text(text.replace(old, new), encoding='utf-8')
+
+          for path in [*docs, verifier]:
+              if 'plans/volcanoes' in path.read_text(encoding='utf-8'):
+                  raise SystemExit(f'retired Volcanoes path remains in {path}')
+          PY
+          python3 scripts/verify-volcanoes-consolidation.py
+          python3 scripts/verify-volcanoes-plan-archive.py
+      - name: Commit migration and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Gustavaopere'
+          git config user.email 'gustavaopere@gmail.com'
+          git rm .github/workflows/tmp-volcanoes-retired-path-fix.yml
+          git add plans/00-project/volcanoes-consolidation.md \
+                  plans/03-skill-tree-perks/guides/projects/02-volcanoes.md \
+                  plans/03-skill-tree-perks/guides/projects/15-capability-delta-a0200-a0209.md \
+                  plans/03-skill-tree-perks/guides/projects/README.md \
+                  scripts/verify-volcanoes-consolidation.py
+          git commit -m 'docs(volcanoes): retire active plan path references'
+          git push origin HEAD:${GITHUB_REF_NAME}
