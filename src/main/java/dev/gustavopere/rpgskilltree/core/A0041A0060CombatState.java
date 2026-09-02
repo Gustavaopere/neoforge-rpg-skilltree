@@ -158,13 +158,12 @@ public final class A0041A0060CombatState {
     ) {
         Actor actor = actor(actorId);
         String weapon = require(weaponId);
-        if (actor.lastCrossbowHitRoot == null
-            || actor.lastCrossbowHitWeapon == null
-            || !actor.lastCrossbowHitWeapon.equals(weapon)
-            || actor.lastCrossbowHitAt + windowMillis < now) {
+        if (actor.lastCrossbowHitRoot == null || actor.lastCrossbowHitWeapon == null) return false;
+        if (actor.lastCrossbowHitAt + windowMillis < now) {
             clearCrossbowHitReceipt(actor);
             return false;
         }
+        if (!actor.lastCrossbowHitWeapon.equals(weapon)) return false;
         clearCrossbowHitReceipt(actor);
         return true;
     }
