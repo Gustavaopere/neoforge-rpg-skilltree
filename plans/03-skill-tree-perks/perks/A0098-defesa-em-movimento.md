@@ -3,6 +3,7 @@
 ## Estado
 
 - **Chat 1:** DESIGN APROVADO / BRIDGE CONTRATUAL FECHADA.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 - **Notion:** `3c569db9-f0db-81d1-9530-c1c2aa50e07a`; corrigido e re-fetch confirmado.
 - **Domínio:** VITALITY ↔ AGILITY; Camada 2; Função Ponte.
 - **Ranks:** 3; custo 1 PP/rank.
@@ -36,13 +37,14 @@
 - O node A0098 não cobra, persiste nem reembolsa custo de confluência/classe. Stage 04.02 / `ProgressionService` é authority exclusiva da provenance de bridges pagas.
 - Geometria não habilita border hopping nem substitui fundamentos/terminais.
 
-## Evidência atual e pendências Chat 2
+## Evidência após Chat 2
 
-- `A0081A0100CombatPolicy.movingDefenseMultiplier` aceita booleano `authoritativeSelfPropelledSprint`.
-- `A0081A0100CombatEvents` atualmente passa diretamente `player.isSprinting()`; isso cobre o fallback vanilla, mas não prova exclusão transversal de todos os forced/passive movement contexts.
-- **P-A0098-01:** consolidar/reutilizar classifier de movimento autopropelido e provar exclusões de mount/vehicle/contraption/belt/knockback/grappling quando pertinentes.
-- **P-A0098-02:** ParCool/Epic ParCool permanecem fail-closed sem receipt real; não criar heurística.
-- **P-A0098-03:** implementar/validar política de bridge PP sem interferir no ledger de confluência Stage 04.02.
+- O pipeline defensivo consulta um boundary/classifier único de movimento autopropelido server-authoritative em vez de usar velocidade/animação como heurística.
+- Sprint vanilla continua como fallback seguro; passenger/vehicle e movimento forçado/passivo conhecido são excluídos antes de A0098.
+- O mesmo boundary recebe/invalida receipts de movimento forçado compartilhados; estado desconhecido não é promovido artificialmente para autopropulsão.
+- ParCool permanece **fail-closed para cobertura extra** sem receipt/provider real; nenhuma heurística de parkour foi criada.
+- A política de bridge permanece no mecanismo de progressão existente; A0098 não criou segundo ledger de cobrança/refund de confluência.
+- O Chat 2 **não executou** unit tests, GameTests de contextos de movimento, build NeoForge, dedicated-server smoke ou CI.
 
 ## Dedup / lifecycle
 
@@ -79,10 +81,10 @@
 ## Checklist
 
 - [x] Design aprovado pelo Chat 1
-- [ ] P-A0098-01 classifier/exclusões implementados pelo Chat 2
-- [ ] P-A0098-02 provider extras fail-closed preservado
-- [ ] P-A0098-03 bridge PP implementada/validada
-- [ ] Código presente / Chat 2 concluído
+- [x] Classifier/exclusões estruturais implementados pelo Chat 2
+- [x] Provider extras fail-closed preservado
+- [x] Bridge PP preservada sem ledger paralelo
+- [x] Código presente / Chat 2 concluído
 - [ ] VALIDAÇÃO CHAT 3: unit/GameTests/provider contexts
 - [ ] VALIDAÇÃO CHAT 3: build/dedicated server/CI
 - [ ] VALIDAÇÃO CHAT 3: IMPLEMENTAÇÃO CONFIRMADA
