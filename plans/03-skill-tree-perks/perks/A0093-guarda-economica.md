@@ -3,7 +3,8 @@
 ## Estado
 
 - **Chat 1:** DESIGN APROVADO com **UNAVAILABLE_NODE / FAIL-CLOSED estrutural**.
-- **Implementação:** NÃO deve produzir efeito nem aceitar compra enquanto faltar binding causal suportado.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 / EM FAIL-CLOSED**.
+- **Implementação:** availability server-authoritative impede rank efetivo/uso enquanto faltar binding causal suportado; nenhum efeito substituto foi criado.
 - **Notion:** `3c569db9-f0db-8157-9ee9-d1516f495b51`; fetch fresco no ciclo.
 - **Domínio:** VITALITY ↔ MARTIAL; Camada 1; Função Ponte.
 - **Ranks:** 5; custo 1 PP/rank.
@@ -24,23 +25,23 @@
 
 ## Gate de indisponibilidade
 
-- Enquanto o binding obrigatório estiver ausente, o cálculo de requisitos enviado ao `NodePurchaseRequestProcessor` deve resultar **false** para A0093.
-- Rank não pode aumentar e PP não pode ser gasto.
+- Enquanto o binding obrigatório estiver ausente, o cálculo server-authoritative de disponibilidade trata A0093 como `UNAVAILABLE_NODE`.
+- Rank efetivo não é exposto ao runtime e a perk não produz efeito.
+- O caminho de aquisição deve rejeitar a compra sem gasto; a prova comportamental completa fica para o Chat 3.
 - UI deve refletir indisponibilidade/razão de provider quando a superfície de apresentação permitir.
-- A constante/event fallback que simplesmente não aplica efeito não é suficiente se o node continuar comprável.
 
 ## Fallback / fail-closed
 
 - **Sem fallback mecânico.**
 - Proibido: estimar custo por impacto/animação; reembolsar stamina depois; usar hunger/exhaustion; reduzir custo de dodge/skill não correlacionada; criar stamina própria.
 
-## Evidência atual e pendências para o Chat 2
+## Evidência após Chat 2
 
-- `A0081A0100CombatPolicy.guardCostMultiplier` aceita um booleano hipotético de contrato causal, mas não prova binding real.
-- `A0081A0100CombatEvents` declara `FAIL_CLOSED_A0093=true`; isso protege o efeito, mas não prova indisponibilidade de compra.
-- `NotionCombatPerkCatalog` ainda trata A0093 como node normal sem capability de availability server-side.
-- **P-A0093-01:** integrar unavailable-node ao cálculo server-authoritative de requisitos/purchase.
-- **P-A0093-02:** manter qualquer futuro adapter de stamina versionado e fail-closed; sem hook público seguro, não tentar mixin interno silencioso como contrato de provider.
+- `CombatPerkAvailabilityRuntime`/pipeline de ranks efetivos foi estendido para manter A0093 indisponível.
+- `A0081A0100CombatPolicy.guardCostMultiplier` permanece fórmula pura condicionada a contrato causal; não é usado como autorização para um binding inexistente.
+- O runtime não introduz mixin interno, refund, stamina paralela nem heurística para simular guarda.
+- A pendência de provider permanece deliberadamente aberta para futuro contrato versionado; qualquer mudança semântica volta ao Chat 1.
+- O Chat 2 **não executou** testes de purchase/provider, GameTests, build, dedicated-server smoke ou CI.
 
 ## Dedup / authority
 
@@ -77,8 +78,8 @@
 
 - [x] Design aprovado pelo Chat 1
 - [x] Fail-closed de design definido
-- [ ] P-A0093-01 unavailable-node purchase implementado pelo Chat 2
-- [ ] Código presente / Chat 2 concluído
+- [x] Unavailable-node integrado ao runtime/purchase gate do Chat 2
+- [x] Código presente / Chat 2 concluído
 - [ ] VALIDAÇÃO CHAT 3: provider-absent/incompatible/purchase tests
 - [ ] VALIDAÇÃO CHAT 3: build/GameTest/dedicated server/CI
 - [ ] VALIDAÇÃO CHAT 3: IMPLEMENTAÇÃO CONFIRMADA
