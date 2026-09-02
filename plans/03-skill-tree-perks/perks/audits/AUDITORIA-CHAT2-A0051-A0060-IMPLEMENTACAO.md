@@ -42,7 +42,7 @@ O Chat 1 fechou o design A0051–A0060 na PR #249, porém essa PR documental já
 ### CROSSBOW
 
 1. `CombatPerkAvailabilityRuntime` propaga `A0050 → A0052 → A0053 → A0054` como indisponível.
-2. `A0041A0060CombatState` passou a manter hit receipt com `weaponId` e root.
+2. `A0041A0060CombatState` mantém hit receipt com `weaponId` e root. Reload de identidade diferente é rejeitado sem consumir o receipt válido; troca real de arma continua responsável por limpá-lo no `CrossbowTrack`.
 3. Troca/remoção da besta limpa receipt causal pendente.
 4. Projectile sem launch receipt confirmado não cria hit receipt de A0052 e não recebe a parcela crítica de A0051.
 5. A0053/A0054 usam reservation→commit bounded em vez de consumo em `ArrowLooseEvent`.
@@ -69,7 +69,15 @@ Foi criado `A0051A0060Chat2ContractJUnitTest` antes das mudanças de produção 
 
 `A0041A0060CombatPolicyTest` também foi atualizado para a nova semântica transacional.
 
-Esses testes são evidência de desenvolvimento e **não substituem a bateria final do Chat 3**. O Chat 2 não promove nenhuma perk a `IMPLEMENTAÇÃO CONFIRMADA` com base neles.
+### Evidência executada
+
+- O primeiro run do novo harness expôs dois problemas do desenvolvimento: o receipt de hit era descartado ao receber reload de outra identidade de besta, e o teste de reconciliation invocava um método de instância com receiver `null`.
+- O runtime foi corrigido para rejeitar o reload incompatível sem destruir o receipt válido; o harness foi corrigido para invocar `reconcileForRanks(...)` no state real.
+- **HEAD verde de código:** `7abd8fe64eff623f8e0f375b5dd60dc4007b981b`.
+- **RPG Skill Tree CI #3266 / run `33587291688`: SUCCESS**.
+- Nesse run passaram: Core tests, **JUnit 5 — 900 testes**, NeoForge GameTests, Compendium/validators, data/client/node/passive/runtime/provider validations, NeoForge build, JAR verification e dedicated-server smoke.
+
+Essa evidência é verificação de desenvolvimento e **não substitui a bateria/decisão final do Chat 3**. O Chat 2 não promove nenhuma perk a `IMPLEMENTAÇÃO CONFIRMADA` com base nela.
 
 ## Pendências técnicas para o Chat 3
 
@@ -96,17 +104,13 @@ Nenhuma dessas ausências foi substituída por bônus genérico, heurística de 
 
 ## Validações reservadas ao Chat 3
 
-Permanecem pendentes como fechamento formal:
+A CI de desenvolvimento do Chat 2 já exerceu unit/JUnit, NeoForge GameTests, build e dedicated-server smoke no HEAD `7abd8fe6...`, mas o fechamento formal continua reservado ao Chat 3, incluindo:
 
-- unit/JUnit completo;
-- GameTests;
-- integração provider-present/absent;
-- deduplicação/idempotência em runtime real;
-- build NeoForge;
-- dedicated-server smoke;
-- CI GREEN de fechamento;
-- revisão final do diff;
-- `IMPLEMENTAÇÃO CONFIRMADA`;
+- revisão final do código contra os dossiês;
+- resolução/decisão das pendências técnicas aplicáveis, especialmente Multishot `success-wins`;
+- testes adicionais provider-present/absent e cenários causais específicos do lote;
+- CI GREEN do HEAD que o Chat 3 efetivamente promover;
+- `IMPLEMENTAÇÃO CONFIRMADA` somente com evidência final;
 - merge e confirmação de `main`.
 
 ## Estado de saída do Chat 2
