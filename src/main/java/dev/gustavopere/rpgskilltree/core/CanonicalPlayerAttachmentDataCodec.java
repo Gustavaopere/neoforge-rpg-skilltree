@@ -9,7 +9,7 @@ import java.io.UncheckedIOException;
 
 /** Versioned codec for the single optional-Core canonical player attachment. */
 public final class CanonicalPlayerAttachmentDataCodec {
-    public static final int CURRENT_VERSION = 1;
+    public static final int CURRENT_VERSION = 2;
     private static final int MAX_SECTION_BYTES = 16 * 1024 * 1024;
 
     private CanonicalPlayerAttachmentDataCodec() {}
@@ -18,18 +18,21 @@ public final class CanonicalPlayerAttachmentDataCodec {
         if (attachment == null) throw new IllegalArgumentException("attachment must not be null");
         byte[] core = CoreProgressionAttachmentDataCodec.encode(attachment.coreProgression());
         byte[] compatibility = ProgressionStateCodec.encode(attachment.compatibilityProgression());
+        byte[] combatCooldowns = CombatPerkCooldownStateCodec.encode(attachment.combatPerkCooldowns());
         validateSectionLength(core.length, "Core progression attachment");
         validateSectionLength(compatibility.length, "compatibility progression");
+        validateSectionLength(combatCooldowns.length, "combat perk cooldowns");
 
         try {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream(
-                13 + core.length + compatibility.length
+                17 + core.length + compatibility.length + combatCooldowns.length
             );
             try (DataOutputStream out = new DataOutputStream(bytes)) {
                 out.writeInt(CURRENT_VERSION);
                 out.writeBoolean(attachment.hasLegacyMigrationSource());
                 writeSection(out, core);
                 writeSection(out, compatibility);
+                writeSection(out, combatCooldowns);
             }
             return bytes.toByteArray();
         } catch (IOException exception) {
@@ -50,13 +53,15 @@ public final class CanonicalPlayerAttachmentDataCodec {
             boolean legacySource = in.readBoolean();
             byte[] core = readSection(in, "Core progression attachment");
             byte[] compatibility = readSection(in, "compatibility progression");
+            byte[] combatCooldowns = readSection(in, "combat perk cooldowns");
             if (in.available() != 0) {
                 throw new IllegalArgumentException("canonical player attachment contains trailing bytes");
             }
             return new CanonicalPlayerAttachmentData(
                 CoreProgressionAttachmentDataCodec.decode(core),
                 ProgressionStateCodec.decode(compatibility),
-                legacySource
+                legacySource,
+                CombatPerkCooldownStateCodec.decode(combatCooldowns)
             );
         } catch (IOException exception) {
             throw new IllegalArgumentException("invalid canonical player attachment payload", exception);
