@@ -1,0 +1,104 @@
+name: Temporary finalize Specialist reconciliation docs
+
+on:
+  push:
+    branches:
+      - docs/reconcile-specialist-gates-a0001-a0299
+    paths:
+      - .github/workflows/finalize-specialist-reconciliation-docs.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Reconcile audit text with materialized dossiers
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          audit = Path('plans/03-skill-tree-perks/perks/audits/AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md')
+          readme = Path('plans/03-skill-tree-perks/perks/audits/README.md')
+          text = audit.read_text(encoding='utf-8')
+
+          replacements = [
+              (
+                  'Referências históricas corrigidas no Catálogo Mestre:',
+                  'Referências históricas corrigidas no Catálogo Mestre e materializadas nos cinco dossiês desta PR:'
+              ),
+              (
+                  'Nenhuma das cinco recebe implementação confirmada por esta errata.',
+                  'Nenhuma das cinco recebe implementação confirmada por esta errata. Verificação pós-escrita no GitHub: **5/5** dossiês com `TreeUnlockResolver` + `TreeUnlockDefinition` + Stage 04.01; **0/5** identificadores legados de resolver Specialist.'
+              ),
+              (
+                  'Para **todas A0243–A0299**, qualquer referência histórica a `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver` deve ser interpretada como:\n\n> `SPECIALIST_UNLOCK:<FAMILY>` comprovado pela pipeline canônica `TreeUnlockResolver` + `TreeUnlockDefinition` + projeção de investimento Stage 04.01.\n\nIsso remove **somente** o falso blocker/contrato duplicado de gate. Todos os contratos específicos de gameplay permanecem exatamente como documentados.',
+                  'Os **57 dossiês A0243–A0299 foram materializados nesta PR**. Em todos eles, `SPECIALIST_UNLOCK:<FAMILY>` é comprovado pela pipeline canônica `TreeUnlockResolver` + `TreeUnlockDefinition` + projeção de investimento Stage 04.01.\n\nA materialização remove **somente** o falso blocker/contrato duplicado de gate. Todos os contratos específicos de gameplay permanecem exatamente como documentados.'
+              ),
+              (
+                  'Os dossiês individuais do GitHub permanecem como snapshots históricos e podem ainda conter a string antiga em trechos transcritos. Por isso `perks/README.md` e `audits/README.md` tornam esta reconciliação leitura obrigatória e estabelecem precedência operacional explícita antes de qualquer implementação/validação da faixa.',
+                  'Os **57 dossiês individuais A0243–A0299** foram sincronizados no GitHub nesta PR. Verificação automática pós-escrita: **57/57** com authority TreeUnlock canônica, **0/57** com identificador legado e nenhum arquivo fora da faixa alterado pelo passo de materialização. `perks/README.md` e `audits/README.md` continuam indexando esta reconciliação para dar precedência sobre auditorias históricas anteriores.'
+              ),
+              (
+                  '- se um dossiê A0162–A0299 disser que falta `SPECIALIST_GATE_V1`, `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver`, **ignorar somente essa afirmação** e usar TreeUnlock canônico;\n- preservar todas as demais dependencies/capabilities do mesmo dossiê;',
+                  '- os dossiês A0204/A0211/A0218/A0225/A0232 e A0243–A0299 nesta PR já usam TreeUnlock canônico; A0162/A0169 permanecem sob a PR #368; auditorias históricas que ainda citem o resolver Specialist antigo ficam supersedidas **somente nesse ponto**;\n- preservar todas as demais dependencies/capabilities do mesmo dossiê;'
+              ),
+              (
+                  '- authority de Specialist em A0204/A0211/A0218/A0225/A0232;\n- authority de Specialist persistida no Notion para **57/57 A0243–A0299**, com precedência normativa para os snapshots históricos do GitHub;',
+                  '- authority de Specialist em A0204/A0211/A0218/A0225/A0232, sincronizada em Notion + dossiês GitHub (**5/5**);\n- authority de Specialist persistida no Notion e materializada nos dossiês GitHub para **57/57 A0243–A0299**;\n- total materializado nesta PR: **62 dossiês** do escopo mergeado, todos reutilizando TreeUnlock canônico; A0162/A0169 permanecem na PR #368;'
+              ),
+          ]
+
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'audit replacement anchor missing: {old[:80]!r}')
+              text = text.replace(old, new, 1)
+
+          audit.write_text(text, encoding='utf-8')
+
+          r = readme.read_text(encoding='utf-8')
+          old = '- `AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md` — errata pós-auditoria A0001–A0299. Tem precedência **somente** sobre referências históricas a `SPECIALIST_GATE_V1`, `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver` como infraestrutura futura/ausente: o gate canônico já é `TreeUnlockResolver` + `TreeUnlockDefinition` + projeção de investimento do Stage 04.01. Também registra os nove campos formais `Dependências Obrigatórias` corrigidos no Notion e preserva A0044/A0050 como pendências reais de runtime. Todos os demais blockers/contracts dos dossiês históricos continuam válidos.'
+          new = '- `AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md` — errata pós-auditoria A0001–A0299. Tem precedência **somente** sobre referências históricas a `SPECIALIST_GATE_V1`, `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver` como infraestrutura futura/ausente: o gate canônico já é `TreeUnlockResolver` + `TreeUnlockDefinition` + projeção de investimento do Stage 04.01. A PR de reconciliação materializa essa authority em **62 dossiês** do escopo mergeado (A0204/A0211/A0218/A0225/A0232 + A0243–A0299); A0162/A0169 permanecem na PR #368. Também registra os nove campos formais `Dependências Obrigatórias` corrigidos no Notion e preserva A0044/A0050 como pendências reais de runtime. Todos os demais blockers/contracts continuam válidos.'
+          if old not in r:
+              raise SystemExit('audits README anchor missing')
+          readme.write_text(r.replace(old, new, 1), encoding='utf-8')
+
+          # Structural proof over the 62 dossiers materialized by this PR.
+          names = ['A0204-', 'A0211-', 'A0218-', 'A0225-', 'A0232-']
+          selected = []
+          perk_root = Path('plans/03-skill-tree-perks/perks')
+          for p in perk_root.glob('A*.md'):
+              code = int(p.name[1:5])
+              if any(p.name.startswith(prefix) for prefix in names) or 243 <= code <= 299:
+                  selected.append(p)
+          if len(selected) != 62:
+              raise SystemExit(f'expected 62 materialized dossiers, found {len(selected)}')
+          legacy = ('SPECIALIST_GATE_V1', 'SPECIALIST_GATE_RESOLVER_V1', 'SpecialistGateResolver')
+          for p in selected:
+              s = p.read_text(encoding='utf-8')
+              if any(t in s for t in legacy):
+                  raise SystemExit(f'legacy Specialist token remains in {p.name}')
+              for required in ('TreeUnlockResolver', 'TreeUnlockDefinition', 'Stage 04.01'):
+                  if required not in s:
+                      raise SystemExit(f'{p.name}: missing {required}')
+          print('validated: 62/62 materialized dossiers canonical; legacy Specialist identifiers = 0')
+          PY
+          git diff --check
+          test "$(git diff --name-only | grep -v '^.github/workflows/finalize-specialist-reconciliation-docs.yml$' | wc -l | tr -d ' ')" = "2"
+
+      - name: Commit final audit text and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm .github/workflows/finalize-specialist-reconciliation-docs.yml
+          git add plans/03-skill-tree-perks/perks/audits/AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md plans/03-skill-tree-perks/perks/audits/README.md .github/workflows/finalize-specialist-reconciliation-docs.yml
+          git commit -m 'docs(perks): finalize Specialist reconciliation evidence'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
