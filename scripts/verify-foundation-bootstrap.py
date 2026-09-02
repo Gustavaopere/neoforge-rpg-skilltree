@@ -116,9 +116,9 @@ for mod_id in sorted(optional):
         fail(f"missing optional provider metadata for {mod_id}")
     if fields.get("type") != "optional":
         fail(f"{mod_id} must be type=optional")
-    if fields.get("versionRange") != "":
+    if "versionRange" in fields:
         fail(
-            f"{mod_id} versionRange must remain empty until the provider compatibility matrix is formally certified"
+            f"{mod_id} versionRange must be omitted until the provider compatibility matrix is formally certified"
         )
     if fields.get("ordering") != "NONE" or fields.get("side") != "BOTH":
         fail(f"{mod_id} must use ordering=NONE and side=BOTH")

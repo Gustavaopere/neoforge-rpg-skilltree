@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** NÃO CONFIRMADA; `P-A0031-01` e `P-A0031-02` abertas.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359**.
 - **Notion:** `3c569db9-f0db-8185-a66e-dfad8d451880`.
 
 ## Contrato canônico
@@ -17,18 +17,22 @@
 
 ## Evidência runtime
 
-- `NotionCombatPerkRules` já aplica A0031 a `WeaponFamily.MACE`.
-- `A0021A0040EpicFightHooks.family(...)` prefere categoria Epic Fight, mas ainda cai em `rpgskilltree:maces`.
-- `maces.json` contém somente `minecraft:mace`; a identidade pode ser resolvida diretamente sem tag paralela.
-- `A0021A0040MasteryPolicy` ainda concede 3 XP por hit confirmado para `combat:mace`.
+- `NotionCombatPerkRules` aplica A0031 a `WeaponFamily.MACE`.
+- `A0021A0040EpicFightHooks.family(...)` prefere categoria Epic Fight e, fora do provider, aceita somente a identidade exata `minecraft:mace`.
+- A tag paralela `rpgskilltree:maces` foi removida do runtime e do datapack.
+- `A0021A0040MasteryPolicy`/`MasteryHooks` usam `DiscoveryProgress`: +10 uma única vez por tipo hostil inédito, sem XP repetível por hit.
 
-## Pendências Chat 2
+## Pendências resolvidas
 
-- **P-A0031-01:** remover a tag `rpgskilltree:maces` como classificador. Preservar `minecraft:mace` por identidade exata; externos somente provider-native/mapping seguro.
-- **P-A0031-02:** substituir Mastery 3 XP/hit por `DiscoveryProgress` +10 por tipo hostil inédito; hits repetidos = 0 XP; gate60 = 6 tipos.
+- **P-A0031-01 — RESOLVIDA:** removido o classificador por tag; vanilla usa `Items.MACE`, externos somente provider-native.
+- **P-A0031-02 — RESOLVIDA:** `combat:mace` usa +10 por tipo hostil inédito; repeat hit = 0.
 
 ## Provider→árvore
 
 - Black Arcana `ARCANE_BACKLASH` e companion-owned damage Mobstein dão 0 Mastery/dano de perk em nome do jogador.
 - Volcanoes/Enshrouded não classificam MACE e não fornecem receipt MARTIAL.
 - Ataques diretos do jogador contra entidades desses providers continuam cobertos universalmente quando o receipt MACE é válido.
+
+## Fechamento Chat 3
+
+Validado provider/fallback fail-closed, discovery finita, 6 tipos→60 e 8 tipos→80, regressões e downstream fallback MACE. `RPG Skill Tree CI` #3361 / run `33657496252` ficou GREEN no HEAD sincronizado `8cf156294c7dd5922f6138a108a544f3ddeeddea`.

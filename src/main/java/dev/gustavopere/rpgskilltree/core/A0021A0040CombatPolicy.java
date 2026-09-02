@@ -8,6 +8,7 @@ public final class A0021A0040CombatPolicy {
     private A0021A0040CombatPolicy() {}
     public record HitFacts(String actorId,String targetId,String rootActionId,WeaponFamily family,boolean direct,boolean hostile,boolean actualDamage,boolean critical,boolean repositionEligible,boolean flankOrRear,boolean heavyConfirmed,boolean protectedTarget,boolean guardPressureAvailable,boolean impactAvailable,boolean penetrationAvailable,boolean armorDebuffAvailable,double targetHealthFraction,boolean boss,long nowMillis){public HitFacts{Objects.requireNonNull(actorId);Objects.requireNonNull(targetId);Objects.requireNonNull(rootActionId);Objects.requireNonNull(family);if(!Double.isFinite(targetHealthFraction)||targetHealthFraction<0)throw new IllegalArgumentException("targetHealthFraction");}}
     public record BeforeResult(double damageMultiplier,double impactMultiplier,double guardPressureMultiplier,double physicalPenetrationFraction,boolean applyArmorSunder,double armorSunderFraction,long armorSunderDurationMillis,boolean applyBonebreaker,double outgoingPhysicalDamageMultiplier,double movementSpeedMultiplier,long bonebreakerDurationMillis){static BeforeResult neutral(){return new BeforeResult(1,1,1,0,false,0,0,false,1,1,0);}}
+    public record AfterResult(boolean armorSunderCommitted,boolean bonebreakerCommitted){static AfterResult neutral(){return new AfterResult(false,false);}}
 
     public static BeforeResult beforeHit(HitFacts f,CombatPerkRanks ranks,A0021A0040CombatState state,int mastery){
         Objects.requireNonNull(f);Objects.requireNonNull(ranks);Objects.requireNonNull(state);if(!f.direct()||!f.hostile())return BeforeResult.neutral();
@@ -54,27 +55,56 @@ public final class A0021A0040CombatPolicy {
                 damage*=1.20;if(f.impactAvailable())impact*=1.25;
             }
         }else if(f.family()==WeaponFamily.MACE){
-            int rank=ranks.rank("A0035");if(rank>0&&state.trauma(f.actorId(),f.targetId(),f.nowMillis())>=3&&f.armorDebuffAvailable()&&state.claimOnce(f.actorId(),f.rootActionId(),"A0035:consume",f.nowMillis())){state.consumeTrauma(f.actorId(),f.targetId(),3,f.nowMillis());state.markSundered(f.actorId(),f.targetId(),rank,f.nowMillis());sunder=true;sunderFraction=NotionCombatPerkRules.sunderArmorFraction(rank)*(f.boss()?.5:1);sunderDuration=NotionCombatPerkRules.sunderDurationMillis(rank);}
-            if(ranks.learned("A0036")&&f.heavyConfirmed()&&state.isSundered(f.actorId(),f.targetId(),f.nowMillis())&&state.bonebreakerReady(f.actorId(),f.targetId(),f.nowMillis())&&state.claimOnce(f.actorId(),f.rootActionId(),"A0036:activate",f.nowMillis())){state.startBonebreakerCooldown(f.actorId(),f.targetId(),mastery,f.nowMillis());bonebreaker=true;boneDuration=3_000;double scale=f.boss()?.5:1;outgoing=1-.08*scale;movement=1-.10*scale;}
+            boolean preexistingSunder=state.isSundered(f.actorId(),f.targetId(),f.nowMillis());
+            int rank=ranks.rank("A0035");
+            if(rank>0
+                &&state.availableTrauma(f.actorId(),f.targetId(),f.nowMillis())>=3
+                &&f.armorDebuffAvailable()
+                &&state.claimOnce(f.actorId(),f.rootActionId(),"A0035:consume",f.nowMillis())
+                &&state.prepareSunder(f.actorId(),f.targetId(),f.rootActionId(),rank,f.nowMillis())){
+                sunder=true;
+                sunderFraction=NotionCombatPerkRules.sunderArmorFraction(rank)*(f.boss()?.5:1);
+                sunderDuration=NotionCombatPerkRules.sunderDurationMillis(rank);
+            }
+            if(ranks.learned("A0036")
+                &&f.heavyConfirmed()
+                &&preexistingSunder
+                &&state.bonebreakerReady(f.actorId(),f.targetId(),f.nowMillis())
+                &&state.claimOnce(f.actorId(),f.rootActionId(),"A0036:activate",f.nowMillis())
+                &&state.prepareBonebreaker(f.actorId(),f.targetId(),f.rootActionId(),mastery,f.nowMillis())){
+                bonebreaker=true;
+                boneDuration=3_000;
+                double scale=f.boss()?.5:1;
+                outgoing=1-.08*scale;
+                movement=1-.10*scale;
+            }
         }
         return new BeforeResult(damage,impact,pressure,penetration,sunder,sunderFraction,sunderDuration,bonebreaker,outgoing,movement,boneDuration);
     }
 
-    /** POST-stage state changes. A0023/A0024/A0029/A0030 commit before same-hit gains. */
-    public static void afterConfirmedHit(HitFacts f,CombatPerkRanks ranks,A0021A0040CombatState state){
+    /** POST-stage irreversible commits happen before same-hit gains. */
+    public static AfterResult afterConfirmedHit(HitFacts f,CombatPerkRanks ranks,A0021A0040CombatState state){
         Objects.requireNonNull(f);Objects.requireNonNull(ranks);Objects.requireNonNull(state);
         if(!f.direct()||!f.hostile()||!f.actualDamage()){
             if(f.family()==WeaponFamily.DAGGER)state.discardPreparedDaggerAction(f.actorId(),f.rootActionId());
             else if(f.family()==WeaponFamily.HAMMER)state.discardPreparedHammerAction(f.actorId(),f.rootActionId());
-            return;
+            else if(f.family()==WeaponFamily.MACE)state.discardPreparedMaceActions(f.actorId(),f.rootActionId());
+            return AfterResult.neutral();
         }
+
+        boolean sunderCommitted=false,bonebreakerCommitted=false;
         if(f.family()==WeaponFamily.DAGGER)state.commitPreparedDaggerAction(f.actorId(),f.targetId(),f.rootActionId(),f.nowMillis());
         else if(f.family()==WeaponFamily.HAMMER)state.commitPreparedHammerAction(f.actorId(),f.targetId(),f.rootActionId(),f.nowMillis());
+        else if(f.family()==WeaponFamily.MACE){
+            if(ranks.rank("A0035")>0)sunderCommitted=state.commitPreparedSunder(f.actorId(),f.targetId(),f.rootActionId(),f.nowMillis());
+            if(ranks.learned("A0036"))bonebreakerCommitted=state.commitPreparedBonebreaker(f.actorId(),f.targetId(),f.rootActionId(),f.nowMillis());
+        }
 
         if(f.family()==WeaponFamily.DAGGER&&ranks.rank("A0022")>0&&f.repositionEligible()&&state.claimOnce(f.actorId(),f.rootActionId(),"A0022:flow",f.nowMillis()))state.addFlow(f.actorId(),ranks.rank("A0022"),f.nowMillis());
         if(f.family()==WeaponFamily.HAMMER&&ranks.rank("A0028")>0&&state.claimOnce(f.actorId(),f.rootActionId(),"A0028:abalo",f.nowMillis()))state.addAbalo(f.actorId(),f.targetId(),f.nowMillis());
         if(f.family()==WeaponFamily.MACE&&ranks.rank("A0034")>0&&f.protectedTarget()&&state.claimOnce(f.actorId(),f.rootActionId(),"A0034:trauma",f.nowMillis()))state.addTrauma(f.actorId(),f.targetId(),ranks.rank("A0034"),f.nowMillis());
         if(f.family()==WeaponFamily.SCYTHE&&ranks.rank("A0040")>0&&state.claimOnce(f.actorId(),f.rootActionId(),"A0040:mark",f.nowMillis()))state.applyReapingMark(f.actorId(),f.targetId(),ranks.rank("A0040"),f.targetHealthFraction(),f.nowMillis());
+        return new AfterResult(sunderCommitted,bonebreakerCommitted);
     }
     public static void onConfirmedDodge(String actorId,CombatPerkRanks ranks,A0021A0040CombatState state,long now){if(ranks.rank("A0022")>0||ranks.learned("A0024"))state.armDodgeReposition(actorId,now);}
     public static void onConfirmedHeavyStagger(String actorId,CombatPerkRanks ranks,A0021A0040CombatState state,long now){if(ranks.rank("A0022")>0)state.loseFlow(actorId,2,now);}

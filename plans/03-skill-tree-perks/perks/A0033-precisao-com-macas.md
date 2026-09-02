@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO + boundary retroativo.
-- **Implementação:** PRESENTE no resolver crítico, condicionada à família MACE segura.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359**.
 - **Notion:** `3c569db9-f0db-8155-a97c-f4db0a54c59a`.
 
 ## Contrato canônico
@@ -17,12 +17,12 @@
 
 - `NotionCombatPerkRules.criticalChanceBonus(MACE)` mapeia A0033.
 - `A0021A0040EpicFightHooks` reutiliza `A0001A0020RuntimeState.critical()` e correlaciona CriticalHitEvent/Epic Fight para evitar segunda rolagem.
-- A classificação MACE ainda herda a pendência da tag paralela A0031.
+- A resolução MACE usa category/capability Epic Fight ou identidade exata `minecraft:mace`; sem tag paralela.
 
 ## Provider→árvore
 
 Black Arcana conserva authority de Backlash; Mobstein conserva ownership de companion damage. Volcanoes/Enshrouded não fornecem critical receipt MARTIAL.
 
-## Pendência Chat 2
+## Fechamento Chat 3
 
-Revalidar provenance/root action após `P-A0031-01`; não criar bridge específica para os providers retroauditados.
+Crítico canônico, provenance e família MACE segura foram revalidados sem segundo pipeline. `RPG Skill Tree CI` #3361 / run `33657496252` ficou GREEN no HEAD sincronizado `8cf156294c7dd5922f6138a108a544f3ddeeddea`.
