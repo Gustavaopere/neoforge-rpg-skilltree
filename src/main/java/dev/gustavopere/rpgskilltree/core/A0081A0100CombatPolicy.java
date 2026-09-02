@@ -68,12 +68,6 @@ public final class A0081A0100CombatPolicy {
         return causalBreakAndRecoveryContract ? 1.0D + 0.03D * ranks.rank("A0094") : 1.0D;
     }
 
-    /** Represents remaining interruption/control-by-impact severity, not knockback or damage. */
-    public static double interruptionMultiplier(CombatPerkRanks ranks, boolean semanticInterruptionContract) {
-        Objects.requireNonNull(ranks);
-        return semanticInterruptionContract ? Math.max(0.85D, 1.0D - 0.03D * ranks.rank("A0095")) : 1.0D;
-    }
-
     public static double antiCriticalDamage(double baseDamage, double additionalCriticalDamage,
                                             CombatPerkRanks ranks, boolean legitimatelyCritical,
                                             boolean decomposedByCausalResolver) {

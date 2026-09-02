@@ -10,6 +10,7 @@ import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry.PhysicalHitReceipt;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0090SustainRuntime;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0100RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.compat.A0079ForcedMovementCompat;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import java.util.HashMap;
@@ -46,11 +47,10 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 /**
  * Server-authoritative runtime bridge for the canonical Notion batch A0081-A0100.
  *
- * <p>Only provider-proven roots enter sustain. Epic Fight roots arrive through
- * A0081A0090ProviderHitRegistry. Vanilla melee is restricted to the canonical player_attack
- * source. Bow/crossbow projectiles require a launch receipt and sibling arrows share one launch
- * root. Magic, elemental and periodic sources remain provider-owned unless a dedicated adapter
- * supplies explicit classification and causal authorship.</p>
+ * <p>Only provider-proven roots enter sustain. Incoming A0097 reservations are correlated by the
+ * concrete DamageSource+target root and commit only after positive post-mitigation damage. A0098
+ * and A0099 share the A0079 forced-movement boundary instead of inferring locomotion from client
+ * animation or velocity.</p>
  */
 public final class A0081A0100CombatEvents {
     private static final long LAUNCH_CORRELATION_MILLIS = 250L;
@@ -59,17 +59,11 @@ public final class A0081A0100CombatEvents {
         ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "physical")
     );
     private static final WeakHashMap<DamageSource, Map<UUID, OutgoingDamageContext>> OUTGOING = new WeakHashMap<>();
+    private static final WeakHashMap<DamageSource, Map<UUID, PendingIncomingDefense>> INCOMING_DEFENSE = new WeakHashMap<>();
     private static final WeakHashMap<DamageSource, String> VANILLA_MELEE_ROOTS = new WeakHashMap<>();
     private static final Map<UUID, PendingProjectileLaunch> PENDING_PROJECTILE_LAUNCHES = new HashMap<>();
     private static final WeakHashMap<AbstractArrow, String> PROJECTILE_ROOTS = new WeakHashMap<>();
     private static final AtomicLong ACTION_SEQUENCE = new AtomicLong();
-
-    // These names are part of the runtime contract: no post-refund, animation, knockback or
-    // presumed-crit heuristic may silently replace the missing causal provider receipts.
-    private static final boolean FAIL_CLOSED_A0093 = true;
-    private static final boolean FAIL_CLOSED_A0094 = true;
-    private static final boolean FAIL_CLOSED_A0095 = true;
-    private static final boolean FAIL_CLOSED_A0100 = true;
 
     private A0081A0100CombatEvents() {}
 
@@ -141,16 +135,31 @@ public final class A0081A0100CombatEvents {
             }
         }
 
-        if (!(event.getEntity() instanceof ServerPlayer player)
-            || !eligible(player)
-            || event.getNewDamage() <= 0.0F
-            || !hostileSource(player, event.getSource())) return;
+        PendingIncomingDefense pendingOpening = takeIncomingDefense(
+            event.getSource(), event.getEntity().getUUID()
+        );
+        if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
 
         String actor = A0081A0100RuntimeState.actorId(player);
         long nowMillis = nowMillis(player);
-        long nowTick = player.level().getGameTime();
-        CombatPerkRanks ranks = A0081A0100RuntimeState.ranks(player);
         A0081A0100DefenseState defense = A0081A0100RuntimeState.defense();
+        boolean hostile = hostileSource(player, event.getSource());
+        CombatPerkRanks ranks = A0081A0100RuntimeState.ranks(player);
+
+        if (pendingOpening != null) {
+            if (event.getNewDamage() > 0.0F && hostile && ranks.rank("A0097") > 0) {
+                defense.commitOpeningDefense(actor, pendingOpening.rootActionId(), nowMillis);
+            } else {
+                defense.rollbackOpeningDefense(actor, pendingOpening.rootActionId());
+            }
+        }
+
+        if (event.getNewDamage() <= 0.0F || !hostile) return;
+
+        long nowTick = player.level().getGameTime();
+        // Every effective eligible hostile hit restarts A0097's timer, independently of whether
+        // that particular hit held the opening reservation. Commit above is root-specific and
+        // idempotent; recording the same timestamp here is deliberate.
         defense.recordEligibleHostileDamage(actor, nowMillis);
 
         if (ranks.rank("A0081") > 0) {
@@ -171,6 +180,7 @@ public final class A0081A0100CombatEvents {
     public static void onServerTick(ServerTickEvent.Post event) {
         long now = event.getServer().overworld().getGameTime() * 50L;
         PENDING_PROJECTILE_LAUNCHES.entrySet().removeIf(entry -> entry.getValue().expiresAt() < now);
+        pruneIncomingDefense(now);
 
         boolean previousBatchSamplesStationary = previousBatchSamplesStationary();
         for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
@@ -183,7 +193,7 @@ public final class A0081A0100CombatEvents {
                     player.getX(),
                     player.getY(),
                     player.getZ(),
-                    false
+                    A0079ForcedMovementCompat.forcedOrUnclassified(player)
                 );
             }
 
@@ -228,9 +238,8 @@ public final class A0081A0100CombatEvents {
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
         A0081A0100RuntimeState.clearAll();
-        // A0099 shares A0079's detector. When this bridge is the fallback sampler it also owns
-        // its lifecycle; clearing twice when Epic Fight is present is harmless and deterministic.
         A0061A0080RuntimeState.clearAll();
+        A0079ForcedMovementCompat.clearAll();
         PENDING_PROJECTILE_LAUNCHES.clear();
         synchronized (PROJECTILE_ROOTS) {
             PROJECTILE_ROOTS.clear();
@@ -238,6 +247,9 @@ public final class A0081A0100CombatEvents {
         synchronized (OUTGOING) {
             OUTGOING.clear();
             VANILLA_MELEE_ROOTS.clear();
+        }
+        synchronized (INCOMING_DEFENSE) {
+            INCOMING_DEFENSE.clear();
         }
     }
 
@@ -290,8 +302,8 @@ public final class A0081A0100CombatEvents {
             double preImpactHealthFraction = player.getMaxHealth() <= 0.0F
                 ? 0.0D
                 : Math.max(0.0D, Math.min(1.0D, player.getHealth() / player.getMaxHealth()));
-            // A0096 is hostile-only. Passing 1.0 for non-hostile physical damage keeps A0092
-            // active while suppressing the conditional A0096 branch without inventing a second formula.
+            // A0092 remains physical-channel based. A0096 is hostile-only; passing 1.0 for a
+            // non-hostile physical source suppresses only A0096 without creating a second formula.
             multiplier *= A0081A0100CombatPolicy.physicalDamageMultiplier(
                 ranks,
                 hostile ? preImpactHealthFraction : 1.0D
@@ -301,22 +313,33 @@ public final class A0081A0100CombatEvents {
         if (hostile) {
             A0081A0100DefenseState defense = A0081A0100RuntimeState.defense();
             double opening = A0081A0100CombatPolicy.openingDefenseMultiplier(actor, ranks, defense, now);
-            if (Double.compare(opening, 1.0D) != 0 && defense.consumeOpeningDefense(actor, now)) {
-                multiplier *= opening;
+            if (Double.compare(opening, 1.0D) != 0
+                && peekIncomingDefense(event.getSource(), player.getUUID()) == null) {
+                String root = "incoming-defense/" + player.level().getGameTime() + "/" + ACTION_SEQUENCE.incrementAndGet();
+                if (defense.reserveOpeningDefense(actor, root, now)) {
+                    rememberIncomingDefense(
+                        event.getSource(),
+                        player.getUUID(),
+                        new PendingIncomingDefense(root, Math.addExact(now, A0081A0100DefenseState.RESERVATION_RETENTION_MILLIS))
+                    );
+                    multiplier *= opening;
+                }
             }
-            multiplier *= A0081A0100CombatPolicy.movingDefenseMultiplier(ranks, player.isSprinting());
+
+            multiplier *= A0081A0100CombatPolicy.movingDefenseMultiplier(
+                ranks,
+                A0079ForcedMovementCompat.selfPropelledSprintEligible(player)
+            );
             multiplier *= A0081A0100CombatPolicy.stationaryDefenseMultiplier(
                 ranks,
                 A0061A0080RuntimeState.stationary().isStationary(actor)
+                    && !A0079ForcedMovementCompat.forcedOrUnclassified(player)
             );
         }
 
-        // FAIL_CLOSED_A0093 / FAIL_CLOSED_A0094 / FAIL_CLOSED_A0095: no safe causal guard or
-        // interruption contract is exposed by the audited provider surface. FAIL_CLOSED_A0100:
-        // no generic incoming critical decomposition exists here. These constants intentionally
-        // keep the unavailable branches explicit rather than approximating them.
-        if (FAIL_CLOSED_A0093 && FAIL_CLOSED_A0094 && FAIL_CLOSED_A0095 && FAIL_CLOSED_A0100
-            && Double.compare(multiplier, 1.0D) != 0) {
+        // A0093/A0094/A0100 are masked to rank zero by CombatPerkAvailabilityRuntime. A0095 is
+        // provider-native through epicfight:stun_armor and therefore has no damage-event heuristic.
+        if (Double.compare(multiplier, 1.0D) != 0) {
             event.setAmount((float) Math.max(0.0D, event.getAmount() * multiplier));
         }
     }
@@ -364,6 +387,38 @@ public final class A0081A0100CombatEvents {
         }
     }
 
+    private static void rememberIncomingDefense(DamageSource source, UUID targetId, PendingIncomingDefense pending) {
+        synchronized (INCOMING_DEFENSE) {
+            INCOMING_DEFENSE.computeIfAbsent(source, ignored -> new HashMap<>()).put(targetId, pending);
+        }
+    }
+
+    private static PendingIncomingDefense peekIncomingDefense(DamageSource source, UUID targetId) {
+        synchronized (INCOMING_DEFENSE) {
+            Map<UUID, PendingIncomingDefense> byTarget = INCOMING_DEFENSE.get(source);
+            return byTarget == null ? null : byTarget.get(targetId);
+        }
+    }
+
+    private static PendingIncomingDefense takeIncomingDefense(DamageSource source, UUID targetId) {
+        synchronized (INCOMING_DEFENSE) {
+            Map<UUID, PendingIncomingDefense> byTarget = INCOMING_DEFENSE.get(source);
+            if (byTarget == null) return null;
+            PendingIncomingDefense pending = byTarget.remove(targetId);
+            if (byTarget.isEmpty()) INCOMING_DEFENSE.remove(source);
+            return pending;
+        }
+    }
+
+    private static void pruneIncomingDefense(long nowMillis) {
+        synchronized (INCOMING_DEFENSE) {
+            INCOMING_DEFENSE.values().forEach(byTarget ->
+                byTarget.entrySet().removeIf(entry -> entry.getValue().expiresAtMillis() < nowMillis)
+            );
+            INCOMING_DEFENSE.entrySet().removeIf(entry -> entry.getValue().isEmpty());
+        }
+    }
+
     private static String vanillaMeleeRoot(DamageSource source, ServerPlayer player) {
         synchronized (OUTGOING) {
             return VANILLA_MELEE_ROOTS.computeIfAbsent(
@@ -386,10 +441,14 @@ public final class A0081A0100CombatEvents {
         return null;
     }
 
+    /** A0096/A0097 authority: any causal non-self, non-allied LivingEntity. */
     private static boolean hostileSource(ServerPlayer player, DamageSource source) {
-        return source.getEntity() instanceof LivingEntity attacker && hostile(player, attacker);
+        return source.getEntity() instanceof LivingEntity attacker
+            && attacker != player
+            && !player.isAlliedTo(attacker);
     }
 
+    /** Preserve the older outgoing sustain target policy; A0097 does not broaden A0081-A0087. */
     private static boolean hostile(ServerPlayer player, LivingEntity target) {
         return target != player
             && !player.isAlliedTo(target)
@@ -422,6 +481,7 @@ public final class A0081A0100CombatEvents {
     private static void clearPlayer(ServerPlayer player) {
         A0081A0100RuntimeState.clear(player);
         A0061A0080RuntimeState.clear(player);
+        A0079ForcedMovementCompat.clearPlayer(player);
         PENDING_PROJECTILE_LAUNCHES.remove(player.getUUID());
         synchronized (PROJECTILE_ROOTS) {
             PROJECTILE_ROOTS.entrySet().removeIf(entry -> entry.getKey().getOwner() == player);
@@ -429,6 +489,10 @@ public final class A0081A0100CombatEvents {
         synchronized (OUTGOING) {
             OUTGOING.values().forEach(byTarget -> byTarget.values().removeIf(context -> context.player() == player));
             OUTGOING.entrySet().removeIf(entry -> entry.getValue().isEmpty());
+        }
+        synchronized (INCOMING_DEFENSE) {
+            INCOMING_DEFENSE.values().forEach(byTarget -> byTarget.remove(player.getUUID()));
+            INCOMING_DEFENSE.entrySet().removeIf(entry -> entry.getValue().isEmpty());
         }
     }
 
@@ -443,4 +507,6 @@ public final class A0081A0100CombatEvents {
         boolean directMelee,
         ItemStack weaponStack
     ) {}
+
+    private record PendingIncomingDefense(String rootActionId, long expiresAtMillis) {}
 }

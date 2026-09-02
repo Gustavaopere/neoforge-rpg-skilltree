@@ -27,6 +27,13 @@
       "attributeId": "minecraft:generic.knockback_resistance",
       "operation": "ADD_FLAT",
       "amountPerRank": 0.03
+    },
+    {
+      "effectId": "rpgskilltree:node/combat/a0095/stun_armor",
+      "nodeId": "rpgskilltree:combat/a0095",
+      "attributeId": "epicfight:stun_armor",
+      "operation": "ADD_FLAT",
+      "amountPerRank": 0.25
     }
   ]
 }

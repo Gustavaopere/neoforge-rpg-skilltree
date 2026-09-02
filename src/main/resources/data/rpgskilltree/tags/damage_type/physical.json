@@ -1,12 +1,22 @@
 {
   "replace": false,
   "values": [
-    "minecraft:player_attack",
     "minecraft:mob_attack",
     "minecraft:mob_attack_no_aggro",
+    "minecraft:player_attack",
     "minecraft:arrow",
     "minecraft:trident",
+    "minecraft:mob_projectile",
     "minecraft:thrown",
-    "minecraft:sting"
+    "minecraft:sting",
+    "minecraft:mace_smash",
+    "minecraft:fall",
+    "minecraft:fly_into_wall",
+    "minecraft:falling_block",
+    "minecraft:falling_anvil",
+    "minecraft:falling_stalactite",
+    "minecraft:stalagmite",
+    "minecraft:cactus",
+    "minecraft:sweet_berry_bush"
   ]
 }
