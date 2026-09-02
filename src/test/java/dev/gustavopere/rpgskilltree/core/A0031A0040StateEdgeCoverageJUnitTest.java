@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.core;
 
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +32,33 @@ final class A0031A0040StateEdgeCoverageJUnitTest {
     }
 
     @Test
+    void maceReservationMismatchCleanupAndCooldownBranchesStayFailClosed() {
+        var state = new A0021A0040CombatState();
+        for (int i = 0; i < 3; i++) state.addTrauma("player", "target", 2, i);
+        state.markSundered("player", "target", 2, 0L);
+
+        assertTrue(state.prepareSunder("player", "target", "shared-root", 2, 1_000L));
+        assertFalse(state.prepareSunder("player", "target", "shared-root", 1, 1_001L));
+        assertFalse(state.prepareSunder("player", "other", "shared-root", 2, 1_001L));
+
+        assertTrue(state.prepareBonebreaker("player", "target", "shared-root", 80, 1_000L));
+        assertFalse(state.prepareBonebreaker("player", "target", "shared-root", 81, 1_001L));
+        assertFalse(state.prepareBonebreaker("player", "other", "shared-root", 80, 1_001L));
+
+        state.clearTarget("target");
+        for (int i = 0; i < 3; i++) state.addTrauma("player", "target", 2, 2_000L + i);
+        assertTrue(state.prepareSunder("player", "target", "shared-root", 2, 2_010L));
+        assertTrue(state.prepareBonebreaker("player", "target", "shared-root", 80, 2_010L));
+        state.discardPreparedMaceActions("player", "shared-root");
+        assertTrue(state.prepareSunder("player", "target", "shared-root", 2, 2_011L));
+        assertTrue(state.prepareBonebreaker("player", "target", "shared-root", 80, 2_011L));
+
+        state.discardPreparedSunder("player", "shared-root");
+        assertTrue(state.commitPreparedBonebreaker("player", "target", "shared-root", 2_012L));
+        assertFalse(state.prepareBonebreaker("player", "target", "cooldown-root", 80, 2_013L));
+    }
+
+    @Test
     void bonebreakerReservationsCommitOnlyOnceAndStartCooldownOnlyOnCommit() {
         var state = new A0021A0040CombatState();
         assertTrue(state.prepareBonebreaker("player", "target", "root-a", 80, 1_000L));
@@ -46,6 +74,24 @@ final class A0031A0040StateEdgeCoverageJUnitTest {
         assertTrue(state.commitPreparedBonebreaker("player", "target", "root-c", 1_005L));
         assertFalse(state.bonebreakerReady("player", "target", 1_005L));
         assertFalse(state.commitPreparedBonebreaker("player", "target", "root-c", 1_006L));
+    }
+
+    @Test
+    void bossBonebreakerUsesTheApprovedReducedScale() {
+        var state = new A0021A0040CombatState();
+        state.markSundered("player", "boss", 2, 0L);
+        var ranks = CombatPerkRanks.of(Map.of("A0036", 1));
+        var facts = new A0021A0040CombatPolicy.HitFacts(
+            "player", "boss", "boss-bone-root", WeaponFamily.MACE,
+            true, true, true, false, false, false, true,
+            true, false, true, true, true, 0.75D, true, 1_000L
+        );
+
+        var before = A0021A0040CombatPolicy.beforeHit(facts, ranks, state, 80);
+        assertTrue(before.applyBonebreaker());
+        assertEquals(0.984D, before.outgoingPhysicalDamageMultiplier(), 1.0E-9D);
+        assertEquals(0.98D, before.movementSpeedMultiplier(), 1.0E-9D);
+        assertTrue(A0021A0040CombatPolicy.afterConfirmedHit(facts, ranks, state).bonebreakerCommitted());
     }
 
     @Test
@@ -68,6 +114,19 @@ final class A0031A0040StateEdgeCoverageJUnitTest {
 
         state.clearAll();
         assertFalse(state.reapMarked("other", "target", 14L));
+    }
+
+    @Test
+    void reapingExpiryAndClaimPruningAreBoundedWithoutTargetRequery() {
+        var state = new A0021A0040CombatState();
+        state.applyReapingMark("player", "expired", 1, 0.75D, 0L);
+        state.updateReapingMaturityForTarget("expired", 0.49D, 8_000L);
+        assertFalse(state.reapMarked("player", "expired", 8_000L));
+
+        assertTrue(state.claimOnce("player", "claim-root", "consumer", 0L));
+        assertFalse(state.claimOnce("player", "claim-root", "consumer", 1L));
+        state.pruneExpiredReapingMarks(30_000L);
+        assertTrue(state.claimOnce("player", "claim-root", "consumer", 30_000L));
     }
 
     @Test
