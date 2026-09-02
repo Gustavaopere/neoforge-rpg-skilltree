@@ -6,12 +6,15 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Canonical mastery aliases needed to make the A0025/A0031/A0037 gates reachable.
+ * Canonical finite-discovery mastery aliases needed to make the A0025/A0031/A0037 gates reachable.
  * Generic Epic Fight mastery remains owned by MasteryPolicies.forEpicFight.
  */
 public final class A0021A0040MasteryPolicy {
+    /** Historical constant retained for source compatibility; repeatable gate mastery no longer uses it. */
+    @Deprecated
     public static final int CONFIRMED_HIT_XP = 3;
-    public static final int A0025_DISTINCT_HOSTILE_TYPE_XP = 10;
+    public static final int DISTINCT_HOSTILE_TYPE_XP = 10;
+    public static final int A0025_DISTINCT_HOSTILE_TYPE_XP = DISTINCT_HOSTILE_TYPE_XP;
 
     private A0021A0040MasteryPolicy() {}
 
@@ -26,9 +29,8 @@ public final class A0021A0040MasteryPolicy {
     }
 
     /**
-     * Legacy repeatable alias path. HAMMER is deliberately excluded because A0025 is a finite
-     * discovery ledger: repeating damage against an already-known entity type must grant 0 XP.
-     * MACE/SCYTHE remain untouched until their own exact Chat 2 lots are implemented.
+     * Legacy repeatable alias path. The A0025/A0031/A0037 gate lanes are finite-discovery ledgers;
+     * repeating damage against an already-known entity type must grant 0 XP.
      */
     public static List<MasteryAward> forConfirmedDirectHit(
         WeaponFamily family,
@@ -39,8 +41,10 @@ public final class A0021A0040MasteryPolicy {
     ) {
         Objects.requireNonNull(family);
         Objects.requireNonNull(actionId);
-        if (family == WeaponFamily.HAMMER
-            || actionId.isBlank()
+        if (family == WeaponFamily.HAMMER || family == WeaponFamily.MACE || family == WeaponFamily.SCYTHE) {
+            return List.of();
+        }
+        if (actionId.isBlank()
             || !direct
             || !hostile
             || !Double.isFinite(actualDamage)
@@ -55,11 +59,16 @@ public final class A0021A0040MasteryPolicy {
     public static Optional<String> discoveryKey(WeaponFamily family, String entityTypeId) {
         Objects.requireNonNull(family);
         Objects.requireNonNull(entityTypeId);
-        if (entityTypeId.isBlank() || family != WeaponFamily.HAMMER) return Optional.empty();
-        return Optional.of("mastery/epicfight:heavy/entity_type/" + entityTypeId);
+        if (entityTypeId.isBlank()) return Optional.empty();
+        return canonicalGateMastery(family)
+            .filter(ignored -> family == WeaponFamily.HAMMER || family == WeaponFamily.MACE || family == WeaponFamily.SCYTHE)
+            .map(lane -> "mastery/" + lane + "/entity_type/" + entityTypeId);
     }
 
-    /** A0025: +10 epicfight:heavy exactly once per distinct hostile entity type. */
+    /**
+     * A0025/A0031/A0037: +10 gate mastery exactly once per distinct hostile entity type.
+     * Six distinct types reach 60; eight distinct types reach 80.
+     */
     public static List<MasteryAward> forDistinctHostileTypeDiscovery(
         WeaponFamily family,
         boolean direct,
@@ -71,7 +80,7 @@ public final class A0021A0040MasteryPolicy {
         Objects.requireNonNull(family);
         Objects.requireNonNull(entityTypeId);
         if (!newlyDiscovered
-            || family != WeaponFamily.HAMMER
+            || (family != WeaponFamily.HAMMER && family != WeaponFamily.MACE && family != WeaponFamily.SCYTHE)
             || !direct
             || !hostile
             || !Double.isFinite(actualDamage)
@@ -79,12 +88,13 @@ public final class A0021A0040MasteryPolicy {
             return List.of();
         }
         Optional<String> discoveryKey = discoveryKey(family, entityTypeId);
-        if (discoveryKey.isEmpty()) return List.of();
+        Optional<String> lane = canonicalGateMastery(family);
+        if (discoveryKey.isEmpty() || lane.isEmpty()) return List.of();
         String key = discoveryKey.get();
         return List.of(MasteryAward.replaySafe(
-            "epicfight:heavy",
-            A0025_DISTINCT_HOSTILE_TYPE_XP,
-            "a0025-distinct-hostile-type/" + entityTypeId,
+            lane.get(),
+            DISTINCT_HOSTILE_TYPE_XP,
+            "distinct-hostile-type/" + lane.get() + "/" + entityTypeId,
             key
         ));
     }
