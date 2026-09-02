@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.core.A0101A0110DefenseState;
+import dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,11 +12,13 @@ public final class A0101A0110RuntimeState {
 
     private A0101A0110RuntimeState() {}
 
-    public static A0101A0110DefenseState defense() {
+    public static A0101A0110DefenseState defense(ServerPlayer player) {
+        hydrateCooldowns(player);
         return DEFENSE;
     }
 
     public static CombatPerkRanks ranks(ServerPlayer player) {
+        hydrateCooldowns(player);
         CombatPerkRanks persisted = CombatPerkNodeBinding.ranks(PlayerProgressionRuntime.get(player).passiveNodes());
         CombatPerkRanks effective = CombatPerkAvailabilityRuntime.effectiveRanks(persisted);
         DEFENSE.reconcileRanks(
@@ -31,15 +34,32 @@ public final class A0101A0110RuntimeState {
         return player.getUUID().toString();
     }
 
+    /** Persists only cooldown deadlines into the existing canonical player attachment. */
+    public static void persistCooldowns(ServerPlayer player) {
+        CanonicalPlayerAttachmentData current = CanonicalPlayerAttachmentRuntime.readOrMigrate(player);
+        CanonicalPlayerAttachmentData next = current.withCombatPerkCooldowns(
+            DEFENSE.cooldownSnapshot(actorId(player))
+        );
+        if (!current.equals(next)) {
+            CanonicalPlayerAttachmentRuntime.write(player, next);
+        }
+    }
+
     /**
-     * Ordinary player-object boundaries reconcile active windows but preserve cooldown deadlines so
-     * death, dimension transfer and reconnect cannot be used as a cooldown reset.
+     * Ordinary player-object boundaries clear active windows but hydrate/preserve persisted cooldown
+     * deadlines so death, dimension transfer, reconnect and server restart cannot reset them.
      */
     public static void reconcilePlayerBoundary(ServerPlayer player) {
+        hydrateCooldowns(player);
         DEFENSE.reconcilePlayerBoundary(actorId(player));
     }
 
     public static void clearAll() {
         DEFENSE.clearAll();
+    }
+
+    private static void hydrateCooldowns(ServerPlayer player) {
+        CanonicalPlayerAttachmentData attachment = CanonicalPlayerAttachmentRuntime.readOrMigrate(player);
+        DEFENSE.hydrateCooldowns(actorId(player), attachment.combatPerkCooldowns());
     }
 }
