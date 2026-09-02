@@ -2,11 +2,11 @@
 
 ## Estado Chat 1
 
-**DESIGN APROVADO EM FAIL-CLOSED / `UNAVAILABLE_NODE`.**
+**DESIGN APROVADO EM FAIL-CLOSED / `UNAVAILABLE_NODE` TRANSITIVO.**
 
-A0162 é uma terminal exterior do corredor FIRE. Ela não concede poder bruto; sua única responsabilidade futura é satisfazer o Gate C de uma Specialist Fogo quando o runtime de gates semânticos existir. Esse runtime não está comprovado na `main` atual.
+A0162 é a terminal exterior do corredor FIRE. Ela não concede poder bruto e satisfaz somente o Gate C da Specialist Fogo. A correção desta auditoria remove a premissa antiga de que faltaria um `SPECIALIST_GATE_V1`: o RPG Skill Tree já possui a pipeline canônica `TreeUnlockResolver` + `TreeUnlockDefinition`, alimentada pela projeção canônica de investimento do Stage 04.01.
 
-Notion revalidado após correção: `https://app.notion.com/p/3c569db9f0db81b3ac7ee38d99bcdfe8`.
+Notion reconciliado com esta correção: `https://app.notion.com/p/3c569db9f0db81b3ac7ee38d99bcdfe8`.
 
 ## Contrato
 
@@ -14,35 +14,31 @@ Notion revalidado após correção: `https://app.notion.com/p/3c569db9f0db81b3ac
 - Compra da terminal: A0161 + Fire Mastery ≥80 + pelo menos um entre A0157=1, A0159≥2 ou A0160≥2.
 - Possuir A0162 satisfaz **somente Gate C**.
 - A terminal não concede dano FIRE, resistência, imunidade, afinidade adicional, Mastery ou unlock mecânico de provider.
-- A0162 não pertence às 30 perks internas da Specialist Fogo.
+- A0162 não pertence às perks internas da Specialist Fogo.
 
-## Authority e capability ausente
+## Authority e pipeline canônica
 
-Authority do Specialist/gating pertence ao RPG Skill Tree. Iron's/Ars/Ars Elemental são providers de gameplay FIRE, não autoridade do gate estrutural.
+Authority de Specialist/gating pertence ao RPG Skill Tree. Iron's/Ars/Ars Elemental são providers de gameplay FIRE, não authority do gate estrutural.
 
-Capacidade requerida: `SPECIALIST_GATE_V1`.
+Reutilizar exclusivamente:
 
-Contrato futuro mínimo:
+- `TreeUnlockResolver`;
+- `TreeUnlockDefinition`;
+- projeção canônica de investimento do Stage 04.01.
 
-- Gate A = conjunto de fundamentos exteriores semanticamente mapeados e disponíveis;
-- Gate B = pelo menos 100 PP **válidos** em `SPECIALIST_REGION:FIRE`;
-- Gate C = A0162 possuída;
-- avaliação server-side;
-- reavaliação em compra, respec, migração e mudança de availability/provider;
-- `UNAVAILABLE_NODE` conta 0 PP para Gate B;
-- bridge PP não pode ser contado duas vezes.
+Gate A = fundamentos exteriores semanticamente mapeados e disponíveis. Gate B = pelo menos 100 PP válidos em `SPECIALIST_REGION:FIRE`. Gate C = A0162 possuída. `UNAVAILABLE_NODE` conta 0 PP no Gate B e bridge PP não pode ser contado duas vezes.
 
-A busca na `main` não encontrou `SpecialistGateResolver` nem boundary equivalente comprovado. Nomes existentes no catálogo não são evidência de runtime.
+É proibido criar `SpecialistGateResolver`, `SPECIALIST_GATE_V1` ou qualquer resolver paralelo para este caso.
 
 ## Availability transitiva
 
-A0161 está `UNAVAILABLE_NODE` porque requer `MAGIC_THERMAL_PARCEL_V1` e porque sua cadeia passa por A0156, atualmente indisponível sem `DIRECT_MAGIC_OUTCOME_V1`. Portanto A0162 permanece não adquirível mesmo antes de considerar a ausência de `SPECIALIST_GATE_V1`.
+A0161 continua `UNAVAILABLE_NODE` porque requer `MAGIC_THERMAL_PARCEL_V1` e sua cadeia passa por A0156, indisponível sem `DIRECT_MAGIC_OUTCOME_V1`. Portanto A0162 permanece não adquirível **por dependency closure**, não por ausência de infraestrutura Specialist.
 
-Fire Mastery também deve possuir producer canônico causal; storage genérico ou nome de requisito não autoriza grant por tick/tempo/exposição.
+Fire Mastery também precisa de producer canônico causal; storage genérico ou nome de requisito não autoriza grant por tick/tempo/exposição.
 
-## Respec seguro futuro
+## Respec seguro
 
-Quando `SPECIALIST_GATE_V1` existir e houver perk interna FIRE possuída:
+Enquanto houver perk interna FIRE possuída:
 
 - bloquear refund de A0162;
 - bloquear refund de fundamentos/dependency closure necessários ao Gate A;
@@ -53,24 +49,28 @@ Quando `SPECIALIST_GATE_V1` existir e houver perk interna FIRE possuída:
 
 ## Fail-closed
 
-Enquanto A0161, Fire Mastery causal ou `SPECIALIST_GATE_V1` estiverem indisponíveis:
+Enquanto A0161 ou Fire Mastery causal estiverem indisponíveis:
 
 - compra falha antes do gasto;
 - rank legado indisponível vale 0 PP para gates e permanece reembolsável/migrável;
+- definição/snapshot de unlock inválido ou incompatível falha fechado na pipeline canônica;
 - não retornar aos gates legados de 8 PP FIRE/ARCANE total 12;
 - não conceder efeitos substitutos.
 
 ## Handoff Chat 2
 
-Implementar somente a disponibilidade fail-closed prevista. Não criar uma Specialist ad hoc, não usar topologia da UI como gate e não transformar a terminal em bônus de combate. A criação de `SPECIALIST_GATE_V1` como infraestrutura global exige o contrato arquitetural correspondente; se isso alterar o Stage 04, devolver ao Chat 1.
+Preservar A0162 como `UNAVAILABLE_NODE` transitivo enquanto A0161/dependencies estiverem bloqueadas. Não criar resolver Specialist novo. Quando a dependency closure deixar de bloquear a terminal, o unlock deve reutilizar `TreeUnlockResolver`/`TreeUnlockDefinition` + Stage 04.01.
 
 ## Testes obrigatórios para Chat 3
 
 1. purchase fail-before-spend com A0161 unavailable;
-2. purchase fail-before-spend sem `SPECIALIST_GATE_V1`;
-3. rank legado unavailable vale 0 PP no Gate B;
-4. nenhum efeito bruto ao possuir a terminal;
-5. futuramente: Gates A/B/C devem ser simultâneos;
-6. Gate B usa PP semântico válido, sem bridge double-count;
-7. respec seguro bloqueia quebra do gate com Specialist interna possuída;
-8. nenhum retorno silencioso aos thresholds legados.
+2. rank legado unavailable vale 0 PP no Gate B e permanece reembolsável/migrável;
+3. A0162 isolada nunca libera Specialist;
+4. Gate A sem Gate B/C falha;
+5. Gate B sem Gate A/C falha;
+6. Gate A + Gate B + A0162 válidos liberam somente pela pipeline canônica;
+7. 99 PP falha e 100 PP passa quando os demais gates forem válidos;
+8. bridge PP não é contado duas vezes;
+9. respec seguro bloqueia quebra do gate com perks internas possuídas;
+10. nenhuma geometria/UI substitui o gate;
+11. ausência de resolver Specialist paralelo.
