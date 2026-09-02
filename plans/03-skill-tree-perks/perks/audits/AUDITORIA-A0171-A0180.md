@@ -3,6 +3,7 @@
 **Intervalo:** A0171–A0180, exatamente 10 perks consecutivas.  
 **Auditoria inicial:** 2026-09-01.  
 **Revalidação final:** 2026-09-02.  
+**Correção pós-review P1:** 2026-09-02.  
 **Branch/PR:** `docs/chat1-a0171-a0180-audit` / #375.  
 **Responsabilidade:** auditoria, design, integração e documentação. Chat 1 não implementa runtime, não executa a bateria final da implementação e não faz merge na `main`.
 
@@ -19,24 +20,24 @@ Foram aplicados integralmente os anexos permanentes do projeto:
 
 A modlist atual foi conferida na File Library e no catálogo Notion antes da revalidação. A referência instalada permanece **573 entradas top-level incluindo NeoForge**, com NeoForge 1.21.1/21.1.248 e os providers versionados usados pelos dossiês.
 
-As dez páginas A0171–A0180 do Catálogo Mestre foram buscadas frescas após as correções do V8. `Provider/Mods`, `Efeito`, `Gate`, `Hook`, `Fallback` e `Regra` persistem coerentes com os dossiês. Como o delta de 2026-09-02 não altera nenhum contrato dessas dez perks, não foi feita uma segunda escrita artificial no Notion apenas para mudar timestamps.
+As dez páginas A0171–A0180 do Catálogo Mestre foram buscadas frescas após as correções do V8. Após o review P1 da PR #375, A0179 e A0180 receberam uma correção adicional de `Dependências Obrigatórias`, `Gate`, `Hook`, `Fallback` e `Regra` para impedir compra no-op sem classifier NATURE ativo; ambas foram re-fetched e a persistência foi confirmada em 2026-09-02.
 
 ## 2. Resultado executivo final
 
 | Código | Perk | Estado Chat 1 | Motivo principal |
 |---|---|---|---|
 | A0171 | Dano de Raio II | DESIGN APROVADO / `UNAVAILABLE_NODE` | faltam `DIRECT_MAGIC_OUTCOME_V1` + `LIGHTNING_CONSUMABLE_STATE_V1`; A0170 também está unavailable |
-| A0172 | Resistência a Raio I | **DESIGN APROVADO / IMPLEMENTÁVEL** | NeoForge `LivingDamageEvent.Pre`, `IS_LIGHTNING` e adapter exato Iron's `lightning_magic` |
+| A0172 | Resistência a Raio I | **DESIGN APROVADO / IMPLEMENTÁVEL** | NeoForge `LivingDamageEvent.Pre` + `IS_LIGHTNING`; adapter Iron's é extensão, não única fonte |
 | A0173 | Resistência a Raio II | **DESIGN APROVADO / IMPLEMENTÁVEL** | mesmo resolver/bucket de A0172 + vida PRE-impacto estritamente `<50%` |
 | A0174 | Imbuimento de Raio | DESIGN APROVADO / `UNAVAILABLE_NODE` | faltam direct magic outcome + `DERIVED_DAMAGE_COMPONENT_V1`; fallback somente de movimento é proibido |
 | A0175 | Afinidade de Raio | DESIGN APROVADO / `UNAVAILABLE_NODE` | falta `MAGIC_THERMAL_PARCEL_V1`; Cold Sweat permanece authority térmica |
 | A0176 | Maestria de Raio | DESIGN APROVADO / `UNAVAILABLE_NODE` transitivo | unlock/investment genérico existe, mas dependency A0175 está unavailable |
 | A0177 | Dano de Natureza I | DESIGN APROVADO / `UNAVAILABLE_NODE` | falta `DIRECT_MAGIC_OUTCOME_V1` NATURE |
 | A0178 | Dano de Natureza II | DESIGN APROVADO / `UNAVAILABLE_NODE` | faltam direct outcome + `NATURE_CONTROL_RECEIPT_V1` |
-| A0179 | Resistência a Natureza I | **DESIGN APROVADO / IMPLEMENTÁVEL** | NeoForge Pre + adapter exato Iron's `nature_magic`; sem tag vanilla NATURE genérica |
-| A0180 | Resistência a Natureza II | **DESIGN APROVADO / IMPLEMENTÁVEL** | mesmo resolver/bucket de A0179 + vida PRE-impacto estritamente `<50%` |
+| A0179 | Resistência a Natureza I | **DESIGN APROVADO / IMPLEMENTÁVEL NO PACK ATUAL** | NeoForge Pre + classifier NATURE ativo; Iron's `nature_magic` satisfaz no pack atual; sem qualquer classifier ativo → `UNAVAILABLE_NODE` |
+| A0180 | Resistência a Natureza II | **DESIGN APROVADO / IMPLEMENTÁVEL NO PACK ATUAL** | mesmo resolver/bucket/availability gate de A0179 + vida PRE-impacto estritamente `<50%` |
 
-**Resultado:** 10/10 design fechado; 6/10 aprovadas em fail-closed `UNAVAILABLE_NODE`; 4/10 implementáveis pelo Chat 2 sem redesign.
+**Resultado no pack auditado:** 10/10 design fechado; 6/10 estruturalmente fail-closed `UNAVAILABLE_NODE`; 4/10 implementáveis pelo Chat 2 sem redesign. A0179/A0180 são condicionalmente disponíveis em runtime: se todos os classifiers NATURE allowlisted/version-compatible estiverem ausentes ou rejeitados, ambas fecham como `UNAVAILABLE_NODE` fail-before-spend.
 
 ## 3. Evidência técnica e authority dos providers
 
@@ -49,7 +50,9 @@ Buckets separados:
 - `RPG_LIGHTNING_RESISTANCE` — A0172 + A0173;
 - `RPG_NATURE_RESISTANCE` — A0179 + A0180.
 
-`DamageTypeTags.IS_LIGHTNING` é classifier válido para LIGHTNING defensivo. Não existe tag vanilla NATURE genérica aprovada neste lote.
+`DamageTypeTags.IS_LIGHTNING` é classifier válido para LIGHTNING defensivo e permanece disponível sem Iron's. Isso evita que A0172/A0173 virem nodes no-op quando a integração Iron's não estiver carregada.
+
+Não existe tag vanilla NATURE genérica aprovada neste lote. Por isso a família A0179/A0180 exige um gate explícito derivado dos classifiers NATURE realmente ativos.
 
 ### 3.2 Iron's Spells 'n Spellbooks 3.16.3
 
@@ -66,21 +69,42 @@ Exclusões:
 - RootSpell/RootEntity não viram `NATURE_CONTROL_RECEIPT_V1` automaticamente;
 - nome, namespace, VFX ou tema não substituem classifier/receipt.
 
-### 3.3 Ars Nouveau 5.13.1 / Ars Elemental 0.7.10.1
+Iron's é integração opcional do RPG Skill Tree. Portanto `nature_magic` pode ser o classifier NATURE ativo do pack atual, mas a availability de A0179/A0180 não pode ser hardcoded em “Iron's sempre presente”.
 
-Podem ser providers futuros de outcomes/states elementais, mas somente por adapters versionados que provem causalidade, autoria, state identity e deduplicação. A presença de spell events/contextos não autoriza um producer DIRECT local por perk.
+### 3.3 Availability canônica da família NATURE defensiva
 
-### 3.4 Cold Sweat 2.4.2
+O mesmo registry/adapter set que o `ElementalDamageMitigationResolver` usa para classificar NATURE deve expor semanticamente:
+
+`hasActiveNatureClassifier() == true|false`
+
+Esse predicate não cria segunda authority. Ele é apenas uma projeção da fonte de verdade já usada pela classificação.
+
+Regras:
+
+- pelo menos um classifier NATURE allowlisted/version-compatible ativo → família disponível, sujeita aos demais gates;
+- zero classifiers NATURE ativos → A0179/A0180 = `UNAVAILABLE_NODE`;
+- compra falha antes do gasto;
+- allocation legado indisponível conta 0 PP para gates/thresholds e permanece reembolsável/migrável;
+- se Iron's estiver ausente, mas outro classifier NATURE explicitamente allowlisted estiver ativo, a família continua disponível;
+- não manter flag manual, cache independente ou registry paralelo que possa divergir da classificação real.
+
+### 3.4 Ars Nouveau 5.13.1 / Ars Elemental 0.7.10.1
+
+Podem ser providers futuros de outcomes/states/classifiers elementais, mas somente por adapters versionados que provem causalidade, autoria, state identity e deduplicação. A presença de spell events/contextos não autoriza um producer DIRECT local por perk nem transforma automaticamente Ars em classifier NATURE defensivo.
+
+### 3.5 Cold Sweat 2.4.2
 
 Cold Sweat conserva authority única da temperatura corporal. A0175 exige uma parcela térmica causal de magia (`MAGIC_THERMAL_PARCEL_V1`) antes de qualquer transformação; evento global old/new de temperatura não prova qual ação causou a parcela.
 
-### 3.5 Tecnologia
+### 3.6 Tecnologia
 
 Create, Oritech e FE permanecem tecnologia. Eletricidade tecnológica não é magia LIGHTNING por tema e não pode abrir A0171/A0174/A0175 nem gerar Mastery elemental.
 
-### 3.6 RPG Skill Tree
+### 3.7 RPG Skill Tree
 
 A infraestrutura de investment/unlock de A0176 continua canônica. Não criar `SpecialistGateResolver` paralelo. Gate C é a posse de A0176; Gates A/B continuam no pipeline de unlock/investment existente.
+
+O `ElementalDamageMitigationResolver` é um contrato compartilhado **a implementar/estender pelo Chat 2**; ele não é tratado como runtime já existente apenas porque o nome consta do design.
 
 ## 4. Revalidação dos quatro projetos/sistemas próprios
 
@@ -127,7 +151,7 @@ A busca fresca na `main` atual manteve ausentes:
 
 Consequência: A0171/A0174/A0175/A0177/A0178 continuam indisponíveis diretamente e A0176 continua indisponível por dependency closure. Nenhum fallback genérico é permitido.
 
-O `ElementalDamageMitigationResolver` é um contrato compartilhado **a implementar/estender pelo Chat 2** para as quatro resistências; não é tratado como capability já existente apenas por estar descrito no design.
+Para as quatro resistências o boundary de dano é suficiente. A0172/A0173 possuem classifier LIGHTNING vanilla; A0179/A0180 exigem, adicionalmente, `hasActiveNatureClassifier()` verdadeiro no registry real.
 
 ## 6. Nove eixos obrigatórios de aprovação
 
@@ -136,7 +160,9 @@ O `ElementalDamageMitigationResolver` é um contrato compartilhado **a implement
 - dependency closures explícitas;
 - `UNAVAILABLE_NODE` falha antes do gasto;
 - allocation legado indisponível vale 0 PP para gates/thresholds e permanece reembolsável/migrável;
-- A0172 e A0179 mantêm rota legítima via Gateway VITALITY apesar dos ofensivos unavailable;
+- A0172 mantém rota legítima via Gateway VITALITY apesar do ofensivo unavailable;
+- A0179 mantém rota topológica via Gateway VITALITY **somente quando** `hasActiveNatureClassifier()==true`;
+- A0180 herda disponibilidade de A0179 e não cria segundo gate/provider registry;
 - A0176 reutiliza o unlock canônico e não inventa segunda authority.
 
 ### 6.2 Integração global — PASS
@@ -145,7 +171,8 @@ O `ElementalDamageMitigationResolver` é um contrato compartilhado **a implement
 - Volcanoes mantém ambiente/geologia;
 - tecnologia não vira LIGHTNING mágico;
 - NATURE não é poison/fauna/planta/ambiente por inferência;
-- Black Arcana rituals não viram outcome elemental.
+- Black Arcana rituals não viram outcome elemental;
+- mod opcional ausente não deixa node NATURE defensivo comprável como no-op.
 
 ### 6.3 Qualidade e identidade — PASS
 
@@ -154,15 +181,16 @@ O `ElementalDamageMitigationResolver` é um contrato compartilhado **a implement
 - A0175 é afinidade térmica causal, distinta de resistência;
 - A0176 é terminal/Gate C, sem pacote artificial;
 - A0178 é combo por state/control receipt e spell diferente;
-- resistências usam buckets estáveis e previsíveis.
+- resistências usam buckets estáveis e previsíveis;
+- availability da família NATURE é derivada dos classifiers reais, sem mecanismo concorrente.
 
 ### 6.4 Ramificação, distância e topologia — PASS
 
-LIGHTNING conclui ofensiva/defesa/bridge/afinidade/terminal; NATURE inicia potência/controle/defesa. Bridge PP tem contagem unitária; nenhuma rota de gateway substitui dependência semântica ofensiva.
+LIGHTNING conclui ofensiva/defesa/bridge/afinidade/terminal; NATURE inicia potência/controle/defesa. Bridge PP tem contagem unitária; nenhuma rota de gateway substitui dependência semântica ofensiva ou o gate de disponibilidade do provider/classifier.
 
 ### 6.5 Especializações — PASS
 
-A0176 satisfaz somente Gate C. Gate B usa investimento/região semântica canônica, não geometria client-side. Respec futuro deve reconciliar unlock pelo pipeline existente.
+A0176 satisfaz somente Gate C. Gate B usa investimento/região semântica canônica, não geometria client-side. Respec futuro deve reconciliar unlock pelo pipeline existente. Allocation NATURE defensivo indisponível vale 0 PP para esses cálculos até a família voltar a ficar disponível ou ser reembolsada/migrada.
 
 ### 6.6 PT-BR — PASS
 
@@ -170,7 +198,7 @@ Conteúdo player-facing permanece PT-BR; IDs, hooks, classes e contratos técnic
 
 ### 6.7 Preenchimento Notion — PASS
 
-As dez páginas estão completas e persistidas. A revalidação atual não encontrou divergência que justificasse nova alteração editorial.
+As dez páginas estão completas e persistidas. A0179/A0180 foram atualizadas novamente após o review P1 e re-fetched com o availability gate, fail-before-spend e tratamento de allocation legado persistidos.
 
 ### 6.8 NeoVitae — PASS
 
@@ -178,13 +206,14 @@ Nenhuma das dez perks depende de NeoVitae ou usa recurso/hook legado NeoVitae.
 
 ### 6.9 Cobertura modlist / provider→árvore — PASS
 
-Iron's, Ars, Ars Elemental, Cold Sweat, NeoForge/Minecraft, tecnologia pertinente e os quatro projetos/sistemas próprios foram reavaliados. A capability ritual nova do Black Arcana recebeu disposição explícita, sem expandir o lote.
+Iron's, Ars, Ars Elemental, Cold Sweat, NeoForge/Minecraft, tecnologia pertinente e os quatro projetos/sistemas próprios foram reavaliados. A capability ritual nova do Black Arcana recebeu disposição explícita, sem expandir o lote. A opcionalidade de Iron's foi incorporada ao gate NATURE defensivo após review.
 
 ## 7. Deduplicação, causalidade e anti-abuso
 
 - A0172/A0173: um bucket `RPG_LIGHTNING_RESISTANCE`, uma passagem pelo resolver;
 - A0179/A0180: um bucket `RPG_NATURE_RESISTANCE`, uma passagem;
 - adapters classificam; não reduzem dano em listener paralelo;
+- availability A0179/A0180 usa o mesmo registry dos classifiers; nenhuma segunda lista/flag;
 - A0171 futuro: PRE-state + consumo/bônus atômico, um commit por outcome;
 - A0174 futuro: componente derivado no mesmo outcome pai, sem segundo `hurt`, DamageSource, crítico, proc ou Mastery;
 - A0175 futuro: uma transformação por thermal parcel/action, sem segunda temperatura;
@@ -196,12 +225,14 @@ Iron's, Ars, Ars Elemental, Cold Sweat, NeoForge/Minecraft, tecnologia pertinent
 
 Fallback preserva a identidade:
 
-- adapter opcional ausente → aquela fonte contribui zero;
-- classifier desconhecido/version mismatch → inelegível;
+- classifier opcional ausente → aquela fonte contribui zero;
+- **se a família NATURE perder todos os classifiers compatíveis, A0179/A0180 inteiras ficam `UNAVAILABLE_NODE`**, em vez de permanecerem compráveis como no-op;
+- classifier desconhecido/version mismatch individual → fonte inelegível;
 - contract causal ausente → node unavailable, não bônus genérico;
 - A0174 não pode ativar só o movimento;
 - A0175 não pode reduzir temperatura global sem parcela causal;
-- A0178 não pode usar Slowness/root visual como substituto universal.
+- A0178 não pode usar Slowness/root visual como substituto universal;
+- poison/planta/fauna/ambiente não podem ser promovidos a NATURE para manter availability artificialmente.
 
 ## 9. Testes especificados para o Chat 3
 
@@ -210,17 +241,24 @@ Os dossiês individuais são a fonte detalhada. O fechamento futuro deve cobrir,
 1. purchase fail-before-spend e legacy unavailable = 0 PP;
 2. ranks e caps próprios das quatro resistências;
 3. classifiers LIGHTNING/NATURE positivos e negativos;
-4. nenhuma conversão FE/Create/Oritech em magia LIGHTNING;
-5. nenhum poison/thorn/planta/fauna/ambiente como NATURE genérico;
-6. dedup dos buckets e ausência de reducer paralelo;
-7. health PRE-impacto e boundary estrito `<50%` para A0173/A0180;
-8. A0171 PRE-state, consumo atômico e CD 80t quando capability existir;
-9. A0174 same-outcome/no-second-DamageSource e movimento all-or-nothing quando capability existir;
-10. A0175 thermal parcel causal sem segunda temperature authority;
-11. A0178 spell diferente, janela 120t, extensão ≤20t e CD 140t;
-12. A0176 Gates A/B/C + respec/reconcile quando dependency closure abrir;
-13. lifecycle/logout/reload/dimensão/multiplayer;
-14. build NeoForge, GameTests/integrações, dedicated-server smoke e CI — responsabilidade do Chat 3.
+4. A0172/A0173 continuam classificando `IS_LIGHTNING` sem Iron's;
+5. A0179/A0180 com Iron's 3.16.3 ativo e `nature_magic` válido;
+6. **Iron's ausente + nenhum outro classifier NATURE ativo → A0179/A0180 `UNAVAILABLE_NODE`, compra falha antes do gasto**;
+7. **adapter Iron's rejeitado por version mismatch + nenhum outro classifier NATURE ativo → mesmo fail-before-spend**;
+8. segundo classifier NATURE allowlisted válido mantém a família disponível sem Iron's;
+9. reload/transição available→unavailable preserva allocation legado, mas passa a contar 0 PP para gates/thresholds e permite respec;
+10. reload/transição unavailable→available reabre a família sem duplicar allocation/efeito;
+11. nenhuma conversão FE/Create/Oritech em magia LIGHTNING;
+12. nenhum poison/thorn/planta/fauna/ambiente como NATURE genérico;
+13. dedup dos buckets e ausência de reducer paralelo;
+14. health PRE-impacto e boundary estrito `<50%` para A0173/A0180;
+15. A0171 PRE-state, consumo atômico e CD 80t quando capability existir;
+16. A0174 same-outcome/no-second-DamageSource e movimento all-or-nothing quando capability existir;
+17. A0175 thermal parcel causal sem segunda temperature authority;
+18. A0178 spell diferente, janela 120t, extensão ≤20t e CD 140t;
+19. A0176 Gates A/B/C + respec/reconcile quando dependency closure abrir;
+20. lifecycle/logout/reload/dimensão/multiplayer;
+21. build NeoForge, GameTests/integrações, dedicated-server smoke e CI — responsabilidade do Chat 3.
 
 ## 10. STATUS.md e concorrência documental
 
@@ -228,16 +266,32 @@ As PRs predecessoras #361 (A0141–A0150), #366 (A0151–A0160) e #368 (A0161–
 
 Por isso `audits/STATUS-A0171-A0180.md` continua sendo o tracker complementar autoritativo deste lote, explicitamente indexado. A futura reconciliação do `STATUS.md` raiz deve preservar A0141–A0180 em ordem e não pode transformar esse mecanismo de concorrência em perda de histórico.
 
-## 11. Handoff Chat 2
+## 11. Review P1 da PR #375 — resolução
+
+O review automatizado apontou que, sem Iron's ou com adapter rejeitado, a rota Gateway VITALITY ainda permitiria comprar A0179 mesmo sem qualquer fonte NATURE classificada; A0180 herdaria o no-op.
+
+**Finding aceito.** A correção preserva identidade e authority e não requer redesign de efeito/topologia:
+
+- availability derivada do mesmo classifier registry;
+- `hasActiveNatureClassifier()` obrigatório para aquisição/ativação A0179/A0180;
+- zero classifiers → `UNAVAILABLE_NODE` fail-before-spend;
+- allocation legado indisponível = 0 PP para gates/thresholds, reembolsável/migrável;
+- ausência de Iron's não fecha a família se outro adapter NATURE válido estiver ativo;
+- Notion A0179/A0180 e dossiês GitHub atualizados e persistência confirmada.
+
+## 12. Handoff Chat 2
 
 Chat 2 deve continuar **a mesma branch/PR #375**.
 
 Implementar sem redesign:
 
 - A0172/A0173 — bucket `RPG_LIGHTNING_RESISTANCE` no resolver elemental compartilhado;
-- A0179/A0180 — bucket `RPG_NATURE_RESISTANCE` no mesmo resolver.
+- A0179/A0180 — bucket `RPG_NATURE_RESISTANCE` no mesmo resolver;
+- o mesmo registry/adapter set do resolver deve derivar `hasActiveNatureClassifier()`;
+- gates de compra/ativação A0179/A0180 devem usar esse predicate e falhar antes do gasto quando falso;
+- preservar allocations legadas indisponíveis sem contá-las em gates/thresholds.
 
-Preservar fail-closed:
+Preservar fail-closed estrutural:
 
 - A0171, A0174, A0175, A0176, A0177 e A0178 enquanto blockers/dependencies continuarem ausentes.
 
@@ -245,19 +299,22 @@ Proibições:
 
 - não criar direct-magic producer, state receipt, thermal parcel ou derived-damage pipeline local por perk;
 - não criar Specialist resolver paralelo;
+- não criar segundo registry/flag de availability NATURE;
 - não converter tecnologia/ambiente/projeto próprio em elemento por tema;
 - divergência que mude identidade, efeito, provider, gate, dependência, topologia, authority ou semântica essencial volta ao Chat 1.
 
-## 12. Fechamento Chat 1
+## 13. Fechamento Chat 1
 
-**A0171–A0180: DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 — revalidado em 2026-09-02.**
+**A0171–A0180: DESIGN APROVADO / LOTE FECHADO PELO CHAT 1 — revalidado e corrigido após review P1 em 2026-09-02.**
 
 - 10/10 dossiês completos;
 - 10/10 páginas Notion persistidas e coerentes;
-- 6/10 `UNAVAILABLE_NODE` fail-closed;
-- 4/10 implementáveis sem redesign;
+- A0179/A0180 re-fetched após a correção P1;
+- 6/10 estruturalmente `UNAVAILABLE_NODE` fail-closed;
+- 4/10 implementáveis no pack atual sem redesign;
+- A0179/A0180 fecham dinamicamente como `UNAVAILABLE_NODE` se não houver classifier NATURE ativo;
 - delta provider→árvore atualizado para a topologia Volcanoes consolidada, Enshrouded Stage 08.03 e Black Arcana Stage 06;
-- testes futuros especificados;
+- testes futuros especificados, incluindo ausência/version mismatch de provider NATURE;
 - nenhum runtime de perk implementado por este chat;
 - nenhuma bateria final executada;
 - nenhuma `IMPLEMENTAÇÃO CONFIRMADA` declarada;
