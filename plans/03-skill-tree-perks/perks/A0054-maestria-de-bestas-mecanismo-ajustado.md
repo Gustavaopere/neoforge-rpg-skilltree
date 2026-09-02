@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após correção estrutural, reservation→commit e lifecycle.
 - **Notion:** `3c569db9-f0db-814f-96e0-ee616a448f0d`.
-- **Runtime:** IMPLEMENTAÇÃO PARCIAL / atualmente não adquirível pela cadeia A0050→A0052/A0053; consumo da janela/Cadência ainda precisa ser transacional no lançamento real.
+- **Runtime:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**. A janela/custo agora são transacionais, mas o node permanece `UNAVAILABLE_NODE` pela cadeia A0050→A0052/A0053; reload-speed extra continua omitido sem hook semântico seguro.
 
 ## Contrato canônico
 
@@ -19,21 +19,35 @@
 
 ## Evidência runtime
 
-A policy possui `armAdjustedMechanismOnReload(...)` e `tryAdjustedCrossbowShot(...)`. Porém `A0041A0060CombatState.armAdjustedMechanism(...)` zera `cadence` ao armar a janela. O contrato exige manter as 3 cargas até o disparo que efetivamente consome a janela ou até expiração; armar não pode consumir antecipadamente.
+`armAdjustedMechanism(...)` não zera mais Cadência ao armar a janela. `tryAdjustedCrossbowShot(...)` reserva a ativação para um `rootActionId` sem consumir as 3 cargas; `commitAdjustedCrossbowShot(...)` só fecha a transação quando `EntityJoinLevelEvent` confirma um projectile CROSSBOW correlacionado ao `PendingLaunch` real.
 
-`tryAdjustedCrossbowShot(...)` também é chamado no `ArrowLooseEvent` antes de a criação do projétil estar confirmada e consome janela naquele momento. Listener posterior pode cancelar o lançamento, deixando ativação perdida sem projectile/root. A implementação precisa reservation→commit/rollback e launch provenance real.
+Ausência de spawn/cancelamento deixa a reserva expirar bounded e libera o root sem debitar Cadência. Reconciliation por ranks limpa janela/reserva própria quando A0054 ou sua cadeia deixam de ser válidas. O bônus +15% de dano fica anexado apenas ao projectile que commitou a ação; siblings não repetem o consumo.
 
-A parcela de reload acelerado permanece corretamente omitida por ausência de provider seguro. O state específico do capstone também precisa ser reconciliado em rank loss/respec/rules reload para não sobreviver à perda do terminal.
+A parcela de reload acelerado permanece corretamente omitida por ausência de provider seguro.
 
 ## Pendências para Chat 2
 
-- **P-A0054-01:** mover consumo das 3 Cadências do arm/reload para o disparo que consome Mecanismo Ajustado; expiração sem disparo não simula consumo antecipado.
-- **P-A0054-02:** propagar availability da cadeia A0050/A0052/A0053 e impedir compra enquanto pré-requisitos forem indisponíveis.
-- **P-A0054-03:** reconciliar ledger `epicfight:crossbow` com architecture catalog; `combat:crossbow` não atua como ledger paralela.
-- **P-A0054-04:** reservation→commit/rollback da janela de Mecanismo Ajustado; cancelamento tardio/ausência de projectile spawn não queima ativação nem Cadências.
-- **P-A0054-05:** exigir launch receipt CROSSBOW confirmado para o disparo consumidor; projectile derivado/reemitido sem correlação é inelegível.
-- **P-A0054-06:** limpar janela/reservas próprias do capstone em rank loss, respec ou rules reload que invalide A0054; reconciliar Cadência pelo owner A0052.
-- Herdar `P-A0049-01` e demais blockers da cadeia CROSSBOW; sem producer de Mastery legítimo e A0050 comprável, A0054 não é alcançável.
+- **RESOLVIDA P-A0054-01:** as 3 Cadências só são consumidas no commit do projectile materializado.
+- **RESOLVIDA P-A0054-02:** availability A0050/A0052/A0053→A0054 propagada.
+- **RESOLVIDA P-A0054-03:** `epicfight:crossbow` já é a ledger única na linha predecessora.
+- **RESOLVIDA P-A0054-04:** reservation→commit/rollback implementado.
+- **RESOLVIDA P-A0054-05:** launch receipt CROSSBOW confirmado é obrigatório.
+- **RESOLVIDA P-A0054-06:** lifecycle de janela/reserva própria reconciliado; Cadência continua sob owner A0052.
+- **PENDÊNCIA PROVIDER:** aceleração de reload permanece omitida até surgir hook semântico seguro; não exige redesign do efeito base e permanece fail-closed component-wise.
+
+## Implementação Chat 2 — PR #386
+
+- [x] Hook/launch provenance implementados.
+- [x] Gate/availability fail-closed implementados.
+- [x] Reservation→commit da janela e Cadência implementado.
+- [x] Deduplicação por root/primeiro projectile especial implementada.
+- [x] Lifecycle rank/respec/rules reload implementado.
+- [x] Fallback sem reload-speed heurístico preservado.
+- [x] Código presente.
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/JUnit de arm/reserve/commit/expiry.
+- [ ] **VALIDAÇÃO CHAT 3:** GameTests de cancelamento/ausência de spawn/Multishot.
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge / dedicated-server smoke / CI GREEN.
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA.
 
 ## Boundaries
 
@@ -43,7 +57,7 @@ A parcela de reload acelerado permanece corretamente omitida por ausência de pr
 
 | Eixo | Resultado individual | Evidência / decisão |
 |---|---|---|
-| 1. Dependências, bloqueios e gates | **PASS no design** | A0052 ≥2 + A0053 ≥1 + Mastery `epicfight:crossbow` ≥80 + gateway; toda indisponibilidade herdada permanece bloqueante. |
+| 1. Dependências, bloqueios e gates | **PASS no design e fail-closed** | A0052 ≥2 + A0053 ≥1 + Mastery `epicfight:crossbow` ≥80 + gateway; `UNAVAILABLE_NODE` preserva toda indisponibilidade herdada. |
 | 2. Integração global | **PASS** | Cadência e crítico/dano usam pipelines próprios/canônicos; reload speed só existe com hook semântico real; nenhum recurso mágico/ambiental é usado como proxy. |
 | 3. Qualidade e identidade | **PASS** | Capstone conclui a fantasia mecânica hit→reload→janela→disparo preparado, com decisão temporal e fallback que preserva identidade. |
 | 4. Ramificação, distância e topologia | **PASS** | Camada 4 terminal do ramo de Bestas, dependências convergentes e Mastery 80 compatíveis com posição de Capstone. |
@@ -53,7 +67,7 @@ A parcela de reload acelerado permanece corretamente omitida por ausência de pr
 | 8. NeoVitae | **PASS** | Nenhuma dependência residual. |
 | 9. Cobertura modlist/providers | **PASS** | RPG/Epic Fight/WoM e providers globais foram classificados; Pufferfish projectile speed e Wayward Attributes foram rejeitados como substitutos de reload speed; own-projects/Mobstein não integram. |
 
-Os 18 critérios técnicos cumulativos passam **no design**; componentes sem hook seguro permanecem omitidos/fail-closed e os blockers runtime estão destinados ao Chat 2.
+Os critérios técnicos cumulativos permanecem satisfeitos no design; o código está presente em fail-closed até a cadeia CROSSBOW possuir A0050 seguro.
 
 ## Notion
 
