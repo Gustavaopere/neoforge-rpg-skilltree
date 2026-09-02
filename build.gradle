@@ -13,6 +13,16 @@ sonar {
         property "sonar.projectKey", "Gustavaopere_neoforge-rpg-skilltree"
         property "sonar.organization", "gustavaopere"
         property "sonar.coverage.jacoco.xmlReportPaths", layout.buildDirectory.file('reports/jacoco/test/jacocoTestReport.xml').get().asFile.absolutePath
+        // These are executable acceptance/audit harnesses, not product runtime. They are
+        // exercised by dedicated GitHub Actions/NeoForge GameTest gates rather than the
+        // JUnit task that produces this JaCoCo report, so keep them out of JaCoCo coverage only.
+        property "sonar.coverage.exclusions", [
+                "src/main/java/dev/gustavopere/volcanoes/compat/rns/RnsIntegrationGameTests.java",
+                "scripts/verify-volcanoes-functional-parity.py",
+                "scripts/verify-volcanoes-plan-archive.py",
+                "scripts/verify-volcanoes-standalone-parity.py",
+                "scripts/volcanoes/verify_release_workflow_set.py"
+        ].join(',')
     }
 }
 

@@ -57,6 +57,14 @@ jobs:
       - name: Sonar workflow policy test
         run: python3 scripts/test_sonar_workflow_policy.py
 
+      - name: Sonar New Code period self-healing regression test
+        run: python3 scripts/test_sonar_new_code_period_policy.py
+
+      - name: Ensure Sonar New Code period is Previous version
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: python3 scripts/ensure_sonar_new_code_period.py
+
       - name: Sonar New Code hotspot regression test
         run: python3 scripts/test_sonar_new_code_hotspots.py
 

@@ -1,18 +1,30 @@
-name: Volcanoes Consolidation Contract
+name: Volcanoes Functional Parity Audit
 
 on:
-  pull_request:
-    branches: [main]
   push:
-    branches: [main]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: volcanoes-functional-parity-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  contract:
+  frozen-source-parity:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout consolidated RPG repository
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
+
       - name: Restore frozen standalone source from preserved bundle
         shell: bash
         run: |
@@ -27,9 +39,6 @@ jobs:
           git clone --quiet --no-checkout "$BUNDLE_DIR/Volcanoes-full-history.bundle" "$SOURCE_DIR"
           git -C "$SOURCE_DIR" checkout --quiet --detach "$SOURCE_SHA"
           test "$(git -C "$SOURCE_DIR" rev-parse HEAD)" = "$SOURCE_SHA"
-      - name: Verify single-mod consolidation contract
-        run: python3 scripts/verify-volcanoes-consolidation.py
-      - name: Verify standalone functional parity
-        run: python3 scripts/verify-volcanoes-standalone-parity.py build/volcanoes-standalone-source
-      - name: Verify completed Volcanoes plans are archived
-        run: python3 scripts/verify-volcanoes-plan-archive.py
+
+      - name: Verify functional file parity
+        run: python3 scripts/verify-volcanoes-functional-parity.py build/volcanoes-standalone-source
