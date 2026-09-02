@@ -25,34 +25,35 @@ def main() -> None:
     )
     require(
         NEW_CODE_POLICY_HELPER.exists(),
-        "Sonar CI must include the deterministic New Code period policy helper.",
+        "Sonar CI must include the deterministic New Code settings helper.",
     )
 
     helper = NEW_CODE_POLICY_HELPER.read_text(encoding="utf-8")
     require(
         "ensure_sonar_new_code_period.py" in workflow,
-        "Sonar workflow must enforce the New Code period before analysis.",
+        "Sonar workflow must enforce the New Code settings before analysis.",
     )
     require(
         workflow.index("ensure_sonar_new_code_period.py")
         < workflow.index("Build and analyze with SonarQube"),
-        "Sonar New Code period repair must run before analysis creation.",
+        "Sonar New Code settings repair must run before analysis creation.",
     )
     require(
-        'EXPECTED_TYPE = "PREVIOUS_VERSION"' in helper,
-        "Sonar New Code policy must be PREVIOUS_VERSION.",
+        'EXPECTED_VALUE = "previous_version"' in helper,
+        "SonarQube Cloud New Code policy must be Previous version.",
     )
     require(
-        '"type": EXPECTED_TYPE' in helper,
-        "Sonar policy repair must explicitly set PREVIOUS_VERSION.",
+        '"sonar.leak.period": EXPECTED_VALUE' in helper
+        and '"sonar.leak.period.type": EXPECTED_VALUE' in helper,
+        "SonarQube Cloud policy must set both documented Previous version settings.",
     )
     require(
-        "/api/new_code_periods/list" in helper and "/api/new_code_periods/set" in helper,
-        "Sonar Cloud policy helper must read through list and repair through set.",
+        "/api/settings/values" in helper and "/api/settings/set" in helper,
+        "SonarQube Cloud policy helper must verify and write through the settings Web API.",
     )
     require(
-        "/api/new_code_periods/show" not in helper,
-        "Sonar Cloud policy helper must not depend on the unavailable show endpoint.",
+        "/api/new_code_periods/" not in helper,
+        "SonarQube Cloud policy helper must not depend on SonarQube Server new_code_periods endpoints.",
     )
     require(
         "/api/project_analyses" not in helper
@@ -74,7 +75,7 @@ def main() -> None:
     )
 
     print(
-        "Sonar workflow policy is race-safe, self-heals to Previous version through the Cloud list API, "
+        "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
         "uses basic Gradle caching, and does not install a manual analysis baseline."
     )
 
