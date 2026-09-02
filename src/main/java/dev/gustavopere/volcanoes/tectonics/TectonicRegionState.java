@@ -106,14 +106,14 @@ public final class TectonicRegionState extends SavedData {
             return preserveReadOnly(tag);
         }
 
-        if (tag.contains(REGIONS) && !tag.contains(REGIONS, CompoundTag.TAG_LIST)) {
+        if (tag.contains(REGIONS) && !tag.contains(REGIONS, Tag.TAG_LIST)) {
             LOGGER.error(
                     "Tectonic stress SavedData has an invalid regions NBT type. Preserving payload fail-closed/read-only.");
             return preserveReadOnly(tag);
         }
-        if (tag.contains(REGIONS, CompoundTag.TAG_LIST)) {
+        if (tag.contains(REGIONS, Tag.TAG_LIST)) {
             ListTag rawRegions = (ListTag) tag.get(REGIONS);
-            if (!rawRegions.isEmpty() && rawRegions.getElementType() != CompoundTag.TAG_COMPOUND) {
+            if (!rawRegions.isEmpty() && rawRegions.getElementType() != Tag.TAG_COMPOUND) {
                 LOGGER.error(
                         "Tectonic stress SavedData regions list has a non-compound element type. Preserving payload fail-closed/read-only.");
                 return preserveReadOnly(tag);
@@ -121,7 +121,7 @@ public final class TectonicRegionState extends SavedData {
         }
 
         TectonicRegionState state = new TectonicRegionState();
-        ListTag regions = tag.getList(REGIONS, CompoundTag.TAG_COMPOUND);
+        ListTag regions = tag.getList(REGIONS, Tag.TAG_COMPOUND);
         for (int index = 0; index < regions.size(); index++) {
             CompoundTag region = regions.getCompound(index);
             try {
