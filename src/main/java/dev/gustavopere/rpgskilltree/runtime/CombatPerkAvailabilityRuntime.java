@@ -36,7 +36,9 @@ public final class CombatPerkAvailabilityRuntime {
             case "A0044", "A0047", "A0048" -> false;
 
             // No audited provider currently exposes semantic reload/preparation speed for A0050.
-            case "A0050" -> false;
+            // A0052 requires A0050 >= 2, A0053 requires A0052, and A0054 requires A0052+A0053.
+            // Availability is therefore propagated transitively instead of allowing ghost ranks.
+            case "A0050", "A0052", "A0053", "A0054" -> false;
 
             default -> true;
         };
