@@ -5,6 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "sonarqube.yml"
 GAME_TEST_COVERAGE_INIT = ROOT / "gradle" / "sonar-gametest-coverage.init.gradle"
 LEGACY_BASELINE_SCRIPT = ROOT / "scripts" / "refresh-sonar-new-code-baseline.py"
+NEW_CODE_POLICY_HELPER = ROOT / "scripts" / "ensure_sonar_new_code_period.py"
 
 BATTLE_MAGE_TEST_PATTERNS = (
     "src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java",
@@ -24,11 +25,49 @@ def main() -> None:
 
     require(
         "refresh-sonar-new-code-baseline.py" not in workflow,
-        "Sonar CI must not mutate the main New Code baseline from normal analyses.",
+        "Sonar CI must not mutate the main New Code baseline to a specific analysis.",
     )
     require(
         not LEGACY_BASELINE_SCRIPT.exists(),
-        "Legacy set_baseline helper must be removed so Previous version remains authoritative.",
+        "Legacy analysis-UUID baseline helper must remain removed.",
+    )
+    require(
+        NEW_CODE_POLICY_HELPER.exists(),
+        "Sonar CI must include the deterministic New Code settings helper.",
+    )
+
+    helper = NEW_CODE_POLICY_HELPER.read_text(encoding="utf-8")
+    require(
+        "ensure_sonar_new_code_period.py" in workflow,
+        "Sonar workflow must enforce the New Code settings before analysis.",
+    )
+    require(
+        workflow.index("ensure_sonar_new_code_period.py")
+        < workflow.index("Build and analyze with SonarQube"),
+        "Sonar New Code settings repair must run before analysis creation.",
+    )
+    require(
+        'EXPECTED_VALUE = "previous_version"' in helper,
+        "SonarQube Cloud New Code policy must be Previous version.",
+    )
+    require(
+        '"sonar.leak.period": EXPECTED_VALUE' in helper
+        and '"sonar.leak.period.type": EXPECTED_VALUE' in helper,
+        "SonarQube Cloud policy must set both documented Previous version settings.",
+    )
+    require(
+        "/api/settings/values" in helper and "/api/settings/set" in helper,
+        "SonarQube Cloud policy helper must verify and write through the settings Web API.",
+    )
+    require(
+        "/api/new_code_periods/" not in helper,
+        "SonarQube Cloud policy helper must not depend on SonarQube Server new_code_periods endpoints.",
+    )
+    require(
+        "/api/project_analyses" not in helper
+        and "set_baseline" not in helper
+        and '"analysis":' not in helper,
+        "Sonar CI must never select or persist an analysis UUID as the New Code baseline.",
     )
     require(
         "concurrency:" in workflow,
@@ -76,7 +115,10 @@ def main() -> None:
         "Sonar CI must not game the Quality Gate with coverage or duplication exclusions.",
     )
 
-    print("Sonar workflow policy is race-safe, uses basic Gradle caching, imports transformed GameTest coverage, and test-scopes NeoForge GameTests.")
+    print(
+        "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
+        "uses basic Gradle caching, imports transformed GameTest coverage, and test-scopes NeoForge GameTests."
+    )
 
 
 if __name__ == "__main__":
