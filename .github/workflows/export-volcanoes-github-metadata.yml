@@ -74,6 +74,8 @@ jobs:
           review_count=$(wc -l < "$OUT/pull-reviews.ndjson" | tr -d ' ')
           workflow_run_count=$(wc -l < "$OUT/workflow-runs.ndjson" | tr -d ' ')
           artifact_count=$(wc -l < "$OUT/artifacts.ndjson" | tr -d ' ')
+          active_artifact_count=$(jq -c 'select(.expired == false)' "$OUT/artifacts.ndjson" | wc -l | tr -d ' ')
+          active_artifact_bytes=$(jq -r 'select(.expired == false) | .size_in_bytes' "$OUT/artifacts.ndjson" | awk '{s+=$1} END {print s+0}')
           missing_head_count=$(wc -l < "$OUT/missing-pr-heads.txt" | tr -d ' ')
           missing_base_count=$(wc -l < "$OUT/missing-pr-bases.txt" | tr -d ' ')
           patch_count=$(find "$OUT/missing-pr-patches" -type f -name '*.patch' | wc -l | tr -d ' ')
@@ -90,14 +92,19 @@ jobs:
           - Pull-request review submissions: $review_count
           - Workflow-run summaries: $workflow_run_count
           - Artifact metadata records: $artifact_count
+          - Non-expired artifact records: $active_artifact_count
+          - Non-expired artifact bytes: $active_artifact_bytes
           - PR heads missing from the Git bundle: $missing_head_count
           - PR bases missing from the Git bundle: $missing_base_count
           - Fallback PR patches saved: $patch_count
 
-          The Git bundle remains the primary source-code/history archive. This directory preserves GitHub-native metadata that a Git bundle does not contain. Workflow artifacts themselves are not copied; their metadata is retained, and source/workflow definitions remain recoverable from the Git bundle.
+          The Git bundle remains the primary source-code/history archive. This directory preserves GitHub-native metadata that a Git bundle does not contain. Workflow artifact binaries and hosted job logs are not copied; artifact metadata is retained, and source/workflow definitions remain recoverable from the Git bundle.
           EOF
 
-          find "$OUT" -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > "$OUT/SHA256SUMS"
+          (
+            cd "$OUT"
+            find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
+          )
 
       - name: Verify metadata archive
         env:
