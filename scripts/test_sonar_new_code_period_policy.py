@@ -23,6 +23,21 @@ def load_helper():
     return module
 
 
+def list_payload(module, period_type: str) -> bytes:
+    return json.dumps(
+        {
+            "newCodePeriods": [
+                {
+                    "projectKey": module.SONAR_PROJECT_KEY,
+                    "branchKey": module.SONAR_BASELINE_BRANCH,
+                    "type": period_type,
+                    "inherited": False,
+                }
+            ]
+        }
+    ).encode("utf-8")
+
+
 def test_previous_version_is_noop(module) -> None:
     calls = []
 
@@ -30,7 +45,8 @@ def test_previous_version_is_noop(module) -> None:
         calls.append((path, method, data))
         require(token == "token", "Unexpected token in no-op test")
         require(method == "GET", "PREVIOUS_VERSION must not trigger a mutation")
-        return json.dumps({"type": "PREVIOUS_VERSION", "inherited": False}).encode("utf-8")
+        require(path.startswith("/api/new_code_periods/list?"), "Cloud reads must use list endpoint")
+        return list_payload(module, "PREVIOUS_VERSION")
 
     module.api_request = fake_request
     repaired = module.ensure_previous_version("token")
@@ -40,16 +56,16 @@ def test_previous_version_is_noop(module) -> None:
 
 def test_stale_manual_baseline_repairs_to_previous_version(module) -> None:
     calls = []
-    show_count = 0
+    list_count = 0
 
     def fake_request(path, token, *, method="GET", data=None):
-        nonlocal show_count
+        nonlocal list_count
         calls.append((path, method, data))
         require(token == "token", "Unexpected token in repair test")
-        if path.startswith("/api/new_code_periods/show?"):
-            show_count += 1
-            period_type = "SPECIFIC_ANALYSIS" if show_count == 1 else "PREVIOUS_VERSION"
-            return json.dumps({"type": period_type, "inherited": False}).encode("utf-8")
+        if path.startswith("/api/new_code_periods/list?"):
+            list_count += 1
+            period_type = "SPECIFIC_ANALYSIS" if list_count == 1 else "PREVIOUS_VERSION"
+            return list_payload(module, period_type)
         require(path == "/api/new_code_periods/set", "Unexpected Sonar mutation endpoint")
         require(method == "POST", "New Code period repair must use POST")
         require(
@@ -66,11 +82,11 @@ def test_stale_manual_baseline_repairs_to_previous_version(module) -> None:
     module.api_request = fake_request
     repaired = module.ensure_previous_version("token")
     require(repaired is True, "Stale manual baseline must be repaired")
-    require(show_count == 2, "Repair must verify persisted policy after mutation")
+    require(list_count == 2, "Repair must verify persisted policy after mutation")
     require(len(calls) == 3, "Repair must perform read, mutation, verification read")
 
 
-def test_malformed_show_response_fails_closed(module) -> None:
+def test_malformed_list_response_fails_closed(module) -> None:
     def fake_request(path, token, *, method="GET", data=None):
         return b"not-json"
 
@@ -82,10 +98,33 @@ def test_malformed_show_response_fails_closed(module) -> None:
     raise AssertionError("Malformed Sonar New Code response must fail closed")
 
 
+def test_missing_baseline_branch_fails_closed(module) -> None:
+    def fake_request(path, token, *, method="GET", data=None):
+        return json.dumps(
+            {
+                "newCodePeriods": [
+                    {
+                        "projectKey": module.SONAR_PROJECT_KEY,
+                        "branchKey": "other",
+                        "type": "PREVIOUS_VERSION",
+                    }
+                ]
+            }
+        ).encode("utf-8")
+
+    module.api_request = fake_request
+    try:
+        module.ensure_previous_version("token")
+    except RuntimeError as exc:
+        require("baseline branch" in str(exc), "Missing branch failure should be explicit")
+        return
+    raise AssertionError("Missing main New Code period must fail closed")
+
+
 def test_non_persistent_repair_fails_closed(module) -> None:
     def fake_request(path, token, *, method="GET", data=None):
-        if path.startswith("/api/new_code_periods/show?"):
-            return json.dumps({"type": "SPECIFIC_ANALYSIS", "inherited": False}).encode("utf-8")
+        if path.startswith("/api/new_code_periods/list?"):
+            return list_payload(module, "SPECIFIC_ANALYSIS")
         return b""
 
     module.api_request = fake_request
@@ -101,7 +140,8 @@ def main() -> None:
     module = load_helper()
     test_previous_version_is_noop(module)
     test_stale_manual_baseline_repairs_to_previous_version(module)
-    test_malformed_show_response_fails_closed(module)
+    test_malformed_list_response_fails_closed(module)
+    test_missing_baseline_branch_fails_closed(module)
     test_non_persistent_repair_fails_closed(module)
     print("Sonar New Code period self-healing contract: PASS")
 
