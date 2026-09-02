@@ -3,6 +3,7 @@
 ## Estado
 
 - **Chat 1:** DESIGN APROVADO com **UNAVAILABLE_NODE / FAIL-CLOSED estrutural e transitivo**.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 / EM FAIL-CLOSED**.
 - **Notion:** `3c569db9-f0db-81f2-810a-fdfe37dbcdf8`; fetch fresco no ciclo.
 - **Domínio:** VITALITY ↔ MARTIAL; Camada 2; Ramo Guarda e Estamina.
 - **Ranks:** 4; custo 1 PP/rank.
@@ -23,21 +24,23 @@
 
 ## Availability transitiva
 
-- A0093 está indisponível no snapshot auditado; portanto A0094 também deve ser não comprável mesmo antes de avaliar o segundo binding.
+- A0093 está indisponível no snapshot implementado; portanto A0094 também permanece não disponível.
 - Além disso, falta o contrato próprio de recovery pós-guard-break.
-- `requirementsSatisfied=false` deve ser imposto server-side enquanto qualquer predecessor/binding obrigatório estiver indisponível.
+- O runtime de availability/ranks efetivos mascara A0094 enquanto qualquer predecessor/binding obrigatório estiver indisponível.
+- O caminho de aquisição deve rejeitar a compra sem gasto; a prova comportamental completa é responsabilidade do Chat 3.
 
 ## Fallback / fail-closed
 
 - Sem fallback mecânico.
 - Proibido reduzir duração de animação genericamente, criar cooldown sintético, restaurar stamina, usar knockback/stagger como proxy ou aceitar guard-break sem receipt causal.
 
-## Evidência e pendências para Chat 2
+## Evidência após Chat 2
 
-- `A0081A0100CombatPolicy.guardRecoveryMultiplier` é apenas fórmula pura condicionada por booleano hipotético.
-- `A0081A0100CombatEvents` mantém A0094 fail-closed, mas não implementa availability de compra.
-- **P-A0094-01:** availability transitiva A0093→A0094 no purchase/gate.
-- **P-A0094-02:** manter o node indisponível também por falta de receipt GUARD_BREAK + recovery extension point; não inventar adapter.
+- `CombatPerkAvailabilityRuntime` preserva o fail-closed transitivo de A0093→A0094.
+- `A0081A0100CombatPolicy.guardRecoveryMultiplier` permanece apenas fórmula pura condicionada por contrato causal; não existe adapter inventado.
+- Nenhum receipt sintético de `GUARD_BREAK`, refund ou recovery paralelo foi introduzido.
+- Se um provider futuro divergir do contrato aprovado, a perk deve permanecer indisponível ou voltar ao Chat 1 para redesign.
+- O Chat 2 **não executou** testes provider/purchase/lifecycle, GameTests, build, dedicated-server smoke ou CI.
 
 ## Dedup / lifecycle
 
@@ -73,9 +76,9 @@
 ## Checklist
 
 - [x] Design aprovado pelo Chat 1
-- [ ] P-A0094-01 availability transitiva implementada
-- [ ] P-A0094-02 provider hook seguro implementado ou fail-closed preservado
-- [ ] Código presente / Chat 2 concluído
+- [x] Availability transitiva implementada
+- [x] Provider hook ausente preservado em fail-closed, sem adapter inventado
+- [x] Código presente / Chat 2 concluído
 - [ ] VALIDAÇÃO CHAT 3: testes provider/purchase/lifecycle
 - [ ] VALIDAÇÃO CHAT 3: GameTests/build/dedicated server/CI
 - [ ] VALIDAÇÃO CHAT 3: IMPLEMENTAÇÃO CONFIRMADA
