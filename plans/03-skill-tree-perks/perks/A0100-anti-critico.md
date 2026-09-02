@@ -3,6 +3,7 @@
 ## Estado
 
 - **Chat 1:** DESIGN APROVADO / `UNAVAILABLE_NODE` FAIL-CLOSED.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 / EM FAIL-CLOSED**.
 - **Notion:** `3c569db9-f0db-8184-bbc8-eb9162cc3d1b`; fetch fresco confirmado.
 - **Domínio:** VITALITY; Camada 2; Função Ramo.
 - **Ranks:** 4; custo 1 PP/rank.
@@ -18,9 +19,9 @@
 ## Fail-closed estrutural / aquisição
 
 - Nenhum pipeline incoming auditado expõe atualmente classificação crítica + decomposição base/parcela adicional para o mesmo evento.
-- Portanto A0100 permanece `UNAVAILABLE_NODE`: não pode ser comprado nem ranqueado enquanto o binding obrigatório estiver ausente.
-- O purchase server-side deve fornecer `requirementsSatisfied=false` para A0100 nesse estado, rejeitando antes de qualquer gasto de PP.
-- Manter apenas `FAIL_CLOSED_A0100=true` no runtime de dano não é suficiente se o node continuar comprável.
+- Portanto A0100 permanece `UNAVAILABLE_NODE`: não produz rank efetivo/efeito enquanto o binding obrigatório estiver ausente.
+- O availability gate server-authoritative foi integrado ao caminho de ranks efetivos; a rejeição de compra sem gasto precisa ser provada pelo Chat 3.
+- Ausência de provider/informação causal não é convertida em redução defensiva genérica.
 
 ## Proibições
 
@@ -31,19 +32,19 @@
 
 ## Provider / authority
 
-- RPG Skill Tree: consumer apenas quando existir receipt incoming decomposed real; authority do purchase gate enquanto indisponível.
+- RPG Skill Tree: consumer apenas quando existir receipt incoming decomposed real; authority do purchase/availability gate enquanto indisponível.
 - Epic Fight 21.17.3.1 e Apothic Attributes 2.10.1: só podem participar por adapter explícito/versionado que forneça classificação e decomposição causal do dano recebido.
 - Pufferfish's Attributes 0.8.3 não é provider presumido.
 - Provider ausente/incompatível/inconclusivo mantém fail-closed.
 
-## Evidência atual e divergência preparatória
+## Evidência após Chat 2
 
-- `A0081A0100CombatPolicy.antiCriticalDamage(...)` já modela a fórmula pura e exige `legitimatelyCritical` + `decomposedByCausalResolver`.
-- `A0081A0100CombatEvents` mantém `FAIL_CLOSED_A0100=true` e não aplica branch incoming crítica.
-- Isso é correto como proteção runtime, mas ainda não prova indisponibilidade no purchase path.
-- **P-A0100-01:** integrar disponibilidade ao gate autoritativo de compra (`requirementsSatisfied=false` sem binding real).
-- **P-A0100-02:** preservar ausência de heurística; nenhum adapter deve ser inventado.
-- **P-A0100-03:** quando/SE existir provider real, deduplicar por root/evento e reduzir apenas a parcela adicional.
+- `A0081A0100CombatPolicy.antiCriticalDamage(...)` permanece fórmula pura e exige simultaneamente `legitimatelyCritical` + `decomposedByCausalResolver`.
+- O runtime incoming não inventa branch crítica nem tenta reconstruir `baseDamage`/`additionalCriticalDamage` do dano final.
+- `CombatPerkAvailabilityRuntime` mantém A0100 indisponível e o pipeline de ranks efetivos mascara qualquer rank não suportado.
+- Nenhum adapter Epic Fight/Apothic/Pufferfish foi inventado sem receipt causal real.
+- Se um provider futuro trouxer decomposição incompatível com o contrato aprovado, a mudança deve voltar ao Chat 1.
+- O Chat 2 **não executou** purchase tests, unit tests, GameTests, build NeoForge, dedicated-server smoke ou CI.
 
 ## Dedup / ordem / anti-abuso
 
@@ -83,10 +84,10 @@
 ## Checklist
 
 - [x] Design aprovado pelo Chat 1
-- [ ] P-A0100-01 purchase fail-closed implementado pelo Chat 2
-- [ ] P-A0100-02 heurísticas ausentes comprovadas
-- [ ] P-A0100-03 adapter somente se houver receipt real
-- [ ] Código presente / Chat 2 concluído
+- [x] Purchase/availability fail-closed integrado pelo Chat 2
+- [x] Heurísticas ausentes preservadas
+- [x] Nenhum adapter inventado sem receipt real
+- [x] Código presente / Chat 2 concluído
 - [ ] VALIDAÇÃO CHAT 3: purchase rejection/fórmula/dedup
 - [ ] VALIDAÇÃO CHAT 3: build/dedicated server/CI
 - [ ] VALIDAÇÃO CHAT 3: IMPLEMENTAÇÃO CONFIRMADA
