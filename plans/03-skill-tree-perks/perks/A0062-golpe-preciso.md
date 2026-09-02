@@ -56,3 +56,24 @@ Sem estágio de crítico estável para uma família/provider, a contribuição f
 | 9. Cobertura providers | PASS | Epic Fight, Apothic, Pufferfish e Simply Swords classificados pelo papel real. |
 
 Os 18 critérios técnicos cumulativos passam **no design**, condicionados ao pipeline crítico único.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+- **Estado técnico:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **PR/branch:** #391 / `feat/chat2-a0061-a0070-stacked-handoff`.
+- O resolvedor crítico canônico existente foi preservado; nenhuma segunda rolagem ou pipeline Apothic concorrente foi adicionado.
+- A “confirmação definitiva” citada historicamente acima é reservada ao Chat 3 no protocolo atual.
+
+### Checklist de implementação
+
+- [x] Design aprovado pelo Chat 1
+- [x] Resolvedor crítico canônico presente
+- [x] Gate/dependências preservados
+- [x] Provider-native preservado
+- [x] Fail-closed para família sem estágio crítico seguro
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** uma rolagem por root entre CriticalHitEvent/Epic Fight/projectile
+- [ ] **VALIDAÇÃO CHAT 3:** convergência Apothic sem roll paralelo
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests/integração
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge / dedicated-server smoke / CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
