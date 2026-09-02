@@ -39,6 +39,10 @@ def main() -> None:
         "Sonar CI must queue main analyses instead of cancelling an in-flight main verification.",
     )
     require(
+        "gradle/actions/setup-gradle@" in workflow and "cache-provider: basic" in workflow,
+        "Sonar CI must use Gradle Actions with the explicit open-source basic cache provider.",
+    )
+    require(
         "classdumpdir=" in game_test_coverage,
         "NeoForge GameTest coverage must dump the transformed runtime classes used by JaCoCo execution data.",
     )
@@ -72,7 +76,7 @@ def main() -> None:
         "Sonar CI must not game the Quality Gate with coverage or duplication exclusions.",
     )
 
-    print("Sonar workflow policy is race-safe, imports transformed GameTest coverage, and test-scopes NeoForge GameTests.")
+    print("Sonar workflow policy is race-safe, uses basic Gradle caching, imports transformed GameTest coverage, and test-scopes NeoForge GameTests.")
 
 
 if __name__ == "__main__":
