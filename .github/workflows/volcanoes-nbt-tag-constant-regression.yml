@@ -1,0 +1,17 @@
+name: Volcanoes NBT tag constant regression
+
+on:
+  push:
+    branches:
+      - fix/volcanoes-sonar-nbt-tag-constants
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Enforce canonical NBT tag constant access
+        run: python3 scripts/test_volcanoes_nbt_tag_constant_access.py
