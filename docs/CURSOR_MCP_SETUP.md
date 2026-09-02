@@ -32,7 +32,7 @@ No GitHub PAT, Sonar token, Context7 key or other credential is committed by thi
 
 The project uses the official native GitHub MCP binary over stdio. On the first GitHub MCP action, the official binary opens GitHub in the browser for OAuth authorization. The resulting token is kept in memory by the MCP process rather than written into this repository.
 
-Because this repository is public, the project config explicitly requests only `public_repo`, `workflow` and `security_events` OAuth scopes. It does not request the broad `repo` scope that would also expose private repositories.
+The OAuth request is explicitly limited to `repo` and `workflow`. `repo` is required by the official MCP server for repository write tools such as file/branch/PR operations; `workflow` is required when modifying GitHub Actions workflow files. The setup does not request unrelated scopes such as organization administration, notifications, gists or repository deletion.
 
 After the bootstrap finishes, restart Cursor completely. Context7 and DeepWiki are project-scoped and load from `.cursor/mcp.json`; BetterMemory is merged into Cursor's global MCP configuration by its own supported initializer.
 
