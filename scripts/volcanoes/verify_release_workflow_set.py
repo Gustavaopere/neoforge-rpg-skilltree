@@ -12,7 +12,6 @@ from urllib.request import Request, urlopen
 EXPECTED = (
     "RPG Skill Tree CI",
     "Volcanoes Consolidation Contract",
-    "Volcanoes Functional Parity Audit",
     "Volcanoes Cold Sweat Heat Acceptance",
     "Volcanoes Performance Hardening Acceptance",
     "Volcanoes MineColonies Claim Acceptance",

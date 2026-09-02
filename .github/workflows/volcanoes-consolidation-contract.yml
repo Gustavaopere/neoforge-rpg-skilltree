@@ -15,5 +15,3 @@ jobs:
         run: python3 scripts/verify-volcanoes-consolidation.py
       - name: Verify standalone functional parity
         run: python3 scripts/verify-volcanoes-standalone-parity.py
-      - name: Verify completed Volcanoes plans are archived
-        run: python3 scripts/verify-volcanoes-plan-archive.py

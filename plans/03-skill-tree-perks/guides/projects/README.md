@@ -26,7 +26,7 @@ Desde a consolidação da PR #308, **Volcanoes não possui mais um repositório 
 Portanto, para freshness/delta:
 
 - **RPG Skill Tree:** `Gustavaopere/neoforge-rpg-skilltree/main` + `plans/STATUS.md` e os paths do estágio pertinente;
-- **Volcanoes:** o mesmo `Gustavaopere/neoforge-rpg-skilltree/main`, mas o delta deve ser filtrado pelas superfícies Volcanoes (`docs/archive/volcanoes/**`, `src/main/java/dev/gustavopere/volcanoes/**`, `src/main/java/dev/gustavopere/rpgskilltree/runtime/volcanoes/**`, recursos `volcanoes:*`, `docs/volcanoes/**`, workflows/scripts Volcanoes e contratos compartilhados que o subsystem realmente consuma) + `docs/archive/volcanoes/STATUS.md`;
+- **Volcanoes:** o mesmo `Gustavaopere/neoforge-rpg-skilltree/main`, mas o delta deve ser filtrado pelas superfícies Volcanoes (`plans/volcanoes/**`, `src/main/java/dev/gustavopere/volcanoes/**`, `src/main/java/dev/gustavopere/rpgskilltree/runtime/volcanoes/**`, recursos `volcanoes:*`, `docs/volcanoes/**`, workflows/scripts Volcanoes e contratos compartilhados que o subsystem realmente consuma) + `plans/volcanoes/STATUS.md`;
 - **Enshrouded:** seu repositório próprio + `plans/STATUS.md` enquanto continuar separado;
 - **Black Arcana:** seu repositório próprio + `plans/STATUS.md` enquanto continuar separado.
 

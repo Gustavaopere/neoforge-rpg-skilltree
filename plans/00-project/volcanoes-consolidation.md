@@ -33,7 +33,7 @@ Status: **DESTINATION CONSOLIDATION MERGED / SOURCE CLEANUP NOT AUTHORIZED**
 - [x] Register the Volcanoes mixin configuration from the single RPG Skill Tree mod metadata, with optional RNS target gating fail-closed when its host class is absent.
 - [x] Preserve `volcanoes:*` persistent/resource namespaces and verify that no second `@Mod("volcanoes")` descriptor/entrypoint is required by the consolidated artifact.
 - [x] Add native RPG-facing provider/service bridges for Volcanoes capabilities without duplicating the simulation.
-- [x] Import the canonical Volcanoes plans/docs and release/provenance evidence; completed historical plans are now archived under `docs/archive/volcanoes/` and active documentation remains under `docs/volcanoes/`.
+- [x] Import the canonical Volcanoes plans/docs and release/provenance evidence under `plans/volcanoes/` and `docs/volcanoes/`.
 - [x] Port/adapt CI and acceptance gates to the single-JAR repository and remove the temporary one-shot import workflow.
 - [x] Execute the PR-head validation matrix. The final PR head `b24c1248...` completed all 21 discovered workflows successfully, including RPG Skill Tree CI, SonarQube and the Volcanoes consolidation/release/optional-host gates.
 - [x] Merge the consolidation PR and verify destination `main` contains the exact merge `f613dac5...`.
