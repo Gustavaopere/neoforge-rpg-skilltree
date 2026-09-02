@@ -77,7 +77,11 @@ jobs:
             'https://sonarcloud.io/api/project_analyses/search')"
 
           echo "Sonar main analysis history:"
-          jq -r '.analyses[]? | "  analysis=\(.key // \"?\") date=\(.date // \"?\") revision=\(.revision // \"?\") projectVersion=\(.projectVersion // \"?\") events=\([.events[]? | \"\(.category // \\\"?\\\"):\(.name // \\\"?\\\")\"] | join(\",\"))"' <<<"$response"
+          jq -r '.analyses[]? | [.key // "?", .date // "?", .revision // "?", .projectVersion // "?", ([.events[]? | ((.category // "?") + ":" + (.name // "?"))] | join(","))] | @tsv' <<<"$response" |
+            while IFS=$'\t' read -r analysis date revision project_version events; do
+              printf '  analysis=%s date=%s revision=%s projectVersion=%s events=%s\n' \
+                "$analysis" "$date" "$revision" "$project_version" "$events"
+            done
 
       - name: Ensure Sonar New Code period is Previous version
         env:
