@@ -9,11 +9,13 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 STANDALONE_COMMIT = "eaddc3232dfc600780769f4a5e7e45ff1e50181c"
 
-FUNCTIONAL_PREFIXES = (
+REQUIRED_FUNCTIONAL_PREFIXES = (
     "src/main/java/dev/gustavopere/volcanoes",
     "src/main/resources/assets/volcanoes",
     "src/main/resources/data/volcanoes",
     "src/test/java/dev/gustavopere/volcanoes",
+)
+OPTIONAL_FUNCTIONAL_PREFIXES = (
     "src/test/resources",
 )
 RESOURCE_PREFIXES = (
@@ -42,11 +44,15 @@ def git_blob_sha(path: Path) -> str:
 
 def functional_files(source_root: Path) -> list[Path]:
     files: list[Path] = []
-    for relative in FUNCTIONAL_PREFIXES:
+    for relative in REQUIRED_FUNCTIONAL_PREFIXES:
         base = source_root / relative
         if not base.is_dir():
             raise AssertionError(f"standalone source root missing: {relative}")
         files.extend(path for path in base.rglob("*") if path.is_file())
+    for relative in OPTIONAL_FUNCTIONAL_PREFIXES:
+        base = source_root / relative
+        if base.is_dir():
+            files.extend(path for path in base.rglob("*") if path.is_file())
     return files
 
 
