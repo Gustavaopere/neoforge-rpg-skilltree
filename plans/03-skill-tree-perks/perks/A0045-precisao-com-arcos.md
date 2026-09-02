@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO; sem mutação no Notion nesta retroauditoria.
-- **Implementação:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA PELO CHAT 3**.
 - **Notion:** `3c569db9-f0db-81c8-8eb0-d03018a9ddc6`.
 
 ## Contrato canônico
@@ -49,3 +49,7 @@
 ## Fechamento Chat 2 — 2026-09-01
 
 A pendência indireta de Mastery A0043 não bloqueia mais a aquisição. O Chat 2 não alterou o resolver crítico já existente e não executou a bateria final de validação.
+
+## Fechamento Chat 3 — 2026-09-02
+
+Resolver crítico canônico, dedup por root e coexistência provider-critical foram validados sem segunda rolagem. CI #3378 (`33665545963`) GREEN completo. **Estado final: IMPLEMENTAÇÃO CONFIRMADA.**
