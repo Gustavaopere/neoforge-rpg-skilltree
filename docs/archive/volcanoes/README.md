@@ -1,5 +1,9 @@
 # Volcanoes — Master Plan
 
+## Consolidation status
+
+The active Volcanoes runtime is now part of this unified repository. The former standalone `Gustavaopere/Volcanoes` repository was retired to a three-file migration tombstone after post-consolidation Full Pack, Sonar New Code, and worldgen gates passed. See [`MIGRATION_CLOSEOUT.md`](MIGRATION_CLOSEOUT.md) for the pinned standalone checkpoint, validation runs, tombstone SHA, and ongoing authority rules.
+
 This directory is the canonical memory for the project. A new ChatGPT/Codex session must read this file, `STATUS.md`, `DECISIONS.md`, then the README and task files of the currently active subsystem before changing code.
 
 ## Completion convention
