@@ -80,6 +80,9 @@ jobs:
           ./gradlew --no-daemon
           -I gradle/sonar-gametest-coverage.init.gradle
           -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml,build/reports/jacoco/provider-free/provider-free.xml,build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml
+          -Dsonar.tests=src/test/java,src/main/java
+          -Dsonar.test.inclusions=src/test/java/**/*,src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java
+          -Dsonar.exclusions=src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java
           -Dsonar.qualitygate.wait=true
           -Dsonar.qualitygate.timeout=300
           build sonar --info
