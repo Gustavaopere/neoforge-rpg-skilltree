@@ -63,7 +63,7 @@ jacoco {
     toolVersion = '0.8.14'
 }
 
-def epicFightAdapterCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0031A0040EpicFightAdapterCoverageJUnitTest.java'
+def epicFightAdapterCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0031A0040EpicFight*CoverageJUnitTest.java'
 
 sourceSets {
     test {
@@ -71,7 +71,7 @@ sourceSets {
         java.exclude epicFightAdapterCoveragePath
     }
     neoForgeTest {
-        // Reuse the existing source location but isolate the one test that requires a loaded NeoForge server.
+        // Reuse the existing source location but isolate the adapter tests that require a loaded NeoForge server.
         java.srcDir 'src/test/java'
         java.include epicFightAdapterCoveragePath
         resources.srcDir 'src/test/resources'
@@ -166,7 +166,7 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
-def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFightAdapterCoverageJUnitTest'
+def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFight*CoverageJUnitTest'
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
