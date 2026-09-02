@@ -45,7 +45,15 @@ O avanço `d4ce3176... -> 5213d068...` contém, entre outros, consolidação/clo
 
 A infraestrutura genérica de unlock/investment usada por A0176 continua existente; não criar um segundo resolver Specialist.
 
-Portanto, o delta da `main` **não altera a availability** das dez perks.
+O delta da `main` não libera A0171/A0174/A0175/A0176/A0177/A0178. Para A0179/A0180, o pack auditado possui Iron's 3.16.3 e portanto possui um classifier NATURE implementável; entretanto essa disponibilidade **não pode ser tratada como constante do RPG Skill Tree**, porque Iron's é integração opcional. O runtime deve derivar `hasActiveNatureClassifier()` do mesmo registry/adapter set usado para classificar dano NATURE.
+
+Regra fail-closed da família defensiva NATURE:
+
+- se `hasActiveNatureClassifier() == true`, A0179/A0180 podem ser adquiridas/ativas conforme seus demais gates;
+- se nenhum classifier NATURE allowlisted/version-compatible estiver ativo, A0179/A0180 = `UNAVAILABLE_NODE`;
+- a compra deve falhar antes do gasto;
+- allocations legadas indisponíveis contam 0 PP para gates/thresholds semânticos e permanecem reembolsáveis/migráveis;
+- não manter flag de availability separada do registry real, para evitar drift entre “node disponível” e “nenhuma fonte classificável”.
 
 ## 4. Delta do Enshrouded
 
@@ -100,12 +108,13 @@ Stage 06 não publica `DIRECT_MAGIC_OUTCOME_V1`, `LIGHTNING_CONSUMABLE_STATE_V1`
 | Provider/capability | Cobertura A0171–A0180 | Decisão |
 |---|---|---|
 | NeoForge 1.21.1 `LivingDamageEvent.Pre` | A0172/A0173/A0179/A0180 | boundary único de mitigação server-side |
-| Minecraft `DamageTypeTags.IS_LIGHTNING` | A0172/A0173 | classifier LIGHTNING defensivo; não prova magia DIRECT |
+| Minecraft `DamageTypeTags.IS_LIGHTNING` | A0172/A0173 | classifier LIGHTNING defensivo sempre disponível no runtime vanilla/NeoForge; não prova magia DIRECT |
 | Iron's 3.16.3 `lightning_magic` / `LIGHTNING_MAGIC` | defesa LIGHTNING e identidade futura ofensiva | adapter exato/versionado; identidade sozinha não prova autoria DIRECT |
-| Iron's 3.16.3 `nature_magic` / `NATURE_MAGIC` | defesa NATURE e identidade futura ofensiva | adapter exato/versionado; não existe tag vanilla NATURE genérica aprovada |
+| Iron's 3.16.3 `nature_magic` / `NATURE_MAGIC` | defesa NATURE e identidade futura ofensiva | adapter exato/versionado; no pack atual torna a família defensiva NATURE implementável; se este e todos os demais classifiers NATURE estiverem ausentes/rejeitados, A0179/A0180 ficam `UNAVAILABLE_NODE` |
+| `hasActiveNatureClassifier()` derivado do registry | A0179/A0180 | gate de disponibilidade; mesma fonte de verdade dos classifiers, sem flag paralela |
 | Iron's `CHARGED` | A0171 | **inelegível**: self-buff do caster, não state consumível do alvo |
 | Iron's RootSpell/RootEntity | A0178 | não promover a receipt NATURE genérica sem adapter explícito |
-| Ars Nouveau 5.13.1 / Ars Elemental 0.7.10.1 | futuros producers possíveis | fail-closed até fechar direct outcome/state receipt versionado |
+| Ars Nouveau 5.13.1 / Ars Elemental 0.7.10.1 | futuros producers/classifiers possíveis | fail-closed até fechar contract/adapters versionados explícitos |
 | Cold Sweat 2.4.2 | A0175 | único owner de temperatura corporal; exigir thermal parcel causal antes da mutação |
 | Create/Oritech/FE | corredor LIGHTNING | tecnologia não é magia LIGHTNING por tema |
 | Volcanoes nativo no RPG | ambiente/geologia | authority própria; nenhum mapping LIGHTNING/NATURE automático |
@@ -117,21 +126,22 @@ Stage 06 não publica `DIRECT_MAGIC_OUTCOME_V1`, `LIGHTNING_CONSUMABLE_STATE_V1`
 | Perk | Boundary necessário | Estado final Chat 1 |
 |---|---|---|
 | A0171 Dano de Raio II | `DIRECT_MAGIC_OUTCOME_V1` + `LIGHTNING_CONSUMABLE_STATE_V1` | `UNAVAILABLE_NODE` |
-| A0172 Resistência a Raio I | NeoForge Pre + `IS_LIGHTNING` + adapter Iron's | **IMPLEMENTÁVEL** |
+| A0172 Resistência a Raio I | NeoForge Pre + `IS_LIGHTNING` + adapter Iron's opcional | **IMPLEMENTÁVEL** |
 | A0173 Resistência a Raio II | mesmo resolver/bucket + vida PRE-impacto | **IMPLEMENTÁVEL** |
 | A0174 Imbuimento de Raio | `DIRECT_MAGIC_OUTCOME_V1` + `DERIVED_DAMAGE_COMPONENT_V1` | `UNAVAILABLE_NODE` |
 | A0175 Afinidade de Raio | Cold Sweat + `MAGIC_THERMAL_PARCEL_V1` | `UNAVAILABLE_NODE` |
 | A0176 Maestria de Raio | unlock/investment canônico + dependency A0175 | `UNAVAILABLE_NODE` transitivo |
 | A0177 Dano de Natureza I | `DIRECT_MAGIC_OUTCOME_V1` + classifier NATURE | `UNAVAILABLE_NODE` |
 | A0178 Dano de Natureza II | direct outcome + `NATURE_CONTROL_RECEIPT_V1` | `UNAVAILABLE_NODE` |
-| A0179 Resistência a Natureza I | NeoForge Pre + adapter Iron's `nature_magic` | **IMPLEMENTÁVEL** |
-| A0180 Resistência a Natureza II | mesmo resolver/bucket + vida PRE-impacto | **IMPLEMENTÁVEL** |
+| A0179 Resistência a Natureza I | NeoForge Pre + `hasActiveNatureClassifier()` + adapter NATURE ativo (Iron's no pack atual) | **IMPLEMENTÁVEL NO PACK ATUAL / `UNAVAILABLE_NODE` SEM CLASSIFIER ATIVO** |
+| A0180 Resistência a Natureza II | mesmo resolver/bucket + mesmo availability gate + vida PRE-impacto | **IMPLEMENTÁVEL NO PACK ATUAL / `UNAVAILABLE_NODE` SEM CLASSIFIER ATIVO** |
 
 ## 8. Authorities e deduplicação preservadas
 
 - Cold Sweat continua único owner da temperatura corporal.
 - Volcanoes continua owner semântico de suas grandezas ambientais/geológicas mesmo dentro do mesmo artefato RPG.
 - RPG Skill Tree modifica o dano defensivo por um único resolver/bucket por família; adapters apenas classificam.
+- A availability de A0179/A0180 é uma projeção do mesmo registry de classifiers NATURE; não criar segundo registry/flag para disponibilidade.
 - Provider mágico fornece identidade/state/autoria quando comprovado; não recebe authority sobre progression/gates do RPG.
 - Black Arcana conserva lifecycle/transaction de seus rituais; futura bridge de Mastery deve consumir receipt, nunca reexecutar ou inferir o ritual.
 - Eidolon/Malum não podem gerar segundo crédito quando o mesmo ritual for executado pelo pipeline Black Arcana.
@@ -139,8 +149,10 @@ Stage 06 não publica `DIRECT_MAGIC_OUTCOME_V1`, `LIGHTNING_CONSUMABLE_STATE_V1`
 
 ## 9. Fechamento do gate
 
-**PASS — revalidado em 2026-09-02.**
+**PASS — revalidado em 2026-09-02 e corrigido após review P1 da PR #375.**
 
-Todas as capabilities novas/alteradas detectadas nos quatro projetos/sistemas receberam disposição explícita. O delta recente não abriu nenhum dos cinco contracts mágicos ausentes e não altera o design das dez perks. A capability ritual nova do Black Arcana foi classificada como progression native autoritativa, com cobertura conceitual por perks ritualísticas existentes e bridge RPG mantida `SEM HOOK SEGURO` até adapter futuro.
+Todas as capabilities novas/alteradas detectadas nos quatro projetos/sistemas receberam disposição explícita. O delta recente não abriu nenhum dos cinco contracts mágicos ausentes. A capability ritual nova do Black Arcana foi classificada como progression native autoritativa, com cobertura conceitual por perks ritualísticas existentes e bridge RPG mantida `SEM HOOK SEGURO` até adapter futuro.
 
-Resultado preservado: **6/10 `UNAVAILABLE_NODE`; 4/10 implementáveis.**
+O review P1 da PR #375 identificou corretamente que uma família NATURE defensiva sem qualquer classifier ativo não pode continuar comprável como no-op. O contrato foi corrigido no Notion e nos dossiês: A0179/A0180 derivam availability do mesmo registry/adapter set e viram `UNAVAILABLE_NODE` se todos os classifiers NATURE estiverem ausentes ou incompatíveis.
+
+Resultado no pack auditado, onde Iron's 3.16.3 está presente e o adapter `nature_magic` é o classifier aprovado: **6/10 estruturalmente `UNAVAILABLE_NODE`; 4/10 implementáveis.** Em runtime sem qualquer classifier NATURE compatível, A0179/A0180 fecham dinamicamente como `UNAVAILABLE_NODE` fail-before-spend.
