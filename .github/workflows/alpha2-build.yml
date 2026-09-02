@@ -80,6 +80,9 @@ jobs:
       - name: JUnit 5 tests
         run: ./gradlew --no-daemon test
 
+      - name: NeoForge JUnit adapter tests
+        run: ./gradlew --no-daemon testJunit
+
       - name: NeoForge GameTests
         run: ./gradlew --no-daemon runGameTestServer
 
