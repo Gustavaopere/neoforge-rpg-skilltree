@@ -7,8 +7,10 @@ fail before the Quality Gate can run. This helper repairs configuration drift to
 the deterministic PREVIOUS_VERSION policy without storing or selecting analysis
 UUIDs.
 
-The operation is idempotent and fail-closed: malformed responses, API failures,
-missing credentials, or a mutation that does not persist all make CI fail.
+SonarQube Cloud exposes New Code period reads through
+``/api/new_code_periods/list``. The operation is idempotent and fail-closed:
+malformed responses, API failures, missing credentials, a missing main-branch
+period, or a mutation that does not persist all make CI fail.
 """
 
 from __future__ import annotations
@@ -57,13 +59,8 @@ def api_request(
 
 
 def load_period(token: str) -> dict[str, object]:
-    query = urllib.parse.urlencode(
-        {
-            "project": SONAR_PROJECT_KEY,
-            "branch": SONAR_BASELINE_BRANCH,
-        }
-    )
-    raw = api_request(f"/api/new_code_periods/show?{query}", token)
+    query = urllib.parse.urlencode({"project": SONAR_PROJECT_KEY})
+    raw = api_request(f"/api/new_code_periods/list?{query}", token)
     try:
         payload = json.loads(raw.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
@@ -72,11 +69,27 @@ def load_period(token: str) -> dict[str, object]:
     if not isinstance(payload, dict):
         raise RuntimeError("SonarQube New Code period response was not an object")
 
-    period_type = payload.get("type")
-    if not isinstance(period_type, str) or not period_type:
-        raise RuntimeError("SonarQube New Code period response did not expose a valid type")
+    periods = payload.get("newCodePeriods")
+    if not isinstance(periods, list):
+        raise RuntimeError("SonarQube New Code period response did not expose newCodePeriods")
 
-    return payload
+    for period in periods:
+        if not isinstance(period, dict):
+            continue
+        if period.get("branchKey") != SONAR_BASELINE_BRANCH:
+            continue
+
+        period_type = period.get("type")
+        if not isinstance(period_type, str) or not period_type:
+            raise RuntimeError(
+                f"SonarQube New Code period for {SONAR_BASELINE_BRANCH} did not expose a valid type"
+            )
+        return period
+
+    raise RuntimeError(
+        "SonarQube New Code period response did not contain the configured baseline branch: "
+        f"{SONAR_BASELINE_BRANCH}"
+    )
 
 
 def set_previous_version(token: str) -> None:
