@@ -67,3 +67,12 @@ Causalidade, dedup, anti-abuso, fallback, authority, versões, lifecycle e purch
 ## Testes exigidos ao Chat 3
 
 Validar provider-present/absent, uma aplicação por root, ordem do pipeline, fonte mágica inelegível, projectile modded desconhecido fail-closed, rank/respec/rules reload, multiplayer isolation, NeoForge GameTests, build, JAR e dedicated-server smoke.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+**Estado:** `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `P-A0101-01` e `P-A0101-02` foram resolvidas no runtime: A0101 contribui no `DamageMitigationResolver` somente quando a mesma fonte satisfaz `rpgskilltree:physical` e `DamageTypeTags.IS_PROJECTILE`.
+- A contribuição é `0,02 × rank`, no mesmo `LivingDamageEvent.Pre` usado pelos demais reducers RPG; não foi criado segundo pipeline.
+- Projétil mágico sem classificação física, fontes desconhecidas e rotas modded sem mapping seguro continuam fail-closed por classificação.
+- `P-A0101-03` permanece como validação do Chat 3. Chat 2 não executou a bateria final, não declarou `IMPLEMENTAÇÃO CONFIRMADA` e não fez merge.
