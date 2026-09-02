@@ -25,7 +25,7 @@ public final class A0081A0100NotionContractTest {
         add(expected,"A0092","Resistência Física",4,1,Map.of("A0089",2));
         add(expected,"A0093","Guarda Econômica",5,1,Map.of());
         add(expected,"A0094","Recuperação de Guarda",4,1,Map.of("A0093",2));
-        add(expected,"A0095","Tenacidade",5,1,Map.of("A0091",2,"A0094",1));
+        add(expected,"A0095","Tenacidade",5,1,Map.of("A0091",2));
         add(expected,"A0096","Último Fôlego",3,1,Map.of("A0092",2));
         add(expected,"A0097","Primeira Defesa",3,1,Map.of("A0088",1));
         add(expected,"A0098","Defesa em Movimento",3,1,Map.of("A0088",2));
