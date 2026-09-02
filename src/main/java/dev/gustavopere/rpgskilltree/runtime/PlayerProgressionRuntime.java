@@ -117,6 +117,7 @@ public final class PlayerProgressionRuntime {
     public static boolean purchaseNode(ServerPlayer player, ResourceLocation nodeId) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(nodeId);
+        if (!CombatPerkAvailabilityRuntime.isAvailable(nodeId)) return false;
         var definition = TreeRuleCatalog.definition(nodeId);
         if (definition.isEmpty()) return false;
         try {

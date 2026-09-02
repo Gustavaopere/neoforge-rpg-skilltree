@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após correção causal reservation→commit em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8172-8de3-dcb8dffa2819`; Hook/Fallback/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** NÃO CONFORME no lifecycle atual: arm/consume/cooldown acontecem no PRE; Chat 2 deve corrigir sem redesenho.
+- **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -25,12 +25,25 @@
 
 Epic Fight 21.17.3.1 fornece Impact quando a ação concreta expõe essa grandeza. Simply Swords 1.70.2 mantém execute/Implicits/Runic Powers/Awakening provider-native; eles não criam ou consomem o estado da perk.
 
-## Pendências para Chat 2
+## Implementação Chat 2 — 2026-09-01
 
-- **P-A0073-01 BLOQUEANTE:** mover arm/consume/cooldown para reservation→POST commit; zero/cancel rollback.
-- **P-A0073-02:** Stamina refund somente por receipt causal pós-consumo da mesma ação; sem receipt = 0.
-- **P-A0073-03:** cleanup bounded por alvo/ator em morte, removal/unload, logout/dimensão/respawn, rank loss/respec/rules reload.
-- **P-A0073-04:** dedup de Simply Swords/native execute e callbacks múltiplos.
+- state causal recebeu reservation/commit/rollback separados para opener e finisher;
+- Epic Fight PRE mantém somente `PendingHit`/reserva reversível; POST positivo arma/consome e inicia cooldown, enquanto zero/cancel faz rollback;
+- projectile físico usa PRE canônico já existente + `A0073A0080ProjectileCommitEvents` para commit/rollback pós-dano;
+- review P1 da PR #355 detectou que o POST de projétil ainda podia consumir a reservation pendente de outro projétil/root; corrigido nos commits `b3fd4516a06ec7de3049ed64732b26cbcc5a4720` e `e7a102e9ca22c1065cfd62045fc4e5bb8689576a`: cada `arrow + target` agora carrega `PendingPerkHit` com o `rootActionId` canônico e o POST/cancel usa somente commit/rollback root-specific daquela flecha;
+- reservas pendentes possuem retenção bounded de 1 s para impedir vazamento quando um PRE não receber POST;
+- death/removal, logout, dimensão, respawn, server stop e mudança de rank efetivo limpam estado transitório;
+- bônus de Impact continua somente onde o provider oferece Impact seguro;
+- **refund de Stamina permanece 0** porque não existe receipt causal pós-consumo seguro da mesma ação; não há polling, estimativa por barra, hunger ou exhaustion;
+- execute nativo de Simply Swords permanece provider-native e não foi substituído.
+
+## Pendências para Chat 3
+
+- validar opener abaixo de 20%, janela 3 s, finisher root distinto, +18%/+9% boss e cooldown 8 s somente após POST confirmado;
+- validar cancelamento/dano zero/expiração e concorrência de raízes, incluindo multishot/projéteis simultâneos e prova de que um arrow/root não consome a reservation de outro;
+- validar que ausência de Stamina receipt produz refund exatamente zero;
+- validar cleanup por target unload/death e actor lifecycle/rank loss/respec/rules reload;
+- validar ausência de duplicação com Simply Swords/native execute e callbacks múltiplos.
 
 ## Nove eixos obrigatórios
 
@@ -46,4 +59,4 @@ Epic Fight 21.17.3.1 fornece Impact quando a ação concreta expõe essa grandez
 | NeoVitae | PASS | Ausente. |
 | Providers | PASS | Epic Fight/Simply/RPG delimitados. |
 
-Os 18 critérios técnicos passam **no design**; runtime atual requer correção causal pelo Chat 2.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.

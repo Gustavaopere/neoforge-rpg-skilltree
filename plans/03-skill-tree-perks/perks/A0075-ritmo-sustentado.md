@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8114-a9eb-cb1a5d82f617`; Gate/Hook/Fallback/Provider/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** core matemático existe, mas o node deve permanecer **indisponível/não comprável**.
+- **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -24,18 +24,23 @@
 
 ## Evidência runtime
 
-A policy já exige flags `staminaRegenAvailable`, `thermalActivityAvailable`, `exhaustionAvailable`. O próprio adapter Epic Fight documenta que A0075 não é registrado porque a parcela térmica Cold Sweat obrigatória não está provada. Matemática pura não torna o node utilizável.
+A policy modela o contrato, mas o adapter não registra qualificadores enquanto os três bindings obrigatórios não estiverem provados. A integração Volcanoes → Cold Sweat atualmente existente projeta calor ambiental `WORLD` de fontes vulcânicas e **não** é receipt metabólico da atividade do jogador; não resolve a pendência A0075.
 
-## Fallback e fail-closed
+## Implementação Chat 2 — 2026-09-01
 
-Enquanto faltar qualquer binding obrigatório, A0075 fica indisponível/não comprável; não permitir silent no-op purchase nem benefício parcial. Não substituir por desconto de custo, movement/attack speed, temperatura aproximada, dano ou sede.
+- `CombatPerkAvailabilityRuntime` marca A0075 indisponível;
+- purchase server-authoritative recusa o node e `effectiveRanks` mascara qualquer rank persistido para zero;
+- o bridge Epic Fight continua deliberadamente sem `recordMartialAction(...)`, impedindo ativação parcial;
+- nenhum desconto antigo de custo, attack/movement speed, temperatura aproximada, dano ou sede foi usado como substituto;
+- mudança de rank efetivo/availability limpa qualificadores/estado transitório;
+- a matemática pura permanece disponível somente como contrato/core, sem ser promovida a gameplay.
 
-## Pendências para Chat 2
+## Pendências para Chat 3
 
-- **P-A0075-01 BLOQUEANTE:** unavailable-node invariant no purchase/gate.
-- **P-A0075-02:** provar/implementar boundary Cold Sweat 2.4.2 para contribuição térmica causal de atividade; sem isso não ativar.
-- **P-A0075-03:** integrar `STAMINA_REGEN` + exhaustion + thermal como transação all-or-nothing e testar action-family/root dedup.
-- **P-A0075-04:** cleanup de qualifiers/janela/cooldown em lifecycle/rank loss/respec/rules reload.
+- validar compra recusada e ausência total de benefício parcial;
+- validar que Volcanoes/Cold Sweat WORLD heat não habilita A0075;
+- validar que rank persistido preexistente é efetivamente mascarado enquanto indisponível;
+- quando/SE existir futuramente boundary metabólico causal seguro, validar os três bindings como transação all-or-nothing e action-family/root dedup; se isso exigir mudança de contrato/provider, devolver ao Chat 1.
 
 ## Nove eixos obrigatórios
 
@@ -51,4 +56,4 @@ Enquanto faltar qualquer binding obrigatório, A0075 fica indisponível/não com
 | NeoVitae | PASS | Ausente. |
 | Providers | PASS | Epic Fight/Cold Sweat/vanilla delimitados; ausência gera indisponibilidade. |
 
-Os 18 critérios passam **no design** porque a indisponibilidade é parte explícita do contrato.
+Chat 2 conclui corretamente A0075 em fail-closed; não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.

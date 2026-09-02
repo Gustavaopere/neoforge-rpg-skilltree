@@ -4,9 +4,12 @@ import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.PhysicalModifiers;
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.SpecialResult;
+import dev.gustavopere.rpgskilltree.core.A0061A0080CombatState;
+import dev.gustavopere.rpgskilltree.core.A0061A0080CombatState.FirstBloodReservation;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategory;
 import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.MartialStanceRuntime;
 import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier;
 import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier.TargetClass;
 import java.util.HashMap;
@@ -17,6 +20,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
@@ -25,8 +29,11 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
+import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
@@ -51,7 +58,11 @@ public final class A0061A0080EpicFightHooks {
     private static final TagKey<Item> HAMMERS = tag("hammers");
     private static final TagKey<Item> MACES = tag("maces");
     private static final TagKey<Item> SCYTHES = tag("scythes");
-    private static final WeakHashMap<EpicFightDamageSource, Map<String, String>> ROOT_ACTIONS = new WeakHashMap<>();
+    private static final TagKey<DamageType> PHYSICAL_DAMAGE = TagKey.create(
+        Registries.DAMAGE_TYPE,
+        ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "physical")
+    );
+    private static final WeakHashMap<EpicFightDamageSource, Map<String, PendingHit>> ROOT_ACTIONS = new WeakHashMap<>();
     private static final AtomicLong ACTION_SEQUENCE = new AtomicLong();
     private static boolean registered;
 
@@ -83,6 +94,7 @@ public final class A0061A0080EpicFightHooks {
         String root = rootAction(source, targetId, now);
         TargetClass targetClass = MartialTargetClassifier.classify(target);
         double healthFraction = healthFraction(target);
+        A0061A0080CombatState state = A0061A0080RuntimeState.state();
 
         A0061A0080CombatPolicy.HitFacts facts = new A0061A0080CombatPolicy.HitFacts(
             actor,
@@ -98,19 +110,29 @@ public final class A0061A0080EpicFightHooks {
             true,
             now
         );
-        PhysicalModifiers base = A0061A0080CombatPolicy.beforePhysicalHit(
-            facts, ranks, A0061A0080RuntimeState.state()
-        );
-        SpecialResult execution = A0061A0080CombatPolicy.execution(
-            actor, targetId, root, healthFraction, targetClass == TargetClass.BOSS,
-            ranks, A0061A0080RuntimeState.state(), true, now
-        );
-        SpecialResult firstBlood = A0061A0080CombatPolicy.firstBlood(
-            actor, targetId, root, healthFraction, ranks, A0061A0080RuntimeState.state(), true, now
-        );
-        double opportunity = A0061A0080CombatPolicy.consumeOpportunityDamageMultiplier(
-            actor, root, ranks, A0061A0080RuntimeState.state(), now
-        );
+        PhysicalModifiers base = A0061A0080CombatPolicy.beforePhysicalHit(facts, ranks, state);
+
+        boolean executionReserved = ranks.rank("A0073") > 0
+            && state.reserveExecution(actor, targetId, root, now);
+        boolean executionArmCandidate = ranks.rank("A0073") > 0
+            && !executionReserved
+            && healthFraction < 0.20D
+            && !state.executionWindowActive(actor, targetId, now)
+            && !state.executionCoolingDown(actor, targetId, now);
+        SpecialResult execution = executionReserved
+            ? new SpecialResult(true, targetClass == TargetClass.BOSS ? 1.09D : 1.18D, 1.20D, 0.0D)
+            : SpecialResult.neutral();
+
+        FirstBloodReservation firstBloodReservation = ranks.rank("A0074") > 0
+            ? state.reserveFirstBlood(actor, targetId, root, healthFraction, now)
+            : FirstBloodReservation.NONE;
+        SpecialResult firstBlood = firstBloodReservation == FirstBloodReservation.FINISHER
+            ? new SpecialResult(true, 1.10D, 1.20D, 0.0D)
+            : SpecialResult.neutral();
+
+        boolean opportunityReserved = ranks.rank("A0080") > 0
+            && state.reserveOpportunity(actor, root, now);
+        double opportunity = opportunityReserved ? 1.15D : 1.0D;
 
         double damage = base.damageMultiplier()
             * execution.damageMultiplier()
@@ -129,6 +151,14 @@ public final class A0061A0080EpicFightHooks {
             source.attachImpactModifier(ValueModifier.multiplier((float) impact));
         }
 
+        remember(source, targetId, new PendingHit(
+            root,
+            executionReserved,
+            executionArmCandidate,
+            firstBloodReservation,
+            opportunityReserved
+        ));
+
         // A0075 is intentionally not recorded here. Until STAMINA_REGEN, Cold Sweat metabolic
         // heat, and vanilla exhaustion are all proven operational on the same action, the Notion
         // contract requires all qualifiers and the benefit to remain inactive.
@@ -136,7 +166,60 @@ public final class A0061A0080EpicFightHooks {
 
     private static void onDamagePost(DealDamageEvent.Post event) {
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player)) return;
-        forget(event.getDamageSource(), event.getTarget().getUUID().toString());
+        String targetId = event.getTarget().getUUID().toString();
+        PendingHit pending = forget(event.getDamageSource(), targetId);
+        if (pending == null) return;
+
+        A0061A0080CombatState state = A0061A0080RuntimeState.state();
+        String actor = A0061A0080RuntimeState.actorId(player);
+        long now = now(player);
+        CombatPerkRanks ranks = A0061A0080RuntimeState.ranks(player);
+
+        if (!eligible(player) || event.getModifiedDamage() <= 0.0F) {
+            rollbackPending(state, actor, targetId, pending);
+            return;
+        }
+
+        if (pending.executionReserved()) {
+            if (ranks.rank("A0073") > 0) state.commitExecution(actor, targetId, pending.rootActionId(), now);
+            else state.rollbackExecution(actor, targetId, pending.rootActionId());
+        } else if (pending.executionArmCandidate() && ranks.rank("A0073") > 0) {
+            state.armExecutionConfirmed(actor, targetId, pending.rootActionId(), now);
+        }
+
+        if (pending.firstBloodReservation() != FirstBloodReservation.NONE) {
+            if (ranks.rank("A0074") > 0) {
+                state.commitFirstBlood(
+                    actor,
+                    targetId,
+                    pending.rootActionId(),
+                    pending.firstBloodReservation(),
+                    now
+                );
+            } else {
+                state.rollbackFirstBlood(actor, targetId, pending.rootActionId());
+            }
+        } else if (ranks.rank("A0074") > 0) {
+            state.recordConfirmedAttack(actor, targetId, now);
+        }
+
+        if (pending.opportunityReserved()) {
+            if (ranks.rank("A0080") > 0) state.commitOpportunity(actor, pending.rootActionId(), now);
+            else state.rollbackOpportunity(actor, pending.rootActionId());
+        }
+    }
+
+    private static void rollbackPending(
+        A0061A0080CombatState state,
+        String actor,
+        String targetId,
+        PendingHit pending
+    ) {
+        if (pending.executionReserved()) state.rollbackExecution(actor, targetId, pending.rootActionId());
+        if (pending.firstBloodReservation() != FirstBloodReservation.NONE) {
+            state.rollbackFirstBlood(actor, targetId, pending.rootActionId());
+        }
+        if (pending.opportunityReserved()) state.rollbackOpportunity(actor, pending.rootActionId());
     }
 
     /** A0072: only positive post-mitigation direct hostile damage opens/refreshes retaliation. */
@@ -159,20 +242,56 @@ public final class A0061A0080EpicFightHooks {
         );
     }
 
-    /** A0079 canonical stationary sampling. */
+    /** A0076/A0077 physical resistance tradeoff; this is not Armor, Stun Armor or magic resistance. */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onIncomingPhysicalDamage(LivingIncomingDamageEvent event) {
+        if (event.isCanceled()
+            || event.getAmount() <= 0.0F
+            || !(event.getEntity() instanceof ServerPlayer player)
+            || !eligible(player)
+            || !event.getSource().is(PHYSICAL_DAMAGE)) return;
+
+        MartialStanceRuntime.reconcile(player);
+        double resistanceDelta = A0061A0080CombatPolicy.stancePhysicalResistanceDelta(
+            A0061A0080RuntimeState.state().stance(A0061A0080RuntimeState.actorId(player))
+        );
+        if (Double.compare(resistanceDelta, 0.0D) != 0) {
+            event.setAmount((float) Math.max(0.0D, event.getAmount() * (1.0D - resistanceDelta)));
+        }
+    }
+
+    /** A0079 canonical stationary sampling with only server-proven forced transitions. */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onServerTick(ServerTickEvent.Post event) {
         for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
             if (!eligible(player)) continue;
+            MartialStanceRuntime.reconcile(player);
             A0061A0080RuntimeState.stationary().sample(
                 A0061A0080RuntimeState.actorId(player),
-                player.getX(), player.getY(), player.getZ(), false
+                player.getX(), player.getY(), player.getZ(), player.isPassenger()
             );
+        }
+    }
+
+    /** Teleport is a canonical forced transition for the stationary detector. */
+    @SubscribeEvent
+    public static void onTeleport(EntityTeleportEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player && eligible(player)) {
+            A0061A0080RuntimeState.stationary().invalidate(A0061A0080RuntimeState.actorId(player));
+        }
+    }
+
+    /** Knockback is an explicit server-side forced movement receipt. */
+    @SubscribeEvent
+    public static void onKnockback(LivingKnockBackEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player && eligible(player)) {
+            A0061A0080RuntimeState.stationary().invalidate(A0061A0080RuntimeState.actorId(player));
         }
     }
 
     @SubscribeEvent
     public static void onDeath(LivingDeathEvent event) {
+        A0061A0080RuntimeState.state().clearTarget(event.getEntity().getUUID().toString());
         if (event.getEntity() instanceof ServerPlayer player) clearPlayer(player);
     }
 
@@ -222,16 +341,22 @@ public final class A0061A0080EpicFightHooks {
     }
 
     private static synchronized String rootAction(EpicFightDamageSource source, String targetId, long now) {
-        Map<String, String> byTarget = ROOT_ACTIONS.computeIfAbsent(source, ignored -> new HashMap<>());
-        return byTarget.computeIfAbsent(targetId,
-            ignored -> "martial/" + now + "/" + ACTION_SEQUENCE.incrementAndGet());
+        Map<String, PendingHit> byTarget = ROOT_ACTIONS.computeIfAbsent(source, ignored -> new HashMap<>());
+        PendingHit pending = byTarget.get(targetId);
+        if (pending != null) return pending.rootActionId();
+        return "martial/" + now + "/" + ACTION_SEQUENCE.incrementAndGet();
     }
 
-    private static synchronized void forget(EpicFightDamageSource source, String targetId) {
-        Map<String, String> byTarget = ROOT_ACTIONS.get(source);
-        if (byTarget == null) return;
-        byTarget.remove(targetId);
+    private static synchronized void remember(EpicFightDamageSource source, String targetId, PendingHit pending) {
+        ROOT_ACTIONS.computeIfAbsent(source, ignored -> new HashMap<>()).put(targetId, pending);
+    }
+
+    private static synchronized PendingHit forget(EpicFightDamageSource source, String targetId) {
+        Map<String, PendingHit> byTarget = ROOT_ACTIONS.get(source);
+        if (byTarget == null) return null;
+        PendingHit pending = byTarget.remove(targetId);
         if (byTarget.isEmpty()) ROOT_ACTIONS.remove(source);
+        return pending;
     }
 
     private static void clearPlayer(ServerPlayer player) {
@@ -266,4 +391,12 @@ public final class A0061A0080EpicFightHooks {
     private static TagKey<Item> tag(String path) {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, path));
     }
+
+    private record PendingHit(
+        String rootActionId,
+        boolean executionReserved,
+        boolean executionArmCandidate,
+        FirstBloodReservation firstBloodReservation,
+        boolean opportunityReserved
+    ) {}
 }

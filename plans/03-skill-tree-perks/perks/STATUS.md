@@ -72,20 +72,20 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0064 | Ritmo de Combate | APROVADO | CÓDIGO PRESENTE em `ModifyAttackSpeedEvent` | `P-A0064-01/-02`: provider-present; moveset sem binding seguro fica fail-closed |
 | A0065 | Penetração Física | APROVADO | CÓDIGO PRESENTE em Epic Fight + projectile | `P-A0065-01/-02`: backend único; não duplicar armor ignore/shred/Apothic |
 | A0066 | Impacto Marcial | APROVADO | CÓDIGO PRESENTE para melee Epic Fight; projectile FAIL-CLOSED CORRETO | `P-A0066-01/-02`: validar melee e preservar ausência de Impact sintético em projectile |
-| A0067 | Firmeza Ofensiva | APROVADO após correção de availability | FAIL-CLOSED CORRETO no efeito; node ainda exige disponibilidade estrutural | `P-A0067-01` BLOQUEANTE: indisponível/não comprável sem attack-window binding; `P-A0067-02/-03` hook/cleanup/testes |
+| A0067 | Firmeza Ofensiva | APROVADO após correção de availability | FAIL-CLOSED CORRETO + `UNAVAILABLE_NODE` PRESENTE no suporte transitivo do lote A0071–A0080 | attack-window binding continua ausente; validar indisponibilidade e cleanup |
 | A0068 | Dano contra Feridos | APROVADO | CÓDIGO PRESENTE melee + projectile | `P-A0068-01/-02`: snapshot pré-impacto <35%, borda e dedup |
 | A0069 | Dano contra Íntegros | APROVADO | CÓDIGO PRESENTE melee + projectile | `P-A0069-01/-02`: snapshot pré-impacto >85%, borda e dedup |
-| A0070 | Dano contra Chefes | APROVADO após correção de cobertura | IMPLEMENTAÇÃO PARCIAL: vanilla/Cataclysm tag + Apothic; Enshrouded identity ainda sem adapter | `P-A0070-01`: `enshrouded:shroud_lich`; `P-A0070-02`: demais bosses fail-closed até IDs; `P-A0070-03/-04` dedup/fases |
-| A0071 | Dano contra Elites | APROVADO | CÓDIGO PRESENTE via classificador canônico | `P-A0071-01/-02`: Apothic provider-present + BOSS>ELITE; externos somente com identidade exata |
-| A0072 | Retaliação | APROVADO após availability | EFEITO PRESENTE, MAS ESTRUTURALMENTE INDISPONÍVEL | `P-A0072-01`: A0067 indisponível → A0072 indisponível/não comprável; testar refresh/dedup |
-| A0073 | Janela de Execução | APROVADO após reservation→commit | NÃO CONFORME: PRE arma/consome cedo demais | `P-A0073-01`: POST commit/rollback; `P-A0073-02`: Stamina receipt; lifecycle/dedup |
-| A0074 | Primeiro Sangue | APROVADO após reservation→commit | NÃO CONFORME: PRE atualiza/consome cedo demais | `P-A0074-01`: POST commit/rollback; lifecycle e bordas de opener/cooldown |
-| A0075 | Ritmo Sustentado | APROVADO EM FAIL-CLOSED | CORE PRESENTE; NODE INDISPONÍVEL | `P-A0075-01`: unavailable; `P-A0075-02`: Cold Sweat metabolic boundary; all-or-nothing provider binding |
-| A0076 | Postura Agressiva | APROVADO após boundary de ativação | STATE PURO PRESENTE; SEM INPUT/PAYLOAD | `P-A0076-01`: controle remapeável + payload serverbound + availability; transição/lifecycle |
-| A0077 | Postura Cautelosa | APROVADO após availability | ESTRUTURALMENTE INDISPONÍVEL | `P-A0077-01`: herda A0067 e depende do stance binding de A0076 |
-| A0078 | Ataque em Movimento | APROVADO | CÓDIGO PRESENTE no sprint vanilla; ParCool extra fail-closed | `P-A0078-01/-03`: forced movement/bridge PP; ParCool só por receipt real |
-| A0079 | Ataque Estacionário | APROVADO após hardening | IMPLEMENTAÇÃO PARCIAL: detector presente, forced invalidation incompleta | `P-A0079-01`: teleport/mount/vehicle/contraption/belt/forced receipts; bridge PP/testes |
-| A0080 | Golpe de Oportunidade | APROVADO EM FAIL-CLOSED | NODE INDISPONÍVEL; SEM DODGE-SUCCESS RECEIPT | `P-A0080-01`: unavailable; `P-A0080-02`: avoidedAttack receipt/dedup; `P-A0080-03`: POST commit |
+| A0070 | Dano contra Chefes | APROVADO após correção de cobertura | IMPLEMENTAÇÃO PARCIAL: vanilla/Cataclysm tag + Apothic; Enshrouded identity ainda sem adapter | Ars Zero Lich é delta novo de A0070, mas sem boundary cross-mod estável continua fail-closed; validar dedup/fases |
+| A0071 | Dano contra Elites | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar Apothic provider-present + BOSS>ELITE; externos somente com identidade exata |
+| A0072 | Retaliação | APROVADO após availability | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar A0067→A0072 unavailable, refresh sem stacking, dedup e exclusões |
+| A0073 | Janela de Execução | APROVADO após reservation→commit | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar POST commit/rollback, concorrência, boss half-bonus e refund Stamina=0 sem receipt |
+| A0074 | Primeiro Sangue | APROVADO após reservation→commit | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar opener/history/consume POST, 85%/8s/4s/12s, concorrência e lifecycle |
+| A0075 | Ritmo Sustentado | APROVADO EM FAIL-CLOSED | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar unavailable-node e benefício parcial zero; Cold Sweat metabolic receipt continua ausente |
+| A0076 | Postura Agressiva | APROVADO após boundary de ativação | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar payload server-authoritative, cooldown, exclusividade, resistência física e cleanup |
+| A0077 | Postura Cautelosa | APROVADO após availability | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar A0067 unavailable + rank efetivo zero + ausência de resíduos de stance |
+| A0078 | Ataque em Movimento | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar sprint vanilla, forced/passive movement e bridge PP; ParCool extra permanece fail-closed |
+| A0079 | Ataque Estacionário | APROVADO após hardening | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar 30 ticks/0,10, teleport/knockback/passenger/Create/Sable e provider mismatch |
+| A0080 | Golpe de Oportunidade | APROVADO EM FAIL-CLOSED | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar unavailable sem dodge-success receipt e consumer latente reservation→commit/rollback |
 | A0081 | Recuperação de Combate | APROVADO EM FAIL-CLOSED após availability transitiva | CORE PRESENTE; NODE DEVE SER ESTRUTURALMENTE INDISPONÍVEL | `P-A0081-01` BLOQUEANTE: herdar availability A0075 no purchase/gate; `P-A0081-02`: lifecycle da reserva |
 | A0082 | Vampirismo de Arma | APROVADO após boundary de correlação nativa | CÓDIGO PRESENTE para raízes físicas comprovadas; Ignitium exige fail-closed específico | `P-A0082-01`: correlacionar lifesteal nativo Ignitium no mesmo root; `P-A0082-02`: cap/dedup/provenance |
 | A0083 | Vampirismo Mágico | APROVADO EM FAIL-CLOSED | RESOLVER PRESENTE; NODE INDISPONÍVEL SEM PRODUCER `DIRECT_MAGIC` | `P-A0083-01` BLOQUEANTE: availability + adapter causal Iron's/Ars |
@@ -118,14 +118,14 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Lifecycle:** estados por alvo precisam cleanup bounded quando alvo morre, é removido, descarrega ou desaparece sem evento terminal equivalente. Estados por ator precisam cleanup bounded em logout/dimensão/respawn/shutdown e reconciliação em rank loss, respec e rules reload que invalide perk/pré-requisito.
 - **Proteção física:** Armor/guard/posture física não se confunde com Arcane Resistance, MagicResistance, Shroud ou hazards ambientais.
 - **A0061–A0070:** dano físico direto, crítico, ritmo, penetração e Impact usam boundaries canônicos e identidades distintas; nenhuma contribuição pode ser aplicada duas vezes por bridges paralelas.
-- **A0067:** sem lifetime provider-native seguro da janela ofensiva, o node é indisponível/não comprável; matemática pura não é binding.
+- **A0067:** sem lifetime provider-native seguro da janela ofensiva, o node é indisponível/não comprável; o suporte transitivo A0071–A0080 implementa `UNAVAILABLE_NODE`, mas não cria o binding ausente.
 - **A0070/A0071:** BOSS > ELITE > HOSTILE; classificações são explícitas e nunca acumulam no mesmo root. Heurística visual/estatística é proibida.
 - **A0072/A0077:** availability transitiva é obrigatória; A0067 indisponível torna ambos indisponíveis.
 - **A0073/A0074/A0080:** estados consumíveis usam reservation→commit; PRE pode reservar, POST com dano efetivo >0 commita, cancelamento/zero faz rollback.
-- **A0075:** Stamina regen, Cold Sweat thermal contribution e exhaustion formam contrato all-or-nothing; ausência de qualquer binding torna o node indisponível/não comprável. Thirst é eixo separado.
-- **A0076/A0077:** `MARTIAL_STANCE` é RPG-owned; cliente envia intenção por controle remapeável/payload, servidor valida e efetiva. Sem binding de ativação, node de postura não é comprável.
-- **A0078/A0079:** movimento autopropelido e estacionário são estados distintos; mount/vehicle/contraption/belt/knockback/forced movement não podem satisfazer gates por simples delta de posição.
-- **A0080:** dodge executado não prova dodge-success; exige receipt de ataque hostil efetivamente evitado e dedup cross-provider.
+- **A0075:** Stamina regen, Cold Sweat thermal contribution e exhaustion formam contrato all-or-nothing; ausência de qualquer binding torna o node indisponível/não comprável. A integração Volcanoes→Cold Sweat atual projeta calor ambiental `WORLD` e não é receipt metabólico. Thirst é eixo separado.
+- **A0076/A0077:** `MARTIAL_STANCE` é RPG-owned; controle remapeável + payload serverbound estão implementados, o servidor valida e efetiva. A0076 pode operar quando gates/ranks forem satisfeitos; A0077 continua indisponível por A0067.
+- **A0078/A0079:** movimento autopropelido e estacionário são estados distintos; mount/vehicle/contraption/belt/knockback/forced movement não podem satisfazer gates por simples delta de posição. Create 6.0.10 e Sable 2.0.5 possuem invalidation adapters fail-closed no lote.
+- **A0080:** dodge executado não prova dodge-success; exige receipt de ataque hostil efetivamente evitado e dedup cross-provider. Sem esse receipt o node permanece `UNAVAILABLE_NODE`.
 - **A0081:** availability é transitiva de A0075; a reserva de Recuperação é separada do `SustainResolver` e deve ser invalidada em rank loss/respec/rules reload/perda do pré-requisito.
 - **A0082–A0086:** uma única resolução de sustain por root/pulso elegível; teto móvel compartilhado de 3% da vida máxima/20 ticks; maior coeficiente elegível vence; cura nativa exata é contabilizada primeiro; correlação ambígua falha fechado.
 - **A0083/A0084/A0085:** fórmula/resolvedor sem producer provider-native não é binding; sem ao menos uma rota causal segura o node é indisponível/não comprável.
@@ -135,8 +135,8 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Sustain exclusions:** `ARCANE_BACKLASH`, `BLOOD_MAGIC_COST`, dano ambiental/Volcanoes/Enshrouded, máquina, summon/companion sem autoria direta e efeitos recursivos não são dano ofensivo do jogador para A0082–A0087.
 - **Ignitium:** lifesteal nativo permanece provider-owned; sem correlação exata da cura final ao mesmo root, a fonte específica falha fechado e é proibido usar `NativeCorrelation.NONE`; armas comuns comprovadas continuam elegíveis.
 - **Black Arcana:** `ARCANE_BACKLASH` é terminal e não crita/proca/concede Mastery/Focus/Marca/eligible_kill; também não abre Retaliação por self-cost nem vira ação física/mágica ofensiva elegível.
-- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam movimento, stance, dodge, Stamina ou sustain ofensivo destas perks; bridge Shroud Lich permanece somente A0070 read-only.
-- **Volcanoes:** hazards/geologia/prospecção permanecem fora dos pipelines MARTIAL/sustain; o delta mais recente é release/hardening e não cria capacidade de perk.
+- **Enshrouded:** Shroud/Exposure/Madness/Flame/Story/MagicResistance não classificam movimento, stance, dodge, Stamina ou sustain ofensivo destas perks. O provider Ars Zero Lich detectado na reauditoria é delta de A0070 e continua fail-closed para classificação MARTIAL enquanto não houver boundary cross-mod seguro.
+- **Volcanoes:** hazards/geologia/prospecção permanecem fora dos pipelines MARTIAL/sustain; após consolidação, a fonte operacional é este repositório e sua authority ambiental/geológica permanece separada.
 - **Mobstein 5.4.4:** companions não geram autoria física do dono; Witherstein não entra em A0070/A0071 por nome/tema sem identity adapter real.
 - **Stage 11.01 itemização:** authority própria de identidade/rolls; projeções de efeitos sem hook comprovado continuam `SEM HOOK SEGURO`.
 - **NeoVitae:** removido/ausente.
@@ -352,41 +352,46 @@ O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A
 
 ## Chat 1 — lote exato A0071–A0080
 
-**Estado:** `LOTE FECHADO NO DESIGN; PR #302 MERGEADA; CI GREEN; MAIN CONFIRMADA; BLOCKERS RUNTIME CATALOGADOS`.
+**Estado histórico:** `LOTE FECHADO NO DESIGN; PR #302 MERGEADA; CI GREEN; MAIN CONFIRMADA; BLOCKERS RUNTIME CATALOGADOS`.
 
 - **PR de fechamento:** #302 (`docs(perks): close Chat 1 audit A0071-A0080`).
-- **Merge/main:** `616a0dd36b943562ea64fa354a1a2fc49b09c77b`.
-- **CI:** RPG Skill Tree CI #2543 / run `33363516499` GREEN no head `289e31bae45b4586ce3c0f44b8445d6dd6987ea2`, incluindo Core, JUnit 5, NeoForge GameTests, validators, build, JAR e dedicated-server smoke; workflows auxiliares também concluídos sem falha.
+- **Merge/main histórico:** `616a0dd36b943562ea64fa354a1a2fc49b09c77b`.
+- **CI histórico:** RPG Skill Tree CI #2543 / run `33363516499` GREEN no head `289e31bae45b4586ce3c0f44b8445d6dd6987ea2`.
 - **INÍCIO:** A0071.
 - **FIM:** A0080.
 - **Quantidade:** 10 perks consecutivas.
-- **Base de abertura:** RPG Skill Tree `main@4cde1cf26dc1b4bb374f782b348ec3a2c3c5702a`.
-- **Gate de delta:** RPG `4cde1cf...` (somente docs desde baseline); Volcanoes `bbb273d61984e2c9bb84e8f8a56668ae7e315532` (hardening proveniência/licenças); Enshrouded `391ea822...` sem delta; Black Arcana `526d819...` sem delta.
-- **Delta canônico do ciclo:** `guides/projects/13-capability-delta-a0071-a0080.md`.
-- **Notion fetch fresco:** 10/10.
-- **Notion alterado:** A0072, A0073, A0074, A0075, A0076, A0077, A0079, A0080.
-- **Re-fetch pós-escrita:** 8/8 PASS em 2026-08-31.
-- **Sem mutação funcional:** A0071, A0078.
-- **Dossiês criados:** 10/10.
-- **Nove eixos / 18 critérios:** PASS no design.
-- **Runtime alterado neste Chat 1:** nenhum.
-- **A0081+:** não iniciado naquele ciclo.
+- **Notion fetch:** 10/10; A0072/A0073/A0074/A0075/A0076/A0077/A0079/A0080 corrigidas e persistidas; A0071/A0078 sem mutação funcional.
+- **Reauditoria retroativa 2026-09-01:** 10/10 design preservado; delta Enshrouded Ars Zero Lich pertence a A0070; Volcanoes Cold Sweat `WORLD` heat não resolve A0075.
+- **Runtime alterado naquele Chat 1:** nenhum.
 
-### Pendências destinadas ao Chat 2
+### Pendências originalmente destinadas ao Chat 2
 
-1. `P-A0071-01/-02` — validar Apothic ELITE e BOSS > ELITE; providers externos somente por identidade exata.
-2. `P-A0072-01` — availability transitiva A0067→A0072; refresh/dedup/anti-recursion.
-3. `P-A0073-01` — opener/consumer/cooldown por reservation→POST commit; `P-A0073-02` Stamina receipt; lifecycle/dedup.
-4. `P-A0074-01` — last-attack/opener/consumer/cooldown por reservation→POST commit; lifecycle/bordas.
-5. `P-A0075-01` — unavailable-node invariant; `P-A0075-02` boundary Cold Sweat thermal; contrato all-or-nothing com STAMINA_REGEN/exhaustion.
-6. `P-A0076-01` — controle `Alternar Postura Marcial` + payload serverbound + availability; atomic transition/lifecycle.
-7. `P-A0077-01` — availability A0067 + stance binding.
-8. `P-A0078-01/-03` — sprint/forced movement e bridge PP; ParCool apenas por receipt real.
-9. `P-A0079-01` — propagar forced transition/invalidation para teleport, mount/vehicle, contraption/belt e deslocamentos provider-identificados.
-10. `P-A0080-01` — unavailable até receipt de ataque hostil efetivamente evitado; `P-A0080-02` dedup Epic Fight/ParCool; `P-A0080-03` consumption reservation→POST commit.
-11. `P-A0071-80-TEST-01` — GameTest/harness transversal de classification, availability, root dedup, POST commit/rollback, stance networking, thermal all-or-nothing, movement/stationary, dodge-success, lifecycle, multiplayer e dedicated server.
+As pendências de implementation do lote foram consumidas pelo Chat 2 atual e convertidas em código presente ou fail-closed explícito. A bateria final de validação permanece para o Chat 3.
 
-O lote A0071–A0080 está operacionalmente encerrado após a PR #302, CI GREEN e confirmação da `main@616a0dd36b943562ea64fa354a1a2fc49b09c77b`. O Chat 1 deve PARAR aqui; A0081–A0090 só pode começar mediante novo comando do usuário.
+## Chat 2 — lote exato A0071–A0080
+
+**Estado:** `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- **Branch:** `feat/chat2-a0071-a0080-implementation`.
+- **A0071:** classificador canônico preservado; BOSS > ELITE; externos sem identity ficam fail-closed.
+- **A0072:** unavailable transitivo A0067→A0072 implementado; efeito permanece mascarado.
+- **A0073:** execution opener/finisher migrados para reservation→POST commit/rollback; projectile commit bridge adicionado; Stamina refund permanece zero sem receipt causal.
+- **A0074:** opener/history/consumer/cooldown migrados para reservation→POST commit/rollback; projectile commit bridge adicionado.
+- **A0075:** `UNAVAILABLE_NODE` + effective rank zero; nenhum benefício parcial; Cold Sweat metabolic receipt continua ausente.
+- **A0076:** `MARTIAL_STANCE` server-authoritative implementado com keybind/payload/cooldown/exclusividade/cleanup e canal de resistência física.
+- **A0077:** infraestrutura de CAUTIOUS presente, mas node permanece `UNAVAILABLE_NODE` por A0067.
+- **A0078:** sprint vanilla server-side preservado; ParCool extra continua fail-closed sem receipt.
+- **A0079:** forced invalidation implementada para teleport/knockback/passenger + gates exatos Create 6.0.10/Sable 2.0.5; sem sampler duplicado no fallback.
+- **A0080:** `UNAVAILABLE_NODE` sem dodge-success receipt; consumer reservation→commit ficou preparado de forma latente, sem producer inventado.
+- **Purchase fail-closed:** `NodePurchaseResult.UNAVAILABLE_NODE`, `NodePurchaseRequestProcessor`, `PlayerProgressionRuntime` e `effectiveRanks` cobrem os nodes indisponíveis deste lote.
+- **Lifecycle:** mudança de ranks efetivos, morte/removal, logout/dimensão/respawn/server stop limpam estado transitório pelos owners pertinentes.
+- **Reauditoria:** `audits/REAUDITORIA-CHAT1-A0071-A0080-2026-09-01.md`.
+- **Auditoria de handoff:** `audits/AUDITORIA-A0071-A0080.md`.
+- **Testes/build/GameTests/smoke/CI finais:** **NÃO executados pelo Chat 2**.
+- **Implementação confirmada:** **NÃO**.
+- **Merge:** **NÃO**; responsabilidade do Chat 3 após validação e CI.
+
+O Chat 2 para neste lote. A0081+ não é iniciado automaticamente.
 
 ## Chat 1 — lote exato A0081–A0090
 
