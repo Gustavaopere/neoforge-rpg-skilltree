@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.core;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkAvailabilityRuntime;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 final class A0061A0070Chat2ContractJUnitTest {
@@ -17,6 +19,15 @@ final class A0061A0070Chat2ContractJUnitTest {
             CombatPerkAvailabilityRuntime.isCatalogCodeAvailable("A0067"),
             "A0067 must be fail-closed/non-purchasable until Epic Fight exposes a safe attack-window lifetime binding"
         );
+    }
+
+    @Test
+    void unavailableOffensiveFirmnessRankIsMaskedFromGameplay() {
+        CombatPerkRanks effective = CombatPerkAvailabilityRuntime.effectiveRanks(
+            CombatPerkRanks.of(Map.of("A0061", 2, "A0067", 1))
+        );
+        assertEquals(2, effective.rank("A0061"), "available ranks must remain effective");
+        assertEquals(0, effective.rank("A0067"), "legacy A0067 ranks must not bypass the fail-closed provider boundary");
     }
 
     @Test
