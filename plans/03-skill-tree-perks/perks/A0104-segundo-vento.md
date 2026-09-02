@@ -73,3 +73,13 @@ Causalidade, dedup, anti-abuso, fallback, authority, gate, lifecycle, cooldown e
 ## Testes exigidos ao Chat 3
 
 Crossing acima→abaixo, exatamente 25%, zero/cancelled/environmental/self/resource cost, cinco pulsos sem hits, cancelamentos múltiplos em roots distintos, duplicate-root dedup, logout/reload/respec, cooldown e rearme, multiplayer isolation, GameTests, build, JAR e dedicated-server smoke.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+**Estado:** `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `P-A0104-01` e `P-A0104-02` foram implementadas em `A0101A0110DefenseState`/`A0101A0110DefenseRuntime`: crossing estrito no `Post`, cinco pulsos em gameTime e cancelamento bounded do próximo pulso, uma vez/root.
+- `P-A0104-03` usa `ServerPlayer.heal`, limitado naturalmente à vida máxima e sem criar receipt ofensivo/sustain adicional.
+- `P-A0104-04` foi fechada no escopo de implementação: o deadline do cooldown é persistido no attachment canônico do jogador, cujo schema foi migrado de v1 para v2; schedules/receipts ativos permanecem transitórios e são reconciliados/limpos em boundaries para impedir duplicação após reload.
+- A0104 foi retirada de `UNAVAILABLE_NODE` somente depois da persistência anti-reset. O Chat 3 ainda deve validar restart real, logout/death/dimensão/respec/rules reload e o comportamento dos pulsos.
+- Chat 2 não executou a bateria final, não declarou `IMPLEMENTAÇÃO CONFIRMADA` e não fez merge.
