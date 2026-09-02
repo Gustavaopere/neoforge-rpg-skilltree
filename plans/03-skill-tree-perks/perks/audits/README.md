@@ -34,6 +34,19 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
 - `AUDITORIA-A0200-A0209.md` — checkpoint histórico inicial Eldritch/Ender, preservado para rastreabilidade.
 - `AUDITORIA-A0200-A0299.md` — auditoria especial autorizada de 100 perks, com tracker individual A0200–A0299, Notion 100/100, providers, projetos próprios, blockers e handoff fail-closed.
+- `AUDITORIA-A0181-A0190.md` — fechamento Chat 1 de Natureza final + corredor Sagrado; 8 unavailable, A0186/A0187 implementáveis, HOLY classifier exato, thermal/direct/same-outcome fail-closed e Black Arcana Stage 06 classificado sem promoção temática.
+- `STATUS-A0181-A0190.md` — tracker complementar autoritativo deste lote enquanto as PRs predecessoras #361/#366/#368/#375 permanecem abertas e `STATUS.md` raiz não pode ser reconciliado sem risco destrutivo.
+
+### Sequência concorrente A0141–A0180
+
+As auditorias A0141–A0180 permanecem nas PRs de Chat 1 ainda abertas e serão indexadas na `main` quando a cadeia documental for integrada:
+
+- `AUDITORIA-A0141-A0150.md` — PR #361;
+- `AUDITORIA-A0151-A0160.md` — PR #366;
+- `AUDITORIA-A0161-A0170.md` + `STATUS-A0161-A0170.md` — PR #368;
+- `AUDITORIA-A0171-A0180.md` + `STATUS-A0171-A0180.md` — PR #375.
+
+A reconciliação futura deve preservar a ordem dos lotes e não substituir o `STATUS.md` raiz por uma versão derivada de uma `main` que ainda não contenha esses appendices.
 
 ## Auditorias de delta da modlist — Chat 1
 
