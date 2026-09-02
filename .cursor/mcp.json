@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "github": {
+      "type": "stdio",
+      "command": "${userHome}${/}.local${/}share${/}github-mcp-server${/}github-mcp-server.exe",
+      "args": ["stdio"],
+      "env": {
+        "GITHUB_TOOLSETS": "context,repos,issues,pull_requests,users,actions,code_quality,code_security,dependabot,secret_protection"
+      }
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "deepwiki": {
+      "type": "http",
+      "url": "https://mcp.deepwiki.com/mcp"
+    }
+  }
+}
