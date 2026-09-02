@@ -44,7 +44,7 @@ Freshness superveniente imediatamente antes da PR: `main@84a5489fc71ae086441798e
 | Código | Perk | Design | Estado runtime observado | Decisão Chat 1 |
 |---|---|---|---|---|
 | A0091 | Base Firme | APROVADO | modifier data-driven já existe | usar somente `minecraft:generic.knockback_resistance`; máx. +0,15 |
-| A0092 | Resistência Física | APROVADO | fórmula/event bridge existem; tag física ainda não materializada | Chat 2 cria `rpgskilltree:physical`; sem inferência universal |
+| A0092 | Resistência Física | APROVADO | fórmula/event bridge existem; `rpgskilltree:physical` já existe com seed parcial de 7 entradas | Chat 2 expande/valida o recurso canônico para o seed fechado de 17 entradas; sem recriar classifier paralelo ou inferir resistência universal |
 | A0093 | Guarda Econômica | APROVADO EM FAIL-CLOSED | fórmula pura + `FAIL_CLOSED_A0093`; sem hook causal de custo | `UNAVAILABLE_NODE`; purchase rejeitado sem gasto enquanto binding faltar |
 | A0094 | Recuperação de Guarda | APROVADO EM FAIL-CLOSED | fórmula pura + `FAIL_CLOSED_A0094`; sem break/recovery receipt | `UNAVAILABLE_NODE` transitivo e próprio |
 | A0095 | Tenacidade | APROVADO | código preparatório diverge do design fresco | remover dependência A0094; ADD_FLAT em `epicfight:stun_armor`, +0,25/rank |
@@ -64,7 +64,7 @@ Re-fetch pós-escrita: **5/5 PASS**.
 
 Correções:
 
-- A0092: deixou de presumir que a tag física já existe; seed conservador e exclusões passaram a ser contrato explícito para Chat 2.
+- A0092: o contrato passou a exigir seed conservador fechado e exclusões explícitas. Review posterior da PR confirmou que `rpgskilltree:physical` **já existia** no parent com seed parcial; portanto o handoff correto é **expandir e validar o recurso canônico existente**, não recriá-lo.
 - A0096: passou a declarar que reutiliza exclusivamente o classifier físico de A0092 e a composição `damage × (1−A0092) × (1−A0096)`.
 - A0097: hostilidade por atacante causal `LivingEntity` não aliado e reservation→commit PRE/POST; cancelamento/dano zero não consome.
 - A0098/A0099: nodes bridge não cobram/persistem/reembolsam custo de confluência; Stage 04.02/`ProgressionService` permanece authority exclusiva.
@@ -108,6 +108,14 @@ Pertinentes apenas a A0098 se um adapter provar estado mecânico server-authorit
 
 Podem compor atributos normais pela stack quando pertinente, mas não são promovidos a providers genéricos de incoming critical decomposition. A0100 continua unavailable sem receipt específico.
 
+### Mobstein 5.4.4
+
+- Pertinente ao eixo de autoria/hostilidade porque introduz mobs/companions, mas não cria owner mecânico novo de A0091–A0100.
+- Uma entidade Mobstein hostil pode satisfazer A0096/A0097/A0099 **somente** quando o `LivingEntity` atacante causal real é a própria entidade, diferente do jogador e não aliada; nenhuma classe/tema de mob é presumida como hostilidade suficiente.
+- Companion/summon não transfere autoria defensiva/ofensiva ao dono por proximidade, namespace ou ownership indireto; sem receipt causal explícito, fica fora das rotas que exigem autoria do jogador.
+- Witherstein/identidade de boss pertence à cobertura A0070/A0071, não cria adapter especial para este lote.
+- Decisão provider→árvore neste lote: **NÃO DEVE SER INTEGRADO como adapter próprio**; usar apenas autoria `LivingEntity` causal já canônica quando ela existir.
+
 ## 7. Provider coverage — Magia e tecnologia
 
 Nenhum mod mágico/tecnológico auditado cria owner positivo adicional para as dez perks deste lote.
@@ -119,13 +127,14 @@ Regras negativas relevantes:
 - Enshrouded Shroud/Exposure/Madness não viram hostile living-attacker receipt;
 - Volcanoes lava/calor/gás/pressão não viram ataque físico hostil por analogia;
 - Create/TFMG/contraptions/veículos não contam como self-propelled sprint nem como stationarity válida por ausência de deslocamento local aparente;
-- fake players, máquinas, summons e indiretos não transferem autoria sem adapter causal explícito.
+- fake players, máquinas, summons e indiretos não transferem autoria sem adapter causal explícito;
+- Mobstein companions não transferem autoria ao dono sem receipt causal explícito.
 
 Conclusão provider→árvore: **NÃO DEVE SER INTEGRADO** onde não há semântica causal comprovada.
 
 ## 8. Divergências concretas do código preparatório
 
-1. **A0092:** `PHYSICAL_DAMAGE` é consultada, mas a materialização data/tag ainda precisa existir e ser validada.
+1. **A0092:** `PHYSICAL_DAMAGE` já consome `rpgskilltree:physical`; o recurso existe no parent com seed parcial de 7 entradas e deve ser expandido/validado para o seed fechado de 17, sem segundo classifier.
 2. **A0095:** `NotionCombatPerkCatalog` ainda exige A0094≥1 e `A0081A0100CombatPolicy.interruptionMultiplier` modela reducer genérico; ambos divergem do design fresco. `a0081_a0100.json` ainda não contém node-effect de `epicfight:stun_armor`.
 3. **A0097:** `consumeOpeningDefense(...)` ocorre no PRE; deve virar reservation→commit no POST com dano efetivo. O helper hostil atual restringe a `Enemy || Player`, também incorreto.
 4. **A0099:** sampler fallback passa `forcedTransition=false`; isso não fecha `P-A0079-02`.
@@ -134,21 +143,31 @@ Conclusão provider→árvore: **NÃO DEVE SER INTEGRADO** onde não há semânt
 ## 9. Pendências destinadas ao Chat 2
 
 - `P-A0091-01`: validar modifier idempotente, cap próprio e respec/remove.
-- `P-A0092-01`: materializar `rpgskilltree:physical` com seed conservador e testes de exclusão.
+- `P-A0092-01`: expandir `rpgskilltree:physical` existente para o seed conservador fechado e preservar uma única authority.
 - `P-A0092-02`: consolidar classifier/ordem/dedup do pipeline defensivo.
+- `P-A0092-03`: cobertura modded somente por adapters semânticos explícitos; desconhecidos fail-closed.
 - `P-A0093-01`: `requirementsSatisfied=false` enquanto hook causal de guard stamina faltar; sem refund heuristic.
-- `P-A0094-01`: availability transitiva A0093 + receipt real de guard-break/recovery; sem animação/cooldown inventado.
+- `P-A0093-02`: adapter futuro versionado/fail-closed; sem mixin interno ou proxy inventada como contrato.
+- `P-A0094-01`: availability transitiva A0093→A0094.
+- `P-A0094-02`: sem receipt `GUARD_BREAK + recovery`, manter indisponível; não inventar adapter.
 - `P-A0095-01`: remover dependência stale A0094 e alinhar catálogo/tree/tests ao Notion fresco.
 - `P-A0095-02`: adicionar binding ADD_FLAT `epicfight:stun_armor`, +0,25/rank, versão exata, lifecycle idempotente.
-- `P-A0096-01`: reutilizar exclusivamente classifier A0092 + snapshot pre-impact e composição multiplicativa.
+- `P-A0095-03`: remover/desautorizar reducer genérico `interruptionMultiplier` e fail-closed global antigo em favor do atributo provider-native.
+- `P-A0096-01`: reutilizar exclusivamente classifier A0092.
+- `P-A0096-02`: compartilhar hostilidade causal sem `Enemy` como requisito.
+- `P-A0096-03`: preservar snapshot pré-impacto e uma aplicação por evento/root.
 - `P-A0097-01`: reservation→commit causal, rollback em cancel/zero e dedup por root/evento.
 - `P-A0097-02`: remover `Enemy`-only e compartilhar classificação de atacante causal não aliado.
-- `P-A0098-01`: sprint vanilla seguro + forced/passive exclusions; ParCool somente com adapter real.
-- `P-A0098-02`: bridge PP sem tocar provenance Stage 04.02.
+- `P-A0097-03`: lifecycle completo em rank loss/respec/rules reload além dos eventos de jogador.
+- `P-A0098-01`: classifier de movimento autopropelido + exclusões forced/passive.
+- `P-A0098-02`: ParCool/Epic ParCool extras permanecem fail-closed sem receipt real.
+- `P-A0098-03`: bridge PP sem tocar provenance Stage 04.02.
 - `P-A0099-01`: fechar/reutilizar `P-A0079-02` no detector único.
-- `P-A0099-02`: bridge PP e classifier hostil compartilhados.
+- `P-A0099-02`: classifier hostil compartilhado, sem `Enemy`-only.
+- `P-A0099-03`: bridge PP sem tocar provenance Stage 04.02.
 - `P-A0100-01`: purchase unavailable sem incoming decomposition real.
-- `P-A0100-02`: preservar ausência de heurística e dedup por evento se provider futuro existir.
+- `P-A0100-02`: preservar ausência de heurística.
+- `P-A0100-03`: adapter futuro somente com receipt causal real e dedup por evento/root.
 - `P-A0091-0100-TEST-01`: harness transversal para purchase gates, attributes, damage tags, PRE/POST causalidade, sprint/stationary lifecycle, multiplayer, provider absent/present e dedicated server.
 
 ## 10. Testes reservados ao Chat 3
