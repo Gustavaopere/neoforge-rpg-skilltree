@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-/** Fresh Notion snapshot for the currently closed implementation range A0001-A0100. */
+/** Fresh Notion snapshot for the currently closed implementation range A0001-A0110. */
 public final class NotionCombatPerkCatalog {
     private static final Set<String> EPIC_DAMAGE = Set.of("epicfight:weapon_category", "epicfight:damage_pre");
     private static final Set<String> EPIC_CADENCE = Set.of("epicfight:weapon_category", "epicfight:modify_attack_speed");
@@ -123,6 +123,17 @@ public final class NotionCombatPerkCatalog {
         add(map,"A0098","Defesa em Movimento",WeaponFamily.VITALITY,3,1,Map.of("A0088",2),Set.of("minecraft:server_sprint","rpgskilltree:agility_corridor"));
         add(map,"A0099","Defesa Estacionária",WeaponFamily.VITALITY,3,1,Map.of("A0089",2),Set.of("rpgskilltree:stationary_state","rpgskilltree:martial_corridor"));
         add(map,"A0100","Anti-Crítico",WeaponFamily.VITALITY,4,1,Map.of("A0090",2),Set.of("rpgskilltree:incoming_critical_decomposition_optional"));
+
+        add(map,"A0101","Fortificação contra Projéteis",WeaponFamily.VITALITY,4,1,Map.of("A0089",1),Set.of("rpgskilltree:damage_mitigation_resolver","minecraft:is_projectile","rpgskilltree:physical_received_damage"));
+        add(map,"A0102","Proteção Arcana",WeaponFamily.VITALITY,4,1,Map.of("A0088",2),Set.of("rpgskilltree:damage_mitigation_resolver","neoforge:is_magic"));
+        add(map,"A0103","Proteção Ambiental",WeaponFamily.VITALITY,4,1,Map.of("A0088",2),Set.of("rpgskilltree:damage_mitigation_resolver","rpgskilltree:environmental"));
+        add(map,"A0104","Segundo Vento",WeaponFamily.VITALITY,1,2,Map.of("A0096",3),Set.of("minecraft:living_damage_post","rpgskilltree:canonical_healing"));
+        add(map,"A0105","Casca Reativa",WeaponFamily.VITALITY,1,2,Map.of("A0089",3,"A0090",2),Set.of("minecraft:living_damage_post","minecraft:temporary_armor_modifier","minecraft:temporary_toughness_modifier"));
+        add(map,"A0106","Guarda de Emergência",WeaponFamily.VITALITY,1,3,Map.of("A0104",1,"A0105",1,"A0095",3),Set.of("minecraft:living_damage_pre","rpgskilltree:damage_mitigation_resolver","rpgskilltree:fatal_safeguard"));
+        add(map,"A0107","Conversão de Impacto",WeaponFamily.VITALITY,1,2,Map.of("A0093",3,"A0095",3),Set.of("provider:impact_to_stamina_atomic_optional"));
+        add(map,"A0108","Pele de Pedra",WeaponFamily.VITALITY,1,2,Map.of("A0092",3,"A0100",2,"A0090",2),Set.of("rpgskilltree:physical_received_damage","minecraft:movement_speed"));
+        add(map,"A0109","Fortaleza Ambulante",WeaponFamily.VITALITY,1,3,Map.of("A0108",1,"A0091",3),Set.of("provider:body_encumbrance_optional"));
+        add(map,"A0110","Conservação de Equipamento I",WeaponFamily.SURVIVAL,5,1,Map.of(),Set.of("provider:post_unbreaking_pre_decrement_optional"));
         return Map.copyOf(map);
     }
 
