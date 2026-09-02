@@ -59,6 +59,23 @@ final class A0031A0040Chat3RegressionJUnitTest {
             "terminal cancellation must release the A0036 root reservation instead of retaining it until TTL");
     }
 
+    @Test
+    void legacyRepeatableMasteryGuardsRemainFailClosedForProviderOwnedFamilies() {
+        assertTrue(A0021A0040MasteryPolicy.forConfirmedDirectHit(
+            WeaponFamily.DAGGER, true, true, 4.0D, "").isEmpty(), "blank root rejected");
+        assertTrue(A0021A0040MasteryPolicy.forConfirmedDirectHit(
+            WeaponFamily.DAGGER, false, true, 4.0D, "legacy-root").isEmpty(), "indirect hit rejected");
+        assertTrue(A0021A0040MasteryPolicy.forConfirmedDirectHit(
+            WeaponFamily.DAGGER, true, false, 4.0D, "legacy-root").isEmpty(), "non-hostile hit rejected");
+        assertTrue(A0021A0040MasteryPolicy.forConfirmedDirectHit(
+            WeaponFamily.DAGGER, true, true, Double.NaN, "legacy-root").isEmpty(), "non-finite damage rejected");
+        assertTrue(A0021A0040MasteryPolicy.forConfirmedDirectHit(
+            WeaponFamily.DAGGER, true, true, 0.0D, "legacy-root").isEmpty(), "zero damage rejected");
+        assertTrue(A0021A0040MasteryPolicy.forConfirmedDirectHit(
+            WeaponFamily.DAGGER, true, true, 4.0D, "legacy-root").isEmpty(),
+            "provider-owned family must not receive a synthetic gate-mastery award");
+    }
+
     private static A0021A0040CombatPolicy.HitFacts facts(
         String root,
         WeaponFamily family,
