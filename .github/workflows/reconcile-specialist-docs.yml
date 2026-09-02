@@ -1,0 +1,114 @@
+name: Temporary Specialist dossier reconciliation
+
+on:
+  push:
+    branches:
+      - docs/reconcile-specialist-gates-a0001-a0299
+    paths:
+      - .github/workflows/reconcile-specialist-docs.yml
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout reconciliation branch
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Materialize canonical Specialist authority in A0243-A0299
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('plans/03-skill-tree-perks/perks')
+          selected = []
+          for path in sorted(root.glob('A0*.md')):
+              m = re.match(r'A(\d{4})-', path.name)
+              if m and 243 <= int(m.group(1)) <= 299:
+                  selected.append(path)
+
+          if len(selected) != 57:
+              raise SystemExit(f'expected 57 dossiers A0243-A0299, found {len(selected)}')
+
+          legacy_tokens = ('SPECIALIST_GATE_RESOLVER_V1', 'SpecialistGateResolver')
+          before_with_legacy = [p for p in selected if any(t in p.read_text(encoding='utf-8') for t in legacy_tokens)]
+          if len(before_with_legacy) != 57:
+              missing = [p.name for p in selected if p not in before_with_legacy]
+              raise SystemExit(f'expected legacy authority in all 57 dossiers; missing={missing}')
+
+          changed = []
+          for path in selected:
+              text = path.read_text(encoding='utf-8')
+              original = text
+
+              # Preserve all perk-specific contracts. Only the obsolete Specialist-gate
+              # authority is replaced by the already-existing canonical TreeUnlock pipeline.
+              text = text.replace(
+                  'FUTURE_PROVIDER_CONTRACTS SPECIALIST_GATE_RESOLVER_V1 e ',
+                  'pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 e FUTURE_PROVIDER_CONTRACTS '
+              )
+              text = text.replace(
+                  'FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + ',
+                  'pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + '
+              )
+              text = text.replace(
+                  'FUTURE_PROVIDER_CONTRACTS SPECIALIST_GATE_RESOLVER_V1 + ',
+                  'pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + '
+              )
+              text = text.replace(
+                  'FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1',
+                  'pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01'
+              )
+              text = text.replace(
+                  'SPECIALIST_GATE_RESOLVER_V1',
+                  'pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01'
+              )
+              text = text.replace(
+                  'SpecialistGateResolver',
+                  'TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01'
+              )
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(path)
+
+          if len(changed) != 57:
+              raise SystemExit(f'expected 57 changed dossiers, changed {len(changed)}')
+
+          for path in selected:
+              text = path.read_text(encoding='utf-8')
+              if any(t in text for t in legacy_tokens):
+                  raise SystemExit(f'legacy Specialist resolver remains in {path.name}')
+              if 'SPECIALIST_UNLOCK:' not in text:
+                  raise SystemExit(f'SPECIALIST_UNLOCK missing from {path.name}')
+              if 'TreeUnlockResolver' not in text or 'TreeUnlockDefinition' not in text or 'Stage 04.01' not in text:
+                  raise SystemExit(f'canonical TreeUnlock authority missing from {path.name}')
+
+          print('validated: 57/57 dossiers updated; legacy resolver = 0; canonical TreeUnlock authority = 57/57')
+          PY
+
+          git diff --check
+          changed_count="$(git diff --name-only -- 'plans/03-skill-tree-perks/perks/A0*.md' | wc -l | tr -d ' ')"
+          test "$changed_count" = "57"
+          if git diff --name-only | grep -Ev '^plans/03-skill-tree-perks/perks/A0(24[3-9]|25[0-9]|26[0-9]|27[0-9]|28[0-9]|29[0-9])-.*\.md$' | grep -q .; then
+            echo 'unexpected file changed by reconciliation' >&2
+            git diff --name-only >&2
+            exit 1
+          fi
+
+      - name: Commit dossiers and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm .github/workflows/reconcile-specialist-docs.yml
+          git add plans/03-skill-tree-perks/perks/A0*.md .github/workflows/reconcile-specialist-docs.yml
+          git commit -m 'docs(perks): materialize canonical specialist unlock authority'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
