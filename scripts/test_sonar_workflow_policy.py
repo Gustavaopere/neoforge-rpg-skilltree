@@ -6,6 +6,12 @@ WORKFLOW = ROOT / ".github" / "workflows" / "sonarqube.yml"
 GAME_TEST_COVERAGE_INIT = ROOT / "gradle" / "sonar-gametest-coverage.init.gradle"
 LEGACY_BASELINE_SCRIPT = ROOT / "scripts" / "refresh-sonar-new-code-baseline.py"
 
+BATTLE_MAGE_TEST_PATTERNS = (
+    "src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java",
+)
+
 
 def require(condition: bool, message: str) -> None:
     if not condition:
@@ -48,8 +54,25 @@ def main() -> None:
         "JacocoReport" in game_test_coverage and "classDirectories" in game_test_coverage,
         "GameTest coverage must render dedicated JaCoCo XML reports from runtime class dumps.",
     )
+    require(
+        "-Dsonar.tests=src/test/java,src/main/java" in workflow,
+        "Sonar must be allowed to classify runtime-discovered NeoForge GameTests as test code.",
+    )
+    for pattern in BATTLE_MAGE_TEST_PATTERNS:
+        require(
+            pattern in workflow,
+            f"Battle Mage GameTest scope is missing from Sonar classification: {pattern}",
+        )
+    require(
+        "-Dsonar.test.inclusions=" in workflow and "-Dsonar.exclusions=" in workflow,
+        "Battle Mage GameTests must be test-scoped and excluded only from main-code scope.",
+    )
+    require(
+        "sonar.coverage.exclusions" not in workflow and "sonar.cpd.exclusions" not in workflow,
+        "Sonar CI must not game the Quality Gate with coverage or duplication exclusions.",
+    )
 
-    print("Sonar workflow policy is race-safe and imports transformed NeoForge GameTest coverage.")
+    print("Sonar workflow policy is race-safe, imports transformed GameTest coverage, and test-scopes NeoForge GameTests.")
 
 
 if __name__ == "__main__":
