@@ -34,6 +34,20 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
 - `AUDITORIA-A0200-A0209.md` — checkpoint histórico inicial Eldritch/Ender, preservado para rastreabilidade.
 - `AUDITORIA-A0200-A0299.md` — auditoria especial autorizada de 100 perks, com tracker individual A0200–A0299, Notion 100/100, providers, projetos próprios, blockers e handoff fail-closed.
+- `AUDITORIA-A0191-A0199.md` — fechamento excepcional do bloco residual explicitamente autorizado entre a sequência normal A0181–A0190 e a faixa A0200+ já auditada; BLOOD/ELDRITCH provider-native, 7 unavailable, A0193/A0194 defensivas implementáveis e contratos all-or-nothing preservados.
+- `STATUS-A0191-A0199.md` — tracker complementar autoritativo deste bloco residual enquanto a cadeia documental predecessor permanece em PRs abertas.
+
+### Sequência concorrente A0141–A0190
+
+As auditorias abaixo permanecem em PRs de Chat 1 abertas e não são copiadas para esta branch, evitando sobreposição destrutiva:
+
+- `AUDITORIA-A0141-A0150.md` — PR #361;
+- `AUDITORIA-A0151-A0160.md` — PR #366;
+- `AUDITORIA-A0161-A0170.md` + tracker complementar — PR #368;
+- `AUDITORIA-A0171-A0180.md` + tracker complementar — PR #375;
+- `AUDITORIA-A0181-A0190.md` + tracker complementar — PR #380.
+
+A reconciliação futura deve preservar A0141–A0199 em ordem e manter intacta a auditoria especial A0200+ já mergeada. Até lá, `STATUS.md` raiz não deve ser sobrescrito por uma cópia derivada da `main` incompleta.
 
 ## Auditorias de delta da modlist — Chat 1
 
