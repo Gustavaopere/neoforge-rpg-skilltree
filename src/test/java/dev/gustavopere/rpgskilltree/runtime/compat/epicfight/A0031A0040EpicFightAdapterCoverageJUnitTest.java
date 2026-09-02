@@ -465,6 +465,173 @@ final class A0031A0040EpicFightAdapterCoverageJUnitTest {
         }
     }
 
+    @Test
+    void descompassoGuardsStackingAndMissingStateFailClosed() throws Exception {
+        LivingIncomingDamageEvent canceled = mock(LivingIncomingDamageEvent.class);
+        when(canceled.isCanceled()).thenReturn(true);
+        A0021A0040EpicFightHooks.onDescompassoOutgoingDamage(canceled);
+        verify(canceled, never()).setAmount(anyFloat());
+
+        LivingIncomingDamageEvent zero = mock(LivingIncomingDamageEvent.class);
+        when(zero.getAmount()).thenReturn(0.0F);
+        A0021A0040EpicFightHooks.onDescompassoOutgoingDamage(zero);
+        verify(zero, never()).setAmount(anyFloat());
+
+        LivingIncomingDamageEvent guarded = mock(LivingIncomingDamageEvent.class);
+        DamageSource guardedSource = mock(DamageSource.class);
+        when(guarded.getAmount()).thenReturn(10.0F);
+        when(guarded.getSource()).thenReturn(guardedSource);
+        when(guardedSource.is(any(TagKey.class))).thenReturn(true);
+        when(guardedSource.getEntity()).thenReturn(mock(net.minecraft.world.entity.Entity.class));
+        A0021A0040EpicFightHooks.onDescompassoOutgoingDamage(guarded);
+        verify(guarded, never()).setAmount(anyFloat());
+
+        LivingEntity noState = mock(LivingEntity.class);
+        when(noState.getUUID()).thenReturn(UUID.randomUUID());
+        when(guardedSource.getEntity()).thenReturn(noState);
+        A0021A0040EpicFightHooks.onDescompassoOutgoingDamage(guarded);
+        verify(guarded, never()).setAmount(anyFloat());
+
+        Method apply = privateMethod(
+            A0021A0040EpicFightHooks.class,
+            "applyDescompasso",
+            LivingEntity.class, double.class, double.class, long.class, long.class
+        );
+        LivingEntity missingMovement = mock(LivingEntity.class);
+        when(missingMovement.getAttribute(Attributes.MOVEMENT_SPEED)).thenReturn(null);
+        apply.invoke(null, missingMovement, 0.92D, 0.90D, 1_000L, 0L);
+        assertEquals(0, staticMapSize(A0021A0040EpicFightHooks.class, "DESCOMPASSO_EXPIRES"));
+
+        UUID id = UUID.randomUUID();
+        LivingEntity target = mock(LivingEntity.class);
+        ServerLevel level = mock(ServerLevel.class);
+        AttributeInstance movement = mock(AttributeInstance.class);
+        AttributeModifier existing = new AttributeModifier(
+            ResourceLocation.fromNamespaceAndPath("rpgskilltree", "existing_descompasso"),
+            -0.20D,
+            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+        );
+        when(target.getUUID()).thenReturn(id);
+        when(target.level()).thenReturn(level);
+        when(target.getAttribute(Attributes.MOVEMENT_SPEED)).thenReturn(movement);
+        when(movement.getModifier(any(ResourceLocation.class))).thenReturn(null, existing);
+        when(level.getGameTime()).thenReturn(1L);
+
+        apply.invoke(null, target, 0.92D, 0.90D, 1_000L, 0L);
+        apply.invoke(null, target, 0.96D, 0.95D, 500L, 100L);
+
+        ArgumentCaptor<AttributeModifier> modifiers = ArgumentCaptor.forClass(AttributeModifier.class);
+        verify(movement, times(2)).addOrUpdateTransientModifier(modifiers.capture());
+        assertEquals(-0.20D, modifiers.getAllValues().get(1).amount(), 1.0E-9D);
+
+        LivingIncomingDamageEvent physical = mock(LivingIncomingDamageEvent.class);
+        DamageSource physicalSource = mock(DamageSource.class);
+        when(physical.getAmount()).thenReturn(10.0F);
+        when(physical.getSource()).thenReturn(physicalSource);
+        when(physicalSource.is(any(TagKey.class))).thenReturn(true);
+        when(physicalSource.getEntity()).thenReturn(target);
+        A0021A0040EpicFightHooks.onDescompassoOutgoingDamage(physical);
+        verify(physical).setAmount(9.2F);
+    }
+
+    @Test
+    void latentBonebreakerConsumerCommitsPreparedReceiptWithoutInventingHeavyDetection() throws Exception {
+        UUID actorUuid = UUID.randomUUID();
+        UUID targetUuid = UUID.randomUUID();
+        ServerPlayer player = mock(ServerPlayer.class);
+        ServerPlayer target = mock(ServerPlayer.class);
+        ServerLevel level = mock(ServerLevel.class);
+        DamageSource source = mock(DamageSource.class);
+        LivingDamageEvent.Post event = mock(LivingDamageEvent.Post.class);
+        AttributeInstance movement = mock(AttributeInstance.class);
+
+        when(player.getUUID()).thenReturn(actorUuid);
+        when(player.level()).thenReturn(level);
+        when(player.isCreative()).thenReturn(false);
+        when(player.isSpectator()).thenReturn(false);
+        when(player.isAlliedTo(target)).thenReturn(false);
+        when(target.getUUID()).thenReturn(targetUuid);
+        when(target.level()).thenReturn(level);
+        when(target.isInvulnerable()).thenReturn(false);
+        when(target.getHealth()).thenReturn(10.0F);
+        when(target.getMaxHealth()).thenReturn(20.0F);
+        when(target.getAttribute(Attributes.MOVEMENT_SPEED)).thenReturn(movement);
+        when(movement.getModifier(any(ResourceLocation.class))).thenReturn(null);
+        when(level.isClientSide()).thenReturn(false);
+        when(level.getGameTime()).thenReturn(20L);
+        when(event.getEntity()).thenReturn(target);
+        when(event.getSource()).thenReturn(source);
+        when(source.getDirectEntity()).thenReturn(player);
+        when(event.getNewDamage()).thenReturn(4.0F);
+
+        String actor = actorUuid.toString();
+        String targetId = targetUuid.toString();
+        String root = "controlled-heavy-receipt";
+        long now = 1_000L;
+        A0021A0040CombatState state = new A0021A0040CombatState();
+        state.markSundered(actor, targetId, 2, 0L);
+        assertTrue(state.prepareBonebreaker(actor, targetId, root, 80, now));
+        BeforeResult specialty = new BeforeResult(
+            1.0D, 1.0D, 1.0D, 0.0D,
+            false, 0.0D, 0L,
+            true, 0.92D, 0.90D, 3_000L
+        );
+        putVanillaPending(actor, targetId, root, specialty, 31_000L);
+
+        try (MockedStatic<A0021A0040RuntimeState> runtime = mockStatic(A0021A0040RuntimeState.class)) {
+            runtime.when(A0021A0040RuntimeState::state).thenReturn(state);
+            runtime.when(() -> A0021A0040RuntimeState.ranks(player))
+                .thenReturn(CombatPerkRanks.of(Map.of("A0036", 1)));
+            A0021A0040EpicFightHooks.onLivingDamagePost(event);
+        }
+
+        assertFalse(state.bonebreakerReady(actor, targetId, now));
+        verify(movement).addOrUpdateTransientModifier(any(AttributeModifier.class));
+    }
+
+    @Test
+    void serverTickPrunesExpiredPendingRootsAndBoundedReapingMarks() throws Exception {
+        A0021A0040CombatState state = new A0021A0040CombatState();
+        state.applyReapingMark("reaper", "marked", 1, 0.75D, 0L);
+        putVanillaPending("expired", "target-a", "root-a", neutralBefore(), 9_999L);
+        putVanillaPending("active", "target-b", "root-b", neutralBefore(), 20_000L);
+
+        MinecraftServer server = mock(MinecraftServer.class);
+        ServerLevel level = mock(ServerLevel.class);
+        ServerTickEvent.Post tick = mock(ServerTickEvent.Post.class);
+        when(tick.getServer()).thenReturn(server);
+        when(server.overworld()).thenReturn(level);
+        when(level.getGameTime()).thenReturn(200L);
+        when(server.getAllLevels()).thenReturn(List.of(level));
+
+        try (MockedStatic<A0021A0040RuntimeState> runtime = mockStatic(A0021A0040RuntimeState.class)) {
+            runtime.when(A0021A0040RuntimeState::state).thenReturn(state);
+            A0021A0040EpicFightHooks.onServerTickPost(tick);
+        }
+
+        assertEquals(1, staticMapSize(A0021A0040EpicFightHooks.class, "VANILLA_PENDING"));
+        assertEquals(0, state.pruneExpiredReapingMarks(10_000L));
+        assertFalse(state.reapMarked("reaper", "marked", 10_000L));
+    }
+
+    @Test
+    void sharedMartialBridgeFallsBackOnlyToExactVanillaMace() throws Exception {
+        ItemStack mace = mock(ItemStack.class);
+        ItemStack unknown = mock(ItemStack.class);
+        CapabilityItem empty = mock(CapabilityItem.class);
+        when(empty.isEmpty()).thenReturn(true);
+        when(mace.is(Items.MACE)).thenReturn(true);
+        when(unknown.is(Items.MACE)).thenReturn(false);
+        Method physicalMelee = privateMethod(A0061A0080EpicFightHooks.class, "physicalMelee", ItemStack.class);
+
+        try (MockedStatic<EpicFightCapabilities> capabilities = mockStatic(EpicFightCapabilities.class)) {
+            capabilities.when(() -> EpicFightCapabilities.getItemStackCapability(mace)).thenReturn(empty);
+            capabilities.when(() -> EpicFightCapabilities.getItemStackCapability(unknown)).thenReturn(empty);
+            assertTrue((Boolean) physicalMelee.invoke(null, mace));
+            assertFalse((Boolean) physicalMelee.invoke(null, unknown));
+        }
+    }
+
     @SuppressWarnings("unchecked")
     private static Optional<WeaponFamily> invokeFallback(Class<?> owner, ItemStack stack) throws Exception {
         Method method = privateMethod(owner, "vanillaFallbackFamily", ItemStack.class);
