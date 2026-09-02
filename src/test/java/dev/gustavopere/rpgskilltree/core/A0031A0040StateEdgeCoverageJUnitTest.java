@@ -89,8 +89,8 @@ final class A0031A0040StateEdgeCoverageJUnitTest {
 
         var before = A0021A0040CombatPolicy.beforeHit(facts, ranks, state, 80);
         assertTrue(before.applyBonebreaker());
-        assertEquals(0.984D, before.outgoingPhysicalDamageMultiplier(), 1.0E-9D);
-        assertEquals(0.98D, before.movementSpeedMultiplier(), 1.0E-9D);
+        assertEquals(0.96D, before.outgoingPhysicalDamageMultiplier(), 1.0E-9D);
+        assertEquals(0.95D, before.movementSpeedMultiplier(), 1.0E-9D);
         assertTrue(A0021A0040CombatPolicy.afterConfirmedHit(facts, ranks, state).bonebreakerCommitted());
     }
 
