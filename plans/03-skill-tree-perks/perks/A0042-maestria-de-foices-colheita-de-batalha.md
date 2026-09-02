@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após endurecimento de anti-abuso/provider boundary.
-- **Implementação:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** **NÃO CONFIRMADA / FAIL-CLOSED CORRETO VALIDADO PELO CHAT 3**.
 - **Disponibilidade:** `UNAVAILABLE_NODE` enquanto não existir `eligible_kill` anti-abuso canônico compartilhado pelos producers de morte.
 - **Notion:** `3c569db9-f0db-8190-85b6-e883bb4140de`.
 
@@ -69,3 +69,9 @@ Fica bloqueada pelo mesmo boundary: enquanto A0042 estiver indisponível, nenhum
 ## Fechamento Chat 2 — 2026-09-01
 
 O Chat 2 escolheu fail-closed integral em vez de fabricar a policy anti-abuso ausente. Isso encerra a implementação do contrato disponível, mas não equivale a `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Fechamento Chat 3 — 2026-09-02
+
+- availability, masking de rank legado e inércia do runtime sem `eligible_kill` foram validados.
+- CI #3378 (`33665545963`) passou integralmente.
+- **Estado final:** `NÃO CONFIRMADA / FAIL-CLOSED CORRETO`; `P-A0042-01/-02` permanecem abertas e não bloqueiam a segurança do lote.
