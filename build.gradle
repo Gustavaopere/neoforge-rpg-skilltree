@@ -98,7 +98,7 @@ dependencies {
 
     // RPG progression providers.
     compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}:api"
-    compileOnly("maven.modrinth:TKB6INcv:${ars_nouveau_version_id}") {
+    compileOnly("curse.maven:ars-nouveau-401955:${ars_nouveau_file_id}") {
         transitive = false
     }
     compileOnly("maven.modrinth:vu3NZ5Ma:${epicfight_version_id}") {
@@ -163,7 +163,7 @@ tasks.named('jar', Jar).configure {
 
 tasks.register('generateCombatPerkWikiSnapshot', JavaExec) {
     group = 'documentation'
-    description = 'Regenera build/generated-wiki/combat-perks.json a partir do modelo canônico A0001-A0100.'
+    description = 'Regenera build/generated-wiki/combat-perks.json a partir do modelo canônico A0001-A0110.'
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath
     mainClass = 'dev.gustavopere.rpgskilltree.tools.CombatPerkWikiSnapshotGenerator'
@@ -172,7 +172,7 @@ tasks.register('generateCombatPerkWikiSnapshot', JavaExec) {
 
 tasks.register('checkCombatPerkWikiSnapshot', JavaExec) {
     group = 'verification'
-    description = 'Falha se build/generated-wiki/combat-perks.json divergir do modelo canônico A0001-A0100.'
+    description = 'Falha se build/generated-wiki/combat-perks.json divergir do modelo canônico A0001-A0110.'
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath
     mainClass = 'dev.gustavopere.rpgskilltree.tools.CombatPerkWikiSnapshotGenerator'
