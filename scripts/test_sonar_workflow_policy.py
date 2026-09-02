@@ -73,10 +73,31 @@ def main() -> None:
         "gradle/actions/setup-gradle@" in workflow and "cache-provider: basic" in workflow,
         "Sonar CI must use Gradle Actions with the explicit open-source basic cache provider.",
     )
+    require(
+        "Diagnose Sonar main analysis history on internal PR" in workflow,
+        "Internal PR Sonar runs must expose bounded main analysis history before any baseline repair is attempted.",
+    )
+    require(
+        "github.event.pull_request.head.repo.full_name == github.repository" in workflow,
+        "Sonar analysis-history diagnostics must use secrets only for same-repository pull requests.",
+    )
+    require(
+        "/api/project_analyses/search" in workflow
+        and '--data-urlencode "project=${SONAR_PROJECT}"' in workflow
+        and "--data-urlencode 'branch=main'" in workflow
+        and "--data-urlencode 'ps=100'" in workflow,
+        "Sonar analysis-history diagnostics must query a bounded main-branch project analysis history.",
+    )
+    require(
+        "Sonar main analysis history:" in workflow
+        and ".events[]?" in workflow
+        and "revision=" in workflow,
+        "Sonar analysis-history diagnostics must print revision and version-event evidence.",
+    )
 
     print(
         "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
-        "uses basic Gradle caching, and does not install a manual analysis baseline."
+        "uses basic Gradle caching, exposes bounded analysis-history evidence, and does not install a manual analysis baseline."
     )
 
 
