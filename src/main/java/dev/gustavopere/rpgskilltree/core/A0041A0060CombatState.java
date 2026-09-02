@@ -8,9 +8,11 @@ import java.util.Objects;
 public final class A0041A0060CombatState {
     private static final long CLAIM_RETENTION_MILLIS = 30_000L;
     private static final long SCYTHE_RESERVATION_RETENTION_MILLIS = 250L;
+    private static final long CROSSBOW_RESERVATION_RETENTION_MILLIS = 500L;
     private final Map<String, Actor> actors = new HashMap<>();
     private final Map<String, Long> claims = new HashMap<>();
     private final Map<String, ScytheReservation> scytheReservations = new HashMap<>();
+    private final Map<String, CrossbowReservation> crossbowReservations = new HashMap<>();
 
     public synchronized boolean claimOnce(String actorId, String rootActionId, String consumer, long now) {
         require(actorId); require(rootActionId); require(consumer);
@@ -144,22 +146,36 @@ public final class A0041A0060CombatState {
         return true;
     }
 
-    public synchronized void recordCrossbowHit(String actorId, String rootActionId, long now) {
+    public synchronized void recordCrossbowHit(String actorId, String rootActionId, String weaponId, long now) {
         Actor actor = actor(actorId);
         actor.lastCrossbowHitRoot = require(rootActionId);
+        actor.lastCrossbowHitWeapon = require(weaponId);
         actor.lastCrossbowHitAt = now;
     }
 
-    public synchronized boolean consumeCrossbowHitReceipt(String actorId, long windowMillis, long now) {
+    public synchronized boolean consumeCrossbowHitReceipt(
+        String actorId, String weaponId, long windowMillis, long now
+    ) {
         Actor actor = actor(actorId);
-        if (actor.lastCrossbowHitRoot == null || actor.lastCrossbowHitAt + windowMillis < now) {
-            actor.lastCrossbowHitRoot = null;
-            actor.lastCrossbowHitAt = 0L;
+        String weapon = require(weaponId);
+        if (actor.lastCrossbowHitRoot == null || actor.lastCrossbowHitWeapon == null) return false;
+        if (actor.lastCrossbowHitAt + windowMillis < now) {
+            clearCrossbowHitReceipt(actor);
             return false;
         }
-        actor.lastCrossbowHitRoot = null;
-        actor.lastCrossbowHitAt = 0L;
+        if (!actor.lastCrossbowHitWeapon.equals(weapon)) return false;
+        clearCrossbowHitReceipt(actor);
         return true;
+    }
+
+    public synchronized void clearCrossbowHitReceipt(String actorId) {
+        clearCrossbowHitReceipt(actor(actorId));
+    }
+
+    private static void clearCrossbowHitReceipt(Actor actor) {
+        actor.lastCrossbowHitRoot = null;
+        actor.lastCrossbowHitWeapon = null;
+        actor.lastCrossbowHitAt = 0L;
     }
 
     public synchronized int cadence(String actorId) {
@@ -184,20 +200,155 @@ public final class A0041A0060CombatState {
         consumeCadence(actorId, Math.max(0, amount));
     }
 
+    public synchronized boolean reservePiercingBolt(String actorId, String rootActionId, long now) {
+        String actor = require(actorId);
+        String root = require(rootActionId);
+        pruneCrossbowReservations(now);
+        Actor state = actor(actor);
+        if (state.cadence < NotionCombatPerkRules.A0053_CADENCE_COST) return false;
+        String key = reservationKey(actor, root, "A0053");
+        if (crossbowReservations.containsKey(key)) return false;
+        crossbowReservations.put(
+            key,
+            new CrossbowReservation(
+                actor,
+                root,
+                "A0053",
+                NotionCombatPerkRules.A0053_CADENCE_COST,
+                Math.addExact(now, CROSSBOW_RESERVATION_RETENTION_MILLIS)
+            )
+        );
+        return true;
+    }
+
+    public synchronized boolean commitPiercingBolt(String actorId, String rootActionId, long now) {
+        return commitCadenceReservation(actorId, rootActionId, "A0053", now, false);
+    }
+
+    public synchronized void discardPiercingBolt(String actorId, String rootActionId) {
+        crossbowReservations.remove(reservationKey(require(actorId), require(rootActionId), "A0053"));
+    }
+
     public synchronized void armAdjustedMechanism(String actorId, long windowMillis, long now) {
         Actor actor = actor(actorId);
         actor.adjustedMechanismUntil = Math.addExact(now, windowMillis);
-        actor.cadence = 0;
+        actor.adjustedMechanismReservedRoot = null;
+        removeReservations(actorId, "A0054");
     }
 
-    public synchronized boolean consumeAdjustedMechanism(String actorId, long now) {
-        Actor actor = actor(actorId);
+    public synchronized boolean reserveAdjustedMechanism(String actorId, String rootActionId, long now) {
+        String actorIdChecked = require(actorId);
+        String root = require(rootActionId);
+        pruneCrossbowReservations(now);
+        Actor actor = actor(actorIdChecked);
         if (actor.adjustedMechanismUntil <= now) {
             actor.adjustedMechanismUntil = 0L;
+            actor.adjustedMechanismReservedRoot = null;
+            removeReservations(actorIdChecked, "A0054");
+            return false;
+        }
+        if (actor.cadence < NotionCombatPerkRules.CADENCE_CAP) return false;
+        if (actor.adjustedMechanismReservedRoot != null) return false;
+        actor.adjustedMechanismReservedRoot = root;
+        crossbowReservations.put(
+            reservationKey(actorIdChecked, root, "A0054"),
+            new CrossbowReservation(
+                actorIdChecked,
+                root,
+                "A0054",
+                NotionCombatPerkRules.CADENCE_CAP,
+                Math.addExact(now, CROSSBOW_RESERVATION_RETENTION_MILLIS)
+            )
+        );
+        return true;
+    }
+
+    public synchronized boolean commitAdjustedMechanism(String actorId, String rootActionId, long now) {
+        String actorIdChecked = require(actorId);
+        String root = require(rootActionId);
+        pruneCrossbowReservations(now);
+        Actor actor = actor(actorIdChecked);
+        if (!root.equals(actor.adjustedMechanismReservedRoot) || actor.adjustedMechanismUntil <= now) {
+            discardAdjustedMechanism(actorIdChecked, root);
+            return false;
+        }
+        boolean committed = commitCadenceReservation(actorIdChecked, root, "A0054", now, true);
+        if (committed) {
+            actor.adjustedMechanismUntil = 0L;
+            actor.adjustedMechanismReservedRoot = null;
+        }
+        return committed;
+    }
+
+    public synchronized void discardAdjustedMechanism(String actorId, String rootActionId) {
+        String actorIdChecked = require(actorId);
+        String root = require(rootActionId);
+        crossbowReservations.remove(reservationKey(actorIdChecked, root, "A0054"));
+        Actor actor = actor(actorIdChecked);
+        if (root.equals(actor.adjustedMechanismReservedRoot)) actor.adjustedMechanismReservedRoot = null;
+    }
+
+    /** Legacy helper retained for callers outside this lot; it consumes only the armed window, not Cadence. */
+    public synchronized boolean consumeAdjustedMechanism(String actorId, long now) {
+        Actor actor = actor(actorId);
+        if (actor.adjustedMechanismUntil <= now || actor.adjustedMechanismReservedRoot != null) {
+            if (actor.adjustedMechanismUntil <= now) actor.adjustedMechanismUntil = 0L;
             return false;
         }
         actor.adjustedMechanismUntil = 0L;
         return true;
+    }
+
+    private boolean commitCadenceReservation(
+        String actorId, String rootActionId, String consumer, long now, boolean requireFullCadence
+    ) {
+        String actor = require(actorId);
+        String root = require(rootActionId);
+        pruneCrossbowReservations(now);
+        CrossbowReservation reservation = crossbowReservations.remove(reservationKey(actor, root, consumer));
+        if (reservation == null) return false;
+        Actor state = actor(actor);
+        int required = requireFullCadence ? NotionCombatPerkRules.CADENCE_CAP : reservation.cadenceCost;
+        if (state.cadence < required) return false;
+        state.cadence -= required;
+        return true;
+    }
+
+    public synchronized void pruneTransient(long now) {
+        claims.entrySet().removeIf(entry -> entry.getValue() <= now);
+        pruneScytheReservations(now);
+        pruneCrossbowReservations(now);
+        for (Actor actor : actors.values()) {
+            if (actor.adjustedMechanismUntil > 0L && actor.adjustedMechanismUntil <= now) {
+                actor.adjustedMechanismUntil = 0L;
+                actor.adjustedMechanismReservedRoot = null;
+            }
+        }
+    }
+
+    private void pruneCrossbowReservations(long now) {
+        crossbowReservations.entrySet().removeIf(entry -> {
+            CrossbowReservation reservation = entry.getValue();
+            if (reservation.expiresAt > now) return false;
+            Actor actor = actors.get(reservation.actorId);
+            if (actor != null && "A0054".equals(reservation.consumer)
+                && reservation.rootActionId.equals(actor.adjustedMechanismReservedRoot)) {
+                actor.adjustedMechanismReservedRoot = null;
+            }
+            return true;
+        });
+    }
+
+    private static String reservationKey(String actorId, String rootActionId, String consumer) {
+        return actorId + '\0' + rootActionId + '\0' + consumer;
+    }
+
+    private void removeReservations(String actorId, String consumer) {
+        String actor = require(actorId);
+        crossbowReservations.entrySet().removeIf(entry -> {
+            CrossbowReservation reservation = entry.getValue();
+            return reservation.actorId.equals(actor) && reservation.consumer.equals(consumer);
+        });
     }
 
     public synchronized int sequence(String actorId, long now) {
@@ -255,18 +406,63 @@ public final class A0041A0060CombatState {
         actor(actorId).preparedShotCooldownUntil = Math.addExact(now, cooldownMillis);
     }
 
+    /**
+     * Reconciles transient ownership against the effective server-side ranks. This is intentionally
+     * idempotent and only clears state whose owning perk/prerequisite is no longer valid.
+     */
+    public synchronized void reconcileForRanks(String actorId, CombatPerkRanks ranks, long now) {
+        String actorIdChecked = require(actorId);
+        Objects.requireNonNull(ranks, "ranks");
+        pruneTransient(now);
+        Actor actor = actor(actorIdChecked);
+
+        boolean cadenceOwned = ranks.rank("A0052") > 0
+            && ranks.rank("A0050") >= 2
+            && ranks.rank("A0051") >= 2;
+        if (!cadenceOwned) {
+            actor.cadence = 0;
+            clearCrossbowHitReceipt(actor);
+            actor.adjustedMechanismUntil = 0L;
+            actor.adjustedMechanismReservedRoot = null;
+            removeReservations(actorIdChecked, "A0053");
+            removeReservations(actorIdChecked, "A0054");
+        } else {
+            if (ranks.rank("A0053") <= 0) removeReservations(actorIdChecked, "A0053");
+            boolean adjustedOwned = ranks.learned("A0054")
+                && ranks.rank("A0052") >= 2
+                && ranks.rank("A0053") >= 1;
+            if (!adjustedOwned) {
+                actor.adjustedMechanismUntil = 0L;
+                actor.adjustedMechanismReservedRoot = null;
+                removeReservations(actorIdChecked, "A0054");
+            }
+        }
+
+        boolean sequenceOwned = ranks.rank("A0058") > 0 && ranks.rank("A0057") >= 2;
+        if (!sequenceOwned) {
+            actor.sequence = 0;
+            actor.lastSequenceHitAt = 0L;
+            actor.sequenceWindowMillis = 0L;
+            actor.finalCombinationCooldownUntil = 0L;
+        } else if (!ranks.learned("A0060")) {
+            actor.finalCombinationCooldownUntil = 0L;
+        }
+    }
+
     public synchronized void clearActor(String actorId) {
         String id = require(actorId);
         actors.remove(id);
         String prefix = id + '\0';
         claims.keySet().removeIf(key -> key.startsWith(prefix));
         scytheReservations.entrySet().removeIf(entry -> entry.getValue().actorId.equals(id));
+        crossbowReservations.entrySet().removeIf(entry -> entry.getValue().actorId.equals(id));
     }
 
     public synchronized void clearAll() {
         actors.clear();
         claims.clear();
         scytheReservations.clear();
+        crossbowReservations.clear();
     }
 
     private Actor actor(String actorId) {
@@ -284,6 +480,9 @@ public final class A0041A0060CombatState {
     }
 
     private record ScytheReservation(String actorId, String targetId, String rootActionId, long expiresAt) {}
+    private record CrossbowReservation(
+        String actorId, String rootActionId, String consumer, int cadenceCost, long expiresAt
+    ) {}
 
     private static final class Actor {
         double focus;
@@ -291,9 +490,11 @@ public final class A0041A0060CombatState {
         long battleHarvestUntil;
         long battleHarvestCooldownUntil;
         String lastCrossbowHitRoot;
+        String lastCrossbowHitWeapon;
         long lastCrossbowHitAt;
         int cadence;
         long adjustedMechanismUntil;
+        String adjustedMechanismReservedRoot;
         int sequence;
         long lastSequenceHitAt;
         long sequenceWindowMillis;

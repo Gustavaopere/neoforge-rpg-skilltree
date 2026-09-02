@@ -81,10 +81,11 @@ public final class A0041A0060ProjectileEvents {
                     false, true, now
                 );
             }
-            PENDING.put(player.getUUID(), PendingLaunch.bow(root, now, shot));
+            PENDING.put(player.getUUID(), PendingLaunch.bow(actor, root, now, shot));
             return;
         }
 
+        String weaponId = crossbowWeaponId(player, event.getBow());
         CombatResult adjusted = A0041A0060CombatPolicy.tryAdjustedCrossbowShot(
             actor, root, ranks, A0041A0060RuntimeState.state(), now
         );
@@ -92,7 +93,7 @@ public final class A0041A0060ProjectileEvents {
             : A0041A0060CombatPolicy.tryPiercingBolt(
                 actor, root, ranks, A0041A0060RuntimeState.state(), true, true, false, now
             );
-        PENDING.put(player.getUUID(), PendingLaunch.crossbow(root, now, adjusted, piercing));
+        PENDING.put(player.getUUID(), PendingLaunch.crossbow(actor, root, weaponId, now, adjusted, piercing));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -106,33 +107,63 @@ public final class A0041A0060ProjectileEvents {
 
         long now = now(player);
         PendingLaunch pending = PENDING.get(player.getUUID());
-        if (pending == null || pending.family != family || pending.expiresAt < now) {
+        boolean correlated = pending != null
+            && pending.family == family
+            && pending.expiresAt >= now
+            && pending.launchConfirmed;
+        if (!correlated) {
             pending = PendingLaunch.neutral(
-                family, "projectile/" + arrow.getUUID(), now + LAUNCH_CORRELATION_MILLIS
+                actor(player), family, "projectile/" + arrow.getUUID(), now + LAUNCH_CORRELATION_MILLIS
             );
         }
 
+        CombatPerkRanks perkRanks = A0041A0060RuntimeState.ranks(player);
         if (pending.critical == null) {
             boolean providerCritical = arrow.isCritArrow();
+            double criticalBonus = NotionCombatPerkRules.criticalChanceBonus(family, perkRanks);
+            if (family == WeaponFamily.CROSSBOW && !pending.launchConfirmed) {
+                // A0051 is launch-provenance-sensitive. A derived/re-emitted arrow that merely has
+                // player ownership and CrossbowItem metadata cannot receive the A0051 family bonus.
+                criticalBonus = Math.max(0.0D, criticalBonus - 0.03D * perkRanks.rank("A0051"));
+            }
             boolean critical = A0001A0020RuntimeState.critical().resolve(
-                actor(player), pending.rootActionId, providerCritical,
-                NotionCombatPerkRules.criticalChanceBonus(family, A0041A0060RuntimeState.ranks(player)), now
+                actor(player), pending.rootActionId, providerCritical, criticalBonus, now
             );
             pending.critical = critical;
             pending.criticalMultiplierNeeded = critical && !providerCritical;
         }
 
-        boolean special = !pending.specialProjectileClaimed;
-        if (special && pending.hasSpecial()) pending.specialProjectileClaimed = true;
-        BowShot bowShot = special ? pending.bowShot : BowShot.neutral();
-        CombatResult crossbowShot = special ? pending.crossbowShot() : CombatResult.neutral();
+        boolean special = pending.launchConfirmed && !pending.specialProjectileClaimed;
+        BowShot bowShot = BowShot.neutral();
+        CombatResult crossbowShot = CombatResult.neutral();
+        if (special && family == WeaponFamily.BOW) {
+            pending.specialProjectileClaimed = pending.hasSpecial();
+            bowShot = pending.bowShot;
+        } else if (special && family == WeaponFamily.CROSSBOW && pending.hasSpecial()) {
+            pending.specialProjectileClaimed = true;
+            if (pending.adjusted.applied()) {
+                if (A0041A0060CombatPolicy.commitAdjustedCrossbowShot(
+                    actor(player), pending.rootActionId, perkRanks, A0041A0060RuntimeState.state(), now
+                )) {
+                    crossbowShot = pending.adjusted;
+                }
+            } else if (pending.piercing.applied()) {
+                if (A0041A0060CombatPolicy.commitPiercingBolt(
+                    actor(player), pending.rootActionId, perkRanks, A0041A0060RuntimeState.state(), now
+                )) {
+                    crossbowShot = pending.piercing;
+                }
+            }
+        }
 
         ProjectileMeta meta = new ProjectileMeta(
             family,
             actor(player),
             pending.rootActionId,
+            pending.launchConfirmed,
+            pending.weaponId,
             arrow.position(),
-            NotionCombatPerkRules.baseDamageMultiplier(family, A0041A0060RuntimeState.ranks(player)),
+            NotionCombatPerkRules.baseDamageMultiplier(family, perkRanks),
             Boolean.TRUE.equals(pending.critical),
             pending.criticalMultiplierNeeded,
             player.isSprinting(),
@@ -260,9 +291,9 @@ public final class A0041A0060ProjectileEvents {
                     actor(player), A0041A0060CombatPolicy.focusDistantHitGain(rank)
                 );
             }
-        } else {
+        } else if (meta.launchConfirmed && meta.weaponId != null) {
             A0041A0060CombatPolicy.recordCrossbowHit(
-                actor(player), meta.rootActionId, ranks, A0041A0060RuntimeState.state(), now
+                actor(player), meta.rootActionId, meta.weaponId, ranks, A0041A0060RuntimeState.state(), now
             );
             meta.confirmedHit = true;
         }
@@ -275,15 +306,22 @@ public final class A0041A0060ProjectileEvents {
             || !(arrow.getOwner() instanceof ServerPlayer player)
             || !eligible(player)) return;
         ProjectileMeta meta = metadata(arrow);
-        if (meta == null || meta.family != WeaponFamily.CROSSBOW || meta.confirmedHit || meta.failureRecorded) return;
+        if (meta == null || meta.family != WeaponFamily.CROSSBOW || !meta.launchConfirmed
+            || meta.confirmedHit || meta.failureRecorded) return;
         meta.failureRecorded = true;
-        A0041A0060CombatPolicy.onCrossbowFailure(actor(player), A0041A0060RuntimeState.state());
+        long now = now(player);
+        if (A0041A0060RuntimeState.state().claimOnce(
+            actor(player), meta.rootActionId, "A0052:failure", now
+        )) {
+            A0041A0060CombatPolicy.onCrossbowFailure(actor(player), A0041A0060RuntimeState.state());
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onServerTick(ServerTickEvent.Post event) {
         long now = event.getServer().overworld().getGameTime() * 50L;
         PENDING.entrySet().removeIf(entry -> entry.getValue().expiresAt < now);
+        A0041A0060RuntimeState.state().pruneTransient(now);
         for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
             if (!eligible(player)) continue;
             tickAim(player, now);
@@ -349,6 +387,7 @@ public final class A0041A0060ProjectileEvents {
         boolean relevant = ranks.rank("A0052") > 0 || ranks.learned("A0054");
 
         if (stack.isEmpty()) {
+            if (previous != null) A0041A0060RuntimeState.state().clearCrossbowHitReceipt(actor(player));
             if (previous != null && relevant && A0041A0060RuntimeState.state().cadence(actor(player)) > 0) {
                 A0041A0060CombatPolicy.onCrossbowFailure(actor(player), A0041A0060RuntimeState.state());
             }
@@ -358,10 +397,11 @@ public final class A0041A0060ProjectileEvents {
 
         boolean same = previous != null && previous.stack == stack;
         if (!same) {
+            if (previous != null) A0041A0060RuntimeState.state().clearCrossbowHitReceipt(actor(player));
             if (previous != null && relevant && A0041A0060RuntimeState.state().cadence(actor(player)) > 0) {
                 A0041A0060CombatPolicy.onCrossbowFailure(actor(player), A0041A0060RuntimeState.state());
             }
-            previous = new CrossbowTrack(stack);
+            previous = new CrossbowTrack(stack, newCrossbowWeaponId());
             CROSSBOW.put(id, previous);
         }
 
@@ -378,7 +418,7 @@ public final class A0041A0060ProjectileEvents {
         }
         if (!previous.charged && charged && previous.using && relevant) {
             boolean completed = A0041A0060CombatPolicy.onCrossbowReloadComplete(
-                actor(player), Integer.toHexString(System.identityHashCode(stack)), ranks,
+                actor(player), previous.weaponId, ranks,
                 A0041A0060RuntimeState.state(), true, now
             );
             if (completed || A0041A0060RuntimeState.state().cadence(actor(player)) >= NotionCombatPerkRules.CADENCE_CAP) {
@@ -391,6 +431,21 @@ public final class A0041A0060ProjectileEvents {
         previous.charged = charged;
         previous.using = using;
         previous.progress = progress;
+    }
+
+    private static String crossbowWeaponId(ServerPlayer player, ItemStack eventStack) {
+        ItemStack held = heldCrossbow(player);
+        ItemStack stack = held.isEmpty() ? eventStack : held;
+        CrossbowTrack track = CROSSBOW.get(player.getUUID());
+        if (track == null || track.stack != stack) {
+            track = new CrossbowTrack(stack, newCrossbowWeaponId());
+            CROSSBOW.put(player.getUUID(), track);
+        }
+        return track.weaponId;
+    }
+
+    private static String newCrossbowWeaponId() {
+        return "crossbow-stack/" + ACTION_SEQUENCE.incrementAndGet();
     }
 
     private static ItemStack heldCrossbow(ServerPlayer player) {
@@ -462,9 +517,12 @@ public final class A0041A0060ProjectileEvents {
     private static long now(ServerPlayer player) { return player.level().getGameTime() * 50L; }
 
     private static final class PendingLaunch {
+        final String actorId;
         final WeaponFamily family;
         final String rootActionId;
+        final String weaponId;
         final long expiresAt;
+        final boolean launchConfirmed;
         final BowShot bowShot;
         final CombatResult adjusted;
         final CombatResult piercing;
@@ -472,34 +530,51 @@ public final class A0041A0060ProjectileEvents {
         boolean criticalMultiplierNeeded;
         boolean specialProjectileClaimed;
 
-        private PendingLaunch(WeaponFamily family, String rootActionId, long expiresAt, BowShot bowShot,
-                              CombatResult adjusted, CombatResult piercing) {
-            this.family = family; this.rootActionId = rootActionId; this.expiresAt = expiresAt;
-            this.bowShot = bowShot; this.adjusted = adjusted; this.piercing = piercing;
+        private PendingLaunch(
+            String actorId, WeaponFamily family, String rootActionId, String weaponId,
+            long expiresAt, boolean launchConfirmed, BowShot bowShot,
+            CombatResult adjusted, CombatResult piercing
+        ) {
+            this.actorId = actorId;
+            this.family = family;
+            this.rootActionId = rootActionId;
+            this.weaponId = weaponId;
+            this.expiresAt = expiresAt;
+            this.launchConfirmed = launchConfirmed;
+            this.bowShot = bowShot;
+            this.adjusted = adjusted;
+            this.piercing = piercing;
         }
 
-        static PendingLaunch bow(String root, long now, BowShot shot) {
-            return new PendingLaunch(WeaponFamily.BOW, root, now + LAUNCH_CORRELATION_MILLIS,
+        static PendingLaunch bow(String actor, String root, long now, BowShot shot) {
+            return new PendingLaunch(actor, WeaponFamily.BOW, root, null,
+                now + LAUNCH_CORRELATION_MILLIS, true,
                 shot, CombatResult.neutral(), CombatResult.neutral());
         }
 
-        static PendingLaunch crossbow(String root, long now, CombatResult adjusted, CombatResult piercing) {
-            return new PendingLaunch(WeaponFamily.CROSSBOW, root, now + LAUNCH_CORRELATION_MILLIS,
+        static PendingLaunch crossbow(
+            String actor, String root, String weaponId, long now,
+            CombatResult adjusted, CombatResult piercing
+        ) {
+            return new PendingLaunch(actor, WeaponFamily.CROSSBOW, root, weaponId,
+                now + LAUNCH_CORRELATION_MILLIS, true,
                 BowShot.neutral(), adjusted, piercing);
         }
 
-        static PendingLaunch neutral(WeaponFamily family, String root, long expiresAt) {
-            return new PendingLaunch(family, root, expiresAt, BowShot.neutral(), CombatResult.neutral(), CombatResult.neutral());
+        static PendingLaunch neutral(String actor, WeaponFamily family, String root, long expiresAt) {
+            return new PendingLaunch(actor, family, root, null, expiresAt, false,
+                BowShot.neutral(), CombatResult.neutral(), CombatResult.neutral());
         }
 
         boolean hasSpecial() { return bowShot.active() || adjusted.applied() || piercing.applied(); }
-        CombatResult crossbowShot() { return adjusted.applied() ? adjusted : piercing; }
     }
 
     private static final class ProjectileMeta {
         final WeaponFamily family;
         final String actorId;
         final String rootActionId;
+        final boolean launchConfirmed;
+        final String weaponId;
         final Vec3 origin;
         final double baseDamageMultiplier;
         final boolean critical;
@@ -513,15 +588,26 @@ public final class A0041A0060ProjectileEvents {
         boolean confirmedHit;
         boolean failureRecorded;
 
-        ProjectileMeta(WeaponFamily family, String actorId, String rootActionId, Vec3 origin,
-                       double baseDamageMultiplier, boolean critical, boolean criticalMultiplierNeeded,
-                       boolean sprintingAtLaunch, boolean stationaryAtLaunch,
-                       BowShot bowShot, CombatResult crossbowShot) {
-            this.family = family; this.actorId = actorId; this.rootActionId = rootActionId;
-            this.origin = origin; this.baseDamageMultiplier = baseDamageMultiplier;
-            this.critical = critical; this.criticalMultiplierNeeded = criticalMultiplierNeeded;
-            this.sprintingAtLaunch = sprintingAtLaunch; this.stationaryAtLaunch = stationaryAtLaunch;
-            this.bowShot = bowShot; this.crossbowShot = crossbowShot;
+        ProjectileMeta(
+            WeaponFamily family, String actorId, String rootActionId,
+            boolean launchConfirmed, String weaponId, Vec3 origin,
+            double baseDamageMultiplier, boolean critical, boolean criticalMultiplierNeeded,
+            boolean sprintingAtLaunch, boolean stationaryAtLaunch,
+            BowShot bowShot, CombatResult crossbowShot
+        ) {
+            this.family = family;
+            this.actorId = actorId;
+            this.rootActionId = rootActionId;
+            this.launchConfirmed = launchConfirmed;
+            this.weaponId = weaponId;
+            this.origin = origin;
+            this.baseDamageMultiplier = baseDamageMultiplier;
+            this.critical = critical;
+            this.criticalMultiplierNeeded = criticalMultiplierNeeded;
+            this.sprintingAtLaunch = sprintingAtLaunch;
+            this.stationaryAtLaunch = stationaryAtLaunch;
+            this.bowShot = bowShot;
+            this.crossbowShot = crossbowShot;
         }
     }
 
@@ -564,11 +650,14 @@ public final class A0041A0060ProjectileEvents {
 
     private static final class CrossbowTrack {
         final ItemStack stack;
+        final String weaponId;
         boolean charged;
         boolean using;
         double progress;
-        CrossbowTrack(ItemStack stack) {
+
+        CrossbowTrack(ItemStack stack, String weaponId) {
             this.stack = stack;
+            this.weaponId = weaponId;
             this.charged = CrossbowItem.isCharged(stack);
         }
     }
