@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + (A0284 Carga ≥1 OU A0283 Condutividade ≥1). Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0284 ≥1 ou A0283 ≥1. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_QUERY_V1 sobre efeitos que JÁ possuam encadeamento nativo/compatível. OWNER: adapter do provider de chain; QUERY: raio nativo de aquisição, filtros de target, LOS, hard range, visited-target policy e hook pré-seleção; CONSUMER: A0285. Iron's Spells 'n Spellbooks 3.16.3/addons e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só participam quando uma ação concreta de chain lightning expuser consulta mutável por adapter. A0285 não cria mecanismo de chain do RPG por fallback. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_QUERY_V1 sobre efeitos que JÁ possuam encadeamento nativo/compatível. OWNER: adapter do provider de chain; QUERY: raio nativo de aquisição, filtros de target, LOS, hard range, visited-target policy e hook pré-seleção; CONSUMER: A0285. Iron's Spells 'n Spellbooks 3.16.3/addons e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só participam quando uma ação concreta de chain lightning expuser consulta mutável por adapter. A0285 não cria mecanismo de chain do RPG por fallback. |
 | Efeito | Para efeitos LIGHTNING que já possuam encadeamento nativo/compatível e exponham de forma segura o raio de aquisição do próximo salto, A0285 multiplica esse raio por ×1,08/×1,16/×1,24 conforme rank, limitado a no máximo +4 blocos sobre o raio nativo daquela ação. Não cria encadeamento onde ele não existe. |
 | Escalonamento | Até 3 ranks. chain_search_radius_final = min(chain_search_radius_native × (1 + 0,08×rank), chain_search_radius_native + 4,0 blocos). Filtros de alvo, alcance duro do provider, linha de visão e blacklist permanecem autoritativos; o menor limite aplicável vence. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + requisito local + ação LIGHTNING que já possua encadeamento real + LIGHTNING_CHAIN_QUERY_V1 capaz de interceptar o raio antes da seleção do próximo alvo. Ação sem chain, chain opaca, raio imutável, evento já após seleção ou derived effect que não controla sua própria busca não recebem contribuição. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_QUERY_V1 sobre efeitos que JÁ possuam encadeamento nativo/compatível. OWNER: adapter do provider de chain; QUERY: raio nativo de aquisição, filtros de target, LOS, hard range, visited-target policy e hook pré-seleção; CONSUMER: A0285. Iron's Spells 'n Spellbooks 3.16.3/addons e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só participam quando uma ação concreta de chain lightning expuser consulta mutável por adapter. A0285 não cria mecanismo de chain do RPG por fallback.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_QUERY_V1 sobre efeitos que JÁ possuam encadeamento nativo/compatível. OWNER: adapter do provider de chain; QUERY: raio nativo de aquisição, filtros de target, LOS, hard range, visited-target policy e hook pré-seleção; CONSUMER: A0285. Iron's Spells 'n Spellbooks 3.16.3/addons e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só participam quando uma ação concreta de chain lightning expuser consulta mutável por adapter. A0285 não cria mecanismo de chain do RPG por fallback.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNIN
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

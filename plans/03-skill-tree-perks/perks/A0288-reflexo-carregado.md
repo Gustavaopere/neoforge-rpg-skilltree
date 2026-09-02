@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0287 Impulso Elétrico ≥2 ranks + atributo canônico AGILITY ≥6 + DODGE_AVOID_RECEIPT_V1 disponível. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0287 ≥2 + AGILITY ≥6 + provider de esquiva com ataque realmente evitado. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + atributo AGILITY canônico + FUTURE_PROVIDER_CONTRACT DODGE_AVOID_RECEIPT_V1 + classificador LIGHTNING + estado transitório claim-once RPG_REFLEX_CHARGE. Epic Fight 21.17.3.1 é provider principal de esquiva quando o adapter comprovar dodge e ataque hostil evitado; ParCool 4.0.0.2/Epic ParCool 21.0.0 só participam quando houver evento semanticamente equivalente correlacionável a uma ameaça evitada, não por animação/movimento. LIGHTNING_CHAIN_QUERY_V1 é opcional apenas para bônus de alcance no consumo. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + atributo AGILITY canônico + FUTURE_PROVIDER_CONTRACT DODGE_AVOID_RECEIPT_V1 + classificador LIGHTNING + estado transitório claim-once RPG_REFLEX_CHARGE. Epic Fight 21.17.3.1 é provider principal de esquiva quando o adapter comprovar dodge e ataque hostil evitado; ParCool 4.0.0.2/Epic ParCool 21.0.0 só participam quando houver evento semanticamente equivalente correlacionável a uma ameaça evitada, não por animação/movimento. LIGHTNING_CHAIN_QUERY_V1 é opcional apenas para bônus de alcance no consumo. |
 | Efeito | Quando uma esquiva validada pelo provider realmente evita um ataque hostil e A0288 está fora da recarga, concede uma única RPG_REFLEX_CHARGE por 80 ticks (4 s). A próxima ação LIGHTNING direta elegível do jogador consome essa carga uma vez: o componente LIGHTNING direto recebe ×1,15 e, se a própria ação já possuir encadeamento nativo/compatível com consulta mutável, o raio do primeiro hop recebe ×1,15 antes dos limites normais. Recarga de 100 ticks (5 s), iniciada no momento em que a carga é concedida. |
 | Escalonamento | 1 rank. Carga Reflexa: 80 ticks. Cooldown compartilhado: 100 ticks desde a concessão; a carga não é renovada/reempilhada durante a própria duração ou cooldown. Bônus no consumo: +15% somente ao componente LIGHTNING direto da ação; primeiro-hop range ×1,15 somente quando já existe chain query segura. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0287 ≥2 + AGILITY ≥6 + receipt canônico de esquiva que prove ataque hostil realmente evitado + cooldown livre. Animação de dodge sem ameaça, i-frame sem correlação, sair do alcance, parry, block, knockback, invulnerabilidade genérica ou simplesmente não receber dano não concedem carga. RPG_REFLEX_CHARGE é recurso transitório do jogador e não é CHARGED aplicado em alvo. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + atributo AGILITY canônico + FUTURE_PROVIDER_CONTRACT DODGE_AVOID_RECEIPT_V1 + classificador LIGHTNING + estado transitório claim-once RPG_REFLEX_CHARGE. Epic Fight 21.17.3.1 é provider principal de esquiva quando o adapter comprovar dodge e ataque hostil evitado; ParCool 4.0.0.2/Epic ParCool 21.0.0 só participam quando houver evento semanticamente equivalente correlacionável a uma ameaça evitada, não por animação/movimento. LIGHTNING_CHAIN_QUERY_V1 é opcional apenas para bônus de alcance no consumo.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + atributo AGILITY canônico + FUTURE_PROVIDER_CONTRACT DODGE_AVOID_RECEIPT_V1 + classificador LIGHTNING + estado transitório claim-once RPG_REFLEX_CHARGE. Epic Fight 21.17.3.1 é provider principal de esquiva quando o adapter comprovar dodge e ataque hostil evitado; ParCool 4.0.0.2/Epic ParCool 21.0.0 só participam quando houver evento semanticamente equivalente correlacionável a uma ameaça evitada, não por animação/movimento. LIGHTNING_CHAIN_QUERY_V1 é opcional apenas para bônus de alcance no consumo.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>DODGE_AVOID_RECEIPT_V1</code>, <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + atributo AGILITY canônico + FUTU
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
+- **Capabilities/contracts a provar:** <code>DODGE_AVOID_RECEIPT_V1</code>, <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

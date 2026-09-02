@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado server-side por Gate A/B/C. A0284 é perk interna e exige Specialist Raio ativa; A0176 isolada não autoriza compra. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) por Gate A/B/C. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + classificador LIGHTNING + estado interno canônico FUTURE_PROVIDER_CONTRACT CHARGED_STATE_LEDGER_V1. OWNER: RPG combat state service; KEY: owner_uuid+target_uuid; STATE: até 3 stacks {stack_id,source_perk,expires_at} com TTL individual; CONSUMERS: A0284 e perks posteriores de Sobrecarga/chain; BEHAVIOR: estado sem dano/controle/temperatura/FE próprios. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só fornecem direct_lightning_outcome quando classificado. Qualquer estado nativo semanticamente equivalente de mod só pode ser espelhado por adapter explícito, mantendo sidecar de owner quando necessário. Oritech/Create New Age/Create Crafts & Additions/FE não são CHARGED mágico. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + classificador LIGHTNING + estado interno canônico FUTURE_PROVIDER_CONTRACT CHARGED_STATE_LEDGER_V1. OWNER: RPG combat state service; KEY: owner_uuid+target_uuid; STATE: até 3 stacks {stack_id,source_perk,expires_at} com TTL individual; CONSUMERS: A0284 e perks posteriores de Sobrecarga/chain; BEHAVIOR: estado sem dano/controle/temperatura/FE próprios. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só fornecem direct_lightning_outcome quando classificado. Qualquer estado nativo semanticamente equivalente de mod só pode ser espelhado por adapter explícito, mantendo sidecar de owner quando necessário. Oritech/Create New Age/Create Crafts & Additions/FE não são CHARGED mágico. |
 | Efeito | Cada direct_lightning_outcome_id elegível realiza no máximo uma rolagem server-side com chance-base 0% +5 pontos percentuais por rank de A0284 (+5/+10/+15 p.p.). Sucesso adiciona 1 stack de CHARGED atribuído ao jogador naquele alvo. O estado canônico possui máximo de 3 stacks por par owner_uuid + target_uuid; cada stack expira individualmente após 160 ticks (8 s). CHARGED sozinho não causa dano, controle, temperatura ou proc. |
 | Escalonamento | Até 3 ranks. Chance A0284: 5%/10%/15% por outcome direto; máximo 3 stacks próprios por alvo; TTL individual 160 ticks por stack. Nova stack no cap não renova silenciosamente todas as anteriores: substitui/renova somente a stack própria mais antiga conforme ledger determinístico. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + direct_lightning_outcome_id atribuído ao jogador + componente LIGHTNING direto positivo + CHARGED_STATE_LEDGER_V1 operacional. Exatamente uma decisão A0284 por outcome direto. DoT, chain hop/ramificação derivada, aura/campo, summon, automação, fake player, subevento e callback duplicado não recebem rolagem. Cargas garantidas por outros nodes usam o mesmo ledger/cap sem executar RNG A0284. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + classificador LIGHTNING + estado interno canônico FUTURE_PROVIDER_CONTRACT CHARGED_STATE_LEDGER_V1. OWNER: RPG combat state service; KEY: owner_uuid+target_uuid; STATE: até 3 stacks {stack_id,source_perk,expires_at} com TTL individual; CONSUMERS: A0284 e perks posteriores de Sobrecarga/chain; BEHAVIOR: estado sem dano/controle/temperatura/FE próprios. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só fornecem direct_lightning_outcome quando classificado. Qualquer estado nativo semanticamente equivalente de mod só pode ser espelhado por adapter explícito, mantendo sidecar de owner quando necessário. Oritech/Create New Age/Create Crafts & Additions/FE não são CHARGED mágico.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + classificador LIGHTNING + estado interno canônico FUTURE_PROVIDER_CONTRACT CHARGED_STATE_LEDGER_V1. OWNER: RPG combat state service; KEY: owner_uuid+target_uuid; STATE: até 3 stacks {stack_id,source_perk,expires_at} com TTL individual; CONSUMERS: A0284 e perks posteriores de Sobrecarga/chain; BEHAVIOR: estado sem dano/controle/temperatura/FE próprios. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só fornecem direct_lightning_outcome quando classificado. Qualquer estado nativo semanticamente equivalente de mod só pode ser espelhado por adapter explícito, mantendo sidecar de owner quando necessário. Oritech/Create New Age/Create Crafts & Additions/FE não são CHARGED mágico.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHARGED_STATE_LEDGER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + classificador LIGHTNING + estado 
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHARGED_STATE_LEDGER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

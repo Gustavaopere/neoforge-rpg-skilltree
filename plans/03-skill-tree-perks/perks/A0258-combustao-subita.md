@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0244 Combustão ≥3 + A0245 Queima Persistente ≥2. Os requisitos locais não substituem o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0244 Combustão ≥3 + A0245 Queima Persistente ≥2. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 e FIRE_DERIVED_OUTCOME_PIPELINE_V1 + cooldown/ownership por jogador-alvo. Providers FIRE só originam a ação/Ignição quando explicitamente mapeados. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 e FIRE_DERIVED_OUTCOME_PIPELINE_V1 + cooldown/ownership por jogador-alvo. Providers FIRE só originam a ação/Ignição quando explicitamente mapeados. |
 | Efeito | Quando uma ação FIRE direta elegível do jogador chega à única resolução canônica de Ignição contra um alvo que já possuía, antes daquele outcome, uma Ignição real atribuída ao mesmo jogador, A0258 pode disparar RPG_SUDDEN_COMBUSTION se a recarga do par estiver livre. O burst é um derived_fire_burst_outcome no próprio alvo igual a 20% do componente FIRE direto da ação gatilho medido pré-mitigação-do-alvo e pré-crítico. A0258 não cria uma segunda tentativa de Ignição e não altera por si só a renovação normal que o IgnitionResolver/provider já faria. |
 | Escalonamento | 1 rank. Burst: 20% da parcela FIRE direta pré-mitigação/pré-crítico da ação gatilho. Recarga por jogador/alvo: 120 ticks (6 s), iniciada após burst commitado. Uma ação/outcome pode disparar no máximo uma vez. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisitos locais + ação FIRE direta própria + alvo já sob Ignição real desse jogador ANTES do outcome + o outcome participa da resolução causal de aplicação/renovação de Ignição + cooldown do par livre. DoT, Propagação, Aura, retaliação, derived components, summons, automação e callbacks duplicados não ativam. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 e FIRE_DERIVED_OUTCOME_PIPELINE_V1 + cooldown/ownership por jogador-alvo. Providers FIRE só originam a ação/Ignição quando explicitamente mapeados.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 e FIRE_DERIVED_OUTCOME_PIPELINE_V1 + cooldown/ownership por jogador-alvo. Providers FIRE só originam a ação/Ignição quando explicitamente mapeados.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACTS FIRE_IG
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

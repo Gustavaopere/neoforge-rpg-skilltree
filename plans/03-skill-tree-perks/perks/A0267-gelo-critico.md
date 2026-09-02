@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:ICE confirmado por Gate A/B/C + A0266 Congelamento Progressivo ≥1 rank + A0151 Crítico Mágico ≥2 ranks. Requisitos locais não substituem fundamentos ICE + ≥100 PP válidos em SPECIALIST_REGION:ICE + terminal A0169. |
 | Pré-requisitos | Specialist Gelo desbloqueada (SPECIALIST_UNLOCK:ICE) + A0266 ≥1 + A0151 Crítico Mágico ≥2. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + sistema crítico canônico do RPG (canal MAGIC) + FREEZE_BUILDUP_ADAPTER_V1 + mesmo bucket RPG_FREEZE_BUILDUP_MULTIPLIER de A0266. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 é provider ICE/buildup quando a ação expuser delta causal positivo de freeze ticks; Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros somente por adapter explícito. Providers externos fornecem outcome/estado, não uma segunda rolagem crítica. VERSION-STATUS: freeze adapter é contrato RPG a implementar; criticalHit deve vir da única decisão crítica canônica já definida por A0151. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + sistema crítico canônico do RPG (canal MAGIC) + FREEZE_BUILDUP_ADAPTER_V1 + mesmo bucket RPG_FREEZE_BUILDUP_MULTIPLIER de A0266. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 é provider ICE/buildup quando a ação expuser delta causal positivo de freeze ticks; Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros somente por adapter explícito. Providers externos fornecem outcome/estado, não uma segunda rolagem crítica. VERSION-STATUS: freeze adapter é contrato RPG a implementar; criticalHit deve vir da única decisão crítica canônica já definida por A0151. |
 | Efeito | Quando a única decisão crítica canônica de um direct_ice_outcome_id elegível já tiver resultado criticalHit=true e a ação possuir freeze_buildup nativo/compatível positivo, A0267 acrescenta +15% dessa contribuição por rank (+15% / +30%) ao MESMO RPG_FREEZE_BUILDUP_MULTIPLIER usado por A0266. A0267 não altera chance nem multiplicador crítico e não cria buildup por si só. |
 | Escalonamento | Até 2 ranks. Em criticalHit=true: contribuição adicional ao bucket de buildup = +0,15 / +0,30. Sem crítico canônico ou sem buildup base positivo: 0. A0266 e A0267 somam suas contribuições no mesmo bucket antes de uma única resolução; por exemplo, A0266 rank 3 + A0267 rank 2 resulta em multiplicador ×1,54 sobre o buildup base daquela ação crítica. |
 | Gate | SPECIALIST_UNLOCK:ICE válido + A0266 ≥1 + A0151 ≥2 + direct_ice_outcome_id com criticalHit=true já resolvido pela única decisão crítica canônica + contribuição positiva real de freeze buildup na própria ação. DoT, summon, derived component, callback duplicado, crítico inferido do dano final e efeitos que apenas herdaram crítico sem buildup próprio não geram contribuição. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + sistema crítico canônico do RPG (canal MAGIC) + FREEZE_BUILDUP_ADAPTER_V1 + mesmo bucket RPG_FREEZE_BUILDUP_MULTIPLIER de A0266. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 é provider ICE/buildup quando a ação expuser delta causal positivo de freeze ticks; Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros somente por adapter explícito. Providers externos fornecem outcome/estado, não uma segunda rolagem crítica. VERSION-STATUS: freeze adapter é contrato RPG a implementar; criticalHit deve vir da única decisão crítica canônica já definida por A0151.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + sistema crítico canônico do RPG (canal MAGIC) + FREEZE_BUILDUP_ADAPTER_V1 + mesmo bucket RPG_FREEZE_BUILDUP_MULTIPLIER de A0266. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 é provider ICE/buildup quando a ação expuser delta causal positivo de freeze ticks; Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros somente por adapter explícito. Providers externos fornecem outcome/estado, não uma segunda rolagem crítica. VERSION-STATUS: freeze adapter é contrato RPG a implementar; criticalHit deve vir da única decisão crítica canônica já definida por A0151.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental fornecem ações ICE quando mapeadas; Minecraft/NeoForge fornece freeze/Absorption/world state; Cold Sweat só possui o eixo térmico corporal explicitamente contratado.
 - **Exclusões obrigatórias:** Slowness, bioma frio, neve, estar congelando, temperatura BODY e aparência de gelo não substituem CHILL/FULLY_FROZEN. Sable/Aeronautics apenas resolvem espaço/sublevel.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + sistema crítico canônico do RPG
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0151</code>, <code>A0169</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

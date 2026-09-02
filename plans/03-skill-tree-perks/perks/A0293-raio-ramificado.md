@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0285 Arco Elétrico ≥2 ranks + A0286 Sobrecarga ≥2 ranks. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0285 ≥2 + A0286 ≥2. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT ROOT_ACTION_CARDINALITY_V1 + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + consulta espacial/targetability. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só entram quando a ação LIGHTNING concreta puder ser classificada inequivocamente como originalmente SINGLE_TARGET, sem chain/AoE/primary multi-target nativo. A ramificação A0293 é criada pelo RPG, mas somente sobre root elegível e com target selection segura. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT ROOT_ACTION_CARDINALITY_V1 + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + consulta espacial/targetability. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só entram quando a ação LIGHTNING concreta puder ser classificada inequivocamente como originalmente SINGLE_TARGET, sem chain/AoE/primary multi-target nativo. A ramificação A0293 é criada pelo RPG, mas somente sobre root elegível e com target selection segura. |
 | Efeito | Para um direct_lightning_outcome_id cuja ação original seja legitimamente de alvo único, A0293 realiza uma única rolagem de 30%/45%. No sucesso, pode ramificar para exatamente 1 novo alvo hostil dentro de 4 blocos e linha de visão, causando 45%/55% do componente LIGHTNING direto canônico da ação original após modificadores ofensivos e resolução crítica, mas antes da mitigação do alvo inicial. O novo alvo aplica sua própria mitigação. |
 | Escalonamento | Até 2 ranks. Chance: 30%/45% por root_action_id. Base da ramificação: 45%/55% da parcela LIGHTNING direta snapshot pré-mitigação-do-alvo. Um único alvo secundário novo, raio 4 blocos, LOS e filtros normais. A ramificação é derived_lightning_branch com criticalHit=false. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0285 ≥2 + A0286 ≥2 + ROOT_ACTION_CARDINALITY_V1=SINGLE_TARGET para a ação LIGHTNING original + componente LIGHTNING direto positivo + ainda não rolled A0293 para o root_action_id + segundo alvo hostil realmente atacável disponível. Qualquer ação com chain/AoE/múltiplos componentes primários nativos, cardinalidade UNKNOWN, hop derivado, A0290/A0292, DoT, summon, automação, fake player ou callback duplicado é inelegível. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT ROOT_ACTION_CARDINALITY_V1 + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + consulta espacial/targetability. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só entram quando a ação LIGHTNING concreta puder ser classificada inequivocamente como originalmente SINGLE_TARGET, sem chain/AoE/primary multi-target nativo. A ramificação A0293 é criada pelo RPG, mas somente sobre root elegível e com target selection segura.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT ROOT_ACTION_CARDINALITY_V1 + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + consulta espacial/targetability. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só entram quando a ação LIGHTNING concreta puder ser classificada inequivocamente como originalmente SINGLE_TARGET, sem chain/AoE/primary multi-target nativo. A ramificação A0293 é criada pelo RPG, mas somente sobre root elegível e com target selection segura.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ROOT_ACTION_CARDINALITY_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>ROOT_ACTION_CARDINALITY_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT ROOT_ACT
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ROOT_ACTION_CARDINALITY_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>ROOT_ACTION_CARDINALITY_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

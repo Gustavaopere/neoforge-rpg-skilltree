@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0244 Combustão ≥2 + A0248 Fogo em Alvo Ferido ≥1. Os requisitos locais não substituem o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0244 Combustão ≥2 + A0248 Fogo em Alvo Ferido ≥1. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger FIRE por jogador/alvo + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 para derived_fire_burst_outcome. Providers FIRE apenas originam ações diretas explicitamente classificadas; o burst é outcome derivado do RPG. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + ledger FIRE por jogador/alvo + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 para derived_fire_burst_outcome. Providers FIRE apenas originam ações diretas explicitamente classificadas; o burst é outcome derivado do RPG. |
 | Efeito | Cada ação FIRE direta elegível do jogador contra um alvo vivo adiciona no máximo 1 RPG_CHARRED_MARK ao par jogador/alvo, até 5, deduplicada por action_id/outcome_id. Cada marca possui TTL independente de 160 ticks (8 s). Ao alcançar 5 marcas, limpar as cinco marcas e armar RPG_CHARRED_BURST_READY por 120 ticks (6 s). A próxima ação FIRE direta distinta do mesmo jogador contra o mesmo alvo durante essa janela consome o estado e emite um derived_fire_burst_outcome no próprio alvo igual a 18% / 28% do componente FIRE direto da ação consumidora medido pré-mitigação-do-alvo e pré-crítico. |
 | Escalonamento | Até 2 ranks. Máximo: 5 marcas por jogador/alvo. TTL de cada marca: 160 ticks, sem refresh das demais. Ao 5º crédito: estado pronto por 120 ticks. Próxima ação FIRE direta distinta no mesmo alvo: burst derivado de 18% / 28% da parcela FIRE direta pré-mitigação/pré-crítico da ação consumidora. Chefes usam a mesma fórmula; não existe coeficiente de boss indefinido. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisitos locais + ação FIRE direta própria contra alvo vivo, deduplicada por action_id/outcome_id. DoT, tick de Ignição, Aura, Propagação, retaliação, derived components, summons, automação, fake player e callback duplicado não adicionam marcas nem consomem ready. A ação que cria a 5ª marca não pode consumi-la. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger FIRE por jogador/alvo + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 para derived_fire_burst_outcome. Providers FIRE apenas originam ações diretas explicitamente classificadas; o burst é outcome derivado do RPG.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + ledger FIRE por jogador/alvo + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 para derived_fire_burst_outcome. Providers FIRE apenas originam ações diretas explicitamente classificadas; o burst é outcome derivado do RPG.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger FIRE por jogador/alvo + FU
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

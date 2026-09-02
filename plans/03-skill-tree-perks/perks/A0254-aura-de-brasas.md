@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0246 Calor Crescente ≥2 + A0252 Mana Incandescente ≥1. Os requisitos locais não substituem o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0246 Calor Crescente ≥2 + A0252 Mana Incandescente ≥1. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger canônico de ações FIRE + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 + consulta espacial server-side Minecraft/NeoForge. Providers FIRE fornecem apenas ações preparatórias explicitamente classificadas; pulsos são outcomes derivados do RPG, não casts do provider. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + ledger canônico de ações FIRE + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 + consulta espacial server-side Minecraft/NeoForge. Providers FIRE fornecem apenas ações preparatórias explicitamente classificadas; pulsos são outcomes derivados do RPG, não casts do provider. |
 | Efeito | Ao registrar 5 ações FIRE diretas distintas do próprio jogador dentro de uma janela móvel de 80 ticks (4 s), com a recarga livre, A0254 limpa o contador e arma RPG_EMBER_AURA por 80 / 120 ticks (4 / 6 s). Durante a aura, a cada 20 ticks é emitido um derived_fire_aura_pulse em raio de 4 blocos contra inimigos vivos elegíveis. O dano-base de cada pulso por alvo é 8% / 12% da média dos cinco componentes FIRE diretos que armaram a aura, medidos na base canônica pré-mitigação-do-alvo e pré-crítico. A snapshot é congelada na ativação. Pulsos passam apenas pela mitigação do alvo aplicável e não rerodam multiplicadores ofensivos do caster. |
 | Escalonamento | Até 2 ranks. Preparação: 5 action_id FIRE diretas distintas em até 80 ticks. Aura: 80 / 120 ticks. Pulso: a cada 20 ticks, raio 4 blocos. Dano-base por pulso/alvo: 8% / 12% da média snapshot das cinco parcelas FIRE diretas preparatórias. Recarga por jogador: 240 ticks (12 s), iniciada na ativação. A aura não acumula e não rearma durante aura/recarga. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisitos locais + cinco ações FIRE diretas distintas do próprio jogador em ≤80 ticks, deduplicadas por action_id, + cooldown livre + consulta espacial/pipeline derivado seguros. DoT, tick de Ignição, aura, propagação, derived components, summons, automação, fake player e callbacks repetidos não avançam preparação. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger canônico de ações FIRE + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 + consulta espacial server-side Minecraft/NeoForge. Providers FIRE fornecem apenas ações preparatórias explicitamente classificadas; pulsos são outcomes derivados do RPG, não casts do provider.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + ledger canônico de ações FIRE + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 + consulta espacial server-side Minecraft/NeoForge. Providers FIRE fornecem apenas ações preparatórias explicitamente classificadas; pulsos são outcomes derivados do RPG, não casts do provider.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger canônico de ações FIRE 
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

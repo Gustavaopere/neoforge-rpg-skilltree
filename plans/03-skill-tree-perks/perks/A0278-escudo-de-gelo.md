@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:ICE confirmado server-side por Gate A/B/C + A0268 Pele Glacial ≥3 ranks + A0274 Retaliação Gélida ≥1 rank. Requisitos locais não substituem fundamentos ICE + ≥100 PP válidos em SPECIALIST_REGION:ICE + terminal A0169. |
 | Pré-requisitos | Specialist Gelo desbloqueada (SPECIALIST_UNLOCK:ICE) + A0268 Pele Glacial ≥3 + A0274 Retaliação Gélida ≥1. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge Absorption + FUTURE_PROVIDER_CONTRACT ABSORPTION_SOURCE_LEDGER_V1 + tracker server-side de hostile_damage_outcome. OWNER: RPG defensive state service; CONSUMER: A0278; STATE: contribuição de Absorption por origem, incluindo source_id=A0278; BEHAVIOR: adicionar/recompor apenas a parcela própria e reconciliar consumo sem apropriar Absorption externa. VERSION-STATUS: o ledger por origem é contrato RPG a implementar; como absorptionAmount vanilla é agregado, A0278 permanece fail-closed se a decomposição por origem não puder ser mantida de forma determinística. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Minecraft/NeoForge Absorption + FUTURE_PROVIDER_CONTRACT ABSORPTION_SOURCE_LEDGER_V1 + tracker server-side de hostile_damage_outcome. OWNER: RPG defensive state service; CONSUMER: A0278; STATE: contribuição de Absorption por origem, incluindo source_id=A0278; BEHAVIOR: adicionar/recompor apenas a parcela própria e reconciliar consumo sem apropriar Absorption externa. VERSION-STATUS: o ledger por origem é contrato RPG a implementar; como absorptionAmount vanilla é agregado, A0278 permanece fail-closed se a decomposição por origem não puder ser mantida de forma determinística. |
 | Efeito | Após 160 ticks (8 s) sem receber dano hostil, A0278 recompõe uma parcela própria de Absorption equivalente a 8% da vida máxima atual. Essa parcela é identificada por ledger do RPG Skill Tree, não empilha com cópias de A0278 e nunca substitui/remove Absorption de outras fontes. Quando a parcela própria é consumida, só pode começar a recompor novamente após nova janela íntegra de 160 ticks sem dano hostil. |
 | Escalonamento | 1 rank. Valor-alvo da parcela A0278 = 8% da vida máxima atual no momento da recomposição. Reavaliar após mudança legítima de max_health, sem gerar cura nem conservar excesso antigo acima do novo alvo. Não existe cap absoluto adicional oculto; o próprio limite de 8% é o cap deste node. |
 | Gate | SPECIALIST_UNLOCK:ICE válido + A0268 ≥3 + A0274 ≥1 + 160 ticks consecutivos desde o último hostile_damage_outcome recebido + ABSORPTION_SOURCE_LEDGER_V1 operacional. Apenas dano hostil real reinicia a janela. Dano ambiental/não hostil não arma nem reseta artificialmente. Se a parcela própria de A0278 já estiver completa no alvo atual de 8% da vida máxima, não gerar nova camada. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge Absorption + FUTURE_PROVIDER_CONTRACT ABSORPTION_SOURCE_LEDGER_V1 + tracker server-side de hostile_damage_outcome. OWNER: RPG defensive state service; CONSUMER: A0278; STATE: contribuição de Absorption por origem, incluindo source_id=A0278; BEHAVIOR: adicionar/recompor apenas a parcela própria e reconciliar consumo sem apropriar Absorption externa. VERSION-STATUS: o ledger por origem é contrato RPG a implementar; como absorptionAmount vanilla é agregado, A0278 permanece fail-closed se a decomposição por origem não puder ser mantida de forma determinística.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Minecraft/NeoForge Absorption + FUTURE_PROVIDER_CONTRACT ABSORPTION_SOURCE_LEDGER_V1 + tracker server-side de hostile_damage_outcome. OWNER: RPG defensive state service; CONSUMER: A0278; STATE: contribuição de Absorption por origem, incluindo source_id=A0278; BEHAVIOR: adicionar/recompor apenas a parcela própria e reconciliar consumo sem apropriar Absorption externa. VERSION-STATUS: o ledger por origem é contrato RPG a implementar; como absorptionAmount vanilla é agregado, A0278 permanece fail-closed se a decomposição por origem não puder ser mantida de forma determinística.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental fornecem ações ICE quando mapeadas; Minecraft/NeoForge fornece freeze/Absorption/world state; Cold Sweat só possui o eixo térmico corporal explicitamente contratado.
 - **Exclusões obrigatórias:** Slowness, bioma frio, neve, estar congelando, temperatura BODY e aparência de gelo não substituem CHILL/FULLY_FROZEN. Sable/Aeronautics apenas resolvem espaço/sublevel.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ABSORPTION_SOURCE_LEDGER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>ABSORPTION_SOURCE_LEDGER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge Absorption + F
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ABSORPTION_SOURCE_LEDGER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>ABSORPTION_SOURCE_LEDGER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0169</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.
