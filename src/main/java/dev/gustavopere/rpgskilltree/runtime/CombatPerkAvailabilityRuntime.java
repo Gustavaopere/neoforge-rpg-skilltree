@@ -46,9 +46,17 @@ public final class CombatPerkAvailabilityRuntime {
             case "A0093", "A0094", "A0100" -> false;
             case "A0095" -> epicFightStunArmorAvailable();
 
-            // A0106 requires A0095>=3. Provider loss/version drift therefore removes the effective
-            // capstone rank instead of allowing a stale dependent node to keep operating.
-            case "A0106" -> epicFightStunArmorAvailable();
+            // A0104 has its scheduler/cooldown implementation, but the current canonical player
+            // envelope does not yet persist its schedule/cooldown across a full server restart.
+            // The approved contract forbids a purchasable partial implementation, so it remains
+            // structurally unavailable until that persistence seam is completed and validated.
+            case "A0104" -> false;
+
+            // A0106 has the correct LivingDamageEvent.Pre reducer/token implementation, but it
+            // inherits unavailable A0104 and its own emergency cooldown also requires canonical
+            // persistence before purchase can be enabled. Provider loss for A0095 independently
+            // remains fail-closed through the dependency/gate path.
+            case "A0106" -> false;
 
             // Contracts intentionally remain fail-closed. No generic substitute is allowed for
             // impact->Stamina, A0100's critical decomposition, body encumbrance, or the missing
