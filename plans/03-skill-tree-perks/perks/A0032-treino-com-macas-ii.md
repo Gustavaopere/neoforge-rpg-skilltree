@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO; re-fetch sem drift, nenhuma mutação cosmética.
-- **Implementação:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359**.
 - **Notion:** `3c569db9-f0db-81d7-8dcf-c065f2787d91`.
 
 ## Contrato canônico
@@ -17,7 +17,7 @@
 
 - `NotionCombatPerkRules.rhythmBonus(MACE)` mapeia A0032.
 - `A0021A0040EpicFightHooks.onAttackSpeed(...)` aplica o bônus provider-native.
-- A resolução MACE foi endurecida pelo Chat 2: categoria/capability Epic Fight ou identidade exata `minecraft:mace`; a tag paralela foi removida.
+- A resolução MACE é category/capability Epic Fight ou identidade exata `minecraft:mace`; a tag paralela foi removida.
 
 ## Provider→árvore
 
@@ -25,6 +25,6 @@
 - Mobstein companions não herdam a cadence do dono.
 - Nenhuma bridge nova é necessária.
 
-## Fechamento Chat 2
+## Fechamento Chat 3
 
-A dependência técnica de `P-A0031-01` foi removida no runtime. A0032 não ganhou mecânica alternativa: continua usando exclusivamente o cadence hook aprovado. Chat 3 deve validar ranks, provider-present/absent, classificação MACE e ausência de aplicação em famílias desconhecidas. O Chat 2 não executou a bateria final.
+Cadence provider-native e a família MACE endurecida foram revalidadas sem fallback semântico alternativo. `RPG Skill Tree CI` #3361 / run `33657496252` ficou GREEN no HEAD sincronizado `8cf156294c7dd5922f6138a108a544f3ddeeddea`.

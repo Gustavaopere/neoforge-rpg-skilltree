@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359**.
 - **Notion:** `3c569db9-f0db-8185-a66e-dfad8d451880`.
 
 ## Contrato canônico
@@ -18,14 +18,14 @@
 ## Evidência runtime
 
 - `NotionCombatPerkRules` aplica A0031 a `WeaponFamily.MACE`.
-- `A0021A0040EpicFightHooks.family(...)` agora prefere categoria Epic Fight e, fora do provider, aceita somente a identidade exata `minecraft:mace`.
+- `A0021A0040EpicFightHooks.family(...)` prefere categoria Epic Fight e, fora do provider, aceita somente a identidade exata `minecraft:mace`.
 - A tag paralela `rpgskilltree:maces` foi removida do runtime e do datapack.
-- `A0021A0040MasteryPolicy`/`MasteryHooks` agora usam `DiscoveryProgress`: +10 uma única vez por tipo hostil inédito, sem XP repetível por hit.
+- `A0021A0040MasteryPolicy`/`MasteryHooks` usam `DiscoveryProgress`: +10 uma única vez por tipo hostil inédito, sem XP repetível por hit.
 
-## Pendências Chat 2 resolvidas
+## Pendências resolvidas
 
-- **P-A0031-01 — RESOLVIDA NO CÓDIGO:** removido o classificador por tag; vanilla usa `Items.MACE`, externos somente provider-native.
-- **P-A0031-02 — RESOLVIDA NO CÓDIGO:** `combat:mace` migrou de +3 XP/hit para +10 por tipo hostil inédito; repeat hit = 0.
+- **P-A0031-01 — RESOLVIDA:** removido o classificador por tag; vanilla usa `Items.MACE`, externos somente provider-native.
+- **P-A0031-02 — RESOLVIDA:** `combat:mace` usa +10 por tipo hostil inédito; repeat hit = 0.
 
 ## Provider→árvore
 
@@ -33,6 +33,6 @@
 - Volcanoes/Enshrouded não classificam MACE e não fornecem receipt MARTIAL.
 - Ataques diretos do jogador contra entidades desses providers continuam cobertos universalmente quando o receipt MACE é válido.
 
-## Handoff Chat 3
+## Fechamento Chat 3
 
-Validar provider-present Epic Fight MACE, fallback exato `minecraft:mace`, unknown/external sem category em fail-closed, discovery persistente/deduplicada, 6 tipos→60 e 8 tipos→80, lifecycle/multiplayer e regressão contra HAMMER/SCYTHE. O Chat 2 não executou a bateria final.
+Validado provider/fallback fail-closed, discovery finita, 6 tipos→60 e 8 tipos→80, regressões e downstream fallback MACE. `RPG Skill Tree CI` #3361 / run `33657496252` ficou GREEN no HEAD sincronizado `8cf156294c7dd5922f6138a108a544f3ddeeddea`.
