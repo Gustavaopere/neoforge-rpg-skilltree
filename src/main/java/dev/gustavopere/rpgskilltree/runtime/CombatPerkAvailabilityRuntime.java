@@ -2,6 +2,8 @@ package dev.gustavopere.rpgskilltree.runtime;
 
 import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
+import dev.gustavopere.rpgskilltree.core.PassiveNodeProgress;
+import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -50,5 +52,18 @@ public final class CombatPerkAvailabilityRuntime {
             if (isCatalogCodeAvailable(code)) effective.put(code, rank);
         });
         return effective.isEmpty() ? CombatPerkRanks.empty() : CombatPerkRanks.of(effective);
+    }
+
+    /**
+     * Returns a derived progression view for prerequisite evaluation. Unavailable combat-node
+     * ranks remain persisted in the source state but contribute zero to structural access.
+     */
+    public static ProgressionState effectiveAccessState(ProgressionState persistedState) {
+        Objects.requireNonNull(persistedState, "persistedState");
+        Map<String, Integer> effective = new LinkedHashMap<>(persistedState.passiveNodes().ranks());
+        effective.entrySet().removeIf(entry -> CombatPerkNodeBinding.catalogCode(entry.getKey())
+            .map(code -> !isCatalogCodeAvailable(code))
+            .orElse(false));
+        return persistedState.withPassiveNodes(PassiveNodeProgress.of(effective));
     }
 }
