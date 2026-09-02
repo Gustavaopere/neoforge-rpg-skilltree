@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.core;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /** Behavioral RED contract for the closed Notion batch A0081-A0100. */
 public final class A0081A0100CombatPolicyTest {
@@ -84,21 +85,25 @@ public final class A0081A0100CombatPolicyTest {
         state.recordEligibleHostileDamage("p",0L);
         close(A0081A0100CombatPolicy.openingDefenseMultiplier("p",ranks,state,9999L),1.0D,"opening not ready before ten seconds");
         close(A0081A0100CombatPolicy.openingDefenseMultiplier("p",ranks,state,10000L),0.85D,"opening defense ready");
-        state.consumeOpeningDefense("p",10000L);
-        close(A0081A0100CombatPolicy.openingDefenseMultiplier("p",ranks,state,10001L),1.0D,"opening consumed once");
+        require(state.reserveOpeningDefense("p","incoming-root",10000L),"opening reserves one causal root");
+        close(A0081A0100CombatPolicy.openingDefenseMultiplier("p",ranks,state,10001L),1.0D,"active reservation blocks overlap");
+        require(state.commitOpeningDefense("p","incoming-root",10001L),"matching post-damage root commits opening defense");
+        close(A0081A0100CombatPolicy.openingDefenseMultiplier("p",ranks,state,10002L),1.0D,"commit restarts preparation interval");
         close(A0081A0100CombatPolicy.movingDefenseMultiplier(ranks,true),0.91D,"real server sprint");
         close(A0081A0100CombatPolicy.movingDefenseMultiplier(ranks,false),1.0D,"forced/passive movement cannot qualify");
         close(A0081A0100CombatPolicy.stationaryDefenseMultiplier(ranks,true),0.88D,"shared stationary state");
     }
 
     private static void providerBoundariesFailClosed() {
-        CombatPerkRanks ranks = CombatPerkRanks.of(Map.of("A0093",5,"A0094",4,"A0095",5));
+        CombatPerkRanks ranks = CombatPerkRanks.of(Map.of("A0093",5,"A0094",4));
         close(A0081A0100CombatPolicy.guardCostMultiplier(ranks,false),1.0D,"A0093 fails closed without causal guard-cost contract");
         close(A0081A0100CombatPolicy.guardRecoveryMultiplier(ranks,false),1.0D,"A0094 fails closed without break+recovery contract");
-        close(A0081A0100CombatPolicy.interruptionMultiplier(ranks,false),1.0D,"A0095 fails closed without semantic interruption adapter");
         close(A0081A0100CombatPolicy.guardCostMultiplier(ranks,true),0.90D,"safe guard-cost provider may apply A0093");
         close(A0081A0100CombatPolicy.guardRecoveryMultiplier(ranks,true),1.12D,"safe guard recovery provider may apply A0094");
-        close(A0081A0100CombatPolicy.interruptionMultiplier(ranks,true),0.85D,"safe interruption provider may apply A0095");
+
+        CombatPerkDefinition tenacity = NotionCombatPerkCatalog.definition("A0095").orElseThrow();
+        require(tenacity.dependencies().equals(Map.of("A0091",2)),"A0095 depends only on A0091 rank 2");
+        require(tenacity.providerCapabilities().equals(Set.of("epicfight:stun_armor")),"A0095 uses provider-native stun armor");
     }
 
     private static void antiCriticalOnlyTouchesDecomposedCriticalPortion() {
