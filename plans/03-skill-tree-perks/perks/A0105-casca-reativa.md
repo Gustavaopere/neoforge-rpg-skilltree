@@ -76,3 +76,13 @@ Authority, causalidade, dedup, anti-abuso, cooldown, lifecycle, fallback e fail-
 ## Testes exigidos ao Chat 3
 
 Dois hits não ativam; terceiro em ≤80 ticks ativa após o hit; terceiro fora da janela não ativa; zero/environmental/self/resource não contam; root dedup; duração 120; cooldown 400; no refresh; zero-base; modifier uniqueness; morte/logout/dimensão/rank loss/respec/reload; multiplayer; GameTests, build, JAR e dedicated-server smoke.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+**Estado:** `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `P-A0105-01` foi implementada com ledger bounded de receipts diretos hostis e janela de 80 ticks; o terceiro root distinto ativa somente após o `Post` confirmado.
+- `P-A0105-02` foi implementada com IDs estáveis de modifiers transitórios e operações relativas: +15% Armor e +8% Armor Toughness; a ativação não retroage ao terceiro hit.
+- `P-A0105-03` e `P-A0105-04` foram fechadas no runtime: duração 120 ticks, cooldown 400 ticks, sem refresh durante a janela e deadline persistido no attachment canônico v2. Active state/receipts são reconciliados em boundaries e modifiers são removidos idempotentemente.
+- O Chat 3 ainda deve validar zero-base, uniqueness, restart/logout/death/dimensão/respec/reload e ausência de refresh/duplicação.
+- Chat 2 não executou a bateria final, não declarou `IMPLEMENTAÇÃO CONFIRMADA` e não fez merge.
