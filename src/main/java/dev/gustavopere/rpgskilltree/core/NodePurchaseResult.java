@@ -8,6 +8,7 @@ public record NodePurchaseResult(ProgressionState state, Status status) {
     public enum Status {
         ACCEPTED,
         UNKNOWN_NODE,
+        UNAVAILABLE_NODE,
         REQUIREMENTS_NOT_SATISFIED,
         MAX_RANK_REACHED,
         NOT_CONNECTED,
@@ -44,6 +45,7 @@ public record NodePurchaseResult(ProgressionState state, Status status) {
         return switch (status) {
             case ACCEPTED -> "Node purchase confirmed.";
             case UNKNOWN_NODE -> "Unknown skill-tree node.";
+            case UNAVAILABLE_NODE -> "Este nó está indisponível enquanto a integração obrigatória não estiver operacional.";
             case REQUIREMENTS_NOT_SATISFIED -> "This node's requirements are not satisfied.";
             case MAX_RANK_REACHED -> "This node is already at maximum rank.";
             case NOT_CONNECTED -> "This node is not connected to the learned tree.";

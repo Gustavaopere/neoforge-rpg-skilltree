@@ -6,7 +6,7 @@ public final class A0041A0060CombatPolicyTest {
     private A0041A0060CombatPolicyTest() {}
 
     public static void main(String[] args) {
-        scytheConsumesOneMatureMarkAndHarvestTransfersOnlyToDifferentTarget();
+        scytheReservesMatureMarkUntilConfirmedPostAndHarvestTransfersOnlyToDifferentTarget();
         focusUsesExactRankedRatesAndFailClosedShotCommit();
         crossbowCadenceRequiresHitThenNativeReloadAndConsumesAtomically();
         fistSequenceAndHeavyConsumersAreProviderGated();
@@ -14,7 +14,7 @@ public final class A0041A0060CombatPolicyTest {
         System.out.println("A0041A0060CombatPolicyTest: PASS");
     }
 
-    private static void scytheConsumesOneMatureMarkAndHarvestTransfersOnlyToDifferentTarget() {
+    private static void scytheReservesMatureMarkUntilConfirmedPostAndHarvestTransfersOnlyToDifferentTarget() {
         var legacy = new A0021A0040CombatState();
         var state = new A0041A0060CombatState();
         var ranks = CombatPerkRanks.of(Map.of("A0040",2,"A0041",2,"A0042",1));
@@ -25,9 +25,9 @@ public final class A0041A0060CombatPolicyTest {
         var cut = A0041A0060CombatPolicy.scytheCut("p","t1","hit-1",ranks,legacy,state,0.40,true,now+150);
         close(cut.damageMultiplier(),1.20,"A0041 rank2 damage");
         close(cut.impactMultiplier(),1.25,"A0041 rank2 impact");
-        require(!legacy.reapMarked("p","t1",now+151), "A0041 must consume the mature mark");
+        require(legacy.reapMarked("p","t1",now+151), "A0041 PRE must reserve, not consume, the mature mark");
         var duplicate = A0041A0060CombatPolicy.scytheCut("p","t1","hit-1",ranks,legacy,state,0.40,true,now+152);
-        close(duplicate.damageMultiplier(),1.0,"same causal action cannot consume twice");
+        close(duplicate.damageMultiplier(),1.0,"same causal action cannot reserve twice");
 
         legacy.applyReapingMark("p","dead",2,0.70,now+200);
         legacy.reapMature("p","dead",0.30,now+250);
