@@ -3,7 +3,8 @@
 ## Estado
 
 - **Chat 1:** DESIGN APROVADO / CONTRATO FECHADO.
-- **Implementação:** fórmula/event bridge preparatórios existem, mas a tag canônica ainda não está materializada; **não confirmado**.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** classifier/tag física e pipeline de redução estão presentes; **não é IMPLEMENTAÇÃO CONFIRMADA**.
 - **Notion:** `3c569db9-f0db-8100-b1b3-da080ac98ef8`; corrigido e re-fetched no ciclo A0091–A0100.
 - **Domínio:** VITALITY; Camada 2; Ramo Armadura e Mitigação.
 - **Ranks:** 4; custo 1 PP/rank.
@@ -34,17 +35,17 @@
 
 ## Fallback / fail-closed
 
-- Antes de a tag existir, a fórmula Java isolada não constitui implementação completa.
 - Fonte modded desconhecida = A0092 inativa somente para aquela fonte.
 - Proibido fallback para resistência universal ou inferência por attacker/item/namespace.
+- Tag/adapter inconclusivo não promove a fonte para físico.
 
-## Evidência atual e pendências para o Chat 2
+## Evidência após Chat 2
 
-- `A0081A0100CombatEvents` já consulta `rpgskilltree:physical`, porém busca no repositório não encontrou o recurso de tag correspondente.
-- `A0081A0100CombatPolicy.physicalDamageMultiplier` já contém a matemática de A0092/A0096.
-- **P-A0092-01:** criar a tag data-driven com o seed fechado acima e regressão de drift.
-- **P-A0092-02:** provar que a mesma fonte não recebe A0092 por dois adapters/pipelines.
-- **P-A0092-03:** reconciliar cobertura modded somente por adapters semânticos; desconhecidos permanecem fail-closed.
+- O recurso `rpgskilltree:physical` foi materializado com os **17 `DamageType`** fechados pelo design.
+- `A0081A0100CombatEvents` consulta o classifier canônico uma única vez no pipeline incoming.
+- `A0081A0100CombatPolicy.physicalDamageMultiplier` contém a matemática de A0092/A0096 e preserva composição multiplicativa.
+- Adapters desconhecidos continuam fail-closed; o Chat 2 não adicionou inferência por namespace, arma ou animação.
+- O Chat 2 **não executou** unit tests, GameTests, build NeoForge, dedicated-server smoke ou CI; dedup e reload ainda precisam de prova pelo Chat 3.
 
 ## Deduplicação / anti-abuso
 
@@ -81,9 +82,9 @@
 ## Checklist
 
 - [x] Design aprovado pelo Chat 1
-- [ ] P-A0092-01 tag física implementada
-- [ ] P-A0092-02 dedup do pipeline implementado
-- [ ] Código presente / Chat 2 concluído
+- [x] Tag física implementada
+- [x] Pipeline/dedup estrutural reconciliado pelo Chat 2
+- [x] Código presente / Chat 2 concluído
 - [ ] VALIDAÇÃO CHAT 3: unit/GameTests/adapters
 - [ ] VALIDAÇÃO CHAT 3: build + dedicated server + CI
 - [ ] VALIDAÇÃO CHAT 3: IMPLEMENTAÇÃO CONFIRMADA
