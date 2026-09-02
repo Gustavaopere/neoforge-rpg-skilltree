@@ -69,3 +69,24 @@ Sem tag, registry ID ou adapter confiável, classificar como BOSS é proibido. A
 | 9. Cobertura providers | PASS com fail-closed explícito | Vanilla/Cataclysm/Apothic/Enshrouded comprovados; demais candidatos não são promovidos sem ID real. |
 
 Os 18 critérios técnicos cumulativos passam **no design**. A cobertura runtime de Enshrouded e demais adapters continua responsabilidade de implementação do Chat 2.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+- **Estado técnico:** **CÓDIGO PRESENTE COM COBERTURA PARCIAL FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **PR/branch:** #391 / `feat/chat2-a0061-a0070-stacked-handoff`.
+- **P-A0070-01 RESOLVIDA EM CÓDIGO:** `src/main/resources/data/rpgskilltree/tags/entity_type/bosses.json` inclui agora a entrada opcional exata `enshrouded:shroud_lich`. A integração continua somente read-only por registry identity.
+- **P-A0070-02 preservada em fail-closed:** Mowzie's Mobs, Legendary Monsters, Born in Chaos e Mobstein não são promovidos sem registry ID/adapter exato.
+- Nenhuma heurística por bossbar, nome, tamanho, max health, estrutura ou aparência foi criada; Story/fases/rewards/imunidades continuam provider-native.
+- As frases históricas acima dizendo que a bridge Enshrouded ainda faltava estão superadas por esta atualização. A confirmação final é exclusiva do Chat 3.
+
+### Checklist de implementação
+- [x] Design aprovado pelo Chat 1
+- [x] Vanilla/Cataclysm/Apothic preservados
+- [x] `enshrouded:shroud_lich` materializado por identity exata
+- [x] Demais providers sem identidade provada permanecem fail-closed
+- [x] Boundary Enshrouded read-only preservado
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** BOSS > ELITE > HOSTILE e ausência de A0070+A0071 no mesmo root
+- [ ] **VALIDAÇÃO CHAT 3:** fases/imunidades/Story/rewards permanecem provider-native
+- [ ] **VALIDAÇÃO CHAT 3:** testes/GameTests/build/smoke/CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
