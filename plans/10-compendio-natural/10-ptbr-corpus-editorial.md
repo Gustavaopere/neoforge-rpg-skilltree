@@ -218,15 +218,15 @@ Ordem inicial:
 1. vanilla relevante como referência de qualidade;
 2. criaturas/biomas/estruturas de progressão e bosses;
 3. fauna e flora de exploração frequente;
-4. TFC e sistemas ambientais/agro centrais;
-5. grandes mods de biomas/dimensões;
-6. suites de estruturas;
+4. providers não-vanilla **presentes na modlist canônica atual**, priorizados por centralidade e frequência de uso;
+5. grandes mods de biomas/dimensões presentes no runtime atual;
+6. suites de estruturas presentes no runtime atual;
 7. conteúdo menor/decorativo ainda relevante;
 8. entradas raras/administrativas.
 
 A prioridade não altera o gate final: toda entrada que deveria ser curada deve terminar revisada ou explicitamente permanecer `AUTO` com justificativa.
 
-A priorização automática atualmente é deliberadamente conservadora: vanilla, TFC, biomas/dimensões, estruturas e demais entradas recebem faixas determinísticas; boss/progressão e outros casos semanticamente especiais **não são inferidos pelo nome do ID** e exigem override explícito com justificativa até existir uma fonte factual própria para essa classificação.
+A priorização automática atualmente é deliberadamente conservadora: vanilla recebe uma faixa determinística própria; biomas/dimensões, estruturas e demais entradas não-vanilla recebem faixas por tipo. **Nenhum namespace modded recebe prioridade nominal hardcoded.** Boss/progressão e outros casos semanticamente especiais não são inferidos pelo nome do ID e exigem override explícito com justificativa até existir uma fonte factual própria para essa classificação. A própria presença do provider deve vir do coverage/runtime atual, não de snapshots históricos.
 
 ### Passo 3 — Pacotes por namespace
 
@@ -236,13 +236,13 @@ Layout canônico:
 src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/<namespace>/*.json
 ```
 
-Exemplos futuros:
+Exemplos de layout, sem declarar presença de provider:
 
 ```text
 src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities.json
-src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terrafirmacraft/trees.json
-src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/alexscaves/entities.json
-src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/yungs/structures.json
+src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/<namespace-atual>/entities.json
+src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/<namespace-atual>/flora.json
+src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/<namespace-atual>/structures.json
 ```
 
 Estado implementado:
@@ -280,7 +280,7 @@ Validar:
 - [x] links internos referenciam IDs presentes no runtime ou no corpus consolidado;
 - [x] resumo e cada seção textual exigem ao menos uma fonte explícita de tipo reconhecido;
 - [x] `source.ref` é obrigatório e placeholders vazios/reticências são rejeitados;
-- [x] `availability` é explícito em toda entrada; conteúdo presente no runtime não pode ser mascarado como `OPTIONAL`/`LEGACY`;
+- [x] `availability` é explícito em toda entrada; `OPTIONAL`/`LEGACY` exige justificativa e deve permanecer coerente com a política de dependência e o catálogo técnico; a mera presença do provider em runtime não invalida `OPTIONAL`;
 - [x] `TODO`, `TBD`, `FIXME` e `PLACEHOLDER` são rejeitados em texto editorial validado;
 - [x] autoria pode permanecer `DRAFT`, porém `validate_editorial_corpus.py --release` falha enquanto qualquer entrada não estiver `REVIEWED`;
 - [x] `editorial_coverage.py` produz JSON/Markdown determinísticos com `reviewed`, `draft`, `missing`, `blocked`, `ignored` e `optional_or_legacy` por namespace;
@@ -318,6 +318,8 @@ optional_or_legacy
 
 `ERROR > 0` continua bloqueando release do Stage 10.
 
+Para selecionar qualquer namespace não-vanilla, a autoridade é a **modlist canônica mais recente**, reconciliada com a Auditoria Mestre da Modlist. Logs, branches, guias e snapshots históricos não autorizam a entrada de um provider ausente do pack atual.
+
 A implementação deve percorrer os mobs, árvores, cultivos, biomas, estruturas e dimensões da modlist atual e produzir descrição completa conforme a ficha aplicável, em lotes revisáveis. Mods adicionados depois recebem página `AUTO` imediatamente e entram no backlog editorial do próximo refresh.
 
 ## Testes e gates
@@ -351,7 +353,7 @@ Casos obrigatórios:
 - [x] pacote em diretório de namespace incorreto falha;
 - [x] IDs duplicados entre pacotes falham;
 - [x] modo release rejeita `DRAFT`;
-- [x] `availability` ausente falha e `OPTIONAL`/`LEGACY` não pode esconder entrada presente no runtime;
+- [x] `availability` ausente falha; `OPTIONAL`/`LEGACY` exige justificativa explícita e coerência com a política de dependência/catálogo técnico, sem ser reclassificado apenas porque o provider está presente;
 - [x] `source.ref` placeholder falha;
 - [x] relatório de cobertura funciona mesmo antes da primeira entrada editorial existir;
 - [x] relatório rejeita backlog ativo divergente do coverage atual;
