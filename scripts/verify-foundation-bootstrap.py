@@ -32,6 +32,7 @@ expected_properties = {
     "loader_version_range": "[1,)",
     "neogradle.subsystems.parchment.minecraftVersion": "1.21.1",
     "neogradle.subsystems.parchment.mappingsVersion": "2024.11.17",
+    "epicfight_version_range": "[21.17.3.1]",
     "mod_id": "rpgskilltree",
 }
 for key, expected in expected_properties.items():
@@ -51,6 +52,7 @@ for snippet in (
     "compileOnly(\"curse.maven:malum-484064:${malum_file_id}\")",
     "compileOnly(\"curse.maven:eidolon-repraised-870250:${eidolon_file_id}\")",
     "compileOnly(\"curse.maven:identity2-1238155:${identity2_file_id}\")",
+    "epicfight_version_range: epicfight_version_range",
 ):
     if snippet not in build:
         fail(f"build.gradle is missing canonical declaration: {snippet}")
@@ -101,29 +103,27 @@ for mod_id, version_range in required.items():
     if fields.get("side") != "BOTH":
         fail(f"{mod_id} must be declared for BOTH sides")
 
-optional = {
-    "irons_spellbooks",
-    "ars_nouveau",
-    "epicfight",
-    "goety",
-    "malum",
-    "eidolon",
-    "identity2",
+optional_ranges = {
+    "irons_spellbooks": "",
+    "ars_nouveau": "",
+    "epicfight": "${epicfight_version_range}",
+    "goety": "",
+    "malum": "",
+    "eidolon": "",
+    "identity2": "",
 }
-for mod_id in sorted(optional):
+for mod_id, version_range in sorted(optional_ranges.items()):
     fields = dependencies.get(mod_id)
     if fields is None:
         fail(f"missing optional provider metadata for {mod_id}")
     if fields.get("type") != "optional":
         fail(f"{mod_id} must be type=optional")
-    if fields.get("versionRange") != "":
-        fail(
-            f"{mod_id} versionRange must remain empty until the provider compatibility matrix is formally certified"
-        )
+    if fields.get("versionRange") != version_range:
+        fail(f"{mod_id} versionRange must be {version_range!r}")
     if fields.get("ordering") != "NONE" or fields.get("side") != "BOTH":
         fail(f"{mod_id} must use ordering=NONE and side=BOTH")
 
-unexpected = set(dependencies) - set(required) - optional
+unexpected = set(dependencies) - set(required) - set(optional_ranges)
 if unexpected:
     fail(f"unclassified dependency metadata: {sorted(unexpected)}")
 
