@@ -9,23 +9,40 @@ import java.util.Optional;
  *
  * <p>The compatibility section can exist before uncapped Core rules are loaded.
  * The explicit legacy-source bit preserves the difference between a genuinely new
- * player and an old save whose legacy progression happens to be empty.</p>
+ * player and an old save whose legacy progression happens to be empty. Stateful combat
+ * cooldown deadlines live in this same canonical envelope so restart/relog cannot reset them.</p>
  */
 public final class CanonicalPlayerAttachmentData {
     private static final CanonicalPlayerAttachmentData EMPTY = new CanonicalPlayerAttachmentData(
         CoreProgressionAttachmentData.uninitialized(),
         ProgressionState.empty(),
-        false
+        false,
+        CombatPerkCooldownState.empty()
     );
 
     private final CoreProgressionAttachmentData coreProgression;
     private final ProgressionState compatibilityProgression;
     private final boolean legacyMigrationSource;
+    private final CombatPerkCooldownState combatPerkCooldowns;
 
     public CanonicalPlayerAttachmentData(
         CoreProgressionAttachmentData coreProgression,
         ProgressionState compatibilityProgression,
         boolean legacyMigrationSource
+    ) {
+        this(
+            coreProgression,
+            compatibilityProgression,
+            legacyMigrationSource,
+            CombatPerkCooldownState.empty()
+        );
+    }
+
+    public CanonicalPlayerAttachmentData(
+        CoreProgressionAttachmentData coreProgression,
+        ProgressionState compatibilityProgression,
+        boolean legacyMigrationSource,
+        CombatPerkCooldownState combatPerkCooldowns
     ) {
         this.coreProgression = Objects.requireNonNull(coreProgression, "coreProgression");
         this.compatibilityProgression = Objects.requireNonNull(
@@ -33,6 +50,7 @@ public final class CanonicalPlayerAttachmentData {
             "compatibilityProgression"
         );
         this.legacyMigrationSource = legacyMigrationSource;
+        this.combatPerkCooldowns = Objects.requireNonNull(combatPerkCooldowns, "combatPerkCooldowns");
     }
 
     public static CanonicalPlayerAttachmentData empty() {
@@ -48,7 +66,8 @@ public final class CanonicalPlayerAttachmentData {
         return new CanonicalPlayerAttachmentData(
             oldCore.orElseGet(CoreProgressionAttachmentData::uninitialized),
             oldCompatibility.orElseGet(ProgressionState::empty),
-            oldCompatibility.isPresent()
+            oldCompatibility.isPresent(),
+            CombatPerkCooldownState.empty()
         );
     }
 
@@ -64,6 +83,10 @@ public final class CanonicalPlayerAttachmentData {
         return legacyMigrationSource;
     }
 
+    public CombatPerkCooldownState combatPerkCooldowns() {
+        return combatPerkCooldowns;
+    }
+
     public CanonicalPlayerAttachmentData withCompatibilityProgression(ProgressionState next) {
         Objects.requireNonNull(next, "next");
         byte[] currentBytes = ProgressionStateCodec.encode(compatibilityProgression);
@@ -74,14 +97,31 @@ public final class CanonicalPlayerAttachmentData {
         return new CanonicalPlayerAttachmentData(
             coreProgression,
             next,
-            nextLegacyMigrationSource
+            nextLegacyMigrationSource,
+            combatPerkCooldowns
         );
     }
 
     public CanonicalPlayerAttachmentData withCoreProgression(CoreProgressionAttachmentData next) {
         Objects.requireNonNull(next, "next");
         if (next == coreProgression) return this;
-        return new CanonicalPlayerAttachmentData(next, compatibilityProgression, legacyMigrationSource);
+        return new CanonicalPlayerAttachmentData(
+            next,
+            compatibilityProgression,
+            legacyMigrationSource,
+            combatPerkCooldowns
+        );
+    }
+
+    public CanonicalPlayerAttachmentData withCombatPerkCooldowns(CombatPerkCooldownState next) {
+        Objects.requireNonNull(next, "next");
+        if (next.equals(combatPerkCooldowns)) return this;
+        return new CanonicalPlayerAttachmentData(
+            coreProgression,
+            compatibilityProgression,
+            legacyMigrationSource,
+            next
+        );
     }
 
     /**
@@ -114,6 +154,7 @@ public final class CanonicalPlayerAttachmentData {
         if (this == other) return true;
         if (!(other instanceof CanonicalPlayerAttachmentData that)) return false;
         return legacyMigrationSource == that.legacyMigrationSource
+            && combatPerkCooldowns.equals(that.combatPerkCooldowns)
             && Arrays.equals(
                 CoreProgressionAttachmentDataCodec.encode(coreProgression),
                 CoreProgressionAttachmentDataCodec.encode(that.coreProgression)
@@ -127,6 +168,7 @@ public final class CanonicalPlayerAttachmentData {
     @Override
     public int hashCode() {
         int result = Boolean.hashCode(legacyMigrationSource);
+        result = 31 * result + combatPerkCooldowns.hashCode();
         result = 31 * result + Arrays.hashCode(
             CoreProgressionAttachmentDataCodec.encode(coreProgression));
         result = 31 * result + Arrays.hashCode(
