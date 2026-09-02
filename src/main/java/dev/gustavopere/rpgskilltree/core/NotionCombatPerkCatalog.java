@@ -117,7 +117,7 @@ public final class NotionCombatPerkCatalog {
         add(map,"A0092","Resistência Física",WeaponFamily.VITALITY,4,1,Map.of("A0089",2),Set.of("rpgskilltree:physical_received_damage"));
         add(map,"A0093","Guarda Econômica",WeaponFamily.VITALITY,5,1,Map.of(),Set.of("epicfight:guard_stamina_cost_optional","rpgskilltree:martial_guard_corridor"));
         add(map,"A0094","Recuperação de Guarda",WeaponFamily.VITALITY,4,1,Map.of("A0093",2),Set.of("epicfight:guard_break_recovery_optional"));
-        add(map,"A0095","Tenacidade",WeaponFamily.VITALITY,5,1,Map.of("A0091",2,"A0094",1),Set.of("epicfight:interruption_resistance_optional"));
+        add(map,"A0095","Tenacidade",WeaponFamily.VITALITY,5,1,Map.of("A0091",2),Set.of("epicfight:stun_armor"));
         add(map,"A0096","Último Fôlego",WeaponFamily.VITALITY,3,1,Map.of("A0092",2),Set.of("minecraft:preimpact_health","rpgskilltree:physical_received_damage"));
         add(map,"A0097","Primeira Defesa",WeaponFamily.VITALITY,3,1,Map.of("A0088",1),Set.of("rpgskilltree:hostile_damage_timer"));
         add(map,"A0098","Defesa em Movimento",WeaponFamily.VITALITY,3,1,Map.of("A0088",2),Set.of("minecraft:server_sprint","rpgskilltree:agility_corridor"));
