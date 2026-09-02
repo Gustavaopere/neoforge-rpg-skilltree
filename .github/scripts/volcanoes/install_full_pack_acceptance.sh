@@ -58,9 +58,9 @@ modrinth_version vNrkxC3z # Tectonic 3.0.26-neoforge-21.1
 modrinth_version nqrTa84r # CorgiLib 1.21.1-5.0.0.9-NeoForge
 modrinth_version tPkJmim6 # GeckoLib 4.9.2 NeoForge 1.21.1
 modrinth_project_exact oh-the-trees-youll-grow '1.21.1-5.3.2-NeoForge'
-modrinth_version 6e8GCrLb # TerraBlender 4.1.0.8 NeoForge 1.21.1
+modrinth_version 6e8GCrLb # TerraBlender 4.1.0.8 NeoForge
 modrinth_version aPEcdSHb # Oh The Biomes We've Gone 2.6.0-NeoForge
-modrinth_version EAjbdreT # Biolith 3.0.14 NeoForge 1.21.1
+modrinth_version EAjbdreT # Biolith 3.0.14 NeoForge
 
 # Create 6.0.10 and its verified Ponder runtime.
 curl_jar \
@@ -94,11 +94,14 @@ curl_jar \
 
 # RNS + KubeJS exact coexistence runtime. Native RNS worldgen remains enabled in full-pack acceptance.
 curl_jar \
-  'https://maven.latvian.dev/releases/dev/latvian/mods/rhino/2101.2.7-build.81/rhino-2101.2.7-build.81.jar' \
-  'rhino-2101.2.7-build.81.jar'
+  'https://maven.latvian.dev/releases/dev/latvian/mods/rhino/2101.2.8-build.91/rhino-2101.2.8-build.91.jar' \
+  'rhino-2101.2.8-build.91.jar'
 curl_jar \
-  'https://maven.latvian.dev/releases/dev/latvian/mods/kubejs-neoforge/2101.7.2-build.368/kubejs-neoforge-2101.7.2-build.368.jar' \
-  'kubejs-neoforge-2101.7.2-build.368.jar'
+  'https://maven.latvian.dev/releases/dev/latvian/mods/kubejs-neoforge/2101.7.2-build.374/kubejs-neoforge-2101.7.2-build.374.jar' \
+  'kubejs-neoforge-2101.7.2-build.374.jar'
+curl_jar \
+  'https://www.cursemaven.com/curse/maven/better-advanced-tooltips-1637623/8576077/better-advanced-tooltips-1637623-8576077.jar' \
+  'better-advanced-tooltips-2101.1.0-build.5.jar'
 curl_jar \
   'https://www.cursemaven.com/curse/maven/create-rns-1370563/8729955/create-rns-1370563-8729955.jar' \
   'create_rns-1.3.1-1.21.1-6.jar'
