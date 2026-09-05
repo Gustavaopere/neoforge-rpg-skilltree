@@ -11,7 +11,8 @@
         "text": "Matagal de Alho-silvestre é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:allium_shrubland.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:allium_shrubland"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
@@ -33,7 +34,8 @@
         "text": "Campo de Amarantos é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:amaranth_grassland.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:amaranth_grassland"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
@@ -55,7 +57,8 @@
         "text": "Savana de Araucária é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:araucaria_savanna.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:araucaria_savanna"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
@@ -77,7 +80,8 @@
         "text": "Álamo Boreal é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:aspen_boreal.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:aspen_boreal"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
@@ -99,7 +103,8 @@
         "text": "Deserto do Atacama é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:atacama_outback.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:atacama_outback"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
@@ -121,7 +126,8 @@
         "text": "Savana de Baobá é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:baobab_savanna.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:baobab_savanna"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
@@ -143,7 +149,8 @@
         "text": "Barreira de Basalto é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:basalt_barrera.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:basalt_barrera"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
@@ -165,7 +172,8 @@
         "text": "Ribeiro é o nome pt-BR fornecido pelo próprio BWG para o bioma registrado como biomeswevegone:bayou no Overworld.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:bayou"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
@@ -187,7 +195,8 @@
         "text": "Floresta Negra é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:black_forest.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:black_forest"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
@@ -209,7 +218,8 @@
         "text": "Escudo Canadense é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:canadian_shield.",
         "sources": [
           {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:canadian_shield"},
-          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
         ]
       },
       "sections": {
