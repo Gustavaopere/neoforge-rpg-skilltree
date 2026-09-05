@@ -131,4 +131,20 @@ final class MasteryInvestmentMetadataParserJUnitTest {
                 """)
         )));
     }
+
+    @Test
+    void rejectsDomainKeysThatCollideAfterNormalization() {
+        ResourceLocation source = ResourceLocation.parse("rpgskilltree:mastery_investments/domain_collision");
+        assertThrows(SkillTreeDataValidationException.class, () -> MasteryInvestmentMetadataParser.parse(Map.of(
+            source,
+            JsonParser.parseString("""
+                {
+                  "lane": "magic:casting",
+                  "minimum_experience": 60,
+                  "domain_weights": {"ARCANE": 1, "arcane": 2},
+                  "tags": []
+                }
+                """)
+        )));
+    }
 }
