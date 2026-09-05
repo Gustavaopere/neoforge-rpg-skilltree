@@ -75,3 +75,28 @@ Authority, dedup, atomicidade, lifecycle, fallback e fail-closed transitivo est�
 ## Testes exigidos ao Chat 3
 
 Estado atual: A0100 unavailable → A0108 unavailable sem gasto. Se consumer latente existir: +15% físico uma vez/root, −8% movement real, benefício/penalidade atômicos, reload/respec/death/logout/dimension sem duplicação, unknown/bypass exclusions, multiplayer, GameTests, build, JAR e dedicated-server smoke.
+
+## Atualização de implementação — Chat 2 (2026-09-05)
+
+**Estado:** `CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `CombatPerkAvailabilityRuntime` materializa A0108 como indisponível porque A0100 permanece indisponível.
+- O Chat 2 deliberadamente não preparou um consumer parcial de +15% físico ou −8% movement, evitando benefício sem penalidade e evitando bypass do predecessor.
+- Rank persistido de node indisponível é mascarado para rank efetivo 0 no gameplay.
+- Nenhum provider externo ou Protection Pixel foi promovido a substituto para Anti-Crítico ou encumbrance.
+- Não há redesign: a implementação é o fail-closed transitivo congelado pelo Chat 1.
+
+### Checklist Chat 2
+
+- [x] Availability transitiva implementada
+- [x] Purchase/effective-rank fail-closed implementado
+- [x] Atomicidade benefício+penalidade preservada por não ativação parcial
+- [x] Provider-native first preservado
+- [x] Código presente no estado fail-closed aprovado
+- [ ] **VALIDAÇÃO CHAT 3:** confirmar A0100 → A0108 indisponível sem gasto
+- [ ] **VALIDAÇÃO CHAT 3:** confirmar ausência de modifier/reducer parcial
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests/integração aplicáveis
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
