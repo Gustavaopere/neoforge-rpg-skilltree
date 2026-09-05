@@ -13,11 +13,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.saveddata.SavedData;
 
@@ -30,7 +32,14 @@ public final class ColonyEconomySavedData extends SavedData {
     private static final String STATE = "state";
     private static final String TRANSACTIONS = "transactions";
     private static final String NATIVE_BINDINGS = "native_bindings";
+    private static final String NATIVE_FINGERPRINTS = "native_fingerprints";
     private static final String ARCHIVED_ECONOMIES = "archived_economies";
+    private static final String DIMENSION = "dimension";
+    private static final String COLONY_ID = "colony_id";
+    private static final String OWNER_UUID = "owner_uuid";
+    private static final String TOWN_HALL_X = "town_hall_x";
+    private static final String TOWN_HALL_Y = "town_hall_y";
+    private static final String TOWN_HALL_Z = "town_hall_z";
 
     private static final SavedData.Factory<ColonyEconomySavedData> FACTORY = new SavedData.Factory<>(
         ColonyEconomySavedData::new,
@@ -40,6 +49,7 @@ public final class ColonyEconomySavedData extends SavedData {
 
     private final Map<EconomyColonyKey, StoredEconomy> economies = new HashMap<>();
     private final Map<String, EconomyColonyKey> nativeBindings = new HashMap<>();
+    private final Map<String, NativeColonyBinding> nativeFingerprints = new HashMap<>();
     private final Set<EconomyColonyKey> archivedEconomies = new HashSet<>();
 
     public ColonyEconomySavedData() {}
@@ -70,6 +80,10 @@ public final class ColonyEconomySavedData extends SavedData {
         CompoundTag bindingsTag = new CompoundTag();
         nativeBindings.forEach((binding, economyKey) -> bindingsTag.putString(binding, economyKey.value().toString()));
         tag.put(NATIVE_BINDINGS, bindingsTag);
+
+        CompoundTag fingerprintsTag = new CompoundTag();
+        nativeFingerprints.forEach((key, binding) -> fingerprintsTag.put(key, encodeFingerprint(binding)));
+        tag.put(NATIVE_FINGERPRINTS, fingerprintsTag);
 
         ListTag archivedTag = new ListTag();
         archivedEconomies.stream()
@@ -102,7 +116,13 @@ public final class ColonyEconomySavedData extends SavedData {
         if (binding == null) {
             throw new IllegalArgumentException("binding must not be null");
         }
-        return Optional.ofNullable(nativeBindings.get(binding.persistentKey()));
+        String key = binding.persistentKey();
+        EconomyColonyKey economyKey = nativeBindings.get(key);
+        if (economyKey == null) {
+            return Optional.empty();
+        }
+        requireMatchingFingerprint(binding, nativeFingerprints.get(key));
+        return Optional.of(economyKey);
     }
 
     /** Resolves a live provider binding, assigning a fresh immutable monetary identity once. */
@@ -110,8 +130,10 @@ public final class ColonyEconomySavedData extends SavedData {
         if (binding == null) {
             throw new IllegalArgumentException("binding must not be null");
         }
-        EconomyColonyKey existing = nativeBindings.get(binding.persistentKey());
+        String key = binding.persistentKey();
+        EconomyColonyKey existing = nativeBindings.get(key);
         if (existing != null) {
+            requireMatchingFingerprint(binding, nativeFingerprints.get(key));
             if (archivedEconomies.contains(existing)) {
                 throw new EconomyPersistenceException("Live native binding points to archived economy identity");
             }
@@ -122,7 +144,8 @@ public final class ColonyEconomySavedData extends SavedData {
         do {
             created = new EconomyColonyKey(UUID.randomUUID());
         } while (economies.containsKey(created) || archivedEconomies.contains(created) || nativeBindings.containsValue(created));
-        nativeBindings.put(binding.persistentKey(), created);
+        nativeBindings.put(key, created);
+        nativeFingerprints.put(key, binding);
         setDirty();
         return created;
     }
@@ -132,13 +155,17 @@ public final class ColonyEconomySavedData extends SavedData {
         if (binding == null) {
             throw new IllegalArgumentException("binding must not be null");
         }
-        EconomyColonyKey removed = nativeBindings.remove(binding.persistentKey());
-        if (removed == null) {
+        String key = binding.persistentKey();
+        EconomyColonyKey existing = nativeBindings.get(key);
+        if (existing == null) {
             return Optional.empty();
         }
-        archivedEconomies.add(removed);
+        requireMatchingFingerprint(binding, nativeFingerprints.get(key));
+        nativeBindings.remove(key);
+        nativeFingerprints.remove(key);
+        archivedEconomies.add(existing);
         setDirty();
-        return Optional.of(removed);
+        return Optional.of(existing);
     }
 
     public boolean isArchived(EconomyColonyKey key) {
@@ -178,6 +205,7 @@ public final class ColonyEconomySavedData extends SavedData {
         }
         requireType(tag, ECONOMIES, Tag.TAG_LIST);
         requireType(tag, NATIVE_BINDINGS, Tag.TAG_COMPOUND);
+        requireType(tag, NATIVE_FINGERPRINTS, Tag.TAG_COMPOUND);
         requireType(tag, ARCHIVED_ECONOMIES, Tag.TAG_LIST);
 
         ColonyEconomySavedData data = new ColonyEconomySavedData();
@@ -225,6 +253,23 @@ public final class ColonyEconomySavedData extends SavedData {
             }
         }
 
+        CompoundTag fingerprintsTag = tag.getCompound(NATIVE_FINGERPRINTS);
+        for (String nativeKey : fingerprintsTag.getAllKeys()) {
+            if (!fingerprintsTag.contains(nativeKey, Tag.TAG_COMPOUND)) {
+                throw new EconomyPersistenceException("Invalid native colony fingerprint payload: " + nativeKey);
+            }
+            NativeColonyBinding binding = decodeFingerprint(fingerprintsTag.getCompound(nativeKey));
+            if (!nativeKey.equals(binding.persistentKey())) {
+                throw new EconomyPersistenceException("Native colony fingerprint key mismatch: " + nativeKey);
+            }
+            if (data.nativeFingerprints.put(nativeKey, binding) != null) {
+                throw new EconomyPersistenceException("Duplicate native colony fingerprint: " + nativeKey);
+            }
+        }
+        if (!data.nativeBindings.keySet().equals(data.nativeFingerprints.keySet())) {
+            throw new EconomyPersistenceException("Native colony binding/fingerprint index mismatch");
+        }
+
         ListTag archivedTag = requireListElementType(tag, ARCHIVED_ECONOMIES, Tag.TAG_STRING);
         for (int i = 0; i < archivedTag.size(); i++) {
             try {
@@ -243,6 +288,51 @@ public final class ColonyEconomySavedData extends SavedData {
             throw new EconomyPersistenceException("Multiple live native colonies share one economy UUID");
         }
         return data;
+    }
+
+    private static CompoundTag encodeFingerprint(NativeColonyBinding binding) {
+        CompoundTag tag = new CompoundTag();
+        tag.putString(DIMENSION, binding.dimensionId().toString());
+        tag.putInt(COLONY_ID, binding.colonyId());
+        tag.putString(OWNER_UUID, binding.ownerUuid().toString());
+        tag.putInt(TOWN_HALL_X, binding.townHallPos().getX());
+        tag.putInt(TOWN_HALL_Y, binding.townHallPos().getY());
+        tag.putInt(TOWN_HALL_Z, binding.townHallPos().getZ());
+        return tag;
+    }
+
+    private static NativeColonyBinding decodeFingerprint(CompoundTag tag) {
+        requireType(tag, DIMENSION, Tag.TAG_STRING);
+        requireType(tag, COLONY_ID, Tag.TAG_INT);
+        requireType(tag, OWNER_UUID, Tag.TAG_STRING);
+        requireType(tag, TOWN_HALL_X, Tag.TAG_INT);
+        requireType(tag, TOWN_HALL_Y, Tag.TAG_INT);
+        requireType(tag, TOWN_HALL_Z, Tag.TAG_INT);
+        try {
+            ResourceLocation dimension = ResourceLocation.tryParse(tag.getString(DIMENSION));
+            if (dimension == null) {
+                throw new IllegalArgumentException("invalid dimension id");
+            }
+            return new NativeColonyBinding(
+                dimension,
+                tag.getInt(COLONY_ID),
+                UUID.fromString(tag.getString(OWNER_UUID)),
+                new BlockPos(tag.getInt(TOWN_HALL_X), tag.getInt(TOWN_HALL_Y), tag.getInt(TOWN_HALL_Z))
+            );
+        } catch (IllegalArgumentException failure) {
+            throw new EconomyPersistenceException("Invalid native colony fingerprint", failure);
+        }
+    }
+
+    private static void requireMatchingFingerprint(NativeColonyBinding requested, NativeColonyBinding persisted) {
+        if (persisted == null) {
+            throw new EconomyPersistenceException("Native colony binding is missing its persisted fingerprint");
+        }
+        if (!persisted.equals(requested)) {
+            throw new EconomyPersistenceException(
+                "Native colony binding fingerprint changed for " + requested.persistentKey()
+            );
+        }
     }
 
     private static void validateRecord(
