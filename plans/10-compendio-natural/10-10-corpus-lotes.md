@@ -573,6 +573,36 @@ Entradas:
 - nomes como `Vazia`, `Exuberante`, `Aurora`, `Jade` e a categoria cave não são convertidos em densidade, iluminação, composição mineral, altitude, profundidade, tamanho, frequência ou outros parâmetros sem fonte específica;
 - TDD confirmado no commit `e54e2607177de769dcbce0d625226c1f960cef72`, RPG Skill Tree CI run `33996432070`, job `101387676028`: 978 testes, exatamente 1 falha no Batch20 pela ausência de `betterend/biomes-batch3.json`; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 21 — BetterNether: New Dawn / biomas do Nether (batch 1)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betternether/biomes-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betternether:bone_reef` — Bone Reef
+2. `BIOME:betternether:crimson_glowing_woods` — Crimson Glowing Woods
+3. `BIOME:betternether:crimson_pinewood` — Crimson Pinewood
+4. `BIOME:betternether:flooded_deltas` — Flooded Deltas
+5. `BIOME:betternether:gloomwood` — Gloomwood
+6. `BIOME:betternether:gravel_desert` — Gravel Desert
+7. `BIOME:betternether:magma_land` — Magma Land
+8. `BIOME:betternether:nether_grasslands` — Nether Grasslands
+9. `BIOME:betternether:nether_jungle` — Nether Jungle
+10. `BIOME:betternether:nether_mushroom_forest` — Nether Mushroom Forest
+
+### Critérios editoriais aplicados ao lote 21
+
+- provider reconciliado com a modlist/runtime e a Auditoria Mestre do Notion: `BetterNether-21.0.26.jar`, namespace `betternether`, estado `Instalado`, decisão `Manter`;
+- o recorte corresponde aos dez primeiros biomas na ordem de `NetherBiomes.java` e `NetherBiomesProvider.bootstrap()` do commit congelado `543127cab48b1ecb0017fee4222af25e0583e185`, cujo `gradle.properties` declara Minecraft 1.21.1 e BetterNether 21.0.26;
+- `NetherBiomeBuilder.createKey()` confirma os registry paths ao normalizar espaços para `_` e minúsculas;
+- nove títulos do lote são preservados exatamente do `assets/betternether/lang/pt_br.json`, que os mantém em inglês; `gloomwood` não possui chave pt-BR e usa explicitamente o valor oficial `Gloomwood` do `en_us.json`, sem fingir tradução pt-BR;
+- `gloomwood` é declarado e bootstrapped pelo provider, mas não aparece em `registerBiomeToggles()`; os outros nove aparecem. A diferença é registrada sem inferir bug ou obrigatoriedade;
+- `nether_grasslands` possui numeric provider próprio registrado pelo provider; sua existência é documentada sem congelar números internos em prosa;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica do worldgen foi congelada no corpus;
+- TDD confirmado no commit `9968ddc6db31a4e3e14ef9056f8a4e7fccbfb2b5`, RPG Skill Tree CI run `33998199993`, job `101392297879`: 979 testes, exatamente 1 falha no Batch21 pela ausência de `betternether/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -581,7 +611,8 @@ Entradas:
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
-- entradas editoriais totais: **192**;
-- lotes documentados: **20**;
-- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`;
+- entradas de worldgen BetterNether: New Dawn reais no corpus: **10**;
+- entradas editoriais totais: **202**;
+- lotes documentados: **21**;
+- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
