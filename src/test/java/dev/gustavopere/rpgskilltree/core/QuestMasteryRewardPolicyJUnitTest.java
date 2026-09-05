@@ -56,4 +56,19 @@ final class QuestMasteryRewardPolicyJUnitTest {
             () -> RpgQuestProgressionApi.applyAuthorizedMasteryReward(null, reward)
         );
     }
+
+    @Test
+    void publicApiRequiresPlayerAfterValidMasteryValidation() {
+        MasteryAward reward = MasteryAward.replaySafe(
+            MasteryLaneCatalog.MAGIC_CASTING,
+            25,
+            "rpgskilltree:quest/arcane_initiation",
+            "quest:arcane_initiation/reward/mastery"
+        );
+
+        assertThrows(
+            NullPointerException.class,
+            () -> RpgQuestProgressionApi.applyAuthorizedMasteryReward(null, reward)
+        );
+    }
 }
