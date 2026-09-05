@@ -57,6 +57,7 @@ import dev.gustavopere.rpgskilltree.runtime.events.PhysicalProjectileMasteryEven
 import dev.gustavopere.rpgskilltree.runtime.events.PlayerProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ProgressionOwnerSyncEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.RelevantPlayerCacheEvents;
+import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationReloader;
 import dev.gustavopere.rpgskilltree.runtime.loot.ModLootModifiers;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
@@ -95,6 +96,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(BossRewardReloader.class);
         NeoForge.EVENT_BUS.register(CoreProgressionRulesReloader.class);
         NeoForge.EVENT_BUS.register(CanonicalProviderBindingReloader.class);
+        NeoForge.EVENT_BUS.register(EquipmentClassificationReloader.class);
         NeoForge.EVENT_BUS.register(EntityScalingEvents.class);
         NeoForge.EVENT_BUS.register(EntityRewardEvents.class);
         NeoForge.EVENT_BUS.register(ApothicBossBridgeEvents.class);
