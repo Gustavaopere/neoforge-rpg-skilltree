@@ -5,8 +5,9 @@ import java.util.Objects;
 /** Bounded provider-neutral scheduler for discrete colony-economy settlement passes. */
 public final class ColonyEconomyRuntime {
     private final long settlementIntervalTicks;
-    private long lastSuccessfulSettlementTick = 0L;
-    private long highestObservedTick = 0L;
+    private long lastSuccessfulSettlementTick;
+    private long highestObservedTick;
+    private boolean anchored;
 
     public ColonyEconomyRuntime(long settlementIntervalTicks) {
         if (settlementIntervalTicks <= 0L) {
@@ -20,12 +21,20 @@ public final class ColonyEconomyRuntime {
         if (gameTime < 0L) {
             throw new IllegalArgumentException("gameTime must be non-negative");
         }
-        if (gameTime < highestObservedTick) {
+        if (anchored && gameTime < highestObservedTick) {
             throw new IllegalArgumentException("gameTime must not move backwards");
         }
         highestObservedTick = gameTime;
 
-        if (!providerActive || gameTime - lastSuccessfulSettlementTick < settlementIntervalTicks) {
+        if (!providerActive) {
+            return false;
+        }
+        if (!anchored) {
+            anchored = true;
+            lastSuccessfulSettlementTick = gameTime;
+            return false;
+        }
+        if (gameTime - lastSuccessfulSettlementTick < settlementIntervalTicks) {
             return false;
         }
 
