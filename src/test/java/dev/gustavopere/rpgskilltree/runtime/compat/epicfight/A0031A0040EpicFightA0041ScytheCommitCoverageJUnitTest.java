@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
+import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 
@@ -113,7 +114,7 @@ final class A0031A0040EpicFightA0041ScytheCommitCoverageJUnitTest {
         legacy.applyReapingMark(actorId, targetId, 2, 0.70D, 1_000L);
         assertTrue(legacy.reapMature(actorId, targetId, 0.40D, 1_050L));
         assertTrue(state.reserveScytheCut(actorId, targetId, "root-zero", 1_050L));
-        when(fixture.event.getModifiedDamage()).thenReturn(0.0F);
+        fixture.event.setModifiedDamage(0.0F);
 
         invokeDamagePost(fixture);
 
@@ -133,7 +134,7 @@ final class A0031A0040EpicFightA0041ScytheCommitCoverageJUnitTest {
         legacy.applyReapingMark(actorId, targetId, 2, 0.70D, 2_000L);
         assertTrue(legacy.reapMature(actorId, targetId, 0.40D, 2_050L));
         assertTrue(state.reserveScytheCut(actorId, targetId, "root-hit", 2_050L));
-        when(fixture.event.getModifiedDamage()).thenReturn(4.0F);
+        fixture.event.setModifiedDamage(4.0F);
 
         invokeDamagePost(fixture);
 
@@ -142,14 +143,16 @@ final class A0031A0040EpicFightA0041ScytheCommitCoverageJUnitTest {
             "POST must consume the reservation itself");
     }
 
+    @SuppressWarnings("unchecked")
     private static Fixture fixture(long gameTimeMillis) {
         ServerPlayer actor = mock(ServerPlayer.class);
         ServerPlayer target = mock(ServerPlayer.class);
         ServerLevel level = mock(ServerLevel.class);
-        DealDamageEvent.Post event = mock(DealDamageEvent.Post.class, RETURNS_DEEP_STUBS);
         EpicFightDamageSource source = mock(EpicFightDamageSource.class);
         ItemStack usedItem = mock(ItemStack.class);
         CapabilityItem capability = mock(CapabilityItem.class, RETURNS_DEEP_STUBS);
+        LivingEntityPatch<ServerPlayer> patch = (LivingEntityPatch<ServerPlayer>) mock(LivingEntityPatch.class);
+        DealDamageEvent.Post event = new DealDamageEvent.Post(patch, target, source, 0.0F);
         UUID actorUuid = UUID.randomUUID();
         UUID targetUuid = UUID.randomUUID();
 
@@ -164,9 +167,7 @@ final class A0031A0040EpicFightA0041ScytheCommitCoverageJUnitTest {
         when(target.isInvulnerable()).thenReturn(false);
         when(target.getHealth()).thenReturn(8.0F);
         when(target.getMaxHealth()).thenReturn(20.0F);
-        when(event.getEntityPatch().getOriginal()).thenReturn(actor);
-        when(event.getTarget()).thenReturn(target);
-        when(event.getDamageSource()).thenReturn(source);
+        when(patch.getOriginal()).thenReturn(actor);
         when(source.getDirectEntity()).thenReturn(actor);
         when(source.getUsedItem()).thenReturn(usedItem);
         when(capability.isEmpty()).thenReturn(false);
