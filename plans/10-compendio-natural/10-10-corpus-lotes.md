@@ -547,6 +547,32 @@ Entradas:
 - nenhuma categoria de placement, nome de bioma ou vínculo de base foi convertido em altura, tamanho, densidade, posição, peso, chance, frequência ou outro parâmetro mutável;
 - TDD confirmado no commit `2b9ab97cd9dcf415446e5cc99da1197e6e8088e6`, RPG Skill Tree CI run `33994047460`, job `101381231279`: 977 testes, exatamente 1 falha no Batch19 pela ausência de `betterend/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 20 — BetterEnd: New Dawn / biomas do End (batch 3 final)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betterend/biomes-batch3.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betterend:painted_mountains` — Montanhas Pintadas
+2. `BIOME:betterend:empty_end_cave` — Caverna do End Vazia
+3. `BIOME:betterend:empty_smaragdant_cave` — Caverna Exuberante de Esmaragdante Vazia
+4. `BIOME:betterend:lush_smaragdant_cave` — Caverna Exuberante de Esmaragdante
+5. `BIOME:betterend:empty_aurora_cave` — Caverna Aurora Vazia
+6. `BIOME:betterend:lush_aurora_cave` — Caverna Exuberante de Aurora
+7. `BIOME:betterend:jade_cave` — Caverna de Jade
+
+### Critérios editoriais aplicados ao lote 20
+
+- o recorte continua imediatamente após `neon_oasis` e encerra todos os `EndBiomeKey` declarados em `EndBiomes.java` no commit congelado `360b6fea407befdcf9aab7f771cad5586cbfb826`;
+- os sete títulos pt-BR são preservados exatamente do `assets/betterend/lang/pt_br.json`;
+- `painted_mountains` é registrado pelo provider como `IS_END_LAND`, aparece em Wover `is_end/land` e declara `DUST_WASTELANDS` como bioma-base associado; o vínculo fica fonteado em prosa sem criar referência técnica cross-batch;
+- os seis biomas de caverna são registrados em `EndBiomesProvider` com `EndTags.IS_END_CAVE` e aparecem explicitamente no datapack `betterend:is_end_cave`;
+- todos os sete IDs aparecem em `registerBiomeToggles()`, portanto ocorrência concreta permanece condicionada à configuração e ao worldgen ativos;
+- nomes como `Vazia`, `Exuberante`, `Aurora`, `Jade` e a categoria cave não são convertidos em densidade, iluminação, composição mineral, altitude, profundidade, tamanho, frequência ou outros parâmetros sem fonte específica;
+- TDD confirmado no commit `e54e2607177de769dcbce0d625226c1f960cef72`, RPG Skill Tree CI run `33996432070`, job `101387676028`: 978 testes, exatamente 1 falha no Batch20 pela ausência de `betterend/biomes-batch3.json`; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -554,8 +580,8 @@ Entradas:
 - entradas editoriais vanilla totais: **100**;
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
-- entradas de worldgen BetterEnd: New Dawn reais no corpus: **20**;
-- entradas editoriais totais: **185**;
-- lotes documentados: **19**;
+- entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
+- entradas editoriais totais: **192**;
+- lotes documentados: **20**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
