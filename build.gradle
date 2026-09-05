@@ -144,6 +144,15 @@ configurations {
     neoForgeTestImplementation.extendsFrom testImplementation
     neoForgeTestCompileOnly.extendsFrom testCompileOnly
     neoForgeTestRuntimeOnly.extendsFrom testRuntimeOnly
+
+    // The NeoForge-loaded JUnit lane is intentionally Epic Fight-only. Battle Mage needs the
+    // complete Iron's/MineColonies JARs for its ordinary provider-surface JUnit tests, but leaking
+    // those optional providers into testJunit changes the loaded game and can break an unrelated
+    // adapter suite. Provider-present Battle Mage behavior is covered by its dedicated GameTests.
+    neoForgeTestImplementation {
+        exclude group: 'curse.maven', module: 'irons-spells-n-spellbooks-855414'
+        exclude group: 'curse.maven', module: 'minecolonies-245506'
+    }
 }
 
 def battleMageProviderRuntimeEnabled = (findProperty('battleMageProviderRuntime') ?: 'false').toString().toBoolean()
