@@ -10,8 +10,10 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import org.slf4j.Logger;
@@ -33,7 +35,8 @@ public final class CompendiumEditorialCatalogEvents {
         RuntimeCompendiumEditorialCatalog.PublicationResult result =
             RuntimeCompendiumEditorialCatalog.loadAndPublish(
                 event.getServer().getResourceManager(),
-                technicalEntries()
+                technicalEntries(),
+                loadedProviderNamespaces()
             );
 
         if (result.published()) {
@@ -61,6 +64,13 @@ public final class CompendiumEditorialCatalogEvents {
             RuntimeCompendiumFloraCatalog.snapshot().entries(),
             RuntimeCompendiumWorldCatalog.snapshot().entries()
         );
+    }
+
+    static Set<String> loadedProviderNamespaces() {
+        HashSet<String> loaded = new HashSet<>();
+        loaded.add("minecraft");
+        ModList.get().getMods().forEach(mod -> loaded.add(mod.getModId()));
+        return Set.copyOf(loaded);
     }
 
     @SafeVarargs
