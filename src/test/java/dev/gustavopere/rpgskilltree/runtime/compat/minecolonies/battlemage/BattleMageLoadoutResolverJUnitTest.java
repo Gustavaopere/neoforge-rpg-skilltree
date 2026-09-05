@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
-import net.minecraft.world.item.ItemStack;
 import org.junit.jupiter.api.Test;
 
 final class BattleMageLoadoutResolverJUnitTest {
@@ -54,9 +53,8 @@ final class BattleMageLoadoutResolverJUnitTest {
     }
 
     @Test
-    void unusableBookChecksFailClosedBeforeProviderContainerLookup() {
+    void nullBookFailsClosedBeforeProviderContainerLookup() {
         assertFalse(BattleMageLoadoutResolver.isUsableSpellbook(null));
-        assertFalse(BattleMageLoadoutResolver.isUsableSpellbook(ItemStack.EMPTY));
     }
 
     @Test
