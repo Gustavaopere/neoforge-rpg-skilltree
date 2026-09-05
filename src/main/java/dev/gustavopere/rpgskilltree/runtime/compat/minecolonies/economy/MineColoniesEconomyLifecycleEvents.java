@@ -31,6 +31,11 @@ public final class MineColoniesEconomyLifecycleEvents {
         }
     }
 
+    /** True only after both provider deletion subscription and NeoForge settlement hooks register. */
+    public static boolean isInstalled() {
+        return INSTALLED.get();
+    }
+
     private static void onColonyDeleted(ColonyDeletedModEvent event) {
         if (event == null) {
             return;
