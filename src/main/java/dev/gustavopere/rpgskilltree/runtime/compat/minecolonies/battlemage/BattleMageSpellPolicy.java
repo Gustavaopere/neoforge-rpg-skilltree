@@ -54,6 +54,14 @@ public final class BattleMageSpellPolicy {
             .toList();
     }
 
+    /**
+     * Provider-free friendly-fire floor. A missing profile is unknown and therefore fails closed.
+     * Provider adapters may only widen this radius when their runtime spell footprint is larger.
+     */
+    public static double configuredFriendlyFireRadius(BattleMageSpellProfile profile) {
+        return profile == null ? Double.POSITIVE_INFINITY : profile.friendlyFireRadius();
+    }
+
     public static boolean isAreaSafe(BattleMageSpellProfile profile, boolean protectedAllyInRadius) {
         if (profile == null) return false;
         if (profile.targetMode() != BattleMageTargetMode.HOSTILE_AREA) return true;
