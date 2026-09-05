@@ -12,13 +12,18 @@ public final class EconomyMath {
 
         long workerCapacity = Math.multiplyExact((long) inputs.adultWorkers(), parameters.workerWeight());
         long buildingCapacity = Math.multiplyExact((long) inputs.builtLevelPoints(), parameters.buildingLevelWeight());
-        int boundedWarehouses = Math.min(inputs.warehouseCount(), parameters.warehouseCap());
-        long warehouseCapacity = Math.multiplyExact((long) boundedWarehouses, parameters.warehouseBonus());
-
-        return Math.addExact(
+        long rawCapacity = Math.addExact(
             Math.addExact(parameters.baseCapacity(), workerCapacity),
-            Math.addExact(buildingCapacity, warehouseCapacity)
+            buildingCapacity
         );
+
+        int boundedWarehouses = Math.min(inputs.warehouseCount(), parameters.warehouseCap());
+        double multiplier = 1.0D + parameters.warehouseBonus() * boundedWarehouses;
+        double scaledCapacity = rawCapacity * multiplier;
+        if (!Double.isFinite(scaledCapacity) || scaledCapacity > Long.MAX_VALUE) {
+            throw new ArithmeticException("economic capacity overflow");
+        }
+        return Math.max(parameters.minimumCapacity(), Math.round(scaledCapacity));
     }
 
     public static double targetPriceIndex(long activeMoney, long economicCapacity, EconomyParameters parameters) {
@@ -33,7 +38,7 @@ public final class EconomyMath {
             return parameters.minPriceIndex();
         }
 
-        double pressure = (double) activeMoney / (double) economicCapacity;
+        double pressure = (double) activeMoney / (double) Math.max(economicCapacity, parameters.minimumCapacity());
         double target = 100.0D * Math.pow(pressure, parameters.beta());
         if (!Double.isFinite(target)) {
             throw new ArithmeticException("price-index target is not finite");
