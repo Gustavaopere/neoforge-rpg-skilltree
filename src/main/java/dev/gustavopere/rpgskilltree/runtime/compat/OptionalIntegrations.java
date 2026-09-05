@@ -20,7 +20,8 @@ public final class OptionalIntegrations {
         GOETY("goety"),
         MALUM("malum"),
         EIDOLON("eidolon"),
-        IDENTITY2("identity2");
+        IDENTITY2("identity2"),
+        MINECOLONIES("minecolonies");
 
         private final String modId;
 

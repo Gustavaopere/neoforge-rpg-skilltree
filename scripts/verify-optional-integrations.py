@@ -10,10 +10,12 @@ BOOTSTRAP = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "RpgSkillTreeMod.jav
 CENTRAL = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "runtime" / "compat" / "OptionalIntegrations.java"
 IDENTITY_MIXIN = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "runtime" / "compat" / "identity2" / "mixin" / "IdentityProgressionMixin.java"
 IDENTITY_PLUGIN = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "bootstrap" / "Identity2MixinPlugin.java"
+BATTLE_MAGE_PROVIDER_GAMETEST = JAVA / "dev" / "gustavopere" / "rpgskilltree" / "gametest" / "BattleMageProviderGameTests.java"
 MIXIN_CONFIG = ROOT / "src" / "main" / "resources" / "rpgskilltree.mixins.json"
 METADATA = ROOT / "src" / "main" / "resources" / "META-INF" / "neoforge.mods.toml"
 WORKFLOW = ROOT / ".github" / "workflows" / "alpha2-build.yml"
 SMOKE_VERIFIER = ROOT / "scripts" / "verify-optional-provider-smoke.py"
+PROVIDER_GAMETEST_VERIFIER = ROOT / "scripts" / "verify-battle-mage-provider-runtime.py"
 
 PROVIDERS = {
     "IRONS_SPELLBOOKS": ("irons_spellbooks", "runtime/compat/irons/", "io.redspace.ironsspellbooks"),
@@ -23,6 +25,12 @@ PROVIDERS = {
     "MALUM": ("malum", "runtime/compat/malum/", "com.sammy.malum"),
     "EIDOLON": ("eidolon", "runtime/compat/eidolon/", "alexthw.eidolon_repraised"),
     "IDENTITY2": ("identity2", "runtime/compat/identity2/", "net.Gabou.identity2"),
+}
+
+# Cross-provider adapters remain narrow and explicit. Battle Mage is a MineColonies-owned
+# integration whose spellbook seam necessarily links Iron's after both provider gates pass.
+CROSS_PROVIDER_ALLOWED = {
+    "io.redspace.ironsspellbooks": ("runtime/compat/minecolonies/battlemage/",),
 }
 
 
@@ -68,6 +76,14 @@ if summary_position < 0 or summary_value_position < summary_position:
 if first_optional_guard < 0 or first_optional_guard <= summary_value_position:
     fail("optional-provider summary must be emitted before optional adapter registration")
 
+for marker in (
+    "OptionalIntegrations.Provider.MINECOLONIES",
+    "BattleMageIntegrationBootstrap",
+    "MineColoniesBattleMageRegistration.register(modBus)",
+):
+    if marker not in bootstrap:
+        fail(f"Battle Mage runtime bootstrap is missing semantic marker {marker!r}")
+
 metadata = METADATA.read_text(encoding="utf-8")
 metadata_optional = set()
 for block in metadata.split("[[dependencies.${mod_id}]]")[1:]:
@@ -86,10 +102,16 @@ for path in JAVA.rglob("*.java"):
     for _, (_, allowed_suffix, external_package) in PROVIDERS.items():
         if external_package not in text:
             continue
-        if allowed_suffix not in rel:
+        cross_provider_allowed = CROSS_PROVIDER_ALLOWED.get(external_package, ())
+        if allowed_suffix not in rel and not any(suffix in rel for suffix in cross_provider_allowed):
             # A standalone early Mixin plugin may carry the provider target as an inert string,
             # but it must never import or otherwise link the provider package.
             if path == IDENTITY_PLUGIN and f'"{external_package}' in text and f"import {external_package}" not in text:
+                continue
+            # The provider-present GameTest intentionally uses reflection so the same test class
+            # remains loadable in the provider-free lane. Provider packages may occur only as
+            # inert class-name strings resolved through Class.forName; direct imports remain banned.
+            if path == BATTLE_MAGE_PROVIDER_GAMETEST and "Class.forName" in text and f"import {external_package}" not in text:
                 continue
             fail(f"external provider type {external_package} leaked outside isolated adapter path: {rel}")
 
@@ -113,14 +135,40 @@ config = MIXIN_CONFIG.read_text(encoding="utf-8")
 if '"plugin": "dev.gustavopere.rpgskilltree.bootstrap.Identity2MixinPlugin"' not in config:
     fail("mixin config must install the early Identity2 target gate")
 
+if not BATTLE_MAGE_PROVIDER_GAMETEST.is_file():
+    fail("missing provider-present Battle Mage GameTest probe")
+provider_probe = BATTLE_MAGE_PROVIDER_GAMETEST.read_text(encoding="utf-8")
+for forbidden in (
+    "import com.minecolonies.",
+    "import io.redspace.ironsspellbooks",
+):
+    if forbidden in provider_probe:
+        fail(f"Battle Mage provider GameTest must remain provider-neutral at classload time: {forbidden}")
+if "Class.forName" not in provider_probe:
+    fail("Battle Mage provider GameTest must resolve optional provider classes reflectively")
+for provider_class in (
+    "com.minecolonies.api.IMinecoloniesAPI",
+    "io.redspace.ironsspellbooks.api.magic.MagicData",
+):
+    if provider_class not in provider_probe:
+        fail(f"Battle Mage provider GameTest is missing provider class-name marker {provider_class!r}")
+
 if not SMOKE_VERIFIER.is_file():
     fail("missing dedicated-server optional-provider absence verifier")
 smoke = SMOKE_VERIFIER.read_text(encoding="utf-8")
 for marker in ("ClassNotFoundException", "NoClassDefFoundError"):
     if marker not in smoke:
         fail(f"server-smoke verifier must reject {marker}")
+if not PROVIDER_GAMETEST_VERIFIER.is_file():
+    fail("missing provider-present Battle Mage runtime verifier")
+provider_verifier = PROVIDER_GAMETEST_VERIFIER.read_text(encoding="utf-8")
+for marker in ("ModLoadingException", "MineColonies Battle Mage integration active", "All\\s+(\\d+)\\s+required tests passed"):
+    if marker not in provider_verifier:
+        fail(f"provider-present Battle Mage verifier is missing marker {marker!r}")
 workflow = WORKFLOW.read_text(encoding="utf-8")
 if 'python3 scripts/verify-optional-provider-smoke.py "$LOG"' not in workflow:
     fail("dedicated-server smoke must assert the optional-provider absence matrix")
+if 'python3 scripts/verify-battle-mage-provider-runtime.py "$LOG"' not in workflow:
+    fail("provider-present GameTests must validate the runtime log instead of trusting the Gradle exit code")
 
 print("Optional integration contract: PASS")

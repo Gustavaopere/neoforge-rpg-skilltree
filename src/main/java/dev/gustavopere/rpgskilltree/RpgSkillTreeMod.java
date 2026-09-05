@@ -22,6 +22,11 @@ import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEve
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationBootstrap;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationState;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageLifecycleEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageSpellProfileReloader;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.MineColoniesBattleMageRegistration;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumDiscoveryEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEditorialCatalogEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEntityCatalogEvents;
@@ -83,7 +88,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(PlayerProgressionEvents.class);
         NeoForge.EVENT_BUS.register(RelevantPlayerCacheEvents.class);
         // NodeRulesReloader.class and NodeEffectsReloader.class are retained as legacy source
-        // compatibility only; their independent registrations are intentionally retired.
+        // compatibility markers only; their independent registrations are intentionally retired.
         NeoForge.EVENT_BUS.register(SkillTreeDataReloader.class);
         NeoForge.EVENT_BUS.register(TreeArchitectureReloader.class);
         NeoForge.EVENT_BUS.register(TreeUnlockReloader.class);
@@ -115,34 +120,62 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CompendiumWorldDiscoveryEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);
 
-        RuntimeDiagnostics.info(
-            LOGGER,
-            Category.COMPAT,
-            "optional_providers",
-            "Optional integrations: {}",
-            OptionalIntegrations.summary()
-        );
+        RuntimeDiagnostics.info(LOGGER, Category.COMPAT, "optional_providers", "Optional integrations: {}", OptionalIntegrations.summary());
         ColdSweatFrenzyBridge.initializeDiagnostics();
 
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)) {
-            NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
+        boolean mineColoniesLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
+        boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
+        String mineColoniesVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
+        String ironsSpellbooksVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
+        BattleMageIntegrationState battleMageState = BattleMageIntegrationBootstrap.evaluate(
+            mineColoniesLoaded,
+            ironsSpellbooksLoaded,
+            mineColoniesVersion,
+            ironsSpellbooksVersion
+        );
+        if (battleMageState == BattleMageIntegrationState.ACTIVE) {
+            battleMageState = BattleMageIntegrationBootstrap.install(
+                true,
+                true,
+                mineColoniesVersion,
+                ironsSpellbooksVersion,
+                () -> {
+                    MineColoniesBattleMageRegistration.register(modBus);
+                    NeoForge.EVENT_BUS.register(BattleMageSpellProfileReloader.class);
+                    NeoForge.EVENT_BUS.register(BattleMageLifecycleEvents.class);
+                }
+            );
         }
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.ARS_NOUVEAU)) {
-            NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
+        if (battleMageState == BattleMageIntegrationState.ACTIVE) {
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPAT,
+                "minecolonies_battle_mage_active",
+                "MineColonies Battle Mage integration active: MineColonies {}, Iron's {}",
+                mineColoniesVersion,
+                ironsSpellbooksVersion
+            );
+        } else if (battleMageState != BattleMageIntegrationState.ABSENT_PROVIDER) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "minecolonies_battle_mage_disabled",
+                "MineColonies Battle Mage integration disabled: state={}, MineColonies={}, Iron's={}",
+                battleMageState,
+                mineColoniesVersion,
+                ironsSpellbooksVersion
+            );
         }
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.GOETY)) {
-            NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class);
-        }
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MALUM)) {
-            NeoForge.EVENT_BUS.register(MalumProgressionEvents.class);
-        }
+
+        if (ironsSpellbooksLoaded) NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.ARS_NOUVEAU)) NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.GOETY)) NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class);
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MALUM)) NeoForge.EVENT_BUS.register(MalumProgressionEvents.class);
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EIDOLON)) {
             NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
             NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
         }
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IDENTITY2)) {
-            NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
-        }
+        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IDENTITY2)) NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EPIC_FIGHT)) {
             String version = OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT);
             if (EpicFightVersionContract.supportsVersion(version)) {

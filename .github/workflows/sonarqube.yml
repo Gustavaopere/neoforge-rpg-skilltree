@@ -71,10 +71,34 @@ jobs:
       - name: Sonar New Code hotspot regression test
         run: python3 scripts/test_sonar_new_code_hotspots.py
 
+      - name: Collect provider-free GameTest coverage
+        run: >-
+          ./gradlew --no-daemon
+          -I gradle/sonar-gametest-coverage.init.gradle
+          runGameTestServer
+          -PgameTestCoverageName=provider-free
+
+      - name: Collect Battle Mage provider GameTest coverage
+        run: >-
+          ./gradlew --no-daemon
+          -I gradle/sonar-gametest-coverage.init.gradle
+          runGameTestServer
+          -PbattleMageProviderRuntime=true
+          -PgameTestCoverageName=battle-mage-provider
+
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew --no-daemon -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300 build sonar --info
+        run: >-
+          ./gradlew --no-daemon
+          -I gradle/sonar-gametest-coverage.init.gradle
+          -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml,build/reports/jacoco/provider-free/provider-free.xml,build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml
+          -Dsonar.tests=src/test/java,src/main/java
+          -Dsonar.test.inclusions=src/test/java/**/*,src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java
+          -Dsonar.exclusions=src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java
+          -Dsonar.qualitygate.wait=true
+          -Dsonar.qualitygate.timeout=300
+          build sonar --info
 
       - name: Verify Sonar new-code issue count on main
         if: github.event_name != 'pull_request'
