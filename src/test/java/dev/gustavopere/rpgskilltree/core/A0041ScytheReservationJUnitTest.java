@@ -1,6 +1,8 @@
 package dev.gustavopere.rpgskilltree.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
@@ -48,6 +50,51 @@ final class A0041ScytheReservationJUnitTest {
         assertTrue(A0041A0060CombatPolicy.scytheCut(
             "player", "target", "root-next", RANKS, legacy, state, 0.40D, true, 2_102L
         ).applied(), "rollback must release the target for a later root");
+    }
+
+    @Test
+    void reservationCanBeTakenByTargetExactlyOnce() {
+        A0041A0060CombatState state = new A0041A0060CombatState();
+        assertTrue(state.reserveScytheCut("player", "target", "root-take", 3_000L));
+        assertEquals("root-take", state.takeScytheCutReservationForTarget("player", "target", 3_010L));
+        assertNull(state.takeScytheCutReservationForTarget("player", "target", 3_011L));
+        assertFalse(state.commitScytheCutReservation("player", "target", "root-take", 3_012L));
+    }
+
+    @Test
+    void expiredReservationIsPrunedAndTargetCanBeReservedAgain() {
+        A0041A0060CombatState state = new A0041A0060CombatState();
+        assertTrue(state.reserveScytheCut("player", "target", "root-old", 4_000L));
+        assertNull(state.takeScytheCutReservationForTarget("player", "target", 4_251L));
+        assertTrue(state.reserveScytheCut("player", "target", "root-new", 4_252L));
+        assertTrue(state.commitScytheCutReservation("player", "target", "root-new", 4_253L));
+    }
+
+    @Test
+    void targetActorAndGlobalCleanupReleaseReservations() {
+        A0041A0060CombatState state = new A0041A0060CombatState();
+
+        assertTrue(state.reserveScytheCut("player", "target-a", "root-a", 5_000L));
+        state.discardScytheCutReservationForTarget("player", "target-a");
+        assertTrue(state.reserveScytheCut("player", "target-a", "root-a2", 5_001L));
+
+        assertTrue(state.reserveScytheCut("player", "target-b", "root-b", 5_002L));
+        state.clearActor("player");
+        assertTrue(state.reserveScytheCut("player", "target-a", "root-after-actor-clear", 5_003L));
+        assertTrue(state.reserveScytheCut("other", "target-c", "root-c", 5_004L));
+
+        state.clearAll();
+        assertTrue(state.reserveScytheCut("player", "target-a", "root-after-global-clear", 5_005L));
+        assertTrue(state.reserveScytheCut("other", "target-c", "root-after-global-clear-2", 5_006L));
+    }
+
+    @Test
+    void commitRejectsMismatchedTargetButStillConsumesRootReservation() {
+        A0041A0060CombatState state = new A0041A0060CombatState();
+        assertTrue(state.reserveScytheCut("player", "target", "root", 6_000L));
+        assertFalse(state.commitScytheCutReservation("player", "other-target", "root", 6_001L));
+        assertFalse(state.commitScytheCutReservation("player", "target", "root", 6_002L));
+        assertTrue(state.reserveScytheCut("player", "target", "root-next", 6_003L));
     }
 
     private static A0021A0040CombatState matureMark(String target, long now) {
