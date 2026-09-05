@@ -26,6 +26,24 @@ final class ColonyEconomyIntentJUnitTest {
     }
 
     @Test
+    void configuredMutationCapIsAppliedAfterProtocolValidation() {
+        long configuredCap = 100L;
+
+        assertEquals(
+            EconomyIntentLimits.Validation.ACCEPTED,
+            EconomyIntentLimits.validateAmount(configuredCap, configuredCap)
+        );
+        assertEquals(
+            EconomyIntentLimits.Validation.POLICY_LIMIT_EXCEEDED,
+            EconomyIntentLimits.validateAmount(configuredCap + 1L, configuredCap)
+        );
+        assertEquals(
+            EconomyIntentLimits.Validation.PROTOCOL_LIMIT_EXCEEDED,
+            EconomyIntentLimits.validateAmount(EconomyIntentLimits.MAX_MUTATION_AMOUNT + 1L, configuredCap)
+        );
+    }
+
+    @Test
     void mintPreflightDoesNotMutateSourceState() {
         ColonyEconomyState source = ColonyEconomyState.empty(
             new EconomyColonyKey(UUID.fromString("00000000-0000-0000-0000-000000001601"))
