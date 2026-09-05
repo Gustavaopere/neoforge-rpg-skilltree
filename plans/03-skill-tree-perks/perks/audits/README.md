@@ -32,8 +32,20 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0061-A0070.md` — fechamento de design A0061–A0070, incluindo correção fail-closed/unavailable de A0067, cobertura BOSS de A0070 e gate de delta dos quatro projetos próprios.
 - `AUDITORIA-A0071-A0080.md` — fechamento de design A0071–A0080, incluindo availability transitiva, reservation→commit, posturas server-authoritative, sustain all-or-nothing, movement/stationary e dodge-success fail-closed.
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
+- `AUDITORIA-A0171-A0180.md` — fechamento de design A0171–A0180; seis nodes fail-closed e quatro resistências LIGHTNING/NATURE implementáveis no resolver elemental compartilhado.
+- `STATUS-A0171-A0180.md` — tracker complementar autoritativo do lote enquanto as PRs predecessoras documentais permanecem abertas.
 - `AUDITORIA-A0200-A0209.md` — checkpoint histórico inicial Eldritch/Ender, preservado para rastreabilidade.
 - `AUDITORIA-A0200-A0299.md` — auditoria especial autorizada de 100 perks, com tracker individual A0200–A0299, Notion 100/100, providers, projetos próprios, blockers e handoff fail-closed.
+
+### Auditorias concorrentes ainda não integradas na `main`
+
+As auditorias abaixo estão materializadas nas PRs abertas e não são copiadas nesta branch para evitar divergência de fonte:
+
+- A0141–A0150 — PR #361;
+- A0151–A0160 — PR #366;
+- A0161–A0170 + `STATUS-A0161-A0170.md` — PR #368.
+
+A reconciliação futura deste índice deve inserir os arquivos dessas PRs mantendo a ordem cronológica e sem apagar o registro A0171–A0180.
 
 ## Auditorias de delta da modlist — Chat 1
 
