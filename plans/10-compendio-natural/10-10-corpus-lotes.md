@@ -464,14 +464,38 @@ Entradas:
 - nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
 - TDD confirmado no commit `cdb79fba9a04b813a4e91d5f33fd0cb9eb595a21`: 961 testes, exatamente 1 falha no Batch16 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 17 — Oh The Biomes We've Gone / biomas Overworld (batch 6 final)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch6.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:biomeswevegone:temperate_grove` — Bosque Temperado
+2. `BIOME:biomeswevegone:weeping_witch_forest` — Floresta das Bruxas Choronas
+3. `BIOME:biomeswevegone:white_mangrove_marshes` — Mangue Branco
+4. `BIOME:biomeswevegone:windswept_desert` — Deserto Ventoso
+5. `BIOME:biomeswevegone:zelkova_forest` — Floresta de Zelkova
+
+### Critérios editoriais aplicados ao lote 17
+
+- o recorte continua imediatamente após `tropical_rainforest` e encerra a seção Overworld de `BWGBiomes.java` da release 2.6.0;
+- IDs, ordem, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os cinco títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit;
+- tags de vila de planície, posto de saqueadores, mansão da floresta e Vila de Salem são tratadas somente como elegibilidade de worldgen, não garantia de geração;
+- categorias internas como `SPARSE`, `MAGICAL`, `DENSE` e `WINDSWEPT` não são convertidas em densidade, intensidade, altura, frequência ou outros valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `cd6e091deb96bf770c7c15763fe65f82456d8674`: 975 testes, exatamente 1 falha no Batch17 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
-- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **50**;
-- entradas editoriais totais: **160**;
-- lotes documentados: **16**;
+- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
+- entradas editoriais totais: **165**;
+- lotes documentados: **17**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
