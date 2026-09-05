@@ -4,7 +4,11 @@
 
 Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos`, `10.07 — Loot, dieta, reprodução e ecologia` e `10.08 — Biomas, estruturas e dimensões` foram implementados, validados, integrados e auditados.
 
-Planejamento do Stage 11 adicionado em **2026-08-29** pelo PR #188. O estágio possui **15 subplanos**; `11.01 — Domínio, invariantes e autoridade` foi implementado e validado pelo PR #232, restando 14 subplanos abertos. A base global permanece em **90 subplanos**.
+Planejamento do Stage 11 adicionado em **2026-08-29** pelo PR #188. O estágio possui **15 subplanos**; `11.01 — Domínio, invariantes e autoridade` foi implementado e validado pelo PR #232, restando 14 subplanos abertos.
+
+Os Stages 12 e 13 já fazem parte do catálogo de planos com 15 subplanos cada. Nesta consolidação de **2026-08-30**, o Stage 02 recebeu o complemento aberto `02.06 — Elegibilidade de scaling, fauna passiva e MineColonies`, o Stage 09 recebeu `09.09 — Auditoria de referências dos sistemas sociais e de mundo`, e foram adicionados os Stages 14–20 para construções/schematics, distritos, economia, governo, prédios MineColonies, inverno/aquecimento e reinos/guerra/rebelião. O catálogo canônico passa a possuir **192 subplanos**, dos quais **32** permanecem formalmente concluídos.
+
+A relação desses novos Stages com a ordem superior de `docs/MASTER_PLAN.md` é fixada por `docs/decisions/016-society-world-systems-stage-mapping.md`: planejamento pode existir agora, mas implementação live permanece subordinada aos gates das Phases 0–9.
 
 Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
@@ -32,7 +36,7 @@ Fechamento do Stage 00.01 auditado contra `main@0f008fc3bc1767e74da777fcc02e37fd
 
 Fechamento funcional do Stage 10.08 auditado contra `main@c980f7835a01ef038e34d1ea0fab66d33e8bb03c`, após integração do PR #110. Os CIs pós-merge `33230100328` / Compendium Flora #215, `33230100330` / Compendium Entities #281, `33230100337` / Foundation Bootstrap #19, `33230100355` / Compendium Ecology #254, `33230100371` / Compendium Discovery #358, `33230100386` / Compendium World #16 e `33230100358` / RPG Skill Tree #1241 fecharam GREEN; o CI completo incluiu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
 
-Fechamento do Stage 00.03 auditado contra `main@4f48fefa15477023ce2dcb9d56c36b586a6b16ea`, após integração do PR #113. O TDD RED `33230185322` detectou a ausência do registry central; um candidato intermediário revelou ainda `ClassNotFoundException` real do target Identity2 no Mixin, corrigido por isolamento e gate early-startup. Os CIs pós-merge `33230834923` / Foundation Bootstrap #55, `33230834955` / Foundation Optional Integrations #17 e `33230834856` / RPG Skill Tree #1277 fecharam GREEN. O CI completo incluiu Core, JUnit 5, NeoForge GameTests, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e status final de sucesso; o smoke confirmou os sete providers opcionais ausentes e `Classloading errors: none`.
+Fechamento do Stage 00.03 auditado contra `main@4f48fefa15477023ce2dcb9d56c36b586a6b16ea`, após integração do PR #113. O TDD RED `33230185322` detectou a ausência do registry central; um candidato intermediário revelou ainda `ClassNotFoundException` real do target Identity2 no Mixin, corrigido por isolamento e gate early-startup. Os CIs pós-merge `33230834923` / Foundation Bootstrap #55, `33230834955` / Foundation Optional Integrations #17 e `33230834856` / RPG Skill Tree CI #1277 fecharam GREEN. O CI completo incluiu Core, JUnit 5, NeoForge GameTests, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e status final de sucesso; o smoke confirmou os sete providers opcionais ausentes e `Classloading errors: none`.
 
 Fechamento do Stage 00.04 auditado contra `main@4a13ac7c8deda8827e755d100223985f07319e8e`, após integração do PR #120. O RED inicial `33231244859` exigiu o boundary de diagnostics; a implementação consolidou taxonomia estruturada, reload fail-visible com path/resource IDs, anti-spam de falhas persistentes e documentação reproduzível dos gates. Os CIs pós-merge `33244389124` / Foundation Diagnostics #22, `33244389122` / Foundation Bootstrap #113, `33244389143` / Foundation Optional Integrations #75 e `33244389119` / RPG Skill Tree #1335 fecharam GREEN. O CI completo cobriu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
 
@@ -56,7 +60,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 
 ## Resultado
 
-**32 / 90 subplanos concluídos formalmente.**
+**32 / 192 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -99,17 +103,26 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | --- | ---: | ---: | --- |
 | 00 Foundation | 4 | 4 | CONCLUÍDO |
 | 01 RPG Core | 5 | 5 | CONCLUÍDO |
-| 02 Progression & World Scaling | 5 | 5 | CONCLUÍDO |
+| 02 Progression & World Scaling | 5 | 6 | EM ANDAMENTO — 02.06 aberto |
 | 03 Skill Tree & Perks | 5 | 6 | EM ANDAMENTO |
 | 04 Classes, Masteries & Specializations | 1 | 6 | EM ANDAMENTO |
 | 05 Combat & Magic Hooks | 0 | 6 | EM ANDAMENTO |
 | 06 Integrations | 2 | 9 | EM ANDAMENTO |
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
-| 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
+| 09 Hardening & Release | 0 | 9 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
 | 11 Itemização & Progressão de Equipamentos | 1 | 15 | EM ANDAMENTO |
-| **Total** | **32** | **90** | |
+| 12 Corpos, Clones & Identidades de Progressão | 0 | 15 | PLANEJADO |
+| 13 Cartografia, Regiões, POIs & Descoberta | 0 | 15 | PLANEJADO |
+| 14 Pipeline de Construções & Blueprints | 0 | 9 | PLANEJADO |
+| 15 Distritos Administrativos & Zoneamento | 0 | 9 | PLANEJADO |
+| 16 Economia & Sociedade da Colônia | 0 | 10 | PLANEJADO |
+| 17 Governo, Leis & Instituições | 0 | 12 | PLANEJADO |
+| 18 Prédios Cívicos/Comerciais MineColonies | 0 | 9 | PLANEJADO |
+| 19 Inverno Extremo & Aquecimento Distrital | 0 | 10 | PLANEJADO |
+| 20 Reinos, Diplomacia, Guerra & Rebelião | 0 | 10 | PLANEJADO |
+| **Total** | **32** | **192** | |
 
 ## Por que os demais continuam abertos
 
@@ -123,7 +136,7 @@ Stage 01 concluído. `✅-01-player-state.md` fecha o envelope persistente canô
 
 ### 02 — Progression & World Scaling
 
-Stage 02 concluído. `✅-01-relevant-player-level.md` fecha seleção bounded/local/party; `✅-02-territory-area-level.md` fecha resolução e transição determinísticas de território; `✅-03-entity-level.md` fecha lifecycle persistido e fallback conservador para entidades externas; `✅-04-rarity-archetypes.md` fecha rarity/archetype persistidos e modifiers idempotentes; `✅-05-scaling-rewards-performance.md` fecha curvas independentes e capped, XP/loot bounded pela mesma reward policy, acceptance multiplayer e budgets algorítmicos dos hot paths.
+O núcleo 02.01–02.05 permanece concluído e auditado. O Stage volta ao estado geral **EM ANDAMENTO** somente porque `06-entity-scaling-eligibility-minecolonies.md` é um complemento novo ainda não implementado: ele deve separar `COMBATANT_FULL`, `NONCOMBATANT_DEFENSIVE` e `UNSCALED`, incluindo cleanup de modifiers legacy em passivos e integração MineColonies fail-soft.
 
 ### 03 — Skill Tree & Perks
 
@@ -151,7 +164,7 @@ Loaders, packets e UI já existem, mas o acceptance final ainda exige reload cro
 
 ### 09 — Hardening & Release
 
-Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. A suíte atual é forte, mas ainda não substitui profiling/budgets, migrations e matrizes provider-presente.
+Nenhum gate final pode ser fechado enquanto existirem blockers de migração, compatibilidade, performance e release. Além dos planos históricos 01–07, `08-third-party-licenses-provenance.md` e `09-society-worldsystems-reference-audit.md` são gates abertos de licença/proveniência; a suíte atual é forte, mas ainda não substitui profiling/budgets, migrations e matrizes provider-presente.
 
 ### 10 — Compêndio Natural
 
@@ -167,9 +180,45 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 `✅-01-domain-invariants.md` está fechado. O domínio canônico agora fixa identidade (`instanceId`/seed/schema), sete ranks, `ItemPower`, as três famílias Prefix/Suffix/Infix com 1..5 rolls por família, fontes de geração, primeira geração imutável, query versus mutation, política de evolução/cópia e barreira contra imports opcionais/compat inclusive por referências totalmente qualificadas atravessando linhas. Os 14 subplanos seguintes continuam abertos e devem reutilizar esse contrato sem criar representações concorrentes. O próximo passo causal é `02-equipment-classification.md`.
 
+### 12 — Corpos, Clones & Identidades de Progressão
+
+Os 15 subplanos existem e continuam abertos. O Stage trata ownership/scope de corpos, persistência, troca atômica, world-scaling refresh, construção tecnológica, transmigração mística, inventário/Curios/itemização, death/respawn, providers externos, UI, atribuição NeoSync, migration/recovery e hardening. Nenhum arquivo possui `✅` no estado canônico atual.
+
+### 13 — Cartografia, Regiões, POIs & Descoberta
+
+Os 15 subplanos existem e continuam abertos. Regiões semânticas/POIs/intel/JourneyMap pertencem a este Stage; distritos administrativos criados pelo jogador pertencem ao Stage 15 e não substituem o Stage 13.
+
+### 14 — Pipeline de Construções & Blueprints
+
+Todos os 9 subplanos estão planejados e abertos. O Stage estabelece `VoxelModel` como autoridade única para preview, `.schem`, exporters Structurize/MineColonies, style packs, paletas Create, FunctionalGraph, BOM e gate de paridade entre revisão visual e arquivo exportado.
+
+### 15 — Distritos Administrativos & Zoneamento
+
+Todos os 9 subplanos estão planejados e abertos. O Stage define polígonos côncavos, ferramenta de traçado, renderer, índice espacial, `districtAt`, zoning, overrides de policy, analytics socioeconômicos e bridge com Stage 13/JourneyMap.
+
+### 16 — Economia & Sociedade da Colônia
+
+Todos os 10 subplanos estão planejados e abertos. O Stage cobre ledger monetário, wallets/treasury, salários/arrears, preços/impostos/subsídios, transações, shops, classificação automática de goods, propriedade/aluguel/patrimônio/classes, orçamento, pesquisa/mecenato, pobreza/dívida/welfare e migrations.
+
+### 17 — Governo, Leis & Instituições
+
+Todos os 12 subplanos estão planejados e abertos. O Stage separa GovernmentForm/EconomicRegime/LawSet, fixa precedência jurídica, eleições/sufrágio censitário, capitalismo, economia comunal, teocracia, tecnocracia, magocracia, feudalismo/servidão/escravidão fictícia, corte/cargos/conselho e transições/legitimidade.
+
+### 18 — Prédios Cívicos/Comerciais MineColonies
+
+Todos os 9 subplanos estão planejados e abertos. O Stage materializa buildings/jobs/services para comércio, finanças, governo, religião, saúde, tecnologia, magia, habitação e requests/logistics, preservando MineColonies como autoridade do lifecycle provider e Stage 16 como autoridade econômica.
+
+### 19 — Inverno Extremo & Aquecimento Distrital
+
+Todos os 10 subplanos estão planejados e abertos. O Stage cobre crise sazonal, thermal demand, HeatNetwork, combustíveis/Generator Core, Central Térmica níveis 1–5, substations/endpoints/prioridades, exposição ao frio, leis emergenciais/racionamento, Create funcional e matriz fail-soft. Cold Sweat permanece autoridade da temperatura corporal do jogador.
+
+### 20 — Reinos, Diplomacia, Guerra & Rebelião
+
+Todos os 10 subplanos estão planejados e abertos. O Stage cria `RealmRecord` acima de Colony, titles, diplomacy/treaties, war/siege/occupation, vassalage/tribute/conquest, NPC realm AI singleplayer, settlements offscreen agregados, espionage/intel e escalada de descontentamento até insurreição.
+
 ## Evidência de regressão atual
 
-O fechamento funcional mais recente é Stage 11.01 no PR #232. O TDD RED inicial `33308736024` confirmou a ausência intencional dos tipos; o hardening final confirmou RED no RPG Skill Tree CI `33320606205` / run #2125 especificamente para referência opcional totalmente qualificada dividida entre linhas. O último head funcional com código `ad26f7319893100ba2e46bd66361005003cf4752` passou o RPG Skill Tree CI `33320744278` / run #2128 GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke. Todos os workflows Foundation/Compendium associados ao mesmo head também fecharam GREEN. Os fechamentos anteriores, inclusive Stage 03.04 em `main@c1523ac5211543d26cdb54387eb2089510822ff3`, permanecem preservados pela mesma matriz de regressão.
+O fechamento funcional mais recente registrado neste arquivo é Stage 11.01 no PR #232. O TDD RED inicial `33308736024` confirmou a ausência intencional dos tipos; o hardening final confirmou RED no RPG Skill Tree CI `33320606205` / run #2125 especificamente para referência opcional totalmente qualificada dividida entre linhas. O último head funcional com código `ad26f7319893100ba2e46bd66361005003cf4752` passou o RPG Skill Tree CI `33320744278` / run #2128 GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke. Todos os workflows Foundation/Compendium associados ao mesmo head também fecharam GREEN. Os fechamentos anteriores, inclusive Stage 03.04 em `main@c1523ac5211543d26cdb54387eb2089510822ff3`, permanecem preservados pela mesma matriz de regressão.
 
 ## Convenção
 
