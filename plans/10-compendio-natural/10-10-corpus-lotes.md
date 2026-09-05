@@ -197,7 +197,7 @@ Entradas:
 - identidade das dez entidades confirmada no registry de Minecraft 1.21.1 e nomenclatura revisada contra o asset `pt_br` da mesma linha, incluindo `Dragão Ender`, `Devastador`, `Traça`, `Vingador` e `Defensor`;
 - chefes tratados por seus sistemas reais em vez de descrições genéricas: o Dragão Ender usa a infraestrutura de fases do pacote `enderdragon.phases`, enquanto o Wither mantém alvos múltiplos, projéteis e estado próprio de chefe;
 - o Defensor foi documentado a partir de `Warden`, `WardenAi`, `AngerManagement`, `VibrationSystem` e do comportamento sônico no caminho correto `net.minecraft.world.entity.ai.behavior.warden.SonicBoom`;
-- relações e comportamentos estruturais relevantes foram preservados: `Ravager` → `Raider`, `MagmaCube` → `Slime`, carapaça/fixação do Shulker, infestação e chamada de grupo da Traça, vínculo/investida do Vex, estado Johnny do Vingador e ciclo de vida próprio da Endermite;
+- relações e comportamentos estruturais relevantes foram preservados: `Ravager` → `Raider`, `MagmaCube` → `Slime`, carapaça/fixação do Shulker, infestação e chamada de grupo da Traça, vínculo/investida do Vex, estado Johnny do Vingador e ciclo de vida própria da Endermite;
 - nenhuma duração, chance, dano, alcance, recarga, velocidade, força de projétil, resistência, limiar de raiva ou outro parâmetro mecânico mutável foi congelado em prosa;
 - todas as fichas usam `RUNTIME` e `OFFICIAL_CODE`, permanecem `REVIEWED`/`RUNTIME` e não transformam detalhes de configuração ou composição de encontros em regras universais;
 - o corpus corrigido passou pelo Compendium Editorial CI #218 e pelo RPG Skill Tree CI #2390, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
@@ -435,14 +435,43 @@ Entradas:
 - nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
 - TDD confirmado no commit `3f88813aacf64eb1bbc8d498599126018d271cd6`: 912 testes, exatamente 1 falha no Batch15 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 16 — Oh The Biomes We've Gone / biomas Overworld (batch 5)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch5.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:biomeswevegone:red_rock_valley` — Vale da Rocha Vermelha
+2. `BIOME:biomeswevegone:red_rock_peaks` — Picos de Rocha Vermelha
+3. `BIOME:biomeswevegone:redwood_thicket` — Matagal de Sequoias
+4. `BIOME:biomeswevegone:rose_fields` — Campo de Rosas
+5. `BIOME:biomeswevegone:rugged_badlands` — Ermo Acidentado
+6. `BIOME:biomeswevegone:sakura_grove` — Bosque de Sakura
+7. `BIOME:biomeswevegone:shattered_glacier` — Geleira Quebrada
+8. `BIOME:biomeswevegone:sierra_badlands` — Serra de Ermo
+9. `BIOME:biomeswevegone:skyris_vale` — Vale de Skyris
+10. `BIOME:biomeswevegone:tropical_rainforest` — Floresta Tropical
+
+### Critérios editoriais aplicados ao lote 16
+
+- o recorte continua imediatamente após `rainbow_beach` na ordem do registry `BWGBiomes.java` da release 2.6.0;
+- IDs, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os dez títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit;
+- tags de vilas, posto de saqueadores, pirâmide do deserto, tesouro enterrado e estruturas próprias do BWG são tratadas somente como elegibilidade de worldgen, não garantia de geração;
+- categorias internas como `RED_ROCK_ARCH`, `SHARPENED_ROCKS`, `DRY`, `PEAK`, `SLOPE` e `ICY` não são convertidas em geometria, altura, frequência, temperatura ou outros valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `cdb79fba9a04b813a4e91d5f33fd0cb9eb595a21`: 961 testes, exatamente 1 falha no Batch16 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
-- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **40**;
-- entradas editoriais totais: **150**;
-- lotes documentados: **15**;
+- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **50**;
+- entradas editoriais totais: **160**;
+- lotes documentados: **16**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
