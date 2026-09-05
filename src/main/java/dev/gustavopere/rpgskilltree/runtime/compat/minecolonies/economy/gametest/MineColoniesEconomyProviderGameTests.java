@@ -184,7 +184,7 @@ public final class MineColoniesEconomyProviderGameTests {
         Class.forName(SCHEMATIC_PROVIDER).getMethod("setRotationMirror", rotationMirrorType)
             .invoke(building, identityRotation);
         building.getClass().getMethod("setBuildingLevel", int.class).invoke(building, level);
-        int actualLevel = (int) Class.forName(SCHEMATIC_PROVIDER).getMethod("getBuildingLevel").invoke(building);
+        int actualLevel = (int) building.getClass().getMethod("getBuildingLevel").invoke(building);
         if (actualLevel != level) {
             throw new AssertionError("MineColonies rejected fixture building level " + level + "; actual=" + actualLevel);
         }
