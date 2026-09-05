@@ -3,9 +3,10 @@ package dev.gustavopere.rpgskilltree.core.economy;
 /** Deterministic server-side parameters for the V1 economy model. */
 public record EconomyParameters(
     long baseCapacity,
+    long minimumCapacity,
     long workerWeight,
     long buildingLevelWeight,
-    long warehouseBonus,
+    double warehouseBonus,
     int warehouseCap,
     double beta,
     double minPriceIndex,
@@ -14,11 +15,14 @@ public record EconomyParameters(
     double maxStepDown
 ) {
     public EconomyParameters {
-        if (baseCapacity <= 0L) {
-            throw new IllegalArgumentException("baseCapacity must be positive");
+        if (baseCapacity <= 0L || minimumCapacity <= 0L) {
+            throw new IllegalArgumentException("capacity baselines must be positive");
         }
-        if (workerWeight < 0L || buildingLevelWeight < 0L || warehouseBonus < 0L) {
+        if (workerWeight < 0L || buildingLevelWeight < 0L) {
             throw new IllegalArgumentException("capacity weights must be non-negative");
+        }
+        if (!Double.isFinite(warehouseBonus) || warehouseBonus < 0.0D) {
+            throw new IllegalArgumentException("warehouseBonus must be finite and non-negative");
         }
         if (warehouseCap < 0) {
             throw new IllegalArgumentException("warehouseCap must be non-negative");
@@ -36,13 +40,14 @@ public record EconomyParameters(
     public static EconomyParameters defaults() {
         return new EconomyParameters(
             2L,
-            2L,
             1L,
             2L,
+            1L,
+            0.10D,
             2,
-            1.4306765580733933D,
-            25.0D,
-            1_000.0D,
+            0.50D,
+            50.0D,
+            500.0D,
             5.0D,
             3.0D
         );
