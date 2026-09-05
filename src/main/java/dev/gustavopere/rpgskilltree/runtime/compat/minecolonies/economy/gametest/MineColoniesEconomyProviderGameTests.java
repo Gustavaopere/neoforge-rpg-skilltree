@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.gametest;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.Optional;
 import net.minecraft.core.BlockPos;
@@ -20,12 +21,15 @@ public final class MineColoniesEconomyProviderGameTests {
     private static final String COLONY_MANAGER = "com.minecolonies.api.colony.IColonyManager";
     private static final String COLONY = "com.minecolonies.api.colony.IColony";
     private static final String CITIZEN_DATA = "com.minecolonies.api.colony.ICitizenData";
+    private static final String JOB = "com.minecolonies.api.colony.jobs.IJob";
     private static final String BUILDING = "com.minecolonies.api.colony.buildings.IBuilding";
     private static final String BUILDING_ENTRY = "com.minecolonies.api.colony.buildings.registry.BuildingEntry";
     private static final String MODULE_PRODUCER = "com.minecolonies.api.colony.buildings.registry.BuildingEntry$ModuleProducer";
     private static final String MOD_BUILDINGS = "com.minecolonies.api.colony.buildings.ModBuildings";
     private static final String ADAPTER =
         "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyAdapter";
+    private static final String BATTLE_MAGE_JOB =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.JobBattleMage";
     private static final String BATTLE_MAGE_REGISTRATION =
         "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.MineColoniesBattleMageRegistration";
 
@@ -54,9 +58,15 @@ public final class MineColoniesEconomyProviderGameTests {
             helper.assertTrue((int) nativeBinding.getClass().getMethod("colonyId").invoke(nativeBinding)
                     == (int) colonyType.getMethod("getID").invoke(colony),
                 "native binding must preserve provider colony id");
-            Object dimensionId = nativeBinding.getClass().getMethod("dimensionId").invoke(nativeBinding);
-            helper.assertTrue(Level.OVERWORLD.location().equals(dimensionId),
+            helper.assertTrue(Level.OVERWORLD.location().equals(
+                    nativeBinding.getClass().getMethod("dimensionId").invoke(nativeBinding)),
                 "native binding must preserve provider dimension id");
+            helper.assertTrue(owner.getUUID().equals(
+                    nativeBinding.getClass().getMethod("ownerUuid").invoke(nativeBinding)),
+                "native binding must fingerprint the provider owner UUID");
+            helper.assertTrue(fixture.townHallPos().equals(
+                    nativeBinding.getClass().getMethod("townHallPos").invoke(nativeBinding)),
+                "native binding must fingerprint the real Town Hall position");
 
             @SuppressWarnings("unchecked")
             Optional<Object> inputsResult = (Optional<Object>) adapterType.getMethod("economicInputs", colonyType)
@@ -64,11 +74,11 @@ public final class MineColoniesEconomyProviderGameTests {
             helper.assertTrue(inputsResult.isPresent(), "real provider graph must produce economy inputs");
             Object inputs = inputsResult.orElseThrow();
             helper.assertTrue((int) inputs.getClass().getMethod("adultEmployedCitizens").invoke(inputs) == 1,
-                "only the employed adult fixture citizen must contribute worker capacity");
-            helper.assertTrue((int) inputs.getClass().getMethod("builtLevelPoints").invoke(inputs) == 4,
-                "built level points must sum the level-1 guard tower and level-3 warehouse");
+                "job without work building must not contribute worker capacity");
+            helper.assertTrue((int) inputs.getClass().getMethod("builtLevelPoints").invoke(inputs) == 10,
+                "built levels must include Town Hall/guard/warehouse and clamp level 8 to 5");
             helper.assertTrue((int) inputs.getClass().getMethod("warehouseCount").invoke(inputs) == 1,
-                "real MineColonies warehouse collection must contribute exactly one warehouse");
+                "level-0/unbuilt warehouse must not contribute logistics capacity");
 
             Method mayManage = adapterType.getMethod(
                 "mayManageEconomy",
@@ -97,11 +107,13 @@ public final class MineColoniesEconomyProviderGameTests {
             "createColony", ServerLevel.class, BlockPos.class, Player.class, String.class, String.class
         ).invoke(manager, level, center, owner, "Economy Provider GameTest", "default");
         if (colony == null) throw new AssertionError("MineColonies failed to create economy test colony");
-
-        Object citizen = spawnCitizen(colony, level, center.above());
-        Object citizenData = citizen.getClass().getMethod("getCitizenData").invoke(citizen);
         Object structureManager = colony.getClass().getMethod("getServerBuildingManager").invoke(colony);
 
+        Object townHall = createBuilding(colony, center, "townHall", 1);
+        addBuilding(structureManager, townHall);
+
+        Object employedCitizen = spawnCitizen(colony, level, center.above());
+        Object employedData = employedCitizen.getClass().getMethod("getCitizenData").invoke(employedCitizen);
         Object guardTower = createBuilding(colony, center.offset(2, 0, 0), "guardTower", 1);
         addBuilding(structureManager, guardTower);
         Object producer = Class.forName(BATTLE_MAGE_REGISTRATION).getMethod("guardTowerWorkModule").invoke(null);
@@ -109,13 +121,26 @@ public final class MineColoniesEconomyProviderGameTests {
             .invoke(guardTower, producer);
         if (workModule == null) throw new AssertionError("Guard Tower missing Battle Mage work module");
         boolean assigned = (boolean) workModule.getClass().getMethod("assignCitizen", Class.forName(CITIZEN_DATA))
-            .invoke(workModule, citizenData);
+            .invoke(workModule, employedData);
         if (!assigned) throw new AssertionError("Guard Tower rejected employed economy fixture citizen");
 
-        Object warehouse = createBuilding(colony, center.offset(5, 0, 0), "warehouse", 3);
-        addBuilding(structureManager, warehouse);
+        Object detachedCitizen = spawnCitizen(colony, level, center.offset(0, 1, 2));
+        Object detachedData = detachedCitizen.getClass().getMethod("getCitizenData").invoke(detachedCitizen);
+        Constructor<?> jobConstructor = Class.forName(BATTLE_MAGE_JOB).getConstructor(Class.forName(CITIZEN_DATA));
+        Object detachedJob = jobConstructor.newInstance(detachedData);
+        Class.forName(CITIZEN_DATA).getMethod("setJob", Class.forName(JOB)).invoke(detachedData, detachedJob);
+        if (Class.forName(CITIZEN_DATA).getMethod("getWorkBuilding").invoke(detachedData) != null) {
+            throw new AssertionError("Detached job fixture unexpectedly acquired a work building");
+        }
 
-        return new Fixture(manager, colony, owner);
+        Object warehouse = createBuilding(colony, center.offset(5, 0, 0), "wareHouse", 3);
+        addBuilding(structureManager, warehouse);
+        Object clampedBuilding = createBuilding(colony, center.offset(8, 0, 0), "home", 8);
+        addBuilding(structureManager, clampedBuilding);
+        Object unbuiltWarehouse = createBuilding(colony, center.offset(11, 0, 0), "wareHouse", 0);
+        addBuilding(structureManager, unbuiltWarehouse);
+
+        return new Fixture(manager, colony, owner, center);
     }
 
     private static Object spawnCitizen(Object colony, ServerLevel level, BlockPos pos) throws ReflectiveOperationException {
@@ -175,5 +200,5 @@ public final class MineColoniesEconomyProviderGameTests {
         }
     }
 
-    private record Fixture(Object manager, Object colony, Player owner) {}
+    private record Fixture(Object manager, Object colony, Player owner, BlockPos townHallPos) {}
 }
