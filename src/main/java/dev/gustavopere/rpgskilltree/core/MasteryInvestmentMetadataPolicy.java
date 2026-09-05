@@ -12,9 +12,8 @@ import java.util.Set;
  * Canonical validation boundary for explicit Mastery-to-investment contributions.
  *
  * <p>No contribution is inferred from a lane namespace, provider or name. Callers
- * must supply explicit {@link MasteryInvestmentMetadata}; this policy only verifies
- * that the referenced lane is canonical and that one lane/threshold identity is
- * defined at most once.</p>
+ * must supply explicit {@link MasteryInvestmentMetadata}; this policy verifies
+ * canonical lanes, meaningful contributions and unique lane/threshold identities.</p>
  */
 public final class MasteryInvestmentMetadataPolicy {
     private MasteryInvestmentMetadataPolicy() {}
@@ -30,6 +29,12 @@ public final class MasteryInvestmentMetadataPolicy {
             Objects.requireNonNull(entry, "mastery investment metadata entry");
             if (!MasteryLaneCatalog.isCanonical(entry.laneId())) {
                 throw new IllegalArgumentException("non-canonical mastery lane: " + entry.laneId());
+            }
+            if (entry.domainWeights().isEmpty() && entry.tags().isEmpty()) {
+                throw new IllegalArgumentException(
+                    "mastery investment contribution must define domain weights or tags: "
+                        + entry.laneId() + "@" + entry.minimumExperience()
+                );
             }
             ThresholdIdentity identity = new ThresholdIdentity(entry.laneId(), entry.minimumExperience());
             if (!identities.add(identity)) {
