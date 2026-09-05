@@ -6,21 +6,21 @@ import dev.gustavopere.rpgskilltree.core.economy.ColonyEconomySettlementService;
 import dev.gustavopere.rpgskilltree.core.economy.ColonyEconomyState;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyColonyKey;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyCommand;
+import dev.gustavopere.rpgskilltree.core.economy.EconomyMath;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyMutationResult;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyParameters;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyPreflight;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyTransactionKind;
 import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomyRepository;
 import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomySavedData;
+import dev.gustavopere.rpgskilltree.runtime.economy.EconomyIntentLimits;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
 import net.minecraft.server.level.ServerPlayer;
 
 /** Canonical server authority for MineColonies economy administrative intents. */
 public final class MineColoniesEconomyIntentService {
-    /** Technical per-packet amount ceiling; this is not a monetary-policy cap on colony supply. */
-    public static final long MAX_PROTOCOL_MUTATION_AMOUNT = Integer.MAX_VALUE;
-
     private MineColoniesEconomyIntentService() {}
 
     public static MineColoniesEconomyPreflightResult preflightMint(
@@ -43,12 +43,17 @@ public final class MineColoniesEconomyIntentService {
         EconomyParameters parameters = EconomyParameters.defaults();
         long capacity;
         try {
-            capacity = dev.gustavopere.rpgskilltree.core.economy.EconomyMath.capacity(inputs, parameters);
+            capacity = EconomyMath.capacity(inputs, parameters);
         } catch (RuntimeException failure) {
             return new MineColoniesEconomyPreflightResult(MineColoniesEconomyIntentStatus.PROVIDER_READ_FAILED, null);
         }
 
-        EconomyColonyKey existingKey = data.binding(requestedBinding).orElse(null);
+        EconomyColonyKey existingKey;
+        try {
+            existingKey = data.binding(requestedBinding).orElse(null);
+        } catch (RuntimeException failure) {
+            return new MineColoniesEconomyPreflightResult(MineColoniesEconomyIntentStatus.PROVIDER_READ_FAILED, null);
+        }
         ColonyEconomyState state = existingKey == null
             ? ColonyEconomyState.empty(new EconomyColonyKey(new UUID(0L, 1L)))
             : new ColonyEconomyRepository(data).find(existingKey).orElseGet(() -> ColonyEconomyState.empty(existingKey));
@@ -101,11 +106,16 @@ public final class MineColoniesEconomyIntentService {
             return new MineColoniesEconomyIntentResult(validation.status, null, null);
         }
 
-        EconomyColonyKey economyKey = data.resolveOrCreateBinding(requestedBinding);
+        EconomyColonyKey economyKey;
+        try {
+            economyKey = data.resolveOrCreateBinding(requestedBinding);
+        } catch (RuntimeException failure) {
+            return new MineColoniesEconomyIntentResult(MineColoniesEconomyIntentStatus.PROVIDER_READ_FAILED, null, null);
+        }
         ColonyEconomyRepository repository = new ColonyEconomyRepository(data);
         EconomyCommand command = new EconomyCommand(
             intentId,
-            "network:" + kind.name().toLowerCase(java.util.Locale.ROOT) + ":" + intentId,
+            "network:" + kind.name().toLowerCase(Locale.ROOT) + ":" + intentId,
             kind,
             amount
         );
@@ -124,10 +134,11 @@ public final class MineColoniesEconomyIntentService {
         if (player == null || colony == null || requestedBinding == null || data == null) {
             return new Validation(MineColoniesEconomyIntentStatus.PROVIDER_READ_FAILED);
         }
-        if (amount <= 0L) {
+        EconomyIntentLimits.Validation amountValidation = EconomyIntentLimits.validateAmount(amount);
+        if (amountValidation == EconomyIntentLimits.Validation.INVALID_AMOUNT) {
             return new Validation(MineColoniesEconomyIntentStatus.INVALID_AMOUNT);
         }
-        if (amount > MAX_PROTOCOL_MUTATION_AMOUNT) {
+        if (amountValidation == EconomyIntentLimits.Validation.PROTOCOL_LIMIT_EXCEEDED) {
             return new Validation(MineColoniesEconomyIntentStatus.PROTOCOL_LIMIT_EXCEEDED);
         }
 
@@ -142,8 +153,12 @@ public final class MineColoniesEconomyIntentService {
             return new Validation(MineColoniesEconomyIntentStatus.PERMISSION_DENIED);
         }
         if (mutation) {
-            EconomyColonyKey existing = data.binding(requestedBinding).orElse(null);
-            if (existing != null && data.isArchived(existing)) {
+            try {
+                EconomyColonyKey existing = data.binding(requestedBinding).orElse(null);
+                if (existing != null && data.isArchived(existing)) {
+                    return new Validation(MineColoniesEconomyIntentStatus.PROVIDER_READ_FAILED);
+                }
+            } catch (RuntimeException failure) {
                 return new Validation(MineColoniesEconomyIntentStatus.PROVIDER_READ_FAILED);
             }
         }
