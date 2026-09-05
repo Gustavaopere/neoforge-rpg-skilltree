@@ -4,6 +4,7 @@ import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyIntegrationState;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyLifecycleEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyNetworkAuthority;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -31,7 +32,14 @@ public record EconomySnapshotRequestPayload(EconomyColonyContext colony) impleme
     static boolean providerActive() {
         boolean loaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
         String version = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
-        return MineColoniesEconomyIntegrationBootstrap.evaluate(loaded, version)
-            == MineColoniesEconomyIntegrationState.ACTIVE;
+        if (MineColoniesEconomyIntegrationBootstrap.evaluate(loaded, version)
+            != MineColoniesEconomyIntegrationState.ACTIVE) {
+            return false;
+        }
+        try {
+            return MineColoniesEconomyLifecycleEvents.isInstalled();
+        } catch (RuntimeException | LinkageError failure) {
+            return false;
+        }
     }
 }
