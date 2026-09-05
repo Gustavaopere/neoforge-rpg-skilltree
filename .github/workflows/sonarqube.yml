@@ -86,31 +86,6 @@ jobs:
           -PbattleMageProviderRuntime=true
           -PgameTestCoverageName=battle-mage-provider
 
-      - name: Report previous Sonar PR coverage hotspots
-        if: github.event_name == 'pull_request'
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          response="$(curl --silent --show-error --fail --get \
-            --header "Authorization: Bearer ${SONAR_TOKEN}" \
-            --data-urlencode 'component=Gustavaopere_neoforge-rpg-skilltree' \
-            --data-urlencode 'metricKeys=new_coverage,new_lines_to_cover,new_uncovered_lines' \
-            --data-urlencode 'qualifiers=FIL' \
-            --data-urlencode 'ps=500' \
-            --data-urlencode "pullRequest=${{ github.event.pull_request.number }}" \
-            'https://sonarcloud.io/api/measures/component_tree')"
-
-          echo 'Sonar PR coverage hotspots (path | new coverage | new lines | uncovered):'
-          jq -r '
-            .components[]
-            | {path: .path, metrics: (.measures | map({(.metric): .value}) | add)}
-            | select(((.metrics.new_lines_to_cover // "0") | tonumber) > 0)
-            | [.path, (.metrics.new_coverage // "n/a"), (.metrics.new_lines_to_cover // "0"), (.metrics.new_uncovered_lines // "0")]
-            | @tsv
-          ' <<<"$response" | sort -t $'\t' -k4,4nr | head -n 40
-
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
