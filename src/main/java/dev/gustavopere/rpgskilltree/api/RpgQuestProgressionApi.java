@@ -2,14 +2,18 @@ package dev.gustavopere.rpgskilltree.api;
 
 import dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionQuerySnapshot;
+import dev.gustavopere.rpgskilltree.core.MasteryAward;
 import dev.gustavopere.rpgskilltree.core.ProgressionReward;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.core.QuestConditionEvaluation;
+import dev.gustavopere.rpgskilltree.core.QuestMasteryRewardPolicy;
 import dev.gustavopere.rpgskilltree.core.QuestProgressionCondition;
 import dev.gustavopere.rpgskilltree.core.QuestProgressionConditionService;
 import dev.gustavopere.rpgskilltree.core.QuestProgressionSnapshot;
 import dev.gustavopere.rpgskilltree.runtime.CanonicalPlayerAttachmentRuntime;
 import dev.gustavopere.rpgskilltree.runtime.CorePlayerProgressionRuntime;
+import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import java.util.List;
 import java.util.Objects;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -62,6 +66,24 @@ public final class RpgQuestProgressionApi {
         Objects.requireNonNull(player, "player");
         Objects.requireNonNull(reward, "reward");
         CorePlayerProgressionRuntime.applyProgressionReward(player, reward);
+        return query(player);
+    }
+
+    /**
+     * Applies a replay-safe mastery reward after the trusted narrative layer has authorized it.
+     *
+     * <p>The adapter remains responsible for evaluating the narrative/quest rule that permits
+     * the reward. This boundary validates the mastery payload before delegating to the canonical
+     * compatibility progression runtime, preserving its normal reconciliation, persistence,
+     * mutation event and owner-sync pipeline.</p>
+     */
+    public static QuestProgressionSnapshot applyAuthorizedMasteryReward(
+        ServerPlayer player,
+        MasteryAward reward
+    ) {
+        MasteryAward validatedReward = QuestMasteryRewardPolicy.validate(reward);
+        Objects.requireNonNull(player, "player");
+        PlayerProgressionRuntime.awardMastery(player, List.of(validatedReward));
         return query(player);
     }
 }

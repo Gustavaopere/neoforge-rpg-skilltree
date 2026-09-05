@@ -23,7 +23,7 @@ Eles são requeridos para o perfil completo da campanha quando a feature corresp
 ### Fundação original
 
 1. `✅-01-public-query-api.md` — API pública de consulta;
-2. `02-progression-rewards.md` — rewards/mutations canônicas;
+2. `✅-02-progression-rewards.md` — rewards/mutations canônicas;
 3. `03-data-driven-conditions.md` — condições declarativas;
 4. `04-idempotency-ledger.md` — replay/idempotência de rewards/hooks;
 5. `05-ftbquests-npc-adapters.md` — política comum dos adapters externos;
