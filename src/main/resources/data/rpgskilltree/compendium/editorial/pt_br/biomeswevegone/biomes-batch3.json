@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "biomeswevegone",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:biomeswevegone:ebony_woods",
+      "title": "Bosque de Ébano",
+      "summary": {
+        "text": "Bosque de Ébano é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:ebony_woods.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:ebony_woods"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial do provider classifica este bioma como floresta com vegetação densa. A ficha não transforma essa categoria em densidade numérica, frequência ou distribuição fixa.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:enchanted_tangle",
+      "title": "Emaranhado Encantado",
+      "summary": {
+        "text": "Emaranhado Encantado é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:enchanted_tangle.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:enchanted_tangle"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como floresta, mágico e floral. Frequência, posição e composição concreta permanecem definidas pelo worldgen e pelas configurações ativas.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:eroded_borealis",
+      "title": "Erosão Boreal",
+      "summary": {
+        "text": "Erosão Boreal é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:eroded_borealis.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:eroded_borealis"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como nevado e floresta e o inclui nas tags vanilla de iglu, vila nevada e posto de saqueadores. Essas tags expressam elegibilidade estrutural, não geração garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:firecracker_chaparral",
+      "title": "Chaparral de Fogos de Artifício",
+      "summary": {
+        "text": "Chaparral de Fogos de Artifício é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:firecracker_chaparral.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:firecracker_chaparral"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial do provider classifica este bioma nas categorias de planície e vegetação esparsa. A ficha não congela frequência, altura ou distribuição.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:forgotten_forest",
+      "title": "Floresta Esquecida",
+      "summary": {
+        "text": "Floresta Esquecida é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:forgotten_forest.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:forgotten_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como floresta mágica e o inclui nas tags de mansão da floresta e da Vila Esquecida do próprio BWG. As tags indicam elegibilidade de worldgen, não presença garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:fragment_jungle",
+      "title": "Selva Fragmentada",
+      "summary": {
+        "text": "Selva Fragmentada é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:fragment_jungle.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:fragment_jungle"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial do provider classifica este bioma como selva. A ocorrência concreta continua dependente do worldgen e das configurações ativas.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:frosted_coniferous_forest",
+      "title": "Floresta de Coníferas Congeladas",
+      "summary": {
+        "text": "Floresta de Coníferas Congeladas é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:frosted_coniferous_forest.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:frosted_coniferous_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como floresta conífera. A ficha preserva essa taxonomia sem inferir temperatura numérica, frequência ou posicionamento.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:frosted_taiga",
+      "title": "Taiga Congelada",
+      "summary": {
+        "text": "Taiga Congelada é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:frosted_taiga.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:frosted_taiga"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como taiga conífera e o inclui nas tags vanilla de iglu, vila nevada e posto de saqueadores. Essas tags expressam elegibilidade estrutural, não geração garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:howling_peaks",
+      "title": "Picos Uivantes",
+      "summary": {
+        "text": "Picos Uivantes é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:howling_peaks.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:howling_peaks"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial do provider classifica este bioma como floresta, montanha, nevado, conífero e pico. A ficha não congela altitude, frequência ou forma do relevo.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:ironwood_gour",
+      "title": "Vale de Pau-Ferro",
+      "summary": {
+        "text": "Vale de Pau-Ferro é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:ironwood_gour.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:ironwood_gour"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como savana esparsa e o associa à categoria interna `IRONWOOD_GOUR_PLATEAU`. A ficha não converte essa categoria em geometria, altura ou frequência fixa.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    }
+  ]
+}

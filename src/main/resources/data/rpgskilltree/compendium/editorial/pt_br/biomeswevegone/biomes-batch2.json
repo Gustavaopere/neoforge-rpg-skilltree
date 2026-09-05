@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "biomeswevegone",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:biomeswevegone:cika_woods",
+      "title": "Bosque de Cika",
+      "summary": {
+        "text": "Bosque de Cika é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:cika_woods.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:cika_woods"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registro oficial classifica este bioma como floresta conífera e o inclui no tag de estrutura da Vila Pumpkin Patch do próprio BWG. O tag expressa elegibilidade de worldgen, não presença garantida.",
+          "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]
+        }
+      },
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:coconino_meadow",
+      "title": "Pradaria Coconino",
+      "summary": {
+        "text": "Pradaria Coconino é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:coconino_meadow.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:coconino_meadow"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial classifica este bioma nas categorias de planície e floral. Frequência, posição e distribuição concreta permanecem responsabilidade do worldgen ativo.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:coniferous_forest",
+      "title": "Floresta de Coníferas",
+      "summary": {
+        "text": "Floresta de Coníferas é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:coniferous_forest.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:coniferous_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como floresta conífera e o inclui nos tags vanilla de vila de taiga e posto de saqueadores. Esses tags indicam elegibilidade estrutural, não geração garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:crag_gardens",
+      "title": "Crag Gardens",
+      "summary": {
+        "text": "Crag Gardens é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:crag_gardens.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:crag_gardens"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial classifica este bioma como selva, montanha e denso. A ficha preserva essa taxonomia sem inferir altura, densidade numérica ou frequência de geração.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:crimson_tundra",
+      "title": "Tundra Carmesim",
+      "summary": {
+        "text": "Tundra Carmesim é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:crimson_tundra.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:crimson_tundra"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como planície e o inclui na categoria interna de lago frio grande. A ocorrência e a forma concreta desses elementos permanecem definidas pelo worldgen.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:cypress_swamplands",
+      "title": "Pântano de Ciprestes",
+      "summary": {
+        "text": "Pântano de Ciprestes é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:cypress_swamplands.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:cypress_swamplands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial classifica este bioma como pântano e o inclui no tag de estrutura da Vila do Pântano do BWG. O tag representa elegibilidade, não presença garantida em cada região.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:cypress_wetlands",
+      "title": "Terras Úmidas de Cipreste",
+      "summary": {
+        "text": "Terras Úmidas de Cipreste é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:cypress_wetlands.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:cypress_wetlands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial classifica este bioma como pântano e o inclui no tag de estrutura da Vila do Pântano do BWG. A ficha não converte essa associação em chance ou localização fixa.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:dacite_ridges",
+      "title": "Cumes de Dacito",
+      "summary": {
+        "text": "Cumes de Dacito é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:dacite_ridges.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:dacite_ridges"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como floresta conífera. Relevo, altura, frequência e distribuição concreta continuam determinados pelo worldgen ativo.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:dacite_shore",
+      "title": "Costa de Dacito",
+      "summary": {
+        "text": "Costa de Dacito é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:dacite_shore.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:dacite_shore"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial classifica este bioma como praia e ermo e o inclui no tag vanilla de tesouro enterrado. O tag indica elegibilidade estrutural, sem garantir geração.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:dead_sea",
+      "title": "Mar Morto",
+      "summary": {
+        "text": "Mar Morto é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:dead_sea.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:dead_sea"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como oceano, morto, ermo e integrante da categoria interna de arco de espeleotema. A ficha não transforma essas tags em parâmetros numéricos ou geometria fixa.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    }
+  ]
+}
