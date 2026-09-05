@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-/** Immutable definition for the currently closed combat catalog A0001-A0100. */
+/** Immutable definition for the currently closed combat catalog A0001-A0110. */
 public record CombatPerkDefinition(
     String code,
     String name,
@@ -18,8 +18,12 @@ public record CombatPerkDefinition(
         require(code, "code");
         require(name, "name");
         Objects.requireNonNull(weaponFamily);
-        if (!code.matches("A(?:00(?:0[1-9]|[1-9][0-9])|0100)")) {
-            throw new IllegalArgumentException("catalog code outside A0001-A0100: " + code);
+        if (!code.matches("A\\d{4}")) {
+            throw new IllegalArgumentException("invalid catalog code: " + code);
+        }
+        int numericCode = Integer.parseInt(code.substring(1));
+        if (numericCode < 1 || numericCode > 110) {
+            throw new IllegalArgumentException("catalog code outside A0001-A0110: " + code);
         }
         if (maxRank <= 0) throw new IllegalArgumentException("maxRank must be positive");
         if (rankCost <= 0) throw new IllegalArgumentException("rankCost must be positive");
@@ -38,7 +42,7 @@ public record CombatPerkDefinition(
 
     public enum WeaponFamily {
         SWORD, AXE, SPEAR, DAGGER, HAMMER, MACE, SCYTHE, BOW, CROSSBOW, FIST,
-        MARTIAL, ARCANE, OCCULT, VITALITY, HYBRID
+        MARTIAL, ARCANE, OCCULT, VITALITY, SURVIVAL, HYBRID
     }
 
     private static void require(String value, String name) {
