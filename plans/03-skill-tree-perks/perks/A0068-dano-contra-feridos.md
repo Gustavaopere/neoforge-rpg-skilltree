@@ -56,3 +56,21 @@ A API de vida vanilla é o fallback suficiente para entidades vivas válidas. Al
 | 9. Cobertura providers | PASS | Vanilla/Epic Fight/RPG suficientes; nenhum provider inventado. |
 
 Os 18 critérios técnicos cumulativos passam **no design**.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+- **Estado técnico:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **PR/branch:** #391 / `feat/chat2-a0061-a0070-stacked-handoff`.
+- O snapshot pré-impacto `< 35%` e os consumers melee/projectile já presentes foram preservados; nenhum estado corporal paralelo foi criado.
+- A confirmação final é exclusiva do Chat 3.
+
+### Checklist de implementação
+- [x] Design aprovado pelo Chat 1
+- [x] Snapshot pré-impacto implementado
+- [x] Gate/alvo hostil preservados
+- [x] Fallback vanilla/fail-closed preservado
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** borda 35% e não retroatividade
+- [ ] **VALIDAÇÃO CHAT 3:** uma aplicação por root melee/projectile
+- [ ] **VALIDAÇÃO CHAT 3:** testes/GameTests/build/smoke/CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA

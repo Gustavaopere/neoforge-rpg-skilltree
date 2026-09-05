@@ -55,3 +55,21 @@ Sem contrato semanticamente equivalente de cadência, A0064 fica inativa naquele
 | 9. Cobertura providers | PASS | Epic Fight/vanilla/Simply Swords classificados sem falsa equivalência. |
 
 Os 18 critérios técnicos cumulativos passam **no design**.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+- **Estado técnico:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **PR/branch:** #391 / `feat/chat2-a0061-a0070-stacked-handoff`.
+- O binding provider-native existente em `ModifyAttackSpeedEvent` foi preservado; não foi criado fallback por animação, movimento ou projectile speed.
+- A confirmação final é exclusiva do Chat 3.
+
+### Checklist de implementação
+- [x] Design aprovado pelo Chat 1
+- [x] Hook provider-native presente
+- [x] Gate/dependências preservados
+- [x] Fail-closed para moveset sem equivalência segura
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** uma contribuição por evento/moveset
+- [ ] **VALIDAÇÃO CHAT 3:** provider-present/absent e Simply Swords provider-native
+- [ ] **VALIDAÇÃO CHAT 3:** testes/GameTests/build/smoke/CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA

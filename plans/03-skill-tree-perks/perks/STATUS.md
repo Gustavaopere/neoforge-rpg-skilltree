@@ -66,16 +66,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0058 | Sequência Limpa | APROVADO após correção/review | CÓDIGO PRESENTE NO FALLBACK CANÔNICO / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | lifecycle rank/respec/rules reload resolvido; heavy-impact receipt segue ausente e body modulation permanece opcional/fail-closed |
 | A0059 | Quebra de Ritmo | APROVADO | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | heavy/finalizer e guard-break provider receipts permanecem ausentes; nenhuma heurística substituta foi criada |
 | A0060 | Maestria de Armas de Punho — Combinação Final | APROVADO após review de lifecycle | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | gate80 `combat:fist` + lifecycle do cooldown resolvidos; heavy/finalizer e ledger causal de Stamina permanecem ausentes |
-| A0061 | Força Aplicada | APROVADO | CÓDIGO PRESENTE em melee Epic Fight + projectile físico canônico | `P-A0061-01/-02`: validar dedup/root e preservar Simply Swords provider-native |
-| A0062 | Golpe Preciso | APROVADO | CÓDIGO PRESENTE no resolvedor crítico canônico | `P-A0062-01/-02`: provar uma única rolagem e convergência de adapters Apothic |
-| A0063 | Impacto Crítico | APROVADO | CÓDIGO PRESENTE sobre crítico canônico | `P-A0063-01/-02`: uma aplicação por root; sem double multiplier Apothic/provider |
-| A0064 | Ritmo de Combate | APROVADO | CÓDIGO PRESENTE em `ModifyAttackSpeedEvent` | `P-A0064-01/-02`: provider-present; moveset sem binding seguro fica fail-closed |
-| A0065 | Penetração Física | APROVADO | CÓDIGO PRESENTE em Epic Fight + projectile | `P-A0065-01/-02`: backend único; não duplicar armor ignore/shred/Apothic |
-| A0066 | Impacto Marcial | APROVADO | CÓDIGO PRESENTE para melee Epic Fight; projectile FAIL-CLOSED CORRETO | `P-A0066-01/-02`: validar melee e preservar ausência de Impact sintético em projectile |
-| A0067 | Firmeza Ofensiva | APROVADO após correção de availability | FAIL-CLOSED CORRETO no efeito; node ainda exige disponibilidade estrutural | `P-A0067-01` BLOQUEANTE: indisponível/não comprável sem attack-window binding; `P-A0067-02/-03` hook/cleanup/testes |
-| A0068 | Dano contra Feridos | APROVADO | CÓDIGO PRESENTE melee + projectile | `P-A0068-01/-02`: snapshot pré-impacto <35%, borda e dedup |
-| A0069 | Dano contra Íntegros | APROVADO | CÓDIGO PRESENTE melee + projectile | `P-A0069-01/-02`: snapshot pré-impacto >85%, borda e dedup |
-| A0070 | Dano contra Chefes | APROVADO após correção de cobertura | IMPLEMENTAÇÃO PARCIAL: vanilla/Cataclysm tag + Apothic; Enshrouded identity ainda sem adapter | `P-A0070-01`: `enshrouded:shroud_lich`; `P-A0070-02`: demais bosses fail-closed até IDs; `P-A0070-03/-04` dedup/fases |
+| A0061 | Força Aplicada | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Chat 3 valida dedup/root e preservação Simply Swords provider-native |
+| A0062 | Golpe Preciso | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Chat 3 valida uma única rolagem/root e convergência de adapters Apothic |
+| A0063 | Impacto Crítico | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Chat 3 valida uma aplicação crítica/root e ausência de double multiplier Apothic/provider |
+| A0064 | Ritmo de Combate | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Chat 3 valida `ModifyAttackSpeedEvent` provider-present e fail-closed em movesets sem binding seguro |
+| A0065 | Penetração Física | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Chat 3 valida backend único e ausência de duplicação armor ignore/shred/Apothic |
+| A0066 | Impacto Marcial | APROVADO | CÓDIGO PRESENTE COM PROJECTILE FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Chat 3 valida melee e ausência de Impact sintético em projectile |
+| A0067 | Firmeza Ofensiva | APROVADO após correção de availability | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `P-A0067-01` resolvida: `UNAVAILABLE_NODE` + rejeição de purchase + rank efetivo 0 no gameplay; hook ofensivo futuro continua fail-closed; Chat 3 valida no-op purchase/STUN_ARMOR |
+| A0068 | Dano contra Feridos | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Chat 3 valida snapshot pré-impacto <35%, borda, não retroatividade e dedup/root |
+| A0069 | Dano contra Íntegros | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | Chat 3 valida snapshot pré-impacto >85%, borda, dano anterior real e dedup/root |
+| A0070 | Dano contra Chefes | APROVADO após correção de cobertura | CÓDIGO PRESENTE COM COBERTURA PARCIAL FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | `P-A0070-01` resolvida com `enshrouded:shroud_lich`; Mowzie/Legendary/Born in Chaos/Mobstein seguem fail-closed; Chat 3 valida BOSS>ELITE/dedup/fases |
 | A0071 | Dano contra Elites | APROVADO | CÓDIGO PRESENTE via classificador canônico | `P-A0071-01/-02`: Apothic provider-present + BOSS>ELITE; externos somente por identidade exata |
 | A0072 | Retaliação | APROVADO após availability | EFEITO PRESENTE, MAS ESTRUTURALMENTE INDISPONÍVEL | `P-A0072-01`: A0067 indisponível → A0072 indisponível/não comprável; testar refresh/dedup |
 | A0073 | Janela de Execução | APROVADO após reservation→commit | NÃO CONFORME: PRE arma/consome cedo demais | `P-A0073-01`: POST commit/rollback; `P-A0073-02`: Stamina receipt; lifecycle/dedup |
@@ -390,6 +390,20 @@ O fechamento operacional deste lote exige PR, review, CI GREEN, merge e confirma
 13. `P-A0070-03/-04` — BOSS > ELITE e preservação de fases/imunidades provider-native.
 
 O lote A0061–A0070 está operacionalmente encerrado após a PR #298; A0071–A0080 só foi iniciado após novo comando do usuário.
+
+### A0061–A0070 — Chat 2
+
+- **Branch:** `feat/chat2-a0061-a0070-stacked-handoff`.
+- **PR operacional:** #391, empilhada sobre `feat/chat2-a0051-a0060-stacked-handoff` / PR #387.
+- **Auditoria:** `audits/AUDITORIA-CHAT2-A0061-A0070-IMPLEMENTACAO.md`.
+- `P-A0067-01` resolvida estruturalmente: A0067 é `UNAVAILABLE_NODE`, purchase é rejeitado antes da mutação e rank legado indisponível fica com rank efetivo 0 no gameplay; storage permanece somente para recovery/refund.
+- O hook ofensivo/lifetime da attack window permanece provider-dependent e fail-closed; nenhum STUN_ARMOR permanente ou fallback genérico foi criado.
+- `P-A0070-01` resolvida por identity registry opcional exata `enshrouded:shroud_lich`, somente read-only.
+- Mowzie's Mobs, Legendary Monsters, Born in Chaos e Mobstein permanecem fail-closed sem registry IDs/adapters exatos; nenhuma heurística de boss foi adicionada.
+- A0061–A0066/A0068–A0069 preservam os pipelines canônicos já existentes, sem segunda resolução de dano/crítico/penetração/Impact.
+- **Estado:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**; A0067 permanece explicitamente fail-closed e A0070 possui cobertura parcial fail-closed.
+- Testes unitários finais, GameTests, integrações/provider, deduplicação/idempotência, fail-closed/fallback, build NeoForge, dedicated-server smoke, CI GREEN e `IMPLEMENTAÇÃO CONFIRMADA` permanecem responsabilidade do Chat 3.
+- O Chat 2 **não faz merge** e **não inicia A0071+**.
 
 ## Chat 1 — lote exato A0071–A0080
 

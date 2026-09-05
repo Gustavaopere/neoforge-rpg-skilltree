@@ -55,3 +55,24 @@ Sem classificação crítica segura, multiplicador A0063 = 1.0. Nunca criar crí
 | 9. Cobertura providers | PASS | Epic Fight/Apothic/RPG reconciliados com pipeline único. |
 
 Os 18 critérios técnicos cumulativos passam **no design**.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+- **Estado técnico:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **PR/branch:** #391 / `feat/chat2-a0061-a0070-stacked-handoff`.
+- O multiplicador continua condicionado ao resultado crítico canônico; nenhum segundo hit, reroll ou multiplicador Apothic paralelo foi introduzido.
+- A “confirmação definitiva” citada historicamente acima é reservada ao Chat 3 no protocolo atual.
+
+### Checklist de implementação
+
+- [x] Design aprovado pelo Chat 1
+- [x] `canonicalCritical` preservado como gate do efeito
+- [x] Gate/dependências preservados
+- [x] Provider-native preservado
+- [x] Fail-closed sem classificação crítica segura
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** uma aplicação A0063 por root em melee/projectile
+- [ ] **VALIDAÇÃO CHAT 3:** provider critical/Apothic sem double multiplier
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests/integração
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge / dedicated-server smoke / CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA

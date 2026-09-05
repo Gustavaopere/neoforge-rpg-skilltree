@@ -58,3 +58,25 @@
 | 9. Cobertura providers | PASS | Epic Fight/Minecraft/Simply Swords e projeto próprio foram cruzados; rotas não comprovadas falham fechado. |
 
 Os 18 critérios técnicos cumulativos passam **no design**. Implementação só pode ser declarada confirmada após os testes e fechamento do Chat 2.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+- **Estado técnico:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **PR/branch:** #391 / `feat/chat2-a0061-a0070-stacked-handoff`.
+- O pipeline melee Epic Fight + projectile físico já presente foi preservado; nenhum segundo pipeline foi criado e Simply Swords/Simply More continuam provider-native.
+- A frase histórica acima sobre “confirmação” não reflete a divisão operacional atual: `IMPLEMENTAÇÃO CONFIRMADA` é exclusiva do Chat 3.
+
+### Checklist de implementação
+
+- [x] Design aprovado pelo Chat 1
+- [x] Hook/consumer canônico presente
+- [x] Gate/dependências preservados
+- [x] Provider-native preservado
+- [x] Fallback/fail-closed preservado
+- [x] Seam de deduplicação/root presente no pipeline existente
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** uma contribuição A0061 por root, melee + projectile
+- [ ] **VALIDAÇÃO CHAT 3:** Simply Swords sem reemissão de efeitos nativos
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests/integração
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge / dedicated-server smoke / CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA

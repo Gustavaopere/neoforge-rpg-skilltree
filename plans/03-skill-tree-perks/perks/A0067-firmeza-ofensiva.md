@@ -56,3 +56,25 @@ Qualquer modificador transitório deve ser removido em término do ataque, cance
 | 9. Cobertura providers | PASS | Epic Fight/WoM avaliados; sem hook seguro, node indisponível. |
 
 Os 18 critérios técnicos cumulativos passam **no design** porque o comportamento indisponível é explícito. A implementação não pode ser confirmada enquanto `P-A0067-01` permanecer aberta.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+- **Estado técnico:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **PR/branch:** #391 / `feat/chat2-a0061-a0070-stacked-handoff`.
+- **P-A0067-01 RESOLVIDA EM CÓDIGO:** `CombatPerkAvailabilityRuntime` registra A0067 como `UNAVAILABLE_NODE`; aquisição é rejeitada antes da mutação e rank legado indisponível é mascarado para rank efetivo `0` no gameplay, permanecendo armazenado apenas para recuperação/refund.
+- **P-A0067-02 permanece provider-dependent e fail-closed:** não existe attack-window lifetime seguro no provider auditado; por isso A0067 continua indisponível, como exige o design.
+- Nenhum STUN_ARMOR permanente, knockback resistance, super armor ou substituto genérico foi criado.
+- A frase histórica acima de que `P-A0067-01` permanece aberta está superada por esta atualização; confirmação final permanece exclusiva do Chat 3.
+
+### Checklist de implementação
+- [x] Design aprovado pelo Chat 1
+- [x] `UNAVAILABLE_NODE` implementado
+- [x] Purchase/gate fail-closed implementado
+- [x] Rank legado mascarado para gameplay
+- [x] Provider-native/fail-closed preservado
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** tentativa de compra não gasta ponto/não cria rank
+- [ ] **VALIDAÇÃO CHAT 3:** rank legado não produz efeito e permanece recuperável/refundável
+- [ ] **VALIDAÇÃO CHAT 3:** ausência de STUN_ARMOR permanente
+- [ ] **VALIDAÇÃO CHAT 3:** testes/GameTests/build/smoke/CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA

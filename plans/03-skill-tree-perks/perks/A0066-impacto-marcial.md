@@ -55,3 +55,21 @@ Sem contrato equivalente de Impact/interrupção, multiplicador A0066 = 1.0. É 
 | 9. Cobertura providers | PASS | Epic Fight/WoM/Punchy classificados corretamente; projectile fail-closed. |
 
 Os 18 critérios técnicos cumulativos passam **no design**.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+- **Estado técnico:** **CÓDIGO PRESENTE COM PROJECTILE FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **PR/branch:** #391 / `feat/chat2-a0061-a0070-stacked-handoff`.
+- O binding de Impact melee Epic Fight já existente foi preservado; projectile continua neutro sem receipt explícito, conforme contrato.
+
+### Checklist de implementação
+- [x] Design aprovado pelo Chat 1
+- [x] Impact melee provider-native presente
+- [x] Gate/dependências preservados
+- [x] Projectile sem Impact sintético
+- [x] Fallback/fail-closed preservado
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** uma aplicação de Impact por root melee
+- [ ] **VALIDAÇÃO CHAT 3:** projectile/provider sem receipt permanece neutro
+- [ ] **VALIDAÇÃO CHAT 3:** testes/GameTests/build/smoke/CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA

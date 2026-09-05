@@ -55,3 +55,22 @@ Sem estágio seguro de penetração/armor-negation, A0065 fica inativa naquele p
 | 9. Cobertura providers | PASS | Epic Fight/Apothic/Pufferfish/Simply Swords reconciliados. |
 
 Os 18 critérios técnicos cumulativos passam **no design**, com fail-closed obrigatório sem backend seguro.
+
+## Atualização de implementação — Chat 2 (2026-09-02)
+
+- **Estado técnico:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **PR/branch:** #391 / `feat/chat2-a0061-a0070-stacked-handoff`.
+- O backend físico existente foi preservado sem transformar penetração em shred/debuff nem duplicar armor ignore provider-native.
+- A confirmação final é exclusiva do Chat 3.
+
+### Checklist de implementação
+- [x] Design aprovado pelo Chat 1
+- [x] Hook de penetração/armor-negation presente
+- [x] Gate/dependências preservados
+- [x] Provider-native preservado
+- [x] Fail-closed sem estágio seguro
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** backend único Epic Fight/projectile
+- [ ] **VALIDAÇÃO CHAT 3:** Simply Swords armor ignore não duplicado
+- [ ] **VALIDAÇÃO CHAT 3:** testes/GameTests/build/smoke/CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
