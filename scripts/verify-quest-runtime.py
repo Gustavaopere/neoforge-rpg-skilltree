@@ -4,6 +4,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/CorePlayerProgressionRuntime.java"
 PUBLIC_API = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/api/RpgQuestProgressionApi.java"
+MASTERY_POLICY = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/core/QuestMasteryRewardPolicy.java"
+MASTERY_POLICY_TEST = ROOT / "src/test/java/dev/gustavopere/rpgskilltree/core/QuestMasteryRewardPolicyJUnitTest.java"
 TEST_RUNNER = ROOT / "scripts/test-core.sh"
 
 
@@ -96,9 +98,16 @@ require(api_text, "CanonicalPlayerAttachmentRuntime.observe(player)", PUBLIC_API
 require(api_text, "compatibility.specializations()", PUBLIC_API)
 require(api_text, "CorePlayerProgressionRuntime.applyProgressionReward(player, reward)", PUBLIC_API)
 require(api_text, "QuestProgressionConditionService.evaluate(query(player), condition)", PUBLIC_API)
+require(api_text, "QuestMasteryRewardPolicy.validate(reward)", PUBLIC_API)
+require(api_text, "PlayerProgressionRuntime.awardMastery(player, List.of(validatedReward))", PUBLIC_API)
 require(
     api_compact,
     "public static QuestProgressionSnapshot query(ServerPlayer player)",
+    PUBLIC_API,
+)
+require(
+    api_compact,
+    "public static QuestProgressionSnapshot applyAuthorizedMasteryReward( ServerPlayer player, MasteryAward reward )",
     PUBLIC_API,
 )
 for forbidden in (
@@ -107,8 +116,25 @@ for forbidden in (
     ".removeData(",
     "CanonicalPlayerAttachmentRuntime.readOrMigrate(",
     "CoreProgressionRulesCatalog",
+    "ProgressionService.unlockClass(",
+    "PlayerProgressionRuntime.unlockPaidClass(",
+    "PlayerProgressionRuntime.purchaseNode(",
+    ".withMastery(",
 ):
     forbid(api_text, forbidden, "public quest API", PUBLIC_API)
+
+# Quest mastery rewards are a deliberately narrower boundary than ordinary gameplay
+# mastery emissions: they must use canonical lanes and stable replay identities before
+# reaching the canonical compatibility runtime.
+if not MASTERY_POLICY.exists():
+    print(f"ERROR: missing {MASTERY_POLICY.relative_to(ROOT)}")
+    raise SystemExit(1)
+policy_text = MASTERY_POLICY.read_text(encoding="utf-8")
+require(policy_text, "MasteryLaneCatalog.isCanonical(reward.laneId())", MASTERY_POLICY)
+require(policy_text, "reward.replaySafe()", MASTERY_POLICY)
+if not MASTERY_POLICY_TEST.exists():
+    print(f"ERROR: missing {MASTERY_POLICY_TEST.relative_to(ROOT)}")
+    raise SystemExit(1)
 
 runner_text = TEST_RUNNER.read_text(encoding="utf-8")
 require(
