@@ -1,6 +1,6 @@
 # Status dos Dossiês de Perks
 
-Reauditoria obrigatória do recorte **A0001–A0100** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
+Reauditoria obrigatória do recorte **A0001–A0110** contra `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`.
 
 A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só é definitiva após contrato implementado, testes pertinentes, PR verde e merge em `main`.
 
@@ -106,6 +106,25 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0098 | Defesa em Movimento | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar sprint vanilla 3/6/9%, forced/passive movement exclusions, ParCool extra fail-closed e bridge PP sem tocar Stage04.02 |
 | A0099 | Defesa Estacionária | APROVADO com dependência transversal A0079 | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar detector único A0079/A0099, 30 ticks/0,10, teleport/dimensão/passenger/forced movement, hostilidade causal e bridge PP |
 | A0100 | Anti-Crítico | APROVADO EM FAIL-CLOSED | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar `UNAVAILABLE_NODE`, compra sem gasto e ausência de heurística/universal reduction enquanto não houver receipt incoming `critical + base + extra` |
+| A0101 | Fortificação contra Projéteis | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar PROJECTILE + PHYSICAL, 2%/rank, dedup/root, magical projectile negativo e unknown modded fail-closed |
+| A0102 | Proteção Arcana | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar IS_MAGIC + atacante hostil causal; self/attackerless/technical/resource-cost/Backlash fail-closed; Ars 5.13.1 |
+| A0103 | Proteção Ambiental | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar os 7 DamageTypes vanilla allowlisted, exclusões e ausência de classifier implícito por Volcanoes/atmosfera/pressão |
+| A0104 | Segundo Vento | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar crossing estrito, 5 pulsos, cancelamento one/root, cooldown 1200 e persistência v2 anti-restart |
+| A0105 | Casca Reativa | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar 3 hits/80 ticks, duração 120, cooldown 400, no refresh, modifiers únicos e persistência v2 |
+| A0106 | Guarda de Emergência | APROVADO | CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar ordem em LivingDamageEvent.Pre, threshold, x0,65, token fatal único, clamp 1 HP, exclusions e cooldown 3600 persistido |
+| A0107 | Conversão de Impacto | APROVADO EM FAIL-CLOSED | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar A0093/P-0035 blockers, compra sem gasto, rank efetivo 0 e nenhuma taxa impact→Stamina inventada |
+| A0108 | Pele de Pedra | APROVADO EM FAIL-CLOSED transitivo | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar A0100→A0108 unavailable, compra sem gasto e ausência de reducer físico/movement penalty parcial |
+| A0109 | Fortaleza Ambulante | APROVADO EM FAIL-CLOSED duplo | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar A0108 + ausência de body-encumbrance provider, compra sem gasto e nenhum Weight/Create/Sable/inventário/Armor/Protection Pixel promovido |
+| A0110 | Conservação de Equipamento I | APROVADO EM FAIL-CLOSED | CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3 | validar P-0036, compra sem gasto/rank efetivo 0 e ausência de damageItem/repair/refund/polling/ArmorHurtEvent como seam falso |
+
+### A0101–A0110 — Chat 2
+- PR operacional: #340; branch `docs/chat1-a0101-a0110-audit`.
+- Estado: `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+- A0101–A0106 possuem runtime escrito; A0104–A0106 usam o attachment canônico schema v2 para persistir cooldown deadlines sem storage paralelo.
+- A0107–A0110 permanecem `CÓDIGO PRESENTE EM FAIL-CLOSED` pelos blockers aprovados no Chat 1; nenhum fallback genérico foi criado.
+- Auditoria de implementação: `plans/03-skill-tree-perks/perks/audits/AUDITORIA-A0101-A0110-IMPLEMENTACAO-CHAT2.md`.
+- Chat 3 deve revisar, executar testes/contract tests/GameTests/integrações aplicáveis, build NeoForge, dedicated-server smoke e CI antes de declarar `IMPLEMENTAÇÃO CONFIRMADA`.
+- Chat 2 não executou a bateria final, não declarou `IMPLEMENTAÇÃO CONFIRMADA`, não fez merge e não iniciou A0111+.
 
 ## Regras sistêmicas vigentes
 
