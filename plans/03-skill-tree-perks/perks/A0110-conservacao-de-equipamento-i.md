@@ -83,3 +83,28 @@ Authority, causalidade, dedup, RNG, eligibility, fallback, lifecycle e purchase 
 ## Testes exigidos ao Chat 3
 
 Estado atual: node indisponível sem gasto, Unbreaking não é interceptado incorretamente, nenhum repair/refund, armor/máquinas/indestrutíveis inelegíveis. Se P-0036 fechar: uma rolagem por decremento final 1, zero rolagem quando prevenção nativa já zerou desgaste, RNG determinístico/testável, break boundary, provider absent/present, respec/reload/multiplayer, GameTests, build, JAR e dedicated-server smoke.
+
+## Atualização de implementação — Chat 2 (2026-09-05)
+
+**Estado:** `CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `CombatPerkAvailabilityRuntime` materializa A0110 como indisponível enquanto P-0036 não possui seam pós-Unbreaking/pré-decremento final comprovado.
+- Nenhum hook `damageItem`, repair/refund, polling de `damageValue` ou `ArmorHurtEvent` foi usado como substituto.
+- A compra é bloqueada antes do gasto e ranks persistidos indisponíveis são mascarados para rank efetivo 0.
+- Minecraft/NeoForge e providers de ferramentas continuam owners de durabilidade/maintenance; não foi criado segundo pipeline.
+- Não há redesign a devolver ao Chat 1.
+
+### Checklist Chat 2
+
+- [x] `UNAVAILABLE_NODE` materializado
+- [x] Purchase/effective-rank fail-closed implementado
+- [x] Provider-native durability preservada
+- [x] Repair/refund/polling/armor-only fallback rejeitado
+- [x] Código presente no estado fail-closed aprovado
+- [ ] **VALIDAÇÃO CHAT 3:** confirmar compra sem gasto/rank efetivo 0
+- [ ] **VALIDAÇÃO CHAT 3:** confirmar ausência de interceptação pós-fato
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests/integração aplicáveis
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
