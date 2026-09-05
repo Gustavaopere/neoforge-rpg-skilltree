@@ -377,14 +377,43 @@ Entradas:
 - nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
 - TDD confirmado no commit `0aa9db81c0e71c033d0260b64f51e584b6745dbe`: 910 testes, exatamente 1 falha no Batch13 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 14 — Oh The Biomes We've Gone / biomas Overworld (batch 3)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch3.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:biomeswevegone:ebony_woods` — Bosque de Ébano
+2. `BIOME:biomeswevegone:enchanted_tangle` — Emaranhado Encantado
+3. `BIOME:biomeswevegone:eroded_borealis` — Erosão Boreal
+4. `BIOME:biomeswevegone:firecracker_chaparral` — Chaparral de Fogos de Artifício
+5. `BIOME:biomeswevegone:forgotten_forest` — Floresta Esquecida
+6. `BIOME:biomeswevegone:fragment_jungle` — Selva Fragmentada
+7. `BIOME:biomeswevegone:frosted_coniferous_forest` — Floresta de Coníferas Congeladas
+8. `BIOME:biomeswevegone:frosted_taiga` — Taiga Congelada
+9. `BIOME:biomeswevegone:howling_peaks` — Picos Uivantes
+10. `BIOME:biomeswevegone:ironwood_gour` — Vale de Pau-Ferro
+
+### Critérios editoriais aplicados ao lote 14
+
+- o recorte continua imediatamente após `dead_sea` na ordem do registry `BWGBiomes.java` da release 2.6.0;
+- IDs, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os dez títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit;
+- tags de iglu, vila nevada, posto de saqueadores, mansão da floresta e vila BWG são tratadas somente como elegibilidade de worldgen, não garantia de geração;
+- categorias internas como `IRONWOOD_GOUR_PLATEAU` não são convertidas em geometria, altura, frequência ou valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `4bf0ef99ce38dc84b5a4ce621dc71024a408266a`: 911 testes, exatamente 1 falha no Batch14 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
-- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **20**;
-- entradas editoriais totais: **130**;
-- lotes documentados: **13**;
+- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **30**;
+- entradas editoriais totais: **140**;
+- lotes documentados: **14**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
