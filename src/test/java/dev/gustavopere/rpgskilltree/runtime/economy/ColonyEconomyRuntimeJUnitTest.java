@@ -24,6 +24,17 @@ final class ColonyEconomyRuntimeJUnitTest {
     }
 
     @Test
+    void firstObservationAfterRestartAnchorsInsteadOfForcingImmediateSettlement() {
+        ColonyEconomyRuntime runtime = new ColonyEconomyRuntime(1_200L);
+        AtomicInteger calls = new AtomicInteger();
+
+        assertFalse(runtime.tryRun(true, 88_000L, calls::incrementAndGet));
+        assertFalse(runtime.tryRun(true, 89_199L, calls::incrementAndGet));
+        assertTrue(runtime.tryRun(true, 89_200L, calls::incrementAndGet));
+        assertEquals(1, calls.get());
+    }
+
+    @Test
     void absentProviderNeverInvokesSettlementPass() {
         ColonyEconomyRuntime runtime = new ColonyEconomyRuntime(20L);
         AtomicInteger calls = new AtomicInteger();
@@ -32,13 +43,15 @@ final class ColonyEconomyRuntimeJUnitTest {
         assertFalse(runtime.tryRun(false, 40L, calls::incrementAndGet));
         assertEquals(0, calls.get());
 
-        assertTrue(runtime.tryRun(true, 40L, calls::incrementAndGet));
+        assertFalse(runtime.tryRun(true, 40L, calls::incrementAndGet));
+        assertTrue(runtime.tryRun(true, 60L, calls::incrementAndGet));
         assertEquals(1, calls.get());
     }
 
     @Test
     void failedPassDoesNotAdvanceSuccessfulSettlementCursor() {
         ColonyEconomyRuntime runtime = new ColonyEconomyRuntime(20L);
+        assertFalse(runtime.tryRun(true, 0L, () -> {}));
 
         assertThrows(IllegalStateException.class, () -> runtime.tryRun(true, 20L, () -> {
             throw new IllegalStateException("provider read failed");
@@ -53,7 +66,8 @@ final class ColonyEconomyRuntimeJUnitTest {
         assertThrows(IllegalArgumentException.class, () -> new ColonyEconomyRuntime(0L));
 
         ColonyEconomyRuntime runtime = new ColonyEconomyRuntime(20L);
-        assertTrue(runtime.tryRun(true, 40L, () -> {}));
-        assertThrows(IllegalArgumentException.class, () -> runtime.tryRun(true, 39L, () -> {}));
+        assertFalse(runtime.tryRun(true, 40L, () -> {}));
+        assertTrue(runtime.tryRun(true, 60L, () -> {}));
+        assertThrows(IllegalArgumentException.class, () -> runtime.tryRun(true, 59L, () -> {}));
     }
 }
