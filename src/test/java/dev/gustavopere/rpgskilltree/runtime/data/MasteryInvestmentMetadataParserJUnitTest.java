@@ -147,4 +147,96 @@ final class MasteryInvestmentMetadataParserJUnitTest {
                 """)
         )));
     }
+
+    @Test
+    void rejectsMalformedAndMeaninglessMetadataFailClosed() {
+        assertInvalid("root_array", "[]");
+        assertInvalid("missing_lane", """
+            {
+              "minimum_experience": 60,
+              "domain_weights": {"ARCANE": 1},
+              "tags": []
+            }
+            """);
+        assertInvalid("blank_lane", """
+            {
+              "lane": "   ",
+              "minimum_experience": 60,
+              "domain_weights": {"ARCANE": 1},
+              "tags": []
+            }
+            """);
+        assertInvalid("zero_threshold", """
+            {
+              "lane": "magic:casting",
+              "minimum_experience": 0,
+              "domain_weights": {"ARCANE": 1},
+              "tags": []
+            }
+            """);
+        assertInvalid("overflow_threshold", """
+            {
+              "lane": "magic:casting",
+              "minimum_experience": 2147483648,
+              "domain_weights": {"ARCANE": 1},
+              "tags": []
+            }
+            """);
+        assertInvalid("weights_not_object", """
+            {
+              "lane": "magic:casting",
+              "minimum_experience": 60,
+              "domain_weights": [],
+              "tags": []
+            }
+            """);
+        assertInvalid("unknown_domain", """
+            {
+              "lane": "magic:casting",
+              "minimum_experience": 60,
+              "domain_weights": {"NOT_A_DOMAIN": 1},
+              "tags": []
+            }
+            """);
+        assertInvalid("tags_not_array", """
+            {
+              "lane": "magic:casting",
+              "minimum_experience": 60,
+              "domain_weights": {"ARCANE": 1},
+              "tags": {}
+            }
+            """);
+        assertInvalid("tag_not_string", """
+            {
+              "lane": "magic:casting",
+              "minimum_experience": 60,
+              "domain_weights": {},
+              "tags": [1]
+            }
+            """);
+        assertInvalid("blank_tag", """
+            {
+              "lane": "magic:casting",
+              "minimum_experience": 60,
+              "domain_weights": {},
+              "tags": ["   "]
+            }
+            """);
+        assertInvalid("no_op", """
+            {
+              "lane": "magic:casting",
+              "minimum_experience": 60,
+              "domain_weights": {},
+              "tags": []
+            }
+            """);
+    }
+
+    private static void assertInvalid(String resourceName, String json) {
+        ResourceLocation source = ResourceLocation.parse("rpgskilltree:mastery_investments/" + resourceName);
+        assertThrows(SkillTreeDataValidationException.class, () -> MasteryInvestmentMetadataParser.parse(Map.of(
+            source,
+            JsonParser.parseString(json)
+        )));
+    }
 }
