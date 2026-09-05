@@ -28,6 +28,9 @@ import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegr
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageLifecycleEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageSpellProfileReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.MineColoniesBattleMageRegistration;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyIntegrationBootstrap;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyIntegrationState;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyLifecycleEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumDiscoveryEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEditorialCatalogEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEntityCatalogEvents;
@@ -128,6 +131,31 @@ public final class RpgSkillTreeMod {
         boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
         String mineColoniesVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
         String ironsSpellbooksVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
+
+        MineColoniesEconomyIntegrationState economyState = MineColoniesEconomyIntegrationBootstrap.install(
+            mineColoniesLoaded,
+            mineColoniesVersion,
+            MineColoniesEconomyLifecycleEvents::install
+        );
+        if (economyState == MineColoniesEconomyIntegrationState.ACTIVE) {
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPAT,
+                "minecolonies_economy_active",
+                "MineColonies Economy integration active: MineColonies {}",
+                mineColoniesVersion
+            );
+        } else if (economyState != MineColoniesEconomyIntegrationState.ABSENT_PROVIDER) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "minecolonies_economy_disabled",
+                "MineColonies Economy integration disabled: state={}, MineColonies={}",
+                economyState,
+                mineColoniesVersion
+            );
+        }
+
         BattleMageIntegrationState battleMageState = BattleMageIntegrationBootstrap.evaluate(
             mineColoniesLoaded,
             ironsSpellbooksLoaded,
