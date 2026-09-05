@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy;
 import com.minecolonies.api.colony.ICitizenData;
 import com.minecolonies.api.colony.IColony;
 import com.minecolonies.api.colony.buildings.IBuilding;
+import com.minecolonies.api.colony.buildings.workerbuildings.IWareHouse;
 import com.minecolonies.api.colony.permissions.Action;
 import dev.gustavopere.rpgskilltree.core.economy.ColonyEconomicInputs;
 import java.util.Optional;
@@ -30,26 +31,32 @@ public final class MineColoniesEconomyAdapter {
         try {
             int adultWorkers = 0;
             for (ICitizenData citizen : colony.getCitizenManager().getCitizens()) {
-                if (citizen != null && !citizen.isChild() && citizen.getJob() != null) {
+                if (citizen != null
+                    && !citizen.isChild()
+                    && citizen.getJob() != null
+                    && citizen.getWorkBuilding() != null) {
                     adultWorkers = Math.incrementExact(adultWorkers);
                 }
             }
 
             int builtLevelPoints = 0;
             for (IBuilding building : colony.getServerBuildingManager().getBuildings().values()) {
-                if (building == null) {
+                if (building == null || !building.isBuilt()) {
                     continue;
                 }
                 int level = building.getBuildingLevel();
                 if (level < 0) {
                     return Optional.empty();
                 }
-                builtLevelPoints = Math.addExact(builtLevelPoints, level);
+                int boundedLevel = Math.max(1, Math.min(5, level));
+                builtLevelPoints = Math.addExact(builtLevelPoints, boundedLevel);
             }
 
-            int warehouseCount = colony.getServerBuildingManager().getWareHouses().size();
-            if (warehouseCount < 0) {
-                return Optional.empty();
+            int warehouseCount = 0;
+            for (IWareHouse warehouse : colony.getServerBuildingManager().getWareHouses()) {
+                if (warehouse != null && warehouse.isBuilt()) {
+                    warehouseCount = Math.incrementExact(warehouseCount);
+                }
             }
             return Optional.of(new ColonyEconomicInputs(adultWorkers, builtLevelPoints, warehouseCount));
         } catch (RuntimeException | LinkageError failure) {
