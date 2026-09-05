@@ -349,14 +349,42 @@ Entradas:
 - nenhum peso, chance, frequência, altura, posição, densidade ou parâmetro configurável foi congelado no texto;
 - o lote foi desenvolvido em TDD: o commit `ee1a866280364cf472743d6423c61fc11af608d7` executou 909 testes e falhou exatamente uma vez, no Batch12, porque o recurso ainda não existia; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 13 — Oh The Biomes We've Gone / biomas Overworld (batch 2)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:biomeswevegone:cika_woods` — Bosque de Cika
+2. `BIOME:biomeswevegone:coconino_meadow` — Pradaria Coconino
+3. `BIOME:biomeswevegone:coniferous_forest` — Floresta de Coníferas
+4. `BIOME:biomeswevegone:crag_gardens` — Crag Gardens
+5. `BIOME:biomeswevegone:crimson_tundra` — Tundra Carmesim
+6. `BIOME:biomeswevegone:cypress_swamplands` — Pântano de Ciprestes
+7. `BIOME:biomeswevegone:cypress_wetlands` — Terras Úmidas de Cipreste
+8. `BIOME:biomeswevegone:dacite_ridges` — Cumes de Dacito
+9. `BIOME:biomeswevegone:dacite_shore` — Costa de Dacito
+10. `BIOME:biomeswevegone:dead_sea` — Mar Morto
+
+### Critérios editoriais aplicados ao lote 13
+
+- o recorte continua imediatamente após `canadian_shield` na ordem do registry `BWGBiomes.java` da release 2.6.0;
+- IDs, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os dez títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit, incluindo `Crag Gardens`, que permanece sem tradução inventada;
+- tags de vila, posto de saqueadores e tesouro enterrado são descritas somente como elegibilidade de worldgen; categorias internas como lago frio grande e arco de espeleotema não são convertidas em geometria, frequência ou valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `0aa9db81c0e71c033d0260b64f51e584b6745dbe`: 910 testes, exatamente 1 falha no Batch13 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
-- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **10**;
-- entradas editoriais totais: **120**;
-- lotes documentados: **12**;
+- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **20**;
+- entradas editoriais totais: **130**;
+- lotes documentados: **13**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
