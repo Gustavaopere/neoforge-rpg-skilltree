@@ -47,6 +47,7 @@ final class A0051A0060Chat2ContractJUnitTest {
 
     @Test
     void multishotRootUsesSuccessWinsAndAtMostOneFailure() throws Exception {
+        // Chat 3 TDD RED: the branch must not pass until A0052 aggregates sibling outcomes by root.
         A0041A0060CombatState state = new A0041A0060CombatState();
         state.addCadence("p");
         state.addCadence("p");
