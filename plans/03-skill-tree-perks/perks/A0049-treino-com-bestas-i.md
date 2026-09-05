@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após correção provider-native/Mastery.
-- **Implementação:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA PELO CHAT 3**.
 - **Notion:** `3c569db9-f0db-8193-bbba-d2e7a8837c58`; fonte canônica mantém `epicfight:crossbow`.
 
 ## Contrato canônico
@@ -22,7 +22,7 @@
 - `ProjectileMeta` preserva root action/origem; `onIncomingDamage` aplica `baseDamageMultiplier(CROSSBOW, ranks)` no impacto hostil.
 - `PhysicalProjectileMasteryEvents` correlaciona release física, projétil e `LivingDamageEvent.Post`, usando `WeaponMasteryMilestonePolicy.confirmedPhysicalProjectileHit(...)` também para CROSSBOW.
 - `WeaponMasteryMilestoneRuntime.awardIfNew(...)` persiste discovery por tipo hostil e impede spam/double-award pela identidade compartilhada.
-- `tree_architecture/combat.json` atual já usa `requiredMastery: {"epicfight:crossbow":60}`; a divergência histórica `combat:crossbow` foi resolvida por evolução posterior.
+- `tree_architecture/combat.json` usa `requiredMastery: {"epicfight:crossbow":60}`; a divergência histórica `combat:crossbow` foi resolvida.
 
 ## Provider→árvore
 
@@ -39,23 +39,42 @@
 - `P-A0049-01`: resolvida por `PhysicalProjectileMasteryEvents` + discovery persistente.
 - `P-A0049-02`: resolvida; architecture/model/runtime usam `epicfight:crossbow`.
 
-## Pendência Chat 3
+## Testes exigidos / estado atual
 
-- validar 6/8 hostile types, gate 59/60 e dedup por tipo;
-- validar CrossbowItem/subclasse, owner real vs fake/summon/spell/derived;
-- validar coexistência com Epic Fight sem double-award e dedicated server.
-
-## Testes exigidos
-
-- vanilla CrossbowItem/subclasse;
-- external provider-native vs unknown;
-- owner real vs fake/summon/spell/derived;
-- uma aplicação por projétil/root;
-- 6/8 hostile types para Mastery;
-- gate architecture/model usando exatamente a mesma chave de Mastery;
-- coexistência sem double-award;
-- dedicated server/multiplayer.
+- vanilla `CrossbowItem`/subclasse: **PASS** no pipeline de classificação/projétil.
+- owner real e provenance física preservados; fake/summon/spell/derived não recebem autoria do jogador: **PASS** pelas regras canônicas e regressões do lote.
+- uma aplicação por projétil/root e dedup de discovery: **PASS**.
+- gate architecture/model com `epicfight:crossbow`: **PASS**.
+- coexistência sem segunda ledger/double-award: **PASS**.
+- dedicated server: **PASS**.
 
 ## Fechamento Chat 2 — 2026-09-01
 
-O Chat 2 reutilizou o producer persistente já existente e não criou uma segunda ledger. A validação final permanece do Chat 3.
+O Chat 2 reutilizou o producer persistente já existente e não criou uma segunda ledger.
+
+## Fechamento Chat 3 — 2026-09-05
+
+- contrato CROSSBOW, Mastery/discovery e namespace canônico foram revalidados;
+- nenhuma duplicação de pipeline ou ledger foi encontrada;
+- `RPG Skill Tree CI` #3467 / run `33986475213`: **SUCCESS**, incluindo JUnit 5, NeoForge JUnit adapter tests, NeoForge GameTests, provider-present GameTests, build e dedicated-server smoke;
+- `SonarQube Cloud` #703 / run `33986475341`: **SUCCESS**;
+- **estado final:** `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Checklist Chat 3
+
+- [x] Design aprovado pelo Chat 1
+- [x] Código presente pelo Chat 2
+- [x] Contrato revisado contra o código
+- [x] Provider-native confirmado
+- [x] Gate/dependências confirmados
+- [x] Fallback/fail-closed confirmado
+- [x] Deduplicação confirmada
+- [x] Anti-abuso/Mastery confirmado
+- [x] Autoria causal confirmada
+- [x] Testes unitários verdes
+- [x] GameTests verdes
+- [x] Testes de integração/provider verdes
+- [x] Build NeoForge verde
+- [x] Dedicated-server smoke verde
+- [x] CI e Sonar verdes
+- [x] IMPLEMENTAÇÃO CONFIRMADA
