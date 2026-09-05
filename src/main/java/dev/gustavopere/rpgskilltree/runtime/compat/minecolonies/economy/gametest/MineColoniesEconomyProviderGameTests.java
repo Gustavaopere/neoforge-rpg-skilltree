@@ -23,9 +23,11 @@ public final class MineColoniesEconomyProviderGameTests {
     private static final String CITIZEN_DATA = "com.minecolonies.api.colony.ICitizenData";
     private static final String JOB = "com.minecolonies.api.colony.jobs.IJob";
     private static final String BUILDING = "com.minecolonies.api.colony.buildings.IBuilding";
+    private static final String SCHEMATIC_PROVIDER = "com.minecolonies.api.colony.buildings.ISchematicProvider";
     private static final String BUILDING_ENTRY = "com.minecolonies.api.colony.buildings.registry.BuildingEntry";
     private static final String MODULE_PRODUCER = "com.minecolonies.api.colony.buildings.registry.BuildingEntry$ModuleProducer";
     private static final String MOD_BUILDINGS = "com.minecolonies.api.colony.buildings.ModBuildings";
+    private static final String ROTATION_MIRROR = "com.ldtteam.structurize.api.RotationMirror";
     private static final String ADAPTER =
         "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyAdapter";
     private static final String BATTLE_MAGE_JOB =
@@ -73,7 +75,7 @@ public final class MineColoniesEconomyProviderGameTests {
                 .invoke(null, colony);
             helper.assertTrue(inputsResult.isPresent(), "real provider graph must produce economy inputs");
             Object inputs = inputsResult.orElseThrow();
-            helper.assertTrue((int) inputs.getClass().getMethod("adultEmployedCitizens").invoke(inputs) == 1,
+            helper.assertTrue((int) inputs.getClass().getMethod("adultWorkers").invoke(inputs) == 1,
                 "job without work building must not contribute worker capacity");
             helper.assertTrue((int) inputs.getClass().getMethod("builtLevelPoints").invoke(inputs) == 10,
                 "built levels must include Town Hall/guard/warehouse and clamp level 8 to 5");
@@ -172,6 +174,10 @@ public final class MineColoniesEconomyProviderGameTests {
         Object building = Class.forName(BUILDING_ENTRY)
             .getMethod("produceBuilding", BlockPos.class, Class.forName(COLONY))
             .invoke(entry, pos, colony);
+        Class<?> rotationMirrorType = Class.forName(ROTATION_MIRROR);
+        Object identityRotation = rotationMirrorType.getField("NONE").get(null);
+        Class.forName(SCHEMATIC_PROVIDER).getMethod("setRotationMirror", rotationMirrorType)
+            .invoke(building, identityRotation);
         building.getClass().getMethod("setBuildingLevel", int.class).invoke(building, level);
         return building;
     }
@@ -185,26 +191,10 @@ public final class MineColoniesEconomyProviderGameTests {
     private static void deleteFixture(Fixture fixture, ServerLevel level) {
         if (fixture == null) return;
         try {
-            Object colony = fixture.colony();
-            int colonyId = (int) Class.forName(COLONY).getMethod("getID").invoke(colony);
-            Object manager = fixture.manager();
-            Method delete = null;
-            for (Method method : manager.getClass().getMethods()) {
-                if (method.getName().equals("deleteColony") && method.getParameterCount() >= 1
-                    && method.getParameterTypes()[0] == int.class) {
-                    delete = method;
-                    break;
-                }
-            }
-            if (delete != null) {
-                Object[] args = new Object[delete.getParameterCount()];
-                args[0] = colonyId;
-                for (int i = 1; i < args.length; i++) {
-                    Class<?> type = delete.getParameterTypes()[i];
-                    args[i] = type == boolean.class ? Boolean.TRUE : type.isInstance(level) ? level : null;
-                }
-                delete.invoke(manager, args);
-            }
+            int colonyId = (int) Class.forName(COLONY).getMethod("getID").invoke(fixture.colony());
+            Class.forName(COLONY_MANAGER)
+                .getMethod("deleteColonyByWorld", int.class, boolean.class, ServerLevel.class)
+                .invoke(fixture.manager(), colonyId, false, level);
         } catch (ReflectiveOperationException | RuntimeException ignored) {
             // Best-effort cleanup only; test assertions already carry the provider evidence.
         }
