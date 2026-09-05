@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "biomeswevegone",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:biomeswevegone:allium_shrubland",
+      "title": "Matagal de Alho-silvestre",
+      "summary": {
+        "text": "Matagal de Alho-silvestre é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:allium_shrubland.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:allium_shrubland"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registro oficial do provider classifica este bioma nas categorias de planície e floral. A ocorrência concreta continua dependente do worldgen e das configurações ativas.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:amaranth_grassland",
+      "title": "Campo de Amarantos",
+      "summary": {
+        "text": "Campo de Amarantos é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:amaranth_grassland.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:amaranth_grassland"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registro oficial do provider classifica este bioma como planície, floral e esparso. A ficha não fixa frequência, coordenadas ou parâmetros de distribuição.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:araucaria_savanna",
+      "title": "Savana de Araucária",
+      "summary": {
+        "text": "Savana de Araucária é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:araucaria_savanna.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:araucaria_savanna"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider classifica este bioma como savana e esparso e o inclui no tag vanilla que permite Ruínas de Trilha. Isso indica elegibilidade estrutural, não garantia de geração em cada ocorrência.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:aspen_boreal",
+      "title": "Álamo Boreal",
+      "summary": {
+        "text": "Álamo Boreal é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:aspen_boreal.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:aspen_boreal"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider classifica este bioma como floresta conífera. Ele também recebe tags de geração para vila de taiga, posto de saqueadores e a estrutura Aspen Manor do próprio BWG; as tags expressam elegibilidade de worldgen, não presença garantida.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:atacama_outback",
+      "title": "Deserto do Atacama",
+      "summary": {
+        "text": "Deserto do Atacama é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:atacama_outback.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:atacama_outback"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registro oficial do provider classifica este bioma como deserto, arenoso e esparso. A distribuição exata permanece definida pelo worldgen corrente.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:baobab_savanna",
+      "title": "Savana de Baobá",
+      "summary": {
+        "text": "Savana de Baobá é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:baobab_savanna.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:baobab_savanna"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registro oficial do provider classifica este bioma como savana e esparso. Frequência e posicionamento são deixados ao runtime e às configurações ativas.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:basalt_barrera",
+      "title": "Barreira de Basalto",
+      "summary": {
+        "text": "Barreira de Basalto é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:basalt_barrera.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:basalt_barrera"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider classifica este bioma nas categorias de praia e ermo. A ficha preserva essa classificação sem inferir formato, altura ou frequência além do que o registro comprova.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:bayou",
+      "title": "Ribeiro",
+      "summary": {
+        "text": "Ribeiro é o nome pt-BR fornecido pelo próprio BWG para o bioma registrado como biomeswevegone:bayou no Overworld.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:bayou"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registro oficial do provider classifica este bioma como pântano. A ocorrência concreta continua sujeita ao sistema de worldgen ativo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:black_forest",
+      "title": "Floresta Negra",
+      "summary": {
+        "text": "Floresta Negra é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:black_forest.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:black_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider classifica este bioma como floresta conífera e o inclui nos tags vanilla de vila de taiga e posto de saqueadores. Esses tags indicam compatibilidade de geração, sem garantir uma estrutura em cada região.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:canadian_shield",
+      "title": "Escudo Canadense",
+      "summary": {
+        "text": "Escudo Canadense é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:canadian_shield.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:canadian_shield"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registro oficial do provider classifica este bioma como floresta conífera e também como encosta. A ficha não converte essa taxonomia em valores de relevo ou distribuição não comprovados.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}
