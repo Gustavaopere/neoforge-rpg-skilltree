@@ -46,6 +46,53 @@ final class A0051A0060Chat2ContractJUnitTest {
     }
 
     @Test
+    void multishotRootUsesSuccessWinsAndAtMostOneFailure() throws Exception {
+        A0041A0060CombatState state = new A0041A0060CombatState();
+        state.addCadence("p");
+        state.addCadence("p");
+
+        Method register;
+        Method seal;
+        Method failure;
+        Method success;
+        try {
+            register = A0041A0060CombatState.class.getMethod(
+                "registerCrossbowProjectile", String.class, String.class, String.class, long.class
+            );
+            seal = A0041A0060CombatState.class.getMethod(
+                "sealCrossbowRoot", String.class, String.class, long.class
+            );
+            failure = A0041A0060CombatState.class.getMethod(
+                "recordCrossbowProjectileFailure", String.class, String.class, String.class, long.class
+            );
+            success = A0041A0060CombatState.class.getMethod(
+                "recordCrossbowProjectileSuccess", String.class, String.class, String.class, long.class
+            );
+        } catch (NoSuchMethodException missingAggregator) {
+            throw new AssertionError("A0052 requires root-level Multishot success-wins aggregation", missingAggregator);
+        }
+
+        register.invoke(state, "p", "root-success", "arrow-a", 12_000L);
+        register.invoke(state, "p", "root-success", "arrow-b", 12_001L);
+        assertFalse((boolean) failure.invoke(state, "p", "root-success", "arrow-a", 12_100L));
+        assertFalse((boolean) seal.invoke(state, "p", "root-success", 12_250L));
+        assertFalse((boolean) success.invoke(state, "p", "root-success", "arrow-b", 12_400L));
+        assertFalse((boolean) failure.invoke(state, "p", "root-success", "arrow-a", 12_500L));
+        assertEquals(2, state.cadence("p"), "a later sibling hit must win over an earlier block impact");
+
+        register.invoke(state, "p", "root-failure", "arrow-c", 13_000L);
+        register.invoke(state, "p", "root-failure", "arrow-d", 13_001L);
+        assertFalse((boolean) failure.invoke(state, "p", "root-failure", "arrow-c", 13_100L));
+        assertFalse((boolean) failure.invoke(state, "p", "root-failure", "arrow-d", 13_110L));
+        assertTrue((boolean) seal.invoke(state, "p", "root-failure", 13_250L));
+        A0041A0060CombatPolicy.onCrossbowFailure("p", state);
+        assertEquals(1, state.cadence("p"), "an all-failure root removes exactly one Cadence");
+        assertFalse((boolean) seal.invoke(state, "p", "root-failure", 13_260L));
+        assertFalse((boolean) failure.invoke(state, "p", "root-failure", "arrow-d", 13_270L));
+        assertEquals(1, state.cadence("p"), "duplicate callbacks cannot settle a root twice");
+    }
+
+    @Test
     void piercingBoltReservesCadenceUntilProjectileRootExists() throws Exception {
         A0041A0060CombatState state = new A0041A0060CombatState();
         CombatPerkRanks ranks = CombatPerkRanks.of(Map.of("A0053", 2));
