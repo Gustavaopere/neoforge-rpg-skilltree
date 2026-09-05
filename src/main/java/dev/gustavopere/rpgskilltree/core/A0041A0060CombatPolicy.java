@@ -44,13 +44,28 @@ public final class A0041A0060CombatPolicy {
         int rank = ranks.rank("A0041");
         if (rank <= 0 || healthFraction > NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION) return CombatResult.neutral();
         if (!legacy.reapMature(actorId, targetId, healthFraction, now)) return CombatResult.neutral();
-        if (!state.claimOnce(actorId, rootActionId, "A0041:consume", now)) return CombatResult.neutral();
-        if (!legacy.consumeMatureReap(actorId, targetId, healthFraction, now)) return CombatResult.neutral();
+        if (!state.reserveScytheCut(actorId, targetId, rootActionId, now)) return CombatResult.neutral();
         return new CombatResult(
             true, false, NotionCombatPerkRules.reapCutDamageMultiplier(rank),
             impactAvailable ? NotionCombatPerkRules.reapCutImpactMultiplier(rank) : 1.0D,
             1.0D, 0.0D, 0.0D
         );
+    }
+
+    public static boolean commitScytheCut(
+        String actorId, String targetId, String rootActionId,
+        A0021A0040CombatState legacy, A0041A0060CombatState state,
+        double healthFraction, long now
+    ) {
+        requireCommon(actorId, rootActionId, CombatPerkRanks.empty(), state);
+        Objects.requireNonNull(legacy); Objects.requireNonNull(targetId);
+        if (!state.commitScytheCutReservation(actorId, targetId, rootActionId, now)) return false;
+        return legacy.consumeMatureReap(actorId, targetId, healthFraction, now);
+    }
+
+    public static void rollbackScytheCut(String actorId, String rootActionId, A0041A0060CombatState state) {
+        Objects.requireNonNull(state);
+        state.discardScytheCutReservation(actorId, rootActionId);
     }
 
     public static boolean armBattleHarvestOnKill(
@@ -232,7 +247,7 @@ public final class A0041A0060CombatPolicy {
             return new CombatResult(
                 true, true, 1.18D, impactAvailable ? 1.25D : 1.0D,
                 1.0D, 0.0D,
-                0.0D // No causal Epic Fight stamina-debit receipts are currently exposed safely.
+                0.0D
             );
         }
 

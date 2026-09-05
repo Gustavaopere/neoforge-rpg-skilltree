@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após boundary retroativo de BOW/corpo/impacto.
-- **Implementação:** PARCIAL; `P-A0046-01` e `P-A0046-02` abertas.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA PELO CHAT 3 NOS COMPONENTES COM RECEIPT REAL**; heavy-impact/body scalar permanecem fail-closed onde não há receipt seguro.
 - **Notion:** `3c569db9-f0db-8116-9caa-e1ef0b2867d5`.
 
 ## Contrato canônico
@@ -19,26 +19,36 @@
 
 - `A0041A0060ProjectileEvents.tickAim(...)` implementa stable aim, sprint drain, cancelamento ≥80% e abrupt aim.
 - `onDamagePost(...)` credita acerto distante uma vez por projétil/root.
-- `A0041A0060CombatPolicy.loseFocusForHeavyImpact(...)` existe, mas não há caller produtivo comprovado.
-- Não há adapter de Cold Sweat/Thirst/body scalar no bridge A0041–A0060.
+- `A0041A0060CombatPolicy.loseFocusForHeavyImpact(...)` existe, mas permanece sem caller produtivo porque não há receipt heavy-impact seguro no boundary atual.
+- não há adapter corporal completo para Cold Sweat/Thirst/exhaustion neste bridge; cada eixo ausente continua simplesmente omitido, conforme contrato.
+- esses componentes ausentes não anulam os producers/perdas independentes já seguros, portanto A0046 permanece comprável e funcional sem inventar substitutos.
 
 ## Provider→árvore
 
-- **Volcanoes:** pode influenciar temperatura somente indiretamente pelo estado Cold Sweat já atualizado por sua bridge; A0046 não lê Atmosphere, gases, pressão ou heat source diretamente.
+- **RPG Skill Tree:** owner exclusivo de Foco e de seus consumers seguros.
+- **Minecraft/NeoForge:** bow use, sprint, rotação, release e POST de projétil.
+- **Volcanoes:** pode influenciar temperatura somente indiretamente pelo estado Cold Sweat; A0046 não lê Atmosphere, gases, pressão ou heat source diretamente.
 - **Enshrouded:** Shroud/Exposure/Madness não são Foco nem escalares corporais desta perk.
 - **Black Arcana:** Strain/Corruption/Backlash não substituem temperatura, hidratação, exhaustion ou Focus.
 - **Mobstein:** companion projectile não gera Foco para o dono.
-- **RPG Skill Tree:** owner exclusivo de Foco; Stage 11 itemização não é producer.
+- **Stage 11 itemização:** não é producer.
 
-## Pendências Chat 2
+## Pendências técnicas preservadas
 
 ### P-A0046-01 — heavy impact receipt
 
-Conectar receipt hostil server-authoritative de impacto/stagger pesado e aplicar exatamente −25 uma vez por outcome. Dano bruto/hit comum não qualifica.
+Continua fail-closed. Conectar somente quando houver receipt hostil server-authoritative de impacto/stagger pesado; dano bruto/hit comum não qualifica.
 
 ### P-A0046-02 — escalares do estado corporal
 
-Conectar somente adapters reais/canônicos de Cold Sweat temperatura, Thirst hidratação e Minecraft/NeoForge exhaustion. Na ausência de qualquer eixo, ignorar apenas seu escalar. Não inferir hidratação de exhaustion nem temperatura de clima/bioma/Volcanoes direto.
+Conectar somente adapters reais/canônicos de Cold Sweat temperatura, Thirst hidratação e Minecraft/NeoForge exhaustion. Na ausência de qualquer eixo, ignorar apenas seu escalar.
+
+## Pendência Chat 3
+
+- validar todos os producers já ativos, dedup do distant hit e limites 0–100;
+- validar que hit comum não dispara heavy-impact loss;
+- validar ausência de escalares corporais sem efeitos colaterais;
+- validar lifecycle logout/dimension e multiplayer.
 
 ## Testes exigidos
 
@@ -50,3 +60,11 @@ Conectar somente adapters reais/canônicos de Cold Sweat temperatura, Thirst hid
 - Volcanoes apenas via Cold Sweat;
 - lifecycle logout/dimension;
 - multiplayer/dedup.
+
+## Fechamento Chat 2 — 2026-09-01
+
+O Chat 2 preservou fail-closed componente a componente em vez de bloquear a perk inteira ou fabricar receipts. A bateria final permanece do Chat 3.
+
+## Fechamento Chat 3 — 2026-09-02
+
+Producers/perdas com receipts reais, dedup, limites de Foco e ausência segura dos componentes opcionais foram validados. CI #3378 (`33665545963`) GREEN completo. `P-A0046-01/-02` permanecem fail-closed, sem redesign.

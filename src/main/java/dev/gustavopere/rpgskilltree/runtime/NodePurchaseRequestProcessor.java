@@ -33,6 +33,12 @@ public final class NodePurchaseRequestProcessor {
         Objects.requireNonNull(graph, "graph");
         Objects.requireNonNull(definition, "definition");
 
+        // Mandatory provider/binding availability is evaluated before reserving the idempotency
+        // key and before any point/rank mutation. Unavailable nodes cannot become ghost ranks.
+        if (!CombatPerkAvailabilityRuntime.isAvailable(nodeId)) {
+            return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.UNAVAILABLE_NODE);
+        }
+
         NodePurchaseRequestTracker.Decision decision = tracker.checkAndRecord(
             playerId,
             requestId,
