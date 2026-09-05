@@ -58,7 +58,7 @@ Entradas:
 - sem probabilidades, dano, vida, velocidade, cooldown ou capacidades numéricas hardcoded em prosa;
 - distinção explícita entre domesticação, confiança e simples uso de sela quando as mecânicas diferem;
 - variantes descritas sem transformar regras de worldgen/configuração em texto universal;
-- descrições redigidas em pt-BR e separadas dos fatos técnicos/providers do Compêndio.
+- descrições redigida em pt-BR e separadas dos fatos técnicos/providers do Compêndio.
 
 ## Lote 3 — Vanilla / fauna ambiente e aquática
 
@@ -603,6 +603,36 @@ Entradas:
 - nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica do worldgen foi congelada no corpus;
 - TDD confirmado no commit `9968ddc6db31a4e3e14ef9056f8a4e7fccbfb2b5`, RPG Skill Tree CI run `33998199993`, job `101392297879`: 979 testes, exatamente 1 falha no Batch21 pela ausência de `betternether/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 22 — BetterNether: New Dawn / biomas do Nether (batch 2)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betternether/biomes-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betternether:nether_mushroom_forest_edge` — Nether Mushroom Forest Edge
+2. `BIOME:betternether:nether_swampland` — Nether Swampland
+3. `BIOME:betternether:nether_swampland_terraces` — Nether Swampland Terraces
+4. `BIOME:betternether:old_fungiwoods` — Old Fungiwoods
+5. `BIOME:betternether:old_swampland` — Old Swampland
+6. `BIOME:betternether:old_warped_woods` — Old Warped Woods
+7. `BIOME:betternether:poor_nether_grasslands` — Poor Nether Grasslands
+8. `BIOME:betternether:soul_plain` — Soul Plain
+9. `BIOME:betternether:sulfuric_bone_reef` — Sulfuric Bone Reef
+10. `BIOME:betternether:upside_down_forest` — Upside Down Forest
+
+### Critérios editoriais aplicados ao lote 22
+
+- o recorte continua imediatamente após `nether_mushroom_forest` e cobre os biomas 11–20 na ordem de `NetherBiomes.java` e `NetherBiomesProvider.bootstrap()` do commit congelado `543127cab48b1ecb0017fee4222af25e0583e185`;
+- os dez títulos são preservados exatamente do `assets/betternether/lang/pt_br.json`, que os mantém em inglês;
+- todos os dez IDs aparecem em `registerBiomeToggles()`;
+- `NetherMushroomForest.withEdgeBiome()` aponta para `NETHER_MUSHROOM_FORREST_EDGE.key`, cujo registry path gerado é `nether_mushroom_forest_edge`;
+- o numeric provider e o selector de surface rules desse edge usam a grafia oficial `nether_mushroom_forrest_edge`; essa divergência textual é registrada sem inferir bug, peso, escolha ou valor numérico;
+- palavras dos nomes como `Old`, `Poor`, `Soul`, `Sulfuric`, `Terraces` e `Upside Down` não são convertidas em idade/depreciação, escassez, composição, risco, geometria ou outros parâmetros não fonteados;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `87570747a4e9c1bb37a99523c553f75ca41c7d2a`, RPG Skill Tree CI run `33999540955`, job `101395818638`: 980 testes, exatamente 1 falha no Batch22 pela ausência de `betternether/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -611,8 +641,8 @@ Entradas:
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
-- entradas de worldgen BetterNether: New Dawn reais no corpus: **10**;
-- entradas editoriais totais: **202**;
-- lotes documentados: **21**;
+- entradas de worldgen BetterNether: New Dawn reais no corpus: **20**;
+- entradas editoriais totais: **212**;
+- lotes documentados: **22**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
