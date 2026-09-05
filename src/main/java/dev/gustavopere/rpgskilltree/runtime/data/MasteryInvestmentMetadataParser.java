@@ -6,6 +6,7 @@ import dev.gustavopere.rpgskilltree.core.MasteryInvestmentMetadata;
 import dev.gustavopere.rpgskilltree.core.MasteryInvestmentMetadataPolicy;
 import dev.gustavopere.rpgskilltree.core.MasteryLaneCatalog;
 import dev.gustavopere.rpgskilltree.core.ProgressionDomain;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.EnumMap;
@@ -31,7 +32,12 @@ public final class MasteryInvestmentMetadataParser {
             ResourceLocation resourceId = resource.getKey();
             JsonObject root = requireObject(resourceId, resource.getValue());
             String lane = requireString(resourceId, root, "lane");
-            int minimumExperience = requirePositiveInt(resourceId, root, "minimum_experience");
+            int minimumExperience = requirePositiveInt(
+                resourceId,
+                null,
+                "minimum_experience",
+                root.get("minimum_experience")
+            );
 
             if (!MasteryLaneCatalog.isCanonical(lane)) {
                 throw invalid(resourceId, lane, "lane", "non-canonical mastery lane");
@@ -84,17 +90,27 @@ public final class MasteryInvestmentMetadataParser {
         return value;
     }
 
-    private static int requirePositiveInt(ResourceLocation resourceId, JsonObject root, String field) {
-        JsonElement element = root.get(field);
+    private static int requirePositiveInt(
+        ResourceLocation resourceId,
+        String entryId,
+        String field,
+        JsonElement element
+    ) {
         if (element == null || !element.isJsonPrimitive() || !element.getAsJsonPrimitive().isNumber()) {
-            throw invalid(resourceId, null, field, "expected positive integer");
+            throw invalid(resourceId, entryId, field, "expected positive integer");
         }
         try {
-            int value = element.getAsInt();
-            if (value <= 0) throw invalid(resourceId, null, field, "must be positive");
+            int value = new BigDecimal(element.getAsString()).intValueExact();
+            if (value <= 0) throw invalid(resourceId, entryId, field, "must be positive");
             return value;
-        } catch (NumberFormatException | UnsupportedOperationException ex) {
-            throw new SkillTreeDataValidationException(resourceId, null, field, "expected positive integer", ex);
+        } catch (NumberFormatException | ArithmeticException ex) {
+            throw new SkillTreeDataValidationException(
+                resourceId,
+                entryId,
+                field,
+                "expected positive integer",
+                ex
+            );
         }
     }
 
@@ -122,25 +138,20 @@ public final class MasteryInvestmentMetadataParser {
                     ex
                 );
             }
-            JsonElement weightElement = entry.getValue();
-            if (!weightElement.isJsonPrimitive() || !weightElement.getAsJsonPrimitive().isNumber()) {
-                throw invalid(resourceId, lane, "domain_weights." + entry.getKey(), "expected positive integer");
-            }
-            int weight;
-            try {
-                weight = weightElement.getAsInt();
-            } catch (NumberFormatException | UnsupportedOperationException ex) {
-                throw new SkillTreeDataValidationException(
+            if (weights.containsKey(domain)) {
+                throw invalid(
                     resourceId,
                     lane,
                     "domain_weights." + entry.getKey(),
-                    "expected positive integer",
-                    ex
+                    "duplicate progression domain after normalization"
                 );
             }
-            if (weight <= 0) {
-                throw invalid(resourceId, lane, "domain_weights." + entry.getKey(), "must be positive");
-            }
+            int weight = requirePositiveInt(
+                resourceId,
+                lane,
+                "domain_weights." + entry.getKey(),
+                entry.getValue()
+            );
             weights.put(domain, weight);
         }
         return Map.copyOf(weights);
