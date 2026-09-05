@@ -1,6 +1,6 @@
 # Status canônico dos planos
 
-Última auditoria de fechamento: **2026-08-30**.
+Última auditoria de fechamento: **2026-09-05**.
 
 Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos`, `10.07 — Loot, dieta, reprodução e ecologia` e `10.08 — Biomas, estruturas e dimensões` foram implementados, validados, integrados e auditados.
 
@@ -25,6 +25,8 @@ Fechamento do Stage 10.05 auditado contra `main@33360ba2a44148ddce2d4f8c82506698
 Fechamento funcional do Stage 10.06 auditado contra `main@68f694e98c068f3274cd1ecb6bd7588951833fb5`, após integração do PR #88. Os CIs pós-merge `33220942187` / Compendium Flora #35, `33220942179` / Compendium Entities #101, `33220942213` / Compendium Discovery #178 e `33220942238` / RPG Skill Tree #1061 fecharam GREEN; o CI completo incluiu todos os validators, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final do commit.
 
 Fechamento do Stage 08.01 auditado contra `main@2b8e5d10b70704598c0f175a3a9bf1ad0af5586e`, após integração dos PRs #97 e #98. O CI da fundação quest-facing `33225421326` e o CI de especializações/versionamento `33227098892` fecharam GREEN completos, ambos com NeoForge build, verificação do JAR e dedicated-server smoke; os workflows Compendium associados também fecharam GREEN.
+
+Fechamento funcional do Stage 08.02 preparado na PR #405. A implementação mantém XP/Core Points/Main Perk Budget nas boundaries canônicas existentes e adiciona somente a boundary explícita de mastery autorizada, com lane canônica e replay key obrigatória antes de delegar a `PlayerProgressionRuntime.awardMastery(...)`. O TDD RED `33982433941` provou a ausência inicial de `QuestMasteryRewardPolicy`; o head funcional `cdc0e8ed9326cd7f3c45e7b2c0fc461318ebf122` passou o RPG Skill Tree CI `33984367404` / run #3444 GREEN completo e o SonarQube Cloud `33984367363` / run #680 com Quality Gate PASSED, 100,0% Coverage on New Code, 0 New issues, 0 Security Hotspots e 0,0% Duplication on New Code. CodeQL `33984367319` / run #477 também fechou GREEN. O fechamento documental é materializado por `08-quests-progression-hooks/✅-02-progression-rewards.md` na própria PR.
 
 Fechamento funcional do Stage 10.07 auditado contra `main@03403fc3f7934b0e2b2c9a5cd0a9e6606a2ba7d9`, após integração do PR #99. Os CIs pós-merge `33228111273` / Compendium Ecology #111, `33228111253` / Compendium Flora #149, `33228111262` / Compendium Entities #215, `33228111257` / Compendium Discovery #292 e `33228111266` / RPG Skill Tree #1175 fecharam GREEN; o CI completo incluiu Core/tests/validators, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final do commit.
 
@@ -52,11 +54,11 @@ Fechamento do Stage 03.04 integrado pela PR #194 em `main@c1523ac5211543d26cdb54
 
 Fechamento funcional do Stage 11.01 preparado no PR #232. O TDD RED inicial `33308736024` falhou exclusivamente pela ausência dos tipos do novo domínio. O hardening de review também provou RED específico para a referência qualificada quebrada entre linhas no RPG Skill Tree CI `33320606205` / run #2125 (`111 tests completed, 1 failed` em `scannerRejectsQualifiedProviderReferencesSplitAcrossLines()`). O último head funcional com código `ad26f7319893100ba2e46bd66361005003cf4752` passou o RPG Skill Tree CI `33320744278` / run #2128 GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke; todos os workflows Foundation/Compendium associados também fecharam GREEN. O fechamento formal é materializado por `✅-01-domain-invariants.md` no mesmo PR.
 
-A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**.
+A auditoria considera código, recursos, testes, validators e CI já integrados na `main`. Trabalho existente apenas em PR/branch aberta **não conta como concluído**; incrementos preparados em uma PR de fechamento só se tornam formais quando o próprio `STATUS.md` é integrado à `main`.
 
 ## Resultado
 
-**32 / 90 subplanos concluídos formalmente.**
+**33 / 90 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -81,6 +83,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `06-integrations/✅-03-irons-spellbooks.md`
 - `06-integrations/✅-05-goety-malum-eidolon.md`
 - `08-quests-progression-hooks/✅-01-public-query-api.md`
+- `08-quests-progression-hooks/✅-02-progression-rewards.md`
 - `10-compendio-natural/✅-01-proveniencia-licencas.md`
 - `10-compendio-natural/✅-02-inventario-modpack.md`
 - `10-compendio-natural/✅-03-modelo-dados-identidade.md`
@@ -105,11 +108,11 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 05 Combat & Magic Hooks | 0 | 6 | EM ANDAMENTO |
 | 06 Integrations | 2 | 9 | EM ANDAMENTO |
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
-| 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
+| 08 Quest & Progression Hooks | 2 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
 | 11 Itemização & Progressão de Equipamentos | 1 | 15 | EM ANDAMENTO |
-| **Total** | **32** | **90** | |
+| **Total** | **33** | **90** | |
 
 ## Por que os demais continuam abertos
 
@@ -147,7 +150,7 @@ Loaders, packets e UI já existem, mas o acceptance final ainda exige reload cro
 
 ### 08 — Quest & Progression Hooks
 
-`✅-01-public-query-api.md` está fechado. Os subplanos `02-progression-rewards`, `03-data-driven-conditions`, `04-idempotency-ledger`, `05-ftbquests-npc-adapters` e `06-authoring-diagnostics` continuam abertos e devem ser fechados separadamente.
+`✅-01-public-query-api.md` e `✅-02-progression-rewards.md` estão fechados. Os subplanos `03-data-driven-conditions`, `04-idempotency-ledger`, `05-ftbquests-npc-adapters` e `06-authoring-diagnostics` continuam abertos e devem ser fechados separadamente.
 
 ### 09 — Hardening & Release
 
@@ -169,7 +172,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento funcional mais recente é Stage 11.01 no PR #232. O TDD RED inicial `33308736024` confirmou a ausência intencional dos tipos; o hardening final confirmou RED no RPG Skill Tree CI `33320606205` / run #2125 especificamente para referência opcional totalmente qualificada dividida entre linhas. O último head funcional com código `ad26f7319893100ba2e46bd66361005003cf4752` passou o RPG Skill Tree CI `33320744278` / run #2128 GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR e dedicated-server smoke. Todos os workflows Foundation/Compendium associados ao mesmo head também fecharam GREEN. Os fechamentos anteriores, inclusive Stage 03.04 em `main@c1523ac5211543d26cdb54387eb2089510822ff3`, permanecem preservados pela mesma matriz de regressão.
+O fechamento funcional mais recente é Stage 08.02 na PR #405. O TDD RED `33982433941` exigiu explicitamente `QuestMasteryRewardPolicy`; após corrigir a tentativa inválida de instrumentar `ServerPlayer` no JUnit plain, o caminho válido foi exercitado no JUnit NeoForge que participa do JaCoCo. O head funcional `cdc0e8ed9326cd7f3c45e7b2c0fc461318ebf122` passou o RPG Skill Tree CI `33984367404` / run #3444 GREEN completo, incluindo Core, JUnit 5, NeoForge-loaded JUnit, NeoForge GameTests, validators, build, verificação do JAR e dedicated-server smoke. O SonarQube Cloud `33984367363` / run #680 fechou GREEN com Quality Gate PASSED, 100,0% Coverage on New Code, zero novos issues/hotspots e zero duplicação; CodeQL `33984367319` / run #477 também fechou GREEN. Os fechamentos anteriores permanecem protegidos pela mesma matriz de regressão.
 
 ## Convenção
 
