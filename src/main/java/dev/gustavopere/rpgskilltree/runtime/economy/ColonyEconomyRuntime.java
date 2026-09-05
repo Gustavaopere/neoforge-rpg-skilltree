@@ -43,6 +43,13 @@ public final class ColonyEconomyRuntime {
         return true;
     }
 
+    /** Clears session-local cadence state so a new server in the same JVM can re-anchor safely. */
+    void reset() {
+        lastSuccessfulSettlementTick = 0L;
+        highestObservedTick = 0L;
+        anchored = false;
+    }
+
     public long settlementIntervalTicks() {
         return settlementIntervalTicks;
     }
