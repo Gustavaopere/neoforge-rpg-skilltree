@@ -22,6 +22,16 @@ public final class ColonyEconomyLedger {
     private final Set<UUID> transactionIds = new HashSet<>();
     private final Set<String> causalKeys = new HashSet<>();
 
+    public ColonyEconomyLedger() {}
+
+    /** Restores an audit history and rebuilds replay indexes after load/restart. */
+    public ColonyEconomyLedger(List<EconomyTransaction> persistedTransactions) {
+        Objects.requireNonNull(persistedTransactions, "persistedTransactions");
+        for (EconomyTransaction transaction : persistedTransactions) {
+            restore(transaction);
+        }
+    }
+
     public EconomyMutationResult apply(ColonyEconomyState state, EconomyCommand command, long gameTime) {
         Objects.requireNonNull(state, "state");
         Objects.requireNonNull(command, "command");
@@ -107,6 +117,18 @@ public final class ColonyEconomyLedger {
         transactionIds.add(command.transactionId());
         causalKeys.add(command.causalKey());
         return EconomyMutationResult.applied(updated, transaction);
+    }
+
+    private void restore(EconomyTransaction transaction) {
+        Objects.requireNonNull(transaction, "transaction");
+        if (!transactionIds.add(transaction.transactionId())) {
+            throw new IllegalArgumentException("duplicate persisted economy transaction id: " + transaction.transactionId());
+        }
+        if (!causalKeys.add(transaction.causalKey())) {
+            transactionIds.remove(transaction.transactionId());
+            throw new IllegalArgumentException("duplicate persisted economy causal key: " + transaction.causalKey());
+        }
+        transactions.add(transaction);
     }
 
     private static ColonyEconomyState copyMoneyState(
