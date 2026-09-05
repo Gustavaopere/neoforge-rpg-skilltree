@@ -1,0 +1,179 @@
+package dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.gametest;
+
+import java.lang.reflect.Method;
+import java.util.Optional;
+import net.minecraft.core.BlockPos;
+import net.minecraft.gametest.framework.GameTest;
+import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.common.util.FakePlayerFactory;
+import net.neoforged.neoforge.gametest.GameTestHolder;
+import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
+
+/** Provider-present contract tests for the audited MineColonies 1.1.1375 economy adapter. */
+@GameTestHolder("rpgskilltree")
+@PrefixGameTestTemplate(false)
+public final class MineColoniesEconomyProviderGameTests {
+    private static final String COLONY_MANAGER = "com.minecolonies.api.colony.IColonyManager";
+    private static final String COLONY = "com.minecolonies.api.colony.IColony";
+    private static final String CITIZEN_DATA = "com.minecolonies.api.colony.ICitizenData";
+    private static final String BUILDING = "com.minecolonies.api.colony.buildings.IBuilding";
+    private static final String BUILDING_ENTRY = "com.minecolonies.api.colony.buildings.registry.BuildingEntry";
+    private static final String MODULE_PRODUCER = "com.minecolonies.api.colony.buildings.registry.BuildingEntry$ModuleProducer";
+    private static final String MOD_BUILDINGS = "com.minecolonies.api.colony.buildings.ModBuildings";
+    private static final String ADAPTER =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyAdapter";
+    private static final String BATTLE_MAGE_REGISTRATION =
+        "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.MineColoniesBattleMageRegistration";
+
+    private MineColoniesEconomyProviderGameTests() {}
+
+    @GameTest(template = "foundation_empty", timeoutTicks = 200)
+    public static void readsRealColonyInputsAndNativePermission(GameTestHelper helper) {
+        if (!ModList.get().isLoaded("minecolonies")) {
+            helper.succeed();
+            return;
+        }
+
+        Fixture fixture = null;
+        try {
+            fixture = createFixture(helper);
+            Object colony = fixture.colony();
+            Player owner = fixture.owner();
+            Class<?> colonyType = Class.forName(COLONY);
+            Class<?> adapterType = Class.forName(ADAPTER);
+
+            @SuppressWarnings("unchecked")
+            Optional<Object> binding = (Optional<Object>) adapterType.getMethod("binding", colonyType)
+                .invoke(null, colony);
+            helper.assertTrue(binding.isPresent(), "real MineColonies colony must expose a native binding");
+            Object nativeBinding = binding.orElseThrow();
+            helper.assertTrue((int) nativeBinding.getClass().getMethod("colonyId").invoke(nativeBinding)
+                    == (int) colonyType.getMethod("getID").invoke(colony),
+                "native binding must preserve provider colony id");
+            Object dimensionId = nativeBinding.getClass().getMethod("dimensionId").invoke(nativeBinding);
+            helper.assertTrue(Level.OVERWORLD.location().equals(dimensionId),
+                "native binding must preserve provider dimension id");
+
+            @SuppressWarnings("unchecked")
+            Optional<Object> inputsResult = (Optional<Object>) adapterType.getMethod("economicInputs", colonyType)
+                .invoke(null, colony);
+            helper.assertTrue(inputsResult.isPresent(), "real provider graph must produce economy inputs");
+            Object inputs = inputsResult.orElseThrow();
+            helper.assertTrue((int) inputs.getClass().getMethod("adultEmployedCitizens").invoke(inputs) == 1,
+                "only the employed adult fixture citizen must contribute worker capacity");
+            helper.assertTrue((int) inputs.getClass().getMethod("builtLevelPoints").invoke(inputs) == 4,
+                "built level points must sum the level-1 guard tower and level-3 warehouse");
+            helper.assertTrue((int) inputs.getClass().getMethod("warehouseCount").invoke(inputs) == 1,
+                "real MineColonies warehouse collection must contribute exactly one warehouse");
+
+            Method mayManage = adapterType.getMethod(
+                "mayManageEconomy",
+                Class.forName("net.minecraft.server.level.ServerPlayer"),
+                colonyType
+            );
+            helper.assertTrue((boolean) mayManage.invoke(null, owner, colony),
+                "colony owner must be authorized through native MANAGE_HUTS permission");
+            helper.assertTrue(!(boolean) mayManage.invoke(null, null, colony),
+                "null actor must fail closed even with a valid colony");
+            helper.succeed();
+        } catch (ReflectiveOperationException | LinkageError failure) {
+            throw new AssertionError("MineColonies economy provider contract probe failed", failure);
+        } finally {
+            deleteFixture(fixture, helper.getLevel());
+        }
+    }
+
+    private static Fixture createFixture(GameTestHelper helper) throws ReflectiveOperationException {
+        ServerLevel level = helper.getLevel();
+        Player owner = FakePlayerFactory.getMinecraft(level);
+        BlockPos center = helper.absolutePos(BlockPos.ZERO);
+        Class<?> managerType = Class.forName(COLONY_MANAGER);
+        Object manager = managerType.getMethod("getInstance").invoke(null);
+        Object colony = managerType.getMethod(
+            "createColony", ServerLevel.class, BlockPos.class, Player.class, String.class, String.class
+        ).invoke(manager, level, center, owner, "Economy Provider GameTest", "default");
+        if (colony == null) throw new AssertionError("MineColonies failed to create economy test colony");
+
+        Object citizen = spawnCitizen(colony, level, center.above());
+        Object citizenData = citizen.getClass().getMethod("getCitizenData").invoke(citizen);
+        Object structureManager = colony.getClass().getMethod("getServerBuildingManager").invoke(colony);
+
+        Object guardTower = createBuilding(colony, center.offset(2, 0, 0), "guardTower", 1);
+        addBuilding(structureManager, guardTower);
+        Object producer = Class.forName(BATTLE_MAGE_REGISTRATION).getMethod("guardTowerWorkModule").invoke(null);
+        Object workModule = guardTower.getClass().getMethod("getModule", Class.forName(MODULE_PRODUCER))
+            .invoke(guardTower, producer);
+        if (workModule == null) throw new AssertionError("Guard Tower missing Battle Mage work module");
+        boolean assigned = (boolean) workModule.getClass().getMethod("assignCitizen", Class.forName(CITIZEN_DATA))
+            .invoke(workModule, citizenData);
+        if (!assigned) throw new AssertionError("Guard Tower rejected employed economy fixture citizen");
+
+        Object warehouse = createBuilding(colony, center.offset(5, 0, 0), "warehouse", 3);
+        addBuilding(structureManager, warehouse);
+
+        return new Fixture(manager, colony, owner);
+    }
+
+    private static Object spawnCitizen(Object colony, ServerLevel level, BlockPos pos) throws ReflectiveOperationException {
+        Object citizenManager = colony.getClass().getMethod("getCitizenManager").invoke(colony);
+        Class<?> citizenDataType = Class.forName(CITIZEN_DATA);
+        Object citizenData = citizenManager.getClass().getMethod("createAndRegisterCivilianData").invoke(citizenManager);
+        Object spawnedData = citizenManager.getClass().getMethod(
+            "spawnOrCreateCitizen", citizenDataType, Level.class, BlockPos.class
+        ).invoke(citizenManager, citizenData, level, pos);
+        @SuppressWarnings("unchecked")
+        Optional<Object> entity = (Optional<Object>) citizenDataType.getMethod("getEntity").invoke(spawnedData);
+        return entity.orElseThrow(() -> new AssertionError("MineColonies did not spawn economy fixture citizen"));
+    }
+
+    private static Object createBuilding(Object colony, BlockPos pos, String holderField, int level)
+        throws ReflectiveOperationException {
+        Object holder = Class.forName(MOD_BUILDINGS).getField(holderField).get(null);
+        Object entry = holder.getClass().getMethod("get").invoke(holder);
+        Object building = Class.forName(BUILDING_ENTRY)
+            .getMethod("produceBuilding", BlockPos.class, Class.forName(COLONY))
+            .invoke(entry, pos, colony);
+        building.getClass().getMethod("setBuildingLevel", int.class).invoke(building, level);
+        return building;
+    }
+
+    private static void addBuilding(Object structureManager, Object building) throws ReflectiveOperationException {
+        Method addBuilding = structureManager.getClass().getDeclaredMethod("addBuilding", Class.forName(BUILDING));
+        addBuilding.setAccessible(true);
+        addBuilding.invoke(structureManager, building);
+    }
+
+    private static void deleteFixture(Fixture fixture, ServerLevel level) {
+        if (fixture == null) return;
+        try {
+            Object colony = fixture.colony();
+            int colonyId = (int) Class.forName(COLONY).getMethod("getID").invoke(colony);
+            Object manager = fixture.manager();
+            Method delete = null;
+            for (Method method : manager.getClass().getMethods()) {
+                if (method.getName().equals("deleteColony") && method.getParameterCount() >= 1
+                    && method.getParameterTypes()[0] == int.class) {
+                    delete = method;
+                    break;
+                }
+            }
+            if (delete != null) {
+                Object[] args = new Object[delete.getParameterCount()];
+                args[0] = colonyId;
+                for (int i = 1; i < args.length; i++) {
+                    Class<?> type = delete.getParameterTypes()[i];
+                    args[i] = type == boolean.class ? Boolean.TRUE : type.isInstance(level) ? level : null;
+                }
+                delete.invoke(manager, args);
+            }
+        } catch (ReflectiveOperationException | RuntimeException ignored) {
+            // Best-effort cleanup only; test assertions already carry the provider evidence.
+        }
+    }
+
+    private record Fixture(Object manager, Object colony, Player owner) {}
+}
