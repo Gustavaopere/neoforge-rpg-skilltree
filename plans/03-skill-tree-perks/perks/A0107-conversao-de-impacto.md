@@ -72,3 +72,28 @@ Causalidade, dedup, anti-abuso, atomicidade, fallback, versões e purchase fail-
 ## Testes exigidos ao Chat 3
 
 No estado atual: purchase indisponível sem gasto, predecessor transitivo, draft #15 não habilita node, provider absent/version mismatch, nenhum fallback 1:1/refund/polling. Se o adapter for materializado: atomicidade, insuficiência de Stamina, once/event, rollback e dedicated provider-present acceptance. Sempre: GameTests/build/JAR/dedicated-server smoke aplicáveis.
+
+## Atualização de implementação — Chat 2 (2026-09-05)
+
+**Estado:** `CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `CombatPerkAvailabilityRuntime` materializa A0107 como indisponível antes da compra/efeito; A0093 permanece predecessor estruturalmente indisponível.
+- Nenhum `ImpactStaminaBridge` histórico do PR #15 foi copiado/promovido e nenhuma equivalência `impact_pressure -> stamina_cost` foi inventada.
+- Rank persistido de node indisponível é mascarado para rank efetivo 0 no gameplay pelo boundary de availability já canônico.
+- O comportamento atual preserva 100% da pressão/impacto original e não debita Stamina.
+- Não há redesign: este é exatamente o fail-closed aprovado pelo Chat 1.
+
+### Checklist Chat 2
+
+- [x] Gate/availability transitiva implementado
+- [x] Purchase/effective-rank fail-closed implementado
+- [x] Provider-native first preservado
+- [x] Nenhum fallback 1:1/refund/polling implementado
+- [x] Código presente no estado fail-closed aprovado
+- [ ] **VALIDAÇÃO CHAT 3:** confirmar compra sem gasto e rank efetivo 0
+- [ ] **VALIDAÇÃO CHAT 3:** confirmar A0093 transitivamente bloqueante
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests/integração aplicáveis
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
