@@ -242,7 +242,7 @@
           ]
         }
       },
-      "references": ["BIOME:betterend:dust_wastelands"],
+      "references": [],
       "review_status": "REVIEWED",
       "availability": "RUNTIME"
     }
