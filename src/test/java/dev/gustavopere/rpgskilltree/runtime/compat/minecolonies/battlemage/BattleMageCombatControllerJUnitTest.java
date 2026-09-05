@@ -158,7 +158,7 @@ final class BattleMageCombatControllerJUnitTest {
     }
 
     @Test
-    void runtimeSafetyUsesFailClosedInfinityForMissingProfileAndConfiguredFloorWithoutSpellData() {
+    void configuredFriendlyFireRadiusFailsClosedWithoutProviderRuntime() {
         BattleMageSpellProfile unsafeArea = new BattleMageSpellProfile(
             id("irons_spellbooks:fireball"),
             BattleMageTargetMode.HOSTILE_AREA,
@@ -170,8 +170,8 @@ final class BattleMageCombatControllerJUnitTest {
             false
         );
 
-        assertEquals(Double.POSITIVE_INFINITY, BattleMageSpellRuntimeSafety.friendlyFireRadius(null, null, null));
-        assertEquals(6.0, BattleMageSpellRuntimeSafety.friendlyFireRadius(null, null, unsafeArea));
+        assertEquals(Double.POSITIVE_INFINITY, BattleMageSpellPolicy.configuredFriendlyFireRadius(null));
+        assertEquals(6.0, BattleMageSpellPolicy.configuredFriendlyFireRadius(unsafeArea));
     }
 
     private static BattleMageSpellProfile profile(
