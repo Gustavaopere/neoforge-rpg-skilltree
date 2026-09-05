@@ -9,6 +9,7 @@ public final class MasteryInvestmentMetadataPolicyTest {
         acceptsExplicitCanonicalMetadataDeterministically();
         rejectsNonCanonicalLane();
         rejectsDuplicateLaneThreshold();
+        rejectsNoOpContribution();
         permitsDistinctThresholdsForSameLane();
     }
 
@@ -32,6 +33,12 @@ public final class MasteryInvestmentMetadataPolicyTest {
             metadata("magic:casting", 60, ProgressionDomain.ARCANE, 1),
             metadata("magic:casting", 60, ProgressionDomain.ARCANE, 2)
         )), "duplicate lane+threshold must fail closed");
+    }
+
+    private static void rejectsNoOpContribution() {
+        expectFailure(() -> MasteryInvestmentMetadataPolicy.validate(List.of(
+            new MasteryInvestmentMetadata("magic:casting", 60, Map.of(), Set.of())
+        )), "explicit mastery metadata must contribute a domain weight or tag");
     }
 
     private static void permitsDistinctThresholdsForSameLane() {
