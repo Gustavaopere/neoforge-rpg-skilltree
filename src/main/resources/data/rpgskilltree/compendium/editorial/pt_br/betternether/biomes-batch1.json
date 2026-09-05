@@ -1,0 +1,254 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "betternether",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:betternether:bone_reef",
+      "title": "Bone Reef",
+      "summary": {
+        "text": "Bone Reef é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:bone_reef. O título preserva exatamente o valor fornecido pelo asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:bone_reef"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider oficial faz bootstrap deste ID com `BoneReef`, pelo pipeline de `NetherBiomeBuilder`, e o inclui em `registerBiomeToggles()`. A classe do bioma acrescenta features próprias, incluindo elementos ósseos e vegetação do provider, sem que a ficha congele chance, densidade ou frequência numérica.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/world/biomes/BoneReef.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:crimson_glowing_woods",
+      "title": "Crimson Glowing Woods",
+      "summary": {
+        "text": "Crimson Glowing Woods é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:crimson_glowing_woods. O título é mantido exatamente como aparece no asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:crimson_glowing_woods"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` faz bootstrap deste ID com a configuração `CrimsonGlowingWoods`, e `NetherBiomes.registerBiomeToggles()` o inclui no conjunto configurável. O pipeline comum o registra como bioma do Nether; detalhes quantitativos de geração permanecem fora da prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/world/biomes/util/NetherBiomeBuilder.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:crimson_pinewood",
+      "title": "Crimson Pinewood",
+      "summary": {
+        "text": "Crimson Pinewood é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:crimson_pinewood. O asset pt-BR do provider mantém esse título em inglês.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:crimson_pinewood"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O bootstrap oficial associa este ID à configuração `CrimsonPinewood`, e o registry o inclui em `registerBiomeToggles()`. A ficha registra identidade e participação no pipeline do Nether sem transformar o nome do bioma em regras fixas de vegetação, densidade ou frequência.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/world/biomes/util/NetherBiomeBuilder.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:flooded_deltas",
+      "title": "Flooded Deltas",
+      "summary": {
+        "text": "Flooded Deltas é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:flooded_deltas. O título é exatamente o valor existente no asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:flooded_deltas"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` registra este ID com `FloodedDeltas`, e `registerBiomeToggles()` o inclui no conjunto configurável. O termo Flooded Deltas é tratado como identidade localizada; a ficha não deduz nível de fluido, extensão, chance ou geometria fixa a partir do nome.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/world/biomes/util/NetherBiomeBuilder.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:gloomwood",
+      "title": "Gloomwood",
+      "summary": {
+        "text": "Gloomwood é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:gloomwood. A build congelada não fornece `biome.betternether.gloomwood` no asset pt-BR; por isso o título usa explicitamente o valor oficial do asset en-US, sem atribuí-lo como tradução pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:gloomwood"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/en_us.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider faz bootstrap de `gloomwood` com a configuração `Gloomwood`, mas este ID não aparece na lista de `registerBiomeToggles()` do mesmo commit. A ficha registra somente essa diferença factual: não a converte em afirmação de que o bioma seja obrigatório, impossível de desativar ou afetado por um bug.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:gravel_desert",
+      "title": "Gravel Desert",
+      "summary": {
+        "text": "Gravel Desert é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:gravel_desert. O asset pt-BR mantém o título oficial em inglês.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:gravel_desert"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O bootstrap oficial registra este ID com `GravelDesert`, e o registry o inclui em `registerBiomeToggles()`. O nome não é usado para congelar composição percentual, extensão, relevo, chance ou frequência de geração.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/world/biomes/util/NetherBiomeBuilder.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:magma_land",
+      "title": "Magma Land",
+      "summary": {
+        "text": "Magma Land é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:magma_land. Seu título é preservado conforme o asset pt-BR oficial.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:magma_land"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` associa este ID à configuração `MagmaLand`, e `registerBiomeToggles()` o inclui no conjunto configurável. A palavra Magma no título não é convertida em quantidade, cobertura, risco, temperatura numérica ou frequência fixa sem evidência específica adicional.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/world/biomes/util/NetherBiomeBuilder.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:nether_grasslands",
+      "title": "Nether Grasslands",
+      "summary": {
+        "text": "Nether Grasslands é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:nether_grasslands. O título coincide com o valor mantido no asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:nether_grasslands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider faz bootstrap deste ID com `NetherGrasslands`; o registry o inclui em `registerBiomeToggles()` e registra um numeric provider próprio para `nether_grasslands`. A existência desse provider numérico é registrada sem transportar seus números internos para a descrição editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:nether_jungle",
+      "title": "Nether Jungle",
+      "summary": {
+        "text": "Nether Jungle é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:nether_jungle. O asset pt-BR do provider mantém esse título em inglês.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:nether_jungle"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` registra este ID com `NetherJungle`, e `registerBiomeToggles()` o inclui no conjunto configurável. A designação Jungle permanece identidade do provider e não fixa densidade, quantidade de vegetação, tamanho, chance ou frequência na prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:nether_mushroom_forest",
+      "title": "Nether Mushroom Forest",
+      "summary": {
+        "text": "Nether Mushroom Forest é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:nether_mushroom_forest. O título é exatamente o valor fornecido pelo asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:nether_mushroom_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O bootstrap oficial associa este ID à configuração `NetherMushroomForest`, e o registry o inclui em `registerBiomeToggles()`. O nome Mushroom Forest não é convertido em composição, cobertura vegetal, densidade, tamanho ou frequência universal.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}
