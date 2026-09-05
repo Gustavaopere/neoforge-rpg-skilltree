@@ -488,6 +488,35 @@ Entradas:
 - nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
 - TDD confirmado no commit `cd6e091deb96bf770c7c15763fe65f82456d8674`: 975 testes, exatamente 1 falha no Batch17 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 18 — BetterEnd: New Dawn / biomas do End (batch 1)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betterend/biomes-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betterend:amber_land` — Terras de Âmbar
+2. `BIOME:betterend:blossoming_spires` — Pináculos em Flor
+3. `BIOME:betterend:chorus_forest` — Floresta de Choros
+4. `BIOME:betterend:crystal_mountains` — Montanhas de Cristal
+5. `BIOME:betterend:dragon_graveyards` — Cemitérios de Dragão
+6. `BIOME:betterend:dry_shrubland` — Arbusto Seco
+7. `BIOME:betterend:dust_wastelands` — Terras Devastadas
+8. `BIOME:betterend:foggy_mushroomland` — Terras de Cogumelos Neovoada
+9. `BIOME:betterend:glowing_grasslands` — Prados Brilhantes
+10. `BIOME:betterend:ice_starfield` — Campo de Estrelas de Gelo
+
+### Critérios editoriais aplicados ao lote 18
+
+- provider reconciliado antes da autoria com a modlist canônica e a Auditoria Mestre do Notion: `BetterEnd-21.0.34.jar`, namespace `betterend`, estado `Instalado`, decisão `Manter`;
+- o recorte corresponde aos dez primeiros biomas na ordem do registry oficial `EndBiomes.java` do commit `360b6fea407befdcf9aab7f771cad5586cbfb826`, cujo `gradle.properties` declara Minecraft 1.21.1 e BetterEnd 21.0.34;
+- os dez títulos pt-BR são exatamente os valores do `assets/betterend/lang/pt_br.json` no mesmo commit, inclusive a grafia oficial `Terras de Cogumelos Neovoada`, sem correção editorial silenciosa;
+- os datapacks Wover sustentam somente as classificações de placement usadas na prosa: sete entradas em `is_end/land`, `chorus_forest` em `is_end/highland`, `dust_wastelands` em `is_end/midland` e `ice_starfield` em `is_end/small_island` e `is_end/barrens`;
+- as categorias de placement não são convertidas em altura, tamanho, densidade, geometria, peso ou frequência fixos;
+- `EndBiomes.registerBiomeToggles()` comprova que estes dez IDs participam do conjunto configurável do provider, portanto disponibilidade e ocorrência concretas permanecem condicionadas à configuração e ao worldgen ativos;
+- TDD confirmado no commit `0dbb401d21a90fd310ea07f58e940a79184edb6f`: 976 testes, exatamente 1 falha no Batch18 pela ausência de `betterend/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -495,7 +524,8 @@ Entradas:
 - entradas editoriais vanilla totais: **100**;
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
-- entradas editoriais totais: **165**;
-- lotes documentados: **17**;
-- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`;
+- entradas de worldgen BetterEnd: New Dawn reais no corpus: **10**;
+- entradas editoriais totais: **175**;
+- lotes documentados: **18**;
+- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.

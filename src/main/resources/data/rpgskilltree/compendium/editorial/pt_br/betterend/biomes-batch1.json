@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "betterend",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:betterend:amber_land",
+      "title": "Terras de Âmbar",
+      "summary": {
+        "text": "Terras de Âmbar é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:amber_land.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:amber_land"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover do provider inclui este bioma na categoria de terreno do End (`is_end/land`). O BetterEnd também registra este ID entre os biomas configuráveis; a ocorrência concreta continua dependente das configurações e do worldgen ativos.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:blossoming_spires",
+      "title": "Pináculos em Flor",
+      "summary": {
+        "text": "Pináculos em Flor é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:blossoming_spires.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:blossoming_spires"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover do provider inclui este bioma na categoria de terreno do End (`is_end/land`). O ID participa do conjunto de biomas configuráveis, portanto a ocorrência efetiva depende das configurações e do worldgen carregados.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:chorus_forest",
+      "title": "Floresta de Choros",
+      "summary": {
+        "text": "Floresta de Choros é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:chorus_forest.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:chorus_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover classifica este bioma na categoria `is_end/highland`. Essa categoria de placement não é convertida aqui em altitude, frequência ou geometria fixa, e a ocorrência concreta continua sujeita à configuração do provider.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/highland.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:crystal_mountains",
+      "title": "Montanhas de Cristal",
+      "summary": {
+        "text": "Montanhas de Cristal é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:crystal_mountains.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:crystal_mountains"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover do provider inclui este bioma em `is_end/land`. O nome não é usado para inferir altura ou forma das montanhas; disponibilidade e distribuição permanecem determinadas pelo worldgen e pela configuração ativos.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:dragon_graveyards",
+      "title": "Cemitérios de Dragão",
+      "summary": {
+        "text": "Cemitérios de Dragão é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:dragon_graveyards.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:dragon_graveyards"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover inclui este bioma em `is_end/land`. A ficha preserva somente essa classificação de placement comprovada e não deduz estruturas, frequência ou densidade a partir do nome do bioma; sua ocorrência permanece configurável.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:dry_shrubland",
+      "title": "Arbusto Seco",
+      "summary": {
+        "text": "Arbusto Seco é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:dry_shrubland.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:dry_shrubland"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover inclui este bioma em `is_end/land`. O título oficial não é convertido em umidade, temperatura, densidade ou frequência numéricas; distribuição e disponibilidade concretas dependem do worldgen e da configuração ativos.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:dust_wastelands",
+      "title": "Terras Devastadas",
+      "summary": {
+        "text": "Terras Devastadas é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:dust_wastelands.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:dust_wastelands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover classifica este bioma em `is_end/midland`. Essa categoria é registrada como placement do provider e não implica aqui altitude, peso ou frequência fixos; o ID também integra o conjunto configurável do BetterEnd.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/midland.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:foggy_mushroomland",
+      "title": "Terras de Cogumelos Neovoada",
+      "summary": {
+        "text": "Terras de Cogumelos Neovoada é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:foggy_mushroomland.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:foggy_mushroomland"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover inclui este bioma em `is_end/land`. O título é preservado exatamente como fornecido pelo asset pt-BR oficial do provider; a ficha não congela densidade de névoa, frequência ou distribuição em prosa.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:glowing_grasslands",
+      "title": "Prados Brilhantes",
+      "summary": {
+        "text": "Prados Brilhantes é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:glowing_grasslands.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:glowing_grasslands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover inclui este bioma em `is_end/land`. A classificação não é convertida em luminosidade, densidade, frequência ou posição numéricas; disponibilidade concreta permanece vinculada à configuração e ao worldgen ativos.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:ice_starfield",
+      "title": "Campo de Estrelas de Gelo",
+      "summary": {
+        "text": "Campo de Estrelas de Gelo é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:ice_starfield.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:ice_starfield"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O datapack Wover inclui este bioma simultaneamente nas categorias `is_end/small_island` e `is_end/barrens`. Essas tags são classificações de placement e não fixam tamanho, altitude, frequência ou geometria em prosa; o ID também é configurável pelo provider.", "sources": [{"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/small_island.json"}, {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/barrens.json"}, {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    }
+  ]
+}
