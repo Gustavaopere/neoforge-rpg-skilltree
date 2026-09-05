@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree.core.economy;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -14,6 +15,9 @@ import java.util.UUID;
  * fail-closed until its counterparty/authority contract is defined.</p>
  */
 public final class ColonyEconomyLedger {
+    private static final String MONETARY_AUTHORITY = "monetary_authority";
+    private static final String TREASURY = "treasury";
+
     private final List<EconomyTransaction> transactions = new ArrayList<>();
     private final Set<UUID> transactionIds = new HashSet<>();
     private final Set<String> causalKeys = new HashSet<>();
@@ -51,7 +55,7 @@ public final class ColonyEconomyLedger {
                 state.retiredSupply(),
                 treasuryBalance
             );
-            return recordApplied(updated, command, gameTime);
+            return recordApplied(updated, command, gameTime, MONETARY_AUTHORITY, TREASURY);
         } catch (ArithmeticException failure) {
             return EconomyMutationResult.rejected(EconomyMutationResult.Status.OVERFLOW, state);
         }
@@ -71,7 +75,7 @@ public final class ColonyEconomyLedger {
                 retiredSupply,
                 treasuryBalance
             );
-            return recordApplied(updated, command, gameTime);
+            return recordApplied(updated, command, gameTime, TREASURY, MONETARY_AUTHORITY);
         } catch (ArithmeticException failure) {
             return EconomyMutationResult.rejected(EconomyMutationResult.Status.OVERFLOW, state);
         }
@@ -80,17 +84,24 @@ public final class ColonyEconomyLedger {
     private EconomyMutationResult recordApplied(
         ColonyEconomyState updated,
         EconomyCommand command,
-        long gameTime
+        long gameTime,
+        String source,
+        String counterparty
     ) {
         EconomyTransaction transaction = new EconomyTransaction(
             command.transactionId(),
+            updated.colonyKey(),
             command.causalKey(),
             command.kind(),
             command.amount(),
+            source,
+            counterparty,
             gameTime,
             updated.issuedSupply(),
             updated.retiredSupply(),
-            updated.treasuryBalance()
+            updated.effectiveSupply(),
+            updated.treasuryBalance(),
+            Map.of()
         );
         transactions.add(transaction);
         transactionIds.add(command.transactionId());
