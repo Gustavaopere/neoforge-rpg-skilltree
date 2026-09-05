@@ -94,3 +94,28 @@ Authority, atomicidade, availability transitiva, lifecycle, dedup, fallback e an
 ## Testes exigidos ao Chat 3
 
 No estado atual: A0108 unavailable + provider corporal ausente → A0109 unavailable sem gasto, todas as falsas fontes de encumbrance rejeitadas. Se adapter real existir futuramente: dois estados, transição atômica, exact modifiers, provider loss, respec/reload/multiplayer, GameTests, build, JAR e dedicated-server smoke.
+
+## Atualização de implementação — Chat 2 (2026-09-05)
+
+**Estado:** `CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`.
+
+- `CombatPerkAvailabilityRuntime` materializa A0109 como indisponível.
+- A0108 continua indisponível por A0100 e a modlist auditada não contém provider aprovado de body encumbrance do jogador; portanto o bloqueio duplo permanece íntegro.
+- O Chat 2 não inferiu carga por Create Aeronautics/Weight, Sable, inventário, Armor/Toughness, velocidade ou Protection Pixel.
+- Nenhum modifier físico/KB/Stamina parcial foi instalado; benefício e penalidade continuam atomicamente ausentes enquanto não houver provider real.
+- Não há redesign a devolver ao Chat 1.
+
+### Checklist Chat 2
+
+- [x] Availability transitiva implementada
+- [x] Ausência de provider corporal tratada fail-closed
+- [x] Falsos providers de encumbrance rejeitados
+- [x] Nenhum threshold próprio inventado
+- [x] Código presente no estado fail-closed aprovado
+- [ ] **VALIDAÇÃO CHAT 3:** confirmar A0108/provider ausente → compra sem gasto
+- [ ] **VALIDAÇÃO CHAT 3:** confirmar ausência de modifiers parciais
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests/integração aplicáveis
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
