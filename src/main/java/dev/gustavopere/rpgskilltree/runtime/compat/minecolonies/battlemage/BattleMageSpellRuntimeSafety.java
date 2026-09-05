@@ -13,9 +13,8 @@ final class BattleMageSpellRuntimeSafety {
         SpellData spellData,
         BattleMageSpellProfile profile
     ) {
-        if (profile == null) return Double.POSITIVE_INFINITY;
-        double configuredFloor = profile.friendlyFireRadius();
-        if (spellData == null || spellData.getSpell() == null) return configuredFloor;
+        double configuredFloor = BattleMageSpellPolicy.configuredFriendlyFireRadius(profile);
+        if (profile == null || spellData == null || spellData.getSpell() == null) return configuredFloor;
 
         if (spellData.getSpell() instanceof FireballSpell fireball) {
             return Math.max(configuredFloor, fireball.getRadius(spellData.getLevel(), caster));
