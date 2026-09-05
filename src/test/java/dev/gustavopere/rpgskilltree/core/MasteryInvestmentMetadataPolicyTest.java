@@ -3,9 +3,11 @@ package dev.gustavopere.rpgskilltree.core;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.junit.jupiter.api.Test;
 
-public final class MasteryInvestmentMetadataPolicyTest {
-    public static void main(String[] args) {
+final class MasteryInvestmentMetadataPolicyTest {
+    @Test
+    void canonicalInvestmentMetadataPolicyContract() {
         acceptsExplicitCanonicalMetadataDeterministically();
         rejectsNonCanonicalLane();
         rejectsDuplicateLaneThreshold();
