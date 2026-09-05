@@ -31,12 +31,7 @@ public final class ClassResolutionRuntime {
         return resolveCanonical(state, MasteryInvestmentMetadataCatalog.current());
     }
 
-    /**
-     * Compatibility/testing boundary for explicitly supplied Mastery metadata.
-     * Production callers should prefer {@link #resolveCanonical(ProgressionState)} so the
-     * datapack-published Mastery catalog remains the canonical runtime source.
-     */
-    public static CanonicalClassResolutionProjection resolveCanonical(
+    private static CanonicalClassResolutionProjection resolveCanonical(
         ProgressionState state,
         Collection<MasteryInvestmentMetadata> masteryMetadata
     ) {
