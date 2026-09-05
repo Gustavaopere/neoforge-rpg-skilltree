@@ -4,13 +4,19 @@ import dev.gustavopere.rpgskilltree.core.economy.ColonyEconomyLedger;
 import dev.gustavopere.rpgskilltree.core.economy.ColonyEconomyState;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyColonyKey;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyTransaction;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.NativeColonyBinding;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -23,6 +29,8 @@ public final class ColonyEconomySavedData extends SavedData {
     private static final String ECONOMIES = "economies";
     private static final String STATE = "state";
     private static final String TRANSACTIONS = "transactions";
+    private static final String NATIVE_BINDINGS = "native_bindings";
+    private static final String ARCHIVED_ECONOMIES = "archived_economies";
 
     private static final SavedData.Factory<ColonyEconomySavedData> FACTORY = new SavedData.Factory<>(
         ColonyEconomySavedData::new,
@@ -31,6 +39,8 @@ public final class ColonyEconomySavedData extends SavedData {
     );
 
     private final Map<EconomyColonyKey, StoredEconomy> economies = new HashMap<>();
+    private final Map<String, EconomyColonyKey> nativeBindings = new HashMap<>();
+    private final Set<EconomyColonyKey> archivedEconomies = new HashSet<>();
 
     public ColonyEconomySavedData() {}
 
@@ -56,6 +66,19 @@ public final class ColonyEconomySavedData extends SavedData {
             economyList.add(economyTag);
         }
         tag.put(ECONOMIES, economyList);
+
+        CompoundTag bindingsTag = new CompoundTag();
+        nativeBindings.forEach((binding, economyKey) -> bindingsTag.putString(binding, economyKey.value().toString()));
+        tag.put(NATIVE_BINDINGS, bindingsTag);
+
+        ListTag archivedTag = new ListTag();
+        archivedEconomies.stream()
+            .map(EconomyColonyKey::value)
+            .map(UUID::toString)
+            .sorted()
+            .map(StringTag::valueOf)
+            .forEach(archivedTag::add);
+        tag.put(ARCHIVED_ECONOMIES, archivedTag);
         return tag;
     }
 
@@ -73,6 +96,53 @@ public final class ColonyEconomySavedData extends SavedData {
 
     StoredEconomy get(EconomyColonyKey key) {
         return economies.get(key);
+    }
+
+    public Optional<EconomyColonyKey> binding(NativeColonyBinding binding) {
+        if (binding == null) {
+            throw new IllegalArgumentException("binding must not be null");
+        }
+        return Optional.ofNullable(nativeBindings.get(binding.persistentKey()));
+    }
+
+    /** Resolves a live provider binding, assigning a fresh immutable monetary identity once. */
+    public EconomyColonyKey resolveOrCreateBinding(NativeColonyBinding binding) {
+        if (binding == null) {
+            throw new IllegalArgumentException("binding must not be null");
+        }
+        EconomyColonyKey existing = nativeBindings.get(binding.persistentKey());
+        if (existing != null) {
+            if (archivedEconomies.contains(existing)) {
+                throw new EconomyPersistenceException("Live native binding points to archived economy identity");
+            }
+            return existing;
+        }
+
+        EconomyColonyKey created;
+        do {
+            created = new EconomyColonyKey(UUID.randomUUID());
+        } while (economies.containsKey(created) || archivedEconomies.contains(created) || nativeBindings.containsValue(created));
+        nativeBindings.put(binding.persistentKey(), created);
+        setDirty();
+        return created;
+    }
+
+    /** Detaches a deleted native colony and permanently prevents its monetary UUID from being rebound. */
+    public Optional<EconomyColonyKey> archiveBinding(NativeColonyBinding binding) {
+        if (binding == null) {
+            throw new IllegalArgumentException("binding must not be null");
+        }
+        EconomyColonyKey removed = nativeBindings.remove(binding.persistentKey());
+        if (removed == null) {
+            return Optional.empty();
+        }
+        archivedEconomies.add(removed);
+        setDirty();
+        return Optional.of(removed);
+    }
+
+    public boolean isArchived(EconomyColonyKey key) {
+        return archivedEconomies.contains(key);
     }
 
     void put(EconomyColonyKey key, ColonyEconomyState state, ColonyEconomyLedger ledger) {
@@ -107,16 +177,18 @@ public final class ColonyEconomySavedData extends SavedData {
             throw new EconomyPersistenceException("Unsupported legacy colony economy root schema " + schema);
         }
         requireType(tag, ECONOMIES, Tag.TAG_LIST);
+        requireType(tag, NATIVE_BINDINGS, Tag.TAG_COMPOUND);
+        requireType(tag, ARCHIVED_ECONOMIES, Tag.TAG_LIST);
 
         ColonyEconomySavedData data = new ColonyEconomySavedData();
-        ListTag economyList = tag.getList(ECONOMIES, Tag.TAG_COMPOUND);
+        ListTag economyList = requireListElementType(tag, ECONOMIES, Tag.TAG_COMPOUND);
         for (int i = 0; i < economyList.size(); i++) {
             CompoundTag economyTag = economyList.getCompound(i);
             requireType(economyTag, STATE, Tag.TAG_COMPOUND);
             requireType(economyTag, TRANSACTIONS, Tag.TAG_LIST);
 
             ColonyEconomyState state = ColonyEconomyStateCodec.decode(economyTag.getCompound(STATE));
-            ListTag transactionList = economyTag.getList(TRANSACTIONS, Tag.TAG_COMPOUND);
+            ListTag transactionList = requireListElementType(economyTag, TRANSACTIONS, Tag.TAG_COMPOUND);
             List<EconomyTransaction> transactions = new ArrayList<>(transactionList.size());
             for (int txIndex = 0; txIndex < transactionList.size(); txIndex++) {
                 transactions.add(EconomyTransactionCodec.decode(transactionList.getCompound(txIndex)));
@@ -136,6 +208,39 @@ public final class ColonyEconomySavedData extends SavedData {
             } catch (IllegalArgumentException failure) {
                 throw new EconomyPersistenceException("Invalid persisted colony economy ledger", failure);
             }
+        }
+
+        CompoundTag bindingsTag = tag.getCompound(NATIVE_BINDINGS);
+        for (String nativeKey : bindingsTag.getAllKeys()) {
+            if (!bindingsTag.contains(nativeKey, Tag.TAG_STRING)) {
+                throw new EconomyPersistenceException("Invalid native colony binding payload: " + nativeKey);
+            }
+            try {
+                EconomyColonyKey economyKey = new EconomyColonyKey(UUID.fromString(bindingsTag.getString(nativeKey)));
+                if (data.nativeBindings.put(nativeKey, economyKey) != null) {
+                    throw new EconomyPersistenceException("Duplicate native colony binding: " + nativeKey);
+                }
+            } catch (IllegalArgumentException failure) {
+                throw new EconomyPersistenceException("Invalid economy UUID for native colony binding: " + nativeKey, failure);
+            }
+        }
+
+        ListTag archivedTag = requireListElementType(tag, ARCHIVED_ECONOMIES, Tag.TAG_STRING);
+        for (int i = 0; i < archivedTag.size(); i++) {
+            try {
+                data.archivedEconomies.add(new EconomyColonyKey(UUID.fromString(archivedTag.getString(i))));
+            } catch (IllegalArgumentException failure) {
+                throw new EconomyPersistenceException("Invalid archived economy UUID", failure);
+            }
+        }
+
+        for (Map.Entry<String, EconomyColonyKey> entry : data.nativeBindings.entrySet()) {
+            if (data.archivedEconomies.contains(entry.getValue())) {
+                throw new EconomyPersistenceException("Native colony binding points to archived economy: " + entry.getKey());
+            }
+        }
+        if (new HashSet<>(data.nativeBindings.values()).size() != data.nativeBindings.size()) {
+            throw new EconomyPersistenceException("Multiple live native colonies share one economy UUID");
         }
         return data;
     }
@@ -165,6 +270,18 @@ public final class ColonyEconomySavedData extends SavedData {
                 throw new EconomyPersistenceException("Persisted economy state does not reconcile with ledger tail");
             }
         }
+    }
+
+    private static ListTag requireListElementType(CompoundTag tag, String field, int expectedElementType) {
+        requireType(tag, field, Tag.TAG_LIST);
+        ListTag list = (ListTag) tag.get(field);
+        if (list == null) {
+            throw new EconomyPersistenceException("Missing colony economy list field: " + field);
+        }
+        if (!list.isEmpty() && list.getElementType() != expectedElementType) {
+            throw new EconomyPersistenceException("Invalid element type for colony economy list field: " + field);
+        }
+        return list;
     }
 
     private static void requireType(CompoundTag tag, String field, int expectedType) {
