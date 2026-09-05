@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0283 Condutividade =3 ranks + A0293 Raio Ramificado ≥1 rank. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0283 Condutividade 3/3 + A0293 Raio Ramificado ≥1. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + WET_STATE_V1 + classificador LIGHTNING + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + COMBAT_TARGET_QUERY_V1. Nenhum provider persistente de WET foi comprovado na auditoria atual; água/chuva só entram quando o adapter versionado publicar WET. Sable 2.0.5/Create Aeronautics entram apenas para contexto espacial/sublevel, nunca como provider WET/LIGHTNING. Iron's/Ars fornecem root LIGHTNING quando classificados. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + WET_STATE_V1 + classificador LIGHTNING + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + COMBAT_TARGET_QUERY_V1. Nenhum provider persistente de WET foi comprovado na auditoria atual; água/chuva só entram quando o adapter versionado publicar WET. Sable 2.0.5/Create Aeronautics entram apenas para contexto espacial/sublevel, nunca como provider WET/LIGHTNING. Iron's/Ars fornecem root LIGHTNING quando classificados. |
 | Efeito | Quando um direct_lightning_outcome_id elegível atinge um alvo atualmente sob WET reconhecido, A0296 pode criar uma única cadeia de condução para até 2 outros alvos WET hostis e ainda não atingidos pelo mesmo root_action_id. O primeiro hop usa base igual a 40% do componente LIGHTNING direto canônico da ação após modificadores ofensivos/resolução crítica, mas antes da mitigação do alvo inicial; o segundo hop usa 40% da base do primeiro (=16% da raiz). Cada novo alvo aplica sua própria mitigação. |
 | Escalonamento | 1 rank. Máximo 2 hops derivados de condução. Coeficientes sequenciais: 0,40 da raiz no primeiro hop e 0,40 do hop anterior no segundo. Cada hop exige alvo novo WET, raio de seleção de 4 blocos a partir do alvo anterior, linha de visão e filtros hostis válidos. criticalHit=false nos hops derivados. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0283=3 + A0293≥1 + impacto LIGHTNING DIRETO do jogador em alvo com WET_STATE_V1=true no instante do outcome + claim A0296 livre para o root_action_id + target query segura. Cada hop exige novo alvo hostil realmente atacável, também WET no seu próprio instante, fora do hit_target_set. WET visual/inferido, isInWaterOrRain fora do adapter, WATER damage isolado, alvo repetido, DoT, aura, summon, automação, fake player e callback duplicado não satisfazem. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + WET_STATE_V1 + classificador LIGHTNING + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + COMBAT_TARGET_QUERY_V1. Nenhum provider persistente de WET foi comprovado na auditoria atual; água/chuva só entram quando o adapter versionado publicar WET. Sable 2.0.5/Create Aeronautics entram apenas para contexto espacial/sublevel, nunca como provider WET/LIGHTNING. Iron's/Ars fornecem root LIGHTNING quando classificados.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + WET_STATE_V1 + classificador LIGHTNING + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + COMBAT_TARGET_QUERY_V1. Nenhum provider persistente de WET foi comprovado na auditoria atual; água/chuva só entram quando o adapter versionado publicar WET. Sable 2.0.5/Create Aeronautics entram apenas para contexto espacial/sublevel, nunca como provider WET/LIGHTNING. Iron's/Ars fornecem root LIGHTNING quando classificados.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>WET_STATE_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>WET_STATE_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + WET_STATE_V1 + classificador LIGH
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>WET_STATE_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>WET_STATE_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

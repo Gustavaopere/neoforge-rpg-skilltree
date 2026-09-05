@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0293 Raio Ramificado + A0290 Crítico Condutor ≥1 rank + ≥14 pontos gastos na árvore interna Especialista — Raio + Lightning Mastery ≥150. Os ≥14 PP internos e requisitos locais não substituem Gate B global (≥100 PP válidos em SPECIALIST_REGION:LIGHTNING) nem fundamentos/terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0293 + A0290 ≥1 + ≥14 PP internos em Especialista — Raio + Lightning Mastery ≥150. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_CONTEXT_V1 + LIGHTNING_CHAIN_DAMAGE_V1. O contexto precisa preservar root_action_id, ordem de hops, target_uuid, visited set e classificação canonical_chain_hop. Hops nativos do provider e derivados A0290/A0296 podem participar quando explicitamente registrados como chain; A0293 só participa quando seu adapter/registro o classificar como canonical chain hop. A0292 discharge, Campo Estático, DoT e outros derived não-chain permanecem fora. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_CONTEXT_V1 + LIGHTNING_CHAIN_DAMAGE_V1. O contexto precisa preservar root_action_id, ordem de hops, target_uuid, visited set e classificação canonical_chain_hop. Hops nativos do provider e derivados A0290/A0296 podem participar quando explicitamente registrados como chain; A0293 só participa quando seu adapter/registro o classificar como canonical chain hop. A0292 discharge, Campo Estático, DoT e outros derived não-chain permanecem fora. |
 | Efeito | Dentro de um único root_action_id LIGHTNING que possua ao menos um canonical_chain_hop, A0298 mantém um contador de alvos hostis únicos já atingidos pela sequência. Antes de cada próximo hop, o dano-base desse hop recebe ×(1 + 0,07×N), onde N=min(4, quantidade de alvos únicos elegíveis já atingidos nessa sequência). Assim, após o alvo inicial o primeiro hop pode receber +7%, chegando no máximo a +28% a partir do quinto alvo da sequência. O alvo inicial nunca recebe bônus A0298. |
 | Escalonamento | 1 rank. Counter por root_action_id, N=0..4. Multiplicadores do próximo hop: ×1,00/×1,07/×1,14/×1,21/×1,28 conforme alvos únicos anteriores. O alvo inicial entra no set após ser atingido e, portanto, pode alimentar +7% do primeiro hop. Hops nativos e outcomes explicitamente classificados como chain do mesmo root (A0290 e A0296, além de A0293 quando sua ramificação for registrada como canonical_chain_hop) podem participar; A0292 discharge, Campo Estático, DoT e outros derived não-chain não participam. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + requisitos locais + root_action_id LIGHTNING com sequência de chain ordenável e identidade de alvo confiável. Somente canonical_chain_hop participa. Apenas novo target_uuid elegível aumenta o contador; repetição do mesmo alvo, aliado/invocação inelegível, callback duplicado e derived não-chain não contam. Sem root/order/target seguros, fail-closed para aquela ação. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_CONTEXT_V1 + LIGHTNING_CHAIN_DAMAGE_V1. O contexto precisa preservar root_action_id, ordem de hops, target_uuid, visited set e classificação canonical_chain_hop. Hops nativos do provider e derivados A0290/A0296 podem participar quando explicitamente registrados como chain; A0293 só participa quando seu adapter/registro o classificar como canonical chain hop. A0292 discharge, Campo Estático, DoT e outros derived não-chain permanecem fora.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_CONTEXT_V1 + LIGHTNING_CHAIN_DAMAGE_V1. O contexto precisa preservar root_action_id, ordem de hops, target_uuid, visited set e classificação canonical_chain_hop. Hops nativos do provider e derivados A0290/A0296 podem participar quando explicitamente registrados como chain; A0293 só participa quando seu adapter/registro o classificar como canonical chain hop. A0292 discharge, Campo Estático, DoT e outros derived não-chain permanecem fora.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNIN
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LIGHTNING_CHAIN_CONTEXT_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** A0300 foi apenas sinalizada; não foi auditada, criada nem iniciada neste trabalho.

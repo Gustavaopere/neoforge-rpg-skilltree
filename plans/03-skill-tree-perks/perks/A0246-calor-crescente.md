@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + pelo menos um fundamento ofensivo FIRE local: A0243 Ignição ≥1 rank ou A0157 Dano de Fogo II =1 rank. O requisito local não substitui ≥100 PP FIRE + fundamentos exteriores + terminal A0162. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0243 Ignição ≥1 rank ou A0157 Dano de Fogo II. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + pipeline FIRE + Cold Sweat 2.4.2 somente como estado corporal atual através do FUTURE_PROVIDER_CONTRACT THERMAL_PARCEL_PIPELINE_V1 (design P-0057). OWNER: RPG thermal adapter/Cold Sweat bridge; CONSUMER: A0246 e perks que modulam novos parcels térmicos; EVENT: novo deslocamento térmico causal de uma ação antes de entrar no estado corporal; BEHAVIOR: modificar somente aquele parcel, nunca BODY/CORE/WORLD diretamente. VERSION-STATUS: P-0057/contrato não foi encontrado como API runtime na main auditada em 2026-08-29. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + pipeline FIRE + Cold Sweat 2.4.2 somente como estado corporal atual através do FUTURE_PROVIDER_CONTRACT THERMAL_PARCEL_PIPELINE_V1 (design P-0057). OWNER: RPG thermal adapter/Cold Sweat bridge; CONSUMER: A0246 e perks que modulam novos parcels térmicos; EVENT: novo deslocamento térmico causal de uma ação antes de entrar no estado corporal; BEHAVIOR: modificar somente aquele parcel, nunca BODY/CORE/WORLD diretamente. VERSION-STATUS: P-0057/contrato não foi encontrado como API runtime na main auditada em 2026-08-29. |
 | Efeito | Cada ação FIRE direta elegível concede no máximo 1 carga de RPG_FIRE_MOMENTUM, até 5, deduplicada por action_id. Cada carga possui TTL independente de 160 ticks (8 s) desde sua aquisição; novas ações não renovam cargas antigas, produzindo decay gradual determinístico. Cada carga concede +0,8% de dano FIRE por rank de A0246. Com 5 cargas: +4% / +8% / +12% nos ranks 1/2/3. Enquanto houver 4–5 cargas, o parcel térmico quente da própria ação FIRE elegível é multiplicado por ×1,10 antes de A0161 Afinidade de Fogo. |
 | Escalonamento | Até 3 ranks; máximo 5 cargas. Bônus por carga: +0,8% / +1,6% / +2,4% conforme rank; máximo com 5 cargas: +4% / +8% / +12%. TTL independente por carga: 160 ticks. Em 4–5 cargas: parcel térmico quente próprio ×1,10. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + fundamento FIRE local exigido + ação FIRE direta deduplicada + adapter seguro para o outcome FIRE e para o NOVO parcel térmico quente causal da própria ação via THERMAL_PARCEL_PIPELINE_V1/P-0057. DoT, subeventos, derived components, ambiente, lava, automação e calor corporal não geram cargas. Se o tradeoff térmico não puder ser aplicado, o benefício ofensivo também não ativa. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + pipeline FIRE + Cold Sweat 2.4.2 somente como estado corporal atual através do FUTURE_PROVIDER_CONTRACT THERMAL_PARCEL_PIPELINE_V1 (design P-0057). OWNER: RPG thermal adapter/Cold Sweat bridge; CONSUMER: A0246 e perks que modulam novos parcels térmicos; EVENT: novo deslocamento térmico causal de uma ação antes de entrar no estado corporal; BEHAVIOR: modificar somente aquele parcel, nunca BODY/CORE/WORLD diretamente. VERSION-STATUS: P-0057/contrato não foi encontrado como API runtime na main auditada em 2026-08-29.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + pipeline FIRE + Cold Sweat 2.4.2 somente como estado corporal atual através do FUTURE_PROVIDER_CONTRACT THERMAL_PARCEL_PIPELINE_V1 (design P-0057). OWNER: RPG thermal adapter/Cold Sweat bridge; CONSUMER: A0246 e perks que modulam novos parcels térmicos; EVENT: novo deslocamento térmico causal de uma ação antes de entrar no estado corporal; BEHAVIOR: modificar somente aquele parcel, nunca BODY/CORE/WORLD diretamente. VERSION-STATUS: P-0057/contrato não foi encontrado como API runtime na main auditada em 2026-08-29.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + pipeline FIRE + Cold Sweat 2.4.2 
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0157</code>, <code>A0162</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

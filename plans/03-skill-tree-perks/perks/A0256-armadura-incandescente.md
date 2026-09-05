@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0250 Resistência ao Calor ≥3 + A0158 Resistência a Fogo ≥2. Exige dano hostil elegível; auto-dano não arma. Requisitos locais não substituem o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0250 Resistência ao Calor ≥3 + A0158 Resistência a Fogo ≥2. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificadores FIRE/HEAT versionados + Cold Sweat 2.4.2 para HOT→HEAT_DAMAGE + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 para retaliação. Minecraft/NeoForge fornece identidade/outcomes; nenhum provider externo une FIRE e HEAT automaticamente. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificadores FIRE/HEAT versionados + Cold Sweat 2.4.2 para HOT→HEAT_DAMAGE + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 para retaliação. Minecraft/NeoForge fornece identidade/outcomes; nenhum provider externo une FIRE e HEAT automaticamente. |
 | Efeito | Ao concluir um hostile_direct_damage_outcome positivo classificado inequivocamente como FIRE ou HEAT_DAMAGE, fora da recarga e não autoinfligido, A0256 arma RPG_INCANDESCENT_ARMOR por 100 ticks (5 s), registrando exatamente o bucket gatilho. O outcome armador não recebe a mitigação. O próximo outcome hostil direto distinto do MESMO bucket durante a janela recebe multiplicador ×0,80 / ×0,70 naquele componente e consome essa parcela defensiva. Durante a mesma janela, o primeiro hostile_direct_melee_outcome subsequente de um atacante vivo identificável que cause dano final positivo pode gerar uma única retaliação FIRE derivada contra esse atacante, igual a 15% / 20% do dano final efetivamente recebido nesse golpe melee. Recarga: 240 / 180 ticks (12 / 9 s), iniciada ao armar. |
 | Escalonamento | Até 2 ranks. Janela: 100 ticks. Próximo componente do mesmo bucket: ×0,80 / ×0,70. Retaliação opcional no primeiro golpe melee subsequente elegível: 15% / 20% do dano final positivo recebido daquele golpe, como FIRE derivado contra o atacante. Recarga: 240 / 180 ticks iniciada no armamento. FIRE e HEAT_DAMAGE permanecem buckets distintos. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisitos locais + outcome hostil direto positivo explicitamente FIRE ou HEAT_DAMAGE + cooldown livre. Cold Sweat HOT só alimenta HEAT_DAMAGE por adapter versionado; FIRE e HEAT permanecem buckets distintos. Auto-dano, custos, BODY/WORLD sem damage event, DoT derivado e callback duplicado não armam. Mitigação exige outcome distinto do mesmo bucket; retaliação exige primeiro melee subsequente com atacante vivo confiável e dano final >0. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificadores FIRE/HEAT versionados + Cold Sweat 2.4.2 para HOT→HEAT_DAMAGE + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 para retaliação. Minecraft/NeoForge fornece identidade/outcomes; nenhum provider externo une FIRE e HEAT automaticamente.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificadores FIRE/HEAT versionados + Cold Sweat 2.4.2 para HOT→HEAT_DAMAGE + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1 para retaliação. Minecraft/NeoForge fornece identidade/outcomes; nenhum provider externo une FIRE e HEAT automaticamente.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_M
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0158</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

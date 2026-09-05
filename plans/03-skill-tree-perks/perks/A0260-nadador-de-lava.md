@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0259 Nascido das Chamas possuído e ATIVO no momento. A0259/local topology não substitui o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0259 Nascido das Chamas. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge 1.21.1 fluid/movement state + FUTURE_PROVIDER_CONTRACT LAVA_SWIM_MOVEMENT_BRIDGE_V1. OWNER: adapter de movimento server-authoritative da versão; CONSUMER: A0260; QUERY: estado real de lava + A0259 ativo; BEHAVIOR: substituir somente seleção de coeficientes de controle/drag em lava pelos coeficientes/caminho nativos de natação em água da mesma versão, preservando colisão, gravidade e efeitos não pertencentes à locomoção. VERSION-STATUS: nenhum hook lava swim movement correspondente foi encontrado na main auditada em 2026-08-29. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Minecraft/NeoForge 1.21.1 fluid/movement state + FUTURE_PROVIDER_CONTRACT LAVA_SWIM_MOVEMENT_BRIDGE_V1. OWNER: adapter de movimento server-authoritative da versão; CONSUMER: A0260; QUERY: estado real de lava + A0259 ativo; BEHAVIOR: substituir somente seleção de coeficientes de controle/drag em lava pelos coeficientes/caminho nativos de natação em água da mesma versão, preservando colisão, gravidade e efeitos não pertencentes à locomoção. VERSION-STATUS: nenhum hook lava swim movement correspondente foi encontrado na main auditada em 2026-08-29. |
 | Efeito | Enquanto RPG_BORN_OF_FLAME de A0259 estiver ativo e o jogador estiver realmente em lava segundo a leitura autoritativa de fluido do Minecraft/NeoForge, A0260 substitui somente os coeficientes de controle/arrasto de locomoção em lava pelos coeficientes nativos que a MESMA versão de Minecraft usa para natação do jogador em água. Isso fornece controle horizontal e vertical de natação sem conceder voo, sem alterar colisão e sem remover dano, fogo, temperatura, exaustão ou qualquer risco da lava. |
 | Escalonamento | 1 rank. Condição contínua: A0259 ativo + jogador em lava real. Enquanto ambas forem verdadeiras, controle de input/arrasto usa os coeficientes nativos de natação em água da versão instalada; ao perder qualquer condição, volta imediatamente à física normal de lava. Nenhum bônus persiste fora da lava ou da janela A0259. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + A0259 ativo + jogador em contato/submersão real com lava reconhecida pelo estado de fluido autoritativo + LAVA_SWIM_MOVEMENT_BRIDGE_V1 implementado para Minecraft/NeoForge 1.21.1. Partículas, bloco decorativo, fluido semelhante, proximidade de lava e estado FIRE não satisfazem. O node não funciona fora da janela A0259. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge 1.21.1 fluid/movement state + FUTURE_PROVIDER_CONTRACT LAVA_SWIM_MOVEMENT_BRIDGE_V1. OWNER: adapter de movimento server-authoritative da versão; CONSUMER: A0260; QUERY: estado real de lava + A0259 ativo; BEHAVIOR: substituir somente seleção de coeficientes de controle/drag em lava pelos coeficientes/caminho nativos de natação em água da mesma versão, preservando colisão, gravidade e efeitos não pertencentes à locomoção. VERSION-STATUS: nenhum hook lava swim movement correspondente foi encontrado na main auditada em 2026-08-29.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Minecraft/NeoForge 1.21.1 fluid/movement state + FUTURE_PROVIDER_CONTRACT LAVA_SWIM_MOVEMENT_BRIDGE_V1. OWNER: adapter de movimento server-authoritative da versão; CONSUMER: A0260; QUERY: estado real de lava + A0259 ativo; BEHAVIOR: substituir somente seleção de coeficientes de controle/drag em lava pelos coeficientes/caminho nativos de natação em água da mesma versão, preservando colisão, gravidade e efeitos não pertencentes à locomoção. VERSION-STATUS: nenhum hook lava swim movement correspondente foi encontrado na main auditada em 2026-08-29.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LAVA_SWIM_MOVEMENT_BRIDGE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LAVA_SWIM_MOVEMENT_BRIDGE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge 1.21.1 fluid/m
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LAVA_SWIM_MOVEMENT_BRIDGE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LAVA_SWIM_MOVEMENT_BRIDGE_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

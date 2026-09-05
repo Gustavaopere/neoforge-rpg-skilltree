@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0243 Ignição ≥2 + A0145 Eficiência Arcana ≥2. Exige provider com mana nativa e regeneração positiva/modificável; requisitos locais não substituem o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0243 Ignição ≥2 + A0145 Eficiência Arcana ≥2 + provider de mana com regen modificável. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FIRE_IGNITION_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT MANA_REGEN_MODIFIER_V1. OWNER: adapter do provider de mana; CONSUMER: A0252; STATE/QUERY: regeneração nativa positiva da mana daquele provider; BEHAVIOR: multiplicar temporariamente somente regen positiva, preservando zero/bloqueio. Iron's Spells runtime 1.21.1-3.16.3 e Ars Nouveau 5.13.1 só participam quando o adapter da versão expuser hook seguro. Source, Soul Energy, spirits e outros recursos ficam fora. VERSION-STATUS: contrato não presumido como runtime existente. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FIRE_IGNITION_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT MANA_REGEN_MODIFIER_V1. OWNER: adapter do provider de mana; CONSUMER: A0252; STATE/QUERY: regeneração nativa positiva da mana daquele provider; BEHAVIOR: multiplicar temporariamente somente regen positiva, preservando zero/bloqueio. Iron's Spells runtime 1.21.1-3.16.3 e Ars Nouveau 5.13.1 só participam quando o adapter da versão expuser hook seguro. Source, Soul Energy, spirits e outros recursos ficam fora. VERSION-STATUS: contrato não presumido como runtime existente. |
 | Efeito | Quando uma ação FIRE direta elegível do jogador resultar, pela decisão canônica do IgnitionResolver, em aplicação nova ou renovação legítima de uma Ignição real com autoria preservada, A0252 arma RPG_INCANDESCENT_MANA por 80 ticks (4 s) se a recarga interna estiver livre. Durante a janela, a regeneração nativa positiva de mana do provider daquela build é multiplicada por ×1,04 / ×1,08 / ×1,12 conforme rank. Regeneração igual a zero ou bloqueada permanece zero. A0252 não restaura mana diretamente, não reduz custos, não cria pulsos e não afeta Source, Soul Energy, Spirit ou outro recurso diferente. |
 | Escalonamento | Até 3 ranks. Janela: 80 ticks. Multiplicador sobre regeneração nativa positiva de mana: ×1,04 / ×1,08 / ×1,12. Recarga interna por jogador: 120 ticks (6 s), iniciada somente após armamento bem-sucedido. Nova Ignição/renovação durante a recarga não renova a janela nem reduz a recarga. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisitos locais + Ignição real aplicada/renovada pela decisão causal de uma ação FIRE direta própria + cooldown livre + MANA_REGEN_MODIFIER_V1 disponível para a mana daquele provider. DoT, tick de Ignição, propagação, derived component, summon, callback duplicado e estado sem autoria não armam. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FIRE_IGNITION_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT MANA_REGEN_MODIFIER_V1. OWNER: adapter do provider de mana; CONSUMER: A0252; STATE/QUERY: regeneração nativa positiva da mana daquele provider; BEHAVIOR: multiplicar temporariamente somente regen positiva, preservando zero/bloqueio. Iron's Spells runtime 1.21.1-3.16.3 e Ars Nouveau 5.13.1 só participam quando o adapter da versão expuser hook seguro. Source, Soul Energy, spirits e outros recursos ficam fora. VERSION-STATUS: contrato não presumido como runtime existente.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FIRE_IGNITION_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT MANA_REGEN_MODIFIER_V1. OWNER: adapter do provider de mana; CONSUMER: A0252; STATE/QUERY: regeneração nativa positiva da mana daquele provider; BEHAVIOR: multiplicar temporariamente somente regen positiva, preservando zero/bloqueio. Iron's Spells runtime 1.21.1-3.16.3 e Ars Nouveau 5.13.1 só participam quando o adapter da versão expuser hook seguro. Source, Soul Energy, spirits e outros recursos ficam fora. VERSION-STATUS: contrato não presumido como runtime existente.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FIRE_IGNITION_RESOLVER_V1 + FUTUR
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0145</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

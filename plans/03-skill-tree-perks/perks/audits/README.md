@@ -2,6 +2,10 @@
 
 Esta pasta concentra as auditorias históricas e por lote do sistema de perks. Os dossiês individuais `Axxxx-*.md`, `STATUS.md`, critérios e regras operacionais permanecem na raiz de `perks/`.
 
+## Reconciliações normativas com precedência
+
+- `AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md` — errata pós-auditoria A0001–A0299. Tem precedência **somente** sobre referências históricas a `SPECIALIST_GATE_V1`, `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver` como infraestrutura futura/ausente: o gate canônico já é `TreeUnlockResolver` + `TreeUnlockDefinition` + projeção de investimento do Stage 04.01. A PR de reconciliação materializa essa authority em **62 dossiês** do escopo mergeado (A0204/A0211/A0218/A0225/A0232 + A0243–A0299); A0162/A0169 permanecem na PR #368. Também registra os nove campos formais `Dependências Obrigatórias` corrigidos no Notion e preserva A0044/A0050 como pendências reais de runtime. Todos os demais blockers/contracts continuam válidos.
+
 ## Auditorias de implementação — Chat 2
 
 - `AUDITORIA-A0001-A0010-IMPLEMENTACAO-CHAT2.md`
@@ -33,7 +37,7 @@ Esta pasta concentra as auditorias históricas e por lote do sistema de perks. O
 - `AUDITORIA-A0071-A0080.md` — fechamento de design A0071–A0080, incluindo availability transitiva, reservation→commit, posturas server-authoritative, sustain all-or-nothing, movement/stationary e dodge-success fail-closed.
 - `AUDITORIA-A0081-A0090.md` — fechamento de design A0081–A0090, incluindo sustain/vampirismo multi-provider, native lifesteal dedup, availability magic/element/DoT, body tradeoffs e fundação VITALITY.
 - `AUDITORIA-A0200-A0209.md` — checkpoint histórico inicial Eldritch/Ender, preservado para rastreabilidade.
-- `AUDITORIA-A0200-A0299.md` — auditoria especial autorizada de 100 perks, com tracker individual A0200–A0299, Notion 100/100, providers, projetos próprios, blockers e handoff fail-closed.
+- `AUDITORIA-A0200-A0299.md` — auditoria especial autorizada de 100 perks, com tracker individual A0200–A0299, Notion 100/100, providers, projetos próprios, blockers e handoff fail-closed. Referências históricas ao resolver Specialist futuro são supersedidas pela reconciliação normativa acima; demais contracts permanecem válidos.
 
 ## Auditorias de delta da modlist — Chat 1
 
@@ -55,3 +59,4 @@ Novos lotes devem ser criados aqui, nunca novamente na raiz de `perks/`.
 3. `STATUS.md` é o índice de estado geral. Quando uma auditoria especial declarar explicitamente um tracker canônico complementar no índice desta pasta, esse tracker também é fonte obrigatória para os handoffs daquele ciclo.
 4. Chat 1, Chat 2 e Chat 3 devem procurar a auditoria correspondente em `plans/03-skill-tree-perks/perks/audits/`; para o delta Simply A0001–A0050, o consolidado acima é leitura obrigatória junto ao `STATUS.md`.
 5. Dossiês `Axxxx-*.md` permanecem fora desta pasta para navegação direta por perk.
+6. Reconciliações normativas indexadas acima devem ser aplicadas antes de interpretar texto histórico conflitante, sempre no escopo de precedência explicitamente declarado pelo próprio arquivo.

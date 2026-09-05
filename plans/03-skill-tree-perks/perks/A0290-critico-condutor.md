@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0285 Arco Elétrico ≥2 ranks + A0151 Crítico Mágico ≥2 ranks. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0285 ≥2 + A0151 Crítico Mágico ≥2. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + sistema crítico canônico do RPG (canal MAGIC) + classificador LIGHTNING + FUTURE_PROVIDER_CONTRACT DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + LIGHTNING_CHAIN_QUERY_V1/consulta secundária segura. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 fornecem o root LIGHTNING somente quando adapter o classificar; não fornecem segunda rolagem crítica. O hop A0290 é criado pelo RPG apenas quando a infraestrutura de seleção/targetability é segura. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + sistema crítico canônico do RPG (canal MAGIC) + classificador LIGHTNING + FUTURE_PROVIDER_CONTRACT DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + LIGHTNING_CHAIN_QUERY_V1/consulta secundária segura. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 fornecem o root LIGHTNING somente quando adapter o classificar; não fornecem segunda rolagem crítica. O hop A0290 é criado pelo RPG apenas quando a infraestrutura de seleção/targetability é segura. |
 | Efeito | Quando o sistema crítico canônico confirma criticalHit=true em um direct_lightning_outcome_id elegível e a ação possui infraestrutura de seleção de alvo secundário segura, A0290 pode criar no máximo 1 hop LIGHTNING adicional para um alvo novo. A base do hop é 35%/50% do componente LIGHTNING direto canônico da ação após modificadores ofensivos e resolução do crítico, porém antes da mitigação do alvo inicial; o novo alvo aplica sua própria mitigação normalmente. |
 | Escalonamento | Até 2 ranks. Coeficiente do hop adicional: 0,35/0,50 da parcela LIGHTNING direta snapshot pré-mitigação-do-alvo. Um único hop A0290 por root_action_id; alvo deve ser hostil/elegível, diferente de todos os alvos já registrados na ação e dentro da consulta/range/linha de visão válidos. O hop é derived_lightning_chain_hop e criticalHit=false. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0285 ≥2 + A0151 ≥2 + direct_lightning_outcome_id com criticalHit=true já resolvido pela única decisão crítica canônica + componente LIGHTNING direto positivo + consulta segura de alvo secundário + alvo novo realmente atacável. Crítico de hop derivado, DoT, aura/campo, summon, automação, fake player, callback duplicado e root sem target query segura não ativam. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + sistema crítico canônico do RPG (canal MAGIC) + classificador LIGHTNING + FUTURE_PROVIDER_CONTRACT DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + LIGHTNING_CHAIN_QUERY_V1/consulta secundária segura. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 fornecem o root LIGHTNING somente quando adapter o classificar; não fornecem segunda rolagem crítica. O hop A0290 é criado pelo RPG apenas quando a infraestrutura de seleção/targetability é segura.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + sistema crítico canônico do RPG (canal MAGIC) + classificador LIGHTNING + FUTURE_PROVIDER_CONTRACT DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + LIGHTNING_CHAIN_QUERY_V1/consulta secundária segura. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 fornecem o root LIGHTNING somente quando adapter o classificar; não fornecem segunda rolagem crítica. O hop A0290 é criado pelo RPG apenas quando a infraestrutura de seleção/targetability é segura.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + sistema crítico canônico do RPG
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>LIGHTNING_CHAIN_QUERY_V1</code>.
 - **Dependências fora desta faixa:** <code>A0151</code>, <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

@@ -29,13 +29,13 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | A0203 disponível + uma lane ELDRITCH exata/allowlisted ≥80 + (A0199=1 OU A0201=1 OU A0202≥2), todos legitimamente disponíveis. A0198/A0199 permanecem blockers externos transitivos. Gate A/B/C da Specialist continua separado. |
 | Pré-requisitos | A0203 + eldritch_mastery_lane_id exata ≥80 + rota profunda A0199/A0201/A0202, todos disponíveis. |
-| Provider/Mods | RPG Skill Tree: AvailabilityResolver, MasteryLaneCatalog e SpecialistGateResolver. Iron's 3.16.3/Discerning 1.4.3/Deeper Darker Spellbooks 1.3.3 só fornecem a lane quando SchoolType.getId() exato estiver mapeado e aceito; nenhum provider externo possui o gate. Black Arcana atual não prova ELDRITCH outcome. |
-| Efeito | Terminal exterior do corredor ELDRITCH. Possuir A0204 satisfaz somente Gate C da Árvore de Especialista Eldritch. A Specialist Eldritch só é liberada quando SpecialistGateResolver confirmar simultaneamente os fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:ELDRITCH e A0204. Não concede Ruína, estados mentais, fome abissal, recurso, dano, resistência ou tradeoff por si só. |
+| Provider/Mods | RPG Skill Tree: AvailabilityResolver, MasteryLaneCatalog, TreeUnlockResolver, TreeUnlockDefinition e projeção canônica de investimento do Stage 04.01. Iron's 3.16.3/Discerning 1.4.3/Deeper Darker Spellbooks 1.3.3 só fornecem a lane quando SchoolType.getId() exato estiver mapeado e aceito; nenhum provider externo possui o gate. Black Arcana atual não prova ELDRITCH outcome. |
+| Efeito | Terminal exterior do corredor ELDRITCH. Possuir A0204 satisfaz somente Gate C da Árvore de Especialista Eldritch. O unlock Specialist usa a pipeline canônica existente do RPG Skill Tree: TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar fundamentos, ≥100 Passive Points válidos em SPECIALIST_REGION:ELDRITCH e A0204. Não concede Ruína, estados mentais, fome abissal, recurso, dano, resistência ou tradeoff por si só. |
 | Escalonamento | 1 rank. Desbloqueio binário da especialização ELDRITCH; não adiciona dano, estado, recurso, duração, cura, resistência, sanidade, custo ou mitigação por si só. |
-| Gate | COMPRA: A0203 disponível + lane ELDRITCH exata aceita pelo MasteryLaneCatalog ≥80 + rota profunda disponível. Sem catálogo/producer da lane ou qualquer dependency closure, A0204 é UNAVAILABLE_NODE/não comprável. SPECIALIST: SpecialistGateResolver confirma Gate A + ≥100 PP em SPECIALIST_REGION:ELDRITCH + A0204; terminal não bypassa A/B. |
-| Hook | AvailabilityResolver reavalia dependency closure e lane exata em compra/login/datapack-provider reload. SpecialistGateResolver publica A0204 somente como terminal_id=ARCANE/ELDRITCH e reavalia Gate A/B/C em compra, respec, migração e perda de capability. Respec seguro exige reembolsar Specialist antes do terminal/dependências. |
-| Fallback | UNAVAILABLE_NODE enquanto prerequisites, lane ELDRITCH exata, cálculo semântico de PP ou SpecialistGateResolver não forem verificáveis. A Specialist permanece bloqueada; nunca usar strings genéricas, somar escolas, retornar a gates antigos ou deixar comprar terminal no-op. |
-| Regra | TERMINAL_EXTERIOR: ARCANE/ELDRITCH; PP_REGION: ARCANE/ELDRITCH. A0204 satisfaz só Gate C. A mastery é uma lane school exata, não agregação genérica. UNAVAILABLE_NODE transitivo até A0198/A0199 e A0203 estarem resolvidas. BORDER_HOPPING proibido; RESPEC_SEGURO mantém dependency closure e Gate B ≥100. |
+| Gate | COMPRA: A0203 disponível + lane ELDRITCH exata aceita pelo MasteryLaneCatalog ≥80 + rota profunda disponível. Sem catálogo/producer da lane ou qualquer dependency closure, A0204 é UNAVAILABLE_NODE/não comprável. SPECIALIST: TreeUnlockResolver avalia TreeUnlockDefinition com Gate A + ≥100 PP válidos em SPECIALIST_REGION:ELDRITCH + Gate C=A0204; terminal não bypassa A/B. |
+| Hook | AvailabilityResolver reavalia dependency closure e lane exata em compra/login/datapack-provider reload. Para Specialist, A0204 publica/representa somente terminal_id=ARCANE/ELDRITCH na TreeUnlockDefinition; TreeUnlockResolver usa o estado canônico + projeção de investimento Stage 04.01 e reavalia nos lifecycle boundaries canônicos. Respec seguro exige reembolsar Specialist antes do terminal/dependências. Não criar resolver Specialist paralelo. |
+| Fallback | UNAVAILABLE_NODE enquanto prerequisites, lane ELDRITCH exata ou dependency closure não forem verificáveis. A infraestrutura de Specialist não é blocker ausente: reutilizar TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01. Se a definição/snapshot canônico de unlock estiver inválido ou incompatível, a Specialist permanece bloqueada. Nunca usar strings genéricas, somar escolas, retornar a gates antigos ou deixar comprar terminal no-op. |
+| Regra | TERMINAL_EXTERIOR: ARCANE/ELDRITCH; PP_REGION: ARCANE/ELDRITCH. A0204 satisfaz só Gate C. A mastery é uma lane school exata, não agregação genérica. UNAVAILABLE_NODE transitivo até A0198/A0199 e A0203 estarem resolvidas. BORDER_HOPPING proibido; RESPEC_SEGURO mantém dependency closure e Gate B ≥100. TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 são authority; resolver Specialist paralelo é proibido. |
 
 As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função Efetiva, Provider Efetivo, Gate Efetivo, Hook Efetivo, Fallback Efetivo, Pré-requisitos Efetivos e Status Estrutural continuam sob autoridade do schema do Notion. Este dossiê não duplica nem falsifica o cálculo dessas fórmulas.
 
@@ -43,7 +43,7 @@ As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função 
 
 ### Efeito aprovado
 
-Terminal exterior do corredor ELDRITCH. Possuir A0204 satisfaz somente Gate C da Árvore de Especialista Eldritch. A Specialist Eldritch só é liberada quando SpecialistGateResolver confirmar simultaneamente os fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:ELDRITCH e A0204. Não concede Ruína, estados mentais, fome abissal, recurso, dano, resistência ou tradeoff por si só.
+Terminal exterior do corredor ELDRITCH. Possuir A0204 satisfaz somente Gate C da Árvore de Especialista Eldritch. O unlock Specialist usa a pipeline canônica existente do RPG Skill Tree: TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar fundamentos, ≥100 Passive Points válidos em SPECIALIST_REGION:ELDRITCH e A0204. Não concede Ruína, estados mentais, fome abissal, recurso, dano, resistência ou tradeoff por si só.
 
 ### Escalonamento aprovado
 
@@ -51,15 +51,15 @@ Terminal exterior do corredor ELDRITCH. Possuir A0204 satisfaz somente Gate C da
 
 ### Gate de compra/ativação
 
-COMPRA: A0203 disponível + lane ELDRITCH exata aceita pelo MasteryLaneCatalog ≥80 + rota profunda disponível. Sem catálogo/producer da lane ou qualquer dependency closure, A0204 é UNAVAILABLE_NODE/não comprável. SPECIALIST: SpecialistGateResolver confirma Gate A + ≥100 PP em SPECIALIST_REGION:ELDRITCH + A0204; terminal não bypassa A/B.
+COMPRA: A0203 disponível + lane ELDRITCH exata aceita pelo MasteryLaneCatalog ≥80 + rota profunda disponível. Sem catálogo/producer da lane ou qualquer dependency closure, A0204 é UNAVAILABLE_NODE/não comprável. SPECIALIST: TreeUnlockResolver avalia TreeUnlockDefinition com Gate A + ≥100 PP válidos em SPECIALIST_REGION:ELDRITCH + Gate C=A0204; terminal não bypassa A/B.
 
 ### Hook e ordem de execução
 
-AvailabilityResolver reavalia dependency closure e lane exata em compra/login/datapack-provider reload. SpecialistGateResolver publica A0204 somente como terminal_id=ARCANE/ELDRITCH e reavalia Gate A/B/C em compra, respec, migração e perda de capability. Respec seguro exige reembolsar Specialist antes do terminal/dependências.
+AvailabilityResolver reavalia dependency closure e lane exata em compra/login/datapack-provider reload. Para Specialist, A0204 publica/representa somente terminal_id=ARCANE/ELDRITCH na TreeUnlockDefinition; TreeUnlockResolver usa o estado canônico + projeção de investimento Stage 04.01 e reavalia nos lifecycle boundaries canônicos. Respec seguro exige reembolsar Specialist antes do terminal/dependências. Não criar resolver Specialist paralelo.
 
 ### Fallback sem trocar a identidade
 
-UNAVAILABLE_NODE enquanto prerequisites, lane ELDRITCH exata, cálculo semântico de PP ou SpecialistGateResolver não forem verificáveis. A Specialist permanece bloqueada; nunca usar strings genéricas, somar escolas, retornar a gates antigos ou deixar comprar terminal no-op.
+UNAVAILABLE_NODE enquanto prerequisites, lane ELDRITCH exata ou dependency closure não forem verificáveis. A infraestrutura de Specialist não é blocker ausente: reutilizar TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01. Se a definição/snapshot canônico de unlock estiver inválido ou incompatível, a Specialist permanece bloqueada. Nunca usar strings genéricas, somar escolas, retornar a gates antigos ou deixar comprar terminal no-op.
 
 ### Invariantes semânticos
 
@@ -87,7 +87,7 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree: AvailabilityResolver, MasteryLaneCatalog e SpecialistGateResolver. Iron's 3.16.3/Discerning 1.4.3/Deeper Darker Spellbooks 1.3.3 só fornecem a lane quando SchoolType.getId() exato estiver mapeado e aceito; nenhum provider externo possui o gate. Black Arcana atual não prova ELDRITCH outcome.
+RPG Skill Tree: AvailabilityResolver, MasteryLaneCatalog e TreeUnlockResolver. Iron's 3.16.3/Discerning 1.4.3/Deeper Darker Spellbooks 1.3.3 só fornecem a lane quando SchoolType.getId() exato estiver mapeado e aceito; nenhum provider externo possui o gate. Black Arcana atual não prova ELDRITCH outcome.
 
 ### Disposição por família
 
@@ -137,7 +137,7 @@ RPG Skill Tree: AvailabilityResolver, MasteryLaneCatalog e SpecialistGateResolve
 ## 8. Fail-closed, lifecycle e perda de capability
 
 - **Decisão atual:** Não comprável no runtime atual. O node só pode ser habilitado depois que dependências e capabilities exatas forem comprovadas; componente não classificado continua inerte.
-- **Fallback normativo:** UNAVAILABLE_NODE enquanto prerequisites, lane ELDRITCH exata, cálculo semântico de PP ou SpecialistGateResolver não forem verificáveis. A Specialist permanece bloqueada; nunca usar strings genéricas, somar escolas, retornar a gates antigos ou deixar comprar terminal no-op.
+- **Fallback normativo:** UNAVAILABLE_NODE enquanto prerequisites, lane ELDRITCH exata, cálculo semântico de PP ou TreeUnlockResolver não forem verificáveis. A Specialist permanece bloqueada; nunca usar strings genéricas, somar escolas, retornar a gates antigos ou deixar comprar terminal no-op.
 - Reavaliar gate/availability em login, load/save, datapack/rules reload, respec, mudança/remoção de provider, alteração de capability e migração de schema.
 - Perda de provider ou dependência remove/desativa somente a parcela dependente e executa cleanup do estado próprio, sem tocar estado autoritativo de terceiros.
 - Estado desconhecido ou erro de query nunca concede compra, unlock, proteção, dano, recurso, temperatura favorável ou progressão.

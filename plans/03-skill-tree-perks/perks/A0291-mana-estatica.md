@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0285 Arco Elétrico ≥2 ranks + A0286 Sobrecarga ≥1 rank + A0145 Eficiência Arcana ≥2 ranks + provider com MANA nativa e regeneração positiva/modificável. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0285 ≥2 + A0286 ≥1 + A0145 ≥2 + provider de mana com regen modificável. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT ROOT_ACTION_TARGET_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT MANA_REGEN_MODIFIER_V1. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 podem fornecer root actions LIGHTNING e mana somente quando adapters versionados expuserem identidade da ação, targets nativos e hook de regen. Conta apenas multi-target nativo/primário do provider; hops/procs criados por perks RPG posteriores ficam marcados rpg_derived=true e são excluídos. Source, Soul Energy, Spirit, FE e outros recursos não são MANA intercambiável. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT ROOT_ACTION_TARGET_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT MANA_REGEN_MODIFIER_V1. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 podem fornecer root actions LIGHTNING e mana somente quando adapters versionados expuserem identidade da ação, targets nativos e hook de regen. Conta apenas multi-target nativo/primário do provider; hops/procs criados por perks RPG posteriores ficam marcados rpg_derived=true e são excluídos. Source, Soul Energy, Spirit, FE e outros recursos não são MANA intercambiável. |
 | Efeito | Quando um único root_action_id LIGHTNING legítimo do jogador registra pelo menos 3 alvos hostis distintos por seus componentes primários ou encadeamentos/área nativos do provider, A0291 ativa RPG_STATIC_MANA por 80 ticks (4 s): a regeneração nativa positiva de MANA daquele provider é multiplicada por ×1,04/×1,08/×1,12 conforme rank. Recarga interna de 140 ticks (7 s), iniciada na ativação. Regeneração nativa zero/bloqueada permanece zero. |
 | Escalonamento | Até 3 ranks. Janela: 80 ticks. Cooldown: 140 ticks desde a ativação. Multiplicador de regen nativa: 1,04/1,08/1,12. Contagem de alvo é por target_uuid único dentro do mesmo root_action_id; o mesmo alvo nunca conta duas vezes. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + requisitos locais + provider com MANA nativa positiva/modificável + root_action_id LIGHTNING legítimo encerrado com ≥3 target_uuid hostis únicos atingidos por componentes PRIMÁRIOS ou chain/AoE NATIVOS daquela ação. Mesmo alvo conta uma vez. A0290/A0292/A0293/A0295/A0296 e qualquer rpg_derived não contam; DoT posterior, máquina, summon, fake player, callback duplicado e targets sem outcome positivo também não. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT ROOT_ACTION_TARGET_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT MANA_REGEN_MODIFIER_V1. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 podem fornecer root actions LIGHTNING e mana somente quando adapters versionados expuserem identidade da ação, targets nativos e hook de regen. Conta apenas multi-target nativo/primário do provider; hops/procs criados por perks RPG posteriores ficam marcados rpg_derived=true e são excluídos. Source, Soul Energy, Spirit, FE e outros recursos não são MANA intercambiável.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT ROOT_ACTION_TARGET_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT MANA_REGEN_MODIFIER_V1. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 podem fornecer root actions LIGHTNING e mana somente quando adapters versionados expuserem identidade da ação, targets nativos e hook de regen. Conta apenas multi-target nativo/primário do provider; hops/procs criados por perks RPG posteriores ficam marcados rpg_derived=true e são excluídos. Source, Soul Energy, Spirit, FE e outros recursos não são MANA intercambiável.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ROOT_ACTION_TARGET_LEDGER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>ROOT_ACTION_TARGET_LEDGER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT ROOT_ACT
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>ROOT_ACTION_TARGET_LEDGER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>ROOT_ACTION_TARGET_LEDGER_V1</code>, <code>MANA_REGEN_MODIFIER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0145</code>, <code>A0176</code>.
 - **Referências internas posteriores:** <code>A0292</code>, <code>A0293</code>, <code>A0295</code>, <code>A0296</code>.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

@@ -29,13 +29,13 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | A0231 Domínio Aerocinético + Wind Mastery ≥80 + pelo menos uma rota profunda de comprovação: A0227 =1 rank, A0229 =1 rank ou A0230 ≥2 ranks. Esses requisitos compram a terminal; não substituem Gate A/B/C da Specialist Wind. |
 | Pré-requisitos | A0231 Domínio Aerocinético + Wind Mastery ≥80 + pelo menos uma rota profunda entre A0227/A0229/A0230. |
-| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Wind Mastery canônica. SnackPirate's Aeromancy Additions 1.2.8, Wind's Spellbooks 1.0.5, Iron's Spells runtime 1.21.1-3.16.3 e demais providers fornecem gameplay WIND somente aos nodes com adapters próprios; ParCool/Epic Fight são bridges de mobilidade, não owners do gate. |
-| Efeito | Terminal exterior do corredor WIND. Possuir A0232 satisfaz somente Gate C da Árvore de Especialista Vento. A Specialist Wind só é liberada quando SPECIALIST_GATE_RESOLVER_V1 confirmar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WIND e A0232. Não concede voo, mobilidade, pressão, controle, recurso, dano ou resistência por si só. |
+| Provider/Mods | RPG Skill Tree: TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 + Wind Mastery canônica. SnackPirate's Aeromancy Additions 1.2.8, Wind's Spellbooks 1.0.5, Iron's Spells 3.16.3 e demais providers fornecem gameplay WIND somente aos nodes com adapters próprios; ParCool/Epic Fight são bridges de mobilidade, não owners do gate. |
+| Efeito | Terminal exterior do corredor WIND. Possuir A0232 satisfaz somente Gate C da Árvore de Especialista Vento. A Specialist Wind usa a pipeline canônica existente TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WIND e A0232. Não concede voo, mobilidade, pressão, controle, recurso, dano ou resistência por si só. |
 | Escalonamento | 1 rank. Desbloqueio binário da especialização WIND; não adiciona dano, velocidade, mobilidade, knockback, estado, recurso, duração, resistência ou mitigação por si só. |
 | Gate | COMPRA DA TERMINAL: A0231 + Wind Mastery ≥80 + (A0227=1 OU A0229=1 OU A0230≥2). DESBLOQUEIO SPECIALIST WIND: Gate A = fundamentos exteriores ARCANE/POWER e ARCANE/WIND exigidos pelo mapeamento; Gate B = ≥100 Passive Points válidos em SPECIALIST_REGION:WIND; Gate C = A0232 possuída. Híbridos WIND↔AGILITY/VITALITY/MARTIAL exigem integralmente os gates dos dois pais; bridge/shared PP não pode ser reutilizado em ambos. |
-| Hook | FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1: OWNER RPG core; CONSUMER árvores Specialist; QUERY {owned_outer_nodes, fundamentals, semantic_pp_ledger, terminal_id}; BEHAVIOR validar Gate A/B/C server-side em compra, respec e migração; FAIL-CLOSED se qualquer dado não for autoritativo. A0232 publica apenas terminal_id=ARCANE/WIND. VERSION-STATUS: design congelado; resolver não encontrado no runtime/main atual em 2026-08-29. |
-| Fallback | FAIL-CLOSED: enquanto SPECIALIST_GATE_RESOLVER_V1, fundamentos e ledger de PP semântico não puderem ser validados server-side, a Specialist Wind permanece bloqueada. Perks internas dependentes de WIND/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WIND, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar voo/mobilidade/recurso como fallback. |
-| Regra | TERMINAL_EXTERIOR: ARCANE/WIND. PP_REGION: ARCANE/WIND. A0232 não pertence às 30 perks internas da Specialist Wind. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WIND; os antigos gates de 8 PP e pequenos thresholds ARCANE/AGILITY são removidos como desbloqueio da Specialist. BORDER_HOPPING: proibido. RESPEC_SEGURO: enquanto qualquer perk interna da Specialist estiver possuída, bloquear refund de A0232, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. SPECIALIST_GATE_RESOLVER_V1 é contrato futuro, não API runtime existente. |
+| Hook | A0232 publica/representa apenas terminal_id=ARCANE/WIND na TreeUnlockDefinition. TreeUnlockResolver usa estado canônico + projeção de investimento do Stage 04.01 para validar Gate A/B/C server-side nos lifecycle boundaries canônicos. Nenhum resolver Specialist paralelo deve ser criado. |
+| Fallback | FAIL-CLOSED: a infraestrutura Specialist já existe na pipeline TreeUnlock. Se fundamentos, PP semântico, terminal ou outro requisito real da dependency closure não puderem ser validados, a Specialist Wind permanece bloqueada. Perks internas dependentes de WIND/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WIND, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar voo/mobilidade/recurso como fallback. |
+| Regra | TERMINAL_EXTERIOR: ARCANE/WIND. PP_REGION: ARCANE/WIND. A0232 não pertence às perks internas da Specialist Wind. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WIND; antigos gates pequenos não substituem a Specialist. BORDER_HOPPING proibido. RESPEC_SEGURO: enquanto qualquer perk interna estiver possuída, bloquear refund de A0232, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 são authority. |
 
 As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função Efetiva, Provider Efetivo, Gate Efetivo, Hook Efetivo, Fallback Efetivo, Pré-requisitos Efetivos e Status Estrutural continuam sob autoridade do schema do Notion. Este dossiê não duplica nem falsifica o cálculo dessas fórmulas.
 
@@ -43,7 +43,7 @@ As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função 
 
 ### Efeito aprovado
 
-Terminal exterior do corredor WIND. Possuir A0232 satisfaz somente Gate C da Árvore de Especialista Vento. A Specialist Wind só é liberada quando SPECIALIST_GATE_RESOLVER_V1 confirmar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WIND e A0232. Não concede voo, mobilidade, pressão, controle, recurso, dano ou resistência por si só.
+Terminal exterior do corredor WIND. Possuir A0232 satisfaz somente Gate C da Árvore de Especialista Vento. A Specialist Wind usa a pipeline canônica existente TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WIND e A0232. Não concede voo, mobilidade, pressão, controle, recurso, dano ou resistência por si só.
 
 ### Escalonamento aprovado
 
@@ -55,11 +55,11 @@ COMPRA DA TERMINAL: A0231 + Wind Mastery ≥80 + (A0227=1 OU A0229=1 OU A0230≥
 
 ### Hook e ordem de execução
 
-FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1: OWNER RPG core; CONSUMER árvores Specialist; QUERY {owned_outer_nodes, fundamentals, semantic_pp_ledger, terminal_id}; BEHAVIOR validar Gate A/B/C server-side em compra, respec e migração; FAIL-CLOSED se qualquer dado não for autoritativo. A0232 publica apenas terminal_id=ARCANE/WIND. VERSION-STATUS: design congelado; resolver não encontrado no runtime/main atual em 2026-08-29.
+A0232 publica/representa apenas terminal_id=ARCANE/WIND na TreeUnlockDefinition. TreeUnlockResolver usa estado canônico + projeção de investimento do Stage 04.01 para validar Gate A/B/C server-side nos lifecycle boundaries canônicos. Nenhum resolver Specialist paralelo deve ser criado.
 
 ### Fallback sem trocar a identidade
 
-FAIL-CLOSED: enquanto SPECIALIST_GATE_RESOLVER_V1, fundamentos e ledger de PP semântico não puderem ser validados server-side, a Specialist Wind permanece bloqueada. Perks internas dependentes de WIND/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WIND, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar voo/mobilidade/recurso como fallback.
+FAIL-CLOSED: a infraestrutura Specialist já existe na pipeline TreeUnlock. Se fundamentos, PP semântico, terminal ou outro requisito real da dependency closure não puderem ser validados, a Specialist Wind permanece bloqueada. Perks internas dependentes de WIND/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WIND, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar voo/mobilidade/recurso como fallback.
 
 ### Invariantes semânticos
 
@@ -77,7 +77,7 @@ FAIL-CLOSED: enquanto SPECIALIST_GATE_RESOLVER_V1, fundamentos e ledger de PP se
 | Pré-requisito visual/estrutural | A0231 Domínio Aerocinético + Wind Mastery ≥80 + pelo menos uma rota profunda entre A0227/A0229/A0230. |
 | Dependência semântica completa | A0231 Domínio Aerocinético + Wind Mastery ≥80 + pelo menos uma rota profunda de comprovação: A0227 =1 rank, A0229 =1 rank ou A0230 ≥2 ranks. Esses requisitos compram a terminal; não substituem Gate A/B/C da Specialist Wind. |
 | Custo topológico | 3 PP por rank; 1 rank(s); extra 0 |
-| Regra de região/PP | TERMINAL_EXTERIOR: ARCANE/WIND. PP_REGION: ARCANE/WIND. A0232 não pertence às 30 perks internas da Specialist Wind. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WIND; os antigos gates de 8 PP e pequenos thresholds ARCANE/AGILITY são removidos como desbloqueio da Specialist. BORDER_HOPPING: proibido. RESPEC_SEGURO: enquanto qualquer perk interna da Specialist estiver possuída, bloquear refund de A0232, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. SPECIALIST_GATE_RESOLVER_V1 é contrato futuro, não API runtime existente. |
+| Regra de região/PP | TERMINAL_EXTERIOR: ARCANE/WIND. PP_REGION: ARCANE/WIND. A0232 não pertence às 30 perks internas da Specialist Wind. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WIND; os antigos gates de 8 PP e pequenos thresholds ARCANE/AGILITY são removidos como desbloqueio da Specialist. BORDER_HOPPING: proibido. RESPEC_SEGURO: enquanto qualquer perk interna da Specialist estiver possuída, bloquear refund de A0232, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 não é contrato futuro separado; reutiliza a pipeline TreeUnlock existente. |
 | Border hopping | Proibido contar a mesma compra em regiões incompatíveis ou usar bridge para satisfazer dois thresholds, salvo whitelist explícita de um único lado semântico. |
 | Respec | O refund deve respeitar dependency closure, gate de região/terminal e estado owned pela perk; perks internas dependentes são reembolsadas antes de quebrar o gate. |
 
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Wind Mastery canônica. SnackPirate's Aeromancy Additions 1.2.8, Wind's Spellbooks 1.0.5, Iron's Spells runtime 1.21.1-3.16.3 e demais providers fornecem gameplay WIND somente aos nodes com adapters próprios; ParCool/Epic Fight são bridges de mobilidade, não owners do gate.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Wind Mastery canônica. SnackPirate's Aeromancy Additions 1.2.8, Wind's Spellbooks 1.0.5, Iron's Spells runtime 1.21.1-3.16.3 e demais providers fornecem gameplay WIND somente aos nodes com adapters próprios; ParCool/Epic Fight são bridges de mobilidade, não owners do gate.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** SnackPirate's Aeromancy Additions, Wind's Spellbooks e Iron's fornecem WIND somente por adapter; ParCool, Epic ParCool e Epic Fight são bridges de mobilidade, nunca autoridade elemental.
 - **Exclusões obrigatórias:** Eventos de movimento sem root action WIND, fall distance, salto, impulso e knockback genérico não ativam perks. Sable/sublevels apenas corrigem espaço quando explicitamente exigido.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -137,7 +137,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Wind Mas
 ## 8. Fail-closed, lifecycle e perda de capability
 
 - **Decisão atual:** O contrato está congelado e suficientemente especificado para implementação, mas a compra ou parcela dependente deve falhar fechado até todos os contracts/adapters indicados existirem e passarem os testes.
-- **Fallback normativo:** FAIL-CLOSED: enquanto SPECIALIST_GATE_RESOLVER_V1, fundamentos e ledger de PP semântico não puderem ser validados server-side, a Specialist Wind permanece bloqueada. Perks internas dependentes de WIND/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WIND, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar voo/mobilidade/recurso como fallback.
+- **Fallback normativo:** FAIL-CLOSED: enquanto pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01, fundamentos e ledger de PP semântico não puderem ser validados server-side, a Specialist Wind permanece bloqueada. Perks internas dependentes de WIND/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WIND, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar voo/mobilidade/recurso como fallback.
 - Reavaliar gate/availability em login, load/save, datapack/rules reload, respec, mudança/remoção de provider, alteração de capability e migração de schema.
 - Perda de provider ou dependência remove/desativa somente a parcela dependente e executa cleanup do estado próprio, sem tocar estado autoritativo de terceiros.
 - Estado desconhecido ou erro de query nunca concede compra, unlock, proteção, dano, recurso, temperatura favorável ou progressão.
@@ -192,7 +192,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Wind Mas
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.
