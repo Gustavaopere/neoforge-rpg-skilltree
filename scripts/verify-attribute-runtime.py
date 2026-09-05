@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -181,8 +182,19 @@ for payload_text, path, record_name, operation, source_id in [
             raise SystemExit(1)
 
 networking_text = NETWORKING.read_text(encoding="utf-8")
+network_version_match = re.search(
+    r'private static final String NETWORK_VERSION = "(\d+)";',
+    networking_text,
+)
+if network_version_match is None:
+    print(f"ERROR: {NETWORKING.relative_to(ROOT)}: missing numeric NETWORK_VERSION declaration")
+    raise SystemExit(1)
+if int(network_version_match.group(1)) < 4:
+    print(
+        f"ERROR: {NETWORKING.relative_to(ROOT)}: attribute mutation protocol requires NETWORK_VERSION >= 4"
+    )
+    raise SystemExit(1)
 for needle in [
-    'private static final String NETWORK_VERSION = "4";',
     "PurchaseAttributeRanksPayload.TYPE",
     "PurchaseAttributeRanksPayload.STREAM_CODEC",
     "PurchaseAttributeRanksPayload::handle",
