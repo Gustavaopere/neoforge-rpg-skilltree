@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após explicitar a propagação de availability de A0044 no review da PR #243.
-- **Implementação:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** **NÃO CONFIRMADA / FAIL-CLOSED CORRETO VALIDADO PELO CHAT 3**.
 - **Disponibilidade:** `UNAVAILABLE_NODE` enquanto A0044 estiver indisponível; A0048 herda esse bloqueio estrutural.
 - **Notion:** `3c569db9-f0db-8125-8454-da7f3c95587f`; corrigido e re-fetch PASS em 2026-08-30.
 
@@ -20,9 +20,9 @@
 
 - `CombatPerkAvailabilityRuntime` marca A0047 indisponível por dependência estrutural de A0044.
 - `A0041A0060RuntimeState.ranks(...)` mascara qualquer rank legado de A0047.
-- `A0041A0060ProjectileEvents.onArrowLoose(...)` agora passa `projectileSpeedAvailable=false`; presença de `AbstractArrow` não é mais tratada como capability de launch speed.
-- o bridge não chama mais `arrow.setDeltaMovement(...scale(...))` para A0047.
-- a penetração per-hit existente permanece modelada no policy para uma futura reativação legítima, sem modifier persistente.
+- `A0041A0060ProjectileEvents.onArrowLoose(...)` passa `projectileSpeedAvailable=false`; presença de `AbstractArrow` não é tratada como capability de launch speed.
+- o bridge não chama `arrow.setDeltaMovement(...scale(...))` para A0047.
+- a penetração per-hit permanece modelada no policy para futura reativação legítima, sem modifier persistente.
 
 ## Provider→árvore
 
@@ -41,24 +41,39 @@ Resolvida no runtime atual por omissão: speed declarado como indisponível e fa
 
 Continua impondo indisponibilidade integral de A0047 até A0044 ser legitimamente habilitada por provider de preparation speed.
 
-## Pendência Chat 3
+## Testes exigidos / estado atual
 
-- validar A0047 não comprável enquanto A0044 estiver unavailable;
-- validar nenhum gasto de Focus/rank legado enquanto indisponível;
-- validar ausência de double-scale/projectile-speed sintético;
-- quando houver provider futuro, validar penetração e speed separadamente conforme capability real.
-
-## Testes exigidos
-
-- A0044 indisponível → A0047 indisponível/não comprável;
-- provider speed ausente, mas A0044 futuramente disponível por provider próprio → sem speed, penetração apenas se contrato permitir;
-- provider speed presente → +10/+15 exatamente uma vez;
-- coexistência sem double-scale;
-- hit <12 / ≥12;
-- miss sem refund;
-- derived/ricochet/spell/companion sem herança;
-- mesma origem/root action.
+- A0044 indisponível → A0047 indisponível/não comprável: **PASS**.
+- rank legado mascarado e sem gasto de Focus enquanto indisponível: **PASS**.
+- ausência de projectile-speed sintético/double-scale: **PASS**.
+- provider speed futuro presente: **N/A — provider semântico ainda inexistente; permanece fail-closed**.
+- hit <12 / ≥12 e penetração funcional: **N/A enquanto a cadeia estrutural estiver indisponível**.
 
 ## Fechamento Chat 2 — 2026-09-01
 
 O Chat 2 removeu o fallback sintético e materializou a propagação de availability. Nenhum bypass de A0044 foi criado.
+
+## Fechamento Chat 3 — 2026-09-05
+
+- contrato revisado contra o runtime atual; nenhum redesign necessário;
+- availability transitiva A0044→A0047, masking de rank legado e ausência do fallback sintético foram validados;
+- `RPG Skill Tree CI` #3467 / run `33986475213`: **SUCCESS**, incluindo JUnit 5, NeoForge JUnit adapter tests, NeoForge GameTests, provider-present GameTests, build e dedicated-server smoke;
+- `SonarQube Cloud` #703 / run `33986475341`: **SUCCESS**;
+- **estado final:** `NÃO CONFIRMADA / FAIL-CLOSED CORRETO`; reativação exige provider semântico real, sem bypass.
+
+## Checklist Chat 3
+
+- [x] Design aprovado pelo Chat 1
+- [x] Código/fail-closed presente pelo Chat 2
+- [x] Contrato revisado contra o código
+- [x] Provider-native confirmado
+- [x] Gate/dependências confirmados
+- [x] Fallback/fail-closed confirmado
+- [x] Deduplicação/ausência de double-scale confirmada
+- [x] Autoria causal preservada
+- [x] Testes unitários verdes
+- [x] GameTests verdes
+- [x] Build NeoForge verde
+- [x] Dedicated-server smoke verde
+- [x] CI e Sonar verdes
+- [ ] IMPLEMENTAÇÃO CONFIRMADA — **N/A enquanto A0044/provider obrigatório permanecer indisponível**
