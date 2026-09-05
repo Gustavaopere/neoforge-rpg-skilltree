@@ -3,6 +3,8 @@ package dev.gustavopere.rpgskilltree.runtime.economy;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomySettlementBridge;
 import net.minecraft.server.MinecraftServer;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
@@ -14,6 +16,16 @@ public final class ColonyEconomyEvents {
     private static final MineColoniesEconomySettlementBridge BRIDGE = new MineColoniesEconomySettlementBridge();
 
     private ColonyEconomyEvents() {}
+
+    @SubscribeEvent
+    public static void onServerStarted(ServerStartedEvent event) {
+        RUNTIME.reset();
+    }
+
+    @SubscribeEvent
+    public static void onServerStopped(ServerStoppedEvent event) {
+        RUNTIME.reset();
+    }
 
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent.Post event) {
