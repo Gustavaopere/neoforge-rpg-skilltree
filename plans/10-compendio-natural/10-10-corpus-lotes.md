@@ -289,11 +289,45 @@ Entradas:
 - distribuição concreta continua condicionada por worldgen, biomas e datapacks ativos, sem frequência ou local universal inventado;
 - o corpus passou pelo Compendium Editorial CI #237 e pelo RPG Skill Tree CI #2425, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke antes deste registro.
 
+## Lote 11 — Alex's Caves / biomas e estruturas de worldgen
+
+Arquivos:
+
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/alexscaves/biomes-batch1.json`
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/alexscaves/structures-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:alexscaves:abyssal_chasm` — Fendas Abissais
+2. `BIOME:alexscaves:candy_cavity` — Candy Cavity
+3. `BIOME:alexscaves:forlorn_hollows` — Cavernas Desoladas
+4. `BIOME:alexscaves:magnetic_caves` — Cavernas Magnéticas
+5. `BIOME:alexscaves:primordial_caves` — Cavernas Primordiais
+6. `BIOME:alexscaves:toxic_caves` — Cavernas Tóxicas
+7. `STRUCTURE:alexscaves:abyssal_ruins` — Abyssal Ruins
+8. `STRUCTURE:alexscaves:acid_pit` — Acid Pit
+9. `STRUCTURE:alexscaves:cake_cave` — Cake Cave
+10. `STRUCTURE:alexscaves:dino_bowl` — Dino Bowl
+
+### Critérios editoriais aplicados ao lote 11
+
+- provider reconciliado com a modlist canônica e a Auditoria Mestre antes da autoria: Alex's Caves Neo 2.0.2, namespace `alexscaves`;
+- os seis biomas correspondem aos IDs registrados pelo provider e permanecem `RUNTIME`, sem congelar frequência, posição ou parâmetros visuais numéricos em prosa;
+- as quatro estruturas são vinculadas pelos datapacks aos biomas correspondentes: Abyssal Ruins → Fendas Abissais, Acid Pit → Cavernas Tóxicas, Cake Cave → Candy Cavity e Dino Bowl → Cavernas Primordiais;
+- nomes pt-BR só foram usados quando sustentados pelos assets do provider; `Candy Cavity` e os quatro títulos de estrutura foram preservados sem inventar tradução;
+- todo resumo e seção possui fonte explícita `RUNTIME`, `DATAPACK`, `OFFICIAL_CODE` ou `VERIFIED_COMMUNITY` conforme a natureza do fato;
+- não há probabilidades, alturas, pesos de spawn, contagens, chances ou outros parâmetros mutáveis congelados na prosa editorial;
+- o lote foi desenvolvido em TDD: o teste Batch11 falhou primeiro exclusivamente pela ausência dos recursos; os pacotes foram adicionados somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- lotes documentados: **10**;
-- namespace atual em produção: `minecraft`;
+- entradas de worldgen Alex's Caves reais no corpus: **10**;
+- entradas editoriais totais: **110**;
+- lotes documentados: **11**;
+- namespaces atuais em produção: `minecraft`, `alexscaves`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
