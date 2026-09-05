@@ -132,11 +132,17 @@ public final class RpgSkillTreeMod {
         String mineColoniesVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
         String ironsSpellbooksVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
 
-        MineColoniesEconomyIntegrationState economyState = MineColoniesEconomyIntegrationBootstrap.install(
+        MineColoniesEconomyIntegrationState economyState = MineColoniesEconomyIntegrationBootstrap.evaluate(
             mineColoniesLoaded,
-            mineColoniesVersion,
-            MineColoniesEconomyLifecycleEvents::install
+            mineColoniesVersion
         );
+        if (economyState == MineColoniesEconomyIntegrationState.ACTIVE) {
+            economyState = MineColoniesEconomyIntegrationBootstrap.install(
+                true,
+                mineColoniesVersion,
+                MineColoniesEconomyLifecycleEvents::install
+            );
+        }
         if (economyState == MineColoniesEconomyIntegrationState.ACTIVE) {
             RuntimeDiagnostics.info(
                 LOGGER,
