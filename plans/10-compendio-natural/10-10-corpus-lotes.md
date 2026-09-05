@@ -517,6 +517,36 @@ Entradas:
 - `EndBiomes.registerBiomeToggles()` comprova que estes dez IDs participam do conjunto configurável do provider, portanto disponibilidade e ocorrência concretas permanecem condicionadas à configuração e ao worldgen ativos;
 - TDD confirmado no commit `0dbb401d21a90fd310ea07f58e940a79184edb6f`: 976 testes, exatamente 1 falha no Batch18 pela ausência de `betterend/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 19 — BetterEnd: New Dawn / biomas do End (batch 2)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betterend/biomes-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betterend:flower_islets` — Flower Islets
+2. `BIOME:betterend:waterfall_ponds` — Waterfall Ponds
+3. `BIOME:betterend:lantern_woods` — Madeiras Lanterna
+4. `BIOME:betterend:megalake` — Megalake
+5. `BIOME:betterend:shadow_forest` — Floresta da Sombra
+6. `BIOME:betterend:sulphur_springs` — Fontes Sulfúricas
+7. `BIOME:betterend:umbrella_jungle` — Selva de Guarda-chuvas
+8. `BIOME:betterend:umbra_valley` — Vale Da Sombra
+9. `BIOME:betterend:megalake_grove` — Arvoredos de Megalake
+10. `BIOME:betterend:neon_oasis` — Oasis Neon
+
+### Critérios editoriais aplicados ao lote 19
+
+- o recorte continua imediatamente após `ice_starfield` na ordem do registry oficial `EndBiomes.java` do commit congelado `360b6fea407befdcf9aab7f771cad5586cbfb826`;
+- oito títulos são preservados exatamente do `assets/betterend/lang/pt_br.json`: `Madeiras Lanterna`, `Megalake`, `Floresta da Sombra`, `Fontes Sulfúricas`, `Selva de Guarda-chuvas`, `Vale Da Sombra`, `Arvoredos de Megalake` e `Oasis Neon`;
+- `flower_islets` e `waterfall_ponds` não possuem chave `biome.betterend.*` nem no `pt_br.json` nem no `en_us.json` congelados; `Flower Islets` e `Waterfall Ponds` são fallbacks editoriais explicitamente derivados das classes `FlowerIsletsBiome`/`WaterfallPondsBiome` e dos registry paths, não traduções atribuídas ao provider;
+- o datapack Wover inclui `flower_islets` e `waterfall_ponds` em `is_end/small_island`; os outros oito IDs do lote estão em `is_end/land`;
+- `flower_islets` e `waterfall_ponds` não aparecem em `registerBiomeToggles()`; os outros oito aparecem no conjunto configurável do provider;
+- `megalake_grove` declara `MEGALAKE` como bioma-base associado e `neon_oasis` declara `DUST_WASTELANDS`; essas relações são registradas sem inferir chance, proximidade, geometria ou frequência;
+- nenhuma categoria de placement, nome de bioma ou vínculo de base foi convertido em altura, tamanho, densidade, posição, peso, chance, frequência ou outro parâmetro mutável;
+- TDD confirmado no commit `2b9ab97cd9dcf415446e5cc99da1197e6e8088e6`, RPG Skill Tree CI run `33994047460`, job `101381231279`: 977 testes, exatamente 1 falha no Batch19 pela ausência de `betterend/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -524,8 +554,8 @@ Entradas:
 - entradas editoriais vanilla totais: **100**;
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
-- entradas de worldgen BetterEnd: New Dawn reais no corpus: **10**;
-- entradas editoriais totais: **175**;
-- lotes documentados: **18**;
+- entradas de worldgen BetterEnd: New Dawn reais no corpus: **20**;
+- entradas editoriais totais: **185**;
+- lotes documentados: **19**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
