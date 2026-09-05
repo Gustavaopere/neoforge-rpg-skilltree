@@ -107,40 +107,50 @@ public final class MineColoniesEconomyProviderGameTests {
             "createColony", ServerLevel.class, BlockPos.class, Player.class, String.class, String.class
         ).invoke(manager, level, center, owner, "Economy Provider GameTest", "default");
         if (colony == null) throw new AssertionError("MineColonies failed to create economy test colony");
-        Object structureManager = colony.getClass().getMethod("getServerBuildingManager").invoke(colony);
+        Fixture partial = new Fixture(manager, colony, owner, center);
 
-        Object townHall = createBuilding(colony, center, "townHall", 1);
-        addBuilding(structureManager, townHall);
+        try {
+            Object structureManager = colony.getClass().getMethod("getServerBuildingManager").invoke(colony);
 
-        Object employedCitizen = spawnCitizen(colony, level, center.above());
-        Object employedData = employedCitizen.getClass().getMethod("getCitizenData").invoke(employedCitizen);
-        Object guardTower = createBuilding(colony, center.offset(2, 0, 0), "guardTower", 1);
-        addBuilding(structureManager, guardTower);
-        Object producer = Class.forName(BATTLE_MAGE_REGISTRATION).getMethod("guardTowerWorkModule").invoke(null);
-        Object workModule = guardTower.getClass().getMethod("getModule", Class.forName(MODULE_PRODUCER))
-            .invoke(guardTower, producer);
-        if (workModule == null) throw new AssertionError("Guard Tower missing Battle Mage work module");
-        boolean assigned = (boolean) workModule.getClass().getMethod("assignCitizen", Class.forName(CITIZEN_DATA))
-            .invoke(workModule, employedData);
-        if (!assigned) throw new AssertionError("Guard Tower rejected employed economy fixture citizen");
+            Object townHall = createBuilding(colony, center, "townHall", 1);
+            addBuilding(structureManager, townHall);
 
-        Object detachedCitizen = spawnCitizen(colony, level, center.offset(0, 1, 2));
-        Object detachedData = detachedCitizen.getClass().getMethod("getCitizenData").invoke(detachedCitizen);
-        Constructor<?> jobConstructor = Class.forName(BATTLE_MAGE_JOB).getConstructor(Class.forName(CITIZEN_DATA));
-        Object detachedJob = jobConstructor.newInstance(detachedData);
-        Class.forName(CITIZEN_DATA).getMethod("setJob", Class.forName(JOB)).invoke(detachedData, detachedJob);
-        if (Class.forName(CITIZEN_DATA).getMethod("getWorkBuilding").invoke(detachedData) != null) {
-            throw new AssertionError("Detached job fixture unexpectedly acquired a work building");
+            Object employedCitizen = spawnCitizen(colony, level, center.above());
+            Object employedData = employedCitizen.getClass().getMethod("getCitizenData").invoke(employedCitizen);
+            Object guardTower = createBuilding(colony, center.offset(2, 0, 0), "guardTower", 1);
+            addBuilding(structureManager, guardTower);
+            Object producer = Class.forName(BATTLE_MAGE_REGISTRATION).getMethod("guardTowerWorkModule").invoke(null);
+            Object workModule = guardTower.getClass().getMethod("getModule", Class.forName(MODULE_PRODUCER))
+                .invoke(guardTower, producer);
+            if (workModule == null) throw new AssertionError("Guard Tower missing Battle Mage work module");
+            boolean assigned = (boolean) workModule.getClass().getMethod("assignCitizen", Class.forName(CITIZEN_DATA))
+                .invoke(workModule, employedData);
+            if (!assigned) throw new AssertionError("Guard Tower rejected employed economy fixture citizen");
+
+            Object citizenManager = colony.getClass().getMethod("getCitizenManager").invoke(colony);
+            Object detachedData = citizenManager.getClass().getMethod("createAndRegisterCivilianData").invoke(citizenManager);
+            Constructor<?> jobConstructor = Class.forName(BATTLE_MAGE_JOB).getConstructor(Class.forName(CITIZEN_DATA));
+            Object detachedJob = jobConstructor.newInstance(detachedData);
+            Class.forName(CITIZEN_DATA).getMethod("setJob", Class.forName(JOB)).invoke(detachedData, detachedJob);
+            if (Class.forName(CITIZEN_DATA).getMethod("getWorkBuilding").invoke(detachedData) != null) {
+                throw new AssertionError("Detached job fixture unexpectedly acquired a work building");
+            }
+
+            Object warehouse = createBuilding(colony, center.offset(5, 0, 0), "wareHouse", 3);
+            addBuilding(structureManager, warehouse);
+            Object clampedBuilding = createBuilding(colony, center.offset(8, 0, 0), "home", 8);
+            addBuilding(structureManager, clampedBuilding);
+            Object unbuiltWarehouse = createBuilding(colony, center.offset(11, 0, 0), "wareHouse", 0);
+            addBuilding(structureManager, unbuiltWarehouse);
+
+            return partial;
+        } catch (ReflectiveOperationException failure) {
+            deleteFixture(partial, level);
+            throw failure;
+        } catch (RuntimeException | LinkageError | AssertionError failure) {
+            deleteFixture(partial, level);
+            throw failure;
         }
-
-        Object warehouse = createBuilding(colony, center.offset(5, 0, 0), "wareHouse", 3);
-        addBuilding(structureManager, warehouse);
-        Object clampedBuilding = createBuilding(colony, center.offset(8, 0, 0), "home", 8);
-        addBuilding(structureManager, clampedBuilding);
-        Object unbuiltWarehouse = createBuilding(colony, center.offset(11, 0, 0), "wareHouse", 0);
-        addBuilding(structureManager, unbuiltWarehouse);
-
-        return new Fixture(manager, colony, owner, center);
     }
 
     private static Object spawnCitizen(Object colony, ServerLevel level, BlockPos pos) throws ReflectiveOperationException {
