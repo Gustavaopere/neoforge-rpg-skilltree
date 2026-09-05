@@ -81,8 +81,8 @@ public final class RpgQuestProgressionApi {
         ServerPlayer player,
         MasteryAward reward
     ) {
-        Objects.requireNonNull(player, "player");
         MasteryAward validatedReward = QuestMasteryRewardPolicy.validate(reward);
+        Objects.requireNonNull(player, "player");
         PlayerProgressionRuntime.awardMastery(player, List.of(validatedReward));
         return query(player);
     }
