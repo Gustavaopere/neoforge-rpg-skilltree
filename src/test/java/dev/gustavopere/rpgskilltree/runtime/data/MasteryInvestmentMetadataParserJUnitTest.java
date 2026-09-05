@@ -102,4 +102,33 @@ final class MasteryInvestmentMetadataParserJUnitTest {
         assertEquals(60, parsed.get(0).minimumExperience());
         assertEquals(80, parsed.get(1).minimumExperience());
     }
+
+    @Test
+    void rejectsFractionalThresholdsAndWeightsInsteadOfTruncatingThem() {
+        ResourceLocation thresholdSource = ResourceLocation.parse("rpgskilltree:mastery_investments/fractional_threshold");
+        assertThrows(SkillTreeDataValidationException.class, () -> MasteryInvestmentMetadataParser.parse(Map.of(
+            thresholdSource,
+            JsonParser.parseString("""
+                {
+                  "lane": "magic:casting",
+                  "minimum_experience": 60.5,
+                  "domain_weights": {"ARCANE": 1},
+                  "tags": []
+                }
+                """)
+        )));
+
+        ResourceLocation weightSource = ResourceLocation.parse("rpgskilltree:mastery_investments/fractional_weight");
+        assertThrows(SkillTreeDataValidationException.class, () -> MasteryInvestmentMetadataParser.parse(Map.of(
+            weightSource,
+            JsonParser.parseString("""
+                {
+                  "lane": "magic:casting",
+                  "minimum_experience": 60,
+                  "domain_weights": {"ARCANE": 1.5},
+                  "tags": []
+                }
+                """)
+        )));
+    }
 }
