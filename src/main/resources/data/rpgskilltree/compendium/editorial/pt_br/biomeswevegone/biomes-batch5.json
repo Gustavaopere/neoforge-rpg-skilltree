@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "biomeswevegone",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:biomeswevegone:red_rock_valley",
+      "title": "Vale da Rocha Vermelha",
+      "summary": {
+        "text": "Vale da Rocha Vermelha é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:red_rock_valley.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:red_rock_valley"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como ermo seco, associa-o à categoria interna de arco de rocha vermelha e o inclui na tag estrutural própria do BWG para a Vila de Rocha Vermelha. A tag indica elegibilidade de worldgen, não presença garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:red_rock_peaks",
+      "title": "Picos de Rocha Vermelha",
+      "summary": {
+        "text": "Picos de Rocha Vermelha é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:red_rock_peaks.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:red_rock_peaks"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como ermo seco e pico e o associa à categoria interna de arco de rocha vermelha. A ficha preserva essa taxonomia sem transformar essas categorias em altura, geometria ou frequência fixas.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:redwood_thicket",
+      "title": "Matagal de Sequoias",
+      "summary": {
+        "text": "Matagal de Sequoias é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:redwood_thicket.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:redwood_thicket"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial do provider classifica este bioma como floresta com vegetação densa. A ficha não converte essa categoria em densidade numérica, frequência ou distribuição fixa.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:rose_fields",
+      "title": "Campo de Rosas",
+      "summary": {
+        "text": "Campo de Rosas é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:rose_fields.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:rose_fields"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como planície com vegetação densa e o inclui nas tags vanilla de vila da taiga e posto de saqueadores. Essas tags indicam elegibilidade estrutural, não geração garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:rugged_badlands",
+      "title": "Ermo Acidentado",
+      "summary": {
+        "text": "Ermo Acidentado é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:rugged_badlands.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:rugged_badlands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como ermo arenoso, seco e de vegetação esparsa, associa-o à categoria interna de rochas afiadas e o inclui nas tags de pirâmide do deserto, vila do deserto e Rugged Fossil do BWG. Essas tags são elegibilidade de worldgen, não presença garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:sakura_grove",
+      "title": "Bosque de Sakura",
+      "summary": {
+        "text": "Bosque de Sakura é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:sakura_grove.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:sakura_grove"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como floresta floral com vegetação densa. Frequência, posição e densidade numérica continuam dependentes do worldgen e das configurações ativas.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:shattered_glacier",
+      "title": "Geleira Quebrada",
+      "summary": {
+        "text": "Geleira Quebrada é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:shattered_glacier.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:shattered_glacier"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial do provider classifica este bioma nas categorias de encosta e gelo. A ficha não infere inclinação, altitude, temperatura numérica ou frequência a partir dessas tags.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:sierra_badlands",
+      "title": "Serra de Ermo",
+      "summary": {
+        "text": "Serra de Ermo é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:sierra_badlands.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:sierra_badlands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial do provider classifica este bioma como ermo. A ocorrência concreta permanece definida pelo worldgen e pelas configurações ativas, sem frequência ou posição universal fixada aqui.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:skyris_vale",
+      "title": "Vale de Skyris",
+      "summary": {
+        "text": "Vale de Skyris é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:skyris_vale.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:skyris_vale"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como floresta mágica com vegetação densa e o inclui na tag estrutural própria do BWG para a Vila de Skyris. A tag indica elegibilidade de worldgen, não geração garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:tropical_rainforest",
+      "title": "Floresta Tropical",
+      "summary": {
+        "text": "Floresta Tropical é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:tropical_rainforest.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:tropical_rainforest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como selva e o inclui na tag vanilla de tesouro enterrado. Essa tag expressa elegibilidade estrutural, não presença garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    }
+  ]
+}
