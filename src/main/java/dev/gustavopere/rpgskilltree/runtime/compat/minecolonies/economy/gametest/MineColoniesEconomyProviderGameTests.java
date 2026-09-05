@@ -28,6 +28,7 @@ public final class MineColoniesEconomyProviderGameTests {
     private static final String MODULE_PRODUCER = "com.minecolonies.api.colony.buildings.registry.BuildingEntry$ModuleProducer";
     private static final String MOD_BUILDINGS = "com.minecolonies.api.colony.buildings.ModBuildings";
     private static final String ROTATION_MIRROR = "com.ldtteam.structurize.api.RotationMirror";
+    private static final String BLUEPRINT = "com.ldtteam.structurize.blueprints.v1.Blueprint";
     private static final String ADAPTER =
         "dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyAdapter";
     private static final String BATTLE_MAGE_JOB =
@@ -78,7 +79,7 @@ public final class MineColoniesEconomyProviderGameTests {
             helper.assertTrue((int) inputs.getClass().getMethod("adultWorkers").invoke(inputs) == 1,
                 "job without work building must not contribute worker capacity");
             helper.assertTrue((int) inputs.getClass().getMethod("builtLevelPoints").invoke(inputs) == 10,
-                "built levels must include Town Hall/guard/warehouse and clamp level 8 to 5");
+                "built levels must include completed Town Hall/guard/warehouse/home levels");
             helper.assertTrue((int) inputs.getClass().getMethod("warehouseCount").invoke(inputs) == 1,
                 "level-0/unbuilt warehouse must not contribute logistics capacity");
 
@@ -116,11 +117,13 @@ public final class MineColoniesEconomyProviderGameTests {
 
             Object townHall = createBuilding(colony, center, "townHall", 1);
             addBuilding(structureManager, townHall);
+            completeBuilding(townHall, 1);
 
             Object employedCitizen = spawnCitizen(colony, level, center.above());
             Object employedData = employedCitizen.getClass().getMethod("getCitizenData").invoke(employedCitizen);
             Object guardTower = createBuilding(colony, center.offset(2, 0, 0), "guardTower", 1);
             addBuilding(structureManager, guardTower);
+            completeBuilding(guardTower, 1);
             Object producer = Class.forName(BATTLE_MAGE_REGISTRATION).getMethod("guardTowerWorkModule").invoke(null);
             Object workModule = guardTower.getClass().getMethod("getModule", Class.forName(MODULE_PRODUCER))
                 .invoke(guardTower, producer);
@@ -140,8 +143,10 @@ public final class MineColoniesEconomyProviderGameTests {
 
             Object warehouse = createBuilding(colony, center.offset(5, 0, 0), "wareHouse", 3);
             addBuilding(structureManager, warehouse);
-            Object clampedBuilding = createBuilding(colony, center.offset(8, 0, 0), "home", 8);
-            addBuilding(structureManager, clampedBuilding);
+            completeBuilding(warehouse, 3);
+            Object maxLevelBuilding = createBuilding(colony, center.offset(8, 0, 0), "home", 5);
+            addBuilding(structureManager, maxLevelBuilding);
+            completeBuilding(maxLevelBuilding, 5);
             Object unbuiltWarehouse = createBuilding(colony, center.offset(11, 0, 0), "wareHouse", 0);
             addBuilding(structureManager, unbuiltWarehouse);
 
@@ -179,7 +184,20 @@ public final class MineColoniesEconomyProviderGameTests {
         Class.forName(SCHEMATIC_PROVIDER).getMethod("setRotationMirror", rotationMirrorType)
             .invoke(building, identityRotation);
         building.getClass().getMethod("setBuildingLevel", int.class).invoke(building, level);
+        int actualLevel = (int) Class.forName(SCHEMATIC_PROVIDER).getMethod("getBuildingLevel").invoke(building);
+        if (actualLevel != level) {
+            throw new AssertionError("MineColonies rejected fixture building level " + level + "; actual=" + actualLevel);
+        }
         return building;
+    }
+
+    private static void completeBuilding(Object building, int level) throws ReflectiveOperationException {
+        Class<?> buildingType = Class.forName(BUILDING);
+        buildingType.getMethod("onUpgradeComplete", Class.forName(BLUEPRINT), int.class)
+            .invoke(building, null, level);
+        if (!(boolean) buildingType.getMethod("isBuilt").invoke(building)) {
+            throw new AssertionError("MineColonies fixture building did not enter built state at level " + level);
+        }
     }
 
     private static void addBuilding(Object structureManager, Object building) throws ReflectiveOperationException {
