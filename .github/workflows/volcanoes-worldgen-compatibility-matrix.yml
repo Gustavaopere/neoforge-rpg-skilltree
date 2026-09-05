@@ -17,6 +17,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  harness-regression:
+    name: Harness fast-fail regression
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Verify fast-fail diagnostics
+        shell: bash
+        run: bash .github/scripts/volcanoes/test_worldgen_matrix_fast_fail.sh
+
   worldgen-matrix:
     name: ${{ matrix.id }}
     runs-on: ubuntu-latest
@@ -91,6 +102,7 @@ jobs:
           jq --version
           python3 --version
           bash -n .github/scripts/volcanoes/run_worldgen_matrix_case.sh
+          bash -n .github/scripts/volcanoes/test_worldgen_matrix_fast_fail.sh
           python3 -m py_compile \
             .github/scripts/volcanoes/minecraft_rcon.py \
             .github/scripts/volcanoes/worldgen_site_digest.py
