@@ -60,6 +60,29 @@ jobs:
       - name: Sonar New Code period self-healing regression test
         run: python3 scripts/test_sonar_new_code_period_policy.py
 
+      - name: Diagnose Sonar main analysis history on internal PR
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          response="$(curl --silent --show-error --fail --get \
+            --header "Authorization: Bearer ${SONAR_TOKEN}" \
+            --data-urlencode "project=${SONAR_PROJECT}" \
+            --data-urlencode 'branch=main' \
+            --data-urlencode 'ps=100' \
+            'https://sonarcloud.io/api/project_analyses/search')"
+
+          echo "Sonar main analysis history:"
+          jq -r '.analyses[]? | [.key // "?", .date // "?", .revision // "?", .projectVersion // "?", ([.events[]? | ((.category // "?") + ":" + (.name // "?"))] | join(","))] | @tsv' <<<"$response" |
+            while IFS=$'\t' read -r analysis date revision project_version events; do
+              printf '  analysis=%s date=%s revision=%s projectVersion=%s events=%s\n' \
+                "$analysis" "$date" "$revision" "$project_version" "$events"
+            done
+
       - name: Ensure Sonar New Code period is Previous version
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
