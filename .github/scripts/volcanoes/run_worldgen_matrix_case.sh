@@ -114,15 +114,19 @@ wait_for_log() {
   local log="$1"
   local pattern="$2"
   local attempts="$3"
-  local launcher_status="$4"
+  local pid="$4"
   local launcher_log="$5"
   for _ in $(seq 1 "$attempts"); do
-    if [[ -f "$launcher_status" ]]; then
+    if ! jobs -pr | grep -Fxq -- "$pid"; then
       local exit_status
-      exit_status="$(cat "$launcher_status")"
+      if wait "$pid"; then
+        exit_status=0
+      else
+        exit_status=$?
+      fi
       echo "Gradle process exited before server startup for $CASE_ID with status $exit_status" >&2
       dump_file_if_present "$launcher_log"
-      if [[ "$exit_status" =~ ^[0-9]+$ ]] && (( exit_status != 0 )); then
+      if (( exit_status != 0 )); then
         return "$exit_status"
       fi
       return 1
@@ -153,19 +157,11 @@ run_once() {
   local round="$1"
   local log="$BUILD_DIR/round-$round.log"
   local digest="$BUILD_DIR/round-$round.digest"
-  local launcher_status="$BUILD_DIR/round-$round.launcher-exit"
 
   rm -rf "$RUN_DIR/world" "$RUN_DIR/logs" "$RUN_DIR/crash-reports" "$RUN_DIR/config" "$RUN_DIR/defaultconfigs"
-  rm -f "$launcher_status"
   write_server_files
 
-  (
-    set +e
-    gradle --no-daemon runServer </dev/null
-    status=$?
-    printf '%s\n' "$status" > "$launcher_status"
-    exit "$status"
-  ) >"$log" 2>&1 &
+  gradle --no-daemon runServer </dev/null >"$log" 2>&1 &
   local pid=$!
   cleanup() {
     kill "$pid" 2>/dev/null || true
@@ -173,7 +169,7 @@ run_once() {
   }
   trap cleanup RETURN
 
-  wait_for_log "$RUN_DIR/logs/latest.log" 'Done \([0-9.]+s\)! For help, type "help"' 240 "$launcher_status" "$log"
+  wait_for_log "$RUN_DIR/logs/latest.log" 'Done \([0-9.]+s\)! For help, type "help"' 240 "$pid" "$log"
 
   # 3x3 owner neighborhood around the deterministic cell(-1,-4) candidate at (-1015,-15641).
   # Its owner is chunk (-64,-978). This bounded compatibility smoke exercises the owning chunk
