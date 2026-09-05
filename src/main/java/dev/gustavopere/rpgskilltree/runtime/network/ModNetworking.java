@@ -62,7 +62,14 @@ public final class ModNetworking {
         PacketDistributor.sendToPlayer(player, new ProgressionSyncPayload(encoded));
     }
 
-    public static void syncCoreToOwner(ServerPlayer player, CoreProgressionState state, ProgressionRulesSnapshot rules) {
-        PacketDistributor.sendToPlayer(player, CoreProgressionSyncPayload.fromState(state, rules));
+    public static void syncCoreToOwner(
+        ServerPlayer player,
+        CoreProgressionState state,
+        ProgressionRulesSnapshot rules
+    ) {
+        PacketDistributor.sendToPlayer(
+            player,
+            CoreProgressionSyncPayload.fromState(state, rules)
+        );
     }
 }
