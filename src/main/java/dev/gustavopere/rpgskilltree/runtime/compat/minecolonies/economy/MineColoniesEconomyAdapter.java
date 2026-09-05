@@ -18,7 +18,16 @@ public final class MineColoniesEconomyAdapter {
             return Optional.empty();
         }
         try {
-            return Optional.of(new NativeColonyBinding(colony.getDimension().location(), colony.getID()));
+            var townHall = colony.getServerBuildingManager().getTownHall();
+            if (townHall == null) {
+                return Optional.empty();
+            }
+            return Optional.of(new NativeColonyBinding(
+                colony.getDimension().location(),
+                colony.getID(),
+                colony.getPermissions().getOwner(),
+                townHall.getPosition()
+            ));
         } catch (RuntimeException | LinkageError failure) {
             return Optional.empty();
         }
