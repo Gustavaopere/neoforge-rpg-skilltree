@@ -35,6 +35,23 @@ final class ColonyEconomyRuntimeJUnitTest {
     }
 
     @Test
+    void explicitServerLifecycleResetAllowsNewSessionToReanchor() {
+        ColonyEconomyRuntime runtime = new ColonyEconomyRuntime(20L);
+        AtomicInteger calls = new AtomicInteger();
+
+        assertFalse(runtime.tryRun(true, 100L, calls::incrementAndGet));
+        assertTrue(runtime.tryRun(true, 120L, calls::incrementAndGet));
+        assertEquals(1, calls.get());
+
+        runtime.reset();
+
+        assertFalse(runtime.tryRun(true, 0L, calls::incrementAndGet));
+        assertFalse(runtime.tryRun(true, 19L, calls::incrementAndGet));
+        assertTrue(runtime.tryRun(true, 20L, calls::incrementAndGet));
+        assertEquals(2, calls.get());
+    }
+
+    @Test
     void absentProviderNeverInvokesSettlementPass() {
         ColonyEconomyRuntime runtime = new ColonyEconomyRuntime(20L);
         AtomicInteger calls = new AtomicInteger();
@@ -62,7 +79,7 @@ final class ColonyEconomyRuntimeJUnitTest {
     }
 
     @Test
-    void invalidIntervalAndBackwardsTimeAreRejected() {
+    void invalidIntervalAndBackwardsTimeAreRejectedWithinOneSession() {
         assertThrows(IllegalArgumentException.class, () -> new ColonyEconomyRuntime(0L));
 
         ColonyEconomyRuntime runtime = new ColonyEconomyRuntime(20L);
