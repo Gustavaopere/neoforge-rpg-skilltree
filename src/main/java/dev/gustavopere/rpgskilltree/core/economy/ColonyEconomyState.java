@@ -38,8 +38,8 @@ public record ColonyEconomyState(
         }
         long effectiveSupply = issuedSupply - retiredSupply;
         long allocated = Math.addExact(Math.addExact(treasuryBalance, reservedBalance), activeCirculation);
-        if (allocated > effectiveSupply) {
-            throw new IllegalArgumentException("monetary buckets exceed effective supply");
+        if (allocated != effectiveSupply) {
+            throw new IllegalArgumentException("monetary buckets must exactly equal effective supply");
         }
     }
 

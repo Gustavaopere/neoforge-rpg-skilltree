@@ -13,8 +13,14 @@ import java.util.UUID;
  *
  * <p>Only MINT and RETIRE have audited executable semantics. Every other modeled kind remains
  * fail-closed until its counterparty/authority contract is defined.</p>
+ *
+ * <p>Replay identities are retained exactly and never pruned in V1. To keep SavedData bounded,
+ * monetary mutations fail closed when the fixed retention capacity is exhausted. A future
+ * compaction/epoch protocol must be versioned explicitly before this limit can be removed.</p>
  */
 public final class ColonyEconomyLedger {
+    public static final int MAX_RETAINED_TRANSACTIONS = 4_096;
+
     private static final String MONETARY_AUTHORITY = "monetary_authority";
     private static final String TREASURY = "treasury";
 
@@ -27,6 +33,11 @@ public final class ColonyEconomyLedger {
     /** Restores an audit history and rebuilds replay indexes after load/restart. */
     public ColonyEconomyLedger(List<EconomyTransaction> persistedTransactions) {
         Objects.requireNonNull(persistedTransactions, "persistedTransactions");
+        if (persistedTransactions.size() > MAX_RETAINED_TRANSACTIONS) {
+            throw new IllegalArgumentException(
+                "persisted economy transaction history exceeds retention limit " + MAX_RETAINED_TRANSACTIONS
+            );
+        }
         for (EconomyTransaction transaction : persistedTransactions) {
             restore(transaction);
         }
@@ -56,6 +67,9 @@ public final class ColonyEconomyLedger {
     }
 
     private EconomyMutationResult mint(ColonyEconomyState state, EconomyCommand command, long gameTime) {
+        if (retentionFull()) {
+            return EconomyMutationResult.rejected(EconomyMutationResult.Status.RETENTION_LIMIT_REACHED, state);
+        }
         try {
             long issuedSupply = Math.addExact(state.issuedSupply(), command.amount());
             long treasuryBalance = Math.addExact(state.treasuryBalance(), command.amount());
@@ -72,6 +86,9 @@ public final class ColonyEconomyLedger {
     }
 
     private EconomyMutationResult retire(ColonyEconomyState state, EconomyCommand command, long gameTime) {
+        if (retentionFull()) {
+            return EconomyMutationResult.rejected(EconomyMutationResult.Status.RETENTION_LIMIT_REACHED, state);
+        }
         if (state.treasuryBalance() < command.amount()) {
             return EconomyMutationResult.rejected(EconomyMutationResult.Status.INSUFFICIENT_TREASURY, state);
         }
@@ -129,6 +146,10 @@ public final class ColonyEconomyLedger {
             throw new IllegalArgumentException("duplicate persisted economy causal key: " + transaction.causalKey());
         }
         transactions.add(transaction);
+    }
+
+    private boolean retentionFull() {
+        return transactions.size() >= MAX_RETAINED_TRANSACTIONS;
     }
 
     private static ColonyEconomyState copyMoneyState(

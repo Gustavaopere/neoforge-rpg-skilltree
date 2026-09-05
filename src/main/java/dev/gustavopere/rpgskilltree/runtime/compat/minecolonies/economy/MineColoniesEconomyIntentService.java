@@ -172,6 +172,7 @@ public final class MineColoniesEconomyIntentService {
             case INVALID_AMOUNT -> MineColoniesEconomyIntentStatus.INVALID_AMOUNT;
             case INSUFFICIENT_TREASURY -> MineColoniesEconomyIntentStatus.INSUFFICIENT_TREASURY;
             case UNSUPPORTED_KIND -> MineColoniesEconomyIntentStatus.UNSUPPORTED_OPERATION;
+            case RETENTION_LIMIT_REACHED -> MineColoniesEconomyIntentStatus.RETENTION_LIMIT_REACHED;
             case OVERFLOW -> MineColoniesEconomyIntentStatus.OVERFLOW;
         };
     }

@@ -12,5 +12,6 @@ public enum MineColoniesEconomyIntentStatus {
     DUPLICATE,
     INSUFFICIENT_TREASURY,
     UNSUPPORTED_OPERATION,
+    RETENTION_LIMIT_REACHED,
     OVERFLOW
 }

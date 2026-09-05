@@ -41,6 +41,7 @@ public record EconomyMutationResult(
         INVALID_AMOUNT,
         INSUFFICIENT_TREASURY,
         UNSUPPORTED_KIND,
+        RETENTION_LIMIT_REACHED,
         OVERFLOW
     }
 }

@@ -1,196 +1,152 @@
-# 06.11 — Auditoria técnica MineColonies Economy
+# 06.11 — Auditoria MineColonies Economy V1 — 1.1.1375
 
 **Data:** 2026-09-05  
-**Minecraft:** 1.21.1  
-**Loader:** NeoForge  
-**Java:** 21  
-**MineColonies instalado:** `1.1.1375-1.21.1-snapshot`  
-**Tag upstream auditada:** `v1.21.1-1.1.1375-snapshot`  
+**Provider:** MineColonies `1.1.1375-1.21.1-snapshot`  
+**CurseForge file:** `8765939`  
 **Commit upstream auditado:** `a8022f703d80be3a0931f0d6cc34b229563ef713`  
-**Spec:** `plans/06-integrations/11-minecolonies-economy.md`
+**Loader/runtime:** NeoForge 1.21.1 / Java 21
 
-## Resultado executivo
+## 1. Resultado
 
-A auditoria permite implementar com segurança as Fases 1 e 2 do plano e define os boundaries necessários para a Fase 3. A Fase 4 (`CONSTRUCTION_CHARGE`) permanece **fail-closed** nesta build: não foi encontrado evento/API pública cancelável antes da criação do work order; os eventos públicos de construção são pós-conclusão. Introduzir mixin em `BuildRequestMessage` seria uma nova dependência arquitetural e não é autorizado por esta auditoria.
+A build instalada expõe API pública suficiente para uma V1 econômica **read-only no provider e autoritativa no nosso servidor**, mas não expõe seam público seguro para cobrança transacional de construção nem para injetar uma aba no Town Hall.
 
-Decisões V1:
+Decisões:
 
-- saldo/ledger virtual é a única authority monetária;
-- MineColonies continua authority de colônia, cidadãos, jobs, buildings, research, permissions, work orders e logística;
-- moeda física não é authority e não será criada na V1;
-- nenhuma mutation econômica concede Mastery;
-- settlement é periódico/bounded, nunca por cidadão/tick;
-- construction charge fica desabilitado até existir seam pré-irreversível aprovado;
-- addon Compatibility/Tweaks/Let's Do não recebe authority monetária.
+- `ECONOMY_CORE=APROVADO`;
+- `MINT_RETIRE_LEDGER=APROVADO`;
+- `MINECOLONIES_READ_ADAPTER=APROVADO`;
+- `NATIVE_PERMISSION_GATE=APROVADO`;
+- `COLONY_DELETE_LIFECYCLE=APROVADO`;
+- `NETWORK_INTENTS=APROVADO`;
+- `CONSTRUCTION_CHARGE=FAIL_CLOSED`;
+- `TOWN_HALL_UI=FAIL_CLOSED`.
 
-## 1. Identidade econômica e lifecycle
+Nenhuma conclusão abaixo autoriza mixin, patch em classe `core`, override invasivo de XML do namespace MineColonies ou substituição do pipeline Builder/work-order/materials/logistics.
 
-### Evidência provider
+## 2. Fontes obrigatórias verificadas
 
-`IColony` expõe:
+A modlist/guia do projeto e o Notion convergem para:
 
-- `int getID()`;
-- `ResourceKey<Level> getDimension()`;
-- `IPermissions getPermissions()`;
-- managers de cidadãos, buildings e research.
+- MineColonies `1.1.1375-1.21.1-snapshot`;
+- Structurize `1.0.832-1.21.1-snapshot`;
+- BlockUI `1.0.199-1.21.1-snapshot`;
+- Domum Ornamentum `1.0.223-snapshot`;
+- Multi-Piston `1.2.51-1.21.1-snapshot`.
 
-O ID numérico **não é permanente**. `ColonyList#getNextColonyID()` reutiliza posições removidas por meio de `nullIndices`. O record `ColonyId` contém somente `int id + dimension`.
+Addons ativos relevantes:
 
-A build expõe `ColonyDeletedModEvent`, carregando a `IColony` deletada.
+- MineColonies Compatibility 3.56;
+- MineColonies Let's Do 2.1;
+- MineColonies Tweaks 3.33.
 
-### Decisão
+Compatibility/Tweaks foram publicados contra uma baseline MineColonies anterior e, por isso, são risco de acoplamento de runtime; nenhum deles recebe authority monetária.
 
-Criar identidade própria imutável:
+## 3. Boundary de versão
+
+A integração Economy aceita apenas a string auditada:
 
 ```text
-EconomyColonyKey = UUID
-NativeColonyBinding = (dimension, nativeColonyId, ownerUuid, townHallPos)
+1.1.1375-1.21.1-snapshot
 ```
 
-O native ID é apenas binding atual. Nunca é chave de saldo.
+Provider ausente ou versão divergente => integração Economy desabilitada/fail-closed. O RPG core continua carregável sem MineColonies.
 
-Persistência mínima por economia:
+## 4. Identidade da colônia
+
+`IColony.getID()` não é tratado como identidade monetária durável. IDs nativos podem ser reciclados após exclusão/recriação.
+
+O provider lookup usa um fingerprint composto:
 
 ```text
-schemaVersion
-economyUuid
-nativeDimension
+dimensionId
 nativeColonyId
 ownerUuid
 townHallPos
-currencyId
-createdGameTime
-lastSeenGameTime
-archived
-archivedGameTime
-state
-ledger
 ```
+
+Esse fingerprint resolve para um `EconomyColonyKey(UUID)` persistido pelo nosso mod.
 
 Regras:
 
-1. `ColonyDeletedModEvent` arquiva a binding e congela novas mutations.
-2. World/chunk unload não arquiva.
-3. Reuso de `(dimension,id)` nunca revive economia arquivada.
-4. Binding incompatível com fingerprint persistido falha fechado.
-5. Nome da colônia/moeda é display metadata; não participa da identidade.
-6. `currencyId = rpgskilltree:colony/<economy-uuid>` e nunca muda por rename.
+- o UUID econômico não é fornecido pelo cliente;
+- fingerprint divergente para o mesmo `(dimension,id)` falha fechado;
+- `ColonyDeletedModEvent` remove o binding live e arquiva a identidade anterior;
+- uma colônia recriada não herda saldo da colônia excluída.
 
-## 2. Permissions
+O commit auditado também contém tratamento para colônias em mundos dinamicamente carregados onde `colony.getWorld()` pode ser `null`; o lifecycle econômico resolve o servidor via NeoForge, não pela referência de world do provider.
 
-`IPermissions` expõe owner/officer e `hasPermission(Player, Action)`. `Action.MANAGE_HUTS` é o gate já usado por mensagens administrativas de building/GUI do MineColonies.
+## 5. Authority e permissões
 
-Decisão:
+MineColonies permanece authority para:
 
-- intents econômicos administrativos usam `Action.MANAGE_HUTS` server-side;
-- não criar rank paralelo;
-- ações futuras excepcionalmente destrutivas podem exigir owner-only somente se a spec for alterada explicitamente;
-- o cliente nunca envia decisão de autorização pronta, apenas intent.
+- existência/identidade provider-side da colônia;
+- owner/officer/permissions;
+- citizens/jobs;
+- buildings/levels;
+- Warehouse;
+- work orders;
+- Builder/material requests/logística;
+- research e demais sistemas nativos.
 
-## 3. Inputs read-only para capacidade econômica Q
-
-### Cidadãos/jobs
-
-APIs auditadas:
-
-- `ICitizenManager#getCitizens()`;
-- `getCurrentCitizenCount()`;
-- `ICitizenData#getJob()`;
-- `getWorkBuilding()`;
-- `isIdleAtJob()` / `getJobStatus()`;
-- `isChild()` na hierarquia de cidadão.
-
-V1 usa somente trabalhadores adultos com job e work building válidos. Não varrer entity AI nem inventário.
-
-### Buildings/logística
-
-APIs auditadas:
-
-- `IRegisteredStructureManager#getBuildings()`;
-- `getWareHouses()`;
-- `ICommonBuilding#getBuildingLevel()`;
-- `getBuildingType()`;
-- `getPosition()`;
-- `IBuilding#isBuilt()` / `isPendingConstruction()`.
-
-V1 usa somente buildings construídos e soma níveis com cap. Warehouse entra apenas como multiplicador logístico bounded. Inventário/throughput não entra em Q.
-
-### Research
-
-`IResearchManager`/árvore local permitem consulta, porém nenhuma pesquisa econômica específica foi aprovada. Contribuição de research em Q = `0` na V1. Não inferir research por nome exibido.
-
-## 4. Fórmula V1 de Q
-
-A fórmula deve ser simples, monotônica, auditável e config-driven.
-
-Defaults iniciais de calibração:
+A administração econômica usa a permissão pública:
 
 ```text
-adultWorkers = count(!isChild && job != null && workBuilding != null)
-builtLevelPoints = sum(clamp(buildingLevel, 1, 5)) para buildings construídos
-warehouseCount = count(warehouses construídos)
-
-Q_raw = baseQ
-      + workerWeight * adultWorkers
-      + buildingLevelWeight * builtLevelPoints
-
-logisticsMultiplier = 1 + warehouseBonus * min(warehouseCount, warehouseCap)
-Q = max(minQ, round(Q_raw * logisticsMultiplier))
+Action.MANAGE_HUTS
 ```
 
-Defaults determinísticos para fixtures iniciais:
+com `IPermissions.hasPermission(player, Action.MANAGE_HUTS)`.
+
+Cliente envia intents; saldo, capacidade, price index, economy UUID, autorização e resultado são resolvidos no servidor.
+
+## 6. Capacidade econômica Q
+
+A V1 usa somente sinais públicos e bounded:
 
 ```text
-baseQ = 2
-workerWeight = 2
-buildingLevelWeight = 1
-warehouseBonus = 0.10
-warehouseCap = 2
-minQ = 1
+Qbase = baseQ
+      + adultEmployedCitizens * workerWeight
+      + builtLevelPoints * buildingLevelWeight
+
+Q = Qbase * boundedWarehouseMultiplier
 ```
 
-Fixture de calibração mínima: 5 trabalhadores adultos + 8 pontos de níveis construídos + 0 warehouse => `Q = 20`, alinhado ao cenário de acceptance do plano.
+Leituras auditadas:
 
-Esses valores são defaults server-side, não constantes de domínio imutáveis.
+- `IColony.getCitizenManager()`;
+- `ICitizenManager.getCitizens()`;
+- `ICitizenData.getJob()`;
+- `ICitizenData.getWorkBuilding()`;
+- `ICitizen.isChild()`;
+- `IColony.getServerBuildingManager()`;
+- `getBuildings()`;
+- `IBuilding.getBuildingLevel()` / built state;
+- `getWareHouses()`.
 
-## 5. Dinheiro ativo, equilíbrio e inflação
+Não contam como produção automaticamente:
 
-Enquanto não existem wallets/coins físicas reconciliadas, a V1 usa:
+- itens estocados em AE2;
+- throughput bruto de Create;
+- simples presença de itens em inventário;
+- addons sem causalidade econômica explícita.
+
+Isso evita inflar `Q` por estoque, duplicação ou telemetria sem atribuição.
+
+## 7. Modelo monetário e conservação
 
 ```text
-M_effective = issuedSupply - retiredSupply
-M = M_effective
-M_equilibrium = Q
-P_money = M / max(Q, minQ)
-TargetPriceIndex = clamp(100 * pow(P_money, beta), minPriceIndex, maxPriceIndex)
+effectiveSupply = issuedSupply - retiredSupply
+allocatedSupply = treasuryBalance + reservedBalance + activeCirculation
 ```
 
-Caso `M_effective == 0`, usar o piso de price index configurado, sem divisão por zero.
-
-Convergência:
+Invariante V1 **exata**:
 
 ```text
-delta = clamp(targetIndex - oldIndex, -maxStepDown, maxStepUp)
-newIndex = clamp(oldIndex + delta, minPriceIndex, maxPriceIndex)
+effectiveSupply == allocatedSupply
 ```
 
-Defaults de teste/balanceamento inicial:
+Não existe bucket implícito ou moeda “desaparecida” na V1. Qualquer estado onde a igualdade não seja satisfeita é inválido e falha antes de ser publicado/persistido.
 
-```text
-beta = 0.50
-minPriceIndex = 50
-maxPriceIndex = 500
-maxStepUp = 5
-maxStepDown = 3
-```
-
-A configuração poderá ajustar esses valores; tests fixam os defaults para garantir determinismo.
-
-## 6. Authority monetária e conservação
-
-V1 = **ledger virtual autoritativo**.
-
-Mint:
+Mint V1:
 
 ```text
 issuedSupply += amount
@@ -205,136 +161,168 @@ treasuryBalance -= amount
 retiredSupply += amount
 ```
 
-Conservação mínima:
+`reservedBalance` e `activeCirculation` estão modelados, mas transfers que movimentariam valor para esses buckets ainda não têm mutation executável na V1.
+
+Aritmética monetária usa `long` e `Math.addExact/subtractExact`. Overflow falha fechado.
+
+## 8. Price index e settlement
+
+O índice usa pressão monetária `M/Q`, com bounds e convergência gradual.
+
+Propriedades:
+
+- `M == Q` => referência ~100;
+- `M > Q` => pressão inflacionária;
+- `M < Q` => pressão deflacionária limitada pelo floor;
+- `beta` controla elasticidade;
+- movimentos por settlement são bounded e assimétricos;
+- settlement não cria/destrói moeda;
+- settlement não cria Mastery.
+
+O scheduler é periódico, bounded e round-robin. Reinício do servidor apenas reancora a cadência; restart-spam não acelera a convergência do price index.
+
+## 9. Ledger, idempotência e política de crescimento
+
+Toda mutation aplicada possui:
 
 ```text
-effectiveSupply = issuedSupply - retiredSupply
-effectiveSupply >= treasuryBalance + reservedBalance + activeCirculation
+transactionId
+causalKey
+kind
+amount
+source
+counterparty
+gameTime
+resulting monetary state
+metadata
 ```
 
-Enquanto wallets externas não existem, `activeCirculation` começa em `0`; transfers futuros não podem criar moeda.
+Repetição de `transactionId` ou `causalKey` retorna `DUPLICATE` sem segunda mutation.
 
-Todo command possui `transactionId + causalKey`. Repetição da mesma identidade retorna o resultado já aplicado ou `DUPLICATE`, sem segunda mutation.
+### Retenção V1
 
-Aritmética monetária usa `long` com `Math.addExact/subtractExact` e falha fechada em overflow.
-
-## 7. Persistência e migration
-
-O repositório não possui hoje uma camada server-global reutilizável de `SavedData`. A economia introduzirá uma store própria server-side, preferencialmente `SavedData` no Overworld para existir exatamente uma vez por servidor.
-
-Schema inicial: `1`.
-
-Policy:
-
-- codec explícito;
-- migrations `N -> N+1` puras e testáveis;
-- unknown/newer schema falha fechado para mutations e emite diagnóstico;
-- save/load não depende de scan de chunks/inventários;
-- ledger mantém índice de transaction IDs/causal keys suficiente para idempotência após restart;
-- arquivo corrompido não deve criar saldo padrão silenciosamente para uma binding já conhecida.
-
-## 8. Networking
-
-Seguir padrão atual de `ModNetworking`:
-
-- `RegisterPayloadHandlersEvent`;
-- snapshot S2C;
-- intents C2S;
-- validação completa no server handler;
-- bump da network version quando novos payloads entrarem.
-
-Payloads planejados V1:
+`SavedData` precisa de política explícita de crescimento. A V1 usa retenção **bounded e fail-closed**, sem pruning:
 
 ```text
-EconomySnapshotRequestPayload C2S
-EconomySnapshotPayload S2C
-EconomyMintPreflightPayload C2S
-EconomyMintPreflightResultPayload S2C
-EconomyMintPayload C2S
-EconomyRetirePayload C2S
+MAX_RETAINED_TRANSACTIONS = 4096 por economia
 ```
 
-Cada mutation inclui UUID de transaction/intent para replay rejection.
+Regras:
 
-## 9. Construction/upgrade hook — resultado da auditoria
+- todos os IDs/causal keys das mutations aplicadas permanecem retidos exatamente;
+- histórico persistido acima do limite é rejeitado no load;
+- quando o limite é atingido, novas `MINT/RETIRE` retornam `RETENTION_LIMIT_REACHED` e não alteram estado;
+- duplicates continuam sendo reconhecidos mesmo com a capacidade cheia;
+- nenhum ID antigo é removido, portanto pruning não reabre replay;
+- settlement/read/snapshot continuam disponíveis.
 
-`BuildRequestMessage` resolve o building real server-side. Em `BUILD`, se `isPendingConstruction()` já for true, a mesma ação cancela o work order; caso contrário chama `building.requestUpgrade(...)`.
+Compaction/epoch rotation não é inferido silenciosamente nesta V1. Se necessário no futuro, exige protocolo e migration explícitos que provem que packets antigos não se tornam reaplicáveis.
 
-`AbstractBuilding#requestUpgrade(...)` valida condições e cria `WorkOrderType.BUILD` ou `UPGRADE` via `requestWorkOrder(...)`.
+## 10. Persistência
 
-Eventos públicos encontrados:
+Store server-global via `SavedData` no Overworld, schema inicial `1`.
 
-- `BuildingAddedModEvent`;
-- `BuildingConstructionModEvent`;
-- `BuildingRemovedModEvent`;
-- `BuildingUpgradedModEvent`.
+Persistidos:
 
-`BuildingConstructionModEvent` é disparado quando o work order de construção **termina**. Não é um preflight cancelável.
+- economy state;
+- ledger/audit history bounded;
+- native bindings/fingerprints;
+- archived identities necessárias ao lifecycle.
 
-Conclusão:
+Regras:
 
-- não há seam público comprovado para cobrar antes da criação do work order;
-- cobrança no evento de conclusão viola causalidade e pode cobrar após materiais/trabalho;
-- interceptar `BuildRequestMessage` exigiria mixin/injeção em classe interna;
-- o mod atual não usa mixins nesse boundary;
-- **Fase 4 permanece DISABLED / FAIL-CLOSED na V1**;
-- nenhuma cobrança/refund de construção será implementada nesta entrega.
+- codec NBT explícito e tipado;
+- campo ausente/tipo errado falha fechado;
+- schema futuro desconhecido falha fechado;
+- UUID/kind/metadata inválido falha fechado;
+- save/load reconcilia state com tail do ledger;
+- replay indexes são reconstruídos após restart;
+- corrupção não vira saldo padrão silenciosamente.
 
-## 10. Addons instalados
+## 11. Networking
 
-Modlist/Notion confirmam:
+Network protocol é versionado independentemente do schema econômico/disk schema.
 
-- MineColonies Compatibility `1.21.1-3.56`;
-- MineColonies Tweaks `1.21.1-3.33`;
-- MineColonies Let's Do `1.21.1-2.1`.
+V1:
 
-Compatibility 3.56 declara compat de conteúdo/ferramentas e target MineColonies 1.1.1368. Tweaks 3.33 altera ferramentas/config/GUI de cidadãos e também target 1.1.1368. Let's Do 2.1 é bridge MineColonies↔família Let's Do para conteúdo culinário/agro.
+```text
+EconomySnapshotRequestPayload       C2S
+EconomySnapshotPayload              S2C
+EconomyMintPreflightPayload         C2S
+EconomyMintPreflightResultPayload   S2C
+EconomyMintPayload                  C2S
+EconomyRetirePayload                C2S
+```
 
-Nenhum deles é authority monetária ou fornece pipeline econômico substituto. V1 não intercepta internals desses addons.
+O wire context contém apenas lookup provider-side `(dimension,id)`. O servidor recalcula fingerprint completo, permission e economy binding.
 
-## 11. Mastery
+O client cache é read-only.
 
-Economia não produz Mastery por:
+`MINT/RETIRE` têm ainda um teto técnico por packet (`Integer.MAX_VALUE`) separado da política monetária. Saldos continuam `long`.
 
-- settlement;
-- mint/retire;
-- tax policy;
-- crescimento de Q;
-- building count;
-- warehouse/logística;
-- packets/UI.
+## 12. Lifecycle MineColonies
 
-Qualquer Mastery futura exige evento causal de jogador e contrato próprio; não faz parte de 06.11 V1.
+Seam público auditado:
 
-## 12. Gates do plano — estado após auditoria
+```text
+IMinecoloniesAPI.getEventBus()
+EventBus.subscribe(...)
+ColonyDeletedModEvent
+```
 
-- [x] API/código real MineColonies `1.1.1375-1.21.1-snapshot` auditado no commit `a8022f703d80be3a0931f0d6cc34b229563ef713`.
-- [x] Colony identity/lifecycle auditados; native ID reciclável, economy UUID próprio obrigatório; deleção via `ColonyDeletedModEvent`.
-- [x] Permissions owner/officer auditadas; `Action.MANAGE_HUTS` será authority administrativa.
-- [x] Hooks read-only para cidadãos/jobs/buildings/warehouse/research auditados.
-- [x] Fórmula V1 de Q definida apenas com sinais provider-native bounded.
-- [x] Hook transacional de construção auditado; resultado: nenhum seam público pre-irreversível seguro, então Phase 4 fail-closed.
-- [x] Authority monetária definida: ledger virtual server-side único.
-- [x] Schema/migration policy definidos.
-- [x] Curva inflacionária possui defaults e fixtures determinísticos para calibração TDD.
-- [x] Addons instalados auditados quanto a authority/sobreposição econômica.
-- [x] Mastery por tick/throughput explicitamente proibida.
+A deleção arquiva o binding monetário. O handler é registrado somente depois do exact-version gate.
 
-## 13. Escopo implementável após esta auditoria
+Provider-present GameTests usam o namespace `rpgskilltree` e exercitam grafo real do MineColonies sem tornar o provider obrigatório na lane provider-free.
 
-**Aprovado para implementação nesta branch:**
+## 13. Construção — FAIL_CLOSED
 
-1. Fase 1 — Economy Core.
-2. Fase 2 — MineColonies read-only adapter + binding/lifecycle.
-3. Networking/snapshot/preflight server-authoritative necessário à Fase 3.
-4. Superfície administrativa econômica somente se houver seam de UI comprovado sem assumir internals frágeis do Town Hall.
+A auditoria de `BuildRequestMessage`, `AbstractBuilding.requestUpgrade()` e work-order flow mostra criação/execução de BUILD/UPGRADE no pipeline nativo. O evento público encontrado para construção é posterior à conclusão e não fornece preflight transacional cancelável adequado.
 
-**Não aprovado nesta branch sem nova auditoria/design:**
+Consequência:
 
-- mixin em `BuildRequestMessage`/`AbstractBuilding`;
-- `CONSTRUCTION_CHARGE`/refund;
+- `CONSTRUCTION_CHARGE` permanece `UNSUPPORTED_KIND`;
+- `REFUND` permanece `UNSUPPORTED_KIND`;
+- o runtime do nosso mod não intercepta `BuildRequestMessage` nem `requestWorkOrder`;
+- nenhum pagamento monetário substitui recursos, Builder, Warehouse, Couriers ou work orders.
+
+Só habilitar cobrança quando existir seam público pré-irreversível ou contrato upstream equivalente com causalidade/idempotência comprovadas.
+
+## 14. Town Hall / BlockUI — FAIL_CLOSED
+
+`com.minecolonies.core.client.gui.townhall.AbstractWindowTownHall` registra as páginas conhecidas diretamente no construtor usando classes `core.client.gui.townhall`.
+
+Não foi encontrado registry/API pública para anexar uma nova página econômica ao Town Hall nessa build.
+
+Rejeitados:
+
+- mixin em `AbstractWindowTownHall`;
+- override de `minecolonies:gui/townhall/...`;
+- redirect de `registerButton`;
+- substituição da GUI nativa.
+
+V1 entrega networking/cache necessários, mas não afirma que existe aba econômica visível no Town Hall.
+
+## 15. Addons e deduplicação
+
+Compatibility 3.56, Let's Do 2.1 e Tweaks 3.33 não recebem authority sobre:
+
+- supply;
+- treasury;
+- price index;
+- idempotency;
+- economy UUID;
+- mutation ledger.
+
+Integrações futuras com produção/import/export precisam attribution segura e não podem contar o mesmo output em dois providers.
+
+## 16. Escopo fora da V1
+
 - moeda física;
-- wallet de cidadão;
-- salário/consumo individual;
-- FX/comércio intercolônia;
-- research/building Banco custom.
+- wallets/salários/consumo dos cidadãos;
+- tax runtime completo;
+- FX/inter-colony trade;
+- Banco/Tesouro como building custom;
+- construção monetariamente cobrada;
+- UI injetada no Town Hall.
+
+Esses itens exigem ciclo próprio de auditoria/design/API antes de se tornarem executáveis.
