@@ -71,6 +71,7 @@ import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -137,26 +138,37 @@ public final class RpgSkillTreeMod {
             mineColoniesVersion
         );
         if (economyState == MineColoniesEconomyIntegrationState.ACTIVE) {
-            economyState = MineColoniesEconomyIntegrationBootstrap.install(
-                true,
-                mineColoniesVersion,
-                MineColoniesEconomyLifecycleEvents::install
-            );
-        }
-        if (economyState == MineColoniesEconomyIntegrationState.ACTIVE) {
-            RuntimeDiagnostics.info(
-                LOGGER,
-                Category.COMPAT,
-                "minecolonies_economy_active",
-                "MineColonies Economy integration active: MineColonies {}",
-                mineColoniesVersion
-            );
+            modBus.addListener((FMLCommonSetupEvent event) -> event.enqueueWork(() -> {
+                MineColoniesEconomyIntegrationState installedState = MineColoniesEconomyIntegrationBootstrap.install(
+                    true,
+                    mineColoniesVersion,
+                    MineColoniesEconomyLifecycleEvents::install
+                );
+                if (installedState == MineColoniesEconomyIntegrationState.ACTIVE) {
+                    RuntimeDiagnostics.info(
+                        LOGGER,
+                        Category.COMPAT,
+                        "minecolonies_economy_active",
+                        "MineColonies Economy integration active: MineColonies {}",
+                        mineColoniesVersion
+                    );
+                } else {
+                    RuntimeDiagnostics.warn(
+                        LOGGER,
+                        Category.COMPAT,
+                        "minecolonies_economy_disabled",
+                        "MineColonies Economy integration disabled during common setup: state={}, MineColonies={}",
+                        installedState,
+                        mineColoniesVersion
+                    );
+                }
+            }));
         } else if (economyState != MineColoniesEconomyIntegrationState.ABSENT_PROVIDER) {
             RuntimeDiagnostics.warn(
                 LOGGER,
                 Category.COMPAT,
                 "minecolonies_economy_disabled",
-                "MineColonies Economy integration disabled: state={}, MineColonies={}",
+                "MineColonies Economy integration disabled before common setup: state={}, MineColonies={}",
                 economyState,
                 mineColoniesVersion
             );
