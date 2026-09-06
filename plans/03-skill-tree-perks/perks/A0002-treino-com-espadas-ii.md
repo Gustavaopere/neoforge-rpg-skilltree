@@ -103,3 +103,13 @@ Nenhuma pendência específica identificada nesta leitura. Isso não substitui C
 - **Fallback/fail-closed:** nenhum novo adapter. Se não houver `SWORD` + `ModifyAttackSpeedEvent` seguro para a ação do jogador, A0002 fica inativa.
 - **Notion:** nenhuma mutação necessária; o contrato atual já impede transformar outros estados em stamina/movimento/dano/animação.
 - **Estado histórico:** PR #221 já foi mergeada; implementação confirmada, sem alteração de runtime nesta retroauditoria.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** armas do stack Simply são cobertas somente quando Epic Fight Compat 1.1.0 resolve `SWORD` e `ModifyAttackSpeedEvent` permanece o receipt de cadência.
+- **Composição:** procs provider-native de attack speed continuam Simply-owned; A0002 modifica uma vez o valor efetivo exposto pelo Epic Fight e não retriggera/recalcula o Implicit.
+- **Integrated/Cataclysm:** material ou trait não cria nova perk nem classificação paralela.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`.
+- **Simply More alpha:** Unique não comprovada no artifact instalado permanece FAIL-CLOSED.
+- **Notion:** `Provider/Mods`, `Hook`, `Fallback` e `Regra` atualizados; re-fetch PASS.
+- **Runtime:** inalterado; teste provider-present fica para Chat 2.

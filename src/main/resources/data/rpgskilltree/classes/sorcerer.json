@@ -2,6 +2,9 @@
   "class_id": "sorcerer",
   "tree_id": "rpgskilltree:class/sorcerer",
   "kind": "provider_identity",
+  "required_provider_mods": [
+    "ars_nouveau"
+  ],
   "required_completed_domains": [],
   "required_nodes": [
     "rpgskilltree:arcane_000"

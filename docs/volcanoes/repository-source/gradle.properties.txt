@@ -1,0 +1,19 @@
+org.gradle.jvmargs=-Xmx4G
+org.gradle.daemon=false
+
+minecraft_version=1.21.1
+minecraft_version_range=[1.21.1,1.21.2)
+neo_version=21.1.248
+loader_version_range=[1,)
+
+neogradle.subsystems.parchment.minecraftVersion=1.21.1
+neogradle.subsystems.parchment.mappingsVersion=2024.11.17
+
+mod_id=volcanoes
+mod_name=Volcanoes
+mod_file_name=Volcanoes-1.21.1-NeoForge
+mod_license=BSD-2-Clause
+mod_version=0.1.0-dev
+mod_group_id=dev.gustavopere.volcanoes
+mod_authors=Gustavaopere
+mod_description=Standalone geology, tectonics, volcanism, atmosphere and pressure simulation for NeoForge 1.21.1.

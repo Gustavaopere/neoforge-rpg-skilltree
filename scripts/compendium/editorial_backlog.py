@@ -15,6 +15,7 @@ from typing import Any
 
 SCHEMA = 1
 LANGUAGE = "pt_br"
+FORBIDDEN_NAMESPACES = {"tfc", "terrafirmacraft"}
 COVERAGE_STATES = {"AUTO", "CURATED", "ADAPTER", "IGNORED", "ERROR"}
 STATUS_FIELDS = (
     "ptbr_name_status",
@@ -35,6 +36,14 @@ REQUIRED_COVERAGE_FIELDS = (
 
 class BacklogError(ValueError):
     pass
+
+
+def reject_forbidden_namespace(namespace: str, label: str) -> None:
+    if namespace in FORBIDDEN_NAMESPACES:
+        raise BacklogError(
+            f"{label} uses permanently excluded provider namespace {namespace!r}; "
+            "remove it from Stage 10.10 editorial scope"
+        )
 
 
 def read_json(path: Path) -> Any:
@@ -77,6 +86,7 @@ def normalize_error_coverage_entry(raw: dict[str, Any], index: int) -> dict[str,
     namespace = "__invalid__"
     if target.count(":") == 1 and not target.startswith(":") and not target.endswith(":"):
         namespace = target.split(":", 1)[0]
+    reject_forbidden_namespace(namespace, f"coverage ERROR entry {index}")
 
     entry = dict(raw)
     entry.update(
@@ -124,6 +134,7 @@ def validate_coverage_entry(raw: Any, index: int) -> dict[str, Any]:
         raise BacklogError(
             f"coverage entry {index} namespace mismatch: expected {namespace!r}, got {entry['namespace']!r}"
         )
+    reject_forbidden_namespace(namespace, f"coverage entry {index}")
     expected_inventory_key = f"{entry['kind']}|{resource_location}"
     if entry["inventory_key"] != expected_inventory_key:
         raise BacklogError(
@@ -202,8 +213,6 @@ def default_priority(entry: dict[str, Any]) -> int:
         return 999
     if namespace == "minecraft":
         return 10
-    if namespace in {"tfc", "terrafirmacraft"}:
-        return 40
     if kind in {"BIOME", "DIMENSION"}:
         return 50
     if kind == "STRUCTURE":

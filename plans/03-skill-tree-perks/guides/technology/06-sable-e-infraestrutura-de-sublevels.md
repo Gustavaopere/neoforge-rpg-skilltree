@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -73,15 +73,18 @@ Com isso, título, ícone e dados exibidos pelo Jade correspondem ao bloco realm
 **Waystones: Sable** faz Waystones reconhecerem corretamente **SubLevels móveis**. A bridge corrige validação de destino, cálculo de distância, sincronização cliente-servidor e transformação de coordenadas quando uma waystone está dentro de uma contraption ou quando o teleporte aponta para um sublevel.
 O objetivo é preservar a semântica normal do Waystones mesmo quando o ponto de viagem não pertence ao grid estático do mundo. A build `1.0.7` é a release NeoForge 1.21.1 atual dessa integração.
 
-## Sound Physics Aeronautics — runtime 1.3.0.2
+## Sound Physics Aeronautics — runtime 1.4.0.1
 
-`sound-physics-aeronautics-1.4.0.jar`
+`sound-physics-remastered-neoforge-1.4.0.1.jar`
 **Sound Physics Aeronautics** é um fork de Sound Physics Remastered adaptado ao espaço transformado de **Sable/Aeronautics**. Ele calcula acústica, oclusão e alcance sonoro levando em conta paredes e geometria dentro de sublevels móveis, em vez de avaliar apenas o level principal.
 A integração também cobre efeitos de movimento associados a veículos, incluindo comportamento espacial/Doppler conforme suportado pelo fork, fazendo som de máquinas, passos e ambiente acompanhar a posição física da contraption.
-O arquivo instalado/publicado é `1.4.0`, mas o provider carregado continua declarando runtime **`1.3.0.2`**. Não existe um segundo Sound Physics Remastered top-level na modlist atual.
+O arquivo instalado/publicado é `1.4.0`, mas o provider carregado continua declarando runtime **`1.4.0.1`**. Não existe um segundo Sound Physics Remastered top-level na modlist atual.
 
 ## Presence Footsteps x Sable — 1.0
 
 `pfsable-1.0.jar`
 **Presence Footsteps x Sable** é um patch específico para que o Presence Footsteps consulte corretamente a superfície sob o jogador quando ele está sobre uma **contraption Sable/Aeronautics**. Dessa forma, o material real do bloco móvel produz o conjunto de passos correspondente em vez de o sistema consultar erroneamente o bloco do mundo principal.
 A bridge reutiliza os sons e regras do Presence Footsteps; não adiciona uma segunda biblioteca de áudio nem novos materiais próprios. O JAR `pfsable-1.0.jar` é a release NeoForge 1.21.1 instalada.
+
+
+---

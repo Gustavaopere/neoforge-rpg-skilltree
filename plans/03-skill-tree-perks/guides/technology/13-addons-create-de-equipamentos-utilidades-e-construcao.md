@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -17,11 +17,11 @@ O JAR instalado é `v2.1.4b`; o metadata runtime declara literalmente `2.1.4.` c
 **Create Stuff & Netherite Additions** estende Stuff 'N Additions para o estágio Netherite. Seu conteúdo central são versões **mais fortes de jetpack e exoskeleton**, mantendo o modelo de equipamento tecnológico do mod-base, mas elevando proteção/desempenho para uma faixa endgame.
 Ele depende diretamente de Create Stuff 'N Additions e não substitui sua progressão: adiciona o tier superior de equipamentos sobre a infraestrutura já existente. A build atual do pack é `1.2` para NeoForge 1.21.1.
 
-## Create: Dragons Plus — 1.11.7b
+## Create: Dragons Plus — 1.11.8b
 
-`CreateDragonsPlus-1.11.7b.jar`
+`CreateDragonsPlus-1.11.8b.jar`
 **Create: Dragons Plus** reúne utilidades e conteúdo complementar para Create, além de **integrações condicionais** com outros addons. Seu escopo é distribuído: pequenas conveniências, ajustes e recursos são ativados conforme os mods relacionados existem no ambiente, em vez de formar uma única cadeia industrial.
-O JAR usa conditional mixins para carregar somente as integrações aplicáveis. A build atual do pack é `1.11.7b`; o componente `conditional-mixin 0.6.4` está embarcado internamente e não é um top-level separado.
+O JAR usa conditional mixins para carregar somente as integrações aplicáveis. A build atual do pack é `1.11.8b`; o componente `conditional-mixin 0.6.4` está embarcado internamente e não é um top-level separado.
 
 ## Create: Things and Misc — 4.1.1
 
@@ -35,12 +35,12 @@ A build instalada `4.1.1` é a release NeoForge 1.21.1 atual. O projeto é imple
 **Create: More Features** é uma expansão geral que acrescenta **novos mecanismos, itens utilitários, profissões de villagers, automações/farms e dispositivos decorativos ou funcionais** ao Create. O projeto também recupera ideias ou itens removidos de versões anteriores do ecossistema e os adapta à linha atual.
 Seu conteúdo é deliberadamente variado: parte serve à fábrica, parte à interação com villagers e parte à construção. Portanto ele funciona como um pacote de extensões menores, não como uma nova fonte de energia ou sistema logístico independente.
 
-## Create: Connected — 1.3.2-mc1.21.1
+## Create: Connected — 1.3.3-mc1.21.1
 
-`create_connected-1.3.2-mc1.21.1.jar`
+`create_connected-1.3.3-mc1.21.1.jar`
 **Create: Connected** amplia os componentes de controle, redstone e construção do Create. Entre as adições estão **novos clutches e gearboxes, redstone diodes/transmitters, versões rotacionadas de vaults e tanks** e blocos voltados a layouts mecânicos mais flexíveis.
 O addon também melhora sistemas existentes: Sequenced Gearshift e Attribute Filter recebem funções adicionais, vários blocos passam a funcionar de forma mais completa em contraptions e schematics podem ser organizados em subpastas. Grande parte dos recursos pode ser habilitada ou desabilitada individualmente por configuração.
-O runtime instalado declara literalmente `1.3.2-mc1.21.1` e exige Create 6.0.7+, requisito atendido pelo Create 6.0.10 do pack.
+O runtime instalado declara literalmente `1.3.3-mc1.21.1` e exige Create 6.0.7+, requisito atendido pelo Create 6.0.10 do pack.
 
 ## Create: Copycats+ — 3.0.8
 
@@ -60,9 +60,9 @@ Ele é um addon separado de Copycats+: o JAR `extra_copycats-1.0.2.jar` permanec
 **Create: Bells & Whistles** amplia principalmente a **estética ferroviária, industrial e de estações** do Create. O addon adiciona adornos, peças utilitárias e componentes de construção pensados para locomotivas, vagões, plataformas, estações e outras estruturas ligadas a trains.
 Seu foco é tornar material rodante e infraestrutura ferroviária mais detalhados e variados visualmente, complementando as mecânicas de trem já fornecidas pelo Create e por outros addons ferroviários.
 
-## Create: Bits 'n' Bobs — 2.2.7
+## Create: Bits 'n' Bobs — 2.3.0
 
-`bits_n_bobs-2.2.7.jar`
+`bits_n_bobs-2.3.0.jar`
 **Create: Bits 'n' Bobs** combina customização visual com novos componentes mecânicos. Cogwheels podem trocar o tipo de madeira; pipes e tanks aceitam tingimento; e o addon acrescenta peças como **Cogwheel Chain Drives, Flanged Cogwheels e Chain Carriage** para novos layouts de transmissão e movimentação.
 O **Flywheel Bearing** dá ao flywheel uma função mecânica própria de armazenamento/uso de energia cinética, fazendo o addon ultrapassar o escopo puramente decorativo. Assim, estética e pequenas extensões de engenharia aparecem no mesmo pacote.
 
@@ -96,3 +96,6 @@ O objetivo é ampliar a construção de máquinas e fábricas com casings que ex
 **Create: Chromatic Return** reintroduz o conceito de **Chromatic Compound** como uma progressão de ligas endgame com propriedades especiais. A linha atual possui materiais como **Multiplite, Anti-Plite, Industrium, Durasteel, Fortunite e Silkstrum**, cada um ligado a efeitos ou usos próprios — produção de componentes, durabilidade extrema, aumento de rendimento de minérios ou comportamento semelhante a Silk Touch.
 Essas ligas alimentam ferramentas/armas de altíssimo nível, charms com efeitos permanentes enquanto equipados, livros infundidos e até itens equivalentes a recursos Creative. O sistema também possui enriquecimento de quartz que pode aumentar rendimento de crushed ores/gem ores em processos aquecidos ou superheated.
 O arquivo/publicação instalado é `1.0.4`, enquanto o metadata runtime declara `1.0.0`; as duas identidades são preservadas sem normalização.
+
+
+---

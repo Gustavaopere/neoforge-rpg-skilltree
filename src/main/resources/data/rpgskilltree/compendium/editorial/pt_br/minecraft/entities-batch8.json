@@ -1,0 +1,309 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:minecraft:hoglin",
+      "title": "Hoglin",
+      "summary": {
+        "text": "O Hoglin é uma criatura hostil do Nether que também pertence à hierarquia de animais. Sua implementação combina combate, envelhecimento, alimentação e reprodução com uma lógica própria de conversão fora do ambiente adequado.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:hoglin"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/hoglin/Hoglin.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/hoglin/HoglinBase.java"}
+        ]
+      },
+      "sections": {
+        "classificacao": {
+          "text": "Hoglin deriva de Animal e implementa Enemy e HoglinBase. Isso permite que a mesma entidade participe de contratos de criação e de combate sem ser tratada como um animal passivo comum.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/hoglin/Hoglin.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/hoglin/HoglinBase.java"}
+          ]
+        },
+        "ciclo": {
+          "text": "A classe mantém estado de idade, itens válidos para reprodução e controle de conversão em Zoglin, incluindo uma opção de imunidade à zombificação. Tempos, probabilidades e atributos permanecem definidos pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/hoglin/Hoglin.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:piglin",
+      "title": "Piglin",
+      "summary": {
+        "text": "O Piglin é uma criatura hostil do Nether com IA baseada em cérebro, inventário próprio e suporte tanto a combate corpo a corpo quanto a besta conforme seu equipamento e estado.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:piglin"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/Piglin.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/PiglinAi.java"}
+        ]
+      },
+      "sections": {
+        "equipamento_e_itens": {
+          "text": "Piglin implementa InventoryCarrier e CrossbowAttackMob, mantém inventário interno e possui estados sincronizados como infância e carregamento de besta. A lógica de itens, admiração e escambo é coordenada por PiglinAi; listas, chances e tempos não são fixados no texto.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/Piglin.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/PiglinAi.java"}
+          ]
+        },
+        "conversao": {
+          "text": "Por derivar de AbstractPiglin, compartilha o mecanismo de exposição fora do ambiente adequado e conversão para a variante zumbificada, salvo quando a imunidade correspondente está ativa. O limite temporal permanece responsabilidade do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/AbstractPiglin.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/Piglin.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:piglin_brute",
+      "title": "Piglin bárbaro",
+      "summary": {
+        "text": "O Piglin bárbaro é uma especialização hostil da família de piglins orientada a combate direto. Sua classe deriva de AbstractPiglin e possui comportamento próprio em vez de reutilizar integralmente o conjunto de interações do Piglin comum.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:piglin_brute"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/PiglinBrute.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/AbstractPiglin.java"}
+        ]
+      },
+      "sections": {
+        "familia": {
+          "text": "PiglinBrute herda de AbstractPiglin, portanto participa dos contratos comuns dessa família, incluindo a infraestrutura de conversão fora do ambiente apropriado. O Compêndio não assume que interações exclusivas do Piglin comum também existam no bárbaro.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/PiglinBrute.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/AbstractPiglin.java"}
+          ]
+        },
+        "combate": {
+          "text": "A entidade possui rotina própria de combate e seleção de alvos. Dano, velocidade, alcance e demais parâmetros de agressão não são congelados em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/piglin/PiglinBrute.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:slime",
+      "title": "Slime",
+      "summary": {
+        "text": "O Slime é uma criatura hostil cujo tamanho sincronizado participa diretamente de sua forma, mobilidade e capacidade ofensiva. Sua IA usa objetivos próprios de salto, direção, flutuação e perseguição.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:slime"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Slime.java"}
+        ]
+      },
+      "sections": {
+        "tamanho": {
+          "text": "Slime mantém um estado de tamanho e recalcula dimensões e atributos associados quando esse estado muda. O Compêndio não fixa tamanhos máximos, vida, dano ou outros valores derivados.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Slime.java"}
+          ]
+        },
+        "divisao": {
+          "text": "A rotina de remoção da entidade contém a lógica que pode gerar Slimes menores quando as condições internas são atendidas. Quantidade, tamanho resultante e demais detalhes numéricos permanecem definidos pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Slime.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:villager",
+      "title": "Aldeão",
+      "summary": {
+        "text": "O Aldeão é um NPC comerciante com inventário, profissão e dados de variante próprios. Sua implementação usa Brain para atividades e mantém sistemas de comércio, experiência, reputação e fofocas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:villager"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/Villager.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/AbstractVillager.java"}
+        ]
+      },
+      "sections": {
+        "profissao_e_comercio": {
+          "text": "Villager implementa Merchant e VillagerDataHolder. Os dados do aldeão incluem identidade profissional e progressão associada às ofertas; quantidade de ofertas, experiência e regras de reabastecimento permanecem sob o runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/Villager.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/AbstractVillager.java"}
+          ]
+        },
+        "vida_social": {
+          "text": "A classe mantém GossipContainer, inventário e memórias de Brain usadas por rotinas sociais, trabalho, reprodução e reação a eventos de reputação. Limiares, distâncias e intervalos não são reproduzidos como constantes editoriais.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/Villager.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:wandering_trader",
+      "title": "Vendedor ambulante",
+      "summary": {
+        "text": "O Vendedor ambulante é um comerciante itinerante derivado de AbstractVillager. Ele possui ofertas próprias, alvo de caminhada e um ciclo de permanência controlado por sua implementação.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:wandering_trader"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/WanderingTrader.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/AbstractVillager.java"}
+        ]
+      },
+      "sections": {
+        "comercio": {
+          "text": "Como AbstractVillager, participa do contrato Merchant e preenche uma lista própria de ofertas. A quantidade e composição das trocas não são congeladas porque pertencem ao runtime e aos dados carregados pelo jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/WanderingTrader.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/AbstractVillager.java"}
+          ]
+        },
+        "itinerancia": {
+          "text": "A classe mantém um destino de caminhada e um estado de desaparecimento próprio. O texto registra esse ciclo sem fixar duração de permanência, distâncias ou frequência de movimento.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/npc/WanderingTrader.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:zoglin",
+      "title": "Zoglin",
+      "summary": {
+        "text": "O Zoglin é uma criatura hostil derivada de Monster que implementa HoglinBase. Ele preserva parte do contrato ofensivo dos hoglins, mas possui cérebro e seleção de alvos próprios.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:zoglin"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Zoglin.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/hoglin/HoglinBase.java"}
+        ]
+      },
+      "sections": {
+        "combate": {
+          "text": "Zoglin possui atividades de Brain para núcleo, ociosidade e luta, além de lógica própria para escolher alvos válidos. Dano, recarga de ataque, velocidade e empurrão permanecem definidos pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Zoglin.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/hoglin/HoglinBase.java"}
+          ]
+        },
+        "idade": {
+          "text": "A entidade mantém estado de bebê e adulto, mas não herda o ciclo de reprodução de Animal usado pelo Hoglin. A ficha evita transportar automaticamente mecânicas da forma não zumbificada.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Zoglin.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/hoglin/Hoglin.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:zombie_horse",
+      "title": "Cavalo-zumbi",
+      "summary": {
+        "text": "O Cavalo-zumbi é uma variante de cavalo não morto registrada como entidade própria. Sua classe deriva da infraestrutura de AbstractHorse, preservando contratos de montaria e estado de cavalo quando aplicáveis.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:zombie_horse"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/ZombieHorse.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractHorse.java"}
+        ]
+      },
+      "sections": {
+        "heranca": {
+          "text": "ZombieHorse deriva de AbstractHorse e reutiliza a base de movimentação, equipamento e interação dessa hierarquia, ao mesmo tempo em que identifica seu tipo de criatura como não morto. A ficha não infere método de obtenção ou spawn a partir do simples registro da entidade.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/ZombieHorse.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractHorse.java"}
+          ]
+        },
+        "montaria": {
+          "text": "Os contratos herdados de AbstractHorse incluem suporte de montaria e sela condicionado ao estado real da entidade. Velocidade, salto, atributos e requisitos exatos permanecem sob o runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractHorse.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/ZombieHorse.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:zombie_villager",
+      "title": "Aldeão zumbi",
+      "summary": {
+        "text": "O Aldeão zumbi é uma especialização de Zombie que também mantém VillagerData. Além do comportamento zumbi herdado, sua classe possui estado próprio de conversão e preserva informações relacionadas ao aldeão.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:zombie_villager"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/ZombieVillager.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Zombie.java"}
+        ]
+      },
+      "sections": {
+        "dados_de_aldeao": {
+          "text": "ZombieVillager implementa VillagerDataHolder e mantém dados de aldeão, fofocas, ofertas comerciais e experiência que podem participar do processo de restauração da forma de aldeão. A ficha não fixa conteúdo ou quantidades dessas estruturas.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/ZombieVillager.java"}
+          ]
+        },
+        "conversao": {
+          "text": "A classe possui estado sincronizado de conversão, identifica o iniciador do processo e executa uma rotina própria para concluir a transformação. Tempo e modificadores do processo permanecem definidos pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/ZombieVillager.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:zombified_piglin",
+      "title": "Piglin-zumbi",
+      "summary": {
+        "text": "O Piglin-zumbi é uma especialização de Zombie que implementa NeutralMob. Em vez de permanecer permanentemente agressivo, sua implementação mantém um alvo e um estado persistente de raiva que pode ser propagado a outros indivíduos.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:zombified_piglin"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/ZombifiedPiglin.java"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/NeutralMob.java"}
+        ]
+      },
+      "sections": {
+        "raiva": {
+          "text": "ZombifiedPiglin mantém tempo e alvo de raiva persistente e possui rotina para alertar outros Piglins-zumbi. Duração, intervalo e alcance de alerta não são congelados em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/ZombifiedPiglin.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/NeutralMob.java"}
+          ]
+        },
+        "heranca": {
+          "text": "Por derivar de Zombie, compartilha a base de criatura zumbi, mas substitui partes do comportamento para sustentar sua neutralidade condicional e lógica coletiva de agressão.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/ZombifiedPiglin.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/monster/Zombie.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

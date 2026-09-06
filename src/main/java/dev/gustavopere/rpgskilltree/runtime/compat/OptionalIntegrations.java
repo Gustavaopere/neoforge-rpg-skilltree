@@ -17,10 +17,13 @@ public final class OptionalIntegrations {
         ARS_NOUVEAU("ars_nouveau"),
         EPIC_FIGHT("epicfight"),
         COLD_SWEAT("cold_sweat"),
+        CREATE("create"),
         GOETY("goety"),
         MALUM("malum"),
         EIDOLON("eidolon"),
-        IDENTITY2("identity2");
+        IDENTITY2("identity2"),
+        MINECOLONIES("minecolonies"),
+        PRODUCTIVE_METALWORKS("productivemetalworks");
 
         private final String modId;
 

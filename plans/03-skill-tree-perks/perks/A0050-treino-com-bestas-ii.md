@@ -3,7 +3,8 @@
 ## Estado
 
 - **Design:** APROVADO após correção de availability/fail-closed no review da PR #243.
-- **Implementação:** NÃO CONFORME com o fail-closed canônico; o efeito está sem consumer seguro, mas o nó continua comprável no `CombatPerkTreeModel`.
+- **Implementação:** **NÃO CONFIRMADA / FAIL-CLOSED CORRETO VALIDADO PELO CHAT 3**.
+- **Disponibilidade:** `UNAVAILABLE_NODE` enquanto não existir binding server-authoritative semântico de reload/preparation speed.
 - **Notion:** `3c569db9-f0db-812f-9e64-ca806740e883`; corrigido e re-fetch PASS em 2026-08-30.
 
 ## Contrato canônico
@@ -12,15 +13,16 @@
 - +2% de ritmo efetivo de recarga/preparo com bestas por rank, até +6%, somente quando provider expuser parâmetro server-authoritative com essa semântica.
 - Projectile speed, mobilidade, stamina, dano, tooltip ou manipulação de timers por heurística não são substitutos.
 - **Sem binding válido, A0050 é explicitamente INDISPONÍVEL/NÃO COMPRÁVEL:** nenhum ponto pode ser gasto e nenhum rank pode ser adquirido como no-op.
-- Dependências posteriores que exijam A0050 não podem ser satisfeitas enquanto o nó estiver indisponível. O lote A0051+ deve tratar seus próprios gates quando for auditado; Chat 2 não cria bypass ad hoc.
+- Dependências posteriores que exijam A0050 não podem ser satisfeitas enquanto o nó estiver indisponível.
 
 ## Evidência runtime
 
-- Catálogo/ruleset/topologia contêm A0050.
-- `A0041A0060ProjectileEvents.tickCrossbow(...)` observa estado carregado/uso para perks posteriores, mas não implementa modifier semântico de reload/preparation speed de A0050.
-- Nenhum provider retroauditado fornece API segura de reload speed para esta perk.
-- `CombatPerkTreeModel` publica A0050 como `Node` normal e `SkillTreeDataLoader.closedCombatRules()` o converte em regra comprável sem availability gate de provider.
-- `ProgressionService.purchaseNode(...)` não recebe disponibilidade de binding como conceito próprio; assim, o estado atual viola os invariantes de `AGENTS.md` que proíbem compra silenciosa de nó inútil quando provider obrigatório está ausente.
+- `CombatPerkAvailabilityRuntime` marca A0050 indisponível.
+- `NodePurchaseRequestProcessor` rejeita o node antes de reservar request-id ou mutar pontos/ranks.
+- o caminho trusted de `PlayerProgressionRuntime.purchaseNode(...)` usa o mesmo availability gate.
+- `A0041A0060RuntimeState.ranks(...)` mascara rank legado de A0050.
+- `A0041A0060ProjectileEvents.tickCrossbow(...)` observa estado carregado/uso para perks posteriores, mas não modifica reload/preparation time de A0050.
+- nenhum provider seguro de reload speed foi inventado ou substituído por projectile speed/dano/Stamina/timer heurístico.
 
 ## Provider→árvore
 
@@ -28,19 +30,43 @@
 - Volcanoes, Enshrouded, Black Arcana e Mobstein não são providers de recarga da besta.
 - WoM/itens externos só participam se explicitamente classificados CROSSBOW; classificação não cria reload-speed API.
 
-## Pendência Chat 2
+## Pendência técnica futura
 
-### P-A0050-01 — availability gate server-authoritative
+`P-A0050-01` está resolvida quanto ao **availability gate**, mas a capability de reload/preparation speed continua inexistente. Reativação futura exige provider/version/semântica comprovados.
 
-Adicionar estado explícito de disponibilidade/binding para A0050. Sem provider compatível de reload/preparation speed, o nó deve permanecer indisponível/não comprável, sem gasto de pontos e sem rank fantasma. Quando o provider existir, validar versão/semântica antes de liberar a compra.
+## Testes exigidos / estado atual
 
-Não corrigir com projectile speed, dano, Stamina, custo zero, manipulação heurística de timers ou bypass de dependências posteriores.
+- provider ausente/incompatível → `UNAVAILABLE_NODE` sem gasto: **PASS**.
+- rank legado mascarado: **PASS**.
+- ausência de efeito alternativo em projectile speed/dano/Stamina: **PASS**.
+- dependências posteriores continuam incapazes de satisfazer A0050 enquanto indisponível: **PASS** no availability estrutural.
+- provider futuro presente, mainhand/offhand e redução real +2/+4/+6%: **N/A — provider semântico ainda inexistente**.
 
-## Testes exigidos
+## Fechamento Chat 2 — 2026-09-01
 
-- provider ausente → A0050 não comprável e nenhum ponto gasto;
-- provider incompatível → indisponível com diagnóstico;
-- provider presente → rank 1/2/3 comprável e redução real de tempo de recarga/preparo +2/+4/+6%;
-- dependências posteriores permanecem insatisfeitas enquanto A0050 estiver indisponível;
-- nenhum efeito em projectile speed/dano/Stamina;
-- mainhand/offhand, multiplayer e dedicated server.
+O fail-closed foi enforceado na compra e no runtime efetivo. O Chat 2 não criou efeito alternativo.
+
+## Fechamento Chat 3 — 2026-09-05
+
+- availability server-authoritative, ausência de gasto/rank fantasma e masking de rank legado foram validados;
+- nenhum substituto heurístico de reload speed foi introduzido;
+- `RPG Skill Tree CI` #3467 / run `33986475213`: **SUCCESS**;
+- `SonarQube Cloud` #703 / run `33986475341`: **SUCCESS**;
+- **estado final:** `NÃO CONFIRMADA / FAIL-CLOSED CORRETO`; reativação exige binding real de reload/preparation speed.
+
+## Checklist Chat 3
+
+- [x] Design aprovado pelo Chat 1
+- [x] Código/fail-closed presente pelo Chat 2
+- [x] Contrato revisado contra o código
+- [x] Provider-native confirmado
+- [x] Gate/dependências confirmados
+- [x] Fallback/fail-closed confirmado
+- [x] Deduplicação/ausência de processamento alternativo confirmada
+- [x] Autoria causal preservada
+- [x] Testes unitários verdes
+- [x] GameTests verdes
+- [x] Build NeoForge verde
+- [x] Dedicated-server smoke verde
+- [x] CI e Sonar verdes
+- [ ] IMPLEMENTAÇÃO CONFIRMADA — **N/A enquanto o provider obrigatório permanecer indisponível**

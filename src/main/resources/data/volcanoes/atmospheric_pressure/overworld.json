@@ -1,0 +1,13 @@
+{
+  "dimensions": ["minecraft:overworld"],
+  "baseline_y": 63.0,
+  "baseline_atm": 1.0,
+  "control_points": [
+    {"y": -64.0, "pressure_atm": 1.12},
+    {"y": 63.0, "pressure_atm": 1.0},
+    {"y": 128.0, "pressure_atm": 0.86},
+    {"y": 256.0, "pressure_atm": 0.62},
+    {"y": 384.0, "pressure_atm": 0.45},
+    {"y": 512.0, "pressure_atm": 0.33}
+  ]
+}

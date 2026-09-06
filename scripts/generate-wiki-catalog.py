@@ -2,10 +2,16 @@
 from __future__ import annotations
 
 import argparse
+import subprocess
 import sys
 from pathlib import Path
 
 from wiki_catalog import WikiCatalogDriftError, update_catalog_documents
+
+
+def _generate_semantic_combat_snapshot(root: Path) -> None:
+    command = [str(root / "gradlew"), "--no-daemon", "generateCombatPerkWikiSnapshot"]
+    subprocess.run(command, cwd=root, check=True)
 
 
 def main() -> int:
@@ -15,7 +21,7 @@ def main() -> int:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="não grava arquivos; retorna erro se os blocos gerados estiverem desatualizados",
+        help="não grava arquivos versionados; retorna erro se os blocos gerados estiverem desatualizados",
     )
     parser.add_argument(
         "--locale",
@@ -26,7 +32,14 @@ def main() -> int:
 
     root = Path(__file__).resolve().parents[1]
     try:
+        _generate_semantic_combat_snapshot(root)
         changed = update_catalog_documents(root, locale=args.locale, check=args.check)
+    except subprocess.CalledProcessError as failure:
+        print(
+            f"Wiki catalog generation: FAIL: semantic combat snapshot generator exited with {failure.returncode}",
+            file=sys.stderr,
+        )
+        return 1
     except (ValueError, FileNotFoundError, KeyError, WikiCatalogDriftError) as failure:
         print(f"Wiki catalog generation: FAIL: {failure}", file=sys.stderr)
         return 1

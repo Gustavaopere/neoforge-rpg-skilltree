@@ -16,7 +16,10 @@ public final class A0041A0060RuntimeState {
     }
 
     public static CombatPerkRanks ranks(ServerPlayer player) {
-        return CombatPerkNodeBinding.ranks(PlayerProgressionRuntime.get(player).passiveNodes());
+        CombatPerkRanks persisted = CombatPerkNodeBinding.ranks(PlayerProgressionRuntime.get(player).passiveNodes());
+        CombatPerkRanks effective = CombatPerkAvailabilityRuntime.effectiveRanks(persisted);
+        STATE.reconcileForRanks(actorId(player), effective, player.level().getGameTime() * 50L);
+        return effective;
     }
 
     public static String actorId(ServerPlayer player) {

@@ -1,0 +1,293 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:minecraft:armadillo",
+      "title": "Tatu",
+      "summary": {
+        "text": "O tatu é uma criatura terrestre passiva com um comportamento defensivo próprio: diante de ameaças reconhecidas pelo jogo, ele pode entrar em uma sequência de enrolar-se, permanecer protegido e depois se desenrolar.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:armadillo"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/armadillo/Armadillo.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "A entidade mantém estados explícitos de repouso, enrolamento, ameaça e desenrolamento. A decisão de tratar algo como ameaça permanece sob a lógica carregada em runtime, e não é reconstruída pelo Compêndio.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/armadillo/Armadillo.java"}
+          ]
+        },
+        "defesa": {
+          "text": "Enrolar-se é uma resposta comportamental da própria criatura, não uma variante visual separada. Duração, condições e demais parâmetros desse estado continuam definidos pelo jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/armadillo/Armadillo.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:bat",
+      "title": "Morcego",
+      "summary": {
+        "text": "O morcego é uma criatura ambiente passiva associada a espaços escuros e fechados. Seu comportamento alterna entre voo livre e repouso suspenso sob superfícies adequadas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:bat"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/ambient/Bat.java"}
+        ]
+      },
+      "sections": {
+        "movimento": {
+          "text": "Durante o voo, o morcego usa um alvo de posição próprio para orientar deslocamentos. Quando está em repouso, o estado de roosting é acompanhado separadamente pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/ambient/Bat.java"}
+          ]
+        },
+        "repouso": {
+          "text": "O jogo distingue explicitamente os estados de voo e repouso do morcego. Proximidade de jogadores e condições do ambiente podem fazer a entidade abandonar o ponto onde estava suspensa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/ambient/Bat.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:cod",
+      "title": "Bacalhau",
+      "summary": {
+        "text": "O bacalhau é um peixe passivo do ambiente aquático. Ele utiliza o comportamento comum de peixes que formam grupos e pode ser transportado por meio do sistema vanilla de baldes para peixes.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:cod"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Cod.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "A espécie herda a lógica de peixes que podem nadar em cardumes. Tamanho de grupo, movimentação e regras efetivas permanecem definidos pelas classes e dados do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Cod.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/AbstractSchoolingFish.java"}
+          ]
+        },
+        "transporte": {
+          "text": "O bacalhau participa do contrato Bucketable usado pelos peixes vanilla, permitindo recolher um indivíduo em recipiente compatível sem tratá-lo como simples item de drop.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Cod.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/AbstractFish.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:dolphin",
+      "title": "Golfinho",
+      "summary": {
+        "text": "O golfinho é uma criatura aquática móvel com comportamentos próprios de interação com jogadores, itens e pontos de interesse. Ele continua dependente das condições corporais que o jogo mantém para uma criatura que alterna entre água e ar.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:dolphin"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Dolphin.java"}
+        ]
+      },
+      "sections": {
+        "interacao": {
+          "text": "A IA possui objetivos dedicados para nadar com jogadores e brincar com determinados itens. Essas interações são comportamentos nativos da entidade e não significam domesticação permanente.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Dolphin.java"}
+          ]
+        },
+        "exploracao": {
+          "text": "O golfinho mantém um estado de alvo de tesouro e uma condição relacionada a ter recebido peixe, usados por sua lógica de exploração. O Compêndio não fixa distância, duração ou outros valores mutáveis em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Dolphin.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:glow_squid",
+      "title": "Lula-brilhante",
+      "summary": {
+        "text": "A lula-brilhante é uma criatura aquática passiva derivada do comportamento básico das lulas, com uma apresentação luminosa própria e estado visual adicional quando sofre determinadas interações.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:glow_squid"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/GlowSquid.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "A entidade herda a locomoção aquática e a resposta de tinta da lula comum, mas utiliza partículas e apresentação próprias para sua variante luminosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/GlowSquid.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Squid.java"}
+          ]
+        },
+        "aparencia": {
+          "text": "O runtime mantém um contador de escurecimento temporário para a lula-brilhante. Esse estado altera sua apresentação sem criar uma segunda entidade ou uma variante de registry separada.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/GlowSquid.java"}
+          ]
+        }
+      },
+      "references": ["ENTITY:minecraft:squid"],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:panda",
+      "title": "Panda",
+      "summary": {
+        "text": "O panda é uma criatura terrestre com genética e comportamentos individuais próprios. O jogo diferencia genes e usa esses estados para produzir variações de aparência ou comportamento dentro da mesma espécie.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:panda"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Panda.java"}
+        ]
+      },
+      "sections": {
+        "genetica": {
+          "text": "Pandas possuem um sistema explícito de genes, preservado pela própria entidade. O Compêndio descreve a existência desse sistema sem congelar probabilidades de herança ou distribuição em texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Panda.java"}
+          ]
+        },
+        "comportamento": {
+          "text": "A IA inclui comportamentos dedicados como sentar, rolar, espirrar e deitar, além de objetivos de reprodução e reação a ameaças. Quais ações aparecem em cada indivíduo dependem dos estados reais da entidade.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Panda.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:polar_bear",
+      "title": "Urso-polar",
+      "summary": {
+        "text": "O urso-polar é uma criatura terrestre classificada pelo runtime como animal com comportamento neutro. Ele pode permanecer não hostil em situações comuns e reagir agressivamente quando suas condições de alvo ou raiva são acionadas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:polar_bear"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/PolarBear.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "A entidade mantém estado de raiva persistente e objetivos específicos de ataque e retaliação. A escolha real de alvo permanece sob as condições da IA vanilla.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/PolarBear.java"}
+          ]
+        },
+        "combate": {
+          "text": "O urso-polar possui objetivo próprio de ataque corpo a corpo e uma postura de levantar-se associada à apresentação do confronto. Dano, alcance e temporizações continuam sendo dados do runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/PolarBear.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:pufferfish",
+      "title": "Baiacu",
+      "summary": {
+        "text": "O baiacu é um peixe passivo com uma defesa de proximidade própria. Quando entidades consideradas ameaçadoras se aproximam, ele pode mudar progressivamente entre estados desinflado, parcialmente inflado e totalmente inflado.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:pufferfish"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Pufferfish.java"}
+        ]
+      },
+      "sections": {
+        "defesa": {
+          "text": "A inflação é controlada por estados e contadores próprios da entidade. O contato com o baiacu em condição defensiva pode ferir outras entidades, de acordo com a lógica nativa do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Pufferfish.java"}
+          ]
+        },
+        "transporte": {
+          "text": "Assim como outros peixes compatíveis, o baiacu implementa o contrato Bucketable e possui representação própria para transporte em balde.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Pufferfish.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:salmon",
+      "title": "Salmão",
+      "summary": {
+        "text": "O salmão é um peixe passivo do ambiente aquático. Ele compartilha a infraestrutura de peixes que formam grupos e pode ser transportado pelo sistema vanilla de baldes.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:salmon"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Salmon.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "A espécie utiliza a base de AbstractSchoolingFish, que fornece comportamento de agrupamento e acompanhamento entre peixes compatíveis. Os limites do grupo permanecem definidos pelo runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Salmon.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/AbstractSchoolingFish.java"}
+          ]
+        },
+        "transporte": {
+          "text": "O salmão é um peixe Bucketable, permitindo que um indivíduo seja recolhido e recolocado no mundo por recipiente compatível.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Salmon.java"},
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/AbstractFish.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:squid",
+      "title": "Lula",
+      "summary": {
+        "text": "A lula é uma criatura aquática passiva com locomoção baseada em impulsos e orientação do corpo. Ela possui uma reação defensiva própria ao sofrer dano.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:squid"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Squid.java"}
+        ]
+      },
+      "sections": {
+        "movimento": {
+          "text": "O runtime controla vetores de nado, rotação corporal e movimento dos tentáculos separadamente, produzindo a forma característica de deslocamento da lula na água.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Squid.java"}
+          ]
+        },
+        "defesa": {
+          "text": "Ao ser ferida, a lula pode acionar sua resposta de tinta, com som e partículas próprios. A reação pertence à entidade e não representa um ataque direcionado comum.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Squid.java"}
+          ]
+        }
+      },
+      "references": ["ENTITY:minecraft:glow_squid"],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

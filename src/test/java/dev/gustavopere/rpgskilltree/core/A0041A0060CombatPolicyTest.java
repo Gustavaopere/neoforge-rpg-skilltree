@@ -6,7 +6,7 @@ public final class A0041A0060CombatPolicyTest {
     private A0041A0060CombatPolicyTest() {}
 
     public static void main(String[] args) {
-        scytheConsumesOneMatureMarkAndHarvestTransfersOnlyToDifferentTarget();
+        scytheReservesMatureMarkUntilConfirmedPostAndHarvestTransfersOnlyToDifferentTarget();
         focusUsesExactRankedRatesAndFailClosedShotCommit();
         crossbowCadenceRequiresHitThenNativeReloadAndConsumesAtomically();
         fistSequenceAndHeavyConsumersAreProviderGated();
@@ -14,7 +14,7 @@ public final class A0041A0060CombatPolicyTest {
         System.out.println("A0041A0060CombatPolicyTest: PASS");
     }
 
-    private static void scytheConsumesOneMatureMarkAndHarvestTransfersOnlyToDifferentTarget() {
+    private static void scytheReservesMatureMarkUntilConfirmedPostAndHarvestTransfersOnlyToDifferentTarget() {
         var legacy = new A0021A0040CombatState();
         var state = new A0041A0060CombatState();
         var ranks = CombatPerkRanks.of(Map.of("A0040",2,"A0041",2,"A0042",1));
@@ -25,9 +25,9 @@ public final class A0041A0060CombatPolicyTest {
         var cut = A0041A0060CombatPolicy.scytheCut("p","t1","hit-1",ranks,legacy,state,0.40,true,now+150);
         close(cut.damageMultiplier(),1.20,"A0041 rank2 damage");
         close(cut.impactMultiplier(),1.25,"A0041 rank2 impact");
-        require(!legacy.reapMarked("p","t1",now+151), "A0041 must consume the mature mark");
+        require(legacy.reapMarked("p","t1",now+151), "A0041 PRE must reserve, not consume, the mature mark");
         var duplicate = A0041A0060CombatPolicy.scytheCut("p","t1","hit-1",ranks,legacy,state,0.40,true,now+152);
-        close(duplicate.damageMultiplier(),1.0,"same causal action cannot consume twice");
+        close(duplicate.damageMultiplier(),1.0,"same causal action cannot reserve twice");
 
         legacy.applyReapingMark("p","dead",2,0.70,now+200);
         legacy.reapMature("p","dead",0.30,now+250);
@@ -68,7 +68,7 @@ public final class A0041A0060CombatPolicyTest {
         var state = new A0041A0060CombatState();
         var ranks = CombatPerkRanks.of(Map.of("A0052",2,"A0053",2,"A0054",1));
         long now = 10_000;
-        A0041A0060CombatPolicy.recordCrossbowHit("p","shot-1",ranks,state,now);
+        A0041A0060CombatPolicy.recordCrossbowHit("p","shot-1","xbow",ranks,state,now);
         require(!A0041A0060CombatPolicy.onCrossbowReloadComplete("p","xbow",ranks,state,false,now+1_000), "reload without native ammo consumption must not count");
         require(state.cadence("p")==0,"invalid reload cannot add Cadence");
         require(A0041A0060CombatPolicy.onCrossbowReloadComplete("p","xbow",ranks,state,true,now+1_100), "hit + native reload inside rank2 8s window should add Cadence");
@@ -79,16 +79,21 @@ public final class A0041A0060CombatPolicyTest {
         require(!unavailable.applied(), "A0053 must fail closed when penetration and impact are both unavailable");
         require(state.cadence("p")==2,"fail-closed A0053 must not spend Cadence");
         var impactOnly = A0041A0060CombatPolicy.tryPiercingBolt("p","bolt-2",ranks,state,true,false,true,now+2_100);
-        require(impactOnly.applied(),"A0053 may use impact-only safe component");
+        require(impactOnly.applied(),"A0053 may reserve an impact-only safe component");
         close(impactOnly.impactMultiplier(),1.25,"A0053 rank2 impact");
-        require(state.cadence("p")==0,"A0053 consumes two Cadence atomically");
+        require(state.cadence("p")==2,"A0053 release reserves rather than consumes Cadence");
+        require(A0041A0060CombatPolicy.commitPiercingBolt("p","bolt-2",ranks,state,now+2_150),"A0053 commits only after correlated projectile creation");
+        require(state.cadence("p")==0,"A0053 commit consumes two Cadence exactly once");
 
         state.addCadence("p"); state.addCadence("p"); state.addCadence("p");
         require(A0041A0060CombatPolicy.armAdjustedMechanismOnReload("p",ranks,state,80,true,now+3_000),"A0054 should arm from three clean Cadence on a complete native reload");
+        require(state.cadence("p")==3,"arming A0054 must not consume Cadence before a projectile exists");
         var adjusted = A0041A0060CombatPolicy.tryAdjustedCrossbowShot("p","bolt-3",ranks,state,now+3_100);
-        require(adjusted.applied(),"A0054 next shot should consume the activation");
+        require(adjusted.applied(),"A0054 next shot should reserve the activation");
         close(adjusted.damageMultiplier(),1.15,"A0054 damage");
-        require(state.cadence("p")==0,"A0054 consumes all Cadence");
+        require(state.cadence("p")==3,"A0054 release must not pre-consume Cadence");
+        require(A0041A0060CombatPolicy.commitAdjustedCrossbowShot("p","bolt-3",ranks,state,now+3_150),"A0054 commits on correlated projectile creation");
+        require(state.cadence("p")==0,"A0054 commit consumes all Cadence");
         require(!A0041A0060CombatPolicy.tryAdjustedCrossbowShot("p","bolt-4",ranks,state,now+3_200).applied(),"A0054 activation is single-use");
     }
 

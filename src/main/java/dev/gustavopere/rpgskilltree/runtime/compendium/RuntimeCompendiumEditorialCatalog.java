@@ -5,6 +5,7 @@ import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialSnap
 import dev.gustavopere.rpgskilltree.compendium.editorial.CompendiumEditorialValidationException;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Supplier;
 import net.minecraft.server.packs.resources.ResourceManager;
 
@@ -53,6 +54,21 @@ public final class RuntimeCompendiumEditorialCatalog {
         Objects.requireNonNull(resourceManager, "resourceManager");
         Objects.requireNonNull(technicalEntries, "technicalEntries");
         return tryPublish(() -> CompendiumEditorialResourceLoader.load(resourceManager, technicalEntries));
+    }
+
+    public static PublicationResult loadAndPublish(
+        ResourceManager resourceManager,
+        Collection<CompendiumEntry> technicalEntries,
+        Set<String> loadedProviderNamespaces
+    ) {
+        Objects.requireNonNull(resourceManager, "resourceManager");
+        Objects.requireNonNull(technicalEntries, "technicalEntries");
+        Objects.requireNonNull(loadedProviderNamespaces, "loadedProviderNamespaces");
+        return tryPublish(() -> CompendiumEditorialResourceLoader.load(
+            resourceManager,
+            technicalEntries,
+            loadedProviderNamespaces
+        ));
     }
 
     /** Compatibility primitive for callers that already hold a fully validated snapshot. */

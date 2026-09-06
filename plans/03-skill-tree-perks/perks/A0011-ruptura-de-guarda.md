@@ -70,3 +70,17 @@
 - [x] Build, JAR e dedicated-server smoke verdes no CI #2147 no mesmo HEAD revalidado.
 
 **Estado Chat 2:** `IMPLEMENTAÇÃO VALIDADA EM CI`; confirmação definitiva ocorre com o merge da PR #237 na `main`.
+
+## Chat 3 — auditoria pós-merge e correção causal — PR #250
+
+### P-A0011-02 — gasto de Fúria prematuro no PRE
+
+- **Pendência encontrada:** o runtime mergeado consumia 20 de Fúria dentro de `beforeHit(...)`, antes de existir confirmação de dano efetivo. Um ataque cancelado ou reduzido a zero podia perder Fúria sem produzir o golpe consumidor.
+- **Causa técnica:** elegibilidade PRE era tratada como commit irreversível.
+- **Correção:** o PRE agora cria uma reserva transitória bounded por `rootActionId`; os modificadores de Ruptura são calculados normalmente, mas o débito de 20 Fúria só ocorre no POST após `direct && hostile && actualDamage`.
+- **Interação A0012:** a reserva reduz a **Fúria efetivamente disponível** para avaliar Frenesi/Pico no mesmo PRE, preservando a ordem sistêmica histórica sem alterar a Fúria bruta antes do hit confirmado. A0012 continua com sua transação PRE conforme o contrato aprovado e não foi redesenhada.
+- **Ordem no POST:** o commit de A0011 ocorre antes do ganho de Fúria de A0010 no mesmo hit; portanto o custo não pode ser pago com Fúria criada pelo próprio golpe.
+- **Deduplicação:** um `rootActionId` só pode efetivar o débito uma vez; POST duplicado não duplica consumo.
+- **TDD RED:** `RPG Skill Tree CI` #2256, commit `64e4abd9eacc45caf7f4af67b4015be9d7ef4bf9`, executou 123 testes com exatamente 3 falhas novas, incluindo `a0011DefersFurySpendUntilConfirmedDamageAndReservesCostForFrenzyGate`.
+- **TDD GREEN de código:** `RPG Skill Tree CI` #2269 no HEAD `1698bdc518f84ae99da6a9f6da1a78ad5b9f3923` ficou verde em core, JUnit, NeoForge GameTests, validações, build, JAR e dedicated-server smoke; nove workflows auxiliares também ficaram verdes.
+- **Estado:** `P-A0011-02 RESOLVIDA` na PR #250; confirmação definitiva ocorre com o merge na `main`.

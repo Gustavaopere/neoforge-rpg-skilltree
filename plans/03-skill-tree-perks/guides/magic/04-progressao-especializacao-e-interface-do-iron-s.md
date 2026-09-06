@@ -1,14 +1,14 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db819e9572fd43820f9c03 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
 # 4. Progressão, especialização e interface do Iron's
 
-## Iron's Spells 'n Spellbooks: Recolor — 1.2.4+1.21.1
+## Iron's Spells 'n Spellbooks: Recolor — 1.3.2+1.21.1
 
-`recolor_tablet-1.2.4+1.21.1.jar`
+`recolor_tablet-1.3.2+1.21.1.jar`
 **Recolor** adiciona o **Recolor Tablet**, usado para personalizar a tonalidade visual dos spells do Iron's por escola de magia. Depois de vinculado, o tablet abre uma lista das escolas; selecionar uma delas leva a uma color wheel que altera o hue dos efeitos correspondentes, e a opção de reset restaura a aparência original.
-A modificação é visual e não altera dano, custo de mana, cooldown ou progressão das magias. A build instalada é `1.2.4+1.21.1`.
+A modificação é visual e não altera dano, custo de mana, cooldown ou progressão das magias. A build instalada é `1.3.2+1.21.1`.
 
 ## Fundamental Principles - Iron's Spells Addon — 1.1.7.1
 
@@ -31,3 +31,6 @@ O sistema é configurável e atua sobre o catálogo de spells do Iron's e de add
 **Spell Actionbar** adiciona uma barra de ação dedicada ao Iron's Spells acima da hotbar. A base possui **três slots para scrolls** e pode ser expandida de acordo com spellbooks equipados, permitindo selecionar e lançar habilidades por hotkeys sem abrir o inventário ou a interface do spellbook durante o combate.
 A HUD mostra ícones, cooldowns, mana e keybinds associados aos spells. Scrolls colocados na actionbar funcionam como referências de habilidade e **não são consumidos** ao lançar o feitiço.
 Além do uso independente, a Actionbar serve como superfície de execução para o Spell Codex e para recursos adicionais como spells imbuídos em armas, concentrando seleção, estado e feedback de casting em uma única interface.
+
+
+---

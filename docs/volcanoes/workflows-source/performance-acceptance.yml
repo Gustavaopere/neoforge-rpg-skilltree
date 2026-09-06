@@ -1,0 +1,63 @@
+name: Performance Hardening Acceptance
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: performance-hardening-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  benchmark-and-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+
+      - name: Run performance contracts and benchmark
+        shell: bash
+        run: |
+          set -euo pipefail
+          gradle --no-daemon test \
+            --tests 'dev.gustavopere.volcanoes.performance.PerformanceProfilerTest' \
+            --tests 'dev.gustavopere.volcanoes.volcano.VolcanoPerformanceBenchmarkTest' \
+            --tests 'dev.gustavopere.volcanoes.volcano.VolcanoTickSchedulerHardeningTest' \
+            --tests 'dev.gustavopere.volcanoes.environment.AtmosphericSourceIndexTest' \
+            --tests 'dev.gustavopere.volcanoes.pressure.BoundedConnectedWaterDepthLookupTest' \
+            --tests 'dev.gustavopere.volcanoes.volcano.VolcanicLavaControllerTest'
+          test -s build/performance/volcano-sites.csv
+          cat build/performance/volcano-sites.csv
+
+      - name: Upload performance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-hardening-${{ github.sha }}
+          path: |
+            build/performance/
+            build/reports/tests/test/
+          if-no-files-found: warn
+          retention-days: 14

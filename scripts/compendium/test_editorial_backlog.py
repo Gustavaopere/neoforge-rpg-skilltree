@@ -71,7 +71,7 @@ def run_generator(
 
 
 class EditorialBacklogTest(unittest.TestCase):
-    def test_generates_required_fields_and_safe_default_priorities(self) -> None:
+    def test_generates_required_fields_and_provider_neutral_default_priorities(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             coverage = root / "coverage.json"
@@ -79,7 +79,7 @@ class EditorialBacklogTest(unittest.TestCase):
                 coverage_entry("FLORA", "botania:mystical_flower"),
                 coverage_entry("STRUCTURE", "yungsapi:sample_structure"),
                 coverage_entry("BIOME", "biomesoplenty:redwood_forest"),
-                coverage_entry("TREE", "tfc:oak"),
+                coverage_entry("TREE", "examplemod:oak"),
                 coverage_entry("ENTITY", "minecraft:zombie"),
             ])), encoding="utf-8")
 
@@ -96,14 +96,14 @@ class EditorialBacklogTest(unittest.TestCase):
             self.assertEqual(
                 [
                     "ENTITY:minecraft:zombie",
-                    "TREE:tfc:oak",
                     "BIOME:biomesoplenty:redwood_forest",
                     "STRUCTURE:yungsapi:sample_structure",
                     "FLORA:botania:mystical_flower",
+                    "TREE:examplemod:oak",
                 ],
                 [entry["entry_id"] for entry in payload["entries"]],
             )
-            self.assertEqual([10, 40, 50, 60, 70], [entry["priority"] for entry in payload["entries"]])
+            self.assertEqual([10, 50, 60, 70, 70], [entry["priority"] for entry in payload["entries"]])
 
             required = {
                 "entry_id", "source_mod", "kind", "coverage", "priority",
@@ -122,6 +122,20 @@ class EditorialBacklogTest(unittest.TestCase):
             markdown = out_md.read_text(encoding="utf-8")
             self.assertIn("# Compêndio Natural — Backlog editorial pt-BR", markdown)
             self.assertIn("`ENTITY:minecraft:zombie`", markdown)
+
+    def test_permanently_excluded_providers_fail_closed(self) -> None:
+        for namespace in ("tfc", "terrafirmacraft"):
+            with self.subTest(namespace=namespace), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                coverage = root / "coverage.json"
+                coverage.write_text(json.dumps(coverage_fixture([
+                    coverage_entry("TREE", f"{namespace}:oak"),
+                ])), encoding="utf-8")
+                result = run_generator(coverage, root / "backlog.json", root / "backlog.md")
+                self.assertNotEqual(0, result.returncode)
+                output = (result.stdout + result.stderr).lower()
+                self.assertIn("permanently excluded provider namespace", output)
+                self.assertIn(namespace, output)
 
     def test_ignored_and_error_entries_are_fail_closed(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

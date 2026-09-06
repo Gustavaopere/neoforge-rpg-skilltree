@@ -17,6 +17,8 @@ import dev.gustavopere.rpgskilltree.compendium.editorial.EditorialAvailability;
 import dev.gustavopere.rpgskilltree.compendium.editorial.EditorialReviewStatus;
 import dev.gustavopere.rpgskilltree.compendium.editorial.EditorialSourceType;
 import java.util.List;
+import java.util.Set;
+import net.minecraft.server.packs.resources.ResourceManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -114,6 +116,38 @@ final class RuntimeCompendiumEditorialCatalogJUnitTest {
 
         assertThrows(NullPointerException.class, () -> RuntimeCompendiumEditorialCatalog.tryPublish(() -> null));
         assertSame(lastGood, RuntimeCompendiumEditorialCatalog.snapshot());
+    }
+
+    @Test
+    void providerAwareLoadPublishesEmptyResourcesAndRejectsNullContracts() {
+        Set<String> providers = Set.of("minecraft");
+        RuntimeCompendiumEditorialCatalog.PublicationResult result =
+            RuntimeCompendiumEditorialCatalog.loadAndPublish(
+                ResourceManager.Empty.INSTANCE,
+                List.of(),
+                providers
+            );
+
+        assertTrue(result.published());
+        assertTrue(result.snapshot().entries().isEmpty());
+        assertSame(result.snapshot(), RuntimeCompendiumEditorialCatalog.snapshot());
+
+        assertThrows(
+            NullPointerException.class,
+            () -> RuntimeCompendiumEditorialCatalog.loadAndPublish(null, List.of(), providers)
+        );
+        assertThrows(
+            NullPointerException.class,
+            () -> RuntimeCompendiumEditorialCatalog.loadAndPublish(ResourceManager.Empty.INSTANCE, null, providers)
+        );
+        assertThrows(
+            NullPointerException.class,
+            () -> RuntimeCompendiumEditorialCatalog.loadAndPublish(ResourceManager.Empty.INSTANCE, List.of(), null)
+        );
+        assertThrows(
+            NullPointerException.class,
+            () -> CompendiumEditorialResourceLoader.load(ResourceManager.Empty.INSTANCE, List.of(), null)
+        );
     }
 
     private static CompendiumEditorialSnapshot snapshot(CompendiumEditorialContent content) {

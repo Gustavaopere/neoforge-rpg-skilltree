@@ -1,0 +1,348 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "ENTITY",
+  "entries": [
+    {
+      "entry_id": "ENTITY:minecraft:axolotl",
+      "title": "Axolote",
+      "summary": {
+        "text": "O axolote é uma criatura aquática passiva em relação ao jogador, mas pode caçar determinados alvos subaquáticos. Ele pode ser transportado em balde e participa de interações próprias de combate e exploração em ambientes com água.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:axolotl"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/axolotl/Axolotl.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "Axolotes selecionam alguns animais aquáticos como presas e podem cooperar indiretamente com o jogador durante confrontos subaquáticos. Alvos, prioridades e efeitos efetivos continuam definidos pelo comportamento carregado em runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/axolotl/Axolotl.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Baldes com peixe tropical são usados para colocar axolotes adultos em estado de reprodução. O filhote preserva o sistema de variantes da espécie, sem que o Compêndio fixe probabilidades em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/axolotl/Axolotl.java"}
+          ]
+        },
+        "transporte": {
+          "text": "Um axolote pode ser recolhido com um balde de água e carregado como item. Esse mecanismo permite mover indivíduos entre habitats sem representar a criatura como um drop comum.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/axolotl/Axolotl.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:camel",
+      "title": "Camelo",
+      "summary": {
+        "text": "O camelo é uma criatura passiva que pode receber sela e ser usada como montaria para dois passageiros, sem exigir o processo de domesticação dos equinos. Sua postura elevada também altera a posição física dos passageiros em relação a entidades próximas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:camel"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/camel/Camel.java"}
+        ]
+      },
+      "sections": {
+        "montaria": {
+          "text": "Um camelo equipado com sela pode transportar dois passageiros. O primeiro controla a montaria, enquanto o segundo ocupa a posição adicional oferecida pela própria entidade.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/camel/Camel.java"}
+          ]
+        },
+        "movimento": {
+          "text": "Além do deslocamento normal, o camelo possui uma arrancada própria para atravessar trechos rapidamente. Distâncias, recargas e demais valores devem permanecer derivados do runtime, não desta descrição.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/camel/Camel.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Cactos são usados para atrair e reproduzir camelos no comportamento vanilla. O crescimento e os demais tempos associados à criação continuam controlados pelo jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/camel/Camel.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:donkey",
+      "title": "Burro",
+      "summary": {
+        "text": "O burro é uma criatura passiva da família dos equinos que pode ser domesticada e usada como montaria. Depois de domesticado, também pode receber armazenamento, tornando-se útil para transporte de carga.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:donkey"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Donkey.java"}
+        ]
+      },
+      "sections": {
+        "domesticacao": {
+          "text": "A domesticação segue o comportamento comum dos equinos: o jogador monta o animal ainda não domesticado até que ele seja aceito. Uma sela permite controlar a montaria depois desse vínculo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractHorse.java"}
+          ]
+        },
+        "armazenamento": {
+          "text": "Um burro domesticado pode receber um baú e passar a oferecer inventário de carga associado à própria entidade. A capacidade efetiva é tratada pelo sistema de inventário do equino em runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/AbstractChestedHorse.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Burros domesticados usam os alimentos aceitos pelo sistema de reprodução dos equinos. Cruzamentos compatíveis também podem gerar mula, conforme as regras vanilla da família.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Donkey.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:fox",
+      "title": "Raposa",
+      "summary": {
+        "text": "A raposa é uma criatura passiva e cautelosa, ativa em comportamentos de caça, fuga e descanso. Ela pode carregar itens na boca e possui variantes associadas ao ambiente de geração.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:fox"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Fox.java"}
+        ]
+      },
+      "sections": {
+        "comportamento": {
+          "text": "Raposas evitam jogadores que não sejam confiáveis, perseguem determinadas presas e podem executar saltos próprios durante a caça. Quando encontram itens adequados, também podem carregá-los na boca.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Fox.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Bagas doces e bagas luminosas podem colocar raposas adultas em estado de reprodução. O filhote gerado passa a confiar nos jogadores responsáveis pela reprodução, sem transformar raposas adultas selvagens em animais domesticados.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Fox.java"}
+          ]
+        },
+        "variantes": {
+          "text": "A espécie possui variantes visuais relacionadas ao contexto de geração. O Compêndio mantém essas diferenças ligadas aos dados e ao runtime para não congelar regras de worldgen em texto editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Fox.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:frog",
+      "title": "Sapo",
+      "summary": {
+        "text": "O sapo é uma criatura passiva que se desloca por saltos e possui variantes relacionadas ao ambiente em que o girino se desenvolve. Também interage com pequenas criaturas específicas por meio de seu comportamento de alimentação.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:frog"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/frog/Frog.java"}
+        ]
+      },
+      "sections": {
+        "reproducao": {
+          "text": "Bolas de slime são usadas para atrair e reproduzir sapos. Depois da reprodução, a espécie produz ovos de sapo na água; deles surgem girinos que posteriormente se transformam em sapos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/frog/Frog.java"}
+          ]
+        },
+        "variantes": {
+          "text": "A variante adulta é determinada pelo ambiente de desenvolvimento do girino. Esse vínculo entre crescimento e ambiente deve ser consultado nos dados e regras da versão em execução quando detalhes específicos forem necessários.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/frog/Frog.java"}
+          ]
+        },
+        "interacoes": {
+          "text": "Sapos podem capturar alguns alvos pequenos usando a língua. Certas interações com cubos de magma produzem blocos de iluminação associados à variante do sapo, sem que o Compêndio fixe tabelas ou probabilidades em prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/frog/Frog.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:llama",
+      "title": "Lhama",
+      "summary": {
+        "text": "A lhama é uma criatura neutra de carga que pode ser domesticada e equipada com baú. Lhamas também formam caravanas, seguindo umas às outras quando uma delas é conduzida.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:llama"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Llama.java"}
+        ]
+      },
+      "sections": {
+        "domesticacao": {
+          "text": "A domesticação ocorre por tentativas de montaria, como em outros equinos. Depois de domesticada, a lhama pode receber tapete decorativo e baú, mas não usa sela para controle direto como um cavalo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Llama.java"}
+          ]
+        },
+        "caravana": {
+          "text": "Lhamas podem formar uma fila atrás de uma lhama presa a uma guia. Esse comportamento permite deslocar grupos de animais e inventários sem controlar individualmente cada integrante.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Llama.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Fardos de feno são usados para reproduzir lhamas domesticadas. A capacidade de carga e outras características efetivas pertencem aos dados da entidade e não são congeladas nesta descrição.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/horse/Llama.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:mooshroom",
+      "title": "Coguvaca",
+      "summary": {
+        "text": "A coguvaca é uma variante especial de bovino associada a ambientes de cogumelos. Ela conserva comportamentos básicos de criação de vacas, mas acrescenta interações próprias com tigelas, cogumelos e variantes da espécie.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:mooshroom"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/MushroomCow.java"}
+        ]
+      },
+      "sections": {
+        "recursos": {
+          "text": "Além de poder ser ordenhada com balde, uma coguvaca adulta pode interagir com tigelas para fornecer alimento próprio da espécie. Coguvacas marrons possuem uma interação adicional com flores antes da coleta em tigela.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/MushroomCow.java"}
+          ]
+        },
+        "variantes": {
+          "text": "Coguvacas possuem variantes vermelha e marrom, com conversões possíveis por eventos específicos do jogo. O Compêndio registra o tipo efetivo em runtime e evita tratar uma variante como entidade separada.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/MushroomCow.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Trigo é usado para atrair e reproduzir coguvacas, seguindo a base comportamental bovina. Regras de herança de variante permanecem sob responsabilidade do comportamento vanilla em execução.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/MushroomCow.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:ocelot",
+      "title": "Jaguatirica",
+      "summary": {
+        "text": "A jaguatirica é uma criatura passiva e cautelosa de selva. Ela não se transforma em gato domesticado; em vez disso, pode adquirir confiança no jogador por meio de sua própria interação de alimentação.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:ocelot"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Ocelot.java"}
+        ]
+      },
+      "sections": {
+        "confianca": {
+          "text": "Bacalhau cru e salmão cru são usados na interação que pode tornar uma jaguatirica confiante. Uma jaguatirica confiante deixa de fugir do jogador da mesma forma que um indivíduo selvagem, mas não recebe dono nem comandos de sentar.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Ocelot.java"}
+          ]
+        },
+        "comportamento": {
+          "text": "Jaguatiricas se movem com cautela e possuem comportamentos próprios de caça e fuga. Sua presença também participa das regras que fazem creepers evitar determinados felinos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Ocelot.java"}
+          ]
+        },
+        "reproducao": {
+          "text": "Indivíduos confiantes podem usar os alimentos aceitos pela espécie para reprodução. Tempos e estados de crescimento continuam definidos pelo sistema de animais do jogo.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Ocelot.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:parrot",
+      "title": "Papagaio",
+      "summary": {
+        "text": "O papagaio é uma criatura passiva voadora que pode ser domesticada. Papagaios domesticados podem acompanhar o jogador, pousar em seus ombros e reagir a música tocada por jukeboxes próximas.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:parrot"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Parrot.java"}
+        ]
+      },
+      "sections": {
+        "domesticacao": {
+          "text": "Sementes aceitas pelo comportamento da espécie podem ser usadas para tentar domesticar um papagaio. Depois de domesticado, ele recebe vínculo com o dono e pode alternar entre acompanhar e permanecer sentado.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Parrot.java"}
+          ]
+        },
+        "imitacao": {
+          "text": "Papagaios podem reproduzir sons associados a criaturas próximas. Essa imitação é um comportamento sonoro e não significa que o papagaio possua as capacidades de combate da criatura imitada.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Parrot.java"}
+          ]
+        },
+        "musica": {
+          "text": "Quando detecta música de uma jukebox próxima, o papagaio pode entrar em seu comportamento de dança. Esse estado depende da música e da posição efetivamente detectadas em runtime.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Parrot.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "ENTITY:minecraft:turtle",
+      "title": "Tartaruga",
+      "summary": {
+        "text": "A tartaruga é uma criatura passiva ligada a praias e ao oceano. Ela mantém memória de sua praia de origem e usa esse local como referência para parte do ciclo de reprodução.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:entity_type/minecraft:turtle"},
+          {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Turtle.java"}
+        ]
+      },
+      "sections": {
+        "reproducao": {
+          "text": "Erva marinha é usada para atrair e reproduzir tartarugas. Após a reprodução, a tartaruga responsável pelos ovos procura sua praia de origem e deposita ovos em condições adequadas de areia.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Turtle.java"}
+          ]
+        },
+        "crescimento": {
+          "text": "Filhotes de tartaruga crescem até a forma adulta seguindo o sistema próprio da espécie. Recursos associados a essa transição devem ser lidos das regras e tabelas efetivas da versão em execução.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Turtle.java"}
+          ]
+        },
+        "navegacao": {
+          "text": "Tartarugas alternam comportamentos de nado, retorno à praia de origem e busca de áreas adequadas em terra. Essa navegação faz parte da IA da entidade e não representa um marcador de mapa para o jogador.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "net/minecraft/world/entity/animal/Turtle.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

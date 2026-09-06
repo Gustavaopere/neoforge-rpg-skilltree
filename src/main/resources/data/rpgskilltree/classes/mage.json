@@ -2,6 +2,9 @@
   "class_id": "mage",
   "tree_id": "rpgskilltree:class/mage",
   "kind": "provider_identity",
+  "required_provider_mods": [
+    "irons_spellbooks"
+  ],
   "required_completed_domains": [],
   "required_nodes": [
     "rpgskilltree:arcane_000"

@@ -1,0 +1,68 @@
+package dev.gustavopere.rpgskilltree.tools;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+final class CombatPerkWikiSnapshotGeneratorJUnitTest {
+    @TempDir
+    Path temporaryDirectory;
+
+    @Test
+    void rendersExactlyTheCanonicalA0001A0100SemanticSnapshotWithoutInventingTextBeyondTheApprovedBatch() {
+        String json = CombatPerkWikiSnapshotGenerator.renderJson();
+
+        assertTrue(json.contains("\"treeId\": \"rpgskilltree:runtime/combat_perks\""));
+        assertEquals(100, occurrences(json, "\"id\": \"rpgskilltree:combat/a"));
+        assertTrue(json.contains("\"code\": \"A0001\""));
+        assertTrue(json.contains("\"name\": \"Treino com Espadas I\""));
+        assertTrue(json.contains("+3% de dano com espadas por rank, máximo +9%."));
+
+        assertTrue(json.contains("\"code\": \"A0031\""));
+        assertTrue(json.contains("\"name\": \"Treino com Maças I\""));
+        assertTrue(json.contains("Sem classificação MACE segura, a disciplina permanece fail-closed"));
+        assertTrue(json.contains("\"code\": \"A0040\""));
+        assertTrue(json.contains("cleanup bounded em unload/despawn ainda não está confirmado"));
+
+        assertTrue(json.contains("\"code\": \"A0041\""));
+        assertTrue(json.contains("commit pós-hit"));
+        assertTrue(json.contains("\"code\": \"A0044\""));
+        assertTrue(json.contains("INDISPONÍVEL/NÃO COMPRÁVEL"));
+        assertTrue(json.contains("\"code\": \"A0050\""));
+        assertTrue(json.contains("reload/preparation speed"));
+
+        assertTrue(json.contains("\"code\": \"A0051\""));
+        assertTrue(json.contains("\"code\": \"A0051\",\n      \"name\": \"Precisão com Bestas\",\n      \"description\": null"));
+        assertFalse(json.contains("\"code\": \"A0051\",\n      \"name\": \"Precisão com Bestas\",\n      \"description\": \""));
+    }
+
+    @Test
+    void writesAndChecksDerivedSnapshotWithoutRequiringACommittedIntermediateFile() throws Exception {
+        Path snapshot = temporaryDirectory.resolve("combat-perks.json");
+        String expected = CombatPerkWikiSnapshotGenerator.renderJson();
+
+        CombatPerkWikiSnapshotGenerator.write(snapshot);
+        assertEquals(expected, Files.readString(snapshot, StandardCharsets.UTF_8));
+        CombatPerkWikiSnapshotGenerator.check(snapshot);
+
+        Files.writeString(snapshot, expected.replace("Treino com Espadas I", "DRIFT"), StandardCharsets.UTF_8);
+        assertThrows(IllegalStateException.class, () -> CombatPerkWikiSnapshotGenerator.check(snapshot));
+    }
+
+    private static int occurrences(String value, String needle) {
+        int count = 0;
+        int offset = 0;
+        while ((offset = value.indexOf(needle, offset)) >= 0) {
+            count++;
+            offset += needle.length();
+        }
+        return count;
+    }
+}

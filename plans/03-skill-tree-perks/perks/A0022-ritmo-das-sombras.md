@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** PARCIAL; `P-A0022-01`, `P-A0022-02` e `P-A0022-03` abertas.
+- **Implementação:** VALIDADA EM CI no ciclo Chat 2; `P-A0022-01`, `P-A0022-02` e `P-A0022-03` resolvidas; hardening de knockback do review final aplicado na PR #248.
 - **Notion:** `3c569db9-f0db-8135-a327-f367995a0091`.
 
 ## Contrato canônico
@@ -25,15 +25,28 @@
 6. PT-BR: PASS.
 7. Notion: PASS após boundary causal.
 8. NeoVitae: PASS.
-9. Providers: PASS de design; implementação parcial nos receipts/lifecycle abaixo.
+9. Providers: PASS — receipts/lifecycle exigidos foram implementados pelo Chat 2.
 
 ## Evidência e pendências
 
-- `A0021A0040CombatState` implementa cap, expiração e idle decay em nível de policy/state, mas o adapter ainda não satisfaz integralmente todos os caminhos canônicos.
-- `A0021A0040EpicFightHooks.onDodge` arma reposicionamento via `DodgeEvent`.
-- **P-A0022-01:** o adapter A0021–A0040 não registra hoje `ON_STUNNED` nem remove 2 Fluxo por stagger forte hostil. Chat 2 deve usar o receipt Epic Fight provider-native, análogo ao lote A0001–A0020, restrito a `LONG/KNOCKDOWN/NEUTRALIZE` com fonte hostil. Dano genérico não é substituto.
-- **P-A0022-02:** o fallback geométrico canônico (≥1,5 blocos de deslocamento horizontal + ≥60° de mudança angular antes do hit) ainda não é armado quando não há `DodgeEvent`; `A0021A0040EpicFightHooks.onEpicFightTick` não deve transformar câmera, teleport ou knockback em reposicionamento, mas precisa correlacionar server-side a geometria elegível com o próximo hit direto de adaga. Sem isso, essa rota permanece não implementada e A0024 também não pode depender dela como se estivesse disponível.
-- **P-A0022-03:** o decay canônico após 3 s sem deslocamento horizontal relevante não é aplicado pelo adapter quando não existe alvo hostil vivo no `PlayerPatch`; nesse caso `tickFlow(..., false, ...)` retorna antes da perda de 1 Fluxo/s e o estado apenas expira em 5/7 s. Chat 2 deve reconciliar o adapter com o contrato de lifecycle sem tornar alvo hostil uma condição artificial para o decay.
+- `A0021A0040CombatState` implementa cap, expiração e idle decay sem depender de alvo hostil vivo.
+- `A0021A0040EpicFightHooks.onDodge` continua armando reposicionamento via `DodgeEvent`.
+- `A0022RuntimeHooks` registra `ON_STUNNED` e remove 2 Fluxo somente para `LONG`, `KNOCKDOWN` ou `NEUTRALIZE` com fonte hostil.
+- `A0022RuntimeHooks` amostra geometria server-side e `A0021A0040CombatState.sampleFallbackReposition(...)` exige deslocamento horizontal ≥1,5 e mudança angular ≥60°; câmera não entra no cálculo.
+- `EntityTeleportEvent` invalida a rota geométrica imediatamente.
+- `LivingKnockBackEvent` inicia supressão fail-closed da amostragem; nenhuma baseline é aceita enquanto houver movimento horizontal forçado e a supressão só é liberada após 3 ticks server-side consecutivos com velocidade horizontal desprezível.
+- A velocidade do jogador é usada somente como sinal negativo para manter a exclusão de knockback; nunca qualifica reposicionamento, Fluxo ou Dança das Sombras.
+- Movimento sozinho apenas arma o receipt; Fluxo continua sendo concedido somente no hit direto confirmado de adaga.
 - `ARCANE_BACKLASH` e companions Mobstein não geram/renovam Fluxo.
 
-**P-A0022-01/02/03 bloqueiam IMPLEMENTAÇÃO CONFIRMADA, não o design.**
+`P-A0022-01`, `P-A0022-02` e `P-A0022-03`: **RESOLVIDAS no ciclo Chat 2 A0021–A0030**.
+
+## Chat 2 — implementação e regressão — PR #248
+
+- Regressão JUnit cobre decay após 3 s mesmo sem target vivo.
+- Regressão JUnit cobre perda exata de 2 Fluxo no receipt forte normalizado.
+- Regressão JUnit cobre baseline geométrica, deslocamento/ângulo elegível e invalidação do receipt.
+- Review final encontrou que uma invalidação pontual de knockback permitiria criar nova baseline durante a inércia forçada; o teste RED do CI #2251 confirmou a ausência da supressão persistente.
+- O GREEN adiciona supressão explícita durante knockback, reset do contador sempre que o movimento horizontal volta a ser relevante e liberação somente após 3 ticks quietos; depois disso a primeira amostra voluntária cria uma baseline inteiramente nova.
+- O adapter permanece server-authoritative e não usa câmera, dano genérico, animação ou velocidade como evidência positiva de reposicionamento.
+- Estado definitivo passa a `IMPLEMENTAÇÃO CONFIRMADA` após merge da PR #248 e confirmação da `main`.

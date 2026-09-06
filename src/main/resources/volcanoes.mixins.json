@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "dev.gustavopere.volcanoes.mixin",
+  "plugin": "dev.gustavopere.volcanoes.mixin.VolcanoesMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "rns.CustomServerDepositLocationMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "category": "GENERIC",
+  "hardness": 0.55,
+  "permeability": 0.35,
+  "thermal_conductivity": 2.5,
+  "lava_flow_multiplier": 1.0,
+  "erosion_resistance": 0.50,
+  "hydrothermal_reactivity": 0.45,
+  "blocks": ["minecraft:stone"]
+}

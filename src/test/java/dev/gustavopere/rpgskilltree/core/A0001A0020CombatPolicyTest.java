@@ -6,7 +6,7 @@ import java.util.Map;
 public final class A0001A0020CombatPolicyTest {
     public static void main(String[] args) {
         momentumUsesFiveSecondGraceThenOnePerSecondDecay();
-        openingConsumesTwoMomentumAndRespectsPerTargetCooldown();
+        openingCommitsTwoMomentumAndCooldownOnlyAfterConfirmedHit();
         openingFallbackRequiresConfirmedArmorAndOmitsImpact();
         furyGenerationUsesRankThenTargetSwitchMultiplier();
         ruptureUsesNativeDefenseOrStrictArmorFallback();
@@ -30,16 +30,20 @@ public final class A0001A0020CombatPolicyTest {
         require(state.momentum("player", 7_000L) == 0, "A0004 decay must clamp at zero");
     }
 
-    private static void openingConsumesTwoMomentumAndRespectsPerTargetCooldown() {
+    private static void openingCommitsTwoMomentumAndCooldownOnlyAfterConfirmedHit() {
         var ranks = CombatPerkRanks.of(Map.of("A0005", 1));
         var state = new NotionCombatPerkState();
         state.addMomentum("player", 3, 0L);
         state.recordSwordSequenceTarget("player", "target");
-        var first = A0001A0020CombatPolicy.beforeHit(
-            facts("open-1", WeaponFamily.SWORD, "target", true, true, true, false, false, 1_000L), ranks, state);
+        var firstFacts = facts("open-1", WeaponFamily.SWORD, "target", true, true, true, false, false, 1_000L);
+        var first = A0001A0020CombatPolicy.beforeHit(firstFacts, ranks, state);
         require(close(first.physicalPenetrationFraction(), 0.12D), "A0005 penetration must be 12%");
         require(close(first.impactMultiplier(), 1.08D), "A0005 impact must be +8%");
-        require(state.momentum("player", 1_000L) == 1, "A0005 must consume two Momentum");
+        require(state.momentum("player", 1_000L) == 3, "A0005 PRE must not consume Momentum before confirmed damage");
+        require(state.openingCooldownReady("player", "target", 1_000L), "A0005 PRE must not start target cooldown");
+        A0001A0020CombatPolicy.afterConfirmedHit(firstFacts, ranks, state, first.suppressMomentumGain());
+        require(state.momentum("player", 1_000L) == 1, "A0005 confirmed POST must consume two Momentum");
+        require(!state.openingCooldownReady("player", "target", 1_000L), "A0005 confirmed POST must start target cooldown");
 
         state.addMomentum("player", 3, 1_100L);
         var cooldown = A0001A0020CombatPolicy.beforeHit(
@@ -47,9 +51,12 @@ public final class A0001A0020CombatPolicyTest {
         require(close(cooldown.physicalPenetrationFraction(), 0.0D), "A0005 must not reactivate inside target cooldown");
         require(state.momentum("player", 2_000L) == 4, "blocked A0005 activation must not consume Momentum");
 
-        var afterCooldown = A0001A0020CombatPolicy.beforeHit(
-            facts("open-3", WeaponFamily.SWORD, "target", true, true, true, false, false, 7_000L), ranks, state);
+        var afterCooldownFacts = facts("open-3", WeaponFamily.SWORD, "target", true, true, true, false, false, 7_000L);
+        var afterCooldown = A0001A0020CombatPolicy.beforeHit(afterCooldownFacts, ranks, state);
         require(close(afterCooldown.physicalPenetrationFraction(), 0.12D), "A0005 must reactivate after six seconds");
+        require(state.momentum("player", 7_000L) == 3, "reactivated A0005 PRE must remain non-destructive");
+        A0001A0020CombatPolicy.afterConfirmedHit(afterCooldownFacts, ranks, state, afterCooldown.suppressMomentumGain());
+        require(state.momentum("player", 7_000L) == 1, "reactivated A0005 must commit two Momentum only after confirmed POST");
     }
 
     private static void openingFallbackRequiresConfirmedArmorAndOmitsImpact() {
@@ -64,11 +71,13 @@ public final class A0001A0020CombatPolicyTest {
             "A0005 must not use armor fallback when guard/posture is observable and absent");
         require(state.momentum("player", 100L) == 5, "ineligible native-defense target must not consume Momentum");
 
-        var fallback = A0001A0020CombatPolicy.beforeHit(
-            facts("open-fallback", WeaponFamily.SWORD, "armored", false, true, false, false, false, 200L), ranks, state);
+        var fallbackFacts = facts("open-fallback", WeaponFamily.SWORD, "armored", false, true, false, false, false, 200L);
+        var fallback = A0001A0020CombatPolicy.beforeHit(fallbackFacts, ranks, state);
         require(close(fallback.physicalPenetrationFraction(), 0.12D), "A0005 armor fallback must keep penetration");
         require(close(fallback.impactMultiplier(), 1.0D), "A0005 armor fallback must omit impact/guard pressure");
-        require(state.momentum("player", 200L) == 3, "eligible fallback must consume two Momentum");
+        require(state.momentum("player", 200L) == 5, "eligible fallback PRE must not consume Momentum");
+        A0001A0020CombatPolicy.afterConfirmedHit(fallbackFacts, ranks, state, fallback.suppressMomentumGain());
+        require(state.momentum("player", 200L) == 3, "eligible fallback must consume two Momentum on confirmed POST");
     }
 
     private static void furyGenerationUsesRankThenTargetSwitchMultiplier() {
@@ -86,11 +95,13 @@ public final class A0001A0020CombatPolicyTest {
         var ranks = CombatPerkRanks.of(Map.of("A0011", 2));
         var state = new NotionCombatPerkState();
         state.addFury("player", 40.0D);
-        var guarded = A0001A0020CombatPolicy.beforeHit(
-            facts("rupture-1", WeaponFamily.AXE, "guarded", true, true, true, false, false, 0L), ranks, state);
+        var guardedFacts = facts("rupture-1", WeaponFamily.AXE, "guarded", true, true, true, false, false, 0L);
+        var guarded = A0001A0020CombatPolicy.beforeHit(guardedFacts, ranks, state);
         require(close(guarded.impactMultiplier(), 1.35D), "A0011 rank 2 impact");
         require(close(guarded.physicalPenetrationFraction(), 0.10D), "A0011 rank 2 penetration");
-        require(close(state.fury("player"), 20.0D), "A0011 must spend 20 Fury");
+        require(close(state.fury("player"), 40.0D), "A0011 PRE must reserve rather than spend 20 Fury");
+        A0001A0020CombatPolicy.afterConfirmedHit(guardedFacts, ranks, state, false);
+        require(close(state.fury("player"), 20.0D), "A0011 confirmed POST must spend 20 Fury");
 
         state.addFury("player", 20.0D);
         var observableButUnguarded = A0001A0020CombatPolicy.beforeHit(
@@ -99,11 +110,13 @@ public final class A0001A0020CombatPolicyTest {
             "A0011 must not use armor fallback when provider can prove target is unguarded");
         require(close(state.fury("player"), 40.0D), "A0011 must not spend Fury on ineligible target");
 
-        var armoredFallback = A0001A0020CombatPolicy.beforeHit(
-            facts("rupture-3", WeaponFamily.AXE, "armored", false, true, false, false, false, 200L), ranks, state);
+        var armoredFallbackFacts = facts("rupture-3", WeaponFamily.AXE, "armored", false, true, false, false, false, 200L);
+        var armoredFallback = A0001A0020CombatPolicy.beforeHit(armoredFallbackFacts, ranks, state);
         require(close(armoredFallback.impactMultiplier(), 1.0D), "A0011 armor fallback must omit guard pressure");
         require(close(armoredFallback.physicalPenetrationFraction(), 0.10D), "A0011 armor fallback must keep safe penetration");
-        require(close(state.fury("player"), 20.0D), "A0011 armor fallback must spend 20 Fury once");
+        require(close(state.fury("player"), 40.0D), "A0011 armor fallback PRE must remain non-destructive");
+        A0001A0020CombatPolicy.afterConfirmedHit(armoredFallbackFacts, ranks, state, false);
+        require(close(state.fury("player"), 20.0D), "A0011 armor fallback must commit 20 Fury once after confirmed damage");
     }
 
     private static void frenzyUsesExplicitCoreCostAndPeakSpend() {
@@ -161,19 +174,26 @@ public final class A0001A0020CombatPolicyTest {
         state.addDistanceControl("player", 3, 0L, 7_000L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", false, false, capstoneRanks, state, 80, 100L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", true, true, capstoneRanks, state, 80, 200L);
-        var capstone = A0001A0020CombatPolicy.beforeHit(
-            facts("spear-cap", WeaponFamily.SPEAR, "target", false, false, true, true, false, 300L), capstoneRanks, state);
+        var capstoneFacts = facts("spear-cap", WeaponFamily.SPEAR, "target", false, false, true, true, false, 300L);
+        var capstone = A0001A0020CombatPolicy.beforeHit(capstoneFacts, capstoneRanks, state);
         require(close(capstone.damageMultiplier(), 1.15D), "A0013 rank 0 plus A0018 should produce 1.15 damage multiplier");
         require(close(capstone.impactMultiplier(), 1.40D), "A0018 impact must be +40%");
-        require(state.distanceControl("player", 300L) == 0, "A0018 must consume all three Distance Control charges");
+        require(state.distanceControl("player", 300L) == 3, "A0018 PRE must reserve rather than consume three Distance Control charges");
+        A0001A0020CombatPolicy.afterConfirmedHit(capstoneFacts, capstoneRanks, state, capstone.suppressMomentumGain());
+        require(state.distanceControl("player", 300L) == 1,
+            "A0018 POST must consume three charges before same-hit A0016 grants one new charge");
 
         state.addDistanceControl("player", 3, 400L, 7_000L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", false, false, capstoneRanks, state, 80, 500L);
         A0001A0020CombatPolicy.onSpearRangeSample("player", "target", true, true, capstoneRanks, state, 80, 600L);
-        var locked = A0001A0020CombatPolicy.beforeHit(
-            facts("spear-lock", WeaponFamily.SPEAR, "target", false, false, true, true, false, 700L), capstoneRanks, state);
+        var lockedFacts = facts("spear-lock", WeaponFamily.SPEAR, "target", false, false, true, true, false, 700L);
+        var locked = A0001A0020CombatPolicy.beforeHit(lockedFacts, capstoneRanks, state);
         require(close(locked.damageMultiplier(), 1.0D), "A0018 target lockout must prevent a second capstone window");
-        require(close(locked.impactMultiplier(), 1.35D), "A0017 may still consume its independent intercept window during A0018 lockout");
+        require(close(locked.impactMultiplier(), 1.35D), "A0017 may still reserve its independent intercept window during A0018 lockout");
+        require(state.distanceControl("player", 700L) == 3, "A0017 PRE must not consume its reserved Distance Control charge");
+        A0001A0020CombatPolicy.afterConfirmedHit(lockedFacts, capstoneRanks, state, locked.suppressMomentumGain());
+        require(state.distanceControl("player", 700L) == 3,
+            "A0017 POST spend must occur before same-hit A0016 gain, producing a net-zero charge change at cap");
 
         require(A0001A0020CombatPolicy.isIdealSpearRange(7.0D, 10.0D), "70% reach is ideal");
         require(A0001A0020CombatPolicy.isIdealSpearRange(10.0D, 10.0D), "100% reach is ideal");

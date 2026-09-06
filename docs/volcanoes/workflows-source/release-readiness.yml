@@ -1,0 +1,95 @@
+name: Release Readiness
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+      - 'docs/**'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: release-readiness-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+
+      - name: Validate release evidence map
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/release-readiness
+          python3 scripts/validate_release_readiness.py \
+            | tee build/release-readiness/validator.txt
+
+      - name: Run release invariant contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          gradle --no-daemon test \
+            --tests 'dev.gustavopere.volcanoes.volcano.ExistingWorldVolcanoAdminSessionTest' \
+            --tests 'dev.gustavopere.volcanoes.environment.AtmosphereConfigContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.create.CreateRespirationDecisionContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.coldsweat.ColdSweatHeatProjectionContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.destroy.DestroyPollutionWriterContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.rns.RnsDepositProjectionPlannerContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.sable.SablePressureCompatContractTest' \
+            --tests 'dev.gustavopere.volcanoes.compat.minecolonies.MineColoniesCompatTest'
+
+      - name: Upload release-readiness evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-readiness-${{ github.sha }}
+          path: |
+            build/release-readiness/
+            build/reports/tests/test/
+          if-no-files-found: warn
+          retention-days: 14
+
+  aggregate-canonical-gates:
+    if: github.event_name == 'pull_request'
+    needs: release-contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify nine sibling gates on exact head
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_release_workflow_set.py \
+            --repo "$REPOSITORY" \
+            --sha "$HEAD_SHA" \
+            --event "$EVENT_NAME" \
+            --token "$GH_TOKEN"

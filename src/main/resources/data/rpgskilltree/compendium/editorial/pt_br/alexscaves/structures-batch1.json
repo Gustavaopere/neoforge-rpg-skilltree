@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "alexscaves",
+  "kind": "STRUCTURE",
+  "entries": [
+    {
+      "entry_id": "STRUCTURE:alexscaves:abyssal_ruins",
+      "title": "Abyssal Ruins",
+      "summary": {
+        "text": "Abyssal Ruins é uma estrutura de Alex's Caves vinculada pelo datapack ao bioma Fendas Abissais e registrada no runtime como alexscaves:abyssal_ruins.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:structure/alexscaves:abyssal_ruins"},
+          {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/abyssal_ruins.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack associa a estrutura a alexscaves:abyssal_chasm e a posiciona na etapa de estruturas subterrâneas. A ficha não fixa altura, frequência ou peso de geração em prosa.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/abyssal_ruins.json"}
+          ]
+        },
+        "contexto": {
+          "text": "A estrutura faz parte do conteúdo de exploração do ambiente abissal; sua presença concreta continua dependente da configuração e do worldgen carregados no runtime.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "alexscaves:structure/alexscaves:abyssal_ruins"},
+            {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/abyssal_ruins.json"}
+          ]
+        }
+      },
+      "references": ["BIOME:alexscaves:abyssal_chasm"],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "STRUCTURE:alexscaves:acid_pit",
+      "title": "Acid Pit",
+      "summary": {
+        "text": "Acid Pit é uma estrutura de Alex's Caves vinculada pelo datapack ao bioma Cavernas Tóxicas e registrada como alexscaves:acid_pit.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:structure/alexscaves:acid_pit"},
+          {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/acid_pit.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack restringe Acid Pit a alexscaves:toxic_caves e usa a etapa de estruturas subterrâneas. Parâmetros numéricos de colocação permanecem fora do texto editorial.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/acid_pit.json"}
+          ]
+        },
+        "contexto": {
+          "text": "A identidade da estrutura é inseparável do contexto das Cavernas Tóxicas; o Compêndio registra essa relação sem transformar o datapack atual em regra universal de ocorrência.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/acid_pit.json"}
+          ]
+        }
+      },
+      "references": ["BIOME:alexscaves:toxic_caves"],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "STRUCTURE:alexscaves:cake_cave",
+      "title": "Cake Cave",
+      "summary": {
+        "text": "Cake Cave é uma estrutura de Alex's Caves associada pelo datapack a Candy Cavity e registrada no runtime pelo ID alexscaves:cake_cave.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:structure/alexscaves:cake_cave"},
+          {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/cake_cave.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack vincula Cake Cave a alexscaves:candy_cavity e usa a etapa de geração bruta. A ficha não congela altura ou frequência de geração.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/cake_cave.json"}
+          ]
+        },
+        "contexto": {
+          "text": "Cake Cave pertence ao conjunto de conteúdo próprio de Candy Cavity e é documentada como estrutura específica do provider, não como caverna vanilla genérica.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "alexscaves:structure/alexscaves:cake_cave"},
+            {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/cake_cave.json"}
+          ]
+        }
+      },
+      "references": ["BIOME:alexscaves:candy_cavity"],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "STRUCTURE:alexscaves:dino_bowl",
+      "title": "Dino Bowl",
+      "summary": {
+        "text": "Dino Bowl é uma estrutura de Alex's Caves associada pelo datapack a Cavernas Primordiais e registrada no runtime como alexscaves:dino_bowl.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:structure/alexscaves:dino_bowl"},
+          {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/dino_bowl.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack restringe Dino Bowl a alexscaves:primordial_caves e a inclui na etapa de geração bruta. Parâmetros numéricos permanecem definidos pelo provider e pelo runtime.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/dino_bowl.json"}
+          ]
+        },
+        "contexto": {
+          "text": "A estrutura integra o conteúdo de exploração de Cavernas Primordiais; a referência editorial ao bioma preserva essa relação sem duplicar a ficha do ambiente.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/alexscaves/worldgen/structure/dino_bowl.json"}
+          ]
+        }
+      },
+      "references": ["BIOME:alexscaves:primordial_caves"],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

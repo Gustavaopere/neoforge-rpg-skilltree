@@ -1,24 +1,22 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
-import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.rpgskilltree.core.A0021A0040MasteryPolicy;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategory;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.WeakHashMap;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
@@ -33,14 +31,11 @@ import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 
 /**
- * Feeds the canonical mastery lanes used by A0025/A0031/A0037 gates.
+ * Feeds the canonical finite-discovery mastery lanes used by A0025/A0031/A0037 gates.
  * Epic Fight's generic family mastery remains untouched; these aliases only bridge the canonical gates.
  */
 public final class A0021A0040MasteryHooks {
     private static final String EPIC_POST_ID = "rpgskilltree:a0021_a0040/mastery";
-    private static final TagKey<Item> HAMMERS = tag("hammers");
-    private static final TagKey<Item> MACES = tag("maces");
-    private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final WeakHashMap<DamageSource, Map<String, WeaponFamily>> VANILLA_PENDING = new WeakHashMap<>();
     private static boolean registered;
 
@@ -66,15 +61,10 @@ public final class A0021A0040MasteryHooks {
             EpicFightCapabilities.getItemStackCapability(event.getDamageSource().getUsedItem())
         );
         if (family.isEmpty()) return;
-        award(
-            player,
-            family.get(),
-            event.getModifiedDamage(),
-            "epicfight-gate/" + player.level().getGameTime() + "/" + event.getTarget().getUUID()
-        );
+        award(player, event.getTarget(), family.get(), event.getModifiedDamage());
     }
 
-    /** Capture the exact weapon family before the hit so post-damage cannot be fooled by a hand swap. */
+    /** Capture the exact vanilla fallback family before the hit so a post-damage hand swap cannot spoof it. */
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onVanillaIncoming(LivingIncomingDamageEvent event) {
         if (!(event.getSource().getDirectEntity() instanceof ServerPlayer player)
@@ -84,7 +74,7 @@ public final class A0021A0040MasteryHooks {
         ItemStack stack = player.getMainHandItem();
         CapabilityItem capability = EpicFightCapabilities.getItemStackCapability(stack);
         if (providerFamily(capability).isPresent()) return;
-        Optional<WeaponFamily> family = tagFamily(stack);
+        Optional<WeaponFamily> family = vanillaFallbackFamily(stack);
         if (family.isEmpty()) return;
         synchronized (VANILLA_PENDING) {
             VANILLA_PENDING.computeIfAbsent(event.getSource(), ignored -> new HashMap<>())
@@ -104,12 +94,7 @@ public final class A0021A0040MasteryHooks {
             if (byTarget.isEmpty()) VANILLA_PENDING.remove(event.getSource());
         }
         if (family == null || event.getNewDamage() <= 0.0F || !hostile(player, event.getEntity())) return;
-        award(
-            player,
-            family,
-            event.getNewDamage(),
-            "vanilla-gate/" + player.level().getGameTime() + "/" + targetId
-        );
+        award(player, event.getEntity(), family, event.getNewDamage());
     }
 
     @SubscribeEvent
@@ -140,11 +125,23 @@ public final class A0021A0040MasteryHooks {
         }
     }
 
-    private static void award(ServerPlayer player, WeaponFamily family, double damage, String actionId) {
-        var awards = A0021A0040MasteryPolicy.forConfirmedDirectHit(
-            family, true, true, damage, actionId
+    private static void award(
+        ServerPlayer player,
+        LivingEntity target,
+        WeaponFamily family,
+        double damage
+    ) {
+        String entityTypeId = BuiltInRegistries.ENTITY_TYPE.getKey(target.getType()).toString();
+        Optional<String> discoveryKey = A0021A0040MasteryPolicy.discoveryKey(family, entityTypeId);
+        if (discoveryKey.isEmpty()) return;
+        String key = discoveryKey.get();
+        boolean newlyDiscovered = !PlayerProgressionRuntime.get(player).discoveries().contains(key);
+        var awards = A0021A0040MasteryPolicy.forDistinctHostileTypeDiscovery(
+            family, true, true, damage, entityTypeId, newlyDiscovered
         );
-        if (!awards.isEmpty()) PlayerProgressionRuntime.awardMastery(player, awards);
+        if (!awards.isEmpty()) {
+            PlayerProgressionRuntime.awardMasteryAndDiscoveries(player, awards, List.of(key));
+        }
     }
 
     private static Optional<WeaponFamily> providerFamily(CapabilityItem capability) {
@@ -160,15 +157,9 @@ public final class A0021A0040MasteryHooks {
         };
     }
 
-    private static Optional<WeaponFamily> tagFamily(ItemStack stack) {
-        if (stack.is(HAMMERS)) return Optional.of(WeaponFamily.HAMMER);
-        if (stack.is(MACES)) return Optional.of(WeaponFamily.MACE);
-        if (stack.is(SCYTHES)) return Optional.of(WeaponFamily.SCYTHE);
-        return Optional.empty();
-    }
-
-    private static TagKey<Item> tag(String path) {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, path));
+    /** Vanilla fallback exists only for the exact Minecraft mace identity; SCYTHE has no vanilla fallback. */
+    private static Optional<WeaponFamily> vanillaFallbackFamily(ItemStack stack) {
+        return stack.is(Items.MACE) ? Optional.of(WeaponFamily.MACE) : Optional.empty();
     }
 
     private static boolean hostile(ServerPlayer player, LivingEntity target) {

@@ -80,3 +80,13 @@ A0004 é a Notable de Ímpeto da árvore de Espadas. Exige A0003 ≥2. Hit diret
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria para registrar a autoria direta e essas exclusions; re-fetch confirmou persistência.
 - **Fail-closed:** sem receipt marcial direto do jogador, nenhum adapter converte Backlash, companion, hazard ou story event em Ímpeto.
 - **Estado histórico:** implementação da #221 já mergeada; nenhuma mudança runtime neste ciclo.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** armas Simply participam somente quando Epic Fight Compat resolve `SWORD` e o evento pertence ao root direto do jogador.
+- **Ímpeto:** no máximo 1 ganho por root, independentemente de fan-out, AoE, double-strike ou ability do provider.
+- **Deflect:** o Implicit de Claymore/Longsword não conta como defesa técnica de A0004 sem receipt causal explicitamente adaptado; permanece FAIL-CLOSED.
+- **Provider-native:** Implicits, Uniques, Runic/Awakening/gems e traits não escrevem Ímpeto.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; Simply More Unique não comprovada permanece fail-closed.
+- **Notion:** provider/hook/fallback/regra atualizados e re-fetch PASS.
+- **Runtime:** inalterado; prova provider-present fica para Chat 2.

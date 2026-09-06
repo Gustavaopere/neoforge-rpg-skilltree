@@ -83,3 +83,13 @@
 - **Fallback/fail-closed:** nenhum bridge adicional. Sem ação direta + família `SWORD` provider-native, o bônus não aplica.
 - **Notion:** nenhuma mutação necessária nesta perk; a exigência existente de ataque direto já expressa o boundary.
 - **Estado histórico:** PR #221 já está mergeada; a implementação A0001 está confirmada. Esta retroauditoria não altera runtime.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** Simply Swords 1.70.2, Simply More 1.3.0 ALPHA, Integrated Simply Swords 1.4.0 e Simply Swords: Cataclysm 1.0.2 entram por cobertura universal somente quando Epic Fight Compat 1.1.0 resolve a arma como `SWORD`.
+- **Authority:** Implicit, Runic Power, Awakening, sockets/gem powers, Unique abilities e traits de addon permanecem provider-owned; A0001 não rerrola, reescala nem dispara esses efeitos.
+- **Deduplicação:** somente o root direto do jogador recebe A0001; proc, ability hit ou dano derivado não cria novo root MARTIAL.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; tooltip nunca é fonte de classificação ou estado.
+- **Simply More alpha:** Unique cujo efeito exato não for comprovado no artifact instalado permanece `SEM HOOK SEGURO / FAIL-CLOSED`.
+- **Notion:** `Provider/Mods`, `Hook`, `Fallback` e `Regra` atualizados; re-fetch pós-escrita PASS.
+- **Runtime:** não alterado pelo Chat 1. Chat 2 deve validar o stack real Simply Swords × Epic Fight Compat em teste provider-present.

@@ -1,3 +1,5 @@
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
+
 # 13. Projetos próprios do modpack — integração canônica para perks
 
 A partir de 30/08/2026, os quatro projetos próprios fazem parte da auditoria obrigatória das perks.
@@ -24,7 +26,7 @@ Este capítulo é apenas o recorte de **Gameplay e Sistemas**. Para decidir `Pro
 - `GeologicalDepositSource` é uma SPI read-only apropriada para descoberta/prospecção bounded; o core não cria scanner concorrente.
 - Cold Sweat permanece autoridade de temperatura corporal; Destroy conserva sua autoridade de poluição.
 - Sable/Aeronautics integram pressão física sem inventar cabine selada quando a API não prova o estado.
-- **RNS parcial/fail-closed:** identidade hidrotermal Cu/Fe/Au existe, mas ownership de worldgen físico continua RNS até placement Volcanoes ser provado.
+- **RNS parcial/fail-closed:** Volcanoes já prova placement físico bounded/determinístico de Cu/Fe/Au; RNS continua authority de prospecção/native metal worldgen até o handoff seletivo de ownership ser fechado.
 - Sem Mastery por tick de gás, pressão, calor, tremor ou mera permanência ambiental.
 
 ## Enshrouded — Shroud, Exposure, Corrupted Ecology e Flame
@@ -32,9 +34,9 @@ Este capítulo é apenas o recorte de **Gameplay e Sistemas**. Para decidir `Pro
 [Dossiê completo](../projects/03-enshrouded.md)
 
 - **Canônico:** Shroud Field persistente/bounded, `ShroudQuery`, Terrain Corruption via `MutationAuthority`, Exposure/Madness/Deadly Shroud/Red Sludge e ecologia corrompida.
-- **Flame Progression parcial:** Flame State, Flame Altar e Level 1 Ritual estão fechados; Sanctuary ainda está aberto.
+- **Flame Progression canônica:** Flame State, Flame Altar, Sanctuary/Flame Ward e Level 1 Ritual estão fechados.
 - `FlamePassageQuery` é boundary real; lookup incerto falha fechado.
-- Lich/Story, Client Experience, Integrations e Hardening ainda não podem ser usados como provider concluído.
+- **06.01 Story State é canônico** em `main@77552a3d...`; Boss Provider/manifestação/Lich Skull e o restante de Lich & Story, Client Experience, Integrations e Hardening não podem ser promovidos em bloco.
 - Shroud/Exposure não são Black Arcana Corruption/Strain.
 - Sem Mastery por tick de exposição ou edge-dancing.
 

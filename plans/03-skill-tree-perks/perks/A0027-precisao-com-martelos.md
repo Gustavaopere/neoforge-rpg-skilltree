@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após auditoria retroativa.
-- **Implementação:** presente no resolver crítico; confirmação depende das correções de família HAMMER de A0025.
+- **Implementação:** VALIDADA EM CI na PR #242; confirmação definitiva após merge em `main`.
 - **Notion:** `3c569db9-f0db-816c-905b-c0b6df7a8fa7`.
 
 ## Contrato canônico
@@ -23,14 +23,21 @@
 6. PT-BR: PASS.
 7. Notion: PASS após boundary causal.
 8. NeoVitae: PASS.
-9. Providers: PASS de design; depende da classificação HAMMER corrigida.
+9. Providers: PASS — classificação HAMMER corrigida na PR #242.
 
 ## Evidência e boundaries
 
-- `A0021A0040EpicFightHooks` reutiliza `A0001A0020CriticalService`.
+- `A0021A0040EpicFightHooks` reutiliza `A0001A0020CriticalService`/resolver crítico canônico.
+- HAMMER só é aceito quando a categoria Epic Fight comprova a família; a tag paralela foi removida.
 - `ARCANE_BACKLASH` e ataques de allies/bodyguards Mobstein não entram no resolver nem herdam crítico do dono.
 - Volcanoes/Enshrouded não fornecem critical receipt.
 
 ## Pendências
 
-Nenhuma exclusiva de A0027. `P-A0025-01` deve ser resolvida para garantir que a família HAMMER usada aqui seja exclusivamente provider-native.
+Nenhuma exclusiva ou herdada bloqueante após a resolução de `P-A0025-01`.
+
+## Chat 2 — implementação e regressão — PR #242
+
+- Uma única resolução crítica/root action foi preservada.
+- Não foi criado fallback de HAMMER por nome, material, dano, impacto ou tag RPG.
+- CI #2192 validou o runtime antes do fechamento documental.

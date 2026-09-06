@@ -9,10 +9,13 @@ EXPECTED = (
     "ars_nouveau",
     "epicfight",
     "cold_sweat",
+    "create",
     "goety",
     "malum",
     "eidolon",
     "identity2",
+    "minecolonies",
+    "productivemetalworks",
 )
 PREFIX = "Optional integrations: "
 

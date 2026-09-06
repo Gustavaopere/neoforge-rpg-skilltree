@@ -1,0 +1,10 @@
+{
+  "spell": "irons_spellbooks:magic_arrow",
+  "target_mode": "HOSTILE_ENTITY",
+  "priority": 70,
+  "min_range": 2.0,
+  "max_range": 32.0,
+  "friendly_fire_radius": 0.0,
+  "world_effect": false,
+  "ally_safe": false
+}

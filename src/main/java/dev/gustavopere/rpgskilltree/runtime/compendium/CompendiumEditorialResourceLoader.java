@@ -54,7 +54,7 @@ public final class CompendiumEditorialResourceLoader {
     private static final Pattern SECTION_ID = Pattern.compile("^[a-z0-9_][a-z0-9_.-]*$");
     private static final Pattern PLACEHOLDER = Pattern.compile(
         "\\b(?:TODO|TBD|FIXME|PLACEHOLDER)\\b",
-        Pattern.CASE_INSENSITIVE
+        Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS
     );
     private static final Set<CompendiumEntryKind> SUPPORTED_KINDS = EnumSet.of(
         CompendiumEntryKind.ENTITY,
@@ -72,7 +72,25 @@ public final class CompendiumEditorialResourceLoader {
         ResourceManager resourceManager,
         Collection<CompendiumEntry> technicalEntries
     ) {
+        return loadInternal(resourceManager, technicalEntries, null);
+    }
+
+    public static CompendiumEditorialSnapshot load(
+        ResourceManager resourceManager,
+        Collection<CompendiumEntry> technicalEntries,
+        Set<String> loadedProviderNamespaces
+    ) {
+        Objects.requireNonNull(loadedProviderNamespaces, "loadedProviderNamespaces");
+        return loadInternal(resourceManager, technicalEntries, Set.copyOf(loadedProviderNamespaces));
+    }
+
+    private static CompendiumEditorialSnapshot loadInternal(
+        ResourceManager resourceManager,
+        Collection<CompendiumEntry> technicalEntries,
+        Set<String> loadedProviderNamespaces
+    ) {
         Objects.requireNonNull(resourceManager, "resourceManager");
+        Objects.requireNonNull(technicalEntries, "technicalEntries");
         Map<ResourceLocation, JsonElement> parsed = new LinkedHashMap<>();
         Map<ResourceLocation, Resource> resources = resourceManager.listResources(
             ROOT,
@@ -82,6 +100,10 @@ public final class CompendiumEditorialResourceLoader {
             .sorted(Map.Entry.comparingByKey(Comparator.comparing(ResourceLocation::toString)))
             .forEach(entry -> {
                 ResourceLocation id = entry.getKey();
+                if (loadedProviderNamespaces != null
+                    && !loadedProviderNamespaces.contains(physicalPackageNamespace(id))) {
+                    return;
+                }
                 try (var reader = entry.getValue().openAsReader()) {
                     parsed.put(id, JsonParser.parseReader(reader));
                 } catch (IOException | RuntimeException failure) {
@@ -90,6 +112,28 @@ public final class CompendiumEditorialResourceLoader {
                 }
             });
         return prepare(parsed, technicalEntries);
+    }
+
+    public static CompendiumEditorialSnapshot prepareForLoadedProviders(
+        Map<ResourceLocation, JsonElement> resources,
+        Collection<CompendiumEntry> technicalEntries,
+        Set<String> loadedProviderNamespaces
+    ) {
+        Objects.requireNonNull(resources, "resources");
+        Objects.requireNonNull(technicalEntries, "technicalEntries");
+        Set<String> loaded = Set.copyOf(
+            Objects.requireNonNull(loadedProviderNamespaces, "loadedProviderNamespaces")
+        );
+        Map<ResourceLocation, JsonElement> activeResources = new LinkedHashMap<>();
+        resources.entrySet().stream()
+            .sorted(Map.Entry.comparingByKey(Comparator.comparing(ResourceLocation::toString)))
+            .forEach(entry -> {
+                ResourceLocation source = Objects.requireNonNull(entry.getKey(), "resourceId");
+                if (loaded.contains(physicalPackageNamespace(source))) {
+                    activeResources.put(source, Objects.requireNonNull(entry.getValue(), "resourceJson"));
+                }
+            });
+        return prepare(activeResources, technicalEntries);
     }
 
     public static CompendiumEditorialSnapshot prepare(
@@ -272,19 +316,19 @@ public final class CompendiumEditorialResourceLoader {
                 );
             }
         } else {
-            if (present) {
-                throw validation(
-                    source,
-                    prefix + ".availability",
-                    editorialId(parsedId.id()) + " is present in the current technical catalog and must use RUNTIME"
-                );
-            }
             availabilityReason = requireProse(
                 raw,
                 "availability_reason",
                 source,
                 prefix + ".availability_reason"
             );
+            if (availability == EditorialAvailability.LEGACY && present) {
+                throw validation(
+                    source,
+                    prefix + ".availability",
+                    editorialId(parsedId.id()) + " is present in the current technical catalog and cannot use LEGACY"
+                );
+            }
         }
 
         try {

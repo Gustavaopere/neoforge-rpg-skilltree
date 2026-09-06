@@ -106,3 +106,13 @@ Nenhuma divergência específica identificada. Qualquer futura integração de a
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria; re-fetch confirmou persistência.
 - **Fail-closed:** origem terminal/secundária/companion ou fonte sem `AXE` inequívoca fica inelegível; não há segunda rolagem/fallback genérico.
 - **Estado histórico:** implementação da #221 já mergeada; sem alteração runtime.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** arma Simply só entra quando Epic Fight Compat resolve `AXE` para o root direto do jogador.
+- **Crítico:** Bleed, extra hit, ability damage, gem power, Accursed Rage, Blazing Brand, Mecha Pulse/Smite e outros procs não criam nova resolução crítica MARTIAL.
+- **Scaling:** Awakening/gem helpers provider-native não recebem scaling duplicado pelo RPG.
+- **Integrated/Cataclysm:** material/trait não muda autoria nem família sem capability Epic Fight.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; Simply More Unique não comprovada permanece FAIL-CLOSED.
+- **Notion:** provider/hook/fallback/regra atualizados e re-fetch PASS.
+- **Runtime:** inalterado; deduplicação provider-present fica para Chat 2.

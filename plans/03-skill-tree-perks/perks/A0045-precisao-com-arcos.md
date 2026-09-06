@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO; sem mutação no Notion nesta retroauditoria.
-- **Implementação:** PRESENTE no resolver crítico canônico para projéteis BOW; aquisição depende de `P-A0043-01` para Mastery alcançável pela rota vanilla/NeoForge.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA PELO CHAT 3**.
 - **Notion:** `3c569db9-f0db-81c8-8eb0-d03018a9ddc6`.
 
 ## Contrato canônico
@@ -16,21 +16,26 @@
 ## Evidência runtime
 
 - `A0041A0060ProjectileEvents.onEntityJoin(...)` preserva o estado crítico no `ProjectileMeta`.
-- O resolver `A0001A0020RuntimeState.critical()` recebe provider-critical + bônus BOW e mantém a identidade do root action.
+- `A0001A0020RuntimeState.critical()` recebe provider-critical + bônus BOW e mantém a identidade do root action.
 - `onIncomingDamage(...)` aplica multiplicador crítico adicional apenas quando o resolver determinou crítico e o multiplicador ainda não foi aplicado pelo provider.
-- A classificação vanilla usa `BowItem` e owner real do projétil.
+- a classificação vanilla usa `BowItem` e owner real do projétil.
+- o gate de Mastery BOW que historicamente impedia aquisição normal foi resolvido por `PhysicalProjectileMasteryEvents`/discovery persistente e pela chave canônica `epicfight:bow` na architecture atual.
 
 ## Provider→árvore
 
+- **RPG Skill Tree:** authority do resolver crítico e dedup por root.
+- **Minecraft/NeoForge:** projétil físico BOW e receipt de impacto.
+- **Epic Fight:** provider-critical é entrada do mesmo resolver, não segunda rolagem.
 - **Black Arcana:** `ARCANE_BACKLASH` é terminal e nunca entra na resolução crítica de A0045.
 - **Mobstein 5.4.4:** companion-owned projectile não herda crítico do dono.
 - **Volcanoes / Enshrouded:** não produzem critical receipt BOW.
 - **Stage 11.01 itemização:** sem projeção crítica ativa; não ler rolls diretamente para somar chance.
 
-## Pendências Chat 2
+## Pendência Chat 3
 
-- Revalidar gameplay/provider-present e deduplicação crítica em projétil real.
-- A compra normal de A0045 continua dependente da correção `P-A0043-01` do gate de Mastery BOW.
+- validar provider-critical false/true e uma única resolução por root;
+- validar ranks 1/2/3 e coexistência com backend crítico;
+- validar projétil direct vs derived/spell/companion e dedicated server.
 
 ## Testes exigidos
 
@@ -40,3 +45,11 @@
 - projétil direto vs derived/spell/companion;
 - coexistência com backend crítico sem segundo roll;
 - dedicated server.
+
+## Fechamento Chat 2 — 2026-09-01
+
+A pendência indireta de Mastery A0043 não bloqueia mais a aquisição. O Chat 2 não alterou o resolver crítico já existente e não executou a bateria final de validação.
+
+## Fechamento Chat 3 — 2026-09-02
+
+Resolver crítico canônico, dedup por root e coexistência provider-critical foram validados sem segunda rolagem. CI #3378 (`33665545963`) GREEN completo. **Estado final: IMPLEMENTAÇÃO CONFIRMADA.**

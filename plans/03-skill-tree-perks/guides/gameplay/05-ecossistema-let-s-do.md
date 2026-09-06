@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
 
 [← Índice do guia](README.md)
 
@@ -37,7 +37,7 @@ O mod também possui decoração temática para espaços de chá/café, mas a fu
 
 ## Meadow — 1.4.8
 
-`letsdo-meadow-neoforge-1.21.1-1.4.8.jar`
+`letsdo-meadow-neoforge-1.4.8.jar`
 **[Let's Do] Meadow** combina worldgen rural/alpino com **manejo de gado e produção de queijo**. O jogador encontra paisagens de pastagem, flores e estruturas temáticas, cuida do rebanho, ordenha vacas e utiliza o leite em etapas de fabricação e envelhecimento de queijo.
 A fauna bovina também é ampliada: a documentação atual apresenta **nove raças de vaca**, incluindo Highland Cattle. O mod acrescenta culturas como oat, materiais naturais, mobiliário e blocos próprios, portanto não é apenas um pacote culinário nem somente worldgen. A build `1.4.8` é a release NeoForge 1.21.1 instalada.
 
@@ -53,9 +53,9 @@ A edição instalada é especificamente a variante **Candlelight - Farm & Charm 
 **[Let's Do] Wilder Nature** é a linha de fauna do ecossistema Let's Do. A versão atual reintroduz os animais conhecidos das versões anteriores com **modelos e conteúdo retrabalhados**, distribuindo novas criaturas pelo mundo e associando a elas recursos de exploração, alimentação e ambientação natural.
 O projeto é classificado simultaneamente como Mobs, World Gen, Food e Adventure/RPG, refletindo que os animais não funcionam apenas como decoração. A build `1.1.5` é a release NeoForge 1.21.1 publicada em 30/07/2026.
 
-## AnimalHusbandry — 0.4.0
+## AnimalHusbandry — 0.4.1
 
-`AnimalHusbandry-neoforge-0.4.0.jar`
+`AnimalHusbandry-neoforge-0.4.1.jar`
 **AnimalHusbandry** transforma reprodução vanilla em um sistema persistente de **manejo, saúde e genética**. Animais possuem traços que podem ser transmitidos aos descendentes, o sistema acompanha linhagem e aplica consequências de **inbreeding**, e a reprodução utiliza períodos de gestação específicos por espécie em vez de gerar filhotes imediatamente.
-A camada de cuidado inclui saúde/doenças e interação com recursos de curral. Na versão `0.4.0`, galinhas ganharam **ninhos e incubação de ovos**, e a IA/pathfinding foi ampliada para que animais consigam localizar e utilizar recursos de manejo acessíveis no recinto. Isso permite que layout do curral e disponibilidade de infraestrutura façam parte do sistema.
-O mod é, portanto, uma simulação própria de husbandry/genética e não apenas uma expansão de modelos de animais. A build NeoForge 1.21.1 instalada é `0.4.0` e depende de Architectury API.
+A camada de cuidado inclui saúde/doenças e interação com recursos de curral. Na versão `0.4.1`, galinhas ganharam **ninhos e incubação de ovos**, e a IA/pathfinding foi ampliada para que animais consigam localizar e utilizar recursos de manejo acessíveis no recinto. Isso permite que layout do curral e disponibilidade de infraestrutura façam parte do sistema.
+O mod é, portanto, uma simulação própria de husbandry/genética e não apenas uma expansão de modelos de animais. A build NeoForge 1.21.1 instalada é `0.4.1` e depende de Architectury API.

@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
 
 [← Índice do guia](README.md)
 
@@ -31,17 +31,17 @@ A build instalada é `2.0.4` para NeoForge 1.21.1 e exige Spore 2.2 ou superior.
 **Legendary Monsters** adiciona uma camada de encontros de **mid e late game** formada por bosses, minibosses, estruturas próprias e equipamentos obtidos dessas lutas. A proposta é inserir desafios especiais no mundo sem substituir os mobs vanilla: estruturas e arenas levam a inimigos com padrões próprios e recompensas associadas.
 O projeto também inclui armas e armaduras ligadas ao conteúdo dos bosses e continua recebendo ajustes de combate, spawn e estruturas. O arquivo instalado é a release pública **2.2.2 para NeoForge 1.21.1**, publicada em 23/08/2026; o metadata interno do JAR declara apenas `1.21.1` como runtime version, e por isso o guia mantém filename/publicação e runtime separados. A expansão mágica `Legendary Spellbooks 0.3.2` permanece documentada no Guia de Magia.
 
-## Ice And Fire Community Edition — 2.1.1
+## Ice And Fire Community Edition — 2.1.2
 
-`iceandfire-2.1.1.jar`
+`iceandfire-2.1.2.jar`
 **IceAndFire Community Edition** é a continuação comunitária do ecossistema Ice and Fire para versões modernas. O mod adiciona **dragões elementais, criaturas míticas, ninhos/covis, estruturas, materiais, armas, armaduras e o Dragon Forge**, formando uma linha extensa de exploração, combate e criação de criaturas.
-Dragões possuem crescimento, domesticação, montaria e recursos próprios; outras criaturas míticas também têm drops e equipamentos associados. O fork comunitário inclui rewrites, otimizações e conteúdo novo sobre a base clássica. A build `2.1.1` é a release NeoForge 1.21.1 instalada, publicada em 19/08/2026, e serve de mod-base para Dragon Care, Dread Land e bridges específicas presentes no pack.
+Dragões possuem crescimento, domesticação, montaria e recursos próprios; outras criaturas míticas também têm drops e equipamentos associados. O fork comunitário inclui rewrites, otimizações e conteúdo novo sobre a base clássica. A build `2.1.2` é a release NeoForge 1.21.1 instalada, publicada em 19/08/2026, e serve de mod-base para Dragon Care, Dread Land e bridges específicas presentes no pack.
 
-## Ice And Fire: Dragon Care — runtime 1.3.0 - 1.21.1v
+## Ice And Fire: Dragon Care — 1.3.1 - 1.21.1v
 
-`Ice and Fire - Dragon Care-1.3.0 - 1.21.1v.jar`
+`Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar`
 **Dragon Care** transforma dragões domesticados do Ice And Fire CE em criaturas de manejo prolongado. O addon acrescenta **bonding**, alimentação e rotinas de cuidado, ferramentas veterinárias, limpeza e formas de obter determinados recursos sem matar o animal.
-A proposta é deslocar o dragão domesticado de uma simples montaria/arma para um companheiro que exige manutenção e relação contínua com o jogador. A build `1.3.0 - 1.21.1v` é a release NeoForge 1.21.1 instalada, publicada em 03/08/2026, e depende diretamente do Ice And Fire Community Edition.
+A proposta é deslocar o dragão domesticado de uma simples montaria/arma para um companheiro que exige manutenção e relação contínua com o jogador. A build `1.3.1 - 1.21.1v` é a release NeoForge 1.21.1 instalada, publicada em 03/08/2026, e depende diretamente do Ice And Fire Community Edition.
 
 ## Ice And Fire: Dread Land — 0.1.2 beta
 
@@ -49,11 +49,11 @@ A proposta é deslocar o dragão domesticado de uma simples montaria/arma para u
 **Ice And Fire: Dread Land** adiciona uma dimensão de aventura própria ligada ao Ice And Fire CE. A Dread Land é dividida em **quatro regiões/reinos temáticos — Iceland, Fireland, Lightning e Dreadland —**, com estruturas, dungeons, chaves e uma progressão baseada em acesso a áreas e portal.
 O addon amplia o conteúdo de exploração do mod-base em vez de apenas adicionar mais um mob. A build `0.1.2` é beta NeoForge 1.21.1 publicada em 22/08/2026; essa classificação representa maturidade/WIP do conteúdo, não dúvida sobre a presença ou identidade do JAR instalado.
 
-## Alex's Mobs Continued — 2.1.8
+## Alex's Mobs Continued — 2.1.9
 
-`alexsmobs-2.1.8-neoforge+1.21.1.jar`
+`alexsmobs-2.1.9-neoforge+1.21.1.jar`
 **Alex's Mobs Continued** mantém o conteúdo de Alex's Mobs disponível nas versões modernas sem redesenhar ou rebalancear o roster original. O projeto declara cerca de **116 animais e monstros**, cada um com modelo, animação, IA e comportamento próprios, distribuídos por diferentes ambientes.
-As criaturas não funcionam apenas como decoração: há relações ecológicas, métodos específicos de tame/breeding, montarias, capturas, drops, equipamentos e itens utilitários associados. O **Animal Dictionary** continua servindo como referência interna para descobrir comportamento e interações. A build `2.1.8` é a versão atualmente instalada para NeoForge 1.21.1.
+As criaturas não funcionam apenas como decoração: há relações ecológicas, métodos específicos de tame/breeding, montarias, capturas, drops, equipamentos e itens utilitários associados. O **Animal Dictionary** continua servindo como referência interna para descobrir comportamento e interações. A build `2.1.9` é a versão atualmente instalada para NeoForge 1.21.1.
 
 ## Mowzie's Mobs — 1.8.2
 
@@ -79,11 +79,11 @@ O projeto também prevê conteúdo adicional como boss music discs, mas o guia r
 **Companions!** adiciona criaturas domesticáveis voltadas a exploração e combate, cada uma com **habilidades próprias**, além de mobs hostis, armas e um boss. Companheiros possuem estados de comportamento — wandering, sitting e following — e podem ser curados com Small/Great Essence obtidas de inimigos hostis; summons gerados por outros companions seguem regras separadas.
 O sistema é configurável e transforma aliados em uma camada jogável própria, não apenas pets cosméticos. A build `1.3.2` é a release NeoForge 1.21.1 instalada, publicada em 08/08/2026.
 
-## Enhanced AI — 4.2.2.1
+## Enhanced AI — 4.2.2.5
 
-`enhancedai-4.2.2.1.jar`
+`enhancedai-4.2.2.5.jar`
 **Enhanced AI** altera capacidades e decisões de mobs hostis para tornar perseguição e combate menos passivos. O projeto é conhecido por comportamentos como **creepers abrindo caminho/breaching, zombies minerando e skeletons atacando de forma mais eficiente**, além de módulos configuráveis de perseguição, interação com o ambiente e patrulha.
-A intensidade dessas mudanças pode ser controlada por configuração. O mod altera comportamento de gameplay; não deve ser confundido com `AI-Improvements`, cujo papel principal é reduzir custo de processamento de IA. A build `4.2.2.1` é a release NeoForge 1.21.1 instalada.
+A intensidade dessas mudanças pode ser controlada por configuração. O mod altera comportamento de gameplay; não deve ser confundido com `AI-Improvements`, cujo papel principal é reduzir custo de processamento de IA. A build `4.2.2.5` é a release NeoForge 1.21.1 instalada.
 
 ## Nyf's Spiders — 3.0.1
 
@@ -96,3 +96,7 @@ A linha 3.0 migrou a implementação para **Advanced Wall Climber API**, mantend
 `mob_ragdoll_corpse-1.1.5.jar`
 **Ragdoll mob corpses** faz criaturas mortas deixarem corpos físicos ragdoll em vez de simplesmente desaparecerem após a animação de morte. Os cadáveres entram no mesmo tipo de apresentação física do stack Sable e podem permanecer como objetos pós-morte interativos.
 O projeto também descreve usos como carregar presas/companheiros e enterrar companheiros, fazendo o corpo persistente participar da ambientação e da interação após a morte. A build instalada é `1.1.5` para NeoForge 1.21.1.
+
+## Nota operacional — duplicidade `alexsmobs`
+
+A modlist atual contém simultaneamente `alexsmobs-1.22.9.jar` (**Alex's Mobs**) e `alexsmobs-2.1.9-neoforge+1.21.1.jar` (**Alex's Mobs Continued**), ambos declarando `modid alexsmobs`. O segundo permanece descrito neste capítulo; o primeiro foi incorporado no [capítulo 16](16-novos-modulos-gameplay-e-sistemas.md). **Esse estado bloqueia o startup do NeoForge.** Antes de qualquer integração, a instalação deve manter exatamente um desses JARs (ou um repack legítimo com mod ID distinto); não existe registry/JAR resolution ou fail-closed em runtime que torne os dois IDs idênticos carregáveis simultaneamente.

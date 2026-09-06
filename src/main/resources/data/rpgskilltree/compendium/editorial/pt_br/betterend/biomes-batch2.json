@@ -1,0 +1,250 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "betterend",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:betterend:flower_islets",
+      "title": "Flower Islets",
+      "summary": {
+        "text": "Flower Islets é um bioma do End registrado por BetterEnd: New Dawn como betterend:flower_islets. O provider não fornece uma chave de nome para este bioma nos assets pt-BR nem en-US congelados; o título editorial é um fallback legível derivado de FlowerIsletsBiome e do registry path oficial.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:flower_islets"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/en_us.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/small_island`. O ID não aparece no conjunto registrado por `registerBiomeToggles()` no commit congelado; a ficha não converte a categoria de placement em tamanho, altitude, frequência ou geometria fixa.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/small_island.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:waterfall_ponds",
+      "title": "Waterfall Ponds",
+      "summary": {
+        "text": "Waterfall Ponds é um bioma do End registrado por BetterEnd: New Dawn como betterend:waterfall_ponds. O provider não fornece uma chave de nome para este bioma nos assets pt-BR nem en-US congelados; o título editorial é um fallback legível derivado de WaterfallPondsBiome e do registry path oficial.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:waterfall_ponds"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/en_us.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/small_island`. O ID não aparece no conjunto registrado por `registerBiomeToggles()` no commit congelado; a ficha não transforma o nome ou a categoria de placement em tamanho, altitude, frequência ou geometria fixa.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/small_island.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:lantern_woods",
+      "title": "Madeiras Lanterna",
+      "summary": {
+        "text": "Madeiras Lanterna é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:lantern_woods.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:lantern_woods"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/land`, e o provider registra o ID no conjunto de biomas configuráveis. A ocorrência concreta permanece condicionada à configuração e ao worldgen ativos; a categoria não fixa tamanho, posição ou frequência em prosa.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:megalake",
+      "title": "Megalake",
+      "summary": {
+        "text": "Megalake é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:megalake.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:megalake"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/land`, e o ID integra o conjunto configurável do BetterEnd. O nome Megalake não é usado para inferir dimensões, profundidade, frequência ou geometria; a ocorrência efetiva depende da configuração e do worldgen carregados.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:shadow_forest",
+      "title": "Floresta da Sombra",
+      "summary": {
+        "text": "Floresta da Sombra é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:shadow_forest.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:shadow_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/land`, e o ID integra o conjunto configurável do provider. A ficha preserva somente essas relações comprovadas e não deduz densidade, iluminação, frequência ou distribuição pelo título.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:sulphur_springs",
+      "title": "Fontes Sulfúricas",
+      "summary": {
+        "text": "Fontes Sulfúricas é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:sulphur_springs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:sulphur_springs"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/land`, e o ID faz parte do conjunto configurável do BetterEnd. O título não é convertido em composição química, temperatura, frequência ou outra propriedade quantitativa não sustentada pelas fontes usadas.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:umbrella_jungle",
+      "title": "Selva de Guarda-chuvas",
+      "summary": {
+        "text": "Selva de Guarda-chuvas é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:umbrella_jungle.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:umbrella_jungle"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/land`, e o provider registra o ID no conjunto configurável. A ficha não transforma o nome em densidade de vegetação, frequência, tamanho ou outra regra universal de geração.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:umbra_valley",
+      "title": "Vale Da Sombra",
+      "summary": {
+        "text": "Vale Da Sombra é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:umbra_valley.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:umbra_valley"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/land`, e o ID integra o conjunto configurável do BetterEnd. A palavra vale não é convertida em elevação, profundidade ou geometria fixa; a ocorrência concreta continua dependente do worldgen e da configuração ativos.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:megalake_grove",
+      "title": "Arvoredos de Megalake",
+      "summary": {
+        "text": "Arvoredos de Megalake é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:megalake_grove. No registry oficial, sua chave declara Megalake como bioma-base associado.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:megalake_grove"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/land`, e o ID aparece no conjunto configurável do provider. A associação declarada a Megalake é preservada sem inferir chance de adjacência, tamanho, frequência ou geometria de transição.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": ["BIOME:betterend:megalake"],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:neon_oasis",
+      "title": "Oasis Neon",
+      "summary": {
+        "text": "Oasis Neon é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:neon_oasis. No registry oficial, sua chave declara Terras Devastadas (`betterend:dust_wastelands`) como bioma-base associado.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:neon_oasis"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O datapack Wover inclui este bioma em `is_end/land`, e o ID integra o conjunto configurável do BetterEnd. A associação declarada a Dust Wastelands não é convertida em chance, frequência, posição ou forma de ocorrência em prosa.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

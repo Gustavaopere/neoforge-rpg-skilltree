@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "biomeswevegone",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:biomeswevegone:jacaranda_jungle",
+      "title": "Selva de Jacarandá",
+      "summary": {
+        "text": "Selva de Jacarandá é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:jacaranda_jungle.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:jacaranda_jungle"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O registro oficial do provider classifica este bioma como selva. A ocorrência concreta continua dependente do worldgen e das configurações ativas.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:lush_stacks",
+      "title": "Pilhas Exuberantes",
+      "summary": {
+        "text": "Pilhas Exuberantes é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:lush_stacks.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:lush_stacks"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider associa este bioma às categorias internas de arco exuberante, oceano e flora. A ficha preserva essa taxonomia sem converter essas categorias em geometria, frequência ou distribuição fixa.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:maple_taiga",
+      "title": "Taiga de Bordo",
+      "summary": {
+        "text": "Taiga de Bordo é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:maple_taiga.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:maple_taiga"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como taiga conífera, associa-o à categoria interna de lago frio grande e o inclui nas tags vanilla de vila da taiga e posto de saqueadores. Essas tags expressam elegibilidade de worldgen, não geração garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:mojave_desert",
+      "title": "Deserto de Mojave",
+      "summary": {
+        "text": "Deserto de Mojave é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:mojave_desert.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:mojave_desert"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como deserto arenoso e o inclui nas tags vanilla de pirâmide do deserto e vila do deserto. Essas tags expressam elegibilidade estrutural, não presença garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:orchard",
+      "title": "Pomar",
+      "summary": {
+        "text": "Pomar é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:orchard.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:orchard"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como floresta floral com vegetação densa e o inclui nas tags vanilla de vila das planícies e posto de saqueadores. Essas tags expressam elegibilidade estrutural, não geração garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:overgrowth_woodlands",
+      "title": "Bosques Cobertos de Vegetação",
+      "summary": {
+        "text": "Bosques Cobertos de Vegetação é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:overgrowth_woodlands.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:overgrowth_woodlands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como floresta com vegetação densa, associa-o à categoria interna de lago frio grande e o inclui nas tags vanilla de vila das planícies e posto de saqueadores. A ficha não congela frequência, posição ou densidade numérica.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:pale_bog",
+      "title": "Pântano Pálido",
+      "summary": {
+        "text": "Pântano Pálido é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:pale_bog.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:pale_bog"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como pântano e o inclui na tag estrutural própria do BWG para Bog Trial. A tag indica elegibilidade de worldgen, não presença garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:prairie",
+      "title": "Pradaria",
+      "summary": {
+        "text": "Pradaria é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:prairie.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:prairie"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como planície com vegetação densa e o inclui na tag estrutural própria do BWG para Prairie House. A tag indica elegibilidade de worldgen, não geração garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:pumpkin_valley",
+      "title": "Vale da Abóbora",
+      "summary": {
+        "text": "Vale da Abóbora é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:pumpkin_valley.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:pumpkin_valley"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como planície com vegetação densa e o inclui na tag estrutural própria do BWG para Village Pumpkin Patch. A tag indica elegibilidade de worldgen, não presença garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:biomeswevegone:rainbow_beach",
+      "title": "Praia do Arco-Íris",
+      "summary": {
+        "text": "Praia do Arco-Íris é um bioma do Overworld registrado por Oh The Biomes We've Gone com o ID biomeswevegone:rainbow_beach.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "biomeswevegone:biome/biomeswevegone:rainbow_beach"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/resources/assets/biomeswevegone/lang/pt_br.json"}
+        ]
+      },
+      "sections": {"worldgen": {"text": "O provider classifica este bioma como praia arenosa e o inclui na tag vanilla de tesouro enterrado. Essa tag expressa elegibilidade estrutural, não geração garantida.", "sources": [{"type": "OFFICIAL_CODE", "ref": "https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/3040862ddd02c2487c946cac2803502e59508062/Common/src/main/java/net/potionstudios/biomeswevegone/world/level/levelgen/biome/BWGBiomes.java"}]}},
+      "references": [], "review_status": "REVIEWED", "availability": "RUNTIME"
+    }
+  ]
+}

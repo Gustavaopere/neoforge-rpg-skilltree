@@ -1,0 +1,363 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "minecraft",
+  "kind": "FLORA",
+  "entries": [
+    {
+      "entry_id": "FLORA:minecraft:cornflower",
+      "title": "Centáurea",
+      "summary": {
+        "text": "Centáurea é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência explícita dos datapacks e do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:cornflower"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Integra o conjunto vanilla de flores pequenas, que por sua vez pertence ao conjunto geral de flores. A classificação editorial não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Sua ocorrência concreta depende do worldgen, dos biomas e dos datapacks ativos; a ficha não fixa frequência nem local universal de geração.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma centáurea em corante azul.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/blue_dye_from_cornflower.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:lily_of_the_valley",
+      "title": "Lírio-do-vale",
+      "summary": {
+        "text": "Lírio-do-vale é uma flor pequena vanilla registrada como bloco e tratada pelo Compêndio como flora a partir de evidência explícita dos datapacks e do runtime.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:lily_of_the_valley"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Integra o conjunto vanilla de flores pequenas, que por sua vez pertence ao conjunto geral de flores. A classificação editorial não depende apenas do nome do registry.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Sua ocorrência concreta depende do worldgen, dos biomas e dos datapacks ativos; a ficha não fixa frequência nem local universal de geração.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma lírio-do-vale em corante branco.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/white_dye_from_lily_of_the_valley.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:wither_rose",
+      "title": "Rosa do Wither",
+      "summary": {
+        "text": "Rosa do Wither é uma flor pequena vanilla com ID próprio de bloco e classificação de flora confirmada pelos datapacks do jogo.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:wither_rose"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Integra o conjunto vanilla de flores pequenas e o conjunto geral de flores. O Compêndio mantém a identidade específica da Rosa do Wither sem reduzi-la a uma flor decorativa genérica.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "A ficha editorial não presume frequência, habitat ou método universal de obtenção apenas pela participação nos tags de flores; esses detalhes dependem das regras concretas do runtime.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "minecraft:block/minecraft:wither_rose"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma Rosa do Wither em corante preto.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/black_dye_from_wither_rose.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:torchflower",
+      "title": "Plantocha",
+      "summary": {
+        "text": "Plantocha é uma flor pequena vanilla registrada como bloco; o jogo também mantém um estado de plantio separado para seu cultivo.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:torchflower"},
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:torchflower_crop"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "A forma final integra o conjunto vanilla de flores pequenas e o conjunto geral de flores; o estado de plantio permanece um bloco técnico distinto no runtime.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"},
+            {"type": "RUNTIME", "ref": "minecraft:block/minecraft:torchflower_crop"}
+          ]
+        },
+        "cultivation": {
+          "text": "O runtime distingue a plantocha final do bloco de plantio `minecraft:torchflower_crop`; a ficha não congela em prosa duração, estágio ou condição de crescimento.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "minecraft:block/minecraft:torchflower_crop"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma plantocha em corante laranja.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/orange_dye_from_torchflower.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:sunflower",
+      "title": "Girassol",
+      "summary": {
+        "text": "Girassol é uma flor alta vanilla registrada como bloco e incluída explicitamente no conjunto de flores altas do datapack 1.21.1.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:sunflower"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Integra o conjunto vanilla de flores altas e, por composição de tags, o conjunto geral de flores.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Sua distribuição depende do worldgen, dos biomas e dos datapacks ativos; a ficha não fixa frequência nem local universal de geração.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma girassol em corante amarelo.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/yellow_dye_from_sunflower.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:lilac",
+      "title": "Lilás",
+      "summary": {
+        "text": "Lilás é uma flor alta vanilla registrada como bloco e incluída explicitamente no conjunto de flores altas do datapack 1.21.1.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:lilac"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Integra o conjunto vanilla de flores altas e, por composição de tags, o conjunto geral de flores.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Sua distribuição depende do worldgen, dos biomas e dos datapacks ativos; a ficha não fixa frequência nem local universal de geração.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma lilás em corante magenta.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/magenta_dye_from_lilac.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:peony",
+      "title": "Peônia",
+      "summary": {
+        "text": "Peônia é uma flor alta vanilla registrada como bloco e incluída explicitamente no conjunto de flores altas do datapack 1.21.1.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:peony"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Integra o conjunto vanilla de flores altas e, por composição de tags, o conjunto geral de flores.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Sua distribuição depende do worldgen, dos biomas e dos datapacks ativos; a ficha não fixa frequência nem local universal de geração.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma peônia em corante rosa.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/pink_dye_from_peony.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:rose_bush",
+      "title": "Roseira",
+      "summary": {
+        "text": "Roseira é uma flor alta vanilla registrada como bloco e incluída explicitamente no conjunto de flores altas do datapack 1.21.1.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:rose_bush"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Integra o conjunto vanilla de flores altas e, por composição de tags, o conjunto geral de flores.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "Sua distribuição depende do worldgen, dos biomas e dos datapacks ativos; a ficha não fixa frequência nem local universal de geração.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma roseira em corante vermelho.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/red_dye_from_rose_bush.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:pitcher_plant",
+      "title": "Planta ancestral",
+      "summary": {
+        "text": "Planta ancestral é uma flor alta vanilla registrada como bloco; o jogo também mantém um estado de plantio separado para seu cultivo.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:pitcher_plant"},
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:pitcher_crop"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "A forma final integra o conjunto vanilla de flores altas e o conjunto geral de flores; o estado de plantio permanece um bloco técnico distinto no runtime.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"},
+            {"type": "RUNTIME", "ref": "minecraft:block/minecraft:pitcher_crop"}
+          ]
+        },
+        "cultivation": {
+          "text": "O runtime distingue a planta ancestral final do bloco de plantio `minecraft:pitcher_crop`; a ficha não congela em prosa duração, estágio ou condição de crescimento.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "minecraft:block/minecraft:pitcher_crop"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma planta ancestral em corante ciano.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/cyan_dye_from_pitcher_plant.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "FLORA:minecraft:pink_petals",
+      "title": "Pétalas rosas",
+      "summary": {
+        "text": "Pétalas rosas são um bloco de flora vanilla incluído explicitamente no conjunto geral de flores do datapack 1.21.1.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "minecraft:block/minecraft:pink_petals"},
+          {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"}
+        ]
+      },
+      "sections": {
+        "classification": {
+          "text": "Pertencem ao conjunto geral de flores, mas não ao subconjunto de flores pequenas nem ao de flores altas; por isso permanecem uma entrada própria de flora em vez de serem tratadas como uma flor convencional por formato.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/small_flowers.json"},
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/tall_flowers.json"}
+          ]
+        },
+        "ecology": {
+          "text": "A ocorrência concreta depende do worldgen, dos biomas e dos datapacks ativos; a ficha não fixa frequência nem local universal de geração.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/tags/block/flowers.json"}
+          ]
+        },
+        "uses": {
+          "text": "O datapack vanilla de 1.21.1 inclui uma receita que transforma pétalas rosas em corante rosa.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/minecraft/recipe/pink_dye_from_pink_petals.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

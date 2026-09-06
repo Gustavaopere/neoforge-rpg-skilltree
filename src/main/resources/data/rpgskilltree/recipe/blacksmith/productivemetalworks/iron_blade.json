@@ -1,0 +1,35 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "rpgskilltree:exact_mod_version",
+      "modid": "productivemetalworks",
+      "version": "1.21.1-1.15.1"
+    }
+  ],
+  "type": "productivemetalworks:item_casting",
+  "cast": {
+    "item": "rpgskilltree:blade_cast"
+  },
+  "consume_cast": false,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_iron"
+  },
+  "result": {
+    "components": {
+      "rpgskilltree:blacksmith_part_state": {
+        "part_definition_id": "rpgskilltree:blade",
+        "material_profile_id": "rpgskilltree:iron",
+        "schema_version": 1,
+        "process_state": "CAST",
+        "workmanship_input": 0.0,
+        "provenance": {
+          "provider_id": "productivemetalworks:productivemetalworks",
+          "recipe_id": "rpgskilltree:blacksmith/productivemetalworks/iron_blade"
+        }
+      }
+    },
+    "count": 1,
+    "id": "rpgskilltree:blade"
+  }
+}

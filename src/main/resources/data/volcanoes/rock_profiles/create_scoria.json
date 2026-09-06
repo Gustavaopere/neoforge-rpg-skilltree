@@ -1,0 +1,10 @@
+{
+  "category": "IGNEOUS_EXTRUSIVE",
+  "hardness": 0.55,
+  "permeability": 0.72,
+  "thermal_conductivity": 1.2,
+  "lava_flow_multiplier": 1.35,
+  "erosion_resistance": 0.45,
+  "hydrothermal_reactivity": 0.65,
+  "blocks": ["create:scoria"]
+}

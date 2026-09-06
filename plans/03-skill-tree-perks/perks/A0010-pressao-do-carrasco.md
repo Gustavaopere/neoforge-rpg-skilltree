@@ -79,3 +79,13 @@ O fallback genérico anterior foi removido. Sem receipt server-authoritative que
 - **Notion:** `Hook`, `Fallback` e `Regra` corrigidos nesta retroauditoria para nomear explicitamente Backlash/companions; re-fetch confirmou persistência.
 - **Fail-closed:** proc, Backlash, summon/companion ou adapter sem receipt causal permanece inelegível; não atribuir dano secundário ao jogador apenas por ownership.
 - **Estado histórico:** implementação da #221 já mergeada; retroauditoria não altera runtime.
+
+## Reauditoria delta Simply Swords — 2026-08-30
+
+- **Cobertura:** armas Simply só geram Fúria quando Epic Fight Compat resolve `AXE` e o POST confirma `direct + hostile + actualDamage + autoria`.
+- **Exclusões:** Bleed, Accursed Rage, Blazing Brand, Mecha Pulse/Smite, lifesteal, stun, regen, ability hit, gem power e outros danos/procs derivados não concedem Fúria separadamente.
+- **Authority:** o RPG não altera stacks, cooldowns, healing, stun ou charge dos traits Cataclysm/Simply.
+- **Integrated:** cobertura universal por família/material; nenhum node nominal.
+- **Simply Tooltips:** `NÃO DEVE SER INTEGRADO`; Simply More Unique não comprovada permanece FAIL-CLOSED.
+- **Notion:** provider/hook/fallback/regra atualizados e re-fetch PASS.
+- **Runtime:** inalterado; teste provider-present e anti-double-count ficam para Chat 2.
