@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
 
 [← Índice do guia](README.md)
 
@@ -46,11 +46,11 @@ Assim como outros projetos Integrated, ele utiliza materiais e elementos do ecos
 **Integrated Villages** reconstrói vilas para que settlements usem **edifícios maiores, layouts mais elaborados e materiais/conteúdo provenientes do stack modded**, em vez de parecerem estruturas vanilla isoladas no meio de um mundo altamente modificado.
 As construções podem incorporar blocos e elementos de mods detectados por meio da infraestrutura Integrated API, aproximando moradia, profissões, decoração e loot do restante do pack. A build instalada é `1.3.3+1.21.1-neoforge`; o mod atua sobre estrutura/worldgen de vilas, enquanto addons como Create: Dynamic Village adicionam profissões e conteúdo temático próprios.
 
-## YUNG's Better Caves — 3.1.5
+## YUNG's Better Caves — 1.21.1-NeoForge-3.1.6
 
-`YungsBetterCaves-1.21.1-NeoForge-3.1.5.jar`
+`YungsBetterCaves-1.21.1-NeoForge-3.1.6.jar`
 **YUNG's Better Caves** altera o próprio **cave carving** do mundo, substituindo grande parte da repetição vanilla por sistemas subterrâneos maiores e mais variados. Cavernas podem assumir escalas, larguras e formatos diferentes, formar redes extensas e incluir regiões inundadas, rios e lagos subterrâneos.
-Seu papel é geométrico: ele define a forma das cavidades onde outros conteúdos subterrâneos podem aparecer. Por isso é distinto de Alex's Caves, que adiciona biomas/cavernas temáticas com mobs e materiais próprios. A build `3.1.5` é a release NeoForge 1.21.1 instalada e depende de YUNG's API.
+Seu papel é geométrico: ele define a forma das cavidades onde outros conteúdos subterrâneos podem aparecer. Por isso é distinto de Alex's Caves, que adiciona biomas/cavernas temáticas com mobs e materiais próprios. A build `1.21.1-NeoForge-3.1.6` é a release NeoForge 1.21.1 instalada e depende de YUNG's API.
 
 ## YUNG's Better Desert Temples — 4.1.5
 
@@ -112,11 +112,9 @@ Brewing Stands podem conter itens/potions que funcionam como pistas para receita
 **Stoneholm** adiciona **vilas subterrâneas de grande porte**, organizadas como assentamentos habitáveis abaixo da superfície em vez de simples salas isoladas. As estruturas combinam corredores, casas, villagers e loot, criando pontos de exploração que também funcionam como settlements reais.
 A presença de villagers faz essas estruturas participarem de mecânicas normais de comércio e população, enquanto a localização subterrânea muda completamente como são encontradas e acessadas. O JAR atual é `underground_village-neoforge-1.21.1-2.0.jar`; a ficha preserva `2.0` como versão do arquivo.
 
-## Medieval Buildings: The Nether Edition — 1.0.2
+## Remoção reconciliada — Medieval Buildings: The Nether Edition
 
-`medieval_buildings_nether_edition-1.21.1-1.0.2-neoforge.jar`
-**Medieval Buildings: The Nether Edition** distribui novas estruturas de estética medieval pelo Nether, transformando áreas abertas da dimensão em pontos de exploração construídos. As edificações funcionam como landmarks, locais de loot e encontros ambientais, sem criar uma dimensão ou sistema de progressão separado.
-Seu papel é de structure/worldgen: BetterNether e Amplified Nether alteram ambiente e terreno, enquanto este mod acrescenta construções temáticas dentro desse espaço. A build `1.0.2` é a release NeoForge 1.21.1 instalada.
+A antiga seção de `medieval_buildings_nether_edition-1.21.1-1.0.2-neoforge.jar` foi retirada da cobertura corrente porque o JAR não existe mais na modlist de 607 entradas. O registro histórico correspondente está marcado como **DELETADO** no Notion e não deve ser tratado como provider, estrutura disponível ou dependência atual.
 
 ## Create: Dynamic Village — 0.9
 

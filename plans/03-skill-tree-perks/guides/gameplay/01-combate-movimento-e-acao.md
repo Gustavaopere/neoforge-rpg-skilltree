@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
 
 [← Índice do guia](README.md)
 
@@ -24,15 +24,15 @@ Ele não substitui o sistema de combate nem cria um segundo Battle Mode: trabalh
 Dodge rolls também seguem a direção WASD relativa à câmera; attack lunges usam o alvo travado para evitar golpes avançando por um facing antigo; o corpo pode permanecer voltado ao alvo enquanto bloqueia ou carrega um spell; e a mira de bows, crossbows e itens é alinhada ao crosshair.
 O addon ainda oferece **auto-lock ao atacar um alvo não travado** e troca de alvo por flick lateral do mouse, com suporte equivalente ao right stick do Controllable. Better Lock On é opcional para parte dessas correções; quando presente, os dois mods trabalham sobre o mesmo targeting. A build NeoForge 1.21.1 instalada é `1.0.2`.
 
-## Weapons of Miracles — 2.0.176
+## Weapons of Miracles — 2.0.177
 
-`WeaponsOfMiracles-2.0.176.jar`
+`WeaponsOfMiracles-2.0.177.jar`
 **Weapons of Miracles** é uma grande expansão de conteúdo construída diretamente para Epic Fight. Ela adiciona **armas próprias, animações, movesets, skills, guardas/parries e estilos de luta** cuja lógica depende do sistema de combate do mod-base, em vez de simplesmente atribuir presets vanilla a novos itens.
-As armas funcionam como kits de combate distintos: ataques básicos, skills e animações podem alterar mobilidade, timing, defesa e sequências disponíveis. A própria linha 2.0 continua ajustando comportamentos específicos de armas e guardas; a versão `2.0.176`, publicada para NeoForge 1.21.1 em 20/08/2026, foi testada pelo projeto contra **Epic Fight 21.17.3.1**, exatamente a versão instalada no pack.
+As armas funcionam como kits de combate distintos: ataques básicos, skills e animações podem alterar mobilidade, timing, defesa e sequências disponíveis. A própria linha 2.0 continua ajustando comportamentos específicos de armas e guardas; a versão `2.0.177`, publicada para NeoForge 1.21.1 em 20/08/2026, foi testada pelo projeto contra **Epic Fight 21.17.3.1**, exatamente a versão instalada no pack.
 
-## ParCool! — 4.0.0.2
+## ParCool! — 4.0.0.3
 
-`ParCool-1.21.1-4.0.0.2.jar`
+`ParCool-1.21.1-4.0.0.3.jar`
 **ParCool** substitui a mobilidade básica do Minecraft por um sistema amplo de parkour. O jogador ganha ações como corrida rápida, vault sobre obstáculos, wall run, wall jump, agarrar e escalar paredes, cat leap, dodge, dive, crawl e outras técnicas de travessia.
 O sistema utiliza stamina e pode compartilhar o sistema de stamina do Epic Fight. Com isso, movimentação fora de combate e movimentação durante lutas passam a usar a mesma linguagem de resistência física.
 
@@ -78,11 +78,11 @@ O patch recalcula esse alinhamento para manter os braços na altura correta da v
 **Soul Fire'd** transforma soul fire em uma família de mecânicas própria, em vez de tratá-lo apenas como uma recoloração do fogo comum. O projeto altera gameplay relacionado ao fogo de almas e adiciona conteúdo de aventura/equipamento associado, fazendo entidades e itens reconhecerem esse tipo de dano/combustão de forma específica.
 Por alterar mecânicas de jogo, o mod é exigido em **cliente e servidor**. O JAR `soul-fire-d-neoforge-1.21-6.1.0.jar` é a release 6.1.0 compatível com Minecraft 1.21/1.21.1 publicada em 22/12/2025. Ele complementa combate e exploração, mas não substitui Epic Fight nem constitui um segundo overhaul geral de combate.
 
-## Punchy — 2.7d
+## Punchy — 2.7e
 
-`punchy-2.7d-neoforge-1.21.1.jar`
+`punchy-2.7e-neoforge-1.21.1.jar`
 **Punchy** adiciona feedback e animação em **primeira pessoa**, fazendo mãos e ações reagirem com movimento e física visual mais expressivos durante interação e combate. Seu foco é a apresentação da ação vista pelo próprio jogador, não um overhaul de regras de combate.
-A build `2.7d` é a release NeoForge 1.21.1 publicada em 21/08/2026. Como Epic Fight possui sua própria linguagem de animações durante Battle Mode, o pack também contém uma bridge específica entre os dois.
+A build `2.7e` é a release NeoForge 1.21.1 publicada em 21/08/2026. Como Epic Fight possui sua própria linguagem de animações durante Battle Mode, o pack também contém uma bridge específica entre os dois.
 
 ## Punchy Epic Fight Compat — 1.0.0
 
