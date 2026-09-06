@@ -53,6 +53,7 @@ import dev.gustavopere.rpgskilltree.runtime.data.TreeArchitectureReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeUnlockReloader;
 import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
 import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
+import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomyServerConfig;
 import dev.gustavopere.rpgskilltree.runtime.events.A0041A0060ProjectileEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.A0081A0100CombatEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ApothicBossBridgeEvents;
@@ -71,6 +72,7 @@ import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
@@ -82,6 +84,7 @@ public final class RpgSkillTreeMod {
     private static final Logger LOGGER = LoggerFactory.getLogger(RpgSkillTreeMod.class);
 
     public RpgSkillTreeMod(IEventBus modBus, ModContainer container) {
+        container.registerConfig(ModConfig.Type.SERVER, ColonyEconomyServerConfig.SPEC);
         VolcanoesMod.initialize(modBus, container);
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);

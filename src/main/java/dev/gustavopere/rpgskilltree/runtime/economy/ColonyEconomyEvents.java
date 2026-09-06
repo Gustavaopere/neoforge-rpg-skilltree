@@ -10,30 +10,36 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 /** Server tick bridge for bounded discrete economic settlement. Registered only behind provider gate. */
 public final class ColonyEconomyEvents {
-    public static final long DEFAULT_SETTLEMENT_INTERVAL_TICKS = 1_200L;
-
-    private static final ColonyEconomyRuntime RUNTIME = new ColonyEconomyRuntime(DEFAULT_SETTLEMENT_INTERVAL_TICKS);
+    private static ColonyEconomyRuntime runtime;
     private static final MineColoniesEconomySettlementBridge BRIDGE = new MineColoniesEconomySettlementBridge();
 
     private ColonyEconomyEvents() {}
 
     @SubscribeEvent
     public static void onServerStarted(ServerStartedEvent event) {
-        RUNTIME.reset();
+        ColonyEconomyConfigSnapshot config = ColonyEconomyServerConfig.snapshot();
+        runtime = new ColonyEconomyRuntime(config.settlementIntervalTicks());
     }
 
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
-        RUNTIME.reset();
+        runtime = null;
     }
 
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent.Post event) {
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-        if (server == null) {
+        ColonyEconomyRuntime activeRuntime = runtime;
+        if (server == null || activeRuntime == null) {
             return;
         }
+
+        ColonyEconomyConfigSnapshot config = ColonyEconomyServerConfig.snapshot();
+        if (!config.enabled()) {
+            return;
+        }
+
         long gameTime = server.overworld().getGameTime();
-        RUNTIME.tryRun(true, gameTime, () -> BRIDGE.settleNextBatch(server, gameTime));
+        activeRuntime.tryRun(true, gameTime, () -> BRIDGE.settleNextBatch(server, gameTime));
     }
 }

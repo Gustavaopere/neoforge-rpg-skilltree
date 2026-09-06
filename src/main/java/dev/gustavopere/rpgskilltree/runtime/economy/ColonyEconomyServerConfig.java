@@ -19,6 +19,7 @@ public final class ColonyEconomyServerConfig {
             .define("enabled", true);
         SETTLEMENT_INTERVAL_TICKS = builder
             .comment("Server ticks between bounded colony-economy settlement passes.")
+            .worldRestart()
             .defineInRange("settlementIntervalTicks", 1_200L, 1L, Long.MAX_VALUE);
         MAX_MUTATION_AMOUNT = builder
             .comment(
