@@ -161,6 +161,34 @@ public final class ColonyEconomySavedData extends SavedData {
             return Optional.empty();
         }
         requireMatchingFingerprint(binding, nativeFingerprints.get(key));
+        return archiveNativeKey(key);
+    }
+
+    /**
+     * Archives a binding from a trusted provider deletion event that still exposes dimension/id
+     * after MineColonies has already destroyed the Town Hall needed to rebuild the full fingerprint.
+     */
+    public Optional<EconomyColonyKey> archiveNativeBinding(ResourceLocation dimensionId, int colonyId) {
+        if (dimensionId == null) {
+            throw new IllegalArgumentException("dimensionId must not be null");
+        }
+        if (colonyId < 0) {
+            throw new IllegalArgumentException("colonyId must be non-negative");
+        }
+        return archiveNativeKey(dimensionId + "#" + colonyId);
+    }
+
+    private Optional<EconomyColonyKey> archiveNativeKey(String key) {
+        EconomyColonyKey existing = nativeBindings.get(key);
+        if (existing == null) {
+            if (nativeFingerprints.containsKey(key)) {
+                throw new EconomyPersistenceException("Native colony fingerprint exists without binding: " + key);
+            }
+            return Optional.empty();
+        }
+        if (!nativeFingerprints.containsKey(key)) {
+            throw new EconomyPersistenceException("Native colony binding is missing its persisted fingerprint: " + key);
+        }
         nativeBindings.remove(key);
         nativeFingerprints.remove(key);
         archivedEconomies.add(existing);
