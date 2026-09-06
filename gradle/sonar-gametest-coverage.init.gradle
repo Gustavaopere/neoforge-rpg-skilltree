@@ -21,7 +21,7 @@ allprojects { project ->
             }
         }
 
-        def gameTestCoverageLanes = ['provider-free', 'battle-mage-provider', 'ars-provider']
+        def gameTestCoverageLanes = ['provider-free', 'battle-mage-provider', 'ars-provider', 'minecolonies-provider']
         def gameTestReportTasks = gameTestCoverageLanes.collect { lane ->
             def taskSuffix = lane.split('-').collect { token -> token.capitalize() }.join('')
             def laneExec = project.layout.buildDirectory.file("jacoco/${lane}.exec").get().asFile
