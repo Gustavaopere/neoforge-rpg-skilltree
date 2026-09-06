@@ -62,7 +62,7 @@ Ela não adiciona opções de gameplay próprias; as configurações concretas p
 
 `uranus-3.0-beta.1.jar`
 **Uranus** é uma biblioteca/runtime de animação e utilidades para entidades, derivada do ecossistema técnico de LLibrary/Citadel e usada por consumidores modernos que precisam de helpers específicos de entidades, animação e comportamento.
-A build instalada é `3.0-beta.1`, um port NeoForge legítimo para Minecraft 1.21.1 publicado como beta. A linha atual declara requisito de Ice & Fire CE moderno; o pack utiliza Ice And Fire Community Edition 2.1.1. Uranus não adiciona criaturas ou progressão própria quando carregado isoladamente.
+A build instalada é `3.0-beta.1`, um port NeoForge legítimo para Minecraft 1.21.1 publicado como beta. A linha atual declara requisito de Ice & Fire CE moderno; o pack utiliza Ice And Fire Community Edition `2.1.2`. Uranus não adiciona criaturas ou progressão própria quando carregado isoladamente.
 
 ## Stylish Effects — 21.1.3
 
