@@ -14,7 +14,7 @@ public record EconomyMintPreflightResultPayload(
     String status,
     Projection projection
 ) implements CustomPacketPayload {
-    public static final Type<EconomyMintPreflightResultPayload> TYPE = new Type<>(
+    public static final Type<EconomyMintPreflightResultPayload> PAYLOAD_TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "economy_mint_preflight_result")
     );
     public static final StreamCodec<ByteBuf, EconomyMintPreflightResultPayload> STREAM_CODEC = StreamCodec.composite(
@@ -29,7 +29,7 @@ public record EconomyMintPreflightResultPayload(
         if (projection == null) throw new IllegalArgumentException("projection must not be null");
     }
 
-    @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    @Override public Type<? extends CustomPacketPayload> type() { return PAYLOAD_TYPE; }
 
     public static void handle(EconomyMintPreflightResultPayload payload, IPayloadContext context) {
         ClientColonyEconomyState.handlePreflight(payload, context);
