@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
 
 [← Índice do guia](README.md)
 
@@ -29,11 +29,11 @@ Depois da duração configurada, os blocos retornam automaticamente. Profundidad
 **Polymorph+** resolve conflitos quando duas ou mais receitas válidas utilizam a mesma combinação de ingredientes. Em vez de o registry escolher silenciosamente um único resultado, a interface apresenta as opções compatíveis e permite selecionar qual receita deve ser executada naquele crafting/menu.
 O projeto é uma implementação substituta compatível com o ecossistema do Polymorph original e mantém suporte a addons feitos para ele, incluindo `Polymorphic Energistics` no AE2. Ele não deve coexistir com o Polymorph original como segundo resolver de receitas. A build instalada é `1.3.1+1.21.1` para NeoForge 1.21.1.
 
-## Waystones — 21.1.41
+## Waystones — 21.1.42
 
-`waystones-neoforge-1.21.1-21.1.41.jar`
+`waystones-neoforge-1.21.1-21.1.42.jar`
 **Waystones** cria uma rede persistente de **destinos de teleporte descobertos ou construídos**. Uma waystone ativada passa a integrar a lista de destinos do jogador; variantes e itens do próprio ecossistema acessam essa rede conforme as regras configuradas pelo servidor/modpack.
-Custos, cooldowns, geração natural, restrições dimensionais e condições de uso podem ser configurados. A build instalada é `21.1.41` para NeoForge 1.21.1, e bridges presentes no pack expõem esses destinos em outros sistemas como JourneyMap e Sable sem criar uma segunda rede de viagem. O resultado é uma infraestrutura de transporte persistente e configurável, não apenas um comando de teleporte.
+Custos, cooldowns, geração natural, restrições dimensionais e condições de uso podem ser configurados. A build instalada é `21.1.42` para NeoForge 1.21.1, e bridges presentes no pack expõem esses destinos em outros sistemas como JourneyMap e Sable sem criar uma segunda rede de viagem. O resultado é uma infraestrutura de transporte persistente e configurável, não apenas um comando de teleporte.
 
 ## Nature's Compass — runtime 1.21.1-3.4.0-neoforge
 
@@ -49,11 +49,11 @@ O mod não altera worldgen, não cria o bioma procurado e não teleporta o jogad
 A build `3.4.0` instalada permite buscar a **próxima instância** de uma estrutura já localizada, pode cobrar **níveis de XP**, pode usar **durabilidade com receita de reparo** e melhora a filtragem/seleção de estruturas, inclusive ocultando entradas marcadas com `c:hidden_from_locator_selection`. Essa linha também corrige casos de busca que podiam ignorar estruturas a oeste do ponto inicial.
 Ele não gera estruturas nem modifica suas chances de spawn; funciona como ferramenta de descoberta sobre o worldgen existente. A release pública é 3.4.0, enquanto o metadata runtime da instalação é `1.21.1-3.4.0-neoforge`.
 
-## JourneyMap — runtime 1.21.1-6.0.5
+## JourneyMap — 1.21.1-6.0.7
 
-`journeymap-neoforge-1.21.1-6.0.5.jar`
+`journeymap-neoforge-1.21.1-6.0.7.jar`
 **JourneyMap** registra o terreno explorado e o apresenta por **minimapa, mapa em tela cheia e waypoints persistentes**. O mapa acompanha dimensões, posições e landmarks descobertos pelo jogador sem alterar o worldgen.
-Waypoints podem ter nomes, ícones/cores e contexto dimensional, e a API permite que addons adicionem overlays e marcadores de sistemas externos. Claims, teleporte e outros dados continuam pertencendo aos mods que os fornecem. A build NeoForge instalada é 6.0.5, com metadata runtime canônico `1.21.1-6.0.5`.
+Waypoints podem ter nomes, ícones/cores e contexto dimensional, e a API permite que addons adicionem overlays e marcadores de sistemas externos. Claims, teleporte e outros dados continuam pertencendo aos mods que os fornecem. A build NeoForge instalada é 6.0.5, com metadata runtime canônico `1.21.1-6.0.7`.
 
 ## JourneyMap Integration — runtime 1.21.1-1.9
 
@@ -67,11 +67,11 @@ O addon não cria claims, waystones, proteção territorial ou um mapa próprio:
 **Loot Journal** é uma camada client-side de acompanhamento visual de itens coletados. Quando o jogador obtém loot, o mod exibe **notificações configuráveis**, com animações, layout, temas e filtros que permitem controlar quais pickups merecem destaque e como aparecem na tela.
 Ele não muda loot tables, baús ou chances de drop: apenas registra/apresenta o que foi efetivamente coletado. Por isso sua função é distinta de Lootr e Loot Integrations. A build instalada é `6.2.1` para NeoForge 1.21.1.
 
-## Lootr — runtime 1.21.1-1.11.38.124
+## Lootr — 1.21.1-1.11.38.125
 
-`lootr-neoforge-1.21.1-1.11.38.124.jar`
+`lootr-neoforge-1.21.1-1.11.38.125.jar`
 **Lootr** transforma containers de loot de estruturas em **instâncias individuais por jogador**. Um mesmo baú pode ser aberto por várias pessoas e cada uma recebe sua própria geração de loot, evitando que o primeiro explorador esvazie permanentemente a recompensa para todos os demais.
-O sistema preserva a lógica das loot tables do container; ele muda quem já consumiu aquela instância, não quais itens a tabela pode gerar. Os containers também possuem apresentação visual própria conforme o estado. Isso o distingue de Loot Integrations, que altera a composição/distribuição das tabelas. O runtime instalado é `1.21.1-1.11.38.124`.
+O sistema preserva a lógica das loot tables do container; ele muda quem já consumiu aquela instância, não quais itens a tabela pode gerar. Os containers também possuem apresentação visual própria conforme o estado. Isso o distingue de Loot Integrations, que altera a composição/distribuição das tabelas. O runtime instalado é `1.21.1-1.11.38.125`.
 
 ## Loot Integrations — 4.7
 
@@ -85,11 +85,11 @@ O pack contém módulos top-level específicos para **Cataclysm** (`lootintegrat
 Este módulo top-level do **Loot Integrations** amplia tabelas vanilla e tabelas amplamente reutilizadas por estruturas para que itens modded comparáveis possam entrar na distribuição de loot. O objetivo é aumentar a variedade sem substituir o framework principal: o core continua executando a lógica de integração, enquanto este addon fornece os alvos/regras voltados às tabelas vanilla.
 Como essas tabelas são reutilizadas em muitos contextos, o módulo pode afetar uma faixa ampla de estruturas. O filename/publicação é `1.7`, mas o metadata runtime canônico do JAR declara `1`; o guia preserva as duas identidades.
 
-## FTB Chunks — 2101.1.21
+## FTB Chunks — 2101.1.22
 
-`ftb-chunks-neoforge-2101.1.21.jar`
+`ftb-chunks-neoforge-2101.1.22.jar`
 **FTB Chunks** fornece **mapa territorial, claims, proteção e force-loading de chunks** integrados ao FTB Teams. Jogadores e equipes podem reivindicar regiões, controlar permissões de interação e manter chunks selecionados carregados conforme limites e regras configurados.
-O mod possui visualização própria e API para integrações. No pack, JourneyMap Integration pode projetar claims no JourneyMap, enquanto `Create Aeronautics: FTB Chunks` adapta a lógica territorial ao stack físico; nenhum deles substitui o sistema-base. A build instalada é `2101.1.21`.
+O mod possui visualização própria e API para integrações. No pack, JourneyMap Integration pode projetar claims no JourneyMap, enquanto `Create Aeronautics: FTB Chunks` adapta a lógica territorial ao stack físico; nenhum deles substitui o sistema-base. A build instalada é `2101.1.22`.
 
 ## FTB Ultimine — 2101.1.15
 
@@ -103,11 +103,11 @@ Os modos cobrem veios, árvores, áreas de escavação, hoe e crops conforme con
 **Quark** é uma coleção modular de mecânicas **Vanilla+** distribuídas por construção, automação/redstone, inventário, mobs, encantamento e mundo. Não existe uma única árvore de progressão: cada módulo adiciona ou altera uma parte do jogo e pode ser habilitado ou desabilitado separadamente.
 Entre os recursos funcionais estão **Feeding Trough** para manejo/reprodução animal, mudanças em pistons e redstone, Matrix Enchanting, conteúdo subterrâneo, melhorias de inventário e diversos blocos/interações contextuais. A build instalada é `4.1-482` para NeoForge 1.21.1.
 
-## Supplementaries — 3.9.3
+## Supplementaries — 1.21.1-3.9.7
 
-`supplementaries-1.21.1-3.9.3-neoforge.jar`
+`supplementaries-1.21.1-3.9.7-neoforge.jar`
 **Supplementaries** adiciona uma grande coleção de blocos e itens com estética vanilla, mas cuja identidade principal é **interação funcional**. Jars armazenam conteúdos, signposts orientam navegação, faucets transferem fluidos ou itens em contextos suportados, weather vanes respondem ao clima, spring launchers impulsionam entidades, e vários blocos participam de redstone, armazenamento, iluminação e pequenas automações.
-O mod funciona como uma camada transversal de utilidades físicas e ambientação utilizável, não apenas como pacote decorativo. A build atual é `3.9.3` para NeoForge 1.21.1 e depende de Moonlight Lib.
+O mod funciona como uma camada transversal de utilidades físicas e ambientação utilizável, não apenas como pacote decorativo. A build atual é `1.21.1-3.9.7` para NeoForge 1.21.1 e depende de Moonlight Lib.
 
 ## Amendments — 1.21-2.1.9
 
