@@ -1,12 +1,16 @@
 allprojects { project ->
     project.plugins.withId('java') {
-        def arsVersionId = project.findProperty('ars_nouveau_version_id')
-        if (arsVersionId == null || arsVersionId.toString().isBlank()) {
-            throw new GradleException('ars_nouveau_version_id is required for Ars Sonar test runtime')
+        def arsVersion = project.findProperty('ars_nouveau_version')
+        if (arsVersion == null || arsVersion.toString().isBlank()) {
+            throw new GradleException('ars_nouveau_version is required for Ars Sonar test runtime')
         }
-        project.dependencies.add('testRuntimeOnly', "maven.modrinth:TKB6INcv:${arsVersionId}") {
-            transitive = false
-        }
+        // The provider-present coverage lane needs Ars' real dependency graph. The creator Maven
+        // publishes the canonical 1.21.1 artifact with transitive dependency metadata, unlike the
+        // Modrinth Maven mirror used by compileOnly for the isolated provider API surface.
+        project.dependencies.add(
+            'testRuntimeOnly',
+            "com.hollingsworth.ars_nouveau:ars_nouveau-1.21.1:${arsVersion}"
+        )
         project.tasks.withType(org.gradle.api.tasks.testing.Test).configureEach { testTask ->
             if (testTask.name == 'test') {
                 testTask.systemProperty 'rpgskilltree.arsProviderCoverageRequired', 'true'
