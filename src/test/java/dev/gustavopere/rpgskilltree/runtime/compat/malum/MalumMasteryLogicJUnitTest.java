@@ -1,19 +1,27 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.malum;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import dev.gustavopere.rpgskilltree.core.SpiritPracticeAction;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.SharedConstants;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.Bootstrap;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 final class MalumMasteryLogicJUnitTest {
+    @BeforeAll
+    static void bootstrapMinecraftRegistries() {
+        SharedConstants.tryDetectVersion();
+        Bootstrap.bootStrap();
+    }
+
     @Test
     void collectionActionUsesStableCanonicalShape() {
         SpiritPracticeAction action = MalumMasteryLogic.collectionAction();
