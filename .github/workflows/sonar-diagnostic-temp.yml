@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   publish-diagnostics:
@@ -18,9 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Publish compact Sonar diagnostics to PR
+      - name: Print compact Sonar diagnostics
         env:
-          GH_TOKEN: ${{ github.token }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
           SONAR_PR: ${{ github.event.pull_request.number || '415' }}
@@ -56,18 +54,7 @@ jobs:
             | "COVERAGE|path=\($component.path)|new_coverage=\($m.new_coverage // "")|new_lines_to_cover=\($m.new_lines_to_cover // "0")|new_uncovered_lines=\($m.new_uncovered_lines // "0")|new_conditions_to_cover=\($m.new_conditions_to_cover // "0")|new_uncovered_conditions=\($m.new_uncovered_conditions // "0")"
           ' <<<"$coverage_response" | sort)"
 
-          marker='<!-- sonar-diagnostic-temp-pr-415 -->'
-          body="${marker}
-          Temporary CI diagnostic for PR #${SONAR_PR}. This comment will be removed/superseded after the gate is fixed.
-
-          \`\`\`text
-          === Sonar PR issues ===
-          ${issues_lines}
-          === Sonar files with uncovered new code ===
-          ${coverage_lines}
-          \`\`\`"
-
-          gh api \
-            --method POST \
-            "repos/${GITHUB_REPOSITORY}/issues/${SONAR_PR}/comments" \
-            -f body="$body" >/dev/null
+          echo '=== Sonar PR issues ==='
+          printf '%s\n' "$issues_lines"
+          echo '=== Sonar files with uncovered new code ==='
+          printf '%s\n' "$coverage_lines"
