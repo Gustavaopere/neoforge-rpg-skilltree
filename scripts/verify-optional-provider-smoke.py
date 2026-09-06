@@ -9,6 +9,7 @@ EXPECTED = (
     "ars_nouveau",
     "epicfight",
     "cold_sweat",
+    "create",
     "goety",
     "malum",
     "eidolon",
