@@ -18,4 +18,13 @@
 - Se respec ou outra reconciliação derivada quebrar um domínio/requisito exigido, a classe paga é revogada pelo mesmo loop autoritativo de `PlayerProgressionRuntime`. Somente uma bridge cuja proveniência de pagamento esteja registrada é reembolsada, e a marca é removida com a classe.
 - O round-trip do codec de compatibilidade preserva a proveniência da bridge por uma cauda opcional adicional do payload v4 e continua aceitando snapshots legados v1–v4 que não possuem esse campo.
 
-**Acceptance:** nenhuma classe híbrida desbloqueia com apenas metade do caminho e o custo de bridge é aplicado uma única vez por ativação válida.
+## Evidência de fechamento
+
+- Implementação integrada pela PR #312, `feat(classes): reconcile confluences and bridge investments`.
+- Head final da PR: `b1d621d19792e2e610a816778bb6fa2652067842`.
+- Merge commit: `5098e38cbfb0e90d788de0722dd7e2f68753261d`.
+- RPG Skill Tree CI do head final: run `33394122583` / #2670 — **GREEN**.
+- O fechamento cobre proveniência persistida do pagamento, cobrança idempotente, revogação/reembolso após respec, UI de requisitos e matriz data-driven das classes híbridas.
+- Auditoria posterior do Stage 04 confirmou que o contrato permanece materializado na `main`; nenhum runtime adicional é necessário para este subplano.
+
+**Acceptance:** satisfeita. Nenhuma classe híbrida desbloqueia com apenas metade do caminho e o custo de bridge é aplicado uma única vez por ativação válida.
