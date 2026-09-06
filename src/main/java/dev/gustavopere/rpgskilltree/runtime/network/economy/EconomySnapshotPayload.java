@@ -13,7 +13,7 @@ public record EconomySnapshotPayload(
     Balances balances,
     Metrics metrics
 ) implements CustomPacketPayload {
-    public static final Type<EconomySnapshotPayload> TYPE = new Type<>(
+    public static final Type<EconomySnapshotPayload> PAYLOAD_TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "economy_snapshot")
     );
     public static final StreamCodec<ByteBuf, EconomySnapshotPayload> STREAM_CODEC = StreamCodec.composite(
@@ -23,7 +23,7 @@ public record EconomySnapshotPayload(
         EconomySnapshotPayload::new
     );
 
-    @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    @Override public Type<? extends CustomPacketPayload> type() { return PAYLOAD_TYPE; }
 
     public static void handle(EconomySnapshotPayload payload, net.neoforged.neoforge.network.handling.IPayloadContext context) {
         ClientColonyEconomyState.handleSnapshot(payload, context);
