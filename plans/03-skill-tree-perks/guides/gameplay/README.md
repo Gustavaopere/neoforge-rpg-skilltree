@@ -46,7 +46,7 @@ Para perks de combate/armas que possam tocar **Simply Swords, Simply More, Integ
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
 - Mods adicionados ou atualizados na modlist devem ser incorporados antes do próximo fechamento de lote do Chat 1.
 - Cada JAR do recorte Gameplay deve possuir ficha descritiva e entrada no índice de fontes; a revisão de 06/09/2026 fecha ambos em **342/342**.
-- Quando dois JARs compartilham o mesmo mod ID, como `alexscaves` e `alexsmobs` neste snapshot, integrações devem resolver a implementação concreta ou operar fail-closed.
+- Quando dois JARs compartilham o mesmo mod ID, como `alexscaves` e `alexsmobs` neste snapshot, tratar a situação como **bloqueio de startup**: resolver o conjunto de JARs instalado antes de iniciar o jogo. Não existe desambiguação nem fail-closed de runtime capaz de corrigir IDs duplicados durante discovery.
 - O GitHub é a fonte canônica deste guia; não manter cópia editorial concorrente no Notion.
 
 [← Voltar aos guias](../README.md)
