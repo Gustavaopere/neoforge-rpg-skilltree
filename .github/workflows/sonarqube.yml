@@ -90,7 +90,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: >-
-          ./gradlew --no-daemon
+          ./gradlew --no-daemon --stacktrace
           -I gradle/sonar-gametest-coverage.init.gradle
           -I gradle/ars-sonar-test-runtime.init.gradle
           -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml,build/reports/jacoco/provider-free/provider-free.xml,build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml
@@ -100,6 +100,20 @@ jobs:
           -Dsonar.qualitygate.wait=true
           -Dsonar.qualitygate.timeout=300
           build sonar --info
+
+      - name: Upload Sonar test diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sonar-test-diagnostics
+          if-no-files-found: warn
+          retention-days: 7
+          path: |
+            build/test-results/test/**
+            build/test-results/testJunit/**
+            build/reports/tests/test/**
+            build/reports/tests/testJunit/**
+            build/reports/jacoco/test/**
 
       - name: Verify Sonar new-code issue count on main
         if: github.event_name != 'pull_request'
