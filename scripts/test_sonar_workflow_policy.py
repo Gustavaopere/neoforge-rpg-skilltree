@@ -17,6 +17,10 @@ BATTLE_MAGE_TEST_PATTERNS = (
 ARS_PROVIDER_TEST_PATTERN = (
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java"
 )
+ECONOMY_TEST_PATTERNS = (
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*",
+)
 
 
 def require(condition: bool, message: str) -> None:
@@ -107,6 +111,11 @@ def main() -> None:
         "Sonar CI must import a dedicated transformed-class Ars provider GameTest report.",
     )
     require(
+        "minecolonies-provider/minecolonies-provider.xml" in workflow
+        and "'minecolonies-provider'" in game_test_coverage,
+        "Sonar CI must import a dedicated transformed-class MineColonies provider GameTest report.",
+    )
+    require(
         ARS_PROVIDER_RUNTIME_INIT.exists()
         and "ars-provider-gametest-runtime.init.gradle" in workflow
         and "-ParsProviderRuntime=true" in workflow,
@@ -134,6 +143,11 @@ def main() -> None:
         ARS_PROVIDER_TEST_PATTERN in workflow,
         "Ars provider GameTest must be test-scoped in Sonar classification from the isolated Ars adapter tree.",
     )
+    for pattern in ECONOMY_TEST_PATTERNS:
+        require(
+            pattern in workflow,
+            f"MineColonies Economy GameTest scope is missing from Sonar classification: {pattern}",
+        )
     require(
         "-Dsonar.test.inclusions=" in workflow and "-Dsonar.exclusions=" in workflow,
         "Provider GameTests must be test-scoped and excluded only from main-code scope.",
@@ -145,8 +159,8 @@ def main() -> None:
 
     print(
         "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
-        "publishes a commit-scoped project version, uses basic Gradle caching, imports transformed provider "
-        "GameTest coverage, and keeps Ars live-provider coverage out of plain JUnit."
+        "publishes a commit-scoped project version, uses basic Gradle caching, imports transformed Ars and "
+        "MineColonies provider GameTest coverage, and keeps provider coverage out of plain JUnit."
     )
 
 

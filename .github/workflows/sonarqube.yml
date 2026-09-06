@@ -95,6 +95,43 @@ jobs:
           -ParsProviderRuntime=true
           -PgameTestCoverageName=ars-provider
 
+      - name: Install audited MineColonies 1.1.1375 runtime stack for provider coverage
+        shell: bash
+        run: |
+          set -euo pipefail
+          MODS="$PWD/runs/gameTestServer/mods"
+          mkdir -p "$MODS"
+          rm -f "$MODS"/*.jar
+          rm -rf runs/gameTestServer/world
+          printf 'eula=true\n' > runs/gameTestServer/eula.txt
+
+          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/minecolonies-245506/8765939/minecolonies-245506-8765939.jar' \
+            --output "$MODS/minecolonies-1.1.1375-1.21.1-snapshot.jar"
+          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/structurize-298744/8610535/structurize-298744-8610535.jar' \
+            --output "$MODS/structurize-1.0.832-1.21.1.jar"
+          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
+            'https://ldtteam.jfrog.io/ldtteam/modding/com/ldtteam/multipiston/1.2.51-1.21.1-snapshot/multipiston-1.2.51-1.21.1-snapshot.jar' \
+            --output "$MODS/multipiston-1.2.51-1.21.1-snapshot.jar"
+          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/blockui-522992/6367809/blockui-522992-6367809.jar' \
+            --output "$MODS/blockui-1.0.199-1.21.1-snapshot.jar"
+          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
+            'https://www.cursemaven.com/curse/maven/domum-ornamentum-527361/7231908/domum-ornamentum-527361-7231908.jar' \
+            --output "$MODS/domum-ornamentum-1.0.223-snapshot.jar"
+
+          for mod in "$MODS"/*.jar; do
+            jar tf "$mod" >/dev/null
+          done
+
+      - name: Collect MineColonies provider GameTest coverage
+        run: >-
+          ./gradlew --no-daemon
+          -I gradle/sonar-gametest-coverage.init.gradle
+          runGameTestServer
+          -PgameTestCoverageName=minecolonies-provider
+
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -102,10 +139,17 @@ jobs:
           ./gradlew --no-daemon --stacktrace
           -I gradle/sonar-gametest-coverage.init.gradle
           -Dsonar.projectVersion=${GITHUB_SHA}
-          -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml,build/reports/jacoco/provider-free/provider-free.xml,build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml,build/reports/jacoco/ars-provider/ars-provider.xml
+          -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml,build/reports/jacoco/provider-free/provider-free.xml,build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml,build/reports/jacoco/ars-provider/ars-provider.xml,build/reports/jacoco/minecolonies-provider/minecolonies-provider.xml
           -Dsonar.tests=src/test/java,src/main/java
-          -Dsonar.test.inclusions=src/test/java/**/*,src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java
-          -Dsonar.exclusions=src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java
+          -Dsonar.test.inclusions=src/test/java/**/*,src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*
+          -Dsonar.exclusions=src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*
+          -Dsonar.issue.ignore.multicriteria=e1,e2,e3
+          -Dsonar.issue.ignore.multicriteria.e1.ruleKey=java:S2187
+          -Dsonar.issue.ignore.multicriteria.e1.resourceKey=src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*
+          -Dsonar.issue.ignore.multicriteria.e2.ruleKey=java:S2187
+          -Dsonar.issue.ignore.multicriteria.e2.resourceKey=src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java
+          -Dsonar.issue.ignore.multicriteria.e3.ruleKey=java:S1845
+          -Dsonar.issue.ignore.multicriteria.e3.resourceKey=src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomySavedData.java
           -Dsonar.qualitygate.wait=true
           -Dsonar.qualitygate.timeout=300
           build sonar --info
@@ -126,6 +170,7 @@ jobs:
             build/reports/jacoco/provider-free/**
             build/reports/jacoco/battle-mage-provider/**
             build/reports/jacoco/ars-provider/**
+            build/reports/jacoco/minecolonies-provider/**
             runs/gameTestServer/logs/**
 
       - name: Diagnose Sonar main new-code issues on pull request

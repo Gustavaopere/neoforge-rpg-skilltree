@@ -1,0 +1,175 @@
+package dev.gustavopere.rpgskilltree.core.economy;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
+
+/**
+ * Canonical V1 monetary mutation service.
+ *
+ * <p>Only MINT and RETIRE have audited executable semantics. Every other modeled kind remains
+ * fail-closed until its counterparty/authority contract is defined.</p>
+ *
+ * <p>Replay identities are retained exactly and never pruned in V1. To keep SavedData bounded,
+ * monetary mutations fail closed when the fixed retention capacity is exhausted. A future
+ * compaction/epoch protocol must be versioned explicitly before this limit can be removed.</p>
+ */
+public final class ColonyEconomyLedger {
+    public static final int MAX_RETAINED_TRANSACTIONS = 4_096;
+
+    private static final String MONETARY_AUTHORITY = "monetary_authority";
+    private static final String TREASURY = "treasury";
+
+    private final List<EconomyTransaction> transactions = new ArrayList<>();
+    private final Set<UUID> transactionIds = new HashSet<>();
+    private final Set<String> causalKeys = new HashSet<>();
+
+    public ColonyEconomyLedger() {}
+
+    /** Restores an audit history and rebuilds replay indexes after load/restart. */
+    public ColonyEconomyLedger(List<EconomyTransaction> persistedTransactions) {
+        Objects.requireNonNull(persistedTransactions, "persistedTransactions");
+        if (persistedTransactions.size() > MAX_RETAINED_TRANSACTIONS) {
+            throw new IllegalArgumentException(
+                "persisted economy transaction history exceeds retention limit " + MAX_RETAINED_TRANSACTIONS
+            );
+        }
+        for (EconomyTransaction transaction : persistedTransactions) {
+            restore(transaction);
+        }
+    }
+
+    public EconomyMutationResult apply(ColonyEconomyState state, EconomyCommand command, long gameTime) {
+        Objects.requireNonNull(state, "state");
+        Objects.requireNonNull(command, "command");
+
+        if (transactionIds.contains(command.transactionId()) || causalKeys.contains(command.causalKey())) {
+            return EconomyMutationResult.rejected(EconomyMutationResult.Status.DUPLICATE, state);
+        }
+        if (command.amount() <= 0L) {
+            return EconomyMutationResult.rejected(EconomyMutationResult.Status.INVALID_AMOUNT, state);
+        }
+
+        return switch (command.kind()) {
+            case MINT -> mint(state, command, gameTime);
+            case RETIRE -> retire(state, command, gameTime);
+            case ADMIN_ADJUSTMENT, TAX, CONSTRUCTION_CHARGE, REFUND, TREASURY_DEPOSIT, TREASURY_WITHDRAWAL ->
+                EconomyMutationResult.rejected(EconomyMutationResult.Status.UNSUPPORTED_KIND, state);
+        };
+    }
+
+    public List<EconomyTransaction> transactions() {
+        return List.copyOf(transactions);
+    }
+
+    private EconomyMutationResult mint(ColonyEconomyState state, EconomyCommand command, long gameTime) {
+        if (retentionFull()) {
+            return EconomyMutationResult.rejected(EconomyMutationResult.Status.RETENTION_LIMIT_REACHED, state);
+        }
+        try {
+            long issuedSupply = Math.addExact(state.issuedSupply(), command.amount());
+            long treasuryBalance = Math.addExact(state.treasuryBalance(), command.amount());
+            ColonyEconomyState updated = copyMoneyState(
+                state,
+                issuedSupply,
+                state.retiredSupply(),
+                treasuryBalance
+            );
+            return recordApplied(updated, command, gameTime, MONETARY_AUTHORITY, TREASURY);
+        } catch (ArithmeticException failure) {
+            return EconomyMutationResult.rejected(EconomyMutationResult.Status.OVERFLOW, state);
+        }
+    }
+
+    private EconomyMutationResult retire(ColonyEconomyState state, EconomyCommand command, long gameTime) {
+        if (retentionFull()) {
+            return EconomyMutationResult.rejected(EconomyMutationResult.Status.RETENTION_LIMIT_REACHED, state);
+        }
+        if (state.treasuryBalance() < command.amount()) {
+            return EconomyMutationResult.rejected(EconomyMutationResult.Status.INSUFFICIENT_TREASURY, state);
+        }
+
+        try {
+            long treasuryBalance = Math.subtractExact(state.treasuryBalance(), command.amount());
+            long retiredSupply = Math.addExact(state.retiredSupply(), command.amount());
+            ColonyEconomyState updated = copyMoneyState(
+                state,
+                state.issuedSupply(),
+                retiredSupply,
+                treasuryBalance
+            );
+            return recordApplied(updated, command, gameTime, TREASURY, MONETARY_AUTHORITY);
+        } catch (ArithmeticException failure) {
+            return EconomyMutationResult.rejected(EconomyMutationResult.Status.OVERFLOW, state);
+        }
+    }
+
+    private EconomyMutationResult recordApplied(
+        ColonyEconomyState updated,
+        EconomyCommand command,
+        long gameTime,
+        String source,
+        String counterparty
+    ) {
+        EconomyTransaction transaction = new EconomyTransaction(
+            command.transactionId(),
+            updated.colonyKey(),
+            command.causalKey(),
+            command.kind(),
+            command.amount(),
+            source,
+            counterparty,
+            gameTime,
+            updated.issuedSupply(),
+            updated.retiredSupply(),
+            updated.effectiveSupply(),
+            updated.treasuryBalance(),
+            Map.of()
+        );
+        transactions.add(transaction);
+        transactionIds.add(command.transactionId());
+        causalKeys.add(command.causalKey());
+        return EconomyMutationResult.applied(updated, transaction);
+    }
+
+    private void restore(EconomyTransaction transaction) {
+        Objects.requireNonNull(transaction, "transaction");
+        if (!transactionIds.add(transaction.transactionId())) {
+            throw new IllegalArgumentException("duplicate persisted economy transaction id: " + transaction.transactionId());
+        }
+        if (!causalKeys.add(transaction.causalKey())) {
+            transactionIds.remove(transaction.transactionId());
+            throw new IllegalArgumentException("duplicate persisted economy causal key: " + transaction.causalKey());
+        }
+        transactions.add(transaction);
+    }
+
+    private boolean retentionFull() {
+        return transactions.size() >= MAX_RETAINED_TRANSACTIONS;
+    }
+
+    private static ColonyEconomyState copyMoneyState(
+        ColonyEconomyState state,
+        long issuedSupply,
+        long retiredSupply,
+        long treasuryBalance
+    ) {
+        return new ColonyEconomyState(
+            state.colonyKey(),
+            issuedSupply,
+            retiredSupply,
+            treasuryBalance,
+            state.reservedBalance(),
+            state.activeCirculation(),
+            state.priceIndex(),
+            state.taxRate(),
+            state.currentEconomicCapacity(),
+            state.lastSettlementTick(),
+            state.schemaVersion()
+        );
+    }
+}
