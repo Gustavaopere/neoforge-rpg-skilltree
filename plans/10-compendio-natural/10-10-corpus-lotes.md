@@ -197,7 +197,7 @@ Entradas:
 - identidade das dez entidades confirmada no registry de Minecraft 1.21.1 e nomenclatura revisada contra o asset `pt_br` da mesma linha, incluindo `Dragão Ender`, `Devastador`, `Traça`, `Vingador` e `Defensor`;
 - chefes tratados por seus sistemas reais em vez de descrições genéricas: o Dragão Ender usa a infraestrutura de fases do pacote `enderdragon.phases`, enquanto o Wither mantém alvos múltiplos, projéteis e estado próprio de chefe;
 - o Defensor foi documentado a partir de `Warden`, `WardenAi`, `AngerManagement`, `VibrationSystem` e do comportamento sônico no caminho correto `net.minecraft.world.entity.ai.behavior.warden.SonicBoom`;
-- relações e comportamentos estruturais relevantes foram preservados: `Ravager` → `Raider`, `MagmaCube` → `Slime`, carapaça/fixação do Shulker, infestação e chamada de grupo da Traça, vínculo/investida do Vex, estado Johnny do Vingador e ciclo de vida próprio da Endermite;
+- relações e comportamentos estruturais relevantes foram preservados: `Ravager` → `Raider`, `MagmaCube` → `Slime`, carapaça/fixação do Shulker, infestação e chamada de grupo da Traça, vínculo/investida do Vex, estado Johnny do Vingador e ciclo de vida própria da Endermite;
 - nenhuma duração, chance, dano, alcance, recarga, velocidade, força de projétil, resistência, limiar de raiva ou outro parâmetro mecânico mutável foi congelado em prosa;
 - todas as fichas usam `RUNTIME` e `OFFICIAL_CODE`, permanecem `REVIEWED`/`RUNTIME` e não transformam detalhes de configuração ou composição de encontros em regras universais;
 - o corpus corrigido passou pelo Compendium Editorial CI #218 e pelo RPG Skill Tree CI #2390, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
@@ -857,6 +857,35 @@ Entradas:
 - TDD confirmado no commit `b8cafee71a7c806b74d4105bb280959e374ce947`, RPG Skill Tree CI run `34049499605`, job `101530421616`: 1124 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch30JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch7.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
 - o corpus foi adicionado somente depois desse RED correto no commit `d74370a0723bc3e53c7b75b4526c4b6001391935`; o JUnit 5 correspondente passou no RPG Skill Tree CI run `34049737139`, job `101531051695`, e o Compendium Editorial CI run `34049737149`, job `101531051719`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
 
+## Lote 31 — Terralith 2.6.2 / biomas do Overworld (batch 8)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch8.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:valley_clearing` — Vale Limpo
+2. `BIOME:terralith:volcanic_crater` — Cratera Vulcânica
+3. `BIOME:terralith:volcanic_peaks` — Picos Vulcânicos
+4. `BIOME:terralith:warm_river` — Rio Quente
+5. `BIOME:terralith:warped_mesa` — Mesa Distorcida
+6. `BIOME:terralith:white_cliffs` — Penhascos Brancos
+7. `BIOME:terralith:white_mesa` — Mesa Branca
+8. `BIOME:terralith:windswept_spires` — Pináculos Ventosos
+9. `BIOME:terralith:wintry_forest` — Floresta Invernal
+10. `BIOME:terralith:wintry_lowlands` — Planícies Invernais
+
+### Critérios editoriais aplicados ao lote 31
+
+- o recorte continua imediatamente após `tropical_jungle` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `valley_clearing` até `wintry_lowlands`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion, ambos reconfirmados no início deste ciclo;
+- termos nominais como `Vale`, `Limpo`, `Cratera`, `Vulcânica`, `Picos`, `Rio`, `Quente`, `Mesa`, `Distorcida`, `Penhascos`, `Brancos`, `Pináculos`, `Ventosos`, `Floresta`, `Invernal`, `Planícies` e `Invernais` não são convertidos em topologia, vulcanismo ativo, lava, altitude, temperatura, hidrologia, geometria, composição, cor de blocos, vento, estação, neve, vegetação, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `a62cae43f7630b00adae72ceb2d1c52f2035f39e`, RPG Skill Tree CI run `34052275762`, job `101537890933`: 1125 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch31JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch8.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `2695d47c9fb658854decc9fea050f1891ef5cbbb`; o JUnit 5 correspondente e todo o RPG Skill Tree CI passaram no run `34052534181`, job `101538583651`, e o Compendium Editorial CI run `34052534088`, job `101538583477`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -866,8 +895,8 @@ Entradas:
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
 - entradas de worldgen BetterNether: New Dawn reais no corpus: **23**;
-- entradas de worldgen Terralith reais no corpus: **70**;
-- entradas editoriais totais: **285**;
-- lotes documentados: **30**;
+- entradas de worldgen Terralith reais no corpus: **80**;
+- entradas editoriais totais: **295**;
+- lotes documentados: **31**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`, `terralith`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
