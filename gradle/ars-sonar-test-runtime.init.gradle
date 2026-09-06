@@ -1,16 +1,19 @@
 allprojects { project ->
     project.plugins.withId('java') {
         def arsVersion = project.findProperty('ars_nouveau_version')
-        if (arsVersion == null || arsVersion.toString().isBlank()) {
-            throw new GradleException('ars_nouveau_version is required for Ars Sonar test runtime')
+        if (arsVersion == null || arsVersion.toString() != '5.13.1') {
+            throw new GradleException("Ars Sonar runtime is pinned to the modpack baseline 5.13.1, got: ${arsVersion}")
         }
-        // The provider-present coverage lane needs Ars' real dependency graph. The creator Maven
-        // publishes the canonical 1.21.1 artifact with transitive dependency metadata, unlike the
-        // Modrinth Maven mirror used by compileOnly for the isolated provider API surface.
-        project.dependencies.add(
-            'testRuntimeOnly',
-            "com.hollingsworth.ars_nouveau:ars_nouveau-1.21.1:${arsVersion}"
-        )
+
+        // The public BlameJared Maven metadata currently stops before Ars 5.13.1, while the
+        // modpack/provider baseline is the CurseForge 5.13.1 release (project 401955, file 8721482).
+        // Curse Maven does not provide Ars' dependency graph, so add the three required runtime
+        // dependencies at the exact versions declared by Ars Nouveau 5.13.1 itself.
+        project.dependencies.add('testRuntimeOnly', 'curse.maven:ars-nouveau-401955:8721482')
+        project.dependencies.add('testRuntimeOnly', 'software.bernie.geckolib:geckolib-neoforge-1.21.1:4.6.6')
+        project.dependencies.add('testRuntimeOnly', 'vazkii.patchouli:Patchouli:1.21-87-NEOFORGE')
+        project.dependencies.add('testRuntimeOnly', 'top.theillusivec4.curios:curios-neoforge:9.3.1+1.21.1')
+
         project.tasks.withType(org.gradle.api.tasks.testing.Test).configureEach { testTask ->
             if (testTask.name == 'test') {
                 testTask.systemProperty 'rpgskilltree.arsProviderCoverageRequired', 'true'
