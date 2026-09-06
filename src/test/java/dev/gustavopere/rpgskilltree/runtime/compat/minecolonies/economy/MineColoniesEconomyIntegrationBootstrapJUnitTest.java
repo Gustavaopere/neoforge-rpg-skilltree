@@ -15,19 +15,27 @@ final class MineColoniesEconomyIntegrationBootstrapJUnitTest {
             MineColoniesEconomyIntegrationState.UNSUPPORTED_VERSION,
             MineColoniesEconomyIntegrationBootstrap.evaluate(true, "1.1.1374-1.21.1-snapshot")
         );
+        assertEquals(
+            MineColoniesEconomyIntegrationState.UNSUPPORTED_VERSION,
+            MineColoniesEconomyIntegrationBootstrap.evaluate(true, "1.1.1377-1.21.1-snapshot")
+        );
     }
 
     @Test
-    void exactAuditedVersionActivatesAndRegistrarFailureFailsClosed() {
+    void explicitlyAuditedVersionsActivateAndRegistrarFailureFailsClosed() {
         assertEquals(
             MineColoniesEconomyIntegrationState.ACTIVE,
             MineColoniesEconomyIntegrationBootstrap.evaluate(true, "1.1.1375-1.21.1-snapshot")
         );
         assertEquals(
+            MineColoniesEconomyIntegrationState.ACTIVE,
+            MineColoniesEconomyIntegrationBootstrap.evaluate(true, "1.1.1376-1.21.1-snapshot")
+        );
+        assertEquals(
             MineColoniesEconomyIntegrationState.FAILED_CLOSED,
             MineColoniesEconomyIntegrationBootstrap.install(
                 true,
-                "1.1.1375-1.21.1-snapshot",
+                "1.1.1376-1.21.1-snapshot",
                 () -> { throw new IllegalStateException("registration failed"); }
             )
         );

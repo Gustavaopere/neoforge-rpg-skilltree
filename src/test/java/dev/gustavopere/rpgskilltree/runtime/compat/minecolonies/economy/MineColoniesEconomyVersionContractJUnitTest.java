@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 
 final class MineColoniesEconomyVersionContractJUnitTest {
     @Test
-    void acceptsOnlyAuditedInstalledArtifactVersion() {
+    void acceptsOnlyExplicitlyAuditedArtifactVersions() {
         assertTrue(MineColoniesEconomyVersionContract.supports("1.1.1375-1.21.1-snapshot"));
-        assertTrue(MineColoniesEconomyVersionContract.supports(" 1.1.1375-1.21.1-snapshot "));
+        assertTrue(MineColoniesEconomyVersionContract.supports("1.1.1376-1.21.1-snapshot"));
+        assertTrue(MineColoniesEconomyVersionContract.supports(" 1.1.1376-1.21.1-snapshot "));
 
-        assertFalse(MineColoniesEconomyVersionContract.supports("1.1.1375"));
+        assertFalse(MineColoniesEconomyVersionContract.supports("1.1.1376"));
         assertFalse(MineColoniesEconomyVersionContract.supports("1.1.1374-1.21.1-snapshot"));
-        assertFalse(MineColoniesEconomyVersionContract.supports("1.1.1376-1.21.1-snapshot"));
+        assertFalse(MineColoniesEconomyVersionContract.supports("1.1.1377-1.21.1-snapshot"));
         assertFalse(MineColoniesEconomyVersionContract.supports(null));
     }
 }
