@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db819e9572fd43820f9c03 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -11,15 +11,15 @@
 Entre as funções públicas estão um método comum de registry para projetos MultiLoader, utilidades como tratamento comum de flammability e **conditional recipes**, classes públicas compartilhadas e um conjunto de **effects/effect classes** pré-prontos. A biblioteca também concentra atributos e helpers consumidos por mods dependentes.
 A instalação atual é `5.0.7` para NeoForge 1.21.1. Sua presença no guia representa infraestrutura técnica do stack mágico, não uma escola, spellbook ou árvore de progressão jogável.
 
-## Ace's Spell Utils — 1.2.7.1
+## Ace's Spell Utils — 1.2.7.2
 
-`aces_spell_utils-1.2.7.1-1.21.1.jar`
+`aces_spell_utils-1.2.7.2-1.21.1.jar`
 **Ace's Spell Utils** é uma API de suporte para addons de Iron's Spells, mas fornece uma quantidade considerável de infraestrutura reutilizável. Ela inclui classes-base para armas com habilidades ativas/passivas, magic swords, magic guns, loot bags, spellbooks passivos e itens com cooldowns próprios.
 A biblioteca também registra atributos como **Mana Steal, Mana Rend, Spell Resistance Penetration, Magic Crit Chance/Damage, projectile crits, Life Recovery e Vigor Reap**. No lado de spellcraft oferece escolas utilitárias como Occult, Hydro e Technomancy, animações de casting e classe abstrata para summons; ainda possui helpers para boss music, shaders de pós-processamento e renderização emissiva de armaduras GeckoLib.
 
-## GTBC's SpellLib — runtime 2.0.0-1.21.1
+## GTBC's SpellLib — runtime 2.1.0-1.21.1
 
-`gtbcs_spell_lib-2.0.0-1.21.1.jar`
+`gtbcs_spell_lib-2.1.0-1.21.1.jar`
 **GTBC's SpellLib/API** é a biblioteca comum usada pelos addons de Iron's Spells do GameTechBC. Ela não adiciona uma progressão jogável independente: concentra classes, atributos, helpers e estruturas reutilizáveis para que os addons do autor compartilhem a mesma implementação de spells, itens e mecânicas.
 A linha 2.0 amplia essa infraestrutura com recursos como atributo de **Elemental Permeability**, interfaces utilitárias para preservação localizada de inventário/XP/Curios em contextos específicos, framework de paintings customizadas e componentes reutilizáveis como Treasure Pouch. No pack, **GTBC's Geomancy Plus** é um consumidor direto dessa API.
 
@@ -40,3 +40,7 @@ Também concentra comportamento compartilhado de familiars e infraestrutura usad
 `irons_lib-1.21.1-2.1.0.jar`
 **Iron's Lib** reúne frameworks reutilizáveis para os mods do Iron431. A camada de **transmogs** permite aplicar modelos únicos a armaduras, construir interfaces customizáveis de armor e lidar automaticamente com cape physics; o framework de **statues** cobre geração dinâmica de estátuas de jogador, estruturas multibloco e renderização estática.
 A biblioteca também implementa atributos RPG leves como **Armor Pierce, Mining Speed, Experience Gained, Arrow Damage, Crit Damage, Dodge Chance e Healing Received**. Um Attribute Remapper permite trocar atributos de itens dinamicamente e possui compatibilidade nativa com Apothic Attributes, com pontos de extensão tanto por código quanto por datapacks. Há ainda uma camada comum de integração Patreon usada pelos projetos do mesmo ecossistema.
+
+---
+
+> As duas bridges KubeJS do eixo mágico e o compat visual EMF↔Iron's estão documentados separadamente em [`20-scripting-e-compatibilidade-tecnica.md`](20-scripting-e-compatibilidade-tecnica.md), pois são camadas de extensão/compatibilidade e não providers mágicos autônomos.
