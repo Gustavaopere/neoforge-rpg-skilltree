@@ -41,6 +41,7 @@ Também concentra comportamento compartilhado de familiars e infraestrutura usad
 **Iron's Lib** reúne frameworks reutilizáveis para os mods do Iron431. A camada de **transmogs** permite aplicar modelos únicos a armaduras, construir interfaces customizáveis de armor e lidar automaticamente com cape physics; o framework de **statues** cobre geração dinâmica de estátuas de jogador, estruturas multibloco e renderização estática.
 A biblioteca também implementa atributos RPG leves como **Armor Pierce, Mining Speed, Experience Gained, Arrow Damage, Crit Damage, Dodge Chance e Healing Received**. Um Attribute Remapper permite trocar atributos de itens dinamicamente e possui compatibilidade nativa com Apothic Attributes, com pontos de extensão tanto por código quanto por datapacks. Há ainda uma camada comum de integração Patreon usada pelos projetos do mesmo ecossistema.
 
+
 ---
 
 > As duas bridges KubeJS do eixo mágico e o compat visual EMF↔Iron's estão documentados separadamente em [`20-scripting-e-compatibilidade-tecnica.md`](20-scripting-e-compatibilidade-tecnica.md), pois são camadas de extensão/compatibilidade e não providers mágicos autônomos.
