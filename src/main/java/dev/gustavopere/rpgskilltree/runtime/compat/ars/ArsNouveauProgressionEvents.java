@@ -4,6 +4,8 @@ import com.hollingsworth.arsnouveau.api.event.FamiliarSummonEvent;
 import com.hollingsworth.arsnouveau.api.event.ManaRegenCalcEvent;
 import com.hollingsworth.arsnouveau.api.event.MaxManaCalcEvent;
 import com.hollingsworth.arsnouveau.api.event.SpellCastEvent;
+import com.hollingsworth.arsnouveau.api.event.SpellResolveEvent;
+import com.hollingsworth.arsnouveau.api.spell.SpellContext;
 import dev.gustavopere.rpgskilltree.core.ActionOrigin;
 import dev.gustavopere.rpgskilltree.core.ArsCompositionClassifier;
 import dev.gustavopere.rpgskilltree.core.ArsNativeProgressionPolicy;
@@ -41,12 +43,30 @@ public final class ArsNouveauProgressionEvents {
         if (event.isCanceled()) return;
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         if (player instanceof FakePlayer) return;
-        if (event.spell == null || event.spell.isEmpty()) return;
+        if (event.context == null || event.spell == null || event.spell.isEmpty()) return;
         List<String> glyphIds = event.spell.serializeRecipe().stream().map(ResourceLocation::toString).toList();
         if (glyphIds.isEmpty()) return;
         Set<String> tags = ArsCompositionClassifier.classify(glyphIds);
         String signature = String.join(">", glyphIds);
-        SpellAction action = new SpellAction(new ActionOrigin("ars:spellcast", 0), "ars", signature, "composition", tags, Math.max(0, event.spell.getCost()));
+        SpellAction action = new SpellAction(
+            new ActionOrigin("ars:spellcast", 0),
+            "ars",
+            signature,
+            "composition",
+            tags,
+            Math.max(0, event.spell.getCost())
+        );
+        event.context.getOrCreateAttachment(ArsMasteryCausalAward.ID, ArsMasteryCausalAward.arm(action));
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onSpellResolved(SpellResolveEvent.Post event) {
+        if (!(event.shooter instanceof ServerPlayer player)) return;
+        if (player instanceof FakePlayer || event.context == null) return;
+        ArsMasteryCausalAward causalAward = causalAwardFor(event.context);
+        if (causalAward == null) return;
+        SpellAction action = causalAward.claimResolved();
+        if (action == null) return;
         PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forArs(action));
     }
 
@@ -72,6 +92,16 @@ public final class ArsNouveauProgressionEvents {
         if (ArsNativeProgressionPolicy.canSummonFamiliar(state.passiveNodes())) return;
         event.setCanceled(true);
         player.displayClientMessage(Component.literal("Entre no ramo de Invocação da Árvore RPG para vincular familiares do Ars Nouveau."), true);
+    }
+
+    private static ArsMasteryCausalAward causalAwardFor(SpellContext context) {
+        SpellContext current = context;
+        while (current != null) {
+            ArsMasteryCausalAward award = current.getAttachment(ArsMasteryCausalAward.ID);
+            if (award != null) return award;
+            current = current.getPreviousContext();
+        }
+        return null;
     }
 
     private static ProgressionState progressionFor(LivingEntity entity) {
