@@ -1,14 +1,14 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
 # 14. Compatibilidades e infraestrutura técnica
 
-## Lychee Tweaker — runtime 6.5.4+neoforge
+## Lychee Tweaker — runtime 6.6.1+neoforge
 
-`Lychee-1.21.1-NeoForge-6.5.4.jar`
+`Lychee-1.21.1-NeoForge-6.6.1.jar`
 **Lychee Tweaker** é um framework **data-driven de interações e receitas in-world**. Datapacks/JSON podem definir processos como item-on-block, interação com fogo ou fluidos, lightning, explosions, crushing, dripstone e outros eventos do mundo sem exigir criar um mod Java específico para cada receita.
-Ele funciona como infraestrutura de scripting/configuração para conteúdos que precisam representar transformação física no mundo, especialmente útil quando uma receita não cabe no crafting table ou em uma recipe type convencional. A build instalada é `6.5.4`, com metadata runtime `6.5.4+neoforge`, e permanece classificada como beta oficial para NeoForge 1.21.1.
+Ele funciona como infraestrutura de scripting/configuração para conteúdos que precisam representar transformação física no mundo, especialmente útil quando uma receita não cabe no crafting table ou em uma recipe type convencional. A build instalada é `6.6.1`, com metadata runtime `6.6.1+neoforge`, e permanece classificada como beta oficial para NeoForge 1.21.1.
 
 ## Pondus Inventory — 0.15-Beta
 
@@ -94,3 +94,34 @@ A build `2.6.25-6.0.10` é especificamente alinhada ao Create 6.0.10 e inclui co
 `createjeicompat-1.0.3.jar`
 **Create JEI Compat** melhora a representação de processos Create no **JEI**, especialmente **Sequenced Assembly** longas. A integração acrescenta paginação e controles de navegação quando uma sequência possui muitas etapas, mantendo ingredientes e fases legíveis e pesquisáveis sem comprimir todo o processo em uma única tela.
 A versão `1.0.3` também inclui controles por teclado, atualização in-place do layout e suporte opcional ao stack EMI através de JEmi. Seu papel é de visualização/consulta de receitas, não alteração dos processos executados pelas máquinas.
+
+
+## KubeJS Create — 2101.3.1-build.18
+
+`kubejs-create-neoforge-2101.3.1-build.18.jar`
+**KubeJS Create** expõe integração de scripting para Create no ambiente KubeJS. A build instalada é beta `2101.3.1-build.18` para NeoForge 1.21–1.21.1 e requer Create + KubeJS.
+
+É **bridge de scripting**, não provider de gameplay: receitas, eventos ou registries configurados por scripts continuam precisando apontar para a mecânica real do Create.
+
+## KubeJS Oritech — runtime 1.21.1-0.4.4
+
+`kubejs_oritech-neoforge-1.21.1-0.4.4.jar`
+**KubeJS Oritech** fornece a camada KubeJS específica do Oritech. A release `0.4.4` atualizou o mínimo de Oritech para 1.2.6 e corrigiu erro de mixin de startup com a linha nova do provider; o pack usa Oritech `1.2.12`.
+
+Ela deve ser tratada como bridge/configuração. Oritech permanece authority de máquinas, energia, recipes e estados internos.
+
+## Productive Metalworks KubeJS Addon — 1.0.0
+
+`productive-metalworks-kubejs-addon-1.0.0.jar`
+**Productive Metalworks KubeJS Addon** adiciona helpers de scripting para recipes da foundry do Productive Metalworks: melting, casting, alloying, remoção de recipes, durations customizadas e combustíveis líquidos customizados.
+
+A camada não cria uma segunda foundry nem um segundo combustível; ela configura o pipeline do provider. A versão instalada é `1.0.0` para NeoForge 1.21.1.
+
+## EMF Compat: Create — 2.0.0
+
+`emf_compat_create_1.21.1_2.0.0.jar`
+**EMF Compat: Create** é uma compatibilidade **client-side** para animações de player feitas com Entity Model Features durante mecânicas do Create, incluindo Skyhook e casos envolvendo Aeronautics/ropes. Seu trabalho é pausar/ajustar animações EMF que conflitam visualmente com essas poses.
+
+Classificação obrigatória: **presentation/client compat**. Não fornece estado de gameplay, custo, progressão, stress, força, velocidade ou autoridade física, e portanto não deve aparecer como provider mecânico de perk.
+
+---

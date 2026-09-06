@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -49,12 +49,12 @@ A build do pack possui integrações específicas com **AE2, Tom's Simple Storag
 **Create: Pattern Schematics** adiciona schematics pensados para **repetição automática de um padrão**. Em vez de copiar manualmente a mesma seção várias vezes, o padrão pode ser aplicado ao longo de contraptions, trains, gantries e outros eixos de movimento para construir sequências repetitivas.
 Isso transforma módulos como trechos de ponte, parede, via ou estrutura industrial em unidades replicáveis. A lógica é diferente do Schematicannon comum: o foco não é apenas imprimir uma área salva, mas definir como a unidade se repete ao longo de um percurso.
 
-## Create: Fast Schematic Cannon — runtime 1.4.1-neoforge
+## Create: Fast Schematic Cannon — runtime 2.6.1-neoforge
 
-`CreateFastSchematicCannon-1.4.1-neoforge-1.21.1.jar`
+`CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar`
 **Create: Fast SchematicCannon** torna a velocidade de impressão do cannon configurável. O parâmetro de **prints per tick** permite executar múltiplas colocações em cada tick de trabalho, multiplicando a taxa de construção sobre o delay normal do Create.
 O addon também permite configurar uma lista de **blocos que o Schematicannon não pode imprimir/quebrar**, protegendo componentes específicos durante construção automática e evitando casos como o chamado void-boiler issue. Portanto ele atua tanto em throughput quanto em regras de segurança de impressão.
-O runtime local é `1.4.1-neoforge`; a publicação externa abrevia a release para `v1.4.1`.
+O runtime local instalado é `2.6.1-neoforge`; o guia usa essa string runtime como autoridade.
 
 ## Create: Schematic Checker — runtime 2.27.45-6.0
 
@@ -62,3 +62,13 @@ O runtime local é `1.4.1-neoforge`; a publicação externa abrevia a release pa
 **Create: Schematic Checker** é uma camada server-side de **proteção e sanitização de schematics**. Ao receber um schematic enviado pelo cliente, ele examina NBT e outros dados antes da impressão, bloqueando ou corrigindo padrões conhecidos que poderiam causar crashes, lag, duplicação ou inserir conteúdo malicioso no mundo.
 O mod também possui reparos específicos para dados de blocos e addons usados em schematics. A release `2.27.45` para Create 6.0 inclui ajustes recentes envolvendo Copycats e Quark, além da manutenção contínua das regras de validação.
 `TorqueAPI 1.2.2` vem incorporada dentro desse JAR como dependência interna e não corresponde a uma entrada top-level separada da modlist.
+
+
+## Create Colony Logistics — 1.3.2
+
+`create_colony_logistics-1.3.2.jar`
+**Create Colony Logistics** é uma bridge operacional entre **MineColonies** e o sistema de logística do **Create**. Seu objetivo é conectar fábricas e estoques automatizados às demandas da colônia, reduzindo entregas manuais e permitindo que requisições/fornecimento atravessem os dois sistemas.
+
+A integração deve preservar duas authorities: MineColonies continua dono das requisições e necessidades da colônia; Create continua dono do transporte/logística física. Uma perk não deve duplicar item entregue, completar pedido sem mutação canônica do MineColonies ou contabilizar duas vezes o mesmo movimento. A build instalada é `1.3.2` para NeoForge 1.21.1.
+
+---

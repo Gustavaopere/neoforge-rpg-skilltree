@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -28,12 +28,12 @@ Ele não implementa um segundo sistema de vein mining: reutiliza o mecanismo de 
 **Create Utilities J** é a continuação mantida do antigo Create Utilities. A linha atual porta e preserva os componentes utilitários do projeto, corrige bugs e mantém o addon compatível com as APIs modernas de Create/NeoForge.
 Na build `0.3.4+1.21.1`, o projeto migrou networking para a payload API do NeoForge, atualizou saved data/capability registration, restaurou a creative tab e corrigiu problemas como serialização de frequência com ItemStack vazio. Também existem correções específicas de sistemas legados, como o Void Motor. O foco é manutenção funcional e infraestrutura das utilidades já fornecidas pelo addon.
 
-## Create Stats & Numbers — 1.2.81
+## Create: Stats & Power — 1.5.1
 
-`create_stats-1.2.81.jar`
+`create_stats-1.5.1.jar`
 **Create Stats & Numbers** amplia Create com **telemetria, eletricidade FE, controle e instrumentação de fábrica**. Stats displays, recorders, alarms, data dials, production detectors, hologramas e mapas de topologia permitem medir produção, eficiência, estado de máquinas e danos em seções de veículos ou instalações.
 A parte elétrica forma uma rede própria com **cabos, wire terminals, dynamos, motors e capacitor banks**. O **Power Distribution Unit (PDU)** centraliza a distribuição e permite atribuir prioridades aos dispositivos; em modo automático, cargas de prioridade inferior podem ser desligadas primeiro quando a geração não atende a demanda.
-O addon também inclui Factory Logic Controller, Dispatch Board, Load Balancer, Calculator, iluminação industrial, Induction Heater/Range e componentes veiculares como **Flight Control Computer, RPM Governor, cockpit console, Path Scanner e Pathfinder Computer**. A build `1.2.81` é um hotfix para inconsistência entre PDU e Flow Meter e inclui melhorias na interface web local.
+O addon também inclui Factory Logic Controller, Dispatch Board, Load Balancer, Calculator, iluminação industrial, Induction Heater/Range e componentes veiculares como **Flight Control Computer, RPM Governor, cockpit console, Path Scanner e Pathfinder Computer**. A build atual `1.5.1` sucede a linha em que `1.2.81` foi um hotfix para inconsistência entre PDU e Flow Meter e inclui melhorias na interface web local.
 
 ## Create Optical — 0.4.2
 
@@ -41,14 +41,17 @@ O addon também inclui Factory Logic Controller, Dispatch Board, Load Balancer, 
 **Create Optical** introduz uma camada de **sinais por feixes ópticos** dentro do ecossistema Create. Fontes ópticas dependem de potência/rotação e emitem feixes que podem ser direcionados, detectados ou usados como entrada lógica por componentes compatíveis.
 A mecânica oferece uma linguagem de transmissão e controle diferente de eixos, redstone dust ou wireless redstone links, permitindo construir circuitos visuais baseados em direção e presença de luz/feixe.
 
-## Create Cyber Goggles — 8.3.14
+## Create Cyber Goggles — 8.5.1
 
-`CreateCyberGoggles-1.21.1-8.3.14-NeoForge.jar`
+`CreateCyberGoggles-1.21.1-8.5.1-NeoForge.jar`
 **Create: Cyber Goggles** é uma ferramenta **client-side de inspeção e assistência modular** para o Create. Os goggles ampliam as informações apresentadas ao jogador ao observar máquinas, redes e componentes, tornando mais fácil diagnosticar estados e parâmetros durante construção ou manutenção.
-Seu escopo é interface/assistência visual; ele não substitui o equipamento físico do mod Create Goggles (Create Plus), que adiciona Goggle Helmets e Armored Backtanks. A build `8.3.14`, direcionada a Create 6.0.10, corrige um crash client-side quando o centro de uma contraption coincide exatamente com o centro da OBB do dispositivo e também atualiza localização.
+Seu escopo é interface/assistência visual; ele não substitui o equipamento físico do mod Create Goggles (Create Plus), que adiciona Goggle Helmets e Armored Backtanks. A linha atual `8.5.1`, ainda direcionada ao stack Create, sucede a build `8.3.14`, que corrigia um crash client-side quando o centro de uma contraption coincide exatamente com o centro da OBB do dispositivo e também atualiza localização.
 
 ## Create Goggles — 6.1.1
 
 `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar`
 **Create Goggles (Create Plus)** adiciona **Goggle Helmets e Armored Backtanks**, combinando as Engineer's Goggles com peças de armadura/equipamento. O objetivo é preservar a leitura de informações do Create enquanto o jogador utiliza capacetes ou backtanks mais protegidos/funcionais.
 É uma expansão de equipamento físico, não um overlay independente. A build `6.1.1` instalada é a beta NeoForge 1.21.1 atual do projeto.
+
+
+---

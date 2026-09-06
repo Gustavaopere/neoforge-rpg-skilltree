@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -11,12 +11,12 @@
 O **Quantum Computer** funciona como um sistema de crafting escalável: pode executar múltiplas tarefas simultâneas compartilhando co-processors e storage dentro de um multiblock configurável. O **Quantum Crafter** acessa o inventário ME diretamente, executa muitas operações por tick e suporta crafting recursivo, receitas com ingredientes não consumidos e limites de estoque.
 O addon também inclui **Quantum Armor** conectada à rede ME, com utilidades como voo, magnetismo, alimentação automática e resistências; uma **Reaction Chamber** para processamento de alto consumo energético; buses especializados para manter estoque/importar/exportar; e **ME Throughput Monitor** para acompanhar variação de itens, fluidos ou energia na rede.
 
-## ExtendedAE — runtime 1.21-2.2.35-neoforge
+## ExtendedAE — runtime 1.21-2.2.36-neoforge
 
-`ExtendedAE-1.21-2.2.35-neoforge.jar`
+`ExtendedAE-1.21-2.2.36-neoforge.jar`
 **ExtendedAE** amplia storage, I/O e autocrafting do AE2 com componentes de alta capacidade. Pattern Provider e Interface passam a ter **36 slots**; Import/Export Buses possuem versões até **8× mais rápidas**; e terminais de acesso a patterns recebem versões maiores, inclusive wireless.
 O addon inclui **Infinity Cells** para água/cobblestone, Pattern Modifier para editar e clonar patterns em lote, buses filtrados por tag ou mod ID, Precise Export Bus, Active Formation Plane e versões paralelas de Inscriber/Charger/Molecular Assembler. O **Assembler Matrix** fornece um multiblock escalável de crafting de altíssimo throughput.
-Há ainda ME Canner, Crystal Assembler/Restorer e **ME Wireless Connector** para ligar trechos de rede à distância. A release pública é 2.2.35; o metadata runtime instalado declara `1.21-2.2.35-neoforge`, e as duas identificações permanecem preservadas.
+Há ainda ME Canner, Crystal Assembler/Restorer e **ME Wireless Connector** para ligar trechos de rede à distância. A build instalada e o metadata runtime declaram `1.21-2.2.36-neoforge`; essa string deve ser preservada integralmente.
 
 ## AE2: Crafting Tree — 1.1.1
 
@@ -24,9 +24,9 @@ Há ainda ME Canner, Crystal Assembler/Restorer e **ME Wireless Connector** para
 **AE2: Crafting Tree** adiciona uma visualização explícita do plano de autocrafting do AE2. Um botão de **Show Crafting Plan** abre a árvore do craft, exibindo a relação entre produto final, componentes intermediários e dependências recursivas.
 A função é diagnóstica: em receitas grandes, permite seguir visualmente quais subcrafts compõem a solicitação em vez de analisar apenas a lista plana de ingredientes do terminal.
 
-## AE2 Import Export Card — 1.5.0
+## AE2 Import Export Card — runtime 1.21.1-1.6.0
 
-`ae2importexportcard-1.21.1-1.5.0.jar`
+`ae2importexportcard-1.21.1-1.6.0.jar`
 **AE2 Import Export Card** leva automação de inventário diretamente aos **wireless terminals**. A Import Card observa slots selecionados do inventário do jogador e envia automaticamente os itens correspondentes para a ME Network; a Export Card faz o caminho inverso e mantém quantidades configuradas no inventário a partir do armazenamento ME.
 Ambas suportam filtros. A integração reconhece **Fuzzy Card** e **Inverter Card**; a Export Card pode usar **Acceleration Card** para aumentar transferência até stacks inteiros e **Crafting Card** para solicitar autocrafting quando o item configurado não existe em estoque. Assim, o inventário pessoal pode ser tratado como uma extensão automatizada da rede enquanto o terminal wireless está em uso.
 
@@ -73,3 +73,6 @@ A fonte de identidade instalada permanece a modlist: **`nep-1.21.1-0.5.1.jar`**.
 **Applied Create** é uma bridge estrutural entre AE2 e Create. Ela permite representar e transportar **capacidade cinética/stress** pela infraestrutura ME, conectando uma rede digital a máquinas que dependem de rotação.
 O addon inclui **Kinetic Energy Acceptor**, armazenamento próprio de grandezas cinéticas e **Stress P2P Tunnel**, que leva capacidade mecânica por túneis P2P. O **ME Gearbox** faz conversão bidirecional entre a rede e componentes rotacionais, permitindo que uma extremidade digital participe de transmissão cinética sem substituir os conceitos de speed/stress do Create.
 A integração também alcança autocrafting: Pattern Providers podem acionar **Mechanical Crafting** e outros processos Create registrados, fazendo uma solicitação ME atravessar etapas digitais e físicas dentro da mesma cadeia de produção.
+
+
+---
