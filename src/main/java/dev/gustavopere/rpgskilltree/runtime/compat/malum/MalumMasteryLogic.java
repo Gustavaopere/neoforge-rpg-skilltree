@@ -9,10 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Function;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 
 /** Pure normalization of Malum observations into canonical mastery actions. */
 final class MalumMasteryLogic {
@@ -46,33 +43,30 @@ final class MalumMasteryLogic {
         );
     }
 
-    static SpiritEvidence evidenceFromStacks(Object rawStacks) {
-        return evidenceFromStacks(rawStacks, stack -> BuiltInRegistries.ITEM.getKey(stack.getItem()));
-    }
-
-    static SpiritEvidence evidenceFromStacks(
-        Object rawStacks,
-        Function<ItemStack, ResourceLocation> itemIdResolver
-    ) {
-        Objects.requireNonNull(itemIdResolver, "itemIdResolver");
-        if (!(rawStacks instanceof List<?> stacks)) {
+    static SpiritEvidence evidenceFromObservations(Object rawObservations) {
+        if (!(rawObservations instanceof List<?> observations)) {
             return SpiritEvidence.EMPTY;
         }
 
         List<String> ids = new ArrayList<>();
         int total = 0;
-        for (Object rawStack : stacks) {
-            if (!(rawStack instanceof ItemStack stack) || stack.isEmpty()) {
+        for (Object rawObservation : observations) {
+            if (!(rawObservation instanceof SpiritStackObservation observation)) {
                 continue;
             }
-            ResourceLocation itemId = itemIdResolver.apply(stack);
-            if (itemId == null) {
-                continue;
-            }
-            ids.add(itemId.toString());
-            total += Math.max(1, stack.getCount());
+            ids.add(observation.itemId());
+            total += Math.max(1, observation.count());
         }
         return ids.isEmpty() ? SpiritEvidence.EMPTY : new SpiritEvidence(List.copyOf(ids), total);
+    }
+
+    record SpiritStackObservation(String itemId, int count) {
+        SpiritStackObservation {
+            Objects.requireNonNull(itemId, "itemId");
+            if (itemId.isBlank()) {
+                throw new IllegalArgumentException("blank spirit item id");
+            }
+        }
     }
 
     record SpiritEvidence(List<String> spiritItemIds, int totalSpirits) {
