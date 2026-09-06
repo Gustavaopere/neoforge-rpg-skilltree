@@ -770,6 +770,35 @@ Entradas:
 - TDD confirmado no commit `8bccbfe7e99f161db7cba4b4a6f9b5c8af0bf0e8`, RPG Skill Tree CI run `34033863889`, job `101488264513`: 1016 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch27JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch4.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
 - o corpus foi adicionado somente depois desse RED correto no commit `cc1da1fba598067293fa88203680a8f3b7a735f6`; Compendium Editorial CI run `34034127426` passou schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
 
+## Lote 28 — Terralith 2.6.2 / biomas do Overworld (batch 5)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch5.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:moonlight_valley` — Vale Luar
+2. `BIOME:terralith:mountain_steppe` — Montanha Estepe
+3. `BIOME:terralith:orchid_swamp` — Pântano Orquídea
+4. `BIOME:terralith:painted_mountains` — Montanhas Pintadas
+5. `BIOME:terralith:red_oasis` — Oásis Vermelho
+6. `BIOME:terralith:rocky_jungle` — Selva Rochosa
+7. `BIOME:terralith:rocky_mountains` — Montanhas Rochosas
+8. `BIOME:terralith:rocky_shrubland` — Arbustivo Rochoso
+9. `BIOME:terralith:sakura_grove` — Bosque Sakura
+10. `BIOME:terralith:sakura_valley` — Vale de Sakura
+
+### Critérios editoriais aplicados ao lote 28
+
+- o recorte continua imediatamente após `moonlight_grove` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `moonlight_valley` até `sakura_valley`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; Dynamic Trees–Terralith 1.3.0 permanece apenas como confirmação complementar de identidade/integração;
+- termos nominais como `Vale`, `Luar`, `Montanha`, `Estepe`, `Pântano`, `Orquídea`, `Pintadas`, `Oásis`, `Vermelho`, `Selva`, `Rochosa`, `Rochoso`, `Bosque` e `Sakura` não são convertidos em clima, temperatura, altitude, geometria, composição, geologia, vegetação, espécies, água, iluminação, ciclo lunar, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `06323d41daa8342f87f5fdc9605db5ea4d677e91`, RPG Skill Tree CI run `34036255544`, job `101494767505`: 1017 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch28JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch5.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `d29285fda2664c607c27cece5abb79ec7f3e2d31`; o JUnit 5 correspondente passou no RPG Skill Tree CI run `34036440482`, job `101495263965`, e o Compendium Editorial CI run `34036440421`, job `101495263669`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -779,8 +808,8 @@ Entradas:
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
 - entradas de worldgen BetterNether: New Dawn reais no corpus: **23**;
-- entradas de worldgen Terralith reais no corpus: **40**;
-- entradas editoriais totais: **255**;
-- lotes documentados: **27**;
+- entradas de worldgen Terralith reais no corpus: **50**;
+- entradas editoriais totais: **265**;
+- lotes documentados: **28**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`, `terralith`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
