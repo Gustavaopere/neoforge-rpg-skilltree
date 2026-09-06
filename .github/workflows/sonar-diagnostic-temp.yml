@@ -1,0 +1,73 @@
+name: Temporary Sonar PR Diagnostics
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - synchronize
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  publish-diagnostics:
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Publish compact Sonar diagnostics to PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+          SONAR_PR: ${{ github.event.pull_request.number || '415' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          issues_response="$(curl --silent --show-error --fail --get \
+            --header "Authorization: Bearer ${SONAR_TOKEN}" \
+            --data-urlencode "componentKeys=${SONAR_PROJECT}" \
+            --data-urlencode "pullRequest=${SONAR_PR}" \
+            --data-urlencode 'issueStatuses=OPEN,CONFIRMED' \
+            --data-urlencode 'ps=100' \
+            'https://sonarcloud.io/api/issues/search')"
+
+          issues_lines="$(jq -r '.issues[]? | "ISSUE|rule=\(.rule)|type=\(.type // "")|severity=\(.severity // "")|component=\(.component // "")|line=\(.line // 0)|message=\(.message // "")"' <<<"$issues_response")"
+
+          coverage_response="$(curl --silent --show-error --fail --get \
+            --header "Authorization: Bearer ${SONAR_TOKEN}" \
+            --data-urlencode "component=${SONAR_PROJECT}" \
+            --data-urlencode "pullRequest=${SONAR_PR}" \
+            --data-urlencode 'metricKeys=new_coverage,new_lines_to_cover,new_uncovered_lines,new_conditions_to_cover,new_uncovered_conditions' \
+            --data-urlencode 'qualifiers=FIL' \
+            --data-urlencode 'ps=500' \
+            'https://sonarcloud.io/api/measures/component_tree')"
+
+          coverage_lines="$(jq -r '
+            .components[]?
+            | {path: (.path // .name), measures: (.measures // [])}
+            | . as $component
+            | ($component.measures | map({key: .metric, value: (.period.value // .value // "0")}) | from_entries) as $m
+            | select((($m.new_uncovered_lines // "0") | tonumber) > 0 or (($m.new_uncovered_conditions // "0") | tonumber) > 0)
+            | "COVERAGE|path=\($component.path)|new_coverage=\($m.new_coverage // "")|new_lines_to_cover=\($m.new_lines_to_cover // "0")|new_uncovered_lines=\($m.new_uncovered_lines // "0")|new_conditions_to_cover=\($m.new_conditions_to_cover // "0")|new_uncovered_conditions=\($m.new_uncovered_conditions // "0")"
+          ' <<<"$coverage_response" | sort)"
+
+          marker='<!-- sonar-diagnostic-temp-pr-415 -->'
+          body="${marker}
+          Temporary CI diagnostic for PR #${SONAR_PR}. This comment will be removed/superseded after the gate is fixed.
+
+          \`\`\`text
+          === Sonar PR issues ===
+          ${issues_lines}
+          === Sonar files with uncovered new code ===
+          ${coverage_lines}
+          \`\`\`"
+
+          gh api \
+            --method POST \
+            "repos/${GITHUB_REPOSITORY}/issues/${SONAR_PR}/comments" \
+            -f body="$body" >/dev/null
