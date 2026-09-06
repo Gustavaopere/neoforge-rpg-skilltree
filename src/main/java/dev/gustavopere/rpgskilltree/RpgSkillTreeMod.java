@@ -25,7 +25,10 @@ import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0042ScytheKillHook
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0061A0080EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
+import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyIntegrationBootstrap;
+import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyIntegrationState;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
@@ -192,6 +195,33 @@ public final class RpgSkillTreeMod {
             );
         }
 
+        boolean goetyLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.GOETY);
+        String goetyVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.GOETY);
+        GoetyIntegrationState goetyState = GoetyIntegrationBootstrap.install(
+            goetyLoaded,
+            goetyVersion,
+            () -> NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class)
+        );
+        if (goetyState == GoetyIntegrationState.ACTIVE) {
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPAT,
+                "goety_mastery_active",
+                "Goety Mastery integration active: Goety {}",
+                goetyVersion
+            );
+        } else if (goetyState != GoetyIntegrationState.ABSENT_PROVIDER) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "goety_mastery_disabled",
+                "Goety Mastery integration disabled: state={}, expected={}, found={}",
+                goetyState,
+                GoetyVersionContract.SUPPORTED_VERSION,
+                goetyVersion
+            );
+        }
+
         boolean mineColoniesLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
         boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
         String mineColoniesVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
@@ -280,7 +310,6 @@ public final class RpgSkillTreeMod {
 
         if (ironsSpellbooksLoaded) NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.ARS_NOUVEAU)) NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.GOETY)) NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class);
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MALUM)) NeoForge.EVENT_BUS.register(MalumProgressionEvents.class);
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EIDOLON)) {
             NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
