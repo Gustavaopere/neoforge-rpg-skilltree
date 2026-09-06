@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -156,7 +157,7 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
 
     public static DepositRegistry fromTag(CompoundTag tag) {
         Objects.requireNonNull(tag, "tag");
-        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)) {
+        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, Tag.TAG_INT)) {
             LOGGER.error(
                     "Geological deposit SavedData has an invalid schema_version NBT type. Preserving payload fail-closed/read-only.");
             return preserveReadOnly(tag);
@@ -172,14 +173,14 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
             return preserveReadOnly(tag);
         }
 
-        if (tag.contains(DEPOSITS) && !tag.contains(DEPOSITS, CompoundTag.TAG_LIST)) {
+        if (tag.contains(DEPOSITS) && !tag.contains(DEPOSITS, Tag.TAG_LIST)) {
             LOGGER.error(
                     "Geological deposit SavedData has an invalid deposits NBT type. Preserving payload fail-closed/read-only.");
             return preserveReadOnly(tag);
         }
-        if (tag.contains(DEPOSITS, CompoundTag.TAG_LIST)) {
+        if (tag.contains(DEPOSITS, Tag.TAG_LIST)) {
             ListTag rawDeposits = (ListTag) tag.get(DEPOSITS);
-            if (!rawDeposits.isEmpty() && rawDeposits.getElementType() != CompoundTag.TAG_COMPOUND) {
+            if (!rawDeposits.isEmpty() && rawDeposits.getElementType() != Tag.TAG_COMPOUND) {
                 LOGGER.error(
                         "Geological deposit SavedData deposits list has a non-compound element type. Preserving payload fail-closed/read-only.");
                 return preserveReadOnly(tag);
@@ -187,7 +188,7 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
         }
 
         DepositRegistry registry = new DepositRegistry();
-        ListTag list = tag.getList(DEPOSITS, CompoundTag.TAG_COMPOUND);
+        ListTag list = tag.getList(DEPOSITS, Tag.TAG_COMPOUND);
         for (int index = 0; index < list.size(); index++) {
             try {
                 GeologicalDeposit deposit = GeologicalDeposit.fromTag(list.getCompound(index));
@@ -207,7 +208,7 @@ public final class DepositRegistry extends SavedData implements GeologicalDeposi
     }
 
     private static int readSchemaVersion(CompoundTag tag) {
-        return tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)
+        return tag.contains(SCHEMA_VERSION, Tag.TAG_INT)
                 ? tag.getInt(SCHEMA_VERSION)
                 : LEGACY_SCHEMA_VERSION;
     }

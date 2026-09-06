@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "alexscaves",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:alexscaves:abyssal_chasm",
+      "title": "Fendas Abissais",
+      "summary": {
+        "text": "Fendas Abissais é um dos seis biomas cavernosos raros de Alex's Caves Neo, localizado nas profundezas do Overworld e identificado no runtime pelo ID alexscaves:abyssal_chasm.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:biome/alexscaves:abyssal_chasm"},
+          {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registro do provider inclui este bioma no conjunto de cavernas de Alex's Caves e o associa ao Overworld. Frequência, posição e distribuição concreta permanecem responsabilidade do worldgen e dos datapacks ativos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+          ]
+        },
+        "atmosfera": {
+          "text": "A identidade visual do bioma inclui tratamento próprio de neblina, neblina subaquática e iluminação. O Compêndio não congela em prosa os valores numéricos dessas renderizações.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"},
+            {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:alexscaves:candy_cavity",
+      "title": "Candy Cavity",
+      "summary": {
+        "text": "Candy Cavity é um dos seis biomas cavernosos raros de Alex's Caves Neo, com conteúdo próprio de blocos, itens, criaturas e mecânicas e ID runtime alexscaves:candy_cavity.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:biome/alexscaves:candy_cavity"},
+          {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registry do provider inclui Candy Cavity no conjunto de biomas cavernosos e o adiciona ao Overworld. A ficha evita transformar raridade editorial em probabilidade ou coordenada fixa de geração.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+          ]
+        },
+        "atmosfera": {
+          "text": "O provider aplica ambientação própria aos biomas de caverna, incluindo partículas, neblina, brilho e cor de luz; Candy Cavity também participa dos ajustes específicos de iluminação e neblina definidos pelo código do bioma.",
+          "sources": [
+            {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:alexscaves:forlorn_hollows",
+      "title": "Cavernas Desoladas",
+      "summary": {
+        "text": "Cavernas Desoladas é um dos seis biomas cavernosos raros de Alex's Caves Neo e corresponde ao ID runtime alexscaves:forlorn_hollows.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:biome/alexscaves:forlorn_hollows"},
+          {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider registra este bioma no conjunto de cavernas especiais do mod e o integra ao Overworld; a ocorrência exata continua dependente do worldgen corrente.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+          ]
+        },
+        "atmosfera": {
+          "text": "Cavernas Desoladas participa do sistema de atmosfera específica dos biomas de Alex's Caves e possui ajustes próprios de neblina e cor de iluminação no código do provider.",
+          "sources": [
+            {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:alexscaves:magnetic_caves",
+      "title": "Cavernas Magnéticas",
+      "summary": {
+        "text": "Cavernas Magnéticas é um dos seis biomas cavernosos raros de Alex's Caves Neo, com identidade própria de conteúdo e ID runtime alexscaves:magnetic_caves.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:biome/alexscaves:magnetic_caves"},
+          {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registry do provider inclui Cavernas Magnéticas no conjunto de biomas cavernosos e o integra ao Overworld. O Compêndio não fixa frequência nem posição universal de encontro.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+          ]
+        },
+        "exploracao": {
+          "text": "A documentação do port orienta a descoberta dos biomas por meio do sistema de exploração do mod, que inclui Cave Compendium e cave tablets encontrados a partir da Underground Cabin.",
+          "sources": [
+            {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:alexscaves:primordial_caves",
+      "title": "Cavernas Primordiais",
+      "summary": {
+        "text": "Cavernas Primordiais é um dos seis biomas cavernosos raros de Alex's Caves Neo, registrado como alexscaves:primordial_caves e integrado ao Overworld pelo provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:biome/alexscaves:primordial_caves"},
+          {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "A integração ao Overworld é explícita no registro de biomas do provider. A distribuição concreta depende do worldgen ativo e não é representada por coordenadas ou chances fixas nesta ficha.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+          ]
+        },
+        "atmosfera": {
+          "text": "O código do bioma aplica tratamento próprio de luz ambiente e neblina a Cavernas Primordiais, enquanto a documentação do port descreve ambientação distinta para cada uma das seis cavernas.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"},
+            {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:alexscaves:toxic_caves",
+      "title": "Cavernas Tóxicas",
+      "summary": {
+        "text": "Cavernas Tóxicas é um dos seis biomas cavernosos raros de Alex's Caves Neo e corresponde ao ID runtime alexscaves:toxic_caves.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "alexscaves:biome/alexscaves:toxic_caves"},
+          {"type": "VERIFIED_COMMUNITY", "ref": "https://www.curseforge.com/minecraft/mc-mods/alexs-caves-neo"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O registry do provider inclui Cavernas Tóxicas no conjunto de cavernas especiais e o adiciona ao Overworld; posição e raridade concreta permanecem definidas pelo worldgen corrente.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+          ]
+        },
+        "atmosfera": {
+          "text": "O código atribui a Cavernas Tóxicas tratamento próprio de luz, neblina e cor de iluminação; valores numéricos são deixados no runtime para evitar documentação congelada.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/AlexModGuy/AlexsCaves/blob/4718f4287c65b810aecb211789b45f54d405a94d/src/main/java/com/github/alexmodguy/alexscaves/server/level/biome/ACBiomeRegistry.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

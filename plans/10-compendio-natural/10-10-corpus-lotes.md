@@ -289,322 +289,360 @@ Entradas:
 - distribuição concreta continua condicionada por worldgen, biomas e datapacks ativos, sem frequência ou local universal inventado;
 - o corpus passou pelo Compendium Editorial CI #237 e pelo RPG Skill Tree CI #2425, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke antes deste registro.
 
-## Lote 11 — TerraFirmaCraft / cultivos básicos
+## Lote 11 — Alex's Caves / biomas e estruturas de worldgen
 
-Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/crops-batch1.json`
+Arquivos:
+
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/alexscaves/biomes-batch1.json`
+- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/alexscaves/structures-batch1.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `FLORA:tfc:crop/barley` — Cevada
-2. `FLORA:tfc:crop/oat` — Aveia
-3. `FLORA:tfc:crop/rye` — Centeio
-4. `FLORA:tfc:crop/maize` — Milho
-5. `FLORA:tfc:crop/wheat` — Trigo
-6. `FLORA:tfc:crop/rice` — Arroz
-7. `FLORA:tfc:crop/beet` — Beterraba
-8. `FLORA:tfc:crop/cabbage` — Alface
-9. `FLORA:tfc:crop/carrot` — Cenoura
-10. `FLORA:tfc:crop/garlic` — Alho
+1. `BIOME:alexscaves:abyssal_chasm` — Fendas Abissais
+2. `BIOME:alexscaves:candy_cavity` — Candy Cavity
+3. `BIOME:alexscaves:forlorn_hollows` — Cavernas Desoladas
+4. `BIOME:alexscaves:magnetic_caves` — Cavernas Magnéticas
+5. `BIOME:alexscaves:primordial_caves` — Cavernas Primordiais
+6. `BIOME:alexscaves:toxic_caves` — Cavernas Tóxicas
+7. `STRUCTURE:alexscaves:abyssal_ruins` — Abyssal Ruins
+8. `STRUCTURE:alexscaves:acid_pit` — Acid Pit
+9. `STRUCTURE:alexscaves:cake_cave` — Cake Cave
+10. `STRUCTURE:alexscaves:dino_bowl` — Dino Bowl
 
 ### Critérios editoriais aplicados ao lote 11
 
-- o lote inicia a cobertura editorial não-vanilla pelo eixo TFC/ambiente/agro, após os 100 verbetes vanilla usados como referência de qualidade;
-- o provider foi fixado na versão instalada TerraFirmaCraft `1.21.1-4.2.8` e as evidências editoriais apontam para o tag upstream `v4.2.8`;
-- registry IDs e nomes pt-BR foram mantidos conforme o provider, inclusive `tfc:crop/cabbage` com o rótulo localizado `Alface`, sem reescrever a identidade técnica;
-- o texto de cultivo é sustentado pelo Field Guide do TFC e evita congelar em prosa limiares numéricos mutáveis de clima, hidratação ou nutrientes;
-- planta cultivada, forma silvestre, estado morto e sementes são tratadas como identidades técnicas distintas, sem fusão editorial de registry IDs;
-- as dez fichas usam `availability: OPTIONAL`, pois TerraFirmaCraft é um provider opcional: a ficha permanece carregável quando o provider está ausente e pode coexistir com a entrada técnica quando ele está presente;
-- o loader ganhou teste de regressão para essa semântica: `OPTIONAL` é aceito com provider ausente ou presente, `RUNTIME` continua exigindo presença e `LEGACY` continua fail-closed quando a entrada técnica existe;
-- antes deste registro, o HEAD funcional passou pelo Compendium Editorial CI #251 e pelo RPG Skill Tree CI #2463, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+- provider reconciliado com a modlist canônica e a Auditoria Mestre antes da autoria: Alex's Caves Neo 2.0.2, namespace `alexscaves`;
+- os seis biomas correspondem aos IDs registrados pelo provider e permanecem `RUNTIME`, sem congelar frequência, posição ou parâmetros visuais numéricos em prosa;
+- as quatro estruturas são vinculadas pelos datapacks aos biomas correspondentes: Abyssal Ruins → Fendas Abissais, Acid Pit → Cavernas Tóxicas, Cake Cave → Candy Cavity e Dino Bowl → Cavernas Primordiais;
+- nomes pt-BR só foram usados quando sustentados pelos assets do provider; `Candy Cavity` e os quatro títulos de estrutura foram preservados sem inventar tradução;
+- todo resumo e seção possui fonte explícita `RUNTIME`, `DATAPACK`, `OFFICIAL_CODE` ou `VERIFIED_COMMUNITY` conforme a natureza do fato;
+- não há probabilidades, alturas, pesos de spawn, contagens, chances ou outros parâmetros mutáveis congelados na prosa editorial;
+- o lote foi desenvolvido em TDD: o teste Batch11 falhou primeiro exclusivamente pela ausência dos recursos; os pacotes foram adicionados somente depois desse RED correto.
 
-## Lote 12 — TerraFirmaCraft / cultivos alimentares complementares
+## Lote 12 — Oh The Biomes We've Gone / biomas Overworld (batch 1)
 
-Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/crops-batch2.json`
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch1.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `FLORA:tfc:crop/cassava` — Mandioca
-2. `FLORA:tfc:crop/green_bean` — Vagem
-3. `FLORA:tfc:crop/lentil` — Lentilha
-4. `FLORA:tfc:crop/peanut` — Amendoim
-5. `FLORA:tfc:crop/soybean` — Soja
-6. `FLORA:tfc:crop/onion` — Cebola
-7. `FLORA:tfc:crop/potato` — Batata
-8. `FLORA:tfc:crop/tomato` — Tomate
-9. `FLORA:tfc:crop/red_bell_pepper` — Pimentão vermelho
-10. `FLORA:tfc:crop/yellow_bell_pepper` — Pimentão amarelo
+1. `BIOME:biomeswevegone:allium_shrubland` — Matagal de Alho-silvestre
+2. `BIOME:biomeswevegone:amaranth_grassland` — Campo de Amarantos
+3. `BIOME:biomeswevegone:araucaria_savanna` — Savana de Araucária
+4. `BIOME:biomeswevegone:aspen_boreal` — Álamo Boreal
+5. `BIOME:biomeswevegone:atacama_outback` — Deserto do Atacama
+6. `BIOME:biomeswevegone:baobab_savanna` — Savana de Baobá
+7. `BIOME:biomeswevegone:basalt_barrera` — Barreira de Basalto
+8. `BIOME:biomeswevegone:bayou` — Ribeiro
+9. `BIOME:biomeswevegone:black_forest` — Floresta Negra
+10. `BIOME:biomeswevegone:canadian_shield` — Escudo Canadense
 
 ### Critérios editoriais aplicados ao lote 12
 
-- o provider permanece fixado no TerraFirmaCraft `1.21.1-4.2.8`, com registry IDs, localização e Field Guide auditados no tag upstream `v4.2.8`;
-- `Vagem`, `Soja`, `Cebola`, `Batata` e `Tomate` preservam a localização pt-BR do provider, normalizando apenas capitalização quando necessário;
-- onde o arquivo `pt_br.json` ainda mantém o rótulo em inglês (`Cassava`, `Lentil`, `Peanut`, `Red Bell Pepper` e `Yellow Bell Pepper`), o Compêndio fornece os aliases editoriais `Mandioca`, `Lentilha`, `Amendoim`, `Pimentão vermelho` e `Pimentão amarelo`, sem alterar nenhum registry ID;
-- Vagem e Tomate registram a mecânica comprovada de cultivo trepador em dois blocos com graveto de suporte, mas nenhum limite numérico de clima, hidratação, nutrientes ou estágio foi congelado em prosa;
-- planta cultivada, forma silvestre, estado morto e sementes continuam tratadas como identidades técnicas distintas;
-- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL`, válidas tanto com o provider ausente quanto presente conforme o contrato corrigido no lote anterior;
-- o TDD do lote reproduziu RED exclusivamente pela ausência de `crops-batch2.json`; após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #272 e pelo RPG Skill Tree CI #2493, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+- provider reconciliado com a modlist canônica e a Auditoria Mestre antes da autoria: Oh The Biomes We've Gone 2.6.0, namespace `biomeswevegone`;
+- o recorte corresponde aos dez primeiros biomas Overworld registrados em `BWGBiomes.java` na linha oficial 1.21.1 da release 2.6.0, ancorada no commit `3040862ddd02c2487c946cac2803502e59508062`;
+- os títulos pt-BR são exatamente os fornecidos pelo `assets/biomeswevegone/lang/pt_br.json` do mesmo commit do provider, sem tradução editorial inventada;
+- a prosa registra somente identidade de runtime, categorias/tags de biome e elegibilidade estrutural explicitamente declaradas pelo código oficial; tags de estrutura não são tratadas como garantia de geração;
+- nenhum peso, chance, frequência, altura, posição, densidade ou parâmetro configurável foi congelado no texto;
+- o lote foi desenvolvido em TDD: o commit `ee1a866280364cf472743d6423c61fc11af608d7` executou 909 testes e falhou exatamente uma vez, no Batch12, porque o recurso ainda não existia; o corpus foi adicionado somente depois desse RED correto.
 
-## Lote 13 — TerraFirmaCraft / fechamento dos cultivos e início dos arbustos frutíferos
+## Lote 13 — Oh The Biomes We've Gone / biomas Overworld (batch 2)
 
-Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/agro-batch3.json`
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch2.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `FLORA:tfc:crop/squash` — Moringa
-2. `FLORA:tfc:crop/pumpkin` — Abóbora
-3. `FLORA:tfc:crop/melon` — Melancia
-4. `FLORA:tfc:crop/canola` — Canola
-5. `FLORA:tfc:crop/radish` — Rabanete
-6. `FLORA:tfc:crop/alfalfa` — Alfafa
-7. `FLORA:tfc:crop/jute` — Juta
-8. `FLORA:tfc:crop/papyrus` — Papiro
-9. `FLORA:tfc:crop/sugarcane` — Cana de açúcar
-10. `FLORA:tfc:plant/blackberry_bush` — Arbusto de amora
+1. `BIOME:biomeswevegone:cika_woods` — Bosque de Cika
+2. `BIOME:biomeswevegone:coconino_meadow` — Pradaria Coconino
+3. `BIOME:biomeswevegone:coniferous_forest` — Floresta de Coníferas
+4. `BIOME:biomeswevegone:crag_gardens` — Crag Gardens
+5. `BIOME:biomeswevegone:crimson_tundra` — Tundra Carmesim
+6. `BIOME:biomeswevegone:cypress_swamplands` — Pântano de Ciprestes
+7. `BIOME:biomeswevegone:cypress_wetlands` — Terras Úmidas de Cipreste
+8. `BIOME:biomeswevegone:dacite_ridges` — Cumes de Dacito
+9. `BIOME:biomeswevegone:dacite_shore` — Costa de Dacito
+10. `BIOME:biomeswevegone:dead_sea` — Mar Morto
 
 ### Critérios editoriais aplicados ao lote 13
 
-- os nove cultivos do lote fecham todas as entradas restantes da coleção `CROPS` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8` depois dos lotes 11 e 12; o décimo verbete inicia a próxima fatia agro/flora com o primeiro arbusto frutífero auditado, `blackberry_bush`;
-- o rótulo `Moringa` para `tfc:crop/squash` é preservado exatamente como fornecido pelo `pt_br.json` do provider, sem corrigir silenciosamente a localização nem alterar o registry ID técnico;
-- onde o provider ainda deixa nomes em inglês, o Compêndio fornece aliases editoriais pt-BR próprios: `Pumpkin` → `Abóbora`, `Melon` → `Melancia`, `Radish` → `Rabanete`, `Alfalfa` → `Alfafa` e `Papyrus` → `Papiro`;
-- Abóbora e Melancia registram somente a mecânica comprovada de cultivo de propagação e produção de blocos de fruto adjacentes; quantidades, clima, hidratação e nutrientes não foram congelados em prosa;
-- Canola, Rabanete e Alfafa preservam o papel de culturas de cobertura que enriquecem o solo, enquanto Juta, Papiro e Cana de açúcar registram crescimento em dois blocos conforme o Field Guide, sem transportar limites numéricos mutáveis para o texto editorial;
-- o Arbusto de amora usa a localização pt-BR do próprio provider e registra apenas o ciclo sazonal geral e a associação oficial com áreas de poucas árvores, deixando calendário, clima e worldgen concretos sob autoridade do provider/datapacks;
-- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e carregam tanto com o TerraFirmaCraft ausente quanto presente conforme o contrato do loader;
-- o TDD reproduziu RED exclusivamente pela ausência intencional de `agro-batch3.json` no RPG Skill Tree CI #2516 (`151 tests completed, 1 failed`); após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #289 e pelo RPG Skill Tree CI #2517, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+- o recorte continua imediatamente após `canadian_shield` na ordem do registry `BWGBiomes.java` da release 2.6.0;
+- IDs, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os dez títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit, incluindo `Crag Gardens`, que permanece sem tradução inventada;
+- tags de vila, posto de saqueadores e tesouro enterrado são descritas somente como elegibilidade de worldgen; categorias internas como lago frio grande e arco de espeleotema não são convertidas em geometria, frequência ou valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `0aa9db81c0e71c033d0260b64f51e584b6745dbe`: 910 testes, exatamente 1 falha no Batch13 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
-## Lote 14 — TerraFirmaCraft / arbustos frutíferos remanescentes
+## Lote 14 — Oh The Biomes We've Gone / biomas Overworld (batch 3)
 
-Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/berries-batch4.json`
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch3.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `FLORA:tfc:plant/raspberry_bush` — Arbusto de framboesa
-2. `FLORA:tfc:plant/blueberry_bush` — Arbusto de mirtilo
-3. `FLORA:tfc:plant/elderberry_bush` — Sabugueiro
-4. `FLORA:tfc:plant/snowberry_bush` — Arbusto de snowberry
-5. `FLORA:tfc:plant/bunchberry_bush` — Arbusto de bunchberry
-6. `FLORA:tfc:plant/gooseberry_bush` — Arbusto de groselha
-7. `FLORA:tfc:plant/cloudberry_bush` — Arbusto de cloudberry
-8. `FLORA:tfc:plant/strawberry_bush` — Morangueiro
-9. `FLORA:tfc:plant/wintergreen_berry_bush` — Arbusto de wintergreen berry
-10. `FLORA:tfc:plant/cranberry_bush` — Arbusto de cranberry
+1. `BIOME:biomeswevegone:ebony_woods` — Bosque de Ébano
+2. `BIOME:biomeswevegone:enchanted_tangle` — Emaranhado Encantado
+3. `BIOME:biomeswevegone:eroded_borealis` — Erosão Boreal
+4. `BIOME:biomeswevegone:firecracker_chaparral` — Chaparral de Fogos de Artifício
+5. `BIOME:biomeswevegone:forgotten_forest` — Floresta Esquecida
+6. `BIOME:biomeswevegone:fragment_jungle` — Selva Fragmentada
+7. `BIOME:biomeswevegone:frosted_coniferous_forest` — Floresta de Coníferas Congeladas
+8. `BIOME:biomeswevegone:frosted_taiga` — Taiga Congelada
+9. `BIOME:biomeswevegone:howling_peaks` — Picos Uivantes
+10. `BIOME:biomeswevegone:ironwood_gour` — Vale de Pau-Ferro
 
 ### Critérios editoriais aplicados ao lote 14
 
-- o lote fecha as dez entradas restantes da coleção `BERRIES` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8` depois de `blackberry_bush` ter iniciado essa cobertura no lote 13;
-- registry IDs, classificação de crescimento e localização foram confrontados com `resources/constants.py`, o Field Guide e `pt_br.json` do provider; no caso da framboesa, o Compêndio normaliza apenas o espaço final e a capitalização da localização oficial;
-- `Snowberry Bush`, `Bunchberry Bush`, `Cloudberry Bush` e `Wintergreen Berry Bush` ainda permanecem em inglês no locale pt-BR do provider, portanto recebem aliases editoriais conservadores sem inventar espécie botânica que o mod não declare;
-- Framboesa, Mirtilo e Sabugueiro preservam o comportamento oficial de arbustos expansivos e a associação documentada a áreas com poucas árvores; os demais arbustos baixos usam somente as regras gerais confirmadas pelo Field Guide;
-- Cranberry mantém sua exceção real de berry aquática/submersa, sem transformar parâmetros de água, clima ou geração do mundo em constantes editoriais;
-- nenhum limite numérico de temperatura, hidratação, chuva, mês, estágio ou frequência de geração foi congelado em prosa;
-- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e foram exercitadas com o TerraFirmaCraft ausente e presente pelo teste de regressão do lote;
-- o TDD reproduziu RED na PR draft #299 exclusivamente pela ausência intencional de `berries-batch4.json`; após o corpus, o head funcional `83fb191db9fe7d269a53ed3174c1e9cb1a87f62e` passou o Compendium Editorial CI #292 e o RPG Skill Tree CI #2524 completos, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, NeoForge build, verificação do JAR e dedicated-server smoke.
+- o recorte continua imediatamente após `dead_sea` na ordem do registry `BWGBiomes.java` da release 2.6.0;
+- IDs, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os dez títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit;
+- tags de iglu, vila nevada, posto de saqueadores, mansão da floresta e vila BWG são tratadas somente como elegibilidade de worldgen, não garantia de geração;
+- categorias internas como `IRONWOOD_GOUR_PLATEAU` não são convertidas em geometria, altura, frequência ou valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `4bf0ef99ce38dc84b5a4ce621dc71024a408266a`: 911 testes, exatamente 1 falha no Batch14 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
-## Lote 15 — TerraFirmaCraft / pomar e início das árvores de madeira
+## Lote 15 — Oh The Biomes We've Gone / biomas Overworld (batch 4)
 
-Arquivos:
-
-- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/orchards-batch5.json`
-- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/trees-batch1.json`
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch4.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `FLORA:tfc:plant/banana_sapling` — Muda de bananeira
-2. `FLORA:tfc:plant/cherry_sapling` — Muda de cerejeira
-3. `FLORA:tfc:plant/green_apple_sapling` — Pé de maçã verde
-4. `FLORA:tfc:plant/red_apple_sapling` — Pé de maça vermelha
-5. `FLORA:tfc:plant/lemon_sapling` — Muda de limoeiro
-6. `FLORA:tfc:plant/olive_sapling` — Muda de oliveira
-7. `FLORA:tfc:plant/orange_sapling` — Muda de laranjeira
-8. `FLORA:tfc:plant/peach_sapling` — Muda de pessegueiro
-9. `FLORA:tfc:plant/plum_sapling` — Muda de ameixoeira
-10. `TREE:tfc:wood/sapling/acacia` — Muda de acácia
+1. `BIOME:biomeswevegone:jacaranda_jungle` — Selva de Jacarandá
+2. `BIOME:biomeswevegone:lush_stacks` — Pilhas Exuberantes
+3. `BIOME:biomeswevegone:maple_taiga` — Taiga de Bordo
+4. `BIOME:biomeswevegone:mojave_desert` — Deserto de Mojave
+5. `BIOME:biomeswevegone:orchard` — Pomar
+6. `BIOME:biomeswevegone:overgrowth_woodlands` — Bosques Cobertos de Vegetação
+7. `BIOME:biomeswevegone:pale_bog` — Pântano Pálido
+8. `BIOME:biomeswevegone:prairie` — Pradaria
+9. `BIOME:biomeswevegone:pumpkin_valley` — Vale da Abóbora
+10. `BIOME:biomeswevegone:rainbow_beach` — Praia do Arco-Íris
 
 ### Critérios editoriais aplicados ao lote 15
 
-- as nove primeiras entradas fecham a coleção `FRUITS` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`; como essa coleção possui exatamente nove frutíferas arbóreas, a décima entrada inicia a coleção `WOODS` pela primeira espécie declarada no provider, `ACACIA`;
-- a classificação foi determinada pelo runtime, não pelo nome: as mudas das frutíferas comuns usam `FruitTreeSaplingBlock`, derivado de `BushBlock`, e a bananeira possui implementação especializada, por isso entram como `FLORA`; a muda de acácia usa `TFCSaplingBlock`, derivado de `SaplingBlock`, sendo descoberta como `TREE` pelo coletor do Compêndio;
-- os rótulos pt-BR foram confrontados com `pt_br.json`; espaços finais do provider são apenas normalizados, enquanto `Pé de maça vermelha` preserva deliberadamente a grafia da localização oficial em vez de corrigi-la silenciosamente;
-- a bananeira mantém sua exceção estrutural real: crescimento vertical sem a copa de folhas das frutíferas comuns, frutificação no topo e necessidade de novo plantio após a colheita conforme o Field Guide;
-- as demais frutíferas registram somente o ciclo sazonal, formação de galhos/folhas e crescimento controlado pelo sistema do provider, sem congelar meses, temperatura, hidratação ou tempo de crescimento em prosa;
-- a acácia registra a identidade `Wood.ACACIA`, o uso de `TFCSaplingBlock` e sua família de blocos de madeira, mantendo timings e modificadores de crescimento sob autoridade da configuração/runtime;
-- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
-- o TDD produziu RED válido na PR draft #309 pelo RPG Skill Tree CI #2600: após compilação e checks prévios verdes, `157 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch15JUnitTest` pela ausência intencional dos pacotes; após o corpus, o HEAD funcional passou pelo Compendium Editorial CI #349 e pelo RPG Skill Tree CI #2610 completos, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+- o recorte continua imediatamente após `ironwood_gour` na ordem do registry `BWGBiomes.java` da release 2.6.0;
+- IDs, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os dez títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit;
+- tags vanilla de vilas, posto de saqueadores, pirâmide do deserto e tesouro enterrado, além das tags estruturais próprias do BWG, são tratadas somente como elegibilidade de worldgen, não garantia de geração;
+- categorias internas como `LUSH_ARCH` e `LARGE_COLD_LAKE` não são convertidas em geometria, frequência, altura ou valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `3f88813aacf64eb1bbc8d498599126018d271cd6`: 912 testes, exatamente 1 falha no Batch15 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
-## Lote 16 — TerraFirmaCraft / árvores de madeira, segunda fatia
+## Lote 16 — Oh The Biomes We've Gone / biomas Overworld (batch 5)
 
-Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/trees-batch2.json`
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch5.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `TREE:tfc:wood/sapling/ash` — Muda de ash
-2. `TREE:tfc:wood/sapling/aspen` — Muda de aspen
-3. `TREE:tfc:wood/sapling/birch` — Muda de eucalipto
-4. `TREE:tfc:wood/sapling/blackwood` — Muda de acácia-negra
-5. `TREE:tfc:wood/sapling/chestnut` — Muda de castanheira
-6. `TREE:tfc:wood/sapling/douglas_fir` — Muda de douglas fir
-7. `TREE:tfc:wood/sapling/hickory` — Muda de nogueira
-8. `TREE:tfc:wood/sapling/kapok` — Muda de sumaúma
-9. `TREE:tfc:wood/sapling/mangrove` — Propágulo de mangrove
-10. `TREE:tfc:wood/sapling/maple` — Muda de bordo
+1. `BIOME:biomeswevegone:red_rock_valley` — Vale da Rocha Vermelha
+2. `BIOME:biomeswevegone:red_rock_peaks` — Picos de Rocha Vermelha
+3. `BIOME:biomeswevegone:redwood_thicket` — Matagal de Sequoias
+4. `BIOME:biomeswevegone:rose_fields` — Campo de Rosas
+5. `BIOME:biomeswevegone:rugged_badlands` — Ermo Acidentado
+6. `BIOME:biomeswevegone:sakura_grove` — Bosque de Sakura
+7. `BIOME:biomeswevegone:shattered_glacier` — Geleira Quebrada
+8. `BIOME:biomeswevegone:sierra_badlands` — Serra de Ermo
+9. `BIOME:biomeswevegone:skyris_vale` — Vale de Skyris
+10. `BIOME:biomeswevegone:tropical_rainforest` — Floresta Tropical
 
 ### Critérios editoriais aplicados ao lote 16
 
-- o lote continua imediatamente a coleção `WOODS` depois de `ACACIA`, seguindo a ordem declarada por `Wood.java` no TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`: `ASH`, `ASPEN`, `BIRCH`, `BLACKWOOD`, `CHESTNUT`, `DOUGLAS_FIR`, `HICKORY`, `KAPOK`, `MANGROVE` e `MAPLE`;
-- as dez entradas são mudas registradas por `Wood.BlockType.SAPLING` com `TFCSaplingBlock`, sustentando a classificação `TREE` pelo runtime em vez de inferência textual do registry ID;
-- os rótulos foram confrontados com `pt_br.json` e os espaços finais do provider são apenas normalizados; a associação oficial `birch` → `Muda de eucalipto` é preservada explicitamente sem alterar `Wood.BIRCH` nem o registry ID;
-- `Mangrove Propagule` ainda permanece em inglês no locale pt-BR do provider, portanto recebe o alias editorial conservador `Propágulo de mangrove`, traduzindo somente o termo genérico sem inventar uma espécie botânica diferente;
-- o crescimento permanece sob autoridade de `TFCSaplingBlock`, das configurações por muda e do modificador global do provider; duração, chance e outros valores numéricos mutáveis não são congelados na prosa editorial;
-- troncos, folhas, tábuas e demais componentes de cada família continuam identidades técnicas próprias e são citados apenas como família de madeira, sem fundir seus registry IDs com a ficha da muda;
-- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
-- o TDD produziu RED válido na draft #313 pelo RPG Skill Tree CI #2645: no merge-ref contra `main@9958caaabebff95bfbbd0a226ca571e5bfe5316c`, compilação e checks prévios passaram e `163 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch16JUnitTest` pela ausência intencional de `trees-batch2.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #381 e pelo RPG Skill Tree CI #2648, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+- o recorte continua imediatamente após `rainbow_beach` na ordem do registry `BWGBiomes.java` da release 2.6.0;
+- IDs, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os dez títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit;
+- tags de vilas, posto de saqueadores, pirâmide do deserto, tesouro enterrado e estruturas próprias do BWG são tratadas somente como elegibilidade de worldgen, não garantia de geração;
+- categorias internas como `RED_ROCK_ARCH`, `SHARPENED_ROCKS`, `DRY`, `PEAK`, `SLOPE` e `ICY` não são convertidas em geometria, altura, frequência, temperatura ou outros valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `cdb79fba9a04b813a4e91d5f33fd0cb9eb595a21`: 961 testes, exatamente 1 falha no Batch16 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
-## Lote 17 — TerraFirmaCraft / fechamento das árvores de madeira e início da fauna aquática
+## Lote 17 — Oh The Biomes We've Gone / biomas Overworld (batch 6 final)
 
-Arquivos:
-
-- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/trees-batch3.json`
-- `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch1.json`
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch6.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `TREE:tfc:wood/sapling/oak` — Muda de carvalho
-2. `TREE:tfc:wood/sapling/palm` — Muda de palmeira
-3. `TREE:tfc:wood/sapling/pine` — Muda de pinheiro
-4. `TREE:tfc:wood/sapling/rosewood` — Muda de jacarandá
-5. `TREE:tfc:wood/sapling/sequoia` — Muda de sequoia
-6. `TREE:tfc:wood/sapling/spruce` — Muda de espruce
-7. `TREE:tfc:wood/sapling/sycamore` — Muda de sicômoro
-8. `TREE:tfc:wood/sapling/white_cedar` — Muda de cedro branco
-9. `TREE:tfc:wood/sapling/willow` — Muda de salgueiro
-10. `ENTITY:tfc:bluegill` — Peixe bluegill
+1. `BIOME:biomeswevegone:temperate_grove` — Bosque Temperado
+2. `BIOME:biomeswevegone:weeping_witch_forest` — Floresta das Bruxas Choronas
+3. `BIOME:biomeswevegone:white_mangrove_marshes` — Mangue Branco
+4. `BIOME:biomeswevegone:windswept_desert` — Deserto Ventoso
+5. `BIOME:biomeswevegone:zelkova_forest` — Floresta de Zelkova
 
 ### Critérios editoriais aplicados ao lote 17
 
-- as nove árvores seguem imediatamente `MAPLE` na ordem declarada por `Wood.java` e fecham a coleção `WOODS` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8` com `OAK`, `PALM`, `PINE`, `ROSEWOOD`, `SEQUOIA`, `SPRUCE`, `SYCAMORE`, `WHITE_CEDAR` e `WILLOW`;
-- as nove mudas são registradas por `Wood.BlockType.SAPLING` com `TFCSaplingBlock`; a palmeira preserva a exceção real do provider que também permite areia como substrato, sem generalizar essa regra às demais madeiras;
-- os rótulos pt-BR das mudas foram confrontados com `pt_br.json`, normalizando somente espaços finais quando presentes e preservando associações oficiais como `rosewood` → `Muda de jacarandá`;
-- a décima entrada inicia a fauna aquática pela primeira constante do enum `Fish`, `BLUEGILL`, registrada pelo provider como `FreshwaterFish` na categoria `WATER_AMBIENT`;
-- `entity.tfc.bluegill` ainda possui o rótulo `Bluegill` em inglês no locale pt-BR; o Compêndio usa o alias conservador `Peixe bluegill`, traduzindo apenas a classificação genérica sem inventar um nome comum brasileiro que o mod não declara;
-- `FreshwaterFish` deriva de `Salmon`, usa controle de movimento do TFC, participa da lógica de pesca, aceita água no contrato de spawn e suporta coleta no recipiente configurado; biome, frequência, dimensões e demais números mutáveis permanecem fora da prosa editorial;
-- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento com TerraFirmaCraft ausente e presente;
-- o TDD produziu RED válido na draft #316 pelo RPG Skill Tree CI #2683: compilação e checks prévios passaram e `171 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch17JUnitTest` pela ausência intencional de `trees-batch3.json` e `fauna-batch1.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #424 e pelo RPG Skill Tree CI #2697, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+- o recorte continua imediatamente após `tropical_rainforest` e encerra a seção Overworld de `BWGBiomes.java` da release 2.6.0;
+- IDs, ordem, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os cinco títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit;
+- tags de vila de planície, posto de saqueadores, mansão da floresta e Vila de Salem são tratadas somente como elegibilidade de worldgen, não garantia de geração;
+- categorias internas como `SPARSE`, `MAGICAL`, `DENSE` e `WINDSWEPT` não são convertidas em densidade, intensidade, altura, frequência ou outros valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `cd6e091deb96bf770c7c15763fe65f82456d8674`: 975 testes, exatamente 1 falha no Batch17 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
-## Lote 18 — TerraFirmaCraft / peixes de água doce, segunda fatia
+## Lote 18 — BetterEnd: New Dawn / biomas do End (batch 1)
 
-Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch2.json`
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betterend/biomes-batch1.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `ENTITY:tfc:crappie` — Peixe crappie
-2. `ENTITY:tfc:lake_trout` — Peixe lake trout
-3. `ENTITY:tfc:largemouth_bass` — Peixe largemouth bass
-4. `ENTITY:tfc:rainbow_trout` — Peixe rainbow trout
-5. `ENTITY:tfc:salmon` — Peixe salmon
-6. `ENTITY:tfc:smallmouth_bass` — Peixe smallmouth bass
-7. `ENTITY:tfc:northern_pike` — Peixe northern pike
-8. `ENTITY:tfc:burbot` — Peixe burbot
-9. `ENTITY:tfc:arctic_char` — Peixe arctic char
-10. `ENTITY:tfc:muksun` — Peixe muksun
+1. `BIOME:betterend:amber_land` — Terras de Âmbar
+2. `BIOME:betterend:blossoming_spires` — Pináculos em Flor
+3. `BIOME:betterend:chorus_forest` — Floresta de Choros
+4. `BIOME:betterend:crystal_mountains` — Montanhas de Cristal
+5. `BIOME:betterend:dragon_graveyards` — Cemitérios de Dragão
+6. `BIOME:betterend:dry_shrubland` — Arbusto Seco
+7. `BIOME:betterend:dust_wastelands` — Terras Devastadas
+8. `BIOME:betterend:foggy_mushroomland` — Terras de Cogumelos Neovoada
+9. `BIOME:betterend:glowing_grasslands` — Prados Brilhantes
+10. `BIOME:betterend:ice_starfield` — Campo de Estrelas de Gelo
 
 ### Critérios editoriais aplicados ao lote 18
 
-- o lote continua imediatamente `BLUEGILL` na ordem declarada por `Fish.java` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`, cobrindo exatamente `CRAPPIE`, `LAKE_TROUT`, `LARGEMOUTH_BASS`, `RAINBOW_TROUT`, `SALMON`, `SMALLMOUTH_BASS`, `NORTHERN_PIKE`, `BURBOT`, `ARCTIC_CHAR` e `MUKSUN`;
-- as dez constantes são registradas pelo mapa `FRESHWATER_FISH` como `FreshwaterFish` na categoria `WATER_AMBIENT`; a classificação deriva do runtime real e não do texto dos registry IDs;
-- o locale `pt_br` do provider ainda mantém os dez nomes de espécie em inglês, portanto o Compêndio usa aliases conservadores `Peixe ...`, traduzindo somente a categoria genérica e evitando importar nomes taxonômicos externos que o mod não adotou;
-- `FreshwaterFish` deriva de `Salmon`, usa `TFCFishMoveControl`, participa da lógica de pesca por `GetHookedGoal`, aceita água no contrato aquático e suporta coleta no recipiente configurado para a espécie;
-- `Fish.SALMON` preserva a exceção real do provider de reutilizar os eventos sonoros vanilla de salmão, enquanto as demais constantes registram seu conjunto de sons pelo TFC;
-- bioma, clima, frequência, dimensão, tamanho de grupo e demais parâmetros de spawn/worldgen permanecem sob autoridade do provider, da configuração e dos datapacks ativos; nenhum desses valores foi congelado na prosa editorial;
-- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL` e o teste do lote comprova carregamento tanto com TerraFirmaCraft ausente quanto presente;
-- o TDD produziu RED válido na draft #322 pelo RPG Skill Tree CI #2748: Core/wiki/coverage e compilação passaram e `182 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch18JUnitTest` pela ausência intencional de `fauna-batch2.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #471 e pelo RPG Skill Tree CI #2752, incluindo JUnit, NeoForge GameTests, validadores do Compêndio, build, verificação do JAR e dedicated-server smoke.
+- provider reconciliado antes da autoria com a modlist canônica e a Auditoria Mestre do Notion: `BetterEnd-21.0.34.jar`, namespace `betterend`, estado `Instalado`, decisão `Manter`;
+- o recorte corresponde aos dez primeiros biomas na ordem do registry oficial `EndBiomes.java` do commit `360b6fea407befdcf9aab7f771cad5586cbfb826`, cujo `gradle.properties` declara Minecraft 1.21.1 e BetterEnd 21.0.34;
+- os dez títulos pt-BR são exatamente os valores do `assets/betterend/lang/pt_br.json` no mesmo commit, inclusive a grafia oficial `Terras de Cogumelos Neovoada`, sem correção editorial silenciosa;
+- os datapacks Wover sustentam somente as classificações de placement usadas na prosa: sete entradas em `is_end/land`, `chorus_forest` em `is_end/highland`, `dust_wastelands` em `is_end/midland` e `ice_starfield` em `is_end/small_island` e `is_end/barrens`;
+- as categorias de placement não são convertidas em altura, tamanho, densidade, geometria, peso ou frequência fixos;
+- `EndBiomes.registerBiomeToggles()` comprova que estes dez IDs participam do conjunto configurável do provider, portanto disponibilidade e ocorrência concretas permanecem condicionadas à configuração e ao worldgen ativos;
+- TDD confirmado no commit `0dbb401d21a90fd310ea07f58e940a79184edb6f`: 976 testes, exatamente 1 falha no Batch18 pela ausência de `betterend/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto.
 
-## Lote 19 — TerraFirmaCraft / fechamento dos peixes de água doce e continuação da fauna aquática
+## Lote 19 — BetterEnd: New Dawn / biomas do End (batch 2)
 
-Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch3.json`
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betterend/biomes-batch2.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `ENTITY:tfc:tilapia` — Peixe tilapia
-2. `ENTITY:tfc:spotted_gudgeon` — Peixe spotted gudgeon
-3. `ENTITY:tfc:peacock_bass` — Peixe peacock bass
-4. `ENTITY:tfc:pacu` — Peixe pacu
-5. `ENTITY:tfc:red_piranha` — Peixe red piranha
-6. `ENTITY:tfc:cod` — Peixe cod
-7. `ENTITY:tfc:tropical_fish` — Peixe tropical fish
-8. `ENTITY:tfc:pufferfish` — Peixe pufferfish
-9. `ENTITY:tfc:jellyfish` — Água-viva jellyfish
-10. `ENTITY:tfc:isopod` — Isópode isopod
+1. `BIOME:betterend:flower_islets` — Flower Islets
+2. `BIOME:betterend:waterfall_ponds` — Waterfall Ponds
+3. `BIOME:betterend:lantern_woods` — Madeiras Lanterna
+4. `BIOME:betterend:megalake` — Megalake
+5. `BIOME:betterend:shadow_forest` — Floresta da Sombra
+6. `BIOME:betterend:sulphur_springs` — Fontes Sulfúricas
+7. `BIOME:betterend:umbrella_jungle` — Selva de Guarda-chuvas
+8. `BIOME:betterend:umbra_valley` — Vale Da Sombra
+9. `BIOME:betterend:megalake_grove` — Arvoredos de Megalake
+10. `BIOME:betterend:neon_oasis` — Oasis Neon
 
 ### Critérios editoriais aplicados ao lote 19
 
-- as cinco primeiras entradas continuam imediatamente `MUKSUN` e fecham, na ordem de `Fish.java` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`, as constantes restantes de `FRESHWATER_FISH`: `TILAPIA`, `SPOTTED_GUDGEON`, `PEACOCK_BASS`, `PACU` e `RED_PIRANHA`;
-- as cinco seguintes continuam a ordem de registros aquáticos `WATER_AMBIENT` de `TFCEntities.java` sem saltos, cobrindo `COD`, `TROPICAL_FISH`, `PUFFERFISH`, `JELLYFISH` e `ISOPOD`;
-- o locale `pt_br` do provider mantém os nomes específicos dessas entidades em inglês; os aliases editoriais traduzem somente a classificação genérica e não inventam nomenclatura taxonômica externa;
-- `COD`, `TROPICAL_FISH` e `PUFFERFISH` preservam as classes correspondentes usadas pelo TFC, o contrato de água salgada, o movimento do provider, a interação com pesca e a coleta em balde sem congelar parâmetros numéricos mutáveis;
-- `JELLYFISH` preserva variantes persistidas, coleta em balde, água salgada e dano por contato comprovado pelo runtime, sem fixar em prosa o valor numérico desse dano;
-- `ISOPOD` usa o contrato `AquaticCritter::salty`, mantém a evasão e o deslocamento pelo fundo comprovados pelo provider e não recebe comportamento de coleta, reprodução ou alimentação que o código auditado não declare;
-- clima, bioma, frequência, grupo e demais parâmetros de spawn/worldgen permanecem sob autoridade do TerraFirmaCraft, da configuração e dos datapacks ativos;
-- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL`, e `CompendiumCheckedInEditorialBatch19JUnitTest` valida exatamente essas dez entradas tanto com o provider ausente quanto presente;
-- o TDD produziu RED válido na draft #334 contra `main@f613dac5a15b26c7a92e07a9d9cb537c2412ddf2`: o RPG Skill Tree CI #2834 chegou a `871 tests completed, 1 failed`, exclusivamente pela ausência intencional de `fauna-batch3.json`;
-- durante a validação funcional foi identificado um desalinhamento pré-existente de CI: `Volcanoes Consolidated Release Readiness` exigia `Volcanoes Consolidation Contract` em toda PR, enquanto este último tinha filtros `paths` e não disparava em mudanças editoriais. A correção mínima removeu somente esses filtros; no head `6bcbd5f6ae39226417ef9f59844df5e76c983b3f`, `Volcanoes Consolidation Contract` #80, Compendium Editorial CI #564, RPG Skill Tree CI #2900, SonarQube #135, Worldgen Compatibility Matrix #102 e `Volcanoes Consolidated Release Readiness` #84 concluíram com `success`, incluindo o `aggregate-exact-head` 10/10.
+- o recorte continua imediatamente após `ice_starfield` na ordem do registry oficial `EndBiomes.java` do commit congelado `360b6fea407befdcf9aab7f771cad5586cbfb826`;
+- oito títulos são preservados exatamente do `assets/betterend/lang/pt_br.json`: `Madeiras Lanterna`, `Megalake`, `Floresta da Sombra`, `Fontes Sulfúricas`, `Selva de Guarda-chuvas`, `Vale Da Sombra`, `Arvoredos de Megalake` e `Oasis Neon`;
+- `flower_islets` e `waterfall_ponds` não possuem chave `biome.betterend.*` nem no `pt_br.json` nem no `en_us.json` congelados; `Flower Islets` e `Waterfall Ponds` são fallbacks editoriais explicitamente derivados das classes `FlowerIsletsBiome`/`WaterfallPondsBiome` e dos registry paths, não traduções atribuídas ao provider;
+- o datapack Wover inclui `flower_islets` e `waterfall_ponds` em `is_end/small_island`; os outros oito IDs do lote estão em `is_end/land`;
+- `flower_islets` e `waterfall_ponds` não aparecem em `registerBiomeToggles()`; os outros oito aparecem no conjunto configurável do provider;
+- `megalake_grove` declara `MEGALAKE` como bioma-base associado e `neon_oasis` declara `DUST_WASTELANDS`; essas relações são registradas sem inferir chance, proximidade, geometria ou frequência;
+- nenhuma categoria de placement, nome de bioma ou vínculo de base foi convertido em altura, tamanho, densidade, posição, peso, chance, frequência ou outro parâmetro mutável;
+- TDD confirmado no commit `2b9ab97cd9dcf415446e5cc99da1197e6e8088e6`, RPG Skill Tree CI run `33994047460`, job `101381231279`: 977 testes, exatamente 1 falha no Batch19 pela ausência de `betterend/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
 
-## Lote 20 — TerraFirmaCraft / continuação da fauna aquática e início da fauna anfíbia
+## Lote 20 — BetterEnd: New Dawn / biomas do End (batch 3 final)
 
-Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/tfc/fauna-batch4.json`
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betterend/biomes-batch3.json`
 
 Estado: `REVIEWED`
 
 Entradas:
 
-1. `ENTITY:tfc:lobster` — Lagosta lobster
-2. `ENTITY:tfc:crayfish` — Lagostim crayfish
-3. `ENTITY:tfc:horseshoe_crab` — Caranguejo-ferradura horseshoe crab
-4. `ENTITY:tfc:dolphin` — Golfinho dolphin
-5. `ENTITY:tfc:orca` — Orca
-6. `ENTITY:tfc:manatee` — Peixe-boi manatee
-7. `ENTITY:tfc:squid` — Lula squid
-8. `ENTITY:tfc:octopoteuthis` — Lula octopoteuthis
-9. `ENTITY:tfc:turtle` — Tartaruga turtle
-10. `ENTITY:tfc:penguin` — Pinguim penguin
+1. `BIOME:betterend:painted_mountains` — Montanhas Pintadas
+2. `BIOME:betterend:empty_end_cave` — Caverna do End Vazia
+3. `BIOME:betterend:empty_smaragdant_cave` — Caverna Exuberante de Esmaragdante Vazia
+4. `BIOME:betterend:lush_smaragdant_cave` — Caverna Exuberante de Esmaragdante
+5. `BIOME:betterend:empty_aurora_cave` — Caverna Aurora Vazia
+6. `BIOME:betterend:lush_aurora_cave` — Caverna Exuberante de Aurora
+7. `BIOME:betterend:jade_cave` — Caverna de Jade
 
 ### Critérios editoriais aplicados ao lote 20
 
-- o lote continua imediatamente `ISOPOD` na ordem real de registros de `TFCEntities.java` do TerraFirmaCraft `1.21.1-4.2.8`/upstream `v4.2.8`, atravessando `WATER_AMBIENT`, `WATER_CREATURE`, `UNDERGROUND_WATER_CREATURE` e `CREATURE` sem saltos;
-- `LOBSTER` e `HORSESHOE_CRAB` usam `AquaticCritter::salty`, enquanto `CRAYFISH` usa `AquaticCritter::fresh`; a ficha preserva evasão, fuga após agressão e deslocamento pelo fundo comprovados pela classe compartilhada sem inventar alimentação, reprodução ou captura;
-- `DOLPHIN` e `ORCA` reutilizam `TFCDolphin` e seu contrato de água salgada, mantendo respiração, procura por água, pesca, ataque, nado, salto e acompanhamento de barcos apenas no nível demonstrado pelo código;
-- `MANATEE` usa a implementação própria `Manatee`, aceita água comum e registra somente os comportamentos de nado, pânico, evasão e debater-se comprovados pelo runtime;
-- `SQUID` usa `TFCSquid`, enquanto `OCTOPOTEUTHIS` estende essa implementação e acrescenta o contrato de brilho `IGlow`; tamanho dinâmico, tinta, persistência de estado e escurecimento permanecem descritos sem congelar probabilidades, durações ou intensidades numéricas;
-- `TURTLE` e `PENGUIN` usam a base `AmphibiousAnimal`/`AmphibianAi`; a tartaruga mantém a atividade de `PLAY_DEAD`, e o pinguim sobrescreve `isPlayingDeadEffective()` para `false`, de modo que a atividade ainda pode operar sobre memórias/alvos, mas os efeitos adicionais de regeneração e resistência de `AmphibianPlayDeadBehavior` não são concedidos ao pinguim;
-- o locale `pt_br` do provider mantém os nomes específicos do lote em inglês, salvo `Orca`; por isso os aliases editoriais traduzem apenas a categoria comum quando útil e preservam o token oficial do mod para rastreabilidade, sem importar taxonomia externa;
-- bioma, clima, frequência, tamanho de grupo e demais parâmetros de spawn/worldgen permanecem sob autoridade do provider, da configuração e dos datapacks ativos; nenhum desses valores foi congelado na prosa editorial;
-- todas as dez fichas permanecem `REVIEWED`/`OPTIONAL`, e `CompendiumCheckedInEditorialBatch20JUnitTest` valida exatamente essas dez entradas com TerraFirmaCraft ausente e presente;
-- o TDD produziu RED válido na draft #350 contra `main@a20b9efe0b1b5e6c7dc2a1e9fa386440e8469482`: o teste compilou normalmente e o RPG Skill Tree CI #2963 executou `872 tests completed, 1 failed`, exclusivamente em `CompendiumCheckedInEditorialBatch20JUnitTest` no `assertNotNull` do recurso intencionalmente ausente `fauna-batch4.json`; após o corpus, o primeiro GREEN funcional passou pelo Compendium Editorial CI #604 e pelo RPG Skill Tree CI #2968, incluindo JUnit, NeoForge GameTests, todos os validadores do Compêndio/runtime, NeoForge build, verificação do JAR e dedicated-server smoke.
+- o recorte continua imediatamente após `neon_oasis` e encerra todos os `EndBiomeKey` declarados em `EndBiomes.java` no commit congelado `360b6fea407befdcf9aab7f771cad5586cbfb826`;
+- os sete títulos pt-BR são preservados exatamente do `assets/betterend/lang/pt_br.json`;
+- `painted_mountains` é registrado pelo provider como `IS_END_LAND`, aparece em Wover `is_end/land` e declara `DUST_WASTELANDS` como bioma-base associado; o vínculo fica fonteado em prosa sem criar referência técnica cross-batch;
+- os seis biomas de caverna são registrados em `EndBiomesProvider` com `EndTags.IS_END_CAVE` e aparecem explicitamente no datapack `betterend:is_end_cave`;
+- todos os sete IDs aparecem em `registerBiomeToggles()`, portanto ocorrência concreta permanece condicionada à configuração e ao worldgen ativos;
+- nomes como `Vazia`, `Exuberante`, `Aurora`, `Jade` e a categoria cave não são convertidos em densidade, iluminação, composição mineral, altitude, profundidade, tamanho, frequência ou outros parâmetros sem fonte específica;
+- TDD confirmado no commit `e54e2607177de769dcbce0d625226c1f960cef72`, RPG Skill Tree CI run `33996432070`, job `101387676028`: 978 testes, exatamente 1 falha no Batch20 pela ausência de `betterend/biomes-batch3.json`; o corpus foi adicionado somente depois desse RED correto.
+
+## Lote 21 — BetterNether: New Dawn / biomas do Nether (batch 1)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betternether/biomes-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betternether:bone_reef` — Bone Reef
+2. `BIOME:betternether:crimson_glowing_woods` — Crimson Glowing Woods
+3. `BIOME:betternether:crimson_pinewood` — Crimson Pinewood
+4. `BIOME:betternether:flooded_deltas` — Flooded Deltas
+5. `BIOME:betternether:gloomwood` — Gloomwood
+6. `BIOME:betternether:gravel_desert` — Gravel Desert
+7. `BIOME:betternether:magma_land` — Magma Land
+8. `BIOME:betternether:nether_grasslands` — Nether Grasslands
+9. `BIOME:betternether:nether_jungle` — Nether Jungle
+10. `BIOME:betternether:nether_mushroom_forest` — Nether Mushroom Forest
+
+### Critérios editoriais aplicados ao lote 21
+
+- provider reconciliado com a modlist/runtime e a Auditoria Mestre do Notion: `BetterNether-21.0.26.jar`, namespace `betternether`, estado `Instalado`, decisão `Manter`;
+- o recorte corresponde aos dez primeiros biomas na ordem de `NetherBiomes.java` e `NetherBiomesProvider.bootstrap()` do commit congelado `543127cab48b1ecb0017fee4222af25e0583e185`, cujo `gradle.properties` declara Minecraft 1.21.1 e BetterNether 21.0.26;
+- `NetherBiomeBuilder.createKey()` confirma os registry paths ao normalizar espaços para `_` e minúsculas;
+- nove títulos do lote são preservados exatamente do `assets/betternether/lang/pt_br.json`, que os mantém em inglês; `gloomwood` não possui chave pt-BR e usa explicitamente o valor oficial `Gloomwood` do `en_us.json`, sem fingir tradução pt-BR;
+- `gloomwood` é declarado e bootstrapped pelo provider, mas não aparece em `registerBiomeToggles()`; os outros nove aparecem. A diferença é registrada sem inferir bug ou obrigatoriedade;
+- `nether_grasslands` possui numeric provider próprio registrado pelo provider; sua existência é documentada sem congelar números internos em prosa;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica do worldgen foi congelada no corpus;
+- TDD confirmado no commit `9968ddc6db31a4e3e14ef9056f8a4e7fccbfb2b5`, RPG Skill Tree CI run `33998199993`, job `101392297879`: 979 testes, exatamente 1 falha no Batch21 pela ausência de `betternether/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto.
+
+## Lote 22 — BetterNether: New Dawn / biomas do Nether (batch 2)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betternether/biomes-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betternether:nether_mushroom_forest_edge` — Nether Mushroom Forest Edge
+2. `BIOME:betternether:nether_swampland` — Nether Swampland
+3. `BIOME:betternether:nether_swampland_terraces` — Nether Swampland Terraces
+4. `BIOME:betternether:old_fungiwoods` — Old Fungiwoods
+5. `BIOME:betternether:old_swampland` — Old Swampland
+6. `BIOME:betternether:old_warped_woods` — Old Warped Woods
+7. `BIOME:betternether:poor_nether_grasslands` — Poor Nether Grasslands
+8. `BIOME:betternether:soul_plain` — Soul Plain
+9. `BIOME:betternether:sulfuric_bone_reef` — Sulfuric Bone Reef
+10. `BIOME:betternether:upside_down_forest` — Upside Down Forest
+
+### Critérios editoriais aplicados ao lote 22
+
+- o recorte continua imediatamente após `nether_mushroom_forest` e cobre os biomas 11–20 na ordem de `NetherBiomes.java` e `NetherBiomesProvider.bootstrap()` do commit congelado `543127cab48b1ecb0017fee4222af25e0583e185`;
+- os dez títulos são preservados exatamente do `assets/betternether/lang/pt_br.json`, que os mantém em inglês;
+- todos os dez IDs aparecem em `registerBiomeToggles()`;
+- `NetherMushroomForest.withEdgeBiome()` aponta para `NETHER_MUSHROOM_FORREST_EDGE.key`, cujo registry path gerado é `nether_mushroom_forest_edge`;
+- o numeric provider e o selector de surface rules desse edge usam a grafia oficial `nether_mushroom_forrest_edge`; essa divergência textual é registrada sem inferir bug, peso, escolha ou valor numérico;
+- palavras dos nomes como `Old`, `Poor`, `Soul`, `Sulfuric`, `Terraces` e `Upside Down` não são convertidas em idade/depreciação, escassez, composição, risco, geometria ou outros parâmetros não fonteados;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `87570747a4e9c1bb37a99523c553f75ca41c7d2a`, RPG Skill Tree CI run `33999540955`, job `101395818638`: 980 testes, exatamente 1 falha no Batch22 pela ausência de `betternether/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
 
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
-- entradas editoriais TFC reais no corpus: **100**;
-- entradas editoriais totais: **200**;
-- lotes documentados: **20**;
-- namespaces em produção: `minecraft`, `tfc`;
+- entradas de worldgen Alex's Caves reais no corpus: **10**;
+- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
+- entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
+- entradas de worldgen BetterNether: New Dawn reais no corpus: **20**;
+- entradas editoriais totais: **212**;
+- lotes documentados: **22**;
+- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.

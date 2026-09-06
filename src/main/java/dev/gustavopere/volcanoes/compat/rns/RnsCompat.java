@@ -14,7 +14,7 @@ public final class RnsCompat {
     public static final String MOD_ID = "create_rns";
     public static final String SUPPORTED_VERSION = "1.3.1-1.21.1-6";
     public static final String KUBEJS_MOD_ID = "kubejs";
-    public static final String SUPPORTED_KUBEJS_VERSION = "2101.7.2-build.368";
+    public static final String SUPPORTED_KUBEJS_VERSION = "2101.7.2-build.374";
 
     /**
      * RNS families for which Volcanoes can expose already-physical hydrothermal bodies as custom

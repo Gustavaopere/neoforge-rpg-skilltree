@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO + boundary retroativo.
-- **Implementação:** PRESENTE no resolver crítico, condicionada à família SCYTHE segura.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359**.
 - **Notion:** `3c569db9-f0db-81a5-9f5f-e5b382c32741`.
 
 ## Contrato canônico
@@ -17,12 +17,12 @@
 
 - `NotionCombatPerkRules.criticalChanceBonus(SCYTHE)` mapeia A0039.
 - `A0021A0040EpicFightHooks` usa o critical service/root action canônico para famílias não-DAGGER.
-- A resolução de família ainda depende da correção `P-A0037-01`.
+- A resolução SCYTHE é category/capability provider-native; não existe fallback por tag/nome/hoe.
 
 ## Provider→árvore
 
 Black Arcana `ARCANE_BACKLASH` nunca entra no crítico; Mobstein companions não recebem autoria do dono. Volcanoes/Enshrouded não fornecem critical receipt MARTIAL.
 
-## Pendência Chat 2
+## Fechamento Chat 3
 
-Revalidar deduplicação/provenance depois da remoção da tag SCYTHE; nenhuma bridge nova.
+Deduplicação/provenance e uma única resolução crítica por root foram revalidadas sobre a família SCYTHE endurecida. `RPG Skill Tree CI` #3361 / run `33657496252` ficou GREEN no HEAD sincronizado `8cf156294c7dd5922f6138a108a544f3ddeeddea`.

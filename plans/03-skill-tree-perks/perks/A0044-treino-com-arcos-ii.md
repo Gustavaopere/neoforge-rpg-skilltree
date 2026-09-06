@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após correção de availability/fail-closed no review da PR #243.
-- **Implementação:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** **NÃO CONFIRMADA / FAIL-CLOSED CORRETO VALIDADO PELO CHAT 3**.
 - **Disponibilidade:** `UNAVAILABLE_NODE` enquanto não existir binding server-authoritative semântico de draw/preparation speed.
 - **Notion:** `3c569db9-f0db-81d4-9c22-c7fc0ebcd482`; corrigido e re-fetch PASS em 2026-08-30.
 
@@ -52,3 +52,7 @@
 ## Fechamento Chat 2 — 2026-09-01
 
 O fail-closed deixou de ser apenas documental e passou a ser imposto na compra e no runtime efetivo. Não houve implementação de efeito alternativo.
+
+## Fechamento Chat 3 — 2026-09-02
+
+Availability, compra sem gasto, masking legado e bloqueio estrutural A0044→A0047/A0048 foram validados. Nenhum fallback sintético foi introduzido. CI #3378 (`33665545963`) GREEN completo. **Estado final: NÃO CONFIRMADA / FAIL-CLOSED CORRETO.**

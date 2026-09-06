@@ -10,7 +10,7 @@ public final class SablePressureCompat {
     public static final String MOD_ID = "sable";
     public static final String VERIFIED_ARTIFACT_VERSION = "2.0.5";
     public static final String AERONAUTICS_MOD_ID = "aeronautics_bundled";
-    public static final String VERIFIED_AERONAUTICS_VERSION = "1.3.1";
+    public static final String VERIFIED_AERONAUTICS_VERSION = "1.3.2";
 
     private SablePressureCompat() {
     }
@@ -47,7 +47,7 @@ public final class SablePressureCompat {
     }
 
     /**
-     * Aeronautics 1.3.1 is the verified consumer of Sable 2.0.5 in the target pack, but it does not
+     * Aeronautics 1.3.2 is the verified consumer of Sable 2.0.5 in the target pack, but it does not
      * publish a generic cabin sealing/leak/flood contract. Consequently this integration never
      * synthesizes a protected enclosed environment from Aeronautics state.
      */

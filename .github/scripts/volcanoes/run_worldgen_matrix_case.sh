@@ -103,11 +103,34 @@ broadcast-rcon-to-ops=false
 EOF
 }
 
+dump_file_if_present() {
+  local file="$1"
+  if [[ -f "$file" ]]; then
+    cat "$file"
+  fi
+}
+
 wait_for_log() {
   local log="$1"
   local pattern="$2"
   local attempts="$3"
+  local pid="$4"
+  local launcher_log="$5"
   for _ in $(seq 1 "$attempts"); do
+    if ! jobs -pr | grep -Fxq -- "$pid"; then
+      local exit_status
+      if wait "$pid"; then
+        exit_status=0
+      else
+        exit_status=$?
+      fi
+      echo "Gradle process exited before server startup for $CASE_ID with status $exit_status" >&2
+      dump_file_if_present "$launcher_log"
+      if (( exit_status != 0 )); then
+        return "$exit_status"
+      fi
+      return 1
+    fi
     if grep -Eq 'ModLoadingException|Loading errors encountered|Failed to load datapacks|Exception in server tick loop' "$log" 2>/dev/null; then
       cat "$log"
       return 1
@@ -117,7 +140,11 @@ wait_for_log() {
     fi
     sleep 1
   done
-  cat "$log"
+  echo "Timed out waiting for server startup log for $CASE_ID" >&2
+  dump_file_if_present "$log"
+  if [[ "$launcher_log" != "$log" ]]; then
+    dump_file_if_present "$launcher_log"
+  fi
   return 1
 }
 
@@ -142,7 +169,7 @@ run_once() {
   }
   trap cleanup RETURN
 
-  wait_for_log "$RUN_DIR/logs/latest.log" 'Done \([0-9.]+s\)! For help, type "help"' 240
+  wait_for_log "$RUN_DIR/logs/latest.log" 'Done \([0-9.]+s\)! For help, type "help"' 240 "$pid" "$log"
 
   # 3x3 owner neighborhood around the deterministic cell(-1,-4) candidate at (-1015,-15641).
   # Its owner is chunk (-64,-978). This bounded compatibility smoke exercises the owning chunk

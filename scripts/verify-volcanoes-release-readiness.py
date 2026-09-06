@@ -91,11 +91,11 @@ def main() -> int:
         read(workflow)
 
     for task in (
-        "plans/volcanoes/07-hardening/✅-01-test-matrix.md",
-        "plans/volcanoes/07-hardening/✅-02-performance.md",
-        "plans/volcanoes/07-hardening/✅-03-world-upgrade.md",
-        "plans/volcanoes/07-hardening/✅-04-release-checklist.md",
-        "plans/volcanoes/07-hardening/✅-05-third-party-licenses-provenance.md",
+        "docs/archive/volcanoes/07-hardening/✅-01-test-matrix.md",
+        "docs/archive/volcanoes/07-hardening/✅-02-performance.md",
+        "docs/archive/volcanoes/07-hardening/✅-03-world-upgrade.md",
+        "docs/archive/volcanoes/07-hardening/✅-04-release-checklist.md",
+        "docs/archive/volcanoes/07-hardening/✅-05-third-party-licenses-provenance.md",
     ):
         read(task)
 

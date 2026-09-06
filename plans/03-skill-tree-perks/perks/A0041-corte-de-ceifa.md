@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após correção transacional/provider-native.
-- **Implementação:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA PELO CHAT 3**.
 - **Notion:** `3c569db9-f0db-8108-86a7-dc58d3a93f63`.
 
 ## Contrato canônico
@@ -60,3 +60,9 @@
 ## Fechamento Chat 2 — 2026-09-01
 
 `P-A0041-01` foi resolvida em código. O Chat 2 não executou a bateria final de GameTests/build/dedicated-server e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Fechamento Chat 3 — 2026-09-02
+
+- reservation→POST commit, zero/cancelado, causalidade e deduplicação foram revalidados contra o contrato aprovado.
+- CI `RPG Skill Tree CI` #3378 (`33665545963`) passou JUnit 5, NeoForge JUnit, GameTests, build, JAR e dedicated-server smoke.
+- **Estado final do lote:** `IMPLEMENTAÇÃO CONFIRMADA`.

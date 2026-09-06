@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após boundary retroativo de BOW/corpo/impacto.
-- **Implementação:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**, com componentes heavy-impact/body scalar mantidos fail-closed onde não há receipt seguro.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA PELO CHAT 3 NOS COMPONENTES COM RECEIPT REAL**; heavy-impact/body scalar permanecem fail-closed onde não há receipt seguro.
 - **Notion:** `3c569db9-f0db-8116-9caa-e1ef0b2867d5`.
 
 ## Contrato canônico
@@ -64,3 +64,7 @@ Conectar somente adapters reais/canônicos de Cold Sweat temperatura, Thirst hid
 ## Fechamento Chat 2 — 2026-09-01
 
 O Chat 2 preservou fail-closed componente a componente em vez de bloquear a perk inteira ou fabricar receipts. A bateria final permanece do Chat 3.
+
+## Fechamento Chat 3 — 2026-09-02
+
+Producers/perdas com receipts reais, dedup, limites de Foco e ausência segura dos componentes opcionais foram validados. CI #3378 (`33665545963`) GREEN completo. `P-A0046-01/-02` permanecem fail-closed, sem redesign.

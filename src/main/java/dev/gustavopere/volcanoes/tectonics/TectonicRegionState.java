@@ -3,6 +3,7 @@ package dev.gustavopere.volcanoes.tectonics;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 import org.slf4j.Logger;
@@ -89,7 +90,7 @@ public final class TectonicRegionState extends SavedData {
 
     public static TectonicRegionState fromTag(CompoundTag tag) {
         Objects.requireNonNull(tag, "tag");
-        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)) {
+        if (tag.contains(SCHEMA_VERSION) && !tag.contains(SCHEMA_VERSION, Tag.TAG_INT)) {
             LOGGER.error(
                     "Tectonic stress SavedData has an invalid schema_version NBT type. Preserving payload fail-closed/read-only.");
             return preserveReadOnly(tag);
@@ -105,14 +106,14 @@ public final class TectonicRegionState extends SavedData {
             return preserveReadOnly(tag);
         }
 
-        if (tag.contains(REGIONS) && !tag.contains(REGIONS, CompoundTag.TAG_LIST)) {
+        if (tag.contains(REGIONS) && !tag.contains(REGIONS, Tag.TAG_LIST)) {
             LOGGER.error(
                     "Tectonic stress SavedData has an invalid regions NBT type. Preserving payload fail-closed/read-only.");
             return preserveReadOnly(tag);
         }
-        if (tag.contains(REGIONS, CompoundTag.TAG_LIST)) {
+        if (tag.contains(REGIONS, Tag.TAG_LIST)) {
             ListTag rawRegions = (ListTag) tag.get(REGIONS);
-            if (!rawRegions.isEmpty() && rawRegions.getElementType() != CompoundTag.TAG_COMPOUND) {
+            if (!rawRegions.isEmpty() && rawRegions.getElementType() != Tag.TAG_COMPOUND) {
                 LOGGER.error(
                         "Tectonic stress SavedData regions list has a non-compound element type. Preserving payload fail-closed/read-only.");
                 return preserveReadOnly(tag);
@@ -120,7 +121,7 @@ public final class TectonicRegionState extends SavedData {
         }
 
         TectonicRegionState state = new TectonicRegionState();
-        ListTag regions = tag.getList(REGIONS, CompoundTag.TAG_COMPOUND);
+        ListTag regions = tag.getList(REGIONS, Tag.TAG_COMPOUND);
         for (int index = 0; index < regions.size(); index++) {
             CompoundTag region = regions.getCompound(index);
             try {
@@ -143,7 +144,7 @@ public final class TectonicRegionState extends SavedData {
     }
 
     private static int readSchemaVersion(CompoundTag tag) {
-        return tag.contains(SCHEMA_VERSION, CompoundTag.TAG_INT)
+        return tag.contains(SCHEMA_VERSION, Tag.TAG_INT)
                 ? tag.getInt(SCHEMA_VERSION)
                 : LEGACY_SCHEMA_VERSION;
     }

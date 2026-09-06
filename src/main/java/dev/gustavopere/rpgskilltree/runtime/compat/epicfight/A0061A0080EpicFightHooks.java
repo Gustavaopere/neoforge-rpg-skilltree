@@ -1,6 +1,5 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
-import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.PhysicalModifiers;
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy.SpecialResult;
@@ -13,15 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.FakePlayer;
@@ -48,9 +44,6 @@ public final class A0061A0080EpicFightHooks {
     public static final String SUPPORTED_VERSION_PREFIX = A0001A0020EpicFightHooks.SUPPORTED_VERSION_PREFIX;
     private static final String PRE_ID = "rpgskilltree:a0061_a0080/pre";
     private static final String POST_ID = "rpgskilltree:a0061_a0080/post";
-    private static final TagKey<Item> HAMMERS = tag("hammers");
-    private static final TagKey<Item> MACES = tag("maces");
-    private static final TagKey<Item> SCYTHES = tag("scythes");
     private static final WeakHashMap<EpicFightDamageSource, Map<String, String>> ROOT_ACTIONS = new WeakHashMap<>();
     private static final AtomicLong ACTION_SEQUENCE = new AtomicLong();
     private static boolean registered;
@@ -211,7 +204,7 @@ public final class A0061A0080EpicFightHooks {
                 default -> false;
             }) return true;
         }
-        return stack.is(HAMMERS) || stack.is(MACES) || stack.is(SCYTHES);
+        return stack.is(Items.MACE);
     }
 
     private static boolean hasRuntimeEffect(CombatPerkRanks ranks) {
@@ -261,9 +254,5 @@ public final class A0061A0080EpicFightHooks {
 
     private static long now(ServerPlayer player) {
         return Math.multiplyExact(player.level().getGameTime(), 50L);
-    }
-
-    private static TagKey<Item> tag(String path) {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, path));
     }
 }

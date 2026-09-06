@@ -70,6 +70,8 @@ final class RnsCompatContractTest {
     void canonicalHostIdentityIsPinnedToTheInstalledRnsArtifact() {
         assertEquals("create_rns", RnsCompat.MOD_ID);
         assertEquals("1.3.1-1.21.1-6", RnsCompat.SUPPORTED_VERSION);
+        assertEquals("kubejs", RnsCompat.KUBEJS_MOD_ID);
+        assertEquals("2101.7.2-build.374", RnsCompat.SUPPORTED_KUBEJS_VERSION);
     }
 
     private static ResourceLocation id(String path) {

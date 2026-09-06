@@ -3,39 +3,38 @@
 ## Estado
 
 - **Design:** APROVADO; re-fetch sem drift, nenhuma mutação necessária.
-- **Implementação:** PARCIAL; aplicação/maturação existem, mas `P-A0040-01` impede considerar o lifecycle completo. Continua condicionada à família SCYTHE segura.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #359**.
 - **Notion:** `3c569db9-f0db-81f4-86a9-e0b677dd2996`.
 
 ## Contrato canônico
 
 - A0039 ≥2; 2 ranks.
 - Primeiro hit direto SCYTHE aplica Marca por 8/10 s; reapply renova a mesma marca jogador→alvo.
-- A Marca só amadurece quando, **já marcada**, a vida cruza de ≥50% para <50%.
+- A Marca só amadurece quando, já marcada, a vida cruza de ≥50% para <50%.
 - Dano periódico, projétil derivado, proc encadeado, reflexão, companion/summon, fake player e callback duplicado não aplicam/duplicam a Marca.
 - A0040 é Notable, não terminal; A0041+ fica fora deste lote.
 
 ## Evidência runtime
 
 - `A0021A0040CombatPolicy.afterConfirmedHit` aplica A0040 somente em hit direto/hostil/dano real e usa claim por root action.
-- `A0021A0040CombatState.applyReapingMark` inicia marcas abaixo de 50% como imaturas; somente crossing posterior ≥50→<50 amadurece.
-- `A0021A0040EpicFightHooks.onLivingDamagePost` chama `updateReapingMaturityForTarget` para todo dano real, permitindo que dano externo ao golpe de foice amadureça uma marca já existente.
-- `clearTarget` limpa a marca em `LivingDeathEvent`, e o ator é limpo em logout/dimension/respawn; porém um alvo que despawna ou tem chunk descarregado sem morte pode deixar `reapMarks` retida no mapa do ator. A expiração só remove a entrada quando o mesmo UUID volta a ser consultado ou quando o ator é limpo.
+- `A0021A0040CombatState.applyReapingMark` mantém marca nova abaixo de 50% imatura; somente crossing posterior ≥50→<50 amadurece.
+- `A0021A0040EpicFightHooks.onLivingDamagePost` atualiza maturidade para dano real posterior sem transferir autoria para a fonte do dano.
+- `clearTarget` cobre morte e lifecycle explícito.
+- `pruneExpiredReapingMarks(now)` remove marcas expiradas de todos os atores de forma bounded; server tick executa a varredura a cada 1 s sem exigir nova consulta ao mesmo UUID.
+- A resolução SCYTHE é provider-native; a tag paralela foi removida.
 
-## Provider→árvore
+## Pendências resolvidas
 
-O design já exclui explicitamente companion/summon e procs, cobrindo Mobstein e `ARCANE_BACKLASH` sem mutação adicional. Volcanoes/Enshrouded podem causar outros danos/estados no alvo, mas não recebem autoria de A0040; apenas uma Marca já aplicada pode observar a vida cair pelo estado canônico do Minecraft.
-
-## Pendências Chat 2
-
-- **P-A0040-01:** completar o lifecycle de `reapMarks` para alvos removidos/despawnados/chunks descarregados sem `LivingDeathEvent`, por hook seguro de remoção ou varredura periódica de expirados. A solução deve ser bounded, server-authoritative e não depender de o mesmo UUID ser consultado novamente.
-- Depende também de `P-A0037-01` para classificação SCYTHE segura.
-- Não iniciar A0041 neste ciclo.
+- **P-A0040-01 — RESOLVIDA:** cleanup periódico bounded de marcas expiradas, server-authoritative e independente de reconsulta do alvo.
+- Dependência de `P-A0037-01` resolvida pela classificação SCYTHE provider-native.
 
 ## Reauditoria delta — Simply Swords stack — 2026-08-31
 
-- **Cobertura SCYTHE:** Scythe Simply só participa quando Epic Fight Compat resolve `SCYTHE`; namespace, tooltip e aparência não classificam a arma.
-- **Execute provider-owned:** o execute Implicit da Scythe pode alterar a vida ou matar pelo pipeline Simply, mas não aplica/duplica Marca, não cria novo `rootActionId` SCYTHE e não contorna deduplicação.
-- **Maturação preservada:** uma Marca RPG já existente continua podendo observar o crossing server-side de vida causado por qualquer dano real conforme o contrato; isso não transfere autoria do dano externo para A0040 e não reaplica a Marca.
-- **Derived effects:** Unique ability, gem power, Runic Power, Awakening e traits Cataclysm permanecem provider-owned e não criam nova Marca.
-- **Lifecycle:** `P-A0040-01` permanece aberta; a chegada do stack Simply não resolve cleanup de target unload/despawn.
-- **Notion:** boundary Simply registrada em quatro propriedades; re-fetch PASS.
+- Scythe Simply só participa quando Epic Fight Compat resolve `SCYTHE`; namespace, tooltip e aparência não classificam a arma.
+- Execute provider-owned pode alterar vida/matar, mas não aplica/duplica Marca nem cria root SCYTHE em nome do RPG.
+- Marca RPG já existente pode observar crossing server-side de vida causado por dano real sem transferir autoria nem reaplicar a Marca.
+- Unique ability, gem power, Runic Power, Awakening e traits Cataclysm permanecem provider-owned.
+
+## Fechamento Chat 3
+
+Aplicação/reapply, crossing, dedup/root, expiry 8/10 s, lifecycle e prune periódico sem reconsulta foram validados. `RPG Skill Tree CI` #3361 / run `33657496252` ficou GREEN no HEAD sincronizado `8cf156294c7dd5922f6138a108a544f3ddeeddea`. Nenhuma perk A0041+ foi iniciada.

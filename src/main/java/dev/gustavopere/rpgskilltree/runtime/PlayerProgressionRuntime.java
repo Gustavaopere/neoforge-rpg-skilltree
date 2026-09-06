@@ -122,8 +122,9 @@ public final class PlayerProgressionRuntime {
         if (definition.isEmpty()) return false;
         try {
             ProgressionState current = get(player);
+            ProgressionState accessState = CombatPerkAvailabilityRuntime.effectiveAccessState(current);
             boolean requirementsSatisfied = NodeAccessResolver.satisfied(
-                current,
+                accessState,
                 TreeRuleCatalog.requirement(nodeId),
                 CharacterLevelCurve.defaultCurve()
             );
@@ -160,8 +161,9 @@ public final class PlayerProgressionRuntime {
             return NodePurchaseResult.rejected(current, NodePurchaseResult.Status.UNKNOWN_NODE);
         }
 
+        ProgressionState accessState = CombatPerkAvailabilityRuntime.effectiveAccessState(current);
         boolean requirementsSatisfied = NodeAccessResolver.satisfied(
-            current,
+            accessState,
             TreeRuleCatalog.requirement(nodeId),
             CharacterLevelCurve.defaultCurve()
         );

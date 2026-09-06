@@ -118,15 +118,9 @@ public final class A0021A0040CombatState {
         long now
     ) {
         Actor a=actor(actorId);String target=require(targetId);
-        if(a.fallbackRepositionSuppressed){
-            clearFallbackReposition(a);
-            return false;
-        }
+        if(a.fallbackRepositionSuppressed){clearFallbackReposition(a);return false;}
         RepositionSample sample=a.repositionSample;
-        if(sample==null||!sample.targetId.equals(target)){
-            a.repositionSample=new RepositionSample(target,playerX,playerZ,targetX,targetZ);
-            return false;
-        }
+        if(sample==null||!sample.targetId.equals(target)){a.repositionSample=new RepositionSample(target,playerX,playerZ,targetX,targetZ);return false;}
         double dx=playerX-sample.playerX,dz=playerZ-sample.playerZ;
         double displacement=Math.sqrt(dx*dx+dz*dz);
         double ax=sample.playerX-sample.targetX,az=sample.playerZ-sample.targetZ;
@@ -142,94 +136,57 @@ public final class A0021A0040CombatState {
     }
 
     public synchronized void invalidateFallbackReposition(String actorId){clearFallbackReposition(actor(actorId));}
-
-    /** Starts a conservative exclusion window for knockback/other explicitly forced displacement. */
-    public synchronized void beginForcedRepositionSuppression(String actorId){
-        Actor a=actor(actorId);
-        a.fallbackRepositionSuppressed=true;
-        a.forcedRepositionQuietTicks=0;
-        clearFallbackReposition(a);
-    }
-
-    public synchronized boolean fallbackRepositionSuppressed(String actorId){
-        Actor a=actors.get(require(actorId));
-        return a!=null&&a.fallbackRepositionSuppressed;
-    }
-
-    /**
-     * Returns whether forced-motion suppression remains active after this server tick. A release
-     * requires three consecutive ticks with negligible horizontal velocity; any renewed movement
-     * resets the quiet counter. No geometric baseline survives the suppression window.
-     */
+    public synchronized void beginForcedRepositionSuppression(String actorId){Actor a=actor(actorId);a.fallbackRepositionSuppressed=true;a.forcedRepositionQuietTicks=0;clearFallbackReposition(a);}
+    public synchronized boolean fallbackRepositionSuppressed(String actorId){Actor a=actors.get(require(actorId));return a!=null&&a.fallbackRepositionSuppressed;}
     public synchronized boolean updateForcedRepositionSuppression(String actorId,double horizontalMotionSquared){
-        Actor a=actors.get(require(actorId));
-        if(a==null||!a.fallbackRepositionSuppressed)return false;
-        clearFallbackReposition(a);
-        if(!Double.isFinite(horizontalMotionSquared)||horizontalMotionSquared>FORCED_REPOSITION_MOTION_EPSILON_SQUARED){
-            a.forcedRepositionQuietTicks=0;
-            return true;
-        }
-        a.forcedRepositionQuietTicks++;
-        if(a.forcedRepositionQuietTicks<FORCED_REPOSITION_RELEASE_QUIET_TICKS)return true;
-        a.fallbackRepositionSuppressed=false;
-        a.forcedRepositionQuietTicks=0;
-        return false;
+        Actor a=actors.get(require(actorId));if(a==null||!a.fallbackRepositionSuppressed)return false;clearFallbackReposition(a);
+        if(!Double.isFinite(horizontalMotionSquared)||horizontalMotionSquared>FORCED_REPOSITION_MOTION_EPSILON_SQUARED){a.forcedRepositionQuietTicks=0;return true;}
+        a.forcedRepositionQuietTicks++;if(a.forcedRepositionQuietTicks<FORCED_REPOSITION_RELEASE_QUIET_TICKS)return true;a.fallbackRepositionSuppressed=false;a.forcedRepositionQuietTicks=0;return false;
     }
 
     public synchronized int abalo(String actorId,String target,long now){TargetStack s=actor(actorId).abalo.get(require(target));if(s==null)return 0;if(s.expiresAt<=now){actor(actorId).abalo.remove(target);return 0;}return s.count;}
     public synchronized int addAbalo(String actorId,String target,long now){Actor a=actor(actorId);String t=require(target);int count=Math.min(NotionCombatPerkRules.ABALO_CAP,abalo(actorId,t,now)+1);a.abalo.put(t,new TargetStack(count,Math.addExact(now,NotionCombatPerkRules.ABALO_DURATION_MILLIS)));return count;}
     public synchronized int consumeAbalo(String actorId,String target,int amount,long now){Actor a=actor(actorId);String t=require(target);TargetStack old=a.abalo.get(t);int current=abalo(actorId,t,now),used=Math.min(Math.max(amount,0),current),left=current-used;if(left==0)a.abalo.remove(t);else a.abalo.put(t,new TargetStack(left,old==null?Math.addExact(now,NotionCombatPerkRules.ABALO_DURATION_MILLIS):old.expiresAt));return used;}
-    public synchronized int availableAbalo(String actorId,String targetId,long now){
-        Actor a=actor(actorId);String target=require(targetId);int current=abalo(actorId,target,now);prunePreparedHammerActions(a,now);int reserved=0;
-        for(PreparedHammerAction prepared:a.preparedHammerActions.values())if(prepared.kind==PreparedHammerCommit.POSTURE_BREAK&&prepared.targetId.equals(target))reserved+=3;
-        return Math.max(0,current-reserved);
-    }
+    public synchronized int availableAbalo(String actorId,String targetId,long now){Actor a=actor(actorId);String target=require(targetId);int current=abalo(actorId,target,now);prunePreparedHammerActions(a,now);int reserved=0;for(PreparedHammerAction prepared:a.preparedHammerActions.values())if(prepared.kind==PreparedHammerCommit.POSTURE_BREAK&&prepared.targetId.equals(target))reserved+=3;return Math.max(0,current-reserved);}
     public synchronized boolean demolitionReady(String actorId,String target,long now){return actor(actorId).demolitionCooldown.getOrDefault(require(target),0L)<=now;}
     public synchronized void armDemolition(String actorId,String target,int mastery,long now){Actor a=actor(actorId);String t=require(target);if(!demolitionReady(actorId,t,now))return;a.demolitionWindow.put(t,Math.addExact(now,4_000L));a.demolitionCooldown.put(t,Math.addExact(now,NotionCombatPerkRules.demolitionCooldownMillis(mastery)));}
     public synchronized boolean demolitionActive(String actorId,String targetId,long now){Actor a=actor(actorId);String target=require(targetId);Long until=a.demolitionWindow.get(target);if(until==null)return false;if(until<=now){a.demolitionWindow.remove(target);return false;}return true;}
     public synchronized boolean consumeDemolition(String actorId,String target,long now){Long until=actor(actorId).demolitionWindow.remove(require(target));return until!=null&&until>now;}
 
-    public synchronized boolean preparePostureBreakCommit(String actorId,String targetId,String rootActionId,long now){
-        Actor a=actor(actorId);prunePreparedHammerActions(a,now);String target=require(targetId),root=require(rootActionId);
-        PreparedHammerAction existing=a.preparedHammerActions.get(root);
-        if(existing!=null)return existing.kind==PreparedHammerCommit.POSTURE_BREAK&&existing.targetId.equals(target);
-        if(availableAbalo(actorId,target,now)<3)return false;
-        if(a.preparedHammerActions.values().stream().anyMatch(p->p.kind==PreparedHammerCommit.POSTURE_BREAK&&p.targetId.equals(target)))return false;
-        a.preparedHammerActions.put(root,new PreparedHammerAction(PreparedHammerCommit.POSTURE_BREAK,target,Math.addExact(now,PREPARED_COMMIT_TTL_MILLIS)));
-        return true;
-    }
-
-    public synchronized boolean prepareDemolitionCommit(String actorId,String targetId,String rootActionId,long now){
-        Actor a=actor(actorId);prunePreparedHammerActions(a,now);String target=require(targetId),root=require(rootActionId);
-        PreparedHammerAction existing=a.preparedHammerActions.get(root);
-        if(existing!=null)return existing.kind==PreparedHammerCommit.DEMOLITION&&existing.targetId.equals(target);
-        if(!demolitionActive(actorId,target,now))return false;
-        if(a.preparedHammerActions.values().stream().anyMatch(p->p.kind==PreparedHammerCommit.DEMOLITION&&p.targetId.equals(target)))return false;
-        a.preparedHammerActions.put(root,new PreparedHammerAction(PreparedHammerCommit.DEMOLITION,target,Math.addExact(now,PREPARED_COMMIT_TTL_MILLIS)));
-        return true;
-    }
-
-    public synchronized PreparedHammerCommit commitPreparedHammerAction(String actorId,String targetId,String rootActionId,long now){
-        Actor a=actor(actorId);prunePreparedHammerActions(a,now);PreparedHammerAction prepared=a.preparedHammerActions.remove(require(rootActionId));
-        if(prepared==null||!prepared.targetId.equals(require(targetId)))return PreparedHammerCommit.NONE;
-        if(prepared.kind==PreparedHammerCommit.POSTURE_BREAK){
-            return consumeAbalo(actorId,targetId,3,now)==3?PreparedHammerCommit.POSTURE_BREAK:PreparedHammerCommit.NONE;
-        }
-        if(prepared.kind==PreparedHammerCommit.DEMOLITION){
-            return a.demolitionWindow.remove(require(targetId))!=null?PreparedHammerCommit.DEMOLITION:PreparedHammerCommit.NONE;
-        }
-        return PreparedHammerCommit.NONE;
-    }
-
+    public synchronized boolean preparePostureBreakCommit(String actorId,String targetId,String rootActionId,long now){Actor a=actor(actorId);prunePreparedHammerActions(a,now);String target=require(targetId),root=require(rootActionId);PreparedHammerAction existing=a.preparedHammerActions.get(root);if(existing!=null)return existing.kind==PreparedHammerCommit.POSTURE_BREAK&&existing.targetId.equals(target);if(availableAbalo(actorId,target,now)<3)return false;if(a.preparedHammerActions.values().stream().anyMatch(p->p.kind==PreparedHammerCommit.POSTURE_BREAK&&p.targetId.equals(target)))return false;a.preparedHammerActions.put(root,new PreparedHammerAction(PreparedHammerCommit.POSTURE_BREAK,target,Math.addExact(now,PREPARED_COMMIT_TTL_MILLIS)));return true;}
+    public synchronized boolean prepareDemolitionCommit(String actorId,String targetId,String rootActionId,long now){Actor a=actor(actorId);prunePreparedHammerActions(a,now);String target=require(targetId),root=require(rootActionId);PreparedHammerAction existing=a.preparedHammerActions.get(root);if(existing!=null)return existing.kind==PreparedHammerCommit.DEMOLITION&&existing.targetId.equals(target);if(!demolitionActive(actorId,target,now))return false;if(a.preparedHammerActions.values().stream().anyMatch(p->p.kind==PreparedHammerCommit.DEMOLITION&&p.targetId.equals(target)))return false;a.preparedHammerActions.put(root,new PreparedHammerAction(PreparedHammerCommit.DEMOLITION,target,Math.addExact(now,PREPARED_COMMIT_TTL_MILLIS)));return true;}
+    public synchronized PreparedHammerCommit commitPreparedHammerAction(String actorId,String targetId,String rootActionId,long now){Actor a=actor(actorId);prunePreparedHammerActions(a,now);PreparedHammerAction prepared=a.preparedHammerActions.remove(require(rootActionId));if(prepared==null||!prepared.targetId.equals(require(targetId)))return PreparedHammerCommit.NONE;if(prepared.kind==PreparedHammerCommit.POSTURE_BREAK)return consumeAbalo(actorId,targetId,3,now)==3?PreparedHammerCommit.POSTURE_BREAK:PreparedHammerCommit.NONE;if(prepared.kind==PreparedHammerCommit.DEMOLITION)return a.demolitionWindow.remove(require(targetId))!=null?PreparedHammerCommit.DEMOLITION:PreparedHammerCommit.NONE;return PreparedHammerCommit.NONE;}
     public synchronized void discardPreparedHammerAction(String actorId,String rootActionId){actor(actorId).preparedHammerActions.remove(require(rootActionId));}
 
     public synchronized int trauma(String actorId,String target,long now){TargetStack s=actor(actorId).trauma.get(require(target));if(s==null)return 0;if(s.expiresAt<=now){actor(actorId).trauma.remove(target);return 0;}return s.count;}
     public synchronized int addTrauma(String actorId,String target,int rank,long now){Actor a=actor(actorId);String t=require(target);int count=Math.min(NotionCombatPerkRules.TRAUMA_CAP,trauma(actorId,t,now)+1);a.trauma.put(t,new TargetStack(count,Math.addExact(now,NotionCombatPerkRules.traumaDurationMillis(rank))));return count;}
     public synchronized int consumeTrauma(String actorId,String target,int amount,long now){Actor a=actor(actorId);String t=require(target);TargetStack old=a.trauma.get(t);int current=trauma(actorId,t,now),used=Math.min(Math.max(amount,0),current),left=current-used;if(left==0)a.trauma.remove(t);else a.trauma.put(t,new TargetStack(left,old==null?now+1:old.expiresAt));return used;}
+    public synchronized int availableTrauma(String actorId,String targetId,long now){Actor a=actor(actorId);String target=require(targetId);int current=trauma(actorId,target,now);prunePreparedMaceActions(a,now);int reserved=0;for(PendingSunder pending:a.pendingSunder.values())if(pending.targetId.equals(target))reserved+=3;return Math.max(0,current-reserved);}
     public synchronized void markSundered(String actorId,String target,int rank,long now){actor(actorId).sunderedUntil.put(require(target),Math.addExact(now,NotionCombatPerkRules.sunderDurationMillis(rank)));}
     public synchronized boolean isSundered(String actorId,String target,long now){return actor(actorId).sunderedUntil.getOrDefault(require(target),0L)>now;}
     public synchronized boolean bonebreakerReady(String actorId,String target,long now){return actor(actorId).bonebreakerCooldown.getOrDefault(require(target),0L)<=now;}
     public synchronized void startBonebreakerCooldown(String actorId,String target,int mastery,long now){actor(actorId).bonebreakerCooldown.put(require(target),Math.addExact(now,NotionCombatPerkRules.bonebreakerCooldownMillis(mastery)));}
+
+    public synchronized boolean prepareSunder(String actorId,String targetId,String rootActionId,int rank,long now){
+        Actor a=actor(actorId);prunePreparedMaceActions(a,now);String target=require(targetId),root=require(rootActionId);PendingSunder existing=a.pendingSunder.get(root);
+        if(existing!=null)return existing.targetId.equals(target)&&existing.rank==rank;
+        if(availableTrauma(actorId,target,now)<3)return false;
+        if(a.pendingSunder.values().stream().anyMatch(p->p.targetId.equals(target)))return false;
+        a.pendingSunder.put(root,new PendingSunder(target,rank,Math.addExact(now,PREPARED_COMMIT_TTL_MILLIS)));return true;
+    }
+    public synchronized boolean commitPreparedSunder(String actorId,String targetId,String rootActionId,long now){Actor a=actor(actorId);prunePreparedMaceActions(a,now);PendingSunder pending=a.pendingSunder.remove(require(rootActionId));if(pending==null||!pending.targetId.equals(require(targetId)))return false;if(consumeTrauma(actorId,targetId,3,now)!=3)return false;markSundered(actorId,targetId,pending.rank,now);return true;}
+    public synchronized void discardPreparedSunder(String actorId,String rootActionId){actor(actorId).pendingSunder.remove(require(rootActionId));}
+
+    public synchronized boolean prepareBonebreaker(String actorId,String targetId,String rootActionId,int mastery,long now){
+        Actor a=actor(actorId);prunePreparedMaceActions(a,now);String target=require(targetId),root=require(rootActionId);PendingBonebreaker existing=a.pendingBonebreaker.get(root);
+        if(existing!=null)return existing.targetId.equals(target)&&existing.mastery==mastery;
+        if(!bonebreakerReady(actorId,target,now))return false;
+        if(a.pendingBonebreaker.values().stream().anyMatch(p->p.targetId.equals(target)))return false;
+        a.pendingBonebreaker.put(root,new PendingBonebreaker(target,mastery,Math.addExact(now,PREPARED_COMMIT_TTL_MILLIS)));return true;
+    }
+    public synchronized boolean commitPreparedBonebreaker(String actorId,String targetId,String rootActionId,long now){Actor a=actor(actorId);prunePreparedMaceActions(a,now);PendingBonebreaker pending=a.pendingBonebreaker.remove(require(rootActionId));if(pending==null||!pending.targetId.equals(require(targetId))||!bonebreakerReady(actorId,targetId,now))return false;startBonebreakerCooldown(actorId,targetId,pending.mastery,now);return true;}
+    public synchronized void discardPreparedBonebreaker(String actorId,String rootActionId){actor(actorId).pendingBonebreaker.remove(require(rootActionId));}
+    public synchronized void discardPreparedMaceActions(String actorId,String rootActionId){Actor a=actor(actorId);String root=require(rootActionId);a.pendingSunder.remove(root);a.pendingBonebreaker.remove(root);}
 
     /** New marks start immature even when first applied below 50%; only a >=50 -> <50 crossing matures them. */
     public synchronized void applyReapingMark(String actorId,String target,int rank,double healthFraction,long now){Actor a=actor(actorId);String t=require(target);ReapMark old=a.reapMarks.get(t);boolean active=old!=null&&old.expiresAt>now;boolean mature=active&&old.mature;double previous=active?old.lastHealthFraction:healthFraction;if(active&&!mature&&previous>=NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION&&healthFraction<NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION)mature=true;a.reapMarks.put(t,new ReapMark(Math.addExact(now,NotionCombatPerkRules.reapingMarkDurationMillis(rank)),mature,healthFraction));}
@@ -237,21 +194,15 @@ public final class A0021A0040CombatState {
     public synchronized boolean reapMature(String actorId,String target,double healthFraction,long now){Actor a=actor(actorId);String t=require(target);ReapMark m=a.reapMarks.get(t);if(m==null||m.expiresAt<=now){a.reapMarks.remove(t);return false;}boolean mature=m.mature||m.lastHealthFraction>=NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION&&healthFraction<NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION;a.reapMarks.put(t,new ReapMark(m.expiresAt,mature,healthFraction));return mature;}
     public synchronized boolean consumeMatureReap(String actorId,String target,double healthFraction,long now){Actor a=actor(actorId);String t=require(target);if(!reapMature(actorId,t,healthFraction,now))return false;a.reapMarks.remove(t);return true;}
     public synchronized void updateReapingMaturityForTarget(String target,double healthFraction,long now){String t=require(target);for(Actor a:actors.values()){ReapMark m=a.reapMarks.get(t);if(m==null)continue;if(m.expiresAt<=now){a.reapMarks.remove(t);continue;}boolean mature=m.mature||m.lastHealthFraction>=NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION&&healthFraction<NotionCombatPerkRules.REAP_MATURE_HEALTH_FRACTION;a.reapMarks.put(t,new ReapMark(m.expiresAt,mature,healthFraction));}}
+    public synchronized int pruneExpiredReapingMarks(long now){int removed=0;for(Actor a:actors.values()){int before=a.reapMarks.size();a.reapMarks.entrySet().removeIf(e->e.getValue().expiresAt<=now);removed+=before-a.reapMarks.size();prunePreparedMaceActions(a,now);}claims.entrySet().removeIf(e->e.getValue()<=now);return removed;}
 
-    public synchronized void clearTarget(String targetId){
-        String t=require(targetId);
-        for(Actor a:actors.values()){
-            a.abalo.remove(t);a.demolitionWindow.remove(t);a.demolitionCooldown.remove(t);a.trauma.remove(t);a.sunderedUntil.remove(t);a.bonebreakerCooldown.remove(t);a.reapMarks.remove(t);a.blindSpotCooldown.remove(t);
-            a.preparedDaggerActions.entrySet().removeIf(e->e.getValue().targetId.equals(t));
-            a.preparedHammerActions.entrySet().removeIf(e->e.getValue().targetId.equals(t));
-            if(a.repositionSample!=null&&a.repositionSample.targetId.equals(t))a.repositionSample=null;
-        }
-    }
+    public synchronized void clearTarget(String targetId){String t=require(targetId);for(Actor a:actors.values()){a.abalo.remove(t);a.demolitionWindow.remove(t);a.demolitionCooldown.remove(t);a.trauma.remove(t);a.sunderedUntil.remove(t);a.bonebreakerCooldown.remove(t);a.reapMarks.remove(t);a.blindSpotCooldown.remove(t);a.preparedDaggerActions.entrySet().removeIf(e->e.getValue().targetId.equals(t));a.preparedHammerActions.entrySet().removeIf(e->e.getValue().targetId.equals(t));a.pendingSunder.entrySet().removeIf(e->e.getValue().targetId.equals(t));a.pendingBonebreaker.entrySet().removeIf(e->e.getValue().targetId.equals(t));if(a.repositionSample!=null&&a.repositionSample.targetId.equals(t))a.repositionSample=null;}}
     public synchronized void clearActor(String actorId){actors.remove(require(actorId));String prefix=actorId+'\0';claims.keySet().removeIf(k->k.startsWith(prefix));}
     public synchronized void clearAll(){actors.clear();claims.clear();}
 
     private static void prunePreparedDaggerActions(Actor a,long now){a.preparedDaggerActions.entrySet().removeIf(e->e.getValue().expiresAt<=now);}
     private static void prunePreparedHammerActions(Actor a,long now){a.preparedHammerActions.entrySet().removeIf(e->e.getValue().expiresAt<=now);}
+    private static void prunePreparedMaceActions(Actor a,long now){a.pendingSunder.entrySet().removeIf(e->e.getValue().expiresAt<=now);a.pendingBonebreaker.entrySet().removeIf(e->e.getValue().expiresAt<=now);}
     private static void clearFallbackReposition(Actor a){a.repositionSample=null;a.fallbackRepositionUntil=0L;a.fallbackDanceActivationUntil=0L;}
     private Actor actor(String id){return actors.computeIfAbsent(require(id),k->new Actor());}
     private static String require(String s){Objects.requireNonNull(s);if(s.isBlank())throw new IllegalArgumentException("blank id");return s;}
@@ -260,11 +211,13 @@ public final class A0021A0040CombatState {
     private record RepositionSample(String targetId,double playerX,double playerZ,double targetX,double targetZ){}
     private record PreparedDaggerAction(PreparedDaggerCommit kind,String targetId,int mastery,boolean consumeFirstHit,long expiresAt){}
     private record PreparedHammerAction(PreparedHammerCommit kind,String targetId,long expiresAt){}
+    private record PendingSunder(String targetId,int rank,long expiresAt){}
+    private record PendingBonebreaker(String targetId,int mastery,long expiresAt){}
     private static final class Actor{
         int flow;long flowExpiresAt,nextIdleDecayAt,dodgeRepositionUntil,fallbackRepositionUntil,dodgeDanceActivationUntil,fallbackDanceActivationUntil,danceUntil;boolean danceMoveAvailable,danceHitAvailable,fallbackRepositionSuppressed;int forcedRepositionQuietTicks;RepositionSample repositionSample;
         final Map<String,Long> blindSpotCooldown=new HashMap<>(),demolitionWindow=new HashMap<>(),demolitionCooldown=new HashMap<>(),sunderedUntil=new HashMap<>(),bonebreakerCooldown=new HashMap<>();
         final Map<String,TargetStack> abalo=new HashMap<>(),trauma=new HashMap<>();final Map<String,ReapMark> reapMarks=new HashMap<>();
-        final Map<String,PreparedDaggerAction> preparedDaggerActions=new HashMap<>();
-        final Map<String,PreparedHammerAction> preparedHammerActions=new HashMap<>();
+        final Map<String,PreparedDaggerAction> preparedDaggerActions=new HashMap<>();final Map<String,PreparedHammerAction> preparedHammerActions=new HashMap<>();
+        final Map<String,PendingSunder> pendingSunder=new HashMap<>();final Map<String,PendingBonebreaker> pendingBonebreaker=new HashMap<>();
     }
 }

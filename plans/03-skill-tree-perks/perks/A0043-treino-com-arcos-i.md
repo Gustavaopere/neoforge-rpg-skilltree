@@ -3,7 +3,7 @@
 ## Estado
 
 - **Design:** APROVADO após correção provider-native/Mastery.
-- **Implementação:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Implementação:** **IMPLEMENTAÇÃO CONFIRMADA PELO CHAT 3**.
 - **Notion:** `3c569db9-f0db-81ba-86de-cc43d7d3dae3`; fonte canônica mantém `epicfight:bow`.
 
 ## Contrato canônico
@@ -60,3 +60,7 @@
 ## Fechamento Chat 2 — 2026-09-01
 
 Nenhum producer novo duplicado foi criado: o Chat 2 reutilizou a infraestrutura persistente já existente na `main`. Não foi executada a bateria final do Chat 3.
+
+## Fechamento Chat 3 — 2026-09-02
+
+Mastery BOW por discovery finita, dedup por tipo, chave `epicfight:bow`, owner/provenance e dano foram revalidados. CI #3378 (`33665545963`) GREEN completo. **Estado final: IMPLEMENTAÇÃO CONFIRMADA.**
