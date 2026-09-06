@@ -18,7 +18,10 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public final class ModNetworking {
-    private static final String NETWORK_VERSION = "5";
+    // Network v5 was already consumed by the economy payload expansion on main. Adding the
+    // MARTIAL_STANCE serverbound payload changes the protocol surface again, so this reconciliation
+    // deliberately advances to v6 instead of reusing the stale Chat 2 version number.
+    private static final String NETWORK_VERSION = "6";
 
     private ModNetworking() {}
 
@@ -43,6 +46,11 @@ public final class ModNetworking {
         registrar.playToServer(ClearClassChoicePayload.TYPE, ClearClassChoicePayload.STREAM_CODEC, ClearClassChoicePayload::handle);
         registrar.playToServer(PurchaseAttributeRanksPayload.TYPE, PurchaseAttributeRanksPayload.STREAM_CODEC, PurchaseAttributeRanksPayload::handle);
         registrar.playToServer(RefundAttributeRanksPayload.TYPE, RefundAttributeRanksPayload.STREAM_CODEC, RefundAttributeRanksPayload::handle);
+        registrar.playToServer(
+            MartialStanceIntentPayload.TYPE,
+            MartialStanceIntentPayload.STREAM_CODEC,
+            MartialStanceIntentPayload::handle
+        );
         registrar.playToServer(
             EconomySnapshotRequestPayload.PAYLOAD_TYPE,
             EconomySnapshotRequestPayload.STREAM_CODEC,
