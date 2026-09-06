@@ -55,3 +55,10 @@ Sem estágio seguro de penetração/armor-negation, A0065 fica inativa naquele p
 | 9. Cobertura providers | PASS | Epic Fight/Apothic/Pufferfish/Simply Swords reconciliados. |
 
 Os 18 critérios técnicos cumulativos passam **no design**, com fail-closed obrigatório sem backend seguro.
+
+## Fechamento Chat 3 — 2026-09-06
+
+- **Estado final do lote:** IMPLEMENTAÇÃO CONFIRMADA na PR #391 no pipeline físico canônico auditado.
+- O teste `A0061A0070Chat3CoverageJUnitTest.physicalBasePenetrationAndImpactRemainIndependentContributions` fixa A0065 em `0.08` no rank 4 e prova que penetração permanece contribuição distinta do dano-base A0061 e do Impact A0066.
+- A revisão preserva backend único por root e não converte armor ignore/shred provider-native em segunda contribuição da árvore.
+- `P-A0065-01/-02` ficam encerradas no escopo atual; providers sem estágio seguro continuam fail-closed.

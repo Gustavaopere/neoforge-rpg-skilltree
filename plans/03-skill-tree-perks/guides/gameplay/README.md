@@ -4,7 +4,7 @@ Combate, movimento, progressão, sobrevivência, fauna, exploração, interface 
 
 **Fonte canônica:** este diretório versionado no GitHub.
 
-**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-08-30, com **573 entradas top-level incluindo NeoForge**. Consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); ele prevalece quando um capítulo histórico ainda cita versão anterior.
+**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-09-06, com **607 entradas top-level incluindo NeoForge**. O recorte Gameplay/Sistemas cobre **342 JARs atuais**; consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md).
 
 ## Como este guia está organizado
 
@@ -33,6 +33,9 @@ Para perks de combate/armas que possam tocar **Simply Swords, Simply More, Integ
 - [13. Projetos próprios do modpack — integração canônica para perks](13-projetos-proprios-do-modpack.md)
 - [14. Mobstein — fauna ressuscitada, experimentos, bosses e estruturas](14-mobstein.md)
 - [15. Simply Swords e ecossistema — contratos para integração em perks](15-simply-swords-e-ecossistema.md)
+- [16. Novos módulos incorporados na modlist 607](16-novos-modulos-gameplay-e-sistemas.md)
+- [17. Lacunas históricas de documentação fechadas](17-lacunas-historicas-de-documentacao.md)
+- [18. Fontes e referências técnicas — 342/342](18-fontes-e-referencias-tecnicas.md)
 
 ## Regras de manutenção
 
@@ -42,6 +45,8 @@ Para perks de combate/armas que possam tocar **Simply Swords, Simply More, Integ
 - `CURRENT-MODLIST.md` é a autoridade de presença, JAR e versão do estado instalado atual.
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
 - Mods adicionados ou atualizados na modlist devem ser incorporados antes do próximo fechamento de lote do Chat 1.
+- Cada JAR do recorte Gameplay deve possuir ficha descritiva e entrada no índice de fontes; a revisão de 06/09/2026 fecha ambos em **342/342**.
+- Quando dois JARs compartilham o mesmo mod ID, como `alexscaves` e `alexsmobs` neste snapshot, tratar a situação como **bloqueio de startup**: resolver o conjunto de JARs instalado antes de iniciar o jogo. Não existe desambiguação nem fail-closed de runtime capaz de corrigir IDs duplicados durante discovery.
 - O GitHub é a fonte canônica deste guia; não manter cópia editorial concorrente no Notion.
 
 [← Voltar aos guias](../README.md)

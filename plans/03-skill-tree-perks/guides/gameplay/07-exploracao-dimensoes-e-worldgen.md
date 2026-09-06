@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
 
 [← Índice do guia](README.md)
 
@@ -73,13 +73,13 @@ No pack ele funciona principalmente como extensão técnica do Dynamic Trees e c
 
 ### Dynamic Trees - BetterEnd — 2.0.0h
 
-`dtbetterend-1.21.1-2.0.0h.jar`
+`dtbetterend-1.21.1-2.1.0.jar`
 Bridge **BetterEnd ↔ Dynamic Trees**. Converte espécies e vegetação arbórea/fúngica relevantes do BetterEnd para o modelo de crescimento dinâmico, de modo que a flora da dimensão continue aparecendo nos biomas corretos sem voltar a árvores estáticas vanilla-style.
 O addon também utiliza recursos do Dynamic Trees Plus quando precisa representar vegetação especial. A build `2.0.0h` corresponde exatamente ao JAR NeoForge 1.21.1 instalado.
 
 ### Dynamic Trees - BetterNether — 2.0.0h
 
-`dtbetternether-1.21.1-2.0.0h.jar`
+`dtbetternether-1.21.1-2.1.0.jar`
 Bridge **BetterNether ↔ Dynamic Trees**. Adapta árvores e vegetação compatível dos biomas BetterNether ao sistema de espécies dinâmicas, incluindo crescimento, sementes e substituição durante worldgen.
 Seu papel é preservar a identidade vegetal do BetterNether enquanto o core Dynamic Trees controla como as espécies crescem e se renovam. A build instalada é `2.0.0h`.
 
@@ -103,7 +103,7 @@ A build `1.3.0` é a release NeoForge 1.21.1 instalada e depende dos dois sistem
 
 ### Dynamic Trees–VanillaBackport — 1.5.0h
 
-`dtvanillabackport-1.21.1-1.5.0h.jar`
+`dtvanillabackport-1.21.1-1.6.0.jar`
 Bridge **VanillaBackport ↔ Dynamic Trees** focada principalmente na **Pale Oak** trazida das versões vanilla posteriores. A árvore recebe crescimento/ramificação dinâmica, propagação compatível e integração com worldgen sem perder a relação especial com o **Creaking Heart**.
 A build atual é `1.5.0h`, substituindo a linha anterior 1.5.0 e correspondendo ao JAR carregado na modlist.
 
@@ -118,3 +118,7 @@ Não adiciona uma nova progressão ou provider de árvores por si só. A build `
 `StreamsReflowing-1.21.1-neoforge-2.13.1.jar`
 **Streams Reflowing** altera a hidrologia do worldgen para produzir **cursos d'água contínuos e visualmente mais naturais**, em vez de depender apenas de lagos e rios definidos pelo modelo vanilla. Streams acompanham o relevo, conectam regiões e criam trajetórias que tornam água corrente uma parte mais explícita da paisagem.
 O mod atua na geração física de cursos d'água e portanto é diferente de expansões que apenas adicionam biomas aquáticos ou blocos de rio. A build instalada é `2.13.1` para NeoForge 1.21.1.
+
+## Nota operacional — duplicidade `alexscaves`
+
+A modlist atual contém simultaneamente `alexscaves-2.0.2.jar` (**Alex's Caves**) e `alexscaves-1.0.9-neoforge+1.21.1.jar` (**Alex's Caves Continued**), ambos declarando `modid alexscaves`. O port Continued está documentado no [capítulo 16](16-novos-modulos-gameplay-e-sistemas.md). **Esse estado bloqueia o startup do NeoForge antes do runtime normal.** A instalação deve manter exatamente um dos JARs (ou um repack legítimo com mod ID distinto) antes de qualquer integração; `ModList.isLoaded("alexscaves")`, registry inspection ou fail-closed de runtime não podem remediar dois mod IDs idênticos durante discovery.
