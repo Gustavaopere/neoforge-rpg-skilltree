@@ -75,9 +75,9 @@
     },
     {
       "entry_id": "BIOME:terralith:alpine_highlands",
-      "title": "Terras Altas Alpinas",
+      "title": "Planaltos Alpinos",
       "summary": {
-        "text": "Terras Altas Alpinas é um bioma do Overworld registrado no namespace Terralith com o ID terralith:alpine_highlands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "text": "Planaltos Alpinos é um bioma do Overworld registrado no namespace Terralith com o ID terralith:alpine_highlands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
         "sources": [
           {"type": "RUNTIME", "ref": "terralith:biome/terralith:alpine_highlands"},
           {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
@@ -85,7 +85,7 @@
       },
       "sections": {
         "worldgen": {
-          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Terras Altas e Alpinas não são convertidos em altura, faixa de elevação, temperatura, relevo, vegetação, fauna, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Planaltos e Alpinos não são convertidos em altura, faixa de elevação, temperatura, relevo, vegetação, fauna, recursos, chance ou frequência sem uma fonte específica da build instalada.",
           "sources": [
             {"type": "RUNTIME", "ref": "terralith:biome/terralith:alpine_highlands"},
             {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
@@ -144,9 +144,9 @@
     },
     {
       "entry_id": "BIOME:terralith:ancient_sands",
-      "title": "Areias Antigas",
+      "title": "Areias Ancestrais",
       "summary": {
-        "text": "Areias Antigas é um bioma do Overworld registrado no namespace Terralith com o ID terralith:ancient_sands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "text": "Areias Ancestrais é um bioma do Overworld registrado no namespace Terralith com o ID terralith:ancient_sands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
         "sources": [
           {"type": "RUNTIME", "ref": "terralith:biome/terralith:ancient_sands"},
           {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
@@ -154,7 +154,7 @@
       },
       "sections": {
         "worldgen": {
-          "text": "Esta ficha congela somente a identidade de registro e o título oficial. As palavras Areias e Antigas não são convertidas em idade geológica, composição, desertificação, relevo, recursos, estruturas, chance, densidade ou frequência sem uma fonte específica da build instalada.",
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. As palavras Areias e Ancestrais não são convertidas em idade geológica, composição, desertificação, relevo, recursos, estruturas, chance, densidade ou frequência sem uma fonte específica da build instalada.",
           "sources": [
             {"type": "RUNTIME", "ref": "terralith:biome/terralith:ancient_sands"},
             {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
@@ -167,9 +167,9 @@
     },
     {
       "entry_id": "BIOME:terralith:arid_highlands",
-      "title": "Terras Altas Áridas",
+      "title": "Planaltos Áridos",
       "summary": {
-        "text": "Terras Altas Áridas é um bioma do Overworld registrado no namespace Terralith com o ID terralith:arid_highlands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "text": "Planaltos Áridos é um bioma do Overworld registrado no namespace Terralith com o ID terralith:arid_highlands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
         "sources": [
           {"type": "RUNTIME", "ref": "terralith:biome/terralith:arid_highlands"},
           {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
@@ -177,7 +177,7 @@
       },
       "sections": {
         "worldgen": {
-          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Terras Altas e Áridas não são convertidos em altitude, precipitação, umidade, temperatura, relevo, vegetação, chance ou frequência sem uma fonte específica da build instalada.",
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Planaltos e Áridos não são convertidos em altitude, precipitação, umidade, temperatura, relevo, vegetação, chance ou frequência sem uma fonte específica da build instalada.",
           "sources": [
             {"type": "RUNTIME", "ref": "terralith:biome/terralith:arid_highlands"},
             {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
@@ -190,9 +190,9 @@
     },
     {
       "entry_id": "BIOME:terralith:ashen_savanna",
-      "title": "Savana de Cinzas",
+      "title": "Savana Cinzenta",
       "summary": {
-        "text": "Savana de Cinzas é um bioma do Overworld registrado no namespace Terralith com o ID terralith:ashen_savanna. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "text": "Savana Cinzenta é um bioma do Overworld registrado no namespace Terralith com o ID terralith:ashen_savanna. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
         "sources": [
           {"type": "RUNTIME", "ref": "terralith:biome/terralith:ashen_savanna"},
           {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
@@ -200,7 +200,7 @@
       },
       "sections": {
         "worldgen": {
-          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Savana e Cinzas não são convertidos em clima, composição de solo, presença de cinzas, fogo, vegetação, fauna, chance ou frequência sem uma fonte específica da build instalada.",
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Savana e Cinzenta não são convertidos em clima, composição de solo, presença de cinzas, fogo, vegetação, fauna, chance ou frequência sem uma fonte específica da build instalada.",
           "sources": [
             {"type": "RUNTIME", "ref": "terralith:biome/terralith:ashen_savanna"},
             {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
@@ -213,9 +213,9 @@
     },
     {
       "entry_id": "BIOME:terralith:basalt_cliffs",
-      "title": "Falésias de Basalto",
+      "title": "Penhascos de Basalto",
       "summary": {
-        "text": "Falésias de Basalto é um bioma do Overworld registrado no namespace Terralith com o ID terralith:basalt_cliffs. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "text": "Penhascos de Basalto é um bioma do Overworld registrado no namespace Terralith com o ID terralith:basalt_cliffs. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
         "sources": [
           {"type": "RUNTIME", "ref": "terralith:biome/terralith:basalt_cliffs"},
           {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
@@ -223,7 +223,7 @@
       },
       "sections": {
         "worldgen": {
-          "text": "Esta ficha congela somente a identidade de registro e o título oficial. As palavras Falésias e Basalto não são convertidas em geometria, altura, composição de blocos, abundância de basalto, relevo, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. As palavras Penhascos e Basalto não são convertidas em geometria, altura, composição de blocos, abundância de basalto, relevo, recursos, chance ou frequência sem uma fonte específica da build instalada.",
           "sources": [
             {"type": "RUNTIME", "ref": "terralith:biome/terralith:basalt_cliffs"},
             {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
