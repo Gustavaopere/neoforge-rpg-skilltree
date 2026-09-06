@@ -18,6 +18,9 @@ class ProductiveMetalworksAdapterContractTest {
     private static final Path IRON_BLADE_RECIPE = Path.of(
         "src/main/resources/data/rpgskilltree/recipe/blacksmith/productivemetalworks/iron_blade.json"
     );
+    private static final Path OPTIONAL_PROVIDER_SMOKE_VERIFIER = Path.of(
+        "scripts/verify-optional-provider-smoke.py"
+    );
 
     @Test
     void optionalIntegrationCatalogExposesProductiveMetalworksWithoutProviderTypes() {
@@ -25,6 +28,15 @@ class ProductiveMetalworksAdapterContractTest {
             Arrays.stream(OptionalIntegrations.Provider.values())
                 .anyMatch(provider -> provider.modId().equals("productivemetalworks")),
             "Productive Metalworks must be represented by the provider-neutral optional integration catalog"
+        );
+    }
+
+    @Test
+    void optionalProviderSmokeMatrixTracksProductiveMetalworks() {
+        String verifier = assertDoesNotThrow(() -> Files.readString(OPTIONAL_PROVIDER_SMOKE_VERIFIER));
+        assertTrue(
+            verifier.contains("\"productivemetalworks\","),
+            "Dedicated-server smoke must expect Productive Metalworks to be absent in the core-only runtime"
         );
     }
 
