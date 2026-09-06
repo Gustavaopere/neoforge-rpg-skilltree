@@ -47,31 +47,22 @@ final class A0051A0060Chat2ContractJUnitTest {
 
     @Test
     void multishotRootUsesSuccessWinsAndAtMostOneFailure() throws Exception {
-        // Chat 3 TDD RED: the branch must not pass until A0052 aggregates sibling outcomes by root.
         A0041A0060CombatState state = new A0041A0060CombatState();
         state.addCadence("p");
         state.addCadence("p");
 
-        Method register;
-        Method seal;
-        Method failure;
-        Method success;
-        try {
-            register = A0041A0060CombatState.class.getMethod(
-                "registerCrossbowProjectile", String.class, String.class, String.class, long.class
-            );
-            seal = A0041A0060CombatState.class.getMethod(
-                "sealCrossbowRoot", String.class, String.class, long.class
-            );
-            failure = A0041A0060CombatState.class.getMethod(
-                "recordCrossbowProjectileFailure", String.class, String.class, String.class, long.class
-            );
-            success = A0041A0060CombatState.class.getMethod(
-                "recordCrossbowProjectileSuccess", String.class, String.class, String.class, long.class
-            );
-        } catch (NoSuchMethodException missingAggregator) {
-            throw new AssertionError("A0052 requires root-level Multishot success-wins aggregation", missingAggregator);
-        }
+        Method register = A0041A0060CombatState.class.getMethod(
+            "registerCrossbowProjectile", String.class, String.class, String.class, long.class
+        );
+        Method seal = A0041A0060CombatState.class.getMethod(
+            "sealCrossbowRoot", String.class, String.class, long.class
+        );
+        Method failure = A0041A0060CombatState.class.getMethod(
+            "recordCrossbowProjectileFailure", String.class, String.class, String.class, long.class
+        );
+        Method success = A0041A0060CombatState.class.getMethod(
+            "recordCrossbowProjectileSuccess", String.class, String.class, String.class, long.class
+        );
 
         register.invoke(state, "p", "root-success", "arrow-a", 12_000L);
         register.invoke(state, "p", "root-success", "arrow-b", 12_001L);
@@ -91,6 +82,16 @@ final class A0051A0060Chat2ContractJUnitTest {
         assertFalse((boolean) seal.invoke(state, "p", "root-failure", 13_260L));
         assertFalse((boolean) failure.invoke(state, "p", "root-failure", "arrow-d", 13_270L));
         assertEquals(1, state.cadence("p"), "duplicate callbacks cannot settle a root twice");
+
+        register.invoke(state, "p", "root-late-failure", "arrow-e", 14_000L);
+        register.invoke(state, "p", "root-late-failure", "arrow-f", 14_001L);
+        assertFalse((boolean) seal.invoke(state, "p", "root-late-failure", 14_250L));
+        assertFalse((boolean) failure.invoke(state, "p", "root-late-failure", "arrow-e", 14_400L));
+        assertTrue((boolean) failure.invoke(state, "p", "root-late-failure", "arrow-f", 14_500L));
+        A0041A0060CombatPolicy.onCrossbowFailure("p", state);
+        assertEquals(0, state.cadence("p"), "the final post-seal miss settles exactly one root failure");
+        assertFalse((boolean) failure.invoke(state, "p", "root-late-failure", "arrow-f", 14_510L));
+        assertFalse((boolean) seal.invoke(state, "p", "root-late-failure", 14_520L));
     }
 
     @Test
