@@ -56,16 +56,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0048 | Maestria de Arcos — Tiro Preparado | APROVADO | NÃO CONFIRMADA / FAIL-CLOSED CORRETO validado pelo Chat 3 na PR #364 | herda cadeia A0044→A0047 indisponível; sem bypass |
 | A0049 | Treino com Bestas I | APROVADO após correção | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #364 | nenhuma |
 | A0050 | Treino com Bestas II | APROVADO após review | NÃO CONFIRMADA / FAIL-CLOSED CORRETO validado pelo Chat 3 na PR #364 | provider semântico de reload/preparation speed ainda ausente; node `UNAVAILABLE_NODE` |
-| A0051 | Precisão com Bestas | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL no crítico CROSSBOW | `P-A0051-01`: exigir launch provenance; Mastery A0049 já está resolvida |
-| A0052 | Cadência de Recarga | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / estruturalmente indisponível | `P-A0052-01/-02/-04`: availability, mesma besta e Multishot; `P-A0052-05/-06`: launch provenance + lifecycle; herda A0050 |
-| A0053 | Virote Perfurante | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / nó indisponível | `P-A0053-01/-02`: availability + reservation→commit; `P-A0053-03/-04`: launch provenance + lifecycle; herda cadeia CROSSBOW/A0050 |
-| A0054 | Maestria de Bestas — Mecanismo Ajustado | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL / estruturalmente indisponível | `P-A0054-01/-04`: consumo/rollback; `P-A0054-02/-03`: availability; `P-A0054-05/-06`: launch provenance + lifecycle; Mastery A0049 já resolvida |
-| A0055 | Treino com Armas de Punho I | APROVADO após correção | NÃO CONFIRMADO como adquirível | `P-A0055-01`: producer único `combat:fist`; `P-A0055-02`: architecture `combat_fist`; `P-A0055-03`: regressão cruzada |
-| A0056 | Treino com Armas de Punho II | APROVADO | CÓDIGO PRESENTE via attack-speed | depende do fechamento de A0055 e reconciliação de rank/gateway |
-| A0057 | Precisão com Armas de Punho | APROVADO após correção | CÓDIGO PRESENTE no crítico FIST | depende do fechamento de A0055 e reconciliação de rank/gateway |
-| A0058 | Sequência Limpa | APROVADO após correção/review | IMPLEMENTAÇÃO PARCIAL | `P-A0058-01`: heavy-impact; `P-A0058-02`: body modulation opcional; `P-A0058-03`: lifecycle rank/respec/rules reload; depende de A0055 |
-| A0059 | Quebra de Ritmo | APROVADO | FAIL-CLOSED CORRETO | `P-A0059-01`: heavy/finalizer; `P-A0059-02`: guard-break movement; `P-A0059-03`: lifecycle próprio; depende de A0055/A0058 |
-| A0060 | Maestria de Armas de Punho — Combinação Final | APROVADO após review de lifecycle | FAIL-CLOSED CORRETO | `P-A0060-01`: heavy/finalizer; `P-A0060-02`: Stamina ledger; `P-A0060-03`: gate80 `combat:fist`; `P-A0060-04`: lifecycle cooldown/reserva |
+| A0051 | Precisão com Bestas | APROVADO após correção/review | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #387 | nenhuma |
+| A0052 | Cadência de Recarga | APROVADO após correção/review | NÃO CONFIRMADA COMO JOGÁVEL / FAIL-CLOSED ATUAL CONFIRMADO pelo Chat 3 na PR #387; `P-A0052-04` Multishot resolvida | herda A0050 sem binding semântico de reload/preparation speed |
+| A0053 | Virote Perfurante | APROVADO após correção/review | NÃO CONFIRMADA COMO JOGÁVEL / FAIL-CLOSED ATUAL CONFIRMADO pelo Chat 3 na PR #387 | herda cadeia A0050→A0052; Impact só quando semanticamente seguro |
+| A0054 | Maestria de Bestas — Mecanismo Ajustado | APROVADO após correção/review | NÃO CONFIRMADA COMO JOGÁVEL / FAIL-CLOSED ATUAL CONFIRMADO pelo Chat 3 na PR #387 | herda A0050/A0052/A0053; reload-speed extra permanece omitido sem hook semântico |
+| A0055 | Treino com Armas de Punho I | APROVADO após correção | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #387 | nenhuma |
+| A0056 | Treino com Armas de Punho II | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #387 | nenhuma |
+| A0057 | Precisão com Armas de Punho | APROVADO após correção | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #387 | nenhuma |
+| A0058 | Sequência Limpa | APROVADO após correção/review | IMPLEMENTAÇÃO CONFIRMADA NOS COMPONENTES COM RECEIPT REAL / FALLBACK CANÔNICO pelo Chat 3 na PR #387 | nenhuma bloqueante; `P-A0058-01` heavy-impact e `P-A0058-02` body modulation continuam provider/config-bound |
+| A0059 | Quebra de Ritmo | APROVADO | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #387 | nenhuma bloqueante; `P-A0059-01` heavy/finalizer e `P-A0059-02` guard-break dependem de receipts provider-native |
+| A0060 | Maestria de Armas de Punho — Combinação Final | APROVADO após review de lifecycle | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #387 | nenhuma bloqueante; `P-A0060-01` heavy/finalizer e `P-A0060-02` Stamina ledger dependem de receipts provider-native |
 | A0061 | Força Aplicada | APROVADO | CÓDIGO PRESENTE em melee Epic Fight + projectile físico canônico | `P-A0061-01/-02`: validar dedup/root e preservar Simply Swords provider-native |
 | A0062 | Golpe Preciso | APROVADO | CÓDIGO PRESENTE no resolvedor crítico canônico | `P-A0062-01/-02`: provar uma única rolagem e convergência de adapters Apothic |
 | A0063 | Impacto Crítico | APROVADO | CÓDIGO PRESENTE sobre crítico canônico | `P-A0063-01/-02`: uma aplicação por root; sem double multiplier Apothic/provider |
@@ -107,12 +107,12 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **Crítico:** uma única resolução/root action; `ARCANE_BACKLASH` e companion-owned damage não entram como ataque direto.
 - **Mastery:** não pode vir de spam de dano. Famílias sem producer provider-native comprovado usam discovery/milestones finitos e deduplicados.
 - **Mastery BOW/CROSSBOW:** fonte canônica é `epicfight:bow` / `epicfight:crossbow`; Notion, `CombatPerkTreeModel`, projectile runtime e `tree_architecture/combat.json` estão alinhados. Discovery é persistente e deduplicada por tipo hostil; não existe segunda ledger válida.
-- **Mastery FIST:** fonte canônica do ramo A0055–A0060 é `combat:fist`, +10 por tipo hostil inédito; 6 tipos→60 e 8→80. O producer genérico `epicfight:fist` deve ser reconciliado/suprimido; `tree_architecture/combat.json` precisa publicar `combat_fist` antes de o gate ser considerado alinhado.
+- **Mastery FIST:** fonte canônica do ramo A0055–A0060 é `combat:fist`, +10 por tipo hostil inédito; 6 tipos→60 e 8→80. `tree_architecture/combat.json`, model e producer estão reconciliados; não existe ledger paralela `epicfight:fist` válida para esta disciplina.
 - **HAMMER/MACE/SCYTHE:** externos exigem capability/mapping provider-native seguro; não inferir por nome, aparência ou tag paralela não governada.
 - **FIST:** externos exigem capability/mapping provider-native seguro; não inferir por nome, aparência ou tag paralela não governada. Mãos vazias só entram em FIST por mapping explícito/versionado.
 - **BOW/CROSSBOW:** vanilla é classificado por `BowItem`/`CrossbowItem`; externos exigem provider-native/mapping explícito. Mastery 60 = 6 tipos hostis inéditos; Mastery 80 = 8 tipos quando o contrato terminal exigir.
-- **Availability em Bestas:** enquanto A0050 estiver indisponível/não comprável, A0052, A0053 e A0054 ficam estruturalmente indisponíveis; fallback não pode bypassar dependência. A0049/Mastery CROSSBOW já está resolvida; o bloqueio estrutural remanescente da cadeia é A0050 e os receipts específicos do lote seguinte.
-- **Root outcome CROSSBOW:** Multishot compartilha uma única root action; projéteis irmãos produzem no máximo um success/failure e uma perda de Cadência por disparo. Success do root bloqueia failures tardios de irmãos.
+- **Availability em Bestas:** enquanto A0050 estiver indisponível/não comprável, A0052, A0053 e A0054 ficam estruturalmente indisponíveis; fallback não pode bypassar dependência. A0049/Mastery CROSSBOW já está resolvida; o bloqueio estrutural remanescente da cadeia é A0050.
+- **Root outcome CROSSBOW:** Multishot compartilha uma única root action; siblings são agregados por root; qualquer success confirmado vence failures anteriores e all-fail liquida no máximo uma perda de Cadência. Callback duplicado não liquida novamente.
 - **Reservation→commit em lançamento:** Cadência/janela de A0053/A0054 só são consumidas quando o projectile/root correlacionado é realmente criado; cancelamento tardio ou ausência de spawn faz rollback.
 - **Commit causal:** consumo irreversível de recurso/estado condicionado a resultado real ocorre no commit pós-hit confirmado; cancelamento/dano zero não deixa estado fantasma. Para ações de lançamento A0053/A0054, o commit específico ocorre somente após criação confirmada do projectile/root correlacionado.
 - **Lifecycle:** estados por alvo precisam cleanup bounded quando alvo morre, é removido, descarrega ou desaparece sem evento terminal equivalente. Estados por ator precisam cleanup bounded em logout/dimensão/respawn/shutdown e reconciliação em rank loss, respec e rules reload que invalide perk/pré-requisito.
@@ -283,3 +283,20 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 - **A0051+:** não iniciado por este Chat 3; a PR sucessora do Chat 2 existe separadamente e não faz parte deste ciclo.
 
 O merge da PR #364 só é autorizado após CI verde do HEAD documental final, confirmação fresca de mergeabilidade/base e verificação pós-merge da `main`. Depois disso o Chat 3 deve PARAR.
+
+## Chat 3 — lote exato A0051–A0060
+
+- **PR:** #387; branch `feat/chat2-a0051-a0060-stacked-handoff`.
+- **Auditoria:** `audits/AUDITORIA-CHAT3-A0051-A0060-PENDENCIAS-TECNICAS.md`.
+- **Modlist fresca:** 607 mods; Epic Fight `21.17.3.1`, Apothic Attributes `2.10.1`, Mobstein `5.4.4`; Punchy `2.7e` é drift visual/compat não bloqueante para este lote.
+- **A0051/A0055/A0056/A0057:** `IMPLEMENTAÇÃO CONFIRMADA` após revisão do contrato e bateria funcional.
+- **A0058:** `IMPLEMENTAÇÃO CONFIRMADA NOS COMPONENTES COM RECEIPT REAL / FALLBACK CANÔNICO`; heavy-impact/body modulation permanecem provider-bound.
+- **A0052/A0053/A0054:** `NÃO CONFIRMADAS COMO JOGÁVEIS / FAIL-CLOSED ATUAL CONFIRMADO`; herdam indisponibilidade A0050 e não permitem bypass/ghost rank.
+- **A0059/A0060:** `NÃO CONFIRMADAS COMO JOGÁVEIS / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA`; sem heavy/finalizer/guard-break/Stamina receipts não há ativação ou consumo heurístico.
+- **P-A0052-04 RESOLVIDA:** Multishot agora agrega siblings por `rootActionId`, usa `success-wins`, all-fail liquida no máximo uma perda e callback duplicado não liquida novamente.
+- **HEAD funcional validado:** `6826c50896c4ad586b8942031465b6a0a3ce44af`.
+- **RPG Skill Tree CI run `34006356029`: SUCCESS** — JUnit 5, NeoForge JUnit adapter, NeoForge GameTests, provider-present, validações, build, JAR e dedicated-server smoke verdes.
+- **Pendências não bloqueantes:** `P-A0058-01/-02`, `P-A0059-01/-02`, `P-A0060-01/-02` e blockers provider/availability herdados de A0050 para A0052–A0054.
+- **Retorno ao Chat 1:** nenhum; a correção Multishot não alterou design/authority/topologia.
+- **Gate final:** CI verde do HEAD documental final + reviews/mergeabilidade, depois merge da #387 e confirmação da `main`.
+- **A0061+:** não iniciar neste ciclo.
