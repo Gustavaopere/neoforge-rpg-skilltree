@@ -18,6 +18,7 @@ import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.compat.MagicAccessRuntime;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -46,14 +47,14 @@ public final class ArsNouveauProgressionEvents {
         if (player instanceof FakePlayer || event.context == null) return;
         SpellAction action = actionFor(event.spell);
         if (action == null) return;
-        armCausalAward(event.context, action);
+        armCausalAward(event.context, player.getUUID(), action);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpellResolved(SpellResolveEvent.Post event) {
         if (!(event.shooter instanceof ServerPlayer player)) return;
         if (player instanceof FakePlayer || event.context == null) return;
-        SpellAction action = claimResolved(event.context);
+        SpellAction action = claimResolved(event.context, player.getUUID());
         if (action == null) return;
         PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forArs(action));
     }
@@ -98,15 +99,15 @@ public final class ArsNouveauProgressionEvents {
         );
     }
 
-    static void armCausalAward(SpellContext context, SpellAction action) {
-        if (context == null || action == null) return;
-        context.getOrCreateAttachment(ArsMasteryCausalAward.ID, ArsMasteryCausalAward.arm(action));
+    static void armCausalAward(SpellContext context, UUID casterId, SpellAction action) {
+        if (context == null || casterId == null || action == null) return;
+        context.getOrCreateAttachment(ArsMasteryCausalAward.ID, ArsMasteryCausalAward.arm(casterId, action));
     }
 
-    static SpellAction claimResolved(SpellContext context) {
-        if (context == null) return null;
+    static SpellAction claimResolved(SpellContext context, UUID resolverId) {
+        if (context == null || resolverId == null) return null;
         ArsMasteryCausalAward causalAward = causalAwardFor(context);
-        return causalAward == null ? null : causalAward.claimResolved();
+        return causalAward == null ? null : causalAward.claimResolved(resolverId);
     }
 
     static ArsMasteryCausalAward causalAwardFor(SpellContext context) {

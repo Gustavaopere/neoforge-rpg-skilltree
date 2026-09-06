@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree.runtime.compat.ars;
 import com.hollingsworth.arsnouveau.api.spell.IContextAttachment;
 import dev.gustavopere.rpgskilltree.core.SpellAction;
 import java.io.Serial;
+import java.util.UUID;
 import net.minecraft.resources.ResourceLocation;
 
 /**
@@ -10,7 +11,8 @@ import net.minecraft.resources.ResourceLocation;
  *
  * <p>Ars 5.13.1 shallow-copies attachment values when cloning a spell context, so descendants
  * share this attachment. The claim is transient: if Ars serializes a context, the award fails
- * closed after deserialization instead of reconstructing unverifiable causal state.
+ * closed after deserialization instead of reconstructing unverifiable causal state. The claim
+ * is also bound to the original caster UUID, so another player cannot consume or receive it.
  */
 final class ArsMasteryCausalAward implements IContextAttachment {
     @Serial
@@ -27,12 +29,12 @@ final class ArsMasteryCausalAward implements IContextAttachment {
         this.claim = claim;
     }
 
-    static ArsMasteryCausalAward arm(SpellAction action) {
-        return new ArsMasteryCausalAward(ArsMasteryClaim.arm(action));
+    static ArsMasteryCausalAward arm(UUID casterId, SpellAction action) {
+        return new ArsMasteryCausalAward(ArsMasteryClaim.arm(casterId, action));
     }
 
-    SpellAction claimResolved() {
-        return claim == null ? null : claim.claimResolved();
+    SpellAction claimResolved(UUID resolverId) {
+        return claim == null ? null : claim.claimResolved(resolverId);
     }
 
     @Override

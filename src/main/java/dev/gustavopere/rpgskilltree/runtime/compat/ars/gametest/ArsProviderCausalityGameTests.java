@@ -57,10 +57,11 @@ public final class ArsProviderCausalityGameTests {
             Class<?> contextClass = Class.forName(SPELL_CONTEXT);
             Class<?> adapterClass = Class.forName(ADAPTER);
             Object spell = projectileHarmSpell(spellClass);
+            UUID casterId = UUID.randomUUID();
 
             Method actionFor = declared(adapterClass, "actionFor", spellClass);
-            Method arm = declared(adapterClass, "armCausalAward", contextClass, SpellAction.class);
-            Method claim = declared(adapterClass, "claimResolved", contextClass);
+            Method arm = declared(adapterClass, "armCausalAward", contextClass, UUID.class, SpellAction.class);
+            Method claim = declared(adapterClass, "claimResolved", contextClass, UUID.class);
 
             SpellAction action = (SpellAction) actionFor.invoke(null, spell);
             helper.assertTrue(action != null, "valid provider spell must create a semantic SpellAction");
@@ -75,18 +76,24 @@ public final class ArsProviderCausalityGameTests {
             Object parent = contextClass.getMethod("dehydrated", spellClass).invoke(null, spell);
             Object child = contextClass.getMethod("dehydrated", spellClass).invoke(null, spell);
             contextClass.getMethod("withParent", contextClass).invoke(child, parent);
-            arm.invoke(null, parent, action);
-            helper.assertTrue(claim.invoke(null, child) == action, "child context must resolve the parent causal attachment");
-            helper.assertTrue(claim.invoke(null, parent) == null, "shared causal claim must be one-shot across the context chain");
+            arm.invoke(null, parent, casterId, action);
+            helper.assertTrue(claim.invoke(null, child, UUID.randomUUID()) == null,
+                "mismatched resolver must not consume a shared causal claim");
+            helper.assertTrue(claim.invoke(null, child, casterId) == action,
+                "child context must resolve the parent causal attachment for the original caster");
+            helper.assertTrue(claim.invoke(null, parent, casterId) == null,
+                "shared causal claim must be one-shot across the context chain");
 
             Object cloneSource = contextClass.getMethod("dehydrated", spellClass).invoke(null, spell);
-            arm.invoke(null, cloneSource, action);
+            arm.invoke(null, cloneSource, casterId, action);
             Object cloned = contextClass.getMethod("clone").invoke(cloneSource);
-            helper.assertTrue(claim.invoke(null, cloned) == action, "Ars 5.13.1 clone must retain the shared causal attachment value");
-            helper.assertTrue(claim.invoke(null, cloneSource) == null, "clone and source must share the same one-shot claim");
+            helper.assertTrue(claim.invoke(null, cloned, casterId) == action,
+                "Ars 5.13.1 clone must retain the shared causal attachment value");
+            helper.assertTrue(claim.invoke(null, cloneSource, casterId) == null,
+                "clone and source must share the same one-shot claim");
 
             Object unarmed = contextClass.getMethod("dehydrated", spellClass).invoke(null, spell);
-            helper.assertTrue(claim.invoke(null, unarmed) == null, "missing causal state must fail closed");
+            helper.assertTrue(claim.invoke(null, unarmed, casterId) == null, "missing causal state must fail closed");
             helper.assertTrue(actionFor.invoke(null, new Object[]{null}) == null, "null spell must fail closed");
             Object emptySpell = spellClass.getConstructor().newInstance();
             helper.assertTrue(actionFor.invoke(null, emptySpell) == null, "empty spell must fail closed");
@@ -120,7 +127,7 @@ public final class ArsProviderCausalityGameTests {
             );
 
             Method fromEntity = contextClass.getMethod("fromEntity", spellClass, LivingEntity.class, ItemStack.class);
-            Method claim = declared(adapterClass, "claimResolved", contextClass);
+            Method claim = declared(adapterClass, "claimResolved", contextClass, UUID.class);
             Method onSpellCast = adapterClass.getMethod("onSpellCast", castEventClass);
             Method onSpellResolved = adapterClass.getMethod("onSpellResolved", resolvePostClass);
             Constructor<?> castCtor = castEventClass.getConstructor(spellClass, contextClass);
@@ -129,7 +136,8 @@ public final class ArsProviderCausalityGameTests {
             Object canceledCast = castCtor.newInstance(spell, canceledContext);
             castEventClass.getMethod("setCanceled", boolean.class).invoke(canceledCast, true);
             onSpellCast.invoke(null, canceledCast);
-            helper.assertTrue(claim.invoke(null, canceledContext) == null, "canceled cast must not arm Mastery causality");
+            helper.assertTrue(claim.invoke(null, canceledContext, player.getUUID()) == null,
+                "canceled cast must not arm Mastery causality");
 
             Object context = fromEntity.invoke(null, spell, player, ItemStack.EMPTY);
             Object cast = castCtor.newInstance(spell, context);
@@ -195,7 +203,7 @@ public final class ArsProviderCausalityGameTests {
             );
 
             Method fromEntity = contextClass.getMethod("fromEntity", spellClass, LivingEntity.class, ItemStack.class);
-            Method claim = declared(adapterClass, "claimResolved", contextClass);
+            Method claim = declared(adapterClass, "claimResolved", contextClass, UUID.class);
             Method onSpellCast = adapterClass.getMethod("onSpellCast", castEventClass);
             Constructor<?> castCtor = castEventClass.getConstructor(spellClass, contextClass);
 
@@ -205,11 +213,11 @@ public final class ArsProviderCausalityGameTests {
             Object rehydrated = contextClass.getMethod("dehydrated", spellClass).invoke(null, spell);
             contextClass.getMethod("rehydrate", ServerLevel.class).invoke(rehydrated, helper.getLevel());
             helper.assertTrue(
-                claim.invoke(null, rehydrated) == null,
+                claim.invoke(null, rehydrated, player.getUUID()) == null,
                 "Ars 5.13.1 rehydration must not reconstruct unverifiable Mastery causal state"
             );
             helper.assertTrue(
-                claim.invoke(null, original) != null,
+                claim.invoke(null, original, player.getUUID()) != null,
                 "rehydrated fail-closed context must not consume the still-live original causal claim"
             );
             helper.succeed();
