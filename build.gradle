@@ -91,16 +91,19 @@ jacoco {
 }
 
 def epicFightAdapterCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0031A0040EpicFight*CoverageJUnitTest.java'
+def projectileBridgeCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/events/A0051A0060Chat3*CoverageJUnitTest.java'
 
 sourceSets {
     test {
         // Plain Gradle JUnit must remain independent from NeoGradle's loaded-game test run.
         java.exclude epicFightAdapterCoveragePath
+        java.exclude projectileBridgeCoveragePath
     }
     neoForgeTest {
-        // Reuse the existing source location but isolate the adapter tests that require a loaded NeoForge server.
+        // Reuse the existing source location but isolate tests that require a loaded NeoForge server.
         java.srcDir 'src/test/java'
         java.include epicFightAdapterCoveragePath
+        java.include projectileBridgeCoveragePath
         resources.srcDir 'src/test/resources'
         resources.include 'META-INF/MANIFEST.MF'
         compileClasspath += sourceSets.main.output
@@ -121,7 +124,7 @@ runs {
         systemProperty 'neoforge.enabledGameTestNamespaces', "${mod_id},volcanoes"
     }
 
-    // Keep the NeoForge-loaded adapter suite on a dedicated source set so NeoGradle cannot
+    // Keep loaded-game coverage suites on a dedicated source set so NeoGradle cannot
     // consume or rewrite the ordinary Gradle test source set/task.
     junit {
         modSource project.sourceSets.main
@@ -145,10 +148,10 @@ configurations {
     neoForgeTestCompileOnly.extendsFrom testCompileOnly
     neoForgeTestRuntimeOnly.extendsFrom testRuntimeOnly
 
-    // The NeoForge-loaded JUnit lane is intentionally Epic Fight-only. Battle Mage needs the
-    // complete Iron's/MineColonies JARs for its ordinary provider-surface JUnit tests, but leaking
-    // those optional providers into testJunit changes the loaded game and can break an unrelated
-    // adapter suite. Provider-present Battle Mage behavior is covered by its dedicated GameTests.
+    // The NeoForge-loaded JUnit lane intentionally excludes optional Battle Mage providers.
+    // Battle Mage needs the complete Iron's/MineColonies JARs for its ordinary provider-surface
+    // JUnit tests, but leaking those optional providers into testJunit changes the loaded game and
+    // can break unrelated adapter/bridge suites. Provider-present behavior has dedicated GameTests.
     neoForgeTestImplementation {
         exclude group: 'curse.maven', module: 'irons-spells-n-spellbooks-855414'
         exclude group: 'curse.maven', module: 'minecolonies-245506'
@@ -255,6 +258,7 @@ tasks.named('wrapper', Wrapper).configure {
 }
 
 def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFight*CoverageJUnitTest'
+def projectileBridgeCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.events.A0051A0060Chat3*CoverageJUnitTest'
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
@@ -275,6 +279,7 @@ tasks.matching { it.name == 'testJunit' }.configureEach {
     if (it instanceof Test) {
         filter {
             includeTestsMatching epicFightAdapterCoverageTest
+            includeTestsMatching projectileBridgeCoverageTest
         }
     }
 }
