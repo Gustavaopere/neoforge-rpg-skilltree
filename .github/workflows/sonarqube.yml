@@ -107,10 +107,10 @@ jobs:
           rm -f "$MODS"/*.jar
           printf 'eula=true\n' > "$RUN/eula.txt"
 
-          curl --fail --location --retry 3 \
+          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
             'https://maven.createmod.net/com/simibubi/create/create-1.21.1/6.0.10-280/create-1.21.1-6.0.10-280.jar' \
             --output "$MODS/create-1.21.1-6.0.10-280.jar"
-          curl --fail --location --retry 3 \
+          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
             'https://maven.createmod.net/net/createmod/ponder/ponder-neoforge/1.0.82+mc1.21.1/ponder-neoforge-1.0.82+mc1.21.1.jar' \
             --output "$MODS/ponder-neoforge-1.0.82+mc1.21.1.jar"
 
@@ -118,14 +118,14 @@ jobs:
             local version_id="$1"
             local expected_version="$2"
             local metadata="$META/$version_id.json"
-            curl --fail --silent --show-error --location --retry 3 \
+            curl --proto '=https' --proto-redir '=https' --fail --silent --show-error --location --retry 3 \
               "https://api.modrinth.com/v2/version/$version_id" -o "$metadata"
             test "$(jq -r '.version_number' "$metadata")" = "$expected_version"
             local url filename
             url="$(jq -r '[.files[] | select(.primary == true)] | if length == 1 then .[0].url else empty end' "$metadata")"
             filename="$(jq -r '[.files[] | select(.primary == true)] | if length == 1 then .[0].filename else empty end' "$metadata")"
             test -n "$url" && test -n "$filename"
-            curl --fail --silent --show-error --location --retry 3 "$url" -o "$MODS/$filename"
+            curl --proto '=https' --proto-redir '=https' --fail --silent --show-error --location --retry 3 "$url" -o "$MODS/$filename"
           }
 
           download_modrinth_version U678xqle '2.0.5+mc1.21.1'
