@@ -28,6 +28,11 @@ public final class CompendiumEntityPreviewRenderer {
     private LivingEntity entity;
     private EntityPreviewFactory.Failure failure = EntityPreviewFactory.Failure.BLOCKED;
 
+    enum RenderResult {
+        RENDERED,
+        FALLBACK
+    }
+
     @FunctionalInterface
     public interface PreviewAdapter {
         /** Returns a detached living entity. The adapter must not add or tick it in the client level. */
@@ -102,7 +107,7 @@ public final class CompendiumEntityPreviewRenderer {
 
         graphics.enableScissor(left, top, right, bottom);
         try {
-            InventoryScreen.renderEntityInInventoryFollowsAngle(
+            RenderResult result = runRenderAttempt(() -> InventoryScreen.renderEntityInInventoryFollowsAngle(
                 graphics,
                 left,
                 top,
@@ -113,15 +118,25 @@ public final class CompendiumEntityPreviewRenderer {
                 state.horizontalAngle(),
                 state.verticalAngle(),
                 entity
-            );
-            return true;
-        } catch (RuntimeException | LinkageError exception) {
+            ));
+            if (result == RenderResult.RENDERED) return true;
+
             failure = EntityPreviewFactory.Failure.RENDER_FAILED;
             entity = null;
             EntityPreviewFactory.quarantine(state.loadedId());
             return false;
         } finally {
             graphics.disableScissor();
+        }
+    }
+
+    static RenderResult runRenderAttempt(Runnable renderAttempt) {
+        Objects.requireNonNull(renderAttempt, "renderAttempt");
+        try {
+            renderAttempt.run();
+            return RenderResult.RENDERED;
+        } catch (RuntimeException | LinkageError exception) {
+            return RenderResult.FALLBACK;
         }
     }
 
