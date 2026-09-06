@@ -76,6 +76,18 @@
 - [x] TDD observado: o RED `34003592647` / job `101406688873` falhou porque a fronteira causal ainda não existia; `34003942932` / job `101407651096` expôs que o JUnit comum não deve promover Ars de `compileOnly` a provider obrigatório; a separação provider-free final passou o `RPG Skill Tree CI` `34004201977` / job `101408341407` completo, incluindo JUnit 5, NeoForge adapters, GameTests, build/JAR e dedicated-server smoke.
 - [x] Nenhuma curva, cap, threshold, peso de investimento ou valor de balanceamento de Mastery foi criado ou alterado neste fechamento de fonte.
 
+## Progresso runtime confirmado — CREATE
+
+- [x] Provider alvo confirmado na modlist/registro de projeto: Create `6.0.10`. `CreateVersionContract` aceita exatamente `6.0.10`; provider ausente, versão diferente ou falha de registro não ativa silenciosamente o adapter.
+- [x] O bootstrap é opcional e fail-closed: `ABSENT_PROVIDER`, `UNSUPPORTED_VERSION` e `FAILED_CLOSED` impedem o listener provider-specific de permanecer ativo fora do contrato auditado.
+- [x] A fonte semântica usada pelo base Create é `AdvancementEarnEvent`, restrita a uma allowlist finita de **51 advancements** auditados da superfície 6.0.10. Namespace/path desconhecido, posse/receita/background, throughput-farm, acidente/gimmick de combate e demais eventos fora da allowlist não concedem Mastery.
+- [x] O base Create possui somente `kinetics`, `logistics` e `automation`; `artillery`, `aeronautics` e `power` ficam reservadas aos providers/addons que realmente possuem essas mecânicas, evitando authority falsa e dupla propriedade de lane.
+- [x] Cada advancement permitido gera identidade persistente `mastery:create:engineering/advancement/<path>` e awards replay-safe. A política canônica concede `+3` em `CREATE_ENGINEERING` e `+3` na lane específica do milestone.
+- [x] `CreateMasteryMilestoneRuntime` consulta `DiscoveryProgress` antes da mutação e persiste awards + discovery pela mesma fronteira `PlayerProgressionRuntime.awardMasteryAndDiscoveries`; replay do mesmo milestone retorna sem nova concessão.
+- [x] Creative, spectator e `FakePlayer` são inelegíveis no listener provider-specific; player não servidor também é ignorado.
+- [x] A cobertura da fronteira persistente roda no `testJunit` carregado pelo NeoForge, porque mocks de `ServerPlayer` dependem do bootstrap Minecraft. O `Volcanoes Third-Party Provenance Audit` `34055889760` executou `./gradlew --no-daemon build` com plain JUnit + `testJunit` e fechou GREEN no candidato funcional.
+- [x] Nenhuma curva, cap, threshold, peso de investimento ou valor global de balanceamento foi criado ou alterado neste fechamento de fonte.
+
 As demais caixas gerais acima permanecem abertas porque o fechamento é por fonte completa de Mastery, não por uma única categoria de arma, provider ou pela fronteira de investimento de classe.
 
 **Acceptance:** repetir uma ação válida aumenta mastery exatamente uma vez e tentativas inválidas não aumentam. A autoridade estrutural para projetar Mastery em classe emergente está fechada; curvas/caps/thresholds concretos e cobertura integral das fontes continuam abertos neste subplano.
