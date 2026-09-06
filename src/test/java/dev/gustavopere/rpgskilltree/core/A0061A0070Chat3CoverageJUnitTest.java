@@ -3,7 +3,6 @@ package dev.gustavopere.rpgskilltree.core;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 
 import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
@@ -30,7 +29,7 @@ final class A0061A0070Chat3CoverageJUnitTest {
 
     @Test
     void runtimeRanksMasksUnavailablePersistedRankAtServerBoundary() {
-        ServerPlayer player = mock(ServerPlayer.class);
+        ServerPlayer player = null;
         ProgressionState persisted = ProgressionState.empty().withPassiveNodes(
             PassiveNodeProgress.of(Map.of(
                 "rpgskilltree:combat/a0061", 5,
