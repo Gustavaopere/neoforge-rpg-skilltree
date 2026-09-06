@@ -3,7 +3,6 @@ package dev.gustavopere.rpgskilltree.runtime.compat.ars;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.lang.reflect.Constructor;
@@ -32,6 +31,10 @@ final class ArsProviderCausalityCoverageJUnitTest {
     private static final String CAST_EVENT = "com.hollingsworth.arsnouveau.api.event.SpellCastEvent";
     private static final String RESOLVE_POST = "com.hollingsworth.arsnouveau.api.event.SpellResolveEvent$Post";
     private static final String ADAPTER = "dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents";
+    private static final ResourceLocation CAUSAL_AWARD_ID = ResourceLocation.fromNamespaceAndPath(
+        "rpgskilltree",
+        "ars_mastery_causal_award"
+    );
 
     @Test
     void resolvedProviderEventClaimsParentCastExactlyOnce() throws Exception {
@@ -71,10 +74,7 @@ final class ArsProviderCausalityCoverageJUnitTest {
         assertNotNull(award);
 
         Method idMethod = award.getClass().getMethod("id");
-        assertEquals(
-            ResourceLocation.fromNamespaceAndPath("rpgskilltree", "ars_mastery_causal_award"),
-            idMethod.invoke(award)
-        );
+        assertEquals(CAUSAL_AWARD_ID, idMethod.invoke(award));
 
         Object childContext = mock(contextClass);
         Method getAttachment = contextClass.getMethod("getAttachment", ResourceLocation.class);
@@ -170,7 +170,7 @@ final class ArsProviderCausalityCoverageJUnitTest {
         assertNull(claimResolved.invoke(awardWithoutClaim));
 
         Method id = awardClass.getMethod("id");
-        assertSame(ArsMasteryCausalAward.ID, id.invoke(awardWithoutClaim));
+        assertEquals(CAUSAL_AWARD_ID, id.invoke(awardWithoutClaim));
     }
 
     private static Class<?> providerClass(String name) {
