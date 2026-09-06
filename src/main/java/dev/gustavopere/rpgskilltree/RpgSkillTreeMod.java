@@ -27,7 +27,10 @@ import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0042ScytheKillHook
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0061A0080EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightProgressionHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
+import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyIntegrationBootstrap;
+import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyIntegrationState;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
@@ -217,6 +220,39 @@ public final class RpgSkillTreeMod {
             );
         }
 
+        boolean goetyProviderLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.GOETY);
+        boolean goetyAdapterActive = OptionalIntegrationAdapterRegistry.isActive(
+            integrationAdapters,
+            OptionalIntegrations.Provider.GOETY
+        );
+        String goetyVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.GOETY);
+        GoetyIntegrationState goetyState = goetyAdapterActive
+            ? GoetyIntegrationBootstrap.install(
+                true,
+                goetyVersion,
+                () -> NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class)
+            )
+            : GoetyIntegrationBootstrap.evaluate(goetyProviderLoaded, goetyVersion);
+        if (goetyState == GoetyIntegrationState.ACTIVE) {
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPAT,
+                "goety_mastery_active",
+                "Goety Mastery integration active: Goety {}",
+                goetyVersion
+            );
+        } else if (goetyState != GoetyIntegrationState.ABSENT_PROVIDER) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "goety_mastery_disabled",
+                "Goety Mastery integration disabled: state={}, expected={}, found={}",
+                goetyState,
+                GoetyVersionContract.SUPPORTED_VERSION,
+                goetyVersion
+            );
+        }
+
         boolean mineColoniesLoaded = OptionalIntegrationAdapterRegistry.isActive(
             integrationAdapters,
             OptionalIntegrations.Provider.MINECOLONIES
@@ -314,9 +350,6 @@ public final class RpgSkillTreeMod {
         if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.ARS_NOUVEAU)) {
             NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
         }
-        if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.GOETY)) {
-            NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class);
-        }
         if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.MALUM)) {
             NeoForge.EVENT_BUS.register(MalumProgressionEvents.class);
         }
@@ -359,6 +392,7 @@ public final class RpgSkillTreeMod {
             case EPIC_FIGHT -> EpicFightVersionContract.supportsVersion(version) ? "" : "unsupported_version";
             case COLD_SWEAT -> ColdSweatFrenzyBridge.supportsVersion(version) ? "" : "unsupported_version";
             case CREATE -> CreateVersionContract.supportsVersion(version) ? "" : "unsupported_version";
+            case GOETY -> GoetyVersionContract.supportsVersion(version) ? "" : "unsupported_version";
             case MINECOLONIES -> (MineColoniesVersionContract.supports(version)
                 || MineColoniesEconomyVersionContract.supports(version)) ? "" : "unsupported_version";
             case PRODUCTIVE_METALWORKS -> ProductiveMetalworksVersionContract.supports(version) ? "" : "unsupported_version";
