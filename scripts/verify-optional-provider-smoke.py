@@ -15,6 +15,7 @@ EXPECTED = (
     "eidolon",
     "identity2",
     "minecolonies",
+    "productivemetalworks",
 )
 PREFIX = "Optional integrations: "
 
