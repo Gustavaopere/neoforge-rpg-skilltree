@@ -25,10 +25,10 @@ final class ArsMasteryCausalityJUnitTest {
             25
         );
 
-        ArsMasteryCausalAward causalAward = ArsMasteryCausalAward.arm(action);
+        ArsMasteryClaim claim = ArsMasteryClaim.arm(action);
 
-        assertSame(action, causalAward.claimResolved());
-        assertNull(causalAward.claimResolved());
+        assertSame(action, claim.claimResolved());
+        assertNull(claim.claimResolved());
     }
 
     @Test
