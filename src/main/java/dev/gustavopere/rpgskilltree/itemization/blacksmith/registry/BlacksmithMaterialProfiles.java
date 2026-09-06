@@ -95,7 +95,7 @@ public final class BlacksmithMaterialProfiles {
         values.put(PhysicalStat.ARMOR, armor);
         values.put(PhysicalStat.ARMOR_TOUGHNESS, armorToughness);
         values.put(PhysicalStat.KNOCKBACK_RESISTANCE, knockbackResistance);
-        values.put(PhysicalStat.ENMERCHANTABILITY, enchantability);
+        values.put(PhysicalStat.ENCHANTABILITY, enchantability);
         values.put(PhysicalStat.MASS, mass);
         if (values.size() != PhysicalStat.values().length) {
             throw new IllegalStateException("Blacksmith mechanical profile is incomplete");
