@@ -4,7 +4,7 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 **Fonte canônica:** este diretório versionado no GitHub.
 
-**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-08-30, com **573 entradas top-level incluindo NeoForge**. Consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); ele prevalece quando um capítulo histórico ainda cita versão anterior.
+**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-09-06, com **607 entradas top-level incluindo NeoForge** e **101 JARs mágicos/cross-domain cobertos**. Consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); ele prevalece quando um capítulo histórico ainda cita versão anterior.
 
 ## Como este guia está organizado
 
@@ -34,6 +34,9 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - [Ecossistema Vampirism](16-ecossistema-vampirism.md)
 - [17. Projetos próprios do modpack — integração mágica canônica](17-projetos-proprios-do-modpack.md)
 - [18. Mobstein — necromancia corporal e ressurreição](18-mobstein-necromancia.md)
+- [19. Ecossistema Apothic — módulos, affixes, atributos, spawners e compats](19-ecossistema-apothic-e-compats.md)
+- [20. Scripting e compatibilidade técnica — KubeJS e EMF](20-scripting-e-compatibilidade-tecnica.md)
+- [21. Fontes e referências técnicas por mod](21-fontes-e-referencias-tecnicas.md)
 
 ## Regras de manutenção
 
@@ -41,6 +44,7 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
 - `CURRENT-MODLIST.md` é a autoridade de presença, JAR e versão do estado instalado atual.
+- `21-fontes-e-referencias-tecnicas.md` é o índice de navegação para CurseForge, Modrinth, wiki/docs e código-fonte. Links de busca são usados como fallback quando um projeto direto não foi verificado, para evitar inventar URLs.
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
 - Mods adicionados ou atualizados na modlist devem ser incorporados antes do próximo fechamento de lote do Chat 1.
 - O GitHub é a fonte canônica deste guia; não manter cópia editorial concorrente no Notion.
