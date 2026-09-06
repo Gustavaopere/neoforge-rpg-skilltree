@@ -2,26 +2,18 @@ package dev.gustavopere.rpgskilltree.runtime.compat.malum;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import dev.gustavopere.rpgskilltree.core.SpiritPracticeAction;
 import java.util.List;
 import java.util.Optional;
-import net.minecraft.SharedConstants;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.Bootstrap;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 final class MalumMasteryLogicJUnitTest {
-    @BeforeAll
-    static void bootstrapMinecraftRegistries() {
-        SharedConstants.tryDetectVersion();
-        Bootstrap.bootStrap();
-    }
-
     @Test
     void collectionActionUsesStableCanonicalShape() {
         SpiritPracticeAction action = MalumMasteryLogic.collectionAction();
@@ -72,11 +64,18 @@ final class MalumMasteryLogicJUnitTest {
     }
 
     @Test
-    void evidenceParserUsesRegistryIdsCountsAndIgnoresNoise() {
-        ItemStack soulSand = new ItemStack(Items.SOUL_SAND, 3);
+    void evidenceParserUsesResolvedIdsCountsAndIgnoresNoise() {
+        ItemStack emptyStack = mock(ItemStack.class);
+        when(emptyStack.isEmpty()).thenReturn(true);
+
+        ItemStack soulSand = mock(ItemStack.class);
+        when(soulSand.isEmpty()).thenReturn(false);
+        when(soulSand.getCount()).thenReturn(3);
+        ResourceLocation soulSandId = ResourceLocation.fromNamespaceAndPath("minecraft", "soul_sand");
 
         MalumMasteryLogic.SpiritEvidence evidence = MalumMasteryLogic.evidenceFromStacks(
-            List.of("not-an-item-stack", ItemStack.EMPTY, soulSand)
+            List.of("not-an-item-stack", emptyStack, soulSand),
+            stack -> stack == soulSand ? soulSandId : null
         );
 
         assertEquals(List.of("minecraft:soul_sand"), evidence.spiritItemIds());
@@ -84,18 +83,35 @@ final class MalumMasteryLogicJUnitTest {
     }
 
     @Test
-    void evidenceParserFailsClosedForUnsupportedContainer() {
-        assertEquals(MalumMasteryLogic.SpiritEvidence.EMPTY, MalumMasteryLogic.evidenceFromStacks("not-a-list"));
+    void evidenceParserFailsClosedForUnsupportedOrUnresolvedStacks() {
+        assertEquals(
+            MalumMasteryLogic.SpiritEvidence.EMPTY,
+            MalumMasteryLogic.evidenceFromStacks("not-a-list", ignored -> null)
+        );
+
+        ItemStack unresolved = mock(ItemStack.class);
+        when(unresolved.isEmpty()).thenReturn(false);
+        assertEquals(
+            MalumMasteryLogic.SpiritEvidence.EMPTY,
+            MalumMasteryLogic.evidenceFromStacks(List.of(unresolved), ignored -> null)
+        );
     }
 
     @Test
     void reflectionReaderUsesExactPublicContractAndFailsClosed() {
+        MalumMasteryLogic.SpiritEvidence expected = new MalumMasteryLogic.SpiritEvidence(
+            List.of("minecraft:soul_sand"),
+            2
+        );
         MalumMasteryLogic.SpiritEvidence evidence = MalumSpiritDataReader.read(
             null,
-            FakeSpiritDropData.class.getName()
+            FakeSpiritDropData.class.getName(),
+            rawStacks -> {
+                assertEquals(List.of("provider-stack-token"), rawStacks);
+                return expected;
+            }
         );
-        assertEquals(List.of("minecraft:soul_sand"), evidence.spiritItemIds());
-        assertEquals(2, evidence.totalSpirits());
+        assertEquals(expected, evidence);
 
         assertEquals(
             MalumMasteryLogic.SpiritEvidence.EMPTY,
@@ -107,7 +123,17 @@ final class MalumMasteryLogicJUnitTest {
         );
         assertEquals(
             MalumMasteryLogic.SpiritEvidence.EMPTY,
-            MalumSpiritDataReader.read(null, InvalidStacksSpiritDropData.class.getName())
+            MalumSpiritDataReader.read(null, InvalidOptionalSpiritDropData.class.getName())
+        );
+        assertEquals(
+            MalumMasteryLogic.SpiritEvidence.EMPTY,
+            MalumSpiritDataReader.read(
+                null,
+                FakeSpiritDropData.class.getName(),
+                rawStacks -> {
+                    throw new IllegalStateException("simulated decoder failure");
+                }
+            )
         );
     }
 
@@ -119,7 +145,7 @@ final class MalumMasteryLogicJUnitTest {
 
     public static final class FakeSpiritData {
         public List<?> getSpiritStacks() {
-            return List.of(new ItemStack(Items.SOUL_SAND, 2));
+            return List.of("provider-stack-token");
         }
     }
 
@@ -129,15 +155,9 @@ final class MalumMasteryLogicJUnitTest {
         }
     }
 
-    public static final class InvalidStacksSpiritDropData {
-        public static Optional<InvalidStacksSpiritData> getSpiritData(LivingEntity ignored) {
-            return Optional.of(new InvalidStacksSpiritData());
-        }
-    }
-
-    public static final class InvalidStacksSpiritData {
-        public Object getSpiritStacks() {
-            return "not-a-list";
+    public static final class InvalidOptionalSpiritDropData {
+        public static Object getSpiritData(LivingEntity ignored) {
+            return "not-an-optional";
         }
     }
 
