@@ -22,19 +22,19 @@ Isso faz os confrontos da colônia coexistirem visualmente com o overhaul de com
 
 `MineColonies_Compatibility-1.21.1-3.56.jar`
 **Compatibility addon for MineColonies** amplia o conjunto de itens e sistemas externos que os cidadãos conseguem usar de forma funcional. O addon adiciona adapters para **ferramentas, alimentos, profissões e redes/logística de outros mods**, permitindo que workers reconheçam recursos que o MineColonies base não conheceria sozinho.
-A linha do projeto inclui integrações condicionais conforme os mods presentes, portanto não cria cópias desses sistemas: traduz itens e mecânicas externas para as necessidades de colonists. A build instalada `3.56` é beta NeoForge 1.21.1 publicada em 13/08/2026 e foi construída tendo MineColonies `1.1.1368` como alvo, enquanto o pack executa `1.1.1374-snapshot`; a divergência fica documentada como acoplamento de versão.
+A linha do projeto inclui integrações condicionais conforme os mods presentes, portanto não cria cópias desses sistemas: traduz itens e mecânicas externas para as necessidades de colonists. A build instalada `3.56` é beta NeoForge 1.21.1 publicada em 13/08/2026 e foi construída tendo MineColonies `1.1.1368` como alvo, enquanto o pack executa `1.1.1376-1.21.1-snapshot`; a divergência fica documentada como acoplamento de versão.
 
 ## MineColonies Tweaks — 3.33
 
 `MineColonies_Tweaks-1.21.1-3.33.jar`
 **Tweaks addon for MineColonies** expande configuração e regras internas da colônia. Entre os recursos documentados estão **probabilidade de colônias abandonadas no worldgen, delays de construção/destruição, configuração de crops, controle de mourning, imunidade/thorns de raiders e chance de resurrection**, além de comandos administrativos próprios.
-O addon também amplia ferramentas/itens reconhecidos por cidadãos e ajusta diferentes comportamentos de workers. A build `3.33` é beta NeoForge 1.21.1 de 08/08/2026 e publica alvo MineColonies `1.1.1368`; o core instalado é `1.1.1374-snapshot`, por isso as duas versões permanecem explicitamente separadas.
+O addon também amplia ferramentas/itens reconhecidos por cidadãos e ajusta diferentes comportamentos de workers. A build `3.33` é beta NeoForge 1.21.1 de 08/08/2026 e publica alvo MineColonies `1.1.1368`; o core instalado é `1.1.1376-1.21.1-snapshot`, por isso as duas versões permanecem explicitamente separadas.
 
 ## Let's Do addon for MineColonies — 2.1
 
 `MineColonies_LetsDo-1.21.1-2.1.jar`
 **Let's Do addon for MineColonies** conecta a colônia aos módulos rurais/culinários da família **[Let's Do]**. O objetivo é fazer recursos, alimentos e interações desses mods serem reconhecidos pelos sistemas de workers e compatibilidade do MineColonies, em vez de existirem como itens externos que os cidadãos ignoram.
-A bridge depende do MineColonies e dos addons Compatibility/Tweaks correspondentes, além dos módulos Let's Do suportados. A release `2.1` é estável para NeoForge 1.21.1; como o ecossistema de addons foi publicado contra uma linha anterior do core, o guia mantém a diferença em relação ao snapshot `1.1.1374` instalado.
+A bridge depende do MineColonies e dos addons Compatibility/Tweaks correspondentes, além dos módulos Let's Do suportados. A release `2.1` é estável para NeoForge 1.21.1; como o ecossistema de addons foi publicado contra uma linha anterior do core, o guia mantém a diferença em relação ao snapshot `1.1.1376-1.21.1-snapshot` instalado.
 
 ## Towntalk — 1.2.0
 

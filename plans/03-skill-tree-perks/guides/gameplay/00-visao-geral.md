@@ -18,8 +18,8 @@
 
 > Este guia reúne os **mods de gameplay e sistemas gerais** do pack que não pertencem principalmente aos eixos de Magia ou Tecnologia. Entram aqui combate, movimento, progressão, sobrevivência, alimentação, fauna, bosses, exploração, estruturas, colônias e utilidades que alteram diretamente a forma de jogar. Para que os três guias cubram integralmente a modlist top-level, o conjunto também mantém cobertura técnica para bibliotecas/APIs, interface, visual, áudio e performance que não pertençam principalmente aos outros dois guias. Esses componentes são descritos pelo papel técnico real e não tratados como sistemas de gameplay equivalentes aos capítulos principais.
 
-## Anomalias atuais de provider
+## Bloqueios atuais de startup por mod ID duplicado
 
-- `alexscaves` é declarado por **Alex's Caves 2.0.2** e **Alex's Caves Continued 1.0.9**.
-- `alexsmobs` é declarado por **Alex's Mobs 1.22.9** e **Alex's Mobs Continued 2.1.9**.
-- Qualquer integração que dependa apenas de `ModList.isLoaded` para esses IDs é insuficiente. Resolver objeto/JAR concreto ou falhar fechado.
+- `alexscaves` é declarado simultaneamente por **Alex's Caves 2.0.2** e **Alex's Caves Continued 1.0.9**.
+- `alexsmobs` é declarado simultaneamente por **Alex's Mobs 1.22.9** e **Alex's Mobs Continued 2.1.9**.
+- **BLOQUEIO DE STARTUP:** NeoForge exige mod IDs únicos; manter ambos os JARs de qualquer par impede o carregamento durante discovery, antes de `ModList.isLoaded(...)` ou de qualquer adapter/runtime do modpack. A instalação precisa reter exatamente uma implementação por mod ID, ou usar um repack legítimo com ID realmente distinto, antes de ser considerada inicializável. Até essa decisão ser aplicada à modlist, nenhuma integração deve presumir coexistência ou desambiguação em runtime.

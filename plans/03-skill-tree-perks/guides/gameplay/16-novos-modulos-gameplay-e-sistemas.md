@@ -228,9 +228,9 @@
 
 `alexscaves-1.0.9-neoforge+1.21.1.jar`
 
-**Alex's Caves Continued** é um port/continuação que preserva o conteúdo do Alex's Caves original em versões mais novas: os mesmos grandes cave biomes, criaturas, blocos, receitas e progressão são trazidos para NeoForge/Fabric/Forge modernos. No pack atual ele coexistiu com outro JAR que também declara `modid alexscaves`, portanto essa duplicidade é uma anomalia operacional séria para qualquer integração.
+**Alex's Caves Continued** é um port/continuação que preserva o conteúdo do Alex's Caves original em versões mais novas: os mesmos grandes cave biomes, criaturas, blocos, receitas e progressão são trazidos para NeoForge/Fabric/Forge modernos. No pack atual ele aparece junto de outro JAR que também declara `modid alexscaves`; essa duplicidade é um **bloqueio de startup** e precisa ser resolvida antes do jogo carregar.
 
-**Authority/integração:** provider de conteúdo com **modid duplicado**. Não somar nem mesclar capacidades com o outro `alexscaves` automaticamente; resolver pelo JAR/versão realmente carregado e aplicar fail-closed se a identidade do provider não puder ser distinguida.
+**Authority/integração:** provider de conteúdo com **modid duplicado no snapshot atual**. Não existe desambiguação por JAR/registry nem fail-closed de runtime capaz de manter os dois `alexscaves` simultaneamente: a instalação deve reter exatamente uma implementação, ou um repack legítimo com mod ID distinto, antes do startup. Só depois dessa correção a implementação escolhida pode ser tratada como provider válido.
 
 **Fontes:** [CurseForge](https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued) · [Modrinth — busca](https://modrinth.com/mods?q=Alex%27s+Caves+Continued) · [GitHub — busca](https://github.com/search?q=Alex%27s+Caves+Continued+minecraft&type=repositories)
 
@@ -239,8 +239,8 @@
 
 `alexsmobs-1.22.9.jar`
 
-**Alex's Mobs** é o roster original de fauna/monstros, com dezenas de criaturas que possuem IA, interações, tame/breeding, drops e itens próprios. O JAR `alexsmobs-1.22.9.jar` é um port NeoForge 1.21.1 presente simultaneamente com **Alex's Mobs Continued 2.1.9**, e ambos declaram o mesmo `modid alexsmobs`.
+**Alex's Mobs** é o roster original de fauna/monstros, com dezenas de criaturas que possuem IA, interações, tame/breeding, drops e itens próprios. O JAR `alexsmobs-1.22.9.jar` é um port NeoForge 1.21.1 presente simultaneamente com **Alex's Mobs Continued 2.1.9**, e ambos declaram o mesmo `modid alexsmobs`; esse estado é um **bloqueio de startup**.
 
-**Authority/integração:** provider de fauna com **modid duplicado**. Integrações devem identificar o conteúdo real por registry/object/JAR e não tratar `ModList.isLoaded("alexsmobs")` como prova suficiente de qual implementação está ativa.
+**Authority/integração:** provider de fauna com **modid duplicado no snapshot atual**. A instalação deve manter exatamente um dos JARs `alexsmobs` (ou um repack legítimo com ID distinto) antes do startup. `ModList.isLoaded("alexsmobs")`, inspeção de registry/object/JAR ou fail-closed em runtime não podem resolver dois mod IDs idênticos durante discovery.
 
 **Fontes:** [CurseForge — busca](https://www.curseforge.com/minecraft/search?page=1&pageSize=20&sortBy=relevancy&class=mc-mods&search=Alex%27s+Mobs) · [Modrinth](https://modrinth.com/mod/alexs-mobs%281.21.1%29/version/1.22.9) · [GitHub — busca](https://github.com/search?q=Alex%27s+Mobs+minecraft&type=repositories)

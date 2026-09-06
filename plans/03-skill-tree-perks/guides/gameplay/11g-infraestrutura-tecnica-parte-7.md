@@ -100,7 +100,7 @@ O mod é exclusivamente client-side e não altera os atributos, seus limites nem
 
 `moonlight-1.21.1-3.6.1-neoforge.jar`
 **Moonlight Lib (Selene)** é uma biblioteca client/server usada por vários mods para evitar que cada projeto reimplemente infraestrutura comum. Ela fornece utilidades para **registro dinâmico, geração dinâmica de assets, villagers e IA customizada, trades data-driven, global datapacks, map markers e animações de itens em primeira/terceira pessoa**, além de outros helpers de conteúdo e sincronização.
-No pack, consumidores confirmados incluem **Supplementaries** e outros projetos do ecossistema MehVahdJukaar. A build `3.5.2` é a release NeoForge 1.21.1 de 27/08/2026; essa atualização adiciona `ILoomItem`, permitindo que itens não-banner participem do Loom e desenhem seu próprio preview, adiciona `TabAdderHelper` e aplica um hotfix sobre a atualização anterior. Como biblioteca, Moonlight não cria uma progressão jogável isolada: suas funções aparecem por meio dos mods consumidores.
+No pack, consumidores confirmados incluem **Supplementaries** e outros projetos do ecossistema MehVahdJukaar. A build instalada é `3.6.1` para NeoForge 1.21.1. O changelog citado anteriormente correspondia à linha `3.5.2` e não é usado como evidência da build corrente; qualquer integração sensível à versão deve auditar especificamente a API/implementação de `3.6.1`. Como biblioteca, Moonlight não cria uma progressão jogável isolada: suas funções aparecem por meio dos mods consumidores.
 
 ## Polytone — 1.21-4.1.0
 
