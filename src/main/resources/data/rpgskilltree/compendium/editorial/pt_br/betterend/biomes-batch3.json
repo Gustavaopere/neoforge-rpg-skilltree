@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "betterend",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:betterend:painted_mountains",
+      "title": "Montanhas Pintadas",
+      "summary": {
+        "text": "Montanhas Pintadas é um bioma do End registrado por BetterEnd: New Dawn com o ID betterend:painted_mountains. No registry oficial, sua chave declara Terras Devastadas (`betterend:dust_wastelands`) como bioma-base associado.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:painted_mountains"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider registra este bioma em `IS_END_LAND`, e o datapack Wover o inclui em `is_end/land`. O ID também participa de `registerBiomeToggles()`. A associação a Terras Devastadas e a categoria de land não são convertidas em altura, geometria, frequência, chance ou posição fixa.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/wover/tags/worldgen/biome/is_end/land.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/datagen/betterend/worldgen/EndBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:empty_end_cave",
+      "title": "Caverna do End Vazia",
+      "summary": {
+        "text": "Caverna do End Vazia é um bioma de caverna do End registrado por BetterEnd: New Dawn com o ID betterend:empty_end_cave.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:empty_end_cave"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider registra este ID com `EndTags.IS_END_CAVE`, e o datapack BetterEnd o inclui em `is_end_cave`. O ID também integra `registerBiomeToggles()`. A classificação cave não fixa em prosa altitude, profundidade, tamanho, frequência ou distribuição.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/betterend/tags/worldgen/biome/is_end_cave.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/datagen/betterend/worldgen/EndBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:empty_smaragdant_cave",
+      "title": "Caverna Exuberante de Esmaragdante Vazia",
+      "summary": {
+        "text": "Caverna Exuberante de Esmaragdante Vazia é um bioma de caverna do End registrado por BetterEnd: New Dawn com o ID betterend:empty_smaragdant_cave. O título preserva exatamente a localização pt-BR fornecida pelo provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:empty_smaragdant_cave"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider registra este ID com `EndTags.IS_END_CAVE`, o datapack BetterEnd o inclui em `is_end_cave` e o ID participa de `registerBiomeToggles()`. A ficha não deduz conteúdo, densidade, tamanho, profundidade ou frequência apenas do título localizado.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/betterend/tags/worldgen/biome/is_end_cave.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/datagen/betterend/worldgen/EndBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:lush_smaragdant_cave",
+      "title": "Caverna Exuberante de Esmaragdante",
+      "summary": {
+        "text": "Caverna Exuberante de Esmaragdante é um bioma de caverna do End registrado por BetterEnd: New Dawn com o ID betterend:lush_smaragdant_cave.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:lush_smaragdant_cave"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider registra este ID com `EndTags.IS_END_CAVE`, e o datapack BetterEnd o inclui em `is_end_cave`; o ID também participa de `registerBiomeToggles()`. A palavra exuberante não é convertida em densidade, contagem, frequência ou composição fixa sem fonte específica adicional.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/betterend/tags/worldgen/biome/is_end_cave.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/datagen/betterend/worldgen/EndBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:empty_aurora_cave",
+      "title": "Caverna Aurora Vazia",
+      "summary": {
+        "text": "Caverna Aurora Vazia é um bioma de caverna do End registrado por BetterEnd: New Dawn com o ID betterend:empty_aurora_cave.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:empty_aurora_cave"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider registra este ID com `EndTags.IS_END_CAVE`, o datapack BetterEnd o inclui em `is_end_cave` e o ID integra `registerBiomeToggles()`. A ficha não transforma o nome Aurora ou Vazia em iluminação, quantidade de conteúdo, altura ou frequência não sustentadas pelas fontes usadas.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/betterend/tags/worldgen/biome/is_end_cave.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/datagen/betterend/worldgen/EndBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:lush_aurora_cave",
+      "title": "Caverna Exuberante de Aurora",
+      "summary": {
+        "text": "Caverna Exuberante de Aurora é um bioma de caverna do End registrado por BetterEnd: New Dawn com o ID betterend:lush_aurora_cave.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:lush_aurora_cave"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider registra este ID com `EndTags.IS_END_CAVE`, e o datapack BetterEnd o inclui em `is_end_cave`; o ID também aparece em `registerBiomeToggles()`. O título não é usado para inferir brilho, densidade, contagem, profundidade ou frequência fixa.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/betterend/tags/worldgen/biome/is_end_cave.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/datagen/betterend/worldgen/EndBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betterend:jade_cave",
+      "title": "Caverna de Jade",
+      "summary": {
+        "text": "Caverna de Jade é um bioma de caverna do End registrado por BetterEnd: New Dawn com o ID betterend:jade_cave.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betterend:biome/betterend:jade_cave"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/resources/assets/betterend/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider registra este ID com `EndTags.IS_END_CAVE`, o datapack BetterEnd o inclui em `is_end_cave` e o ID participa de `registerBiomeToggles()`. O nome Jade permanece apenas identidade localizada; não implica composição mineral, abundância, profundidade ou frequência sem evidência adicional.",
+          "sources": [
+            {"type": "DATAPACK", "ref": "data/betterend/tags/worldgen/biome/is_end_cave.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/datagen/betterend/worldgen/EndBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/360b6fea407befdcf9aab7f771cad5586cbfb826/src/main/java/org/betterx/betterend/registry/EndBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

@@ -9,6 +9,18 @@
 - [ ] Definir curvas, caps e thresholds.
 - [ ] Persistir e sincronizar progresso necessário à UI.
 
+## Progresso arquitetural confirmado — Mastery → investimento de classe emergente
+
+- [x] A contribuição de Mastery para `InvestmentState` não é inferida do nome/namespace/provider da lane. A única fonte é metadata explícita em `data/*/mastery_investments/*.json`.
+- [x] Cada entrada declara `lane`, `minimum_experience`, `domain_weights` e `tags`; ausência de entrada significa zero contribuição de classe para aquela lane/threshold.
+- [x] `MasteryInvestmentMetadataParser` aceita somente lanes canônicas de `MasteryLaneCatalog`, inteiros positivos exatos e falha fechado para duplicata `(lane, threshold)`, colisão de domínio após normalização, valor fracionário/overflow e contribuição no-op.
+- [x] `MasteryInvestmentMetadataCatalog` publica snapshot imutável e `MasteryInvestmentMetadataReloader` o substitui somente depois de parse/validação completos no datapack reload.
+- [x] A API pública `ClassResolutionRuntime.resolveCanonical(ProgressionState)` consome exclusivamente o catálogo publicado; não existe boundary público de produção para injetar pesos de Mastery ad hoc.
+- [x] Thresholds distintos explicitamente declarados para a mesma lane podem coexistir e os thresholds já alcançados acumulam contribuições deterministicamente.
+- [x] Catálogo vazio não cria fallback: mesmo uma lane canônica com XP elevado contribui zero se nenhuma metadata de investimento tiver sido publicada.
+- [x] O ciclo TDD de hardening foi observado no `RPG Skill Tree CI` `33996656425`: quatro falhas exatas para no-op, domínio normalizado duplicado, fracionários e API ad hoc. O candidato corrigido passou o `RPG Skill Tree CI` `33996882580` completo, incluindo JUnit 5, NeoForge JUnit adapters, GameTests, build/JAR e dedicated-server smoke.
+- [ ] Os **valores concretos** de curvas, caps, thresholds e pesos continuam pendentes neste Stage 04.03; nenhum default de balanceamento foi criado pelo fechamento arquitetural do Stage 04.01.
+
 ## Progresso runtime confirmado — BOW
 
 - [x] `epicfight:bow` é o ledger canônico do gate BOW; `combat:bow` não permanece como ledger paralelo na arquitetura.
@@ -52,6 +64,6 @@
 - [x] O cast continua concedendo os ledgers canônicos existentes (`magic:casting`, `irons:casting` e `irons:<discipline>`) sem alterar curvas, thresholds ou intensidade já aprovados.
 - [x] O contrato de elegibilidade é isolado de tipos do provider em `IronMasterySourcePolicy`, permitindo teste JUnit sem promover Iron's de integração opcional para dependência runtime obrigatória.
 
-As demais caixas gerais acima permanecem abertas porque o fechamento é por fonte completa de Mastery, não por uma única categoria de arma ou provider.
+As demais caixas gerais acima permanecem abertas porque o fechamento é por fonte completa de Mastery, não por uma única categoria de arma, provider ou pela fronteira de investimento de classe.
 
-**Acceptance:** repetir uma ação válida aumenta mastery exatamente uma vez e tentativas inválidas não aumentam.
+**Acceptance:** repetir uma ação válida aumenta mastery exatamente uma vez e tentativas inválidas não aumentam. A autoridade estrutural para projetar Mastery em classe emergente está fechada; curvas/caps/thresholds concretos e cobertura integral das fontes continuam abertos neste subplano.

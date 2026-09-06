@@ -464,14 +464,185 @@ Entradas:
 - nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
 - TDD confirmado no commit `cdb79fba9a04b813a4e91d5f33fd0cb9eb595a21`: 961 testes, exatamente 1 falha no Batch16 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 17 — Oh The Biomes We've Gone / biomas Overworld (batch 6 final)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/biomeswevegone/biomes-batch6.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:biomeswevegone:temperate_grove` — Bosque Temperado
+2. `BIOME:biomeswevegone:weeping_witch_forest` — Floresta das Bruxas Choronas
+3. `BIOME:biomeswevegone:white_mangrove_marshes` — Mangue Branco
+4. `BIOME:biomeswevegone:windswept_desert` — Deserto Ventoso
+5. `BIOME:biomeswevegone:zelkova_forest` — Floresta de Zelkova
+
+### Critérios editoriais aplicados ao lote 17
+
+- o recorte continua imediatamente após `tropical_rainforest` e encerra a seção Overworld de `BWGBiomes.java` da release 2.6.0;
+- IDs, ordem, categorias, tags de bioma e elegibilidade estrutural são sustentados pelo commit oficial `3040862ddd02c2487c946cac2803502e59508062`;
+- os cinco títulos pt-BR são exatamente os valores do `assets/biomeswevegone/lang/pt_br.json` no mesmo commit;
+- tags de vila de planície, posto de saqueadores, mansão da floresta e Vila de Salem são tratadas somente como elegibilidade de worldgen, não garantia de geração;
+- categorias internas como `SPARSE`, `MAGICAL`, `DENSE` e `WINDSWEPT` não são convertidas em densidade, intensidade, altura, frequência ou outros valores numéricos;
+- nenhum peso, chance, altura, posição, densidade ou outro parâmetro configurável foi congelado na prosa;
+- TDD confirmado no commit `cd6e091deb96bf770c7c15763fe65f82456d8674`: 975 testes, exatamente 1 falha no Batch17 pela ausência do recurso; o corpus foi adicionado somente depois desse RED correto.
+
+## Lote 18 — BetterEnd: New Dawn / biomas do End (batch 1)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betterend/biomes-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betterend:amber_land` — Terras de Âmbar
+2. `BIOME:betterend:blossoming_spires` — Pináculos em Flor
+3. `BIOME:betterend:chorus_forest` — Floresta de Choros
+4. `BIOME:betterend:crystal_mountains` — Montanhas de Cristal
+5. `BIOME:betterend:dragon_graveyards` — Cemitérios de Dragão
+6. `BIOME:betterend:dry_shrubland` — Arbusto Seco
+7. `BIOME:betterend:dust_wastelands` — Terras Devastadas
+8. `BIOME:betterend:foggy_mushroomland` — Terras de Cogumelos Neovoada
+9. `BIOME:betterend:glowing_grasslands` — Prados Brilhantes
+10. `BIOME:betterend:ice_starfield` — Campo de Estrelas de Gelo
+
+### Critérios editoriais aplicados ao lote 18
+
+- provider reconciliado antes da autoria com a modlist canônica e a Auditoria Mestre do Notion: `BetterEnd-21.0.34.jar`, namespace `betterend`, estado `Instalado`, decisão `Manter`;
+- o recorte corresponde aos dez primeiros biomas na ordem do registry oficial `EndBiomes.java` do commit `360b6fea407befdcf9aab7f771cad5586cbfb826`, cujo `gradle.properties` declara Minecraft 1.21.1 e BetterEnd 21.0.34;
+- os dez títulos pt-BR são exatamente os valores do `assets/betterend/lang/pt_br.json` no mesmo commit, inclusive a grafia oficial `Terras de Cogumelos Neovoada`, sem correção editorial silenciosa;
+- os datapacks Wover sustentam somente as classificações de placement usadas na prosa: sete entradas em `is_end/land`, `chorus_forest` em `is_end/highland`, `dust_wastelands` em `is_end/midland` e `ice_starfield` em `is_end/small_island` e `is_end/barrens`;
+- as categorias de placement não são convertidas em altura, tamanho, densidade, geometria, peso ou frequência fixos;
+- `EndBiomes.registerBiomeToggles()` comprova que estes dez IDs participam do conjunto configurável do provider, portanto disponibilidade e ocorrência concretas permanecem condicionadas à configuração e ao worldgen ativos;
+- TDD confirmado no commit `0dbb401d21a90fd310ea07f58e940a79184edb6f`: 976 testes, exatamente 1 falha no Batch18 pela ausência de `betterend/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto.
+
+## Lote 19 — BetterEnd: New Dawn / biomas do End (batch 2)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betterend/biomes-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betterend:flower_islets` — Flower Islets
+2. `BIOME:betterend:waterfall_ponds` — Waterfall Ponds
+3. `BIOME:betterend:lantern_woods` — Madeiras Lanterna
+4. `BIOME:betterend:megalake` — Megalake
+5. `BIOME:betterend:shadow_forest` — Floresta da Sombra
+6. `BIOME:betterend:sulphur_springs` — Fontes Sulfúricas
+7. `BIOME:betterend:umbrella_jungle` — Selva de Guarda-chuvas
+8. `BIOME:betterend:umbra_valley` — Vale Da Sombra
+9. `BIOME:betterend:megalake_grove` — Arvoredos de Megalake
+10. `BIOME:betterend:neon_oasis` — Oasis Neon
+
+### Critérios editoriais aplicados ao lote 19
+
+- o recorte continua imediatamente após `ice_starfield` na ordem do registry oficial `EndBiomes.java` do commit congelado `360b6fea407befdcf9aab7f771cad5586cbfb826`;
+- oito títulos são preservados exatamente do `assets/betterend/lang/pt_br.json`: `Madeiras Lanterna`, `Megalake`, `Floresta da Sombra`, `Fontes Sulfúricas`, `Selva de Guarda-chuvas`, `Vale Da Sombra`, `Arvoredos de Megalake` e `Oasis Neon`;
+- `flower_islets` e `waterfall_ponds` não possuem chave `biome.betterend.*` nem no `pt_br.json` nem no `en_us.json` congelados; `Flower Islets` e `Waterfall Ponds` são fallbacks editoriais explicitamente derivados das classes `FlowerIsletsBiome`/`WaterfallPondsBiome` e dos registry paths, não traduções atribuídas ao provider;
+- o datapack Wover inclui `flower_islets` e `waterfall_ponds` em `is_end/small_island`; os outros oito IDs do lote estão em `is_end/land`;
+- `flower_islets` e `waterfall_ponds` não aparecem em `registerBiomeToggles()`; os outros oito aparecem no conjunto configurável do provider;
+- `megalake_grove` declara `MEGALAKE` como bioma-base associado e `neon_oasis` declara `DUST_WASTELANDS`; essas relações são registradas sem inferir chance, proximidade, geometria ou frequência;
+- nenhuma categoria de placement, nome de bioma ou vínculo de base foi convertido em altura, tamanho, densidade, posição, peso, chance, frequência ou outro parâmetro mutável;
+- TDD confirmado no commit `2b9ab97cd9dcf415446e5cc99da1197e6e8088e6`, RPG Skill Tree CI run `33994047460`, job `101381231279`: 977 testes, exatamente 1 falha no Batch19 pela ausência de `betterend/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
+
+## Lote 20 — BetterEnd: New Dawn / biomas do End (batch 3 final)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betterend/biomes-batch3.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betterend:painted_mountains` — Montanhas Pintadas
+2. `BIOME:betterend:empty_end_cave` — Caverna do End Vazia
+3. `BIOME:betterend:empty_smaragdant_cave` — Caverna Exuberante de Esmaragdante Vazia
+4. `BIOME:betterend:lush_smaragdant_cave` — Caverna Exuberante de Esmaragdante
+5. `BIOME:betterend:empty_aurora_cave` — Caverna Aurora Vazia
+6. `BIOME:betterend:lush_aurora_cave` — Caverna Exuberante de Aurora
+7. `BIOME:betterend:jade_cave` — Caverna de Jade
+
+### Critérios editoriais aplicados ao lote 20
+
+- o recorte continua imediatamente após `neon_oasis` e encerra todos os `EndBiomeKey` declarados em `EndBiomes.java` no commit congelado `360b6fea407befdcf9aab7f771cad5586cbfb826`;
+- os sete títulos pt-BR são preservados exatamente do `assets/betterend/lang/pt_br.json`;
+- `painted_mountains` é registrado pelo provider como `IS_END_LAND`, aparece em Wover `is_end/land` e declara `DUST_WASTELANDS` como bioma-base associado; o vínculo fica fonteado em prosa sem criar referência técnica cross-batch;
+- os seis biomas de caverna são registrados em `EndBiomesProvider` com `EndTags.IS_END_CAVE` e aparecem explicitamente no datapack `betterend:is_end_cave`;
+- todos os sete IDs aparecem em `registerBiomeToggles()`, portanto ocorrência concreta permanece condicionada à configuração e ao worldgen ativos;
+- nomes como `Vazia`, `Exuberante`, `Aurora`, `Jade` e a categoria cave não são convertidos em densidade, iluminação, composição mineral, altitude, profundidade, tamanho, frequência ou outros parâmetros sem fonte específica;
+- TDD confirmado no commit `e54e2607177de769dcbce0d625226c1f960cef72`, RPG Skill Tree CI run `33996432070`, job `101387676028`: 978 testes, exatamente 1 falha no Batch20 pela ausência de `betterend/biomes-batch3.json`; o corpus foi adicionado somente depois desse RED correto.
+
+## Lote 21 — BetterNether: New Dawn / biomas do Nether (batch 1)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betternether/biomes-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betternether:bone_reef` — Bone Reef
+2. `BIOME:betternether:crimson_glowing_woods` — Crimson Glowing Woods
+3. `BIOME:betternether:crimson_pinewood` — Crimson Pinewood
+4. `BIOME:betternether:flooded_deltas` — Flooded Deltas
+5. `BIOME:betternether:gloomwood` — Gloomwood
+6. `BIOME:betternether:gravel_desert` — Gravel Desert
+7. `BIOME:betternether:magma_land` — Magma Land
+8. `BIOME:betternether:nether_grasslands` — Nether Grasslands
+9. `BIOME:betternether:nether_jungle` — Nether Jungle
+10. `BIOME:betternether:nether_mushroom_forest` — Nether Mushroom Forest
+
+### Critérios editoriais aplicados ao lote 21
+
+- provider reconciliado com a modlist/runtime e a Auditoria Mestre do Notion: `BetterNether-21.0.26.jar`, namespace `betternether`, estado `Instalado`, decisão `Manter`;
+- o recorte corresponde aos dez primeiros biomas na ordem de `NetherBiomes.java` e `NetherBiomesProvider.bootstrap()` do commit congelado `543127cab48b1ecb0017fee4222af25e0583e185`, cujo `gradle.properties` declara Minecraft 1.21.1 e BetterNether 21.0.26;
+- `NetherBiomeBuilder.createKey()` confirma os registry paths ao normalizar espaços para `_` e minúsculas;
+- nove títulos do lote são preservados exatamente do `assets/betternether/lang/pt_br.json`, que os mantém em inglês; `gloomwood` não possui chave pt-BR e usa explicitamente o valor oficial `Gloomwood` do `en_us.json`, sem fingir tradução pt-BR;
+- `gloomwood` é declarado e bootstrapped pelo provider, mas não aparece em `registerBiomeToggles()`; os outros nove aparecem. A diferença é registrada sem inferir bug ou obrigatoriedade;
+- `nether_grasslands` possui numeric provider próprio registrado pelo provider; sua existência é documentada sem congelar números internos em prosa;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica do worldgen foi congelada no corpus;
+- TDD confirmado no commit `9968ddc6db31a4e3e14ef9056f8a4e7fccbfb2b5`, RPG Skill Tree CI run `33998199993`, job `101392297879`: 979 testes, exatamente 1 falha no Batch21 pela ausência de `betternether/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto.
+
+## Lote 22 — BetterNether: New Dawn / biomas do Nether (batch 2)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betternether/biomes-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betternether:nether_mushroom_forest_edge` — Nether Mushroom Forest Edge
+2. `BIOME:betternether:nether_swampland` — Nether Swampland
+3. `BIOME:betternether:nether_swampland_terraces` — Nether Swampland Terraces
+4. `BIOME:betternether:old_fungiwoods` — Old Fungiwoods
+5. `BIOME:betternether:old_swampland` — Old Swampland
+6. `BIOME:betternether:old_warped_woods` — Old Warped Woods
+7. `BIOME:betternether:poor_nether_grasslands` — Poor Nether Grasslands
+8. `BIOME:betternether:soul_plain` — Soul Plain
+9. `BIOME:betternether:sulfuric_bone_reef` — Sulfuric Bone Reef
+10. `BIOME:betternether:upside_down_forest` — Upside Down Forest
+
+### Critérios editoriais aplicados ao lote 22
+
+- o recorte continua imediatamente após `nether_mushroom_forest` e cobre os biomas 11–20 na ordem de `NetherBiomes.java` e `NetherBiomesProvider.bootstrap()` do commit congelado `543127cab48b1ecb0017fee4222af25e0583e185`;
+- os dez títulos são preservados exatamente do `assets/betternether/lang/pt_br.json`, que os mantém em inglês;
+- todos os dez IDs aparecem em `registerBiomeToggles()`;
+- `NetherMushroomForest.withEdgeBiome()` aponta para `NETHER_MUSHROOM_FORREST_EDGE.key`, cujo registry path gerado é `nether_mushroom_forest_edge`;
+- o numeric provider e o selector de surface rules desse edge usam a grafia oficial `nether_mushroom_forrest_edge`; essa divergência textual é registrada sem inferir bug, peso, escolha ou valor numérico;
+- palavras dos nomes como `Old`, `Poor`, `Soul`, `Sulfuric`, `Terraces` e `Upside Down` não são convertidas em idade/depreciação, escassez, composição, risco, geometria ou outros parâmetros não fonteados;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `87570747a4e9c1bb37a99523c553f75ca41c7d2a`, RPG Skill Tree CI run `33999540955`, job `101395818638`: 980 testes, exatamente 1 falha no Batch22 pela ausência de `betternether/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
 - entradas de flora vanilla reais no corpus: **20**;
 - entradas editoriais vanilla totais: **100**;
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
-- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **50**;
-- entradas editoriais totais: **160**;
-- lotes documentados: **16**;
-- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`;
+- entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
+- entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
+- entradas de worldgen BetterNether: New Dawn reais no corpus: **20**;
+- entradas editoriais totais: **212**;
+- lotes documentados: **22**;
+- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.

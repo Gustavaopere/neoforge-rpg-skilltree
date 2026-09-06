@@ -8,6 +8,7 @@ import dev.gustavopere.rpgskilltree.core.MasteryInvestmentMetadata;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.data.ArchetypeCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.ClassInvestmentMetadataCatalog;
+import dev.gustavopere.rpgskilltree.runtime.data.MasteryInvestmentMetadataCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.SkillTreeDataCatalog;
 import java.util.Collection;
 import java.util.Objects;
@@ -22,11 +23,15 @@ public final class ClassResolutionRuntime {
     }
 
     /**
-     * Projects the canonical progression snapshot through the current skill metadata.
-     * Mastery contribution thresholds stay explicit at the call boundary until Stage 04.03
-     * defines their canonical class semantics; this method never invents them.
+     * Projects the canonical progression snapshot through the current skill and Mastery metadata.
+     * Both contribution sources are published runtime catalogs; callers do not infer or supply
+     * Mastery-to-domain semantics on the canonical path.
      */
-    public static CanonicalClassResolutionProjection resolveCanonical(
+    public static CanonicalClassResolutionProjection resolveCanonical(ProgressionState state) {
+        return resolveCanonical(state, MasteryInvestmentMetadataCatalog.current());
+    }
+
+    private static CanonicalClassResolutionProjection resolveCanonical(
         ProgressionState state,
         Collection<MasteryInvestmentMetadata> masteryMetadata
     ) {
