@@ -53,7 +53,7 @@ Ele não gera estruturas nem modifica suas chances de spawn; funciona como ferra
 
 `journeymap-neoforge-1.21.1-6.0.7.jar`
 **JourneyMap** registra o terreno explorado e o apresenta por **minimapa, mapa em tela cheia e waypoints persistentes**. O mapa acompanha dimensões, posições e landmarks descobertos pelo jogador sem alterar o worldgen.
-Waypoints podem ter nomes, ícones/cores e contexto dimensional, e a API permite que addons adicionem overlays e marcadores de sistemas externos. Claims, teleporte e outros dados continuam pertencendo aos mods que os fornecem. A build NeoForge instalada é 6.0.5, com metadata runtime canônico `1.21.1-6.0.7`.
+Waypoints podem ter nomes, ícones/cores e contexto dimensional, e a API permite que addons adicionem overlays e marcadores de sistemas externos. Claims, teleporte e outros dados continuam pertencendo aos mods que os fornecem. A build NeoForge instalada é `6.0.7`, com metadata runtime canônico `1.21.1-6.0.7`.
 
 ## JourneyMap Integration — runtime 1.21.1-1.9
 
