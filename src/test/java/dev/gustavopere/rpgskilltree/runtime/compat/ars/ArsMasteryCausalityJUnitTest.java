@@ -21,7 +21,7 @@ final class ArsMasteryCausalityJUnitTest {
             "ars",
             "ars_nouveau:glyph_projectile>ars_nouveau:glyph_harm",
             "composition",
-            Set.of("ars:projectile"),
+            Set.of("projectile"),
             25
         );
 
@@ -40,12 +40,14 @@ final class ArsMasteryCausalityJUnitTest {
 
         int castHandler = source.indexOf("public static void onSpellCast(SpellCastEvent event)");
         int resolveHandler = source.indexOf("public static void onSpellResolved(SpellResolveEvent.Post event)");
+        int armHelper = source.indexOf("static void armCausalAward(SpellContext context, SpellAction action)");
 
         assertTrue(castHandler >= 0, "SpellCastEvent must remain the access/arming boundary");
         assertTrue(resolveHandler > castHandler, "Mastery must wait for SpellResolveEvent.Post");
+        assertTrue(armHelper > resolveHandler, "causal attachment helper must remain explicit and auditable");
 
         String castSection = source.substring(castHandler, resolveHandler);
-        assertTrue(castSection.contains("getOrCreateAttachment"), "SpellCastEvent must arm the causal award on Ars SpellContext");
+        assertTrue(castSection.contains("armCausalAward"), "SpellCastEvent must delegate causal arming to the Ars SpellContext helper");
         assertFalse(castSection.contains("PlayerProgressionRuntime.awardMastery"), "SpellCastEvent fires before Ars knows cast success");
 
         int nextHandler = source.indexOf("@SubscribeEvent", resolveHandler + 1);
@@ -54,5 +56,11 @@ final class ArsMasteryCausalityJUnitTest {
             : source.substring(resolveHandler, nextHandler);
         assertTrue(resolveSection.contains("claimResolved"), "resolution must claim the one-shot award");
         assertTrue(resolveSection.contains("PlayerProgressionRuntime.awardMastery"), "only resolved spells may award Mastery");
+
+        int nextHelper = source.indexOf("static SpellAction claimResolved(SpellContext context)", armHelper + 1);
+        String armSection = nextHelper < 0
+            ? source.substring(armHelper)
+            : source.substring(armHelper, nextHelper);
+        assertTrue(armSection.contains("getOrCreateAttachment"), "causal helper must attach the one-shot award to Ars SpellContext");
     }
 }
