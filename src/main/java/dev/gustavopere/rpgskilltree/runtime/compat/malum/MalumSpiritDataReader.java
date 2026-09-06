@@ -1,7 +1,9 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.malum;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import net.minecraft.world.entity.LivingEntity;
 
 /** Isolates Malum's optional reflective spirit-data boundary from mastery semantics. */
@@ -12,10 +14,20 @@ final class MalumSpiritDataReader {
     }
 
     static MalumMasteryLogic.SpiritEvidence read(LivingEntity target) {
-        return read(target, SPIRIT_DATA_CLASS);
+        return read(target, SPIRIT_DATA_CLASS, MalumMasteryLogic::evidenceFromStacks);
     }
 
     static MalumMasteryLogic.SpiritEvidence read(LivingEntity target, String dataClassName) {
+        return read(target, dataClassName, MalumMasteryLogic::evidenceFromStacks);
+    }
+
+    static MalumMasteryLogic.SpiritEvidence read(
+        LivingEntity target,
+        String dataClassName,
+        Function<Object, MalumMasteryLogic.SpiritEvidence> stackDecoder
+    ) {
+        Objects.requireNonNull(dataClassName, "dataClassName");
+        Objects.requireNonNull(stackDecoder, "stackDecoder");
         try {
             Class<?> dataClass = Class.forName(dataClassName);
             Method getSpiritData = dataClass.getMethod("getSpiritData", LivingEntity.class);
@@ -26,7 +38,7 @@ final class MalumSpiritDataReader {
 
             Object data = optional.get();
             Method getSpiritStacks = data.getClass().getMethod("getSpiritStacks");
-            return MalumMasteryLogic.evidenceFromStacks(getSpiritStacks.invoke(data));
+            return stackDecoder.apply(getSpiritStacks.invoke(data));
         } catch (ReflectiveOperationException | LinkageError | RuntimeException ignored) {
             return MalumMasteryLogic.SpiritEvidence.EMPTY;
         }
