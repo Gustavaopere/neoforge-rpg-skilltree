@@ -655,6 +655,35 @@ Entradas:
 - nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
 - TDD confirmado no commit `1d0dac3dc2f153365165855ddda37d5620e854e3`, RPG Skill Tree CI run `34001317006`, job `101400580606`: 981 testes, exatamente 1 falha no Batch23 na linha 41 pela ausência de `betternether/biomes-batch3.json`; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 24 — Terralith 2.6.2 / biomas do Overworld (batch 1)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:alpha_islands` — Ilhas Alpha
+2. `BIOME:terralith:alpha_islands_winter` — Ilhas Alpha (Inverno)
+3. `BIOME:terralith:alpine_grove` — Bosques Alpinos
+4. `BIOME:terralith:alpine_highlands` — Terras Altas Alpinas
+5. `BIOME:terralith:amethyst_canyon` — Desfiladeiro de Ametista
+6. `BIOME:terralith:amethyst_rainforest` — Floresta Tropical de Ametista
+7. `BIOME:terralith:ancient_sands` — Areias Antigas
+8. `BIOME:terralith:arid_highlands` — Terras Altas Áridas
+9. `BIOME:terralith:ashen_savanna` — Savana de Cinzas
+10. `BIOME:terralith:basalt_cliffs` — Falésias de Basalto
+
+### Critérios editoriais aplicados ao lote 24
+
+- o lote abre a cobertura Terralith para a build instalada `Terralith_1.21.x_v2.6.2.jar`, presente na modlist atual de 607 entradas;
+- os dez títulos preservam exatamente os valores do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`;
+- os registry paths foram cruzados com a integração Dynamic Trees–Terralith para 1.21.1 como confirmação independente de identidade/integração; essa integração não é tratada como autoridade para parâmetros internos de worldgen do Terralith 2.6.2;
+- palavras dos nomes como `Inverno`, `Alpinos`, `Ametista`, `Antigas`, `Áridas`, `Cinzas` e `Basalto` não são convertidas em estação dinâmica, clima, altitude, composição, geometria, recursos ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `8b588d0e9dab3fb458d746ddad0998b119c50287`, RPG Skill Tree CI run `34007050395`, job `101416099969`: 994 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch24JUnitTest` na linha 48 pela ausência de `terralith/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto;
+- GREEN funcional confirmado no commit `93884a7a1239416c25470c6a14cbfe55a25703ed`: RPG Skill Tree CI run `34007682840`, job `101417788825` passou JUnit, NeoForge JUnit, 60 GameTests, build, verificação do JAR e dedicated-server smoke; Compendium Editorial CI run `34007682768`, job `101417788457` também passou integralmente.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -664,7 +693,8 @@ Entradas:
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
 - entradas de worldgen BetterNether: New Dawn reais no corpus: **23**;
-- entradas editoriais totais: **215**;
-- lotes documentados: **23**;
-- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`;
+- entradas de worldgen Terralith reais no corpus: **10**;
+- entradas editoriais totais: **225**;
+- lotes documentados: **24**;
+- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`, `terralith`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
