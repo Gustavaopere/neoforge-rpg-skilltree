@@ -165,7 +165,7 @@ public final class MineColoniesEconomyNetworkAuthorityProviderGameTests {
             helper.assertTrue(projected.projectedEffectiveSupply() == 25L, "projection must preserve projected supply");
             helper.assertTrue(projected.economicCapacity() == Math.max(1L, capacity),
                 "projection must preserve audited economic capacity");
-            helper.assertTrue(projected.projectedTargetPriceIndex() == 125.0D,
+            helper.assertTrue(Double.compare(projected.projectedTargetPriceIndex(), 125.0D) == 0,
                 "projection must preserve the deterministic target price index");
 
             helper.succeed();
