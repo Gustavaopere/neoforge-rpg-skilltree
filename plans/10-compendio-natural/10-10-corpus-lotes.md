@@ -828,6 +828,35 @@ Entradas:
 - TDD confirmado no commit `92326532b0e16baedbd575434b0e122b92026388`, RPG Skill Tree CI run `34038317783`, job `101500360835`: 1020 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch29JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch6.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
 - o corpus foi adicionado somente depois desse RED correto no commit `8ccd464b5dc572eebf039f70077f57951843fe07`; o JUnit 5 correspondente passou no RPG Skill Tree CI run `34038656648`, job `101501280754`, e o Compendium Editorial CI run `34038656685`, job `101501280646`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
 
+## Lote 30 — Terralith 2.6.2 / biomas do Overworld (batch 7)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch7.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:skylands_spring` — Ilhas Flutuantes (Primavera)
+2. `BIOME:terralith:skylands_summer` — Ilhas Flutuantes (Verão)
+3. `BIOME:terralith:skylands_winter` — Ilhas Flutuantes (Inverno)
+4. `BIOME:terralith:snowy_badlands` — Mesa Nevada
+5. `BIOME:terralith:snowy_maple_forest` — Floresta de Bordo Nevado
+6. `BIOME:terralith:snowy_shield` — Escudo Nevado
+7. `BIOME:terralith:steppe` — Estepe
+8. `BIOME:terralith:stony_spires` — Pináculos Pedregosos
+9. `BIOME:terralith:temperate_highlands` — Planaltos Temperados
+10. `BIOME:terralith:tropical_jungle` — Selva Tropical
+
+### Critérios editoriais aplicados ao lote 30
+
+- o recorte continua imediatamente após `skylands_autumn` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `skylands_spring` até `tropical_jungle`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; Dynamic Trees–Terralith permanece apenas como confirmação complementar de identidade/integração;
+- termos nominais como `Ilhas Flutuantes`, `Primavera`, `Verão`, `Inverno`, `Mesa`, `Nevada`, `Floresta`, `Bordo`, `Escudo`, `Estepe`, `Pináculos`, `Pedregosos`, `Planaltos`, `Temperados`, `Selva` e `Tropical` não são convertidos em estação dinâmica, neve real, clima, temperatura, umidade, altitude, geometria, composição, geologia, vegetação, espécies, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `b8cafee71a7c806b74d4105bb280959e374ce947`, RPG Skill Tree CI run `34049499605`, job `101530421616`: 1124 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch30JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch7.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `d74370a0723bc3e53c7b75b4526c4b6001391935`; o JUnit 5 correspondente passou no RPG Skill Tree CI run `34049737139`, job `101531051695`, e o Compendium Editorial CI run `34049737149`, job `101531051719`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -837,8 +866,8 @@ Entradas:
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
 - entradas de worldgen BetterNether: New Dawn reais no corpus: **23**;
-- entradas de worldgen Terralith reais no corpus: **60**;
-- entradas editoriais totais: **275**;
-- lotes documentados: **29**;
+- entradas de worldgen Terralith reais no corpus: **70**;
+- entradas editoriais totais: **285**;
+- lotes documentados: **30**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`, `terralith`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
