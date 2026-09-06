@@ -37,6 +37,23 @@ final class CreateAdvancementMasteryPolicyJUnitTest {
     }
 
     @Test
+    void milestoneAwardsAreReplaySafeAcrossDuplicateAdvancementCallbacks() {
+        var milestone = CreateAdvancementMasteryPolicy.confirmed("create", "mechanical_press").orElseThrow();
+        assertTrue(milestone.awards().stream().allMatch(MasteryAward::replaySafe));
+        assertEquals(milestone.awards().size(), milestone.awards().stream()
+            .map(MasteryAward::replayKey)
+            .distinct()
+            .count());
+
+        MasteryState once = MasteryAwardService.apply(MasteryState.empty(), milestone.awards());
+        MasteryState twice = MasteryAwardService.apply(once, milestone.awards());
+
+        assertEquals(once, twice);
+        assertEquals(3, twice.experience(MasteryLaneCatalog.CREATE_ENGINEERING));
+        assertEquals(3, twice.experience(MasteryLaneCatalog.create("automation")));
+    }
+
+    @Test
     void possessionRecipesThroughputAndForeignAdvancementsFailClosed() {
         assertTrue(CreateAdvancementMasteryPolicy.confirmed("minecraft", "mechanical_press").isEmpty());
         assertTrue(CreateAdvancementMasteryPolicy.confirmed("create", "root").isEmpty());
