@@ -100,6 +100,46 @@ jobs:
           -Dsonar.qualitygate.timeout=300
           build sonar --info
 
+      - name: Diagnose Sonar PR issues and new-code coverage
+        if: always() && github.event_name == 'pull_request'
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
+          SONAR_PR: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          issues_response="$(curl --silent --show-error --fail --get \
+            --header "Authorization: Bearer ${SONAR_TOKEN}" \
+            --data-urlencode "componentKeys=${SONAR_PROJECT}" \
+            --data-urlencode "pullRequest=${SONAR_PR}" \
+            --data-urlencode 'issueStatuses=OPEN,CONFIRMED' \
+            --data-urlencode 'ps=100' \
+            'https://sonarcloud.io/api/issues/search')"
+
+          echo '=== Sonar PR issues ==='
+          jq -r '.issues[]? | "ISSUE|rule=\(.rule)|type=\(.type // "")|severity=\(.severity // "")|component=\(.component // "")|line=\(.line // 0)|message=\(.message // "")"' <<<"$issues_response"
+
+          coverage_response="$(curl --silent --show-error --fail --get \
+            --header "Authorization: Bearer ${SONAR_TOKEN}" \
+            --data-urlencode "component=${SONAR_PROJECT}" \
+            --data-urlencode "pullRequest=${SONAR_PR}" \
+            --data-urlencode 'metricKeys=new_coverage,new_lines_to_cover,new_uncovered_lines,new_conditions_to_cover,new_uncovered_conditions' \
+            --data-urlencode 'qualifiers=FIL' \
+            --data-urlencode 'ps=500' \
+            'https://sonarcloud.io/api/measures/component_tree')"
+
+          echo '=== Sonar files with uncovered new code ==='
+          jq -r '
+            .components[]?
+            | {path: (.path // .name), measures: (.measures // [])}
+            | . as $component
+            | ($component.measures | map({key: .metric, value: (.period.value // .value // "0")}) | from_entries) as $m
+            | select((($m.new_uncovered_lines // "0") | tonumber) > 0 or (($m.new_uncovered_conditions // "0") | tonumber) > 0)
+            | "COVERAGE|path=\($component.path)|new_coverage=\($m.new_coverage // "")|new_lines_to_cover=\($m.new_lines_to_cover // "0")|new_uncovered_lines=\($m.new_uncovered_lines // "0")|new_conditions_to_cover=\($m.new_conditions_to_cover // "0")|new_uncovered_conditions=\($m.new_uncovered_conditions // "0")"
+          ' <<<"$coverage_response" | sort
+
       - name: Verify Sonar new-code issue count on main
         if: github.event_name != 'pull_request'
         env:
