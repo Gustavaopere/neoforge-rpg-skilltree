@@ -64,6 +64,18 @@
 - [x] O cast continua concedendo os ledgers canônicos existentes (`magic:casting`, `irons:casting` e `irons:<discipline>`) sem alterar curvas, thresholds ou intensidade já aprovados.
 - [x] O contrato de elegibilidade é isolado de tipos do provider em `IronMasterySourcePolicy`, permitindo teste JUnit sem promover Iron's de integração opcional para dependência runtime obrigatória.
 
+## Progresso runtime confirmado — ARS NOUVEAU
+
+- [x] Provider alvo confirmado na modlist/build: Ars Nouveau `1.21.1-5.13.1`; a revisão upstream auditada é `d16c939835ec9eae27d2eece42d19c572b46389c` (`mod_version=5.13.1`).
+- [x] `SpellCastEvent` é somente a fronteira de acesso e de armação causal. Nessa revisão upstream ele é postado antes de `castType.onCast*` produzir o `CastResolveType`, portanto não é autoridade suficiente para conceder Mastery.
+- [x] A concessão foi movida para `SpellResolveEvent.Post`, emitido após a resolução não cancelada dos efeitos; tentativa cancelada/falha que não chega a essa fronteira não concede Mastery.
+- [x] O `SpellAction` semântico é anexado ao `SpellContext` por `ArsMasteryCausalAward`; a reivindicação one-shot provider-free em `ArsMasteryClaim` garante que uma mesma ação causal só possa conceder Mastery uma vez.
+- [x] Clones de `SpellContext` compartilham o valor do attachment na revisão 5.13.1; contextos filhos que não carreguem o attachment diretamente procuram a mesma causalidade pela cadeia `previousContext`.
+- [x] Se a causalidade não estiver disponível, o runtime falha fechado. O claim no attachment é transitório e não reconstrói uma ação após serialização sem evidência causal verificável.
+- [x] O fluxo canônico é `SpellCastEvent` → armar causalidade → `SpellResolveEvent.Post` → `claimResolved()` → `MasteryPolicies.forArs` → `PlayerProgressionRuntime.awardMastery`; não há segundo ledger/produtor concorrente.
+- [x] TDD observado: o RED `34003592647` / job `101406688873` falhou porque a fronteira causal ainda não existia; `34003942932` / job `101407651096` expôs que o JUnit comum não deve promover Ars de `compileOnly` a provider obrigatório; a separação provider-free final passou o `RPG Skill Tree CI` `34004201977` / job `101408341407` completo, incluindo JUnit 5, NeoForge adapters, GameTests, build/JAR e dedicated-server smoke.
+- [x] Nenhuma curva, cap, threshold, peso de investimento ou valor de balanceamento de Mastery foi criado ou alterado neste fechamento de fonte.
+
 As demais caixas gerais acima permanecem abertas porque o fechamento é por fonte completa de Mastery, não por uma única categoria de arma, provider ou pela fronteira de investimento de classe.
 
 **Acceptance:** repetir uma ação válida aumenta mastery exatamente uma vez e tentativas inválidas não aumentam. A autoridade estrutural para projetar Mastery em classe emergente está fechada; curvas/caps/thresholds concretos e cobertura integral das fontes continuam abertos neste subplano.
