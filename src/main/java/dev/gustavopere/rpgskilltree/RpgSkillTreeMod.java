@@ -2,7 +2,9 @@ package dev.gustavopere.rpgskilltree;
 
 import dev.gustavopere.volcanoes.VolcanoesMod;
 import dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicy;
+import dev.gustavopere.rpgskilltree.itemization.blacksmith.compat.productivemetalworks.ProductiveMetalworksVersionContract;
 import dev.gustavopere.rpgskilltree.itemization.blacksmith.persistence.BlacksmithDataComponents;
+import dev.gustavopere.rpgskilltree.itemization.blacksmith.registry.BlacksmithItems;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
 import dev.gustavopere.rpgskilltree.runtime.RelevantPlayerCandidateRuntime;
@@ -41,6 +43,7 @@ import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumLootResourceRel
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumWorldCatalogEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumWorldCatalogReloader;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumWorldDiscoveryEvents;
+import dev.gustavopere.rpgskilltree.runtime.conditions.ModConditions;
 import dev.gustavopere.rpgskilltree.runtime.data.ArchetypeReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.AttributeRankCostPolicyCatalog;
 import dev.gustavopere.rpgskilltree.runtime.data.BossRewardReloader;
@@ -90,6 +93,8 @@ public final class RpgSkillTreeMod {
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);
         BlacksmithDataComponents.register(modBus);
+        BlacksmithItems.register(modBus);
+        ModConditions.register(modBus);
         ModLootModifiers.register(modBus);
         ModNetworking.register(modBus);
         ProgressionOwnerSyncRuntime.initialize();
@@ -132,6 +137,29 @@ public final class RpgSkillTreeMod {
 
         RuntimeDiagnostics.info(LOGGER, Category.COMPAT, "optional_providers", "Optional integrations: {}", OptionalIntegrations.summary());
         ColdSweatFrenzyBridge.initializeDiagnostics();
+
+        boolean productiveMetalworksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.PRODUCTIVE_METALWORKS);
+        String productiveMetalworksVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.PRODUCTIVE_METALWORKS);
+        if (productiveMetalworksLoaded) {
+            if (ProductiveMetalworksVersionContract.supports(productiveMetalworksVersion)) {
+                RuntimeDiagnostics.info(
+                    LOGGER,
+                    Category.COMPAT,
+                    "productivemetalworks_blacksmith_active",
+                    "Blacksmith Productive Metalworks adapter active: Productive Metalworks {}",
+                    productiveMetalworksVersion
+                );
+            } else {
+                RuntimeDiagnostics.warn(
+                    LOGGER,
+                    Category.COMPAT,
+                    "productivemetalworks_blacksmith_disabled",
+                    "Blacksmith Productive Metalworks adapter fail-closed: expected {}, found {}",
+                    ProductiveMetalworksVersionContract.SUPPORTED_ARTIFACT_VERSION,
+                    productiveMetalworksVersion
+                );
+            }
+        }
 
         boolean mineColoniesLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
         boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
