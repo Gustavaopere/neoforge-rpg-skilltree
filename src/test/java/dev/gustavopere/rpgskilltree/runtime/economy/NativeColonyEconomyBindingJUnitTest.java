@@ -70,6 +70,15 @@ final class NativeColonyEconomyBindingJUnitTest {
     }
 
     @Test
+    void providerDeletionNativeBoundaryRejectsInvalidKeysAndIgnoresUnknownBinding() {
+        ColonyEconomySavedData data = new ColonyEconomySavedData();
+
+        assertThrows(IllegalArgumentException.class, () -> data.archiveNativeBinding(null, NATIVE.colonyId()));
+        assertThrows(IllegalArgumentException.class, () -> data.archiveNativeBinding(NATIVE.dimensionId(), -1));
+        assertTrue(data.archiveNativeBinding(NATIVE.dimensionId(), NATIVE.colonyId()).isEmpty());
+    }
+
+    @Test
     void sameNativeIdWithDifferentOwnerFailsClosedInsteadOfInheritingMoney() {
         ColonyEconomySavedData data = new ColonyEconomySavedData();
         data.resolveOrCreateBinding(NATIVE);
