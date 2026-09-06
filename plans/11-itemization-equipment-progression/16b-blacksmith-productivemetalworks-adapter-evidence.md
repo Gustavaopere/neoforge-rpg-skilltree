@@ -2,9 +2,11 @@
 
 ## Estado
 
-**VALIDAÇÃO TÉCNICA CONFIRMADA — PR #447 PRONTA PARA MERGE**
+**VALIDAÇÃO TÉCNICA CONFIRMADA — SINCRONIZAÇÃO FINAL COM MAIN EM VALIDAÇÃO**
 
 Implementação validada no head `89e361b61ab08068711d8f2b5a8ef43f837ea0ba`, combinado pelo GitHub com `main@f23afcf14adfd5936991487980037f280683fb43` no merge-ref `a7709f67c625335b1c5b054e3c702d766fb14cf7`.
+
+Durante o fechamento, a `main` avançou para `a0c1948c67b71cfff65b29a2c3b0ecea411bcd85` com a PR #446 (`feat(masteries): integrate Create engineering milestones`). Como essa integração tocou `OptionalIntegrations`, `RpgSkillTreeMod` e o smoke de providers opcionais, a PR #447 foi reconciliada explicitamente para preservar **CREATE e PRODUCTIVE_METALWORKS** no mesmo bootstrap/matriz canônica. O último CI deve validar essa combinação exata antes do merge.
 
 Escopo deliberadamente limitado ao bloco `16.B — Adapter Productive Metalworks` do plano `16-blacksmith-productivemetalworks.md`. `16.C+` permanece fora desta PR e não foi iniciado.
 
@@ -93,9 +95,20 @@ Correção aplicada:
 
 O rerun oficial `RPG Skill Tree CI` `34056616163` passou integralmente, inclusive `NeoForge dedicated-server smoke test`.
 
+## Sincronização concorrente com Create
+
+A PR #446 adicionou `OptionalIntegrations.Provider.CREATE`, seu bootstrap de Mastery e a entrada `create` no smoke core-only. A reconciliação da #447 preserva os dois lados:
+
+- `CREATE` permanece na posição introduzida pela #446, após `COLD_SWEAT`;
+- `PRODUCTIVE_METALWORKS` permanece no catálogo opcional, após `MINECOLONIES`;
+- o smoke espera ambos na mesma ordem de `OptionalIntegrations.Provider`;
+- o `RpgSkillTreeMod` preserva integralmente o bootstrap/diagnóstico Create e adiciona o bootstrap Blacksmith Productive Metalworks sem substituir o primeiro.
+
+Nenhum arquivo ou comportamento da integração Create foi deliberadamente removido para resolver o conflito.
+
 ## Evidência de provider ausente e provider presente
 
-No head validado:
+No head validado antes do avanço concorrente da main:
 
 - core-only dedicated server: verde com Productive Metalworks ausente e adapter fail-closed;
 - `Foundation Optional Integrations` `34056616189`: verde;
@@ -103,9 +116,9 @@ No head validado:
 - full-pack exact-host GameTests: verdes;
 - full-pack save/reload smoke: verde.
 
-Isso cobre os dois limites relevantes da 16.B: provider opcional ausente e pack real com provider instalado.
+Isso cobre os dois limites relevantes da 16.B: provider opcional ausente e pack real com provider instalado. A combinação final com Create requer novo CI exato antes do merge.
 
-## Matriz final de CI do head validado
+## Matriz de CI do head de implementação validado
 
 Todos os `25` workflows de pull request observados para `89e361b61ab08068711d8f2b5a8ef43f837ea0ba` concluíram com `success`, incluindo:
 
@@ -140,17 +153,18 @@ O `iron_blade` deste bloco é uma **prova de integração do serializer/casting*
 
 ## Validação final
 
-- [x] JUnit completo verde;
-- [x] NeoForge JUnit adapter tests verdes;
-- [x] GameTests verdes;
-- [x] build NeoForge verde;
-- [x] dedicated-server smoke verde;
-- [x] full-pack exact-host GameTests verdes;
-- [x] full-pack save/reload smoke verde;
-- [x] CodeQL verde;
-- [x] SonarQube verde;
-- [x] matriz completa de workflows do head de implementação verde;
+- [x] JUnit completo verde no head de implementação validado;
+- [x] NeoForge JUnit adapter tests verdes no head de implementação validado;
+- [x] GameTests verdes no head de implementação validado;
+- [x] build NeoForge verde no head de implementação validado;
+- [x] dedicated-server smoke verde no head de implementação validado;
+- [x] full-pack exact-host GameTests verdes no head de implementação validado;
+- [x] full-pack save/reload smoke verde no head de implementação validado;
+- [x] CodeQL verde no head de implementação validado;
+- [x] SonarQube verde no head de implementação validado;
+- [x] matriz completa de 25 workflows do head de implementação verde;
+- [ ] CI final da combinação com `main@a0c1948c67b71cfff65b29a2c3b0ecea411bcd85` verde;
 - [ ] merge na `main`;
 - [ ] confirmação do SHA final da `main`.
 
-O commit documental que registra esta evidência deve completar o último ciclo de CI antes do merge; nenhuma mudança de runtime é esperada nesse commit.
+Nenhum bloco 16.C+ deve ser iniciado automaticamente após o fechamento desta PR.
