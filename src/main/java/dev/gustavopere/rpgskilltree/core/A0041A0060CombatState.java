@@ -1,18 +1,22 @@
 package dev.gustavopere.rpgskilltree.core;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 /** Server-authoritative transient resources for A0041-A0060. Nothing here is persisted. */
 public final class A0041A0060CombatState {
     private static final long CLAIM_RETENTION_MILLIS = 30_000L;
     private static final long SCYTHE_RESERVATION_RETENTION_MILLIS = 250L;
     private static final long CROSSBOW_RESERVATION_RETENTION_MILLIS = 500L;
+    private static final long CROSSBOW_ROOT_RETENTION_MILLIS = 30_000L;
     private final Map<String, Actor> actors = new HashMap<>();
     private final Map<String, Long> claims = new HashMap<>();
     private final Map<String, ScytheReservation> scytheReservations = new HashMap<>();
     private final Map<String, CrossbowReservation> crossbowReservations = new HashMap<>();
+    private final Map<String, CrossbowRootOutcome> crossbowRootOutcomes = new HashMap<>();
 
     public synchronized boolean claimOnce(String actorId, String rootActionId, String consumer, long now) {
         require(actorId); require(rootActionId); require(consumer);
@@ -200,6 +204,96 @@ public final class A0041A0060CombatState {
         consumeCadence(actorId, Math.max(0, amount));
     }
 
+    /** Registers one correlated projectile under its CROSSBOW root. */
+    public synchronized boolean registerCrossbowProjectile(
+        String actorId, String rootActionId, String projectileId, long now
+    ) {
+        String actor = require(actorId);
+        String root = require(rootActionId);
+        String projectile = require(projectileId);
+        pruneCrossbowRootOutcomes(now);
+        String key = crossbowRootKey(actor, root);
+        CrossbowRootOutcome outcome = crossbowRootOutcomes.computeIfAbsent(
+            key,
+            ignored -> new CrossbowRootOutcome(actor, root, Math.addExact(now, CROSSBOW_ROOT_RETENTION_MILLIS))
+        );
+        if (outcome.registrationSealed || outcome.success || outcome.failureCommitted) return false;
+        outcome.expiresAt = Math.addExact(now, CROSSBOW_ROOT_RETENTION_MILLIS);
+        return outcome.projectiles.add(projectile);
+    }
+
+    /**
+     * Records one sibling hit. A success is terminal for failure arbitration but deliberately returns
+     * false because callers only act on true when they must apply one root-level Cadence loss.
+     */
+    public synchronized boolean recordCrossbowProjectileSuccess(
+        String actorId, String rootActionId, String projectileId, long now
+    ) {
+        String actor = require(actorId);
+        String root = require(rootActionId);
+        String projectile = require(projectileId);
+        pruneCrossbowRootOutcomes(now);
+        CrossbowRootOutcome outcome = crossbowRootOutcomes.get(crossbowRootKey(actor, root));
+        if (outcome == null || outcome.failureCommitted || outcome.success
+            || !outcome.projectiles.contains(projectile) || outcome.failures.contains(projectile)) return false;
+        outcome.success = true;
+        outcome.expiresAt = Math.addExact(now, CROSSBOW_ROOT_RETENTION_MILLIS);
+        return false;
+    }
+
+    /**
+     * Records one sibling miss. Failure becomes actionable only after registration is sealed and every
+     * registered projectile has failed. The true result is emitted at most once for the root.
+     */
+    public synchronized boolean recordCrossbowProjectileFailure(
+        String actorId, String rootActionId, String projectileId, long now
+    ) {
+        String actor = require(actorId);
+        String root = require(rootActionId);
+        String projectile = require(projectileId);
+        pruneCrossbowRootOutcomes(now);
+        CrossbowRootOutcome outcome = crossbowRootOutcomes.get(crossbowRootKey(actor, root));
+        if (outcome == null || outcome.success || outcome.failureCommitted
+            || !outcome.projectiles.contains(projectile) || !outcome.failures.add(projectile)) return false;
+        outcome.expiresAt = Math.addExact(now, CROSSBOW_ROOT_RETENTION_MILLIS);
+        return settleCrossbowFailureIfReady(outcome);
+    }
+
+    /**
+     * Closes the launch-registration window. Existing registered siblings may still report outcomes;
+     * a later sibling success wins over any earlier miss. Returns true exactly once only for all-fail.
+     */
+    public synchronized boolean sealCrossbowRoot(String actorId, String rootActionId, long now) {
+        String actor = require(actorId);
+        String root = require(rootActionId);
+        pruneCrossbowRootOutcomes(now);
+        CrossbowRootOutcome outcome = crossbowRootOutcomes.get(crossbowRootKey(actor, root));
+        if (outcome == null || outcome.success || outcome.failureCommitted) return false;
+        outcome.registrationSealed = true;
+        outcome.expiresAt = Math.addExact(now, CROSSBOW_ROOT_RETENTION_MILLIS);
+        return settleCrossbowFailureIfReady(outcome);
+    }
+
+    private static boolean settleCrossbowFailureIfReady(CrossbowRootOutcome outcome) {
+        if (!outcome.registrationSealed || outcome.success || outcome.failureCommitted
+            || outcome.projectiles.isEmpty() || outcome.failures.size() != outcome.projectiles.size()) return false;
+        outcome.failureCommitted = true;
+        return true;
+    }
+
+    private static String crossbowRootKey(String actorId, String rootActionId) {
+        return actorId + '\0' + rootActionId;
+    }
+
+    private void pruneCrossbowRootOutcomes(long now) {
+        crossbowRootOutcomes.entrySet().removeIf(entry -> entry.getValue().expiresAt <= now);
+    }
+
+    private void clearCrossbowRootOutcomes(String actorId) {
+        String actor = require(actorId);
+        crossbowRootOutcomes.entrySet().removeIf(entry -> entry.getValue().actorId.equals(actor));
+    }
+
     public synchronized boolean reservePiercingBolt(String actorId, String rootActionId, long now) {
         String actor = require(actorId);
         String root = require(rootActionId);
@@ -318,6 +412,7 @@ public final class A0041A0060CombatState {
         claims.entrySet().removeIf(entry -> entry.getValue() <= now);
         pruneScytheReservations(now);
         pruneCrossbowReservations(now);
+        pruneCrossbowRootOutcomes(now);
         for (Actor actor : actors.values()) {
             if (actor.adjustedMechanismUntil > 0L && actor.adjustedMechanismUntil <= now) {
                 actor.adjustedMechanismUntil = 0L;
@@ -422,6 +517,7 @@ public final class A0041A0060CombatState {
         if (!cadenceOwned) {
             actor.cadence = 0;
             clearCrossbowHitReceipt(actor);
+            clearCrossbowRootOutcomes(actorIdChecked);
             actor.adjustedMechanismUntil = 0L;
             actor.adjustedMechanismReservedRoot = null;
             removeReservations(actorIdChecked, "A0053");
@@ -456,6 +552,7 @@ public final class A0041A0060CombatState {
         claims.keySet().removeIf(key -> key.startsWith(prefix));
         scytheReservations.entrySet().removeIf(entry -> entry.getValue().actorId.equals(id));
         crossbowReservations.entrySet().removeIf(entry -> entry.getValue().actorId.equals(id));
+        crossbowRootOutcomes.entrySet().removeIf(entry -> entry.getValue().actorId.equals(id));
     }
 
     public synchronized void clearAll() {
@@ -463,6 +560,7 @@ public final class A0041A0060CombatState {
         claims.clear();
         scytheReservations.clear();
         crossbowReservations.clear();
+        crossbowRootOutcomes.clear();
     }
 
     private Actor actor(String actorId) {
@@ -483,6 +581,23 @@ public final class A0041A0060CombatState {
     private record CrossbowReservation(
         String actorId, String rootActionId, String consumer, int cadenceCost, long expiresAt
     ) {}
+
+    private static final class CrossbowRootOutcome {
+        final String actorId;
+        final String rootActionId;
+        final Set<String> projectiles = new HashSet<>();
+        final Set<String> failures = new HashSet<>();
+        boolean registrationSealed;
+        boolean success;
+        boolean failureCommitted;
+        long expiresAt;
+
+        CrossbowRootOutcome(String actorId, String rootActionId, long expiresAt) {
+            this.actorId = actorId;
+            this.rootActionId = rootActionId;
+            this.expiresAt = expiresAt;
+        }
+    }
 
     private static final class Actor {
         double focus;
