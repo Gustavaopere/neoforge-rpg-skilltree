@@ -3,12 +3,15 @@ package dev.gustavopere.rpgskilltree.core;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkAvailabilityRuntime;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.util.Map;
+import java.util.UUID;
 import net.minecraft.server.level.ServerPlayer;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
@@ -29,7 +32,8 @@ final class A0061A0070Chat3CoverageJUnitTest {
 
     @Test
     void runtimeRanksMasksUnavailablePersistedRankAtServerBoundary() {
-        ServerPlayer player = null;
+        ServerPlayer player = mock(ServerPlayer.class);
+        when(player.getUUID()).thenReturn(UUID.fromString("00000000-0000-0000-0000-000000000067"));
         ProgressionState persisted = ProgressionState.empty().withPassiveNodes(
             PassiveNodeProgress.of(Map.of(
                 "rpgskilltree:combat/a0061", 5,
