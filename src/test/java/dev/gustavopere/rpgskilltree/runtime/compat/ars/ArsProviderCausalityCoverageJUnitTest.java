@@ -76,7 +76,7 @@ final class ArsProviderCausalityCoverageJUnitTest {
         assertEquals("ars_nouveau:glyph_projectile>ars_nouveau:glyph_harm", action.spellId());
         assertEquals("composition", action.discipline());
         assertEquals(25, action.resourceCost());
-        assertTrue(action.tags().contains("ars:projectile"));
+        assertTrue(action.tags().contains("projectile"));
     }
 
     @Test
@@ -152,7 +152,7 @@ final class ArsProviderCausalityCoverageJUnitTest {
             "ars",
             "ars_nouveau:glyph_projectile>ars_nouveau:glyph_harm",
             "composition",
-            java.util.Set.of("ars:projectile"),
+            java.util.Set.of("projectile"),
             25
         );
     }
