@@ -1,16 +1,14 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.malum;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import dev.gustavopere.rpgskilltree.core.SpiritPracticeAction;
 import java.util.List;
 import java.util.Optional;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import org.junit.jupiter.api.Test;
 
 final class MalumMasteryLogicJUnitTest {
@@ -64,36 +62,32 @@ final class MalumMasteryLogicJUnitTest {
     }
 
     @Test
-    void evidenceParserUsesResolvedIdsCountsAndIgnoresNoise() {
-        ItemStack emptyStack = mock(ItemStack.class);
-        when(emptyStack.isEmpty()).thenReturn(true);
-
-        ItemStack soulSand = mock(ItemStack.class);
-        when(soulSand.isEmpty()).thenReturn(false);
-        when(soulSand.getCount()).thenReturn(3);
-        ResourceLocation soulSandId = ResourceLocation.fromNamespaceAndPath("minecraft", "soul_sand");
-
-        MalumMasteryLogic.SpiritEvidence evidence = MalumMasteryLogic.evidenceFromStacks(
-            List.of("not-an-item-stack", emptyStack, soulSand),
-            stack -> stack == soulSand ? soulSandId : null
+    void evidenceParserUsesPureObservationsCountsAndIgnoresNoise() {
+        MalumMasteryLogic.SpiritEvidence evidence = MalumMasteryLogic.evidenceFromObservations(
+            List.of(
+                "not-an-observation",
+                new MalumMasteryLogic.SpiritStackObservation("minecraft:soul_sand", 3),
+                new MalumMasteryLogic.SpiritStackObservation("malum:aqueous_spirit", 0)
+            )
         );
 
-        assertEquals(List.of("minecraft:soul_sand"), evidence.spiritItemIds());
-        assertEquals(3, evidence.totalSpirits());
+        assertEquals(List.of("minecraft:soul_sand", "malum:aqueous_spirit"), evidence.spiritItemIds());
+        assertEquals(4, evidence.totalSpirits());
     }
 
     @Test
-    void evidenceParserFailsClosedForUnsupportedOrUnresolvedStacks() {
+    void evidenceParserFailsClosedForUnsupportedOrEmptyObservations() {
         assertEquals(
             MalumMasteryLogic.SpiritEvidence.EMPTY,
-            MalumMasteryLogic.evidenceFromStacks("not-a-list", ignored -> null)
+            MalumMasteryLogic.evidenceFromObservations("not-a-list")
         );
-
-        ItemStack unresolved = mock(ItemStack.class);
-        when(unresolved.isEmpty()).thenReturn(false);
         assertEquals(
             MalumMasteryLogic.SpiritEvidence.EMPTY,
-            MalumMasteryLogic.evidenceFromStacks(List.of(unresolved), ignored -> null)
+            MalumMasteryLogic.evidenceFromObservations(List.of("noise"))
+        );
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new MalumMasteryLogic.SpiritStackObservation(" ", 1)
         );
     }
 
