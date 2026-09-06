@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "betternether",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:betternether:upside_down_forest_cleared",
+      "title": "Dead Upside Down Forest",
+      "summary": {
+        "text": "Dead Upside Down Forest é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:upside_down_forest_cleared. O asset pt-BR congelado não fornece uma chave para este bioma; por isso, o título usa explicitamente o fallback oficial do asset en-US do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:upside_down_forest_cleared"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/en_us.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` faz bootstrap deste ID com `UpsideDownForestCleared`, e `registerBiomeToggles()` o inclui no conjunto configurável. O nome `Dead Upside Down Forest` e o sufixo `cleared` são tratados como identidade oficial do provider; a ficha não infere geometria, orientação, densidade, composição, idade, chance ou frequência a partir deles.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:wart_forest",
+      "title": "Wart Forest",
+      "summary": {
+        "text": "Wart Forest é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:wart_forest. O título preserva exatamente o valor fornecido pelo asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:wart_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider faz bootstrap deste ID com `WartForest`, e o registry o inclui em `registerBiomeToggles()`. A palavra Wart integra o nome oficial e não é convertida em composição vegetal, densidade, quantidade de recursos, chance, tamanho ou frequência sem fonte específica adicional.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:wart_forest_edge",
+      "title": "Wart Forest Edge",
+      "summary": {
+        "text": "Wart Forest Edge é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:wart_forest_edge. O título é mantido exatamente como aparece no asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:wart_forest_edge"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` faz bootstrap deste ID com `WartForestEdge`, e `registerBiomeToggles()` o inclui no conjunto configurável. O termo Edge faz parte da identidade do provider e não é convertido em largura, geometria, distância, peso, chance ou frequência numérica na prosa editorial.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}
