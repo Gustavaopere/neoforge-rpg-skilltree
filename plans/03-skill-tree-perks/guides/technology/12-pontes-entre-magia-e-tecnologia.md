@@ -1,12 +1,12 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
 # 11. Pontes entre magia e tecnologia
 
-## Create: Enchantment Industry — 2.5.3
+## Create: Enchantment Industry — 2.5.3b
 
-`create-enchantment-industry-2.5.3.jar`
+`create-enchantment-industry-2.5.3b.jar`
 **Create: Enchantment Industry** transforma experiência e encantamento em processos industriais. **Liquid Experience** pode ser armazenada e transportada; o **Disenchanter** remove enchantments convertendo-os em experiência; o **Blaze Enchanter** automatiza encantamento; e o **Printer** replica conteúdos como livros escritos, enchanted books, name tags e train schedules.
 O sistema também integra Mending em belts por Spout + Liquid Experience, permite experience nuggets em interações compatíveis de Deployer/Crushing Wheels e possui **hyper-enchanting** para níveis acima do cap convencional. Há compatibilidade específica com Apotheosis/Apothic quando detectado.
 
@@ -45,9 +45,9 @@ Na 1.2.0, Tempest's Grasp, Downburst e Maelstrom podem usar a escola **Wind** qu
 **Create: Wizardry** integra **Create e Iron's Spells 'n Spellbooks** por processamento, fluidos e spellcasting automatizado. Materiais/componentes mágicos entram em receitas mecânicas, enquanto mana e recursos arcanos passam a participar de máquinas e linhas produtivas.
 Um dos elementos centrais é o **Blaze Caster**, que permite incorporar lançamento de spells à automação em vez de exigir exclusivamente um jogador conjurando manualmente. A build instalada é `1.21.1-0.5.1-pre1`; o sufixo pre-release é mantido como parte da identidade da versão.
 
-## Apokinetics — 1.0.5
+## Apokinetics — 1.0.6
 
-`apokinetics-1.0.5.jar`
+`apokinetics-1.0.6.jar`
 **Create: Apokinetics** aplica a lógica de gems/affixes de Apotheosis/Apothic às máquinas do Create. Máquinas compatíveis podem receber **sockets** e **Machine Gems** que modificam propriedades industriais, transformando equipamento de loot em componentes de otimização da fábrica.
 O addon inclui **Apokinetic Table**, **Kinetic Pylon** e ferramentas de diagnóstico/gerenciamento ligadas ao sistema, criando uma progressão própria de melhoria de máquinas em vez de apenas reconhecer itens Apotheosis em filtros.
 
@@ -56,3 +56,6 @@ O addon inclui **Apokinetic Table**, **Kinetic Pylon** e ferramentas de diagnós
 `apotheoticcreation-2.0.0.jar`
 **Apotheotic Creation** é uma bridge focada em **filtragem e identificação de propriedades Apotheosis/Apothic dentro do Create**. Ela permite que Attribute Filters e componentes relacionados reconheçam informações como raridade e affixes dos itens.
 Seu papel é diferente de Apokinetics: Apotheotic Creation expõe metadados de loot ao sistema de filtros/logística; Apokinetics adiciona sockets e Machine Gems às próprias máquinas.
+
+
+---

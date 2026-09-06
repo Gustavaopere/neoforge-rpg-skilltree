@@ -1,18 +1,25 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
 # 15. Bibliotecas tecnológicas
 
-## Azimuth API — 1.4.7
+## Azimuth API — 1.4.8
 
-`azimuth-1.4.7.jar`
+`azimuth-1.4.8.jar`
 **Azimuth API** é uma biblioteca de infraestrutura para addons do ecossistema Create. Ela concentra recursos estruturais, de renderização e de integração cinética usados por consumidores em vez de fazer cada addon implementar essas camadas de forma independente.
 Um consumidor atual registrado no pack é **Bits 'n' Tracks**. Azimuth não adiciona uma linha de progressão ou máquinas próprias; sua presença representa uma dependência top-level compartilhada.
 
-## KilaGraph — 21.1.0.11
+## LowDragLib2 — 2.2.39.a
 
-`kilagraph-neoforge-1.21.1-21.1.0.11.jar`
+`ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`
+**LowDragLib2** é infraestrutura de UI/render/graph e utilidades usada por mods consumidores do pack, incluindo a base sobre a qual KilaGraph constrói seus node graphs. Sua presença top-level deve permanecer explícita porque é dependência técnica real, mas isso não a transforma em sistema de progressão ou provider tecnológico jogável.
+
+A string runtime instalada é `2.2.39.a`.
+
+## KilaGraph — 21.1.0.14
+
+`kilagraph-neoforge-1.21.1-21.1.0.14.jar`
 **KilaGraph** é um toolkit de **node graphs programáveis e shader graphs** construído sobre LDLib2. Ele fornece Blueprint Graphs para lógica/data flow, RenderType Graphs para pipelines visuais, Shader Function Graphs reutilizáveis e um editor in-game baseado nas ferramentas do LDLib2.
 A biblioteca inclui nodes voltados ao próprio Minecraft — items, blocks, fluids, entities, NBT, queries de mundo, math, listas, maps, strings e operações de shader. É infraestrutura para mods consumidores, não um shaderpack ou sistema visual autônomo. A build 1.21.1 está no canal beta.
 
@@ -40,11 +47,11 @@ A linha `0.7.1` é a compatível com Minecraft 1.21/1.21.1 presente no pack e pe
 **Ritchie's Projectile Library** fornece infraestrutura para projéteis rápidos, long-range e de grande volume. Entre os recursos estão sincronização de movimento mais precisa, **chunkloading configurável para projéteis**, screen shake e **projectile bursts** capazes de representar shotgun pellets, fragmentação e shrapnel sem criar uma quantidade excessiva de entidades independentes.
 É uma biblioteca para mods consumidores, especialmente conteúdos de firearms/artillery, e não uma arma isolada. A build 2.1.2 também inclui correções NeoForge ligadas ao registry de rede e efeitos de cannon shake.
 
-## Sophisticated Core — runtime 1.4.90
+## Sophisticated Core — runtime 1.5.0
 
-`sophisticatedcore-1.21.1-1.4.90.2299.jar`
+`sophisticatedcore-1.21.1-1.5.0.2322.jar`
 **Sophisticated Core** é a biblioteca compartilhada do ecossistema Sophisticated. Ela centraliza infraestrutura de **upgrades, inventários, storage, recipes, filtros e comportamento comum** utilizada por Sophisticated Backpacks, Sophisticated Storage e integrações correspondentes.
-Não adiciona uma progressão jogável independente: seu conteúdo é consumido pelos mods-base. A build instalada `1.4.90.2299` é a release NeoForge 1.21.1 de 22/08/2026; o metadata runtime declara `1.4.90`. Entre as correções dessa build está o restocking de receitas com múltiplas alternativas de ingrediente.
+Não adiciona uma progressão jogável independente: seu conteúdo é consumido pelos mods-base. A build instalada é `sophisticatedcore-1.21.1-1.5.0.2322.jar`; o metadata runtime declara `1.5.0`. Entre as correções dessa build está o restocking de receitas com múltiplas alternativas de ingrediente.
 
 ## Mechanicals Lib — 1.1.6
 
@@ -64,11 +71,11 @@ Ela não adiciona máquinas, itens de progressão ou gameplay próprio: os recur
 **Curios API** fornece a infraestrutura de **slots de acessórios adicionais** usada por grande parte do pack. Mods podem registrar categorias como back, charm, ring, necklace e outros slots, definir regras de equipagem e consultar os itens equipados sem disputar os slots vanilla de armadura/offhand.
 Isso permite que jetpacks, backtanks, goggles, charms e diversos acessórios permaneçam funcionais através de uma API comum. Curios não possui uma progressão própria significativa; é a camada de slots/equipamento consumida por vários mods e bridges.
 
-## Cyclops Core — 1.29.3
+## Cyclops Core — 1.29.4
 
-`cyclopscore-1.21.1-neoforge-1.29.3.jar`
+`cyclopscore-1.21.1-neoforge-1.29.4.jar`
 **Cyclops Core** é a biblioteca central do ecossistema CyclopsMC. Ela fornece APIs, configuração, network helpers, registries e outras estruturas compartilhadas por mods da família, como Integrated Dynamics/EvilCraft quando presentes.
-A versão atual da modlist é `1.29.3`. O fato de outras bibliotecas gerais existirem no pack não substitui sua API específica; sua função é exclusivamente infraestrutura para consumidores Cyclops.
+A versão atual da modlist é `1.29.4`. O fato de outras bibliotecas gerais existirem no pack não substitui sua API específica; sua função é exclusivamente infraestrutura para consumidores Cyclops.
 
 ## Forgified Fabric API — 0.116.15+2.3.5+1.21.1
 
@@ -77,3 +84,6 @@ A versão atual da modlist é `1.29.3`. O fato de outras bibliotecas gerais exis
 Ele não substitui o Connector: Forgified Fabric API fornece APIs; Connector realiza a camada de compatibilidade/carregamento necessária aos mods Fabric. A build atual é `0.116.15+2.3.5+1.21.1`.
 
 > **Componentes internos não contados como mods top-level:** Advanced AE pode embarcar/usar AE2AddonLib internamente, e o ecossistema AE2WTLib expõe APIs compartilhadas para seus consumidores. Como esses nomes não correspondem a JARs top-level independentes da modlist atual, ficam registrados apenas como contexto técnico e não como entradas de mod do catálogo.
+
+
+---

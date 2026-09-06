@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -19,9 +19,9 @@ A rede possui energia, cabos, dispositivos, interfaces e uma arquitetura baseada
 O autocrafting é uma das funções mais importantes: receitas são gravadas em patterns e o sistema calcula ingredientes, subcomponentes e etapas necessárias. Com integrações do seu pack, AE2 também passa a interagir com processos do Create e até armazenar/transmitir grandezas relacionadas à rotação.
 AE2 também possui **Spatial Storage**, capaz de capturar regiões do mundo em células espaciais, além de P2P tunnels, subnetworks e ferramentas de diagnóstico para redes complexas.
 
-## Oritech — 1.2.10
+## Oritech — 1.2.12
 
-`oritech-neoforge-1.21.1-1.2.10.jar`
+`oritech-neoforge-1.21.1-1.2.12.jar`
 **Oritech** é um sistema tecnológico mais tradicional, baseado em **máquinas animadas, energia, processamento avançado e equipamentos**. Ele complementa Create oferecendo máquinas especializadas e uma progressão industrial própria, com processamento de recursos, infraestrutura energética e tecnologia de alto nível.
 Sua identidade visual é de maquinaria industrial compacta, mas com animações e componentes visíveis. A progressão leva o jogador de processamento básico para sistemas cada vez mais avançados, incluindo máquinas de fabricação, geração e armazenamento de energia, ferramentas e equipamentos tecnológicos.
 No pack, ele funciona como uma segunda linguagem tecnológica: Create resolve problemas por cinética e montagem física; Oritech resolve muitos deles através de máquinas energizadas especializadas.
@@ -46,18 +46,18 @@ Como o conteúdo passa a existir em espaços coordenados próprios, outros mods 
 **Sable Assembly Fix** é um patch server-side para o ciclo de montagem e desmontagem de estruturas Sable/Create Aeronautics. Ele evita duplicação de itens quando block entities de outros mods possuem inventário, mas não implementam corretamente o contrato `Clearable`: sem o patch, o conteúdo pode ser preservado na estrutura montada e ao mesmo tempo dropado durante a desmontagem.
 A correção é genérica e foi feita para cobrir inventários modded como kegs, cabinets, baskets, Item Drains e storages compatíveis, sem adicionar um novo sistema de armazenamento ou de física. Sua função é preservar a integridade de inventários durante `assembly/disassembly` no stack móvel. A build instalada é `1.0.0` para NeoForge 1.21.1 e depende do stack Sable + Create + Create Aeronautics.
 
-## Create Aeronautics — 1.3.1
+## Create Aeronautics — 1.3.2
 
-`create-aeronautics-bundled-1.21.1-1.3.1.jar`
+`create-aeronautics-bundled-1.21.1-1.3.2.jar`
 **Create Aeronautics** usa Create e Sable para transformar construções de blocos em **veículos físicos montados pelo jogador**. Não há chassis pré-fabricado obrigatório: corpo, propulsão, controle, armazenamento e máquinas podem ser organizados como parte da própria construção antes da montagem.
 O bundle reúne três linhas principais. **Simulated** fornece a base de montagem e interação com contraptions físicas; **Aeronautics** acrescenta voo e sustentação, incluindo propellers e mecanismos de hot air; **Offroad** acrescenta rodas, pneus, direção e componentes para veículos terrestres. A própria página oficial descreve o escopo indo de aviões, drones e balões a carros e caminhões.
-As contraptions podem continuar contendo máquinas e logística do Create enquanto se movem. A versão 1.3.1 também registra correções para Docking Connector/fluidos, compatibilidade CC e parâmetros de atrito de pneus, reforçando que movimento, docking e sistemas internos do veículo fazem parte da simulação funcional.
+As contraptions podem continuar contendo máquinas e logística do Create enquanto se movem. A versão 1.3.2 também registra correções para Docking Connector/fluidos, compatibilidade CC e parâmetros de atrito de pneus, reforçando que movimento, docking e sistemas internos do veículo fazem parte da simulação funcional.
 
-## Create Tracks+ — 1.0.6b
+## Create Tracks+ — 1.0.6b6
 
-`tracks_plus-1.0.6b.jar`
+`tracks_plus-1.0.6b6.jar`
 **Create Tracks+** é um fork/addon de lagartas físicas voltado ao stack **Create Aeronautics + Sable**. Ele adiciona conjuntos de tracks/esteiras para veículos, com geometria retrabalhada, track mounts, suspensão de maior curso e interação física com o terreno, permitindo que veículos transponham obstáculos usando o contato das lagartas em vez de tratar as tracks apenas como rodas visuais.
-A build instalada é `1.0.6b`, linha beta para NeoForge 1.21.1. O projeto declara dependência de Create, Create Aeronautics e Sable e também declara **incompatibilidade com o Create:Tracks original**, pois este fork ocupa o mesmo papel funcional. Portanto esta entrada representa o provider de tracks presente no pack, não uma segunda instalação paralela do mod original.
+A build instalada é `1.0.6b6`, linha beta para NeoForge 1.21.1. O projeto declara dependência de Create, Create Aeronautics e Sable e também declara **incompatibilidade com o Create:Tracks original**, pois este fork ocupa o mesmo papel funcional. Portanto esta entrada representa o provider de tracks presente no pack, não uma segunda instalação paralela do mod original.
 
 ## Immersive Aeronautics — runtime 6.0.7
 
@@ -99,3 +99,13 @@ A linha 0.6 inclui Electric Pump, Energy Meter, FE Inverter, Large Induction Rot
 **Create Nuclear** implementa uma cadeia de **fissão nuclear integrada ao Create**. O worldgen adiciona **Uranium e Thorium**, e o combustível depende de etapas de refino que podem ser automatizadas antes de chegar ao reator.
 O reator é uma instalação industrial cujo desempenho depende da montagem e do ciclo de combustível; um projeto otimizado pode produzir milhões de **Stress Units**, convertendo a cadeia nuclear diretamente em capacidade cinética para a fábrica Create. O sistema também incorpora os perigos associados à radiação e ao funcionamento inadequado do reator, de modo que energia nuclear não é representada apenas por um bloco gerador isolado.
 O JAR `1.3.2-beta.3` é a última build NeoForge publicada para **Minecraft 1.21.1** e permanece classificado como beta. O projeto já possui uma linha 2.x mais nova para Forge 1.20.1, mas ela é outra plataforma/versão de jogo e não representa a build instalada neste pack.
+
+
+## Clockwork — 1.1.4
+
+`clockwork-neoforge-1.21.1-1.1.4.jar`
+**Clockwork** é um mod tecnológico standalone inspirado em tecnologia mecânica/fantástica, e não um addon de Create. A build atual adiciona ferramentas, armas e utilidades mecânicas: Clockwork Drill, crossbows com escopo ou recarga automática, Potion Sprayer, seeking Clockwork Arrows, Clockwork Wings, Flamethrower e a Clockwork Dragonfly reparável/domesticável.
+
+Para integração, suas capacidades devem ser tratadas item a item. A presença do tema “clockwork” não autoriza converter o mod em stress/FE, nem associá-lo ao pipeline do Create. A versão instalada é `1.1.4` para NeoForge 1.21.1.
+
+---
