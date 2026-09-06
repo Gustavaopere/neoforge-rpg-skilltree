@@ -77,9 +77,9 @@ final class BlacksmithPersistenceContractTest {
     }
 
     @Test
-    void dataComponentRegistryUsesStableBlacksmithIds() {
-        assertEquals(id("rpgskilltree", "blacksmith_part_state"), BlacksmithDataComponents.PART_STATE.getId());
-        assertEquals(id("rpgskilltree", "blacksmith_composition"), BlacksmithDataComponents.COMPOSITION.getId());
+    void dataComponentRegistryUsesStableBlacksmithIdsWithoutNeoForgeBootstrap() {
+        assertEquals(id("rpgskilltree", "blacksmith_part_state"), BlacksmithComponentIds.PART_STATE);
+        assertEquals(id("rpgskilltree", "blacksmith_composition"), BlacksmithComponentIds.COMPOSITION);
     }
 
     private static BlacksmithPartState partState(int schemaVersion) {

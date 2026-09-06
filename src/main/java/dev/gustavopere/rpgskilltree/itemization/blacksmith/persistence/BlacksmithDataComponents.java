@@ -16,13 +16,13 @@ public final class BlacksmithDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlacksmithPartState>> PART_STATE =
         COMPONENTS.registerComponentType(
-            "blacksmith_part_state",
+            BlacksmithComponentIds.PART_STATE.getPath(),
             builder -> builder.persistent(BlacksmithCodecs.PART_STATE).cacheEncoding()
         );
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlacksmithComposition>> COMPOSITION =
         COMPONENTS.registerComponentType(
-            "blacksmith_composition",
+            BlacksmithComponentIds.COMPOSITION.getPath(),
             builder -> builder.persistent(BlacksmithCodecs.COMPOSITION).cacheEncoding()
         );
 
