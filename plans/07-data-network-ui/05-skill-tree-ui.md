@@ -1,578 +1,538 @@
 # 07.05 — Skill Tree UI — Cosmograma Unificado, Constelações de Classe e Árvores Simbólicas
 
-> **Status:** PLANEJADO / ABERTO — contrato de design aprovado para implementação futura.  
-> **Baseline de planejamento:** `main@4d7aa9577571ee302c44b3384a984ffda4c742ae`.  
+> **Status:** PLANEJADO / ABERTO — design-alvo completo; execução bloqueada pelos gates desta seção.  
+> **Baseline auditado para este plano:** `main@4d7aa9577571ee302c44b3384a984ffda4c742ae`.  
 > **Plataforma:** Minecraft 1.21.1, NeoForge 21.1.x, Java 21.  
-> **Para agentes de implementação:** executar em TDD, preservar autoridade server-side e tratar este arquivo como contrato do Stage 07.05. Não criar nodes, classes, especializações, recursos ou efeitos de gameplay apenas para preencher uma forma visual.
+> **Escopo:** UI/layout/navegação. Este plano não cria gameplay por estética.
 
-## 1. Objetivo
+## 0. Gates arquiteturais que vêm ANTES da implementação completa
 
-Transformar a progressão do RPG Skill Tree em um **único cosmograma navegável**, legível do macro ao micro, no qual a própria geometria da árvore comunica a identidade da build:
+Este arquivo registra o **design final desejado** da interface para que a visão não se perca, mas ele **não autoriza pular o `docs/MASTER_PLAN.md` nem as ADRs abertas**.
 
-1. **Árvore 1 — Atributos** ocupa o núcleo central;
-2. **Árvore 2 — Perks Principais** forma o grande corpo radial intermediário com os 11 domínios canônicos;
-3. **Classes emergentes** aparecem como constelações/âncoras na periferia da Árvore 2, sem virar escolha inicial nem lock;
-4. **Árvore 3 — Especialistas** ocupa as extremidades e cada especialização é desenhada por seus próprios nodes/conexões como um símbolo reconhecível — chama, gota, pentagrama, floco, engrenagem, asa, circuito, arco etc.;
-5. zoom, LOD, culling e estados visuais permitem navegar uma árvore muito grande sem esconder requisitos nem comprometer performance;
-6. nenhuma decisão visual concede progressão localmente: compra, respec, gates, classes, Mastery, disponibilidade de provider e especializações continuam server-authoritative.
+### 0.1 D001 é bloqueante
 
-A tela deve produzir a sensação de um grande mapa astral/arcano de progressão: à distância o jogador identifica **formas e regiões**; ao aproximar, identifica **classes, especializações, rotas e gateways**; em zoom próximo, manipula **nodes, ranks, custos, requisitos e tooltips**.
+`docs/decisions/README.md` mantém **D001 — Tree engine: Passive Skill Tree versus permanent custom UI — OPEN** e o `docs/MASTER_PLAN.md` exige um vertical slice antes de migrar a experiência inteira de 512 nodes.
 
----
+Portanto a ordem normativa é:
 
-## 2. Fontes de verdade e regra de precedência
+1. concluir os pré-requisitos de autoridade server→client exigidos pelas fases anteriores do Master Plan;
+2. construir **um único vertical slice comparável**:
+   - main tree;
+   - um gateway real;
+   - uma subtree real;
+   - purchase;
+   - respec;
+   - rule-revision sync;
+   - multiplayer/server authority;
+3. avaliar, para NeoForge 1.21.1, o candidato Passive Skill Tree disponível versus custom UI em:
+   - API;
+   - licença;
+   - capacidade de layout customizado;
+   - sync;
+   - maintainability;
+   - performance;
+   - UX;
+4. registrar ADR resolvendo D001;
+5. **só depois** executar a implementação integral descrita neste arquivo.
 
-Este plano é de **UI/layout**, não redefine gameplay.
+Se D001 selecionar uma implementação Passive Skill Tree extensível, o cosmograma deste plano deve ser implementado **sobre a API/extensões que a engine realmente permitir**. Se D001 selecionar custom UI, a arquitetura cliente descrita nas seções posteriores vira a direção permanente.
 
-Ordem obrigatória de autoridade durante a implementação:
+O design visual é canônico como **alvo de produto**; a escolha da engine continua condicionada à D001.
 
-1. estado e catálogos server-authoritative carregados pelo runtime atual;
-2. `src/main/resources/data/rpgskilltree/classes/` para classes realmente existentes;
-3. `src/main/resources/data/rpgskilltree/specializations/` para especializações realmente existentes;
-4. árvore principal, `node_rules`, skill definitions, tree architecture, topology validators e demais catálogos canônicos;
-5. `plans/04-classes-masteries-specializations/` para contratos já fechados de classes/subtrees/gateways;
-6. Documento Mestre no Notion para decisões-alvo ainda não materializadas;
-7. este arquivo para **composição visual, geometria, navegação e apresentação**.
+### 0.2 Não migrar IDs incidentalmente neste Stage
 
-A modlist anexada em 2026-09-06 possui **607 mods** e é mais recente que os snapshots de 2026-08-30 usados pelos guias consolidados. Portanto:
+As definições atuais usam strings como:
 
-- a UI não deve hardcodar presença de provider a partir dos guias;
-- versões e disponibilidade devem vir do runtime/catálogo sincronizado;
-- uma atualização de modlist não exige redesenhar a tela se IDs canônicos permanecem estáveis;
-- provider ausente/incompatível deve refletir o mesmo fail-closed do servidor, nunca ser “compensado” visualmente por unlock local.
+- `class_id: "technomancer"`;
+- `specialization_id: "irons_fire"`.
 
----
+Os loaders atuais preservam essas identidades. Portanto `ClassVisualDefinition.classId` e `SpecializationVisualDefinition.specializationId` devem usar **exatamente a representação de ID projetada pelo snapshot server-side daquela revisão**.
 
-## 3. Estado real do baseline que o plano deve preservar
+No baseline atual, os exemplos corretos são `technomancer` e `irons_fire`, sem prefixar `rpgskilltree:` por conta própria.
 
-### 3.1 Árvore principal
+IDs dos **assets puramente visuais** podem e devem ser namespaced, por exemplo `rpgskilltree:flame`.
 
-A arquitetura canônica atual declara 11 domínios:
+Se uma fase/ADR posterior migrar class/specialization IDs para `ResourceLocation`, essa migração deve acontecer primeiro no contrato persistido/server/network, com aliases e fixtures. 07.05 então apenas passa a consumir a nova projeção; a UI não inaugura a migração sozinha.
 
-- `MARTIAL`
-- `AGILITY`
-- `VITALITY`
-- `HEALING`
-- `ARCANE`
-- `ENGINEERING`
-- `MINING`
-- `SURVIVAL`
-- `SUMMONING`
-- `OCCULT`
-- `LOGISTICS`
+### 0.3 Árvore 3 exige topologia real
 
-A árvore principal possui contrato estrutural de **512 nodes**, root canônico, posições e conexões validadas. Este plano **não autoriza regenerar a topologia para deixá-la bonita**. A camada cosmográfica deve consumir a topologia existente e apenas projetá-la visualmente.
+As 25 definições atuais em `specializations/*.json` descrevem identidade, provider, mastery/gateway/eligibility, mas **não constituem 25 grafos compráveis de nodes/edges**.
 
-### 3.2 Classes materializadas na `main`
+Logo existem dois estados visuais diferentes:
 
-No baseline deste plano existem **23 definições de classe**:
+- **especialização sem subtree materializada:** pode possuir emblema/silhueta temática, gateway, status, tooltip e bridges visuais, mas NÃO fake nodes;
+- **especialização com subtree server-authoritative materializada:** seus nodes/edges reais podem ser distribuídos pelo template para formar o símbolo.
 
-`Arcanist`, `Beastmaster`, `Cleric`, `Druid`, `Duelist`, `Engineer`, `Geomancer`, `Guardian`, `Mage`, `Metamorph`, `Miner`, `Necromancer`, `Occultist`, `Paladin`, `Priest`, `Rogue`, `Sorcerer`, `Spellblade`, `Summoner`, `Survivor`, `Technomancer`, `Warlock` e `Warrior`.
+A meta do usuário — “a própria árvore da especialização formar uma chama, gota, pentagrama etc.” — continua sendo o **resultado final obrigatório**, porém a UI só pode alcançá-lo depois que a fase de gameplay adequada materializar a topologia real daquela especialização.
 
-O Documento Mestre mantém como alvo adicional:
-
-- **Ranger/Hunter** — classe planejada, ainda não deve ser mostrada como adquirível enquanto não existir no catálogo server-side;
-- **Death Knight** — classe planejada/condicional, só deve aparecer como classe interativa quando sua definição e integração Martial + Occult existirem de fato.
-
-Assim, o **catálogo visual alvo cobre 25 identidades de classe**, mas a tela só materializa como interativa a interseção com o catálogo recebido do servidor.
-
-Conceitos antigos já demovidos de classe não voltam a ser classe pela UI: `Industrialist`, `Prospector` e `Logistician` permanecem lanes/especializações conforme o Documento Mestre.
-
-### 3.3 Especializações materializadas na `main`
-
-No baseline existem **25 IDs de especialização**:
-
-- `ae2_networks`
-- `ars_amplification`
-- `ars_aoe`
-- `ars_control`
-- `ars_duration`
-- `ars_projectile`
-- `ars_summoning`
-- `create_aeronautics`
-- `create_artillery`
-- `create_automation`
-- `create_kinetics`
-- `epic_heavy`
-- `epic_ranged`
-- `epic_sword`
-- `irons_blood`
-- `irons_eldritch`
-- `irons_ender`
-- `irons_evocation`
-- `irons_fire`
-- `irons_holy`
-- `irons_ice`
-- `irons_lightning`
-- `irons_nature`
-- `oritech_mining`
-- `oritech_power`
-
-O renderer nunca inferirá que um nome temático é uma especialização real. Exemplo: o template visual `water_drop` pode existir desde o primeiro release do renderer para permitir uma futura Aquamancia, mas **não existe `Aquamante` interativo** enquanto o servidor não fornecer um ID canônico correspondente.
-
-### 3.4 Subtrees dedicadas já materializadas
-
-Quatro classes possuem subtrees dedicadas verificadas no contrato atual e devem receber representação simbólica fiel:
-
-- `Technomancer`: 17 nodes;
-- `Warlock`: 18 nodes;
-- `Druid`: 11 nodes;
-- `Metamorph`: 10 nodes.
-
-A UI deve preservar exatamente seus IDs, requisitos, escolhas e semântica de respec. Geometria nunca altera dependência nem exclusividade.
+Este plano define a geometria e o contrato de consumo; **não inventa a topologia**.
 
 ---
 
-## 4. Composição global do cosmograma
+## 1. Objetivo de produto
 
-### 4.1 Camadas radiais
+Transformar a progressão do RPG Skill Tree em um **único cosmograma navegável**, legível do macro ao micro:
 
-A cena usa quatro bandas lógicas, em coordenadas de mundo da UI e independentes da resolução física do monitor:
+1. **Árvore 1 — Atributos** no núcleo central;
+2. **Árvore 2 — Perks Principais** como corpo radial intermediário com os 11 domínios canônicos;
+3. **Classes emergentes** como constelações/âncoras na periferia da Árvore 2;
+4. **Árvore 3 — Especialistas** nas extremidades;
+5. quando uma especialização possuir subtree real, seus próprios nodes e edges devem compor uma silhueta temática reconhecível;
+6. quando ainda não possuir subtree, mostrar apenas o emblema/gateway/status real, sem fingir nodes;
+7. classes, multiclass, ranks, Mastery, provider availability, purchase e respec permanecem server-authoritative.
+
+Em zoom distante o jogador lê **formas e territórios**. Em zoom médio lê **classes, gateways e especializações**. Em zoom próximo lê **nodes, ranks, custos, requisitos e tooltips**.
+
+---
+
+## 2. Fontes de verdade e precedência
+
+A implementação deve obedecer, nesta ordem:
+
+1. snapshot/regras server-authoritative da revisão atual;
+2. class definitions e specialization definitions realmente publicadas pelo servidor;
+3. grafos reais de main tree/class subtrees/specialist subtrees;
+4. `plans/04-classes-masteries-specializations/` e contratos já fechados;
+5. `docs/MASTER_PLAN.md`, ADRs e `AGENTS.md` para ordem de execução/invariantes;
+6. Documento Mestre no Notion para design-alvo ainda não materializado;
+7. este arquivo para composição visual/layout/UX.
+
+### 2.1 Modlist atual
+
+A modlist anexada em 2026-09-06 registra **607 mods**, sendo mais recente que os snapshots de 2026-08-30 dos guias consolidados.
+
+Consequências:
+
+- nenhuma disponibilidade de provider é hardcoded na UI a partir dos guias;
+- versão/presença/capability vêm da projeção server-side;
+- drift de modlist não exige redesenho quando IDs canônicos permanecem estáveis;
+- provider ausente/incompatível reflete o fail-closed do runtime.
+
+---
+
+## 3. Estado real do baseline
+
+### 3.1 Main tree
+
+A arquitetura atual possui 11 domínios:
+
+`MARTIAL`, `AGILITY`, `VITALITY`, `HEALING`, `ARCANE`, `ENGINEERING`, `MINING`, `SURVIVAL`, `SUMMONING`, `OCCULT`, `LOGISTICS`.
+
+O contrato existente valida uma main tree de **512 nodes**. 07.05 não redesenha essa topologia para caber numa figura bonita.
+
+### 3.2 Classes reais
+
+Existem 23 class definitions na `main` do baseline:
+
+1. Arcanist
+2. Beastmaster
+3. Cleric
+4. Druid
+5. Duelist
+6. Engineer
+7. Geomancer
+8. Guardian
+9. Mage
+10. Metamorph
+11. Miner
+12. Necromancer
+13. Occultist
+14. Paladin
+15. Priest
+16. Rogue
+17. Sorcerer
+18. Spellblade
+19. Summoner
+20. Survivor
+21. Technomancer
+22. Warlock
+23. Warrior
+
+O design consolidado ainda prevê:
+
+24. Ranger/Hunter — planejada;
+25. Death Knight — planejada/condicional.
+
+Essas duas só aparecem como classe interativa quando existirem no catálogo server-side.
+
+### 3.3 Taxonomia que NÃO deve voltar a ser classe por causa da UI
+
+- Industrialist → lane/especialização;
+- Prospector → lane/especialização;
+- Logistician → lane/especialização.
+
+`Artificer` não é contado nas 25 acima porque D014 continua aberta. 07.05 deve tratar Artificer como **sem binding de classe** até a ADR decidir se é classe, especialização, gateway/provider identity ou artefato de compatibilidade.
+
+### 3.4 Especializações atuais
+
+Existem 25 specialization definitions:
+
+`ae2_networks`, `ars_amplification`, `ars_aoe`, `ars_control`, `ars_duration`, `ars_projectile`, `ars_summoning`, `create_aeronautics`, `create_artillery`, `create_automation`, `create_kinetics`, `epic_heavy`, `epic_ranged`, `epic_sword`, `irons_blood`, `irons_eldritch`, `irons_ender`, `irons_evocation`, `irons_fire`, `irons_holy`, `irons_ice`, `irons_lightning`, `irons_nature`, `oritech_mining`, `oritech_power`.
+
+No baseline, essas definições **não equivalem a 25 subtrees compráveis**. Esta distinção é obrigatória em todo o renderer.
+
+### 3.5 Subtrees de classe materializadas
+
+O contrato atual já materializa subtrees dedicadas para:
+
+- Technomancer — 17 nodes;
+- Warlock — 18 nodes;
+- Druid — 11 nodes;
+- Metamorph — 10 nodes.
+
+Essas podem ser o primeiro material real para testar layout simbólico sem inventar gameplay.
+
+---
+
+## 4. Composição espacial final
+
+### 4.1 Bandas
 
 ```text
-R0 — núcleo                         Árvore 1 / Atributos
-R1 — corpo radial                   Árvore 2 / 11 domínios / 512 nodes
-R2 — cinturão de constelações       Classes emergentes e subtrees dedicadas
-R3 — coroa externa                  Árvore 3 / especializações simbólicas
+R0  Núcleo                  Árvore 1 — Atributos
+R1  Corpo radial            Árvore 2 — Perks Principais / 11 domínios
+R2  Cinturão de classes     Constelações de classes emergentes
+R3  Coroa externa           Árvore 3 — Especialistas
 ```
 
-Não são quatro sistemas de progressão. São quatro **camadas de apresentação de um estado canônico único**.
+Essas bandas são apresentação de um estado único, não quatro progressões concorrentes.
 
-### 4.2 Regra de identidade única
+### 4.2 Identidade única
 
-Cada node, classe e especialização possui uma única identidade canônica.
-
-É proibido:
-
-- duplicar um node comprável em dois lugares como duas instâncias independentes;
-- mostrar duas cópias de `irons_holy` porque Priest e Paladin podem alcançá-lo;
-- criar um segundo rank visual para o mesmo node;
-- representar uma classe compartilhada por “clones” diferentes por domínio.
-
-Quando várias classes se ligam à mesma especialização, existe **um único glifo de especialização** e múltiplas bridges visuais até ele.
-
-### 4.3 Regra de topologia antes da estética
-
-Pipeline obrigatório:
+Regra:
 
 ```text
-catálogos + topologia server-authoritative
-                ↓
-        SceneAssembler
-                ↓
-   identidade / função / gates
-                ↓
-    CosmogramPlacementResolver
-                ↓
- ShapeTemplate / coordenadas visuais
-                ↓
-             Renderer
+1 canonical gameplay id = 1 interactive visual instance
 ```
 
-Nunca o inverso. Um pentagrama não pode criar uma quinta dependência; uma chama não pode mover o capstone para outro caminho se isso altera a ordem de aquisição.
+É proibido duplicar uma especialização porque várias classes apontam para ela. Múltiplas classes usam bridges até o mesmo glifo.
 
-### 4.4 Âncoras dos 11 domínios
+### 4.3 Posição de classe
 
-O corpo radial da Árvore 2 continua organizado pelos domínios existentes. O layout cosmográfico deriva um `DomainAnchor(angle, radius)` para cada domínio a partir do blueprint/layout canônico, não de uma enum duplicada dentro da tela.
+A posição da classe é calculada **a partir de `required_completed_domains` e demais metadados server-projected da definição atual**, não a partir do texto temático deste documento.
 
-Classes de um único domínio ficam próximas ao arco desse domínio. Classes híbridas ficam no bissetor ponderado dos domínios que as formam. Classes de três domínios usam centróide angular e banda radial externa para evitar cruzamentos com classes simples.
+A tabela de classes abaixo descreve a fantasia visual. Em caso de drift, o catálogo server-side sempre vence.
 
----
-
-## 5. Gramática visual dos nodes
-
-A função mecânica do node deve ser reconhecível sem depender apenas de cor.
-
-| Função | Forma base | Peso visual | Regra |
-|---|---|---:|---|
-| caminho / small passive | círculo pequeno | 1× | conexão e rank legíveis em zoom próximo |
-| ranked passive | círculo com anéis | 1.15× | anéis representam ranks possíveis, não ranks inventados |
-| bridge | losango/elo | 1.1× | sempre preserva custo/rota real |
-| gateway | hexágono/portal | 1.4× | ponto de entrada para classe/especialização/sistema |
-| notable | círculo ornamentado | 1.5× | identidade mecânica mais forte |
-| keystone | polígono/runa | 1.8× | regra de gameplay relevante |
-| capstone | emblema maior | 2.2× | landmark final do ramo/subtree |
-
-Acessibilidade exige diferenças de forma/contorno além de cor.
+Classes de domínio único ficam próximas ao arco daquele domínio. Híbridas ficam no bissetor/centróide dos domínios realmente exigidos. O solver pode mudar raio/ângulo fino para evitar colisão, sem sugerir requisitos falsos.
 
 ---
 
-## 6. Estados visuais obrigatórios
+## 5. Gramática dos nodes
 
-Cada entidade visual possui um estado derivado do snapshot sincronizado.
-
-### 6.1 Nodes
-
-- `UNKNOWN/HIDDEN`: somente quando a regra de descoberta do servidor realmente permite ocultação;
-- `VISIBLE_LOCKED`: conhecido, requisitos incompletos;
-- `AVAILABLE`: comprável pelo estado atual;
-- `INVESTED_PARTIAL`: rank > 0 e < max;
-- `INVESTED_MAX`: rank máximo;
-- `INVALIDATED/RECONCILING`: estado transitório somente enquanto snapshot muda, nunca persistido como gameplay;
-- `PROVIDER_UNAVAILABLE`: funcionalidade existe em dados, mas gate runtime está fail-closed.
-
-### 6.2 Classes
-
-- inexistente no catálogo: **não renderizar como classe ativa**;
-- conhecida, não elegível: constelação apagada + requisitos;
-- elegível/emergente: contorno ativo;
-- atualmente satisfeita: símbolo de classe aceso;
-- perdida após respec: atualização imediata a partir do novo snapshot;
-- multiclass: todas as identidades satisfeitas permanecem acesas simultaneamente.
-
-### 6.3 Especializações
-
-Usar exatamente a distinção server-side entre definição e disponibilidade. A UI deve poder apresentar:
-
-- definição desconhecida/inexistente;
-- definição conhecida, provider ausente;
-- provider presente, adapter incompleto/incompatível;
-- gateway disponível, requisitos ainda não satisfeitos;
-- gateway disponível e elegível;
-- investida parcialmente;
-- completa.
-
-A forma inteira pode iluminar progressivamente conforme nodes reais são adquiridos, mas essa iluminação é só derivação visual.
-
----
-
-## 7. Biblioteca canônica de formas da Árvore 3
-
-Os próprios nodes e arestas formam o símbolo. Background art pode reforçar a silhueta, mas nunca substituir a estrutura interativa.
-
-Cada `ShapeTemplate` define:
-
-- `id` estável;
-- `outlinePath` normalizado em `[-1, +1]`;
-- `skeletonLanes` para acomodar caminhos reais;
-- `landmarks` semânticos (`gateway`, `notable`, `keystone`, `capstone`, `branch_tip`, `hub`);
-- simetria permitida;
-- rotação preferida;
-- aspect ratio;
-- densidade máxima antes de subdividir uma lane;
-- margem de hitbox;
-- versão do schema visual.
-
-### 7.1 Mapeamento obrigatório das 25 especializações atuais
-
-| ID canônico | Template visual | Silhueta |
+| Função real | Forma visual | Regra |
 |---|---|---|
-| `ae2_networks` | `network_hex` | hexágono/circuito interligado |
-| `ars_amplification` | `amplification_star` | estrela crescente/raios convergentes |
-| `ars_aoe` | `concentric_rings` | círculos de área concêntricos |
-| `ars_control` | `control_knot` | nó/runa de contenção |
-| `ars_duration` | `hourglass_loop` | ampulheta/loop temporal |
-| `ars_projectile` | `arcane_projectile` | projétil/seta arcana |
-| `ars_summoning` | `summoning_circle` | círculo de invocação |
-| `create_aeronautics` | `wing_propeller` | asa/hélice |
-| `create_artillery` | `artillery_reticle` | mira/canhão estilizado |
-| `create_automation` | `automation_loop` | loop de linha de montagem |
-| `create_kinetics` | `gear` | engrenagem |
-| `epic_heavy` | `heavy_hammer` | martelo/cabeça pesada |
-| `epic_ranged` | `bow_arrow` | arco e flecha |
-| `epic_sword` | `sword_blade` | lâmina vertical |
-| `irons_blood` | `blood_drop` | gota de sangue |
-| `irons_eldritch` | `eldritch_pentagram` | pentagrama/estrela abissal |
-| `irons_ender` | `ender_eye_portal` | olho/portal Ender |
-| `irons_evocation` | `evocation_burst` | explosão/runa radial |
-| `irons_fire` | `flame` | chama/fagulha |
-| `irons_holy` | `holy_halo` | halo/selo solar |
-| `irons_ice` | `snowflake` | floco de neve |
-| `irons_lightning` | `lightning_bolt` | raio |
-| `irons_nature` | `leaf_branch` | folha/ramo |
-| `oritech_mining` | `mining_crystal` | cristal/ponta de picareta |
-| `oritech_power` | `power_coil` | bobina/raio industrial |
+| Small/path | círculo pequeno | caminho legível |
+| Ranked Passive | círculo com anéis | anéis refletem ranks reais |
+| Bridge | elo/losango | não cria atalho |
+| Gateway | hexágono/portal | entrada real |
+| Notable | medalhão | maior saliência |
+| Keystone | runa/polígono | regra relevante |
+| Capstone | emblema grande | final real da subtree |
 
-### 7.2 Templates antecipatórios permitidos
-
-É permitido incluir templates visuais não ligados a gameplay atual para evitar refazer o motor de layout futuramente, por exemplo:
-
-- `water_drop` — futura fantasia aquática/Aquamancia;
-- `wind_spiral` — vento/aeromancia;
-- `skull_ossuary` — necromancia;
-- `shield` — defesa;
-- `claw` — Beastmaster;
-- `mask` — Metamorph;
-- `mountain_crystal` — Geomancer.
-
-Regra rígida: **template sem binding canônico não cria entrada na UI, gateway, classe ou especialização.**
+A informação crítica nunca depende apenas de cor.
 
 ---
 
-## 8. Catálogo visual completo das classes
+## 6. Catálogo visual COMPLETO de classes
 
-A geometria abaixo é **macrovisual**. Ela não altera o conteúdo da classe. Cada classe recebe uma constelação própria; quando ainda não existe subtree dedicada, a constelação projeta seus caminhos/gates reais sem criar nodes novos.
+Todos os posicionamentos finais são derivados do servidor. “Vizinhança temática” abaixo serve apenas à forma macro e ao roteamento visual.
 
-### 8.1 Warrior
+### 6.1 Warrior
 
-- Estado no baseline: classe presente.
-- Âncora principal: `MARTIAL`.
-- Silhueta macro: **espada larga / chevron de avanço**.
-- Organização visual: tronco central representa compromisso Martial; ramos laterais recebem categorias de arma elegíveis.
-- Especializações atuais que podem aparecer se o resolver autorizar: `epic_sword`, `epic_heavy`; outras ficam condicionadas ao catálogo real.
-- Capstone visual, se existir no contrato da classe: ponta superior da lâmina.
-- Regra: não substituir skillbooks/movesets do Epic Fight por nodes visuais inventados.
+- Baseline: presente.
+- Forma macro: **espada larga / chevron de avanço**.
+- Vizinhança temática: Martial.
+- Specialist links: qualquer arma/especialização realmente elegível; `epic_sword`/`epic_heavy` são candidatos naturais, mas o renderer não inventa o gate.
+- Nodes reais sempre preservam topologia/custo.
 
-### 8.2 Guardian
+### 6.2 Guardian
 
-- Estado: classe presente.
-- Âncoras: `MARTIAL + VITALITY`.
-- Silhueta macro: **escudo segmentado**.
-- Ramos: guarda/impacto/estabilidade de um lado; resistência/vida do outro, somente quando os nodes reais existirem.
-- Especializações compartilhadas são conectadas por bridges, nunca clonadas.
-- A borda do escudo é ideal para Notables; centro para Keystone/Capstone se o contrato real os possuir.
+- Baseline: presente.
+- Forma: **escudo segmentado**.
+- Fantasia: defesa física, estabilidade e Vitality/Martial conforme definição real.
+- Notables podem ocupar a borda; Keystone/Capstone podem ocupar o centro somente quando a topologia disser isso.
 
-### 8.3 Duelist
+### 6.3 Duelist
 
-- Estado: classe presente.
-- Âncoras: `MARTIAL + AGILITY`.
-- Silhueta macro: **duas lâminas cruzadas / X estreito**.
-- O cruzamento representa a confluência entre precisão/timing e Martial.
-- `epic_sword` pode se conectar se elegível; o renderer não presume esse gate.
-- Ramos opostos devem manter leitura bilateral e evitar sobreposição de hitboxes no centro.
+- Baseline: presente.
+- Forma: **duas lâminas cruzadas**.
+- Fantasia: Martial + Agility.
+- O cruzamento visual representa confluência, não um node gratuito.
 
-### 8.4 Rogue
+### 6.4 Rogue
 
-- Estado: classe presente.
-- Âncora principal: `AGILITY`, com bridges para identidades secundárias quando o servidor declarar.
-- Silhueta macro: **adaga / losango quebrado**.
-- Layout favorece caminhos estreitos e bifurcações rápidas sem alterar custo real.
-- Especializações Ender ou ranged só ligam quando o resolver server-side efetivamente permitir.
+- Baseline: presente.
+- Forma: **adaga / losango quebrado**.
+- Fantasia: mobilidade, precisão, oportunidade.
+- Ender/ranged só conectam se o servidor autorizar.
 
-### 8.5 Ranger/Hunter
+### 6.5 Ranger/Hunter
 
-- Estado: **alvo planejado; ausente do catálogo baseline**.
-- Âncoras-alvo: `AGILITY + SURVIVAL`.
-- Silhueta macro: **arco tensionado com flecha**.
-- `epic_ranged` é o glifo natural de conexão quando houver classe/gate real.
-- Enquanto a classe não existir no servidor, não há card interativo, caminho comprável ou falsa indicação de unlock.
+- Baseline: planejada, ausente do catálogo.
+- Forma-alvo: **arco tensionado com flecha**.
+- Fantasia consolidada: Agility + Survival.
+- `epic_ranged` pode ser satélite quando a classe existir e o gate real permitir.
+- Antes disso, não existe área comprável para a classe.
 
-### 8.6 Arcanist
+### 6.6 Arcanist
 
-- Estado: classe presente.
-- Âncora: `ARCANE` profundo.
-- Silhueta macro: **círculo arcano com runas concêntricas**.
-- Deve funcionar como grande hub para escolas/semânticas mágicas sem duplicá-las.
-- Especializações Iron e Ars ficam em glifos próprios e podem compartilhar conexão com Mage/Sorcerer/Cleric conforme o resolver.
+- Baseline: presente.
+- Forma: **círculo arcano concêntrico**.
+- Função visual: hub para caminhos mágicos sem duplicar escolas.
+- Schools/glyph semantics ficam em glifos próprios.
 
-### 8.7 Mage
+### 6.7 Mage
 
-- Estado: classe presente.
-- Âncora: `ARCANE`.
-- Silhueta macro: **estrela arcana multifacetada**.
-- Cada ponta é um corredor visual possível para uma escola/especialização real; número de pontas não define número de escolas.
-- Evitar hardcode “uma ponta = um provider”. O catálogo define o que existe.
+- Baseline: presente.
+- Forma: **estrela arcana multifacetada**.
+- Pontas são lanes visuais, não número fixo de escolas/providers.
 
-### 8.8 Sorcerer
+### 6.8 Sorcerer
 
-- Estado: classe presente.
-- Âncora: `ARCANE` com foco ofensivo/intensidade conforme os gates reais.
-- Silhueta macro: **espiral/cometa**.
-- Especializações como `ars_amplification`, `ars_aoe` ou escolas ofensivas podem orbitar o arco se elegíveis.
-- A espiral é apresentação; não cria stacking, carga ou recurso próprio.
+- Baseline: presente.
+- Forma: **espiral/cometa**.
+- `ars_amplification`, `ars_aoe` e escolas ofensivas podem orbitar somente se elegíveis.
+- A espiral não cria carga/recurso novo.
 
-### 8.9 Priest
+### 6.9 Priest
 
-- Estado: classe presente.
-- Âncora: `HEALING/HOLY` conforme requisito real.
-- Silhueta macro: **halo radiante / círculo aberto**.
-- `irons_holy` é um glifo externo compartilhável, não propriedade exclusiva da classe.
-- Ramos de suporte devem ficar visualmente legíveis sem sugerir que abrir o halo concede aura automaticamente.
+- Baseline: presente.
+- Forma: **halo radiante**.
+- Holy/support aparecem por gates reais.
+- `irons_holy` é compartilhável, não propriedade exclusiva de Priest.
 
-### 8.10 Cleric
+### 6.10 Cleric
 
-- Estado: classe presente.
-- Âncoras: `HEALING + ARCANE/HOLY`.
-- Silhueta macro: **selo sagrado / cálice geométrico**.
-- `irons_holy` conecta pela região superior do selo.
-- Bridges com Paladin e Priest permanecem arestas canônicas ou projeções visuais das relações reais; nunca atalhos compráveis novos.
+- Baseline: presente.
+- Forma: **selo sagrado / cálice geométrico**.
+- Bridges com Priest/Paladin representam relações reais, nunca atalhos novos.
 
-### 8.11 Paladin
+### 6.11 Paladin
 
-- Estado: classe presente.
-- Âncoras: `MARTIAL + VITALITY + HEALING/HOLY` conforme definição real.
-- Silhueta macro: **escudo solar com lâmina central**.
-- `irons_holy` pode ser conectado de um lado e especialização de arma do outro quando elegíveis.
-- A composição deve tornar evidente a identidade híbrida sem fundir Holy e defesa física no mesmo recurso.
+- Baseline: presente.
+- Forma: **escudo solar com lâmina central**.
+- Pode ligar Martial e Holy quando o snapshot permitir.
+- Resistência física, Holy e healing continuam semanticamente distintos.
 
-### 8.12 Engineer
+### 6.12 Engineer
 
-- Estado: classe presente.
-- Âncora: `ENGINEERING`.
-- Silhueta macro: **engrenagem técnica com trilhas de circuito**.
-- Especializações atuais potencialmente relacionadas por gate real: `create_kinetics`, `create_automation`, `create_aeronautics`, `create_artillery`, `oritech_power`, `ae2_networks`.
-- A UI deve mostrar provider unavailable/adapter incomplete conforme snapshot; não prometer integração porque o ícone existe.
+- Baseline: presente.
+- Forma: **engrenagem com trilhas de circuito**.
+- Satélites possíveis conforme gates reais: Create, AE2, Oritech e outros specialist IDs existentes.
+- Provider presente não equivale a adapter disponível.
 
-### 8.13 Miner
+### 6.13 Miner
 
-- Estado: classe presente.
-- Âncora: `MINING`.
-- Silhueta macro: **picareta/cristal estratificado**.
-- `oritech_mining` pode ocupar cristal externo quando o resolver autorizar.
-- `Prospector` permanece lane/especialização, não classe.
-- Geologia/prospecção só aparecem quando há provider/boundary canônico; UI não inventa scanner.
+- Baseline: presente.
+- Forma: **picareta/cristal estratificado**.
+- `oritech_mining` pode conectar quando elegível.
+- Prospector continua lane/especialização.
+- Nenhum scanner/geologia é inferido visualmente.
 
-### 8.14 Survivor
+### 6.14 Survivor
 
-- Estado: classe presente.
-- Âncora: `SURVIVAL`.
-- Silhueta macro: **bússola/fogueira em rosa dos ventos**.
-- Setores visuais podem receber temperatura, sede, nutrição, exploração ou outras lanes somente se existirem como nodes/gates reais.
-- Estados corporais permanecem nos providers canônicos; o cosmograma não cria barra paralela.
+- Baseline: presente.
+- Forma: **bússola/fogueira em rosa dos ventos**.
+- Setores podem representar lanes reais de temperatura/sede/nutrição/exploração quando existirem.
+- UI nunca cria segundo estado corporal.
 
-### 8.15 Summoner
+### 6.15 Summoner
 
-- Estado: classe presente.
-- Âncora: `SUMMONING`.
-- Silhueta macro: **círculo de invocação com órbitas de minions**.
-- Identidade deliberadamente provider-agnostic.
-- `ars_summoning` é um glifo atual possível; Goety/outros providers continuam com ownership/recurso nativo.
-- Uma órbita não equivale a slot de summon salvo se o servidor disser isso.
+- Baseline: presente.
+- Forma: **círculo de invocação com órbitas**.
+- Provider-agnostic.
+- `ars_summoning` pode conectar quando elegível.
+- Uma órbita não implica slot real de summon.
 
-### 8.16 Beastmaster
+### 6.16 Beastmaster
 
-- Estado: classe presente.
-- Âncoras: `SURVIVAL + SUMMONING`.
-- Silhueta macro: **pata/garra formada por cinco clusters**.
-- Clusters refletem categorias reais de companion quando existirem; não criar cinco tipos mecânicos só porque a pata tem cinco pontas.
-- `irons_nature` pode conectar visualmente quando elegível, mas companion animal não vira spell summon por associação estética.
+- Baseline: presente.
+- **Definição atual verificada:** `required_completed_domains = [AGILITY, SUMMONING]`.
+- Forma: **pata/garra formada por clusters**.
+- A posição final deve ser derivada dessas exigências sincronizadas; a associação temática antiga com Survival não pode deslocar a classe para um setor que contradiga o servidor.
+- Companion animal não vira spell summon por semelhança estética.
 
-### 8.17 Druid
+### 6.17 Druid
 
-- Estado: classe presente; subtree dedicada atual com 11 nodes.
-- Âncoras: `SURVIVAL/NATURE`, com integrações de `HEALING/SUMMONING` quando reais.
-- Silhueta macro: **árvore/folha ramificada**.
-- Os 11 nodes atuais devem ser encaixados sem mudar suas dependências.
-- `irons_nature` e `ars_summoning` podem ligar como especializações externas se os gates reais permitirem.
-- Wild Shape e permissões de forma continuam server-authoritative.
+- Baseline: presente; subtree real de 11 nodes.
+- Forma: **árvore/folha ramificada**.
+- É candidata prioritária ao vertical slice de shape fitting se a engine escolhida suportar o mesmo contrato.
+- Wild Shape/permissões continuam server-authoritative.
 
-### 8.18 Occultist
+### 6.18 Occultist
 
-- Estado: classe presente.
-- Âncora: `OCCULT` profundo.
-- Silhueta macro: **pentagrama/círculo ritual multi-canal**.
-- `irons_eldritch` e `irons_blood` são glifos atuais possíveis, mas Soul, Spirit, Blood e demais recursos não podem ser fundidos visualmente em um único recurso.
-- O centro do pentagrama é um landmark de classe, não um ritual executável pela UI.
+- Baseline: presente.
+- Forma: **pentagrama/círculo ritual multi-canal**.
+- Blood/Soul/Spirit/Eldritch permanecem recursos/semânticas distintos.
+- O centro do pentagrama é landmark visual, não ritual executável.
 
-### 8.19 Warlock
+### 6.19 Warlock
 
-- Estado: classe presente; subtree dedicada atual com 18 nodes.
-- Âncoras: `ARCANE + OCCULT`.
-- Silhueta macro: **selo de pacto de cinco vértices**.
-- Os cinco caminhos de pacto canônicos ocupam cinco braços visuais, preservando o grupo de exclusividade e a capacidade definida pelo servidor.
-- `irons_blood`/`irons_eldritch` podem aparecer como satélites externos se elegíveis.
-- A forma não autoriza selecionar múltiplos pactos além do limite real.
+- Baseline: presente; subtree real de 18 nodes.
+- Forma: **selo de pacto de cinco vértices**.
+- Os cinco braços podem receber as escolhas de pacto reais, preservando exclusividade/capacidade do servidor.
+- Blood/Eldritch podem ficar como satélites se elegíveis.
 
-### 8.20 Necromancer
+### 6.20 Necromancer
 
-- Estado: classe presente.
-- Âncoras: `SUMMONING + OCCULT`.
-- Silhueta macro: **crânio/ossuário com coroa de minions**.
-- O crânio é composto por lanes reais de undead/servant/command quando disponíveis.
-- Possíveis conexões a `ars_summoning`, `irons_blood` e `irons_eldritch` dependem do resolver e não são inferidas pelo renderer.
-- Nenhuma associação visual transforma Mobstein, Goety, Malum ou outro provider em coproprietário automático da mesma necromancia.
+- Baseline: presente.
+- Forma: **crânio/ossuário com coroa de minions**.
+- Ars/Goety/Mobstein/Malum/Black Arcana ou outros providers só se relacionam quando existe boundary/gate real.
+- Sem copropriedade automática por tema “necromancia”.
 
-### 8.21 Spellblade
+### 6.21 Spellblade
 
-- Estado: classe presente.
-- Âncoras: `ARCANE + MARTIAL`.
-- Silhueta macro: **espada atravessando círculo arcano**.
-- A metade da lâmina nasce de Martial; o círculo nasce de Arcane.
-- Especializações de arma e magia podem se ligar simultaneamente quando o servidor autorizar.
-- Eventos de spell-on-melee/procs permanecem deduplicados no pipeline canônico; a UI não simula proc como autoridade.
+- Baseline: presente.
+- Forma: **espada atravessando círculo arcano**.
+- Identidade híbrida Martial + Arcane conforme definição real.
+- Proc/spell/melee continua deduplicado no runtime; UI não simula autoridade.
 
-### 8.22 Technomancer
+### 6.22 Technomancer
 
-- Estado: classe presente; subtree dedicada atual com 17 nodes.
-- Âncoras: `ARCANE + ENGINEERING`, com gateways tecnológicos canônicos próprios.
-- Silhueta macro: **triângulo/triskelion técnico**.
-- Três braços obrigatórios do layout refletem os gateways dedicados já existentes: Create Kinetics, AE2 Networks e Oritech Power.
-- O capstone `triune_core`, enquanto permanecer canônico, ocupa o hub central/final da figura conforme a topologia real.
-- Nenhum braço é considerado disponível só por provider instalado; usar disponibilidade runtime.
+- Baseline: presente; subtree real de 17 nodes.
+- Definição atual verificada: `ARCANE + ENGINEERING`.
+- Forma: **triskelion/triângulo técnico**.
+- Os três braços podem refletir os gateways reais Create Kinetics, AE2 Networks e Oritech Power.
+- `triune_core` permanece no landmark apropriado somente enquanto for o capstone real.
 
-### 8.23 Geomancer
+### 6.23 Geomancer
 
-- Estado: classe presente.
-- Âncoras: `ARCANE + MINING`.
-- Silhueta macro: **montanha/cristal facetado**.
-- Conexões possíveis a Nature/Mining dependem de gates reais.
-- A UI não promove geologia, Volcanoes, RNS ou Oritech a uma única authority só porque compartilham a estética de pedra/minério.
+- Baseline: presente.
+- Forma: **montanha/cristal facetado**.
+- Arcane/Mining/Nature/geologia só conectam conforme a definição e providers reais.
+- Não fundir Volcanoes, RNS e Oritech em uma authority fictícia.
 
-### 8.24 Metamorph
+### 6.24 Metamorph
 
-- Estado: classe presente; subtree dedicada atual com 10 nodes.
-- Âncoras: `AGILITY + OCCULT`/Assimilation conforme contrato real.
-- Silhueta macro: **máscara dupla / hélice de transformação**.
-- Categorias de forma ficam em lobos separados quando o catálogo atual as expõe; natural/humanoid/monstrous/aberrant permanecem distinguíveis das blacklists.
-- Boss/technical blacklist continua autoridade server-side.
-- A UI não duplica Identity2 nem concede morph localmente.
+- Baseline: presente; subtree real de 10 nodes.
+- Forma: **máscara dupla / hélice de transformação**.
+- Lobos podem separar categorias de forma reais quando o servidor as expuser.
+- Identity2/morph unlock e blacklist continuam server-authoritative.
 
-### 8.25 Death Knight
+### 6.25 Death Knight
 
-- Estado: **alvo planejado/condicional; ausente do catálogo baseline**.
-- Âncoras-alvo: `MARTIAL + OCCULT`.
-- Silhueta macro: **espada negra atravessando coroa/crânio quebrado**.
-- Especializações Blood/Eldritch podem ser ligadas futuramente somente após existir definição/gates reais.
-- Até isso ocorrer, nenhuma constelação interativa deve ser materializada no cliente.
+- Baseline: planejada/condicional, ausente do catálogo.
+- Forma-alvo: **espada negra atravessando coroa/crânio quebrado**.
+- Fantasia consolidada: Martial + Occult.
+- Blood/Eldritch só conectam após definição/gates reais.
+- Sem classe interativa antes disso.
+
+### 6.26 Artificer — decisão aberta, não 26ª classe automática
+
+- D014 continua OPEN.
+- Não criar `class_visuals/artificer.json` enquanto a ADR não promover Artificer a classe.
+- Se virar especialização/gateway, usar o catálogo correspondente.
+- Se virar classe, adicionar visual e teste de cobertura no mesmo commit que materializar a definição server-side.
 
 ---
 
-## 9. Classes, especializações compartilhadas e prevenção de duplicação visual
+## 7. Mapeamento visual das 25 especializações atuais
 
-Uma especialização pode servir a múltiplas classes. Exemplos de composição visual permitida, sem assumir gate:
+Todos os 25 IDs atuais recebem **emblema visual dedicado**. Node-shaped glyph só é ativado quando o snapshot fornecer topologia comprável daquela especialização.
 
-- `irons_holy` perto do encontro Priest/Cleric/Paladin;
-- `irons_fire` entre Arcane e possíveis rotas Spellblade/Mage/Sorcerer;
-- `irons_nature` entre Druid/Beastmaster/Geomancer;
-- `irons_blood` entre Warlock/Necromancer/Death Knight quando as classes reais autorizarem;
-- `epic_ranged` junto de Ranger/Hunter/Agility quando a classe existir;
-- `create_artillery` entre Engineer e caminhos Martial tecnológicos;
-- `ae2_networks` entre Engineering/Logistics e Technomancer.
+| specialization_id | shape asset | leitura visual |
+|---|---|---|
+| `ae2_networks` | `rpgskilltree:network_hex` | circuito/hexágono |
+| `ars_amplification` | `rpgskilltree:amplification_star` | estrela crescente |
+| `ars_aoe` | `rpgskilltree:concentric_rings` | anéis de área |
+| `ars_control` | `rpgskilltree:control_knot` | nó/runa de contenção |
+| `ars_duration` | `rpgskilltree:hourglass_loop` | ampulheta/loop |
+| `ars_projectile` | `rpgskilltree:arcane_projectile` | seta/projétil |
+| `ars_summoning` | `rpgskilltree:summoning_circle` | círculo de invocação |
+| `create_aeronautics` | `rpgskilltree:wing_propeller` | asa/hélice |
+| `create_artillery` | `rpgskilltree:artillery_reticle` | mira/canhão |
+| `create_automation` | `rpgskilltree:automation_loop` | linha de montagem |
+| `create_kinetics` | `rpgskilltree:gear` | engrenagem |
+| `epic_heavy` | `rpgskilltree:heavy_hammer` | martelo/anvil |
+| `epic_ranged` | `rpgskilltree:bow_arrow` | arco e flecha |
+| `epic_sword` | `rpgskilltree:sword_blade` | lâmina |
+| `irons_blood` | `rpgskilltree:blood_drop` | gota de sangue / Hemomancia |
+| `irons_eldritch` | `rpgskilltree:eldritch_pentagram` | pentagrama/estrela abissal |
+| `irons_ender` | `rpgskilltree:ender_eye_portal` | olho/portal |
+| `irons_evocation` | `rpgskilltree:evocation_burst` | explosão/runa radial |
+| `irons_fire` | `rpgskilltree:flame` | chama/fagulha / Piromancia |
+| `irons_holy` | `rpgskilltree:holy_halo` | halo/selo solar |
+| `irons_ice` | `rpgskilltree:snowflake` | floco de neve |
+| `irons_lightning` | `rpgskilltree:lightning_bolt` | raio |
+| `irons_nature` | `rpgskilltree:leaf_branch` | folha/ramo |
+| `oritech_mining` | `rpgskilltree:mining_crystal` | cristal/picareta |
+| `oritech_power` | `rpgskilltree:power_coil` | bobina/raio industrial |
 
-Regra de renderização:
+### 7.1 Aquamancia e outros templates futuros
+
+O engine visual pode incluir shape templates sem binding ativo, por exemplo:
+
+- `rpgskilltree:water_drop` — futura fantasia de água/Aquamancia;
+- `rpgskilltree:wind_spiral` — vento;
+- `rpgskilltree:skull_ossuary` — necromancia;
+- `rpgskilltree:shield` — defesa;
+- `rpgskilltree:claw` — Beastmaster;
+- `rpgskilltree:mask` — Metamorph.
+
+Regra: **shape template não cria specialization definition**. Enquanto não houver ID canônico, não há gateway, tooltip de progressão, points nem interação.
+
+---
+
+## 8. Pré-requisito server-side para a Árvore 3 completa
+
+A experiência final de “nodes formando a figura” depende de topologia real. Essa topologia pertence à fase de gameplay/classes/masteries/specializations, não ao renderer.
+
+Para cada especialização que ganhar árvore própria, o snapshot server-side deve fornecer no mínimo:
+
+- `specialization_id` estável;
+- `tree_id` estável;
+- root/gateway;
+- node IDs;
+- edges/requisitos;
+- ranks/custos/moeda;
+- node roles;
+- effects/gates;
+- respec semantics;
+- provenance;
+- provider availability;
+- revision.
+
+A UI consome isso read-only.
+
+### 8.1 Estado de fallback enquanto a topologia não existe
 
 ```text
-1 specialization id
-      ↓
-1 specialization glyph instance
-      ↓
-0..N visual bridges from eligible class/domain anchors
+specialization definition exists
+        ↓
+visual emblem + gateway/status + requirements
+        ↓
+NO fake passive nodes
 ```
 
-Nunca `N classes → N cópias compráveis da mesma specialization`.
+### 8.2 Estado final quando a topologia existe
+
+```text
+specialization definition + specialist tree graph
+        ↓
+ShapeTemplate fitter
+        ↓
+real nodes/edges form flame/drop/pentagram/etc.
+```
+
+Assim o plano preserva a ambição visual sem violar a regra “não criar perk para preencher desenho”.
 
 ---
 
-## 10. Modelo de dados visual
+## 9. ShapeTemplate
 
-Os dados de gameplay continuam em `data/`. Os metadados puramente visuais devem viver em `assets/`, separados para impedir que uma resource pack/client config se torne autoridade de gameplay.
+Cada template puramente visual define:
 
-### 10.1 Estrutura alvo
+- namespaced visual `id`;
+- outline normalizado;
+- skeleton lanes;
+- landmarks `gateway`, `hub`, `notable`, `keystone`, `capstone`, `branch_tip`;
+- aspect ratio;
+- preferred rotation;
+- symmetry hints;
+- hitbox margin;
+- visual schema version.
 
-```text
-src/main/resources/assets/rpgskilltree/tree_ui/
-├── shape_templates/
-│   ├── flame.json
-│   ├── blood_drop.json
-│   ├── eldritch_pentagram.json
-│   ├── snowflake.json
-│   ├── gear.json
-│   └── ...
-├── class_visuals/
-│   ├── warrior.json
-│   ├── guardian.json
-│   └── ...
-├── specialization_visuals/
-│   ├── irons_fire.json
-│   ├── irons_blood.json
-│   └── ...
-└── themes/
-    └── default.json
-```
-
-### 10.2 `ShapeTemplate`
-
-Schema lógico:
+Exemplo visual-only:
 
 ```json
 {
@@ -580,314 +540,383 @@ Schema lógico:
   "id": "rpgskilltree:flame",
   "aspectRatio": 0.72,
   "preferredRotationDeg": 0.0,
-  "outline": [[0.0,1.0],[0.32,0.55],[0.52,0.1],[0.0,-1.0],[-0.52,0.1],[-0.32,0.55]],
   "landmarks": {
-    "gateway": [0.0,-1.0],
-    "hub": [0.0,-0.05],
-    "capstone": [0.0,1.0]
-  },
-  "lanes": [
-    {"id":"left","from":"gateway","to":"hub","curve":-0.35},
-    {"id":"right","from":"gateway","to":"hub","curve":0.35},
-    {"id":"crown","from":"hub","to":"capstone","curve":0.0}
-  ]
+    "gateway": [0.0, -1.0],
+    "hub": [0.0, -0.05],
+    "capstone": [0.0, 1.0]
+  }
 }
 ```
 
-Os pontos do exemplo são geometria inicial do template, não coordenadas de node de gameplay. O gerador distribui os nodes reais pelas lanes.
+Landmarks não são nodes. Eles apenas recebem nodes reais quando o grafo tiver função compatível.
 
-### 10.3 `ClassVisualDefinition`
+---
+
+## 10. Bindings visuais e política de ID
+
+Os metadados puramente visuais vivem em `assets`, não em datapack autoritativo.
+
+Estrutura alvo se D001 selecionar custom UI ou uma engine que aceite esses assets:
+
+```text
+src/main/resources/assets/rpgskilltree/tree_ui/
+├── shape_templates/
+├── class_visuals/
+├── specialization_visuals/
+└── themes/
+```
+
+### 10.1 Class binding — baseline atual
 
 ```json
 {
   "schemaVersion": 1,
-  "classId": "rpgskilltree:technomancer",
+  "classId": "technomancer",
   "shape": "rpgskilltree:technomancer_triskelion",
-  "preferredDomains": ["ARCANE", "ENGINEERING"],
   "placementBand": "CLASS_BELT",
   "rotationPolicy": "RADIAL_OUTWARD"
 }
 ```
 
-Nenhum campo desse arquivo pode conter `requiredMastery`, `cost`, `effect`, `providerLoaded` ou regra de unlock.
-
-### 10.4 `SpecializationVisualDefinition`
+### 10.2 Specialization binding — baseline atual
 
 ```json
 {
   "schemaVersion": 1,
-  "specializationId": "rpgskilltree:irons_fire",
+  "specializationId": "irons_fire",
   "shape": "rpgskilltree:flame",
   "placementBand": "SPECIALIST_CROWN",
   "rotationPolicy": "RADIAL_OUTWARD"
 }
 ```
 
-Se `specializationId` não existir no snapshot server-side, essa definição permanece inerte.
+`classId`/`specializationId` são comparados contra a projeção server-side exata. `shape` é asset ID namespaced.
+
+### 10.3 Proibição de campos de gameplay em assets
+
+Arquivos de visual não podem definir:
+
+- custo;
+- rank;
+- mastery necessária;
+- required nodes;
+- providerLoaded;
+- adapterComplete;
+- effect;
+- currency;
+- unlock.
 
 ---
 
-## 11. Gerador determinístico de layout simbólico
+## 11. Layout determinístico
 
-### 11.1 Entrada
+### 11.1 Pipeline
 
-- IDs e topologia reais;
-- função estrutural dos nodes;
-- coordenadas/âncoras da árvore principal;
-- class definitions disponíveis;
-- specialization definitions disponíveis;
-- availability/gates sincronizados;
-- templates visuais;
-- viewport independente de resolução.
+```text
+server-projected rules + player snapshot
+              ↓
+        SceneAssembler
+              ↓
+ canonical identities / graph / states
+              ↓
+   CosmogramPlacementResolver
+              ↓
+  Shape fitting when real graph exists
+              ↓
+          LayoutSnapshot
+              ↓
+            Renderer
+```
 
-### 11.2 Saída
+### 11.2 Fases
 
-`LayoutSnapshot` imutável com:
-
-- posição global de cada node;
-- bounds de cada classe/especialização;
-- curvas de edge;
-- z-order;
-- hit regions;
-- LOD group;
-- canonical ID → visual instance map.
+1. reservar R0 para a representação de atributos;
+2. importar/derivar o layout da main tree sem mudar topologia;
+3. calcular anchors dos 11 domínios;
+4. calcular class anchors a partir das exigências reais da classe;
+5. resolver colisões macro de clusters sem alterar semântica;
+6. colocar specializations na coroa externa;
+7. se houver specialist subtree real, fazer shape fitting;
+8. se não houver, renderizar emblema/gateway sem fake nodes;
+9. rotear bridges visuais;
+10. congelar `LayoutSnapshot`.
 
 ### 11.3 Determinismo
 
-Mesmos dados + mesma versão de template = mesmas coordenadas.
+Mesma revisão de regras + mesmos assets = mesmas coordenadas.
 
-É proibido usar `Random` sem seed estável. Se jitter for necessário para evitar aparência excessivamente mecânica, a seed é derivada do `ResourceLocation` canônico e da `schemaVersion`.
+Jitter estético, se existir, usa seed derivada de ID canônico + visual schema version. Nunca RNG por frame.
 
-### 11.4 Fases do algoritmo
+### 11.4 Shape fitting de grafo real
 
-1. reservar R0 para Árvore 1;
-2. importar posições validadas da Árvore 2;
-3. calcular anchors dos 11 domínios;
-4. calcular anchors de classe por combinação de domínio;
-5. resolver colisões entre class bounds em R2 sem mudar relação semântica;
-6. colocar glyphs das especializações em R3 pela média ponderada de seus anchors elegíveis;
-7. encaixar subgraph real no `ShapeTemplate` usando landmarks e lanes;
-8. rotear bridges evitando atravessar hitboxes centrais;
-9. validar overlaps proibidos;
-10. congelar `LayoutSnapshot`.
+Ordem de landmark:
 
-### 11.5 Shape fitting
+1. gateway real → `gateway`;
+2. capstone real → `capstone`;
+3. keystones/notables → landmarks de alta saliência;
+4. branches/passives → skeleton lanes;
+5. restantes → arc-length/topological order.
 
-Prioridade de placement dentro da forma:
-
-1. Gateway real → landmark `gateway`;
-2. Capstone real → `capstone`;
-3. Keystones/Notables → landmarks de alta saliência;
-4. ramos e passives → skeleton lanes;
-5. nodes restantes → distribuição por arc-length preservando ordem topológica.
-
-Se a quantidade de nodes não couber na forma, o algoritmo aumenta escala ou densidade dentro de limites definidos; **não remove node nem altera aresta**.
+Se não couber, aumentar escala/spacing dentro dos bounds do cluster. Nunca remover node/edge.
 
 ---
 
-## 12. Colisão, roteamento de arestas e legibilidade
+## 12. Especializações compartilhadas
 
-### 12.1 Regras geométricas mínimas
+Uma specialization pode conectar várias classes.
 
-- hitbox de node nunca sobrepõe outra hitbox na mesma camada interativa;
-- labels não cobrem nodes em zoom próximo;
-- class bounds podem se interpenetrar visualmente apenas se os nodes continuarem separáveis;
-- edges não devem atravessar o centro de node não relacionado quando existe rota alternativa;
-- bridge compartilhada deve ser distinguível de aresta de pré-requisito;
-- glyphs externos mantêm margem mínima proporcional ao zoom base.
-
-### 12.2 Roteamento
-
-Usar curvas quadráticas/cúbicas determinísticas com pontos de controle derivados de anchors. Não usar pathfinding por pixel a cada frame.
-
-Arestas são pré-calculadas no `LayoutSnapshot` e reprocessadas apenas em reload estrutural, mudança de UI scale que invalide bounds, ou troca de resource pack visual.
-
----
-
-## 13. Zoom, LOD e viewport culling
-
-### 13.1 Níveis de detalhe
-
-**LOD 0 — visão total**
-
-- formas de classes e especializações;
-- nomes de domínios;
-- grandes gateways/capstones;
-- sem ícones pequenos/labels de passives.
-
-**LOD 1 — visão regional**
-
-- classe/especialização selecionada;
-- Notables/Keystones/Gateways;
-- caminhos principais;
-- indicadores de requisito resumidos.
-
-**LOD 2 — visão operacional**
-
-- todos os nodes no viewport;
-- ranks;
-- custos;
-- conexões completas;
-- hover/focus.
-
-**LOD 3 — inspeção**
-
-- tooltip completa;
-- efeitos e requisitos detalhados;
-- provider/gate/fail-closed legível;
-- botão/ação de compra ou respec apenas quando o protocolo já existir e o servidor autorizar.
-
-### 13.2 Culling
-
-Não desenhar ícones, textos, partículas ou edge decorations fora do viewport expandido. Bounds de classes/especializações podem usar coarse culling antes de testar nodes individuais.
-
-### 13.3 Alvos de performance
-
-Em hardware capaz de rodar o modpack:
-
-- pan/zoom deve permanecer responsivo com a árvore completa carregada;
-- nenhum cálculo O(N²) por frame sobre todos os nodes;
-- layout estrutural não roda a cada frame;
-- texto e ícones usam caches apropriados;
-- partículas temáticas são limitadas por budget e desaparecem em LOD distante/reduced motion.
-
-Benchmarks exatos devem ser fixados durante implementação com o profiler do ambiente real; este plano proíbe apenas regressões arquiteturais óbvias como full-graph layout por frame.
-
----
-
-## 14. Interação
-
-### 14.1 Input
-
-Suportar:
-
-- pan por drag;
-- zoom por wheel/controles equivalentes;
-- click/focus em node;
-- double-click ou ação explícita para centralizar seleção;
-- busca por nome/ID localizado;
-- breadcrumbs: `Árvore → Domínio → Classe → Especialização → Node`;
-- atalhos de “voltar ao centro”, “minha build”, “classe ativa” e “node rastreado”.
-
-### 14.2 Compra
-
-Fluxo obrigatório:
+Contrato:
 
 ```text
-click no node
-  ↓
-cliente mostra intenção + snapshot local
-  ↓
-request existente/futuro para servidor
-  ↓
-servidor revalida estado autoritativo
-  ↓
-aceita ou rejeita
-  ↓
-novo snapshot sincronizado
-  ↓
-UI anima somente o resultado confirmado
+1 specialization_id
+       ↓
+1 visual glyph/emblem instance
+       ↓
+0..N visual links from eligible class/domain anchors
 ```
 
-Não aplicar rank otimista como verdade persistente.
+Exemplos temáticos possíveis, sempre condicionados ao resolver real:
 
-### 14.3 Respec
+- Holy perto de Priest/Cleric/Paladin;
+- Nature perto de Druid/Beastmaster/Geomancer;
+- Blood perto de Warlock/Necromancer/futuro Death Knight;
+- ranged perto de Agility/futuro Ranger;
+- artillery perto de Engineering/Martial tech paths.
 
-Preview de respec pode simular visualmente nós afetados, mas deve ser rotulado como preview e nunca mutar catálogo/snapshot autoritativo. Confirmação final passa pelo servidor.
+Nenhuma relação temática cria gate.
 
 ---
 
-## 15. Tooltips e explicabilidade
+## 13. Estados visuais
 
-Toda compra negada precisa ser explicável.
+### 13.1 Node
 
-Tooltip operacional deve suportar, conforme dados disponíveis:
+- hidden somente quando a regra autoritativa permitir;
+- visible locked;
+- available;
+- invested partial;
+- invested max;
+- provider unavailable;
+- stale/reconciling apenas como estado transitório de UI.
+
+### 13.2 Classe
+
+- inexistente no catálogo → não interativa/não materializada;
+- existente mas requisitos faltando → constelação apagada + motivos;
+- elegível/satisfeita → contorno/símbolo ativo;
+- multiclass → todas as identidades satisfeitas podem ficar ativas simultaneamente;
+- respec → atualizar somente após novo snapshot.
+
+### 13.3 Specialization
+
+- definition absent;
+- provider absent;
+- adapter unavailable/incompatible;
+- gateway locked;
+- gateway available;
+- specialization granted/active;
+- subtree partially invested quando topologia existir;
+- subtree complete quando topologia existir.
+
+---
+
+## 14. Zoom e LOD
+
+### LOD 0 — cosmograma completo
+
+- silhuetas macro;
+- domínios;
+- classes;
+- emblemas de especializações;
+- gateways/capstones mais importantes.
+
+### LOD 1 — região
+
+- cluster selecionado;
+- notable/keystone/gateway;
+- caminhos principais;
+- requirements resumidos.
+
+### LOD 2 — operacional
+
+- todos os nodes realmente existentes no viewport;
+- ranks/custos/conexões;
+- hover/focus.
+
+### LOD 3 — inspeção
+
+- tooltip completa;
+- provider/gate/fail-closed;
+- dependentes de respec;
+- ações de purchase/respec via protocolo server-side.
+
+LOD não esconde uma exigência quando o usuário entra na inspeção do node.
+
+---
+
+## 15. Interação e autoridade
+
+### 15.1 Purchase
+
+```text
+client selects canonical id
+  ↓
+C2S intent
+  ↓
+server revalidates current rules/state
+  ↓
+accept/reject
+  ↓
+new authoritative snapshot/revision
+  ↓
+UI animates confirmed result
+```
+
+Sem rank otimista persistido.
+
+### 15.2 Respec
+
+Preview pode ser local e explicitamente marcado como simulação. Confirmação/mutação fica no servidor.
+
+### 15.3 Busca
+
+Busca localiza canonical ID único e centraliza a instância visual correspondente. Não cria cópia temporária interativa.
+
+### 15.4 Filtros
+
+Domínio, classe, specialization, função, disponível, investido, bloqueado, provider e texto livre. Filtro reduz destaque, não altera regras.
+
+### 15.5 Breadcrumbs
+
+`Árvore → Domínio → Classe → Especialização → Node`, omitindo níveis que não existirem para aquele caminho.
+
+---
+
+## 16. Tooltips e explicabilidade
+
+Quando disponível no snapshot/projeção, mostrar:
 
 - nome PT-BR;
 - descrição;
 - rank atual/máximo;
-- custo;
-- efeito por rank;
-- requisitos de nodes/ranks;
-- requisito de domínio/investimento;
-- Mastery necessária;
-- classe/especialização exigida;
-- provider;
-- estado do adapter quando isso for informação apropriada ao jogador;
-- motivo de bloqueio;
-- efeito de respec/dependentes.
+- custo/moeda;
+- efeito;
+- required nodes/ranks;
+- domínio/investment requirements;
+- mastery;
+- class/specialization requirement;
+- provider state;
+- motivo normalizado de bloqueio;
+- dependentes afetados por respec.
 
-Mensagem técnica como `adapter incomplete` pode ter tradução player-facing (“Integração indisponível nesta versão”) e detalhe técnico opcional em modo debug.
-
----
-
-## 16. Busca, filtros e leitura de uma árvore colossal
-
-Filtros não removem gameplay; apenas reduzem destaque.
-
-Filtros mínimos:
-
-- domínio;
-- classe;
-- especialização;
-- função do node;
-- disponível agora;
-- investido;
-- bloqueado;
-- provider;
-- texto livre.
-
-Resultados de busca devem:
-
-1. localizar canonical ID;
-2. selecionar a única instância visual;
-3. centralizar/zoom adequado;
-4. destacar caminho de requisitos até ela.
+“Adapter incompatível” pode ser traduzido para mensagem player-facing e detalhado em modo debug.
 
 ---
 
-## 17. Animação e linguagem temática
-
-Animação é feedback, não autoridade.
-
-Exemplos permitidos:
-
-- `irons_fire`: linhas investidas pulsam como chama;
-- `irons_blood`: gota recebe pulso lento;
-- `irons_ice`: brilho percorre braços do floco;
-- `irons_lightning`: descarga breve apenas ao confirmar alteração de estado;
-- `create_kinetics`: engrenagem gira lentamente em LOD próximo;
-- `ae2_networks`: pulsos percorrem trilhas;
-- `irons_eldritch`: runas oscilam sutilmente;
-- classe completa: contorno macro acende após snapshot confirmado.
-
-Reduced motion deve trocar movimento por brilho/contraste estático.
-
----
-
-## 18. Acessibilidade
+## 17. Acessibilidade
 
 Obrigatório:
 
-- PT-BR como localização player-facing principal do projeto;
-- nenhuma informação crítica dependente exclusivamente de cor;
-- contraste configurável;
-- escala de UI sem cortar o cosmograma;
-- navegação por teclado/controle entre nodes adjacentes;
-- focus ring distinto de hover;
+- PT-BR player-facing;
+- forma/contorno além de cor;
+- escala de UI;
+- teclado/controle;
+- focus ring;
 - reduced motion;
-- opção de reduzir/desativar partículas;
-- descrições textuais para símbolos de classe/especialização;
-- zoom mínimo/máximo com limites seguros;
-- tooltips que permanecem dentro da tela física.
+- opção de reduzir/desligar partículas;
+- contraste adequado;
+- tooltip contida na tela;
+- descrição textual de emblemas;
+- zoom mínimo/máximo seguro.
 
 ---
 
-## 19. Arquitetura de código alvo
+## 18. Animações
 
-O baseline não possui uma implementação `client/tree` consolidada. O Stage 07.05 deve introduzir uma camada cliente isolada, sem importar attachments internos nem mutar runtime server-side.
+Animação é derivada de estado confirmado.
 
-Estrutura alvo:
+Exemplos:
+
+- Fire/flame: pulso de chama;
+- Blood/drop: pulso lento;
+- Ice/snowflake: brilho radial;
+- Lightning: descarga breve na confirmação;
+- Create kinetics/gear: rotação lenta;
+- AE2/network: pulsos em trilhas;
+- Eldritch: oscilação de runas.
+
+Reduced motion substitui movimento por contraste/brilho estático.
+
+---
+
+## 19. Performance — medir antes de otimizar
+
+`docs/MASTER_PLAN.md` determina que viewport culling/spatial indexes só devem ser adicionados se profiling justificar.
+
+### 19.1 Baseline obrigatório ANTES das otimizações
+
+O primeiro renderer funcional do vertical slice e depois da cena representativa deve começar com estruturas simples e mensuráveis.
+
+Medir separadamente:
+
+- scene assembly;
+- layout rebuild;
+- frame render;
+- hit testing;
+- tooltip/search;
+- 512+ main nodes;
+- main + class clusters + specialization emblems;
+- diferentes UI scales/resoluções.
+
+### 19.2 Otimizações condicionais
+
+Somente se o profiling mostrar necessidade:
+
+- coarse cluster culling;
+- fine node culling;
+- spatial index para hit testing;
+- edge mesh/cache especializado;
+- text/icon caches adicionais.
+
+LOD semântico pode existir desde o início por UX, mas não justifica automaticamente uma estrutura de otimização complexa.
+
+### 19.3 Invariantes
+
+Mesmo antes do profiling:
+
+- layout estrutural não deve ser recomputado deliberadamente a cada frame;
+- não introduzir algoritmo O(N²) por frame sem justificativa;
+- nenhuma otimização pode mudar estado de gameplay.
+
+---
+
+## 20. Fail-closed visual
+
+### Template ausente
+
+Usar `generic_constellation`; manter todos os nodes reais acessíveis; registrar diagnóstico.
+
+### Binding para ID inexistente
+
+Ignorar binding; não criar entidade fictícia.
+
+### Specialization sem subtree
+
+Mostrar emblema/gateway/status; não gerar fake nodes.
+
+### Snapshot incompatível/stale
+
+Bloquear mutação até resync/protocolo válido. Nunca assumir unlock.
+
+### Resource reload visual inválido
+
+Manter último catálogo visual válido quando houver; não afetar gameplay.
+
+---
+
+## 21. Arquitetura de código — somente após D001
+
+Se D001 escolher custom UI, a divisão de responsabilidades recomendada é:
 
 ```text
 src/main/java/dev/gustavopere/rpgskilltree/client/tree/
@@ -927,391 +956,396 @@ src/main/java/dev/gustavopere/rpgskilltree/client/tree/
     └── TreeTooltipModel.java
 ```
 
-Pacotes/nomenclatura podem ser ajustados somente para aderir a uma convenção cliente já introduzida por Stage 07.01–07.04 antes da implementação. As responsabilidades acima devem permanecer separadas.
+Se D001 escolher uma external engine, essas **responsabilidades** continuam úteis, mas os arquivos/classes devem ser reduzidos/adaptados ao extension model real em vez de criar uma segunda UI paralela.
+
+Client-only classes nunca podem classload no dedicated server.
 
 ---
 
-## 20. Boundary de rede e snapshot
+## 22. Boundary de snapshot/rede
 
-A UI consome DTO/snapshot sincronizado; ela não lê diretamente:
+07.05 consome DTO/projeção da revisão server-side e não lê como authority:
 
-- `CanonicalPlayerAttachmentData` mutável;
+- attachment mutável;
 - SavedData interna;
-- registry interno de provider como autoridade local;
-- `ModList` para decidir unlock;
-- classes internas de integrations para fingir disponibilidade.
+- `ModList` para unlock;
+- provider class interna;
+- classpath data concorrente ao server snapshot.
 
-O snapshot de UI precisa representar pelo menos:
+A projeção de UI deve carregar, conforme definido pelas fases de network/sync:
 
-- revisão/version do catálogo;
-- ranks de nodes;
-- pontos disponíveis;
-- classes satisfeitas/elegíveis;
-- especializações conhecidas e disponibilidade;
-- Mastery necessária para explicabilidade;
-- blocking reasons normalizados;
-- dados necessários para tooltips.
+- rules revision/hash;
+- nodes/edges necessários;
+- ranks/pontos;
+- class state;
+- specialization state/availability;
+- mastery/requisitos necessários para explicação;
+- blocking reasons.
 
-Se Stage 07.03/07.04 definir DTO equivalente, 07.05 deve consumi-lo em vez de criar protocolo paralelo.
-
----
-
-## 21. Fail-closed visual
-
-Erros de dado visual nunca podem abrir gameplay.
-
-### 21.1 Template ausente
-
-Fallback: `generic_constellation` com layout radial simples, preservando todos os nodes/arestas. Registrar diagnóstico. Não esconder node.
-
-### 21.2 Binding visual para ID inexistente
-
-Ignorar binding visual e registrar diagnóstico de resource pack. Não criar entidade fictícia.
-
-### 21.3 Classe/especialização existente sem visual dedicado
-
-Usar `generic_constellation`; gameplay permanece acessível.
-
-### 21.4 Snapshot incompatível/desatualizado
-
-Bloquear mutações client-side e solicitar/aguardar resync conforme protocolo Stage 07.03/07.04. Nunca assumir disponibilidade.
-
-### 21.5 Resource reload inválido
-
-Manter último catálogo visual válido, de forma análoga a reload atômico seguro; não destruir a tela no meio da sessão se houver snapshot visual anterior válido.
+Se Stage 07.03/07.04 já fornecer DTO equivalente, 07.05 deve reutilizá-lo.
 
 ---
 
-## 22. Validadores obrigatórios
+## 23. Validadores
 
-Criar validadores separados de gameplay:
-
-### 22.1 `ShapeTemplateValidator`
+### 23.1 `ShapeTemplateValidator`
 
 Rejeitar:
 
-- IDs duplicados;
-- outline não finito;
-- landmark fora do bounds normalizado;
-- lane referenciando landmark inexistente;
-- aspect ratio <= 0;
+- duplicate visual ID;
 - NaN/Infinity;
-- schemaVersion não suportada.
+- aspect ratio <= 0;
+- landmark inexistente;
+- lane inválida;
+- schemaVersion incompatível.
 
-### 22.2 `VisualBindingValidator`
-
-Garantir:
-
-- todo binding usa canonical ID sintaticamente válido;
-- nenhum arquivo visual contém campo de gameplay proibido;
-- especialização visual inexistente no baseline é aceita apenas como template sem binding ativo;
-- classe planejada não vira definição de gameplay.
-
-### 22.3 `LayoutSnapshotValidator`
+### 23.2 `VisualBindingValidator`
 
 Garantir:
 
-- um canonical ID interativo → uma instância visual;
-- nenhuma hitbox de node interativo se sobrepõe;
-- todos os nodes do snapshot estão presentes;
-- nenhuma aresta de gameplay é perdida;
-- coordenadas finitas;
-- bounds finitos;
-- resultado determinístico.
+- class/specialization binding usa a forma de ID da projeção server-side daquela revisão;
+- visual asset não contém regra de gameplay;
+- Artificer não aparece como class binding enquanto D014 estiver aberta;
+- Ranger/Hunter e Death Knight não viram gameplay definition por asset;
+- template antecipatório sem binding é inerte.
 
-### 22.4 `CanonicalVisualCoverageTest`
+### 23.3 `LayoutSnapshotValidator`
 
-No baseline atual deve exigir:
+Garantir:
 
-- 23/23 classes reais com visual dedicado ou fallback explicitamente testado;
-- 25/25 especializações reais com binding visual dedicado;
-- 25 identidades de classe no catálogo de design, sendo Ranger/Hunter e Death Knight marcadas não interativas até surgirem server-side;
-- paridade dos 11 domínios;
-- nenhum `Industrialist`, `Prospector` ou `Logistician` reintroduzido como classe.
+- um gameplay ID interativo → uma instância visual;
+- todos os nodes/edges recebidos estão representados;
+- coordenadas/bounds finitos;
+- resultado determinístico;
+- nenhuma hitbox interativa indecidível.
+
+### 23.4 Coverage
+
+No baseline:
+
+- 23/23 classes reais com visual dedicado ou fallback testado;
+- Ranger/Hunter e Death Knight documentadas como design-only até aparecerem no server snapshot;
+- Artificer não contado como classe;
+- 25/25 specialization definitions com emblema/binding visual dedicado;
+- node-shaped specialist glyph exigido **apenas** quando specialist topology existir;
+- 11/11 domínios reconhecidos;
+- Industrialist/Prospector/Logistician não reintroduzidos como classes.
 
 ---
 
-## 23. Plano de implementação TDD
+## 24. Plano de implementação TDD e ordem correta
 
-### Task 1 — Modelo visual e loaders
+### Task 0 — Vertical slice e D001
 
-**Produz:** schemas/modelos puros para templates, class visuals e specialization visuals.
+**Pré-requisito da implementação integral.**
 
-- [ ] escrever testes RED para parse válido/inválido e campos proibidos;
-- [ ] implementar records/classes imutáveis;
-- [ ] implementar loaders de resource assets;
-- [ ] implementar validação atômica e fallback para último snapshot válido;
-- [ ] cobrir resource reload inválido;
+- [ ] selecionar uma subtree real para o slice (preferir uma das quatro já materializadas);
+- [ ] provar main → gateway → subtree;
+- [ ] provar purchase/respec;
+- [ ] provar rule revision sync;
+- [ ] provar multiplayer/server authority;
+- [ ] avaliar Passive Skill Tree candidate API/license/limitations;
+- [ ] avaliar custom UI slice equivalente;
+- [ ] registrar medições/UX/maintenance trade-offs;
+- [ ] criar ADR D001;
+- [ ] parar se D001 ainda não estiver resolvida.
+
+### Task 1 — Modelo visual mínimo da engine escolhida
+
+- [ ] RED: binding visual não altera gameplay;
+- [ ] RED: current IDs `technomancer`/`irons_fire` resolvem sem namespace inventado;
+- [ ] RED: visual ID `rpgskilltree:flame` continua namespaced;
+- [ ] implementar shape/binding model mínimo;
+- [ ] implementar `generic_constellation`;
 - [ ] commit isolado.
 
-### Task 2 — Biblioteca de templates
+### Task 2 — Scene projection read-only
 
-**Produz:** todos os templates necessários às 25 especializações baseline e 25 classes do catálogo de design.
-
-- [ ] teste RED de cobertura por ID;
-- [ ] adicionar templates listados nas seções 7 e 8;
-- [ ] adicionar `generic_constellation` obrigatório;
-- [ ] validar determinismo de landmarks/lanes;
-- [ ] confirmar que `water_drop`/outros templates antecipatórios não criam binding ativo;
+- [ ] RED: ID ausente não materializa entidade interativa;
+- [ ] RED: uma specialization compartilhada tem uma única visual instance;
+- [ ] montar scene a partir da projeção server-side;
+- [ ] nenhuma consulta a `ModList` como authority de unlock;
 - [ ] commit isolado.
 
-### Task 3 — Scene assembler read-only
+### Task 3 — Layout base R0/R1/R2/R3
 
-**Produz:** `SkillTreeScene` a partir do snapshot/catálogos server-authoritative.
-
-- [ ] teste RED provando que IDs inexistentes não são materializados;
-- [ ] teste RED provando uma única instância por canonical ID;
-- [ ] implementar assembler;
-- [ ] integrar classes e specializations sem consultar `ModList` como authority;
-- [ ] testar multiclass e specialization compartilhada;
+- [ ] RED: 11 domain anchors;
+- [ ] RED: determinismo;
+- [ ] class anchor derivado de `required_completed_domains`;
+- [ ] regressão explícita para Beastmaster = AGILITY + SUMMONING no baseline;
+- [ ] classes ausentes não recebem hitbox interativa;
 - [ ] commit isolado.
 
-### Task 4 — Cosmogram layout engine
+### Task 4 — Performance baseline ANTES de culling/index
 
-**Produz:** R0/R1/R2/R3, domain anchors, class anchors e specialist crown.
+- [ ] renderizar vertical slice sem otimizações prematuras;
+- [ ] medir 512+ nodes com implementação simples;
+- [ ] medir hit testing linear;
+- [ ] medir scene/layout rebuild separado do frame;
+- [ ] registrar profiler evidence;
+- [ ] decidir quais otimizações da Task 9 são justificadas;
+- [ ] commit apenas de harness/medição quando aplicável.
 
-- [ ] teste RED de determinismo;
-- [ ] teste RED de 11 domain anchors;
-- [ ] implementar bandas e placement resolver;
-- [ ] implementar solver bounded de colisão entre clusters;
-- [ ] garantir que Ranger/Hunter/Death Knight ausentes não ocupam hitbox interativa;
+### Task 5 — Class constellation visuals
+
+- [ ] RED: cobertura das 23 classes atuais;
+- [ ] implementar as formas da seção 6;
+- [ ] Ranger/Hunter e Death Knight continuam não interativas enquanto ausentes;
+- [ ] Artificer continua sem binding de classe enquanto D014 aberta;
+- [ ] Industrialist/Prospector/Logistician não reaparecem como classes;
 - [ ] commit isolado.
 
-### Task 5 — Symbolic subgraph layouter
+### Task 6 — Specialization emblems sem fake topology
 
-**Produz:** nodes/edges formando a silhueta de cada template.
-
-- [ ] RED para gateway/capstone landmarks;
-- [ ] RED para preservação de todas as arestas/nodes;
-- [ ] implementar lane fitting por arc-length/topological order;
-- [ ] implementar scale-up quando densidade excede limite;
-- [ ] validar as quatro subtrees dedicadas sem mudar topologia;
+- [ ] RED: 25/25 specialization definitions recebem shape binding;
+- [ ] RED: specialization sem graph possui zero fake passive nodes;
+- [ ] implementar emblemas/gate/status;
+- [ ] implementar `water_drop` e demais templates futuros somente como assets inertes quando desejado;
 - [ ] commit isolado.
 
-### Task 6 — Edge routing e bridges compartilhadas
+### Task 7 — Symbolic subgraph layout para topologias REAIS
 
-**Produz:** conexões legíveis sem duplicar especialização.
+Executar somente para subtrees já reais ou specialist trees materializadas por fase server-side.
 
-- [ ] RED para `irons_holy` compartilhável por múltiplas classes com uma única instância;
-- [ ] RED para evitar edge atravessando node quando rota bounded existe;
-- [ ] implementar curvas pré-calculadas;
-- [ ] distinguir prerequisite edge, visual class link e bridge canônica;
+- [ ] RED: gateway/capstone recebem landmarks sem mudar dependências;
+- [ ] RED: todos os nodes e edges preservados;
+- [ ] implementar lane fitting/scale;
+- [ ] aplicar primeiro às subtrees reais selecionadas;
+- [ ] habilitar Tree 3 node-shaped glyph por specialization apenas quando seu `tree_id`/graph real estiver no snapshot;
 - [ ] commit isolado.
 
-### Task 7 — Renderer com LOD/culling
+### Task 8 — Renderer e LOD funcional
 
-**Produz:** renderização completa da cena.
-
-- [ ] RED de política LOD pura;
-- [ ] implementar coarse cluster culling e fine node culling;
-- [ ] implementar node/edge/cluster renderer;
-- [ ] implementar cache de texto/ícones onde seguro;
-- [ ] garantir que partículas não existam em LOD distante;
+- [ ] renderer de cluster/edge/node/emblem;
+- [ ] LOD semântico para legibilidade;
+- [ ] nenhuma animação altera estado;
+- [ ] iniciar sem culling complexo se Task 4 não o justificar;
 - [ ] commit isolado.
 
-### Task 8 — Pan, zoom, hit testing e seleção
+### Task 9 — Otimizações condicionadas ao profiling
 
-**Produz:** navegação estável.
+Executar apenas itens apoiados pela Task 4/novo profiling:
 
-- [ ] testes puros de camera bounds/zoom;
-- [ ] implementar `TreeCamera`;
-- [ ] implementar spatial index/hit tester;
-- [ ] implementar seleção/focus;
-- [ ] testar UI scale e resoluções múltiplas;
+- [ ] coarse cluster culling, se necessário;
+- [ ] fine node culling, se necessário;
+- [ ] spatial index, se hit test linear for insuficiente;
+- [ ] edge/text/icon caches adicionais, se evidência justificar;
+- [ ] registrar antes/depois;
 - [ ] commit isolado.
 
-### Task 9 — Tooltips, blocking reasons e compra server-authoritative
+### Task 10 — Camera, input, seleção e hit testing
 
-**Produz:** explicabilidade sem autoridade client-side.
-
-- [ ] RED para bloqueio por requisito/provider/adapter;
-- [ ] implementar tooltip model;
-- [ ] conectar request de compra ao protocolo canônico Stage 07.03/07.04;
-- [ ] garantir que animação de unlock só ocorre após snapshot confirmado;
-- [ ] testar rejeição server-side e stale snapshot;
+- [ ] testes de pan/zoom bounds;
+- [ ] normal `KeyMapping` consumption;
+- [ ] mouse/keyboard/controller;
+- [ ] hit testing simples ou indexado conforme Task 9;
+- [ ] focus/centralize;
 - [ ] commit isolado.
 
-### Task 10 — Busca, filtros e breadcrumbs
+### Task 11 — Tooltips, blocking reasons e server intents
 
-**Produz:** navegação rápida em árvore gigante.
-
-- [ ] RED para canonical ID único e busca PT-BR;
-- [ ] implementar índice de busca;
-- [ ] implementar filtros não destrutivos;
-- [ ] implementar highlight do caminho de requisitos;
-- [ ] implementar breadcrumbs;
+- [ ] RED: provider absent/adapter incompatible/requisite missing;
+- [ ] tooltip PT-BR;
+- [ ] purchase/respec intent usa protocolo canônico;
+- [ ] animação de confirmação só depois de snapshot server-side;
+- [ ] stale revision falha fechado;
 - [ ] commit isolado.
 
-### Task 11 — Acessibilidade e reduced motion
+### Task 12 — Busca, filtros e breadcrumbs
 
-**Produz:** interação equivalente sem depender de cor/animação.
+- [ ] RED: busca retorna canonical ID único;
+- [ ] busca PT-BR;
+- [ ] filtros não mudam gameplay;
+- [ ] path highlight;
+- [ ] breadcrumbs;
+- [ ] commit isolado.
 
-- [ ] testes de políticas de shape/contrast quando automatizáveis;
-- [ ] navegação por teclado/controle;
+### Task 13 — Acessibilidade e motion policy
+
+- [ ] teclado/controle;
 - [ ] focus ring;
 - [ ] reduced motion;
 - [ ] particle toggle;
-- [ ] tooltips bounded pela tela;
+- [ ] non-color cues;
+- [ ] tooltip screen bounds;
 - [ ] commit isolado.
 
-### Task 12 — Animações temáticas
+### Task 14 — Animação temática
 
-**Produz:** feedback visual por especialização sem alterar gameplay.
-
-- [ ] implementar animações somente sobre `VisualState` confirmado;
-- [ ] budget de partículas;
-- [ ] nenhuma animação atualiza rank/gate;
-- [ ] cobrir fallback estático em reduced motion;
+- [ ] somente sobre `VisualState` confirmado;
+- [ ] budget de efeitos baseado no profiling;
+- [ ] fallback estático reduced-motion;
+- [ ] nenhuma animação concede rank/unlock;
 - [ ] commit isolado.
 
-### Task 13 — Matriz completa das classes
+### Task 15 — Specialist topology expansion — trilha coordenada, não invenção de UI
 
-**Produz:** auditoria automática de cobertura de todas as identidades da seção 8.
+Esta Task não autoriza o cliente a desenhar fake perks. Para cada especialização que receber árvore própria em uma fase de gameplay:
 
-- [ ] testar as 23 classes presentes;
-- [ ] testar Ranger/Hunter e Death Knight como design-only enquanto ausentes;
-- [ ] testar Technomancer/Warlock/Druid/Metamorph contra suas subtrees reais;
-- [ ] testar que classes demovidas não reaparecem;
-- [ ] testar especializações compartilhadas sem clone;
-- [ ] commit isolado.
+- [ ] design/auditoria da subtree server-side;
+- [ ] graph + costs + currency + effects + gates + provenance;
+- [ ] testes de purchase/respec/reload;
+- [ ] client projection inclui o novo graph;
+- [ ] 07.05 passa a usar automaticamente shape fitting para aquele ID;
+- [ ] nenhuma mudança manual de renderer por quantidade de specializations.
 
-### Task 14 — Performance e regressão visual
+### Task 16 — Acceptance e regressão
 
-**Produz:** evidência de que o cosmograma completo é utilizável.
-
-- [ ] cenário sintético com árvore principal + todas as classes/especializações disponíveis;
-- [ ] medir custo de layout separado do frame render;
-- [ ] provar ausência de layout O(N²) por frame;
-- [ ] validar culling em zoom distante;
-- [ ] capturar screenshots de referência em resoluções/UI scales definidas na suíte;
-- [ ] commit isolado.
-
-### Task 15 — Integração, GameTests/build/smoke e fechamento
-
-**Produz:** Stage 07.05 validado.
-
-- [ ] JUnit de modelos/layout/validators GREEN;
-- [ ] GameTests aplicáveis ao snapshot/rede e autoridade server-side GREEN;
-- [ ] validators de datapack/tree existentes GREEN;
-- [ ] build NeoForge GREEN;
-- [ ] JAR verificado;
-- [ ] dedicated-server smoke GREEN — nenhuma classe cliente deve ser carregada no servidor dedicado;
+- [ ] JUnit/core/client-model tests GREEN;
+- [ ] GameTests aplicáveis GREEN;
+- [ ] current tree validators GREEN;
+- [ ] GUI scales/resolutions;
+- [ ] screenshot/manual regression;
+- [ ] rule revision/reconnect;
+- [ ] provider unavailable;
+- [ ] 512+ node profiling;
+- [ ] NeoForge build GREEN;
+- [ ] JAR verification GREEN;
+- [ ] dedicated-server smoke GREEN;
 - [ ] CI GREEN;
-- [ ] documentação/`plans/STATUS.md` atualizados com SHA/run reais;
-- [ ] merge somente após reviews e checks obrigatórios.
+- [ ] `plans/STATUS.md`/ADR/documentação atualizados com evidência real;
+- [ ] merge e confirmação da `main`.
 
 ---
 
-## 24. Testes de aceitação obrigatórios
+## 25. Matriz de testes obrigatória
 
-### 24.1 Integridade estrutural
+### Estrutura
 
-- árvore principal continua com a mesma identidade/topologia canônica;
-- cosmograma contém todos os nodes recebidos do snapshot;
-- nenhum node interativo duplicado;
-- nenhuma edge de prerequisite perdida;
-- subtrees existentes mantêm seus counts/IDs enquanto o baseline não mudar.
+- main graph continua completo;
+- nenhum node/edge real perdido;
+- nenhuma instância interativa duplicada;
+- layout determinístico.
 
-### 24.2 Classes
+### IDs
 
-- 23 classes baseline aparecem quando o servidor as fornece;
-- multiclass simultâneo não causa conflito de seleção;
-- Ranger/Hunter e Death Knight não aparecem como compráveis antes de existir definição server-side;
-- perda de requisito após respec atualiza visual após snapshot;
-- class visual ausente cai para fallback sem bloquear gameplay.
+- current unnamespaced class/specialization IDs resolvem;
+- visual asset IDs namespaced resolvem;
+- futuro ID migration exige fixtures/aliases antes de mudar bindings.
 
-### 24.3 Especializações
+### Classes
 
-- 25 especializações baseline possuem shape binding;
-- provider ausente não gera unlock visual falso;
-- adapter incompatível/incompleto preserva fail-closed;
-- uma especialização ligada a várias classes continua sendo uma única instância;
-- template antecipatório sem ID runtime não aparece.
+- 23 baseline classes;
+- Beastmaster anchor deriva AGILITY + SUMMONING no baseline;
+- multiclass simultâneo;
+- class lost after respec;
+- Ranger/Hunter e Death Knight ausentes não compráveis;
+- Artificer não vira classe antes da D014.
 
-### 24.4 Autoridade
+### Specializations
 
-- cliente não consegue conceder rank manipulando `VisualState`;
-- clique de compra rejeitado pelo servidor volta ao estado sincronizado;
-- stale snapshot não permite compra local;
-- resource pack visual malicioso não altera custo/requisito/provider.
+- 25 current definitions possuem emblema;
+- nenhuma recebe fake nodes sem graph;
+- provider absent/adapter fail-closed;
+- shared specialization = uma visual instance;
+- future template without binding = invisível/inativo.
 
-### 24.5 UX
+### Subtrees
 
-- pan/zoom funcionam em diferentes UI scales;
-- tooltip explica por que node está bloqueado;
-- busca centraliza o node correto;
-- LOD total mostra formas reconhecíveis;
-- LOD próximo mostra nodes individuais;
-- reduced motion elimina animações essenciais sem perder informação.
+- Technomancer 17, Warlock 18, Druid 11, Metamorph 10 preservadas enquanto o baseline correspondente não mudar;
+- node-shaped symbolic layout não muda dependency/exclusivity/cost;
+- novos specialist graphs entram sem mudança hardcoded de renderer.
 
-### 24.6 Dedicated server
+### Authority
 
-- nenhuma classe de renderer/screen é classloaded no dedicated server;
-- resources visuais não são requisito para resolver progressão;
-- ausência de assets cliente não altera gameplay server-side.
+- resource pack malicioso não muda custo/gate;
+- local VisualState não concede rank;
+- rejected purchase retorna ao snapshot server-side;
+- stale revision bloqueia mutation.
 
----
+### Client/server safety
 
-## 25. Critérios de aceite finais do Stage 07.05
+- client-only classes não classload no dedicated server;
+- falta de visual asset não quebra gameplay;
+- server não depende de shape templates.
 
-O Stage 07.05 só pode ser marcado concluído quando:
+### UX
 
-- [ ] Árvore 1 está representada no núcleo sem conflitar com sua autoridade de progressão;
-- [ ] Árvore 2 preserva integralmente a topologia principal canônica;
-- [ ] os 11 domínios são legíveis no corpo radial;
-- [ ] todas as classes reais do catálogo recebem constelação visual;
-- [ ] o catálogo alvo de 25 classes está documentado e classes ainda não existentes permanecem não interativas;
-- [ ] as 25 especializações baseline possuem forma dedicada;
-- [ ] os próprios nodes/edges formam as silhuetas simbólicas;
-- [ ] Technomancer, Warlock, Druid e Metamorph preservam suas subtrees reais;
-- [ ] especializações compartilhadas não são duplicadas;
-- [ ] pan, zoom, LOD, culling, busca, filtros e breadcrumbs estão funcionais;
-- [ ] tooltips explicam requisitos e bloqueios;
-- [ ] provider/adapter fail-closed é refletido corretamente;
-- [ ] cliente não possui autoridade de unlock;
-- [ ] acessibilidade/reduced motion existem;
-- [ ] regressão visual e performance foram verificadas;
-- [ ] JUnit/GameTests aplicáveis/build/dedicated-server smoke/CI estão verdes;
-- [ ] `plans/STATUS.md` registra evidência real e SHA final após merge.
+- pan/zoom;
+- UI scale;
+- keyboard/mouse/controller;
+- tooltip explica bloqueio;
+- busca/filtros;
+- reduced motion;
+- screenshot regression.
 
 ---
 
-## 26. Fora de escopo e proibições
+## 26. Critérios de conclusão em camadas
 
-Este plano **não autoriza**:
+### 26.1 Plano documentado
 
-- criar perks novas para preencher silhuetas;
-- redesenhar as 512 perks principais;
-- alterar efeitos, custos, Mastery, gates ou providers;
-- promover um mod a classe;
-- transformar `Industrialist`, `Prospector` ou `Logistician` novamente em classes;
-- implementar Aquamante apenas porque existe `water_drop`;
-- tratar Ranger/Hunter ou Death Knight como implementados antes do catálogo server-side;
-- duplicar progressão nativa de Epic Fight, Iron's, Ars, Goety, Vampirism, Identity2, Create, AE2, Oritech ou qualquer provider;
-- introduzir segundo sistema de mana, stamina, sangue, temperatura, Soul, Source, energia ou outro recurso;
-- fazer resource pack modificar gameplay;
-- esconder fail-closed com bônus genérico;
-- usar client-only state como autoridade.
+Concluído quando este arquivo e o índice do Stage 07 estiverem mergeados. Isso **não significa Stage 07.05 implementado**.
+
+### 26.2 Vertical slice / D001
+
+Concluído quando a comparação Passive Skill Tree vs custom UI for feita com slice real e ADR D001 estiver ACCEPTED.
+
+### 26.3 Core cosmogram UI
+
+Concluído quando a engine escolhida apresentar:
+
+- Árvore 1;
+- Árvore 2;
+- 11 domínios;
+- classes reais como constelações;
+- 25 specialization definitions atuais como emblemas/gateways/status;
+- subtrees reais navegáveis;
+- pan/zoom/search/tooltips/accessibility;
+- autoridade server-side comprovada.
+
+### 26.4 Resultado final da Árvore 3 simbólica
+
+Concluído somente quando, para cada especialização que o design de gameplay decidir que possui árvore própria:
+
+- a specialist topology real existir server-side;
+- seus nodes/edges forem projetados ao cliente;
+- o shape fitter usar esses nodes/edges reais;
+- a silhueta temática resultar da topologia real;
+- não houver fake perk/decorative node confundido com gameplay.
+
+É neste nível que `irons_fire` pode literalmente formar uma chama, `irons_blood` uma gota, `irons_eldritch` um pentagrama etc., desde que suas árvores tenham sido materializadas canonicamente.
 
 ---
 
-## 27. Resultado visual esperado
+## 27. Proibições
 
-Em zoom distante, o jogador deve reconhecer uma composição semelhante a um mapa astral:
+07.05 não pode:
+
+- pular D001;
+- migrar 512 nodes antes do vertical slice;
+- criar perk para preencher shape;
+- criar fake specialist node;
+- alterar cost/effect/mastery/provider/gate;
+- namespacificar class/specialization ID incidentalmente;
+- promover mod a classe;
+- reintroduzir Industrialist/Prospector/Logistician como classes;
+- decidir Artificer silenciosamente;
+- implementar Aquamante porque existe `water_drop`;
+- mostrar Ranger/Hunter/Death Knight como runtime antes do servidor;
+- duplicar uma specialization por classe;
+- criar segunda mana/stamina/blood/temperature/Soul/Source/energy;
+- usar client state como authority;
+- implementar culling/spatial indexes apenas por suposição de performance;
+- carregar código client-only em dedicated server.
+
+---
+
+## 28. Resultado visual final
 
 ```text
-                    [especializações simbólicas]
-             chama  floco  halo  gota  engrenagem ...
-                         \   |   /
-                   [constelações de classe]
-                Warrior / Mage / Druid / etc.
-                       \         /
-                 [ÁRVORE 2 — 11 DOMÍNIOS]
-                         \
-                    [ÁRVORE 1]
-                      ATRIBUTOS
+                    ÁRVORE 3 — ESPECIALISTAS
+          chama • floco • halo • gota • engrenagem • ...
+                       \      |      /
+                    CONSTELAÇÕES
+          Warrior • Mage • Druid • Engineer • ...
+                       \      |      /
+                ÁRVORE 2 — 11 DOMÍNIOS
+                         \   /
+                    ÁRVORE 1
+                     ATRIBUTOS
 ```
 
-Ao aproximar, cada símbolo deixa de ser apenas desenho e revela que **o desenho é feito pelos próprios nodes e conexões reais**.
+A regra que define o projeto continua sendo:
 
-Esse é o contrato central do Stage 07.05: **a fantasia visual deve emergir da progressão canônica, nunca substituí-la.**
+> **a fantasia visual deve emergir da progressão canônica; nunca substituir a progressão canônica.**
