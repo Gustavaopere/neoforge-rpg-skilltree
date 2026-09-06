@@ -14,6 +14,8 @@ Fechamento do Stage 06.10 auditado contra `main@d4422e3ee07e6cfa17cceac0fddd87be
 
 Fechamento do Stage 06.11 auditado após integração da PR #415. O head final sincronizado `55387a4a8246337fabf6697c9105ac9d10729998` fechou **24/24 workflows GREEN**, incluindo RPG Skill Tree CI `34046743733` / run #3814, SonarQube Cloud `34046743697` / #1050 com Quality Gate GREEN e cobertura provider-free/Battle Mage/Ars Nouveau/MineColonies 1.1.1375, Volcanoes Full Pack Compatibility Acceptance `34046743729` / #1002 com exact-host GameTests e save/reload smoke, Battle Mage Epic Compatibility `34046743728` / #370 e CodeQL Security `34046743731` / #847. A PR #415 foi mergeada como `ce00a228535974043476528b9af47179ce665b21`. A execução provider-present do binário exato MineColonies `1.1.1376-1.21.1-snapshot` permanece registrada como pendência de evidência; a lane executada e auditada usa 1.1.1375.
 
+Fechamento funcional do Stage 06.01 auditado após integração da PR #444. O head final `b03ad5d862baa157ed311d1a5181a7423553ebd5` fechou **25/25 workflows de pull request GREEN**, incluindo `Stage 06.01 Adapter Contract`, RPG Skill Tree CI, SonarQube Cloud, CodeQL Security, Foundation Optional Integrations, NeoForge JUnit/GameTests, build, JAR, dedicated-server smoke, Volcanoes Worldgen Compatibility Matrix e Consolidated Release Readiness. A implementação foi mergeada na `main` como `f23afcf14adfd5936991487980037f280683fb43`. O contrato comum agora cobre detecção antes de construção/classloading, IDs semânticos canônicos, capabilities provider-neutral, fallback neutro, diagnostics bounded e ownership único com colisão fail-closed. O workflow focal temporário usado para o ciclo TDD foi removido no fechamento documental; o teste de regressão permanece na suíte ordinária.
+
 Fechamento do Stage 10.01 auditado contra `main@b4d84e9078b27349cc691ec2875574ff67246101`, com CI pós-merge `33187232908` / run #755 GREEN completo.
 
 Fechamento do Stage 10.02 auditado contra `main@259eb2d4310f5c7c84dcf0db1a5c3c5f6522df1d`, com CI pós-merge `33190772894` / run #805 GREEN completo.
@@ -38,13 +40,13 @@ Fechamento do Stage 00.01 auditado contra `main@0f008fc3bc1767e74da777fcc02e37fd
 
 Fechamento funcional do Stage 10.08 auditado contra `main@c980f7835a01ef038e34d1ea0fab66d33e8bb03c`, após integração do PR #110. Os CIs pós-merge `33230100328` / Compendium Flora #215, `33230100330` / Compendium Entities #281, `33230100337` / Foundation Bootstrap #19, `33230100355` / Compendium Ecology #254, `33230100371` / Compendium Discovery #358, `33230100386` / Compendium World #16 e `33230100358` / RPG Skill Tree #1241 fecharam GREEN; o CI completo incluiu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
 
-Fechamento do Stage 00.03 auditado contra `main@4f48fefa15477023ce2dcb9d56c36b586a6b16ea`, após integração do PR #113. O TDD RED `33230185322` detectou a ausência do registry central; um candidato intermediário revelou ainda `ClassNotFoundException` real do target Identity2 no Mixin, corrigido por isolamento e gate early-startup. Os CIs pós-merge `33230834923` / Foundation Bootstrap #55, `33230834955` / Foundation Optional Integrations #17 e `33230834856` / RPG Skill Tree #1277 fecharam GREEN. O CI completo incluiu Core, JUnit 5, NeoForge GameTests, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e status final de sucesso; o smoke confirmou os sete providers opcionais ausentes e `Classloading errors: none`.
+Fechamento do Stage 00.03 auditado contra `main@4f48fefa15477023ce2dcb9d56c36b586a6b16ea`, após integração da PR #113. O TDD RED `33230185322` detectou a ausência do registry central; um candidato intermediário revelou ainda `ClassNotFoundException` real do target Identity2 no Mixin, corrigido por isolamento e gate early-startup. Os CIs pós-merge `33230834923` / Foundation Bootstrap #55, `33230834955` / Foundation Optional Integrations #17 e `33230834856` / RPG Skill Tree #1277 fecharam GREEN. O CI completo incluiu Core, JUnit 5, NeoForge GameTests, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e status final de sucesso; o smoke confirmou os sete providers opcionais ausentes e `Classloading errors: none`.
 
-Fechamento do Stage 00.04 auditado contra `main@4a13ac7c8deda8827e755d100223985f07319e8e`, após integração do PR #120. O RED inicial `33231244859` exigiu o boundary de diagnostics; a implementação consolidou taxonomia estruturada, reload fail-visible com path/resource IDs, anti-spam de falhas persistentes e documentação reproduzível dos gates. Os CIs pós-merge `33244389124` / Foundation Diagnostics #22, `33244389122` / Foundation Bootstrap #113, `33244389143` / Foundation Optional Integrations #75 e `33244389119` / RPG Skill Tree #1335 fecharam GREEN. O CI completo cobriu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
+Fechamento do Stage 00.04 auditado contra `main@4a13ac7c8deda8827e755d100223985f07319e8e`, após integração da PR #120. O RED inicial `33231244859` exigiu o boundary de diagnostics; a implementação consolidou taxonomia estruturada, reload fail-visible com path/resource IDs, anti-spam de falhas persistentes e documentação reproduzível dos gates. Os CIs pós-merge `33244389124` / Foundation Diagnostics #22, `33244389122` / Foundation Bootstrap #113, `33244389143` / Foundation Optional Integrations #75 e `33244389119` / RPG Skill Tree #1335 fecharam GREEN. O CI completo cobriu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
 
-Fechamento do Stage 01.03 auditado contra `main@398f160f5bec74629331475eff1e60d3cdeb0958`, após integração do PR #135. O RED `33245655826` falhou exatamente porque o GameTest runtime ainda não existia. O head sincronizado final `4bcefe741d641da6b7d14b1b89d4214bce9bc3ff` passou o CI completo `33246262135`, incluindo NeoForge GameTests, `Attribute runtime validation`, build, JAR e dedicated-server smoke. O pós-merge canônico `33246405719` repetiu toda a matriz em GREEN, incluindo upload do JAR e publicação do status final de sucesso.
+Fechamento do Stage 01.03 auditado contra `main@398f160f5bec74629331475eff1e60d3cdeb0958`, após integração da PR #135. O RED `33245655826` falhou exatamente porque o GameTest runtime ainda não existia. O head sincronizado final `4bcefe741d641da6b7d14b1b89d4214bce9bc3ff` passou o CI completo `33246262135`, incluindo NeoForge GameTests, `Attribute runtime validation`, build, JAR e dedicated-server smoke. O pós-merge canônico `33246405719` repetiu toda a matriz em GREEN, incluindo upload do JAR e publicação do status final de sucesso.
 
-Fechamento do Stage 01.04 auditado contra `main@461f386179a3c904f52793354998c29ff7979dd7`, após integração do PR #128. O head funcional `a02b76ae004aa48e3fe2efef01c33c31f1fd267f` passou o RPG Skill Tree CI `33244574779` e os workflows Foundation/Compendium associados. O pós-merge funcional `33244700777` / run #1341 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso. O fechamento formal foi mergeado como `845335058bbe8cd4f5e6f4c140bf4c8fd9f14063`, cujo CI pós-merge `33262871523` / run #1407 também terminou GREEN completo. Auditoria posterior confirmou que o `AttachmentType` canônico continua usando `CanonicalPlayerAttachmentSerializer`, o mesmo codec exercitado pelos testes de round-trip.
+Fechamento do Stage 01.04 auditado contra `main@461f386179a3c904f52793354998c29ff7979dd7`, após integração da PR #128. O head funcional `a02b76ae004aa48e3fe2efef01c33c31f1fd267f` passou o RPG Skill Tree CI `33244574779` e os workflows Foundation/Compendium associados. O pós-merge funcional `33244700777` / run #1341 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso. O fechamento formal foi mergeado como `845335058bbe8cd4f5e6f4c140bf4c8fd9f14063`, cujo CI pós-merge `33262871523` / run #1407 também terminou GREEN completo. Auditoria posterior confirmou que o `AttachmentType` canônico continua usando `CanonicalPlayerAttachmentSerializer`, o mesmo codec exercitado pelos testes de round-trip.
 
 Fechamento do Stage 02.01 e 02.02 integrado em `main@6afc351449bfb04a14f35c44aebb37c77802eec3`. O head sincronizado `62733fa01f4eab936df336af41c7f835ef16a42e` passou o RPG Skill Tree CI `33263146200` / run #1412 e os workflows Foundation/Compendium, incluindo NeoForge build, verificação do JAR e dedicated-server smoke. Os dois planos estão materializados na `main` como `✅-01-relevant-player-level.md` e `✅-02-territory-area-level.md`.
 
@@ -62,7 +64,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 
 ## Resultado
 
-**34 / 93 subplanos concluídos formalmente.**
+**35 / 93 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -84,6 +86,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 - `03-skill-tree-perks/✅-04-effects-runtime.md`
 - `03-skill-tree-perks/✅-05-respec.md`
 - `04-classes-masteries-specializations/✅-06-class-subtrees.md`
+- `06-integrations/✅-01-adapter-contract.md`
 - `06-integrations/✅-03-irons-spellbooks.md`
 - `06-integrations/✅-05-goety-malum-eidolon.md`
 - `06-integrations/✅-10-minecolonies-battle-mages.md`
@@ -111,13 +114,13 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 03 Skill Tree & Perks | 5 | 6 | EM ANDAMENTO |
 | 04 Classes, Masteries & Specializations | 1 | 6 | EM ANDAMENTO |
 | 05 Combat & Magic Hooks | 0 | 6 | EM ANDAMENTO |
-| 06 Integrations | 4 | 11 | EM ANDAMENTO |
+| 06 Integrations | 5 | 11 | EM ANDAMENTO |
 | 07 Data, Network & UI | 0 | 6 | EM ANDAMENTO |
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
 | 11 Itemização & Progressão de Equipamentos | 1 | 16 | EM ANDAMENTO |
-| **Total** | **34** | **93** | |
+| **Total** | **35** | **93** | |
 
 ## Por que os demais continuam abertos
 
@@ -147,7 +150,7 @@ O pipeline canônico final por hit/projétil/magia ainda não está formalmente 
 
 ### 06 — Integrations
 
-Iron's, o bloco Goety/Malum/Eidolon, `✅-10-minecolonies-battle-mages.md` e `✅-11-minecolonies-economy.md` estão fechados. O Battle Mage usa cidadão/job/AI/inventário MineColonies com spellbook, `ISpellContainer`, `MagicData` e cast lifecycle reais do Iron's; friendly fire/world effects/unsupported providers falham fechado e casts autônomos não geram Mastery do jogador. A Economy V1 usa ledger virtual server-authoritative por colônia, `MINT`/`RETIRE`, persistência e replay protection bounded, `Q` derivado read-only, inflação/deflação bounded, snapshots/preflight e authority server-side; construção/upgrade monetário e UI custom do Town Hall permanecem fail-closed, e o binário exato MineColonies 1.1.1376 continua como pendência de evidência. Epic Fight, Ars, Identity2, Apothic, Create/AE2/Oritech e a matriz geral de integração ainda possuem trabalho pendente. A segurança core-only/ausência global já está fechada no Stage 00.03.
+`✅-01-adapter-contract.md`, Iron's, o bloco Goety/Malum/Eidolon, `✅-10-minecolonies-battle-mages.md` e `✅-11-minecolonies-economy.md` estão fechados. O contrato de adapters garante detecção sem classloading prematuro, boundaries provider-neutral, fallback neutro, diagnostics bounded e uma única owner por ação semântica, falhando fechado em colisão. O Battle Mage usa cidadão/job/AI/inventário MineColonies com spellbook, `ISpellContainer`, `MagicData` e cast lifecycle reais do Iron's; friendly fire/world effects/unsupported providers falham fechado e casts autônomos não geram Mastery do jogador. A Economy V1 usa ledger virtual server-authoritative por colônia, `MINT`/`RETIRE`, persistência e replay protection bounded, `Q` derivado read-only, inflação/deflação bounded, snapshots/preflight e authority server-side; construção/upgrade monetário e UI custom do Town Hall permanecem fail-closed, e o binário exato MineColonies 1.1.1376 continua como pendência de evidência. Epic Fight, Ars, Identity2, Apothic, Create/AE2/Oritech e a matriz geral de integração ainda possuem trabalho pendente. A segurança core-only/ausência global já está fechada no Stage 00.03.
 
 ### 07 — Data, Network & UI
 
@@ -177,7 +180,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento funcional mais recente é Stage 06.11, integrado pela PR #415. O head final sincronizado `55387a4a8246337fabf6697c9105ac9d10729998` fechou 24/24 workflows GREEN: RPG Skill Tree CI `34046743733` / run #3814, SonarQube Cloud `34046743697` / #1050, Full Pack Compatibility `34046743729` / #1002, Battle Mage Epic Compatibility `34046743728` / #370 e CodeQL `34046743731` / #847, além dos demais workflows associados. A implementação foi mergeada em `ce00a228535974043476528b9af47179ce665b21`. A evidência provider-present do binário exato MineColonies 1.1.1376 permanece aberta e explicitamente não foi promovida a gate satisfeito.
+O fechamento funcional mais recente é Stage 06.01, integrado pela PR #444. O head final `b03ad5d862baa157ed311d1a5181a7423553ebd5` fechou **25/25 workflows de pull request GREEN**, incluindo RPG Skill Tree CI, Stage 06.01 Adapter Contract, SonarQube Cloud, CodeQL Security, Foundation Optional Integrations, Worldgen Compatibility Matrix e Consolidated Release Readiness, além de build NeoForge, verificação do JAR e dedicated-server smoke. A implementação foi mergeada em `f23afcf14adfd5936991487980037f280683fb43`. A suíte focal temporária foi retirada após cumprir sua função TDD; `IntegrationAdapterContractJUnitTest` permanece na suíte ordinária. A evidência provider-present do binário exato MineColonies 1.1.1376 permanece aberta e explicitamente não foi promovida a gate satisfeito.
 
 ## Convenção
 
