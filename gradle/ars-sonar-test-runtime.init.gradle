@@ -1,0 +1,11 @@
+allprojects { project ->
+    project.plugins.withId('java') {
+        def arsVersionId = project.findProperty('ars_nouveau_version_id')
+        if (arsVersionId == null || arsVersionId.toString().isBlank()) {
+            throw new GradleException('ars_nouveau_version_id is required for Ars Sonar test runtime')
+        }
+        project.dependencies.add('testRuntimeOnly', "maven.modrinth:TKB6INcv:${arsVersionId}") {
+            transitive = false
+        }
+    }
+}
