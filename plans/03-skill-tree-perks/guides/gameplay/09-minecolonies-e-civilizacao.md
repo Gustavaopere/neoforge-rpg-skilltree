@@ -34,7 +34,7 @@ O addon também amplia ferramentas/itens reconhecidos por cidadãos e ajusta dif
 
 `MineColonies_LetsDo-1.21.1-2.1.jar`
 **Let's Do addon for MineColonies** conecta a colônia aos módulos rurais/culinários da família **[Let's Do]**. O objetivo é fazer recursos, alimentos e interações desses mods serem reconhecidos pelos sistemas de workers e compatibilidade do MineColonies, em vez de existirem como itens externos que os cidadãos ignoram.
-A bridge depende do MineColonies e dos addons Compatibility/Tweaks correspondentes, além dos módulos Let's Do suportados. A release `2.1` é estável para NeoForge 1.21.1; como o ecossistema de addons foi publicado contra uma linha anterior do core, o guia mantém a diferença em relação ao snapshot `1.1.1376-1.21.1` instalado.
+A bridge depende do MineColonies e dos addons Compatibility/Tweaks correspondentes, além dos módulos Let's Do suportados. A release `2.1` é estável para NeoForge 1.21.1; como o ecossistema de addons foi publicado contra uma linha anterior do core, o guia mantém a diferença em relação ao snapshot `1.1.1376-1.21.1-snapshot` instalado.
 
 ## Towntalk — 1.2.0
 
