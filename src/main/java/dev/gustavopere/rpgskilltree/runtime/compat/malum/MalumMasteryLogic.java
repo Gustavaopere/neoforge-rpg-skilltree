@@ -6,8 +6,10 @@ import dev.gustavopere.rpgskilltree.core.SpiritPracticeAction;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -45,6 +47,14 @@ final class MalumMasteryLogic {
     }
 
     static SpiritEvidence evidenceFromStacks(Object rawStacks) {
+        return evidenceFromStacks(rawStacks, stack -> BuiltInRegistries.ITEM.getKey(stack.getItem()));
+    }
+
+    static SpiritEvidence evidenceFromStacks(
+        Object rawStacks,
+        Function<ItemStack, ResourceLocation> itemIdResolver
+    ) {
+        Objects.requireNonNull(itemIdResolver, "itemIdResolver");
         if (!(rawStacks instanceof List<?> stacks)) {
             return SpiritEvidence.EMPTY;
         }
@@ -55,7 +65,7 @@ final class MalumMasteryLogic {
             if (!(rawStack instanceof ItemStack stack) || stack.isEmpty()) {
                 continue;
             }
-            ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
+            ResourceLocation itemId = itemIdResolver.apply(stack);
             if (itemId == null) {
                 continue;
             }
