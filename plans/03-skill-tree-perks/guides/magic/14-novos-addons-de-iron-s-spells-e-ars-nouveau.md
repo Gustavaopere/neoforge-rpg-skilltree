@@ -2,14 +2,16 @@
 
 [← Índice do guia](README.md)
 
+> **Nota de manutenção 2026-09-06:** este capítulo registra um delta histórico. Para presença/JAR/versão atuais, use [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); para fontes, use [`21-fontes-e-referencias-tecnicas.md`](21-fontes-e-referencias-tecnicas.md).
+
 # Novos addons de Iron's Spells e Ars Nouveau
 
-## Apprentice's Codex — 0.9.7
+## Apprentice's Codex — 0.9.7.1
 
-`apprentice_codex-0.9.7+mc1.21.1.jar`
+`apprentice_codex-0.9.7.1+mc1.21.1.jar`
 **Apprentice's Codex** é uma expansão de side-grades para Iron's Spells, com cerca de **60 spells** distribuídos entre combate, defesa/suporte, exploração, utilidade, coleta e crafting. Há summons de armas, rifles e shotguns mágicos, barreiras, guard stances, traps, healing/mana recovery, luz e visão remota, armazenamento, localização de estruturas e tesouros, além de spells para cortar árvores, modelar terreno, colher plantações, processar itens e coletar recursos.
 O equipamento é igualmente central: **Spellcaster Guns**, Swingcast Staves, Offhand Spell Amplifiers e armas especializadas como Smashcast Scepter, Focus Staffbow, Multipurpose Staffrifle, Reflectcast Shield e Mana Force Blade usam casting como parte do próprio moveset. O mod também inclui spellbooks, curios, robes de estilo glass-cannon e gear de caster sem escola fixa.
-Na infraestrutura existem Spellcaster Workbench, Atelier Station e **Spell Dispenser**. O Dispenser pode lançar scroll spells suportados por redstone, usa mana potions como combustível e possui suporte opcional a contraptions Create. Muitos comportamentos são configuráveis por datapacks. A build `0.9.7` instalada é beta NeoForge 1.21.1.
+Na infraestrutura existem Spellcaster Workbench, Atelier Station e **Spell Dispenser**. O Dispenser pode lançar scroll spells suportados por redstone, usa mana potions como combustível e possui suporte opcional a contraptions Create. Muitos comportamentos são configuráveis por datapacks. A modlist atual registra `apprentice_codex-0.9.7.1+mc1.21.1.jar` e runtime `0.9.7.1`; o canal beta é característica da publicação, não divergência da versão instalada.
 
 ## Ars Morph — 2.0.0
 
@@ -45,3 +47,6 @@ Os **Grimoires** funcionam como spellbooks evolutivos associados a elementos, in
 O exército possui gerenciamento próprio: cada shadow pode receber nome, comportamento e postura de combate; pode ser invocado individualmente ou organizado em grupos, e o jogador consegue ordenar ataques coletivos. Existe também **Position Swap**, que troca instantaneamente a posição do personagem com uma de suas sombras.
 As shadows ganham XP e níveis próprios, com pontos investidos em **Health, Speed, Damage e Armor**. Sistemas opcionais permitem fundir shadows ou equipá-las com armas e armaduras reais. Há ainda um modo de progressão do próprio jogador, com títulos **Necromancer → Shadow Overlord → Shadow Monarch** e aumento gradual da capacidade do exército.
 O mod também acrescenta a escola **Umbral** ao Iron's, com atributos de Umbral Spell Power/Resistance e spells como **Miasma, Umbral Bond e Aura of the Monarch**. Possui suporte dedicado para vários dos mobs do pack, incluindo Legendary Monsters, Mowzie's Mobs e L_Ender's Cataclysm.
+
+
+---
