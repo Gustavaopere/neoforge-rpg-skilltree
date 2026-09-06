@@ -11,7 +11,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.UUID;
+import net.minecraft.gametest.framework.GameTest;
+import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.server.level.ClientInformation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -20,8 +23,6 @@ import net.minecraft.world.phys.HitResult;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
-import net.minecraft.gametest.framework.GameTest;
-import net.minecraft.gametest.framework.GameTestHelper;
 
 /** Loaded-provider acceptance coverage for the Ars Nouveau 5.13.1 causal Mastery boundary. */
 @GameTestHolder("rpgskilltree")
@@ -169,6 +170,158 @@ public final class ArsProviderCausalityGameTests {
             helper.succeed();
         } catch (ReflectiveOperationException | LinkageError failure) {
             throw new AssertionError("Ars provider cast/resolve GameTest failed", failure);
+        }
+    }
+
+    @GameTest(template = "foundation_empty")
+    public static void rehydratedContextFailsClosed(GameTestHelper helper) {
+        if (!arsPresent()) {
+            helper.succeed();
+            return;
+        }
+
+        try {
+            Class<?> spellClass = Class.forName(SPELL);
+            Class<?> contextClass = Class.forName(SPELL_CONTEXT);
+            Class<?> castEventClass = Class.forName(SPELL_CAST_EVENT);
+            Class<?> adapterClass = Class.forName(ADAPTER);
+            Object spell = projectileHarmSpell(spellClass);
+
+            ServerPlayer player = new ServerPlayer(
+                helper.getLevel().getServer(),
+                helper.getLevel(),
+                new GameProfile(UUID.randomUUID(), "ars_reload_probe"),
+                ClientInformation.createDefault()
+            );
+
+            Method fromEntity = contextClass.getMethod("fromEntity", spellClass, LivingEntity.class, ItemStack.class);
+            Method claim = declared(adapterClass, "claimResolved", contextClass);
+            Method onSpellCast = adapterClass.getMethod("onSpellCast", castEventClass);
+            Constructor<?> castCtor = castEventClass.getConstructor(spellClass, contextClass);
+
+            Object original = fromEntity.invoke(null, spell, player, ItemStack.EMPTY);
+            onSpellCast.invoke(null, castCtor.newInstance(spell, original));
+
+            Object rehydrated = contextClass.getMethod("dehydrated", spellClass).invoke(null, spell);
+            contextClass.getMethod("rehydrate", ServerLevel.class).invoke(rehydrated, helper.getLevel());
+            helper.assertTrue(
+                claim.invoke(null, rehydrated) == null,
+                "Ars 5.13.1 rehydration must not reconstruct unverifiable Mastery causal state"
+            );
+            helper.assertTrue(
+                claim.invoke(null, original) != null,
+                "rehydrated fail-closed context must not consume the still-live original causal claim"
+            );
+            helper.succeed();
+        } catch (ReflectiveOperationException | LinkageError failure) {
+            throw new AssertionError("Ars provider rehydration GameTest failed", failure);
+        }
+    }
+
+    @GameTest(template = "foundation_empty")
+    public static void causalAwardCannotBeStolenByDifferentResolvingPlayer(GameTestHelper helper) {
+        if (!arsPresent()) {
+            helper.succeed();
+            return;
+        }
+
+        try {
+            Class<?> spellClass = Class.forName(SPELL);
+            Class<?> contextClass = Class.forName(SPELL_CONTEXT);
+            Class<?> castEventClass = Class.forName(SPELL_CAST_EVENT);
+            Class<?> resolvePostClass = Class.forName(SPELL_RESOLVE_POST);
+            Class<?> resolverClass = Class.forName(SPELL_RESOLVER);
+            Class<?> adapterClass = Class.forName(ADAPTER);
+            Object spell = projectileHarmSpell(spellClass);
+
+            ServerPlayer caster = new ServerPlayer(
+                helper.getLevel().getServer(),
+                helper.getLevel(),
+                new GameProfile(UUID.randomUUID(), "ars_owner_probe"),
+                ClientInformation.createDefault()
+            );
+            ServerPlayer other = new ServerPlayer(
+                helper.getLevel().getServer(),
+                helper.getLevel(),
+                new GameProfile(UUID.randomUUID(), "ars_other_probe"),
+                ClientInformation.createDefault()
+            );
+
+            Method fromEntity = contextClass.getMethod("fromEntity", spellClass, LivingEntity.class, ItemStack.class);
+            Method onSpellCast = adapterClass.getMethod("onSpellCast", castEventClass);
+            Method onSpellResolved = adapterClass.getMethod("onSpellResolved", resolvePostClass);
+            Constructor<?> castCtor = castEventClass.getConstructor(spellClass, contextClass);
+            Constructor<?> resolveCtor = resolvePostClass.getConstructor(
+                Level.class,
+                LivingEntity.class,
+                HitResult.class,
+                spellClass,
+                contextClass,
+                resolverClass
+            );
+
+            Object ownerContext = fromEntity.invoke(null, spell, caster, ItemStack.EMPTY);
+            onSpellCast.invoke(null, castCtor.newInstance(spell, ownerContext));
+            Object relatedOtherContext = fromEntity.invoke(null, spell, other, ItemStack.EMPTY);
+            contextClass.getMethod("withParent", contextClass).invoke(relatedOtherContext, ownerContext);
+
+            ProgressionState casterBefore = PlayerProgressionRuntime.get(caster);
+            int casterMagicBefore = casterBefore.mastery().experience(MasteryLaneCatalog.MAGIC_CASTING);
+            int casterArsBefore = casterBefore.mastery().experience(MasteryLaneCatalog.ARS_CASTING);
+            int casterProjectileBefore = casterBefore.mastery().experience(MasteryLaneCatalog.ars("projectile"));
+            ProgressionState otherBefore = PlayerProgressionRuntime.get(other);
+            int otherMagicBefore = otherBefore.mastery().experience(MasteryLaneCatalog.MAGIC_CASTING);
+            int otherArsBefore = otherBefore.mastery().experience(MasteryLaneCatalog.ARS_CASTING);
+            int otherProjectileBefore = otherBefore.mastery().experience(MasteryLaneCatalog.ars("projectile"));
+
+            Object wrongResolver = resolveCtor.newInstance(
+                helper.getLevel(), other, null, spell, relatedOtherContext, null
+            );
+            onSpellResolved.invoke(null, wrongResolver);
+
+            ProgressionState otherAfterWrongResolve = PlayerProgressionRuntime.get(other);
+            helper.assertTrue(
+                otherAfterWrongResolve.mastery().experience(MasteryLaneCatalog.MAGIC_CASTING) == otherMagicBefore
+                    && otherAfterWrongResolve.mastery().experience(MasteryLaneCatalog.ARS_CASTING) == otherArsBefore
+                    && otherAfterWrongResolve.mastery().experience(MasteryLaneCatalog.ars("projectile")) == otherProjectileBefore,
+                "a different resolving player must not steal Mastery from another player's armed Ars causal chain"
+            );
+            ProgressionState casterAfterWrongResolve = PlayerProgressionRuntime.get(caster);
+            helper.assertTrue(
+                casterAfterWrongResolve.mastery().experience(MasteryLaneCatalog.MAGIC_CASTING) == casterMagicBefore
+                    && casterAfterWrongResolve.mastery().experience(MasteryLaneCatalog.ARS_CASTING) == casterArsBefore
+                    && casterAfterWrongResolve.mastery().experience(MasteryLaneCatalog.ars("projectile")) == casterProjectileBefore,
+                "mismatched resolution must fail closed without awarding the original caster"
+            );
+
+            Object ownerResolver = resolveCtor.newInstance(
+                helper.getLevel(), caster, null, spell, relatedOtherContext, null
+            );
+            onSpellResolved.invoke(null, ownerResolver);
+
+            ProgressionState casterAfterOwnerResolve = PlayerProgressionRuntime.get(caster);
+            helper.assertTrue(
+                casterAfterOwnerResolve.mastery().experience(MasteryLaneCatalog.MAGIC_CASTING) > casterMagicBefore,
+                "the original caster must retain the live causal claim after a mismatched resolver"
+            );
+            helper.assertTrue(
+                casterAfterOwnerResolve.mastery().experience(MasteryLaneCatalog.ARS_CASTING) > casterArsBefore,
+                "the original caster must receive ars:casting after its own resolution"
+            );
+            helper.assertTrue(
+                casterAfterOwnerResolve.mastery().experience(MasteryLaneCatalog.ars("projectile")) > casterProjectileBefore,
+                "the original caster must receive ars:projectile after its own resolution"
+            );
+            ProgressionState otherAfterOwnerResolve = PlayerProgressionRuntime.get(other);
+            helper.assertTrue(
+                otherAfterOwnerResolve.mastery().experience(MasteryLaneCatalog.MAGIC_CASTING) == otherMagicBefore
+                    && otherAfterOwnerResolve.mastery().experience(MasteryLaneCatalog.ARS_CASTING) == otherArsBefore
+                    && otherAfterOwnerResolve.mastery().experience(MasteryLaneCatalog.ars("projectile")) == otherProjectileBefore,
+                "cross-player causal resolution must never mutate the non-owner progression state"
+            );
+            helper.succeed();
+        } catch (ReflectiveOperationException | LinkageError failure) {
+            throw new AssertionError("Ars provider multiplayer attribution GameTest failed", failure);
         }
     }
 
