@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db819e9572fd43820f9c03 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -23,12 +23,12 @@ O addon também acrescenta conteúdo associado à especialização Astral, de mo
 Entre os spells adicionados estão **Slime Aspect, Sulfur Clouds, Sulfur Bomb e Sulfur Release**. O equipamento também possui propriedades próprias: o Quicksilver Spellbook é voltado a velocidade de casting/regeneração, enquanto as Slime Boots alteram queda e rebote.
 O arquivo instalado é `backportedspellbooks-0.1.2.jar`, mas o metadata interno carregado declara runtime **0.1.0**. O guia preserva as duas informações separadamente: 0.1.2 identifica a build/arquivo e 0.1.0 é a string runtime observada.
 
-## Cataclysm: Spellbooks — 1.1.12-1.21
+## Cataclysm: Spellbooks — 1.1.13-1.21
 
-`cataclysm_spellbooks-1.1.12-1.21.jar`
+`cataclysm_spellbooks-1.1.13-1.21.jar`
 **Cataclysm: Spellbooks** conecta L_Ender's Cataclysm ao sistema de spellcasting do Iron's Spells. Ataques, poderes, criaturas e materiais associados aos bosses do Cataclysm são reinterpretados como **spells e equipamentos mágicos**, fazendo o conteúdo de boss participar também da progressão de mago.
 A ponte mantém as regras do Iron's — mana, escolas, spellbooks, atributos e equipamentos — enquanto usa o Cataclysm como fonte temática e material. Assim, poderes que originalmente pertencem a encontros de boss ganham versões utilizáveis pelo jogador por meio do sistema de magia.
-O runtime instalado declara `1.1.12-1.21`; a publicação correspondente da linha 1.21 é tratada separadamente quanto ao canal de maturidade.
+O runtime instalado declara `1.1.13-1.21`; a publicação correspondente da linha 1.21 é tratada separadamente quanto ao canal de maturidade.
 
 ## Deeper and Darker: Spellbooks — runtime 1.3.3-1.21.1
 
@@ -37,11 +37,11 @@ O runtime instalado declara `1.1.12-1.21`; a publicação correspondente da linh
 A build instalada é a variante **VER B**, que possui diferenças de atributos em parte do equipamento em relação à variante alternativa. A linha atual também inclui correções relacionadas a summons em dedicated server.
 O filename é `darkermagic-1.3.3-1.21.1-ver.b.jar`, enquanto o metadata runtime declara `1.3.3-1.21.1`; o guia mantém a variante do arquivo e a versão runtime como informações distintas.
 
-## Discerning The Eldritch — runtime 1.4.3-1.21
+## Discerning The Eldritch — runtime 1.4.4-1.21
 
-`discerning_the_eldritch-1.4.3-1.21.jar`
+`discerning_the_eldritch-1.4.4-1.21.jar`
 **Discerning The Eldritch** aprofunda a escola **Eldritch** do Iron's Spells com um conjunto próprio de spells, armas, armaduras e conteúdo RPG. O foco é transformar a escola em uma especialização completa, com recursos ofensivos, utilitários e equipamento associado à temática de magia incompreensível, sombria e cósmica.
-Como utiliza diretamente a infraestrutura do Iron's, seus feitiços seguem mana, spell power, cooldowns e spellbooks do sistema-base, enquanto o gear amplia a identidade do personagem fora do momento do casting. A string runtime instalada é preservada integralmente como **`1.4.3-1.21`**.
+Como utiliza diretamente a infraestrutura do Iron's, seus feitiços seguem mana, spell power, cooldowns e spellbooks do sistema-base, enquanto o gear amplia a identidade do personagem fora do momento do casting. A string runtime instalada é preservada integralmente como **`1.4.4-1.21`**.
 
 ## Dreamless Spells — 1.1.9
 
@@ -49,17 +49,17 @@ Como utiliza diretamente a infraestrutura do Iron's, seus feitiços seguem mana,
 **Dreamless Spells** adiciona ao Iron's Spells uma proposta de **anti-magia** centrada na chamada **Empty school**. Seus spells trabalham com vazio, negação e neutralização de magia, formando um arquétipo diferente das escolas elementais e de dano convencional do sistema-base.
 O addon também acrescenta armas, armaduras e Curios ligados a essa identidade, permitindo que a especialização exista tanto nos feitiços quanto no equipamento. A build atual depende de Iron's Spells e **Apothic Attributes**, usando a camada de atributos para sustentar parte dessa progressão.
 
-## Ender's Spells and Stuff: Requiem — 0.1.6
+## Ender's Spells and Stuff: Requiem — 0.1.7
 
-`ess_requiem-0.1.6.jar`
+`ess_requiem-0.1.7.jar`
 **Ender's Spells and Stuff: Requiem** é uma expansão de conteúdo para Iron's Spells com coleção própria de spells, equipamentos e elementos RPG. Seu conteúdo entra diretamente no sistema de escolas, mana e spellbooks do Iron's, ampliando as possibilidades de conjuração e de equipamento sem funcionar como um mod-base separado.
-A proposta é acrescentar novas combinações de habilidades e gear dentro do mesmo modelo de progressão do Iron's. A ficha atual registra a build `0.1.6` como conteúdo próprio e distinto dos demais addons, ainda que vários deles compartilhem o domínio geral de novos spells.
+A proposta é acrescentar novas combinações de habilidades e gear dentro do mesmo modelo de progressão do Iron's. A ficha atual registra a build `0.1.7` como conteúdo próprio e distinto dos demais addons, ainda que vários deles compartilhem o domínio geral de novos spells.
 
-## Farmer's Spell 'n Spellbooks — runtime 1.0.5.0-1.21.1
+## Farmer's Spell 'n Spellbooks — runtime 1.0.5.1-1.21.1
 
-`farmers-spell-n-spellbook-1.0.5.0-1.21.1.jar`
+`farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar`
 **Farmer's Spell 'n Spellbooks** é um crossover entre Farmer's Delight e Iron's Spells que transforma culinária e ingredientes em parte do spellcasting. Além de receitas cruzadas e alimentos mágicos, o addon introduz conteúdo associado à **School of Gluttony**, conectando efeitos de comida e recursos culinários às regras de escolas e spells do Iron's.
-A integração faz a cozinha participar da progressão mágica em vez de existir apenas como fonte de hunger/saturation: ingredientes, pratos e itens temáticos passam a ter relação direta com equipamentos e habilidades da escola. O metadata runtime instalado é preservado integralmente como `1.0.5.0-1.21.1`.
+A integração faz a cozinha participar da progressão mágica em vez de existir apenas como fonte de hunger/saturation: ingredientes, pratos e itens temáticos passam a ter relação direta com equipamentos e habilidades da escola. O metadata runtime instalado é preservado integralmente como `1.0.5.1-1.21.1`.
 
 ## Fire's Ender Expansion — 2.4.1
 
@@ -104,12 +104,12 @@ As escolas e itens usam a infraestrutura normal de mana, spell power e spellbook
 **Leyline Spellbooks** adiciona **leylines subterrâneas** como fenômenos físicos do mundo e uma escola mágica própria ligada a essas correntes de energia. A progressão combina exploração e spellcasting: o jogador encontra a infraestrutura das leylines no ambiente e utiliza seus recursos e fenômenos dentro do sistema do Iron's.
 O addon inclui spells de manipulação temporal e espacial, portais e **rifts** que funcionam como eventos com ondas de inimigos. Dessa forma, a escola não existe apenas como uma lista de scrolls; ela introduz pontos de interesse, eventos e mecânicas de mundo associados ao uso da magia.
 
-## Monsters & Spellbooks — filename 0.0.16.2 / runtime 0.0.14
+## Monsters & Spellbooks — 0.0.16.3
 
-`monsterspellbooks-0.0.16.2.jar`
+`monsterspellbooks-0.0.16.3.jar`
 **Monsters & Spellbooks** é uma expansão de grande porte para Iron's Spells. A documentação atual descreve **mais de 90 spells**, duas novas escolas de magia e um volume amplo de gear, além de inimigos, minérios, acessórios e estruturas. O addon expande simultaneamente combate, exploração, loot e construção de builds, em vez de atuar apenas como um pequeno pacote de feitiços.
 Novos inimigos e estruturas colocam parte desse conteúdo diretamente no mundo, enquanto ores, equipamentos e acessórios sustentam rotas próprias de aquisição e progressão. As novas escolas ampliam também a camada de atributos e especialização do Iron's.
-O arquivo correto na modlist é `monsterspellbooks-0.0.16.2.jar`. A release/filename é **0.0.16.2**, mas o metadata interno carregado declara runtime **0.0.14**; ambas as informações permanecem registradas separadamente.
+A modlist atual registra `monsterspellbooks-0.0.16.3.jar` e runtime **0.0.16.3**. A divergência antiga entre filename e metadata interno não aparece mais no snapshot de 2026-09-06; por isso o guia passa a usar a mesma versão para arquivo e runtime.
 
 ## Paladin Spells — 1.1.1
 
@@ -148,3 +148,6 @@ O sistema transforma familiars em uma camada jogável de companion, não apenas 
 **Acolyte** amplia Iron's Spells com **spellcasters, facções de combate, estruturas e recrutamento de aliados**. O mod adiciona combatentes humanos e demoníacos — incluindo magos, guerreiros e arqueiros — e inimigos capazes de utilizar o próprio sistema de spells contra o jogador. Também inclui um miniboss Lieutenant e encontros estruturados em torno dessas forças.
 A exploração é ampliada por tavernas, watchtowers, torres e castelos. Nas áreas amigáveis, o jogador pode contratar aliados temporários em troca de esmeraldas; no lado demoníaco, recursos como **Demon Horns** entram em trocas por scrolls e outros itens mágicos.
 Assim, Iron's passa a existir também como linguagem de IA e de encontros de mundo: NPCs hostis e aliados usam spellcasting, e o jogador pode montar apoio temporário para enfrentar as ameaças introduzidas pelo addon.
+
+
+---

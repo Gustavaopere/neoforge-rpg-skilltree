@@ -75,6 +75,10 @@ def main() -> None:
         "Sonar CI must never select or persist an analysis UUID as the New Code baseline.",
     )
     require(
+        "-Dsonar.projectVersion=${GITHUB_SHA}" in workflow,
+        "Previous version requires each CI analysis to publish the immutable Git commit as sonar.projectVersion.",
+    )
+    require(
         "concurrency:" in workflow,
         "Sonar CI must declare concurrency so main analyses cannot overtake one another.",
     )
@@ -141,8 +145,8 @@ def main() -> None:
 
     print(
         "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
-        "uses basic Gradle caching, imports transformed provider GameTest coverage, and keeps Ars live-provider "
-        "coverage out of plain JUnit."
+        "publishes a commit-scoped project version, uses basic Gradle caching, imports transformed provider "
+        "GameTest coverage, and keeps Ars live-provider coverage out of plain JUnit."
     )
 
 
