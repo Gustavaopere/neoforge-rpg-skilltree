@@ -9,6 +9,10 @@ import dev.gustavopere.rpgskilltree.runtime.RelevantPlayerCandidateRuntime;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.coldsweat.ColdSweatFrenzyBridge;
+import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateIntegrationBootstrap;
+import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateIntegrationState;
+import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
@@ -132,6 +136,33 @@ public final class RpgSkillTreeMod {
 
         RuntimeDiagnostics.info(LOGGER, Category.COMPAT, "optional_providers", "Optional integrations: {}", OptionalIntegrations.summary());
         ColdSweatFrenzyBridge.initializeDiagnostics();
+
+        boolean createLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.CREATE);
+        String createVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.CREATE);
+        CreateIntegrationState createState = CreateIntegrationBootstrap.install(
+            createLoaded,
+            createVersion,
+            () -> NeoForge.EVENT_BUS.register(CreateProgressionEvents.class)
+        );
+        if (createState == CreateIntegrationState.ACTIVE) {
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPAT,
+                "create_mastery_active",
+                "Create engineering Mastery integration active: Create {}",
+                createVersion
+            );
+        } else if (createState != CreateIntegrationState.ABSENT_PROVIDER) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "create_mastery_disabled",
+                "Create engineering Mastery integration disabled: state={}, expected={}, found={}",
+                createState,
+                CreateVersionContract.SUPPORTED_VERSION,
+                createVersion
+            );
+        }
 
         boolean mineColoniesLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
         boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
