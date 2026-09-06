@@ -288,15 +288,17 @@ O merge da PR #364 só é autorizado após CI verde do HEAD documental final, co
 
 - **PR:** #387; branch `feat/chat2-a0051-a0060-stacked-handoff`.
 - **Auditoria:** `audits/AUDITORIA-CHAT3-A0051-A0060-PENDENCIAS-TECNICAS.md`.
-- **Modlist fresca:** 607 mods; Epic Fight `21.17.3.1`, Apothic Attributes `2.10.1`, Mobstein `5.4.4`; Punchy `2.7e` é drift visual/compat não bloqueante para este lote.
+- **Modlist fresca:** 607 mods; Epic Fight `21.17.3.1`, Apothic Attributes `2.10.1`, Mobstein `5.4.4`; Punchy `2.7e` confirmado também no Notion e continua visual/compat, não authority deste lote.
 - **A0051/A0055/A0056/A0057:** `IMPLEMENTAÇÃO CONFIRMADA` após revisão do contrato e bateria funcional.
 - **A0058:** `IMPLEMENTAÇÃO CONFIRMADA NOS COMPONENTES COM RECEIPT REAL / FALLBACK CANÔNICO`; heavy-impact/body modulation permanecem provider-bound.
 - **A0052/A0053/A0054:** `NÃO CONFIRMADAS COMO JOGÁVEIS / FAIL-CLOSED ATUAL CONFIRMADO`; herdam indisponibilidade A0050 e não permitem bypass/ghost rank.
 - **A0059/A0060:** `NÃO CONFIRMADAS COMO JOGÁVEIS / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA`; sem heavy/finalizer/guard-break/Stamina receipts não há ativação ou consumo heurístico.
-- **P-A0052-04 RESOLVIDA:** Multishot agora agrega siblings por `rootActionId`, usa `success-wins`, all-fail liquida no máximo uma perda e callback duplicado não liquida novamente.
-- **HEAD funcional validado:** `6826c50896c4ad586b8942031465b6a0a3ce44af`.
-- **RPG Skill Tree CI run `34006356029`: SUCCESS** — JUnit 5, NeoForge JUnit adapter, NeoForge GameTests, provider-present, validações, build, JAR e dedicated-server smoke verdes.
-- **Pendências não bloqueantes:** `P-A0058-01/-02`, `P-A0059-01/-02`, `P-A0060-01/-02` e blockers provider/availability herdados de A0050 para A0052–A0054.
-- **Retorno ao Chat 1:** nenhum; a correção Multishot não alterou design/authority/topologia.
-- **Gate final:** CI verde do HEAD documental final + reviews/mergeabilidade, depois merge da #387 e confirmação da `main`.
+- **P-A0052-04 RESOLVIDA:** Multishot agrega siblings por `rootActionId`, usa `success-wins`, all-fail liquida no máximo uma perda e callback duplicado não liquida novamente.
+- **HEAD funcional/final pré-documentação validado:** `e0fcc0a178b2560ff3476bb9b7cda1690c5436e8`.
+- **RPG Skill Tree CI #3720 / run `34009906068`: SUCCESS** — JUnit 5, NeoForge JUnit adapter, NeoForge GameTests, Battle Mage provider-present, validações, build, JAR e dedicated-server smoke verdes.
+- **SonarQube Cloud #956 / run `34009906109`: SUCCESS / QUALITY GATE PASSED** — **81.7% Coverage on New Code** (gate ≥80%), **0.0% duplication**, **0 Security Hotspots**; cobertura recuperada por testes comportamentais reais, sem reduzir gate nem excluir novo código de produção.
+- **Sonar:** 1 New issue não bloqueante foi reportada, mas o comentário GitHub não expõe o detalhe; `P-SONAR-PR387-01` fica registrada para inspeção em outro chat autorizado a usar navegador externo. Não usar TinyFish neste ciclo.
+- **Pendências não bloqueantes:** `P-A0058-01/-02`, `P-A0059-01/-02`, `P-A0060-01/-02`, blockers provider/availability herdados de A0050 para A0052–A0054 e `P-SONAR-PR387-01`.
+- **Retorno ao Chat 1:** nenhum; a correção Multishot e os testes não alteraram design/authority/topologia.
+- **Gate documental:** auditoria e STATUS reconciliados após o primeiro Quality Gate verde; o novo HEAD documental deve receber CI/Sonar verde antes do merge.
 - **A0061+:** não iniciar neste ciclo.
