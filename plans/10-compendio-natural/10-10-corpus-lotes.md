@@ -58,7 +58,7 @@ Entradas:
 - sem probabilidades, dano, vida, velocidade, cooldown ou capacidades numéricas hardcoded em prosa;
 - distinção explícita entre domesticação, confiança e simples uso de sela quando as mecânicas diferem;
 - variantes descritas sem transformar regras de worldgen/configuração em texto universal;
-- descrições redigida em pt-BR e separadas dos fatos técnicos/providers do Compêndio.
+- descrições redigidas em pt-BR e separadas dos fatos técnicos/providers do Compêndio.
 
 ## Lote 3 — Vanilla / fauna ambiente e aquática
 
