@@ -7,5 +7,10 @@ allprojects { project ->
         project.dependencies.add('testRuntimeOnly', "maven.modrinth:TKB6INcv:${arsVersionId}") {
             transitive = false
         }
+        project.tasks.withType(org.gradle.api.tasks.testing.Test).configureEach { testTask ->
+            if (testTask.name == 'test') {
+                testTask.systemProperty 'rpgskilltree.arsProviderCoverageRequired', 'true'
+            }
+        }
     }
 }
