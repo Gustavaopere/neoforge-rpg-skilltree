@@ -139,7 +139,7 @@ Schema/loaders, grafo/layout, compra/ranks, effects runtime e respec estão fech
 
 ### 04 — Classes, Masteries & Specializations
 
-As quatro subtrees dedicadas estão fechadas. Class resolution, confluences, curvas/caps de masteries, provider identities e specializations ainda possuem contratos finais pendentes.
+As quatro subtrees dedicadas estão fechadas. No `04.03`, o runtime parcial de Mastery do Create `6.0.10` agora possui gate exato de versão, bootstrap opcional/fail-closed, allowlist auditada de 51 advancements e autoridade restrita às lanes base `kinetics`, `logistics` e `automation`, com discovery persistente e awards replay-safe. Esse progresso **não fecha o subplano nem altera 34/93**: class resolution, confluences, curvas/caps de masteries, as demais provider identities e specializations ainda possuem contratos finais pendentes.
 
 ### 05 — Combat & Magic Hooks
 
