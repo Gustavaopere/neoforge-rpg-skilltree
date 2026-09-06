@@ -30,6 +30,7 @@ public final class CreateAdvancementMasteryPolicy {
         String lane = AUDITED_LANES.get(advancementPath);
         if (lane == null) return Optional.empty();
 
+        String discoveryKey = DISCOVERY_PREFIX + advancementPath;
         EngineeringAction action = new EngineeringAction(
             new ActionOrigin("create:advancement_earned", 0),
             CREATE_NAMESPACE,
@@ -37,11 +38,18 @@ public final class CreateAdvancementMasteryPolicy {
             Set.of(lane),
             1.0D
         );
-        List<MasteryAward> awards = MasteryPolicies.forCreate(action);
+        List<MasteryAward> awards = MasteryPolicies.forCreate(action).stream()
+            .map(award -> MasteryAward.replaySafe(
+                award.laneId(),
+                award.experience(),
+                award.sourceId(),
+                discoveryKey + "/lane/" + award.laneId()
+            ))
+            .toList();
         if (awards.isEmpty()) {
             throw new IllegalStateException("audited Create milestone produced no mastery awards: " + advancementPath);
         }
-        return Optional.of(new Milestone(DISCOVERY_PREFIX + advancementPath, action, awards));
+        return Optional.of(new Milestone(discoveryKey, action, awards));
     }
 
     public static Set<String> auditedAdvancementPaths() {
