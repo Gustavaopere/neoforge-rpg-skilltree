@@ -45,9 +45,6 @@ public final class MineColoniesEconomyLifecycleEvents {
             return;
         }
         IColony colony = event.getColony();
-        if (colony == null) {
-            return;
-        }
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) {
             return;
