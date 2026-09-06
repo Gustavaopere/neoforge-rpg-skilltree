@@ -117,6 +117,12 @@ public final class A0041A0060ProjectileEvents {
             );
         }
 
+        if (family == WeaponFamily.CROSSBOW && pending.launchConfirmed) {
+            A0041A0060RuntimeState.state().registerCrossbowProjectile(
+                actor(player), pending.rootActionId, arrow.getUUID().toString(), now
+            );
+        }
+
         CombatPerkRanks perkRanks = A0041A0060RuntimeState.ranks(player);
         if (pending.critical == null) {
             boolean providerCritical = arrow.isCritArrow();
@@ -292,6 +298,9 @@ public final class A0041A0060ProjectileEvents {
                 );
             }
         } else if (meta.launchConfirmed && meta.weaponId != null) {
+            A0041A0060RuntimeState.state().recordCrossbowProjectileSuccess(
+                actor(player), meta.rootActionId, arrow.getUUID().toString(), now
+            );
             A0041A0060CombatPolicy.recordCrossbowHit(
                 actor(player), meta.rootActionId, meta.weaponId, ranks, A0041A0060RuntimeState.state(), now
             );
@@ -310,8 +319,8 @@ public final class A0041A0060ProjectileEvents {
             || meta.confirmedHit || meta.failureRecorded) return;
         meta.failureRecorded = true;
         long now = now(player);
-        if (A0041A0060RuntimeState.state().claimOnce(
-            actor(player), meta.rootActionId, "A0052:failure", now
+        if (A0041A0060RuntimeState.state().recordCrossbowProjectileFailure(
+            actor(player), meta.rootActionId, arrow.getUUID().toString(), now
         )) {
             A0041A0060CombatPolicy.onCrossbowFailure(actor(player), A0041A0060RuntimeState.state());
         }
@@ -320,7 +329,17 @@ public final class A0041A0060ProjectileEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onServerTick(ServerTickEvent.Post event) {
         long now = event.getServer().overworld().getGameTime() * 50L;
-        PENDING.entrySet().removeIf(entry -> entry.getValue().expiresAt < now);
+        PENDING.entrySet().removeIf(entry -> {
+            PendingLaunch pending = entry.getValue();
+            if (pending.expiresAt >= now) return false;
+            if (pending.family == WeaponFamily.CROSSBOW && pending.launchConfirmed
+                && A0041A0060RuntimeState.state().sealCrossbowRoot(
+                    pending.actorId, pending.rootActionId, now
+                )) {
+                A0041A0060CombatPolicy.onCrossbowFailure(pending.actorId, A0041A0060RuntimeState.state());
+            }
+            return true;
+        });
         A0041A0060RuntimeState.state().pruneTransient(now);
         for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
             if (!eligible(player)) continue;
