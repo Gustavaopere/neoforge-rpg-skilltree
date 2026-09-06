@@ -30,9 +30,9 @@ public final class ModNetworking {
         var registrar = event.registrar(NETWORK_VERSION);
         registrar.playToClient(ProgressionSyncPayload.TYPE, ProgressionSyncPayload.STREAM_CODEC, ClientProgressionState::handleSync);
         registrar.playToClient(CoreProgressionSyncPayload.TYPE, CoreProgressionSyncPayload.STREAM_CODEC, ClientCoreProgressionState::handleSync);
-        registrar.playToClient(EconomySnapshotPayload.TYPE, EconomySnapshotPayload.STREAM_CODEC, EconomySnapshotPayload::handle);
+        registrar.playToClient(EconomySnapshotPayload.PAYLOAD_TYPE, EconomySnapshotPayload.STREAM_CODEC, EconomySnapshotPayload::handle);
         registrar.playToClient(
-            EconomyMintPreflightResultPayload.TYPE,
+            EconomyMintPreflightResultPayload.PAYLOAD_TYPE,
             EconomyMintPreflightResultPayload.STREAM_CODEC,
             EconomyMintPreflightResultPayload::handle
         );
@@ -44,17 +44,17 @@ public final class ModNetworking {
         registrar.playToServer(PurchaseAttributeRanksPayload.TYPE, PurchaseAttributeRanksPayload.STREAM_CODEC, PurchaseAttributeRanksPayload::handle);
         registrar.playToServer(RefundAttributeRanksPayload.TYPE, RefundAttributeRanksPayload.STREAM_CODEC, RefundAttributeRanksPayload::handle);
         registrar.playToServer(
-            EconomySnapshotRequestPayload.TYPE,
+            EconomySnapshotRequestPayload.PAYLOAD_TYPE,
             EconomySnapshotRequestPayload.STREAM_CODEC,
             EconomySnapshotRequestPayload::handle
         );
         registrar.playToServer(
-            EconomyMintPreflightPayload.TYPE,
+            EconomyMintPreflightPayload.PAYLOAD_TYPE,
             EconomyMintPreflightPayload.STREAM_CODEC,
             EconomyMintPreflightPayload::handle
         );
-        registrar.playToServer(EconomyMintPayload.TYPE, EconomyMintPayload.STREAM_CODEC, EconomyMintPayload::handle);
-        registrar.playToServer(EconomyRetirePayload.TYPE, EconomyRetirePayload.STREAM_CODEC, EconomyRetirePayload::handle);
+        registrar.playToServer(EconomyMintPayload.PAYLOAD_TYPE, EconomyMintPayload.STREAM_CODEC, EconomyMintPayload::handle);
+        registrar.playToServer(EconomyRetirePayload.PAYLOAD_TYPE, EconomyRetirePayload.STREAM_CODEC, EconomyRetirePayload::handle);
     }
 
     public static void syncToOwner(ServerPlayer player, ProgressionState state) {
