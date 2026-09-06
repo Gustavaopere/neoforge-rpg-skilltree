@@ -4,9 +4,9 @@
 
 Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos`, `10.07 — Loot, dieta, reprodução e ecologia` e `10.08 — Biomas, estruturas e dimensões` foram implementados, validados, integrados e auditados.
 
-Planejamento do Stage 11 adicionado em **2026-08-29** pelo PR #188. O estágio possui **15 subplanos**; `11.01 — Domínio, invariantes e autoridade` foi implementado e validado pelo PR #232, restando 14 subplanos abertos. Naquele momento, a base global permaneceu em **90 subplanos**.
+Planejamento do Stage 11 adicionado em **2026-08-29** pelo PR #188. O estágio nasceu com **15 subplanos**; `11.01 — Domínio, invariantes e autoridade` foi implementado e validado pelo PR #232. Em **2026-09-05/06**, foi acrescentado `11.16 — Blacksmith: equipamentos modulares sobre Productive Metalworks`, elevando o Stage 11 para **16 subplanos**, com 1 concluído e 15 abertos. Na criação original do Stage 11, a base global havia permanecido em **90 subplanos**.
 
-Após a base original, o Stage 06 recebeu dois subplanos adicionais: `06.10 — MineColonies Battle Mages × Iron's Spellbooks` e `06.11 — MineColonies Economy`. O total canônico atual passa, portanto, a **92 subplanos**.
+Após a base original, o Stage 06 recebeu dois subplanos adicionais: `06.10 — MineColonies Battle Mages × Iron's Spellbooks` e `06.11 — MineColonies Economy`. Com o novo `11.16 — Blacksmith`, o total canônico atual passa a **93 subplanos**.
 
 Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33aa2af6a96f0f7c72b0dda0492d0b172cd141`.
 
@@ -60,7 +60,7 @@ A auditoria considera código, recursos, testes, validators e CI já integrados 
 
 ## Resultado
 
-**33 / 92 subplanos concluídos formalmente.**
+**33 / 93 subplanos concluídos formalmente.**
 
 - `00-foundation/✅-01-environment-bootstrap.md`
 - `00-foundation/✅-02-client-server-boundaries.md`
@@ -113,8 +113,8 @@ Cada arquivo concluído segue o padrão documental do Volcanoes: checklist `[x]`
 | 08 Quest & Progression Hooks | 1 | 6 | EM ANDAMENTO |
 | 09 Hardening & Release | 0 | 7 | EM ANDAMENTO contínuo |
 | 10 Compêndio Natural | 8 | 15 | EM ANDAMENTO |
-| 11 Itemização & Progressão de Equipamentos | 1 | 15 | EM ANDAMENTO |
-| **Total** | **33** | **92** | |
+| 11 Itemização & Progressão de Equipamentos | 1 | 16 | EM ANDAMENTO |
+| **Total** | **33** | **93** | |
 
 ## Por que os demais continuam abertos
 
@@ -170,7 +170,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ### 11 — Itemização e Progressão de Equipamentos
 
-`✅-01-domain-invariants.md` está fechado. O domínio canônico agora fixa identidade (`instanceId`/seed/schema), sete ranks, `ItemPower`, as três famílias Prefix/Suffix/Infix com 1..5 rolls por família, fontes de geração, primeira geração imutável, query versus mutation, política de evolução/cópia e barreira contra imports opcionais/compat inclusive por referências totalmente qualificadas atravessando linhas. Os 14 subplanos seguintes continuam abertos e devem reutilizar esse contrato sem criar representações concorrentes. O próximo passo causal é `02-equipment-classification.md`.
+`✅-01-domain-invariants.md` está fechado. O domínio canônico agora fixa identidade (`instanceId`/seed/schema), sete ranks, `ItemPower`, as três famílias Prefix/Suffix/Infix com 1..5 rolls por família, fontes de geração, primeira geração imutável, query versus mutation, política de evolução/cópia e barreira contra imports opcionais/compat inclusive por referências totalmente qualificadas atravessando linhas. Os **15 subplanos seguintes** continuam abertos e devem reutilizar esse contrato sem criar representações concorrentes. `16-blacksmith-productivemetalworks.md` fixa Productive Metalworks como authority da Foundry/melting/alloying/casting e reserva ao Blacksmith somente peças, materiais aplicados ao gear, workmanship, tratamentos e assembly. O próximo passo causal continua sendo `02-equipment-classification.md`.
 
 ## Evidência de regressão atual
 
