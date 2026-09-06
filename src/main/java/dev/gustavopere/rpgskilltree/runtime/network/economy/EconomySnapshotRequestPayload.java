@@ -14,13 +14,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record EconomySnapshotRequestPayload(EconomyColonyContext colony) implements CustomPacketPayload {
-    public static final Type<EconomySnapshotRequestPayload> TYPE = new Type<>(
+    public static final Type<EconomySnapshotRequestPayload> PAYLOAD_TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "economy_snapshot_request")
     );
     public static final StreamCodec<ByteBuf, EconomySnapshotRequestPayload> STREAM_CODEC =
         EconomyColonyContext.STREAM_CODEC.map(EconomySnapshotRequestPayload::new, EconomySnapshotRequestPayload::colony);
 
-    @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    @Override public Type<? extends CustomPacketPayload> type() { return PAYLOAD_TYPE; }
 
     public static void handle(EconomySnapshotRequestPayload payload, IPayloadContext context) {
         context.enqueueWork(() -> {
