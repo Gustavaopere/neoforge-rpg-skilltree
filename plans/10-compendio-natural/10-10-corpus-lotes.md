@@ -799,6 +799,35 @@ Entradas:
 - TDD confirmado no commit `06323d41daa8342f87f5fdc9605db5ea4d677e91`, RPG Skill Tree CI run `34036255544`, job `101494767505`: 1017 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch28JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch5.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
 - o corpus foi adicionado somente depois desse RED correto no commit `d29285fda2664c607c27cece5abb79ec7f3e2d31`; o JUnit 5 correspondente passou no RPG Skill Tree CI run `34036440482`, job `101495263965`, e o Compendium Editorial CI run `34036440421`, job `101495263669`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
 
+## Lote 29 — Terralith 2.6.2 / biomas do Overworld (batch 6)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch6.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:sandstone_valley` — Vale de Arenito
+2. `BIOME:terralith:savanna_badlands` — Mesa de Savana
+3. `BIOME:terralith:savanna_slopes` — Encostas de Savana
+4. `BIOME:terralith:scarlet_mountains` — Montanhas Escarlates
+5. `BIOME:terralith:shield` — Escudo
+6. `BIOME:terralith:shield_clearing` — Escudo Limpo
+7. `BIOME:terralith:shrubland` — Arbustivo
+8. `BIOME:terralith:siberian_grove` — Bosque Siberiano
+9. `BIOME:terralith:siberian_taiga` — Taiga Siberiana
+10. `BIOME:terralith:skylands_autumn` — Ilhas Flutuantes (Outono)
+
+### Critérios editoriais aplicados ao lote 29
+
+- o recorte continua imediatamente após `sakura_valley` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `sandstone_valley` até `skylands_autumn`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; Dynamic Trees–Terralith permanece apenas como confirmação complementar de identidade/integração;
+- termos nominais como `Vale`, `Arenito`, `Mesa`, `Savana`, `Encostas`, `Montanhas`, `Escarlates`, `Escudo`, `Limpo`, `Arbustivo`, `Siberiano`, `Taiga`, `Ilhas Flutuantes` e `Outono` não são convertidos em clima, temperatura, altitude, geometria, composição, geologia, vegetação, estação dinâmica, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `92326532b0e16baedbd575434b0e122b92026388`, RPG Skill Tree CI run `34038317783`, job `101500360835`: 1020 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch29JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch6.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `8ccd464b5dc572eebf039f70077f57951843fe07`; o JUnit 5 correspondente passou no RPG Skill Tree CI run `34038656648`, job `101501280754`, e o Compendium Editorial CI run `34038656685`, job `101501280646`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -808,8 +837,8 @@ Entradas:
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
 - entradas de worldgen BetterNether: New Dawn reais no corpus: **23**;
-- entradas de worldgen Terralith reais no corpus: **50**;
-- entradas editoriais totais: **265**;
-- lotes documentados: **28**;
+- entradas de worldgen Terralith reais no corpus: **60**;
+- entradas editoriais totais: **275**;
+- lotes documentados: **29**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`, `terralith`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
