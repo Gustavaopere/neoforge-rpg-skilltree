@@ -1,15 +1,15 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
 
 [← Índice do guia](README.md)
 
 # 4. Alimentação, culinária e agricultura
 
-## Farmer's Delight — 1.3.3
+## Farmer's Delight — 1.3.4
 
-`FarmersDelight-1.21.1-1.3.3.jar`
+`FarmersDelight-1.21.1-1.3.4.jar`
 **Farmer's Delight** é a base culinária de boa parte do stack alimentar. Ele amplia agricultura e cozinha com culturas e ingredientes próprios, utensílios, **Cutting Board**, **Cooking Pot**, Stove, containers e uma grande quantidade de refeições compostas.
 O preparo é dividido em operações: ingredientes podem ser cortados com ferramentas específicas, cozidos em potes, assados ou combinados em pratos que restauram fome/saturação e podem fornecer efeitos. Isso cria uma cadeia culinária em que a forma de processar o ingrediente importa tanto quanto a receita final.
-A versão instalada `1.3.3` é a release NeoForge 1.21.1 de 17/08/2026. O mod também funciona como plataforma para vários addons do pack, incluindo Alex's Delight, Ender's Delight, My Nether's Delight e Miner's Delight.
+A versão instalada `1.3.4` é a release NeoForge 1.21.1 de 17/08/2026. O mod também funciona como plataforma para vários addons do pack, incluindo Alex's Delight, Ender's Delight, My Nether's Delight e Miner's Delight.
 
 ## Farmer's Delight: Extended — runtime 1.21.1-0.2.2
 

@@ -1,12 +1,12 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
 
 [← Índice do guia](README.md)
 
 # 2. Progressão RPG, identidades e atributos
 
-## Identity2 — 2.2.1
+## Identity2 — 2.2.4
 
-`1.21.1-identity2-neoforge-2.2.1.jar`
+`1.21.1-identity2-neoforge-2.2.4.jar`
 **Identity2** é um sistema de morph: ao desbloquear identidades de criaturas, o jogador pode assumir suas formas e receber características e habilidades associadas a elas. O sistema mantém variantes, ajusta hitbox/altura dos olhos e inclui habilidades específicas de várias entidades, além de interações de IA dependentes da forma.
 No pack, ele pertence ao eixo RPG/mobs porque altera diretamente o corpo e as capacidades jogáveis do personagem; não é apenas uma modificação visual. O stack atual também inclui **Pehkui 3.8.3+1.21-neoforge**, que fornece escalas de entidade, e **Epic Fight - Pehkui Incompatibility FIX 1.0.2**, que mantém essa camada de escala compatível com o combate Epic Fight.
 
@@ -23,9 +23,9 @@ A transformação é funcional: **tamanho, vida e capacidades** mudam para acomp
 Isso o diferencia de Identity2 e Walkers: Pehkui não fornece formas de criatura nem um sistema de morph por conta própria; ele fornece a infraestrutura de escala que outros sistemas podem utilizar quando precisam representar entidades maiores ou menores. No pack, Identity2 é um consumidor relevante e existe também `Epic Fight - Pehkui Incompatibility FIX` para corrigir a apresentação do jogador quando escala e animação Epic Fight interagem.
 A build instalada é `3.8.3+1.21-neoforge`, publicada para a linha Minecraft 1.21/1.21.1. O canal público é beta, o que descreve maturidade da release e não incerteza sobre a identidade do JAR atual.
 
-## Pufferfish's Skills — 0.18.3
+## Pufferfish's Skills — 0.19.0
 
-`puffish_skills-0.18.3-1.21-neoforge.jar`
+`puffish_skills-0.19.0-1.21-neoforge.jar`
 É o framework jogável de **árvores de habilidades** do pack. Ele permite que datapacks e addons definam categorias de skill, nós, requisitos, conexões, custos, recompensas e fontes de experiência.
 Para o jogador, isso aparece como árvores nas quais pontos são investidos para desbloquear bônus ou habilidades. O mod também consegue conceder experiência a partir de ações como dano, mortes e outras fontes configuradas, permitindo que progressão seja vinculada ao que o personagem realmente faz.
 
@@ -82,11 +82,11 @@ O patch preserva corretamente a relação entre vida atual e vida máxima durant
 **Apotheosis** é um sistema de progressão RPG centrado em loot especial, affixes, gems, sockets e world tiers. Equipamentos encontrados no mundo podem receber propriedades e raridades próprias, e a progressão passa a envolver obtenção, avaliação e melhoria desses itens em vez de depender apenas do equipamento vanilla.
 Na arquitetura atual, partes históricas do mod são módulos top-level separados. **Apothic Attributes** fornece a infraestrutura de atributos; **Apothic Enchanting** implementa o overhaul de encantamentos; **Apothic Spawners** expande e torna configuráveis os spawners. Esses JARs são componentes complementares presentes no pack, não cópias do `Apotheosis-1.21.1-8.7.0.jar`.
 
-## Artifacts — 13.2.3
+## Artifacts — 13.2.5
 
-`artifacts-neoforge-13.2.3.jar`
+`artifacts-neoforge-13.2.5.jar`
 **Artifacts** transforma exploração em fonte de acessórios poderosos que **não são craftáveis normalmente**. Cada artifact aparece em conjuntos limitados de loot — baús de estruturas, arqueologia ou raramente equipado em entidades — e concede uma habilidade própria quando usado no slot adequado.
-O mod também adiciona **underground campsites**, onde um baú pode ser substituído por um Mimic hostil; derrotar um Mimic sempre fornece um artifact aleatório. Cada item possui modelo equipado próprio e incentiva procurar tipos diferentes de estrutura para completar o catálogo. A build `13.2.3` é a release NeoForge 1.21.1 instalada e inclui correções específicas de compatibilidade com Lootr e slots de acessórios.
+O mod também adiciona **underground campsites**, onde um baú pode ser substituído por um Mimic hostil; derrotar um Mimic sempre fornece um artifact aleatório. Cada item possui modelo equipado próprio e incentiva procurar tipos diferentes de estrutura para completar o catálogo. A build `13.2.5` é a release NeoForge 1.21.1 instalada e inclui correções específicas de compatibilidade com Lootr e slots de acessórios.
 
 ## Reliquified Artifacts — 1.0.8
 

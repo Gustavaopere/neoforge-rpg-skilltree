@@ -1,16 +1,16 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81dab0bdd4c8fc783fb6 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
 
 [← Índice do guia](README.md)
 
 # 9. MineColonies e civilização
 
-## MineColonies — runtime 1.1.1374-1.21.1-snapshot
+## MineColonies — 1.1.1376-1.21.1-snapshot
 
-`minecolonies-1.1.1374-1.21.1-snapshot.jar`
+`minecolonies-1.1.1376-1.21.1-snapshot.jar`
 **MineColonies** é um sistema completo de **construção e gerenciamento de civilização**. O jogador funda uma colônia, escolhe estilos de construção, posiciona edifícios e recebe cidadãos com necessidades, atributos e profissões que passam a executar tarefas reais no mundo.
 Builders constroem e evoluem estruturas; miners, foresters, farmers, fishermen e outros produtores obtêm recursos; crafters transformam materiais; **Warehouse + Couriers** formam a espinha dorsal logística; guards e barracks defendem a população. A colônia possui também **Research**, hospitalidade/saúde, moradia, educação e cadeias de trabalho dependentes umas das outras.
 A progressão exige equilibrar população, comida, materiais, rotas de entrega, capacidade produtiva e defesa. Raids e ameaças externas tornam segurança parte do sistema, enquanto edifícios superiores desbloqueiam trabalhadores e eficiência adicionais.
-A build instalada é `1.1.1374-1.21.1-snapshot` e depende do stack Structurize, Multi-Piston, BlockUI e Domum Ornamentum. Os addons Compatibility 3.56 e Tweaks 3.33 publicam alvo MineColonies 1.1.1368; essa diferença permanece registrada como **acoplamento de versões**, sem alterar a identidade dos JARs atuais.
+A build instalada é `1.1.1376-1.21.1-snapshot` e depende do stack Structurize, Multi-Piston, BlockUI e Domum Ornamentum. Os addons Compatibility 3.56 e Tweaks 3.33 publicam alvo MineColonies 1.1.1368; essa diferença permanece registrada como **acoplamento de versões**, sem alterar a identidade dos JARs atuais.
 
 ## Epic Fight: Epicfied (Epic Colonies) — 21.0.8
 

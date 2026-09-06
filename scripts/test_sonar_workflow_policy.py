@@ -157,10 +157,43 @@ def main() -> None:
         "Sonar CI must not game the Quality Gate with coverage or duplication exclusions.",
     )
 
+    diagnose_name = "Diagnose Sonar pull-request new-code issues"
+    upload_name = "Upload Sonar test diagnostics on failure"
+    require(
+        diagnose_name in workflow,
+        "Sonar CI must diagnose the pull-request analysis that actually failed the Quality Gate.",
+    )
+    require(
+        "if: ${{ always() && github.event_name == 'pull_request' }}" in workflow,
+        "Pull-request Sonar diagnostics must run even when the analysis/Quality Gate step fails.",
+    )
+    require(
+        "SONAR_PULL_REQUEST: ${{ github.event.pull_request.number }}" in workflow
+        and '--data-urlencode "pullRequest=${SONAR_PULL_REQUEST}"' in workflow,
+        "Sonar diagnostics must query the current pull request rather than branch=main.",
+    )
+    require(
+        "branch=main" not in workflow[workflow.index(diagnose_name):workflow.index(upload_name)],
+        "Pull-request diagnostics must not inspect main when explaining a PR Quality Gate failure.",
+    )
+    require(
+        workflow.index(diagnose_name) < workflow.index(upload_name),
+        "Sonar diagnostics must run before the failure artifact is uploaded.",
+    )
+    require(
+        "build/sonar-diagnostics/pr-issues.json" in workflow,
+        "The exact Sonar pull-request issue payload must be retained in the diagnostic artifact.",
+    )
+    require(
+        all(field in workflow for field in (".rule", ".component", ".line", ".message", ".severity", ".type")),
+        "Sonar diagnostics must expose rule, component, line, message, severity, and type for root-cause triage.",
+    )
+
     print(
         "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
         "publishes a commit-scoped project version, uses basic Gradle caching, imports transformed Ars and "
-        "MineColonies provider GameTest coverage, and keeps provider coverage out of plain JUnit."
+        "MineColonies provider GameTest coverage, keeps provider coverage out of plain JUnit, and preserves "
+        "pull-request-specific Sonar issue diagnostics even after a Quality Gate failure."
     )
 
 
