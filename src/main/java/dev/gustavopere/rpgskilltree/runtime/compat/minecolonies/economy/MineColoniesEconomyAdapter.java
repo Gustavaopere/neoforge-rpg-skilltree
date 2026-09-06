@@ -33,6 +33,34 @@ public final class MineColoniesEconomyAdapter {
         }
     }
 
+    /**
+     * Reconstructs the full binding during {@code ColonyDeletedModEvent}.
+     *
+     * <p>MineColonies 1.1.1375 destroys registered buildings before posting the deletion event, so
+     * {@link #binding(IColony)} cannot read the Town Hall at that point. In the audited provider
+     * implementation {@code IColony#getCenter()} is the immutable Town Hall location, allowing the
+     * exact persisted fingerprint to be rebuilt without weakening identity validation.</p>
+     */
+    public static Optional<NativeColonyBinding> bindingForDeletion(IColony colony) {
+        if (colony == null) {
+            return Optional.empty();
+        }
+        try {
+            var center = colony.getCenter();
+            if (center == null) {
+                return Optional.empty();
+            }
+            return Optional.of(new NativeColonyBinding(
+                colony.getDimension().location(),
+                colony.getID(),
+                colony.getPermissions().getOwner(),
+                center
+            ));
+        } catch (RuntimeException | LinkageError failure) {
+            return Optional.empty();
+        }
+    }
+
     public static Optional<ColonyEconomicInputs> economicInputs(IColony colony) {
         if (colony == null) {
             return Optional.empty();
