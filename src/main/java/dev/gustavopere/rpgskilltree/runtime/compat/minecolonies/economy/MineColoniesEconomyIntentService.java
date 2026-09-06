@@ -11,6 +11,7 @@ import dev.gustavopere.rpgskilltree.core.economy.EconomyMutationResult;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyParameters;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyPreflight;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyTransactionKind;
+import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomyConfigSnapshot;
 import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomyRepository;
 import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomySavedData;
 import dev.gustavopere.rpgskilltree.runtime.economy.EconomyIntentLimits;
@@ -30,7 +31,19 @@ public final class MineColoniesEconomyIntentService {
         long amount,
         ColonyEconomySavedData data
     ) {
-        Validation validation = validate(player, colony, requestedBinding, amount, data, false);
+        return preflightMint(player, colony, requestedBinding, amount, data, ColonyEconomyConfigSnapshot.defaults());
+    }
+
+    public static MineColoniesEconomyPreflightResult preflightMint(
+        ServerPlayer player,
+        IColony colony,
+        NativeColonyBinding requestedBinding,
+        long amount,
+        ColonyEconomySavedData data,
+        ColonyEconomyConfigSnapshot config
+    ) {
+        Objects.requireNonNull(config, "config");
+        Validation validation = validate(player, colony, requestedBinding, amount, data, config, false);
         if (validation.status != MineColoniesEconomyIntentStatus.ACCEPTED) {
             return new MineColoniesEconomyPreflightResult(validation.status, null);
         }
@@ -40,7 +53,7 @@ public final class MineColoniesEconomyIntentService {
             return new MineColoniesEconomyPreflightResult(MineColoniesEconomyIntentStatus.PROVIDER_READ_FAILED, null);
         }
 
-        EconomyParameters parameters = EconomyParameters.defaults();
+        EconomyParameters parameters = config.parameters();
         long capacity;
         try {
             capacity = EconomyMath.capacity(inputs, parameters);
@@ -75,7 +88,39 @@ public final class MineColoniesEconomyIntentService {
         long gameTime,
         ColonyEconomySavedData data
     ) {
-        return mutate(player, colony, requestedBinding, intentId, amount, gameTime, data, EconomyTransactionKind.MINT);
+        return mint(
+            player,
+            colony,
+            requestedBinding,
+            intentId,
+            amount,
+            gameTime,
+            data,
+            ColonyEconomyConfigSnapshot.defaults()
+        );
+    }
+
+    public static MineColoniesEconomyIntentResult mint(
+        ServerPlayer player,
+        IColony colony,
+        NativeColonyBinding requestedBinding,
+        UUID intentId,
+        long amount,
+        long gameTime,
+        ColonyEconomySavedData data,
+        ColonyEconomyConfigSnapshot config
+    ) {
+        return mutate(
+            player,
+            colony,
+            requestedBinding,
+            intentId,
+            amount,
+            gameTime,
+            data,
+            EconomyTransactionKind.MINT,
+            config
+        );
     }
 
     public static MineColoniesEconomyIntentResult retire(
@@ -87,7 +132,39 @@ public final class MineColoniesEconomyIntentService {
         long gameTime,
         ColonyEconomySavedData data
     ) {
-        return mutate(player, colony, requestedBinding, intentId, amount, gameTime, data, EconomyTransactionKind.RETIRE);
+        return retire(
+            player,
+            colony,
+            requestedBinding,
+            intentId,
+            amount,
+            gameTime,
+            data,
+            ColonyEconomyConfigSnapshot.defaults()
+        );
+    }
+
+    public static MineColoniesEconomyIntentResult retire(
+        ServerPlayer player,
+        IColony colony,
+        NativeColonyBinding requestedBinding,
+        UUID intentId,
+        long amount,
+        long gameTime,
+        ColonyEconomySavedData data,
+        ColonyEconomyConfigSnapshot config
+    ) {
+        return mutate(
+            player,
+            colony,
+            requestedBinding,
+            intentId,
+            amount,
+            gameTime,
+            data,
+            EconomyTransactionKind.RETIRE,
+            config
+        );
     }
 
     private static MineColoniesEconomyIntentResult mutate(
@@ -98,10 +175,12 @@ public final class MineColoniesEconomyIntentService {
         long amount,
         long gameTime,
         ColonyEconomySavedData data,
-        EconomyTransactionKind kind
+        EconomyTransactionKind kind,
+        ColonyEconomyConfigSnapshot config
     ) {
         Objects.requireNonNull(intentId, "intentId");
-        Validation validation = validate(player, colony, requestedBinding, amount, data, true);
+        Objects.requireNonNull(config, "config");
+        Validation validation = validate(player, colony, requestedBinding, amount, data, config, true);
         if (validation.status != MineColoniesEconomyIntentStatus.ACCEPTED) {
             return new MineColoniesEconomyIntentResult(validation.status, null, null);
         }
@@ -129,17 +208,27 @@ public final class MineColoniesEconomyIntentService {
         NativeColonyBinding requestedBinding,
         long amount,
         ColonyEconomySavedData data,
+        ColonyEconomyConfigSnapshot config,
         boolean mutation
     ) {
         if (player == null || colony == null || requestedBinding == null || data == null) {
             return new Validation(MineColoniesEconomyIntentStatus.PROVIDER_READ_FAILED);
         }
-        EconomyIntentLimits.Validation amountValidation = EconomyIntentLimits.validateAmount(amount);
+        if (!config.enabled()) {
+            return new Validation(MineColoniesEconomyIntentStatus.DISABLED);
+        }
+        EconomyIntentLimits.Validation amountValidation = EconomyIntentLimits.validateAmount(
+            amount,
+            config.maxMutationAmount()
+        );
         if (amountValidation == EconomyIntentLimits.Validation.INVALID_AMOUNT) {
             return new Validation(MineColoniesEconomyIntentStatus.INVALID_AMOUNT);
         }
         if (amountValidation == EconomyIntentLimits.Validation.PROTOCOL_LIMIT_EXCEEDED) {
             return new Validation(MineColoniesEconomyIntentStatus.PROTOCOL_LIMIT_EXCEEDED);
+        }
+        if (amountValidation == EconomyIntentLimits.Validation.POLICY_LIMIT_EXCEEDED) {
+            return new Validation(MineColoniesEconomyIntentStatus.POLICY_LIMIT_EXCEEDED);
         }
 
         NativeColonyBinding actualBinding = MineColoniesEconomyAdapter.binding(colony).orElse(null);
