@@ -86,155 +86,51 @@ jobs:
           -PbattleMageProviderRuntime=true
           -PgameTestCoverageName=battle-mage-provider
 
-      - name: Install audited MineColonies 1.1.1375 runtime stack for provider coverage
-        shell: bash
-        run: |
-          set -euo pipefail
-          MODS="$PWD/runs/gameTestServer/mods"
-          mkdir -p "$MODS"
-          rm -f "$MODS"/*.jar
-          rm -rf runs/gameTestServer/world
-          printf 'eula=true\n' > runs/gameTestServer/eula.txt
-
-          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
-            'https://www.cursemaven.com/curse/maven/minecolonies-245506/8765939/minecolonies-245506-8765939.jar' \
-            --output "$MODS/minecolonies-1.1.1375-1.21.1-snapshot.jar"
-          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
-            'https://www.cursemaven.com/curse/maven/structurize-298744/8610535/structurize-298744-8610535.jar' \
-            --output "$MODS/structurize-1.0.832-1.21.1.jar"
-          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
-            'https://ldtteam.jfrog.io/ldtteam/modding/com/ldtteam/multipiston/1.2.51-1.21.1-snapshot/multipiston-1.2.51-1.21.1-snapshot.jar' \
-            --output "$MODS/multipiston-1.2.51-1.21.1-snapshot.jar"
-          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
-            'https://www.cursemaven.com/curse/maven/blockui-522992/6367809/blockui-522992-6367809.jar' \
-            --output "$MODS/blockui-1.0.199-1.21.1-snapshot.jar"
-          curl --proto '=https' --proto-redir '=https' --fail --location --retry 3 \
-            'https://www.cursemaven.com/curse/maven/domum-ornamentum-527361/7231908/domum-ornamentum-527361-7231908.jar' \
-            --output "$MODS/domum-ornamentum-1.0.223-snapshot.jar"
-
-          for mod in "$MODS"/*.jar; do
-            jar tf "$mod" >/dev/null
-          done
-
-      - name: Collect MineColonies provider GameTest coverage
-        run: >-
-          ./gradlew --no-daemon
-          -I gradle/sonar-gametest-coverage.init.gradle
-          runGameTestServer
-          -PgameTestCoverageName=minecolonies-provider
-
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: >-
           ./gradlew --no-daemon
           -I gradle/sonar-gametest-coverage.init.gradle
-          -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml,build/reports/jacoco/provider-free/provider-free.xml,build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml,build/reports/jacoco/minecolonies-provider/minecolonies-provider.xml
+          -Dsonar.projectVersion=${GITHUB_SHA}
+          -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml,build/reports/jacoco/provider-free/provider-free.xml,build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml
           -Dsonar.tests=src/test/java,src/main/java
-          -Dsonar.test.inclusions=src/test/java/**/*,src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*
-          -Dsonar.exclusions=src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*
-          -Dsonar.issue.ignore.multicriteria=e1,e2,e3
-          -Dsonar.issue.ignore.multicriteria.e1.ruleKey=java:S2187
-          -Dsonar.issue.ignore.multicriteria.e1.resourceKey=src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*
-          -Dsonar.issue.ignore.multicriteria.e2.ruleKey=java:S2187
-          -Dsonar.issue.ignore.multicriteria.e2.resourceKey=src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java
-          -Dsonar.issue.ignore.multicriteria.e3.ruleKey=java:S1845
-          -Dsonar.issue.ignore.multicriteria.e3.resourceKey=src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomySavedData.java
+          -Dsonar.test.inclusions=src/test/java/**/*,src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java
+          -Dsonar.exclusions=src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*,src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java
           -Dsonar.qualitygate.wait=true
           -Dsonar.qualitygate.timeout=300
           build sonar --info
 
-      - name: Diagnose Sonar PR issues and new-code coverage
-        if: always() && github.event_name == 'pull_request'
+      - name: Diagnose Sonar main new-code issues on pull request
+        if: github.event_name == 'pull_request'
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT: Gustavaopere_neoforge-rpg-skilltree
-          SONAR_PR: ${{ github.event.pull_request.number }}
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p .sonar-pr-diagnostics
 
-          issues_response="$(curl --silent --show-error --fail --get \
+          response="$(curl --silent --show-error --fail --get \
             --header "Authorization: Bearer ${SONAR_TOKEN}" \
             --data-urlencode "componentKeys=${SONAR_PROJECT}" \
-            --data-urlencode "pullRequest=${SONAR_PR}" \
+            --data-urlencode 'branch=main' \
+            --data-urlencode 'sinceLeakPeriod=true' \
             --data-urlencode 'issueStatuses=OPEN,CONFIRMED' \
-            --data-urlencode 'ps=100' \
+            --data-urlencode 'ps=20' \
             'https://sonarcloud.io/api/issues/search')"
-          printf '%s\n' "$issues_response" > .sonar-pr-diagnostics/issues.json
-          issues_lines="$(jq -r '.issues[]? | "ISSUE|rule=\(.rule)|type=\(.type // "")|severity=\(.severity // "")|component=\(.component // "")|line=\(.line // 0)|message=\(.message // "")"' <<<"$issues_response")"
 
-          root_coverage_response="$(curl --silent --show-error --fail --get \
-            --header "Authorization: Bearer ${SONAR_TOKEN}" \
-            --data-urlencode "component=${SONAR_PROJECT}" \
-            --data-urlencode "pullRequest=${SONAR_PR}" \
-            --data-urlencode 'metricKeys=new_coverage,new_lines_to_cover,new_uncovered_lines,new_conditions_to_cover,new_uncovered_conditions' \
-            'https://sonarcloud.io/api/measures/component')"
-          printf '%s\n' "$root_coverage_response" > .sonar-pr-diagnostics/root-coverage.json
-          root_coverage_line="$(jq -r '
-            (.component.measures // [])
-            | map({key: .metric, value: (.period.value // .value // "")})
-            | from_entries
-            | "ROOT_COVERAGE|new_coverage=\(.new_coverage // "")|new_lines_to_cover=\(.new_lines_to_cover // "0")|new_uncovered_lines=\(.new_uncovered_lines // "0")|new_conditions_to_cover=\(.new_conditions_to_cover // "0")|new_uncovered_conditions=\(.new_uncovered_conditions // "0")"
-          ' <<<"$root_coverage_response")"
+          new_issues="$(jq -r '.paging.total // .total' <<<"$response")"
+          echo "Sonar main open/confirmed issues on New Code: ${new_issues}"
+          jq -r '.issues[] | "SONAR_ISSUE\t\(.key)\t\(.rule)\t\(.component)\t\(.line // 0)\t\(.message)"' <<<"$response"
 
-          coverage_response="$(curl --silent --show-error --fail --get \
-            --header "Authorization: Bearer ${SONAR_TOKEN}" \
-            --data-urlencode "component=${SONAR_PROJECT}" \
-            --data-urlencode "pullRequest=${SONAR_PR}" \
-            --data-urlencode 'metricKeys=new_coverage,new_lines_to_cover,new_uncovered_lines,new_conditions_to_cover,new_uncovered_conditions' \
-            --data-urlencode 'qualifiers=FIL' \
-            --data-urlencode 'ps=500' \
-            'https://sonarcloud.io/api/measures/component_tree')"
-          printf '%s\n' "$coverage_response" > .sonar-pr-diagnostics/component-tree.json
-          coverage_lines="$(jq -r '
-            .components[]?
-            | {path: (.path // .name), measures: (.measures // [])}
-            | . as $component
-            | ($component.measures | map({key: .metric, value: (.period.value // .value // "0")}) | from_entries) as $m
-            | select((($m.new_uncovered_lines // "0") | tonumber) > 0 or (($m.new_uncovered_conditions // "0") | tonumber) > 0)
-            | "COVERAGE|path=\($component.path)|new_coverage=\($m.new_coverage // "")|new_lines_to_cover=\($m.new_lines_to_cover // "0")|new_uncovered_lines=\($m.new_uncovered_lines // "0")|new_conditions_to_cover=\($m.new_conditions_to_cover // "0")|new_uncovered_conditions=\($m.new_uncovered_conditions // "0")"
-          ' <<<"$coverage_response" | sort)"
-          printf '%s\n' "$root_coverage_line" > .sonar-pr-diagnostics/summary.txt
-          printf '%s\n' "$coverage_lines" >> .sonar-pr-diagnostics/summary.txt
-
-          if [ -f build/sonar/report-task.txt ]; then
-            cp build/sonar/report-task.txt .sonar-pr-diagnostics/report-task.txt
-          fi
-
-          echo '=== Sonar PR issues ==='
-          printf '%s\n' "$issues_lines"
-          echo '=== Sonar root new-code coverage ==='
-          printf '%s\n' "$root_coverage_line"
-          echo '=== Sonar files with uncovered new code ==='
-          printf '%s\n' "$coverage_lines"
-
-          {
-            echo '### Sonar PR diagnostics'
-            echo '```text'
-            echo '=== Sonar PR issues ==='
-            printf '%s\n' "$issues_lines"
-            echo '=== Sonar root new-code coverage ==='
-            printf '%s\n' "$root_coverage_line"
-            echo '=== Sonar files with uncovered new code ==='
-            printf '%s\n' "$coverage_lines"
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Upload Sonar PR diagnostic evidence
-        if: always() && github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
-        with:
-          name: sonar-pr-evidence-${{ github.event.pull_request.number }}-${{ github.sha }}
-          retention-days: 7
-          if-no-files-found: warn
-          path: |
-            .sonar-pr-diagnostics/
-            build/reports/jacoco/test/jacocoTestReport.xml
-            build/reports/jacoco/provider-free/provider-free.xml
-            build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml
-            build/reports/jacoco/minecolonies-provider/minecolonies-provider.xml
+          jq -r '.issues[] | [.rule, .component, (.line // 1 | tostring), .message] | @tsv' <<<"$response" |
+            while IFS=$'\t' read -r rule component line message; do
+              file="${component#*:}"
+              message="${message//'%'/'%25'}"
+              message="${message//$'\r'/'%0D'}"
+              message="${message//$'\n'/'%0A'}"
+              echo "::notice file=${file},line=${line},title=Sonar ${rule}::${message}"
+            done
 
       - name: Verify Sonar new-code issue count on main
         if: github.event_name != 'pull_request'
