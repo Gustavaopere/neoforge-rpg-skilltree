@@ -3,16 +3,14 @@ package dev.gustavopere.rpgskilltree.runtime.compat.ars;
 import com.hollingsworth.arsnouveau.api.spell.IContextAttachment;
 import dev.gustavopere.rpgskilltree.core.SpellAction;
 import java.io.Serial;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * One-shot causal token carried by Ars {@code SpellContext} attachments.
+ * Ars-specific attachment that carries a one-shot Mastery claim across spell contexts.
  *
  * <p>Ars 5.13.1 shallow-copies attachment values when cloning a spell context, so descendants
- * share this token and can claim the originating cast at most once. If Ars serializes a context,
- * the transient action is intentionally lost and the award fails closed after deserialization.
+ * share this attachment. The claim is transient: if Ars serializes a context, the award fails
+ * closed after deserialization instead of reconstructing unverifiable causal state.
  */
 final class ArsMasteryCausalAward implements IContextAttachment {
     @Serial
@@ -23,20 +21,18 @@ final class ArsMasteryCausalAward implements IContextAttachment {
         "ars_mastery_causal_award"
     );
 
-    private final transient SpellAction action;
-    private final AtomicBoolean claimed = new AtomicBoolean(false);
+    private final transient ArsMasteryClaim claim;
 
-    private ArsMasteryCausalAward(SpellAction action) {
-        this.action = Objects.requireNonNull(action, "action");
+    private ArsMasteryCausalAward(ArsMasteryClaim claim) {
+        this.claim = claim;
     }
 
     static ArsMasteryCausalAward arm(SpellAction action) {
-        return new ArsMasteryCausalAward(action);
+        return new ArsMasteryCausalAward(ArsMasteryClaim.arm(action));
     }
 
     SpellAction claimResolved() {
-        if (action == null) return null;
-        return claimed.compareAndSet(false, true) ? action : null;
+        return claim == null ? null : claim.claimResolved();
     }
 
     @Override
