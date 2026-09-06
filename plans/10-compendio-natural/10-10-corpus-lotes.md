@@ -147,6 +147,7 @@ Entradas:
 ## Lote 6 — Vanilla / hostis de progressão e estruturas
 
 Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-batch6.json`
+
 Estado: `REVIEWED`
 
 Entradas:
@@ -296,6 +297,7 @@ Arquivos:
 - `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/alexscaves/structures-batch1.json`
 
 Estado: `REVIEWED`
+
 Entradas:
 
 1. `BIOME:alexscaves:abyssal_chasm` — Fendas Abissais
