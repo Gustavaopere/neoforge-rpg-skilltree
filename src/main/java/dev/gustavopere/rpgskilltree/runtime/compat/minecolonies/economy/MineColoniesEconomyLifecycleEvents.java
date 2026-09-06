@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy;
 
 import com.minecolonies.api.IMinecoloniesAPI;
+import com.minecolonies.api.colony.IColony;
 import com.minecolonies.api.eventbus.events.colony.ColonyDeletedModEvent;
 import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomyEvents;
 import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomySavedData;
@@ -40,14 +41,17 @@ public final class MineColoniesEconomyLifecycleEvents {
         if (event == null) {
             return;
         }
-        NativeColonyBinding binding = MineColoniesEconomyAdapter.binding(event.getColony()).orElse(null);
-        if (binding == null) {
+        IColony colony = event.getColony();
+        if (colony == null) {
             return;
         }
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) {
             return;
         }
-        ColonyEconomySavedData.get(server).archiveBinding(binding);
+        ColonyEconomySavedData.get(server).archiveNativeBinding(
+            colony.getDimension().location(),
+            colony.getID()
+        );
     }
 }
