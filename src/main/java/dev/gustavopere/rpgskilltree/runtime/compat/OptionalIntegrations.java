@@ -21,7 +21,8 @@ public final class OptionalIntegrations {
         MALUM("malum"),
         EIDOLON("eidolon"),
         IDENTITY2("identity2"),
-        MINECOLONIES("minecolonies");
+        MINECOLONIES("minecolonies"),
+        PRODUCTIVE_METALWORKS("productivemetalworks");
 
         private final String modId;
 
