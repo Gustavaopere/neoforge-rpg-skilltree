@@ -76,6 +76,18 @@
 - [x] TDD observado: o RED `34003592647` / job `101406688873` falhou porque a fronteira causal ainda não existia; `34003942932` / job `101407651096` expôs que o JUnit comum não deve promover Ars de `compileOnly` a provider obrigatório; a separação provider-free final passou o `RPG Skill Tree CI` `34004201977` / job `101408341407` completo, incluindo JUnit 5, NeoForge adapters, GameTests, build/JAR e dedicated-server smoke.
 - [x] Nenhuma curva, cap, threshold, peso de investimento ou valor de balanceamento de Mastery foi criado ou alterado neste fechamento de fonte.
 
+## Progresso runtime confirmado — GOETY
+
+- [x] Provider alvo confirmado na modlist, no catálogo do projeto e no build: Goety `3.1.4` (`goety-3.1.4.jar`). `GoetyVersionContract` aceita exatamente `3.1.4`; provider ausente, versão diferente ou falha de registro não ativa silenciosamente o adapter provider-specific.
+- [x] O bootstrap é opcional e fail-closed: `ABSENT_PROVIDER`, `UNSUPPORTED_VERSION` e `FAILED_CLOSED` impedem registro fora do contrato auditado; somente `ACTIVE` registra `GoetyProgressionEvents`.
+- [x] Casts Goety não concedem Mastery no callback inicial. `CastMagicEvent`, `CastingMagicEvent`, `TouchMagicEvent` e `BlockMagicEvent` apenas armam um `PendingCast`; a confirmação exige `ChangeSoulEnergyEvent.Loss` causal do mesmo player dentro da janela de 1 tick.
+- [x] O custo efetivamente perdido de Soul Energy, após `GoetySoulPolicy`, alimenta o `SpellAction` confirmado e então `MasteryPolicies.forGoety`; se a perda causal não ocorrer, o pending expira/é descartado e não há concessão.
+- [x] Kills de servants exigem alvo `MobCategory.MONSTER`, atacante `IOwned` e owner real `ServerPlayer`; o tipo real da entidade hostil e as tags de classe do servant alimentam `MasteryPolicies.forGoetyServant` sem inferência por posse de item.
+- [x] Comandos de servant são intents apenas no clique. O runtime registra os servants realmente commandable/owned/alive/em alcance e só concede no `PlayerTickEvent.Post` quando o estado real de `IServant` confirma o comando; pending não confirmado expira em 2 ticks e é consumido one-shot quando confirmado.
+- [x] Logout limpa os mapas transitórios de cast/comando. `FakePlayer`, creative e spectator são inelegíveis pelo boundary comum `eligible(ServerPlayer)`.
+- [x] O ciclo TDD do gate de integração foi observado no PR #454: o RED no run `34061893323` / job `101563764311` falhou em `compileTestJava` com 14 símbolos ausentes exatamente para `GoetyIntegrationState`, `GoetyIntegrationBootstrap` e `GoetyVersionContract`, antes da implementação desses contratos.
+- [x] Nenhuma curva, cap, threshold, peso de investimento ou valor global de balanceamento foi criado ou alterado neste fechamento de fonte.
+
 ## Progresso runtime confirmado — CREATE
 
 - [x] Provider alvo confirmado na modlist/registro de projeto: Create `6.0.10`. `CreateVersionContract` aceita exatamente `6.0.10`; provider ausente, versão diferente ou falha de registro não ativa silenciosamente o adapter.
