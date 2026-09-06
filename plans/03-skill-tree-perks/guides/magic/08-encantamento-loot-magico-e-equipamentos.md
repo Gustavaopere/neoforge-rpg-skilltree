@@ -1,12 +1,12 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db819e9572fd43820f9c03 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
 # 8. Encantamento, loot mágico e equipamentos
 
-## Apothic Enchanting — 1.6.1
+## Apothic Enchanting — 1.6.2
 
-`ApothicEnchanting-1.21.1-1.6.1.jar`
+`ApothicEnchanting-1.21.1-1.6.2.jar`
 **Apothic Enchanting** é um overhaul completo do sistema de encantamento. A mesa deixa de ser limitada ao modelo vanilla de nível 30 e passa a receber estatísticas fornecidas pelas estantes e blocos ao redor. **Eterna** representa a energia/nível disponível para encantamento; **Quanta** altera a variabilidade dos resultados; **Arcana** influencia a qualidade e o acesso a encantamentos mais raros; o sistema também trabalha com pistas adicionais, estabilidade e condições especiais para treasure enchantments.
 Essas estatísticas fazem a montagem da área de enchanting virar uma progressão própria: diferentes estantes e configurações mudam concretamente a distribuição e a potência dos encantamentos disponíveis. O módulo também acrescenta encantamentos, tomes e utilidades relacionadas à extração/manipulação de enchantments e é parte requerida da instalação moderna do Apotheosis.
 
@@ -84,3 +84,8 @@ Na versão `5.0.2`, o inventário do bloco foi simplificado para trabalhar corre
 **Ozymandias Sundries** é uma expansão de conteúdo para **Iron's Spells 'n Spellbooks**. O addon adiciona armas mágicas e híbridas — como Sanctified Sword, Sacrificial Kris, Sculk Greatsword, Permafrost Axe, Cinderous Scimitar, Druidic Scythe, Ender Glaive, Levin Sword e Spectral Greatsword — além de equipamento adicional associado às escolas do sistema-base.
 Também inclui spellbooks como **Fulminous Folio** e **Libram of Flesh** e spells próprios, entre eles **Levitate** e **Lightning Warp**. O projeto continua sendo conteúdo dependente de Iron's: mana, escolas, casting e infraestrutura de spellbook vêm do mod-base.
 O JAR instalado é `0.0.5`, enquanto o metadata runtime local declara `0.0.1`; o guia mantém as duas identidades separadas.
+
+
+---
+
+> Para a arquitetura modular completa de Apotheosis 8.x no pack — Attributes, Spawners, Category Compat e Apothic Compats — consulte [`19-ecossistema-apothic-e-compats.md`](19-ecossistema-apothic-e-compats.md).

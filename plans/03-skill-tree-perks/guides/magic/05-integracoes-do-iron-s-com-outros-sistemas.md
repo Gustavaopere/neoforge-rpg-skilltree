@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db819e9572fd43820f9c03 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -23,11 +23,11 @@ O runtime instalado é `1.21.1-0.5.1-pre1`. A build é **pre-release**, caracter
 **IronSable** é a bridge entre Iron's Spells e a física de **Sable/Create Aeronautics**. Ela faz spells que aplicam força — como vento, empurrão, puxão e outros efeitos cinéticos — reconhecerem objetos físicos e contraptions em vez de atuarem apenas sobre entidades e coordenadas vanilla.
 Com isso, o vetor produzido por um feitiço pode ser traduzido para o sistema físico usado por estruturas móveis. A bridge não adiciona novas escolas nem um segundo motor de física; sua função é permitir que os efeitos já existentes do Iron's produzam respostas coerentes em objetos simulados pelo Sable.
 
-## Immersive Portal - Iron's Spells 'n Spellbooks Addon — 1.0.0
+## Immersive Portal - Iron's Spells 'n Spellbooks Addon — 1.0.1
 
-`immersive_portal_irons_spells_n_spellbooks_addon-1.0.0.jar`
+`immersive_portal_irons_spells_n_spellbooks_addon-1.0.1.jar`
 Esta bridge adapta o **Portal Spell** do Iron's Spells para criar portais contínuos do **Immersive Portals**. O destino continua sendo definido pela lógica do spell, enquanto a passagem resultante utiliza a renderização/travessia espacial do mod de portais; o tamanho criado pode ser ajustado por configuração.
-É uma integração de escopo estreito e depende diretamente de Iron's Spells 'n Spellbooks e Immersive Portals. A primeira release NeoForge 1.21.1 instalada é `1.0.0`, publicada em 27/08/2026.
+É uma integração de escopo estreito e depende diretamente de Iron's Spells 'n Spellbooks e Immersive Portals. A build instalada no snapshot atual é `1.0.1` para NeoForge 1.21.1; o guia preserva a versão runtime da modlist como autoridade, independentemente da data de releases anteriores.
 
 ## Epic Fight & Iron's Spellbook Animation Compat — 3.1.0
 
@@ -54,3 +54,6 @@ A bridge também permite que propriedades relevantes de magia sejam reconhecidas
 `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar`
 **Reliquified Iron's Spells 'n Spellbooks** integra o sistema **Relics** ao Iron's Spells por meio de relics desenhados especificamente para spellcasting. Os acessórios podem responder a mana, escolas, casts e efeitos mágicos, usando a infraestrutura de Relics para criar progressão e passivos ligados a personagens conjuradores.
 Como são relics reais, esses itens seguem o modelo de uso e evolução do mod Relics, mas seus gatilhos e benefícios são construídos ao redor de mecânicas do Iron's. O resultado é uma camada de acessórios mágicos persistentes, separada de spellbooks, armaduras e curios convencionais do mod-base.
+
+
+---
