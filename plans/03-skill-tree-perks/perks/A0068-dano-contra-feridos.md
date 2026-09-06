@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO.
 - **Notion:** `3c569db9-f0db-819e-bda6-d5649adf8ae4`; fetch fresco em 2026-08-31 sem drift.
-- **Runtime observado:** CÓDIGO PRESENTE em melee e projéteis físicos; confirmação definitiva pertence ao Chat 2.
+- **Runtime observado:** IMPLEMENTAÇÃO CONFIRMADA em melee e projéteis físicos com snapshot pré-impacto estrito.
 
 ## Contrato canônico
 
@@ -36,10 +36,12 @@ A API de vida vanilla é o fallback suficiente para entidades vivas válidas. Al
 - Alvo de treino/inválido não qualifica.
 - Não gera Mastery.
 
-## Pendências para Chat 2
+## Validação Chat 3
 
-- **P-A0068-01:** testes devem fixar o snapshot pré-impacto e provar as bordas 35%, inclusive que o próprio golpe não ativa A0068 retroativamente.
-- **P-A0068-02:** validar uma aplicação por root em melee/projectile.
+- `P-A0068-01`: RESOLVIDA. `A0061A0070Chat3CoverageJUnitTest.woundedAndIntactThresholdsUseStrictPreImpactBoundaries` prova que `0.35` exato não ativa e `Math.nextDown(0.35)` ativa +12% no rank 3.
+- O teste opera sobre `HitFacts.preImpactHealthFraction`, preservando o contrato de snapshot pré-impacto; o golpe atual não pode retroagir sobre a condição.
+- `P-A0068-02`: encerrada no pipeline auditado do lote, com uma contribuição por root e rotas indiretas mantidas inelegíveis.
+- Nenhuma semântica externa de “wounded” foi criada.
 
 ## Nove eixos obrigatórios de aprovação
 
@@ -55,4 +57,4 @@ A API de vida vanilla é o fallback suficiente para entidades vivas válidas. Al
 | 8. NeoVitae | PASS | Ausente. |
 | 9. Cobertura providers | PASS | Vanilla/Epic Fight/RPG suficientes; nenhum provider inventado. |
 
-Os 18 critérios técnicos cumulativos passam **no design**.
+Os 18 critérios técnicos cumulativos passam no estado implementado validado pelo Chat 3.
