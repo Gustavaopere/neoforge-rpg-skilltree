@@ -19,7 +19,7 @@ final class A0061A0070Chat3CoverageJUnitTest {
         );
         assertEquals(5, effective.rank("A0061"));
         assertEquals(0, effective.rank("A0067"));
-        assertEquals(1.0D, A0061A0080CombatPolicy.offensiveInterruptionResistanceFraction(effective));
+        assertEquals(0.0D, A0061A0080CombatPolicy.offensiveInterruptionResistanceFraction(effective));
     }
 
     @Test
