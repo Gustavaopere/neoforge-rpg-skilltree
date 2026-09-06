@@ -4,7 +4,9 @@ Create e addons, energia, indústria, logística, automação, transporte, compu
 
 **Fonte canônica:** este diretório versionado no GitHub.
 
-**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-08-30, com **573 entradas top-level incluindo NeoForge**. Consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); ele prevalece quando um capítulo histórico ainda cita versão anterior.
+**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-09-06, com **607 entradas top-level incluindo NeoForge** e **200 JARs tecnológicos/cross-domain** neste recorte. Consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); ele prevalece quando um capítulo histórico ainda cita versão anterior.
+
+**Delta 2026-09-06:** os 190 IDs efetivamente cobertos pelo snapshot anterior permanecem presentes; o guia incorpora 10 módulos novos e corrige a antiga inconsistência de contagem que deixava LowDragLib2 fora dos 189 declarados.
 
 ## Como este guia está organizado
 
@@ -42,9 +44,11 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - Nunca dividir um capítulo por quantidade de caracteres.
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
-- `CURRENT-MODLIST.md` é a autoridade de presença, JAR e versão do estado instalado atual.
+- `CURRENT-MODLIST.md` é a autoridade de presença, JAR, mod ID, runtime name e runtime version do estado instalado atual.
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
 - Novos mods adicionados ou atualizados na modlist devem ser classificados no guia pertinente; estética ou nome tecnológico não criam contrato tecnológico.
 - O GitHub é a fonte canônica deste guia; não manter cópia editorial concorrente no Notion.
 
 [← Voltar aos guias](../README.md)
+
+---
