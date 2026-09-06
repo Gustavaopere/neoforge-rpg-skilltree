@@ -13,7 +13,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record EconomyMintPayload(EconomyColonyContext colony, UUID intentId, long amount) implements CustomPacketPayload {
-    public static final Type<EconomyMintPayload> TYPE = new Type<>(
+    public static final Type<EconomyMintPayload> PAYLOAD_TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "economy_mint")
     );
     public static final StreamCodec<ByteBuf, EconomyMintPayload> STREAM_CODEC = StreamCodec.composite(
@@ -27,7 +27,7 @@ public record EconomyMintPayload(EconomyColonyContext colony, UUID intentId, lon
         if (intentId == null) throw new IllegalArgumentException("intentId must not be null");
     }
 
-    @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    @Override public Type<? extends CustomPacketPayload> type() { return PAYLOAD_TYPE; }
 
     public static void handle(EconomyMintPayload payload, IPayloadContext context) {
         context.enqueueWork(() -> {
