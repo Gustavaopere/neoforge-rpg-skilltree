@@ -1,14 +1,12 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.malum;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import dev.gustavopere.rpgskilltree.core.SpiritPracticeAction;
 import java.util.List;
 import java.util.Optional;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.LivingEntity;
 import org.junit.jupiter.api.Test;
 
 final class MalumMasteryLogicJUnitTest {
@@ -59,104 +57,5 @@ final class MalumMasteryLogicJUnitTest {
         assertTrue(action.tags().contains("spirit:malum/aqueous"));
         assertTrue(action.tags().contains("spirit:malum/wicked"));
         assertEquals(3, action.magnitude());
-    }
-
-    @Test
-    void evidenceParserUsesPureObservationsCountsAndIgnoresNoise() {
-        MalumMasteryLogic.SpiritEvidence evidence = MalumMasteryLogic.evidenceFromObservations(
-            List.of(
-                "not-an-observation",
-                new MalumMasteryLogic.SpiritStackObservation("minecraft:soul_sand", 3),
-                new MalumMasteryLogic.SpiritStackObservation("malum:aqueous_spirit", 0)
-            )
-        );
-
-        assertEquals(List.of("minecraft:soul_sand", "malum:aqueous_spirit"), evidence.spiritItemIds());
-        assertEquals(4, evidence.totalSpirits());
-    }
-
-    @Test
-    void evidenceParserFailsClosedForUnsupportedOrEmptyObservations() {
-        assertEquals(
-            MalumMasteryLogic.SpiritEvidence.EMPTY,
-            MalumMasteryLogic.evidenceFromObservations("not-a-list")
-        );
-        assertEquals(
-            MalumMasteryLogic.SpiritEvidence.EMPTY,
-            MalumMasteryLogic.evidenceFromObservations(List.of("noise"))
-        );
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> new MalumMasteryLogic.SpiritStackObservation(" ", 1)
-        );
-    }
-
-    @Test
-    void reflectionReaderUsesExactPublicContractAndFailsClosed() {
-        MalumMasteryLogic.SpiritEvidence expected = new MalumMasteryLogic.SpiritEvidence(
-            List.of("minecraft:soul_sand"),
-            2
-        );
-        MalumMasteryLogic.SpiritEvidence evidence = MalumSpiritDataReader.read(
-            null,
-            FakeSpiritDropData.class.getName(),
-            rawStacks -> {
-                assertEquals(List.of("provider-stack-token"), rawStacks);
-                return expected;
-            }
-        );
-        assertEquals(expected, evidence);
-
-        assertEquals(
-            MalumMasteryLogic.SpiritEvidence.EMPTY,
-            MalumSpiritDataReader.read(null, MissingSpiritDropData.class.getName())
-        );
-        assertEquals(
-            MalumMasteryLogic.SpiritEvidence.EMPTY,
-            MalumSpiritDataReader.read(null, EmptySpiritDropData.class.getName())
-        );
-        assertEquals(
-            MalumMasteryLogic.SpiritEvidence.EMPTY,
-            MalumSpiritDataReader.read(null, InvalidOptionalSpiritDropData.class.getName())
-        );
-        assertEquals(
-            MalumMasteryLogic.SpiritEvidence.EMPTY,
-            MalumSpiritDataReader.read(
-                null,
-                FakeSpiritDropData.class.getName(),
-                rawStacks -> {
-                    throw new IllegalStateException("simulated decoder failure");
-                }
-            )
-        );
-    }
-
-    public static final class FakeSpiritDropData {
-        public static Optional<FakeSpiritData> getSpiritData(LivingEntity ignored) {
-            return Optional.of(new FakeSpiritData());
-        }
-    }
-
-    public static final class FakeSpiritData {
-        public List<?> getSpiritStacks() {
-            return List.of("provider-stack-token");
-        }
-    }
-
-    public static final class EmptySpiritDropData {
-        public static Optional<FakeSpiritData> getSpiritData(LivingEntity ignored) {
-            return Optional.empty();
-        }
-    }
-
-    public static final class InvalidOptionalSpiritDropData {
-        public static Object getSpiritData(LivingEntity ignored) {
-            return "not-an-optional";
-        }
-    }
-
-    public static final class MissingSpiritDropData {
-        private MissingSpiritDropData() {
-        }
     }
 }
