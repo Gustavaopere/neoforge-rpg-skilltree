@@ -15,7 +15,7 @@ BATTLE_MAGE_TEST_PATTERNS = (
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java",
 )
 ARS_PROVIDER_TEST_PATTERN = (
-    "src/main/java/dev/gustavopere/rpgskilltree/gametest/ArsProviderCausalityGameTests.java"
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java"
 )
 
 
@@ -128,7 +128,7 @@ def main() -> None:
         )
     require(
         ARS_PROVIDER_TEST_PATTERN in workflow,
-        "Ars provider GameTest must be test-scoped in Sonar classification.",
+        "Ars provider GameTest must be test-scoped in Sonar classification from the isolated Ars adapter tree.",
     )
     require(
         "-Dsonar.test.inclusions=" in workflow and "-Dsonar.exclusions=" in workflow,
