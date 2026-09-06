@@ -4,6 +4,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "sonarqube.yml"
 GAME_TEST_COVERAGE_INIT = ROOT / "gradle" / "sonar-gametest-coverage.init.gradle"
+ARS_PROVIDER_RUNTIME_INIT = ROOT / "gradle" / "ars-provider-gametest-runtime.init.gradle"
+LEGACY_ARS_JUNIT_RUNTIME_INIT = ROOT / "gradle" / "ars-sonar-test-runtime.init.gradle"
 LEGACY_BASELINE_SCRIPT = ROOT / "scripts" / "refresh-sonar-new-code-baseline.py"
 NEW_CODE_POLICY_HELPER = ROOT / "scripts" / "ensure_sonar_new_code_period.py"
 
@@ -11,6 +13,9 @@ BATTLE_MAGE_TEST_PATTERNS = (
     "src/main/java/dev/gustavopere/rpgskilltree/gametest/BattleMageProviderGameTests.java",
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/gametest/**/*",
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java",
+)
+ARS_PROVIDER_TEST_PATTERN = (
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java"
 )
 
 
@@ -98,6 +103,21 @@ def main() -> None:
         "Sonar CI must import the provider-present Battle Mage transformed-class GameTest report.",
     )
     require(
+        "ars-provider/ars-provider.xml" in workflow and "'ars-provider'" in game_test_coverage,
+        "Sonar CI must import a dedicated transformed-class Ars provider GameTest report.",
+    )
+    require(
+        ARS_PROVIDER_RUNTIME_INIT.exists()
+        and "ars-provider-gametest-runtime.init.gradle" in workflow
+        and "-ParsProviderRuntime=true" in workflow,
+        "Ars coverage must run in its opt-in loaded-provider NeoForge GameTest runtime.",
+    )
+    require(
+        not LEGACY_ARS_JUNIT_RUNTIME_INIT.exists()
+        and "ars-sonar-test-runtime.init.gradle" not in workflow,
+        "Ars provider coverage must not regress to plain JUnit bootstrap injection.",
+    )
+    require(
         "JacocoReport" in game_test_coverage and "classDirectories" in game_test_coverage,
         "GameTest coverage must render dedicated JaCoCo XML reports from runtime class dumps.",
     )
@@ -111,8 +131,12 @@ def main() -> None:
             f"Battle Mage GameTest scope is missing from Sonar classification: {pattern}",
         )
     require(
+        ARS_PROVIDER_TEST_PATTERN in workflow,
+        "Ars provider GameTest must be test-scoped in Sonar classification from the isolated Ars adapter tree.",
+    )
+    require(
         "-Dsonar.test.inclusions=" in workflow and "-Dsonar.exclusions=" in workflow,
-        "Battle Mage GameTests must be test-scoped and excluded only from main-code scope.",
+        "Provider GameTests must be test-scoped and excluded only from main-code scope.",
     )
     require(
         "sonar.coverage.exclusions" not in workflow and "sonar.cpd.exclusions" not in workflow,
@@ -121,8 +145,8 @@ def main() -> None:
 
     print(
         "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
-        "publishes a commit-scoped project version, uses basic Gradle caching, imports transformed GameTest "
-        "coverage, and test-scopes NeoForge GameTests."
+        "publishes a commit-scoped project version, uses basic Gradle caching, imports transformed provider "
+        "GameTest coverage, and keeps Ars live-provider coverage out of plain JUnit."
     )
 
 
