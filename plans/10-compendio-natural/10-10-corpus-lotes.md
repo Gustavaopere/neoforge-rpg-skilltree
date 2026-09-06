@@ -915,6 +915,35 @@ Entradas:
 - TDD confirmado no commit `de5caadfa09b8bda4da3d35afd072919161132d2`, RPG Skill Tree CI run `34057971178`, job `101553233810`: 1147 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch32JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch9.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
 - o corpus foi adicionado somente depois desse RED correto no commit `a9be4a03574de3c17761a5487aa8cbd6d44952d6`; o Compendium Editorial CI run `34058398358`, job `101554411627`, passou provider exclusions, schema/coverage, completude pt-BR, contratos de modelo/locale e Editorial runtime JUnit; o RPG Skill Tree CI run `34058398299`, job `101554411657`, passou JUnit 5, adapter NeoForge, GameTests, provider-present GameTests, validadores do Compêndio, build, inspeção do JAR e dedicated-server smoke antes da atualização deste registro.
 
+## Lote 33 — Terralith 2.6.2 / cavernas e biomas remanescentes (batch 10)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch10.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:cave/infested_caves` — Cavernas Infestadas
+2. `BIOME:terralith:cave/mantle_caves` — Cavernas de Manto
+3. `BIOME:terralith:cave/thermal_caves` — Cavernas Termais
+4. `BIOME:terralith:cave/tuff_caves` — Cavernas de Tufo
+5. `BIOME:terralith:cave/underground_jungle` — Selva Subterrânea
+6. `BIOME:terralith:cave/crystal_caves` — Cavernas de Cristal
+7. `BIOME:terralith:cave/ice_caves` — Cavernas de Gelo
+8. `BIOME:terralith:snowy_cherry_grove` — Bosque de Cerejeiras Nevado
+9. `BIOME:terralith:skylands` — Ilhas Flutuantes
+
+### Critérios editoriais aplicados ao lote 33
+
+- a modlist atual e o registro correspondente do Notion foram reconfirmados antes da autoria: Terralith 2.6.2 permanece instalado/verificado;
+- o lote não força cardinalidade 10: aliases de localização `biome.terralith.cave.foo` foram descartados por não constituírem IDs técnicos independentes; o recorte fecha com nove IDs únicos aceitos pelos gates de cobertura/runtime do corpus;
+- os oito títulos que possuem chave própria preservam literalmente o asset pt-BR oficial congelado da Stardust Labs no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`;
+- `terralith:skylands` não possui chave pt-BR própria no asset congelado; `Ilhas Flutuantes` é explicitamente um alias editorial do projeto, coerente com a nomenclatura oficial das variantes `skylands_autumn`, `skylands_spring`, `skylands_summer` e `skylands_winter`, mantendo o ID técnico visível;
+- a enumeração binária direta do JAR Terralith 2.6.2 não foi obtida pelos conectores disponíveis; por isso o corpus congela somente identidade/título e usa os gates de cobertura/runtime do projeto como fail-closed, sem inventar semântica mecânica;
+- nomes como `Infestadas`, `Manto`, `Termais`, `Tufo`, `Selva Subterrânea`, `Cristal`, `Gelo`, `Nevado` e `Ilhas Flutuantes` não são convertidos em mobs, geologia, temperatura, faixa Y, composição, vegetação, altitude, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- TDD confirmado no commit `e876b89c4a86cb98a00a0724bf09ca05efed067d`, RPG Skill Tree CI run `34063166128`, job `101567214983`: 1152 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch33JUnitTest` na linha 48 pela ausência deliberada de `terralith/biomes-batch10.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `93d341d912170e5101088dee30ec566cf75c1b67`; o Compendium Editorial CI run `34063396693`, job `101567840132`, passou provider exclusions, schema/coverage, completude pt-BR, contratos de modelo/locale e Editorial runtime JUnit; o RPG Skill Tree CI run `34063396620`, job `101567840241`, passou JUnit 5, adapter NeoForge, GameTests, provider-present GameTests, validadores do Compêndio, build, inspeção do JAR e dedicated-server smoke antes da atualização deste registro.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -924,8 +953,8 @@ Entradas:
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
 - entradas de worldgen BetterNether: New Dawn reais no corpus: **23**;
-- entradas de worldgen Terralith reais no corpus: **90**;
-- entradas editoriais totais: **305**;
-- lotes documentados: **32**;
+- entradas de worldgen Terralith reais no corpus: **99**;
+- entradas editoriais totais: **314**;
+- lotes documentados: **33**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`, `terralith`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
