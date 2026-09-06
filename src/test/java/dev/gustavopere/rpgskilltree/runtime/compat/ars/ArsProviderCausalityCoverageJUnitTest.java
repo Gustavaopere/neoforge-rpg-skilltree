@@ -3,30 +3,27 @@ package dev.gustavopere.rpgskilltree.runtime.compat.ars;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import dev.gustavopere.rpgskilltree.core.SpellAction;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
-import net.minecraft.SharedConstants;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.Bootstrap;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.LivingEntity;
 import org.junit.jupiter.api.Assumptions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.invocation.Invocation;
 
 /**
- * Provider-present coverage for the thin Ars 5.13.1 event glue.
+ * Provider-present coverage for the thin Ars 5.13.1 causal Mastery glue.
  *
  * <p>The ordinary project test lane intentionally keeps optional providers off its runtime classpath.
  * Sonar adds the exact Ars artifact through {@code gradle/ars-sonar-test-runtime.init.gradle}; when
  * that artifact is absent these tests abort instead of changing the provider-free runtime contract.
+ * The tests deliberately avoid constructing or mocking Minecraft entities: plain JUnit does not own
+ * the vanilla server bootstrap, so entity-level authority remains covered by NeoForge/GameTest lanes.
  */
 final class ArsProviderCausalityCoverageJUnitTest {
     private static final String SPELL = "com.hollingsworth.arsnouveau.api.spell.Spell";
@@ -39,28 +36,29 @@ final class ArsProviderCausalityCoverageJUnitTest {
         "ars_mastery_causal_award"
     );
 
-    @BeforeAll
-    static void bootstrapMinecraft() {
-        SharedConstants.tryDetectVersion();
-        Bootstrap.bootStrap();
+    @Test
+    void exactProviderCausalApiSurfaceLoads() {
+        assertNotNull(providerClass(SPELL));
+        assertNotNull(providerClass(CONTEXT));
+        assertNotNull(providerClass(CAST_EVENT));
+        assertNotNull(providerClass(RESOLVE_POST));
+        assertNotNull(providerClass(ADAPTER));
     }
 
     @Test
-    void resolvedProviderEventClaimsParentCastExactlyOnce() throws Exception {
+    void providerSpellBuildsCanonicalCausalAction() throws Exception {
         Class<?> spellClass = providerClass(SPELL);
-        Class<?> contextClass = providerClass(CONTEXT);
-        Class<?> castEventClass = providerClass(CAST_EVENT);
-        Class<?> resolvePostClass = providerClass(RESOLVE_POST);
         Class<?> adapterClass = providerClass(ADAPTER);
+        Method actionFor = adapterClass.getDeclaredMethod("actionFor", spellClass);
+        actionFor.setAccessible(true);
 
-        ServerPlayer player = Mockito.mock(ServerPlayer.class);
+        assertNull(actionFor.invoke(null, new Object[] {null}));
+
+        Object emptySpell = mock(spellClass);
+        stub(spellClass.getMethod("isEmpty"), emptySpell, true);
+        assertNull(actionFor.invoke(null, emptySpell));
+
         Object spell = mock(spellClass);
-        Object rootContext = mock(contextClass);
-        Object castEvent = mock(castEventClass);
-
-        setPublicField(castEventClass, castEvent, "spell", spell);
-        setPublicField(castEventClass, castEvent, "context", rootContext);
-        stub(castEventClass.getMethod("getEntity"), castEvent, player);
         stub(spellClass.getMethod("isEmpty"), spell, false);
         stub(
             spellClass.getMethod("serializeRecipe"),
@@ -72,99 +70,65 @@ final class ArsProviderCausalityCoverageJUnitTest {
         );
         stub(spellClass.getMethod("getCost"), spell, 25);
 
-        Method onSpellCast = adapterClass.getMethod("onSpellCast", castEventClass);
-        onSpellCast.invoke(null, castEvent);
+        SpellAction action = (SpellAction) actionFor.invoke(null, spell);
+        assertNotNull(action);
+        assertEquals("ars", action.provider());
+        assertEquals("ars_nouveau:glyph_projectile>ars_nouveau:glyph_harm", action.spellId());
+        assertEquals("composition", action.discipline());
+        assertEquals(25, action.resourceCost());
+        assertTrue(action.tags().contains("ars:projectile"));
+    }
+
+    @Test
+    void causalAttachmentTraversesChildContextAndClaimsExactlyOnce() throws Exception {
+        Class<?> contextClass = providerClass(CONTEXT);
+        Class<?> adapterClass = providerClass(ADAPTER);
+        Method armCausalAward = adapterClass.getDeclaredMethod("armCausalAward", contextClass, SpellAction.class);
+        Method claimResolved = adapterClass.getDeclaredMethod("claimResolved", contextClass);
+        armCausalAward.setAccessible(true);
+        claimResolved.setAccessible(true);
+
+        SpellAction action = canonicalAction();
+        Object rootContext = mock(contextClass);
+        armCausalAward.invoke(null, rootContext, action);
 
         Invocation attachmentWrite = Mockito.mockingDetails(rootContext).getInvocations().stream()
             .filter(invocation -> invocation.getMethod().getName().equals("getOrCreateAttachment"))
             .findFirst()
-            .orElseThrow(() -> new AssertionError("SpellCastEvent did not arm the Ars causal attachment"));
+            .orElseThrow(() -> new AssertionError("causal action was not attached to the Ars SpellContext"));
+        assertEquals(CAUSAL_AWARD_ID, attachmentWrite.getArgument(0));
         Object award = attachmentWrite.getArgument(1);
         assertNotNull(award);
 
-        Method idMethod = award.getClass().getMethod("id");
-        assertEquals(CAUSAL_AWARD_ID, idMethod.invoke(award));
+        Method id = award.getClass().getMethod("id");
+        assertEquals(CAUSAL_AWARD_ID, id.invoke(award));
 
         Object childContext = mock(contextClass);
         Method getAttachment = contextClass.getMethod("getAttachment", ResourceLocation.class);
         Method getPreviousContext = contextClass.getMethod("getPreviousContext");
+        stub(getAttachment, childContext, null, CAUSAL_AWARD_ID);
         stub(getPreviousContext, childContext, rootContext);
-        stub(getAttachment, rootContext, award);
+        stub(getAttachment, rootContext, award, CAUSAL_AWARD_ID);
 
-        Object resolveEvent = mock(resolvePostClass);
-        setPublicField(resolvePostClass, resolveEvent, "shooter", player);
-        setPublicField(resolvePostClass, resolveEvent, "context", childContext);
+        assertSame(action, claimResolved.invoke(null, childContext));
+        assertNull(claimResolved.invoke(null, childContext), "the same resolved cast must not award twice");
+        assertNull(claimResolved.invoke(null, new Object[] {null}));
+    }
 
-        Method onSpellResolved = adapterClass.getMethod("onSpellResolved", resolvePostClass);
-        try (MockedStatic<PlayerProgressionRuntime> progression = Mockito.mockStatic(PlayerProgressionRuntime.class)) {
-            onSpellResolved.invoke(null, resolveEvent);
-            progression.verify(() -> PlayerProgressionRuntime.awardMastery(Mockito.eq(player), Mockito.anyCollection()));
-        }
-
-        Method claimResolved = award.getClass().getDeclaredMethod("claimResolved");
+    @Test
+    void missingCausalAttachmentFailsClosed() throws Exception {
+        Class<?> contextClass = providerClass(CONTEXT);
+        Class<?> adapterClass = providerClass(ADAPTER);
+        Method claimResolved = adapterClass.getDeclaredMethod("claimResolved", contextClass);
         claimResolved.setAccessible(true);
-        assertNull(claimResolved.invoke(award), "the same resolved cast must not award twice");
-    }
-
-    @Test
-    void castArmingFailsClosedForMissingOrEmptyProviderContext() throws Exception {
-        Class<?> spellClass = providerClass(SPELL);
-        Class<?> contextClass = providerClass(CONTEXT);
-        Class<?> castEventClass = providerClass(CAST_EVENT);
-        Class<?> adapterClass = providerClass(ADAPTER);
-        Method onSpellCast = adapterClass.getMethod("onSpellCast", castEventClass);
-        ServerPlayer player = Mockito.mock(ServerPlayer.class);
-
-        Object noContextEvent = mock(castEventClass);
-        Object nonEmptySpell = mock(spellClass);
-        setPublicField(castEventClass, noContextEvent, "spell", nonEmptySpell);
-        stub(castEventClass.getMethod("getEntity"), noContextEvent, player);
-        stub(spellClass.getMethod("isEmpty"), nonEmptySpell, false);
-        onSpellCast.invoke(null, noContextEvent);
-
-        Object nullSpellContext = mock(contextClass);
-        Object nullSpellEvent = mock(castEventClass);
-        setPublicField(castEventClass, nullSpellEvent, "context", nullSpellContext);
-        stub(castEventClass.getMethod("getEntity"), nullSpellEvent, player);
-        onSpellCast.invoke(null, nullSpellEvent);
-
-        Object emptySpellContext = mock(contextClass);
-        Object emptySpell = mock(spellClass);
-        Object emptySpellEvent = mock(castEventClass);
-        setPublicField(castEventClass, emptySpellEvent, "spell", emptySpell);
-        setPublicField(castEventClass, emptySpellEvent, "context", emptySpellContext);
-        stub(castEventClass.getMethod("getEntity"), emptySpellEvent, player);
-        stub(spellClass.getMethod("isEmpty"), emptySpell, true);
-        onSpellCast.invoke(null, emptySpellEvent);
-
-        assertEquals(0, Mockito.mockingDetails(nullSpellContext).getInvocations().stream()
-            .filter(invocation -> invocation.getMethod().getName().equals("getOrCreateAttachment"))
-            .count());
-        assertEquals(0, Mockito.mockingDetails(emptySpellContext).getInvocations().stream()
-            .filter(invocation -> invocation.getMethod().getName().equals("getOrCreateAttachment"))
-            .count());
-    }
-
-    @Test
-    void resolutionFailsClosedWithoutServerShooterContextOrCausalAttachment() throws Exception {
-        Class<?> contextClass = providerClass(CONTEXT);
-        Class<?> resolvePostClass = providerClass(RESOLVE_POST);
-        Class<?> adapterClass = providerClass(ADAPTER);
-        Method onSpellResolved = adapterClass.getMethod("onSpellResolved", resolvePostClass);
-
-        Object nonServerEvent = mock(resolvePostClass);
-        setPublicField(resolvePostClass, nonServerEvent, "shooter", Mockito.mock(LivingEntity.class));
-        onSpellResolved.invoke(null, nonServerEvent);
-
-        Object noContextEvent = mock(resolvePostClass);
-        setPublicField(resolvePostClass, noContextEvent, "shooter", Mockito.mock(ServerPlayer.class));
-        onSpellResolved.invoke(null, noContextEvent);
 
         Object contextWithoutAward = mock(contextClass);
-        Object noAwardEvent = mock(resolvePostClass);
-        setPublicField(resolvePostClass, noAwardEvent, "shooter", Mockito.mock(ServerPlayer.class));
-        setPublicField(resolvePostClass, noAwardEvent, "context", contextWithoutAward);
-        onSpellResolved.invoke(null, noAwardEvent);
+        Method getAttachment = contextClass.getMethod("getAttachment", ResourceLocation.class);
+        Method getPreviousContext = contextClass.getMethod("getPreviousContext");
+        stub(getAttachment, contextWithoutAward, null, CAUSAL_AWARD_ID);
+        stub(getPreviousContext, contextWithoutAward, null);
+
+        assertNull(claimResolved.invoke(null, contextWithoutAward));
     }
 
     @Test
@@ -180,6 +144,17 @@ final class ArsProviderCausalityCoverageJUnitTest {
 
         Method id = awardClass.getMethod("id");
         assertEquals(CAUSAL_AWARD_ID, id.invoke(awardWithoutClaim));
+    }
+
+    private static SpellAction canonicalAction() {
+        return new SpellAction(
+            new dev.gustavopere.rpgskilltree.core.ActionOrigin("ars:spellcast", 0),
+            "ars",
+            "ars_nouveau:glyph_projectile>ars_nouveau:glyph_harm",
+            "composition",
+            java.util.Set.of("ars:projectile"),
+            25
+        );
     }
 
     private static Class<?> providerClass(String name) {
@@ -203,13 +178,8 @@ final class ArsProviderCausalityCoverageJUnitTest {
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    private static void stub(Method method, Object receiver, Object value) throws Exception {
-        Object invocation = method.invoke(receiver);
+    private static void stub(Method method, Object receiver, Object value, Object... arguments) throws Exception {
+        Object invocation = method.invoke(receiver, arguments);
         Mockito.when(invocation).thenReturn(value);
-    }
-
-    private static void setPublicField(Class<?> type, Object receiver, String name, Object value) throws Exception {
-        Field field = type.getField(name);
-        field.set(receiver, value);
     }
 }
