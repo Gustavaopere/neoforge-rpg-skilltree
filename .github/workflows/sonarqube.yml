@@ -153,6 +153,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p .sonar-pr-diagnostics
 
           issues_response="$(curl --silent --show-error --fail --get \
             --header "Authorization: Bearer ${SONAR_TOKEN}" \
@@ -161,6 +162,7 @@ jobs:
             --data-urlencode 'issueStatuses=OPEN,CONFIRMED' \
             --data-urlencode 'ps=100' \
             'https://sonarcloud.io/api/issues/search')"
+          printf '%s\n' "$issues_response" > .sonar-pr-diagnostics/issues.json
           issues_lines="$(jq -r '.issues[]? | "ISSUE|rule=\(.rule)|type=\(.type // "")|severity=\(.severity // "")|component=\(.component // "")|line=\(.line // 0)|message=\(.message // "")"' <<<"$issues_response")"
 
           root_coverage_response="$(curl --silent --show-error --fail --get \
@@ -169,6 +171,7 @@ jobs:
             --data-urlencode "pullRequest=${SONAR_PR}" \
             --data-urlencode 'metricKeys=new_coverage,new_lines_to_cover,new_uncovered_lines,new_conditions_to_cover,new_uncovered_conditions' \
             'https://sonarcloud.io/api/measures/component')"
+          printf '%s\n' "$root_coverage_response" > .sonar-pr-diagnostics/root-coverage.json
           root_coverage_line="$(jq -r '
             (.component.measures // [])
             | map({key: .metric, value: (.period.value // .value // "")})
@@ -184,6 +187,7 @@ jobs:
             --data-urlencode 'qualifiers=FIL' \
             --data-urlencode 'ps=500' \
             'https://sonarcloud.io/api/measures/component_tree')"
+          printf '%s\n' "$coverage_response" > .sonar-pr-diagnostics/component-tree.json
           coverage_lines="$(jq -r '
             .components[]?
             | {path: (.path // .name), measures: (.measures // [])}
@@ -192,6 +196,12 @@ jobs:
             | select((($m.new_uncovered_lines // "0") | tonumber) > 0 or (($m.new_uncovered_conditions // "0") | tonumber) > 0)
             | "COVERAGE|path=\($component.path)|new_coverage=\($m.new_coverage // "")|new_lines_to_cover=\($m.new_lines_to_cover // "0")|new_uncovered_lines=\($m.new_uncovered_lines // "0")|new_conditions_to_cover=\($m.new_conditions_to_cover // "0")|new_uncovered_conditions=\($m.new_uncovered_conditions // "0")"
           ' <<<"$coverage_response" | sort)"
+          printf '%s\n' "$root_coverage_line" > .sonar-pr-diagnostics/summary.txt
+          printf '%s\n' "$coverage_lines" >> .sonar-pr-diagnostics/summary.txt
+
+          if [ -f build/sonar/report-task.txt ]; then
+            cp build/sonar/report-task.txt .sonar-pr-diagnostics/report-task.txt
+          fi
 
           echo '=== Sonar PR issues ==='
           printf '%s\n' "$issues_lines"
@@ -211,6 +221,20 @@ jobs:
             printf '%s\n' "$coverage_lines"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Sonar PR diagnostic evidence
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sonar-pr-evidence-${{ github.event.pull_request.number }}-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            .sonar-pr-diagnostics/
+            build/reports/jacoco/test/jacocoTestReport.xml
+            build/reports/jacoco/provider-free/provider-free.xml
+            build/reports/jacoco/battle-mage-provider/battle-mage-provider.xml
+            build/reports/jacoco/minecolonies-provider/minecolonies-provider.xml
 
       - name: Verify Sonar new-code issue count on main
         if: github.event_name != 'pull_request'
