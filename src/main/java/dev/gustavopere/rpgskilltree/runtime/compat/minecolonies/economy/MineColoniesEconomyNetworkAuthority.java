@@ -7,8 +7,10 @@ import dev.gustavopere.rpgskilltree.core.economy.ColonyEconomyState;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyMath;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyParameters;
 import dev.gustavopere.rpgskilltree.core.economy.EconomyPreflight;
+import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomyConfigSnapshot;
 import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomyRepository;
 import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomySavedData;
+import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomyServerConfig;
 import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomyColonyContext;
 import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomyMintPreflightResultPayload;
 import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomySnapshotPayload;
@@ -34,9 +36,10 @@ public final class MineColoniesEconomyNetworkAuthority {
     public static void sendMintPreflight(ServerPlayer player, EconomyColonyContext context, long amount) {
         Resolved resolved = resolve(player, context);
         if (resolved == null) return;
+        ColonyEconomyConfigSnapshot config = ColonyEconomyServerConfig.snapshot();
 
         MineColoniesEconomyPreflightResult result = MineColoniesEconomyIntentService.preflightMint(
-            player, resolved.colony(), resolved.binding(), amount, resolved.data()
+            player, resolved.colony(), resolved.binding(), amount, resolved.data(), config
         );
         EconomyMintPreflightResultPayload.Projection projection = result.preflight()
             .map(MineColoniesEconomyNetworkAuthority::projection)
@@ -51,8 +54,9 @@ public final class MineColoniesEconomyNetworkAuthority {
         Resolved resolved = resolve(player, context);
         if (resolved == null) return;
         long gameTime = resolved.server().overworld().getGameTime();
+        ColonyEconomyConfigSnapshot config = ColonyEconomyServerConfig.snapshot();
         MineColoniesEconomyIntentResult result = MineColoniesEconomyIntentService.mint(
-            player, resolved.colony(), resolved.binding(), intentId, amount, gameTime, resolved.data()
+            player, resolved.colony(), resolved.binding(), intentId, amount, gameTime, resolved.data(), config
         );
         finishMutation(player, context, resolved, result);
     }
@@ -61,8 +65,9 @@ public final class MineColoniesEconomyNetworkAuthority {
         Resolved resolved = resolve(player, context);
         if (resolved == null) return;
         long gameTime = resolved.server().overworld().getGameTime();
+        ColonyEconomyConfigSnapshot config = ColonyEconomyServerConfig.snapshot();
         MineColoniesEconomyIntentResult result = MineColoniesEconomyIntentService.retire(
-            player, resolved.colony(), resolved.binding(), intentId, amount, gameTime, resolved.data()
+            player, resolved.colony(), resolved.binding(), intentId, amount, gameTime, resolved.data(), config
         );
         finishMutation(player, context, resolved, result);
     }
@@ -94,7 +99,7 @@ public final class MineColoniesEconomyNetworkAuthority {
             return unavailableSnapshot(context);
         }
 
-        long capacity = currentCapacity(resolved.colony());
+        long capacity = currentCapacity(resolved.colony(), ColonyEconomyServerConfig.snapshot().parameters());
         if (state == null) {
             return new EconomySnapshotPayload(
                 context,
@@ -121,11 +126,11 @@ public final class MineColoniesEconomyNetworkAuthority {
         );
     }
 
-    private static long currentCapacity(IColony colony) {
+    private static long currentCapacity(IColony colony, EconomyParameters parameters) {
         ColonyEconomicInputs inputs = MineColoniesEconomyAdapter.economicInputs(colony).orElse(null);
         if (inputs == null) return 0L;
         try {
-            return EconomyMath.capacity(inputs, EconomyParameters.defaults());
+            return EconomyMath.capacity(inputs, parameters);
         } catch (RuntimeException failure) {
             return 0L;
         }
