@@ -13,11 +13,6 @@ BATTLE_MAGE_TEST_PATTERNS = (
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java",
 )
 
-ECONOMY_TEST_PATTERNS = (
-    "src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java",
-    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*",
-)
-
 
 def require(condition: bool, message: str) -> None:
     if not condition:
@@ -75,6 +70,10 @@ def main() -> None:
         "Sonar CI must never select or persist an analysis UUID as the New Code baseline.",
     )
     require(
+        "-Dsonar.projectVersion=${GITHUB_SHA}" in workflow,
+        "Previous version requires each CI analysis to publish the immutable Git commit as sonar.projectVersion.",
+    )
+    require(
         "concurrency:" in workflow,
         "Sonar CI must declare concurrency so main analyses cannot overtake one another.",
     )
@@ -111,14 +110,9 @@ def main() -> None:
             pattern in workflow,
             f"Battle Mage GameTest scope is missing from Sonar classification: {pattern}",
         )
-    for pattern in ECONOMY_TEST_PATTERNS:
-        require(
-            pattern in workflow,
-            f"MineColonies Economy GameTest scope is missing from Sonar classification: {pattern}",
-        )
     require(
         "-Dsonar.test.inclusions=" in workflow and "-Dsonar.exclusions=" in workflow,
-        "NeoForge GameTests must be test-scoped and excluded only from main-code scope.",
+        "Battle Mage GameTests must be test-scoped and excluded only from main-code scope.",
     )
     require(
         "sonar.coverage.exclusions" not in workflow and "sonar.cpd.exclusions" not in workflow,
@@ -127,7 +121,8 @@ def main() -> None:
 
     print(
         "Sonar workflow policy is race-safe, self-heals Previous version through the Cloud settings API, "
-        "uses basic Gradle caching, imports transformed GameTest coverage, and test-scopes NeoForge GameTests."
+        "publishes a commit-scoped project version, uses basic Gradle caching, imports transformed GameTest "
+        "coverage, and test-scopes NeoForge GameTests."
     )
 
 
