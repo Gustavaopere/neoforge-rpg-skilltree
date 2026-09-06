@@ -13,6 +13,11 @@ BATTLE_MAGE_TEST_PATTERNS = (
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/battlemage/BattleMageReloadAndAuthorityGameTests.java",
 )
 
+ECONOMY_TEST_PATTERNS = (
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*",
+)
+
 
 def require(condition: bool, message: str) -> None:
     if not condition:
@@ -106,9 +111,14 @@ def main() -> None:
             pattern in workflow,
             f"Battle Mage GameTest scope is missing from Sonar classification: {pattern}",
         )
+    for pattern in ECONOMY_TEST_PATTERNS:
+        require(
+            pattern in workflow,
+            f"MineColonies Economy GameTest scope is missing from Sonar classification: {pattern}",
+        )
     require(
         "-Dsonar.test.inclusions=" in workflow and "-Dsonar.exclusions=" in workflow,
-        "Battle Mage GameTests must be test-scoped and excluded only from main-code scope.",
+        "NeoForge GameTests must be test-scoped and excluded only from main-code scope.",
     )
     require(
         "sonar.coverage.exclusions" not in workflow and "sonar.cpd.exclusions" not in workflow,

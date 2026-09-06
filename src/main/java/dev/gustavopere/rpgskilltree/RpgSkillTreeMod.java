@@ -28,6 +28,9 @@ import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegr
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageLifecycleEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageSpellProfileReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.MineColoniesBattleMageRegistration;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyIntegrationBootstrap;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyIntegrationState;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyLifecycleEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumDiscoveryEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEditorialCatalogEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEntityCatalogEvents;
@@ -50,6 +53,7 @@ import dev.gustavopere.rpgskilltree.runtime.data.TreeArchitectureReloader;
 import dev.gustavopere.rpgskilltree.runtime.data.TreeUnlockReloader;
 import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics;
 import dev.gustavopere.rpgskilltree.runtime.diagnostics.RuntimeDiagnostics.Category;
+import dev.gustavopere.rpgskilltree.runtime.economy.ColonyEconomyServerConfig;
 import dev.gustavopere.rpgskilltree.runtime.events.A0041A0060ProjectileEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.A0081A0100CombatEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ApothicBossBridgeEvents;
@@ -68,6 +72,8 @@ import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,6 +84,7 @@ public final class RpgSkillTreeMod {
     private static final Logger LOGGER = LoggerFactory.getLogger(RpgSkillTreeMod.class);
 
     public RpgSkillTreeMod(IEventBus modBus, ModContainer container) {
+        container.registerConfig(ModConfig.Type.SERVER, ColonyEconomyServerConfig.SPEC);
         VolcanoesMod.initialize(modBus, container);
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);
@@ -128,6 +135,48 @@ public final class RpgSkillTreeMod {
         boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
         String mineColoniesVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
         String ironsSpellbooksVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
+
+        MineColoniesEconomyIntegrationState economyState = MineColoniesEconomyIntegrationBootstrap.evaluate(
+            mineColoniesLoaded,
+            mineColoniesVersion
+        );
+        if (economyState == MineColoniesEconomyIntegrationState.ACTIVE) {
+            modBus.addListener((FMLCommonSetupEvent event) -> event.enqueueWork(() -> {
+                MineColoniesEconomyIntegrationState installedState = MineColoniesEconomyIntegrationBootstrap.install(
+                    true,
+                    mineColoniesVersion,
+                    MineColoniesEconomyLifecycleEvents::install
+                );
+                if (installedState == MineColoniesEconomyIntegrationState.ACTIVE) {
+                    RuntimeDiagnostics.info(
+                        LOGGER,
+                        Category.COMPAT,
+                        "minecolonies_economy_active",
+                        "MineColonies Economy integration active: MineColonies {}",
+                        mineColoniesVersion
+                    );
+                } else {
+                    RuntimeDiagnostics.warn(
+                        LOGGER,
+                        Category.COMPAT,
+                        "minecolonies_economy_disabled",
+                        "MineColonies Economy integration disabled during common setup: state={}, MineColonies={}",
+                        installedState,
+                        mineColoniesVersion
+                    );
+                }
+            }));
+        } else if (economyState != MineColoniesEconomyIntegrationState.ABSENT_PROVIDER) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "minecolonies_economy_disabled",
+                "MineColonies Economy integration disabled before common setup: state={}, MineColonies={}",
+                economyState,
+                mineColoniesVersion
+            );
+        }
+
         BattleMageIntegrationState battleMageState = BattleMageIntegrationBootstrap.evaluate(
             mineColoniesLoaded,
             ironsSpellbooksLoaded,
