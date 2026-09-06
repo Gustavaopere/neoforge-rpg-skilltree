@@ -1,0 +1,250 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "betternether",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:betternether:nether_mushroom_forest_edge",
+      "title": "Nether Mushroom Forest Edge",
+      "summary": {
+        "text": "Nether Mushroom Forest Edge é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:nether_mushroom_forest_edge. O título preserva exatamente o valor fornecido pelo asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:nether_mushroom_forest_edge"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider faz bootstrap deste ID com `NetherMushroomForestEdge`, e o registry o inclui em `registerBiomeToggles()`. `NetherMushroomForest.withEdgeBiome()` aponta para esta chave. Separadamente, o numeric provider e o selector de surface rules oficiais usam a grafia `nether_mushroom_forrest_edge`; a ficha preserva essa diferença de identificadores sem inventar números internos.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/world/biomes/NetherMushroomForest.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/world/biomes/providers/NetherMushroomForestEdgeNumericProvider.java"},
+            {"type": "DATAPACK", "ref": "betternether:wover/worldgen/surface_rules/nether_mushroom_forest_edge"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:nether_swampland",
+      "title": "Nether Swampland",
+      "summary": {
+        "text": "Nether Swampland é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:nether_swampland. O título é mantido exatamente como aparece no asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:nether_swampland"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` faz bootstrap deste ID com `NetherSwampland`, e `registerBiomeToggles()` o inclui no conjunto configurável. A designação Swampland é tratada como identidade do provider e não fixa nível de fluido, composição, tamanho, chance ou frequência de geração.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:nether_swampland_terraces",
+      "title": "Nether Swampland Terraces",
+      "summary": {
+        "text": "Nether Swampland Terraces é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:nether_swampland_terraces. O asset pt-BR do provider mantém esse título em inglês.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:nether_swampland_terraces"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O bootstrap oficial associa este ID à configuração `NetherSwamplandTerraces`, e o registry o inclui em `registerBiomeToggles()`. O termo Terraces não é convertido em altura, número de níveis, inclinação, extensão ou frequência fixa sem fonte específica adicional.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:old_fungiwoods",
+      "title": "Old Fungiwoods",
+      "summary": {
+        "text": "Old Fungiwoods é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:old_fungiwoods. O título é exatamente o valor existente no asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:old_fungiwoods"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` registra este ID com `OldFungiwoods`, e `registerBiomeToggles()` o inclui no conjunto configurável. A palavra Old faz parte do nome oficial e não é interpretada como estado legado, deprecado ou desativado.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:old_swampland",
+      "title": "Old Swampland",
+      "summary": {
+        "text": "Old Swampland é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:old_swampland. O título preserva o valor do asset pt-BR oficial.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:old_swampland"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O bootstrap oficial registra este ID com `OldSwampland`, e o registry o inclui em `registerBiomeToggles()`. A ficha não deduz idade, obsolescência, nível de fluido, extensão ou frequência a partir do nome.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:old_warped_woods",
+      "title": "Old Warped Woods",
+      "summary": {
+        "text": "Old Warped Woods é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:old_warped_woods. O asset pt-BR mantém o título oficial em inglês.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:old_warped_woods"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` faz bootstrap deste ID com `OldWarpedWoods`, e `registerBiomeToggles()` o inclui no conjunto configurável. O nome não é usado para inferir relação técnica com biomas vanilla, idade, densidade vegetal ou regras quantitativas de geração.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:poor_nether_grasslands",
+      "title": "Poor Nether Grasslands",
+      "summary": {
+        "text": "Poor Nether Grasslands é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:poor_nether_grasslands. O título coincide com o valor fornecido pelo asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:poor_nether_grasslands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O provider faz bootstrap deste ID com `PoorNetherGrasslands`, e o registry o inclui em `registerBiomeToggles()`. Poor integra o nome oficial e não é convertido em quantidade, escassez, densidade, qualidade de recursos ou frequência numérica na prosa.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:soul_plain",
+      "title": "Soul Plain",
+      "summary": {
+        "text": "Soul Plain é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:soul_plain. O título é preservado exatamente conforme o asset pt-BR oficial.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:soul_plain"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` registra este ID com `SoulPlain`, e `registerBiomeToggles()` o inclui no conjunto configurável. A palavra Soul no título não é usada para afirmar composição de blocos, efeitos, entidades, extensão ou frequência sem evidência específica adicional.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:sulfuric_bone_reef",
+      "title": "Sulfuric Bone Reef",
+      "summary": {
+        "text": "Sulfuric Bone Reef é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:sulfuric_bone_reef. O título é exatamente o valor mantido no asset pt-BR do provider.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:sulfuric_bone_reef"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "O bootstrap oficial associa este ID à configuração `SulfuricBoneReef`, e o registry o inclui em `registerBiomeToggles()`. Sulfuric e Bone Reef permanecem identidade nominal; a ficha não congela concentração, dano, risco, composição, densidade ou frequência numérica.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:betternether:upside_down_forest",
+      "title": "Upside Down Forest",
+      "summary": {
+        "text": "Upside Down Forest é um bioma do Nether registrado por BetterNether: New Dawn com o ID betternether:upside_down_forest. O asset pt-BR do provider mantém esse título em inglês.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "betternether:biome/betternether:upside_down_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/resources/assets/betternether/lang/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "`NetherBiomesProvider` faz bootstrap deste ID com `UpsideDownForest`, e `registerBiomeToggles()` o inclui no conjunto configurável. O nome Upside Down não é convertido em geometria, orientação, altura, densidade vegetal ou frequência fixa sem fonte específica adicional.",
+          "sources": [
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/datagen/betternether/worldgen/NetherBiomesProvider.java"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Reijin2312/BetterNether-New-Dawn/blob/543127cab48b1ecb0017fee4222af25e0583e185/src/main/java/org/betterx/betternether/registry/NetherBiomes.java"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}
