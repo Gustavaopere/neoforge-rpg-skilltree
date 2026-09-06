@@ -27,52 +27,53 @@ final class BlacksmithMaterialCatalogContractTest {
         BlacksmithMaterialCatalog catalog = BlacksmithMaterialProfiles.auditedPackCatalog();
 
         assertEquals(
-            Set.of(id("rpgskilltree", "iron"), id("rpgskilltree", "copper"), id("rpgskilltree", "gold"), id("rpgskilltree", "netherite"), id("rpgskilltree", "brass")),
+            Set.of(
+                id("rpgskilltree", "iron"),
+                id("rpgskilltree", "copper"),
+                id("rpgskilltree", "gold"),
+                id("rpgskilltree", "netherite"),
+                id("rpgskilltree", "brass"),
+                id("rpgskilltree", "steel"),
+                id("rpgskilltree", "aluminum"),
+                id("rpgskilltree", "lead"),
+                id("rpgskilltree", "nickel"),
+                id("rpgskilltree", "constantan")
+            ),
             catalog.ids()
         );
         assertFalse(catalog.find(id("rpgskilltree", "bronze")).isPresent());
-        assertFalse(catalog.find(id("rpgskilltree", "steel")).isPresent());
+        assertFalse(catalog.find(id("rpgskilltree", "cast_iron")).isPresent());
     }
 
     @Test
     void vanillaMaterialsUseCommonTagsAndConcreteRepairIngredients() {
         BlacksmithMaterialCatalog catalog = BlacksmithMaterialProfiles.auditedPackCatalog();
 
-        assertMaterial(
-            catalog.require(id("rpgskilltree", "iron")),
-            "minecraft",
-            id("minecraft", "iron_ingot"),
-            id("c", "ingots/iron"),
-            id("c", "molten_iron")
-        );
-        assertMaterial(
-            catalog.require(id("rpgskilltree", "copper")),
-            "minecraft",
-            id("minecraft", "copper_ingot"),
-            id("c", "ingots/copper"),
-            id("c", "molten_copper")
-        );
-        assertMaterial(
-            catalog.require(id("rpgskilltree", "gold")),
-            "minecraft",
-            id("minecraft", "gold_ingot"),
-            id("c", "ingots/gold"),
-            id("c", "molten_gold")
-        );
-        assertMaterial(
-            catalog.require(id("rpgskilltree", "netherite")),
-            "minecraft",
-            id("minecraft", "netherite_ingot"),
-            id("c", "ingots/netherite"),
-            id("c", "molten_netherite")
-        );
+        assertMaterial(catalog.require(id("rpgskilltree", "iron")), "minecraft", id("minecraft", "iron_ingot"), "iron");
+        assertMaterial(catalog.require(id("rpgskilltree", "copper")), "minecraft", id("minecraft", "copper_ingot"), "copper");
+        assertMaterial(catalog.require(id("rpgskilltree", "gold")), "minecraft", id("minecraft", "gold_ingot"), "gold");
+        assertMaterial(catalog.require(id("rpgskilltree", "netherite")), "minecraft", id("minecraft", "netherite_ingot"), "netherite");
     }
 
     @Test
     void createBrassUsesCreateAsMaterialProviderAndCommonUnificationTags() {
-        BlacksmithMaterialProfile brass = BlacksmithMaterialProfiles.auditedPackCatalog().require(id("rpgskilltree", "brass"));
+        assertMaterial(
+            BlacksmithMaterialProfiles.auditedPackCatalog().require(id("rpgskilltree", "brass")),
+            "create",
+            id("create", "brass_ingot"),
+            "brass"
+        );
+    }
 
-        assertMaterial(brass, "create", id("create", "brass_ingot"), id("c", "ingots/brass"), id("c", "molten_brass"));
+    @Test
+    void tfmgMetalsUseExactCommunityProviderItemsAndProductiveMetalworksCommonTags() {
+        BlacksmithMaterialCatalog catalog = BlacksmithMaterialProfiles.auditedPackCatalog();
+
+        assertMaterial(catalog.require(id("rpgskilltree", "steel")), "tfmg", id("tfmg", "steel_ingot"), "steel");
+        assertMaterial(catalog.require(id("rpgskilltree", "aluminum")), "tfmg", id("tfmg", "aluminum_ingot"), "aluminum");
+        assertMaterial(catalog.require(id("rpgskilltree", "lead")), "tfmg", id("tfmg", "lead_ingot"), "lead");
+        assertMaterial(catalog.require(id("rpgskilltree", "nickel")), "tfmg", id("tfmg", "nickel_ingot"), "nickel");
+        assertMaterial(catalog.require(id("rpgskilltree", "constantan")), "tfmg", id("tfmg", "constantan_ingot"), "constantan");
     }
 
     @Test
@@ -102,14 +103,13 @@ final class BlacksmithMaterialCatalogContractTest {
         BlacksmithMaterialProfile profile,
         String sourceMod,
         ResourceLocation canonicalItem,
-        ResourceLocation commonItemTag,
-        ResourceLocation moltenTag
+        String commonName
     ) {
         assertEquals(sourceMod, profile.sourceMod());
         assertEquals(Set.of(canonicalItem), profile.itemIds());
-        assertEquals(Set.of(commonItemTag), profile.itemTags());
+        assertEquals(Set.of(id("c", "ingots/" + commonName)), profile.itemTags());
         assertTrue(profile.moltenFluidIds().isEmpty());
-        assertEquals(Set.of(moltenTag), profile.moltenFluidTags());
+        assertEquals(Set.of(id("c", "molten_" + commonName)), profile.moltenFluidTags());
         assertEquals(id("rpgskilltree", "metal"), profile.materialClass());
         assertEquals(canonicalItem, profile.repairIngredient().orElseThrow());
         assertEquals(1, profile.schemaVersion());
