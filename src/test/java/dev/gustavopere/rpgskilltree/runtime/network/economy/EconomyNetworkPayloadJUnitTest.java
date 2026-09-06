@@ -45,7 +45,7 @@ final class EconomyNetworkPayloadJUnitTest {
 
         EconomySnapshotPayload decoded = roundTrip(EconomySnapshotPayload.STREAM_CODEC, payload);
         assertEquals(payload, decoded);
-        assertEquals(EconomySnapshotPayload.TYPE, payload.type());
+        assertEquals(EconomySnapshotPayload.PAYLOAD_TYPE, payload.type());
         assertEquals(80L, payload.balances().effectiveSupply());
         assertFalse(ClientColonyEconomyState.snapshot(COLONY).isPresent());
 
@@ -81,14 +81,14 @@ final class EconomyNetworkPayloadJUnitTest {
     void preflightRequestAndResultRoundTripWithValidatedProjection() {
         EconomyMintPreflightPayload request = new EconomyMintPreflightPayload(COLONY, 25L);
         assertEquals(request, roundTrip(EconomyMintPreflightPayload.STREAM_CODEC, request));
-        assertEquals(EconomyMintPreflightPayload.TYPE, request.type());
+        assertEquals(EconomyMintPreflightPayload.PAYLOAD_TYPE, request.type());
 
         EconomyMintPreflightResultPayload.Projection projection =
             new EconomyMintPreflightResultPayload.Projection(50L, 75L, 80L, 110.0D, 145.0D);
         EconomyMintPreflightResultPayload result = new EconomyMintPreflightResultPayload(COLONY, "APPLIED", projection);
 
         assertEquals(result, roundTrip(EconomyMintPreflightResultPayload.STREAM_CODEC, result));
-        assertEquals(EconomyMintPreflightResultPayload.TYPE, result.type());
+        assertEquals(EconomyMintPreflightResultPayload.PAYLOAD_TYPE, result.type());
         assertTrue(ClientColonyEconomyState.latestPreflight().isEmpty());
 
         EconomyMintPreflightResultPayload.handle(result, null);
@@ -136,9 +136,9 @@ final class EconomyNetworkPayloadJUnitTest {
         assertEquals(mint, roundTrip(EconomyMintPayload.STREAM_CODEC, mint));
         assertEquals(retire, roundTrip(EconomyRetirePayload.STREAM_CODEC, retire));
         assertEquals(snapshotRequest, roundTrip(EconomySnapshotRequestPayload.STREAM_CODEC, snapshotRequest));
-        assertEquals(EconomyMintPayload.TYPE, mint.type());
-        assertEquals(EconomyRetirePayload.TYPE, retire.type());
-        assertEquals(EconomySnapshotRequestPayload.TYPE, snapshotRequest.type());
+        assertEquals(EconomyMintPayload.PAYLOAD_TYPE, mint.type());
+        assertEquals(EconomyRetirePayload.PAYLOAD_TYPE, retire.type());
+        assertEquals(EconomySnapshotRequestPayload.PAYLOAD_TYPE, snapshotRequest.type());
 
         assertThrows(IllegalArgumentException.class, () -> new EconomyMintPayload(COLONY, null, 1L));
         assertThrows(IllegalArgumentException.class, () -> new EconomyRetirePayload(COLONY, null, 1L));
