@@ -1,4 +1,4 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db819e9572fd43820f9c03 | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
@@ -60,16 +60,16 @@ O mod procura evitar duplicação técnica quando detecta addons que fornecem or
 A linha 2.x acrescenta staffs especializados com modelos, afinidades e presets próprios, criando instrumentos de casting com comportamento definido além do spellbook convencional. Esses staffs podem representar estilos diferentes de conjuração mesmo quando continuam usando glyphs e mana do Ars Nouveau.
 O addon também adiciona glyphs e conteúdo complementar e possui suporte a integrações atuais do ecossistema Ars, incluindo compatibilidades necessárias para ambientes físicos móveis quando aplicável.
 
-## Starbunclemania — 1.5.7
+## Starbunclemania — 1.5.8
 
-`starbunclemania-1.21.1-1.5.7.jar`
+`starbunclemania-1.21.1-1.5.8.jar`
 **Starbunclemania** transforma Starbuncles em trabalhadores especializados para logística e automação. Além do transporte convencional de itens, o addon cria jobs e acessórios que permitem movimentar diferentes tipos de recurso por rotas configuradas, mantendo a lógica de criaturas trabalhadoras do Ars Nouveau.
 Entre as especializações estão transporte de **fluidos**, energia e outros recursos suportados, usando variantes e recipientes próprios para cada função. O mod também trabalha com **Source liquefeito**, acrescentando uma forma adicional de representar, armazenar e processar o recurso mágico dentro de sistemas automatizados.
 O resultado é uma infraestrutura de logística mágica em que Starbuncles assumem papéis comparáveis a componentes de uma rede de transporte, mas continuam sendo entidades com tarefas e vínculos próprios do ecossistema Ars.
 
-## Ars 'n' Spells — 3.2.1
+## Ars 'n' Spells — 3.2.4
 
-`ars_n_spells-3.2.1.jar`
+`ars_n_spells-3.2.4.jar`
 **Ars 'n' Spells** é uma integração profunda entre Ars Nouveau e Iron's Spells 'n Spellbooks. Um dos eixos é a **unificação ou coordenação de mana**, com modos configuráveis que podem priorizar um dos sistemas, operar de forma híbrida, mantê-los separados ou desabilitar a integração. Regeneração, custos e apresentação das barras podem ser ajustados de acordo com esse modo.
 O addon também conecta atributos e equipamento: bônus de mana, spell power, acessórios e outras propriedades podem atravessar a fronteira entre os dois ecossistemas conforme a configuração. Há mecânicas adicionais de sinergia, como efeitos relacionados a níveis altos de mana e interação com infraestrutura de Source.
 No lado do spellcraft, o **Spell Loom** e mecanismos de exportação, binding e inscrição permitem converter ou vincular spells para uso através de interfaces e itens do outro sistema. Assim, spellbooks, scrolls, seleção de spells e feitiços construídos no Ars podem participar de um fluxo mágico compartilhado em vez de permanecerem completamente isolados.
@@ -119,3 +119,6 @@ Esses acessórios entram no sistema de progressão e uso de Relics, mas seus efe
 `ars_hex-1.21.1-5.0.4b.jar`
 **Ars Hex Unity** é o sucessor de Ars Scalaes e funciona como uma camada de compatibilidade entre Ars Nouveau e outros sistemas mágicos. A integração com **Hexerei** inclui recursos como Magebloom Brush para brooms e Enchanter's Broom capaz de receber spell inscription; com **Malum**, acrescenta glyph/equipamentos e interações com Soul Ward, Magic Proficiency e Spirit Spoils.
 O addon também contém compatibilidades cruzadas envolvendo **Iron's Spells** e **Ars Elemental**, permitindo que escolas, resistências e efeitos elementais reconheçam conteúdo dos dois ecossistemas quando os mods correspondentes estão instalados. Não cria um novo sistema de mana ou spellcraft: amplia a interoperabilidade entre sistemas já existentes.
+
+
+---
