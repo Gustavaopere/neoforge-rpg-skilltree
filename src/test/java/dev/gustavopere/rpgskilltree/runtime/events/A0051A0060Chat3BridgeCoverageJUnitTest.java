@@ -3,25 +3,39 @@ package dev.gustavopere.rpgskilltree.runtime.events;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
+import dev.gustavopere.rpgskilltree.core.A0001A0020CriticalService;
 import dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicy.BowShot;
 import dev.gustavopere.rpgskilltree.core.A0041A0060CombatPolicy.CombatResult;
 import dev.gustavopere.rpgskilltree.core.A0041A0060CombatState;
 import dev.gustavopere.rpgskilltree.core.CombatPerkDefinition.WeaponFamily;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
+import dev.gustavopere.rpgskilltree.runtime.A0001A0020RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.A0041A0060RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.UUID;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 final class A0051A0060Chat3BridgeCoverageJUnitTest {
     private static final String EVENTS =
@@ -64,6 +78,13 @@ final class A0051A0060Chat3BridgeCoverageJUnitTest {
         assertTrue(field(pendingClass, "launchConfirmed").getBoolean(crossbow));
         assertSame(adjusted, field(pendingClass, "adjusted").get(crossbow));
         assertTrue((boolean) hasSpecial.invoke(crossbow));
+
+        CombatResult piercing = new CombatResult(true, false, 1.0D, 1.0D, 1.0D, 0.18D, 0.0D);
+        Object piercingOnly = crossbowFactory.invoke(
+            null, "actor", "piercing-root", "crossbow-stack/43", 2_500L,
+            CombatResult.neutral(), piercing
+        );
+        assertTrue((boolean) hasSpecial.invoke(piercingOnly));
 
         Object neutral = neutralFactory.invoke(
             null, "actor", WeaponFamily.CROSSBOW, "projectile/root", 9_999L
@@ -145,6 +166,134 @@ final class A0051A0060Chat3BridgeCoverageJUnitTest {
     }
 
     @Test
+    void crossbowWeaponIdentityReusesSameHeldStackAndRotatesOnReplacement() throws Exception {
+        Class<?> eventsClass = Class.forName(EVENTS);
+        Method crossbowWeaponId = declaredMethod(
+            eventsClass, "crossbowWeaponId", ServerPlayer.class, ItemStack.class
+        );
+        ServerPlayer player = mock(ServerPlayer.class);
+        UUID playerId = UUID.randomUUID();
+        ItemStack firstStack = new ItemStack(new CrossbowItem(new Item.Properties()));
+        ItemStack replacement = new ItemStack(new CrossbowItem(new Item.Properties()));
+        when(player.getUUID()).thenReturn(playerId);
+        when(player.getMainHandItem()).thenReturn(firstStack, firstStack, replacement);
+        when(player.getOffhandItem()).thenReturn(ItemStack.EMPTY);
+
+        String first = (String) crossbowWeaponId.invoke(null, player, firstStack);
+        String reused = (String) crossbowWeaponId.invoke(null, player, firstStack);
+        String rotated = (String) crossbowWeaponId.invoke(null, player, replacement);
+        assertEquals(first, reused);
+        assertNotEquals(first, rotated);
+
+        ServerPlayer fallbackPlayer = mock(ServerPlayer.class);
+        when(fallbackPlayer.getUUID()).thenReturn(UUID.randomUUID());
+        when(fallbackPlayer.getMainHandItem()).thenReturn(ItemStack.EMPTY);
+        when(fallbackPlayer.getOffhandItem()).thenReturn(ItemStack.EMPTY);
+        String fallback = (String) crossbowWeaponId.invoke(null, fallbackPlayer, replacement);
+        assertTrue(fallback.startsWith("crossbow-stack/"));
+
+        A0041A0060ProjectileEvents.onServerStopped(null);
+        String afterLifecycleClear = (String) crossbowWeaponId.invoke(null, player, replacement);
+        assertNotEquals(rotated, afterLifecycleClear);
+    }
+
+    @Test
+    void correlatedCrossbowJoinRegistersProjectileAndCommitsReservedPiercingShot() throws Exception {
+        UUID playerId = UUID.randomUUID();
+        UUID arrowId = UUID.randomUUID();
+        String actor = playerId.toString();
+        String root = "crossbow/root";
+        long now = 5_000L;
+        ServerPlayer player = serverPlayer(playerId, 100L);
+        AbstractArrow arrow = mock(AbstractArrow.class);
+        ItemStack crossbow = new ItemStack(new CrossbowItem(new Item.Properties()));
+        when(arrow.getOwner()).thenReturn(player);
+        when(arrow.getWeaponItem()).thenReturn(crossbow);
+        when(arrow.getUUID()).thenReturn(arrowId);
+        when(arrow.isCritArrow()).thenReturn(false);
+        when(arrow.position()).thenReturn(Vec3.ZERO);
+        EntityJoinLevelEvent event = mock(EntityJoinLevelEvent.class);
+        when(event.getEntity()).thenReturn(arrow);
+
+        A0041A0060CombatState state = new A0041A0060CombatState();
+        state.addCadence(actor);
+        state.addCadence(actor);
+        assertTrue(state.reservePiercingBolt(actor, root, now));
+        CombatResult piercing = new CombatResult(true, false, 1.0D, 1.25D, 1.0D, 0.18D, 0.0D);
+        Object pending = pendingCrossbow(actor, root, "crossbow-stack/join", now, piercing);
+        pendingMap().put(playerId, pending);
+        CombatPerkRanks ranks = CombatPerkRanks.of(Map.of("A0051", 2, "A0053", 2));
+        A0001A0020CriticalService critical = new A0001A0020CriticalService(() -> 0.99D, 30_000L, 32);
+
+        try (MockedStatic<A0041A0060RuntimeState> runtime = mockStatic(A0041A0060RuntimeState.class);
+             MockedStatic<A0001A0020RuntimeState> critRuntime = mockStatic(A0001A0020RuntimeState.class);
+             MockedStatic<A0061A0080RuntimeState> generalRuntime = mockStatic(A0061A0080RuntimeState.class)) {
+            runtime.when(() -> A0041A0060RuntimeState.ranks(player)).thenReturn(ranks);
+            runtime.when(A0041A0060RuntimeState::state).thenReturn(state);
+            critRuntime.when(A0001A0020RuntimeState::critical).thenReturn(critical);
+            generalRuntime.when(() -> A0061A0080RuntimeState.isStationary(player)).thenReturn(false);
+
+            A0041A0060ProjectileEvents.onEntityJoin(event);
+        }
+
+        assertEquals(0, state.cadence(actor), "A0053 cost commits only once a correlated projectile exists");
+        Object meta = projectileMetadata(arrow);
+        assertNotNull(meta);
+        Class<?> metaClass = meta.getClass();
+        assertTrue(field(metaClass, "launchConfirmed").getBoolean(meta));
+        assertEquals("crossbow-stack/join", field(metaClass, "weaponId").get(meta));
+        CombatResult applied = (CombatResult) field(metaClass, "crossbowShot").get(meta);
+        assertTrue(applied.applied());
+        assertEquals(0.18D, applied.penetrationFraction());
+        assertFalse(state.recordCrossbowProjectileFailure(actor, root, arrowId.toString(), now + 1L));
+    }
+
+    @Test
+    void uncorrelatedCrossbowJoinStaysProvenanceNeutral() throws Exception {
+        UUID playerId = UUID.randomUUID();
+        UUID arrowId = UUID.randomUUID();
+        ServerPlayer player = serverPlayer(playerId, 200L);
+        AbstractArrow arrow = mock(AbstractArrow.class);
+        ItemStack crossbow = new ItemStack(new CrossbowItem(new Item.Properties()));
+        when(arrow.getOwner()).thenReturn(player);
+        when(arrow.getWeaponItem()).thenReturn(crossbow);
+        when(arrow.getUUID()).thenReturn(arrowId);
+        when(arrow.isCritArrow()).thenReturn(false);
+        when(arrow.position()).thenReturn(Vec3.ZERO);
+        EntityJoinLevelEvent event = mock(EntityJoinLevelEvent.class);
+        when(event.getEntity()).thenReturn(arrow);
+        pendingMap().remove(playerId);
+
+        A0041A0060CombatState state = new A0041A0060CombatState();
+        CombatPerkRanks ranks = CombatPerkRanks.of(Map.of("A0051", 2));
+        A0001A0020CriticalService critical = new A0001A0020CriticalService(() -> 0.0D, 30_000L, 32);
+
+        try (MockedStatic<A0041A0060RuntimeState> runtime = mockStatic(A0041A0060RuntimeState.class);
+             MockedStatic<A0001A0020RuntimeState> critRuntime = mockStatic(A0001A0020RuntimeState.class);
+             MockedStatic<A0061A0080RuntimeState> generalRuntime = mockStatic(A0061A0080RuntimeState.class)) {
+            runtime.when(() -> A0041A0060RuntimeState.ranks(player)).thenReturn(ranks);
+            runtime.when(A0041A0060RuntimeState::state).thenReturn(state);
+            critRuntime.when(A0001A0020RuntimeState::critical).thenReturn(critical);
+            generalRuntime.when(() -> A0061A0080RuntimeState.isStationary(player)).thenReturn(true);
+
+            A0041A0060ProjectileEvents.onEntityJoin(event);
+        }
+
+        Object meta = projectileMetadata(arrow);
+        assertNotNull(meta);
+        Class<?> metaClass = meta.getClass();
+        assertFalse(field(metaClass, "launchConfirmed").getBoolean(meta));
+        assertNull(field(metaClass, "weaponId").get(meta));
+        assertFalse(field(metaClass, "critical").getBoolean(meta),
+            "derived crossbow arrows must not inherit the A0051 launch bonus");
+        CombatResult neutral = (CombatResult) field(metaClass, "crossbowShot").get(meta);
+        assertFalse(neutral.applied());
+        assertFalse(state.recordCrossbowProjectileFailure(
+            playerId.toString(), "projectile/" + arrowId, arrowId.toString(), 10_001L
+        ));
+    }
+
+    @Test
     void multishotFailureCannotBeRewrittenAsSuccessAndExpiredRootsArePruned() {
         A0041A0060CombatState state = new A0041A0060CombatState();
         assertTrue(state.registerCrossbowProjectile("p", "r", "a", 1_000L));
@@ -215,6 +364,43 @@ final class A0051A0060Chat3BridgeCoverageJUnitTest {
         assertEquals(3, state.cadence("p"));
         assertEquals(1, state.sequence("p", 21_200L));
         assertTrue(state.finalCombinationReady("p", 21_200L));
+    }
+
+    private static ServerPlayer serverPlayer(UUID id, long gameTime) {
+        ServerPlayer player = mock(ServerPlayer.class);
+        ServerLevel level = mock(ServerLevel.class);
+        when(player.getUUID()).thenReturn(id);
+        when(player.level()).thenReturn(level);
+        when(level.isClientSide()).thenReturn(false);
+        when(level.getGameTime()).thenReturn(gameTime);
+        when(player.isCreative()).thenReturn(false);
+        when(player.isSpectator()).thenReturn(false);
+        when(player.isSprinting()).thenReturn(false);
+        return player;
+    }
+
+    private static Object pendingCrossbow(
+        String actor, String root, String weaponId, long now, CombatResult piercing
+    ) throws Exception {
+        Class<?> pendingClass = Class.forName(EVENTS + "$PendingLaunch");
+        Method factory = declaredMethod(
+            pendingClass, "crossbow", String.class, String.class, String.class, long.class,
+            CombatResult.class, CombatResult.class
+        );
+        return factory.invoke(null, actor, root, weaponId, now, CombatResult.neutral(), piercing);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Map<UUID, Object> pendingMap() throws Exception {
+        Class<?> eventsClass = Class.forName(EVENTS);
+        Field pending = field(eventsClass, "PENDING");
+        return (Map<UUID, Object>) pending.get(null);
+    }
+
+    private static Object projectileMetadata(AbstractArrow arrow) throws Exception {
+        Class<?> eventsClass = Class.forName(EVENTS);
+        Method metadata = declaredMethod(eventsClass, "metadata", AbstractArrow.class);
+        return metadata.invoke(null, arrow);
     }
 
     private static Method declaredMethod(Class<?> owner, String name, Class<?>... parameterTypes)
