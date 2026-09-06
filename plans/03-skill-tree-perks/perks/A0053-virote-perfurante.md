@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após correção de availability/provenance, reservation→commit e lifecycle.
 - **Notion:** `3c569db9-f0db-811a-9656-f34ddd39f999`.
-- **Runtime:** IMPLEMENTAÇÃO PARCIAL; caminho de penetration presente, mas nó estruturalmente indisponível enquanto A0052 não puder ser adquirido e o consumo atual ocorre cedo demais para lançamentos cancelados.
+- **Runtime:** **NÃO CONFIRMADA COMO JOGÁVEL / FAIL-CLOSED CORRETO**. Reservation→commit, launch provenance, rollback e deduplicação estão implementados/validados, mas o node permanece `UNAVAILABLE_NODE` pela cadeia A0050→A0052→A0053.
 
 ## Contrato canônico
 
@@ -19,18 +19,33 @@
 
 ## Evidência runtime
 
-`tryPiercingBolt(...)` exige duas cargas e ao menos penetration/impact disponível, porém é chamado dentro de `onArrowLoose(...)` e já consome Cadências antes de a criação do projétil ser confirmada. Como listener posterior pode cancelar `ArrowLooseEvent`, é possível perder as duas Cadências sem projectile/root materializado. O bridge precisa reservar no lançamento e commit/rollback em função da criação efetiva do projétil.
+`tryPiercingBolt(...)` reserva a ação em `A0041A0060CombatState` sem debitar Cadência. `A0041A0060ProjectileEvents.onEntityJoin(...)` só chama `commitPiercingBolt(...)` quando existe `PendingLaunch.launchConfirmed` e um projectile CROSSBOW correlacionado; se o projectile não nasce, a reserva expira/é reconciliada sem consumo.
 
-O caminho de penetration em primeiro impacto existe; impact permanece fail-closed quando não há provider semântico seguro. O segundo review também exige que projectile sem launch receipt real não possa ser promovido a root CROSSBOW elegível e que reservas sejam descartadas quando a progressão for reconciliada.
+A reserva possui identidade `actor + rootActionId + A0053`, TTL bounded e remoção explícita em perda de ranks/pré-requisitos. O primeiro projectile especial correlacionado recebe a ação; siblings/impactos posteriores não recebem novo consumo. Penetration usa o pipeline de damage/reduction existente; Impact continua component-wise fail-closed quando não há receipt provider-native seguro.
 
-## Pendências para Chat 2
+## Pendências técnicas
 
-- **P-A0053-01:** propagar availability A0050→A0052→A0053 no catálogo/purchase path; não permitir rank no-op/bypass.
-- **P-A0053-02:** transformar consumo de 2 Cadências em reservation→commit ligado à criação confirmada do projectile/root; cancelamento tardio/ausência de spawn deve rollback integralmente.
-- **P-A0053-03:** exigir launch receipt CROSSBOW real antes de criar/consumir a ação especial; projectile derivado/reemitido sem correlação fica fail-closed.
-- **P-A0053-04:** limpar qualquer reserva pendente em rank loss, respec ou rules reload que invalide A0053/pré-requisitos.
-- Revalidar first-impact/dedup no GameTest real, incluindo multi-pierce/ricochet/derivado e cancelamento por listener posterior.
-- Herdar blockers de aquisição CROSSBOW de A0049/A0050/A0052; não considerar perk alcançável até a cadeia inteira ser válida.
+- **RESOLVIDA P-A0053-01:** availability A0050→A0052→A0053 propagada.
+- **RESOLVIDA P-A0053-02:** custo reservation→commit na criação confirmada do projectile/root.
+- **RESOLVIDA P-A0053-03:** launch receipt real exigido.
+- **RESOLVIDA P-A0053-04:** reserva descartada por TTL/lifecycle/reconciliation quando a progressão deixa de validar.
+- **PENDÊNCIA NÃO BLOQUEANTE:** a perk continua inalcançável enquanto A0050/A0052 estiverem indisponíveis; Impact permanece component-wise fail-closed sem receipt provider-native seguro.
+
+## Implementação e validação
+
+- [x] Hook implementado.
+- [x] Gate/availability fail-closed implementados.
+- [x] Reservation→commit implementado.
+- [x] Launch provenance implementada.
+- [x] Deduplicação por root/primeiro projectile especial implementada.
+- [x] Lifecycle/rollback bounded implementado.
+- [x] Código presente.
+- [x] **VALIDAÇÃO CHAT 3:** JUnit do commit/rollback e regressões do lote.
+- [x] **VALIDAÇÃO CHAT 3:** NeoForge adapter/GameTests verdes.
+- [x] **VALIDAÇÃO CHAT 3:** build NeoForge e dedicated-server smoke verdes.
+- [x] **VALIDAÇÃO CHAT 3:** CI funcional GREEN em `6826c50896c4ad586b8942031465b6a0a3ce44af` (run `34006356029`).
+- [x] **VALIDAÇÃO CHAT 3:** fail-closed atual confirmado.
+- [ ] **IMPLEMENTAÇÃO CONFIRMADA JOGÁVEL:** bloqueada pela cadeia A0050/A0052.
 
 ## Provider→árvore
 
@@ -40,18 +55,20 @@ Nenhum dos projetos próprios ou Mobstein fornece penetration/impact CROSSBOW al
 
 | Eixo | Resultado individual | Evidência / decisão |
 |---|---|---|
-| 1. Dependências, bloqueios e gates | **PASS no design** | A0052 ≥1 + `epic_crossbow`; availability herdada de A0050/A0052 e blockers CROSSBOW impedem bypass. |
-| 2. Integração global | **PASS** | Consome somente Cadência própria; penetration/Impact usam providers canônicos quando seguros; magia, Shroud, hazards e companions não substituem componentes. |
-| 3. Qualidade e identidade | **PASS** | Notable de gasto deliberado de Cadência para tiro de alto compromisso; muda decisão de combate e não é bônus plano permanente. |
-| 4. Ramificação, distância e topologia | **PASS** | Camada 3 após A0052 no ramo Cadência/Perfuração; custo e pré-requisito preservam progressão real. |
-| 5. Especializações | **PASS** | Continua MARTIAL/BESTAS; não invade magia/tecnologia e não cria classe específica de mod. |
-| 6. PT-BR | **PASS** | Texto de jogador em PT-BR; `penetration`, `Impact`, IDs e hooks técnicos aparecem apenas como termos de implementação quando necessário. |
-| 7. Notion completo | **PASS** | Dependências/Gate/Hook/Fallback/Regra completos; reservation→commit, launch provenance e lifecycle re-fetched após review. |
-| 8. NeoVitae | **PASS** | Ausente de providers, gates e fallback. |
-| 9. Cobertura modlist/providers | **PASS** | RPG/Epic Fight/Apothic/WoM quando aplicáveis e own-project/Mobstein boundaries foram dispostos; Stage 11 permanece `SEM HOOK SEGURO`. |
-
-Os 18 critérios técnicos cumulativos passam **no design**; os gaps runtime permanecem catalogados e fail-closed, sem simular implementação.
+| 1. Dependências, bloqueios e gates | **PASS no design e fail-closed** | A0052 ≥1 + `epic_crossbow`; availability herdada de A0050/A0052 impede bypass. |
+| 2. Integração global | **PASS** | Consome somente Cadência própria; penetration/Impact usam providers canônicos quando seguros. |
+| 3. Qualidade e identidade | **PASS** | Notable de gasto deliberado de Cadência. |
+| 4. Ramificação, distância e topologia | **PASS** | Camada 3 após A0052 no ramo Cadência/Perfuração. |
+| 5. Especializações | **PASS** | MARTIAL/BESTAS. |
+| 6. PT-BR | **PASS** | Player-facing em PT-BR. |
+| 7. Notion completo | **PASS** | Dependências/Gate/Hook/Fallback/Regra completos. |
+| 8. NeoVitae | **PASS** | Ausente. |
+| 9. Cobertura modlist/providers | **PASS** | Providers/boundaries pertinentes dispostos; Stage 11 segue `SEM HOOK SEGURO`. |
 
 ## Notion
 
-Dependências, Gate, Hook, Fallback e Regra foram corrigidos no fechamento inicial. Reviews da PR #249 adicionaram reservation→commit, launch provenance e lifecycle de reconciliação; re-fetch pós-review PASS em 2026-08-30.
+Dependências, Gate, Hook, Fallback e Regra foram corrigidos no fechamento de design; re-fetch pós-review PASS em 2026-08-30.
+
+## Fechamento Chat 3 — PR #387
+
+O pipeline transacional A0053 foi revisado contra o contrato e passou a bateria real do lote no HEAD funcional `6826c50896c4ad586b8942031465b6a0a3ce44af`. A perk permanece **NÃO CONFIRMADA COMO JOGÁVEL / FAIL-CLOSED CORRETO** por herdar a indisponibilidade de A0050/A0052; nenhum bônus substituto foi inventado.
