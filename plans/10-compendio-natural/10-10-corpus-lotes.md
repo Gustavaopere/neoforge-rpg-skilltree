@@ -633,6 +633,28 @@ Entradas:
 - nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
 - TDD confirmado no commit `87570747a4e9c1bb37a99523c553f75ca41c7d2a`, RPG Skill Tree CI run `33999540955`, job `101395818638`: 980 testes, exatamente 1 falha no Batch22 pela ausência de `betternether/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 23 — BetterNether: New Dawn / biomas do Nether (batch 3 final)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/betternether/biomes-batch3.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:betternether:upside_down_forest_cleared` — Dead Upside Down Forest
+2. `BIOME:betternether:wart_forest` — Wart Forest
+3. `BIOME:betternether:wart_forest_edge` — Wart Forest Edge
+
+### Critérios editoriais aplicados ao lote 23
+
+- o recorte continua imediatamente após `upside_down_forest` e encerra os 23 biomas declarados em `NetherBiomes.java` e bootstrapped por `NetherBiomesProvider` no commit congelado `543127cab48b1ecb0017fee4222af25e0583e185`;
+- `wart_forest` e `wart_forest_edge` preservam exatamente os títulos `Wart Forest` e `Wart Forest Edge` do asset pt-BR congelado;
+- `upside_down_forest_cleared` não possui chave correspondente no asset pt-BR congelado; `Dead Upside Down Forest` usa explicitamente o fallback oficial do `en_us.json`, sem atribuí-lo como tradução pt-BR;
+- os três IDs aparecem em `registerBiomeToggles()`;
+- nomes e sufixos como `Dead`, `Cleared`, `Wart` e `Edge` são tratados como identidade nominal do provider e não são convertidos em geometria, densidade, composição, idade, largura, chance ou frequência sem fonte específica adicional;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `1d0dac3dc2f153365165855ddda37d5620e854e3`, RPG Skill Tree CI run `34001317006`, job `101400580606`: 981 testes, exatamente 1 falha no Batch23 na linha 41 pela ausência de `betternether/biomes-batch3.json`; o corpus foi adicionado somente depois desse RED correto.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -641,8 +663,8 @@ Entradas:
 - entradas de worldgen Alex's Caves reais no corpus: **10**;
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
-- entradas de worldgen BetterNether: New Dawn reais no corpus: **20**;
-- entradas editoriais totais: **212**;
-- lotes documentados: **22**;
+- entradas de worldgen BetterNether: New Dawn reais no corpus: **23**;
+- entradas editoriais totais: **215**;
+- lotes documentados: **23**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
