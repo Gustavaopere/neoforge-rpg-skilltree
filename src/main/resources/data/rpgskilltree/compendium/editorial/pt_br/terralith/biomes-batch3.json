@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "terralith",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:terralith:desert_spires",
+      "title": "Pináculos do Deserto",
+      "summary": {
+        "text": "Pináculos do Deserto é um bioma do Overworld registrado no namespace Terralith com o ID terralith:desert_spires. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:desert_spires"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O nome Pináculos do Deserto e o ID desert_spires não são usados para inferir geometria, altitude, clima, composição, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:desert_spires"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:emerald_peaks",
+      "title": "Picos Esmeralda",
+      "summary": {
+        "text": "Picos Esmeralda é um bioma do Overworld registrado no namespace Terralith com o ID terralith:emerald_peaks. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:emerald_peaks"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O nome Picos Esmeralda e o ID emerald_peaks não são usados para inferir altura, mineralogia, cor de blocos, clima, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:emerald_peaks"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:forested_highlands",
+      "title": "Planaltos Florestados",
+      "summary": {
+        "text": "Planaltos Florestados é um bioma do Overworld registrado no namespace Terralith com o ID terralith:forested_highlands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:forested_highlands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Planaltos e Florestados não são convertidos em altitude, densidade de árvores, composição vegetal, clima, relevo, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:forested_highlands"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:fractured_savanna",
+      "title": "Savana Fraturada",
+      "summary": {
+        "text": "Savana Fraturada é um bioma do Overworld registrado no namespace Terralith com o ID terralith:fractured_savanna. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:fractured_savanna"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Savana e Fraturada não são convertidos em clima, geometria, relevo, vegetação, fauna, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:fractured_savanna"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:frozen_cliffs",
+      "title": "Penhascos Congelados",
+      "summary": {
+        "text": "Penhascos Congelados é um bioma do Overworld registrado no namespace Terralith com o ID terralith:frozen_cliffs. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:frozen_cliffs"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Penhascos e Congelados não são convertidos em temperatura numérica, gelo, neve, geometria, altitude, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:frozen_cliffs"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:glacial_chasm",
+      "title": "Abismo Glacial",
+      "summary": {
+        "text": "Abismo Glacial é um bioma do Overworld registrado no namespace Terralith com o ID terralith:glacial_chasm. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:glacial_chasm"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Abismo e Glacial não são convertidos em profundidade, temperatura, gelo, geometria, composição, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:glacial_chasm"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:granite_cliffs",
+      "title": "Penhascos de Granito",
+      "summary": {
+        "text": "Penhascos de Granito é um bioma do Overworld registrado no namespace Terralith com o ID terralith:granite_cliffs. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:granite_cliffs"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O nome Penhascos de Granito e o ID granite_cliffs não são usados para inferir geometria, altitude, composição de blocos, geologia, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:granite_cliffs"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:gravel_beach",
+      "title": "Praia de Cascalho",
+      "summary": {
+        "text": "Praia de Cascalho é um bioma do Overworld registrado no namespace Terralith com o ID terralith:gravel_beach. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:gravel_beach"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Praia e Cascalho não são convertidos em posição costeira, composição de superfície, extensão, relevo, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:gravel_beach"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:gravel_desert",
+      "title": "Deserto de Cascalho",
+      "summary": {
+        "text": "Deserto de Cascalho é um bioma do Overworld registrado no namespace Terralith com o ID terralith:gravel_desert. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:gravel_desert"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Deserto e Cascalho não são convertidos em temperatura, precipitação, composição de superfície, vegetação, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:gravel_desert"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:haze_mountain",
+      "title": "Montanha Neblinada",
+      "summary": {
+        "text": "Montanha Neblinada é um bioma do Overworld registrado no namespace Terralith com o ID terralith:haze_mountain. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:haze_mountain"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Montanha e Neblinada não são convertidos em altitude, neblina dinâmica, umidade, clima, relevo, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:haze_mountain"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

@@ -712,6 +712,35 @@ Entradas:
 - nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
 - TDD confirmado no commit `d261b4fca6bd278df3986c2f5cfcb65b8206923e`, RPG Skill Tree CI run `34010452076`, job `101425236633`: 995 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch25JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 26 — Terralith 2.6.2 / biomas do Overworld (batch 3)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch3.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:desert_spires` — Pináculos do Deserto
+2. `BIOME:terralith:emerald_peaks` — Picos Esmeralda
+3. `BIOME:terralith:forested_highlands` — Planaltos Florestados
+4. `BIOME:terralith:fractured_savanna` — Savana Fraturada
+5. `BIOME:terralith:frozen_cliffs` — Penhascos Congelados
+6. `BIOME:terralith:glacial_chasm` — Abismo Glacial
+7. `BIOME:terralith:granite_cliffs` — Penhascos de Granito
+8. `BIOME:terralith:gravel_beach` — Praia de Cascalho
+9. `BIOME:terralith:gravel_desert` — Deserto de Cascalho
+10. `BIOME:terralith:haze_mountain` — Montanha Neblinada
+
+### Critérios editoriais aplicados ao lote 26
+
+- o recorte continua imediatamente após `desert_oasis` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `desert_spires` até `haze_mountain`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; Dynamic Trees–Terralith permanece apenas como confirmação complementar de identidade/integração;
+- termos nominais como `Deserto`, `Picos`, `Florestados`, `Fraturada`, `Congelados`, `Glacial`, `Granito`, `Praia`, `Cascalho`, `Montanha` e `Neblinada` não são convertidos em clima, temperatura, altitude, geometria, composição, geologia, posição costeira, vegetação, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `d4a5045c5c52bc127b9c0b7767832e064a75397b`, RPG Skill Tree CI run `34030615435`, job `101479349192`: 1015 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch26JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch3.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `c016ab043a8a2064f965ba4d051130683dfde3a4`; o JUnit 5 correspondente passou no run `34031022352` antes da atualização deste registro.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -721,8 +750,8 @@ Entradas:
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
 - entradas de worldgen BetterNether: New Dawn reais no corpus: **23**;
-- entradas de worldgen Terralith reais no corpus: **20**;
-- entradas editoriais totais: **235**;
-- lotes documentados: **25**;
+- entradas de worldgen Terralith reais no corpus: **30**;
+- entradas editoriais totais: **245**;
+- lotes documentados: **26**;
 - namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`, `terralith`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.
