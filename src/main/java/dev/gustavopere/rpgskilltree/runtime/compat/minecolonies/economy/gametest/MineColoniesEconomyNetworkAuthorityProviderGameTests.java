@@ -9,7 +9,6 @@ import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomyColonyContext
 import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomyMintPreflightResultPayload;
 import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomySnapshotPayload;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
 import net.minecraft.core.BlockPos;
@@ -24,6 +23,7 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /** Provider-present coverage for the server-only network authority without relying on packet transport. */
+@SuppressWarnings("java:S2187") // NeoForge @GameTest methods are not JUnit tests, but are executed by the GameTest server.
 @GameTestHolder("rpgskilltree")
 @PrefixGameTestTemplate(false)
 public final class MineColoniesEconomyNetworkAuthorityProviderGameTests {
@@ -63,10 +63,7 @@ public final class MineColoniesEconomyNetworkAuthorityProviderGameTests {
             Class<?> adapter = Class.forName(ADAPTER);
             Class<?> savedDataType = Class.forName(SAVED_DATA);
             Class<?> serverPlayerType = Class.forName(SERVER_PLAYER);
-            Class<?> resolvedType = Arrays.stream(authority.getDeclaredClasses())
-                .filter(type -> type.getSimpleName().equals("Resolved"))
-                .findFirst()
-                .orElseThrow();
+            Class<?> resolvedType = Class.forName(AUTHORITY + "$Resolved");
 
             @SuppressWarnings("unchecked")
             Optional<NativeColonyBinding> bindingResult = (Optional<NativeColonyBinding>) adapter
