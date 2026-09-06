@@ -32,6 +32,7 @@ final class BlacksmithMaterialCatalogContractTest {
                 id("rpgskilltree", "copper"),
                 id("rpgskilltree", "gold"),
                 id("rpgskilltree", "netherite"),
+                id("rpgskilltree", "zinc"),
                 id("rpgskilltree", "brass"),
                 id("rpgskilltree", "steel"),
                 id("rpgskilltree", "aluminum"),
@@ -43,6 +44,9 @@ final class BlacksmithMaterialCatalogContractTest {
         );
         assertFalse(catalog.find(id("rpgskilltree", "bronze")).isPresent());
         assertFalse(catalog.find(id("rpgskilltree", "cast_iron")).isPresent());
+        assertFalse(catalog.find(id("rpgskilltree", "tungsten")).isPresent());
+        assertFalse(catalog.find(id("rpgskilltree", "obdurium")).isPresent());
+        assertFalse(catalog.find(id("rpgskilltree", "lithium")).isPresent());
     }
 
     @Test
@@ -56,13 +60,11 @@ final class BlacksmithMaterialCatalogContractTest {
     }
 
     @Test
-    void createBrassUsesCreateAsMaterialProviderAndCommonUnificationTags() {
-        assertMaterial(
-            BlacksmithMaterialProfiles.auditedPackCatalog().require(id("rpgskilltree", "brass")),
-            "create",
-            id("create", "brass_ingot"),
-            "brass"
-        );
+    void createMetalsUseCreateAsMaterialProviderAndCommonUnificationTags() {
+        BlacksmithMaterialCatalog catalog = BlacksmithMaterialProfiles.auditedPackCatalog();
+
+        assertMaterial(catalog.require(id("rpgskilltree", "zinc")), "create", id("create", "zinc_ingot"), "zinc");
+        assertMaterial(catalog.require(id("rpgskilltree", "brass")), "create", id("create", "brass_ingot"), "brass");
     }
 
     @Test
