@@ -11,7 +11,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record EconomyMintPreflightPayload(EconomyColonyContext colony, long amount) implements CustomPacketPayload {
-    public static final Type<EconomyMintPreflightPayload> TYPE = new Type<>(
+    public static final Type<EconomyMintPreflightPayload> PAYLOAD_TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "economy_mint_preflight")
     );
     public static final StreamCodec<ByteBuf, EconomyMintPreflightPayload> STREAM_CODEC = StreamCodec.composite(
@@ -20,7 +20,7 @@ public record EconomyMintPreflightPayload(EconomyColonyContext colony, long amou
         EconomyMintPreflightPayload::new
     );
 
-    @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    @Override public Type<? extends CustomPacketPayload> type() { return PAYLOAD_TYPE; }
 
     public static void handle(EconomyMintPreflightPayload payload, IPayloadContext context) {
         context.enqueueWork(() -> {
