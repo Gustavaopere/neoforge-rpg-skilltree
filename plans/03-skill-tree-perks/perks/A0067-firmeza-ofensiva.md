@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após correção de disponibilidade/fail-closed em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8153-9b28-c383e9fde302`; Gate, Hook, Fallback, Provider/Mods e Regra corrigidos; re-fetch pós-escrita PASS.
-- **Runtime observado:** FAIL-CLOSED CORRETO quanto ao efeito, porém o Chat 2 deve garantir o **unavailable-node invariant** no purchase runtime.
+- **Runtime observado:** IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA; node estruturalmente indisponível e ranks persistidos legados são mascarados no boundary server-side.
 
 ## Contrato canônico
 
@@ -23,7 +23,7 @@
 
 ## Evidência runtime
 
-`A0061A0080CombatPolicy.offensiveInterruptionResistanceFraction(...)` contém somente a matemática. `A0061A0080EpicFightHooks` declara explicitamente A0067 fail-closed porque a superfície auditada não prova uma offensive stun-armor window segura. Portanto código matemático não equivale a binding implementável.
+`A0061A0080CombatPolicy.offensiveInterruptionResistanceFraction(...)` contém somente a matemática. A PR #391 adiciona `A0067` a `CombatPerkAvailabilityRuntime.isCatalogCodeAvailable(...) = false` e faz `A0061A0080RuntimeState.ranks(...)` passar os ranks persistidos por `CombatPerkAvailabilityRuntime.effectiveRanks(...)`, eliminando ghost rank ativo no boundary server-side.
 
 ## Fallback e fail-closed
 
@@ -35,11 +35,14 @@
 
 Qualquer modificador transitório deve ser removido em término do ataque, cancelamento, stagger, morte, logout, troca de dimensão, respawn, respec/rank loss e rules reload que invalide o node.
 
-## Pendências para Chat 2
+## Validação Chat 3
 
-- **P-A0067-01 BLOQUEANTE:** aplicar unavailable-node invariant ao purchase/gate enquanto o binding ofensivo não existir.
-- **P-A0067-02:** se a API Epic Fight expuser receipt estável posteriormente, implementar lifetime + cleanup completo antes de tornar o node comprável.
-- **P-A0067-03:** testes negativos devem provar ausência de STUN_ARMOR permanente e ausência de gasto de perk point quando indisponível.
+- `P-A0067-01` BLOQUEANTE: **RESOLVIDA na PR #391** pelo unavailable-node invariant em `CombatPerkAvailabilityRuntime`.
+- Ranks persistidos legados são mascarados por `effectiveRanks(...)` antes das policies runtime; não há rank fantasma ativo.
+- O teste `A0061A0070Chat3CoverageJUnitTest.a0067IsStructurallyUnavailableAndLegacyRankIsMasked` prova catálogo indisponível, rank efetivo zero e ausência do efeito.
+- O teste `runtimeRanksMasksUnavailablePersistedRankAtServerBoundary` prova o masking também através de `A0061A0080RuntimeState.ranks(...)`.
+- `P-A0067-02` permanece uma expansão futura condicionada a receipt provider-native estável; não bloqueia o estado fail-closed atual.
+- `P-A0067-03` fica encerrada para os invariants de indisponibilidade/masking auditados. Nenhuma STUN_ARMOR permanente foi introduzida.
 
 ## Nove eixos obrigatórios de aprovação
 
@@ -55,4 +58,4 @@ Qualquer modificador transitório deve ser removido em término do ataque, cance
 | 8. NeoVitae | PASS | Ausente. |
 | 9. Cobertura providers | PASS | Epic Fight/WoM avaliados; sem hook seguro, node indisponível. |
 
-Os 18 critérios técnicos cumulativos passam **no design** porque o comportamento indisponível é explícito. A implementação não pode ser confirmada enquanto `P-A0067-01` permanecer aberta.
+Os 18 critérios técnicos cumulativos passam **no estado fail-closed implementado e validado pelo Chat 3**. A perk não é confirmada como jogável enquanto não surgir um binding ofensivo provider-native seguro; o comportamento atual é o contrato correto.
