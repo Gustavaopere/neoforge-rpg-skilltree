@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree;
 
 import dev.gustavopere.volcanoes.VolcanoesMod;
 import dev.gustavopere.rpgskilltree.core.UnitAttributeRankCostPolicy;
+import dev.gustavopere.rpgskilltree.itemization.blacksmith.persistence.BlacksmithDataComponents;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
 import dev.gustavopere.rpgskilltree.runtime.RelevantPlayerCandidateRuntime;
@@ -81,6 +82,7 @@ public final class RpgSkillTreeMod {
         VolcanoesMod.initialize(modBus, container);
         AttributeRankCostPolicyCatalog.install(UnitAttributeRankCostPolicy.INSTANCE);
         ModAttachments.register(modBus);
+        BlacksmithDataComponents.register(modBus);
         ModLootModifiers.register(modBus);
         ModNetworking.register(modBus);
         ProgressionOwnerSyncRuntime.initialize();
