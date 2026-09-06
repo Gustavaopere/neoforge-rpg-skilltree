@@ -175,8 +175,14 @@ final class ArsProviderCausalityCoverageJUnitTest {
 
     private static Class<?> providerClass(String name) {
         try {
-            return Class.forName(name);
+            return Class.forName(name, false, ArsProviderCausalityCoverageJUnitTest.class.getClassLoader());
         } catch (ClassNotFoundException | NoClassDefFoundError missingProvider) {
+            if (Boolean.getBoolean("rpgskilltree.arsProviderCoverageRequired")) {
+                throw new AssertionError(
+                    "Ars provider runtime is required in this coverage lane but could not load " + name,
+                    missingProvider
+                );
+            }
             Assumptions.assumeTrue(false, "Ars provider runtime not present in this test lane: " + missingProvider.getMessage());
             throw new AssertionError("unreachable", missingProvider);
         }
