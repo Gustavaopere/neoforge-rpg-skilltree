@@ -16,6 +16,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import org.junit.jupiter.api.Test;
 
 final class ColonyEconomySavedDataJUnitTest {
@@ -103,7 +104,7 @@ final class ColonyEconomySavedDataJUnitTest {
     void nullInputsAndUnknownBindingsFailClosed() {
         ColonyEconomySavedData data = new ColonyEconomySavedData();
 
-        assertThrows(IllegalArgumentException.class, () -> ColonyEconomySavedData.get(null));
+        assertThrows(IllegalArgumentException.class, () -> ColonyEconomySavedData.get((MinecraftServer) null));
         assertThrows(EconomyPersistenceException.class, () -> ColonyEconomySavedData.decodeForTest(null));
         assertThrows(IllegalArgumentException.class, () -> data.binding(null));
         assertThrows(IllegalArgumentException.class, () -> data.resolveOrCreateBinding(null));
