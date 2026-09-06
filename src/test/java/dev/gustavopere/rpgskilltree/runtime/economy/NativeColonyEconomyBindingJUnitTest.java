@@ -47,6 +47,29 @@ final class NativeColonyEconomyBindingJUnitTest {
     }
 
     @Test
+    void providerDeletionCanArchiveByDimensionAndIdAfterTownHallTeardown() {
+        ColonyEconomySavedData data = new ColonyEconomySavedData();
+        EconomyColonyKey first = data.resolveOrCreateBinding(NATIVE);
+
+        assertEquals(
+            first,
+            data.archiveNativeBinding(NATIVE.dimensionId(), NATIVE.colonyId()).orElseThrow()
+        );
+        assertTrue(data.binding(NATIVE).isEmpty());
+        assertTrue(data.isArchived(first));
+
+        NativeColonyBinding recycledNativeId = new NativeColonyBinding(
+            NATIVE.dimensionId(),
+            NATIVE.colonyId(),
+            NATIVE.ownerUuid(),
+            NATIVE.townHallPos().offset(32, 0, 0)
+        );
+        EconomyColonyKey recycled = data.resolveOrCreateBinding(recycledNativeId);
+        assertNotEquals(first, recycled);
+        assertTrue(data.isArchived(first));
+    }
+
+    @Test
     void sameNativeIdWithDifferentOwnerFailsClosedInsteadOfInheritingMoney() {
         ColonyEconomySavedData data = new ColonyEconomySavedData();
         data.resolveOrCreateBinding(NATIVE);
