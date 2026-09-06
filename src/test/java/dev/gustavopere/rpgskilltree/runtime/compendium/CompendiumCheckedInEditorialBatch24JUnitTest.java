@@ -28,18 +28,19 @@ final class CompendiumCheckedInEditorialBatch24JUnitTest {
     private static final ResourceLocation EDITORIAL_RESOURCE = ResourceLocation.parse(
         "rpgskilltree:compendium/editorial/pt_br/terralith/biomes-batch1.json"
     );
-    private static final Set<String> EXPECTED_IDS = Set.of(
-        "BIOME:terralith:alpha_islands",
-        "BIOME:terralith:alpha_islands_winter",
-        "BIOME:terralith:alpine_grove",
-        "BIOME:terralith:alpine_highlands",
-        "BIOME:terralith:amethyst_canyon",
-        "BIOME:terralith:amethyst_rainforest",
-        "BIOME:terralith:ancient_sands",
-        "BIOME:terralith:arid_highlands",
-        "BIOME:terralith:ashen_savanna",
-        "BIOME:terralith:basalt_cliffs"
+    private static final Map<String, String> EXPECTED_TITLES = Map.of(
+        "BIOME:terralith:alpha_islands", "Ilhas Alpha",
+        "BIOME:terralith:alpha_islands_winter", "Ilhas Alpha (Inverno)",
+        "BIOME:terralith:alpine_grove", "Bosques Alpinos",
+        "BIOME:terralith:alpine_highlands", "Planaltos Alpinos",
+        "BIOME:terralith:amethyst_canyon", "Desfiladeiro de Ametista",
+        "BIOME:terralith:amethyst_rainforest", "Floresta Tropical de Ametista",
+        "BIOME:terralith:ancient_sands", "Areias Ancestrais",
+        "BIOME:terralith:arid_highlands", "Planaltos Áridos",
+        "BIOME:terralith:ashen_savanna", "Savana Cinzenta",
+        "BIOME:terralith:basalt_cliffs", "Penhascos de Basalto"
     );
+    private static final Set<String> EXPECTED_IDS = EXPECTED_TITLES.keySet();
 
     @Test
     void firstTerralithBiomeBatchIsCheckedInReviewedAndLoadable() throws Exception {
@@ -61,6 +62,7 @@ final class CompendiumCheckedInEditorialBatch24JUnitTest {
                 String entryId = entry.get("entry_id").getAsString();
                 assertEquals("REVIEWED", entry.get("review_status").getAsString(), entryId);
                 assertEquals("RUNTIME", entry.get("availability").getAsString(), entryId);
+                assertEquals(EXPECTED_TITLES.get(entryId), entry.get("title").getAsString(), entryId);
             })
             .map(entry -> technical(entry.get("entry_id").getAsString()))
             .toList();
