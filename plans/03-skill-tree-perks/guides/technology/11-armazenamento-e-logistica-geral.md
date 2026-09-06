@@ -1,15 +1,15 @@
-<!-- Snapshot auditável reorganizado. Fonte canônica: https://app.notion.com/p/3c569db9f0db81a69e3ee1232ee636ff | referência da modlist: modlist 28.08.26.txt -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
 
 [← Índice do guia](README.md)
 
 # 10. Armazenamento e logística geral
 
-## Sophisticated Backpacks — 3.25.78
+## Sophisticated Backpacks — 3.26.1
 
-`sophisticatedbackpacks-1.21.1-3.25.78.2107.jar`
+`sophisticatedbackpacks-1.21.1-3.26.1.2124.jar`
 **Sophisticated Backpacks** é o sistema portátil do ecossistema Sophisticated. As mochilas podem ser carregadas pelo jogador ou colocadas no mundo, possuem tiers de capacidade e aceitam **upgrades funcionais** que mudam seu comportamento em vez de apenas aumentar slots.
 Entre os upgrades do sistema estão pickup/magnet para coleta automática, feeding, crafting, smelting, filtros, tanks e battery, além de módulos ligados à organização e automação. Isso permite configurar uma backpack como inventário pessoal simples, estação de crafting, coletor automático, suporte de fluidos/energia ou combinação desses papéis conforme os slots disponíveis.
-A build instalada é `sophisticatedbackpacks-1.21.1-3.25.78.2107.jar`, release NeoForge 1.21.1 publicada em 19/08/2026. Ela depende de Sophisticated Core e é o mod-base das integrações Create descritas abaixo.
+A build instalada é `sophisticatedbackpacks-1.21.1-3.26.1.2124.jar`, release NeoForge 1.21.1 publicada em 19/08/2026. Ela depende de Sophisticated Core e é o mod-base das integrações Create descritas abaixo.
 
 ## Sophisticated Storage — 1.5.91.2127
 
@@ -47,8 +47,18 @@ A interface pode ser aberta por clique direito ou pela tecla `B` enquanto a back
 **Create: Protection Pixel** adiciona conjuntos de armadura steampunk em que **cada peça possui função e atributos próprios**, em vez de serem apenas variantes cosméticas. O equipamento é fabricado, processado e fortalecido usando a infraestrutura industrial do Create.
 Exemplos documentados incluem **Plague Helmet**, que libera vapor para remover efeitos temporários como blindness, darkness, weakness e slowness; **Lancer Helmet**, que relaciona velocidade do usuário ao dano; e **Hunter Helmet**, voltado a detectar criaturas em movimento e auxiliar exploração/loot. Assim, os conjuntos formam uma camada de equipamentos tecnológicos com especializações diferentes.
 
-## Tom's Simple Storage — 2.4.1
+## Tom's Simple Storage — 2.4.2
 
-`toms_storage-1.21-2.4.1.jar`
+`toms_storage-1.21-2.4.2.jar`
 **Tom's Simple Storage Mod** cria uma rede leve sobre **inventários físicos existentes**. Baús e outros containers continuam guardando os itens; cabos/conectores os unem a um terminal que apresenta o conteúdo como um inventário pesquisável e centralizado.
 O sistema fornece acesso, organização e crafting sobre a rede sem converter recursos em células digitais como o AE2. Essa arquitetura também explica integrações do pack como Create Contraption Terminals, que levam terminais Tom's para contraptions móveis.
+
+
+## Sophisticated JEI Index — 1.2.2
+
+`sophisticated_jei_index-1.2.2+1.21.1.jar`
+**Sophisticated JEI Index** integra o ecossistema Sophisticated à consulta/indexação de conteúdo pelo JEI. Seu papel é de interface e descoberta de informação sobre storage/upgrades, não de armazenamento físico nem de movimentação autônoma de itens.
+
+Para perks, é infraestrutura de UI/consulta: não deve ser usada como authority de capacidade, throughput, filtro ou inventário.
+
+---

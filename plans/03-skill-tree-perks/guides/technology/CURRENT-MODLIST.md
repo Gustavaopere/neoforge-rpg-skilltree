@@ -1,57 +1,63 @@
 # Reconciliação atual da modlist — Mods de Tecnologia
 
-> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-08-30.** Este arquivo complementa os capítulos descritivos e prevalece quando um capítulo histórico ainda mostra um JAR ou versão anterior. O GitHub é a fonte canônica dos três guias temáticos.
+> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-09-06.** Este arquivo prevalece quando qualquer capítulo descritivo ou histórico ainda cita um JAR, nome runtime ou versão anterior. A fonte de inventário é a `modlist.txt` atual do pack; o GitHub é a fonte canônica editorial deste guia.
 
-A `modlist.txt` atual contém **573 entradas top-level**, incluindo o NeoForge modloader. A validação cruzada dos três guias cobre **572/572 arquivos `.jar` atuais**; NeoForge é tratado separadamente como modloader. O recorte Tecnologia referencia **189 JARs**, com sobreposição intencional para integrações cross-domain.
+A modlist atual contém **607 entradas top-level**, incluindo o NeoForge modloader. O recorte Tecnologia cobre **200 JARs tecnológicos/cross-domain** atuais.
 
-## Entrada incorporada desde o snapshot temático anterior
+A contagem anterior de `189` escondia uma inconsistência editorial: os capítulos descreviam 188 IDs, o `Sophisticated JEI Index` elevava o conjunto declarado a 189, mas `LowDragLib2` permanecia explicitamente listado fora dessa contagem. Reconciliando o conjunto real anterior, havia **190 IDs**; todos continuam presentes. O snapshot de 2026-09-06 acrescenta **10 módulos** e fecha o conjunto atual em **200 IDs únicos**.
 
-- `sophisticated_jei_index-1.2.2+1.21.1.jar` — **Sophisticated JEI Index 1.2.2**, integração de consulta/indexação JEI para o ecossistema Sophisticated. É infraestrutura de interface/logística, não provider autônomo de progressão.
+## Novos módulos incorporados no snapshot 607
 
-## Deltas de JAR/versão incorporados
+- `aero_player_tilt-0.1.3.jar` — **Aeronautics Player Tilt `0.1.3`**; inclinação de corpo/hitbox e gravidade relativa ao convés móvel de Create Aeronautics/Sable.
+- `clockwork-neoforge-1.21.1-1.1.4.jar` — **Clockwork `1.1.4`**; ferramentas, armas/utilidades mecânicas e Clockwork Dragonfly; é tecnologia standalone, não addon de Create.
+- `create_colony_logistics-1.3.2.jar` — **Create Colony Logistics `1.3.2`**; bridge automatizada MineColonies ↔ Create Logistics.
+- `create_fantasizing-1.21.1-1.2.0-b3.jar` — **Create: Fantasizing Again `1.2.0-b3`**; addon Create de utilidades/conteúdo de alto poder, build beta instalada.
+- `createliquidfuel-3.0.0-1.21.1.jar` — **Create Liquid Fuel `3.0.0-1.21.1`**; entrada de combustíveis fluidos em Blaze Burners.
+- `emf_compat_create_1.21.1_2.0.0.jar` — **EMF Compat: Create `2.0.0`**; compatibilidade exclusivamente client-side de animação/visual, sem authority de gameplay.
+- `kubejs-create-neoforge-2101.3.1-build.18.jar` — **KubeJS Create `2101.3.1-build.18`**; superfície de scripting para Create, não provider autônomo.
+- `kubejs_oritech-neoforge-1.21.1-0.4.4.jar` — **KubeJS Oritech `1.21.1-0.4.4`**; integração de scripting KubeJS ↔ Oritech.
+- `productive-metalworks-kubejs-addon-1.0.0.jar` — **Productive Metalworks KubeJS Addon `1.0.0`**; helpers de scripting de melting/casting/alloying/fuels.
+- `sulfuricresonance-0.4.1.jar` — **Create: Sulfuric Resonance `0.4.1`**; termquímica, calor, química de enxofre/ácido, materiais e automação avançada.
 
-- `ae2importexportcard-1.21.1-1.6.0.jar` — AE2 Import Export Card `1.6.0`.
-- `aero_cam_sync-1.4.0.jar` — Aeronautics Camera Sync `1.4.0`.
-- `climbable_ropes-2.1.3.jar` — Climbable Ropes for Create Aeronautics `2.1.3`.
-- `create-aeronautics-bundled-1.21.1-1.3.2.jar` — Create Aeronautics bundled stack `1.3.2`.
-- `CreateCyberGoggles-1.21.1-8.3.15-NeoForge.jar` — Create: Cyber Goggles `8.3.15`.
-- `create-enchantment-industry-2.5.3b.jar` — Create: Enchantment Industry `2.5.3b`.
-- `create_stats-1.4.1.jar` — Create Stats `1.4.1`.
-- `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` — Create Cobblestone `1.5.0+neoforge-1.21.1-153`.
-- `kilagraph-neoforge-1.21.1-21.1.0.12.jar` — KilaGraph `21.1.0.12`.
-- `oritech-neoforge-1.21.1-1.2.11.jar` — Oritech `1.2.11`.
-- `sound-physics-remastered-neoforge-1.4.0.1.jar` — runtime **Sound Physics Aeronautics 1.4.0.1**; substitui a referência antiga `sound-physics-aeronautics-1.4.0.jar`/runtime `1.3.0.2`.
-- `toms_storage-1.21-2.4.2.jar` — Tom's Simple Storage Mod `2.4.2`.
+## Deltas de JAR/runtime reconciliados
 
-## Identificadores tecnológicos atuais que devem permanecer explícitos
+- Oritech `1.2.10/1.2.11` → **`1.2.12`**.
+- Create Aeronautics `1.3.1` → **`1.3.2`**.
+- Create Tracks+ `1.0.6b` → **`1.0.6b6`**.
+- ExtendedAE `1.21-2.2.35-neoforge` → **`1.21-2.2.36-neoforge`**.
+- AE2 Import Export Card `1.5.0` → runtime **`1.21.1-1.6.0`**.
+- Petrolpark `1.5.6` → **`1.5.8`**.
+- Create: Integrated Farming `1.3.3b` → **`1.4.1b`**.
+- Create Cobblestone `1.4.12+neoforge-1.21.1-144` → **`1.5.0+neoforge-1.21.1-153`**.
+- Create: Fast Schematic Cannon `1.4.1-neoforge` → **`2.6.1-neoforge`**.
+- Create Aeronautics: Transmission & Linkage `0.2.7` → **`0.2.8`**.
+- Create Aeronautics: Copycat Wing `1.0.2` → **`1.0.3`**.
+- Climbable Ropes `2.1.1` → **`2.1.3`**.
+- Aeronautics Camera Sync `1.3.6` → **`1.4.0`**.
+- Sound Physics Aeronautics `1.3.0.2` / arquivo antigo → runtime **`1.4.0.1`** em `sound-physics-remastered-neoforge-1.4.0.1.jar`.
+- Sophisticated Backpacks `3.25.78` → **`3.26.1`**.
+- Tom's Simple Storage `2.4.1` → **`2.4.2`**.
+- Create: Enchantment Industry `2.5.3` → **`2.5.3b`**.
+- Create: Apokinetics `1.0.5` → **`1.0.6`**.
+- Create: Dragons Plus `1.11.7b` → **`1.11.8b`**.
+- Create: Connected `1.3.2-mc1.21.1` → **`1.3.3-mc1.21.1`**.
+- Create: Bits 'n' Bobs `2.2.7` → **`2.3.0`**.
+- Create Stats `1.2.81/1.4.1` → runtime atual **`1.5.1`**.
+- Create Cyber Goggles `8.3.14/8.3.15` → **`8.5.1`**.
+- Lychee `6.5.4+neoforge` → **`6.6.1+neoforge`**.
+- Azimuth `1.4.7` → **`1.4.8`**.
+- KilaGraph `21.1.0.11/21.1.0.12` → **`21.1.0.14`**.
+- Sophisticated Core `1.4.90` → **`1.5.0`**.
+- Cyclops Core `1.29.3` → **`1.29.4`**.
+- LowDragLib2 `2.2.37` → **`2.2.39.a`**.
 
-| JAR | Papel |
-|---|---|
-| `create-1.21.1-6.0.10.jar` | Create `6.0.10`, núcleo cinético do stack tecnológico. |
-| `create-new-age-1.2.0+neoforge-mc1.21.1.jar` | Create: New Age `1.2.0`. |
-| `createnuclear-1.3.2-beta.3-neoforge.jar` | Create Nuclear `1.3.2-beta.3`. |
-| `tfmg-1.21.1-1.2.4b-community.jar` | Create: The Factory Must Grow `1.2.4b-community`. |
-| `create_ultimate_factory-2.2.4-neoforge-1.21.1.jar` | Create Ultimate Factory `2.2.4`. |
-| `vintageimprovements-1.21.1-0.0.0.7.jar` | Create: Vintage Improvements `0.0.0.7`. |
-| `appliedenergistics2-19.2.17.jar` | Applied Energistics 2 `19.2.17`. |
-| `ae2wtlib-19.5.1.jar` | AE2 Wireless Terminals / AE2WTLib `19.5.1`. |
-| `oritech-neoforge-1.21.1-1.2.11.jar` | Oritech `1.2.11`. |
-| `ldlib2-neoforge-1.21.1-2.2.37-all.jar` | LowDragLib2 `2.2.37`. |
-| `Immersive-Aeronautics1.1.4-1.21.1-NeoForge.jar` | integração Immersive Portals/Aeronautics instalada; preservar o metadata runtime local documentado pelo pack. |
-| `aero_cam_sync-1.4.0.jar` | sincronização de câmera em estruturas/sublevels móveis. |
-| `sablephysicscompat-1.3.0.jar` | Sable: Physics Compat `1.3.0`. |
-| `SableStuffAdditionsCompat v1.0.3-1.21.1.jar` | Sable: Stuff & Additions Compatibility `1.0.3`. |
-| `weight-1.2.0.jar` | Create Aeronautics: Weight `1.2.0`. |
-| `create_aero_radar-0.1.1-1.21.1.jar` | Create Aero Radar `0.1.1`. |
+## Tabela canônica exata — 200/200
 
-## Boundaries
+A tabela foi dividida em quatro páginas de 50 registros para facilitar auditoria e leitura. O conjunto das quatro páginas é a tabela canônica completa de **200/200**.
 
-- Mods de biblioteca, interface e compatibilidade podem ser pré-requisitos técnicos sem constituir uma capacidade de perk.
-- Mobstein continua classificado aqui apenas como **boundary não tecnológico**; suas capacidades pertencem aos recortes Gameplay/Magia e ao dossiê do projeto quando aplicável.
-- Pontes magia↔tecnologia devem preservar a autoridade do provider real e não transformar mera compatibilidade em nova mecânica.
+- [Registros 001–050](CURRENT-MODLIST-001-050.md)
+- [Registros 051–100](CURRENT-MODLIST-051-100.md)
+- [Registros 101–150](CURRENT-MODLIST-101-150.md)
+- [Registros 151–200](CURRENT-MODLIST-151-200.md)
 
-## Regra operacional
-
-- `CURRENT-MODLIST.md` é a autoridade de **presença, JAR e versão** para este guia.
-- Os capítulos continuam sendo a autoridade descritiva de função, interação, riscos e uso em perks, salvo correção posterior explícita.
-- Toda nova modlist deve ser reconciliada aqui antes de um novo lote de perks ser fechado.
+Cada linha preserva exatamente `Arquivo JAR | Mod ID | Runtime name | Runtime version` da `modlist.txt` atual.
