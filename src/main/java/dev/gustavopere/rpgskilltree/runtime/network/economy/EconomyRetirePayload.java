@@ -13,7 +13,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record EconomyRetirePayload(EconomyColonyContext colony, UUID intentId, long amount) implements CustomPacketPayload {
-    public static final Type<EconomyRetirePayload> TYPE = new Type<>(
+    public static final Type<EconomyRetirePayload> PAYLOAD_TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "economy_retire")
     );
     public static final StreamCodec<ByteBuf, EconomyRetirePayload> STREAM_CODEC = StreamCodec.composite(
@@ -27,7 +27,7 @@ public record EconomyRetirePayload(EconomyColonyContext colony, UUID intentId, l
         if (intentId == null) throw new IllegalArgumentException("intentId must not be null");
     }
 
-    @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    @Override public Type<? extends CustomPacketPayload> type() { return PAYLOAD_TYPE; }
 
     public static void handle(EconomyRetirePayload payload, IPayloadContext context) {
         context.enqueueWork(() -> {
