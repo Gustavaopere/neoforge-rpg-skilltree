@@ -37,6 +37,7 @@ public final class BlacksmithMaterialProfiles {
         material("copper", "minecraft", id("minecraft", "copper_ingot"), factors(0.85D, 0.92D, 1.04D, 0.95D, 0.90D, 0.80D, 0.90D, 1.08D, 0.95D)),
         material("gold", "minecraft", id("minecraft", "gold_ingot"), factors(0.30D, 0.82D, 1.10D, 1.15D, 0.70D, 0.50D, 0.80D, 1.25D, 1.10D)),
         material("netherite", "minecraft", id("minecraft", "netherite_ingot"), factors(1.35D, 1.20D, 0.95D, 1.10D, 1.20D, 1.25D, 1.15D, 0.90D, 1.20D)),
+        material("zinc", "create", id("create", "zinc_ingot"), factors(0.82D, 0.90D, 1.05D, 0.95D, 0.85D, 0.75D, 0.85D, 1.05D, 0.90D)),
         material("brass", "create", id("create", "brass_ingot"), factors(0.90D, 0.95D, 1.05D, 1.00D, 0.90D, 0.85D, 0.90D, 1.10D, 1.05D)),
         material("steel", "tfmg", id("tfmg", "steel_ingot"), factors(1.20D, 1.12D, 0.98D, 1.05D, 1.12D, 1.12D, 1.08D, 0.95D, 1.12D)),
         material("aluminum", "tfmg", id("tfmg", "aluminum_ingot"), factors(0.80D, 0.88D, 1.10D, 1.00D, 0.82D, 0.72D, 0.82D, 1.00D, 0.70D)),
@@ -94,7 +95,7 @@ public final class BlacksmithMaterialProfiles {
         values.put(PhysicalStat.ARMOR, armor);
         values.put(PhysicalStat.ARMOR_TOUGHNESS, armorToughness);
         values.put(PhysicalStat.KNOCKBACK_RESISTANCE, knockbackResistance);
-        values.put(PhysicalStat.ENCHANTABILITY, enchantability);
+        values.put(PhysicalStat.ENMERCHANTABILITY, enchantability);
         values.put(PhysicalStat.MASS, mass);
         if (values.size() != PhysicalStat.values().length) {
             throw new IllegalStateException("Blacksmith mechanical profile is incomplete");
