@@ -2,11 +2,11 @@
 
 ## Estado
 
-**EM IMPLEMENTAÇÃO — PR #447**
+**VALIDAÇÃO TÉCNICA CONFIRMADA — PR #447 PRONTA PARA MERGE**
 
-Base da branch: `main@b092592507640efe99bf5e7819ccd65cbd7e24a0`.
+Implementação validada no head `89e361b61ab08068711d8f2b5a8ef43f837ea0ba`, combinado pelo GitHub com `main@f23afcf14adfd5936991487980037f280683fb43` no merge-ref `a7709f67c625335b1c5b054e3c702d766fb14cf7`.
 
-Escopo deliberadamente limitado ao bloco `16.B — Adapter Productive Metalworks` do plano `16-blacksmith-productivemetalworks.md`. `16.C+` permanece fora deste PR.
+Escopo deliberadamente limitado ao bloco `16.B — Adapter Productive Metalworks` do plano `16-blacksmith-productivemetalworks.md`. `16.C+` permanece fora desta PR e não foi iniciado.
 
 ## Ambiente auditado
 
@@ -42,7 +42,7 @@ No snapshot auditado:
 
 Consequência: Data Components customizados podem viajar no próprio `ItemStack result` sem interceptar internals da Foundry.
 
-## Implementação deste PR
+## Implementação desta PR
 
 - `OptionalIntegrations.Provider.PRODUCTIVE_METALWORKS`;
 - `ProductiveMetalworksVersionContract` aceitando exclusivamente `1.21.1-1.15.1`;
@@ -65,6 +65,8 @@ A recipe possui condição NeoForge `rpgskilltree:exact_mod_version`. Ela só é
 
 Provider ausente ou versão divergente não habilita recipe alternativo, não cria segunda Foundry e não converte o recurso em crafting vanilla substituto.
 
+O servidor core-only também valida que `productivemetalworks=absent` é um estado legítimo do catálogo opcional e continua proibindo `ClassNotFoundException` / `NoClassDefFoundError` de adapters opcionais.
+
 ## TDD
 
 Commit RED: `eadddc94e6faf632f82d0a126ef1a5c2fe337c9f`.
@@ -76,6 +78,49 @@ O primeiro build observável executou `1126` testes e falhou em exatamente três
 - recipe de prova inexistente.
 
 A falha foi intencional e antecedeu o código de produção.
+
+## Regressão encontrada e corrigida durante a validação
+
+O primeiro head funcional chegou ao dedicated-server smoke com todas as etapas anteriores verdes, mas o smoke falhou após o servidor subir.
+
+A causa raiz não era o serializer do Productive Metalworks nem o registro de `ICondition`: `scripts/verify-optional-provider-smoke.py` ainda mantinha a matriz canônica antiga de providers e terminava em `minecolonies`. Depois da inclusão de `PRODUCTIVE_METALWORKS`, o resumo correto passou a conter também `productivemetalworks=absent`, e o verificador rejeitava esse novo conjunto.
+
+Correção aplicada:
+
+- matriz do smoke atualizada com `productivemetalworks` na mesma ordem canônica de `OptionalIntegrations.Provider`;
+- teste de regressão adicionado ao `ProductiveMetalworksAdapterContractTest`;
+- workflow diagnóstico temporário usado na investigação e removido antes da validação final.
+
+O rerun oficial `RPG Skill Tree CI` `34056616163` passou integralmente, inclusive `NeoForge dedicated-server smoke test`.
+
+## Evidência de provider ausente e provider presente
+
+No head validado:
+
+- core-only dedicated server: verde com Productive Metalworks ausente e adapter fail-closed;
+- `Foundation Optional Integrations` `34056616189`: verde;
+- `Volcanoes Full Pack Compatibility Acceptance` `34056616198`: verde com o runtime completo do pack;
+- full-pack exact-host GameTests: verdes;
+- full-pack save/reload smoke: verde.
+
+Isso cobre os dois limites relevantes da 16.B: provider opcional ausente e pack real com provider instalado.
+
+## Matriz final de CI do head validado
+
+Todos os `25` workflows de pull request observados para `89e361b61ab08068711d8f2b5a8ef43f837ea0ba` concluíram com `success`, incluindo:
+
+- `RPG Skill Tree CI` `34056616163`;
+- `Foundation Optional Integrations` `34056616189`;
+- `Foundation Bootstrap Contract` `34056616233`;
+- `Foundation Diagnostics Contract` `34056616199`;
+- `Stage 06.01 Adapter Contract` `34056616193`;
+- `CodeQL Security` `34056616281`;
+- `SonarQube Cloud` `34056616209`;
+- `Volcanoes Full Pack Compatibility Acceptance` `34056616198`;
+- `Volcanoes Worldgen Compatibility Matrix` `34056616231`;
+- `Volcanoes Consolidated Release Readiness` `34056616164`.
+
+Dentro do `RPG Skill Tree CI` passaram JUnit, NeoForge-loaded JUnit, NeoForge GameTests, provider-present GameTests, validações de dados/runtime, build NeoForge, verificação do JAR e dedicated-server smoke.
 
 ## Decisões que permanecem para 16.C+
 
@@ -95,13 +140,17 @@ O `iron_blade` deste bloco é uma **prova de integração do serializer/casting*
 
 ## Validação final
 
-Pendente enquanto a PR #447 estiver aberta:
-
-- [ ] JUnit completo verde;
-- [ ] NeoForge JUnit adapter tests verdes;
-- [ ] GameTests verdes;
-- [ ] build NeoForge verde;
-- [ ] dedicated-server smoke verde;
-- [ ] workflows obrigatórios verdes;
+- [x] JUnit completo verde;
+- [x] NeoForge JUnit adapter tests verdes;
+- [x] GameTests verdes;
+- [x] build NeoForge verde;
+- [x] dedicated-server smoke verde;
+- [x] full-pack exact-host GameTests verdes;
+- [x] full-pack save/reload smoke verde;
+- [x] CodeQL verde;
+- [x] SonarQube verde;
+- [x] matriz completa de workflows do head de implementação verde;
 - [ ] merge na `main`;
 - [ ] confirmação do SHA final da `main`.
+
+O commit documental que registra esta evidência deve completar o último ciclo de CI antes do merge; nenhuma mudança de runtime é esperada nesse commit.
