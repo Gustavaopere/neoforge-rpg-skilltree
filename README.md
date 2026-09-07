@@ -4,6 +4,12 @@ Private NeoForge 1.21.1 RPG progression project.
 
 The project consolidates overlapping passive/skill-tree ideas around the visual/runtime model of Passive Skill Tree, then adds native adapters for the target modpack rather than forcing several competing progression UIs.
 
+## Project instructions
+
+Canonical RPG Skill Tree perk protocols, consolidated guides, detailed guide sources and modlist audit material live in [`PROJECT-INSTRUCTIONS/`](./PROJECT-INSTRUCTIONS/README.md).
+
+For the Chat 1 → Chat 2 → Chat 3 perk workflow, use the eight consolidated files in that root-level folder as the operational entry point. The physical modlist remains authority for installed JAR/runtime identity, and Notion remains the design authority where the protocols define it.
+
 Current implemented core:
 - deterministic canonical modifier resolution;
 - emergent archetype resolution with explicit specificity scoring, Primary Class + ordered Secondary Classes, and datapack-loaded archetype definitions;

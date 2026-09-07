@@ -19,11 +19,19 @@ Para execução operacional de Chat 1/2/3, estes arquivos consolidados devem ser
 
 ## Estrutura de suporte
 
-- `guides/` preserva a árvore detalhada e particionada dos guias para manutenção editorial, proveniência e compatibilidade com referências antigas.
+- `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
 
-A existência da árvore particionada não cria uma segunda autoridade operacional: para os protocolos de perks, os arquivos consolidados desta pasta raiz são o ponto de entrada canônico.
+A existência da árvore particionada não cria uma segunda autoridade operacional: para os protocolos de perks, os oito arquivos consolidados desta pasta raiz são o ponto de entrada canônico.
 
-## Migração
+## Migração dos guias
 
-Os caminhos antigos permanecem temporariamente preservados para evitar quebrar links, scripts ou branches concorrentes. A limpeza dos caminhos antigos deve ocorrer somente depois de revisar referências e atualizar os índices do repositório.
+A árvore detalhada foi movida de `plans/03-skill-tree-perks/guides/` para `PROJECT-INSTRUCTIONS/guides/`; o delta de modlist correspondente está em `PROJECT-INSTRUCTIONS/modlist/`.
+
+Referências operacionais dentro de `plans/03-skill-tree-perks/perks/` devem apontar para a nova localização. Documentos históricos em `docs/superpowers/` podem conservar caminhos antigos porque registram a arquitetura existente na data em que foram escritos.
+
+Os comentários `ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/...` presentes dentro dos quatro guias consolidados são **marcadores históricos de proveniência do snapshot consolidado**, não caminhos vivos nem uma segunda autoridade. Eles são preservados para manter os oito arquivos canônicos byte-identical ao pacote validado de 2026-09-07.
+
+## Regra de manutenção
+
+Novas atualizações editoriais dos guias detalhados devem ocorrer em `PROJECT-INSTRUCTIONS/guides/`. Quando uma mudança precisar ser refletida nos quatro arquivos consolidados, ela deve ser reconciliada conscientemente e validada como novo snapshot; não recriar a árvore legada em `plans/03-skill-tree-perks/guides/`.

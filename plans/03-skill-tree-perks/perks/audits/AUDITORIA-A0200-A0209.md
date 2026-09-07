@@ -31,7 +31,7 @@ Provider sem relação causal é N/A; provider pertinente sem API/hook seguro fi
 
 ## 3. Gate de delta dos projetos próprios
 
-O delta canônico está em guides/projects/15-capability-delta-a0200-a0209.md.
+O delta canônico está em `PROJECT-INSTRUCTIONS/guides/projects/15-capability-delta-a0200-a0209.md`.
 
 - RPG Skill Tree main 54b6cdc1: transações PRE→POST de A0023/A0024/A0029/A0030, infraestrutura de Mastery/specialization/class, consolidação nativa e reconciliação pós-merge do Volcanoes e manutenção de CI foram dispostas capability por capability; nenhuma adiciona classifier/hook Eldritch/Ender do lote.
 - Volcanoes standalone main eaddc323: head de source sem avanço; a PR RPG #308 incorporou esse source como subsistema nativo e expôs `NativeVolcanoesServices` read-only. Geologia, atmosfera, pressão e integrações continuam authority Volcanoes e não classificam Eldritch/Ender.

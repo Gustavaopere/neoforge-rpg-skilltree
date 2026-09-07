@@ -6,7 +6,7 @@ Esta pasta contém um dossiê individual por perk e os documentos operacionais d
 
 - `Axxxx-*.md` — dossiê canônico individual da perk.
 - `STATUS.md` — índice resumido do estado de design/implementação e das pendências.
-- `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md` — cópia versionada dos critérios canônicos.
+- `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md` — cópia versionada histórica/local dos critérios.
 - `CHAT-1-PROJETOS-PROPRIOS-REGRA.md` — suplemento obrigatório provider→árvore.
 - `audits/` — **todas as auditorias históricas, de implementação e retroativas por lote**. Não criar novos `AUDITORIA-*.md` na raiz de `perks/`.
 
@@ -16,25 +16,25 @@ A separação `dossiê individual` + `audits/` evita que a raiz se torne uma lis
 
 1. **Notion — Catálogo Mestre — Atributos e Passivos:** fonte canônica de design para código, nome, domínio, árvore, ramo, camada, função, tier, faixa de poder, ranks, custo, dependências, pré-requisitos, provider/mods, efeito, escalonamento, gate, hook, fallback e regra.
 2. **Notion — Critérios Obrigatórios para Aprovação de Perks — RPG Skill Tree:** protocolo canônico de auditoria em nove eixos, provider-native first, fail-closed, pipeline canônico único, anti-duplicação, anti-abuso de Mastery e delta obrigatório de capacidades dos projetos próprios.
-3. **`CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`:** cópia versionada integral dos critérios para tornar a auditoria reproduzível no GitHub. O Notion continua canônico e prevalece em caso de divergência futura.
-4. **`../guides/projects/`:** snapshot operacional obrigatório dos projetos próprios **RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana**, incluindo matriz de integração cruzada, reconciliação de snapshots, regras de authority, checklist de providers e matriz de cobertura/delta de capacidades. Estados planejados/preparatórios/bloqueados não podem ser promovidos a runtime disponível.
-5. **os três guias completos e a modlist atual:** novos mods adicionados depois do snapshot precisam entrar nos guias pertinentes e na cobertura do Chat 1. Delta externo atualmente auditado: **Mobstein 5.4.4**.
+3. **`../../../PROJECT-INSTRUCTIONS/CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`:** referência operacional consolidada dos critérios no repositório. O Notion continua canônico e prevalece em caso de divergência futura conforme o próprio protocolo.
+4. **`../../../PROJECT-INSTRUCTIONS/guides/projects/`:** snapshot operacional detalhado dos projetos próprios **RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana**, incluindo matriz de integração cruzada, reconciliação de snapshots, regras de authority, checklist de providers e matriz de cobertura/delta de capacidades. Estados planejados/preparatórios/bloqueados não podem ser promovidos a runtime disponível.
+5. **os quatro guias consolidados em `../../../PROJECT-INSTRUCTIONS/` e a modlist atual:** novos mods adicionados depois do snapshot precisam entrar nos guias pertinentes e na cobertura do Chat 1.
 6. **`main` do repositório:** fonte de verdade do estado técnico realmente implementado.
 
 O arquivo individual **não substitui silenciosamente o Notion**. Quando código e especificação divergirem, a divergência deve ser corrigida no design canônico ou registrada tecnicamente; nunca é permitido inventar um fallback para fazer o código parecer completo.
 
 ## Gate de lote antes da auditoria individual
 
-Antes de fechar qualquer lote, o Chat 1 deve executar `../guides/projects/12-capability-delta-coverage.md`:
+Antes de fechar qualquer lote, o Chat 1 deve executar `../../../PROJECT-INSTRUCTIONS/guides/projects/12-capability-delta-coverage.md`:
 
-1. fetch fresco de `main` e `plans/STATUS.md` dos quatro projetos próprios;
+1. fetch fresco das fontes operacionais e dos arquivos de status dos quatro sistemas de primeira classe;
 2. comparação contra o baseline reconciliado;
 3. identificação de toda capacidade jogável nova ou semanticamente alterada;
 4. classificação da cobertura mesmo que nenhuma perk atual já cite a capacidade.
 
 Esse gate responde **provider → árvore**. A classificação obrigatória é: `COBERTA POR PERK EXISTENTE`, `PERK PRÓPRIA`, `ESPECIALIZAÇÃO`, `BRIDGE`, `COBERTO POR SISTEMA UNIVERSAL`, `PROGRESSÃO NATIVA AUTORITATIVA`, `SEM HOOK SEGURO` ou `NÃO DEVE SER INTEGRADO`.
 
-Detectar lacuna não autoriza alterar o tamanho do lote. Chat 1 e Chat 2 trabalham em **lotes exatos de 10 perks consecutivas** e param após PR/CI/merge/main do lote atual.
+Detectar lacuna não autoriza alterar o tamanho do lote. O fluxo Chat 1 → Chat 2 → Chat 3 trabalha em **lotes exatos de 10 perks consecutivas** e respeita a divisão de responsabilidades definida nos protocolos canônicos em `../../../PROJECT-INSTRUCTIONS/`.
 
 ## Estrutura obrigatória de cada dossiê
 
@@ -58,7 +58,7 @@ Cada perk deve registrar:
 - **IMPLEMENTAÇÃO PARCIAL / NÃO CONFIRMADA:** existe gap funcional, de integração, causalidade, lifecycle ou teste explícito.
 - **PENDÊNCIA:** divergência, cobertura ausente ou prova técnica ainda necessária.
 - **FAIL-CLOSED:** funcionalidade não é substituída por bônus genérico quando o hook seguro não existe.
-- **IMPLEMENTAÇÃO CONFIRMADA:** comportamento relevante, testes e integração possuem evidência verificável e passaram CI/merge na `main`.
+- **IMPLEMENTAÇÃO CONFIRMADA:** comportamento relevante, testes e integração possuem evidência verificável e passaram pela validação do Chat 3 e pelo merge na `main`.
 
 ## Protocolo dos nove eixos
 
@@ -76,22 +76,14 @@ Cada arquivo deve avaliar:
 
 ## Ciclos documentados
 
-As auditorias detalhadas ficam em [`audits/`](audits/README.md). Atualmente existem registros para:
-
-- A0001–A0010;
-- A0011–A0020;
-- A0021–A0030;
-- A0031–A0040;
-- A0041–A0050.
-
-O intervalo nunca é fixado permanentemente: o próximo lote é determinado pelo estado real de `STATUS.md`, Notion e dossiês.
+As auditorias detalhadas ficam em [`audits/`](audits/README.md). O intervalo nunca é fixado permanentemente: o próximo lote é determinado pelo estado real de `STATUS.md`, Notion e dossiês.
 
 ## Documentos de controle
 
-- `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md` — critérios locais versionados.
+- `../../../PROJECT-INSTRUCTIONS/CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md` — critérios operacionais consolidados.
 - `CHAT-1-PROJETOS-PROPRIOS-REGRA.md` — regra provider→árvore.
-- `../guides/projects/README.md` — fontes dos projetos próprios.
-- `../guides/projects/12-capability-delta-coverage.md` — gate de capability delta obrigatório.
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/README.md` — fontes detalhadas dos projetos próprios.
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/12-capability-delta-coverage.md` — gate de capability delta obrigatório.
 - `audits/README.md` — índice de todas as auditorias.
 - `audits/AUDITORIA-A0001-A0020.md` — matriz consolidada histórica.
 - `STATUS.md` — índice técnico atual.
