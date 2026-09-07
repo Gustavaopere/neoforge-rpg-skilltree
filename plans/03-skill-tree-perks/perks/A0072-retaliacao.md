@@ -45,3 +45,11 @@ A0067 foi fechada no design como indisponível/não comprável até existir offe
 | Providers | PASS | NeoForge/Epic Fight/RPG; outros não inventados. |
 
 Os 18 critérios passam **no design**; implementação não pode ser confirmada enquanto A0067 continuar indisponível.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**.
+- `CombatPerkAvailabilityRuntime` marca A0072 indisponível e mascara ranks efetivos, propagando corretamente A0067 → A0072; `P-A0072-01` está resolvida.
+- O hook POST e a policy reativa permanecem como implementação latente correta, sem liberar compra nem bônus parcial.
+- O desbloqueio futuro depende exclusivamente de um binding provider-native seguro para A0067; nenhum fallback heurístico foi introduzido.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.

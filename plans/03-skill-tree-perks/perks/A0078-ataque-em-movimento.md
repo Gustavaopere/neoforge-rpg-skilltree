@@ -48,3 +48,11 @@ Sem provider de movimento adicional, usar apenas sprint vanilla. Não inferir po
 | Providers | PASS | vanilla seguro; ParCool fail-closed sem receipt. |
 
 Os 18 critérios passam **no design**.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **IMPLEMENTAÇÃO CONFIRMADA NO FALLBACK CANÔNICO**.
+- A0078 usa exclusivamente `ServerPlayer.isSprinting()` no servidor para a rota atualmente disponível e aplica o bônus uma única vez no root físico elegível.
+- Forced/passive movement não é promovido por delta de posição; mount/transport/knockback não criam sprint sintético.
+- ParCool 4.0.0.3 e Epic ParCool 21.0.0 permanecem expansão **não bloqueante e fail-closed** até existir receipt server-authoritative específico.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.

@@ -51,3 +51,12 @@ Sem comando/payload server-authoritative, A0076 fica indisponível/não compráv
 | Providers | PASS | RPG authority; Epic Fight apenas coexistência explícita. |
 
 Os 18 critérios passam **no design**; implementação depende do binding de ativação especificado.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **IMPLEMENTAÇÃO CONFIRMADA**.
+- `P-A0076-01` foi resolvida com o controle remapeável `Alternar Postura Marcial`, `MartialStanceIntentPayload` serverbound e `MartialStanceRuntime` server-authoritative.
+- O payload transmite somente intenção `cycle`; ranks, availability, stance atual, próxima transição e cooldown são recalculados no servidor.
+- O slot `MARTIAL_STANCE` continua RPG-owned; o cliente não escolhe a stance final nem consegue enviar rank/efeito.
+- A aplicação de dano/resistência e o cleanup/reconcile de stance foram cobertos pela suíte NeoForge-loaded.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.

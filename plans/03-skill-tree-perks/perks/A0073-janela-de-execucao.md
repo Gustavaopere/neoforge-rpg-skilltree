@@ -47,3 +47,13 @@ Epic Fight 21.17.3.1 fornece Impact quando a ação concreta expõe essa grandez
 | Providers | PASS | Epic Fight/Simply/RPG delimitados. |
 
 Os 18 critérios técnicos passam **no design**; runtime atual requer correção causal pelo Chat 2.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **IMPLEMENTAÇÃO CONFIRMADA** para a janela de execução e seu pipeline dano/Impact.
+- `P-A0073-01` foi resolvida: opener e finisher usam reservation→POST commit; cancelamento/dano zero faz rollback e cooldown só nasce no commit confirmado.
+- A correlação de projéteis foi endurecida por `PendingHitReceipt`/`PendingHit` por arrow+target+root; o finding P1 da PR #355 foi corrigido e resolvido.
+- Cleanup de alvo/ator é bounded em death/removal/logout/dimensão/respawn/server stop.
+- `P-A0073-02` permanece como **fallback canônico não bloqueante**: sem receipt pós-consumo de Stamina exato, refund = 0, exatamente como o contrato determina; nenhuma Stamina é fabricada.
+- Simply Swords permanece provider-native e não é usado como heurística de execução.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.
