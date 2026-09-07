@@ -9,8 +9,8 @@ final class ArsNouveauVersionContractJUnitTest {
     @Test
     void exactPackVersionIsTheOnlySupportedProviderContract() {
         assertTrue(ArsNouveauVersionContract.supports("5.13.1"));
-        assertTrue(ArsNouveauVersionContract.supports(" 5.13.1 "));
 
+        assertFalse(ArsNouveauVersionContract.supports(" 5.13.1 "));
         assertFalse(ArsNouveauVersionContract.supports("5.13.0"));
         assertFalse(ArsNouveauVersionContract.supports("5.14.0"));
         assertFalse(ArsNouveauVersionContract.supports("unknown"));
