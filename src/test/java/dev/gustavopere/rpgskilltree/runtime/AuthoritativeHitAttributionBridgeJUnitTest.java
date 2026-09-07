@@ -52,6 +52,20 @@ final class AuthoritativeHitAttributionBridgeJUnitTest {
     }
 
     @Test
+    void emptySourceBucketsStayNeutralAndSingleEntryDiscardRemovesTheBucket() {
+        Object damageSource = new Object();
+        UUID targetId = UUID.randomUUID();
+
+        assertTrue(AuthoritativeHitAttributionBridge.find(damageSource, targetId).isEmpty());
+        AuthoritativeHitAttributionBridge.discard(damageSource, targetId);
+
+        AuthoritativeHitAttributionBridge.canonicalize(damageSource, targetId, "root/only", "epicfight");
+        AuthoritativeHitAttributionBridge.discard(damageSource, targetId);
+
+        assertTrue(AuthoritativeHitAttributionBridge.find(damageSource, targetId).isEmpty());
+    }
+
+    @Test
     void nullLookupAndDiscardAreNeutralButInvalidPublicationFailsClosed() {
         UUID targetId = UUID.randomUUID();
         assertTrue(AuthoritativeHitAttributionBridge.find(null, targetId).isEmpty());
@@ -61,6 +75,12 @@ final class AuthoritativeHitAttributionBridgeJUnitTest {
 
         assertThrows(NullPointerException.class, () ->
             AuthoritativeHitAttributionBridge.canonicalize(null, targetId, "root", "epicfight"));
+        assertThrows(NullPointerException.class, () ->
+            AuthoritativeHitAttributionBridge.canonicalize(new Object(), null, "root", "epicfight"));
+        assertThrows(NullPointerException.class, () ->
+            AuthoritativeHitAttributionBridge.canonicalize(new Object(), targetId, null, "epicfight"));
+        assertThrows(NullPointerException.class, () ->
+            AuthoritativeHitAttributionBridge.canonicalize(new Object(), targetId, "root", null));
         assertThrows(IllegalArgumentException.class, () ->
             AuthoritativeHitAttributionBridge.canonicalize(new Object(), targetId, " ", "epicfight"));
         assertThrows(IllegalArgumentException.class, () ->
