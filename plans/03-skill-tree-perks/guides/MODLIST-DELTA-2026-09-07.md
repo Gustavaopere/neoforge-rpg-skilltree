@@ -1,0 +1,1 @@
+# Delta canônico da modlist — 2026-09-07
