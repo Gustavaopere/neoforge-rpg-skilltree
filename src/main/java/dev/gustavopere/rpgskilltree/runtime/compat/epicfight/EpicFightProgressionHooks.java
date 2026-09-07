@@ -61,12 +61,16 @@ public final class EpicFightProgressionHooks {
     private static void onDealDamageAuthority(DealDamageEvent.Pre event) {
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
         LivingEntity target = event.getTarget();
-        if (!hostile(player, target) || event.getDamageSource().getDirectEntity() != player) return;
+        if (!shouldPublishHitAuthority(hostile(player, target), event.getDamageSource().getDirectEntity() == player)) return;
         EpicFightHitAuthority.publish(
             event.getDamageSource(),
             target.getUUID(),
             player.level().getGameTime()
         );
+    }
+
+    static boolean shouldPublishHitAuthority(boolean hostileTarget, boolean directPlayerEvidence) {
+        return hostileTarget && directPlayerEvidence;
     }
 
     /**
