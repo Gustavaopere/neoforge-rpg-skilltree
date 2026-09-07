@@ -1,22 +1,29 @@
 # PROJECT-INSTRUCTIONS
 
-Diretório canônico de instruções operacionais e documentação de referência do projeto Minecraft / NeoForge 1.21.1.
+Diretório canônico de instruções operacionais e documentação de referência do projeto Minecraft / NeoForge 1.21.1 / Java 21.
 
-Este diretório está sendo consolidado progressivamente a partir da documentação já existente no repositório. Durante a migração, os caminhos antigos permanecem preservados para não quebrar referências nem sobrescrever trabalho de outras branches/chats.
+## Autoridade operacional
 
-## Escopo
+Os oito arquivos abaixo são o pacote canônico consolidado para o fluxo de perks do RPG Skill Tree:
 
-- protocolos operacionais de perks (Chat 1, Chat 2 e Chat 3);
-- critérios obrigatórios de aprovação de perks;
-- guias consolidados de gameplay/sistemas, magia, tecnologia e projetos próprios;
-- documentação detalhada de providers/mods;
-- auditoria e deltas da modlist;
-- referências operacionais que orientam implementação, validação e manutenção dos mods.
+1. `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
+2. `GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md`
+3. `GUIA-COMPLETO-MODS-DE-MAGIA.md`
+4. `GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md`
+5. `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
+6. `CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md`
+7. `CHAT-2-IMPLEMENTACAO-PERKS-ANEXOS-PROJETO.md`
+8. `CHAT-3-PENDENCIAS-TESTES-VALIDACAO-MERGE-PERKS-ANEXOS-PROJETO.md`
 
-## Regra de migração
+Para execução operacional de Chat 1/2/3, estes arquivos consolidados devem ser preferidos. A modlist física mais recente continua sendo a autoridade de presença/JAR/runtime; a Auditoria Mestre da Modlist no Notion deve ser reconciliada quando houver divergência.
 
-Nenhum caminho antigo deve ser removido antes de o conteúdo correspondente existir e ser validado neste diretório. O objetivo final é centralizar aqui todas as instruções e Guias sem perder histórico nem trabalho concorrente.
+## Estrutura de suporte
 
-## Estado atual
+- `guides/` preserva a árvore detalhada e particionada dos guias para manutenção editorial, proveniência e compatibilidade com referências antigas.
+- `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
 
-A árvore detalhada de guias existente foi copiada para `guides/` como primeiro checkpoint. O material da modlist já consolidado no repositório fica em `modlist/`. Os arquivos canônicos consolidados e os protocolos serão adicionados no próximo passo da migração, após validação de integridade.
+A existência da árvore particionada não cria uma segunda autoridade operacional: para os protocolos de perks, os arquivos consolidados desta pasta raiz são o ponto de entrada canônico.
+
+## Migração
+
+Os caminhos antigos permanecem temporariamente preservados para evitar quebrar links, scripts ou branches concorrentes. A limpeza dos caminhos antigos deve ocorrer somente depois de revisar referências e atualizar os índices do repositório.
