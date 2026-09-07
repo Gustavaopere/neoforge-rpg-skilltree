@@ -16,7 +16,10 @@ import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateIntegrationState
 import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonIntegrationBootstrap;
+import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonIntegrationState;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0022RuntimeHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0041A0060EpicFightHooks;
@@ -317,10 +320,37 @@ public final class RpgSkillTreeMod {
 
         if (ironsSpellbooksLoaded) NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.ARS_NOUVEAU)) NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EIDOLON)) {
-            NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
-            NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
+
+        boolean eidolonLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EIDOLON);
+        String eidolonVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.EIDOLON);
+        EidolonIntegrationState eidolonState = EidolonIntegrationBootstrap.install(
+            eidolonLoaded,
+            eidolonVersion,
+            () -> {
+                NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
+                NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
+            }
+        );
+        if (eidolonState == EidolonIntegrationState.ACTIVE) {
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPAT,
+                "eidolon_mastery_active",
+                "Eidolon Repraised Mastery integration active: Eidolon Repraised {}",
+                eidolonVersion
+            );
+        } else if (eidolonState != EidolonIntegrationState.ABSENT_PROVIDER) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "eidolon_mastery_disabled",
+                "Eidolon Repraised Mastery integration disabled: state={}, expected={}, found={}",
+                eidolonState,
+                EidolonVersionContract.SUPPORTED_VERSION,
+                eidolonVersion
+            );
         }
+
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IDENTITY2)) NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EPIC_FIGHT)) {
             String version = OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT);
