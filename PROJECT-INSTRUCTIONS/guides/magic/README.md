@@ -1,0 +1,52 @@
+# GUIA COMPLETO — Mods de Magia | NeoForge 1.21.1
+
+Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipamentos e integrações mágicas.
+
+**Fonte canônica:** este diretório versionado no GitHub.
+
+**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-09-06, com **607 entradas top-level incluindo NeoForge** e **101 JARs mágicos/cross-domain cobertos**. Consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); ele prevalece quando um capítulo histórico ainda cita versão anterior.
+
+## Como este guia está organizado
+
+Cada arquivo abaixo contém uma **seção lógica completa**. Não existe continuação de parágrafo ou de capítulo em outro arquivo. Os arquivos podem ser lidos de forma independente; a ordem do índice apenas reproduz a organização canônica.
+
+Os quatro projetos próprios do modpack possuem uma coleção transversal obrigatória em [`../projects/`](../projects/README.md). O capítulo 17 abaixo é somente o recorte mágico; o Chat 1 deve consultar também os dossiês completos, a matriz cruzada e a matriz de delta antes de fechar uma perk que possa interagir com RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
+
+## Índice
+
+- [Reconciliação atual da modlist — autoridade de presença/JAR/versão](CURRENT-MODLIST.md)
+- [Visão geral e escopo](00-visao-geral.md)
+- [1. Sistemas mágicos principais](01-sistemas-magicos-principais.md)
+- [2. Ecossistema Ars Nouveau](02-ecossistema-ars-nouveau.md)
+- [3. Ecossistema Iron's Spells 'n Spellbooks](03-ecossistema-iron-s-spells-n-spellbooks.md)
+- [4. Progressão, especialização e interface do Iron's](04-progressao-especializacao-e-interface-do-iron-s.md)
+- [5. Integrações do Iron's com outros sistemas](05-integracoes-do-iron-s-com-outros-sistemas.md)
+- [6. Goety e necromancia](06-goety-e-necromancia.md)
+- [7. Malum e spirit arcana](07-malum-e-spirit-arcana.md)
+- [8. Encantamento, loot mágico e equipamentos](08-encantamento-loot-magico-e-equipamentos.md)
+- [9. Bibliotecas e infraestrutura mágica](09-bibliotecas-e-infraestrutura-magica.md)
+- [10. Visão geral por estilo de personagem](10-visao-geral-por-estilo-de-personagem.md)
+- [11. Leitura do conjunto mágico do pack](11-leitura-do-conjunto-magico-do-pack.md)
+- [Guias relacionados](12-guia-relacionado.md)
+- [Atualização da modlist — novos mods mágicos (23/08/2026)](13-atualizacao-da-modlist-novos-mods-magicos-23-08-2026.md)
+- [Novos addons de Iron's Spells e Ars Nouveau](14-novos-addons-de-iron-s-spells-e-ars-nouveau.md)
+- [Alquimia, toxinas e mutações](15-alquimia-toxinas-e-mutacoes.md)
+- [Ecossistema Vampirism](16-ecossistema-vampirism.md)
+- [17. Projetos próprios do modpack — integração mágica canônica](17-projetos-proprios-do-modpack.md)
+- [18. Mobstein — necromancia corporal e ressurreição](18-mobstein-necromancia.md)
+- [19. Ecossistema Apothic — módulos, affixes, atributos, spawners e compats](19-ecossistema-apothic-e-compats.md)
+- [20. Scripting e compatibilidade técnica — KubeJS e EMF](20-scripting-e-compatibilidade-tecnica.md)
+- [21. Fontes e referências técnicas por mod](21-fontes-e-referencias-tecnicas.md)
+
+## Regras de manutenção
+
+- Nunca dividir um capítulo por quantidade de caracteres.
+- Nunca deixar um `#`/`##` no meio de um parágrafo.
+- Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
+- `CURRENT-MODLIST.md` é a autoridade de presença, JAR e versão do estado instalado atual.
+- `21-fontes-e-referencias-tecnicas.md` é o índice de navegação para CurseForge, Modrinth, wiki/docs e código-fonte. Links de busca são usados como fallback quando um projeto direto não foi verificado, para evitar inventar URLs.
+- Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
+- Mods adicionados ou atualizados na modlist devem ser incorporados antes do próximo fechamento de lote do Chat 1.
+- O GitHub é a fonte canônica deste guia; não manter cópia editorial concorrente no Notion.
+
+[← Voltar aos guias](../README.md)
