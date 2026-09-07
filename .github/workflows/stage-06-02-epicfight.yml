@@ -46,3 +46,4 @@ jobs:
           --tests '*EpicFightIntegrationContractJUnitTest'
           --tests '*AuthoritativeHitAttributionBridgeJUnitTest'
           --tests '*A0081A0100HitAuthorityJUnitTest'
+          --tests '*EpicFightHitAuthorityCallbackJUnitTest'
