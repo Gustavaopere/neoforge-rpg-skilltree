@@ -71,7 +71,7 @@ Para perks, o combustível e o estado térmico continuam pertencendo ao pipeline
 `sulfuricresonance-0.4.1.jar`
 **Create: Sulfuric Resonance** amplia Create com engenharia termquímica: geração/transmissão de calor, química de enxofre e ácido sulfúrico, materiais avançados, processamento por combustão, Precision Processing e Resonance Processing. O sistema combina heat, rotação, reagentes e tempos de processo em layouts físicos compatíveis com os componentes normais do Create.
 
-A build `0.4.1` é a release pública atual instalada. O mod declara requisito de Create 6.0.7+ e NeoForge 21.1.238+; o pack usa Create 6.0.10. Há incompatibilidade visual documentada entre seus Thermochemical Cogwheels e **Create: Bits 'n' Bobs**; isso deve ser tratado como risco de compatibilidade, não como alteração de authority de gameplay.
+A build `0.4.1` é a release pública atual instalada. O mod declara requisito de Create 6.0.7+ e NeoForge 21.1.238+; o pack usa Create 6.0.10. Há incompatibilidade visual documentada entre seus Thermochemical Cogwheels e **Create: Bits 'n' Bobs**. Na auditoria de 06/09/2026, essa incompatibilidade deixou de ser apenas um risco aberto: a decisão de curadoria foi **Tirar `bits_n_bobs-2.3.0.jar`** e preservar Sulfuric Resonance. A autoridade dessa decisão está em [`../gameplay/CURATION-DECISIONS-2026-09-06.md`](../gameplay/CURATION-DECISIONS-2026-09-06.md). Enquanto uma nova modlist não provar a remoção física, Bits 'n' Bobs continua apenas como presença instalada pendente de retirada, não como provider recomendado pelo guia de tecnologia.
 
 ## Create: Fantasizing Again — runtime 1.2.0-b3
 

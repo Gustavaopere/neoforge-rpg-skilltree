@@ -20,6 +20,8 @@
 
 ## Bloqueios atuais de startup por mod ID duplicado
 
-- `alexscaves` é declarado simultaneamente por **Alex's Caves 2.0.2** e **Alex's Caves Continued 1.0.9**.
-- `alexsmobs` é declarado simultaneamente por **Alex's Mobs 1.22.9** e **Alex's Mobs Continued 2.1.9**.
-- **BLOQUEIO DE STARTUP:** NeoForge exige mod IDs únicos; manter ambos os JARs de qualquer par impede o carregamento durante discovery, antes de `ModList.isLoaded(...)` ou de qualquer adapter/runtime do modpack. A instalação precisa reter exatamente uma implementação por mod ID, ou usar um repack legítimo com ID realmente distinto, antes de ser considerada inicializável. Até essa decisão ser aplicada à modlist, nenhuma integração deve presumir coexistência ou desambiguação em runtime.
+A decisão de provider foi fechada em 2026-09-06, mas a `modlist.txt` atual ainda contém os quatro JARs conflitantes; portanto o bloqueio físico de startup permanece até a remoção dos dois rejeitados.
+
+- `alexscaves`: **manter Alex's Caves Continued 1.0.9** (`alexscaves-1.0.9-neoforge+1.21.1.jar`) e **retirar Alex's Caves 2.0.2** (`alexscaves-2.0.2.jar`).
+- `alexsmobs`: **manter Alex's Mobs Continued 2.1.9** (`alexsmobs-2.1.9-neoforge+1.21.1.jar`) e **retirar Alex's Mobs 1.22.9** (`alexsmobs-1.22.9.jar`).
+- **BLOQUEIO DE STARTUP:** NeoForge exige mod IDs únicos; enquanto os JARs rejeitados continuarem na pasta `mods`, o carregamento falha durante discovery, antes de `ModList.isLoaded(...)` ou de qualquer adapter/runtime do modpack. Depois da remoção física, a modlist e o Notion devem ser reconciliados novamente para registrar o estado efetivamente instalado.
