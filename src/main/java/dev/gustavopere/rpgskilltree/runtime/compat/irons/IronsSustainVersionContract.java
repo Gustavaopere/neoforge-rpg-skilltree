@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 /** Exact audited provider contract for A0083 direct-magic sustain on Iron's 1.21.1-3.16.3. */
 public final class IronsSustainVersionContract {
     public static final String SUPPORTED_RELEASE = "1.21.1-3.16.3";
+    public static final String SUPPORTED_VERSION = SUPPORTED_RELEASE;
     public static final String DAMAGE_SOURCE_CLASS = "io.redspace.ironsspellbooks.damage.SpellDamageSource";
 
     private static final RuntimeContract CONTRACT = inspectRuntimeContract();
