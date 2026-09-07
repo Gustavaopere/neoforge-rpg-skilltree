@@ -33,6 +33,18 @@ Use com confirmação explícita de formatos/paths para 1.21.1:
 
 `minecraft-imagegen` serve para concept art, briefs, pack icons, mockups e referências. Saída de image generation não vira automaticamente modelo, UV ou textura final.
 
+## Art direction, modelos e animação
+
+Para qualquer asset visual project-owned que precise combinar com o jogo/modpack:
+
+1. `library/minecraft-asset-art-direction/SKILL.md` — define identidade, asset contract e critérios de aceitação;
+2. `library/minecraft-blockbench-geckolib/SKILL.md` — Blockbench, `.bbmodel`, UV, rig, animação e GeckoLib 4 para o alvo 1.21.1;
+3. `standards/MODEL-ASSET-CONTRACT.md` — contrato canônico antes da produção final;
+4. `standards/VISUAL-QA.md` — gate visual/in-game;
+5. `tools/blockbench/minecraft_asset_validator.js` — auditor estrutural read-only para Blockbench.
+
+`minecraft-imagegen` é subordinada a este fluxo quando usada para concept/look-dev. Um concept sheet não substitui o `.bbmodel`, UV, textura, rig ou validação in-game.
+
 ## Fora do escopo padrão
 
 Ative somente quando a tarefa realmente exigir:
@@ -43,4 +55,4 @@ Ative somente quando a tarefa realmente exigir:
 - `minecraft-multiloader`
 - `minecraft-worldedit-ops`
 
-Skills específicas de art direction, Blockbench/GeckoLib, VFX/spells, áudio e visual QA prevalecem sobre este fallback quando existirem.
+Skills futuras específicas de VFX/spells, áudio e visual QA especializado prevalecem sobre fallbacks genéricos quando existirem.
