@@ -10,7 +10,9 @@
 - remoções físicas reais: **4**;
 - saldo líquido: **+5**;
 - estado físico 2026-09-07: **612** entradas top-level = NeoForge + 611 JARs;
-- Notion após reconciliação: **612 `Instalado` + 4 `Removido`** com `Arquivo JAR` preenchido; **617/617** registros em `Estado da pesquisa = Verificado`.
+- Notion após reconciliação: **612 `Instalado`**, **612 `Arquivo JAR` físicos distintos** e **613/613 registros `Verificado`**; a linha adicional é não física e não representa outro mod instalado;
+- runtime audit: **605/605** entradas que declaram `modVersion` físico correspondem exatamente a `Versão 1.21.1` no Notion;
+- metadata ausente: **7/7** JARs sem `modVersion` físico permanecem com `Versão 1.21.1` vazia no Notion, sem inferência pelo filename.
 
 ## 21 updates de JAR/versão
 
@@ -56,21 +58,37 @@
 
 | JAR removido | Mod ID | Estado anterior | Estado atual |
 |---|---|---|---|
-| `alexscaves-2.0.2.jar` | `alexscaves` | instalado e rejeitado por curadoria | **REMOVIDO**; Continued 1.0.9 permanece |
-| `alexsmobs-1.22.9.jar` | `alexsmobs` | instalado e rejeitado por curadoria | **REMOVIDO**; Continued 2.1.10 permanece |
-| `spore_1.21.1_2.2.0j_neo.jar` | `spore` | instalado | **REMOVIDO** |
-| `Infnexus-2.0.4-1.21.1.jar` | `infnexus` | instalado | **REMOVIDO** |
+| `alexscaves-2.0.2.jar` | `alexscaves` | instalado e rejeitado por curadoria | **REMOVIDO FISICAMENTE**; Continued 1.0.9 permanece |
+| `alexsmobs-1.22.9.jar` | `alexsmobs` | instalado e rejeitado por curadoria | **REMOVIDO FISICAMENTE**; Continued 2.1.10 permanece |
+| `spore_1.21.1_2.2.0j_neo.jar` | `spore` | instalado | **REMOVIDO FISICAMENTE** |
+| `Infnexus-2.0.4-1.21.1.jar` | `infnexus` | instalado | **REMOVIDO FISICAMENTE** |
+
+Esses quatro artefatos não possuem linhas físicas separadas no estado final do Notion; o banco foi consolidado para representar a fotografia atual, não para manter quatro registros `Removido` artificiais.
 
 ## Consequências curatoriais e de compatibilidade
 
 - Os bloqueios de discovery por mod IDs duplicados `alexscaves` e `alexsmobs` estão fisicamente resolvidos na modlist de 07/09.
-- `Create: Bits 'n' Bobs` continua fisicamente instalado, agora em `2.3.1`; a decisão curatorial anterior **Tirar** permanece vigente.
-- `Integrated Mowzie's Mobs` está fisicamente em `1.1.0`, porém a auditoria pública não encontrou correspondência exata dessa build na página oficial durante a reconciliação. Não substituir a identidade local por uma versão pública inferida.
-- **More Relics 1.7.7 — ALTO RISCO:** a documentação oficial para NeoForge 1.21.1 declara Relics `0.11` e `0.12` ainda não suportados e recomenda Relics `0.10.7.8`; o pack usa Relics `0.12.8`. Tratar More Relics como **fail-closed para perks/integrações** até compatibilidade ser comprovada ou o stack ser ajustado.
+- `Create: Bits 'n' Bobs` continua fisicamente instalado, agora em `2.3.1`, e a decisão vigente foi revista para **Manter**. A incompatibilidade visual documentada com os Thermochemical Cogwheels de Create: Sulfuric Resonance 0.4.1 é risco aceito; continuar monitorando/render-testando sem afirmar que o conflito foi corrigido.
+- `Integrated Mowzie's Mobs` está fisicamente em `1.1.0` e o projeto oficial foi confirmado. O artefato local/runtime 1.1.0 é a autoridade física; a listagem pública consultada ainda exibe v1.0.0 para 1.21.1, portanto a proveniência pública exata da build local 1.1.0 permanece não demonstrada.
+- **More Relics 1.7.7 — `Manter`, risco aceito:** o upstream declara que Relics `0.11`/`0.12` ainda não são suportados e recomenda Relics `0.10.7.8`, enquanto o pack usa Relics `0.12.8`. A decisão é manter o mod fisicamente; não interpretar isso como prova de compatibilidade. Perks/integrações provider-specific permanecem **fail-closed** até teste real comprovar o comportamento necessário.
 - `CERBON's API` é dependência, não provider de progressão.
 - `MineColonies: Jade crops` é camada de HUD/compatibilidade; não altera crescimento nem é provider mecânico.
 - `Ironsable x Wind's Spellbooks` é bridge de causalidade magia↔Sable, não nova escola de magia.
 
+## 7 JARs sem runtime metadata
+
+A modlist física não declara `modVersion` para os sete artefatos abaixo. O Notion mantém `Versão 1.21.1` vazia para todos eles e registra filename/publicação separadamente:
+
+- `connector-2.0.0-beta.17+1.21.1-full.jar`;
+- `create_sophback_compat-1.0.jar`;
+- `createmechanicalcompanion-1.9-neoforge-1.21.1.jar`;
+- `dtquark-2.6.1.jar`;
+- `easy_model_entities-neoforge-1.21.1-2.3.0.jar`;
+- `easy_npc-neoforge-1.21.1-7.11.0.jar`;
+- `kotlinforforge-5.12.0-all.jar`.
+
+Não inferir runtime metadata a partir do nome do arquivo ou da versão publicada.
+
 ## Regra de leitura dos guias
 
-Para presença física, JAR e runtime em 07/09/2026, este delta prevalece sobre qualquer linha de 06/09 que mencione um dos 34 artefatos alterados acima. Para qualquer mod não listado no delta, a linha do snapshot de 06/09 continua válida. Descrições funcionais e contratos de provider permanecem nos capítulos temáticos, salvo correção explícita posterior.
+Para presença física, JAR e runtime em 07/09/2026, este delta prevalece sobre qualquer linha de 06/09 que mencione um dos artefatos alterados acima. Para qualquer mod não listado no delta, a linha do snapshot de 06/09 continua válida. Descrições funcionais e contratos de provider permanecem nos capítulos temáticos, salvo correção explícita posterior.

@@ -2,7 +2,7 @@
 
 [← Índice do guia](README.md)
 
-> A authority de presença/JAR/runtime é [`../MODLIST-DELTA-2026-09-07.md`](../MODLIST-DELTA-2026-09-07.md). Este capítulo registra apenas o efeito tecnológico do delta.
+> A authority de presença/JAR/runtime é [`../MODLIST-DELTA-2026-09-07.md`](../MODLIST-DELTA-2026-09-07.md). Este capítulo registra apenas o efeito tecnológico do delta. Para decisões curatoriais explicitamente revistas em 07/09, prevalece [`../gameplay/CURATION-DECISIONS-2026-09-07.md`](../gameplay/CURATION-DECISIONS-2026-09-07.md).
 
 ## Updates do stack tecnológico
 
@@ -14,9 +14,11 @@
 
 Esses updates alteram a identidade física corrente, mas não autorizam inferir mudança de API/hook sem inspeção do provider correspondente.
 
-## Bits 'n' Bobs — decisão curatorial preservada
+## Bits 'n' Bobs — decisão curatorial revisada
 
-Apesar do update físico para `2.3.1`, a decisão de curadoria anterior **Tirar** permanece vigente. O JAR continua `Instalado` porque ainda aparece na modlist física. A atualização de versão não cancela a incompatibilidade/duplicidade de authority documentada com o stack atual.
+Além do update físico para `2.3.1`, a decisão de curadoria foi **explicitamente revisada em 07/09/2026 para `Manter`**. A decisão `Tirar` de 06/09 permanece apenas como histórico e não deve ser usada para remover o JAR atual.
+
+A incompatibilidade visual documentada com os Thermochemical Cogwheels de Create: Sulfuric Resonance 0.4.1 continua real. O pack aceita esse risco e mantém ambos; isso não significa que o conflito foi corrigido. Render-testar especificamente os Thermochemical Cogwheels após updates de Bits 'n' Bobs ou Sulfuric Resonance.
 
 ## CERBON's API não é provider tecnológico
 
@@ -28,4 +30,4 @@ Apesar do update físico para `2.3.1`, a decisão de curadoria anterior **Tirar*
 
 ## Regra operacional
 
-Para os cinco mods atualizados acima, o delta de 07/09 substitui as linhas de presença/JAR/versão do snapshot de 06/09. Para os demais módulos tecnológicos, o snapshot anterior permanece válido até novo delta explícito.
+Para os cinco mods atualizados acima, o delta de 07/09 substitui as linhas de presença/JAR/versão do snapshot de 06/09. Para os demais módulos tecnológicos, o snapshot anterior permanece válido até novo delta explícito. Para Bits 'n' Bobs, a decisão vigente é `Manter` conforme a authority curatorial de 07/09.

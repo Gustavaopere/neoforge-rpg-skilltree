@@ -23,11 +23,13 @@ Updates de versão não revalidam automaticamente hooks/APIs de perks.
 
 `ironsable-wind-1.0.0.jar` — bridge Wind's Spellbooks ↔ IronSable/Sable. É compatibilidade de causalidade física, não nova escola nem provider autônomo.
 
-### More Relics — 1.7.7 — ALTO RISCO
+### More Relics — 1.7.7 — MANTER / RISCO ACEITO
 
-`morerelics-1.7.7-1.21.1.jar` está fisicamente instalado, porém a documentação oficial do projeto para NeoForge 1.21.1 informa que Relics `0.11`/`0.12` ainda não são suportados e recomenda Relics `0.10.7.8`. O pack usa `relics-1.21.1-0.12.8.jar`.
+`morerelics-1.7.7-1.21.1.jar` está fisicamente instalado e a decisão curatorial vigente é **Manter**.
 
-Portanto **More Relics permanece fail-closed para perks/integrações** até a compatibilidade ser comprovada ou o stack ser ajustado.
+O risco upstream continua real: a documentação oficial para NeoForge 1.21.1 informa que Relics `0.11`/`0.12` ainda não são suportados e recomenda Relics `0.10.7.8`, enquanto o pack usa `relics-1.21.1-0.12.8.jar`. A decisão de manter **não** transforma esse desvio em compatibilidade comprovada.
+
+Consequência para perks/integrações: contratos que dependam de comportamento específico de More Relics permanecem **fail-closed até teste real** de carregamento, obtenção/evolução, Curios, persistência e do hook pretendido. Isso é uma restrição de integração, não uma decisão para remover o mod.
 
 A descrição, dependências e gates estão em [`19-atualizacao-modlist-2026-09-07.md`](19-atualizacao-modlist-2026-09-07.md).
 
@@ -37,4 +39,4 @@ A descrição, dependências e gates estão em [`19-atualizacao-modlist-2026-09-
 - Para itens não alterados em 07/09, o snapshot de 06/09 continua válido.
 - Descrições funcionais permanecem nos capítulos temáticos.
 - Bridge, biblioteca, UI ou compatibilidade não vira provider apenas por estar no recorte mágico.
-- Nenhum contrato de perk pode assumir More Relics enquanto o desvio Relics `0.12.8` estiver aberto.
+- `Manter` More Relics não autoriza contrato provider-specific sem validação do comportamento necessário contra Relics `0.12.8`.
