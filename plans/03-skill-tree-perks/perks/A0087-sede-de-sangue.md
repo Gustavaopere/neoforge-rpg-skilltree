@@ -4,7 +4,9 @@
 
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability all-or-nothing em 2026-08-31.
 - **Notion:** `3c569db9-f0db-819d-8f92-dd2b7f0c4ed8`; Gate/Fallback/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** `BloodThirstService` existe, mas produção usa `new BloodThirstService(null)`; A0087 deve ficar **indisponível/não comprável**.
+- **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Estado Chat 3:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA / AGUARDANDO MERGE DA PR #372**.
+- A0087 permanece **indisponível/não comprável**; nenhum benefício parcial é ativado.
 
 ## Contrato canônico
 
@@ -23,29 +25,38 @@ A0087 também herda transitivamente A0075 e A0081. Enquanto A0075 continuar indi
 
 ## +8% healing received
 
-O contrato do Notion é geral: **+8% de cura recebida** durante a janela, não apenas +8% sobre a parcela Skill Tree. Portanto a implementação precisa de um pipeline canônico de healing received que aplique o multiplicador exatamente uma vez às curas elegíveis. O runtime atual expõe `healingReceivedMultiplier()` e o bridge o usa no sustain, mas não há prova de aplicação geral a potions/regen/provider heals. Silenciosamente reduzir o escopo para SustainResolver seria divergência de contrato.
+O contrato do Notion é geral: **+8% de cura recebida** durante a janela, não apenas +8% sobre a parcela Skill Tree. O Chat 2 não estreitou esse escopo. Como ainda não existe boundary geral de healing-received combinado ao BodyProvider obrigatório, A0087 permanece totalmente unavailable; `healingReceivedMultiplier()` não é usado para ativar benefício parcial.
 
-## Cobertura de providers
+## Implementação Chat 2 — 2026-09-01
 
-- Cold Sweat 2.4.2: owner exclusivo do eixo térmico/metabolic heat.
-- Minecraft/NeoForge: exhaustion e healing events.
-- Thirst Was Reclaimed 3.0.4: hydration apenas por receipt causal; Thirst Was Fixed é correção/integration, não owner de semântica substituta.
-- Epic Fight: ação marcial quando comprovada.
-- Simply Swords: Cataclysm: lifesteal de Ignitium deve ser contabilizado no mesmo root/bucket, sem duplicação.
-- Outros Simply: preservam implicits/runic/uniques; não inferir lifesteal.
-- Black Arcana Backlash/BLOOD_MAGIC_COST, Enshrouded/Volcanoes hazards, summons e tech damage não ativam o gatilho.
+- `CombatPerkAvailabilityRuntime` mantém A0087 unavailable por A0075/A0081 + ausência de BodyProvider/healing-received geral;
+- `effectiveRanks` mascara qualquer A0087 persistida, então `BloodThirstService`, coeficiente mínimo 3% e healing multiplier não produzem efeito;
+- `BloodThirstService` continua instanciado com `BodyProvider=null`, preservando o fail-closed all-or-nothing;
+- `A0081A0090SustainRuntime` não aplica +8% nem 3% mínimo enquanto o rank efetivo estiver zero;
+- Ignitium continua tratado no mesmo `SustainResolver` como native correlation ambígua, sem exceção para A0087;
+- hydration não foi inferida a partir de exhaustion;
+- nenhum bridge Cold Sweat/Thirst incompleto foi fabricado para tornar o node comprável.
 
-## Evidência runtime
+## Checklist Chat 2
 
-`BloodThirstService` exige `BodyProvider.acquire/maintain` para heat+exhaustion e encerra a janela se manutenção falhar. `A0081A0100RuntimeState` injeta `null` deliberadamente, confirmando fail-closed atual. A lógica de perda hostil/cooldown existe; o binding corporal e o healing-received global não.
-
-## Pendências para Chat 2
-
-- **P-A0087-01 BLOQUEANTE:** unavailable-node invariant transitivo A0075/A0081 + `BodyProvider`; current `null` não permite compra.
-- **P-A0087-02:** implementar `BodyProvider` com Cold Sweat metabolic heat + vanilla exhaustion na mesma atividade, acquire/maintain/release e rollback seguro.
-- **P-A0087-03:** hydration Thirst opcional somente por causal receipt; ausência é omitida, nunca inferida.
-- **P-A0087-04 BLOQUEANTE DE CONFORMIDADE:** ligar +8% a um pipeline geral de healing received exatamente uma vez; se isso não for possível, voltar ao Chat 1 em vez de estreitar o contrato.
-- **P-A0087-05:** dedup de Ignitium/native lifesteal e testes trigger window/cooldown/tradeoff loss/lifecycle/multiplayer.
+- [x] Availability transitiva/all-or-nothing implementada
+- [x] Rank efetivo zero enquanto BodyProvider ausente
+- [x] Purchase sem gasto/rank fantasma
+- [x] Nenhum benefício parcial de Blood Thirst ativo
+- [x] Ignitium/native lifesteal continua deduplicado/fail-closed
+- [x] Hydration não inferida
+- [x] Código presente em fail-closed
+- [ ] **PENDÊNCIA:** BodyProvider Cold Sweat heat + vanilla exhaustion para a mesma atividade
+- [ ] **PENDÊNCIA:** pipeline geral de +8% healing received exatamente uma vez
+- [ ] **PENDÊNCIA:** adapter Thirst causal opcional
+- [ ] **RETORNO AO CHAT 1:** somente se a implementação futura do +8% geral exigir alterar semântica/escopo do contrato
+- [ ] **VALIDAÇÃO CHAT 3:** node unavailable e rank persistido com efeito zero
+- [ ] **VALIDAÇÃO CHAT 3:** nenhum 3% mínimo/+8% parcial vaza
+- [ ] **VALIDAÇÃO CHAT 3:** GameTests/testes de integração
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
 
 ## Nove eixos obrigatórios
 
@@ -61,4 +72,29 @@ O contrato do Notion é geral: **+8% de cura recebida** durante a janela, não a
 | NeoVitae | PASS | ausente. |
 | Providers | PASS no design | Cold Sweat/Thirst/Simply boundaries explícitas. |
 
-Os 18 critérios passam **no design** porque benefício e custos são all-or-nothing e availability é explícita.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Validação Chat 3 — 2026-09-07
+
+- Availability transitiva foi confirmada: A0075/A0081 indisponíveis e ausência do BodyProvider mantêm A0087 indisponível; rank persistido é mascarado para zero.
+- `A0081A0100CombatPolicyTest` confirmou que `BloodThirstService(null)` não ativa benefício. Com provider sintético completo, a fórmula exige simultaneamente heat 20% + exhaustion 15% e expõe os valores 3% mínimo/+8% apenas quando o contrato obrigatório existe.
+- Perda do provider obrigatório encerra o benefício; isso valida o all-or-nothing sem transformar ausência de hydration em exhaustion ou vice-versa.
+- O runtime atual não instala BodyProvider incompleto nem pipeline parcial de +8% healing received; portanto nenhum benefício vaza no estado real indisponível.
+- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
+- **Resultado:** fail-closed all-or-nothing aprovado confirmado. Futuro +8% geral só pode ser implementado sem redesign se preservar exatamente o escopo canônico; caso contrário retorna ao Chat 1.
+
+### Checklist final Chat 3
+
+- [x] Design aprovado e código presente em fail-closed
+- [x] Availability transitiva/rank masking confirmados
+- [x] BodyProvider obrigatório confirmado como ausente no runtime atual
+- [x] Nenhum 3% mínimo/+8% parcial vaza
+- [x] Heat + exhaustion all-or-nothing preservados
+- [x] Hydration não inferida
+- [x] Testes unitários/NeoForge JUnit e GameTests verdes
+- [x] Build NeoForge e dedicated-server smoke verdes
+- [x] SonarQube e CodeQL verdes no baseline funcional
+- [x] **IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**
+- [x] **JOGABILIDADE N/A — node indisponível enquanto contracts corporais obrigatórios faltarem**
+
+O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.
