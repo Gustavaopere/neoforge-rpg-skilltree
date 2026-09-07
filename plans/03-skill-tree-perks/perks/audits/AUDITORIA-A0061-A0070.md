@@ -31,7 +31,7 @@ Baselines anteriores e SHAs frescos foram comparados antes da primeira perk:
 | Enshrouded | `77552a3d7f089a47908c109f5f8c19aff8a0f97d` | `391ea82203d30cb392a3397f92e2a3cbe7fb6128` | Stage 06/Lich avançou; `enshrouded:shroud_lich` cria bridge read-only legítima para A0070. Story/reward/ritual permanecem Enshrouded-owned. |
 | Black Arcana | `07263ae9bad12eba6ed500992991faa36ad598b2` | `526d8196087c863e9df64051d5d39d88c3050856` | hardening Arcane Danger permanece progressão nativa; Backlash/hazard arcano não é dano físico direto MARTIAL. |
 
-A matriz completa e os novos baselines estão em `guides/projects/12-capability-delta-coverage.md`.
+A matriz completa e os novos baselines estão em `PROJECT-INSTRUCTIONS/guides/projects/12-capability-delta-coverage.md`.
 
 ## Resumo perk por perk
 
