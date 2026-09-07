@@ -4,6 +4,7 @@ import dev.gustavopere.rpgskilltree.RpgSkillTreeMod;
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatPolicy;
 import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.MartialStanceRuntime;
+import dev.gustavopere.rpgskilltree.runtime.compat.A0079ForcedMovementCompat;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import net.minecraft.core.registries.Registries;
@@ -57,9 +58,13 @@ public final class A0076A0079GeneralEvents {
     /** Reconcile stance and invalidate stationarity for passenger/Create/Sable forced transport. */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onServerTick(ServerTickEvent.Post event) {
-        if (epicFightBridgeOwnsEvents()) return;
+        boolean epicFightOwnsEvents = epicFightBridgeOwnsEvents();
         for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-            if (eligible(player)) MartialStanceRuntime.reconcile(player);
+            if (!eligible(player)) continue;
+            if (!epicFightOwnsEvents) MartialStanceRuntime.reconcile(player);
+            if (player.isPassenger() || A0079ForcedMovementCompat.forcedOrUnclassified(player)) {
+                A0061A0080RuntimeState.stationary().invalidate(A0061A0080RuntimeState.actorId(player));
+            }
         }
     }
 
