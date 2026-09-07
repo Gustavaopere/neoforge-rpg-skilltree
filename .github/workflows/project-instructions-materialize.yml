@@ -1,0 +1,194 @@
+name: Materialize project instructions
+
+on:
+  push:
+    branches:
+      - docs/project-instructions-canonical
+    paths:
+      - 'perk-instructions-payload/**'
+      - '.github/workflows/project-instructions-materialize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and verify canonical project instructions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+          import hashlib
+          import io
+          import shutil
+          import subprocess
+          import zipfile
+
+          payload = Path('perk-instructions-payload')
+          target = Path('PROJECT-INSTRUCTIONS')
+
+          expected_chunk_blobs = [
+              '366a73ef46c591aa5d6b87051887fbb68cd63794',
+              '8c84c3c385b24dac2b8051a5dd1c9ea9f1ea06e6',
+              'ddc114fcdf21369fbdb5019f0e17ca510e5a0dc9',
+              'f86b15c82d734805f8ea0d7eb24f321d655e17d9',
+              'bf2584585d7284df8bf2059725c5bf149bfe6b63',
+              'ef0bde98f8376228e1dfea40320bb4ab2f34b183',
+              '54dbcda83191466077e608923c66b8ab015a053e',
+              '7d929696c3ae88c48f2e9b4cb50eef665eeaf544',
+              'dd8d0e141daf5719c811fbc8419cdb9b645c9522',
+              '35125087ed3e908b58d91660e70619469704b94a',
+              '96c8fe930df5609864737a52a1c399a5844222b0',
+              '7b8319be71e98f95a3d34595b0d36cca1245f466',
+              '9ff44835c1468611e2ccba6f76c2a6a012e4d156',
+              '583c732c32ba8d6bf5d44d16f8289ae42387058d',
+              'cfea36d023071df6b5e3d21bdd2f95728b9aa867',
+              '1fa94312ba4a09319f0ea97bbaa349ebc4806d1d',
+          ]
+
+          expected_file_sha256 = {
+              'CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md': 'eae998908fe82eed1a09b3cef94f511342cba5896e591d57cc1ed3b16902a5b0',
+              'CHAT-2-IMPLEMENTACAO-PERKS-ANEXOS-PROJETO.md': '4b70793e0594d50a792641c0f56fe45ee6dcbfe67d0de2bf9dc08ea188b14b65',
+              'CHAT-3-PENDENCIAS-TESTES-VALIDACAO-MERGE-PERKS-ANEXOS-PROJETO.md': 'b3a55c02e4bd1dbd91d8dcdd79414fbd13b691ff174d283632ebb972d1080ab4',
+              'CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md': 'ec03069b676057f66bf4184085c0b56f5e5169b83199fa66adf78a19f569374c',
+              'GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md': 'f96705de3374e9026da4d9a0fcce55c40f1186c2287a91b2d6d63d616131e906',
+              'GUIA-COMPLETO-MODS-DE-MAGIA.md': '37303b8055c96a96352fefd6f56921b9574153064c135fe37d3c223bdd2d9ac8',
+              'GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md': 'ef14028961816835a50b44133c3ea06eb3c6363c9cd797d22deed8035201bc59',
+              'GUIA-COMPLETO-PROJETOS-PROPRIOS.md': 'b0355118562c38a72c3965ceb64e9e0c38d8af85daa80c43bc3e075ad68d49fd',
+          }
+
+          expected_git_blobs = {
+              'CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md': '999dfcc6d1fcc8911e4da282f7d40cc501f95a6a',
+              'CHAT-2-IMPLEMENTACAO-PERKS-ANEXOS-PROJETO.md': 'd7e22ca8049f19af72be7dc6ad86b3c59ed3b7c5',
+              'CHAT-3-PENDENCIAS-TESTES-VALIDACAO-MERGE-PERKS-ANEXOS-PROJETO.md': '1c2c59502e1ecdf1bb4582fbdba6c7c571bf984c',
+              'CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md': '6c8f8845d2872ebb7aeb064122ec13f95e06eb92',
+              'GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md': '4be0ef7ad50a0eebfe0e06b7adbcef6012779593',
+              'GUIA-COMPLETO-MODS-DE-MAGIA.md': '105bf46bfdee80bf52b2b7e69876e59ce7a70f25',
+              'GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md': '4944fd91c035917577bcd792c55deaac0aeca2bc',
+              'GUIA-COMPLETO-PROJETOS-PROPRIOS.md': '266c732054ffdef6d39b1ad80d5c3d394be87889',
+          }
+
+          decoded = []
+          for i, expected_blob in enumerate(expected_chunk_blobs):
+              path = payload / f'chunk-{i:02d}.b64'
+              if not path.is_file():
+                  raise SystemExit(f'missing payload chunk: {path}')
+              actual_blob = subprocess.check_output(['git', 'hash-object', str(path)], text=True).strip()
+              if actual_blob != expected_blob:
+                  raise SystemExit(f'{path}: Git blob mismatch {actual_blob} != {expected_blob}')
+              decoded.append(base64.b64decode(path.read_text(encoding='ascii'), validate=True))
+
+          archive = b''.join(decoded)
+          archive_sha = hashlib.sha256(archive).hexdigest()
+          expected_archive_sha = 'bcc34de2026902f1bafa7ff5c8830d2177449dafcf3c232c00d484472c09a0e1'
+          if archive_sha != expected_archive_sha:
+              raise SystemExit(f'archive SHA-256 mismatch: {archive_sha} != {expected_archive_sha}')
+
+          if target.exists():
+              shutil.rmtree(target)
+          target.mkdir()
+
+          with zipfile.ZipFile(io.BytesIO(archive)) as zf:
+              members = sorted(n for n in zf.namelist() if not n.endswith('/'))
+              if members != sorted(expected_file_sha256):
+                  raise SystemExit(f'archive members mismatch: {members}')
+              for name in members:
+                  data = zf.read(name)
+                  digest = hashlib.sha256(data).hexdigest()
+                  if digest != expected_file_sha256[name]:
+                      raise SystemExit(f'{name}: SHA-256 mismatch {digest}')
+                  (target / name).write_bytes(data)
+
+          old_delta = Path('plans/03-skill-tree-perks/guides/MODLIST-DELTA-2026-09-07.md')
+          if not old_delta.is_file():
+              raise SystemExit('missing legacy MODLIST delta before move')
+          delta_blob = subprocess.check_output(['git', 'hash-object', str(old_delta)], text=True).strip()
+          if delta_blob != '8d67e145f217f907730934172673fb020376d34b':
+              raise SystemExit(f'MODLIST delta drifted: {delta_blob}')
+          shutil.copy2(old_delta, target / 'MODLIST-DELTA-2026-09-07.md')
+
+          readme = '''# Project Instructions — RPG Skill Tree
+
+Pasta canônica na raiz para o ciclo de perks do RPG Skill Tree (Minecraft 1.21.1 / NeoForge 1.21.1 / Java 21).
+
+## Ordem de leitura
+
+1. `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
+2. `GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md`
+3. `GUIA-COMPLETO-MODS-DE-MAGIA.md`
+4. `GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md`
+5. `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
+6. o protocolo específico: `CHAT-1...`, `CHAT-2...` ou `CHAT-3...`.
+
+## Protocolos
+
+- Chat 1: auditoria, design e documentação; não implementa runtime e não faz merge.
+- Chat 2: implementação do design aprovado; não executa a bateria final e não faz merge.
+- Chat 3: pendências, testes, validação, CI e merge; é o único chat que declara `IMPLEMENTAÇÃO CONFIRMADA` e faz merge no fluxo de perks.
+
+## Fontes e freshness
+
+A modlist física mais recente é authority para presença, JAR e runtime. A Auditoria Mestre da Modlist no Notion deve ser reconciliada conforme os protocolos. O Notion continua sendo a fonte de verdade de design; estes arquivos são a referência operacional consolidada no repositório.
+
+`MODLIST-DELTA-2026-09-07.md` foi preservado da árvore antiga de guias como histórico operacional/delta.
+
+A antiga árvore fragmentada `plans/03-skill-tree-perks/guides/` foi substituída por estes guias consolidados.
+'''
+          (target / 'README.md').write_text(readme, encoding='utf-8')
+
+          shutil.rmtree('plans/03-skill-tree-perks/guides')
+
+          root_readme = Path('README.md')
+          root_text = root_readme.read_text(encoding='utf-8')
+          root_append = '''\n## Project instructions\n\nCanonical RPG Skill Tree perk review/implementation protocols and consolidated guides live in [`PROJECT-INSTRUCTIONS/`](./PROJECT-INSTRUCTIONS/README.md).\n'''
+          if 'PROJECT-INSTRUCTIONS/README.md' not in root_text:
+              root_readme.write_text(root_text.rstrip() + '\n' + root_append, encoding='utf-8')
+
+          plan_readme = Path('plans/03-skill-tree-perks/README.md')
+          plan_text = plan_readme.read_text(encoding='utf-8')
+          plan_append = '''\n## Instruções operacionais\n\nOs critérios obrigatórios, os quatro guias consolidados e os protocolos dos Chats 1–3 ficam na pasta raiz [`PROJECT-INSTRUCTIONS/`](../../PROJECT-INSTRUCTIONS/README.md). Essa pasta é a referência operacional consolidada; o Notion permanece authority de design conforme os próprios protocolos.\n'''
+          if '../../PROJECT-INSTRUCTIONS/README.md' not in plan_text:
+              plan_readme.write_text(plan_text.rstrip() + '\n' + plan_append, encoding='utf-8')
+
+          for name, expected_blob in expected_git_blobs.items():
+              path = target / name
+              actual_blob = subprocess.check_output(['git', 'hash-object', str(path)], text=True).strip()
+              if actual_blob != expected_blob:
+                  raise SystemExit(f'{path}: final Git blob mismatch {actual_blob} != {expected_blob}')
+
+          final_delta_blob = subprocess.check_output(
+              ['git', 'hash-object', str(target / 'MODLIST-DELTA-2026-09-07.md')], text=True
+          ).strip()
+          if final_delta_blob != '8d67e145f217f907730934172673fb020376d34b':
+              raise SystemExit(f'moved MODLIST delta mismatch: {final_delta_blob}')
+
+          if Path('plans/03-skill-tree-perks/guides').exists():
+              raise SystemExit('legacy guides tree still exists')
+
+          shutil.rmtree(payload)
+          workflow = Path('.github/workflows/project-instructions-materialize.yml')
+          if workflow.exists():
+              workflow.unlink()
+
+          print('Canonical PROJECT-INSTRUCTIONS materialized and verified.')
+          PY
+
+      - name: Commit canonical structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'docs: centralize canonical project instructions'
+          git push origin HEAD:docs/project-instructions-canonical
