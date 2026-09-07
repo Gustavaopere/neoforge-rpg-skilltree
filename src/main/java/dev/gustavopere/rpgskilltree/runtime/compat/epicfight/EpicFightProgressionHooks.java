@@ -6,12 +6,14 @@ import dev.gustavopere.rpgskilltree.core.EpicFightStaminaPolicy;
 import dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategory;
 import dev.gustavopere.rpgskilltree.core.FistMasteryMilestonePolicy;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
+import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.WeaponMasteryMilestoneRuntime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,15 +30,21 @@ import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 
 /** Optional Epic Fight adapter. Registered only when Epic Fight is present. */
 public final class EpicFightProgressionHooks {
+    private static final String HIT_AUTHORITY_SUBSCRIBER_ID = "rpgskilltree:hit_authority/pre";
     private static final String DAMAGE_SUBSCRIBER_ID = "rpgskilltree:mastery/damage";
     private static final String SKILL_SUBSCRIBER_ID = "rpgskilltree:mastery/skill";
     private static final String DODGE_SUBSCRIBER_ID = "rpgskilltree:mastery/dodge";
+    private static final AtomicLong HIT_SEQUENCE = new AtomicLong();
     private static boolean registered;
 
     private EpicFightProgressionHooks() {}
 
     public static synchronized void register() {
         if (registered) return;
+        EpicFightEventHooks.Entity.DELIVER_DAMAGE_PRE.registerEvent(
+            EpicFightProgressionHooks::onDealDamageAuthority,
+            HIT_AUTHORITY_SUBSCRIBER_ID
+        );
         EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST.registerEvent(
             EpicFightProgressionHooks::onDealDamage,
             DAMAGE_SUBSCRIBER_ID
@@ -52,11 +60,25 @@ public final class EpicFightProgressionHooks {
         registered = true;
     }
 
+    /** Publishes one provider-native causal root before NeoForge observes the same damage source. */
+    private static void onDealDamageAuthority(DealDamageEvent.Pre event) {
+        if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
+        LivingEntity target = event.getTarget();
+        if (!hostile(player, target) || event.getDamageSource().getDirectEntity() != player) return;
+        AuthoritativeHitAttributionBridge.canonicalize(
+            event.getDamageSource(),
+            target.getUUID(),
+            "epicfight/hit/" + player.level().getGameTime() + "/" + HIT_SEQUENCE.incrementAndGet(),
+            "epicfight"
+        );
+    }
+
     /**
      * Weapon mastery is discovery-based, not damage-farm based: each weapon category can earn its
      * milestone against a hostile entity type only once for the lifetime of the persisted player state.
      */
     private static void onDealDamage(DealDamageEvent.Post event) {
+        AuthoritativeHitAttributionBridge.discard(event.getDamageSource(), event.getTarget().getUUID());
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
         LivingEntity target = event.getTarget();
         if (!hostile(player, target)) return;
