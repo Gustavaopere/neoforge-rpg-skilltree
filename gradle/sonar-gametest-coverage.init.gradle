@@ -4,6 +4,34 @@ allprojects { project ->
             return
         }
 
+        def sonarInvocation = project.gradle.startParameter.taskNames.any { taskName ->
+            taskName == 'sonar' || taskName.endsWith(':sonar')
+        }
+        if (sonarInvocation) {
+            // The ordinary project remains provider-free. Only Sonar's final build+sonar invocation
+            // loads the exact audited Malum 1.8.2 runtime so the provider-native event boundary can
+            // contribute real loaded-NeoForge JUnit coverage to jacocoTestReport.
+            def malumCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/compat/malum/MalumProgressionEventsCoverageJUnitTest.java'
+            def malumCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEventsCoverageJUnitTest'
+            project.sourceSets.test.java.exclude malumCoveragePath
+            project.sourceSets.neoForgeTest.java.include malumCoveragePath
+
+            project.tasks.matching { it.name == 'testJunit' }.configureEach { candidate ->
+                if (candidate instanceof org.gradle.api.tasks.testing.Test) {
+                    candidate.filter {
+                        includeTestsMatching malumCoverageTest
+                    }
+                }
+            }
+
+            project.dependencies.add('localRuntime', "curse.maven:malum-484064:${project.findProperty('malum_file_id')}") {
+                transitive = false
+            }
+            project.dependencies.add('localRuntime', 'team.lodestar.lodestone:lodestone:1.21.1-1.8.2.523')
+            project.dependencies.add('localRuntime', 'team.lodestar.wayward_attributes:wayward_attributes:1.21.1-1.1.30')
+            project.dependencies.add('localRuntime', 'top.theillusivec4.curios:curios-neoforge:9.3.1+1.21.1')
+        }
+
         def coverageName = (project.findProperty('gameTestCoverageName') ?: 'gametest').toString()
         def coverageFile = project.layout.buildDirectory.file("jacoco/${coverageName}.exec").get().asFile
         def classDumpDir = project.layout.buildDirectory.dir("jacoco/classdump/${coverageName}").get().asFile
