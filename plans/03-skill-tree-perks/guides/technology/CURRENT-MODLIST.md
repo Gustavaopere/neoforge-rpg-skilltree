@@ -1,6 +1,6 @@
 # Reconciliação atual da modlist — Mods de Tecnologia
 
-> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** O estado físico atual do pack é o snapshot de 06/09/2026 mais o [`MODLIST-DELTA-2026-09-07.md`](../MODLIST-DELTA-2026-09-07.md). O delta prevalece para qualquer artefato alterado em 07/09.
+> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** O estado físico atual do pack é o snapshot de 06/09/2026 mais o [`MODLIST-DELTA-2026-09-07.md`](../MODLIST-DELTA-2026-09-07.md). O delta prevalece para qualquer artefato alterado em 07/09. Decisões curatoriais revistas em 07/09 seguem [`../gameplay/CURATION-DECISIONS-2026-09-07.md`](../gameplay/CURATION-DECISIONS-2026-09-07.md).
 
 A modlist atual contém **612 entradas top-level**, incluindo NeoForge. O recorte Tecnologia permanece com **200 JARs tecnológicos/cross-domain**: o delta de 07/09 não adicionou nem removeu um provider tecnológico do recorte, mas atualizou cinco artefatos já classificados.
 
@@ -14,9 +14,11 @@ A modlist atual contém **612 entradas top-level**, incluindo NeoForge. O recort
 
 O detalhamento está em [`21-atualizacao-modlist-2026-09-07.md`](21-atualizacao-modlist-2026-09-07.md).
 
-## Bits 'n' Bobs — presença ≠ decisão
+## Bits 'n' Bobs — decisão revisada em 07/09
 
-`bits_n_bobs-2.3.1.jar` continua fisicamente instalado, mas a decisão curatorial **Tirar** permanece vigente. O update de versão não reabre nem anula a decisão fechada em 06/09.
+`bits_n_bobs-2.3.1.jar` continua fisicamente instalado e a decisão curatorial vigente foi **revisada para `Manter` em 07/09/2026**. A antiga decisão `Tirar` de 06/09 não é mais operacional.
+
+O conflito visual com os Thermochemical Cogwheels de Create: Sulfuric Resonance 0.4.1 permanece documentado e é **risco aceito**, não incompatibilidade considerada resolvida. Manter ambos exige continuar monitorando/render-testando esse caso específico após updates de qualquer lado.
 
 ## Baseline tecnológico
 
@@ -30,6 +32,7 @@ A tabela completa de **200 IDs/JARs** reconciliada em 06/09 permanece auditável
 ## Regra operacional
 
 - Este arquivo + [`../MODLIST-DELTA-2026-09-07.md`](../MODLIST-DELTA-2026-09-07.md) fixam a presença/JAR/runtime atual do recorte tecnológico.
+- [`../gameplay/CURATION-DECISIONS-2026-09-07.md`](../gameplay/CURATION-DECISIONS-2026-09-07.md) prevalece para decisões explicitamente revistas em 07/09.
 - Descrições funcionais permanecem nos capítulos do guia.
 - Update de versão não autoriza inferir API, hook ou compatibilidade sem inspeção.
 - Biblioteca, bridge, UI ou compatibilidade não se torna provider mecânico apenas por participar do stack tecnológico.
