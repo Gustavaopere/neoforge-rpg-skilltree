@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.times;
@@ -49,7 +50,7 @@ final class MalumProgressionEventsCoverageJUnitTest {
 
         ServerPlayer player = eligiblePlayer();
         LivingEntity target = mock(LivingEntity.class);
-        when(target.getType()).thenReturn(EntityType.ZOMBIE);
+        doReturn(EntityType.ZOMBIE).when(target).getType();
 
         Class<?> eventClass = Class.forName(SPOILS_EVENT);
         Constructor<?> constructor = eventClass.getConstructor(LivingEntity.class, LivingEntity.class, int.class);
