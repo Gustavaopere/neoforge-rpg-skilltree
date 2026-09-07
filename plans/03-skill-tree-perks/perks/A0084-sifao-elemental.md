@@ -4,7 +4,8 @@
 
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability em 2026-08-31.
 - **Notion:** `3c569db9-f0db-81a6-9479-ed17ddf2d786`; Gate/Fallback/Regra corrigidos; re-fetch PASS.
-- **Runtime observado:** coeficiente existe no core, mas não há producer elemental direto no bridge atual; node **indisponível/não comprável** até existir binding seguro.
+- **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- Node permanece **indisponível/não comprável** porque nenhum mapa elemental aprovado/versionado foi materializado pelo Chat 1.
 
 ## Contrato canônico
 
@@ -17,26 +18,35 @@
 
 O receipt mínimo deve provar `ownerPlayer`, root/event identity, `DIRECT_ELEMENTAL` e o elemento canônico. Namespace, cor/VFX, nome do spell ou tipo visual não bastam.
 
-- Iron's 3.16.3: `SpellDamageSource.spell().getSchoolType().getDamageType()` fornece uma superfície provider-native para mapear escolas/damage types aprovados; o mapa elemento↔school deve ser explícito/versionado.
-- Ars Nouveau 5.13.1: integrar somente pela classificação de spell/contexto realmente exposta pela versão instalada.
-- Ars Elemental 0.7.10.1: owner de extensões elementais; integrar por API/registro próprio quando o elemento puder ser provado, nunca por heurística de glyph/VFX.
-- Addons de Iron's/Ars só herdam A0084 se preservarem a identidade causal e a classificação elemental do provider pai.
+- Iron's 1.21.1-3.16.3 expõe `SpellDamageSource.spell().getSchoolType().getDamageType()`, mas o dossiê exige mapa elemento↔school **explícito/versionado**; o Chat 2 não inventou esse mapa.
+- Ars Nouveau 5.13.1 e Ars Elemental 0.7.10.1 permanecem sem adapter até haver API/contexto exato aprovado.
+- Addons só podem herdar A0084 se preservarem identidade causal e classificação elemental do provider pai.
 
-## Exclusões
+## Implementação Chat 2 — 2026-09-01
 
-Dano periódico usa A0085, não A0084. Summons, ambiente, Black Arcana Backlash, BLOOD_MAGIC_COST, Shroud/Exposure, Volcanoes heat/lava/gas e máquinas tecnológicas ficam fora. Um spell que aplica DoT pode ter o hit direto elegível em A0084 e os ticks posteriores apenas em A0085, com identidades distintas.
+- `CombatPerkAvailabilityRuntime` marca A0084 unavailable e `effectiveRanks` mascara qualquer rank persistido;
+- purchase server-authoritative recusa A0084 antes de custo/replay mutation;
+- `A0081A0100CombatPolicy` mantém a fórmula latente, mas nenhum caller envia `elemental=true`;
+- o novo adapter A0083 do Iron's **não** promove school/damage type a elemento sem o mapa exigido;
+- nenhum namespace, VFX, glyph ou damage type isolado foi usado como heurística;
+- DoT derivado permanece reservado a A0085, sem reutilizar hit direto como pulso elemental.
 
-## Evidência runtime
+## Checklist Chat 2
 
-`A0081A0100CombatPolicy` modela A0084, mas `A0081A0100CombatEvents` nunca classifica `elemental=true`; portanto hoje nenhum root alcança o coeficiente. A fórmula pura não satisfaz availability.
-
-## Pendências para Chat 2
-
-- **P-A0084-01 BLOQUEANTE:** unavailable-node invariant enquanto nenhum adapter elemental server-authoritative existir.
-- **P-A0084-02:** mapa versionado Iron's school/damage type → elemento, com causing player e root real.
-- **P-A0084-03:** adapter Ars/Ars Elemental somente contra API/artefato instalado, com dedup A0083↔A0084 na mesma root.
-- **P-A0084-04:** separar hit direto de DoT derivado; o tick posterior nunca reutiliza a root como nova cura A0084.
-- **P-A0084-05:** testes multi-elemento, classificação ambígua, addon provider-present/absent, cap e multiplayer.
+- [x] Availability fail-closed implementada
+- [x] Rank efetivo mascarado quando indisponível
+- [x] Purchase sem gasto/rank fantasma
+- [x] Fórmula latente preservada sem producer falso
+- [x] A0083 não promove automaticamente A0084
+- [x] Código presente em fail-closed
+- [ ] **PENDÊNCIA / RETORNO AO CHAT 1 SE FOR DESEJADO ATIVAR:** definir mapa canônico/versionado school/damage type → elemento
+- [ ] **VALIDAÇÃO CHAT 3:** purchase unavailable/rank persistido=efeito zero
+- [ ] **VALIDAÇÃO CHAT 3:** Iron's direct magic não ativa A0084 sem mapa
+- [ ] **VALIDAÇÃO CHAT 3:** GameTests/testes de integração
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
 
 ## Nove eixos obrigatórios
 
@@ -52,4 +62,4 @@ Dano periódico usa A0085, não A0084. Summons, ambiente, Black Arcana Backlash,
 | NeoVitae | PASS | ausente. |
 | Providers | PASS no design | Iron's/Ars/Ars Elemental por classificação real. |
 
-Os 18 critérios passam **no design** com unavailable-node explícito.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.

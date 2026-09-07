@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO sem mutação funcional no Notion em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8138-aa1b-f856663414a8`; fetch fresco PASS.
-- **Runtime observado:** implementação data-driven presente em `minecraft:generic.max_health`, com preservação explícita da razão de vida no refresh.
+- **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
 
 ## Contrato canônico
 
@@ -13,24 +13,29 @@
 - Mudança de rank não pode produzir cura gratuita. Ao recalcular max health, preservar `vidaAtual/vidaMáxima` quando possível e clamp seguro à nova vida máxima.
 - A perk não concede absorption, cura emergencial, regeneração ou trigger de low-health por alternância de rank.
 
-## Evidência runtime
+## Implementação Chat 2 — estado confirmado em código
 
-`a0081_a0100.json` publica A0088 como `MULTIPLY_TOTAL` +0.02/rank em `minecraft:generic.max_health`. `AttributeNodeEffectRuntime.refresh(...)` captura vida/max antigos, reaplica os modificadores e, se a vida máxima mudou, chama `A0081A0100CombatPolicy.preserveHealthRatio(...)` antes de `setHealth`. Isso materializa a regra anti-free-heal no caminho real.
+- binding data-driven existente publica A0088 como `MULTIPLY_TOTAL` +0,02/rank em `minecraft:generic.max_health`;
+- `AttributeNodeEffectRuntime.refresh(...)` remove/reaplica modifiers por `effectId` estável e usa `A0081A0100CombatPolicy.preserveHealthRatio(...)` quando a vida máxima muda;
+- a perk compõe pela pilha de atributos vanilla e não cria NBT/persistência paralela;
+- nenhum adapter de Pufferfish, Apotheosis, Simply, magia ou projetos próprios foi criado como segundo owner.
 
-O modifier é transitório em runtime, mas derivado de progression state persistente e reaplicado pelo refresh; não se deve criar segunda persistência/NBT para o mesmo benefício.
+## Checklist Chat 2
 
-## Cobertura de providers
-
-- Pufferfish's Attributes 0.8.3 não substitui `MAX_HEALTH` e não é owner desta perk.
-- Apotheosis/Apothic, equipamentos vanilla, Simply Swords/armaduras, magia e demais mods podem adicionar seus próprios modifiers de health; A0088 deve **compor pela pilha de atributos vanilla**, não duplicar nem ler/modificar NBT alheio.
-- Enshrouded/Black Arcana/Volcanoes não devem ser consultados para vida máxima desta perk.
-- Mods tecnológicos não possuem papel funcional aqui.
-
-## Pendências para Chat 2
-
-- **P-A0088-01:** testes provider-present/composição com outros modifiers de `MAX_HEALTH`, rank up/down, respec, relog/respawn e ausência de cura líquida explorável.
-- **P-A0088-02:** validar ordering/clamp quando outro provider altera max health no mesmo refresh/tick; uma única razão antiga→final.
-- **P-A0088-03:** garantir remoção/reaplicação idempotente sem modifier duplicado por efeitoId.
+- [x] Binding `MAX_HEALTH` presente
+- [x] Escalonamento +2%/rank presente
+- [x] `MULTIPLY_TOTAL` canônico presente
+- [x] Preservação de razão de vida presente
+- [x] Modifier derivado/idempotente por effectId presente
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** rank up/down/respec sem cura líquida explorável
+- [ ] **VALIDAÇÃO CHAT 3:** composição com outros modifiers de max health
+- [ ] **VALIDAÇÃO CHAT 3:** relog/respawn/reload/idempotência
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests aplicáveis
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
 
 ## Nove eixos obrigatórios
 
@@ -46,4 +51,4 @@ O modifier é transitório em runtime, mas derivado de progression state persist
 | NeoVitae | PASS | ausente. |
 | Providers | PASS | Minecraft/NeoForge owner; terceiros apenas compõem modifiers. |
 
-Os 18 critérios passam no design e o binding principal já existe no runtime.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
