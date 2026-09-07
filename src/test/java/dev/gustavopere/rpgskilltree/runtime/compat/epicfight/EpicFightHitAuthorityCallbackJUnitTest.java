@@ -4,11 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Answers.RETURNS_DEEP_STUBS;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
+import java.lang.reflect.Method;
 import java.util.UUID;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.player.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 
 final class EpicFightHitAuthorityCallbackJUnitTest {
     @AfterEach
@@ -54,5 +63,43 @@ final class EpicFightHitAuthorityCallbackJUnitTest {
         assertFalse(EpicFightProgressionHooks.shouldPublishHitAuthority(false, true));
         assertFalse(EpicFightProgressionHooks.shouldPublishHitAuthority(true, false));
         assertFalse(EpicFightProgressionHooks.shouldPublishHitAuthority(false, false));
+    }
+
+    @Test
+    void preCallbackPublishesOnlyForAnEligibleDirectHostileHit() throws Exception {
+        ServerPlayer attacker = mock(ServerPlayer.class);
+        Player hostileTarget = mock(Player.class);
+        ServerLevel level = mock(ServerLevel.class);
+        DamageSource damageSource = mock(DamageSource.class);
+        DealDamageEvent.Pre event = mock(DealDamageEvent.Pre.class, RETURNS_DEEP_STUBS);
+        UUID targetId = UUID.fromString("00000000-0000-0000-0000-000000000605");
+
+        when(event.getEntityPatch().getOriginal()).thenReturn(attacker);
+        when(event.getTarget()).thenReturn(hostileTarget);
+        when(event.getDamageSource()).thenReturn(damageSource);
+        when(damageSource.getDirectEntity()).thenReturn(attacker);
+        when(hostileTarget.getUUID()).thenReturn(targetId);
+        when(attacker.level()).thenReturn(level);
+        when(level.getGameTime()).thenReturn(602L);
+
+        invokePreAuthority(event);
+
+        var attribution = AuthoritativeHitAttributionBridge.find(damageSource, targetId).orElseThrow();
+        assertEquals("epicfight", attribution.providerId());
+        assertTrue(attribution.rootActionId().startsWith("epicfight/hit/602/"));
+
+        EpicFightHitAuthority.discard(damageSource, targetId);
+        when(damageSource.getDirectEntity()).thenReturn(null);
+        invokePreAuthority(event);
+        assertTrue(AuthoritativeHitAttributionBridge.find(damageSource, targetId).isEmpty());
+    }
+
+    private static void invokePreAuthority(DealDamageEvent.Pre event) throws Exception {
+        Method callback = EpicFightProgressionHooks.class.getDeclaredMethod(
+            "onDealDamageAuthority",
+            DealDamageEvent.Pre.class
+        );
+        callback.setAccessible(true);
+        callback.invoke(null, event);
     }
 }
