@@ -34,7 +34,9 @@ import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationState;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.MineColoniesVersionContract;
@@ -350,9 +352,11 @@ public final class RpgSkillTreeMod {
         if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.ARS_NOUVEAU)) {
             NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
         }
-        if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.MALUM)) {
-            NeoForge.EVENT_BUS.register(MalumProgressionEvents.class);
-        }
+        MalumIntegrationBootstrap.install(
+            OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.MALUM),
+            OptionalIntegrations.version(OptionalIntegrations.Provider.MALUM),
+            () -> NeoForge.EVENT_BUS.register(MalumProgressionEvents.class)
+        );
         if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.EIDOLON)) {
             NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
             NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
@@ -393,6 +397,7 @@ public final class RpgSkillTreeMod {
             case COLD_SWEAT -> ColdSweatFrenzyBridge.supportsVersion(version) ? "" : "unsupported_version";
             case CREATE -> CreateVersionContract.supportsVersion(version) ? "" : "unsupported_version";
             case GOETY -> GoetyVersionContract.supportsVersion(version) ? "" : "unsupported_version";
+            case MALUM -> MalumVersionContract.supports(version) ? "" : "unsupported_version";
             case MINECOLONIES -> (MineColoniesVersionContract.supports(version)
                 || MineColoniesEconomyVersionContract.supports(version)) ? "" : "unsupported_version";
             case PRODUCTIVE_METALWORKS -> ProductiveMetalworksVersionContract.supports(version) ? "" : "unsupported_version";
