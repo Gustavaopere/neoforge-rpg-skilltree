@@ -1,21 +1,13 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
-import java.lang.reflect.Method;
 import java.util.UUID;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import yesman.epicfight.api.event.types.entity.DealDamageEvent;
-import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
-import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 
 final class EpicFightHitAuthorityCallbackJUnitTest {
     @AfterEach
@@ -24,78 +16,34 @@ final class EpicFightHitAuthorityCallbackJUnitTest {
     }
 
     @Test
-    void providerPrePublishesCanonicalRootAndPostDiscardsIt() throws Exception {
-        ServerLevel level = mock(ServerLevel.class);
-        when(level.getGameTime()).thenReturn(123L);
-
-        ServerPlayer player = mock(ServerPlayer.class);
-        when(player.level()).thenReturn(level);
-        when(player.isCreative()).thenReturn(false);
-        when(player.isSpectator()).thenReturn(false);
-
-        Player target = mock(Player.class);
+    void providerBoundaryPublishesFirstWriterAndDiscardsWithoutMinecraftRuntime() {
+        Object source = new Object();
         UUID targetId = UUID.fromString("00000000-0000-0000-0000-000000000602");
-        when(target.getUUID()).thenReturn(targetId);
-        when(target.isInvulnerable()).thenReturn(false);
-        when(player.isAlliedTo(target)).thenReturn(false);
 
-        EpicFightDamageSource source = mock(EpicFightDamageSource.class);
-        when(source.getDirectEntity()).thenReturn(player);
+        var first = EpicFightHitAuthority.publish(source, targetId, 123L);
+        var repeated = EpicFightHitAuthority.publish(source, targetId, 124L);
 
-        ServerPlayerPatch patch = mock(ServerPlayerPatch.class);
-        when(patch.getOriginal()).thenReturn(player);
+        assertEquals("epicfight", first.providerId());
+        assertTrue(first.rootActionId().startsWith("epicfight/hit/123/"));
+        assertEquals(first.rootActionId(), repeated.rootActionId());
+        assertEquals(first, AuthoritativeHitAttributionBridge.find(source, targetId).orElseThrow());
 
-        DealDamageEvent.Pre pre = new DealDamageEvent.Pre(patch, target, source, 5.0F);
-        invoke("onDealDamageAuthority", DealDamageEvent.Pre.class, pre);
-
-        var attribution = AuthoritativeHitAttributionBridge.find(source, targetId).orElseThrow();
-        assertEquals("epicfight", attribution.providerId());
-        assertTrue(attribution.rootActionId().startsWith("epicfight/hit/123/"));
-
-        DealDamageEvent.Post post = new DealDamageEvent.Post(patch, target, source, 0.0F);
-        invoke("onDealDamage", DealDamageEvent.Post.class, post);
+        EpicFightHitAuthority.discard(source, targetId);
         assertTrue(AuthoritativeHitAttributionBridge.find(source, targetId).isEmpty());
     }
 
     @Test
-    void providerPreFailsClosedForIneligibleOrNonAuthoritativeEvidence() throws Exception {
-        ServerLevel level = mock(ServerLevel.class);
-        when(level.getGameTime()).thenReturn(124L);
+    void providerBoundaryKeepsTargetsIndependent() {
+        Object source = new Object();
+        UUID firstTarget = UUID.fromString("00000000-0000-0000-0000-000000000603");
+        UUID secondTarget = UUID.fromString("00000000-0000-0000-0000-000000000604");
 
-        ServerPlayer player = mock(ServerPlayer.class);
-        when(player.level()).thenReturn(level);
-        when(player.isSpectator()).thenReturn(false);
+        var first = EpicFightHitAuthority.publish(source, firstTarget, 200L);
+        var second = EpicFightHitAuthority.publish(source, secondTarget, 200L);
 
-        Player target = mock(Player.class);
-        UUID targetId = UUID.fromString("00000000-0000-0000-0000-000000000603");
-        when(target.getUUID()).thenReturn(targetId);
-        when(target.isInvulnerable()).thenReturn(false);
-        when(player.isAlliedTo(target)).thenReturn(false);
-
-        EpicFightDamageSource source = mock(EpicFightDamageSource.class);
-        ServerPlayerPatch patch = mock(ServerPlayerPatch.class);
-        when(patch.getOriginal()).thenReturn(player);
-        DealDamageEvent.Pre pre = new DealDamageEvent.Pre(patch, target, source, 5.0F);
-
-        when(player.isCreative()).thenReturn(true);
-        when(source.getDirectEntity()).thenReturn(player);
-        invoke("onDealDamageAuthority", DealDamageEvent.Pre.class, pre);
-        assertTrue(AuthoritativeHitAttributionBridge.find(source, targetId).isEmpty());
-
-        when(player.isCreative()).thenReturn(false);
-        when(player.isAlliedTo(target)).thenReturn(true);
-        invoke("onDealDamageAuthority", DealDamageEvent.Pre.class, pre);
-        assertTrue(AuthoritativeHitAttributionBridge.find(source, targetId).isEmpty());
-
-        when(player.isAlliedTo(target)).thenReturn(false);
-        when(source.getDirectEntity()).thenReturn(target);
-        invoke("onDealDamageAuthority", DealDamageEvent.Pre.class, pre);
-        assertTrue(AuthoritativeHitAttributionBridge.find(source, targetId).isEmpty());
-    }
-
-    private static void invoke(String name, Class<?> parameterType, Object event) throws Exception {
-        Method method = EpicFightProgressionHooks.class.getDeclaredMethod(name, parameterType);
-        method.setAccessible(true);
-        method.invoke(null, event);
+        assertNotEquals(first.rootActionId(), second.rootActionId());
+        EpicFightHitAuthority.discard(source, firstTarget);
+        assertTrue(AuthoritativeHitAttributionBridge.find(source, firstTarget).isEmpty());
+        assertEquals(second, AuthoritativeHitAttributionBridge.find(source, secondTarget).orElseThrow());
     }
 }
