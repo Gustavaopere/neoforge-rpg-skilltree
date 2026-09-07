@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -45,5 +46,13 @@ final class EpicFightHitAuthorityCallbackJUnitTest {
         EpicFightHitAuthority.discard(source, firstTarget);
         assertTrue(AuthoritativeHitAttributionBridge.find(source, firstTarget).isEmpty());
         assertEquals(second, AuthoritativeHitAttributionBridge.find(source, secondTarget).orElseThrow());
+    }
+
+    @Test
+    void preAuthorityRequiresBothHostileTargetAndDirectPlayerEvidence() {
+        assertTrue(EpicFightProgressionHooks.shouldPublishHitAuthority(true, true));
+        assertFalse(EpicFightProgressionHooks.shouldPublishHitAuthority(false, true));
+        assertFalse(EpicFightProgressionHooks.shouldPublishHitAuthority(true, false));
+        assertFalse(EpicFightProgressionHooks.shouldPublishHitAuthority(false, false));
     }
 }
