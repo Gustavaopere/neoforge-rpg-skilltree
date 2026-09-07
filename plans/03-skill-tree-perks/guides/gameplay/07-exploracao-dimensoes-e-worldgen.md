@@ -1,4 +1,4 @@
-<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-06 -->
+<!-- Guia temático canônico versionado no GitHub | reconciliado contra modlist.txt 2026-09-07 -->
 
 [← Índice do guia](README.md)
 
@@ -32,7 +32,7 @@ A build instalada `3.1.1` é para NeoForge 1.21.1 e depende de YUNG's API.
 
 `alexscaves-1.0.9-neoforge+1.21.1.jar`
 **Alex's Caves Continued** é a implementação canônica escolhida para o `modid alexscaves` no pack. Ela preserva os seis destinos subterrâneos do conteúdo original — **Magnetic Caves, Primordial Caves, Toxic Caves, Abyssal Chasm, Forlorn Hollows e Candy Cavity** — com seus blocos, criaturas, itens, Cave Tablets/Cave Compendium e progressão de descoberta.
-A decisão de curadoria de 06/09/2026 é **Manter** esta build NeoForge 1.21.1 `1.0.9` e **Tirar** `alexscaves-2.0.2.jar`. Enquanto os dois JARs continuarem fisicamente na pasta `mods`, o NeoForge encontra `modid alexscaves` duplicado durante discovery e o pack permanece bloqueado antes do runtime normal.
+A modlist física de 07/09/2026 confirma que `alexscaves-2.0.2.jar` foi removido e que somente `alexscaves-1.0.9-neoforge+1.21.1.jar` permanece. Portanto o antigo bloqueio de discovery por `modid alexscaves` duplicado está **fisicamente resolvido**. A decisão curatorial continua **Manter** Alex's Caves Continued.
 
 ## Deeper and Darker — 1.4.1
 
@@ -71,17 +71,17 @@ A linha `1.7.2` também usa expressões data-driven para chance/densidade de wor
 **Dynamic Trees Plus** amplia a infraestrutura do core para vegetação que não cabe no modelo simples de árvore convencional. Ele fornece tipos e comportamentos adicionais usados por **fungos gigantes, cactos e outras plantas/estruturas arbóreas especiais**, além de recursos comuns consumidos por treepacks externos.
 No pack ele funciona principalmente como extensão técnica do Dynamic Trees e como dependência de integrações que precisam representar vegetação especial — por exemplo, conteúdos de BetterEnd/BWG. A build instalada é `1.3.2` para NeoForge 1.21.1.
 
-### Dynamic Trees - BetterEnd — 2.0.0h
+### Dynamic Trees - BetterEnd — 2.2.0
 
-`dtbetterend-1.21.1-2.1.0.jar`
+`dtbetterend-1.21.1-2.2.0.jar`
 Bridge **BetterEnd ↔ Dynamic Trees**. Converte espécies e vegetação arbórea/fúngica relevantes do BetterEnd para o modelo de crescimento dinâmico, de modo que a flora da dimensão continue aparecendo nos biomas corretos sem voltar a árvores estáticas vanilla-style.
-O addon também utiliza recursos do Dynamic Trees Plus quando precisa representar vegetação especial. A build `2.0.0h` corresponde exatamente ao JAR NeoForge 1.21.1 instalado.
+O addon também utiliza recursos do Dynamic Trees Plus quando precisa representar vegetação especial. A modlist física de 07/09/2026 confirma JAR e runtime `2.2.0`.
 
-### Dynamic Trees - BetterNether — 2.0.0h
+### Dynamic Trees - BetterNether — 2.2.0
 
-`dtbetternether-1.21.1-2.1.0.jar`
+`dtbetternether-1.21.1-2.2.0.jar`
 Bridge **BetterNether ↔ Dynamic Trees**. Adapta árvores e vegetação compatível dos biomas BetterNether ao sistema de espécies dinâmicas, incluindo crescimento, sementes e substituição durante worldgen.
-Seu papel é preservar a identidade vegetal do BetterNether enquanto o core Dynamic Trees controla como as espécies crescem e se renovam. A build instalada é `2.0.0h`.
+Seu papel é preservar a identidade vegetal do BetterNether enquanto o core Dynamic Trees controla como as espécies crescem e se renovam. A modlist física de 07/09/2026 confirma JAR e runtime `2.2.0`.
 
 ### Dynamic Trees - Oh The Biomes We've Gone — 1.1.0-BETA02
 
@@ -127,4 +127,4 @@ O mod atua na geração física de cursos d'água e portanto é diferente de exp
 
 ## Nota operacional — `alexscaves`
 
-A decisão de curadoria está **fechada**: manter `alexscaves-1.0.9-neoforge+1.21.1.jar` (**Alex's Caves Continued 1.0.9**) e retirar `alexscaves-2.0.2.jar`. A modlist atual ainda contém os dois JARs com `modid alexscaves`, portanto o pack continua bloqueado durante discovery até a remoção física do 2.0.2. Após remover, regenerar a modlist; só então atualizar o estado físico no Notion.
+A decisão curatorial e o estado físico agora estão alinhados: `alexscaves-1.0.9-neoforge+1.21.1.jar` permanece como implementação canônica e `alexscaves-2.0.2.jar` não aparece mais na modlist física de 07/09/2026. Não existe bloqueio de startup por duplicidade `alexscaves` no snapshot atual.

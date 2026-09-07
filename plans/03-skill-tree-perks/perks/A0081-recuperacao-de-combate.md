@@ -4,9 +4,7 @@
 
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability em 2026-08-31.
 - **Notion:** `3c569db9-f0db-81cb-a393-d34c2a87af0d`; Gate/Fallback/Regra corrigidos; re-fetch PASS.
-- **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
-- **Estado Chat 3:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA / AGUARDANDO MERGE DA PR #372**.
-- A0081 permanece **indisponível/não comprável** enquanto A0075 estiver indisponível.
+- **Runtime observado:** `CombatRecoveryService` implementa a matemática e o parcelamento, mas A0081 deve permanecer **indisponível/não comprável** enquanto A0075 estiver indisponível.
 
 ## Contrato canônico
 
@@ -26,46 +24,21 @@ Perda de A0075 por rank loss/respec/rules reload também invalida imediatamente 
 ## Cobertura de providers
 
 - Minecraft/NeoForge: dano/vida/cura e timing server-side.
-- Epic Fight 21.17.3.1: classificação provider-native de melee e root de ação quando comprovada.
+- Epic Fight 21.17.3.1: apenas classificação da ação marcial quando comprovada.
 - Simply Swords 1.70.2, Simply More 1.3.0 ALPHA e bridges: podem fornecer armas, mas habilidades/procs provider-native não viram melee direto apenas porque o jogador segura uma arma.
 - Cold Sweat 2.4.2 e Thirst Was Reclaimed 3.0.4: não modulam A0081; o bloqueio vem somente da dependência A0075.
 - Magia, summons, companions, Black Arcana Backlash, Enshrouded/Volcanoes hazards e dano de máquinas/contraptions: inelegíveis.
 
-## Implementação Chat 2 — 2026-09-01
+## Evidência runtime
 
-- `CombatPerkAvailabilityRuntime` mascara A0081 e rejeita purchase antes de replay/custo enquanto A0075 estiver indisponível;
-- `A0081A0100RuntimeState.ranks(...)` passou a usar `effectiveRanks` e limpa `SustainResolver`, `CombatRecoveryService`, defense state, Blood Thirst e receipts provider quando a snapshot efetiva muda;
-- `CombatRecoveryService` existente continua como owner da reserva, snapshot, quatro parcelas, clipping de overkill, confirmação do heal e dedup por root;
-- Epic Fight entrega o `rootActionId` provider-native ao `A0081A0090ProviderHitRegistry`; o pagamento só ocorre em `LivingDamageEvent.Post`, com dano pós-mitigação real;
-- fallback vanilla aceita melee somente para `minecraft:player_attack` no `DamageSource` vanilla direto; sources custom/provider não são promovidas por mera presença de item na mão;
-- arrows de bow/crossbow exigem launch receipt server-side; siblings gerados pela mesma janela de lançamento compartilham uma root, impedindo multiplicação artificial por Multishot;
-- como o rank efetivo de A0081 é zero no estado atual, nenhuma reserva/parcelamento pode vazar enquanto A0075 permanecer indisponível.
+`CombatRecoveryService` já implementa cap, snapshot, quatro parcelas, clipping de overkill, confirmação do heal e dedup por root. `A0081A0100CombatEvents` chama o serviço apenas em POST de dano físico capturado, mas o classificador atual `direct player + main hand não vazia` ainda precisa prova regressiva contra ability-derived hits e fontes provider-native.
 
-## Checklist Chat 2
+## Pendências para Chat 2
 
-- [x] Hook/runtime já presente e reconciliado com POST pós-mitigação
-- [x] Gate A0075→A0081 implementado em availability
-- [x] Purchase fail-closed sem gasto/rank fantasma
-- [x] Root Epic Fight provider-native preservada
-- [x] Fallback vanilla estreitado para `minecraft:player_attack`
-- [x] Projectile launch/root dedup implementado
-- [x] Cleanup em rank/availability change e lifecycle implementado
-- [x] Código presente em fail-closed
-- [ ] **VALIDAÇÃO CHAT 3:** overkill/cap/snapshot/quatro parcelas
-- [ ] **VALIDAÇÃO CHAT 3:** dano hostil interrompe fase e expiry 10 s
-- [ ] **VALIDAÇÃO CHAT 3:** dedup Epic Fight/vanilla e Multishot
-- [ ] **VALIDAÇÃO CHAT 3:** GameTests/testes de integração
-- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
-- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
-- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
-- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
-
-## Pendências para Chat 3
-
-- provar dinamicamente que A0075 indisponível impede purchase/rank efetivo A0081;
-- exercitar rank loss/respec/rules reload e confirmar reserva/snapshot zerados;
-- testar melee vanilla, Epic Fight e tentativa de ability/proc com item na mão;
-- testar Multishot, cancelamento/dano zero e ausência de múltiplas reservas para uma única root.
+- **P-A0081-01 BLOQUEANTE:** aplicar unavailable-node invariant transitivo A0075→A0081 no purchase/gate; nenhum gasto/rank enquanto A0075 não for legitimamente disponível.
+- **P-A0081-02:** limpar reserva/snapshot em rank loss, respec, rules reload ou perda de availability de A0075, além do lifecycle já existente.
+- **P-A0081-03:** provar root melee de arma real; não classificar proc/ability/summon como melee direto pela simples presença de item na mão.
+- **P-A0081-04:** GameTests de overkill, quatro parcelas, dano hostil interrompendo fase, zero missing health, expiry, dedup e multiplayer.
 
 ## Nove eixos obrigatórios
 
@@ -81,30 +54,4 @@ Perda de A0075 por rank loss/respec/rules reload também invalida imediatamente 
 | NeoVitae | PASS | removido/ausente. |
 | Providers | PASS no design | provider-native first; fontes indiretas/hazards fail-closed. |
 
-Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
-
-## Validação Chat 3 — 2026-09-07
-
-- `A0081A0100CombatPolicyTest` confirmou cap de reserva de 8% da vida máxima, atraso de 3 s, snapshot congelado em quatro parcelas, desconto apenas da cura real, interrupção por dano hostil e expiração após 10 s.
-- `A0081A0090RuntimeCoverageJUnitTest` confirmou availability A0075→A0081, rank persistido mascarado para rank efetivo zero e limpeza de claims/estado quando a snapshot efetiva muda.
-- `A0081A0090EventCoverageJUnitTest` confirmou cleanup em morte, logout, troca de dimensão, respawn e server stop, além da correlação projectile/root e descarte de dano zero.
-- Baseline de validação de código `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI run `34147843664` SUCCESS, incluindo JUnit 5, NeoForge JUnit, GameTests, build, JAR e dedicated-server smoke; Sonar run `34147843581` SUCCESS; CodeQL run `34147843620` SUCCESS.
-- **Resultado:** o comportamento fail-closed aprovado está confirmado. A perk não é promovida a jogável enquanto A0075 continuar indisponível.
-
-### Checklist final Chat 3
-
-- [x] Design aprovado pelo Chat 1
-- [x] Código presente pelo Chat 2
-- [x] Contrato revisado contra o código
-- [x] Availability/gate transitivo confirmado
-- [x] Fail-closed e rank efetivo zero confirmados
-- [x] Deduplicação/lifecycle confirmados
-- [x] Testes unitários/NeoForge JUnit verdes
-- [x] GameTests verdes
-- [x] Build NeoForge verde
-- [x] Dedicated-server smoke verde
-- [x] SonarQube e CodeQL verdes no baseline funcional
-- [x] **IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**
-- [x] **JOGABILIDADE N/A no estado atual — node estruturalmente indisponível por contrato**
-
-O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.
+Os 18 critérios passam **no design** porque a indisponibilidade transitiva é explícita.

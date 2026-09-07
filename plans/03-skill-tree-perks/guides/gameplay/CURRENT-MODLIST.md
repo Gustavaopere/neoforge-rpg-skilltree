@@ -12,7 +12,9 @@ A `modlist.txt` atual contém **612 entradas top-level**, incluindo o NeoForge m
 - **4** remoções físicas reais;
 - saldo: **+5**;
 - estado atual: **612** entradas top-level;
-- Notion reconciliado: **612 `Instalado` + 4 `Removido`** com JAR preenchido e **617/617** registros `Verificado`.
+- Notion reconciliado: **612 `Instalado`**, **612 JARs físicos distintos** e **613/613 registros `Verificado`**; a 613ª linha é não física e não representa outro JAR instalado;
+- auditoria de versão runtime fechada: **605/605 JARs que declaram `modVersion` batem exatamente com `Versão 1.21.1` no Notion**;
+- **7/7 JARs sem `modVersion` físico** permanecem com `Versão 1.21.1` vazia no Notion; filename/publicação são documentados separadamente e não são promovidos a runtime metadata.
 
 ## Snapshot temático de 06/09
 
@@ -49,11 +51,15 @@ A modlist de 07/09 confirma a remoção física de:
 - `spore_1.21.1_2.2.0j_neo.jar`;
 - `Infnexus-2.0.4-1.21.1.jar`.
 
-Os dois bloqueios de discovery por IDs duplicados `alexscaves` e `alexsmobs` estão, portanto, **fisicamente resolvidos**. Alex's Caves Continued 1.0.9 permanece; Alex's Mobs Continued permanece e foi atualizado para 2.1.10.
+Os dois bloqueios de discovery por IDs duplicados `alexscaves` e `alexsmobs` estão, portanto, **fisicamente resolvidos**. Alex's Caves Continued `1.0.9` permanece como única implementação `alexscaves`; Alex's Mobs Continued permanece como única implementação `alexsmobs` e foi atualizado para `2.1.10`.
 
 ## Authority de curadoria
 
-Presença física e decisão curatorial são estados distintos. [`CURATION-DECISIONS-2026-09-06.md`](CURATION-DECISIONS-2026-09-06.md) continua sendo authority das decisões fechadas em 06/09; o delta de 07/09 registra a execução física posterior. Em particular, Create: Bits 'n' Bobs continua fisicamente `Instalado`, agora em 2.3.1, mas a decisão **Tirar** permanece.
+Presença física e decisão curatorial são estados distintos. [`CURATION-DECISIONS-2026-09-06.md`](CURATION-DECISIONS-2026-09-06.md) registra o fechamento de 06/09; para decisões explicitamente revistas depois disso, prevalece [`CURATION-DECISIONS-2026-09-07.md`](CURATION-DECISIONS-2026-09-07.md).
+
+- **Create: Bits 'n' Bobs 2.3.1 — `Manter`.** O conflito visual documentado com os Thermochemical Cogwheels de Create: Sulfuric Resonance 0.4.1 é aceito conscientemente e deve continuar monitorado/testado; `Manter` não significa que o conflito foi tecnicamente corrigido.
+- **More Relics 1.7.7 — `Manter`.** O desvio declarado pelo upstream em relação a Relics 0.12.8 é risco aceito para presença no pack; perks/integrações que dependam de comportamento específico de More Relics continuam fail-closed até teste real.
+- **Integrated Mowzie's Mobs 1.1.0 — `Manter`.** O projeto oficial está identificado; o artefato local 1.1.0 é autoridade física, enquanto a publicação pública exata dessa build permanece não demonstrada.
 
 ## Regra operacional
 
@@ -61,3 +67,4 @@ Presença física e decisão curatorial são estados distintos. [`CURATION-DECIS
 - Os capítulos são authority descritiva de função, integração, riscos e classificação provider/bridge/library/presentation.
 - Biblioteca, UI, visual, compat ou scripting não deve ser promovido automaticamente a provider mecânico.
 - Um update de versão não revalida automaticamente hooks/APIs usados por perks.
+- Quando um capítulo histórico contradizer explicitamente este fechamento de 07/09 sobre presença, runtime ou uma decisão revisada, **este fechamento prevalece** até o capítulo ser atualizado.

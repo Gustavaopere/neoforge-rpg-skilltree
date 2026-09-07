@@ -4,9 +4,7 @@
 
 - **Design:** APROVADO após hardening de dedup provider-native em 2026-08-31.
 - **Notion:** `3c569db9-f0db-813d-bba3-c9abdd43e9a6`; Hook/Fallback/Regra corrigidos; re-fetch PASS.
-- **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
-- **Estado Chat 3:** **IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS FÍSICOS CAUSAIS / AGUARDANDO MERGE DA PR #372**.
-- Ignitium/Blazing Brand permanece **FAIL-CLOSED por fonte** até existir receipt exato da cura provider-native final.
+- **Runtime observado:** backend físico canônico presente para armas comuns; integração de lifesteal nativo de Ignitium ainda não está correlacionada e deve falhar fechado por fonte.
 
 ## Contrato canônico
 
@@ -17,58 +15,34 @@
 
 ## Provider-native first e Ignitium
 
-Simply Swords: Cataclysm 1.0.2 possui lifesteal provider-native em Ignitium/Blazing Brand. O upstream confirma que o efeito chama `attacker.heal(...)` diretamente dentro do callback de hit e que `simplycataclysm:ignitium_gear` lista as quinze famílias Ignitium do addon.
+Simply Swords: Cataclysm 1.0.2 possui lifesteal provider-native em Ignitium/Blazing Brand. Esse heal não pode ser reexecutado nem somado integralmente ao A0082.
 
-Não existe receipt final da mesma cura exposto ao RPG Skill Tree. Portanto o Chat 2 **não** usa `EXACT_INTERCEPTED` fictício: qualquer root cuja arma esteja no tag `simplycataclysm:ignitium_gear` entra como `NativeCorrelation.AMBIGUOUS` e recebe cura Skill Tree igual a zero. Armas físicas comprovadas fora dessa fonte continuam funcionando.
+Para roots com lifesteal nativo, a integração exige correlação exata da **mesma root action** e da cura nativa final realmente aplicada. Enquanto o adapter não provar isso, roots de Ignitium com lifesteal ficam inelegíveis para a parcela Skill Tree. É proibido deixar `NativeCorrelation.NONE` e pagar uma segunda cura.
+
+Demais armas comprovadas continuam utilizáveis; a falta de binding de uma fonte específica não torna A0082 globalmente indisponível.
 
 ## Cobertura de providers
 
 - Minecraft/NeoForge: POST damage e cura.
-- Epic Fight 21.17.3.1: classificação/root provider-native quando aplicável.
+- Epic Fight 21.17.3.1: classificação/preset quando aplicável, sem apropriar efeitos Simply.
 - Simply Swords 1.70.2: weapon types/implicits/runic/uniques permanecem provider-native.
 - Simply More 1.3.0 ALPHA: somente armas/efeitos concretamente provados; unique sem efeito real não ganha semântica inventada.
 - Integrated Simply Swords 1.4.0: bridge material, coberta pela classificação universal quando a origem for comprovada.
-- Simply Swords: Cataclysm 1.0.2: tag `simplycataclysm:ignitium_gear` é boundary de native-heal ambíguo.
-- Vampirism 1.10.12: não recebe integração sem receipt concreto correlacionável; economia de sangue não é lifesteal presumido.
+- Simply Swords: Cataclysm 1.0.2: Ignitium exige native-heal dedup exato.
+- Vampirism 1.10.12: só entra se houver heal/lifesteal concreto correlacionável; economia de sangue não é lifesteal presumido.
 - Pufferfish's Attributes 0.8.3 não é provider genérico de sustain.
 - Tech machines/turrets/fake players, summons/companions e hazards ambientais são excluídos.
 
-## Implementação Chat 2 — 2026-09-01
+## Evidência runtime
 
-- `A0081A0090SustainRuntime` centraliza A0082 no mesmo `SustainResolver` existente;
-- Epic Fight PRE publica `PhysicalHitReceipt` com a root provider-native e `ItemStack` usado; a cura só é calculada no NeoForge POST com dano pós-mitigação final;
-- fallback vanilla corpo a corpo aceita apenas `minecraft:player_attack` no `DamageSource` vanilla direto, impedindo que qualquer source custom/ability seja promovida só porque há uma arma na main hand;
-- bow/crossbow exigem launch receipt e siblings da mesma janela de lançamento compartilham root, cobrindo Multishot sem multiplicar o pipeline;
-- Ignitium usa o tag provider-native `simplycataclysm:ignitium_gear`; essas roots são enviadas ao `SustainResolver` como `AMBIGUOUS` e a parcela Skill Tree falha fechado;
-- `SustainResolver` continua owner de max-coefficient, claim-once, cap 3%/20 ticks, overkill e missing-health clipping;
-- nenhuma bridge de Vampirism, summon, companion, machine ou proc de terceiro foi inventada.
+`SustainResolver` já implementa max-coefficient, cap móvel, native correlation, clipping e dedup por root. `A0081A0100CombatEvents` hoje captura melee direto ou `AbstractArrow` físico e chama o resolvedor com `NativeCorrelation.NONE` para todos os casos. Logo armas comuns têm caminho funcional, mas Ignitium precisa ser excluído até o adapter nativo existir.
 
-## Checklist Chat 2
+## Pendências para Chat 2
 
-- [x] Hook físico pós-mitigação implementado
-- [x] Root Epic Fight provider-native preservada
-- [x] Fallback vanilla estreito implementado
-- [x] Projectile launch/Multishot root implementado
-- [x] `SustainResolver` único preservado
-- [x] Ignitium native lifesteal fail-closed por tag provider-native
-- [x] Deduplicação por root preservada
-- [x] Código presente
-- [ ] **PENDÊNCIA NÃO BLOQUEANTE:** `EXACT_INTERCEPTED` de Ignitium continua ausente; fonte fica com Skill Tree=0
-- [ ] **VALIDAÇÃO CHAT 3:** armas vanilla/Epic Fight/projectile/Multishot
-- [ ] **VALIDAÇÃO CHAT 3:** Ignitium não recebe double-heal
-- [ ] **VALIDAÇÃO CHAT 3:** cap/missing health/overkill/dedup/multiplayer
-- [ ] **VALIDAÇÃO CHAT 3:** GameTests/testes de integração
-- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
-- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
-- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
-- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
-
-## Pendências para Chat 3
-
-- validar que o tag Ignitium cobre as armas instaladas e que cada root recebe parcela Skill Tree exatamente zero;
-- validar provider-present/absent e nenhum linkage obrigatório com SimplyCataclysm;
-- validar que Epic Fight e NeoForge não resolvem a mesma root duas vezes;
-- validar Multishot, projectile cancelado/zero damage e source custom/ability inelegível.
+- **P-A0082-01 BLOQUEANTE POR FONTE:** interceptar/correlacionar lifesteal nativo de Ignitium no mesmo root e alimentar `EXACT_INTERCEPTED`; até lá excluir essa fonte da parcela A0082.
+- **P-A0082-02:** endurecer provenance de arma/projétil para não classificar abilities/procs de Simply/terceiros pela simples main hand.
+- **P-A0082-03:** garantir uma única root entre Epic Fight/NeoForge/provider bridges e testar Multishot/projéteis derivados quando aplicável.
+- **P-A0082-04:** testes provider-present/absent, native heal menor/maior que parcela Skill Tree, cap, missing health, overkill e multiplayer.
 
 ## Nove eixos obrigatórios
 
@@ -84,32 +58,4 @@ Não existe receipt final da mesma cura exposto ao RPG Skill Tree. Portanto o Ch
 | NeoVitae | PASS | ausente. |
 | Providers | PASS no design | native-first e fail-closed por fonte ambígua. |
 
-Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
-
-## Validação Chat 3 — 2026-09-07
-
-- A suíte funcional confirmou `SustainResolver` com maior coeficiente, claim-once por root, cap compartilhado de 3%/20 ticks, clipping de overkill/missing health e isolamento por ator.
-- A suíte runtime confirmou handoff físico uma única vez e ausência de cura Skill Tree para fonte native-lifesteal ambígua.
-- A suíte de eventos confirmou bow/projectile root, fallback fail-closed para correlação expirada, provider receipt prioritário, dano zero sem pagamento e lifecycle bounded.
-- O review P1 sobre crossbow foi revalidado contra o hook real do NeoForge 1.21.1 e encerrado: `CrossbowItem.performShooting` passa pelo `ArrowLooseEvent`; não foi criado segundo hook concorrente.
-- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
-- **Resultado:** A0082 está confirmada nos bindings físicos causais suportados. Ignitium continua fail-closed por fonte, sem double-heal e sem bloquear armas físicas comuns comprovadas.
-
-### Checklist final Chat 3
-
-- [x] Design aprovado e código presente
-- [x] Contrato físico revisado contra runtime
-- [x] Provider-native/root causal confirmado
-- [x] Fallback vanilla estreito confirmado
-- [x] Projectile/Multishot dedup confirmado
-- [x] Ignitium/native lifesteal ambíguo fail-closed confirmado
-- [x] Cap/overkill/missing health/claim-once confirmados
-- [x] Lifecycle e dano zero confirmados
-- [x] Testes unitários/NeoForge JUnit e GameTests verdes
-- [x] Build NeoForge e dedicated-server smoke verdes
-- [x] SonarQube e CodeQL verdes no baseline funcional
-- [x] **IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS FÍSICOS CAUSAIS**
-
-Pendência não bloqueante preservada: `EXACT_INTERCEPTED` de Ignitium não existe; essa fonte permanece com parcela Skill Tree igual a zero.
-
-O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.
+Os 18 critérios passam **no design**; a pendência de Ignitium é técnica e explicitamente fail-closed.

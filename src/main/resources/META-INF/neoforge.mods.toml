@@ -64,9 +64,9 @@ ordering="NONE"
 side="BOTH"
 
 [[dependencies.${mod_id}]]
-modId="eidolon"
+modId="eidolon_repraised"
 type="optional"
-reason="Optional Eidolon progression integration"
+reason="Optional Eidolon: Repraised progression integration"
 ordering="NONE"
 side="BOTH"
 

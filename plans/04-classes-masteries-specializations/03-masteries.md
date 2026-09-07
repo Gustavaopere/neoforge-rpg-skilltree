@@ -100,6 +100,17 @@
 - [x] O ciclo TDD do gate começou no commit `674bc5d0927285d0493d1e6d844500832dcfed53`; SonarQube Cloud `34064478820`, job `101570718580`, observou o RED com `:compileTestJava FAILED` e 14 erros `cannot find symbol` para `MalumIntegrationState`, `MalumIntegrationBootstrap` e `MalumVersionContract` antes da implementação.
 - [x] Nenhuma curva, cap, threshold, peso de investimento ou valor global de balanceamento foi criado ou alterado neste fechamento de fonte.
 
+## Progresso runtime confirmado — EIDOLON: REPRAISED
+
+- [x] Provider alvo confirmado na modlist física, no Catálogo Mestre e no build: Eidolon: Repraised `0.5.0.2` (`eidolon_repraised-1.21.1-0.5.0.2.jar`), com mod id runtime `eidolon_repraised`. O ID legado `eidolon` foi removido do registry opcional, metadata NeoForge e matrizes de smoke/bootstrap.
+- [x] `EidolonVersionContract` aceita exatamente `0.5.0.2`. `EidolonIntegrationBootstrap` distingue `ABSENT_PROVIDER`, `UNSUPPORTED_VERSION`, `ACTIVE` e `FAILED_CLOSED`; versão divergente ou falha de registro não ativa silenciosamente os listeners provider-specific.
+- [x] O produtor de ritual existente foi preservado: interação com Flint & Steel é somente intent; o award exige o `BrazierTileEntity` provider-native provar ritual selecionado, transição de burning e `ritualDone=true` antes da conclusão. Ritual abortado/extinto sem confirmação não concede Mastery.
+- [x] O produtor de alquimia existente também foi preservado: interação/toss apenas associa contribuinte a um `CrucibleTileEntity`; a confirmação exige spawn de item compatível com o resultado exato de uma `CrucibleRecipe` ativa, identidade estável de recipe e pending causal válido do mesmo player/dimensão/janela.
+- [x] Os dois fluxos convergem exclusivamente em `MasteryPolicies.forEidolonRitual`/`MasteryPolicies.forEidolonAlchemy` → `PlayerProgressionRuntime.awardMasteryAndDiscoveries`; não foi criado ledger, recurso ou segundo pipeline paralelo.
+- [x] `FakePlayer`, creative e spectator permanecem inelegíveis; logout remove pendências transitórias, e ausência de confirmação provider-native falha fechado sem award substituto.
+- [x] O RED TDD foi observado no `RPG Skill Tree CI` `34148023477`, job `101824145746`: `:compileTestJava FAILED` com 14 erros `cannot find symbol` para `EidolonIntegrationState`, `EidolonIntegrationBootstrap` e `EidolonVersionContract` antes da implementação. A primeira rodada GREEN-candidate ainda expôs IDs legados adicionais nos contratos Foundation, que foram corrigidos antes do fechamento final.
+- [x] Nenhuma curva, cap, threshold, peso de investimento ou valor global de balanceamento foi criado ou alterado neste fechamento de fonte.
+
 ## Progresso runtime confirmado — CREATE
 
 - [x] Provider alvo confirmado na modlist/registro de projeto: Create `6.0.10`. `CreateVersionContract` aceita exatamente `6.0.10`; provider ausente, versão diferente ou falha de registro não ativa silenciosamente o adapter.
