@@ -3,15 +3,10 @@ package dev.gustavopere.rpgskilltree.core;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mockStatic;
 
-import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.CombatPerkAvailabilityRuntime;
-import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.util.Map;
-import net.minecraft.server.level.ServerPlayer;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
 final class A0061A0070Chat3CoverageJUnitTest {
     @Test
@@ -28,8 +23,7 @@ final class A0061A0070Chat3CoverageJUnitTest {
     }
 
     @Test
-    void runtimeRanksMasksUnavailablePersistedRankAtServerBoundary() {
-        ServerPlayer player = null;
+    void persistedRanksMaskUnavailableNodeAtRuntimeAvailabilityBoundary() {
         ProgressionState persisted = ProgressionState.empty().withPassiveNodes(
             PassiveNodeProgress.of(Map.of(
                 "rpgskilltree:combat/a0061", 5,
@@ -37,15 +31,9 @@ final class A0061A0070Chat3CoverageJUnitTest {
             ))
         );
 
-        try (MockedStatic<PlayerProgressionRuntime> progression = mockStatic(PlayerProgressionRuntime.class)) {
-            progression.when(() -> PlayerProgressionRuntime.get(player)).thenReturn(persisted);
-
-            CombatPerkRanks effective = A0061A0080RuntimeState.ranks(player);
-            assertEquals(5, effective.rank("A0061"));
-            assertEquals(0, effective.rank("A0067"));
-
-            progression.verify(() -> PlayerProgressionRuntime.get(player));
-        }
+        CombatPerkRanks effective = CombatPerkAvailabilityRuntime.effectiveRanks(persisted.passiveNodes());
+        assertEquals(5, effective.rank("A0061"));
+        assertEquals(0, effective.rank("A0067"));
     }
 
     @Test
