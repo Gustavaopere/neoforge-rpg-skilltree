@@ -54,6 +54,20 @@
 - [x] Creative, spectator e `FakePlayer` continuam inelegíveis pelo adapter Epic Fight; categorias fora de `fist|knuckle` e dano não positivo falham fechado.
 - [x] Contrato coberto por teste core; build NeoForge, GameTests e dedicated-server smoke permanecem gates de CI.
 
+## Progresso runtime confirmado — EPIC FIGHT
+
+- [x] Provider alvo confirmado na modlist física e no Catálogo Mestre: Epic Fight `21.17.3.1` (`epic-fight-21.17.3.1-mc1.21.1-neoforge.jar`). O adapter continua protegido pelo `EpicFightVersionContract` exato para essa versão.
+- [x] `EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST` permanece uma fronteira provider-native pós-resultado para Mastery de arma: exige `ServerPlayer` elegível, alvo hostil, dano modificado positivo e capability real de arma antes de produzir milestone deduplicado por categoria + tipo hostil.
+- [x] `EpicFightEventHooks.Entity.ON_DODGE` permanece autoridade pós-resultado para esquiva efetivamente sucedida e usa discovery persistente `mastery:epicfight:dodge_success/first`, impedindo farm de repetição.
+- [x] `EpicFightEventHooks.Player.CONSUME_SKILL` **não é autoridade de Mastery**. Na revisão upstream auditada, o provider publica `SkillConsumeEvent`, depois verifica `consumeEvent.isCanceled()` e somente então executa o consumer do recurso; portanto outro listener ainda pode cancelar a ação depois do callback do RPG Skill Tree.
+- [x] O handler `onSkillConsume` permanece somente como boundary provider-native para ajustar o custo real de stamina através de `EpicFightStaminaPolicy` e `event.setAmount(...)`. Ele não cria `CombatAction`, não persiste discovery e não chama o pipeline de Mastery.
+- [x] `MasteryPolicies.forEpicFight` rejeita explicitamente ações cuja origem seja `epicfight:skill_consume`, fornecendo defesa em profundidade caso um caller futuro tente reutilizar o pré-consumo como autoridade.
+- [x] Guard, mover, weapon innate e Mastery genérica de skill/stamina que dependiam apenas de `CONSUME_SKILL` ficam **FAIL-CLOSED** até existir um boundary provider-native pós-execução comprovável; não há fallback em bônus genérico, tick, comparação de stamina posterior ou inferência temporal ambígua.
+- [x] Os fluxos confirmados convergem no pipeline canônico `MasteryPolicies.forEpicFight` → `PlayerProgressionRuntime.awardMasteryAndDiscoveries`; o pré-consumo não grava sequer discovery vazio, evitando que uma tentativa cancelada queime ou conceda milestone.
+- [x] Creative, spectator e `FakePlayer` permanecem inelegíveis nos handlers provider-specific já existentes.
+- [x] O RED TDD foi observado no `RPG Skill Tree CI` `34151024231`, job `101833157762`: 1214 testes foram executados e somente `EpicFightSkillConsumeMasteryAuthorityJUnitTest.preConsumeSkillEventCannotAwardMastery` falhou antes do fix. A primeira rodada candidata depois do runtime fix expôs ainda `EpicFightDepthPolicyTest` com a expectativa histórica de `+10 guard` no mesmo pré-consumo; esse contrato obsoleto foi atualizado para exigir fail-closed.
+- [x] Nenhuma curva, cap, threshold, peso de investimento ou valor global de balanceamento foi criado ou alterado neste fechamento de fonte.
+
 ## Progresso runtime confirmado — IRON'S SPELLS
 
 - [x] Provider alvo confirmado no build: Iron's Spells 'n Spellbooks `1.21.1-3.16.3`.

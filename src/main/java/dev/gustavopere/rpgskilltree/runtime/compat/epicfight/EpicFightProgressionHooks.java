@@ -8,7 +8,6 @@ import dev.gustavopere.rpgskilltree.core.FistMasteryMilestonePolicy;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.WeaponMasteryMilestoneRuntime;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -30,7 +29,7 @@ import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 public final class EpicFightProgressionHooks {
     private static final String HIT_AUTHORITY_SUBSCRIBER_ID = "rpgskilltree:hit_authority/pre";
     private static final String DAMAGE_SUBSCRIBER_ID = "rpgskilltree:mastery/damage";
-    private static final String SKILL_SUBSCRIBER_ID = "rpgskilltree:mastery/skill";
+    private static final String SKILL_SUBSCRIBER_ID = "rpgskilltree:stamina/skill";
     private static final String DODGE_SUBSCRIBER_ID = "rpgskilltree:mastery/dodge";
     private static boolean registered;
 
@@ -117,9 +116,10 @@ public final class EpicFightProgressionHooks {
     }
 
     /**
-     * Stamina skills use finite discovery milestones. Guard is stricter: the skill must be affordable
-     * and used while Epic Fight exposes a live hostile target, then each hostile entity type can award
-     * guard mastery only once. This makes the 60/80 gates reachable without permitting button farming.
+     * This hook remains authoritative only for the stamina cost adjustment. Epic Fight posts
+     * CONSUME_SKILL before it checks final cancellation and before the resource consumer executes,
+     * so it cannot prove that the skill actually consumed stamina or completed. Mastery therefore
+     * fails closed here; confirmed post-result hooks own any award.
      */
     private static void onSkillConsume(SkillConsumeEvent event) {
         if (!(event.getEntityPatch() instanceof ServerPlayerPatch patch)) return;
@@ -135,41 +135,6 @@ public final class EpicFightProgressionHooks {
             originalCost
         );
         event.setAmount(adjustedCost);
-
-        if (adjustedCost <= 0.0F || !patch.hasStamina(adjustedCost)) return;
-
-        Set<String> tags = new HashSet<>();
-        tags.add("skill");
-        tags.add("stamina");
-        tags.add("milestone");
-        switch (category) {
-            case "guard" -> tags.add("guard");
-            case "dodge" -> tags.add("dodge");
-            case "mover" -> tags.add("mover");
-            case "weapon_innate" -> tags.add("weapon_innate");
-            default -> { }
-        }
-
-        String skillId = event.getSkill().getRegistryName().toString();
-        String discoveryKey;
-        if ("guard".equals(category)) {
-            LivingEntity target = patch.getTarget();
-            if (target == null || !target.isAlive() || !hostile(player, target)) return;
-            String targetType = BuiltInRegistries.ENTITY_TYPE.getKey(target.getType()).toString();
-            discoveryKey = "mastery:epicfight:guard/hostile_type/" + targetType;
-        } else {
-            discoveryKey = "mastery:epicfight:skill/" + skillId;
-        }
-
-        CombatAction action = new CombatAction(
-            new ActionOrigin("epicfight:skill_consume", 0),
-            "epicfight",
-            "skill",
-            skillId,
-            Set.copyOf(tags),
-            adjustedCost
-        );
-        awardMilestone(player, discoveryKey, action);
     }
 
     /** A successful provider-native dodge is a milestone once; repeated dodges do not farm mastery. */
