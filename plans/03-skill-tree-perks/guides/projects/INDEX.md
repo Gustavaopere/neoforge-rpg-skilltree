@@ -17,3 +17,15 @@
 - [Delta e baseline A0081–A0090](14-capability-delta-a0081-a0090.md)
 - [Delta e baseline A0200–A0209](15-capability-delta-a0200-a0209.md)
 - [Delta e baseline especial A0200–A0299](16-capability-delta-a0200-a0299.md)
+- [Delta e baseline A0181–A0190](21-capability-delta-a0181-a0190.md)
+
+## Sequência concorrente ainda não integrada em `main`
+
+Os deltas `17`–`20` permanecem em PRs predecessoras abertas e, por isso, não aparecem ainda no índice herdado da `main` desta branch:
+
+- `17-capability-delta-a0141-a0150.md` — PR #361;
+- `18-capability-delta-a0151-a0160.md` — PR #366;
+- `19-capability-delta-a0161-a0170.md` — PR #368;
+- `20-capability-delta-a0171-a0180.md` — PR #375.
+
+A reconciliação futura deve preservar a numeração 17 → 18 → 19 → 20 → 21 sem renumerar os lotes já publicados.
