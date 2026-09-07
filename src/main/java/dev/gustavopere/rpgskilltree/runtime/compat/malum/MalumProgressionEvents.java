@@ -31,13 +31,13 @@ public final class MalumProgressionEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpiritSpoils(ModifySpiritSpoilsEvent event) {
         if (!(event.getAttacker() instanceof ServerPlayer player)) return;
-        if (player instanceof FakePlayer || player.isCreative()) return;
+        if (!MalumMasteryLogic.isEligiblePlayer(player instanceof FakePlayer, player.isCreative(), player.isSpectator())) return;
 
         LivingEntity target = event.getEntity();
         ResourceLocation targetId = BuiltInRegistries.ENTITY_TYPE.getKey(target.getType());
-        if (targetId == null) return;
-
         SpiritEvidence evidence = readSpiritEvidence(target);
+        if (!MalumMasteryLogic.hasConfirmedSpiritEvidence(evidence.spiritItemIds(), evidence.totalSpirits())) return;
+
         Set<String> tags = new HashSet<>();
         tags.add("reaping");
         tags.addAll(MalumSpiritClassifier.spiritTags(evidence.spiritItemIds()));
@@ -55,7 +55,7 @@ public final class MalumProgressionEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpiritCollected(CollectSpiritEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        if (player instanceof FakePlayer || player.isCreative()) return;
+        if (!MalumMasteryLogic.isEligiblePlayer(player instanceof FakePlayer, player.isCreative(), player.isSpectator())) return;
 
         SpiritPracticeAction action = new SpiritPracticeAction(
             new ActionOrigin("malum:collection", 0),
@@ -89,17 +89,16 @@ public final class MalumProgressionEvents {
             for (Object rawStack : stacks) {
                 if (!(rawStack instanceof ItemStack stack) || stack.isEmpty()) continue;
                 ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
-                if (itemId == null) continue;
                 ids.add(itemId.toString());
                 total += Math.max(1, stack.getCount());
             }
-            return new SpiritEvidence(List.copyOf(ids), Math.max(1, total));
-        } catch (ReflectiveOperationException | LinkageError ignored) {
+            return new SpiritEvidence(List.copyOf(ids), total);
+        } catch (ReflectiveOperationException | LinkageError | RuntimeException ignored) {
             return SpiritEvidence.EMPTY;
         }
     }
 
     private record SpiritEvidence(List<String> spiritItemIds, int totalSpirits) {
-        private static final SpiritEvidence EMPTY = new SpiritEvidence(List.of(), 1);
+        private static final SpiritEvidence EMPTY = new SpiritEvidence(List.of(), 0);
     }
 }

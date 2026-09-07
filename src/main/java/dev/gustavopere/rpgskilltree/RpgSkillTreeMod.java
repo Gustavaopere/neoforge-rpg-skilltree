@@ -32,6 +32,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationState;
@@ -222,6 +223,12 @@ public final class RpgSkillTreeMod {
             );
         }
 
+        MalumIntegrationBootstrap.install(
+            OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MALUM),
+            OptionalIntegrations.version(OptionalIntegrations.Provider.MALUM),
+            () -> NeoForge.EVENT_BUS.register(MalumProgressionEvents.class)
+        );
+
         boolean mineColoniesLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
         boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
         String mineColoniesVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
@@ -310,7 +317,6 @@ public final class RpgSkillTreeMod {
 
         if (ironsSpellbooksLoaded) NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.ARS_NOUVEAU)) NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MALUM)) NeoForge.EVENT_BUS.register(MalumProgressionEvents.class);
         if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EIDOLON)) {
             NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
             NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
