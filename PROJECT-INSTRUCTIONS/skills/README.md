@@ -12,8 +12,14 @@ Esta pasta é o ponto de entrada canônico para skills/instruções de Minecraft
 
 ## Estrutura
 
-- `library/<skill>/SKILL.md` contém a adaptação canônica e auditada do entrypoint de cada skill fornecida pelo usuário.
-- skills específicas deste projeto, como modelagem, Blockbench/GeckoLib, VFX, spells, áudio e visual QA, vivem em diretórios irmãos de `library/`.
+- `library/<skill>/SKILL.md` contém skills canônicas deste repositório: overlays auditados das 20 skills fornecidas pelo usuário e skills project-authored adicionadas para lacunas específicas.
+- `standards/` contém contratos/checklists project-specific que são melhor tratados como convenção verificável do que como uma skill genérica.
+- `tools/` contém utilitários auxiliares versionados; eles não substituem validação no runtime do Minecraft.
+
+As primeiras skills project-authored são:
+
+- `minecraft-asset-art-direction` — identidade visual e asset contract;
+- `minecraft-blockbench-geckolib` — modelagem, UV, rig e animação Blockbench/GeckoLib para o alvo do projeto.
 
 Os ZIPs originais foram auditados, mas seus exemplos multi-versão e arquivos auxiliares não são promovidos automaticamente a autoridade. Isso evita que exemplos de 1.21.4+, 1.21.8+, 1.21.11, Fabric, Forge legado, Paper ou multi-loader contaminem o runtime NeoForge 1.21.1.
 
