@@ -1,0 +1,43 @@
+name: Project instructions migration audit
+
+on:
+  push:
+    branches:
+      - docs/project-instructions-cleanup
+    paths:
+      - '.github/workflows/project-instructions-migration-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Find references to legacy perk guide paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '=== exact legacy prefix ==='
+          git grep -n -F 'plans/03-skill-tree-perks/guides' -- . \
+            ':!plans/03-skill-tree-perks/guides/**' \
+            ':!.github/workflows/project-instructions-migration-audit.yml' || true
+
+          echo '=== relative legacy references outside both guide trees ==='
+          git grep -n -E '(\./)?guides/(gameplay|magic|technology|projects)(/|\))' -- . \
+            ':!plans/03-skill-tree-perks/guides/**' \
+            ':!PROJECT-INSTRUCTIONS/guides/**' \
+            ':!.github/workflows/project-instructions-migration-audit.yml' || true
+
+          echo '=== legacy guide README references outside old tree ==='
+          git grep -n -F 'guides/README.md' -- . \
+            ':!plans/03-skill-tree-perks/guides/**' \
+            ':!PROJECT-INSTRUCTIONS/guides/**' \
+            ':!.github/workflows/project-instructions-migration-audit.yml' || true
+
+          echo '=== done ==='
