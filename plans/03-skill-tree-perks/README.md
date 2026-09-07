@@ -6,9 +6,15 @@ Base atual: 512 nós materializados e 119 declarações auditadas de efeitos de 
 
 Ordem: schema/loaders → grafo/layout → compra/ranks → efeitos → respec → conteúdo e geração de wiki.
 
+## Instruções operacionais
+
+Os critérios de aprovação, protocolos dos Chats 1/2/3, quatro guias completos e governança de modlist foram centralizados em [`../../PROJECT-INSTRUCTIONS/`](../../PROJECT-INSTRUCTIONS/README.md).
+
+A antiga árvore `plans/03-skill-tree-perks/guides/` foi movida para `PROJECT-INSTRUCTIONS/guides/` para evitar instruções operacionais espalhadas pelo repositório.
+
 ## Dossiês canônicos de perks
 
-As especificações auditadas, evidências de implementação, contratos técnicos, testes e pendências de cada perk são mantidos individualmente em [`perks/`](./perks/README.md).
+As especificações auditadas, evidências de implementação, contratos técnicos, testes e pendências de cada perk continuam mantidas individualmente em [`perks/`](./perks/README.md).
 
 O **Notion continua sendo a fonte de verdade do design**. Os dossiês do repositório registram o snapshot auditado e o estado técnico real de `main`; divergências devem permanecer explícitas como pendências, nunca ser resolvidas silenciosamente alterando a identidade da perk.
 

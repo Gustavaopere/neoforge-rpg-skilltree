@@ -23,6 +23,12 @@ Semantic architecture lives under `data/rpgskilltree/tree_architecture/`. It is 
 
 The modern archetype catalog is loaded and validated, but it does not yet replace the legacy live class rules. Final purchased-node -> investment metadata and physical Bridge Node corridors are intentionally deferred until the parallel perk/topology work is reconciled.
 
+## Project instructions
+
+Operational instructions, the four canonical modpack guides, perk protocols and modlist/audit navigation are centralized under [`PROJECT-INSTRUCTIONS/`](./PROJECT-INSTRUCTIONS/README.md). Do not create competing operational copies under `plans/`.
+
+`plans/STATUS.md` remains the implementation/status authority, while individual perk dossiers remain under `plans/03-skill-tree-perks/perks/`.
+
 Run local dependency-free core checks with:
 
 ```bash
@@ -31,4 +37,4 @@ Run local dependency-free core checks with:
 ./scripts/generate-tree-skeleton.py
 ```
 
-See `docs/ARCHITECTURE.md`, `docs/integrations/`, and `docs/MODPACK_SCOPE.md`.
+See `PROJECT-INSTRUCTIONS/`, `docs/ARCHITECTURE.md`, `docs/integrations/`, and `docs/MODPACK_SCOPE.md`.
