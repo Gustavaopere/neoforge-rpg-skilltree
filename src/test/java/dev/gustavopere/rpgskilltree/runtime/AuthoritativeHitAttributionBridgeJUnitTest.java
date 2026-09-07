@@ -14,22 +14,42 @@ class AuthoritativeHitAttributionBridgeJUnitTest {
     }
 
     @Test
-    void providerRootIsClaimedExactlyOnceByTheGenericDamagePipeline() {
+    void firstProviderRootBecomesCanonicalForEveryAdapterOnTheSameHit() {
         Object damageSource = new Object();
         UUID targetId = UUID.randomUUID();
 
-        AuthoritativeHitAttributionBridge.publish(
+        var first = AuthoritativeHitAttributionBridge.canonicalize(
+            damageSource,
+            targetId,
+            "epicfight/first-root",
+            "epicfight:a0001-a0020"
+        );
+        var second = AuthoritativeHitAttributionBridge.canonicalize(
+            damageSource,
+            targetId,
+            "martial/competing-root",
+            "epicfight:a0061-a0080"
+        );
+
+        assertEquals("epicfight/first-root", first.rootActionId());
+        assertEquals("epicfight/first-root", second.rootActionId());
+        assertEquals("epicfight:a0001-a0020", second.providerId());
+        assertEquals(first, AuthoritativeHitAttributionBridge.find(damageSource, targetId).orElseThrow());
+    }
+
+    @Test
+    void genericNeoForgeObserverCanReuseCanonicalRootWithoutConsumingIt() {
+        Object damageSource = new Object();
+        UUID targetId = UUID.randomUUID();
+        var canonical = AuthoritativeHitAttributionBridge.canonicalize(
             damageSource,
             targetId,
             "epicfight/authoritative-root",
             "epicfight"
         );
 
-        var claimed = AuthoritativeHitAttributionBridge.claim(damageSource, targetId);
-        assertTrue(claimed.isPresent());
-        assertEquals("epicfight/authoritative-root", claimed.orElseThrow().rootActionId());
-        assertEquals("epicfight", claimed.orElseThrow().providerId());
-        assertTrue(AuthoritativeHitAttributionBridge.claim(damageSource, targetId).isEmpty());
+        assertEquals(canonical, AuthoritativeHitAttributionBridge.find(damageSource, targetId).orElseThrow());
+        assertEquals(canonical, AuthoritativeHitAttributionBridge.find(damageSource, targetId).orElseThrow());
     }
 
     @Test
@@ -38,21 +58,21 @@ class AuthoritativeHitAttributionBridgeJUnitTest {
         UUID firstTarget = UUID.randomUUID();
         UUID secondTarget = UUID.randomUUID();
 
-        AuthoritativeHitAttributionBridge.publish(damageSource, firstTarget, "root/one", "epicfight");
-        AuthoritativeHitAttributionBridge.publish(damageSource, secondTarget, "root/two", "epicfight");
+        AuthoritativeHitAttributionBridge.canonicalize(damageSource, firstTarget, "root/one", "epicfight");
+        AuthoritativeHitAttributionBridge.canonicalize(damageSource, secondTarget, "root/two", "epicfight");
 
-        assertEquals("root/one", AuthoritativeHitAttributionBridge.claim(damageSource, firstTarget).orElseThrow().rootActionId());
-        assertEquals("root/two", AuthoritativeHitAttributionBridge.claim(damageSource, secondTarget).orElseThrow().rootActionId());
+        assertEquals("root/one", AuthoritativeHitAttributionBridge.find(damageSource, firstTarget).orElseThrow().rootActionId());
+        assertEquals("root/two", AuthoritativeHitAttributionBridge.find(damageSource, secondTarget).orElseThrow().rootActionId());
     }
 
     @Test
     void discardingProviderEvidenceLeavesNoFallbackAliasBehind() {
         Object damageSource = new Object();
         UUID targetId = UUID.randomUUID();
-        AuthoritativeHitAttributionBridge.publish(damageSource, targetId, "root/cancelled", "epicfight");
+        AuthoritativeHitAttributionBridge.canonicalize(damageSource, targetId, "root/cancelled", "epicfight");
 
         AuthoritativeHitAttributionBridge.discard(damageSource, targetId);
 
-        assertTrue(AuthoritativeHitAttributionBridge.claim(damageSource, targetId).isEmpty());
+        assertTrue(AuthoritativeHitAttributionBridge.find(damageSource, targetId).isEmpty());
     }
 }
