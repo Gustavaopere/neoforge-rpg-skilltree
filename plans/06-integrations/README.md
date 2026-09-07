@@ -5,6 +5,7 @@ Integrar mods externos por adapters opcionais pequenos, testáveis e semanticame
 Ordem histórica: contrato de adapters → Epic Fight → Iron's → Ars → Goety/Malum/Eidolon → morphs → Apothic Attributes → Create/AE2/Oritech → matriz de integração.
 
 - `✅-01-adapter-contract.md` — **CONCLUÍDO** pelo contrato provider-neutral da PR #444 e pelo wiring de produção da PR #453. O bootstrap comum detecta presença antes de construir adapters, publica IDs/capabilities semânticos, fallback neutro, diagnostics `absent`/`disabled`/`enabled` e ownership único fail-closed; os providers reais passam pelo registry antes de seus hooks específicos, preservando gates próprios de versão e fail-closed. A reconciliação final também incorpora o provider Productive Metalworks introduzido posteriormente pelo Stage 11 sem criar uma segunda authority de integração.
+- `✅-02-epicfight.md` — **CONCLUÍDO** pela PR #466. Epic Fight `21.17.3.1` permanece authority do hit via `DELIVER_DAMAGE_PRE/POST`; uma correlação provider-neutral preserva uma autoria causal reutilizável por observers NeoForge, o fallback só cria root próprio sem autoria provider, armas classificadas pelo Epic Fight não usam o fallback vanilla simultaneamente e os node effects validam `epicfight:stamina`, `epicfight:stamina_regen` e `epicfight:impact`.
 
 Subplanos adicionais:
 
