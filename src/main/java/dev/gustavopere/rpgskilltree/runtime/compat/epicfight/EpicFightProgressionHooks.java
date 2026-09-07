@@ -28,6 +28,7 @@ import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 
 /** Optional Epic Fight adapter. Registered only when Epic Fight is present. */
 public final class EpicFightProgressionHooks {
+    private static final String HIT_AUTHORITY_SUBSCRIBER_ID = "rpgskilltree:hit_authority/pre";
     private static final String DAMAGE_SUBSCRIBER_ID = "rpgskilltree:mastery/damage";
     private static final String SKILL_SUBSCRIBER_ID = "rpgskilltree:mastery/skill";
     private static final String DODGE_SUBSCRIBER_ID = "rpgskilltree:mastery/dodge";
@@ -37,6 +38,10 @@ public final class EpicFightProgressionHooks {
 
     public static synchronized void register() {
         if (registered) return;
+        EpicFightEventHooks.Entity.DELIVER_DAMAGE_PRE.registerEvent(
+            EpicFightProgressionHooks::onDealDamageAuthority,
+            HIT_AUTHORITY_SUBSCRIBER_ID
+        );
         EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST.registerEvent(
             EpicFightProgressionHooks::onDealDamage,
             DAMAGE_SUBSCRIBER_ID
@@ -52,11 +57,28 @@ public final class EpicFightProgressionHooks {
         registered = true;
     }
 
+    /** Publishes one provider-native causal root before NeoForge observes the same damage source. */
+    private static void onDealDamageAuthority(DealDamageEvent.Pre event) {
+        if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
+        LivingEntity target = event.getTarget();
+        if (!shouldPublishHitAuthority(hostile(player, target), event.getDamageSource().getDirectEntity() == player)) return;
+        EpicFightHitAuthority.publish(
+            event.getDamageSource(),
+            target.getUUID(),
+            player.level().getGameTime()
+        );
+    }
+
+    static boolean shouldPublishHitAuthority(boolean hostileTarget, boolean directPlayerEvidence) {
+        return hostileTarget && directPlayerEvidence;
+    }
+
     /**
      * Weapon mastery is discovery-based, not damage-farm based: each weapon category can earn its
      * milestone against a hostile entity type only once for the lifetime of the persisted player state.
      */
     private static void onDealDamage(DealDamageEvent.Post event) {
+        EpicFightHitAuthority.discard(event.getDamageSource(), event.getTarget().getUUID());
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
         LivingEntity target = event.getTarget();
         if (!hostile(player, target)) return;
