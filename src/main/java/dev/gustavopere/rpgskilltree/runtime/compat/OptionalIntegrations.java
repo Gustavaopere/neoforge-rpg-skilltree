@@ -20,7 +20,7 @@ public final class OptionalIntegrations {
         CREATE("create"),
         GOETY("goety"),
         MALUM("malum"),
-        EIDOLON("eidolon"),
+        EIDOLON("eidolon_repraised"),
         IDENTITY2("identity2"),
         MINECOLONIES("minecolonies"),
         PRODUCTIVE_METALWORKS("productivemetalworks"),
