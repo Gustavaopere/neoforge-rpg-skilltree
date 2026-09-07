@@ -19,7 +19,13 @@ When version-sensitive behavior is involved, prefer this evidence order:
 3. Context7 scoped specifically to 1.21.1, with results checked for accidental newer-version content;
 4. Minecraft development skills as workflow/checklist guidance, not as authority when their examples target another version.
 
-When available, relevant skills include `minecraft-modding`, `minecraft-mod-dev`, `minecraft-testing`, `minecraft-ci-release`, plus appropriate Superpowers workflows.
+## Repository skill router
+
+Before specialized Minecraft work, read [`PROJECT-INSTRUCTIONS/skills/ROUTER.md`](PROJECT-INSTRUCTIONS/skills/ROUTER.md) and apply [`PROJECT-INSTRUCTIONS/skills/VERSION-AUTHORITY.md`](PROJECT-INSTRUCTIONS/skills/VERSION-AUTHORITY.md). The repository library contains audited adaptations of the Minecraft skills supplied by the user; it is guidance, not a substitute for exact-version code/JAR evidence.
+
+When a task requires the user to perform a manual action, also apply [`PROJECT-INSTRUCTIONS/skills/USER-GUIDED-WORKFLOW.md`](PROJECT-INSTRUCTIONS/skills/USER-GUIDED-WORKFLOW.md): give one atomic, verifiable manual step at a time and wait for the evidence needed before issuing the next manual action. Do not fragment work that the agent can execute directly.
+
+For NeoForge implementation, prefer the repository `minecraft-neoforge-engineering` entrypoint over generic multi-loader skills. `minecraft-mod-dev` is reference-only because the supplied archive is incomplete.
 
 ## Documents to read before changing architecture
 
