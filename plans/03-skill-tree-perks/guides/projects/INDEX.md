@@ -17,3 +17,4 @@
 - [Delta e baseline A0081–A0090](14-capability-delta-a0081-a0090.md)
 - [Delta e baseline A0200–A0209](15-capability-delta-a0200-a0209.md)
 - [Delta e baseline especial A0200–A0299](16-capability-delta-a0200-a0299.md)
+- [Delta e baseline A0141–A0150](17-capability-delta-a0141-a0150.md)
