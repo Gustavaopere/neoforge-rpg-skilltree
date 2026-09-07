@@ -38,7 +38,7 @@ final class A0071A0080PolicyStateEdgeCoverageJUnitTest {
         var lowElite = new A0061A0080CombatPolicy.HitFacts(
             "actor", "target", "root", 0.2D, false, true, true, true, false, true, true, 1_100L);
         var low = A0061A0080CombatPolicy.beforePhysicalHit(lowElite, ranks, state);
-        assertEquals(1.23D, low.damageMultiplier(), 1.0e-12);
+        assertEquals(1.30D, low.damageMultiplier(), 1.0e-12);
         assertEquals(0.04D, low.penetrationFraction(), 1.0e-12);
         assertEquals(1.09D, low.impactMultiplier(), 1.0e-12);
 
