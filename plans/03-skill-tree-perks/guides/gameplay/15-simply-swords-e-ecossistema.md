@@ -9,7 +9,7 @@
 | Componente | JAR instalado | Papel / authority |
 |---|---|---|
 | Simply Swords | `simplyswords-neoforge-1.70.2-1.21.1.jar` | Provider principal de famílias de armas, implicits, Runic Powers, Unique Weapons, Awakening, Runic Forge e sockets/gem powers. |
-| Simply More | `simplymore-forge-1.3.0_alpha.jar` | Addon de tipos de arma e Uniques adicionais; a linha `1.3.0 ALPHA` também migra seus weapon types para implicits e inicia compatibilidade com Iron's Spells. |
+| Simply More | `simplymore-forge-1.3.0_alpha.jar` | Addon de tipos de arma e Uniques adicionais; o artifact instalado foi identificado como **Simply More 1.3.0 ALPHA 5**. |
 | Integrated Simply Swords | `integrated_simply_swords-1.4.0+1.21.1-neoforge.jar` | Bridge de materiais: preenche famílias de armas Simply Swords para materiais fornecidos por outros mods. |
 | Simply Swords: Cataclysm | `simplycataclysm-1.0.2+1.21.1+neoforge.jar` | Bridge L_Ender's Cataclysm ↔ Simply Swords, com famílias por material e traits próprios em materiais específicos. |
 | Simply Tooltips | `SimplyTooltips-neoforge-0.1.5.jar` | Camada client-side de apresentação data-driven. **Não é provider mecânico de perk.** |
@@ -198,7 +198,9 @@ Simply More adiciona **10 weapon types** ao ecossistema:
 
 O projeto também declara **33 Unique Weapons**.
 
-A linha instalada é `1.3.0 ALPHA`. O changelog da primeira build dessa linha registra mudanças especialmente relevantes para perks:
+O artifact instalado foi identificado de forma exata como **Simply More 1.3.0 ALPHA 5**. O arquivo local permanece `simplymore-forge-1.3.0_alpha.jar` e o runtime declara `1.3.0_alpha`, mas o SHA-1 local `51636477cd5c378f42d9700e1fe35cd952c8f4f1` corresponde ao **CurseForge File ID 8736778 — Simply More 1.3.0 ALPHA 5**, cuja publicação usa o filename público `simplymore-neoforge-1.3.0_alpha5+1.21.1.jar`. Portanto não existe mais ambiguidade sobre qual revisão Alpha está instalada.
+
+A linha `1.3.0 ALPHA` registra mudanças especialmente relevantes para perks:
 
 - weapon types do Simply More passam a ter **implicit abilities**, acompanhando o sistema introduzido/expandido pelo Simply Swords 1.70;
 - o bônus da Lance passa a ser um **Implicit**, em vez de status effect;
@@ -208,15 +210,11 @@ A linha instalada é `1.3.0 ALPHA`. O changelog da primeira build dessa linha re
 - Uniques marcados para rework tiveram funcionalidade removida e **podem atualmente não fazer nada**;
 - o próprio autor alerta para crashes com Uniques antigos e quebra/reset de configs.
 
-### Ambiguidade de artifact da linha alpha
+### Identificação do artifact e boundary de Alpha 5
 
-O filename instalado `simplymore-forge-1.3.0_alpha.jar` não é suficiente, sozinho, para distinguir algumas revisões publicadas dessa série: páginas posteriores de Alpha 3/Alpha 5 também expõem o mesmo filename interno em certos uploads. Portanto:
+A identificação Alpha 5 resolve a provenance do artifact, mas **não transforma toda mecânica individual do addon em contrato automaticamente aprovado**. O Chat 1 pode usar changelog/source especificamente da Alpha 5 quando existir evidência direta; para uma Unique concreta, deve validar classe/efeito/estado real se a perk depender dela. Se o comportamento individual não puder ser provado, classificar **SEM HOOK SEGURO / FAIL-CLOSED**.
 
-- o guia considera como contrato seguro apenas o comportamento comum documentado para `1.3.0 ALPHA` e aquilo que puder ser confirmado no runtime/metadata do pack;
-- recursos exclusivos de Alpha 2/3/4/5 **não devem ser presumidos** sem File ID/hash/runtime adicional;
-- se uma perk depender de uma Unique específica do Simply More, o Chat 1 deve validar a classe/efeito no artifact instalado; se não puder provar, classificar **SEM HOOK SEGURO / FAIL-CLOSED**.
-
-**Boundary:** Simply More é provider mecânico quando define seu próprio weapon type/Implicit/Unique. Não é apenas “conteúdo visual”. Entretanto, o estado alpha exige integração conservadora.
+**Boundary:** Simply More é provider mecânico quando define seu próprio weapon type/Implicit/Unique. Não é apenas “conteúdo visual”. Entretanto, o estado Alpha 5 ainda exige integração conservadora e testes específicos para Uniques/reworks.
 
 ## 15.8 Integrated Simply Swords — bridge de materiais, não novo sistema de perks
 
@@ -337,7 +335,7 @@ Esta matriz não decide a perk; ela classifica o que **precisa ser considerado**
 | Runefused/Netherfused sockets | Simply Swords | `GemPowerComponent`, socket API | **PROGRESSÃO NATIVA AUTORITATIVA** / integração mínima. |
 | Gem power | Simply Swords / addon power | `GemPowerRegistry` + component IDs | **CANDIDATO**, jamais duplicar scaling de Awakening. |
 | Simply More weapon types | Simply More | Implicits/addon state | **COBERTO POR SISTEMA UNIVERSAL** por padrão; perk nominal só com mecânica própria justificada. |
-| Simply More Uniques | Simply More | item/effect específico | **SEM HOOK SEGURO** para Uniques não auditados do alpha; validar individualmente. |
+| Simply More Uniques | Simply More | item/effect específico | **SEM HOOK SEGURO** para Uniques não auditados da Alpha 5; validar individualmente. |
 | Material bridge do Integrated Simply Swords | material source + Simply Swords | item/tier/type | **COBERTO POR SISTEMA UNIVERSAL** por padrão. |
 | Cursium Accursed Rage | Simply Swords: Cataclysm | Cursium item/effect/config | **CANDIDATO A BRIDGE/PERK**, se árvore pertinente justificar. |
 | Ignitium Blazing Brand/lifesteal | Simply Swords: Cataclysm | Ignitium item/effect/config | **CANDIDATO A BRIDGE/PERK**, com anti-double-heal. |
@@ -369,7 +367,7 @@ Antes de o Chat 1 aprovar uma integração, registrar explicitamente:
 - **Cooldown ownership:** active ability possui cooldown do item/provider; uma perk não deve resetar ou encurtar genericamente sem contrato explícito.
 - **Sockets:** não conceder segunda camada de sockets da skill tree; utilizar o sistema nativo e seus IDs/componentes.
 - **Storage compatibility:** não comparar identity de registry holder de gem power; a linha 1.70 migrou para IDs justamente para persistência estável.
-- **Alpha do Simply More:** Uniques podem estar sem funcionalidade ou sujeitos a crash. Nenhum efeito individual deve ser assumido sem validação do artifact instalado.
+- **Alpha 5 do Simply More:** a revisão instalada está identificada, mas Uniques em rework ainda podem estar sem funcionalidade ou sujeitos a crash. Nenhum efeito individual deve ser assumido sem validação da classe/efeito correspondente.
 - **Material ≠ perk:** Integrated Simply Swords e boa parte de Simply Cataclysm expandem cobertura de materiais. Material novo não implica automaticamente node novo.
 - **Tooltip ≠ estado:** nunca parsear tooltip para descobrir Implicit/Awakening/gem; usar API/componente real.
 - **Epic Fight ≠ owner da arma:** preset/moveset não transfere ownership de Implicit, Unique effect ou gem power.
@@ -390,7 +388,7 @@ Fontes upstream usadas para esta especificação:
 - Client / Simply Tooltips integration: https://github.com/Sweenus/SimplySwords/blob/Architectury-1.21/developer-docs/api/client-integration.md
 - Simply Swords 1.70.2 NeoForge release: https://www.curseforge.com/minecraft/mc-mods/simply-swords/files/8746001
 - Simply More project: https://www.curseforge.com/minecraft/mc-mods/simply-more
-- Simply More 1.3.0 ALPHA installed line: https://www.curseforge.com/minecraft/mc-mods/simply-more/files/8721021
+- Simply More **1.3.0 ALPHA 5**, CurseForge File ID 8736778: https://www.curseforge.com/minecraft/mc-mods/simply-more/files/8736778
 - Integrated Simply Swords 1.4.0: https://modrinth.com/mod/integrated-simply-swords/version/1.4.0%2B1.21.1-neoforge
 - Epic Fight - Mod Compat: https://www.curseforge.com/minecraft/mc-mods/epic-fight-mod-compat
 - Simply Swords: Cataclysm repository: https://github.com/Cephelo/SimplyCataclysmMod
