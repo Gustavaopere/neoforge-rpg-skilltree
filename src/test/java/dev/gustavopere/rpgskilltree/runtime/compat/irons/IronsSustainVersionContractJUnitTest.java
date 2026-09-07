@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Answers;
 import org.mockito.Mockito;
 
+// Chat 3 final-validation marker: keep this provider contract on the NeoForge-loaded test path.
 final class IronsSustainVersionContractJUnitTest {
     @Test
     void reflectiveInvocationFailureLatchesTheRuntimeContractUnavailable() throws Exception {
