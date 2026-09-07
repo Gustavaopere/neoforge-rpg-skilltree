@@ -47,7 +47,7 @@ public final class ModNetworking {
         registrar.playToServer(PurchaseAttributeRanksPayload.TYPE, PurchaseAttributeRanksPayload.STREAM_CODEC, PurchaseAttributeRanksPayload::handle);
         registrar.playToServer(RefundAttributeRanksPayload.TYPE, RefundAttributeRanksPayload.STREAM_CODEC, RefundAttributeRanksPayload::handle);
         registrar.playToServer(
-            MartialStanceIntentPayload.TYPE,
+            MartialStanceIntentPayload.PAYLOAD_TYPE,
             MartialStanceIntentPayload.STREAM_CODEC,
             MartialStanceIntentPayload::handle
         );
