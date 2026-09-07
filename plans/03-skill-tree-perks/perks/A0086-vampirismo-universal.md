@@ -5,7 +5,8 @@
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability transitiva em 2026-08-31.
 - **Notion:** `3c569db9-f0db-819f-8216-fbbafe17b035`; Gate/Fallback/Regra corrigidos; re-fetch PASS.
 - **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
-- A0086 permanece **indisponível/não comprável** enquanto A0085 não possuir binding causal, mesmo com A0083 agora disponível para Iron's exato.
+- **Estado Chat 3:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA / AGUARDANDO MERGE DA PR #372**.
+- A0086 permanece **indisponível/não comprável** enquanto A0085 não possuir binding causal, mesmo com A0083 disponível para Iron's exato.
 
 ## Contrato canônico
 
@@ -57,3 +58,28 @@
 | Providers | PASS no design | apenas providers já integrados causalmente. |
 
 Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Validação Chat 3 — 2026-09-07
+
+- Availability transitiva foi confirmada: A0085 unavailable mantém A0086 unavailable e qualquer rank persistido é mascarado para efeito zero.
+- `A0081A0100CombatPolicyTest` confirmou que o `SustainResolver` usa o maior coeficiente elegível, não soma A0082/A0083/A0084/A0085, e o coeficiente universal só cobre uma root previamente elegível.
+- Claim-once, cap móvel 3%/20 ticks, ambiguidade native fail-closed e ausência de carry-over foram exercitados na suíte funcional.
+- Nenhum classificador universal foi criado para hazard, summon, machine ou source desconhecida.
+- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
+- **Resultado:** fail-closed transitivo aprovado confirmado; a keystone não é jogável enquanto A0085 continuar indisponível.
+
+### Checklist final Chat 3
+
+- [x] Design aprovado e código presente em fail-closed
+- [x] Availability transitiva A0085→A0086 confirmada
+- [x] Purchase/rank masking confirmados
+- [x] Maior coeficiente, sem soma integral, confirmado
+- [x] Universal não sintetiza classificador
+- [x] Dedup/cap/fail-closed confirmados
+- [x] Testes unitários/NeoForge JUnit e GameTests verdes
+- [x] Build NeoForge e dedicated-server smoke verdes
+- [x] SonarQube e CodeQL verdes no baseline funcional
+- [x] **IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**
+- [x] **JOGABILIDADE N/A — keystone bloqueada pela indisponibilidade de A0085**
+
+O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.

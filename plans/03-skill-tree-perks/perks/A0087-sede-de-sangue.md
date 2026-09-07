@@ -5,6 +5,7 @@
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability all-or-nothing em 2026-08-31.
 - **Notion:** `3c569db9-f0db-819d-8f92-dd2b7f0c4ed8`; Gate/Fallback/Regra corrigidos; re-fetch PASS.
 - **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Estado Chat 3:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA / AGUARDANDO MERGE DA PR #372**.
 - A0087 permanece **indisponível/não comprável**; nenhum benefício parcial é ativado.
 
 ## Contrato canônico
@@ -72,3 +73,28 @@ O contrato do Notion é geral: **+8% de cura recebida** durante a janela, não a
 | Providers | PASS no design | Cold Sweat/Thirst/Simply boundaries explícitas. |
 
 Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Validação Chat 3 — 2026-09-07
+
+- Availability transitiva foi confirmada: A0075/A0081 indisponíveis e ausência do BodyProvider mantêm A0087 indisponível; rank persistido é mascarado para zero.
+- `A0081A0100CombatPolicyTest` confirmou que `BloodThirstService(null)` não ativa benefício. Com provider sintético completo, a fórmula exige simultaneamente heat 20% + exhaustion 15% e expõe os valores 3% mínimo/+8% apenas quando o contrato obrigatório existe.
+- Perda do provider obrigatório encerra o benefício; isso valida o all-or-nothing sem transformar ausência de hydration em exhaustion ou vice-versa.
+- O runtime atual não instala BodyProvider incompleto nem pipeline parcial de +8% healing received; portanto nenhum benefício vaza no estado real indisponível.
+- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
+- **Resultado:** fail-closed all-or-nothing aprovado confirmado. Futuro +8% geral só pode ser implementado sem redesign se preservar exatamente o escopo canônico; caso contrário retorna ao Chat 1.
+
+### Checklist final Chat 3
+
+- [x] Design aprovado e código presente em fail-closed
+- [x] Availability transitiva/rank masking confirmados
+- [x] BodyProvider obrigatório confirmado como ausente no runtime atual
+- [x] Nenhum 3% mínimo/+8% parcial vaza
+- [x] Heat + exhaustion all-or-nothing preservados
+- [x] Hydration não inferida
+- [x] Testes unitários/NeoForge JUnit e GameTests verdes
+- [x] Build NeoForge e dedicated-server smoke verdes
+- [x] SonarQube e CodeQL verdes no baseline funcional
+- [x] **IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**
+- [x] **JOGABILIDADE N/A — node indisponível enquanto contracts corporais obrigatórios faltarem**
+
+O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.

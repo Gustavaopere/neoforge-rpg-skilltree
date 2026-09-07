@@ -5,6 +5,7 @@
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability/autoria em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8148-9fef-e7b4a708330b`; Gate/Fallback/Regra corrigidos; re-fetch PASS.
 - **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Estado Chat 3:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA / AGUARDANDO MERGE DA PR #372**.
 - A0085 permanece **indisponível/não comprável** porque nenhum provider auditado fornece o conjunto owner + applicationId + pulseId exigido.
 
 ## Contrato canônico
@@ -73,3 +74,27 @@ O adapter por provider deve produzir equivalente a:
 | Providers | PASS no design | Goety/Malum/Eidolon/Iron's/Ars somente com receipt real. |
 
 Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Validação Chat 3 — 2026-09-07
+
+- A suíte de availability confirmou A0085 indisponível e rank persistido mascarado para efeito zero.
+- Direct magic do Iron's permaneceu separado de DoT; nenhum `indirect()`/tick derivado é promovido a A0085.
+- Revisão do runtime confirmou ausência deliberada de ledger sintético: sem owner + `applicationId` + `pulseId` provider-native, nenhum caller envia `periodic=true` ao `SustainResolver`.
+- Summons, companions, hazards e última autoria genérica permanecem excluídos, preservando causalidade e anti-duplicação.
+- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
+- **Resultado:** fail-closed aprovado confirmado. A ativação futura exige provider real; se o primeiro provider divergir semanticamente do receipt aprovado, o ponto retorna ao Chat 1.
+
+### Checklist final Chat 3
+
+- [x] Design aprovado e código presente em fail-closed
+- [x] Availability/purchase/rank masking confirmados
+- [x] Autoria causal e ausência de owner inheritance confirmadas
+- [x] Direct magic não reciclada como DoT
+- [x] Ausência de ledger/producer heurístico confirmada
+- [x] Testes unitários/NeoForge JUnit e GameTests verdes
+- [x] Build NeoForge e dedicated-server smoke verdes
+- [x] SonarQube e CodeQL verdes no baseline funcional
+- [x] **IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**
+- [x] **JOGABILIDADE N/A — node indisponível sem receipt application/pulse provider-native**
+
+O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.

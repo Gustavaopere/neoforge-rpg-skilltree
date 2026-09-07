@@ -5,6 +5,7 @@
 - **Design:** APROVADO sem mutação funcional no Notion em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8120-a929-fafebea41235`; fetch fresco PASS.
 - **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Estado Chat 3:** **IMPLEMENTAÇÃO CONFIRMADA / AGUARDANDO MERGE DA PR #372**.
 
 ## Contrato canônico
 
@@ -56,3 +57,28 @@
 | Providers | PASS | composição nativa; adapters futuros somente explícitos. |
 
 Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Validação Chat 3 — 2026-09-07
+
+- `A0081A0100CombatPolicyTest` confirmou multiplicador relativo de A0090 em 1,10 no rank 5.
+- O GameTest canônico de atributos, com `ServerPlayer` real, confirmou `MULTIPLY_TOTAL` em apply/reapply/remove/reapply sem stacking ou modifier órfão.
+- A dependência A0089≥2 permanece no graph/requirements server-authoritative; o lote não criou gate paralelo nem bypass de purchase/rank loss.
+- Toughness base zero permanece zero, e revisão do diff confirmou ausência de mutação em ARMOR, `STUN_ARMOR`, Resistência Física, NBT/durabilidade ou damage sources não mitigáveis.
+- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
+- **Resultado:** implementação confirmada no owner canônico `Attributes.ARMOR_TOUGHNESS`, com dependência A0089≥2 e composição nativa de modifiers.
+
+### Checklist final Chat 3
+
+- [x] Design aprovado e código presente
+- [x] Binding `ARMOR_TOUGHNESS` / +2% por rank confirmado
+- [x] Dependência A0089≥2 preservada
+- [x] zero base→zero bônus confirmado
+- [x] composição/idempotência de modifiers confirmadas
+- [x] Sem ARMOR/`STUN_ARMOR`/Resistência Física/NBT/durabilidade
+- [x] Anti-abuso/Mastery: N/A — perk não concede Mastery nem recurso
+- [x] Testes unitários/NeoForge JUnit e GameTests verdes
+- [x] Build NeoForge e dedicated-server smoke verdes
+- [x] SonarQube e CodeQL verdes no baseline funcional
+- [x] **IMPLEMENTAÇÃO CONFIRMADA**
+
+O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.

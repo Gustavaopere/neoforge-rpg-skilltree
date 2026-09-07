@@ -86,16 +86,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0078 | Ataque em Movimento | APROVADO | IMPLEMENTAÇÃO CONFIRMADA NO FALLBACK CANÔNICO pelo Chat 3 na PR #355 | nenhuma bloqueante; ParCool/Epic ParCool extras permanecem fail-closed até receipt server-authoritative real |
 | A0079 | Ataque Estacionário | APROVADO após hardening | IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS AUDITADOS pelo Chat 3 na PR #355 | nenhuma bloqueante; novos transports exigem adapter explícito e desconhecidos falham fechado |
 | A0080 | Golpe de Oportunidade | APROVADO EM FAIL-CLOSED | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #355; consumer reservation→POST commit validado | nenhuma bloqueante enquanto indisponível; producer `avoidedAttackId`/dodge-success provider-native continua ausente |
-| A0081 | Recuperação de Combate | APROVADO EM FAIL-CLOSED após availability transitiva | CORE PRESENTE; NODE DEVE SER ESTRUTURALMENTE INDISPONÍVEL | `P-A0081-01` BLOQUEANTE: herdar availability A0075 no purchase/gate; `P-A0081-02`: lifecycle da reserva |
-| A0082 | Vampirismo de Arma | APROVADO após boundary de correlação nativa | CÓDIGO PRESENTE para raízes físicas comprovadas; Ignitium exige fail-closed específico | `P-A0082-01`: correlacionar lifesteal nativo Ignitium no mesmo root; `P-A0082-02`: cap/dedup/provenance |
-| A0083 | Vampirismo Mágico | APROVADO EM FAIL-CLOSED | RESOLVER PRESENTE; NODE INDISPONÍVEL SEM PRODUCER `DIRECT_MAGIC` | `P-A0083-01` BLOQUEANTE: availability + adapter causal Iron's/Ars |
-| A0084 | Sifão Elemental | APROVADO EM FAIL-CLOSED | RESOLVER PRESENTE; NODE INDISPONÍVEL SEM PRODUCER ELEMENTAL | `P-A0084-01` BLOQUEANTE: availability + element/root adapter provider-native |
-| A0085 | Sifão de Dano Periódico | APROVADO EM FAIL-CLOSED | RESOLVER PRESENTE; NODE INDISPONÍVEL SEM LEDGER APPLICATION/PULSE | `P-A0085-01` BLOQUEANTE: owner/application/pulse causal + availability |
-| A0086 | Vampirismo Universal | APROVADO após availability transitiva | CORE PRESENTE; ESTRUTURALMENTE INDISPONÍVEL | `P-A0086-01` BLOQUEANTE: A0083/A0085 indisponíveis → A0086 indisponível; não sintetizar classifiers |
-| A0087 | Sede de Sangue | APROVADO EM FAIL-CLOSED após BodyProvider/healing boundary | CORE PRESENTE com `BodyProvider(null)`; NODE INDISPONÍVEL | `P-A0087-01` BLOQUEANTE: BodyProvider Cold Sweat+exhaustion + availability A0075/A0081; `P-A0087-02/-03`: healing-received/Thirst |
-| A0088 | Constituição | APROVADO | CÓDIGO PRESENTE data-driven + `preserveHealthRatio` ligado ao refresh | `P-A0088-01`: regressões rank/respec/reload/no-free-heal/modifier uniqueness |
-| A0089 | Couro Endurecido | APROVADO | CÓDIGO PRESENTE no `Attributes.ARMOR` relativo | `P-A0089-01`: regressões zero-base/modificador relativo/não confundir STUN_ARMOR |
-| A0090 | Têmpera | APROVADO | CÓDIGO PRESENTE no `Attributes.ARMOR_TOUGHNESS` relativo | `P-A0090-01`: regressões zero-base/modificador relativo/fontes que ignoram armadura |
+| A0081 | Recuperação de Combate | APROVADO EM FAIL-CLOSED após availability transitiva | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #372; A0075 unavailable mascara purchase/rank efetivo; recovery/lifecycle testados | nenhuma bloqueante enquanto A0075 estiver indisponível; ativação futura depende da resolução canônica de A0075 |
+| A0082 | Vampirismo de Arma | APROVADO após boundary de correlação nativa | IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS FÍSICOS CAUSAIS pelo Chat 3 na PR #372; Epic Fight/vanilla/projectile dedup; Ignitium source-specific fail-closed | nenhuma bloqueante; `EXACT_INTERCEPTED` de Ignitium segue ausente e essa fonte permanece Skill Tree=0 |
+| A0083 | Vampirismo Mágico | APROVADO EM FAIL-CLOSED | IMPLEMENTAÇÃO CONFIRMADA PARA IRON'S EXATO `1.21.1-3.16.3` pelo Chat 3 na PR #372; provider/version/API/native-lifesteal drift fail-closed | nenhuma bloqueante para Iron's; Ars Nouveau 5.13.1 segue sem adapter causal aprovado |
+| A0084 | Sifão Elemental | APROVADO EM FAIL-CLOSED | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #372 | mapa canônico/versionado school/damage type→elemento ainda ausente; ativação futura retorna ao Chat 1 |
+| A0085 | Sifão de Dano Periódico | APROVADO EM FAIL-CLOSED | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #372 | owner + `applicationId` + `pulseId` provider-native ainda ausentes; sem ledger heurístico |
+| A0086 | Vampirismo Universal | APROVADO após availability transitiva | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #372 | herda indisponibilidade de A0085; universal não sintetiza classifiers |
+| A0087 | Sede de Sangue | APROVADO EM FAIL-CLOSED após BodyProvider/healing boundary | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #372; nenhum benefício parcial vaza | BodyProvider Cold Sweat+exhaustion e pipeline geral de healing-received continuam ausentes; Thirst causal opcional segue pendente |
+| A0088 | Constituição | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #372; `MAX_HEALTH` relativo + `preserveHealthRatio` + modifier idempotente | nenhuma |
+| A0089 | Couro Endurecido | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #372; `ARMOR` relativo, zero base→zero bônus, sem STUN_ARMOR/segunda resistência | nenhuma |
+| A0090 | Têmpera | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #372; `ARMOR_TOUGHNESS` relativo, A0089≥2 preservada, zero base→zero bônus | nenhuma |
 
 ## Regras sistêmicas vigentes
 
@@ -336,3 +336,24 @@ O merge da PR #364 só é autorizado após CI verde do HEAD documental final, co
 - **Retorno ao Chat 1:** nenhum; nenhuma correção alterou identidade, effect contract, authority, gate, dependência ou topologia.
 - **Gate final:** este HEAD documental deve receber CI/Sonar verde fresco; somente então a PR #355 pode ser mergeada e a `main` confirmada.
 - **A0081+:** não iniciar neste ciclo.
+
+## Chat 3 — lote exato A0081–A0090
+
+- **PR:** #372; branch `feat/chat2-a0081-a0090-implementation`.
+- **Auditoria:** `audits/AUDITORIA-CHAT3-A0081-A0090-VALIDACAO.md`.
+- **Preflight:** modlist física 2026-09-07 = 612 top-level; Notion fresco = 613 registros, 612 `Instalado`, 613 `Verificado`; jarjar não contado como top-level.
+- **A0082:** `IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS FÍSICOS CAUSAIS`; Epic Fight/vanilla/projectile usam roots/receipts causais e Ignitium continua provider-owned/fail-closed quando a cura nativa não é correlacionável.
+- **A0083:** `IMPLEMENTAÇÃO CONFIRMADA PARA IRON'S 1.21.1-3.16.3`; absence/version drift/API mismatch/invocation failure/native lifesteal ambíguo falham fechado. Ars Nouveau permanece sem adapter causal aprovado.
+- **A0088/A0089/A0090:** `IMPLEMENTAÇÃO CONFIRMADA` no owner canônico Minecraft/NeoForge, com modifiers relativos/idempotentes; A0088 preserva health ratio e A0090 preserva A0089≥2.
+- **A0081/A0084/A0085/A0086/A0087:** `NÃO CONFIRMADAS COMO JOGÁVEIS / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA`; availability mascara purchase/rank efetivo e nenhuma heurística/benefício parcial é liberado.
+- **Pendência Iron's P2 resolvida:** falha de reflexão faz latch `runtimeInvocationHealthy=false` e torna o runtime contract unavailable; regressão JUnit presente.
+- **Review crossbow resolvido:** NeoForge 1.21.1 passa `CrossbowItem.performShooting` por `ArrowLooseEvent`; nenhum segundo hook foi criado.
+- **HEAD funcional pré-documentação:** `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`.
+- **RPG Skill Tree CI run `34147843664`: SUCCESS** — JUnit 5, NeoForge JUnit, NeoForge GameTests, provider-present GameTests, validações, build, JAR e dedicated-server smoke verdes.
+- **SonarQube run `34147843581`: SUCCESS** — coletas provider-free/Battle Mage/Ars/Create/MineColonies e análise verdes; S2187 removido sem suppress/exclusion.
+- **CodeQL run `34147843620`: SUCCESS** — compile + analyze verdes.
+- **Reviews:** 2/2 threads resolvidas.
+- **Pendências residuais não bloqueantes:** Ignitium `EXACT_INTERCEPTED`; Ars adapter A0083; mapa elemental A0084; provider application/pulse A0085; A0086 transitiva; BodyProvider/healing-received/Thirst A0087. Todas permanecem fail-closed e não autorizam heurística.
+- **Retorno ao Chat 1:** nenhum bloqueio atual; retornos somente condicionais à futura ativação quando isso exigir mudança semântica.
+- **Gate final:** este HEAD documental deve receber RPG Skill Tree CI + Sonar + CodeQL verdes frescos; somente então a PR #372 pode ser mergeada e a `main` confirmada.
+- **A0091+:** não iniciar neste ciclo.

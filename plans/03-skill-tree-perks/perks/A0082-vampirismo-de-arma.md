@@ -5,6 +5,7 @@
 - **Design:** APROVADO após hardening de dedup provider-native em 2026-08-31.
 - **Notion:** `3c569db9-f0db-813d-bba3-c9abdd43e9a6`; Hook/Fallback/Regra corrigidos; re-fetch PASS.
 - **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Estado Chat 3:** **IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS FÍSICOS CAUSAIS / AGUARDANDO MERGE DA PR #372**.
 - Ignitium/Blazing Brand permanece **FAIL-CLOSED por fonte** até existir receipt exato da cura provider-native final.
 
 ## Contrato canônico
@@ -84,3 +85,31 @@ Não existe receipt final da mesma cura exposto ao RPG Skill Tree. Portanto o Ch
 | Providers | PASS no design | native-first e fail-closed por fonte ambígua. |
 
 Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Validação Chat 3 — 2026-09-07
+
+- A suíte funcional confirmou `SustainResolver` com maior coeficiente, claim-once por root, cap compartilhado de 3%/20 ticks, clipping de overkill/missing health e isolamento por ator.
+- A suíte runtime confirmou handoff físico uma única vez e ausência de cura Skill Tree para fonte native-lifesteal ambígua.
+- A suíte de eventos confirmou bow/projectile root, fallback fail-closed para correlação expirada, provider receipt prioritário, dano zero sem pagamento e lifecycle bounded.
+- O review P1 sobre crossbow foi revalidado contra o hook real do NeoForge 1.21.1 e encerrado: `CrossbowItem.performShooting` passa pelo `ArrowLooseEvent`; não foi criado segundo hook concorrente.
+- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
+- **Resultado:** A0082 está confirmada nos bindings físicos causais suportados. Ignitium continua fail-closed por fonte, sem double-heal e sem bloquear armas físicas comuns comprovadas.
+
+### Checklist final Chat 3
+
+- [x] Design aprovado e código presente
+- [x] Contrato físico revisado contra runtime
+- [x] Provider-native/root causal confirmado
+- [x] Fallback vanilla estreito confirmado
+- [x] Projectile/Multishot dedup confirmado
+- [x] Ignitium/native lifesteal ambíguo fail-closed confirmado
+- [x] Cap/overkill/missing health/claim-once confirmados
+- [x] Lifecycle e dano zero confirmados
+- [x] Testes unitários/NeoForge JUnit e GameTests verdes
+- [x] Build NeoForge e dedicated-server smoke verdes
+- [x] SonarQube e CodeQL verdes no baseline funcional
+- [x] **IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS FÍSICOS CAUSAIS**
+
+Pendência não bloqueante preservada: `EXACT_INTERCEPTED` de Ignitium não existe; essa fonte permanece com parcela Skill Tree igual a zero.
+
+O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.

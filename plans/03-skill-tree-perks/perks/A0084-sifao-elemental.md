@@ -5,6 +5,7 @@
 - **Design:** APROVADO EM FAIL-CLOSED após correção de availability em 2026-08-31.
 - **Notion:** `3c569db9-f0db-81a6-9479-ed17ddf2d786`; Gate/Fallback/Regra corrigidos; re-fetch PASS.
 - **Estado Chat 2:** **CÓDIGO PRESENTE EM FAIL-CLOSED / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Estado Chat 3:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA / AGUARDANDO MERGE DA PR #372**.
 - Node permanece **indisponível/não comprável** porque nenhum mapa elemental aprovado/versionado foi materializado pelo Chat 1.
 
 ## Contrato canônico
@@ -63,3 +64,25 @@ O receipt mínimo deve provar `ownerPlayer`, root/event identity, `DIRECT_ELEMEN
 | Providers | PASS no design | Iron's/Ars/Ars Elemental por classificação real. |
 
 Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Validação Chat 3 — 2026-09-07
+
+- A suíte de availability confirmou A0084 explicitamente indisponível e rank persistido mascarado para efeito zero.
+- O adapter direct-magic de A0083 foi revisado/testado e não promove school/damage type a classificação elemental sem o mapa canônico exigido.
+- O `SustainResolver` permanece único; nenhuma segunda bucket, heurística de elemento ou reaproveitamento de DoT foi criado.
+- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
+- **Resultado:** fail-closed aprovado confirmado. Ativar A0084 continua exigindo retorno ao Chat 1 para definir o mapa canônico/versionado school/damage type → elemento.
+
+### Checklist final Chat 3
+
+- [x] Design aprovado e código presente em fail-closed
+- [x] Availability/purchase/rank masking confirmados
+- [x] Ausência de heurística elemental confirmada
+- [x] Pipeline/dedup canônicos preservados
+- [x] Testes unitários/NeoForge JUnit e GameTests verdes
+- [x] Build NeoForge e dedicated-server smoke verdes
+- [x] SonarQube e CodeQL verdes no baseline funcional
+- [x] **IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**
+- [x] **JOGABILIDADE N/A — node indisponível sem mapa elemental aprovado**
+
+O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.

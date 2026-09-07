@@ -5,6 +5,7 @@
 - **Design:** APROVADO sem mutação funcional no Notion em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8138-aa1b-f856663414a8`; fetch fresco PASS.
 - **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Estado Chat 3:** **IMPLEMENTAÇÃO CONFIRMADA / AGUARDANDO MERGE DA PR #372**.
 
 ## Contrato canônico
 
@@ -52,3 +53,27 @@
 | Providers | PASS | Minecraft/NeoForge owner; terceiros apenas compõem modifiers. |
 
 Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Validação Chat 3 — 2026-09-07
+
+- `A0081A0100CombatPolicyTest` confirmou multiplicador 1,10 no rank 5 e `preserveHealthRatio` para rank up, rank down, clamp de full health e health zero sem revive.
+- O GameTest canônico de atributos usa `ServerPlayer` real e valida `MULTIPLY_TOTAL` com apply → reaplicação idempotente → remoção → reapply determinístico.
+- `verify-attribute-runtime.py` exige o GameTest real e a reconciliação de jogadores online após reload válido, prevenindo modifier órfão/drift.
+- A revisão do binding confirmou owner único `minecraft:generic.max_health`, sem NBT/persistência paralela e sem segundo motor de cura.
+- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
+- **Resultado:** implementação confirmada no pipeline vanilla/NeoForge de atributos, com preservação de proporção de vida e idempotência.
+
+### Checklist final Chat 3
+
+- [x] Design aprovado e código presente
+- [x] Binding `MAX_HEALTH` / +2% por rank confirmado
+- [x] `MULTIPLY_TOTAL` e composição canônica confirmados
+- [x] Rank up/down sem cura líquida explorável confirmado
+- [x] Respec/reload/idempotência de modifier confirmados
+- [x] Anti-abuso/Mastery: N/A — perk não concede Mastery nem recurso
+- [x] Testes unitários/NeoForge JUnit e GameTests verdes
+- [x] Build NeoForge e dedicated-server smoke verdes
+- [x] SonarQube e CodeQL verdes no baseline funcional
+- [x] **IMPLEMENTAÇÃO CONFIRMADA**
+
+O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.
