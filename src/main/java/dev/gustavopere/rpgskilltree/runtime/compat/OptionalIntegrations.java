@@ -41,13 +41,16 @@ public final class OptionalIntegrations {
 
     public static boolean isLoaded(Provider provider) {
         if (provider == null) return false;
-        return ModList.get().isLoaded(provider.modId());
+        ModList modList = ModList.get();
+        return modList != null && modList.isLoaded(provider.modId());
     }
 
     /** Returns the provider version, or {@code absent} when the provider is not loaded. */
     public static String version(Provider provider) {
-        if (provider == null || !isLoaded(provider)) return "absent";
-        return ModList.get()
+        if (provider == null) return "absent";
+        ModList modList = ModList.get();
+        if (modList == null || !modList.isLoaded(provider.modId())) return "absent";
+        return modList
             .getModContainerById(provider.modId())
             .map(container -> container.getModInfo().getVersion().toString())
             .orElse("unknown");
