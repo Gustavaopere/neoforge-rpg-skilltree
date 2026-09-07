@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.events;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
 import java.util.UUID;
@@ -46,6 +47,21 @@ final class A0081A0100HitAuthorityJUnitTest {
                 targetId,
                 "sustain/fallback/2"
             )
+        );
+    }
+
+    @Test
+    void rejectsMissingFallbackIdentityBeforeConsultingProviderAuthorship() {
+        Object damageSource = new Object();
+        UUID targetId = UUID.randomUUID();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> A0081A0100CombatEvents.resolveOutgoingRootActionId(damageSource, targetId, null)
+        );
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> A0081A0100CombatEvents.resolveOutgoingRootActionId(damageSource, targetId, " ")
         );
     }
 }
