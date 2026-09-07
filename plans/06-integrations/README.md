@@ -4,6 +4,8 @@ Integrar mods externos por adapters opcionais pequenos, testáveis e semanticame
 
 Ordem histórica: contrato de adapters → Epic Fight → Iron's → Ars → Goety/Malum/Eidolon → morphs → Apothic Attributes → Create/AE2/Oritech → matriz de integração.
 
+- `✅-01-adapter-contract.md` — **CONCLUÍDO** pelo contrato provider-neutral da PR #444 e pelo wiring de produção da PR #453. O bootstrap comum detecta presença antes de construir adapters, publica IDs/capabilities semânticos, fallback neutro, diagnostics `absent`/`disabled`/`enabled` e ownership único fail-closed; os providers reais passam pelo registry antes de seus hooks específicos, preservando gates próprios de versão e fail-closed. A reconciliação final também incorpora o provider Productive Metalworks introduzido posteriormente pelo Stage 11 sem criar uma segunda authority de integração.
+
 Subplanos adicionais:
 
 - `✅-10-minecolonies-battle-mages.md` — **CONCLUÍDO** pela PR #288. Integra cidadãos/guardas MineColonies a spellbooks reais do Iron's, mantendo MineColonies como authority do cidadão/guard AI e Iron's como authority de spells, `MagicData` e cast lifecycle. O livro real define integralmente o repertório; casts autônomos não concedem Mastery ao jogador. O contrato original permanece preservado em `archive/10-minecolonies-battle-mages-plan.md`.

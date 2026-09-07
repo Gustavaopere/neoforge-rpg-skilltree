@@ -8,6 +8,8 @@ import dev.gustavopere.rpgskilltree.itemization.blacksmith.registry.BlacksmithIt
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.ProgressionOwnerSyncRuntime;
 import dev.gustavopere.rpgskilltree.runtime.RelevantPlayerCandidateRuntime;
+import dev.gustavopere.rpgskilltree.runtime.compat.IntegrationAdapterRegistry;
+import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrationAdapterRegistry;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.coldsweat.ColdSweatFrenzyBridge;
@@ -34,14 +36,17 @@ import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReload
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationState;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.MineColoniesVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageLifecycleEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageSpellProfileReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.MineColoniesBattleMageRegistration;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyIntegrationState;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyLifecycleEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.economy.MineColoniesEconomyVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumDiscoveryEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEditorialCatalogEvents;
 import dev.gustavopere.rpgskilltree.runtime.compendium.CompendiumEntityCatalogEvents;
@@ -144,38 +149,59 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);
 
         RuntimeDiagnostics.info(LOGGER, Category.COMPAT, "optional_providers", "Optional integrations: {}", OptionalIntegrations.summary());
+        IntegrationAdapterRegistry integrationAdapters = OptionalIntegrationAdapterRegistry.create(
+            OptionalIntegrations::isLoaded,
+            RpgSkillTreeMod::optionalAdapterDisabledReason
+        );
+        RuntimeDiagnostics.info(
+            LOGGER,
+            Category.COMPAT,
+            "optional_adapter_registry",
+            "Optional adapter registry: {}",
+            integrationAdapters.summary()
+        );
         ColdSweatFrenzyBridge.initializeDiagnostics();
 
-        boolean productiveMetalworksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.PRODUCTIVE_METALWORKS);
+        boolean productiveMetalworksProviderLoaded = OptionalIntegrations.isLoaded(
+            OptionalIntegrations.Provider.PRODUCTIVE_METALWORKS
+        );
+        boolean productiveMetalworksLoaded = OptionalIntegrationAdapterRegistry.isActive(
+            integrationAdapters,
+            OptionalIntegrations.Provider.PRODUCTIVE_METALWORKS
+        );
         String productiveMetalworksVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.PRODUCTIVE_METALWORKS);
         if (productiveMetalworksLoaded) {
-            if (ProductiveMetalworksVersionContract.supports(productiveMetalworksVersion)) {
-                RuntimeDiagnostics.info(
-                    LOGGER,
-                    Category.COMPAT,
-                    "productivemetalworks_blacksmith_active",
-                    "Blacksmith Productive Metalworks adapter active: Productive Metalworks {}",
-                    productiveMetalworksVersion
-                );
-            } else {
-                RuntimeDiagnostics.warn(
-                    LOGGER,
-                    Category.COMPAT,
-                    "productivemetalworks_blacksmith_disabled",
-                    "Blacksmith Productive Metalworks adapter fail-closed: expected {}, found {}",
-                    ProductiveMetalworksVersionContract.SUPPORTED_ARTIFACT_VERSION,
-                    productiveMetalworksVersion
-                );
-            }
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPAT,
+                "productivemetalworks_blacksmith_active",
+                "Blacksmith Productive Metalworks adapter active: Productive Metalworks {}",
+                productiveMetalworksVersion
+            );
+        } else if (productiveMetalworksProviderLoaded) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "productivemetalworks_blacksmith_disabled",
+                "Blacksmith Productive Metalworks adapter fail-closed: expected {}, found {}",
+                ProductiveMetalworksVersionContract.SUPPORTED_ARTIFACT_VERSION,
+                productiveMetalworksVersion
+            );
         }
 
-        boolean createLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.CREATE);
-        String createVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.CREATE);
-        CreateIntegrationState createState = CreateIntegrationBootstrap.install(
-            createLoaded,
-            createVersion,
-            () -> NeoForge.EVENT_BUS.register(CreateProgressionEvents.class)
+        boolean createProviderLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.CREATE);
+        boolean createAdapterActive = OptionalIntegrationAdapterRegistry.isActive(
+            integrationAdapters,
+            OptionalIntegrations.Provider.CREATE
         );
+        String createVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.CREATE);
+        CreateIntegrationState createState = createAdapterActive
+            ? CreateIntegrationBootstrap.install(
+                true,
+                createVersion,
+                () -> NeoForge.EVENT_BUS.register(CreateProgressionEvents.class)
+            )
+            : CreateIntegrationBootstrap.evaluate(createProviderLoaded, createVersion);
         if (createState == CreateIntegrationState.ACTIVE) {
             RuntimeDiagnostics.info(
                 LOGGER,
@@ -196,13 +222,19 @@ public final class RpgSkillTreeMod {
             );
         }
 
-        boolean goetyLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.GOETY);
-        String goetyVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.GOETY);
-        GoetyIntegrationState goetyState = GoetyIntegrationBootstrap.install(
-            goetyLoaded,
-            goetyVersion,
-            () -> NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class)
+        boolean goetyProviderLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.GOETY);
+        boolean goetyAdapterActive = OptionalIntegrationAdapterRegistry.isActive(
+            integrationAdapters,
+            OptionalIntegrations.Provider.GOETY
         );
+        String goetyVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.GOETY);
+        GoetyIntegrationState goetyState = goetyAdapterActive
+            ? GoetyIntegrationBootstrap.install(
+                true,
+                goetyVersion,
+                () -> NeoForge.EVENT_BUS.register(GoetyProgressionEvents.class)
+            )
+            : GoetyIntegrationBootstrap.evaluate(goetyProviderLoaded, goetyVersion);
         if (goetyState == GoetyIntegrationState.ACTIVE) {
             RuntimeDiagnostics.info(
                 LOGGER,
@@ -223,14 +255,15 @@ public final class RpgSkillTreeMod {
             );
         }
 
-        MalumIntegrationBootstrap.install(
-            OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MALUM),
-            OptionalIntegrations.version(OptionalIntegrations.Provider.MALUM),
-            () -> NeoForge.EVENT_BUS.register(MalumProgressionEvents.class)
+        boolean mineColoniesLoaded = OptionalIntegrationAdapterRegistry.isActive(
+            integrationAdapters,
+            OptionalIntegrations.Provider.MINECOLONIES
         );
-
-        boolean mineColoniesLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
-        boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
+        boolean ironsSpellbooksProviderLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
+        boolean ironsSpellbooksLoaded = ironsSpellbooksProviderLoaded && OptionalIntegrationAdapterRegistry.isActive(
+            integrationAdapters,
+            OptionalIntegrations.Provider.IRONS_SPELLBOOKS
+        );
         String mineColoniesVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MINECOLONIES);
         String ironsSpellbooksVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
 
@@ -316,37 +349,62 @@ public final class RpgSkillTreeMod {
         }
 
         if (ironsSpellbooksLoaded) NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.ARS_NOUVEAU)) NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EIDOLON)) {
+        if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.ARS_NOUVEAU)) {
+            NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
+        }
+        MalumIntegrationBootstrap.install(
+            OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.MALUM),
+            OptionalIntegrations.version(OptionalIntegrations.Provider.MALUM),
+            () -> NeoForge.EVENT_BUS.register(MalumProgressionEvents.class)
+        );
+        if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.EIDOLON)) {
             NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
             NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
         }
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IDENTITY2)) NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
-        if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EPIC_FIGHT)) {
-            String version = OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT);
-            if (EpicFightVersionContract.supportsVersion(version)) {
-                EpicFightProgressionHooks.register();
-                A0001A0020EpicFightHooks.register();
-                A0022RuntimeHooks.register();
-                A0042ScytheKillHooks.register();
-                A0041A0060EpicFightHooks.register();
-                A0041ScytheCommitHooks.register();
-                A0061A0080EpicFightHooks.register();
-                NeoForge.EVENT_BUS.register(A0001A0020EpicFightHooks.class);
-                NeoForge.EVENT_BUS.register(A0022RuntimeHooks.class);
-                NeoForge.EVENT_BUS.register(A0042ScytheKillHooks.class);
-                NeoForge.EVENT_BUS.register(A0041A0060EpicFightHooks.class);
-                NeoForge.EVENT_BUS.register(A0061A0080EpicFightHooks.class);
-            } else {
-                RuntimeDiagnostics.warn(
-                    LOGGER,
-                    Category.COMPAT,
-                    "epicfight_version_unsupported",
-                    "A0001-A0080 Epic Fight integration disabled: expected {}, found {}",
-                    EpicFightVersionContract.SUPPORTED_VERSION,
-                    version
-                );
-            }
+        if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.IDENTITY2)) {
+            NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
         }
+        if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.EPIC_FIGHT)) {
+            EpicFightProgressionHooks.register();
+            A0001A0020EpicFightHooks.register();
+            A0022RuntimeHooks.register();
+            A0042ScytheKillHooks.register();
+            A0041A0060EpicFightHooks.register();
+            A0041ScytheCommitHooks.register();
+            A0061A0080EpicFightHooks.register();
+            NeoForge.EVENT_BUS.register(A0001A0020EpicFightHooks.class);
+            NeoForge.EVENT_BUS.register(A0022RuntimeHooks.class);
+            NeoForge.EVENT_BUS.register(A0042ScytheKillHooks.class);
+            NeoForge.EVENT_BUS.register(A0041A0060EpicFightHooks.class);
+            NeoForge.EVENT_BUS.register(A0061A0080EpicFightHooks.class);
+        } else if (OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EPIC_FIGHT)) {
+            String version = OptionalIntegrations.version(OptionalIntegrations.Provider.EPIC_FIGHT);
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "epicfight_version_unsupported",
+                "A0001-A0080 Epic Fight integration disabled: expected {}, found {}",
+                EpicFightVersionContract.SUPPORTED_VERSION,
+                version
+            );
+        }
+    }
+
+    private static String optionalAdapterDisabledReason(OptionalIntegrations.Provider provider) {
+        return optionalAdapterDisabledReason(provider, OptionalIntegrations.version(provider));
+    }
+
+    static String optionalAdapterDisabledReason(OptionalIntegrations.Provider provider, String version) {
+        return switch (provider) {
+            case EPIC_FIGHT -> EpicFightVersionContract.supportsVersion(version) ? "" : "unsupported_version";
+            case COLD_SWEAT -> ColdSweatFrenzyBridge.supportsVersion(version) ? "" : "unsupported_version";
+            case CREATE -> CreateVersionContract.supportsVersion(version) ? "" : "unsupported_version";
+            case GOETY -> GoetyVersionContract.supportsVersion(version) ? "" : "unsupported_version";
+            case MALUM -> MalumVersionContract.supports(version) ? "" : "unsupported_version";
+            case MINECOLONIES -> (MineColoniesVersionContract.supports(version)
+                || MineColoniesEconomyVersionContract.supports(version)) ? "" : "unsupported_version";
+            case PRODUCTIVE_METALWORKS -> ProductiveMetalworksVersionContract.supports(version) ? "" : "unsupported_version";
+            default -> "";
+        };
     }
 }
