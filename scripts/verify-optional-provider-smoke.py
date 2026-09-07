@@ -12,7 +12,7 @@ EXPECTED = (
     "create",
     "goety",
     "malum",
-    "eidolon",
+    "eidolon_repraised",
     "identity2",
     "minecolonies",
     "productivemetalworks",
