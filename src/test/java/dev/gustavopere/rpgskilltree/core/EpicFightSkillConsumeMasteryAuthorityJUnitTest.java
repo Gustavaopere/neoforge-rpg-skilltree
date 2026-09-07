@@ -22,6 +22,34 @@ final class EpicFightSkillConsumeMasteryAuthorityJUnitTest {
     }
 
     @Test
+    void derivedProcCannotAwardMastery() {
+        CombatAction action = new CombatAction(
+            new ActionOrigin("epicfight:damage_post", 1),
+            "epicfight",
+            "sword",
+            "derived_hit",
+            Set.of("hit", "milestone"),
+            8.0D
+        );
+
+        assertTrue(MasteryPolicies.forEpicFight(action).isEmpty());
+    }
+
+    @Test
+    void nonMilestoneActionCannotAwardMastery() {
+        CombatAction action = new CombatAction(
+            new ActionOrigin("epicfight:damage_post", 0),
+            "epicfight",
+            "sword",
+            "ordinary_hit",
+            Set.of("hit"),
+            8.0D
+        );
+
+        assertTrue(MasteryPolicies.forEpicFight(action).isEmpty());
+    }
+
+    @Test
     void confirmedProviderPostResultStillAwardsMastery() {
         CombatAction action = new CombatAction(
             new ActionOrigin("epicfight:dodge_success", 0),
