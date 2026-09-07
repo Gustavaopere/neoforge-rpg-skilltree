@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0243 Ignição rank ≥2. A0243/local topology não substitui o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0243 Ignição rank ≥2. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 + adapters versionados de duração-base do estado FIRE real. Providers externos preservam seus limites nativos; nenhuma duração é inventada pelo RPG. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 + adapters versionados de duração-base do estado FIRE real. Providers externos preservam seus limites nativos; nenhuma duração é inventada pelo RPG. |
 | Efeito | +8% de duração-base da Ignição real por rank (×1,08 / ×1,16 / ×1,24), aplicada somente no momento de criação ou renovação legítima do estado atribuído ao jogador. A duração final respeita apenas pisos/tetos nativos explícitos do provider; não existe cap global inventado. |
 | Escalonamento | Até 3 ranks; duração-base da aplicação/renovação elegível ×1,08 / ×1,16 / ×1,24. O cálculo sempre parte da duração nativa daquela aplicação, nunca do tempo restante já ampliado. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + A0243 ≥2 + aplicação/renovação de estado de Ignição real atribuído ao jogador + duração-base modificável exposta por FIRE_IGNITION_RESOLVER_V1/adapter equivalente. Estado fixo, sem autoria, ambiental ou duração não modificável é inelegível. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 + adapters versionados de duração-base do estado FIRE real. Providers externos preservam seus limites nativos; nenhuma duração é inventada pelo RPG.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 + adapters versionados de duração-base do estado FIRE real. Providers externos preservam seus limites nativos; nenhuma duração é inventada pelo RPG.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FIRE_IGN
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

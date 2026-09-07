@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:ICE confirmado server-side por Gate A/B/C: fundamentos ICE + ≥100 Passive Points válidos em SPECIALIST_REGION:ICE + terminal A0169. A0169 isolada não substitui o unlock global da Specialist Gelo. |
 | Pré-requisitos | Specialist Gelo desbloqueada (SPECIALIST_UNLOCK:ICE) por Gate A/B/C. |
-| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS SPECIALIST_GATE_RESOLVER_V1, CHILL_STATE_REGISTRY_V1 e CHILL_APPLICATION_RESOLVER_V1 + classificador ICE. Provider CHILL comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, estado irons_spellbooks:chilled; se a ação nativa já aplicar Chilled deterministicamente, o resolver apenas registra a aplicação e NÃO duplica. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros providers ICE só entram quando adapter versionado expuser estado CHILL real/aplicável; minecraft:slowness somente quando uma aplicação ICE concreta for explicitamente mapeada. Cold Sweat 2.4.2 não é provider CHILL de alvo. VERSION-STATUS: resolvers/registry são contratos RPG a implementar; o estado Chilled do Iron's é provider real comprovado. |
+| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01, CHILL_STATE_REGISTRY_V1 e CHILL_APPLICATION_RESOLVER_V1 + classificador ICE. Provider CHILL comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, estado irons_spellbooks:chilled; se a ação nativa já aplicar Chilled deterministicamente, o resolver apenas registra a aplicação e NÃO duplica. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros providers ICE só entram quando adapter versionado expuser estado CHILL real/aplicável; minecraft:slowness somente quando uma aplicação ICE concreta for explicitamente mapeada. Cold Sweat 2.4.2 não é provider CHILL de alvo. VERSION-STATUS: resolvers/registry são contratos RPG a implementar; o estado Chilled do Iron's é provider real comprovado. |
 | Efeito | A0265 contribui com +5 pontos percentuais de chance por rank (+5 / +10 / +15 p.p.) para UMA única decisão de aplicação de um chill_state_id real/compatível em cada direct_ice_outcome_id elegível. O estado e sua duração-base permanecem os do provider/adapter. Se a fonte já aplicar CHILL deterministicamente, registrar o resultado sem duplicar aplicação; se possuir chance nativa integrável, agregá-la à mesma decisão. Sem chance nativa, a base própria do resolver é 0%. |
 | Escalonamento | Até 3 ranks. Contribuição A0265: +5 / +10 / +15 p.p. Base própria sem chance nativa: 0%. Chance matemática final limitada a 100%. Duração/amplificador permanecem nativos da aplicação compatível e não escalam com A0265. |
 | Gate | SPECIALIST_UNLOCK:ICE válido + direct_ice_outcome_id atribuído ao jogador + adapter capaz de identificar/aplicar um chill_state_id real/compatível. Uma ação recebe no máximo UMA decisão de CHILL. DoT, tick de estado, derived component, summon, automação, fake player, callback duplicado e subeventos da mesma ação não recebem nova decisão. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS SPECIALIST_GATE_RESOLVER_V1, CHILL_STATE_REGISTRY_V1 e CHILL_APPLICATION_RESOLVER_V1 + classificador ICE. Provider CHILL comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, estado irons_spellbooks:chilled; se a ação nativa já aplicar Chilled deterministicamente, o resolver apenas registra a aplicação e NÃO duplica. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros providers ICE só entram quando adapter versionado expuser estado CHILL real/aplicável; minecraft:slowness somente quando uma aplicação ICE concreta for explicitamente mapeada. Cold Sweat 2.4.2 não é provider CHILL de alvo. VERSION-STATUS: resolvers/registry são contratos RPG a implementar; o estado Chilled do Iron's é provider real comprovado.
+RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01, CHILL_STATE_REGISTRY_V1 e CHILL_APPLICATION_RESOLVER_V1 + classificador ICE. Provider CHILL comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, estado irons_spellbooks:chilled; se a ação nativa já aplicar Chilled deterministicamente, o resolver apenas registra a aplicação e NÃO duplica. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros providers ICE só entram quando adapter versionado expuser estado CHILL real/aplicável; minecraft:slowness somente quando uma aplicação ICE concreta for explicitamente mapeada. Cold Sweat 2.4.2 não é provider CHILL de alvo. VERSION-STATUS: resolvers/registry são contratos RPG a implementar; o estado Chilled do Iron's é provider real comprovado.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental fornecem ações ICE quando mapeadas; Minecraft/NeoForge fornece freeze/Absorption/world state; Cold Sweat só possui o eixo térmico corporal explicitamente contratado.
 - **Exclusões obrigatórias:** Slowness, bioma frio, neve, estar congelando, temperatura BODY e aparência de gelo não substituem CHILL/FULLY_FROZEN. Sable/Aeronautics apenas resolvem espaço/sublevel.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS SPECIALIST_GATE_RESOLVER_V1, CHILL_ST
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_APPLICATION_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0169</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

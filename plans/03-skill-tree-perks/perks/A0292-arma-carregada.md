@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0174 Imbuimento de Raio ≥2 ranks + A0284 Carga ≥1 rank. O antigo requisito vago MARTIAL ≥6 foi removido: a qualificação marcial é herdada integralmente do gate atual de A0174, que exige família melee canônica elegível + mastery da própria lane ≥20. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0174 Imbuimento de Raio ≥2 + A0284 Carga ≥1. A família melee/mastery é a mesma resolvida por A0174. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + A0174/infra de derived_component:LIGHTNING no MESMO direct_melee_outcome + FUTURE_PROVIDER_CONTRACT DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + consulta espacial/targetability. Epic Fight 21.17.3.1 e classificadores canônicos resolvem epic_sword, epic_axe, epic_spear melee, epic_dagger, epic_hammer; adapters canônicos resolvem combat_mace/combat_scythe; Weapons of Miracles 2.0.176 só participa quando a arma concreta cair inequivocamente em lane elegível de A0174. Iron's/Ars fornecem o cast LIGHTNING de origem quando classificado. combat_fist continua fail-closed conforme P-0032. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + A0174/infra de derived_component:LIGHTNING no MESMO direct_melee_outcome + FUTURE_PROVIDER_CONTRACT DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + consulta espacial/targetability. Epic Fight 21.17.3.1 e classificadores canônicos resolvem epic_sword, epic_axe, epic_spear melee, epic_dagger, epic_hammer; adapters canônicos resolvem combat_mace/combat_scythe; Weapons of Miracles 2.0.176 só participa quando a arma concreta cair inequivocamente em lane elegível de A0174. Iron's/Ars fornecem o cast LIGHTNING de origem quando classificado. combat_fist continua fail-closed conforme P-0032. |
 | Efeito | Em uma ação direta de arma realmente sob A0174 Imbuimento de Raio, A0292 realiza no máximo uma rolagem server-side de 8% por rank (8%/16%/24%). No sucesso, se existir um segundo alvo hostil válido em raio de 4 blocos e linha de visão, emite uma única descarga LIGHTNING derivada com base igual a 35% do componente LIGHTNING canônico do golpe imbuído após modificadores ofensivos da ação, mas antes da mitigação do alvo original. O novo alvo aplica sua própria mitigação. |
 | Escalonamento | Até 3 ranks. Chance: 8%/16%/24% por weapon_root_action_id. Um único segundo alvo, raio 4 blocos, linha de visão e filtros hostis normais. Base da descarga = 0,35 × direct_lightning_component_snapshot. A descarga não herda o dano físico da arma e criticalHit=false mesmo que o golpe original tenha sido crítico. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0174 ≥2 + A0284 ≥1 + direct_melee_outcome que satisfaça INTEGRALMENTE o gate atual de A0174 e contenha seu componente LIGHTNING positivo + ainda não rolled para o mesmo weapon_root_action_id. Não existe gate adicional MARTIAL ≥6. Ranged, projétil, mão vazia, lança arremessada, derived hit, DoT, summon, automação, fake player e callback duplicado não rerrolam. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + A0174/infra de derived_component:LIGHTNING no MESMO direct_melee_outcome + FUTURE_PROVIDER_CONTRACT DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + consulta espacial/targetability. Epic Fight 21.17.3.1 e classificadores canônicos resolvem epic_sword, epic_axe, epic_spear melee, epic_dagger, epic_hammer; adapters canônicos resolvem combat_mace/combat_scythe; Weapons of Miracles 2.0.176 só participa quando a arma concreta cair inequivocamente em lane elegível de A0174. Iron's/Ars fornecem o cast LIGHTNING de origem quando classificado. combat_fist continua fail-closed conforme P-0032.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + A0174/infra de derived_component:LIGHTNING no MESMO direct_melee_outcome + FUTURE_PROVIDER_CONTRACT DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + consulta espacial/targetability. Epic Fight 21.17.3.1 e classificadores canônicos resolvem epic_sword, epic_axe, epic_spear melee, epic_dagger, epic_hammer; adapters canônicos resolvem combat_mace/combat_scythe; Weapons of Miracles 2.0.176 só participa quando a arma concreta cair inequivocamente em lane elegível de A0174. Iron's/Ars fornecem o cast LIGHTNING de origem quando classificado. combat_fist continua fail-closed conforme P-0032.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + A0174/infra de derived_component:
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0174</code>, <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

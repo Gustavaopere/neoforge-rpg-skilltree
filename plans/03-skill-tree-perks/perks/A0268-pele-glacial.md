@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:ICE confirmado server-side por Gate A/B/C. A0268 é perk interna defensiva e exige Specialist Gelo ativa; A0169 isolada não autoriza compra. A0268 reduz somente dano ICE, mantendo COLD_DAMAGE, CHILL, freeze buildup/Frozen e deslocamento térmico corporal em pipelines distintos. |
 | Pré-requisitos | Specialist Gelo desbloqueada (SPECIALIST_UNLOCK:ICE) por Gate A/B/C. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificador ICE + bucket único RPG_ICE_RESISTANCE. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 participam somente quando o componente recebido estiver explicitamente classificado ICE por adapter seguro. A0165 e A0268 contribuem ao MESMO bucket; qualquer resistência ICE nativa integrável deve ser unificada ao backend canônico e nunca somada duas vezes. Cold Sweat 2.4.2 permanece provider térmico corporal/COLD_DAMAGE separado. VERSION-STATUS: DamageMitigationResolver é contrato de design a implementar/adaptar, não API presumida existente na main auditada. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificador ICE + bucket único RPG_ICE_RESISTANCE. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 participam somente quando o componente recebido estiver explicitamente classificado ICE por adapter seguro. A0165 e A0268 contribuem ao MESMO bucket; qualquer resistência ICE nativa integrável deve ser unificada ao backend canônico e nunca somada duas vezes. Cold Sweat 2.4.2 permanece provider térmico corporal/COLD_DAMAGE separado. VERSION-STATUS: DamageMitigationResolver é contrato de design a implementar/adaptar, não API presumida existente na main auditada. |
 | Efeito | A0268 adiciona +7% de resistência a dano ICE por rank (+7% / +14% / +21%) ao MESMO bucket canônico RPG_ICE_RESISTANCE já usado por A0165/A0166. Não reduz COLD_DAMAGE térmico, deslocamento corporal para frio, CHILL, freeze buildup ou penalidades ambientais. |
 | Escalonamento | Até 3 ranks. Contribuição ao RPG_ICE_RESISTANCE: +7% / +14% / +21%. Teto próprio de A0268: 21%. Somada aos demais nodes da família ICE no mesmo bucket, a contribuição é resolvida uma única vez; não existe cap defensivo global oculto. |
 | Gate | SPECIALIST_UNLOCK:ICE válido + componente de dano legitimamente classificado ICE. COLD_DAMAGE térmico, hipotermia, água/neve fria, temperatura corporal Cold Sweat, CHILL, freeze buildup/Frozen, custo de recurso, dano físico e efeitos apenas visuais não entram por inferência. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificador ICE + bucket único RPG_ICE_RESISTANCE. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 participam somente quando o componente recebido estiver explicitamente classificado ICE por adapter seguro. A0165 e A0268 contribuem ao MESMO bucket; qualquer resistência ICE nativa integrável deve ser unificada ao backend canônico e nunca somada duas vezes. Cold Sweat 2.4.2 permanece provider térmico corporal/COLD_DAMAGE separado. VERSION-STATUS: DamageMitigationResolver é contrato de design a implementar/adaptar, não API presumida existente na main auditada.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificador ICE + bucket único RPG_ICE_RESISTANCE. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 participam somente quando o componente recebido estiver explicitamente classificado ICE por adapter seguro. A0165 e A0268 contribuem ao MESMO bucket; qualquer resistência ICE nativa integrável deve ser unificada ao backend canônico e nunca somada duas vezes. Cold Sweat 2.4.2 permanece provider térmico corporal/COLD_DAMAGE separado. VERSION-STATUS: DamageMitigationResolver é contrato de design a implementar/adaptar, não API presumida existente na main auditada.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental fornecem ações ICE quando mapeadas; Minecraft/NeoForge fornece freeze/Absorption/world state; Cold Sweat só possui o eixo térmico corporal explicitamente contratado.
 - **Exclusões obrigatórias:** Slowness, bioma frio, neve, estar congelando, temperatura BODY e aparência de gelo não substituem CHILL/FULLY_FROZEN. Sable/Aeronautics apenas resolvem espaço/sublevel.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_M
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0169</code>, <code>A0168</code>, <code>A0165</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

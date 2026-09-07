@@ -27,13 +27,13 @@
 | Ranks Máx. | 3 |
 | Custo por Rank | 1 Passive Point(s) |
 | Custo Extra | 0 — nenhum custo extra de compra |
-| Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado server-side por SPECIALIST_GATE_RESOLVER_V1: Gate A = fundamentos exteriores FIRE canônicos; Gate B = ≥100 Passive Points válidos em SPECIALIST_REGION:FIRE; Gate C = A0162 Maestria de Fogo. A0162 isolada, proximidade visual ou bridge não permitem comprar A0243. |
+| Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado server-side por pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01: Gate A = fundamentos exteriores FIRE canônicos; Gate B = ≥100 Passive Points válidos em SPECIALIST_REGION:FIRE; Gate C = A0162 Maestria de Fogo. A0162 isolada, proximidade visual ou bridge não permitem comprar A0243. |
 | Pré-requisitos | Specialist Fire desbloqueada por Gate A/B/C (SPECIALIST_UNLOCK:FIRE): fundamentos FIRE canônicos + ≥100 PP válidos em SPECIALIST_REGION:FIRE + terminal A0162. |
-| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS SPECIALIST_GATE_RESOLVER_V1 e FIRE_IGNITION_RESOLVER_V1 + adapters FIRE explícitos para Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1, Somake Spells 1.0.8-1.21.1-fix, Legendary Spellbooks 0.3.2 e outros providers somente quando a ação/estado FIRE concreto for versionadamente mapeado. OWNER do gate/ignition resolver: RPG core + adapters; providers externos preservam suas mecânicas nativas. VERSION-STATUS: IgnitionResolver não foi encontrado como API runtime na main auditada em 2026-08-29. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 e FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 + adapters FIRE explícitos para Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1, Somake Spells 1.0.8-1.21.1-fix, Legendary Spellbooks 0.3.2 e outros providers somente quando a ação/estado FIRE concreto for versionadamente mapeado. OWNER do gate/ignition resolver: RPG core + adapters; providers externos preservam suas mecânicas nativas. VERSION-STATUS: IgnitionResolver não foi encontrado como API runtime na main auditada em 2026-08-29. |
 | Efeito | A0243 contribui com +4 pontos percentuais de chance de aplicar um estado FIRE de Ignição real por rank (+4 / +8 / +12 p.p.) na ÚNICA decisão canônica de Ignição de cada direct_fire_outcome_id elegível. Se o provider expuser chance nativa integrável, ela entra na mesma decisão; caso contrário a chance-base própria do resolver é 0%. A chance final matemática não excede 100%. |
 | Escalonamento | Até 3 ranks; contribuição de A0243 à decisão de Ignição: +4 / +8 / +12 p.p. Base do resolver quando não há chance nativa: 0%. Teto matemático final: 100%. A duração do estado permanece a duração nativa da aplicação do provider. |
 | Gate | Compra/ativação exige SPECIALIST_UNLOCK:FIRE válido + resultado FIRE direto elegível atribuído ao jogador + adapter versionado capaz de identificar/aplicar uma Ignição real ou integrar a decisão nativa. DoT, summons, automação, derived_component, callback duplicado e subeventos da mesma ação não recebem nova decisão. Se o Gate A/B/C deixar de ser válido por migração/respec, perks internas FIRE não permanecem ativas silenciosamente. |
-| Hook | FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1: por direct_fire_outcome_id, agregar no máximo uma vez chance nativa integrável + contribuições RPG, executar UMA decisão server-side e registrar {action_id,outcome_id,owner,ignition_state_id,application_kind,base_duration,native_base_tick_damage} quando houver estado real. Se o provider já aplicar deterministicamente sua Ignição naquele outcome, observar/registrar o resultado sem duplicar aplicação. Compra/ativação de A0243 também consulta SPECIALIST_GATE_RESOLVER_V1. |
+| Hook | FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1: por direct_fire_outcome_id, agregar no máximo uma vez chance nativa integrável + contribuições RPG, executar UMA decisão server-side e registrar {action_id,outcome_id,owner,ignition_state_id,application_kind,base_duration,native_base_tick_damage} quando houver estado real. Se o provider já aplicar deterministicamente sua Ignição naquele outcome, observar/registrar o resultado sem duplicar aplicação. Compra/ativação de A0243 também consulta pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01. |
 | Fallback | FAIL-CLOSED se SPECIALIST_UNLOCK:FIRE não puder ser comprovado. Sem estado FIRE de Ignição real e hook seguro para a versão, A0243 fica inativa naquele provider. Não fabricar fogo vanilla genérico, combustão, duração arbitrária ou segunda rolagem para fazê-la funcionar. |
 | Regra | COUNTS_AS_SPECIALIST_PERK:FIRE=YES. A0243 é perk INTERNA da Specialist Fire, não fundamento/terminal exterior. Gate local nunca substitui Gate A/B/C: A0162 é apenas Gate C dentro de SPECIALIST_UNLOCK:FIRE; Gate B continua ≥100 PP FIRE válidos. Uma decisão de Ignição por outcome direto; efeitos derivados/DoT/summons não rerrolam. FIRE_IGNITION_RESOLVER_V1 é contrato futuro, não API runtime já existente. RESPEC_SEGURO: enquanto A0243 ou dependentes estiverem possuídos, preservar o unlock da Specialist; refund da árvore interna deve ocorrer antes de quebrar Gate A/B/C. |
 
@@ -55,7 +55,7 @@ Compra/ativação exige SPECIALIST_UNLOCK:FIRE válido + resultado FIRE direto e
 
 ### Hook e ordem de execução
 
-FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1: por direct_fire_outcome_id, agregar no máximo uma vez chance nativa integrável + contribuições RPG, executar UMA decisão server-side e registrar {action_id,outcome_id,owner,ignition_state_id,application_kind,base_duration,native_base_tick_damage} quando houver estado real. Se o provider já aplicar deterministicamente sua Ignição naquele outcome, observar/registrar o resultado sem duplicar aplicação. Compra/ativação de A0243 também consulta SPECIALIST_GATE_RESOLVER_V1.
+FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1: por direct_fire_outcome_id, agregar no máximo uma vez chance nativa integrável + contribuições RPG, executar UMA decisão server-side e registrar {action_id,outcome_id,owner,ignition_state_id,application_kind,base_duration,native_base_tick_damage} quando houver estado real. Se o provider já aplicar deterministicamente sua Ignição naquele outcome, observar/registrar o resultado sem duplicar aplicação. Compra/ativação de A0243 também consulta pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01.
 
 ### Fallback sem trocar a identidade
 
@@ -75,7 +75,7 @@ FAIL-CLOSED se SPECIALIST_UNLOCK:FIRE não puder ser comprovado. Sem estado FIRE
 | Região | Especialista — Fogo / Piromancia — Ignição e Combustão |
 | Camada e papel | Camada 1; Ramo |
 | Pré-requisito visual/estrutural | Specialist Fire desbloqueada por Gate A/B/C (SPECIALIST_UNLOCK:FIRE): fundamentos FIRE canônicos + ≥100 PP válidos em SPECIALIST_REGION:FIRE + terminal A0162. |
-| Dependência semântica completa | SPECIALIST_UNLOCK:FIRE confirmado server-side por SPECIALIST_GATE_RESOLVER_V1: Gate A = fundamentos exteriores FIRE canônicos; Gate B = ≥100 Passive Points válidos em SPECIALIST_REGION:FIRE; Gate C = A0162 Maestria de Fogo. A0162 isolada, proximidade visual ou bridge não permitem comprar A0243. |
+| Dependência semântica completa | SPECIALIST_UNLOCK:FIRE confirmado server-side por pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01: Gate A = fundamentos exteriores FIRE canônicos; Gate B = ≥100 Passive Points válidos em SPECIALIST_REGION:FIRE; Gate C = A0162 Maestria de Fogo. A0162 isolada, proximidade visual ou bridge não permitem comprar A0243. |
 | Custo topológico | 1 PP por rank; 3 rank(s); extra 0 |
 | Regra de região/PP | COUNTS_AS_SPECIALIST_PERK:FIRE=YES. A0243 é perk INTERNA da Specialist Fire, não fundamento/terminal exterior. Gate local nunca substitui Gate A/B/C: A0162 é apenas Gate C dentro de SPECIALIST_UNLOCK:FIRE; Gate B continua ≥100 PP FIRE válidos. Uma decisão de Ignição por outcome direto; efeitos derivados/DoT/summons não rerrolam. FIRE_IGNITION_RESOLVER_V1 é contrato futuro, não API runtime já existente. RESPEC_SEGURO: enquanto A0243 ou dependentes estiverem possuídos, preservar o unlock da Specialist; refund da árvore interna deve ocorrer antes de quebrar Gate A/B/C. |
 | Border hopping | Proibido contar a mesma compra em regiões incompatíveis ou usar bridge para satisfazer dois thresholds, salvo whitelist explícita de um único lado semântico. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS SPECIALIST_GATE_RESOLVER_V1 e FIRE_IGNITION_RESOLVER_V1 + adapters FIRE explícitos para Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1, Somake Spells 1.0.8-1.21.1-fix, Legendary Spellbooks 0.3.2 e outros providers somente quando a ação/estado FIRE concreto for versionadamente mapeado. OWNER do gate/ignition resolver: RPG core + adapters; providers externos preservam suas mecânicas nativas. VERSION-STATUS: IgnitionResolver não foi encontrado como API runtime na main auditada em 2026-08-29.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 e FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 + adapters FIRE explícitos para Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1, Somake Spells 1.0.8-1.21.1-fix, Legendary Spellbooks 0.3.2 e outros providers somente quando a ação/estado FIRE concreto for versionadamente mapeado. OWNER do gate/ignition resolver: RPG core + adapters; providers externos preservam suas mecânicas nativas. VERSION-STATUS: IgnitionResolver não foi encontrado como API runtime na main auditada em 2026-08-29.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACTS SPECIALIST_GATE_RESOLVER_V1 e FIRE_IG
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0162</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

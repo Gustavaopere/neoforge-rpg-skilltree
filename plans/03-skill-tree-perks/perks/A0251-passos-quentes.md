@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0250 Resistência ao Calor ≥2 + A0161 Afinidade de Fogo. A rota local não substitui o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0250 Resistência ao Calor ≥2 + A0161 Afinidade de Fogo. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + classificador FIRE + FUTURE_PROVIDER_CONTRACT BODY_HEAT_STATE_V1 (design P-0054). OWNER: adapter corporal canônico; provider atual: Cold Sweat 2.4.2. QUERY deve expor estados semânticos versionados como ADVERSE_HOT sem reduzir tudo a um threshold arbitrário. Minecraft/NeoForge fornece apenas o modificador temporário de movimento. VERSION-STATUS: P-0054/ADVERSE_HOT não foi encontrado como API runtime na main auditada em 2026-08-29. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + classificador FIRE + FUTURE_PROVIDER_CONTRACT BODY_HEAT_STATE_V1 (design P-0054). OWNER: adapter corporal canônico; provider atual: Cold Sweat 2.4.2. QUERY deve expor estados semânticos versionados como ADVERSE_HOT sem reduzir tudo a um threshold arbitrário. Minecraft/NeoForge fornece apenas o modificador temporário de movimento. VERSION-STATUS: P-0054/ADVERSE_HOT não foi encontrado como API runtime na main auditada em 2026-08-29. |
 | Efeito | Após o commit server-side de uma conjuração FIRE direta elegível do jogador enquanto o adapter corporal canônico da versão reportar um estado térmico adverso quente real, A0251 arma RPG_HOT_STEPS por 100 ticks (5 s). Durante a janela, velocidade de movimento recebe +6% por rank (+6% / +12%). O estado quente é somente condição de ativação: A0251 não reduz body/core, não altera limiar/ponto de superaquecimento, heat resistance/dampening, Afinidade, Resistência a Fogo, HEAT_DAMAGE, aclimatação ou imunidade ambiental, e não remove/substitui qualquer custo, exaustão, sede, dano ou outra penalidade fisiológica nativa que já se aplique à ação/jogador. |
 | Escalonamento | Até 2 ranks. RPG_HOT_STEPS: 100 ticks fixos. Velocidade de movimento: +6% / +12%. Nova conjuração FIRE direta elegível durante estresse quente pode apenas definir expiry_tick=now+100; não empilha magnitude nem cria segunda instância. O benefício não escala com temperatura, duração do estresse, dano FIRE, número de ticks ou quantidade de subeventos. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisitos locais + conjuração FIRE direta própria confirmada/commitada + ADVERSE_HOT real fornecido por BODY_HEAT_STATE_V1/design P-0054 no mesmo instante. ADVERSE_HOT não pode ser substituído por BODY≥100, HOT DamageSource, FIRE damage, WORLD>BURNING_POINT, lava, bloco/bioma quente ou comparação inventada. Enquanto o contrato não for comprovado na versão, a ativação fica fail-closed. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + classificador FIRE + FUTURE_PROVIDER_CONTRACT BODY_HEAT_STATE_V1 (design P-0054). OWNER: adapter corporal canônico; provider atual: Cold Sweat 2.4.2. QUERY deve expor estados semânticos versionados como ADVERSE_HOT sem reduzir tudo a um threshold arbitrário. Minecraft/NeoForge fornece apenas o modificador temporário de movimento. VERSION-STATUS: P-0054/ADVERSE_HOT não foi encontrado como API runtime na main auditada em 2026-08-29.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + classificador FIRE + FUTURE_PROVIDER_CONTRACT BODY_HEAT_STATE_V1 (design P-0054). OWNER: adapter corporal canônico; provider atual: Cold Sweat 2.4.2. QUERY deve expor estados semânticos versionados como ADVERSE_HOT sem reduzir tudo a um threshold arbitrário. Minecraft/NeoForge fornece apenas o modificador temporário de movimento. VERSION-STATUS: P-0054/ADVERSE_HOT não foi encontrado como API runtime na main auditada em 2026-08-29.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>BODY_HEAT_STATE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + classificador FIRE + FUTURE_PROVI
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>BODY_HEAT_STATE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0161</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

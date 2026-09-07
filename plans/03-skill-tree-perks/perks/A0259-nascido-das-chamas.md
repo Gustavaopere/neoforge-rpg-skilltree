@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0250 Resistência ao Calor ≥3 + A0256 Armadura Incandescente ≥1 + Fire Mastery ≥120 + A0161 Afinidade de Fogo. Estes são requisitos internos adicionais; não substituem ≥100 PP FIRE/fundamentos/terminal A0162. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0250 ≥3 + A0256 ≥1 + A0161 Afinidade de Fogo + Fire Mastery ≥120. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificadores FIRE/HEAT + Cold Sweat 2.4.2 por dois contratos independentes: BODY_HEAT_STATE_V1 (design P-0054) para eventual ADVERSE_HOT_SEVERE e THERMAL_PARCEL_PIPELINE_V1 (design P-0057) para novos parcels térmicos positivos. VERSION-STATUS: P-0054/P-0057 não foram encontrados como APIs runtime na main auditada em 2026-08-29; gatilhos/parcels dependentes permanecem fail-closed até adapter real. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificadores FIRE/HEAT + Cold Sweat 2.4.2 por dois contratos independentes: BODY_HEAT_STATE_V1 (design P-0054) para eventual ADVERSE_HOT_SEVERE e THERMAL_PARCEL_PIPELINE_V1 (design P-0057) para novos parcels térmicos positivos. VERSION-STATUS: P-0054/P-0057 não foram encontrados como APIs runtime na main auditada em 2026-08-29; gatilhos/parcels dependentes permanecem fail-closed até adapter real. |
 | Efeito | Fora da recarga, A0259 arma RPG_BORN_OF_FLAME por 100 ticks (5 s) quando ocorrer UM destes gatilhos server-side: (a) após o commit de um hostile_direct_damage_outcome positivo classificado FIRE ou HEAT_DAMAGE; ou (b) na transição real do estado corporal canônico para um estágio adverso de calor severo reconhecido pelo adapter da versão. O outcome que arma por dano não recebe a mitigação retroativamente. Durante a janela, componentes FIRE e HEAT_DAMAGE hostis reconhecidos recebem ×0,10, cada um mantendo seu bucket; novos parcels térmicos positivos que deslocariam o corpo para quente recebem ×0,50 antes de entrar no estado corporal. Temperatura/penalidades já acumuladas não são removidas. |
 | Escalonamento | 1 rank. Janela defensiva: 100 ticks. FIRE hostil: ×0,10. HEAT_DAMAGE hostil: ×0,10. Novo deslocamento térmico positivo para quente: ×0,50. Recarga completa: 1200 ticks (60 s) iniciada APÓS o fim da janela, portanto nova ativação só é possível após activation_tick + 1300. Sem stacks ou extensão por novos gatilhos durante a janela/recarga. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisitos locais + cooldown livre + (outcome hostil direto FIRE/HEAT_DAMAGE positivo OU transição real para ADVERSE_HOT_SEVERE fornecida por BODY_HEAT_STATE_V1). ADVERSE_HOT_SEVERE não pode ser substituído por BODY≥100, HOT DamageSource, WORLD>BURNING_POINT, FIRE damage ou comparação inventada. Enquanto P-0054 não comprovar essa semântica, somente o gatilho por dano explícito permanece elegível. Auto-dano, custo, fake player, callback duplicado e permanência contínua em calor não rearmam. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificadores FIRE/HEAT + Cold Sweat 2.4.2 por dois contratos independentes: BODY_HEAT_STATE_V1 (design P-0054) para eventual ADVERSE_HOT_SEVERE e THERMAL_PARCEL_PIPELINE_V1 (design P-0057) para novos parcels térmicos positivos. VERSION-STATUS: P-0054/P-0057 não foram encontrados como APIs runtime na main auditada em 2026-08-29; gatilhos/parcels dependentes permanecem fail-closed até adapter real.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificadores FIRE/HEAT + Cold Sweat 2.4.2 por dois contratos independentes: BODY_HEAT_STATE_V1 (design P-0054) para eventual ADVERSE_HOT_SEVERE e THERMAL_PARCEL_PIPELINE_V1 (design P-0057) para novos parcels térmicos positivos. VERSION-STATUS: P-0054/P-0057 não foram encontrados como APIs runtime na main auditada em 2026-08-29; gatilhos/parcels dependentes permanecem fail-closed até adapter real.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_M
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>, <code>BODY_HEAT_STATE_V1</code>, <code>THERMAL_PARCEL_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0161</code>, <code>A0162</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

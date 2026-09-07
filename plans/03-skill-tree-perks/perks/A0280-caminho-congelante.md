@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:ICE confirmado por Gate A/B/C + A0279 Coração Glacial possuído e ATIVO + A0269 Passo Seguro no Gelo ≥2 ranks. Requisitos locais não substituem fundamentos ICE + ≥100 PP válidos em SPECIALIST_REGION:ICE + terminal A0169. |
 | Pré-requisitos | Specialist Gelo desbloqueada (SPECIALIST_UNLOCK:ICE) + A0279 Coração Glacial + A0269 Passo Seguro no Gelo ≥2 ranks. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge 1.21.1 block/fluid/movement + FTB Chunks 2101.1.21/FTB Teams para claims/permissões + Create Aeronautics: FTB Chunks 1.1.1 para claims em ships/sublevels + Sable 2.0.5 como infraestrutura de sublevels + FUTURE_PROVIDER_CONTRACT TEMPORARY_WORLD_MUTATION_GUARD_V1 + ledger persistente de mutações temporárias. Apenas água-fonte vanilla explícita é elegível por padrão; fluidos modded exigem mapping curado próprio. VERSION-STATUS: guard/ledger são contratos RPG a implementar; nenhum hook A0280 correspondente foi encontrado na main auditada em 2026-08-29. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Minecraft/NeoForge 1.21.1 block/fluid/movement + FTB Chunks 2101.1.21/FTB Teams para claims/permissões + Create Aeronautics: FTB Chunks 1.1.1 para claims em ships/sublevels + Sable 2.0.5 como infraestrutura de sublevels + FUTURE_PROVIDER_CONTRACT TEMPORARY_WORLD_MUTATION_GUARD_V1 + ledger persistente de mutações temporárias. Apenas água-fonte vanilla explícita é elegível por padrão; fluidos modded exigem mapping curado próprio. VERSION-STATUS: guard/ledger são contratos RPG a implementar; nenhum hook A0280 correspondente foi encontrado na main auditada em 2026-08-29. |
 | Efeito | Enquanto A0279 Coração Glacial estiver ativo, A0280 pode substituir temporariamente água-fonte elegível na superfície imediatamente sob/ao redor dos pés por gelo efêmero de travessia. A cada atualização de movimento, considerar apenas posições de superfície no mesmo nível de contato dos pés dentro de raio horizontal de 2 blocos; cada posição criada guarda snapshot do BlockState/FluidState original e um temporary_ice_instance_id. O gelo expira após 80 ticks (4 s), não gera drop/XP/mastery e só restaura o original se a posição ainda contiver exatamente o bloco temporário daquela instância. |
 | Escalonamento | 1 rank. Raio horizontal de criação: 2 blocos a partir da posição de contato dos pés, somente na camada de superfície relevante. TTL por posição: 80 ticks. Máximo de 32 posições temporárias ativas por jogador; ao atingir o cap, novas posições não são criadas até liberar entradas. Apenas água-fonte explicitamente permitida por padrão; fluido modded exige adapter/tag curada e regra de restauração própria. Uma posição já registrada por outra instância não é sobrescrita. |
 | Gate | SPECIALIST_UNLOCK:ICE válido + A0279 ativo + A0269 ≥2 + chunk já carregado + posição de superfície realmente pertencente ao espaço/sublevel do jogador em raio horizontal 2 + FluidState elegível de água-fonte + espaço/collision state compatível acima + TEMPORARY_WORLD_MUTATION_GUARD_V1=ALLOW + active_temp_ice_count<32. Em FTB Chunks, claim sem permissão é inelegível. Em Sable/Aeronautics, a posição só pode ser mutada quando identidade espacial/ownership/restauração no mesmo sublevel forem comprovadas. Água waterlogged, fluido flowing, fluido modded não mapeado, blacklist, posição em migração de sublevel, chunk não carregado e mutação incompatível não ativam. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge 1.21.1 block/fluid/movement + FTB Chunks 2101.1.21/FTB Teams para claims/permissões + Create Aeronautics: FTB Chunks 1.1.1 para claims em ships/sublevels + Sable 2.0.5 como infraestrutura de sublevels + FUTURE_PROVIDER_CONTRACT TEMPORARY_WORLD_MUTATION_GUARD_V1 + ledger persistente de mutações temporárias. Apenas água-fonte vanilla explícita é elegível por padrão; fluidos modded exigem mapping curado próprio. VERSION-STATUS: guard/ledger são contratos RPG a implementar; nenhum hook A0280 correspondente foi encontrado na main auditada em 2026-08-29.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Minecraft/NeoForge 1.21.1 block/fluid/movement + FTB Chunks 2101.1.21/FTB Teams para claims/permissões + Create Aeronautics: FTB Chunks 1.1.1 para claims em ships/sublevels + Sable 2.0.5 como infraestrutura de sublevels + FUTURE_PROVIDER_CONTRACT TEMPORARY_WORLD_MUTATION_GUARD_V1 + ledger persistente de mutações temporárias. Apenas água-fonte vanilla explícita é elegível por padrão; fluidos modded exigem mapping curado próprio. VERSION-STATUS: guard/ledger são contratos RPG a implementar; nenhum hook A0280 correspondente foi encontrado na main auditada em 2026-08-29.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental fornecem ações ICE quando mapeadas; Minecraft/NeoForge fornece freeze/Absorption/world state; Cold Sweat só possui o eixo térmico corporal explicitamente contratado.
 - **Exclusões obrigatórias:** Slowness, bioma frio, neve, estar congelando, temperatura BODY e aparência de gelo não substituem CHILL/FULLY_FROZEN. Sable/Aeronautics apenas resolvem espaço/sublevel.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TEMPORARY_WORLD_MUTATION_GUARD_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>TEMPORARY_WORLD_MUTATION_GUARD_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge 1.21.1 block/f
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TEMPORARY_WORLD_MUTATION_GUARD_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>TEMPORARY_WORLD_MUTATION_GUARD_V1</code>.
 - **Dependências fora desta faixa:** <code>A0169</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

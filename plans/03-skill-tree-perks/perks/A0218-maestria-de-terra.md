@@ -7,7 +7,7 @@
 - **Escopo desta entrega:** auditoria e design apenas; nenhum catálogo/runtime, compra, atributo ou integração foi implementado.
 - **Fonte canônica:** [registro A0218 no Catálogo Mestre do Notion](https://app.notion.com/3c569db9f0db8150a9cdc7fe283b53d8).
 - **Leitura fresca do registro:** 2026-09-01; página individual buscada antes da auditoria.
-- **Persistência verificada:** Custo Extra=0 e correções pós-review de SPECIALIST_GATE_RESOLVER_V1 foram relidas na página individual.
+- **Persistência verificada:** Custo Extra=0 e correções pós-review de pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 foram relidas na página individual.
 - **Dependências externas à faixa:** nenhuma dependência fora de A0200–A0299. Elas permanecem sinalizadas e não são presumidas como concluídas.
 - **Identidade preservada:** EARTH/GEO exige ação ou componente mágico explicitamente classificado. Não equivale a pedra, mineração, impacto, knockback, queda, terreno ou alvo no chão.
 
@@ -29,13 +29,13 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | A0217 Domínio Geomântico + Earth Mastery ≥80 + pelo menos uma rota profunda: A0213 =1 OU A0215 =1 OU A0216 ≥2. Requisitos locais da terminal não substituem Gate A/B/C da Specialist; MINING/topologia não reduzem o threshold semântico. |
 | Pré-requisitos | A0217 Domínio Geomântico + Earth Mastery ≥80 + pelo menos uma rota profunda entre A0213/A0215/A0216. |
-| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Earth Mastery canônica. OWNER do resolver: RPG progression service; STATE: Gates A/B/C, terminal_id=ARCANE/EARTH e PP semânticos; BEHAVIOR: unlock/revoke/reconcile server-side em compra, respec, migração e reload; VERSION-STATUS: contrato não encontrado no runtime/main auditado em 2026-09-01. GTBC's Geomancy Plus runtime 1.1.0-1.21.1 e Iron's Spells 'n Spellbooks 3.16.3 fornecem gameplay EARTH apenas aos nodes com adapters próprios; nenhum provider externo possui o gate. |
-| Efeito | Terminal exterior do corredor EARTH/Geomancia. Possuir A0218 satisfaz somente Gate C da Árvore de Especialista Terra. A Specialist Terra só é liberada quando SpecialistGateResolver confirmar simultaneamente fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:EARTH e A0218. Não concede controle geomântico, defesa mineral, impacto, terreno, mineração ou dano por si só. |
+| Provider/Mods | RPG Skill Tree: TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 + Earth Mastery canônica. GTBC's Geomancy Plus runtime 1.1.0-1.21.1 e Iron's Spells 'n Spellbooks 3.16.3 fornecem gameplay EARTH apenas aos nodes com adapters próprios; nenhum provider externo possui o gate. |
+| Efeito | Terminal exterior do corredor EARTH/Geomancia. Possuir A0218 satisfaz somente Gate C da Árvore de Especialista Terra. A Specialist Terra usa a pipeline canônica existente TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:EARTH e A0218. Não concede controle geomântico, defesa mineral, impacto, terreno, mineração ou dano por si só. |
 | Escalonamento | 1 rank. Desbloqueio binário da especialização EARTH; não adiciona dano, mineração, controle, impacto, estado, recurso, duração, resistência ou mitigação por si só. |
-| Gate | COMPRA DA TERMINAL: A0217 + Earth Mastery ≥80 + (A0213=1 OU A0215=1 OU A0216≥2) + SPECIALIST_GATE_RESOLVER_V1 disponível; sem o resolver, A0218 é UNAVAILABLE_NODE/não comprável. DESBLOQUEIO SPECIALIST TERRA: Gate A = fundamentos exteriores ARCANE/POWER e ARCANE/EARTH; Gate B = ≥100 PP válidos em SPECIALIST_REGION:EARTH; Gate C = A0218 possuída. |
-| Hook | FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 server-side: A0218 publica somente terminal_id=ARCANE/EARTH. Reavaliar Gate A/B/C em compra, respec, migração e mudança de provider/capability; liberar/revogar a Specialist Terra somente enquanto os três gates forem válidos. Investimento MINING e proximidade visual não substituem gates. |
-| Fallback | UNAVAILABLE_NODE/não comprável enquanto SPECIALIST_GATE_RESOLVER_V1 estiver ausente/incompatível. Se fundamentos, cálculo de PP semântico ou terminal não puderem ser validados, Specialist Terra permanece bloqueada. Perks internas EARTH/Geomancy falham fechado individualmente; nunca retornar aos antigos gates de 8 PP, ARCANE ≥12 ou ARCANE ≥8 + MINING ≥4. |
-| Regra | TERMINAL_EXTERIOR: ARCANE/EARTH. PP_REGION: ARCANE/EARTH. A0218 não pertence às 30 perks internas da Specialist Terra. SPECIALIST_GATE_RESOLVER_V1 é capability obrigatória e server-authoritative. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:EARTH; BORDER_HOPPING proibido. RESPEC_SEGURO: Specialist interna deve ser reembolsada antes de quebrar terminal/fundamentals/Gate B. |
+| Gate | COMPRA DA TERMINAL: A0217 + Earth Mastery ≥80 + (A0213=1 OU A0215=1 OU A0216≥2), todos legitimamente disponíveis. DESBLOQUEIO SPECIALIST TERRA: TreeUnlockResolver avalia TreeUnlockDefinition com Gate A = fundamentos exteriores ARCANE/POWER e ARCANE/EARTH; Gate B = ≥100 PP válidos em SPECIALIST_REGION:EARTH; Gate C = A0218 possuída. A ausência de um resolver Specialist separado não é blocker. |
+| Hook | A0218 publica/representa somente terminal_id=ARCANE/EARTH na TreeUnlockDefinition. TreeUnlockResolver usa estado canônico + projeção de investimento do Stage 04.01 e reavalia nos lifecycle boundaries canônicos de compra, respec, migração e reload. Investimento MINING e proximidade visual não substituem gates. Não criar resolver Specialist paralelo. |
+| Fallback | A infraestrutura Specialist não é blocker ausente: reutilizar TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01. A0218 falha fechado somente quando A0217, Earth Mastery, a rota profunda ou outro requisito real da dependency closure não puder ser validado; definição/snapshot canônico de unlock inválido também mantém a Specialist bloqueada. Nunca retornar aos antigos gates de 8 PP, ARCANE ≥12 ou ARCANE ≥8 + MINING ≥4. |
+| Regra | TERMINAL_EXTERIOR: ARCANE/EARTH. PP_REGION: ARCANE/EARTH. A0218 não pertence às perks internas da Specialist Terra. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:EARTH; BORDER_HOPPING proibido. RESPEC_SEGURO: Specialist interna deve ser reembolsada antes de quebrar terminal/fundamentals/Gate B. TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 são authority; resolver Specialist paralelo é proibido. |
 
 As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função Efetiva, Provider Efetivo, Gate Efetivo, Hook Efetivo, Fallback Efetivo, Pré-requisitos Efetivos e Status Estrutural continuam sob autoridade do schema do Notion. Este dossiê não duplica nem falsifica o cálculo dessas fórmulas.
 
@@ -43,7 +43,7 @@ As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função 
 
 ### Efeito aprovado
 
-Terminal exterior do corredor EARTH/Geomancia. Possuir A0218 satisfaz somente Gate C da Árvore de Especialista Terra. A Specialist Terra só é liberada quando SpecialistGateResolver confirmar simultaneamente fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:EARTH e A0218. Não concede controle geomântico, defesa mineral, impacto, terreno, mineração ou dano por si só.
+Terminal exterior do corredor EARTH/Geomancia. Possuir A0218 satisfaz somente Gate C da Árvore de Especialista Terra. A Specialist Terra usa a pipeline canônica existente TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:EARTH e A0218. Não concede controle geomântico, defesa mineral, impacto, terreno, mineração ou dano por si só.
 
 ### Escalonamento aprovado
 
@@ -51,15 +51,15 @@ Terminal exterior do corredor EARTH/Geomancia. Possuir A0218 satisfaz somente Ga
 
 ### Gate de compra/ativação
 
-COMPRA DA TERMINAL: A0217 + Earth Mastery ≥80 + (A0213=1 OU A0215=1 OU A0216≥2) + SPECIALIST_GATE_RESOLVER_V1 disponível; sem o resolver, A0218 é UNAVAILABLE_NODE/não comprável. DESBLOQUEIO SPECIALIST TERRA: Gate A = fundamentos exteriores ARCANE/POWER e ARCANE/EARTH; Gate B = ≥100 PP válidos em SPECIALIST_REGION:EARTH; Gate C = A0218 possuída.
+COMPRA DA TERMINAL: A0217 + Earth Mastery ≥80 + (A0213=1 OU A0215=1 OU A0216≥2), todos legitimamente disponíveis. DESBLOQUEIO SPECIALIST TERRA: TreeUnlockResolver avalia TreeUnlockDefinition com Gate A = fundamentos exteriores ARCANE/POWER e ARCANE/EARTH; Gate B = ≥100 PP válidos em SPECIALIST_REGION:EARTH; Gate C = A0218 possuída. A ausência de um resolver Specialist separado não é blocker.
 
 ### Hook e ordem de execução
 
-FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 server-side: A0218 publica somente terminal_id=ARCANE/EARTH. Reavaliar Gate A/B/C em compra, respec, migração e mudança de provider/capability; liberar/revogar a Specialist Terra somente enquanto os três gates forem válidos. Investimento MINING e proximidade visual não substituem gates.
+A0218 publica/representa somente terminal_id=ARCANE/EARTH na TreeUnlockDefinition. TreeUnlockResolver usa estado canônico + projeção de investimento do Stage 04.01 e reavalia nos lifecycle boundaries canônicos de compra, respec, migração e reload. Investimento MINING e proximidade visual não substituem gates. Não criar resolver Specialist paralelo.
 
 ### Fallback sem trocar a identidade
 
-UNAVAILABLE_NODE/não comprável enquanto SPECIALIST_GATE_RESOLVER_V1 estiver ausente/incompatível. Se fundamentos, cálculo de PP semântico ou terminal não puderem ser validados, Specialist Terra permanece bloqueada. Perks internas EARTH/Geomancy falham fechado individualmente; nunca retornar aos antigos gates de 8 PP, ARCANE ≥12 ou ARCANE ≥8 + MINING ≥4.
+A infraestrutura Specialist não é blocker ausente: reutilizar TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01. A0218 falha fechado somente quando A0217, Earth Mastery, a rota profunda ou outro requisito real da dependency closure não puder ser validado; definição/snapshot canônico de unlock inválido também mantém a Specialist bloqueada. Nunca retornar aos antigos gates de 8 PP, ARCANE ≥12 ou ARCANE ≥8 + MINING ≥4.
 
 ### Invariantes semânticos
 
@@ -77,7 +77,7 @@ UNAVAILABLE_NODE/não comprável enquanto SPECIALIST_GATE_RESOLVER_V1 estiver au
 | Pré-requisito visual/estrutural | A0217 Domínio Geomântico + Earth Mastery ≥80 + pelo menos uma rota profunda entre A0213/A0215/A0216. |
 | Dependência semântica completa | A0217 Domínio Geomântico + Earth Mastery ≥80 + pelo menos uma rota profunda: A0213 =1 OU A0215 =1 OU A0216 ≥2. Requisitos locais da terminal não substituem Gate A/B/C da Specialist; MINING/topologia não reduzem o threshold semântico. |
 | Custo topológico | 3 PP por rank; 1 rank(s); extra 0 |
-| Regra de região/PP | TERMINAL_EXTERIOR: ARCANE/EARTH. PP_REGION: ARCANE/EARTH. A0218 não pertence às 30 perks internas da Specialist Terra. SPECIALIST_GATE_RESOLVER_V1 é capability obrigatória e server-authoritative. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:EARTH; BORDER_HOPPING proibido. RESPEC_SEGURO: Specialist interna deve ser reembolsada antes de quebrar terminal/fundamentals/Gate B. |
+| Regra de região/PP | TERMINAL_EXTERIOR: ARCANE/EARTH. PP_REGION: ARCANE/EARTH. A0218 não pertence às 30 perks internas da Specialist Terra. pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 é capability obrigatória e server-authoritative. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:EARTH; BORDER_HOPPING proibido. RESPEC_SEGURO: Specialist interna deve ser reembolsada antes de quebrar terminal/fundamentals/Gate B. |
 | Border hopping | Proibido contar a mesma compra em regiões incompatíveis ou usar bridge para satisfazer dois thresholds, salvo whitelist explícita de um único lado semântico. |
 | Respec | O refund deve respeitar dependency closure, gate de região/terminal e estado owned pela perk; perks internas dependentes são reembolsadas antes de quebrar o gate. |
 
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Earth Mastery canônica. OWNER do resolver: RPG progression service; STATE: Gates A/B/C, terminal_id=ARCANE/EARTH e PP semânticos; BEHAVIOR: unlock/revoke/reconcile server-side em compra, respec, migração e reload; VERSION-STATUS: contrato não encontrado no runtime/main auditado em 2026-09-01. GTBC's Geomancy Plus runtime 1.1.0-1.21.1 e Iron's Spells 'n Spellbooks 3.16.3 fornecem gameplay EARTH apenas aos nodes com adapters próprios; nenhum provider externo possui o gate.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Earth Mastery canônica. OWNER do resolver: RPG progression service; STATE: Gates A/B/C, terminal_id=ARCANE/EARTH e PP semânticos; BEHAVIOR: unlock/revoke/reconcile server-side em compra, respec, migração e reload; VERSION-STATUS: pipeline canônica já materializada no runtime/main auditado em 2026-09-01. GTBC's Geomancy Plus runtime 1.1.0-1.21.1 e Iron's Spells 'n Spellbooks 3.16.3 fornecem gameplay EARTH apenas aos nodes com adapters próprios; nenhum provider externo possui o gate.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** GTBC's Geomancy Plus é o provider principal; Iron's, Ars Elemental e Somake entram somente por adapters EARTH/GEO explícitos. MINING é ponte semântica, não classificador.
 - **Exclusões obrigatórias:** Mowzie/tema geológico, ferramentas, blocos, automação e dano físico pétreo não ativam a família. Volcanoes conserva autoridade de geologia/worldgen e não vira provider mágico.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -137,7 +137,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Earth Ma
 ## 8. Fail-closed, lifecycle e perda de capability
 
 - **Decisão atual:** Não comprável no runtime atual. O node só pode ser habilitado depois que dependências e capabilities exatas forem comprovadas; componente não classificado continua inerte.
-- **Fallback normativo:** UNAVAILABLE_NODE/não comprável enquanto SPECIALIST_GATE_RESOLVER_V1 estiver ausente/incompatível. Se fundamentos, cálculo de PP semântico ou terminal não puderem ser validados, Specialist Terra permanece bloqueada. Perks internas EARTH/Geomancy falham fechado individualmente; nunca retornar aos antigos gates de 8 PP, ARCANE ≥12 ou ARCANE ≥8 + MINING ≥4.
+- **Fallback normativo:** UNAVAILABLE_NODE/não comprável enquanto pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 estiver ausente/incompatível. Se fundamentos, cálculo de PP semântico ou terminal não puderem ser validados, Specialist Terra permanece bloqueada. Perks internas EARTH/Geomancy falham fechado individualmente; nunca retornar aos antigos gates de 8 PP, ARCANE ≥12 ou ARCANE ≥8 + MINING ≥4.
 - Reavaliar gate/availability em login, load/save, datapack/rules reload, respec, mudança/remoção de provider, alteração de capability e migração de schema.
 - Perda de provider ou dependência remove/desativa somente a parcela dependente e executa cleanup do estado próprio, sem tocar estado autoritativo de terceiros.
 - Estado desconhecido ou erro de query nunca concede compra, unlock, proteção, dano, recurso, temperatura favorável ou progressão.
@@ -192,7 +192,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Earth Ma
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.
@@ -239,7 +239,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Earth Ma
 
 - Página: [A0218 — Maestria de Terra](https://app.notion.com/3c569db9f0db8150a9cdc7fe283b53d8)
 - Data source: collection://ade1ec0c-b055-4b84-8004-45ae80c45119
-- Operações materiais: Custo Extra vazio para 0; contrato/gate/fallback pós-review corrigidos para SPECIALIST_GATE_RESOLVER_V1 fail-closed.
+- Operações materiais: Custo Extra vazio para 0; contrato/gate/fallback pós-review corrigidos para pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 fail-closed.
 - Verificação: fetch individual pós-escrita e pós-review em 2026-09-01 confirmou Custo Extra=0 e os contracts/gates/fallbacks corrigidos.
 - Os demais valores materiais desta página são transcritos integralmente na seção 2.
 - A página não possui corpo editorial; a autoridade é o conjunto de propriedades do catálogo e suas fórmulas.

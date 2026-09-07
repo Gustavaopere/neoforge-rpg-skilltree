@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:ICE confirmado por Gate A/B/C + A0268 Pele Glacial ≥2 ranks. A0268 e a topologia local não substituem fundamentos ICE + ≥100 PP válidos em SPECIALIST_REGION:ICE + terminal A0169. |
 | Pré-requisitos | Specialist Gelo desbloqueada (SPECIALIST_UNLOCK:ICE) + A0268 Pele Glacial ≥2 ranks. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge 1.21.1 movement/ground-contact + FUTURE_PROVIDER_CONTRACT SLIPPERY_SURFACE_REGISTRY_V1 e GROUND_SURFACE_CONTEXT_V1. Allowlist vanilla inicial: minecraft:ice, minecraft:packed_ice, minecraft:blue_ice e minecraft:frosted_ice; superfícies modded só entram por tag/adapter curado que comprove comportamento de slipperiness compatível. Sable 2.0.5/Create Aeronautics entram apenas quando GROUND_SURFACE_CONTEXT_V1 puder resolver corretamente a superfície efetiva no sublevel; não concedem benefício por si. VERSION-STATUS: contratos RPG a implementar; não inferir superfície por nome/textura. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Minecraft/NeoForge 1.21.1 movement/ground-contact + FUTURE_PROVIDER_CONTRACT SLIPPERY_SURFACE_REGISTRY_V1 e GROUND_SURFACE_CONTEXT_V1. Allowlist vanilla inicial: minecraft:ice, minecraft:packed_ice, minecraft:blue_ice e minecraft:frosted_ice; superfícies modded só entram por tag/adapter curado que comprove comportamento de slipperiness compatível. Sable 2.0.5/Create Aeronautics entram apenas quando GROUND_SURFACE_CONTEXT_V1 puder resolver corretamente a superfície efetiva no sublevel; não concedem benefício por si. VERSION-STATUS: contratos RPG a implementar; não inferir superfície por nome/textura. |
 | Efeito | Enquanto o jogador estiver grounded sobre uma superfície explicitamente classificada SLIPPERY_SURFACE pelo Minecraft/adapter, A0269 reduz somente a parcela de inércia/derrapagem horizontal adicional causada por essa superfície em 35% / 60% e concede +4% / +7% de velocidade de movimento enquanto a condição persistir. Movimento normal fora de superfícies elegíveis não é alterado. |
 | Escalonamento | Até 2 ranks. Excesso de inércia/derrapagem atribuível à superfície elegível: ×0,65 / ×0,40. Velocidade de movimento condicionada à mesma superfície: +4% / +7%. Os modificadores cessam imediatamente ao deixar a superfície; não acumulam com múltiplos blocos sob o hitbox. |
 | Gate | SPECIALIST_UNLOCK:ICE válido + A0268 ≥2 + jogador grounded + uma única superfície efetiva de contato classificada SLIPPERY_SURFACE por registry/tag/adapter curado. Em sublevel Sable/Aeronautics, o contexto de chão deve ser resolvido no espaço correto; se isso não puder ser comprovado, fail-closed. Ar, queda, água, bloco lateral, gelo apenas visual, posição aproximada, nome contendo 'ice', superfície não allowlisted e múltiplos contatos usados para empilhar não ativam. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge 1.21.1 movement/ground-contact + FUTURE_PROVIDER_CONTRACT SLIPPERY_SURFACE_REGISTRY_V1 e GROUND_SURFACE_CONTEXT_V1. Allowlist vanilla inicial: minecraft:ice, minecraft:packed_ice, minecraft:blue_ice e minecraft:frosted_ice; superfícies modded só entram por tag/adapter curado que comprove comportamento de slipperiness compatível. Sable 2.0.5/Create Aeronautics entram apenas quando GROUND_SURFACE_CONTEXT_V1 puder resolver corretamente a superfície efetiva no sublevel; não concedem benefício por si. VERSION-STATUS: contratos RPG a implementar; não inferir superfície por nome/textura.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Minecraft/NeoForge 1.21.1 movement/ground-contact + FUTURE_PROVIDER_CONTRACT SLIPPERY_SURFACE_REGISTRY_V1 e GROUND_SURFACE_CONTEXT_V1. Allowlist vanilla inicial: minecraft:ice, minecraft:packed_ice, minecraft:blue_ice e minecraft:frosted_ice; superfícies modded só entram por tag/adapter curado que comprove comportamento de slipperiness compatível. Sable 2.0.5/Create Aeronautics entram apenas quando GROUND_SURFACE_CONTEXT_V1 puder resolver corretamente a superfície efetiva no sublevel; não concedem benefício por si. VERSION-STATUS: contratos RPG a implementar; não inferir superfície por nome/textura.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental fornecem ações ICE quando mapeadas; Minecraft/NeoForge fornece freeze/Absorption/world state; Cold Sweat só possui o eixo térmico corporal explicitamente contratado.
 - **Exclusões obrigatórias:** Slowness, bioma frio, neve, estar congelando, temperatura BODY e aparência de gelo não substituem CHILL/FULLY_FROZEN. Sable/Aeronautics apenas resolvem espaço/sublevel.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>SLIPPERY_SURFACE_REGISTRY_V1</code>, <code>GROUND_SURFACE_CONTEXT_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>SLIPPERY_SURFACE_REGISTRY_V1</code>, <code>GROUND_SURFACE_CONTEXT_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + Minecraft/NeoForge 1.21.1 movemen
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>SLIPPERY_SURFACE_REGISTRY_V1</code>, <code>GROUND_SURFACE_CONTEXT_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>SLIPPERY_SURFACE_REGISTRY_V1</code>, <code>GROUND_SURFACE_CONTEXT_V1</code>.
 - **Dependências fora desta faixa:** <code>A0169</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

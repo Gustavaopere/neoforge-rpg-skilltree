@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + (A0246 Calor Crescente ≥1 OU A0247 Fagulha Crítica ≥1). Os requisitos locais não substituem o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0246 Calor Crescente ≥1 ou A0247 Fagulha Crítica ≥1. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + pipeline FIRE + rastreador autoritativo de vida/cooldown por alvo + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 para a parcela opcional de duração no rank 2. Minecraft/NeoForge fornece vida/identidade do alvo; providers FIRE entram somente por mapping explícito. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + pipeline FIRE + rastreador autoritativo de vida/cooldown por alvo + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 para a parcela opcional de duração no rank 2. Minecraft/NeoForge fornece vida/identidade do alvo; providers FIRE entram somente por mapping explícito. |
 | Efeito | +7% de dano FIRE direto por rank contra alvo vivo cuja vida imediatamente antes do outcome esteja acima de 85% da vida máxima, desde que o par jogador/alvo não esteja na recarga de abertura. Multiplicador: ×1,07 / ×1,14. Um uso bem-sucedido inicia recarga por jogador/alvo de 400 ticks (20 s). No rank 2, se a MESMA decisão canônica de Ignição daquele outcome aplicar estado real e sua duração-base for modificável, multiplicar essa duração-base por ×1,10 uma única vez. |
 | Escalonamento | Até 2 ranks. Condição pré-impacto: vida >85%. Dano FIRE direto ×1,07 / ×1,14. Recarga de abertura por jogador/alvo: 400 ticks após uso bem-sucedido. Rank 2: duração-base da Ignição aplicada pelo mesmo outcome ×1,10 quando modificável. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisito local + alvo vivo com vida autoritativa pré-impacto >85% + componente FIRE direto elegível + cooldown do par jogador/alvo livre. Microcura, regeneração, afastamento ou heurística de combate não ignoram os 400 ticks. A parcela de duração exige Ignição real aplicada pela mesma decisão/outcome. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + pipeline FIRE + rastreador autoritativo de vida/cooldown por alvo + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 para a parcela opcional de duração no rank 2. Minecraft/NeoForge fornece vida/identidade do alvo; providers FIRE entram somente por mapping explícito.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + pipeline FIRE + rastreador autoritativo de vida/cooldown por alvo + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 para a parcela opcional de duração no rank 2. Minecraft/NeoForge fornece vida/identidade do alvo; providers FIRE entram somente por mapping explícito.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + pipeline FIRE + rastreador autori
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

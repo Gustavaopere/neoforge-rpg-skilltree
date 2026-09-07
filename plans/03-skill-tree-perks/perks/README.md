@@ -23,6 +23,26 @@ A separação `dossiê individual` + `audits/` evita que a raiz se torne uma lis
 
 O arquivo individual **não substitui silenciosamente o Notion**. Quando código e especificação divergirem, a divergência deve ser corrigida no design canônico ou registrada tecnicamente; nunca é permitido inventar um fallback para fazer o código parecer completo.
 
+## Reconciliação obrigatória A0001–A0299 — 2026-09-02
+
+Antes de implementar, testar ou revalidar qualquer perk entre A0001 e A0299, ler também [`audits/AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md`](audits/AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md).
+
+Essa reconciliação tem precedência **somente** sobre referências históricas que tratem `SPECIALIST_GATE_V1`, `SPECIALIST_GATE_RESOLVER_V1` ou `SpecialistGateResolver` como resolver/capability futura paralela.
+
+Regra canônica atual:
+
+- `SPECIALIST_UNLOCK:<FAMILY>` usa a infraestrutura já existente `TreeUnlockReloader → TreeUnlockCatalog → TreeUnlockDefinition → TreeUnlockResolver` e a projeção canônica de investimento do Stage 04.01;
+- **não criar** um segundo resolver Specialist;
+- Gate A = fundamentos exteriores válidos; Gate B = ≥100 Passive Points válidos na `SPECIALIST_REGION:<FAMILY>`; Gate C = terminal exterior correta;
+- terminal isolada nunca substitui Gate A/B;
+- `UNAVAILABLE_NODE` conta 0 PP para Gate B;
+- respec deve reembolsar perks internas antes de quebrar a dependency closure ou o unlock da Specialist;
+- a correção do gate **não remove nenhum outro blocker/capability** registrado no dossiê.
+
+Escopo explicitamente afetado pela errata de authority: `A0162`, `A0169`, `A0204`, `A0211`, `A0218`, `A0225`, `A0232` e **todas as perks A0243–A0299**. Nos dossiês A0243–A0299 ainda gerados a partir do snapshot histórico, qualquer ocorrência do resolver Specialist legado é normativa e operacionalmente nula; conservar todo o restante do contrato e usar TreeUnlock canônico.
+
+O Catálogo Mestre do Notion já foi reconciliado e relido após escrita: A0243–A0299 usam TreeUnlock canônico e não mantêm o identificador legado em `Provider/Mods`.
+
 ## Gate de lote antes da auditoria individual
 
 Antes de fechar qualquer lote, o Chat 1 deve executar `../guides/projects/12-capability-delta-coverage.md`:
@@ -34,7 +54,7 @@ Antes de fechar qualquer lote, o Chat 1 deve executar `../guides/projects/12-cap
 
 Esse gate responde **provider → árvore**. A classificação obrigatória é: `COBERTA POR PERK EXISTENTE`, `PERK PRÓPRIA`, `ESPECIALIZAÇÃO`, `BRIDGE`, `COBERTO POR SISTEMA UNIVERSAL`, `PROGRESSÃO NATIVA AUTORITATIVA`, `SEM HOOK SEGURO` ou `NÃO DEVE SER INTEGRADO`.
 
-Detectar lacuna não autoriza alterar o tamanho do lote. Chat 1 e Chat 2 trabalham em **lotes exatos de 10 perks consecutivas** e param após PR/CI/merge/main do lote atual.
+Detectar lacuna não autoriza alterar o tamanho do lote. Chat 1 e Chat 2 trabalham em **lotes exatos de 10 perks consecutivas**. Chat 1 fecha design/documentação e deixa a branch/PR pronta para o Chat 2; Chat 2 implementa o contrato aprovado e para em `CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3`. **Somente o Chat 3** executa a validação final, obtém CI verde quando aplicável, declara `IMPLEMENTAÇÃO CONFIRMADA`, faz merge na `main` e confirma o SHA pós-merge.
 
 ## Estrutura obrigatória de cada dossiê
 
@@ -94,6 +114,7 @@ O intervalo nunca é fixado permanentemente: o próximo lote é determinado pelo
 - `../guides/projects/12-capability-delta-coverage.md` — gate de capability delta obrigatório.
 - `audits/README.md` — índice de todas as auditorias.
 - `audits/AUDITORIA-A0001-A0020.md` — matriz consolidada histórica.
+- `audits/AUDITORIA-RECONCILIACAO-CRITERIOS-A0001-A0299.md` — errata normativa obrigatória para A0001–A0299, incluindo authority Specialist.
 - `STATUS.md` — índice técnico atual.
 
 Fonte canônica dos critérios: https://app.notion.com/p/3c669db9f0db81e2a0f7cd9b2d410567

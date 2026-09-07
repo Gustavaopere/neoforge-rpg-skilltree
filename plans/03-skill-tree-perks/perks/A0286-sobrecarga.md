@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0285 Arco Elétrico ≥1 rank. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0285 Arco Elétrico ≥1 rank. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_DAMAGE_V1 sobre chains que exponham relação causal de dano entre hops. QUERY: {root_action_id,hop_index,target_uuid,previous_hop_pre_target_damage,c_native}; BEHAVIOR: modificar somente o coeficiente nativo do hop antes da mitigação do novo alvo. Iron's Spells 'n Spellbooks 3.16.3/addons e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só entram quando adapter de uma ação concreta expuser c_native/base do hop. Marca genérica de dano secundário não é suficiente. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_DAMAGE_V1 sobre chains que exponham relação causal de dano entre hops. QUERY: {root_action_id,hop_index,target_uuid,previous_hop_pre_target_damage,c_native}; BEHAVIOR: modificar somente o coeficiente nativo do hop antes da mitigação do novo alvo. Iron's Spells 'n Spellbooks 3.16.3/addons e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só entram quando adapter de uma ação concreta expuser c_native/base do hop. Marca genérica de dano secundário não é suficiente. |
 | Efeito | Para cada salto secundário LIGHTNING cujo provider exponha o coeficiente de dano relativo ao hop anterior, A0286 multiplica esse coeficiente por ×1,07/×1,14/×1,21 conforme rank, mas nunca reduz o coeficiente nativo e nunca permite que a contribuição desta perk eleve o salto acima de 90% do dano-base elegível do hop anterior. |
 | Escalonamento | Até 3 ranks. Seja c_native o coeficiente nativo/compatível do hop secundário em relação ao hop anterior. c_final = max(c_native, min(c_native × (1 + 0,07×rank), 0,90)). Se c_native >= 0,90, A0286 não adiciona dano naquele hop. O novo alvo ainda aplica sua própria mitigação normalmente. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0285 ≥1 + hop LIGHTNING secundário explicitamente classificado + relação c_native e base pré-mitigação do hop anterior conhecidas ANTES da mitigação do novo alvo. Alvo inicial, DoT, proc não-chain, AoE derivada sem hop index, salto com dano absoluto opaco e callback duplicado não recebem A0286. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_DAMAGE_V1 sobre chains que exponham relação causal de dano entre hops. QUERY: {root_action_id,hop_index,target_uuid,previous_hop_pre_target_damage,c_native}; BEHAVIOR: modificar somente o coeficiente nativo do hop antes da mitigação do novo alvo. Iron's Spells 'n Spellbooks 3.16.3/addons e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só entram quando adapter de uma ação concreta expuser c_native/base do hop. Marca genérica de dano secundário não é suficiente.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT LIGHTNING_CHAIN_DAMAGE_V1 sobre chains que exponham relação causal de dano entre hops. QUERY: {root_action_id,hop_index,target_uuid,previous_hop_pre_target_damage,c_native}; BEHAVIOR: modificar somente o coeficiente nativo do hop antes da mitigação do novo alvo. Iron's Spells 'n Spellbooks 3.16.3/addons e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 só entram quando adapter de uma ação concreta expuser c_native/base do hop. Marca genérica de dano secundário não é suficiente.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT LIGHTNIN
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>LIGHTNING_CHAIN_DAMAGE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

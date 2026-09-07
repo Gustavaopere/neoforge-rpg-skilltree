@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:ICE confirmado por Gate A/B/C + A0265 Geada ≥2 ranks. A0265 e a topologia local não substituem fundamentos ICE + ≥100 PP válidos em SPECIALIST_REGION:ICE + terminal A0169. |
 | Pré-requisitos | Specialist Gelo desbloqueada (SPECIALIST_UNLOCK:ICE) + A0265 Geada ≥2 ranks. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + CHILL_STATE_REGISTRY_V1 + FUTURE_PROVIDER_CONTRACT CHILL_DURATION_MODIFIER_V1. Provider CHILL comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, irons_spellbooks:chilled; a duração/amplificador-base continuam pertencendo ao provider. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros somente quando adapter versionado expuser um estado CHILL concreto e duração-base modificável. minecraft:slowness só entra por mapping explícito de uma aplicação ICE concreta. Cold Sweat 2.4.2 não participa. VERSION-STATUS: duration modifier é contrato RPG a implementar; não alterar tempo restante por polling. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + CHILL_STATE_REGISTRY_V1 + FUTURE_PROVIDER_CONTRACT CHILL_DURATION_MODIFIER_V1. Provider CHILL comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, irons_spellbooks:chilled; a duração/amplificador-base continuam pertencendo ao provider. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros somente quando adapter versionado expuser um estado CHILL concreto e duração-base modificável. minecraft:slowness só entra por mapping explícito de uma aplicação ICE concreta. Cold Sweat 2.4.2 não participa. VERSION-STATUS: duration modifier é contrato RPG a implementar; não alterar tempo restante por polling. |
 | Efeito | A0270 multiplica em +10% de duração-base por rank a aplicação/renovação de um chill_state_id real/compatível atribuído ao jogador: ×1,10 / ×1,20 / ×1,30. O cálculo parte sempre da duração nativa que o provider aplicaria naquela operação e respeita somente pisos/tetos nativos explícitos. minecraft:slowness só participa quando aquela aplicação ICE concreta estiver mapeada pelo adapter como CHILL compatível. |
 | Escalonamento | Até 3 ranks. Duração-base de CHILL elegível na criação/renovação: ×1,10 / ×1,20 / ×1,30. Não altera amplificador, chance, freeze buildup ou tick rate. Renovação recalcula da duração nativa correspondente; não multiplica tempo restante já ampliado. |
 | Gate | SPECIALIST_UNLOCK:ICE válido + A0265 ≥2 + criação ou renovação legítima de um chill_state_id allowlisted atribuída ao jogador + duração-base da OPERAÇÃO exposta de forma modificável. Para Iron's, irons_spellbooks:chilled é elegível quando o adapter interceptar sua aplicação/renovação causal. Estado sem owner quando ownership for exigido pelo mapping, Slowness não mapeada, temperatura corporal, ambiente, tick passivo e estado de duração fixa não modificável são inelegíveis. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + CHILL_STATE_REGISTRY_V1 + FUTURE_PROVIDER_CONTRACT CHILL_DURATION_MODIFIER_V1. Provider CHILL comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, irons_spellbooks:chilled; a duração/amplificador-base continuam pertencendo ao provider. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros somente quando adapter versionado expuser um estado CHILL concreto e duração-base modificável. minecraft:slowness só entra por mapping explícito de uma aplicação ICE concreta. Cold Sweat 2.4.2 não participa. VERSION-STATUS: duration modifier é contrato RPG a implementar; não alterar tempo restante por polling.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + CHILL_STATE_REGISTRY_V1 + FUTURE_PROVIDER_CONTRACT CHILL_DURATION_MODIFIER_V1. Provider CHILL comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3, irons_spellbooks:chilled; a duração/amplificador-base continuam pertencendo ao provider. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros somente quando adapter versionado expuser um estado CHILL concreto e duração-base modificável. minecraft:slowness só entra por mapping explícito de uma aplicação ICE concreta. Cold Sweat 2.4.2 não participa. VERSION-STATUS: duration modifier é contrato RPG a implementar; não alterar tempo restante por polling.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental fornecem ações ICE quando mapeadas; Minecraft/NeoForge fornece freeze/Absorption/world state; Cold Sweat só possui o eixo térmico corporal explicitamente contratado.
 - **Exclusões obrigatórias:** Slowness, bioma frio, neve, estar congelando, temperatura BODY e aparência de gelo não substituem CHILL/FULLY_FROZEN. Sable/Aeronautics apenas resolvem espaço/sublevel.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_DURATION_MODIFIER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_DURATION_MODIFIER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + CHILL_STATE_REGISTRY_V1 + FUTURE_
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_DURATION_MODIFIER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHILL_STATE_REGISTRY_V1</code>, <code>CHILL_DURATION_MODIFIER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0169</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

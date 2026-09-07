@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0288 Reflexo Carregado =1 + A0287 Impulso Elétrico =3 ranks + AGILITY ≥10 + DODGE_AVOID_RECEIPT_V1 disponível. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0288 + A0287 3/3 + AGILITY ≥10 + provider de esquiva com ataque realmente evitado. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + DODGE_AVOID_RECEIPT_V1 + TRANSIENT_ATTRIBUTE_MODIFIER_V1 + CHARGED_STATE_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT opcional DODGE_CONTROL_MODIFIER_V1. Epic Fight 21.17.3.1 é provider principal de dodge quando adapter comprovar ameaça evitada; ParCool 4.0.0.2/Epic ParCool 21.0.0 só participam por receipt equivalente. Minecraft/NeoForge fornece movement_speed; dodge distance/control só existe se o provider expuser métrica mutável sem alterar i-frames. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + DODGE_AVOID_RECEIPT_V1 + TRANSIENT_ATTRIBUTE_MODIFIER_V1 + CHARGED_STATE_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT opcional DODGE_CONTROL_MODIFIER_V1. Epic Fight 21.17.3.1 é provider principal de dodge quando adapter comprovar ameaça evitada; ParCool 4.0.0.2/Epic ParCool 21.0.0 só participam por receipt equivalente. Minecraft/NeoForge fornece movement_speed; dodge distance/control só existe se o provider expuser métrica mutável sem alterar i-frames. |
 | Efeito | Após um direct_lightning_action_id elegível, A0297 abre uma preparação de 80 ticks (4 s). Se dentro dela ocorrer uma esquiva validada que realmente evite ataque hostil e a recarga estiver livre, ativa RPG_LIGHTNING_STEP por 60 ticks (3 s): +20% de velocidade de movimento e, quando o provider expuser uma métrica mutável sem tocar i-frames, +10% de distância/controle da esquiva. A primeira ação LIGHTNING direta durante esses 60 ticks consome uma preparação ofensiva separada e adiciona exatamente 1 stack CHARGED própria ao alvo, sujeita ao cap/TTL de A0284. Recarga de 200 ticks (10 s), iniciada na ativação. |
 | Escalonamento | 1 rank. Janela ação→dodge: 80 ticks. Estado ativo: 60 ticks. Cooldown: 200 ticks desde a ativação. Movimento +20% durante os 60 ticks. Dodge distance/control ×1,10 somente se semanticamente suportado. A preparação ofensiva é claim-once; consumi-la não encerra o bônus de movimento restante. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0288=1 + A0287=3 + AGILITY≥10 + ação LIGHTNING DIRETA real abre arm de 80 ticks + DODGE_AVOID_RECEIPT_V1 prova ameaça hostil evitada dentro da janela + cooldown livre. Sprint, jump, knockback, teleporte, movimento forçado, block/parry, animação sem ameaça e efeitos LIGHTNING derivados não ativam. Ação direta durante estado ativo não rearma um segundo estado. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + DODGE_AVOID_RECEIPT_V1 + TRANSIENT_ATTRIBUTE_MODIFIER_V1 + CHARGED_STATE_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT opcional DODGE_CONTROL_MODIFIER_V1. Epic Fight 21.17.3.1 é provider principal de dodge quando adapter comprovar ameaça evitada; ParCool 4.0.0.2/Epic ParCool 21.0.0 só participam por receipt equivalente. Minecraft/NeoForge fornece movement_speed; dodge distance/control só existe se o provider expuser métrica mutável sem alterar i-frames.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + DODGE_AVOID_RECEIPT_V1 + TRANSIENT_ATTRIBUTE_MODIFIER_V1 + CHARGED_STATE_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT opcional DODGE_CONTROL_MODIFIER_V1. Epic Fight 21.17.3.1 é provider principal de dodge quando adapter comprovar ameaça evitada; ParCool 4.0.0.2/Epic ParCool 21.0.0 só participam por receipt equivalente. Minecraft/NeoForge fornece movement_speed; dodge distance/control só existe se o provider expuser métrica mutável sem alterar i-frames.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DODGE_CONTROL_MODIFIER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>DODGE_AVOID_RECEIPT_V1</code>, <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DODGE_CONTROL_MODIFIER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + DODGE_AVOID_RECEIPT_V1 + TRANSIEN
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>DODGE_AVOID_RECEIPT_V1</code>, <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DODGE_CONTROL_MODIFIER_V1</code>.
+- **Capabilities/contracts a provar:** <code>DODGE_AVOID_RECEIPT_V1</code>, <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DODGE_CONTROL_MODIFIER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

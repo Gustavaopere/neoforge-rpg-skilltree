@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:ICE confirmado por Gate A/B/C + A0265 Geada ≥2 ranks. A0265 e a topologia local não substituem fundamentos ICE + ≥100 PP válidos em SPECIALIST_REGION:ICE + terminal A0169. |
 | Pré-requisitos | Specialist Gelo desbloqueada (SPECIALIST_UNLOCK:ICE) + A0265 Geada ≥2 ranks. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FREEZE_BUILDUP_ADAPTER_V1 + adapters ICE versionados. Provider comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 usa o estado nativo LivingEntity.ticksFrozen/setTicksFrozen e possui ações ICE que adicionam freeze ticks; para essas ações, o adapter pode expor o DELTA POSITIVO causal que a própria ação pretende adicionar como freeze_buildup, antes do write final. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros só entram se houver métrica nativa semanticamente equivalente ou write causal verificável. Cold Sweat/temperatura corporal e CHILL isolado não são buildup. VERSION-STATUS: o adapter RPG é contrato a implementar; não existe medidor próprio do Skill Tree. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FREEZE_BUILDUP_ADAPTER_V1 + adapters ICE versionados. Provider comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 usa o estado nativo LivingEntity.ticksFrozen/setTicksFrozen e possui ações ICE que adicionam freeze ticks; para essas ações, o adapter pode expor o DELTA POSITIVO causal que a própria ação pretende adicionar como freeze_buildup, antes do write final. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros só entram se houver métrica nativa semanticamente equivalente ou write causal verificável. Cold Sweat/temperatura corporal e CHILL isolado não são buildup. VERSION-STATUS: o adapter RPG é contrato a implementar; não existe medidor próprio do Skill Tree. |
 | Efeito | Em uma ação ICE elegível que já possua uma contribuição nativa/compatível positiva de freeze_buildup exposta pelo adapter da versão, A0266 adiciona +8% dessa contribuição por rank ao MESMO bucket canônico de multiplicação de buildup: contribuição de A0266 = +8% / +16% / +24%. O Skill Tree não cria medidor próprio e não reduz threshold de congelamento. |
 | Escalonamento | Até 3 ranks. freeze_buildup_multiplier recebe contribuição aditiva de +0,08 / +0,16 / +0,24 sobre a quantidade positiva de buildup nativo/compatível daquela ação. Sem buildup nativo/compatível >0, contribuição = 0. Threshold, decay, cap e efeito de congelamento permanecem autoritativos do provider. |
 | Gate | SPECIALIST_UNLOCK:ICE válido + A0265 ≥2 + ação ICE elegível atribuída ao jogador + contribuição positiva de freeze buildup REAL da própria ação exposta por FREEZE_BUILDUP_ADAPTER_V1. Para Iron's, isso significa delta causal positivo de freeze ticks no write da ação, não polling genérico de ticksFrozen. Tick passivo de CHILL/Slowness, ambiente, powder snow sem ação atribuível, temperatura corporal, derived component, summon, automação, callback duplicado e ação sem buildup não geram contribuição. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FREEZE_BUILDUP_ADAPTER_V1 + adapters ICE versionados. Provider comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 usa o estado nativo LivingEntity.ticksFrozen/setTicksFrozen e possui ações ICE que adicionam freeze ticks; para essas ações, o adapter pode expor o DELTA POSITIVO causal que a própria ação pretende adicionar como freeze_buildup, antes do write final. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros só entram se houver métrica nativa semanticamente equivalente ou write causal verificável. Cold Sweat/temperatura corporal e CHILL isolado não são buildup. VERSION-STATUS: o adapter RPG é contrato a implementar; não existe medidor próprio do Skill Tree.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FREEZE_BUILDUP_ADAPTER_V1 + adapters ICE versionados. Provider comprovado: Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 usa o estado nativo LivingEntity.ticksFrozen/setTicksFrozen e possui ações ICE que adicionam freeze ticks; para essas ações, o adapter pode expor o DELTA POSITIVO causal que a própria ação pretende adicionar como freeze_buildup, antes do write final. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros só entram se houver métrica nativa semanticamente equivalente ou write causal verificável. Cold Sweat/temperatura corporal e CHILL isolado não são buildup. VERSION-STATUS: o adapter RPG é contrato a implementar; não existe medidor próprio do Skill Tree.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental fornecem ações ICE quando mapeadas; Minecraft/NeoForge fornece freeze/Absorption/world state; Cold Sweat só possui o eixo térmico corporal explicitamente contratado.
 - **Exclusões obrigatórias:** Slowness, bioma frio, neve, estar congelando, temperatura BODY e aparência de gelo não substituem CHILL/FULLY_FROZEN. Sable/Aeronautics apenas resolvem espaço/sublevel.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FREEZE_B
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FREEZE_BUILDUP_ADAPTER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0169</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

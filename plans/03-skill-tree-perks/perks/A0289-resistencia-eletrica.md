@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado server-side por Gate A/B/C. A0289 é perk interna defensiva e exige Specialist Raio ativa; A0176 isolada não autoriza compra. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) por Gate A/B/C. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificador LIGHTNING + bucket único RPG_LIGHTNING_RESISTANCE. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 participam somente quando o componente recebido estiver explicitamente classificado LIGHTNING por adapter seguro. A0172/A0173/A0289 contribuem ao MESMO bucket; qualquer resistência LIGHTNING nativa integrável deve ser normalizada no mesmo backend, nunca aplicada novamente em paralelo. Oritech/Create New Age/FE não entram salvo dano efetivamente classificado LIGHTNING por adapter. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificador LIGHTNING + bucket único RPG_LIGHTNING_RESISTANCE. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 participam somente quando o componente recebido estiver explicitamente classificado LIGHTNING por adapter seguro. A0172/A0173/A0289 contribuem ao MESMO bucket; qualquer resistência LIGHTNING nativa integrável deve ser normalizada no mesmo backend, nunca aplicada novamente em paralelo. Oritech/Create New Age/FE não entram salvo dano efetivamente classificado LIGHTNING por adapter. |
 | Efeito | A0289 adiciona +7% de resistência a dano LIGHTNING por rank (+7/+14/+21%) ao mesmo bucket canônico RPG_LIGHTNING_RESISTANCE já usado pela família A0172/A0173. O bucket é resolvido uma única vez por componente LIGHTNING elegível; dano físico associado, temperatura corporal, FE/energia tecnológica e estados não elétricos permanecem fora desta resistência. |
 | Escalonamento | Até 3 ranks. Contribuição própria de A0289 ao RPG_LIGHTNING_RESISTANCE: +7%/+14%/+21%. O teto próprio desta perk é 21%. Não existe cap defensivo global oculto; contribuições que compartilham este mesmo canonical_modifier_id são agregadas como uma única família antes da aplicação, enquanto mitigadores semanticamente distintos compõem conforme o DamageMitigationResolver. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + componente de dano legitimamente classificado LIGHTNING. Dano físico com partículas elétricas, aquecimento corporal, FE/energia tecnológica, estado CHARGED sem dano, choque de máquina não classificado, knockback/postura e WATER não entram por inferência. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificador LIGHTNING + bucket único RPG_LIGHTNING_RESISTANCE. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 participam somente quando o componente recebido estiver explicitamente classificado LIGHTNING por adapter seguro. A0172/A0173/A0289 contribuem ao MESMO bucket; qualquer resistência LIGHTNING nativa integrável deve ser normalizada no mesmo backend, nunca aplicada novamente em paralelo. Oritech/Create New Age/FE não entram salvo dano efetivamente classificado LIGHTNING por adapter.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT DAMAGE_MITIGATION_RESOLVER_V1 + classificador LIGHTNING + bucket único RPG_LIGHTNING_RESISTANCE. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 participam somente quando o componente recebido estiver explicitamente classificado LIGHTNING por adapter seguro. A0172/A0173/A0289 contribuem ao MESMO bucket; qualquer resistência LIGHTNING nativa integrável deve ser normalizada no mesmo backend, nunca aplicada novamente em paralelo. Oritech/Create New Age/FE não entram salvo dano efetivamente classificado LIGHTNING por adapter.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT DAMAGE_M
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>DAMAGE_MITIGATION_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>, <code>A0172</code>, <code>A0173</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0284 Carga ≥1 rank. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0284 Carga ≥1 rank. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger canônico de direct_lightning_outcome + Minecraft/NeoForge 1.21.1 movement_speed por modificador transitório identificado. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 apenas fornecem ações LIGHTNING quando classificadas; não são owners do buff. FUTURE_PROVIDER_CONTRACT TRANSIENT_ATTRIBUTE_MODIFIER_V1: aplicar/remover/renovar modificador pelo mesmo ID estável, sem acumular UUIDs órfãos. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + ledger canônico de direct_lightning_outcome + Minecraft/NeoForge 1.21.1 movement_speed por modificador transitório identificado. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 apenas fornecem ações LIGHTNING quando classificadas; não são owners do buff. FUTURE_PROVIDER_CONTRACT TRANSIENT_ATTRIBUTE_MODIFIER_V1: aplicar/remover/renovar modificador pelo mesmo ID estável, sem acumular UUIDs órfãos. |
 | Efeito | Após um direct_lightning_outcome_id elegível do jogador causar componente LIGHTNING positivo, A0287 aplica RPG_LIGHTNING_IMPULSE por 50 ticks (2,5 s): +4% de velocidade de movimento por rank (+4/+8/+12%). O estado possui uma única instância; nova ação direta distinta durante a janela apenas redefine expires_at=now+50, sem somar magnitude. |
 | Escalonamento | Até 3 ranks. Movimento: +4%/+8%/+12%. Duração fixa: 50 ticks a partir do último direct_lightning_outcome_id elegível. Não existe cooldown separado de renovação: a fronteira anti-spam é a deduplicação por action_id/outcome_id; callbacks/subeventos da mesma ação nunca renovam duas vezes. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0284 ≥1 + direct_lightning_outcome_id atribuído ao jogador + componente LIGHTNING direto positivo. Chain hop, ramificação, aura/campo, DoT, summon, automação, fake player, derived component e callback duplicado não criam nem renovam RPG_LIGHTNING_IMPULSE. Exatamente uma renovação por ação direta distinta. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger canônico de direct_lightning_outcome + Minecraft/NeoForge 1.21.1 movement_speed por modificador transitório identificado. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 apenas fornecem ações LIGHTNING quando classificadas; não são owners do buff. FUTURE_PROVIDER_CONTRACT TRANSIENT_ATTRIBUTE_MODIFIER_V1: aplicar/remover/renovar modificador pelo mesmo ID estável, sem acumular UUIDs órfãos.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + ledger canônico de direct_lightning_outcome + Minecraft/NeoForge 1.21.1 movement_speed por modificador transitório identificado. Iron's Spells 'n Spellbooks 3.16.3 e Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 apenas fornecem ações LIGHTNING quando classificadas; não são owners do buff. FUTURE_PROVIDER_CONTRACT TRANSIENT_ATTRIBUTE_MODIFIER_V1: aplicar/remover/renovar modificador pelo mesmo ID estável, sem acumular UUIDs órfãos.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger canônico de direct_lightn
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>TRANSIENT_ATTRIBUTE_MODIFIER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

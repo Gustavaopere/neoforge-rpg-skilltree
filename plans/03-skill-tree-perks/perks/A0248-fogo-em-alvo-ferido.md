@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + (A0244 Combustão ≥1 OU A0247 Fagulha Crítica ≥1). Os requisitos locais não substituem o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0244 Combustão ≥1 ou A0247 Fagulha Crítica ≥1. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1/ownership de Ignição + pipeline FIRE direto + leitura autoritativa de vida do alvo via Minecraft/NeoForge. Providers mágicos apenas originam FIRE/Ignição quando explicitamente mapeados. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1/ownership de Ignição + pipeline FIRE direto + leitura autoritativa de vida do alvo via Minecraft/NeoForge. Providers mágicos apenas originam FIRE/Ignição quando explicitamente mapeados. |
 | Efeito | +5% de dano FIRE direto por rank contra alvo vivo cuja vida imediatamente antes do outcome esteja abaixo de 40% da vida máxima E que já possua, antes daquela ação, estado de Ignição FIRE real atribuído ao jogador. Multiplicador: ×1,05 / ×1,10 / ×1,15. |
 | Escalonamento | Até 3 ranks; condição pré-impacto: vida <40% + Ignição atribuída já existente. Dano FIRE direto ×1,05 / ×1,10 / ×1,15. Acima ou exatamente em 40%, contribuição = 0. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisito local + alvo vivo com vida autoritativa pré-impacto <40% + Ignição real do próprio jogador existente ANTES da ação + componente FIRE direto elegível. A ação que cria a primeira Ignição não recebe A0248; DoT, derived components, summons, automação e callbacks duplicados não se autoamplificam. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1/ownership de Ignição + pipeline FIRE direto + leitura autoritativa de vida do alvo via Minecraft/NeoForge. Providers mágicos apenas originam FIRE/Ignição quando explicitamente mapeados.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1/ownership de Ignição + pipeline FIRE direto + leitura autoritativa de vida do alvo via Minecraft/NeoForge. Providers mágicos apenas originam FIRE/Ignição quando explicitamente mapeados.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FIRE_IGN
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

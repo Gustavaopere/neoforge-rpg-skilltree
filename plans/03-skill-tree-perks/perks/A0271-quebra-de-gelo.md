@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:ICE confirmado por Gate A/B/C + A0266 Congelamento Progressivo ≥2 ranks. Requisitos locais não substituem fundamentos ICE + ≥100 PP válidos em SPECIALIST_REGION:ICE + terminal A0169. |
 | Pré-requisitos | Specialist Gelo desbloqueada (SPECIALIST_UNLOCK:ICE) + A0266 Congelamento Progressivo ≥2 ranks. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FULL_FREEZE_STATE_V1 + classificadores canônicos PHYSICAL/ICE. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 utiliza o sistema nativo de freeze ticks e possui mecânicas que distinguem criaturas totalmente congeladas; o adapter pode expor a semântica FULLY_FROZEN do próprio runtime/vanilla sem criar medidor paralelo. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros providers só entram se expuserem estado completo real ou mapping versionado equivalente. CHILL, Slowness e Cold Sweat não são full freeze. VERSION-STATUS: FULL_FREEZE_STATE_V1 é contrato RPG a implementar/adaptar sobre estado nativo. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FULL_FREEZE_STATE_V1 + classificadores canônicos PHYSICAL/ICE. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 utiliza o sistema nativo de freeze ticks e possui mecânicas que distinguem criaturas totalmente congeladas; o adapter pode expor a semântica FULLY_FROZEN do próprio runtime/vanilla sem criar medidor paralelo. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros providers só entram se expuserem estado completo real ou mapping versionado equivalente. CHILL, Slowness e Cold Sweat não são full freeze. VERSION-STATUS: FULL_FREEZE_STATE_V1 é contrato RPG a implementar/adaptar sobre estado nativo. |
 | Efeito | Contra alvo que, antes do outcome, esteja em um estado de Congelamento completo real e explicitamente reconhecido pelo adapter da versão, A0271 concede +6% por rank aos componentes diretos PHYSICAL e ICE atribuídos ao jogador: ×1,06 / ×1,12 / ×1,18. CHILL, Slowness, buildup parcial ou temperatura corporal baixa não satisfazem o gate. |
 | Escalonamento | Até 3 ranks. Componentes diretos PHYSICAL/ICE elegíveis contra alvo já em Congelamento completo: ×1,06 / ×1,12 / ×1,18. O bônus não consome, renova nem prolonga o estado e não se aplica a DoT/derived já resolvidos. |
 | Gate | SPECIALIST_UNLOCK:ICE válido + A0266 ≥2 + alvo já em FULLY_FROZEN real/compatível ANTES do outcome_id + componente direto PHYSICAL ou ICE atribuído ao jogador. Para Iron's/vanilla, a consulta deve refletir o estado completo nativo de congelamento, não apenas algum freeze tick positivo. CHILL, Slowness, buildup parcial, temperatura corporal, ambiente, DoT, derived component, summon e estado que só se completa pela própria ação gatilho não retroagem o gate. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FULL_FREEZE_STATE_V1 + classificadores canônicos PHYSICAL/ICE. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 utiliza o sistema nativo de freeze ticks e possui mecânicas que distinguem criaturas totalmente congeladas; o adapter pode expor a semântica FULLY_FROZEN do próprio runtime/vanilla sem criar medidor paralelo. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros providers só entram se expuserem estado completo real ou mapping versionado equivalente. CHILL, Slowness e Cold Sweat não são full freeze. VERSION-STATUS: FULL_FREEZE_STATE_V1 é contrato RPG a implementar/adaptar sobre estado nativo.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FULL_FREEZE_STATE_V1 + classificadores canônicos PHYSICAL/ICE. Iron's Spells 'n Spellbooks runtime 1.21.1-3.16.3 utiliza o sistema nativo de freeze ticks e possui mecânicas que distinguem criaturas totalmente congeladas; o adapter pode expor a semântica FULLY_FROZEN do próprio runtime/vanilla sem criar medidor paralelo. Ars Nouveau 5.13.1/Ars Elemental 0.7.10.1 e outros providers só entram se expuserem estado completo real ou mapping versionado equivalente. CHILL, Slowness e Cold Sweat não são full freeze. VERSION-STATUS: FULL_FREEZE_STATE_V1 é contrato RPG a implementar/adaptar sobre estado nativo.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental fornecem ações ICE quando mapeadas; Minecraft/NeoForge fornece freeze/Absorption/world state; Cold Sweat só possui o eixo térmico corporal explicitamente contratado.
 - **Exclusões obrigatórias:** Slowness, bioma frio, neve, estar congelando, temperatura BODY e aparência de gelo não substituem CHILL/FULLY_FROZEN. Sable/Aeronautics apenas resolvem espaço/sublevel.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FULL_FREEZE_STATE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FULL_FRE
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FULL_FREEZE_STATE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FULL_FREEZE_STATE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0169</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

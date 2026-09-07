@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0284 Carga =3 ranks + A0290 Crítico Condutor ≥1 rank. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0284 Carga 3/3 + A0290 Crítico Condutor ≥1. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + CHARGED_STATE_LEDGER_V1 + sistema crítico canônico + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + FUTURE_PROVIDER_CONTRACT opcional POSTURE_PRESSURE_V1. Epic Fight 21.17.3.1/outros providers só participam da parcela opcional de postura quando adapter expuser unidade, target, escala e commit point determinísticos; ausência disso não afeta o dano LIGHTNING principal. CHARGED permanece estado interno do RPG por owner/alvo. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + CHARGED_STATE_LEDGER_V1 + sistema crítico canônico + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + FUTURE_PROVIDER_CONTRACT opcional POSTURE_PRESSURE_V1. Epic Fight 21.17.3.1/outros providers só participam da parcela opcional de postura quando adapter expuser unidade, target, escala e commit point determinísticos; ausência disso não afeta o dano LIGHTNING principal. CHARGED permanece estado interno do RPG por owner/alvo. |
 | Efeito | Quando um direct_lightning_outcome_id crítico confirmado atinge um alvo que possui pelo menos 3 stacks válidas de CHARGED atribuídas ao mesmo jogador, A0294 pode consumir atomicamente exatamente 3 dessas stacks e emitir um componente LIGHTNING derivado adicional com base igual a 24% do componente LIGHTNING direto canônico da ação após modificadores ofensivos e resolução crítica, mas antes da mitigação do alvo. O componente derivado passa pela mitigação LIGHTNING do alvo normalmente. Pressão de postura só existe se um adapter versionado expuser unidade/commit point determinísticos. |
 | Escalonamento | 1 rank. Consumo obrigatório: 3 stacks CHARGED próprias e não expiradas. Dano derivado: 0,24 × direct_lightning_component_snapshot (=8% por cada uma das 3 stacks consumidas). criticalHit=false. Qualquer parcela de postura/interrupção é componente opcional independente e deve possuir valor/unidade definidos pelo adapter; ausência desse contrato omite apenas postura. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0284=3 + A0290≥1 + direct_lightning_outcome_id com criticalHit=true canônico + componente LIGHTNING direto positivo + alvo contendo ≥3 stacks CHARGED válidas do MESMO owner_uuid + claim A0294 livre para o root_action_id. Stacks expiradas/de outro owner, hop/branch derivado, DoT, aura/campo, summon, automação, fake player e callback duplicado não satisfazem. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + CHARGED_STATE_LEDGER_V1 + sistema crítico canônico + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + FUTURE_PROVIDER_CONTRACT opcional POSTURE_PRESSURE_V1. Epic Fight 21.17.3.1/outros providers só participam da parcela opcional de postura quando adapter expuser unidade, target, escala e commit point determinísticos; ausência disso não afeta o dano LIGHTNING principal. CHARGED permanece estado interno do RPG por owner/alvo.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + CHARGED_STATE_LEDGER_V1 + sistema crítico canônico + DERIVED_COMBAT_OUTCOME_PIPELINE_V1 + FUTURE_PROVIDER_CONTRACT opcional POSTURE_PRESSURE_V1. Epic Fight 21.17.3.1/outros providers só participam da parcela opcional de postura quando adapter expuser unidade, target, escala e commit point determinísticos; ausência disso não afeta o dano LIGHTNING principal. CHARGED permanece estado interno do RPG por owner/alvo.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>POSTURE_PRESSURE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>POSTURE_PRESSURE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + CHARGED_STATE_LEDGER_V1 + sistema
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>POSTURE_PRESSURE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>DERIVED_COMBAT_OUTCOME_PIPELINE_V1</code>, <code>POSTURE_PRESSURE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

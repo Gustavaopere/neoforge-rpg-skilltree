@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:LIGHTNING confirmado por Gate A/B/C + A0284 Carga ≥2 ranks + A0287 Impulso Elétrico ≥1 rank. Requisitos locais não substituem fundamentos LIGHTNING + ≥100 PP válidos em SPECIALIST_REGION:LIGHTNING + terminal A0176. |
 | Pré-requisitos | Specialist Raio desbloqueada (SPECIALIST_UNLOCK:LIGHTNING) + A0284 Carga ≥2 + A0287 Impulso Elétrico ≥1. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger de ações LIGHTNING diretas + CHARGED_STATE_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT COMBAT_TARGET_QUERY_V1/consulta espacial server-side. Sable 2.0.5/Create Aeronautics entram somente para resolver corretamente espaço/sublevel e posições; não são providers LIGHTNING. Iron's/Ars fornecem ações diretas apenas quando explicitamente classificadas. OWNER do campo/stacks: RPG combat state service. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + ledger de ações LIGHTNING diretas + CHARGED_STATE_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT COMBAT_TARGET_QUERY_V1/consulta espacial server-side. Sable 2.0.5/Create Aeronautics entram somente para resolver corretamente espaço/sublevel e posições; não são providers LIGHTNING. Iron's/Ars fornecem ações diretas apenas quando explicitamente classificadas. OWNER do campo/stacks: RPG combat state service. |
 | Efeito | Ao registrar 5 direct_lightning_action_id distintas do próprio jogador dentro de uma janela móvel de 80 ticks (4 s), com a recarga livre, A0295 limpa a preparação e ativa RPG_STATIC_FIELD por 80/120 ticks (4/6 s). A cada 20 ticks, em raio de 4 blocos, o campo pode adicionar exatamente 1 stack CHARGED atribuída ao jogador a cada alvo hostil elegível; o mesmo alvo só pode receber nova stack deste campo após 40 ticks. Os pulsos não causam dano. |
 | Escalonamento | Até 2 ranks. Preparação: 5 ações LIGHTNING diretas distintas em até 80 ticks. Campo: 80/120 ticks. Pulso: 20 ticks. Raio: 4 blocos. Intervalo por alvo para stack derivada do campo: 40 ticks. Cooldown por jogador: 360 ticks (18 s), iniciado na ativação. Campo/preparação não acumulam nem rearmam durante campo/recarga. |
 | Gate | SPECIALIST_UNLOCK:LIGHTNING válido + A0284 ≥2 + A0287 ≥1 + cinco ações LIGHTNING DIRETAS distintas do jogador em até 80 ticks + cooldown livre. Máximo um crédito por direct_lightning_action_id/root_action_id; DoT, chain hop, branch, weapon discharge, overload, campo anterior, aura, summon, automação, fake player e callbacks repetidos não avançam preparação. Preparação/campo/recarga não se acumulam nem rearmam entre si. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger de ações LIGHTNING diretas + CHARGED_STATE_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT COMBAT_TARGET_QUERY_V1/consulta espacial server-side. Sable 2.0.5/Create Aeronautics entram somente para resolver corretamente espaço/sublevel e posições; não são providers LIGHTNING. Iron's/Ars fornecem ações diretas apenas quando explicitamente classificadas. OWNER do campo/stacks: RPG combat state service.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + ledger de ações LIGHTNING diretas + CHARGED_STATE_LEDGER_V1 + FUTURE_PROVIDER_CONTRACT COMBAT_TARGET_QUERY_V1/consulta espacial server-side. Sable 2.0.5/Create Aeronautics entram somente para resolver corretamente espaço/sublevel e posições; não são providers LIGHTNING. Iron's/Ars fornecem ações diretas apenas quando explicitamente classificadas. OWNER do campo/stacks: RPG combat state service.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells e Ars Nouveau/Ars Elemental entram por classificadores LIGHTNING. Epic Fight/ParCool só fornecem receipts de dodge/estamina quando semanticamente equivalentes; Sable/Aeronautics apenas resolvem espaço.
 - **Exclusões obrigatórias:** WET exige WET_STATE_V1; chain exige contexto/visited set; mana, stamina, FE e outros recursos não são intercambiáveis. Black Arcana não fornece LIGHTNING nesta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + ledger de ações LIGHTNING diret
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>CHARGED_STATE_LEDGER_V1</code>, <code>COMBAT_TARGET_QUERY_V1</code>.
 - **Dependências fora desta faixa:** <code>A0176</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

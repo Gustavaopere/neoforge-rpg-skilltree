@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0160 Imbuimento de Fogo ≥2 + A0243 Ignição ≥1 + MARTIAL ≥6. MARTIAL ≥6 é requisito local cross-discipline para esta perk interna FIRE; não constitui nem substitui o desbloqueio de uma Specialist híbrida FIRE↔MARTIAL. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0160 Imbuimento de Fogo ≥2 + A0243 Ignição ≥1 + MARTIAL ≥6. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + A0160/compositor canônico de derived_component + Epic Fight 21.17.3.1 para lanes melee reconhecidas + FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 e FIRE_DERIVED_OUTCOME_PIPELINE_V1 para a Ignição derivada opcional. Weapons of Miracles 2.0.176 só participa quando a arma concreta estiver mapeada à lane; Epic Fight não é provider FIRE. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + A0160/compositor canônico de derived_component + Epic Fight 21.17.3.1 para lanes melee reconhecidas + FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 e FIRE_DERIVED_OUTCOME_PIPELINE_V1 para a Ignição derivada opcional. Weapons of Miracles 2.0.176 só participa quando a arma concreta estiver mapeada à lane; Epic Fight não é provider FIRE. |
 | Efeito | Após o commit de uma conjuração FIRE direta elegível, A0255 arma RPG_INCANDESCENT_CONDUCTION por 120 / 180 ticks (6 / 9 s). O estado só é consumido pelo próximo direct_melee_outcome do próprio jogador que seja elegível para A0160 e efetivamente contenha a parcela FIRE de A0160. Nesse mesmo action_id/outcome_id, multiplicar somente a parcela FIRE de A0160 por ×1,25 / ×1,40. Se o alvo ainda não possuir Ignição real atribuída ao jogador e houver adapter seguro do estado, A0255 pode aplicar uma derived_ignition reduzida com 60% da duração-base nativa e 60% do dano-base periódico nativo do estado; essa aplicação é derivada e determinística, não uma nova decisão de Ignição. |
 | Escalonamento | Até 2 ranks. Janela de Condução: 120 / 180 ticks. Parcela FIRE já criada por A0160: ×1,25 / ×1,40. derived_ignition opcional: 60% da duração-base nativa e 60% do dano-base periódico nativo, uma única aplicação se o alvo não tiver Ignição do jogador. Um cast arma uma única instância; o primeiro outcome melee elegível consome após commit. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisitos locais + conjuração FIRE direta elegível + janela ativa + direct_melee_outcome que satisfaça integralmente A0160 e já contenha sua parcela FIRE. Ranged, projéteis, lança arremessada, mão vazia, DoT, sweep derivado não-direto, summon, automação, fake player e derived components não consomem. MARTIAL local não concede acesso a qualquer Specialist híbrida. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + A0160/compositor canônico de derived_component + Epic Fight 21.17.3.1 para lanes melee reconhecidas + FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 e FIRE_DERIVED_OUTCOME_PIPELINE_V1 para a Ignição derivada opcional. Weapons of Miracles 2.0.176 só participa quando a arma concreta estiver mapeada à lane; Epic Fight não é provider FIRE.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + A0160/compositor canônico de derived_component + Epic Fight 21.17.3.1 para lanes melee reconhecidas + FUTURE_PROVIDER_CONTRACTS FIRE_IGNITION_RESOLVER_V1 e FIRE_DERIVED_OUTCOME_PIPELINE_V1 para a Ignição derivada opcional. Weapons of Miracles 2.0.176 só participa quando a arma concreta estiver mapeada à lane; Epic Fight não é provider FIRE.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + A0160/compositor canônico de der
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** <code>A0160</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

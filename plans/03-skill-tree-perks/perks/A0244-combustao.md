@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0243 Ignição rank ≥2. A0243/local topology não substitui o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0243 Ignição rank ≥2. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1/adapter de ownership da Ignição + pipeline FIRE periódico. Providers FIRE instalados só participam quando a versão expuser estado/tick real correlacionável; não há fallback para fogo visual. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1/adapter de ownership da Ignição + pipeline FIRE periódico. Providers FIRE instalados só participam quando a versão expuser estado/tick real correlacionável; não há fallback para fogo visual. |
 | Efeito | +6% de dano do estado real de Ignição atribuído ao jogador por rank (×1,06 / ×1,12 / ×1,18 sobre o parcel de dano próprio do estado). A0244 modifica somente o tick pertencente à própria Ignição e nunca reaplica os modificadores gerais/diretos que já foram resolvidos no evento que originou o estado. |
 | Escalonamento | Até 3 ranks; multiplicador do parcel de dano periódico da Ignição elegível: ×1,06 / ×1,12 / ×1,18. Teto próprio: +18%. Frequência de ticks e duração não são alteradas por A0244. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + A0243 ≥2 + tick de estado FIRE de Ignição real com autoria do jogador preservada por FIRE_IGNITION_RESOLVER_V1/adapter equivalente. Fogo ambiental, estado sem owner/correlação, DoT não relacionado e efeito derivado de outra origem são inelegíveis. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1/adapter de ownership da Ignição + pipeline FIRE periódico. Providers FIRE instalados só participam quando a versão expuser estado/tick real correlacionável; não há fallback para fogo visual.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1/adapter de ownership da Ignição + pipeline FIRE periódico. Providers FIRE instalados só participam quando a versão expuser estado/tick real correlacionável; não há fallback para fogo visual.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FUTURE_PROVIDER_CONTRACT FIRE_IGN
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

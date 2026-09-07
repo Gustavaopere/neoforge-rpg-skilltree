@@ -29,13 +29,13 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | A0224 Domínio Fluido + Water Mastery ≥80 + pelo menos uma rota profunda de comprovação: A0220 =1 rank, A0222 =1 rank ou A0223 ≥2 ranks. Esses requisitos compram a terminal; não substituem Gate A/B/C da Specialist Water. |
 | Pré-requisitos | A0224 Domínio Fluido + Water Mastery ≥80 + pelo menos uma rota profunda entre A0220/A0222/A0223. |
-| Provider/Mods | RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Water Mastery canônica. Somake Spells 1.0.8-1.21.1-fix, Iron's Spells runtime 1.21.1-3.16.3, Ars Elemental 0.7.10.1 e demais providers fornecem gameplay WATER somente aos nodes que possuírem adapters próprios; nenhum mod externo é owner do gate da Specialist. |
-| Efeito | Terminal exterior do corredor WATER. Possuir A0225 satisfaz somente Gate C da Árvore de Especialista Água. A Specialist Water só é liberada quando SPECIALIST_GATE_RESOLVER_V1 confirmar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WATER e A0225. Não concede fluxo, WET, respiração, mobilidade hídrica, recurso, dano ou resistência por si só. |
+| Provider/Mods | RPG Skill Tree: TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 + Water Mastery canônica. Somake Spells 1.0.8-1.21.1-fix, Iron's Spells 3.16.3, Ars Elemental 0.7.10.1 e demais providers fornecem gameplay WATER somente aos nodes com adapters próprios; nenhum mod externo é owner do gate da Specialist. |
+| Efeito | Terminal exterior do corredor WATER. Possuir A0225 satisfaz somente Gate C da Árvore de Especialista Água. A Specialist Water usa a pipeline canônica existente TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WATER e A0225. Não concede fluxo, WET, respiração, mobilidade hídrica, recurso, dano ou resistência por si só. |
 | Escalonamento | 1 rank. Desbloqueio binário da especialização WATER; não adiciona dano, controle, estado WET, mobilidade, recurso, duração, resistência, respiração ou mitigação por si só. |
 | Gate | COMPRA DA TERMINAL: A0224 + Water Mastery ≥80 + (A0220=1 OU A0222=1 OU A0223≥2). DESBLOQUEIO SPECIALIST WATER: Gate A = fundamentos exteriores ARCANE/POWER e ARCANE/WATER exigidos pelo mapeamento; Gate B = ≥100 Passive Points válidos em SPECIALIST_REGION:WATER; Gate C = A0225 possuída. Híbridos WATER↔AGILITY/VITALITY/MARTIAL exigem integralmente os gates dos dois pais; bridge/shared PP não pode ser reutilizado em ambos. |
-| Hook | FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1: OWNER RPG core; CONSUMER árvores Specialist; QUERY {owned_outer_nodes, fundamentals, semantic_pp_ledger, terminal_id}; BEHAVIOR validar Gate A/B/C server-side em compra, respec e migração; FAIL-CLOSED se qualquer dado não for autoritativo. A0225 publica apenas terminal_id=ARCANE/WATER. VERSION-STATUS: design congelado; resolver não encontrado no runtime/main atual em 2026-08-29. |
-| Fallback | FAIL-CLOSED: enquanto SPECIALIST_GATE_RESOLVER_V1, fundamentos e ledger de PP semântico não puderem ser validados server-side, a Specialist Water permanece bloqueada. Perks internas dependentes de WATER/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WATER, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar WET/recurso/respiração como fallback. |
-| Regra | TERMINAL_EXTERIOR: ARCANE/WATER. PP_REGION: ARCANE/WATER. A0225 não pertence às 30 perks internas da Specialist Water. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WATER; os antigos gates de 8 PP e pequenos thresholds ARCANE/AGILITY são removidos como desbloqueio da Specialist. BORDER_HOPPING: proibido. RESPEC_SEGURO: enquanto qualquer perk interna da Specialist estiver possuída, bloquear refund de A0225, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. SPECIALIST_GATE_RESOLVER_V1 é contrato futuro, não API runtime existente. |
+| Hook | A0225 publica/representa apenas terminal_id=ARCANE/WATER na TreeUnlockDefinition. TreeUnlockResolver usa estado canônico + projeção de investimento do Stage 04.01 para validar Gate A/B/C server-side nos lifecycle boundaries canônicos. Nenhum resolver Specialist paralelo deve ser criado. |
+| Fallback | FAIL-CLOSED: a infraestrutura Specialist já existe na pipeline TreeUnlock. Se fundamentos, PP semântico, terminal ou outro requisito real da dependency closure não puderem ser validados, a Specialist Water permanece bloqueada. Perks internas dependentes de WATER/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WATER, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar WET/recurso/respiração como fallback. |
+| Regra | TERMINAL_EXTERIOR: ARCANE/WATER. PP_REGION: ARCANE/WATER. A0225 não pertence às perks internas da Specialist Water. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WATER; antigos gates pequenos não substituem a Specialist. BORDER_HOPPING proibido. RESPEC_SEGURO: enquanto qualquer perk interna estiver possuída, bloquear refund de A0225, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. TreeUnlockResolver/TreeUnlockDefinition + Stage 04.01 são authority. |
 
 As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função Efetiva, Provider Efetivo, Gate Efetivo, Hook Efetivo, Fallback Efetivo, Pré-requisitos Efetivos e Status Estrutural continuam sob autoridade do schema do Notion. Este dossiê não duplica nem falsifica o cálculo dessas fórmulas.
 
@@ -43,7 +43,7 @@ As propriedades-formula Árvore Efetiva, Ramo Efetivo, Camada Efetiva, Função 
 
 ### Efeito aprovado
 
-Terminal exterior do corredor WATER. Possuir A0225 satisfaz somente Gate C da Árvore de Especialista Água. A Specialist Water só é liberada quando SPECIALIST_GATE_RESOLVER_V1 confirmar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WATER e A0225. Não concede fluxo, WET, respiração, mobilidade hídrica, recurso, dano ou resistência por si só.
+Terminal exterior do corredor WATER. Possuir A0225 satisfaz somente Gate C da Árvore de Especialista Água. A Specialist Water usa a pipeline canônica existente TreeUnlockResolver + TreeUnlockDefinition + projeção canônica de investimento do Stage 04.01 para validar simultaneamente fundamentos exteriores exigidos, ≥100 Passive Points válidos em SPECIALIST_REGION:WATER e A0225. Não concede fluxo, WET, respiração, mobilidade hídrica, recurso, dano ou resistência por si só.
 
 ### Escalonamento aprovado
 
@@ -55,11 +55,11 @@ COMPRA DA TERMINAL: A0224 + Water Mastery ≥80 + (A0220=1 OU A0222=1 OU A0223�
 
 ### Hook e ordem de execução
 
-FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1: OWNER RPG core; CONSUMER árvores Specialist; QUERY {owned_outer_nodes, fundamentals, semantic_pp_ledger, terminal_id}; BEHAVIOR validar Gate A/B/C server-side em compra, respec e migração; FAIL-CLOSED se qualquer dado não for autoritativo. A0225 publica apenas terminal_id=ARCANE/WATER. VERSION-STATUS: design congelado; resolver não encontrado no runtime/main atual em 2026-08-29.
+A0225 publica/representa apenas terminal_id=ARCANE/WATER na TreeUnlockDefinition. TreeUnlockResolver usa estado canônico + projeção de investimento do Stage 04.01 para validar Gate A/B/C server-side nos lifecycle boundaries canônicos. Nenhum resolver Specialist paralelo deve ser criado.
 
 ### Fallback sem trocar a identidade
 
-FAIL-CLOSED: enquanto SPECIALIST_GATE_RESOLVER_V1, fundamentos e ledger de PP semântico não puderem ser validados server-side, a Specialist Water permanece bloqueada. Perks internas dependentes de WATER/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WATER, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar WET/recurso/respiração como fallback.
+FAIL-CLOSED: a infraestrutura Specialist já existe na pipeline TreeUnlock. Se fundamentos, PP semântico, terminal ou outro requisito real da dependency closure não puderem ser validados, a Specialist Water permanece bloqueada. Perks internas dependentes de WATER/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WATER, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar WET/recurso/respiração como fallback.
 
 ### Invariantes semânticos
 
@@ -77,7 +77,7 @@ FAIL-CLOSED: enquanto SPECIALIST_GATE_RESOLVER_V1, fundamentos e ledger de PP se
 | Pré-requisito visual/estrutural | A0224 Domínio Fluido + Water Mastery ≥80 + pelo menos uma rota profunda entre A0220/A0222/A0223. |
 | Dependência semântica completa | A0224 Domínio Fluido + Water Mastery ≥80 + pelo menos uma rota profunda de comprovação: A0220 =1 rank, A0222 =1 rank ou A0223 ≥2 ranks. Esses requisitos compram a terminal; não substituem Gate A/B/C da Specialist Water. |
 | Custo topológico | 3 PP por rank; 1 rank(s); extra 0 |
-| Regra de região/PP | TERMINAL_EXTERIOR: ARCANE/WATER. PP_REGION: ARCANE/WATER. A0225 não pertence às 30 perks internas da Specialist Water. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WATER; os antigos gates de 8 PP e pequenos thresholds ARCANE/AGILITY são removidos como desbloqueio da Specialist. BORDER_HOPPING: proibido. RESPEC_SEGURO: enquanto qualquer perk interna da Specialist estiver possuída, bloquear refund de A0225, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. SPECIALIST_GATE_RESOLVER_V1 é contrato futuro, não API runtime existente. |
+| Regra de região/PP | TERMINAL_EXTERIOR: ARCANE/WATER. PP_REGION: ARCANE/WATER. A0225 não pertence às 30 perks internas da Specialist Water. Gate B usa ≥100 PP válidos em SPECIALIST_REGION:WATER; os antigos gates de 8 PP e pequenos thresholds ARCANE/AGILITY são removidos como desbloqueio da Specialist. BORDER_HOPPING: proibido. RESPEC_SEGURO: enquanto qualquer perk interna da Specialist estiver possuída, bloquear refund de A0225, fundamentals obrigatórios, dependency closure da terminal e qualquer refund que reduza Gate B abaixo de 100; Specialist deve ser reembolsada primeiro. pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 não é contrato futuro separado; reutiliza a pipeline TreeUnlock existente. |
 | Border hopping | Proibido contar a mesma compra em regiões incompatíveis ou usar bridge para satisfazer dois thresholds, salvo whitelist explícita de um único lado semântico. |
 | Respec | O refund deve respeitar dependency closure, gate de região/terminal e estado owned pela perk; perks internas dependentes são reembolsadas antes de quebrar o gate. |
 
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Water Mastery canônica. Somake Spells 1.0.8-1.21.1-fix, Iron's Spells runtime 1.21.1-3.16.3, Ars Elemental 0.7.10.1 e demais providers fornecem gameplay WATER somente aos nodes que possuírem adapters próprios; nenhum mod externo é owner do gate da Specialist.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + Water Mastery canônica. Somake Spells 1.0.8-1.21.1-fix, Iron's Spells runtime 1.21.1-3.16.3, Ars Elemental 0.7.10.1 e demais providers fornecem gameplay WATER somente aos nodes que possuírem adapters próprios; nenhum mod externo é owner do gate da Specialist.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Somake Aqua, Iron's, Ars Elemental e demais providers entram somente por adapters WATER explícitos; qualquer recurso reembolsado permanece no mesmo resource_id debitado.
 - **Exclusões obrigatórias:** Cold Sweat, chuva, oceano e estado molhado não classificam magia WATER. Enshrouded/Volcanoes não fornecem outcome WATER para esta faixa.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -137,7 +137,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Water Ma
 ## 8. Fail-closed, lifecycle e perda de capability
 
 - **Decisão atual:** O contrato está congelado e suficientemente especificado para implementação, mas a compra ou parcela dependente deve falhar fechado até todos os contracts/adapters indicados existirem e passarem os testes.
-- **Fallback normativo:** FAIL-CLOSED: enquanto SPECIALIST_GATE_RESOLVER_V1, fundamentos e ledger de PP semântico não puderem ser validados server-side, a Specialist Water permanece bloqueada. Perks internas dependentes de WATER/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WATER, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar WET/recurso/respiração como fallback.
+- **Fallback normativo:** FAIL-CLOSED: enquanto pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01, fundamentos e ledger de PP semântico não puderem ser validados server-side, a Specialist Water permanece bloqueada. Perks internas dependentes de WATER/providers falham fechado individualmente. Nunca retornar aos antigos gates 8 PP WATER, ARCANE ≥8 ou ARCANE+AGILITY ≥12, nem criar WET/recurso/respiração como fallback.
 - Reavaliar gate/availability em login, load/save, datapack/rules reload, respec, mudança/remoção de provider, alteração de capability e migração de schema.
 - Perda de provider ou dependência remove/desativa somente a parcela dependente e executa cleanup do estado próprio, sem tocar estado autoritativo de terceiros.
 - Estado desconhecido ou erro de query nunca concede compra, unlock, proteção, dano, recurso, temperatura favorável ou progressão.
@@ -192,7 +192,7 @@ RPG Skill Tree + FUTURE_PROVIDER_CONTRACT SPECIALIST_GATE_RESOLVER_V1 + Water Ma
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

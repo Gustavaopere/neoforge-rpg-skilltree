@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0244 Combustão ≥2 + A0245 Queima Persistente ≥2. Os requisitos locais não substituem o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0244 Combustão ≥2 + A0245 Queima Persistente ≥2. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FIRE_IGNITION_RESOLVER_V1/ledger de ownership + atribuição autoritativa de morte + consulta espacial server-side + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1. OWNER: RPG core/adapters; CONSUMERS: perks FIRE que emitem estado/dano derivado; STATE: parent_action/outcome, owner, origin, propagation_depth, derived_kind; BEHAVIOR: outcomes derivados nunca viram nova ação direta, não rerrolam crítico/Ignição/mastery e têm dedupe próprio. VERSION-STATUS: contrato de design; não presumir API runtime existente. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FIRE_IGNITION_RESOLVER_V1/ledger de ownership + atribuição autoritativa de morte + consulta espacial server-side + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1. OWNER: RPG core/adapters; CONSUMERS: perks FIRE que emitem estado/dano derivado; STATE: parent_action/outcome, owner, origin, propagation_depth, derived_kind; BEHAVIOR: outcomes derivados nunca viram nova ação direta, não rerrolam crítico/Ignição/mastery e têm dedupe próprio. VERSION-STATUS: contrato de design; não presumir API runtime existente. |
 | Efeito | Quando um alvo vivo que possuía antes do golpe fatal uma Ignição real atribuída ao jogador morrer por um death_outcome causalmente atribuível a uma ação direta do próprio jogador ou a um tick daquela própria Ignição não-propagada, A0253 pode propagar o estado uma única vez. Se a recarga global estiver livre, selecionar até 3 inimigos vivos elegíveis num raio de 4 blocos e aplicar a cada um uma propagated_ignition derivada: duração = quantize_down(0,60 × remaining_ignition_duration_at_death) e dano-base periódico = 0,60 × provider_native_base_tick_damage da Ignição-fonte, sem reaplicar A0244/A0245. Resultado de duração zero não cria estado. |
 | Escalonamento | 1 rank. Raio: 4 blocos. Máximo: 3 alvos por morte elegível. Duração propagada: 60% do tempo restante da Ignição-fonte no instante da morte, quantizada para baixo na unidade de ticks do provider. Dano-base periódico propagado: 60% do dano-base nativo periódico da Ignição-fonte. Recarga global por jogador: 40 ticks (2 s), iniciada após propagação bem-sucedida. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + requisitos locais + vítima com Ignição real NÃO propagada atribuída ao jogador antes do death outcome + morte causada por ação direta própria ou tick da própria Ignição + cooldown livre + pipeline seguro para aplicar estado derivado. Ignição propagada, summon, máquina, fake player, ambiente, terceiro, callback duplicado e estado sem ownership não propagam. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FIRE_IGNITION_RESOLVER_V1/ledger de ownership + atribuição autoritativa de morte + consulta espacial server-side + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1. OWNER: RPG core/adapters; CONSUMERS: perks FIRE que emitem estado/dano derivado; STATE: parent_action/outcome, owner, origin, propagation_depth, derived_kind; BEHAVIOR: outcomes derivados nunca viram nova ação direta, não rerrolam crítico/Ignição/mastery e têm dedupe próprio. VERSION-STATUS: contrato de design; não presumir API runtime existente.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + FIRE_IGNITION_RESOLVER_V1/ledger de ownership + atribuição autoritativa de morte + consulta espacial server-side + FUTURE_PROVIDER_CONTRACT FIRE_DERIVED_OUTCOME_PIPELINE_V1. OWNER: RPG core/adapters; CONSUMERS: perks FIRE que emitem estado/dano derivado; STATE: parent_action/outcome, owner, origin, propagation_depth, derived_kind; BEHAVIOR: outcomes derivados nunca viram nova ação direta, não rerrolam crítico/Ignição/mastery e têm dedupe próprio. VERSION-STATUS: contrato de design; não presumir API runtime existente.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + FIRE_IGNITION_RESOLVER_V1/ledger 
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>, <code>FIRE_DERIVED_OUTCOME_PIPELINE_V1</code>.
 - **Dependências fora desta faixa:** nenhuma dependência fora de A0200–A0299.
 - **Referências internas posteriores:** <code>A0254</code>.
 - **Referência além do escopo:** nenhuma além das dependências listadas.

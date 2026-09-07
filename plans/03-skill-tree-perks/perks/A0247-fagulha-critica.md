@@ -29,7 +29,7 @@
 | Custo Extra | 0 — nenhum custo extra de compra |
 | Dependências Obrigatórias | SPECIALIST_UNLOCK:FIRE confirmado por Gate A/B/C + A0243 Ignição ≥1 rank + A0151 Crítico Mágico ≥2 ranks. Os requisitos locais não substituem o unlock global da Specialist Fire. |
 | Pré-requisitos | Specialist Fire desbloqueada (SPECIALIST_UNLOCK:FIRE) + A0243 Ignição ≥1 + A0151 Crítico Mágico ≥2. |
-| Provider/Mods | RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + sistema crítico canônico + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 + adapters FIRE versionados. Apothic Attributes/qualquer backend crítico só pode participar através da única resolução crítica canônica; nunca como segunda rolagem. |
+| Provider/Mods | RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + sistema crítico canônico + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 + adapters FIRE versionados. Apothic Attributes/qualquer backend crítico só pode participar através da única resolução crítica canônica; nunca como segunda rolagem. |
 | Efeito | Quando o ÚNICO sistema crítico canônico já determinou criticalHit=true para um resultado FIRE direto elegível, A0247 adiciona +10 pontos percentuais de chance de Ignição por rank (+10 / +20 p.p.) à MESMA decisão canônica de Ignição daquele direct_fire_outcome_id. Não existe segunda tentativa. Exemplo: A0243 rank 3 + A0247 rank 2 contribuem juntos com +12 +20 p.p. no mesmo resolver, além de eventual chance nativa integrável. |
 | Escalonamento | Até 2 ranks; em resultado FIRE direto com criticalHit=true, contribuição adicional à única decisão de Ignição: +10 / +20 p.p. A0247 não altera chance nem multiplicador crítico. |
 | Gate | SPECIALIST_UNLOCK:FIRE válido + A0243 ≥1 + A0151 ≥2 + resultado FIRE direto elegível cuja decisão crítica canônica já seja criticalHit=true + FIRE_IGNITION_RESOLVER_V1 disponível para a mesma decisão de Ignição. Crítico derivado, DoT, summon, derived component, proc recursivo e resultado sem identidade crítica canônica não contribuem. |
@@ -87,13 +87,13 @@ A topologia não concede a mecânica por si só. Gateway, proximidade visual, at
 
 ### Provider/modlist aprovado
 
-RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + sistema crítico canônico + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 + adapters FIRE versionados. Apothic Attributes/qualquer backend crítico só pode participar através da única resolução crítica canônica; nunca como segunda rolagem.
+RPG Skill Tree + pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01 + sistema crítico canônico + FUTURE_PROVIDER_CONTRACT FIRE_IGNITION_RESOLVER_V1 + adapters FIRE versionados. Apothic Attributes/qualquer backend crítico só pode participar através da única resolução crítica canônica; nunca como segunda rolagem.
 
 ### Disposição por família
 
 - **Providers/mods pertinentes:** Iron's Spells, Ars Nouveau/Ars Elemental, Somake e demais providers FIRE entram por adapters exatos; Minecraft/NeoForge, Cold Sweat e outros owners só participam no subcontrato nativo explicitamente citado.
 - **Exclusões obrigatórias:** Volcanoes conserva geologia, vulcanismo, atmosfera e pressão e não é classificador FIRE mágico. Black Arcana danger/black flame planejada não é provider atual; Enshrouded não entra.
-- **Contratos/capabilities nomeados no registro:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Contratos/capabilities nomeados no registro:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Estado:** nenhum nome de API é tratado como existente apenas por aparecer no design; FUTURE_PROVIDER_CONTRACT permanece bloqueador até prova em código/API da versão exata.
 
 ### Matriz dos quatro projetos próprios
@@ -192,7 +192,7 @@ RPG Skill Tree + SPECIALIST_GATE_RESOLVER_V1 + sistema crítico canônico + FUTU
 ## 13. Pendências técnicas e dependências futuras
 
 - **Implementação:** não confirmada neste trabalho; responsabilidade futura do Chat 2.
-- **Capabilities/contracts a provar:** <code>SPECIALIST_GATE_RESOLVER_V1</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
+- **Capabilities/contracts a provar:** <code>pipeline canônica TreeUnlockResolver + TreeUnlockDefinition + Stage 04.01</code>, <code>FIRE_IGNITION_RESOLVER_V1</code>.
 - **Dependências fora desta faixa:** <code>A0151</code>.
 - **Referências internas posteriores:** nenhuma.
 - **Referência além do escopo:** nenhuma além das dependências listadas.
