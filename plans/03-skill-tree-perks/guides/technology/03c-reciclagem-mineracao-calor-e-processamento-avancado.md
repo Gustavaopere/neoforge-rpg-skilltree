@@ -1,4 +1,4 @@
-<!-- Reconciliado com modlist.txt atual em 2026-09-06. -->
+<!-- Reconciliado com modlist.txt atual em 2026-09-07. -->
 
 [← Capítulo principal](03-industria-energia-e-processamento-do-create.md) · [← Índice do guia](README.md)
 
@@ -58,7 +58,6 @@ A build instalada é `create-confectionery1.21.1_v1.1.3b.jar`; o metadata runtim
 Receitas do **Cooking Pot** do Farmer's Delight são traduzidas para **heated mixing**, permitindo executar preparação culinária em linhas mecânicas. O addon também possui **Sprinkler**, alimentado por fluidos via pipes: água simula chuva na área, lava causa dano de fogo, poções aplicam seus efeitos e Liquid Fertilizer produz efeito de bonemeal sobre blocos/culturas.
 A build `4.3.3` é a release NeoForge 1.21.1 instalada; ela corrige o comportamento de potion sprinkler e expõe `SprinklerProvider` para integrações.
 
-
 ## Create Liquid Fuel — runtime 3.0.0-1.21.1
 
 `createliquidfuel-3.0.0-1.21.1.jar`
@@ -71,7 +70,7 @@ Para perks, o combustível e o estado térmico continuam pertencendo ao pipeline
 `sulfuricresonance-0.4.1.jar`
 **Create: Sulfuric Resonance** amplia Create com engenharia termquímica: geração/transmissão de calor, química de enxofre e ácido sulfúrico, materiais avançados, processamento por combustão, Precision Processing e Resonance Processing. O sistema combina heat, rotação, reagentes e tempos de processo em layouts físicos compatíveis com os componentes normais do Create.
 
-A build `0.4.1` é a release pública atual instalada. O mod declara requisito de Create 6.0.7+ e NeoForge 21.1.238+; o pack usa Create 6.0.10. Há incompatibilidade visual documentada entre seus Thermochemical Cogwheels e **Create: Bits 'n' Bobs**. Na auditoria de 06/09/2026, essa incompatibilidade deixou de ser apenas um risco aberto: a decisão de curadoria foi **Tirar `bits_n_bobs-2.3.0.jar`** e preservar Sulfuric Resonance. A autoridade dessa decisão está em [`../gameplay/CURATION-DECISIONS-2026-09-06.md`](../gameplay/CURATION-DECISIONS-2026-09-06.md). Enquanto uma nova modlist não provar a remoção física, Bits 'n' Bobs continua apenas como presença instalada pendente de retirada, não como provider recomendado pelo guia de tecnologia.
+A build `0.4.1` é a release pública atual instalada. O mod declara requisito de Create 6.0.7+ e NeoForge 21.1.238+; o pack usa Create 6.0.10. Há incompatibilidade visual documentada entre seus Thermochemical Cogwheels e **Create: Bits 'n' Bobs**. A decisão de 06/09 era retirar Bits 'n' Bobs, mas foi **explicitamente revisada em 07/09/2026**: o pack mantém `bits_n_bobs-2.3.1.jar` e aceita conscientemente o conflito visual. Isso não é evidência de correção técnica. Monitorar e render-testar especificamente os Thermochemical Cogwheels após updates de qualquer um dos mods. A decisão vigente está em [`../gameplay/CURATION-DECISIONS-2026-09-07.md`](../gameplay/CURATION-DECISIONS-2026-09-07.md).
 
 ## Create: Fantasizing Again — runtime 1.2.0-b3
 
