@@ -62,6 +62,8 @@ jobs:
             ':!PROJECT-INSTRUCTIONS/GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md' \
             ':!PROJECT-INSTRUCTIONS/GUIA-COMPLETO-PROJETOS-PROPRIOS.md' \
             ':!PROJECT-INSTRUCTIONS/README.md' \
+            ':!PROJECT-INSTRUCTIONS/guides/README.md' \
+            ':!plans/03-skill-tree-perks/README.md' \
             ':!docs/superpowers/**' \
             ':!.github/workflows/project-instructions-migration-audit.yml' || true)
 
@@ -70,14 +72,15 @@ jobs:
             [ -z "$line" ] && continue
             echo "$line"
             fail=1
-          done < <(git grep -n -E '`?\.\./guides/(gameplay|magic|technology|projects)|(^|[^A-Za-z0-9_-])guides/projects/' -- . \
+          done < <(git grep -n -E '(^|[[:space:]`(])((\.\./)+|\./)?guides/(gameplay|magic|technology|projects)/' -- . \
             ':!PROJECT-INSTRUCTIONS/guides/**' \
             ':!PROJECT-INSTRUCTIONS/GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md' \
             ':!PROJECT-INSTRUCTIONS/GUIA-COMPLETO-MODS-DE-MAGIA.md' \
             ':!PROJECT-INSTRUCTIONS/GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md' \
             ':!PROJECT-INSTRUCTIONS/GUIA-COMPLETO-PROJETOS-PROPRIOS.md' \
             ':!docs/superpowers/**' \
-            ':!.github/workflows/project-instructions-migration-audit.yml' || true)
+            ':!.github/workflows/project-instructions-migration-audit.yml' \
+            | grep -v -F 'PROJECT-INSTRUCTIONS/guides/' || true)
 
           if [ "$fail" -ne 0 ]; then
             echo 'Active legacy references remain.' >&2
