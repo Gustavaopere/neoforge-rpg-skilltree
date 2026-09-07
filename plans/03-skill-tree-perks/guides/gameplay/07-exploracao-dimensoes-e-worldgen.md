@@ -28,11 +28,11 @@ A versão instalada é `2.6.2`. O pack também possui `Dynamic Trees - Terralith
 **YUNG's Cave Biomes** adiciona **ambientes e decoração subterrânea** às cavernas, criando regiões temáticas com blocos, vegetação e composição visual próprias. Ele atua sobre a identidade interna das cavernas sem assumir o mesmo papel do `YUNG's Better Caves`, que remodela principalmente o carving, escala e geometria subterrânea.
 A build instalada `3.1.1` é para NeoForge 1.21.1 e depende de YUNG's API.
 
-## Alex's Caves — 2.0.2
+## Alex's Caves Continued — 1.0.9
 
-`alexscaves-2.0.2.jar`
-Adiciona seis destinos subterrâneos raros: **Magnetic Caves, Primordial Caves, Toxic Caves, Abyssal Chasm, Forlorn Hollows e Candy Cavity**. Cada região possui blocos, criaturas, itens e mecânicas próprias.
-A exploração começa através de Underground Cabins, Cave Tablets e Cave Compendium, fazendo os biomas funcionarem como locais que precisam ser descobertos e procurados, não apenas como decoração aleatória de cavernas.
+`alexscaves-1.0.9-neoforge+1.21.1.jar`
+**Alex's Caves Continued** é a implementação canônica escolhida para o `modid alexscaves` no pack. Ela preserva os seis destinos subterrâneos do conteúdo original — **Magnetic Caves, Primordial Caves, Toxic Caves, Abyssal Chasm, Forlorn Hollows e Candy Cavity** — com seus blocos, criaturas, itens, Cave Tablets/Cave Compendium e progressão de descoberta.
+A decisão de curadoria de 06/09/2026 é **Manter** esta build NeoForge 1.21.1 `1.0.9` e **Tirar** `alexscaves-2.0.2.jar`. Enquanto os dois JARs continuarem fisicamente na pasta `mods`, o NeoForge encontra `modid alexscaves` duplicado durante discovery e o pack permanece bloqueado antes do runtime normal.
 
 ## Deeper and Darker — 1.4.1
 
@@ -113,12 +113,18 @@ A build atual é `1.5.0h`, substituindo a linha anterior 1.5.0 e correspondendo 
 **Dynamic Trees Addon Lib** é a biblioteca comum usada por treepacks e bridges do ecossistema Dynamic Trees. Ela centraliza **modelos, registries, helpers e utilidades de integração** que seriam duplicados em cada addon individual, permitindo que compat packs registrem espécies e recursos com uma base compartilhada.
 Não adiciona uma nova progressão ou provider de árvores por si só. A build `0.2.0-BETA03` é infraestrutura do stack; o sufixo beta descreve a maturidade da API.
 
+### Dynamic Trees: Universal Compat — 2.3 (opcional)
+
+`NeoForge-dynamictreescompat-2.3.jar`
+A auditoria de 06/09/2026 classificou **Dynamic Trees: Universal Compat** como **Opcional**. O projeto detecta árvores/registries/features de outros mods e tenta gerar compatibilidade automática, mas o pack já possui treepacks dedicados para vários providers. Não há evidência suficiente para assumir que a build 2.3 deduplica todos os casos cobertos por bridges canônicas.
+Se for mantido, validar em mundo descartável: species registradas, geração em chunks novos, ausência de árvores estáticas+dinâmicas duplicadas e precedência dos treepacks dedicados. Não usar sua presença como motivo para remover bridges específicas sem evidência provider por provider.
+
 ## Streams Reflowing — 2.13.1
 
 `StreamsReflowing-1.21.1-neoforge-2.13.1.jar`
 **Streams Reflowing** altera a hidrologia do worldgen para produzir **cursos d'água contínuos e visualmente mais naturais**, em vez de depender apenas de lagos e rios definidos pelo modelo vanilla. Streams acompanham o relevo, conectam regiões e criam trajetórias que tornam água corrente uma parte mais explícita da paisagem.
 O mod atua na geração física de cursos d'água e portanto é diferente de expansões que apenas adicionam biomas aquáticos ou blocos de rio. A build instalada é `2.13.1` para NeoForge 1.21.1.
 
-## Nota operacional — duplicidade `alexscaves`
+## Nota operacional — `alexscaves`
 
-A modlist atual contém simultaneamente `alexscaves-2.0.2.jar` (**Alex's Caves**) e `alexscaves-1.0.9-neoforge+1.21.1.jar` (**Alex's Caves Continued**), ambos declarando `modid alexscaves`. O port Continued está documentado no [capítulo 16](16-novos-modulos-gameplay-e-sistemas.md). **Esse estado bloqueia o startup do NeoForge antes do runtime normal.** A instalação deve manter exatamente um dos JARs (ou um repack legítimo com mod ID distinto) antes de qualquer integração; `ModList.isLoaded("alexscaves")`, registry inspection ou fail-closed de runtime não podem remediar dois mod IDs idênticos durante discovery.
+A decisão de curadoria está **fechada**: manter `alexscaves-1.0.9-neoforge+1.21.1.jar` (**Alex's Caves Continued 1.0.9**) e retirar `alexscaves-2.0.2.jar`. A modlist atual ainda contém os dois JARs com `modid alexscaves`, portanto o pack continua bloqueado durante discovery até a remoção física do 2.0.2. Após remover, regenerar a modlist; só então atualizar o estado físico no Notion.
