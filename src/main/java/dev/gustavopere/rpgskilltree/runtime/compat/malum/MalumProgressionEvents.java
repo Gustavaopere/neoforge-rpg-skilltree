@@ -2,13 +2,17 @@ package dev.gustavopere.rpgskilltree.runtime.compat.malum;
 
 import com.sammy.malum.core.systems.events.CollectSpiritEvent;
 import com.sammy.malum.core.systems.events.ModifySpiritSpoilsEvent;
+import dev.gustavopere.rpgskilltree.core.ActionOrigin;
+import dev.gustavopere.rpgskilltree.core.MalumSpiritClassifier;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
 import dev.gustavopere.rpgskilltree.core.SpiritPracticeAction;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -27,23 +31,47 @@ public final class MalumProgressionEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpiritSpoils(ModifySpiritSpoilsEvent event) {
         if (!(event.getAttacker() instanceof ServerPlayer player)) return;
-        if (player instanceof FakePlayer || player.isCreative() || player.isSpectator()) return;
+        if (!MalumMasteryLogic.isEligiblePlayer(
+            player instanceof FakePlayer,
+            player.isCreative(),
+            player.isSpectator()
+        )) return;
 
         LivingEntity target = event.getEntity();
         ResourceLocation targetId = BuiltInRegistries.ENTITY_TYPE.getKey(target.getType());
         SpiritEvidence evidence = readSpiritEvidence(target);
-        MalumMasteryLogic.reapingAction(
-            targetId,
-            new MalumMasteryLogic.SpiritEvidence(evidence.spiritItemIds(), evidence.totalSpirits())
-        ).ifPresent(action -> PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forMalum(action)));
+        if (!MalumMasteryLogic.hasConfirmedSpiritEvidence(evidence.spiritItemIds(), evidence.totalSpirits())) return;
+
+        Set<String> tags = new HashSet<>();
+        tags.add("reaping");
+        tags.addAll(MalumSpiritClassifier.spiritTags(evidence.spiritItemIds()));
+
+        SpiritPracticeAction action = new SpiritPracticeAction(
+            new ActionOrigin("malum:reaping", 0),
+            "malum",
+            "reap:" + targetId,
+            tags,
+            evidence.totalSpirits()
+        );
+        PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forMalum(action));
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpiritCollected(CollectSpiritEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        if (player instanceof FakePlayer || player.isCreative() || player.isSpectator()) return;
+        if (!MalumMasteryLogic.isEligiblePlayer(
+            player instanceof FakePlayer,
+            player.isCreative(),
+            player.isSpectator()
+        )) return;
 
-        SpiritPracticeAction action = MalumMasteryLogic.collectionAction();
+        SpiritPracticeAction action = new SpiritPracticeAction(
+            new ActionOrigin("malum:collection", 0),
+            "malum",
+            "natural_spirit",
+            Set.of("collection"),
+            1
+        );
         PlayerProgressionRuntime.awardMastery(player, MasteryPolicies.forMalum(action));
     }
 
