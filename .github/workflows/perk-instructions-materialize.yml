@@ -1,0 +1,80 @@
+name: Materialize canonical project instructions
+
+on:
+  push:
+    branches:
+      - docs/project-instructions-final
+    paths:
+      - perk-instructions-payload/READY
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and verify canonical archive
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64, hashlib, io, zipfile
+
+          payload = Path('perk-instructions-payload')
+          decoded = []
+          for i in range(16):
+              p = payload / f'chunk-{i:02d}.b64'
+              text = p.read_text(encoding='ascii')
+              expected_len = 2048 if i == 15 else 20000
+              if len(text) != expected_len:
+                  raise SystemExit(f'{p}: length {len(text)} != {expected_len}')
+              decoded.append(base64.b64decode(text, validate=True))
+
+          archive = b''.join(decoded)
+          expected_archive_sha = 'bcc34de2026902f1bafa7ff5c8830d2177449dafcf3c232c00d484472c09a0e1'
+          archive_sha = hashlib.sha256(archive).hexdigest()
+          if archive_sha != expected_archive_sha:
+              raise SystemExit(f'archive SHA-256 mismatch: {archive_sha}')
+
+          expected = {
+              'CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md': 'eae998908fe82eed1a09b3cef94f511342cba5896e591d57cc1ed3b16902a5b0',
+              'CHAT-2-IMPLEMENTACAO-PERKS-ANEXOS-PROJETO.md': '4b70793e0594d50a792641c0f56fe45ee6dcbfe67d0de2bf9dc08ea188b14b65',
+              'CHAT-3-PENDENCIAS-TESTES-VALIDACAO-MERGE-PERKS-ANEXOS-PROJETO.md': 'b3a55c02e4bd1dbd91d8dcdd79414fbd13b691ff174d283632ebb972d1080ab4',
+              'CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md': 'ec03069b676057f66bf4184085c0b56f5e5169b83199fa66adf78a19f569374c',
+              'GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md': 'f96705de3374e9026da4d9a0fcce55c40f1186c2287a91b2d6d63d616131e906',
+              'GUIA-COMPLETO-MODS-DE-MAGIA.md': '37303b8055c96a96352fefd6f56921b9574153064c135fe37d3c223bdd2d9ac8',
+              'GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md': 'ef14028961816835a50b44133c3ea06eb3c6363c9cd797d22deed8035201bc59',
+              'GUIA-COMPLETO-PROJETOS-PROPRIOS.md': 'b0355118562c38a72c3965ceb64e9e0c38d8af85daa80c43bc3e075ad68d49fd',
+          }
+
+          target = Path('PROJECT-INSTRUCTIONS')
+          target.mkdir(exist_ok=True)
+          with zipfile.ZipFile(io.BytesIO(archive)) as zf:
+              names = sorted(n for n in zf.namelist() if not n.endswith('/'))
+              if names != sorted(expected):
+                  raise SystemExit(f'archive members mismatch: {names}')
+              for name in names:
+                  data = zf.read(name)
+                  digest = hashlib.sha256(data).hexdigest()
+                  if digest != expected[name]:
+                      raise SystemExit(f'{name}: SHA-256 mismatch {digest}')
+                  (target / name).write_bytes(data)
+          print('Canonical project instruction archive reconstructed and verified.')
+          PY
+
+      - name: Commit canonical files and remove transport artifacts
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PROJECT-INSTRUCTIONS
+          git rm -r perk-instructions-payload
+          git rm .github/workflows/perk-instructions-materialize.yml
+          git commit -m "docs: materialize canonical project instructions"
+          git push
