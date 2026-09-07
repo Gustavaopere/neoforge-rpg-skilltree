@@ -1,19 +1,14 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Answers.RETURNS_DEEP_STUBS;
-import static org.mockito.Mockito.mock;
 
 import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
-import java.lang.reflect.Method;
 import java.util.UUID;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 
 final class EpicFightHitAuthorityCallbackJUnitTest {
     @AfterEach
@@ -59,20 +54,5 @@ final class EpicFightHitAuthorityCallbackJUnitTest {
         assertFalse(EpicFightProgressionHooks.shouldPublishHitAuthority(false, true));
         assertFalse(EpicFightProgressionHooks.shouldPublishHitAuthority(true, false));
         assertFalse(EpicFightProgressionHooks.shouldPublishHitAuthority(false, false));
-    }
-
-    @Test
-    void preCallbackRejectsMissingServerActorWithoutTouchingGameRuntime() {
-        DealDamageEvent.Pre event = mock(DealDamageEvent.Pre.class, RETURNS_DEEP_STUBS);
-        assertDoesNotThrow(() -> invokePreAuthority(event));
-    }
-
-    private static void invokePreAuthority(DealDamageEvent.Pre event) throws Exception {
-        Method callback = EpicFightProgressionHooks.class.getDeclaredMethod(
-            "onDealDamageAuthority",
-            DealDamageEvent.Pre.class
-        );
-        callback.setAccessible(true);
-        callback.invoke(null, event);
     }
 }

@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -12,6 +13,7 @@ import static org.mockito.Mockito.when;
 import dev.gustavopere.rpgskilltree.core.A0061A0080CombatState;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
 import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier;
 import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier.TargetClass;
 import java.lang.reflect.Method;
@@ -152,6 +154,42 @@ final class A0071A0080EpicFightPrePostCoverageJUnitTest {
             assertFalse(state.executionWindowActive("actor", targetId.toString(), 1_051L));
             assertTrue(state.reserveExecutionArmCandidate("actor", targetId.toString(), "retry", 1_051L));
         }
+    }
+
+    @Test
+    void stage0602ProviderNativePrePublishesAuthoritativeRoot() throws Exception {
+        AuthoritativeHitAttributionBridge.clearAll();
+        ServerLevel level = mock(ServerLevel.class);
+        when(level.getGameTime()).thenReturn(602L);
+
+        ServerPlayer player = mock(ServerPlayer.class);
+        when(player.level()).thenReturn(level);
+        when(player.isCreative()).thenReturn(false);
+        when(player.isSpectator()).thenReturn(false);
+
+        Player target = mock(Player.class);
+        UUID targetId = UUID.fromString("00000000-0000-0000-0000-000000000602");
+        when(target.getUUID()).thenReturn(targetId);
+        when(target.isInvulnerable()).thenReturn(false);
+        when(player.isAlliedTo(target)).thenReturn(false);
+
+        EpicFightDamageSource source = mock(EpicFightDamageSource.class);
+        when(source.getDirectEntity()).thenReturn(player);
+        ServerPlayerPatch patch = mock(ServerPlayerPatch.class);
+        when(patch.getOriginal()).thenReturn(player);
+        DealDamageEvent.Pre pre = new DealDamageEvent.Pre(patch, target, source, 5.0F);
+
+        Method authority = EpicFightProgressionHooks.class.getDeclaredMethod(
+            "onDealDamageAuthority",
+            DealDamageEvent.Pre.class
+        );
+        authority.setAccessible(true);
+        authority.invoke(null, pre);
+
+        var attribution = AuthoritativeHitAttributionBridge.find(source, targetId).orElseThrow();
+        assertEquals("epicfight", attribution.providerId());
+        assertTrue(attribution.rootActionId().startsWith("epicfight/hit/602/"));
+        AuthoritativeHitAttributionBridge.discard(source, targetId);
     }
 
     private static Method privateMethod(String name, Class<?> type) throws Exception {
