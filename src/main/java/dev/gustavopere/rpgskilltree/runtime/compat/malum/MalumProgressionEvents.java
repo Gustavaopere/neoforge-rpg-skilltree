@@ -31,11 +31,7 @@ public final class MalumProgressionEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpiritSpoils(ModifySpiritSpoilsEvent event) {
         if (!(event.getAttacker() instanceof ServerPlayer player)) return;
-        if (!MalumMasteryLogic.isEligiblePlayer(
-            player instanceof FakePlayer,
-            player.isCreative(),
-            player.isSpectator()
-        )) return;
+        if (!MalumMasteryLogic.isEligiblePlayer(player instanceof FakePlayer, player.isCreative(), player.isSpectator())) return;
 
         LivingEntity target = event.getEntity();
         ResourceLocation targetId = BuiltInRegistries.ENTITY_TYPE.getKey(target.getType());
@@ -59,11 +55,7 @@ public final class MalumProgressionEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onSpiritCollected(CollectSpiritEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        if (!MalumMasteryLogic.isEligiblePlayer(
-            player instanceof FakePlayer,
-            player.isCreative(),
-            player.isSpectator()
-        )) return;
+        if (!MalumMasteryLogic.isEligiblePlayer(player instanceof FakePlayer, player.isCreative(), player.isSpectator())) return;
 
         SpiritPracticeAction action = new SpiritPracticeAction(
             new ActionOrigin("malum:collection", 0),
