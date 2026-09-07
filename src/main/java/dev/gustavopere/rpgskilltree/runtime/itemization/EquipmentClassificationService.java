@@ -10,10 +10,14 @@ import net.minecraft.world.item.ItemStack;
 
 /** Canonical runtime entry point for classifying equipment against the active datapack snapshot. */
 public final class EquipmentClassificationService {
+    private static final List<EquipmentClassificationAdapter> DEFAULT_ADAPTERS = List.of(
+        new CuriosTagEquipmentClassificationAdapter()
+    );
+
     private EquipmentClassificationService() {}
 
     public static EquipmentClassification classify(ItemStack stack) {
-        return classify(stack, List.of());
+        return classify(stack, DEFAULT_ADAPTERS);
     }
 
     public static EquipmentClassification classify(
@@ -25,7 +29,7 @@ public final class EquipmentClassificationService {
     }
 
     public static EquipmentClassification classify(EquipmentProbe probe) {
-        return classify(probe, List.of());
+        return classify(probe, DEFAULT_ADAPTERS);
     }
 
     public static EquipmentClassification classify(
