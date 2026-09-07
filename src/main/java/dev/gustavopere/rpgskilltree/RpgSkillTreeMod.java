@@ -33,9 +33,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEve
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumIntegrationBootstrap;
-import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumIntegrationState;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
-import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.BattleMageIntegrationState;
 import dev.gustavopere.rpgskilltree.runtime.compat.minecolonies.battlemage.BattleMageLifecycleEvents;
@@ -225,32 +223,11 @@ public final class RpgSkillTreeMod {
             );
         }
 
-        boolean malumLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MALUM);
-        String malumVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.MALUM);
-        MalumIntegrationState malumState = MalumIntegrationBootstrap.install(
-            malumLoaded,
-            malumVersion,
+        MalumIntegrationBootstrap.install(
+            OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MALUM),
+            OptionalIntegrations.version(OptionalIntegrations.Provider.MALUM),
             () -> NeoForge.EVENT_BUS.register(MalumProgressionEvents.class)
         );
-        if (malumState == MalumIntegrationState.ACTIVE) {
-            RuntimeDiagnostics.info(
-                LOGGER,
-                Category.COMPAT,
-                "malum_mastery_active",
-                "Malum Mastery integration active: Malum {}",
-                malumVersion
-            );
-        } else if (malumState != MalumIntegrationState.ABSENT_PROVIDER) {
-            RuntimeDiagnostics.warn(
-                LOGGER,
-                Category.COMPAT,
-                "malum_mastery_disabled",
-                "Malum Mastery integration disabled: state={}, expected={}, found={}",
-                malumState,
-                MalumVersionContract.SUPPORTED_VERSION,
-                malumVersion
-            );
-        }
 
         boolean mineColoniesLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.MINECOLONIES);
         boolean ironsSpellbooksLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS);
