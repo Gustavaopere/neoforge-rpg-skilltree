@@ -13,11 +13,11 @@ import java.lang.reflect.Method;
 import java.util.UUID;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
+import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 
 final class EpicFightHitAuthorityCallbackJUnitTest {
     @AfterEach
@@ -70,7 +70,7 @@ final class EpicFightHitAuthorityCallbackJUnitTest {
         ServerPlayer attacker = mock(ServerPlayer.class);
         Player hostileTarget = mock(Player.class);
         ServerLevel level = mock(ServerLevel.class);
-        DamageSource damageSource = mock(DamageSource.class);
+        EpicFightDamageSource damageSource = mock(EpicFightDamageSource.class);
         DealDamageEvent.Pre event = mock(DealDamageEvent.Pre.class, RETURNS_DEEP_STUBS);
         UUID targetId = UUID.fromString("00000000-0000-0000-0000-000000000605");
 
