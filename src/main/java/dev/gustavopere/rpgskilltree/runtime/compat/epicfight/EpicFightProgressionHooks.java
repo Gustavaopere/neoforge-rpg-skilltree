@@ -6,14 +6,12 @@ import dev.gustavopere.rpgskilltree.core.EpicFightStaminaPolicy;
 import dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategory;
 import dev.gustavopere.rpgskilltree.core.FistMasteryMilestonePolicy;
 import dev.gustavopere.rpgskilltree.core.MasteryPolicies;
-import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.WeaponMasteryMilestoneRuntime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicLong;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,7 +32,6 @@ public final class EpicFightProgressionHooks {
     private static final String DAMAGE_SUBSCRIBER_ID = "rpgskilltree:mastery/damage";
     private static final String SKILL_SUBSCRIBER_ID = "rpgskilltree:mastery/skill";
     private static final String DODGE_SUBSCRIBER_ID = "rpgskilltree:mastery/dodge";
-    private static final AtomicLong HIT_SEQUENCE = new AtomicLong();
     private static boolean registered;
 
     private EpicFightProgressionHooks() {}
@@ -65,11 +62,10 @@ public final class EpicFightProgressionHooks {
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
         LivingEntity target = event.getTarget();
         if (!hostile(player, target) || event.getDamageSource().getDirectEntity() != player) return;
-        AuthoritativeHitAttributionBridge.canonicalize(
+        EpicFightHitAuthority.publish(
             event.getDamageSource(),
             target.getUUID(),
-            "epicfight/hit/" + player.level().getGameTime() + "/" + HIT_SEQUENCE.incrementAndGet(),
-            "epicfight"
+            player.level().getGameTime()
         );
     }
 
@@ -78,7 +74,7 @@ public final class EpicFightProgressionHooks {
      * milestone against a hostile entity type only once for the lifetime of the persisted player state.
      */
     private static void onDealDamage(DealDamageEvent.Post event) {
-        AuthoritativeHitAttributionBridge.discard(event.getDamageSource(), event.getTarget().getUUID());
+        EpicFightHitAuthority.discard(event.getDamageSource(), event.getTarget().getUUID());
         if (!(event.getEntityPatch().getOriginal() instanceof ServerPlayer player) || !eligible(player)) return;
         LivingEntity target = event.getTarget();
         if (!hostile(player, target)) return;
