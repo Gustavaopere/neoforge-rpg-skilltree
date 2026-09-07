@@ -23,6 +23,7 @@ public final class OptionalIntegrations {
         EIDOLON("eidolon"),
         IDENTITY2("identity2"),
         MINECOLONIES("minecolonies"),
+        CURIOS("curios"),
         PRODUCTIVE_METALWORKS("productivemetalworks");
 
         private final String modId;
