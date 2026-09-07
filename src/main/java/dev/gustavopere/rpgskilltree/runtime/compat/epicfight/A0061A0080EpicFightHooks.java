@@ -9,6 +9,8 @@ import dev.gustavopere.rpgskilltree.core.A0061A0080CombatState.FirstBloodReserva
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategory;
 import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry;
+import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry.PhysicalHitReceipt;
 import dev.gustavopere.rpgskilltree.runtime.MartialStanceRuntime;
 import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier;
 import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier.TargetClass;
@@ -87,6 +89,19 @@ public final class A0061A0080EpicFightHooks {
         double healthFraction = healthFraction(target);
         A0061A0080CombatState state = A0061A0080RuntimeState.state();
 
+        A0081A0090ProviderHitRegistry.remember(
+            source,
+            target.getUUID(),
+            new PhysicalHitReceipt(
+                player,
+                actor,
+                root,
+                target.getHealth(),
+                true,
+                source.getUsedItem()
+            )
+        );
+
         A0061A0080CombatPolicy.HitFacts facts = new A0061A0080CombatPolicy.HitFacts(
             actor, targetId, root, healthFraction,
             targetClass == TargetClass.BOSS, targetClass == TargetClass.ELITE,
@@ -152,6 +167,7 @@ public final class A0061A0080EpicFightHooks {
         CombatPerkRanks ranks = A0061A0080RuntimeState.ranks(player);
 
         if (!eligible(player) || event.getModifiedDamage() <= 0.0F) {
+            A0081A0090ProviderHitRegistry.discard(event.getDamageSource(), event.getTarget().getUUID());
             rollbackPending(state, actor, targetId, pending);
             return;
         }
@@ -276,6 +292,7 @@ public final class A0061A0080EpicFightHooks {
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
         A0061A0080RuntimeState.clearAll();
+        A0081A0090ProviderHitRegistry.clearAll();
         synchronized (A0061A0080EpicFightHooks.class) {
             ROOT_ACTIONS.clear();
         }
@@ -323,6 +340,7 @@ public final class A0061A0080EpicFightHooks {
     }
 
     private static void clearPlayer(ServerPlayer player) {
+        A0081A0090ProviderHitRegistry.clearActor(A0061A0080RuntimeState.actorId(player));
         A0061A0080RuntimeState.clear(player);
     }
 

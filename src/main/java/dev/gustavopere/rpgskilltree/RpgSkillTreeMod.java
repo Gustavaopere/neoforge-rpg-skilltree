@@ -34,6 +34,8 @@ import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumIntegrationBootstrap;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumVersionContract;
@@ -348,7 +350,22 @@ public final class RpgSkillTreeMod {
             );
         }
 
-        if (ironsSpellbooksLoaded) NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
+        if (ironsSpellbooksLoaded) {
+            NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
+            if (IronsSustainEvents.operational()) {
+                NeoForge.EVENT_BUS.register(IronsSustainEvents.class);
+            } else {
+                RuntimeDiagnostics.warn(
+                    LOGGER,
+                    Category.COMPAT,
+                    "irons_sustain_contract_unsupported",
+                    "A0083 Iron's direct-magic sustain disabled: expected release {} and {}, found version {}",
+                    IronsSustainVersionContract.SUPPORTED_RELEASE,
+                    IronsSustainVersionContract.DAMAGE_SOURCE_CLASS,
+                    ironsSpellbooksVersion
+                );
+            }
+        }
         if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.ARS_NOUVEAU)) {
             NeoForge.EVENT_BUS.register(ArsNouveauProgressionEvents.class);
         }
