@@ -13,12 +13,18 @@ A `modlist.txt` atual contém **607 entradas top-level**, incluindo o NeoForge m
 - Recorte atual: **342 JARs**.
 - As **21 entradas que já estavam no inventário antigo sem ficha descritiva própria** foram documentadas no capítulo 17; portanto a cobertura descritiva também fecha em **342/342**.
 
-## Bloqueios de startup — mod IDs duplicados
+## Authority de curadoria
 
-- `alexscaves`: `alexscaves-1.0.9-neoforge+1.21.1.jar` (**Alex's Caves Continued 1.0.9**) e `alexscaves-2.0.2.jar` (**Alex's Caves 2.0.2**) declaram o mesmo mod ID.
-- `alexsmobs`: `alexsmobs-1.22.9.jar` (**Alex's Mobs 1.22.9**) e `alexsmobs-2.1.9-neoforge+1.21.1.jar` (**Alex's Mobs Continued 2.1.9**) declaram o mesmo mod ID.
-- **BLOQUEIO:** NeoForge exige mod IDs únicos; qualquer um desses pares com os dois JARs presentes impede o jogo de carregar durante discovery. Não existe fallback/fail-closed em runtime para este caso porque o runtime normal não chega a iniciar.
-- **Remediação obrigatória:** manter exatamente uma implementação por mod ID ou usar um repack legítimo com ID realmente distinto; depois, regenerar/reconciliar a modlist e o Notion antes de considerar o pack inicializável.
+Presença física e decisão de curadoria são estados diferentes. Este arquivo e suas sete tabelas dizem **o que está fisicamente na modlist atual**; o arquivo [`CURATION-DECISIONS-2026-09-06.md`](CURATION-DECISIONS-2026-09-06.md) registra **o que deve ser mantido, retirado ou tratado como opcional** após a auditoria concluída em 06/09/2026.
+
+Quando um JAR estiver marcado `Tirar` ou `Opcional`, ele continua `Instalado` no Notion enquanto a modlist atual ainda o listar. Só uma modlist regenerada após alteração física autoriza mudar `Estado no pack` para `Removido`/equivalente.
+
+## Bloqueios de startup — decisão fechada, remoção física pendente
+
+- `alexscaves`: decisão de 2026-09-06 = **manter** `alexscaves-1.0.9-neoforge+1.21.1.jar` (**Alex's Caves Continued 1.0.9**) e **retirar** `alexscaves-2.0.2.jar` (**Alex's Caves 2.0.2**).
+- `alexsmobs`: decisão de 2026-09-06 = **manter** `alexsmobs-2.1.9-neoforge+1.21.1.jar` (**Alex's Mobs Continued 2.1.9**) e **retirar** `alexsmobs-1.22.9.jar` (**Alex's Mobs 1.22.9**).
+- **ESTADO FÍSICO ATUAL:** a `modlist.txt` de 2026-09-06 ainda contém os quatro JARs. Portanto o pack continua bloqueado durante discovery do NeoForge enquanto os dois JARs rejeitados permanecerem na pasta `mods`.
+- **Fechamento do bloqueio:** remover fisicamente `alexscaves-2.0.2.jar` e `alexsmobs-1.22.9.jar`, regenerar/reconciliar a modlist e só então atualizar no Notion os registros rejeitados de `Instalado` para `Removido`/estado equivalente. Não existe fallback ou desambiguação em runtime para dois mods com o mesmo mod ID.
 
 ## Tabela canônica exata — 342/342
 
@@ -34,6 +40,7 @@ A tabela foi dividida em sete páginas para manter leitura e revisão viáveis. 
 ## Regra operacional
 
 - Este arquivo é authority de presença, JAR e versão.
+- [`CURATION-DECISIONS-2026-09-06.md`](CURATION-DECISIONS-2026-09-06.md) é authority das decisões de manter/tirar/opcional fechadas nesta auditoria.
 - Os capítulos são authority descritiva de função, integração, riscos e classificação provider/bridge/library/presentation.
 - Biblioteca, UI, visual, compat ou scripting não deve ser promovido automaticamente a provider mecânico.
 - As páginas 16 e 17 diferenciam respectivamente **mods novos** e **déficits documentais antigos**.

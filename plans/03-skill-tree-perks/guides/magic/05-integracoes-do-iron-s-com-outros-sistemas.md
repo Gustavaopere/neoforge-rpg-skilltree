@@ -27,7 +27,7 @@ Com isso, o vetor produzido por um feitiço pode ser traduzido para o sistema f�
 
 `immersive_portal_irons_spells_n_spellbooks_addon-1.0.1.jar`
 Esta bridge adapta o **Portal Spell** do Iron's Spells para criar portais contínuos do **Immersive Portals**. O destino continua sendo definido pela lógica do spell, enquanto a passagem resultante utiliza a renderização/travessia espacial do mod de portais; o tamanho criado pode ser ajustado por configuração.
-É uma integração de escopo estreito e depende diretamente de Iron's Spells 'n Spellbooks e Immersive Portals. A build instalada no snapshot atual é `1.0.1` para NeoForge 1.21.1; o guia preserva a versão runtime da modlist como autoridade, independentemente da data de releases anteriores.
+É uma integração de escopo estreito e depende diretamente de Iron's Spells 'n Spellbooks e Immersive Portals. A procedência da build instalada foi fechada na auditoria de 06/09/2026: o CurseForge oficial publica exatamente `immersive_portal_irons_spells_n_spellbooks_addon-1.0.1.jar` como **Release NeoForge 1.21.1**, File ID `8770439`, publicada em 30/08/2026. A decisão de curadoria é **Manter**. Por ser um projeto recente, validar Portal Spell, tamanho configurável, travessia/renderização e dedicated server antes de qualquer perk depender da bridge.
 
 ## Epic Fight & Iron's Spellbook Animation Compat — 3.1.0
 

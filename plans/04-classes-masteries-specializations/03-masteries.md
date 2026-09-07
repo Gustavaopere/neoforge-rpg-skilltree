@@ -88,6 +88,18 @@
 - [x] O ciclo TDD do gate de integração foi observado no PR #454: o RED no run `34061893323` / job `101563764311` falhou em `compileTestJava` com 14 símbolos ausentes exatamente para `GoetyIntegrationState`, `GoetyIntegrationBootstrap` e `GoetyVersionContract`, antes da implementação desses contratos.
 - [x] Nenhuma curva, cap, threshold, peso de investimento ou valor global de balanceamento foi criado ou alterado neste fechamento de fonte.
 
+## Progresso runtime confirmado — MALUM
+
+- [x] Provider alvo confirmado na modlist e no Catálogo Mestre do projeto: Malum `1.8.2` (`malum-1.21.1-1.8.2.jar`). `MalumVersionContract` aceita exatamente `1.8.2`; ausência, versão divergente ou falha de registro não ativa silenciosamente o adapter provider-specific.
+- [x] O bootstrap é opcional e fail-closed: `ABSENT_PROVIDER`, `UNSUPPORTED_VERSION` e `FAILED_CLOSED` impedem registro fora do contrato auditado; somente `ACTIVE` registra `MalumProgressionEvents`.
+- [x] O produtor semântico existente foi preservado, sem pipeline paralelo: reaping usa `ModifySpiritSpoilsEvent` e coleta usa `CollectSpiritEvent`, ambos eventos públicos do sistema de spirits já consumido pelo adapter.
+- [x] Reaping só concede após evidência positiva e identificada dos `ItemStack`s de spirits do alvo. Resultado ausente/vazio, signature inesperada, `ReflectiveOperationException`, `RuntimeException` ou `LinkageError` produz evidência zero e falha fechado; o fallback anterior de magnitude `1` foi removido.
+- [x] O valor causal de reaping continua sendo derivado da quantidade real dos stacks confirmados e das IDs reais dos itens de spirit; nenhuma inferência por posse, receita ou evento auxiliar foi introduzida.
+- [x] Coleta continua ancorada no `CollectSpiritEvent` provider-native e representa uma coleta emitida pelo próprio sistema de spirits, sem criar um segundo produtor concorrente.
+- [x] `FakePlayer`, creative e spectator são inelegíveis nos dois handlers; apenas `ServerPlayer` pode chegar ao pipeline canônico `MasteryPolicies.forMalum` → `PlayerProgressionRuntime.awardMastery`.
+- [x] O ciclo TDD do gate começou no commit `674bc5d0927285d0493d1e6d844500832dcfed53`; SonarQube Cloud `34064478820`, job `101570718580`, observou o RED com `:compileTestJava FAILED` e 14 erros `cannot find symbol` para `MalumIntegrationState`, `MalumIntegrationBootstrap` e `MalumVersionContract` antes da implementação.
+- [x] Nenhuma curva, cap, threshold, peso de investimento ou valor global de balanceamento foi criado ou alterado neste fechamento de fonte.
+
 ## Progresso runtime confirmado — CREATE
 
 - [x] Provider alvo confirmado na modlist/registro de projeto: Create `6.0.10`. `CreateVersionContract` aceita exatamente `6.0.10`; provider ausente, versão diferente ou falha de registro não ativa silenciosamente o adapter.

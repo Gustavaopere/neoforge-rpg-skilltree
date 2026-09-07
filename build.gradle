@@ -92,18 +92,30 @@ jacoco {
 
 def epicFightAdapterCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0031A0040EpicFight*CoverageJUnitTest.java'
 def projectileBridgeCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/events/A0051A0060Chat3*CoverageJUnitTest.java'
+def a0071A0080RuntimeCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/A0071A0080RuntimeIntegrationCoverageJUnitTest.java'
+def a0071A0080GeneralEventCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/events/A0071A0080GeneralEventCoverageJUnitTest.java'
+def a0073A0080ProjectileCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/events/A0073A0080ProjectileEventCoverageJUnitTest.java'
+def a0071A0080EpicFightCoveragePath = 'dev/gustavopere/rpgskilltree/runtime/compat/epicfight/A0071A0080EpicFight*CoverageJUnitTest.java'
 
 sourceSets {
     test {
         // Plain Gradle JUnit must remain independent from NeoGradle's loaded-game test run.
         java.exclude epicFightAdapterCoveragePath
         java.exclude projectileBridgeCoveragePath
+        java.exclude a0071A0080RuntimeCoveragePath
+        java.exclude a0071A0080GeneralEventCoveragePath
+        java.exclude a0073A0080ProjectileCoveragePath
+        java.exclude a0071A0080EpicFightCoveragePath
     }
     neoForgeTest {
         // Reuse the existing source location but isolate tests that require a loaded NeoForge server.
         java.srcDir 'src/test/java'
         java.include epicFightAdapterCoveragePath
         java.include projectileBridgeCoveragePath
+        java.include a0071A0080RuntimeCoveragePath
+        java.include a0071A0080GeneralEventCoveragePath
+        java.include a0073A0080ProjectileCoveragePath
+        java.include a0071A0080EpicFightCoveragePath
         resources.srcDir 'src/test/resources'
         resources.include 'META-INF/MANIFEST.MF'
         compileClasspath += sourceSets.main.output
@@ -259,6 +271,10 @@ tasks.named('wrapper', Wrapper).configure {
 
 def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0031A0040EpicFight*CoverageJUnitTest'
 def projectileBridgeCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.events.A0051A0060Chat3*CoverageJUnitTest'
+def a0071A0080RuntimeCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.A0071A0080RuntimeIntegrationCoverageJUnitTest'
+def a0071A0080GeneralEventCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.events.A0071A0080GeneralEventCoverageJUnitTest'
+def a0073A0080ProjectileCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.events.A0073A0080ProjectileEventCoverageJUnitTest'
+def a0071A0080EpicFightCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0071A0080EpicFight*CoverageJUnitTest'
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
@@ -280,6 +296,10 @@ tasks.matching { it.name == 'testJunit' }.configureEach {
         filter {
             includeTestsMatching epicFightAdapterCoverageTest
             includeTestsMatching projectileBridgeCoverageTest
+            includeTestsMatching a0071A0080RuntimeCoverageTest
+            includeTestsMatching a0071A0080GeneralEventCoverageTest
+            includeTestsMatching a0073A0080ProjectileCoverageTest
+            includeTestsMatching a0071A0080EpicFightCoverageTest
         }
     }
 }

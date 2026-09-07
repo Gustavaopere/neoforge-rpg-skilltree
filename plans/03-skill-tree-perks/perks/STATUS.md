@@ -76,16 +76,16 @@ A fonte canônica de design permanece o Notion. `IMPLEMENTAÇÃO CONFIRMADA` só
 | A0068 | Dano contra Feridos | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #391 com snapshot pré-impacto estrito `<35%` | nenhuma |
 | A0069 | Dano contra Íntegros | APROVADO | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #391 com snapshot pré-impacto estrito `>85%` | nenhuma |
 | A0070 | Dano contra Chefes | APROVADO após correção de cobertura | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #391 para vanilla/Cataclysm/Apothic + `enshrouded:shroud_lich` opcional | nenhuma bloqueante; demais bosses externos continuam fail-closed até IDs/adapters exatos |
-| A0071 | Dano contra Elites | APROVADO | CÓDIGO PRESENTE via classificador canônico | `P-A0071-01/-02`: Apothic provider-present + BOSS>ELITE; externos somente com identidade exata |
-| A0072 | Retaliação | APROVADO após availability | EFEITO PRESENTE, MAS ESTRUTURALMENTE INDISPONÍVEL | `P-A0072-01`: A0067 indisponível → A0072 indisponível/não comprável; testar refresh/dedup |
-| A0073 | Janela de Execução | APROVADO após reservation→commit | NÃO CONFORME: PRE arma/consome cedo demais | `P-A0073-01`: POST commit/rollback; `P-A0073-02`: Stamina receipt; lifecycle/dedup |
-| A0074 | Primeiro Sangue | APROVADO após reservation→commit | NÃO CONFORME: PRE atualiza/consome cedo demais | `P-A0074-01`: POST commit/rollback; lifecycle e bordas de opener/cooldown |
-| A0075 | Ritmo Sustentado | APROVADO EM FAIL-CLOSED | CORE PRESENTE; NODE INDISPONÍVEL | `P-A0075-01`: unavailable; `P-A0075-02`: Cold Sweat metabolic boundary; all-or-nothing provider binding |
-| A0076 | Postura Agressiva | APROVADO após boundary de ativação | STATE PURO PRESENTE; SEM INPUT/PAYLOAD | `P-A0076-01`: controle remapeável + payload serverbound + availability; transição/lifecycle |
-| A0077 | Postura Cautelosa | APROVADO após availability | ESTRUTURALMENTE INDISPONÍVEL | `P-A0077-01`: herda A0067 e depende do stance binding de A0076 |
-| A0078 | Ataque em Movimento | APROVADO | CÓDIGO PRESENTE no sprint vanilla; ParCool extra fail-closed | `P-A0078-01/-03`: forced movement/bridge PP; ParCool só por receipt real |
-| A0079 | Ataque Estacionário | APROVADO após hardening | IMPLEMENTAÇÃO PARCIAL: detector presente, forced invalidation incompleta | `P-A0079-01`: teleport/mount/vehicle/contraption/belt/forced receipts; bridge PP/testes |
-| A0080 | Golpe de Oportunidade | APROVADO EM FAIL-CLOSED | NODE INDISPONÍVEL; SEM DODGE-SUCCESS RECEIPT | `P-A0080-01`: unavailable; `P-A0080-02`: avoidedAttack receipt/dedup; `P-A0080-03`: POST commit |
+| A0071 | Dano contra Elites | APROVADO | IMPLEMENTAÇÃO CONFIRMADA NO CLASSIFICADOR CANÔNICO pelo Chat 3 na PR #355 | nenhuma bloqueante; providers externos novos exigem identidade/marker/tag exato e permanecem fail-closed sem mapping |
+| A0072 | Retaliação | APROVADO após availability | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #355 | nenhuma bloqueante no estado atual; herda A0067 indisponível e não permite ghost rank |
+| A0073 | Janela de Execução | APROVADO após reservation→commit | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #355 com reservation→POST commit e correlação root/projétil | nenhuma bloqueante; refund de Stamina permanece 0 sem receipt pós-consumo causal exato |
+| A0074 | Primeiro Sangue | APROVADO após reservation→commit | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #355 com opener/history/finisher commitados no POST | nenhuma |
+| A0075 | Ritmo Sustentado | APROVADO EM FAIL-CLOSED | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #355 | nenhuma bloqueante enquanto indisponível; desbloqueio futuro exige Stamina regen + Cold Sweat thermal + exhaustion all-or-nothing |
+| A0076 | Postura Agressiva | APROVADO após boundary de ativação | IMPLEMENTAÇÃO CONFIRMADA pelo Chat 3 na PR #355 com keybind/payload de intenção e authority server-side | nenhuma |
+| A0077 | Postura Cautelosa | APROVADO após availability | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #355 | nenhuma bloqueante no estado atual; herda A0067 indisponível apesar da infraestrutura de stance validada |
+| A0078 | Ataque em Movimento | APROVADO | IMPLEMENTAÇÃO CONFIRMADA NO FALLBACK CANÔNICO pelo Chat 3 na PR #355 | nenhuma bloqueante; ParCool/Epic ParCool extras permanecem fail-closed até receipt server-authoritative real |
+| A0079 | Ataque Estacionário | APROVADO após hardening | IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS AUDITADOS pelo Chat 3 na PR #355 | nenhuma bloqueante; novos transports exigem adapter explícito e desconhecidos falham fechado |
+| A0080 | Golpe de Oportunidade | APROVADO EM FAIL-CLOSED | NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA pelo Chat 3 na PR #355; consumer reservation→POST commit validado | nenhuma bloqueante enquanto indisponível; producer `avoidedAttackId`/dodge-success provider-native continua ausente |
 | A0081 | Recuperação de Combate | APROVADO EM FAIL-CLOSED após availability transitiva | CORE PRESENTE; NODE DEVE SER ESTRUTURALMENTE INDISPONÍVEL | `P-A0081-01` BLOQUEANTE: herdar availability A0075 no purchase/gate; `P-A0081-02`: lifecycle da reserva |
 | A0082 | Vampirismo de Arma | APROVADO após boundary de correlação nativa | CÓDIGO PRESENTE para raízes físicas comprovadas; Ignitium exige fail-closed específico | `P-A0082-01`: correlacionar lifesteal nativo Ignitium no mesmo root; `P-A0082-02`: cap/dedup/provenance |
 | A0083 | Vampirismo Mágico | APROVADO EM FAIL-CLOSED | RESOLVER PRESENTE; NODE INDISPONÍVEL SEM PRODUCER `DIRECT_MAGIC` | `P-A0083-01` BLOQUEANTE: availability + adapter causal Iron's/Ars |
@@ -316,3 +316,23 @@ O merge da PR #364 só é autorizado após CI verde do HEAD documental final, co
 - **Redesign:** nenhum; authority, gates, topologia e identidade aprovados foram preservados.
 - **Gate final:** após esta reconciliação documental, o HEAD da PR #391 deve ser revalidado em todos os checks; somente com CI GREEN fresco é autorizado o merge e a confirmação pós-merge da `main`.
 - **A0071+:** não iniciar neste ciclo.
+
+## Chat 3 — lote exato A0071–A0080
+
+- **PR:** #355; branch `feat/chat2-a0071-a0080-implementation`.
+- **Auditoria:** `audits/AUDITORIA-CHAT3-A0071-A0080-VALIDACAO.md`.
+- **Preflight:** modlist fresca de 2026-09-07 e Notion rechecados; Epic Fight `21.17.3.1`, ParCool `4.0.0.3`, Epic ParCool `21.0.0`, Create `6.0.10` e Cold Sweat `2.4.2` permanecem coerentes com os boundaries usados pelo lote.
+- **A0071/A0073/A0074/A0076:** `IMPLEMENTAÇÃO CONFIRMADA` no escopo comprovado; A0071 especificamente no classificador canônico.
+- **A0078:** `IMPLEMENTAÇÃO CONFIRMADA NO FALLBACK CANÔNICO` via sprint vanilla server-side.
+- **A0079:** `IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS AUDITADOS`, incluindo teleport/knockback/passenger e Create/Sable version-gated; desconhecidos falham fechado.
+- **A0072/A0075/A0077/A0080:** `NÃO CONFIRMADAS COMO JOGÁVEIS / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA`; availability runtime mascara os nodes sem provider/binding obrigatório e impede ghost ranks.
+- **A0073/A0074/A0080:** reservation→POST commit real; cancelamento/dano zero faz rollback. O finding P1 de correlação de projéteis foi resolvido com estado por arrow+target+root.
+- **A0076:** `Alternar Postura Marcial` envia somente intenção; servidor é authority de ranks, availability, cooldown e transição.
+- **HEAD funcional pré-documentação:** `201f038e2f145806f7111ef7d8376ba22769aad0`.
+- **RPG Skill Tree CI #4079 / run `34081344643`: SUCCESS** — JUnit 5, NeoForge JUnit adapter, NeoForge GameTests, Battle Mage provider-present, validações, build, JAR e dedicated-server smoke verdes.
+- **SonarQube Cloud / run `34081344663`: QUALITY GATE PASSED** — **80.2% Coverage on New Code**, **0.0% Duplication on New Code**, **0 Security Hotspots**, **0 New issues**. Cobertura recuperada com testes comportamentais reais, sem reduzir threshold/excluir código novo.
+- **CodeQL e workflows auxiliares:** SUCCESS no HEAD funcional.
+- **Pendências residuais não bloqueantes:** providers futuros de elite/transporte/movimento; refund A0073 permanece 0 sem receipt de Stamina; Cold Sweat metabolic binding para A0075; A0077 aguarda A0067; A0080 aguarda producer causal `avoidedAttackId`.
+- **Retorno ao Chat 1:** nenhum; nenhuma correção alterou identidade, effect contract, authority, gate, dependência ou topologia.
+- **Gate final:** este HEAD documental deve receber CI/Sonar verde fresco; somente então a PR #355 pode ser mergeada e a `main` confirmada.
+- **A0081+:** não iniciar neste ciclo.
