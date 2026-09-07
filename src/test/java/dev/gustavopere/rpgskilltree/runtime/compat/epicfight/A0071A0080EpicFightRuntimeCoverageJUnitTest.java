@@ -17,6 +17,7 @@ import dev.gustavopere.rpgskilltree.runtime.MartialStanceRuntime;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -155,6 +156,8 @@ final class A0071A0080EpicFightRuntimeCoverageJUnitTest {
         ServerLevel level = mock(ServerLevel.class);
         when(level.isClientSide()).thenReturn(false);
         ServerPlayer player = eligiblePlayer(level);
+        UUID playerId = UUID.fromString("00000000-0000-0000-0000-000000000080");
+        when(player.getUUID()).thenReturn(playerId);
         StationaryStateService stationary = mock(StationaryStateService.class);
         A0061A0080CombatState state = mock(A0061A0080CombatState.class);
 
@@ -183,7 +186,7 @@ final class A0071A0080EpicFightRuntimeCoverageJUnitTest {
             verify(stationary, org.mockito.Mockito.times(2)).invalidate("actor");
 
             A0061A0080EpicFightHooks.onDeath(death);
-            verify(state).clearTarget(player.getUUID().toString());
+            verify(state).clearTarget(playerId.toString());
             runtime.verify(() -> A0061A0080RuntimeState.clear(player));
 
             A0061A0080EpicFightHooks.onLogout(logout);
