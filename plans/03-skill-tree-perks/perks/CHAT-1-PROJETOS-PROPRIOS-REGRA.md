@@ -4,16 +4,16 @@ Este arquivo complementa o protocolo permanente do Chat 1 para garantir que os q
 
 Antes de fechar qualquer lote, o Chat 1 deve ler integralmente:
 
-- `../guides/projects/README.md`;
-- `../guides/projects/01-rpg-skill-tree.md`;
-- `../guides/projects/02-volcanoes.md`;
-- `../guides/projects/03-enshrouded.md`;
-- `../guides/projects/04-black-arcana.md`;
-- `../guides/projects/05-cross-project-integration-matrix.md`;
-- `../guides/projects/06-snapshot-reconciliation.md`;
-- `../guides/projects/07-chat1-provider-listing-checklist.md`;
-- `../guides/projects/08-maintenance-rule.md`;
-- `../guides/projects/12-capability-delta-coverage.md`.
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/README.md`;
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/01-rpg-skill-tree.md`;
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/02-volcanoes.md`;
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/03-enshrouded.md`;
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/04-black-arcana.md`;
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/05-cross-project-integration-matrix.md`;
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/06-snapshot-reconciliation.md`;
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/07-chat1-provider-listing-checklist.md`;
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/08-maintenance-rule.md`;
+- `../../../PROJECT-INSTRUCTIONS/guides/projects/12-capability-delta-coverage.md`.
 
 ## Gate obrigatório de delta — antes da primeira perk do lote
 
