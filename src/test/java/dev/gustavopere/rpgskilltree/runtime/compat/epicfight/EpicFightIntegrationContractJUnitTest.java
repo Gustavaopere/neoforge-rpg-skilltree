@@ -1,10 +1,12 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class EpicFightIntegrationContractJUnitTest {
@@ -30,5 +32,18 @@ final class EpicFightIntegrationContractJUnitTest {
             Set.of("epicfight:stamina", "epicfight:stamina_regen", "epicfight:impact"),
             EpicFightIntegrationContract.requiredAttributeIds()
         );
+    }
+
+    @Test
+    void nodeEffectResourceTargetsEveryRequiredEpicFightAttribute() throws Exception {
+        try (var stream = EpicFightIntegrationContractJUnitTest.class.getResourceAsStream(
+            "/data/rpgskilltree/node_effects/epicfight.json"
+        )) {
+            assertNotNull(stream);
+            String resource = new String(stream.readAllBytes(), StandardCharsets.UTF_8);
+            for (String attributeId : EpicFightIntegrationContract.requiredAttributeIds()) {
+                assertTrue(resource.contains("\"attributeId\": \"" + attributeId + "\""), attributeId);
+            }
+        }
     }
 }
