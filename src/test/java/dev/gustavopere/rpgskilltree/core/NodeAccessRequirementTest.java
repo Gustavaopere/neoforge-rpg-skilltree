@@ -5,6 +5,12 @@ import java.util.Set;
 
 public final class NodeAccessRequirementTest {
     public static void main(String[] args) {
+        nodeAndDiscoveryRequirementsAreIndependent();
+        masteryThresholdIsRequiredExactly();
+        System.out.println("NodeAccessRequirementTest PASS");
+    }
+
+    private static void nodeAndDiscoveryRequirementsAreIndependent() {
         NodeAccessRequirement requirement = new NodeAccessRequirement(
             1,
             Set.of(),
@@ -30,8 +36,28 @@ public final class NodeAccessRequirementTest {
         );
         check(NodeAccessResolver.satisfied(ready, requirement, CharacterLevelCurve.defaultCurve()),
             "required node plus discovery must satisfy access");
+    }
 
-        System.out.println("NodeAccessRequirementTest PASS");
+    private static void masteryThresholdIsRequiredExactly() {
+        NodeAccessRequirement requirement = new NodeAccessRequirement(
+            1,
+            Set.of(),
+            Map.of("epicfight:sword", 80),
+            Set.of(),
+            Set.of()
+        );
+
+        ProgressionState below = ProgressionState.empty().withMastery(
+            MasteryState.of(Map.of("epicfight:sword", 79))
+        );
+        check(!NodeAccessResolver.satisfied(below, requirement, CharacterLevelCurve.defaultCurve()),
+            "mastery below the configured threshold must reject access");
+
+        ProgressionState exact = ProgressionState.empty().withMastery(
+            MasteryState.of(Map.of("epicfight:sword", 80))
+        );
+        check(NodeAccessResolver.satisfied(exact, requirement, CharacterLevelCurve.defaultCurve()),
+            "mastery at the configured threshold must satisfy access");
     }
 
     private static void check(boolean value, String message) {
