@@ -11,11 +11,13 @@ import dev.gustavopere.rpgskilltree.core.EpicFightWeaponCategory;
 import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry.PhysicalHitReceipt;
+import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
 import dev.gustavopere.rpgskilltree.runtime.MartialStanceRuntime;
 import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier;
 import dev.gustavopere.rpgskilltree.runtime.MartialTargetClassifier.TargetClass;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import net.minecraft.core.registries.Registries;
@@ -85,6 +87,7 @@ public final class A0061A0080EpicFightHooks {
         String targetId = target.getUUID().toString();
         long now = now(player);
         String root = rootAction(source, targetId, now);
+        String sustainRoot = resolveProviderRootActionId(source, target.getUUID(), root);
         TargetClass targetClass = MartialTargetClassifier.classify(target);
         double healthFraction = healthFraction(target);
         A0061A0080CombatState state = A0061A0080RuntimeState.state();
@@ -95,7 +98,7 @@ public final class A0061A0080EpicFightHooks {
             new PhysicalHitReceipt(
                 player,
                 actor,
-                root,
+                sustainRoot,
                 target.getHealth(),
                 true,
                 source.getUsedItem()
@@ -318,6 +321,15 @@ public final class A0061A0080EpicFightHooks {
             if (ranks.rank("A%04d".formatted(i)) > 0) return true;
         }
         return false;
+    }
+
+    static String resolveProviderRootActionId(Object damageSource, UUID targetId, String fallbackRootActionId) {
+        if (fallbackRootActionId == null || fallbackRootActionId.isBlank()) {
+            throw new IllegalArgumentException("fallbackRootActionId must not be blank");
+        }
+        return AuthoritativeHitAttributionBridge.find(damageSource, targetId)
+            .map(AuthoritativeHitAttributionBridge.Attribution::rootActionId)
+            .orElse(fallbackRootActionId);
     }
 
     private static synchronized String rootAction(EpicFightDamageSource source, String targetId, long now) {

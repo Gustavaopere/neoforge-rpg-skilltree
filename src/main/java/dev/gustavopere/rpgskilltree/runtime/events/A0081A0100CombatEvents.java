@@ -10,6 +10,7 @@ import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0090ProviderHitRegistry.PhysicalHitReceipt;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0090SustainRuntime;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0100RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import java.util.HashMap;
@@ -64,8 +65,6 @@ public final class A0081A0100CombatEvents {
     private static final WeakHashMap<AbstractArrow, String> PROJECTILE_ROOTS = new WeakHashMap<>();
     private static final AtomicLong ACTION_SEQUENCE = new AtomicLong();
 
-    // These names are part of the runtime contract: no post-refund, animation, knockback or
-    // presumed-crit heuristic may silently replace the missing causal provider receipts.
     private static final boolean FAIL_CLOSED_A0093 = true;
     private static final boolean FAIL_CLOSED_A0094 = true;
     private static final boolean FAIL_CLOSED_A0095 = true;
@@ -108,7 +107,6 @@ public final class A0081A0100CombatEvents {
     public static void onIncomingDamage(LivingIncomingDamageEvent event) {
         if (event.isCanceled() || event.getAmount() <= 0.0F) return;
         captureOutgoing(event);
-
         if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
         applyIncomingDefense(player, event);
     }
@@ -228,9 +226,8 @@ public final class A0081A0100CombatEvents {
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent event) {
         A0081A0100RuntimeState.clearAll();
-        // A0099 shares A0079's detector. When this bridge is the fallback sampler it also owns
-        // its lifecycle; clearing twice when Epic Fight is present is harmless and deterministic.
         A0061A0080RuntimeState.clearAll();
+        AuthoritativeHitAttributionBridge.clearAll();
         PENDING_PROJECTILE_LAUNCHES.clear();
         synchronized (PROJECTILE_ROOTS) {
             PROJECTILE_ROOTS.clear();
@@ -263,7 +260,8 @@ public final class A0081A0100CombatEvents {
         if (ranks.rank("A0081") <= 0 && ranks.rank("A0082") <= 0
             && ranks.rank("A0086") <= 0 && ranks.rank("A0087") <= 0) return;
 
-        String root = directMelee ? vanillaMeleeRoot(source, player) : projectileRoot;
+        String fallbackRoot = directMelee ? vanillaMeleeRoot(source, player) : projectileRoot;
+        String root = resolveOutgoingRootActionId(source, event.getEntity().getUUID(), fallbackRoot);
         ItemStack weaponStack = directMelee ? player.getMainHandItem() : arrow.getWeaponItem();
         OutgoingDamageContext context = new OutgoingDamageContext(
             player,
@@ -290,8 +288,6 @@ public final class A0081A0100CombatEvents {
             double preImpactHealthFraction = player.getMaxHealth() <= 0.0F
                 ? 0.0D
                 : Math.max(0.0D, Math.min(1.0D, player.getHealth() / player.getMaxHealth()));
-            // A0096 is hostile-only. Passing 1.0 for non-hostile physical damage keeps A0092
-            // active while suppressing the conditional A0096 branch without inventing a second formula.
             multiplier *= A0081A0100CombatPolicy.physicalDamageMultiplier(
                 ranks,
                 hostile ? preImpactHealthFraction : 1.0D
@@ -311,10 +307,6 @@ public final class A0081A0100CombatEvents {
             );
         }
 
-        // FAIL_CLOSED_A0093 / FAIL_CLOSED_A0094 / FAIL_CLOSED_A0095: no safe causal guard or
-        // interruption contract is exposed by the audited provider surface. FAIL_CLOSED_A0100:
-        // no generic incoming critical decomposition exists here. These constants intentionally
-        // keep the unavailable branches explicit rather than approximating them.
         if (FAIL_CLOSED_A0093 && FAIL_CLOSED_A0094 && FAIL_CLOSED_A0095 && FAIL_CLOSED_A0100
             && Double.compare(multiplier, 1.0D) != 0) {
             event.setAmount((float) Math.max(0.0D, event.getAmount() * multiplier));
@@ -402,6 +394,15 @@ public final class A0081A0100CombatEvents {
             && !player.isCreative()
             && !player.isSpectator()
             && !(player instanceof FakePlayer);
+    }
+
+    static String resolveOutgoingRootActionId(Object damageSource, UUID targetId, String fallbackRootActionId) {
+        if (fallbackRootActionId == null || fallbackRootActionId.isBlank()) {
+            throw new IllegalArgumentException("fallbackRootActionId must not be blank");
+        }
+        return AuthoritativeHitAttributionBridge.find(damageSource, targetId)
+            .map(AuthoritativeHitAttributionBridge.Attribution::rootActionId)
+            .orElse(fallbackRootActionId);
     }
 
     private static boolean previousBatchSamplesStationary() {

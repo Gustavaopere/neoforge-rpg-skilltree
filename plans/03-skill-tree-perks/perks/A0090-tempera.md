@@ -4,7 +4,8 @@
 
 - **Design:** APROVADO sem mutação funcional no Notion em 2026-08-31.
 - **Notion:** `3c569db9-f0db-8120-a929-fafebea41235`; fetch fresco PASS.
-- **Runtime observado:** modifier data-driven presente em `minecraft:generic.armor_toughness`, `MULTIPLY_TOTAL` +2%/rank.
+- **Estado Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- **Estado Chat 3:** **IMPLEMENTAÇÃO CONFIRMADA / AGUARDANDO MERGE DA PR #372**.
 
 ## Contrato canônico
 
@@ -14,23 +15,32 @@
 - Se toughness elegível for 0, bônus continua 0; a perk não cria toughness flat.
 - Não reduz dano verdadeiro/não mitigável, não altera durabilidade/NBT e não toca `ARMOR`, `STUN_ARMOR` ou Resistência Física.
 
-## Evidência runtime
+## Implementação Chat 2 — estado confirmado em código
 
-`a0081_a0100.json` publica `rpgskilltree:node/combat/a0090/armor_toughness` em `minecraft:generic.armor_toughness`, operação `MULTIPLY_TOTAL`, 0.02/rank. `AttributeNodeEffectRuntime` resolve pelo registro vanilla e reaplica o modifier com effectId estável.
+- binding data-driven existente publica `rpgskilltree:node/combat/a0090/armor_toughness` em `minecraft:generic.armor_toughness`;
+- operação `MULTIPLY_TOTAL` +0,02/rank preserva zero toughness→zero bônus;
+- a dependência A0089≥2 continua resolvida pelo graph/requirements server-authoritative, sem gate paralelo;
+- `AttributeNodeEffectRuntime` reaplica por effectId estável, evitando modifier órfão/duplicado;
+- não existe código A0090 alterando `ARMOR`, `STUN_ARMOR`, Resistência Física, durabilidade, NBT ou damage sources não mitigáveis.
 
-## Cobertura de providers
+## Checklist Chat 2
 
-- Armor/toughness de equipamentos vanilla e de mods, inclusive afixos/raridades de Apotheosis/Apothic, compõem pela pilha vanilla; A0090 não reimplementa o cálculo do provider.
-- Epic Fight `STUN_ARMOR`, RPG Resistência Física, guard/posture e magic/shroud resistances são grandezas distintas.
-- Pufferfish's Attributes 0.8.3 não substitui `ARMOR_TOUGHNESS` nesta perk.
-- Simply, magia, Enshrouded, Black Arcana, Volcanoes e tecnologia não são owners de Têmpera apenas por integrarem o modpack.
-- Provider que futuramente substituir integralmente a mitigação só poderá participar por adapter explícito; ausência não cria heurística.
-
-## Pendências para Chat 2
-
-- **P-A0090-01:** testes zero toughness→zero bonus, composição com equipamentos/afixos e modifier idempotente.
-- **P-A0090-02:** testar dependência A0089≥2 e limpeza em rank loss/respec/rules reload/relog.
-- **P-A0090-03:** regressão provando que A0090 não altera ARMOR/STUN_ARMOR/Resistência Física/durabilidade nem fontes que ignoram armor.
+- [x] Binding `ARMOR_TOUGHNESS` presente
+- [x] +2% relativo/rank presente
+- [x] zero toughness→zero bonus preservado
+- [x] Dependência A0089≥2 preservada no graph
+- [x] Modifier idempotente por effectId presente
+- [x] Sem ARMOR/STUN_ARMOR/Resistência Física/NBT/durabilidade
+- [x] Código presente
+- [ ] **VALIDAÇÃO CHAT 3:** dependência A0089≥2 em purchase/rank loss
+- [ ] **VALIDAÇÃO CHAT 3:** composição com equipment/Apothic/outros modifiers
+- [ ] **VALIDAÇÃO CHAT 3:** sources não mitigáveis permanecem inalteradas
+- [ ] **VALIDAÇÃO CHAT 3:** respec/relog/respawn/reload/idempotência
+- [ ] **VALIDAÇÃO CHAT 3:** testes unitários/GameTests aplicáveis
+- [ ] **VALIDAÇÃO CHAT 3:** build NeoForge
+- [ ] **VALIDAÇÃO CHAT 3:** dedicated-server smoke
+- [ ] **VALIDAÇÃO CHAT 3:** CI GREEN
+- [ ] **VALIDAÇÃO CHAT 3:** IMPLEMENTAÇÃO CONFIRMADA
 
 ## Nove eixos obrigatórios
 
@@ -46,4 +56,29 @@
 | NeoVitae | PASS | ausente. |
 | Providers | PASS | composição nativa; adapters futuros somente explícitos. |
 
-Os 18 critérios passam no design e o binding principal já está presente.
+Chat 2 não executou a bateria final de testes/build/smoke/CI e não declara `IMPLEMENTAÇÃO CONFIRMADA`.
+
+## Validação Chat 3 — 2026-09-07
+
+- `A0081A0100CombatPolicyTest` confirmou multiplicador relativo de A0090 em 1,10 no rank 5.
+- O GameTest canônico de atributos, com `ServerPlayer` real, confirmou `MULTIPLY_TOTAL` em apply/reapply/remove/reapply sem stacking ou modifier órfão.
+- A dependência A0089≥2 permanece no graph/requirements server-authoritative; o lote não criou gate paralelo nem bypass de purchase/rank loss.
+- Toughness base zero permanece zero, e revisão do diff confirmou ausência de mutação em ARMOR, `STUN_ARMOR`, Resistência Física, NBT/durabilidade ou damage sources não mitigáveis.
+- Baseline de validação `4502d1d253863f6f25e13e6a7284a0d53a3b0fd5`: RPG Skill Tree CI `34147843664` SUCCESS; Sonar `34147843581` SUCCESS; CodeQL `34147843620` SUCCESS.
+- **Resultado:** implementação confirmada no owner canônico `Attributes.ARMOR_TOUGHNESS`, com dependência A0089≥2 e composição nativa de modifiers.
+
+### Checklist final Chat 3
+
+- [x] Design aprovado e código presente
+- [x] Binding `ARMOR_TOUGHNESS` / +2% por rank confirmado
+- [x] Dependência A0089≥2 preservada
+- [x] zero base→zero bônus confirmado
+- [x] composição/idempotência de modifiers confirmadas
+- [x] Sem ARMOR/`STUN_ARMOR`/Resistência Física/NBT/durabilidade
+- [x] Anti-abuso/Mastery: N/A — perk não concede Mastery nem recurso
+- [x] Testes unitários/NeoForge JUnit e GameTests verdes
+- [x] Build NeoForge e dedicated-server smoke verdes
+- [x] SonarQube e CodeQL verdes no baseline funcional
+- [x] **IMPLEMENTAÇÃO CONFIRMADA**
+
+O HEAD documental final deve ser revalidado em CI antes do merge da PR #372.
