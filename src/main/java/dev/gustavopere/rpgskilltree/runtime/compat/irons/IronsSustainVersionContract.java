@@ -8,6 +8,7 @@ public final class IronsSustainVersionContract {
     public static final String DAMAGE_SOURCE_CLASS = "io.redspace.ironsspellbooks.damage.SpellDamageSource";
 
     private static final RuntimeContract CONTRACT = inspectRuntimeContract();
+    private static volatile boolean runtimeInvocationHealthy = true;
 
     private IronsSustainVersionContract() {}
 
@@ -18,10 +19,13 @@ public final class IronsSustainVersionContract {
 
     /**
      * Verifies the concrete runtime class and methods without linking this optional compat class
-     * against Iron's implementation packages at class-load time.
+     * against Iron's implementation packages at class-load time. Once an audited reflective call
+     * fails, the contract stays unavailable for the remainder of this process so purchase/effect
+     * gates fail closed instead of continuing to advertise a broken provider binding.
      */
     public static boolean runtimeContractPresent() {
-        return CONTRACT.sourceClass() != null
+        return runtimeInvocationHealthy
+            && CONTRACT.sourceClass() != null
             && CONTRACT.spellMethod() != null
             && CONTRACT.lifestealMethod() != null;
     }
@@ -35,8 +39,11 @@ public final class IronsSustainVersionContract {
         if (!isSpellDamageSource(source) || CONTRACT.lifestealMethod() == null) return null;
         try {
             Object value = CONTRACT.lifestealMethod().invoke(source);
-            return value instanceof Number number ? number.floatValue() : null;
+            if (value instanceof Number number) return number.floatValue();
+            runtimeInvocationHealthy = false;
+            return null;
         } catch (ReflectiveOperationException | RuntimeException failure) {
+            runtimeInvocationHealthy = false;
             return null;
         }
     }
