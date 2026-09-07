@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.compat;
 
+import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauVersionContract;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +20,7 @@ import java.util.function.Predicate;
 public final class OptionalIntegrationAdapterRegistry {
     private static final String ADAPTER_PREFIX = "rpgskilltree:adapter/";
     private static final String SOURCE_PREFIX = "rpgskilltree:provider_source/";
+    private static final String UNSUPPORTED_VERSION = "unsupported_version";
 
     private OptionalIntegrationAdapterRegistry() {}
 
@@ -26,10 +28,19 @@ public final class OptionalIntegrationAdapterRegistry {
         Predicate<OptionalIntegrations.Provider> providerLoaded,
         Function<OptionalIntegrations.Provider, String> disabledReason
     ) {
+        return create(providerLoaded, disabledReason, OptionalIntegrations::version);
+    }
+
+    static IntegrationAdapterRegistry create(
+        Predicate<OptionalIntegrations.Provider> providerLoaded,
+        Function<OptionalIntegrations.Provider, String> disabledReason,
+        Function<OptionalIntegrations.Provider, String> providerVersion
+    ) {
         Objects.requireNonNull(providerLoaded, "providerLoaded");
         Objects.requireNonNull(disabledReason, "disabledReason");
+        Objects.requireNonNull(providerVersion, "providerVersion");
         List<IntegrationAdapterFactory> factories = Arrays.stream(OptionalIntegrations.Provider.values())
-            .map(provider -> factory(provider, disabledReason))
+            .map(provider -> factory(provider, disabledReason, providerVersion))
             .toList();
         return IntegrationAdapterRegistry.create(providerLoaded, factories);
     }
@@ -61,7 +72,8 @@ public final class OptionalIntegrationAdapterRegistry {
 
     private static IntegrationAdapterFactory factory(
         OptionalIntegrations.Provider provider,
-        Function<OptionalIntegrations.Provider, String> disabledReason
+        Function<OptionalIntegrations.Provider, String> disabledReason,
+        Function<OptionalIntegrations.Provider, String> providerVersion
     ) {
         SemanticActionId adapterId = adapterId(provider);
         SemanticActionId sourceAction = sourceAction(provider);
@@ -78,8 +90,12 @@ public final class OptionalIntegrationAdapterRegistry {
 
             @Override
             public IntegrationAdapter create() {
-                String reason = disabledReason.apply(provider);
-                boolean enabled = reason == null || reason.isBlank();
+                String reason = normalizedReason(disabledReason.apply(provider));
+                if (reason.isBlank()) {
+                    reason = builtInDisabledReason(provider, providerVersion.apply(provider));
+                }
+                boolean enabled = reason.isBlank();
+                String finalReason = reason;
                 return new IntegrationAdapter() {
                     @Override
                     public SemanticActionId adapterId() {
@@ -103,10 +119,21 @@ public final class OptionalIntegrationAdapterRegistry {
 
                     @Override
                     public String disabledReason() {
-                        return enabled ? "" : reason;
+                        return enabled ? "" : finalReason;
                     }
                 };
             }
         };
+    }
+
+    private static String builtInDisabledReason(OptionalIntegrations.Provider provider, String version) {
+        return switch (provider) {
+            case ARS_NOUVEAU -> ArsNouveauVersionContract.supports(version) ? "" : UNSUPPORTED_VERSION;
+            default -> "";
+        };
+    }
+
+    private static String normalizedReason(String reason) {
+        return reason == null ? "" : reason.trim();
     }
 }
