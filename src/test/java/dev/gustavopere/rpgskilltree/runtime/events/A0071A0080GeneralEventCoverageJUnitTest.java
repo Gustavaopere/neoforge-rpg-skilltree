@@ -3,6 +3,7 @@ package dev.gustavopere.rpgskilltree.runtime.events;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyFloat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.never;
@@ -91,7 +92,7 @@ final class A0071A0080GeneralEventCoverageJUnitTest {
              MockedStatic<MartialStanceRuntime> stance = mockStatic(MartialStanceRuntime.class)) {
             A0076A0079GeneralEvents.onIncomingPhysicalDamage(event);
             stance.verifyNoInteractions();
-            verify(event, never()).setAmount(any(Float.class));
+            verify(event, never()).setAmount(anyFloat());
         }
 
         try (MockedStatic<OptionalIntegrations> integrations = mockStatic(OptionalIntegrations.class);
