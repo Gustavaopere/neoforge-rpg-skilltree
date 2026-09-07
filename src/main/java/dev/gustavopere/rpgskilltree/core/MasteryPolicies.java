@@ -89,7 +89,7 @@ public final class MasteryPolicies {
   return List.copyOf(out);
  }
  public static List<MasteryAward> forEpicFight(CombatAction action){
-  if(action.origin().procDepth()>0 || !action.tags().contains("milestone")) return List.of();
+  if(action.origin().procDepth()>0 || "epicfight:skill_consume".equals(action.origin().sourceId()) || !action.tags().contains("milestone")) return List.of();
   List<MasteryAward> out=new ArrayList<>();
   if(action.tags().contains("hit")){
    // One hostile entity-type discovery per weapon category. Six distinct types reach the
