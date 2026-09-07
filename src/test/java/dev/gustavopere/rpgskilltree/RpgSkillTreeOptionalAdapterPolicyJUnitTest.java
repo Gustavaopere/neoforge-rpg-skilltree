@@ -4,6 +4,7 @@ import dev.gustavopere.rpgskilltree.itemization.blacksmith.compat.productivemeta
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.coldsweat.ColdSweatFrenzyBridge;
 import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateVersionContract;
+import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumVersionContract;
@@ -21,6 +22,7 @@ final class RpgSkillTreeOptionalAdapterPolicyJUnitTest {
         assertEquals("", reason(OptionalIntegrations.Provider.CREATE, CreateVersionContract.SUPPORTED_VERSION));
         assertEquals("", reason(OptionalIntegrations.Provider.GOETY, GoetyVersionContract.SUPPORTED_VERSION));
         assertEquals("", reason(OptionalIntegrations.Provider.MALUM, MalumVersionContract.SUPPORTED_VERSION));
+        assertEquals("", reason(OptionalIntegrations.Provider.EIDOLON, EidolonVersionContract.SUPPORTED_VERSION));
         assertEquals("", reason(OptionalIntegrations.Provider.MINECOLONIES, MineColoniesVersionContract.SUPPORTED_ARTIFACT_VERSION));
         assertEquals("", reason(OptionalIntegrations.Provider.PRODUCTIVE_METALWORKS, ProductiveMetalworksVersionContract.SUPPORTED_ARTIFACT_VERSION));
     }
@@ -33,6 +35,7 @@ final class RpgSkillTreeOptionalAdapterPolicyJUnitTest {
         assertEquals("unsupported_version", reason(OptionalIntegrations.Provider.CREATE, unsupported));
         assertEquals("unsupported_version", reason(OptionalIntegrations.Provider.GOETY, unsupported));
         assertEquals("unsupported_version", reason(OptionalIntegrations.Provider.MALUM, unsupported));
+        assertEquals("unsupported_version", reason(OptionalIntegrations.Provider.EIDOLON, unsupported));
         assertEquals("unsupported_version", reason(OptionalIntegrations.Provider.MINECOLONIES, unsupported));
         assertEquals("unsupported_version", reason(OptionalIntegrations.Provider.PRODUCTIVE_METALWORKS, unsupported));
     }
@@ -54,7 +57,6 @@ final class RpgSkillTreeOptionalAdapterPolicyJUnitTest {
         for (OptionalIntegrations.Provider provider : new OptionalIntegrations.Provider[] {
             OptionalIntegrations.Provider.IRONS_SPELLBOOKS,
             OptionalIntegrations.Provider.ARS_NOUVEAU,
-            OptionalIntegrations.Provider.EIDOLON,
             OptionalIntegrations.Provider.IDENTITY2,
             OptionalIntegrations.Provider.SABLE
         }) {
