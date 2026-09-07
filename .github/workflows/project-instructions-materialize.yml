@@ -93,10 +93,7 @@ jobs:
           if archive_sha != expected_archive_sha:
               raise SystemExit(f'archive SHA-256 mismatch: {archive_sha} != {expected_archive_sha}')
 
-          if target.exists():
-              shutil.rmtree(target)
-          target.mkdir()
-
+          target.mkdir(exist_ok=True)
           with zipfile.ZipFile(io.BytesIO(archive)) as zf:
               members = sorted(n for n in zf.namelist() if not n.endswith('/'))
               if members != sorted(expected_file_sha256):
@@ -107,14 +104,6 @@ jobs:
                   if digest != expected_file_sha256[name]:
                       raise SystemExit(f'{name}: SHA-256 mismatch {digest}')
                   (target / name).write_bytes(data)
-
-          old_delta = Path('plans/03-skill-tree-perks/guides/MODLIST-DELTA-2026-09-07.md')
-          if not old_delta.is_file():
-              raise SystemExit('missing legacy MODLIST delta before move')
-          delta_blob = subprocess.check_output(['git', 'hash-object', str(old_delta)], text=True).strip()
-          if delta_blob != '8d67e145f217f907730934172673fb020376d34b':
-              raise SystemExit(f'MODLIST delta drifted: {delta_blob}')
-          shutil.copy2(old_delta, target / 'MODLIST-DELTA-2026-09-07.md')
 
           readme = '''# Project Instructions — RPG Skill Tree
 
@@ -139,13 +128,9 @@ Pasta canônica na raiz para o ciclo de perks do RPG Skill Tree (Minecraft 1.21.
 
 A modlist física mais recente é authority para presença, JAR e runtime. A Auditoria Mestre da Modlist no Notion deve ser reconciliada conforme os protocolos. O Notion continua sendo a fonte de verdade de design; estes arquivos são a referência operacional consolidada no repositório.
 
-`MODLIST-DELTA-2026-09-07.md` foi preservado da árvore antiga de guias como histórico operacional/delta.
-
-A antiga árvore fragmentada `plans/03-skill-tree-perks/guides/` foi substituída por estes guias consolidados.
+A árvore detalhada `guides/`, `modlist/` e o caminho legado `plans/03-skill-tree-perks/guides/` permanecem temporariamente preservados para compatibilidade e auditoria de referências. A remoção só deve ocorrer após migração comprovada dos links consumidores.
 '''
           (target / 'README.md').write_text(readme, encoding='utf-8')
-
-          shutil.rmtree('plans/03-skill-tree-perks/guides')
 
           root_readme = Path('README.md')
           root_text = root_readme.read_text(encoding='utf-8')
@@ -165,21 +150,12 @@ A antiga árvore fragmentada `plans/03-skill-tree-perks/guides/` foi substituíd
               if actual_blob != expected_blob:
                   raise SystemExit(f'{path}: final Git blob mismatch {actual_blob} != {expected_blob}')
 
-          final_delta_blob = subprocess.check_output(
-              ['git', 'hash-object', str(target / 'MODLIST-DELTA-2026-09-07.md')], text=True
-          ).strip()
-          if final_delta_blob != '8d67e145f217f907730934172673fb020376d34b':
-              raise SystemExit(f'moved MODLIST delta mismatch: {final_delta_blob}')
-
-          if Path('plans/03-skill-tree-perks/guides').exists():
-              raise SystemExit('legacy guides tree still exists')
-
           shutil.rmtree(payload)
           workflow = Path('.github/workflows/project-instructions-materialize.yml')
           if workflow.exists():
               workflow.unlink()
 
-          print('Canonical PROJECT-INSTRUCTIONS materialized and verified.')
+          print('Canonical PROJECT-INSTRUCTIONS materialized and verified; legacy guides preserved.')
           PY
 
       - name: Commit canonical structure
@@ -190,5 +166,5 @@ A antiga árvore fragmentada `plans/03-skill-tree-perks/guides/` foi substituíd
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git diff --cached --check
-          git commit -m 'docs: centralize canonical project instructions'
+          git commit -m 'docs: add canonical project instruction files'
           git push origin HEAD:docs/project-instructions-canonical
