@@ -92,7 +92,7 @@ public final class OptionalIntegrationAdapterRegistry {
             public IntegrationAdapter create() {
                 String reason = normalizedReason(disabledReason.apply(provider));
                 if (reason.isBlank()) {
-                    reason = builtInDisabledReason(provider, providerVersion.apply(provider));
+                    reason = builtInDisabledReason(provider, providerVersion);
                 }
                 boolean enabled = reason.isBlank();
                 String finalReason = reason;
@@ -126,9 +126,14 @@ public final class OptionalIntegrationAdapterRegistry {
         };
     }
 
-    private static String builtInDisabledReason(OptionalIntegrations.Provider provider, String version) {
+    private static String builtInDisabledReason(
+        OptionalIntegrations.Provider provider,
+        Function<OptionalIntegrations.Provider, String> providerVersion
+    ) {
         return switch (provider) {
-            case ARS_NOUVEAU -> ArsNouveauVersionContract.supports(version) ? "" : UNSUPPORTED_VERSION;
+            case ARS_NOUVEAU -> ArsNouveauVersionContract.supports(providerVersion.apply(provider))
+                ? ""
+                : UNSUPPORTED_VERSION;
             default -> "";
         };
     }
