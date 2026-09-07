@@ -14,18 +14,21 @@ Dependências declaradas: IronSable, Wind's Spellbooks, Sable e Iron's Spells 'n
 
 Para perks, validar causalidade server-authoritative, dupla aplicação, desync e destruição excessiva antes de aceitar qualquer hook relacionado a quebra/empurrão de blocos simulados.
 
-## More Relics — 1.7.7 — ALTO RISCO
+## More Relics — 1.7.7 — MANTER / RISCO ACEITO
 
 `morerelics-1.7.7-1.21.1.jar`
 
-**More Relics** expande Relics com novos relics/acessórios e efeitos. A identidade do JAR `1.7.7` para NeoForge 1.21.1 é válida, porém existe um conflito de compatibilidade declarado pelo próprio projeto: a documentação upstream informa que, para NeoForge 1.21.1, **Relics 0.11 e 0.12 ainda não são suportados** e recomenda **Relics 0.10.7.8**.
+**More Relics** expande Relics com novos relics/acessórios e efeitos. A identidade do JAR `1.7.7` para NeoForge 1.21.1 é válida. A decisão curatorial vigente do pack, registrada em 07/09/2026, é **Manter**.
 
-O pack atual usa `relics-1.21.1-0.12.8.jar`. Portanto o estado correto é:
+Existe, porém, um conflito de compatibilidade declarado pelo próprio projeto: a documentação upstream informa que, para NeoForge 1.21.1, **Relics 0.11 e 0.12 ainda não são suportados** e recomenda **Relics 0.10.7.8**. O pack atual usa `relics-1.21.1-0.12.8.jar`.
+
+Portanto o estado correto é:
 
 - More Relics está **fisicamente instalado**;
-- a compatibilidade com o Relics atual **não está aprovada**;
-- não usar More Relics como provider de perk nem assumir que seus relics/effects funcionam corretamente;
-- aplicar **fail-closed** até haver teste/prova de compatibilidade ou ajuste explícito do stack.
+- decisão de curadoria: **Manter**;
+- o desvio Relics `0.12.8` é um **risco aceito para presença no pack**, não prova de compatibilidade;
+- não remover ou marcar More Relics como rejeitado apenas por esse desvio;
+- perks/integrações que dependam de comportamento específico de More Relics permanecem **fail-closed** até teste real comprovar carregamento e a semântica do hook necessário.
 
 Dependências declaradas pelo projeto incluem Relics, Curios API, Architectury API e bibliotecas da release como ShatterLib/OctoLib.
 
@@ -40,4 +43,4 @@ Esses são updates de identidade física; não alteram por si sós contratos de 
 
 ## Boundary
 
-`Ironsable x Wind's Spellbooks` é **bridge**, não escola. `More Relics` é conteúdo do ecossistema Relics, mas está fail-closed pelo desvio de versão declarado. Nenhum dos dois deve ser promovido silenciosamente a provider mecânico durante o fechamento de perks.
+`Ironsable x Wind's Spellbooks` é **bridge**, não escola. `More Relics` é conteúdo do ecossistema Relics e deve permanecer instalado segundo a curadoria atual; apenas contratos provider-specific continuam fail-closed enquanto a compatibilidade necessária com Relics `0.12.8` não tiver evidência de runtime. Nenhum dos dois deve ser promovido silenciosamente a provider mecânico durante o fechamento de perks.
