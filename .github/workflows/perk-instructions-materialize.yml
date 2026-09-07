@@ -24,14 +24,75 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import base64, hashlib, io, shutil, zipfile
+          import base64, hashlib, io, shutil, subprocess, zipfile
 
           payload = Path('perk-instructions-payload')
-          parts = sorted(payload.glob('chunk-*.b64'))
-          if len(parts) != 16:
-              raise SystemExit(f'expected 16 payload chunks, found {len(parts)}')
+          expected_chunk_blobs = {
+              0: '366a73ef46c591aa5d6b87051887fbb68cd63794',
+              1: '8c84c3c385b24dac2b8051a5dd1c9ea9f1ea06e6',
+              2: 'ddc114fcdf21369fbdb5019f0e17ca510e5a0dc9',
+              3: 'f86b15c82d734805f8ea0d7eb24f321d655e17d9',
+              4: 'bf2584585d7284df8bf2059725c5bf149bfe6b63',
+              5: 'ef0bde98f8376228e1dfea40320bb4ab2f34b183',
+              6: '54dbcda83191466077e608923c66b8ab015a053e',
+              7: '7d929696c3ae88c48f2e9b4cb50eef665eeaf544',
+              8: 'dd8d0e141daf5719c811fbc8419cdb9b645c9522',
+              9: '35125087ed3e908b58d91660e70619469704b94a',
+              10: '96c8fe930df5609864737a52a1c399a5844222b0',
+              11: '7b8319be71e98f95a3d34595b0d36cca1245f466',
+              12: '9ff44835c1468611e2ccba6f76c2a6a012e4d156',
+              13: '583c732c32ba8d6bf5d44d16f8289ae42387058d',
+              14: 'cfea36d023071df6b5e3d21bdd2f95728b9aa867',
+              15: '1fa94312ba4a09319f0ea97bbaa349ebc4806d1d',
+          }
+          expected_lengths = {i: (2048 if i == 15 else 20000) for i in range(16)}
+          alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
-          archive = b''.join(base64.b64decode(p.read_text(encoding='ascii')) for p in parts)
+          def git_blob_sha(text: str) -> str:
+              raw = text.encode('ascii')
+              return hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+
+          def repair_one_length_error(text: str, target_len: int, target_sha: str) -> str:
+              if len(text) == target_len - 1:
+                  for pos in range(target_len):
+                      prefix, suffix = text[:pos], text[pos:]
+                      for ch in alphabet:
+                          candidate = prefix + ch + suffix
+                          if git_blob_sha(candidate) == target_sha:
+                              return candidate
+              elif len(text) == target_len + 1:
+                  for pos in range(len(text)):
+                      candidate = text[:pos] + text[pos+1:]
+                      if git_blob_sha(candidate) == target_sha:
+                          return candidate
+              raise SystemExit(
+                  f'cannot deterministically repair payload: len={len(text)}, '
+                  f'target_len={target_len}, sha={git_blob_sha(text)}, target_sha={target_sha}'
+              )
+
+          decoded = []
+          recovery_commit = '6a97ff31fd7aab0057ca5226bcdf2d4e03b920d8'
+          for i in range(16):
+              path = payload / f'chunk-{i:02d}.b64'
+              if i in (2, 4):
+                  text = subprocess.check_output(
+                      ['git', 'show', f'{recovery_commit}:{path.as_posix()}'],
+                      text=True
+                  )
+                  text = repair_one_length_error(
+                      text, expected_lengths[i], expected_chunk_blobs[i]
+                  )
+              else:
+                  text = path.read_text(encoding='ascii')
+                  actual_sha = git_blob_sha(text)
+                  if actual_sha != expected_chunk_blobs[i]:
+                      raise SystemExit(
+                          f'chunk {i:02d} Git blob SHA mismatch: '
+                          f'{actual_sha} != {expected_chunk_blobs[i]}'
+                      )
+              decoded.append(base64.b64decode(text, validate=True))
+
+          archive = b''.join(decoded)
           archive_sha = hashlib.sha256(archive).hexdigest()
           expected_archive_sha = 'bcc34de2026902f1bafa7ff5c8830d2177449dafcf3c232c00d484472c09a0e1'
           if archive_sha != expected_archive_sha:
