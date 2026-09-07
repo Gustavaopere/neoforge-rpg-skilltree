@@ -152,6 +152,78 @@ final class A0073A0080ProjectileEventCoverageJUnitTest {
     }
 
     @Test
+    void unrelatedSecondArrowPostCannotConsumeFirstArrowOpportunityReservation() {
+        Fixture fixture = fixture();
+        AbstractArrow secondArrow = mock(AbstractArrow.class);
+        when(secondArrow.getOwner()).thenReturn(fixture.player);
+        DamageSource secondSource = mock(DamageSource.class);
+        when(secondSource.getDirectEntity()).thenReturn(secondArrow);
+        LivingDamageEvent.Post secondPost = mock(LivingDamageEvent.Post.class);
+        when(secondPost.getSource()).thenReturn(secondSource);
+        when(secondPost.getEntity()).thenReturn(fixture.target);
+        when(secondPost.getNewDamage()).thenReturn(10.0F);
+
+        A0061A0080CombatState state = new A0061A0080CombatState();
+        assertTrue(state.armOpportunity(ACTOR, 1_000L));
+        assertTrue(state.reserveOpportunity(ACTOR, "reserved-arrow-root", 1_100L));
+        publishReceipt("reserved-arrow-root", false, false, FirstBloodReservation.NONE, false, true);
+
+        try (MockedStatic<A0061A0080RuntimeState> runtime = mockStatic(A0061A0080RuntimeState.class)) {
+            wireRuntime(runtime, fixture.player, state, CombatPerkRanks.of(Map.of("A0080", 1)));
+            A0073A0080ProjectileCommitEvents.onIncomingFinal(fixture.incoming);
+
+            A0073A0080ProjectileCommitEvents.onDamagePost(secondPost);
+
+            state.rollbackOpportunity(ACTOR, "reserved-arrow-root");
+            assertTrue(state.reserveOpportunity(ACTOR, "retry-after-unrelated-arrow", 1_501L));
+        }
+    }
+
+    @Test
+    void twoFirstBloodOpenersCommitInInvertedArrowOrderWithoutCrossConsumption() {
+        Fixture first = fixture();
+        UUID secondTargetUuid = UUID.fromString("00000000-0000-0000-0000-000000000074");
+        String secondTargetId = secondTargetUuid.toString();
+        LivingEntity secondTarget = mock(LivingEntity.class);
+        when(secondTarget.getUUID()).thenReturn(secondTargetUuid);
+        AbstractArrow secondArrow = mock(AbstractArrow.class);
+        when(secondArrow.getOwner()).thenReturn(first.player);
+        DamageSource secondSource = mock(DamageSource.class);
+        when(secondSource.getDirectEntity()).thenReturn(secondArrow);
+        LivingIncomingDamageEvent secondIncoming = mock(LivingIncomingDamageEvent.class);
+        when(secondIncoming.getSource()).thenReturn(secondSource);
+        when(secondIncoming.getEntity()).thenReturn(secondTarget);
+        when(secondIncoming.getAmount()).thenReturn(10.0F);
+        when(secondIncoming.isCanceled()).thenReturn(false);
+        LivingDamageEvent.Post secondPost = mock(LivingDamageEvent.Post.class);
+        when(secondPost.getSource()).thenReturn(secondSource);
+        when(secondPost.getEntity()).thenReturn(secondTarget);
+        when(secondPost.getNewDamage()).thenReturn(10.0F);
+
+        A0061A0080CombatState state = new A0061A0080CombatState();
+        assertEquals(FirstBloodReservation.OPENER,
+            state.reserveFirstBlood(ACTOR, TARGET, "first-root", 0.90D, 1_100L));
+        assertEquals(FirstBloodReservation.OPENER,
+            state.reserveFirstBlood(ACTOR, secondTargetId, "second-root", 0.90D, 1_100L));
+
+        try (MockedStatic<A0061A0080RuntimeState> runtime = mockStatic(A0061A0080RuntimeState.class)) {
+            wireRuntime(runtime, first.player, state, CombatPerkRanks.of(Map.of("A0074", 1)));
+
+            publishReceipt("first-root", false, false, FirstBloodReservation.OPENER, true, false);
+            A0073A0080ProjectileCommitEvents.onIncomingFinal(first.incoming);
+            publishReceiptForTarget(secondTargetId, "second-root", FirstBloodReservation.OPENER);
+            A0073A0080ProjectileCommitEvents.onIncomingFinal(secondIncoming);
+
+            A0073A0080ProjectileCommitEvents.onDamagePost(secondPost);
+            assertTrue(state.firstBloodWindowActive(ACTOR, secondTargetId, 1_501L));
+            assertFalse(state.firstBloodWindowActive(ACTOR, TARGET, 1_501L));
+
+            A0073A0080ProjectileCommitEvents.onDamagePost(first.post);
+            assertTrue(state.firstBloodWindowActive(ACTOR, TARGET, 1_501L));
+        }
+    }
+
+    @Test
     void lifecycleHandlersClearActorTargetArrowAndGlobalTransientState() {
         ServerPlayer player = mock(ServerPlayer.class);
         LivingEntity target = mock(LivingEntity.class);
@@ -210,6 +282,11 @@ final class A0073A0080ProjectileEventCoverageJUnitTest {
         if (executionArmCandidate) A0061A0080ReservationReceiptContext.markExecutionArmCandidate();
         if (firstBloodTracked) A0061A0080ReservationReceiptContext.markFirstBlood(firstBlood);
         if (opportunityReserved) A0061A0080ReservationReceiptContext.markOpportunityReserved();
+    }
+
+    private static void publishReceiptForTarget(String targetId, String root, FirstBloodReservation reservation) {
+        A0061A0080ReservationReceiptContext.begin(ACTOR, targetId, root);
+        A0061A0080ReservationReceiptContext.markFirstBlood(reservation);
     }
 
     private static void wireRuntime(MockedStatic<A0061A0080RuntimeState> runtime, ServerPlayer player,
