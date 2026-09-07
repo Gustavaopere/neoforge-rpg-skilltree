@@ -55,7 +55,7 @@ Os dois bloqueios de discovery por IDs duplicados `alexscaves` e `alexsmobs` est
 
 ## Authority de curadoria
 
-Presença física e decisão curatorial são estados distintos. [`CURATION-DECISIONS-2026-09-06.md`](CURATION-DECISIONS-2026-09-06.md) registra o fechamento de 06/09, mas decisões explicitamente revistas em 07/09 prevalecem.
+Presença física e decisão curatorial são estados distintos. [`CURATION-DECISIONS-2026-09-06.md`](CURATION-DECISIONS-2026-09-06.md) registra o fechamento de 06/09; para decisões explicitamente revistas depois disso, prevalece [`CURATION-DECISIONS-2026-09-07.md`](CURATION-DECISIONS-2026-09-07.md).
 
 - **Create: Bits 'n' Bobs 2.3.1 — `Manter`.** O conflito visual documentado com os Thermochemical Cogwheels de Create: Sulfuric Resonance 0.4.1 é aceito conscientemente e deve continuar monitorado/testado; `Manter` não significa que o conflito foi tecnicamente corrigido.
 - **More Relics 1.7.7 — `Manter`.** O desvio declarado pelo upstream em relação a Relics 0.12.8 é risco aceito para presença no pack; perks/integrações que dependam de comportamento específico de More Relics continuam fail-closed até teste real.
