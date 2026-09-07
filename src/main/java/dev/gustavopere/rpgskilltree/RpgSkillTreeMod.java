@@ -391,7 +391,10 @@ public final class RpgSkillTreeMod {
     }
 
     private static String optionalAdapterDisabledReason(OptionalIntegrations.Provider provider) {
-        String version = OptionalIntegrations.version(provider);
+        return optionalAdapterDisabledReason(provider, OptionalIntegrations.version(provider));
+    }
+
+    static String optionalAdapterDisabledReason(OptionalIntegrations.Provider provider, String version) {
         return switch (provider) {
             case EPIC_FIGHT -> EpicFightVersionContract.supportsVersion(version) ? "" : "unsupported_version";
             case COLD_SWEAT -> ColdSweatFrenzyBridge.supportsVersion(version) ? "" : "unsupported_version";
