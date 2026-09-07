@@ -7,6 +7,6 @@ public final class ArsNouveauVersionContract {
     private ArsNouveauVersionContract() {}
 
     public static boolean supports(String version) {
-        return version != null && SUPPORTED_VERSION.equals(version.trim());
+        return SUPPORTED_VERSION.equals(version);
     }
 }
