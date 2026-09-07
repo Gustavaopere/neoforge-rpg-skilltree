@@ -6,10 +6,21 @@ on:
       - main
     paths:
       - 'src/main/java/dev/gustavopere/rpgskilltree/RpgSkillTreeMod.java'
+      - 'src/main/java/dev/gustavopere/rpgskilltree/core/ArsCompositionClassifier.java'
+      - 'src/main/java/dev/gustavopere/rpgskilltree/core/ArsNativeProgressionPolicy.java'
+      - 'src/main/java/dev/gustavopere/rpgskilltree/core/MasteryPolicies.java'
+      - 'src/main/java/dev/gustavopere/rpgskilltree/runtime/PlayerProgressionRuntime.java'
       - 'src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/OptionalIntegrationAdapterRegistry.java'
       - 'src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/**'
+      - 'src/main/java/dev/gustavopere/rpgskilltree/runtime/data/ClassRulesReloader.java'
+      - 'src/main/java/dev/gustavopere/rpgskilltree/runtime/data/SpecializationProviderRuntimePolicy.java'
+      - 'src/main/java/dev/gustavopere/rpgskilltree/runtime/data/SpecializationReloader.java'
+      - 'src/main/resources/data/rpgskilltree/classes/sorcerer.json'
+      - 'src/main/resources/data/rpgskilltree/specializations/**'
       - 'src/test/java/dev/gustavopere/rpgskilltree/runtime/compat/OptionalIntegrationAdapterRegistryJUnitTest.java'
       - 'src/test/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/**'
+      - 'src/test/java/dev/gustavopere/rpgskilltree/runtime/data/ClassProviderGameplayAvailabilityJUnitTest.java'
+      - 'src/test/java/dev/gustavopere/rpgskilltree/runtime/data/SpecializationGatewayAvailabilityJUnitTest.java'
       - '.github/gradle/ars-provider-runtime.init.gradle'
       - 'scripts/verify-ars-provider-runtime.py'
       - 'build.gradle'
@@ -48,6 +59,8 @@ jobs:
           --tests '*ArsNouveauVersionContractJUnitTest'
           --tests '*OptionalIntegrationAdapterRegistryJUnitTest'
           --tests '*ArsMasteryCausalityJUnitTest'
+          --tests '*SpecializationGatewayAvailabilityJUnitTest'
+          --tests '*ClassProviderGameplayAvailabilityJUnitTest'
 
   provider-present:
     name: provider-present (${{ matrix.mode }})
