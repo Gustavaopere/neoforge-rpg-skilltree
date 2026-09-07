@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -18,7 +19,7 @@ final class A0071A0080EpicFightTargetClassifierCoverageJUnitTest {
         LivingEntity target = mock(LivingEntity.class);
         EntityType<?> type = mock(EntityType.class);
         CompoundTag data = new CompoundTag();
-        when(target.getType()).thenReturn(type);
+        doReturn(type).when(target).getType();
         when(type.is(BossRewardKeyResolver.BOSSES)).thenReturn(false);
         when(target.getPersistentData()).thenReturn(data);
 
