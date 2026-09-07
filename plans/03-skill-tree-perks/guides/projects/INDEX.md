@@ -17,3 +17,6 @@
 - [Delta e baseline A0081–A0090](14-capability-delta-a0081-a0090.md)
 - [Delta e baseline A0200–A0209](15-capability-delta-a0200-a0209.md)
 - [Delta e baseline especial A0200–A0299](16-capability-delta-a0200-a0299.md)
+- [Delta e baseline A0151–A0160](18-capability-delta-a0151-a0160.md)
+
+> O delta A0141–A0150 (`17-capability-delta-a0141-a0150.md`) permanece na PR documental concorrente #361 e será reconciliado no índice após integração daquela cadeia; este branch não duplica o arquivo de outro lote.
