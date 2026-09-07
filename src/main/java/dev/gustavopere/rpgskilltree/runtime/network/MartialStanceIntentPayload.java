@@ -12,7 +12,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 /** Client intent only. The server derives availability, current stance and the next transition. */
 public record MartialStanceIntentPayload(boolean cycle) implements CustomPacketPayload {
-    public static final Type<MartialStanceIntentPayload> TYPE = new Type<>(
+    public static final Type<MartialStanceIntentPayload> PAYLOAD_TYPE = new Type<>(
         ResourceLocation.fromNamespaceAndPath(RpgSkillTreeMod.MOD_ID, "martial_stance_intent")
     );
 
@@ -24,7 +24,7 @@ public record MartialStanceIntentPayload(boolean cycle) implements CustomPacketP
 
     @Override
     public Type<? extends CustomPacketPayload> type() {
-        return TYPE;
+        return PAYLOAD_TYPE;
     }
 
     public static void handle(MartialStanceIntentPayload payload, IPayloadContext context) {
