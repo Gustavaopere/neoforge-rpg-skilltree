@@ -8,6 +8,7 @@ import dev.gustavopere.rpgskilltree.core.CombatRecoveryService;
 import dev.gustavopere.rpgskilltree.core.SustainResolver;
 import dev.gustavopere.rpgskilltree.runtime.A0061A0080RuntimeState;
 import dev.gustavopere.rpgskilltree.runtime.A0081A0100RuntimeState;
+import dev.gustavopere.rpgskilltree.runtime.AuthoritativeHitAttributionBridge;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import java.util.ArrayList;
@@ -164,6 +165,7 @@ public final class A0081A0100CombatEvents {
         // A0099 shares A0079's detector. When this bridge is the fallback sampler it also owns
         // its lifecycle; clearing twice when Epic Fight is present is harmless and deterministic.
         A0061A0080RuntimeState.clearAll();
+        AuthoritativeHitAttributionBridge.clearAll();
         synchronized (OUTGOING) {
             OUTGOING.clear();
         }
@@ -190,9 +192,11 @@ public final class A0081A0100CombatEvents {
         String actor = A0081A0100RuntimeState.actorId(player);
         long atMillis = nowMillis(player);
         boolean rhythmActive = A0061A0080RuntimeState.state().sustainedRhythmActive(actor, atMillis);
+        String fallbackRootActionId =
+            "sustain/" + player.level().getGameTime() + "/" + ACTION_SEQUENCE.incrementAndGet();
         OutgoingDamageContext context = new OutgoingDamageContext(
             player,
-            "sustain/" + player.level().getGameTime() + "/" + ACTION_SEQUENCE.incrementAndGet(),
+            resolveOutgoingRootActionId(source, event.getEntity().getUUID(), fallbackRootActionId),
             event.getEntity().getHealth(),
             weapon,
             directMelee,
@@ -376,6 +380,15 @@ public final class A0081A0100CombatEvents {
             && !player.isCreative()
             && !player.isSpectator()
             && !(player instanceof FakePlayer);
+    }
+
+    static String resolveOutgoingRootActionId(Object damageSource, UUID targetId, String fallbackRootActionId) {
+        if (fallbackRootActionId == null || fallbackRootActionId.isBlank()) {
+            throw new IllegalArgumentException("fallbackRootActionId must not be blank");
+        }
+        return AuthoritativeHitAttributionBridge.find(damageSource, targetId)
+            .map(AuthoritativeHitAttributionBridge.Attribution::rootActionId)
+            .orElse(fallbackRootActionId);
     }
 
     private static boolean previousBatchSamplesStationary() {
