@@ -18,7 +18,10 @@ import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateIntegrationState
 import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.create.CreateVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonAlchemyProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonIntegrationBootstrap;
+import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonIntegrationState;
 import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonRitualProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.eidolon.EidolonVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0001A0020EpicFightHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0022RuntimeHooks;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0041A0060EpicFightHooks;
@@ -147,7 +150,6 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CompendiumWorldCatalogReloader.class);
         NeoForge.EVENT_BUS.register(CompendiumWorldDiscoveryEvents.class);
         NeoForge.EVENT_BUS.register(CompendiumDiscoveryEvents.class);
-
         RuntimeDiagnostics.info(LOGGER, Category.COMPAT, "optional_providers", "Optional integrations: {}", OptionalIntegrations.summary());
         IntegrationAdapterRegistry integrationAdapters = OptionalIntegrationAdapterRegistry.create(
             OptionalIntegrations::isLoaded,
@@ -357,9 +359,40 @@ public final class RpgSkillTreeMod {
             OptionalIntegrations.version(OptionalIntegrations.Provider.MALUM),
             () -> NeoForge.EVENT_BUS.register(MalumProgressionEvents.class)
         );
-        if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.EIDOLON)) {
-            NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
-            NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
+        boolean eidolonProviderLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.EIDOLON);
+        boolean eidolonAdapterActive = OptionalIntegrationAdapterRegistry.isActive(
+            integrationAdapters,
+            OptionalIntegrations.Provider.EIDOLON
+        );
+        String eidolonVersion = OptionalIntegrations.version(OptionalIntegrations.Provider.EIDOLON);
+        EidolonIntegrationState eidolonState = eidolonAdapterActive
+            ? EidolonIntegrationBootstrap.install(
+                true,
+                eidolonVersion,
+                () -> {
+                    NeoForge.EVENT_BUS.register(EidolonRitualProgressionEvents.class);
+                    NeoForge.EVENT_BUS.register(EidolonAlchemyProgressionEvents.class);
+                }
+            )
+            : EidolonIntegrationBootstrap.evaluate(eidolonProviderLoaded, eidolonVersion);
+        if (eidolonState == EidolonIntegrationState.ACTIVE) {
+            RuntimeDiagnostics.info(
+                LOGGER,
+                Category.COMPAT,
+                "eidolon_mastery_active",
+                "Eidolon Mastery integration active: Eidolon: Repraised {}",
+                eidolonVersion
+            );
+        } else if (eidolonState != EidolonIntegrationState.ABSENT_PROVIDER) {
+            RuntimeDiagnostics.warn(
+                LOGGER,
+                Category.COMPAT,
+                "eidolon_mastery_disabled",
+                "Eidolon Mastery integration disabled: state={}, expected={}, found={}",
+                eidolonState,
+                EidolonVersionContract.SUPPORTED_VERSION,
+                eidolonVersion
+            );
         }
         if (OptionalIntegrationAdapterRegistry.isActive(integrationAdapters, OptionalIntegrations.Provider.IDENTITY2)) {
             NeoForge.EVENT_BUS.register(Identity2EcologyEvents.class);
@@ -401,6 +434,7 @@ public final class RpgSkillTreeMod {
             case CREATE -> CreateVersionContract.supportsVersion(version) ? "" : "unsupported_version";
             case GOETY -> GoetyVersionContract.supportsVersion(version) ? "" : "unsupported_version";
             case MALUM -> MalumVersionContract.supports(version) ? "" : "unsupported_version";
+            case EIDOLON -> EidolonVersionContract.supports(version) ? "" : "unsupported_version";
             case MINECOLONIES -> (MineColoniesVersionContract.supports(version)
                 || MineColoniesEconomyVersionContract.supports(version)) ? "" : "unsupported_version";
             case PRODUCTIVE_METALWORKS -> ProductiveMetalworksVersionContract.supports(version) ? "" : "unsupported_version";
