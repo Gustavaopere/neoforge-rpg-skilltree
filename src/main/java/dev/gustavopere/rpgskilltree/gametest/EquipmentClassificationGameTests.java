@@ -6,6 +6,7 @@ import dev.gustavopere.rpgskilltree.itemization.classification.EquipmentCategory
 import dev.gustavopere.rpgskilltree.itemization.classification.EquipmentClassification;
 import dev.gustavopere.rpgskilltree.itemization.classification.EquipmentOverrideCatalog;
 import dev.gustavopere.rpgskilltree.itemization.classification.EquipmentProbe;
+import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationOverrides;
 import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationReloadService;
 import dev.gustavopere.rpgskilltree.runtime.itemization.EquipmentClassificationService;
@@ -82,6 +83,39 @@ public final class EquipmentClassificationGameTests {
             "unknown durable equipment must use the generic fallback"
         );
         helper.assertTrue(flintAndSteel.fallbackUsed(), "unknown durable equipment must be diagnosed as fallback");
+        helper.succeed();
+    }
+
+    @GameTest(template = "foundation_empty")
+    public static void curiosSlotTagsFollowTheActualOptionalProviderState(GameTestHelper helper) {
+        EquipmentClassificationOverrides.replace(EquipmentOverrideCatalog.empty());
+        EquipmentProbe ring = new EquipmentProbe(
+            ResourceLocation.fromNamespaceAndPath("example", "ring"),
+            Set.of(ResourceLocation.fromNamespaceAndPath("curios", "ring")),
+            false,
+            false,
+            false,
+            false,
+            true,
+            Set.of()
+        );
+
+        EquipmentClassification classification = EquipmentClassificationService.classify(ring);
+        boolean curiosLoaded = OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.CURIOS);
+        if (curiosLoaded) {
+            helper.assertTrue(classification.eligible(), "loaded Curios must enable slot-tag wearable classification");
+            helper.assertTrue(
+                classification.categories().equals(Set.of(EquipmentCategory.WEARABLE_RING)),
+                "curios:ring must map to WEARABLE_RING when Curios is loaded"
+            );
+            helper.assertTrue(
+                classification.providerId().equals(ResourceLocation.fromNamespaceAndPath("curios", "item_tag_slots")),
+                "Curios tag adapter must be reported as the responsible provider"
+            );
+        } else {
+            helper.assertTrue(!classification.eligible(), "absent Curios must fail closed for Curios-only wearable tags");
+            helper.assertTrue(classification.categories().isEmpty(), "absent Curios must not create wearable categories");
+        }
         helper.succeed();
     }
 
