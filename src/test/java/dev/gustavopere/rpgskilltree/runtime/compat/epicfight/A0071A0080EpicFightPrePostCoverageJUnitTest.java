@@ -3,7 +3,6 @@ package dev.gustavopere.rpgskilltree.runtime.compat.epicfight;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
@@ -28,6 +27,7 @@ import org.mockito.MockedStatic;
 import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
+import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 
 final class A0071A0080EpicFightPrePostCoverageJUnitTest {
@@ -58,16 +58,10 @@ final class A0071A0080EpicFightPrePostCoverageJUnitTest {
         when(source.getDirectEntity()).thenReturn(player);
         when(source.getUsedItem()).thenReturn(mace);
 
-        DealDamageEvent.Pre pre = mock(DealDamageEvent.Pre.class, RETURNS_DEEP_STUBS);
-        when(pre.getEntityPatch().getOriginal()).thenReturn(player);
-        when(pre.getTarget()).thenReturn(target);
-        when(pre.getDamageSource()).thenReturn(source);
-
-        DealDamageEvent.Post post = mock(DealDamageEvent.Post.class, RETURNS_DEEP_STUBS);
-        when(post.getEntityPatch().getOriginal()).thenReturn(player);
-        when(post.getTarget()).thenReturn(target);
-        when(post.getDamageSource()).thenReturn(source);
-        when(post.getModifiedDamage()).thenReturn(5.0F);
+        ServerPlayerPatch patch = mock(ServerPlayerPatch.class);
+        when(patch.getOriginal()).thenReturn(player);
+        DealDamageEvent.Pre pre = new DealDamageEvent.Pre(patch, target, source, 5.0F);
+        DealDamageEvent.Post post = new DealDamageEvent.Post(patch, target, source, 5.0F);
 
         CombatPerkRanks ranks = CombatPerkRanks.of(Map.of(
             "A0061", 1, "A0065", 1, "A0066", 1, "A0071", 1,
@@ -133,15 +127,10 @@ final class A0071A0080EpicFightPrePostCoverageJUnitTest {
         when(source.getDirectEntity()).thenReturn(player);
         when(source.getUsedItem()).thenReturn(mace);
 
-        DealDamageEvent.Pre pre = mock(DealDamageEvent.Pre.class, RETURNS_DEEP_STUBS);
-        when(pre.getEntityPatch().getOriginal()).thenReturn(player);
-        when(pre.getTarget()).thenReturn(target);
-        when(pre.getDamageSource()).thenReturn(source);
-        DealDamageEvent.Post post = mock(DealDamageEvent.Post.class, RETURNS_DEEP_STUBS);
-        when(post.getEntityPatch().getOriginal()).thenReturn(player);
-        when(post.getTarget()).thenReturn(target);
-        when(post.getDamageSource()).thenReturn(source);
-        when(post.getModifiedDamage()).thenReturn(0.0F);
+        ServerPlayerPatch patch = mock(ServerPlayerPatch.class);
+        when(patch.getOriginal()).thenReturn(player);
+        DealDamageEvent.Pre pre = new DealDamageEvent.Pre(patch, target, source, 1.0F);
+        DealDamageEvent.Post post = new DealDamageEvent.Post(patch, target, source, 0.0F);
 
         CombatPerkRanks ranks = CombatPerkRanks.of(Map.of("A0073", 1));
         A0061A0080CombatState state = new A0061A0080CombatState();
