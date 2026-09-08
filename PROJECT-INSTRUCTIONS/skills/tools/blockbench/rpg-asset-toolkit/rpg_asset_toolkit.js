@@ -17,9 +17,22 @@
     return trimmed.startsWith('#') ? trimmed.slice(1) : trimmed;
   }
   function parentObject(value) { return value && typeof value === 'object' ? value : null; }
+  function hasOwn(value, key) { return !!value && typeof value === 'object' && Object.prototype.hasOwnProperty.call(value, key); }
+  function isCubeLike(element) {
+    return !!element && typeof element === 'object' && (
+      hasOwn(element, 'to') || hasOwn(element, 'faces') || hasOwn(element, 'box_uv')
+      || hasOwn(element, 'inflate') || hasOwn(element, 'autouv')
+    );
+  }
+  function isLocatorLike(element) {
+    return !!element && typeof element === 'object'
+      && hasOwn(element, 'from')
+      && !isCubeLike(element)
+      && !hasOwn(element, 'vertices');
+  }
 
   function computeBounds(elements) {
-    const valid = (elements || []).filter((element) => finiteVector3(element?.from) && finiteVector3(element?.to));
+    const valid = (elements || []).filter((element) => isCubeLike(element) && finiteVector3(element?.from) && finiteVector3(element?.to));
     if (!valid.length) return null;
     const min = [Infinity, Infinity, Infinity];
     const max = [-Infinity, -Infinity, -Infinity];
@@ -49,14 +62,16 @@
     const elements = Array.isArray(project.elements) ? project.elements : [];
     const textures = Array.isArray(project.textures) ? project.textures : [];
     const animations = Array.isArray(project.animations) ? project.animations : [];
+    const cubeElements = elements.filter(isCubeLike);
+    const locatorElements = elements.filter(isLocatorLike);
 
     if (!normalizedName(project.save_path)) {
       issues.push(issue('warning', 'UNSAVED_SOURCE', 'Project has no save_path. Preserve a project-owned .bbmodel source before final approval.'));
     } else if (!project.save_path.toLowerCase().endsWith('.bbmodel')) {
       issues.push(issue('warning', 'SOURCE_NOT_BBMODEL', `Project source path does not end in .bbmodel: ${project.save_path}`));
     }
-    if (elements.length > 0 && groups.length === 0) {
-      issues.push(issue('warning', 'NO_GROUPS', 'Model has renderable elements but no groups/bones. Animated GeckoLib assets require intentional hierarchy.'));
+    if (cubeElements.length > 0 && groups.length === 0) {
+      issues.push(issue('warning', 'NO_GROUPS', 'Model has renderable cube elements but no groups/bones. Animated GeckoLib assets require intentional hierarchy.'));
     }
 
     const groupsByUuid = new Map();
@@ -117,25 +132,34 @@
         if (elementNames.has(canonical)) issues.push(issue('warning', 'DUPLICATE_ELEMENT_NAME', `Duplicate element name: "${name}".`));
         else elementNames.set(canonical, element);
       }
-      if (!finiteVector3(element?.from) || !finiteVector3(element?.to)) {
-        issues.push(issue('error', 'INVALID_ELEMENT_BOUNDS', `Element "${name}" has malformed/non-finite from/to bounds.`));
+
+      if (isLocatorLike(element)) {
+        if (!finiteVector3(element.from)) issues.push(issue('error', 'INVALID_LOCATOR_POSITION', `Locator "${name}" has a malformed/non-finite from position.`));
+        if (!parentObject(element.parent)) issues.push(issue('warning', 'UNGROUPED_LOCATOR', `Locator "${name}" is not attached to an object-backed group/bone.`));
         continue;
       }
-      if (element.origin !== undefined && !finiteVector3(element.origin)) issues.push(issue('error', 'INVALID_ELEMENT_PIVOT', `Element "${name}" has malformed/non-finite origin.`));
+
+      if (!isCubeLike(element)) continue;
+
+      if (!finiteVector3(element?.from) || !finiteVector3(element?.to)) {
+        issues.push(issue('error', 'INVALID_ELEMENT_BOUNDS', `Cube element "${name}" has malformed/non-finite from/to bounds.`));
+        continue;
+      }
+      if (element.origin !== undefined && !finiteVector3(element.origin)) issues.push(issue('error', 'INVALID_ELEMENT_PIVOT', `Cube element "${name}" has malformed/non-finite origin.`));
       const size = [0, 1, 2].map((axis) => element.to[axis] - element.from[axis]);
-      if (size.some((value) => value < 0)) issues.push(issue('error', 'NEGATIVE_ELEMENT_SIZE', `Element "${name}" has negative size on at least one axis.`));
-      else if (size.some((value) => value === 0)) issues.push(issue('warning', 'ZERO_ELEMENT_SIZE', `Element "${name}" has zero thickness on at least one axis.`));
-      if (elements.length && !parentObject(element.parent)) issues.push(issue('warning', 'UNGROUPED_ELEMENT', `Element "${name}" is not attached to an object-backed group/bone.`));
+      if (size.some((value) => value < 0)) issues.push(issue('error', 'NEGATIVE_ELEMENT_SIZE', `Cube element "${name}" has negative size on at least one axis.`));
+      else if (size.some((value) => value === 0)) issues.push(issue('warning', 'ZERO_ELEMENT_SIZE', `Cube element "${name}" has zero thickness on at least one axis.`));
+      if (!parentObject(element.parent)) issues.push(issue('warning', 'UNGROUPED_ELEMENT', `Cube element "${name}" is not attached to an object-backed group/bone.`));
 
       const faces = element?.faces && typeof element.faces === 'object' ? Object.values(element.faces) : [];
       for (const face of faces) {
         if (!face || face.enabled === false) continue;
         const ref = normalizeTextureRef(face.texture);
-        if (!ref || !textureRefs.has(ref)) issues.push(issue('error', 'MISSING_FACE_TEXTURE', `Element "${name}" has an enabled face with an unresolved texture reference.`));
-        if (face.uv !== undefined && (!Array.isArray(face.uv) || face.uv.length < 4 || !face.uv.slice(0, 4).every(Number.isFinite))) issues.push(issue('error', 'INVALID_FACE_UV', `Element "${name}" has an enabled face with malformed UV coordinates.`));
+        if (!ref || !textureRefs.has(ref)) issues.push(issue('error', 'MISSING_FACE_TEXTURE', `Cube element "${name}" has an enabled face with an unresolved texture reference.`));
+        if (face.uv !== undefined && (!Array.isArray(face.uv) || face.uv.length < 4 || !face.uv.slice(0, 4).every(Number.isFinite))) issues.push(issue('error', 'INVALID_FACE_UV', `Cube element "${name}" has an enabled face with malformed UV coordinates.`));
       }
     }
-    if (elements.length > 0 && textures.length === 0) issues.push(issue('error', 'NO_TEXTURES', 'Model has renderable elements but no project texture.'));
+    if (cubeElements.length > 0 && textures.length === 0) issues.push(issue('error', 'NO_TEXTURES', 'Model has renderable cube elements but no project texture.'));
 
     const animationNames = new Map();
     for (const animation of animations) {
@@ -163,7 +187,7 @@
       if (canonical && !animationNames.has(canonical)) issues.push(issue('error', 'MISSING_REQUIRED_ANIMATION', `Required contract animation "${required}" is missing.`));
     }
 
-    const bounds = computeBounds(elements);
+    const bounds = computeBounds(cubeElements);
     if (bounds && Array.isArray(profile.maxSpan) && profile.maxSpan.length >= 3) {
       for (let axis = 0; axis < 3; axis += 1) {
         const limit = profile.maxSpan[axis];
@@ -174,13 +198,20 @@
       }
     }
 
-    return summarize(issues, bounds, { groupCount: groups.length, elementCount: elements.length, textureCount: textures.length, animationCount: animations.length });
+    return summarize(issues, bounds, {
+      groupCount: groups.length,
+      elementCount: elements.length,
+      cubeCount: cubeElements.length,
+      locatorCount: locatorElements.length,
+      textureCount: textures.length,
+      animationCount: animations.length,
+    });
   }
 
   function formatReport(result) {
     const lines = [`Structural QA: ${result.errors.length} error(s), ${result.warnings.length} warning(s).`];
     if (result.bounds) lines.push(`Bounds span: ${result.bounds.span.join(' x ')}.`);
-    if (result.counts) lines.push(`Bones: ${result.counts.groupCount || 0}; elements: ${result.counts.elementCount || 0}; textures: ${result.counts.textureCount || 0}; animations: ${result.counts.animationCount || 0}.`);
+    if (result.counts) lines.push(`Bones: ${result.counts.groupCount || 0}; elements: ${result.counts.elementCount || 0} (cubes: ${result.counts.cubeCount || 0}, locators: ${result.counts.locatorCount || 0}); textures: ${result.counts.textureCount || 0}; animations: ${result.counts.animationCount || 0}.`);
     const limited = result.issues.slice(0, 50);
     for (const item of limited) lines.push(`[${item.severity.toUpperCase()}] ${item.code}: ${item.message}`);
     if (result.issues.length > limited.length) lines.push(`... ${result.issues.length - limited.length} additional issue(s) omitted.`);
@@ -203,7 +234,7 @@
       bb.Blockbench.showMessageBox({ title: 'RPG Asset Toolkit', icon: result.errors.length ? 'error' : 'check_circle', message: formatReport(result), buttons: ['OK'] });
     }
     bb.Plugin.register('rpg_asset_toolkit', {
-      title: 'RPG Asset Toolkit', author: 'Gustavaopere', description: 'Read-only structural and contract QA for project-owned Minecraft/GeckoLib assets.', icon: 'fact_check', version: '0.1.0', variant: 'both', tags: ['Minecraft: Java Edition'],
+      title: 'RPG Asset Toolkit', author: 'Gustavaopere', description: 'Read-only structural and contract QA for project-owned Minecraft/GeckoLib assets.', icon: 'fact_check', version: '0.1.1', variant: 'both', tags: ['Minecraft: Java Edition'],
       onload() {
         auditAction = new bb.Action('rpg_asset_toolkit_validate', { name: 'Validate RPG Asset', description: 'Run read-only structural checks on the active Blockbench project.', icon: 'fact_check', click() { show(validateProject(bb.Blockbench.Project, {})); } });
         profileAction = new bb.Action('rpg_asset_toolkit_validate_profile', { name: 'Validate RPG Asset Against Contract Profile', description: 'Run the same checks plus optional required bones/animations/maxSpan from JSON.', icon: 'rule', click() {
@@ -219,5 +250,5 @@
     });
   }
 
-  return { validateProject, formatReport, parseProfileJson, registerBlockbenchPlugin, computeBounds };
+  return { validateProject, formatReport, parseProfileJson, registerBlockbenchPlugin, computeBounds, isCubeLike, isLocatorLike };
 });
