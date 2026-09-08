@@ -36,7 +36,11 @@ base {
 repositories {
     mavenCentral()
     maven { url = 'https://maven.neoforged.net/releases' }
-    maven { url = 'https://maven.parchmentmc.org' }
+    maven {
+        name = 'ParchmentMC'
+        url = 'https://maven.parchmentmc.org'
+        content { includeGroup 'org.parchmentmc.data' }
+    }
     maven { url = 'https://maven.createmod.net' }
     maven { url = 'https://maven.theillusivec4.top/' }
     maven {
@@ -279,7 +283,7 @@ def epicFightAdapterCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.
 def projectileBridgeCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.events.A0051A0060Chat3*CoverageJUnitTest'
 def a0071A0080RuntimeCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.A0071A0080RuntimeIntegrationCoverageJUnitTest'
 def a0071A0080GeneralEventCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.events.A0071A0080GeneralEventCoverageJUnitTest'
-def a0073A0080ProjectileCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.events.A0073A0080ProjectileEventCoverageJUnitTest'
+def a0073A0080ProjectileCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.events/A0073A0080ProjectileEventCoverageJUnitTest'
 def a0071A0080EpicFightCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.compat.epicfight.A0071A0080EpicFight*CoverageJUnitTest'
 def a0081A0090RuntimeCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.A0081A0090RuntimeCoverageJUnitTest'
 def a0081A0090EventCoverageTest = 'dev.gustavopere.rpgskilltree.runtime.events.A0081A0090EventCoverageJUnitTest'
