@@ -224,6 +224,8 @@ function runSelfTest() {
     expectFailure('parenthesized-pass-declaration', tmp, /unsupported PASS/i);
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\nNative editor acceptance — PASS\n`, 'utf8');
     expectFailure('dash-pass-declaration', tmp, /unsupported PASS/i);
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\nNative editor acceptance / PASS\n`, 'utf8');
+    expectFailure('slash-pass-declaration', tmp, /unsupported PASS/i);
     fs.writeFileSync(file, '| Check | (PASS) | evidence |\n', 'utf8');
     expectFailure('table-wrapped-pass', tmp, /wrapped PASS table/i);
     fs.writeFileSync(file, 'Native editor acceptance:\nPASS\n', 'utf8');
