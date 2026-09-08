@@ -43,7 +43,7 @@ function relativePath(file) {
 }
 
 function normalizeToken(value) {
-  return String(value || '').replace(/[*`~]/g, '').trim();
+  return String(value || '').replace(/[*`]/g, '').trim();
 }
 
 function parseTableRow(line) {
@@ -296,8 +296,12 @@ for (const file of markdownFiles) {
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index];
     const lineNumber = index + 1;
-    const normalizedLine = normalizeToken(line);
 
+    if (line.includes('~~')) {
+      fail(`${relative}:${lineNumber} uses Markdown strikethrough, which is forbidden in the reference-only corpus because it can visually replace guarded evidence sentinels`);
+    }
+
+    const normalizedLine = normalizeToken(line);
     const cells = parseTableRow(line);
     if (cells) {
       for (const cell of cells) {
@@ -316,4 +320,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), enforced scalar UNRESOLVED/PENDING values and table cells independently, and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), rejected strikethrough, enforced scalar UNRESOLVED/PENDING values and table cells independently, and found no unsupported PASS-form acceptance claim`);
