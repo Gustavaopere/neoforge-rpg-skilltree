@@ -201,6 +201,8 @@ function runSelfTest() {
     expectFailure('same-line-status-duplicate', tmp, /exactly one rendered Status/i);
     fs.writeFileSync(file, `\`\`\`text\nStatus: ${CANONICAL_STATUS}\n\`\`\`\nFinal visual acceptance remains PENDING.\n`, 'utf8');
     expectFailure('status-inside-fenced-code', tmp, /rendered Status|code block|exactly one rendered Status/i);
+    fs.writeFileSync(file, `- \`\`\`text\n  Status: ${CANONICAL_STATUS}\n  \`\`\`\nFinal visual acceptance remains PENDING.\n`, 'utf8');
+    expectFailure('status-inside-list-fenced-code', tmp, /rendered Status|code block|exactly one rendered Status/i);
     fs.writeFileSync(file, `    Status: ${CANONICAL_STATUS}\nFinal visual acceptance remains PENDING.\n`, 'utf8');
     expectFailure('status-inside-indented-code', tmp, /rendered Status|code block|exactly one rendered Status/i);
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n## Status\\: PRODUCTION READY — escaped-colon rendered contradiction.\n`, 'utf8');
