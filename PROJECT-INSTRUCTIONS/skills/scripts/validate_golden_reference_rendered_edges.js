@@ -82,6 +82,7 @@ function validateRoot(root) {
   const blockquoteContainer = /^\s*(?:(?:[-+*]|\d+[.)])\s+)*>\s?/;
   const commonmarkEscape = /\\[!"#$%&'()*+,\-.\/:;<=>?@\[\]\\^_`{|}~]/;
   const htmlEntityReference = /&(?:#x[0-9a-f]+|#\d+|[a-z][a-z0-9]+);/i;
+  const referenceDefinition = /^ {0,3}\[[^\]\r\n]+\]:/m;
 
   for (const file of markdownFiles) {
     const relative = path.relative(root, file).split(path.sep).join('/');
@@ -102,6 +103,15 @@ function validateRoot(root) {
     // decoded into active Markdown syntax and hide fabricated guarded evidence.
     if (commonmarkEscape.test(source)) {
       fail(`${relative} uses a CommonMark backslash escape; punctuation escapes are forbidden in the reference-only corpus because they can change Markdown parsing before guarded-evidence validation`);
+    }
+
+    // Shortcut/collapsed reference links derive their rendered link semantics from definitions
+    // elsewhere in the document. The local normalizer cannot safely infer that global state
+    // without becoming a partial CommonMark parser. This reference-only corpus has no need for
+    // reference definitions, so forbid their activating syntax; ordinary inline links remain
+    // available. This closes both guarded-label and split-PASS shortcut-reference bypasses.
+    if (referenceDefinition.test(source)) {
+      fail(`${relative} uses a Markdown reference definition; reference definitions are forbidden in the reference-only corpus because they can activate shortcut links that alter guarded evidence or acceptance text after local normalization`);
     }
 
     // Fail closed on every raw CommonMark HTML opener, including unterminated comments,
@@ -245,5 +255,5 @@ function runSelfTest() {
 if (process.argv.includes('--self-test')) runSelfTest();
 else {
   validateRoot(DEFAULT_ROOT);
-  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no HTML character references/CommonMark escapes, raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
+  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no HTML character references/CommonMark escapes/reference definitions, raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
 }
