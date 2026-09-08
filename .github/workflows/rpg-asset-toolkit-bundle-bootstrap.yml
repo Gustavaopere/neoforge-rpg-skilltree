@@ -1,0 +1,34 @@
+name: RPG Asset Toolkit Bundle Bootstrap
+
+on:
+  push:
+    branches:
+      - feat/blockbench-core-provider-extension-registry
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Regenerate canonical standalone bundle
+        run: node PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/build_toolkit_bundle.js --write
+
+      - name: Commit generated bundle when changed
+        shell: bash
+        run: |
+          if git diff --quiet -- PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js; then
+            echo "Bundle already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js
+          git commit -m "build: regenerate Blockbench toolkit bundle"
+          git push origin "HEAD:${{ github.ref_name }}"
