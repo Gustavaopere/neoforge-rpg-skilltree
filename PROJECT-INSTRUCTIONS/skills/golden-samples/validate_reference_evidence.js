@@ -148,7 +148,18 @@ function runStatusDeclarationRegressionSelfTest() {
 
   const bareTableRow = parseTableRow('`root` | duplicate runtime root | fabricated pivot | com.example.FabricatedRenderer');
   if (!bareTableRow || bareTableRow.length !== 4 || bareTableRow[0] !== 'root' || bareTableRow[3] !== 'com.example.FabricatedRenderer') {
-    fail('internal table-row regression self-test expected a valid GFM row without outer pipes to remain visible to guarded-key uniqueness checks');
+    fail('internal table-row regression self-test expected a valid GFM row without outer pipes to be parseable');
+  }
+
+  const tableBlock = extractGfmTableRows([
+    'Bone | Purpose | Pivot rule | Runtime dependency',
+    '--- | --- | --- | ---',
+    'root | duplicate runtime root | fabricated pivot | com.example.FabricatedRenderer',
+    '',
+    'root | is a conventional name in examples and this is ordinary prose.',
+  ].join('\n'));
+  if (tableBlock.length !== 2 || tableBlock[0].cells[0] !== 'Bone' || tableBlock[1].cells[0] !== 'root') {
+    fail(`internal table-boundary regression self-test expected exactly header + one bare GFM data row; found ${tableBlock.length}`);
   }
 }
 
@@ -170,13 +181,35 @@ function isSeparatorRow(cells) {
   return cells.every((cell) => /^:?-{3,}:?$/.test(cell));
 }
 
+function extractGfmTableRows(source) {
+  const lines = String(source || '').split(/\r?\n/);
+  const rows = [];
+
+  for (let index = 0; index < lines.length - 1; index += 1) {
+    const header = parseTableRow(lines[index]);
+    const delimiter = parseTableRow(lines[index + 1]);
+    if (!header || !delimiter || header.length !== delimiter.length || !isSeparatorRow(delimiter)) continue;
+
+    rows.push({line: lines[index], lineNumber: index + 1, cells: header});
+    index += 1;
+
+    while (index + 1 < lines.length) {
+      const nextLine = lines[index + 1];
+      if (!nextLine.trim()) break;
+      const cells = parseTableRow(nextLine);
+      if (!cells || isSeparatorRow(cells)) break;
+      rows.push({line: nextLine, lineNumber: index + 2, cells});
+      index += 1;
+    }
+  }
+
+  return rows;
+}
+
 function tableRows(relative) {
   const file = path.join(ROOT, relative);
   if (!fs.existsSync(file)) fail(`missing guarded table file ${relative}`);
-  return fs.readFileSync(file, 'utf8')
-    .split(/\r?\n/)
-    .map((line, index) => ({line, lineNumber: index + 1, cells: parseTableRow(line)}))
-    .filter((entry) => entry.cells && entry.cells.length && !isSeparatorRow(entry.cells));
+  return extractGfmTableRows(fs.readFileSync(file, 'utf8'));
 }
 
 function findPrefixedLine(relative, prefix) {
@@ -455,4 +488,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered block-container labels/statuses/entities/escapes, enforced unique scalar/table guards, and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered block-container labels/statuses/entities/escapes, enforced unique scalar/table guards within actual GFM table blocks, and found no unsupported PASS-form acceptance claim`);
