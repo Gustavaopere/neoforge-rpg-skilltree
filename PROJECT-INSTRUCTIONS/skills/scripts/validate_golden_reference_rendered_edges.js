@@ -5,6 +5,7 @@ const os = require('node:os');
 const path = require('node:path');
 
 const DEFAULT_ROOT = path.resolve(__dirname, '..', 'golden-samples');
+const CANONICAL_STATUS = 'REFERENCE-ONLY — not a runtime registration and not evidence of shipped gameplay.';
 
 function fail(message) {
   throw new Error(`Golden Samples rendered-edge validation failed: ${message}`);
@@ -45,6 +46,23 @@ function walk(dir) {
     else out.push(full);
   }
   return out;
+}
+
+function collectRenderedStatusDeclarations(source) {
+  const declarations = [];
+  const lines = String(source || '').split(/\r?\n/);
+  for (let index = 0; index < lines.length; index += 1) {
+    const normalized = normalizeRenderedText(lines[index]);
+    const pattern = /\bStatus\s*:/gi;
+    let match = null;
+    while ((match = pattern.exec(normalized)) !== null) {
+      declarations.push({
+        lineNumber: index + 1,
+        value: normalized.slice(match.index + match[0].length).trim(),
+      });
+    }
+  }
+  return declarations;
 }
 
 function validateRoot(root) {
@@ -101,6 +119,18 @@ function validateRoot(root) {
         fail(`${relative}:paragraph-${index + 1} claims unsupported PASS acceptance/status across a rendered soft break`);
       }
     }
+
+    // `Status:` is a corpus boundary, not ordinary prose. Count every rendered occurrence,
+    // regardless of Markdown container syntax (heading/list/task-list/emphasis), and require
+    // exactly one canonical declaration. This also rejects multiple declarations on one line.
+    const statusDeclarations = collectRenderedStatusDeclarations(source);
+    if (statusDeclarations.length !== 1) {
+      fail(`${relative} must contain exactly one rendered Status: declaration; found ${statusDeclarations.length}`);
+    }
+    const status = statusDeclarations[0];
+    if (status.value !== CANONICAL_STATUS) {
+      fail(`${relative}:${status.lineNumber} rendered Status value must be exactly "${CANONICAL_STATUS}"; got "${status.value || '<empty>'}"`);
+    }
   }
 }
 
@@ -156,6 +186,12 @@ function runSelfTest() {
 
     fs.writeFileSync(file, '<![CDATA[probe]]>\n', 'utf8');
     expectFailure('html-cdata', tmp, /raw HTML/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n## Status: PRODUCTION READY — runtime registration and shipped gameplay.\n`, 'utf8');
+    expectFailure('heading-status-duplicate', tmp, /exactly one rendered Status/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS} Status: PRODUCTION READY — duplicate on one rendered line.\n`, 'utf8');
+    expectFailure('same-line-status-duplicate', tmp, /exactly one rendered Status/i);
   } finally {
     fs.rmSync(tmp, {recursive: true, force: true});
   }
@@ -165,5 +201,5 @@ function runSelfTest() {
 if (process.argv.includes('--self-test')) runSelfTest();
 else {
   validateRoot(DEFAULT_ROOT);
-  console.log('OK: Golden Samples rendered-edge gate found no raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
+  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
 }
