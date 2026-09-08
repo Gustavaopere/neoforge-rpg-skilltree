@@ -21,7 +21,7 @@ Rules:
 
 1. Repository reality and the exact physical modlist remain authority.
 2. Unknown runtime/provider fields stay `UNRESOLVED`; examples do not guess APIs, registries, export paths, network messages, sound events, or provider hooks.
-3. Provider names may be listed only as verified installed candidates. Current physical-modlist evidence relevant to this corpus includes GeckoLib 4.9.2, Photon 2.2.6.a, AAA Particles 2.2.3, and AAA Particles World 2.0.0 for Minecraft 1.21.1/NeoForge.
+3. Provider names may be listed only with their verified physical-modlist state. The latest snapshot checked on 2026-09-08 contains 595 top-level entries. Current evidence relevant to this corpus includes GeckoLib 4.9.2 and Photon 2.2.6.a. AAA Particles 2.2.3 and AAA Particles World 2.0.0 were creation-time candidates but are absent from the latest physical modlist; if retained in reference tables they must be explicitly marked unavailable and cannot be selected as providers while absent.
 4. The spell example is named `golden_reference_arcane_bolt`; it has no gameplay owner and no runtime registration.
 5. The model example is named `golden_reference_focus_relic`; it has no runtime item/entity registration.
 6. Client presentation may describe intended phases, but server authority, causality, resource cost, cooldown, target resolution, hit/damage, and provider APIs remain `UNRESOLVED` unless a real runtime implementation is later linked.
