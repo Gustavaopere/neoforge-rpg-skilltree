@@ -77,6 +77,8 @@ function validateRoot(root) {
   const wrapper = `[\\[\\(\\{<"'“‘]*`;
   const statusAfterSeparator = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|status|state|result|resultado|qa)\\b[^:=\\n]{0,80}[:=]\\s*${wrapper}\\s*PASS\\b`, 'i');
   const proseStatus = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|qa)\\b(?:\\s+\\S+){0,6}\\s+(?:(?:has|have|had)\\s+been|remains?|remained|remain|is|are|was|were|permanece|continuam?|continuou|continuaram|fica|ficou|continua)\\s*${wrapper}\\s*PASS\\b`, 'i');
+  const contradictoryStatusAfterSeparator = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|status|state|result|resultado|qa)\\b[^:=\\n]{0,80}[:=]\\s*${wrapper}\\s*(?:PENDING|UNRESOLVED)\\b[^\\n]{0,160}\\bPASS\\b`, 'i');
+  const contradictoryProseStatus = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|qa)\\b(?:\\s+\\S+){0,6}\\s+(?:(?:has|have|had)\\s+been|remains?|remained|remain|is|are|was|were|permanece|continuam?|continuou|continuaram|fica|ficou|continua)\\s*${wrapper}\\s*(?:PENDING|UNRESOLVED)\\b[^\\n]{0,160}\\bPASS\\b`, 'i');
   const tablePass = new RegExp(`^\\s*${wrapper}\\s*PASS\\b`, 'i');
   const rawHtmlOpener = /<(?:!|\?|\/?[A-Za-z])/;
   const blockquoteContainer = /^\s*(?:(?:[-+*]|\d+[.)])\s+)*>\s?/;
@@ -131,6 +133,9 @@ function validateRoot(root) {
       }
 
       const normalized = normalizeRenderedText(lines[index]);
+      if (contradictoryStatusAfterSeparator.test(normalized) || contradictoryProseStatus.test(normalized)) {
+        fail(`${relative}:${index + 1} contains contradictory PENDING/UNRESOLVED and PASS tokens in one guarded acceptance/status declaration`);
+      }
       if (statusAfterSeparator.test(normalized) || proseStatus.test(normalized)) {
         fail(`${relative}:${index + 1} claims unsupported PASS acceptance/status through punctuation or prose wrapping`);
       }
@@ -150,6 +155,9 @@ function validateRoot(root) {
     const paragraphs = source.split(/\r?\n\s*\r?\n/);
     for (let index = 0; index < paragraphs.length; index += 1) {
       const renderedParagraph = normalizeRenderedText(paragraphs[index].replace(/\r?\n/g, ' '));
+      if (contradictoryStatusAfterSeparator.test(renderedParagraph) || contradictoryProseStatus.test(renderedParagraph)) {
+        fail(`${relative}:paragraph-${index + 1} contains contradictory PENDING/UNRESOLVED and PASS tokens in one guarded acceptance/status declaration`);
+      }
       if (statusAfterSeparator.test(renderedParagraph) || proseStatus.test(renderedParagraph)) {
         fail(`${relative}:paragraph-${index + 1} claims unsupported PASS acceptance/status across a rendered soft break`);
       }
@@ -185,6 +193,12 @@ function runSelfTest() {
     const file = path.join(tmp, 'sample.md');
     fs.writeFileSync(file, 'Status: REFERENCE-ONLY — not a runtime registration and not evidence of shipped gameplay.\nFinal visual acceptance remains PENDING.\nDo not mark PASS from preview alone.\n', 'utf8');
     validateRoot(tmp);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\nFinal visual acceptance remains PENDING / PASS until real asset evidence exists.\n`, 'utf8');
+    expectFailure('pending-pass-contradiction', tmp, /contradictory PENDING\/UNRESOLVED and PASS/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\nNative editor acceptance: UNRESOLVED / PASS until provider evidence exists.\n`, 'utf8');
+    expectFailure('unresolved-pass-contradiction', tmp, /contradictory PENDING\/UNRESOLVED and PASS/i);
 
     fs.writeFileSync(file, '- Runtime consumer/class: `UNRESOLVED`<br>- Runtime consumer/class: com.example.FabricatedRenderer\n', 'utf8');
     expectFailure('rendered-break-duplicate', tmp, /raw HTML/i);
@@ -266,5 +280,5 @@ function runSelfTest() {
 if (process.argv.includes('--self-test')) runSelfTest();
 else {
   validateRoot(DEFAULT_ROOT);
-  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no HTML character references/CommonMark escapes/reference definitions, raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
+  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no HTML character references/CommonMark escapes/reference definitions, raw HTML/blockquotes, hidden rendered breaks, soft-break or contradictory PASS claims, or wrapped PASS status');
 }
