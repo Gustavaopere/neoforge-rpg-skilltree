@@ -159,12 +159,16 @@ function parseListItemMarker(line, containerIndent = 0) {
 function buildListContainerIndents(lines) {
   const containerIndents = new Array(lines.length).fill(0);
   const stack = [];
+  let blankRun = 0;
   for (let index = 0; index < lines.length; index += 1) {
     const line = String(lines[index] || '');
     if (!line.trim()) {
+      blankRun += 1;
       containerIndents[index] = stack.length ? stack[stack.length - 1].contentIndent : 0;
+      if (blankRun >= 2) stack.length = 0;
       continue;
     }
+    blankRun = 0;
     const leading = leadingSpaceCount(line);
     while (stack.length && leading < stack[stack.length - 1].contentIndent) stack.pop();
     const parentIndent = stack.length ? stack[stack.length - 1].contentIndent : 0;
