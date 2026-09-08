@@ -23,3 +23,16 @@ test('enabled face referencing missing texture is an error', () => { const p = p
 test('contract profile enforces required bones and animations', () => { const result = toolkit.validateProject(project(), {requiredBones: ['root', 'weapon_socket'], requiredAnimations: ['animation.golden_asset.idle', 'animation.golden_asset.attack']}); assert.ok(result.errors.some((i) => i.code === 'MISSING_REQUIRED_BONE')); assert.ok(result.errors.some((i) => i.code === 'MISSING_REQUIRED_ANIMATION')); });
 test('contract profile enforces maximum span without a universal hardcoded budget', () => { assert.ok(toolkit.validateProject(project(), {maxSpan: [3, 16, 16]}).errors.some((i) => i.code === 'MODEL_SPAN_EXCEEDED')); });
 test('known animation target uuids are accepted and unknown targets warn', () => { const p = project(); p.animations[0].animators['ghost-bone'] = {}; assert.ok(toolkit.validateProject(p, {}).warnings.some((i) => i.code === 'UNKNOWN_ANIMATOR_TARGET')); });
+test('locator-only projects do not receive cube bounds or texture errors', () => {
+  const locator = {name: 'vfx_locator', uuid: 'locator-vfx', from: [0, 8, 0], parent: {uuid: 'bone-vfx', name: 'vfx_anchor'}};
+  const result = toolkit.validateProject(project({elements: [locator], textures: []}), {});
+  for (const code of ['INVALID_ELEMENT_BOUNDS', 'NO_TEXTURES', 'MISSING_FACE_TEXTURE']) {
+    assert.equal(result.errors.some((item) => item.code === code), false, `unexpected ${code}`);
+  }
+});
+test('malformed locator positions are reported separately from cube bounds', () => {
+  const locator = {name: 'bad_locator', uuid: 'locator-bad', from: [0, Number.NaN, 0], parent: {uuid: 'bone-vfx', name: 'vfx_anchor'}};
+  const result = toolkit.validateProject(project({elements: [locator], textures: []}), {});
+  assert.ok(result.errors.some((item) => item.code === 'INVALID_LOCATOR_POSITION'));
+  assert.equal(result.errors.some((item) => item.code === 'INVALID_ELEMENT_BOUNDS'), false);
+});
