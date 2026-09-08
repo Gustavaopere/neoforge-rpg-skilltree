@@ -75,7 +75,10 @@ for (const animation of [
 ]) {
   if (!Array.isArray(profile.requiredAnimations) || !profile.requiredAnimations.includes(animation)) fail(`profile missing required animation ${animation}`);
 }
-if (!Array.isArray(profile.maxSpan) || profile.maxSpan.length < 3 || !profile.maxSpan.slice(0, 3).every(Number.isFinite)) fail('profile must keep a finite asset-specific maxSpan');
+const boundedMaxSpan = Array.isArray(profile.maxSpan) ? profile.maxSpan.slice(0, 3) : [];
+if (boundedMaxSpan.length !== 3 || !boundedMaxSpan.every((value) => Number.isFinite(value) && value > 0)) {
+  fail('profile must keep exactly three finite, positive asset-specific maxSpan limits');
+}
 
 const allFiles = walk(ROOT);
 const markdownFiles = allFiles.filter((file) => file.endsWith('.md'));
