@@ -1,0 +1,23 @@
+name: Gradle Repository Content Filter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Verify Gradle repository content filters
+        run: python3 scripts/test_gradle_repository_content_filters.py
