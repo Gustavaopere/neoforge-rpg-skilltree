@@ -83,6 +83,16 @@ function validateRoot(root) {
         }
       }
     }
+
+    // Markdown soft line breaks inside one paragraph render as whitespace. Scan the rendered
+    // paragraph too so `acceptance:\nPASS` cannot evade the line-oriented checks above.
+    const paragraphs = source.split(/\r?\n\s*\r?\n/);
+    for (let index = 0; index < paragraphs.length; index += 1) {
+      const renderedParagraph = normalizeRenderedText(paragraphs[index].replace(/\r?\n/g, ' '));
+      if (statusAfterSeparator.test(renderedParagraph) || proseStatus.test(renderedParagraph)) {
+        fail(`${relative}:paragraph-${index + 1} claims unsupported PASS acceptance/status across a rendered soft break`);
+      }
+    }
   }
 }
 
@@ -111,6 +121,9 @@ function runSelfTest() {
 
     fs.writeFileSync(file, '| Check | (PASS) | evidence |\n', 'utf8');
     expectFailure('table-wrapped-pass', tmp, /wrapped PASS table/i);
+
+    fs.writeFileSync(file, 'Native editor acceptance:\nPASS\n', 'utf8');
+    expectFailure('soft-break-pass', tmp, /soft break/i);
   } finally {
     fs.rmSync(tmp, {recursive: true, force: true});
   }
@@ -120,5 +133,5 @@ function runSelfTest() {
 if (process.argv.includes('--self-test')) runSelfTest();
 else {
   validateRoot(DEFAULT_ROOT);
-  console.log('OK: Golden Samples rendered-edge gate found no hidden rendered breaks or wrapped PASS status');
+  console.log('OK: Golden Samples rendered-edge gate found no hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
 }
