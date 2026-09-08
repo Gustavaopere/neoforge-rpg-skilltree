@@ -56,24 +56,24 @@ function validateRoot(root) {
   const statusAfterSeparator = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|status|state|result|resultado|qa)\\b[^:=\\n]{0,80}[:=]\\s*${wrapper}\\s*PASS\\b`, 'i');
   const proseStatus = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|qa)\\b(?:\\s+\\S+){0,6}\\s+(?:(?:has|have|had)\\s+been|remains?|remained|remain|is|are|was|were|permanece|continuam?|continuou|continuaram|fica|ficou|continua)\\s*${wrapper}\\s*PASS\\b`, 'i');
   const tablePass = new RegExp(`^\\s*${wrapper}\\s*PASS\\b`, 'i');
+  const rawHtmlOpener = /<(?:!|\?|\/?[A-Za-z])/;
+  const blockquoteContainer = /^\s*(?:(?:[-+*]|\d+[.)])\s+)*>\s?/;
 
   for (const file of markdownFiles) {
     const relative = path.relative(root, file).split(path.sep).join('/');
     const source = fs.readFileSync(file, 'utf8');
 
-    // The reference-only corpus intentionally forbids raw HTML and blockquotes. These
-    // constructs can alter rendered block/line structure or hide tokens without changing
-    // the physical source layout inspected by the remaining guards.
-    if (/<!--[\s\S]*?-->/.test(source)) {
-      fail(`${relative} uses an HTML comment; comments are forbidden in the reference-only corpus because invisible text can alter guarded evidence`);
-    }
-    if (/<\s*\/?\s*[A-Za-z][^>]*>/.test(source)) {
-      fail(`${relative} uses a raw HTML tag; physical Markdown/newlines are required so rendered block structure cannot hide guarded declarations`);
+    // Fail closed on every raw CommonMark HTML opener, including unterminated comments,
+    // declarations/CDATA, processing instructions, and ordinary opening/closing elements.
+    // The reference-only corpus has no need for raw HTML; entity-escaped text remains allowed.
+    if (rawHtmlOpener.test(source)) {
+      fail(`${relative} uses raw HTML syntax; raw HTML is forbidden in the reference-only corpus because invisible or block-producing constructs can hide guarded evidence`);
     }
 
     const lines = source.split(/\r?\n/);
     for (let index = 0; index < lines.length; index += 1) {
-      if (/^\s*>/.test(lines[index])) {
+      // Blockquotes are forbidden even when nested after one or more list-item markers.
+      if (blockquoteContainer.test(lines[index])) {
         fail(`${relative}:${index + 1} uses a Markdown blockquote; blockquotes are forbidden because container prefixes can mask rendered acceptance/status text`);
       }
 
@@ -122,7 +122,7 @@ function runSelfTest() {
     validateRoot(tmp);
 
     fs.writeFileSync(file, '- Runtime consumer/class: `UNRESOLVED`<br>- Runtime consumer/class: com.example.FabricatedRenderer\n', 'utf8');
-    expectFailure('rendered-break-duplicate', tmp, /raw HTML tag/i);
+    expectFailure('rendered-break-duplicate', tmp, /raw HTML/i);
 
     fs.writeFileSync(file, 'Native editor acceptance: [PASS]\n', 'utf8');
     expectFailure('bracketed-pass', tmp, /unsupported PASS/i);
@@ -136,11 +136,26 @@ function runSelfTest() {
     fs.writeFileSync(file, '> Native editor acceptance:\n> PASS\n', 'utf8');
     expectFailure('blockquote-soft-break-pass', tmp, /Markdown blockquote/i);
 
+    fs.writeFileSync(file, '- > Native editor acceptance:\n  > PASS\n', 'utf8');
+    expectFailure('list-nested-blockquote-pass', tmp, /Markdown blockquote/i);
+
     fs.writeFileSync(file, '- Runtime consumer/class: `UNRESOLVED`</div><div>- Runtime consumer/class: com.example.FabricatedRenderer\n', 'utf8');
-    expectFailure('html-block-duplicate', tmp, /raw HTML tag/i);
+    expectFailure('html-block-duplicate', tmp, /raw HTML/i);
 
     fs.writeFileSync(file, 'Native editor acceptance: PA<!-- invisible -->SS\n', 'utf8');
-    expectFailure('html-comment-pass', tmp, /HTML comment/i);
+    expectFailure('html-comment-pass', tmp, /raw HTML/i);
+
+    fs.writeFileSync(file, '<!-- unterminated\nStatus: REFERENCE-ONLY — not a runtime registration and not evidence of shipped gameplay.\n', 'utf8');
+    expectFailure('unterminated-html-comment', tmp, /raw HTML/i);
+
+    fs.writeFileSync(file, '<!doctype html>\n', 'utf8');
+    expectFailure('html-declaration', tmp, /raw HTML/i);
+
+    fs.writeFileSync(file, '<?probe?>\n', 'utf8');
+    expectFailure('html-processing-instruction', tmp, /raw HTML/i);
+
+    fs.writeFileSync(file, '<![CDATA[probe]]>\n', 'utf8');
+    expectFailure('html-cdata', tmp, /raw HTML/i);
   } finally {
     fs.rmSync(tmp, {recursive: true, force: true});
   }
