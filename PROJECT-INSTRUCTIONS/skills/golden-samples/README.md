@@ -8,12 +8,12 @@ These samples show how to fill the canonical art-production contracts merged in 
 
 Repository code/build configuration and the exact physical modlist remain authoritative. The examples below are process/reference data only. Any field not proven by repository/JAR/provider evidence stays `UNRESOLVED`.
 
-Verified installed candidates relevant to this corpus at creation time:
+Latest physical-modlist snapshot checked for this corpus on 2026-09-08: **595 top-level entries**. Currently installed candidates relevant here are:
 
 - GeckoLib 4.9.2 for Minecraft 1.21.1/NeoForge;
-- Photon 2.2.6.a;
-- AAA Particles 2.2.3;
-- AAA Particles World 2.0.0.
+- Photon 2.2.6.a.
+
+AAA Particles 2.2.3 and AAA Particles World 2.0.0 were present in the earlier creation-time snapshot but are **absent from the latest physical modlist**. Where they remain visible in the VFX matrix, they are retained only as explicit negative drift evidence and must not be selected as providers while absent.
 
 Presence is not API proof. No provider is selected automatically and no provider-native method/signature is asserted here.
 
