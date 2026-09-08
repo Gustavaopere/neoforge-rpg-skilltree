@@ -12,7 +12,7 @@ Build success and editor preview are not visual acceptance. Validate the asset/s
 
 ## Required sources
 
-- `../../../docs/art/VISUAL-STYLE-BIBLE.md` for project visual language;
+- `../../../../docs/art/VISUAL-STYLE-BIBLE.md` for project visual language;
 - `../../standards/VISUAL-QA.md` for model/texture/animation baseline;
 - `../../standards/VFX-QA.md` for VFX lifecycle/multiplayer/performance;
 - `../../standards/AUDIO-QA.md` when sound is part of the presentation;

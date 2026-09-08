@@ -8,53 +8,44 @@ project_status: preferred
 
 ## Core principle
 
-Do not start final geometry or texture work from a vague prompt. Establish the visual contract first, then preserve it through modeling, texturing, animation, integration, and in-game review.
+Do not start final geometry or texture work from a vague prompt. Establish the visual contract first, then preserve it through modeling, texturing, animation, integration and in-game review.
 
 ## Authority order
 
-1. physical/current project assets and the latest physical modlist;
-2. approved project art direction and nearby canonical assets;
-3. provider-native visual language when an integration must visually belong to that provider;
-4. concept references and generated images;
-5. generic Minecraft conventions.
+1. physical/current project assets and latest physical modlist;
+2. `docs/art/VISUAL-STYLE-BIBLE.md` and approved project art direction;
+3. nearby canonical project assets;
+4. provider-native visual language when an integration must belong to that provider;
+5. concept references/generated images;
+6. generic Minecraft conventions.
 
 If these disagree, report the conflict. Do not average incompatible styles silently.
 
-## Required asset contract
+## Required contract
 
-Before final production, record:
+Before final production, fill `../../templates/ASSET-BRIEF.md` and, for modeled assets, `../../templates/MODEL-BRIEF.md`.
 
-- gameplay role and viewing distance;
-- silhouette and proportions;
-- world/player scale;
-- palette, materials, surface age and contrast hierarchy;
-- texture resolution and intended texel density;
-- emissive/translucent/animated regions, if any;
-- model type and expected render contexts;
-- required bones/attachment points when animation or VFX needs them;
-- animation list with purpose, loop policy and readable poses;
-- provider/style references that are allowed to influence the asset;
-- performance constraints and LOD/complexity assumptions when relevant;
-- acceptance views: front, side, back, three-quarter and in-game scale.
-
-Use `standards/MODEL-ASSET-CONTRACT.md` as the canonical template.
+Record at minimum role/viewing distance, silhouette, scale, palette/materials, resolution + texel-density evidence, special render regions, bones/attachments, animations, provider/style references, performance assumptions, provenance and acceptance views.
 
 ## Workflow
 
-1. Inspect existing project assets before inventing a new visual language.
-2. Produce the asset contract.
-3. Use `minecraft-imagegen` only for concept/look-dev or reference sheets when useful; generated art is not automatically a final texture, UV, rig, or model.
-4. Convert the approved visual intent into explicit model/texture requirements.
-5. For Blockbench or GeckoLib work, use `minecraft-blockbench-geckolib`.
-6. Run structural validation and then visual QA using `standards/VISUAL-QA.md`.
-7. Record unresolved visual compromises instead of declaring the asset finished.
+1. Read `../../../../docs/art/VISUAL-STYLE-BIBLE.md` and `../../VISUAL-STYLE-SOURCES.md`.
+2. Inspect neighboring project/canonical assets before inventing a new language.
+3. Produce the asset contract.
+4. Use `minecraft-imagegen` only for concept/look-dev/reference sheets when useful; generated art is not automatically final texture/UV/rig/model.
+5. Convert approved intent into explicit geometry/texture/animation requirements.
+6. For Blockbench/GeckoLib work, use `minecraft-blockbench-geckolib`.
+7. Run the RPG Asset Toolkit for structural/contract checks.
+8. Run `minecraft-visual-qa` in the actual game contexts.
+9. Record unresolved compromises instead of declaring the asset finished.
 
 ## Hard gates
 
 - No final asset from concept art alone.
-- No texture style chosen without checking neighboring canonical assets.
-- No emissive/glow used as a substitute for material definition.
-- No animation accepted solely because it exports; silhouette, timing, clipping and gameplay readability must be reviewed.
-- No provider-specific aesthetic copied into a project-owned asset without deciding whether the asset is actually meant to belong to that provider.
+- No texture style chosen without checking the Bible and neighboring canonical assets.
+- No universal texture resolution/texel density invented without measured evidence.
+- No emissive/glow used as substitute for material definition.
+- No animation accepted solely porque it exports.
+- No third-party visual copied without provenance/licence compatible with redistribution.
 
-If the user must operate Blockbench or another GUI, follow `../../USER-GUIDED-WORKFLOW.md`: give exactly one manual action, ask for the visible result, then continue.
+If the user must operate Blockbench or another GUI, follow `../../USER-GUIDED-WORKFLOW.md` exactly.
