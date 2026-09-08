@@ -49,11 +49,42 @@ function walk(dir) {
   return out;
 }
 
+function parseFenceOpening(line) {
+  const match = String(line || '').match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+  if (!match) return null;
+  const character = match[1][0];
+  if (character === '`' && match[2].includes('`')) return null;
+  return {character, length: match[1].length};
+}
+
+function isFenceClosing(line, fence) {
+  if (!fence) return false;
+  const match = String(line || '').match(/^ {0,3}(`+|~+)\s*$/);
+  return Boolean(match && match[1][0] === fence.character && match[1].length >= fence.length);
+}
+
+function isIndentedCodeLine(line) {
+  return /^(?:\t| {4})/.test(String(line || ''));
+}
+
 function collectRenderedStatusDeclarations(source) {
   const declarations = [];
   const lines = String(source || '').split(/\r?\n/);
+  let fence = null;
   for (let index = 0; index < lines.length; index += 1) {
-    const normalized = normalizeRenderedText(lines[index]);
+    const line = lines[index];
+    if (fence) {
+      if (isFenceClosing(line, fence)) fence = null;
+      continue;
+    }
+    const openingFence = parseFenceOpening(line);
+    if (openingFence) {
+      fence = openingFence;
+      continue;
+    }
+    if (isIndentedCodeLine(line)) continue;
+
+    const normalized = normalizeRenderedText(line);
     const pattern = /\bStatus\s*:/gi;
     let match = null;
     while ((match = pattern.exec(normalized)) !== null) {
@@ -170,6 +201,8 @@ function runSelfTest() {
     expectFailure('same-line-status-duplicate', tmp, /exactly one rendered Status/i);
     fs.writeFileSync(file, `\`\`\`text\nStatus: ${CANONICAL_STATUS}\n\`\`\`\nFinal visual acceptance remains PENDING.\n`, 'utf8');
     expectFailure('status-inside-fenced-code', tmp, /rendered Status|code block|exactly one rendered Status/i);
+    fs.writeFileSync(file, `    Status: ${CANONICAL_STATUS}\nFinal visual acceptance remains PENDING.\n`, 'utf8');
+    expectFailure('status-inside-indented-code', tmp, /rendered Status|code block|exactly one rendered Status/i);
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n## Status\\: PRODUCTION READY — escaped-colon rendered contradiction.\n`, 'utf8');
     expectFailure('escaped-heading-status-duplicate', tmp, /CommonMark backslash escape/i);
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n| root | purpose | pivot | [UNRESOLVED]\\(com.example.FabricatedRenderer) |\n`, 'utf8');
