@@ -77,8 +77,8 @@ function validateRoot(root) {
   const wrapper = `[\\[\\(\\{<"'“‘]*`;
   const statusAfterSeparator = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|status|state|result|resultado|qa)\\b[^:=\\n]{0,80}[:=]\\s*${wrapper}\\s*PASS\\b`, 'i');
   const proseStatus = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|qa)\\b(?:\\s+\\S+){0,6}\\s+(?:(?:has|have|had)\\s+been|remains?|remained|remain|is|are|was|were|permanece|continuam?|continuou|continuaram|fica|ficou|continua)\\s*${wrapper}\\s*PASS\\b`, 'i');
-  const contradictoryStatusAfterSeparator = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|status|state|result|resultado|qa)\\b[^:=\\n]{0,80}[:=]\\s*${wrapper}\\s*(?:PENDING|UNRESOLVED)\\b[^\\n]{0,160}\\bPASS\\b`, 'i');
-  const contradictoryProseStatus = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|qa)\\b(?:\\s+\\S+){0,6}\\s+(?:(?:has|have|had)\\s+been|remains?|remained|remain|is|are|was|were|permanece|continuam?|continuou|continuaram|fica|ficou|continua)\\s*${wrapper}\\s*(?:PENDING|UNRESOLVED)\\b[^\\n]{0,160}\\bPASS\\b`, 'i');
+  const contradictoryStatusAfterSeparator = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|status|state|result|resultado|qa)\\b[^:=\\n]{0,80}[:=]\\s*${wrapper}\\s*(?:PENDING|UNRESOLVED)\\b[^.!?\\n]{0,160}\\bPASS\\b`, 'i');
+  const contradictoryProseStatus = new RegExp(`\\b(?:acceptance|aceita(?:ç|c)[aã]o|qa)\\b(?:\\s+\\S+){0,6}\\s+(?:(?:has|have|had)\\s+been|remains?|remained|remain|is|are|was|were|permanece|continuam?|continuou|continuaram|fica|ficou|continua)\\s*${wrapper}\\s*(?:PENDING|UNRESOLVED)\\b[^.!?\\n]{0,160}\\bPASS\\b`, 'i');
   const tablePass = new RegExp(`^\\s*${wrapper}\\s*PASS\\b`, 'i');
   const rawHtmlOpener = /<(?:!|\?|\/?[A-Za-z])/;
   const blockquoteContainer = /^\s*(?:(?:[-+*]|\d+[.)])\s+)*>\s?/;
