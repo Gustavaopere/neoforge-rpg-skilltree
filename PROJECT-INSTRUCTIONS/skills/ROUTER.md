@@ -42,7 +42,8 @@ Para qualquer asset visual project-owned:
 3. `templates/ASSET-BRIEF.md` / `MODEL-BRIEF.md` / `ANIMATION-BRIEF.md` conforme o caso;
 4. `library/minecraft-blockbench-geckolib/SKILL.md` — `.bbmodel`, UV, rig, animação e GeckoLib 4;
 5. `tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js` — validator estrutural/contratual preferido;
-6. `library/minecraft-visual-qa/SKILL.md` + `standards/VISUAL-QA.md` — gate visual/in-game.
+6. `library/minecraft-visual-qa/SKILL.md` + `standards/VISUAL-QA.md` — gate visual/in-game;
+7. opcionalmente `golden-samples/model-asset/` — exemplo preenchido `REFERENCE-ONLY`, nunca authority de runtime/API.
 
 `minecraft-imagegen` é subordinada a este fluxo quando usada para concept/look-dev.
 
@@ -67,9 +68,14 @@ Para spell/ability project-owned ou integração que precise de polish:
 4. `library/minecraft-vfx-engineering/SKILL.md` — composição/backend VFX geral;
 5. `standards/SPELL-PRESENTATION-CONTRACT.md` e `standards/VFX-QA.md`;
 6. `library/minecraft-audio-design/SKILL.md` + `templates/AUDIO-CUE-SHEET.md` + `standards/AUDIO-QA.md`;
-7. `library/minecraft-visual-qa/SKILL.md` para aceitação final.
+7. `library/minecraft-visual-qa/SKILL.md` para aceitação final;
+8. opcionalmente `golden-samples/spell/` — exemplo completo `REFERENCE-ONLY`, com runtime/provider fields mantidos `UNRESOLVED` até prova real.
 
 Quando um spell exige construct/projectile animado, combinar com asset-art-direction + Blockbench/GeckoLib.
+
+## Golden Samples — regra de uso
+
+Golden Samples servem para mostrar forma, cobertura e estado de evidência. Eles entram **depois** das skills/templates/standards relevantes. Nunca copiar `golden_reference_*`, fixture normalizada, provider candidate ou `UNRESOLVED` como se fossem implementação existente.
 
 ## QA visual
 

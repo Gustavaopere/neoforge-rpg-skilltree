@@ -7,6 +7,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 REPO_ROOT = ROOT.parents[1]
 LIBRARY = ROOT / "library"
+GOLDEN = ROOT / "golden-samples"
 
 EXPECTED = {
     "minecraft-asset-art-direction", "minecraft-audio-design", "minecraft-blockbench-geckolib",
@@ -68,6 +69,27 @@ for template in ["ASSET-BRIEF.md", "MODEL-BRIEF.md", "ANIMATION-BRIEF.md", "VFX-
     if not (ROOT / "templates" / template).is_file():
         raise SystemExit(f"missing art-pipeline template: templates/{template}")
 
+golden_required = [
+    "README.md",
+    "model-asset/ASSET-BRIEF.md",
+    "model-asset/MODEL-CONTRACT.md",
+    "model-asset/ANIMATION-BRIEF.md",
+    "model-asset/TOOLKIT-PROFILE.json",
+    "model-asset/validator-project-fixture.json",
+    "spell/SPELL-BRIEF.md",
+    "spell/SPELL-PRESENTATION.md",
+    "spell/VFX-BRIEF.md",
+    "spell/AUDIO-CUE-SHEET.md",
+    "spell/VISUAL-QA.md",
+    "spell/VFX-QA.md",
+    "spell/AUDIO-QA.md",
+    "validate_golden_samples.js",
+    "validate_reference_evidence.js",
+]
+for relative in golden_required:
+    if not (GOLDEN / relative).is_file():
+        raise SystemExit(f"missing Golden Sample file: golden-samples/{relative}")
+
 router = (ROOT / "ROUTER.md").read_text(encoding="utf-8")
 for skill_name in ["minecraft-asset-art-direction", "minecraft-blockbench-geckolib", "minecraft-vfx-engineering", "minecraft-spell-production", "minecraft-spell-vfx-engineering", "minecraft-audio-design", "minecraft-visual-qa"]:
     if skill_name not in router: raise SystemExit(f"router does not expose project skill: {skill_name}")
@@ -114,4 +136,17 @@ toolkit_dir = ROOT / "tools" / "blockbench" / "rpg-asset-toolkit"
 subprocess.run([node, "--check", str(toolkit_dir / "rpg_asset_toolkit.js")], check=True)
 subprocess.run([node, "--test", str(toolkit_dir / "rpg_asset_toolkit.test.js")], check=True)
 
-print("OK: 27 canonical skills, art/VFX/audio standards, templates, Visual Style Bible, and Blockbench Toolkit present")
+golden_validator = GOLDEN / "validate_golden_samples.js"
+subprocess.run([node, "--check", str(golden_validator)], check=True)
+subprocess.run([node, str(golden_validator)], check=True)
+
+golden_evidence_validator = GOLDEN / "validate_reference_evidence.js"
+subprocess.run([node, "--check", str(golden_evidence_validator)], check=True)
+subprocess.run([node, str(golden_evidence_validator)], check=True)
+
+rendered_edge_validator = ROOT / "scripts" / "validate_golden_reference_rendered_edges.js"
+subprocess.run([node, "--check", str(rendered_edge_validator)], check=True)
+subprocess.run([node, str(rendered_edge_validator), "--self-test"], check=True)
+subprocess.run([node, str(rendered_edge_validator)], check=True)
+
+print("OK: 27 canonical skills, art/VFX/audio standards, templates, Visual Style Bible, Blockbench Toolkit, and Golden Samples present")
