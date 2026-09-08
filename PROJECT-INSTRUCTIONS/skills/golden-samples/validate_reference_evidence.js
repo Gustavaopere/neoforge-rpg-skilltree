@@ -81,12 +81,15 @@ function normalizeRenderedText(value) {
     .trim();
 }
 
-function normalizeStatusDeclarationText(value) {
+function normalizeBlockDeclarationText(value) {
   let normalized = normalizeRenderedText(value);
   let previous = null;
   while (normalized !== previous) {
     previous = normalized;
-    normalized = normalized.replace(/^(?:[-+*]|\d+[.)]|\[[ xX]\])\s+/, '').trimStart();
+    normalized = normalized
+      .replace(/^#{1,6}(?:\s+|$)/, '')
+      .replace(/^(?:[-+]|\d+[.)]|\[[ xX]\])\s+/, '')
+      .trimStart();
   }
   return normalized;
 }
@@ -94,15 +97,15 @@ function normalizeStatusDeclarationText(value) {
 function collectStatusDeclarations(source) {
   return String(source || '')
     .split(/\r?\n/)
-    .map((line, index) => ({normalized: normalizeStatusDeclarationText(line.trim()), lineNumber: index + 1}))
+    .map((line, index) => ({normalized: normalizeBlockDeclarationText(line.trim()), lineNumber: index + 1}))
     .filter((entry) => /^Status\s*:/i.test(entry.normalized));
 }
 
 function collectPrefixedMatches(source, prefix) {
-  const normalizedPrefix = normalizeRenderedText(prefix);
+  const normalizedPrefix = normalizeBlockDeclarationText(prefix);
   const matches = String(source || '')
     .split(/\r?\n/)
-    .map((line, index) => ({normalized: normalizeRenderedText(line.trim()), lineNumber: index + 1}))
+    .map((line, index) => ({normalized: normalizeBlockDeclarationText(line.trim()), lineNumber: index + 1}))
     .filter((entry) => entry.normalized.startsWith(normalizedPrefix));
   return {normalizedPrefix, matches};
 }
@@ -218,7 +221,7 @@ function requireCanonicalReferenceStatus(file) {
   const relative = relativePath(file);
   const statusLines = collectStatusDeclarations(fs.readFileSync(file, 'utf8'));
   if (statusLines.length !== 1) {
-    fail(`${relative} must contain exactly one canonical Status declaration, including declarations nested in Markdown list/task-list containers; found ${statusLines.length}`);
+    fail(`${relative} must contain exactly one canonical Status declaration, including declarations nested in Markdown list/task-list/heading containers; found ${statusLines.length}`);
   }
   const entry = statusLines[0];
   const value = entry.normalized.replace(/^Status\s*:\s*/i, '');
@@ -443,4 +446,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered labels/statuses/entities/escapes, enforced unique scalar/table guards, and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered block-container labels/statuses/entities/escapes, enforced unique scalar/table guards, and found no unsupported PASS-form acceptance claim`);
