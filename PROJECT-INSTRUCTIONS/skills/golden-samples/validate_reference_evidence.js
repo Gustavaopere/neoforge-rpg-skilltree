@@ -46,6 +46,15 @@ function normalizeToken(value) {
   return String(value || '').replace(/[*`]/g, '').trim();
 }
 
+function normalizeStatusText(value) {
+  return normalizeToken(value)
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/\[([^\]]+)\]\[[^\]]*\]/g, '$1')
+    .replace(/<\/?[A-Za-z][^>]*>/g, '')
+    .replace(/_{1,3}\s*(PASS|PENDING|UNRESOLVED)\s*_{1,3}/gi, '$1')
+    .trim();
+}
+
 function parseTableRow(line) {
   const trimmed = line.trim();
   if (!trimmed.startsWith('|') || !trimmed.endsWith('|')) return null;
@@ -68,15 +77,19 @@ function tableRows(relative) {
 function findPrefixedLine(relative, prefix) {
   const file = path.join(ROOT, relative);
   if (!fs.existsSync(file)) fail(`missing guarded file ${relative}`);
-  const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
-  const index = lines.findIndex((line) => line.trim().startsWith(prefix));
-  if (index < 0) fail(`${relative} missing guarded field ${prefix}`);
-  return {trimmed: lines[index].trim(), lineNumber: index + 1};
+  const normalizedPrefix = normalizeToken(prefix);
+  const matches = fs.readFileSync(file, 'utf8')
+    .split(/\r?\n/)
+    .map((line, index) => ({normalized: normalizeToken(line.trim()), lineNumber: index + 1}))
+    .filter((entry) => entry.normalized.startsWith(normalizedPrefix));
+  if (!matches.length) fail(`${relative} missing guarded field ${prefix}`);
+  if (matches.length !== 1) fail(`${relative} guarded field ${prefix} must appear exactly once; found ${matches.length}`);
+  return {...matches[0], normalizedPrefix};
 }
 
 function requireValueStartsWith(relative, prefix, expected) {
-  const {trimmed, lineNumber} = findPrefixedLine(relative, prefix);
-  const value = normalizeToken(trimmed.slice(prefix.length));
+  const {normalized, normalizedPrefix, lineNumber} = findPrefixedLine(relative, prefix);
+  const value = normalizeToken(normalized.slice(normalizedPrefix.length));
   if (!new RegExp(`^${expected}\\b`, 'i').test(value)) {
     fail(`${relative}:${lineNumber} value after "${prefix}" must begin with ${expected}; got "${value || '<empty>'}"`);
   }
@@ -100,8 +113,10 @@ function requireRowsByKey(relative, headerKey, contracts) {
   const rows = tableRows(relative);
   const dataRows = rows.filter((row) => row.cells[0] !== headerKey);
   for (const contract of contracts) {
-    const row = dataRows.find((candidate) => candidate.cells[0] === contract.key);
-    if (!row) fail(`${relative} missing guarded row ${contract.key}`);
+    const matches = dataRows.filter((candidate) => candidate.cells[0] === contract.key);
+    if (!matches.length) fail(`${relative} missing guarded row ${contract.key}`);
+    if (matches.length !== 1) fail(`${relative} guarded row ${contract.key} must appear exactly once; found ${matches.length}`);
+    const row = matches[0];
     for (const index of contract.exactUnresolved || []) requireExactCell(relative, row, index, UNRESOLVED, `${contract.key} cell ${index + 1}`);
     for (const index of contract.containsUnresolved || []) requireUnresolvedCell(relative, row, index, `${contract.key} cell ${index + 1}`);
     for (const [index, expected] of Object.entries(contract.exact || {})) requireExactCell(relative, row, Number(index), expected, `${contract.key} cell ${Number(index) + 1}`);
@@ -301,11 +316,12 @@ for (const file of markdownFiles) {
       fail(`${relative}:${lineNumber} uses Markdown strikethrough, which is forbidden in the reference-only corpus because it can visually replace guarded evidence sentinels`);
     }
 
-    const normalizedLine = normalizeToken(line);
+    const normalizedLine = normalizeStatusText(line);
     const cells = parseTableRow(line);
     if (cells) {
       for (const cell of cells) {
-        if (/^PASS\b/i.test(cell)) fail(`${relative}:${lineNumber} claims unsupported table status "${cell}"`);
+        const normalizedCell = normalizeStatusText(cell);
+        if (/^PASS\b/i.test(normalizedCell)) fail(`${relative}:${lineNumber} claims unsupported table status "${normalizedCell}"`);
       }
     }
 
@@ -320,4 +336,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), rejected strikethrough, enforced scalar UNRESOLVED/PENDING values and table cells independently, and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), rejected strikethrough, enforced unique scalar/table guards, normalized rendered PASS emphasis/links/HTML, and found no unsupported PASS-form acceptance claim`);
