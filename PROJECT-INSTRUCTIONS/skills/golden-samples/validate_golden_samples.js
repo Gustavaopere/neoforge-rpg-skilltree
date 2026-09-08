@@ -32,6 +32,14 @@ function walk(dir) {
   return out;
 }
 
+function requireGuardedField(relative, linePrefix, token = UNRESOLVED_MARKER) {
+  const line = readText(relative)
+    .split(/\r?\n/)
+    .find((candidate) => candidate.trim().startsWith(linePrefix));
+  if (!line) fail(`${relative} missing guarded field ${linePrefix}`);
+  if (!line.includes(token)) fail(`${relative} guarded field ${linePrefix} must remain ${token}`);
+}
+
 const fixture = readJson('model-asset/validator-project-fixture.json');
 const profile = readJson('model-asset/TOOLKIT-PROFILE.json');
 
@@ -77,6 +85,164 @@ for (const file of markdownFiles) {
   const label = path.relative(ROOT, file);
   if (!text.includes(REFERENCE_MARKER)) fail(`${label} missing ${REFERENCE_MARKER} safety marker`);
   if (path.basename(file) !== 'README.md' && !text.includes(UNRESOLVED_MARKER)) fail(`${label} missing ${UNRESOLVED_MARKER} fail-closed marker`);
+}
+
+const guardedUnresolvedFields = {
+  'model-asset/ASSET-BRIEF.md': [
+    '- Gameplay owner:',
+    '- Runtime consumer/class:',
+    '- Registry/resource ID:',
+    '- Multiplayer authority impact:',
+    '- Production dimensions/scale:',
+    '- Real texture file:',
+    '- Texel density:',
+    '- Exact exporter/plugin version:',
+    '- Runtime renderer/controller:',
+    '- Export destination:',
+    '- VFX provider/API for `spell_muzzle`:',
+  ],
+  'model-asset/MODEL-CONTRACT.md': [
+    '- Project-owned native `.bbmodel`:',
+    '- Real texture source:',
+    '- Exported GeckoLib geometry/animation resources:',
+    '| `root` |',
+    '| `cast_hand` |',
+    '| `vfx_anchor` |',
+    '- Exact provider consumer/API:',
+    '- Production cube count/topology:',
+    '- Production scale:',
+    '- Actual PNG asset:',
+    '- Final palette/material separation:',
+    '- Final texel density:',
+    '- Any future VFX attachment must consume',
+    '- Blockbench GeckoLib plugin/exporter version:',
+    '- Geometry export path:',
+    '- Animation export path:',
+    '- Renderer/model class:',
+    '- Client registration:',
+    '- Dedicated-server classloading boundary:',
+  ],
+  'model-asset/ANIMATION-BRIEF.md': [
+    '- Production amplitude/easing/keyframes:',
+    '- Player-hand synchronization:',
+    '- Exact keyframes/easing:',
+    '- Exact event marker/API linking release to gameplay:',
+    '- Animation controller class/API:',
+    '- Trigger/network synchronization:',
+    '- Client prediction policy:',
+  ],
+  'spell/SPELL-BRIEF.md': [
+    '- Gameplay owner/mod:',
+    '- Runtime spell/ability registry ID:',
+    '- Provider-native spell implementation:',
+    '- Cast legality:',
+    '- Resource/mana cost:',
+    '- Cooldown:',
+    '- Damage/effect:',
+    '- Targeting/range/velocity:',
+    '- Hit/miss/block resolution:',
+    '- Anti-abuse/deduplication key:',
+    '- Real model dependency:',
+    '- Real animation dependency:',
+    '- Real VFX assets/provider graphs:',
+    '- Real audio assets/SoundEvents:',
+    '- Selected provider and exact API/hook:',
+  ],
+  'spell/SPELL-PRESENTATION.md': [
+    '- exact prediction policy is',
+    '- exact event/network message/API is',
+    '- authoritative projectile/active-state owner is',
+    '- interpolation/snapshot policy is',
+    '- hit/miss/block/resist/damage owner is',
+    '- deduplication/causal event key is',
+    '- lifecycle cleanup hooks are',
+    '- anticipation cue asset/event:',
+    '- release cue asset/event:',
+    '- travel loop:',
+    '- impact cue asset/event:',
+    '- decay tail:',
+    '- camera shake:',
+    '- crosshair/target lock integration:',
+    '- first-person obstruction budget:',
+    '- provider selection/API:',
+    '- particle count/lifetime/distance culling budgets:',
+    '- multiplayer concurrency target:',
+    '- fallback when optional provider is absent/incompatible:',
+  ],
+  'spell/VFX-BRIEF.md': [
+    '| Photon 2.2.6.a |',
+    '| AAA Particles 2.2.3 |',
+    '| AAA Particles World 2.0.0 |',
+    '- Release/travel authoritative start condition:',
+    '- Impact must consume authoritative result evidence;',
+    '- Deduplication token/event identity:',
+    '- particle/emitter budgets:',
+    '- max visible distance/culling:',
+    '- simultaneous caster stress target:',
+    '- fallback behavior:',
+  ],
+  'spell/AUDIO-CUE-SHEET.md': [
+    '| Anticipation |',
+    '| Release |',
+    '| Travel |',
+    '| Impact |',
+    '| Decay |',
+    '- Variant count:',
+    '- Pitch randomization:',
+    '- Volume:',
+    '- Attenuation distance/model:',
+    '- Mono/stereo choice:',
+    '- Start/loop/end implementation for travel:',
+    'A future implementation must prevent duplicate release/impact cues',
+    'Actual audio source/author/license:',
+  ],
+  'spell/VISUAL-QA.md': [
+    '| Model silhouette front/back/sides |',
+    '| First-person held/cast obstruction |',
+    '| Third-person held/cast readability |',
+    '| Inventory/icon presentation |',
+    '| Day/bright lighting |',
+    '| Night/dark lighting |',
+    '| Anticipation vs release phase readability |',
+    '| Travel silhouette at near/mid/far distance |',
+    '| Hit/miss/blocked outcome distinction |',
+    '| Multiple simultaneous casters |',
+    '| Multiplayer observer consistency |',
+    '| Low-FPS/reduced-effects behavior |',
+  ],
+  'spell/VFX-QA.md': [
+    '| Anticipation readability |',
+    '| Release landmark readability |',
+    '| Travel core/trail separation |',
+    '| Impact/resolve causality |',
+    '| Decay cleanup |',
+    '| First-person visibility |',
+    '| Near/mid/far readability |',
+    '| Multiple-caster clutter |',
+    '| Selected provider exact-version behavior |',
+    '| Particle/emitter counts |',
+    '| Lifetimes/culling |',
+    '| Multiplayer deduplication |',
+    '| Optional-provider fallback |',
+    '| Performance budget |',
+  ],
+  'spell/AUDIO-QA.md': [
+    '| SoundEvent/sounds.json correctness |',
+    '| OGG format/readability |',
+    '| Mono/stereo suitability |',
+    '| Attenuation and distance falloff |',
+    '| Release cue causal uniqueness |',
+    '| Impact cue causal uniqueness |',
+    '| Travel loop start/stop cleanup |',
+    '| Variant/pitch repetition control |',
+    '| Combat mix with concurrent casters |',
+    '| Death/logout/dimension cleanup where applicable |',
+    '| Source/license provenance |',
+  ],
+};
+
+for (const [relative, fields] of Object.entries(guardedUnresolvedFields)) {
+  for (const field of fields) requireGuardedField(relative, field);
 }
 
 for (const relative of [
