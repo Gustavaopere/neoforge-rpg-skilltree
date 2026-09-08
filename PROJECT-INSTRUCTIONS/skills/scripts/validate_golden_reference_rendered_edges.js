@@ -224,6 +224,9 @@ function runSelfTest() {
 
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n| root | purpose | pivot | [UNRESOLVED]&#x5C;(com.example.FabricatedRenderer) |\n`, 'utf8');
     expectFailure('entity-hex-backslash-guard', tmp, /entity-encoded backslashes/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n| root | purpose | pivot | [UNRESOLVED]&#40;com.example.FabricatedRenderer&#41; |\n`, 'utf8');
+    expectFailure('entity-parentheses-link-guard', tmp, /Markdown-active HTML entity/i);
   } finally {
     fs.rmSync(tmp, {recursive: true, force: true});
   }
