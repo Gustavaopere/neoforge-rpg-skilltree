@@ -65,6 +65,23 @@ function tableRows(relative) {
     .filter((entry) => entry.cells && entry.cells.length && !isSeparatorRow(entry.cells));
 }
 
+function findPrefixedLine(relative, prefix) {
+  const file = path.join(ROOT, relative);
+  if (!fs.existsSync(file)) fail(`missing guarded file ${relative}`);
+  const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
+  const index = lines.findIndex((line) => line.trim().startsWith(prefix));
+  if (index < 0) fail(`${relative} missing guarded field ${prefix}`);
+  return {trimmed: lines[index].trim(), lineNumber: index + 1};
+}
+
+function requireValueStartsWith(relative, prefix, expected) {
+  const {trimmed, lineNumber} = findPrefixedLine(relative, prefix);
+  const value = normalizeToken(trimmed.slice(prefix.length));
+  if (!new RegExp(`^${expected}\\b`, 'i').test(value)) {
+    fail(`${relative}:${lineNumber} value after "${prefix}" must begin with ${expected}; got "${value || '<empty>'}"`);
+  }
+}
+
 function requireExactCell(relative, row, index, expected, label) {
   const actual = normalizeToken(row.cells[index]);
   if (actual !== expected) {
@@ -95,11 +112,145 @@ const allFiles = walk(ROOT);
 const actualFiles = allFiles.map(relativePath).sort();
 const unexpectedFiles = actualFiles.filter((relative) => !EXPECTED_FILES.has(relative));
 const missingFiles = [...EXPECTED_FILES].filter((relative) => !actualFiles.includes(relative)).sort();
-if (unexpectedFiles.length) {
-  fail(`reference-only corpus contains unexpected file(s): ${unexpectedFiles.join(', ')}`);
+if (unexpectedFiles.length) fail(`reference-only corpus contains unexpected file(s): ${unexpectedFiles.join(', ')}`);
+if (missingFiles.length) fail(`reference-only corpus is missing allowlisted file(s): ${missingFiles.join(', ')}`);
+
+const guardedUnresolvedPrefixes = {
+  'model-asset/ASSET-BRIEF.md': [
+    '- Gameplay owner:',
+    '- Runtime consumer/class:',
+    '- Registry/resource ID:',
+    '- Multiplayer authority impact: none in this reference; runtime ownership is',
+    '- Production dimensions/scale:',
+    '- Real texture file:',
+    '- Texel density:',
+    '- Exact exporter/plugin version:',
+    '- Runtime renderer/controller:',
+    '- Export destination:',
+    '- VFX provider/API for `spell_muzzle`:',
+  ],
+  'model-asset/MODEL-CONTRACT.md': [
+    '- Project-owned native `.bbmodel`:',
+    '- Real texture source:',
+    '- Exported GeckoLib geometry/animation resources:',
+    '- Exact provider consumer/API:',
+    '- Production cube count/topology:',
+    '- Production scale:',
+    '- Actual PNG asset:',
+    '- Final palette/material separation:',
+    '- Final texel density:',
+    '- Any future VFX attachment must consume a proven provider-native hook or project bridge; exact hook is',
+    '- Blockbench GeckoLib plugin/exporter version:',
+    '- Geometry export path:',
+    '- Animation export path:',
+    '- Renderer/model class:',
+    '- Client registration:',
+    '- Dedicated-server classloading boundary:',
+  ],
+  'model-asset/ANIMATION-BRIEF.md': [
+    '- Production amplitude/easing/keyframes:',
+    '- Player-hand synchronization:',
+    '- Exact keyframes/easing:',
+    '- Exact event marker/API linking release to gameplay:',
+    '- Animation controller class/API:',
+    '- Trigger/network synchronization:',
+    '- Client prediction policy:',
+  ],
+  'spell/SPELL-BRIEF.md': [
+    '- Gameplay owner/mod:',
+    '- Runtime spell/ability registry ID:',
+    '- Provider-native spell implementation:',
+    '- Cast legality:',
+    '- Resource/mana cost:',
+    '- Cooldown:',
+    '- Damage/effect:',
+    '- Targeting/range/velocity:',
+    '- Hit/miss/block resolution:',
+    '- Anti-abuse/deduplication key:',
+    '- Real model dependency:',
+    '- Real animation dependency:',
+    '- Real VFX assets/provider graphs:',
+    '- Real audio assets/SoundEvents:',
+    '- Selected provider and exact API/hook:',
+  ],
+  'spell/SPELL-PRESENTATION.md': [
+    '- exact prediction policy is',
+    '- exact event/network message/API is',
+    '- authoritative projectile/active-state owner is',
+    '- interpolation/snapshot policy is',
+    '- hit/miss/block/resist/damage owner is',
+    '- deduplication/causal event key is',
+    '- lifecycle cleanup hooks are',
+    '- anticipation cue asset/event:',
+    '- release cue asset/event:',
+    '- travel loop: optional,',
+    '- impact cue asset/event:',
+    '- decay tail: optional,',
+    '- camera shake: optional and',
+    '- crosshair/target lock integration:',
+    '- first-person obstruction budget:',
+    '- provider selection/API:',
+    '- particle count/lifetime/distance culling budgets:',
+    '- multiplayer concurrency target:',
+    '- fallback when optional provider is absent/incompatible:',
+  ],
+  'spell/VFX-BRIEF.md': [
+    '- Release/travel authoritative start condition:',
+    '- Impact must consume authoritative result evidence; exact event/hook is',
+    '- Deduplication token/event identity:',
+    '- particle/emitter budgets:',
+    '- max visible distance/culling:',
+    '- simultaneous caster stress target:',
+    '- fallback behavior:',
+  ],
+  'spell/AUDIO-CUE-SHEET.md': [
+    '- Variant count:',
+    '- Pitch randomization:',
+    '- Volume:',
+    '- Attenuation distance/model:',
+    '- Mono/stereo choice:',
+    '- Start/loop/end implementation for travel:',
+    'A future implementation must prevent duplicate release/impact cues from duplicate network/event delivery. The authoritative event identity and client deduplication mechanism are',
+    'Actual audio source/author/license:',
+  ],
+};
+
+for (const [relative, prefixes] of Object.entries(guardedUnresolvedPrefixes)) {
+  for (const prefix of prefixes) requireValueStartsWith(relative, prefix, UNRESOLVED);
 }
-if (missingFiles.length) {
-  fail(`reference-only corpus is missing allowlisted file(s): ${missingFiles.join(', ')}`);
+
+const guardedPendingPrefixes = {
+  'model-asset/ASSET-BRIEF.md': [
+    'Final visual acceptance remains',
+  ],
+  'model-asset/MODEL-CONTRACT.md': [
+    'Structural fixture validation can PASS deterministically. Native editor, texture, first-person, third-person, animation playback, lighting, combat, and multiplayer visual acceptance remain',
+  ],
+  'model-asset/ANIMATION-BRIEF.md': [
+    '- Native Blockbench playback:',
+    '- First-person cast readability:',
+    '- Third-person cast readability:',
+    '- Multiplayer timing against server-confirmed release:',
+  ],
+  'spell/SPELL-BRIEF.md': [
+    'Structural/document completeness can be validated. In-game spell behavior, multiplayer causality, visual quality, audio mix, and performance remain',
+  ],
+  'spell/SPELL-PRESENTATION.md': [
+    'No in-game implementation exists in this sample. Editor screenshots, gameplay capture, multiplayer capture, profiler evidence, and audio mix evidence are all',
+  ],
+  'spell/VFX-BRIEF.md': [
+    'No provider graph/effect file, screenshot, capture, or profiler trace is supplied. Visual/performance acceptance remains',
+  ],
+  'spell/AUDIO-CUE-SHEET.md': [
+    'No waveform, OGG validation, in-game attenuation test, multiplayer mix test, or loudness evidence exists. Audio QA remains',
+  ],
+  'spell/VISUAL-QA.md': [
+    'Build success and structural validation are not visual acceptance. Because no real rendered asset/effect is supplied, every visual acceptance item remains',
+  ],
+};
+
+for (const [relative, prefixes] of Object.entries(guardedPendingPrefixes)) {
+  for (const prefix of prefixes) requireValueStartsWith(relative, prefix, PENDING);
 }
 
 requireRowsByKey('model-asset/MODEL-CONTRACT.md', 'Bone', [
@@ -160,9 +311,9 @@ for (const file of markdownFiles) {
     const namedStatus = normalizedLine.match(/\b(?:status|state|result|resultado|acceptance|aceita(?:ç|c)[aã]o)\s*=\s*PASS\b[^\n]*/i);
     if (namedStatus) fail(`${relative}:${lineNumber} claims unsupported named status "${namedStatus[0]}"`);
 
-    const proseAcceptance = normalizedLine.match(/\b(?:acceptance|aceita(?:ç|c)[aã]o|qa)\b(?:\s+\S+){0,6}\s+(?:remains?|remain|is|are|permanece|continuam?|fica|continua)\s+PASS\b/i);
+    const proseAcceptance = normalizedLine.match(/\b(?:acceptance|aceita(?:ç|c)[aã]o|qa)\b(?:\s+\S+){0,6}\s+(?:(?:has|have|had)\s+been|remains?|remained|remain|is|are|was|were|permanece|continuam?|continuou|continuaram|fica|ficou|continua)\s+PASS\b/i);
     if (proseAcceptance) fail(`${relative}:${lineNumber} claims unsupported prose acceptance "${proseAcceptance[0]}"`);
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), guarded table cells independently, and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), enforced scalar UNRESOLVED/PENDING values and table cells independently, and found no unsupported PASS-form acceptance claim`);
