@@ -35,13 +35,15 @@ Make phase changes obvious without using one oversized emitter for every job. Th
 
 ## Provider matrix
 
+Latest physical-modlist snapshot checked on 2026-09-08 contains 595 top-level entries. Rows retained for removed providers are explicit negative drift evidence, not selectable backends.
+
 | Candidate | Verified presence | Use decision | Exact API/asset format |
 |---|---|---|---|
 | Photon 2.2.6.a | yes | `UNRESOLVED` | `UNRESOLVED` |
-| AAA Particles 2.2.3 | yes | `UNRESOLVED` | `UNRESOLVED` |
-| AAA Particles World 2.0.0 | yes | `UNRESOLVED` | `UNRESOLVED` |
+| AAA Particles 2.2.3 | no — removed from current physical modlist | `UNRESOLVED` | `UNRESOLVED` |
+| AAA Particles World 2.0.0 | no — removed from current physical modlist | `UNRESOLVED` | `UNRESOLVED` |
 
-Provider-native first. Do not automatically combine Photon and AAA/Effekseer. Select one path only after exact-version capability/API evidence exists.
+Provider-native first. Removed providers must remain unavailable while absent; select a currently installed path only after exact-version capability/API evidence exists.
 
 ## Causality
 
