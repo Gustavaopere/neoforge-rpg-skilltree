@@ -19,11 +19,21 @@ Para execução operacional de Chat 1/2/3, estes arquivos consolidados devem ser
 
 ## Estrutura de suporte
 
+- `engineering/` contém contratos permanentes de trabalho técnico do repositório: `AGENT-WORKFLOW.md`, `TESTING.md` e `DIAGNOSTICS.md`.
 - `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
 - `skills/` contém as skills/instruções especializadas usadas por chats e agentes, incluindo router, autoridade de versão, protocolo de interação manual e a biblioteca auditada das skills fornecidas pelo usuário.
 
-A existência das árvores de suporte não cria uma segunda autoridade operacional: para os protocolos de perks, os oito arquivos consolidados desta pasta raiz continuam sendo o ponto de entrada canônico. Para trabalho técnico especializado, `skills/ROUTER.md` escolhe a instrução adequada sem substituir código, JAR, build ou documentação comprovada da versão alvo.
+A existência das árvores de suporte não cria uma segunda autoridade operacional: para os protocolos de perks, os oito arquivos consolidados desta pasta raiz continuam sendo o ponto de entrada canônico. Para trabalho técnico geral do repositório, `engineering/AGENT-WORKFLOW.md` é o contrato canônico; para validação e observabilidade, valem respectivamente `engineering/TESTING.md` e `engineering/DIAGNOSTICS.md`. Para trabalho técnico especializado, `skills/ROUTER.md` escolhe a instrução adequada sem substituir código, JAR, build ou documentação comprovada da versão alvo.
+
+## Entrypoints com localização obrigatória
+
+Alguns arquivos precisam permanecer fora deste diretório porque sua localização tem semântica para ferramentas externas. Eles devem funcionar apenas como bootstrap/ponte para a autoridade canônica, e não como uma segunda cópia das instruções:
+
+- `/AGENTS.md` permanece na raiz para descoberta automática de agentes e aponta para `engineering/AGENT-WORKFLOW.md` e `skills/`;
+- `.github/**` permanece sob `.github/` quando o GitHub exige o caminho para workflows, templates ou políticas da plataforma.
+
+Documentação cujo papel principal seja plano, `STATUS`, auditoria, evidência, proveniência, ADR, especificação de implementação, histórico, código, configuração ou workflow executável permanece no domínio correspondente e não deve ser movida para `PROJECT-INSTRUCTIONS/` apenas porque contém frases imperativas.
 
 ## Migração dos guias
 
@@ -38,3 +48,5 @@ Os comentários `ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/...` presentes 
 Novas atualizações editoriais dos guias detalhados devem ocorrer em `PROJECT-INSTRUCTIONS/guides/`. Quando uma mudança precisar ser refletida nos quatro arquivos consolidados, ela deve ser reconciliada conscientemente e validada como novo snapshot; não recriar a árvore legada em `plans/03-skill-tree-perks/guides/`.
 
 Skills específicas do projeto devem ser adicionadas sob `PROJECT-INSTRUCTIONS/skills/`, preservando a autoridade definida em `skills/VERSION-AUTHORITY.md`. Não corrigir silenciosamente uma skill de origem multi-versão para fazê-la parecer compatível; a adaptação deve ser explícita e auditável.
+
+Contratos permanentes novos de engenharia, validação ou operação devem ser adicionados em `PROJECT-INSTRUCTIONS/engineering/`. Não recriar cópias canônicas em `docs/` ou na raiz; quando um caminho convencional precisar existir para descoberta automática, mantenha apenas um router/bootstrap para a autoridade desta árvore.
