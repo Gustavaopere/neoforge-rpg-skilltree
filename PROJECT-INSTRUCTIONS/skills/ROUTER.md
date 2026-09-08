@@ -45,6 +45,21 @@ Para qualquer asset visual project-owned que precise combinar com o jogo/modpack
 
 `minecraft-imagegen` é subordinada a este fluxo quando usada para concept/look-dev. Um concept sheet não substitui o `.bbmodel`, UV, textura, rig ou validação in-game.
 
+## Spells, VFX e áudio
+
+Para spell/ability project-owned ou integração que precise de presentation polish:
+
+1. `library/minecraft-spell-vfx-engineering/SKILL.md` — lifecycle de VFX, causalidade, backend, sync, cleanup e performance;
+2. `standards/SPELL-PRESENTATION-CONTRACT.md` — contrato obrigatório entre gameplay authority e apresentação;
+3. `standards/VFX-QA.md` — gate in-game/multiplayer/dedicated-server;
+4. `library/minecraft-audio-design/SKILL.md` — event map, loops, mix, spatialização, provenance e multiplayer;
+5. `standards/AUDIO-QA.md` — gate de áudio no modpack real;
+6. `SPELL-VFX-AUDIO-SOURCES.md` — versões físicas e fontes técnicas auditadas.
+
+Provider-native vem primeiro. Photon, AAA Particles/Effekseer ou vanilla só entram como backend de apresentação comprovado; nenhum deles substitui o owner real de gameplay/cost/cooldown/damage.
+
+Quando um spell também precisa de modelo/construct/projectile animado, combine este fluxo com `minecraft-asset-art-direction` e `minecraft-blockbench-geckolib`.
+
 ## Fora do escopo padrão
 
 Ative somente quando a tarefa realmente exigir:
@@ -54,5 +69,3 @@ Ative somente quando a tarefa realmente exigir:
 - `minecraft-essentials-ops`
 - `minecraft-multiloader`
 - `minecraft-worldedit-ops`
-
-Skills futuras específicas de VFX/spells, áudio e visual QA especializado prevalecem sobre fallbacks genéricos quando existirem.
