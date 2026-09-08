@@ -90,44 +90,24 @@ function validateRoot(root) {
     const relative = path.relative(root, file).split(path.sep).join('/');
     const source = fs.readFileSync(file, 'utf8');
 
-    // CommonMark parses source-level character references as text, but this validator must
-    // decode rendered text before checking statuses/guards. Allowing an entity here would let
-    // a delimiter such as `&#40;` become `(` only after source parsing, at which point the
-    // normalizer could misclassify literal text as a link/tag/emphasis and discard evidence.
-    // The REFERENCE-ONLY corpus has no legitimate need for entity syntax, so reject every HTML
-    // character reference fail-closed. Literal Unicode/text remains available for documentation.
     if (htmlEntityReference.test(source)) {
       fail(`${relative} uses an HTML character reference; HTML entities are forbidden in the reference-only corpus because post-parse decoding can create Markdown-active HTML entity delimiters and hide guarded evidence, including entity-encoded backslashes`);
     }
 
-    // The reference-only corpus has no legitimate need for CommonMark punctuation escapes.
-    // Reject them before any rendered-text normalization so an escaped delimiter cannot be
-    // decoded into active Markdown syntax and hide fabricated guarded evidence.
     if (commonmarkEscape.test(source)) {
       fail(`${relative} uses a CommonMark backslash escape; punctuation escapes are forbidden in the reference-only corpus because they can change Markdown parsing before guarded-evidence validation`);
     }
 
-    // Shortcut/collapsed reference links derive their rendered link semantics from definitions
-    // elsewhere in the document. The local normalizer cannot safely infer that global state
-    // without becoming a partial CommonMark parser. This narrow reference-only corpus has no
-    // legitimate need for reference definitions, so fail closed on definition-shaped labels at
-    // any indentation and after list markers. The label scan intentionally spans line endings
-    // (up to CommonMark's 999-character label bound), covering multiline definitions and list
-    // continuation lines. Ordinary inline links remain available.
     if (referenceDefinition.test(source)) {
       fail(`${relative} uses a Markdown reference definition; reference definitions are forbidden in the reference-only corpus because they can activate shortcut links that alter guarded evidence or acceptance text after local normalization`);
     }
 
-    // Fail closed on every raw CommonMark HTML opener, including unterminated comments,
-    // declarations/CDATA, processing instructions, and ordinary opening/closing elements.
-    // The reference-only corpus has no need for raw HTML or HTML character references.
     if (rawHtmlOpener.test(source)) {
       fail(`${relative} uses raw HTML syntax; raw HTML is forbidden in the reference-only corpus because invisible or block-producing constructs can hide guarded evidence`);
     }
 
     const lines = source.split(/\r?\n/);
     for (let index = 0; index < lines.length; index += 1) {
-      // Blockquotes are forbidden even when nested after one or more list-item markers.
       if (blockquoteContainer.test(lines[index])) {
         fail(`${relative}:${index + 1} uses a Markdown blockquote; blockquotes are forbidden because container prefixes can mask rendered acceptance/status text`);
       }
@@ -150,8 +130,6 @@ function validateRoot(root) {
       }
     }
 
-    // Markdown soft line breaks inside one paragraph render as whitespace. Scan the rendered
-    // paragraph too so `acceptance:\nPASS` cannot evade the line-oriented checks above.
     const paragraphs = source.split(/\r?\n\s*\r?\n/);
     for (let index = 0; index < paragraphs.length; index += 1) {
       const renderedParagraph = normalizeRenderedText(paragraphs[index].replace(/\r?\n/g, ' '));
@@ -163,9 +141,6 @@ function validateRoot(root) {
       }
     }
 
-    // `Status:` is a corpus boundary, not ordinary prose. Count every rendered occurrence,
-    // regardless of Markdown container syntax (heading/list/task-list/emphasis), and require
-    // exactly one canonical declaration. This also rejects multiple declarations on one line.
     const statusDeclarations = collectRenderedStatusDeclarations(source);
     if (statusDeclarations.length !== 1) {
       fail(`${relative} must contain exactly one rendered Status: declaration; found ${statusDeclarations.length}`);
@@ -205,6 +180,9 @@ function runSelfTest() {
 
     fs.writeFileSync(file, 'Native editor acceptance: [PASS]\n', 'utf8');
     expectFailure('bracketed-pass', tmp, /unsupported PASS/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\nNative editor acceptance (PASS)\n`, 'utf8');
+    expectFailure('parenthesized-pass-declaration', tmp, /unsupported PASS/i);
 
     fs.writeFileSync(file, '| Check | (PASS) | evidence |\n', 'utf8');
     expectFailure('table-wrapped-pass', tmp, /wrapped PASS table/i);
