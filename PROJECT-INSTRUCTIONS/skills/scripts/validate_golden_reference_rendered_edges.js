@@ -230,6 +230,12 @@ function runSelfTest() {
 
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n| root | purpose | pivot | [UNRESOLVED]&#40;com.example.FabricatedRenderer&#41; |\n`, 'utf8');
     expectFailure('entity-parentheses-link-guard', tmp, /Markdown-active HTML entity/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n- Runtime consumer/class: UNRESOLVED\n- [Runtime consumer/class:] com.example.FabricatedRenderer\n[Runtime consumer/class:]: /guard\n`, 'utf8');
+    expectFailure('shortcut-reference-guard', tmp, /reference definitions/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\nNative editor acceptance: [P]ASS\n[P]: /pass\n`, 'utf8');
+    expectFailure('shortcut-reference-pass', tmp, /reference definitions/i);
   } finally {
     fs.rmSync(tmp, {recursive: true, force: true});
   }
