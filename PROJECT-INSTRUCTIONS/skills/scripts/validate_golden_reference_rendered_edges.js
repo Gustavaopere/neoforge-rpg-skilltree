@@ -29,8 +29,9 @@ function decodeBasicHtmlEntities(value) {
 
 function normalizeRenderedText(value) {
   return decodeBasicHtmlEntities(value)
-    // CommonMark backslash escapes are forbidden by validateRoot before normalization. Keep
-    // decoding here only so synthetic helper inputs retain rendered-text semantics.
+    // CommonMark backslash escapes and source HTML entities are forbidden by validateRoot
+    // before normalization. Keep decoding here only so synthetic helper inputs retain
+    // rendered-text semantics when this normalizer is reused directly.
     .replace(/\\([!"#$%&'()*+,\-.\/:;<=>?@\[\]\\^_`{|}~])/g, '$1')
     .replace(/!?\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/!?\[([^\]]+)\]\[[^\]]*\]/g, '$1')
@@ -80,18 +81,20 @@ function validateRoot(root) {
   const rawHtmlOpener = /<(?:!|\?|\/?[A-Za-z])/;
   const blockquoteContainer = /^\s*(?:(?:[-+*]|\d+[.)])\s+)*>\s?/;
   const commonmarkEscape = /\\[!"#$%&'()*+,\-.\/:;<=>?@\[\]\\^_`{|}~]/;
-  const encodedBackslash = /&#(?:0*92|x0*5c);/i;
+  const htmlEntityReference = /&(?:#x[0-9a-f]+|#\d+|[a-z][a-z0-9]+);/i;
 
   for (const file of markdownFiles) {
     const relative = path.relative(root, file).split(path.sep).join('/');
     const source = fs.readFileSync(file, 'utf8');
 
-    // HTML character references are decoded during rendered-text normalization. A numeric
-    // reference for backslash can therefore become a CommonMark escape only after the
-    // source-level escape check has already run, changing link/delimiter parsing and hiding
-    // fabricated guarded values. Reject every decimal/hex spelling of U+005C fail-closed.
-    if (encodedBackslash.test(source)) {
-      fail(`${relative} uses an HTML character reference that decodes to backslash; entity-encoded backslashes are forbidden because they can create CommonMark escapes after source-level guarded-evidence validation`);
+    // CommonMark parses source-level character references as text, but this validator must
+    // decode rendered text before checking statuses/guards. Allowing an entity here would let
+    // a delimiter such as `&#40;` become `(` only after source parsing, at which point the
+    // normalizer could misclassify literal text as a link/tag/emphasis and discard evidence.
+    // The REFERENCE-ONLY corpus has no legitimate need for entity syntax, so reject every HTML
+    // character reference fail-closed. Literal Unicode/text remains available for documentation.
+    if (htmlEntityReference.test(source)) {
+      fail(`${relative} uses an HTML character reference; HTML entities are forbidden in the reference-only corpus because post-parse decoding can create Markdown-active HTML entity delimiters and hide guarded evidence, including entity-encoded backslashes`);
     }
 
     // The reference-only corpus has no legitimate need for CommonMark punctuation escapes.
@@ -103,7 +106,7 @@ function validateRoot(root) {
 
     // Fail closed on every raw CommonMark HTML opener, including unterminated comments,
     // declarations/CDATA, processing instructions, and ordinary opening/closing elements.
-    // The reference-only corpus has no need for raw HTML; entity-escaped text remains allowed.
+    // The reference-only corpus has no need for raw HTML or HTML character references.
     if (rawHtmlOpener.test(source)) {
       fail(`${relative} uses raw HTML syntax; raw HTML is forbidden in the reference-only corpus because invisible or block-producing constructs can hide guarded evidence`);
     }
@@ -236,5 +239,5 @@ function runSelfTest() {
 if (process.argv.includes('--self-test')) runSelfTest();
 else {
   validateRoot(DEFAULT_ROOT);
-  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no entity-encoded/CommonMark backslash escapes, raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
+  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no HTML character references/CommonMark escapes, raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
 }
