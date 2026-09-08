@@ -63,6 +63,54 @@ function isFenceClosing(line, fence) {
   return Boolean(match && match[1][0] === fence.character && match[1].length >= fence.length);
 }
 
+function leadingSpaceCount(line) {
+  const match = String(line || '').match(/^ */);
+  return match ? match[0].length : 0;
+}
+
+function parseListItemMarker(line, containerIndent = 0) {
+  const source = String(line || '');
+  const containerPrefix = ' '.repeat(containerIndent);
+  if (!source.startsWith(containerPrefix)) return null;
+  const relative = source.slice(containerIndent);
+  const match = relative.match(/^( {0,3})([-+*]|\d{1,9}[.)])( {1,4})(?=\S|$)/);
+  if (!match) return null;
+  return {markerIndent: containerIndent + match[1].length, contentIndent: containerIndent + match[1].length + match[2].length + match[3].length};
+}
+
+function buildListContainerIndents(lines) {
+  const containerIndents = new Array(lines.length).fill(0);
+  const stack = [];
+  let blankRun = 0;
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = String(lines[index] || '');
+    if (!line.trim()) {
+      blankRun += 1;
+      containerIndents[index] = stack.length ? stack[stack.length - 1].contentIndent : 0;
+      if (blankRun >= 2) stack.length = 0;
+      continue;
+    }
+    blankRun = 0;
+    const leading = leadingSpaceCount(line);
+    while (stack.length && leading < stack[stack.length - 1].contentIndent) stack.pop();
+    const parentIndent = stack.length ? stack[stack.length - 1].contentIndent : 0;
+    const marker = parseListItemMarker(line, parentIndent);
+    containerIndents[index] = parentIndent;
+    if (marker) stack.push(marker);
+  }
+  return containerIndents;
+}
+
+function lineForBlockParsing(lines, containerIndents, index) {
+  const source = String(lines[index] || '');
+  const containerIndent = containerIndents[index] || 0;
+  const marker = parseListItemMarker(source, containerIndent);
+  if (marker) return source.slice(marker.contentIndent);
+  const containerPrefix = ' '.repeat(containerIndent);
+  if (containerIndent && source.startsWith(containerPrefix)) return source.slice(containerIndent);
+  return source;
+}
+
 function isIndentedCodeLine(line) {
   return /^(?:\t| {4})/.test(String(line || ''));
 }
@@ -70,9 +118,10 @@ function isIndentedCodeLine(line) {
 function collectRenderedStatusDeclarations(source) {
   const declarations = [];
   const lines = String(source || '').split(/\r?\n/);
+  const containerIndents = buildListContainerIndents(lines);
   let fence = null;
   for (let index = 0; index < lines.length; index += 1) {
-    const line = lines[index];
+    const line = lineForBlockParsing(lines, containerIndents, index);
     if (fence) {
       if (isFenceClosing(line, fence)) fence = null;
       continue;
