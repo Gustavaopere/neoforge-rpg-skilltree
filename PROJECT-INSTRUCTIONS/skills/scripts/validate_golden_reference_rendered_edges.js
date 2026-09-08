@@ -61,14 +61,22 @@ function validateRoot(root) {
     const relative = path.relative(root, file).split(path.sep).join('/');
     const source = fs.readFileSync(file, 'utf8');
 
-    // Rendered line breaks can hide a second guarded declaration on one physical source line.
-    // Canonical reference docs must use physical newlines instead of HTML <br> tags.
-    if (/<\s*br\b[^>]*>/i.test(source)) {
-      fail(`${relative} uses HTML <br>; physical newlines are required so guarded declarations cannot be hidden across rendered breaks`);
+    // The reference-only corpus intentionally forbids raw HTML and blockquotes. These
+    // constructs can alter rendered block/line structure or hide tokens without changing
+    // the physical source layout inspected by the remaining guards.
+    if (/<!--[\s\S]*?-->/.test(source)) {
+      fail(`${relative} uses an HTML comment; comments are forbidden in the reference-only corpus because invisible text can alter guarded evidence`);
+    }
+    if (/<\s*\/?\s*[A-Za-z][^>]*>/.test(source)) {
+      fail(`${relative} uses a raw HTML tag; physical Markdown/newlines are required so rendered block structure cannot hide guarded declarations`);
     }
 
     const lines = source.split(/\r?\n/);
     for (let index = 0; index < lines.length; index += 1) {
+      if (/^\s*>/.test(lines[index])) {
+        fail(`${relative}:${index + 1} uses a Markdown blockquote; blockquotes are forbidden because container prefixes can mask rendered acceptance/status text`);
+      }
+
       const normalized = normalizeRenderedText(lines[index]);
       if (statusAfterSeparator.test(normalized) || proseStatus.test(normalized)) {
         fail(`${relative}:${index + 1} claims unsupported PASS acceptance/status through punctuation or prose wrapping`);
@@ -114,7 +122,7 @@ function runSelfTest() {
     validateRoot(tmp);
 
     fs.writeFileSync(file, '- Runtime consumer/class: `UNRESOLVED`<br>- Runtime consumer/class: com.example.FabricatedRenderer\n', 'utf8');
-    expectFailure('rendered-break-duplicate', tmp, /HTML <br>/i);
+    expectFailure('rendered-break-duplicate', tmp, /raw HTML tag/i);
 
     fs.writeFileSync(file, 'Native editor acceptance: [PASS]\n', 'utf8');
     expectFailure('bracketed-pass', tmp, /unsupported PASS/i);
@@ -124,6 +132,15 @@ function runSelfTest() {
 
     fs.writeFileSync(file, 'Native editor acceptance:\nPASS\n', 'utf8');
     expectFailure('soft-break-pass', tmp, /soft break/i);
+
+    fs.writeFileSync(file, '> Native editor acceptance:\n> PASS\n', 'utf8');
+    expectFailure('blockquote-soft-break-pass', tmp, /Markdown blockquote/i);
+
+    fs.writeFileSync(file, '- Runtime consumer/class: `UNRESOLVED`</div><div>- Runtime consumer/class: com.example.FabricatedRenderer\n', 'utf8');
+    expectFailure('html-block-duplicate', tmp, /raw HTML tag/i);
+
+    fs.writeFileSync(file, 'Native editor acceptance: PA<!-- invisible -->SS\n', 'utf8');
+    expectFailure('html-comment-pass', tmp, /HTML comment/i);
   } finally {
     fs.rmSync(tmp, {recursive: true, force: true});
   }
@@ -133,5 +150,5 @@ function runSelfTest() {
 if (process.argv.includes('--self-test')) runSelfTest();
 else {
   validateRoot(DEFAULT_ROOT);
-  console.log('OK: Golden Samples rendered-edge gate found no hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
+  console.log('OK: Golden Samples rendered-edge gate found no raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
 }
