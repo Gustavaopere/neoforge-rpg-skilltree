@@ -29,6 +29,9 @@ function decodeBasicHtmlEntities(value) {
 
 function normalizeRenderedText(value) {
   return decodeBasicHtmlEntities(value)
+    // CommonMark backslash escapes render the punctuation without the backslash. Decode them
+    // before every Status/PASS/guard comparison so `Status\:` cannot hide a rendered boundary.
+    .replace(/\\([!"#$%&'()*+,\-.\/:;<=>?@\[\]\\^_`{|}~])/g, '$1')
     .replace(/!?\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/!?\[([^\]]+)\]\[[^\]]*\]/g, '$1')
     .replace(/<\/?[A-Za-z][^>]*>/g, '')
@@ -192,6 +195,9 @@ function runSelfTest() {
 
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS} Status: PRODUCTION READY — duplicate on one rendered line.\n`, 'utf8');
     expectFailure('same-line-status-duplicate', tmp, /exactly one rendered Status/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n## Status\\: PRODUCTION READY — escaped-colon rendered contradiction.\n`, 'utf8');
+    expectFailure('escaped-heading-status-duplicate', tmp, /exactly one rendered Status/i);
   } finally {
     fs.rmSync(tmp, {recursive: true, force: true});
   }
