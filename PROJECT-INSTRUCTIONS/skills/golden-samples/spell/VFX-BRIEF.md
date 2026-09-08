@@ -40,10 +40,19 @@ Latest physical-modlist snapshot checked on 2026-09-08 contains 595 top-level en
 | Candidate | Verified presence | Use decision | Exact API/asset format |
 |---|---|---|---|
 | Photon 2.2.6.a | yes | `UNRESOLVED` | `UNRESOLVED` |
+| Lodestone 1.8.2 | yes | `UNRESOLVED` | `UNRESOLVED` |
 | AAA Particles 2.2.3 | no — removed from current physical modlist | `UNRESOLVED` | `UNRESOLVED` |
 | AAA Particles World 2.0.0 | no — removed from current physical modlist | `UNRESOLVED` | `UNRESOLVED` |
 
-Provider-native first. Removed providers must remain unavailable while absent; select a currently installed path only after exact-version capability/API evidence exists.
+`Particle Effects 1.5.0+1.21.1+neoforge` is installed, but it is a client-side visual mod for status/effect particles rather than an authoring backend for project-owned VFX; it is therefore not a selectable provider in this matrix.
+
+Provider-native first. For project-owned effects without a provider-native VFX path, the intended routing order is:
+
+`provider-native → Photon candidate → Lodestone candidate → vanilla/custom particle fallback`
+
+This is a capability preference, not proof that either optional backend is operational for a particular effect. Photon must pass runtime-health and exact-version capability checks before selection. Lodestone must pass exact-version code/API verification before selection. Removed providers remain unavailable while absent.
+
+Blockbench remains an authoring/handoff surface for model geometry, anchors, timing markers, transforms, captures and briefs. No Blockbench extension is treated as a replacement Minecraft particle runtime unless an exact extension/runtime contract is later proven.
 
 ## Causality
 
