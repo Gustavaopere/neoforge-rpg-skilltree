@@ -21,11 +21,12 @@ Rules:
 
 1. Repository reality and the exact physical modlist remain authority.
 2. Unknown runtime/provider fields stay `UNRESOLVED`; examples do not guess APIs, registries, export paths, network messages, sound events, or provider hooks.
-3. Provider names may be listed only with their verified physical-modlist state. The latest snapshot checked on 2026-09-08 contains 595 top-level entries. Current evidence relevant to this corpus includes GeckoLib 4.9.2 and Photon 2.2.6.a. AAA Particles 2.2.3 and AAA Particles World 2.0.0 were creation-time candidates but are absent from the latest physical modlist; if retained in reference tables they must be explicitly marked unavailable and cannot be selected as providers while absent.
-4. The spell example is named `golden_reference_arcane_bolt`; it has no gameplay owner and no runtime registration.
-5. The model example is named `golden_reference_focus_relic`; it has no runtime item/entity registration.
-6. Client presentation may describe intended phases, but server authority, causality, resource cost, cooldown, target resolution, hit/damage, and provider APIs remain `UNRESOLVED` unless a real runtime implementation is later linked.
-7. Visual QA cannot claim PASS without actual screenshot/in-game evidence. The Golden Sample demonstrates correct `PENDING` handling where evidence is absent.
+3. Provider names may be listed only with their verified physical-modlist state. The latest snapshot checked on 2026-09-08 contains 595 top-level entries. Current evidence relevant to this corpus includes GeckoLib 4.9.2, Photon 2.2.6.a and Lodestone 1.8.2. `Particle Effects 1.5.0+1.21.1+neoforge` is present but is a client-side presentation mod rather than a project VFX authoring backend. AAA Particles 2.2.3 and AAA Particles World 2.0.0 were creation-time candidates but are absent from the latest physical modlist; if retained in reference tables they must be explicitly marked unavailable and cannot be selected as providers while absent.
+4. For project-owned VFX, the routing intent is `provider-native → Photon candidate → Lodestone candidate → vanilla/custom particle fallback`. This ordering is capability preference only: selection still requires exact-version API/capability proof and runtime-health checks. No Blockbench extension is promoted to Minecraft particle-runtime authority without an explicit proven bridge.
+5. The spell example is named `golden_reference_arcane_bolt`; it has no gameplay owner and no runtime registration.
+6. The model example is named `golden_reference_focus_relic`; it has no runtime item/entity registration.
+7. Client presentation may describe intended phases, but server authority, causality, resource cost, cooldown, target resolution, hit/damage, and provider APIs remain `UNRESOLVED` unless a real runtime implementation is later linked.
+8. Visual QA cannot claim PASS without actual screenshot/in-game evidence. The Golden Sample demonstrates correct `PENDING` handling where evidence is absent.
 
 ## Corpus layout
 
@@ -124,7 +125,8 @@ This PR does not:
 
 - register a new spell, item, entity, particle, sound, network packet, or provider bridge;
 - introduce new gameplay authority;
-- add or guess Photon/AAA/GeckoLib APIs;
+- add or guess Photon/Lodestone/GeckoLib APIs;
+- treat Particle Effects as a project VFX backend;
 - add a fake `.bbmodel` or fake texture;
 - claim screenshot/in-game visual acceptance without evidence;
 - replace project templates or standards.
