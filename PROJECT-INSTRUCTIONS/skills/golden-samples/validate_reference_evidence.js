@@ -134,6 +134,14 @@ function runStatusDeclarationRegressionSelfTest() {
   if (escapedGuard.matches.length !== 2) {
     fail(`internal guarded-prefix regression self-test expected escaped punctuation to produce a duplicate rendered field; found ${escapedGuard.matches.length}`);
   }
+
+  const headingGuard = collectPrefixedMatches(
+    '- Runtime consumer/class: `UNRESOLVED`\n## Runtime consumer/class: com.example.FabricatedRenderer\n',
+    '- Runtime consumer/class:',
+  );
+  if (headingGuard.matches.length !== 2) {
+    fail(`internal guarded-prefix regression self-test expected an ATX-heading declaration to count as a duplicate rendered field; found ${headingGuard.matches.length}`);
+  }
 }
 
 function normalizeToken(value) {
