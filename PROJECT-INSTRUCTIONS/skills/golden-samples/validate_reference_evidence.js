@@ -304,6 +304,9 @@ function runNestedListTableRegressionSelfTest() {
 
   const terminatedListCodeRows = extractGfmTableRows(['- terminated list','','','    Bone | Purpose | Pivot rule | Runtime dependency','    --- | --- | --- | ---','    root | post-list code example | code pivot | com.example.FabricatedRenderer'].join('\n'));
   if (terminatedListCodeRows.length !== 0) fail(`internal terminated-list regression self-test expected two blank lines to clear list context before four-space-indented code; found ${terminatedListCodeRows.length} row(s)`);
+
+  const sameLineListFenceRows = extractGfmTableRows(['- ```text','  Bone | Purpose | Pivot rule | Runtime dependency','  --- | --- | --- | ---','  root | list-fenced example | fenced pivot | com.example.FabricatedRenderer','  ```'].join('\n'));
+  if (sameLineListFenceRows.length !== 0) fail(`internal same-line list fence regression self-test expected a fence opened on the list-item marker line to hide table-shaped code; found ${sameLineListFenceRows.length} row(s)`);
 }
 
 runStatusDeclarationRegressionSelfTest();
