@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const toolkit = require('../tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js');
+require('./validate_reference_evidence.js');
 
 const ROOT = __dirname;
 const MODEL_ID = 'golden_reference_focus_relic';
