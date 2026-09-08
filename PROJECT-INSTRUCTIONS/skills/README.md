@@ -17,6 +17,7 @@ Esta pasta é o ponto de entrada canônico para skills/instruções de Minecraft
 - `library/<skill>/SKILL.md` — skills canônicas deste repositório;
 - `standards/` — contratos/checklists de aceitação;
 - `templates/` — briefs reutilizáveis para assets/modelos/animação/VFX/spells/áudio/QA;
+- `golden-samples/` — exemplos project-owned, executáveis quando possível, sempre subordinados às standards/templates e nunca authority de runtime/API;
 - `tools/` — utilitários versionados que não substituem validação no runtime;
 - `docs/art/VISUAL-STYLE-BIBLE.md` — direção visual cross-system.
 
@@ -29,6 +30,12 @@ Skills project-authored atuais:
 - `minecraft-spell-production` — produção ponta a ponta de spell/ability;
 - `minecraft-audio-design` — event map, loops, mix, spatialização e provenance;
 - `minecraft-visual-qa` — aceitação visual/in-game e regression evidence.
+
+## Golden Samples
+
+`golden-samples/README.md` contém referências preenchidas para modelo/animação e spell/VFX/áudio/QA. Use somente depois de carregar a skill, template e standard correspondentes.
+
+Os Golden Samples são marcados `REFERENCE-ONLY`; IDs `golden_reference_*`, fixtures normalizadas e campos `UNRESOLVED` não são registros, recursos ou APIs do runtime. Antes de reutilizar um exemplo em implementação real, substitua sua identidade e prove todos os campos não resolvidos em código/JAR/documentação exata.
 
 ## Blockbench
 
