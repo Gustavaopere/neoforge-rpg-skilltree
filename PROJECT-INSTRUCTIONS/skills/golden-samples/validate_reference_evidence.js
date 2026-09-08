@@ -141,6 +141,22 @@ function isFenceClosing(line, fence) {
   return Boolean(match && match[1][0] === fence.character && match[1].length >= fence.length);
 }
 
+function expandTabs(line) {
+  let column = 0;
+  let expanded = '';
+  for (const character of String(line || '')) {
+    if (character === '\t') {
+      const width = 4 - (column % 4);
+      expanded += ' '.repeat(width);
+      column += width;
+    } else {
+      expanded += character;
+      column += 1;
+    }
+  }
+  return expanded;
+}
+
 function leadingSpaceCount(line) {
   const match = String(line || '').match(/^ */);
   return match ? match[0].length : 0;
@@ -191,6 +207,13 @@ function lineForBlockParsing(lines, containerIndents, index) {
 
 function isIndentedCodeLine(line) { return /^(?:\t| {4})/.test(String(line || '')); }
 
+function isTableTerminatingBlockConstruct(line) {
+  const value = String(line || '');
+  return /^ {0,3}#{1,6}(?:[ \t]+|$)/.test(value)
+    || /^ {0,3}>/.test(value)
+    || /^ {0,3}(?:[-+*]|\d{1,9}[.)])(?:[ \t]+|$)/.test(value);
+}
+
 function normalizeBodyCells(cells, width) {
   const normalized = cells.slice(0, width);
   while (normalized.length < width) normalized.push('');
@@ -198,12 +221,13 @@ function normalizeBodyCells(cells, width) {
 }
 
 function extractGfmTableRows(source) {
-  const lines = String(source || '').split(/\r?\n/);
+  const rawLines = String(source || '').split(/\r?\n/);
+  const lines = rawLines.map(expandTabs);
   const containerIndents = buildListContainerIndents(lines);
   const rows = [];
   let fence = null;
   for (let index = 0; index < lines.length - 1; index += 1) {
-    const rawLine = lines[index];
+    const rawLine = rawLines[index];
     const line = lineForBlockParsing(lines, containerIndents, index);
     if (fence) { if (isFenceClosing(line, fence)) fence = null; continue; }
     const openingFence = parseFenceOpening(line);
@@ -218,9 +242,9 @@ function extractGfmTableRows(source) {
     rows.push({line: rawLine, lineNumber: index + 1, cells: header});
     index += 1;
     while (index + 1 < lines.length) {
-      const rawNextLine = lines[index + 1];
+      const rawNextLine = rawLines[index + 1];
       const nextLine = lineForBlockParsing(lines, containerIndents, index + 1);
-      if (!nextLine.trim() || parseFenceOpening(nextLine) || isIndentedCodeLine(nextLine)) break;
+      if (!nextLine.trim() || parseFenceOpening(nextLine) || isIndentedCodeLine(nextLine) || isTableTerminatingBlockConstruct(nextLine)) break;
       const cells = parseTableRow(nextLine, true);
       if (!cells || isSeparatorRow(cells)) break;
       rows.push({line: rawNextLine, lineNumber: index + 2, cells: normalizeBodyCells(cells, header.length)});
@@ -311,9 +335,24 @@ function runNestedListTableRegressionSelfTest() {
   if (sameLineListFenceRows.length !== 0) fail(`internal same-line list fence regression self-test expected a fence opened on the list-item marker line to hide table-shaped code; found ${sameLineListFenceRows.length} row(s)`);
 }
 
+function runTabIndentationRegressionSelfTest() {
+  const rows = extractGfmTableRows(['-\tnested live contract','','\tBone | Purpose | Pivot rule | Runtime dependency','\t--- | --- | --- | ---','\troot | tab-indented live duplicate | nested pivot | com.example.FabricatedRenderer'].join('\n'));
+  if (rows.length !== 2 || rows[0].cells[0] !== 'Bone' || rows[1].cells[0] !== 'root') fail(`internal tab-indentation regression self-test expected CommonMark tab expansion to preserve a live nested GFM table; found ${rows.length} row(s)`);
+
+  const rootCodeRows = extractGfmTableRows(['\tBone | Purpose | Pivot rule | Runtime dependency','\t--- | --- | --- | ---','\troot | root-level tab-indented code | code pivot | com.example.FabricatedRenderer'].join('\n'));
+  if (rootCodeRows.length !== 0) fail(`internal tab-indentation regression self-test expected a root-level tab to remain four-column indented code; found ${rootCodeRows.length} row(s)`);
+}
+
+function runTableBlockTerminationRegressionSelfTest() {
+  const headingRows = extractGfmTableRows(['Check | Status | Evidence','--- | --- | ---','Geometry | PENDING | UNRESOLVED','## Follow-up |'].join('\n'));
+  if (headingRows.length !== 2 || headingRows[0].cells[0] !== 'Check' || headingRows[1].cells[0] !== 'Geometry') fail(`internal table-termination regression self-test expected an ATX heading with a trailing pipe to terminate the live GFM table; found ${headingRows.length} row(s)`);
+}
+
 runStatusDeclarationRegressionSelfTest();
 runBacktickFenceInfoRegressionSelfTest();
 runNestedListTableRegressionSelfTest();
+runTabIndentationRegressionSelfTest();
+runTableBlockTerminationRegressionSelfTest();
 
 const allFiles = walk(ROOT);
 const actualFiles = allFiles.map(relativePath).sort();
@@ -375,4 +414,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered block-container labels/statuses/entities/escapes, enforced unique scalar/table guards within actual non-code GFM table blocks (including list-relative indentation and padded short rows), and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered block-container labels/statuses/entities/escapes, enforced unique scalar/table guards within actual non-code GFM table blocks (including CommonMark tab-expanded/list-relative indentation, padded short rows, and block-construct table termination), and found no unsupported PASS-form acceptance claim`);
