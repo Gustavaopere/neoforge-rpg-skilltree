@@ -84,6 +84,7 @@ golden_required = [
     "spell/VFX-QA.md",
     "spell/AUDIO-QA.md",
     "validate_golden_samples.js",
+    "validate_reference_evidence.js",
 ]
 for relative in golden_required:
     if not (GOLDEN / relative).is_file():
@@ -138,5 +139,9 @@ subprocess.run([node, "--test", str(toolkit_dir / "rpg_asset_toolkit.test.js")],
 golden_validator = GOLDEN / "validate_golden_samples.js"
 subprocess.run([node, "--check", str(golden_validator)], check=True)
 subprocess.run([node, str(golden_validator)], check=True)
+
+golden_evidence_validator = GOLDEN / "validate_reference_evidence.js"
+subprocess.run([node, "--check", str(golden_evidence_validator)], check=True)
+subprocess.run([node, str(golden_evidence_validator)], check=True)
 
 print("OK: 27 canonical skills, art/VFX/audio standards, templates, Visual Style Bible, Blockbench Toolkit, and Golden Samples present")
