@@ -351,8 +351,22 @@ function runBacktickFenceInfoRegressionSelfTest() {
   }
 }
 
+function runNestedListTableRegressionSelfTest() {
+  const rows = extractGfmTableRows([
+    '- nested live contract',
+    '',
+    '    Bone | Purpose | Pivot rule | Runtime dependency',
+    '    --- | --- | --- | ---',
+    '    root | nested live duplicate | nested pivot | com.example.FabricatedRenderer',
+  ].join('\n'));
+  if (rows.length !== 2 || rows[0].cells[0] !== 'Bone' || rows[1].cells[0] !== 'root') {
+    fail(`internal nested-list table regression self-test expected a four-space-continued live GFM table to remain visible; found ${rows.length} row(s)`);
+  }
+}
+
 runStatusDeclarationRegressionSelfTest();
 runBacktickFenceInfoRegressionSelfTest();
+runNestedListTableRegressionSelfTest();
 
 const allFiles = walk(ROOT);
 const actualFiles = allFiles.map(relativePath).sort();
