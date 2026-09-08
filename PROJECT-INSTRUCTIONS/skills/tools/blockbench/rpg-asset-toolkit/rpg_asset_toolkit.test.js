@@ -39,3 +39,4 @@ test('malformed locator positions are reported separately from cube bounds', () 
 
 require('./rpg_asset_toolkit.registry.test.js');
 require('./rpg_asset_toolkit.modular.test.js');
+require('./rpg_asset_toolkit.provider_expansion.test.js');
