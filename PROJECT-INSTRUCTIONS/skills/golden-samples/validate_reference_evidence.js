@@ -6,6 +6,7 @@ const path = require('node:path');
 const ROOT = __dirname;
 const UNRESOLVED = 'UNRESOLVED';
 const PENDING = 'PENDING';
+const CANONICAL_STATUS = 'REFERENCE-ONLY — not a runtime registration and not evidence of shipped gameplay.';
 const EXPECTED_FILES = new Set([
   'README.md',
   'validate_golden_samples.js',
@@ -23,6 +24,14 @@ const EXPECTED_FILES = new Set([
   'spell/VFX-QA.md',
   'spell/VISUAL-QA.md',
 ]);
+const NAMED_HTML_ENTITIES = Object.freeze({
+  amp: '&',
+  apos: "'",
+  gt: '>',
+  lt: '<',
+  nbsp: ' ',
+  quot: '"',
+});
 
 function fail(message) {
   throw new Error(`Golden Samples evidence validation failed: ${message}`);
@@ -42,17 +51,36 @@ function relativePath(file) {
   return path.relative(ROOT, file).split(path.sep).join('/');
 }
 
-function normalizeToken(value) {
-  return String(value || '').replace(/[*`]/g, '').trim();
+function decodeHtmlEntities(value) {
+  return String(value || '').replace(/&(#x[0-9a-f]+|#\d+|[a-z][a-z0-9]+);/gi, (entity, body) => {
+    if (body[0] === '#') {
+      const hex = body[1] && body[1].toLowerCase() === 'x';
+      const digits = hex ? body.slice(2) : body.slice(1);
+      const codePoint = Number.parseInt(digits, hex ? 16 : 10);
+      if (!Number.isInteger(codePoint) || codePoint < 0 || codePoint > 0x10ffff) {
+        fail(`invalid HTML numeric entity ${entity}`);
+      }
+      return String.fromCodePoint(codePoint);
+    }
+    const decoded = NAMED_HTML_ENTITIES[body.toLowerCase()];
+    if (decoded === undefined) fail(`unsupported HTML named entity ${entity}; reference-only evidence must use unambiguous text`);
+    return decoded;
+  });
 }
 
-function normalizeStatusText(value) {
-  return normalizeToken(value)
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/\[([^\]]+)\]\[[^\]]*\]/g, '$1')
+function normalizeRenderedText(value) {
+  return decodeHtmlEntities(value)
+    .replace(/!?\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/!?\[([^\]]+)\]\[[^\]]*\]/g, '$1')
     .replace(/<\/?[A-Za-z][^>]*>/g, '')
-    .replace(/_{1,3}\s*(PASS|PENDING|UNRESOLVED)\s*_{1,3}/gi, '$1')
+    .replace(/(^|[\s([{:;>\-])_{1,3}(?=\S)/g, '$1')
+    .replace(/(\S)_{1,3}(?=$|[\s)\]}:;,.!?\-])/g, '$1')
+    .replace(/[*`]/g, '')
     .trim();
+}
+
+function normalizeToken(value) {
+  return normalizeRenderedText(value);
 }
 
 function parseTableRow(line) {
@@ -77,33 +105,33 @@ function tableRows(relative) {
 function findPrefixedLine(relative, prefix) {
   const file = path.join(ROOT, relative);
   if (!fs.existsSync(file)) fail(`missing guarded file ${relative}`);
-  const normalizedPrefix = normalizeToken(prefix);
+  const normalizedPrefix = normalizeRenderedText(prefix);
   const matches = fs.readFileSync(file, 'utf8')
     .split(/\r?\n/)
-    .map((line, index) => ({normalized: normalizeToken(line.trim()), lineNumber: index + 1}))
+    .map((line, index) => ({normalized: normalizeRenderedText(line.trim()), lineNumber: index + 1}))
     .filter((entry) => entry.normalized.startsWith(normalizedPrefix));
   if (!matches.length) fail(`${relative} missing guarded field ${prefix}`);
-  if (matches.length !== 1) fail(`${relative} guarded field ${prefix} must appear exactly once; found ${matches.length}`);
+  if (matches.length !== 1) fail(`${relative} guarded field ${prefix} must appear exactly once after rendered-Markdown normalization; found ${matches.length}`);
   return {...matches[0], normalizedPrefix};
 }
 
 function requireValueStartsWith(relative, prefix, expected) {
   const {normalized, normalizedPrefix, lineNumber} = findPrefixedLine(relative, prefix);
-  const value = normalizeToken(normalized.slice(normalizedPrefix.length));
+  const value = normalizeRenderedText(normalized.slice(normalizedPrefix.length));
   if (!new RegExp(`^${expected}\\b`, 'i').test(value)) {
     fail(`${relative}:${lineNumber} value after "${prefix}" must begin with ${expected}; got "${value || '<empty>'}"`);
   }
 }
 
 function requireExactCell(relative, row, index, expected, label) {
-  const actual = normalizeToken(row.cells[index]);
+  const actual = normalizeRenderedText(row.cells[index]);
   if (actual !== expected) {
     fail(`${relative}:${row.lineNumber} ${label} must remain exactly ${expected}; got "${actual || '<empty>'}"`);
   }
 }
 
 function requireUnresolvedCell(relative, row, index, label) {
-  const actual = normalizeToken(row.cells[index]);
+  const actual = normalizeRenderedText(row.cells[index]);
   if (!new RegExp(`\\b${UNRESOLVED}\\b`).test(actual)) {
     fail(`${relative}:${row.lineNumber} ${label} must remain explicitly ${UNRESOLVED}; got "${actual || '<empty>'}"`);
   }
@@ -111,15 +139,33 @@ function requireUnresolvedCell(relative, row, index, label) {
 
 function requireRowsByKey(relative, headerKey, contracts) {
   const rows = tableRows(relative);
-  const dataRows = rows.filter((row) => row.cells[0] !== headerKey);
+  const normalizedHeader = normalizeRenderedText(headerKey);
+  const dataRows = rows.filter((row) => normalizeRenderedText(row.cells[0]) !== normalizedHeader);
   for (const contract of contracts) {
-    const matches = dataRows.filter((candidate) => candidate.cells[0] === contract.key);
+    const normalizedKey = normalizeRenderedText(contract.key);
+    const matches = dataRows.filter((candidate) => normalizeRenderedText(candidate.cells[0]) === normalizedKey);
     if (!matches.length) fail(`${relative} missing guarded row ${contract.key}`);
-    if (matches.length !== 1) fail(`${relative} guarded row ${contract.key} must appear exactly once; found ${matches.length}`);
+    if (matches.length !== 1) fail(`${relative} guarded row ${contract.key} must appear exactly once after rendered-Markdown normalization; found ${matches.length}`);
     const row = matches[0];
     for (const index of contract.exactUnresolved || []) requireExactCell(relative, row, index, UNRESOLVED, `${contract.key} cell ${index + 1}`);
     for (const index of contract.containsUnresolved || []) requireUnresolvedCell(relative, row, index, `${contract.key} cell ${index + 1}`);
     for (const [index, expected] of Object.entries(contract.exact || {})) requireExactCell(relative, row, Number(index), expected, `${contract.key} cell ${Number(index) + 1}`);
+  }
+}
+
+function requireCanonicalReferenceStatus(file) {
+  const relative = relativePath(file);
+  const statusLines = fs.readFileSync(file, 'utf8')
+    .split(/\r?\n/)
+    .map((line, index) => ({normalized: normalizeRenderedText(line.trim()), lineNumber: index + 1}))
+    .filter((entry) => /^Status\s*:/i.test(entry.normalized));
+  if (statusLines.length !== 1) {
+    fail(`${relative} must contain exactly one canonical Status declaration; found ${statusLines.length}`);
+  }
+  const entry = statusLines[0];
+  const value = entry.normalized.replace(/^Status\s*:\s*/i, '');
+  if (value !== CANONICAL_STATUS) {
+    fail(`${relative}:${entry.lineNumber} Status must be exactly "${CANONICAL_STATUS}" after rendered-Markdown normalization; got "${value || '<empty>'}"`);
   }
 }
 
@@ -129,6 +175,10 @@ const unexpectedFiles = actualFiles.filter((relative) => !EXPECTED_FILES.has(rel
 const missingFiles = [...EXPECTED_FILES].filter((relative) => !actualFiles.includes(relative)).sort();
 if (unexpectedFiles.length) fail(`reference-only corpus contains unexpected file(s): ${unexpectedFiles.join(', ')}`);
 if (missingFiles.length) fail(`reference-only corpus is missing allowlisted file(s): ${missingFiles.join(', ')}`);
+
+const markdownFiles = allFiles.filter((file) => file.toLowerCase().endsWith('.md'));
+if (!markdownFiles.length) fail('no Markdown files found in Golden Samples corpus');
+for (const file of markdownFiles) requireCanonicalReferenceStatus(file);
 
 const guardedUnresolvedPrefixes = {
   'model-asset/ASSET-BRIEF.md': [
@@ -293,16 +343,13 @@ for (const [relative, headerKey] of [
   ['spell/VFX-QA.md', 'Area'],
   ['spell/AUDIO-QA.md', 'Check'],
 ]) {
-  const rows = tableRows(relative).filter((row) => row.cells[0] !== headerKey);
+  const rows = tableRows(relative).filter((row) => normalizeRenderedText(row.cells[0]) !== normalizeRenderedText(headerKey));
   if (!rows.length) fail(`${relative} has no guarded QA rows`);
   for (const row of rows) {
     requireExactCell(relative, row, 1, PENDING, `${row.cells[0]} status`);
     requireUnresolvedCell(relative, row, 2, `${row.cells[0]} evidence`);
   }
 }
-
-const markdownFiles = allFiles.filter((file) => file.toLowerCase().endsWith('.md'));
-if (!markdownFiles.length) fail('no Markdown files found in Golden Samples corpus');
 
 for (const file of markdownFiles) {
   const relative = relativePath(file);
@@ -316,11 +363,11 @@ for (const file of markdownFiles) {
       fail(`${relative}:${lineNumber} uses Markdown strikethrough, which is forbidden in the reference-only corpus because it can visually replace guarded evidence sentinels`);
     }
 
-    const normalizedLine = normalizeStatusText(line);
+    const normalizedLine = normalizeRenderedText(line);
     const cells = parseTableRow(line);
     if (cells) {
       for (const cell of cells) {
-        const normalizedCell = normalizeStatusText(cell);
+        const normalizedCell = normalizeRenderedText(cell);
         if (/^PASS\b/i.test(normalizedCell)) fail(`${relative}:${lineNumber} claims unsupported table status "${normalizedCell}"`);
       }
     }
@@ -336,4 +383,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), rejected strikethrough, enforced unique scalar/table guards, normalized rendered PASS emphasis/links/HTML, and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered labels/statuses/entities, enforced unique scalar/table guards, and found no unsupported PASS-form acceptance claim`);
