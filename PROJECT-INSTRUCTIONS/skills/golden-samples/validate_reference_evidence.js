@@ -85,7 +85,7 @@ function normalizeStatusDeclarationText(value) {
   let previous = null;
   while (normalized !== previous) {
     previous = normalized;
-    normalized = normalized.replace(/^(?:[-+*]|\d+[.)])\s+/, '').trimStart();
+    normalized = normalized.replace(/^(?:[-+*]|\d+[.)]|\[[ xX]\])\s+/, '').trimStart();
   }
   return normalized;
 }
@@ -108,6 +108,13 @@ function runStatusDeclarationRegressionSelfTest() {
   const nested = collectStatusDeclarations('  - 1. Status: PRODUCTION READY — nested list declaration.\n');
   if (nested.length !== 1 || !/^Status\s*:/i.test(nested[0].normalized)) {
     fail('internal Status regression self-test failed to recognize a declaration inside nested list containers');
+  }
+
+  const taskLists = collectStatusDeclarations(
+    '- [ ] Status: PRODUCTION READY — unchecked task list declaration.\n1. [x] Status: PRODUCTION READY — checked task list declaration.\n',
+  );
+  if (taskLists.length !== 2) {
+    fail(`internal Status regression self-test expected 2 task-list declarations; found ${taskLists.length}`);
   }
 }
 
@@ -189,7 +196,7 @@ function requireCanonicalReferenceStatus(file) {
   const relative = relativePath(file);
   const statusLines = collectStatusDeclarations(fs.readFileSync(file, 'utf8'));
   if (statusLines.length !== 1) {
-    fail(`${relative} must contain exactly one canonical Status declaration, including declarations nested in Markdown list containers; found ${statusLines.length}`);
+    fail(`${relative} must contain exactly one canonical Status declaration, including declarations nested in Markdown list/task-list containers; found ${statusLines.length}`);
   }
   const entry = statusLines[0];
   const value = entry.normalized.replace(/^Status\s*:\s*/i, '');
