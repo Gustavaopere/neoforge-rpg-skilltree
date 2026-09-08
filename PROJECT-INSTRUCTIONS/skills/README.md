@@ -9,6 +9,7 @@ Esta pasta é o ponto de entrada canônico para skills/instruções de Minecraft
 3. `USER-GUIDED-WORKFLOW.md` — obriga uma etapa manual verificável por vez quando o usuário precisa agir.
 4. `SOURCE-AUDIT.md` — explica quais skills foram recebidas, quais são seguras, quais exigem overlay e quais ficam fora do escopo padrão.
 5. `SOURCE-MANIFEST.md` — registra SHA-256 dos 20 ZIPs recebidos em 2026-09-07.
+6. `ART-PIPELINE-SOURCES.md` e `SPELL-VFX-AUDIO-SOURCES.md` — registram fontes técnicas/versões das skills project-authored visuais.
 
 ## Estrutura
 
@@ -16,10 +17,12 @@ Esta pasta é o ponto de entrada canônico para skills/instruções de Minecraft
 - `standards/` contém contratos/checklists project-specific que são melhor tratados como convenção verificável do que como uma skill genérica.
 - `tools/` contém utilitários auxiliares versionados; eles não substituem validação no runtime do Minecraft.
 
-As primeiras skills project-authored são:
+Skills project-authored atuais:
 
 - `minecraft-asset-art-direction` — identidade visual e asset contract;
-- `minecraft-blockbench-geckolib` — modelagem, UV, rig e animação Blockbench/GeckoLib para o alvo do projeto.
+- `minecraft-blockbench-geckolib` — modelagem, UV, rig e animação Blockbench/GeckoLib para o alvo do projeto;
+- `minecraft-spell-vfx-engineering` — apresentação de spells, lifecycle de VFX, sync, cleanup e performance;
+- `minecraft-audio-design` — event map, loops, mix, spatialização, provenance e multiplayer.
 
 Os ZIPs originais foram auditados, mas seus exemplos multi-versão e arquivos auxiliares não são promovidos automaticamente a autoridade. Isso evita que exemplos de 1.21.4+, 1.21.8+, 1.21.11, Fabric, Forge legado, Paper ou multi-loader contaminem o runtime NeoForge 1.21.1.
 
