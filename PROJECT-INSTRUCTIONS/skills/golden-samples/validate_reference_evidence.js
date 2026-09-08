@@ -182,6 +182,8 @@ function buildListContainerIndents(lines) {
 function lineForBlockParsing(lines, containerIndents, index) {
   const source = String(lines[index] || '');
   const containerIndent = containerIndents[index] || 0;
+  const marker = parseListItemMarker(source, containerIndent);
+  if (marker) return source.slice(marker.contentIndent);
   const containerPrefix = ' '.repeat(containerIndent);
   if (containerIndent && source.startsWith(containerPrefix)) return source.slice(containerIndent);
   return source;
