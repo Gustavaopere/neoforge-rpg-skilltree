@@ -145,6 +145,11 @@ function runStatusDeclarationRegressionSelfTest() {
   if (headingGuard.matches.length !== 2) {
     fail(`internal guarded-prefix regression self-test expected an ATX-heading declaration to count as a duplicate rendered field; found ${headingGuard.matches.length}`);
   }
+
+  const bareTableRow = parseTableRow('`root` | duplicate runtime root | fabricated pivot | com.example.FabricatedRenderer');
+  if (!bareTableRow || bareTableRow.length !== 4 || bareTableRow[0] !== 'root' || bareTableRow[3] !== 'com.example.FabricatedRenderer') {
+    fail('internal table-row regression self-test expected a valid GFM row without outer pipes to remain visible to guarded-key uniqueness checks');
+  }
 }
 
 function normalizeToken(value) {
@@ -153,8 +158,12 @@ function normalizeToken(value) {
 
 function parseTableRow(line) {
   const trimmed = line.trim();
-  if (!trimmed.startsWith('|') || !trimmed.endsWith('|')) return null;
-  return trimmed.slice(1, -1).split('|').map(normalizeToken);
+  if (!trimmed.includes('|')) return null;
+  let body = trimmed;
+  if (body.startsWith('|')) body = body.slice(1);
+  if (body.endsWith('|')) body = body.slice(0, -1);
+  const cells = body.split('|').map(normalizeToken);
+  return cells.length >= 2 ? cells : null;
 }
 
 function isSeparatorRow(cells) {
