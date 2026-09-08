@@ -324,11 +324,38 @@
         azurelib_utils: Object.freeze({
           pluginId: 'azurelib_utils',
           title: 'AzureLib Animator',
-          pluginVersion: '2.1.4',
+          pluginVersion: '2.1.5',
           classification: 'REQUIRED_PROFILE',
           blockbenchCompatibility: Object.freeze({auditedExact: Object.freeze(['5.1.6'])}),
           mcpPolicy: 'ALLOWLIST',
           providerFamily: 'azurelib',
+        }),
+        cem_template_loader: Object.freeze({
+          pluginId: 'cem_template_loader',
+          title: 'CEM Template Loader',
+          pluginVersion: '9.2.0',
+          classification: 'REQUIRED_PROFILE',
+          blockbenchCompatibility: Object.freeze({minInclusive: '5.0.0'}),
+          mcpPolicy: 'ALLOWLIST',
+          providerFamily: 'emf_cem',
+        }),
+        emf_animation_addon: Object.freeze({
+          pluginId: 'emf_animation_addon',
+          title: 'EMF Animation Addon',
+          pluginVersion: '1.0.5',
+          classification: 'PREFERRED',
+          blockbenchCompatibility: Object.freeze({minInclusive: '4.9.0'}),
+          mcpPolicy: 'ALLOWLIST',
+          providerFamily: 'emf_cem',
+        }),
+        animated_java: Object.freeze({
+          pluginId: 'animated_java',
+          title: 'Animated Java',
+          pluginVersion: '1.10.2',
+          classification: 'OPTIONAL',
+          blockbenchCompatibility: Object.freeze({minInclusive: '5.1.4'}),
+          mcpPolicy: 'ALLOWLIST',
+          providerFamily: 'animated_java',
         }),
       });
       
@@ -416,6 +443,7 @@
       const CURRENT_PHYSICAL_PROVIDER_SNAPSHOT = Object.freeze({
         geckolib: Object.freeze({modId: 'geckolib', version: '4.9.2', presence: 'PRESENT', health: 'UNPROVEN'}),
         azurelib: Object.freeze({modId: 'azurelib', version: '3.1.11', presence: 'PRESENT', health: 'UNPROVEN'}),
+        entity_model_features: Object.freeze({modId: 'entity_model_features', version: '3.3.5', presence: 'PRESENT', health: 'UNPROVEN'}),
         photon: Object.freeze({modId: 'photon', version: '2.2.6.a', presence: 'PRESENT', health: 'KNOWN_RUNTIME_RISK'}),
         lodestone: Object.freeze({modId: 'lodestone', version: '1.8.2', presence: 'PRESENT', health: 'UNPROVEN'}),
         particle_effects: Object.freeze({modId: 'particle_effects', version: '1.5.0+1.21.1+neoforge', presence: 'PRESENT', health: 'PRESENTATION_ONLY'}),
@@ -459,6 +487,16 @@
           requiredProvider: {modId: 'azurelib', exactVersions: ['3.1.11']}, requiredExtensions: ['azurelib_utils'],
           capabilities: ['model', 'rig', 'animation', 'custom_easing_authoring', 'provider_export_handoff'],
         })),
+        frozenProfile({
+          id: 'emf_cem_entity', family: 'emf_cem', authority: 'Entity Model Features resource-pack/CEM runtime', assetKind: 'entity',
+          requiredProvider: {modId: 'entity_model_features', exactVersions: ['3.3.5']}, requiredExtensions: ['cem_template_loader'],
+          capabilities: ['model', 'resource_pack_cem', 'animation_authoring', 'provider_export_handoff'],
+        }),
+        frozenProfile({
+          id: 'animated_java_display_entities', family: 'animated_java', authority: 'Animated Java display-entity datapack/resource-pack export pipeline', assetKind: 'display_entities',
+          requiredProvider: null, requiredExtensions: ['animated_java'],
+          capabilities: ['model', 'rig', 'animation', 'locator', 'variant', 'display_entity_export_handoff'],
+        }),
       ]);
       
       const PROFILE_BY_ID = new Map(PROVIDER_PROFILES.map((profile) => [profile.id, profile]));
