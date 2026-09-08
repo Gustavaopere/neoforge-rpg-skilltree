@@ -1,55 +1,15 @@
-# Minecraft Asset Validator for Blockbench
+# Blockbench tools
 
-`minecraft_asset_validator.js` is an internal, read-only Blockbench plugin for structural QA. It does not generate models, rewrite UVs, fix pivots, or decide whether an asset looks good.
+## Preferred — RPG Asset Toolkit
 
-## Verified API surface
+Use `rpg-asset-toolkit/rpg_asset_toolkit.js` for new project-owned model work. It adds richer structural checks, parent-cycle detection, face/UV validation and optional asset-contract profiles (`requiredBones`, `requiredAnimations`, `maxSpan`). It is read-only and has Node regression tests.
 
-The implementation intentionally uses a small Blockbench API surface documented by the official Blockbench wiki/reference:
+See `rpg-asset-toolkit/README.md`.
 
-- `Plugin.register(...)` for plugin lifecycle;
-- `Action` for the validation command;
-- `MenuBar.menus.tools.addAction(...)` to expose the command;
-- `Blockbench.Project` as the current model project;
-- `Blockbench.showMessageBox(...)` for the report.
+## Legacy — Minecraft Asset Validator
 
-Project data inspected is limited to documented model-project fields such as groups, elements, textures and animations.
+`minecraft_asset_validator.js` is retained for compatibility with the first art-pipeline PR. It remains a read-only baseline checker but should not receive new project requirements when the Toolkit can express them.
 
-## Checks
+Neither plugin generates models, rewrites UVs, fixes pivots or decides whether an asset looks good. Final acceptance always requires `../../library/minecraft-visual-qa/SKILL.md` and in-game evidence.
 
-Errors:
-
-- no open project;
-- empty or duplicate bone/group names;
-- malformed/non-finite bone pivots;
-- malformed or negative element bounds;
-- renderable geometry without a texture;
-- invalid texture dimensions;
-- unnamed animations.
-
-Warnings:
-
-- model elements without an intentional group/bone hierarchy;
-- bone names outside project `lower_snake_case` convention;
-- zero-thickness geometry;
-- non-power-of-two textures;
-- zero/non-finite animation length;
-- unexpected animation loop mode.
-
-Warnings are review items, not automatic rejection. Provider-specific formats may justify exceptions.
-
-## Manual use
-
-Do not dump a multi-step installation tutorial on the user. Apply `../../USER-GUIDED-WORKFLOW.md`.
-
-When installation is actually needed, the first action is only: open Blockbench's plugin interface so the local plugin can be side-loaded. Ask for the visible result before giving the next action.
-
-## Validation boundary
-
-A PASS means only that this structural checker found no listed issue. Final acceptance still requires `../../standards/VISUAL-QA.md` and in-game evidence.
-
-## Upstream references checked 2026-09-07
-
-- Blockbench plugin guide: https://blockbench.net/wiki/docs/plugin/
-- Blockbench generated API reference: https://web.blockbench.net/docs/
-- GeckoLib Blockbench model guide: https://github.com/bernie-g/geckolib/wiki/Making-Your-Models-%28Blockbench%29
-- GeckoLib 4 documentation: https://wiki.geckolib.com/docs/geckolib4/
+When installation/sideloading is needed, apply `../../USER-GUIDED-WORKFLOW.md`: one manual action, verify, then continue.
