@@ -144,4 +144,9 @@ golden_evidence_validator = GOLDEN / "validate_reference_evidence.js"
 subprocess.run([node, "--check", str(golden_evidence_validator)], check=True)
 subprocess.run([node, str(golden_evidence_validator)], check=True)
 
+rendered_edge_validator = ROOT / "scripts" / "validate_golden_reference_rendered_edges.js"
+subprocess.run([node, "--check", str(rendered_edge_validator)], check=True)
+subprocess.run([node, str(rendered_edge_validator), "--self-test"], check=True)
+subprocess.run([node, str(rendered_edge_validator)], check=True)
+
 print("OK: 27 canonical skills, art/VFX/audio standards, templates, Visual Style Bible, Blockbench Toolkit, and Golden Samples present")
