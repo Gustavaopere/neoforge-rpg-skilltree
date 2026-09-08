@@ -29,8 +29,8 @@ function decodeBasicHtmlEntities(value) {
 
 function normalizeRenderedText(value) {
   return decodeBasicHtmlEntities(value)
-    // CommonMark backslash escapes render the punctuation without the backslash. Decode them
-    // before every Status/PASS/guard comparison so `Status\:` cannot hide a rendered boundary.
+    // CommonMark backslash escapes are forbidden by validateRoot before normalization. Keep
+    // decoding here only so synthetic helper inputs retain rendered-text semantics.
     .replace(/\\([!"#$%&'()*+,\-.\/:;<=>?@\[\]\\^_`{|}~])/g, '$1')
     .replace(/!?\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/!?\[([^\]]+)\]\[[^\]]*\]/g, '$1')
@@ -79,10 +79,18 @@ function validateRoot(root) {
   const tablePass = new RegExp(`^\\s*${wrapper}\\s*PASS\\b`, 'i');
   const rawHtmlOpener = /<(?:!|\?|\/?[A-Za-z])/;
   const blockquoteContainer = /^\s*(?:(?:[-+*]|\d+[.)])\s+)*>\s?/;
+  const commonmarkEscape = /\\[!"#$%&'()*+,\-.\/:;<=>?@\[\]\\^_`{|}~]/;
 
   for (const file of markdownFiles) {
     const relative = path.relative(root, file).split(path.sep).join('/');
     const source = fs.readFileSync(file, 'utf8');
+
+    // The reference-only corpus has no legitimate need for CommonMark punctuation escapes.
+    // Reject them before any rendered-text normalization so an escaped delimiter cannot be
+    // decoded into active Markdown syntax and hide fabricated guarded evidence.
+    if (commonmarkEscape.test(source)) {
+      fail(`${relative} uses a CommonMark backslash escape; punctuation escapes are forbidden in the reference-only corpus because they can change Markdown parsing before guarded-evidence validation`);
+    }
 
     // Fail closed on every raw CommonMark HTML opener, including unterminated comments,
     // declarations/CDATA, processing instructions, and ordinary opening/closing elements.
@@ -197,7 +205,10 @@ function runSelfTest() {
     expectFailure('same-line-status-duplicate', tmp, /exactly one rendered Status/i);
 
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n## Status\\: PRODUCTION READY — escaped-colon rendered contradiction.\n`, 'utf8');
-    expectFailure('escaped-heading-status-duplicate', tmp, /exactly one rendered Status/i);
+    expectFailure('escaped-heading-status-duplicate', tmp, /CommonMark backslash escape/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n| root | purpose | pivot | [UNRESOLVED]\\(com.example.FabricatedRenderer) |\n`, 'utf8');
+    expectFailure('escaped-link-delimiter-guard', tmp, /CommonMark backslash escape/i);
   } finally {
     fs.rmSync(tmp, {recursive: true, force: true});
   }
@@ -207,5 +218,5 @@ function runSelfTest() {
 if (process.argv.includes('--self-test')) runSelfTest();
 else {
   validateRoot(DEFAULT_ROOT);
-  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
+  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no CommonMark punctuation escapes, raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
 }
