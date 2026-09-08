@@ -25,6 +25,16 @@ const PROVIDER_PROFILES = Object.freeze([
     requiredProvider: {modId: 'azurelib', exactVersions: ['3.1.11']}, requiredExtensions: ['azurelib_utils'],
     capabilities: ['model', 'rig', 'animation', 'custom_easing_authoring', 'provider_export_handoff'],
   })),
+  frozenProfile({
+    id: 'emf_cem_entity', family: 'emf_cem', authority: 'Entity Model Features resource-pack/CEM runtime', assetKind: 'entity',
+    requiredProvider: {modId: 'entity_model_features', exactVersions: ['3.3.5']}, requiredExtensions: ['cem_template_loader'],
+    capabilities: ['model', 'resource_pack_cem', 'animation_authoring', 'provider_export_handoff'],
+  }),
+  frozenProfile({
+    id: 'animated_java_display_entities', family: 'animated_java', authority: 'Animated Java display-entity datapack/resource-pack export pipeline', assetKind: 'display_entities',
+    requiredProvider: null, requiredExtensions: ['animated_java'],
+    capabilities: ['model', 'rig', 'animation', 'locator', 'variant', 'display_entity_export_handoff'],
+  }),
 ]);
 
 const PROFILE_BY_ID = new Map(PROVIDER_PROFILES.map((profile) => [profile.id, profile]));

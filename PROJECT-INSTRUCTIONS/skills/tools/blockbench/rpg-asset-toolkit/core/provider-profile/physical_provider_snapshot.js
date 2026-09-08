@@ -5,6 +5,7 @@
 const CURRENT_PHYSICAL_PROVIDER_SNAPSHOT = Object.freeze({
   geckolib: Object.freeze({modId: 'geckolib', version: '4.9.2', presence: 'PRESENT', health: 'UNPROVEN'}),
   azurelib: Object.freeze({modId: 'azurelib', version: '3.1.11', presence: 'PRESENT', health: 'UNPROVEN'}),
+  entity_model_features: Object.freeze({modId: 'entity_model_features', version: '3.3.5', presence: 'PRESENT', health: 'UNPROVEN'}),
   photon: Object.freeze({modId: 'photon', version: '2.2.6.a', presence: 'PRESENT', health: 'KNOWN_RUNTIME_RISK'}),
   lodestone: Object.freeze({modId: 'lodestone', version: '1.8.2', presence: 'PRESENT', health: 'UNPROVEN'}),
   particle_effects: Object.freeze({modId: 'particle_effects', version: '1.5.0+1.21.1+neoforge', presence: 'PRESENT', health: 'PRESENTATION_ONLY'}),

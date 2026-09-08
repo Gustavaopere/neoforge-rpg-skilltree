@@ -142,7 +142,7 @@ test('profile resolver fails closed for unknown, absent, wrong-version, or missi
 test('provider resolver accepts the audited GeckoLib and AzureLib paths only with exact provider and extension evidence', () => {
   for (const [profileId, providerId, providerVersion, pluginId, pluginVersion] of [
     ['geckolib4_entity', 'geckolib', '4.9.2', 'geckolib', '4.2.5'],
-    ['azurelib_entity', 'azurelib', '3.1.11', 'azurelib_utils', '2.1.4'],
+    ['azurelib_entity', 'azurelib', '3.1.11', 'azurelib_utils', '2.1.5'],
   ]) {
     const result = providers.resolveProviderProfile(profileId, {
       blockbenchVersion: '5.1.6',
