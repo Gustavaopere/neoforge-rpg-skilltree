@@ -11,9 +11,14 @@ Repository code/build configuration and the exact physical modlist remain author
 Latest physical-modlist snapshot checked for this corpus on 2026-09-08: **595 top-level entries**. Currently installed candidates relevant here are:
 
 - GeckoLib 4.9.2 for Minecraft 1.21.1/NeoForge;
-- Photon 2.2.6.a.
+- Photon 2.2.6.a;
+- Lodestone 1.8.2.
+
+`Particle Effects 1.5.0+1.21.1+neoforge` is also installed, but it is a client-side presentation mod for effect/status particles rather than a general project-owned VFX authoring backend, so it is deliberately excluded from provider selection.
 
 AAA Particles 2.2.3 and AAA Particles World 2.0.0 were present in the earlier creation-time snapshot but are **absent from the latest physical modlist**. Where they remain visible in the VFX matrix, they are retained only as explicit negative drift evidence and must not be selected as providers while absent.
+
+For project-owned VFX, current routing intent is `provider-native → Photon candidate → Lodestone candidate → vanilla/custom particle fallback`. This does not bypass exact-version capability checks or runtime-health gates.
 
 Presence is not API proof. No provider is selected automatically and no provider-native method/signature is asserted here.
 
