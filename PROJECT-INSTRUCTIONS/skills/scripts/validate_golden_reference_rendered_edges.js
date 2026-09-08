@@ -168,6 +168,8 @@ function runSelfTest() {
     expectFailure('heading-status-duplicate', tmp, /exactly one rendered Status/i);
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS} Status: PRODUCTION READY — duplicate on one rendered line.\n`, 'utf8');
     expectFailure('same-line-status-duplicate', tmp, /exactly one rendered Status/i);
+    fs.writeFileSync(file, `\`\`\`text\nStatus: ${CANONICAL_STATUS}\n\`\`\`\nFinal visual acceptance remains PENDING.\n`, 'utf8');
+    expectFailure('status-inside-fenced-code', tmp, /rendered Status|code block|exactly one rendered Status/i);
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n## Status\\: PRODUCTION READY — escaped-colon rendered contradiction.\n`, 'utf8');
     expectFailure('escaped-heading-status-duplicate', tmp, /CommonMark backslash escape/i);
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n| root | purpose | pivot | [UNRESOLVED]\\(com.example.FabricatedRenderer) |\n`, 'utf8');
