@@ -80,10 +80,19 @@ function validateRoot(root) {
   const rawHtmlOpener = /<(?:!|\?|\/?[A-Za-z])/;
   const blockquoteContainer = /^\s*(?:(?:[-+*]|\d+[.)])\s+)*>\s?/;
   const commonmarkEscape = /\\[!"#$%&'()*+,\-.\/:;<=>?@\[\]\\^_`{|}~]/;
+  const encodedBackslash = /&#(?:0*92|x0*5c);/i;
 
   for (const file of markdownFiles) {
     const relative = path.relative(root, file).split(path.sep).join('/');
     const source = fs.readFileSync(file, 'utf8');
+
+    // HTML character references are decoded during rendered-text normalization. A numeric
+    // reference for backslash can therefore become a CommonMark escape only after the
+    // source-level escape check has already run, changing link/delimiter parsing and hiding
+    // fabricated guarded values. Reject every decimal/hex spelling of U+005C fail-closed.
+    if (encodedBackslash.test(source)) {
+      fail(`${relative} uses an HTML character reference that decodes to backslash; entity-encoded backslashes are forbidden because they can create CommonMark escapes after source-level guarded-evidence validation`);
+    }
 
     // The reference-only corpus has no legitimate need for CommonMark punctuation escapes.
     // Reject them before any rendered-text normalization so an escaped delimiter cannot be
@@ -209,6 +218,12 @@ function runSelfTest() {
 
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n| root | purpose | pivot | [UNRESOLVED]\\(com.example.FabricatedRenderer) |\n`, 'utf8');
     expectFailure('escaped-link-delimiter-guard', tmp, /CommonMark backslash escape/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n| root | purpose | pivot | [UNRESOLVED]&#92;(com.example.FabricatedRenderer) |\n`, 'utf8');
+    expectFailure('entity-decimal-backslash-guard', tmp, /entity-encoded backslashes/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n| root | purpose | pivot | [UNRESOLVED]&#x5C;(com.example.FabricatedRenderer) |\n`, 'utf8');
+    expectFailure('entity-hex-backslash-guard', tmp, /entity-encoded backslashes/i);
   } finally {
     fs.rmSync(tmp, {recursive: true, force: true});
   }
@@ -218,5 +233,5 @@ function runSelfTest() {
 if (process.argv.includes('--self-test')) runSelfTest();
 else {
   validateRoot(DEFAULT_ROOT);
-  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no CommonMark punctuation escapes, raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
+  console.log('OK: Golden Samples rendered-edge gate found one canonical rendered Status per Markdown file and no entity-encoded/CommonMark backslash escapes, raw HTML/blockquotes, hidden rendered breaks, soft-break PASS claims, or wrapped PASS status');
 }
