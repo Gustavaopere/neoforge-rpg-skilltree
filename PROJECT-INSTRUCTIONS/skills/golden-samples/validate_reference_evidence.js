@@ -336,7 +336,21 @@ function requireCanonicalReferenceStatus(file) {
   }
 }
 
+function runBacktickFenceInfoRegressionSelfTest() {
+  const rows = extractGfmTableRows([
+    '```text`not-a-fence',
+    '',
+    'Bone | Purpose | Pivot rule | Runtime dependency',
+    '--- | --- | --- | ---',
+    'root | live table after invalid opener | live pivot | com.example.FabricatedRenderer',
+  ].join('\n'));
+  if (rows.length !== 2 || rows[0].cells[0] !== 'Bone' || rows[1].cells[0] !== 'root') {
+    fail(`internal invalid-backtick-fence regression self-test expected invalid info-string opener not to mask a live GFM table; found ${rows.length} row(s)`);
+  }
+}
+
 runStatusDeclarationRegressionSelfTest();
+runBacktickFenceInfoRegressionSelfTest();
 
 const allFiles = walk(ROOT);
 const actualFiles = allFiles.map(relativePath).sort();
