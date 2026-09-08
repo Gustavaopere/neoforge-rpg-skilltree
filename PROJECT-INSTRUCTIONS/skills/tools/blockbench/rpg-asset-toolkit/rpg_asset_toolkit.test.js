@@ -36,3 +36,7 @@ test('malformed locator positions are reported separately from cube bounds', () 
   assert.ok(result.errors.some((item) => item.code === 'INVALID_LOCATOR_POSITION'));
   assert.equal(result.errors.some((item) => item.code === 'INVALID_ELEMENT_BOUNDS'), false);
 });
+
+require('./rpg_asset_toolkit.registry.test.js');
+require('./rpg_asset_toolkit.modular.test.js');
+require('./rpg_asset_toolkit.provider_expansion.test.js');

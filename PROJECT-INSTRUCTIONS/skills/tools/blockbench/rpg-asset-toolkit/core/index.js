@@ -1,0 +1,20 @@
+'use strict';
+
+const projectModel = require('./project-model/project_model.js');
+const validator = require('./validator/validator.js');
+const contractProfile = require('./contract-profile/contract_profile.js');
+const report = require('./report/report.js');
+const extensions = require('./extension-registry/extension_registry.js');
+const providers = require('./provider-profile/provider_profiles.js');
+const physical = require('./provider-profile/physical_provider_snapshot.js');
+
+module.exports = Object.assign(
+  {},
+  projectModel,
+  validator,
+  contractProfile,
+  report,
+  extensions,
+  providers,
+  physical,
+);
