@@ -46,13 +46,13 @@ Lifecycle:
 
 ## Provider candidates
 
-Physical-modlist presence establishes candidates, not integration:
+Physical-modlist presence establishes candidates, not integration. Latest snapshot checked on 2026-09-08 contains 595 top-level entries.
 
-- Photon 2.2.6.a — candidate for authored particle/VFX graph work.
-- AAA Particles 2.2.3 / AAA Particles World 2.0.0 — candidate where exact supported effect path is proven.
+- Photon 2.2.6.a — currently installed candidate for authored particle/VFX graph work.
+- AAA Particles 2.2.3 / AAA Particles World 2.0.0 — **not currently installed**; historical creation-time candidates only and therefore unavailable for provider selection.
 - Selected provider and exact API/hook: `UNRESOLVED`.
 
-Do not stack providers by default.
+Do not stack providers by default, and never promote a provider that is absent from the current physical modlist.
 
 ## Acceptance state
 
