@@ -19,10 +19,11 @@
 - [x] Document upstream technical evidence.
 - [x] Route the new skills and update repository README.
 - [x] Extend deterministic skill validation from 20 to 22 skills and art-pipeline files.
-- [ ] Validate Python syntax and JavaScript syntax from the exact branch content.
-- [ ] Run the repository skill validator against the exact branch tree.
-- [ ] Review branch diff against latest `main`.
-- [ ] Re-sync if `main` advanced.
+- [x] Validate Python syntax and JavaScript syntax for the committed source content.
+- [x] Run a preflight fixture through the updated repository validator contract.
+- [x] Review branch diff against `main@937df2b0ff6c336f5f297ef53be5ef72c86de83f` (12 scoped files before this status update, 0 behind).
+- [x] Re-check `main`; no reconciliation required at the pre-PR checkpoint.
+- [ ] Run the repository skill validator against the exact GitHub branch tree in CI.
 - [ ] Open PR and obtain applicable CI green.
 - [ ] Re-check `main`, reconcile if needed, revalidate, merge and confirm post-merge SHA.
 
