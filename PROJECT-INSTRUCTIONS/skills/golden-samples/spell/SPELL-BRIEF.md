@@ -48,11 +48,15 @@ Lifecycle:
 
 Physical-modlist presence establishes candidates, not integration. Latest snapshot checked on 2026-09-08 contains 595 top-level entries.
 
-- Photon 2.2.6.a — currently installed candidate for authored particle/VFX graph work.
+- Photon 2.2.6.a — currently installed VFX editor/runtime candidate for authored project effects; exact selected API/hook remains `UNRESOLVED` and selection requires runtime-health verification.
+- Lodestone 1.8.2 — currently installed rendering/particle-library candidate for code-authored project effects; exact selected API/hook remains `UNRESOLVED` pending exact-version verification.
+- Particle Effects 1.5.0+1.21.1+neoforge — installed client-side presentation mod, **not** a project VFX authoring backend and not selectable here.
 - AAA Particles 2.2.3 / AAA Particles World 2.0.0 — **not currently installed**; historical creation-time candidates only and therefore unavailable for provider selection.
 - Selected provider and exact API/hook: `UNRESOLVED`.
 
-Do not stack providers by default, and never promote a provider that is absent from the current physical modlist.
+Routing preference for project-owned presentation is `provider-native → Photon → Lodestone → vanilla/custom particle fallback`, subject to capability and health proof. Do not stack providers by default, and never promote a provider that is absent from the current physical modlist.
+
+Blockbench may author geometry/anchors/timing/capture metadata for the effect handoff, but does not become gameplay or particle-runtime authority merely because an extension can visualize the asset.
 
 ## Acceptance state
 
