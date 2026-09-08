@@ -161,44 +161,108 @@ function runStatusDeclarationRegressionSelfTest() {
   if (tableBlock.length !== 2 || tableBlock[0].cells[0] !== 'Bone' || tableBlock[1].cells[0] !== 'root') {
     fail(`internal table-boundary regression self-test expected exactly header + one bare GFM data row; found ${tableBlock.length}`);
   }
+
+  const shortRowTable = extractGfmTableRows([
+    'Bone | Purpose | Pivot rule | Runtime dependency',
+    '--- | --- | --- | ---',
+    'root | canonical runtime root | canonical pivot | UNRESOLVED',
+    '| spacer |',
+    'root | fabricated duplicate | fabricated pivot | com.example.FabricatedRenderer',
+  ].join('\n'));
+  if (shortRowTable.length !== 4 || shortRowTable[2].cells.length !== 4 || shortRowTable[2].cells[0] !== 'spacer' || shortRowTable[3].cells[0] !== 'root') {
+    fail(`internal short-table-row regression self-test expected a padded short body row without terminating the table; found ${shortRowTable.length} row(s)`);
+  }
+
+  const codeExampleRows = extractGfmTableRows([
+    '```text',
+    'Bone | Purpose | Pivot rule | Runtime dependency',
+    '--- | --- | --- | ---',
+    'root | fenced example | example pivot | com.example.FabricatedRenderer',
+    '```',
+    '',
+    '    Bone | Purpose | Pivot rule | Runtime dependency',
+    '    --- | --- | --- | ---',
+    '    root | indented example | example pivot | com.example.FabricatedRenderer',
+  ].join('\n'));
+  if (codeExampleRows.length !== 0) {
+    fail(`internal code-block table regression self-test expected fenced and four-space-indented examples to be ignored; found ${codeExampleRows.length} row(s)`);
+  }
 }
 
 function normalizeToken(value) {
   return normalizeRenderedText(value);
 }
 
-function parseTableRow(line) {
+function parseTableRow(line, allowSingleCell = false) {
   const trimmed = line.trim();
   if (!trimmed.includes('|')) return null;
   let body = trimmed;
   if (body.startsWith('|')) body = body.slice(1);
   if (body.endsWith('|')) body = body.slice(0, -1);
   const cells = body.split('|').map(normalizeToken);
-  return cells.length >= 2 ? cells : null;
+  return cells.length >= (allowSingleCell ? 1 : 2) ? cells : null;
 }
 
 function isSeparatorRow(cells) {
   return cells.every((cell) => /^:?-{3,}:?$/.test(cell));
 }
 
+function parseFenceOpening(line) {
+  const match = String(line || '').match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+  if (!match) return null;
+  return {character: match[1][0], length: match[1].length};
+}
+
+function isFenceClosing(line, fence) {
+  if (!fence) return false;
+  const match = String(line || '').match(/^ {0,3}(`+|~+)\s*$/);
+  return Boolean(match && match[1][0] === fence.character && match[1].length >= fence.length);
+}
+
+function isIndentedCodeLine(line) {
+  return /^(?:\t| {4})/.test(String(line || ''));
+}
+
+function normalizeBodyCells(cells, width) {
+  const normalized = cells.slice(0, width);
+  while (normalized.length < width) normalized.push('');
+  return normalized;
+}
+
 function extractGfmTableRows(source) {
   const lines = String(source || '').split(/\r?\n/);
   const rows = [];
+  let fence = null;
 
   for (let index = 0; index < lines.length - 1; index += 1) {
-    const header = parseTableRow(lines[index]);
-    const delimiter = parseTableRow(lines[index + 1]);
+    const line = lines[index];
+    if (fence) {
+      if (isFenceClosing(line, fence)) fence = null;
+      continue;
+    }
+
+    const openingFence = parseFenceOpening(line);
+    if (openingFence) {
+      fence = openingFence;
+      continue;
+    }
+    if (isIndentedCodeLine(line)) continue;
+
+    const delimiterLine = lines[index + 1];
+    if (parseFenceOpening(delimiterLine) || isIndentedCodeLine(delimiterLine)) continue;
+    const header = parseTableRow(line);
+    const delimiter = parseTableRow(delimiterLine);
     if (!header || !delimiter || header.length !== delimiter.length || !isSeparatorRow(delimiter)) continue;
 
-    rows.push({line: lines[index], lineNumber: index + 1, cells: header});
+    rows.push({line, lineNumber: index + 1, cells: header});
     index += 1;
 
     while (index + 1 < lines.length) {
       const nextLine = lines[index + 1];
-      if (!nextLine.trim()) break;
-      const cells = parseTableRow(nextLine);
+      if (!nextLine.trim() || parseFenceOpening(nextLine) || isIndentedCodeLine(nextLine)) break;
+      const cells = parseTableRow(nextLine, true);
       if (!cells || isSeparatorRow(cells)) break;
-      rows.push({line: nextLine, lineNumber: index + 2, cells});
+      rows.push({line: nextLine, lineNumber: index + 2, cells: normalizeBodyCells(cells, header.length)});
       index += 1;
     }
   }
@@ -488,4 +552,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered block-container labels/statuses/entities/escapes, enforced unique scalar/table guards within actual GFM table blocks, and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered block-container labels/statuses/entities/escapes, enforced unique scalar/table guards within actual non-code GFM table blocks (including padded short rows), and found no unsupported PASS-form acceptance claim`);
