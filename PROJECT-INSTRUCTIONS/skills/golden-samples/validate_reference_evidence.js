@@ -210,7 +210,9 @@ function isSeparatorRow(cells) {
 function parseFenceOpening(line) {
   const match = String(line || '').match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
   if (!match) return null;
-  return {character: match[1][0], length: match[1].length};
+  const character = match[1][0];
+  if (character === '`' && match[2].includes('`')) return null;
+  return {character, length: match[1].length};
 }
 
 function isFenceClosing(line, fence) {
