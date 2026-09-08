@@ -221,6 +221,55 @@ function isFenceClosing(line, fence) {
   return Boolean(match && match[1][0] === fence.character && match[1].length >= fence.length);
 }
 
+function leadingSpaceCount(line) {
+  const match = String(line || '').match(/^ */);
+  return match ? match[0].length : 0;
+}
+
+function parseListItemMarker(line, containerIndent = 0) {
+  const source = String(line || '');
+  const containerPrefix = ' '.repeat(containerIndent);
+  if (!source.startsWith(containerPrefix)) return null;
+  const relative = source.slice(containerIndent);
+  const match = relative.match(/^( {0,3})([-+*]|\d{1,9}[.)])( {1,4})(?=\S|$)/);
+  if (!match) return null;
+  return {
+    markerIndent: containerIndent + match[1].length,
+    contentIndent: containerIndent + match[1].length + match[2].length + match[3].length,
+  };
+}
+
+function buildListContainerIndents(lines) {
+  const containerIndents = new Array(lines.length).fill(0);
+  const stack = [];
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = String(lines[index] || '');
+    if (!line.trim()) {
+      containerIndents[index] = stack.length ? stack[stack.length - 1].contentIndent : 0;
+      continue;
+    }
+
+    const leading = leadingSpaceCount(line);
+    while (stack.length && leading < stack[stack.length - 1].contentIndent) stack.pop();
+
+    const parentIndent = stack.length ? stack[stack.length - 1].contentIndent : 0;
+    const marker = parseListItemMarker(line, parentIndent);
+    containerIndents[index] = parentIndent;
+    if (marker) stack.push(marker);
+  }
+
+  return containerIndents;
+}
+
+function lineForBlockParsing(lines, containerIndents, index) {
+  const source = String(lines[index] || '');
+  const containerIndent = containerIndents[index] || 0;
+  const containerPrefix = ' '.repeat(containerIndent);
+  if (containerIndent && source.startsWith(containerPrefix)) return source.slice(containerIndent);
+  return source;
+}
+
 function isIndentedCodeLine(line) {
   return /^(?:\t| {4})/.test(String(line || ''));
 }
@@ -233,11 +282,13 @@ function normalizeBodyCells(cells, width) {
 
 function extractGfmTableRows(source) {
   const lines = String(source || '').split(/\r?\n/);
+  const containerIndents = buildListContainerIndents(lines);
   const rows = [];
   let fence = null;
 
   for (let index = 0; index < lines.length - 1; index += 1) {
-    const line = lines[index];
+    const rawLine = lines[index];
+    const line = lineForBlockParsing(lines, containerIndents, index);
     if (fence) {
       if (isFenceClosing(line, fence)) fence = null;
       continue;
@@ -250,21 +301,23 @@ function extractGfmTableRows(source) {
     }
     if (isIndentedCodeLine(line)) continue;
 
-    const delimiterLine = lines[index + 1];
+    const rawDelimiterLine = lines[index + 1];
+    const delimiterLine = lineForBlockParsing(lines, containerIndents, index + 1);
     if (parseFenceOpening(delimiterLine) || isIndentedCodeLine(delimiterLine)) continue;
     const header = parseTableRow(line);
     const delimiter = parseTableRow(delimiterLine);
     if (!header || !delimiter || header.length !== delimiter.length || !isSeparatorRow(delimiter)) continue;
 
-    rows.push({line, lineNumber: index + 1, cells: header});
+    rows.push({line: rawLine, lineNumber: index + 1, cells: header});
     index += 1;
 
     while (index + 1 < lines.length) {
-      const nextLine = lines[index + 1];
+      const rawNextLine = lines[index + 1];
+      const nextLine = lineForBlockParsing(lines, containerIndents, index + 1);
       if (!nextLine.trim() || parseFenceOpening(nextLine) || isIndentedCodeLine(nextLine)) break;
       const cells = parseTableRow(nextLine, true);
       if (!cells || isSeparatorRow(cells)) break;
-      rows.push({line: nextLine, lineNumber: index + 2, cells: normalizeBodyCells(cells, header.length)});
+      rows.push({line: rawNextLine, lineNumber: index + 2, cells: normalizeBodyCells(cells, header.length)});
       index += 1;
     }
   }
@@ -361,6 +414,40 @@ function runNestedListTableRegressionSelfTest() {
   ].join('\n'));
   if (rows.length !== 2 || rows[0].cells[0] !== 'Bone' || rows[1].cells[0] !== 'root') {
     fail(`internal nested-list table regression self-test expected a four-space-continued live GFM table to remain visible; found ${rows.length} row(s)`);
+  }
+
+  const nestedCodeRows = extractGfmTableRows([
+    '- nested code contract',
+    '',
+    '      Bone | Purpose | Pivot rule | Runtime dependency',
+    '      --- | --- | --- | ---',
+    '      root | nested code example | nested pivot | com.example.FabricatedRenderer',
+  ].join('\n'));
+  if (nestedCodeRows.length !== 0) {
+    fail(`internal nested-list code regression self-test expected four spaces relative to list content to remain indented code; found ${nestedCodeRows.length} row(s)`);
+  }
+
+  const orderedRows = extractGfmTableRows([
+    '10. ordered live contract',
+    '',
+    '    Bone | Purpose | Pivot rule | Runtime dependency',
+    '    --- | --- | --- | ---',
+    '    root | ordered live duplicate | ordered pivot | com.example.FabricatedRenderer',
+  ].join('\n'));
+  if (orderedRows.length !== 2 || orderedRows[1].cells[0] !== 'root') {
+    fail(`internal ordered-list table regression self-test expected W+N-relative indentation to remain visible; found ${orderedRows.length} row(s)`);
+  }
+
+  const nestedListRows = extractGfmTableRows([
+    '- outer contract',
+    '  - inner contract',
+    '',
+    '      Bone | Purpose | Pivot rule | Runtime dependency',
+    '      --- | --- | --- | ---',
+    '      root | deeply nested live duplicate | nested pivot | com.example.FabricatedRenderer',
+  ].join('\n'));
+  if (nestedListRows.length !== 2 || nestedListRows[1].cells[0] !== 'root') {
+    fail(`internal nested-list stack regression self-test expected recursively relative indentation to remain visible; found ${nestedListRows.length} row(s)`);
   }
 }
 
@@ -582,4 +669,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered block-container labels/statuses/entities/escapes, enforced unique scalar/table guards within actual non-code GFM table blocks (including padded short rows), and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered block-container labels/statuses/entities/escapes, enforced unique scalar/table guards within actual non-code GFM table blocks (including list-relative indentation and padded short rows), and found no unsupported PASS-form acceptance claim`);
