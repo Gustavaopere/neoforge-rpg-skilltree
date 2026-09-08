@@ -82,7 +82,7 @@ function validateRoot(root) {
   const blockquoteContainer = /^\s*(?:(?:[-+*]|\d+[.)])\s+)*>\s?/;
   const commonmarkEscape = /\\[!"#$%&'()*+,\-.\/:;<=>?@\[\]\\^_`{|}~]/;
   const htmlEntityReference = /&(?:#x[0-9a-f]+|#\d+|[a-z][a-z0-9]+);/i;
-  const referenceDefinition = /^(?: {0,3}(?:[-+*]|\d+[.)])\s+)* {0,3}\[[^\]\r\n]+\]:/m;
+  const referenceDefinition = /^\s*(?:(?:[-+*]|\d+[.)])\s+)*\[[^\]\r\n]+\]:/m;
 
   for (const file of markdownFiles) {
     const relative = path.relative(root, file).split(path.sep).join('/');
@@ -107,9 +107,10 @@ function validateRoot(root) {
 
     // Shortcut/collapsed reference links derive their rendered link semantics from definitions
     // elsewhere in the document. The local normalizer cannot safely infer that global state
-    // without becoming a partial CommonMark parser. This reference-only corpus has no need for
-    // reference definitions, so forbid their activating syntax even when the definition is the
-    // content of one or more list-item containers; ordinary inline links remain available.
+    // without becoming a partial CommonMark parser. This narrow reference-only corpus has no
+    // legitimate need for reference definitions, so fail closed on definition-shaped lines at
+    // any indentation and after list markers, including list continuation lines. Ordinary inline
+    // links remain available.
     if (referenceDefinition.test(source)) {
       fail(`${relative} uses a Markdown reference definition; reference definitions are forbidden in the reference-only corpus because they can activate shortcut links that alter guarded evidence or acceptance text after local normalization`);
     }
@@ -246,6 +247,9 @@ function runSelfTest() {
 
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\nNative editor acceptance: [P]ASS\n- [P]: /pass\n`, 'utf8');
     expectFailure('list-contained-shortcut-reference-pass', tmp, /reference definitions/i);
+
+    fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\nNative editor acceptance: [P]ASS\n10. holder\n\n    [P]: /pass\n`, 'utf8');
+    expectFailure('ordered-list-continuation-shortcut-reference-pass', tmp, /reference definitions/i);
 
     fs.writeFileSync(file, `Status: ${CANONICAL_STATUS}\n- Runtime consumer/class: UNRESOLVED\n- [Runtime consumer/class:] com.example.FabricatedRenderer\n[Runtime consumer/class:]: /guard\n`, 'utf8');
     expectFailure('shortcut-reference-guard', tmp, /reference definitions/i);
