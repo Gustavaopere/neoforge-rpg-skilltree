@@ -14,24 +14,27 @@ Blockbench with the GeckoLib plugin is the canonical authoring path for GeckoLib
 
 ## Production flow
 
-1. Read `minecraft-asset-art-direction` and the asset contract first.
+1. Read `minecraft-asset-art-direction`, the Visual Style Bible and the applicable model/animation briefs first.
 2. Create or convert a `GeckoLib Animated Model` project only when GeckoLib is actually the chosen renderer.
 3. Establish hierarchy before animation: stable bone names, intentional parenting, correct pivots, and attachment points required by held items/VFX.
-4. UV and texture deliberately. Preserve consistent texel density and material readability; do not stretch a concept image over geometry.
+4. UV and texture deliberately. Preserve consistent texel density derived from project evidence; do not stretch a concept image over geometry or invent a global density constant.
 5. Create animations from named gameplay states/poses. Decide whether each animation is `once`, `hold`, or `loop` intentionally.
-6. Preserve the `.bbmodel`; export the provider-appropriate model/animation resources and textures.
-7. Run `tools/blockbench/minecraft_asset_validator.js` inside Blockbench for structural checks.
-8. Perform in-game visual QA; the plugin is not proof of visual quality.
+6. Preserve the `.bbmodel`; export provider-appropriate model/animation resources and textures.
+7. Run `../../tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js` inside Blockbench for structural checks.
+8. When the asset contract defines required bones/animations or maximum bounds, use the Toolkit contract-profile action.
+9. Perform in-game visual QA with `minecraft-visual-qa`; Toolkit PASS is not proof of visual quality.
 
 ## Structural checks
 
 Treat these as release blockers when applicable:
 
 - duplicate/empty bone names;
+- parent cycles;
 - malformed pivots or bounds;
-- missing textures for renderable geometry;
+- enabled faces with unresolved textures or malformed UVs;
 - invalid export paths;
 - missing required attachment bones;
+- missing contract-required animations;
 - animations with wrong loop semantics;
 - clipping that affects intended gameplay poses;
 - client rendering code referenced from dedicated-server paths.
@@ -48,11 +51,11 @@ A completed model task should identify:
 
 - source `.bbmodel`;
 - exported resource paths;
-- texture dimensions;
+- texture dimensions and texel-density evidence;
 - bone/attachment contract;
 - animation names and loop policy;
-- validator result;
-- in-game screenshots or explicit pending visual review;
+- Toolkit result/profile used;
+- in-game screenshots or explicit PENDING visual review;
 - dedicated-server/client separation when Java integration changed.
 
 If the user must click through Blockbench, follow `../../USER-GUIDED-WORKFLOW.md` and provide one manual action at a time.

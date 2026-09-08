@@ -1,8 +1,16 @@
-# Minecraft Asset Validator for Blockbench
+# Blockbench tools
 
-`minecraft_asset_validator.js` is an internal, read-only Blockbench plugin for structural QA. It does not generate models, rewrite UVs, fix pivots, or decide whether an asset looks good.
+## Preferred — RPG Asset Toolkit
 
-## Verified API surface
+Use `rpg-asset-toolkit/rpg_asset_toolkit.js` for new project-owned model work. It adds parent-cycle detection, face/UV validation and optional asset-contract profiles (`requiredBones`, `requiredAnimations`, `maxSpan`) while remaining read-only. Its pure validation logic has Node regression tests executed by the repository skill validator.
+
+See `rpg-asset-toolkit/README.md`.
+
+## Legacy — Minecraft Asset Validator
+
+`minecraft_asset_validator.js` is retained as the first-generation internal, read-only Blockbench structural QA plugin. It does not generate models, rewrite UVs, fix pivots, or decide whether an asset looks good.
+
+### Verified API surface
 
 The implementation intentionally uses a small Blockbench API surface documented by the official Blockbench wiki/reference:
 
@@ -14,7 +22,7 @@ The implementation intentionally uses a small Blockbench API surface documented 
 
 Project data inspected is limited to documented model-project fields such as groups, elements, textures and animations.
 
-## Checks
+### Legacy checks
 
 Errors:
 
@@ -45,11 +53,12 @@ When installation is actually needed, the first action is only: open Blockbench'
 
 ## Validation boundary
 
-A PASS means only that this structural checker found no listed issue. Final acceptance still requires `../../standards/VISUAL-QA.md` and in-game evidence.
+A PASS from either plugin means only that its listed structural checks passed. Final acceptance still requires `../../library/minecraft-visual-qa/SKILL.md`, the relevant standards, and in-game evidence.
 
-## Upstream references checked 2026-09-07
+## Upstream references checked 2026-09-08
 
 - Blockbench plugin guide: https://blockbench.net/wiki/docs/plugin/
 - Blockbench generated API reference: https://web.blockbench.net/docs/
+- Blockbench UI API: https://blockbench.net/wiki/docs/ui/
 - GeckoLib Blockbench model guide: https://github.com/bernie-g/geckolib/wiki/Making-Your-Models-%28Blockbench%29
 - GeckoLib 4 documentation: https://wiki.geckolib.com/docs/geckolib4/
