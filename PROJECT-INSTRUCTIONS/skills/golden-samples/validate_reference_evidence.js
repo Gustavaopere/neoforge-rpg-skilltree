@@ -6,6 +6,23 @@ const path = require('node:path');
 const ROOT = __dirname;
 const UNRESOLVED = 'UNRESOLVED';
 const PENDING = 'PENDING';
+const EXPECTED_FILES = new Set([
+  'README.md',
+  'validate_golden_samples.js',
+  'validate_reference_evidence.js',
+  'model-asset/ANIMATION-BRIEF.md',
+  'model-asset/ASSET-BRIEF.md',
+  'model-asset/MODEL-CONTRACT.md',
+  'model-asset/TOOLKIT-PROFILE.json',
+  'model-asset/validator-project-fixture.json',
+  'spell/AUDIO-CUE-SHEET.md',
+  'spell/AUDIO-QA.md',
+  'spell/SPELL-BRIEF.md',
+  'spell/SPELL-PRESENTATION.md',
+  'spell/VFX-BRIEF.md',
+  'spell/VFX-QA.md',
+  'spell/VISUAL-QA.md',
+]);
 
 function fail(message) {
   throw new Error(`Golden Samples evidence validation failed: ${message}`);
@@ -19,6 +36,10 @@ function walk(dir) {
     else out.push(full);
   }
   return out;
+}
+
+function relativePath(file) {
+  return path.relative(ROOT, file).split(path.sep).join('/');
 }
 
 function normalizeToken(value) {
@@ -70,6 +91,17 @@ function requireRowsByKey(relative, headerKey, contracts) {
   }
 }
 
+const allFiles = walk(ROOT);
+const actualFiles = allFiles.map(relativePath).sort();
+const unexpectedFiles = actualFiles.filter((relative) => !EXPECTED_FILES.has(relative));
+const missingFiles = [...EXPECTED_FILES].filter((relative) => !actualFiles.includes(relative)).sort();
+if (unexpectedFiles.length) {
+  fail(`reference-only corpus contains unexpected file(s): ${unexpectedFiles.join(', ')}`);
+}
+if (missingFiles.length) {
+  fail(`reference-only corpus is missing allowlisted file(s): ${missingFiles.join(', ')}`);
+}
+
 requireRowsByKey('model-asset/MODEL-CONTRACT.md', 'Bone', [
   {key: 'root', exactUnresolved: [3]},
   {key: 'cast_hand', exactUnresolved: [3]},
@@ -103,11 +135,11 @@ for (const [relative, headerKey] of [
   }
 }
 
-const markdownFiles = walk(ROOT).filter((file) => file.toLowerCase().endsWith('.md'));
+const markdownFiles = allFiles.filter((file) => file.toLowerCase().endsWith('.md'));
 if (!markdownFiles.length) fail('no Markdown files found in Golden Samples corpus');
 
 for (const file of markdownFiles) {
-  const relative = path.relative(ROOT, file);
+  const relative = relativePath(file);
   const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
 
   for (let index = 0; index < lines.length; index += 1) {
@@ -133,4 +165,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned ${markdownFiles.length} Markdown file(s), guarded table cells independently, and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), guarded table cells independently, and found no unsupported PASS-form acceptance claim`);
