@@ -80,6 +80,37 @@ function normalizeRenderedText(value) {
     .trim();
 }
 
+function normalizeStatusDeclarationText(value) {
+  let normalized = normalizeRenderedText(value);
+  let previous = null;
+  while (normalized !== previous) {
+    previous = normalized;
+    normalized = normalized.replace(/^(?:[-+*]|\d+[.)])\s+/, '').trimStart();
+  }
+  return normalized;
+}
+
+function collectStatusDeclarations(source) {
+  return String(source || '')
+    .split(/\r?\n/)
+    .map((line, index) => ({normalized: normalizeStatusDeclarationText(line.trim()), lineNumber: index + 1}))
+    .filter((entry) => /^Status\s*:/i.test(entry.normalized));
+}
+
+function runStatusDeclarationRegressionSelfTest() {
+  const contradictory = collectStatusDeclarations(
+    `Status: ${CANONICAL_STATUS}\n- Status: PRODUCTION READY — runtime registration and shipped gameplay.\n`,
+  );
+  if (contradictory.length !== 2) {
+    fail(`internal Status regression self-test expected 2 declarations for canonical plus list-contained contradiction; found ${contradictory.length}`);
+  }
+
+  const nested = collectStatusDeclarations('  - 1. Status: PRODUCTION READY — nested list declaration.\n');
+  if (nested.length !== 1 || !/^Status\s*:/i.test(nested[0].normalized)) {
+    fail('internal Status regression self-test failed to recognize a declaration inside nested list containers');
+  }
+}
+
 function normalizeToken(value) {
   return normalizeRenderedText(value);
 }
@@ -156,12 +187,9 @@ function requireRowsByKey(relative, headerKey, contracts) {
 
 function requireCanonicalReferenceStatus(file) {
   const relative = relativePath(file);
-  const statusLines = fs.readFileSync(file, 'utf8')
-    .split(/\r?\n/)
-    .map((line, index) => ({normalized: normalizeRenderedText(line.trim()), lineNumber: index + 1}))
-    .filter((entry) => /^Status\s*:/i.test(entry.normalized));
+  const statusLines = collectStatusDeclarations(fs.readFileSync(file, 'utf8'));
   if (statusLines.length !== 1) {
-    fail(`${relative} must contain exactly one canonical Status declaration; found ${statusLines.length}`);
+    fail(`${relative} must contain exactly one canonical Status declaration, including declarations nested in Markdown list containers; found ${statusLines.length}`);
   }
   const entry = statusLines[0];
   const value = entry.normalized.replace(/^Status\s*:\s*/i, '');
@@ -169,6 +197,8 @@ function requireCanonicalReferenceStatus(file) {
     fail(`${relative}:${entry.lineNumber} Status must be exactly "${CANONICAL_STATUS}" after rendered-Markdown normalization; got "${value || '<empty>'}"`);
   }
 }
+
+runStatusDeclarationRegressionSelfTest();
 
 const allFiles = walk(ROOT);
 const actualFiles = allFiles.map(relativePath).sort();
