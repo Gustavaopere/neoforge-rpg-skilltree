@@ -71,6 +71,7 @@ function decodeHtmlEntities(value) {
 
 function normalizeRenderedText(value) {
   return decodeHtmlEntities(value)
+    .replace(/\\([!"#$%&'()*+,\-.\/:;<=>?@\[\]\\^_`{|}~])/g, '$1')
     .replace(/!?\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/!?\[([^\]]+)\]\[[^\]]*\]/g, '$1')
     .replace(/<\/?[A-Za-z][^>]*>/g, '')
@@ -97,6 +98,15 @@ function collectStatusDeclarations(source) {
     .filter((entry) => /^Status\s*:/i.test(entry.normalized));
 }
 
+function collectPrefixedMatches(source, prefix) {
+  const normalizedPrefix = normalizeRenderedText(prefix);
+  const matches = String(source || '')
+    .split(/\r?\n/)
+    .map((line, index) => ({normalized: normalizeRenderedText(line.trim()), lineNumber: index + 1}))
+    .filter((entry) => entry.normalized.startsWith(normalizedPrefix));
+  return {normalizedPrefix, matches};
+}
+
 function runStatusDeclarationRegressionSelfTest() {
   const contradictory = collectStatusDeclarations(
     `Status: ${CANONICAL_STATUS}\n- Status: PRODUCTION READY — runtime registration and shipped gameplay.\n`,
@@ -115,6 +125,14 @@ function runStatusDeclarationRegressionSelfTest() {
   );
   if (taskLists.length !== 2) {
     fail(`internal Status regression self-test expected 2 task-list declarations; found ${taskLists.length}`);
+  }
+
+  const escapedGuard = collectPrefixedMatches(
+    '- Runtime consumer/class: `UNRESOLVED`\n- Runtime consumer/class\\: com.example.FabricatedRenderer\n',
+    '- Runtime consumer/class:',
+  );
+  if (escapedGuard.matches.length !== 2) {
+    fail(`internal guarded-prefix regression self-test expected escaped punctuation to produce a duplicate rendered field; found ${escapedGuard.matches.length}`);
   }
 }
 
@@ -144,11 +162,7 @@ function tableRows(relative) {
 function findPrefixedLine(relative, prefix) {
   const file = path.join(ROOT, relative);
   if (!fs.existsSync(file)) fail(`missing guarded file ${relative}`);
-  const normalizedPrefix = normalizeRenderedText(prefix);
-  const matches = fs.readFileSync(file, 'utf8')
-    .split(/\r?\n/)
-    .map((line, index) => ({normalized: normalizeRenderedText(line.trim()), lineNumber: index + 1}))
-    .filter((entry) => entry.normalized.startsWith(normalizedPrefix));
+  const {normalizedPrefix, matches} = collectPrefixedMatches(fs.readFileSync(file, 'utf8'), prefix);
   if (!matches.length) fail(`${relative} missing guarded field ${prefix}`);
   if (matches.length !== 1) fail(`${relative} guarded field ${prefix} must appear exactly once after rendered-Markdown normalization; found ${matches.length}`);
   return {...matches[0], normalizedPrefix};
@@ -421,4 +435,4 @@ for (const file of markdownFiles) {
   }
 }
 
-console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered labels/statuses/entities, enforced unique scalar/table guards, and found no unsupported PASS-form acceptance claim`);
+console.log(`OK: Golden Samples evidence gate scanned exactly ${actualFiles.length} allowlisted file(s), required one canonical REFERENCE-ONLY Status per Markdown document, normalized rendered labels/statuses/entities/escapes, enforced unique scalar/table guards, and found no unsupported PASS-form acceptance claim`);
