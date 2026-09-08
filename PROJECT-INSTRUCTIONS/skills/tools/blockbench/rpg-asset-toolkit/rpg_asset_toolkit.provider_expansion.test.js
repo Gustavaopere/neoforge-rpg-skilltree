@@ -1,5 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const extensions = require('./core/extension-registry/extension_registry.js');
 const providers = require('./core/provider-profile/provider_profiles.js');
@@ -84,5 +86,12 @@ test('new provider families remain non-convertible without an explicit audited a
     ['animated_java_display_entities', 'azurelib_entity'],
   ]) {
     assert.equal(providers.canConvertProfile(source, target), false, `${source} -> ${target}`);
+  }
+});
+
+test('canonical extension and provider policy documents are present', () => {
+  const standards = path.resolve(__dirname, '../../../standards');
+  for (const name of ['BLOCKBENCH-EXTENSION-POLICY.md', 'ASSET-PROVIDER-PROFILES.md']) {
+    assert.equal(fs.existsSync(path.join(standards, name)), true, `missing standards/${name}`);
   }
 });

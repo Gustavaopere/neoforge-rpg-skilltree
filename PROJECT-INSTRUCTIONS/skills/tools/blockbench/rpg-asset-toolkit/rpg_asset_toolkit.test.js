@@ -40,10 +40,3 @@ test('malformed locator positions are reported separately from cube bounds', () 
 require('./rpg_asset_toolkit.registry.test.js');
 require('./rpg_asset_toolkit.modular.test.js');
 require('./rpg_asset_toolkit.provider_expansion.test.js');
-
-if (process.env.CI) {
-  const generated = Buffer.from(require('./build_toolkit_bundle.js').buildBundle(), 'utf8').toString('base64');
-  for (let offset = 0, index = 0; offset < generated.length; offset += 3000, index += 1) {
-    console.log(`RPG_ASSET_BUNDLE_CHUNK_${String(index).padStart(3, '0')}=${generated.slice(offset, offset + 3000)}`);
-  }
-}
