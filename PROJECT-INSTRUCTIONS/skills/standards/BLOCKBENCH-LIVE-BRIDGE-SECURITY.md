@@ -20,6 +20,7 @@ The bridge must reject rather than guess when any of these conditions occur:
 - stale connection generation;
 - heartbeat timeout;
 - replayed request ID with different payload;
+- malformed physical-provider identity or extension allowlist entry;
 - provider/extension incompatibility reported by the PR1 authority.
 
 ## Credentials
@@ -30,7 +31,9 @@ Sessions use ephemeral random credentials:
 - 256-bit token;
 - finite TTL.
 
-Session and token comparisons are timing-safe. The token must not appear in the WebSocket URL, session fingerprint, project snapshot, normal logs or exported QA metadata. Connection descriptors are interactive local input and must not be persisted by the Toolkit.
+Session and token comparisons are timing-safe. The token must not appear in the WebSocket URL, session fingerprint, project snapshot, ordinary diagnostic logs or exported QA metadata. Connection descriptors are interactive local input and must not be persisted by the Toolkit.
+
+The executable sidecar has one intentional secret-transfer channel: immediately after creating the local gateway it writes exactly one `RPG_ASSET_MCP_ONE_TIME_DESCRIPTOR=...` record to **stderr**. That record contains the ephemeral token and exists only so the local user can paste the descriptor into the Blockbench Connect action. It must be treated as a secret, must never be written to MCP stdout, and should not be retained or shared. Subsequent status/error logging must not repeat the descriptor or token.
 
 ## Network exposure
 
@@ -78,9 +81,11 @@ Only one authenticated connection generation has authority at a time. A successf
 
 Each request has a bounded `requestId`. The sidecar hashes the method and params deterministically. Identical retries can reuse the original result; reuse of the same ID for a different payload is rejected as `REPLAY_CONFLICT`.
 
-## Data minimization
+## Runtime context and data minimization
 
-Project snapshots expose only the data required by the read-only methods. Absolute source paths are reduced to a filename. The fingerprint contains versions/IDs/revision metadata but excludes bridge credentials. No physical modlist filesystem scanning occurs in the Blockbench plugin; provider identity is supplied explicitly by the sidecar.
+Project snapshots expose only the data required by the read-only methods. Absolute source paths are reduced to a filename. The fingerprint contains versions/IDs/revision metadata but excludes bridge credentials. No physical modlist filesystem scanning occurs in the Blockbench plugin.
+
+Provider/context identity is supplied explicitly to the sidecar. Missing top-level context fields degrade to the explicit string `UNRESOLVED`; malformed provider entries and empty extension IDs are rejected instead of being converted silently into identities. Provider arrays and extension allowlists are bounded to 256 entries.
 
 ## Regression evidence
 
@@ -97,7 +102,10 @@ The PR2 test suites cover at minimum:
 - real WebSocket handshake and request/response correlation;
 - reconnect/stale-connection behavior;
 - timeout failure;
-- token absence from the URL;
+- token absence from the WebSocket URL;
+- executable sidecar runtime wiring into the real gateway;
+- one-time descriptor compatibility with the Blockbench parser;
+- malformed provider/extension runtime-context rejection;
 - Blockbench client authentication/heartbeat/reconnect;
 - web-mode load without native require or bridge actions;
 - standalone bundle native-module allowlist.
