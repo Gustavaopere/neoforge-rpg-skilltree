@@ -1,0 +1,136 @@
+name: Import staged Minecraft skills bundle
+
+on:
+  push:
+    branches:
+      - chore/import-user-minecraft-skills-full
+    paths:
+      - '.github/workflows/import-user-skills-full.yml'
+      - '.skill-import/**'
+
+permissions:
+  contents: write
+
+jobs:
+  import-skills:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: chore/import-user-minecraft-skills-full
+          fetch-depth: 0
+
+      - name: Reconstruct and validate staged bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d .skill-import
+          mapfile -t parts < <(find .skill-import -maxdepth 1 -type f -name 'part-*.b64' | sort)
+          test "${#parts[@]}" -ge 1
+          cat "${parts[@]}" > /tmp/fullskills.b64
+          base64 --decode /tmp/fullskills.b64 > /tmp/fullskills.tar.gz
+          gzip -t /tmp/fullskills.tar.gz
+          tar -tzf /tmp/fullskills.tar.gz > /tmp/fullskills.lst
+          python3 - <<'PY'
+          from pathlib import PurePosixPath
+          bad=[]
+          for raw in open('/tmp/fullskills.lst', encoding='utf-8'):
+              p=raw.strip()
+              if not p:
+                  continue
+              pp=PurePosixPath(p)
+              if pp.is_absolute() or '..' in pp.parts:
+                  bad.append(p)
+          if bad:
+              raise SystemExit('unsafe archive paths: '+repr(bad[:20]))
+          PY
+
+      - name: Extract into canonical skill library
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/fullskills
+          mkdir -p /tmp/fullskills
+          tar -xzf /tmp/fullskills.tar.gz -C /tmp/fullskills
+          mkdir -p PROJECT-INSTRUCTIONS/skills/library
+
+          if [ -d /tmp/fullskills/PROJECT-INSTRUCTIONS/skills/library ]; then
+            src=/tmp/fullskills/PROJECT-INSTRUCTIONS/skills/library
+          elif [ -d /tmp/fullskills/library ]; then
+            src=/tmp/fullskills/library
+          else
+            src=/tmp/fullskills
+          fi
+
+          python3 - "$src" <<'PY'
+          from pathlib import Path
+          import shutil, sys
+          src=Path(sys.argv[1])
+          dst=Path('PROJECT-INSTRUCTIONS/skills/library')
+          candidates=[]
+          for p in src.iterdir():
+              if p.is_dir() and (p/'SKILL.md').is_file():
+                  candidates.append(p)
+          if len(candidates) != 20:
+              raise SystemExit(f'expected exactly 20 staged skills, found {len(candidates)}: {[p.name for p in candidates]}')
+          for skill in sorted(candidates):
+              target=dst/skill.name
+              target.mkdir(parents=True, exist_ok=True)
+              for item in skill.rglob('*'):
+                  rel=item.relative_to(skill)
+                  out=target/rel
+                  if item.is_dir():
+                      out.mkdir(parents=True, exist_ok=True)
+                  elif item.is_file():
+                      out.parent.mkdir(parents=True, exist_ok=True)
+                      shutil.copy2(item,out)
+          names='\n'.join(sorted(p.name for p in candidates))+'\n'
+          Path('/tmp/imported-skills.txt').write_text(names, encoding='utf-8')
+          PY
+
+      - name: Validate complete skill payloads
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          names=[x.strip() for x in Path('/tmp/imported-skills.txt').read_text(encoding='utf-8').splitlines() if x.strip()]
+          root=Path('PROJECT-INSTRUCTIONS/skills/library')
+          errors=[]
+          rows=[]
+          for name in names:
+              d=root/name
+              skill=d/'SKILL.md'
+              if not skill.is_file() or skill.stat().st_size == 0:
+                  errors.append(f'{name}: missing/empty SKILL.md')
+              files=[p for p in d.rglob('*') if p.is_file()]
+              rows.append((name,len(files),sum(p.stat().st_size for p in files)))
+          if len(names)!=20:
+              errors.append(f'expected 20 names, got {len(names)}')
+          if errors:
+              raise SystemExit('\n'.join(errors))
+          report=['# Full user skill bundle import','',f'- Imported skills: **{len(names)}**','', '| Skill | Files | Bytes |','|---|---:|---:|']
+          report += [f'| `{n}` | {fc} | {sz} |' for n,fc,sz in rows]
+          report += ['', '> Generated from the staged user-provided bundle. Project overlays remain separate from upstream/source skill payloads.','']
+          Path('PROJECT-INSTRUCTIONS/skills/FULL-USER-SKILL-IMPORT.md').write_text('\n'.join(report), encoding='utf-8')
+          PY
+
+      - name: Remove staging payload
+        shell: bash
+        run: rm -rf .skill-import
+
+      - name: Commit imported skill bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add PROJECT-INSTRUCTIONS/skills/library PROJECT-INSTRUCTIONS/skills/FULL-USER-SKILL-IMPORT.md .skill-import
+          if git diff --cached --quiet; then
+            echo 'No import changes to commit.'
+            exit 0
+          fi
+          git commit -m 'chore(skills): import full user-provided skill bundles'
+          git push origin HEAD:chore/import-user-minecraft-skills-full
