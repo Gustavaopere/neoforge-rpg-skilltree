@@ -6,7 +6,7 @@ Internal project plugin: `rpg_asset_toolkit.js` (plugin ID matches filename).
 
 Structural/contract QA plus fail-closed provider/extension capability resolution for project-owned Minecraft assets, with narrowly bounded local Blockbench mutations where an audited contract exists. Mutation support is intentionally incremental: it does not authorize arbitrary geometry, UV, texture, pivot or animation rewrites, and it does not install or invoke arbitrary extensions.
 
-The current PR4 slice adds deterministic, one-texture UV pack preview/apply for per-face cube UVs. It is a bounded local desktop operation, not a generic UV repacker and not a Live Bridge/MCP write surface.
+The current PR4 slices include deterministic one-texture UV pack preview/apply for per-face cube UVs plus bounded internal texture creation and locally approved texture import. These are local desktop operations, not a generic UV/texture rewrite surface and not a Live Bridge/MCP write surface.
 
 ## Architecture
 
@@ -20,6 +20,7 @@ Core modules include:
 - `report` — deterministic read-only reports;
 - `extension-registry` — exact extension identity/version/compatibility/MCP authorization;
 - `provider-profile` — physical provider snapshot plus fail-closed profile resolution;
+- `uv-texture/uv_texture_engine` — bounded declarative UV/texture mutation contract and pixel budget;
 - `uv-texture/uv_pack` — bounded revision-bound UV pack preview/apply contract;
 - `blockbench-plugin/uv_texture_adapter.js` — Blockbench UV/texture inspection and bounded transactional mutation adapter;
 - `blockbench-plugin/plugin_adapter.js` — verified UI integration.
@@ -36,9 +37,14 @@ Canonical policy documents:
 - `MenuBar.menus.tools.addAction(...)`;
 - `Blockbench.Project`;
 - `Blockbench.showMessageBox(...)`;
-- `Blockbench.textPrompt(...)`.
+- `Blockbench.textPrompt(...)`;
+- `Texture.fromDataURL(...)`;
+- `Texture.fromFile(...)`;
+- `Texture.add(...)`.
 
-The bounded UV/texture adapter additionally uses the project texture/cube state and Blockbench Undo transaction surface behind the adapter boundary. Tests exercise begin/finish/cancel transaction behavior and bitmap/UV mutation semantics without exposing those mutations through Live Bridge/MCP.
+The bounded UV/texture adapter additionally uses the project texture/cube state and Blockbench Undo transaction surface behind the adapter boundary. Tests exercise begin/finish/cancel transaction behavior and bitmap/UV/texture mutation semantics without exposing those mutations through Live Bridge/MCP.
+
+Upstream Blockbench 5.1.6 also provides the local picker surface `Blockbench.import(...)` with `resource_id: "texture"` and `readtype: "image"`. Picker wiring into this Toolkit is intentionally not claimed by the current adapter slice; it remains a later TDD cycle.
 
 References: https://blockbench.net/wiki/docs/plugin/ · https://blockbench.net/wiki/docs/ui/ · https://web.blockbench.net/docs/
 
@@ -88,7 +94,24 @@ The initial PR4 pack contract is deliberately narrow:
 - face-count and copied-pixel budgets are bounded and fail closed;
 - no resize, arbitrary global painting, generic global repack or remote Live Bridge/MCP write is introduced by this slice.
 
-This closes only the bounded `pack preview/apply` subgate. PR4 remains broader: the canonical plan still requires the remaining UV/texture capabilities and final round-trip, visual-diff, Undo and texture-path evidence before PR4 can be considered complete or PR5 can begin.
+## Bounded texture create/import
+
+The current create/import contract is also deliberately narrow:
+
+- `texture_create` accepts only an explicit texture name plus positive integer width/height and creates an internal texture through Blockbench's native texture APIs;
+- create operations are charged against the existing per-batch pixel budget;
+- texture-name collisions fail closed case-insensitively during preflight;
+- `texture_import_approved` accepts only an opaque approval id in the declarative mutation payload; filesystem paths are not accepted by the contract;
+- local file data is registered inside the desktop adapter behind an ephemeral approval id whose value does not contain the selected path or filename;
+- approved dimensions are validated against the pixel budget before the approval is issued;
+- dry-run performs validation/preflight without creating textures, opening Undo or consuming the approval;
+- successful import consumes the approval exactly once and uses Blockbench's native `Texture.fromFile(...).add(false, true)` path;
+- create/import in one batch commit through one Undo transaction, and the finished Undo aspects contain the newly created/imported textures;
+- rollback restores a consumed approval if the transaction fails;
+- no arbitrary path is accepted from declarative JSON, Live Bridge or MCP;
+- this adapter slice does not yet wire `Blockbench.import(...)` into a Toolkit UI action; explicit local picker integration remains a later TDD cycle.
+
+These slices close only their bounded PR4 subgates. PR4 remains broader: the canonical plan still requires the remaining UV/texture capabilities and final round-trip, visual-diff, Undo and texture-path evidence before PR4 can be considered complete or PR5 can begin.
 
 ## Deliberate non-automation
 
@@ -101,9 +124,11 @@ Mutation capabilities remain explicit and bounded. There is no arbitrary JavaScr
 ```bash
 node --check rpg_asset_toolkit.js
 node --test rpg_asset_toolkit.uv_pack.test.js
+node --test rpg_asset_toolkit.texture_create_import.test.js
+node --test rpg_asset_toolkit.texture_create_import_adapter.test.js
 node --test rpg_asset_toolkit.bundle_live_bridge.test.js
 node --test rpg_asset_toolkit.test.js
 node build_toolkit_bundle.js --check
 ```
 
-Tests use Node's built-in runner and no third-party npm dependency. Coverage includes structural QA, Locator semantics, extension authorization, physical-provider authority, provider resolution, fail-closed conversion, schemas, generated-bundle reproducibility, deterministic UV-pack preview, exact confirmation/revision binding, Blockbench Undo behavior, overlap-safe source-pixel buffering and standalone bundle loading without introducing a remote write surface.
+Tests use Node's built-in runner and no third-party npm dependency. Coverage includes structural QA, Locator semantics, extension authorization, physical-provider authority, provider resolution, fail-closed conversion, schemas, generated-bundle reproducibility, deterministic UV-pack preview, exact confirmation/revision binding, Blockbench Undo behavior, overlap-safe source-pixel buffering, bounded texture creation, opaque approved import, dry-run approval preservation, collision/budget rejection and standalone bundle loading without introducing a remote write surface.
