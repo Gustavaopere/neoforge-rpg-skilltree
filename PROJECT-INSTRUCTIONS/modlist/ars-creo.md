@@ -1,32 +1,30 @@
 # Ars Creo
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db8185a05bfb6243e28f2f  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db8185a05bfb6243e28f2f
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Creo
 - **Arquivo JAR:** `ars_creo-1.21.1-5.4.0.jar`
-- **Versão 1.21.1:** `5.4.0`
-- **Categoria:** Magia; Tecnologia; Automação; Compat
-- **Decisão:** Manter
+- **Versão 1.21.1:** 5.4.0
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://github.com/baileyholl/Ars-Creo
+- **Decisão:** Manter
+- **Categoria:** Magia, Tecnologia, Automação, Compat
 - **Função:** Bridge Ars Nouveau↔Create: 8 blocos/8 block entities próprios, Starbuncle Wheel/cinética, Source Motor/Gearbox/converters e behaviors que tornam turrets, Source Jars, portals e rituals compatíveis com contraptions Create.
-- **Dependências:** Ars Nouveau + Create. Cada provider conserva authority: Ars sobre Source/spells e Create sobre contraptions/stress/speed.
-- **Compatibilidade/Riscos:** Riscos: double cast em assembly/disassembly, duplicação de Source em serialization de contraption, stress amplification, coordenadas móveis de turret/portal, ritual replay e lifecycle durante unload/restart. Não inferir Sable compatibility a partir de Create compatibility.
+- **Dependências:** Ars Nouveau 5.13.1 + Create 6.0.10. Ars mantém authority de Source/spells; Create mantém authority de stress/speed/contraptions.
 - **Sobreposição:** Complementa Ars Technica/Applied Create e outras bridges, mas seu domínio é especificamente Ars Nouveau dentro de contraptions e conversões Source/cinética. Evitar dupla conversão/processamento.
-- **Observações:** mod id ars_creo. Build 5.4.0: 8 blocos funcionais + 8 block entity types; Display Sources `turret` e `source_jar`; movement behavior explícito para turrets, jars, portal e ritual.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Registry/behaviors: source oficial Ars-Creo build 5.4.0. Contexto local: guia consolidado de Magia.
+- **Compatibilidade/Riscos:** Riscos: double cast em assembly/disassembly, duplicação de Source em serialization de contraption, stress amplification, coordenadas móveis de turret/portal, ritual replay e lifecycle durante unload/restart. Não inferir Sable compatibility a partir de Create compatibility.
+- **Observações:** mod id `ars_creo`. Build 5.4.0: 8 blocos funcionais + 8 block entity types; Display Sources `turret` e `source_jar`; movement behavior explícito para turrets, jars, portal e ritual.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial baileyholl/Ars-Creo 5.4.0 + dossiê operacional existente.
+- **Fonte:** https://github.com/baileyholl/Ars-Creo
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Creo 5.4.0, 8 blocos/8 BEs, contraption behaviors, Source↔cinética, Starbuncle Wheel e Create authority confirmados no QC global #42. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Ficha reconstruída do zero em 07/09/2026 contra source 5.4.0 e modlist física; bridge é estrutural para technomancy móvel e não substitui Ars Nouveau nem Create.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: ars_creo-1.21.1-5.4.0.jar. Dossiê exaustivo com 8 blocos/8 block entities, contraption behaviors, Display Sources, Source↔cinética, Starbuncle Wheel, authority, lifecycle e testes.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > ⚙️ **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico: `ars_creo-1.21.1-5.4.0.jar`, mod id `ars_creo`, NeoForge 1.21.1. A build 5.4.0 registra **8 blocos funcionais + 8 block entities** e integra diretamente turrets, Source Jars, portals e Ritual Brazier/ritual blocks ao movement system do Create. Create continua authority de contraptions/stress; Ars Nouveau continua authority de Source/spells.
 
