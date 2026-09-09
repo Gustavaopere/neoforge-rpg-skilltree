@@ -51,3 +51,4 @@ require('./rpg_asset_toolkit.uv_texture_adapter.test.js');
 require('./rpg_asset_toolkit.uv_texture.test.js');
 require('./rpg_asset_toolkit.uv_analysis.test.js');
 require('./rpg_asset_toolkit.texture_path.test.js');
+require('./rpg_asset_toolkit.uv_pack.test.js');
