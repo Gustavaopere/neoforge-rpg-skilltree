@@ -1,0 +1,22 @@
+name: Mod Engineering I4 Validators
+
+on:
+  push:
+    branches:
+      - feat/mod-engineering-i4-validators
+  pull_request:
+    paths:
+      - '.github/workflows/mod-engineering-i4-validators.yml'
+      - 'PROJECT-INSTRUCTIONS/engineering/**'
+
+permissions:
+  contents: read
+
+jobs:
+  validator-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Run I4 engineering validator contract tests
+        run: python3 -m unittest PROJECT-INSTRUCTIONS/engineering/tests/test_i4_engineering_validators.py
