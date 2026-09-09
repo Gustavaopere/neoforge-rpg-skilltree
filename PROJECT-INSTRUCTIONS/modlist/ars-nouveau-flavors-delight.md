@@ -1,32 +1,32 @@
 # Ars Nouveau's Flavors & Delight
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db818c82b7d1318bf03fb8  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db818c82b7d1318bf03fb8
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Nouveau's Flavors & Delight
 - **Arquivo JAR:** `arsdelight-2.2.2.jar`
-- **Versão 1.21.1:** `2.2.2`
-- **Categoria:** Magia; Comida; Compat
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 2.2.2
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-nouveaus-flavors-delight
+- **Decisão:** Sem decisão
+- **Categoria:** Magia, Comida, Compat
 - **Função:** Crossover Ars Nouveau + Farmer's Delight com alimentos/bebidas, feasts, jellies, pies, efeitos mágicos culinários e materiais Wilden/Chimera/Archwood.
-- **Dependências:** Ars Nouveau + Farmer's Delight. Integrações opcionais no código para Ars Elemental, Archwood Good e Diet; somente providers presentes devem ativar bridge.
-- **Compatibilidade/Riscos:** Heal/spell-damage food effects podem double-dip com outros hooks; feasts/pies/jellies exigem drop/serving idempotente; optional compat deve ser classloading-safe. Mana/Source permanecem authorities do Ars.
+- **Dependências:** Ars Nouveau 5.13.1 + Farmer's Delight 1.3.4. Ars Elemental 0.7.10.1 está presente para integrações condicionais; Archwood Good e Diet permanecem ausentes do snapshot top-level atual.
 - **Sobreposição:** Adiciona alimentos próprios e integração Ars↔Farmer's Delight; não é apenas uma bridge técnica vazia.
-- **Observações:** Source-confirmed: 42 food entries, 8 itens não-food, 8 crate/cabinet/feast blocks, 5 jellies + 1 BE type, 4 pies + 4 slices e 5 efeitos próprios.
-- **Procedência:** Modlist física atual + source Minecraft-LightLand/Ars-Nouveau-Flavors-Delight branch 1.21.1, versionado 2.2.2.
+- **Compatibilidade/Riscos:** Heal/spell-damage food effects podem double-dip com outros hooks; feasts/pies/jellies exigem drop/serving idempotente; optional compat deve ser classloading-safe. Mana/Source permanecem authorities do Ars.
+- **Observações:** mod id `arsdelight`, runtime 2.2.2. Conteúdo e optional-provider gates permanecem documentados sem promover providers ausentes.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + source/dossiê Ars Nouveau's Flavors & Delight 2.2.2 + Farmer's Delight 1.3.4 físico.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-nouveaus-flavors-delight
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Nouveau's Flavors & Delight 2.2.2, 42 foods, jellies/pies/effects e authority Ars/Farmer's Delight confirmados no QC global #53. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou o runtime 2.2.2, o inventário culinário/efeitos e as integrações com Ars Nouveau/Farmer's Delight. A ficha técnica está concluída, mas nenhuma decisão de manter/remover foi inferida da instalação atual.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — inventário culinário/efeitos/blocks e contratos de Ars/Farmer's Delight catalogados de forma exaustiva.
-- **Data da última decisão:** não definida.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física e source coincidem: `arsdelight-2.2.2.jar`, mod id `arsdelight`, versão `2.2.2`, Minecraft 1.21.1. O source branch `1.21.1` foi usado para inventário concreto.
 
