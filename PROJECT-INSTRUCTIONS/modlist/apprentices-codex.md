@@ -1,32 +1,30 @@
 # Apprentice's Codex
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c869db9f0db81409055e2ac36a86d40  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c869db9f0db81409055e2ac36a86d40
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Apprentice's Codex
 - **Arquivo JAR:** `apprentice_codex-0.9.7.1+mc1.21.1.jar`
-- **Versão 1.21.1:** `0.9.7.1`
-- **Categoria:** Magia; RPG; Automação
-- **Decisão:** Manter
+- **Versão 1.21.1:** 0.9.7.1
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apprentices-codex
+- **Decisão:** Manter
+- **Categoria:** Magia, RPG, Automação
 - **Função:** Addon side-grade de Iron's Spells 'n Spellbooks. Na versão instalada 0.9.7.1, o SpellRegistry do source pin exato 305ea6a registra 83 spells distribuídos entre Blood, Ender, Evocation, Fire, Holy, Ice, Lightning, Nature e Eldritch, além de grande catálogo de armas/staves/shields/Curios/armaduras, blocos de crafting e Spell Dispenser com automação/redstone/Create. Não cria nova escola nem mana/progressão obrigatória paralela.
-- **Dependências:** Linha auditada 0.9.7.x: Iron's Spells 'n Spellbooks 3.16.3+ e <4.0; build 1.21.1 registrada com Create 6.0.10+ e NeoForge 21.1.228+. Runtime atual do pack satisfaz o gate; revalidar após updates maiores.
-- **Compatibilidade/Riscos:** Addon beta e datapack formats podem mudar entre versões. Spell Dispenser usa redstone + mana potions e possui suporte opcional a Create contraptions: impedir double-processing de cast/mana/XP/Mastery e não presumir autoria do jogador em automação. Linha 0.9.7 alterou Arcane in a Jar; validar blocos existentes após upgrade.
+- **Dependências:** Iron's Spells 'n Spellbooks 3.16.3, Create 6.0.10 e NeoForge 21.1.248 satisfazem os gates documentados da linha 0.9.7.x. O addon permanece Beta; updates maiores exigem revalidação.
 - **Sobreposição:** Não é o mesmo papel do Spell Codex. Apprentice's Codex adiciona conteúdo jogável/automação sobre Iron's; Spell Codex atua na organização/progressão da coleção. Iron's conserva authority do cast/mana/schools.
-- **Observações:** mod id: apprenticecodex; runtime 0.9.7.1, beta. O upstream textual pode resumir o addon como ~60 spells; a ficha chegou a registrar 85 por erro editorial, mas o source pin exato da própria versão 0.9.7.1 (`305ea6aef7bb9642a9d1fc2b9042f3dfb2ce5b2e`) registra 83 spells. Para catalogação técnica prevalece o registry desse pin.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Conteúdo: CurseForge oficial atualizado em 30/08/2026 + wiki/source do projeto. Contexto local: guia consolidado de Magia.
-- **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita e elevada ao padrão Alex's Mobs. A reconciliação final com o source pin exato 0.9.7.1 substituiu tanto o resumo upstream de 'cerca de 60 spells' quanto a contagem editorial intermediária de 85 pelo inventário técnico correto do SpellRegistry: 83 registry ids, preservando Iron's como authority de mana/schools/cast/cooldown.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: apprentice_codex-0.9.7.1+mc1.21.1.jar / 0.9.7.1. Reconciliação com o source pin exato 305ea6a corrigiu a contagem editorial: o SpellRegistry dessa versão registra 83 spells, catalogados individualmente por escola; dossier mantém gear, Curios, blocos, automação, datapacks, boundaries e matriz de testes.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Compatibilidade/Riscos:** Addon beta e datapack formats podem mudar entre versões. Spell Dispenser usa redstone + mana potions e possui suporte opcional a Create contraptions: impedir double-processing de cast/mana/XP/Mastery e não presumir autoria do jogador em automação. Linha 0.9.7 alterou Arcane in a Jar; validar blocos existentes após upgrade.
+- **Observações:** mod id: `apprenticecodex`; runtime 0.9.7.1, beta. O upstream textual pode resumir o addon como ~60 spells; a ficha chegou a registrar 85 por erro editorial, mas o source pin exato da própria versão 0.9.7.1 (`305ea6aef7bb9642a9d1fc2b9042f3dfb2ce5b2e`) registra 83 spells. Para catalogação técnica prevalece o registry desse pin.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/wiki/source oficiais Apprentice's Codex 0.9.7.1 + source pin `305ea6aef7bb9642a9d1fc2b9042f3dfb2ce5b2e` + dossiê operacional existente.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apprentices-codex
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Apprentice's Codex 0.9.7.1, source-pin roster 83 spells, Iron's 3.16.3/Create 6.0.10/NeoForge 21.1.248 gates and Spell Dispenser causality confirmed in global QC #38. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita e elevada ao padrão Alex's Mobs. A reconciliação final com o source pin exato 0.9.7.1 substituiu tanto o resumo upstream de “cerca de 60 spells” quanto a contagem editorial intermediária de 85 pelo inventário técnico correto do SpellRegistry: 83 registry ids, preservando Iron's como authority de mana/schools/cast/cooldown.
+- **Data da última decisão:** 2026-09-07
 
 > 📖 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Esta ficha documenta `apprentice_codex-0.9.7.1+mc1.21.1.jar`, mod id `apprenticecodex`, em NeoForge 1.21.1. O `gradle.properties` upstream fixa `mod_version=0.9.7.1` e o `SpellRegistry` do source pin exato `305ea6aef7bb9642a9d1fc2b9042f3dfb2ce5b2e` registra **83 spells**, não apenas o resumo textual antigo de “cerca de 60”. O inventário abaixo usa o registry como authority e separa conteúdo, gear, automação, datapacks, ownership e riscos sem criar escola/mana/progressão paralela ao Iron's.
 
