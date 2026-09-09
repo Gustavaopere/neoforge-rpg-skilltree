@@ -138,7 +138,7 @@ function createBlockbenchUvTextureAdapter(bb) {
   }
 
   function regionFor(operation) {
-    if (operation.type === 'texture_replace_palette') return operation.region;
+    if (operation.type === 'texture_replace_palette' || operation.type === 'texture_paint_region') return operation.region;
     return operation;
   }
 
@@ -273,7 +273,8 @@ function createBlockbenchUvTextureAdapter(bb) {
           break;
         }
         case 'texture_fill_rect':
-        case 'texture_replace_palette': {
+        case 'texture_replace_palette':
+        case 'texture_paint_region': {
           const texture = requireEditableTexture(requireTexture(operation.textureId));
           requireRegionInBounds(texture, operation);
           const region = regionFor(operation);
@@ -387,6 +388,19 @@ function createBlockbenchUvTextureAdapter(bb) {
     texture.ctx.putImageData(image, operation.x, operation.y);
   }
 
+  function applyPaintRegion(texture, operation) {
+    const {x, y, width, height} = operation.region;
+    const image = texture.ctx.getImageData(x, y, width, height);
+    operation.pixels.forEach((pixel, index) => {
+      const offset = index * 4;
+      image.data[offset] = pixel[0];
+      image.data[offset + 1] = pixel[1];
+      image.data[offset + 2] = pixel[2];
+      image.data[offset + 3] = pixel[3];
+    });
+    texture.ctx.putImageData(image, x, y);
+  }
+
   function colorKey(color) {
     return (((color[0] * 256 + color[1]) * 256 + color[2]) * 256 + color[3]);
   }
@@ -436,6 +450,12 @@ function createBlockbenchUvTextureAdapter(bb) {
       case 'texture_replace_palette': {
         const texture = requireEditableTexture(requireTexture(operation.textureId));
         applyPalette(texture, operation);
+        dirtyTextures.add(texture);
+        return texture.uuid || texture.id;
+      }
+      case 'texture_paint_region': {
+        const texture = requireEditableTexture(requireTexture(operation.textureId));
+        applyPaintRegion(texture, operation);
         dirtyTextures.add(texture);
         return texture.uuid || texture.id;
       }
