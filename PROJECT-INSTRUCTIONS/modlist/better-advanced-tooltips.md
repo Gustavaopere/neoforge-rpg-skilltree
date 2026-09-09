@@ -1,32 +1,32 @@
 # Better Advanced Tooltips
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3d369db9f0db814c9a3ef368d8c594d8  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3d369db9f0db814c9a3ef368d8c594d8
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Better Advanced Tooltips
 - **Arquivo JAR:** `better-advanced-tooltips-2101.1.0-build.5.jar`
-- **Versão 1.21.1:** `2101.1.0-build.5`
-- **Categoria:** QoL; Visual
-- **Decisão:** Opcional
+- **Versão 1.21.1:** 2101.1.0-build.5
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-advanced-tooltips
+- **Decisão:** Opcional
+- **Categoria:** QoL, Visual
 - **Função:** Amplia Advanced Tooltips (F3+H) com tags, data components e outras informações técnicas de ItemStack para diagnóstico.
 - **Dependências:** NeoForge/Minecraft 1.21.1; funcionalidade principal de tooltip é apresentação client-side.
+- **Sobreposição:** Coexiste com Simply Tooltips 0.1.5 e Obscure Tooltips 4.2.4 porque o foco é informação avançada/técnica; pode haver poluição/duplicação visual, sem conflito estrutural confirmado.
 - **Compatibilidade/Riscos:** Risco principal é composição visual: linhas duplicadas, ordem de callbacks, tooltip excessivo e cache stale após reload. Não altera atributos ou state de item.
-- **Sobreposição:** Coexiste com Simply Tooltips e Tooltip Overhaul porque o foco é informação avançada/técnica; pode haver poluição visual, mas não foi encontrado conflito estrutural.
 - **Observações:** Build 2101.1.0-build.5. Tags/components exibidos continuam pertencendo ao provider/Minecraft; o mod é viewer de diagnóstico.
-- **Procedência:** Modlist física atual de 07/09/2026 + CurseForge oficial Better Advanced Tooltips build.5.
-- **Histórico da decisão:** Decisão formal já registrada como Opcional em 06/09/2026. O registro anterior não continha justificativa textual; em 08/09/2026 a auditoria preservou a decisão sem inventar motivo e confirmou o papel exclusivamente QoL/diagnóstico da build 2101.1.0-build.5.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — F3+H/tags/components, data freshness, tooltip composition e side safety catalogados.
-- **Data da última decisão:** 2026-09-06.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Better Advanced Tooltips build.5 + Simply Tooltips 0.1.5 e Obscure Tooltips 4.2.4 físicos.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-advanced-tooltips
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better Advanced Tooltips 2101.1.0-build.5 físico/release confirmado; F3+H/tags/components, data freshness e side safety preservados. Sobreposição reconciliada para Simply Tooltips 0.1.5 + Obscure Tooltips 4.2.4 no QC global #68. Runtime QA não executado.
+- **Histórico da decisão:** Decisão formal já registrada como Opcional em 06/09/2026. O registro anterior não continha justificativa textual; em 08/09/2026 a auditoria preservou a decisão sem inventar motivo. Em 09/09/2026, a build.5 foi revalidada e a sobreposição de UI foi corrigida para os providers fisicamente presentes Simply Tooltips 0.1.5 e Obscure Tooltips 4.2.4.
+- **Data da última decisão:** 2026-09-06
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `better-advanced-tooltips-2101.1.0-build.5.jar`, mod id `betteradvancedtooltips`, runtime `2101.1.0-build.5`, NeoForge 1.21.1. O projeto amplia o modo de tooltips avançados `F3+H` com informações técnicas de itens.
 
@@ -82,7 +82,7 @@ Nenhum cache visual deve sobreviver quando a fonte de dados mudou.
 2. Itens com muitas tags/components.
 3. Datapack reload e mudança de tags.
 4. Component alterado em runtime refletido no tooltip.
-5. Coexistência com Simply Tooltips/Tooltip Overhaul ou outros presentes.
+5. Coexistência com Simply Tooltips 0.1.5 / Obscure Tooltips 4.2.4 ou outros presentes.
 6. Dedicated server smoke sem dependência visual indevida.
 
 ## 10. Evidência
