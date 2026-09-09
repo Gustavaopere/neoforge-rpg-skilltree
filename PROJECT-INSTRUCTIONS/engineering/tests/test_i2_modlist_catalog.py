@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -108,7 +109,7 @@ class I2PhysicalModlistCatalogTest(unittest.TestCase):
 
     def test_repository_snapshot_matches_physical_contract(self):
         snapshot_path = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "catalog" / "physical-modlist" / "snapshot-2026-09-09.json"
-        snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        snapshot = modlist.load_persisted_snapshot(snapshot_path)
         self.assertEqual(595, snapshot["declared_top_level_mods"])
         self.assertEqual(595, snapshot["parsed_top_level_mods"])
         self.assertEqual(404, snapshot["parsed_nested_mods"])
@@ -117,10 +118,19 @@ class I2PhysicalModlistCatalogTest(unittest.TestCase):
         self.assertEqual(999, len(snapshot["entries"]))
         self.assertEqual([], modlist.validate_normalized_snapshot(snapshot))
 
+    def test_repository_snapshot_manifest_is_sharded_and_integrity_bound(self):
+        snapshot_path = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "catalog" / "physical-modlist" / "snapshot-2026-09-09.json"
+        manifest = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        self.assertEqual(999, manifest["entry_count"])
+        self.assertGreater(len(manifest["entry_shards"]), 1)
+        for shard in manifest["entry_shards"]:
+            self.assertRegex(shard["sha256"], re.compile(r"^[0-9a-f]{64}$"))
+            self.assertGreater(shard["count"], 0)
+
     def test_repository_provider_catalog_is_deterministic_and_complete(self):
         snapshot_path = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "catalog" / "physical-modlist" / "snapshot-2026-09-09.json"
         providers_path = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "catalog" / "physical-modlist" / "providers-2026-09-09.json"
-        snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        snapshot = modlist.load_persisted_snapshot(snapshot_path)
         providers = json.loads(providers_path.read_text(encoding="utf-8"))
         self.assertEqual(758, providers["provider_count"])
         self.assertEqual([], modlist.validate_persisted_provider_catalog(snapshot, providers))
