@@ -1,34 +1,34 @@
 # Better Fps - Render Distance
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db8135bd20f2bb29075214  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db8135bd20f2bb29075214
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Better Fps - Render Distance
 - **Arquivo JAR:** `betterfpsdist-1.21.1-6.1.jar`
-- **Versão 1.21.1:** `6.1`
-- **Categoria:** Performance; Visual; QoL
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 6.1
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-fps-render-distance
+- **Decisão:** Sem decisão
+- **Categoria:** Performance, Visual, QoL
 - **Função:** Otimização client-side de render distance que troca o volume vanilla por seleção 3D elipsoidal/circular configurável, reduzindo chunk sections renderizadas e podendo ajustar entity render distance.
-- **Dependências:** Client-side NeoForge 1.21.1. O pack também possui Distant Horizons 3.2.0-b, EntityCulling 1.10.5 e ImmediatelyFast 1.6.13; são camadas distintas, não dependências diretas.
-- **Compatibilidade/Riscos:** Pode causar pop-in/culling visual, divergência com LOD/render-distance mods e redução excessiva de entity range se configs forem combinadas. Não altera chunk generation nem authority de servidor.
+- **Dependências:** Required dependency: Cupboard; pack físico atual usa Cupboard 4.1. Funcionalidade de Better Fps - Render Distance permanece client-side NeoForge 1.21.1. Distant Horizons 3.2.0-b, EntityCulling 1.10.5 e ImmediatelyFast 1.6.13 são camadas distintas, não dependências diretas.
 - **Sobreposição:** Atua na seleção por render distance; Distant Horizons trata LOD distante, EntityCulling trata oclusão de entidades/block entities e ImmediatelyFast otimiza pipelines de render. Não são equivalentes.
+- **Compatibilidade/Riscos:** Pode causar pop-in/culling visual, divergência com LOD/render-distance mods e redução excessiva de entity range se configs forem combinadas. Não altera chunk generation nem authority de servidor.
 - **Observações:** Build 6.1 NeoForge 1.21.1, client. Configura escalas horizontal/vertical, entity render range e debug de chunk sections ignoradas; documentação estima redução de ~10–35% de chunk sections em cenários apropriados.
-- **Procedência:** Modlist física atual de 07/09/2026 + CurseForge oficial Better Fps - Render Distance 6.1 e changelog da linha 6.x.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Better Fps - Render Distance 6.1 como otimização client-side de seleção/render distance, com riscos de composição com outros render optimizers documentados. A instalação atual não foi tratada como decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — algoritmo de seleção visual, configs, relação com LOD/culling, side, lifecycle e riscos catalogados.
-- **Data da última decisão:** não definida.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Better Fps - Render Distance 6.1 + relação oficial de dependência Cupboard + Cupboard 4.1 físico.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-fps-render-distance
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better Fps - Render Distance 6.1 físico/release confirmado; dependência obrigatória Cupboard 4.1 reconciliada; render-volume/config/entity-range e sobreposições client-side preservadas. Runtime QA/benchmark não executado.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Better Fps - Render Distance 6.1 como otimização client-side. Em 09/09/2026, a dependência obrigatória Cupboard foi reconciliada com o JAR físico Cupboard 4.1; a instalação não foi convertida em decisão curatorial.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
-> ✅ Versão física confirmada: `betterfpsdist-1.21.1-6.1.jar`, mod id `betterfpsdist`, runtime `6.1`, NeoForge 1.21.1. É um mod **client-side de performance/renderização**, não um sistema de worldgen ou servidor.
+> ✅ Versão física confirmada: `betterfpsdist-1.21.1-6.1.jar`, mod id `betterfpsdist`, runtime `6.1`, NeoForge 1.21.1. É um mod **client-side de performance/renderização**, não um sistema de worldgen ou servidor. A linha atual declara **Cupboard como dependência obrigatória**; o pack possui `cupboard-1.21.1-4.1.jar` / Cupboard 4.1.
 
 ## 1. Papel e autoridade
 Better Fps - Render Distance otimiza a seleção de regiões renderizadas ao substituir a forma volumétrica usada pela distância de render vanilla por um volume 3D configurável mais próximo de esfera/elipsoide. O objetivo é deixar de renderizar chunk sections que ficam dentro do cubo/cilindro nominal, mas longe do jogador em distância espacial real.
@@ -76,8 +76,8 @@ Risco real é criar uma zona visual estranha entre render vanilla reduzido e LOD
 
 Podem coexistir porque atacam etapas diferentes, embora bugs de render possam compor efeitos.
 
-## 9. Client/server
-A funcionalidade catalogada é client-side. Regras:
+## 9. Dependência e client/server
+A funcionalidade catalogada é client-side, mas a distribuição atual declara **Cupboard** como required dependency. No snapshot físico atual, Cupboard `4.1` está presente. Regras:
 - não usar classes/config do mod em common/server code próprio;
 - servidor não deve confiar no que o jogador enxerga para validar alcance de ataque/interação;
 - não sincronizar a configuração como requisito de mundo sem motivo explícito.
@@ -113,9 +113,10 @@ A mudança deve reconstruir o conjunto visual sem deixar chunks invisíveis pres
 8. Alterar config sem restart quando suportado e verificar reconstrução correta.
 
 ## 13. Evidência
-- modlist física atual: BetterFPSDist 6.1;
-- CurseForge oficial da build 6.1 NeoForge 1.21.1, ambiente client;
+- modlist física atual: BetterFPSDist 6.1 + Cupboard 4.1;
+- CurseForge oficial da build 6.1 NeoForge 1.21.1, ambiente client, incluindo a declaração de requisito Cupboard nas versões mais novas;
 - documentação oficial de render volume 3D, escalas horizontal/vertical, entity range e debug;
+- presença física no pack de Cupboard 4.1 como dependência requerida;
 - presença física no pack de Distant Horizons, EntityCulling e ImmediatelyFast usada apenas para mapear sobreposição real de camada.
 
 > 📐 Authority canônica: BetterFPSDist controla apenas seleção visual por distância no cliente. Ele não gera chunks, não altera AI e não substitui Distant Horizons ou EntityCulling.
