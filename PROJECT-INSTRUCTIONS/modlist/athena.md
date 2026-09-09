@@ -1,32 +1,32 @@
 # Athena
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db813e8874fd85bace5487  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db813e8874fd85bace5487
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Athena
 - **Arquivo JAR:** `athena-neoforge-1.21.1-4.0.6.jar`
-- **Versão 1.21.1:** `4.0.6`
-- **Categoria:** Biblioteca
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 4.0.6
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/athena
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca
 - **Função:** Biblioteca para connected block textures e recursos de modelos/renderização usada por mods dependentes.
-- **Dependências:** Biblioteca estrutural; a necessidade é determinada pelos mods que a declaram como dependência.
-- **Compatibilidade/Riscos:** Não remover por aparente redundância com outras bibliotecas de renderização; consumidores podem exigir Athena especificamente.
+- **Dependências:** Biblioteca client-side de model/resource infrastructure; consumidores concretos devem ser confirmados por dependency graph antes de qualquer remoção. Não promove estado visual a authority de gameplay.
 - **Sobreposição:** Biblioteca técnica; APIs de renderização/modelos não são automaticamente intercambiáveis.
+- **Compatibilidade/Riscos:** Não remover por aparente redundância com outras bibliotecas de renderização; consumidores podem exigir Athena especificamente.
 - **Observações:** mod id: athena; runtime name: Athena.
-- **Procedência:** Modlist física atual de 07/09/2026 + source oficial terrarium-earth/Athena branch 1.21.1 + documentação/CurseForge oficial da release 4.0.6.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + documentação/source Athena 4.0.6 + dossiê operacional existente.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/athena
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Athena 4.0.6, oito model factories/IDs, client-side model infrastructure e dedicated-server boundary confirmados no QC global #57. Estado anterior `Integrado ao Github` preservado.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Athena 4.0.6 como biblioteca client-side de modelos/CTM e registrou que sua necessidade depende dos consumidores reais. Nenhuma decisão de manter/remover foi inferida apenas da presença no pack.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026
-- **Data da última decisão:** não definida.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física/source coincidem: `athena-neoforge-1.21.1-4.0.6.jar`, mod id `athena`, versão `4.0.6`, Minecraft 1.21.1. É uma biblioteca **client-side** de custom baked models/connected textures; não adiciona gameplay próprio.
 
