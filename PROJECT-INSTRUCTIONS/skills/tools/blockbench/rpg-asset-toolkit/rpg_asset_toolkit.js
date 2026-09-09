@@ -770,6 +770,302 @@
       
       module.exports = {analyzeUvLayout};
     },
+    "core/uv-texture/uv_pack.js": function(module, exports, require) {
+      'use strict';
+      
+      const MAX_UV_PACK_FACES = 128;
+      const MAX_UV_PACK_COPIED_PIXELS = 262144;
+      const FACES = new Set(['north', 'south', 'east', 'west', 'up', 'down']);
+      
+      class UvPackContractError extends Error {
+        constructor(code, message) {
+          super(`${code}: ${message}`);
+          this.name = 'UvPackContractError';
+          this.code = code;
+        }
+      }
+      
+      function fail(code, message) {
+        throw new UvPackContractError(code, message);
+      }
+      
+      function isPlainObject(value) {
+        if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+        const prototype = Object.getPrototypeOf(value);
+        return prototype === Object.prototype || prototype === null;
+      }
+      
+      function boundedString(value, field, max = 160) {
+        if (typeof value !== 'string') fail('INVALID_UV_PACK_REQUEST', `${field} must be a string.`);
+        const output = value.trim();
+        if (!output || output.length > max) fail('INVALID_UV_PACK_REQUEST', `${field} must contain 1-${max} non-whitespace characters.`);
+        return output;
+      }
+      
+      function positiveSafeInteger(value, field) {
+        if (!Number.isSafeInteger(value) || value < 1) fail('INVALID_UV_PACK_TARGET', `${field} must be a positive safe integer.`);
+        return value;
+      }
+      
+      function nonNegativeSafeInteger(value, field) {
+        if (!Number.isSafeInteger(value) || value < 0) fail('INVALID_UV_PACK_REQUEST', `${field} must be a non-negative safe integer.`);
+        return value;
+      }
+      
+      function finiteUv(value, field) {
+        if (!Array.isArray(value) || value.length !== 4 || !value.every(Number.isFinite)) {
+          fail('INVALID_UV_PACK_TARGET', `${field} must contain exactly four finite UV coordinates.`);
+        }
+        if (value[0] === value[2] || value[1] === value[3]) fail('INVALID_UV_PACK_TARGET', `${field} must have positive area.`);
+        return value.slice();
+      }
+      
+      function freezeRect(rect) {
+        return Object.freeze({x: rect.x, y: rect.y, width: rect.width, height: rect.height});
+      }
+      
+      function requirePixelRectInBounds(rect, width, height, context) {
+        if (rect.x < 0 || rect.y < 0 || rect.width < 1 || rect.height < 1
+          || rect.x > width - rect.width || rect.y > height - rect.height) {
+          fail('UV_PACK_PIXEL_REGION_OUT_OF_BOUNDS', `${context} is outside the target texture bitmap.`);
+        }
+      }
+      
+      function rectFromUv(uv) {
+        const x = Math.min(uv[0], uv[2]);
+        const y = Math.min(uv[1], uv[3]);
+        return {x, y, width: Math.abs(uv[2] - uv[0]), height: Math.abs(uv[3] - uv[1])};
+      }
+      
+      function exactPixelRect(uvRect, scaleX, scaleY, context) {
+        const values = [uvRect.x * scaleX, uvRect.y * scaleY, uvRect.width * scaleX, uvRect.height * scaleY];
+        if (!values.every(Number.isSafeInteger)) {
+          fail('UV_PACK_NON_PIXEL_ALIGNED', `${context} does not map to exact texture pixels.`);
+        }
+        return freezeRect({x: values[0], y: values[1], width: values[2], height: values[3]});
+      }
+      
+      function orientedUv(oldUv, x, y, width, height) {
+        const uForward = oldUv[2] > oldUv[0];
+        const vForward = oldUv[3] > oldUv[1];
+        return Object.freeze([
+          uForward ? x : x + width,
+          vForward ? y : y + height,
+          uForward ? x + width : x,
+          vForward ? y + height : y,
+        ]);
+      }
+      
+      function normalizeRequest(value, {apply = false} = {}) {
+        if (!isPlainObject(value)) fail('INVALID_UV_PACK_REQUEST', 'UV pack request must be an object.');
+        const allowed = new Set(['expectedRevision', 'textureId', 'scope', 'padding', 'label']);
+        if (apply) {
+          allowed.add('confirmationToken');
+          allowed.add('dryRun');
+        }
+        for (const key of Object.keys(value)) {
+          if (!allowed.has(key)) fail('INVALID_UV_PACK_REQUEST', `UV pack request contains unsupported field "${key}".`);
+        }
+        const scope = value.scope === undefined ? 'texture' : value.scope;
+        if (scope !== 'texture') fail('UNSUPPORTED_UV_PACK_SCOPE', 'Initial bounded UV pack supports scope "texture" only.');
+        const output = {
+          expectedRevision: boundedString(value.expectedRevision, 'expectedRevision', 128),
+          textureId: boundedString(value.textureId, 'textureId', 128),
+          scope,
+          padding: value.padding === undefined ? 0 : nonNegativeSafeInteger(value.padding, 'padding'),
+          label: value.label === undefined ? 'RPG Asset Toolkit UV Pack' : boundedString(value.label, 'label'),
+        };
+        if (apply) {
+          output.confirmationToken = boundedString(value.confirmationToken, 'confirmationToken', 256);
+          if (value.dryRun !== undefined && typeof value.dryRun !== 'boolean') fail('INVALID_UV_PACK_REQUEST', 'dryRun must be boolean when provided.');
+          output.dryRun = value.dryRun === true;
+        }
+        return output;
+      }
+      
+      function validatePreviewAdapter(adapter) {
+        if (!adapter || typeof adapter !== 'object' || typeof adapter.getRevision !== 'function' || typeof adapter.inspectPackTarget !== 'function') {
+          fail('INVALID_UV_PACK_ADAPTER', 'UV pack adapter must expose getRevision() and inspectPackTarget().');
+        }
+      }
+      
+      function validateApplyAdapter(adapter) {
+        validatePreviewAdapter(adapter);
+        for (const name of ['preflightPack', 'beginTransaction', 'applyPack', 'finishTransaction', 'cancelTransaction']) {
+          if (typeof adapter[name] !== 'function') fail('INVALID_UV_PACK_ADAPTER', `UV pack adapter is missing ${name}().`);
+        }
+      }
+      
+      function normalizeTarget(target, request) {
+        if (!isPlainObject(target)) fail('INVALID_UV_PACK_TARGET', 'inspectPackTarget() must return an object.');
+        const textureId = boundedString(target.textureId, 'target.textureId', 128);
+        if (textureId !== request.textureId) fail('UV_PACK_TARGET_MISMATCH', `Requested texture "${request.textureId}" but adapter inspected "${textureId}".`);
+        const pixelWidth = positiveSafeInteger(target.pixelWidth, 'target.pixelWidth');
+        const pixelHeight = positiveSafeInteger(target.pixelHeight, 'target.pixelHeight');
+        const uvWidth = positiveSafeInteger(target.uvWidth, 'target.uvWidth');
+        const uvHeight = positiveSafeInteger(target.uvHeight, 'target.uvHeight');
+        if (request.padding >= uvWidth || request.padding >= uvHeight) fail('UV_PACK_ATLAS_OVERFLOW', 'padding leaves no bounded atlas space.');
+        if (!Array.isArray(target.faces) || target.faces.length < 1) fail('EMPTY_UV_PACK_TARGET', 'Target texture has no packable cube faces.');
+        if (target.faces.length > MAX_UV_PACK_FACES) fail('UV_PACK_FACE_LIMIT_EXCEEDED', `Target contains ${target.faces.length} faces; maximum is ${MAX_UV_PACK_FACES}.`);
+      
+        const scaleX = pixelWidth / uvWidth;
+        const scaleY = pixelHeight / uvHeight;
+        if (!Number.isFinite(scaleX) || scaleX <= 0 || !Number.isFinite(scaleY) || scaleY <= 0) fail('INVALID_UV_PACK_TARGET', 'Texture pixel/UV scale is invalid.');
+        const seen = new Set();
+        let copiedPixels = 0;
+        const faces = target.faces.map((entry, index) => {
+          if (!isPlainObject(entry)) fail('INVALID_UV_PACK_TARGET', `target.faces[${index}] must be an object.`);
+          const cubeId = boundedString(entry.cubeId, `target.faces[${index}].cubeId`, 128);
+          const face = boundedString(entry.face, `target.faces[${index}].face`, 5).toLowerCase();
+          if (!FACES.has(face)) fail('INVALID_UV_PACK_TARGET', `target.faces[${index}].face is not a cube face.`);
+          if (entry.boxUv !== false) fail('BOX_UV_PACK_UNSUPPORTED', `Cube "${cubeId}" must use per-face UV for this bounded pack slice.`);
+          const key = `${cubeId}\u0000${face}`;
+          if (seen.has(key)) fail('DUPLICATE_UV_PACK_FACE', `Target repeats cube face ${cubeId}/${face}.`);
+          seen.add(key);
+          const oldUv = finiteUv(entry.uv, `target.faces[${index}].uv`);
+          const rect = rectFromUv(oldUv);
+          if (!Number.isSafeInteger(rect.width) || !Number.isSafeInteger(rect.height)) {
+            fail('UV_PACK_NON_INTEGER_SIZE', `Cube face ${cubeId}/${face} has non-integer UV extent.`);
+          }
+          const sourcePixels = exactPixelRect(rect, scaleX, scaleY, `Cube face ${cubeId}/${face}`);
+          requirePixelRectInBounds(sourcePixels, pixelWidth, pixelHeight, `Source pixels for ${cubeId}/${face}`);
+          copiedPixels += sourcePixels.width * sourcePixels.height;
+          if (!Number.isSafeInteger(copiedPixels) || copiedPixels > MAX_UV_PACK_COPIED_PIXELS) {
+            fail('UV_PACK_PIXEL_BUDGET_EXCEEDED', `UV pack would copy ${copiedPixels} pixels; maximum is ${MAX_UV_PACK_COPIED_PIXELS}.`);
+          }
+          return {cubeId, face, oldUv: Object.freeze(oldUv), width: rect.width, height: rect.height, sourcePixels, key};
+        });
+        return {textureId, pixelWidth, pixelHeight, uvWidth, uvHeight, scaleX, scaleY, faces, copiedPixels};
+      }
+      
+      function packFaces(target, padding) {
+        const faces = target.faces.slice().sort((a, b) => {
+          const areaDiff = (b.width * b.height) - (a.width * a.height);
+          if (areaDiff) return areaDiff;
+          if (b.height !== a.height) return b.height - a.height;
+          if (b.width !== a.width) return b.width - a.width;
+          return a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
+        });
+        let x = 0;
+        let y = 0;
+        let rowHeight = 0;
+        const moves = [];
+        for (const face of faces) {
+          if (face.width > target.uvWidth || face.height > target.uvHeight) fail('UV_PACK_ATLAS_OVERFLOW', `Cube face ${face.cubeId}/${face.face} exceeds the target atlas.`);
+          if (x > 0 && x + face.width > target.uvWidth) {
+            x = 0;
+            y += rowHeight + padding;
+            rowHeight = 0;
+          }
+          if (y + face.height > target.uvHeight) fail('UV_PACK_ATLAS_OVERFLOW', 'Target atlas cannot contain the deterministic bounded UV pack plan.');
+          const newUv = orientedUv(face.oldUv, x, y, face.width, face.height);
+          const destinationPixels = exactPixelRect({x, y, width: face.width, height: face.height}, target.scaleX, target.scaleY, `Destination for ${face.cubeId}/${face.face}`);
+          requirePixelRectInBounds(destinationPixels, target.pixelWidth, target.pixelHeight, `Destination pixels for ${face.cubeId}/${face.face}`);
+          moves.push(Object.freeze({
+            cubeId: face.cubeId,
+            face: face.face,
+            oldUv: face.oldUv,
+            newUv,
+            sourcePixels: face.sourcePixels,
+            destinationPixels,
+          }));
+          x += face.width + padding;
+          rowHeight = Math.max(rowHeight, face.height);
+        }
+        return Object.freeze(moves);
+      }
+      
+      function tokenFor(preview) {
+        const payload = {
+          beforeRevision: preview.beforeRevision,
+          textureId: preview.textureId,
+          scope: preview.scope,
+          atlas: preview.atlas,
+          moves: preview.moves,
+          copiedPixels: preview.copiedPixels,
+        };
+        const crypto = require('node:crypto');
+        return `uvpack:v1:${crypto.createHash('sha256').update(JSON.stringify(payload)).digest('hex')}`;
+      }
+      
+      function previewUvPack(adapter, input) {
+        validatePreviewAdapter(adapter);
+        const request = normalizeRequest(input);
+        const beforeRevision = adapter.getRevision();
+        if (beforeRevision !== request.expectedRevision) fail('STALE_PROJECT_REVISION', `Expected ${request.expectedRevision} but active project is ${beforeRevision}.`);
+        const target = normalizeTarget(adapter.inspectPackTarget(request.textureId), request);
+        const moves = packFaces(target, request.padding);
+        const base = {
+          ok: true,
+          dryRun: true,
+          beforeRevision,
+          expectedRevision: request.expectedRevision,
+          textureId: request.textureId,
+          scope: request.scope,
+          atlas: Object.freeze({width: target.uvWidth, height: target.uvHeight, padding: request.padding}),
+          moves,
+          copiedPixels: target.copiedPixels,
+          label: request.label,
+        };
+        return Object.freeze({...base, confirmationToken: tokenFor(base)});
+      }
+      
+      function safeChangedIds(value) {
+        const input = Array.isArray(value) ? value : [value];
+        const output = [];
+        for (const id of input) if (typeof id === 'string' && id && !output.includes(id)) output.push(id);
+        return Object.freeze(output);
+      }
+      
+      function applyUvPack(adapter, input) {
+        validateApplyAdapter(adapter);
+        const request = normalizeRequest(input, {apply: true});
+        const preview = previewUvPack(adapter, {
+          expectedRevision: request.expectedRevision,
+          textureId: request.textureId,
+          scope: request.scope,
+          padding: request.padding,
+          label: request.label,
+        });
+        if (request.confirmationToken !== preview.confirmationToken) {
+          fail('UV_PACK_CONFIRMATION_MISMATCH', 'UV pack confirmation token does not match the current revision-bound preview.');
+        }
+        adapter.preflightPack(preview);
+        if (request.dryRun) return preview;
+        const beforeRevision = preview.beforeRevision;
+      
+        let opened = false;
+        try {
+          adapter.beginTransaction(request.label);
+          opened = true;
+          const changedIds = safeChangedIds(adapter.applyPack(preview));
+          adapter.finishTransaction(request.label);
+          opened = false;
+          const afterRevision = adapter.getRevision();
+          if (afterRevision === beforeRevision) fail('UV_PACK_REVISION_DID_NOT_ADVANCE', 'Committed UV pack did not advance the project revision.');
+          return Object.freeze({
+            ...preview,
+            dryRun: false,
+            applied: preview.moves.length,
+            changedIds,
+            afterRevision,
+          });
+        } catch (error) {
+          if (opened) {
+            try { adapter.cancelTransaction(true); } catch (_) { /* preserve original error */ }
+          }
+          throw error;
+        }
+      }
+      
+      module.exports = {
+        MAX_UV_PACK_FACES,
+        MAX_UV_PACK_COPIED_PIXELS,
+        UvPackContractError,
+        previewUvPack,
+        applyUvPack,
+      };
+    },
     "core/validator/validator.js": function(module, exports, require) {
       'use strict';
       
@@ -1262,6 +1558,7 @@
       const mutations = require('./mutations/mutation_engine.js');
       const uvTexture = require('./uv-texture/uv_texture_engine.js');
       const uvAnalysis = require('./uv-texture/uv_analysis.js');
+      const uvPack = require('./uv-texture/uv_pack.js');
       const validator = require('./validator/validator.js');
       const contractProfile = require('./contract-profile/contract_profile.js');
       const report = require('./report/report.js');
@@ -1275,6 +1572,7 @@
         mutations,
         uvTexture,
         uvAnalysis,
+        uvPack,
         validator,
         contractProfile,
         report,
@@ -2331,6 +2629,49 @@
           }
         }
       
+        function requirePackRegionInBounds(texture, region, context) {
+          if (!region || !Number.isSafeInteger(region.x) || !Number.isSafeInteger(region.y)
+            || !Number.isSafeInteger(region.width) || !Number.isSafeInteger(region.height)
+            || region.x < 0 || region.y < 0 || region.width < 1 || region.height < 1
+            || region.x > texture.width - region.width || region.y > texture.height - region.height) {
+            fail('UV_PACK_PIXEL_REGION_OUT_OF_BOUNDS', `${context} is outside texture "${texture.uuid || texture.id}" bounds ${texture.width}x${texture.height}.`);
+          }
+          return region;
+        }
+      
+        function normalizedTextureRef(value) {
+          if (typeof value !== 'string') return null;
+          const output = value.trim();
+          if (!output) return null;
+          return output.startsWith('#') ? output.slice(1) : output;
+        }
+      
+        function textureRefs(texture) {
+          const refs = new Set();
+          for (const value of [texture.uuid, texture.id, texture.name]) {
+            const normalized = normalizedTextureRef(value);
+            if (normalized) refs.add(normalized);
+          }
+          return refs;
+        }
+      
+        function faceUsesTexture(face, texture) {
+          const ref = normalizedTextureRef(face?.texture);
+          return !!ref && textureRefs(texture).has(ref);
+        }
+      
+        function requireProjectUvDimension(value, field) {
+          if (!Number.isSafeInteger(value) || value < 1) {
+            fail('INVALID_PROJECT_UV_DIMENSIONS', `${field} must be a positive safe integer for bounded UV packing.`);
+          }
+          return value;
+        }
+      
+        function sameUv(left, right) {
+          return Array.isArray(left) && Array.isArray(right) && left.length >= 4 && right.length >= 4
+            && left.slice(0, 4).every((value, index) => value === right[index]);
+        }
+      
         function addUnique(target, value) {
           if (!target.includes(value)) target.push(value);
         }
@@ -2338,6 +2679,36 @@
         function getRevision() {
           const {createProjectSnapshot} = require('../live-bridge/project_snapshot.js');
           return createProjectSnapshot(project).projectRevision;
+        }
+      
+        function inspectPackTarget(textureId) {
+          const texture = requireEditableTexture(requireTexture(textureId));
+          const uvWidth = requireProjectUvDimension(project.texture_width, 'Project.texture_width');
+          const uvHeight = requireProjectUvDimension(project.texture_height, 'Project.texture_height');
+          const faces = [];
+      
+          for (const cube of cubes()) {
+            const cubeFaces = cube?.faces && typeof cube.faces === 'object' ? cube.faces : {};
+            for (const faceName of Object.keys(cubeFaces).sort()) {
+              const face = cubeFaces[faceName];
+              if (!face || face.enabled === false || !faceUsesTexture(face, texture)) continue;
+              faces.push(Object.freeze({
+                cubeId: cube.uuid,
+                face: faceName,
+                uv: Array.isArray(face.uv) ? face.uv.slice(0, 4) : face.uv,
+                boxUv: cube.box_uv === true,
+              }));
+            }
+          }
+      
+          return Object.freeze({
+            textureId,
+            pixelWidth: texture.width,
+            pixelHeight: texture.height,
+            uvWidth,
+            uvHeight,
+            faces: Object.freeze(faces),
+          });
         }
       
         function preflight(operations) {
@@ -2381,6 +2752,46 @@
           prepared = Object.freeze({
             cubes: Object.freeze(touchedCubes.slice()),
             textures: Object.freeze(touchedTextures.slice()),
+          });
+          return true;
+        }
+      
+        function preflightPack(preview) {
+          if (!preview || typeof preview !== 'object' || !Array.isArray(preview.moves)) {
+            fail('INVALID_UV_PACK_PREVIEW', 'UV pack preview must contain a moves array.');
+          }
+          if (getRevision() !== preview.beforeRevision) {
+            fail('STALE_PROJECT_REVISION', `UV pack preview revision ${preview.beforeRevision} is no longer current.`);
+          }
+          const texture = requireEditableTexture(requireTexture(preview.textureId));
+          const touchedCubes = [];
+      
+          for (const move of preview.moves) {
+            if (!move || typeof move !== 'object') fail('INVALID_UV_PACK_PREVIEW', 'UV pack move must be an object.');
+            const cube = requireCube(move.cubeId);
+            const face = requireFace(cube, move.face);
+            if (cube.box_uv === true) fail('BOX_UV_PACK_UNSUPPORTED', `Cube "${cube.uuid}" must use per-face UV for bounded packing.`);
+            if (!faceUsesTexture(face, texture)) {
+              fail('UV_PACK_TARGET_MISMATCH', `Cube "${cube.uuid}" face "${move.face}" no longer references texture "${preview.textureId}".`);
+            }
+            if (!sameUv(face.uv, move.oldUv)) {
+              fail('STALE_PROJECT_REVISION', `Cube "${cube.uuid}" face "${move.face}" no longer matches the previewed UV state.`);
+            }
+            const source = requirePackRegionInBounds(texture, move.sourcePixels, `Source pixels for ${cube.uuid}/${move.face}`);
+            const destination = requirePackRegionInBounds(texture, move.destinationPixels, `Destination pixels for ${cube.uuid}/${move.face}`);
+            if (source.width !== destination.width || source.height !== destination.height) {
+              fail('INVALID_UV_PACK_PREVIEW', `Pixel copy for ${cube.uuid}/${move.face} must preserve region dimensions.`);
+            }
+            if (!Array.isArray(move.newUv) || move.newUv.length !== 4 || !move.newUv.every(Number.isFinite)) {
+              fail('INVALID_UV_PACK_PREVIEW', `New UV for ${cube.uuid}/${move.face} must contain four finite coordinates.`);
+            }
+            addUnique(touchedCubes, cube);
+          }
+      
+          prepared = Object.freeze({
+            cubes: Object.freeze(touchedCubes.slice()),
+            textures: Object.freeze([texture]),
+            pack: Object.freeze({texture, confirmationToken: preview.confirmationToken}),
           });
           return true;
         }
@@ -2471,6 +2882,32 @@
           }
         }
       
+        function applyPack(preview) {
+          if (!transactionOpen) fail('NO_ACTIVE_TRANSACTION', 'No Blockbench Undo transaction is open.');
+          if (!prepared?.pack || prepared.pack.confirmationToken !== preview?.confirmationToken) {
+            fail('PREFLIGHT_REQUIRED', 'UV pack apply requires the exact preview that passed preflight.');
+          }
+          const texture = prepared.pack.texture;
+          const buffered = preview.moves.map((move) => Object.freeze({
+            move,
+            image: texture.ctx.getImageData(move.sourcePixels.x, move.sourcePixels.y, move.sourcePixels.width, move.sourcePixels.height),
+          }));
+      
+          for (const entry of buffered) {
+            texture.ctx.putImageData(entry.image, entry.move.destinationPixels.x, entry.move.destinationPixels.y);
+          }
+          dirtyTextures.add(texture);
+      
+          const changedIds = [];
+          addUnique(changedIds, texture.uuid || texture.id);
+          for (const entry of buffered) {
+            const cube = requireCube(entry.move.cubeId);
+            requireFace(cube, entry.move.face).extend({uv: entry.move.newUv.slice()});
+            addUnique(changedIds, cube.uuid);
+          }
+          return changedIds;
+        }
+      
         function finishTransaction(label) {
           if (!transactionOpen) fail('NO_ACTIVE_TRANSACTION', 'No Blockbench Undo transaction is open.');
           for (const texture of dirtyTextures) texture.updateChangesAfterEdit();
@@ -2497,9 +2934,12 @@
       
         return Object.freeze({
           getRevision,
+          inspectPackTarget,
           preflight,
+          preflightPack,
           beginTransaction,
           applyOperation,
+          applyPack,
           finishTransaction,
           cancelTransaction,
         });
