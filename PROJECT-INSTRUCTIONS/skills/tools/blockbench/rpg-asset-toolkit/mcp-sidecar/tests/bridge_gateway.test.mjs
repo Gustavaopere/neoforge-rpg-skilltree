@@ -101,6 +101,21 @@ test('invalid handshake is rejected and unavailable/timeout states fail closed',
   await assert.rejects(timed, /BRIDGE_REQUEST_TIMEOUT/);
 });
 
+test('an authenticated connection loses authority when the ephemeral session expires', async (t) => {
+  let now = 1_000;
+  const expiringSession = Object.freeze({...session, createdAt: now, expiresAt: 1_500});
+  const gateway = await startBridgeGateway({
+    host: '127.0.0.1', port: 0, session: expiringSession,
+    now: () => now, requestTimeoutMs: 50, heartbeatTimeoutMs: 10_000,
+  });
+  t.after(() => gateway.close());
+  const socket = await openSocket(gateway.connectionInfo().url, handshake());
+  t.after(() => socket.close());
+
+  now = 1_501;
+  await assert.rejects(gateway.call('blockbench.get_status', {}), /SESSION_EXPIRED/);
+});
+
 test('MCP client -> official server -> WebSocket gateway -> Blockbench response is end-to-end read-only', async (t) => {
   const gateway = await startBridgeGateway({host: '127.0.0.1', port: 0, session, requestTimeoutMs: 2_000, heartbeatTimeoutMs: 10_000});
   t.after(() => gateway.close());
