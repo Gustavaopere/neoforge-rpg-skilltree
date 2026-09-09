@@ -17,6 +17,24 @@ EVIDENCE_STATES = {
     "CONFIRMED","IMPLEMENTED","MERGED","PASS","PENDING","UNRESOLVED",
     "UNAVAILABLE","DEFERRED","REFERENCE_ONLY","INCOMPATIBLE","BLOCKED","SUPERSEDED"
 }
+CANONICAL_AUTHORITY_ORDER = [
+    "runtime_mod_repository",
+    "physical_runtime_artifact_or_jar",
+    "latest_physical_modlist",
+    "exact_provider_source_ref",
+    "official_target_documentation",
+    "integration_control_plane",
+    "repo_textura",
+    "editorial_or_notion",
+    "community_reference",
+]
+REQUIRED_I1_SOURCE_IDS = {
+    "integration_control_plane",
+    "latest_physical_modlist_2026_09_09",
+    "mod_engineering_plan_v1",
+    "repo_textura_plan_v5",
+    "repo_textura",
+}
 
 def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -132,17 +150,24 @@ def validate_asset_handoff_semantics(value, path="$"):
             errors.append(f"{p}.conversion.to_format: must equal delivery_format")
     return errors
 
-def validate_source_registry(path: Path):
-    data = load_json(path)
+def validate_source_registry_data(data, path="SOURCE-REGISTRY.json"):
     errors = []
+    if not isinstance(data, dict):
+        return [f"{path}: registry root must be object"]
     if data.get("schema_version") != 1:
         errors.append(f"{path}: schema_version must be 1")
+    authority_order = data.get("authority_order")
+    if authority_order != CANONICAL_AUTHORITY_ORDER:
+        errors.append(f"{path}: authority_order must exactly match the canonical engineering authority order")
     sources = data.get("sources")
     if not isinstance(sources, list) or not sources:
         return errors + [f"{path}: sources must be non-empty array"]
     ids = []
     for i, source in enumerate(sources):
         p = f"{path}:sources[{i}]"
+        if not isinstance(source, dict):
+            errors.append(f"{p}: source must be object")
+            continue
         for key in ("source_id","source_type","authority_scope","state","locator"):
             if key not in source: errors.append(f"{p}: missing {key}")
         sid = source.get("source_id")
@@ -155,7 +180,13 @@ def validate_source_registry(path: Path):
             errors.append(f"{p}: locator must be non-empty object")
     if len(ids) != len(set(ids)):
         errors.append(f"{path}: duplicate source_id")
+    missing_required = sorted(REQUIRED_I1_SOURCE_IDS.difference(ids))
+    if missing_required:
+        errors.append(f"{path}: missing required I1 source_id(s): {', '.join(missing_required)}")
     return errors
+
+def validate_source_registry(path: Path):
+    return validate_source_registry_data(load_json(path), str(path))
 
 def run_validation(root=ROOT):
     eng = root / "PROJECT-INSTRUCTIONS" / "engineering"
