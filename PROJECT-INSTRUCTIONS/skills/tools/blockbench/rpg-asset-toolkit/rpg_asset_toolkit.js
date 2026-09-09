@@ -48,9 +48,14 @@
         );
       }
       
+      function locatorPosition(element) {
+        if (!element || typeof element !== 'object') return undefined;
+        return hasOwn(element, 'position') ? element.position : element.from;
+      }
+      
       function isLocatorLike(element) {
         return !!element && typeof element === 'object'
-          && hasOwn(element, 'from')
+          && (hasOwn(element, 'position') || hasOwn(element, 'from'))
           && !isCubeLike(element)
           && !hasOwn(element, 'vertices');
       }
@@ -77,8 +82,253 @@
         parentObject,
         hasOwn,
         isCubeLike,
+        locatorPosition,
         isLocatorLike,
         computeBounds,
+      };
+    },
+    "core/mutations/mutation_engine.js": function(module, exports, require) {
+      'use strict';
+      
+      const MAX_MUTATION_OPERATIONS = 128;
+      const MAX_IDENTIFIER_LENGTH = 128;
+      const MAX_LABEL_LENGTH = 160;
+      
+      const BATCH_FIELDS = new Set(['expectedRevision', 'label', 'operations', 'dryRun']);
+      const OPERATION_FIELDS = Object.freeze({
+        add_bone: new Set(['type', 'id', 'name', 'pivot', 'parentId']),
+        add_cube: new Set(['type', 'id', 'name', 'from', 'to', 'pivot', 'parentId']),
+        add_locator: new Set(['type', 'id', 'name', 'position', 'parentId']),
+        set_pivot: new Set(['type', 'targetId', 'pivot']),
+        rename: new Set(['type', 'targetId', 'name']),
+        reparent: new Set(['type', 'targetId', 'parentId']),
+        mirror: new Set(['type', 'targetId', 'axis', 'center']),
+      });
+      
+      class MutationContractError extends Error {
+        constructor(code, message) {
+          super(`${code}: ${message}`);
+          this.name = 'MutationContractError';
+          this.code = code;
+        }
+      }
+      
+      function fail(code, message) {
+        throw new MutationContractError(code, message);
+      }
+      
+      function isPlainObject(value) {
+        if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+        const prototype = Object.getPrototypeOf(value);
+        return prototype === Object.prototype || prototype === null;
+      }
+      
+      function boundedString(value, field, {allowNull = false, max = MAX_IDENTIFIER_LENGTH} = {}) {
+        if (allowNull && value === null) return null;
+        if (typeof value !== 'string') fail('INVALID_STRING', `${field} must be a string.`);
+        const output = value.trim();
+        if (!output || output.length > max) fail('INVALID_STRING', `${field} must contain 1-${max} non-whitespace characters.`);
+        return output;
+      }
+      
+      function nullableIdentifier(value, field) {
+        return value === null || value === undefined ? null : boundedString(value, field);
+      }
+      
+      function vector3(value, field) {
+        if (!Array.isArray(value) || value.length !== 3 || !value.every(Number.isFinite)) {
+          fail('INVALID_VECTOR3', `${field} must be an array of exactly three finite numbers.`);
+        }
+        return Object.freeze(value.slice());
+      }
+      
+      function finiteNumber(value, field) {
+        if (!Number.isFinite(value)) fail('INVALID_NUMBER', `${field} must be finite.`);
+        return value;
+      }
+      
+      function rejectUnknownFields(value, allowed, code, context) {
+        for (const key of Object.keys(value)) {
+          if (!allowed.has(key)) fail(code, `${context} contains unsupported field "${key}".`);
+        }
+      }
+      
+      function validateOperation(value, index) {
+        if (!isPlainObject(value)) fail('INVALID_MUTATION', `operations[${index}] must be an object.`);
+        const type = typeof value.type === 'string' ? value.type : '';
+        const fields = OPERATION_FIELDS[type];
+        if (!fields) fail('UNSUPPORTED_MUTATION', `operations[${index}] type "${type || '<missing>'}" is not allowlisted.`);
+        rejectUnknownFields(value, fields, 'UNKNOWN_OPERATION_FIELD', `operations[${index}]`);
+      
+        let output;
+        switch (type) {
+          case 'add_bone':
+            output = {
+              type,
+              id: boundedString(value.id, `operations[${index}].id`),
+              name: boundedString(value.name, `operations[${index}].name`),
+              pivot: vector3(value.pivot, `operations[${index}].pivot`),
+              parentId: nullableIdentifier(value.parentId, `operations[${index}].parentId`),
+            };
+            break;
+          case 'add_cube':
+            output = {
+              type,
+              id: boundedString(value.id, `operations[${index}].id`),
+              name: boundedString(value.name, `operations[${index}].name`),
+              from: vector3(value.from, `operations[${index}].from`),
+              to: vector3(value.to, `operations[${index}].to`),
+              pivot: vector3(value.pivot, `operations[${index}].pivot`),
+              parentId: nullableIdentifier(value.parentId, `operations[${index}].parentId`),
+            };
+            break;
+          case 'add_locator':
+            output = {
+              type,
+              id: boundedString(value.id, `operations[${index}].id`),
+              name: boundedString(value.name, `operations[${index}].name`),
+              position: vector3(value.position, `operations[${index}].position`),
+              parentId: nullableIdentifier(value.parentId, `operations[${index}].parentId`),
+            };
+            break;
+          case 'set_pivot':
+            output = {
+              type,
+              targetId: boundedString(value.targetId, `operations[${index}].targetId`),
+              pivot: vector3(value.pivot, `operations[${index}].pivot`),
+            };
+            break;
+          case 'rename':
+            output = {
+              type,
+              targetId: boundedString(value.targetId, `operations[${index}].targetId`),
+              name: boundedString(value.name, `operations[${index}].name`),
+            };
+            break;
+          case 'reparent':
+            output = {
+              type,
+              targetId: boundedString(value.targetId, `operations[${index}].targetId`),
+              parentId: nullableIdentifier(value.parentId, `operations[${index}].parentId`),
+            };
+            break;
+          case 'mirror': {
+            const axis = boundedString(value.axis, `operations[${index}].axis`, {max: 1}).toLowerCase();
+            if (!['x', 'y', 'z'].includes(axis)) fail('INVALID_MIRROR_AXIS', `operations[${index}].axis must be x, y, or z.`);
+            output = {
+              type,
+              targetId: boundedString(value.targetId, `operations[${index}].targetId`),
+              axis,
+              center: finiteNumber(value.center, `operations[${index}].center`),
+            };
+            break;
+          }
+          default:
+            fail('UNSUPPORTED_MUTATION', `operations[${index}] is not allowlisted.`);
+        }
+        return Object.freeze(output);
+      }
+      
+      function validateMutationBatch(value) {
+        if (!isPlainObject(value)) fail('INVALID_MUTATION_BATCH', 'Mutation batch must be an object.');
+        rejectUnknownFields(value, BATCH_FIELDS, 'UNKNOWN_BATCH_FIELD', 'Mutation batch');
+      
+        const expectedRevision = boundedString(value.expectedRevision, 'expectedRevision', {max: MAX_IDENTIFIER_LENGTH});
+        if (!Array.isArray(value.operations) || value.operations.length < 1) {
+          fail('EMPTY_MUTATION_BATCH', 'operations must contain at least one mutation.');
+        }
+        if (value.operations.length > MAX_MUTATION_OPERATIONS) {
+          fail('MUTATION_BATCH_TOO_LARGE', `operations exceeds the maximum of ${MAX_MUTATION_OPERATIONS}.`);
+        }
+        if (value.dryRun !== undefined && typeof value.dryRun !== 'boolean') {
+          fail('INVALID_DRY_RUN', 'dryRun must be boolean when provided.');
+        }
+      
+        const operations = value.operations.map(validateOperation);
+        const addedIds = new Set();
+        for (const operation of operations) {
+          if (!operation.type.startsWith('add_')) continue;
+          if (addedIds.has(operation.id)) fail('DUPLICATE_DECLARED_ID', `Mutation batch declares id "${operation.id}" more than once.`);
+          addedIds.add(operation.id);
+        }
+      
+        return Object.freeze({
+          expectedRevision,
+          label: value.label === undefined
+            ? 'RPG Asset Toolkit Modeling/Rig Batch'
+            : boundedString(value.label, 'label', {max: MAX_LABEL_LENGTH}),
+          operations: Object.freeze(operations),
+          dryRun: value.dryRun === true,
+        });
+      }
+      
+      function validateAdapter(adapter) {
+        const methods = ['getRevision', 'preflight', 'beginTransaction', 'applyOperation', 'finishTransaction', 'cancelTransaction'];
+        if (!adapter || typeof adapter !== 'object') fail('INVALID_MUTATION_ADAPTER', 'Mutation adapter is required.');
+        for (const method of methods) {
+          if (typeof adapter[method] !== 'function') fail('INVALID_MUTATION_ADAPTER', `Mutation adapter is missing ${method}().`);
+        }
+      }
+      
+      function collectChangedIds(target, changed) {
+        const values = Array.isArray(changed) ? changed : [changed];
+        for (const value of values) {
+          if (typeof value === 'string' && value && !target.includes(value)) target.push(value);
+        }
+      }
+      
+      function applyMutationBatch(adapter, input) {
+        validateAdapter(adapter);
+        const batch = validateMutationBatch(input);
+        const beforeRevision = adapter.getRevision();
+        if (beforeRevision !== batch.expectedRevision) {
+          fail('STALE_PROJECT_REVISION', `Expected ${batch.expectedRevision} but active project is ${beforeRevision}.`);
+        }
+      
+        adapter.preflight(batch.operations);
+        if (batch.dryRun) {
+          return Object.freeze({
+            ok: true,
+            dryRun: true,
+            beforeRevision,
+            afterRevision: beforeRevision,
+            applied: 0,
+            changedIds: Object.freeze([]),
+          });
+        }
+      
+        const changedIds = [];
+        let begun = false;
+        try {
+          adapter.beginTransaction(batch.label);
+          begun = true;
+          for (const operation of batch.operations) {
+            collectChangedIds(changedIds, adapter.applyOperation(operation));
+          }
+          adapter.finishTransaction(batch.label);
+          begun = false;
+          const afterRevision = adapter.getRevision();
+          return Object.freeze({
+            ok: true,
+            dryRun: false,
+            beforeRevision,
+            afterRevision,
+            applied: batch.operations.length,
+            changedIds: Object.freeze(changedIds.slice()),
+          });
+        } catch (error) {
+          if (begun) {
+            try { adapter.cancelTransaction(true); } catch (_) { /* preserve original mutation failure */ }
+          }
+          throw error;
+        }
+      }
+      
+      module.exports = {
+        MAX_MUTATION_OPERATIONS,
+        MutationContractError,
+        validateMutationBatch,
+        applyMutationBatch,
       };
     },
     "core/validator/validator.js": function(module, exports, require) {
@@ -91,6 +341,7 @@
         normalizeTextureRef,
         parentObject,
         isCubeLike,
+        locatorPosition,
         isLocatorLike,
         computeBounds,
       } = require('../project-model/project_model.js');
@@ -188,7 +439,7 @@
           }
       
           if (isLocatorLike(element)) {
-            if (!finiteVector3(element.from)) issues.push(issue('error', 'INVALID_LOCATOR_POSITION', `Locator "${name}" has a malformed/non-finite from position.`));
+            if (!finiteVector3(locatorPosition(element))) issues.push(issue('error', 'INVALID_LOCATOR_POSITION', `Locator "${name}" has a malformed/non-finite position.`));
             if (!parentObject(element.parent)) issues.push(issue('warning', 'UNGROUPED_LOCATOR', `Locator "${name}" is not attached to an object-backed group/bone.`));
             continue;
           }
@@ -566,6 +817,7 @@
       'use strict';
       
       const projectModel = require('./project-model/project_model.js');
+      const mutations = require('./mutations/mutation_engine.js');
       const validator = require('./validator/validator.js');
       const contractProfile = require('./contract-profile/contract_profile.js');
       const report = require('./report/report.js');
@@ -576,6 +828,7 @@
       module.exports = Object.assign(
         {},
         projectModel,
+        mutations,
         validator,
         contractProfile,
         report,
@@ -667,6 +920,7 @@
       'use strict';
       
       const crypto = require('node:crypto');
+      const {isLocatorLike, locatorPosition} = require('../core/project-model/project_model.js');
       
       function vec(value) { return Array.isArray(value) ? value.slice(0, 3).map((entry) => Number.isFinite(entry) ? entry : null) : null; }
       function parentRef(value) { return value && typeof value === 'object' ? (value.uuid || value.name || null) : (typeof value === 'string' ? value : null); }
@@ -687,7 +941,9 @@
       function faceSnapshot(face) { return {enabled: face?.enabled !== false, texture: typeof face?.texture === 'string' ? face.texture : null, uv: Array.isArray(face?.uv) ? face.uv.slice(0, 4) : null}; }
       function elementSnapshot(element) {
         const faces = element?.faces && typeof element.faces === 'object' ? Object.fromEntries(Object.keys(element.faces).sort().map((key) => [key, faceSnapshot(element.faces[key])])) : {};
-        return {name: element?.name || null, uuid: element?.uuid || null, from: vec(element?.from), to: vec(element?.to), origin: vec(element?.origin), parent: parentRef(element?.parent), faces};
+        const snapshot = {name: element?.name || null, uuid: element?.uuid || null, from: vec(element?.from), to: vec(element?.to), origin: vec(element?.origin), parent: parentRef(element?.parent), faces};
+        if (isLocatorLike(element)) snapshot.position = vec(locatorPosition(element));
+        return snapshot;
       }
       function textureSnapshot(texture) { return {name: texture?.name || null, uuid: texture?.uuid || null, width: Number.isFinite(texture?.width) ? texture.width : null, height: Number.isFinite(texture?.height) ? texture.height : null}; }
       function animationSnapshot(animation) {
@@ -1252,14 +1508,294 @@
         createBlockbenchLiveBridgeRuntime,
       };
     },
+    "blockbench-plugin/modeling_adapter.js": function(module, exports, require) {
+      'use strict';
+      
+      function fail(code, message) {
+        const error = new Error(`${code}: ${message}`);
+        error.code = code;
+        throw error;
+      }
+      
+      function array(value) {
+        return Array.isArray(value) ? value : [];
+      }
+      
+      function idOf(value) {
+        if (typeof value === 'string') return value || null;
+        return value && typeof value === 'object' && typeof value.uuid === 'string' && value.uuid ? value.uuid : null;
+      }
+      
+      function parentIdOf(value) {
+        if (!value) return null;
+        return idOf(value);
+      }
+      
+      function createBlockbenchModelingAdapter(bb) {
+        const project = bb?.Blockbench?.Project;
+        if (!project || typeof project !== 'object') fail('NO_PROJECT', 'No Blockbench project is open.');
+        if (bb.Blockbench.isWeb !== false) fail('DESKTOP_REQUIRED', 'Modeling/rig mutations require desktop Blockbench.');
+        for (const [name, value] of [['Group', bb.Group], ['Cube', bb.Cube], ['Locator', bb.Locator]]) {
+          if (typeof value !== 'function') fail('BLOCKBENCH_API_UNAVAILABLE', `${name} constructor is unavailable.`);
+        }
+        if (!bb.Outliner || !Array.isArray(bb.Outliner.elements)) fail('BLOCKBENCH_API_UNAVAILABLE', 'Outliner.elements is unavailable.');
+        if (!bb.Undo || ['initEdit', 'finishEdit', 'cancelEdit'].some((name) => typeof bb.Undo[name] !== 'function')) {
+          fail('BLOCKBENCH_API_UNAVAILABLE', 'Blockbench Undo API is incomplete.');
+        }
+      
+        let transactionOpen = false;
+      
+        function groups() {
+          return Array.isArray(bb.Group.all) ? bb.Group.all : array(project.groups);
+        }
+      
+        function elements() {
+          return Array.isArray(bb.Outliner.elements) ? bb.Outliner.elements : array(project.elements);
+        }
+      
+        function nodes() {
+          const output = [];
+          for (const node of groups().concat(elements())) {
+            if (node && !output.includes(node)) output.push(node);
+          }
+          return output;
+        }
+      
+        function kindOf(node) {
+          if (!node) return null;
+          if (groups().includes(node) || node instanceof bb.Group) return 'group';
+          if (node instanceof bb.Cube) return 'cube';
+          if (node instanceof bb.Locator) return 'locator';
+          return 'element';
+        }
+      
+        function findNode(nodeId) {
+          return nodes().find((node) => idOf(node) === nodeId) || null;
+        }
+      
+        function requireNode(nodeId) {
+          const node = findNode(nodeId);
+          if (!node) fail('NODE_NOT_FOUND', `Node "${nodeId}" does not exist.`);
+          return node;
+        }
+      
+        function requireParent(parentId) {
+          if (parentId === null) return null;
+          const parent = findNode(parentId);
+          if (!parent) fail('PARENT_NOT_FOUND', `Parent "${parentId}" does not exist.`);
+          if (kindOf(parent) !== 'group') fail('PARENT_NOT_GROUP', `Parent "${parentId}" is not a group/bone.`);
+          return parent;
+        }
+      
+        function getRevision() {
+          const {createProjectSnapshot} = require('../live-bridge/project_snapshot.js');
+          return createProjectSnapshot(project).projectRevision;
+        }
+      
+        function preflight(operations) {
+          const simulated = new Map();
+          for (const node of nodes()) {
+            const id = idOf(node);
+            if (!id) continue;
+            simulated.set(id, {
+              id,
+              kind: kindOf(node),
+              name: typeof node.name === 'string' ? node.name : '',
+              parentId: parentIdOf(node.parent),
+            });
+          }
+      
+          function simulatedParent(parentId) {
+            if (parentId === null) return null;
+            const parent = simulated.get(parentId);
+            if (!parent) fail('PARENT_NOT_FOUND', `Parent "${parentId}" does not exist.`);
+            if (parent.kind !== 'group') fail('PARENT_NOT_GROUP', `Parent "${parentId}" is not a group/bone.`);
+            return parent;
+          }
+      
+          function groupNameExists(name, excludeId = null) {
+            const wanted = name.toLowerCase();
+            return [...simulated.values()].some((node) => node.kind === 'group' && node.id !== excludeId && node.name.toLowerCase() === wanted);
+          }
+      
+          function checkCycle(targetId, parentId) {
+            if (parentId === null) return;
+            if (targetId === parentId) fail('INVALID_PARENT_CYCLE', `Node "${targetId}" cannot parent itself.`);
+            let cursor = parentId;
+            const seen = new Set();
+            while (cursor !== null) {
+              if (cursor === targetId) fail('INVALID_PARENT_CYCLE', `Reparenting "${targetId}" below "${parentId}" would create a cycle.`);
+              if (seen.has(cursor)) fail('INVALID_PARENT_CYCLE', `Existing simulated hierarchy contains a cycle at "${cursor}".`);
+              seen.add(cursor);
+              const node = simulated.get(cursor);
+              if (!node) break;
+              cursor = node.parentId;
+            }
+          }
+      
+          for (const operation of operations) {
+            switch (operation.type) {
+              case 'add_bone': {
+                if (simulated.has(operation.id)) fail('DUPLICATE_NODE_ID', `Node id "${operation.id}" already exists.`);
+                simulatedParent(operation.parentId);
+                if (groupNameExists(operation.name)) fail('DUPLICATE_BONE_NAME', `Bone name "${operation.name}" already exists.`);
+                simulated.set(operation.id, {id: operation.id, kind: 'group', name: operation.name, parentId: operation.parentId});
+                break;
+              }
+              case 'add_cube':
+              case 'add_locator': {
+                if (simulated.has(operation.id)) fail('DUPLICATE_NODE_ID', `Node id "${operation.id}" already exists.`);
+                simulatedParent(operation.parentId);
+                simulated.set(operation.id, {
+                  id: operation.id,
+                  kind: operation.type === 'add_cube' ? 'cube' : 'locator',
+                  name: operation.name,
+                  parentId: operation.parentId,
+                });
+                break;
+              }
+              case 'set_pivot': {
+                const target = simulated.get(operation.targetId);
+                if (!target) fail('NODE_NOT_FOUND', `Node "${operation.targetId}" does not exist.`);
+                if (!['group', 'cube'].includes(target.kind)) fail('PIVOT_UNSUPPORTED', `Node "${operation.targetId}" does not expose a modeling pivot.`);
+                break;
+              }
+              case 'rename': {
+                const target = simulated.get(operation.targetId);
+                if (!target) fail('NODE_NOT_FOUND', `Node "${operation.targetId}" does not exist.`);
+                if (target.kind === 'group' && groupNameExists(operation.name, target.id)) {
+                  fail('DUPLICATE_BONE_NAME', `Bone name "${operation.name}" already exists.`);
+                }
+                target.name = operation.name;
+                break;
+              }
+              case 'reparent': {
+                const target = simulated.get(operation.targetId);
+                if (!target) fail('NODE_NOT_FOUND', `Node "${operation.targetId}" does not exist.`);
+                simulatedParent(operation.parentId);
+                checkCycle(target.id, operation.parentId);
+                target.parentId = operation.parentId;
+                break;
+              }
+              case 'mirror': {
+                const target = simulated.get(operation.targetId);
+                if (!target) fail('NODE_NOT_FOUND', `Node "${operation.targetId}" does not exist.`);
+                if (target.kind !== 'cube') fail('MIRROR_UNSUPPORTED', 'PR3 mirror is restricted to cube elements.');
+                break;
+              }
+              default:
+                fail('UNSUPPORTED_MUTATION', `Mutation "${operation.type}" is not supported by the Blockbench adapter.`);
+            }
+          }
+          return true;
+        }
+      
+        function beginTransaction() {
+          if (transactionOpen) fail('TRANSACTION_ALREADY_OPEN', 'A Blockbench Undo transaction is already open.');
+          bb.Undo.initEdit({
+            outliner: true,
+            elements: elements().slice(),
+            groups: groups().slice(),
+          });
+          transactionOpen = true;
+        }
+      
+        function finishTransaction(label) {
+          if (!transactionOpen) fail('NO_ACTIVE_TRANSACTION', 'No Blockbench Undo transaction is open.');
+          bb.Undo.finishEdit(label, {
+            outliner: true,
+            elements: elements().slice(),
+            groups: groups().slice(),
+          });
+          transactionOpen = false;
+        }
+      
+        function cancelTransaction(revert) {
+          if (!transactionOpen) return;
+          try {
+            bb.Undo.cancelEdit(revert === true);
+          } finally {
+            transactionOpen = false;
+          }
+        }
+      
+        function applyOperation(operation) {
+          switch (operation.type) {
+            case 'add_bone': {
+              const parent = requireParent(operation.parentId);
+              const node = new bb.Group({name: operation.name, origin: operation.pivot.slice()}, operation.id).init();
+              node.addTo(parent || undefined);
+              return node.uuid || operation.id;
+            }
+            case 'add_cube': {
+              const parent = requireParent(operation.parentId);
+              const node = new bb.Cube({
+                name: operation.name,
+                from: operation.from.slice(),
+                to: operation.to.slice(),
+                origin: operation.pivot.slice(),
+              }, operation.id).init();
+              node.addTo(parent || undefined);
+              return node.uuid || operation.id;
+            }
+            case 'add_locator': {
+              const parent = requireParent(operation.parentId);
+              const node = new bb.Locator({name: operation.name, position: operation.position.slice()}, operation.id)
+                .addTo(parent || undefined)
+                .init();
+              return node.uuid || operation.id;
+            }
+            case 'set_pivot': {
+              const node = requireNode(operation.targetId);
+              if (typeof node.extend !== 'function') fail('PIVOT_UNSUPPORTED', `Node "${operation.targetId}" cannot update its pivot.`);
+              node.extend({origin: operation.pivot.slice()});
+              return node.uuid || operation.targetId;
+            }
+            case 'rename': {
+              const node = requireNode(operation.targetId);
+              node.name = operation.name;
+              return node.uuid || operation.targetId;
+            }
+            case 'reparent': {
+              const node = requireNode(operation.targetId);
+              const parent = requireParent(operation.parentId);
+              if (typeof node.addTo !== 'function') fail('REPARENT_UNSUPPORTED', `Node "${operation.targetId}" cannot be reparented.`);
+              node.addTo(parent || undefined);
+              return node.uuid || operation.targetId;
+            }
+            case 'mirror': {
+              const node = requireNode(operation.targetId);
+              if (!(node instanceof bb.Cube) || typeof node.flip !== 'function') fail('MIRROR_UNSUPPORTED', `Node "${operation.targetId}" is not a mirrorable cube.`);
+              node.flip({x: 0, y: 1, z: 2}[operation.axis], operation.center, false);
+              return node.uuid || operation.targetId;
+            }
+            default:
+              fail('UNSUPPORTED_MUTATION', `Mutation "${operation.type}" is not supported by the Blockbench adapter.`);
+          }
+        }
+      
+        return Object.freeze({
+          getRevision,
+          preflight,
+          beginTransaction,
+          applyOperation,
+          finishTransaction,
+          cancelTransaction,
+        });
+      }
+      
+      module.exports = {createBlockbenchModelingAdapter};
+    },
     "blockbench-plugin/plugin_adapter.js": function(module, exports, require) {
       'use strict';
       
       const core = require('../core/index.js');
+      const modeling = require('./modeling_adapter.js');
       
       function registerBlockbenchPlugin(bb) {
         let auditAction = null;
         let profileAction = null;
+        let modelingMutationAction = null;
         let bridgeConnectAction = null;
         let bridgeDisconnectAction = null;
         let bridgeStatusAction = null;
@@ -1274,15 +1810,19 @@
           });
         }
       
-        function showBridgeError(error) {
-          const code = error && typeof error.code === 'string' ? error.code : 'BRIDGE_ERROR';
-          const detail = error && typeof error.message === 'string' ? error.message : code;
+        function showError(title, error) {
+          const code = error && typeof error.code === 'string' ? error.code : 'TOOLKIT_ERROR';
+          const detail = error && typeof error.message === 'string' ? error.message : String(error);
           bb.Blockbench.showMessageBox({
-            title: 'RPG Asset Toolkit — Live Bridge',
+            title,
             icon: 'error',
-            message: `${code}: ${detail}`.slice(0, 1024),
+            message: `${code}: ${detail}`.slice(0, 2048),
             buttons: ['OK'],
           });
+        }
+      
+        function showBridgeError(error) {
+          showError('RPG Asset Toolkit — Live Bridge', error);
         }
       
         function addToolAction(action) {
@@ -1293,9 +1833,9 @@
         bb.Plugin.register('rpg_asset_toolkit', {
           title: 'RPG Asset Toolkit',
           author: 'Gustavaopere',
-          description: 'Read-only structural and provider-aware contract QA with an optional authenticated desktop-local MCP Live Bridge.',
+          description: 'Structural/provider-aware asset QA with bounded local modeling/rig mutations and an optional authenticated read-only desktop-local MCP Live Bridge.',
           icon: 'fact_check',
-          version: '0.3.0',
+          version: '0.4.0',
           min_version: '5.1.6',
           variant: 'both',
           tags: ['Minecraft: Java Edition'],
@@ -1313,19 +1853,44 @@
               click() {
                 bb.Blockbench.textPrompt('RPG Asset Contract Profile (JSON)', '{}', (text) => {
                   try { show(core.validateProject(bb.Blockbench.Project, core.parseProfileJson(text))); }
-                  catch (error) {
-                    bb.Blockbench.showMessageBox({
-                      title: 'RPG Asset Toolkit — Invalid Profile',
-                      icon: 'error',
-                      message: String(error && error.message ? error.message : error),
-                      buttons: ['OK'],
-                    });
-                  }
+                  catch (error) { showError('RPG Asset Toolkit — Invalid Profile', error); }
                 });
               },
             }));
       
             if (bb.Blockbench.isWeb === false) {
+              modelingMutationAction = addToolAction(new bb.Action('rpg_asset_toolkit_modeling_mutation_batch', {
+                name: 'Apply RPG Modeling/Rig Batch',
+                description: 'Apply a bounded declarative modeling/rig batch locally with expected-revision checks, preflight, Undo, and rollback. This does not expose remote MCP writes.',
+                icon: 'architecture',
+                click() {
+                  try {
+                    const adapter = modeling.createBlockbenchModelingAdapter(bb);
+                    const template = JSON.stringify({
+                      expectedRevision: adapter.getRevision(),
+                      dryRun: true,
+                      label: 'RPG Asset Toolkit Modeling/Rig Batch',
+                      operations: [],
+                    }, null, 2);
+                    bb.Blockbench.textPrompt('RPG Modeling/Rig Mutation Batch (JSON)', template, (text) => {
+                      try {
+                        const result = core.applyMutationBatch(adapter, JSON.parse(text));
+                        bb.Blockbench.showMessageBox({
+                          title: 'RPG Asset Toolkit — Modeling/Rig Batch',
+                          icon: 'check_circle',
+                          message: JSON.stringify(result, null, 2).slice(0, 4096),
+                          buttons: ['OK'],
+                        });
+                      } catch (error) {
+                        showError('RPG Asset Toolkit — Modeling/Rig Batch Failed', error);
+                      }
+                    });
+                  } catch (error) {
+                    showError('RPG Asset Toolkit — Modeling/Rig Batch Unavailable', error);
+                  }
+                },
+              }));
+      
               bridgeConnectAction = addToolAction(new bb.Action('rpg_asset_toolkit_live_bridge_connect', {
                 name: 'Connect RPG Asset MCP (Read-only)',
                 description: 'Connect this desktop Blockbench session to the authenticated numeric-loopback RPG Asset MCP sidecar.',
@@ -1384,11 +1949,12 @@
               try { void bridgeRuntime.connection.disconnect(); } catch (_) { /* best effort during plugin unload */ }
             }
             bridgeRuntime = null;
-            for (const action of [auditAction, profileAction, bridgeConnectAction, bridgeDisconnectAction, bridgeStatusAction]) {
+            for (const action of [auditAction, profileAction, modelingMutationAction, bridgeConnectAction, bridgeDisconnectAction, bridgeStatusAction]) {
               if (action) action.delete();
             }
             auditAction = null;
             profileAction = null;
+            modelingMutationAction = null;
             bridgeConnectAction = null;
             bridgeDisconnectAction = null;
             bridgeStatusAction = null;
@@ -1396,7 +1962,10 @@
         });
       }
       
-      module.exports = {registerBlockbenchPlugin};
+      module.exports = {
+        registerBlockbenchPlugin,
+        createBlockbenchModelingAdapter: modeling.createBlockbenchModelingAdapter,
+      };
     }
   };
   const cache = Object.create(null);

@@ -1,6 +1,7 @@
 'use strict';
 
 const projectModel = require('./project-model/project_model.js');
+const mutations = require('./mutations/mutation_engine.js');
 const validator = require('./validator/validator.js');
 const contractProfile = require('./contract-profile/contract_profile.js');
 const report = require('./report/report.js');
@@ -11,6 +12,7 @@ const physical = require('./provider-profile/physical_provider_snapshot.js');
 module.exports = Object.assign(
   {},
   projectModel,
+  mutations,
   validator,
   contractProfile,
   report,

@@ -7,6 +7,7 @@ const {
   normalizeTextureRef,
   parentObject,
   isCubeLike,
+  locatorPosition,
   isLocatorLike,
   computeBounds,
 } = require('../project-model/project_model.js');
@@ -104,7 +105,7 @@ function validateProject(project, profile = {}) {
     }
 
     if (isLocatorLike(element)) {
-      if (!finiteVector3(element.from)) issues.push(issue('error', 'INVALID_LOCATOR_POSITION', `Locator "${name}" has a malformed/non-finite from position.`));
+      if (!finiteVector3(locatorPosition(element))) issues.push(issue('error', 'INVALID_LOCATOR_POSITION', `Locator "${name}" has a malformed/non-finite position.`));
       if (!parentObject(element.parent)) issues.push(issue('warning', 'UNGROUPED_LOCATOR', `Locator "${name}" is not attached to an object-backed group/bone.`));
       continue;
     }

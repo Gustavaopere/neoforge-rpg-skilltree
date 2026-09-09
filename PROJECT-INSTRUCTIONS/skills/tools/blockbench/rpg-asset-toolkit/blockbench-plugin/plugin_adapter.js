@@ -1,10 +1,12 @@
 'use strict';
 
 const core = require('../core/index.js');
+const modeling = require('./modeling_adapter.js');
 
 function registerBlockbenchPlugin(bb) {
   let auditAction = null;
   let profileAction = null;
+  let modelingMutationAction = null;
   let bridgeConnectAction = null;
   let bridgeDisconnectAction = null;
   let bridgeStatusAction = null;
@@ -19,15 +21,19 @@ function registerBlockbenchPlugin(bb) {
     });
   }
 
-  function showBridgeError(error) {
-    const code = error && typeof error.code === 'string' ? error.code : 'BRIDGE_ERROR';
-    const detail = error && typeof error.message === 'string' ? error.message : code;
+  function showError(title, error) {
+    const code = error && typeof error.code === 'string' ? error.code : 'TOOLKIT_ERROR';
+    const detail = error && typeof error.message === 'string' ? error.message : String(error);
     bb.Blockbench.showMessageBox({
-      title: 'RPG Asset Toolkit — Live Bridge',
+      title,
       icon: 'error',
-      message: `${code}: ${detail}`.slice(0, 1024),
+      message: `${code}: ${detail}`.slice(0, 2048),
       buttons: ['OK'],
     });
+  }
+
+  function showBridgeError(error) {
+    showError('RPG Asset Toolkit — Live Bridge', error);
   }
 
   function addToolAction(action) {
@@ -38,9 +44,9 @@ function registerBlockbenchPlugin(bb) {
   bb.Plugin.register('rpg_asset_toolkit', {
     title: 'RPG Asset Toolkit',
     author: 'Gustavaopere',
-    description: 'Read-only structural and provider-aware contract QA with an optional authenticated desktop-local MCP Live Bridge.',
+    description: 'Structural/provider-aware asset QA with bounded local modeling/rig mutations and an optional authenticated read-only desktop-local MCP Live Bridge.',
     icon: 'fact_check',
-    version: '0.3.0',
+    version: '0.4.0',
     min_version: '5.1.6',
     variant: 'both',
     tags: ['Minecraft: Java Edition'],
@@ -58,19 +64,44 @@ function registerBlockbenchPlugin(bb) {
         click() {
           bb.Blockbench.textPrompt('RPG Asset Contract Profile (JSON)', '{}', (text) => {
             try { show(core.validateProject(bb.Blockbench.Project, core.parseProfileJson(text))); }
-            catch (error) {
-              bb.Blockbench.showMessageBox({
-                title: 'RPG Asset Toolkit — Invalid Profile',
-                icon: 'error',
-                message: String(error && error.message ? error.message : error),
-                buttons: ['OK'],
-              });
-            }
+            catch (error) { showError('RPG Asset Toolkit — Invalid Profile', error); }
           });
         },
       }));
 
       if (bb.Blockbench.isWeb === false) {
+        modelingMutationAction = addToolAction(new bb.Action('rpg_asset_toolkit_modeling_mutation_batch', {
+          name: 'Apply RPG Modeling/Rig Batch',
+          description: 'Apply a bounded declarative modeling/rig batch locally with expected-revision checks, preflight, Undo, and rollback. This does not expose remote MCP writes.',
+          icon: 'architecture',
+          click() {
+            try {
+              const adapter = modeling.createBlockbenchModelingAdapter(bb);
+              const template = JSON.stringify({
+                expectedRevision: adapter.getRevision(),
+                dryRun: true,
+                label: 'RPG Asset Toolkit Modeling/Rig Batch',
+                operations: [],
+              }, null, 2);
+              bb.Blockbench.textPrompt('RPG Modeling/Rig Mutation Batch (JSON)', template, (text) => {
+                try {
+                  const result = core.applyMutationBatch(adapter, JSON.parse(text));
+                  bb.Blockbench.showMessageBox({
+                    title: 'RPG Asset Toolkit — Modeling/Rig Batch',
+                    icon: 'check_circle',
+                    message: JSON.stringify(result, null, 2).slice(0, 4096),
+                    buttons: ['OK'],
+                  });
+                } catch (error) {
+                  showError('RPG Asset Toolkit — Modeling/Rig Batch Failed', error);
+                }
+              });
+            } catch (error) {
+              showError('RPG Asset Toolkit — Modeling/Rig Batch Unavailable', error);
+            }
+          },
+        }));
+
         bridgeConnectAction = addToolAction(new bb.Action('rpg_asset_toolkit_live_bridge_connect', {
           name: 'Connect RPG Asset MCP (Read-only)',
           description: 'Connect this desktop Blockbench session to the authenticated numeric-loopback RPG Asset MCP sidecar.',
@@ -129,11 +160,12 @@ function registerBlockbenchPlugin(bb) {
         try { void bridgeRuntime.connection.disconnect(); } catch (_) { /* best effort during plugin unload */ }
       }
       bridgeRuntime = null;
-      for (const action of [auditAction, profileAction, bridgeConnectAction, bridgeDisconnectAction, bridgeStatusAction]) {
+      for (const action of [auditAction, profileAction, modelingMutationAction, bridgeConnectAction, bridgeDisconnectAction, bridgeStatusAction]) {
         if (action) action.delete();
       }
       auditAction = null;
       profileAction = null;
+      modelingMutationAction = null;
       bridgeConnectAction = null;
       bridgeDisconnectAction = null;
       bridgeStatusAction = null;
@@ -141,4 +173,7 @@ function registerBlockbenchPlugin(bb) {
   });
 }
 
-module.exports = {registerBlockbenchPlugin};
+module.exports = {
+  registerBlockbenchPlugin,
+  createBlockbenchModelingAdapter: modeling.createBlockbenchModelingAdapter,
+};

@@ -7,6 +7,7 @@ const ROOT = __dirname;
 const NATIVE_MODULE_ALLOWLIST = Object.freeze(['node:crypto']);
 const SOURCE_MODULES = Object.freeze([
   'core/project-model/project_model.js',
+  'core/mutations/mutation_engine.js',
   'core/validator/validator.js',
   'core/contract-profile/contract_profile.js',
   'core/report/report.js',
@@ -20,6 +21,7 @@ const SOURCE_MODULES = Object.freeze([
   'live-bridge/read_only_router.js',
   'live-bridge/blockbench_bridge_client.js',
   'blockbench-plugin/live_bridge_adapter.js',
+  'blockbench-plugin/modeling_adapter.js',
   'blockbench-plugin/plugin_adapter.js',
 ]);
 
