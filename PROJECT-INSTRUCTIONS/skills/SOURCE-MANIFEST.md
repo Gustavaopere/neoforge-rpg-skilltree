@@ -24,3 +24,15 @@ SHA-256 dos ZIPs enviados pelo usuário:
 | `minecraft-world-generation.zip` | `686ffa0bafe5e68665a5ecf498f2473b3cb4bfcf30bd2943f7e4e1ffdab71bee` |
 | `minecraft-worldedit-ops.zip` | `44eda7187802e756c8eb66690147afc6cb3ebeb6baae3220ff8092f8bc23e181` |
 | `modpack-inventory-redundancy-audit.zip` | `aa6555fa84bc1b24a3d3f652516d9a629f1ec9b48d36a7c57dd6c506ecdd5c4a` |
+
+## Critério de importação integral
+
+O conjunto validado recebido contém:
+
+- **20** skills únicas;
+- **142** arquivos-fonte no total;
+- `SKILL.md` obrigatório em cada skill.
+
+Arquivos `PROJECT-OVERLAY.md` são project-authored e **não** entram na contagem 142. Eles existem para restringir os bundles multi-versão ao alvo Minecraft 1.21.1 / NeoForge 21.1.x / Java 21 sem adulterar o conteúdo-fonte recebido.
+
+A conclusão da importação deve gerar/atualizar `FULL-USER-SKILL-IMPORT.md` com contagem por skill e falhar se a soma fonte não for exatamente 142.
