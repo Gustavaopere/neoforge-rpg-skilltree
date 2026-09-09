@@ -331,6 +331,292 @@
         applyMutationBatch,
       };
     },
+    "core/uv-texture/uv_texture_engine.js": function(module, exports, require) {
+      'use strict';
+      
+      const MAX_UV_TEXTURE_OPERATIONS = 128;
+      const MAX_TEXTURE_PIXELS_PER_BATCH = 262144;
+      const MAX_PALETTE_REPLACEMENTS = 256;
+      const MAX_IDENTIFIER_LENGTH = 128;
+      const MAX_LABEL_LENGTH = 160;
+      const FACES = new Set(['north', 'south', 'east', 'west', 'up', 'down']);
+      const BATCH_FIELDS = new Set(['expectedRevision', 'label', 'operations', 'dryRun']);
+      const OPERATION_FIELDS = Object.freeze({
+        set_face_uv: new Set(['type', 'cubeId', 'face', 'uv']),
+        set_face_texture: new Set(['type', 'cubeId', 'face', 'textureId']),
+        set_box_uv: new Set(['type', 'cubeId', 'enabled', 'offset']),
+        texture_fill_rect: new Set(['type', 'textureId', 'x', 'y', 'width', 'height', 'color']),
+        texture_replace_palette: new Set(['type', 'textureId', 'region', 'replacements']),
+      });
+      
+      class UvTextureContractError extends Error {
+        constructor(code, message) {
+          super(`${code}: ${message}`);
+          this.name = 'UvTextureContractError';
+          this.code = code;
+        }
+      }
+      
+      function fail(code, message) {
+        throw new UvTextureContractError(code, message);
+      }
+      
+      function isPlainObject(value) {
+        if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+        const prototype = Object.getPrototypeOf(value);
+        return prototype === Object.prototype || prototype === null;
+      }
+      
+      function rejectUnknownFields(value, allowed, code, context) {
+        for (const key of Object.keys(value)) {
+          if (!allowed.has(key)) fail(code, `${context} contains unsupported field "${key}".`);
+        }
+      }
+      
+      function boundedString(value, field, {max = MAX_IDENTIFIER_LENGTH} = {}) {
+        if (typeof value !== 'string') fail('INVALID_STRING', `${field} must be a string.`);
+        const output = value.trim();
+        if (!output || output.length > max) fail('INVALID_STRING', `${field} must contain 1-${max} non-whitespace characters.`);
+        return output;
+      }
+      
+      function faceName(value, field) {
+        const output = boundedString(value, field, {max: 5}).toLowerCase();
+        if (!FACES.has(output)) fail('INVALID_FACE', `${field} must be a cardinal cube face.`);
+        return output;
+      }
+      
+      function finiteVector(value, length, code, field) {
+        if (!Array.isArray(value) || value.length !== length || !value.every(Number.isFinite)) {
+          fail(code, `${field} must contain exactly ${length} finite numbers.`);
+        }
+        return Object.freeze(value.slice());
+      }
+      
+      function rgba(value, field) {
+        if (!Array.isArray(value) || value.length !== 4 || !value.every((entry) => Number.isInteger(entry) && entry >= 0 && entry <= 255)) {
+          fail('INVALID_RGBA', `${field} must be [r,g,b,a] integers in the 0-255 range.`);
+        }
+        return Object.freeze(value.slice());
+      }
+      
+      function nonNegativeInteger(value, field) {
+        if (!Number.isSafeInteger(value) || value < 0) fail('INVALID_PIXEL_REGION', `${field} must be a non-negative safe integer.`);
+        return value;
+      }
+      
+      function positiveInteger(value, field) {
+        if (!Number.isSafeInteger(value) || value < 1) fail('INVALID_PIXEL_REGION', `${field} must be a positive safe integer.`);
+        return value;
+      }
+      
+      function pixelRegion(value, field) {
+        if (!isPlainObject(value)) fail('INVALID_PIXEL_REGION', `${field} must be an object.`);
+        rejectUnknownFields(value, new Set(['x', 'y', 'width', 'height']), 'INVALID_PIXEL_REGION', field);
+        return Object.freeze({
+          x: nonNegativeInteger(value.x, `${field}.x`),
+          y: nonNegativeInteger(value.y, `${field}.y`),
+          width: positiveInteger(value.width, `${field}.width`),
+          height: positiveInteger(value.height, `${field}.height`),
+        });
+      }
+      
+      function pixelArea(region, field) {
+        const area = region.width * region.height;
+        if (!Number.isSafeInteger(area)) fail('INVALID_PIXEL_REGION', `${field} pixel area exceeds the safe integer range.`);
+        return area;
+      }
+      
+      function paletteReplacements(value, field) {
+        if (!Array.isArray(value) || value.length < 1 || value.length > MAX_PALETTE_REPLACEMENTS) {
+          fail('INVALID_PALETTE_REPLACEMENTS', `${field} must contain 1-${MAX_PALETTE_REPLACEMENTS} entries.`);
+        }
+        const seen = new Set();
+        return Object.freeze(value.map((entry, index) => {
+          if (!isPlainObject(entry)) fail('INVALID_PALETTE_REPLACEMENTS', `${field}[${index}] must be an object.`);
+          rejectUnknownFields(entry, new Set(['from', 'to']), 'INVALID_PALETTE_REPLACEMENTS', `${field}[${index}]`);
+          const from = rgba(entry.from, `${field}[${index}].from`);
+          const to = rgba(entry.to, `${field}[${index}].to`);
+          const key = from.join(',');
+          if (seen.has(key)) fail('DUPLICATE_PALETTE_SOURCE', `${field} contains duplicate source color ${key}.`);
+          seen.add(key);
+          return Object.freeze({from, to});
+        }));
+      }
+      
+      function validateOperation(value, index) {
+        if (!isPlainObject(value)) fail('INVALID_UV_TEXTURE_MUTATION', `operations[${index}] must be an object.`);
+        const type = typeof value.type === 'string' ? value.type : '';
+        const allowedFields = OPERATION_FIELDS[type];
+        if (!allowedFields) fail('UNSUPPORTED_UV_TEXTURE_MUTATION', `operations[${index}] type "${type || '<missing>'}" is not allowlisted.`);
+        rejectUnknownFields(value, allowedFields, 'UNKNOWN_UV_TEXTURE_FIELD', `operations[${index}]`);
+      
+        switch (type) {
+          case 'set_face_uv':
+            return Object.freeze({
+              type,
+              cubeId: boundedString(value.cubeId, `operations[${index}].cubeId`),
+              face: faceName(value.face, `operations[${index}].face`),
+              uv: finiteVector(value.uv, 4, 'INVALID_UV_RECT', `operations[${index}].uv`),
+            });
+          case 'set_face_texture':
+            return Object.freeze({
+              type,
+              cubeId: boundedString(value.cubeId, `operations[${index}].cubeId`),
+              face: faceName(value.face, `operations[${index}].face`),
+              textureId: boundedString(value.textureId, `operations[${index}].textureId`),
+            });
+          case 'set_box_uv': {
+            if (typeof value.enabled !== 'boolean') fail('INVALID_BOX_UV_MODE', `operations[${index}].enabled must be boolean.`);
+            return Object.freeze({
+              type,
+              cubeId: boundedString(value.cubeId, `operations[${index}].cubeId`),
+              enabled: value.enabled,
+              offset: finiteVector(value.offset, 2, 'INVALID_UV_OFFSET', `operations[${index}].offset`),
+            });
+          }
+          case 'texture_fill_rect': {
+            const region = Object.freeze({
+              x: nonNegativeInteger(value.x, `operations[${index}].x`),
+              y: nonNegativeInteger(value.y, `operations[${index}].y`),
+              width: positiveInteger(value.width, `operations[${index}].width`),
+              height: positiveInteger(value.height, `operations[${index}].height`),
+            });
+            return Object.freeze({
+              type,
+              textureId: boundedString(value.textureId, `operations[${index}].textureId`),
+              ...region,
+              color: rgba(value.color, `operations[${index}].color`),
+            });
+          }
+          case 'texture_replace_palette':
+            return Object.freeze({
+              type,
+              textureId: boundedString(value.textureId, `operations[${index}].textureId`),
+              region: pixelRegion(value.region, `operations[${index}].region`),
+              replacements: paletteReplacements(value.replacements, `operations[${index}].replacements`),
+            });
+          default:
+            fail('UNSUPPORTED_UV_TEXTURE_MUTATION', `operations[${index}] is not allowlisted.`);
+        }
+      }
+      
+      function operationPixelWrites(operation, index) {
+        if (operation.type === 'texture_fill_rect') return pixelArea(operation, `operations[${index}]`);
+        if (operation.type === 'texture_replace_palette') return pixelArea(operation.region, `operations[${index}].region`);
+        return 0;
+      }
+      
+      function validateUvTextureBatch(value) {
+        if (!isPlainObject(value)) fail('INVALID_UV_TEXTURE_BATCH', 'UV/texture batch must be an object.');
+        rejectUnknownFields(value, BATCH_FIELDS, 'UNKNOWN_BATCH_FIELD', 'UV/texture batch');
+        const expectedRevision = boundedString(value.expectedRevision, 'expectedRevision');
+        if (!Array.isArray(value.operations) || value.operations.length < 1) {
+          fail('EMPTY_UV_TEXTURE_BATCH', 'operations must contain at least one mutation.');
+        }
+        if (value.operations.length > MAX_UV_TEXTURE_OPERATIONS) {
+          fail('UV_TEXTURE_BATCH_TOO_LARGE', `operations exceeds the maximum of ${MAX_UV_TEXTURE_OPERATIONS}.`);
+        }
+        if (value.dryRun !== undefined && typeof value.dryRun !== 'boolean') fail('INVALID_DRY_RUN', 'dryRun must be boolean when provided.');
+      
+        const operations = value.operations.map(validateOperation);
+        let pixelWrites = 0;
+        operations.forEach((operation, index) => {
+          pixelWrites += operationPixelWrites(operation, index);
+          if (!Number.isSafeInteger(pixelWrites) || pixelWrites > MAX_TEXTURE_PIXELS_PER_BATCH) {
+            fail('TEXTURE_PIXEL_BUDGET_EXCEEDED', `Batch may write ${pixelWrites} pixels; maximum is ${MAX_TEXTURE_PIXELS_PER_BATCH}.`);
+          }
+        });
+      
+        return Object.freeze({
+          expectedRevision,
+          label: value.label === undefined
+            ? 'RPG Asset Toolkit UV/Texture Batch'
+            : boundedString(value.label, 'label', {max: MAX_LABEL_LENGTH}),
+          operations: Object.freeze(operations),
+          dryRun: value.dryRun === true,
+          pixelWrites,
+        });
+      }
+      
+      function validateAdapter(adapter) {
+        const methods = ['getRevision', 'preflight', 'beginTransaction', 'applyOperation', 'finishTransaction', 'cancelTransaction'];
+        if (!adapter || typeof adapter !== 'object') fail('INVALID_UV_TEXTURE_ADAPTER', 'UV/texture adapter is required.');
+        for (const method of methods) {
+          if (typeof adapter[method] !== 'function') fail('INVALID_UV_TEXTURE_ADAPTER', `UV/texture adapter is missing ${method}().`);
+        }
+      }
+      
+      function collectChangedIds(target, changed) {
+        const values = Array.isArray(changed) ? changed : [changed];
+        for (const value of values) {
+          if (typeof value === 'string' && value && !target.includes(value)) target.push(value);
+        }
+      }
+      
+      function applyUvTextureBatch(adapter, input) {
+        validateAdapter(adapter);
+        const batch = validateUvTextureBatch(input);
+        const beforeRevision = adapter.getRevision();
+        if (beforeRevision !== batch.expectedRevision) {
+          fail('STALE_PROJECT_REVISION', `Expected ${batch.expectedRevision} but active project is ${beforeRevision}.`);
+        }
+      
+        adapter.preflight(batch.operations);
+        if (batch.dryRun) {
+          return Object.freeze({
+            ok: true,
+            dryRun: true,
+            beforeRevision,
+            afterRevision: beforeRevision,
+            applied: 0,
+            changedIds: Object.freeze([]),
+            pixelWrites: batch.pixelWrites,
+          });
+        }
+      
+        const changedIds = [];
+        let begun = false;
+        try {
+          adapter.beginTransaction(batch.label);
+          begun = true;
+          batch.operations.forEach((operation, index) => {
+            collectChangedIds(changedIds, adapter.applyOperation(operation, index));
+          });
+          adapter.finishTransaction(batch.label);
+          begun = false;
+          const afterRevision = adapter.getRevision();
+          return Object.freeze({
+            ok: true,
+            dryRun: false,
+            beforeRevision,
+            afterRevision,
+            applied: batch.operations.length,
+            changedIds: Object.freeze(changedIds.slice()),
+            pixelWrites: batch.pixelWrites,
+          });
+        } catch (error) {
+          if (begun) {
+            try { adapter.cancelTransaction(true); } catch (_) { /* preserve original mutation failure */ }
+          }
+          if (error && typeof error.code === 'string' && !String(error.message || '').includes(error.code)) {
+            const wrapped = new Error(`${error.code}: ${error.message || error.code}`, {cause: error});
+            wrapped.code = error.code;
+            throw wrapped;
+          }
+          throw error;
+        }
+      }
+      
+      module.exports = {
+        MAX_UV_TEXTURE_OPERATIONS,
+        MAX_TEXTURE_PIXELS_PER_BATCH,
+        MAX_PALETTE_REPLACEMENTS,
+        UvTextureContractError,
+        validateUvTextureBatch,
+        applyUvTextureBatch,
+      };
+    },
     "core/validator/validator.js": function(module, exports, require) {
       'use strict';
       
@@ -818,6 +1104,7 @@
       
       const projectModel = require('./project-model/project_model.js');
       const mutations = require('./mutations/mutation_engine.js');
+      const uvTexture = require('./uv-texture/uv_texture_engine.js');
       const validator = require('./validator/validator.js');
       const contractProfile = require('./contract-profile/contract_profile.js');
       const report = require('./report/report.js');
@@ -829,6 +1116,7 @@
         {},
         projectModel,
         mutations,
+        uvTexture,
         validator,
         contractProfile,
         report,
@@ -923,6 +1211,7 @@
       const {isLocatorLike, locatorPosition} = require('../core/project-model/project_model.js');
       
       function vec(value) { return Array.isArray(value) ? value.slice(0, 3).map((entry) => Number.isFinite(entry) ? entry : null) : null; }
+      function vec2(value) { return Array.isArray(value) && value.length >= 2 ? value.slice(0, 2).map((entry) => Number.isFinite(entry) ? entry : null) : null; }
       function parentRef(value) { return value && typeof value === 'object' ? (value.uuid || value.name || null) : (typeof value === 'string' ? value : null); }
       function sourceFile(savePath) {
         if (typeof savePath !== 'string' || !savePath) return null;
@@ -942,10 +1231,16 @@
       function elementSnapshot(element) {
         const faces = element?.faces && typeof element.faces === 'object' ? Object.fromEntries(Object.keys(element.faces).sort().map((key) => [key, faceSnapshot(element.faces[key])])) : {};
         const snapshot = {name: element?.name || null, uuid: element?.uuid || null, from: vec(element?.from), to: vec(element?.to), origin: vec(element?.origin), parent: parentRef(element?.parent), faces};
+        if (typeof element?.box_uv === 'boolean') snapshot.boxUv = element.box_uv;
+        if (Array.isArray(element?.uv_offset)) snapshot.uvOffset = vec2(element.uv_offset);
         if (isLocatorLike(element)) snapshot.position = vec(locatorPosition(element));
         return snapshot;
       }
-      function textureSnapshot(texture) { return {name: texture?.name || null, uuid: texture?.uuid || null, width: Number.isFinite(texture?.width) ? texture.width : null, height: Number.isFinite(texture?.height) ? texture.height : null}; }
+      function textureSnapshot(texture) {
+        const snapshot = {name: texture?.name || null, uuid: texture?.uuid || null, width: Number.isFinite(texture?.width) ? texture.width : null, height: Number.isFinite(texture?.height) ? texture.height : null};
+        if (texture?.internal === true && typeof texture?.source === 'string' && texture.source) snapshot.contentHash = hashRevision(texture.source);
+        return snapshot;
+      }
       function animationSnapshot(animation) {
         return {name: animation?.name || null, uuid: animation?.uuid || null, length: Number.isFinite(animation?.length) ? animation.length : null, loop: animation?.loop || null, animatorTargets: animation?.animators && typeof animation.animators === 'object' ? Object.keys(animation.animators).sort() : []};
       }
@@ -1786,16 +2081,286 @@
       
       module.exports = {createBlockbenchModelingAdapter};
     },
+    "blockbench-plugin/uv_texture_adapter.js": function(module, exports, require) {
+      'use strict';
+      
+      function fail(code, message) {
+        const error = new Error(`${code}: ${message}`);
+        error.code = code;
+        throw error;
+      }
+      
+      function array(value) {
+        return Array.isArray(value) ? value : [];
+      }
+      
+      function createBlockbenchUvTextureAdapter(bb) {
+        const project = bb?.Blockbench?.Project;
+        if (!project || typeof project !== 'object') fail('NO_PROJECT', 'No Blockbench project is open.');
+        if (bb.Blockbench.isWeb !== false) fail('DESKTOP_REQUIRED', 'UV/texture mutations require desktop Blockbench.');
+        if (typeof bb.Cube !== 'function' || typeof bb.Texture !== 'function') {
+          fail('BLOCKBENCH_API_UNAVAILABLE', 'Cube and Texture constructors are required.');
+        }
+        if (!bb.Undo || ['initEdit', 'finishEdit', 'cancelEdit'].some((name) => typeof bb.Undo[name] !== 'function')) {
+          fail('BLOCKBENCH_API_UNAVAILABLE', 'Blockbench Undo API is incomplete.');
+        }
+      
+        let transactionOpen = false;
+        let prepared = null;
+        const dirtyTextures = new Set();
+      
+        function cubes() {
+          return Array.isArray(bb.Cube.all) ? bb.Cube.all : array(project.elements).filter((entry) => entry instanceof bb.Cube);
+        }
+      
+        function textures() {
+          return Array.isArray(bb.Texture.all) ? bb.Texture.all : array(project.textures);
+        }
+      
+        function requireCube(cubeId) {
+          const cube = cubes().find((entry) => entry && entry.uuid === cubeId);
+          if (!cube) fail('CUBE_NOT_FOUND', `Cube "${cubeId}" does not exist.`);
+          return cube;
+        }
+      
+        function requireTexture(textureId) {
+          const texture = textures().find((entry) => entry && (entry.uuid === textureId || entry.id === textureId));
+          if (!texture) fail('TEXTURE_NOT_FOUND', `Texture "${textureId}" does not exist.`);
+          return texture;
+        }
+      
+        function requireFace(cube, faceName) {
+          const face = cube && cube.faces && cube.faces[faceName];
+          if (!face || typeof face.extend !== 'function') fail('FACE_NOT_FOUND', `Cube "${cube?.uuid || '<unknown>'}" does not expose face "${faceName}".`);
+          return face;
+        }
+      
+        function requireCubeUvApi(cube) {
+          if (typeof cube.setUVMode !== 'function' || typeof cube.extend !== 'function') {
+            fail('BLOCKBENCH_API_UNAVAILABLE', `Cube "${cube.uuid}" does not expose the Blockbench 5.1.6 UV API.`);
+          }
+        }
+      
+        function requireEditableTexture(texture) {
+          if (texture.layers_enabled === true) {
+            fail('LAYERED_TEXTURE_UNSUPPORTED', `Texture "${texture.uuid || texture.id}" uses layers; PR4 requires an explicit future layer target.`);
+          }
+          const ctx = texture.ctx;
+          if (!texture.canvas || !ctx || typeof ctx.getImageData !== 'function' || typeof ctx.putImageData !== 'function') {
+            fail('BLOCKBENCH_API_UNAVAILABLE', `Texture "${texture.uuid || texture.id}" does not expose a mutable 2D canvas.`);
+          }
+          if (typeof texture.updateChangesAfterEdit !== 'function') {
+            fail('BLOCKBENCH_API_UNAVAILABLE', `Texture "${texture.uuid || texture.id}" cannot publish canvas edits.`);
+          }
+          if (!Number.isSafeInteger(texture.width) || texture.width < 1 || !Number.isSafeInteger(texture.height) || texture.height < 1) {
+            fail('INVALID_TEXTURE_DIMENSIONS', `Texture "${texture.uuid || texture.id}" has invalid dimensions.`);
+          }
+          return texture;
+        }
+      
+        function regionFor(operation) {
+          if (operation.type === 'texture_replace_palette') return operation.region;
+          return operation;
+        }
+      
+        function requireRegionInBounds(texture, operation) {
+          const region = regionFor(operation);
+          if (!region || !Number.isSafeInteger(region.x) || !Number.isSafeInteger(region.y)
+            || !Number.isSafeInteger(region.width) || !Number.isSafeInteger(region.height)
+            || region.x < 0 || region.y < 0 || region.width < 1 || region.height < 1
+            || region.x > texture.width - region.width || region.y > texture.height - region.height) {
+            fail('PIXEL_REGION_OUT_OF_BOUNDS', `Pixel region is outside texture "${texture.uuid || texture.id}" bounds ${texture.width}x${texture.height}.`);
+          }
+        }
+      
+        function addUnique(target, value) {
+          if (!target.includes(value)) target.push(value);
+        }
+      
+        function getRevision() {
+          const {createProjectSnapshot} = require('../live-bridge/project_snapshot.js');
+          return createProjectSnapshot(project).projectRevision;
+        }
+      
+        function preflight(operations) {
+          if (!Array.isArray(operations)) fail('INVALID_UV_TEXTURE_MUTATIONS', 'operations must be an array.');
+          const touchedCubes = [];
+          const touchedTextures = [];
+      
+          for (const operation of operations) {
+            switch (operation.type) {
+              case 'set_face_uv': {
+                const cube = requireCube(operation.cubeId);
+                requireFace(cube, operation.face);
+                addUnique(touchedCubes, cube);
+                break;
+              }
+              case 'set_face_texture': {
+                const cube = requireCube(operation.cubeId);
+                requireFace(cube, operation.face);
+                requireTexture(operation.textureId);
+                addUnique(touchedCubes, cube);
+                break;
+              }
+              case 'set_box_uv': {
+                const cube = requireCube(operation.cubeId);
+                requireCubeUvApi(cube);
+                addUnique(touchedCubes, cube);
+                break;
+              }
+              case 'texture_fill_rect':
+              case 'texture_replace_palette': {
+                const texture = requireEditableTexture(requireTexture(operation.textureId));
+                requireRegionInBounds(texture, operation);
+                addUnique(touchedTextures, texture);
+                break;
+              }
+              default:
+                fail('UNSUPPORTED_UV_TEXTURE_MUTATION', `Mutation "${operation.type}" is not supported by the Blockbench adapter.`);
+            }
+          }
+      
+          prepared = Object.freeze({
+            cubes: Object.freeze(touchedCubes.slice()),
+            textures: Object.freeze(touchedTextures.slice()),
+          });
+          return true;
+        }
+      
+        function undoAspects() {
+          if (!prepared) fail('PREFLIGHT_REQUIRED', 'UV/texture batch must preflight before opening an Undo transaction.');
+          const aspects = {};
+          if (prepared.cubes.length) aspects.elements = prepared.cubes.slice();
+          if (prepared.textures.length) {
+            aspects.textures = prepared.textures.slice();
+            aspects.bitmap = true;
+          }
+          return aspects;
+        }
+      
+        function beginTransaction() {
+          if (transactionOpen) fail('TRANSACTION_ALREADY_OPEN', 'A Blockbench Undo transaction is already open.');
+          bb.Undo.initEdit(undoAspects());
+          dirtyTextures.clear();
+          transactionOpen = true;
+        }
+      
+        function applyFill(texture, operation) {
+          const image = texture.ctx.getImageData(operation.x, operation.y, operation.width, operation.height);
+          for (let index = 0; index < image.data.length; index += 4) {
+            image.data[index] = operation.color[0];
+            image.data[index + 1] = operation.color[1];
+            image.data[index + 2] = operation.color[2];
+            image.data[index + 3] = operation.color[3];
+          }
+          texture.ctx.putImageData(image, operation.x, operation.y);
+        }
+      
+        function colorKey(color) {
+          return (((color[0] * 256 + color[1]) * 256 + color[2]) * 256 + color[3]);
+        }
+      
+        function applyPalette(texture, operation) {
+          const {x, y, width, height} = operation.region;
+          const image = texture.ctx.getImageData(x, y, width, height);
+          const replacements = new Map(operation.replacements.map((entry) => [colorKey(entry.from), entry.to]));
+          for (let index = 0; index < image.data.length; index += 4) {
+            const replacement = replacements.get(colorKey(image.data.subarray(index, index + 4)));
+            if (!replacement) continue;
+            image.data[index] = replacement[0];
+            image.data[index + 1] = replacement[1];
+            image.data[index + 2] = replacement[2];
+            image.data[index + 3] = replacement[3];
+          }
+          texture.ctx.putImageData(image, x, y);
+        }
+      
+        function applyOperation(operation) {
+          if (!transactionOpen) fail('NO_ACTIVE_TRANSACTION', 'No Blockbench Undo transaction is open.');
+          switch (operation.type) {
+            case 'set_face_uv': {
+              const cube = requireCube(operation.cubeId);
+              requireFace(cube, operation.face).extend({uv: operation.uv.slice()});
+              return cube.uuid;
+            }
+            case 'set_face_texture': {
+              const cube = requireCube(operation.cubeId);
+              const texture = requireTexture(operation.textureId);
+              requireFace(cube, operation.face).extend({texture: texture.uuid});
+              return cube.uuid;
+            }
+            case 'set_box_uv': {
+              const cube = requireCube(operation.cubeId);
+              requireCubeUvApi(cube);
+              cube.setUVMode(operation.enabled);
+              cube.extend({uv_offset: operation.offset.slice()});
+              return cube.uuid;
+            }
+            case 'texture_fill_rect': {
+              const texture = requireEditableTexture(requireTexture(operation.textureId));
+              applyFill(texture, operation);
+              dirtyTextures.add(texture);
+              return texture.uuid || texture.id;
+            }
+            case 'texture_replace_palette': {
+              const texture = requireEditableTexture(requireTexture(operation.textureId));
+              applyPalette(texture, operation);
+              dirtyTextures.add(texture);
+              return texture.uuid || texture.id;
+            }
+            default:
+              fail('UNSUPPORTED_UV_TEXTURE_MUTATION', `Mutation "${operation.type}" is not supported by the Blockbench adapter.`);
+          }
+        }
+      
+        function finishTransaction(label) {
+          if (!transactionOpen) fail('NO_ACTIVE_TRANSACTION', 'No Blockbench Undo transaction is open.');
+          for (const texture of dirtyTextures) texture.updateChangesAfterEdit();
+          bb.Undo.finishEdit(label, undoAspects());
+          transactionOpen = false;
+          prepared = null;
+          dirtyTextures.clear();
+        }
+      
+        function cancelTransaction(revert) {
+          if (!transactionOpen) {
+            prepared = null;
+            dirtyTextures.clear();
+            return;
+          }
+          try {
+            bb.Undo.cancelEdit(revert === true);
+          } finally {
+            transactionOpen = false;
+            prepared = null;
+            dirtyTextures.clear();
+          }
+        }
+      
+        return Object.freeze({
+          getRevision,
+          preflight,
+          beginTransaction,
+          applyOperation,
+          finishTransaction,
+          cancelTransaction,
+        });
+      }
+      
+      module.exports = {createBlockbenchUvTextureAdapter};
+    },
     "blockbench-plugin/plugin_adapter.js": function(module, exports, require) {
       'use strict';
       
       const core = require('../core/index.js');
       const modeling = require('./modeling_adapter.js');
+      const uvTexture = require('./uv_texture_adapter.js');
       
       function registerBlockbenchPlugin(bb) {
         let auditAction = null;
         let profileAction = null;
         let modelingMutationAction = null;
+        let uvTextureMutationAction = null;
         let bridgeConnectAction = null;
         let bridgeDisconnectAction = null;
         let bridgeStatusAction = null;
@@ -1833,9 +2398,9 @@
         bb.Plugin.register('rpg_asset_toolkit', {
           title: 'RPG Asset Toolkit',
           author: 'Gustavaopere',
-          description: 'Structural/provider-aware asset QA with bounded local modeling/rig mutations and an optional authenticated read-only desktop-local MCP Live Bridge.',
+          description: 'Structural/provider-aware asset QA with bounded local modeling/rig and UV/texture mutations plus an optional authenticated read-only desktop-local MCP Live Bridge.',
           icon: 'fact_check',
-          version: '0.4.0',
+          version: '0.5.0',
           min_version: '5.1.6',
           variant: 'both',
           tags: ['Minecraft: Java Edition'],
@@ -1887,6 +2452,38 @@
                     });
                   } catch (error) {
                     showError('RPG Asset Toolkit — Modeling/Rig Batch Unavailable', error);
+                  }
+                },
+              }));
+      
+              uvTextureMutationAction = addToolAction(new bb.Action('rpg_asset_toolkit_uv_texture_batch', {
+                name: 'Apply RPG UV/Texture Batch',
+                description: 'Apply bounded declarative UV and deterministic texture-pixel mutations locally with expected-revision checks, dry-run preflight, bitmap-aware Undo, and rollback. This does not expose remote MCP writes.',
+                icon: 'texture',
+                click() {
+                  try {
+                    const adapter = uvTexture.createBlockbenchUvTextureAdapter(bb);
+                    const template = JSON.stringify({
+                      expectedRevision: adapter.getRevision(),
+                      dryRun: true,
+                      label: 'RPG Asset Toolkit UV/Texture Batch',
+                      operations: [],
+                    }, null, 2);
+                    bb.Blockbench.textPrompt('RPG UV/Texture Mutation Batch (JSON)', template, (text) => {
+                      try {
+                        const result = core.applyUvTextureBatch(adapter, JSON.parse(text));
+                        bb.Blockbench.showMessageBox({
+                          title: 'RPG Asset Toolkit — UV/Texture Batch',
+                          icon: 'check_circle',
+                          message: JSON.stringify(result, null, 2).slice(0, 4096),
+                          buttons: ['OK'],
+                        });
+                      } catch (error) {
+                        showError('RPG Asset Toolkit — UV/Texture Batch Failed', error);
+                      }
+                    });
+                  } catch (error) {
+                    showError('RPG Asset Toolkit — UV/Texture Batch Unavailable', error);
                   }
                 },
               }));
@@ -1949,12 +2546,13 @@
               try { void bridgeRuntime.connection.disconnect(); } catch (_) { /* best effort during plugin unload */ }
             }
             bridgeRuntime = null;
-            for (const action of [auditAction, profileAction, modelingMutationAction, bridgeConnectAction, bridgeDisconnectAction, bridgeStatusAction]) {
+            for (const action of [auditAction, profileAction, modelingMutationAction, uvTextureMutationAction, bridgeConnectAction, bridgeDisconnectAction, bridgeStatusAction]) {
               if (action) action.delete();
             }
             auditAction = null;
             profileAction = null;
             modelingMutationAction = null;
+            uvTextureMutationAction = null;
             bridgeConnectAction = null;
             bridgeDisconnectAction = null;
             bridgeStatusAction = null;
@@ -1965,6 +2563,7 @@
       module.exports = {
         registerBlockbenchPlugin,
         createBlockbenchModelingAdapter: modeling.createBlockbenchModelingAdapter,
+        createBlockbenchUvTextureAdapter: uvTexture.createBlockbenchUvTextureAdapter,
       };
     }
   };
