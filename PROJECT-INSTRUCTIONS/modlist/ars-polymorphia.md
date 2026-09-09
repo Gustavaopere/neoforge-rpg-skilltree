@@ -1,32 +1,30 @@
 # Ars Polymorphia
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81cca4b2e748d8c0dfbb  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81cca4b2e748d8c0dfbb
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Polymorphia
 - **Arquivo JAR:** `ars_polymorphia-1.0.3.jar`
-- **Versão 1.21.1:** `1.0.3`
-- **Categoria:** Magia; Compat; QoL
-- **Decisão:** Manter
+- **Versão 1.21.1:** 1.0.3
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://github.com/Vonr/Ars-Polymorphia
+- **Decisão:** Manter
+- **Categoria:** Magia, Compat, QoL
 - **Função:** Adapter Polymorph-compatible para o Storage/Crafting Lectern do Ars Nouveau: enumera receitas conflitantes, exibe selector no terminal e aplica a escolha validada server-side sem criar recipes ou storage próprios.
-- **Dependências:** Ars Nouveau + API/implementation Polymorph-compatible. No pack físico atual a authority de conflitos é Polymorph+ 1.3.1+1.21.1; não instalar um segundo Polymorph original em paralelo.
+- **Dependências:** Ars Nouveau 5.13.1 + provider Polymorph-compatible físico Polymorph+ 1.3.1+1.21.1. Não instalar segundo Polymorph original em paralelo.
+- **Sobreposição:** Compartilha a authority Polymorph-compatible com adapters de outros providers quando esses providers estão presentes, mas cobre especificamente o Storage/Crafting Lectern Ars. No snapshot atual AE2 está ausente; não criar segundo resolver sobre o mesmo menu nem instalar Polymorph original em paralelo ao Polymorph+.
 - **Compatibilidade/Riscos:** Riscos: mixins acoplados a internals do Crafting Lectern/Menu/Screen, drift de API Polymorph+, seleção stale após datapack reload, output ghost/client desync e contaminação entre jogadores se player-specific state falhar.
-- **Sobreposição:** Compartilha a authority Polymorph-compatible com adapters como Polymorphic Energistics, mas em menus diferentes. Não criar segundo resolver sobre o Storage Lectern nem instalar Polymorph original em paralelo ao Polymorph+.
-- **Observações:** mod id ars_polymorphia. A seleção é validada no servidor: o packet exige CraftingTerminalMenu/CraftingLecternTile, reconsulta recipe válida via Polymorph API e só então atualiza currentRecipe/player recipe data.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Source oficial 1.0.3 auditado em gradle.properties, CraftingLecternTileMixin, CraftingTerminalWidget e PacketResetCraftingResult. Provider físico: Polymorph+ 1.3.1+1.21.1.
+- **Observações:** mod id `ars_polymorphia`, runtime 1.0.3. Adapter específico do Storage/Crafting Lectern; AE2 está ausente do snapshot atual e nenhum resolver AE2 é contado como superfície ativa.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial Vonr/Ars-Polymorphia 1.0.3 + Polymorph+ 1.3.1 físico + dossiê operacional existente.
+- **Fonte:** https://github.com/Vonr/Ars-Polymorphia
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Polymorphia 1.0.3, Polymorph+ 1.3.1 authority, server-side recipe validation, player-specific state and current AE2 absence reconciled in global QC #48. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Ficha reconstruída em 07/09/2026 contra o source 1.0.3 e o provider físico atual Polymorph+; confirmado que é adapter específico do Storage Lectern, não Ars Morph nem segundo recipe resolver.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: ars_polymorphia-1.0.3.jar. Dossiê completo com mixin footprint, fluxo server/client, seleção player-specific, Polymorph+ como provider físico, reload/multiplayer e matriz de testes.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > 🧩 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico: `ars_polymorphia-1.0.3.jar`, mod id `ars_polymorphia`, NeoForge 1.21.1. O próprio source 1.0.3 declara seu escopo: **adicionar suporte Polymorph ao Storage Lectern/Crafting Terminal do Ars Nouveau**. No pack atual, o provider de conflitos instalado é **Polymorph+ 1.3.1+1.21.1**, implementação substituta compatível com o ecossistema Polymorph. Ars Polymorphia não cria recipes nem storage novo; ele adapta seleção de recipes conflitantes ao terminal Ars.
 
@@ -116,9 +114,9 @@ Regra:
 Não instalar/ativar um segundo Polymorph original em paralelo apenas para esta bridge.
 
 ## 9. Relação com outros resolvers do pack
-Polymorphic Energistics cobre AE2; Ars Polymorphia cobre o terminal Ars. Eles podem coexistir porque adaptam menus/providers diferentes para a mesma authority Polymorph-compatible.
+Ars Polymorphia cobre especificamente o terminal Ars. Outros adapters Polymorph-compatible podem coexistir quando seus respectivos providers estão instalados, desde que adaptem menus distintos para a mesma authority de conflitos.
 
-O risco aparece apenas se dois resolvers independentes disputarem o **mesmo menu/output**.
+**Snapshot atual:** AE2 está ausente da modlist física; portanto nenhuma superfície ativa de resolução de conflitos AE2 é contabilizada neste pack. O risco aparece se dois resolvers independentes disputarem o **mesmo menu/output**.
 
 ## 10. O que o mod NÃO faz
 - não altera recipes globais;
