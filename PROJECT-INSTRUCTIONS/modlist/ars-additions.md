@@ -1,32 +1,30 @@
 # Ars Additions
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db8146aa41f177e808d415  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db8146aa41f177e808d415
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Additions
 - **Arquivo JAR:** `ars_additions-1.21.1-21.3.0.jar`
-- **Versão 1.21.1:** `1.21.1-21.3.0`
-- **Categoria:** Magia; QoL; Armazenamento; Exploração; Automação
-- **Decisão:** Manter
+- **Versão 1.21.1:** 1.21.1-21.3.0
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-additions
+- **Decisão:** Manter
+- **Categoria:** Magia, QoL, Armazenamento, Exploração, Automação
 - **Função:** Addon de Ars Nouveau com warp/Source/storage/automação e conteúdo próprio amplo. Registry auditado: 35 blocos, 61 item entries, 12 charms, 3 glyphs, 2 rituals, 1 perk, 1 mob effect, 5 recipe types, 11 data components, 4 attachments, 4 tag modifiers e 1 painting; inclui Warp Nexus/Index, Ender Source Jar, Source Spawner, Wixie Enchanting, Mark/Recall/Retaliate e estruturas.
-- **Dependências:** Ars Nouveau. O addon consome Source, spellcraft, Storage Lectern, Enchanting Apparatus e warp contracts do provider-base; não cria mana/Source paralelos.
-- **Compatibilidade/Riscos:** Cross-dimensional storage/Source exigem teste contra reconnect/unload/concorrência; Ritual of Arcane Permanent é chunkloader configurável e desabilitado por padrão. Mark/Recall deve falhar com segurança para alvos inválidos. Há issues upstream 1.21.1 sobre Lootr/Explorer Warp Scroll e retenção em busca assíncrona de estruturas; tratar como riscos a validar, não bugs locais confirmados. Não presumir compatibilidade com Sable sublevels.
+- **Dependências:** Ars Nouveau 5.13.1 é o provider-base físico atual de Source, spell grammar, Storage Lectern, Enchanting Apparatus e warp contracts consumidos pelo addon.
 - **Sobreposição:** Cruza objetivos com teleporte, armazenamento remoto, chunkloading e automação de outros mods, mas usa contratos nativos do ecossistema Ars. Não é nova escola nem sistema de Source alternativo.
-- **Observações:** mod id: ars_additions; runtime 1.21.1-21.3.0. Corpo da página contém inventário de registry ids/famílias e separa gameplay registries de persistência/codec internals. Ars Nouveau permanece authority de Source, spell grammar e infraestrutura-base.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Conteúdo/versionamento: CurseForge oficial 21.3.0 + GitHub oficial Jarva/Ars-Additions. Contexto local: guia consolidado de Magia.
+- **Compatibilidade/Riscos:** Cross-dimensional storage/Source exigem teste contra reconnect/unload/concorrência; Ritual of Arcane Permanent é chunkloader configurável e desabilitado por padrão. Mark/Recall deve falhar com segurança para alvos inválidos. Há issues upstream 1.21.1 sobre Lootr/Explorer Warp Scroll e retenção em busca assíncrona de estruturas; tratar como riscos a validar, não bugs locais confirmados. Não presumir compatibilidade com Sable sublevels.
+- **Observações:** mod id: `ars_additions`; runtime 1.21.1-21.3.0. Corpo da página contém inventário de registry ids/famílias e separa gameplay registries de persistência/codec internals. Ars Nouveau permanece authority de Source, spell grammar e infraestrutura-base.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/GitHub oficiais Ars Additions 21.3.0 + Ars Nouveau 5.13.1 físico + dossiê operacional existente.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-additions
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Additions 21.3.0, 35 blocks/61 item entries/3 glyphs/2 rituals, Ars Nouveau 5.13.1 authority, warp/Source/storage/automation lifecycle and anti-double-processing confirmed in global QC #40. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita do zero com base no README/source e release 21.3.0, documentando estruturas, glyphs, storage/Source remoto, automação, chunkloading, boundaries e riscos upstream.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: ars_additions-1.21.1-21.3.0.jar / 1.21.1-21.3.0. Segunda passada baseada nos registries/source: 35 blocos + 5 block-entity types; 61 item registry entries (35 block-items + 14 utilitários + 12 charms); 3 glyphs; 2 rituals; 1 perk Ars; 1 mob effect; 5 recipe types/serializers; 11 data components; 4 attachment types; 4 tag-modifier codecs; 1 condition codec; 1 loot function; 1 painting, além de estruturas/warp/Source/automação e riscos.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > 🌀 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Esta ficha documenta `ars_additions-1.21.1-21.3.0.jar`, mod id `ars_additions`, em NeoForge 1.21.1. A segunda passada foi reconstruída contra os registries/source da linha 1.21: **35 blocos, 5 block-entity types, 61 item entries, 12 charms, 3 glyphs, 2 rituals, 1 perk, 1 mob effect, 5 recipe types, 11 data components, 4 attachments, 4 tag modifiers, 1 condition codec, 1 loot function e 1 painting**, além das estruturas e sistemas de warp/Source/automação. Ars Nouveau continua authority de Source, spellcraft e infraestrutura-base.
 
@@ -42,7 +40,6 @@
 - **Decisão:** **Manter**.
 
 ## 1.1 Inventário técnico de registries — versão auditada
-
 ### Blocos registrados — 35
 **Funcionais — 4**
 1. `enchanting_wixie_cauldron` — Wixie Enchanting Apparatus.
@@ -85,11 +82,8 @@
 - `cracked_polished_sourcestone_wall`
 
 **Buttons — 2:** `sourcestone_button`, `polished_sourcestone_button`.
-
 **Doors — 2:** `sourcestone_door`, `polished_sourcestone_door`.
-
 **Trapdoors — 2:** `sourcestone_trapdoor`, `polished_sourcestone_trapdoor`.
-
 **Carpet — 1:** `magebloom_carpet`.
 
 ### Block entities — 5
