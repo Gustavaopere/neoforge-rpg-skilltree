@@ -1,4 +1,32 @@
-# BetterNether: New Dawn — 21.0.26
+# BetterNether: New Dawn
+
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db8191b98fc287524bde70
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
+
+## Propriedades do banco
+
+- **Mod:** BetterNether: New Dawn
+- **Arquivo JAR:** `BetterNether-21.0.26.jar`
+- **Versão 1.21.1:** 21.0.26
+- **Estado no pack:** Instalado — Dossiê completo
+- **Estado da pesquisa:** Verificado
+- **Decisão:** Manter
+- **Categoria:** Worldgen, Exploração, Mobs
+- **Função:** Grande expansão do Nether no stack BetterX/New Dawn, com biomas, flora, mobs, materiais, estruturas, equipamentos, brewing e worldgen próprio.
+- **Dependências:** BCLib: New Dawn + WorldWeaver: New Dawn + WunderLib: New Dawn. No pack: BCLib 21.0.26, WorldWeaver 21.0.25 e WunderLib 21.0.10 estão presentes.
+- **Sobreposição:** Provider amplo do Nether. Pode coexistir com outras estruturas/biomas quando placements não conflitam; BCLib/TerraBlender/Lithostitched são infraestruturas e não substitutos automáticos.
+- **Compatibilidade/Riscos:** Worldgen amplo do Nether: riscos em biome/structure placement, parallel worldgen, chunk borders, registry reload, loot e coexistência com outros mods da dimensão. 21.0.26 inclui melhorias de thread safety em cities/destruction structures.
+- **Observações:** 21.0.26 confirma Gloomwood groves/edges/trees, Bleached Gloomwood, Lumabus Vines, mega lava lakes, Gloomsculk geodes, giant Willow/Anchor growth, bookshelves de wood sets, mob spawn-egg art, gamerule de Blue Obsidian e ajustes em Fire Ruby, Obsidian Breaker, brewing e thread safety.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + metadata runtime + Modrinth/CurseForge oficiais BetterNether: New Dawn 21.0.26 + stack físico New Dawn.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/betternether-new-dawn
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BetterNether: New Dawn 21.0.26 físico/release confirmado; stack BCLib 21.0.26 + WorldWeaver 21.0.25 + WunderLib 21.0.10 e decisão histórica MANTER preservados. Runtime/worldgen QA não executado.
+- **Histórico da decisão:** Em 22/08/2026, BetterNether foi desativado temporariamente junto de WorldWeaver e BetterEnd para isolamento. Após remover FirmaTerrain 1.0.0, o stack BetterX/New Dawn foi reativado e funcionou. Decisão final desta investigação: MANTER BetterNether; sua desativação anterior foi somente diagnóstica.
+- **Data da última decisão:** 2026-08-22
+
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `BetterNether-21.0.26.jar`, mod id `betternether`, runtime `21.0.26`, NeoForge 1.21.1. A build pertence ao stack New Dawn e usa BCLib, WorldWeaver e WunderLib. A decisão histórica **MANTER** permanece preservada.
 
