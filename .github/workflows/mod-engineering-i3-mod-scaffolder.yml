@@ -38,4 +38,4 @@ jobs:
         run: |
           chmod +x "$RUNNER_TEMP/i3-generated/gradlew"
           cd "$RUNNER_TEMP/i3-generated"
-          ./gradlew test build --no-daemon
+          GRADLE_USER_HOME="$RUNNER_TEMP/i3-gradle-home" ./gradlew test build --no-daemon
