@@ -1,32 +1,30 @@
 # Ars Elemancy
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db8132bccacdbc9f1c5030  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db8132bccacdbc9f1c5030
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Elemancy
 - **Arquivo JAR:** `ars_elemancy-1.21.1-1.18.3.jar`
-- **Versão 1.21.1:** `1.18.3`
-- **Categoria:** Magia; RPG
-- **Decisão:** Manter
+- **Versão 1.21.1:** 1.18.3
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://github.com/Lyrellion/Ars-Elemancy
+- **Decisão:** Manter
+- **Categoria:** Magia, RPG
 - **Função:** Expansão de Ars Elemental com 6 escolas híbridas (Tempest/Cinder/Silt/Mire/Vapor/Lava) + Elemancer, 7 foci, 7 essences, 7 bangles, 21 armor sets e recipe `armor_upgrade`.
-- **Dependências:** Ars Nouveau + Ars Elemental. Sauce é biblioteca embutida/jarjar e não deve ser catalogada como mod top-level separado.
-- **Compatibilidade/Riscos:** Risco central é double-dip de school power/perks em spells híbridos, especialmente quando bônus das duas escolas-base e da escola combinada coexistem. Também validar armor perk holders, Curios e tags elementais de dano após updates de Ars Elemental.
+- **Dependências:** Ars Nouveau 5.13.1 + Ars Elemental 0.7.10.1. Sauce permanece jarjar/embedded e não é top-level.
 - **Sobreposição:** Sobrepõe conceitualmente especializações elementais do Ars Elemental, mas por design as combina. Não duplicar bônus das escolas-base e híbridas em bridges próprias.
-- **Observações:** mod id ars_elemancy. Registry 1.18.3 confirma 6 SpellSchools híbridas; conteúdo principal: 7 foci + 7 essences + 7 bangles + 21 armor sets; `armor_upgrade` tem RecipeType/Serializer próprios.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Registries: source oficial Ars-Elemancy build 1.18.3. Contexto: guia consolidado de Magia.
+- **Compatibilidade/Riscos:** Risco central é double-dip de school power/perks em spells híbridos, especialmente quando bônus das duas escolas-base e da escola combinada coexistem. Também validar armor perk holders, Curios e tags elementais de dano após updates de Ars Elemental.
+- **Observações:** mod id `ars_elemancy`. Registry 1.18.3 confirma 6 SpellSchools híbridas; conteúdo principal: 7 foci + 7 essences + 7 bangles + 21 armor sets; `armor_upgrade` tem RecipeType/Serializer próprios.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial Lyrellion/Ars-Elemancy 1.18.3 + dossiê operacional existente.
+- **Fonte:** https://github.com/Lyrellion/Ars-Elemancy
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Elemancy 1.18.3, 6 escolas híbridas + Elemancer, 7 foci/essences/bangles, 21 armor sets, armor_upgrade e anti-double-dip confirmados no QC global #43. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Ficha reconstruída em 07/09/2026 contra registry 1.18.3 e modlist física; addon é progressão híbrida real sobre Ars Elemental, não um sistema mágico paralelo.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: ars_elemancy-1.21.1-1.18.3.jar. Dossiê exaustivo com escolas híbridas, 7 foci/essences/bangles, 21 armor sets, armor_upgrade, damage tags, authority e testes.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > 🌩️ **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico: `ars_elemancy-1.21.1-1.18.3.jar`, mod id `ars_elemancy`, NeoForge 1.21.1. A build 1.18.3 define **6 escolas híbridas**, mais a progressão Elemancer, com **7 foci, 7 essences, 7 bangles e 21 armor sets** (sete identidades × light/medium/heavy), além de recipe próprio de upgrade de armadura e tags elementais de dano. Ars Elemental e Ars Nouveau continuam sendo os providers-base.
 
