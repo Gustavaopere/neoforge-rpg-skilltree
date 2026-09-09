@@ -4,6 +4,7 @@ const crypto = require('node:crypto');
 const {isLocatorLike, locatorPosition} = require('../core/project-model/project_model.js');
 
 function vec(value) { return Array.isArray(value) ? value.slice(0, 3).map((entry) => Number.isFinite(entry) ? entry : null) : null; }
+function vec2(value) { return Array.isArray(value) && value.length >= 2 ? value.slice(0, 2).map((entry) => Number.isFinite(entry) ? entry : null) : null; }
 function parentRef(value) { return value && typeof value === 'object' ? (value.uuid || value.name || null) : (typeof value === 'string' ? value : null); }
 function sourceFile(savePath) {
   if (typeof savePath !== 'string' || !savePath) return null;
@@ -23,10 +24,16 @@ function faceSnapshot(face) { return {enabled: face?.enabled !== false, texture:
 function elementSnapshot(element) {
   const faces = element?.faces && typeof element.faces === 'object' ? Object.fromEntries(Object.keys(element.faces).sort().map((key) => [key, faceSnapshot(element.faces[key])])) : {};
   const snapshot = {name: element?.name || null, uuid: element?.uuid || null, from: vec(element?.from), to: vec(element?.to), origin: vec(element?.origin), parent: parentRef(element?.parent), faces};
+  if (typeof element?.box_uv === 'boolean') snapshot.boxUv = element.box_uv;
+  if (Array.isArray(element?.uv_offset)) snapshot.uvOffset = vec2(element.uv_offset);
   if (isLocatorLike(element)) snapshot.position = vec(locatorPosition(element));
   return snapshot;
 }
-function textureSnapshot(texture) { return {name: texture?.name || null, uuid: texture?.uuid || null, width: Number.isFinite(texture?.width) ? texture.width : null, height: Number.isFinite(texture?.height) ? texture.height : null}; }
+function textureSnapshot(texture) {
+  const snapshot = {name: texture?.name || null, uuid: texture?.uuid || null, width: Number.isFinite(texture?.width) ? texture.width : null, height: Number.isFinite(texture?.height) ? texture.height : null};
+  if (texture?.internal === true && typeof texture?.source === 'string' && texture.source) snapshot.contentHash = hashRevision(texture.source);
+  return snapshot;
+}
 function animationSnapshot(animation) {
   return {name: animation?.name || null, uuid: animation?.uuid || null, length: Number.isFinite(animation?.length) ? animation.length : null, loop: animation?.loop || null, animatorTargets: animation?.animators && typeof animation.animators === 'object' ? Object.keys(animation.animators).sort() : []};
 }

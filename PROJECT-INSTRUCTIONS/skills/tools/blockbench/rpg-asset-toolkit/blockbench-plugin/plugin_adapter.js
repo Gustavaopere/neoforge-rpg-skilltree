@@ -2,11 +2,13 @@
 
 const core = require('../core/index.js');
 const modeling = require('./modeling_adapter.js');
+const uvTexture = require('./uv_texture_adapter.js');
 
 function registerBlockbenchPlugin(bb) {
   let auditAction = null;
   let profileAction = null;
   let modelingMutationAction = null;
+  let uvTextureMutationAction = null;
   let bridgeConnectAction = null;
   let bridgeDisconnectAction = null;
   let bridgeStatusAction = null;
@@ -44,9 +46,9 @@ function registerBlockbenchPlugin(bb) {
   bb.Plugin.register('rpg_asset_toolkit', {
     title: 'RPG Asset Toolkit',
     author: 'Gustavaopere',
-    description: 'Structural/provider-aware asset QA with bounded local modeling/rig mutations and an optional authenticated read-only desktop-local MCP Live Bridge.',
+    description: 'Structural/provider-aware asset QA with bounded local modeling/rig and UV/texture mutations plus an optional authenticated read-only desktop-local MCP Live Bridge.',
     icon: 'fact_check',
-    version: '0.4.0',
+    version: '0.5.0',
     min_version: '5.1.6',
     variant: 'both',
     tags: ['Minecraft: Java Edition'],
@@ -98,6 +100,38 @@ function registerBlockbenchPlugin(bb) {
               });
             } catch (error) {
               showError('RPG Asset Toolkit — Modeling/Rig Batch Unavailable', error);
+            }
+          },
+        }));
+
+        uvTextureMutationAction = addToolAction(new bb.Action('rpg_asset_toolkit_uv_texture_batch', {
+          name: 'Apply RPG UV/Texture Batch',
+          description: 'Apply bounded declarative UV and deterministic texture-pixel mutations locally with expected-revision checks, dry-run preflight, bitmap-aware Undo, and rollback. This does not expose remote MCP writes.',
+          icon: 'texture',
+          click() {
+            try {
+              const adapter = uvTexture.createBlockbenchUvTextureAdapter(bb);
+              const template = JSON.stringify({
+                expectedRevision: adapter.getRevision(),
+                dryRun: true,
+                label: 'RPG Asset Toolkit UV/Texture Batch',
+                operations: [],
+              }, null, 2);
+              bb.Blockbench.textPrompt('RPG UV/Texture Mutation Batch (JSON)', template, (text) => {
+                try {
+                  const result = core.applyUvTextureBatch(adapter, JSON.parse(text));
+                  bb.Blockbench.showMessageBox({
+                    title: 'RPG Asset Toolkit — UV/Texture Batch',
+                    icon: 'check_circle',
+                    message: JSON.stringify(result, null, 2).slice(0, 4096),
+                    buttons: ['OK'],
+                  });
+                } catch (error) {
+                  showError('RPG Asset Toolkit — UV/Texture Batch Failed', error);
+                }
+              });
+            } catch (error) {
+              showError('RPG Asset Toolkit — UV/Texture Batch Unavailable', error);
             }
           },
         }));
@@ -160,12 +194,13 @@ function registerBlockbenchPlugin(bb) {
         try { void bridgeRuntime.connection.disconnect(); } catch (_) { /* best effort during plugin unload */ }
       }
       bridgeRuntime = null;
-      for (const action of [auditAction, profileAction, modelingMutationAction, bridgeConnectAction, bridgeDisconnectAction, bridgeStatusAction]) {
+      for (const action of [auditAction, profileAction, modelingMutationAction, uvTextureMutationAction, bridgeConnectAction, bridgeDisconnectAction, bridgeStatusAction]) {
         if (action) action.delete();
       }
       auditAction = null;
       profileAction = null;
       modelingMutationAction = null;
+      uvTextureMutationAction = null;
       bridgeConnectAction = null;
       bridgeDisconnectAction = null;
       bridgeStatusAction = null;
@@ -176,4 +211,5 @@ function registerBlockbenchPlugin(bb) {
 module.exports = {
   registerBlockbenchPlugin,
   createBlockbenchModelingAdapter: modeling.createBlockbenchModelingAdapter,
+  createBlockbenchUvTextureAdapter: uvTexture.createBlockbenchUvTextureAdapter,
 };
