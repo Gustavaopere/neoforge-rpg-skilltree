@@ -12,6 +12,11 @@ const REQUIRED_LIVE_MODULES = [
   'blockbench-plugin/live_bridge_adapter.js',
 ];
 
+const REQUIRED_MUTATION_MODULES = [
+  'core/mutations/mutation_engine.js',
+  'blockbench-plugin/modeling_adapter.js',
+];
+
 function runBundle({isWeb, nativeRequire}) {
   const actions = new Map();
   let metadata = null;
@@ -56,8 +61,8 @@ function runBundle({isWeb, nativeRequire}) {
   return {context, metadata, actions};
 }
 
-test('standalone bundle includes the approved live bridge modules and only the explicit safe native crypto module', () => {
-  for (const moduleId of REQUIRED_LIVE_MODULES) {
+test('standalone bundle includes approved live bridge and mutation modules with only explicit safe native crypto', () => {
+  for (const moduleId of REQUIRED_LIVE_MODULES.concat(REQUIRED_MUTATION_MODULES)) {
     assert.ok(bundleBuilder.SOURCE_MODULES.includes(moduleId), `bundle missing ${moduleId}`);
   }
   assert.deepEqual(bundleBuilder.NATIVE_MODULE_ALLOWLIST, ['node:crypto']);
@@ -71,18 +76,21 @@ test('bundle generator rejects native imports outside the explicit allowlist', (
   }
 });
 
-test('web Blockbench can load the both-variant toolkit without native require or live bridge actions', () => {
+test('web Blockbench can load the both-variant toolkit without native require or desktop mutation/live bridge actions', () => {
   const {context, metadata, actions} = runBundle({isWeb: true, nativeRequire: undefined});
   assert.ok(metadata);
   assert.equal(metadata.variant, 'both');
   assert.equal(typeof context.module.exports.createBridgeConnection, 'function');
   assert.equal(typeof context.module.exports.buildBridgeUrl, 'function');
+  assert.equal(typeof context.module.exports.validateMutationBatch, 'function');
+  assert.equal(typeof context.module.exports.applyMutationBatch, 'function');
   assert.ok(actions.has('rpg_asset_toolkit_validate'));
   assert.ok(actions.has('rpg_asset_toolkit_validate_profile'));
+  assert.equal(actions.has('rpg_asset_toolkit_modeling_mutation_batch'), false);
   assert.equal([...actions.keys()].some((id) => id.includes('live_bridge')), false);
 });
 
-test('desktop Blockbench registers lazy live bridge controls without touching native crypto at plugin load', () => {
+test('desktop Blockbench registers lazy local mutation and live bridge controls without touching native crypto at plugin load', () => {
   const nativeCalls = [];
   const nativeRequire = (moduleId) => {
     nativeCalls.push(moduleId);
@@ -91,11 +99,12 @@ test('desktop Blockbench registers lazy live bridge controls without touching na
   };
   const {metadata, actions} = runBundle({isWeb: false, nativeRequire});
   assert.equal(metadata.variant, 'both');
-  assert.equal(metadata.version, '0.3.0');
+  assert.equal(metadata.version, '0.4.0');
   for (const id of [
+    'rpg_asset_toolkit_modeling_mutation_batch',
     'rpg_asset_toolkit_live_bridge_connect',
     'rpg_asset_toolkit_live_bridge_disconnect',
     'rpg_asset_toolkit_live_bridge_status',
   ]) assert.ok(actions.has(id), `missing desktop action ${id}`);
-  assert.deepEqual(nativeCalls, [], 'desktop plugin load must not request native crypto before a connection attempt');
+  assert.deepEqual(nativeCalls, [], 'desktop plugin load must not request native crypto before a mutation or connection attempt');
 });
