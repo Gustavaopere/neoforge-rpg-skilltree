@@ -27,6 +27,16 @@ test('native Blockbench Locator.position is recognized as a locator while legacy
   assert.equal(projectModel.isLocatorLike({name: 'legacy', uuid: 'legacy', from: [1, 2, 3], parent: {uuid: 'root'}}), true);
 });
 
+test('native Locator.position takes precedence over legacy from when both fields exist', () => {
+  const hybrid = {name: 'hybrid', uuid: 'hybrid', position: [0, Number.NaN, 0], from: [1, 2, 3], parent: {uuid: 'root'}};
+  assert.deepEqual(projectModel.locatorPosition(hybrid), hybrid.position);
+  const project = nativeLocatorProject();
+  project.elements = [hybrid];
+  const result = validateProject(project, {});
+  assert.equal(result.counts.locatorCount, 1);
+  assert.equal(result.errors.some((item) => item.code === 'INVALID_LOCATOR_POSITION'), true);
+});
+
 test('validator counts native position locators and validates their actual position', () => {
   const valid = validateProject(nativeLocatorProject(), {});
   assert.equal(valid.counts.locatorCount, 1);

@@ -34,9 +34,14 @@ function isCubeLike(element) {
   );
 }
 
+function locatorPosition(element) {
+  if (!element || typeof element !== 'object') return undefined;
+  return hasOwn(element, 'position') ? element.position : element.from;
+}
+
 function isLocatorLike(element) {
   return !!element && typeof element === 'object'
-    && hasOwn(element, 'from')
+    && (hasOwn(element, 'position') || hasOwn(element, 'from'))
     && !isCubeLike(element)
     && !hasOwn(element, 'vertices');
 }
@@ -63,6 +68,7 @@ module.exports = {
   parentObject,
   hasOwn,
   isCubeLike,
+  locatorPosition,
   isLocatorLike,
   computeBounds,
 };

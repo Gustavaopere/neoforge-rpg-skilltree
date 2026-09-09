@@ -1,6 +1,7 @@
 'use strict';
 
 const crypto = require('node:crypto');
+const {isLocatorLike, locatorPosition} = require('../core/project-model/project_model.js');
 
 function vec(value) { return Array.isArray(value) ? value.slice(0, 3).map((entry) => Number.isFinite(entry) ? entry : null) : null; }
 function parentRef(value) { return value && typeof value === 'object' ? (value.uuid || value.name || null) : (typeof value === 'string' ? value : null); }
@@ -21,7 +22,9 @@ function groupSnapshot(group) {
 function faceSnapshot(face) { return {enabled: face?.enabled !== false, texture: typeof face?.texture === 'string' ? face.texture : null, uv: Array.isArray(face?.uv) ? face.uv.slice(0, 4) : null}; }
 function elementSnapshot(element) {
   const faces = element?.faces && typeof element.faces === 'object' ? Object.fromEntries(Object.keys(element.faces).sort().map((key) => [key, faceSnapshot(element.faces[key])])) : {};
-  return {name: element?.name || null, uuid: element?.uuid || null, from: vec(element?.from), to: vec(element?.to), origin: vec(element?.origin), parent: parentRef(element?.parent), faces};
+  const snapshot = {name: element?.name || null, uuid: element?.uuid || null, from: vec(element?.from), to: vec(element?.to), origin: vec(element?.origin), parent: parentRef(element?.parent), faces};
+  if (isLocatorLike(element)) snapshot.position = vec(locatorPosition(element));
+  return snapshot;
 }
 function textureSnapshot(texture) { return {name: texture?.name || null, uuid: texture?.uuid || null, width: Number.isFinite(texture?.width) ? texture.width : null, height: Number.isFinite(texture?.height) ? texture.height : null}; }
 function animationSnapshot(animation) {
