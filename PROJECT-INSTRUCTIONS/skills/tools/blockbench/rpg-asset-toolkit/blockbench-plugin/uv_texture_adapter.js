@@ -89,6 +89,49 @@ function createBlockbenchUvTextureAdapter(bb) {
     }
   }
 
+  function requirePackRegionInBounds(texture, region, context) {
+    if (!region || !Number.isSafeInteger(region.x) || !Number.isSafeInteger(region.y)
+      || !Number.isSafeInteger(region.width) || !Number.isSafeInteger(region.height)
+      || region.x < 0 || region.y < 0 || region.width < 1 || region.height < 1
+      || region.x > texture.width - region.width || region.y > texture.height - region.height) {
+      fail('UV_PACK_PIXEL_REGION_OUT_OF_BOUNDS', `${context} is outside texture "${texture.uuid || texture.id}" bounds ${texture.width}x${texture.height}.`);
+    }
+    return region;
+  }
+
+  function normalizedTextureRef(value) {
+    if (typeof value !== 'string') return null;
+    const output = value.trim();
+    if (!output) return null;
+    return output.startsWith('#') ? output.slice(1) : output;
+  }
+
+  function textureRefs(texture) {
+    const refs = new Set();
+    for (const value of [texture.uuid, texture.id, texture.name]) {
+      const normalized = normalizedTextureRef(value);
+      if (normalized) refs.add(normalized);
+    }
+    return refs;
+  }
+
+  function faceUsesTexture(face, texture) {
+    const ref = normalizedTextureRef(face?.texture);
+    return !!ref && textureRefs(texture).has(ref);
+  }
+
+  function requireProjectUvDimension(value, field) {
+    if (!Number.isSafeInteger(value) || value < 1) {
+      fail('INVALID_PROJECT_UV_DIMENSIONS', `${field} must be a positive safe integer for bounded UV packing.`);
+    }
+    return value;
+  }
+
+  function sameUv(left, right) {
+    return Array.isArray(left) && Array.isArray(right) && left.length >= 4 && right.length >= 4
+      && left.slice(0, 4).every((value, index) => value === right[index]);
+  }
+
   function addUnique(target, value) {
     if (!target.includes(value)) target.push(value);
   }
@@ -96,6 +139,36 @@ function createBlockbenchUvTextureAdapter(bb) {
   function getRevision() {
     const {createProjectSnapshot} = require('../live-bridge/project_snapshot.js');
     return createProjectSnapshot(project).projectRevision;
+  }
+
+  function inspectPackTarget(textureId) {
+    const texture = requireEditableTexture(requireTexture(textureId));
+    const uvWidth = requireProjectUvDimension(project.texture_width, 'Project.texture_width');
+    const uvHeight = requireProjectUvDimension(project.texture_height, 'Project.texture_height');
+    const faces = [];
+
+    for (const cube of cubes()) {
+      const cubeFaces = cube?.faces && typeof cube.faces === 'object' ? cube.faces : {};
+      for (const faceName of Object.keys(cubeFaces).sort()) {
+        const face = cubeFaces[faceName];
+        if (!face || face.enabled === false || !faceUsesTexture(face, texture)) continue;
+        faces.push(Object.freeze({
+          cubeId: cube.uuid,
+          face: faceName,
+          uv: Array.isArray(face.uv) ? face.uv.slice(0, 4) : face.uv,
+          boxUv: cube.box_uv === true,
+        }));
+      }
+    }
+
+    return Object.freeze({
+      textureId,
+      pixelWidth: texture.width,
+      pixelHeight: texture.height,
+      uvWidth,
+      uvHeight,
+      faces: Object.freeze(faces),
+    });
   }
 
   function preflight(operations) {
@@ -139,6 +212,46 @@ function createBlockbenchUvTextureAdapter(bb) {
     prepared = Object.freeze({
       cubes: Object.freeze(touchedCubes.slice()),
       textures: Object.freeze(touchedTextures.slice()),
+    });
+    return true;
+  }
+
+  function preflightPack(preview) {
+    if (!preview || typeof preview !== 'object' || !Array.isArray(preview.moves)) {
+      fail('INVALID_UV_PACK_PREVIEW', 'UV pack preview must contain a moves array.');
+    }
+    if (getRevision() !== preview.beforeRevision) {
+      fail('STALE_PROJECT_REVISION', `UV pack preview revision ${preview.beforeRevision} is no longer current.`);
+    }
+    const texture = requireEditableTexture(requireTexture(preview.textureId));
+    const touchedCubes = [];
+
+    for (const move of preview.moves) {
+      if (!move || typeof move !== 'object') fail('INVALID_UV_PACK_PREVIEW', 'UV pack move must be an object.');
+      const cube = requireCube(move.cubeId);
+      const face = requireFace(cube, move.face);
+      if (cube.box_uv === true) fail('BOX_UV_PACK_UNSUPPORTED', `Cube "${cube.uuid}" must use per-face UV for bounded packing.`);
+      if (!faceUsesTexture(face, texture)) {
+        fail('UV_PACK_TARGET_MISMATCH', `Cube "${cube.uuid}" face "${move.face}" no longer references texture "${preview.textureId}".`);
+      }
+      if (!sameUv(face.uv, move.oldUv)) {
+        fail('STALE_PROJECT_REVISION', `Cube "${cube.uuid}" face "${move.face}" no longer matches the previewed UV state.`);
+      }
+      const source = requirePackRegionInBounds(texture, move.sourcePixels, `Source pixels for ${cube.uuid}/${move.face}`);
+      const destination = requirePackRegionInBounds(texture, move.destinationPixels, `Destination pixels for ${cube.uuid}/${move.face}`);
+      if (source.width !== destination.width || source.height !== destination.height) {
+        fail('INVALID_UV_PACK_PREVIEW', `Pixel copy for ${cube.uuid}/${move.face} must preserve region dimensions.`);
+      }
+      if (!Array.isArray(move.newUv) || move.newUv.length !== 4 || !move.newUv.every(Number.isFinite)) {
+        fail('INVALID_UV_PACK_PREVIEW', `New UV for ${cube.uuid}/${move.face} must contain four finite coordinates.`);
+      }
+      addUnique(touchedCubes, cube);
+    }
+
+    prepared = Object.freeze({
+      cubes: Object.freeze(touchedCubes.slice()),
+      textures: Object.freeze([texture]),
+      pack: Object.freeze({texture, confirmationToken: preview.confirmationToken}),
     });
     return true;
   }
@@ -229,6 +342,32 @@ function createBlockbenchUvTextureAdapter(bb) {
     }
   }
 
+  function applyPack(preview) {
+    if (!transactionOpen) fail('NO_ACTIVE_TRANSACTION', 'No Blockbench Undo transaction is open.');
+    if (!prepared?.pack || prepared.pack.confirmationToken !== preview?.confirmationToken) {
+      fail('PREFLIGHT_REQUIRED', 'UV pack apply requires the exact preview that passed preflight.');
+    }
+    const texture = prepared.pack.texture;
+    const buffered = preview.moves.map((move) => Object.freeze({
+      move,
+      image: texture.ctx.getImageData(move.sourcePixels.x, move.sourcePixels.y, move.sourcePixels.width, move.sourcePixels.height),
+    }));
+
+    for (const entry of buffered) {
+      texture.ctx.putImageData(entry.image, entry.move.destinationPixels.x, entry.move.destinationPixels.y);
+    }
+    dirtyTextures.add(texture);
+
+    const changedIds = [];
+    addUnique(changedIds, texture.uuid || texture.id);
+    for (const entry of buffered) {
+      const cube = requireCube(entry.move.cubeId);
+      requireFace(cube, entry.move.face).extend({uv: entry.move.newUv.slice()});
+      addUnique(changedIds, cube.uuid);
+    }
+    return changedIds;
+  }
+
   function finishTransaction(label) {
     if (!transactionOpen) fail('NO_ACTIVE_TRANSACTION', 'No Blockbench Undo transaction is open.');
     for (const texture of dirtyTextures) texture.updateChangesAfterEdit();
@@ -255,9 +394,12 @@ function createBlockbenchUvTextureAdapter(bb) {
 
   return Object.freeze({
     getRevision,
+    inspectPackTarget,
     preflight,
+    preflightPack,
     beginTransaction,
     applyOperation,
+    applyPack,
     finishTransaction,
     cancelTransaction,
   });
