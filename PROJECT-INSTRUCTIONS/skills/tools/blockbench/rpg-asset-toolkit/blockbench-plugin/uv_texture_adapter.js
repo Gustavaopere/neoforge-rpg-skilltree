@@ -1,5 +1,7 @@
 'use strict';
 
+const {MAX_TEXTURE_PIXELS_PER_BATCH} = require('../core/uv-texture/uv_texture_engine.js');
+
 function fail(code, message) {
   const error = new Error(`${code}: ${message}`);
   error.code = code;
@@ -24,6 +26,9 @@ function createBlockbenchUvTextureAdapter(bb) {
   let transactionOpen = false;
   let prepared = null;
   const dirtyTextures = new Set();
+  let approvalSequence = 0;
+  const approvedTextureImports = new Map();
+  const transactionConsumedApprovals = [];
 
   function cubes() {
     return Array.isArray(bb.Cube.all) ? bb.Cube.all : array(project.elements).filter((entry) => entry instanceof bb.Cube);
@@ -31,6 +36,64 @@ function createBlockbenchUvTextureAdapter(bb) {
 
   function textures() {
     return Array.isArray(bb.Texture.all) ? bb.Texture.all : array(project.textures);
+  }
+
+  function normalizedTextureName(value) {
+    return typeof value === 'string' ? value.trim().toLowerCase() : '';
+  }
+
+  function requireTextureDimensions(width, height, context) {
+    if (!Number.isSafeInteger(width) || width < 1 || !Number.isSafeInteger(height) || height < 1) {
+      fail('INVALID_TEXTURE_DIMENSIONS', `${context} must use positive safe integer dimensions.`);
+    }
+    return Object.freeze({width, height});
+  }
+
+  function texturePixelArea(width, height, context) {
+    const area = width * height;
+    if (!Number.isSafeInteger(area) || area > MAX_TEXTURE_PIXELS_PER_BATCH) {
+      fail('TEXTURE_PIXEL_BUDGET_EXCEEDED', `${context} may write ${area} pixels; maximum is ${MAX_TEXTURE_PIXELS_PER_BATCH}.`);
+    }
+    return area;
+  }
+
+  function requireTextureNameAvailable(name, reservedNames) {
+    const normalized = normalizedTextureName(name);
+    if (!normalized) fail('INVALID_TEXTURE_NAME', 'Texture name must contain non-whitespace characters.');
+    const occupied = reservedNames || new Set(textures().map((texture) => normalizedTextureName(texture?.name)).filter(Boolean));
+    if (occupied.has(normalized)) fail('TEXTURE_NAME_COLLISION', `Texture name "${name}" already exists in the active project or batch.`);
+    return normalized;
+  }
+
+  function requireApprovedTextureImport(approvalId) {
+    const approval = approvedTextureImports.get(approvalId);
+    if (!approval) fail('TEXTURE_IMPORT_APPROVAL_NOT_FOUND', `Approved local texture import "${approvalId}" is unavailable or already consumed.`);
+    return approval;
+  }
+
+  function approveTextureImport(file, dimensions) {
+    if (!file || typeof file !== 'object') fail('INVALID_TEXTURE_IMPORT_FILE', 'Approved texture import must originate from a Blockbench file result.');
+    const name = typeof file.name === 'string' ? file.name.trim() : '';
+    if (!name) fail('INVALID_TEXTURE_IMPORT_FILE', 'Approved texture import requires a file name.');
+    const {width, height} = requireTextureDimensions(dimensions?.width, dimensions?.height, 'Approved texture import');
+    texturePixelArea(width, height, `Approved texture import "${name}"`);
+    requireTextureNameAvailable(name);
+
+    const approvedFile = {name};
+    for (const field of ['path', 'content', 'browser_file']) {
+      if (Object.prototype.hasOwnProperty.call(file, field)) approvedFile[field] = file[field];
+    }
+
+    approvalSequence += 1;
+    const approvalId = `texture-import-approval-${approvalSequence}`;
+    approvedTextureImports.set(approvalId, Object.freeze({
+      approvalId,
+      name,
+      width,
+      height,
+      file: Object.freeze(approvedFile),
+    }));
+    return approvalId;
   }
 
   function requireCube(cubeId) {
@@ -175,6 +238,18 @@ function createBlockbenchUvTextureAdapter(bb) {
     if (!Array.isArray(operations)) fail('INVALID_UV_TEXTURE_MUTATIONS', 'operations must be an array.');
     const touchedCubes = [];
     const touchedTextures = [];
+    const createdTextures = [];
+    const approvedImportIds = [];
+    const reservedTextureNames = new Set(textures().map((texture) => normalizedTextureName(texture?.name)).filter(Boolean));
+    let pixelWrites = 0;
+    let expectsNewTextures = false;
+
+    function chargePixels(count, context) {
+      pixelWrites += count;
+      if (!Number.isSafeInteger(pixelWrites) || pixelWrites > MAX_TEXTURE_PIXELS_PER_BATCH) {
+        fail('TEXTURE_PIXEL_BUDGET_EXCEEDED', `${context} raises the batch pixel budget to ${pixelWrites}; maximum is ${MAX_TEXTURE_PIXELS_PER_BATCH}.`);
+      }
+    }
 
     for (const operation of operations) {
       switch (operation.type) {
@@ -201,7 +276,29 @@ function createBlockbenchUvTextureAdapter(bb) {
         case 'texture_replace_palette': {
           const texture = requireEditableTexture(requireTexture(operation.textureId));
           requireRegionInBounds(texture, operation);
+          const region = regionFor(operation);
+          chargePixels(region.width * region.height, `Mutation "${operation.type}"`);
           addUnique(touchedTextures, texture);
+          break;
+        }
+        case 'texture_create': {
+          const {width, height} = requireTextureDimensions(operation.width, operation.height, 'texture_create');
+          const normalized = requireTextureNameAvailable(operation.name, reservedTextureNames);
+          reservedTextureNames.add(normalized);
+          chargePixels(texturePixelArea(width, height, `texture_create "${operation.name}"`), `texture_create "${operation.name}"`);
+          expectsNewTextures = true;
+          break;
+        }
+        case 'texture_import_approved': {
+          const approval = requireApprovedTextureImport(operation.approvalId);
+          if (approvedImportIds.includes(operation.approvalId)) {
+            fail('TEXTURE_IMPORT_APPROVAL_REUSED', `Approval "${operation.approvalId}" may appear only once in a batch.`);
+          }
+          const normalized = requireTextureNameAvailable(approval.name, reservedTextureNames);
+          reservedTextureNames.add(normalized);
+          chargePixels(texturePixelArea(approval.width, approval.height, `Approved texture import "${approval.name}"`), `Approved texture import "${approval.name}"`);
+          approvedImportIds.push(operation.approvalId);
+          expectsNewTextures = true;
           break;
         }
         default:
@@ -212,6 +309,9 @@ function createBlockbenchUvTextureAdapter(bb) {
     prepared = Object.freeze({
       cubes: Object.freeze(touchedCubes.slice()),
       textures: Object.freeze(touchedTextures.slice()),
+      createdTextures,
+      approvedImportIds: Object.freeze(approvedImportIds.slice()),
+      expectsNewTextures,
     });
     return true;
   }
@@ -260,10 +360,11 @@ function createBlockbenchUvTextureAdapter(bb) {
     if (!prepared) fail('PREFLIGHT_REQUIRED', 'UV/texture batch must preflight before opening an Undo transaction.');
     const aspects = {};
     if (prepared.cubes.length) aspects.elements = prepared.cubes.slice();
-    if (prepared.textures.length) {
-      aspects.textures = prepared.textures.slice();
-      aspects.bitmap = true;
-    }
+
+    const transactionTextures = prepared.textures.slice();
+    for (const texture of prepared.createdTextures || []) addUnique(transactionTextures, texture);
+    if (transactionTextures.length || prepared.expectsNewTextures) aspects.textures = transactionTextures;
+    if (prepared.textures.length) aspects.bitmap = true;
     return aspects;
   }
 
@@ -271,6 +372,7 @@ function createBlockbenchUvTextureAdapter(bb) {
     if (transactionOpen) fail('TRANSACTION_ALREADY_OPEN', 'A Blockbench Undo transaction is already open.');
     bb.Undo.initEdit(undoAspects());
     dirtyTextures.clear();
+    transactionConsumedApprovals.length = 0;
     transactionOpen = true;
   }
 
@@ -337,6 +439,44 @@ function createBlockbenchUvTextureAdapter(bb) {
         dirtyTextures.add(texture);
         return texture.uuid || texture.id;
       }
+      case 'texture_create': {
+        if (!prepared?.expectsNewTextures) fail('PREFLIGHT_REQUIRED', 'texture_create requires the exact preflighted batch.');
+        const texture = new bb.Texture({name: operation.name, internal: true});
+        if (!texture.canvas || typeof texture.canvas.toDataURL !== 'function'
+          || typeof texture.fromDataURL !== 'function' || typeof texture.add !== 'function') {
+          fail('BLOCKBENCH_API_UNAVAILABLE', 'Texture creation requires canvas.toDataURL(), Texture.fromDataURL(), and Texture.add().');
+        }
+        texture.width = operation.width;
+        texture.height = operation.height;
+        texture.uv_width = operation.width;
+        texture.uv_height = operation.height;
+        texture.canvas.width = operation.width;
+        texture.canvas.height = operation.height;
+        if (texture.ctx && typeof texture.ctx.clearRect === 'function') {
+          texture.ctx.clearRect(0, 0, operation.width, operation.height);
+        }
+        const dataUrl = texture.canvas.toDataURL();
+        texture.fromDataURL(dataUrl);
+        texture.add(false, true);
+        prepared.createdTextures.push(texture);
+        return texture.uuid || texture.id;
+      }
+      case 'texture_import_approved': {
+        if (!prepared?.approvedImportIds?.includes(operation.approvalId)) {
+          fail('PREFLIGHT_REQUIRED', `Texture import approval "${operation.approvalId}" was not part of the preflighted batch.`);
+        }
+        const approval = requireApprovedTextureImport(operation.approvalId);
+        const texture = new bb.Texture({name: approval.name});
+        if (typeof texture.fromFile !== 'function' || typeof texture.add !== 'function') {
+          fail('BLOCKBENCH_API_UNAVAILABLE', 'Approved texture import requires Texture.fromFile() and Texture.add().');
+        }
+        texture.fromFile(approval.file);
+        texture.add(false, true);
+        prepared.createdTextures.push(texture);
+        approvedTextureImports.delete(operation.approvalId);
+        transactionConsumedApprovals.push([operation.approvalId, approval]);
+        return texture.uuid || texture.id;
+      }
       default:
         fail('UNSUPPORTED_UV_TEXTURE_MUTATION', `Mutation "${operation.type}" is not supported by the Blockbench adapter.`);
     }
@@ -375,10 +515,19 @@ function createBlockbenchUvTextureAdapter(bb) {
     transactionOpen = false;
     prepared = null;
     dirtyTextures.clear();
+    transactionConsumedApprovals.length = 0;
   }
 
   function cancelTransaction(revert) {
+    function restoreConsumedApprovals() {
+      for (const [approvalId, approval] of transactionConsumedApprovals) {
+        if (!approvedTextureImports.has(approvalId)) approvedTextureImports.set(approvalId, approval);
+      }
+      transactionConsumedApprovals.length = 0;
+    }
+
     if (!transactionOpen) {
+      restoreConsumedApprovals();
       prepared = null;
       dirtyTextures.clear();
       return;
@@ -386,6 +535,7 @@ function createBlockbenchUvTextureAdapter(bb) {
     try {
       bb.Undo.cancelEdit(revert === true);
     } finally {
+      restoreConsumedApprovals();
       transactionOpen = false;
       prepared = null;
       dirtyTextures.clear();
@@ -394,6 +544,7 @@ function createBlockbenchUvTextureAdapter(bb) {
 
   return Object.freeze({
     getRevision,
+    approveTextureImport,
     inspectPackTarget,
     preflight,
     preflightPack,
