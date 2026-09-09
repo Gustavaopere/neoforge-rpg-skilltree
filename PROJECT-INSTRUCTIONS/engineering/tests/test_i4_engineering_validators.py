@@ -2,7 +2,6 @@ import importlib.util
 import json
 import shutil
 import subprocess
-import sys
 import tempfile
 import unittest
 import zipfile
@@ -40,6 +39,23 @@ def make_jar(path: Path, include_common: bool = True) -> Path:
             jar.writestr("dev/example/i3golden/I3GoldenMod.class", b"synthetic-class")
         jar.writestr("dev/example/i3golden/client/I3GoldenModClient.class", b"synthetic-client-class")
     return path
+
+
+def install_synthetic_datagen_wrapper(project: Path) -> None:
+    wrapper = project / "gradlew"
+    wrapper.write_text(
+        """#!/usr/bin/env python3
+import sys
+from pathlib import Path
+
+if sys.argv[1:] != ["runData", "--no-daemon"]:
+    raise SystemExit(2)
+if Path(".i4-trigger-drift").exists():
+    Path("src/main/resources/i4-datagen-marker.txt").write_text("after\\n", encoding="utf-8")
+""",
+        encoding="utf-8",
+    )
+    wrapper.chmod(0o755)
 
 
 class I4EngineeringValidatorsContractTest(unittest.TestCase):
@@ -127,27 +143,23 @@ class I4EngineeringValidatorsContractTest(unittest.TestCase):
             write_json(bad_manifest, manifest)
             self.assertTrue(module.validate_assets_manifest(project, MOD_SPEC, bad_manifest))
 
-    def test_datagen_drift_validator_requires_clean_diff_after_generator(self):
+    def test_datagen_drift_validator_requires_clean_diff_after_official_generator(self):
         module = self.require_validator()
         with tempfile.TemporaryDirectory() as tmp:
             project = copy_golden(Path(tmp) / "project")
             marker = project / "src/main/resources/i4-datagen-marker.txt"
             marker.write_text("before\n", encoding="utf-8")
+            install_synthetic_datagen_wrapper(project)
             subprocess.run(["git", "init", "-q"], cwd=project, check=True)
             subprocess.run(["git", "config", "user.name", "I4 Contract"], cwd=project, check=True)
             subprocess.run(["git", "config", "user.email", "i4-contract@example.invalid"], cwd=project, check=True)
             subprocess.run(["git", "add", "."], cwd=project, check=True)
             subprocess.run(["git", "commit", "-qm", "baseline"], cwd=project, check=True)
 
-            clean_command = [sys.executable, "-c", "pass"]
-            self.assertEqual([], module.validate_datagen_drift(project, clean_command))
+            self.assertEqual([], module.validate_datagen_drift(project))
 
-            drift_command = [
-                sys.executable,
-                "-c",
-                "from pathlib import Path; Path('src/main/resources/i4-datagen-marker.txt').write_text('after\\n', encoding='utf-8')",
-            ]
-            self.assertTrue(module.validate_datagen_drift(project, drift_command))
+            (project / ".i4-trigger-drift").write_text("trigger\n", encoding="utf-8")
+            self.assertTrue(module.validate_datagen_drift(project))
 
     def test_jar_inspection_rejects_missing_common_entrypoint(self):
         module = self.require_validator()
