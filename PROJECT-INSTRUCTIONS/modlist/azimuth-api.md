@@ -1,31 +1,32 @@
 # Azimuth API
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db815f860bc2ff89480d53  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db815f860bc2ff89480d53
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Azimuth API
 - **Arquivo JAR:** `azimuth-1.4.8.jar`
-- **Versão 1.21.1:** `1.4.8`
-- **Categoria:** Biblioteca; Tecnologia
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 1.4.8
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/azimuth-api
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca, Tecnologia
 - **Função:** API de infraestrutura para addons Create, com Super Block Entity Behaviours, helpers de advancements e outlines/Ponder sem substituir a autoridade cinética do Create.
-- **Dependências:** Create; necessidade determinada por consumidores instalados como Bits 'n' Tracks.
-- **Compatibilidade/Riscos:** Mixins em SmartBlockEntity, casts de behaviour, double-tick e version drift com Create 6.0.10 são os principais riscos. Outlines/Ponder devem permanecer client-side.
+- **Dependências:** Create 6.0.10 físico. O consumer anteriormente documentado Bits 'n' Tracks está ausente da modlist atual; Create Tracks+ 1.0.6b6 está presente, mas não foi comprovado como consumer de Azimuth. Não remover a biblioteca sem dependency graph/JAR metadata.
 - **Sobreposição:** Biblioteca de infraestrutura; não é conteúdo tecnológico redundante.
-- **Observações:** Runtime 1.4.8. Super Block Entity Behaviours, Advancements e Outlines são as superfícies oficiais principais; release 1.4.8 melhora logging de class-cast.
-- **Procedência:** Modlist física atual de 07/09/2026 + CurseForge/documentação oficial Azimuth API 1.4.8 + evidência de runtime nos logs locais do pack.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Azimuth 1.4.8 como API de infraestrutura do ecossistema Create, com consumidores presentes no pack e riscos/lifecycle documentados. A presença física não foi convertida automaticamente em decisão de manter, remover ou tornar opcional.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — contratos de API Create, lifecycle, side e riscos de SmartBlockEntity catalogados; metadata antiga de 1.4.7 corrigida.
-- **Data da última decisão:** não definida.
+- **Compatibilidade/Riscos:** Mixins em SmartBlockEntity, casts de behaviour, double-tick e version drift com Create 6.0.10 são os principais riscos. Outlines/Ponder devem permanecer client-side.
+- **Observações:** Runtime físico `azimuth-1.4.8.jar`, display `Azimuth`, mod id `azimuth`; a página editorial permanece `Azimuth API`. Consumer atual não foi inferido por semelhança de nome.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + documentação/source Azimuth 1.4.8 + reconciliação física de consumers do snapshot atual.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/azimuth-api
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Azimuth 1.4.8, Create API/Super Behaviours/lifecycle e SmartBlockEntity risk confirmados no QC global #60. Bits 'n' Tracks removido como consumer ativo porque está ausente do snapshot atual; consumer graph atual permanece pendente. Estado anterior `Integrado ao Github` preservado.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Azimuth 1.4.8 como API de infraestrutura do ecossistema Create. Em 09/09/2026, o consumer anteriormente citado Bits 'n' Tracks foi reconciliado como ausente da modlist física atual; nenhum consumer substituto foi presumido. A necessidade de Azimuth permanece dependente de dependency graph/JAR metadata, sem converter presença física em decisão.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `azimuth-1.4.8.jar`, mod id `azimuth`, runtime `1.4.8`, NeoForge 1.21.1. A release oficial 1.4.8 é de 31/08/2026 e o projeto é uma biblioteca para addons Create.
 
@@ -55,9 +56,10 @@ O changelog oficial da 1.4.8 registra melhoria de logging em crash de class cast
 ## 6. Integração com o pack
 - Create físico: `6.0.10`.
 - Azimuth físico: `1.4.8`.
-- Bits 'n' Tracks é consumidor já documentado no pack.
+- O snapshot anterior citava **Bits 'n' Tracks** como consumidor, mas esse mod **não está presente** na modlist física atual de 595 top-levels. A entrada de trilhos atualmente presente é `tracks_plus-1.0.6b6.jar` / Create Tracks+ 1.0.6b6; **não foi confirmada nesta auditoria como consumer de Azimuth**, portanto não será usada como substituição presumida.
+- Até que o dependency graph/JAR metadata dos consumidores atuais seja verificado, **não remover Azimuth por inferência de ausência de consumer**.
 
-Provider-native first: addons que dependem de Azimuth devem usar suas superfícies reais; não reimplementar Super Behaviours em mod próprio sem necessidade.
+Provider-native first: addons que realmente dependam de Azimuth devem usar suas superfícies reais; não reimplementar Super Behaviours em mod próprio sem necessidade.
 
 ## 7. Client/server e lifecycle
 - lógica de block entity/kinetics/advancement é server-authoritative quando afeta gameplay;
