@@ -1,32 +1,30 @@
 # Ars Elemental
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db814f9592dd10af855c22  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db814f9592dd10af855c22
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Elemental
 - **Arquivo JAR:** `ars_elemental-1.21.1-0.7.10.1.jar`
-- **Versão 1.21.1:** `0.7.10.1`
-- **Categoria:** Magia; RPG
-- **Decisão:** Manter
+- **Versão 1.21.1:** 0.7.10.1
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://github.com/Alexthw46/Ars-Elemental
+- **Decisão:** Manter
+- **Categoria:** Magia, RPG
 - **Função:** Expansão elemental de Ars Nouveau com 39 glyphs/spell parts normais na build 0.7.10.1, 8 rituals, 3 familiars, 3 perks, 12 armor sets, casters e mappings de resistências Air/Earth/Fire/Water.
-- **Dependências:** Ars Nouveau; Sauce é biblioteca embutida/jarjar usada internamente e não conta como mod top-level separado.
-- **Compatibilidade/Riscos:** Riscos: double-dip de school power/resistance, perks/turrets processados duas vezes, perda de perk slots de armor e drift de patch. A branch upstream já está em 0.7.10.2; features exclusivas da .2 não pertencem ao runtime 0.7.10.1.
+- **Dependências:** Ars Nouveau 5.13.1. Sauce permanece jarjar/embedded; Ars Elemancy 1.18.3 consome a base elemental sem transferir authority.
 - **Sobreposição:** Complementa Ars Nouveau e fornece a base elemental consumida por Ars Elemancy. Não duplicar schools/perks/resistances em integração própria.
-- **Observações:** mod id ars_elemental. Release normal registra 39 spell parts; MethodCarianPhalanx é dev-only e foi excluído. 8 rituals, 3 familiars, 3 perks e 12 armor sets confirmados no source 0.7.10.1.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Conteúdo/registries: source oficial no commit exato a5bdb39567ee39bde2210203cf051f709d06e08a, cujo gradle declara 0.7.10.1. Contexto local: guia consolidado de Magia.
+- **Compatibilidade/Riscos:** Riscos: double-dip de school power/resistance, perks/turrets processados duas vezes, perda de perk slots de armor e drift de patch. A branch upstream já está em 0.7.10.2; features exclusivas da .2 não pertencem ao runtime 0.7.10.1.
+- **Observações:** mod id `ars_elemental`. Release normal registra 39 spell parts; MethodCarianPhalanx é dev-only e foi excluído. 8 rituals, 3 familiars, 3 perks e 12 armor sets confirmados no source 0.7.10.1.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial Ars-Elemental commit `a5bdb39567ee39bde2210203cf051f709d06e08a` (0.7.10.1) + dossiê operacional existente.
+- **Fonte:** https://github.com/Alexthw46/Ars-Elemental
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Elemental 0.7.10.1, exact source pin, 39 production spell parts, 8 rituals, 3 familiars, 3 perks, 12 armor sets e patch boundary 0.7.10.2 confirmados no QC global #44. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Ficha reconstruída em 07/09/2026 contra o commit exato da build 0.7.10.1 para impedir contaminação por features da 0.7.10.2 upstream.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: ars_elemental-1.21.1-0.7.10.1.jar. Dossiê exaustivo version-pinned com 39 glyphs, 8 rituals, 3 familiars, 3 perks, 12 armor sets, casters/resistance mappings, patch boundary 0.7.10.1→0.7.10.2 e testes.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > 🌊 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico: `ars_elemental-1.21.1-0.7.10.1.jar`, mod id `ars_elemental`, NeoForge 1.21.1. A auditoria usa o commit upstream correspondente a **0.7.10.1**, porque a branch atual já está em 0.7.10.2. A build instalada registra **39 glyphs/spell parts normais, 8 rituals, 3 familiars, 3 perks e 12 armor sets elementais**, além de casters, resistance mappings e ajustes em spells Ars. Conteúdo exclusivo de 0.7.10.2 não foi importado.
 
@@ -79,11 +77,11 @@ Ars Elemental expande Ars Nouveau em quatro escolas elementais — Air, Earth, F
 2. `PropagatorArc`
 
 ### Filters — 12
-27–28. Aquatic / NOT Aquatic  
-29–30. Fiery / NOT Fiery  
-31–32. Aerial / NOT Aerial  
-33–34. Insect / NOT Insect  
-35–36. Undead / NOT Undead  
+27–28. Aquatic / NOT Aquatic
+29–30. Fiery / NOT Fiery
+31–32. Aerial / NOT Aerial
+33–34. Insect / NOT Insect
+35–36. Undead / NOT Undead
 37–38. Summon / NOT Summon
 
 ### Nullification — 1
