@@ -8,6 +8,7 @@ function createGatewayState(options = {}) {
   const now = options.now || Date.now;
   const heartbeatTimeoutMs = Number.isFinite(options.heartbeatTimeoutMs) ? options.heartbeatTimeoutMs : 30_000;
   if (!session || typeof session !== 'object') throw bridgeError('SESSION_MISSING');
+  if (!Number.isFinite(session.expiresAt)) throw bridgeError('INVALID_SESSION_EXPIRY');
   if (heartbeatTimeoutMs <= 0) throw bridgeError('INVALID_HEARTBEAT_TIMEOUT');
 
   let activeConnectionId = null;
@@ -37,12 +38,17 @@ function createGatewayState(options = {}) {
     return connectionId === activeConnectionId && generations.get(connectionId) === activeGeneration;
   }
 
+  function isExpired(connectionId) {
+    return isActive(connectionId) && now() > session.expiresAt;
+  }
+
   function isTimedOut(connectionId) {
     return isActive(connectionId) && now() - lastSeenAt > heartbeatTimeoutMs;
   }
 
   function assertActive(connectionId) {
     if (!isActive(connectionId)) throw bridgeError('STALE_CONNECTION');
+    if (isExpired(connectionId)) throw bridgeError('SESSION_EXPIRED');
     if (isTimedOut(connectionId)) throw bridgeError('CONNECTION_TIMED_OUT');
     return true;
   }
@@ -60,7 +66,7 @@ function createGatewayState(options = {}) {
     }
   }
 
-  return Object.freeze({authenticate, isActive, isTimedOut, assertActive, touch, invalidate});
+  return Object.freeze({authenticate, isActive, isExpired, isTimedOut, assertActive, touch, invalidate});
 }
 
 module.exports = {createGatewayState};
