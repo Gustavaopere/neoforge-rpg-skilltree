@@ -1,0 +1,114 @@
+name: Control Plane Bootstrap Import
+
+on:
+  push:
+    branches:
+      - chore/bootstrap-mod-production-control-plane
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.repository == 'Gustavaopere/neoforge-rpg-skilltree'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Materialize canonical control-plane files
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path, PurePosixPath
+          import base64
+          import hashlib
+          import io
+          import tarfile
+
+          expected_bundle_sha256 = '9c90b2a51e639b5b95c9f084aaed0d186332b84746eb92500d8478c78cb46142'
+          expected_parts = [f'part-{i:03d}.b64' for i in range(11)]
+          part_dir = Path('.plan-bootstrap')
+
+          parts = sorted(part_dir.glob('part-*.b64'))
+          actual_parts = [p.name for p in parts]
+          if actual_parts != expected_parts:
+              raise SystemExit(f'Unexpected bootstrap parts: {actual_parts!r}')
+
+          encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
+          raw = base64.b64decode(encoded, validate=True)
+          actual_bundle_sha256 = hashlib.sha256(raw).hexdigest()
+          if actual_bundle_sha256 != expected_bundle_sha256:
+              raise SystemExit(
+                  f'Bootstrap bundle SHA-256 mismatch: {actual_bundle_sha256} != {expected_bundle_sha256}'
+              )
+
+          allowed = {
+              'PROJECT-INSTRUCTIONS/engineering/README.md',
+              'PROJECT-INSTRUCTIONS/engineering/REPO-ROUTING.md',
+              'PROJECT-INSTRUCTIONS/engineering/STATUS.md',
+              'PROJECT-INSTRUCTIONS/engineering/plans/PLANO-MESTRE-REPO-INTEGRACAO-MOD-ENGINEERING-NEOFORGE-1.21.1-V1.md',
+              'PROJECT-INSTRUCTIONS/engineering/plans/PLANO-MESTRE-UNIFICADO-REPO-TEXTURA-BLOCKBENCH-ASSET-MCP-V5.md',
+          }
+
+          with tarfile.open(fileobj=io.BytesIO(raw), mode='r:gz') as archive:
+              members = archive.getmembers()
+              names = {member.name for member in members}
+              if names != allowed:
+                  raise SystemExit(f'Unexpected archive members: {sorted(names)!r}')
+
+              for member in members:
+                  path = PurePosixPath(member.name)
+                  if path.is_absolute() or '..' in path.parts or not member.isfile():
+                      raise SystemExit(f'Unsafe archive member: {member.name!r}')
+                  source = archive.extractfile(member)
+                  if source is None:
+                      raise SystemExit(f'Unable to read archive member: {member.name!r}')
+                  destination = Path(*path.parts)
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_bytes(source.read())
+
+          expected_file_hashes = {
+              'PROJECT-INSTRUCTIONS/engineering/plans/PLANO-MESTRE-UNIFICADO-REPO-TEXTURA-BLOCKBENCH-ASSET-MCP-V5.md':
+                  '9d2b93d4ddc2b032d73156e8a594cc2eda352481f3620d365c244fc913a2a154',
+              'PROJECT-INSTRUCTIONS/engineering/plans/PLANO-MESTRE-REPO-INTEGRACAO-MOD-ENGINEERING-NEOFORGE-1.21.1-V1.md':
+                  'fa61d4baf47919592fd293d39d18d0bf5a687c6c01810762dd9c4b06b8e9cf87',
+          }
+          for filename, expected_hash in expected_file_hashes.items():
+              actual_hash = hashlib.sha256(Path(filename).read_bytes()).hexdigest()
+              if actual_hash != expected_hash:
+                  raise SystemExit(f'File hash mismatch for {filename}: {actual_hash} != {expected_hash}')
+
+          status = Path('PROJECT-INSTRUCTIONS/engineering/STATUS.md').read_text(encoding='utf-8')
+          for required in (
+              'CURRENT_PHASE=FOUNDATION_BOOTSTRAP',
+              'NEXT_PHASE=I1_AUTHORITY_SCHEMAS_SOURCE_REGISTRY_AND_MOD_SPEC',
+              'LATEST_MODLIST_SNAPSHOT=',
+          ):
+              if required not in status:
+                  raise SystemExit(f'Missing STATUS invariant: {required}')
+
+          print('CONTROL_PLANE_BOOTSTRAP_VALIDATED')
+          print(f'BUNDLE_SHA256={actual_bundle_sha256}')
+          print(f'FILES={len(allowed)}')
+          PY
+
+      - name: Commit materialized canonical files
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add PROJECT-INSTRUCTIONS/engineering
+          if git diff --cached --quiet; then
+            echo 'No materialized changes found.' >&2
+            exit 1
+          fi
+          git commit -m 'docs(engineering): bootstrap canonical mod production control plane'
+          git push origin HEAD:${GITHUB_REF_NAME}
