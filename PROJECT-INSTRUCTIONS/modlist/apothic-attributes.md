@@ -1,32 +1,30 @@
 # Apothic Attributes
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81718e36f5a538245c41  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81718e36f5a538245c41
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Apothic Attributes
 - **Arquivo JAR:** `ApothicAttributes-1.21.1-2.10.1.jar`
-- **Versão 1.21.1:** `2.10.1`
-- **Categoria:** Biblioteca; RPG
-- **Decisão:** Manter
+- **Versão 1.21.1:** 2.10.1
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-attributes
+- **Decisão:** Manter
+- **Categoria:** Biblioteca, RPG
 - **Função:** Biblioteca e runtime de atributos do ecossistema Apothic: registra estatísticas de crítico, dodge, cura, life steal/overheal, armor/protection pierce/shred, projectile damage, cooldown reduction e outras superfícies; também fornece Attributes GUI e lógica associada ao damage pipeline.
-- **Dependências:** Placebo/ecossistema Apothic; consumidor estrutural principal: Apotheosis. Integrações podem expor modifiers de Curios via EntityEquipmentSlot API.
-- **Compatibilidade/Riscos:** Grande área de double-processing com outros providers de atributos/combate. Não duplicar crit, armor/protection pierce/shred, life steal, overheal ou cooldown reduction em handlers paralelos. Curios só é fonte quando slots/modifiers estão registrados corretamente; respeitar tags atuais de dano físico/não físico.
+- **Dependências:** Placebo 9.9.2 + ecossistema Apothic atual; consumidor estrutural principal Apotheosis 8.8.0. Integrações externas devem usar registry/operations do provider, não duplicar pipeline.
 - **Sobreposição:** Sobreposição conceitual com Additional Attributes/Pufferfish's Attributes, mas contratos, registry ids e pipelines são distintos. Não substituir atributos Apothic por equivalentes nominais sem bridge real.
-- **Observações:** mod id: apothic_attributes; runtime 2.10.1. A linha 2.10.x inclui sistema unificado de cooldown/cooldown_reduction e JEI exclusion zones da Attributes GUI. O corpo da página registra mudanças relevantes, boundaries e testes.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Comportamento: source e changelog oficiais do branch 1.21 + CurseForge 2.10.1. Contexto local: guias consolidados de Gameplay e Magia.
+- **Compatibilidade/Riscos:** Grande área de double-processing com outros providers de atributos/combate. Não duplicar crit, armor/protection pierce/shred, life steal, overheal ou cooldown reduction em handlers paralelos. Curios só é fonte quando slots/modifiers estão registrados corretamente; respeitar tags atuais de dano físico/não físico.
+- **Observações:** mod id: `apothic_attributes`; runtime 2.10.1. A linha 2.10.x inclui sistema unificado de cooldown/cooldown_reduction e JEI exclusion zones da Attributes GUI. O corpo da página registra mudanças relevantes, boundaries e testes.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/source/changelog oficiais Apothic Attributes 2.10.1 + dossiê operacional existente.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-attributes
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 2.10.1, attribute/damage/cooldown authority, Placebo 9.9.2 + Apotheosis 8.8.0 context and anti-double-processing gates confirmed in global QC #34. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita com changelog 1.21 da versão instalada. A presença de outros mods de atributos não torna Apothic Attributes redundante: ele é dependência estrutural e provider do pipeline Apothic.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: ApothicAttributes-1.21.1-2.10.1.jar. Dossiê exaustivo com catálogo de atributos registrados, mob effects, damage types/tags, critical pipeline, armor/protection pierce/shred, life steal/overheal, auxiliary damage, cooldown 2.10.x, Curios/equipment-slot integration, boundaries, anti-double-processing e testes.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > 📚 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Esta página documenta o runtime físico `ApothicAttributes-1.21.1-2.10.1.jar`, mod id `apothic_attributes`, em NeoForge 1.21.1. O inventário abaixo foi reconstruído contra o registro/API e changelog da linha 1.21, distinguindo **atributos registrados, efeitos, damage types, GUI/API, integração e riscos de pipeline**. Não trate esta página como mera descrição de biblioteca.
 
@@ -41,7 +39,6 @@
 - **Decisão:** **Manter**.
 
 ## 2. Catálogo completo de atributos registrados
-
 > Valores abaixo são os defaults/ranges declarados pelo registro da linha 1.21 auditada. Eles descrevem o contrato do atributo; configs/modifiers podem alterar o valor efetivo do jogador.
 
 | Registry id | Base / faixa | Semântica operacional |
@@ -76,7 +73,6 @@
 - Não converter um no outro nem aplicar ambos uma segunda vez em evento externo.
 
 ## 3. Catálogo completo de mob effects registrados
-
 | Efeito | Semântica confirmada no source |
 | --- | --- |
 | **Bleeding** | Causa dano periódico que ignora armor. O dano cresce com o nível do efeito; a cadência do runtime é aproximadamente a cada 2 segundos. |
@@ -162,7 +158,6 @@ A API `EntityEquipmentSlot` permite representar fontes de equipamento além dos 
 - remova modifiers pela identidade estável do sistema de atributos, não pelo texto exibido.
 
 ## 12. Integrações do pack
-
 ### Apotheosis / módulos Apothic
 É o principal consumidor estrutural. Affixes, gems e equipamentos podem conceder atributos registrados aqui.
 
@@ -206,7 +201,6 @@ Fonte de modifiers/equipment slots quando a integração está presente.
 - integração específica com `ghost_health` sem confirmar semântica real.
 
 ## 16. Matriz de validação
-
 ### Atributos
 - testar cada um dos 22 registry ids com modifier controlado;
 - confirmar clamp/range e remoção idempotente;
