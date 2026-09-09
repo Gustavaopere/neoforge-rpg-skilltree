@@ -1,32 +1,30 @@
 # Apothic Compats
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81f9a8f3dbba4d755acb  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81f9a8f3dbba4d755acb
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Apothic Compats
 - **Arquivo JAR:** `apothic_compats-0.2.4.2.jar`
-- **Versão 1.21.1:** `0.2.4.2`
-- **Categoria:** Compat; RPG
-- **Decisão:** Manter
+- **Versão 1.21.1:** 0.2.4.2
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-compats
+- **Decisão:** Manter
+- **Categoria:** Compat, RPG
 - **Função:** Pacote data-driven de compatibilidade para o ecossistema Apotheosis/Apothic: adiciona, conforme o mod-alvo, affixed loot entries, gear sets, invaders, affixes, gems, loot categories, enchanting stats e regras específicas de affixability. Não é um segundo provider de affixes/gems.
 - **Dependências:** Stack Apotheosis/Apothic correspondente; cada compat efetiva exige o mod-alvo presente. Ancient Reforging é suporte opcional upstream. Validar providers individualmente após updates.
-- **Compatibilidade/Riscos:** Risco principal é drift de datapack após updates dos mods-alvo. A 0.2.4.2 foi atualizada para Apotheosis 8.6.0 e versões recentes dos providers, mas o próprio changelog avisa que algumas integrações ainda requerem touch-up. Evitar datapacks locais que dupliquem loot categories, affixed loot, gems ou invaders já fornecidos.
 - **Sobreposição:** Complementar ao Apothic Category Compat. Category Compat trata roteamento/categorias; Apothic Compats entrega datapacks de integração com terceiros. Também não substitui Apotheosis, Apothic Attributes, Enchanting ou Spawners.
-- **Observações:** mod id: apothic_compats; runtime name: Apothic Compats. O corpo da página lista tipos de compatibilidade, providers relevantes ao pack, boundaries com os demais módulos Apothic, riscos de drift e matriz de teste.
-- **Procedência:** Runtime/JAR: modlist física auditada em 07/09/2026. Conteúdo e suporte: CurseForge oficial Apothic Compats + changelog 0.2.4.2. Arquitetura local: guia consolidado de Magia 07/09/2026.
+- **Compatibilidade/Riscos:** Risco principal é drift de datapack após updates dos mods-alvo. A 0.2.4.2 foi atualizada para Apotheosis 8.6.0 e versões recentes dos providers, mas o próprio changelog avisa que algumas integrações ainda requerem touch-up. Evitar datapacks locais que dupliquem loot categories, affixed loot, gems ou invaders já fornecidos.
+- **Observações:** mod id `apothic_compats`, runtime 0.2.4.2. O suporte upstream a AE2 permanece documentado, porém AE2 está ausente da modlist física atual; essa compat está dormente. O estado anterior `Integrado ao Github` não foi descartado: a normalização atual refere-se ao fechamento documental do dossiê.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Apothic Compats 0.2.4.2 + dossiê data-driven existente.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-compats
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 0.2.4.2, datapack compats, provider-conditioned integrations, AE2 absence and anti-duplication boundaries confirmed in global QC #33. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita como dossiê operacional. O pack contém vários providers cobertos explicitamente por Apothic Compats, tornando o módulo útil como camada data-driven de compatibilidade; não confundir com Apothic Category Compat.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: apothic_compats-0.2.4.2.jar / 0.2.4.2. Dossiê exaustivo em nível data-driven: tipos de compat, providers suportados relevantes ao pack, affixed loot/gear sets/invaders/affixes/gems/loot categories/enchanting stats/affixability, boundaries com demais módulos Apothic, drift de datapack, double classification/loot e matriz de validação.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > 🔗 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Esta ficha documenta `apothic_compats-0.2.4.2.jar`, mod id `apothic_compats`, no runtime NeoForge 1.21.1. O inventário separa tipos de datapack, providers suportados, integrações efetivamente relevantes ao pack, boundaries com Category Compat/Attributes/Enchanting/Spawners, drift de versões e anti-duplicação. É uma **camada de compatibilidade data-driven**, não um segundo sistema de affixes, gems ou progressão.
 
@@ -61,7 +59,7 @@ Dependendo do mod, o pacote pode adicionar:
 ## 4. Compatibilidades upstream relevantes ao pack
 A página oficial da versão 1.21.1 declara, entre outras, as seguintes integrações que cruzam diretamente com sistemas usados no pack:
 - **Amendments:** skull piles e skull candles recebem enchanting stats.
-- **Applied Energistics 2:** affixed loot entries e gear sets.
+- **Applied Energistics 2:** o suporte upstream existe para affixed loot entries e gear sets, porém **AE2 está ausente do snapshot físico atual de 08/09/2026**; portanto esta integração está dormente nesta instância.
 - **Alex's Caves:** invaders.
 - **Alex's Mobs:** invaders.
 - **Ars Nouveau:** affixed loot entries, affixes, gear sets, uma gem, invaders e suporte a focus curios.
@@ -108,12 +106,12 @@ A sobreposição aparente com Apothic Category Compat é apenas temática. Categ
 ## 9. Matriz mínima de teste
 - inicialização cliente e dedicated server sem erros de datapack;
 - reload de datapacks sem conflitos/duplicate keys;
-- validar exemplos de AE2, Ars Nouveau, Create, Curios, Malum e mobs suportados presentes;
+- validar exemplos de Ars Nouveau, Create, Curios, Malum e mobs suportados presentes; se AE2 voltar ao pack, validar affixed loot/gear sets dessa integração em lote próprio;
 - verificar que itens externos recebem **uma** categoria/affix path coerente, não duas;
 - testar loot/invaders em amostra controlada e confirmar ausência de duplicação;
 - repetir após updates de Apotheosis ou de qualquer provider coberto.
 
 ## 10. Fontes
-- CurseForge — Apothic Compats: https://www.curseforge.com/minecraft/mc-mods/apothic-compats
-- Arquivo 0.2.4.2 / changelog: https://www.curseforge.com/minecraft/mc-mods/apothic-compats/files/8483936
+- [CurseForge — Apothic Compats](https://www.curseforge.com/minecraft/mc-mods/apothic-compats)
+- Arquivo 0.2.4.2 / changelog oficial.
 - Modlist física do projeto — authority do JAR e runtime instalados.
