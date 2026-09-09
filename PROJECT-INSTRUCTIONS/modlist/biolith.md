@@ -1,32 +1,32 @@
 # Biolith
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db8186996efaf07992a7de  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db8186996efaf07992a7de
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Biolith
 - **Arquivo JAR:** `biolith-neoforge-3.0.14.jar`
-- **Versão 1.21.1:** `3.0.14`
-- **Categoria:** Biblioteca; Worldgen
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 3.0.14
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/biolith
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca, Worldgen
 - **Função:** API de worldgen para placement/removal/replacement/sub-biomes e surface rules, permitindo integração de biomas em Overworld, Nether, End e biome sources compatíveis.
 - **Dependências:** Biblioteca estrutural de worldgen; necessidade determinada pelos consumidores. Pack também possui BCLib 21.0.26 e TerraBlender 4.1.0.8; coexistência é suportada em cenários documentados, sem equivalência de API.
-- **Compatibilidade/Riscos:** Placement strategies podem mover biomas em mundos existentes após mudanças; riscos de chunk borders, datapack reload, conflitos de biome source/surface rules e interações com BCLib/TerraBlender. 3.0.14 muda o carregamento de datapacks na linha 1.21.1.
 - **Sobreposição:** Infraestrutura de biome/worldgen; não substitui automaticamente BCLib, TerraBlender ou Lithostitched. Pode coexistir quando mods consumidores usam APIs distintas.
+- **Compatibilidade/Riscos:** Placement strategies podem mover biomas em mundos existentes após mudanças; riscos de chunk borders, datapack reload, conflitos de biome source/surface rules e interações com BCLib/TerraBlender. 3.0.14 muda o carregamento de datapacks na linha 1.21.1.
 - **Observações:** v3.0.14 1.21.1: 'Load datapacks like we do in 1.21.4+'. API documenta add/remove/replace biomes, sub-biomes, End custom noise, custom surface rules/builders; compat TerraBlender e compat parcial BCLib.
-- **Procedência:** Modlist física atual de 07/09/2026 + GitHub/Modrinth/CurseForge oficiais Biolith v3.0.14, release commit 996b7a4.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Biolith 3.0.14 como infraestrutura de biome placement/surface rules e preservou os riscos de chunk seams, datapack lifecycle e coexistência com BCLib/TerraBlender. A dependência física não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — placement API, datapack/surface lifecycle, compatibilidade de biome sources e riscos de mundo existente catalogados.
-- **Data da última decisão:** não definida.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + GitHub/Modrinth/CurseForge oficiais Biolith v3.0.14, release commit 996b7a4.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/biolith
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Biolith 3.0.14 físico/release confirmado; biome placement, datapack/surface-rule lifecycle e coexistência com BCLib/TerraBlender preservados. Runtime/worldgen QA não executado.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Biolith 3.0.14 foi reconfirmado como infraestrutura de biome placement/surface rules. Em 09/09/2026, a versão física e o boundary com BCLib/TerraBlender foram revalidados sem inferir decisão curatorial.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `biolith-neoforge-3.0.14.jar`, mod id `biolith`, runtime `3.0.14`, NeoForge 1.21.1. Release oficial v3.0.14 corresponde ao commit `996b7a4` e altera o carregamento de datapacks da linha 1.21.1 para o modelo usado em 1.21.4+.
 
