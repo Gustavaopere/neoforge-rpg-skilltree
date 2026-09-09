@@ -1,32 +1,32 @@
 # BjornLib
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81d98d6ec39cc94db94f  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81d98d6ec39cc94db94f
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** BjornLib
 - **Arquivo JAR:** `bjornlib-neoforge-1.0.88-1.21.1.jar`
-- **Versão 1.21.1:** `1.0.88`
-- **Categoria:** Biblioteca
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 1.0.88
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bjornlib
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca
 - **Função:** Biblioteca compartilhada com Ability Registry/events, Particle Builder com glowing rendering/default particles, Lightning Builder e Leveling Builder para mobs, usada por mods do autor.
 - **Dependências:** Biblioteca de infraestrutura; necessidade determinada pelos consumidores que a declaram. Não é substituível automaticamente por outra library.
-- **Compatibilidade/Riscos:** APIs de ability/event/particle/lightning/leveling podem ser usadas por gameplay e render; riscos de event duplication, client/server authority incorreta, entity state órfão e consumer incompatível após update.
 - **Sobreposição:** Biblioteca técnica específica. APIs conceitualmente parecidas em outras libs não são substitutas binárias dos consumidores BjornLib.
+- **Compatibilidade/Riscos:** APIs de ability/event/particle/lightning/leveling podem ser usadas por gameplay e render; riscos de event duplication, client/server authority incorreta, entity state órfão e consumer incompatível após update.
 - **Observações:** Descrição oficial confirma Ability Registry + events, Particle Builder com glowing rendering/default particles, Lightning Builder e Leveling Builder para mobs. Nenhuma classe interna adicional foi inventada além das superfícies publicadas.
-- **Procedência:** Modlist física atual de 07/09/2026 + CurseForge oficial BjornLib e arquivo NeoForge 1.21.1 1.0.88.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou BjornLib 1.0.88 como biblioteca estrutural, com Ability Registry/events, Particle Builder, Lightning Builder e Leveling Builder documentados sem extrapolar APIs internas. A presença física não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — ability/events, particles, lightning, mob leveling, side/lifecycle e riscos de library catalogados de forma fail-closed.
-- **Data da última decisão:** não definida.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial BjornLib + arquivo NeoForge 1.21.1 1.0.88.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bjornlib
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BjornLib 1.0.88 físico/release confirmado; Ability Registry/events, Particle Builder, Lightning Builder e Leveling Builder preservados de forma fail-closed. Runtime QA não executado.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, BjornLib 1.0.88 foi reconfirmado como biblioteca estrutural. Em 09/09/2026, a versão física e as quatro superfícies públicas documentadas foram revalidadas sem inferir decisão curatorial.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `bjornlib-neoforge-1.0.88-1.21.1.jar`, mod id `bjornlib`, runtime `1.0.88`, NeoForge 1.21.1. O projeto oficial define BjornLib como biblioteca de código genérico para os mods do autor.
 
