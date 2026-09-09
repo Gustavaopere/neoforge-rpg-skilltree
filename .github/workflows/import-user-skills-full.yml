@@ -6,7 +6,6 @@ on:
       - chore/import-user-minecraft-skills-full
     paths:
       - '.github/workflows/import-user-skills-full.yml'
-      - '.skill-import/**'
 
 permissions:
   contents: write
@@ -22,87 +21,38 @@ jobs:
           ref: chore/import-user-minecraft-skills-full
           fetch-depth: 0
 
-      - name: Reconstruct staged bundle uniquely and validate archive
+      - name: Reconstruct exact staged bundle
         shell: bash
         run: |
           set -euo pipefail
-          test -d .skill-import
           python3 - <<'PY'
           from pathlib import Path, PurePosixPath
-          import base64, binascii, gzip, io, itertools, tarfile
-
-          parts=sorted(Path('.skill-import').glob('part-*.b64'))
-          if not parts:
-              raise SystemExit('no staged parts found')
-          chunks=[]
-          allowed=set('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=')
-          for p in parts:
-              raw=p.read_text(encoding='utf-8-sig')
-              compact=''.join(raw.split())
-              bad=sorted(set(compact)-allowed)
-              if bad:
-                  raise SystemExit(f'{p.name}: non-base64 characters {bad!r}')
-              chunks.append(compact)
-
-          # Show containment evidence so overlapping staging commits remain auditable.
-          for i,a in enumerate(chunks):
-              for j,b in enumerate(chunks):
-                  if i != j and len(a) <= len(b):
-                      pos=b.find(a)
-                      if pos >= 0:
-                          print(f'CONTAINED {parts[i].name} in {parts[j].name} at {pos}')
-
-          def inspect_archive(encoded):
-              padded=encoded + '='*((-len(encoded)) % 4)
-              try:
-                  raw=base64.b64decode(padded, validate=True)
-                  data=gzip.decompress(raw)
-                  tf=tarfile.open(fileobj=io.BytesIO(data), mode='r:')
-                  names=tf.getnames()
-              except (binascii.Error, OSError, EOFError, tarfile.TarError, ValueError):
-                  return None
-              bad=[]
-              for name in names:
-                  pp=PurePosixPath(name)
-                  if pp.is_absolute() or '..' in pp.parts:
-                      bad.append(name)
-              if bad:
-                  raise SystemExit('unsafe archive paths: '+repr(bad[:20]))
-              skill_dirs=set()
-              for name in names:
-                  pp=PurePosixPath(name)
-                  if pp.name == 'SKILL.md':
-                      skill_dirs.add(str(pp.parent))
-              return raw, names, skill_dirs
-
-          winners=[]
-          # The staging branch was written chronologically. Search all ordered subsets;
-          # this safely handles superseded/duplicated chunks without guessing bytes.
-          for mask in range(1, 1 << len(chunks)):
-              if not (mask & 1):
-                  continue
-              selected=[i for i in range(len(chunks)) if mask & (1 << i)]
-              encoded=''.join(chunks[i] for i in selected)
-              result=inspect_archive(encoded)
-              if result is None:
-                  continue
-              raw,names,skill_dirs=result
-              if len(skill_dirs) == 20:
-                  winners.append((selected,raw,names,skill_dirs))
-                  print('VALID CANDIDATE', [parts[i].name for i in selected], 'members', len(names), 'skills', len(skill_dirs))
-
-          if len(winners) != 1:
-              raise SystemExit(f'expected exactly one valid 20-skill reconstruction, found {len(winners)}')
-
-          selected,raw,names,skill_dirs=winners[0]
+          import base64, gzip, io, tarfile
+          parts=[Path(f'.skill-import/part-{i:03d}.b64') for i in range(14)]
+          missing=[str(p) for p in parts if not p.is_file()]
+          if missing:
+              raise SystemExit('missing staged parts: '+repr(missing))
+          encoded=''.join(''.join(p.read_text(encoding='utf-8-sig').split()) for p in parts)
+          raw=base64.b64decode(encoded, validate=True)
+          data=gzip.decompress(raw)
+          tf=tarfile.open(fileobj=io.BytesIO(data), mode='r:')
+          names=tf.getnames()
+          bad=[]
+          skill_dirs=set()
+          for name in names:
+              pp=PurePosixPath(name)
+              if pp.is_absolute() or '..' in pp.parts:
+                  bad.append(name)
+              if pp.name == 'SKILL.md':
+                  skill_dirs.add(str(pp.parent))
+          if bad:
+              raise SystemExit('unsafe archive paths: '+repr(bad[:20]))
+          if len(skill_dirs) != 20:
+              raise SystemExit(f'expected 20 skill dirs, got {len(skill_dirs)}')
           Path('/tmp/fullskills.tar.gz').write_bytes(raw)
-          Path('/tmp/fullskills.lst').write_text('\n'.join(names)+'\n', encoding='utf-8')
-          Path('/tmp/reconstruction.txt').write_text('\n'.join(parts[i].name for i in selected)+'\n', encoding='utf-8')
-          print('SELECTED', [parts[i].name for i in selected])
-          print('SKILL DIRS', sorted(skill_dirs))
+          print('archive members',len(names),'skill dirs',len(skill_dirs))
           PY
           gzip -t /tmp/fullskills.tar.gz
-          tar -tzf /tmp/fullskills.tar.gz >/dev/null
 
       - name: Extract into canonical skill library
         shell: bash
@@ -111,69 +61,57 @@ jobs:
           rm -rf /tmp/fullskills
           mkdir -p /tmp/fullskills
           tar -xzf /tmp/fullskills.tar.gz -C /tmp/fullskills
-          mkdir -p PROJECT-INSTRUCTIONS/skills/library
-
           python3 - <<'PY'
           from pathlib import Path
           import shutil
-
           root=Path('/tmp/fullskills')
-          candidates=[]
-          for skill_md in root.rglob('SKILL.md'):
-              candidates.append(skill_md.parent)
-          unique={p.resolve():p for p in candidates}
-          candidates=sorted(unique.values(), key=lambda p:p.name)
-          if len(candidates) != 20:
-              raise SystemExit(f'expected exactly 20 extracted skills, found {len(candidates)}: {[p.name for p in candidates]}')
-          if len({p.name for p in candidates}) != 20:
-              raise SystemExit('duplicate skill directory names in archive')
-
+          candidates=sorted({p.parent.resolve():p.parent for p in root.rglob('SKILL.md')}.values(), key=lambda p:p.name)
+          if len(candidates)!=20 or len({p.name for p in candidates})!=20:
+              raise SystemExit(f'expected 20 unique skills, got {[p.name for p in candidates]}')
           dst=Path('PROJECT-INSTRUCTIONS/skills/library')
+          dst.mkdir(parents=True,exist_ok=True)
           for skill in candidates:
               target=dst/skill.name
-              target.mkdir(parents=True, exist_ok=True)
+              target.mkdir(parents=True,exist_ok=True)
               for item in skill.rglob('*'):
                   rel=item.relative_to(skill)
                   out=target/rel
-                  if item.is_dir():
-                      out.mkdir(parents=True, exist_ok=True)
+                  if item.is_dir(): out.mkdir(parents=True,exist_ok=True)
                   elif item.is_file():
-                      out.parent.mkdir(parents=True, exist_ok=True)
+                      out.parent.mkdir(parents=True,exist_ok=True)
                       shutil.copy2(item,out)
-          Path('/tmp/imported-skills.txt').write_text('\n'.join(p.name for p in candidates)+'\n', encoding='utf-8')
+          Path('/tmp/imported-skills.txt').write_text('\n'.join(p.name for p in candidates)+'\n',encoding='utf-8')
           PY
 
-      - name: Validate complete skill payloads
+      - name: Validate imported payloads
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          names=[x.strip() for x in Path('/tmp/imported-skills.txt').read_text(encoding='utf-8').splitlines() if x.strip()]
+          names=[x for x in Path('/tmp/imported-skills.txt').read_text().splitlines() if x]
           root=Path('PROJECT-INSTRUCTIONS/skills/library')
-          errors=[]
           rows=[]
+          total=0
           for name in names:
               d=root/name
-              skill=d/'SKILL.md'
-              if not skill.is_file() or skill.stat().st_size == 0:
-                  errors.append(f'{name}: missing/empty SKILL.md')
-              files=[p for p in d.rglob('*') if p.is_file()]
+              files=[p for p in d.rglob('*') if p.is_file() and p.name!='PROJECT-OVERLAY.md']
+              if not (d/'SKILL.md').is_file(): raise SystemExit(f'{name}: missing SKILL.md')
+              total += len(files)
               rows.append((name,len(files),sum(p.stat().st_size for p in files)))
-          if len(names)!=20:
-              errors.append(f'expected 20 names, got {len(names)}')
-          if errors:
-              raise SystemExit('\n'.join(errors))
-          recon=Path('/tmp/reconstruction.txt').read_text(encoding='utf-8').strip().replace('\n', ', ')
-          report=['# Full user skill bundle import','',f'- Imported skills: **{len(names)}**',f'- Reconstructed staged parts: `{recon}`','', '| Skill | Files | Bytes |','|---|---:|---:|']
+          if len(names)!=20: raise SystemExit(f'expected 20 skills, got {len(names)}')
+          if total!=142: raise SystemExit(f'expected 142 source files, got {total}')
+          report=['# Full user skill bundle import','',f'- Imported skills: **{len(names)}**',f'- Source files validated: **{total}/142**','', '| Skill | Source files | Bytes |','|---|---:|---:|']
           report += [f'| `{n}` | {fc} | {sz} |' for n,fc,sz in rows]
-          report += ['', '> Generated from the staged user-provided bundle. Project overlays remain separate from source skill payloads.','']
-          Path('PROJECT-INSTRUCTIONS/skills/FULL-USER-SKILL-IMPORT.md').write_text('\n'.join(report), encoding='utf-8')
+          report += ['', '> The user-provided source payload is preserved; project-specific overlays remain separate as `PROJECT-OVERLAY.md`.','']
+          Path('PROJECT-INSTRUCTIONS/skills/FULL-USER-SKILL-IMPORT.md').write_text('\n'.join(report),encoding='utf-8')
           PY
 
-      - name: Remove staging payload
+      - name: Remove staging and importer
         shell: bash
-        run: rm -rf .skill-import
+        run: |
+          rm -rf .skill-import
+          rm -f .github/workflows/import-user-skills-full.yml
 
       - name: Commit imported skill bundle
         shell: bash
@@ -181,10 +119,6 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add PROJECT-INSTRUCTIONS/skills/library PROJECT-INSTRUCTIONS/skills/FULL-USER-SKILL-IMPORT.md .skill-import
-          if git diff --cached --quiet; then
-            echo 'No import changes to commit.'
-            exit 0
-          fi
+          git add -A PROJECT-INSTRUCTIONS/skills/library PROJECT-INSTRUCTIONS/skills/FULL-USER-SKILL-IMPORT.md .skill-import .github/workflows/import-user-skills-full.yml
           git commit -m 'chore(skills): import full user-provided skill bundles'
           git push origin HEAD:chore/import-user-minecraft-skills-full
