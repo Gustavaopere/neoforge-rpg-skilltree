@@ -1,11 +1,15 @@
-(function (root, factory) {
+(function (root, nativeRequire, factory) {
   'use strict';
-  const api = factory();
+  const api = factory(nativeRequire);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root && root.Plugin && root.Action && root.MenuBar && root.Blockbench) api.registerBlockbenchPlugin(root);
-})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+})(
+  typeof globalThis !== 'undefined' ? globalThis : this,
+  typeof require === 'function' ? require : null,
+  function (nativeRequire) {
   'use strict';
 
+  const nativeModuleAllowlist = new Set(["node:crypto"]);
   const modules = {
     "core/project-model/project_model.js": function(module, exports, require) {
       'use strict';
@@ -580,6 +584,674 @@
         physical,
       );
     },
+    "live-bridge/protocol.js": function(module, exports, require) {
+      'use strict';
+      
+      const PROTOCOL_VERSION = '1.0.0';
+      const MAX_MESSAGE_BYTES = 64 * 1024;
+      
+      const READ_ONLY_METHODS = Object.freeze([
+        'blockbench.get_status',
+        'blockbench.get_capabilities',
+        'blockbench.get_project',
+        'blockbench.get_scene_graph',
+        'blockbench.get_selection',
+        'blockbench.get_bones',
+        'blockbench.get_elements',
+        'blockbench.get_textures',
+        'blockbench.get_animations',
+        'blockbench.get_animation',
+        'blockbench.compute_bounds',
+        'blockbench.validate',
+        'blockbench.validate_contract',
+        'blockbench.extensions.list',
+        'blockbench.extensions.get',
+        'blockbench.extensions.get_fingerprint',
+        'blockbench.extensions.check_compatibility',
+        'blockbench.profiles.list',
+        'blockbench.profiles.get',
+        'blockbench.profiles.resolve_for_asset',
+      ]);
+      
+      const READ_ONLY_METHOD_SET = new Set(READ_ONLY_METHODS);
+      
+      function bridgeError(code, message = code) {
+        const error = new Error(`${code}: ${message}`);
+        error.code = code;
+        return error;
+      }
+      
+      function assertLoopbackHost(host) {
+        if (host === '::1') return host;
+        if (typeof host === 'string') {
+          const parts = host.split('.');
+          if (parts.length === 4 && parts[0] === '127' && parts.every((part) => /^\d{1,3}$/.test(part) && Number(part) >= 0 && Number(part) <= 255)) return host;
+        }
+        throw bridgeError('LOOPBACK_REQUIRED', 'bridge transport must bind to a numeric loopback address');
+      }
+      
+      function validateEnvelope(value) {
+        if (!value || typeof value !== 'object' || Array.isArray(value)) throw bridgeError('MALFORMED_MESSAGE');
+        for (const key of ['protocolVersion', 'sessionId', 'token', 'requestId', 'method']) {
+          if (typeof value[key] !== 'string' || !value[key]) throw bridgeError('MALFORMED_MESSAGE', `missing ${key}`);
+        }
+        if (!/^[0-9a-f]{32}$/i.test(value.sessionId)) throw bridgeError('MALFORMED_MESSAGE', 'invalid sessionId');
+        if (!/^[0-9a-f]{64}$/i.test(value.token)) throw bridgeError('MALFORMED_MESSAGE', 'invalid token');
+        if (value.requestId.length > 128) throw bridgeError('MALFORMED_MESSAGE', 'requestId too long');
+        if (!READ_ONLY_METHOD_SET.has(value.method)) throw bridgeError('METHOD_NOT_ALLOWED', value.method);
+        if (value.params === undefined) value.params = {};
+        if (!value.params || typeof value.params !== 'object' || Array.isArray(value.params)) throw bridgeError('MALFORMED_MESSAGE', 'params must be an object');
+        return value;
+      }
+      
+      function parseEnvelope(raw) {
+        const text = Buffer.isBuffer(raw) ? raw.toString('utf8') : String(raw);
+        if (Buffer.byteLength(text, 'utf8') > MAX_MESSAGE_BYTES) throw bridgeError('MESSAGE_TOO_LARGE');
+        let value;
+        try { value = JSON.parse(text); }
+        catch (_) { throw bridgeError('MALFORMED_MESSAGE', 'invalid JSON'); }
+        return validateEnvelope(value);
+      }
+      
+      module.exports = {
+        PROTOCOL_VERSION,
+        MAX_MESSAGE_BYTES,
+        READ_ONLY_METHODS,
+        bridgeError,
+        assertLoopbackHost,
+        validateEnvelope,
+        parseEnvelope,
+      };
+    },
+    "live-bridge/project_snapshot.js": function(module, exports, require) {
+      'use strict';
+      
+      const crypto = require('node:crypto');
+      
+      function vec(value) { return Array.isArray(value) ? value.slice(0, 3).map((entry) => Number.isFinite(entry) ? entry : null) : null; }
+      function parentRef(value) { return value && typeof value === 'object' ? (value.uuid || value.name || null) : (typeof value === 'string' ? value : null); }
+      function sourceFile(savePath) {
+        if (typeof savePath !== 'string' || !savePath) return null;
+        return savePath.replace(/\\/g, '/').split('/').filter(Boolean).pop() || null;
+      }
+      function canonical(value) {
+        if (Array.isArray(value)) return value.map(canonical);
+        if (value && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonical(value[key])]));
+        return value;
+      }
+      function hashRevision(value) { return `sha256:${crypto.createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex')}`; }
+      
+      function groupSnapshot(group) {
+        return {name: group?.name || null, uuid: group?.uuid || null, origin: vec(group?.origin), parent: parentRef(group?.parent)};
+      }
+      function faceSnapshot(face) { return {enabled: face?.enabled !== false, texture: typeof face?.texture === 'string' ? face.texture : null, uv: Array.isArray(face?.uv) ? face.uv.slice(0, 4) : null}; }
+      function elementSnapshot(element) {
+        const faces = element?.faces && typeof element.faces === 'object' ? Object.fromEntries(Object.keys(element.faces).sort().map((key) => [key, faceSnapshot(element.faces[key])])) : {};
+        return {name: element?.name || null, uuid: element?.uuid || null, from: vec(element?.from), to: vec(element?.to), origin: vec(element?.origin), parent: parentRef(element?.parent), faces};
+      }
+      function textureSnapshot(texture) { return {name: texture?.name || null, uuid: texture?.uuid || null, width: Number.isFinite(texture?.width) ? texture.width : null, height: Number.isFinite(texture?.height) ? texture.height : null}; }
+      function animationSnapshot(animation) {
+        return {name: animation?.name || null, uuid: animation?.uuid || null, length: Number.isFinite(animation?.length) ? animation.length : null, loop: animation?.loop || null, animatorTargets: animation?.animators && typeof animation.animators === 'object' ? Object.keys(animation.animators).sort() : []};
+      }
+      
+      function createProjectSnapshot(project) {
+        const input = project && typeof project === 'object' ? project : {};
+        const body = {
+          name: input.name || null,
+          projectFormat: input.format && typeof input.format === 'object' ? input.format.id || null : input.format || null,
+          sourceFile: sourceFile(input.save_path),
+          saved: typeof input.save_path === 'string' && input.save_path.length > 0,
+          groups: (Array.isArray(input.groups) ? input.groups : []).map(groupSnapshot),
+          elements: (Array.isArray(input.elements) ? input.elements : []).map(elementSnapshot),
+          textures: (Array.isArray(input.textures) ? input.textures : []).map(textureSnapshot),
+          animations: (Array.isArray(input.animations) ? input.animations : []).map(animationSnapshot),
+          selection: (Array.isArray(input.selected_elements) ? input.selected_elements : []).map((entry) => entry?.uuid || entry?.name || null).filter(Boolean),
+        };
+        return Object.freeze({...body, projectRevision: hashRevision(body)});
+      }
+      
+      module.exports = {createProjectSnapshot, hashRevision};
+    },
+    "live-bridge/fingerprint.js": function(module, exports, require) {
+      'use strict';
+      
+      const {bridgeError} = require('./protocol.js');
+      
+      function requiredString(value, field) {
+        if (typeof value !== 'string' || !value.trim() || value.length > 256) throw bridgeError('INVALID_FINGERPRINT', field);
+        return value.trim();
+      }
+      
+      function boundedEntries(entries, idKey, versionKey) {
+        if (!Array.isArray(entries) || entries.length > 256) throw bridgeError('INVALID_FINGERPRINT', `${idKey} entries`);
+        return entries.map((entry) => ({
+          [idKey]: requiredString(entry && entry[idKey], idKey),
+          [versionKey]: requiredString(entry && entry[versionKey], versionKey),
+        }));
+      }
+      
+      function buildSessionFingerprint(input = {}) {
+        return Object.freeze({
+          minecraft_version: requiredString(input.minecraftVersion, 'minecraft_version'),
+          loader: requiredString(input.loader, 'loader'),
+          java_version: requiredString(input.javaVersion, 'java_version'),
+          blockbench_version: requiredString(input.blockbenchVersion, 'blockbench_version'),
+          toolkit_version: requiredString(input.toolkitVersion, 'toolkit_version'),
+          protocol_version: requiredString(input.protocolVersion, 'protocol_version'),
+          installed_extensions: boundedEntries(input.installedExtensions || [], 'pluginId', 'pluginVersion'),
+          physical_providers: boundedEntries(input.physicalProviders || [], 'modId', 'modVersion'),
+          active_provider_profile: requiredString(input.activeProviderProfile, 'active_provider_profile'),
+          project_format: requiredString(input.projectFormat, 'project_format'),
+          project_revision: requiredString(input.projectRevision, 'project_revision'),
+        });
+      }
+      
+      module.exports = {buildSessionFingerprint};
+    },
+    "live-bridge/read_only_router.js": function(module, exports, require) {
+      'use strict';
+      
+      const core = require('../core/index.js');
+      const {PROTOCOL_VERSION, READ_ONLY_METHODS, bridgeError} = require('./protocol.js');
+      const {createProjectSnapshot} = require('./project_snapshot.js');
+      
+      function clone(value) { return value == null ? value : JSON.parse(JSON.stringify(value)); }
+      
+      function createReadOnlyRouter(options = {}) {
+        const getProject = typeof options.getProject === 'function' ? options.getProject : () => ({});
+        const getBlockbenchVersion = typeof options.getBlockbenchVersion === 'function' ? options.getBlockbenchVersion : () => 'UNKNOWN';
+        const getInstalledExtensions = typeof options.getInstalledExtensions === 'function' ? options.getInstalledExtensions : () => [];
+        const getAuthorizedExtensionIds = typeof options.getMcpAuthorizedExtensionIds === 'function' ? options.getMcpAuthorizedExtensionIds : () => [];
+        const activeProviderProfile = typeof options.activeProviderProfile === 'function' ? options.activeProviderProfile : () => null;
+        const physicalProviders = options.physicalProviders || {};
+      
+        function context() {
+          return {
+            blockbenchVersion: getBlockbenchVersion(),
+            installedExtensions: getInstalledExtensions(),
+            mcpAuthorizedExtensionIds: getAuthorizedExtensionIds(),
+            physicalProviders,
+          };
+        }
+      
+        async function call(method, params = {}) {
+          if (!READ_ONLY_METHODS.includes(method)) throw bridgeError('METHOD_NOT_ALLOWED', method);
+          const project = getProject() || {};
+          const snapshot = createProjectSnapshot(project);
+          const ctx = context();
+          switch (method) {
+            case 'blockbench.get_status': return {connected: true, readOnly: true, protocolVersion: PROTOCOL_VERSION, blockbenchVersion: ctx.blockbenchVersion, projectRevision: snapshot.projectRevision, activeProviderProfile: activeProviderProfile()};
+            case 'blockbench.get_capabilities': return {readOnly: true, methods: [...READ_ONLY_METHODS], protocolVersion: PROTOCOL_VERSION};
+            case 'blockbench.get_project': return snapshot;
+            case 'blockbench.get_scene_graph': return {groups: snapshot.groups, elements: snapshot.elements, projectRevision: snapshot.projectRevision};
+            case 'blockbench.get_selection': return {selection: snapshot.selection, projectRevision: snapshot.projectRevision};
+            case 'blockbench.get_bones': return snapshot.groups;
+            case 'blockbench.get_elements': return snapshot.elements;
+            case 'blockbench.get_textures': return snapshot.textures;
+            case 'blockbench.get_animations': return snapshot.animations;
+            case 'blockbench.get_animation': {
+              const target = typeof params.animationId === 'string' ? params.animationId : (typeof params.name === 'string' ? params.name : '');
+              return snapshot.animations.find((entry) => entry.uuid === target || entry.name === target) || null;
+            }
+            case 'blockbench.compute_bounds': return core.computeBounds(Array.isArray(project.elements) ? project.elements : []);
+            case 'blockbench.validate': return core.validateProject(project, {});
+            case 'blockbench.validate_contract': return core.validateProject(project, params.profile && typeof params.profile === 'object' ? params.profile : {});
+            case 'blockbench.extensions.list': return Object.values(core.EXTENSION_CATALOG).map(clone);
+            case 'blockbench.extensions.get': {
+              const definition = core.getExtensionDefinition(params.pluginId);
+              return definition ? {...clone(definition), evaluation: core.evaluateExtension(definition, ctx)} : null;
+            }
+            case 'blockbench.extensions.get_fingerprint': return {blockbenchVersion: ctx.blockbenchVersion, installedExtensions: clone(ctx.installedExtensions)};
+            case 'blockbench.extensions.check_compatibility': {
+              const definition = core.getExtensionDefinition(params.pluginId);
+              return definition ? core.evaluateExtension(definition, ctx) : {installed: false, compatible: false, versionMatch: false, mcpAllowed: false, reasons: ['UNKNOWN_EXTENSION']};
+            }
+            case 'blockbench.profiles.list': return core.listProviderProfiles().map(clone);
+            case 'blockbench.profiles.get': return clone(core.getProviderProfile(params.profileId));
+            case 'blockbench.profiles.resolve_for_asset': return core.resolveProviderProfile(params.profileId, ctx);
+            default: throw bridgeError('METHOD_NOT_ALLOWED', method);
+          }
+        }
+      
+        return Object.freeze({call, methods: () => [...READ_ONLY_METHODS]});
+      }
+      
+      module.exports = {createReadOnlyRouter};
+    },
+    "live-bridge/blockbench_bridge_client.js": function(module, exports, require) {
+      'use strict';
+      
+      const {assertLoopbackHost, READ_ONLY_METHODS, MAX_MESSAGE_BYTES, bridgeError} = require('./protocol.js');
+      
+      function assertPort(port) {
+        if (!Number.isInteger(port) || port < 1 || port > 65535) throw bridgeError('INVALID_PORT');
+        return port;
+      }
+      
+      function buildBridgeUrl(options = {}) {
+        const host = assertLoopbackHost(options.host);
+        const port = assertPort(options.port);
+        const authority = host.includes(':') ? `[${host}]` : host;
+        return `ws://${authority}:${port}/bridge`;
+      }
+      
+      function buildHandshake(options = {}) {
+        const session = options.session || {};
+        if (typeof session.protocolVersion !== 'string' || typeof session.sessionId !== 'string' || typeof session.token !== 'string') {
+          throw bridgeError('INVALID_SESSION');
+        }
+        const capabilities = Array.isArray(options.capabilities) ? options.capabilities : [];
+        if (capabilities.some((method) => !READ_ONLY_METHODS.includes(method))) throw bridgeError('METHOD_NOT_ALLOWED');
+        const fingerprint = options.fingerprint && typeof options.fingerprint === 'object' && !Array.isArray(options.fingerprint)
+          ? options.fingerprint : {};
+        return {
+          type: 'handshake',
+          protocolVersion: session.protocolVersion,
+          sessionId: session.sessionId,
+          token: session.token,
+          capabilities: [...capabilities],
+          fingerprint,
+        };
+      }
+      
+      function addSocketListener(socket, event, handler) {
+        if (socket && typeof socket.addEventListener === 'function') {
+          socket.addEventListener(event, handler);
+          return () => socket.removeEventListener?.(event, handler);
+        }
+        if (socket && typeof socket.on === 'function') {
+          socket.on(event, handler);
+          return () => socket.off?.(event, handler);
+        }
+        throw bridgeError('WEBSOCKET_API_UNAVAILABLE');
+      }
+      
+      async function messageText(eventOrData) {
+        let value = eventOrData && typeof eventOrData === 'object' && 'data' in eventOrData
+          ? eventOrData.data
+          : eventOrData;
+        if (typeof value === 'string') return value;
+        if (typeof Buffer !== 'undefined' && Buffer.isBuffer && Buffer.isBuffer(value)) return value.toString('utf8');
+        if (typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer) return new TextDecoder().decode(new Uint8Array(value));
+        if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView?.(value)) {
+          return new TextDecoder().decode(new Uint8Array(value.buffer, value.byteOffset, value.byteLength));
+        }
+        if (value && typeof value.text === 'function') return value.text();
+        return String(value);
+      }
+      
+      function byteLength(text) {
+        if (typeof Buffer !== 'undefined' && Buffer.byteLength) return Buffer.byteLength(text, 'utf8');
+        if (typeof TextEncoder !== 'undefined') return new TextEncoder().encode(text).byteLength;
+        return text.length * 4;
+      }
+      
+      function parseBridgeMessage(text) {
+        if (byteLength(text) > MAX_MESSAGE_BYTES) throw bridgeError('MESSAGE_TOO_LARGE');
+        let value;
+        try { value = JSON.parse(text); }
+        catch (_) { throw bridgeError('MALFORMED_MESSAGE', 'invalid JSON'); }
+        if (!value || typeof value !== 'object' || Array.isArray(value)) throw bridgeError('MALFORMED_MESSAGE');
+        return value;
+      }
+      
+      function socketOpenConstant(WebSocketClass) {
+        return Number.isInteger(WebSocketClass?.OPEN) ? WebSocketClass.OPEN : 1;
+      }
+      
+      function socketClosedConstant(WebSocketClass) {
+        return Number.isInteger(WebSocketClass?.CLOSED) ? WebSocketClass.CLOSED : 3;
+      }
+      
+      function createBridgeConnection(options = {}) {
+        const WebSocketClass = options.WebSocketClass || (typeof globalThis !== 'undefined' ? globalThis.WebSocket : null);
+        if (typeof WebSocketClass !== 'function') throw bridgeError('WEBSOCKET_API_UNAVAILABLE');
+        const host = options.host;
+        const port = options.port;
+        const session = options.session || {};
+        const fingerprint = options.fingerprint || {};
+        const router = options.router;
+        const heartbeatIntervalMs = Number.isFinite(options.heartbeatIntervalMs) ? options.heartbeatIntervalMs : 10_000;
+        if (!router || typeof router.call !== 'function' || typeof router.methods !== 'function') throw bridgeError('INVALID_ROUTER');
+        if (heartbeatIntervalMs <= 0) throw bridgeError('INVALID_HEARTBEAT_INTERVAL');
+      
+        const url = buildBridgeUrl({host, port});
+        let socket = null;
+        let connected = false;
+        let connecting = null;
+        let generation = 0;
+        let capabilities = [];
+        let heartbeatTimer = null;
+        let intentionalClose = false;
+        let listenerCleanup = [];
+      
+        function cleanupListeners() {
+          for (const remove of listenerCleanup.splice(0)) {
+            try { remove(); } catch (_) { /* best effort */ }
+          }
+        }
+      
+        function stopHeartbeat() {
+          if (heartbeatTimer) clearInterval(heartbeatTimer);
+          heartbeatTimer = null;
+        }
+      
+        function sendJson(target, value) {
+          if (!target || target.readyState !== socketOpenConstant(WebSocketClass)) throw bridgeError('BRIDGE_DISCONNECTED');
+          const text = JSON.stringify(value);
+          if (byteLength(text) > MAX_MESSAGE_BYTES) throw bridgeError('MESSAGE_TOO_LARGE');
+          target.send(text);
+        }
+      
+        function currentStatus() {
+          return Object.freeze({
+            connected,
+            generation,
+            capabilities: [...capabilities],
+            url,
+            protocolVersion: session.protocolVersion || null,
+          });
+        }
+      
+        function validateServerEnvelope(message) {
+          if (message.protocolVersion !== session.protocolVersion) throw bridgeError('PROTOCOL_MISMATCH');
+          if (message.sessionId !== session.sessionId) throw bridgeError('SESSION_MISMATCH');
+        }
+      
+        function responseError(error) {
+          const code = typeof error?.code === 'string' && error.code ? error.code : 'BLOCKBENCH_ROUTER_ERROR';
+          const message = String(error?.message || code).slice(0, 512);
+          return {code, message};
+        }
+      
+        async function handleRequest(target, message) {
+          validateServerEnvelope(message);
+          if (typeof message.requestId !== 'string' || !message.requestId || message.requestId.length > 128) throw bridgeError('MALFORMED_MESSAGE');
+          if (typeof message.method !== 'string' || !READ_ONLY_METHODS.includes(message.method) || !capabilities.includes(message.method)) {
+            throw bridgeError('METHOD_NOT_ALLOWED', message.method || 'UNKNOWN');
+          }
+          const params = message.params === undefined ? {} : message.params;
+          if (!params || typeof params !== 'object' || Array.isArray(params)) throw bridgeError('MALFORMED_MESSAGE');
+          try {
+            const result = await router.call(message.method, params);
+            sendJson(target, {
+              type: 'response',
+              protocolVersion: session.protocolVersion,
+              sessionId: session.sessionId,
+              requestId: message.requestId,
+              ok: true,
+              result,
+            });
+          } catch (error) {
+            sendJson(target, {
+              type: 'response',
+              protocolVersion: session.protocolVersion,
+              sessionId: session.sessionId,
+              requestId: message.requestId,
+              ok: false,
+              error: responseError(error),
+            });
+          }
+        }
+      
+        function startHeartbeat(target) {
+          stopHeartbeat();
+          heartbeatTimer = setInterval(() => {
+            if (!connected || target !== socket || target.readyState !== socketOpenConstant(WebSocketClass)) return;
+            try {
+              sendJson(target, {
+                type: 'heartbeat',
+                protocolVersion: session.protocolVersion,
+                sessionId: session.sessionId,
+              });
+            } catch (_) {
+              connected = false;
+              stopHeartbeat();
+            }
+          }, heartbeatIntervalMs);
+          heartbeatTimer.unref?.();
+        }
+      
+        async function connect() {
+          if (connected && socket) return currentStatus();
+          if (connecting) return connecting;
+      
+          capabilities = router.methods();
+          if (!Array.isArray(capabilities)) throw bridgeError('INVALID_ROUTER');
+          const handshake = buildHandshake({session, capabilities, fingerprint});
+          intentionalClose = false;
+      
+          connecting = new Promise((resolve, reject) => {
+            const target = new WebSocketClass(url);
+            socket = target;
+            let settled = false;
+      
+            const fail = (error) => {
+              if (settled) return;
+              settled = true;
+              connected = false;
+              stopHeartbeat();
+              connecting = null;
+              reject(error instanceof Error ? error : bridgeError('BRIDGE_CONNECTION_FAILED'));
+            };
+      
+            const onOpen = () => {
+              try { sendJson(target, handshake); }
+              catch (error) { fail(error); }
+            };
+      
+            const onMessage = async (event) => {
+              let message;
+              try {
+                message = parseBridgeMessage(await messageText(event));
+                if (!connected) {
+                  if (message.type !== 'handshake_ack') throw bridgeError('INVALID_HANDSHAKE_ACK');
+                  validateServerEnvelope(message);
+                  if (!Array.isArray(message.capabilities) || message.capabilities.some((method) => !capabilities.includes(method))) {
+                    throw bridgeError('CAPABILITY_MISMATCH');
+                  }
+                  connected = true;
+                  generation += 1;
+                  startHeartbeat(target);
+                  if (!settled) {
+                    settled = true;
+                    connecting = null;
+                    resolve(currentStatus());
+                  }
+                  return;
+                }
+      
+                if (target !== socket) return;
+                if (message.type === 'request') await handleRequest(target, message);
+                else if (message.type === 'heartbeat_ack') validateServerEnvelope(message);
+                else throw bridgeError('MESSAGE_TYPE_NOT_ALLOWED');
+              } catch (error) {
+                if (!connected) fail(error);
+                else {
+                  connected = false;
+                  stopHeartbeat();
+                  try { target.close(4400, String(error?.code || 'PROTOCOL_ERROR').slice(0, 120)); } catch (_) { /* best effort */ }
+                }
+              }
+            };
+      
+            const onClose = () => {
+              if (target !== socket) return;
+              connected = false;
+              stopHeartbeat();
+              if (!settled && !intentionalClose) fail(bridgeError('BRIDGE_CONNECTION_CLOSED'));
+            };
+      
+            const onError = () => {
+              if (!settled && !intentionalClose) fail(bridgeError('BRIDGE_CONNECTION_FAILED'));
+            };
+      
+            listenerCleanup.push(
+              addSocketListener(target, 'open', onOpen),
+              addSocketListener(target, 'message', onMessage),
+              addSocketListener(target, 'close', onClose),
+              addSocketListener(target, 'error', onError),
+            );
+          });
+      
+          return connecting;
+        }
+      
+        async function disconnect() {
+          intentionalClose = true;
+          connected = false;
+          stopHeartbeat();
+          const target = socket;
+          socket = null;
+          connecting = null;
+          cleanupListeners();
+          if (!target || target.readyState === socketClosedConstant(WebSocketClass)) return;
+          try { target.close(1000, 'CLIENT_DISCONNECT'); }
+          catch (_) { /* best effort */ }
+        }
+      
+        async function reconnect() {
+          await disconnect();
+          return connect();
+        }
+      
+        return Object.freeze({connect, reconnect, disconnect, status: currentStatus});
+      }
+      
+      module.exports = {buildBridgeUrl, buildHandshake, assertPort, createBridgeConnection};
+    },
+    "blockbench-plugin/live_bridge_adapter.js": function(module, exports, require) {
+      'use strict';
+      
+      const {bridgeError, PROTOCOL_VERSION} = require('../live-bridge/protocol.js');
+      const {createProjectSnapshot} = require('../live-bridge/project_snapshot.js');
+      const {buildSessionFingerprint} = require('../live-bridge/fingerprint.js');
+      const {createReadOnlyRouter} = require('../live-bridge/read_only_router.js');
+      const {createBridgeConnection} = require('../live-bridge/blockbench_bridge_client.js');
+      
+      const TOOLKIT_VERSION = '0.3.0';
+      const DESCRIPTOR_KEYS = new Set([
+        'host', 'port', 'sessionId', 'token', 'protocolVersion',
+        'minecraftVersion', 'loader', 'javaVersion', 'physicalProviders',
+        'activeProviderProfile', 'mcpAuthorizedExtensionIds', 'heartbeatIntervalMs',
+      ]);
+      
+      function requiredString(value, field, maxLength = 256) {
+        if (typeof value !== 'string' || !value.trim() || value.length > maxLength) throw bridgeError('INVALID_CONNECTION_DESCRIPTOR', field);
+        return value.trim();
+      }
+      
+      function parseConnectionDescriptor(input) {
+        let value = input;
+        if (typeof input === 'string') {
+          try { value = JSON.parse(input); }
+          catch (_) { throw bridgeError('INVALID_CONNECTION_DESCRIPTOR', 'invalid JSON'); }
+        }
+        if (!value || typeof value !== 'object' || Array.isArray(value)) throw bridgeError('INVALID_CONNECTION_DESCRIPTOR');
+        for (const key of Object.keys(value)) {
+          if (!DESCRIPTOR_KEYS.has(key)) throw bridgeError('INVALID_CONNECTION_DESCRIPTOR', `unknown field: ${key}`);
+        }
+      
+        const descriptor = {
+          host: requiredString(value.host, 'host'),
+          port: value.port,
+          sessionId: requiredString(value.sessionId, 'sessionId'),
+          token: requiredString(value.token, 'token'),
+          protocolVersion: requiredString(value.protocolVersion, 'protocolVersion'),
+          minecraftVersion: requiredString(value.minecraftVersion, 'minecraftVersion'),
+          loader: requiredString(value.loader, 'loader'),
+          javaVersion: requiredString(value.javaVersion, 'javaVersion'),
+          activeProviderProfile: requiredString(value.activeProviderProfile, 'activeProviderProfile'),
+          physicalProviders: Array.isArray(value.physicalProviders) ? value.physicalProviders.map((entry) => ({...entry})) : [],
+          mcpAuthorizedExtensionIds: Array.isArray(value.mcpAuthorizedExtensionIds) ? [...value.mcpAuthorizedExtensionIds] : [],
+          heartbeatIntervalMs: value.heartbeatIntervalMs,
+        };
+      
+        if (!Number.isInteger(descriptor.port) || descriptor.port < 1 || descriptor.port > 65535) throw bridgeError('INVALID_CONNECTION_DESCRIPTOR', 'port');
+        if (!/^[0-9a-f]{32}$/i.test(descriptor.sessionId)) throw bridgeError('INVALID_CONNECTION_DESCRIPTOR', 'sessionId');
+        if (!/^[0-9a-f]{64}$/i.test(descriptor.token)) throw bridgeError('INVALID_CONNECTION_DESCRIPTOR', 'token');
+        if (descriptor.protocolVersion !== PROTOCOL_VERSION) throw bridgeError('PROTOCOL_MISMATCH');
+        if (descriptor.physicalProviders.length > 256 || descriptor.mcpAuthorizedExtensionIds.length > 256) throw bridgeError('INVALID_CONNECTION_DESCRIPTOR', 'entry limit');
+      
+        for (const entry of descriptor.physicalProviders) {
+          if (!entry || typeof entry !== 'object' || Array.isArray(entry)) throw bridgeError('INVALID_CONNECTION_DESCRIPTOR', 'physicalProviders');
+          entry.modId = requiredString(entry.modId, 'physicalProviders.modId');
+          entry.version = requiredString(entry.version, 'physicalProviders.version');
+          if (typeof entry.presence !== 'string') entry.presence = 'PRESENT';
+          if (typeof entry.health !== 'string') entry.health = 'UNPROVEN';
+        }
+        descriptor.mcpAuthorizedExtensionIds = descriptor.mcpAuthorizedExtensionIds.map((id) => requiredString(id, 'mcpAuthorizedExtensionIds'));
+        if (descriptor.heartbeatIntervalMs !== undefined && (!Number.isFinite(descriptor.heartbeatIntervalMs) || descriptor.heartbeatIntervalMs <= 0)) {
+          throw bridgeError('INVALID_CONNECTION_DESCRIPTOR', 'heartbeatIntervalMs');
+        }
+        return Object.freeze(descriptor);
+      }
+      
+      function installedExtensions(bb) {
+        const installations = Array.isArray(bb?.Plugins?.installed) ? bb.Plugins.installed : [];
+        return installations
+          .filter((entry) => entry && entry.disabled !== true && typeof entry.id === 'string' && typeof entry.version === 'string')
+          .map((entry) => ({pluginId: entry.id, pluginVersion: entry.version}));
+      }
+      
+      function physicalProviderFingerprint(entries) {
+        return entries.map((entry) => ({modId: entry.modId, modVersion: entry.version}));
+      }
+      
+      function createBlockbenchLiveBridgeRuntime(bb, descriptorInput, options = {}) {
+        if (!bb || !bb.Blockbench || bb.Blockbench.isWeb === true) throw bridgeError('DESKTOP_REQUIRED');
+        const descriptor = parseConnectionDescriptor(descriptorInput);
+        const getProject = () => bb.Blockbench.Project || null;
+        const getInstalledExtensions = () => installedExtensions(bb);
+        const router = createReadOnlyRouter({
+          getProject,
+          getBlockbenchVersion: () => String(bb.Blockbench.version || ''),
+          getInstalledExtensions,
+          getMcpAuthorizedExtensionIds: () => descriptor.mcpAuthorizedExtensionIds,
+          physicalProviders: descriptor.physicalProviders,
+          activeProviderProfile: () => descriptor.activeProviderProfile,
+        });
+      
+        const snapshot = createProjectSnapshot(getProject());
+        const fingerprint = buildSessionFingerprint({
+          minecraftVersion: descriptor.minecraftVersion,
+          loader: descriptor.loader,
+          javaVersion: descriptor.javaVersion,
+          blockbenchVersion: String(bb.Blockbench.version || ''),
+          toolkitVersion: TOOLKIT_VERSION,
+          protocolVersion: descriptor.protocolVersion,
+          installedExtensions: getInstalledExtensions(),
+          physicalProviders: physicalProviderFingerprint(descriptor.physicalProviders),
+          activeProviderProfile: descriptor.activeProviderProfile,
+          projectFormat: snapshot.projectFormat || 'unknown',
+          projectRevision: snapshot.projectRevision,
+        });
+      
+        const session = Object.freeze({
+          sessionId: descriptor.sessionId,
+          token: descriptor.token,
+          protocolVersion: descriptor.protocolVersion,
+        });
+        const connection = createBridgeConnection({
+          WebSocketClass: options.WebSocketClass,
+          host: descriptor.host,
+          port: descriptor.port,
+          session,
+          fingerprint,
+          router,
+          heartbeatIntervalMs: descriptor.heartbeatIntervalMs,
+        });
+      
+        return Object.freeze({descriptor, fingerprint, router, connection});
+      }
+      
+      module.exports = {
+        TOOLKIT_VERSION,
+        parseConnectionDescriptor,
+        installedExtensions,
+        createBlockbenchLiveBridgeRuntime,
+      };
+    },
     "blockbench-plugin/plugin_adapter.js": function(module, exports, require) {
       'use strict';
       
@@ -588,6 +1260,10 @@
       function registerBlockbenchPlugin(bb) {
         let auditAction = null;
         let profileAction = null;
+        let bridgeConnectAction = null;
+        let bridgeDisconnectAction = null;
+        let bridgeStatusAction = null;
+        let bridgeRuntime = null;
       
         function show(result) {
           bb.Blockbench.showMessageBox({
@@ -598,22 +1274,39 @@
           });
         }
       
+        function showBridgeError(error) {
+          const code = error && typeof error.code === 'string' ? error.code : 'BRIDGE_ERROR';
+          const detail = error && typeof error.message === 'string' ? error.message : code;
+          bb.Blockbench.showMessageBox({
+            title: 'RPG Asset Toolkit — Live Bridge',
+            icon: 'error',
+            message: `${code}: ${detail}`.slice(0, 1024),
+            buttons: ['OK'],
+          });
+        }
+      
+        function addToolAction(action) {
+          bb.MenuBar.menus.tools.addAction(action);
+          return action;
+        }
+      
         bb.Plugin.register('rpg_asset_toolkit', {
           title: 'RPG Asset Toolkit',
           author: 'Gustavaopere',
-          description: 'Read-only structural and provider-aware contract QA for project-owned Minecraft assets.',
+          description: 'Read-only structural and provider-aware contract QA with an optional authenticated desktop-local MCP Live Bridge.',
           icon: 'fact_check',
-          version: '0.2.0',
+          version: '0.3.0',
+          min_version: '5.1.6',
           variant: 'both',
           tags: ['Minecraft: Java Edition'],
           onload() {
-            auditAction = new bb.Action('rpg_asset_toolkit_validate', {
+            auditAction = addToolAction(new bb.Action('rpg_asset_toolkit_validate', {
               name: 'Validate RPG Asset',
               description: 'Run read-only structural checks on the active Blockbench project.',
               icon: 'fact_check',
               click() { show(core.validateProject(bb.Blockbench.Project, {})); },
-            });
-            profileAction = new bb.Action('rpg_asset_toolkit_validate_profile', {
+            }));
+            profileAction = addToolAction(new bb.Action('rpg_asset_toolkit_validate_profile', {
               name: 'Validate RPG Asset Against Contract Profile',
               description: 'Run the same checks plus optional required bones/animations/maxSpan from JSON.',
               icon: 'rule',
@@ -630,15 +1323,75 @@
                   }
                 });
               },
-            });
-            bb.MenuBar.menus.tools.addAction(auditAction);
-            bb.MenuBar.menus.tools.addAction(profileAction);
+            }));
+      
+            if (bb.Blockbench.isWeb === false) {
+              bridgeConnectAction = addToolAction(new bb.Action('rpg_asset_toolkit_live_bridge_connect', {
+                name: 'Connect RPG Asset MCP (Read-only)',
+                description: 'Connect this desktop Blockbench session to the authenticated numeric-loopback RPG Asset MCP sidecar.',
+                icon: 'link',
+                click() {
+                  bb.Blockbench.textPrompt('RPG Asset MCP Connection Descriptor (JSON)', '{}', async (text) => {
+                    try {
+                      if (bridgeRuntime) await bridgeRuntime.connection.disconnect();
+                      const liveBridge = require('./live_bridge_adapter.js');
+                      const runtime = liveBridge.createBlockbenchLiveBridgeRuntime(bb, text);
+                      await runtime.connection.connect();
+                      bridgeRuntime = runtime;
+                      bb.Blockbench.showQuickMessage?.('RPG Asset MCP read-only bridge connected', 2500);
+                    } catch (error) {
+                      bridgeRuntime = null;
+                      showBridgeError(error);
+                    }
+                  });
+                },
+              }));
+      
+              bridgeDisconnectAction = addToolAction(new bb.Action('rpg_asset_toolkit_live_bridge_disconnect', {
+                name: 'Disconnect RPG Asset MCP',
+                description: 'Disconnect the current read-only local bridge session.',
+                icon: 'link_off',
+                async click() {
+                  try {
+                    if (bridgeRuntime) await bridgeRuntime.connection.disconnect();
+                    bridgeRuntime = null;
+                    bb.Blockbench.showQuickMessage?.('RPG Asset MCP bridge disconnected', 2000);
+                  } catch (error) {
+                    bridgeRuntime = null;
+                    showBridgeError(error);
+                  }
+                },
+              }));
+      
+              bridgeStatusAction = addToolAction(new bb.Action('rpg_asset_toolkit_live_bridge_status', {
+                name: 'RPG Asset MCP Bridge Status',
+                description: 'Show non-secret connection state for the local read-only bridge.',
+                icon: 'info',
+                click() {
+                  const status = bridgeRuntime ? bridgeRuntime.connection.status() : {connected: false, generation: 0, capabilities: []};
+                  bb.Blockbench.showMessageBox({
+                    title: 'RPG Asset Toolkit — Live Bridge Status',
+                    icon: status.connected ? 'check_circle' : 'info',
+                    message: JSON.stringify(status, null, 2),
+                    buttons: ['OK'],
+                  });
+                },
+              }));
+            }
           },
           onunload() {
-            if (auditAction) auditAction.delete();
-            if (profileAction) profileAction.delete();
+            if (bridgeRuntime) {
+              try { void bridgeRuntime.connection.disconnect(); } catch (_) { /* best effort during plugin unload */ }
+            }
+            bridgeRuntime = null;
+            for (const action of [auditAction, profileAction, bridgeConnectAction, bridgeDisconnectAction, bridgeStatusAction]) {
+              if (action) action.delete();
+            }
             auditAction = null;
             profileAction = null;
+            bridgeConnectAction = null;
+            bridgeDisconnectAction = null;
+            bridgeStatusAction = null;
           },
         });
       }
@@ -661,11 +1414,18 @@
   }
 
   function resolveModuleId(fromId, request) {
-    if (typeof request !== 'string' || !request.startsWith('.')) throw new Error('RPG Asset Toolkit bundle forbids external module loading.');
     const base = fromId.split('/');
     base.pop();
     const resolved = normalizeModuleId(base.concat(request.split('/')).join('/'));
     return resolved.endsWith('.js') ? resolved : resolved + '.js';
+  }
+
+  function moduleRequire(fromId, request) {
+    if (typeof request !== 'string') throw new Error('RPG Asset Toolkit bundle requires a string module id.');
+    if (request.startsWith('.')) return loadModule(resolveModuleId(fromId, request));
+    if (!nativeModuleAllowlist.has(request)) throw new Error('RPG Asset Toolkit bundle forbids native module: ' + request);
+    if (typeof nativeRequire !== 'function') throw new Error('RPG Asset Toolkit native module is unavailable in this Blockbench variant: ' + request);
+    return nativeRequire(request);
   }
 
   function loadModule(id) {
@@ -674,11 +1434,13 @@
     if (!factory) throw new Error('RPG Asset Toolkit bundle module not found: ' + id);
     const module = {exports: {}};
     cache[id] = module;
-    factory(module, module.exports, (request) => loadModule(resolveModuleId(id, request)));
+    factory(module, module.exports, (request) => moduleRequire(id, request));
     return module.exports;
   }
 
   const core = loadModule('core/index.js');
+  const protocol = loadModule('live-bridge/protocol.js');
+  const bridgeClient = loadModule('live-bridge/blockbench_bridge_client.js');
   const blockbenchPlugin = loadModule('blockbench-plugin/plugin_adapter.js');
-  return Object.assign({}, core, blockbenchPlugin);
+  return Object.assign({}, core, protocol, bridgeClient, blockbenchPlugin);
 });
