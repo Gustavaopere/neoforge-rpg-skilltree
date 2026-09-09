@@ -55,13 +55,13 @@ function normalizeRuntimeContext(input = {}) {
     physicalProviders: physicalProviders.map((entry) => {
       if (!entry || typeof entry !== 'object' || Array.isArray(entry)) throw bridgeError('INVALID_RUNTIME_CONTEXT', 'physicalProviders');
       return {
-        modId: boundedString(entry.modId, 'physicalProviders.modId', undefined, 128),
-        version: boundedString(entry.version, 'physicalProviders.version'),
+        modId: boundedString(entry.modId, 'physicalProviders.modId', null, 128),
+        version: boundedString(entry.version, 'physicalProviders.version', null),
         presence: boundedString(entry.presence, 'physicalProviders.presence', 'PRESENT', 64),
         health: boundedString(entry.health, 'physicalProviders.health', 'UNPROVEN', 64),
       };
     }),
-    mcpAuthorizedExtensionIds: authorizedExtensions.map((id) => boundedString(id, 'mcpAuthorizedExtensionIds', undefined, 128)),
+    mcpAuthorizedExtensionIds: authorizedExtensions.map((id) => boundedString(id, 'mcpAuthorizedExtensionIds', null, 128)),
   });
 }
 
