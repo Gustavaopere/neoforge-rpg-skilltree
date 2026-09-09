@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch head
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: feat/blockbench-uv-island-masks
           fetch-depth: 0
@@ -25,8 +25,9 @@ jobs:
           from pathlib import Path
 
           def replace_once(text, old, new, label):
-              if text.count(old) != 1:
-                  raise SystemExit(f'{label}: expected exactly one anchor, found {text.count(old)}')
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{label}: expected exactly one anchor, found {count}')
               return text.replace(old, new, 1)
 
           core_path = Path('PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/core/uv-texture/uv_texture_engine.js')
@@ -63,10 +64,8 @@ jobs:
 
           """
           core = replace_once(core, anchor, helper + anchor, 'core face helper')
-          old_case = """    case 'texture_create':
-              return Object.freeze({
-          """
-          new_case = """    case 'texture_paint_uv_island': {
+          core_case_anchor = "    case 'texture_create':\n"
+          core_case = """    case 'texture_paint_uv_island': {
               const faces = uvIslandFaces(value.faces, `operations[${index}].faces`);
               const region = pixelRegion(value.region, `operations[${index}].region`);
               const area = pixelArea(region, `operations[${index}].region`);
@@ -83,10 +82,8 @@ jobs:
                 pixels,
               });
             }
-            case 'texture_create':
-              return Object.freeze({
           """
-          core = replace_once(core, old_case, new_case, 'core island case')
+          core = replace_once(core, core_case_anchor, core_case + core_case_anchor, 'core island case')
           core = replace_once(
               core,
               "  if (operation.type === 'texture_paint_region') return pixelArea(operation.region, `operations[${index}].region`);\n",
@@ -210,18 +207,16 @@ jobs:
               "    const approvedImportIds = [];\n    const uvIslandPaintPlans = [];\n",
               'adapter preflight plans',
           )
-          old_preflight = """        case 'texture_create': {
-          """
-          new_preflight = """        case 'texture_paint_uv_island': {
+          preflight_anchor = "        case 'texture_create': {\n"
+          preflight_case = """        case 'texture_paint_uv_island': {
               const plan = prepareUvIslandPaint(operation);
               chargePixels(operation.region.width * operation.region.height, 'Mutation "texture_paint_uv_island"');
               addUnique(touchedTextures, plan.texture);
               uvIslandPaintPlans.push(plan);
               break;
             }
-            case 'texture_create': {
           """
-          adapter = replace_once(adapter, old_preflight, new_preflight, 'adapter preflight island')
+          adapter = replace_once(adapter, preflight_anchor, preflight_case + preflight_anchor, 'adapter preflight island')
           adapter = replace_once(
               adapter,
               "      approvedImportIds: Object.freeze(approvedImportIds.slice()),\n      expectsNewTextures,\n",
@@ -246,18 +241,16 @@ jobs:
 
           """
           adapter = replace_once(adapter, paint_anchor, apply_helper + paint_anchor, 'adapter apply helper')
-          old_apply = """      case 'texture_create': {
-          """
-          new_apply = """      case 'texture_paint_uv_island': {
+          apply_anchor = "      case 'texture_create': {\n"
+          apply_case = """      case 'texture_paint_uv_island': {
               const plan = prepared?.uvIslandPaintPlans?.find((entry) => entry.operation === operation);
               if (!plan) fail('PREFLIGHT_REQUIRED', 'texture_paint_uv_island requires the exact preflighted operation.');
               applyUvIslandPaint(plan);
               dirtyTextures.add(plan.texture);
               return plan.texture.uuid || plan.texture.id;
             }
-            case 'texture_create': {
           """
-          adapter = replace_once(adapter, old_apply, new_apply, 'adapter apply island')
+          adapter = replace_once(adapter, apply_anchor, apply_case + apply_anchor, 'adapter apply island')
           adapter_path.write_text(adapter)
           PY
 
