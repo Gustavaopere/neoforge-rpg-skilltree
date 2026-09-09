@@ -1,32 +1,32 @@
 # Ars Zero
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db816fb077c0e1d6c7bb62  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db816fb077c0e1d6c7bb62
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Zero
 - **Arquivo JAR:** `ars_zero-1.21.1-2.0.2.jar`
-- **Versão 1.21.1:** `2.0.2`
-- **Categoria:** Magia
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 2.0.2
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-zero
+- **Decisão:** Sem decisão
+- **Categoria:** Magia
 - **Função:** Expande Ars Nouveau com Spell Staff/Psion's Circlet de cast contínuo multifásico, glyphs de contexto/geometria/voxel, staffs especializados e progressão Necropolis/Lich.
-- **Dependências:** Ars Nouveau; Sable Companion 1.4.2 e Sauce 0.0.18.57 aparecem embarcados no JAR e não são top-level.
-- **Compatibilidade/Riscos:** JAR físico é 2.0.2, mas source público disponível declara 2.0.0-beta3. Contratos arquiteturais e delta 2.0.2 estão confirmados; contagem binária exata adicional exige source/tag/JAR correspondente. Alto risco de double-cast/double-charge em begin/tick/end.
+- **Dependências:** Ars Nouveau 5.13.1. Sauce/Sable Companion encontrados embedded/jarjar permanecem fora da contagem top-level; contracts de versão não confirmados devem falhar fechados.
 - **Sobreposição:** Complementa o ecossistema Ars; comparar conteúdo concreto com outros pacotes de glyphs sem assumir equivalência.
-- **Observações:** Release 2.0.2 promove Staffs of Demonbane, Geometrize, Convergence, Lakes e Switcheroo para produção e drops do Necropolis Lich. Source anterior confirma 21 spell parts e arquitetura multifásica.
-- **Procedência:** Modlist física atual + CurseForge release/changelog 2.0.2 + source zeroregard/Ars-Zero branch 1.21.1 usado somente onde suportado.
+- **Compatibilidade/Riscos:** JAR físico é 2.0.2, mas source público disponível declara 2.0.0-beta3. Contratos arquiteturais e delta 2.0.2 estão confirmados; contagem binária exata adicional exige source/tag/JAR correspondente. Alto risco de double-cast/double-charge em begin/tick/end.
+- **Observações:** mod id `ars_zero`, runtime 2.0.2. Dossiê distingue rigorosamente conteúdo confirmado pela release 2.0.2 de detalhes source-level confirmados apenas na linha anterior; ausência de source pin exato não foi ocultada.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + release oficial Ars Zero 2.0.2 + source público anterior auditado com boundary explícito de evidência.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-zero
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Zero 2.0.2 físico/release confirmado; boundary entre release 2.0.2 e source público anterior 2.0.0-beta3 preservado no QC global #52. Estado anterior `Integrado ao Github` preservado; nenhum contrato 2.0.2 foi inventado além da evidência disponível.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou o runtime 2.0.2 e preservou a divergência entre a release física e o source público anterior beta3. O mod permanece tecnicamente catalogado sem transformar presença física em decisão de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — dossiê completo com separação explícita entre release-confirmed 2.0.2 e source-confirmed beta3; fail-closed mantido.
-- **Data da última decisão:** não definida.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ⚠️ Versão física autoritativa: `ars_zero-1.21.1-2.0.2.jar`, mod id `ars_zero`, versão `2.0.2`. O branch público `1.21.1` atualmente acessível ainda declara `2.0.0-beta3`; por isso esta ficha separa explicitamente o que é confirmado pela release 2.0.2 do que é confirmado pelo source público anterior. Não há extrapolação silenciosa.
 
