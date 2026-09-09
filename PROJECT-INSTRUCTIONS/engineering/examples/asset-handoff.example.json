@@ -1,0 +1,10 @@
+{
+  "schema_version":1,
+  "mod_id":"example_mod",
+  "source_authority":"Repo Textura",
+  "runtime_authority":"UNRESOLVED",
+  "provider_profiles":[],
+  "artifacts":[{"asset_id":"example_source_model","source_path":"UNRESOLVED","source_format":".bbmodel","delivery_path":"UNRESOLVED","delivery_format":".bbmodel","conversion":{"performed":false,"from_format":".bbmodel","to_format":".bbmodel","state":"CONFIRMED","evidence":["fixture demonstrates no silent conversion"]},"state":"UNRESOLVED"}],
+  "state":"UNRESOLVED",
+  "evidence":["synthetic example fixture"]
+}
