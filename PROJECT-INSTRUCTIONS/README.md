@@ -2,6 +2,22 @@
 
 Diretório canônico de instruções operacionais e documentação de referência do projeto Minecraft / NeoForge 1.21.1 / Java 21.
 
+## Mod production control plane
+
+Este repositório também é o **repositório central de integração/control plane** para criação de mods completos do projeto.
+
+Antes de iniciar uma nova implementação de mod ou infraestrutura reutilizável, leia nesta ordem:
+
+1. `engineering/README.md`;
+2. `engineering/STATUS.md`;
+3. `engineering/REPO-ROUTING.md`;
+4. `engineering/plans/PLANO-MESTRE-UNIFICADO-REPO-TEXTURA-BLOCKBENCH-ASSET-MCP-V5.md`;
+5. `engineering/plans/PLANO-MESTRE-REPO-INTEGRACAO-MOD-ENGINEERING-NEOFORGE-1.21.1-V1.md`;
+6. a modlist física mais recente;
+7. o estado atual do GitHub, incluindo branches/PRs concorrentes.
+
+O primeiro objetivo dessa frente é **implementar os dois planos mestres e montar o ambiente de execução** antes de produzir novos mods em escala. O Repo Textura permanece a fonte de verdade dos assets artísticos; cada repositório individual de mod permanece a fonte de verdade do próprio runtime; este repositório concentra instruções, skills, contratos, catálogos, templates, validators, tooling, integração, testes e release infrastructure reutilizável.
+
 ## Autoridade operacional
 
 Os oito arquivos abaixo são o pacote canônico consolidado para o fluxo de perks do RPG Skill Tree:
@@ -19,12 +35,12 @@ Para execução operacional de Chat 1/2/3, estes arquivos consolidados devem ser
 
 ## Estrutura de suporte
 
-- `engineering/` contém contratos permanentes de trabalho técnico do repositório: `AGENT-WORKFLOW.md`, `TESTING.md` e `DIAGNOSTICS.md`.
+- `engineering/` contém os contratos permanentes de trabalho técnico, o `STATUS` canônico, roteamento entre repositórios, os dois planos mestres e documentação do control plane.
 - `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
 - `skills/` contém as skills/instruções especializadas usadas por chats e agentes, incluindo router, autoridade de versão, protocolo de interação manual e a biblioteca auditada das skills fornecidas pelo usuário.
 
-A existência das árvores de suporte não cria uma segunda autoridade operacional: para os protocolos de perks, os oito arquivos consolidados desta pasta raiz continuam sendo o ponto de entrada canônico. Para trabalho técnico geral do repositório, `engineering/AGENT-WORKFLOW.md` é o contrato canônico; para validação e observabilidade, valem respectivamente `engineering/TESTING.md` e `engineering/DIAGNOSTICS.md`. Para trabalho técnico especializado, `skills/ROUTER.md` escolhe a instrução adequada sem substituir código, JAR, build ou documentação comprovada da versão alvo.
+A existência das árvores de suporte não cria uma segunda autoridade operacional: para os protocolos de perks, os oito arquivos consolidados desta pasta raiz continuam sendo o ponto de entrada canônico. Para trabalho técnico geral do repositório, `engineering/AGENT-WORKFLOW.md` é o contrato canônico; para o control plane de produção de mods, `engineering/README.md` + `engineering/STATUS.md` + os dois planos mestres formam o ponto de entrada canônico. Para validação e observabilidade, valem respectivamente `engineering/TESTING.md` e `engineering/DIAGNOSTICS.md`. Para trabalho técnico especializado, `skills/ROUTER.md` escolhe a instrução adequada sem substituir código, JAR, build ou documentação comprovada da versão alvo.
 
 ## Entrypoints com localização obrigatória
 

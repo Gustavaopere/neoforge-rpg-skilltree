@@ -29,7 +29,27 @@ When a task requires the user to perform a manual action, also apply [`../skills
 
 For NeoForge implementation, prefer the repository `minecraft-neoforge-engineering` entrypoint over generic multi-loader skills. `minecraft-mod-dev` is reference-only because the supplied archive is incomplete.
 
+## Mod-production control plane
+
+For any task whose objective is to build reusable infrastructure for creating complete mods, or to start a new mod through that infrastructure, the required entrypoints are:
+
+1. [`README.md`](README.md);
+2. [`STATUS.md`](STATUS.md);
+3. [`REPO-ROUTING.md`](REPO-ROUTING.md);
+4. [`plans/PLANO-MESTRE-UNIFICADO-REPO-TEXTURA-BLOCKBENCH-ASSET-MCP-V5.md`](plans/PLANO-MESTRE-UNIFICADO-REPO-TEXTURA-BLOCKBENCH-ASSET-MCP-V5.md);
+5. [`plans/PLANO-MESTRE-REPO-INTEGRACAO-MOD-ENGINEERING-NEOFORGE-1.21.1-V1.md`](plans/PLANO-MESTRE-REPO-INTEGRACAO-MOD-ENGINEERING-NEOFORGE-1.21.1-V1.md);
+6. the latest physical modlist;
+7. current GitHub `main`, open PRs and concurrent branches.
+
+The first objective of this control-plane front is to implement those two master plans and assemble the execution environment before producing new mods at scale. The RPG repository is the integration/control plane; Repo Textura remains artistic authority; each individual mod repository remains runtime authority for that mod.
+
+Do not repeat work already completed. Do not invent APIs, versions, providers, repository paths or branch/PR state. Preserve provider-native artistic source formats such as `.bbmodel`; cross-pipeline conversion must never happen silently.
+
+During execution, report the current execution plan followed by an updated checklist. Use `✅` for complete, `🔄` for current, `⬜` for pending and `⛔` for blocked. Additional prose is reserved for a blocker, risk, decision, question or required manual action.
+
 ## Documents to read before changing architecture
+
+For shared mod-production infrastructure, the two master plans and `STATUS.md` above are the planning authority. For RPG Skill Tree runtime architecture specifically, also read:
 
 - [`../../docs/MASTER_PLAN.md`](../../docs/MASTER_PLAN.md)
 - [`TESTING.md`](TESTING.md)
