@@ -1,32 +1,176 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema",
-  "$id":"https://github.com/Gustavaopere/neoforge-rpg-skilltree/PROJECT-INSTRUCTIONS/engineering/schemas/asset-handoff.schema.json",
-  "title":"Asset Handoff Manifest",
-  "type":"object",
-  "required":["schema_version","mod_id","source_authority","runtime_authority","provider_profiles","artifacts","state","evidence"],
-  "additionalProperties":false,
-  "properties":{
-    "schema_version":{"type":"integer","const":1},
-    "mod_id":{"type":"string","pattern":"[a-z][a-z0-9_]{1,63}"},
-    "source_authority":{"type":"string","const":"Repo Textura"},
-    "runtime_authority":{"type":"string","minLength":1},
-    "provider_profiles":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
-    "artifacts":{"type":"array","minItems":1,"items":{"type":"object","required":["asset_id","source_path","source_format","delivery_path","delivery_format","conversion","state"],"additionalProperties":false,"properties":{
-      "asset_id":{"type":"string","minLength":1},
-      "source_path":{"type":"string","minLength":1},
-      "source_format":{"type":"string","minLength":1},
-      "delivery_path":{"type":"string","minLength":1},
-      "delivery_format":{"type":"string","minLength":1},
-      "conversion":{"type":"object","required":["performed","from_format","to_format","state","evidence"],"additionalProperties":false,"properties":{
-        "performed":{"type":"boolean"},
-        "from_format":{"type":"string","minLength":1},
-        "to_format":{"type":"string","minLength":1},
-        "state":{"type":"string","enum":["CONFIRMED","IMPLEMENTED","MERGED","PASS","PENDING","UNRESOLVED","UNAVAILABLE","DEFERRED","REFERENCE_ONLY","INCOMPATIBLE","BLOCKED","SUPERSEDED"]},
-        "evidence":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","minLength":1}}
-      }},
-      "state":{"type":"string","enum":["CONFIRMED","IMPLEMENTED","MERGED","PASS","PENDING","UNRESOLVED","UNAVAILABLE","DEFERRED","REFERENCE_ONLY","INCOMPATIBLE","BLOCKED","SUPERSEDED"]}
-    }}},
-    "state":{"type":"string","enum":["CONFIRMED","IMPLEMENTED","MERGED","PASS","PENDING","UNRESOLVED","UNAVAILABLE","DEFERRED","REFERENCE_ONLY","INCOMPATIBLE","BLOCKED","SUPERSEDED"]},
-    "evidence":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","minLength":1}}
-  }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Gustavaopere/neoforge-rpg-skilltree/PROJECT-INSTRUCTIONS/engineering/schemas/asset-handoff.schema.json",
+  "title": "Asset Handoff Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "mod_id",
+    "source_authority",
+    "runtime_authority",
+    "provider_profiles",
+    "artifacts",
+    "state",
+    "evidence"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "mod_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{1,63}$"
+    },
+    "source_authority": {
+      "type": "string",
+      "const": "Repo Textura"
+    },
+    "runtime_authority": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider_profiles": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "asset_id",
+          "source_path",
+          "source_format",
+          "delivery_path",
+          "delivery_format",
+          "conversion",
+          "state"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_format": {
+            "type": "string",
+            "minLength": 1
+          },
+          "delivery_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "delivery_format": {
+            "type": "string",
+            "minLength": 1
+          },
+          "conversion": {
+            "type": "object",
+            "required": [
+              "performed",
+              "from_format",
+              "to_format",
+              "state",
+              "evidence"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "performed": {
+                "type": "boolean"
+              },
+              "from_format": {
+                "type": "string",
+                "minLength": 1
+              },
+              "to_format": {
+                "type": "string",
+                "minLength": 1
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "CONFIRMED",
+                  "IMPLEMENTED",
+                  "MERGED",
+                  "PASS",
+                  "PENDING",
+                  "UNRESOLVED",
+                  "UNAVAILABLE",
+                  "DEFERRED",
+                  "REFERENCE_ONLY",
+                  "INCOMPATIBLE",
+                  "BLOCKED",
+                  "SUPERSEDED"
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "CONFIRMED",
+              "IMPLEMENTED",
+              "MERGED",
+              "PASS",
+              "PENDING",
+              "UNRESOLVED",
+              "UNAVAILABLE",
+              "DEFERRED",
+              "REFERENCE_ONLY",
+              "INCOMPATIBLE",
+              "BLOCKED",
+              "SUPERSEDED"
+            ]
+          }
+        }
+      }
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "CONFIRMED",
+        "IMPLEMENTED",
+        "MERGED",
+        "PASS",
+        "PENDING",
+        "UNRESOLVED",
+        "UNAVAILABLE",
+        "DEFERRED",
+        "REFERENCE_ONLY",
+        "INCOMPATIBLE",
+        "BLOCKED",
+        "SUPERSEDED"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$comment": "Cross-field conversion invariants are enforced by the canonical I1 validator because JSON Schema Draft 2020-12 cannot portably compare sibling string values."
 }

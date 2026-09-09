@@ -1,3 +1,4 @@
+import copy
 import importlib.util
 import json
 import unittest
@@ -10,17 +11,43 @@ validator = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(validator)
 
 class I1FoundationContractTest(unittest.TestCase):
+    def _load(self, relative):
+        return json.loads((ROOT / relative).read_text(encoding="utf-8"))
+
     def test_repository_foundation_is_complete(self):
         self.assertEqual([], validator.run_validation(ROOT))
 
-    def test_mod_id_contract_rejects_invalid_identifier(self):
-        schema_path = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "schemas" / "mod-spec.schema.json"
-        schema = json.loads(schema_path.read_text(encoding="utf-8"))
-        example_path = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "examples" / "mod-spec.example.json"
-        example = json.loads(example_path.read_text(encoding="utf-8"))
+    def test_json_schema_search_semantics_reject_invalid_mod_id(self):
+        schema = self._load("PROJECT-INSTRUCTIONS/engineering/schemas/mod-spec.schema.json")
+        example = self._load("PROJECT-INSTRUCTIONS/engineering/examples/mod-spec.example.json")
         example["identity"]["mod_id"] = "Invalid-Mod"
         errors = validator.validate_instance(schema, example)
         self.assertTrue(any("mod_id" in e and "pattern" in e for e in errors), errors)
+
+    def test_all_declared_patterns_are_explicitly_anchored(self):
+        schemas_dir = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "schemas"
+        failures = []
+        for schema_path in sorted(schemas_dir.glob("*.schema.json")):
+            schema = json.loads(schema_path.read_text(encoding="utf-8"))
+            for pattern_path, pattern in validator.iter_declared_patterns(schema):
+                if not (pattern.startswith("^") and pattern.endswith("$")):
+                    failures.append(f"{schema_path.name}:{pattern_path}:{pattern}")
+        self.assertEqual([], failures)
+
+    def test_asset_handoff_rejects_false_no_conversion_for_different_formats(self):
+        handoff = copy.deepcopy(self._load("PROJECT-INSTRUCTIONS/engineering/examples/asset-handoff.example.json"))
+        artifact = handoff["artifacts"][0]
+        artifact["delivery_format"] = ".json"
+        artifact["conversion"]["to_format"] = ".json"
+        artifact["conversion"]["performed"] = False
+        errors = validator.validate_asset_handoff_semantics(handoff)
+        self.assertTrue(any("conversion.performed" in e for e in errors), errors)
+
+    def test_asset_handoff_rejects_conversion_format_drift(self):
+        handoff = copy.deepcopy(self._load("PROJECT-INSTRUCTIONS/engineering/examples/asset-handoff.example.json"))
+        handoff["artifacts"][0]["conversion"]["from_format"] = ".json"
+        errors = validator.validate_asset_handoff_semantics(handoff)
+        self.assertTrue(any("conversion.from_format" in e for e in errors), errors)
 
 if __name__ == "__main__":
     unittest.main()

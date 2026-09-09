@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json, re, sys
+import json, re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -47,7 +47,8 @@ def validate_instance(schema, value, path="$"):
     if isinstance(value, str):
         if "minLength" in schema and len(value) < schema["minLength"]:
             errors.append(f"{path}: shorter than minLength")
-        if "pattern" in schema and re.fullmatch(schema["pattern"], value) is None:
+        # JSON Schema pattern uses search semantics, not implicit full-match.
+        if "pattern" in schema and re.search(schema["pattern"], value) is None:
             errors.append(f"{path}: does not match pattern {schema['pattern']}")
     if isinstance(value, (int, float)) and not isinstance(value, bool):
         if "minimum" in schema and value < schema["minimum"]:
@@ -77,6 +78,17 @@ def validate_instance(schema, value, path="$"):
                 errors.append(f"{path}: unexpected property {key!r}")
     return errors
 
+def iter_declared_patterns(node, path="$"):
+    if isinstance(node, dict):
+        pattern = node.get("pattern")
+        if isinstance(pattern, str):
+            yield path, pattern
+        for key, value in node.items():
+            yield from iter_declared_patterns(value, f"{path}.{key}")
+    elif isinstance(node, list):
+        for i, value in enumerate(node):
+            yield from iter_declared_patterns(value, f"{path}[{i}]")
+
 def validate_schema_document(path: Path, schema):
     errors = []
     if schema.get("$schema") != "https://json-schema.org/draft/2020-12/schema":
@@ -91,6 +103,33 @@ def validate_schema_document(path: Path, schema):
         errors.append(f"{path}: root required must be array")
     if schema.get("additionalProperties") is not False:
         errors.append(f"{path}: root must fail closed with additionalProperties=false")
+    for pattern_path, pattern in iter_declared_patterns(schema):
+        if not (pattern.startswith("^") and pattern.endswith("$")):
+            errors.append(f"{path}:{pattern_path}: pattern must be explicitly anchored for JSON Schema search semantics")
+    return errors
+
+def validate_asset_handoff_semantics(value, path="$"):
+    """Validate cross-field invariants JSON Schema Draft 2020-12 cannot portably express."""
+    errors = []
+    if not isinstance(value, dict) or not isinstance(value.get("artifacts"), list):
+        return errors
+    for i, artifact in enumerate(value["artifacts"]):
+        if not isinstance(artifact, dict):
+            continue
+        p = f"{path}.artifacts[{i}]"
+        source_format = artifact.get("source_format")
+        delivery_format = artifact.get("delivery_format")
+        conversion = artifact.get("conversion")
+        if not isinstance(source_format, str) or not isinstance(delivery_format, str) or not isinstance(conversion, dict):
+            continue
+        performed = conversion.get("performed")
+        expected_performed = source_format != delivery_format
+        if isinstance(performed, bool) and performed != expected_performed:
+            errors.append(f"{p}.conversion.performed: must be {expected_performed} when source_format={source_format!r} and delivery_format={delivery_format!r}")
+        if conversion.get("from_format") != source_format:
+            errors.append(f"{p}.conversion.from_format: must equal source_format")
+        if conversion.get("to_format") != delivery_format:
+            errors.append(f"{p}.conversion.to_format: must equal delivery_format")
     return errors
 
 def validate_source_registry(path: Path):
@@ -140,6 +179,8 @@ def run_validation(root=ROOT):
             continue
         errors += validate_schema_document(schema_path, schema)
         errors += [f"{example_path}: {e}" for e in validate_instance(schema, example)]
+        if schema_name == "asset-handoff.schema.json":
+            errors += [f"{example_path}: {e}" for e in validate_asset_handoff_semantics(example)]
     source_registry = eng / "catalog" / "sources" / "SOURCE-REGISTRY.json"
     if not source_registry.is_file():
         errors.append(f"missing {source_registry.relative_to(root)}")
