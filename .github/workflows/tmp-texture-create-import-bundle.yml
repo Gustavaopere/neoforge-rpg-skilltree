@@ -6,7 +6,7 @@ on:
       - feat/blockbench-texture-create-import-approved
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   bundle:
@@ -23,10 +23,14 @@ jobs:
         run: node --test PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.bundle_live_bridge.test.js
       - name: Run aggregate toolkit regression
         run: node --test PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.test.js
-      - name: Upload regenerated standalone
-        uses: actions/upload-artifact@v4
-        with:
-          name: texture-create-import-standalone-bundle
-          path: PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js
-          if-no-files-found: error
-          retention-days: 1
+      - name: Commit regenerated standalone
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js
+          if git diff --cached --quiet; then
+            echo "Standalone already current"
+          else
+            git commit -m "build(blockbench): regenerate texture create import bundle"
+            git push origin HEAD:feat/blockbench-texture-create-import-approved
+          fi
