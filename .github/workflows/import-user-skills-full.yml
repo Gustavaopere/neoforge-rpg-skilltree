@@ -22,14 +22,14 @@ jobs:
           ref: chore/import-user-minecraft-skills-full
           fetch-depth: 0
 
-      - name: Reconstruct and validate staged bundle
+      - name: Reconstruct staged bundle uniquely and validate archive
         shell: bash
         run: |
           set -euo pipefail
           test -d .skill-import
           python3 - <<'PY'
-          from pathlib import Path
-          import base64, binascii
+          from pathlib import Path, PurePosixPath
+          import base64, binascii, gzip, io, itertools, tarfile
 
           parts=sorted(Path('.skill-import').glob('part-*.b64'))
           if not parts:
@@ -40,33 +40,69 @@ jobs:
               raw=p.read_text(encoding='utf-8-sig')
               compact=''.join(raw.split())
               bad=sorted(set(compact)-allowed)
-              print(f'{p.name}: chars={len(raw)} compact={len(compact)} first={compact[:16]!r} last={compact[-16:]!r} bad={bad!r}')
               if bad:
                   raise SystemExit(f'{p.name}: non-base64 characters {bad!r}')
               chunks.append(compact)
-          joined=''.join(chunks)
-          print(f'joined compact chars={len(joined)} padding_positions={[i for i,c in enumerate(joined) if c=="="][-10:]}')
-          try:
-              payload=base64.b64decode(joined, validate=True)
-          except binascii.Error as exc:
-              raise SystemExit(f'strict base64 decode failed: {exc}')
-          Path('/tmp/fullskills.tar.gz').write_bytes(payload)
+
+          # Show containment evidence so overlapping staging commits remain auditable.
+          for i,a in enumerate(chunks):
+              for j,b in enumerate(chunks):
+                  if i != j and len(a) <= len(b):
+                      pos=b.find(a)
+                      if pos >= 0:
+                          print(f'CONTAINED {parts[i].name} in {parts[j].name} at {pos}')
+
+          def inspect_archive(encoded):
+              padded=encoded + '='*((-len(encoded)) % 4)
+              try:
+                  raw=base64.b64decode(padded, validate=True)
+                  data=gzip.decompress(raw)
+                  tf=tarfile.open(fileobj=io.BytesIO(data), mode='r:')
+                  names=tf.getnames()
+              except (binascii.Error, OSError, EOFError, tarfile.TarError, ValueError):
+                  return None
+              bad=[]
+              for name in names:
+                  pp=PurePosixPath(name)
+                  if pp.is_absolute() or '..' in pp.parts:
+                      bad.append(name)
+              if bad:
+                  raise SystemExit('unsafe archive paths: '+repr(bad[:20]))
+              skill_dirs=set()
+              for name in names:
+                  pp=PurePosixPath(name)
+                  if pp.name == 'SKILL.md':
+                      skill_dirs.add(str(pp.parent))
+              return raw, names, skill_dirs
+
+          winners=[]
+          # The staging branch was written chronologically. Search all ordered subsets;
+          # this safely handles superseded/duplicated chunks without guessing bytes.
+          for mask in range(1, 1 << len(chunks)):
+              if not (mask & 1):
+                  continue
+              selected=[i for i in range(len(chunks)) if mask & (1 << i)]
+              encoded=''.join(chunks[i] for i in selected)
+              result=inspect_archive(encoded)
+              if result is None:
+                  continue
+              raw,names,skill_dirs=result
+              if len(skill_dirs) == 20:
+                  winners.append((selected,raw,names,skill_dirs))
+                  print('VALID CANDIDATE', [parts[i].name for i in selected], 'members', len(names), 'skills', len(skill_dirs))
+
+          if len(winners) != 1:
+              raise SystemExit(f'expected exactly one valid 20-skill reconstruction, found {len(winners)}')
+
+          selected,raw,names,skill_dirs=winners[0]
+          Path('/tmp/fullskills.tar.gz').write_bytes(raw)
+          Path('/tmp/fullskills.lst').write_text('\n'.join(names)+'\n', encoding='utf-8')
+          Path('/tmp/reconstruction.txt').write_text('\n'.join(parts[i].name for i in selected)+'\n', encoding='utf-8')
+          print('SELECTED', [parts[i].name for i in selected])
+          print('SKILL DIRS', sorted(skill_dirs))
           PY
           gzip -t /tmp/fullskills.tar.gz
-          tar -tzf /tmp/fullskills.tar.gz > /tmp/fullskills.lst
-          python3 - <<'PY'
-          from pathlib import PurePosixPath
-          bad=[]
-          for raw in open('/tmp/fullskills.lst', encoding='utf-8'):
-              p=raw.strip()
-              if not p:
-                  continue
-              pp=PurePosixPath(p)
-              if pp.is_absolute() or '..' in pp.parts:
-                  bad.append(p)
-          if bad:
-              raise SystemExit('unsafe archive paths: '+repr(bad[:20]))
-          PY
+          tar -tzf /tmp/fullskills.tar.gz >/dev/null
 
       - name: Extract into canonical skill library
         shell: bash
@@ -77,26 +113,23 @@ jobs:
           tar -xzf /tmp/fullskills.tar.gz -C /tmp/fullskills
           mkdir -p PROJECT-INSTRUCTIONS/skills/library
 
-          if [ -d /tmp/fullskills/PROJECT-INSTRUCTIONS/skills/library ]; then
-            src=/tmp/fullskills/PROJECT-INSTRUCTIONS/skills/library
-          elif [ -d /tmp/fullskills/library ]; then
-            src=/tmp/fullskills/library
-          else
-            src=/tmp/fullskills
-          fi
-
-          python3 - "$src" <<'PY'
+          python3 - <<'PY'
           from pathlib import Path
-          import shutil, sys
-          src=Path(sys.argv[1])
-          dst=Path('PROJECT-INSTRUCTIONS/skills/library')
+          import shutil
+
+          root=Path('/tmp/fullskills')
           candidates=[]
-          for p in src.iterdir():
-              if p.is_dir() and (p/'SKILL.md').is_file():
-                  candidates.append(p)
+          for skill_md in root.rglob('SKILL.md'):
+              candidates.append(skill_md.parent)
+          unique={p.resolve():p for p in candidates}
+          candidates=sorted(unique.values(), key=lambda p:p.name)
           if len(candidates) != 20:
-              raise SystemExit(f'expected exactly 20 staged skills, found {len(candidates)}: {[p.name for p in candidates]}')
-          for skill in sorted(candidates):
+              raise SystemExit(f'expected exactly 20 extracted skills, found {len(candidates)}: {[p.name for p in candidates]}')
+          if len({p.name for p in candidates}) != 20:
+              raise SystemExit('duplicate skill directory names in archive')
+
+          dst=Path('PROJECT-INSTRUCTIONS/skills/library')
+          for skill in candidates:
               target=dst/skill.name
               target.mkdir(parents=True, exist_ok=True)
               for item in skill.rglob('*'):
@@ -107,8 +140,7 @@ jobs:
                   elif item.is_file():
                       out.parent.mkdir(parents=True, exist_ok=True)
                       shutil.copy2(item,out)
-          names='\n'.join(sorted(p.name for p in candidates))+'\n'
-          Path('/tmp/imported-skills.txt').write_text(names, encoding='utf-8')
+          Path('/tmp/imported-skills.txt').write_text('\n'.join(p.name for p in candidates)+'\n', encoding='utf-8')
           PY
 
       - name: Validate complete skill payloads
@@ -132,7 +164,8 @@ jobs:
               errors.append(f'expected 20 names, got {len(names)}')
           if errors:
               raise SystemExit('\n'.join(errors))
-          report=['# Full user skill bundle import','',f'- Imported skills: **{len(names)}**','', '| Skill | Files | Bytes |','|---|---:|---:|']
+          recon=Path('/tmp/reconstruction.txt').read_text(encoding='utf-8').strip().replace('\n', ', ')
+          report=['# Full user skill bundle import','',f'- Imported skills: **{len(names)}**',f'- Reconstructed staged parts: `{recon}`','', '| Skill | Files | Bytes |','|---|---:|---:|']
           report += [f'| `{n}` | {fc} | {sz} |' for n,fc,sz in rows]
           report += ['', '> Generated from the staged user-provided bundle. Project overlays remain separate from source skill payloads.','']
           Path('PROJECT-INSTRUCTIONS/skills/FULL-USER-SKILL-IMPORT.md').write_text('\n'.join(report), encoding='utf-8')
