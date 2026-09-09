@@ -45,3 +45,4 @@ require('./rpg_asset_toolkit.mcp_sidecar.test.js');
 require('./rpg_asset_toolkit.bundle_live_bridge.test.js');
 require('./rpg_asset_toolkit.blockbench_adapter.test.js');
 require('./rpg_asset_toolkit.mutations.test.js');
+require('./rpg_asset_toolkit.locator_native.test.js');
