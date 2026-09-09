@@ -23,6 +23,14 @@ The integration repository coordinates instructions, skills, contracts, catalogs
 
 These files are the planning authorities for this production line. Historical plans are reference-only when they conflict with them. GitHub state, physical files/JARs and the latest modlist remain factual authorities for implementation state and provider presence.
 
+## I1 foundation contracts
+
+- [`contracts/MOD-SPEC-CONTRACT.md`](contracts/MOD-SPEC-CONTRACT.md) — canonical pre-implementation mod specification rules.
+- [`schemas/`](schemas/) — fail-closed JSON schemas for mod specs, dependency profiles, asset handoffs, compatibility matrices and test manifests.
+- [`examples/`](examples/) — synthetic validation fixtures; not production facts.
+- [`catalog/sources/SOURCE-REGISTRY.json`](catalog/sources/SOURCE-REGISTRY.json) — authority/source registry. Repo Textura's remote stays `UNRESOLVED` until M0 resolves it.
+- [`tooling/validate-i1-foundation.py`](tooling/validate-i1-foundation.py) — dedicated I1 validator.
+
 ## Execution order
 
 Before implementation:
