@@ -259,6 +259,7 @@ function applyUvPack(adapter, input) {
   }
   adapter.preflightPack(preview);
   if (request.dryRun) return preview;
+  const beforeRevision = preview.beforeRevision;
 
   let opened = false;
   try {
