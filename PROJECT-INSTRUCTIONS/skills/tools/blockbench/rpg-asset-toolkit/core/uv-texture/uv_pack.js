@@ -1,7 +1,5 @@
 'use strict';
 
-const crypto = require('node:crypto');
-
 const MAX_UV_PACK_FACES = 128;
 const MAX_UV_PACK_COPIED_PIXELS = 262144;
 const FACES = new Set(['north', 'south', 'east', 'west', 'up', 'down']);
@@ -213,6 +211,7 @@ function tokenFor(preview) {
     moves: preview.moves,
     copiedPixels: preview.copiedPixels,
   };
+  const crypto = require('node:crypto');
   return `uvpack:v1:${crypto.createHash('sha256').update(JSON.stringify(payload)).digest('hex')}`;
 }
 
@@ -259,27 +258,26 @@ function applyUvPack(adapter, input) {
     fail('UV_PACK_CONFIRMATION_MISMATCH', 'UV pack confirmation token does not match the current revision-bound preview.');
   }
   adapter.preflightPack(preview);
-  if (request.dryRun) {
-    return Object.freeze({ok: true, dryRun: true, beforeRevision: preview.beforeRevision, afterRevision: preview.beforeRevision, applied: 0, changedIds: Object.freeze([]), copiedPixels: preview.copiedPixels});
-  }
-  let begun = false;
+  if (request.dryRun) return preview;
+
+  let opened = false;
   try {
     adapter.beginTransaction(request.label);
-    begun = true;
+    opened = true;
     const changedIds = safeChangedIds(adapter.applyPack(preview));
     adapter.finishTransaction(request.label);
-    begun = false;
+    opened = false;
+    const afterRevision = adapter.getRevision();
+    if (afterRevision === beforeRevision) fail('UV_PACK_REVISION_DID_NOT_ADVANCE', 'Committed UV pack did not advance the project revision.');
     return Object.freeze({
-      ok: true,
+      ...preview,
       dryRun: false,
-      beforeRevision: preview.beforeRevision,
-      afterRevision: adapter.getRevision(),
       applied: preview.moves.length,
       changedIds,
-      copiedPixels: preview.copiedPixels,
+      afterRevision,
     });
   } catch (error) {
-    if (begun) {
+    if (opened) {
       try { adapter.cancelTransaction(true); } catch (_) { /* preserve original error */ }
     }
     throw error;
