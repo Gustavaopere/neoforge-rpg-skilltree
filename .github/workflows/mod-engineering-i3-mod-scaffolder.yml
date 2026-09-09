@@ -1,0 +1,25 @@
+name: Mod Engineering I3 Mod Scaffolder
+
+on:
+  push:
+    branches:
+      - feat/mod-engineering-i3-mod-scaffolder
+  pull_request:
+    paths:
+      - 'PROJECT-INSTRUCTIONS/engineering/templates/neoforge-mod/**'
+      - 'PROJECT-INSTRUCTIONS/engineering/tooling/scaffolder/**'
+      - 'PROJECT-INSTRUCTIONS/engineering/tests/test_i3_mod_scaffolder.py'
+      - 'PROJECT-INSTRUCTIONS/engineering/tests/fixtures/i3-*.json'
+      - 'PROJECT-INSTRUCTIONS/engineering/tests/golden/i3-golden-mod/**'
+      - '.github/workflows/mod-engineering-i3-mod-scaffolder.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  scaffolder-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run I3 scaffolder contract tests
+        run: python3 -m unittest PROJECT-INSTRUCTIONS/engineering/tests/test_i3_mod_scaffolder.py
