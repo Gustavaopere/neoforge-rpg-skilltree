@@ -27,10 +27,31 @@ jobs:
         run: |
           set -euo pipefail
           test -d .skill-import
-          mapfile -t parts < <(find .skill-import -maxdepth 1 -type f -name 'part-*.b64' | sort)
-          test "${#parts[@]}" -ge 1
-          cat "${parts[@]}" > /tmp/fullskills.b64
-          base64 --decode /tmp/fullskills.b64 > /tmp/fullskills.tar.gz
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, binascii
+
+          parts=sorted(Path('.skill-import').glob('part-*.b64'))
+          if not parts:
+              raise SystemExit('no staged parts found')
+          chunks=[]
+          allowed=set('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=')
+          for p in parts:
+              raw=p.read_text(encoding='utf-8-sig')
+              compact=''.join(raw.split())
+              bad=sorted(set(compact)-allowed)
+              print(f'{p.name}: chars={len(raw)} compact={len(compact)} first={compact[:16]!r} last={compact[-16:]!r} bad={bad!r}')
+              if bad:
+                  raise SystemExit(f'{p.name}: non-base64 characters {bad!r}')
+              chunks.append(compact)
+          joined=''.join(chunks)
+          print(f'joined compact chars={len(joined)} padding_positions={[i for i,c in enumerate(joined) if c=="="][-10:]}')
+          try:
+              payload=base64.b64decode(joined, validate=True)
+          except binascii.Error as exc:
+              raise SystemExit(f'strict base64 decode failed: {exc}')
+          Path('/tmp/fullskills.tar.gz').write_bytes(payload)
+          PY
           gzip -t /tmp/fullskills.tar.gz
           tar -tzf /tmp/fullskills.tar.gz > /tmp/fullskills.lst
           python3 - <<'PY'
@@ -113,7 +134,7 @@ jobs:
               raise SystemExit('\n'.join(errors))
           report=['# Full user skill bundle import','',f'- Imported skills: **{len(names)}**','', '| Skill | Files | Bytes |','|---|---:|---:|']
           report += [f'| `{n}` | {fc} | {sz} |' for n,fc,sz in rows]
-          report += ['', '> Generated from the staged user-provided bundle. Project overlays remain separate from upstream/source skill payloads.','']
+          report += ['', '> Generated from the staged user-provided bundle. Project overlays remain separate from source skill payloads.','']
           Path('PROJECT-INSTRUCTIONS/skills/FULL-USER-SKILL-IMPORT.md').write_text('\n'.join(report), encoding='utf-8')
           PY
 
