@@ -347,6 +347,7 @@
         set_box_uv: new Set(['type', 'cubeId', 'enabled', 'offset']),
         texture_fill_rect: new Set(['type', 'textureId', 'x', 'y', 'width', 'height', 'color']),
         texture_replace_palette: new Set(['type', 'textureId', 'region', 'replacements']),
+        texture_paint_region: new Set(['type', 'textureId', 'region', 'pixels']),
         texture_create: new Set(['type', 'name', 'width', 'height']),
         texture_import_approved: new Set(['type', 'approvalId']),
       });
@@ -498,6 +499,21 @@
               region: pixelRegion(value.region, `operations[${index}].region`),
               replacements: paletteReplacements(value.replacements, `operations[${index}].replacements`),
             });
+          case 'texture_paint_region': {
+            const region = pixelRegion(value.region, `operations[${index}].region`);
+            const area = pixelArea(region, `operations[${index}].region`);
+            if (!Array.isArray(value.pixels) || value.pixels.length !== area) {
+              fail('PAINT_PIXEL_COUNT_MISMATCH', `operations[${index}].pixels must contain exactly ${area} row-major RGBA pixels.`);
+            }
+            const pixels = Object.freeze(value.pixels.map((pixel, pixelIndex) =>
+              rgba(pixel, `operations[${index}].pixels[${pixelIndex}]`)));
+            return Object.freeze({
+              type,
+              textureId: boundedString(value.textureId, `operations[${index}].textureId`),
+              region,
+              pixels,
+            });
+          }
           case 'texture_create':
             return Object.freeze({
               type,
@@ -518,6 +534,7 @@
       function operationPixelWrites(operation, index) {
         if (operation.type === 'texture_fill_rect') return pixelArea(operation, `operations[${index}]`);
         if (operation.type === 'texture_replace_palette') return pixelArea(operation.region, `operations[${index}].region`);
+        if (operation.type === 'texture_paint_region') return pixelArea(operation.region, `operations[${index}].region`);
         if (operation.type === 'texture_create') return pixelArea(operation, `operations[${index}]`);
         return 0;
       }
@@ -2693,7 +2710,7 @@
         }
       
         function regionFor(operation) {
-          if (operation.type === 'texture_replace_palette') return operation.region;
+          if (operation.type === 'texture_replace_palette' || operation.type === 'texture_paint_region') return operation.region;
           return operation;
         }
       
@@ -2828,7 +2845,8 @@
                 break;
               }
               case 'texture_fill_rect':
-              case 'texture_replace_palette': {
+              case 'texture_replace_palette':
+              case 'texture_paint_region': {
                 const texture = requireEditableTexture(requireTexture(operation.textureId));
                 requireRegionInBounds(texture, operation);
                 const region = regionFor(operation);
@@ -2942,6 +2960,19 @@
           texture.ctx.putImageData(image, operation.x, operation.y);
         }
       
+        function applyPaintRegion(texture, operation) {
+          const {x, y, width, height} = operation.region;
+          const image = texture.ctx.getImageData(x, y, width, height);
+          operation.pixels.forEach((pixel, index) => {
+            const offset = index * 4;
+            image.data[offset] = pixel[0];
+            image.data[offset + 1] = pixel[1];
+            image.data[offset + 2] = pixel[2];
+            image.data[offset + 3] = pixel[3];
+          });
+          texture.ctx.putImageData(image, x, y);
+        }
+      
         function colorKey(color) {
           return (((color[0] * 256 + color[1]) * 256 + color[2]) * 256 + color[3]);
         }
@@ -2991,6 +3022,12 @@
             case 'texture_replace_palette': {
               const texture = requireEditableTexture(requireTexture(operation.textureId));
               applyPalette(texture, operation);
+              dirtyTextures.add(texture);
+              return texture.uuid || texture.id;
+            }
+            case 'texture_paint_region': {
+              const texture = requireEditableTexture(requireTexture(operation.textureId));
+              applyPaintRegion(texture, operation);
               dirtyTextures.add(texture);
               return texture.uuid || texture.id;
             }

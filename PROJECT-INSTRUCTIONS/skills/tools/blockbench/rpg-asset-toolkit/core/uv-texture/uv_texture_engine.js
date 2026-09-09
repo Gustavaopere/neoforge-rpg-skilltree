@@ -13,6 +13,7 @@ const OPERATION_FIELDS = Object.freeze({
   set_box_uv: new Set(['type', 'cubeId', 'enabled', 'offset']),
   texture_fill_rect: new Set(['type', 'textureId', 'x', 'y', 'width', 'height', 'color']),
   texture_replace_palette: new Set(['type', 'textureId', 'region', 'replacements']),
+  texture_paint_region: new Set(['type', 'textureId', 'region', 'pixels']),
   texture_create: new Set(['type', 'name', 'width', 'height']),
   texture_import_approved: new Set(['type', 'approvalId']),
 });
@@ -164,6 +165,21 @@ function validateOperation(value, index) {
         region: pixelRegion(value.region, `operations[${index}].region`),
         replacements: paletteReplacements(value.replacements, `operations[${index}].replacements`),
       });
+    case 'texture_paint_region': {
+      const region = pixelRegion(value.region, `operations[${index}].region`);
+      const area = pixelArea(region, `operations[${index}].region`);
+      if (!Array.isArray(value.pixels) || value.pixels.length !== area) {
+        fail('PAINT_PIXEL_COUNT_MISMATCH', `operations[${index}].pixels must contain exactly ${area} row-major RGBA pixels.`);
+      }
+      const pixels = Object.freeze(value.pixels.map((pixel, pixelIndex) =>
+        rgba(pixel, `operations[${index}].pixels[${pixelIndex}]`)));
+      return Object.freeze({
+        type,
+        textureId: boundedString(value.textureId, `operations[${index}].textureId`),
+        region,
+        pixels,
+      });
+    }
     case 'texture_create':
       return Object.freeze({
         type,
@@ -184,6 +200,7 @@ function validateOperation(value, index) {
 function operationPixelWrites(operation, index) {
   if (operation.type === 'texture_fill_rect') return pixelArea(operation, `operations[${index}]`);
   if (operation.type === 'texture_replace_palette') return pixelArea(operation.region, `operations[${index}].region`);
+  if (operation.type === 'texture_paint_region') return pixelArea(operation.region, `operations[${index}].region`);
   if (operation.type === 'texture_create') return pixelArea(operation, `operations[${index}]`);
   return 0;
 }
