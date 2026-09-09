@@ -95,10 +95,13 @@ def _validate_delivery_namespace(value: Any, mod_id: Any, label: str) -> list[st
     if not isinstance(value, str) or not _is_bounded_relative_path(value):
         return [f"{label}: must be a bounded relative path"]
     parts = PurePosixPath(value.replace("\\", "/")).parts
-    if len(parts) < 3 or parts[0] not in {"assets", "data"}:
-        return [f"{label}: output destination must start with assets/<mod_id>/ or data/<mod_id>/"]
-    if isinstance(mod_id, str) and parts[1] != mod_id:
-        return [f"{label}: namespace {parts[1]!r} must match mod_id {mod_id!r}"]
+    expected_prefix = ("src", "main", "resources", "assets")
+    if len(parts) < 6 or tuple(parts[:4]) != expected_prefix:
+        return [
+            f"{label}: output destination must start with src/main/resources/assets/<mod_id>/"
+        ]
+    if isinstance(mod_id, str) and parts[4] != mod_id:
+        return [f"{label}: namespace {parts[4]!r} must match mod_id {mod_id!r}"]
     return []
 
 
