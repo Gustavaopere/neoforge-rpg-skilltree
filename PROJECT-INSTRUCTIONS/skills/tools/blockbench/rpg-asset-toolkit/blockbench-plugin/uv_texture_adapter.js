@@ -197,14 +197,12 @@ function createBlockbenchUvTextureAdapter(bb) {
       case 'set_face_uv': {
         const cube = requireCube(operation.cubeId);
         requireFace(cube, operation.face).extend({uv: operation.uv.slice()});
-        bb.Canvas?.updateUV?.(cube);
         return cube.uuid;
       }
       case 'set_face_texture': {
         const cube = requireCube(operation.cubeId);
         const texture = requireTexture(operation.textureId);
         requireFace(cube, operation.face).extend({texture: texture.uuid});
-        bb.Canvas?.updateFaces?.(cube);
         return cube.uuid;
       }
       case 'set_box_uv': {
@@ -212,7 +210,6 @@ function createBlockbenchUvTextureAdapter(bb) {
         requireCubeUvApi(cube);
         cube.setUVMode(operation.enabled);
         cube.extend({uv_offset: operation.offset.slice()});
-        bb.Canvas?.updateUV?.(cube);
         return cube.uuid;
       }
       case 'texture_fill_rect': {
