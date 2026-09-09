@@ -86,6 +86,9 @@ function validateProject(project, profile = {}) {
     const canonical = name.toLowerCase();
     if (textureNames.has(canonical)) issues.push(issue('warning', 'DUPLICATE_TEXTURE_NAME', `Duplicate texture name: "${name}".`));
     else textureNames.set(canonical, texture);
+    if (texture?.internal === false && !normalizedName(texture?.path)) {
+      issues.push(issue('error', 'MISSING_EXTERNAL_TEXTURE_PATH', `External texture "${name}" has no path.`));
+    }
     const width = texture?.width;
     const height = texture?.height;
     if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
