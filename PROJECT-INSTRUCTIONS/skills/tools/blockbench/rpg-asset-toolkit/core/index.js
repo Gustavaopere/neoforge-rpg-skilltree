@@ -3,6 +3,7 @@
 const projectModel = require('./project-model/project_model.js');
 const mutations = require('./mutations/mutation_engine.js');
 const uvTexture = require('./uv-texture/uv_texture_engine.js');
+const uvAnalysis = require('./uv-texture/uv_analysis.js');
 const validator = require('./validator/validator.js');
 const contractProfile = require('./contract-profile/contract_profile.js');
 const report = require('./report/report.js');
@@ -15,6 +16,7 @@ module.exports = Object.assign(
   projectModel,
   mutations,
   uvTexture,
+  uvAnalysis,
   validator,
   contractProfile,
   report,
