@@ -1,32 +1,32 @@
 # AzureLib
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81febc53dab2496b58ee  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81febc53dab2496b58ee
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** AzureLib
 - **Arquivo JAR:** `azurelib-neo-1.21.1-3.1.11.jar`
-- **Versão 1.21.1:** `3.1.11`
-- **Categoria:** Biblioteca; Visual
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 3.1.11
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/azurelib
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca, Visual
 - **Função:** Engine/biblioteca de modelos Bedrock e animações por keyframes para entidades, blocos e itens, com controllers, easing e eventos de som/partícula/custom.
 - **Dependências:** Biblioteca estrutural; necessidade determinada pelos consumidores instalados que usam AzureLib.
-- **Compatibilidade/Riscos:** Não é intercambiável automaticamente com GeckoLib. Riscos em classloading client/server, keyframe gameplay sem authority, eventos duplicados, controllers concorrentes e caches após resource reload.
 - **Sobreposição:** Biblioteca técnica, não conteúdo jogável.
-- **Observações:** 3.1.11 NeoForge 1.21.1. Engine derivada do ecossistema GeckoLib 4.x; suporta keyframes 3D, animações concorrentes, easing e eventos de som/partícula/custom.
-- **Procedência:** Modlist física atual de 07/09/2026 + CurseForge oficial AzureLib 3.1.11 + source/documentação oficial do projeto.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou AzureLib 3.1.11 como biblioteca de modelos/animações e preservou seus contratos de side, controllers, keyframes e lifecycle. A instalação atual não foi tratada como decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — engine/model/controller/keyframe lifecycle catalogado de forma proporcional ao escopo de biblioteca.
-- **Data da última decisão:** não definida.
+- **Compatibilidade/Riscos:** Não é intercambiável automaticamente com GeckoLib. Riscos em classloading client/server, keyframe gameplay sem authority, eventos duplicados, controllers concorrentes e caches após resource reload.
+- **Observações:** AzureLib 3.1.11 NeoForge 1.21.1. Release fix: `q.x` queries e crash ao sobrescrever Bedrock easings. Engine derivada do ecossistema GeckoLib 4.x; não é intercambiável automaticamente com GeckoLib.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficial AzureLib 3.1.11 + source/documentação oficial do projeto.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/azurelib
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — AzureLib 3.1.11 físico/release confirmado; engine/model/controller/keyframe lifecycle preservado; fixes de `q.x` queries e Bedrock easing override incorporados no QC global #61. Runtime QA não executado.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou AzureLib 3.1.11 como biblioteca de modelos/animações e preservou seus contratos de side, controllers, keyframes e lifecycle. Em 09/09/2026, a release física foi revalidada e os dois fixes específicos de 3.1.11 foram incorporados sem converter presença em decisão curatorial.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `azurelib-neo-1.21.1-3.1.11.jar`, mod id `azurelib`, runtime `3.1.11`, NeoForge 1.21.1. AzureLib é uma biblioteca de animação/modelos derivada do ecossistema GeckoLib 4.x.
 
@@ -46,6 +46,9 @@ O projeto documenta suporte a:
 - modelos Bedrock aplicados a entities, blocks e items.
 
 Essas superfícies devem ser tratadas como engine de apresentação/event dispatch, não como um segundo sistema de combate.
+
+### Delta específico da release 3.1.11
+A release instalada 3.1.11 registra dois fixes explícitos: correção de consultas `q.x` que não funcionavam corretamente e correção de crash ao sobrescrever Bedrock easings com outros Bedrock easings. Esses fixes pertencem ao runtime físico atual e entram no escopo de regressão de animação/modelos.
 
 ## 3. Controllers e causalidade
 Animações podem coexistir e ser disparadas por estado do consumidor. O contrato seguro é:
