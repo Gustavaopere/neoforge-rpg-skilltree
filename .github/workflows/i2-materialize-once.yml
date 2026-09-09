@@ -40,6 +40,8 @@ jobs:
           tar -xJf /tmp/i2payload.tar.xz -C "$catalog"
 
       - name: Validate I2 catalog
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
         shell: bash
         run: |
           set -euo pipefail
@@ -86,6 +88,8 @@ jobs:
             "$catalog/.i2payload.part.03" \
             .github/workflows/i2-materialize-once.yml \
             "$catalog/_probe.txt"
+
+          find PROJECT-INSTRUCTIONS/engineering -type d -name __pycache__ -prune -exec rm -rf {} +
 
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
