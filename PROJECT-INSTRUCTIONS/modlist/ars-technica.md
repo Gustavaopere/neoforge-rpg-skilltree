@@ -1,32 +1,32 @@
 # Ars Technica
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81519809da73701c20b0  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81519809da73701c20b0
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Technica
 - **Arquivo JAR:** `ars_technica-1.21.1-2.7.6.jar`
-- **Versão 1.21.1:** `2.7.6`
-- **Categoria:** Magia; Tecnologia; Compat
-- **Decisão:** Manter
+- **Versão 1.21.1:** 2.7.6
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-technica
+- **Decisão:** Manter
+- **Categoria:** Magia, Tecnologia, Compat
 - **Função:** Integra Ars Nouveau e Create com technomancy: 11 spell parts, Source Motor, relay/turret, armaduras/perk de pressão e bridges de automação.
-- **Dependências:** Ars Nouveau + Create; Curios em superfícies de equipamento; Sauce 0.0.16.46 embarcado no JAR, não top-level.
-- **Compatibilidade/Riscos:** Source Ars e rede cinética Create devem manter authorities separadas. Build 2.7.6 foi feito contra Ars 5.11.0.1267/Create 6.0.8; pack usa Ars 5.13.1/Create 6.0.10. Exige QA de motor, pressure/backtank, turret e Schematicannon sem double-processing.
+- **Dependências:** Ars Nouveau 5.13.1 + Create 6.0.10 físicos; Curios 9.5.1 em superfícies de equipamento. Sauce 0.0.16.46 é embedded/jarjar, não top-level.
 - **Sobreposição:** Ars Creo é bridge de integração; Ars Technica acrescenta glyphs, equipamento e Source Motor próprios.
+- **Compatibilidade/Riscos:** Source Ars e rede cinética Create devem manter authorities separadas. Build 2.7.6 foi feito contra Ars 5.11.0.1267/Create 6.0.8; pack usa Ars 5.13.1/Create 6.0.10. Exige QA de motor, pressure/backtank, turret e Schematicannon sem double-processing.
 - **Observações:** Inventário source-confirmed: 11 spell parts; 3 blocks/3 BEs; 8 misc entities; 12 peças de armor; 1 PressurePerk. Sauce embarcado não é mod top-level.
-- **Procedência:** Modlist física atual + source oficial zeroregard/Ars-Technica branch 1.21.X, versionado 2.7.6.
+- **Procedência:** modlist.txt física atual de 08/09/2026 com 595 top-levels + source oficial zeroregard/Ars-Technica branch 1.21.X, versão 2.7.6 + dossiê operacional existente.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-technica
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Technica 2.7.6, 11 spell parts, 3 blocks/BEs, Source Motor, 12 armor pieces, PressurePerk and Ars 5.11/Create 6.0.8 build-target→5.13.1/6.0.10 runtime drift preserved in global QC #50. Estado anterior `Integrado ao Github` preservado; runtime QA continua obrigatório.
 - **Histórico da decisão:** Permaneceu no pack após a revisão dos addons Ars. Confirmado carregado em 22/08/2026 na versão 2.7.6. Deve continuar sendo cruzado com Ars Creo e demais integrações Create apenas para detectar sobreposição real, não por semelhança temática.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — dossiê operacional exaustivo; version drift Ars/Create registrado e runtime QA obrigatório.
-- **Data da última decisão:** 2026-08-22.
+- **Data da última decisão:** 2026-08-22
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `ars_technica-1.21.1-2.7.6.jar` / mod id `ars_technica` / versão `2.7.6`. Source público da branch `1.21.X` também declara `2.7.6`. O addon foi compilado contra Ars Nouveau 5.11.0.1267 e Create 6.0.8; o pack usa Ars Nouveau 5.13.1 e Create 6.0.10, portanto manter QA de integração.
 
@@ -62,8 +62,8 @@ Esses parts devem ser tratados como extensão do pipeline de spells do Ars. Mana
 
 ## 4. Itens e equipamentos confirmados
 ### Armaduras — 12 peças / 3 conjuntos
-**Technomancer:** helmet, chestplate, leggings, boots.  
-**Artificer / Light Technomancer:** cap, tunic, pants, shoes.  
+**Technomancer:** helmet, chestplate, leggings, boots.
+**Artificer / Light Technomancer:** cap, tunic, pants, shoes.
 **Machinaguard / Heavy Technomancer:** helmet, chestplate, leggings, boots.
 
 As 12 peças são registradas como Ars armor perk providers e implementam integração com mana/perks. Elementos visuais também participam do ecossistema Create goggles quando aplicável.
@@ -124,7 +124,7 @@ Risco principal: dois providers tentando consumir/recarregar a mesma reserva. A 
 6. **Dedicated server:** nenhuma classe exclusivamente client deve vazar para inicialização comum.
 
 ## 10. Evidência
-- Modlist física atual de 612 mods: JAR/version/mod id.
+- Modlist física atual de 08/09/2026: **595 entradas top-level**, incluindo `ars_technica-1.21.1-2.7.6.jar`; JAR/version/mod id reconciliados.
 - Source oficial `zeroregard/Ars-Technica`, branch `1.21.X`, `gradle.properties` 2.7.6.
 - `GlyphRegistry`, `BlockRegistry`, `ItemRegistry`, `EntityRegistry`, `ArsNouveauRegistry` e `SourceMotorBlockEntity` auditados.
 
