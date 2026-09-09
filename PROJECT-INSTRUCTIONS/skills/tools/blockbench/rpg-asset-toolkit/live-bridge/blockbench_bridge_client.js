@@ -46,7 +46,7 @@ function addSocketListener(socket, event, handler) {
 }
 
 async function messageText(eventOrData) {
-  let value = eventOrData && Object.prototype.hasOwnProperty.call(eventOrData, 'data')
+  let value = eventOrData && typeof eventOrData === 'object' && 'data' in eventOrData
     ? eventOrData.data
     : eventOrData;
   if (typeof value === 'string') return value;
