@@ -9,6 +9,7 @@ const SOURCE_MODULES = Object.freeze([
   'core/project-model/project_model.js',
   'core/mutations/mutation_engine.js',
   'core/uv-texture/uv_texture_engine.js',
+  'core/uv-texture/uv_analysis.js',
   'core/validator/validator.js',
   'core/contract-profile/contract_profile.js',
   'core/report/report.js',
