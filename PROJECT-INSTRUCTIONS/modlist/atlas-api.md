@@ -1,32 +1,32 @@
 # Atlas API
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db8186a074db43acad2aa7  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db8186a074db43acad2aa7
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Atlas API
 - **Arquivo JAR:** `atlas_api-1.21.1-1.2.0.jar`
-- **Versão 1.21.1:** `1.21.1-1.2.0`
-- **Categoria:** Biblioteca
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 1.21.1-1.2.0
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/atlas-api
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca
 - **Função:** API para atlas de texturas/modelos dinâmicos e registros em runtime, usada por mods dependentes como Iron's Gems 'n Jewelry.
-- **Dependências:** Biblioteca estrutural; há consumidores instalados no pack.
-- **Compatibilidade/Riscos:** Biblioteca específica; não substituir por APIs genéricas apenas por similaridade de categoria.
+- **Dependências:** Biblioteca/resource API; Iron's Gems 'n Jewelry 1.21.1-2.0.2 está fisicamente presente como consumidor relevante. Não assumir que seja o único consumer sem dependency graph completo.
 - **Sobreposição:** Infraestrutura específica de dependentes; não é conteúdo jogável.
+- **Compatibilidade/Riscos:** Biblioteca específica; não substituir por APIs genéricas apenas por similaridade de categoria.
 - **Observações:** mod id: atlas_api; runtime name: Atlas API.
-- **Procedência:** Modlist física atual de 07/09/2026 + documentação/changelogs oficiais do Atlas API 1.2.0 + publicação oficial CurseForge.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + source/documentação Atlas API 1.2.0 + consumidor físico Iron's Gems 'n Jewelry 2.0.2 + dossiê operacional existente.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/atlas-api
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Atlas API 1.21.1-1.2.0, dynamic texture-atlas/resource API e client/server boundary confirmados no QC global #58. Iron's Gems 'n Jewelry 2.0.2 foi reconfirmado como consumidor físico relevante; estado anterior `Integrado ao Github` preservado.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Atlas API 1.21.1-1.2.0, seus contratos de runtime atlas/model loading e a existência de consumidores no ecossistema. A data anterior não representava uma decisão formal e foi removida.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026
-- **Data da última decisão:** não definida.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `atlas_api-1.21.1-1.2.0.jar`, mod id `atlas_api`, versão runtime `1.21.1-1.2.0`, NeoForge 1.21.1. É uma API/biblioteca para **atlases de textura gerados em runtime e modelos que usam sprites dinâmicos**.
 
