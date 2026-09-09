@@ -1,32 +1,32 @@
 # BlockUI
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81538c20e460f49741ac  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81538c20e460f49741ac
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** BlockUI
 - **Arquivo JAR:** `blockui-1.0.211-1.21.1-snapshot.jar`
-- **Versão 1.21.1:** `1.0.211-1.21.1-snapshot`
-- **Categoria:** Biblioteca; Visual
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 1.0.211-1.21.1-snapshot
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/blockui
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca, Visual
 - **Função:** Framework XML de interface: layouts declarativos em XML com backing Window para callbacks/data supply, além de imagens, buttons/handlers, text input, scroll e drag screens usados por MineColonies/Structurize e afins.
-- **Dependências:** Biblioteca estrutural. Pack confirma MineColonies 1.1.1377, Structurize 1.0.832 e Multi-Piston 1.2.58 como consumidores/ecossistema relacionados.
-- **Compatibilidade/Riscos:** Snapshot/beta 1.0.211: riscos em API/layout changes, resource/XML reload, callback duplication, client/server data authority e consumers compilados para snapshot diferente. UI não deve virar authority de gameplay.
+- **Dependências:** Biblioteca estrutural. Pack físico atual confirma MineColonies 1.1.1381, Structurize 1.0.833, Multi-Piston 1.2.58 e Domum Ornamentum 1.0.236-snapshot como consumidores/ecossistema relacionados.
 - **Sobreposição:** Framework específico de UI. Não é substituível por outra GUI library sem migração explícita dos consumidores MineColonies/Structurize/etc.
+- **Compatibilidade/Riscos:** Snapshot/beta 1.0.211: riscos em API/layout changes, resource/XML reload, callback duplication, client/server data authority e consumers compilados para snapshot diferente. UI não deve virar authority de gameplay.
 - **Observações:** Runtime name UI Library Mod. 1.0.211 é snapshot NeoForge 1.21.1. BlockUI é XML-based: XML define estrutura; backing Window trata callbacks e dados. Ferramentas públicas incluem images, buttons/handlers, text input, scroll/drag screens.
-- **Procedência:** Modlist física atual de 07/09/2026 + CurseForge oficial BlockUI + documentação oficial MineColonies/BlockUI + arquivo 1.0.211 snapshot.
-- **Histórico da decisão:** sem histórico adicional registrado.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — XML/window/widget/data-binding lifecycle, consumers físicos, side e riscos de snapshot catalogados.
-- **Data da última decisão:** não definida.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/documentação oficial BlockUI/MineColonies + MineColonies 1.1.1381, Structurize 1.0.833, Multi-Piston 1.2.58 e Domum Ornamentum 1.0.236-snapshot físicos.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/blockui
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BlockUI 1.0.211-1.21.1-snapshot físico confirmado; ecossistema MineColonies atualizado para MineColonies 1.1.1381, Structurize 1.0.833, Multi-Piston 1.2.58 e Domum Ornamentum 1.0.236-snapshot. XML/window/widget lifecycle e snapshot risks preservados. Runtime QA não executado.
+- **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, BlockUI 1.0.211 snapshot foi revalidado contra o stack físico atual de MineColonies/Structurize/Multi-Piston/Domum Ornamentum. A dependência estrutural não foi convertida automaticamente em decisão curatorial.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `blockui-1.0.211-1.21.1-snapshot.jar`, mod id `blockui`, runtime name `UI Library Mod`, versão `1.0.211-1.21.1-snapshot`. É uma build **snapshot/beta** para NeoForge 1.21.1 e uma dependência estrutural do ecossistema MineColonies.
 
@@ -78,10 +78,11 @@ O framework suporta scroll e drag screens. Essas funções são layout/input loc
 Não confundir drag visual de elemento com transferência real de item/entidade sem callback explícito do consumer.
 
 ## 8. Ecossistema físico no pack
-A modlist atual confirma componentes fortemente relacionados:
-- MineColonies `1.1.1377-1.21.1-snapshot`;
-- Structurize `1.0.832-1.21.1`;
+A modlist física atual confirma componentes fortemente relacionados:
+- MineColonies `1.1.1381-1.21.1-snapshot`;
+- Structurize `1.0.833-1.21.1-snapshot`;
 - Multi-Piston `1.2.58-1.21.1`;
+- Domum Ornamentum `1.0.236-snapshot`;
 - BlockUI `1.0.211-1.21.1-snapshot`.
 
 A documentação oficial também cita projetos como StorageRacks. A necessidade de BlockUI é determinada pelos consumidores; não remover por coexistência com outras GUI libraries.
@@ -165,7 +166,7 @@ Isso é especialmente relevante em MineColonies, que possui telas densas e grand
 10. Atualização futura: validar BlockUI e consumers como conjunto, não isoladamente.
 
 ## 18. Evidência
-- modlist física atual: BlockUI 1.0.211 snapshot, MineColonies 1.1.1377, Structurize 1.0.832 e Multi-Piston 1.2.58;
+- modlist física atual: BlockUI 1.0.211 snapshot, MineColonies 1.1.1381, Structurize 1.0.833, Multi-Piston 1.2.58 e Domum Ornamentum 1.0.236-snapshot;
 - CurseForge oficial: BlockUI XML-based UI system, backing Window, images, buttons/handlers, text input, scroll/drag screens;
 - documentação oficial MineColonies/BlockUI sobre o modelo XML + Window;
 - arquivo oficial `blockui-1.0.211-1.21.1-snapshot.jar` e material de changelog da build.
