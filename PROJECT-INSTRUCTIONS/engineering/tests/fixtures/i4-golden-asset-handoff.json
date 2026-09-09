@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "mod_id": "i3_golden_mod",
+  "source_authority": "Repo Textura",
+  "runtime_authority": "UNRESOLVED",
+  "provider_profiles": [],
+  "artifacts": [
+    {
+      "asset_id": "synthetic_pending_texture",
+      "source_path": "UNRESOLVED",
+      "source_format": ".png",
+      "delivery_path": "src/main/resources/assets/i3_golden_mod/textures/synthetic_pending.png",
+      "delivery_format": ".png",
+      "conversion": {
+        "performed": false,
+        "from_format": ".png",
+        "to_format": ".png",
+        "state": "PENDING",
+        "evidence": [
+          "synthetic I4 fixture; no conversion performed"
+        ]
+      },
+      "state": "PENDING"
+    }
+  ],
+  "state": "PENDING",
+  "evidence": [
+    "synthetic I4 validator fixture"
+  ]
+}
