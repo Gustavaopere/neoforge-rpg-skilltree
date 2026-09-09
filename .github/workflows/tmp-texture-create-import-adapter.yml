@@ -1,0 +1,58 @@
+name: Temporary Texture Create Import Adapter Green
+
+on:
+  push:
+    branches:
+      - feat/blockbench-texture-create-import-approved
+
+permissions:
+  contents: write
+
+jobs:
+  green:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Apply minimal adapter patch
+        run: python3 .github/tmp_patch_texture_adapter.py
+
+      - name: Run texture create import adapter target
+        run: node --test PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.texture_create_import_adapter.test.js
+
+      - name: Regenerate standalone bundle
+        run: node PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/build_toolkit_bundle.js --write
+
+      - name: Verify deterministic standalone
+        run: node PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/build_toolkit_bundle.js --check
+
+      - name: Run aggregate toolkit regression
+        run: node --test PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.test.js
+
+      - name: Verify repository validator
+        run: python3 PROJECT-INSTRUCTIONS/skills/scripts/validate_skill_repository.py
+
+      - name: Commit tested adapter and generated bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/tmp_patch_texture_adapter.py
+          rm .github/workflows/tmp-texture-create-import-adapter.yml
+          git add PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/blockbench-plugin/uv_texture_adapter.js
+          git add PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js
+          git add -u .github/tmp_patch_texture_adapter.py .github/workflows/tmp-texture-create-import-adapter.yml
+          actual="$(git diff --cached --name-only | sort)"
+          expected="$(printf '%s\n' \
+            '.github/tmp_patch_texture_adapter.py' \
+            '.github/workflows/tmp-texture-create-import-adapter.yml' \
+            'PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/blockbench-plugin/uv_texture_adapter.js' \
+            'PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js' | sort)"
+          if [[ "$actual" != "$expected" ]]; then
+            echo "Unexpected staged paths:"
+            printf '%s\n' "$actual"
+            exit 1
+          fi
+          git commit -m "feat(blockbench): implement approved texture create import adapter"
+          git push origin HEAD:feat/blockbench-texture-create-import-approved
