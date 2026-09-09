@@ -6,7 +6,7 @@ Internal project plugin: `rpg_asset_toolkit.js` (plugin ID matches filename).
 
 Structural/contract QA plus fail-closed provider/extension capability resolution for project-owned Minecraft assets, with narrowly bounded local Blockbench mutations where an audited contract exists. Mutation support is intentionally incremental: it does not authorize arbitrary geometry, UV, texture, pivot or animation rewrites, and it does not install or invoke arbitrary extensions.
 
-The current PR4 slices include deterministic one-texture UV pack preview/apply for per-face cube UVs, bounded internal texture creation and locally approved texture import, plus deterministic bounded non-uniform texture painting inside an explicit rectangular region. These are local desktop operations, not a generic UV/texture rewrite surface and not a Live Bridge/MCP write surface.
+The current PR4 slices include deterministic one-texture UV pack preview/apply for per-face cube UVs, bounded internal texture creation and locally approved texture import, deterministic bounded non-uniform texture painting inside an explicit rectangular region, and bounded painting through an explicitly selected per-face UV island mask. These are local desktop operations, not a generic UV/texture rewrite surface and not a Live Bridge/MCP write surface.
 
 ## Architecture
 
@@ -123,9 +123,26 @@ The PR4 bounded-paint contract adds `texture_paint_region` as a deterministic ex
 - adapter preflight rejects out-of-bounds or layered targets before Undo;
 - dry-run validates and preflights without writing bitmap state or opening Undo;
 - committed apply performs one bounded `putImageData(...)`, publishes the changed texture once and remains inside the existing single Undo transaction;
-- no random/procedural brush, UV-island mask, palette sampling, global painting or remote Live Bridge/MCP write is introduced by this operation.
+- this operation itself does not derive UV-island masks, sample palettes, run procedural/random brushes, paint globally or expose a remote Live Bridge/MCP write.
 
-These slices close only their bounded PR4 subgates. PR4 remains broader: the canonical plan still requires UV island masks, palette tools and the final round-trip, visual-diff, Undo and texture-validation evidence before PR4 can be considered complete or PR5 can begin.
+## Bounded UV island masks
+
+The PR4 UV-island-mask contract adds `texture_paint_uv_island` as a deterministic mask derived only from current per-face cube UV geometry selected explicitly by the caller:
+
+- target is one explicit `textureId` plus a bounded list of explicit `{cubeId, face}` selectors;
+- no material, part, provider or other semantic face inference is performed;
+- every selected face must be enabled, use per-face UV and reference the target texture; Box UV fails closed;
+- UV coordinates must map exactly to bitmap pixels using the current project UV dimensions and texture resolution;
+- selected face rectangles must form one connected UV component through positive-area overlap or a shared edge segment; corner-only contact is not connectivity;
+- the declared `region` must exactly equal the bounding rectangle derived from the selected UV mask;
+- `pixels` remains an exact row-major RGBA sequence for the declared region and the conservative pixel budget is charged by the full region area;
+- only pixels covered by the derived face-union mask are changed; holes/gaps inside the bounding rectangle and all pixels outside it are preserved;
+- duplicate face selectors, disconnected selections, texture mismatch, non-pixel-aligned UVs, invalid bounds and layered textures fail during preflight before Undo;
+- dry-run performs validation/preflight without bitmap mutation or Undo;
+- committed apply writes the bounded region once, publishes the changed texture once and remains inside the existing single Undo transaction;
+- Advanced V2 semantic UV masks, palette operations, procedural brushes, arbitrary global painting and remote Live Bridge/MCP writes are outside this slice.
+
+These slices close only their bounded PR4 subgates. PR4 remains broader: the canonical plan still requires palette tools and the final round-trip, visual-diff, Undo and texture-validation evidence before PR4 can be considered complete or PR5 can begin.
 
 ## Deliberate non-automation
 
@@ -141,9 +158,10 @@ node --test rpg_asset_toolkit.uv_pack.test.js
 node --test rpg_asset_toolkit.texture_create_import.test.js
 node --test rpg_asset_toolkit.texture_create_import_adapter.test.js
 node --test rpg_asset_toolkit.texture_paint_region.test.js
+node --test rpg_asset_toolkit.uv_island_masks.test.js
 node --test rpg_asset_toolkit.bundle_live_bridge.test.js
 node --test rpg_asset_toolkit.test.js
 node build_toolkit_bundle.js --check
 ```
 
-Tests use Node's built-in runner and no third-party npm dependency. Coverage includes structural QA, Locator semantics, extension authorization, physical-provider authority, provider resolution, fail-closed conversion, schemas, generated-bundle reproducibility, deterministic UV-pack preview, exact confirmation/revision binding, Blockbench Undo behavior, overlap-safe source-pixel buffering, bounded texture creation, opaque approved import, dry-run approval preservation, collision/budget rejection, deterministic non-uniform bounded paint with exact RGBA/alpha preservation, and standalone bundle loading without introducing a remote write surface.
+Tests use Node's built-in runner and no third-party npm dependency. Coverage includes structural QA, Locator semantics, extension authorization, physical-provider authority, provider resolution, fail-closed conversion, schemas, generated-bundle reproducibility, deterministic UV-pack preview, exact confirmation/revision binding, Blockbench Undo behavior, overlap-safe source-pixel buffering, bounded texture creation, opaque approved import, dry-run approval preservation, collision/budget rejection, deterministic non-uniform bounded paint with exact RGBA/alpha preservation, bounded per-face UV-island mask derivation with gap preservation and fail-closed connectivity/alignment checks, and standalone bundle loading without introducing a remote write surface.
