@@ -13,6 +13,8 @@ const OPERATION_FIELDS = Object.freeze({
   set_box_uv: new Set(['type', 'cubeId', 'enabled', 'offset']),
   texture_fill_rect: new Set(['type', 'textureId', 'x', 'y', 'width', 'height', 'color']),
   texture_replace_palette: new Set(['type', 'textureId', 'region', 'replacements']),
+  texture_create: new Set(['type', 'name', 'width', 'height']),
+  texture_import_approved: new Set(['type', 'approvalId']),
 });
 
 class UvTextureContractError extends Error {
@@ -162,6 +164,18 @@ function validateOperation(value, index) {
         region: pixelRegion(value.region, `operations[${index}].region`),
         replacements: paletteReplacements(value.replacements, `operations[${index}].replacements`),
       });
+    case 'texture_create':
+      return Object.freeze({
+        type,
+        name: boundedString(value.name, `operations[${index}].name`),
+        width: positiveInteger(value.width, `operations[${index}].width`),
+        height: positiveInteger(value.height, `operations[${index}].height`),
+      });
+    case 'texture_import_approved':
+      return Object.freeze({
+        type,
+        approvalId: boundedString(value.approvalId, `operations[${index}].approvalId`),
+      });
     default:
       fail('UNSUPPORTED_UV_TEXTURE_MUTATION', `operations[${index}] is not allowlisted.`);
   }
@@ -170,6 +184,7 @@ function validateOperation(value, index) {
 function operationPixelWrites(operation, index) {
   if (operation.type === 'texture_fill_rect') return pixelArea(operation, `operations[${index}]`);
   if (operation.type === 'texture_replace_palette') return pixelArea(operation.region, `operations[${index}].region`);
+  if (operation.type === 'texture_create') return pixelArea(operation, `operations[${index}]`);
   return 0;
 }
 

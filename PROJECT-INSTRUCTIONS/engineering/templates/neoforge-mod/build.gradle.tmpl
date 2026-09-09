@@ -23,9 +23,18 @@ runs {
         modSource project.sourceSets.main
     }
 
-    client {}
+    client {
+        systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+    }
     server {
+        systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         argument '--nogui'
+    }
+    gameTestServer {
+        systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+    }
+    data {
+        arguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
     }
 }
 
