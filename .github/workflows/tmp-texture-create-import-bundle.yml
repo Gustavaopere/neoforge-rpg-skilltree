@@ -1,0 +1,32 @@
+name: Temporary Texture Create Import Bundle Proof
+
+on:
+  push:
+    branches:
+      - feat/blockbench-texture-create-import-approved
+
+permissions:
+  contents: read
+
+jobs:
+  bundle:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Regenerate standalone bundle
+        run: node PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/build_toolkit_bundle.js --write
+      - name: Verify deterministic bundle
+        run: node PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/build_toolkit_bundle.js --check
+      - name: Run texture create import contract
+        run: node --test PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.texture_create_import.test.js
+      - name: Run bundle load regression
+        run: node --test PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.bundle_live_bridge.test.js
+      - name: Run aggregate toolkit regression
+        run: node --test PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.test.js
+      - name: Upload regenerated standalone
+        uses: actions/upload-artifact@v4
+        with:
+          name: texture-create-import-standalone-bundle
+          path: PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js
+          if-no-files-found: error
+          retention-days: 1
