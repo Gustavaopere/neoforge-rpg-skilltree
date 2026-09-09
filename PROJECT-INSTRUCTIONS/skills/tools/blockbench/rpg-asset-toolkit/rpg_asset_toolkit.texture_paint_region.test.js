@@ -25,9 +25,9 @@ function paintOperation(overrides = {}) {
   };
 }
 
-function batch(operation, dryRun = false) {
+function batch(operation, dryRun = false, expectedRevision = 'sha256:before') {
   return {
-    expectedRevision: 'sha256:before',
+    expectedRevision,
     label: 'Bounded Paint Region',
     dryRun,
     operations: [operation],
@@ -104,19 +104,14 @@ function mockBlockbench() {
   Texture.all = [texture];
   project.textures = [texture];
 
-  let revision = 'sha256:before';
   const Undo = {
     initEdit(aspects) { events.push(['undo.begin', aspects]); },
-    finishEdit(label, aspects) {
-      events.push(['undo.finish', label, aspects]);
-      revision = 'sha256:after';
-    },
+    finishEdit(label, aspects) { events.push(['undo.finish', label, aspects]); },
     cancelEdit(revert) { events.push(['undo.cancel', revert]); },
   };
 
   const bb = {Blockbench: {Project: project, isWeb: false}, Cube, Texture, Undo};
   const adapter = createBlockbenchUvTextureAdapter(bb);
-  adapter.getRevision = () => revision;
   return {bb, adapter, texture, events};
 }
 
@@ -158,13 +153,14 @@ test('bounded paint region rejects pixel-count mismatch, invalid RGBA, and batch
 test('bounded paint region dry-run is mutation-free and committed apply writes exact non-uniform RGBA in one Undo transaction', () => {
   const env = mockBlockbench();
   const operation = paintOperation();
+  const beforeRevision = env.adapter.getRevision();
 
-  const preview = applyUvTextureBatch(env.adapter, batch(operation, true));
+  const preview = applyUvTextureBatch(env.adapter, batch(operation, true, beforeRevision));
   assert.equal(preview.dryRun, true);
   assert.deepEqual(pixel(env.texture, 1, 2), [9, 9, 9, 255]);
   assert.equal(env.events.some(([kind]) => kind === 'undo.begin'), false);
 
-  const result = applyUvTextureBatch(env.adapter, batch(operation));
+  const result = applyUvTextureBatch(env.adapter, batch(operation, false, beforeRevision));
   assert.equal(result.ok, true);
   assert.equal(result.pixelWrites, 4);
   assert.deepEqual(pixel(env.texture, 1, 2), [255, 0, 0, 255]);
@@ -176,6 +172,7 @@ test('bounded paint region dry-run is mutation-free and committed apply writes e
   assert.equal(env.events.filter(([kind]) => kind === 'putImageData').length, 1);
   assert.equal(env.events.filter(([kind]) => kind === 'undo.begin').length, 1);
   assert.equal(env.events.filter(([kind]) => kind === 'undo.finish').length, 1);
+  assert.notEqual(result.afterRevision, beforeRevision);
 });
 
 test('bounded paint region adapter rejects out-of-bounds and layered targets before Undo', () => {
