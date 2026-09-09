@@ -1,32 +1,32 @@
 # Ars Nouveau: Two-Way Portals
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db812c98a9f6a1d1fe8153  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db812c98a9f6a1d1fe8153
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Nouveau: Two-Way Portals
 - **Arquivo JAR:** `ars_two_way_portals-2.0.0.jar`
-- **Versão 1.21.1:** `2.0.0`
-- **Categoria:** Magia; Compat
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 2.0.0
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-nouveau-two-way-portals
+- **Decisão:** Sem decisão
+- **Categoria:** Magia, Compat
 - **Função:** Estende portais/warp do Ars Nouveau com pares bidirecionais permanentes, identidade de endpoints, frame tracking, cooldown e bridge opcional com Immersive Portals.
-- **Dependências:** Ars Nouveau; Immersive Portals é integração opcional, não autoridade do fluxo regular.
-- **Compatibilidade/Riscos:** Risco de double-teleport, stale pair após unload/restart, conflitos em PortalBlock/warp hooks e classloading opcional de Immersive Portals. Portal Nullify deve remover só um endpoint.
+- **Dependências:** Ars Nouveau 5.13.1. Immersive Portals 6.0.7 está fisicamente presente no snapshot atual, mas a integração continua provider-gated; ausência/incompatibilidade do provider deve falhar sem fallback fictício.
 - **Sobreposição:** Teleporte bidirecional específico do Ars; não equivale a portais gerais do pack.
-- **Observações:** 2 itens próprios confirmados: Double-Sided Stable Warp Scroll e Portal Nullify Scroll. Pair lifecycle/cooldown/frame hooks documentados no dossiê.
-- **Procedência:** Modlist física atual + release oficial 2.0.0 + source Astrologic-Git/ars-nouveau-two-way-portals.
+- **Compatibilidade/Riscos:** Risco de double-teleport, stale pair após unload/restart, conflitos em PortalBlock/warp hooks e classloading opcional de Immersive Portals. Portal Nullify deve remover só um endpoint.
+- **Observações:** mod id `ars_two_way_portals`, runtime 2.0.0. Immersive Portals está presente fisicamente, mas presença não equivale a runtime QA aprovado.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + source/dossiê Ars Nouveau: Two-Way Portals 2.0.0 + provider físico Immersive Portals 6.0.7.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-nouveau-two-way-portals
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Two-Way Portals 2.0.0, portal pairing/nullification, cooldown e optional Immersive Portals boundary confirmados no QC global #51. Estado anterior `Integrado ao Github` preservado como histórico documental; runtime QA não executado.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria técnica confirmou o JAR 2.0.0, o escopo de portais bidirecionais, o pair lifecycle e os riscos de integração. A presença física no pack não foi convertida automaticamente em decisão de manter, remover ou tornar opcional.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — dossiê operacional exaustivo de pair lifecycle, teleport authority, frame protection e integração opcional.
-- **Data da última decisão:** não definida.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `ars_two_way_portals-2.0.0.jar`, mod id `ars_two_way_portals`, versão `2.0.0`. A release 2.0.0 e o source público confirmam a implementação específica de portais pareados e a integração opcional com Immersive Portals.
 
