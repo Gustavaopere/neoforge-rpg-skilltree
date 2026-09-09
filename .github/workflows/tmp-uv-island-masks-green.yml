@@ -241,6 +241,10 @@ jobs:
 
           """
           adapter = replace_once(adapter, paint_anchor, apply_helper + paint_anchor, 'adapter apply helper')
+          apply_marker = "  function applyOperation(operation) {\n"
+          if adapter.count(apply_marker) != 1:
+              raise SystemExit(f'adapter apply marker: expected exactly one marker, found {adapter.count(apply_marker)}')
+          before_apply, apply_section = adapter.split(apply_marker, 1)
           apply_anchor = "      case 'texture_create': {\n"
           apply_case = """      case 'texture_paint_uv_island': {
               const plan = prepared?.uvIslandPaintPlans?.find((entry) => entry.operation === operation);
@@ -250,7 +254,8 @@ jobs:
               return plan.texture.uuid || plan.texture.id;
             }
           """
-          adapter = replace_once(adapter, apply_anchor, apply_case + apply_anchor, 'adapter apply island')
+          apply_section = replace_once(apply_section, apply_anchor, apply_case + apply_anchor, 'adapter apply island')
+          adapter = before_apply + apply_marker + apply_section
           adapter_path.write_text(adapter)
           PY
 
