@@ -3,6 +3,7 @@
 const MAX_UV_TEXTURE_OPERATIONS = 128;
 const MAX_TEXTURE_PIXELS_PER_BATCH = 262144;
 const MAX_PALETTE_REPLACEMENTS = 256;
+const MAX_UV_ISLAND_FACES = 128;
 const MAX_IDENTIFIER_LENGTH = 128;
 const MAX_LABEL_LENGTH = 160;
 const FACES = new Set(['north', 'south', 'east', 'west', 'up', 'down']);
@@ -14,6 +15,7 @@ const OPERATION_FIELDS = Object.freeze({
   texture_fill_rect: new Set(['type', 'textureId', 'x', 'y', 'width', 'height', 'color']),
   texture_replace_palette: new Set(['type', 'textureId', 'region', 'replacements']),
   texture_paint_region: new Set(['type', 'textureId', 'region', 'pixels']),
+  texture_paint_uv_island: new Set(['type', 'textureId', 'faces', 'region', 'pixels']),
   texture_create: new Set(['type', 'name', 'width', 'height']),
   texture_import_approved: new Set(['type', 'approvalId']),
 });
@@ -113,6 +115,23 @@ function paletteReplacements(value, field) {
   }));
 }
 
+function uvIslandFaces(value, field) {
+  if (!Array.isArray(value) || value.length < 1 || value.length > MAX_UV_ISLAND_FACES) {
+    fail('INVALID_UV_ISLAND_FACES', `${field} must contain 1-${MAX_UV_ISLAND_FACES} explicit cube-face selectors.`);
+  }
+  const seen = new Set();
+  return Object.freeze(value.map((entry, index) => {
+    if (!isPlainObject(entry)) fail('INVALID_UV_ISLAND_FACES', `${field}[${index}] must be an object.`);
+    rejectUnknownFields(entry, new Set(['cubeId', 'face']), 'INVALID_UV_ISLAND_FACES', `${field}[${index}]`);
+    const cubeId = boundedString(entry.cubeId, `${field}[${index}].cubeId`);
+    const face = faceName(entry.face, `${field}[${index}].face`);
+    const key = `${cubeId}\u0000${face}`;
+    if (seen.has(key)) fail('DUPLICATE_UV_ISLAND_FACE', `${field} repeats cube face ${cubeId}/${face}.`);
+    seen.add(key);
+    return Object.freeze({cubeId, face});
+  }));
+}
+
 function validateOperation(value, index) {
   if (!isPlainObject(value)) fail('INVALID_UV_TEXTURE_MUTATION', `operations[${index}] must be an object.`);
   const type = typeof value.type === 'string' ? value.type : '';
@@ -180,6 +199,23 @@ function validateOperation(value, index) {
         pixels,
       });
     }
+    case 'texture_paint_uv_island': {
+    const faces = uvIslandFaces(value.faces, `operations[${index}].faces`);
+    const region = pixelRegion(value.region, `operations[${index}].region`);
+    const area = pixelArea(region, `operations[${index}].region`);
+    if (!Array.isArray(value.pixels) || value.pixels.length !== area) {
+      fail('PAINT_PIXEL_COUNT_MISMATCH', `operations[${index}].pixels must contain exactly ${area} row-major RGBA pixels.`);
+    }
+    const pixels = Object.freeze(value.pixels.map((pixel, pixelIndex) =>
+      rgba(pixel, `operations[${index}].pixels[${pixelIndex}]`)));
+    return Object.freeze({
+      type,
+      textureId: boundedString(value.textureId, `operations[${index}].textureId`),
+      faces,
+      region,
+      pixels,
+    });
+  }
     case 'texture_create':
       return Object.freeze({
         type,
@@ -201,6 +237,7 @@ function operationPixelWrites(operation, index) {
   if (operation.type === 'texture_fill_rect') return pixelArea(operation, `operations[${index}]`);
   if (operation.type === 'texture_replace_palette') return pixelArea(operation.region, `operations[${index}].region`);
   if (operation.type === 'texture_paint_region') return pixelArea(operation.region, `operations[${index}].region`);
+  if (operation.type === 'texture_paint_uv_island') return pixelArea(operation.region, `operations[${index}].region`);
   if (operation.type === 'texture_create') return pixelArea(operation, `operations[${index}]`);
   return 0;
 }
