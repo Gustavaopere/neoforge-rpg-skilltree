@@ -7,7 +7,6 @@ import re
 import subprocess
 import zipfile
 from pathlib import Path
-from typing import Sequence
 
 
 INTEGRATION_ROOT = Path(__file__).resolve().parents[4]
@@ -296,12 +295,18 @@ def validate_assets_manifest(
     return errors
 
 
-def validate_datagen_drift(project_root: Path, command: Sequence[str]) -> list[str]:
+def validate_datagen_drift(project_root: Path) -> list[str]:
     project_root = Path(project_root)
+    wrapper = project_root / "gradlew"
+    if not wrapper.is_file():
+        return [f"missing Gradle wrapper {wrapper}"]
+    if not wrapper.stat().st_mode & 0o111:
+        return [f"Gradle wrapper is not executable: {wrapper}"]
+
     errors: list[str] = []
     try:
         generated = subprocess.run(
-            list(command),
+            [str(wrapper), "runData", "--no-daemon"],
             cwd=project_root,
             text=True,
             stdout=subprocess.PIPE,
@@ -309,10 +314,10 @@ def validate_datagen_drift(project_root: Path, command: Sequence[str]) -> list[s
             check=False,
         )
     except Exception as exc:
-        return [f"datagen command failed to start: {exc}"]
+        return [f"official datagen command failed to start: {exc}"]
     if generated.returncode != 0:
         output = generated.stdout.strip()
-        errors.append(f"datagen command exited {generated.returncode}: {output}")
+        errors.append(f"official datagen command exited {generated.returncode}: {output}")
         return errors
 
     for diff_command, label in (
