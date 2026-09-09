@@ -1,32 +1,32 @@
 # Bloodlines
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c869db9f0db814a89adfb017bfacc71  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c869db9f0db814a89adfb017bfacc71
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Bloodlines
 - **Arquivo JAR:** `bloodlines-1.21-3.0.9.jar`
-- **Versão 1.21.1:** `1.21-3.0.9`
-- **Categoria:** Magia; RPG
-- **Decisão:** Manter
+- **Versão 1.21.1:** 1.21-3.0.9
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bloodlines
+- **Decisão:** Manter
+- **Categoria:** Magia, RPG
 - **Função:** Addon estrutural de Vampirism com 5 bloodlines, 5 skill trees, 101 skills registradas, 29 actions, 22 tasks, ranks próprios, perk wallet e domínio Gravebound Souls/Phylactery.
 - **Dependências:** Vampirism 1.10.13; NeoForge 1.21.1. A presença física do Vampirism 1.10.13 foi reconfirmada na modlist atual.
-- **Compatibilidade/Riscos:** Source-pinned 3.0.9 com runtime QA ainda pendente. Riscos auditados incluem dual skill-point gate, costs/wallet, movement/side, Mist Form, Possession, Souls/Phylactery e interop com addons Vampirism. Não duplicar BloodlineManager ou recursos provider-native.
 - **Sobreposição:** Estende diretamente Vampirism; BloodlineManager, Vampirism blood e Gravebound Souls/Phylactery permanecem domínios distintos. Não duplicar em sistemas próprios nem converter automaticamente para mana/soul-energy genérica.
-- **Observações:** Source pin exato `c8fd517d204d09dfcb9a544c17d7df87755eaa5c`. 5 bloodlines: Noble, Zealot, Ectotherm, Bloodknight, Gravebound. Source 3.0.9 define Heinous Elixir = 15 s. Source audit não equivale a runtime QA.
-- **Procedência:** Modlist física mais recente de 07/09/2026 + source oficial TheDrOfDoctoring/bloodlines pin `c8fd517d204d09dfcb9a544c17d7df87755eaa5c` + catálogo source-level já auditado.
+- **Compatibilidade/Riscos:** Source-pinned 3.0.9 com runtime QA ainda pendente. Riscos auditados incluem dual skill-point gate, costs/wallet, movement/side, Mist Form, Possession, Souls/Phylactery e interop com addons Vampirism. Não duplicar BloodlineManager ou recursos provider-native.
+- **Observações:** Source pin exato c8fd517d204d09dfcb9a544c17d7df87755eaa5c. 5 bloodlines: Noble, Zealot, Ectotherm, Bloodknight, Gravebound. Source 3.0.9 define Heinous Elixir = 15 s. Source audit não equivale a runtime QA.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial TheDrOfDoctoring/bloodlines pin c8fd517d204d09dfcb9a544c17d7df87755eaa5c + catálogo source-level já auditado.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bloodlines
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Bloodlines 1.21-3.0.9 físico e source pin c8fd517d… reconfirmados; 5 bloodlines/101 skills/29 actions/22 tasks, BloodlineManager, wallet, Gravebound Souls/Phylactery e gates de QA preservados. Decisão Manter preservada. Runtime QA não executado.
 - **Histórico da decisão:** 07/09/2026: auditoria granular source-level 3.0.9 concluída no catálogo Black Arcana; manter instalado e preservar autoridade provider-native. Runtime QA permanece pendente.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — auditoria source-pinned 3.0.9 preservada e normalizada; 5 bloodlines/101 skills/29 actions/22 tasks, authority, lifecycle e gates de runtime QA documentados.
-- **Data da última decisão:** 2026-09-07.
+- **Data da última decisão:** 2026-09-07
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física reconfirmada: `bloodlines-1.21-3.0.9.jar`, mod id `bloodlines`, runtime `1.21-3.0.9`, com Vampirism `1.10.13` presente. Esta página preserva a auditoria source-pinned já concluída no commit `c8fd517d204d09dfcb9a544c17d7df87755eaa5c`. **Source audit completo não equivale a runtime QA confirmado**; os findings abaixo permanecem gates de teste, não correções automáticas.
 
