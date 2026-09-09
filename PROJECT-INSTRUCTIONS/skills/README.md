@@ -4,24 +4,36 @@ Esta pasta é o ponto de entrada canônico para skills/instruções de Minecraft
 
 ## Leia primeiro
 
-1. `ROUTER.md` — escolhe a skill adequada.
+1. `ROUTER.md` — escolhe a skill adequada e aplica overlays de projeto.
 2. `VERSION-AUTHORITY.md` — fixa a autoridade de Minecraft 1.21.1 / NeoForge 21.1.x / Java 21.
 3. `USER-GUIDED-WORKFLOW.md` — obriga uma etapa manual verificável por vez quando o usuário precisa agir.
 4. `SOURCE-AUDIT.md` — classifica as skills recebidas.
-5. `SOURCE-MANIFEST.md` — registra SHA-256 dos 20 ZIPs recebidos.
+5. `SOURCE-MANIFEST.md` — registra SHA-256 dos 20 ZIPs recebidos e os critérios de importação integral.
 6. `ART-PIPELINE-SOURCES.md`, `VISUAL-STYLE-SOURCES.md` e `SPELL-VFX-AUDIO-SOURCES.md` — evidência técnica/visual das skills project-authored.
 7. `../../docs/art/VISUAL-STYLE-BIBLE.md` — gramática visual canônica para assets próprios.
 
 ## Estrutura
 
-- `library/<skill>/SKILL.md` — skills canônicas deste repositório;
+- `library/<skill>/SKILL.md` — payload-fonte/canônico da skill;
+- `library/<skill>/PROJECT-OVERLAY.md` — restrições de versão, loader, autoridade e roteamento específicas deste projeto, sem reescrever o payload-fonte;
+- `FULL-USER-SKILL-IMPORT.md` — relatório gerado após a importação integral dos 20 bundles recebidos;
 - `standards/` — contratos/checklists de aceitação;
 - `templates/` — briefs reutilizáveis para assets/modelos/animação/VFX/spells/áudio/QA;
 - `golden-samples/` — exemplos project-owned, executáveis quando possível, sempre subordinados às standards/templates e nunca authority de runtime/API;
 - `tools/` — utilitários versionados que não substituem validação no runtime;
 - `docs/art/VISUAL-STYLE-BIBLE.md` — direção visual cross-system.
 
-Skills project-authored atuais:
+## Payloads recebidos do usuário
+
+Os 20 bundles listados em `SOURCE-MANIFEST.md` devem ser preservados integralmente. A importação só pode ser considerada completa quando:
+
+- existirem exatamente **20** skills esperadas;
+- todos os `SKILL.md` estiverem presentes e não vazios;
+- o payload-fonte total validado corresponder a **142 arquivos**;
+- overlays de projeto permanecerem separados em `PROJECT-OVERLAY.md`;
+- não houver conversão silenciosa de exemplos multi-versão em autoridade 1.21.1.
+
+## Skills project-authored atuais
 
 - `minecraft-asset-art-direction` — identidade visual e asset contract;
 - `minecraft-blockbench-geckolib` — Blockbench/GeckoLib 4 para modelagem, UV, rig e animação;
