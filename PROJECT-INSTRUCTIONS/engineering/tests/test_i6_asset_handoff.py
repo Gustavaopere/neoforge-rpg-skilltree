@@ -62,7 +62,7 @@ class I6AssetHandoffContractTest(unittest.TestCase):
             source_root = root / "source"
             runtime_root = root / "runtime"
             source_file = source_root / "textures" / "machine.png"
-            runtime_file = runtime_root / "assets" / "example_mod" / "textures" / "block" / "machine.png"
+            runtime_file = runtime_root / "src" / "main" / "resources" / "assets" / "example_mod" / "textures" / "block" / "machine.png"
             source_file.parent.mkdir(parents=True)
             runtime_file.parent.mkdir(parents=True)
             payload = b"fixture-texture-bytes"
@@ -120,7 +120,7 @@ class I6AssetHandoffContractTest(unittest.TestCase):
         validator = _load_validator()
         manifest = self._resolved_fixture("0" * 64)
         manifest["artifacts"][0]["source_path"] = "../private.png"
-        manifest["artifacts"][0]["delivery_path"] = "assets/other_mod/textures/block/machine.png"
+        manifest["artifacts"][0]["delivery_path"] = "src/main/resources/assets/other_mod/textures/block/machine.png"
         errors = validator.validate_manifest_data(manifest, schema=_load_json(SCHEMA_PATH))
         self.assertTrue(any("source_path" in error and "bounded" in error for error in errors), errors)
         self.assertTrue(any("delivery_path" in error and "namespace" in error for error in errors), errors)
@@ -133,7 +133,7 @@ class I6AssetHandoffContractTest(unittest.TestCase):
             source_root = root / "source"
             runtime_root = root / "runtime"
             source_file = source_root / "textures" / "machine.png"
-            runtime_file = runtime_root / "assets" / "example_mod" / "textures" / "block" / "machine.png"
+            runtime_file = runtime_root / "src" / "main" / "resources" / "assets" / "example_mod" / "textures" / "block" / "machine.png"
             source_file.parent.mkdir(parents=True)
             runtime_file.parent.mkdir(parents=True)
             source_file.write_bytes(b"source")
@@ -176,6 +176,7 @@ class I6AssetHandoffContractTest(unittest.TestCase):
                 "evidence": ["synthetic I6 test fixture"],
             }
         )
+        delivery_path = "src/main/resources/assets/example_mod/textures/block/machine.png"
         manifest["artifacts"] = [
             {
                 "asset_id": "machine_texture",
@@ -183,13 +184,13 @@ class I6AssetHandoffContractTest(unittest.TestCase):
                 "source_path": "textures/machine.png",
                 "source_format": ".png",
                 "source_sha256": digest,
-                "delivery_path": "assets/example_mod/textures/block/machine.png",
+                "delivery_path": delivery_path,
                 "delivery_format": ".png",
                 "delivery_sha256": digest,
                 "required_bones": [],
                 "required_anchors": [],
                 "required_clips": [],
-                "textures": ["assets/example_mod/textures/block/machine.png"],
+                "textures": [delivery_path],
                 "conversion": {
                     "performed": False,
                     "from_format": ".png",
@@ -201,7 +202,7 @@ class I6AssetHandoffContractTest(unittest.TestCase):
                     "verified_bones": [],
                     "verified_anchors": [],
                     "verified_clips": [],
-                    "verified_textures": ["assets/example_mod/textures/block/machine.png"],
+                    "verified_textures": [delivery_path],
                     "namespace_verified": True,
                     "output_destination_verified": True,
                     "state": "PASS",
