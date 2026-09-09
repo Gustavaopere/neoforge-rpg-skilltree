@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
-import { createRuntime, startRuntime } from '../src/server.mjs';
+import { createRuntime, startRuntime, contextFromEnvironment } from '../src/server.mjs';
 
 const require = createRequire(import.meta.url);
 const { parseConnectionDescriptor } = require('../../blockbench-plugin/live_bridge_adapter.js');
@@ -32,6 +32,17 @@ test('sidecar runtime starts the real loopback gateway and emits a Blockbench-co
   assert.equal('path' in descriptor, false);
   assert.deepEqual(parseConnectionDescriptor(JSON.stringify(descriptor)), descriptor);
   await assert.rejects(runtime.callBridge('blockbench.get_status', {}), /BRIDGE_UNAVAILABLE/);
+});
+
+test('runtime context rejects malformed provider identities and extension allowlist entries', () => {
+  assert.throws(
+    () => contextFromEnvironment({RPG_ASSET_PHYSICAL_PROVIDERS_JSON: '[{}]'}),
+    /INVALID_RUNTIME_CONTEXT/,
+  );
+  assert.throws(
+    () => contextFromEnvironment({RPG_ASSET_MCP_EXTENSIONS_JSON: '[""]'}),
+    /INVALID_RUNTIME_CONTEXT/,
+  );
 });
 
 test('startRuntime injects the live gateway call into stdio serving and transfers the descriptor exactly once', async () => {
