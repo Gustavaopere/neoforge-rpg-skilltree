@@ -50,8 +50,8 @@ class I6AssetHandoffContractTest(unittest.TestCase):
 
     def test_canonical_example_stays_fail_closed_while_remote_is_unresolved(self):
         example = _load_json(EXAMPLE_PATH)
-        self.assertEqual("UNRESOLVED", example["source_repository"])
-        self.assertEqual("UNRESOLVED", example["source_revision"])
+        self.assertEqual("UNRESOLVED", example.get("source_repository"))
+        self.assertEqual("UNRESOLVED", example.get("source_revision"))
         self.assertNotEqual("PASS", example["state"])
 
     @unittest.skipUnless(SCRIPT_EXISTS, "I6 production validator not implemented yet")
