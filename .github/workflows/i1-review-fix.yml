@@ -1,0 +1,116 @@
+name: I1 Review Fix
+
+on:
+  push:
+    branches:
+      - feat/mod-engineering-i1-foundation
+    paths:
+      - '.github/workflows/i1-review-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-validate-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/mod-engineering-i1-foundation
+          fetch-depth: 0
+      - name: Apply fail-closed review fixes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          root = Path.cwd()
+          eng = root / "PROJECT-INSTRUCTIONS" / "engineering"
+          schemas = eng / "schemas"
+          old_pattern = "[a-z][a-z0-9_]{1,63}"
+          new_pattern = "^[a-z][a-z0-9_]{1,63}$"
+          changed_patterns = 0
+
+          def walk(node):
+              global changed_patterns
+              if isinstance(node, dict):
+                  if node.get("pattern") == old_pattern:
+                      node["pattern"] = new_pattern
+                      changed_patterns += 1
+                  for value in node.values():
+                      walk(value)
+              elif isinstance(node, list):
+                  for value in node:
+                      walk(value)
+
+          for path in sorted(schemas.glob("*.schema.json")):
+              data = json.loads(path.read_text(encoding="utf-8"))
+              walk(data)
+              if path.name == "asset-handoff.schema.json":
+                  data["$comment"] = (
+                      "Cross-field conversion invariants are enforced by the canonical I1 validator "
+                      "because JSON Schema Draft 2020-12 cannot portably compare sibling string values."
+                  )
+              path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+          if changed_patterns != 9:
+              raise SystemExit(f"expected 9 identifier patterns to anchor, got {changed_patterns}")
+
+          validator_path = eng / "tooling" / "validate-i1-foundation.py"
+          text = validator_path.read_text(encoding="utf-8")
+
+          def replace_once(old, new, label):
+              global text
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"{label}: expected one replacement target, got {count}")
+              text = text.replace(old, new, 1)
+
+          replace_once("import json, re, sys", "import json, re", "imports")
+          replace_once(
+              'if "pattern" in schema and re.fullmatch(schema["pattern"], value) is None:',
+              '# JSON Schema pattern uses search semantics, not implicit full-match.\n        if "pattern" in schema and re.search(schema["pattern"], value) is None:',
+              "pattern semantics",
+          )
+
+          schema_marker = "\ndef validate_schema_document(path: Path, schema):\n"
+          if text.count(schema_marker) != 1:
+              raise SystemExit("schema validator insertion marker missing or duplicated")
+          text = text.replace(
+              schema_marker,
+              '''\ndef iter_declared_patterns(node, path="$"):\n    if isinstance(node, dict):\n        pattern = node.get("pattern")\n        if isinstance(pattern, str):\n            yield path, pattern\n        for key, value in node.items():\n            yield from iter_declared_patterns(value, f"{path}.{key}")\n    elif isinstance(node, list):\n        for i, value in enumerate(node):\n            yield from iter_declared_patterns(value, f"{path}[{i}]")\n\ndef validate_schema_document(path: Path, schema):\n''',
+              1,
+          )
+
+          replace_once(
+              '    if schema.get("additionalProperties") is not False:\n        errors.append(f"{path}: root must fail closed with additionalProperties=false")\n    return errors\n\ndef validate_source_registry(path: Path):',
+              '    if schema.get("additionalProperties") is not False:\n        errors.append(f"{path}: root must fail closed with additionalProperties=false")\n    for pattern_path, pattern in iter_declared_patterns(schema):\n        if not (pattern.startswith("^") and pattern.endswith("$")):\n            errors.append(f"{path}:{pattern_path}: pattern must be explicitly anchored for JSON Schema search semantics")\n    return errors\n\ndef validate_asset_handoff_semantics(value, path="$"):\n    """Validate cross-field invariants JSON Schema Draft 2020-12 cannot portably express."""\n    errors = []\n    if not isinstance(value, dict) or not isinstance(value.get("artifacts"), list):\n        return errors\n    for i, artifact in enumerate(value["artifacts"]):\n        if not isinstance(artifact, dict):\n            continue\n        p = f"{path}.artifacts[{i}]"\n        source_format = artifact.get("source_format")\n        delivery_format = artifact.get("delivery_format")\n        conversion = artifact.get("conversion")\n        if not isinstance(source_format, str) or not isinstance(delivery_format, str) or not isinstance(conversion, dict):\n            continue\n        performed = conversion.get("performed")\n        expected_performed = source_format != delivery_format\n        if isinstance(performed, bool) and performed != expected_performed:\n            errors.append(f"{p}.conversion.performed: must be {expected_performed} when source_format={source_format!r} and delivery_format={delivery_format!r}")\n        if conversion.get("from_format") != source_format:\n            errors.append(f"{p}.conversion.from_format: must equal source_format")\n        if conversion.get("to_format") != delivery_format:\n            errors.append(f"{p}.conversion.to_format: must equal delivery_format")\n    return errors\n\ndef validate_source_registry(path: Path):',
+              "semantic validators",
+          )
+
+          replace_once(
+              '        errors += [f"{example_path}: {e}" for e in validate_instance(schema, example)]\n    source_registry = eng / "catalog" / "sources" / "SOURCE-REGISTRY.json"',
+              '        errors += [f"{example_path}: {e}" for e in validate_instance(schema, example)]\n        if schema_name == "asset-handoff.schema.json":\n            errors += [f"{example_path}: {e}" for e in validate_asset_handoff_semantics(example)]\n    source_registry = eng / "catalog" / "sources" / "SOURCE-REGISTRY.json"',
+              "asset semantic hook",
+          )
+          validator_path.write_text(text, encoding="utf-8")
+
+          test_path = eng / "tests" / "test_i1_foundation.py"
+          test_path.write_text('''import copy\nimport importlib.util\nimport json\nimport unittest\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[3]\nSCRIPT = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "tooling" / "validate-i1-foundation.py"\nspec = importlib.util.spec_from_file_location("i1_validator", SCRIPT)\nvalidator = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(validator)\n\nclass I1FoundationContractTest(unittest.TestCase):\n    def _load(self, relative):\n        return json.loads((ROOT / relative).read_text(encoding="utf-8"))\n\n    def test_repository_foundation_is_complete(self):\n        self.assertEqual([], validator.run_validation(ROOT))\n\n    def test_json_schema_search_semantics_reject_invalid_mod_id(self):\n        schema = self._load("PROJECT-INSTRUCTIONS/engineering/schemas/mod-spec.schema.json")\n        example = self._load("PROJECT-INSTRUCTIONS/engineering/examples/mod-spec.example.json")\n        example["identity"]["mod_id"] = "Invalid-Mod"\n        errors = validator.validate_instance(schema, example)\n        self.assertTrue(any("mod_id" in e and "pattern" in e for e in errors), errors)\n\n    def test_all_declared_patterns_are_explicitly_anchored(self):\n        schemas_dir = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "schemas"\n        failures = []\n        for schema_path in sorted(schemas_dir.glob("*.schema.json")):\n            schema = json.loads(schema_path.read_text(encoding="utf-8"))\n            for pattern_path, pattern in validator.iter_declared_patterns(schema):\n                if not (pattern.startswith("^") and pattern.endswith("$")):\n                    failures.append(f"{schema_path.name}:{pattern_path}:{pattern}")\n        self.assertEqual([], failures)\n\n    def test_asset_handoff_rejects_false_no_conversion_for_different_formats(self):\n        handoff = copy.deepcopy(self._load("PROJECT-INSTRUCTIONS/engineering/examples/asset-handoff.example.json"))\n        artifact = handoff["artifacts"][0]\n        artifact["delivery_format"] = ".json"\n        artifact["conversion"]["to_format"] = ".json"\n        artifact["conversion"]["performed"] = False\n        errors = validator.validate_asset_handoff_semantics(handoff)\n        self.assertTrue(any("conversion.performed" in e for e in errors), errors)\n\n    def test_asset_handoff_rejects_conversion_format_drift(self):\n        handoff = copy.deepcopy(self._load("PROJECT-INSTRUCTIONS/engineering/examples/asset-handoff.example.json"))\n        handoff["artifacts"][0]["conversion"]["from_format"] = ".json"\n        errors = validator.validate_asset_handoff_semantics(handoff)\n        self.assertTrue(any("conversion.from_format" in e for e in errors), errors)\n\nif __name__ == "__main__":\n    unittest.main()\n''', encoding="utf-8")
+
+          subprocess.run([sys.executable, str(validator_path)], check=True)
+          subprocess.run([sys.executable, "-m", "unittest", str(test_path)], check=True)
+          PY
+      - name: Commit validated fix and remove patcher
+        shell: bash
+        run: |
+          rm .github/workflows/i1-review-fix.yml
+          git config user.name "Gustavaopere"
+          git config user.email "gustavaopere@gmail.com"
+          git add PROJECT-INSTRUCTIONS/engineering/schemas PROJECT-INSTRUCTIONS/engineering/tooling/validate-i1-foundation.py PROJECT-INSTRUCTIONS/engineering/tests/test_i1_foundation.py .github/workflows/i1-review-fix.yml
+          git diff --cached --check
+          git commit -m "fix(engineering): harden I1 schema semantics"
+          git push origin HEAD:feat/mod-engineering-i1-foundation
