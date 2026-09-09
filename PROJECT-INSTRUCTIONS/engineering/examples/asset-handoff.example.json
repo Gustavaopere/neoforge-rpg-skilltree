@@ -1,10 +1,54 @@
 {
-  "schema_version":1,
-  "mod_id":"example_mod",
-  "source_authority":"Repo Textura",
-  "runtime_authority":"UNRESOLVED",
-  "provider_profiles":[],
-  "artifacts":[{"asset_id":"example_source_model","source_path":"UNRESOLVED","source_format":".bbmodel","delivery_path":"UNRESOLVED","delivery_format":".bbmodel","conversion":{"performed":false,"from_format":".bbmodel","to_format":".bbmodel","state":"CONFIRMED","evidence":["fixture demonstrates no silent conversion"]},"state":"UNRESOLVED"}],
-  "state":"UNRESOLVED",
-  "evidence":["synthetic example fixture"]
+  "schema_version": 2,
+  "mod_id": "example_mod",
+  "source_authority": "Repo Textura",
+  "source_repository": "UNRESOLVED",
+  "source_revision": "UNRESOLVED",
+  "runtime_authority": "UNRESOLVED",
+  "provider_profiles": [],
+  "provider_bindings": [],
+  "visual_inputs": [],
+  "artifacts": [
+    {
+      "asset_id": "example_source_model",
+      "provider_profile": "UNRESOLVED",
+      "source_path": "UNRESOLVED",
+      "source_format": ".bbmodel",
+      "source_sha256": "UNRESOLVED",
+      "delivery_path": "UNRESOLVED",
+      "delivery_format": ".bbmodel",
+      "delivery_sha256": "UNRESOLVED",
+      "required_bones": [],
+      "required_anchors": [],
+      "required_clips": [],
+      "textures": [],
+      "conversion": {
+        "performed": false,
+        "from_format": ".bbmodel",
+        "to_format": ".bbmodel",
+        "state": "CONFIRMED",
+        "evidence": [
+          "fixture demonstrates no silent conversion"
+        ]
+      },
+      "qa": {
+        "verified_bones": [],
+        "verified_anchors": [],
+        "verified_clips": [],
+        "verified_textures": [],
+        "namespace_verified": false,
+        "output_destination_verified": false,
+        "state": "UNRESOLVED",
+        "evidence": [
+          "Repo Textura remote and runtime delivery are unresolved"
+        ]
+      },
+      "state": "UNRESOLVED"
+    }
+  ],
+  "state": "UNRESOLVED",
+  "evidence": [
+    "synthetic example fixture",
+    "canonical handoff cannot be PASS until the real Repo Textura remote and source revision are resolved"
+  ]
 }
