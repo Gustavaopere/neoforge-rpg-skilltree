@@ -1,32 +1,30 @@
 # Apothic Spawners
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81e9a4ced4c8d90d4375  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81e9a4ced4c8d90d4375
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Apothic Spawners
 - **Arquivo JAR:** `ApothicSpawners-1.21.1-1.4.0.jar`
-- **Versão 1.21.1:** `1.4.0`
-- **Categoria:** RPG; Automação
-- **Decisão:** Manter
+- **Versão 1.21.1:** 1.4.0
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-spawners
+- **Decisão:** Manter
+- **Categoria:** RPG, Automação
 - **Função:** Módulo oficial do ecossistema Apothic para mob spawners: coleta/configuração, stats namespaced, Spawner Modifiers data-driven, presets add/set, blacklist de entidades, tracking de modificação por jogador, Echoing e regras de despawn/spawn.
-- **Dependências:** Ecossistema Apotheosis/Apothic + Placebo conforme a linha instalada. Integra pontualmente com Apothic Enchanting (Occult Ender Lead) e sistemas de Capturing/spawn eggs, mantendo authority própria dos spawners.
-- **Compatibilidade/Riscos:** Risco de multiplicação de XP/drops com Echoing e outros loot/progression hooks; não tratar outros spawners/máquinas como equivalentes sem bridge. Respeitar tag `apothic_spawners:blacklisted_from_spawners`. 1.4.0 adiciona cascade explosion em spawners atingidos por explosão; testar farms densas.
+- **Dependências:** Placebo 9.9.2 + ecossistema Apotheosis/Apothic atual. Integrações com Apothic Enchanting e outros spawn providers permanecem explícitas e não convertem máquinas externas em spawners Apothic.
 - **Sobreposição:** Não é equivalente a Mechanical Spawners ou máquinas externas de spawning. Apothic Spawners modifica spawners e seus stats dentro do ecossistema Apothic; bridges externas precisam ser explícitas.
-- **Observações:** mod id: apothic_spawners; runtime 1.4.0. O corpo da página registra stats/modifiers, add/set, Silk Touch, blacklist, despawn, Echoing, explosões, anti-abuso e matriz de teste.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Mecânicas/versionamento: CurseForge + changelog oficial Apothic-Spawners branch 1.21. Contexto de boundaries: guia consolidado de Magia.
+- **Compatibilidade/Riscos:** Risco de multiplicação de XP/drops com Echoing e outros loot/progression hooks; não tratar outros spawners/máquinas como equivalentes sem bridge. Respeitar tag `apothic_spawners:blacklisted_from_spawners`. 1.4.0 adiciona cascade explosion em spawners atingidos por explosão; testar farms densas.
+- **Observações:** mod id: `apothic_spawners`; runtime 1.4.0. O corpo da página registra stats/modifiers, add/set, Silk Touch, blacklist, despawn, Echoing, explosões, anti-abuso e matriz de teste.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/source/changelog oficiais Apothic Spawners 1.4.0 + dossiê operacional existente.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-spawners
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 1.4.0, 16 spawner stats/modifier families, Echoing, blacklist, persistence/cascade explosion and anti-abuse boundaries confirmed in global QC #36. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita contra o changelog oficial 1.21 até 1.4.0, incluindo tracking de modificação, Echoing, blacklist tag, despawn delay e cascade explosion.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: ApothicSpawners-1.21.1-1.4.0.jar. Dossiê exaustivo com 16 stats canônicos, 16 modifier families, operações add/set, Echoing/XP, tracking de spawner modificado, Silk Touch, blacklist, despawn, estado das entidades, redstone, cascade explosion 1.4.0, anti-abuso/lifecycle e testes.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > 🧿 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Esta página documenta `ApothicSpawners-1.21.1-1.4.0.jar`, mod id `apothic_spawners`, no runtime NeoForge 1.21.1. O catálogo foi reconstruído contra o source/data da linha 1.21: **16 stats canônicos, 16 families de modifier recipes, coleta/persistência, blacklist, despawn, Echoing, explosões, integração e anti-abuso**.
 
@@ -123,7 +121,6 @@ Uma opção pode fazer o spawner:
 
 ## 8. Entity blacklist
 A blacklist de entidades foi migrada para a tag:
-
 `apothic_spawners:blacklisted_from_spawners`
 
 Todo caminho que troca o mob-alvo deve respeitá-la, incluindo:
@@ -185,7 +182,6 @@ Boundary:
 Nenhum addon deve contornar a blacklist por ser “o dono do item”.
 
 ## 15. Relação com outros sistemas de spawning do pack
-
 ### Mechanical/industrial spawners
 Máquinas de outros mods são providers próprios. Não recebem automaticamente os 16 stats Apothic.
 
@@ -232,7 +228,6 @@ Validar:
 9. World scaling/affix reroll em unload/reload.
 
 ## 19. Matriz de validação exaustiva
-
 ### Stats/modifiers
 - exercitar os 16 stats individualmente;
 - testar `add` e `set`;
