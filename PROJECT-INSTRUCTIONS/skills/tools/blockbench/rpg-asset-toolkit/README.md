@@ -6,7 +6,7 @@ Internal project plugin: `rpg_asset_toolkit.js` (plugin ID matches filename).
 
 Structural/contract QA plus fail-closed provider/extension capability resolution for project-owned Minecraft assets, with narrowly bounded local Blockbench mutations where an audited contract exists. Mutation support is intentionally incremental: it does not authorize arbitrary geometry, UV, texture, pivot or animation rewrites, and it does not install or invoke arbitrary extensions.
 
-The current PR4 slices include deterministic one-texture UV pack preview/apply for per-face cube UVs plus bounded internal texture creation and locally approved texture import. These are local desktop operations, not a generic UV/texture rewrite surface and not a Live Bridge/MCP write surface.
+The current PR4 slices include deterministic one-texture UV pack preview/apply for per-face cube UVs, bounded internal texture creation and locally approved texture import, plus deterministic bounded non-uniform texture painting inside an explicit rectangular region. These are local desktop operations, not a generic UV/texture rewrite surface and not a Live Bridge/MCP write surface.
 
 ## Architecture
 
@@ -42,9 +42,9 @@ Canonical policy documents:
 - `Texture.fromFile(...)`;
 - `Texture.add(...)`.
 
-The bounded UV/texture adapter additionally uses the project texture/cube state and Blockbench Undo transaction surface behind the adapter boundary. Tests exercise begin/finish/cancel transaction behavior and bitmap/UV/texture mutation semantics without exposing those mutations through Live Bridge/MCP.
+The bounded UV/texture adapter additionally uses the project texture/cube state, texture canvas `getImageData(...)` / `putImageData(...)`, and Blockbench Undo transaction surface behind the adapter boundary. Tests exercise begin/finish/cancel transaction behavior and bitmap/UV/texture mutation semantics without exposing those mutations through Live Bridge/MCP.
 
-Upstream Blockbench 5.1.6 also provides the local picker surface `Blockbench.import(...)` with `resource_id: "texture"` and `readtype: "image"`. Picker wiring into this Toolkit is intentionally not claimed by the current adapter slice; it remains a later TDD cycle.
+A separate Toolkit file-picker action is not part of the declarative `texture_import_approved` contract and is not claimed as a current PR4 requirement. Approved local file data remains behind the opaque desktop-adapter approval boundary; declarative payloads do not carry filesystem paths.
 
 References: https://blockbench.net/wiki/docs/plugin/ · https://blockbench.net/wiki/docs/ui/ · https://web.blockbench.net/docs/
 
@@ -109,9 +109,23 @@ The current create/import contract is also deliberately narrow:
 - create/import in one batch commit through one Undo transaction, and the finished Undo aspects contain the newly created/imported textures;
 - rollback restores a consumed approval if the transaction fails;
 - no arbitrary path is accepted from declarative JSON, Live Bridge or MCP;
-- this adapter slice does not yet wire `Blockbench.import(...)` into a Toolkit UI action; explicit local picker integration remains a later TDD cycle.
+- no separate picker action is claimed by this contract.
 
-These slices close only their bounded PR4 subgates. PR4 remains broader: the canonical plan still requires the remaining UV/texture capabilities and final round-trip, visual-diff, Undo and texture-path evidence before PR4 can be considered complete or PR5 can begin.
+## Bounded texture paint region
+
+The PR4 bounded-paint contract adds `texture_paint_region` as a deterministic exact-pixel patch rather than a brush engine:
+
+- target is one explicit `textureId` and one explicit rectangular `region`;
+- `pixels` is an exact row-major sequence of RGBA tuples;
+- tuple count must equal `region.width * region.height` exactly;
+- every channel must be an integer in `0..255`, including per-pixel alpha;
+- the region area is charged against the existing `262144`-pixel per-batch budget;
+- adapter preflight rejects out-of-bounds or layered targets before Undo;
+- dry-run validates and preflights without writing bitmap state or opening Undo;
+- committed apply performs one bounded `putImageData(...)`, publishes the changed texture once and remains inside the existing single Undo transaction;
+- no random/procedural brush, UV-island mask, palette sampling, global painting or remote Live Bridge/MCP write is introduced by this operation.
+
+These slices close only their bounded PR4 subgates. PR4 remains broader: the canonical plan still requires UV island masks, palette tools and the final round-trip, visual-diff, Undo and texture-validation evidence before PR4 can be considered complete or PR5 can begin.
 
 ## Deliberate non-automation
 
@@ -126,9 +140,10 @@ node --check rpg_asset_toolkit.js
 node --test rpg_asset_toolkit.uv_pack.test.js
 node --test rpg_asset_toolkit.texture_create_import.test.js
 node --test rpg_asset_toolkit.texture_create_import_adapter.test.js
+node --test rpg_asset_toolkit.texture_paint_region.test.js
 node --test rpg_asset_toolkit.bundle_live_bridge.test.js
 node --test rpg_asset_toolkit.test.js
 node build_toolkit_bundle.js --check
 ```
 
-Tests use Node's built-in runner and no third-party npm dependency. Coverage includes structural QA, Locator semantics, extension authorization, physical-provider authority, provider resolution, fail-closed conversion, schemas, generated-bundle reproducibility, deterministic UV-pack preview, exact confirmation/revision binding, Blockbench Undo behavior, overlap-safe source-pixel buffering, bounded texture creation, opaque approved import, dry-run approval preservation, collision/budget rejection and standalone bundle loading without introducing a remote write surface.
+Tests use Node's built-in runner and no third-party npm dependency. Coverage includes structural QA, Locator semantics, extension authorization, physical-provider authority, provider resolution, fail-closed conversion, schemas, generated-bundle reproducibility, deterministic UV-pack preview, exact confirmation/revision binding, Blockbench Undo behavior, overlap-safe source-pixel buffering, bounded texture creation, opaque approved import, dry-run approval preservation, collision/budget rejection, deterministic non-uniform bounded paint with exact RGBA/alpha preservation, and standalone bundle loading without introducing a remote write surface.
