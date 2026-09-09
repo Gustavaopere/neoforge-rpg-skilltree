@@ -1,32 +1,30 @@
 # Ars Controle
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db813a8e26f0ea2e8c07c8  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db813a8e26f0ea2e8c07c8
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Ars Controle
 - **Arquivo JAR:** `ars_controle-1.21.1-1.6.15.jar`
-- **Versão 1.21.1:** `1.21.1-1.6.15`
-- **Categoria:** Magia; Automação
-- **Decisão:** Manter
+- **Versão 1.21.1:** 1.21.1-1.6.15
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://github.com/Vonr/Ars-Controle
+- **Decisão:** Manter
+- **Categoria:** Magia, Automação
 - **Função:** Camada de lógica e automação de Ars Nouveau: 4 blocos funcionais, inspeção de estado/recursos, sinais, referências relacionais, comparadores, Scryer's Linkage e Warping Spell Prism para roteamento remoto de recursos e spells.
-- **Dependências:** Ars Nouveau. Integrações opcionais são condicionais a Ars Additions, Alex's Caves e StarbuncleMania quando presentes; não carregar contratos opcionais sem o provider.
+- **Dependências:** Ars Nouveau 5.13.1. Integrações opcionais condicionadas aos providers físicos presentes, incluindo Ars Additions 21.3.0, Alex's Caves Continued 1.0.9 e StarbuncleMania 1.5.8; provider ausente = integração ausente/fail-closed.
+- **Sobreposição:** Cruza automação/remote I/O com Create e outros providers/redes presentes, mas seu domínio é lógica mágica Ars. Não substituir APIs/capabilities dos providers remotos nem duplicar processamento; AE2 ausente não é superfície ativa.
 - **Compatibilidade/Riscos:** Riscos principais: loops de signal/poll, referências stale após unload/restart, double-processing em item/fluid/energy, perda de causalidade em spell redirection e compatibilidade espacial não comprovada automaticamente com sublevels Sable.
-- **Sobreposição:** Cruza automação/remote I/O com Create, AE2 e outras redes, mas seu domínio é lógica mágica Ars. Não substituir APIs/capabilities dos providers remotos nem duplicar o processamento.
-- **Observações:** mod id ars_controle. Build 1.6.15 registra 4 blocos + 4 block entities e 31 componentes principais de lógica/inspeção/referência; `test_scythe` é dev-only e não integra o catálogo normal.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Registry e build: source oficial Vonr/Ars-Controle branch 1.21, mod_version 1.6.15. Contexto local: GUIA-COMPLETO-MODS-DE-MAGIA snapshot 07/09/2026.
+- **Observações:** mod id `ars_controle`; runtime `1.21.1-1.6.15`. O estado anterior `Integrado ao Github` permanece registrado documentalmente; AE2 está ausente do snapshot físico atual e não é contado como integração ativa.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial Vonr/Ars-Controle 1.6.15 + dossiê operacional existente.
+- **Fonte:** https://github.com/Vonr/Ars-Controle
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Controle 1.6.15, 4 blocos/4 BEs, 31 componentes, Scryer's Linkage, Warping Spell Prism, optional-provider gates e authority remota confirmados no QC global #41. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Ficha reconstruída do zero em 07/09/2026 contra registry/source da build 1.6.15 e modlist física; addon é uma camada de controle real do Ars e não um provider mágico paralelo.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: ars_controle-1.21.1-1.6.15.jar. Dossiê exaustivo com 4 blocos/4 block entities, 31 componentes de lógica Ars, turret behaviors, Scryer's Linkage, Warping Spell Prism, integrações opcionais, authority, lifecycle e testes.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > 🧠 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico: `ars_controle-1.21.1-1.6.15.jar`, mod id `ars_controle`, NeoForge 1.21.1. A build 1.6.15 registra **4 blocos + 4 block entities e 31 componentes Ars/logic principais**, além de integrações opcionais carregadas somente quando o provider existe. Ars Nouveau continua authority de Source, spell grammar e cast; Ars Controle adiciona lógica, inspeção, referência e roteamento remoto.
 
@@ -119,7 +117,7 @@ Essas entradas só existem quando o mod correspondente está carregado. Ausênci
 ## 8. Authority e sobreposição
 - **Ars Nouveau:** Source, mana, cast e spell grammar.
 - **Ars Controle:** inspeção, sinais, referências, comparadores e roteamento remoto.
-- **Create/AE2/outros sistemas:** continuam donos de seus próprios inventories/fluids/energia quando acessados indiretamente.
+- **Create e outros providers remotos presentes:** continuam donos de seus próprios inventories/fluids/energia quando acessados indiretamente. AE2 está ausente do snapshot físico atual e não é contado como integração ativa.
 
 Ars Controle não é um segundo sistema de rede universal; ele é uma camada de controle mágico sobre contratos reais.
 
