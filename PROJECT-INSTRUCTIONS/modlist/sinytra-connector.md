@@ -1,6 +1,34 @@
-# Sinytra Connector — publicação 2.0.0-beta.17+1.21.1
+# Sinytra Connector
 
-> **Artefato físico confirmado:** `connector-2.0.0-beta.17+1.21.1-full.jar`, publicação oficial **Beta 17 / File ID 8654089** para NeoForge 1.21.1. A modlist física atual deixa a coluna `mod version` vazia; por isso `Versão 1.21.1` permanece vazia e a identidade Beta 17 é registrada como publicação/filename, não como runtime metadata inferida.
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db8103a9acee25c6616051  
+> Estado no momento da exportação: `Instalado — Dossiê completo`  
+> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
+> Exportado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Sinytra Connector
+- **Arquivo JAR:** `connector-2.0.0-beta.17+1.21.1-full.jar`
+- **Versão 1.21.1:** `2.0.0-beta.17+1.21.1`
+- **Categoria:** Compat; Biblioteca
+- **Decisão:** Opcional
+- **Estado da pesquisa:** Verificado
+- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sinytra-connector/files/8654089
+- **Função:** Camada de compatibilidade que permite carregar uma parcela de mods Fabric em NeoForge por transformação/adaptação de classes, mappings, Mixins/APIs e serviços de loader necessários ao runtime.
+- **Dependências:** NeoForge 1.21.1 e stack de compatibilidade exigido pelos consumers Fabric reais. Connector Extras depende do Connector. Forgified Fabric API pode complementar consumers Fabric, mas sua presença isolada não prova necessidade do Connector porque pode ter consumers NeoForge nativos.
+- **Compatibilidade/Riscos:** Camada complexa de transformação/mapeamento; compat não é garantida para todo mod Fabric. Riscos: Mixins incompatíveis, APIs multiloader divergentes, mappings/aliases, duplicate modules, cache stale e mods híbridos confundidos com consumers Connector. Beta.17 altera signature stripping, module names, adapters, Class Tweakers, fluid aliases e localização do cache.
+- **Sobreposição:** Connector Extras amplia bridges específicas; Forgified Fabric API fornece APIs Fabric portadas; nenhum deles substitui a transformação geral do Connector. Mods híbridos NeoForge/Fabric podem não precisar do Connector.
+- **Observações:** Host físico `connector-2.0.0-beta.17+1.21.1-full.jar`. A linha top-level do host não expõe mod id/name/version, porém o próprio host embarca `/META-INF/jarjar/org.sinytra.connector-2.0.0-beta.17+1.21.1-mod.jar`, cuja metadata declara mod id `connector` e runtime `2.0.0-beta.17+1.21.1`; o campo de versão usa essa evidência física interna, não inferência do filename.
+- **Procedência:** modlist.txt física atual de 08/09/2026 com 595 top-levels + metadata física jar-in-jar do host (`org.sinytra.connector-2.0.0-beta.17+1.21.1-mod.jar`, mod id `connector`, runtime 2.0.0-beta.17+1.21.1) + publicação oficial File ID 8654089 Beta 17 + documentação/FAQ/source oficiais Sinytra Connector.
+- **Histórico da decisão:** Em 06/09/2026 foi registrada decisão formal `Opcional`: manter Sinytra Connector apenas se houver consumer Fabric real que dependa dessa camada. A presença de Distant Horizons híbrido ou Forgified Fabric API não prova essa necessidade. Antes de remover, executar boot A/B em cópia do perfil e verificar logs/consumers transformados. Em 08/09/2026, a decisão foi preservada enquanto a linha top-level não expunha runtime version; em 09/09/2026, a metadata jar-in-jar do próprio bundle resolveu fisicamente o módulo `connector` como `2.0.0-beta.17+1.21.1`.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Sinytra Connector 2.0.0-beta.17+1.21.1 confirmado pela metadata do módulo jar-in-jar do host full.jar; transformation/mappings/Mixins, Beta.17 deltas, cache/lifecycle e necessidade condicional confirmados no QC global #105. Decisão Opcional preservada; runtime QA não executado.
+- **Data da última decisão:** 2026-09-06
+
+## Dossiê operacional — padrão Alex's Mobs
+
+> 🔀 Host físico confirmado: `connector-2.0.0-beta.17+1.21.1-full.jar`, publicação oficial **Beta 17 / File ID 8654089** para NeoForge 1.21.1. Embora a linha top-level do parser não exponha `mod version`, o próprio host contém `/META-INF/jarjar/org.sinytra.connector-2.0.0-beta.17+1.21.1-mod.jar`, cuja metadata declara mod id `connector` e runtime `2.0.0-beta.17+1.21.1`. Portanto essa é a versão runtime fisicamente confirmada do módulo Sinytra Connector; o filename do host deixa de ser a única evidência.
 
 ## 1. Papel e authority
 Sinytra Connector é uma camada de compatibilidade destinada a executar uma parcela de mods **Fabric em NeoForge**. Ele transforma/adapta expectativas de loader, mappings, Mixins e APIs para o ambiente NeoForge.
@@ -47,9 +75,13 @@ Esses pontos são regression gates da build publicada.
 Connector mantém cache de transformação. Beta 17 move esse cache para fora da pasta de mods. Após troca de mod/version, cache stale pode mascarar diagnóstico ou conservar transformação antiga.
 Testes A/B devem controlar cache conforme orientação do projeto, sem apagar dados arbitrariamente do mundo.
 
-## 9. Libraries e module names
+## 9. Libraries, module names e inventário embarcado
 Signature stripping e unique module names mostram que libraries embarcadas são uma superfície real de compatibilidade. Duplicatas/module collisions podem causar linkage/classpath failures.
-Jar-in-jar continua embedded; não transformar library interna em top-level do catálogo apenas porque aparece durante inspeção do host.
+O bundle físico `full.jar` contém ao menos dois componentes relevantes à identidade desta ficha:
+- `org.sinytra.connector-2.0.0-beta.17+1.21.1-mod.jar`: módulo runtime, mod id `connector`, versão `2.0.0-beta.17+1.21.1`;
+- `runtime-1.0.0+1.21.1.jar`: helper/runtime embarcado do bundle.
+
+Ambos permanecem **jar-in-jar do host** e não viram entradas top-level independentes. A versão do primeiro, porém, é metadata física válida para preencher o runtime do Sinytra Connector.
 
 ## 10. Fluid aliases
 A Beta 17 inclui ajuste de alias namespaces ligado a tipos de fluid. Esse é contract de compatibilidade/mapping, não um novo sistema de fluidos.
@@ -105,10 +137,11 @@ A/B não deve ser executado no perfil produtivo sem backup.
 10. Confirmar quais dependências permanecem necessárias sem Connector.
 
 ## 18. Evidência
-- modlist física atual: JAR Beta 17 presente, runtime `mod version` não declarado;
+- modlist física atual: host `connector-2.0.0-beta.17+1.21.1-full.jar` presente;
+- metadata física interna: módulo `connector` runtime `2.0.0-beta.17+1.21.1` + helper `runtime-1.0.0+1.21.1.jar` embarcados;
 - CurseForge oficial File ID 8654089 / Beta 17;
 - documentação/FAQ oficiais: objetivo de executar mods Fabric em NeoForge e limites de compatibilidade;
 - changelog Beta 17: signatures, module names, adapters, Class Tweakers, fluid aliases e cache;
 - decisão histórica 06/09/2026: `Opcional`, condicionada a consumer Fabric real.
 
-> **Fail-closed:** filename/publicação identificam a build; a modlist não fornece runtime version. O campo de versão permanece vazio até evidência física de metadata runtime.
+> 🔒 Fail-closed revisado: a linha top-level do bundle não expõe `mod version`, mas a **metadata jar-in-jar do próprio host** declara o módulo `connector` como `2.0.0-beta.17+1.21.1`. O campo de versão é preenchido a partir dessa evidência física, não por inferência do filename.
