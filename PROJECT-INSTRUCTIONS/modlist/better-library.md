@@ -1,31 +1,32 @@
 # Better Library
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81c6875ddba45626a03a  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81c6875ddba45626a03a
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Better Library
 - **Arquivo JAR:** `better_lib-neoforge-1.21.1-1.0.111.jar`
-- **Versão 1.21.1:** `1.0.111`
-- **Categoria:** Biblioteca; QoL
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 1.0.111
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-library
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca, QoL
 - **Função:** Biblioteca utilitária compartilhada para configuração, first-join messages e live messages usadas por mods consumidores.
 - **Dependências:** Biblioteca estrutural; necessidade determinada pelos consumidores que declaram Better Library.
-- **Compatibilidade/Riscos:** First-join repetido, live-message não-fatal/offline, config client↔server divergente e classloading de UI no dedicated server. Não é substituível automaticamente por outra config library.
 - **Sobreposição:** Biblioteca técnica; não tratar como redundante apenas por coexistir com outras libraries.
+- **Compatibilidade/Riscos:** First-join repetido, live-message não-fatal/offline, config client↔server divergente e classloading de UI no dedicated server. Não é substituível automaticamente por outra config library.
 - **Observações:** Superfícies públicas confirmadas: config, 1st join message e live message. Protocolos/classes internos não foram inferidos sem evidência versionada.
-- **Procedência:** Modlist física atual de 07/09/2026 + CurseForge oficial Better Library 1.0.111.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Better Library 1.0.111 e suas superfícies de config, first-join e live message. A necessidade deve ser determinada pelos consumidores reais; a presença física não foi convertida em decisão de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — config/first-join/live-message authority, lifecycle, side e riscos catalogados.
-- **Data da última decisão:** não definida.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Better Library 1.0.111 para NeoForge 1.21.1 + documentação oficial do projeto.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-library
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better Library 1.0.111 físico/release 1.21.1 confirmado; config/first-join/live-message lifecycle preservado no QC global #69. Linha 1.0.112 pertence às versões Minecraft posteriores, não substitui o runtime 1.21.1 atual. Runtime QA não executado.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Better Library 1.0.111 e suas superfícies de config, first-join e live message. Em 09/09/2026, o runtime 1.0.111 foi revalidado como a build física 1.21.1; releases 1.0.112 observadas pertencem a linhas Minecraft posteriores e não foram promovidas ao pack. Nenhuma decisão de manter/remover foi inferida.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `better_lib-neoforge-1.21.1-1.0.111.jar`, mod id `better_lib`, runtime `1.0.111`. O projeto oficial descreve uma biblioteca simples compartilhada para configuração e mensagens de entrada/live message.
 
