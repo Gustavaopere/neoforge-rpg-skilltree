@@ -49,5 +49,14 @@ class I1FoundationContractTest(unittest.TestCase):
         errors = validator.validate_asset_handoff_semantics(handoff)
         self.assertTrue(any("conversion.from_format" in e for e in errors), errors)
 
+    def test_source_registry_rejects_authority_order_drift(self):
+        registry = copy.deepcopy(self._load("PROJECT-INSTRUCTIONS/engineering/catalog/sources/SOURCE-REGISTRY.json"))
+        registry["authority_order"][0], registry["authority_order"][1] = (
+            registry["authority_order"][1],
+            registry["authority_order"][0],
+        )
+        errors = validator.validate_source_registry_data(registry)
+        self.assertTrue(any("authority_order" in e for e in errors), errors)
+
 if __name__ == "__main__":
     unittest.main()
