@@ -1,32 +1,32 @@
 # Battle Arts API
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81bb86a1d5b6b89c7c54  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81bb86a1d5b6b89c7c54
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Battle Arts API
 - **Arquivo JAR:** `battle_arts_api-21.17.7-mc1.21.1-neoforge.jar`
-- **Versão 1.21.1:** `21.17.7`
-- **Categoria:** Biblioteca; RPG
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** 21.17.7
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/battle-arts-api
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca, RPG
 - **Função:** API extensível do ecossistema Battle Arts/Epic Fight para Battle Styles, Combat Arts e Proficiencies, sem substituir o pipeline base de combate.
 - **Dependências:** Ecossistema Epic Fight/Battle Arts; pack confirma Epic Fight 21.17.3.1. Consumidor top-level Battle Arts separado não foi confirmado nesta checagem física específica.
-- **Compatibilidade/Riscos:** Double-hit/damage, desync de style/proficiency, schema datapack incompatível e callbacks de animação virando authority são os principais riscos. Linha 21.17.x renomeou slash_modifier para damage_attribute_modifier.
 - **Sobreposição:** API complementar; não substitui Epic Fight.
+- **Compatibilidade/Riscos:** Double-hit/damage, desync de style/proficiency, schema datapack incompatível e callbacks de animação virando authority são os principais riscos. Linha 21.17.x renomeou `slash_modifier` para `damage_attribute_modifier`. Release 21.17.7 foi testada contra NeoForge 21.1.219; pack usa 21.1.248, exigindo smoke/regression sem presumir incompatibilidade.
 - **Observações:** API 21.17.7. Battle Styles, Combat Arts e Proficiencies são superfícies oficiais; não tratar como combat engine independente.
-- **Procedência:** Modlist física atual de 07/09/2026 + CurseForge/changelogs oficiais Battle Arts API + presença física de Epic Fight 21.17.3.1.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Battle Arts API 21.17.7 e seus contratos de Battle Styles, Combat Arts e Proficiencies no ecossistema Epic Fight. A API foi catalogada tecnicamente sem converter instalação em decisão de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — contratos Battle Styles/Combat Arts/Proficiencies, causalidade Epic Fight, schema e lifecycle catalogados.
-- **Data da última decisão:** não definida.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/changelogs oficiais Battle Arts API 21.17.7 + Epic Fight 21.17.3.1 físico + NeoForge 21.1.248 físico.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/battle-arts-api
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Battle Arts API 21.17.7 físico/release confirmado; Battle Styles/Combat Arts/Proficiencies, schema 21.17.x e boundary Epic Fight preservados. Release testada contra NeoForge 21.1.219; pack usa 21.1.248. QC global #65; runtime QA não executado.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Battle Arts API 21.17.7 e seus contratos de Battle Styles, Combat Arts e Proficiencies no ecossistema Epic Fight. Em 09/09/2026, a release foi revalidada e o delta entre NeoForge testado 21.1.219 e runtime do pack 21.1.248 foi registrado como gate de QA, sem converter instalação em decisão de manter/remover.
+- **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `battle_arts_api-21.17.7-mc1.21.1-neoforge.jar`, mod id `battle_arts_api`, runtime `21.17.7`. O pack também possui Epic Fight `21.17.3.1`; a API pertence ao ecossistema Battle Arts/Epic Fight e não é um combat provider independente.
 
@@ -54,7 +54,7 @@ Proficiencies são outra superfície declarada da API para especialização/comp
 A linha 21.17.x teve mudança documentada de nomenclatura `slash_modifier` → `damage_attribute_modifier` na 21.17.6. Isso é um risco real para datapacks/consumidores que ficaram presos ao nome antigo. A versão física 21.17.7 deve ser validada com dados escritos para a mesma família de schema.
 
 ## 6. Relação com Epic Fight
-O pack usa Epic Fight 21.17.3.1. Battle Arts API não substitui:
+O pack usa Epic Fight 21.17.3.1. A release física Battle Arts API 21.17.7 declara teste contra NeoForge 21.1.219; o pack atual usa NeoForge 21.1.248. Isso não prova incompatibilidade, mas exige smoke/regression no ambiente real. Battle Arts API não substitui:
 - attack animation state;
 - hit detection;
 - damage settlement;
