@@ -1,32 +1,30 @@
 # AppleSkin
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81889791c3f4d3feabbe  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81889791c3f4d3feabbe
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** AppleSkin
 - **Arquivo JAR:** `appleskin-neoforge-mc1.21-3.0.9.jar`
-- **Versão 1.21.1:** `3.0.9+mc1.21`
-- **Categoria:** Comida; QoL
-- **Decisão:** Manter
+- **Versão 1.21.1:** 3.0.9+mc1.21
+- **Estado no pack:** Instalado — Dossiê completo
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/appleskin
+- **Decisão:** Manter
+- **Categoria:** Comida, QoL
 - **Função:** Telemetria/HUD de alimentação: mostra hunger, saturation, exhaustion, valores de alimentos, restauração prevista e saúde potencial recuperável em tooltips/HUD/F3 sem alterar a mecânica de comida.
 - **Dependências:** Sem dependência funcional de outro mod além da plataforma. É majoritariamente client-side, mas deve estar no servidor quando se deseja sincronização precisa de saturation/exhaustion.
-- **Compatibilidade/Riscos:** Riscos são principalmente visuais e de representação: stacking com outros HUDs, estados montados e alimentos com mecânicas customizadas fora do pipeline normal. Não usar tooltip/HUD como authority técnica de progressão. Nutritional Balance, sede e efeitos especiais de comida permanecem sistemas separados.
 - **Sobreposição:** Não substitui Nutritional Balance, Farmer's Delight, Thirst ou outro sistema de sobrevivência; apenas expõe visualmente hunger/saturation/exhaustion e valores relacionados.
-- **Observações:** mod id: appleskin; JAR 3.0.9, metadata runtime 3.0.9+mc1.21. A página documenta client/server sync, features HUD, limites, integração com food mods e testes de overlays.
-- **Procedência:** Runtime/JAR: modlist física 07/09/2026. Funcionalidade: source/README e releases oficiais AppleSkin + CurseForge. Contexto local: guia consolidado de Gameplay.
+- **Compatibilidade/Riscos:** Riscos são principalmente visuais e de representação: stacking com outros HUDs, estados montados e alimentos com mecânicas customizadas fora do pipeline normal. Não usar tooltip/HUD como authority técnica de progressão. Nutritional Balance, sede e efeitos especiais de comida permanecem sistemas separados.
+- **Observações:** mod id: `appleskin`; JAR 3.0.9, metadata runtime 3.0.9+mc1.21. A página documenta client/server sync, features HUD, limites, integração com food mods e testes de overlays.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/source/releases oficiais AppleSkin 3.0.9 + dossiê operacional existente.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/appleskin
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — AppleSkin 3.0.9, HUD/tooltips/F3/sync, client/server boundary and food-telemetry-only authority confirmed in global QC #37. Estado anterior `Integrado ao Github` preservado como histórico documental.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita como dossiê operacional de observabilidade, distinguindo AppleSkin de nutrição, sede e culinária e registrando as correções NeoForge da linha 3.0.9.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026. Runtime confirmado: appleskin-neoforge-mc1.21-3.0.9.jar / 3.0.9+mc1.21. Dossiê tratado como mod de observabilidade: inventário funcional completo de HUD/tooltips/F3/sync, boundary client/server, API de overlays, riscos de representação e matriz de validação; sem fingir registries de gameplay que o mod não possui.
-- **Data da última decisão:** 2026-09-07.
-
-## Dossiê operacional — padrão Alex's Mobs
+- **Data da última decisão:** 2026-09-07
 
 > 🍎 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Esta ficha documenta `appleskin-neoforge-mc1.21-3.0.9.jar`, mod id `appleskin`, metadata runtime **`3.0.9+mc1.21`**. Como AppleSkin não é um content mod, o padrão exaustivo aqui significa inventariar **todas as superfícies observáveis confirmadas** — tooltips, saturation, exhaustion, previsão de hunger/saturation/health, F3, sync servidor→cliente e API de overlays — sem inventar itens, blocos, entidades ou progressão inexistentes.
 
@@ -106,7 +104,7 @@ AppleSkin não é redundante com mods de nutrição: seu domínio é **observabi
 - F3 com valores habilitados.
 
 ## 9. Fontes
-- CurseForge — AppleSkin: https://www.curseforge.com/minecraft/mc-mods/appleskin
-- Source — AppleSkin: https://github.com/squeek502/AppleSkin
-- Releases oficiais: https://github.com/squeek502/AppleSkin/releases
+- [CurseForge — AppleSkin](https://www.curseforge.com/minecraft/mc-mods/appleskin)
+- [Source — AppleSkin](https://github.com/squeek502/AppleSkin)
+- [Releases oficiais](https://github.com/squeek502/AppleSkin/releases)
 - Modlist física e guia consolidado de Gameplay do projeto.
