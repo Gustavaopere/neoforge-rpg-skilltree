@@ -33,9 +33,9 @@ jobs:
           python3 PROJECT-INSTRUCTIONS/engineering/tooling/scaffolder/scaffold_mod.py
           --mod-spec PROJECT-INSTRUCTIONS/engineering/tests/fixtures/i3-golden-mod-spec.json
           --config PROJECT-INSTRUCTIONS/engineering/tests/fixtures/i3-golden-scaffold-config.json
-          --output build/i3-generated
+          --output "$RUNNER_TEMP/i3-generated"
       - name: Build generated NeoForge project
         run: |
-          chmod +x build/i3-generated/gradlew
-          cd build/i3-generated
+          chmod +x "$RUNNER_TEMP/i3-generated/gradlew"
+          cd "$RUNNER_TEMP/i3-generated"
           ./gradlew test build --no-daemon
