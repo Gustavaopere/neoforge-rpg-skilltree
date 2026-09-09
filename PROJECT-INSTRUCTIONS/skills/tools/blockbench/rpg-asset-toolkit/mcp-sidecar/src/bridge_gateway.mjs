@@ -63,6 +63,12 @@ function responseError(message) {
   return bridgeError(code, detail);
 }
 
+function closeCodeFor(error, fallback = 4400) {
+  if (error?.code === 'SESSION_EXPIRED' || error?.code === 'AUTH_FAILED' || error?.code === 'SESSION_MISMATCH') return 4401;
+  if (error?.code === 'CONNECTION_TIMED_OUT' || error?.code === 'BRIDGE_HEARTBEAT_TIMEOUT') return 4408;
+  return fallback;
+}
+
 export async function startBridgeGateway(options = {}) {
   const host = assertLoopbackHost(options.host || '127.0.0.1');
   const port = assertListenPort(options.port ?? 0);
@@ -196,10 +202,15 @@ export async function startBridgeGateway(options = {}) {
         return;
       }
 
-      if (!state.isActive(connectionId)) return;
-      if (message.type === 'response') acceptResponse(connectionId, message);
-      else if (message.type === 'heartbeat') acceptHeartbeat(connectionId, socket, message);
-      else closeQuietly(socket, 4400, 'MESSAGE_TYPE_NOT_ALLOWED');
+      try {
+        if (!state.isActive(connectionId)) return;
+        if (message.type === 'response') acceptResponse(connectionId, message);
+        else if (message.type === 'heartbeat') acceptHeartbeat(connectionId, socket, message);
+        else throw bridgeError('MESSAGE_TYPE_NOT_ALLOWED');
+      } catch (error) {
+        clearActive(connectionId, error);
+        closeQuietly(socket, closeCodeFor(error), error?.code || 'PROTOCOL_ERROR');
+      }
     });
 
     socket.on('close', () => {
@@ -214,6 +225,12 @@ export async function startBridgeGateway(options = {}) {
 
   const heartbeatWatch = setInterval(() => {
     if (!active) return;
+    if (state.isExpired(active.connectionId)) {
+      const expired = active;
+      clearActive(expired.connectionId, bridgeError('SESSION_EXPIRED'));
+      closeQuietly(expired.socket, 4401, 'SESSION_EXPIRED');
+      return;
+    }
     if (!state.isTimedOut(active.connectionId)) return;
     const stale = active;
     clearActive(stale.connectionId, bridgeError('BRIDGE_HEARTBEAT_TIMEOUT'));
@@ -231,7 +248,7 @@ export async function startBridgeGateway(options = {}) {
       state.assertActive(connection.connectionId);
     } catch (error) {
       clearActive(connection.connectionId, error);
-      closeQuietly(connection.socket, 4408, error?.code || 'BRIDGE_UNAVAILABLE');
+      closeQuietly(connection.socket, closeCodeFor(error, 4408), error?.code || 'BRIDGE_UNAVAILABLE');
       throw error;
     }
     if (!connection.capabilities.has(method)) throw bridgeError('BRIDGE_CAPABILITY_UNAVAILABLE', method);
