@@ -2,6 +2,12 @@
 
 Antes de escolher uma skill, leia `VERSION-AUTHORITY.md`. Se o usuário precisar agir manualmente, aplique também `USER-GUIDED-WORKFLOW.md`.
 
+## Regra de overlay
+
+Skills recebidas do usuário preservam o payload-fonte em `library/<skill>/`. Quando existir `library/<skill>/PROJECT-OVERLAY.md`, leia o `SKILL.md` e depois o overlay.
+
+O overlay pode **restringir** loader, versão, autoridade, escopo e roteamento para este projeto, mas não deve reescrever silenciosamente o conteúdo-fonte. Em conflito de versão/loader, o overlay + `VERSION-AUTHORITY.md` vencem para a execução deste projeto.
+
 ## Engenharia NeoForge 1.21.1
 
 Preferência:
@@ -11,7 +17,9 @@ Preferência:
 3. `library/minecraft-ci-release/SKILL.md` para CI/release
 4. `library/minecraft-jar-reverse-engineering/SKILL.md` para investigar JAR/provider
 
-`minecraft-mod-dev` é referência secundária porque o ZIP recebido aponta para três arquivos internos ausentes.
+`minecraft-mod-dev` e `minecraft-modding` são referências gerais/secundárias. Seus exemplos Fabric, Forge legado, Paper ou de versões posteriores não substituem a autoridade NeoForge 1.21.1.
+
+`minecraft-multiloader` fica desativada por padrão; só usar quando existir uma decisão explícita de manter mais de um loader.
 
 ## Debug de modpack
 
@@ -19,6 +27,8 @@ Preferência:
 - isolamento de interação: `minecraft-modpack-bisect`
 - dependências/bridges: `minecraft-dependency-compatibility-graph`
 - redundância/inventário: `modpack-inventory-redundancy-audit`
+
+Sempre partir da modlist/JARs/logs físicos atuais. Bibliotecas com nomes Fabric/Architectury podem existir em um pack NeoForge e não mudam o loader-alvo por si só.
 
 ## Conteúdo data-driven
 
@@ -29,9 +39,11 @@ Use com confirmação explícita de formatos/paths para 1.21.1:
 - `minecraft-world-generation`
 - `minecraft-commands-scripting`
 
+Exemplos de 1.21.2+ / 1.21.8+ / 1.21.11 permanecem referência conceitual até prova de compatibilidade com 1.21.1.
+
 ## Imagem/conceito
 
-`minecraft-imagegen` serve para concept art, briefs, pack icons, mockups e referências. Saída gerada não vira automaticamente modelo, UV ou textura final.
+`minecraft-imagegen` serve para concept art, briefs, pack icons, mockups e referências. Saída gerada não vira automaticamente modelo, UV ou textura final. Repo Textura permanece a fonte artística de verdade para assets project-owned.
 
 ## Art direction, modelos e animação
 
@@ -83,10 +95,10 @@ Sempre que a pergunta for “está pronto/bonito/coerente/sem regressão?” par
 
 ## Fora do escopo padrão
 
-Ative somente quando a tarefa realmente exigir:
+Ative somente quando a tarefa realmente exigir e o ambiente correspondente estiver comprovado:
 
-- `minecraft-plugin-dev`
-- `minecraft-server-admin`
-- `minecraft-essentials-ops`
-- `minecraft-multiloader`
-- `minecraft-worldedit-ops`
+- `minecraft-plugin-dev` — Paper/Bukkit/Spigot separado do runtime NeoForge;
+- `minecraft-server-admin` — default deste projeto é servidor dedicado NeoForge;
+- `minecraft-essentials-ops` — EssentialsX não está provado pela modlist física atual;
+- `minecraft-multiloader` — somente com decisão explícita multi-loader;
+- `minecraft-worldedit-ops` — WorldEdit não está presente na modlist física fornecida.
