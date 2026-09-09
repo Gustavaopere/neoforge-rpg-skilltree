@@ -42,3 +42,4 @@ require('./rpg_asset_toolkit.modular.test.js');
 require('./rpg_asset_toolkit.provider_expansion.test.js');
 require('./rpg_asset_toolkit.live_bridge.test.js');
 require('./rpg_asset_toolkit.mcp_sidecar.test.js');
+require('./rpg_asset_toolkit.bundle_live_bridge.test.js');
