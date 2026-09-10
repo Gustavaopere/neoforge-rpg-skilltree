@@ -1,5 +1,33 @@
 # Fantasy Armor — 1.2.4-1.21.1
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3d369db9f0db81e2818ff24c81d85fc2  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Fantasy Armor
+- **Arquivo JAR:** `fantasy_armor-neoforge-1.2.4-1.21.1.jar`
+- **Versão 1.21.1:** `1.2.4-1.21.1`
+- **Categoria:** RPG; Visual
+- **Decisão:** Manter
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/fantasy-armor/files/7850813
+- **Função:** Content mod de equipamento RPG com 29 conjuntos de armadura 3D na árvore NeoForge 1.21.1, stats/effects configuráveis e assets geo/texture/overlay próprios.
+- **Dependências:** NeoForge 1.21.1. Não há bridge hard do pack necessária à identidade do mod; integrações/regressões relevantes incluem Epic Fight 21.17.3.1, Cosmetic Armor Reworked, FirstPerson e o stack de player-model/animation.
+- **Compatibilidade/Riscos:** Riscos principais: clipping/renderer conflicts com Epic Fight, FirstPerson e player-model mods; cosmetic slot vs armor funcional; stacking de attributes/effects; stale modifiers após unequip/death; resource-pack/model drift. Stats concretos dependem dos configs da instância.
+- **Sobreposição:** Sobreposição estética/equipment com outros armor mods não implica redundância: os 29 sets, assets e effects são conteúdo próprio. Cosmetic Armor altera apresentação; Epic Fight/FirstPerson alteram render/animation.
+- **Observações:** Source 1.21.1 enumera 29 sets e registra `fantasy_armor-armor_attributes.toml` + `fantasy_armor-armor_effects.toml`. Não documentar valores numéricos como universais sem ler os configs reais da instância.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `fantasy_armor-neoforge-1.2.4-1.21.1.jar`, mod id `fantasy_armor`, versão `1.2.4-1.21.1` e SHA-1 2b103680ca80a1d617dcae74630c4df8e93d3c55. Source oficial `appNeoForge/1.21.1` auditado.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Fantasy Armor 1.2.4: 29 armor sets source-confirmed, configs de attributes/effects, render ownership, lifecycle, multiplayer, integrations e regressões catalogados.
+- **Data da última decisão:** 2026-09-06
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `fantasy_armor-neoforge-1.2.4-1.21.1.jar` · mod id `fantasy_armor` · versão `1.2.4-1.21.1` · NeoForge 1.21.1. Source 1.21.1 auditado no repositório oficial.
 
 ## 1. Papel no modpack
