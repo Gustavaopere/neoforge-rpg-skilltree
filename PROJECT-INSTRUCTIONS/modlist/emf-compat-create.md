@@ -1,5 +1,31 @@
 # EMF Compat: Create — 2.0.0
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3d369db9f0db8198b497edc94bee0795  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** EMF Compat: Create
+- **Arquivo JAR:** `emf_compat_create_1.21.1_2.0.0.jar`
+- **Versão 1.21.1:** `2.0.0`
+- **Categoria:** Compat; Visual
+- **Decisão:** Manter
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-create
+- **Função:** Compat client-side que pausa/restaura animações EMF do jogador durante animações Create, sobretudo Skyhook e rides em chains/ropes, para preservar a pose do sistema Create.
+- **Dependências:** EMF Compat Core 2.0.0 + Entity Model Features 3.3.5. Runtime físico relevante: Create 6.0.10, Create Aeronautics 1.3.2 e Climbable Ropes 2.1.3 estão presentes.
+- **Compatibilidade/Riscos:** Conflitos de pose/render com EMF player animation packs, Skyhook, Aeronautics rope/chain riding e outros player-animation mods. Riscos: animation não pausar, restore tardio, body/arms snap, first/third mismatch, animation presa após desmontar e API drift após update Create/EMF.
+- **Sobreposição:** Não substitui Create, Aeronautics ou EMF. Só arbitra a pose do player em situações específicas; outras animation compat layers podem tocar o mesmo modelo e exigem precedence.
+- **Observações:** O projeto oficial 2.0.0 é Client-only. A descrição confirma Skyhook, chain/rope riding from Aeronautics, compat com Climbable Ropes/Create Grappling Hooks e Grabbing Physics Objects. Fresh Animations: Player Extension e Detailed Animations foram usados em testes upstream; isso não prova que qualquer resource pack é compatível sem QA.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `emf_compat_create_1.21.1_2.0.0.jar`, mod id `emf_compat_create`, versão 2.0.0 e SHA-1 e22256acaaabc43d4043b119a748e8f52e27a451. CurseForge oficial confirma release 2.0.0 NeoForge 1.21.1 Client de 02/09/2026.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — EMF Compat Create 2.0.0; Skyhook/rope animation precedence, Aeronautics/Climbable Ropes, client-only lifecycle, risks and tests cataloged.
+- **Data da última decisão:** 2026-09-06
+
 > **Runtime físico confirmado:** `emf_compat_create_1.21.1_2.0.0.jar` · mod id `emf_compat_create` · versão `2.0.0` · NeoForge 1.21.1 · **Client-only**.
 
 ## 1. Papel no modpack
