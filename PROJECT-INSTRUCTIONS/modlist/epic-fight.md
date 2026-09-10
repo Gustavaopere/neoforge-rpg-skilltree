@@ -1,5 +1,31 @@
 # Epic Fight — 21.17.3.1
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db8190b003eb429255fb7d  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Epic Fight
+- **Arquivo JAR:** `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar`
+- **Versão 1.21.1:** `21.17.3.1`
+- **Categoria:** RPG
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epic-fight-mod
+- **Função:** Framework/sistema principal de combate action-RPG do pack, com battle mode, movesets/animações, weapon capabilities, stamina, stun, dodge/guard/passive skills, special attacks e patches de entidades.
+- **Dependências:** NeoForge 1.21.1. É provider-base para vários addons/bridges fisicamente presentes, incluindo Battle Arts API 21.17.7, Epic-API 21.3.1, Better Lock On 2.0.8, EFIS 3.1.0, Curios Compat artifact 2.2/metadata 1.4, Epic Fight Compat 1.1.0, Epic ParCool e Epic Colonies 21.0.8.
+- **Compatibilidade/Riscos:** Núcleo de combate com alta superfície de integração. README 1.21.1 atual lista compatibilidade plena com ParCool, Sodium, Iris, 3D Skin Layers, Shoulder Surfing, playerAnimator, GeckoLib, AzureLib, First-person Model e KubeJS; OptiFine/Controllable são incompatíveis. Werewolves 2.0.3.3 permanece risco de render/forma documentado apesar de o JAR Epic Fight conter mixin de compat. Riscos principais: double-damage/stun, skill-slot collision, entity-patch ownership, weapon capability drift, armor/model render, input conflicts e addon version drift.
+- **Sobreposição:** Epic Fight é authority do combat framework que adiciona. Addons/bridges devem estendê-lo, não reimplementar stamina, stun, player patch ou weapon capability em paralelo. Outros combat mods podem coexistir apenas com ownership/precedence claros.
+- **Observações:** Runtime físico é 21.17.3.1 e prevalece sobre listagens públicas atrasadas encontradas neste ciclo. O source/docs oficiais da branch 1.21.1 sustentam battle mode, attributes, stamina/skills, weapon capabilities, entity patching, animations/armatures, event/API e input abstractions. Não foi atribuído changelog exclusivo de 21.17.3.1 sem pin oficial recuperado.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar`, mod id `epicfight`, versão 21.17.3.1 e SHA-1 fb199b7bbea2fc402da28ab586e73f47e32f8fc0. GitHub/docs oficiais branch 1.21.1 sustentam contratos e guides técnicos.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Epic Fight 21.17.3.1; battle mode, weapon/item capabilities, stamina/stun/skills, entity patches, armatures/animations, datapacks/API/input, local compat stack, lifecycle/MP, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
 > **Runtime físico confirmado:** `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` · mod id `epicfight` · versão `21.17.3.1` · NeoForge 1.21.1. A versão física prevalece sobre índices públicos atrasados; contratos abaixo vêm do source/docs oficiais da branch 1.21.1 e não de changelog inventado para 21.17.3.1.
 
 ## 1. Papel no modpack
@@ -121,7 +147,7 @@ A modlist física confirma, entre outros:
 - EFIS `3.1.0` para Iron's Spells;
 - Epic Fight Compat `1.1.0`;
 - ParCool `4.0.0.3` + bridge Epic ParCool;
-- Epic Colonies `21.0.8` (próxima ficha física, não auditada neste lote).
+- Epic Colonies `21.0.8`.
 
 Cada addon deve consumir o core; nenhum deve manter seu próprio player patch paralelo.
 
