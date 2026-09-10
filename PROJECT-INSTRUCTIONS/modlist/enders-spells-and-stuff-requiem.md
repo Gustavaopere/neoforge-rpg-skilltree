@@ -1,5 +1,31 @@
 # Ender's Spells and Stuff: Requiem — 0.1.7
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db811a8502f36f37296578  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Ender's Spells and Stuff: Requiem
+- **Arquivo JAR:** `ess_requiem-0.1.7.jar`
+- **Versão 1.21.1:** `0.1.7`
+- **Categoria:** Magia; RPG
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/enders-spells-and-stuff-requiem
+- **Função:** Addon de Iron's Spells 'n Spellbooks com 16 armas e 42 spells na linha 0.1.7, incluindo mecânicas de summoning, blood/Strain, ice e Eldritch; adiciona conteúdo extra quando Discerning The Eldritch está presente.
+- **Dependências:** Página oficial lista Iron's Spells 'n Spellbooks, Ace's Spell Utils e Apothic Attributes; todos estão presentes: Iron's 3.16.3, Ace's 1.2.7.2 e Apothic Attributes 2.10.1. GTBC's SpellLib 2.2.0 também está fisicamente presente e aparece associado em índices de relações; DTE 1.4.4 habilita +1 arma/+2 spells extras.
+- **Compatibilidade/Riscos:** Incompatibilidade declarada com o Ender's Spells and Stuff original; ele não está presente na modlist atual. Riscos locais: spell/API drift, Strain/max-HP modifier stale, summon-death double trigger, weapon-exclusive cast ownership, DTE extras, Apothic Attributes stacking e overlap visual de explosões.
+- **Sobreposição:** Sobreposição temática ampla com outros addons Iron's, mas conteúdo próprio. É explicitamente incompatível com o Ender's Spells and Stuff original; não tratar outros addons como substitutos sem comparar spell/item IDs e mechanics.
+- **Observações:** CurseForge 0.1.7 declara 16 armas e 42 spells; com Discerning The Eldritch instalado aparecem +1 arma e +2 spells. Update atual destacado: `Serious Summoning`; exemplos publicados incluem Strain, Glacial Sculpting, Lord of the Final Frost e várias spells Eldritch. Não foram inventadas fórmulas numéricas ausentes da documentação.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `ess_requiem-0.1.7.jar`, mod id `ess_requiem`, versão 0.1.7 e SHA-1 76eb6471698ce24d6fbdfcdd4b04397e96d401aa. Runtime também confirma Iron's 3.16.3, Ace's Spell Utils 1.2.7.2, Apothic Attributes 2.10.1, GTBC SpellLib 2.2.0 e DTE 1.4.4.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Requiem 0.1.7; content count, dependency stack, Serious Summoning, Strain/summon mechanics, DTE integration, authority, lifecycle, multiplayer, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-30
+
 > **Runtime físico confirmado:** `ess_requiem-0.1.7.jar` · mod id `ess_requiem` · versão `0.1.7` · NeoForge 1.21.1 · Client & Server. Base física: Iron's Spells `1.21.1-3.16.3`, Ace's Spell Utils `1.2.7.2-1.21.1`, Apothic Attributes `2.10.1`, GTBC's SpellLib `2.2.0-1.21.1` e Discerning The Eldritch `1.4.4-1.21` presentes.
 
 ## 1. Papel no modpack
