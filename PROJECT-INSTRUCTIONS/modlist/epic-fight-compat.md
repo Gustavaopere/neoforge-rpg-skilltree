@@ -1,5 +1,31 @@
 # Epic Fight Compat — 1.1.0
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db81c08680d259f9291053  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Epic Fight Compat
+- **Arquivo JAR:** `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar`
+- **Versão 1.21.1:** `1.1.0`
+- **Categoria:** Compat; RPG
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epic-fight-compat
+- **Função:** Compat pack modular/data-driven que aplica entity patches, atributos e weapon capabilities do Epic Fight a entidades e armas de mods externos quando há preset/archetype compatível.
+- **Dependências:** Epic Fight 21.17.3.1 é a dependência required. Targets são optional e ativados por presença; no pack estão confirmados Iron's Spells 3.16.3, Simply Swords 1.70.2, Simply More 1.3.0_alpha, Mowzie's Mobs 1.8.2, Quark 4.1-483, Supplementaries 3.9.8 e Farmer's Delight 1.3.4.
+- **Compatibilidade/Riscos:** Riscos: preset genérico aplicado a entidade/boss com behavior próprio, capability/regex de arma incorreta, atributos Epic Fight ausentes, resource ID drift e disputa com bridges especializadas como EFIS/Epic Colonies. Source usa ativação condicional e failure isolation; ainda requer regressão com Epic Fight 21.17.3.1.
+- **Sobreposição:** Pode cruzar com patches dedicados do ecossistema Epic Fight. Bridges especializadas devem preservar ownership específico; não assumir que o compat genérico substitui EFIS, Epic Colonies, Curios Compat ou Epic ParCool.
+- **Observações:** CompatRegistry 1.21.1 contém 17 módulos alvo. Sete targets estão fisicamente presentes neste pack: Iron's Spellbooks, Simply Swords, Simply More, Mowzie's Mobs, Quark, Supplementaries e Farmer's Delight. Módulos ausentes não são tratados como ativos.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar`, mod id `epicfightcompat`, versão 1.1.0 e SHA-1 73322bae5887cad40835bee6f7cbf425ffbb8ffb. Source oficial branch 1.21.1 auditado para registry/modules e contracts data-driven.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Epic Fight Compat 1.1.0; modular registry, entity patches, attributes, weapon capabilities, active local targets, bridge precedence, lifecycle, multiplayer, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
 > **Runtime físico confirmado:** `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` · mod id `epicfightcompat` · versão `1.1.0` · NeoForge 1.21.1 · Client & Server.
 
 ## 1. Papel no modpack
