@@ -1,5 +1,33 @@
 # Farmer's Delight — 1.3.4
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db81a28cdef5c44c71dfd6  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Farmer's Delight
+- **Arquivo JAR:** `FarmersDelight-1.21.1-1.3.4.jar`
+- **Versão 1.21.1:** `1.3.4`
+- **Categoria:** Comida
+- **Decisão:** Manter
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/farmers-delight
+- **Função:** Mod-base culinário/agropecuário do pack: crops/ingredients, Cooking Pot, Cutting Board, Skillet, Stove, baskets/cabinets, feasts, foods, recipes, storage/decor e loot integrations.
+- **Dependências:** NeoForge 1.21.1. É provider-base para numerosos addons instalados, incluindo Farmer's Delight: Extended, Expanded Delight, Ender's Delight, Alex's Delight, Farmer's Spell e Ars Nouveau's Flavors & Delight.
+- **Compatibilidade/Riscos:** Grande superfície de recipes/tags/workstations. Riscos: duplicate recipes, broad tags, double-processing via Create/bridges, feast serving/piston dupe, loot inflation, stale BlockEntity inventory e addon drift. 1.3.4 corrige Feast+piston e `generateFDChestLoot`.
+- **Sobreposição:** É a authority-base do ecossistema Farmer's Delight. Addons expandem recipes/conteúdo e Create automatiza; não substituem os contracts FD. Comparar sobreposição por IDs, recipe types, tags e outputs.
+- **Observações:** Release 1.3.4 corrige comportamento de Feasts empurrados por pistons e, em 1.21.1+, o config `generateFDChestLoot`. Source confirma Stove, Cooking Pot, Skillet, Cutting Board, baskets, crates, rice/straw storage, cabinets e building content.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `FarmersDelight-1.21.1-1.3.4.jar`, mod id `farmersdelight`, versão 1.3.4 e SHA-1 27675ddfcb8cc37e6ea1ab6c15051c7949d94657. CurseForge 1.3.4 e source oficial branch 1.21 auditados.
+- **Histórico da decisão:** Mantido como expansão culinária de conteúdo. A regra arquitetural é adaptar alimentos às mecânicas TFC em vez de criar nutrição/decay paralelos. Confirmado carregado como Farmer's Delight 1.3.3 em 22/08/2026.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Farmer's Delight 1.3.4; workstations/crops/storage/feasts, loot config, addon authority, automation, lifecycle, multiplayer, riscos e testes catalogados.
+- **Data da última decisão:** 2026-08-30
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `FarmersDelight-1.21.1-1.3.4.jar` · mod id `farmersdelight` · versão `1.3.4` · NeoForge 1.21.1 · Client & Server. Esta ficha trata Farmer's Delight como provider-base do grande stack culinário instalado.
 
 ## 1. Papel no modpack
