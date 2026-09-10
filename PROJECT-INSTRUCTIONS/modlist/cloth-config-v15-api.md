@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db8187bd0bed9382336e24  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist.txt`, 595 mods top-level  
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -20,9 +21,9 @@
 - **Compatibilidade/Riscos:** Riscos principais são version drift de consumers, client-only screen code em dedicated server, valores de UI divergentes do config real e duas config APIs tentando controlar a mesma screen. 15.0.140 não possui changelog de gameplay publicado; não inventar novas APIs específicas.
 - **Sobreposição:** Pode coexistir com outras config libraries porque consumers compilam contra APIs específicas. Similaridade de função não implica substituição binária.
 - **Observações:** mod id `cloth_config`; runtime 15.0.140. Config UI é apresentação; validação, persistência e sync server-side continuam sendo responsabilidade do consumer/config backend.
-- **Procedência:** Modlist física mais recente de 07/09/2026 + CurseForge/Modrinth oficiais Cloth Config 15.0.140 NeoForge + source oficial shedaniel/cloth-config para o contrato geral de config screen API.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficiais Cloth Config 15.0.140 NeoForge + source oficial shedaniel/cloth-config para o contrato geral de config screen API.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Cloth Config v15 API 15.0.140 foi reconfirmado como biblioteca de configuração instalada. A presença física não foi convertida em decisão de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — config-screen consumer contract, UI vs backend authority, side/lifecycle, version drift e coexistência com outras config libraries catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Cloth Config v15 API 15.0.140 físico confirmado; config-screen consumer contract, UI↔backend authority, side/lifecycle, version drift e coexistência com outras config libraries confirmados no QC global #97. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
