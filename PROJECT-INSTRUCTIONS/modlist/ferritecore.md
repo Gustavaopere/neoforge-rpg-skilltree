@@ -1,5 +1,33 @@
 # FerriteCore — 7.0.3
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db8160a186f0e37c33967d  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** FerriteCore
+- **Arquivo JAR:** `ferritecore-7.0.3-neoforge.jar`
+- **Versão 1.21.1:** `7.0.3`
+- **Categoria:** Performance
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ferritecore
+- **Função:** Performance/memory mod que deduplica e compacta estruturas internas de blockstates/models/data components/caches, reduzindo RAM sem alterar ownership do conteúdo.
+- **Dependências:** NeoForge 1.21.1. ModernFix está presente e 7.0.3 contém correção para dynamic-resource loading; Create: Aeronautics e Supplementaries também estão no stack e têm reports upstream relevantes para regressão.
+- **Compatibilidade/Riscos:** Reports upstream: crash sob memory pressure com Create: Aeronautics e startup extremamente lento com Supplementaries em NeoForge 1.21.1; não são bugs locais confirmados. Riscos adicionais: mixin conflict, stale resource/model data e data-component dedup incorreto.
+- **Sobreposição:** FerriteCore mira principalmente memória/representação; não substitui EntityCulling, BetterFpsDist, CreateBetterFps ou FastSuite. ModernFix tem interseção de resources/lifecycle e deve ser testado em conjunto.
+- **Observações:** 7.0.3 reduz memória de data component patches e corrige loading slowdown com ModernFix dynamic resources. Issues Aeronautics/Supplementaries ficam como regression gates, não incompatibilidades comprovadas.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `ferritecore-7.0.3-neoforge.jar`, mod id `ferritecore`, versão 7.0.3, mixin configs e SHA-1 9563692efb708b6b568df27a01ec52f6311928ef. CurseForge 7.0.3 e issues oficiais auditados.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — FerriteCore 7.0.3; memory/data-component/model surfaces, ModernFix fix, Aeronautics/Supplementaries regression reports, lifecycle, riscos e testes catalogados.
+- **Data da última decisão:** 2026-08-26
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `ferritecore-7.0.3-neoforge.jar` · mod id `ferritecore` · versão `7.0.3` · NeoForge 1.21.1. O mod atua transversalmente na redução de uso de memória e estruturas internas; não adiciona gameplay.
 
 ## 1. Papel no modpack
