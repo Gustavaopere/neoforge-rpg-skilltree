@@ -1,4 +1,32 @@
-# Bosses'Rise — 2.1.2
+# Bosses'Rise
+
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3d469db9f0db81708464c12d7d7b5123
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
+
+## Propriedades do banco
+
+- **Mod:** Bosses'Rise
+- **Arquivo JAR:** `block_factorys_bosses-2.1.2-neo-1.21.1.jar`
+- **Versão 1.21.1:** 2.1.2
+- **Estado no pack:** Instalado — Dossiê completo
+- **Estado da pesquisa:** Verificado
+- **Decisão:** Sem decisão
+- **Categoria:** Mobs, RPG, Worldgen, Exploração
+- **Função:** Conteúdo Souls-like com 5 bosses multifase, arenas/dungeons próprias, mobs regionais, equipamento/recompensas, cinematics, roll/config e estruturas protegidas.
+- **Dependências:** GeckoLib é required content na release NeoForge atual; pack usa GeckoLib 4.9.2, acima do requisito publicado 4.8.4.
+- **Sobreposição:** Sobreposição temática e de densidade de encontros com outros boss mods; não há duplicação técnica automática. Auditar structures, loot progression e dificuldade por encontro.
+- **Compatibilidade/Riscos:** Sobreposição de bosses/worldgen/dificuldade com Cataclysm, Mowzie's Mobs e BOMD; riscos em boss structure density, cinematic state, multiplayer AoE, dedicated-server GeckoLib/particle rendering e Distant Horizons. 2.1.2 melhora compat Better Combat e corrige DH/Dragon Tower.
+- **Observações:** Bosses confirmados publicamente: Ashlord/Infernal Dragon, Helvar/Underworld Knight, Skor/Yeti, Sirok/Sandworm e Kraken. 2.1.x adiciona Kraken content, decorações navais, server-side config, structure protection, boss loot tags e fixes multiplayer/cinematics.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficiais Bosses'Rise 2.1.2 + changelogs oficiais 2.0.10–2.1.2 + GeckoLib 4.9.2 físico.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bossesrise
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Bosses'Rise 2.1.2 físico/release confirmado; 5 bosses, arenas, server config, cinematics, Distant Horizons/Dragon Tower e multiplayer risks preservados. Runtime QA não executado.
+- **Histórico da decisão:** 2026-09-07 — novo mod incorporado à auditoria; sem decisão curatorial ainda.
+- **Data da última decisão:** 2026-09-07
+
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `block_factorys_bosses-2.1.2-neo-1.21.1.jar`, mod id `block_factorys_bosses`, runtime `2.1.2`, NeoForge 1.21.1. A release atual exige **GeckoLib 4.8.4+**; o pack possui GeckoLib `4.9.2`.
 
