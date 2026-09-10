@@ -25,12 +25,17 @@ import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.Test;
 
 final class CompendiumCheckedInEditorialCorpusJUnitTest {
-    private static final String CLASSPATH_RESOURCE =
+    private static final String FIRST_CLASSPATH_RESOURCE =
         "/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities.json";
-    private static final ResourceLocation EDITORIAL_RESOURCE = ResourceLocation.parse(
+    private static final ResourceLocation FIRST_EDITORIAL_RESOURCE = ResourceLocation.parse(
         "rpgskilltree:compendium/editorial/pt_br/minecraft/entities.json"
     );
-    private static final Set<String> EXPECTED_IDS = Set.of(
+    private static final String SECOND_CLASSPATH_RESOURCE =
+        "/data/rpgskilltree/compendium/editorial/pt_br/minecraft/entities-02.json";
+    private static final ResourceLocation SECOND_EDITORIAL_RESOURCE = ResourceLocation.parse(
+        "rpgskilltree:compendium/editorial/pt_br/minecraft/entities-02.json"
+    );
+    private static final Set<String> EXPECTED_FIRST_BATCH_IDS = Set.of(
         "ENTITY:minecraft:bee",
         "ENTITY:minecraft:cat",
         "ENTITY:minecraft:chicken",
@@ -42,12 +47,37 @@ final class CompendiumCheckedInEditorialCorpusJUnitTest {
         "ENTITY:minecraft:sheep",
         "ENTITY:minecraft:wolf"
     );
+    private static final Set<String> EXPECTED_SECOND_BATCH_IDS = Set.of(
+        "ENTITY:minecraft:armadillo",
+        "ENTITY:minecraft:camel",
+        "ENTITY:minecraft:dolphin",
+        "ENTITY:minecraft:fox",
+        "ENTITY:minecraft:frog",
+        "ENTITY:minecraft:llama",
+        "ENTITY:minecraft:mooshroom",
+        "ENTITY:minecraft:ocelot",
+        "ENTITY:minecraft:panda",
+        "ENTITY:minecraft:polar_bear"
+    );
 
     @Test
-    void firstMinecraftFaunaBatchIsCheckedInReviewedAndLoadable() throws Exception {
+    void firstMinecraftFaunaBatchRemainsCheckedInReviewedAndLoadable() throws Exception {
+        assertReviewedPackage(FIRST_CLASSPATH_RESOURCE, FIRST_EDITORIAL_RESOURCE, EXPECTED_FIRST_BATCH_IDS);
+    }
+
+    @Test
+    void secondMinecraftFaunaBatchIsCheckedInReviewedAndLoadable() throws Exception {
+        assertReviewedPackage(SECOND_CLASSPATH_RESOURCE, SECOND_EDITORIAL_RESOURCE, EXPECTED_SECOND_BATCH_IDS);
+    }
+
+    private void assertReviewedPackage(
+        String classpathResource,
+        ResourceLocation editorialResource,
+        Set<String> expectedIds
+    ) throws Exception {
         JsonObject pack;
-        try (InputStream input = getClass().getResourceAsStream(CLASSPATH_RESOURCE)) {
-            assertNotNull(input, "Stage 10.10 must ship the first real pt-BR editorial fauna package");
+        try (InputStream input = getClass().getResourceAsStream(classpathResource)) {
+            assertNotNull(input, "Stage 10.10 must ship reviewed pt-BR package " + classpathResource);
             pack = JsonParser.parseReader(new InputStreamReader(input, StandardCharsets.UTF_8)).getAsJsonObject();
         }
 
@@ -67,12 +97,12 @@ final class CompendiumCheckedInEditorialCorpusJUnitTest {
             technicalEntries.add(technical(entryId));
         }
 
-        assertEquals(EXPECTED_IDS, actualIds);
+        assertEquals(expectedIds, actualIds);
         var snapshot = CompendiumEditorialResourceLoader.prepare(
-            Map.of(EDITORIAL_RESOURCE, pack),
+            Map.of(editorialResource, pack),
             List.copyOf(technicalEntries)
         );
-        assertEquals(EXPECTED_IDS.size(), snapshot.entries().size());
+        assertEquals(expectedIds.size(), snapshot.entries().size());
     }
 
     private static CompendiumEntry technical(String entryId) {
