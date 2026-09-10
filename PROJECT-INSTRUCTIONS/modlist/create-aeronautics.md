@@ -11,17 +11,17 @@
 - **Mod:** Create Aeronautics
 - **Arquivo JAR:** `create-aeronautics-bundled-1.21.1-1.3.2.jar`
 - **Versão 1.21.1:** `1.3.2`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — physics/vehicle authority, assembly/mass, controls, Sable boundary, bundle contents, client/server, lifecycle e regressões 1.3.2 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create Aeronautics bundle 1.3.2, physics/vehicle authority, assembly/mass, Sable boundary e módulos jar-in-jar confirmados no QC global #117. Decisão `Manter` preservada; runtime QA não executado.
 - **Categoria:** Tecnologia; Exploração
 - **Compatibilidade/Riscos:** Núcleo do stack físico/veicular. Riscos em mass/inertia, assembly/disassembly, block entities, controls, collision, Sable sublevels e addons que mixinam a física. 1.3.2 corrige mass do Swivel Bearing após assembly e JEI/creative-tab compatibility.
 - **Decisão:** Manter
-- **Dependências:** Create + Sable. O artefato top-level `create-aeronautics-bundled-1.21.1-1.3.2.jar` agrega módulos Aeronautics/Offroad/Simulated em jar-in-jar; módulos internos não avançam o catálogo como top-level.
+- **Dependências:** Create + Sable. O host top-level `create-aeronautics-bundled-1.21.1-1.3.2.jar` embarca três módulos 1.3.2: `aeronautics` (Create Aeronautics), `offroad` (Create Offroad) e `simulated` (Create Simulated). São componentes jar-in-jar subordinados ao bundle, não top-level separados.
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics
 - **Função:** Extensão física de Create que usa Sable para transformar estruturas de blocos em veículos e contraptions físicas, cobrindo aeronaves, carros, drones, balões e outros assemblies móveis construídos pelo jogador.
 - **Histórico da decisão:** Decisão formal `Manter` registrada em 30/08/2026: Create Aeronautics foi escolhido como núcleo do sistema de contraptions físicas/aeronaves. Em 08/09/2026, a decisão foi preservada e a ficha reconciliada à build física 1.3.2.
-- **Observações:** top-level mod id `aeronautics_bundled`; runtime 1.3.2. Projeto oficial: vehicles/physics contraptions via Sable. Release 1.3.2: fixes de JEI/creative tabs e Swivel Bearing que não ajustava corretamente sua massa quando assembled.
-- **Procedência:** Modlist física canônica de 08/09/2026 + runtime bundle 1.3.2 + CurseForge/Modrinth oficiais Create Aeronautics 1.3.2 e documentação do projeto; decisão histórica `Manter` preservada.
+- **Observações:** Top-level mod id `aeronautics_bundled`, runtime 1.3.2. Jar-in-jar físico: `dev.eriksonn.aeronautics...1.3.2.jar` → mod id `aeronautics`; `dev.ryanhcode.offroad...1.3.2.jar` → `offroad`; `dev.simulated_team.simulated...1.3.2.jar` → `simulated`. Decisão `Manter` preservada.
+- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime bundle 1.3.2 + inventário jar-in-jar físico + CurseForge/Modrinth oficiais Create Aeronautics 1.3.2 + decisão histórica `Manter`.
 - **Sobreposição:** Sable fornece a camada física/sublevel subjacente; Create fornece primitives de contraption/kinetics; Aeronautics define o vehicle/physics integration. Addons Aero estendem esse stack e não substituem o bundle.
 - **Data da última decisão:** 2026-08-30
 
@@ -33,18 +33,18 @@
 Create Aeronautics transforma estruturas construídas com blocos em veículos/contraptions físicas: airships, planes, drones, cars, trucks e outros assemblies. Create continua authority das primitives cinéticas/blocos Create; Sable fornece a camada física/sublevel; Aeronautics controla a integração veicular, assembly e componentes próprios.
 
 ## 2. Bundle top-level
-A distribuição instalada é um único JAR top-level `create-aeronautics-bundled...`. Módulos Aeronautics, Offroad e Simulated embarcados em `/META-INF/jarjar/` pertencem ao bundle e **não são entradas top-level separadas**.
-
-Esse boundary evita duplicar versões/dependências ou avançar incorretamente a ordem da modlist.
+A distribuição instalada é o único JAR top-level `create-aeronautics-bundled-1.21.1-1.3.2.jar`. Em `/META-INF/jarjar/`, o host contém três módulos runtime `1.3.2`:
+- `aeronautics` — Create Aeronautics;
+- `offroad` — Create Offroad;
+- `simulated` — Create Simulated.
+Esses módulos pertencem ao bundle e **não são entradas top-level separadas**. Esse boundary evita duplicar versões/dependências ou avançar incorretamente a ordem da modlist.
 
 ## 3. Assembly e disassembly
 Veículos são construídos a partir de estruturas do mundo e convertidos em physics contraptions. Durante assembly, bloco, block entity, inventory e attachment precisam migrar para um state móvel único; no disassembly retornam ao mundo.
-
 Bridges externas devem invalidar referências ao world state anterior para evitar ghost blocks, dupe ou block entity stale.
 
 ## 4. Massa e centro físico
 Massa é um input central da simulação. A **1.3.2 corrige o Swivel Bearing que não ajustava sua massa corretamente quando assembled**, tornando assembly→mass recomputation um regression gate explícito.
-
 Addons não devem manter uma segunda massa independente para o mesmo body sem contract com Sable/Aeronautics.
 
 ## 5. Movimento e controle
@@ -64,12 +64,10 @@ Sable é dependência requerida na release 1.3.2. Ele fornece infraestrutura fí
 
 ## 9. Create
 Create 6.0.10 é o provider das primitives de contraption/kinetics utilizadas pelo ecossistema. Componentes Create montados em veículo podem precisar de compat específica para continuar operando em sublevels móveis.
-
 Não assumir que todo block entity de qualquer addon funciona em movimento sem bridge/teste.
 
 ## 10. JEI e creative tabs — 1.3.2
 A release 1.3.2 corrige problemas de **JEI integration** e compatibilidade de **creative tabs com mods**. Recipe/tab discovery é client-facing; não altera recipe authority.
-
 QA deve verificar que categorias/tabs aparecem uma única vez e que nenhuma integração cria duplicate entries.
 
 ## 11. Simulated/Offroad
@@ -80,7 +78,6 @@ O pack possui vários addons de Aeronautics/Sable — camera sync, player tilt, 
 
 ## 13. Client/server e multiplayer
 Physics state, assembly, ownership de veículo e state de blocks relevantes são common/server-authoritative conforme o stack. Rendering, câmera, tilt, HUD e keybinds são client-facing.
-
 Em multiplayer, dois players controlando/interagindo com o mesmo vehicle não podem produzir duplicate state transitions.
 
 ## 14. Lifecycle
@@ -118,7 +115,7 @@ Validar:
 10. Multiplayer com dois players interagindo no mesmo vehicle.
 
 ## 17. Evidência
-- modlist física 08/09/2026: bundle 1.3.2;
+- modlist física 08/09/2026: bundle 1.3.2 + módulos jar-in-jar `aeronautics`, `offroad` e `simulated`, todos 1.3.2;
 - CurseForge/Modrinth oficiais: Create + Sable, Client & Server, vehicles/physics contraptions;
 - changelog 1.3.2: JEI/creative-tab fixes e mass correction do Swivel Bearing;
 - catálogo histórico: decisão formal `Manter` desde 30/08/2026.
