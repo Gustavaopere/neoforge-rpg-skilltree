@@ -4,7 +4,7 @@
 > Página-fonte: https://app.notion.com/p/3c369db9f0db81c28080e2e1ca401d1b  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
 > Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-08
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -17,13 +17,13 @@
 - **Estado no pack na origem:** Instalado — Dossiê completo
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-central-kitchen
 - **Função:** Bridge de automação culinária entre Create e Farmer's Delight/ecossistema de comida: adapta Packagers, Mechanical Arms e processos Create para Cooking Pots, Cutting Boards, Kegs, Ovens, Casks e outras kitchenwares suportadas.
-- **Dependências:** Release 2.6.0 requer Create 6.0.10, Create: Dragons Plus 1.11.4 e Farmer's Delight 1.3.2+. Integrações com Cultural Delights, Rustic Delight, Festive Delight, Hearth and Harvest, Brewin' and Chewin' e Extra Delight são condicionais.
+- **Dependências:** Build 2.6.0 requer Create 6.0.10, Create: Dragons Plus 1.11.4+ e Farmer's Delight 1.3.2+. No pack físico atual estão Create 6.0.10, Create: Dragons Plus 1.11.8b e Farmer's Delight 1.3.4, satisfazendo essas faixas. Integrações adicionais continuam condicionais à presença do alvo.
 - **Compatibilidade/Riscos:** Riscos em recipe conversion/prioridade, reusable tools, shared cached recipe results, staged feast state, fermentation e Packager/Arm atomicity. 2.6.0 corrige precedence de Create Filling/Emptying sobre Keg fallbacks e mutação indevida de cached results do Extra Delight.
 - **Sobreposição:** É bridge de cooking automation. Create controla primitives de automação; Farmer's Delight/addons controlam recipes/kitchenware; Central Kitchen adapta as duas authorities sem se tornar food-content provider geral.
-- **Observações:** mod id `create_central_kitchen`; runtime 2.6.0. Desde 2.0, o projeto foca Cooking Automation; farming foi separado para Create: Integrated Farming. 2.6.0 adiciona integrations Cultural/Rustic/Festive/Hearth and Harvest e Ponder/Arm Targets/High Logistics.
-- **Procedência:** Modlist física canônica de 08/09/2026 + runtime `create_central_kitchen` 2.6.0 + CurseForge/Modrinth oficiais da release 2.6.0 e documentação de features da linha 2.x.
+- **Observações:** mod id `create_central_kitchen`; runtime 2.6.0. A build física contém mixins separados para Brewin' and Chewin', Miner's Delight, Dungeons Delight, Extra Delight e Farmer's Delight, além do mixin base; presença do mixin confirma superfície de compatibilidade, não comportamento além do que as fontes documentam.
+- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime `create_central_kitchen` 2.6.0 + versões físicas Create 6.0.10 / Create: Dragons Plus 1.11.8b / Farmer's Delight 1.3.4 + CurseForge/Modrinth oficiais da release 2.6.0.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Central Kitchen 2.6.0 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — cooking-automation authority, Packager/Mechanical Arm conversions, heat sources, recipe priority/cache behavior, optional integrations e regressões 2.6.0 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create: Central Kitchen 2.6.0, cooking automation, Packager/Arm conversions, recipe priority/cache e integrações físicas confirmados no QC global #118. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
@@ -39,10 +39,9 @@ Desde 2.0, o projeto foi refocado em **Cooking Automation**. Farming automation 
 ## 3. Dependências 2.6.0
 A release exata requer:
 - Create 6.0.10;
-- Create: Dragons Plus 1.11.4;
+- Create: Dragons Plus 1.11.4+;
 - Farmer's Delight 1.3.2+.
-
-Integrações adicionais só devem ser ativadas/avaliadas quando o mod alvo estiver realmente presente.
+A modlist física atual instala **Create 6.0.10**, **Create: Dragons Plus 1.11.8b** e **Farmer's Delight 1.3.4**, portanto as faixas requeridas estão satisfeitas no perfil auditado. Integrações adicionais só devem ser ativadas/avaliadas quando o mod alvo estiver realmente presente.
 
 ## 4. Packager e kitchenware
 Packagers podem desempacotar ingredientes para kitchenware suportada. O addon deve distribuir inputs de forma determinística e deixar o container/recipe owner decidir quando o recipe está completo.
@@ -116,7 +115,7 @@ Validar datapack/recipe reload, server restart, chunk unload e optional-mod pres
 9. Multiplayer com dois Arms/Packagers sobre a mesma kitchenware.
 
 ## 18. Evidência
-- modlist física 08/09/2026: Central Kitchen 2.6.0;
+- modlist física 08/09/2026: Central Kitchen 2.6.0 + Create 6.0.10 + Create: Dragons Plus 1.11.8b + Farmer's Delight 1.3.4;
 - release oficial 2.6.0: requirements, integrations e fixes;
 - documentação 2.x: foco em cooking automation e conversions Create↔kitchenware.
 
