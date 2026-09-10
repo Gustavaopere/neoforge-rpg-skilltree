@@ -1,5 +1,33 @@
 # Farmer's Spell 'n Spellbooks — 1.0.5.1-1.21.1
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db81d8832fd65ded31280b  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Farmer's Spell 'n Spellbooks
+- **Arquivo JAR:** `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar`
+- **Versão 1.21.1:** `1.0.5.1-1.21.1`
+- **Categoria:** Compat; Comida; Magia
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/farmers-spell
+- **Função:** Crossover Farmer's Delight ↔ Iron's Spells com School of Gluttony, culinária mágica, food blocks, equipamentos e workstations/recipes próprias.
+- **Dependências:** Farmer's Delight 1.3.4 + Iron's Spells 'n Spellbooks 3.16.3 estão fisicamente presentes e são as duas authorities base do addon.
+- **Compatibilidade/Riscos:** Regression gates: dupe de block-form food por sticky piston corrigida em 1.0.5.1, double XP/output do Alchemist Pot corrigido na 1.0.5.0, spell API drift, recipe/tag overlap, food servings desync e armor modifier stale.
+- **Sobreposição:** Bridge temático único entre FD e Iron's. Outros addons de comida/magia podem compartilhar tags/ingredientes/spells, mas conflito deve ser medido por IDs/contracts, não por tema.
+- **Observações:** Source 1.21.1 confirma Alchemist Pot, Cinderous Stove, Wisewood Cabinet, Amethyst Beetroot e vários food blocks. 1.0.5.1 especificamente corrige duplicação de block-form food causada por sticky piston.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar`, mod id `farmers_spell`, versão `1.0.5.1-1.21.1` e SHA-1 f77355e029af39bbaba3854e10cc087a608351ff. Source oficial branch 1.21.1 e changelogs 1.0.5.x auditados.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Farmer's Spell 1.0.5.1; Gluttony school, crossover blocks/workstations/foods, sticky-piston dupe fix, single-settlement, lifecycle, multiplayer, risks e testes catalogados.
+- **Data da última decisão:** 2026-08-30
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` · mod id `farmers_spell` · versão `1.0.5.1-1.21.1` · NeoForge 1.21.1 · Client & Server. Bases físicas: Farmer's Delight 1.3.4 + Iron's Spells 'n Spellbooks 3.16.3.
 
 ## 1. Papel no modpack
