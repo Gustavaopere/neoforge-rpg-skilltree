@@ -1,5 +1,33 @@
 # Create: Design n' Decor — 2.2b
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db81f3958cc5eb500319ba  
+> Estado no momento da exportação: `Integrado ao Github`  
+> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods top-level  
+> Exportado/reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Create: Design n' Decor
+- **Arquivo JAR:** `Design-n-Decor-1.21.1-2.2b.jar`
+- **Versão 1.21.1:** `2.2b`
+- **Categoria:** Visual; Tecnologia; QoL
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-design-n-decor/files/8156977
+- **Função:** Addon de Create focado em decoração/QoL, com amplo registry de blocos, crushing-wheel/container variants, block entities e integração de mounted storage/stress com o framework de Create.
+- **Dependências:** Source 2.2b: Minecraft 1.21.1, NeoForge >=21.1.200, Create 6.0.10-280, Flywheel 1.0.6, Ponder 1.0.82, Registrate MC1.21-1.3.0+67. Curios/Dye Depot aparecem em superfícies de desenvolvimento/integração e não são tratados aqui como hard dependencies sem metadata runtime.
+- **Compatibilidade/Riscos:** Server crash é regression gate da build 2.2b. Riscos: stress double-processing, inventory dupe/loss em mounted storage/contraptions, config reload stale, BE lifecycle, version drift com Create e sobreposição visual com outros decor addons.
+- **Sobreposição:** Sobreposição estética com Create Deco, Bells & Whistles, Copycats+ e outros addons não implica substituição. Create permanece authority de kinetics/stress/contraptions; o addon só registra seus blocos e adapters.
+- **Observações:** DnDecorItems confirma `belt_connector` / Mechanical Belt (Full). DnDecorConfigs registra CLIENT/COMMON/SERVER e providers de BlockStressValues. Registry de blocos é extenso; IDs devem ser obtidos de DnDecorBlocks em vez de inferidos manualmente.
+- **Procedência:** Runtime: modlist física canônica 08/09/2026 (595 top-levels). Release: CurseForge File ID 8156977. Source pin: branch oficial 1.21.1, cujo `gradle.properties` declara mod_version 2.2b; registries DnDecorBlocks/DnDecorItems/DnDecorBETypes/DnDecorMountedStorageTypes e configs auditados.
+- **Histórico da decisão:** Ficha reconstruída em 08/09/2026 contra runtime 2.2b e source branch 1.21.1 compatível com a mesma versão.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — source 2.2b pinado, registries, mounted storage, stress/config lifecycle, server crash regression, risks e matriz de testes catalogados.
+- **Data da última decisão:** 2026-09-08
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `Design-n-Decor-1.21.1-2.2b.jar` · mod id `dndecor` · versão `2.2b` · NeoForge 1.21.1.
 
 ## 1. Identidade e source pin
