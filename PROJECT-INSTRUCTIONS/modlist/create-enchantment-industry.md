@@ -4,7 +4,7 @@
 > Página-fonte: https://app.notion.com/p/3c369db9f0db8187aa5dda55e65eee9a  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
 > Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -17,13 +17,13 @@
 - **Estado no pack na origem:** Instalado — Dossiê completo
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-enchantment-industry
 - **Função:** Addon de Create para industrializar experiência e encantamentos: Liquid Experience, máquinas de enchanting/forging/grinding/printing, repair com Mending e automações/integrações de Apotheosis/Apothic Enchanting.
-- **Dependências:** Create 6.0.10 e Create: Dragons Plus para a linha 2.x. Apothic Enchanting é integração condicional; na build 2.5.3b a integração requer 1.6.1+ para o caminho corrigido do Infuser.
+- **Dependências:** Create 6.0.10 e Create: Dragons Plus para a linha 2.x. O pack físico atual possui Apothic Enchanting 1.6.2, satisfazendo o caminho 1.6.1+ corrigido pelo hotfix 2.5.3b do Infuser. O host também embarca `conditional-mixin-neoforge-0.6.4.jar`, subordinado ao mod.
 - **Compatibilidade/Riscos:** Economia sensível de XP/enchantments. Riscos em conversão de XP, hyper-enchant acima de caps, mending, salvage/affix integration, recipe reload e double-processing com outros sistemas de enchant. 2.5.3b corrige crash do Infuser com Apothic Enchanting 1.6.1+.
 - **Sobreposição:** Pode cruzar Apothic Enchanting, vanilla enchanting e outras rotas de XP, mas possui processos próprios. Create continua authority das primitives de automação; CEI controla sua economia Liquid Experience/máquinas.
-- **Observações:** mod id `create_enchantment_industry`; runtime 2.5.3b; build Beta NeoForge 1.21.1. JAR embarca `conditional-mixin-neoforge-0.6.4.jar` em `/META-INF/jarjar/`, não top-level. 2.5.3b é hotfix do Infuser/Apothic Enchanting.
-- **Procedência:** Modlist física canônica de 08/09/2026 + runtime 2.5.3b + CurseForge/Modrinth oficiais da build 2.5.3b para Create 6.0.10 + documentação oficial da linha 2.x.
+- **Observações:** mod id `create_enchantment_industry`; runtime 2.5.3b. Mixin configs físicos incluem integração condicional com Apothic Enchanting, Apotheosis, Sable e Touhou Little Maid; a presença dessas configs confirma superfícies de compatibilidade, não autoriza inventar contracts além das fontes. Jar-in-jar: Conditional Mixin 0.6.4.
+- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime 2.5.3b + Apothic Enchanting físico 1.6.2 + inventário mixin/jar-in-jar do host + CurseForge/Modrinth oficiais da build 2.5.3b.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Enchantment Industry 2.5.3b foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. A antiga data sem decisão formal foi removida; presença/uso não foram convertidos em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — liquid-XP/enchant authority, machines, hyper-enchanting, printer/mending flows, Apotheosis integration, lifecycle e regressões 2.5.3b catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create: Enchantment Industry 2.5.3b, Liquid Experience/enchant authority, machines, hyper-enchanting, Apothic integration, lifecycle e jar-in-jar confirmados no QC global #120. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
@@ -65,7 +65,7 @@ Itens com Mending podem ser reparados em fluxo de belt usando Spout + Liquid Exp
 ## 11. Apotheosis / Apothic Enchanting
 A linha atual inclui integração com o ecossistema Apotheosis, com funcionalidades como Bulk Salvaging, Brass/Crafting Bookshelves, Infuser, Gem Cutter e Affix Augmentor conforme a documentação do projeto.
 
-A build **2.5.3b** é especificamente um hotfix para crash do **Infuser** com Apothic Enchanting 1.6.1+.
+A build **2.5.3b** é especificamente um hotfix para crash do **Infuser** com Apothic Enchanting 1.6.1+. A modlist física atual instala **Apothic Enchanting 1.6.2**, portanto o perfil está dentro da faixa alvo desse hotfix.
 
 ## 12. conditional-mixin embedded
 O JAR contém `conditional-mixin-neoforge-0.6.4.jar` em `/META-INF/jarjar/`. É library interna usada para compat condicional e não constitui top-level da modlist.
@@ -99,7 +99,7 @@ XP balance, fluid amounts, enchanting costs, repair, machine inventories e outpu
 10. Datapack/recipe reload e restart.
 
 ## 17. Evidência
-- modlist física 08/09/2026: CEI 2.5.3b;
+- modlist física 08/09/2026: CEI 2.5.3b + Apothic Enchanting 1.6.2 + `conditional-mixin-neoforge-0.6.4.jar` embarcado;
 - CurseForge oficial: build Beta para Create 1.21.1-6.0.10;
 - documentação oficial: Liquid Experience, Hatch, Grindstone, Enchanter, Forger, Printer, Lantern, hyper-enchanting, Mending e Apotheosis integration;
 - changelog 2.5.3b: fix de crash do Infuser com Apothic Enchanting 1.6.1+.
