@@ -21,7 +21,7 @@
 - **Compatibilidade/Riscos:** Conflitos de pose/render com EMF player animation packs, Skyhook, Aeronautics rope/chain riding e outros player-animation mods. Riscos: animation não pausar, restore tardio, body/arms snap, first/third mismatch, animation presa após desmontar e API drift após update Create/EMF.
 - **Sobreposição:** Não substitui Create, Aeronautics ou EMF. Só arbitra a pose do player em situações específicas; outras animation compat layers podem tocar o mesmo modelo e exigem precedence.
 - **Observações:** O projeto oficial 2.0.0 é Client-only. A descrição confirma Skyhook, chain/rope riding from Aeronautics, compat com Climbable Ropes/Create Grappling Hooks e Grabbing Physics Objects. Fresh Animations: Player Extension e Detailed Animations foram usados em testes upstream; isso não prova que qualquer resource pack é compatível sem QA.
-- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `emf_compat_create_1.21.1_2.0.0.jar`, mod id `emf_compat_create`, versão 2.0.0 e SHA-1 e22256acaaabc43d4043b119a748e8f52e27a451. CurseForge oficial confirma release 2.0.0 NeoForge 1.21.1 Client de 02/09/2026.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `emf_compat_create_1.21.1_2.0.0.jar`, mod id `emf_compat_create`, versão 2.0.0 e SHA-1 05817fa9159a0b672bfb3667ec248ae05e7a6388. CurseForge oficial confirma release 2.0.0 NeoForge 1.21.1 Client de 02/09/2026.
 - **Histórico da decisão:** vazio.
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — EMF Compat Create 2.0.0; Skyhook/rope animation precedence, Aeronautics/Climbable Ropes, client-only lifecycle, risks and tests cataloged.
 - **Data da última decisão:** 2026-09-06
