@@ -1,4 +1,32 @@
-# Cataclysm: Ignis Soulfires — 1.8.0
+# Cataclysm: Ignis Soulfires
+
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81cd82c5ce64d177f6e4
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
+
+## Propriedades do banco
+
+- **Mod:** Cataclysm: Ignis Soulfires
+- **Arquivo JAR:** `ignissoulfires-1.8.0.jar`
+- **Versão 1.21.1:** 1.8.0
+- **Estado no pack:** Instalado — Dossiê completo
+- **Estado da pesquisa:** Verificado
+- **Decisão:** Sem decisão
+- **Categoria:** RPG, Compat
+- **Função:** Expansão de Cataclysm centrada em Souled Ignitium: materiais, ferramentas arremessáveis, upgrades, armas, armor, horse armor, Bulwark defensivo e abilities/configuração próprias.
+- **Dependências:** L_Ender's Cataclysm + Lionfish API + Curios API, conforme página oficial da linha 1.8.0. Ignis Soulfires: Spellbooks é expansão separada, não hard dependency.
+- **Sobreposição:** Complementa Cataclysm com conteúdo `ignissoulfires`; não substitui Cataclysm. Pode cruzar Epic Fight/combat bridges, tree-felling e prospecting providers, exigindo exactly-once behavior.
+- **Compatibilidade/Riscos:** Ability/equipment addon sensível a double-proc com combat bridges, tree-felling/prospecting overlap, Bulwark reach, temporary input state e modifier cleanup. 1.8.0 amplia configs e corrige state do Bulwark após disconnect.
+- **Observações:** 1.8.0 adiciona Netherite/Ignitium/Souled Ignitium Horse Armor, config ampla, client config/screen, advancement tree e thrown-tool particles; melhora Bulwark placement e corrige temporary input state após disconnect.
+- **Procedência:** Modlist física atual de 07/09/2026 + metadata runtime + CurseForge/Modrinth oficiais Cataclysm: Ignis Soulfires 1.8.0 e changelog da release.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cataclysm-ignis-soulfires
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — Souled Ignitium progression, tools/weapons/armor/horse armor, Bulwark, configs, lifecycle e regressões 1.8.0 catalogados.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a build física Ignis Soulfires 1.8.0 foi reconstruída ao padrão técnico com base nas fontes oficiais. A data anterior sem decisão formal foi removida para evitar tratar presença como decisão curatorial.
+- **Data da última decisão:** não definida
+
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `ignissoulfires-1.8.0.jar`, mod id `ignissoulfires`, runtime `1.8.0`, NeoForge 1.21.1. É uma expansão de Cataclysm centrada em **Souled Ignitium**, equipamentos, ferramentas arremessáveis, armor/horse armor e habilidades inspiradas no Ignis.
 
