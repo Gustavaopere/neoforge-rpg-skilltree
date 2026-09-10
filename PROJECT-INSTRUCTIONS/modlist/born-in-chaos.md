@@ -21,9 +21,9 @@
 - **Compatibilidade/Riscos:** Grande impacto em spawn/dificuldade/worldgen. Riscos: densidade somada a outros mob mods, Naughtiness/Krampus em multiplayer, disarm/freeze/crowd control, GeckoLib side/render e configs de spawn. A 1.7.6 é a última build atual antes do rewrite 2.0 anunciado pelo autor.
 - **Sobreposição:** Compartilha eixo de mobs/bosses/estruturas com outros providers, mas possui entidades, sistemas e loot próprios. Avaliar por spawn density, progressão e CC real, não por temática.
 - **Observações:** 1.7.6 NeoForge 1.21.1, Client & Server, GeckoLib required. Changelog 1.7.6 corrige breeding season do Thornshell Crab. O autor anunciou rewrite completo para 2.0 e pausa de updates da linha atual. Naughtiness/Krampus, Missionary, equipamentos e estruturas são superfícies oficialmente documentadas.
-- **Procedência:** Modlist física mais recente de 07/09/2026 + CurseForge oficial Born in Chaos 1.7.6 + documentação/changelogs oficiais do projeto.
-- **Histórico da decisão:** vazio.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — mobs/ameaça, Naughtiness/Krampus, world-age gates, estruturas, equipamentos, spawn, side/lifecycle e estado de manutenção 1.7.6 catalogados.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Born in Chaos 1.7.6 + documentação/changelogs oficiais do projeto + GeckoLib 4.9.2 físico.
+- **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, Born in Chaos 1.7.6 foi revalidado contra a modlist física atual e GeckoLib 4.9.2; a presença instalada e o estado de manutenção da linha 1.7.6 não foram convertidos em decisão curatorial.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Born in Chaos 1.7.6 físico confirmado; Naughtiness/Krampus, world-age gates, structures/equipment, GeckoLib side/lifecycle e maintenance boundary até rewrite 2.0 preservados. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
