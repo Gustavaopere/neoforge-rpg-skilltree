@@ -1,4 +1,32 @@
-# Bosses of Mass Destruction — 1.3.3
+# Bosses of Mass Destruction
+
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3d469db9f0db812aa3bfc7479a286063
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
+
+## Propriedades do banco
+
+- **Mod:** Bosses of Mass Destruction
+- **Arquivo JAR:** `BOMD-NeoForge-1.21-1.3.3.jar`
+- **Versão 1.21.1:** 1.3.3
+- **Estado no pack:** Instalado — Dossiê completo
+- **Estado da pesquisa:** Verificado
+- **Decisão:** Sem decisão
+- **Categoria:** Mobs, RPG, Exploração, Worldgen
+- **Função:** Port NeoForge de Bosses of Mass Destruction com 4 bosses endgame — Night Lich, Obsidilith, Nether Gauntlet e Void Blossom — suas estruturas/arenas, summon/navigation items, projectiles, loot e configs.
+- **Dependências:** CERBON's API 1.3.0, GeckoLib 4.9.2 e Cloth Config 15.0.140 estão fisicamente presentes no pack; o projeto declara CERBON's API, GeckoLib e Cloth Config API como dependências.
+- **Sobreposição:** Boss/worldgen endgame próprio. Coexistência deve ser balanceada por spacing, loot e dificuldade; não remover por semelhança temática sem conflito concreto.
+- **Compatibilidade/Riscos:** Sobreposição de bosses/estruturas com Cataclysm, Mowzie's Mobs e Bosses'Rise é temática, não incompatibilidade automática. Riscos: structure density, boss state/reload, projectiles, config balance, render/animation e regressão de registry. 1.3.3 corrige double registration de VOID_BLOSSOM_STRUCTURE_TYPE.
+- **Observações:** Quatro bosses oficiais: Night Lich em torres raras de biomas frios (Soul Stars apontam o caminho), Obsidilith em estruturas raras do End, Nether Gauntlet em estruturas raras do Nether e Void Blossom em cavernas raras no fundo do mundo (Void Lilies orientam). Source confirma 10 entity types totais na superfície principal: 4 bosses + 6 auxiliares/projectiles.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial BOMD Forge/NeoForge 1.3.3 + source oficial CERBON-MODS/Bosses-of-Mass-Destruction-FORGE + dependências físicas atuais.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bosses-of-mass-destruction-forge
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BOMD 1.3.3 físico confirmado; 4 bosses/10 entity types, structures/summon/config, fix de double registration e dependências CERBON's API 1.3.0 + GeckoLib 4.9.2 + Cloth Config 15.0.140 preservados. Runtime QA não executado.
+- **Histórico da decisão:** 2026-09-07 — novo mod incorporado à auditoria; sem decisão curatorial ainda.
+- **Data da última decisão:** 2026-09-07
+
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `BOMD-NeoForge-1.21-1.3.3.jar`, mod id `bosses_of_mass_destruction`, runtime `1.3.3`, NeoForge 1.21.1. O port oficial CERBON usa CERBON's API, GeckoLib e Cloth Config; no pack estão presentes CERBON's API `1.3.0`, GeckoLib `4.9.2` e Cloth Config `15.0.140`.
 
