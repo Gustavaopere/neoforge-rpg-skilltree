@@ -246,7 +246,7 @@ jobs:
 
       - name: Upload built JAR
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: RPGSkillTree-${{ github.sha }}
           path: ${{ steps.jar.outputs.jar_path }}
@@ -255,7 +255,7 @@ jobs:
 
       - name: Upload provider GameTest log on failure
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: battle-mage-provider-gametest-${{ github.sha }}
           path: build/battle-mage-provider-gametest.log
@@ -264,7 +264,7 @@ jobs:
 
       - name: Upload server smoke log on failure
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: server-smoke-${{ github.sha }}
           path: build/server-smoke.log
