@@ -1,5 +1,31 @@
 # ExpandAbility — 12.0.0
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db81efb635d62b8229ce28  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** ExpandAbility
+- **Arquivo JAR:** `expandability-12.0.0.jar`
+- **Versão 1.21.1:** `12.0.0`
+- **Categoria:** Biblioteca
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/expandability
+- **Função:** Biblioteca/API de movement e fluid abilities; na tag v12.0.0 expõe PlayerSwimEvent e LivingFluidCollisionEvent e os hooks/mixins necessários para consumers alterarem swimming e collision com fluidos.
+- **Dependências:** NeoForge 1.21.1. A modlist contém o top-level 12.0.0 e também cópias JarJar 12.0.0 em outros JARs, incluindo Artifacts 13.2.3; isso não prova redundância do top-level para consumers externos.
+- **Compatibilidade/Riscos:** Riscos: client/server movement divergence, fluid-collision mixin conflict, modded-fluid assumptions, bubble-column/fall regressions, consumer API drift e versões JarJar/top-level divergentes em updates. Não remover o top-level sem mapear todos os consumers.
+- **Sobreposição:** Não é intercambiável com Caelus, Pehkui ou outras APIs de movement sem compatibilidade contratual explícita. Cópias JarJar internas também não tornam o top-level automaticamente removível.
+- **Observações:** Metadado antigo que descrevia genericamente step height/flight foi substituído por superfícies source-confirmed da tag 12.0.0: `PlayerSwimEvent` e `LivingFluidCollisionEvent`, com mixins de swimming/fluid collision no client e server. Outras abilities só devem ser atribuídas quando um consumer/API real for confirmado.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `expandability-12.0.0.jar`, mod id `expandability`, versão 12.0.0 e SHA-1 70cf454b1217a350f1789fabb39b6622aac8be12. GitHub oficial tag v12.0.0 foi usado para source pin exato.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — ExpandAbility 12.0.0 source-pinned; swimming/fluid-collision API, JarJar boundary, client/server lifecycle, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
 > **Runtime físico confirmado:** `expandability-12.0.0.jar` · mod id `expandability` · versão `12.0.0` · NeoForge 1.21.1. O source oficial está pinável na tag **v12.0.0**; essa versão foi a atualização para Minecraft 1.21.
 
 ## 1. Papel no modpack
