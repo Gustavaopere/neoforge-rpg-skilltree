@@ -1,5 +1,31 @@
 # Epic-API — 21.3.1
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db814bb4dbe799763fd717  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Epic-API
+- **Arquivo JAR:** `epic_api-21.3.1.jar`
+- **Versão 1.21.1:** `21.3.1`
+- **Categoria:** Biblioteca; RPG
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://github.com/M6FGR/Epic-API
+- **Função:** Biblioteca/addon API para Epic Fight que simplifica registries e integrações e adiciona infraestrutura própria como HeavyAttack, CounterAttack, builders/registrars e EventHooks reutilizáveis por addons.
+- **Dependências:** Source 21.3.1 declara Epic Fight como required (`versionRange = 21.17.2`) e compila contra Epic Fight 21.17.3. Runtime físico usa Epic Fight 21.17.3.1, portanto está na mesma linha funcional imediata. NeoForge source baseline 21.1.219; pack 21.1.248.
+- **Compatibilidade/Riscos:** Acoplamento forte aos internals/API do Epic Fight. Riscos: registrars/event hooks quebrarem após update, HeavyAttack/CounterAttack double execution, capability registration duplicada, client-only classloading em dedicated server, input/keymapping conflict e datapack capability drift. Changelog 21.2.x registra fixes exatamente nessas superfícies; 21.3.1 precisa ser revalidado contra Epic Fight 21.17.3.1.
+- **Sobreposição:** Complementa a API do próprio Epic Fight com helpers/registrars/event hooks e skills próprias. Não deve ser tratada como substituta do core, Battle Arts API ou outras libs; consumers precisam usar o contrato específico esperado.
+- **Observações:** Source branch 1.21.1 confirma `mod_version=21.3.1`, NeoForge 21.1.219 e Epic Fight dependency 21.17.x. O projeto não é a mesma coisa que a API interna do core Epic Fight: é uma biblioteca separada que oferece helpers e também adiciona HeavyAttack/CounterAttack. Changelog público disponível detalha 21.2.x; não foi inventado changelog 21.3.1 ausente.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `epic_api-21.3.1.jar`, mod id `epic_api`, versão 21.3.1 e SHA-1 cfb57d825beb565445d185be17f6202c5793ec40. GitHub M6FGR/Epic-API branch 1.21.1 confirma source version 21.3.1, dependency Epic Fight e classes/API auditadas.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Epic-API 21.3.1 source-pinned; HeavyAttack/CounterAttack, builders/registrars, EventHooks, compatibility loading, capability/entity-patch integration, side/lifecycle, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
 > **Runtime físico e source pin confirmados:** `epic_api-21.3.1.jar` · mod id `epic_api` · versão `21.3.1` · NeoForge 1.21.1. O branch oficial `1.21.1` declara `mod_version=21.3.1`, NeoForge baseline `21.1.219` e Epic Fight como dependência required na linha `21.17.x`; o pack usa NeoForge 21.1.248 + Epic Fight 21.17.3.1.
 
 ## 1. Papel no modpack
