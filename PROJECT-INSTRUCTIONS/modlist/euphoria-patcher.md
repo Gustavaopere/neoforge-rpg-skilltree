@@ -1,5 +1,31 @@
 # Euphoria Patcher — 1.10.0-r5.9-neoforge
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c869db9f0db81eb92c9e96455eb3939  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Euphoria Patcher
+- **Arquivo JAR:** `EuphoriaPatcher-1.10.0-r5.9-neoforge.jar`
+- **Versão 1.21.1:** `1.10.0-r5.9-neoforge`
+- **Categoria:** Visual
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/euphoria-patches
+- **Função:** Client-side patcher/installer que detecta Complementary Shaders Reimagined/Unbound compatível e gera/gerencia a variante Euphoria Patches com features e settings opcionais.
+- **Dependências:** Requer um Complementary Shaders base compatível e loader de shaders no cliente. Iris 1.8.14-beta.1 está fisicamente presente; a modlist de mods não comprova que o shaderpack Complementary esteja instalado.
+- **Compatibilidade/Riscos:** A revisão física é `r5.9`; referências antigas r5.8.1 foram removidas. Riscos: base Complementary de revisão errada, patched archive stale, Iris beta/render regressions, config/preset migration, modded-material properties ausentes e custo de features habilitadas. Não possui gameplay authority.
+- **Sobreposição:** Complementa Complementary Shaders e Iris; não duplica EMF/ETF, EntityCulling ou gameplay lighting. Bugs precisam ser isolados entre shader base, patch Euphoria e loader Iris.
+- **Observações:** Drift antigo corrigido: o runtime não é 1.9.3-r5.8.1. Source oficial descreve auto-detection de base Complementary, verificação, patch binário, geração de variantes Reimagined/Unbound e watchers. Opções Euphoria são desativadas por padrão; presença do mod não prova feature visual específica ativa.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `EuphoriaPatcher-1.10.0-r5.9-neoforge.jar`, mod id `euphoria_patcher`, versão 1.10.0-r5.9-neoforge e SHA-1 d728a26bd67b70dfc510fbb08def619ec015c998; Iris 1.8.14-beta.1 também está presente.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Euphoria Patcher 1.10.0-r5.9; patch pipeline, Complementary/Iris ownership, default-off settings, filesystem/config lifecycle, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
 > **Runtime físico confirmado:** `EuphoriaPatcher-1.10.0-r5.9-neoforge.jar` · mod id `euphoria_patcher` · versão `1.10.0-r5.9-neoforge` · NeoForge 1.21.1 · client-side. O pack possui **Iris 1.8.14-beta.1**; a presença de um Complementary shaderpack compatível não é inferida da modlist de mods.
 
 ## 1. Papel no modpack
