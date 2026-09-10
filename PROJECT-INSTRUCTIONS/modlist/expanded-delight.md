@@ -1,5 +1,31 @@
 # Expanded Delight — 0.1.4
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db81a4b118e7d4f2651d79  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Expanded Delight
+- **Arquivo JAR:** `expandeddelight-0.1.4.jar`
+- **Versão 1.21.1:** `0.1.4`
+- **Categoria:** Comida
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/expanded-delight
+- **Função:** Addon de Farmer's Delight que expande crops, ingredientes, alimentos, worldgen e processing/workstations; o feature tracker inclui vegetables, peanut/cinnamon/salt, cheese, juices/jellies e várias refeições, sujeito ao registry exato da build.
+- **Dependências:** Farmer's Delight 1.3.4 está fisicamente presente. O pack também possui Farmer's Delight: Extended 0.2.2 e vários outros addons culinários, exigindo auditoria de recipes/tags por ID e não por tema.
+- **Compatibilidade/Riscos:** Issue upstream #118 aberto reporta que Expanded Delight em 1.21.1 NeoForge remove/substitui a receita original de dough do Farmer's Delight; precisa ser reproduzido no pack. Outros riscos: recipe/tag overlap, worldgen duplicado, workstation overlap, food-balance drift e feature tracker conter conteúdo ainda não lançado.
+- **Sobreposição:** Sobreposição temática com Farmer's Delight: Extended e outros food addons não implica duplicação. Comparar recipe IDs, tags, crops, food stats e workstations. O conflito de dough #118 é um overlap técnico específico a validar.
+- **Observações:** Tracker oficial do projeto lista várias famílias de crops/foods/resources/workstations, mas avisa que acompanha pushes e pode conter conteúdo ainda não disponível na release. Por isso o registry/JEI da 0.1.4 é authority para inventário final. Issue #118 foi registrado como regression gate, não como bug confirmado localmente.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `expandeddelight-0.1.4.jar`, mod id `expandeddelight`, versão 0.1.4 e SHA-1 cf26fe18c3a9deec525fe0f0e7c2d3b9f4e9f484; Farmer's Delight 1.3.4 e Farmer's Delight: Extended 0.2.2 presentes.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Expanded Delight 0.1.4; food/worldgen/workstation scope, FD 1.3.4 ownership, feature-tracker boundary, dough issue #118, lifecycle, multiplayer, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
 > **Runtime físico confirmado:** `expandeddelight-0.1.4.jar` · mod id `expandeddelight` · versão `0.1.4` · NeoForge 1.21.1 · Client & Server. Base física: **Farmer's Delight 1.3.4**; também existe **Farmer's Delight: Extended 0.2.2** no pack.
 
 ## 1. Papel no modpack
