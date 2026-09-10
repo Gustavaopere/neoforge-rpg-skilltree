@@ -1,4 +1,32 @@
-# Caelus API — 7.0.1+1.21.1
+# Caelus API
+
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81b389b3f7a56d8a7e67
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-09
+
+## Propriedades do banco
+
+- **Mod:** Caelus API
+- **Arquivo JAR:** `caelus-neoforge-7.0.1+1.21.1.jar`
+- **Versão 1.21.1:** 7.0.1+1.21.1
+- **Estado no pack:** Instalado — Dossiê completo
+- **Estado da pesquisa:** Verificado
+- **Decisão:** Sem decisão
+- **Categoria:** Biblioteca
+- **Função:** Coremod/API que abstrai o fall-flying/Elytra vanilla em um atributo de entidade para mods consumidores habilitarem/desabilitarem voo planado por modifiers.
+- **Dependências:** API estrutural; necessidade determinada pelos consumidores. Build física NeoForge 7.0.1+1.21.1.
+- **Sobreposição:** Não é glider/jetpack nem stamina de voo; é infraestrutura de eligibility para fall-flying. Consumers podem coexistir desde que modifiers sejam compostos sem duplication.
+- **Compatibilidade/Riscos:** Riscos em attribute modifiers órfãos/duplicados, equipamento Curios/armor aplicando flight duas vezes, death/respawn, dimension travel e mods de glider/elytra. Valor client-side não pode autorizar voo sem state sincronizado.
+- **Observações:** Contrato oficial: `CaelusApi.getInstance().getFallFlyingAttribute()`. Valor default 0 impede fall-flying; valor >=1 permite. A Elytra vanilla é alterada para usar o atributo, preservando seu comportamento normal. 7.0.1 atualiza para MC 1.21.1 e adiciona es_cl.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Caelus 7.0.1+1.21.1 + source oficial TheIllusiveC4/Caelus.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/caelus
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Caelus API 7.0.1+1.21.1 físico confirmado; fall-flying attribute authority, modifiers, multi-provider lifecycle e client/server boundary preservados. Runtime QA não executado.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Caelus API 7.0.1+1.21.1 foi reconfirmado como biblioteca estrutural do pack. A instalação atual não foi interpretada como decisão curatorial.
+- **Data da última decisão:** não definida
+
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `caelus-neoforge-7.0.1+1.21.1.jar`, mod id `caelus`, runtime `7.0.1+1.21.1`, NeoForge 1.21.1. Caelus é uma **API/coremod de fall-flying**, não um item de voo.
 
