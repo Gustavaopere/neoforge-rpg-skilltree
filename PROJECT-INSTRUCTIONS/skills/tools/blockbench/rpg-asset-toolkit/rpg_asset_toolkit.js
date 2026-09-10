@@ -337,6 +337,7 @@
       const MAX_UV_TEXTURE_OPERATIONS = 128;
       const MAX_TEXTURE_PIXELS_PER_BATCH = 262144;
       const MAX_PALETTE_REPLACEMENTS = 256;
+      const MAX_UV_ISLAND_FACES = 128;
       const MAX_IDENTIFIER_LENGTH = 128;
       const MAX_LABEL_LENGTH = 160;
       const FACES = new Set(['north', 'south', 'east', 'west', 'up', 'down']);
@@ -348,6 +349,7 @@
         texture_fill_rect: new Set(['type', 'textureId', 'x', 'y', 'width', 'height', 'color']),
         texture_replace_palette: new Set(['type', 'textureId', 'region', 'replacements']),
         texture_paint_region: new Set(['type', 'textureId', 'region', 'pixels']),
+        texture_paint_uv_island: new Set(['type', 'textureId', 'faces', 'region', 'pixels']),
         texture_create: new Set(['type', 'name', 'width', 'height']),
         texture_import_approved: new Set(['type', 'approvalId']),
       });
@@ -447,6 +449,23 @@
         }));
       }
       
+      function uvIslandFaces(value, field) {
+        if (!Array.isArray(value) || value.length < 1 || value.length > MAX_UV_ISLAND_FACES) {
+          fail('INVALID_UV_ISLAND_FACES', `${field} must contain 1-${MAX_UV_ISLAND_FACES} explicit cube-face selectors.`);
+        }
+        const seen = new Set();
+        return Object.freeze(value.map((entry, index) => {
+          if (!isPlainObject(entry)) fail('INVALID_UV_ISLAND_FACES', `${field}[${index}] must be an object.`);
+          rejectUnknownFields(entry, new Set(['cubeId', 'face']), 'INVALID_UV_ISLAND_FACES', `${field}[${index}]`);
+          const cubeId = boundedString(entry.cubeId, `${field}[${index}].cubeId`);
+          const face = faceName(entry.face, `${field}[${index}].face`);
+          const key = `${cubeId}\u0000${face}`;
+          if (seen.has(key)) fail('DUPLICATE_UV_ISLAND_FACE', `${field} repeats cube face ${cubeId}/${face}.`);
+          seen.add(key);
+          return Object.freeze({cubeId, face});
+        }));
+      }
+      
       function validateOperation(value, index) {
         if (!isPlainObject(value)) fail('INVALID_UV_TEXTURE_MUTATION', `operations[${index}] must be an object.`);
         const type = typeof value.type === 'string' ? value.type : '';
@@ -514,6 +533,23 @@
               pixels,
             });
           }
+          case 'texture_paint_uv_island': {
+          const faces = uvIslandFaces(value.faces, `operations[${index}].faces`);
+          const region = pixelRegion(value.region, `operations[${index}].region`);
+          const area = pixelArea(region, `operations[${index}].region`);
+          if (!Array.isArray(value.pixels) || value.pixels.length !== area) {
+            fail('PAINT_PIXEL_COUNT_MISMATCH', `operations[${index}].pixels must contain exactly ${area} row-major RGBA pixels.`);
+          }
+          const pixels = Object.freeze(value.pixels.map((pixel, pixelIndex) =>
+            rgba(pixel, `operations[${index}].pixels[${pixelIndex}]`)));
+          return Object.freeze({
+            type,
+            textureId: boundedString(value.textureId, `operations[${index}].textureId`),
+            faces,
+            region,
+            pixels,
+          });
+        }
           case 'texture_create':
             return Object.freeze({
               type,
@@ -535,6 +571,7 @@
         if (operation.type === 'texture_fill_rect') return pixelArea(operation, `operations[${index}]`);
         if (operation.type === 'texture_replace_palette') return pixelArea(operation.region, `operations[${index}].region`);
         if (operation.type === 'texture_paint_region') return pixelArea(operation.region, `operations[${index}].region`);
+        if (operation.type === 'texture_paint_uv_island') return pixelArea(operation.region, `operations[${index}].region`);
         if (operation.type === 'texture_create') return pixelArea(operation, `operations[${index}]`);
         return 0;
       }
@@ -2710,7 +2747,7 @@
         }
       
         function regionFor(operation) {
-          if (operation.type === 'texture_replace_palette' || operation.type === 'texture_paint_region') return operation.region;
+          if (operation.type === 'texture_replace_palette' || operation.type === 'texture_paint_region' || operation.type === 'texture_paint_uv_island') return operation.region;
           return operation;
         }
       
@@ -2733,6 +2770,104 @@
           }
           return region;
         }
+      
+        function requireUvIslandRegionInBounds(texture, region, context) {
+        if (!region || !Number.isSafeInteger(region.x) || !Number.isSafeInteger(region.y)
+          || !Number.isSafeInteger(region.width) || !Number.isSafeInteger(region.height)
+          || region.x < 0 || region.y < 0 || region.width < 1 || region.height < 1
+          || region.x > texture.width - region.width || region.y > texture.height - region.height) {
+          fail('UV_ISLAND_PIXEL_REGION_OUT_OF_BOUNDS', `${context} is outside texture "${texture.uuid || texture.id}" bounds ${texture.width}x${texture.height}.`);
+        }
+        return region;
+      }
+      
+      function exactUvIslandPixelRect(texture, uv, scaleX, scaleY, context) {
+        if (!Array.isArray(uv) || uv.length < 4 || !uv.slice(0, 4).every(Number.isFinite)) {
+          fail('INVALID_UV_ISLAND_UV', `${context} must expose four finite UV coordinates.`);
+        }
+        const minX = Math.min(uv[0], uv[2]);
+        const minY = Math.min(uv[1], uv[3]);
+        const width = Math.abs(uv[2] - uv[0]);
+        const height = Math.abs(uv[3] - uv[1]);
+        if (!(width > 0) || !(height > 0)) fail('INVALID_UV_ISLAND_UV', `${context} must have positive UV area.`);
+        const values = [minX * scaleX, minY * scaleY, width * scaleX, height * scaleY];
+        if (!values.every(Number.isSafeInteger)) {
+          fail('UV_ISLAND_NON_PIXEL_ALIGNED', `${context} does not map exactly to texture pixels.`);
+        }
+        return requireUvIslandRegionInBounds(texture, {
+          x: values[0], y: values[1], width: values[2], height: values[3],
+        }, context);
+      }
+      
+      function uvIslandRectsConnected(a, b) {
+        const xOverlap = Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x);
+        const yOverlap = Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y);
+        if (xOverlap > 0 && yOverlap > 0) return true;
+        if (xOverlap > 0 && (a.y + a.height === b.y || b.y + b.height === a.y)) return true;
+        if (yOverlap > 0 && (a.x + a.width === b.x || b.x + b.width === a.x)) return true;
+        return false;
+      }
+      
+      function prepareUvIslandPaint(operation) {
+        const texture = requireEditableTexture(requireTexture(operation.textureId));
+        if (!Array.isArray(operation.faces) || operation.faces.length < 1) {
+          fail('INVALID_UV_ISLAND_FACES', 'texture_paint_uv_island requires explicit cube-face selectors.');
+        }
+        const uvWidth = requireProjectUvDimension(project.texture_width, 'Project.texture_width');
+        const uvHeight = requireProjectUvDimension(project.texture_height, 'Project.texture_height');
+        const scaleX = texture.width / uvWidth;
+        const scaleY = texture.height / uvHeight;
+        if (!Number.isFinite(scaleX) || scaleX <= 0 || !Number.isFinite(scaleY) || scaleY <= 0) {
+          fail('INVALID_PROJECT_UV_DIMENSIONS', 'Texture pixel/UV scale is invalid for UV island painting.');
+        }
+      
+        const rectangles = operation.faces.map((selector) => {
+          const cube = requireCube(selector.cubeId);
+          const face = requireFace(cube, selector.face);
+          if (cube.box_uv === true) fail('BOX_UV_ISLAND_UNSUPPORTED', `Cube "${cube.uuid}" must use per-face UV for bounded UV island painting.`);
+          if (face.enabled === false) fail('UV_ISLAND_FACE_DISABLED', `Cube "${cube.uuid}" face "${selector.face}" is disabled.`);
+          if (!faceUsesTexture(face, texture)) {
+            fail('UV_ISLAND_TEXTURE_MISMATCH', `Cube "${cube.uuid}" face "${selector.face}" does not reference texture "${operation.textureId}".`);
+          }
+          return exactUvIslandPixelRect(texture, face.uv, scaleX, scaleY, `Cube face ${cube.uuid}/${selector.face}`);
+        });
+      
+        const visited = new Set([0]);
+        const queue = [0];
+        while (queue.length) {
+          const current = queue.shift();
+          for (let candidate = 0; candidate < rectangles.length; candidate += 1) {
+            if (visited.has(candidate) || !uvIslandRectsConnected(rectangles[current], rectangles[candidate])) continue;
+            visited.add(candidate);
+            queue.push(candidate);
+          }
+        }
+        if (visited.size !== rectangles.length) {
+          fail('UV_ISLAND_DISCONNECTED', 'Selected cube faces do not form one UV island by shared area or edge segment.');
+        }
+      
+        const left = Math.min(...rectangles.map((rect) => rect.x));
+        const top = Math.min(...rectangles.map((rect) => rect.y));
+        const right = Math.max(...rectangles.map((rect) => rect.x + rect.width));
+        const bottom = Math.max(...rectangles.map((rect) => rect.y + rect.height));
+        const derivedRegion = {x: left, y: top, width: right - left, height: bottom - top};
+        const region = operation.region;
+        if (!region || region.x !== derivedRegion.x || region.y !== derivedRegion.y
+          || region.width !== derivedRegion.width || region.height !== derivedRegion.height) {
+          fail('UV_ISLAND_REGION_MISMATCH', `Declared paint region must exactly match the derived UV island bounds ${left},${top} ${derivedRegion.width}x${derivedRegion.height}.`);
+        }
+        requireUvIslandRegionInBounds(texture, region, 'Derived UV island bounds');
+      
+        const mask = new Array(region.width * region.height).fill(false);
+        for (const rect of rectangles) {
+          for (let y = rect.y; y < rect.y + rect.height; y += 1) {
+            for (let x = rect.x; x < rect.x + rect.width; x += 1) {
+              mask[(y - region.y) * region.width + (x - region.x)] = true;
+            }
+          }
+        }
+        return Object.freeze({operation, texture, mask: Object.freeze(mask)});
+      }
       
         function normalizedTextureRef(value) {
           if (typeof value !== 'string') return null;
@@ -2812,6 +2947,7 @@
           const touchedTextures = [];
           const createdTextures = [];
           const approvedImportIds = [];
+          const uvIslandPaintPlans = [];
           const reservedTextureNames = new Set(textures().map((texture) => normalizedTextureName(texture?.name)).filter(Boolean));
           let pixelWrites = 0;
           let expectsNewTextures = false;
@@ -2854,6 +2990,13 @@
                 addUnique(touchedTextures, texture);
                 break;
               }
+              case 'texture_paint_uv_island': {
+          const plan = prepareUvIslandPaint(operation);
+          chargePixels(operation.region.width * operation.region.height, 'Mutation "texture_paint_uv_island"');
+          addUnique(touchedTextures, plan.texture);
+          uvIslandPaintPlans.push(plan);
+          break;
+        }
               case 'texture_create': {
                 const {width, height} = requireTextureDimensions(operation.width, operation.height, 'texture_create');
                 const normalized = requireTextureNameAvailable(operation.name, reservedTextureNames);
@@ -2884,6 +3027,7 @@
             textures: Object.freeze(touchedTextures.slice()),
             createdTextures,
             approvedImportIds: Object.freeze(approvedImportIds.slice()),
+            uvIslandPaintPlans: Object.freeze(uvIslandPaintPlans.slice()),
             expectsNewTextures,
           });
           return true;
@@ -2973,6 +3117,21 @@
           texture.ctx.putImageData(image, x, y);
         }
       
+        function applyUvIslandPaint(plan) {
+        const {operation, texture, mask} = plan;
+        const {x, y, width, height} = operation.region;
+        const image = texture.ctx.getImageData(x, y, width, height);
+        operation.pixels.forEach((pixel, index) => {
+          if (!mask[index]) return;
+          const offset = index * 4;
+          image.data[offset] = pixel[0];
+          image.data[offset + 1] = pixel[1];
+          image.data[offset + 2] = pixel[2];
+          image.data[offset + 3] = pixel[3];
+        });
+        texture.ctx.putImageData(image, x, y);
+      }
+      
         function colorKey(color) {
           return (((color[0] * 256 + color[1]) * 256 + color[2]) * 256 + color[3]);
         }
@@ -3031,6 +3190,13 @@
               dirtyTextures.add(texture);
               return texture.uuid || texture.id;
             }
+            case 'texture_paint_uv_island': {
+          const plan = prepared?.uvIslandPaintPlans?.find((entry) => entry.operation === operation);
+          if (!plan) fail('PREFLIGHT_REQUIRED', 'texture_paint_uv_island requires the exact preflighted operation.');
+          applyUvIslandPaint(plan);
+          dirtyTextures.add(plan.texture);
+          return plan.texture.uuid || plan.texture.id;
+        }
             case 'texture_create': {
               if (!prepared?.expectsNewTextures) fail('PREFLIGHT_REQUIRED', 'texture_create requires the exact preflighted batch.');
               const texture = new bb.Texture({name: operation.name, internal: true});
