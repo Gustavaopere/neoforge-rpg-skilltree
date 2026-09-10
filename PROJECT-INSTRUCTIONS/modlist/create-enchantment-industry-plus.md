@@ -21,7 +21,7 @@
 - **Compatibilidade/Riscos:** Sobreposição concentrada em recipes de ink/black dye/glow ink. A 1.1.1 muda recipes de ink para black dye, adiciona conversão ink sac→glow ink sac e grinding recipe. Risco principal é recipe duplication/stale datapack com outras bridges do Enchantment Industry.
 - **Sobreposição:** Complementa Create: Enchantment Industry; não o substitui. Qualquer outro addon/datapack que converta ink sacs, black dye, experience ou glow ink deve ser comparado por recipe ID/input/output para evitar rotas duplicadas.
 - **Observações:** JAR `create_enchantment_industry_plus-1.1.1-1.21.1.jar`; runtime 1.1.1. Fluxos oficiais: press Leather→Empty Ink Sac; fill Empty Ink Sac com ink→Ink Sac; drain Ink Sac→Empty Ink Sac + ink; Spout + experience pode converter Ink Sac→Glow Ink Sac. Changelog 1.1.1: recipes mudados de ink para black dye, nova conversão glow ink e grinding recipe.
-- **Procedência:** Modlist física canônica de 08/09/2026, 600 top-levels + runtime 1.1.1 + CurseForge/Modrinth oficiais da release 1.1.1 e descrição funcional do projeto.
+- **Procedência:** Modlist física canônica de 08/09/2026, 595 top-levels + runtime 1.1.1 + CurseForge/Modrinth oficiais da release 1.1.1 e descrição funcional do projeto.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create Enchantment Industry Plus 1.1.1 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. Presença como extensão do Enchantment Industry não foi convertida em decisão curatorial.
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — ink-sac processing authority, press/fill/drain/spout recipe boundaries, Create Enchantment Industry integration e delta 1.1.1 catalogados.
 - **Data da última decisão:** não definida.
