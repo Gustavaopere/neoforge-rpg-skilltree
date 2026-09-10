@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db81e0b444ce2a8983f000  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods top-level  
+> Exportado/reconciliado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -16,13 +17,13 @@
 - **Estado no pack na origem:** Instalado — Dossiê completo
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create
 - **Função:** Núcleo tecnológico e de automação cinética do pack: fornece redes de rotação/stress, processamento mecânico, belts/funnels, fluid handling, moving contraptions, trains e a infraestrutura High Logistics introduzida na série 6.0.
-- **Dependências:** NeoForge 1.21.1. A distribuição 6.x usa Flywheel 1.0 e inclui Ponder como library embarcada no Create JAR; dependências embarcadas não são tratadas como top-level. É base obrigatória dos addons Create instalados.
+- **Dependências:** NeoForge 1.21.1. O JAR físico 6.0.10 embarca Flywheel 1.0.6, Ponder 1.0.82+mc1.21.1 e Registrate-MC1.21-1.3.0+67 em `/META-INF/jarjar/`; são componentes subordinados ao host, não top-level. Create permanece base obrigatória dos addons Create instalados.
 - **Compatibilidade/Riscos:** Authority transversal do maior stack tecnológico do pack. Riscos em stress/speed propagation, contraption assembly/collision, mounted storage, train graphs, package logistics, recipe-viewer sync e mixins de addons. 6.0.10 otimiza contraption collision e GlobalRailwayManager player login e altera Stock Keeper recipe-viewer sync.
 - **Sobreposição:** Create é provider base. Addons estendem suas APIs/blocks/processing; não devem substituir sua authority de stress, speed, kinetic network, contraption state, train graph ou package logistics sem integração explícita.
-- **Observações:** mod id `create`; runtime 6.0.10. Série 6.0 introduziu High Logistics: Chain Conveyor, Packager/Re-packager, packages, Frogport/Postbox, Stock Link/Ticker, Redstone Requester e Factory Gauge. 6.0.10 adiciona quatro modos de sync de recipe viewer no Stock Keeper, modifier keybinds e otimizações/fixes.
-- **Procedência:** Modlist física canônica de 08/09/2026 (602 top-levels) + runtime Create 6.0.10 + changelog/source oficial Creators-of-Create branch mc1.21.1/dev + wiki oficial Create 6.0/kinetics/contraptions.
+- **Observações:** mod id `create`; runtime 6.0.10. Jar-in-jar físico: `flywheel-neoforge-1.21.1-1.0.6.jar`, `ponder-neoforge-1.0.82+mc1.21.1.jar` e `Registrate-MC1.21-1.3.0+67.jar`. Série 6.0 introduziu High Logistics; 6.0.10 adiciona modos de sync de recipe viewer no Stock Keeper e otimizações/fixes.
+- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime Create 6.0.10 + inventário jar-in-jar físico + changelog/source oficial Creators-of-Create branch mc1.21.1/dev + wiki oficial Create 6.0/kinetics/contraptions.
 - **Histórico da decisão:** Sem decisão formal registrada. Em 08/09/2026, Create 6.0.10 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. Ser núcleo de muitos addons não foi convertido automaticamente em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — kinetic/stress authority, processing, fluids, contraptions, trains, high logistics, Ponder/API, client/server, lifecycle e regressões 6.0.10 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create 6.0.10, kinetic/stress authority, processing, fluids, contraptions, trains, High Logistics e inventário jar-in-jar confirmados no QC global #116. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
@@ -115,15 +116,15 @@ Mods próprios que adicionam blocos complexos devem usar hooks/API suportados em
 
 ## 14. Ponder
 
-Ponder é a documentação interativa do ecossistema e, desde 6.0, é library separada porém **embarcada com o Create JAR**. Não catalogar a cópia embarcada como top-level.
+Ponder é a documentação interativa do ecossistema. O host físico Create 6.0.10 embarca `ponder-neoforge-1.0.82+mc1.21.1.jar` em `/META-INF/jarjar/`; essa cópia pertence ao JAR do Create e **não é top-level**.
 
 Ponder scenes são apresentação; não são autoridade de recipe/config/runtime behavior.
 
-## 15. Flywheel/rendering
+## 15. Flywheel, Registrate e rendering
 
-Create 6 usa Flywheel 1.0 para rendering otimizado de componentes animados. Render state deve refletir state server/common real sem controlar gameplay.
+O host físico Create 6.0.10 embarca `flywheel-neoforge-1.21.1-1.0.6.jar` e `Registrate-MC1.21-1.3.0+67.jar` em `/META-INF/jarjar/`. Flywheel fornece o pipeline de rendering otimizado usado pelo Create; Registrate é helper/library embarcada. Nenhuma dessas cópias avança a ordem top-level da modlist.
 
-Conflitos com Sodium/ImmediatelyFast/shaders precisam ser diagnosticados como pipeline/render issues, não como falha automática da kinetic network.
+Render state deve refletir state server/common real sem controlar gameplay. Conflitos com Sodium/ImmediatelyFast/shaders precisam ser diagnosticados como pipeline/render issues, não como falha automática da kinetic network.
 
 ## 16. Configuração e dados
 
@@ -177,7 +178,7 @@ O pack possui dezenas de addons Create, incluindo Aeronautics, Central Kitchen, 
 
 ## 22. Evidência
 
-- modlist física 08/09/2026: Create 6.0.10;
+- modlist física 08/09/2026: Create 6.0.10 + jar-in-jar Flywheel 1.0.6, Ponder 1.0.82+mc1.21.1 e Registrate 1.3.0+67;
 - source/changelog oficial `mc1.21.1/dev`: deltas 6.0.10;
 - wiki oficial Create 6.0.0: High Logistics, mounted-storage/API e Ponder/Flywheel changes;
 - wiki oficial: stress e moving contraptions.
