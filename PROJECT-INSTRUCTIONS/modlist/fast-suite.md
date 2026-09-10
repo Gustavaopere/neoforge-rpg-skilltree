@@ -1,5 +1,33 @@
 # Fast Suite — 6.0.7
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3d569db9f0db81db93b1da65702fd38b  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Fast Suite
+- **Arquivo JAR:** `FastSuite-1.21.1-6.0.7.jar`
+- **Versão 1.21.1:** `6.0.7`
+- **Categoria:** Performance
+- **Decisão:** não definida
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/fastsuite
+- **Função:** Performance mod para o sistema JSON de recipes; na linha 6.x acelera matching via concorrência controlada para recipe types grandes e só paraleliza classes/ingredients conhecidos como thread-safe.
+- **Dependências:** NeoForge 1.21.1. Não altera ownership das recipes. Integrações/regressões relevantes no pack: KubeJS e ModernFix; 6.0.7 contém correção específica para combinação FastSuite+ModernFix+AE2JEIIntegration.
+- **Compatibilidade/Riscos:** Riscos: recipe/ingredient modded não thread-safe, race em shapeless/stacking IDs, deadlock/timeout, stale cache após `/reload`, KubeJS/custom recipe drift e ModernFix timing. Não atribuir à 6.0.7 o indexed matching da linha 7.x.
+- **Sobreposição:** Complementa ModernFix/FerriteCore em outras superfícies; não é substituto de recipe providers. Polymorph é explicitamente considerado pela arquitetura concorrente 4.1+.
+- **Observações:** 6.0.0 porta 1.21.1 com thread-safe matching da 5.1.0; 6.0.3 corrige race de shapeless, 6.0.4 StackOverflow, 6.0.6 data race em `Ingredient#stackingIds`, 6.0.7 severe performance issue com ModernFix+AE2JEIIntegration.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `FastSuite-1.21.1-6.0.7.jar`, mod id `fastsuite`, versão 6.0.7 e SHA-1 664e62684311f727f1fac18f0de28e5317874b7e. CurseForge e changelog/source oficial branch 1.21 auditados.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — FastSuite 6.0.7; concurrent recipe matching 6.x, thread-safe classifiers, config/reload, KubeJS/ModernFix interactions, concurrency risks e tests catalogados.
+- **Data da última decisão:** não definida.
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `FastSuite-1.21.1-6.0.7.jar` · mod id `fastsuite` · versão `6.0.7` · NeoForge 1.21.1. A linha 6.x usa **Concurrent Recipe Matching**; a arquitetura indexada da 7.x não deve ser projetada sobre esta instalação.
 
 ## 1. Papel no modpack
