@@ -4,7 +4,7 @@
 > Página-fonte: https://app.notion.com/p/3c369db9f0db81b583c7cbd2681a24f7  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
 > Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-08
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -21,9 +21,9 @@
 - **Compatibilidade/Riscos:** Version drift com Create 6.0.10, collision/ladder em contraptions, assemble/disassemble e sobreposição visual com outros addons ferroviários. Create mantém authority de trains/contraptions.
 - **Sobreposição:** Sobreposição parcial de decoração/ferrovia com outros addons Create, sem equivalência automática.
 - **Observações:** README lista 9 Train Pilots, 3 Grab Bars, 3 Bogie Steps e 1 Station Platform Block = 16 entradas/variantes principais; não rotulado como registry count binário exato.
-- **Procedência:** Modlist física atual de 07/09/2026 + CurseForge oficial + README/source oficial Create: Bells & Whistles 0.4.7.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Create: Bells & Whistles 0.4.7-1.21.1, seu escopo ferroviário/decorativo e a authority do Create sobre trains/contraptions. A sobreposição visual com outros addons não foi usada para inferir decisão.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — inventário ferroviário principal, authority Create, contraption/ladder lifecycle e riscos catalogados.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial `bellsandwhistles-0.4.7-1.21.1.jar` + README/source oficial + Create 6.0.10 físico.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Create: Bells & Whistles 0.4.7-1.21.1, seu escopo ferroviário/decorativo e a authority do Create sobre trains/contraptions. Em 09/09/2026, a release e Create 6.0.10 foram revalidados; a sobreposição visual com outros addons não foi usada para inferir decisão.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create: Bells & Whistles 0.4.7-1.21.1 físico/release confirmado; 16 entradas/variantes principais do README, ladder/contraption lifecycle e authority Create 6.0.10 preservados no QC global #67. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
