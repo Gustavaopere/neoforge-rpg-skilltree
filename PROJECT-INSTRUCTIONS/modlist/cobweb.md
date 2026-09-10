@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db813ba717c952b8dd5bc5  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist.txt`, 595 mods top-level  
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -20,9 +21,9 @@
 - **Compatibilidade/Riscos:** Riscos de version drift em CobwebEntry/registry helpers e APIs dinâmicas. O changelog da linha 1.21 registra correções de Holder matching e tags, e 1.4.0 adiciona DynamicBlockEntityType. Features marcadas no changelog como 1.21.3+ não são retroativamente atribuídas ao JAR 1.21/1.21.1 sem inspeção.
 - **Sobreposição:** Biblioteca técnica do ecossistema Crystal Nest. Coexistência com outras APIs não implica redundância; consumers dependem de contratos próprios.
 - **Observações:** mod id `cobweb`; runtime 1.4.0. Changelog da linha comprova unified registering/CobwebEntry desde 1.21, fixes de tags/Holder e `DynamicBlockEntityType` em 1.4.0; APIs explicitamente restritas a 1.21.3+ permanecem fora do escopo confirmado deste JAR.
-- **Procedência:** Modlist física mais recente de 07/09/2026 + CurseForge oficial Cobweb 1.4.0 para NeoForge 1.21/1.21.1 + changelog/source oficial Crystal-Nest/cobweb branch 1.21.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Cobweb 1.4.0 para NeoForge 1.21/1.21.1 + changelog/source oficial Crystal-Nest/cobweb branch 1.21.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Cobweb 1.4.0 foi reconfirmado no JAR físico e reconstruído como Crystal Nest API. A instalação atual não foi convertida em decisão de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — registry/CobwebEntry contract, DynamicBlockEntityType, version/branch boundaries, side/lifecycle e consumer risks catalogados fail-closed.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Cobweb 1.4.0 físico confirmado; CobwebEntry/registry contracts, Holder/tag semantics, DynamicBlockEntityType, version boundaries, side/lifecycle e consumer risks confirmados no QC global #99. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
