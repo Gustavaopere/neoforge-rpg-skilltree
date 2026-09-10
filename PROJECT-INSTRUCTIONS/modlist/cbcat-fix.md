@@ -11,7 +11,7 @@
 - **Mod:** CBCAT Fix
 - **Arquivo JAR:** `cbcatfix-1.21.1-neoforge-1.0.1.jar`
 - **Versão 1.21.1:** `1.0.0`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — crash patch, cluster munitions, rocket automation, Rocket Pod, big rockets/rails, shells, lifecycle e version drift catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — artefato `cbcatfix-1.21.1-neoforge-1.0.1.jar` e metadata runtime 1.0.0 reconfirmados; crash/cluster fixes, rocket automation, Rocket Pod, big rockets/rails e shell scope preservados. Runtime QA não executado.
 - **Categoria:** Compat; Tecnologia; Automação
 - **Compatibilidade/Riscos:** Patch/addon sensível a version drift de CBC/CBC:AT. Riscos de fix duplicado após upstream, rocket dupe em Mechanical Arm/rail, cluster munition double-processing e recipe conflicts. Filename 1.0.1 diverge da metadata runtime 1.0.0.
 - **Decisão:** Sem decisão
@@ -21,9 +21,9 @@
 - **Função:** Patch/addon para CBC: Advanced Technologies que corrige crashes e cluster munitions, integra loading de rockets por Mechanical Arm, corrige Rocket Pod e adiciona big rockets/rails e shells Flak/Heavy HE/HESH/HEAT.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a build física `cbcatfix-1.21.1-neoforge-1.0.1.jar` foi auditada; a metadata runtime continua 1.0.0. A presença do patch não foi convertida em decisão automática de manter/remover.
 - **Observações:** Arquivo publicado/build 1.0.1; mod id `cbcatfix`; runtime físico 1.0.0. Changelog 1.0.1: crash fix, cluster munitions fix, Mechanical Arm rocket loading, Rocket Pod craft fix, big rocket/rails e Flak/Heavy HE/HESH/HEAT.
-- **Procedência:** Modlist física atual de 07/09/2026 + metadata runtime/log + CurseForge oficial CBCAT Fix 1.0.1 e changelog da release.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + metadata runtime/log atual + CurseForge oficial CBCAT Fix build 1.0.1 e changelog da release.
 - **Sobreposição:** Corrige/estende CBC:AT; não é substituto do addon base. Deve ser removido apenas após confirmar que upstream incorporou os mesmos fixes/conteúdo sem conflito.
-- **Data da última decisão:** vazio
+- **Data da última decisão:** não definida
 
 ## Dossiê operacional — padrão Alex's Mobs
 
