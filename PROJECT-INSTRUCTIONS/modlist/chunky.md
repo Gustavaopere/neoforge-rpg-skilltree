@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db819cb386f663a49ad6f2  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist.txt`, 595 mods top-level  
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -20,9 +21,9 @@
 - **Compatibilidade/Riscos:** Pré-geração materializa o worldgen/configuração ativos naquele momento; alterações futuras não retroagem em chunks já gerados. Riscos: saturação CPU/IO, tasks concorrentes, pregeneration com worldgen intermediário, trim destrutivo e restart/reload mal coordenado. 1.4.23 adiciona suporte Moonrise.
 - **Sobreposição:** Não é provider de worldgen; executa antecipadamente os generators já ativos. Pode coexistir com Terralith/TFC/BetterNether/etc., mas a pregen deve ocorrer somente após o stack worldgen definitivo.
 - **Observações:** mod id `chunky`; runtime 1.4.23. A release NeoForge 1.4.23 adiciona suporte a Moonrise. Tasks podem ser pausadas/salvas e continuar depois; o projeto suporta múltiplas tasks simultâneas.
-- **Procedência:** Modlist física mais recente de 07/09/2026 + CurseForge oficial Chunky NeoForge 1.4.23 + wiki/source oficial pop4959/Chunky para commands, tasks e persistência.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Chunky NeoForge 1.4.23 + wiki/source oficial pop4959/Chunky para commands, tasks e persistência.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Chunky 1.4.23 foi reconfirmado no JAR físico e documentado como utilitário de pré-geração. A presença no pack não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — selection/task model, pause/resume/persistence, worldgen authority, resource pressure, trim e Moonrise 1.4.23 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Chunky 1.4.23 físico confirmado; selection/task model, pause/resume/persistence, worldgen authority, resource pressure, trim e suporte Moonrise confirmados no QC global #93. Runtime QA/benchmark não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
