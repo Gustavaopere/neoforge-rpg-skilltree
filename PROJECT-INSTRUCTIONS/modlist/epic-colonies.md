@@ -1,5 +1,31 @@
 # Epic Fight: Epicfied (Epic Colonies) — 21.0.8
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db8183bdecca88a45debbc  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Epic Fight: Epicfied (Epic Colonies)
+- **Arquivo JAR:** `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar`
+- **Versão 1.21.1:** `21.0.8`
+- **Categoria:** Compat; RPG; Mobs
+- **Decisão:** Manter
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epic-colonies
+- **Função:** Integra MineColonies ao Epic Fight preservando modelos/acessórios de cidadãos e raiders em skinned meshes/animations do Epic Fight, incluindo expressão facial e combat presentation especializada.
+- **Dependências:** Epic Fight 21.17.3.1 + MineColonies 1.1.1381-1.21.1-snapshot estão fisicamente presentes. O filename oficial registra compile target EFM-21.16.4; inspeção anterior do metadata upstream registrou ranges de loader amplos.
+- **Compatibilidade/Riscos:** Build 21.0.8 foi produzida contra Epic Fight 21.16.4, enquanto o pack usa 21.17.3.1; não há loader block previamente identificado, mas renderer/armature/entity-patch drift continua regression gate. Riscos: patch duplicado com compat genérico, clipping de acessórios/jobs, AI MineColonies vs combat patch e double damage/stun.
+- **Sobreposição:** Especializado em MineColonies↔Epic Fight; pode cruzar com Epic Fight Compat geral, mas não é substituto equivalente. Precedence deve impedir dois patches/renderers para a mesma entidade.
+- **Observações:** O sufixo `EFM-21.16.4` é parte do artefato oficial e identifica a linha Epic Fight usada na build, não uma versão a ser reescrita para 21.17.3.1. Projeto oficial enfatiza 80+ modelos MineColonies adaptados, job accessories e facial expressions.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar`, mod id `epic_colonies`, versão 21.0.8 e SHA-1 82a9727afd01fac255ac399ec97b4504440e9a70; Epic Fight 21.17.3.1 e MineColonies 1.1.1381-snapshot presentes.
+- **Histórico da decisão:** 2026-09-06 — Manter após inspeção do source 1.21.1: release 21.0.8 é a linha NeoForge 1.21.1 disponível e o sufixo EFM-21.16.4 não era loader constraint. 2026-09-09 — dossier refeito contra a modlist física de 595 mods; risco 21.16.4→21.17.3.1 mantido como regression gate comportamental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Epic Colonies 21.0.8; MineColonies/Epic Fight authority split, 80+ model coverage, facial expressions, combat bridge, version drift, lifecycle, multiplayer, risks and tests cataloged.
+- **Data da última decisão:** 2026-09-06
+
 > **Runtime físico confirmado:** `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` · mod id `epic_colonies` · versão `21.0.8` · NeoForge 1.21.1. O pack usa **Epic Fight 21.17.3.1** e **MineColonies 1.1.1381-1.21.1-snapshot**.
 
 ## 1. Papel no modpack
