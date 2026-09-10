@@ -56,3 +56,4 @@ require('./rpg_asset_toolkit.texture_create_import.test.js');
 require('./rpg_asset_toolkit.texture_create_import_adapter.test.js');
 require('./rpg_asset_toolkit.texture_paint_region.test.js');
 require('./rpg_asset_toolkit.uv_island_masks.test.js');
+require('./rpg_asset_toolkit.palette_sampling.test.js');

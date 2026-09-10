@@ -6,7 +6,7 @@ Internal project plugin: `rpg_asset_toolkit.js` (plugin ID matches filename).
 
 Structural/contract QA plus fail-closed provider/extension capability resolution for project-owned Minecraft assets, with narrowly bounded local Blockbench mutations where an audited contract exists. Mutation support is intentionally incremental: it does not authorize arbitrary geometry, UV, texture, pivot or animation rewrites, and it does not install or invoke arbitrary extensions.
 
-The current PR4 slices include deterministic one-texture UV pack preview/apply for per-face cube UVs, bounded internal texture creation and locally approved texture import, deterministic bounded non-uniform texture painting inside an explicit rectangular region, and bounded painting through an explicitly selected per-face UV island mask. These are local desktop operations, not a generic UV/texture rewrite surface and not a Live Bridge/MCP write surface.
+The current PR4 slices include deterministic one-texture UV pack preview/apply for per-face cube UVs, bounded internal texture creation and locally approved texture import, deterministic bounded non-uniform texture painting inside an explicit rectangular region, bounded painting through an explicitly selected per-face UV island mask, and deterministic read-only palette sampling paired with bounded palette replacement. These are local desktop operations, not a generic UV/texture rewrite surface and not a Live Bridge/MCP write surface.
 
 ## Architecture
 
@@ -142,7 +142,24 @@ The PR4 UV-island-mask contract adds `texture_paint_uv_island` as a deterministi
 - committed apply writes the bounded region once, publishes the changed texture once and remains inside the existing single Undo transaction;
 - Advanced V2 semantic UV masks, palette operations, procedural brushes, arbitrary global painting and remote Live Bridge/MCP writes are outside this slice.
 
-These slices close only their bounded PR4 subgates. PR4 remains broader: the canonical plan still requires palette tools and the final round-trip, visual-diff, Undo and texture-validation evidence before PR4 can be considered complete or PR5 can begin.
+## Deterministic palette tools
+
+The PR4 palette-tool boundary pairs the existing bounded `texture_replace_palette` mutation with read-only `texture.sample_palette` behavior exposed by the local UV/texture adapter as `samplePalette(...)`:
+
+- sampling requires one explicit `textureId` and one explicit rectangular `region`;
+- the region must use non-negative integer coordinates, positive integer dimensions and remain entirely inside the target texture;
+- layered textures fail closed because this PR4 boundary has no layer selector;
+- sampling reuses the existing `262144`-pixel bound and fails before reading bitmap data when that budget is exceeded;
+- bitmap inspection uses one bounded `getImageData(...)` read and never calls `putImageData(...)`, opens Undo, publishes texture edits or changes the project revision;
+- RGBA values are counted exactly, including alpha; transparent pixels are not normalized or collapsed by RGB value;
+- the result reports `projectRevision`, `textureId`, `region`, `sampledPixels`, the full `uniqueColorCount`, `truncated`, and `colors[{rgba,count}]`;
+- colors are ordered deterministically by count descending and then numeric RGBA lexicographic order;
+- returned color entries are capped at the existing `256` palette-replacement bound while `uniqueColorCount` continues to report the full histogram cardinality and `truncated=true` records omitted entries;
+- no quantization, clustering, harmonization, gradient generation, material inference or randomness is introduced;
+- the sampled `projectRevision` can be used by callers as the stale-revision authority before constructing an existing bounded `texture_replace_palette` batch;
+- Live Bridge/MCP remains read-only and this slice adds no remote write method.
+
+With deterministic palette sampling paired with the already-integrated bounded palette replacement, the canonical PR4 `PALETTE_TOOLS` capability is covered. PR4 itself remains incomplete until the final round-trip, visual-diff, Undo and texture-validation/texture-path acceptance gates are proven.
 
 ## Deliberate non-automation
 
@@ -159,9 +176,10 @@ node --test rpg_asset_toolkit.texture_create_import.test.js
 node --test rpg_asset_toolkit.texture_create_import_adapter.test.js
 node --test rpg_asset_toolkit.texture_paint_region.test.js
 node --test rpg_asset_toolkit.uv_island_masks.test.js
+node --test rpg_asset_toolkit.palette_sampling.test.js
 node --test rpg_asset_toolkit.bundle_live_bridge.test.js
 node --test rpg_asset_toolkit.test.js
 node build_toolkit_bundle.js --check
 ```
 
-Tests use Node's built-in runner and no third-party npm dependency. Coverage includes structural QA, Locator semantics, extension authorization, physical-provider authority, provider resolution, fail-closed conversion, schemas, generated-bundle reproducibility, deterministic UV-pack preview, exact confirmation/revision binding, Blockbench Undo behavior, overlap-safe source-pixel buffering, bounded texture creation, opaque approved import, dry-run approval preservation, collision/budget rejection, deterministic non-uniform bounded paint with exact RGBA/alpha preservation, bounded per-face UV-island mask derivation with gap preservation and fail-closed connectivity/alignment checks, and standalone bundle loading without introducing a remote write surface.
+Tests use Node's built-in runner and no third-party npm dependency. Coverage includes structural QA, Locator semantics, extension authorization, physical-provider authority, provider resolution, fail-closed conversion, schemas, generated-bundle reproducibility, deterministic UV-pack preview, exact confirmation/revision binding, Blockbench Undo behavior, overlap-safe source-pixel buffering, bounded texture creation, opaque approved import, dry-run approval preservation, collision/budget rejection, deterministic non-uniform bounded paint with exact RGBA/alpha preservation, bounded per-face UV-island mask derivation with gap preservation and fail-closed connectivity/alignment checks, deterministic bounded palette sampling with exact alpha-aware RGBA histograms and truncation metadata, and standalone bundle loading without introducing a remote write surface.

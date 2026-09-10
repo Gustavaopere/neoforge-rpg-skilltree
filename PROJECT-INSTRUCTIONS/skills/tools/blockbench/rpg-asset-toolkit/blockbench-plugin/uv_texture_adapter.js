@@ -1,6 +1,6 @@
 'use strict';
 
-const {MAX_TEXTURE_PIXELS_PER_BATCH} = require('../core/uv-texture/uv_texture_engine.js');
+const {MAX_TEXTURE_PIXELS_PER_BATCH, MAX_PALETTE_REPLACEMENTS} = require('../core/uv-texture/uv_texture_engine.js');
 
 function fail(code, message) {
   const error = new Error(`${code}: ${message}`);
@@ -259,6 +259,91 @@ function prepareUvIslandPaint(operation) {
   }
   return Object.freeze({operation, texture, mask: Object.freeze(mask)});
 }
+
+  function samplePalette(input) {
+    if (!input || typeof input !== 'object' || Array.isArray(input)) {
+      fail('INVALID_PALETTE_SAMPLE', 'Palette sample request must be an object.');
+    }
+    for (const key of Object.keys(input)) {
+      if (key !== 'textureId' && key !== 'region') {
+        fail('INVALID_PALETTE_SAMPLE', `Palette sample request contains unsupported field "${key}".`);
+      }
+    }
+    if (typeof input.textureId !== 'string' || !input.textureId.trim()) {
+      fail('INVALID_TEXTURE_ID', 'Palette sample textureId must be a non-empty string.');
+    }
+    const region = input.region;
+    if (!region || typeof region !== 'object' || Array.isArray(region)) {
+      fail('INVALID_PIXEL_REGION', 'Palette sample region must be an object.');
+    }
+    for (const key of Object.keys(region)) {
+      if (!['x', 'y', 'width', 'height'].includes(key)) {
+        fail('INVALID_PIXEL_REGION', `Palette sample region contains unsupported field "${key}".`);
+      }
+    }
+    const normalizedRegion = {
+      x: region.x,
+      y: region.y,
+      width: region.width,
+      height: region.height,
+    };
+    if (!Number.isSafeInteger(normalizedRegion.x) || normalizedRegion.x < 0
+      || !Number.isSafeInteger(normalizedRegion.y) || normalizedRegion.y < 0
+      || !Number.isSafeInteger(normalizedRegion.width) || normalizedRegion.width < 1
+      || !Number.isSafeInteger(normalizedRegion.height) || normalizedRegion.height < 1) {
+      fail('INVALID_PIXEL_REGION', 'Palette sample region must use non-negative integer x/y and positive integer width/height.');
+    }
+
+    const textureId = input.textureId.trim();
+    const texture = requireEditableTexture(requireTexture(textureId));
+    requireRegionInBounds(texture, {type: 'texture_replace_palette', region: normalizedRegion});
+    const sampledPixels = normalizedRegion.width * normalizedRegion.height;
+    if (!Number.isSafeInteger(sampledPixels) || sampledPixels > MAX_TEXTURE_PIXELS_PER_BATCH) {
+      fail('TEXTURE_PIXEL_BUDGET_EXCEEDED', `Palette sample may read ${sampledPixels} pixels; maximum is ${MAX_TEXTURE_PIXELS_PER_BATCH}.`);
+    }
+
+    const image = texture.ctx.getImageData(
+      normalizedRegion.x,
+      normalizedRegion.y,
+      normalizedRegion.width,
+      normalizedRegion.height,
+    );
+    if (!image || !image.data || image.data.length !== sampledPixels * 4) {
+      fail('BLOCKBENCH_API_UNAVAILABLE', 'Palette sample did not receive the expected RGBA bitmap data.');
+    }
+
+    const histogram = new Map();
+    for (let offset = 0; offset < image.data.length; offset += 4) {
+      const rgba = [image.data[offset], image.data[offset + 1], image.data[offset + 2], image.data[offset + 3]];
+      const key = rgba.join(',');
+      const current = histogram.get(key);
+      if (current) current.count += 1;
+      else histogram.set(key, {rgba, count: 1});
+    }
+
+    const colors = Array.from(histogram.values()).sort((left, right) => {
+      if (left.count !== right.count) return right.count - left.count;
+      for (let channel = 0; channel < 4; channel += 1) {
+        if (left.rgba[channel] !== right.rgba[channel]) return left.rgba[channel] - right.rgba[channel];
+      }
+      return 0;
+    });
+    const uniqueColorCount = colors.length;
+    const outputColors = colors.slice(0, MAX_PALETTE_REPLACEMENTS).map((entry) => Object.freeze({
+      rgba: Object.freeze(entry.rgba.slice()),
+      count: entry.count,
+    }));
+
+    return Object.freeze({
+      projectRevision: getRevision(),
+      textureId,
+      region: Object.freeze({...normalizedRegion}),
+      sampledPixels,
+      uniqueColorCount,
+      truncated: uniqueColorCount > MAX_PALETTE_REPLACEMENTS,
+      colors: Object.freeze(outputColors),
+    });
+  }
 
   function normalizedTextureRef(value) {
     if (typeof value !== 'string') return null;
@@ -693,6 +778,7 @@ function prepareUvIslandPaint(operation) {
 
   return Object.freeze({
     getRevision,
+    samplePalette,
     approveTextureImport,
     inspectPackTarget,
     preflight,
