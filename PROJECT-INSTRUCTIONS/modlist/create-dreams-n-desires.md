@@ -1,5 +1,33 @@
 # Create: Dreams n' Desires — 2.3a-BETA
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db816897e0fee487ee2c0b  
+> Estado no momento da exportação: `Integrado ao Github`  
+> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods top-level  
+> Exportado/reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Create: Dreams n' Desires
+- **Arquivo JAR:** `DnDesires-1.21.1-2.3a-BETA.jar`
+- **Versão 1.21.1:** `2.3a-BETA`
+- **Categoria:** Tecnologia; QoL; Automação
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://github.com/LopyLuna/Create-Dreams-and-Desires/tree/1.21.1
+- **Função:** Addon amplo de Create com máquinas, componentes cinéticos, fluid/inventory utilities, itens, alimentos e bridges específicas, mantendo Create como authority de kinetics/stress/contraptions.
+- **Dependências:** Source 2.3a-BETA: Minecraft 1.21.1, NeoForge >=21.1.200, Create 6.0.10-280, Flywheel 1.0.6, Ponder 1.0.82, Registrate MC1.21-1.3.0+67. JEI/Curios e Sable aparecem como superfícies de desenvolvimento/integração; compat Sable é explicitamente mencionada no changelog.
+- **Compatibilidade/Riscos:** Stress double-count, Smart Hopper dupe/loss, fluid state stale/duplicado, Gold Mixer crash regression, Bore hitbox, BE state em contraptions/Sable, packet-side errors e version drift com Create/Flywheel/Ponder/Sable.
+- **Sobreposição:** Cruza superfícies de automação/decoração com outros addons Create, sem equivalência automática. Create continua dono de stress/kinetics/contraptions; D&D controla apenas seu conteúdo e adapters.
+- **Observações:** Filename/runtime usa `2.3a-BETA`; isso é identificador da versão, enquanto a plataforma de distribuição pode classificar o arquivo com outro release type. 2.3a-BETA adiciona Spud Sentry e registra fixes para Smart Hopper, fluids, Bore hitbox e Gold Mixer.
+- **Procedência:** Runtime: modlist física canônica de 08/09/2026 (595 top-levels), `DnDesires-1.21.1-2.3a-BETA.jar`. Source pin: repo oficial LopyLuna/Create-Dreams-and-Desires branch 1.21.1, cujo `gradle.properties` declara 2.3a-BETA; registries/items/blocks e changelog oficial da mesma release auditados.
+- **Histórico da decisão:** Sem decisão curatorial formal. Em 08/09/2026, a ficha foi reconstruída contra o runtime físico 2.3a-BETA e source oficial da mesma versão.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — source 2.3a-BETA pinado; registries, machines/items, kinetics/stress, fluids, Sable, lifecycle/MP, regressões e testes catalogados.
+- **Data da última decisão:** não definida.
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `DnDesires-1.21.1-2.3a-BETA.jar` · mod id `dndesires` · versão `2.3a-BETA` · NeoForge 1.21.1. O branch oficial `1.21.1` declara a mesma `mod_version`.
 
 ## 1. Papel no modpack
