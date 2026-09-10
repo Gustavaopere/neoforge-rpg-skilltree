@@ -20,8 +20,8 @@
 - **Compatibilidade/Riscos:** Dependência transversal e stateful de equipamentos. Riscos: version drift com consumers, slot definitions divergentes após datapack/config reload, equip/unequip hooks duplicados, sync client/server e world-upgrade migrations. A 9.5.1 corrige crash ao carregar mundo após update vindo de 9.4.2+1.21.1 ou inferior.
 - **Sobreposição:** Não substitui os equipamentos dos mods consumidores nem Curios-style systems sem port explícito. Pode coexistir com outros slot APIs; conflito real exige dois providers disputando o mesmo equipamento/state ou bridge duplicando eventos.
 - **Observações:** mod id `curios`; runtime 9.5.1+1.21.1. Curios é API/library Client & Server. A release 9.5.1 corrige crash em world load após atualizar de 9.4.2+1.21.1 ou abaixo (#520). Não hardcodar uma lista universal de slots: consumers definem a topologia aplicável.
-- **Procedência:** Modlist física canônica de 08/09/2026, 600 top-levels + runtime 9.5.1+1.21.1 + CurseForge oficial Curios API File ID 6529130 e changelog 9.5.1.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Curios API 9.5.1+1.21.1 foi reconfirmado como `Instalado` na modlist física de 600; o dossiê Alex já aplicado foi preservado e necessidade técnica por consumers não foi convertida em decisão curatorial.
+- **Procedência:** Modlist física canônica de 08/09/2026, 595 top-levels + runtime 9.5.1+1.21.1 + CurseForge oficial Curios API File ID 6529130 e changelog 9.5.1.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Curios API 9.5.1+1.21.1 foi reconfirmado como `Instalado` na modlist física de 595; o dossiê Alex já aplicado foi preservado e necessidade técnica por consumers não foi convertida em decisão curatorial.
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — slot/equipment authority, consumer-defined topology, equip/unequip/query contracts, sync/lifecycle, migration e regressão 9.5.1 catalogados.
 - **Data da última decisão:** não definida.
 
