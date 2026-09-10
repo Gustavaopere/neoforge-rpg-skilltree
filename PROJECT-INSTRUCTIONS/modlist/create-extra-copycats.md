@@ -1,5 +1,33 @@
 # Create: Extra Copycats — 1.0.2
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db81e3b1bcc77352dc00ff  
+> Estado no momento da exportação: `Integrado ao Github`  
+> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods top-level  
+> Exportado/reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Create: Extra Copycats
+- **Arquivo JAR:** `extra_copycats-1.0.2.jar`
+- **Versão 1.21.1:** `1.0.2`
+- **Categoria:** Visual; Tecnologia
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-extra-copycats
+- **Função:** Addon Create/Copycats que adiciona novos copycat shapes, incluindo Copycat Collapsible, Copycat Cabinet Door e, na 1.0.2, Copycat Collapsible Grid, preservando material copiado e edição via Wrench.
+- **Dependências:** Create 6.0.10 + Create: Copycats+ 3.0.9+mc.1.21.1-neoforge estão fisicamente presentes. Aero Copycats/Copycat Wing podem integrar shapes ao ecossistema Aeronautics, mas possuem escopo distinto.
+- **Compatibilidade/Riscos:** Riscos: shape ficar redundante após update do Copycats+, state/material serialization drift, wrench interaction conflict, schematic/contraption perder material, Aero Copycats não reconhecer shape novo, model/culling bounds extremos e client/server desync de edição.
+- **Sobreposição:** Candidato a redundância parcial apenas se Copycats+ upstream incorporar os mesmos registry IDs/shapes. Aero Copycats e Copycat Wing tratam integrações aeronautics, não substituição geral de shapes.
+- **Observações:** Release 1.0.2 adiciona Copycat Collapsible Grid. O arquivo físico NeoForge é `extra_copycats-1.0.2.jar`; algumas listagens públicas exibem naming inconsistente entre loaders, mas a identidade local/hash são autoritativos.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `extra_copycats-1.0.2.jar`, mod id `extra_copycats`, versão 1.0.2 e SHA-1 434eca37397ce4ed35b2826dd854cc5e2f8f67ae; Create 6.0.10 e Copycats+ 3.0.9 presentes.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Extra Copycats 1.0.2; Collapsible/Cabinet Door/Grid, material/state ownership, wrench interactions, schematics/contraptions, lifecycle, multiplayer, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `extra_copycats-1.0.2.jar` · mod id `extra_copycats` · versão `1.0.2` · NeoForge 1.21.1 · Client & Server. Base física: **Create 6.0.10** + **Create: Copycats+ 3.0.9+mc.1.21.1-neoforge**.
 
 ## 1. Papel no modpack
