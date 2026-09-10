@@ -1,5 +1,31 @@
 # EMF Compat: Iron's Spells — 2.0.0
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3d369db9f0db81cba5f3fae7c9af4fd0  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** EMF Compat: Iron's Spells
+- **Arquivo JAR:** `emf_compat_iron_spells_1.21.1_2.0.0.jar`
+- **Versão 1.21.1:** `2.0.0`
+- **Categoria:** Compat; Visual; Magia
+- **Decisão:** Manter
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-irons-spells-n-spellbooks
+- **Função:** Compat client-side que preserva a pose de conjuração do Iron's Spells em modelos de jogador animados por EMF, capturando os dois braços enquanto cabeça/corpo/pernas permanecem sob EMF.
+- **Dependências:** Iron's Spells 'n Spellbooks 3.16.3 + Entity Model Features 3.3.5 + Entity Texture Features 7.2.1 + EMF Compat Core 2.0.0 no runtime físico.
+- **Compatibilidade/Riscos:** Riscos de arms pose ser sobrescrita/duplicada, head/body/legs indevidamente capturados, first/third mismatch, outro animation mod competir pelos braços e Core/EMF/ISS version drift. A página oficial ainda mostra file listing 1.0.0; a modlist física atual, porém, confirma o JAR 2.0.0 e SHA-1 05817fa9159a0b672bfb3667ec248ae05e7a6388. Associação externa anterior a outro hash não prevalece sobre a authority física.
+- **Sobreposição:** Complementa ISS + EMF/ETF e atua apenas na pose de cast. Não substitui EFIS: EFIS usa Epic Fight animation/cancel logic; EMF Compat preserva pose contra override EMF. As duas bridges tocam a mesma superfície visual e precisam QA conjunto.
+- **Observações:** Projeto é Client-only. Documentação oficial: casting captura `Both arms`; head, body e legs ficam sob EMF. Funciona para outros jogadores e foi testado com Fresh Animations: Player Extension e Detailed Animations. Fail-closed: 2.0.0 vem do filename/JAR físico; a metadata física também declara 2.0.0. A listagem pública antiga e qualquer associação externa de hash divergente não substituem o artefato físico atual.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `emf_compat_iron_spells_1.21.1_2.0.0.jar`, mod id `emf_compat_iron_spells`, versão 2.0.0 e SHA-1 05817fa9159a0b672bfb3667ec248ae05e7a6388. A página oficial fornece escopo/pose boundary Client-only; uma associação externa anterior ao hash 515b545870fce128bbf01a0ccacdd19566ed3b22 diverge do artefato físico e não é usada como authority.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — EMF Compat Iron's Spells físico 2.0.0; both-arm cast pose capture, EMF body-part boundary, multiplayer rendering, client-only lifecycle, índice público divergente, riscos e testes catalogados.
+- **Data da última decisão:** 2026-09-06
+
 > **Runtime físico confirmado:** `emf_compat_iron_spells_1.21.1_2.0.0.jar` · mod id `emf_compat_iron_spells` · versão física `2.0.0` · NeoForge 1.21.1 · **Client-only**.
 
 ## 1. Papel no modpack
@@ -40,9 +66,9 @@ A modlist física contém:
 A linha física está alinhada entre Core e consumer.
 
 ## 7. Divergência do índice público
-A página oficial ainda exibe o arquivo 1.0.0 como main/recent file, mas o runtime físico é `2.0.0` e seu SHA-1 `515b5458...b22` é associado por índice atual ao **CurseForge file 8793934**, publicado em 02/09/2026.
+A página oficial ainda exibe o arquivo 1.0.0 como main/recent file, mas o runtime físico atual é `2.0.0` e a modlist canônica registra SHA-1 `05817fa9159a0b672bfb3667ec248ae05e7a6388`.
 
-Regra fail-closed: o comportamento funcional documentado vem da página oficial; a identificação 2.0.0 vem do artefato físico/hash/file index, sem fingir que a listagem antiga já foi atualizada.
+Uma associação externa anterior ao hash `515b545870fce128bbf01a0ccacdd19566ed3b22` diverge do artefato físico atual e não é usada como authority. Regra fail-closed: comportamento funcional documentado vem da página oficial; identidade instalada vem da modlist/JAR físico.
 
 ## 8. Relação com EFIS
 O pack também possui **Epic Fight x Iron's Spells: Enhanced Animations 3.1.0**.
@@ -101,6 +127,6 @@ Cada cliente restaura a pose dos braços com base no state normal recebido. O he
 ## 14. Evidências
 - modlist física canônica: JAR/mod id/version/hash + stack ISS/EMF/ETF/Core;
 - página oficial: Client-only, objetivo, both-arm capture, head/body/legs EMF, other-player support;
-- índice atual de arquivos: SHA-1 físico associado a file 8793934 / versão 2.0.0.
+- modlist física: SHA-1 `05817fa9159a0b672bfb3667ec248ae05e7a6388`; associação externa divergente a `515b...b22` não é tratada como authority.
 
 > **Boundary canônico:** esta bridge corrige somente a **pose visual de cast contra override EMF**. Iron's Spells continua authority do spell.
