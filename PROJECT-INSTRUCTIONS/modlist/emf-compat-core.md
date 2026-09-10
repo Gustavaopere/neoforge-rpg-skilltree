@@ -21,7 +21,7 @@
 - **Compatibilidade/Riscos:** Client-only e altamente sensível à ordem de render/pose. Riscos: capture/restore em fase errada, braços/corpo/cabeça aplicados duas vezes, primeira e terceira pessoa divergirem, consumer em versão diferente, EMF update alterar pose pipeline e outro player-animation mod competir pela mesma parte do corpo.
 - **Sobreposição:** Não substitui EMF/ETF nem os consumers específicos. É infraestrutura de pose precedence; qualquer outro core de player-animation que toque os mesmos transforms precisa coexistência deliberada.
 - **Observações:** A documentação oficial 2.0.0 define o Core como required shared library para todos os EMF Compat addons. Ele não adiciona gameplay visível; captura a pose produzida por outro mod antes da sobreposição EMF e a restaura depois, preservando a animação externa.
-- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `emf_compat_core_1.21.1_2.0.0.jar`, mod id `emf_compat_core`, versão 2.0.0 e SHA-1 1f05ffd2f9fa672dc2ecff3c32de092cdbcde989. CurseForge oficial confirma release 2.0.0 NeoForge 1.21.1 Client de 02/09/2026.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `emf_compat_core_1.21.1_2.0.0.jar`, mod id `emf_compat_core`, versão 2.0.0 e SHA-1 e22256acaaabc43d4043b119a748e8f52e27a451. CurseForge oficial confirma release 2.0.0 NeoForge 1.21.1 Client de 02/09/2026.
 - **Histórico da decisão:** vazio.
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — EMF Compat Core 2.0.0; pose capture/restore, client-only boundary, consumer modules, lifecycle, render precedence, risks and tests cataloged.
 - **Data da última decisão:** 2026-09-06
