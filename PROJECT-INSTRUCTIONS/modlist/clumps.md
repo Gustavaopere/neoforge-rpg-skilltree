@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db81ce805cc3540cc0d1c2  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist.txt`, 595 mods top-level  
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -20,9 +21,9 @@
 - **Compatibilidade/Riscos:** Riscos com mods que substituem XP orb merge/pickup/value settlement, vacuum/XP storage, magnetism ou perks acionados por pickup. 19.0.0.1 é o port 1.21.1 que restaura/corrige o funcionamento Forge/NeoForge da linha; XP total não pode ser perdido ou creditado duas vezes.
 - **Sobreposição:** Não substitui otimizações gerais de memória/render/culling. Sobreposição concreta existe apenas com mods que alteram diretamente XP orb spawning, merging, pickup ou settlement.
 - **Observações:** mod id `clumps`; runtime 19.0.0.1. Objetivo oficial: clump XP orbs together to reduce lag. Release 19.0.0.1 porta para 1.21.1 e corrige/restaura suporte Forge.
-- **Procedência:** Modlist física mais recente de 07/09/2026 + CurseForge oficial Clumps 19.0.0.1 para NeoForge 1.21.1 + source oficial do projeto usado para o contrato de agrupamento de XP orbs.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Clumps 19.0.0.1 para NeoForge 1.21.1 + source oficial do projeto usado para o contrato de agrupamento de XP orbs.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Clumps 19.0.0.1 foi reconfirmado no JAR físico e reconstruído como otimização específica de XP orbs. A presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — XP-orb merge/value authority, pickup interoperability, lifecycle, multiplayer e regressão 19.0.0.1 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Clumps 19.0.0.1 físico confirmado; XP-orb merge/value authority, pickup interoperability, lifecycle, multiplayer e regressão da linha 19.0.0.1 confirmados no QC global #98. Runtime QA/benchmark não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
