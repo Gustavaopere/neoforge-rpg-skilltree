@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db816582e5d657d24d1e2f  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist.txt`, 595 mods top-level  
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -20,9 +21,9 @@
 - **Compatibilidade/Riscos:** Grande superfície de registries/assets/recipes. Riscos em tags de blocos, connected/translucent rendering, recipe viewers, UI de workbench e compat com mods que adicionam variantes do mesmo material. A 4.0.2 corrige crafting e adiciona integração JEI/agrupamento REI; issues atuais ainda mostram edge cases de render/tags e interação com Create.
 - **Sobreposição:** Sobreposição estética ampla com outros mods decorativos, mas não equivalência automática. Conflito só deve ser afirmado quando houver registry/tag/recipe/resource collision concreta.
 - **Observações:** mod id `chipped`; runtime 4.0.2. Projeto oficial declara 10.000+ building blocks. A release 4.0.2 corrige bug de crafting, adiciona feature JEI e agrupamento automático REI.
-- **Procedência:** Modlist física mais recente de 07/09/2026 + CurseForge oficial Chipped 4.0.2 + source oficial terrarium-earth/Chipped branch 1.21.x + changelog/issues oficiais usados como regression evidence.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Chipped 4.0.2 + source oficial terrarium-earth/Chipped branch 1.21.x + changelog/issues oficiais usados como regression evidence.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Chipped 4.0.2 foi reconfirmado no JAR físico e reconstruído ao padrão técnico. A instalação atual não foi convertida automaticamente em decisão de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — 10k+ decorative scope, workbench/recipe-viewer pipeline, rendering/tags, client/server lifecycle e regressões 4.0.2 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Chipped 4.0.2 físico confirmado; 10.000+ decorative scope, workbench/recipe-viewer pipeline, rendering/tags, client/server lifecycle e regressões 4.0.2 confirmados no QC global #92. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
