@@ -20,8 +20,8 @@
 - **Compatibilidade/Riscos:** Riscos em parse/persistência de configs JSON, logging de erros, chunk-load diagnostics e proteções de state inválido. A 4.1 altera apenas formatação de line breaks para legibilidade e declara compatibilidade com configs antigos.
 - **Sobreposição:** Biblioteca técnica específica; pode coexistir com outras config/logging/core libraries. Similaridade de utilidades não autoriza substituir Cupboard sem portar seus consumidores.
 - **Observações:** mod id `cupboard`; runtime 4.1. Changelog 4.1: line breaks mais legíveis em config, sem afetar configs antigos. A documentação da library inclui JSON config framework, stacktraces completos, logging de command/sync chunk-load errors e proteções contra rotações inválidas de entidades.
-- **Procedência:** Modlist física canônica de 08/09/2026, 600 top-levels + runtime 4.1 + CurseForge oficial `cupboard-1.21.1-4.1.jar` File ID 8749806 e documentação oficial da library.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Cupboard 4.1 foi reconfirmado como `Instalado` na modlist física de 600; o dossiê Alex já aplicado foi preservado e necessidade consumer-driven não foi convertida em decisão curatorial.
+- **Procedência:** Modlist física canônica de 08/09/2026, 595 top-levels + runtime 4.1 + CurseForge oficial `cupboard-1.21.1-4.1.jar` File ID 8749806 e documentação oficial da library.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Cupboard 4.1 foi reconfirmado como `Instalado` na modlist física de 595; o dossiê Alex já aplicado foi preservado e necessidade consumer-driven não foi convertida em decisão curatorial.
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — config/logging/protection library surfaces, consumer authority, lifecycle, error diagnostics e delta 4.1 catalogados.
 - **Data da última decisão:** não definida.
 
