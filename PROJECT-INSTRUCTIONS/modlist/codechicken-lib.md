@@ -11,7 +11,7 @@
 - **Mod:** CodeChicken Lib
 - **Arquivo JAR:** `CodeChickenLib-1.21.1-4.6.1.529.jar`
 - **Versão 1.21.1:** `4.6.1.529`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — math/render/network/config/ASM library surfaces, consumer contract, client/server lifecycle, packet/version drift e Quack jarjar catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — CodeChicken Lib 4.6.1.529 físico confirmado; math/render/network/config/ASM surfaces, consumer contracts, client/server lifecycle, packet/version drift e Quack 0.4.10.115 jar-in-jar confirmados no QC global #100. Runtime QA não executado.
 - **Categoria:** Biblioteca
 - **Compatibilidade/Riscos:** Riscos de ABI/version drift em rendering, packets/network codecs, config e transformations; client renderer no dedicated server; packet mismatch entre cliente/servidor; e Quack embedded coexistindo com outras cópias. Não é substituível por outras libraries genéricas.
 - **Decisão:** Sem decisão
@@ -21,9 +21,9 @@
 - **Função:** Biblioteca TheCBProject/ChickenBones com infraestrutura compartilhada para 3D math/transformations, model rendering, networking/packets, configs, colours, ASM e outras utilities usadas por mods consumidores.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CodeChicken Lib 4.6.1.529 foi reconfirmado no JAR físico e reconstruído ao padrão técnico. Sua presença como dependency library não foi convertida em decisão curatorial.
 - **Observações:** mod id `codechickenlib`; runtime 4.6.1.529. Projeto oficial declara libraries de 3D math/transformations, rendering, networking, configs, colours, ASM e outras utilities. Quack 0.4.10.115 é embedded, não top-level.
-- **Procedência:** Modlist física mais recente de 07/09/2026 + CurseForge oficial CodeChicken Lib 4.6.1.529 + source oficial TheCBProject/CodeChickenLib + inspeção/registro físico do Quack jar-in-jar.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial CodeChicken Lib 4.6.1.529 + source oficial TheCBProject/CodeChickenLib + registro físico do Quack 0.4.10.115 embarcado via jar-in-jar.
 - **Sobreposição:** Library específica TheCBProject. Coexistência com outras math/render/network/config APIs não implica redundância binária; consumers compilam contra contracts próprios.
-- **Data da última decisão:** vazio
+- **Data da última decisão:** não definida
 
 ## Dossiê operacional — padrão Alex's Mobs
 
