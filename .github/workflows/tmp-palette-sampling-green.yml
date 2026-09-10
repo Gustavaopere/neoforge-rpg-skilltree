@@ -1,0 +1,180 @@
+name: Temporary Palette Sampling Green
+
+on:
+  push:
+    branches:
+      - feat/blockbench-palette-sampling
+
+permissions:
+  contents: write
+
+jobs:
+  green:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v7
+        with:
+          ref: feat/blockbench-palette-sampling
+          fetch-depth: 0
+
+      - name: Apply minimal read-only palette sampling production patch
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/blockbench-plugin/uv_texture_adapter.js')
+          text = path.read_text()
+
+          old_import = "const {MAX_TEXTURE_PIXELS_PER_BATCH} = require('../core/uv-texture/uv_texture_engine.js');"
+          new_import = "const {MAX_TEXTURE_PIXELS_PER_BATCH, MAX_PALETTE_REPLACEMENTS} = require('../core/uv-texture/uv_texture_engine.js');"
+          if text.count(old_import) != 1:
+              raise SystemExit(f'palette import anchor: expected exactly one anchor, found {text.count(old_import)}')
+          text = text.replace(old_import, new_import, 1)
+
+          anchor = "  function normalizedTextureRef(value) {"
+          if text.count(anchor) != 1:
+              raise SystemExit(f'palette sampling insertion anchor: expected exactly one anchor, found {text.count(anchor)}')
+
+          implementation = r'''  function samplePalette(input) {
+    if (!input || typeof input !== 'object' || Array.isArray(input)) {
+      fail('INVALID_PALETTE_SAMPLE', 'Palette sample request must be an object.');
+    }
+    for (const key of Object.keys(input)) {
+      if (key !== 'textureId' && key !== 'region') {
+        fail('INVALID_PALETTE_SAMPLE', `Palette sample request contains unsupported field "${key}".`);
+      }
+    }
+    if (typeof input.textureId !== 'string' || !input.textureId.trim()) {
+      fail('INVALID_TEXTURE_ID', 'Palette sample textureId must be a non-empty string.');
+    }
+    const region = input.region;
+    if (!region || typeof region !== 'object' || Array.isArray(region)) {
+      fail('INVALID_PIXEL_REGION', 'Palette sample region must be an object.');
+    }
+    for (const key of Object.keys(region)) {
+      if (!['x', 'y', 'width', 'height'].includes(key)) {
+        fail('INVALID_PIXEL_REGION', `Palette sample region contains unsupported field "${key}".`);
+      }
+    }
+    const normalizedRegion = {
+      x: region.x,
+      y: region.y,
+      width: region.width,
+      height: region.height,
+    };
+    if (!Number.isSafeInteger(normalizedRegion.x) || normalizedRegion.x < 0
+      || !Number.isSafeInteger(normalizedRegion.y) || normalizedRegion.y < 0
+      || !Number.isSafeInteger(normalizedRegion.width) || normalizedRegion.width < 1
+      || !Number.isSafeInteger(normalizedRegion.height) || normalizedRegion.height < 1) {
+      fail('INVALID_PIXEL_REGION', 'Palette sample region must use non-negative integer x/y and positive integer width/height.');
+    }
+
+    const textureId = input.textureId.trim();
+    const texture = requireEditableTexture(requireTexture(textureId));
+    requireRegionInBounds(texture, {type: 'texture_replace_palette', region: normalizedRegion});
+    const sampledPixels = normalizedRegion.width * normalizedRegion.height;
+    if (!Number.isSafeInteger(sampledPixels) || sampledPixels > MAX_TEXTURE_PIXELS_PER_BATCH) {
+      fail('TEXTURE_PIXEL_BUDGET_EXCEEDED', `Palette sample may read ${sampledPixels} pixels; maximum is ${MAX_TEXTURE_PIXELS_PER_BATCH}.`);
+    }
+
+    const image = texture.ctx.getImageData(
+      normalizedRegion.x,
+      normalizedRegion.y,
+      normalizedRegion.width,
+      normalizedRegion.height,
+    );
+    if (!image || !image.data || image.data.length !== sampledPixels * 4) {
+      fail('BLOCKBENCH_API_UNAVAILABLE', 'Palette sample did not receive the expected RGBA bitmap data.');
+    }
+
+    const histogram = new Map();
+    for (let offset = 0; offset < image.data.length; offset += 4) {
+      const rgba = [image.data[offset], image.data[offset + 1], image.data[offset + 2], image.data[offset + 3]];
+      const key = rgba.join(',');
+      const current = histogram.get(key);
+      if (current) current.count += 1;
+      else histogram.set(key, {rgba, count: 1});
+    }
+
+    const colors = Array.from(histogram.values()).sort((left, right) => {
+      if (left.count !== right.count) return right.count - left.count;
+      for (let channel = 0; channel < 4; channel += 1) {
+        if (left.rgba[channel] !== right.rgba[channel]) return left.rgba[channel] - right.rgba[channel];
+      }
+      return 0;
+    });
+    const uniqueColorCount = colors.length;
+    const outputColors = colors.slice(0, MAX_PALETTE_REPLACEMENTS).map((entry) => Object.freeze({
+      rgba: Object.freeze(entry.rgba.slice()),
+      count: entry.count,
+    }));
+
+    return Object.freeze({
+      projectRevision: getRevision(),
+      textureId,
+      region: Object.freeze({...normalizedRegion}),
+      sampledPixels,
+      uniqueColorCount,
+      truncated: uniqueColorCount > MAX_PALETTE_REPLACEMENTS,
+      colors: Object.freeze(outputColors),
+    });
+  }
+
+'''
+          text = text.replace(anchor, implementation + anchor, 1)
+
+          return_anchor = "  return Object.freeze({\n    getRevision,\n    approveTextureImport,"
+          replacement = "  return Object.freeze({\n    getRevision,\n    samplePalette,\n    approveTextureImport,"
+          if text.count(return_anchor) != 1:
+              raise SystemExit(f'palette sampling export anchor: expected exactly one anchor, found {text.count(return_anchor)}')
+          text = text.replace(return_anchor, replacement, 1)
+
+          path.write_text(text)
+          PY
+
+      - name: Syntax check modular adapter
+        run: node --check PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/blockbench-plugin/uv_texture_adapter.js
+
+      - name: Run targeted palette sampling regression
+        working-directory: PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit
+        run: node --test rpg_asset_toolkit.palette_sampling.test.js
+
+      - name: Regenerate standalone bundle
+        working-directory: PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit
+        run: node build_toolkit_bundle.js --write
+
+      - name: Verify deterministic standalone
+        working-directory: PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit
+        run: node build_toolkit_bundle.js --check
+
+      - name: Run aggregate toolkit regression
+        working-directory: PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit
+        run: node --test rpg_asset_toolkit.test.js
+
+      - name: Verify repository validator
+        run: python3 PROJECT-INSTRUCTIONS/skills/scripts/validate_skill_repository.py
+
+      - name: Commit tested palette sampling production
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/tmp-palette-sampling-green.yml
+          git add PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/blockbench-plugin/uv_texture_adapter.js
+          git add PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js
+          mapfile -t staged < <(git diff --cached --name-only | sort)
+          expected=(
+            ".github/workflows/tmp-palette-sampling-green.yml"
+            "PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/blockbench-plugin/uv_texture_adapter.js"
+            "PROJECT-INSTRUCTIONS/skills/tools/blockbench/rpg-asset-toolkit/rpg_asset_toolkit.js"
+          )
+          mapfile -t expected_sorted < <(printf '%s\n' "${expected[@]}" | sort)
+          if [[ "$(printf '%s\n' "${staged[@]}")" != "$(printf '%s\n' "${expected_sorted[@]}")" ]]; then
+            printf 'Unexpected staged paths:\n'
+            printf '  %s\n' "${staged[@]}"
+            exit 1
+          fi
+          git commit -m "feat(blockbench): add deterministic palette sampling"
+          git push origin HEAD:feat/blockbench-palette-sampling
