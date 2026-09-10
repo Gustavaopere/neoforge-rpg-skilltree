@@ -1,5 +1,33 @@
 # FamiliarsLib — runtime 1.21.1-1.7
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db816aba8ff6b4c353e137  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** FamiliarsLib
+- **Arquivo JAR:** `familiarslib-1.21.1-1.7.1.jar`
+- **Versão 1.21.1:** `1.21.1-1.7`
+- **Categoria:** Biblioteca; Magia
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/familiarslib
+- **Função:** Core/API do ecossistema Alshanex's Familiars: abstrações para familiars, beds, storage, player familiar state e pets melee/flying/spellcasting, além de compat/utilidades reutilizáveis.
+- **Dependências:** Consumer direto confirmado: Alshanex's Familiars 1.21.1_v4.0.3. Source baseline: Iron's Spells 3.15.5, GeckoLib 4.7.5.1, Curios 9.2.2 e Player Animator 2.0.1; o pack usa Iron's 3.16.3 e versões atuais das demais bases, portanto há regression gate de API.
+- **Compatibilidade/Riscos:** Library transversal de familiar state/storage/casting. Riscos: API drift, stale PlayerFamiliarData, storage dupe, owner loss em dimension change, double spell settlement e client classloading. Filename/publicação 1.7.1 e metadata/source `1.21.1-1.7` são divergência real preservada.
+- **Sobreposição:** Não é duplicata do Alshanex's Familiars: é sua biblioteca/core. Iron's Spells, Curios, GeckoLib e Player Animator permanecem providers de seus próprios contratos.
+- **Observações:** Não normalizar `1.7.1` para `1.21.1-1.7` nem vice-versa: filename/publicação e metadata/source usam strings diferentes. Source confirma AbstractFamiliarBed/Storage, PlayerFamiliarData, spellcasting pet bases e compat Curios.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `familiarslib-1.21.1-1.7.1.jar`, mod id `familiarslib`, metadata version `1.21.1-1.7` e SHA-1 7fa3f3116e35c12456425ae195924ced33fcc2eb. Source oficial também declara `mod_version=1.21.1-1.7`; CurseForge publica filename/release 1.7.1.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — FamiliarsLib: versão física/source reconciliada, abstrações de familiar/bed/storage, player state, spellcasting pets, version drift, lifecycle, multiplayer, riscos e testes catalogados.
+- **Data da última decisão:** 2026-08-26
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `familiarslib-1.21.1-1.7.1.jar` · mod id `familiarslib` · metadata runtime `1.21.1-1.7` · NeoForge 1.21.1. O filename/publicação usa `1.7.1`, enquanto o próprio source declara `mod_version=1.21.1-1.7`; as duas strings são preservadas, sem normalização artificial.
 
 ## 1. Papel no modpack
