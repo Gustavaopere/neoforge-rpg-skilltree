@@ -2,8 +2,9 @@
 
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c869db9f0db8141b838ce93a7d54591  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -11,17 +12,18 @@
 - **Arquivo JAR:** `betterlockon-2.0.8-neoforge.jar`
 - **Versão 1.21.1:** `2.0.8-neoforge`
 - **Categoria:** RPG; QoL; Visual
+- **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-lock-on
 - **Função:** Extensão client-side do lock-on do Epic Fight: indicador de alvo/vida, troca lateral de alvo, aquisição automática do alvo próximo e melhorias de câmera/FOV/transições.
 - **Dependências:** Integração funcional com Epic Fight; pack usa Epic Fight 21.17.3.1. A release pública é 2.0.8, enquanto o metadata runtime físico declara 2.0.8-neoforge.
 - **Compatibilidade/Riscos:** Conflitos possíveis com outros mods que alteram câmera, targeting, primeira pessoa, dodge/rotation ou HUD. Lock visual não pode se tornar authority de hit/dano. Validar mudanças de API com Epic Fight 21.17.3.1.
 - **Sobreposição:** Complementa o lock-on do Epic Fight. Pode sobrepor HUD/câmera/target selection com mods de câmera ou combat QoL, mas não substitui o combat pipeline do Epic Fight.
 - **Observações:** Runtime preservado como 2.0.8-neoforge. Recursos documentados na linha 2.x: lock icon/health, target switch por mouse, auto-unlock/death retarget, nearest-target acquisition, team filtering, camera transition e dynamic FOV.
-- **Procedência:** Modlist física atual de 07/09/2026 + metadata runtime + CurseForge/Modrinth oficiais Better Lock On 2.0.8 e changelogs 2.0.x.
-- **Histórico da decisão:** vazio.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 07/09/2026 — targeting/UI/camera lifecycle, Epic Fight authority, multiplayer e riscos de câmera/lock catalogados.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `betterlockon-2.0.8-neoforge.jar`, mod id `betterlockon`, runtime `2.0.8-neoforge` e SHA-1 94926350c5500857097c993e64259a35c93c8eae. CurseForge/Modrinth oficiais sustentam a release pública 2.0.8; Epic Fight físico é 21.17.3.1.
+- **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, Better Lock On 2.0.8-neoforge foi revalidado contra o snapshot físico atual e Epic Fight 21.17.3.1; a presença continua documental e não foi convertida em decisão curatorial.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better Lock On 2.0.8-neoforge físico/release confirmado; targeting/HUD/camera lifecycle e boundary de authority com Epic Fight 21.17.3.1 preservados. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
