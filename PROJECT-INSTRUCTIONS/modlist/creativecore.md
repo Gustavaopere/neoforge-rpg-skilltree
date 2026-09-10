@@ -20,8 +20,8 @@
 - **Compatibilidade/Riscos:** Riscos de version drift em GUI/config/network/render APIs e model loading. A 2.13.44 reworka modelos de bloco/item e corrige múltiplos filters não carregados; o upstream avisa impacto concreto em LittleTiles e LittleFrames.
 - **Sobreposição:** Core específica da CreativeMD; coexistência com outras GUI/config/network/render libraries não implica redundância binária. Consumers compilam contra contratos próprios.
 - **Observações:** mod id `creativecore`; runtime 2.13.44. Changelog 2.13.44: reworked models for block/item, afetando LittleTiles/LittleFrames, e fix de multiple filters não carregados corretamente.
-- **Procedência:** Modlist física canônica de 08/09/2026, 600 top-levels + runtime 2.13.44 + CurseForge/Modrinth oficiais CreativeCore 2.13.44 NeoForge 1.21.1.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CreativeCore 2.13.44 foi reconfirmado como `Instalado` na modlist física de 600; o dossiê Alex já aplicado foi preservado e a presença não foi convertida em decisão curatorial.
+- **Procedência:** Modlist física canônica de 08/09/2026, 595 top-levels + runtime 2.13.44 + CurseForge/Modrinth oficiais CreativeCore 2.13.44 NeoForge 1.21.1.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CreativeCore 2.13.44 foi reconfirmado como `Instalado` na modlist física de 595; o dossiê Alex já aplicado foi preservado e a presença não foi convertida em decisão curatorial.
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — library/consumer authority, GUI/config/network/render surfaces, model/filter lifecycle, side e regressões 2.13.44 catalogados.
 - **Data da última decisão:** não definida.
 
