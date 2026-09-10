@@ -1,5 +1,31 @@
 # EMF Compat: Core — 2.0.0
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3d369db9f0db81739387fe686a5f4837  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** EMF Compat: Core
+- **Arquivo JAR:** `emf_compat_core_1.21.1_2.0.0.jar`
+- **Versão 1.21.1:** `2.0.0`
+- **Categoria:** Biblioteca; Visual; Compat
+- **Decisão:** Dependência
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-core
+- **Função:** Biblioteca client-side compartilhada da família EMF Compat que captura/restaura poses de player para impedir que Entity Model Features sobrescreva animações de outros mods.
+- **Dependências:** Entity Model Features 3.3.5 e Entity Texture Features 7.2.1 estão presentes. Consumers físicos neste lote: EMF Compat: Create 2.0.0 e EMF Compat: Iron's Spells 2.0.0.
+- **Compatibilidade/Riscos:** Client-only e altamente sensível à ordem de render/pose. Riscos: capture/restore em fase errada, braços/corpo/cabeça aplicados duas vezes, primeira e terceira pessoa divergirem, consumer em versão diferente, EMF update alterar pose pipeline e outro player-animation mod competir pela mesma parte do corpo.
+- **Sobreposição:** Não substitui EMF/ETF nem os consumers específicos. É infraestrutura de pose precedence; qualquer outro core de player-animation que toque os mesmos transforms precisa coexistência deliberada.
+- **Observações:** A documentação oficial 2.0.0 define o Core como required shared library para todos os EMF Compat addons. Ele não adiciona gameplay visível; captura a pose produzida por outro mod antes da sobreposição EMF e a restaura depois, preservando a animação externa.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `emf_compat_core_1.21.1_2.0.0.jar`, mod id `emf_compat_core`, versão 2.0.0 e SHA-1 1f05ffd2f9fa672dc2ecff3c32de092cdbcde989. CurseForge oficial confirma release 2.0.0 NeoForge 1.21.1 Client de 02/09/2026.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — EMF Compat Core 2.0.0; pose capture/restore, client-only boundary, consumer modules, lifecycle, render precedence, risks and tests cataloged.
+- **Data da última decisão:** 2026-09-06
+
 > **Runtime físico confirmado:** `emf_compat_core_1.21.1_2.0.0.jar` · mod id `emf_compat_core` · versão `2.0.0` · NeoForge 1.21.1 · **Client-only**.
 
 ## 1. Papel no modpack
