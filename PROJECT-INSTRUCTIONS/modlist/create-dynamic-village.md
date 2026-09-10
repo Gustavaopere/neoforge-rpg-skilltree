@@ -1,5 +1,33 @@
 # Create: Dynamic Village — 0.9
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db8157a2d1e8e54f233bbf  
+> Estado no momento da exportação: `Integrado ao Github`  
+> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods top-level  
+> Exportado/reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Create: Dynamic Village
+- **Arquivo JAR:** `dynamicvillage-0.9-1.21.1.jar`
+- **Versão 1.21.1:** `0.9`
+- **Categoria:** Worldgen; Tecnologia; Mobs
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/dynamic-village
+- **Função:** Integra Create ao sistema de villages com profissões, job sites, trades, loot e 20 buildings temáticos distribuídos por biomas, além de controles de tamanho/densidade de vilas.
+- **Dependências:** Create. Runtime físico: Create 6.0.10 + Dynamic Village 0.9. O pack também contém Integrated Villages 1.3.3+1.21.1-neoforge, que atua na mesma superfície de settlements/worldgen e exige regressão conjunta.
+- **Compatibilidade/Riscos:** Riscos em profissões/job-site collision, trades duplicados, buildings concorrendo com outros village mods, config de density/size produzindo vilas excessivas, air-carving/estrutura substituindo terreno e data-defined profession/trade drift. Integrated Villages está fisicamente presente e é sobreposição concreta a testar.
+- **Sobreposição:** Sobreposição parcial e intencional com outros mods de villages/settlements. Não substitui Create nem villagers vanilla; injeta conteúdo Create no ecossistema de aldeias. Integrated Villages 1.3.3 está presente e deve ser testado em conjunto.
+- **Observações:** 0.9 refaz interiores dos 20 buildings, corrige salas sem iluminação/chests ausentes, remove o anel de ar ao redor das construções e ajusta geração por bioma. A linha atual também expõe extensão data-defined para trades/buildings/professions; validar o schema efetivo da 0.9 antes de customização pesada.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `dynamicvillage-0.9-1.21.1.jar`, mod id `dynamicvillage`, versão 0.9 e Create 6.0.10. Publicação/source oficial confirmam quatro profissões, job sites, 20 buildings e mudanças/configs da 0.9.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — 0.9; 4 profissões/job sites, 20 buildings, trades/loot, village generation config, data-defined extensions, lifecycle, riscos e testes catalogados.
+- **Data da última decisão:** 2026-08-26
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `dynamicvillage-0.9-1.21.1.jar` · mod id `dynamicvillage` · versão `0.9` · NeoForge 1.21.1. O pack usa Create 6.0.10.
 
 ## 1. Papel no modpack
