@@ -19,9 +19,9 @@
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-creating-space
 - **Função:** Addon espacial de Create em que foguetes são construídos como contraptions e usados para viajar a outros planetas, com proposta de projeto inspirada em engenharia/ciência em vez de veículos prontos.
-- **Histórico da decisão:** 2026-08-22 — decisão vigente `Manter`: Creating Space foi recolocado/mantido junto de Northstar Redux para substituir Stellaris e evitar uma progressão espacial excessivamente tecnológica. Em 08/09/2026, a decisão e a coexistência deliberada foram preservadas na modlist física de 600.
+- **Histórico da decisão:** 2026-08-22 — decisão vigente `Manter`: Creating Space foi recolocado/mantido junto de Northstar Redux para substituir Stellaris e evitar uma progressão espacial excessivamente tecnológica. Em 08/09/2026, a decisão e a coexistência deliberada foram preservadas na modlist física de 595.
 - **Observações:** JAR `creatingspace-1.21.1-1.7.20.jar`; runtime 1.7.20; Release NeoForge 1.21.1 de 30/06/2026. Publicação 1.21.1 mais recente permanece 1.7.20 mesmo existindo 1.7.21 apenas para 1.20.1. Não foi localizado changelog granular da 1.7.20; detalhes version-specific adicionais ficam fail-closed.
-- **Procedência:** Modlist física canônica de 08/09/2026, 600 top-levels + runtime Creating Space 1.7.20 + CurseForge/Modrinth oficiais do projeto e build 1.7.20. Decisão formal histórica de 22/08/2026 preservada.
+- **Procedência:** Modlist física canônica de 08/09/2026, 595 top-levels + runtime Creating Space 1.7.20 + CurseForge/Modrinth oficiais do projeto e build 1.7.20. Decisão formal histórica de 22/08/2026 preservada.
 - **Sobreposição:** Northstar Redux também cobre exploração espacial, mas a coexistência foi escolhida deliberadamente. Não classificar como duplicata automática; comparar planetas, vehicle construction, progression e recursos concretos.
 - **Data da última decisão:** 2026-08-22
 
