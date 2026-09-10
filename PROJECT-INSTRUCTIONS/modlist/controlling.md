@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db81a5bb42ebfead6e7fb0  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist.txt`, 595 mods top-level  
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -20,9 +21,9 @@
 - **Compatibilidade/Riscos:** Baixo risco e focado em UI/input management. Riscos: conflitos com outros mods que substituem a Controls screen, modifier keybinds, UI scale/search cache e Searchables version drift. 19.0.5 corrige double modifier keybinds.
 - **Sobreposição:** Pode coexistir com outras utilidades de keybind enquanto não substituírem a mesma Controls screen de forma incompatível. Não altera a semântica da ação registrada pelos mods, apenas sua gestão/apresentação.
 - **Observações:** mod id `controlling`; runtime 19.0.5. Recursos: busca de keybinds, filtro de binds em conflito e visualização/gestão de teclas disponíveis; 19.0.5 corrige double modifier keybinds (#214).
-- **Procedência:** Modlist física canônica de 07/09/2026 + runtime 19.0.5 + CurseForge oficial Controlling 19.0.5 NeoForge 1.21.1 + documentação oficial do projeto.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + runtime 19.0.5 + CurseForge oficial Controlling 19.0.5 NeoForge 1.21.1 + documentação oficial do projeto.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Controlling 19.0.5 foi reconfirmado fisicamente e reconstruído como utilitário client-side de gestão de keybinds. A presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — keybind-search/conflict authority, Searchables dependency, client lifecycle, screen interoperability e regressão 19.0.5 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Controlling 19.0.5, Searchables dependency, keybind search/conflict authority, client lifecycle, screen interoperability e regressão de double modifier confirmados no QC global #108. Runtime UI QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
