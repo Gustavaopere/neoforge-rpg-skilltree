@@ -1,5 +1,31 @@
 # Epic Fight x Curios Compat — runtime 1.4 / artifact 2.2
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db81d5b310cef1a4264243  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Epic Fight x Curios Compat
+- **Arquivo JAR:** `Epic Fight x Curios Compat 2.2.jar`
+- **Versão 1.21.1:** `1.4`
+- **Categoria:** Compat; RPG; Visual
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epicfightcurioscompat
+- **Função:** Bridge de renderização/equipamento entre Epic Fight e Curios que corrige/anexa visualmente itens em slots Curios ao modelo/renderer Epic Fight e mantém compatibilidade com acessórios/back-slot de mods suportados.
+- **Dependências:** Epic Fight 21.17.3.1 + Curios API 9.5.1+1.21.1 estão fisicamente presentes. Providers locais relevantes à matriz publicada incluem Supplementaries 3.9.8, Sophisticated Backpacks 3.26.2 e Iron's Spells 3.16.3.
+- **Compatibilidade/Riscos:** Divergência legítima: filename/publicação 2.2, metadata runtime 1.4. A matriz pública 1.21.1 localizada cita Epic Fight 21.16.1, enquanto o pack usa 21.17.3.1; isso é version-drift gate. Riscos de accessory transform duplicado, slot não reconhecido, book/backpack/quiver clipping, stale Curios state e conflito com outros armor/player render bridges.
+- **Sobreposição:** Não substitui Curios ou Epic Fight. Atua na camada de attachment/render de equipamentos Curios no modelo Epic Fight; outras armor/player render bridges podem tocar os mesmos transforms e exigem precedence.
+- **Observações:** SHA-1 físico `3b13ee4590d3765249419c6f320f461cbf1c8f6d` identifica exatamente o arquivo CurseForge 7865987 publicado como `Epic Fight x Curios Compat 2.2.jar`; o metadata interno continua `1.4` e não deve ser normalizado para 2.2. Índices públicos secundários classificam o arquivo como client-only; side oficial não foi reextraído neste ciclo.
+- **Procedência:** Modlist física canônica de 08/09/2026 confirma `Epic Fight x Curios Compat 2.2.jar`, mod id `epicfight_curios_compat`, metadata version 1.4 e SHA-1 3b13ee4590d3765249419c6f320f461cbf1c8f6d. O hash liga o artefato ao CurseForge file 7865987; matriz pública do projeto foi usada apenas para escopo de slots/providers.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — EpicFight x Curios Compat artifact 2.2 / metadata 1.4; Curios slot rendering, local supported consumers, version drift, lifecycle, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
 > **Autoridade física:** `Epic Fight x Curios Compat 2.2.jar` · mod id `epicfight_curios_compat` · **metadata runtime `1.4`**. O filename/publicação é `2.2`; essa divergência é legítima e deve permanecer explícita. SHA-1: `3b13ee4590d3765249419c6f320f461cbf1c8f6d`.
 
 ## 1. Papel no modpack
