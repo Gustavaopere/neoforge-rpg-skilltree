@@ -1,5 +1,31 @@
 # EpheroLib — 1.2.0
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c869db9f0db819baa12f9f9d5fc5202  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** EpheroLib
+- **Arquivo JAR:** `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar`
+- **Versão 1.21.1:** `1.2.0`
+- **Categoria:** Biblioteca
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epherolib
+- **Função:** Biblioteca Client & Server para abstrair infraestrutura compartilhada entre loaders, incluindo configuração comum, networking, traduções server-side e armazenamento Gson por mundo para mods consumidores.
+- **Dependências:** NeoForge 1.21.1. O source/release oficial confirma EpheroLib 1.2.0 para NeoForge 1.21.1. Consumidor top-level direto não foi estabelecido de forma conclusiva apenas pela modlist física neste ciclo; não remover por inferência.
+- **Compatibilidade/Riscos:** Biblioteca de infraestrutura. Riscos: remover enquanto consumidor oculto/opcional ainda depende dela, config/network serialization drift, storage Gson incompatível após update, packet side mismatch e server-side translation/lang fallback. Não possui gameplay authority próprio.
+- **Sobreposição:** Pode cumprir funções semelhantes a outras libs de config/network/storage, mas não é substituível por elas sem compatibilidade binária/API explícita. Nenhum gameplay deve ser duplicado na ficha da biblioteca.
+- **Observações:** Runtime físico 1.2.0. Documentação do projeto descreve Configurate para config comum, abstraction de networking, server-side translations baseadas em Gson e storage abstraction por world. O catálogo não atribui gameplay específico nem consumidor não confirmado.
+- **Procedência:** Modlist física canônica de 08/09/2026 confirma `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar`, mod id `epherolib`, versão 1.2.0 e SHA-1 0ee19acd03b6f03b568b2682b7e662bfd8af73ef. GitHub/CurseForge/Modrinth oficiais sustentam o escopo de biblioteca.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — EpheroLib 1.2.0; cross-loader config/networking/translation/world-storage abstractions, side/lifecycle, consumer uncertainty, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
 > **Runtime físico confirmado:** `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar` · mod id `epherolib` · versão `1.2.0` · NeoForge 1.21.1 · **Client & Server**.
 
 ## 1. Papel no modpack
