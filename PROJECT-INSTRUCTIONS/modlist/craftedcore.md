@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c969db9f0db815b8de6c730d703bde3  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist.txt`, 595 mods top-level  
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -20,9 +21,9 @@
 - **Compatibilidade/Riscos:** Riscos principais: remoção com consumer ativo, version/API drift e dependência de dados/recursos compartilhados. A 5.8.2 remove data files destinados a versões anteriores a Minecraft 1.20.1; não atribuir mudança de gameplay à release.
 - **Sobreposição:** Biblioteca específica dos consumers ToCraft. Similaridade com outras core libraries não implica substituição binária; cada consumer depende de contracts próprios.
 - **Observações:** runtime 5.8.2; arquivo oficial `craftedcore-5.8.2.jar`. Changelog 5.8.2: remoção de data files para versões anteriores a 1.20.1. Projeto classificado como API/library, Client & Server.
-- **Procedência:** Modlist física canônica de 07/09/2026 + runtime 5.8.2 + CurseForge oficial CraftedCore 1.21-NeoForge 5.8.2 e documentação oficial ToCraft.
+- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime 5.8.2 + CurseForge oficial CraftedCore 1.21-NeoForge 5.8.2 + documentação oficial ToCraft.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CraftedCore 5.8.2 foi reconfirmado no pack físico e normalizado como biblioteca consumer-driven; a presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — consumer-driven library contract, shared data/resources, side/lifecycle, update boundary e delta 5.8.2 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — CraftedCore 5.8.2, consumer-driven library contract, shared data/resources, side/lifecycle e delta 5.8.2 confirmados no QC global #113. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
