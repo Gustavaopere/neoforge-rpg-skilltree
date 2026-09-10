@@ -1,5 +1,33 @@
 # Explosive Enhancement: Reforged — 1.1.2
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c869db9f0db81c2858bc1703ac36e26  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** Explosive Enhancement: Reforged
+- **Arquivo JAR:** `explosiveenhancement-neoforge-1.21.1-1.1.2.jar`
+- **Versão 1.21.1:** `1.1.2`
+- **Categoria:** Visual
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/explosive-enhancement-reforged
+- **Função:** Client-only visual enhancer de explosões que substitui/adiciona partículas e efeitos configuráveis sem alterar damage, knockback, block destruction ou explosion radius.
+- **Dependências:** Cliente NeoForge 1.21.1. A release física é a variante client-only 1.21/1.21.1; Iron's Spells 3.16.3 está presente e é relevante porque 1.1.2 inclui tempfix para o Creeper Head Projectile.
+- **Compatibilidade/Riscos:** Release 1.1.2 inclui tempfix para client crash ligado ao Creeper Head Projectile de Iron's Spells. Riscos: novos explosion/projectile edge cases, overlap com outros particle replacers, shader/particle performance, config drift e confundir efeito visual com raio/dano lógico.
+- **Sobreposição:** Sobreposição apenas com outros replacers de partículas/efeitos de explosão. Não é duplicata de TNT, spell, weapon ou physics mods que controlam a explosão lógica.
+- **Observações:** O arquivo instalado corresponde à linha client-only publicada para 1.21/1.21.1. Changelog 1.1.2 registra tempfix do crash causado pelo Creeper Head Projectile de Iron's Spells. Config publicado: `config/explosiveenhancement.toml`.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `explosiveenhancement-neoforge-1.21.1-1.1.2.jar`, mod id `explosiveenhancement`, versão 1.1.2 e SHA-1 fee0be3ffe494189733ceaeb7163a38b03098ea5. Iron's Spells 3.16.3 presente.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Explosive Enhancement 1.1.2; client-only explosion rendering, config, Iron's Creeper Head tempfix, lifecycle, multiplayer, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
+## Dossiê operacional — padrão Alex's Mobs
+
 > **Runtime físico confirmado:** `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` · mod id `explosiveenhancement` · versão `1.1.2` · NeoForge 1.21.1. O arquivo instalado corresponde à linha **client-only** 1.21/1.21.1 publicada pelo projeto.
 
 ## 1. Papel no modpack
