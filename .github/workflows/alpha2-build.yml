@@ -49,8 +49,14 @@ jobs:
       - name: Set up Gradle cache
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Verify repository Minecraft skill infrastructure
-        run: python3 PROJECT-INSTRUCTIONS/skills/scripts/validate_skill_repository.py
+      - name: Verify shared infrastructure authority boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e PROJECT-INSTRUCTIONS/skills
+          grep -Fq 'Gustavaopere/minecraft-mod-factory' AGENTS.md
+          grep -Fq 'Gustavaopere/minecraft-mod-factory' PROJECT-INSTRUCTIONS/README.md
+          grep -Fq 'Gustavaopere/minecraft-mod-factory' PROJECT-INSTRUCTIONS/engineering/AGENT-WORKFLOW.md
 
       - name: Verify Gradle wrapper contract
         run: python3 scripts/verify-gradle-wrapper.py

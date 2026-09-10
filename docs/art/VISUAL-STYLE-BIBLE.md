@@ -2,7 +2,7 @@
 
 Status: **canônico para assets próprios; contextual para conteúdo de terceiros**  
 Alvo técnico: Minecraft 1.21.1 · NeoForge 21.1.x · Java 21  
-Autoridade de versão/presença: `PROJECT-INSTRUCTIONS/skills/VERSION-AUTHORITY.md`
+Autoridade de versão/presença: [Factory version authority](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/VERSION-AUTHORITY.md)
 
 ## 1. Objetivo
 
@@ -172,4 +172,4 @@ Nenhum asset é “final” apenas porque compila/exporta. Aprovação exige:
 - multiplayer/performance/lifecycle para VFX persistente;
 - pendências explícitas quando alguma evidência não puder ser produzida.
 
-Use `PROJECT-INSTRUCTIONS/skills/library/minecraft-visual-qa/SKILL.md` e os standards especializados.
+Use [Factory visual QA skill](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/art/skills/minecraft-visual-qa/SKILL.md) e os standards especializados.

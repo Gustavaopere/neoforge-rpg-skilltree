@@ -1,26 +1,34 @@
 # PROJECT-INSTRUCTIONS
 
-Diretório canônico de instruções operacionais e documentação de referência do projeto Minecraft / NeoForge 1.21.1 / Java 21.
+Diretório de instruções operacionais, documentação de referência e proveniência do **RPG Skill Tree** para Minecraft 1.21.1 / NeoForge / Java 21.
 
-## Mod production control plane
+## Authority atual
 
-Este repositório também é o **repositório central de integração/control plane** para criação de mods completos do projeto.
+Este repositório é a **authority do código e runtime do mod RPG**.
 
-Antes de iniciar uma nova implementação de mod ou infraestrutura reutilizável, leia nesta ordem:
+A infraestrutura comum para criação de mods foi migrada para [`Gustavaopere/minecraft-mod-factory`](https://github.com/Gustavaopere/minecraft-mod-factory), que abriga as authorities lógicas de **Mod Engineering / Integration Control Plane** e **Repo Textura / Visual & Asset Pipeline**.
 
-1. `engineering/README.md`;
-2. `engineering/STATUS.md`;
-3. `engineering/REPO-ROUTING.md`;
-4. `engineering/plans/PLANO-MESTRE-UNIFICADO-REPO-TEXTURA-BLOCKBENCH-ASSET-MCP-V5.md`;
-5. `engineering/plans/PLANO-MESTRE-REPO-INTEGRACAO-MOD-ENGINEERING-NEOFORGE-1.21.1-V1.md`;
-6. a modlist física mais recente;
-7. o estado atual do GitHub, incluindo branches/PRs concorrentes.
+Portanto, não iniciar aqui novas capabilities genéricas de scaffolding, validators, skills compartilhadas, Blockbench/asset tooling, catálogos, CI reutilizável ou automação cross-mod. Quando trabalho histórico deste repositório for útil à Factory, ele deve ser migrado/reconciliado e revalidado, não reimplementado do zero.
 
-O primeiro objetivo dessa frente é **implementar os dois planos mestres e montar o ambiente de execução** antes de produzir novos mods em escala. O Repo Textura permanece a fonte de verdade dos assets artísticos; cada repositório individual de mod permanece a fonte de verdade do próprio runtime; este repositório concentra instruções, skills, contratos, catálogos, templates, validators, tooling, integração, testes e release infrastructure reutilizável.
+## Antes de alterar o runtime RPG
 
-## Autoridade operacional
+Leia nesta ordem:
 
-Os oito arquivos abaixo são o pacote canônico consolidado para o fluxo de perks do RPG Skill Tree:
+1. `engineering/AGENT-WORKFLOW.md`;
+2. `../../docs/MASTER_PLAN.md` a partir de `engineering/AGENT-WORKFLOW.md`;
+3. `engineering/TESTING.md`;
+4. a modlist física mais recente;
+5. o estado atual do GitHub, incluindo `main`, branches e PRs concorrentes.
+
+Para skills, tooling ou contratos compartilhados, use os entrypoints canônicos da Factory:
+
+- [`skills/ROUTER.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/ROUTER.md)
+- [`skills/VERSION-AUTHORITY.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/VERSION-AUTHORITY.md)
+- [`skills/USER-GUIDED-WORKFLOW.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/USER-GUIDED-WORKFLOW.md)
+
+## Autoridade operacional dos perks
+
+Os oito arquivos abaixo continuam sendo o pacote consolidado para o fluxo de perks do RPG Skill Tree:
 
 1. `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
 2. `GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md`
@@ -31,25 +39,23 @@ Os oito arquivos abaixo são o pacote canônico consolidado para o fluxo de perk
 7. `CHAT-2-IMPLEMENTACAO-PERKS-ANEXOS-PROJETO.md`
 8. `CHAT-3-PENDENCIAS-TESTES-VALIDACAO-MERGE-PERKS-ANEXOS-PROJETO.md`
 
-Para execução operacional de Chat 1/2/3, estes arquivos consolidados devem ser preferidos. A modlist física mais recente continua sendo a autoridade de presença/JAR/runtime; a Auditoria Mestre da Modlist no Notion deve ser reconciliada quando houver divergência.
+Para execução operacional de Chat 1/2/3, esses arquivos consolidados continuam sendo o ponto de entrada do conteúdo RPG. A modlist física mais recente continua sendo a autoridade de presença/JAR/runtime; documentação editorial deve ser reconciliada quando houver divergência.
 
 ## Estrutura de suporte
 
-- `engineering/` contém os contratos permanentes de trabalho técnico, o `STATUS` canônico, roteamento entre repositórios, os dois planos mestres e documentação do control plane.
-- `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos.
+- `engineering/` contém contratos e documentação técnica do RPG, além de material histórico da antiga fase em que este repositório também hospedava infraestrutura comum. Material histórico não é authority para novas capabilities compartilhadas.
+- `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos do RPG.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
-- `skills/` contém as skills/instruções especializadas usadas por chats e agentes, incluindo router, autoridade de versão, protocolo de interação manual e a biblioteca auditada das skills fornecidas pelo usuário.
-
-A existência das árvores de suporte não cria uma segunda autoridade operacional: para os protocolos de perks, os oito arquivos consolidados desta pasta raiz continuam sendo o ponto de entrada canônico. Para trabalho técnico geral do repositório, `engineering/AGENT-WORKFLOW.md` é o contrato canônico; para o control plane de produção de mods, `engineering/README.md` + `engineering/STATUS.md` + os dois planos mestres formam o ponto de entrada canônico. Para validação e observabilidade, valem respectivamente `engineering/TESTING.md` e `engineering/DIAGNOSTICS.md`. Para trabalho técnico especializado, `skills/ROUTER.md` escolhe a instrução adequada sem substituir código, JAR, build ou documentação comprovada da versão alvo.
+- A antiga árvore `skills/` foi removida após migração integral e validação na Minecraft Mod Factory. Sua proveniência e classificações permanecem registradas na Factory.
 
 ## Entrypoints com localização obrigatória
 
-Alguns arquivos precisam permanecer fora deste diretório porque sua localização tem semântica para ferramentas externas. Eles devem funcionar apenas como bootstrap/ponte para a autoridade canônica, e não como uma segunda cópia das instruções:
+Alguns arquivos precisam permanecer fora deste diretório porque sua localização tem semântica para ferramentas externas:
 
-- `/AGENTS.md` permanece na raiz para descoberta automática de agentes e aponta para `engineering/AGENT-WORKFLOW.md` e `skills/`;
+- `/AGENTS.md` permanece na raiz para descoberta automática de agentes e aponta para o contrato runtime local e para os entrypoints compartilhados da Factory;
 - `.github/**` permanece sob `.github/` quando o GitHub exige o caminho para workflows, templates ou políticas da plataforma.
 
-Documentação cujo papel principal seja plano, `STATUS`, auditoria, evidência, proveniência, ADR, especificação de implementação, histórico, código, configuração ou workflow executável permanece no domínio correspondente e não deve ser movida para `PROJECT-INSTRUCTIONS/` apenas porque contém frases imperativas.
+Documentação cujo papel principal seja código, configuração ou workflow executável deve permanecer no domínio correspondente. Não recriar uma árvore local de infraestrutura comum somente para conservar caminhos históricos.
 
 ## Migração dos guias
 
@@ -57,12 +63,10 @@ A árvore detalhada foi movida de `plans/03-skill-tree-perks/guides/` para `PROJ
 
 Referências operacionais dentro de `plans/03-skill-tree-perks/perks/` devem apontar para a nova localização. Documentos históricos em `docs/superpowers/` podem conservar caminhos antigos porque registram a arquitetura existente na data em que foram escritos.
 
-Os comentários `ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/...` presentes dentro dos quatro guias consolidados são **marcadores históricos de proveniência do snapshot consolidado**, não caminhos vivos nem uma segunda autoridade. Eles são preservados para manter os oito arquivos canônicos byte-identical ao pacote validado de 2026-09-07.
+Os comentários `ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/...` presentes dentro dos quatro guias consolidados são marcadores históricos de proveniência do snapshot consolidado, não caminhos vivos nem uma segunda authority.
 
 ## Regra de manutenção
 
-Novas atualizações editoriais dos guias detalhados devem ocorrer em `PROJECT-INSTRUCTIONS/guides/`. Quando uma mudança precisar ser refletida nos quatro arquivos consolidados, ela deve ser reconciliada conscientemente e validada como novo snapshot; não recriar a árvore legada em `plans/03-skill-tree-perks/guides/`.
+Novas atualizações editoriais dos guias detalhados do RPG devem ocorrer em `PROJECT-INSTRUCTIONS/guides/`. Quando uma mudança precisar ser refletida nos quatro arquivos consolidados, ela deve ser reconciliada conscientemente e validada como novo snapshot; não recriar a árvore legada em `plans/03-skill-tree-perks/guides/`.
 
-Skills específicas do projeto devem ser adicionadas sob `PROJECT-INSTRUCTIONS/skills/`, preservando a autoridade definida em `skills/VERSION-AUTHORITY.md`. Não corrigir silenciosamente uma skill de origem multi-versão para fazê-la parecer compatível; a adaptação deve ser explícita e auditável.
-
-Contratos permanentes novos de engenharia, validação ou operação devem ser adicionados em `PROJECT-INSTRUCTIONS/engineering/`. Não recriar cópias canônicas em `docs/` ou na raiz; quando um caminho convencional precisar existir para descoberta automática, mantenha apenas um router/bootstrap para a autoridade desta árvore.
+Novas skills, contracts, validators, templates, tooling e automações **genéricos de produção de mods** pertencem à Minecraft Mod Factory. Este repositório só deve receber alterações desse tipo quando forem necessárias para o próprio runtime RPG ou para preservar/migrar trabalho histórico.
