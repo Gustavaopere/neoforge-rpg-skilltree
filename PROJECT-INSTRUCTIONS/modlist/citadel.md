@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db81509c74e177ce8d3abd  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist.txt`, 595 mods top-level  
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -20,9 +21,9 @@
 - **Compatibilidade/Riscos:** Library sensível a version drift e mixins/hooks em entidade, pathfinding, collision, rendering e worldgen hooks. 2.7.1 corrige Citadel quebrando surface rules de outros mods, corrige iluminação de entidades no book e ajusta pathfinding/collision/rendering. Não é substituível por AzureLib/GeckoLib.
 - **Sobreposição:** Biblioteca técnica específica. Coexistência com AzureLib, GeckoLib e outras APIs de entidade/animação não implica redundância binária; consumers dependem de contratos distintos.
 - **Observações:** mod id `citadel`; runtime 2.7.1. Release 18/07/2026. Changelog: fix de surface rules, book entity lighting e tweaks de pathfinding/collision/rendering.
-- **Procedência:** Modlist física mais recente de 07/09/2026 + CurseForge oficial Citadel 2.7.1 para NeoForge 1.21.1 + source oficial ligado pelo projeto; registro histórico do port não-oficial mantido separado.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Citadel 2.7.1 para NeoForge 1.21.1 + source oficial ligado pelo projeto; registro histórico do port não-oficial mantido separado.
 - **Histórico da decisão:** Sem decisão formal. A auditoria histórica de 22/08/2026 confirmou o Citadel oficial `2.7.1` como entrada distinta do antigo `Citadel (Unofficial Port)` removido; essa confirmação de presença não constitui decisão curatorial. Em 08/09/2026, o dossiê foi reconstruído para o JAR físico atual sem inventar o consumer específico que o mantém no pack.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — library/consumer contract, entity/render/pathfinding/collision surfaces, worldgen interaction, side/lifecycle e regressões 2.7.1 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Citadel 2.7.1 físico confirmado; library/consumer contract, entity/render/pathfinding/collision surfaces, surface-rules regression fix, side/lifecycle e version drift confirmados no QC global #94. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
