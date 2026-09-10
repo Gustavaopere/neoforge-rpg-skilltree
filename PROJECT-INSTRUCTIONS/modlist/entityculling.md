@@ -1,5 +1,31 @@
 # EntityCulling — 1.10.5
 
+> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
+> Página-fonte: https://app.notion.com/p/3c369db9f0db81029f02f0f51e00c987  
+> Estado no momento da reconciliação: `Integrado ao Github`  
+> Autoridade física: `modlist(4).txt`, 595 mods top-level  
+> Reconciliado em: 2026-09-09
+
+## Propriedades do registro
+
+- **Mod:** EntityCulling
+- **Arquivo JAR:** `entityculling-neoforge-1.10.5-mc1.21.1.jar`
+- **Versão 1.21.1:** `1.10.5`
+- **Categoria:** Performance
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/entityculling
+- **Função:** Client-side performance mod que evita renderizar entities e block entities ocultas/occluded, reduzindo custo de rendering sem alterar tick, AI ou state gameplay.
+- **Dependências:** Cliente NeoForge 1.21.1. O JAR físico embarca `TRansition 1.0.21` e `TRender 1.0.15` sob META-INF; são dependências internas, não mods top-level. Sable/Create Aeronautics estão presentes e formam uma regressão multiplayer conhecida.
+- **Compatibilidade/Riscos:** Issue upstream #299 reproduz jogadores/entidades desaparecendo e reaparecendo em Sable/Create Aeronautics sublevels no multiplayer; remover EntityCulling resolveu o relato. Skip/whitelist é mitigation antes de remover o mod inteiro. Riscos adicionais: bounding boxes incomuns, render outside bounds, false-positive culling, race/cache após reload e interação com render frameworks.
+- **Sobreposição:** Complementa Sodium/ImmediatelyFast/BetterFpsDist em outra superfície: EntityCulling decide visibility de entities/block entities. Não deve alterar tick, simulation distance, AI ou physics.
+- **Observações:** Runtime físico 1.10.5. Dependências JarJar `TRansition-1.0.21-1.21.1-neoforge-SNAPSHOT.jar` e `TRender-1.0.15-1.21.1-neoforge-SNAPSHOT.jar` ficam documentadas somente nesta ficha. O issue #299 é risco confirmado por reprodução upstream, não prova de ocorrência em todos os worlds do pack.
+- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `entityculling-neoforge-1.10.5-mc1.21.1.jar`, mod id `entityculling`, versão 1.10.5 e SHA-1 top-level 908d09263709193b918fdc9ca0d79c9d90c4a531. O host contém `TRansition 1.0.21` e `TRender 1.0.15` como JarJar internos; o hash 420d0006dbc0a20b1c2dd0b3c7c20ddb5cc51fcf pertence à entrada interna TRansition, não ao host. GitHub issue #299 documenta Sable/Aeronautics multiplayer.
+- **Histórico da decisão:** vazio.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — EntityCulling 1.10.5; client occlusion/path visibility culling, skip/whitelist boundary, embedded TRender/TRansition, Sable/Aeronautics issue #299, lifecycle, risks and tests cataloged.
+- **Data da última decisão:** 2026-08-26
+
 > **Runtime físico confirmado:** `entityculling-neoforge-1.10.5-mc1.21.1.jar` · mod id `entityculling` · versão `1.10.5` · NeoForge 1.21.1 · **client-side**. O JAR embarca `TRansition 1.0.21` e `TRender 1.0.15`; essas libs são JarJar internas e **não** entradas top-level.
 
 ## 1. Papel no modpack
