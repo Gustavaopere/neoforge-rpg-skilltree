@@ -11,17 +11,17 @@
 - **Mod:** Cold Sweat
 - **Arquivo JAR:** `ColdSweat-2.4.2.jar`
 - **Versão 1.21.1:** `2.4.2`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — thermal authority, insulation/devices, config/data, integrations, lifecycle e regressões 2.4.2 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Cold Sweat 2.4.2, authority térmica, Create: Cold Sweat 1.1.2, Thirst Was Reclaimed 3.0.4, lifecycle e regressões Sable/KubeJS confirmados no QC global #102. Suporte Immersive Engineering registrado como dormente; runtime QA não executado.
 - **Categoria:** Clima
 - **Compatibilidade/Riscos:** Authority de temperatura corporal; evitar double-application por outros temperature providers. Riscos em insulation, block temperature emitters, dimension/death lifecycle, Create/Sable moving objects, KubeJS configs e compat de thirst/IE. 2.4.2 corrige emissão térmica em objetos Sable e casos de KubeJS insulator config.
 - **Decisão:** Manter
-- **Dependências:** Provider térmico principal. Integrações atuais incluem Create: Cold Sweat; a 2.4.2 adiciona suporte ao external heater do Immersive Engineering para boilers/hearths e atualiza a integração de sede para Thirst Was Reclaimed.
+- **Dependências:** Provider térmico principal. Integrações físicas atuais confirmadas: Create: Cold Sweat 1.1.2 e Thirst Was Reclaimed 3.0.4. A 2.4.2 oferece suporte upstream ao external heater do Immersive Engineering, porém Immersive Engineering está ausente do snapshot físico atual; não tratá-lo como integração ativa.
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat
 - **Função:** Sistema principal de temperatura corporal do pack: calcula conforto térmico a partir de ambiente e estado do jogador, oferece insulation e dispositivos/itens térmicos como Hearth, Boiler, Icebox, Waterskin e Thermometer.
 - **Histórico da decisão:** Mantido formalmente em 22/08/2026 como sistema principal de temperatura corporal. O compat antigo Cold Sweat and Aeronautics foi removido, mas Cold Sweat permanece provider térmico principal. Em 08/09/2026, a decisão foi preservada e a ficha reconciliada à build física 2.4.2 atual.
-- **Observações:** mod id `cold_sweat`; runtime 2.4.2. Changelog 2.4.2: external heater do Immersive Engineering com Boiler/Hearth, Thirst Was Reclaimed, fix de temperature emitters em objetos Sable/Create Aeronautics, KubeJS insulators e tooltip flicker. Cold Sweat: Altitude não é top-level atual.
-- **Procedência:** Modlist física canônica de 07/09/2026 + metadata runtime 2.4.2 + CurseForge/documentação oficial Cold Sweat 2.4.2; decisão histórica do catálogo preservada.
+- **Observações:** mod id `cold_sweat`; runtime 2.4.2. Changelog 2.4.2: external heater do Immersive Engineering, Thirst Was Reclaimed, fix de temperature emitters em objetos Sable/Create Aeronautics, KubeJS insulators e tooltip flicker. No snapshot atual, Immersive Engineering está ausente; esse suporte é dormente. Cold Sweat: Altitude não é top-level atual.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + metadata runtime Cold Sweat 2.4.2 + CurseForge/documentação oficial 2.4.2 + presença física de Create: Cold Sweat 1.1.2 e Thirst Was Reclaimed 3.0.4; decisão histórica preservada.
 - **Sobreposição:** Cold Sweat controla temperatura corporal. Estações, clima visual, chuva/neve e outros efeitos ambientais podem coexistir, mas não devem liquidar uma segunda temperatura corporal sem integração explícita.
 - **Data da última decisão:** 2026-08-22
 
@@ -49,6 +49,7 @@ Waterskins e instrumentos como Thermometer fazem parte do ecossistema de sobrevi
 ## 6. Create/Sable/Aeronautics
 A 2.4.2 corrige temperatura não emitida por blocos que fazem parte de objetos **Sable/Create: Aeronautics**. Isso prova uma integração concreta com objetos móveis/contraptions.
 Teste obrigatório: fonte térmica em estrutura móvel deve influenciar o ambiente exatamente como a implementação define, sem emitir duas vezes quando estacionária/móvel.
+O JAR físico de Cold Sweat 2.4.2 também embarca `/META-INF/jarjar/sable-companion-common-1.21.1-1.4.2.jar`, mod id `sablecompanion`, versão `1.4.2`. Pela regra canônica de inventário, essa cópia é **jar-in-jar do host Cold Sweat** e não recebe página top-level própria. A metadata física confirma presença e versão; esta ficha não inventa funções adicionais do componente além do contract demonstrado pelas fontes.
 
 ## 7. Sede
 A release atual troca o alvo da integração antiga **Thirst Was Taken** para **Thirst Was Reclaimed**. Isso é compat específica; não assumir que qualquer mod de thirst recebe o mesmo contract.
@@ -68,7 +69,7 @@ Em multiplayer, cada jogador deve receber state térmico próprio; fontes compar
 ## 11. Relação com o pack
 - **Create: Cold Sweat**: bridge específica instalada no ecossistema atual.
 - **Create/Aeronautics/Sable**: objetos móveis são regression surface da 2.4.2.
-- **Immersive Engineering**: external heater passa a interagir com Boiler/Hearth.
+- **Immersive Engineering**: a 2.4.2 possui suporte upstream ao external heater para Boiler/Hearth, mas Immersive Engineering está **ausente** do snapshot físico atual; a integração permanece dormente nesta instância.
 - **Thirst Was Reclaimed**: alvo de compat da release 2.4.2.
 - Mods de estações/clima: inputs ambientais possíveis, não second authority de body temperature.
 
@@ -79,7 +80,7 @@ Em multiplayer, cada jogador deve receber state térmico próprio; fontes compar
 4. KubeJS insulator config divergente após reload.
 5. Death/dimension manter state térmico stale.
 6. Thirst integration apontar para provider antigo.
-7. IE external heater consumir/creditar energia/heat duas vezes.
+7. Se Immersive Engineering voltar ao pack, external heater consumir/creditar energia/heat duas vezes por integração duplicada.
 8. Client HUD divergir do state server-side.
 
 ## 13. Matriz de testes
@@ -87,7 +88,7 @@ Em multiplayer, cada jogador deve receber state térmico próprio; fontes compar
 2. Transição entre biomas/altitudes/ambientes quentes e frios.
 3. Equip/unequip de insulation e reload de config.
 4. Hearth, Boiler e Icebox com combustíveis/estado real.
-5. External heater do IE em Boiler/Hearth.
+5. Se Immersive Engineering voltar ao pack: external heater em Boiler/Hearth — capability upstream 2.4.2 atualmente dormente.
 6. Fonte térmica dentro de objeto Sable/Aeronautics — regressão 2.4.2.
 7. KubeJS insulator config — regressão 2.4.2.
 8. Death/respawn e dimension travel.
@@ -96,6 +97,7 @@ Em multiplayer, cada jogador deve receber state térmico próprio; fontes compar
 
 ## 14. Evidência
 - modlist física atual: Cold Sweat 2.4.2;
+- inventário físico do host: `sable-companion-common-1.21.1-1.4.2.jar` embarcado via jar-in-jar;
 - CurseForge oficial da release 2.4.2;
 - changelog: IE external heater, Thirst Was Reclaimed, Sable temperature fix, KubeJS insulator fix e tooltip fix;
 - decisão histórica do catálogo: `Manter` como provider térmico principal.
