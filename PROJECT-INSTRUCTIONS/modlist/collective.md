@@ -3,7 +3,8 @@
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db814382b3c8d43abff21a  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+> Autoridade física no momento da exportação: `modlist.txt`, 595 mods top-level  
+> Exportado em: 2026-09-09
 
 ## Propriedades do registro
 
@@ -20,9 +21,9 @@
 - **Compatibilidade/Riscos:** Riscos de remoção com consumer ativo, version drift e diferenças de side/message handling. A 8.39 atualiza MessageFunctions para lidar melhor com mensagens client-only; integrações não devem transformar helpers de mensagem em gameplay authority.
 - **Sobreposição:** Biblioteca específica de Serilum. Coexistência com outras utility/config/network libraries não implica redundância binária; consumers usam contracts próprios.
 - **Observações:** mod id `collective`; runtime 8.39. Release 1.21.1-8.39, File ID 8341460. Changelog: `MessageFunctions` atualizado para melhor tratamento de mensagens client-only.
-- **Procedência:** Modlist física canônica de 07/09/2026 + runtime Collective 8.39 + CurseForge oficial da release 1.21.1-8.39 e documentação Serilum.
+- **Procedência:** modlist.txt física atual de 08/09/2026 + runtime Collective 8.39 + CurseForge oficial da release 1.21.1-8.39 e documentação Serilum.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Collective 8.39 foi reconfirmado na modlist física e reconstruído como library do ecossistema Serilum. A presença por dependência não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — consumer-driven library contract, side/message boundary, lifecycle, version drift e delta 8.39 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Collective 8.39, contract consumer-driven, MessageFunctions/client-only boundary, lifecycle e version drift confirmados no QC global #103. Runtime QA não executado.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
