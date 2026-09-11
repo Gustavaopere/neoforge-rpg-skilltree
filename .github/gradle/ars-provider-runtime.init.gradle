@@ -1,0 +1,27 @@
+allprojects { project ->
+    project.afterEvaluate {
+        if (project != project.rootProject) {
+            return
+        }
+
+        String mode = System.getenv('ARS_PROVIDER_MODE') ?: 'ars-only'
+        if (!(mode in ['ars-only', 'ars-irons'])) {
+            throw new GradleException("Unknown ARS_PROVIDER_MODE: ${mode}")
+        }
+
+        project.dependencies.add('localRuntime', "maven.modrinth:TKB6INcv:${project.property('ars_nouveau_version_id')}") {
+            transitive = false
+        }
+        project.dependencies.add('localRuntime', 'software.bernie.geckolib:geckolib-neoforge-1.21.1:4.9.2')
+        project.dependencies.add('localRuntime', 'top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1')
+        project.dependencies.add('localRuntime', 'vazkii.patchouli:Patchouli:1.21.1-93-NEOFORGE')
+
+        if (mode == 'ars-irons') {
+            project.dependencies.add('localRuntime', "curse.maven:irons-spells-n-spellbooks-855414:${project.property('irons_spells_file_id')}") {
+                transitive = false
+            }
+            project.dependencies.add('localRuntime', 'dev.kosmx.player-anim:player-animation-lib-forge:2.0.1+1.21.1')
+            project.dependencies.add('localRuntime', 'io.redspace:irons_lib:1.21.1-2.1.0-SNAPSHOT')
+        }
+    }
+}

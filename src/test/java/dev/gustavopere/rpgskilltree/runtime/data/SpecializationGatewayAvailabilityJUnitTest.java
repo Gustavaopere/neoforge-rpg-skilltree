@@ -17,6 +17,7 @@ import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.core.SpecializationAvailability;
 import dev.gustavopere.rpgskilltree.core.SpecializationResolver;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.epicfight.EpicFightVersionContract;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -205,7 +206,10 @@ final class SpecializationGatewayAvailabilityJUnitTest {
     @Test
     void currentAdapterPolicyDoesNotPromiseUnsupportedProviderRuntime() {
         assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter("irons_spellbooks", ""));
-        assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter("ars_nouveau", ""));
+        assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter(
+            "ars_nouveau", ArsNouveauVersionContract.SUPPORTED_VERSION));
+        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("ars_nouveau", ""));
+        assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("ars_nouveau", "unsupported"));
         assertTrue(SpecializationProviderRuntimePolicy.hasCompleteAdapter(
             "epicfight", EpicFightVersionContract.SUPPORTED_VERSION));
         assertFalse(SpecializationProviderRuntimePolicy.hasCompleteAdapter("epicfight", "unsupported"));
@@ -223,7 +227,9 @@ final class SpecializationGatewayAvailabilityJUnitTest {
     }
 
     private static String versionFor(String provider) {
-        return provider.equals("epicfight") ? EpicFightVersionContract.SUPPORTED_VERSION : "";
+        if (provider.equals("ars_nouveau")) return ArsNouveauVersionContract.SUPPORTED_VERSION;
+        if (provider.equals("epicfight")) return EpicFightVersionContract.SUPPORTED_VERSION;
+        return "";
     }
 
     private static Map<ResourceLocation, JsonElement> specializationResources() throws IOException {
