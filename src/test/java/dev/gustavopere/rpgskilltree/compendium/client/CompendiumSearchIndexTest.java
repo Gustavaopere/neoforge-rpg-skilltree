@@ -10,6 +10,7 @@ import java.util.Set;
 public final class CompendiumSearchIndexTest {
     public static void main(String[] args) {
         pesquisaIgnoraAcentosEEncontraNomeAliasModEIdTecnico();
+        nomesLocalizadosDuplicadosMantemOrdemDeterministicaEIdentidadeDoMod();
         System.out.println("CompendiumSearchIndexTest: PASS");
     }
 
@@ -33,6 +34,16 @@ public final class CompendiumSearchIndexTest {
         eq(List.of(lobo), index.search("alexsmobs", 20));
         eq(List.of(lobo), index.search("arctic_wolf", 20));
         eq("Lobo Ártico", index.search("lobo artico", 20).getFirst().displayName());
+    }
+
+    private static void nomesLocalizadosDuplicadosMantemOrdemDeterministicaEIdentidadeDoMod() {
+        CompendiumClientEntry alpha = entry("alpha:stag", "Cervo", "alpha", Set.of());
+        CompendiumClientEntry beta = entry("beta:stag", "Cervo", "beta", Set.of());
+        CompendiumSearchIndex index = new CompendiumSearchIndex(List.of(beta, alpha));
+
+        eq(List.of(alpha, beta), index.search("cervo", 20));
+        eq(List.of(alpha), index.search("alpha", 20));
+        eq(List.of(beta), index.search("beta", 20));
     }
 
     private static CompendiumClientEntry entry(
