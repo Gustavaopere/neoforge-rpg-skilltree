@@ -11,7 +11,7 @@
 - **Mod:** BetterNether: New Dawn
 - **Arquivo JAR:** `BetterNether-21.0.26.jar`
 - **Versão 1.21.1:** 21.0.26
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Worldgen, Exploração, Mobs
@@ -20,9 +20,9 @@
 - **Sobreposição:** Provider amplo do Nether. Pode coexistir com outras estruturas/biomas quando placements não conflitam; BCLib/TerraBlender/Lithostitched são infraestruturas e não substitutos automáticos.
 - **Compatibilidade/Riscos:** Worldgen amplo do Nether: riscos em biome/structure placement, parallel worldgen, chunk borders, registry reload, loot e coexistência com outros mods da dimensão. 21.0.26 inclui melhorias de thread safety em cities/destruction structures.
 - **Observações:** 21.0.26 confirma Gloomwood groves/edges/trees, Bleached Gloomwood, Lumabus Vines, mega lava lakes, Gloomsculk geodes, giant Willow/Anchor growth, bookshelves de wood sets, mob spawn-egg art, gamerule de Blue Obsidian e ajustes em Fire Ruby, Obsidian Breaker, brewing e thread safety.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + metadata runtime + Modrinth/CurseForge oficiais BetterNether: New Dawn 21.0.26 + stack físico New Dawn.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime + Modrinth/CurseForge oficiais BetterNether: New Dawn 21.0.26 + stack New Dawn e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `BetterNether-21.0.26.jar` / `21.0.26`; decisão `Manter` e dependências físicas permanecem inalteradas.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/betternether-new-dawn
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BetterNether: New Dawn 21.0.26 físico/release confirmado; stack BCLib 21.0.26 + WorldWeaver 21.0.25 + WunderLib 21.0.10 e decisão histórica MANTER preservados. Runtime/worldgen QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #74: `BetterNether-21.0.26.jar` / `21.0.26` conferidos contra a modlist atual; stack BCLib 21.0.26 + WorldWeaver 21.0.25 + WunderLib 21.0.10, worldgen/thread-safety boundaries e decisão histórica `Manter` preservados.
 - **Histórico da decisão:** Em 22/08/2026, BetterNether foi desativado temporariamente junto de WorldWeaver e BetterEnd para isolamento. Após remover FirmaTerrain 1.0.0, o stack BetterX/New Dawn foi reativado e funcionou. Decisão final desta investigação: MANTER BetterNether; sua desativação anterior foi somente diagnóstica.
 - **Data da última decisão:** 2026-08-22
 
