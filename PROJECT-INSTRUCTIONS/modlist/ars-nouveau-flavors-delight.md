@@ -11,7 +11,7 @@
 - **Mod:** Ars Nouveau's Flavors & Delight
 - **Arquivo JAR:** `arsdelight-2.2.2.jar`
 - **Versão 1.21.1:** 2.2.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, Comida, Compat
@@ -20,9 +20,9 @@
 - **Sobreposição:** Adiciona alimentos próprios e integração Ars↔Farmer's Delight; não é apenas uma bridge técnica vazia.
 - **Compatibilidade/Riscos:** Heal/spell-damage food effects podem double-dip com outros hooks; feasts/pies/jellies exigem drop/serving idempotente; optional compat deve ser classloading-safe. Mana/Source permanecem authorities do Ars.
 - **Observações:** mod id `arsdelight`, runtime 2.2.2. Conteúdo e optional-provider gates permanecem documentados sem promover providers ausentes.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source/dossiê Ars Nouveau's Flavors & Delight 2.2.2 + Farmer's Delight 1.3.4 físico.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial Ars Nouveau's Flavors & Delight 2.2.2 + Farmer's Delight 1.3.4 físico e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `arsdelight-2.2.2.jar` / `2.2.2`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-nouveaus-flavors-delight
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Nouveau's Flavors & Delight 2.2.2, 42 foods, jellies/pies/effects e authority Ars/Farmer's Delight confirmados no QC global #53. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #53: `arsdelight-2.2.2.jar` / `2.2.2` conferidos contra a modlist atual; corpo técnico, decisão e optional-provider gates preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou o runtime 2.2.2, o inventário culinário/efeitos e as integrações com Ars Nouveau/Farmer's Delight. A ficha técnica está concluída, mas nenhuma decisão de manter/remover foi inferida da instalação atual.
 - **Data da última decisão:** não definida
 
