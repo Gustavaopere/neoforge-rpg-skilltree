@@ -15,15 +15,16 @@
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cloth-config
 - **Função:** Config screen/API reutilizável para mods consumidores construírem interfaces de configuração com entries, categorias e widgets; a library não define por si só a semântica dos configs dos consumers.
 - **Dependências:** Biblioteca de infraestrutura. A release NeoForge 15.0.140 é publicada para Minecraft 1.21/1.21.1; necessidade determinada pelos consumers instalados. Não é substituível automaticamente por ForgeConfigScreens/Configured/outras config libraries.
 - **Compatibilidade/Riscos:** Riscos principais são version drift de consumers, client-only screen code em dedicated server, valores de UI divergentes do config real e duas config APIs tentando controlar a mesma screen. 15.0.140 não possui changelog de gameplay publicado; não inventar novas APIs específicas.
 - **Sobreposição:** Pode coexistir com outras config libraries porque consumers compilam contra APIs específicas. Similaridade de função não implica substituição binária.
 - **Observações:** mod id `cloth_config`; runtime 15.0.140. Config UI é apresentação; validação, persistência e sync server-side continuam sendo responsabilidade do consumer/config backend.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficiais Cloth Config 15.0.140 NeoForge + source oficial shedaniel/cloth-config para o contrato geral de config screen API.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/Modrinth oficiais Cloth Config 15.0.140 NeoForge + source oficial shedaniel/cloth-config e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `cloth-config-15.0.140-neoforge.jar` / `15.0.140`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Cloth Config v15 API 15.0.140 foi reconfirmado como biblioteca de configuração instalada. A presença física não foi convertida em decisão de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Cloth Config v15 API 15.0.140 físico confirmado; config-screen consumer contract, UI↔backend authority, side/lifecycle, version drift e coexistência com outras config libraries confirmados no QC global #97. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #97: `cloth-config-15.0.140-neoforge.jar` / `15.0.140` conferidos contra a modlist atual; config-screen consumer contract, UI↔backend authority, side/lifecycle, version drift e coexistência com outras config libraries preservados.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
