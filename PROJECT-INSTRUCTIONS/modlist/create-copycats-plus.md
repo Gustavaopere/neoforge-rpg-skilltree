@@ -2,16 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db8189ab08d53242600f01
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-10
+- **Estado no pack na exportação:** Integrado ao Github
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Data da exportação:** 2026-09-12
 
 ## Propriedades do banco
 
 - **Mod:** Create: Copycats+
 - **Arquivo JAR:** `copycats-3.0.9+mc.1.21.1-neoforge.jar`
 - **Versão 1.21.1:** 3.0.9+mc.1.21.1-neoforge
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, Visual
@@ -20,9 +20,9 @@
 - **Sobreposição:** Expande formas copycat do Create. Aero Copycats e Extra Copycats adicionam/integram shapes específicos e permanecem módulos separados; não tratar a coexistência como duplicação automática.
 - **Compatibilidade/Riscos:** Riscos: material/state serialization, CT/model/light drift, schematics/contraptions perderem material, placement-assist inconsistente, x-ray/ghost-block regressions e overlap de shapes com addons. Updates devem validar Create 6 + Aero/Extra Copycats.
 - **Observações:** JAR físico `copycats-3.0.9+mc.1.21.1-neoforge.jar`, mod id `copycats`, runtime 3.0.9+mc.1.21.1-neoforge. Release oficial NeoForge 1.21.1 de 06/09/2026, Client & Server. O texto antigo que ainda citava runtime 3.0.8 foi corrigido.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Create: Copycats+ 3.0.9 + changelog/source oficial da linha 3.0.x.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Create: Copycats+ 3.0.9 + changelog/source oficial da linha 3.0.x + Create 6.0.10, Aero Copycats e Extra Copycats já auditados. Reconciliação final: JAR/runtime permanecem exatamente `copycats-3.0.9+mc.1.21.1-neoforge.jar` / `3.0.9+mc.1.21.1-neoforge`; addons relacionados continuam separados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/copycats
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Copycats+ 3.0.9, shapes/material authority, CT/light, schematics/contraptions, placement, integrations físicas e regressões da linha 3.0.x confirmados no QC global #109. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #109: `copycats-3.0.9+mc.1.21.1-neoforge.jar` / `3.0.9+mc.1.21.1-neoforge` conferidos contra a modlist atual; shapes/material authority, CT/light, schematics/contraptions, placement, integrações físicas e regressões da linha 3.0.x preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, Copycats+ 3.0.9 foi reconfirmado no JAR físico com Create 6.0.10 e addons físicos relacionados. A presença e o uso no stack Create não foram convertidos automaticamente em decisão curatorial de manter/remover.
 - **Data da última decisão:**
 
