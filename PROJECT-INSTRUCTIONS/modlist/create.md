@@ -15,15 +15,16 @@
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create
 - **Função:** Núcleo tecnológico e de automação cinética do pack: fornece redes de rotação/stress, processamento mecânico, belts/funnels, fluid handling, moving contraptions, trains e a infraestrutura High Logistics introduzida na série 6.0.
 - **Dependências:** NeoForge 1.21.1. O JAR físico 6.0.10 embarca Flywheel 1.0.6, Ponder 1.0.82+mc1.21.1 e Registrate-MC1.21-1.3.0+67 em `/META-INF/jarjar/`; são componentes subordinados ao host, não top-level. Create permanece base obrigatória dos addons Create instalados.
 - **Compatibilidade/Riscos:** Authority transversal do maior stack tecnológico do pack. Riscos em stress/speed propagation, contraption assembly/collision, mounted storage, train graphs, package logistics, recipe-viewer sync e mixins de addons. 6.0.10 otimiza contraption collision e GlobalRailwayManager player login e altera Stock Keeper recipe-viewer sync.
 - **Sobreposição:** Create é provider base. Addons estendem suas APIs/blocks/processing; não devem substituir sua authority de stress, speed, kinetic network, contraption state, train graph ou package logistics sem integração explícita.
 - **Observações:** mod id `create`; runtime 6.0.10. Jar-in-jar físico: `flywheel-neoforge-1.21.1-1.0.6.jar`, `ponder-neoforge-1.0.82+mc1.21.1.jar` e `Registrate-MC1.21-1.3.0+67.jar`. Série 6.0 introduziu High Logistics; 6.0.10 adiciona modos de sync de recipe viewer no Stock Keeper e otimizações/fixes.
-- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime Create 6.0.10 + inventário jar-in-jar físico + changelog/source oficial Creators-of-Create branch mc1.21.1/dev + wiki oficial Create 6.0/kinetics/contraptions.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime Create 6.0.10 + inventário jar-in-jar físico + changelog/source oficial Creators-of-Create e wiki já auditados. Reconciliação final: JAR/runtime permanecem exatamente `create-1.21.1-6.0.10.jar` / `6.0.10`; Flywheel 1.0.6, Ponder 1.0.82+mc1.21.1 e Registrate 1.3.0+67 continuam embedded e não top-level.
 - **Histórico da decisão:** Sem decisão formal registrada. Em 08/09/2026, Create 6.0.10 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. Ser núcleo de muitos addons não foi convertido automaticamente em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create 6.0.10, kinetic/stress authority, processing, fluids, contraptions, trains, High Logistics e inventário jar-in-jar confirmados no QC global #116. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #116: `create-1.21.1-6.0.10.jar` / `6.0.10` conferidos contra a modlist atual; kinetic/stress authority, processing, fluids, contraptions, trains, High Logistics e inventário jar-in-jar preservados.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
