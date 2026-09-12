@@ -11,7 +11,7 @@
 - **Mod:** Continuity
 - **Arquivo JAR:** `continuity-3.0.0+1.21.neoforge.jar`
 - **Versão 1.21.1:** 3.0.0+1.21.neoforge
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual
@@ -20,9 +20,9 @@
 - **Sobreposição:** Pode sobrepor objetivos de connected textures com outros render/CTM mods, mas formatos e pipeline podem ser diferentes. Conflito deve ser provado por rule/resource/render collision concreta.
 - **Compatibilidade/Riscos:** Riscos em resource reload, sprite paths, custom block layers, moving blocks, emissive item textures, overlay corner cases e coexistência com outros CTM/render mods. 3.0.0 corrige paths `assets/minecraft/`, moving blocks, stale `disableSolidCheck`, overlay corner e desativa emissive item textures por performance.
 - **Observações:** mod id `continuity`; runtime `3.0.0+1.21.neoforge`. Client-only. Atua em CTM/emissive/overlay presentation e resource-pack semantics; não altera hardness, collision, drops ou lógica funcional dos blocos.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + runtime 3.0.0+1.21.neoforge + CurseForge/Modrinth oficiais Continuity 3.0.0 NeoForge e changelog oficial.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime 3.0.0+1.21.neoforge + CurseForge/Modrinth oficiais Continuity 3.0.0 NeoForge e changelog oficial já auditados. Reconciliação final: JAR/runtime permanecem exatamente `continuity-3.0.0+1.21.neoforge.jar` / `3.0.0+1.21.neoforge`; boundary client-only preservado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/continuity
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Continuity 3.0.0+1.21.neoforge, CTM/emissive/overlay pipeline, moving blocks, reload/cache, performance e regressões 3.0.0 confirmados no QC global #107. Client-only; runtime visual QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #107: `continuity-3.0.0+1.21.neoforge.jar` / `3.0.0+1.21.neoforge` conferidos contra a modlist atual; CTM/emissive/overlay pipeline, moving blocks, reload/cache, performance e regressões 3.0.0 preservados. Client-only.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Continuity 3.0.0+1.21.neoforge foi reconfirmado fisicamente e reconstruído como mod client-side de rendering/resource packs. A presença não foi convertida em decisão curatorial.
 - **Data da última decisão:**
 
