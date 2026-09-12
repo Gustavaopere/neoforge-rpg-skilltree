@@ -11,7 +11,7 @@
 - **Mod:** Apothic Enchanting
 - **Arquivo JAR:** `ApothicEnchanting-1.21.1-1.6.2.jar`
 - **Versão 1.21.1:** 1.6.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** RPG, Magia
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa Apotheosis, mas não duplica affixes/gems. Spawner logic continua em Apothic Spawners; atributos em Apothic Attributes. Outros mods de enchanting podem sobrepor UX/caps, exigindo teste concreto.
 - **Compatibilidade/Riscos:** Não usar documentação antiga de Enchantability: desde 1.6.1 ele não dá Arcana; fornece chance de +1 nível de encantamento. Respeitar max_eterna/World Tiers, caps de encantamento, infusion costs e blacklist de spawners. Testar conflitos com mods que alteram anvil/enchant caps e automação.
 - **Observações:** mod id: `apothic_enchanting`; runtime 1.6.2. Dossiê interno documenta tables, shelves, infusion, Library, Enchantability atual, max_eterna, integração com World Tiers, Ender Leads e matriz de teste.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/source/changelog oficiais Apothic Enchanting 1.6.2 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/source/changelog oficiais Apothic Enchanting 1.6.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ApothicEnchanting-1.21.1-1.6.2.jar` / `1.6.2`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-enchanting
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 1.6.2, enchanting authority, Eterna/Quanta/Arcana/Enchantability, max_eterna, 30 blocks/20 enchantments and module boundaries confirmed in global QC #35. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #35: `ApothicEnchanting-1.21.1-1.6.2.jar` / `1.6.2` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita contra o changelog oficial 1.21 até 1.6.2, corrigindo a semântica atual de Enchantability e separando authority de enchanting de affixes/gems/spawners.
 - **Data da última decisão:** 2026-09-07
 
