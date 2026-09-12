@@ -11,7 +11,7 @@
 - **Mod:** Apothic Compats
 - **Arquivo JAR:** `apothic_compats-0.2.4.2.jar`
 - **Versão 1.21.1:** 0.2.4.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Compat, RPG
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementar ao Apothic Category Compat. Category Compat trata roteamento/categorias; Apothic Compats entrega datapacks de integração com terceiros. Também não substitui Apotheosis, Apothic Attributes, Enchanting ou Spawners.
 - **Compatibilidade/Riscos:** Risco principal é drift de datapack após updates dos mods-alvo. A 0.2.4.2 foi atualizada para Apotheosis 8.6.0 e versões recentes dos providers, mas o próprio changelog avisa que algumas integrações ainda requerem touch-up. Evitar datapacks locais que dupliquem loot categories, affixed loot, gems ou invaders já fornecidos.
 - **Observações:** mod id `apothic_compats`, runtime 0.2.4.2. O suporte upstream a AE2 permanece documentado, porém AE2 está ausente da modlist física atual; essa compat está dormente. O estado anterior `Integrado ao Github` não foi descartado: a normalização atual refere-se ao fechamento documental do dossiê.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Apothic Compats 0.2.4.2 + dossiê data-driven existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Apothic Compats 0.2.4.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `apothic_compats-0.2.4.2.jar` / `0.2.4.2`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-compats
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 0.2.4.2, datapack compats, provider-conditioned integrations, AE2 absence and anti-duplication boundaries confirmed in global QC #33. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #33: `apothic_compats-0.2.4.2.jar` / `0.2.4.2` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita como dossiê operacional. O pack contém vários providers cobertos explicitamente por Apothic Compats, tornando o módulo útil como camada data-driven de compatibilidade; não confundir com Apothic Category Compat.
 - **Data da última decisão:** 2026-09-07
 
