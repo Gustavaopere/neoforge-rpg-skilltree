@@ -15,15 +15,16 @@
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/controlling
 - **Função:** Mod client-side que melhora a tela de keybindings com busca, filtros de conflitos e inspeção de teclas disponíveis para administrar controles em instalações com muitos mods.
 - **Dependências:** Searchables é dependência confirmada para a linha instalada e está presente no pack. Client-side; não altera o registro server-side de ações dos mods consumidores.
 - **Compatibilidade/Riscos:** Baixo risco e focado em UI/input management. Riscos: conflitos com outros mods que substituem a Controls screen, modifier keybinds, UI scale/search cache e Searchables version drift. 19.0.5 corrige double modifier keybinds.
 - **Sobreposição:** Pode coexistir com outras utilidades de keybind enquanto não substituírem a mesma Controls screen de forma incompatível. Não altera a semântica da ação registrada pelos mods, apenas sua gestão/apresentação.
 - **Observações:** mod id `controlling`; runtime 19.0.5. Recursos: busca de keybinds, filtro de binds em conflito e visualização/gestão de teclas disponíveis; 19.0.5 corrige double modifier keybinds (#214).
-- **Procedência:** modlist.txt física atual de 08/09/2026 + runtime 19.0.5 + CurseForge oficial Controlling 19.0.5 NeoForge 1.21.1 + documentação oficial do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime 19.0.5 + CurseForge oficial Controlling 19.0.5 NeoForge 1.21.1 + documentação oficial já auditada. Reconciliação final: JAR/runtime permanecem exatamente `Controlling-neoforge-1.21.1-19.0.5.jar` / `19.0.5`; Searchables continua dependência confirmada e o boundary client-side permanece inalterado.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Controlling 19.0.5 foi reconfirmado fisicamente e reconstruído como utilitário client-side de gestão de keybinds. A presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Controlling 19.0.5, Searchables dependency, keybind search/conflict authority, client lifecycle, screen interoperability e regressão de double modifier confirmados no QC global #108. Runtime UI QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #108: `Controlling-neoforge-1.21.1-19.0.5.jar` / `19.0.5` conferidos contra a modlist atual; Searchables dependency, keybind search/conflict authority, client lifecycle, screen interoperability e regressão de double modifier preservados.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
