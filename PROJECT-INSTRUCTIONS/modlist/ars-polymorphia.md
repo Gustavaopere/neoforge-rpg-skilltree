@@ -11,7 +11,7 @@
 - **Mod:** Ars Polymorphia
 - **Arquivo JAR:** `ars_polymorphia-1.0.3.jar`
 - **Versão 1.21.1:** 1.0.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, Compat, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Compartilha a authority Polymorph-compatible com adapters de outros providers quando esses providers estão presentes, mas cobre especificamente o Storage/Crafting Lectern Ars. No snapshot atual AE2 está ausente; não criar segundo resolver sobre o mesmo menu nem instalar Polymorph original em paralelo ao Polymorph+.
 - **Compatibilidade/Riscos:** Riscos: mixins acoplados a internals do Crafting Lectern/Menu/Screen, drift de API Polymorph+, seleção stale após datapack reload, output ghost/client desync e contaminação entre jogadores se player-specific state falhar.
 - **Observações:** mod id `ars_polymorphia`, runtime 1.0.3. Adapter específico do Storage/Crafting Lectern; AE2 está ausente do snapshot atual e nenhum resolver AE2 é contado como superfície ativa.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial Vonr/Ars-Polymorphia 1.0.3 + Polymorph+ 1.3.1 físico + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial Vonr/Ars-Polymorphia 1.0.3 + Polymorph+ 1.3.1 físico e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_polymorphia-1.0.3.jar` / `1.0.3`; sem divergência física.
 - **Fonte:** https://github.com/Vonr/Ars-Polymorphia
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Polymorphia 1.0.3, Polymorph+ 1.3.1 authority, server-side recipe validation, player-specific state and current AE2 absence reconciled in global QC #48. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #48: `ars_polymorphia-1.0.3.jar` / `1.0.3` conferidos contra a modlist atual; adapter Polymorph+ e estado técnico preservados.
 - **Histórico da decisão:** Manter. Ficha reconstruída em 07/09/2026 contra o source 1.0.3 e o provider físico atual Polymorph+; confirmado que é adapter específico do Storage Lectern, não Ars Morph nem segundo recipe resolver.
 - **Data da última decisão:** 2026-09-07
 
