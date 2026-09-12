@@ -11,7 +11,7 @@
 - **Mod:** AttributeFix
 - **Arquivo JAR:** `attributefix-neoforge-1.21.1-21.1.3.jar`
 - **Versão 1.21.1:** 21.1.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa mods que criam atributos; não equivale a Apothic Attributes, Additional Attributes ou outros providers.
 - **Compatibilidade/Riscos:** Ao permitir valores mais altos, pode expor combinações extremas de atributos criadas por outros mods; não é um sistema de atributos novo.
 - **Observações:** mod id: attributefix; runtime name: AttributeFix.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source/documentação AttributeFix 21.1.3 + PrickleMC 21.1.11 físico + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source/documentação AttributeFix 21.1.3 + PrickleMC 21.1.11 físico e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `attributefix-neoforge-1.21.1-21.1.3.jar` / `21.1.3`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/attributefix
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — AttributeFix 21.1.3, cinco vanilla attribute maxima elevados/configuráveis e provider-boundary confirmados no QC global #59. PrickleMC 21.1.11 reconfirmado; estado anterior `Integrado ao Github` preservado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #59: `attributefix-neoforge-1.21.1-21.1.3.jar` / `21.1.3` conferidos contra a modlist atual; cinco vanilla range defaults e provider-boundary preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou AttributeFix 21.1.3, os cinco ranges vanilla padrão, a configuração por atributo e a dependência PrickleMC. A instalação atual não foi convertida automaticamente em decisão de manter/remover.
 - **Data da última decisão:** não definida
 
