@@ -11,7 +11,7 @@
 - **Mod:** Azimuth API
 - **Arquivo JAR:** `azimuth-1.4.8.jar`
 - **Versão 1.21.1:** 1.4.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca, Tecnologia
@@ -20,9 +20,9 @@
 - **Sobreposição:** Biblioteca de infraestrutura; não é conteúdo tecnológico redundante.
 - **Compatibilidade/Riscos:** Mixins em SmartBlockEntity, casts de behaviour, double-tick e version drift com Create 6.0.10 são os principais riscos. Outlines/Ponder devem permanecer client-side.
 - **Observações:** Runtime físico `azimuth-1.4.8.jar`, display `Azimuth`, mod id `azimuth`; a página editorial permanece `Azimuth API`. Consumer atual não foi inferido por semelhança de nome.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + documentação/source Azimuth 1.4.8 + reconciliação física de consumers do snapshot atual.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + documentação/source Azimuth 1.4.8 + reconciliação física de consumers já auditada. Reconciliação final: JAR/runtime permanecem exatamente `azimuth-1.4.8.jar` / `1.4.8`; display name físico `Azimuth` e título editorial `Azimuth API` são a mesma entrada documentada, sem divergência binária.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/azimuth-api
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Azimuth 1.4.8, Create API/Super Behaviours/lifecycle e SmartBlockEntity risk confirmados no QC global #60. Bits 'n' Tracks removido como consumer ativo porque está ausente do snapshot atual; consumer graph atual permanece pendente. Estado anterior `Integrado ao Github` preservado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #60: `azimuth-1.4.8.jar` / `1.4.8` conferidos contra a modlist atual; display físico `Azimuth`, título editorial `Azimuth API` e consumer graph pendente preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Azimuth 1.4.8 como API de infraestrutura do ecossistema Create. Em 09/09/2026, o consumer anteriormente citado Bits 'n' Tracks foi reconciliado como ausente da modlist física atual; nenhum consumer substituto foi presumido. A necessidade de Azimuth permanece dependente de dependency graph/JAR metadata, sem converter presença física em decisão.
 - **Data da última decisão:** não definida
 
