@@ -11,7 +11,7 @@
 - **Mod:** Athena
 - **Arquivo JAR:** `athena-neoforge-1.21.1-4.0.6.jar`
 - **Versão 1.21.1:** 4.0.6
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +20,9 @@
 - **Sobreposição:** Biblioteca técnica; APIs de renderização/modelos não são automaticamente intercambiáveis.
 - **Compatibilidade/Riscos:** Não remover por aparente redundância com outras bibliotecas de renderização; consumidores podem exigir Athena especificamente.
 - **Observações:** mod id: athena; runtime name: Athena.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + documentação/source Athena 4.0.6 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + documentação/source Athena 4.0.6 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `athena-neoforge-1.21.1-4.0.6.jar` / `4.0.6`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/athena
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Athena 4.0.6, oito model factories/IDs, client-side model infrastructure e dedicated-server boundary confirmados no QC global #57. Estado anterior `Integrado ao Github` preservado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #57: `athena-neoforge-1.21.1-4.0.6.jar` / `4.0.6` conferidos contra a modlist atual; escopo client-side/model infrastructure e corpo técnico preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Athena 4.0.6 como biblioteca client-side de modelos/CTM e registrou que sua necessidade depende dos consumidores reais. Nenhuma decisão de manter/remover foi inferida apenas da presença no pack.
 - **Data da última decisão:** não definida
 
