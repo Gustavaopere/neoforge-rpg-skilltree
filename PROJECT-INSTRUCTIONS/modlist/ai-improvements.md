@@ -11,7 +11,8 @@
 - **Mod:** AI-Improvements
 - **Arquivo JAR:** `AI-Improvements-1.21-0.5.3.jar`
 - **Versão 1.21.1:** `0.5.3`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — performance scope, profiling requirement, AI toggles e coexistência com Enhanced AI 4.2.3.0 reconciliados no QC global #17.
+- **Estado no pack:** Integrado ao Github
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #17: `AI-Improvements-1.21-0.5.3.jar` / `0.5.3` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Categoria:** Performance
 - **Compatibilidade/Riscos:** Pack também contém Enhanced AI 4.2.3.0. Papéis são distintos, mas ambos tocam IA; validar goals/pathfinding e qualquer toggle de desativação. Ganho de performance deve ser medido, não presumido. Nenhum conflito confirmado nesta auditoria.
 - **Decisão:** Sem decisão
@@ -19,11 +20,11 @@
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ai-improvements
 - **Função:** Otimização low-level da IA vanilla para reduzir overhead de processamento e permitir desativação configurável de certos comportamentos; foco server-side/singleplayer.
-- **Histórico da decisão:** vazio
+- **Histórico da decisão:**
 - **Observações:** Não atribuir ganho genérico sem benchmark do pack. Testar mobs vanilla e modded, especialmente quando qualquer opção de desativação de AI for alterada.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + Modrinth/CurseForge oficiais AI Improvements 0.5.3 + dossiê técnico existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + Modrinth/CurseForge oficiais AI Improvements 0.5.3 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AI-Improvements-1.21-0.5.3.jar` / `0.5.3`; sem divergência física.
 - **Sobreposição:** Não é duplicata de Enhanced AI: AI-Improvements otimiza/reduz trabalho; Enhanced AI acrescenta comportamento. Sobreposição existe apenas na superfície técnica de AI tick/goals/pathfinding.
-- **Data da última decisão:** vazio
+- **Data da última decisão:**
 
 ## Escopo e papel
 Mod de **otimização de IA vanilla**. O objetivo upstream é reduzir custo de processamento e permitir desativar certos comportamentos de AI, com foco em server-side/singleplayer. Ele não tenta tornar mobs mais inteligentes; atua no orçamento/execução da IA existente.
