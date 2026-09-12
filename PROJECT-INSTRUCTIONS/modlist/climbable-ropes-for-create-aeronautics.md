@@ -11,7 +11,7 @@
 - **Mod:** Climbable Ropes for Create Aeronautics
 - **Arquivo JAR:** `climbable_ropes-2.1.3.jar`
 - **Versão 1.21.1:** 2.1.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL, Tecnologia
@@ -20,9 +20,9 @@
 - **Sobreposição:** Mecânica específica de escalada em ropes do stack Aeronautics. Pode cruzar Parkour/mobility/camera/player animation mods, mas não substitui genericamente sistemas de corda ou climb.
 - **Compatibilidade/Riscos:** State de climbing/movement precisa permanecer server-coherent enquanto animação é client-side. 2.1.3 corrige drift em contraptions móveis, herança de velocity no dismount e override da hanging pose por FA-PE; 2.1.1 já corrigia respawn/dimension, disconnect stale pose e render cancellation. Riscos com mobility/input/camera/player-render mods e rope physics do Aeronautics.
 - **Observações:** JAR físico atual `climbable_ropes-2.1.3.jar`, mod id `climbable_ropes`, runtime 2.1.3. A 2.1.3 corrige drift/velocity em Create contraptions móveis e conflito de hanging pose com FA-PE; Player Animator 2.0.4+1.21.1 permanece embarcado via jar-in-jar.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Climbable Ropes 2.1.3 + changelogs oficiais 2.1.1/2.1.3 + metadata física do Player Animator 2.0.4+1.21.1 embarcado via jar-in-jar.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Climbable Ropes 2.1.3 + changelogs oficiais 2.1.1/2.1.3 + metadata física do Player Animator 2.0.4+1.21.1 embarcado via jar-in-jar e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `climbable_ropes-2.1.3.jar` / `2.1.3`; Player Animator embarcado continua não top-level.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime físico 2.1.3, fixes de drift/velocity em contraptions móveis, herança de velocidade no dismount, conflito FA-PE de hanging pose e regressões lifecycle 2.1.1 confirmados no QC global #95. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #95: `climbable_ropes-2.1.3.jar` / `2.1.3` conferidos contra a modlist atual; fixes de drift/velocity, hanging pose/FA-PE, lifecycle 2.1.1 e Player Animator 2.0.4+1.21.1 embarcado via jar-in-jar preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026 uma leitura anterior reconciliou provisoriamente o dossiê à 2.1.1; a modlist física mais recente de 08/09/2026 confirma `climbable_ropes-2.1.3.jar`. A conclusão válida sobre Player Animator permanece: a cópia embarcada via jar-in-jar não torna automaticamente redundante eventual cópia top-level exigida por outros consumers.
 - **Data da última decisão:**
 
