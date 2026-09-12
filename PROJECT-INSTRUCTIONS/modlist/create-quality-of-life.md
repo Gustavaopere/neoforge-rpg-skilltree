@@ -11,7 +11,7 @@
 - **Mod:** Create Quality of Life
 - **Arquivo JAR:** `Create Quality of Life-1.21.1-1.6.3-fix1.jar`
 - **Versão 1.21.1:** 1.6.3-fix1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL, Tecnologia
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa Create com QoL/equipamentos. Pode cruzar Create: Connected, Create Utilities J e outros addons em conveniência/interaction surfaces, mas nenhuma substituição é inferida sem comparação feature-by-feature.
 - **Compatibilidade/Riscos:** Riscos em slots/armor rendering, invisibility, air-use de equipamentos, fluid voiding/bottomless supply e sobreposição com outros QoL de Create. A build 1.6.3-fix1 adiciona opção para impedir que capacetes ocultem armor durante Invisibility; validar junto do stack visual/equipamento.
 - **Observações:** mod id `createqol`; runtime 1.6.3-fix1; NeoForge 1.21.1, Client & Server. 1.6.3 adicionou Trash Can blacklist, smithing de Elytra/Propeller em chestplate, config de air usage e fix de superheated lava como bottomless supply; fix1 adiciona opção de invisibility/armor para helmets.
-- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime `createqol` 1.6.3-fix1 + CurseForge/Modrinth oficiais da release 1.6.3-fix1 e changelog 1.6.3.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createqol` 1.6.3-fix1 + CurseForge/Modrinth oficiais da release e changelogs já auditados. Reconciliação final: JAR/runtime permanecem exatamente `Create Quality of Life-1.21.1-1.6.3-fix1.jar` / `1.6.3-fix1`; Create 6.0.10 permanece authority das primitives base.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-qol
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create Quality of Life 1.6.3-fix1, QoL components, armor/elytra/propeller, trash/fluid behavior, config e regressões confirmados no QC global #115. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #115: `Create Quality of Life-1.21.1-1.6.3-fix1.jar` / `1.6.3-fix1` conferidos contra a modlist atual; QoL components, armor/elytra/propeller, trash/fluid behavior, config e regressões preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create Quality of Life 1.6.3-fix1 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. A presença no pack não foi convertida em decisão curatorial.
 - **Data da última decisão:**
 
