@@ -11,7 +11,7 @@
 - **Mod:** Ars Elemental
 - **Arquivo JAR:** `ars_elemental-1.21.1-0.7.10.1.jar`
 - **Versão 1.21.1:** 0.7.10.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, RPG
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa Ars Nouveau e fornece a base elemental consumida por Ars Elemancy. Não duplicar schools/perks/resistances em integração própria.
 - **Compatibilidade/Riscos:** Riscos: double-dip de school power/resistance, perks/turrets processados duas vezes, perda de perk slots de armor e drift de patch. A branch upstream já está em 0.7.10.2; features exclusivas da .2 não pertencem ao runtime 0.7.10.1.
 - **Observações:** mod id `ars_elemental`. Release normal registra 39 spell parts; MethodCarianPhalanx é dev-only e foi excluído. 8 rituals, 3 familiars, 3 perks e 12 armor sets confirmados no source 0.7.10.1.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial Ars-Elemental commit `a5bdb39567ee39bde2210203cf051f709d06e08a` (0.7.10.1) + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial Ars-Elemental commit `a5bdb39567ee39bde2210203cf051f709d06e08a` (0.7.10.1) e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_elemental-1.21.1-0.7.10.1.jar` / `0.7.10.1`; sem divergência física.
 - **Fonte:** https://github.com/Alexthw46/Ars-Elemental
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Elemental 0.7.10.1, exact source pin, 39 production spell parts, 8 rituals, 3 familiars, 3 perks, 12 armor sets e patch boundary 0.7.10.2 confirmados no QC global #44. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #44: `ars_elemental-1.21.1-0.7.10.1.jar` / `0.7.10.1` conferidos contra a modlist atual; source pin 0.7.10.1 e boundary contra 0.7.10.2 preservados.
 - **Histórico da decisão:** Manter. Ficha reconstruída em 07/09/2026 contra o commit exato da build 0.7.10.1 para impedir contaminação por features da 0.7.10.2 upstream.
 - **Data da última decisão:** 2026-09-07
 
