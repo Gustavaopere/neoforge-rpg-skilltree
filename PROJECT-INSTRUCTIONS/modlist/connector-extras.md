@@ -11,17 +11,18 @@
 - **Mod:** Connector Extras
 - **Arquivo JAR:** `ConnectorExtras-1.12.1+1.21.1.jar`
 - **Versão 1.21.1:** `1.12.1+1.21.1`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Connector Extras 1.12.1+1.21.1, bridges de energia/recipe viewers/config/TerraBlender, lifecycle e necessidade condicional confirmados no QC global #106. Decisão Opcional preservada; runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #106: `ConnectorExtras-1.12.1+1.21.1.jar` / `1.12.1+1.21.1` conferidos contra a modlist atual; bridges de energia/recipe viewers/config/TerraBlender, módulos jar-in-jar, lifecycle e decisão `Opcional` preservados.
 - **Categoria:** Compat; Biblioteca
 - **Compatibilidade/Riscos:** Camada condicional e ampla de bridges. Riscos: dupla conversão FE/Energy, dois plugin detectors registrando o mesmo plugin, config screen duplicada, bridge sem consumer e version drift com Connector/API alvo. A bridge Team Reborn Energy usa razão default 1 E : 10 FE, configurável por direção; 0 desativa a direção.
 - **Decisão:** Opcional
 - **Dependências:** Required funcionalmente: Sinytra Connector. Os módulos só têm utilidade quando um mod Fabric carregado pelo Connector usa a API/integração correspondente; não inferir necessidade pela simples presença dos bridges.
 - **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/connector-extras/files/5618470
 - **Função:** Pacote de bridges adicionais para Sinytra Connector que adapta integrações Fabric↔Forge/NeoForge em áreas como energia, recipe viewers, TerraBlender, Mod Menu/config screens e Forge Config API Port.
 - **Histórico da decisão:** Em 06/09/2026 foi registrada decisão formal `Opcional`: Connector Extras deve permanecer apenas enquanto houver necessidade real do Sinytra Connector por consumidores Fabric. Se teste A/B provar o Connector dispensável, remover Extras junto. Essa decisão não autoriza remover Forgified Fabric API, que pode ter consumidores NeoForge nativos independentes.
 - **Observações:** JAR físico `ConnectorExtras-1.12.1+1.21.1.jar`. O host embarca módulos 1.12.1+1.21.1 para TerraBlender, REI, Pehkui, Mod Menu, KubeJS, JEI, Energy e EMI, além de `extras-utils`; são componentes jar-in-jar e não entradas top-level. Contracts detalhados permanecem limitados às bridges sustentadas pelas fontes auditadas.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + runtime 1.12.1+1.21.1 + CurseForge oficial File ID 5618470 + source/documentação oficial Sinytra/ConnectorExtras para módulos e contracts.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime 1.12.1+1.21.1 + CurseForge oficial File ID 5618470 + source/documentação oficial Sinytra/ConnectorExtras e inventário jar-in-jar já auditados. Reconciliação final: JAR/runtime permanecem exatamente `ConnectorExtras-1.12.1+1.21.1.jar` / `1.12.1+1.21.1`; módulos embarcados continuam não top-level e a decisão `Opcional` permanece inalterada.
 - **Sobreposição:** Complementa Sinytra Connector com bridges específicas; não substitui o Connector nem as APIs-alvo. Uma bridge só deve processar a integração correspondente uma vez.
 - **Data da última decisão:** 2026-09-06
 
