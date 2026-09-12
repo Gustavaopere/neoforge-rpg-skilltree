@@ -11,7 +11,7 @@
 - **Mod:** AnimalHusbandry
 - **Arquivo JAR:** `AnimalHusbandry-neoforge-0.4.1.jar`
 - **Versão 1.21.1:** 0.4.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:**
 - **Categoria:** Mobs, Comida, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Aprofunda os animais de fazenda existentes em vez de adicionar apenas nova fauna. Sobrepõe qualquer mod que altere breeding/genética/necessidades de livestock, mas não é equivalente a grandes mob packs como Alex's Mobs.
 - **Compatibilidade/Riscos:** Early Access. A 0.4.1 adiciona config para desabilitar custom animal textures quando o usuário prefere outros texture mods. O pack usa Fresh Animations; o projeto oferece compatibilidade/resource-pack específico para custom coats/eyes/face animations e a prioridade deve ser validada. Se o compat pack não estiver ativo, a alternativa é desabilitar custom textures via config. Sistemas externos que alteram breeding, animal AI, food tags ou textures podem sobrepor funcionalmente.
 - **Observações:** Fonte upstream não sustenta a afirmação antiga de 'gestação específica por espécie'; removida do contrato até evidência direta. O mod está em Early Access e deve ser validado com Fresh Animations e resource packs de animais.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Animal Husbandry 0.4.1 + Architectury 13.0.11 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Animal Husbandry 0.4.1 + Architectury 13.0.11 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AnimalHusbandry-neoforge-0.4.1.jar` / `0.4.1`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/animal-husbandry
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — husbandry/care/genetics, Architectury 13.0.11, Fresh Animations texture strategy, Early Access risks and persistence QA confirmed in global QC #28.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #28: `AnimalHusbandry-neoforge-0.4.1.jar` / `0.4.1` conferidos contra a modlist atual; versão 0.4.1 preservada como autoridade física, sem regressão para referências antigas 0.4.0; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
