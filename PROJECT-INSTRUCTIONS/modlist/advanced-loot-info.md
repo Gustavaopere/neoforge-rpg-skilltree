@@ -11,7 +11,7 @@
 - **Mod:** Advanced Loot Info
 - **Arquivo JAR:** `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar`
 - **Versão 1.21.1:** 2.1.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição informacional parcial com Just Enough Resources e outros viewers/tooltips de loot. ALI diferencia-se por representar a estrutura genérica da loot table/trade e por expor plugin API. Lootr/Loot Integrations modificam comportamento/distribuição de loot e não são substitutos. JEI é host de UI, não concorrente.
 - **Compatibilidade/Riscos:** A build 2.1.0 é beta. Tabelas vanilla/data-driven são observáveis, mas loot entries/conditions/functions/number providers proprietários de outros mods podem aparecer incompletos ou como erro sem plugin do provider. ACI↔ALI↔JEI forma um pipeline version-sensitive; dedicated server/reload devem validar payloads e cache. Sobreposição visual com JER/outros JEI addons pode duplicar páginas, sem alterar loot real. Não inferir drop chance final se conditions/contexto custom não forem interpretados.
 - **Observações:** Mudança arquitetural importante: desde 1.11.0 o projeto deixou de manter built-in support para a maioria dos mods, exceto LootJS; suporte a tipos próprios deve vir do mod owner/plugin. Portanto “ALI instalado” NÃO garante interpretação completa de toda loot table modded. Falhas de exibição não equivalem a falhas de loot.
-- **Procedência:** Modlist física 2026-09-07 + CurseForge oficial Advanced Loot Info 2.1.0 + changelogs 1.11.0/2.0.1/2.1.0 + Advanced Core Info 1.1.0 + guia gameplay/sistemas.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Advanced Loot Info 2.1.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` / `2.1.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê operacional completo de loot/trades observability, ACI→ALI→JEI pipeline, LootJS/plugin API, networking, reload e beta risks confirmado no QC global #7.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #7: `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` / `2.1.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
