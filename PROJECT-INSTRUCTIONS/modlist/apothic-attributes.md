@@ -11,7 +11,7 @@
 - **Mod:** Apothic Attributes
 - **Arquivo JAR:** `ApothicAttributes-1.21.1-2.10.1.jar`
 - **Versão 1.21.1:** 2.10.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Biblioteca, RPG
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição conceitual com Additional Attributes/Pufferfish's Attributes, mas contratos, registry ids e pipelines são distintos. Não substituir atributos Apothic por equivalentes nominais sem bridge real.
 - **Compatibilidade/Riscos:** Grande área de double-processing com outros providers de atributos/combate. Não duplicar crit, armor/protection pierce/shred, life steal, overheal ou cooldown reduction em handlers paralelos. Curios só é fonte quando slots/modifiers estão registrados corretamente; respeitar tags atuais de dano físico/não físico.
 - **Observações:** mod id: `apothic_attributes`; runtime 2.10.1. A linha 2.10.x inclui sistema unificado de cooldown/cooldown_reduction e JEI exclusion zones da Attributes GUI. O corpo da página registra mudanças relevantes, boundaries e testes.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/source/changelog oficiais Apothic Attributes 2.10.1 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/source/changelog oficiais Apothic Attributes 2.10.1 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ApothicAttributes-1.21.1-2.10.1.jar` / `2.10.1`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-attributes
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 2.10.1, attribute/damage/cooldown authority, Placebo 9.9.2 + Apotheosis 8.8.0 context and anti-double-processing gates confirmed in global QC #34. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #34: `ApothicAttributes-1.21.1-2.10.1.jar` / `2.10.1` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita com changelog 1.21 da versão instalada. A presença de outros mods de atributos não torna Apothic Attributes redundante: ele é dependência estrutural e provider do pipeline Apothic.
 - **Data da última decisão:** 2026-09-07
 
