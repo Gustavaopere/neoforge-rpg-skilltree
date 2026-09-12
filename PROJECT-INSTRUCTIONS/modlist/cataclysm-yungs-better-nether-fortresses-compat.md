@@ -11,7 +11,7 @@
 - **Mod:** Cataclysm x YUNG's Better Nether Fortresses Compat
 - **Arquivo JAR:** `cataclysmfortresses-1.21.1-NeoForge.jar`
 - **Versão 1.21.1:** 1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Worldgen, Mobs
@@ -20,9 +20,9 @@
 - **Sobreposição:** Bridge específica de uma tag de estrutura. Não é worldgen provider geral e não substitui nenhum dos dois mods-alvo.
 - **Compatibilidade/Riscos:** Compat muito pequena e data/tag-oriented. Riscos: tag/namespace mudar em update, spawn condition pós-Ignis não resolver, datapack sobrescrever a tag em vez de mesclar e bridge permanecer instalada sem um dos providers.
 - **Observações:** Implementação oficial descrita pelo autor: simplesmente adicionar a Better Fortress à tag `#berserker_spawn` do Cataclysm. Environment Server. Não adiciona biomas, estruturas, mobs ou loot próprios.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Cataclysm x YUNG's Better Nether Fortresses Compat 1.21.1 + providers físicos Cataclysm 3.33 e YUNG's Better Nether Fortresses 3.1.5.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Cataclysm x YUNG's Better Nether Fortresses Compat 1.21.1 + Cataclysm 3.33 e YUNG's Better Nether Fortresses 3.1.5 físicos e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `cataclysmfortresses-1.21.1-NeoForge.jar` / `1.21.1`; bridge continua documentada como tag/server-side mínima, sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cataclysm-x-yungs
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — bridge 1.21.1 física confirmada; associação Better Fortress→`#cataclysm:berserker_spawn`, condição pós-Ignis, server-only/tag lifecycle e providers Cataclysm 3.33 + Better Nether Fortresses 3.1.5 preservados. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #88: `cataclysmfortresses-1.21.1-NeoForge.jar` / `1.21.1` conferidos contra a modlist atual; Better Fortress→`#cataclysm:berserker_spawn`, condição pós-Ignis, server-only/tag lifecycle e providers Cataclysm 3.33 + YUNG's Better Nether Fortresses 3.1.5 preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a compatibilidade Cataclysm x YUNG's Better Nether Fortresses foi reconfirmada na build física atual. A instalação do bridge não foi convertida em decisão automática de manter/remover.
 - **Data da última decisão:** não definida
 
