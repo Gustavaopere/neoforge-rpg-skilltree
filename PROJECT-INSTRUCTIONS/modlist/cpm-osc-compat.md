@@ -11,7 +11,7 @@
 - **Mod:** CPM OSC Compat
 - **Arquivo JAR:** `cpm-osc-compat-1.7.2.jar`
 - **Versão 1.21.1:** 1.7.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Visual
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa CPM; não substitui seu editor/model/avatar system. Pode sobrepor outras bridges de controle de animação apenas quando elas acionam o mesmo trigger/value, caso em que o settlement deve ser definido explicitamente.
 - **Compatibilidade/Riscos:** Client-only e orientado a input de rede local/OSC. Riscos: porta UDP indisponível, mensagens malformadas/fora do contrato, animation trigger duplicado por outras bridges, version drift com CPM e exposição de listener além da interface/rede pretendida. O upstream declara explicitamente recebimento apenas de UDP.
 - **Observações:** mod id `cpmoscc`; runtime 1.7.2. O projeto oficial declara suporte a OSC/VMC animation triggers, recebimento de pacotes UDP e value-layer/slider animations. É client-only.
-- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime 1.7.2 + CurseForge oficial Customizable Player Models OSC Compat 1.7.2 + documentação oficial do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime 1.7.2 + CurseForge/documentação oficial CPM OSC Compat já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `cpm-osc-compat-1.7.2.jar` / `1.7.2`; boundary client-only e receive-only UDP preservados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cpmoscc
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — CPM OSC Compat 1.7.2, OSC/VMC→CPM authority, UDP receive-only boundary, value-layer settlement, security e lifecycle confirmados no QC global #112. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #112: `cpm-osc-compat-1.7.2.jar` / `1.7.2` conferidos contra a modlist atual; OSC/VMC→CPM authority, UDP receive-only boundary, value-layer settlement, security e lifecycle preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CPM OSC Compat 1.7.2 foi reconfirmado fisicamente e reconstruído como bridge client-side de OSC/VMC para CPM. A presença não foi convertida em decisão curatorial.
 - **Data da última decisão:**
 
