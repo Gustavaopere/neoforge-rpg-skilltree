@@ -11,7 +11,7 @@
 - **Mod:** Create Confectionery
 - **Arquivo JAR:** `create-confectionery1.21.1_v1.1.3b.jar`
 - **Versão 1.21.1:** 1.1.3.
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Comida, Automação
@@ -20,9 +20,9 @@
 - **Sobreposição:** Compartilha food/chocolate space com outros addons culinários, mas possui conteúdo e recipes próprios. Create é authority das primitives de processing; Confectionery é authority de seus ingredients, foods, tools e recipes.
 - **Compatibilidade/Riscos:** Riscos em food effects, recipes/processamento duplicados por outros addons culinários, tags/ingredients e divergência de identidade: filename/publicação `1.1.3b`/`1.1.3.b`, enquanto metadata runtime declara literalmente `1.1.3.`. Preservar os dois valores sem normalização inventada.
 - **Observações:** mod id `create_confectionery`; JAR `create-confectionery1.21.1_v1.1.3b.jar`; runtime literal `1.1.3.`. Release oficial 1.1.3.b corrige effects de candies/glazed berries, atualiza textures, muda Full Chocolate Bar para comportamento de food e adiciona Candy Cane Tools.
-- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + metadata runtime `create_confectionery` 1.1.3. + CurseForge/Modrinth oficiais da release NeoForge 1.21.1 `1.1.3.b`.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime `create_confectionery` `1.1.3.` + CurseForge/Modrinth oficiais da release NeoForge 1.21.1 `1.1.3.b` já auditados. Reconciliação final: filename `create-confectionery1.21.1_v1.1.3b.jar`, release `1.1.3.b` e runtime `1.1.3.` continuam registrados como evidências distintas, sem normalização.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-confectionery
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create Confectionery JAR `v1.1.3b`, release `1.1.3.b` e runtime literal `1.1.3.` reconciliados; conteúdo/processing/lifecycle confirmados no QC global #119. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #119: `create-confectionery1.21.1_v1.1.3b.jar` reconfirmado; runtime físico literal `1.1.3.` preservado, distinto do filename `v1.1.3b` e da release upstream `1.1.3.b`. Conteúdo/processing/lifecycle permanecem inalterados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create Confectionery foi reconfirmado como `Instalado`; a divergência filename/publicação↔runtime foi preservada e a ficha reconstruída sem inferir decisão curatorial.
 - **Data da última decisão:**
 
