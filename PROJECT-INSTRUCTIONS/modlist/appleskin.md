@@ -11,7 +11,7 @@
 - **Mod:** AppleSkin
 - **Arquivo JAR:** `appleskin-neoforge-mc1.21-3.0.9.jar`
 - **Versão 1.21.1:** 3.0.9+mc1.21
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Comida, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Não substitui Nutritional Balance, Farmer's Delight, Thirst ou outro sistema de sobrevivência; apenas expõe visualmente hunger/saturation/exhaustion e valores relacionados.
 - **Compatibilidade/Riscos:** Riscos são principalmente visuais e de representação: stacking com outros HUDs, estados montados e alimentos com mecânicas customizadas fora do pipeline normal. Não usar tooltip/HUD como authority técnica de progressão. Nutritional Balance, sede e efeitos especiais de comida permanecem sistemas separados.
 - **Observações:** mod id: `appleskin`; JAR 3.0.9, metadata runtime 3.0.9+mc1.21. A página documenta client/server sync, features HUD, limites, integração com food mods e testes de overlays.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/source/releases oficiais AppleSkin 3.0.9 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/source/releases oficiais AppleSkin 3.0.9 e fontes já auditadas no dossiê. Reconciliação final: JAR permanece `appleskin-neoforge-mc1.21-3.0.9.jar` e metadata runtime `3.0.9+mc1.21`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/appleskin
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — AppleSkin 3.0.9, HUD/tooltips/F3/sync, client/server boundary and food-telemetry-only authority confirmed in global QC #37. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #37: `appleskin-neoforge-mc1.21-3.0.9.jar` / metadata runtime `3.0.9+mc1.21` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita como dossiê operacional de observabilidade, distinguindo AppleSkin de nutrição, sede e culinária e registrando as correções NeoForge da linha 3.0.9.
 - **Data da última decisão:** 2026-09-07
 
