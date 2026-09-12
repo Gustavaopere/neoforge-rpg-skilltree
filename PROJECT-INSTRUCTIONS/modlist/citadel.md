@@ -15,15 +15,16 @@
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/citadel
 - **Função:** Biblioteca leve usada por mods consumidores para infraestrutura de entidades/animação/rendering, pathfinding/collision e outras utilities compartilhadas; não é provider de gameplay autônomo.
 - **Dependências:** A release oficial Citadel 2.7.1 não declara dependências próprias adicionais no CurseForge. Sua necessidade no pack é determinada pelos consumidores que compilam/rodam contra Citadel.
 - **Compatibilidade/Riscos:** Library sensível a version drift e mixins/hooks em entidade, pathfinding, collision, rendering e worldgen hooks. 2.7.1 corrige Citadel quebrando surface rules de outros mods, corrige iluminação de entidades no book e ajusta pathfinding/collision/rendering. Não é substituível por AzureLib/GeckoLib.
 - **Sobreposição:** Biblioteca técnica específica. Coexistência com AzureLib, GeckoLib e outras APIs de entidade/animação não implica redundância binária; consumers dependem de contratos distintos.
 - **Observações:** mod id `citadel`; runtime 2.7.1. Release 18/07/2026. Changelog: fix de surface rules, book entity lighting e tweaks de pathfinding/collision/rendering.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Citadel 2.7.1 para NeoForge 1.21.1 + source oficial ligado pelo projeto; registro histórico do port não-oficial mantido separado.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Citadel 2.7.1 para NeoForge 1.21.1 + source oficial ligado pelo projeto e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `citadel-2.7.1-1.21.1.jar` / `2.7.1`; a entrada oficial continua separada do antigo `Citadel (Unofficial Port)` removido.
 - **Histórico da decisão:** Sem decisão formal. A auditoria histórica de 22/08/2026 confirmou o Citadel oficial `2.7.1` como entrada distinta do antigo `Citadel (Unofficial Port)` removido; essa confirmação de presença não constitui decisão curatorial. Em 08/09/2026, o dossiê foi reconstruído para o JAR físico atual sem inventar o consumer específico que o mantém no pack.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Citadel 2.7.1 físico confirmado; library/consumer contract, entity/render/pathfinding/collision surfaces, surface-rules regression fix, side/lifecycle e version drift confirmados no QC global #94. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #94: `citadel-2.7.1-1.21.1.jar` / `2.7.1` conferidos contra a modlist atual; library/consumer contract, entity/render/pathfinding/collision surfaces, surface-rules fix e distinção do antigo port não-oficial preservados.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
