@@ -11,7 +11,7 @@
 - **Mod:** BjornLib
 - **Arquivo JAR:** `bjornlib-neoforge-1.0.88-1.21.1.jar`
 - **Versão 1.21.1:** 1.0.88
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +20,9 @@
 - **Sobreposição:** Biblioteca técnica específica. APIs conceitualmente parecidas em outras libs não são substitutas binárias dos consumidores BjornLib.
 - **Compatibilidade/Riscos:** APIs de ability/event/particle/lightning/leveling podem ser usadas por gameplay e render; riscos de event duplication, client/server authority incorreta, entity state órfão e consumer incompatível após update.
 - **Observações:** Descrição oficial confirma Ability Registry + events, Particle Builder com glowing rendering/default particles, Lightning Builder e Leveling Builder para mobs. Nenhuma classe interna adicional foi inventada além das superfícies publicadas.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial BjornLib + arquivo NeoForge 1.21.1 1.0.88.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial BjornLib 1.0.88 NeoForge 1.21.1 + superfícies públicas e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `bjornlib-neoforge-1.0.88-1.21.1.jar` / `1.0.88`; detalhes internos não confirmados continuam não inferidos.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bjornlib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BjornLib 1.0.88 físico/release confirmado; Ability Registry/events, Particle Builder, Lightning Builder e Leveling Builder preservados de forma fail-closed. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #78: `bjornlib-neoforge-1.0.88-1.21.1.jar` / `1.0.88` conferidos contra a modlist atual; Ability Registry/events, Particle Builder, Lightning Builder e Leveling Builder preservados de forma fail-closed.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, BjornLib 1.0.88 foi reconfirmado como biblioteca estrutural. Em 09/09/2026, a versão física e as quatro superfícies públicas documentadas foram revalidadas sem inferir decisão curatorial.
 - **Data da última decisão:** não definida
 
