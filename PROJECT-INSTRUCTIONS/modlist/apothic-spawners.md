@@ -11,7 +11,7 @@
 - **Mod:** Apothic Spawners
 - **Arquivo JAR:** `ApothicSpawners-1.21.1-1.4.0.jar`
 - **Versão 1.21.1:** 1.4.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** RPG, Automação
@@ -20,9 +20,9 @@
 - **Sobreposição:** Não é equivalente a Mechanical Spawners ou máquinas externas de spawning. Apothic Spawners modifica spawners e seus stats dentro do ecossistema Apothic; bridges externas precisam ser explícitas.
 - **Compatibilidade/Riscos:** Risco de multiplicação de XP/drops com Echoing e outros loot/progression hooks; não tratar outros spawners/máquinas como equivalentes sem bridge. Respeitar tag `apothic_spawners:blacklisted_from_spawners`. 1.4.0 adiciona cascade explosion em spawners atingidos por explosão; testar farms densas.
 - **Observações:** mod id: `apothic_spawners`; runtime 1.4.0. O corpo da página registra stats/modifiers, add/set, Silk Touch, blacklist, despawn, Echoing, explosões, anti-abuso e matriz de teste.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/source/changelog oficiais Apothic Spawners 1.4.0 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/source/changelog oficiais Apothic Spawners 1.4.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ApothicSpawners-1.21.1-1.4.0.jar` / `1.4.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-spawners
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 1.4.0, 16 spawner stats/modifier families, Echoing, blacklist, persistence/cascade explosion and anti-abuse boundaries confirmed in global QC #36. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #36: `ApothicSpawners-1.21.1-1.4.0.jar` / `1.4.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita contra o changelog oficial 1.21 até 1.4.0, incluindo tracking de modificação, Echoing, blacklist tag, despawn delay e cascade explosion.
 - **Data da última decisão:** 2026-09-07
 
