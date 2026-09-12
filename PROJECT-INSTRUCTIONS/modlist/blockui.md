@@ -11,7 +11,7 @@
 - **Mod:** BlockUI
 - **Arquivo JAR:** `blockui-1.0.211-1.21.1-snapshot.jar`
 - **Versão 1.21.1:** 1.0.211-1.21.1-snapshot
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca, Visual
@@ -20,9 +20,9 @@
 - **Sobreposição:** Framework específico de UI. Não é substituível por outra GUI library sem migração explícita dos consumidores MineColonies/Structurize/etc.
 - **Compatibilidade/Riscos:** Snapshot/beta 1.0.211: riscos em API/layout changes, resource/XML reload, callback duplication, client/server data authority e consumers compilados para snapshot diferente. UI não deve virar authority de gameplay.
 - **Observações:** Runtime name UI Library Mod. 1.0.211 é snapshot NeoForge 1.21.1. BlockUI é XML-based: XML define estrutura; backing Window trata callbacks e dados. Ferramentas públicas incluem images, buttons/handlers, text input, scroll/drag screens.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/documentação oficial BlockUI/MineColonies + MineColonies 1.1.1381, Structurize 1.0.833, Multi-Piston 1.2.58 e Domum Ornamentum 1.0.236-snapshot físicos.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/documentação oficial BlockUI/MineColonies + MineColonies 1.1.1381, Structurize 1.0.833, Multi-Piston 1.2.58 e Domum Ornamentum 1.0.236-snapshot físicos e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `blockui-1.0.211-1.21.1-snapshot.jar` / `1.0.211-1.21.1-snapshot`; título editorial BlockUI e runtime name `UI Library Mod` permanecem corretamente distinguidos.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/blockui
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BlockUI 1.0.211-1.21.1-snapshot físico confirmado; ecossistema MineColonies atualizado para MineColonies 1.1.1381, Structurize 1.0.833, Multi-Piston 1.2.58 e Domum Ornamentum 1.0.236-snapshot. XML/window/widget lifecycle e snapshot risks preservados. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #80: `blockui-1.0.211-1.21.1-snapshot.jar` / `1.0.211-1.21.1-snapshot` conferidos contra a modlist atual; runtime name `UI Library Mod`, XML/Window/widget lifecycle, ecossistema MineColonies e snapshot risks preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, BlockUI 1.0.211 snapshot foi revalidado contra o stack físico atual de MineColonies/Structurize/Multi-Piston/Domum Ornamentum. A dependência estrutural não foi convertida automaticamente em decisão curatorial.
 - **Data da última decisão:** não definida
 
