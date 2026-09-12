@@ -11,7 +11,7 @@
 - **Mod:** Butchercraft
 - **Arquivo JAR:** `butchercraft-2.6.5.jar`
 - **Versão 1.21.1:** 2.6.5
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Comida, Mobs, Compat
@@ -20,9 +20,9 @@
 - **Sobreposição:** Compartilha processamento animal/comida com outros mods, mas a cadeia de carcass/butchering é própria. Integrar por loot/datapack provider-native, não duplicar drops por eventos globais.
 - **Compatibilidade/Riscos:** Interage com drops/loot de animais e mods de comida/criação. Riscos: slaughter event duplicado, loot tables conflitantes, carcass state em hooks/blocks, server/client effect duplication e breeding hooks. 2.6.5 corrige efeitos rodando em ambos os lados e crash ocasional de breeding sem child válido.
 - **Observações:** Superfícies oficiais: Butcher Knife, Meat Hook, Butcher Block, Meat Grinder e foods. Meathook/Butcherblock e Butcher Knife são extensíveis por JSON datapacks e loot tables. Extra Delight é optional dependency.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Butchercraft 2.6.5 + source/documentação oficial 1.21.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Butchercraft 2.6.5 + source/documentação oficial 1.21 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `butchercraft-2.6.5.jar` / `2.6.5`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/butchercraft
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Butchercraft 2.6.5 físico confirmado; slaughter→carcass→Hook/Block→Grinder, datapack/loot authority e fixes de side/breeding 2.6.5 preservados. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #85: `butchercraft-2.6.5.jar` / `2.6.5` conferidos contra a modlist atual; slaughter→carcass→Hook/Block→Grinder, datapack/loot authority, Extra Delight opcional e fixes de side/breeding 2.6.5 preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, Butchercraft 2.6.5 foi revalidado contra a modlist física atual; a cadeia de processamento provider-native e Extra Delight opcional foram preservadas sem converter presença em decisão curatorial.
 - **Data da última decisão:** não definida
 
