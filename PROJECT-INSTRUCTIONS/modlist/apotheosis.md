@@ -11,7 +11,7 @@
 - **Mod:** Apotheosis
 - **Arquivo JAR:** `Apotheosis-1.21.1-8.8.0.jar`
 - **Versão 1.21.1:** 8.8.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** RPG, Exploração
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição funcional com outros sistemas de loot affix, gems, rarity, sockets e equipment progression, mas os módulos Apothic próprios não são duplicatas: Attributes fornece stats, Enchanting overhaul de enchanting, Spawners overhaul de spawners. Apothic Compats/Category Compat são bridges de integração.
 - **Compatibilidade/Riscos:** Progressão RPG de alto impacto: affixes/gems/World Tiers somam atributos e podem multiplicar bônus com RPG Skill Tree, Additional Attributes e outros gear systems. 8.8.0 adiciona `apotheosis:cannot_be_duplicated`; qualquer sistema externo de clone/loot-copy deve respeitar a tag. Summit/Pinnacle agora dão damage reduction física e mágica a monsters. Invader spawn rules são configuráveis. Data-driven affixes/gems/rarities/tier augments exigem reload e validação de datapacks/compats.
 - **Observações:** World Tier e affix/gem data são contratos centrais para perks/economia. Não usar raridade pelo nome de exibição como ID; ler JSON/registry/data. Qualquer clonagem custom deve checar `apotheosis:cannot_be_duplicated`.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/changelog oficiais Apotheosis 8.8.0 + Placebo 9.9.2/Apothic Attributes 2.10.1/Enchanting 1.6.2/Spawners 1.4.0 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/changelog oficiais Apotheosis 8.8.0 + Placebo 9.9.2/Apothic Attributes 2.10.1/Enchanting 1.6.2/Spawners 1.4.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `Apotheosis-1.21.1-8.8.0.jar` / `8.8.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apotheosis
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Adventure module authority, affixes/gems/sockets, World Tiers, Invaders, cannot_be_duplicated, Placebo 9.9.2 and Apothic modules confirmed in global QC #30.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #30: `Apotheosis-1.21.1-8.8.0.jar` / `8.8.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
