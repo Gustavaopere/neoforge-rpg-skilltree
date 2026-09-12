@@ -11,7 +11,7 @@
 - **Mod:** Ars Creo
 - **Arquivo JAR:** `ars_creo-1.21.1-5.4.0.jar`
 - **Versão 1.21.1:** 5.4.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, Tecnologia, Automação, Compat
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa Ars Technica/Applied Create e outras bridges, mas seu domínio é especificamente Ars Nouveau dentro de contraptions e conversões Source/cinética. Evitar dupla conversão/processamento.
 - **Compatibilidade/Riscos:** Riscos: double cast em assembly/disassembly, duplicação de Source em serialization de contraption, stress amplification, coordenadas móveis de turret/portal, ritual replay e lifecycle durante unload/restart. Não inferir Sable compatibility a partir de Create compatibility.
 - **Observações:** mod id `ars_creo`. Build 5.4.0: 8 blocos funcionais + 8 block entity types; Display Sources `turret` e `source_jar`; movement behavior explícito para turrets, jars, portal e ritual.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial baileyholl/Ars-Creo 5.4.0 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial baileyholl/Ars-Creo 5.4.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_creo-1.21.1-5.4.0.jar` / `5.4.0`; sem divergência física.
 - **Fonte:** https://github.com/baileyholl/Ars-Creo
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Creo 5.4.0, 8 blocos/8 BEs, contraption behaviors, Source↔cinética, Starbuncle Wheel e Create authority confirmados no QC global #42. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #42: `ars_creo-1.21.1-5.4.0.jar` / `5.4.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Ficha reconstruída do zero em 07/09/2026 contra source 5.4.0 e modlist física; bridge é estrutural para technomancy móvel e não substitui Ars Nouveau nem Create.
 - **Data da última decisão:** 2026-09-07
 
