@@ -11,7 +11,7 @@
 - **Mod:** Artifacts
 - **Arquivo JAR:** `artifacts-neoforge-13.2.3.jar`
 - **Versão 1.21.1:** 13.2.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** RPG, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Pode compartilhar efeitos com acessórios de outros mods, mas possui seu próprio conjunto de itens e rotas de aquisição.
 - **Compatibilidade/Riscos:** Alta sobreposição de atributos/movimento/combate com RPG, Epic Fight e outros providers. Quark 4.1-483 está presente e o runtime 13.2.3 NÃO contém os fixes Quark/crash posteriores de 13.2.4/13.2.5; validar Mimic/Quark, Curios 9.5.1, loot dedup, cooldown/death lifecycle e dedicated server.
 - **Observações:** Inventário source-confirmed no commit 13.2.3: 45 wearables + 4 não-wearables = 49 item entries. `ModItems.java` não muda entre 13.2.3 e 13.2.5; fixes posteriores foram explicitamente excluídos do runtime atual.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial `ochotonida/artifacts` branch 1.21.1 commit `eb331973311068a6b5a6392a0c734f7f2a705e2a` (`mod_version=13.2.3`) + CurseForge oficial 13.2.3 + comparação upstream 13.2.3→13.2.5.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial `ochotonida/artifacts` branch 1.21.1 commit `eb331973311068a6b5a6392a0c734f7f2a705e2a` (`mod_version=13.2.3`) + CurseForge 13.2.3 e comparação upstream já auditada. Reconciliação final: JAR/runtime permanecem exatamente `artifacts-neoforge-13.2.3.jar` / `13.2.3`; fixes posteriores não foram promovidos ao runtime atual.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/artifacts
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime Artifacts 13.2.3 fixado ao commit upstream exato `eb331973311068a6b5a6392a0c734f7f2a705e2a`; inventário de 49 itens validado por diff até 13.2.5 e patch boundary 13.2.4/13.2.5 preservado no QC global #55.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #55: `artifacts-neoforge-13.2.3.jar` / `13.2.3` conferidos contra a modlist atual; source pin exato `eb331973311068a6b5a6392a0c734f7f2a705e2a` e boundary 13.2.4/13.2.5 preservados.
 - **Histórico da decisão:** Sem decisão formal. A ficha foi inicialmente construída contra a linha source 13.2.5; em 09/09/2026 esse desvio foi corrigido contra o runtime físico real 13.2.3 e o commit upstream exato `eb331973311068a6b5a6392a0c734f7f2a705e2a`. O inventário de 49 entries permanece válido porque `ModItems.java` não mudou entre 13.2.3 e 13.2.5. A presença física não foi convertida automaticamente em decisão.
 - **Data da última decisão:**
 
