@@ -11,7 +11,7 @@
 - **Mod:** Ars Elemancy
 - **Arquivo JAR:** `ars_elemancy-1.21.1-1.18.3.jar`
 - **Versão 1.21.1:** 1.18.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, RPG
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobrepõe conceitualmente especializações elementais do Ars Elemental, mas por design as combina. Não duplicar bônus das escolas-base e híbridas em bridges próprias.
 - **Compatibilidade/Riscos:** Risco central é double-dip de school power/perks em spells híbridos, especialmente quando bônus das duas escolas-base e da escola combinada coexistem. Também validar armor perk holders, Curios e tags elementais de dano após updates de Ars Elemental.
 - **Observações:** mod id `ars_elemancy`. Registry 1.18.3 confirma 6 SpellSchools híbridas; conteúdo principal: 7 foci + 7 essences + 7 bangles + 21 armor sets; `armor_upgrade` tem RecipeType/Serializer próprios.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial Lyrellion/Ars-Elemancy 1.18.3 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial Lyrellion/Ars-Elemancy 1.18.3 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_elemancy-1.21.1-1.18.3.jar` / `1.18.3`; sem divergência física.
 - **Fonte:** https://github.com/Lyrellion/Ars-Elemancy
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Elemancy 1.18.3, 6 escolas híbridas + Elemancer, 7 foci/essences/bangles, 21 armor sets, armor_upgrade e anti-double-dip confirmados no QC global #43. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #43: `ars_elemancy-1.21.1-1.18.3.jar` / `1.18.3` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Ficha reconstruída em 07/09/2026 contra registry 1.18.3 e modlist física; addon é progressão híbrida real sobre Ars Elemental, não um sistema mágico paralelo.
 - **Data da última decisão:** 2026-09-07
 
