@@ -11,7 +11,7 @@
 - **Mod:** Ars Additions
 - **Arquivo JAR:** `ars_additions-1.21.1-21.3.0.jar`
 - **Versão 1.21.1:** 1.21.1-21.3.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, QoL, Armazenamento, Exploração, Automação
@@ -20,9 +20,9 @@
 - **Sobreposição:** Cruza objetivos com teleporte, armazenamento remoto, chunkloading e automação de outros mods, mas usa contratos nativos do ecossistema Ars. Não é nova escola nem sistema de Source alternativo.
 - **Compatibilidade/Riscos:** Cross-dimensional storage/Source exigem teste contra reconnect/unload/concorrência; Ritual of Arcane Permanent é chunkloader configurável e desabilitado por padrão. Mark/Recall deve falhar com segurança para alvos inválidos. Há issues upstream 1.21.1 sobre Lootr/Explorer Warp Scroll e retenção em busca assíncrona de estruturas; tratar como riscos a validar, não bugs locais confirmados. Não presumir compatibilidade com Sable sublevels.
 - **Observações:** mod id: `ars_additions`; runtime 1.21.1-21.3.0. Corpo da página contém inventário de registry ids/famílias e separa gameplay registries de persistência/codec internals. Ars Nouveau permanece authority de Source, spell grammar e infraestrutura-base.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/GitHub oficiais Ars Additions 21.3.0 + Ars Nouveau 5.13.1 físico + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/GitHub oficiais Ars Additions 21.3.0 + Ars Nouveau 5.13.1 físico e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_additions-1.21.1-21.3.0.jar` / `1.21.1-21.3.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-additions
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Additions 21.3.0, 35 blocks/61 item entries/3 glyphs/2 rituals, Ars Nouveau 5.13.1 authority, warp/Source/storage/automation lifecycle and anti-double-processing confirmed in global QC #40. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #40: `ars_additions-1.21.1-21.3.0.jar` / `1.21.1-21.3.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita do zero com base no README/source e release 21.3.0, documentando estruturas, glyphs, storage/Source remoto, automação, chunkloading, boundaries e riscos upstream.
 - **Data da última decisão:** 2026-09-07
 
