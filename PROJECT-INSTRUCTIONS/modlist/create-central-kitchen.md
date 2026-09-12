@@ -15,15 +15,16 @@
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-central-kitchen
 - **Função:** Bridge de automação culinária entre Create e Farmer's Delight/ecossistema de comida: adapta Packagers, Mechanical Arms e processos Create para Cooking Pots, Cutting Boards, Kegs, Ovens, Casks e outras kitchenwares suportadas.
 - **Dependências:** Build 2.6.0 requer Create 6.0.10, Create: Dragons Plus 1.11.4+ e Farmer's Delight 1.3.2+. No pack físico atual estão Create 6.0.10, Create: Dragons Plus 1.11.8b e Farmer's Delight 1.3.4, satisfazendo essas faixas. Integrações adicionais continuam condicionais à presença do alvo.
 - **Compatibilidade/Riscos:** Riscos em recipe conversion/prioridade, reusable tools, shared cached recipe results, staged feast state, fermentation e Packager/Arm atomicity. 2.6.0 corrige precedence de Create Filling/Emptying sobre Keg fallbacks e mutação indevida de cached results do Extra Delight.
 - **Sobreposição:** É bridge de cooking automation. Create controla primitives de automação; Farmer's Delight/addons controlam recipes/kitchenware; Central Kitchen adapta as duas authorities sem se tornar food-content provider geral.
 - **Observações:** mod id `create_central_kitchen`; runtime 2.6.0. A build física contém mixins separados para Brewin' and Chewin', Miner's Delight, Dungeons Delight, Extra Delight e Farmer's Delight, além do mixin base; presença do mixin confirma superfície de compatibilidade, não comportamento além do que as fontes documentam.
-- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime `create_central_kitchen` 2.6.0 + versões físicas Create 6.0.10 / Create: Dragons Plus 1.11.8b / Farmer's Delight 1.3.4 + CurseForge/Modrinth oficiais da release 2.6.0.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `create_central_kitchen` 2.6.0 + Create 6.0.10 / Create: Dragons Plus 1.11.8b / Farmer's Delight 1.3.4 + release oficial 2.6.0 já auditados. Reconciliação final: JAR/runtime permanecem exatamente `create-central-kitchen-2.6.0.jar` / `2.6.0`; requirements físicos permanecem satisfeitos.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Central Kitchen 2.6.0 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create: Central Kitchen 2.6.0, cooking automation, Packager/Arm conversions, recipe priority/cache e integrações físicas confirmados no QC global #118. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #118: `create-central-kitchen-2.6.0.jar` / `2.6.0` conferidos contra a modlist atual; cooking automation, Packager/Arm conversions, recipe priority/cache e integrações físicas preservados.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
