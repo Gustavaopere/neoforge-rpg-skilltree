@@ -11,7 +11,7 @@
 - **Mod:** Bosses of Mass Destruction
 - **Arquivo JAR:** `BOMD-NeoForge-1.21-1.3.3.jar`
 - **Versão 1.21.1:** 1.3.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Mobs, RPG, Exploração, Worldgen
@@ -20,9 +20,9 @@
 - **Sobreposição:** Boss/worldgen endgame próprio. Coexistência deve ser balanceada por spacing, loot e dificuldade; não remover por semelhança temática sem conflito concreto.
 - **Compatibilidade/Riscos:** Sobreposição de bosses/estruturas com Cataclysm, Mowzie's Mobs e Bosses'Rise é temática, não incompatibilidade automática. Riscos: structure density, boss state/reload, projectiles, config balance, render/animation e regressão de registry. 1.3.3 corrige double registration de VOID_BLOSSOM_STRUCTURE_TYPE.
 - **Observações:** Quatro bosses oficiais: Night Lich em torres raras de biomas frios (Soul Stars apontam o caminho), Obsidilith em estruturas raras do End, Nether Gauntlet em estruturas raras do Nether e Void Blossom em cavernas raras no fundo do mundo (Void Lilies orientam). Source confirma 10 entity types totais na superfície principal: 4 bosses + 6 auxiliares/projectiles.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial BOMD Forge/NeoForge 1.3.3 + source oficial CERBON-MODS/Bosses-of-Mass-Destruction-FORGE + dependências físicas atuais.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial BOMD Forge/NeoForge 1.3.3 + source oficial CERBON-MODS/Bosses-of-Mass-Destruction-FORGE + CERBON's API 1.3.0, GeckoLib 4.9.2 e Cloth Config 15.0.140 físicos. Reconciliação final: JAR/runtime permanecem exatamente `BOMD-NeoForge-1.21-1.3.3.jar` / `1.3.3`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bosses-of-mass-destruction-forge
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BOMD 1.3.3 físico confirmado; 4 bosses/10 entity types, structures/summon/config, fix de double registration e dependências CERBON's API 1.3.0 + GeckoLib 4.9.2 + Cloth Config 15.0.140 preservados. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #82: `BOMD-NeoForge-1.21-1.3.3.jar` / `1.3.3` conferidos contra a modlist atual; 4 bosses/10 entity types, structures/summon/config, fix de double registration e dependências físicas preservados.
 - **Histórico da decisão:** 2026-09-07 — novo mod incorporado à auditoria; sem decisão curatorial ainda.
 - **Data da última decisão:** 2026-09-07
 
