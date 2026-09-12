@@ -11,7 +11,7 @@
 - **Mod:** Bosses'Rise
 - **Arquivo JAR:** `block_factorys_bosses-2.1.2-neo-1.21.1.jar`
 - **Versão 1.21.1:** 2.1.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Mobs, RPG, Worldgen, Exploração
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição temática e de densidade de encontros com outros boss mods; não há duplicação técnica automática. Auditar structures, loot progression e dificuldade por encontro.
 - **Compatibilidade/Riscos:** Sobreposição de bosses/worldgen/dificuldade com Cataclysm, Mowzie's Mobs e BOMD; riscos em boss structure density, cinematic state, multiplayer AoE, dedicated-server GeckoLib/particle rendering e Distant Horizons. 2.1.2 melhora compat Better Combat e corrige DH/Dragon Tower.
 - **Observações:** Bosses confirmados publicamente: Ashlord/Infernal Dragon, Helvar/Underworld Knight, Skor/Yeti, Sirok/Sandworm e Kraken. 2.1.x adiciona Kraken content, decorações navais, server-side config, structure protection, boss loot tags e fixes multiplayer/cinematics.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficiais Bosses'Rise 2.1.2 + changelogs oficiais 2.0.10–2.1.2 + GeckoLib 4.9.2 físico.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/Modrinth oficiais Bosses'Rise 2.1.2 + changelogs oficiais 2.0.10–2.1.2 + GeckoLib 4.9.2 físico e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `block_factorys_bosses-2.1.2-neo-1.21.1.jar` / `2.1.2`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bossesrise
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Bosses'Rise 2.1.2 físico/release confirmado; 5 bosses, arenas, server config, cinematics, Distant Horizons/Dragon Tower e multiplayer risks preservados. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #79: `block_factorys_bosses-2.1.2-neo-1.21.1.jar` / `2.1.2` conferidos contra a modlist atual; 5 bosses, arenas, server config, cinematics, GeckoLib 4.9.2 e Distant Horizons/Dragon Tower boundaries preservados.
 - **Histórico da decisão:** 2026-09-07 — novo mod incorporado à auditoria; sem decisão curatorial ainda.
 - **Data da última decisão:** 2026-09-07
 
