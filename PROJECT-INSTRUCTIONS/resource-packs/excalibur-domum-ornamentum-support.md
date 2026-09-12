@@ -12,7 +12,7 @@
 
 - O dossiê Notion registra `Excalibur_Domum_Ornamentum Support_1.21.1_v1.0.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
 - A busca atual na Biblioteca não recuperou diretamente esse ZIP/captura; portanto a presença/versão do resource pack é preservada conforme a procedência do dossiê, sem converter a modlist JAR-centric em inventário de resource packs.
-- A modlist física de 08/09/2026 confirma `domum-ornamentum-1.0.236-snapshot-main.jar`, mod id `domum_ornamentum`, runtime `1.0.236-snapshot`. fileciteturn1024file0
+- A modlist física de 08/09/2026 confirma `domum-ornamentum-1.0.236-snapshot-main.jar`, mod id `domum_ornamentum`, runtime `1.0.236-snapshot`.
 - O support pack é explicitamente WIP; “a maioria dos blocos” não é convertido em cobertura total. A combinação com o snapshot físico permanece sujeita a QA visual.
 
 ## Propriedades do banco
@@ -83,7 +83,7 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
 ## 9. Evidências e limite
 - captura CurseForge do perfil do usuário em 08/09/2026: arquivo instalado v1.0;
-- modlist física atual: Domum Ornamentum `1.0.236-snapshot`; fileciteturn1024file0
+- modlist física atual: Domum Ornamentum `1.0.236-snapshot`;
 - CurseForge oficial do support pack: v1.0 para 1.21.1, WIP, maioria dos blocos retexturizada e instrução explícita de load order acima do Excalibur.
 Não foi auditado o conteúdo interno do ZIP; contagem exata de assets permanece não confirmada.
 
