@@ -11,7 +11,7 @@
 - **Mod:** Ars Technica
 - **Arquivo JAR:** `ars_technica-1.21.1-2.7.6.jar`
 - **Versão 1.21.1:** 2.7.6
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, Tecnologia, Compat
@@ -20,9 +20,9 @@
 - **Sobreposição:** Ars Creo é bridge de integração; Ars Technica acrescenta glyphs, equipamento e Source Motor próprios.
 - **Compatibilidade/Riscos:** Source Ars e rede cinética Create devem manter authorities separadas. Build 2.7.6 foi feito contra Ars 5.11.0.1267/Create 6.0.8; pack usa Ars 5.13.1/Create 6.0.10. Exige QA de motor, pressure/backtank, turret e Schematicannon sem double-processing.
 - **Observações:** Inventário source-confirmed: 11 spell parts; 3 blocks/3 BEs; 8 misc entities; 12 peças de armor; 1 PressurePerk. Sauce embarcado não é mod top-level.
-- **Procedência:** modlist.txt física atual de 08/09/2026 com 595 top-levels + source oficial zeroregard/Ars-Technica branch 1.21.X, versão 2.7.6 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 com 595 top-levels + source oficial zeroregard/Ars-Technica branch 1.21.X, versão 2.7.6 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_technica-1.21.1-2.7.6.jar` / `2.7.6`; compatibilidade com Ars Nouveau 5.13.1/Create 6.0.10 continua sujeita ao QA já documentado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-technica
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Technica 2.7.6, 11 spell parts, 3 blocks/BEs, Source Motor, 12 armor pieces, PressurePerk and Ars 5.11/Create 6.0.8 build-target→5.13.1/6.0.10 runtime drift preserved in global QC #50. Estado anterior `Integrado ao Github` preservado; runtime QA continua obrigatório.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #50: `ars_technica-1.21.1-2.7.6.jar` / `2.7.6` conferidos contra a modlist atual; drift de build-target Ars 5.11/Create 6.0.8 → runtime Ars 5.13.1/Create 6.0.10 preservado, com runtime QA obrigatório.
 - **Histórico da decisão:** Permaneceu no pack após a revisão dos addons Ars. Confirmado carregado em 22/08/2026 na versão 2.7.6. Deve continuar sendo cruzado com Ars Creo e demais integrações Create apenas para detectar sobreposição real, não por semelhança temática.
 - **Data da última decisão:** 2026-08-22
 
