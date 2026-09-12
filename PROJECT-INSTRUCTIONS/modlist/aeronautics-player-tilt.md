@@ -11,7 +11,8 @@
 - **Mod:** Aeronautics Player Tilt
 - **Arquivo JAR:** `aero_player_tilt-0.1.3.jar`
 - **Versão 1.21.1:** `0.1.3`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê de body/hitbox/gravity frame, Camera Sync dependency, Epic Fight/Pehkui/ragdoll risks e multiplayer lifecycle confirmado no QC global #11.
+- **Estado no pack:** Integrado ao Github
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #11: `aero_player_tilt-0.1.3.jar` / `0.1.3` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Categoria:** Compat; Visual
 - **Compatibilidade/Riscos:** Projeto muito recente e parcialmente experimental. Toca player model, hitbox, collision e gravity frame; alto risco de composição com Epic Fight, Pehkui, ragdoll/player animation e mods que pressupõem AABB vertical vanilla. Nenhuma incompatibilidade formal específica foi publicada. Testar server authority e anticheat/collision logic após updates.
 - **Decisão:** Manter
@@ -19,9 +20,9 @@
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/aeronautics-player-tilt
 - **Função:** Inclina corpo e hitbox do jogador para o frame do deck Sable/Aeronautics e corrige a direção efetiva da gravidade em saltos sobre decks inclinados; possui opção experimental para mobs e dropped items acompanharem o deck.
-- **Histórico da decisão:** vazio
+- **Histórico da decisão:**
 - **Observações:** Dossiê aprofundado concluído em 07/09/2026. JAR físico e índice atualizado confirmam 0.1.3 (06/09/2026), mais novo que o snapshot CurseForge inicialmente indexado em 0.1.1. Dependências diretas corrigidas para Sable + Camera Sync 1.4.0+.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Aeronautics Player Tilt 0.1.3 + dossiê técnico existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Aeronautics Player Tilt 0.1.3 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `aero_player_tilt-0.1.3.jar` / `0.1.3`; sem divergência física.
 - **Sobreposição:** Complementa, não substitui, Aeronautics Camera Sync. Camera Sync fornece orientação de câmera/aim; Player Tilt aplica orientação ao corpo/hitbox/gravidade. Pehkui toca escala da hitbox e Epic Fight/ragdolls tocam pose/modelo, criando superfícies compartilhadas sem prova de incompatibilidade dura.
 - **Data da última decisão:** 2026-09-06
 
