@@ -11,7 +11,7 @@
 - **Mod:** CERBON's API
 - **Arquivo JAR:** `CerbonsAPI-NeoForge-1.21-1.3.0.jar`
 - **Versão 1.21.1:** 1.3.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca
@@ -20,9 +20,9 @@
 - **Sobreposição:** Biblioteca específica do ecossistema CERBON; não substituível por biblioteca genérica apenas por função semelhante.
 - **Compatibilidade/Riscos:** Library load-bearing para consumers CERBON. Riscos: consumer/API drift, linkage errors, registro/menu em fase errada, S2C packet/side mismatch e atualização isolada sem exigência do consumer. O próprio upstream alerta para atualizar conforme necessidade do mod dependente.
 - **Observações:** JAR físico `CerbonsAPI-NeoForge-1.21-1.3.0.jar`, mod id `cerbons_api`, runtime 1.3.0. Release oficial NeoForge 1.21/1.21.1 de 01/05/2025; 1.3.0 adiciona menu helpers, HistoricalData constructor, BlockRegistry/ItemRegistry e novos IPlatformHelper methods.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial CERBON's API 1.3.0 + relação oficial de dependência do Bosses of Mass Destruction 1.3.3.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial CERBON's API 1.3.0 + relação oficial de dependência do Bosses of Mass Destruction 1.3.3 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `CerbonsAPI-NeoForge-1.21-1.3.0.jar` / `1.3.0`; decisão `Dependência` permanece inalterada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cerbons-api
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — CERBON's API 1.3.0, consumer BOMD 1.3.3, helpers de menu/registry/platform, networking, lifecycle e riscos de consumer/API drift confirmados no QC global #91. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #91: `CerbonsAPI-NeoForge-1.21-1.3.0.jar` / `1.3.0` conferidos contra a modlist atual; consumer BOMD 1.3.3, menu/registry/platform helpers, networking/lifecycle e decisão `Dependência` preservados.
 - **Histórico da decisão:** 2026-09-07 — novo registro; classificado como Dependência por uso de Bosses of Mass Destruction.
 - **Data da última decisão:** 2026-09-07
 
