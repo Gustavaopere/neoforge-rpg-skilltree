@@ -11,7 +11,7 @@
 - **Mod:** Alex's Delight
 - **Arquivo JAR:** `alexsdelight-1.6.jar`
 - **Versão 1.21.1:** 1.6
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Comida, Compat
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa outros addons Farmer's Delight, mas sua função é específica para conteúdo de `alexsmobs`; não duplica o framework culinário-base.
 - **Compatibilidade/Riscos:** Principal risco é data compatibility com Alex's Mobs Continued 2.1.11: mesmo mod ID/conteúdo-base não garante todos os registry names/tags esperados. Farmer's Delight físico atual é 1.3.4; validar recipes, Cutting Board, Cooking Pot, JEI e `/reload`.
 - **Observações:** Sem decisão final preservada. Validar JEI, Cutting Board, Cooking Pot, drops e `/reload`; não presumir compatibilidade apenas porque Continued mantém o mod ID `alexsmobs`.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Alex's Delight 1.6 + dossiê técnico existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Alex's Delight 1.6 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `alexsdelight-1.6.jar` / `1.6`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/alexs-delight
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — bridge culinária, Alex's Mobs Continued 2.1.11, Citadel 2.7.1, Farmer's Delight 1.3.4 e recipe/tag QA reconciliados no QC global #20.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #20: `alexsdelight-1.6.jar` / `1.6` conferidos contra a modlist atual; dependências físicas Alex's Mobs Continued 2.1.11, Citadel 2.7.1 e Farmer's Delight 1.3.4 preservadas conforme dossiê; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
