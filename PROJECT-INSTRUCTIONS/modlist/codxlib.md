@@ -11,7 +11,7 @@
 - **Mod:** CodxLib
 - **Arquivo JAR:** `codxlib-1.6.0-neoforge+1.21.1.jar`
 - **Versão 1.21.1:** 1.6.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +20,9 @@
 - **Sobreposição:** Library própria do ecossistema Codx. Coexistência com Citadel, AzureLib, GeckoLib e outras APIs não implica redundância; cada consumer compila contra contratos específicos.
 - **Compatibilidade/Riscos:** Riscos principais: remover com consumer ativo, version/ABI drift, classloading lateral e regressões de shared services/menu. Na 1.6.0, validar especialmente settings numéricos via +/- e o novo hook de páginas customizadas usado por consumers; atualização deve ser testada com Alex's Mobs Continued e demais consumers Codx.
 - **Observações:** JAR físico atual `codxlib-1.6.0-neoforge+1.21.1.jar`, mod id `codxlib`, runtime 1.6.0. O changelog oficial 1.6.0 confirma correção dos +/- de settings numéricos, novo hook para página própria por setting e nova ordenação de settings não agrupados; Alex's Mobs Continued usa o hook no editor de spawn group size.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + runtime `codxlib` 1.6.0 + CurseForge oficial CodxLib 1.6.0/changelog aplicável à linha multiloader + consumers Continued já auditados no pack.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `codxlib` 1.6.0 + CurseForge oficial CodxLib 1.6.0/changelog da linha multiloader + consumers Continued já auditados. Reconciliação final: JAR/runtime permanecem exatamente `codxlib-1.6.0-neoforge+1.21.1.jar` / `1.6.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/codxlib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — CodxLib 1.6.0, consumers Continued, fix de settings numéricos, hook de página customizada, lifecycle e version drift confirmados no QC global #101. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #101: `codxlib-1.6.0-neoforge+1.21.1.jar` / `1.6.0` conferidos contra a modlist atual; consumers Continued, fix de settings numéricos, hook de página customizada, lifecycle e version drift preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, o dossiê havia sido reconstruído na então build 1.5.1. Em 09/09/2026, foi reconciliado à build física 1.6.0 e aos deltas oficiais da release, sem converter dependência técnica em decisão curatorial.
 - **Data da última decisão:**
 
