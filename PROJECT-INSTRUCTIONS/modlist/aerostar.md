@@ -11,17 +11,18 @@
 - **Mod:** AeroStar
 - **Arquivo JAR:** `AeroStar-1.0.1.jar`
 - **Versão 1.21.1:** `1.0.1`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê completo, porém compatibilidade runtime com Northstar Redux 0.6.4 permanece FAIL-CLOSED até conferir SHA256 do JAR físico/patch específico.
+- **Estado no pack:** Integrado ao Github
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #15: `AeroStar-1.0.1.jar` / `1.0.1` conferidos contra a modlist atual. O bloqueio FAIL-CLOSED de compatibilidade com Northstar Redux 0.6.4 permanece: filename não prova se o binário instalado é o patched; SHA256 físico ainda precisa ser confirmado. Corpo técnico, decisão e estado preservados.
 - **Categoria:** Tecnologia; Compat
 - **Compatibilidade/Riscos:** BLOQUEIO ATUAL: patch notes registram NoClassDefFoundError no AeroStar 1.0.1 original com Northstar Redux 0.6.4 por mudança de NorthstarDimensions/API. A modlist ainda mostra `AeroStar-1.0.1.jar`; isso não prova se o binário foi patched e renomeado. Conferir SHA256 físico contra original 12d6ce... e patched 285992... antes de aprovar runtime. Continua incompatível com o antigo Northstar–Aeronautics Compatibility em paralelo.
-- **Decisão:** vazio
+- **Decisão:**
 - **Dependências:** Obrigatórias upstream: Create, Create Aeronautics e Northstar. Pack atual: Create 6.0.10, Aeronautics 1.3.2 (bundle) e Northstar Redux 0.6.4+1.21.1 presentes.
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aerostar
 - **Função:** Bridge Create Aeronautics ↔ Northstar Redux: transfere physics ships entre dimensões/planetas com Dimensional Drive, preservando block entities, passageiros, assentos e momentum; inclui Orbital Physics Assembler e ferramentas de navegação/overlay.
-- **Histórico da decisão:** vazio
+- **Histórico da decisão:**
 - **Observações:** Dossiê completo documentalmente. PENDÊNCIA operacional: calcular SHA256 do JAR instalado; se original, substituir pelo `AeroStar-1.0.1-PATCHED-Northstar-0.6.4.jar`; depois executar full-pack/dedicated-server smoke e transferência dimensional.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial AeroStar + PATCH-NOTES-AeroStar-Northstar-0.6.4.txt de 08/09/2026.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial AeroStar + patch notes já auditadas. Reconciliação final: JAR/runtime permanecem `AeroStar-1.0.1.jar` / `1.0.1`; sem divergência de inventário, mas sem aprovação runtime até conferência do SHA256 contra original/patched documentados.
 - **Sobreposição:** Substitui o antigo compatibility mod Northstar↔Aeronautics. Não substitui Northstar Redux, Aeronautics ou Sable. Nenhum segundo top-level do compat antigo foi encontrado na modlist atual.
 - **Data da última decisão:** 2026-08-27
 
