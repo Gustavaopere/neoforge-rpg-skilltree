@@ -11,7 +11,7 @@
 - **Mod:** Apotheotic Creation
 - **Arquivo JAR:** `apotheoticcreation-2.0.0.jar`
 - **Versão 1.21.1:** 2.0.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, Compat
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementar a Apokinetics. Apotheotic Creation trata **classificação/filtragem de gear Apothic**; Apokinetics trata **sockets/Machine Gems e buffs industriais em máquinas Create**. Não são duplicatas.
 - **Compatibilidade/Riscos:** Escopo estreito: a fonte oficial diz literalmente que o addon permite definir Create attribute filters para rarities e affixes do Apotheosis. Routing em Brass Tunnels/Smart Observers depende do comportamento normal dos Attribute Filters no Create; não inventar hook extra. Testar itens com vários affixes/rarities e componentes complexos, whitelist/blacklist, reload e automação server-side.
 - **Observações:** O guia do projeto cita Smart Observers/Brass Tunnels como rotas que se beneficiam do filtro; upstream define o contrato em torno de Attribute Filters. Tratar Observer/Tunnel como comportamento downstream do Create até teste, não como API separada deste addon.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Apotheotic Creation 2.0.0 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Apotheotic Creation 2.0.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `apotheoticcreation-2.0.0.jar` / `2.0.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apotheotic-creation
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — bridge Attribute Filter Create 6.0.10 ↔ Apotheosis 8.8.0, rarity/affix filtering, routing downstream e automation QA confirmados no QC global #31.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #31: `apotheoticcreation-2.0.0.jar` / `2.0.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
