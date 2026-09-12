@@ -11,17 +11,18 @@
 - **Mod:** Create Aeronautics
 - **Arquivo JAR:** `create-aeronautics-bundled-1.21.1-1.3.2.jar`
 - **Versão 1.21.1:** `1.3.2`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create Aeronautics bundle 1.3.2, physics/vehicle authority, assembly/mass, Sable boundary e módulos jar-in-jar confirmados no QC global #117. Decisão `Manter` preservada; runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #117: `create-aeronautics-bundled-1.21.1-1.3.2.jar` / `1.3.2` conferidos contra a modlist atual; physics/vehicle authority, assembly/mass, Sable boundary, módulos jar-in-jar e decisão `Manter` preservados.
 - **Categoria:** Tecnologia; Exploração
 - **Compatibilidade/Riscos:** Núcleo do stack físico/veicular. Riscos em mass/inertia, assembly/disassembly, block entities, controls, collision, Sable sublevels e addons que mixinam a física. 1.3.2 corrige mass do Swivel Bearing após assembly e JEI/creative-tab compatibility.
 - **Decisão:** Manter
 - **Dependências:** Create + Sable. O host top-level `create-aeronautics-bundled-1.21.1-1.3.2.jar` embarca três módulos 1.3.2: `aeronautics` (Create Aeronautics), `offroad` (Create Offroad) e `simulated` (Create Simulated). São componentes jar-in-jar subordinados ao bundle, não top-level separados.
 - **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics
 - **Função:** Extensão física de Create que usa Sable para transformar estruturas de blocos em veículos e contraptions físicas, cobrindo aeronaves, carros, drones, balões e outros assemblies móveis construídos pelo jogador.
 - **Histórico da decisão:** Decisão formal `Manter` registrada em 30/08/2026: Create Aeronautics foi escolhido como núcleo do sistema de contraptions físicas/aeronaves. Em 08/09/2026, a decisão foi preservada e a ficha reconciliada à build física 1.3.2.
 - **Observações:** Top-level mod id `aeronautics_bundled`, runtime 1.3.2. Jar-in-jar físico: `dev.eriksonn.aeronautics...1.3.2.jar` → mod id `aeronautics`; `dev.ryanhcode.offroad...1.3.2.jar` → `offroad`; `dev.simulated_team.simulated...1.3.2.jar` → `simulated`. Decisão `Manter` preservada.
-- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime bundle 1.3.2 + inventário jar-in-jar físico + CurseForge/Modrinth oficiais Create Aeronautics 1.3.2 + decisão histórica `Manter`.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime bundle 1.3.2 + inventário jar-in-jar físico + CurseForge/Modrinth oficiais Create Aeronautics e decisão histórica já auditados. Reconciliação final: host/runtime permanecem exatamente `create-aeronautics-bundled-1.21.1-1.3.2.jar` / `1.3.2`; módulos `aeronautics`, `offroad` e `simulated` 1.3.2 continuam subordinados ao bundle e não top-level.
 - **Sobreposição:** Sable fornece a camada física/sublevel subjacente; Create fornece primitives de contraption/kinetics; Aeronautics define o vehicle/physics integration. Addons Aero estendem esse stack e não substituem o bundle.
 - **Data da última decisão:** 2026-08-30
 
