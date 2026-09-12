@@ -11,7 +11,7 @@
 - **Mod:** Apprentice's Codex
 - **Arquivo JAR:** `apprentice_codex-0.9.7.1+mc1.21.1.jar`
 - **Versão 1.21.1:** 0.9.7.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, RPG, Automação
@@ -20,9 +20,9 @@
 - **Sobreposição:** Não é o mesmo papel do Spell Codex. Apprentice's Codex adiciona conteúdo jogável/automação sobre Iron's; Spell Codex atua na organização/progressão da coleção. Iron's conserva authority do cast/mana/schools.
 - **Compatibilidade/Riscos:** Addon beta e datapack formats podem mudar entre versões. Spell Dispenser usa redstone + mana potions e possui suporte opcional a Create contraptions: impedir double-processing de cast/mana/XP/Mastery e não presumir autoria do jogador em automação. Linha 0.9.7 alterou Arcane in a Jar; validar blocos existentes após upgrade.
 - **Observações:** mod id: `apprenticecodex`; runtime 0.9.7.1, beta. O upstream textual pode resumir o addon como ~60 spells; a ficha chegou a registrar 85 por erro editorial, mas o source pin exato da própria versão 0.9.7.1 (`305ea6aef7bb9642a9d1fc2b9042f3dfb2ce5b2e`) registra 83 spells. Para catalogação técnica prevalece o registry desse pin.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/wiki/source oficiais Apprentice's Codex 0.9.7.1 + source pin `305ea6aef7bb9642a9d1fc2b9042f3dfb2ce5b2e` + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/wiki/source oficiais Apprentice's Codex 0.9.7.1 + source pin já auditado `305ea6aef7bb9642a9d1fc2b9042f3dfb2ce5b2e`. Reconciliação final: JAR/runtime permanecem exatamente `apprentice_codex-0.9.7.1+mc1.21.1.jar` / `0.9.7.1`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apprentices-codex
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Apprentice's Codex 0.9.7.1, source-pin roster 83 spells, Iron's 3.16.3/Create 6.0.10/NeoForge 21.1.248 gates and Spell Dispenser causality confirmed in global QC #38. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #38: `apprentice_codex-0.9.7.1+mc1.21.1.jar` / `0.9.7.1` conferidos contra a modlist atual; source pin e dossiê operacional preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita e elevada ao padrão Alex's Mobs. A reconciliação final com o source pin exato 0.9.7.1 substituiu tanto o resumo upstream de “cerca de 60 spells” quanto a contagem editorial intermediária de 85 pelo inventário técnico correto do SpellRegistry: 83 registry ids, preservando Iron's como authority de mana/schools/cast/cooldown.
 - **Data da última decisão:** 2026-09-07
 
