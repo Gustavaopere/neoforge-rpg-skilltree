@@ -11,7 +11,7 @@
 - **Mod:** Ars 'n' Spells
 - **Arquivo JAR:** `ars_n_spells-3.3.2.jar`
 - **Versão 1.21.1:** 3.3.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, Compat, RPG
@@ -20,9 +20,9 @@
 - **Sobreposição:** Toca mana/scaling/progression que outras bridges podem tentar unificar. Enquanto ativa, não duplicar esses domínios em integração própria nem confundi-la com Ars Polymorphia/Ars Hex, que têm responsabilidades diferentes.
 - **Compatibilidade/Riscos:** Riscos: double-dip de spell power/perks, custo cross-cast duplicado, duas authorities de mana, affinity duplicada em multi-school, unified cooldown competindo com handlers locais, payload NBT antigo sem migração e config client tratada como authority no dedicated server.
 - **Observações:** mod id `ars_n_spells`; runtime atual 3.3.2. A auditoria técnica profunda permanece ancorada na arquitetura 3.3.0, acrescida dos deltas oficiais 3.3.1/3.3.2; não foram inventadas mudanças de hooks ou save format não declaradas pelo upstream.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Ars 'n' Spells 3.3.1/3.3.2 + source-level audit da baseline 3.3.0. Release 3.3.2 declara ausência de mudanças de config/network protocol/save format em relação à 3.3.1.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Ars 'n' Spells 3.3.1/3.3.2 + source-level audit da baseline 3.3.0 já documentada. Reconciliação final: JAR/runtime permanecem exatamente `ars_n_spells-3.3.2.jar` / `3.3.2`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-n-spells
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime físico reconciliado para Ars 'n' Spells 3.3.2. Baseline source-level 3.3.0 preservada; 3.3.1 remove transaction receipt HUD e 3.3.2 corrige contextual mana/XP visibility sem mudanças de config/network/save frente à 3.3.1. QC global #46.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #46: `ars_n_spells-3.3.2.jar` / `3.3.2` conferidos contra a modlist atual; baseline técnica 3.3.0 + deltas oficiais 3.3.1/3.3.2 preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi reconstruída contra a 3.3.0 real; corrigida definitivamente a hipótese de redundância genérica: esta bridge possui cross-cast, spell wheel, mana/scaling/progression e contracts próprios entre Ars e Iron's.
 - **Data da última decisão:** 2026-09-07
 
