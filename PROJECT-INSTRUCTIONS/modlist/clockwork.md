@@ -11,7 +11,7 @@
 - **Mod:** Clockwork
 - **Arquivo JAR:** `clockwork-neoforge-1.21.1-1.1.4.jar`
 - **Versão 1.21.1:** 1.1.4
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Tecnologia, Exploração
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição funcional parcial com mounts, ranged weapons, elytra variants e mining companions do pack; não é uma bridge do Create nem substitui Create Aeronautics.
 - **Compatibilidade/Riscos:** Mod independente de equipamentos/mount, não o antigo projeto Create: Clockwork. Riscos: mount flight/collision, automatic crossbow fire rate, seeking arrow targeting, potion duration economy, flamethrower grief/fire e drill inventory/automation. 1.1.4 corrige arm pose e amplia Dragonfly spawn em outposts.
 - **Observações:** JAR físico `clockwork-neoforge-1.21.1-1.1.4.jar`, mod id `clockwork`, runtime 1.1.4. Não confundir com o antigo mod de física/Create de nome semelhante.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Clockwork 1.1.4 e changelog exato de 09/08/2026.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Clockwork 1.1.4 e changelog exato já auditado. Reconciliação final: JAR/runtime permanecem exatamente `clockwork-neoforge-1.21.1-1.1.4.jar` / `1.1.4`; decisão `Manter` permanece inalterada e o mod continua distinguido do antigo projeto Create: Clockwork.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/clockwork
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Clockwork 1.1.4 físico confirmado; Dragonfly, crossbows, Potion Sprayer, Wings, Flamethrower, Drill, configs e lifecycle confirmados no QC global #96. Decisão Manter preservada. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #96: `clockwork-neoforge-1.21.1-1.1.4.jar` / `1.1.4` conferidos contra a modlist atual; Dragonfly, crossbows, Potion Sprayer, Wings, Flamethrower, Drill, configs/lifecycle e decisão `Manter` preservados.
 - **Histórico da decisão:** 2026-09-06 — decisão formal registrada: Manter Clockwork. Em 09/09/2026, a build física 1.1.4 foi revalidada no QC global #96; a decisão foi preservada e runtime QA permanece pendente.
 - **Data da última decisão:** 2026-09-06
 
