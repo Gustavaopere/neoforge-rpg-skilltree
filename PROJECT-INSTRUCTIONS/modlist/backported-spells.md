@@ -11,7 +11,7 @@
 - **Mod:** Backported Spells: Iron's Spells x Vanilla Backport
 - **Arquivo JAR:** `backportedspellbooks-0.1.2.jar`
 - **Versão 1.21.1:** 0.1.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, RPG
@@ -20,9 +20,9 @@
 - **Sobreposição:** Expansão de conteúdo para Iron's Spells com temática de backports vanilla; pode compartilhar arquétipos com outros spell addons, mas não é duplicata deles.
 - **Compatibilidade/Riscos:** Divergência física obrigatória: JAR chama-se 0.1.2, metadata runtime declara 0.1.0. Preservar ambos. Riscos de double-cast/damage, modifiers órfãos e conflito de fall/bounce com outros movement providers.
 - **Observações:** Release 0.1.2 confirma Miasmic Staff, Quicksilver Spellbook, Slime Boots; Slime Aspect, Sulfur Clouds, Sulfur Bomb, Sulfur Release; Corroded Fossils e Quicksilver. Valores/IDs não inferidos.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + metadata runtime `backportedspellbooks` 0.1.0 + CurseForge/changelog oficial do arquivo 0.1.2.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime `backportedspellbooks` 0.1.0 + CurseForge/changelog oficial do arquivo 0.1.2 e fontes já auditadas. Reconciliação final: filename físico `backportedspellbooks-0.1.2.jar` e runtime metadata `0.1.0` permanecem deliberadamente distintos; nenhuma divergência foi mascarada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/backported-spells-irons-spells-x-vanilla-backport
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — arquivo/release `backportedspellbooks-0.1.2.jar` reconfirmado, metadata runtime `0.1.0` preservado sem normalização fictícia; conteúdo 0.1.2 e causalidade Iron's mantidos no QC global #63. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #63: arquivo `backportedspellbooks-0.1.2.jar` reconfirmado; metadata runtime `0.1.0` preservada sem normalização fictícia. Conteúdo 0.1.2 e causalidade Iron's mantidos.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou o arquivo físico `backportedspellbooks-0.1.2.jar` e preservou a versão runtime `0.1.0` declarada pelo metadata. Em 09/09/2026, a divergência foi revalidada contra o snapshot atual e a release oficial 0.1.2, sem resolver artificialmente o version mismatch e sem inferir decisão curatorial.
 - **Data da última decisão:** não definida
 
