@@ -11,7 +11,8 @@
 - **Mod:** aero_copycats
 - **Arquivo JAR:** `aerocopycats-1.1.1.jar`
 - **Versão 1.21.1:** `1.1.0`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — massa de Copycats+, divergência filename 1.1.1/runtime 1.1.0, Copycat Layers e boundary com Copycat Wing confirmados no QC global #13.
+- **Estado no pack:** Integrado ao Github
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #13: `aerocopycats-1.1.1.jar` conferido com metadata/runtime `1.1.0`; divergência filename↔runtime preservada por evidência, sem normalização; corpo técnico, decisão e estado preservados.
 - **Categoria:** Compat
 - **Compatibilidade/Riscos:** Pode alterar massa total, centro de massa e estabilidade de ships. Updates de Copycats+ podem introduzir formas ainda não cobertas; validar catálogo atual, montagem/desmontagem e persistência.
 - **Decisão:** Sem decisão
@@ -19,11 +20,11 @@
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/copycats-aeronautics-weight
 - **Função:** Define massa física (kpg) coerente para blocos do Create: Copycats+ em Create Aeronautics/Sable, incluindo escala por número de camadas em Copycat Layers.
-- **Histórico da decisão:** vazio
+- **Histórico da decisão:**
 - **Observações:** Não normalizar versão: JAR `aerocopycats-1.1.1.jar`, runtime `1.1.0`. Não adiciona Copycats nem lift por si só.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Copycats+ Aeronautics Weight + dossiê técnico existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Copycats+ Aeronautics Weight e fontes já auditadas no dossiê. Reconciliação final: JAR permanece `aerocopycats-1.1.1.jar` e metadata/runtime permanece `1.1.0`; divergência intencional preservada, sem erro físico.
 - **Sobreposição:** Complementar a Create Aeronautics: Copycat Wing 1.0.3: Aero Copycats define massa; Copycat Wing define reconhecimento aerodinâmico/lift. Não são duplicatas.
-- **Data da última decisão:** vazio
+- **Data da última decisão:**
 
 ## Escopo e papel
 Addon de física para **Create: Copycats+** dentro de **Create Aeronautics/Sable**. Sua responsabilidade é atribuir massa (`kpg`) coerente às formas Copycat, evitando que geometrias diferentes sejam tratadas com peso genérico. Em `Copycat Layers`, a massa escala conforme a quantidade de camadas.
