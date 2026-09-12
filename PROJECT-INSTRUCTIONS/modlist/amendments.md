@@ -11,7 +11,7 @@
 - **Mod:** Amendments
 - **Arquivo JAR:** `amendments-1.21-2.1.10-neoforge.jar`
 - **Versão 1.21.1:** 1.21-2.1.10
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** O próprio projeto nasceu da fusão de Carpeted Stairs, Better Lilypads, Better Jukeboxes e algumas features antigas de Supplementaries. Sobreposição com Supplementaries é deliberada/parcial; não é duplicata total.
 - **Compatibilidade/Riscos:** Toca blocos vanilla muito usados e pode cruzar com Supplementaries, resource packs/model overrides, mods de fluidos/cauldrons, jukeboxes, signs e villagers. Cauldrons aceitam qualquer líquido e recipes data-driven, portanto validar fluids modded, automation e potion effects. Moonlight generated pack/mod assets precisam ter prioridade adequada para evitar cauldron water branca/brewing stand vermelho. A UI de trades foi adicionada em 2.1.10 e deve ser testada com mods que alteram villager trades.
 - **Observações:** FAQ upstream esclarece que cauldrons não fazem brewing vanilla; fazem liquid mixing, potion/dye mixing e crafting por interação. Não confundir os dois sistemas. Prioridade do generated resource pack de Moonlight é requisito visual de troubleshooting.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/documentação oficiais Amendments 2.1.10 + Moonlight 3.6.3 + Supplementaries 3.9.8 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/documentação oficiais Amendments 2.1.10 + Moonlight 3.6.3 + Supplementaries 3.9.8 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `amendments-1.21-2.1.10-neoforge.jar` / `1.21-2.1.10`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/amendments
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — cauldrons, vanilla-block interactions, Moonlight 3.6.3, Supplementaries 3.9.8, villager trade UI 2.1.10 and resource-pack troubleshooting confirmed in global QC #26.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #26: `amendments-1.21-2.1.10-neoforge.jar` / `1.21-2.1.10` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
