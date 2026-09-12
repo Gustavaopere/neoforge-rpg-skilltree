@@ -11,7 +11,7 @@
 - **Mod:** Cosmetic Armor Reworked
 - **Arquivo JAR:** `cosmeticarmorreworked-1.21.1-v1-neoforge.jar`
 - **Versão 1.21.1:** 1.21.1-v1-neoforge
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Pode cruzar outros armor-render/cosmetic systems, mas não é Curios e não substitui o equipamento funcional. Qualquer integração deve preservar stats do armor real e tratar cosmetic slots como apresentação.
 - **Compatibilidade/Riscos:** Riscos em sync de cosmetic slots, render layers, armor models de outros mods, death/drop/keep config, skin toggles e mods que também substituem armor rendering. Cosmetic slots não devem conceder stats. Client pode ocultar render, mas não alterar proteção server-side.
 - **Observações:** mod id `cosmeticarmorreworked`; runtime preservado integralmente: `1.21.1-v1-neoforge`. Multiplayer requer client e server. Cosmetic armor é display-only; itens cosméticos normalmente dropam na morte, com config para manter. Inclui toggles de skin/armor, `/clearcosarmor [player]`, `/coshat` e API para integrações.
-- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime `1.21.1-v1-neoforge` + CurseForge oficial Cosmetic Armor Reworked para NeoForge 1.21.1 + documentação oficial do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `1.21.1-v1-neoforge` + CurseForge/documentação oficial Cosmetic Armor Reworked já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `cosmeticarmorreworked-1.21.1-v1-neoforge.jar` / `1.21.1-v1-neoforge`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cosmetic-armor-reworked
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Cosmetic Armor Reworked `1.21.1-v1-neoforge`, dual-slot authority, render/stat separation, death/drop, visibility, API e lifecycle confirmados no QC global #111. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #111: `cosmeticarmorreworked-1.21.1-v1-neoforge.jar` / `1.21.1-v1-neoforge` conferidos contra a modlist atual; dual-slot authority, render/stat separation, death/drop, visibility, API e lifecycle preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Cosmetic Armor Reworked `1.21.1-v1-neoforge` foi reconfirmado fisicamente e reconstruído ao padrão técnico. A presença do QoL visual não foi convertida em decisão curatorial.
 - **Data da última decisão:**
 
