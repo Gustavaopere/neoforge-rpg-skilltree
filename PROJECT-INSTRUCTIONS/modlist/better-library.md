@@ -11,7 +11,7 @@
 - **Mod:** Better Library
 - **Arquivo JAR:** `better_lib-neoforge-1.21.1-1.0.111.jar`
 - **Versão 1.21.1:** 1.0.111
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Biblioteca técnica; não tratar como redundante apenas por coexistir com outras libraries.
 - **Compatibilidade/Riscos:** First-join repetido, live-message não-fatal/offline, config client↔server divergente e classloading de UI no dedicated server. Não é substituível automaticamente por outra config library.
 - **Observações:** Superfícies públicas confirmadas: config, 1st join message e live message. Protocolos/classes internos não foram inferidos sem evidência versionada.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Better Library 1.0.111 para NeoForge 1.21.1 + documentação oficial do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Better Library 1.0.111 para NeoForge 1.21.1 + documentação oficial e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `better_lib-neoforge-1.21.1-1.0.111.jar` / `1.0.111`; releases 1.0.112 de linhas Minecraft posteriores não foram promovidas ao runtime atual.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-library
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better Library 1.0.111 físico/release 1.21.1 confirmado; config/first-join/live-message lifecycle preservado no QC global #69. Linha 1.0.112 pertence às versões Minecraft posteriores, não substitui o runtime 1.21.1 atual. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #69: `better_lib-neoforge-1.21.1-1.0.111.jar` / `1.0.111` conferidos contra a modlist atual; config/first-join/live-message lifecycle e boundary de versão preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Better Library 1.0.111 e suas superfícies de config, first-join e live message. Em 09/09/2026, o runtime 1.0.111 foi revalidado como a build física 1.21.1; releases 1.0.112 observadas pertencem a linhas Minecraft posteriores e não foram promovidas ao pack. Nenhuma decisão de manter/remover foi inferida.
 - **Data da última decisão:** não definida
 
