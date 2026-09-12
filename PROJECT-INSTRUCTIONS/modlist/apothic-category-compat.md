@@ -11,7 +11,7 @@
 - **Mod:** Apothic Category Compat
 - **Arquivo JAR:** `apothic_compat-2.0.2.jar`
 - **Versão 1.21.1:** 2.0.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, RPG
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementar a Apothic Compats. Category Compat corrige categorização de itens para que affixes/gem sockets usem pools corretos; Apothic Compats adiciona integrações mais amplas como affixed loot, gear sets, affixes, gems/invaders/categorias. Não são duplicatas.
 - **Compatibilidade/Riscos:** No pack atual existem Alex's Caves Continued, Alex's Mobs Continued, Born in Chaos e L_Ender's Cataclysm, portanto esses overrides são potencialmente ativos; Undergarden e Twilight Forest não foram localizados top-level e suas regras ficam dormentes. Como ports Continued podem preservar mod IDs mas não se deve inferir item IDs sem runtime, testar cada item alvo. Affix blacklist bloqueia rolls futuros; itens já existentes mantêm affixes. 1.21.1 usa data map e datapack reload para categories; blacklist pode ser recarregada por `/acc reload`.
 - **Observações:** Não importar features 1.20.1 removidas em Apotheosis 8 (universal speed/damage rule, sword-vs-heavy split, TOML category overrides) para esta build. Em 2.0.2 NeoForge categories são data map. Testar port IDs de Alex's Caves/Mobs Continued antes de declarar override efetivo.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Apothic Category Compat 2.0.2 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Apothic Category Compat 2.0.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `apothic_compat-2.0.2.jar` / `2.0.2`; o display name físico `Apothic Compat` corresponde à página oficial `Apothic Category Compat`, sem divergência de inventário.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-category-compat
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 2.0.2, data-map loot categories, affix blacklist, current provider presence/absence and Continued-port ID caveats confirmed in global QC #32.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #32: `apothic_compat-2.0.2.jar` / `2.0.2` conferidos contra a modlist atual; metadata física `Apothic Compat` reconciliada com a identidade oficial/página `Apothic Category Compat`; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
