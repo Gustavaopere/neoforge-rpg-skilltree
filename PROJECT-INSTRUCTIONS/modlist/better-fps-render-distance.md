@@ -11,7 +11,7 @@
 - **Mod:** Better Fps - Render Distance
 - **Arquivo JAR:** `betterfpsdist-1.21.1-6.1.jar`
 - **Versão 1.21.1:** 6.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Performance, Visual, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Atua na seleção por render distance; Distant Horizons trata LOD distante, EntityCulling trata oclusão de entidades/block entities e ImmediatelyFast otimiza pipelines de render. Não são equivalentes.
 - **Compatibilidade/Riscos:** Pode causar pop-in/culling visual, divergência com LOD/render-distance mods e redução excessiva de entity range se configs forem combinadas. Não altera chunk generation nem authority de servidor.
 - **Observações:** Build 6.1 NeoForge 1.21.1, client. Configura escalas horizontal/vertical, entity render range e debug de chunk sections ignoradas; documentação estima redução de ~10–35% de chunk sections em cenários apropriados.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Better Fps - Render Distance 6.1 + relação oficial de dependência Cupboard + Cupboard 4.1 físico.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Better Fps - Render Distance 6.1 + relação oficial de dependência Cupboard + Cupboard 4.1 físico e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `betterfpsdist-1.21.1-6.1.jar` / `6.1`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-fps-render-distance
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better Fps - Render Distance 6.1 físico/release confirmado; dependência obrigatória Cupboard 4.1 reconciliada; render-volume/config/entity-range e sobreposições client-side preservadas. Runtime QA/benchmark não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #72: `betterfpsdist-1.21.1-6.1.jar` / `6.1` conferidos contra a modlist atual; dependência obrigatória Cupboard 4.1, render-volume/config/entity-range e boundaries client-side preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Better Fps - Render Distance 6.1 como otimização client-side. Em 09/09/2026, a dependência obrigatória Cupboard foi reconciliada com o JAR físico Cupboard 4.1; a instalação não foi convertida em decisão curatorial.
 - **Data da última decisão:** não definida
 
