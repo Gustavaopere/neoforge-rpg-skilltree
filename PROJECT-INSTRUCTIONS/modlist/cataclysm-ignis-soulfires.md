@@ -11,7 +11,7 @@
 - **Mod:** Cataclysm: Ignis Soulfires
 - **Arquivo JAR:** `ignissoulfires-1.8.0.jar`
 - **Versão 1.21.1:** 1.8.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** RPG, Compat
