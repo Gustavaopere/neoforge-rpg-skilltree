@@ -11,17 +11,18 @@
 - **Mod:** Companions!
 - **Arquivo JAR:** `companions-neoforge-1.21.1-1.3.2.jar`
 - **Versão 1.21.1:** `1.3.2`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Companions! 1.3.2, tame/owner/summon states, healing, combat/AI, boss/content authority, lifecycle e regressões 1.3.2 confirmados no QC global #104. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #104: `companions-neoforge-1.21.1-1.3.2.jar` / `1.3.2` conferidos contra a modlist atual; tame/owner/summon states, healing, combat/AI, boss/content authority, lifecycle e regressões 1.3.2 preservados.
 - **Categoria:** Mobs; RPG; Exploração
 - **Compatibilidade/Riscos:** Interage com tame/owner AI, summons, healing, combat cooldowns, target selection, boss/spawn e animação. 1.3.2 corrige cooldown infinito de ataques, hostile imps sem perseguição, Dinamo atingindo alvos duplicados e altura de puppet cannon stakes; regression gates obrigatórios.
 - **Decisão:** Sem decisão
 - **Dependências:** A superfície oficial recuperada confirma build NeoForge 1.21.1 Client & Server e compat/recomendação de JEI para recipes. Nenhuma hard dependency adicional foi promovida sem metadata versionada explícita nesta auditoria.
 - **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/companions-mod
 - **Função:** Mod de conteúdo que adiciona criaturas domesticáveis chamadas companions, cada uma com habilidades próprias, além de mobs hostis, armas, boss e progressão/combate associados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Companions! 1.3.2 foi reconfirmado fisicamente e reconstruído ao padrão técnico. A presença do conteúdo no pack não foi convertida em decisão automática de manter/remover.
 - **Observações:** mod id `companions`; runtime 1.3.2. Companions possuem estados wandering/sitting/following; podem ser curados com Small/Great Essence obtidas de mobs hostis, enquanto summoned companions não podem ser curados. Summons podem seguir o companion ou o player.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + runtime 1.3.2 + CurseForge oficial Companions! 1.3.2 NeoForge 1.21.1 e descrição/changelog oficiais.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime 1.3.2 + CurseForge oficial Companions! 1.3.2 NeoForge 1.21.1 e descrição/changelog oficiais já auditados. Reconciliação final: JAR/runtime permanecem exatamente `companions-neoforge-1.21.1-1.3.2.jar` / `1.3.2`; sem divergência física.
 - **Sobreposição:** Compartilha eixos de pets/mobs/RPG com outros mods, mas suas entidades, abilities, boss, weapons e healing economy são provider-owned. Integrações devem evitar double damage/heal/summon settlement.
 - **Data da última decisão:** não definida
 
