@@ -11,7 +11,7 @@
 - **Mod:** AmbientSounds 6
 - **Arquivo JAR:** `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar`
 - **Versão 1.21.1:** 6.3.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição parcial com outros mods de ambience/soundscape. Não substitui Presence Footsteps, Sound Physics ou sistema de música; atua em outra camada de áudio.
 - **Compatibilidade/Riscos:** Risco principal é composição de áudio: outros ambience/sound mods podem tocar camadas simultâneas e elevar volume/ruído/custo. Presence Footsteps não é duplicata: trata passos/material sob o jogador, enquanto AmbientSounds trata paisagem sonora contextual. Validar cavernas, água, biomas, dimensões, weather/daytime e categoria suspense. Como é client-side, não deve ser usado como authority de eventos de servidor.
 - **Observações:** Qualquer resource/sound pack que acrescente ambience precisa ser auditado junto porque pode mudar completamente a experiência sem alterar o JAR. O mod reage ao mundo; não é fonte de verdade para biome/weather/spawn.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial AmbientSounds 6.3.8 + CreativeCore 2.13.44 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial AmbientSounds 6.3.8 + CreativeCore 2.13.44 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` / `6.3.8`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ambientsounds
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — client-only ambience authority, CreativeCore 2.13.44, suspense category, resource-pack composition and audio QA confirmed in global QC #25.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #25: `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` / `6.3.8` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
