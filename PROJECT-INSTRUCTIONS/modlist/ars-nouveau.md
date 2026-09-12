@@ -11,7 +11,7 @@
 - **Mod:** Ars Nouveau
 - **Arquivo JAR:** `ars_nouveau-1.21.1-5.13.1.jar`
 - **Versão 1.21.1:** 5.13.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, Automação
@@ -20,9 +20,9 @@
 - **Sobreposição:** Há sobreposição temática com outros mods de magia, mas o ownership técnico é próprio. Addons Ars estendem o core; Ars 'n' Spells unifica player mana com Iron's; nenhum deles substitui Source, GlyphRegistry, rituals ou cast engine do Ars Nouveau.
 - **Compatibilidade/Riscos:** Riscos centrais: double-cast, double-dip de mana/spell power, duplicação de Source em bridges, automação creditada como cast manual, coordinates incorretas em portals/sublevels, recipe conflicts no Storage Lectern e client visual tratado como authority.
 - **Observações:** mod id `ars_nouveau`. APIRegistry 5.13.1 registra 85 spell parts (5 methods, 13 augments, 67 effects), 24 rituals, 6 familiars, 20 perks e 3 scryers. O core mantém Source separado de player mana.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source Ars Nouveau exact release commit `112920ff774831f204031da75b4c4e73d3765157` (5.13.1) + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source Ars Nouveau exact release commit `112920ff774831f204031da75b4c4e73d3765157` (5.13.1) e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_nouveau-1.21.1-5.13.1.jar` / `5.13.1`; sem divergência física.
 - **Fonte:** https://github.com/baileyholl/Ars-Nouveau
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Nouveau 5.13.1 exact release checkpoint, 85 production spell parts, 24 rituals, 6 familiars, 20 perks, Source/relays/turrets/apparatus/storage authority confirmed in global QC #47. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #47: `ars_nouveau-1.21.1-5.13.1.jar` / `5.13.1` conferidos contra a modlist atual; exact release checkpoint e corpo técnico preservados.
 - **Histórico da decisão:** Manter. Ficha reconstruída do zero em 07/09/2026 contra o commit exato 5.13.1. Ars Nouveau é provider central e não deve ser tratado como redundante com seus próprios addons.
 - **Data da última decisão:** 2026-09-07
 
