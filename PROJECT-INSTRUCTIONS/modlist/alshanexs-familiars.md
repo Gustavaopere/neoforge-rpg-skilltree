@@ -11,7 +11,7 @@
 - **Mod:** Alshanex's Familiars
 - **Arquivo JAR:** `alshanex_familiars-1.21.1_v4.0.3.jar`
 - **Versão 1.21.1:** 1.21.1_v4.0.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, Mobs
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição temática com summons/companions de outros addons mágicos, porém identidade própria: familiars permanentes com progressão individual, habilidades utilitárias e infraestrutura FamiliarsLib. Sound School cruza a fantasia de Bard/Melodic, mas não deve ser tratada como a mesma escola sem conferir IDs.
 - **Compatibilidade/Riscos:** Companions persistentes, múltiplos summons e resurrect-at-mana-cost podem cruzar balanceamento com outras invocações do Iron's/RPG Skill Tree. A Sound school deve ser distinguida da escola Melodic de Tunes 'n Tomes antes de criar perks por ID. Curios adicionados competem por slots com muitos acessórios do pack. Há inconsistência upstream na grafia da tag de tame (`familiar_taming` vs `familiar_tamming` em documentação); verificar namespace/tag real do JAR 4.0.3 antes de datapack. Testar owner death/dimension, storage, multi-familiar, mana drain e dedicated server.
 - **Observações:** A documentação pública alterna a grafia da tag usada para itens de tame. Não automatizar datapacks até conferir o tag path dentro do runtime. Tratar FamiliarsLib como provider técnico e esta entrada como conteúdo jogável.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/wiki/documentação oficiais Alshanex's Familiars 4.0.3/FamiliarsLib + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/wiki/documentação oficiais Alshanex's Familiars 4.0.3/FamiliarsLib e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `alshanex_familiars-1.21.1_v4.0.3.jar` / `1.21.1_v4.0.3`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — 13 familiars, FamiliarsLib 1.7.1/runtime 1.21.1-1.7, Sound school, structures, rituals, multi-familiar lifecycle e tame-tag ambiguity confirmados no QC global #23.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #23: `alshanex_familiars-1.21.1_v4.0.3.jar` / `1.21.1_v4.0.3` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
