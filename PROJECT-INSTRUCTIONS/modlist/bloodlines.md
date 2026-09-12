@@ -11,7 +11,7 @@
 - **Mod:** Bloodlines
 - **Arquivo JAR:** `bloodlines-1.21-3.0.9.jar`
 - **Versão 1.21.1:** 1.21-3.0.9
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, RPG
@@ -20,9 +20,9 @@
 - **Sobreposição:** Estende diretamente Vampirism; BloodlineManager, Vampirism blood e Gravebound Souls/Phylactery permanecem domínios distintos. Não duplicar em sistemas próprios nem converter automaticamente para mana/soul-energy genérica.
 - **Compatibilidade/Riscos:** Source-pinned 3.0.9 com runtime QA ainda pendente. Riscos auditados incluem dual skill-point gate, costs/wallet, movement/side, Mist Form, Possession, Souls/Phylactery e interop com addons Vampirism. Não duplicar BloodlineManager ou recursos provider-native.
 - **Observações:** Source pin exato c8fd517d204d09dfcb9a544c17d7df87755eaa5c. 5 bloodlines: Noble, Zealot, Ectotherm, Bloodknight, Gravebound. Source 3.0.9 define Heinous Elixir = 15 s. Source audit não equivale a runtime QA.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial TheDrOfDoctoring/bloodlines pin c8fd517d204d09dfcb9a544c17d7df87755eaa5c + catálogo source-level já auditado.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial TheDrOfDoctoring/bloodlines pin `c8fd517d204d09dfcb9a544c17d7df87755eaa5c` + catálogo source-level já auditado. Reconciliação final: JAR/runtime permanecem exatamente `bloodlines-1.21-3.0.9.jar` / `1.21-3.0.9`; decisão `Manter` e gates de runtime QA permanecem inalterados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bloodlines
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Bloodlines 1.21-3.0.9 físico e source pin c8fd517d… reconfirmados; 5 bloodlines/101 skills/29 actions/22 tasks, BloodlineManager, wallet, Gravebound Souls/Phylactery e gates de QA preservados. Decisão Manter preservada. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #81: `bloodlines-1.21-3.0.9.jar` / `1.21-3.0.9` conferidos contra a modlist atual; source pin `c8fd517d204d09dfcb9a544c17d7df87755eaa5c`, 5 bloodlines/101 skills/29 actions/22 tasks, BloodlineManager e decisão `Manter` preservados.
 - **Histórico da decisão:** 07/09/2026: auditoria granular source-level 3.0.9 concluída no catálogo Black Arcana; manter instalado e preservar autoridade provider-native. Runtime QA permanece pendente.
 - **Data da última decisão:** 2026-09-07
 
