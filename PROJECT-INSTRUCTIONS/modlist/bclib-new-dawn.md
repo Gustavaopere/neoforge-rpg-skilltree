@@ -11,7 +11,7 @@
 - **Mod:** BCLib: New Dawn
 - **Arquivo JAR:** `bclib-21.0.26.jar`
 - **Versão 1.21.1:** 21.0.26
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca, Worldgen
@@ -20,9 +20,9 @@
 - **Sobreposição:** Biblioteca de worldgen/infraestrutura; não é substituível automaticamente por Biolith, TerraBlender ou outras APIs.
 - **Compatibilidade/Riscos:** Registry/holder stale, conflito entre frameworks de worldgen, fog/distant-terrain client compat e version drift com BetterEnd/BetterNether. Não substituir por outra worldgen library por similaridade.
 - **Observações:** 21.0.26 adiciona suporte reutilizável a Chiseled Bookshelf para custom wood sets; 21.0.25 documenta compat OBE para BetterX chests e Voxy/distant-terrain.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/changelog oficial BCLib: New Dawn 21.0.26 + BetterEnd 21.0.34 e BetterNether 21.0.26 físicos.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/changelog oficial BCLib: New Dawn 21.0.26 + BetterEnd 21.0.34 e BetterNether 21.0.26 físicos e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `bclib-21.0.26.jar` / `21.0.26`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bclib-new-dawn
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BCLib: New Dawn 21.0.26 físico/release confirmado; BetterEnd 21.0.34 e BetterNether 21.0.26 reconfirmados como consumidores BetterX no QC global #66. Runtime/worldgen QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #66: `bclib-21.0.26.jar` / `21.0.26` conferidos contra a modlist atual; BetterX/New Dawn authority, BetterEnd/BetterNether consumers e worldgen lifecycle preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou BCLib: New Dawn 21.0.26 como foundation do stack BetterX e registrou BetterEnd/BetterNether como consumidores físicos. Em 09/09/2026, as três versões foram revalidadas no snapshot atual, sem converter dependência estrutural em decisão curatorial.
 - **Data da última decisão:** não definida
 
