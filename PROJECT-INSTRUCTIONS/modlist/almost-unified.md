@@ -11,7 +11,7 @@
 - **Mod:** Almost Unified
 - **Arquivo JAR:** `almostunified-neoforge-1.21.1-1.4.2.jar`
 - **Versão 1.21.1:** 1.21.1-1.4.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Tecnologia, Metalurgia
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobrepõe parcialmente scripts/compat packs que convertem cobre/zinco/bronze/aços/plates/dusts entre mods, mas seu papel é sistêmico e data-driven. Não substitui bridges que precisam de semântica específica de máquina, fluidos, recipes especiais ou APIs próprias.
 - **Compatibilidade/Riscos:** Risco principal é escolher o provider dominante errado: máquinas, recipes, quests ou estética podem passar a produzir o item de outro mod. `modPriorities`/priority overrides precisam refletir a autoridade desejada do pack. Ingredientes não canônicos permanecem utilizáveis quando são tagificados, mas outputs devem convergir para o dominante. Validar custom ingredients, tags conflitantes, recipes sem condições aplicáveis, Create Sequenced Assembly e eventuais integrações de mods específicos. Não confundir unificação com remoção de minério/worldgen.
 - **Observações:** A configuração efetiva do usuário deve ser lida antes de qualquer decisão sobre qual item é canônico. Exemplos públicos de config servem apenas como referência de formato; não presumir que prioridades de outros modpacks correspondem a este pack.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/wiki/source oficiais Almost Unified 1.4.2 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/wiki/source oficiais Almost Unified 1.4.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `almostunified-neoforge-1.21.1-1.4.2.jar` / `1.21.1-1.4.2`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/almostunified
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — unificação data-driven, priorities, custom ingredients, Create Sequenced Assembly, reload e config-bound authority confirmados no QC global #22.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #22: `almostunified-neoforge-1.21.1-1.4.2.jar` / `1.21.1-1.4.2` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
