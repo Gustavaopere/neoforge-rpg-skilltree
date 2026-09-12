@@ -11,18 +11,18 @@
 - **Mod:** Alternate Current
 - **Arquivo JAR:** `alternate_current-mc1.21-1.9.0.jar`
 - **Versão 1.21.1:** 1.9.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:**
 - **Categoria:**
 - **Função:** Otimização server-side do algoritmo de redstone wire vanilla: recalcula redes conectadas, reduz power checks/neighbor/shape updates redundantes e aplica ordem determinística configurável.
 - **Dependências:** Minecraft/NeoForge compatíveis. Não adiciona hard dependency de gameplay confirmada. Integra por comportamento com qualquer provider/consumer de redstone; Create/Aeronautics/Sable exigem regressão por alterarem contextos móveis/sublevels.
-- **Sobreposição:**
+- **Sobreposição:** Sobreposição funcional com o algoritmo de redstone wire vanilla: Alternate Current substitui/otimiza propagação e ordering da wire, sem substituir consumers/providers de redstone. Complementar a otimizações gerais como ServerCore; Create/Aeronautics/Sable continuam authorities de seus próprios componentes.
 - **Compatibilidade/Riscos:** Circuitos sensíveis à ordem vanilla podem divergir; upstream 1.9.0 tem regression gates para Gimbal Sensor/Aeronautics e redstone em Y=319. Testar BlockEntity-only signal, chunk boundaries, pistons/observers/comparators e config update-order. Não afirmar bugs locais sem teste.
 - **Observações:** mod id `alternate_current`; runtime 1.9.0. Sem conteúdo de gameplay próprio confirmado. Config por mundo `alternate-current.conf`; comando `/alternatecurrent updateOrder`. Valores efetivos da config do usuário não foram lidos.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + Modrinth/GitHub oficiais Alternate Current 1.9.0 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + Modrinth/GitHub oficiais Alternate Current 1.9.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `alternate_current-mc1.21-1.9.0.jar` / `1.9.0`; sem divergência física.
 - **Fonte:** https://modrinth.com/mod/alternate-current/version/neoforge-mc1.21-1.9.0 ; https://github.com/SpaceWalkerRS/alternate-current
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — redstone wire authority, deterministic update order, per-world config, Gimbal/Y=319 regression gates and lifecycle confirmed in global QC #24.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #24: `alternate_current-mc1.21-1.9.0.jar` / `1.9.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
