@@ -11,7 +11,7 @@
 - **Mod:** Ars Zero
 - **Arquivo JAR:** `ars_zero-1.21.1-2.0.2.jar`
 - **Versão 1.21.1:** 2.0.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa o ecossistema Ars; comparar conteúdo concreto com outros pacotes de glyphs sem assumir equivalência.
 - **Compatibilidade/Riscos:** JAR físico é 2.0.2, mas source público disponível declara 2.0.0-beta3. Contratos arquiteturais e delta 2.0.2 estão confirmados; contagem binária exata adicional exige source/tag/JAR correspondente. Alto risco de double-cast/double-charge em begin/tick/end.
 - **Observações:** mod id `ars_zero`, runtime 2.0.2. Dossiê distingue rigorosamente conteúdo confirmado pela release 2.0.2 de detalhes source-level confirmados apenas na linha anterior; ausência de source pin exato não foi ocultada.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + release oficial Ars Zero 2.0.2 + source público anterior auditado com boundary explícito de evidência.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + release oficial Ars Zero 2.0.2 + source público anterior já auditado com boundary explícito de evidência. Reconciliação final: JAR/runtime permanecem exatamente `ars_zero-1.21.1-2.0.2.jar` / `2.0.2`; divergência de source permanece documentada e não foi mascarada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-zero
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Zero 2.0.2 físico/release confirmado; boundary entre release 2.0.2 e source público anterior 2.0.0-beta3 preservado no QC global #52. Estado anterior `Integrado ao Github` preservado; nenhum contrato 2.0.2 foi inventado além da evidência disponível.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #52: `ars_zero-1.21.1-2.0.2.jar` / `2.0.2` conferidos contra a modlist atual; boundary entre binário 2.0.2 e source público anterior `2.0.0-beta3` preservado, sem extrapolação.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou o runtime 2.0.2 e preservou a divergência entre a release física e o source público anterior beta3. O mod permanece tecnicamente catalogado sem transformar presença física em decisão de manter/remover.
 - **Data da última decisão:** não definida
 
