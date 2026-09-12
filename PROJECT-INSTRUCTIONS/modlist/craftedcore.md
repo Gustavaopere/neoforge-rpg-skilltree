@@ -15,15 +15,16 @@
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/crafted-core
 - **Função:** Biblioteca/API compartilhada da ToCraft usada por mods consumidores; centraliza código e dados comuns sem adicionar um sistema jogável autônomo.
 - **Dependências:** Library Client & Server. A necessidade deve ser determinada pelos consumidores instalados que declaram CraftedCore; nenhuma dependência externa adicional foi inferida sem metadata versionada do consumer.
 - **Compatibilidade/Riscos:** Riscos principais: remoção com consumer ativo, version/API drift e dependência de dados/recursos compartilhados. A 5.8.2 remove data files destinados a versões anteriores a Minecraft 1.20.1; não atribuir mudança de gameplay à release.
 - **Sobreposição:** Biblioteca específica dos consumers ToCraft. Similaridade com outras core libraries não implica substituição binária; cada consumer depende de contracts próprios.
 - **Observações:** runtime 5.8.2; arquivo oficial `craftedcore-5.8.2.jar`. Changelog 5.8.2: remoção de data files para versões anteriores a 1.20.1. Projeto classificado como API/library, Client & Server.
-- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime 5.8.2 + CurseForge oficial CraftedCore 1.21-NeoForge 5.8.2 + documentação oficial ToCraft.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime 5.8.2 + CurseForge/documentação oficial CraftedCore já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `craftedcore-5.8.2.jar` / `5.8.2`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CraftedCore 5.8.2 foi reconfirmado no pack físico e normalizado como biblioteca consumer-driven; a presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — CraftedCore 5.8.2, consumer-driven library contract, shared data/resources, side/lifecycle e delta 5.8.2 confirmados no QC global #113. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #113: `craftedcore-5.8.2.jar` / `5.8.2` conferidos contra a modlist atual; consumer-driven library contract, shared data/resources, side/lifecycle e delta 5.8.2 preservados.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
