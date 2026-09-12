@@ -11,7 +11,7 @@
 - **Mod:** Alex's Caves Continued
 - **Arquivo JAR:** `alexscaves-1.0.9-neoforge+1.21.1.jar`
 - **Versão 1.21.1:** 1.0.9
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Worldgen, Mobs, Exploração
@@ -20,9 +20,9 @@
 - **Sobreposição:** É a implementação canônica `alexscaves` do pack. O antigo Alex's Caves 2.0.2 foi removido; não há segunda implementação concorrente no snapshot atual.
 - **Compatibilidade/Riscos:** Duplicidade `alexscaves` antiga está resolvida: só o Continued 1.0.9 permanece. Riscos atuais são worldgen/spawn/chunk borders e integrações version-specific. AeronauticsCompat cita outro port de Alex's Caves; não assumir cobertura Sable sobre o Continued sem validar mixin targets.
 - **Observações:** Decisão Manter preservada. Presença/JAR/runtime têm autoridade na modlist física atual de 595 top-levels. Não inferir compatibilidade de patches feitos para ports diferentes apenas pelo mod ID.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Alex's Caves Continued 1.0.9 + dossiê técnico existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Alex's Caves Continued 1.0.9 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `alexscaves-1.0.9-neoforge+1.21.1.jar` / `1.0.9`; sem segunda implementação top-level concorrente.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — six cave biomes, CodxLib 1.6.0, Continued authority, worldgen/chunk-border risks e Sable fail-closed rule confirmados no QC global #19.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #19: `alexscaves-1.0.9-neoforge+1.21.1.jar` / `1.0.9` conferidos contra a modlist atual; Alex's Caves Continued permanece a implementação canônica `alexscaves`; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** 2026-09-06 — escolhida como implementação canônica após conferir a modlist atual e a release 1.0.9 para NeoForge 1.21.1. O projeto Continued é mantido ativamente e declara preservar o conteúdo original sem redesign.
 - **Data da última decisão:** 2026-09-06
 
