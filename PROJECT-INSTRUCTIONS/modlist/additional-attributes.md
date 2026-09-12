@@ -11,7 +11,7 @@
 - **Mod:** Additional Attributes
 - **Arquivo JAR:** `additional_attributes-1.21.1-1.2.2.jar`
 - **Versão 1.21.1:** 1.2.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca, RPG
@@ -20,9 +20,9 @@
 - **Sobreposição:** Pufferfish's Attributes, Apothic Attributes, Iron's gear/addons e RPG Skill Tree podem afetar grandezas finais semelhantes. Additional Attributes não os substitui: registra atributos específicos e bridges. Apothic Crafting não é o mesmo que affix generation normal do Apotheosis; é chance aplicada a itens craftados.
 - **Compatibilidade/Riscos:** Alto risco de double-dipping com outros attributes/perks que alterem loot, harvest, affix rarity ou spell level. Documentação 1.21 mistura exemplos antigos `spell_school_*`/`spell_type_*` com nota de migração para `school/<namespace>/<path>` e `spell/<namespace>/<path>`; usar sintaxe 1.21 e verificar IDs no registry antes de código. A página pública mostra Fishing Luck com o mesmo ID de Fishing Lure, provável typo documental; fail-closed até confirmar JAR. `spell_general` + school + spell são agregados antes do cálculo; negativos podem reduzir level a 0 e impedir cast.
 - **Observações:** Dois pontos de documentação exigem cuidado: Respiration ainda aparece em subseção antiga apesar da nota 1.21 dizer que foi removido; Fishing Luck é listado com o mesmo ID de Fishing Lure. Não 'corrigir' por adivinhação. Antes de perk/datapack, inspecionar registry real do JAR 1.2.2.
-- **Procedência:** Modlist física 2026-09-07 + Modrinth oficial Additional Attributes documentação 1.21 + release 1.2.2 + guia gameplay do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + Modrinth oficial Additional Attributes 1.2.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `additional_attributes-1.21.1-1.2.2.jar` / `1.2.2`; sem divergência física.
 - **Fonte:** https://modrinth.com/mod/additional-attributes
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê operacional completo de enchantment/harvest/Apothic crafting/spell-level/innate/scroll attributes, configs, tags e dedicated-server fixes confirmado no QC global #5.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #5: `additional_attributes-1.21.1-1.2.2.jar` / `1.2.2` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
