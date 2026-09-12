@@ -11,7 +11,7 @@
 - **Mod:** Atlas API
 - **Arquivo JAR:** `atlas_api-1.21.1-1.2.0.jar`
 - **Versão 1.21.1:** 1.21.1-1.2.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +20,9 @@
 - **Sobreposição:** Infraestrutura específica de dependentes; não é conteúdo jogável.
 - **Compatibilidade/Riscos:** Biblioteca específica; não substituir por APIs genéricas apenas por similaridade de categoria.
 - **Observações:** mod id: atlas_api; runtime name: Atlas API.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source/documentação Atlas API 1.2.0 + consumidor físico Iron's Gems 'n Jewelry 2.0.2 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + documentação/source Atlas API 1.2.0 + consumidor físico Iron's Gems 'n Jewelry 2.0.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `atlas_api-1.21.1-1.2.0.jar` / `1.21.1-1.2.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/atlas-api
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Atlas API 1.21.1-1.2.0, dynamic texture-atlas/resource API e client/server boundary confirmados no QC global #58. Iron's Gems 'n Jewelry 2.0.2 foi reconfirmado como consumidor físico relevante; estado anterior `Integrado ao Github` preservado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #58: `atlas_api-1.21.1-1.2.0.jar` / `1.21.1-1.2.0` conferidos contra a modlist atual; contratos de dynamic atlas/resource API e consumer boundary preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Atlas API 1.21.1-1.2.0, seus contratos de runtime atlas/model loading e a existência de consumidores no ecossistema. A data anterior não representava uma decisão formal e foi removida.
 - **Data da última decisão:** não definida
 
