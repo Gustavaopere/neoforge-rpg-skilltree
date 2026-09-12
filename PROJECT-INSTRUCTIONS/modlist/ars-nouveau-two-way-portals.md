@@ -11,7 +11,7 @@
 - **Mod:** Ars Nouveau: Two-Way Portals
 - **Arquivo JAR:** `ars_two_way_portals-2.0.0.jar`
 - **Versão 1.21.1:** 2.0.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, Compat
@@ -20,9 +20,9 @@
 - **Sobreposição:** Teleporte bidirecional específico do Ars; não equivale a portais gerais do pack.
 - **Compatibilidade/Riscos:** Risco de double-teleport, stale pair após unload/restart, conflitos em PortalBlock/warp hooks e classloading opcional de Immersive Portals. Portal Nullify deve remover só um endpoint.
 - **Observações:** mod id `ars_two_way_portals`, runtime 2.0.0. Immersive Portals está presente fisicamente, mas presença não equivale a runtime QA aprovado.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source/dossiê Ars Nouveau: Two-Way Portals 2.0.0 + provider físico Immersive Portals 6.0.7.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source/release oficial Ars Nouveau: Two-Way Portals 2.0.0 + provider físico Immersive Portals 6.0.7 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_two_way_portals-2.0.0.jar` / `2.0.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-nouveau-two-way-portals
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Two-Way Portals 2.0.0, portal pairing/nullification, cooldown e optional Immersive Portals boundary confirmados no QC global #51. Estado anterior `Integrado ao Github` preservado como histórico documental; runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #51: `ars_two_way_portals-2.0.0.jar` / `2.0.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria técnica confirmou o JAR 2.0.0, o escopo de portais bidirecionais, o pair lifecycle e os riscos de integração. A presença física no pack não foi convertida automaticamente em decisão de manter, remover ou tornar opcional.
 - **Data da última decisão:** não definida
 
