@@ -11,7 +11,7 @@
 - **Mod:** Bookshelf
 - **Arquivo JAR:** `bookshelf-neoforge-1.21.1-21.1.81.jar`
 - **Versão 1.21.1:** 21.1.81
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +20,9 @@
 - **Sobreposição:** Biblioteca técnica. Similaridade funcional com outras libraries não implica substituição binária; cada consumer determina sua necessidade.
 - **Compatibilidade/Riscos:** Riscos principais são version drift com consumidores, mixins/common lifecycle e utilidades de update/config/data sendo carregadas no lado errado. 21.1.81 corrige fallback update checker bloqueando a main thread.
 - **Observações:** 21.1.81 é release NeoForge 1.21.1 de 10/02/2026. Changelog oficial: correção do fallback update checker que podia bloquear a main thread. O projeto se define como coleção de código, frameworks, utilities e resources reutilizáveis.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficiais Bookshelf 21.1.81 + source oficial Darkhax-Minecraft/Bookshelf branch 1.21.1.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/Modrinth oficiais Bookshelf 21.1.81 + source oficial Darkhax-Minecraft/Bookshelf branch 1.21.1 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `bookshelf-neoforge-1.21.1-21.1.81.jar` / `21.1.81`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bookshelf
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Bookshelf 21.1.81 físico/release confirmado; library/consumer contracts, lifecycle/side e fix do fallback update checker bloqueando main thread preservados. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #83: `bookshelf-neoforge-1.21.1-21.1.81.jar` / `21.1.81` conferidos contra a modlist atual; library/consumer contracts, lifecycle/side e fix do fallback update checker preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Bookshelf 21.1.81 como biblioteca/framework de infraestrutura e preservou os riscos de version drift, observabilidade e classloading. A presença física não foi convertida em decisão de manter/remover.
 - **Data da última decisão:** não definida
 
