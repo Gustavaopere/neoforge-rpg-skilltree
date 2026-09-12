@@ -11,7 +11,7 @@
 - **Mod:** Cataclysm: Spellbooks
 - **Arquivo JAR:** `cataclysm_spellbooks-1.1.13-1.21.jar`
 - **Versão 1.21.1:** 1.1.13-1.21
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, RPG, Compat
@@ -20,9 +20,9 @@
 - **Sobreposição:** Integra Iron's e Cataclysm; não substitui nenhum dos dois. Outros spell addons podem coexistir, mas mana/cooldown/damage/summons e spell IDs devem permanecer provider-owned.
 - **Compatibilidade/Riscos:** Build 1.1.13 é Beta. Riscos: source público 1.21.1 ainda em 1.1.11, dependency drift, recipe/JEI/EMI parsing, griefing config, summon/projectile ownership, novo boss/lifecycle e double-processing de mana/cooldown/damage. IDs e nome do novo boss permanecem fail-closed sem JAR/source 1.1.13 pinado.
 - **Observações:** 1.1.13 Beta, publicada em 02/09/2026 (file 8792628). Changelog oficial: updated arts, ported more spells, fixed bugs e added a new boss; recomenda backup. Descrição atual do projeto declara 65 spells e schools Abyssal/Technomancy, tratadas como release-facing e não como enumeração binária source-pinned.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Cataclysm: Spellbooks 1.1.13 file 8792628 + descrição/relações atuais do projeto + source oficial público 1.21.1 usado somente como contexto porque ainda declara 1.1.11.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Cataclysm: Spellbooks 1.1.13 file 8792628 + descrição/relações atuais + source oficial público 1.21.1 usado somente como contexto porque ainda declara 1.1.11. Reconciliação final: JAR/runtime permanecem exatamente `cataclysm_spellbooks-1.1.13-1.21.jar` / `1.1.13-1.21`; source 1.1.11 não foi promovido artificialmente à paridade 1.1.13 e a decisão `Manter` permanece.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cataclysm-spellbooks
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime físico 1.1.13-1.21 reconciliado; Beta/changelog, 65-spell release scope, Abyssal/Technomancy, required relations e boundary source 1.1.11→binary 1.1.13 documentados. Decisão Manter preservada. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #87: `cataclysm_spellbooks-1.1.13-1.21.jar` / `1.1.13-1.21` conferidos contra a modlist atual; Beta/changelog, 65-spell release scope, Abyssal/Technomancy, required relations e boundary source público 1.1.11→binary 1.1.13 preservados. Decisão `Manter` mantida.
 - **Histórico da decisão:** Em 06/09/2026 foi registrada decisão formal de MANTER Cataclysm: Spellbooks. Uma auditoria intermediária havia ancorado o corpo na build 1.1.12 Alpha. A modlist física mais recente de 08/09/2026 confirma `cataclysm_spellbooks-1.1.13-1.21.jar`; em 09/09/2026 o dossiê foi reconciliado para 1.1.13 Beta, sem alterar a decisão Manter nem inventar detalhes não publicados.
 - **Data da última decisão:** 2026-09-06
 
