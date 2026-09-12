@@ -11,7 +11,7 @@
 - **Mod:** Asterism Arcanum
 - **Arquivo JAR:** `asterismarcanum-1.21.1-0.1.0.jar`
 - **Versão 1.21.1:** 1.21.1-0.1.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição principalmente com sistemas de magia Astral/projectile/teleport/summon. Black Arcana deve observar settlement e causalidade do provider, sem duplicar dano, shield, teleport, projectiles ou ownership de summons.
 - **Compatibilidade/Riscos:** Integração profunda com Iron's Spells e Ace's Spell Utils. Provider-native authority deve ser preservada para projectiles, beams, summons, teleport anchors e damage cancellation. Há divergências estáticas relevantes que exigem runtime QA; especialmente Astral Gateway não deve ser promovido a survival, loot ou perks até exclusão efetiva ser confirmada.
 - **Observações:** Auditoria source fechada em 2026-09-07. Source exato: BirdieVibes/Asterism-Arcanum@f1738c7813a85d31a6da10e6c9f2dbce18d2b583 (`wrapping up!`), cujo `gradle.properties` declara Minecraft 1.21.1 e mod_version 1.21.1-0.1.0. Registry: 11 spells; survival: 10/10 — Astral Echo, Brightburst, Celestial Tether, Luminous Beam, Piercing Light, Silvery Barbs, Starcutter, Starfire, Star Swarm, Summon Lunar Moth. Astral Gateway está registrado mas é oficialmente unfinished/creative-only; Trailblaze tem registration comentado. Astromancer gera scroll aleatório filtrado por escola Astral (quality 0.25–0.85). QA gates: Gateway pode vazar para loot/crafting porque herda allowLooting=true e DefaultConfig crafting=true; Celestial Tether diverge entre tooltip e contador real; Silvery Barbs aparenta cancelar múltiplos hits durante ~1 s; Starcutter clampa entity radius a 1; Starfire ricochet pode reintroduzir friendly same-class; Star Swarm setDealDamageActive() grava false; Luminous Beam carece de allied filter explícito. Source 0.1.0 compila contra Iron's 3.15.6; pack usa 3.16.3.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source Asterism Arcanum commit `f1738c7813a85d31a6da10e6c9f2dbce18d2b583` + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source Asterism Arcanum commit `f1738c7813a85d31a6da10e6c9f2dbce18d2b583` + fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `asterismarcanum-1.21.1-0.1.0.jar` / `1.21.1-0.1.0`; compatibilidade comportamental com Iron's 3.16.3 continua sujeita ao QA já documentado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/asterism-arcanum
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Asterism Arcanum 1.21.1-0.1.0, 11 registered spells/10 survival spells, 11 entities, 27 blocks e source pin exato preservados no QC global #56. Estado anterior `Integrado ao Github` preservado; Iron's 3.16.3 runtime QA continua obrigatório.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #56: `asterismarcanum-1.21.1-0.1.0.jar` / `1.21.1-0.1.0` conferidos contra a modlist atual; source pin e risco de build-target Iron's 3.15.6 → runtime 3.16.3 preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou a release física 1.21.1-0.1.0 e manteve os riscos específicos de Astral Gateway, damage cancellation, projectiles e summons. A data anterior não representava uma decisão formal e foi removida.
 - **Data da última decisão:** não definida
 
