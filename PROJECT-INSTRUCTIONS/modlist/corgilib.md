@@ -11,7 +11,7 @@
 - **Mod:** CorgiLib
 - **Arquivo JAR:** `Corgilib-NeoForge-1.21.1-5.0.0.9.jar`
 - **Versão 1.21.1:** 5.0.0.9
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +20,9 @@
 - **Sobreposição:** Biblioteca técnica própria do ecossistema Corgi Taco. Coexistência com CodecUI, Cloth Config, worldgen/data libraries ou outras APIs não implica redundância; contracts e consumers são distintos.
 - **Compatibilidade/Riscos:** Riscos em version drift de codecs/config schemas, JSON5 parsing/comments, datapack/worldgen reload, NBT tree generation, registry de easing/blending, entity-filter semantics e villager trade codecs. Atualização isolada pode quebrar consumers mesmo sem conteúdo próprio.
 - **Observações:** mod id `corgilib`; runtime 5.0.0.9. Superfícies documentadas incluem configs `.json5` serializados por Mojang codecs, codecs comentados, tree generation via NBT, easing/blending functions, entity filters e villager trade codecs; nenhum gameplay autônomo é inferido.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + runtime CorgiLib 5.0.0.9 + CurseForge oficial CorgiLib NeoForge 1.21.1 + ficha auditada de Oh The Biomes We've Gone 2.6.0 + documentação/source do ecossistema Corgi Taco.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime CorgiLib 5.0.0.9 + CurseForge oficial CorgiLib NeoForge 1.21.1 + ficha auditada de Oh The Biomes We've Gone 2.6.0 + documentação/source do ecossistema Corgi Taco já auditados. Reconciliação final: JAR/runtime permanecem exatamente `Corgilib-NeoForge-1.21.1-5.0.0.9.jar` / `5.0.0.9`; consumer-driven necessity preservada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/corgilib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — CorgiLib 5.0.0.9, codecs/config/data/worldgen utilities, reload/lifecycle, side e version-drift risks confirmados no QC global #110. Consumer físico Oh The Biomes We've Gone 2.6.0 confirmado; runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #110: `Corgilib-NeoForge-1.21.1-5.0.0.9.jar` / `5.0.0.9` conferidos contra a modlist atual; codecs/config/data/worldgen utilities, reload/lifecycle, side, version-drift risks e consumer BWG 2.6.0 preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CorgiLib 5.0.0.9 foi reconfirmado na modlist física e reconstruído como library consumer-driven. A presença necessária a possíveis consumers não foi convertida em decisão curatorial.
 - **Data da última decisão:**
 
