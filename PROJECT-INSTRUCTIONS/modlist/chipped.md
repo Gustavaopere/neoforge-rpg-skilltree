@@ -15,15 +15,16 @@
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/chipped
 - **Função:** Mod decorativo de grande escala que adiciona mais de 10.000 variantes de blocos de construção e as produz por workbenches próprios, com integração de recipe viewers na linha 4.0.2.
 - **Dependências:** A build NeoForge 4.0.2 é Client & Server. Dependências técnicas devem ser determinadas pela metadata/JAR do artefato e não por versões antigas; nenhuma hard dependency adicional foi inferida nesta ficha.
 - **Compatibilidade/Riscos:** Grande superfície de registries/assets/recipes. Riscos em tags de blocos, connected/translucent rendering, recipe viewers, UI de workbench e compat com mods que adicionam variantes do mesmo material. A 4.0.2 corrige crafting e adiciona integração JEI/agrupamento REI; issues atuais ainda mostram edge cases de render/tags e interação com Create.
 - **Sobreposição:** Sobreposição estética ampla com outros mods decorativos, mas não equivalência automática. Conflito só deve ser afirmado quando houver registry/tag/recipe/resource collision concreta.
 - **Observações:** mod id `chipped`; runtime 4.0.2. Projeto oficial declara 10.000+ building blocks. A release 4.0.2 corrige bug de crafting, adiciona feature JEI e agrupamento automático REI.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Chipped 4.0.2 + source oficial terrarium-earth/Chipped branch 1.21.x + changelog/issues oficiais usados como regression evidence.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Chipped 4.0.2 + source oficial terrarium-earth/Chipped branch 1.21.x + changelog/issues oficiais já auditados. Reconciliação final: JAR/runtime permanecem exatamente `chipped-neoforge-1.21.1-4.0.2.jar` / `4.0.2`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Chipped 4.0.2 foi reconfirmado no JAR físico e reconstruído ao padrão técnico. A instalação atual não foi convertida automaticamente em decisão de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Chipped 4.0.2 físico confirmado; 10.000+ decorative scope, workbench/recipe-viewer pipeline, rendering/tags, client/server lifecycle e regressões 4.0.2 confirmados no QC global #92. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #92: `chipped-neoforge-1.21.1-4.0.2.jar` / `4.0.2` conferidos contra a modlist atual; escopo decorativo 10.000+, workbench/recipe-viewer pipeline, rendering/tags e regressões 4.0.2 preservados.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
