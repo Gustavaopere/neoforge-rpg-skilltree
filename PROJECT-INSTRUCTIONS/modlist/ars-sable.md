@@ -11,7 +11,7 @@
 - **Mod:** Ars Sable
 - **Arquivo JAR:** `ars_sable-1.21.1-1.1.2.jar`
 - **Versão 1.21.1:** 1.1.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, Compat, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Bridge específica Ars↔Sable. Não substitui Ars Nouveau nem Sable e não cria Source/physics próprios. Evitar dupla projeção espacial com outras bridges e preservar provider-native ownership.
 - **Compatibilidade/Riscos:** RISCO ACEITO/VALIDAÇÃO OBRIGATÓRIA: Ars Sable 1.1.2 foi compilado contra Sable 1.2.2 e usa 29 mixins dirigidos a internals; o pack usa Sable 2.0.5. Validar startup, Source/storage, warp, Planarium, pathfinding, render/client boundary e assembly lifecycle; fail-closed para contracts não testados.
 - **Observações:** mod id `ars_sable`. Release 1.1.2 possui 24 mixins common + 5 client-only e GameTests para Planarium, Storage Lectern, tracked positions e Warp Portal. Não registra gameplay blocks próprios na build auditada; é bridge de infraestrutura.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source ars-sable commit `1fd83f3a998e3a41b5a21d0d6529140a0b0a55ba` (1.1.2) + Sable 2.0.5 físico + dossiê version-pinned existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source ars-sable commit `1fd83f3a998e3a41b5a21d0d6529140a0b0a55ba` (1.1.2) + Sable 2.0.5 físico e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime do addon permanecem exatamente `ars_sable-1.21.1-1.1.2.jar` / `1.1.2`; compatibilidade comportamental com Sable 2.0.5 continua pendente de runtime QA.
 - **Fonte:** https://github.com/baileyholl/ars-sable
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Sable 1.1.2, 29-mixin spatial bridge, Source/storage/warp/Planarium tracking and mandatory Sable 1.2.2 build-target→2.0.5 runtime risk preserved in global QC #49. Estado anterior `Integrado ao Github` preservado como histórico documental; runtime NÃO aprovado sem testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #49: `ars_sable-1.21.1-1.1.2.jar` / `1.1.2` conferidos contra a modlist atual; risco Sable build-target 1.2.2 → runtime 2.0.5 preservado, sem aprovação automática de compatibilidade.
 - **Histórico da decisão:** Manter com risco aceito/validação obrigatória. Em 07/09/2026 a ficha foi reconstruída contra o commit exato 1.1.2; metadata aceita Sable >=1.0, mas o salto do build target 1.2.2 para runtime físico 2.0.5 não foi tratado como prova automática de compatibilidade.
 - **Data da última decisão:** 2026-09-07
 
@@ -137,7 +137,6 @@ Resultado: Source continua sendo o Source real do Ars; somente sua posição esp
 - não há conversão para energia Sable/Create;
 - não há cópia de saldo;
 - a bridge só permite que o `SourceManager` enxergue corretamente o provider móvel.
-
 Qualquer addon que copie Source para estado próprio cria risco de dupe.
 
 ## 8. Storage Lectern e posições persistentes
