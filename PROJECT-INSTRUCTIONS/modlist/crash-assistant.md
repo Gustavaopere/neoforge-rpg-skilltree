@@ -11,7 +11,7 @@
 - **Mod:** Crash Assistant
 - **Arquivo JAR:** `CrashAssistant-neoforge-1.20.6-1.21.4-1.11.12.jar`
 - **Versão 1.21.1:** 1.11.12
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Pode sobrepor launchers/diagnostic tools na coleta e apresentação de logs, mas não substitui o crash report original. Heurísticas e auto-fixes devem ser tratados como assistência, não como prova causal.
 - **Compatibilidade/Riscos:** Opera sobre coleta/análise/upload de arquivos de diagnóstico e pode abrir um viewer externo. Riscos: dados sensíveis presentes em logs, comportamento de upload/link viewer, heurísticas de causa falsa-positiva e integração com launchers. 1.11.12 muda `general.upload_to` para `general.wrap_link` e o viewer padrão para [kostromdan.dev](http://kostromdan.dev).
 - **Observações:** Host `CrashAssistant-neoforge-1.20.6-1.21.4-1.11.12.jar`, runtime 1.11.12. A faixa `1.20.6-1.21.4` no filename representa versões Minecraft suportadas. O host contém `app.jar` e uma cópia interna `crash_assistant-neoforge.jar` 1.11.12 em `/META-INF/jarjar/`; não criar páginas top-level para essas cópias.
-- **Procedência:** modlist.txt física atual de 08/09/2026 (595 top-levels) + runtime 1.11.12 + inventário jar-in-jar físico do host + CurseForge oficial Crash Assistant + changelog oficial 1.11.12.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime 1.11.12 + inventário jar-in-jar físico do host + CurseForge/changelog oficial Crash Assistant já auditados. Reconciliação final: host/runtime permanecem exatamente `CrashAssistant-neoforge-1.20.6-1.21.4-1.11.12.jar` / `1.11.12`; `app.jar` e `crash_assistant-neoforge.jar` continuam embedded e não top-level.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/crash-assistant
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Crash Assistant 1.11.12, post-crash analysis, privacy/viewer, auto-fix boundary e inventário jar-in-jar confirmados no QC global #114. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #114: `CrashAssistant-neoforge-1.20.6-1.21.4-1.11.12.jar` / `1.11.12` conferidos contra a modlist atual; post-crash analysis, privacy/viewer, auto-fix boundary e inventário jar-in-jar preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Crash Assistant 1.11.12 foi reconfirmado fisicamente e reconstruído como ferramenta client-side de diagnóstico; sua instalação não foi convertida em decisão curatorial.
 - **Data da última decisão:**
 
