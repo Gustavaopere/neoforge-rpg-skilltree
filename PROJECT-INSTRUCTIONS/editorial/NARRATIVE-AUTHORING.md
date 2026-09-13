@@ -20,12 +20,13 @@ If Grimoire or another required authority is unavailable and the missing fact is
 Before substantive narrative authoring:
 
 1. read relevant `historia/00-canone/` and existing records;
-2. search stable IDs to avoid duplicate NPCs, factions, locations, quests or evidence;
-3. consult Grimoire for central lore and possible pre-existing entities when accessible;
-4. consult relevant Stage 08 contracts for knowledge, chronology, relationships, opportunity lifecycle, consequences and death/return;
-5. verify the latest modlist/provider evidence before assigning a real mechanic to a mod;
-6. consult Compendium/runtime identities before binding a narrative place to a biome, structure or dimension;
-7. inspect open branches/PRs affecting the same narrative IDs.
+2. when available, run `python historia/tools/story_inventory.py --format json` to obtain a current index of stable IDs, states and references before creating new entities;
+3. search stable IDs/names to avoid duplicate NPCs, factions, locations, quests or evidence;
+4. consult Grimoire for central lore and possible pre-existing entities when accessible;
+5. consult relevant Stage 08 contracts for knowledge, chronology, relationships, opportunity lifecycle, consequences and death/return;
+6. verify the latest modlist/provider evidence before assigning a real mechanic to a mod;
+7. consult Compendium/runtime identities before binding a narrative place to a biome, structure or dimension;
+8. inspect open branches/PRs affecting the same narrative IDs.
 
 Absence of information is a valid project state.
 
@@ -48,7 +49,9 @@ When available in the branch, run:
 
 `python historia/tools/validate_story.py historia`
 
-Use `--strict-references` when validating a closed batch. Do not claim full-repository validation unless the command actually ran against the complete materialized tree.
+Use `--strict-references` when validating a closed batch. For dialogue batches also run `python historia/tools/validate_dialogues.py`.
+
+Do not claim full-repository validation unless the command actually ran against the complete materialized tree.
 
 ## Knowledge and evidence
 
@@ -93,6 +96,7 @@ Narrative authoring must remain usable with zero required incremental spend. Pai
 Before calling an authoring batch complete, confirm:
 
 - relevant authorities checked;
+- current inventory/search used to reduce duplicate-entity risk;
 - no known duplicate stable entity introduced;
 - editorial states explicit;
 - knowledge/provenance preserved;
@@ -100,7 +104,7 @@ Before calling an authoring batch complete, confirm:
 - lifecycle supports legitimate alternate participation states;
 - voice consistency checked where applicable;
 - spoiler-safe reporting preserved;
-- story validation run when possible and scope reported truthfully;
+- story/dialogue validation run when applicable and scope reported truthfully;
 - no paid service became mandatory;
 - tooling/contracts and substantive story content are separated in PRs when practical.
 
