@@ -1,4 +1,4 @@
-# Cataclysm Compat
+# Cataclysm Compat ✅
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3d469db9f0db81219f6fc0ba655f5a7a
