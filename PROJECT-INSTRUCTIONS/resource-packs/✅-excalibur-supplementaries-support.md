@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur_Supplementaries_1.0_1.21.1.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 1.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat

@@ -1,7 +1,7 @@
 # Excalibur | Transmog support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db8189bc20fa0362e71bac
+- **Página Notion:** https://app.notion.com/p/3d669db9f0db8189bc20fa0362e71bac
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Transmog_v1.0.zip`
@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `Excalibur_Transmog_v1.0.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 1.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Compat, RPG

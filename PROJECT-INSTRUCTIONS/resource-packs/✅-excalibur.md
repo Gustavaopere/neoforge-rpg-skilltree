@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `Excalibur_V26.1_01.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** V26.1_01
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual

@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur_Lootr_v1.1.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 1.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat, Exploração
@@ -72,6 +72,6 @@ A instalação oficial exige o support pack acima do Excalibur original. Resourc
 Nenhum teste foi marcado como aprovado.
 
 ## 8. Evidências e limite
-CurseForge oficial confirma v1.1, retexture de todos os containers e o ajuste das duas textures de barrel. A modlist física confirma Lootr `1.21.1-1.11.38.125`; a compatibilidade integral com cada container dessa build permanece sujeita a QA.
+CurseForge oficial confirma v1.1, retexture de todos os containers e o ajuste das duas textures de barrel. A compatibilidade integral com cada container da build física atual permanece sujeita a QA.
 
 > Boundary canônico: **Lootr controla loot e state por jogador; o support pack controla somente a aparência dos containers**.
