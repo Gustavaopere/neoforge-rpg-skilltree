@@ -10,6 +10,18 @@ A infraestrutura comum para criação de mods foi migrada para [`Gustavaopere/mi
 
 Portanto, não iniciar aqui novas capabilities genéricas de scaffolding, validators, skills compartilhadas, Blockbench/asset tooling, catálogos, CI reutilizável ou automação cross-mod. Quando trabalho histórico deste repositório for útil à Factory, ele deve ser migrado/reconciliado e revalidado, não reimplementado do zero.
 
+## Antes de alterar história, lore ou conteúdo narrativo
+
+Leia:
+
+1. `editorial/NARRATIVE-AUTHORING.md`;
+2. os arquivos relevantes em `../historia/`, começando por `00-canone/`;
+3. Grimoire/TTRPG.bot quando a tarefa depender de lore estruturada já existente e essa authority estiver acessível;
+4. os contratos aplicáveis de `../plans/08-quests-progression-hooks/`;
+5. Compêndio/runtime e documentação de provider quando a história depender de mecânica ou worldgen real.
+
+A ausência de uma authority necessária não autoriza preencher a lacuna por suposição. Manter o detalhe indecidido ou fail-closed até existir evidência editorial/técnica suficiente.
+
 ## Antes de alterar o runtime RPG
 
 Leia nesta ordem:
@@ -43,6 +55,7 @@ Para execução operacional de Chat 1/2/3, esses arquivos consolidados continuam
 
 ## Estrutura de suporte
 
+- `editorial/` contém contratos operacionais específicos de autoria/conteúdo deste RPG; não é uma árvore de skills compartilhadas.
 - `engineering/` contém contratos e documentação técnica do RPG, além de material histórico da antiga fase em que este repositório também hospedava infraestrutura comum. Material histórico não é authority para novas capabilities compartilhadas.
 - `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos do RPG.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
@@ -52,7 +65,7 @@ Para execução operacional de Chat 1/2/3, esses arquivos consolidados continuam
 
 Alguns arquivos precisam permanecer fora deste diretório porque sua localização tem semântica para ferramentas externas:
 
-- `/AGENTS.md` permanece na raiz para descoberta automática de agentes e aponta para o contrato runtime local e para os entrypoints compartilhados da Factory;
+- `/AGENTS.md` permanece na raiz para descoberta automática de agentes e aponta para os contratos locais de narrativa/runtime e para os entrypoints compartilhados da Factory;
 - `.github/**` permanece sob `.github/` quando o GitHub exige o caminho para workflows, templates ou políticas da plataforma.
 
 Documentação cujo papel principal seja código, configuração ou workflow executável deve permanecer no domínio correspondente. Não recriar uma árvore local de infraestrutura comum somente para conservar caminhos históricos.
@@ -69,4 +82,4 @@ Os comentários `ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/...` presentes 
 
 Novas atualizações editoriais dos guias detalhados do RPG devem ocorrer em `PROJECT-INSTRUCTIONS/guides/`. Quando uma mudança precisar ser refletida nos quatro arquivos consolidados, ela deve ser reconciliada conscientemente e validada como novo snapshot; não recriar a árvore legada em `plans/03-skill-tree-perks/guides/`.
 
-Novas skills, contracts, validators, templates, tooling e automações **genéricos de produção de mods** pertencem à Minecraft Mod Factory. Este repositório só deve receber alterações desse tipo quando forem necessárias para o próprio runtime RPG ou para preservar/migrar trabalho histórico.
+Novas skills, contracts, validators, templates, tooling e automações **genéricos de produção de mods** pertencem à Minecraft Mod Factory. Este repositório só deve receber contratos locais quando forem específicos deste RPG; capabilities reutilizáveis continuam pertencendo à Factory.
