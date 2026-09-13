@@ -20,14 +20,14 @@
 - **Arquivo JAR:** `JustExpressions_v1.2.1.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** 1.2.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual
 - **Função:** Resource pack EMF que leva as animações de olhos inspiradas no Fresh Animations para o modelo do jogador, sem substituir o restante das animações do player.
 - **Dependências:** Entity Model Features 3.3.5 e Entity Texture Features 7.2.1 no stack físico. O upstream cita mínimos EMF +v2.0.2 e ETF +v6.0.1. OptiFine não suporta player custom models neste contexto.
 - **Sobreposição:** Pode colidir com player model/animation packs que alterem eyes/UVs/model definitions. O upstream orienta carregar packs compatíveis acima de Just Expressions 1.2.
-- **Compatibilidade/Riscos:** Requer EMF e ETF; stack físico supera os mínimos publicados. Compatibilidade com outros player animation resource packs só funciona quando o outro pack oferece suporte e deve ser carregado acima de Just Expressions 1.2.
+- **Compatibilidade/Riscos:** Requer EMF e ETF; stack físico supera os mínimos publicados (EMF 3.3.5, ETF 7.2.1). Compatibilidade com outros player animation resource packs só funciona quando o outro pack oferece suporte e deve ser carregado acima de Just Expressions 1.2.
 - **Observações:** Arquivo físico `JustExpressions_v1.2.1.zip`, versão 1.2.1. O arquivo declara explicitamente suporte a Minecraft 1.21.1 e corrige, nessa release, o head overlay model em versões anteriores a 1.21.2.
 - **Procedência:** CurseForge oficial Just Expressions v1.2.1 + captura Resource Packs do perfil em 08/09/2026 + modlist física EMF 3.3.5/ETF 7.2.1.
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/just-expressions/files/8373455

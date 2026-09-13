@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `golems-refreshed-v2.1.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** 2.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Mobs
@@ -46,10 +46,10 @@ Golems Refreshed é um overhaul visual do Iron Golem. Minecraft continua authori
 O upstream declara **26 variants novas de Iron Golem**, acionadas por diferentes biomas ou name tags. Essas variantes mudam model/texture/apresentação; não devem ser catalogadas como novos entity types.
 
 ## 3. Infraestrutura CEM
-O autor recomenda **Entity Model Features (EMF)** em vez de OptiFine. A modlist física confirma EMF `3.3.5`, que deve ser validado junto às rules/model definitions do pack.
+O autor recomenda **Entity Model Features (EMF)** em vez de OptiFine. O stack físico contém EMF `3.3.5`, que deve ser validado junto às rules/model definitions do pack.
 
 ## 4. Boundary com Fresh Animations
-Compatibilidade com Fresh Animations é fornecida por um resource pack separado, `Golems Refreshed + Fresh Animations v2.1`, já presente e catalogado. A simples ativação das duas bases sem o compat não deve ser tratada como integração garantida.
+Compatibilidade com Fresh Animations é fornecida por um resource pack separado, `Golems Refreshed + Fresh Animations v2.1`, também presente. A simples ativação das duas bases sem o compat não deve ser tratada como integração garantida.
 
 ## 5. Load order e reload
 O pack e seu compat Fresh Animations precisam de prioridade coerente. Resource reload/relog deve reconstruir CEM e variant rules sem alterar estado da entidade.

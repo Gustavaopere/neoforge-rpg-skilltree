@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `4.3 FA Illager Mod Compats.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 4.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Compat, Mobs
@@ -43,7 +43,7 @@
 Fresh Illager Mod Compats é uma camada de models/animations/resources. Os mods suportados continuam authorities das entidades, AI, raids, spells, drops e spawn. Fresh Animations/EMF/ETF controlam a infraestrutura visual necessária para aplicar os modelos/regras.
 
 ## 2. Requisitos publicados
-O upstream exige **Fresh Animations 1.10+**, **Entity Model Features (EMF)** e **Entity Texture Features (ETF)** e instrui colocar este pack **acima do Fresh Animations**. A authority física confirma EMF `3.3.5` e ETF `7.2.1`.
+O upstream exige **Fresh Animations 1.10+**, **Entity Model Features (EMF)** e **Entity Texture Features (ETF)** e instrui colocar este pack **acima do Fresh Animations**. No stack físico estão EMF `3.3.5` e ETF `7.2.1`.
 
 ## 3. Cobertura suportada pelo projeto
 A lista oficial inclui, entre outros: Savage and Ravage, Goety, Illager Invasion, The Graveyard (illagers), Blue Skies (Illager Boss/Gatekeeper), Traders in Disguise, Supplementaries (illager), Friends&Foes (illager), Frostiful, Guard Illager, Biome Makeover Cowboy Illager, The Conjurer, Difficult Raids e integrações adicionais de Goety. **Suporte upstream não significa presença no pack.**

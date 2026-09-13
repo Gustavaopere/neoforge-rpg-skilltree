@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `golems-refreshed-fa-v2.1.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 2.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Compat, Mobs
@@ -29,7 +29,7 @@
 - **Sobreposição:** Sobrepõe definitions de golem necessárias à compatibilidade Fresh Animations. Outros golem CEM/model packs podem competir por prioridade; Minecraft continua owner do comportamento.
 - **Compatibilidade/Riscos:** Riscos de CEM/model overlap, prioridade incorreta entre Golems Refreshed e Fresh Animations, cache de EMF e variants sem regra aplicável. v2.1 adiciona suporte visual ao Snow Golem.
 - **Observações:** Arquivo instalado `golems-refreshed-fa-v2.1.zip`; v2.1 suporta explicitamente Minecraft 1.21.1. Changelog da linha v2.1 registra Snow Golem.
-- **Procedência:** CurseForge oficial Golems Refreshed + Fresh Animations v2.1 + captura Resource Packs do perfil em 08/09/2026 + modlist/logs físicos EMF.
+- **Procedência:** CurseForge oficial Golems Refreshed + Fresh Animations v2.1 + captura Resource Packs do perfil em 08/09/2026 + modlist física EMF.
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/golems-refreshed-fresh-animations
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — v2.1, Golems Refreshed + Fresh Animations, EMF, Snow Golem, load order, riscos e QA catalogados.
 - **Histórico da decisão:**
@@ -43,7 +43,7 @@
 O pack adapta models/resources do Golems Refreshed para coexistirem com as animações do Fresh Animations. Minecraft continua authority de Iron/Snow Golem AI, target selection, health, damage, spawn e drops.
 
 ## 2. Stack visual confirmado
-A cadeia relevante é **Golems Refreshed → compat v2.1 → Fresh Animations**, com **EMF** recomendado pelo autor para custom entity models. O stack físico registra EMF no runtime.
+A cadeia relevante é **Golems Refreshed → compat v2.1 → Fresh Animations**, com **EMF** recomendado pelo autor para custom entity models. O stack físico contém EMF `3.3.5`.
 
 ## 3. Cobertura e v2.1
 Golems Refreshed trabalha com variantes visuais de golems; a linha v2.1 do compat registra **Snow Golem** como adição. Isso é cobertura visual/animação, não criação de nova mecânica de golem.
@@ -65,13 +65,13 @@ Outros packs que alterem Iron Golem, Snow Golem ou suas regras de EMF podem disp
 - [ ] Iron Golem vanilla com animações ativas.
 - [ ] Variantes de Iron Golem por biome/name tag disponíveis.
 - [ ] Snow Golem da linha v2.1.
-- [ ] Confirmar EMF ativo no cliente do perfil.
+- [ ] Confirmar EMF `3.3.5` ativo.
 - [ ] Resource reload/relog sem missing model/texture.
 - [ ] Confirmar que pack on/off não altera AI, health, damage ou drops.
 
 Nenhum teste foi marcado como aprovado.
 
 ## 8. Evidências e limite
-CurseForge oficial confirma v2.1, suporte a 1.21.1, papel de compatibilidade com Fresh Animations e recomendação de EMF. Logs físicos de 08/09 também confirmam EMF/ETF carregados no runtime. O catálogo não atribui gameplay ao resource pack.
+CurseForge oficial confirma v2.1, suporte a 1.21.1, papel de compatibilidade com Fresh Animations e recomendação de EMF. O catálogo não atribui gameplay ao resource pack.
 
 > Boundary canônico: **Golems Refreshed/Fresh Animations controlam apresentação; Minecraft controla a entidade e seu comportamento**.
