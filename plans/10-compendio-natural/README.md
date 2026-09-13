@@ -4,7 +4,7 @@ O estágio 10 adiciona ao projeto um **Dicionário Enciclopédico integrado ao j
 
 O nome de produto adotado no planejamento é **Compêndio Natural**. Internamente, o domínio usa `compendium`.
 
-A proposta consolida, em uma única experiência, os melhores conceitos observados em mods de referência como Biology Dictionary, Field Guide e Wildex, sem transformar nenhum deles em dependência dura e sem copiar código ou assets sem auditoria explícita de licença/proveniência.
+A proposta consolida, em uma única experiência, os melhores conceitos observados em mods de referência como Biology Dictionary, Field Guide, Wildex e Boss Checklist, sem transformar nenhum deles em dependência dura e sem copiar código ou assets sem auditoria explícita de licença/proveniência.
 
 ## Objetivos
 
@@ -13,6 +13,8 @@ A proposta consolida, em uma única experiência, os melhores conceitos observad
 - complementar a descoberta automática com conteúdo editorial curado em **português do Brasil (`pt-BR`)**;
 - mostrar dados técnicos verificáveis de entidades, flora e worldgen;
 - permitir descoberta, progresso, notas pessoais e integração com o RPG/quests;
+- permitir consultar onde criaturas descobertas podem ser encontradas e selecioná-las para **Procurar / Seguir**, com integração a waypoints/mapa quando houver alvo válido;
+- integrar bosses e minibosses ao próprio Compêndio com checklist de descoberta/derrota, progresso, ordem configurável, pré-requisitos e informações de encontro;
 - manter conteúdo desconhecido visível por fallback, sem inventar lore ou mecânicas;
 - continuar funcional quando mods opcionais forem adicionados ou removidos;
 - separar a enciclopédia survival, somente leitura, de ferramentas administrativas que possam alterar entidades;
@@ -117,6 +119,7 @@ src/test/java/dev/gustavopere/rpgskilltree/compendium/
 13. `13-save-rede-cache-reload.md`
 14. `14-testes-performance-compatibilidade.md`
 15. `15-gate-conteudo-release.md`
+16. `16-bosses-rastreamento-waypoints.md`
 
 Os arquivos anteriores são contratos causais. Um subplano posterior não deve inventar uma segunda representação dos mesmos dados.
 
@@ -136,7 +139,7 @@ A enciclopédia deve depender de APIs estáveis desses domínios, não acessar i
 
 O Stage 10 só pode ser considerado concluído quando:
 
-- [ ] todos os 15 subplanos estiverem marcados individualmente como concluídos;
+- [ ] todos os 16 subplanos estiverem marcados individualmente como concluídos;
 - [ ] o catálogo runtime cobrir todos os tipos de entrada suportados presentes no pack;
 - [ ] conteúdo modded registrado nos registries suportados possuir página base automática ou `IGNORED` explícito e justificado;
 - [ ] nenhuma entrada depender de cadastro manual apenas para existir no catálogo base;
@@ -146,6 +149,9 @@ O Stage 10 só pode ser considerado concluído quando:
 - [ ] entidades suportadas mostrarem dados técnicos com origem verificável;
 - [ ] flora/árvores/cultivos e worldgen tiverem páginas navegáveis;
 - [ ] descoberta e recompensas forem server-authoritative e idempotentes;
+- [ ] criaturas elegíveis puderem expor habitat/localização verificável e ser selecionadas para **Procurar / Seguir** sem inventar coordenadas;
+- [ ] integração de waypoints/mapa for desacoplada e fail-soft quando o provider não estiver presente;
+- [ ] bosses/minibosses puderem ser acompanhados no próprio Compêndio com estados de descoberta/derrota, progresso agregado e ordem configurável;
 - [ ] saves forem versionados e migráveis;
 - [ ] optional-mod matrix passar em ausência/presença;
 - [ ] client, singleplayer e dedicated server passarem os gates aplicáveis;
