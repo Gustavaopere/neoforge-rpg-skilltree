@@ -1,7 +1,10 @@
 # Relações, Memória e Continuidade de Identidade
 
 ## Estado editorial
-PROPOSTO ATÉ MERGE / contrato editorial geral após aceitação.
+RASCUNHO
+
+## Escopo
+Contrato editorial geral para relações multidimensionais, memória social e continuidade após morte/retorno. A aceitação deste documento não fixa relações concretas de NPCs nem inventa estados de continuidade; cada caso exige fatos/evidência próprios.
 
 ## Autoridade técnica
 Este contrato editorial espelha, sem substituir:
@@ -98,17 +101,34 @@ Morte permanece fato histórico.
 
 Se um ator retorna, não restaurar automaticamente o snapshot pré-morte de relação, memória ou knowledge. Aplicar o `Identity Continuity Record` do Stage 08.
 
+Quando o caso exigir continuidade detalhada, manter independentes:
+
+- `body_continuity`;
+- `memory_continuity`;
+- `personality_continuity`;
+- `knowledge_continuity`;
+- `relationship_continuity`;
+- `legal_identity`;
+- `social_identity`;
+- `self_identity`;
+- `provider_origin`;
+- `return_event_id`;
+- evidence/knowledge sobre o retorno.
+
+Esses campos não provam metafísica universal. Continuidade de corpo, memória, reconhecimento jurídico, aceitação social e autorreconhecimento podem divergir legitimamente.
+
 O conteúdo pode, conforme evidência e regra de continuidade:
 
-- preservar algumas dimensões;
+- preservar algumas dimensões relacionais;
 - reduzir ou alterar outras;
 - manter grievances/debts anteriores;
 - criar fear/grievance relacionado ao retorno;
 - exigir reconstrução gradual de vínculo;
 - manter memória parcial ou ausente;
-- produzir reconhecimento legal/social diferente do reconhecimento pessoal.
+- produzir `legal_identity` diferente de `social_identity`;
+- permitir `self_identity` diferente da identidade atribuída por família, governo, clero, academia ou facções.
 
-`alive=true` não significa “a mesma relação de antes”.
+`alive=true` não significa “a mesma relação de antes”. Família reconhecer alguém não obriga o Estado/instituição a restaurar seu status jurídico, e reconhecimento jurídico não obriga aceitação social nem autorreconhecimento.
 
 ## Companions
 Loyalty de companion não substitui as dimensões de relação.
@@ -143,4 +163,6 @@ Antes de aceitar uma mudança relacional importante, verificar:
 - [ ] grievance/debt/favor não foi duplicado como simples score;
 - [ ] facção/instituição não herdou relação individual automaticamente;
 - [ ] morte/retorno respeita continuidade de identidade;
+- [ ] legal/social/self identity permanecem independentes quando aplicável;
+- [ ] nenhuma metafísica universal foi inferida de simples retorno corporal;
 - [ ] nenhuma mecânica de provider foi inventada para justificar a consequência.
