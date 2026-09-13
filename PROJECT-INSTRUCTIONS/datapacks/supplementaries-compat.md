@@ -1,4 +1,4 @@
-# Supplementaries Compat ✅
+# Supplementaries Compat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3d469db9f0db817d8b01e9d41b74c8d4
