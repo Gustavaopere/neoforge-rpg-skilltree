@@ -1,7 +1,10 @@
 # DLG-0003 — Iren Valmor — Possível oferta de investigação
 
 ## Estado editorial
-RASCUNHO DE CONTEÚDO / CANDIDATO PLAYER-FACING. Requer validação contra runtime antes de implementação.
+RASCUNHO
+
+## Escopo
+CANDIDATO PLAYER-FACING / requer validação contra runtime antes de implementação. O arquivo descreve intents e não muta estado diretamente.
 
 ## Participantes
 - `NPC-0003` Iren Valmor
