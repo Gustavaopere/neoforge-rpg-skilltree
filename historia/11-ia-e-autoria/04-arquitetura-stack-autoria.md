@@ -12,10 +12,11 @@ Não existe uma ordem global única para todos os tipos de informação. Primeir
 
 ### Lore estruturada e estado da campanha
 
-- **Grimoire/TTRPG.bot** — authority principal para Campaign Bible/Foundations, personagens, organizações, lugares, relações, conhecimento, segredos e estado narrativo estruturado quando registrado ali.
-- **`historia/`** — fonte editorial versionada no GitHub: IDs estáveis, documentos revisáveis, diálogos, evidências, lifecycle, propostas e material aceito/registrado em PR.
+- **`historia/` aceita em `main`** — fonte editorial canônica versionada e boundary de aceitação para fatos narrativos, IDs estáveis, documentos revisáveis, diálogos, evidências e decisões editoriais aprovadas no repositório.
+- **Grimoire/TTRPG.bot** — Campaign Bible estruturada e fonte obrigatória de consulta/reconciliação para Foundations, personagens, organizações, lugares, relações, conhecimento, segredos e estado narrativo estruturado quando registrado ali.
+- **branch/PR** — proposta editorial até revisão/merge; novidade em branch não substitui canon aceito apenas por ser mais recente.
 
-Quando as duas fontes parecerem divergir, reconciliar conscientemente por domínio/proveniência; não sobrescrever nenhuma delas por sincronização cega.
+Grimoire não é uma segunda via de promoção automática para canon. Quando Grimoire e `historia/` aceita em `main` parecerem divergir, preservar a discrepância, revisar provenance/decisões anteriores e reconciliar conscientemente. A resolução canônica versionada precisa retornar por revisão a `main`; depois, sincronizar o Grimoire quando necessário. Nunca sobrescrever uma das fontes por sincronização cega.
 
 ### Runtime e capacidade mecânica
 
@@ -41,8 +42,8 @@ Nenhum MCP, plugin, IA ou framework externo pode sobrescrever fatos canônicos, 
 
 ### Camada A — ativa agora
 
-- **Grimoire/TTRPG.bot**: lore estruturada/campaign bible quando a conexão estiver disponível.
-- **GitHub / `historia/`**: versionamento editorial, IDs, diff, branch/PR, auditoria e rollback.
+- **GitHub / `historia/` em `main`**: canon editorial aceito, versionamento, IDs, diff, branch/PR, auditoria e rollback.
+- **Grimoire/TTRPG.bot**: Campaign Bible estruturada para consulta, continuity e reconciliação quando a conexão estiver disponível; não promove conflito diretamente sobre `main`.
 - **ChatGPT**: autor/revisor assistido, respeitando authorities, política sem spoilers e contratos do projeto.
 - **Geração de imagem disponível no ChatGPT**: concept art e portrait quando não houver custo incremental.
 - **Minecraft Mod Factory + Blockbench**: pipeline visual compartilhada e validação de assets.
@@ -73,11 +74,13 @@ A reconciliação detalhada entre Grimoire e GitHub está em `12-grimoire-github
 
 Princípios:
 
-1. pesquisar as duas authorities antes de criar elemento central quando a conexão estiver disponível;
+1. pesquisar `main`, branches/PRs relevantes e Grimoire antes de criar elemento central quando a conexão estiver disponível;
 2. usar IDs estáveis como referência cruzada;
 3. tratar branch/PR como proposta até decisão editorial;
-4. não executar sincronização bidirecional cega;
-5. se Grimoire for necessário e estiver indisponível, preservar a lacuna como pendente/fail-closed em vez de inventar canon.
+4. tratar `main` como boundary de aceitação canônica versionada;
+5. não executar sincronização bidirecional cega;
+6. se houver divergência, abrir reconciliação explícita em vez de escolher automaticamente a fonte mais nova;
+7. se Grimoire for necessário e estiver indisponível, preservar a lacuna como pendente/fail-closed em vez de inventar canon.
 
 ## Segurança
 
@@ -102,7 +105,9 @@ Uma ferramenta externa só vira parte recomendada do fluxo se cumprir todos os c
 
 ## Decisões atuais
 
-- Grimoire + GitHub + ChatGPT: **BASE DE AUTORIA**.
+- GitHub / `historia/` em `main`: **FONTE EDITORIAL CANÔNICA VERSIONADA / BOUNDARY DE ACEITAÇÃO**.
+- Grimoire/TTRPG.bot: **CAMPAIGN BIBLE ESTRUTURADA / CONSULTA E RECONCILIAÇÃO OBRIGATÓRIAS QUANDO APLICÁVEL**.
+- ChatGPT: **AUTORIA/REVISÃO ASSISTIDA, NÃO AUTHORITY**.
 - Minecraft Mod Factory + Blockbench: **AUTHORITY/PIPELINE VISUAL COMPARTILHADA**.
 - Geração visual no ChatGPT: **ADOTADA para concept/look-dev quando incluída sem custo incremental**.
 - AIStoryHub: **EXPERIMENTO OPCIONAL, NÃO STORY BIBLE AUTORITATIVA**.
