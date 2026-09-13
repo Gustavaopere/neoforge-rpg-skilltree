@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `villagers-refreshed-v2.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** 2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Mobs
@@ -46,7 +46,7 @@ Villagers Refreshed altera models/textures/apresentação de villagers e illager
 O upstream descreve a v2 como um overhaul completo de **Villagers, Illagers e mobs relacionados**. A ficha preserva esse escopo editorial sem inferir que toda entidade modded baseada em villager/illager seja automaticamente suportada.
 
 ## 3. Infraestrutura de custom entity models
-O autor recomenda **Entity Model Features (EMF)** em vez de OptiFine, observando que alguns models modded não funcionam sem EMF. A modlist física confirma EMF `3.3.5`, portanto a infraestrutura recomendada está presente.
+O autor recomenda **Entity Model Features (EMF)** em vez de OptiFine, observando que alguns models modded não funcionam sem EMF. O stack físico contém EMF `3.3.5`, portanto a infraestrutura recomendada está presente.
 
 ## 4. Boundary com Fresh Animations
 Existe um addon oficial separado `Villagers Refreshed + Fresh Animations`, mas sua própria página declara que **ainda não foi atualizado para Villagers Refreshed v2**. Portanto v2 + Fresh Animations **não pode ser classificado como compatibilidade validada** por esse addon.

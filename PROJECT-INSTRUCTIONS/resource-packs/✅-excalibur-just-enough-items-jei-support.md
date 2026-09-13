@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur Jei Support 1.4.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 1.4
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Compat, QoL
@@ -74,6 +74,6 @@ O pack deve ficar acima do Excalibur base. Mandala's GUI e seus compats podem to
 Nenhum teste foi marcado como aprovado.
 
 ## 8. Evidências e limite
-CurseForge oficial confirma v1.4 para 1.21.1, o redesign das GUIs/elements e a atualização para JEI beta. A modlist física confirma JEI 19.53.0.426. A ficha não presume presença de addons JEI apenas porque são citados pelo projeto.
+CurseForge oficial confirma v1.4 para 1.21.1, o redesign das GUIs/elements e a atualização para JEI beta. A ficha não presume presença de addons JEI apenas porque são citados pelo projeto.
 
 > Boundary canônico: **JEI controla receitas e indexação; este support pack controla somente sua apresentação visual**.
