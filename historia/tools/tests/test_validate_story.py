@@ -62,6 +62,17 @@ class ValidateStoryTests(unittest.TestCase):
         root = self.make_root({'a.md': '# NPC-0001 — A\n'})
         self.assertEqual([], mod.validate(root))
 
+    def test_auxiliary_heading_references_id_without_redeclaring_entity(self):
+        mod = load_module()
+        root = self.make_root({
+            'NPC-0001-main.md': '# NPC-0001 — A\n',
+            'NPC-0001-autoria.md': '# Ficha de autoria — NPC-0001 — A\n',
+            'NPC-0001-asset-brief.md': '# Asset Brief — NPC-0001 — A\n',
+        })
+        issues = mod.validate(root)
+        self.assertFalse(any(i.code == 'duplicate-id' for i in issues))
+        self.assertFalse(any(i.code == 'unresolved-ref' and i.ref == 'NPC-0001' for i in issues))
+
 
 class ExitPolicyTests(unittest.TestCase):
     def test_unresolved_reference_is_warning_unless_strict(self):
