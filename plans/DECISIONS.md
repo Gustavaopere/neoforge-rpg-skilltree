@@ -71,3 +71,6 @@ Aceita. Estatística base de um `EntityType` não pode ser confundida com valor 
 
 ## D024 — O catálogo do Compêndio publica snapshots atômicos
 Aceita. Reload constrói e valida staging completo antes de substituir o snapshot atual. Falha de datapack/provider mantém a última versão válida em vez de expor estado parcial.
+
+## D025 — Engenharia e Textura/Apresentação são authorities de planejamento separadas
+Aceita. Estágios numerados continuam donos de semântica, gameplay, authority, rede, persistência, providers, hooks, segurança e causalidade. `plans/textura/` é a authority transversal de UI/HUD, layout, texturas, modelos, animação, VFX, partículas, áudio e acessibilidade visual. Renderer/asset/clip/VFX/som não podem conceder nem inferir gameplay inexistente; toda apresentação dependente de runtime consome handoff explícito da engenharia e deve ter fallback seguro quando aplicável.
