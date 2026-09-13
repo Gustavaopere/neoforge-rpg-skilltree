@@ -10,6 +10,7 @@ Valida IDs estáveis e referências entre arquivos Markdown da história.
 
 - IDs declarados nos títulos principais (`HIST-####`, `ARC-####`, `NPC-####`, `QST-####`, `FAC-####`, `SET-####`, `LOC-####`, `EVT-####`, `EVD-####`, `END-####`, `DLG-####`);
 - duplicidade de IDs declarados;
+- divergência entre o ID que abre o nome de um arquivo principal e o ID declarado diretamente no H1 (`filename-id-mismatch`);
 - referências a IDs ainda não declarados;
 - ignora placeholders de templates como `NPC-####`;
 - documentos auxiliares podem mencionar um ID no título sem redeclarar a entidade quando o H1 não começa diretamente pelo ID.
@@ -30,7 +31,7 @@ python historia/tools/validate_story.py --reveal
 python historia/tools/validate_story.py --strict-references --reveal
 ```
 
-Por padrão, IDs duplicados retornam erro. Referências ainda não resolvidas são aviso; `--strict-references` transforma essas referências em erro.
+IDs duplicados e `filename-id-mismatch` são erros fatais. Referências ainda não resolvidas são aviso por padrão; `--strict-references` transforma essas referências em erro.
 
 A saída padrão não imprime IDs narrativos nem caminhos de arquivos quando há findings; ela apresenta apenas nível, código e quantidade. `--reveal` deve ser usado somente quando detalhes editoriais forem realmente necessários.
 
@@ -99,7 +100,7 @@ O inventário é read-only, mas é uma ferramenta editorial deliberadamente reve
 python -m unittest discover -s historia/tools/tests -v
 ```
 
-Os três módulos possuem **27 testes unitários** no estado atual: 10 para IDs/referências e política de saída, 9 para diálogos e política de saída, e 8 para inventário. As ferramentas usam somente a biblioteca padrão do Python e não requerem API, conta, assinatura ou acesso de rede.
+Os três módulos possuem **30 testes unitários** no estado atual: 13 para IDs/referências, drift de filename/H1 e política de saída; 9 para diálogos e política de saída; e 8 para inventário. As ferramentas usam somente a biblioteca padrão do Python e não requerem API, conta, assinatura ou acesso de rede.
 
 ## Limites
 
