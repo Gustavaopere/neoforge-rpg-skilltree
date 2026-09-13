@@ -8,12 +8,12 @@ Este fluxo não exige API paga nem sincronização automática. MCP/API pode ace
 
 ## Authorities por domínio
 
-- `historia/` aceita em `main`: **fonte editorial canônica versionada e boundary de aceitação** para fatos narrativos, IDs estáveis, documentos de autoria, diálogos, evidências, lifecycle e decisões editoriais aprovadas.
-- Grimoire/TTRPG.bot: **Campaign Bible estruturada** para Foundations, personagens, organizações, locais, relações, conhecimento, segredos e estado narrativo estruturado; deve ser consultado e reconciliado quando pertinente, mas não promove automaticamente uma divergência sobre `main`.
-- branches/PRs: propostas editoriais até revisão/merge; novidade não substitui canon aceito apenas por ser mais recente.
+- Grimoire/TTRPG.bot: **authority principal para lore estruturada**, Campaign Bible/Foundations, causalidade narrativa, fatos do mundo, personagens, organizações, locais, relações, conhecimento, segredos e estado narrativo estruturado quando registrados ali.
+- `historia/` aceita em `main`: **fonte editorial versionada da campanha**, com IDs estáveis, documentos de autoria, diálogos, evidências, lifecycle, histórico de revisão e material aceito no repositório.
+- branches/PRs: propostas editoriais até revisão/merge; novidade não substitui fatos aceitos apenas por ser mais recente.
 - código/modlist/contracts: authority mecânica/runtime; lore nunca cria capability de provider.
 
-Nenhuma dessas fontes deve ser convertida em cópia cega da outra. `main` é o ponto de aceitação versionada; Grimoire preserva estrutura viva e contexto que precisam ser reconciliados conscientemente com esse ponto de aceitação.
+Nenhuma dessas fontes deve ser convertida em cópia cega da outra. Grimoire governa o domínio semântico de lore estruturada; GitHub preserva a representação editorial versionada, revisão e proveniência de mudanças.
 
 ## Regra principal
 
@@ -25,9 +25,11 @@ Quando `main` e Grimoire divergirem:
 
 1. preservar os dois valores enquanto a discrepância não estiver resolvida;
 2. identificar domínio, provenance, decisão editorial anterior e se algum lado representa proposta/estado desatualizado;
-3. não escolher automaticamente o valor mais recente nem o valor externo;
-4. registrar a resolução por branch/PR quando ela alterar canon versionado;
-5. somente após aceitação em `main`, sincronizar o Grimoire com a decisão quando necessário.
+3. não escolher automaticamente o valor mais recente;
+4. para lore estruturada, consultar Campaign Bible/Foundations e demais fontes de proveniência antes de decidir;
+5. registrar em branch/PR toda correção necessária na representação versionada;
+6. atualizar o Grimoire quando a decisão editorial legítima alterar a própria Campaign Bible;
+7. nunca sincronizar cegamente em qualquer direção.
 
 ## Antes de criar uma entidade narrativa
 
@@ -65,17 +67,20 @@ Executar os validadores locais aplicáveis e revisar knowledge, causalidade, pro
 ### 4. PR
 O PR deve informar IDs afetados e estado editorial sem precisar expor spoilers no resumo.
 
-### 5. Aceitação canônica
-Uma alteração que modifica o canon editorial só se torna versão aceita quando passa pela revisão e entra em `main`.
+### 5. Reconciliação de lore
+Quando a mudança tocar lore estruturada central, validar contra Grimoire/Campaign Bible. Se a conexão estiver indisponível e a decisão depender dela, permanecer fail-closed.
 
-### 6. Reconciliação Grimoire
-Após a decisão editorial correspondente, atualizar a entidade estruturada no Grimoire quando necessário, preservando o mesmo ID/referência cruzada.
+### 6. Aceitação versionada
+Alterações editoriais entram em `main` somente após revisão. O merge registra a representação versionada da decisão; ele não transforma informação conflitante em verdade de lore sem a reconciliação necessária.
 
-### 7. Conflito posterior
+### 7. Sincronização estruturada
+Quando a decisão legítima modificar a Campaign Bible, atualizar o Grimoire preservando ID/referência cruzada e provenance.
+
+### 8. Conflito posterior
 Se Grimoire e `historia/` divergirem, identificar primeiro o domínio:
 
-- fato de lore/campanha divergente → abrir reconciliação e revisar Campaign Bible/Foundations, `main` e histórico editorial; nenhuma divergência externa substitui `main` sozinha;
-- texto/versionamento/asset de autoria → Git/PR define a versão editorial aceita;
+- fato de lore/campanha divergente → Grimoire/Campaign Bible é a authority principal do domínio; revisar também `main` e histórico editorial para descobrir qual representação está desatualizada ou se há retcon pendente;
+- texto/versionamento/asset de autoria → Git/PR governa a versão editorial do artefato;
 - capability mecânica → runtime/modlist/provider vence;
 - proposta não aprovada → não sobrescreve fato canônico apenas por ser mais recente.
 
@@ -104,7 +109,7 @@ Portrait, concept e skin são artefatos distintos. Substituir uma imagem no Grim
 
 ## Quando MCP/API estiver indisponível
 
-- continuar autoria/validação no GitHub quando não houver risco de duplicar canon central;
+- continuar autoria/validação no GitHub quando não houver risco de duplicar ou contradizer lore central;
 - marcar reconciliação pendente;
 - não afirmar que o Grimoire foi atualizado;
 - não inventar dados que dependeriam da Campaign Bible;
