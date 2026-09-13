@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur_Irons_Spells_N_Spellbooks-1.3.0.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 1.3.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Compat, Magia
@@ -74,6 +74,6 @@ O support pack deve prevalecer sobre o Excalibur base. A posição relativa cont
 Nenhum teste foi marcado como aprovado.
 
 ## 8. Evidências e limite
-CurseForge oficial confirma a v1.3.0 para 1.21.1 e declara explicitamente o estado WIP com muitas texturas faltantes. A modlist física confirma o target Iron's 3.16.3. O catálogo preserva essa limitação em vez de inferir cobertura total.
+CurseForge oficial confirma a v1.3.0 para 1.21.1 e declara explicitamente o estado WIP com muitas texturas faltantes. O catálogo preserva essa limitação em vez de inferir cobertura total.
 
 > Boundary canônico: **Iron's Spells controla magia e gameplay; este support pack controla apenas os assets que já possui, com cobertura oficialmente incompleta**.
