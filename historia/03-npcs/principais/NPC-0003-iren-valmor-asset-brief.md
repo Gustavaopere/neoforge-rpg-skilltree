@@ -1,7 +1,10 @@
 # Asset Brief — NPC-0003 — Iren Valmor
 
-## Estado
-RASCUNHO DE PRODUÇÃO VISUAL / NÃO É ASSET FINAL.
+## Estado editorial
+RASCUNHO
+
+## Estado de produção
+NÃO É ASSET FINAL / NÃO INICIADO.
 
 ## Asset ID
 `NPC-0003`
