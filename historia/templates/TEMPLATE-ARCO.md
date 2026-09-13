@@ -1,38 +1,5 @@
-# ARC-#### — Título
+# Template de arco — migrado
 
-## Estado editorial
-RASCUNHO
+O scaffold genérico correspondente pertence à Minecraft Mod Factory em `narrative/templates/`.
 
-## Tipo
-
-## Premissa player-safe
-
-## Participantes
-
-## Estado inicial do mundo
-
-## Eligibility
-
-## Discovery/alternate entry
-
-## SIM
-
-## NÃO
-
-## ANTES
-
-## DEPOIS
-
-## Progressão autônoma
-
-## Estados de falha/transformação
-
-## Consequências atrasadas
-
-## Evidências/rumores
-
-## Providers
-
-## Critérios de encerramento
-
-## Spoilers internos
+Este arquivo permanece apenas como ponte histórica. Não manter aqui uma segunda versão do template reutilizável.

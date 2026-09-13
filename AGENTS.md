@@ -16,6 +16,14 @@ Read the repository-local working contract in full:
 
 Then use the current RPG code/build/tests and the latest physical modlist as the primary evidence for runtime behavior and provider versions.
 
+## Before substantive narrative authoring
+
+Read the project-specific campaign contract:
+
+- [`PROJECT-INSTRUCTIONS/editorial/NARRATIVE-AUTHORING.md`](PROJECT-INSTRUCTIONS/editorial/NARRATIVE-AUTHORING.md)
+
+The reusable narrative validators, templates, inventory and authoring skill live in the Factory under `narrative/`. This repository consumes them through `historia/narrative-authoring-profile.json`; do not recreate them locally.
+
 For specialized shared Minecraft workflows, use the Factory entrypoints:
 
 - [`skills/ROUTER.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/ROUTER.md)

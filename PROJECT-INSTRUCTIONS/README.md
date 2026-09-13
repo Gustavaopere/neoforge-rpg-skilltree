@@ -26,6 +26,14 @@ Para skills, tooling, catálogos ou contratos compartilhados, use os entrypoints
 - [`skills/VERSION-AUTHORITY.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/VERSION-AUTHORITY.md)
 - [`skills/USER-GUIDED-WORKFLOW.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/USER-GUIDED-WORKFLOW.md)
 
+## Autoria narrativa
+
+Para trabalho narrativo substantivo, leia `editorial/NARRATIVE-AUTHORING.md` antes de criar ou alterar material da campanha.
+
+O conteúdo e o cânone versionado permanecem em `historia/`. A configuração específica de consumo da capability reutilizável fica em `historia/narrative-authoring-profile.json`. Validators, inventory, templates e a skill genérica de autoria narrativa pertencem a `Gustavaopere/minecraft-mod-factory/narrative/` e não devem ser duplicados neste repositório.
+
+O contrato editorial local preserva as regras específicas desta campanha para authority Grimoire↔GitHub, IDs estáveis, knowledge/evidence, relações e memória, lifecycle, voz, geografia, epílogos, spoilers e custo zero.
+
 ## Autoridade operacional dos perks
 
 Os oito arquivos abaixo continuam sendo o pacote consolidado para o fluxo de perks do RPG Skill Tree:

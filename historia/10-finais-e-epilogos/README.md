@@ -2,6 +2,11 @@
 
 Não usar apenas escolha final A/B.
 
+Contrato editorial específico desta campanha:
+- `composicao-de-epilogos.md` — composição de `END-####`, condições, conflitos, ordering, knowledge e continuidade.
+
+O scaffold genérico de epílogo pertence à Minecraft Mod Factory em `narrative/templates/`; este repositório mantém apenas conteúdo e regras específicas da campanha.
+
 Os epílogos devem ser derivados de dimensões persistentes do mundo, por exemplo:
 - modelo de governo;
 - situação das facções;
@@ -18,4 +23,10 @@ Os epílogos devem ser derivados de dimensões persistentes do mundo, por exempl
 - crises não resolvidas;
 - fatos nunca descobertos.
 
-Combinações podem produzir centenas/milhares de variações sem escrever um final monolítico para cada permutação.
+O Stage 08.21 define inicialmente eixos como civilization, technology, magic policy, necromancy policy, vampirism balance, ecology, Shroud state, Black Arcana policy e space expansion.
+
+Esses eixos não são um score moral e não precisam formar uma enumeração fechada. O estado real do Narrative & Society Core é a fonte para as condições.
+
+`END-####` pode representar um fragmento componível, uma combinação especial ou um epílogo indivisível quando necessário. Não criar uma segunda família de IDs apenas para fragments.
+
+Combinações podem produzir grande variação sem escrever um final monolítico para cada permutação. Fragments incompatíveis devem declarar conflito/substituição; a seleção e apresentação precisam ser determinísticas.
