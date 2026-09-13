@@ -1,4 +1,4 @@
-# NPC-0001 — Severin — Ficha de autoria complementar
+# Ficha de autoria — NPC-0001 — Severin
 
 ## Estado editorial
 RASCUNHO DE AUTORIA / não altera sozinho os invariantes canônicos de `NPC-0001-severin.md`.
@@ -59,7 +59,7 @@ Todos os elementos abaixo são RASCUNHO VISUAL até aprovação editorial.
 
 ## Identidade visual essencial
 
-Mesmo em 64x64, preservar:
+Na resolução técnica aprovada para o alvo, preservar:
 
 1. silhueta de pesquisador funcional;
 2. paleta escura não monocromática;
@@ -70,7 +70,7 @@ Mesmo em 64x64, preservar:
 ## Assets
 
 - concept/portrait: PENDENTE;
-- skin Minecraft 64x64: PENDENTE;
+- skin/texture Minecraft: PENDENTE; formato e resolução conforme asset brief/pipeline técnica;
 - preview 3D: PENDENTE;
 - estado do asset: NÃO INICIADO.
 
@@ -90,7 +90,8 @@ A fala de Severin deve ser filtrada pelo estado narrativo real. Esta ficha não 
 - NPC canônico: `NPC-0001-severin.md`;
 - quests: `QST-0001`;
 - sistemas: Opportunity & Discovery Lifecycle; Death, Resurrection & Identity Continuity;
-- diálogos: primeiro diálogo de calibração ainda pendente.
+- diálogos: `DLG-0001` para calibração de voz;
+- asset brief: `NPC-0001-severin-asset-brief.md`.
 
 ## Critério de aceitação
 Um texto curto sem nome do personagem deve ser reconhecível como Severin por precisão, cautela, estrutura argumentativa e ausência de teatralidade necromântica genérica.
