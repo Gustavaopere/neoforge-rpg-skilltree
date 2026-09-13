@@ -10,7 +10,7 @@ Rumor + conjunto de depoimentos orais potencialmente independentes.
 Existe primeiro como informação oral distribuída. Partes podem depois ser registradas por escrito por Iren, outro agente institucional ou pelo próprio jogador, mas uma transcrição não transforma versões incompatíveis em fato único.
 
 ## Origem/proveniência
-- origem conhecida: moradores, viajantes ou trabalhadores que passaram por uma mesma região em momentos distintos;
+- origem conhecida: moradores, viajantes ou trabalhadores que passaram por pontos associados a `LOC-0001` em momentos distintos;
 - cadeia de transmissão: variável; alguns relatos podem ser de primeira mão e outros repetidos;
 - lacunas: nem todo narrador consegue separar o que viu do que ouviu depois.
 
@@ -25,12 +25,12 @@ Cada testemunha conhece apenas sua própria experiência e aquilo que ouviu de t
 - referência em registro posterior.
 
 ## O que pode provar
-Um depoimento de primeira mão pode provar apenas que aquela pessoa afirma ter observado determinado fato em determinado contexto. Convergência entre depoimentos independentes pode aumentar a razão para investigar a região.
+Um depoimento de primeira mão pode provar apenas que aquela pessoa afirma ter observado determinado fato em determinado contexto. Convergência entre depoimentos independentes pode aumentar a razão para investigar `LOC-0001`.
 
 ## O que apenas sugere
-- que existe atividade recorrente na região;
+- que existe atividade recorrente em partes da região;
 - que ocorrências separadas podem ter relação entre si;
-- que vale comparar horários, trajetos e locais.
+- que vale comparar horários, trajetos e pontos de `LOC-0001`.
 
 ## O que NÃO prova
 - que existe magia envolvida;
@@ -38,7 +38,8 @@ Um depoimento de primeira mão pode provar apenas que aquela pessoa afirma ter o
 - a identidade de qualquer responsável;
 - presença, culpa, localização ou intenção de `NPC-0001`;
 - existência de um provider arcano específico;
-- que a versão mais dramática é a mais confiável.
+- que a versão mais dramática é a mais confiável;
+- que toda `LOC-0001` compartilha a mesma causa ou risco.
 
 ## Confiabilidade
 - fonte: varia por testemunha;
@@ -60,14 +61,16 @@ Nenhum. O conteúdo permanece deliberadamente neutro até existir evidência cap
 
 ## Relações
 - quests: `QST-0001`;
+- locais: `LOC-0001`;
 - NPCs: `NPC-0003` como possível receptor/investigador;
-- outras evidências: `EVD-0002`, `EVD-0003` após criação.
+- outras evidências: `EVD-0002`, `EVD-0003`.
 
 ## Invariantes
 - rumor não vira fato por repetição;
 - três repetidores de uma fonte não equivalem a três fontes independentes;
 - ausência de concordância total não torna todos os relatos inúteis;
-- nenhuma fala deve inserir conhecimento de `NPC-0001` que as testemunhas não tenham adquirido.
+- nenhuma fala deve inserir conhecimento de `NPC-0001` que as testemunhas não tenham adquirido;
+- conhecer relatos sobre `LOC-0001` não equivale a conhecer seu binding de worldgen ou causa narrativa.
 
 ## Spoilers internos
 Esta peça não define a explicação verdadeira dos relatos.
