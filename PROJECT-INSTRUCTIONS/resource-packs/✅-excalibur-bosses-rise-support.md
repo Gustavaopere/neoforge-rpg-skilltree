@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `Excalibur Bosses'Rise 1.5 (Neoforge).zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 1.5
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat, Mobs

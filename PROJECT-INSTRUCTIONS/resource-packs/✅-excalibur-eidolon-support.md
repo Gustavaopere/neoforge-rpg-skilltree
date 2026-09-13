@@ -22,7 +22,7 @@
 - **Arquivo JAR:** `Excalibur_Eidolon_1.21.1_v1.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** v1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat, Magia
@@ -50,7 +50,7 @@ O próprio autor delimita o restante do escopo: atualmente o pack inclui **somen
 
 ## 3. Stack físico atual
 A modlist mantém Eidolon:Repraised `0.5.0.2`. O support pack instalado é `v1` para Minecraft 1.21.1.
-O upstream menciona Eidolon:Edoni como integração/opção relacionada, mas o snapshot top-level auditado não identifica uma entrada separada de Eidolon:Edoni e isso não deve ser promovido a dependência instalada.
+O upstream menciona Eidolon:Edoni como integração/opção relacionada, mas **Eidolon:Edoni não está presente na modlist física atual** e não deve ser promovido a dependência instalada.
 
 ## 4. Load order
 O projeto é indicado para uso junto ao Excalibur. Para seus overrides aparecerem, deve ter prioridade acima do Excalibur base e dos assets padrão de Eidolon.
@@ -83,7 +83,7 @@ Nenhum teste foi marcado como aprovado.
 
 ## 9. Evidências e limite
 - captura CurseForge do perfil: `Excalibur_Eidolon_1.21.1_v1.zip`;
-- modlist física: Eidolon:Repraised `0.5.0.2`; nenhuma entrada top-level separada de Eidolon:Edoni foi identificada no snapshot auditado;
+- modlist física: Eidolon:Repraised `0.5.0.2`; Eidolon:Edoni ausente;
 - CurseForge oficial: pack não oficial para Excalibur + Eidolon:Repraised, todos os mobs retexturizados e escopo atual limitado a mobs + purple gem.
 Não foi inventariado o ZIP internamente.
 
