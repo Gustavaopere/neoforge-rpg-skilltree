@@ -1,4 +1,4 @@
-# NPC-0001 — Severin — Asset Brief
+# Asset Brief — NPC-0001 — Severin
 
 ## Estado
 RASCUNHO DE PRODUÇÃO VISUAL / NÃO É ASSET FINAL.
@@ -59,7 +59,7 @@ Modelo corporal Minecraft: `classic` como hipótese inicial da ficha de autoria.
 ## Resolução/texel density
 **PENDENTE DE EVIDÊNCIA TÉCNICA.**
 
-A ficha antiga menciona `64x64` como intenção editorial, mas este brief não transforma isso em regra técnica. O formato final deve seguir o alvo real validado pela Minecraft Mod Factory e pelo runtime/asset pipeline.
+A ficha de autoria não fixa resolução. O formato final deve seguir o alvo real validado pela Minecraft Mod Factory e pelo runtime/asset pipeline.
 
 ## Emissive/translucency/animated texture
 Nenhum requisito atual. Não usar brilho ocular, aura ou glow como atalho de identidade.
