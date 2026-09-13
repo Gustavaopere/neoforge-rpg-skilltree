@@ -10,18 +10,47 @@ RASCUNHO
 ## Participantes
 
 ## Availability / eligibility
+- estado inicial: LOCKED | ELIGIBLE | INVALIDATED | EXPIRED, quando aplicável;
+- condições de eligibility:
+- condições legítimas de invalidation:
+- deadline/expiry explícito, se existir:
+
 Quando a oportunidade pode existir/oferecer rotas. Não confundir disponibilidade com discovery.
 
 ## Discovery
 - estado inicial: UNKNOWN | RUMORED | DISCOVERED | CONFIRMED, quando aplicável;
+- condições de discovery:
 - canais legítimos:
 - knowledge/evidência exigidos:
+- origem/proveniência da descoberta quando relevante:
 - descoberta antecipada/tardia:
 
 Conteúdo elegível e desconhecido não deve aparecer automaticamente no journal.
 
-## Engagement
-O que conta como envolvimento real. Aceitar uma proposta não deve ser o único tipo possível de participação.
+## Engagement / oferta
+Estados possíveis quando aplicável: NOT_OFFERED | OFFERED | ACCEPTED | DECLINED | ABANDONED.
+
+- offering actor:
+- offer conditions:
+- knowledge/agenda/estado exigidos do offering actor:
+- o que conta como oferta formal (`OFFERED`):
+- o que conta como aceitação/responsabilidade (`ACCEPTED`):
+- como uma recusa explícita (`DECLINED`) se distingue de nunca receber oferta (`NOT_OFFERED`):
+- abandono explícito suportado (`ABANDONED`), se existir:
+- o que conta como envolvimento sem oferta formal:
+
+Aceitar uma proposta não deve ser o único tipo possível de participação. `ABANDONED` pertence ao eixo Engagement e não substitui o estado de Resolution.
+
+## Multiplayer / scope dos eixos
+Declarar escopo explicitamente quando multiplayer for relevante:
+- availability scope: PLAYER | TEAM | WORLD | outro contrato explícito;
+- discovery scope: PLAYER | TEAM | WORLD;
+- engagement scope: PLAYER | TEAM | WORLD;
+- resolution scope: PLAYER | TEAM | WORLD | outro contrato explícito;
+- regra de compartilhamento de knowledge:
+- estados que podem divergir entre jogadores/equipes:
+
+Não sincronizar discovery/knowledge automaticamente apenas porque resolution ou world state são globais.
 
 ## Preconditions
 Condições necessárias para ações/choices específicas dentro da oportunidade.
@@ -89,16 +118,17 @@ Usar a taxonomia Stage 08 quando aplicável:
 - PARTIAL_SUCCESS
 - FAILURE
 - PRODUCTIVE_FAILURE
-- ABANDONED
 - RESOLVED_BY_OTHERS
 - PRE_RESOLVED
 - OBSOLETE
 - TRANSFORMED
 
+`ABANDONED` não é Resolution; é estado de Engagement. Uma oportunidade abandonada pode continuar `UNRESOLVED`, transformar-se ou alcançar outro outcome posteriormente conforme o mundo agir.
+
 Nem toda oportunidade precisa usar todos os estados.
 
 ## Failure-forward
-O que falha, recusa ou perda legítima pode abrir, transformar, fechar ou tornar mais difícil sem reduzir tudo a game over narrativo.
+O que falha, recusa, abandono ou perda legítima pode abrir, transformar, fechar ou tornar mais difícil sem reduzir tudo a game over narrativo.
 
 ## Recompensas/consequências
 - consequências imediatas:
@@ -116,6 +146,10 @@ Texto editorial solicita intents; Narrative Core valida/muta estado real.
 Lore não cria capability mecânica.
 
 ## Idempotência/deduplicação
+- transition key de availability, quando necessária:
+- transition key de discovery, quando necessária:
+- transition key de engagement/oferta, quando necessária:
+- transition key de resolution, quando necessária:
 - cleanup/idempotency key conceitual:
 - fatos/eventos que não podem duplicar em replay:
 - efeitos one-shot:
@@ -138,15 +172,20 @@ Anti-soft-lock não significa garantir que todo conteúdo permaneça sempre aces
 ## Invariantes
 
 ## QA
-- [ ] eligibility, discovery, engagement e resolution estão separados;
+- [ ] availability, discovery, engagement e resolution estão separados;
+- [ ] scope multiplayer de cada eixo foi declarado quando relevante;
+- [ ] dois jogadores podem manter discovery/engagement diferentes sem corromper world state quando o design permitir;
 - [ ] UNKNOWN não aparece no journal só por ser elegível;
+- [ ] offering actor e offer conditions existem quando há oferta formal;
+- [ ] NOT_OFFERED, DECLINED e ABANDONED não foram colapsados;
+- [ ] ABANDONED permaneceu no eixo Engagement, com Resolution separado;
 - [ ] SIM/NÃO/ANTES/DEPOIS foram considerados;
 - [ ] prior-event reconciliation reconhece objetivos prévios quando aplicável;
 - [ ] não participação não virou falha retroativa fictícia;
 - [ ] progressão autônoma possui ator/causa;
 - [ ] actor-death fallback/identity continuity foram considerados;
 - [ ] failure-forward existe quando semanticamente útil;
-- [ ] rewards/effects one-shot possuem dedup/idempotência;
+- [ ] transitions/rewards/effects one-shot possuem dedup/idempotência;
 - [ ] provider capability foi comprovada ou ficou não vinculada;
 - [ ] perda legítima de conteúdo não foi mascarada como soft-lock técnico.
 
