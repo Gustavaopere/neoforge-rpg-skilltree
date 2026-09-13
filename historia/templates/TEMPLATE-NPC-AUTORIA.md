@@ -1,6 +1,10 @@
-# NPC-#### — Ficha de autoria complementar
+# Ficha de autoria — NPC-#### — Nome
 
-Usar junto com `TEMPLATE-NPC.md` para NPCs que precisem de controle detalhado de voz e aparência.
+## Estado editorial
+RASCUNHO
+
+## Escopo
+Ficha complementar de autoria. Usar junto com `TEMPLATE-NPC.md`; este documento referencia o `NPC-####` existente e não redeclara a entidade canônica.
 
 ## Voz
 - formalidade:
@@ -17,8 +21,12 @@ Usar junto com `TEMPLATE-NPC.md` para NPCs que precisem de controle detalhado de
 Exemplos curtos para preservar a voz. Não representam eventos canônicos por si mesmos.
 
 ## Aparência
+Todo campo de identidade visual deve conter uma proposta rastreável ou `PENDENTE`; não preencher lacunas por estereótipo, profissão, moralidade, facção ou tema mágico.
+
 - modelo Minecraft/alvo visual:
 - idade aparente:
+- altura/proporção percebida: PENDENTE
+- tom de pele: PENDENTE
 - silhueta:
 - características do rosto:
 - cabelo/barba:
