@@ -6,15 +6,15 @@ This is project-specific guidance, not a generic Minecraft Mod Factory skill.
 
 ## Authority by domain
 
-- **Accepted editorial canon:** `historia/` accepted in `main`. This is the versioned source of record and canonical acceptance boundary for narrative facts, stable IDs and reviewed editorial content.
-- **Structured Campaign Bible:** Grimoire/TTRPG.bot Campaign Bible and Foundations when available. It is a required consultation/reconciliation source for established structured lore, not an independent path that can overwrite accepted `main` canon automatically.
+- **Structured lore and Campaign Bible:** Grimoire/TTRPG.bot Campaign Bible and Foundations. This is the principal authority for structured lore, narrative causality, world facts, characters, organizations, places, relationships, knowledge, secrets and campaign state when those facts are registered there.
+- **Versioned editorial source:** accepted `historia/` in `main`. This is the reviewed Git record for stable IDs, editorial documents, dialogues, evidence, lifecycle definitions and the versioned representation/history of campaign material.
 - **Runtime/mechanics:** current RPG code/tests, latest physical modlist/JARs, exact provider evidence and current technical contracts.
 - **Shared Minecraft engineering/art tooling:** `Gustavaopere/minecraft-mod-factory`.
-- **Branches/PRs:** proposals until review/merge; newer draft content does not outrank accepted canon merely because it is newer.
+- **Branches/PRs:** proposals until review/merge; newer draft content does not outrank established lore merely because it is newer.
 
 Lore never proves mechanical capability. Mechanical capability never creates historical facts automatically.
 
-When Grimoire and accepted `main` appear to differ, preserve the discrepancy and reconcile provenance/decision history explicitly. Do not import the external value directly into canon and do not overwrite Grimoire blindly. A canon-changing resolution returns through review to `main`; the structured Campaign Bible is synchronized afterward when needed.
+When Grimoire and accepted `main` appear to differ, preserve the discrepancy and reconcile provenance/decision history explicitly. For structured lore, Grimoire is the principal domain authority, but that does not authorize blind overwrites of versioned files; inspect whether Grimoire, `main`, or both require an intentional update/retcon. Never synchronize automatically in either direction.
 
 If Grimoire or another required source is unavailable and the missing fact is central to canon, keep the decision `BLOQUEADO/FAIL-CLOSED` or explicitly undecided. Do not invent missing lore merely to continue production.
 
@@ -23,11 +23,11 @@ If Grimoire or another required source is unavailable and the missing fact is ce
 Before substantive narrative authoring:
 
 1. read relevant accepted `historia/00-canone/` and existing records from `main`;
-2. inspect open branches/PRs affecting the same narrative IDs so concurrent proposals are not mistaken for accepted canon;
+2. inspect open branches/PRs affecting the same narrative IDs so concurrent proposals are not mistaken for accepted material;
 3. when available, run `python historia/tools/story_inventory.py --format json` to obtain a current editorial index of stable IDs, states and references before creating new entities;
 4. treat that inventory as spoiler-bearing/editorial output: do not expose it in player-facing or public logs when it contains undiscovered material;
 5. search stable IDs/names to avoid duplicate NPCs, factions, locations, quests or evidence;
-6. consult Grimoire for central lore and possible pre-existing entities when accessible; reconcile any difference with accepted `main` instead of selecting one silently;
+6. consult Grimoire for central lore, Campaign Bible/Foundations and possible pre-existing entities when accessible; reconcile any difference with accepted `main` instead of selecting one silently;
 7. consult relevant Stage 08 contracts for knowledge, chronology, relationships, opportunity lifecycle, consequences and death/return;
 8. verify the latest modlist/provider evidence before assigning a real mechanic to a mod;
 9. consult Compendium/runtime identities before binding a narrative place to a biome, structure or dimension.
@@ -44,7 +44,7 @@ Absence of information is a valid project state.
 - Do not create named entities merely to fill templates or production quotas.
 - Do not infer biome climate, resources, geology or settlement suitability from a translated biome name alone.
 - Do not collapse multidimensional relationships into a single reputation/friendship score.
-- New material on a branch remains a proposal until its editorial state is deliberately accepted into `main`.
+- New material on a branch remains a proposal until it is reconciled with the relevant authorities and deliberately accepted.
 
 ## Stable IDs and validation
 
@@ -120,14 +120,15 @@ Prefer validator default output. Reveal-mode validator output and `story_invento
 
 ## Cost policy
 
-Narrative authoring must remain usable with zero required incremental spend. Paid APIs/subscriptions may only be optional experiments with a free/open alternative. Trials are not permanent dependencies. External story tools never become canon authority.
+Narrative authoring must remain usable with zero required incremental spend. Paid APIs/subscriptions may only be optional experiments with a free/open alternative. Trials are not permanent dependencies. Auxiliary external story tools never become canon authority merely by producing content.
 
 ## Completion gate
 
 Before calling an authoring batch complete, confirm:
 
+- Grimoire was consulted for central structured lore when accessible, or the dependency was explicitly left fail-closed;
 - accepted `main`, relevant branches/PRs and other applicable authorities were checked;
-- Grimoire discrepancies were reconciled or explicitly blocked rather than silently imported;
+- Grimoire↔GitHub discrepancies were reconciled or explicitly blocked rather than silently overwritten;
 - current inventory/search used to reduce duplicate-entity risk;
 - inventory/reveal-mode output kept editorial unless explicitly requested;
 - no known duplicate stable entity introduced;
