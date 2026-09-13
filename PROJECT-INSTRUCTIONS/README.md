@@ -14,10 +14,10 @@ Portanto, não iniciar aqui novas capabilities genéricas de scaffolding, valida
 
 Leia nesta ordem:
 
-1. [`../docs/RUNTIME-OPERATIONS.md`](../docs/RUNTIME-OPERATIONS.md);
-2. [`../docs/MASTER_PLAN.md`](../docs/MASTER_PLAN.md);
-3. [`../docs/TESTING.md`](../docs/TESTING.md);
-4. a modlist/JAR evidence física exata mais recente do ambiente alvo;
+1. `engineering/AGENT-WORKFLOW.md`;
+2. `../../docs/MASTER_PLAN.md` a partir de `engineering/AGENT-WORKFLOW.md`;
+3. `engineering/TESTING.md`;
+4. a modlist física mais recente;
 5. o estado atual do GitHub, incluindo `main`, branches e PRs concorrentes.
 
 Para skills, tooling, catálogos ou contratos compartilhados, use os entrypoints canônicos da Factory:
@@ -25,7 +25,6 @@ Para skills, tooling, catálogos ou contratos compartilhados, use os entrypoints
 - [`skills/ROUTER.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/ROUTER.md)
 - [`skills/VERSION-AUTHORITY.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/VERSION-AUTHORITY.md)
 - [`skills/USER-GUIDED-WORKFLOW.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/USER-GUIDED-WORKFLOW.md)
-- [`engineering/catalog/physical-modlist/`](https://github.com/Gustavaopere/minecraft-mod-factory/tree/main/engineering/catalog/physical-modlist)
 
 ## Autoridade operacional dos perks
 
@@ -44,13 +43,10 @@ Para execução operacional de Chat 1/2/3, esses arquivos consolidados continuam
 
 ## Estrutura de suporte
 
-- `docs/RUNTIME-OPERATIONS.md` contém o contrato operacional do runtime RPG.
-- `docs/TESTING.md` contém a estratégia de testes e reprodução do RPG.
-- `docs/DIAGNOSTICS.md` contém o contrato de diagnósticos operacionais do RPG.
+- `engineering/` contém o contrato operacional, a estratégia de testes/diagnósticos e o routing do runtime RPG.
 - `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos do RPG.
-- `modlist/` preserva material de auditoria/delta editorial da modlist já consolidado no repositório.
-- A antiga árvore `skills/` foi removida após migração integral e validação na Minecraft Mod Factory.
-- A antiga árvore `engineering/` foi removida depois que a evidência física I2, seu catálogo e seus gates compartilhados foram migrados/reconciliados e validados na Minecraft Mod Factory.
+- `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
+- A antiga árvore `skills/` e o antigo catálogo/tooling I2 compartilhado foram retirados da árvore ativa depois de migração/reconciliação e validação na Minecraft Mod Factory.
 
 Material histórico removido da árvore ativa continua recuperável pelo histórico Git e pela matriz/status de migração da Factory. Ele não é authority para novas capabilities compartilhadas.
 
