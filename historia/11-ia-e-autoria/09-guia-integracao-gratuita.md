@@ -1,97 +1,101 @@
 # Guia de Integração Gratuita de Ferramentas de Autoria
 
 ## Objetivo
-Documentar como conectar ferramentas auxiliares sem tornar o projeto dependente de serviços pagos.
+Documentar como usar/conectar ferramentas auxiliares sem tornar o projeto dependente de serviços pagos e sem criar uma segunda Campaign Bible autoritativa.
 
-## 1. Fluxo que funciona sem integração externa
+## 1. Baseline obrigatório
 
-Este é o baseline obrigatório:
+Quando Grimoire/TTRPG.bot estiver acessível:
 
-`historia/ no GitHub -> ChatGPT -> branch/PR -> revisão -> main`
+`Grimoire (lore estruturada) <-> reconciliação por ID/proveniência <-> historia/ no GitHub -> ChatGPT -> branch/PR -> revisão`
 
-Ele deve permitir criar e revisar NPCs, arcos, quests, diálogos e briefs visuais mesmo que todos os MCPs externos desapareçam.
+Quando Grimoire estiver temporariamente indisponível:
 
-## 2. AIStoryHub — PoC remoto gratuito
+`historia/ no GitHub -> ChatGPT -> branch/PR -> revisão`
 
-### Motivo da escolha
-Na verificação de 2026-09-13, o AIStoryHub declarava plataforma sem assinatura e oferecia um modelo embutido gratuito sem necessidade de chave paga. Esse estado precisa ser verificado novamente antes de uso prolongado.
+Nesse modo, decisões que dependam de lore central ausente ficam pendentes/fail-closed até reconciliação; não se inventa canon para manter throughput.
 
-### Endpoint MCP
-`https://aistoryhub.co/mcp/mcp`
+O fluxo deve continuar capaz de criar/revisar documentos editoriais, diálogos, evidências e briefs sem qualquer MCP adicional.
 
-### Pré-condições
+## 2. Grimoire/TTRPG.bot
 
-1. criar uma conta gratuita no AIStoryHub;
-2. não cadastrar chave de API paga;
-3. usar o modelo gratuito da plataforma para o PoC;
-4. conectar apenas uma amostra pequena e não sensível do cânone inicialmente.
+É a integração narrativa prioritária do projeto porque já é a authority estruturada de Campaign Bible/Foundations, NPCs, organizações, locais, relações, conhecimento, segredos e estado da campanha quando esses dados estão registrados ali.
 
-### ChatGPT
-O suporte depende do plano e das permissões atuais do ChatGPT.
+### Regra operacional
 
-- MCP remoto com leitura/busca pode estar disponível em Developer Mode para contas elegíveis.
-- suporte completo de escrita/alteração é mais restrito e pode depender de workspace Business/Enterprise/Edu.
-- o projeto não pressupõe que ações de escrita MCP estejam disponíveis.
+- pesquisar antes de criar elemento central;
+- preservar IDs estáveis do GitHub como referência cruzada quando a plataforma permitir;
+- não executar sincronização bidirecional cega;
+- não copiar scaffolding genérico da plataforma como se fosse canon;
+- não afirmar atualização no Grimoire quando a conexão/ferramenta não estiver disponível na sessão;
+- detalhes de reconciliação estão em `12-grimoire-github-sync.md`.
 
-Quando a opção existir na conta:
+A conexão concreta pode variar conforme o MCP/app disponível no ChatGPT. Não congelar aqui endpoint ou fluxo de UI que não esteja sob controle deste repositório; quando for necessário reconectar, verificar a integração atual e executar um passo manual verificável por vez.
 
-1. abrir `Settings`;
-2. abrir `Apps`;
-3. abrir `Advanced Settings` e habilitar Developer Mode quando disponível;
-4. criar/adicionar um app ou conector MCP personalizado;
-5. informar o endpoint `https://aistoryhub.co/mcp/mcp`;
-6. concluir o fluxo OAuth exibido pelo provedor;
-7. revisar permissões antes de aceitar;
-8. testar primeiro operações somente de leitura;
-9. pedir ao ChatGPT para listar histórias/entradas disponíveis;
-10. somente depois testar uma story bible descartável de exemplo.
+## 3. Story tools adicionais — somente sob necessidade
 
-Não conceder escrita direta no repositório GitHub por meio do AIStoryHub.
+AIStoryHub, Spindle, story-architect-mcp ou equivalentes não fazem parte do baseline. Só devem ser testados se entregarem uma capacidade específica que Grimoire + GitHub + tooling local não atendem adequadamente.
 
-## 3. Spindle — fallback local-first/open-source
+Regras:
 
-Spindle armazena sua story bible localmente e oferece ferramentas MCP para personagens, locais, facções, timeline, continuidade, branching e revisão.
+1. custo incremental obrigatório zero;
+2. nenhuma segunda Campaign Bible autoritativa;
+3. começar com amostra pequena/não sensível;
+4. preferir leitura/análise antes de qualquer escrita;
+5. preservar IDs/proveniência;
+6. confirmar possibilidade de export/recuperação do trabalho;
+7. abandonar o serviço se a função essencial passar a exigir pagamento.
 
-### Limitação para este projeto
-O ChatGPT não se conecta diretamente a um servidor MCP local por stdio. Portanto Spindle é opção para clientes MCP locais/compatíveis ou para um futuro túnel remoto controlado; não é necessário instalá-lo agora.
+### AIStoryHub
 
-### Regra
-Não criar uma segunda fonte canônica permanente. Se testado, importar apenas cópia derivada e comparar resultados com `historia/`.
+Na auditoria de 2026-09-13 havia caminho gratuito declarado pelo fornecedor. Esse estado é temporal e precisa ser verificado novamente antes de qualquer PoC. Não cadastrar API paga para manter o fluxo.
 
-## 4. story-architect-mcp — fallback baseado em arquivos
+### Spindle / story-architect-mcp
 
-É uma alternativa MIT que trabalha com Markdown/JSON e snapshots. É útil se precisarmos de auditoria de continuidade em um cliente MCP local.
+Alternativas open-source/local-first úteis em clientes MCP compatíveis para revisão/continuidade. Não são requisitos para o ChatGPT nem justificam túnel/infraestrutura apenas para duplicar funções já cobertas.
 
-A mesma limitação do Spindle se aplica: não é conexão direta local com ChatGPT sem infraestrutura intermediária.
+## 4. Ink/Inky — branching gratuito
 
-## 5. Ink/Inky — branching gratuito
-
-Ink e Inky são gratuitos sob licença MIT.
-
-Adotar somente quando um diálogo deixar de ser legível/manutenível em Markdown. Antes disso, `historia/12-dialogos/` continua sendo o formato editorial principal.
+Ink/Inky pode ser avaliado quando um diálogo aprovado deixar de ser legível/manutenível em Markdown.
 
 PoC futuro:
 
-1. selecionar um diálogo ramificado já aprovado;
-2. converter cópia para `.ink`;
+1. selecionar diálogo ramificado já aprovado;
+2. converter uma cópia para `.ink`;
 3. validar escolhas e condições no Inky;
-4. exportar/compilar de modo determinístico;
-5. comparar todas as rotas com o diálogo canônico;
+4. exportar/compilar deterministicamente;
+5. comparar todas as rotas com o documento editorial;
 6. só então avaliar adapter no Narrative Core.
 
-## 6. Blockbench — skins
+Até lá, `historia/12-dialogos/` permanece o formato editorial.
 
-Blockbench é gratuito/open-source e é a ferramenta padrão para validar skins Minecraft.
+## 5. Visual / Blockbench
+
+A pipeline visual compartilhada pertence à Minecraft Mod Factory. O fluxo deste projeto fornece o asset brief narrativo e usa os entrypoints canônicos da Factory para Blockbench e QA.
 
 Fluxo:
 
-1. definir brief visual no dossiê do NPC;
-2. gerar/desenhar referência visual sem custo incremental;
-3. produzir a textura de skin separadamente;
-4. abrir no Blockbench com o modelo de braço correto;
-5. revisar frente, costas, laterais, UV, transparência e segunda camada;
-6. exportar PNG final.
+1. definir identidade/brief do NPC;
+2. consultar a Visual Style Bible e assets project-owned relevantes;
+3. produzir concept/portrait apenas como look-dev;
+4. produzir skin/texture técnica separadamente;
+5. validar resolução/texel density, UV/camadas e alvo corporal com evidência;
+6. executar QA visual no Minecraft real;
+7. manter estado `PENDING` enquanto a evidência final não existir.
+
+## 6. Tooling local sem conta/API
+
+Na branch que contém o stack de autoria:
+
+```bash
+python historia/tools/story_inventory.py --format json
+python historia/tools/validate_story.py --strict-references
+python historia/tools/validate_dialogues.py
+python -m unittest discover -s historia/tools/tests -v
+```
+
+Esses comandos usam apenas Python padrão e não dependem de rede.
 
 ## 7. Critério de interrupção
 
-Se qualquer ferramenta opcional solicitar pagamento para continuar uma função essencial do fluxo, interromper a integração e voltar imediatamente ao baseline GitHub + ChatGPT + ferramentas gratuitas locais.
+Se qualquer integração opcional exigir pagamento para uma função essencial, criar lock-in crítico, exigir autoridade sobre o canon/runtime ou impedir recuperar o trabalho, interromper o uso e voltar ao baseline Grimoire + GitHub + ChatGPT/tooling local (ou GitHub + tooling local enquanto Grimoire estiver inacessível).
