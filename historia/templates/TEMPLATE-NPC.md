@@ -70,17 +70,25 @@ Como jogador/outros atores podem descobrir a existência, posição ou relevânc
 
 ## Vida, morte e retorno
 - condições relevantes de morte/indisponibilidade:
+- `death_event_id`, quando existir:
 - fatos que permanecem históricos após morte:
 - fallback para arcos/quests quando indisponível:
 - condições de retorno, se existirem:
-- continuidade de corpo:
-- continuidade de memória:
-- continuidade de personalidade:
-- continuidade de knowledge:
-- continuidade de relações:
-- continuidade de identidade legal/social:
+- `return_event_id`, quando existir:
+- `provider_origin` do retorno, quando aplicável:
+- `body_continuity`:
+- `memory_continuity`:
+- `personality_continuity`:
+- `knowledge_continuity`:
+- `relationship_continuity`:
+- `legal_identity` — reconhecimento jurídico/institucional:
+- `social_identity` — reconhecimento por família, população, clero, academia, facções etc.:
+- `self_identity` — como o próprio ator se reconhece, quando suportado pelo conteúdo:
+- evidence/knowledge disponível sobre o que aconteceu:
 
-Retorno não restaura snapshot automaticamente; reconciliar pelo contrato de Identity Continuity.
+Essas dimensões são independentes. Família reconhecer o retornado não obriga reconhecimento legal; reconhecimento legal não obriga aceitação social; o próprio ator pode interpretar sua continuidade de outra forma.
+
+Retorno não restaura snapshot automaticamente; reconciliar pelo contrato de Identity Continuity. Não afirmar metafísica universal (por exemplo, “alma original”) sem evidence/provider real suficiente.
 
 ## Provider de apresentação/interação
 Declarar provider físico/renderizado somente quando necessário. A identidade narrativa é separada da entidade física e não deve duplicar o personagem se o provider mudar, respawnar ou ficar indisponível.
@@ -103,8 +111,11 @@ Lore não inventa capabilities.
 - [ ] grievances/debts/favors não viraram score genérico;
 - [ ] agenda autônoma possui ator/causa;
 - [ ] morte/indisponibilidade possui fallback quando necessária a conteúdo;
+- [ ] death/return permanecem eventos históricos rastreáveis quando aplicável;
+- [ ] body/memory/personality/knowledge/relationship continuity foram separadas;
+- [ ] legal/social/self identity foram avaliadas separadamente;
 - [ ] retorno não restaura memória/relação/identidade por snapshot cego;
 - [ ] provider físico não virou authority do personagem;
-- [ ] nenhuma capability de mod foi inventada.
+- [ ] nenhuma capability de mod ou metafísica universal foi inventada.
 
 ## Spoilers internos
