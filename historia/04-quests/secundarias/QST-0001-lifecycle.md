@@ -1,7 +1,10 @@
 # Lifecycle editorial de QST-0001 — Ecos Sombrios
 
 ## Estado editorial
-RASCUNHO ESTRUTURADO / CONTRATO DE AUTORIA. Não adiciona solução, culpado ou outcome preferencial.
+RASCUNHO
+
+## Escopo
+Contrato auxiliar de autoria para o lifecycle de `QST-0001`. Não adiciona solução, culpado ou outcome preferencial e não substitui o dossiê principal da quest.
 
 ## Autoridade
 Este arquivo descreve como o conteúdo editorial de `QST-0001` mapeia para o contrato de `plans/08-quests-progression-hooks/25-opportunity-discovery-lifecycle.md`. O Stage 08 continua autoridade sobre enums, persistence, idempotency e runtime.
@@ -60,6 +63,8 @@ Confirma a existência de um fato/ocorrência investigável por fonte suficiente
 Estado válido mesmo com `DISCOVERED`/`CONFIRMED`. O jogador pode investigar por conta própria.
 
 ### OFFERED
+Offering actor no desenho atual: `NPC-0003`.
+
 `NPC-0003` pode oferecer envolvimento somente se:
 - ele possui knowledge/proveniência suficiente para justificar a abordagem;
 - sua agenda/estado permite a ação;
@@ -76,6 +81,8 @@ Recusa explícita. Não equivale a nunca receber oferta e não exige punição a
 
 ### ABANDONED
 Só existe se houver ação explícita de abandono suportada pelo design. Parar de jogar ou fazer outra atividade não é automaticamente abandono.
+
+`ABANDONED` pertence ao eixo Engagement. Resolution permanece independente.
 
 ## Resolution
 
@@ -96,6 +103,19 @@ A situação muda de natureza e deve continuar em outro beat/quest/evento, prese
 
 ### Demais outcomes
 `SUCCESS`, `SUCCESS_WITH_COST`, `PARTIAL_SUCCESS`, `FAILURE`, `PRODUCTIVE_FAILURE` só devem ser aplicados quando ações e critérios concretos forem escritos; este arquivo não escolhe outcome preferencial.
+
+## Scope multiplayer do rascunho atual
+
+- availability scope: `WORLD` enquanto depender apenas de fatos de mundo globais;
+- discovery scope: `PLAYER` por padrão;
+- engagement scope: `PLAYER` por padrão para oferta/aceitação individual de `NPC-0003`;
+- resolution scope: `WORLD` para o estado objetivo da situação;
+- knowledge sharing: nunca automático; `TEAM` só entra por regra/canal explícito de compartilhamento;
+- recompensa/ledger pessoal, quando existir, não deve ser confundido com resolution world-scoped.
+
+Se requisitos futuros tornarem availability ou engagement realmente team/player-scoped de outra forma, o contrato deve ser alterado explicitamente em vez de herdar o scope silenciosamente.
+
+Dois jogadores podem, portanto, observar o mesmo estado de mundo com discovery/engagement diferentes.
 
 ## Política de progressão autônoma
 Progressão autônoma é permitida, mas nunca por tick ou timer oculto genérico.
@@ -134,6 +154,8 @@ Nenhum problema. Ele continua um NPC autônomo; conhecer Iren não desbloqueia a
 ### `NPC-0003` indisponível
 Morte, ausência, mudança de cargo ou indisposição não deve bloquear retroativamente a existência do mundo. A oferta formal pode nunca acontecer; discovery independente e resolução por outros permanecem possíveis quando fizerem sentido.
 
+Se `NPC-0003` retornar, disponibilidade corporal não satisfaz automaticamente gates de memória, knowledge, relação ou identidade; consultar Identity Continuity.
+
 ## Descoberta retrospectiva
 Se a situação já terminou enquanto o jogador estava `UNKNOWN`, ele pode adquirir knowledge histórico por:
 - consequência visível;
@@ -151,11 +173,18 @@ Nesse caso, não criar mensagem de “missão perdida”. O jogador descobre um 
 - `OFFERED`/`ACCEPTED`: superfície de quest pode representar compromisso sem revelar estados secretos;
 - resolução desconhecida: continuar invisível até canal retrospectivo legítimo.
 
-## Multiplayer
-- availability/resolution tende a ser world-scoped quando deriva de fatos globais;
-- discovery pode ser player-scoped ou team-scoped;
-- engagement deve declarar recipient/scope;
-- knowledge não é sincronizado automaticamente entre jogadores apenas porque compartilham mundo.
+## Idempotência / transition keys
+O Stage 08 exige keys estáveis por transição/efeito one-shot. O formato concreto permanece **PENDENTE DE CONTRATO DE RUNTIME**; este arquivo não inventa namespace técnico.
+
+Antes de implementação, declarar keys para:
+- availability transitions relevantes;
+- discovery grants/canais one-shot;
+- oferta/engagement;
+- resolution;
+- reward issuance;
+- cleanup/callbacks one-shot.
+
+Replay da mesma transição não pode duplicar journal, evento, recompensa ou consequência.
 
 ## Casos de teste editoriais mínimos
 1. `ELIGIBLE + UNKNOWN + NOT_OFFERED + UNRESOLVED` persiste sem UI indevida.
@@ -164,15 +193,30 @@ Nesse caso, não criar mensagem de “missão perdida”. O jogador descobre um 
 4. `NPC-0003` não oferece investigação sem knowledge suficiente.
 5. recusa mantém mundo capaz de avançar sem punição automática.
 6. aceitação não congela resolução por terceiros.
-7. encontro prévio reconcilia sem respawn/reset.
-8. oportunidade pode ficar obsoleta enquanto `UNKNOWN`.
-9. jogador pode descobrir somente consequência histórica.
-10. dois jogadores podem manter discovery diferente sobre o mesmo world state.
+7. abandono explícito mantém Resolution independente.
+8. encontro prévio reconcilia sem respawn/reset.
+9. oportunidade pode ficar obsoleta enquanto `UNKNOWN`.
+10. jogador pode descobrir somente consequência histórica.
+11. dois jogadores podem manter discovery diferente sobre o mesmo world state.
+12. resolution world-scoped não revela automaticamente discovery ao segundo jogador.
+13. `NPC-0003` retornado sem memory/knowledge adequado não reabre automaticamente a oferta.
+14. replay de transition/reward key não duplica efeitos.
 
 ## Relações
 - quest: `QST-0001`;
 - NPCs: `NPC-0001`, `NPC-0003`;
 - evidências: `EVD-0001`, `EVD-0002`, `EVD-0003`.
+
+## QA
+- [ ] availability/discovery/engagement/resolution continuam ortogonais;
+- [ ] offering actor/conditions são explícitos;
+- [ ] `ABANDONED` permanece em Engagement;
+- [ ] scopes multiplayer são explícitos no desenho atual;
+- [ ] knowledge não é compartilhado automaticamente;
+- [ ] transition/idempotency keys serão definidas antes de implementação;
+- [ ] entrada antecipada e pre-resolution não exigem reset;
+- [ ] retorno de NPC respeita Identity Continuity;
+- [ ] nenhum outcome/culpado/solução foi selecionado neste contrato.
 
 ## Spoilers internos
 Nenhum outcome, culpado ou solução é definido aqui.
