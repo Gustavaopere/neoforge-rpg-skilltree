@@ -1,7 +1,10 @@
 # Ficha de autoria — NPC-0003 — Iren Valmor
 
 ## Estado editorial
-RASCUNHO DE AUTORIA / NÃO ADICIONA EVENTOS CANÔNICOS.
+RASCUNHO
+
+## Escopo
+Ficha complementar de autoria. Não adiciona eventos canônicos, não promove `NPC-0003` acima do estado do dossiê principal e não substitui reconciliação com Grimoire.
 
 ## Voz
 - formalidade: alta em função pública; moderada em conversa privada;
