@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `mobs-refreshed-v2.2.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** 2.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Mobs
@@ -48,7 +48,7 @@ O projeto declara **29 mobs refreshed**, com novos designs, shading e modelos ad
 A v2.2 suporta 1.21.1. O changelog da linha inclui **Creaking**, **Ghastling e Happy Ghast**, além de redesigns de **Ghast** e **Bogged**. Esses itens são cobertura visual, não entidades novas introduzidas pelo resource pack.
 
 ## 4. Infraestrutura CEM
-O autor recomenda **Entity Model Features (EMF)** em vez de OptiFine para maior suporte de features. A modlist física confirma EMF `3.3.5`; custom models/rules devem ser validados após reload/relog.
+O autor recomenda **Entity Model Features (EMF)** em vez de OptiFine para maior suporte de features. O stack físico contém EMF; custom models/rules devem ser validados após reload/relog.
 
 ## 5. Boundary com Fresh Animations
 Há um pack separado `Mobs Refreshed + Fresh Animations`. A coexistência direta das duas bases não deve ser tomada como integração garantida sem esse compat dedicado e load order coerente.

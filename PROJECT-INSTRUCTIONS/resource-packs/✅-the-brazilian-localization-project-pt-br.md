@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `The Brazilian Project [1.21.1-1.3.0].zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** 1.3.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL
