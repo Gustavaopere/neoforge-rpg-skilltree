@@ -40,6 +40,8 @@ Camadas funcionais, formas simples e legíveis, poucos elementos salientes, aus�
 
 ## Aparência
 - adulto maduro, sem caricatura de velhice;
+- altura/proporção percebida: **PENDENTE DE APROVAÇÃO VISUAL**; manter hipótese humana padrão até o concept justificar algo diferente;
+- tom de pele: **PENDENTE DE APROVAÇÃO VISUAL**; não inferir a partir de profissão, necromancia, moralidade ou paleta de roupa;
 - rosto humano e reservado;
 - olheiras discretas/sinais de rotina irregular permitidos;
 - cabelo escuro ou parcialmente grisalho;
@@ -100,6 +102,8 @@ Asset project-owned. Referências externas, se usadas em look-dev, servem apenas
 
 ## Pendências
 - concept/portrait aprovado;
+- altura/proporção percebida aprovada;
+- tom de pele aprovado;
 - escolha final entre classic/slim;
 - resolução/texel density final;
 - skin/texture final;
