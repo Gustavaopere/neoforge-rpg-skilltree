@@ -39,6 +39,7 @@ Absence of information is a valid project state.
 - Do not protect future plot by forcing NPC survival/availability without a causal system.
 - Do not create named entities merely to fill templates or production quotas.
 - Do not infer biome climate, resources, geology or settlement suitability from a translated biome name alone.
+- Do not collapse multidimensional relationships into a single reputation/friendship score.
 - New material on a branch remains a proposal until its editorial state is deliberately accepted.
 
 ## Stable IDs and validation
@@ -53,6 +54,8 @@ Use `--strict-references` when validating a closed batch. For dialogue batches a
 
 Do not claim full-repository validation unless the command actually ran against the complete materialized tree.
 
+Auxiliary documents such as authoring sheets, asset briefs and lifecycle notes should reference an existing stable ID without redeclaring the entity in a top-level heading that starts with that ID.
+
 ## Knowledge and evidence
 
 Important facts need plausible acquisition paths. Distinguish knowledge, suspicion, rumor, witness, evidence, causation and inference.
@@ -66,6 +69,18 @@ Repeated rumor does not automatically become independent corroboration.
 Follow Stage 08. Separate availability, discovery, engagement and resolution when applicable. Support unknown-but-eligible, rumored, declined, ignored, pre-resolved, resolved-by-others, transformed, obsolete and retrospective discovery when causally valid.
 
 A player who never knew an opportunity existed must not receive a fictitious retroactive failure. Autonomous progression requires an explicit actor/cause; player inactivity alone is not causal justification.
+
+## Relationships, memory and identity continuity
+
+Follow `historia/00-canone/relacoes-memoria-e-identidade.md` together with Stage 08.
+
+For persistent actors, keep at least these dimensions conceptually distinct when relevant: `affection`, `trust`, `respect`, `fear`, `dependency` and `ideological_alignment`.
+
+Relationship is directional (`source -> target`). Do not mirror it automatically. Grievance, debt and favor remain separate ledgers/facts rather than being hidden inside a generic score.
+
+Important relationship changes need causal provenance. Memory and knowledge are not equivalent: an actor can remember false information, know a fact through evidence without witnessing it, or lose memory without erasing the historical event.
+
+Death/return never restores relationship, memory or identity by blind snapshot. Reconcile through the Stage 08 Identity Continuity contract.
 
 ## Dialogue and NPC voice
 
@@ -100,6 +115,7 @@ Before calling an authoring batch complete, confirm:
 - no known duplicate stable entity introduced;
 - editorial states explicit;
 - knowledge/provenance preserved;
+- relationship changes preserve direction, dimensions and causal provenance when applicable;
 - provider/worldgen claims proved or left unbound;
 - lifecycle supports legitimate alternate participation states;
 - voice consistency checked where applicable;
@@ -112,6 +128,7 @@ Before calling an authoring batch complete, confirm:
 
 - `historia/README.md`
 - `historia/00-canone/`
+- `historia/00-canone/relacoes-memoria-e-identidade.md`
 - `historia/11-ia-e-autoria/`
 - `historia/templates/`
 - `historia/tools/`
