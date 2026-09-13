@@ -1,6 +1,6 @@
 # Narrative Authoring Contract — RPG Skill Tree
 
-Status: **canonical working contract for AI-assisted campaign authoring in this repository.**
+Status: **PROPOSED UNTIL MERGE. After acceptance into `main`, this becomes the repository-local working contract for AI-assisted campaign authoring.**
 
 This is project-specific guidance, not a generic Minecraft Mod Factory skill.
 
