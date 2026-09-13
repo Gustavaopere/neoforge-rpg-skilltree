@@ -20,7 +20,7 @@ Leia nesta ordem:
 4. a modlist física mais recente;
 5. o estado atual do GitHub, incluindo `main`, branches e PRs concorrentes.
 
-Para skills, tooling ou contratos compartilhados, use os entrypoints canônicos da Factory:
+Para skills, tooling, catálogos ou contratos compartilhados, use os entrypoints canônicos da Factory:
 
 - [`skills/ROUTER.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/ROUTER.md)
 - [`skills/VERSION-AUTHORITY.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/VERSION-AUTHORITY.md)
@@ -43,11 +43,10 @@ Para execução operacional de Chat 1/2/3, esses arquivos consolidados continuam
 
 ## Estrutura de suporte
 
-- `engineering/` contém o contrato operacional e a estratégia de testes/diagnósticos do runtime RPG, o routing atual, proveniência compacta da antiga fase de control plane e a evidência física da modlist. A infraestrutura genérica I1/I3–I6 migrada não permanece duplicada na árvore ativa.
-- `engineering/catalog/physical-modlist/` preserva a evidência física do ambiente RPG/modpack. O importer, teste, fixture e workflow I2 associados permanecem locais exclusivamente para manutenção/validação dessa evidência.
+- `engineering/` contém o contrato operacional, a estratégia de testes/diagnósticos e o routing do runtime RPG.
 - `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos do RPG.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
-- A antiga árvore `skills/` foi removida após migração integral e validação na Minecraft Mod Factory. Sua proveniência e classificações permanecem registradas na Factory.
+- A antiga árvore `skills/` e o antigo catálogo/tooling I2 compartilhado foram retirados da árvore ativa depois de migração/reconciliação e validação na Minecraft Mod Factory.
 
 Material histórico removido da árvore ativa continua recuperável pelo histórico Git e pela matriz/status de migração da Factory. Ele não é authority para novas capabilities compartilhadas.
 
@@ -72,4 +71,4 @@ Os comentários `ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/...` presentes 
 
 Novas atualizações editoriais dos guias detalhados do RPG devem ocorrer em `PROJECT-INSTRUCTIONS/guides/`. Quando uma mudança precisar ser refletida nos quatro arquivos consolidados, ela deve ser reconciliada conscientemente e validada como novo snapshot; não recriar a árvore legada em `plans/03-skill-tree-perks/guides/`.
 
-Novas skills, contracts, validators, templates, tooling e automações **genéricos de produção de mods** pertencem à Minecraft Mod Factory. Este repositório só deve receber alterações desse tipo quando forem necessárias para o próprio runtime RPG ou para preservar/migrar trabalho histórico.
+Novas skills, contracts, validators, templates, tooling, catálogos e automações **genéricos de produção de mods** pertencem à Minecraft Mod Factory. Este repositório só deve receber alterações desse tipo quando forem necessárias para o próprio runtime RPG ou para preservar/migrar trabalho histórico.
