@@ -511,27 +511,6 @@ Recommended order:
 8. keep AE2/Oritech/Identity/Woodwalkers content unavailable/legacy while those providers remain absent; reintroduction requires a fresh physical-modlist/API audit, not silent substitution;
 9. expand broader content/balance only after real runtime evidence exists.
 
-### Encyclopedia / bestiary — creature location and tracking
-
-Plan an exploration function tied to creatures already discovered/unlocked in the encyclopedia:
-
-- each creature entry can explain **where it can be found**, including dimension, biome, habitat/environment, related structures and relevant spawn conditions when those data are available;
-- add a **Procurar / Seguir** action to select a discovered creature as the current search target;
-- when possible, identify a suitable known/searchable location for that creature and create a **waypoint/marker on the map** so the player can travel toward it;
-- integrate the marker with the map/waypoint solution adopted by the modpack;
-- keep habitat/search guidance distinct from an exact live-entity position: the guide should not imply that a mob is currently at a coordinate unless that position is actually known by the game/system.
-
-Intended flow:
-
-```text
-discover creature
-→ open encyclopedia entry
-→ see habitat/spawn information
-→ choose Procurar / Seguir
-→ receive map marker
-→ travel and search for the creature
-```
-
 A provider/tree/specialization is not “implemented” merely because JSON or a plan exists. It must have:
 
 - reachable gateway/path;
