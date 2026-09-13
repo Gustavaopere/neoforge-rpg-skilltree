@@ -1,13 +1,51 @@
 # 06 — Integrations
 
-Integrar mods externos por adapters opcionais pequenos, testáveis e semanticamente corretos, sem acoplar o RPG Core às APIs externas.
+Integrar mods externos por adapters opcionais pequenos, testáveis e semanticamente corretos, sem acoplar o RPG Core às APIs externas. O redesign de 2026-09-12 também cria dois subsistemas first-party que substituem assumptions antigos: **Form Engine** e **Economy V2**.
 
-Ordem histórica: contrato de adapters → Epic Fight → Iron's → Ars → Goety/Malum/Eidolon → morphs → Apothic Attributes → Create/AE2/Oritech → matriz de integração.
+Authority física corrente: modlist 2026-09-08, 595 entradas, NeoForge 21.1.248. Presença/versão física prevalece sobre os snapshots históricos desta pasta.
 
-- `✅-01-adapter-contract.md` — **CONCLUÍDO** pelo contrato provider-neutral da PR #444 e pelo wiring de produção da PR #453. O bootstrap comum detecta presença antes de construir adapters, publica IDs/capabilities semânticos, fallback neutro, diagnostics `absent`/`disabled`/`enabled` e ownership único fail-closed; os providers reais passam pelo registry antes de seus hooks específicos, preservando gates próprios de versão e fail-closed. A reconciliação final também incorpora o provider Productive Metalworks introduzido posteriormente pelo Stage 11 sem criar uma segunda authority de integração.
-- `✅-02-epicfight.md` — **CONCLUÍDO** pela PR #466. Epic Fight `21.17.3.1` permanece authority do hit via `DELIVER_DAMAGE_PRE/POST`; uma correlação provider-neutral preserva uma autoria causal reutilizável por observers NeoForge, o fallback só cria root próprio sem autoria provider, armas classificadas pelo Epic Fight não usam o fallback vanilla simultaneamente e os node effects validam `epicfight:stamina`, `epicfight:stamina_regen` e `epicfight:impact`.
+## Contratos já concluídos
 
-Subplanos adicionais:
+- `✅-01-adapter-contract.md` — contrato provider-neutral concluído; presença/capability/diagnostics e fail-closed permanecem a base para integrações externas.
+- `✅-02-epicfight.md` — Epic Fight `21.17.3.1` permanece authority do hit no contrato validado.
+- `✅-10-minecolonies-battle-mages.md` — Battle Mages × Iron's concluído, preservando MineColonies como authority do cidadão/AI e Iron's como authority do cast.
+- `✅-11-minecolonies-economy.md` — Economy V1 concluída: ledger virtual por colônia, `MINT`/`RETIRE`, persistência, replay protection, capacidade econômica e inflação/deflação.
 
-- `✅-10-minecolonies-battle-mages.md` — **CONCLUÍDO** pela PR #288. Integra cidadãos/guardas MineColonies a spellbooks reais do Iron's, mantendo MineColonies como authority do cidadão/guard AI e Iron's como authority de spells, `MagicData` e cast lifecycle. O livro real define integralmente o repertório; casts autônomos não concedem Mastery ao jogador. O contrato original permanece preservado em `archive/10-minecolonies-battle-mages-plan.md`.
-- `✅-11-minecolonies-economy.md` — **CONCLUÍDO** pela PR #415. A V1 entrega economia server-authoritative por colônia, ledger virtual canônico, `MINT`/`RETIRE`, persistência, deduplicação/replay protection bounded, capacidade econômica `Q` derivada read-only do MineColonies, inflação/deflação, snapshots/preflight e authority server-side. O HEAD final sincronizado `55387a4a8246337fabf6697c9105ac9d10729998` fechou 24/24 workflows em `success`, incluindo RPG Skill Tree CI, SonarQube Quality Gate, Full Pack, Battle Mage e CodeQL; a PR foi mergeada em `ce00a228535974043476528b9af47179ce665b21`. Construção/upgrade monetário e UI custom no Town Hall permanecem fail-closed por ausência de hook/extensibility point público seguro; Banco físico, salários, impostos completos, comércio/câmbio e moeda física ficam fora da V1. Modlist/Notion atuais usam MineColonies `1.1.1376-1.21.1-snapshot`; a lane provider validada usa a build auditada `1.1.1375`, e a execução binária do JAR exato 1.1.1376 permanece pendência explícita de evidência. Ver `11-minecolonies-economy-reconciliation-1.1.1376.md` para a reconciliação de versão.
+## Planos reabertos/redesenhados pela modlist corrente
+
+### 06.06 — First-Party Form Engine
+
+[`06-identity-morphs.md`](06-identity-morphs.md) mantém o nome histórico do arquivo para continuidade documental, mas o conteúdo agora especifica o **Form Engine first-party**.
+
+Identity/Identity2 e Woodwalkers não estão na modlist física atual. Portanto:
+
+- Druid e Metamorph deixam de depender desses providers;
+- Druid recebe formas naturais/bestiais e assimilação primal exclusiva;
+- Metamorph recebe catálogo corporal mais amplo, inclusive formas naturais + humanoid/monster/undead/aberrant quando aprovadas;
+- Entity/NBT/AI externo nunca é copiado cegamente para o jogador;
+- Alex's Mobs Continued, Alex's Caves Continued, Ice and Fire e outros providers entram por adapters auditados, não por heurística.
+
+### 06.12 — Economy V2
+
+[`12-economy-v2.md`](12-economy-v2.md) expande a Economy V1 para:
+
+- player/colony/business/escrow accounts;
+- moeda física conservada contra o ledger;
+- wallets;
+- banco e transferências;
+- vendors e compra/venda;
+- salários e impostos;
+- market/auction;
+- comércio entre colônias em fase posterior.
+
+MineColonies físico atual é `1.1.1381-1.21.1-snapshot`; os testes provider-present antigos de Economy V1 usaram builds anteriores, então **1.1.1381 precisa ser revalidado antes da expansão**.
+
+Lightman's Currency e Create: Numismatics são referências de arquitetura/código licenciado, não dependencies instaladas. Reuso literal exige provenance/licença registrada e não pode criar uma segunda monetary authority.
+
+## Drift tecnológico obrigatório
+
+AE2 e Oritech foram removidos da modlist física atual. Qualquer plano/teste antigo que os trate como provider ativo deve ser migrado ou ficar fail-closed; não substituir silenciosamente por Tom's Simple Storage/Create.
+
+## Regra permanente
+
+Provider-native first → bridge comprovada → integração própria → fallback seguro. Nenhum provider ausente é simulado por bônus genérico e nenhum teste histórico obriga a reintroduzir um mod removido.
