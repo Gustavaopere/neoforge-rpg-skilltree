@@ -47,6 +47,8 @@ Todos os elementos abaixo são RASCUNHO VISUAL até aprovação editorial.
 
 - modelo Minecraft: classic/Steve como padrão inicial; migrar para slim apenas se o concept justificar;
 - idade aparente: adulto maduro, sem aparência idosa caricata;
+- altura/proporção percebida: **PENDENTE DE APROVAÇÃO VISUAL**; não fixar estatura excepcional nem proporção fora do alvo humano padrão antes do concept aprovado;
+- tom de pele: **PENDENTE DE APROVAÇÃO VISUAL**; não inferir tom de pele a partir de profissão, necromancia, moralidade ou paleta de roupa;
 - silhueta: relativamente estreita e funcional, com roupa em camadas; deve parecer pesquisador antes de parecer combatente;
 - características do rosto: expressão reservada, olheiras discretas ou sinais de rotina irregular permitidos; evitar rosto cadavérico;
 - cabelo/barba: cabelo escuro ou grisalho parcial; corte prático; barba curta opcional;
