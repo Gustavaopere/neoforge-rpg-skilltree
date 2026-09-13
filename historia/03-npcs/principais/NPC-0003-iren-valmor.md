@@ -1,7 +1,7 @@
 # NPC-0003 — Iren Valmor
 
 ## Estado editorial
-RASCUNHO ESTRUTURADO / CANDIDATO A CANÔNICO.
+RASCUNHO ESTRUTURADO / BLOQUEADO PARA RECONCILIAÇÃO COM GRIMOIRE ANTES DE PROMOÇÃO CANÔNICA.
 
 ## Papel
 Mago ligado à `FAC-0001` Corte de Pedra Clara e responsável por avaliar relatos de fenômenos arcanos, riscos incomuns e evidências que possam exigir resposta institucional. É o participante anteriormente sem ID citado em `QST-0001`.
@@ -75,6 +75,9 @@ Nenhum provider arcano específico é autoridade automática de Iren. Quando inv
 - não existe apenas para entregar quests;
 - não transforma suspeita em culpa institucional por conta própria;
 - seu cargo em `FAC-0001` não equivale a autoridade absoluta sobre `SET-0001`.
+
+## Reconciliação obrigatória
+Antes de promover este NPC a estado canônico, pesquisar Grimoire/TTRPG.bot por personagem, cargo, instituição ou função narrativa equivalente. Se houver entidade existente, reconciliar nome/ID/relações em vez de manter duplicata paralela.
 
 ## Spoilers internos
 Nenhuma verdade oculta, culpado, motivação ou outcome de `QST-0001` é fixado por este dossiê. Conteúdo secreto deve permanecer em arco/evidência/evento apropriado.
