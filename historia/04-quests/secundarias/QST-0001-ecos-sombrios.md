@@ -13,6 +13,12 @@ Em estágio avançado, um mago ligado à corte pode detectar indícios de ativid
 - `NPC-0001` Severin
 - `NPC-0003` Iren Valmor — mago ligado à corte; sua ficha permanece rascunho estruturado até consolidação editorial.
 
+## Contexto institucional
+- `FAC-0001` Corte de Pedra Clara — instituição à qual Iren está ligado;
+- `SET-0001` Pedra Clara — assentamento que ancora a Corte.
+
+A região investigada não precisa estar dentro de `SET-0001`. A Corte pode receber relatos de sua zona de influência sem possuir vigilância, jurisdição ou presença física total sobre ela.
+
 ## Matriz mínima obrigatória
 A implementação/authoring deve suportar, no mínimo:
 
@@ -33,6 +39,8 @@ A implementação/authoring deve suportar, no mínimo:
 
 ## Regra de knowledge
 Iren não conhece automaticamente a identidade, localização, capacidades ou motivações de Severin. O estado que permite a investigação precisa apontar para rumor, testemunha, evidência ou observação concreta. O mesmo vale para qualquer outro ator que entre no caso.
+
+`FAC-0001` não herda automaticamente todo knowledge de `NPC-0003`, e `NPC-0003` não herda automaticamente todo registro da instituição.
 
 ## Âncoras de descoberta/evidência
 - `EVD-0001` — relatos desencontrados: pode iniciar interesse ou investigação, mas não prova causa/culpa;
