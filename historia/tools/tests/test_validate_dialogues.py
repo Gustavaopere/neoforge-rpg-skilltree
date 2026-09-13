@@ -2,16 +2,16 @@ import importlib.util
 import pathlib
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 
 MODULE_PATH = pathlib.Path(__file__).resolve().parents[1] / 'validate_dialogues.py'
-
 
 def load_module():
     spec = importlib.util.spec_from_file_location('validate_dialogues', MODULE_PATH)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
-
 
 VALID = '''# DLG-0001 — Teste
 
@@ -66,7 +66,6 @@ Preciso.
 Nenhum.
 '''
 
-
 class DialogueValidationTests(unittest.TestCase):
     def make_root(self, files):
         td = tempfile.TemporaryDirectory()
@@ -117,11 +116,35 @@ class DialogueValidationTests(unittest.TestCase):
         issues = mod.validate(root)
         self.assertTrue(any(i.code == 'qa-without-checkbox' for i in issues))
 
+    def test_default_cli_output_is_spoiler_safe(self):
+        mod = load_module()
+        text = VALID.replace('## Knowledge exigido de NPC-0001\nSomente fatos conhecidos.\n\n', '')
+        root = self.make_root({'DLG-0001-secret-context.md': text})
+        output = StringIO()
+        with redirect_stdout(output):
+            code = mod.main([str(root)])
+        rendered = output.getvalue()
+        self.assertEqual(1, code)
+        self.assertIn('ERROR missing-section: 1', rendered)
+        self.assertNotIn('knowledge', rendered)
+        self.assertNotIn('DLG-0001-secret-context.md', rendered)
+
+    def test_reveal_cli_output_includes_editorial_details(self):
+        mod = load_module()
+        text = VALID.replace('## Knowledge exigido de NPC-0001\nSomente fatos conhecidos.\n\n', '')
+        root = self.make_root({'DLG-0001-secret-context.md': text})
+        output = StringIO()
+        try:
+            with redirect_stdout(output):
+                code = mod.main([str(root), '--reveal'])
+        except SystemExit as exc:
+            self.fail(f'--reveal must be supported: {exc}')
+        rendered = output.getvalue()
+        self.assertEqual(1, code)
+        self.assertIn('ERROR missing-section knowledge', rendered)
+        self.assertIn('DLG-0001-secret-context.md:1', rendered)
+
     def test_non_dialogue_markdown_is_ignored(self):
         mod = load_module()
         root = self.make_root({'README.md': '# 12 — Diálogos\n'})
         self.assertEqual([], mod.validate(root))
-
-
-if __name__ == '__main__':
-    unittest.main()

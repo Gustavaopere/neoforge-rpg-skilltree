@@ -125,18 +125,30 @@ def main(argv=None) -> int:
         default='historia/12-dialogos',
         help='dialogue root directory (default: historia/12-dialogos)',
     )
+    parser.add_argument(
+        '--reveal',
+        action='store_true',
+        help='show dialogue details and paths for editorial debugging',
+    )
     args = parser.parse_args(argv)
 
     root = pathlib.Path(args.root)
     issues = validate(root)
-    for issue in issues:
-        try:
-            display = issue.path.relative_to(root)
-        except ValueError:
-            display = issue.path
-        print(f'ERROR {issue.code} {issue.detail} {display}:{issue.line}')
-
-    if not issues:
+    if issues and args.reveal:
+        for issue in issues:
+            try:
+                display = issue.path.relative_to(root)
+            except ValueError:
+                display = issue.path
+            print(f'ERROR {issue.code} {issue.detail} {display}:{issue.line}')
+    elif issues:
+        counts: dict[str, int] = {}
+        for issue in issues:
+            counts[issue.code] = counts.get(issue.code, 0) + 1
+        for code, count in sorted(counts.items()):
+            print(f'ERROR {code}: {count}')
+        print('Details hidden by spoiler-safe mode. Use --reveal for editorial debugging.')
+    else:
         print('OK no dialogue structure issues found')
     return 1 if issues else 0
 
