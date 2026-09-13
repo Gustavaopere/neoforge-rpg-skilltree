@@ -1,7 +1,10 @@
 # DLG-0002 — Iren Valmor — Calibração de evidência
 
 ## Estado editorial
-RASCUNHO DE CALIBRAÇÃO / NÃO REPRESENTA UM EVENTO CANÔNICO.
+EXPERIMENTAL
+
+## Escopo
+CALIBRAÇÃO DE VOZ/EVIDÊNCIA / não representa evento canônico e não deve ser usado como gatilho de gameplay.
 
 ## Participantes
 - `NPC-0003` Iren Valmor
