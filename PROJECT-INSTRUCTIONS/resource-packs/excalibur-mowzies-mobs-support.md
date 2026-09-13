@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur Mowzie's Mobs 1.1.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 1.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat, Mobs
@@ -76,6 +76,6 @@ Mobs Refreshed, Fresh Animations e outros packs de entidades podem tocar as mesm
 Nenhum teste foi marcado como aprovado.
 
 ## 9. Evidências e limite
-CurseForge oficial confirma v1.1 e o escopo mobs/bosses/items/particles/boss bars/GUI, incluindo Elokosa. A modlist física confirma Mowzie's Mobs `1.8.2`. O ZIP não foi inventariado asset por asset.
+CurseForge oficial confirma v1.1 e o escopo mobs/bosses/items/particles/boss bars/GUI, incluindo Elokosa. O ZIP não foi inventariado asset por asset.
 
 > Boundary canônico: **Mowzie's Mobs controla gameplay; o support pack controla exclusivamente a apresentação visual coberta**.
