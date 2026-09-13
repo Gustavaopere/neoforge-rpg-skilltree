@@ -1,4 +1,4 @@
-# Integrated Dungeons and Structures- Alex's Mobs Integration ✅
+# Integrated Dungeons and Structures- Alex's Mobs Integration
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3d469db9f0db81a5a921fa42e3096239
