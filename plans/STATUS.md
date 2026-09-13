@@ -1,6 +1,28 @@
 # Status canônico dos planos
 
-Última auditoria de fechamento: **2026-09-06**.
+Última auditoria de fechamento documental: **2026-09-12**.
+
+## Redesign arquitetural de progressão — PR #428
+
+**Estado:** DESIGN/ARQUITETURA DOCUMENTADA NA BRANCH — NÃO É RUNTIME IMPLEMENTADO E NÃO ALTERA O TOTAL 34/93.
+
+Baseline reconciliado antes do fechamento: `main@594cbeea70cb3e16d698933f35391e05eddd7c60`. A autoridade física corrente é a modlist de **2026-09-08, 595 entradas top-level, NeoForge 21.1.248**. MineColonies físico atual: `1.1.1381-1.21.1-snapshot`.
+
+A branch/PR #428 redesenha a progressão futura sem apagar o runtime já integrado:
+
+- Tree 1 mantém atributos-base permanentes;
+- Tree 2 passa a ser uma única malha conectada orientada às 23 classes auditadas, com shared nodes e Class Gateways;
+- 16 classes são elegíveis como Classe de Origem e 7 são classes de confluência adquiridas por gateway;
+- comprar perks de outra região não concede automaticamente aquela classe;
+- não existe hard cap de classes nem hard budget global da Tree 2; custo progressivo, topologia, atributos-base, Mastery, provider gates e opportunity cost formam o soft cap;
+- as 25 specialization definitions históricas foram classificadas como schools/disciplines/lanes compartilháveis ou legacy/retired; `ae2_networks`, `oritech_mining` e `oritech_power` ficam inativas enquanto os providers permanecerem ausentes;
+- o catálogo-alvo documentado contém 60 especializações Tree 3 de identidade, distintas das schools/disciplines de providers;
+- Specialist Points possuem moeda/provenance própria e não são drip automático de Character Level;
+- Druid/Metamorph migram para um Form Engine first-party; Identity/Identity2/Woodwalkers não são providers físicos atuais;
+- Economy V2 preserva a Economy V1 e a expande sob uma única monetary authority; antes de implementação, MineColonies `1.1.1381` precisa de revalidação exact-version;
+- ADRs D001, D002, D003, D006, D007, D008, D010, D012 e D014 foram fechadas documentalmente; D011 permanece aberta para caps/precedência de stats e D013 permanece aberta/não urgente para API pública.
+
+O Documento Mestre do Notion foi reconciliado com Classe de Origem, Class Gateways, Tree 2 class-oriented, modlist corrente e ausência de hard budget. Essa reconciliação é **editorial/design** e não promove nenhuma feature a IMPLEMENTAÇÃO CONFIRMADA.
 
 Planejamento do Stage 10 adicionado em **2026-08-28**. Os subplanos `10.01 — Proveniência, referências e licenças`, `10.02 — Inventário do modpack e cobertura de conteúdo`, `10.03 — Modelo de dados, identidade e providers`, `10.04 — Descoberta, progresso e recompensas`, `10.05 — Fauna, criaturas e análise de entidades`, `10.06 — Flora, árvores, fungos e cultivos`, `10.07 — Loot, dieta, reprodução e ecologia` e `10.08 — Biomas, estruturas e dimensões` foram implementados, validados, integrados e auditados.
 
@@ -12,11 +34,11 @@ Base auditada para os fechamentos históricos anteriores ao Stage 10: `main@7b33
 
 Fechamento do Stage 06.10 auditado contra `main@d4422e3ee07e6cfa17cceac0fddd87be81cf78e4`, após integração da PR #288. O head sincronizado final `3f53945c5cda5e25a498d4decc0b728c335697e8` passou o RPG Skill Tree CI `33985252526` / run #3451 GREEN completo, incluindo JUnit 5, NeoForge JUnit adapters, NeoForge GameTests provider-free, Battle Mage provider-present GameTests, build, JAR e dedicated-server smoke. `Battle Mage Epic Compatibility` `33985252632` / #34, `CodeQL Security` `33985252691` / #484 e `Volcanoes Full Pack Compatibility Acceptance` `33985252481` / #639 também fecharam GREEN. O SonarQube Cloud `33985252475` / #687 fechou Quality Gate GREEN com `80.3% Coverage on New Code`, `0 Security Hotspots` e `0.0% Duplication on New Code`. Todos os review threads da PR #288 estavam resolvidos antes do merge, e a `main` pós-merge foi confirmada no mesmo SHA `d4422e3ee07e6cfa17cceac0fddd87be81cf78e4`.
 
-Fechamento do Stage 06.11 auditado após integração da PR #415. O head final sincronizado `55387a4a8246337fabf6697c9105ac9d10729998` fechou **24/24 workflows GREEN**, incluindo RPG Skill Tree CI `34046743733` / run #3814, SonarQube Cloud `34046743697` / #1050 com Quality Gate GREEN e cobertura provider-free/Battle Mage/Ars Nouveau/MineColonies 1.1.1375, Volcanoes Full Pack Compatibility Acceptance `34046743729` / #1002 com exact-host GameTests e save/reload smoke, Battle Mage Epic Compatibility `34046743728` / #370 e CodeQL Security `34046743731` / #847. A PR #415 foi mergeada como `ce00a228535974043476528b9af47179ce665b21`. A execução provider-present do binário exato MineColonies `1.1.1376-1.21.1-snapshot` permanece registrada como pendência de evidência; a lane executada e auditada usa 1.1.1375.
+Fechamento do Stage 06.11 auditado após integração da PR #415. O head final sincronizado `55387a4a8246337fabf6697c9105ac9d10729998` fechou **24/24 workflows GREEN**, incluindo RPG Skill Tree CI `34046743733` / run #3814, SonarQube Cloud `34046743697` / #1050 com Quality Gate GREEN e cobertura provider-free/Battle Mage/Ars Nouveau/MineColonies 1.1.1375, Volcanoes Full Pack Compatibility Acceptance `34046743729` / #1002 com exact-host GameTests e save/reload smoke, Battle Mage Epic Compatibility `34046743728` / #370 e CodeQL Security `34046743731` / #847. A PR #415 foi mergeada como `ce00a228535974043476528b9af47179ce665b21`. A evidência histórica provider-present exata não cobre o MineColonies físico corrente `1.1.1381`; Economy V2 deve revalidar a versão atual antes de depender de contratos MineColonies.
 
 Fechamento do Stage 10.01 auditado contra `main@b4d84e9078b27349cc691ec2875574ff67246101`, com CI pós-merge `33187232908` / run #755 GREEN completo.
 
-Fechamento do Stage 10.02 auditado contra `main@259eb2d4310f5c7c84dcf0db1a5c3c5f6522df1d`, com CI pós-merge `33190772894` / run #805 GREEN completo.
+Fechamento do Stage 10.02 auditado contra `main@259eb2d4310f5c7c84dcf0db1a5c3c5f6522df1d`, com CI pós-merge `33190772894` GREEN completo.
 
 Fechamento do Stage 10.03 auditado contra `main@112d9266de9ece584f2f58adff03ffb6c8776ca6`, com CI pós-merge `33195224667` / run #858 GREEN completo.
 
@@ -42,9 +64,9 @@ Fechamento do Stage 00.03 auditado contra `main@4f48fefa15477023ce2dcb9d56c36b58
 
 Fechamento do Stage 00.04 auditado contra `main@4a13ac7c8deda8827e755d100223985f07319e8e`, após integração do PR #120. O RED inicial `33231244859` exigiu o boundary de diagnostics; a implementação consolidou taxonomia estruturada, reload fail-visible com path/resource IDs, anti-spam de falhas persistentes e documentação reproduzível dos gates. Os CIs pós-merge `33244389124` / Foundation Diagnostics #22, `33244389122` / Foundation Bootstrap #113, `33244389143` / Foundation Optional Integrations #75 e `33244389119` / RPG Skill Tree #1335 fecharam GREEN. O CI completo cobriu Core, JUnit 5, NeoForge GameTests, Compendium, validators, drift, NeoForge build, verificação do JAR, dedicated-server smoke, upload do JAR e publicação do status final de sucesso.
 
-Fechamento do Stage 01.03 auditado contra `main@398f160f5bec74629331475eff1e60d3cdeb0958`, após integração do PR #135. O RED `33245655826` falhou exatamente porque o GameTest runtime ainda não existia. O head sincronizado final `4bcefe741d641da6b7d14b1b89d4214bce9bc3ff` passou o CI completo `33246262135`, incluindo NeoForge GameTests, `Attribute runtime validation`, build, JAR e dedicated-server smoke. O pós-merge canônico `33246405719` repetiu toda a matriz em GREEN, incluindo upload do JAR e publicação do status final de sucesso.
+Fechamento do Stage 01.03 auditado contra `main@398f160f5bec74629331475eff1e60d3cdeb0958`, após integração da PR #135. O RED `33245655826` falhou exatamente porque o GameTest runtime ainda não existia. O head sincronizado final `4bcefe741d641da6b7d14b1b89d4214bce9bc3ff` passou o CI completo `33246262135`, incluindo NeoForge GameTests, `Attribute runtime validation`, build, JAR e dedicated-server smoke. O pós-merge canônico `33246405719` repetiu toda a matriz em GREEN, incluindo upload do JAR e publicação do status final de sucesso.
 
-Fechamento do Stage 01.04 auditado contra `main@461f386179a3c904f52793354998c29ff7979dd7`, após integração do PR #128. O head funcional `a02b76ae004aa48e3fe2efef01c33c31f1fd267f` passou o RPG Skill Tree CI `33244574779` e os workflows Foundation/Compendium associados. O pós-merge funcional `33244700777` / run #1341 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso. O fechamento formal foi mergeado como `845335058bbe8cd4f5e6f4c140bf4c8fd9f14063`, cujo CI pós-merge `33262871523` / run #1407 também terminou GREEN completo. Auditoria posterior confirmou que o `AttachmentType` canônico continua usando `CanonicalPlayerAttachmentSerializer`, o mesmo codec exercitado pelos testes de round-trip.
+Fechamento do Stage 01.04 auditado contra `main@461f386179a3c904f52793354998c29ff7979dd7`, após integração da PR #128. O head funcional `a02b76ae004aa48e3fe2efef01c33c31f1fd267f` passou o RPG Skill Tree CI `33244574779` e os workflows Foundation/Compendium associados. O pós-merge funcional `33244700777` / run #1341 fechou GREEN completo, incluindo Core, JUnit 5, NeoForge GameTests, validators, drift, build, JAR, dedicated-server smoke, upload do artefato e status final de sucesso. O fechamento formal foi mergeado como `845335058bbe8cd4f5e6f4c140bf4c8fd9f14063`, cujo CI pós-merge `33262871523` / run #1407 também terminou GREEN completo. Auditoria posterior confirmou que o `AttachmentType` canônico continua usando `CanonicalPlayerAttachmentSerializer`, o mesmo codec exercitado pelos testes de round-trip.
 
 Fechamento do Stage 02.01 e 02.02 integrado em `main@6afc351449bfb04a14f35c44aebb37c77802eec3`. O head sincronizado `62733fa01f4eab936df336af41c7f835ef16a42e` passou o RPG Skill Tree CI `33263146200` / run #1412 e os workflows Foundation/Compendium, incluindo NeoForge build, verificação do JAR e dedicated-server smoke. Os dois planos estão materializados na `main` como `✅-01-relevant-player-level.md` e `✅-02-territory-area-level.md`.
 
@@ -139,7 +161,7 @@ Schema/loaders, grafo/layout, compra/ranks, effects runtime e respec estão fech
 
 ### 04 — Classes, Masteries & Specializations
 
-As quatro subtrees dedicadas estão fechadas. No `04.03`, o runtime parcial de Mastery do Create `6.0.10` agora possui gate exato de versão, bootstrap opcional/fail-closed, allowlist auditada de 51 advancements e autoridade restrita às lanes base `kinetics`, `logistics` e `automation`, com discovery persistente e awards replay-safe. Esse progresso **não fecha o subplano nem altera 34/93**: class resolution, confluences, curvas/caps de masteries, as demais provider identities e specializations ainda possuem contratos finais pendentes.
+O único subplano formalmente fechado no STATUS permanece `✅-06-class-subtrees.md`; o redesign documental do PR #428 **não altera 34/93** e não deve ser confundido com runtime concluído. A arquitetura futura passa a usar Classe de Origem + Class Gateways em uma Tree 2 única, e a readiness audit classifica 23 classes/60 especializações-alvo. O runtime histórico/parcial de Mastery Create permanece evidência de implementação já existente, mas as novas regras de origem, custos, gateways, Specialist Points, migração das 25 definitions e Tree 3 class-centric continuam trabalho de implementação/validação.
 
 ### 05 — Combat & Magic Hooks
 
@@ -147,11 +169,11 @@ O pipeline canônico final por hit/projétil/magia ainda não está formalmente 
 
 ### 06 — Integrations
 
-Iron's, o bloco Goety/Malum/Eidolon, `✅-10-minecolonies-battle-mages.md` e `✅-11-minecolonies-economy.md` estão fechados. O Battle Mage usa cidadão/job/AI/inventário MineColonies com spellbook, `ISpellContainer`, `MagicData` e cast lifecycle reais do Iron's; friendly fire/world effects/unsupported providers falham fechado e casts autônomos não geram Mastery do jogador. A Economy V1 usa ledger virtual server-authoritative por colônia, `MINT`/`RETIRE`, persistência e replay protection bounded, `Q` derivado read-only, inflação/deflação bounded, snapshots/preflight e authority server-side; construção/upgrade monetário e UI custom do Town Hall permanecem fail-closed, e o binário exato MineColonies 1.1.1376 continua como pendência de evidência. Epic Fight, Ars, Identity2, Apothic, Create/AE2/Oritech e a matriz geral de integração ainda possuem trabalho pendente. A segurança core-only/ausência global já está fechada no Stage 00.03.
+Iron's, o bloco Goety/Malum/Eidolon, `✅-10-minecolonies-battle-mages.md` e `✅-11-minecolonies-economy.md` estão fechados. O Battle Mage usa cidadão/job/AI/inventário MineColonies com spellbook, `ISpellContainer`, `MagicData` e cast lifecycle reais do Iron's; friendly fire/world effects/unsupported providers falham fechado e casts autônomos não geram Mastery do jogador. A Economy V1 usa ledger virtual server-authoritative por colônia, `MINT`/`RETIRE`, persistência e replay protection bounded, `Q` derivado read-only, inflação/deflação bounded, snapshots/preflight e authority server-side. Economy V2 é arquitetura nova e não está implementada. A versão física atual do MineColonies é `1.1.1381`; portanto o contrato provider-present deve ser novamente validado antes de ampliar a Economy V1. Epic Fight, Ars e Create ainda possuem trabalho de integração/hardening; Identity/Identity2, AE2 e Oritech não são providers físicos atuais e não devem permanecer como requirements ativos. A segurança core-only/ausência global já está fechada no Stage 00.03.
 
 ### 07 — Data, Network & UI
 
-Loaders, packets e UI já existem, mas o acceptance final ainda exige reload cross-catalog, versionamento formal de protocolo/schemas e resolução completa de efeitos/requisitos/erros na UI.
+Loaders, packets e UI já existem, mas o acceptance final ainda exige reload cross-catalog, versionamento formal de protocolo/schemas e resolução completa de efeitos/requisitos/erros na UI. ADR 001 fecha a decisão de produto em favor de UI/authoring custom; o vertical slice class-oriented ainda precisa ser implementado e validado antes de escalar o grafo completo.
 
 ### 08 — Quest & Progression Hooks
 
@@ -177,7 +199,7 @@ A materialização do snapshot completo da instância do pack continua como tare
 
 ## Evidência de regressão atual
 
-O fechamento funcional mais recente é Stage 06.11, integrado pela PR #415. O head final sincronizado `55387a4a8246337fabf6697c9105ac9d10729998` fechou 24/24 workflows GREEN: RPG Skill Tree CI `34046743733` / run #3814, SonarQube Cloud `34046743697` / #1050, Full Pack Compatibility `34046743729` / #1002, Battle Mage Epic Compatibility `34046743728` / #370 e CodeQL `34046743731` / #847, além dos demais workflows associados. A implementação foi mergeada em `ce00a228535974043476528b9af47179ce665b21`. A evidência provider-present do binário exato MineColonies 1.1.1376 permanece aberta e explicitamente não foi promovida a gate satisfeito.
+O fechamento funcional mais recente continua sendo Stage 06.11, integrado pela PR #415. O head final sincronizado `55387a4a8246337fabf6697c9105ac9d10729998` fechou 24/24 workflows GREEN: RPG Skill Tree CI `34046743733` / run #3814, SonarQube Cloud `34046743697` / #1050, Full Pack Compatibility `34046743729` / #1002, Battle Mage Epic Compatibility `34046743728` / #370 e CodeQL `34046743731` / #847, além dos demais workflows associados. A implementação foi mergeada em `ce00a228535974043476528b9af47179ce665b21`. Essa evidência histórica **não valida** o redesign documental do PR #428 nem o MineColonies físico corrente `1.1.1381`.
 
 ## Convenção
 

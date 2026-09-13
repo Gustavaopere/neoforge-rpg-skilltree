@@ -8,151 +8,91 @@ When a decision is made, create an ADR in this directory and update this index w
 
 ## D001 — Tree engine: Passive Skill Tree versus permanent custom UI
 
-**Status:** OPEN  
-**Blocks:** Phase 6
+**Status:** ACCEPTED — custom RPG Skill Tree UI and authoring; see [ADR 001](001-tree-engine-custom-ui.md)  
+**Blocks:** no longer blocks Phase 6 engine choice; implementation vertical slice remains mandatory
 
-Question: should the project integrate/extend a compatible Passive Skill Tree implementation, or formalize the custom tree UI as the permanent engine?
-
-Decision method:
-
-- verify NeoForge 1.21.1 compatibility/API/license;
-- build one vertical slice: main tree → gateway → one subtree → purchase/respec → multiplayer sync;
-- compare integration cost, maintainability, performance and UX;
-- do not migrate all 512 nodes before the slice proves feasibility.
+The RPG Skill Tree keeps its own UI/authoring pipeline as a consumer of server-authoritative canonical rules. Pufferfish's Skills remains installed for its own consumers but is not progression authority for this project. Mine and Slash is an engineering reference only, clean-room.
 
 ---
 
 ## D002 — Provider baseline: required versus genuinely optional mods
 
-**Status:** OPEN  
-**Blocks:** Phase 3/7 provider availability rules
+**Status:** ACCEPTED — external providers are optional integrations unless an explicit baseline contract says otherwise; see [ADR 002](002-provider-baseline-optional-integrations.md)  
+**Blocks:** no design blocker; constrains Phase 3/7 provider validation
 
-The current code is mostly classloading-safe when providers are absent, but some nodes still target provider attributes. Define which providers are:
-
-- mandatory modpack baseline;
-- optional but supported;
-- experimental/planned.
-
-For optional providers, gameplay must degrade safely: unavailable nodes must be blocked/removed/fallback explicitly rather than remain purchasable no-ops.
+Provider-backed rules must fail closed or become explicitly unavailable when the provider/contract is absent. Presence in historical docs is not enough; the physical current modlist remains authority for installed versions.
 
 ---
 
 ## D003 — Progression domains: closed enum versus namespaced extensibility
 
-**Status:** OPEN  
-**Blocks:** ProgressionState v5 and addon API
+**Status:** ACCEPTED — closed internal macro taxonomy; see [ADR 003](003-progression-domains-closed-internal-taxonomy.md)  
+**Blocks:** no v5 schema blocker from domain extensibility
 
-Current `ProgressionDomain` is an enum. Decide whether domains are intentionally a closed macro taxonomy or whether addons/providers may define new domains through namespaced IDs.
-
-If external extensibility is a goal, migrate before v5 freezes the persisted contract.
+The 11 legacy `ProgressionDomain` values remain internal compatibility/analytics taxonomy. They are not the player-facing Tree 2 topology and are not addon-extensible persistent identities. Tree 2 is class-oriented and graph-driven.
 
 ---
 
 ## D004 — ProgressionState v5 exact schema
 
-**Status:** PARTIALLY ACCEPTED — allocation/economic facts defined by [ADR 004](004-progression-state-v5-allocation-economics.md); specialization/domain portions remain open  
-**Blocks:** Phase 1
+**Status:** PARTIALLY ACCEPTED — allocation economics are defined by [ADR 004](004-progression-state-v5-allocation-economics.md); specialization provenance is defined by [ADR 007](007-specialization-provenance-respec.md); domain extensibility is defined by [ADR 003](003-progression-domains-closed-internal-taxonomy.md)  
+**Blocks:** Phase 1 implementation details still need complete codec/migration materialization
 
-The accepted allocation slice persists exact rank-acquisition facts (historical paid cost, currency, source tree, provenance and rules version) in compact batches. Binary format version remains distinct from per-acquisition rules revision.
-
-Still open under D004:
-
-- specialization/unlock provenance representation (D007);
-- final relationship with `ProgressionDomain` extensibility (D003);
-- final migration metadata for the complete v5 state.
+Accepted facts now include historical acquisition batches, quarantine for unknown nodes, namespaced IDs, explicit specialization provenance and closed internal domains. Remaining work is implementation/migration mechanics, not an unresolved product taxonomy decision.
 
 ---
 
 ## D005 — Unknown/removed node policy
 
 **Status:** ACCEPTED FOR v5 NODE ALLOCATIONS — quarantine/retain, never silently delete; see [ADR 004](004-progression-state-v5-allocation-economics.md)  
-**Blocks:** Phase 1 implementation
+**Blocks:** no design blocker; Phase 1 implementation required
 
-Unknown or removed v5 node allocations retain their complete acquisition history in quarantine. They do not grant live effects/access while quarantined, but remain serializable/exportable/restorable by alias, migration or administrative reconciliation.
-
-Invariant: a missing definition must never prevent login, and unknown persisted progression must never be silently discarded.
+Unknown or removed v5 node allocations retain complete acquisition history in quarantine. They grant no live effects/access while quarantined but remain serializable/exportable/restorable by alias, migration or administrative reconciliation.
 
 ---
 
 ## D006 — Refund and economic migration policy
 
-**Status:** ACCEPTED FOR NEW v5 ACQUISITIONS — historical paid cost/LIFO batches; legacy inference remains explicit migration work; see [ADR 004](004-progression-state-v5-allocation-economics.md)  
-**Blocks:** Phase 1 implementation
+**Status:** ACCEPTED — exact historical paid cost for v5; legacy migration may infer only from an explicit documented basis and must never label inferred data as historical truth; see [ADR 006](006-legacy-allocation-migration-refunds.md) and [ADR 004](004-progression-state-v5-allocation-economics.md)  
+**Blocks:** no policy blocker; migration tables/fixtures remain implementation work
 
-New v5 purchases refund from persisted acquisition history rather than current datapack cost. Raw v1–v4 decode does not invent historical costs; legacy rank conversion is a separate rule-aware migration step and must label inferred economic facts as migration provenance.
-
-Still decide/implement:
-
-- the exact legacy v1–v4 inference/migration table used when historical cost is unavailable;
-- policy for max-rank reduction after migration;
-- administrative handling when no migration basis exists.
+New acquisitions refund from persisted historical batches in deterministic LIFO order. Legacy v1–v4 state is migrated by an explicit rule-aware process; missing evidence is quarantined/admin-reconciled rather than fabricated.
 
 ---
 
 ## D007 — Specialization provenance and respec semantics
 
-**Status:** OPEN  
-**Blocks:** Phase 1/5
+**Status:** ACCEPTED — see [ADR 007](007-specialization-provenance-respec.md)  
+**Blocks:** no design blocker; Phase 1/5 implementation required
 
-Current merged code explicitly preserves migrated `industrialist`, `logistician` and `prospector`, but generic provenance is not persisted.
-
-Define sources such as:
-
-- node-granted;
-- mastery-granted;
-- explicit player choice;
-- provider/external;
-- migration/legacy achievement.
-
-For each source, define whether respec can remove it and how reload/uninstall reconciliation behaves.
+Specialization/unlock facts carry explicit provenance such as player choice, node-granted, mastery/milestone-granted, provider/external and migration/legacy. Respec removal follows provenance instead of treating every specialization as equivalent.
 
 ---
 
 ## D008 — Morph hostility persistence
 
-**Status:** OPEN  
-**Blocks:** Morph hardening
+**Status:** ACCEPTED — form identity does not copy/persist arbitrary entity faction/AI/hostility authority; see [ADR 008](008-form-disposition-hostility.md)  
+**Blocks:** no design blocker; Form Engine implementation must follow explicit disposition rules
 
-Current hostility/disguise-compromise memory is session/runtime oriented. Decide whether hostility is:
-
-- intentionally temporary/session-local;
-- persisted across reconnect/server restart;
-- partially persisted with a bounded expiry.
-
-The gameplay design and save schema must agree.
+The first-party Form Engine reproduces only declared capabilities. Hostility/disguise behavior is derived from explicit form/disposition rules and bounded runtime state, not copied entity NBT/AI/faction state.
 
 ---
 
 ## D009 — Integration packaging
 
 **Status:** PROVISIONAL DIRECTION: single JAR with strict logical boundaries  
-**Blocks:** long-term Provider SPI
+**Blocks:** long-term Provider SPI only
 
-Current recommendation is to keep one JAR until real classpath/dependency conflicts justify companion modules/mods.
-
-Revisit only if:
-
-- compile/runtime provider conflicts become difficult to isolate;
-- distribution size/licensing requires separation;
-- provider version matrices become unmanageable in one artifact.
+Keep one JAR until real classpath/dependency, licensing or version-matrix pressure justifies companion modules/mods. Revisit only with concrete evidence.
 
 ---
 
 ## D010 — Create progression semantics
 
-**Status:** OPEN  
-**Blocks:** Create integration
+**Status:** ACCEPTED — semantic outcomes, never passive ticking; see [ADR 010](010-create-meaningful-progression.md)  
+**Blocks:** no design blocker; Create adapters still require exact-hook validation
 
-Define “meaningful use” for engineering mastery without passive/tick farming.
-
-Prefer semantic outcomes such as:
-
-- recipe/processing completion attributable to a player/system ownership context;
-- contraption milestone;
-- first/qualified automation outcome;
-- engineering discovery/achievement.
-
-Do not grant progression simply because a machine ticks or rotates.
+Engineering mastery may be granted from attributable processing/automation/contraption outcomes and explicit discoveries/milestones. Machine rotation or tick presence alone never grants progression.
 
 ---
 
@@ -161,31 +101,16 @@ Do not grant progression simply because a machine ticks or rotates.
 **Status:** OPEN  
 **Blocks:** Phase 3 balance contract
 
-Define:
-
-- global versus stat-specific caps;
-- stacking groups;
-- additive/multiplicative order;
-- provider precedence when multiple mods expose overlapping stats;
-- fallback/unavailable behavior;
-- whether caps are hard-coded safety limits or datapack definitions.
+Still define global versus stat-specific caps, stacking groups, additive/multiplicative order, provider precedence, fallback/unavailable behavior and whether hard safety caps live in code or datapack rules.
 
 ---
 
 ## D012 — Datagen authority: Python versus NeoForge providers
 
-**Status:** OPEN  
-**Blocks:** CI/datagen cleanup
+**Status:** ACCEPTED — Python remains canonical generator for the resource families it already owns; see [ADR 012](012-datagen-authority.md)  
+**Blocks:** no design blocker; implementation may migrate a family only through an explicit authority handoff
 
-Current committed content is primarily generated by Python scripts while `runData` exists without substantive NeoForge providers.
-
-Choose one of these explicit models:
-
-1. Python remains the canonical generator and NeoForge datagen is used only for non-overlapping resources;
-2. migrate selected resource families to `GatherDataEvent` providers and retire their Python generator;
-3. another documented split with no overlapping authority.
-
-Never maintain two independent generators for the same output.
+Never maintain two independent generators for the same output. NeoForge datagen may own non-overlapping resources or receive a family only after the Python authority for that family is deliberately retired.
 
 ---
 
@@ -194,29 +119,16 @@ Never maintain two independent generators for the same output.
 **Status:** OPEN / NOT URGENT  
 **Blocks:** external addon ecosystem, not core stabilization
 
-Possible surface:
-
-- read-only `EntityCapability` for progression query;
-- service/API registry;
-- both, with one canonical underlying view.
-
-Do not add a capability merely to duplicate the Data Attachment. Introduce an API only when a real consumer/use case exists.
+Introduce a public read/query API only when a real consumer exists. Do not add a capability merely to duplicate the canonical Data Attachment.
 
 ---
 
 ## D014 — Artificer taxonomy
 
-**Status:** OPEN  
-**Blocks:** final emergent-class taxonomy
+**Status:** ACCEPTED — Artificer is not a 24th top-level class; see [ADR 014](014-artificer-taxonomy.md)  
+**Blocks:** no class-taxonomy blocker
 
-Existing architecture/history contains inconsistent assumptions about Artificer. Do not activate or delete it merely because JSON exists. Resolve whether it is:
-
-- top-level emergent class;
-- specialization;
-- provider/gateway identity;
-- deprecated compatibility artifact.
-
-Use the intended progression design and node contribution model as authority.
+Artificer remains a compatibility/future specialization concept under technology/engineering unless a later explicit design reopens the taxonomy. Existing stray JSON/history must not activate a new class implicitly.
 
 ---
 
@@ -225,9 +137,18 @@ Use the intended progression design and node contribution model as authority.
 **Status:** ACCEPTED — see [ADR 015](015-persisted-resource-id-convention.md)  
 **Blocks:** no Foundation blocker; constrains future persistence/addon schemas
 
-New persisted or addon-facing extensible identities use the canonical full `namespace:path` form compatible with Minecraft `ResourceLocation` syntax. RPG-owned identities use `rpgskilltree`; authoritative provider identities preserve the provider namespace. Display names, translations, Java class names, JAR filenames and enum ordinals are not save/network identities.
+New persisted or addon-facing extensible identities use canonical full `namespace:path` form compatible with Minecraft `ResourceLocation` syntax. Existing legacy unnamespaced values remain explicit compatibility/migration inputs until their owning schema migrates them deliberately.
 
-Existing legacy unnamespaced values are not silently bulk-rewritten. They remain explicit schema-specific compatibility/migration inputs until their owning persistence plan migrates them with fixtures and reconciliation evidence.
+---
+
+## D016 — Origin Class, Class Gateways and Specialist Progression
+
+**Status:** ACCEPTED — see [ADR 016](016-origin-class-gateways-specialist-progression.md)  
+**Blocks:** no remaining class-topology/product blocker; Phase 1/2/5/6 implementation still required
+
+Origin Class is an explicit initial choice; Tree 2 is one connected graph; cross-region perks do not automatically grant formal class identity; additional classes require Class Gateways; there is no hard class-count cap or hard global Tree 2 allocation budget; Tree 3 is class-centric; Specialist Points are a separate provenance-aware currency.
+
+The current readiness catalog contains 23 class identities (16 origin-eligible, 7 confluence-only) and targets 60 Tree 3 identity specializations. Those counts are catalog/design facts, not evidence of implemented runtime content.
 
 ---
 

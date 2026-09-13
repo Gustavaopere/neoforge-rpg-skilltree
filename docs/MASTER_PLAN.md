@@ -9,9 +9,24 @@ This plan is the consolidated successor to the historical audits in `docs/audits
 
 ## Current baseline
 
-The code baseline audited with Minecraft skills was `87a8ef224af52e1a613bce892a5f3e6732691466`. Subsequent commits at the time this plan was created only added audit/canonical documentation.
+The original foundation audit used `87a8ef224af52e1a613bce892a5f3e6732691466`. The current architecture closure is reconciled against `main@594cbeea70cb3e16d698933f35391e05eddd7c60` and the physical modlist snapshot of **2026-09-08: 595 top-level entries, NeoForge 21.1.248**.
 
-Confirmed strengths:
+The class/tree redesign in PR #428 is documentation/architecture only. Runtime authority remains whatever is implemented and tested in `main`; this plan must not be read as evidence that the redesign is already live.
+
+Current architecture direction:
+
+- Tree 1 = permanent base attributes;
+- Tree 2 = one connected graph oriented around the 23 audited class identities, not 11 player-facing domain islands;
+- Tree 3 = class-centric specialization trees using separate Specialist Point provenance;
+- 16 classes may be selected as origin and 7 are acquired as confluence classes through gateways;
+- additional classes are formal identities granted by `Class Gateway` requirements, not inferred merely from buying nearby perks;
+- no hard cap on number of classes; topology, global progressive cost, permanent base-attribute requirements, Mastery and provider gates create the soft cap;
+- provider schools/disciplines remain mechanical/mastery concepts and do not automatically become character classes/specializations;
+- external providers are optional/fail-closed unless an explicit baseline contract says otherwise;
+- Druid/Metamorph use a first-party Form Engine plan because Identity/Identity2/Woodwalkers are absent from the current physical pack;
+- AE2/Oritech specialization definitions are legacy/retired while those providers remain absent from the physical modlist.
+
+Confirmed strengths already present in the historical/current foundation include:
 
 - Java-pure/immutable core foundations;
 - server-authoritative purchases/respec;
@@ -22,7 +37,7 @@ Confirmed strengths:
 - dedicated server core smoke passes;
 - optional integrations physically separated from core.
 
-Confirmed open blockers include 1.21.1 resource/attribute mismatches, unsafe node-removal reconciliation, client/server rules divergence, missing atomic rule snapshot, canonical stats not controlling runtime, refresh/full-sync hot paths, missing generic dedupe, and insufficient runtime test infrastructure.
+Confirmed foundation work still includes save migration, atomic rules authority, canonical stats, mutation/sync hardening, provider runtime validation and sufficient runtime test coverage. Accepted ADRs resolve product/architecture policy; they do not substitute for implementation evidence.
 
 ---
 
@@ -47,7 +62,7 @@ Make the repository reproducible and eliminate known defects that can cause curr
 
 - Move the boss entity tag from plural registry folder semantics to the correct 1.21 singular path.
 - Make Cataclysm tag entries optional (`required: false`) unless Cataclysm becomes a required dependency.
-- Fix all 34 post-1.21.1 vanilla attribute IDs in `node_effects/main.json` to the valid 1.21.1 targets.
+- Fix all post-1.21.1 vanilla attribute IDs in `node_effects/main.json` to valid 1.21.1 targets.
 - Make validators detect invalid registry/resource IDs for the target version where feasible.
 - Replace silent missing-attribute skips with explicit validation/unavailability diagnostics.
 
@@ -78,43 +93,38 @@ Make the repository reproducible and eliminate known defects that can cause curr
 
 ## Goal
 
-Make save evolution safe when nodes, ranks, costs, integrations or specialization sources change.
+Make save evolution safe when nodes, ranks, costs, class identities, providers or specialization sources change.
+
+## Accepted policy
+
+ADR 004, ADR 006, ADR 007 and ADR 015 now define the relevant persistence policy:
+
+- new v5 node acquisitions retain historical acquisition batches including exact paid cost, currency, source tree, provenance and rules version;
+- refunds use persisted historical facts in deterministic LIFO order;
+- unknown/removed allocations are quarantined rather than silently deleted;
+- legacy v1–v4 migration never fabricates unknown historical facts as truth;
+- specialization/unlock provenance is explicit;
+- new persisted/extensible identities are namespaced.
+
+These policies are **accepted design**, not yet evidence that the complete v5 codec/migration runtime is implemented.
 
 ## Required work
-
-Design `ProgressionState v5` around persisted facts rather than derived identity.
-
-An allocation should conceptually retain:
-
-```text
-Allocation {
-  nodeId
-  rank
-  paidCost
-  currencyId
-  sourceTreeId
-  provenance
-  rulesVersion
-}
-```
 
 Implement:
 
 - explicit v4→v5 migration;
 - idempotent migration matrix for all supported versions;
-- historical paid-cost refund instead of current-rule refund;
+- historical paid-cost refund using persisted allocation batches;
 - administrative reconciliation path for unknown/removed nodes independent of voluntary respec;
 - aliases/migrations for renamed IDs;
-- policy for ranks above new `maxRank`;
+- policy enforcement for ranks above new `maxRank`;
 - explicit specialization/unlock provenance;
 - separate semantic/economic schema version from binary disk format and network protocol;
 - bounds on persisted collections;
 - diagnostic recovery/quarantine/export path for corrupt state;
 - no silent automatic reset.
 
-## Important current nuance
-
-The merged foundation already preserves migrated Industrialist, Logistician and Prospector specialization IDs. Do not regress that behavior. General provenance is still missing and is the real remaining problem.
+The merged foundation already preserves migrated Industrialist, Logistician and Prospector specialization IDs. Do not regress that behavior. The remaining gap is runtime materialization of the generic provenance/migration model, not an unresolved provenance policy.
 
 ## Tests
 
@@ -126,13 +136,13 @@ The merged foundation already preserves migrated Industrialist, Logistician and 
 - Cost increase/decrease after purchase.
 - `maxRank` reduction.
 - Provider installed then removed.
-- External/chosen/node-granted specialization provenance.
+- External/chosen/node-granted/mastery-granted/migration specialization provenance.
 - Death/respawn/clone/End-return as applicable.
 - Truncated/corrupt/oversized state.
 
 ## Done when
 
-No supported valid save loses progression or prevents login because a definition disappeared. Economic refunds follow one documented, deterministic rule based on persisted acquisition facts.
+No supported valid save loses progression or prevents login because a definition disappeared. Economic refunds follow persisted acquisition facts or an explicit legacy migration basis; missing evidence is never invented.
 
 ---
 
@@ -151,9 +161,9 @@ Introduce an immutable `ProgressionRulesSnapshot` containing at least:
 - costs/currencies;
 - access requirements;
 - node effects;
-- contribution metadata;
-- tree architecture;
-- archetypes/classes;
+- contribution/affinity metadata;
+- tree architecture and class regions;
+- origin/gateway class definitions;
 - specializations/provenance policies;
 - mastery definitions;
 - gateways/tree unlocks;
@@ -181,7 +191,7 @@ If any stage fails, retain the previous known-good snapshot.
 Client work:
 
 - Replace gameplay-critical classpath `getResourceAsStream` catalogs with server-projected rules.
-- Keep local assets only for textures/icons/translations and genuinely non-authoritative layout presentation.
+- Keep local assets only for textures/icons/translations and genuinely non-authoritative presentation metadata.
 - Clear client progression/rule caches on disconnect.
 - Detect rule revision change.
 
@@ -217,10 +227,10 @@ Conceptual examples:
 
 ```text
 rpgskilltree:max_health
-  → minecraft:generic.max_health
+  → minecraft:<validated 1.21.1 max-health binding>
 
 rpgskilltree:spell_power
-  → irons_spellbooks:<supported binding>
+  → <validated provider binding>
 ```
 
 Each effect/binding must define or inherit:
@@ -243,6 +253,8 @@ Implement:
 - stable namespaced modifier IDs;
 - cleanup of removed/reloaded effects without unbounded historical bookkeeping;
 - provider absence behavior that prevents useless purchases.
+
+D011 remains the important open balance/precedence ADR for exact global/stat-specific caps and provider precedence. Do not freeze those semantics implicitly in implementation.
 
 ## Tests
 
@@ -281,7 +293,7 @@ Dirty reasons may include:
 
 - persistent state changed;
 - effects changed;
-- class resolution changed;
+- class/gateway state changed;
 - tree availability changed;
 - mastery-only display changed;
 - client rules revision changed.
@@ -318,91 +330,117 @@ A common mastery award is O(progress mutation) rather than O(all effects + full 
 
 ---
 
-# Phase 5 — Emergent class/mastery/gateway model becomes the live model
+# Phase 5 — Origin classes, class gateways, Mastery and specialist progression become live
 
 ## Goal
 
-Replace transitional legacy identity paths with the intended progression architecture without hard locks.
+Replace transitional emergent-class inference with the approved class-oriented architecture while preserving build freedom.
+
+## Canonical class contract
+
+The current design authority is `plans/04-classes-masteries-specializations/07-class-oriented-progression-overhaul.md` plus `08-class-specialization-readiness-audit.md`.
+
+- The player chooses one **Origin Class** from the 16 origin-eligible classes.
+- Origin determines the Tree 2 starting position and any audited origin signature/affinity rule.
+- Tree 2 remains one connected graph. Class regions are neighborhoods, not isolated subtrees.
+- Buying perks in another region does **not** automatically grant that class.
+- Formal additional class identity is granted only through the corresponding **Class Gateway** and requirements.
+- Seven audited class identities are confluence classes and are not selectable as origin.
+- There is no hardcoded maximum class count.
+- The soft cap is systemic: path distance, progressive global Tree 2 cost, permanent Tree 1 attribute requirements, Mastery, provider gates and opportunity cost.
+- Requirement checks such as Intelligence/Strength use permanent Tree 1 base investment, not equipment or temporary buffs.
+- Legacy 11 `ProgressionDomain` values remain internal compatibility/analytics taxonomy only; they do not dictate visible Tree 2 topology.
+- Provider schools/disciplines are requirements/masteries, not automatically class identities.
 
 ## Required work
 
-- Give purchased nodes canonical contribution metadata.
-- Build `InvestmentState` from live allocations.
-- Derive Primary Class and ordered Secondary Classes.
-- Preserve deterministic specificity/requirement/display-priority ordering.
-- Define hybrid behavior without irreversible hard locks.
-- Define tie rules.
-- Separate derived labels from persistent choices/achievements.
-- Use explicit specialization provenance.
-- Formalize mastery XP lanes/levels.
-- Separate general points from specialist/subtree currencies.
-- Define how mastery grants/unlocks specialist points or gateways.
-- Implement real gateway ownership and access.
-- Remove transitional hidden bridge surcharges only after physical buyable bridge corridors exist.
-- Migrate legacy class state deliberately.
+- Persist/migrate origin-class choice deliberately with namespaced identity.
+- Implement server-authoritative origin selection and start position.
+- Compile one connected Tree 2 graph with shared nodes represented by one gameplay ID.
+- Implement progressive global Tree 2 cost and origin-affinity pricing exactly from the effective rules snapshot.
+- Persist the amount actually paid for deterministic respec.
+- Implement permanent base-attribute requirements.
+- Implement `Class Gateway` ownership/access and explicit secondary-class grants.
+- Preserve multiple formal class identities without a hard class-count cap.
+- Formalize Mastery XP lanes/levels and provider-native semantic actions.
+- Implement Specialist Points as a separate, provenance-aware currency awarded only from declared mastery/milestone/quest/specialist sources.
+- Implement the audited class-centric Tree 3 catalog; provider schools/disciplines feed requirements but are not counted as character specializations.
+- Enforce specialization `choice_group` only where explicitly declared; do not invent a global specialization cap.
+- Migrate legacy emergent/hybrid class state deliberately rather than silently recomputing identity under the new rules.
 
 ## Tests
 
-- No-class player.
-- Primary/secondary resolution.
-- Ties.
-- Hybrid builds.
-- Respec changes derived class correctly.
-- Persistent choice survives intended respec.
-- Node-granted specialization disappears appropriately.
-- External/chosen specialization remains according to provenance.
-- Wrong currency rejected.
-- Gateway mastery + node + discovery combinations.
-- Legacy save migration.
+- origin selection and immutable/explicit respec policy;
+- every one of the 16 allowed origins starts at the intended region;
+- all 7 confluence-only classes cannot be chosen as origin;
+- cross-region perk purchase does not grant a class;
+- class gateway grants exactly the intended formal identity;
+- two/three/more class identities are possible when requirements are actually paid, with no hidden hard cap;
+- base-attribute gate ignores equipment/buffs;
+- shared node is charged/applied once;
+- dynamic-cost purchase and historical-cost refund;
+- provider-required gateway available/unavailable behavior;
+- chosen/node/mastery/provider/migration specialization provenance;
+- Specialist Points cannot be manufactured from general Character Level points;
+- legacy save migration.
 
 ## Done when
 
-One deterministic model explains class identity, specialization, mastery and tree access. There is no competing persisted class authority that can disagree with current investment.
+One server-authoritative model explains origin, additional formal classes, shared Tree 2 investment, Mastery, Specialist Points and Tree 3 access without competing class authorities.
 
 ---
 
-# Phase 6 — Final tree engine and UX
+# Phase 6 — Permanent custom tree engine and UX
 
 ## Goal
 
-Choose and stabilize the presentation engine after server rules are authoritative.
+Implement the custom tree presentation/authoring architecture accepted by ADR 001 after server rules are authoritative.
 
-## Decision gate
+## Accepted decision
 
-Evaluate a vertical slice for the available Passive Skill Tree port/API/license versus the custom UI. Do not migrate the full 512-node experience before the slice proves:
+The engine-choice gate is closed. The RPG Skill Tree owns its permanent UI/authoring pipeline and consumes the server-projected canonical rules snapshot. Pufferfish's Skills is not RPG progression authority. Mine and Slash remains clean-room engineering reference only.
 
-- purchase/respec;
-- rule revision sync;
-- one gateway;
-- one specialist subtree;
+The implementation **vertical slice is still mandatory** before scaling the complete graph. It must prove:
+
+- two neighboring class regions in one connected graph;
+- one shared gameplay node rendered once;
+- one Class Gateway;
+- one specialization gateway/Tree 3 transition;
+- progressive/dynamic cost and origin affinity;
+- permanent base-attribute requirement;
+- purchase/respec round trip;
+- server→client rule revision sync;
 - multiplayer/server authority;
-- compatible licensing/API stability for NeoForge 1.21.1.
+- pan/zoom, hitboxes and navigation.
 
-If custom UI remains:
+If the authoring source uses `grid -> parser -> graph`, the compiled canonical graph must still pass server-side validation before publication.
 
-- formalize it as permanent;
+## Required work
+
 - render server-projected rule view;
-- add gateway navigation/breadcrumbs;
-- show mastery/currencies/provider availability;
-- explain unmet requirements;
+- show origin/class identities, gateway state, Mastery, currencies and provider availability;
+- explain unmet requirements and actual current purchase cost;
+- show specialization navigation/breadcrumbs;
 - localize new text;
 - use normal key mapping consumption;
-- add viewport culling/spatial indexes only when profiling shows need.
+- profile 512/750/1000+ nodes before introducing advanced culling/spatial-index complexity;
+- ensure client layout metadata cannot create gameplay IDs or authority absent from the server snapshot.
 
 ## Tests
 
-- Client startup.
-- GUI scales/resolutions.
-- 512+ nodes.
-- Keyboard/mouse navigation.
-- Rule revision/reconnect.
-- Provider unavailable.
-- Gateway/subtree navigation.
-- Screenshot/manual regression where automation is impractical.
+- client startup;
+- GUI scales/resolutions;
+- 512/750/1000+ node profiling;
+- keyboard/mouse navigation;
+- rule revision/reconnect;
+- provider unavailable;
+- class gateway and specialist navigation;
+- shared-node rendering identity;
+- screenshot/manual regression where automation is impractical.
 
 ## Done when
 
-The UI never invents authoritative gameplay rules and a main-tree→gateway→subtree flow is complete and understandable.
+The custom UI never invents authoritative gameplay rules and the origin→Tree 2 region→Class Gateway→Tree 3 flow is complete and understandable.
 
 ---
 
@@ -411,6 +449,10 @@ The UI never invents authoritative gameplay rules and a main-tree→gateway→su
 ## Goal
 
 Turn current optional adapters into a sustainable integration architecture.
+
+## Accepted provider policy
+
+ADR 002 applies: external gameplay providers are optional integrations unless explicitly promoted to a baseline dependency. Missing or unsupported providers must fail closed or make their dependent content explicitly unavailable; they must not leave purchasable no-ops.
 
 ## Required work
 
@@ -425,15 +467,9 @@ Turn current optional adapters into a sustainable integration architecture.
 - Clean caches/maps on logout/reload.
 - Preserve provider-native semantics/resources.
 
-Prioritize existing integrations:
+Prioritize physically present/current integrations with verified exact-version contracts, including Iron's Spellbooks, Ars Nouveau, Epic Fight, Goety, Malum, Eidolon and Create. Druid/Metamorph transformation itself is first-party; creature/provider adapters for forms remain optional capabilities and must be validated independently.
 
-1. Iron's Spellbooks;
-2. Ars Nouveau;
-3. Epic Fight;
-4. Goety;
-5. Malum;
-6. Eidolon;
-7. Identity/morph.
+AE2, Oritech, Identity/Identity2 and Woodwalkers are not current physical-provider targets while absent from the modlist. Their legacy IDs may remain migration inputs but must not authorize current gameplay.
 
 ## Tests
 
@@ -457,29 +493,32 @@ Adding/removing one supported provider cannot break startup, save, rule snapshot
 
 ---
 
-# Phase 8 — Existing content completion, then new integrations
+# Phase 8 — Class-oriented content completion, Form Engine and current integrations
 
 ## Goal
 
-Only after the foundations are stable, turn structural definitions into complete gameplay.
+After foundations are stable, turn the audited structural definitions into complete gameplay without reviving removed-provider assumptions.
 
 Recommended order:
 
-1. complete navigable/effective Iron's, Ars and Epic Fight progression;
-2. complete/harden Goety, Malum, Eidolon and Identity content;
-3. implement Create with meaningful outcome-based progression, not machine-tick XP;
-4. implement AE2/Oritech/other technology providers only after verified 1.21.1 hooks exist;
-5. expand Druid/Metamorph and other RPG systems;
-6. add broader content/balance passes.
+1. implement the class-oriented Tree 2 vertical slice and its v5/save/rules dependencies;
+2. complete navigable/effective Iron's, Ars and Epic Fight disciplines as shared provider-native Mastery inputs;
+3. complete/harden Goety, Malum, Eidolon and other physically present occult/magic adapters;
+4. implement Create progression using ADR 010 semantic outcomes, never machine ticks/rotation presence;
+5. implement the first-party Form Engine for Druid/Metamorph, then add creature-provider adapters only after exact-version validation;
+6. materialize the class-centric Tree 3 specialization catalog and Specialist Point sources;
+7. migrate/retire the 25 historical specialization definitions according to the readiness audit;
+8. keep AE2/Oritech/Identity/Woodwalkers content unavailable/legacy while those providers remain absent; reintroduction requires a fresh physical-modlist/API audit, not silent substitution;
+9. expand broader content/balance only after real runtime evidence exists.
 
-A provider/tree is not “implemented” merely because JSONs exist. It must have:
+A provider/tree/specialization is not “implemented” merely because JSON or a plan exists. It must have:
 
-- reachable gateway;
-- earnable mastery/progression source;
-- real effects;
+- reachable gateway/path;
+- earnable mastery/progression source where required;
+- real effects/mechanics;
 - persistence/migration policy;
 - client presentation;
-- provider-present runtime tests;
+- provider-present runtime tests where applicable;
 - provider-absent safe behavior.
 
 ---
@@ -497,7 +536,7 @@ Produce a reproducible, migratable, supportable release.
 - Version/changelog alignment.
 - Checksums/artifacts.
 - Save backup/migration guide.
-- Supported provider matrix.
+- Supported provider matrix tied to physical versions.
 - Client + dedicated server acceptance pass.
 - Multiplayer soak/playtest.
 - Performance profiling on realistic modpack.
@@ -513,19 +552,17 @@ Produce a reproducible, migratable, supportable release.
 
 ---
 
-# Decisions that block later phases
+# Architecture decisions still open
 
-See [`docs/decisions/README.md`](decisions/README.md). The most important unresolved decisions are:
+See [`docs/decisions/README.md`](decisions/README.md).
 
-- Passive Skill Tree versus permanent custom UI;
-- provider baseline: required versus optional;
-- `ProgressionDomain` closed enum versus namespaced extensibility;
-- exact v5 schema and unknown-node policy;
-- specialization provenance and respec semantics;
-- morph hostility persistence;
-- Python versus NeoForge datagen authority;
-- future public API/capability strategy;
-- canonical stat global caps;
-- Create “meaningful action” semantics.
+The architecture closure in PR #428 accepts D001, D002, D003, D006, D007, D008, D010, D012 and D014. D004/D005/D015 already have accepted persistence foundations. Do not reopen those implicitly during implementation; use a new/revised ADR when evidence requires a deliberate change.
 
-Do not guess these during implementation. Record an ADR first.
+The material open decisions are:
+
+- **D011 — canonical stat global caps and provider precedence**: blocks the final Phase 3 balance contract;
+- **D013 — public integration API for other mods**: intentionally not urgent and does not block core stabilization without a real consumer.
+
+D009 remains a provisional one-JAR packaging direction and is revisited only if concrete classpath/licensing/version-matrix evidence requires it.
+
+Do not guess unresolved semantics during implementation. Record the decision explicitly before freezing a contract.
