@@ -141,6 +141,17 @@ New persisted or addon-facing extensible identities use canonical full `namespac
 
 ---
 
+## D016 — Origin Class, Class Gateways and Specialist Progression
+
+**Status:** ACCEPTED — see [ADR 016](016-origin-class-gateways-specialist-progression.md)  
+**Blocks:** no remaining class-topology/product blocker; Phase 1/2/5/6 implementation still required
+
+Origin Class is an explicit initial choice; Tree 2 is one connected graph; cross-region perks do not automatically grant formal class identity; additional classes require Class Gateways; there is no hard class-count cap or hard global Tree 2 allocation budget; Tree 3 is class-centric; Specialist Points are a separate provenance-aware currency.
+
+The current readiness catalog contains 23 class identities (16 origin-eligible, 7 confluence-only) and targets 60 Tree 3 identity specializations. Those counts are catalog/design facts, not evidence of implemented runtime content.
+
+---
+
 # ADR format
 
 When resolving a decision, create a file such as:
