@@ -1,4 +1,4 @@
-# Epic Fight x Iron's Spells add-ons compat ✅
+# Epic Fight x Iron's Spells add-ons compat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3d469db9f0db8108b912efaae3dcbfd8
