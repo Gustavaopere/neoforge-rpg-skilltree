@@ -40,6 +40,8 @@ Linhas relativamente verticais e limpas; camadas de roupa funcionais; poucos ele
 
 ## Aparência
 - idade aparente: início/meados dos 40;
+- altura/proporção percebida: **PENDENTE DE APROVAÇÃO VISUAL**; manter hipótese humana padrão até o concept justificar algo diferente;
+- tom de pele: **PENDENTE DE APROVAÇÃO VISUAL**; não inferir de cargo, instituição, prática arcana, moralidade ou paleta de roupa;
 - traços angulares;
 - expressão concentrada;
 - olheiras discretas;
@@ -99,6 +101,8 @@ Asset project-owned. Referências externas, se usadas em look-dev, servem apenas
 - QA visual in-game antes de marcar `FINAL`.
 
 ## Pendências
+- altura/proporção percebida aprovada;
+- tom de pele aprovado;
 - resolução/texel density final;
 - portrait/concept aprovado;
 - skin/texture final;
