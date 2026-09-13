@@ -49,11 +49,19 @@ Valida a estrutura editorial dos arquivos `DLG-####` dentro de `historia/12-dial
 
 ### Uso
 
+Saída padrão, spoiler-safe e agregada:
+
 ```bash
 python historia/tools/validate_dialogues.py
 ```
 
-O lint é estrutural. Ele não avalia qualidade literária e não obriga todos os diálogos a usarem exatamente os mesmos títulos de seção.
+Depuração editorial com seção/detalhe, caminho e linha:
+
+```bash
+python historia/tools/validate_dialogues.py --reveal
+```
+
+O lint é estrutural. Ele não avalia qualidade literária e não obriga todos os diálogos a usarem exatamente os mesmos títulos de seção. A saída padrão agrega apenas códigos e quantidades para não expor material narrativo por acidente.
 
 ## `story_inventory.py`
 
@@ -83,7 +91,7 @@ Saída JSON para consumo por ferramentas/agentes:
 python historia/tools/story_inventory.py --format json
 ```
 
-O inventário é read-only: não altera lore, IDs nem estado editorial.
+O inventário é read-only, mas é uma ferramenta editorial deliberadamente reveladora: pode listar IDs, títulos, estados e referências. Não deve ser usado como saída player-facing nem em logs públicos quando o conteúdo ainda tiver spoilers.
 
 ## Testes
 
@@ -91,7 +99,7 @@ O inventário é read-only: não altera lore, IDs nem estado editorial.
 python -m unittest discover -s historia/tools/tests -v
 ```
 
-Os três módulos possuem **25 testes unitários** no estado atual: 10 para IDs/referências e política de saída, 7 para diálogos e 8 para inventário. As ferramentas usam somente a biblioteca padrão do Python e não requerem API, conta, assinatura ou acesso de rede.
+Os três módulos possuem **27 testes unitários** no estado atual: 10 para IDs/referências e política de saída, 9 para diálogos e política de saída, e 8 para inventário. As ferramentas usam somente a biblioteca padrão do Python e não requerem API, conta, assinatura ou acesso de rede.
 
 ## Limites
 
