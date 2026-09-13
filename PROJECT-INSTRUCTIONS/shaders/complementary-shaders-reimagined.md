@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `ComplementaryReimagined_r5.9.zip`
 - **Tipo de conteúdo:** Shader
 - **Versão 1.21.1:** r5.9
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual
