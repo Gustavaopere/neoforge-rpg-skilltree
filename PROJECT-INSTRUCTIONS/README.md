@@ -14,17 +14,18 @@ Portanto, não iniciar aqui novas capabilities genéricas de scaffolding, valida
 
 Leia nesta ordem:
 
-1. `engineering/AGENT-WORKFLOW.md`;
-2. `../../docs/MASTER_PLAN.md` a partir de `engineering/AGENT-WORKFLOW.md`;
-3. `engineering/TESTING.md`;
-4. a modlist física mais recente;
+1. [`../docs/RUNTIME-OPERATIONS.md`](../docs/RUNTIME-OPERATIONS.md);
+2. [`../docs/MASTER_PLAN.md`](../docs/MASTER_PLAN.md);
+3. [`../docs/TESTING.md`](../docs/TESTING.md);
+4. a modlist/JAR evidence física exata mais recente do ambiente alvo;
 5. o estado atual do GitHub, incluindo `main`, branches e PRs concorrentes.
 
-Para skills, tooling ou contratos compartilhados, use os entrypoints canônicos da Factory:
+Para skills, tooling, catálogos ou contratos compartilhados, use os entrypoints canônicos da Factory:
 
 - [`skills/ROUTER.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/ROUTER.md)
 - [`skills/VERSION-AUTHORITY.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/VERSION-AUTHORITY.md)
 - [`skills/USER-GUIDED-WORKFLOW.md`](https://github.com/Gustavaopere/minecraft-mod-factory/blob/main/skills/USER-GUIDED-WORKFLOW.md)
+- [`engineering/catalog/physical-modlist/`](https://github.com/Gustavaopere/minecraft-mod-factory/tree/main/engineering/catalog/physical-modlist)
 
 ## Autoridade operacional dos perks
 
@@ -43,11 +44,13 @@ Para execução operacional de Chat 1/2/3, esses arquivos consolidados continuam
 
 ## Estrutura de suporte
 
-- `engineering/` contém o contrato operacional e a estratégia de testes/diagnósticos do runtime RPG, o routing atual, proveniência compacta da antiga fase de control plane e a evidência física da modlist. A infraestrutura genérica I1/I3–I6 migrada não permanece duplicada na árvore ativa.
-- `engineering/catalog/physical-modlist/` preserva a evidência física do ambiente RPG/modpack. O importer, teste, fixture e workflow I2 associados permanecem locais exclusivamente para manutenção/validação dessa evidência.
+- `docs/RUNTIME-OPERATIONS.md` contém o contrato operacional do runtime RPG.
+- `docs/TESTING.md` contém a estratégia de testes e reprodução do RPG.
+- `docs/DIAGNOSTICS.md` contém o contrato de diagnósticos operacionais do RPG.
 - `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos do RPG.
-- `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
-- A antiga árvore `skills/` foi removida após migração integral e validação na Minecraft Mod Factory. Sua proveniência e classificações permanecem registradas na Factory.
+- `modlist/` preserva material de auditoria/delta editorial da modlist já consolidado no repositório.
+- A antiga árvore `skills/` foi removida após migração integral e validação na Minecraft Mod Factory.
+- A antiga árvore `engineering/` foi removida depois que a evidência física I2, seu catálogo e seus gates compartilhados foram migrados/reconciliados e validados na Minecraft Mod Factory.
 
 Material histórico removido da árvore ativa continua recuperável pelo histórico Git e pela matriz/status de migração da Factory. Ele não é authority para novas capabilities compartilhadas.
 
@@ -72,4 +75,4 @@ Os comentários `ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/...` presentes 
 
 Novas atualizações editoriais dos guias detalhados do RPG devem ocorrer em `PROJECT-INSTRUCTIONS/guides/`. Quando uma mudança precisar ser refletida nos quatro arquivos consolidados, ela deve ser reconciliada conscientemente e validada como novo snapshot; não recriar a árvore legada em `plans/03-skill-tree-perks/guides/`.
 
-Novas skills, contracts, validators, templates, tooling e automações **genéricos de produção de mods** pertencem à Minecraft Mod Factory. Este repositório só deve receber alterações desse tipo quando forem necessárias para o próprio runtime RPG ou para preservar/migrar trabalho histórico.
+Novas skills, contracts, validators, templates, tooling, catálogos e automações **genéricos de produção de mods** pertencem à Minecraft Mod Factory. Este repositório só deve receber alterações desse tipo quando forem necessárias para o próprio runtime RPG ou para preservar/migrar trabalho histórico.

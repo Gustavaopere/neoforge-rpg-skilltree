@@ -1,8 +1,8 @@
-# Agent Workflow — RPG Skill Tree
+# Runtime Operations — RPG Skill Tree
 
 Status: **canonical working contract for AI agents and contributors operating in this repository.**
 
-The root [`AGENTS.md`](../../AGENTS.md) is intentionally retained only as the discovery/bootstrap entrypoint. This file governs work on the RPG runtime.
+The root [`AGENTS.md`](../AGENTS.md) is intentionally retained as the discovery/bootstrap entrypoint. This file governs work on the RPG runtime.
 
 ## Repository authority
 
@@ -66,14 +66,14 @@ Do not mark a gate complete until the relevant test, validator, build, CI job, r
 
 For RPG runtime architecture, read as applicable:
 
-- [`../../docs/MASTER_PLAN.md`](../../docs/MASTER_PLAN.md)
+- [`MASTER_PLAN.md`](MASTER_PLAN.md)
 - [`TESTING.md`](TESTING.md)
-- [`../../docs/decisions/README.md`](../../docs/decisions/README.md)
-- [`../../docs/audits/2026-08-23-consolidated/README.md`](../../docs/audits/2026-08-23-consolidated/README.md)
+- [`decisions/README.md`](decisions/README.md)
+- [`audits/2026-08-23-consolidated/README.md`](audits/2026-08-23-consolidated/README.md)
 
 `docs/audits/` is historical evidence. Historical recommendations are not automatically current requirements; revalidate against current code and tests.
 
-For common engineering/art infrastructure, use the canonical plans and STATUS in the Minecraft Mod Factory instead of the historical shared-control-plane material retained here.
+For common engineering/art infrastructure, use the canonical plans and STATUS in the Minecraft Mod Factory instead of historical shared-control-plane material from this repository.
 
 ## Permanent RPG runtime invariants
 
@@ -126,7 +126,7 @@ For RPG bug fixes and runtime changes:
 9. Run client smoke/manual UI verification for client presentation changes.
 10. Run provider-present/provider-absent tests for optional integrations.
 11. Require deterministic generated output and a clean diff when generators are versioned.
-12. Update `docs/MASTER_PLAN.md`, ADRs or migration docs if the change resolves or changes an RPG architectural decision.
+12. Update `MASTER_PLAN.md`, ADRs or migration docs if the change resolves or changes an RPG architectural decision.
 
 A compile-only success is not sufficient evidence for gameplay correctness.
 
@@ -153,4 +153,4 @@ For every RPG provider integration:
 
 ## Before expanding RPG content
 
-Large-scale skill/subtree expansion should wait until the runtime foundations required by that content are objectively green. Use [`../../docs/MASTER_PLAN.md`](../../docs/MASTER_PLAN.md) and current tests/CI to determine the actual frontier rather than relying on historical phase assumptions.
+Large-scale skill/subtree expansion should wait until the runtime foundations required by that content are objectively green. Use [`MASTER_PLAN.md`](MASTER_PLAN.md) and current tests/CI to determine the actual frontier rather than relying on historical phase assumptions.
