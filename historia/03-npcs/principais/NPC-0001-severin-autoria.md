@@ -1,7 +1,10 @@
 # Ficha de autoria — NPC-0001 — Severin
 
 ## Estado editorial
-RASCUNHO DE AUTORIA / não altera sozinho os invariantes canônicos de `NPC-0001-severin.md`.
+RASCUNHO
+
+## Escopo
+Ficha complementar de autoria. Não altera sozinha os invariantes canônicos de `NPC-0001-severin.md` e não cria eventos canônicos.
 
 ## Objetivo
 Fornecer uma referência consistente de voz e aparência para escrever Severin, gerar concepts e produzir uma futura skin sem transformar detalhes de plot em exposição pública.
