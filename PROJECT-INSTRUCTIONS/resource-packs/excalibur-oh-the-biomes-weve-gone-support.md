@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur_BWG_0.1_1.21.1.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 0.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat, Worldgen
@@ -69,6 +69,6 @@ Riscos principais: mistura de estilo por wood types ausentes; asset path novo se
 Nenhum teste foi marcado como aprovado.
 
 ## 8. Evidências e limite
-A build oficial 0.1 para 1.21.1 confirma o caráter WIP, cobertura de blocos/ícones e ausência de wood types. A modlist física confirma BWG `2.6.0`. O ZIP não foi inventariado internamente; contagem exata de assets permanece não confirmada.
+A build oficial 0.1 para 1.21.1 confirma o caráter WIP, cobertura de blocos/ícones e ausência de wood types. O ZIP não foi inventariado internamente; contagem exata de assets permanece não confirmada.
 
 > Boundary canônico: **BWG controla worldgen e conteúdo; este support pack controla apenas os assets visuais que efetivamente substitui**.
