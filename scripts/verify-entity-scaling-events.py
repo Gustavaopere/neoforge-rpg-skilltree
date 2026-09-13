@@ -10,6 +10,8 @@ DECISION_FACTORY = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/En
 DECISION_INITIALIZER = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingDecisionInitializer.java"
 CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityScalingInitializerCatalog.java"
 EFFECTIVE_STATS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityEffectiveStatsRuntime.java"
+BEHAVIOR_RUNTIME = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityBehaviorRuntime.java"
+BEHAVIOR_CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityBehaviorRuntimeCatalog.java"
 REWARD_EVENTS = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/EntityRewardEvents.java"
 REWARD_CATALOG = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityRewardScalingPolicyCatalog.java"
 REWARD_EXPERIENCE = ROOT / "src/main/java/dev/gustavopere/rpgskilltree/runtime/EntityRewardExperienceRuntime.java"
@@ -41,6 +43,8 @@ decision_factory = read_required(DECISION_FACTORY)
 decision_initializer = read_required(DECISION_INITIALIZER)
 catalog = read_required(CATALOG)
 effective_stats = read_required(EFFECTIVE_STATS)
+behavior_runtime = read_required(BEHAVIOR_RUNTIME)
+behavior_catalog = read_required(BEHAVIOR_CATALOG)
 reward_events = read_required(REWARD_EVENTS)
 reward_catalog = read_required(REWARD_CATALOG)
 reward_experience = read_required(REWARD_EXPERIENCE)
@@ -52,6 +56,8 @@ decision_factory_location = str(DECISION_FACTORY.relative_to(ROOT))
 decision_initializer_location = str(DECISION_INITIALIZER.relative_to(ROOT))
 catalog_location = str(CATALOG.relative_to(ROOT))
 effective_stats_location = str(EFFECTIVE_STATS.relative_to(ROOT))
+behavior_runtime_location = str(BEHAVIOR_RUNTIME.relative_to(ROOT))
+behavior_catalog_location = str(BEHAVIOR_CATALOG.relative_to(ROOT))
 reward_events_location = str(REWARD_EVENTS.relative_to(ROOT))
 reward_catalog_location = str(REWARD_CATALOG.relative_to(ROOT))
 reward_experience_location = str(REWARD_EXPERIENCE.relative_to(ROOT))
@@ -74,6 +80,13 @@ require(effective_stats, "AttributeModifier.Operation.ADD_VALUE", effective_stat
 require(effective_stats, '"rpgskilltree"', effective_stats_location)
 require(effective_stats, '"entity_scaling/" + statKey.path()', effective_stats_location)
 
+require(behavior_runtime, "EntityBehaviorRuntimeResult reconcile(", behavior_runtime_location)
+require(behavior_runtime, "state.behaviors().behaviors()", behavior_runtime_location)
+require(behavior_runtime, "EntityBehaviorRuntimeCatalog.current(behavior)", behavior_runtime_location)
+require(behavior_catalog, "install(Map<EntityBehaviorKey, EntityBehaviorReconciler> reconcilers)", behavior_catalog_location)
+require(behavior_catalog, "Optional<EntityBehaviorReconciler> current(EntityBehaviorKey key)", behavior_catalog_location)
+require(behavior_catalog, "clear()", behavior_catalog_location)
+
 require(events, "@SubscribeEvent", events_location)
 require(events, "EntityJoinLevelEvent", events_location)
 require(events, "event.getLevel() instanceof ServerLevel", events_location)
@@ -81,9 +94,11 @@ require(events, "event.getEntity() instanceof LivingEntity", events_location)
 require(events, "instanceof Player", events_location)
 require(events, "EntityScalingRuntime.current", events_location)
 require(events, "EntityEffectiveStatsRuntime.refresh(entity, existing.orElseThrow())", events_location)
+require(events, "EntityBehaviorRuntime.reconcile(serverLevel, entity, existing.orElseThrow())", events_location)
 require(events, "EntityScalingInitializerCatalog.current", events_location)
 require(events, "EntityScalingRuntime.getOrInitialize", events_location)
 require(events, "EntityEffectiveStatsRuntime.refresh(entity, initialized)", events_location)
+require(events, "EntityBehaviorRuntime.reconcile(serverLevel, entity, initialized)", events_location)
 
 # The join event may fire before the underlying chunk reaches FULL. Keep world threat/player scans
 # outside this adapter and behind the explicitly installed initializer contract.
@@ -116,20 +131,32 @@ require(mod, "NeoForge.EVENT_BUS.register(EntityRewardEvents.class);", mod_locat
 
 persisted = events.find("EntityScalingRuntime.current")
 persisted_refresh = events.find("EntityEffectiveStatsRuntime.refresh(entity, existing.orElseThrow())")
+persisted_behavior = events.find("EntityBehaviorRuntime.reconcile(serverLevel, entity, existing.orElseThrow())")
 catalog_lookup = events.find("EntityScalingInitializerCatalog.current")
 initialize = events.find("EntityScalingRuntime.getOrInitialize")
 initialized_refresh = events.find("EntityEffectiveStatsRuntime.refresh(entity, initialized)")
+initialized_behavior = events.find("EntityBehaviorRuntime.reconcile(serverLevel, entity, initialized)")
 if (
     persisted < 0
     or persisted_refresh < 0
+    or persisted_behavior < 0
     or catalog_lookup < 0
     or initialize < 0
     or initialized_refresh < 0
-    or not (persisted < persisted_refresh < catalog_lookup < initialize < initialized_refresh)
+    or initialized_behavior < 0
+    or not (
+        persisted
+        < persisted_refresh
+        < persisted_behavior
+        < catalog_lookup
+        < initialize
+        < initialized_refresh
+        < initialized_behavior
+    )
 ):
     print(
-        f"ERROR: {events_location}: persisted state must be reapplied before initializer lookup, "
-        "and newly initialized state must be applied after persistence"
+        f"ERROR: {events_location}: persisted state must replay Effective Stats and behaviors before initializer lookup, "
+        "and newly initialized state must replay both only after persistence"
     )
     raise SystemExit(1)
 
@@ -144,7 +171,7 @@ if reward_policy < 0 or reward_state < 0 or reward_apply < 0 or not (reward_poli
 
 print(
     "Entity scaling event validation: PASS "
-    "(server-only join boundary + persisted Effective Stats reapplication + canonical initialization + "
+    "(server-only join boundary + persisted Effective Stats/behavior reconciliation + canonical initialization + "
     "persisted-state-only XP reward adapter verified)"
 )
 

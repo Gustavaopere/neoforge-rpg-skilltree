@@ -1,6 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.events;
 
 import dev.gustavopere.rpgskilltree.core.EntityScalingState;
+import dev.gustavopere.rpgskilltree.runtime.EntityBehaviorRuntime;
 import dev.gustavopere.rpgskilltree.runtime.EntityEffectiveStatsRuntime;
 import dev.gustavopere.rpgskilltree.runtime.EntityScalingInitializer;
 import dev.gustavopere.rpgskilltree.runtime.EntityScalingInitializerCatalog;
@@ -26,6 +27,7 @@ public final class EntityScalingEvents {
         Optional<EntityScalingState> existing = EntityScalingRuntime.current(entity);
         if (existing.isPresent()) {
             EntityEffectiveStatsRuntime.refresh(entity, existing.orElseThrow());
+            EntityBehaviorRuntime.reconcile(serverLevel, entity, existing.orElseThrow());
             return;
         }
 
@@ -39,5 +41,6 @@ public final class EntityScalingEvents {
             () -> initializer.orElseThrow().initialize(serverLevel, entity)
         );
         EntityEffectiveStatsRuntime.refresh(entity, initialized);
+        EntityBehaviorRuntime.reconcile(serverLevel, entity, initialized);
     }
 }
