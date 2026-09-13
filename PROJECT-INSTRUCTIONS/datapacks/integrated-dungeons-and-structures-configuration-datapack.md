@@ -1,4 +1,4 @@
-# Integrated Dungeons and Structures- Configuration Datapack ✅
+# Integrated Dungeons and Structures- Configuration Datapack
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3d469db9f0db81369b40f7f226f43e5f
