@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur Tom's Simple Storage 1.3.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 1.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat, Armazenamento
@@ -75,6 +75,6 @@ Pode colidir com outros GUI packs e retextures de storage/terminals. A prioridad
 Nenhum teste foi marcado como aprovado.
 
 ## 9. Evidências e limite
-CurseForge oficial confirma v1.3 e declara redesign de todos os items/blocks e GUIs. A modlist física confirma Tom's Simple Storage `2.4.2`. A compatibilidade integral com cada asset dessa build permanece sujeita a QA runtime.
+CurseForge oficial confirma v1.3 e declara redesign de todos os items/blocks e GUIs. A compatibilidade integral com cada asset da build física 2.4.2 permanece sujeita a QA runtime.
 
 > Boundary canônico: **Tom's controla armazenamento e automação; o support pack controla apenas a apresentação visual**.
