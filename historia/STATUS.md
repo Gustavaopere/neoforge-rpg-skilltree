@@ -13,9 +13,9 @@
 - Stack de autoria com política de custo zero: **REGISTRADO**
 - Área e template de diálogos versionados: **CRIADOS**
 - Validador local de IDs/referências: **CRIADO / TESTADO (10 testes) / SAÍDA SPOILER-SAFE POR PADRÃO**
-- Lint estrutural de diálogos: **CRIADO / TESTADO (7 testes)**
-- Inventário local de registros/IDs/referências: **CRIADO / TESTADO (8 testes)**
-- Suíte conjunta do tooling editorial: **TESTADA (25 testes)**
+- Lint estrutural de diálogos: **CRIADO / TESTADO (9 testes) / SAÍDA SPOILER-SAFE POR PADRÃO**
+- Inventário local de registros/IDs/referências: **CRIADO / TESTADO (8 testes) / USO EDITORIAL DELIBERADAMENTE REVELADOR**
+- Suíte conjunta do tooling editorial: **TESTADA (27 testes)**
 - Contrato editorial de relações/memória/continuidade: **PROPOSTO NO PR DO STACK DE AUTORIA**
 - Template auxiliar de relação multidimensional: **CRIADO**
 - Pipeline visual de NPCs alinhado à Minecraft Mod Factory: **REGISTRADO**
@@ -39,13 +39,14 @@ Ao adicionar conteúdo:
 4. não colapsar affection/trust/respect/fear/dependency/ideological alignment em uma única reputação;
 5. preservar o modo sem spoilers no chat e nas saídas padrão das ferramentas;
 6. usar `--reveal` apenas para depuração editorial quando a ferramenta oferecer esse modo;
-7. nunca transformar plano técnico em fato narrativo sem decisão editorial;
-8. nunca inventar mecânica de provider para justificar história;
-9. nunca preencher lacunas de NPC/lore por suposição quando a authority necessária estiver ausente;
-10. consultar Grimoire antes de duplicar lore central quando a conexão estiver disponível;
-11. usar Compêndio/runtime antes de fixar worldgen/bioma/estrutura/dimensão;
-12. executar os validadores estruturais aplicáveis antes de consolidar grandes lotes;
-13. atualizar este arquivo apenas com progresso estrutural, sem revelar spoilers.
+7. tratar `story_inventory.py` como ferramenta editorial reveladora, nunca como saída player-facing;
+8. nunca transformar plano técnico em fato narrativo sem decisão editorial;
+9. nunca inventar mecânica de provider para justificar história;
+10. nunca preencher lacunas de NPC/lore por suposição quando a authority necessária estiver ausente;
+11. consultar Grimoire antes de duplicar lore central quando a conexão estiver disponível;
+12. usar Compêndio/runtime antes de fixar worldgen/bioma/estrutura/dimensão;
+13. executar os validadores estruturais aplicáveis antes de consolidar grandes lotes;
+14. atualizar este arquivo apenas com progresso estrutural, sem revelar spoilers.
 
 ## Próximos blocos editoriais
 
