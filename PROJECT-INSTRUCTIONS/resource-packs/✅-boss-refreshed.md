@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `boss-refreshed-v2-1.19-1.21.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** v2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Mobs

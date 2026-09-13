@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur - Better ModList Mod Menu Compat v3.0.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 3.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Compat, QoL
