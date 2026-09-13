@@ -1,4 +1,4 @@
-# NPC-0003 — Iren Valmor — Ficha de autoria
+# Ficha de autoria — NPC-0003 — Iren Valmor
 
 ## Estado editorial
 RASCUNHO DE AUTORIA / NÃO ADICIONA EVENTOS CANÔNICOS.
@@ -45,11 +45,11 @@ Estas linhas servem para preservar voz e não representam eventos canônicos.
 - variações permitidas: versão formal de audiência, versão de campo e versão sem casaco externo.
 
 ## Brief de skin
-A skin deve transmitir "investigador arcano institucional" antes de "feiticeiro de combate". O contraste principal fica entre tecido azul-acinzentado e couro escuro; detalhes de latão devem ser poucos e legíveis em pixel art. Evitar superfícies excessivamente ruidosas que desapareçam na escala 64x64.
+A skin deve transmitir "investigador arcano institucional" antes de "feiticeiro de combate". O contraste principal fica entre tecido azul-acinzentado e couro escuro; detalhes de latão devem ser poucos e legíveis no formato técnico aprovado. Evitar superfícies excessivamente ruidosas que desapareçam na escala real de gameplay.
 
 ## Assets
 - concept/portrait: PENDENTE;
-- skin Minecraft 64x64: PENDENTE;
+- skin/texture Minecraft: PENDENTE; formato e resolução conforme asset brief/pipeline técnica;
 - preview 3D: PENDENTE;
 - estado do asset: NÃO INICIADO.
 
@@ -68,4 +68,5 @@ No estado inicial, Iren não pode assumir como conhecido:
 - NPCs: `NPC-0001` apenas como possível objeto futuro de investigação, não conhecimento inicial;
 - evidências: `EVD-0001`, `EVD-0002`, `EVD-0003` somente quando adquiridas por canal legítimo;
 - facções/instituições: `FAC-0001`;
-- assentamentos: `SET-0001`.
+- assentamentos: `SET-0001`;
+- asset brief: `NPC-0003-iren-valmor-asset-brief.md`.
