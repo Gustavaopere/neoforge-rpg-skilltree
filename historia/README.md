@@ -23,8 +23,10 @@ Quando a história for produzida em chat, o padrão é **MODO SEM SPOILERS**: o 
 - `08-eventos/` — eventos históricos, emergentes e recorrentes.
 - `09-rumores-documentos-e-evidencias/` — canais de descoberta e conhecimento.
 - `10-finais-e-epilogos/` — resoluções e combinações de epílogo.
-- `11-ia-e-autoria/` — protocolo de autoria assistida e IA in-game opcional.
+- `11-ia-e-autoria/` — protocolo de autoria assistida, ferramentas externas e IA in-game opcional.
+- `12-dialogos/` — diálogos versionados, calibração de voz e branching editorial.
 - `templates/` — formatos canônicos para novos registros.
+- `tools/` — utilitários locais de validação editorial sem dependências externas.
 
 ## IDs estáveis
 
@@ -38,6 +40,7 @@ Quando a história for produzida em chat, o padrão é **MODO SEM SPOILERS**: o 
 - Evento: `EVT-####`
 - Rumor/evidência/documento: `EVD-####`
 - Final/epílogo: `END-####`
+- Diálogo: `DLG-####`
 
 IDs não devem ser reciclados depois que entrarem em `main`.
 
