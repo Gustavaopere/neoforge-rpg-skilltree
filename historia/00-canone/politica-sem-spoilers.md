@@ -1,5 +1,8 @@
 # Política de Autoria Sem Spoilers
 
+## Estado editorial
+CANÔNICO
+
 ## Objetivo
 Permitir que a campanha seja criada e mantida pelo agente sem transformar o processo de desenvolvimento em spoilers para o jogador.
 
@@ -25,6 +28,15 @@ Não revelar por padrão:
 - rotas alternativas ocultas;
 - finais e epílogos específicos;
 - conteúdo que a própria campanha permite nunca descobrir.
+
+## Ferramentas editoriais
+Saídas detalhadas de inventário, validators em modo `--reveal`, caminhos/linhas com IDs narrativos e relatórios internos podem conter spoilers mesmo quando não reproduzem prosa da história.
+
+Por padrão:
+- preferir saída agregada/spoiler-safe dos validators;
+- tratar `story_inventory.py` e `--reveal` como superfícies editoriais internas;
+- não colar relatórios reveladores em status player-facing sem pedido explícito;
+- usar IDs apenas quando necessários para rastreabilidade e quando eles próprios não expuserem a resposta de um mistério ao usuário.
 
 ## Revisão sem spoilers
 O agente pode revisar consistência, causalidade, providers, chronology e branching diretamente nos arquivos. O usuário não precisa aprovar linha por linha do conteúdo narrativo; aprova regras, tom, escopo e mudanças estruturais quando necessário.
