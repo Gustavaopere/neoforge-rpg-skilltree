@@ -4,10 +4,10 @@
 RASCUNHO ESTRUTURADO / CANDIDATO A CANÔNICO.
 
 ## Papel
-Mago ligado à corte e responsável por avaliar relatos de fenômenos arcanos, riscos incomuns e evidências que possam exigir resposta institucional. É o participante ainda sem ID citado em `QST-0001`.
+Mago ligado à `FAC-0001` Corte de Pedra Clara e responsável por avaliar relatos de fenômenos arcanos, riscos incomuns e evidências que possam exigir resposta institucional. É o participante anteriormente sem ID citado em `QST-0001`.
 
 ## Identidade pública
-Conselheiro técnico da corte em assuntos arcanos. Sua função pública é separar ameaça real, acidente, fraude, superstição e conflito político antes que a corte mobilize recursos ou faça acusações.
+Conselheiro técnico da Corte de Pedra Clara em assuntos arcanos. Sua função pública é separar ameaça real, acidente, fraude, superstição e conflito político antes que a instituição mobilize recursos ou faça acusações.
 
 ## Personalidade
 Metódico, contido e difícil de impressionar. Prefere perguntas precisas a conclusões rápidas. Demonstra respeito por quem admite incerteza e desconfia de relatos excessivamente perfeitos.
@@ -32,14 +32,19 @@ Metódico, contido e difícil de impressionar. Prefere perguntas precisas a conc
 - conhecimento arcano sem proveniência deve ser tratado como hipótese até ser confrontado com evidência.
 
 ## Knowledge inicial
-Iren conhece procedimentos, arquivos e rumores que chegam à corte dentro do escopo de sua função. Ele não conhece automaticamente Severin, sua localização, suas motivações ou seus atos. Qualquer conhecimento sobre `NPC-0001` exige rumor, testemunha, evidência, investigação ou contato concreto.
+Iren conhece procedimentos, arquivos e rumores que chegam a `FAC-0001` dentro do escopo de sua função. Ele não conhece automaticamente Severin, sua localização, suas motivações ou seus atos. Qualquer conhecimento sobre `NPC-0001` exige rumor, testemunha, evidência, investigação ou contato concreto.
 
 ## Relações
-- `QST-0001` — pode detectar um padrão suficiente para investigar e decidir se envolve o jogador.
-- `NPC-0001` — relação inexistente, indireta ou variável até que eventos/evidências estabeleçam algo diferente.
+- `QST-0001` — pode detectar um padrão suficiente para investigar e decidir se envolve o jogador;
+- `NPC-0001` — relação inexistente, indireta ou variável até que eventos/evidências estabeleçam algo diferente;
+- `FAC-0001` — instituição à qual presta assessoria;
+- `SET-0001` — assentamento onde sua função institucional se ancora, sem exigir presença física constante.
 
 ## Facções/instituições
-Ligado a uma corte ainda não consolidada como `FAC-####` ou `SET-####`. Não criar ID institucional apenas para preencher esta ficha; o vínculo deve apontar para a entidade correta quando essa parte do mundo for escrita.
+- `FAC-0001` Corte de Pedra Clara — vínculo profissional/institucional;
+- `SET-0001` Pedra Clara — contexto social/político de sua função.
+
+O cargo não concede knowledge global e Iren não representa automaticamente a opinião de toda a Corte.
 
 ## Agenda/autonomia
 Iren não espera o jogador. Pode coletar relatos, pedir segunda opinião, arquivar uma hipótese, reabrir um caso, encaminhar uma questão à autoridade competente ou decidir que a evidência ainda não justifica intervenção. Essas ações só se tornam fatos do mundo quando declaradas por evento/quest/estado apropriado.
@@ -68,7 +73,8 @@ Nenhum provider arcano específico é autoridade automática de Iren. Quando inv
 - pode decidir não envolver o jogador;
 - pode mudar de opinião quando recebe evidência melhor;
 - não existe apenas para entregar quests;
-- não transforma suspeita em culpa institucional por conta própria.
+- não transforma suspeita em culpa institucional por conta própria;
+- seu cargo em `FAC-0001` não equivale a autoridade absoluta sobre `SET-0001`.
 
 ## Spoilers internos
 Nenhuma verdade oculta, culpado, motivação ou outcome de `QST-0001` é fixado por este dossiê. Conteúdo secreto deve permanecer em arco/evidência/evento apropriado.
