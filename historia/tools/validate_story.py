@@ -70,19 +70,34 @@ def main(argv=None) -> int:
         action='store_true',
         help='treat unresolved references as errors instead of warnings',
     )
+    parser.add_argument(
+        '--reveal',
+        action='store_true',
+        help='show IDs, paths and line numbers for editorial debugging',
+    )
     args = parser.parse_args(argv)
 
     root = pathlib.Path(args.root)
     issues = validate(root)
-    for issue in issues:
-        level = 'ERROR' if issue.code == 'duplicate-id' or args.strict_references else 'WARN'
-        try:
-            display_path = issue.path.relative_to(root)
-        except ValueError:
-            display_path = issue.path
-        print(f'{level} {issue.code} {issue.ref} {display_path}:{issue.line}')
-
-    if not issues:
+    if issues:
+        if args.reveal:
+            for issue in issues:
+                level = 'ERROR' if issue.code == 'duplicate-id' or args.strict_references else 'WARN'
+                try:
+                    display_path = issue.path.relative_to(root)
+                except ValueError:
+                    display_path = issue.path
+                print(f'{level} {issue.code} {issue.ref} {display_path}:{issue.line}')
+        else:
+            counts: dict[tuple[str, str], int] = {}
+            for issue in issues:
+                level = 'ERROR' if issue.code == 'duplicate-id' or args.strict_references else 'WARN'
+                key = (level, issue.code)
+                counts[key] = counts.get(key, 0) + 1
+            for (level, code), count in sorted(counts.items()):
+                print(f'{level} {code}: {count}')
+            print('Details hidden by spoiler-safe mode. Use --reveal for editorial debugging.')
+    else:
         print('OK no story ID/reference issues found')
     return exit_code(issues, strict_references=args.strict_references)
 

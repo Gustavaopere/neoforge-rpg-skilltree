@@ -2,6 +2,8 @@ import importlib.util
 import pathlib
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 
 MODULE_PATH = pathlib.Path(__file__).resolve().parents[1] / 'validate_story.py'
 
@@ -72,6 +74,36 @@ class ValidateStoryTests(unittest.TestCase):
         issues = mod.validate(root)
         self.assertFalse(any(i.code == 'duplicate-id' for i in issues))
         self.assertFalse(any(i.code == 'unresolved-ref' and i.ref == 'NPC-0001' for i in issues))
+
+    def test_default_cli_output_is_spoiler_safe(self):
+        mod = load_module()
+        root = self.make_root({
+            'NPC-0001-main.md': '# NPC-0001 — A\n\nQuest: QST-9999\n',
+        })
+        output = StringIO()
+        with redirect_stdout(output):
+            code = mod.main([str(root)])
+        text = output.getvalue()
+        self.assertEqual(0, code)
+        self.assertIn('WARN unresolved-ref: 1', text)
+        self.assertNotIn('QST-9999', text)
+        self.assertNotIn('NPC-0001-main.md', text)
+
+    def test_reveal_cli_output_includes_editorial_details(self):
+        mod = load_module()
+        root = self.make_root({
+            'NPC-0001-main.md': '# NPC-0001 — A\n\nQuest: QST-9999\n',
+        })
+        output = StringIO()
+        try:
+            with redirect_stdout(output):
+                code = mod.main([str(root), '--reveal'])
+        except SystemExit as exc:
+            self.fail(f'--reveal must be supported: {exc}')
+        text = output.getvalue()
+        self.assertEqual(0, code)
+        self.assertIn('WARN unresolved-ref QST-9999', text)
+        self.assertIn('NPC-0001-main.md:3', text)
 
 
 class ExitPolicyTests(unittest.TestCase):
