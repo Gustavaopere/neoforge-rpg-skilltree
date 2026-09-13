@@ -7,6 +7,8 @@ from typing import NamedTuple
 ENTITY_TYPES = ('HIST', 'ARC', 'NPC', 'QST', 'FAC', 'SET', 'LOC', 'EVT', 'EVD', 'END', 'DLG')
 ID_RE = re.compile(r'\b(?:' + '|'.join(ENTITY_TYPES) + r')-\d{4}\b')
 DECL_RE = re.compile(r'^#\s+((?:' + '|'.join(ENTITY_TYPES) + r')-\d{4})\b')
+FILENAME_ID_RE = re.compile(r'^((?:' + '|'.join(ENTITY_TYPES) + r')-\d{4})(?:[-_.]|$)')
+FATAL_CODES = {'duplicate-id', 'filename-id-mismatch'}
 
 
 class Issue(NamedTuple):
@@ -24,18 +26,24 @@ def validate(root: pathlib.Path) -> list[Issue]:
     root = pathlib.Path(root)
     declarations: dict[str, list[tuple[pathlib.Path, int]]] = {}
     references: list[tuple[str, pathlib.Path, int]] = []
+    issues: list[Issue] = []
 
     for path in _markdown_files(root):
         text = path.read_text(encoding='utf-8')
+        filename_match = FILENAME_ID_RE.match(path.name)
+        first_declared_id = None
         for line_no, line in enumerate(text.splitlines(), start=1):
             decl = DECL_RE.match(line)
             if decl:
                 ref = decl.group(1)
                 declarations.setdefault(ref, []).append((path, line_no))
+                if first_declared_id is None:
+                    first_declared_id = ref
+                    if filename_match and filename_match.group(1) != ref:
+                        issues.append(Issue('filename-id-mismatch', ref, path, line_no))
             for ref in ID_RE.findall(line):
                 references.append((ref, path, line_no))
 
-    issues: list[Issue] = []
     for ref, locations in sorted(declarations.items()):
         if len(locations) > 1:
             for path, line_no in locations[1:]:
@@ -53,7 +61,7 @@ def validate(root: pathlib.Path) -> list[Issue]:
 
 
 def exit_code(issues: list[Issue], strict_references: bool = False) -> int:
-    if any(issue.code == 'duplicate-id' for issue in issues):
+    if any(issue.code in FATAL_CODES for issue in issues):
         return 1
     if strict_references and any(issue.code == 'unresolved-ref' for issue in issues):
         return 1
@@ -82,7 +90,7 @@ def main(argv=None) -> int:
     if issues:
         if args.reveal:
             for issue in issues:
-                level = 'ERROR' if issue.code == 'duplicate-id' or args.strict_references else 'WARN'
+                level = 'ERROR' if issue.code in FATAL_CODES or args.strict_references else 'WARN'
                 try:
                     display_path = issue.path.relative_to(root)
                 except ValueError:
@@ -91,7 +99,7 @@ def main(argv=None) -> int:
         else:
             counts: dict[tuple[str, str], int] = {}
             for issue in issues:
-                level = 'ERROR' if issue.code == 'duplicate-id' or args.strict_references else 'WARN'
+                level = 'ERROR' if issue.code in FATAL_CODES or args.strict_references else 'WARN'
                 key = (level, issue.code)
                 counts[key] = counts.get(key, 0) + 1
             for (level, code), count in sorted(counts.items()):

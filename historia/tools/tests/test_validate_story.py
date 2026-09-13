@@ -43,6 +43,14 @@ class ValidateStoryTests(unittest.TestCase):
         issues = mod.validate(root)
         self.assertTrue(any(i.code == 'duplicate-id' and i.ref == 'NPC-0001' for i in issues))
 
+    def test_filename_id_mismatch_is_reported(self):
+        mod = load_module()
+        root = self.make_root({
+            'NPC-0002-wrong.md': '# NPC-0001 — A\n',
+        })
+        issues = mod.validate(root)
+        self.assertTrue(any(i.code == 'filename-id-mismatch' and i.ref == 'NPC-0001' for i in issues))
+
     def test_unresolved_reference_is_reported(self):
         mod = load_module()
         root = self.make_root({
@@ -74,6 +82,18 @@ class ValidateStoryTests(unittest.TestCase):
         issues = mod.validate(root)
         self.assertFalse(any(i.code == 'duplicate-id' for i in issues))
         self.assertFalse(any(i.code == 'unresolved-ref' and i.ref == 'NPC-0001' for i in issues))
+
+    def test_filename_id_mismatch_cli_is_error(self):
+        mod = load_module()
+        root = self.make_root({
+            'NPC-0002-wrong.md': '# NPC-0001 — A\n',
+        })
+        output = StringIO()
+        with redirect_stdout(output):
+            code = mod.main([str(root)])
+        text = output.getvalue()
+        self.assertEqual(1, code)
+        self.assertIn('ERROR filename-id-mismatch: 1', text)
 
     def test_default_cli_output_is_spoiler_safe(self):
         mod = load_module()
@@ -112,6 +132,11 @@ class ExitPolicyTests(unittest.TestCase):
         issue = mod.Issue('unresolved-ref', 'QST-9999', pathlib.Path('a.md'), 2)
         self.assertEqual(0, mod.exit_code([issue], strict_references=False))
         self.assertEqual(1, mod.exit_code([issue], strict_references=True))
+
+    def test_filename_id_mismatch_is_always_fatal(self):
+        mod = load_module()
+        issue = mod.Issue('filename-id-mismatch', 'NPC-0001', pathlib.Path('NPC-0002-wrong.md'), 1)
+        self.assertEqual(1, mod.exit_code([issue], strict_references=False))
 
     def test_duplicate_id_is_always_fatal(self):
         mod = load_module()
