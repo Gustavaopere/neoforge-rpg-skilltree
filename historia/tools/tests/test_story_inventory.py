@@ -52,6 +52,16 @@ class StoryInventoryTests(unittest.TestCase):
         records = mod.inventory(root)
         self.assertEqual(['NPC-0001'], [record.id for record in records])
 
+    def test_auxiliary_heading_does_not_create_second_record(self):
+        mod = load_module()
+        root = self.make_root({
+            'NPC-0001-main.md': '# NPC-0001 — A\n\n## Estado editorial\nCANÔNICO\n',
+            'NPC-0001-autoria.md': '# Ficha de autoria — NPC-0001 — A\n\n## Estado editorial\nRASCUNHO\n',
+            'NPC-0001-asset-brief.md': '# Asset Brief — NPC-0001 — A\n\n## Estado\nRASCUNHO\n',
+        })
+        records = mod.inventory(root)
+        self.assertEqual(['NPC-0001'], [record.id for record in records])
+
     def test_own_declaration_is_not_a_reference_and_refs_are_deduped(self):
         mod = load_module()
         root = self.make_root({
