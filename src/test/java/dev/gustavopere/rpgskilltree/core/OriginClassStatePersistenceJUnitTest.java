@@ -43,7 +43,7 @@ final class OriginClassStatePersistenceJUnitTest {
         assertEquals(selected.hashCode(), sameValue.hashCode());
         assertEquals("OriginClassState[rpgskilltree:mage]", selected.toString());
         assertNotEquals(selected, OriginClassState.empty());
-        assertNotEquals(selected, "rpgskilltree:mage");
+        assertFalse(selected.equals("rpgskilltree:mage"));
         assertThrows(IllegalStateException.class, () -> selected.select("rpgskilltree:warrior"));
     }
 
@@ -83,7 +83,7 @@ final class OriginClassStatePersistenceJUnitTest {
         assertTrue(base.equals(base));
         assertEquals(base, decodedCopy);
         assertEquals(base.hashCode(), decodedCopy.hashCode());
-        assertNotEquals(base, "not a canonical player state");
+        assertFalse(base.equals("not a canonical player state"));
         assertTrue(base.toString().contains("originClass=unselected"));
         assertTrue(selectedOriginEnvelope.toString().contains("originClass=rpgskilltree:mage"));
 
