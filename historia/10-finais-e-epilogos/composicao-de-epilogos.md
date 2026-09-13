@@ -1,7 +1,10 @@
 # Composição de Epílogos
 
 ## Estado editorial
-PROPOSTO ATÉ MERGE / contrato editorial de composição, sem finais concretos.
+RASCUNHO
+
+## Escopo
+Contrato editorial de composição, sem finais concretos. O merge deste documento não promove automaticamente nenhum `END-####` futuro a cânone.
 
 ## Autoridade técnica
 Este documento traduz para autoria o contrato de `plans/08-quests-progression-hooks/21-campaign-eras-epilogues.md`.
