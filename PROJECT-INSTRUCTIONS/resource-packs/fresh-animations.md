@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `FreshAnimations_v1.10.4.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** 1.10.4
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual
