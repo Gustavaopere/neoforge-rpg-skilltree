@@ -5,11 +5,13 @@
 - Estrutura editorial: **CRIADA**
 - Política sem spoilers: **ATIVA**
 - IDs estáveis: **DEFINIDOS**
-- Templates: **CRIADOS**
+- Templates reutilizáveis: **MIGRADOS PARA MINECRAFT MOD FACTORY**
+- Profile consumidor da campanha: **DEFINIDO**
 - Macro-história inicial: **REGISTRADA**
 - Primeiro NPC sistêmico: **REGISTRADO**
 - Primeira oportunidade/quest de referência: **REGISTRADA**
-- Pipeline de autoria assistida: **REGISTRADO**
+- Pipeline genérico de autoria: **MIGRADO PARA MINECRAFT MOD FACTORY / CONSUMIDO POR CI**
+- Contratos editoriais específicos da campanha: **MANTIDOS NO RPG**
 - Diretor narrativo IA in-game: **OPCIONAL / PLANEJADO / NÃO É AUTORIDADE**
 
 ## Regra de atualização
@@ -22,7 +24,9 @@ Ao adicionar conteúdo:
 4. preservar o modo sem spoilers no chat;
 5. nunca transformar plano técnico em fato narrativo sem decisão editorial;
 6. nunca inventar mecânica de provider para justificar história;
-7. atualizar este arquivo apenas com progresso estrutural, sem revelar spoilers.
+7. usar `historia/narrative-authoring-profile.json` ao consumir validators/inventory da Factory;
+8. não duplicar localmente tooling, skill ou scaffolds genéricos da Factory;
+9. atualizar este arquivo apenas com progresso estrutural, sem revelar spoilers.
 
 ## Próximos blocos editoriais
 
