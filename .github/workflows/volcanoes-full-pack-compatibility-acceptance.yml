@@ -94,7 +94,7 @@ jobs:
 
       - name: Upload full-pack evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: volcanoes-full-pack-compatibility-${{ github.sha }}
           path: |
