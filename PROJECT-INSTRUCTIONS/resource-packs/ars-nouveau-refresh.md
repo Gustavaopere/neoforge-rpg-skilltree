@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Ars Nouveau Refresh 1.2.0.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** 1.2.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Magia
