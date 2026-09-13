@@ -10,16 +10,17 @@ Registro técnico/institucional derivado de relatos e ocorrências georreferenci
 Conjunto de anotações, datas e posições aproximadas reunidas em mapa, caderno ou registro equivalente. Não exige interface de mapa específica no jogo; o formato concreto pode ser adaptado ao sistema disponível.
 
 ## Origem/proveniência
-- origem: consolidação de ocorrências recebidas pela corte ou coletadas por investigação;
+- origem institucional: `FAC-0001` Corte de Pedra Clara, vinculada a `SET-0001`;
+- conteúdo: consolidação de ocorrências recebidas por canais da corte ou coletadas por investigação;
 - compilação: pode ser realizada por `NPC-0003` ou por pessoal subordinado, desde que a autoria fique registrada;
 - cadeia de custódia: cada entrada precisa apontar para sua fonte original quando possível;
 - lacunas: relatos sem data/local suficientemente precisos podem ser excluídos ou marcados como baixa confiança.
 
 ## Conhecedores iniciais
-Somente quem participou da compilação ou recebeu acesso ao registro. Ocupação de cargo na corte não concede conhecimento automático do conteúdo a todos os membros da instituição.
+Somente quem participou da compilação ou recebeu acesso ao registro. O fato de alguém pertencer a `FAC-0001` não concede conhecimento automático do conteúdo.
 
 ## Discovery channels
-- acesso autorizado a arquivo institucional;
+- acesso autorizado a arquivo de `FAC-0001`;
 - compartilhamento por `NPC-0003`;
 - cópia obtida por outro ator;
 - reconstrução independente pelo jogador a partir das fontes originais.
@@ -61,13 +62,16 @@ Nenhum obrigatório. Não presumir sistema de mapas, coordenadas expostas ao jog
 ## Relações
 - quests: `QST-0001`;
 - NPCs: `NPC-0003`;
-- evidências: `EVD-0001`, `EVD-0003` após criação.
+- instituição: `FAC-0001`;
+- assentamento: `SET-0001`;
+- evidências: `EVD-0001`, `EVD-0003`.
 
 ## Invariantes
 - agregação melhora análise, não transforma rumor em prova de culpa;
 - ausência de registro não equivale a ausência de evento;
 - padrão espacial precisa ser distinguido de viés de coleta;
-- toda entrada importante deve conservar referência à fonte quando possível.
+- toda entrada importante deve conservar referência à fonte quando possível;
+- autoridade institucional de `FAC-0001` não aumenta artificialmente a confiabilidade das fontes originais.
 
 ## Spoilers internos
 O registro não fixa a causa verdadeira do padrão.
