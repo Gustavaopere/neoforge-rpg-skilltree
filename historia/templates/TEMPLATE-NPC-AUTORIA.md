@@ -17,12 +17,12 @@ Usar junto com `TEMPLATE-NPC.md` para NPCs que precisem de controle detalhado de
 Exemplos curtos para preservar a voz. Não representam eventos canônicos por si mesmos.
 
 ## Aparência
-- modelo Minecraft: classic ou slim
+- modelo Minecraft/alvo visual:
 - idade aparente:
 - silhueta:
 - características do rosto:
 - cabelo/barba:
-- paleta:
+- paleta/materials:
 - vestuário:
 - acessórios:
 - sinais visuais de profissão ou facção:
@@ -30,9 +30,12 @@ Exemplos curtos para preservar a voz. Não representam eventos canônicos por si
 - variações permitidas:
 
 ## Assets
+- asset brief:
 - concept/portrait:
-- skin Minecraft 64x64:
+- skin/texture técnica:
+- resolução/texel density + evidência:
 - preview 3D:
+- QA in-game:
 - estado do asset:
 
 ## Limites de conhecimento
