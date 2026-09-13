@@ -7,6 +7,8 @@ A capability reutilizável de autoria narrativa — skill, templates, validators
 Permanecem neste repositório:
 
 1. **IA dentro do jogo para NPCs/diálogo/conteúdo emergente** — opcional e sempre subordinada ao Narrative Core;
-2. **contratos de authority/ferramentas externas desta campanha** — incluindo limites de cânone, runtime e integração.
+2. **contratos de authority/ferramentas externas desta campanha** — incluindo limites de cânone, runtime e integração;
+3. `11-contrato-geografia-compendio.md` — binding tardio e prova de worldgen/Compêndio;
+4. `12-grimoire-github-sync.md` — reconciliação rastreável entre Campaign Bible e fonte editorial versionada.
 
 A campanha não deve depender de IA in-game para ser boa. Quests âncora, cânone, segredos estruturais, conflitos e regras sociais precisam funcionar sem LLM em runtime.
