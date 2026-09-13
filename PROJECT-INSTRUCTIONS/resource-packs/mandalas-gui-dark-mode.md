@@ -20,7 +20,7 @@
 - **Arquivo JAR:** `MandalasGUI+Dakmode_1.21.8_v3.1.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** 3.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual
