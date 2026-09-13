@@ -4,7 +4,7 @@
 ATIVO COMO CONTRATO EDITORIAL / nenhuma dependência nova de runtime.
 
 ## Objetivo
-Tornar a criação de história, NPCs, diálogos e identidade visual mais rápida e consistente sem transferir autoridade canônica a serviços externos.
+Tornar a criação de história, NPCs, diálogos e identidade visual mais rápida e consistente sem transferir autoridade canônica a serviços externos e sem criar custo incremental obrigatório.
 
 ## Autoridade
 A ordem de autoridade é:
@@ -16,23 +16,42 @@ A ordem de autoridade é:
 
 Nenhum MCP, plugin, IA ou framework externo pode sobrescrever fatos canônicos, conhecimento de NPC, eventos, relações, recompensas, morte/retorno ou estado do save sem passar pelos contratos existentes.
 
+## Política de custo zero
+
+- O fluxo recomendado não pode depender de assinatura adicional, créditos comprados ou API paga.
+- Recurso já incluído no ambiente atual pode ser usado enquanto não exigir pagamento incremental.
+- Se uma ferramenta gratuita passar a exigir pagamento para a função usada, ela é substituída ou removida.
+- Trial temporário não conta como solução gratuita permanente.
+- Integrações opcionais pagas podem ser citadas apenas como referência, nunca como requisito.
+
 ## Stack adotado
 
 ### Camada A — ativa agora
 
 - **GitHub**: fonte versionada, diff, branch/PR, auditoria e rollback.
 - **ChatGPT**: autor/revisor assistido, respeitando política sem spoilers e contratos de `historia/`.
-- **OpenArt**: concept art, portrait e referência visual. Saída é asset candidato até revisão humana/editorial.
+- **Geração de imagem disponível no ChatGPT**: concept art e portrait quando não houver custo incremental.
+- **Blockbench**: edição e validação gratuita de skins e modelos Minecraft.
 
-### Camada B — opcional, somente para autoria
+### Camada B — autoria gratuita opcional
 
-- **AIStoryHub MCP**: candidato preferencial para story bible derivada, capítulos/cenas, consistência de voz e revisão de personagens.
-- **StoryCanon MCP**: alternativa de story bible. Não usar simultaneamente com AIStoryHub como segunda base paralela.
-- **AINPC Engine MCP**: laboratório para testar coerência de personalidade, diálogo, memória e voz de NPCs; não é authority e não entra no runtime por padrão.
+- **AIStoryHub MCP**: candidato preferencial para PoC de story bible derivada e consistência de voz somente enquanto o modo gratuito atender ao fluxo sem cobrança.
+- **Spindle MCP**: alternativa open-source/local-first para story bible, continuidade e pesquisa de cânone em clientes MCP compatíveis.
+- **story-architect-mcp**: alternativa MIT baseada em arquivos Markdown/JSON para worldbuilding e auditoria de continuidade.
 
-### Camada C — framework candidato
+Não usar duas story bibles externas como bases paralelas. O GitHub continua sendo a única fonte aceita.
 
-- **Ink/Inky**: candidato para diálogos muito ramificados. Só entra após um PoC demonstrar exportação determinística e adaptação compatível com o Narrative Core. Até lá, diálogos permanecem no formato editorial versionado do repositório.
+### Camada C — diálogos ramificados
+
+- **Ink/Inky**: opção preferencial quando o Markdown deixar de ser suficiente. É gratuito e MIT.
+- **Yarn Spinner**: alternativa gratuita para narrativa ramificada; avaliar licença vigente e integração antes de adoção.
+
+Até existir necessidade concreta, diálogos permanecem no formato editorial versionado do repositório.
+
+## Ferramentas não adotadas
+
+- **AINPC Engine**: não recomendado para o fluxo padrão porque a solução depende de serviço/trial externo. Só reconsiderar se existir opção permanente sem custo.
+- Qualquer gerador visual baseado exclusivamente em créditos pagos: não é dependência do projeto.
 
 ## Regra contra duplicação de cânone
 
@@ -40,33 +59,36 @@ Ferramentas externas recebem um recorte exportado do GitHub e devolvem propostas
 
 Fluxo:
 
-`GitHub/main -> recorte de contexto -> ferramenta externa -> proposta -> revisão -> branch/PR -> GitHub/main`
+`GitHub/main -> recorte de contexto -> ferramenta auxiliar -> proposta -> revisão -> branch/PR -> GitHub/main`
 
 ## Segurança
 
-- Nunca versionar API keys, bearer tokens, cookies ou credenciais.
-- Nunca conceder write em `main` diretamente a ferramenta externa.
-- Preferir OAuth quando o provider suportar.
-- Começar MCPs em modo read/fetch quando possível.
+- Nunca versionar credenciais ou chaves de acesso.
+- Nunca conceder escrita direta em `main` a ferramenta externa.
+- Começar integrações com escopo mínimo.
 - Toda integração nova precisa de teste com conteúdo não sensível antes de receber lore completa.
-- MCPs de terceiros são tratados como fornecedores externos e precisam ser confiáveis antes de receber conteúdo privado.
+- MCPs de terceiros são fornecedores externos e precisam ser avaliados antes de receber conteúdo privado.
 
 ## Política de adoção
 
 Uma ferramenta externa só vira parte recomendada do fluxo se cumprir todos os critérios:
 
-1. reduz trabalho manual de forma mensurável;
-2. exporta ou permite recuperar o trabalho sem lock-in crítico;
-3. preserva IDs estáveis do projeto;
-4. não exige autoridade sobre o runtime;
-5. não força duplicação manual permanente do cânone;
-6. melhora consistência, revisão ou produção visual de forma verificável.
+1. custo incremental obrigatório igual a zero;
+2. reduz trabalho manual de forma mensurável;
+3. exporta ou permite recuperar o trabalho sem lock-in crítico;
+4. preserva IDs estáveis do projeto;
+5. não exige autoridade sobre o runtime;
+6. não força duplicação manual permanente do cânone;
+7. melhora consistência, revisão ou produção visual de forma verificável.
 
 ## Decisões atuais
 
-- OpenArt: **ADOTADO para autoria visual**.
-- AIStoryHub: **CANDIDATO PARA PoC**.
-- StoryCanon: **ALTERNATIVA, não usar em paralelo no PoC inicial**.
-- AINPC Engine: **CANDIDATO PARA LABORATÓRIO FUTURO**.
-- Ink/Inky: **CANDIDATO, aguardando necessidade concreta de branching complexo**.
+- GitHub + ChatGPT: **BASE ATIVA**.
+- Blockbench: **ADOTADO para validação visual/skin**.
+- Geração visual no ChatGPT: **ADOTADA quando incluída sem custo incremental**.
+- AIStoryHub: **CANDIDATO PARA PoC GRATUITO**.
+- Spindle: **ALTERNATIVA OPEN-SOURCE**.
+- story-architect-mcp: **ALTERNATIVA OPEN-SOURCE**.
+- Ink/Inky: **CANDIDATO GRATUITO quando branching complexo justificar**.
+- AINPC Engine: **FORA DO FLUXO RECOMENDADO**.
 - IA in-game: continua **OPCIONAL / NÃO É AUTORIDADE**.
