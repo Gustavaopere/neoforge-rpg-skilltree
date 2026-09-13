@@ -5,10 +5,10 @@ CANÔNICO
 
 ## Macroperíodos
 
-1. Concordância Antiga.
+1. Primeira Concordância.
 2. Projeto Continuidade.
 3. Noite da Ruptura.
-4. Regressão e fragmentação.
+4. Era da Fragmentação.
 5. Era 1 — Pedra, Fome e Frio.
 6. Era 2 — Uma Cidade Pode Morrer.
 7. Era 3 — Engrenagens Voltam a Girar.
