@@ -43,6 +43,13 @@ Essas peças são **rotas possíveis**, não uma sequência obrigatória. O joga
 
 Nenhuma peça isolada autoriza `NPC-0003` ou outra instituição a declarar `NPC-0001` culpado, conhecido ou localizado sem uma cadeia causal adicional.
 
+## Lifecycle editorial
+O mapeamento de availability/discovery/engagement/resolution, progressão autônoma, reconciliação de entrada antecipada e discovery retrospectiva está em `QST-0001-lifecycle.md`.
+
+## Diálogos relacionados
+- `DLG-0002` — calibração de voz/evidência de `NPC-0003`; não é evento canônico;
+- `DLG-0003` — rascunho de oferta de investigação, condicionado ao estado real de knowledge/lifecycle.
+
 ## Regra de journal
 Não mostrar “missão perdida” se o jogador nunca soube que a oportunidade existia.
 
