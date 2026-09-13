@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `3D items.zip`
 - **Tipo de conteúdo:** Resource Pack
 - **Versão 1.21.1:** sem versão semântica publicada
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Compat, Magia
