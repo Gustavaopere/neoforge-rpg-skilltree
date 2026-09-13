@@ -1,4 +1,4 @@
-# Iron's Spells 'n Spellbooks Compat ✅
+# Iron's Spells 'n Spellbooks Compat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3d469db9f0db81ff8434d69c40823489
