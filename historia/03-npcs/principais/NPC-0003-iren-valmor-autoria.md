@@ -34,6 +34,8 @@ Estas linhas servem para preservar voz e não representam eventos canônicos.
 ## Aparência
 - modelo Minecraft: classic;
 - idade aparente: início/meados dos 40;
+- altura/proporção percebida: **PENDENTE DE APROVAÇÃO VISUAL**; não atribuir estatura excepcional ou proporção fora do alvo humano padrão antes de concept aprovado;
+- tom de pele: **PENDENTE DE APROVAÇÃO VISUAL**; não inferir a partir de cargo, instituição, prática arcana, moralidade ou paleta de roupa;
 - silhueta: esguia, postura reta, aparência de alguém mais habituado a arquivos e inspeções do que combate;
 - características do rosto: traços angulares, expressão normalmente concentrada, olheiras discretas;
 - cabelo/barba: cabelo escuro com grisalho nas têmporas; barba curta opcional, bem cuidada;
