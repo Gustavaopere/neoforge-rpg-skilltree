@@ -6,28 +6,31 @@ This is project-specific guidance, not a generic Minecraft Mod Factory skill.
 
 ## Authority by domain
 
+- **Accepted editorial canon:** `historia/` accepted in `main`. This is the versioned source of record and canonical acceptance boundary for narrative facts, stable IDs and reviewed editorial content.
+- **Structured Campaign Bible:** Grimoire/TTRPG.bot Campaign Bible and Foundations when available. It is a required consultation/reconciliation source for established structured lore, not an independent path that can overwrite accepted `main` canon automatically.
 - **Runtime/mechanics:** current RPG code/tests, latest physical modlist/JARs, exact provider evidence and current technical contracts.
-- **Structured lore:** Grimoire/TTRPG.bot Campaign Bible and Foundations when available.
-- **Versioned editorial content:** `historia/` in this repository.
 - **Shared Minecraft engineering/art tooling:** `Gustavaopere/minecraft-mod-factory`.
+- **Branches/PRs:** proposals until review/merge; newer draft content does not outrank accepted canon merely because it is newer.
 
 Lore never proves mechanical capability. Mechanical capability never creates historical facts automatically.
 
-If Grimoire or another required authority is unavailable and the missing fact is central to canon, keep the decision `BLOQUEADO/FAIL-CLOSED` or explicitly undecided. Do not invent missing lore merely to continue production.
+When Grimoire and accepted `main` appear to differ, preserve the discrepancy and reconcile provenance/decision history explicitly. Do not import the external value directly into canon and do not overwrite Grimoire blindly. A canon-changing resolution returns through review to `main`; the structured Campaign Bible is synchronized afterward when needed.
+
+If Grimoire or another required source is unavailable and the missing fact is central to canon, keep the decision `BLOQUEADO/FAIL-CLOSED` or explicitly undecided. Do not invent missing lore merely to continue production.
 
 ## Required preflight
 
 Before substantive narrative authoring:
 
-1. read relevant `historia/00-canone/` and existing records;
-2. when available, run `python historia/tools/story_inventory.py --format json` to obtain a current editorial index of stable IDs, states and references before creating new entities;
-3. treat that inventory as spoiler-bearing/editorial output: do not expose it in player-facing or public logs when it contains undiscovered material;
-4. search stable IDs/names to avoid duplicate NPCs, factions, locations, quests or evidence;
-5. consult Grimoire for central lore and possible pre-existing entities when accessible;
-6. consult relevant Stage 08 contracts for knowledge, chronology, relationships, opportunity lifecycle, consequences and death/return;
-7. verify the latest modlist/provider evidence before assigning a real mechanic to a mod;
-8. consult Compendium/runtime identities before binding a narrative place to a biome, structure or dimension;
-9. inspect open branches/PRs affecting the same narrative IDs.
+1. read relevant accepted `historia/00-canone/` and existing records from `main`;
+2. inspect open branches/PRs affecting the same narrative IDs so concurrent proposals are not mistaken for accepted canon;
+3. when available, run `python historia/tools/story_inventory.py --format json` to obtain a current editorial index of stable IDs, states and references before creating new entities;
+4. treat that inventory as spoiler-bearing/editorial output: do not expose it in player-facing or public logs when it contains undiscovered material;
+5. search stable IDs/names to avoid duplicate NPCs, factions, locations, quests or evidence;
+6. consult Grimoire for central lore and possible pre-existing entities when accessible; reconcile any difference with accepted `main` instead of selecting one silently;
+7. consult relevant Stage 08 contracts for knowledge, chronology, relationships, opportunity lifecycle, consequences and death/return;
+8. verify the latest modlist/provider evidence before assigning a real mechanic to a mod;
+9. consult Compendium/runtime identities before binding a narrative place to a biome, structure or dimension.
 
 Absence of information is a valid project state.
 
@@ -41,7 +44,7 @@ Absence of information is a valid project state.
 - Do not create named entities merely to fill templates or production quotas.
 - Do not infer biome climate, resources, geology or settlement suitability from a translated biome name alone.
 - Do not collapse multidimensional relationships into a single reputation/friendship score.
-- New material on a branch remains a proposal until its editorial state is deliberately accepted.
+- New material on a branch remains a proposal until its editorial state is deliberately accepted into `main`.
 
 ## Stable IDs and validation
 
@@ -123,7 +126,8 @@ Narrative authoring must remain usable with zero required incremental spend. Pai
 
 Before calling an authoring batch complete, confirm:
 
-- relevant authorities checked;
+- accepted `main`, relevant branches/PRs and other applicable authorities were checked;
+- Grimoire discrepancies were reconciled or explicitly blocked rather than silently imported;
 - current inventory/search used to reduce duplicate-entity risk;
 - inventory/reveal-mode output kept editorial unless explicitly requested;
 - no known duplicate stable entity introduced;
@@ -146,6 +150,7 @@ Before calling an authoring batch complete, confirm:
 - `historia/00-canone/relacoes-memoria-e-identidade.md`
 - `historia/10-finais-e-epilogos/`
 - `historia/11-ia-e-autoria/`
+- `historia/11-ia-e-autoria/12-grimoire-github-sync.md`
 - `historia/templates/`
 - `historia/tools/`
 - `plans/08-quests-progression-hooks/`
