@@ -10,8 +10,8 @@ Oportunidade secundária de investigação.
 Em estágio avançado, um mago ligado à corte pode detectar indícios de atividade sombria em determinada região e decidir ou não envolver o jogador.
 
 ## Participantes
-- NPC-0001 Severin
-- NPC do mago da corte: ID ainda a definir
+- `NPC-0001` Severin
+- `NPC-0003` Iren Valmor — mago ligado à corte; sua ficha permanece rascunho estruturado até consolidação editorial.
 
 ## Matriz mínima obrigatória
 A implementação/authoring deve suportar, no mínimo:
@@ -30,6 +30,9 @@ A implementação/authoring deve suportar, no mínimo:
 12. resolução por terceiros;
 13. deslocamento/transformação da situação antes da chegada;
 14. descoberta retrospectiva apenas das consequências.
+
+## Regra de knowledge
+Iren não conhece automaticamente a identidade, localização, capacidades ou motivações de Severin. O estado que permite a investigação precisa apontar para rumor, testemunha, evidência ou observação concreta. O mesmo vale para qualquer outro ator que entre no caso.
 
 ## Regra de journal
 Não mostrar “missão perdida” se o jogador nunca soube que a oportunidade existia.
