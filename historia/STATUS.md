@@ -12,10 +12,10 @@
 - Pipeline de autoria assistida: **REGISTRADO**
 - Stack de autoria com política de custo zero: **REGISTRADO**
 - Área e template de diálogos versionados: **CRIADOS**
-- Validador local de IDs/referências: **CRIADO / TESTADO (10 testes) / SAÍDA SPOILER-SAFE POR PADRÃO**
+- Validador local de IDs/referências: **CRIADO / TESTADO (13 testes) / SAÍDA SPOILER-SAFE POR PADRÃO / DRIFT FILENAME↔H1 FATAL**
 - Lint estrutural de diálogos: **CRIADO / TESTADO (9 testes) / SAÍDA SPOILER-SAFE POR PADRÃO**
 - Inventário local de registros/IDs/referências: **CRIADO / TESTADO (8 testes) / USO EDITORIAL DELIBERADAMENTE REVELADOR**
-- Suíte conjunta do tooling editorial: **TESTADA (27 testes)**
+- Suíte conjunta do tooling editorial: **TESTADA (30 testes)**
 - Contrato editorial de relações/memória/continuidade: **PROPOSTO NO PR DO STACK DE AUTORIA**
 - Template auxiliar de relação multidimensional: **CRIADO**
 - Pipeline visual de NPCs alinhado à Minecraft Mod Factory: **REGISTRADO**
@@ -35,18 +35,20 @@ Ao adicionar conteúdo:
 
 1. criar/usar ID estável;
 2. declarar estado editorial (`RASCUNHO`, `CANÔNICO`, `EXPERIMENTAL`, `OBSOLETO` ou estado equivalente aprovado);
-3. registrar relações por IDs, não apenas por nomes, preservando direção `origem -> alvo`;
-4. não colapsar affection/trust/respect/fear/dependency/ideological alignment em uma única reputação;
-5. preservar o modo sem spoilers no chat e nas saídas padrão das ferramentas;
-6. usar `--reveal` apenas para depuração editorial quando a ferramenta oferecer esse modo;
-7. tratar `story_inventory.py` como ferramenta editorial reveladora, nunca como saída player-facing;
-8. nunca transformar plano técnico em fato narrativo sem decisão editorial;
-9. nunca inventar mecânica de provider para justificar história;
-10. nunca preencher lacunas de NPC/lore por suposição quando a authority necessária estiver ausente;
-11. consultar Grimoire antes de duplicar lore central quando a conexão estiver disponível;
-12. usar Compêndio/runtime antes de fixar worldgen/bioma/estrutura/dimensão;
-13. executar os validadores estruturais aplicáveis antes de consolidar grandes lotes;
-14. atualizar este arquivo apenas com progresso estrutural, sem revelar spoilers.
+3. manter o ID que abre o nome do arquivo principal coerente com o ID declarado diretamente no H1;
+4. usar títulos auxiliares como `Ficha de autoria — NPC-####` sem redeclarar a entidade;
+5. registrar relações por IDs, não apenas por nomes, preservando direção `origem -> alvo`;
+6. não colapsar affection/trust/respect/fear/dependency/ideological alignment em uma única reputação;
+7. preservar o modo sem spoilers no chat e nas saídas padrão das ferramentas;
+8. usar `--reveal` apenas para depuração editorial quando a ferramenta oferecer esse modo;
+9. tratar `story_inventory.py` como ferramenta editorial reveladora, nunca como saída player-facing;
+10. nunca transformar plano técnico em fato narrativo sem decisão editorial;
+11. nunca inventar mecânica de provider para justificar história;
+12. nunca preencher lacunas de NPC/lore por suposição quando a authority necessária estiver ausente;
+13. consultar Grimoire antes de duplicar lore central quando a conexão estiver disponível;
+14. usar Compêndio/runtime antes de fixar worldgen/bioma/estrutura/dimensão;
+15. executar os validadores estruturais aplicáveis antes de consolidar grandes lotes;
+16. atualizar este arquivo apenas com progresso estrutural, sem revelar spoilers.
 
 ## Próximos blocos editoriais
 
