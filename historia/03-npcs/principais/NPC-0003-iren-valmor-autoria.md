@@ -40,7 +40,7 @@ Estas linhas servem para preservar voz e não representam eventos canônicos.
 - paleta: azul-acinzentado, carvão, couro castanho e pequenos detalhes de latão;
 - vestuário: casaco/robe funcional de corte por cima de roupa de viagem; peças suficientes para parecer institucional sem virar traje cerimonial permanente;
 - acessórios: bolsa ou pasta de documentos, fechos de latão, pequenos instrumentos de anotação/medição quando apropriados;
-- sinais visuais de profissão ou facção: nenhum brasão definitivo até a corte/instituição receber ID e identidade visual próprios;
+- sinais visuais de profissão ou facção: vínculo com `FAC-0001`, mas nenhum brasão/símbolo definitivo até a identidade visual da instituição ser aprovada;
 - elementos que não devem aparecer: olhos brilhantes gratuitos, aura permanente, caveiras decorativas, símbolos de um provider específico sem vínculo mecânico, coroa, armadura pesada;
 - variações permitidas: versão formal de audiência, versão de campo e versão sem casaco externo.
 
@@ -67,5 +67,5 @@ No estado inicial, Iren não pode assumir como conhecido:
 - quests: `QST-0001`;
 - NPCs: `NPC-0001` apenas como possível objeto futuro de investigação, não conhecimento inicial;
 - evidências: `EVD-0001`, `EVD-0002`, `EVD-0003` somente quando adquiridas por canal legítimo;
-- facções: pendente;
-- locais: pendente.
+- facções/instituições: `FAC-0001`;
+- assentamentos: `SET-0001`.
