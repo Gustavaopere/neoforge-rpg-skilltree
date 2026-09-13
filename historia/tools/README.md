@@ -15,19 +15,12 @@ Valida IDs estáveis e referências entre arquivos Markdown da história.
 
 ### Uso
 
-Na raiz do repositório:
-
 ```bash
 python historia/tools/validate_story.py
-```
-
-Por padrão, IDs duplicados retornam erro. Referências ainda não resolvidas são exibidas como aviso porque o projeto pode mencionar conteúdo planejado antes do arquivo correspondente existir.
-
-Para tratar referências não resolvidas como erro:
-
-```bash
 python historia/tools/validate_story.py --strict-references
 ```
+
+Por padrão, IDs duplicados retornam erro. Referências ainda não resolvidas são aviso; `--strict-references` transforma essas referências em erro.
 
 ## `validate_dialogues.py`
 
@@ -50,14 +43,44 @@ python historia/tools/validate_dialogues.py
 
 O lint é estrutural. Ele não avalia qualidade literária e não obriga todos os diálogos a usarem exatamente os mesmos títulos de seção.
 
+## `story_inventory.py`
+
+Gera um inventário de leitura dos registros versionados da campanha.
+
+### O que extrai
+
+- ID estável;
+- tipo (`NPC`, `QST`, `FAC`, `LOC`, etc.);
+- título;
+- primeiro valor declarado em `## Estado editorial`;
+- caminho do arquivo;
+- referências a outros IDs, deduplicadas;
+- resumo por tipo e estado editorial.
+
+### Uso
+
+Relatório Markdown no terminal:
+
+```bash
+python historia/tools/story_inventory.py
+```
+
+Saída JSON para consumo por ferramentas/agentes:
+
+```bash
+python historia/tools/story_inventory.py --format json
+```
+
+O inventário é read-only: não altera lore, IDs nem estado editorial.
+
 ## Testes
 
 ```bash
 python -m unittest discover -s historia/tools/tests -v
 ```
 
-As ferramentas usam apenas a biblioteca padrão do Python e não requerem API, conta, assinatura ou acesso de rede.
+Os três módulos possuem 21 testes unitários no total no estado atual: 7 para IDs/referências, 7 para diálogos e 7 para inventário. As ferramentas usam somente a biblioteca padrão do Python e não requerem API, conta, assinatura ou acesso de rede.
 
 ## Limites
 
-Os validadores não decidem se uma relação narrativa, fala ou consequência é correta. Eles verificam integridade estrutural. Causalidade, cronologia, knowledge, providers, spoilers, voz e agência continuam exigindo revisão editorial.
+As ferramentas não decidem se uma relação narrativa, fala ou consequência é correta. Elas verificam integridade/estrutura ou apresentam o inventário. Causalidade, cronologia, knowledge, providers, spoilers, voz e agência continuam exigindo revisão editorial.
