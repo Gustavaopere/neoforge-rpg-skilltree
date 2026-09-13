@@ -1,23 +1,45 @@
 # 07 — Data, Network & UI
 
-Carregar dados com validação forte e apresentar progressão no cliente sem transferir autoridade de gameplay para a interface.
+Carregar dados com validação forte e apresentar progressão no cliente sem transferir authority de gameplay para a interface.
 
 Ordem: schemas → reload/snapshots → protocolo → sync do jogador → tela da árvore → localização/acessibilidade.
 
 ## 07.05 — Skill Tree UI
 
-`05-skill-tree-ui.md` é o plano canônico do **alvo visual** da progressão: cosmograma **Árvore 1 (Atributos) → Árvore 2 (Perks Principais / 11 domínios) → constelações das classes emergentes → Árvore 3 (Especialistas)**.
+[`05-skill-tree-ui.md`](05-skill-tree-ui.md) é o plano canônico de apresentação do redesign aprovado em 2026-09-12.
 
-O plano cobre:
+A arquitetura visual anterior — Árvore 2 em 11 domínios radiais com classes no cinturão externo — foi **substituída**. O produto final passa a ser:
 
-- as 23 classes atualmente definidas e as identidades-alvo Ranger/Hunter e Death Knight sem fingir runtime inexistente;
-- as 25 specialization definitions atuais e seu mapeamento para emblemas simbólicos;
-- subtrees dedicadas atuais de Technomancer, Warlock, Druid e Metamorph;
-- shape fitting que só usa nodes/edges reais quando uma subtree existe;
-- prevenção de fake specialist nodes e de duplicação de especializações compartilhadas;
-- layout determinístico, pan/zoom, LOD, busca, filtros, breadcrumbs, tooltips e acessibilidade;
-- fail-closed visual, autoridade server-side, validators, TDD, profiling, build e dedicated-server safety.
+- Árvore 1 para atributos/base;
+- Árvore 2 como **uma única malha conectada com 23 regiões/galhos de classe**;
+- fronteiras porosas, corredores e shared nodes entre classes próximas;
+- Classe de Origem destacando o ponto inicial e afinidade de custo, sem bloquear o restante da árvore;
+- Class Gateways concedendo identidades secundárias somente após requisitos reais;
+- Árvore 3 com especializações class-centric e nodes apenas quando existe topologia server-authoritative real;
+- 512 nodes como baseline histórico, não teto de produto.
 
-**Gate obrigatório:** `docs/decisions/README.md` mantém D001 (Passive Skill Tree versus custom UI) aberta. O vertical slice exigido pelo `docs/MASTER_PLAN.md` e a ADR D001 devem ser concluídos **antes** da implementação integral de 07.05. O plano descreve o resultado de produto; ele não escolhe silenciosamente a engine.
+O contrato de gameplay correspondente está em `plans/04-classes-masteries-specializations/07-class-oriented-progression-overhaul.md`.
 
-A UI nunca pode criar node, classe, especialização, requisito, recurso ou unlock que não exista no estado/catálogo autoritativo.
+## Gates
+
+### D001
+
+A decisão Passive Skill Tree versus custom UI continua bloqueante para implementação integral. Antes de decidir, o vertical slice precisa provar:
+
+- duas regiões de classe vizinhas;
+- shared node;
+- Class Gateway;
+- specialization gateway real;
+- custo dinâmico;
+- requisito de atributo-base;
+- purchase/respec;
+- pan/zoom;
+- sync/reload server-authoritative.
+
+### Pesquisa Mine and Slash
+
+Antes de fechar nosso formato de authoring, concluir o spike clean-room sobre `TalentTree`, `TalentGrid`, `SkillTreeScreen`, `TalentsScreen`, `PerkButton`, Ascendancy, persistência, networking e performance. A abordagem grade → parser → grafo é referência técnica, não código a ser copiado.
+
+## Authority
+
+A UI nunca pode criar node, classe, especialização, custo, requisito, forma ou unlock que não exista no estado/catálogo autoritativo. Presença de provider vem do runtime/modlist corrente; AE2/Oritech/Identity2 removidos não permanecem hardcoded na interface.
