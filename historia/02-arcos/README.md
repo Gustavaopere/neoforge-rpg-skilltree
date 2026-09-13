@@ -34,6 +34,6 @@ Antes de alocar um novo `ARC-####` central:
 4. se a decisão depender de lore central que só o Grimoire pode resolver e ele estiver indisponível, manter a criação `BLOQUEADA/FAIL-CLOSED`;
 5. verificar providers/capabilities reais quando o arco depender de mecânica concreta;
 6. preferir problemas com múltiplas soluções sistêmicas quando o gameplay permitir;
-7. usar `TEMPLATE-ARCO.md` e considerar SIM/NÃO/ANTES/DEPOIS, prior-event reconciliation, progressão autônoma, death fallback e failure-forward.
+7. usar o scaffold canônico da Minecraft Mod Factory em `narrative/templates/TEMPLATE-ARC.md`, aplicando `historia/narrative-authoring-profile.json`, e considerar SIM/NÃO/ANTES/DEPOIS, prior-event reconciliation, progressão autônoma, death fallback e failure-forward.
 
 A ausência de um arco não é um erro de cobertura. É preferível manter uma era sem `ARC-####` do que inventar conflito, facção, NPC ou segredo apenas para preencher estrutura.
