@@ -20,13 +20,14 @@ If Grimoire or another required authority is unavailable and the missing fact is
 Before substantive narrative authoring:
 
 1. read relevant `historia/00-canone/` and existing records;
-2. when available, run `python historia/tools/story_inventory.py --format json` to obtain a current index of stable IDs, states and references before creating new entities;
-3. search stable IDs/names to avoid duplicate NPCs, factions, locations, quests or evidence;
-4. consult Grimoire for central lore and possible pre-existing entities when accessible;
-5. consult relevant Stage 08 contracts for knowledge, chronology, relationships, opportunity lifecycle, consequences and death/return;
-6. verify the latest modlist/provider evidence before assigning a real mechanic to a mod;
-7. consult Compendium/runtime identities before binding a narrative place to a biome, structure or dimension;
-8. inspect open branches/PRs affecting the same narrative IDs.
+2. when available, run `python historia/tools/story_inventory.py --format json` to obtain a current editorial index of stable IDs, states and references before creating new entities;
+3. treat that inventory as spoiler-bearing/editorial output: do not expose it in player-facing or public logs when it contains undiscovered material;
+4. search stable IDs/names to avoid duplicate NPCs, factions, locations, quests or evidence;
+5. consult Grimoire for central lore and possible pre-existing entities when accessible;
+6. consult relevant Stage 08 contracts for knowledge, chronology, relationships, opportunity lifecycle, consequences and death/return;
+7. verify the latest modlist/provider evidence before assigning a real mechanic to a mod;
+8. consult Compendium/runtime identities before binding a narrative place to a biome, structure or dimension;
+9. inspect open branches/PRs affecting the same narrative IDs.
 
 Absence of information is a valid project state.
 
@@ -46,15 +47,19 @@ Absence of information is a valid project state.
 
 Use the existing ID families under `historia/` (`HIST`, `ARC`, `NPC`, `QST`, `FAC`, `SET`, `LOC`, `EVT`, `EVD`, `END`, `DLG`, etc.). Reference entities by ID, not only by display name.
 
+For a primary entity file whose filename starts with a concrete stable ID, that ID must match the concrete stable ID declared directly in the entity H1. A filename/H1 mismatch is a fatal structural error.
+
+Auxiliary documents such as authoring sheets, asset briefs and lifecycle notes should reference an existing stable ID without redeclaring the entity in a top-level heading that starts directly with that ID. For example, prefer `# Ficha de autoria — NPC-0001 — ...`, not a second `# NPC-0001 — ...`.
+
 When available in the branch, run:
 
 `python historia/tools/validate_story.py historia`
 
 Use `--strict-references` when validating a closed batch. For dialogue batches also run `python historia/tools/validate_dialogues.py`.
 
-Do not claim full-repository validation unless the command actually ran against the complete materialized tree.
+Both validators are spoiler-safe by default and should emit aggregate rule/count output rather than narrative IDs, file paths or editorial details. Use `--reveal` only for deliberate editorial debugging. Do not paste reveal-mode output into player-facing or public status reports unless the user explicitly requests those details.
 
-Auxiliary documents such as authoring sheets, asset briefs and lifecycle notes should reference an existing stable ID without redeclaring the entity in a top-level heading that starts with that ID.
+Do not claim full-repository validation unless the command actually ran against the complete materialized tree. When only a subset was materialized, report the exact validation scope.
 
 ## Knowledge and evidence
 
@@ -98,9 +103,17 @@ A generated portrait is not itself a valid Minecraft skin UV.
 
 Narrative `SET-####` and `LOC-####` may exist before a physical worldgen binding is fixed. Bind later to verified `BIOME`, `STRUCTURE` or `DIMENSION` identities from the current Compendium/runtime. Keep provider-specific physical claims unbound until proven.
 
+## Epilogues
+
+Use the existing `END-####` family and the editorial epilogue composition contract when available. Epilogue fragments must derive from persistent/derivable Narrative Core state rather than a second parallel ending-state system.
+
+Conflict/suppression between fragments must be explicit and ordering deterministic. Do not hardcode a universal morality score or require a single final A/B choice. Player knowledge and objective world state remain distinct when selecting or wording fragments.
+
 ## Spoiler policy
 
-Unless the user explicitly asks for narrative details, reports should expose IDs/types, counts, editorial state, validation results, blockers and PR/CI state. Do not reveal hidden motives, mystery solutions, betrayals, secret conditions, alternate endings or undiscovered consequences by default.
+Unless the user explicitly asks for narrative details, reports should expose IDs/types only when safe and necessary, plus counts, editorial state, validation results, blockers and PR/CI state. Do not reveal hidden motives, mystery solutions, betrayals, secret conditions, alternate endings or undiscovered consequences by default.
+
+Prefer validator default output. Reveal-mode validator output and `story_inventory.py` output are editorial surfaces and may contain spoiler-bearing identifiers/titles/paths.
 
 ## Cost policy
 
@@ -112,7 +125,9 @@ Before calling an authoring batch complete, confirm:
 
 - relevant authorities checked;
 - current inventory/search used to reduce duplicate-entity risk;
+- inventory/reveal-mode output kept editorial unless explicitly requested;
 - no known duplicate stable entity introduced;
+- primary filename and direct entity H1 IDs agree;
 - editorial states explicit;
 - knowledge/provenance preserved;
 - relationship changes preserve direction, dimensions and causal provenance when applicable;
@@ -129,6 +144,7 @@ Before calling an authoring batch complete, confirm:
 - `historia/README.md`
 - `historia/00-canone/`
 - `historia/00-canone/relacoes-memoria-e-identidade.md`
+- `historia/10-finais-e-epilogos/`
 - `historia/11-ia-e-autoria/`
 - `historia/templates/`
 - `historia/tools/`
