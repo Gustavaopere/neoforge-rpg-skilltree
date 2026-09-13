@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur_IAFCommunityEdition3.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** CommunityEditionVersion3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Compat, Mobs
