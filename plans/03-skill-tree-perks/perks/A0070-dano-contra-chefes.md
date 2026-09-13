@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO após correção de cobertura/provider em 2026-08-31.
 - **Notion:** `3c569db9-f0db-81ce-8539-c9fda312469b`; Provider/Mods, Hook, Fallback e Regra corrigidos; re-fetch pós-escrita PASS.
-- **Runtime observado:** IMPLEMENTAÇÃO PARCIAL: classificador canônico cobre tag `rpgskilltree:bosses` + markers Apothic; bridge exata do Shroud Lich ainda precisa ser materializada pelo Chat 2.
+- **Runtime observado:** IMPLEMENTAÇÃO CONFIRMADA para vanilla/Cataclysm/Apothic e para a identidade exata opcional `enshrouded:shroud_lich`; demais candidatos permanecem fail-closed.
 
 ## Contrato canônico
 
@@ -22,7 +22,7 @@
 - Vanilla: `minecraft:ender_dragon`, `minecraft:wither`.
 - L_Ender's Cataclysm 3.33: somente identities explicitamente presentes na tag `rpgskilltree:bosses` do runtime (`netherite_monstrosity`, `ender_guardian`, `the_harbinger`, `ancient_remnant`, `the_leviathan`, `scylla`, `maledictus`, `ignis`).
 - Apothic: markers canônicos reconhecidos pelo `MartialTargetClassifier`; ELITE continua separado de BOSS.
-- Enshrouded `main@391ea82203d30cb392a3397f92e2a3cbe7fb6128`: identidade registry nativa comprovada `enshrouded:shroud_lich`.
+- Enshrouded: identidade registry nativa comprovada `enshrouded:shroud_lich`, materializada na tag opcional `rpgskilltree:bosses` com `required: false` pela PR #391.
 
 ### Cobertura ainda não promovida
 
@@ -30,11 +30,11 @@ Mowzie's Mobs 1.8.2, Legendary Monsters 2.2.2, Born in Chaos 1.7.6 e Mobstein 5.
 
 ## Boundary Enshrouded
 
-A0070 pode apenas ler a identidade nativa `enshrouded:shroud_lich`. Enshrouded permanece authority exclusiva de manifestação, arena, fase, Exposure, death marker, Story, Lich Skull, reward issuance e ritual. A skill tree não lê bossbar/fase para provar BOSS e não grava nenhum estado do Enshrouded.
+A0070 apenas lê a identidade nativa `enshrouded:shroud_lich` por tag opcional. Enshrouded permanece authority exclusiva de manifestação, arena, fase, Exposure, death marker, Story, Lich Skull, reward issuance e ritual. A skill tree não lê bossbar/fase para provar BOSS e não grava nenhum estado do Enshrouded.
 
 ## Evidência runtime
 
-`MartialTargetClassifier` hoje classifica a tag `rpgskilltree:bosses`, marker Apothic de boss e marker/ID Apothic de elite. `bosses.json` atualmente contém vanilla + oito Cataclysm. O código Enshrouded atual registra `enshrouded:shroud_lich`; portanto existe identidade estável para um adapter read-only, mas ela ainda não está no classificador do RPG.
+`MartialTargetClassifier` classifica a tag `rpgskilltree:bosses`, marker Apothic de boss e marker/ID Apothic de elite. A PR #391 acrescenta `enshrouded:shroud_lich` a `data/rpgskilltree/tags/entity_type/bosses.json` com `required: false`, preservando compatibilidade quando o provider não estiver instalado.
 
 ## Fallback e fail-closed
 
@@ -47,12 +47,12 @@ Sem tag, registry ID ou adapter confiável, classificar como BOSS é proibido. A
 - Summons, companions, fake players, hazards, reflexão e procs derivados não herdam A0070.
 - Não gera Mastery ou reward de boss.
 
-## Pendências para Chat 2
+## Validação Chat 3
 
-- **P-A0070-01:** adicionar adapter/tag explícita para `enshrouded:shroud_lich`, read-only, sem dependência de bossbar/fase/Story.
-- **P-A0070-02:** manter Mowzie/Legendary Monsters/Born in Chaos/Mobstein fail-closed até registry IDs/adapters exatos serem tecnicamente verificados; não adivinhar Witherstein por nome.
-- **P-A0070-03:** GameTest deve provar BOSS > ELITE e ausência de A0070+A0071 no mesmo root.
-- **P-A0070-04:** regression deve provar que fases/imunidades do Shroud Lich/Cataclysm continuam provider-native.
+- `P-A0070-01`: RESOLVIDA na PR #391 pela tag opcional exata `enshrouded:shroud_lich`; nenhuma bossbar/fase/Story é usada como heurística.
+- `P-A0070-02`: permanece política fail-closed para Mowzie/Legendary Monsters/Born in Chaos/Mobstein até registry IDs/adapters exatos serem tecnicamente comprovados; não é blocker do binding já implementado.
+- `P-A0070-03`: RESOLVIDA por `A0061A0070Chat3CoverageJUnitTest.bossTakesPrecedenceOverEliteAndNeverDoubleStacks`, que fixa BOSS > ELITE e multiplicador único de A0070.
+- `P-A0070-04`: preservada por arquitetura read-only/tag; nenhuma fase, imunidade, reward ou lifecycle provider-native é alterado pela skill tree.
 
 ## Nove eixos obrigatórios de aprovação
 
@@ -68,4 +68,4 @@ Sem tag, registry ID ou adapter confiável, classificar como BOSS é proibido. A
 | 8. NeoVitae | PASS | Ausente. |
 | 9. Cobertura providers | PASS com fail-closed explícito | Vanilla/Cataclysm/Apothic/Enshrouded comprovados; demais candidatos não são promovidos sem ID real. |
 
-Os 18 critérios técnicos cumulativos passam **no design**. A cobertura runtime de Enshrouded e demais adapters continua responsabilidade de implementação do Chat 2.
+Os 18 critérios técnicos cumulativos passam no estado implementado/fail-closed validado pelo Chat 3.

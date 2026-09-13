@@ -55,3 +55,10 @@ Sem classificação crítica segura, multiplicador A0063 = 1.0. Nunca criar crí
 | 9. Cobertura providers | PASS | Epic Fight/Apothic/RPG reconciliados com pipeline único. |
 
 Os 18 critérios técnicos cumulativos passam **no design**.
+
+## Fechamento Chat 3 — 2026-09-06
+
+- **Estado final do lote:** IMPLEMENTAÇÃO CONFIRMADA na PR #391.
+- O teste de cobertura Chat 3 prova que A0063 só multiplica dano depois de `canonicalCritical=true` e não transforma hit comum em crítico.
+- A suíte integral verde preserva a correlação do root entre melee/projétil e não registrou segundo hit ou multiplicador duplicado.
+- `P-A0063-01` fica encerrada no contrato atual; `P-A0063-02` permanece como restrição de futuros adapters Apothic, que devem convergir na mesma resolução crítica.

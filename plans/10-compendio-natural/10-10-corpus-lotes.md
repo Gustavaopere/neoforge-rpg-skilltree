@@ -655,6 +655,295 @@ Entradas:
 - nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
 - TDD confirmado no commit `1d0dac3dc2f153365165855ddda37d5620e854e3`, RPG Skill Tree CI run `34001317006`, job `101400580606`: 981 testes, exatamente 1 falha no Batch23 na linha 41 pela ausência de `betternether/biomes-batch3.json`; o corpus foi adicionado somente depois desse RED correto.
 
+## Lote 24 — Terralith 2.6.2 / biomas do Overworld (batch 1)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch1.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:alpha_islands` — Ilhas Alpha
+2. `BIOME:terralith:alpha_islands_winter` — Ilhas Alpha (Inverno)
+3. `BIOME:terralith:alpine_grove` — Bosques Alpinos
+4. `BIOME:terralith:alpine_highlands` — Planaltos Alpinos
+5. `BIOME:terralith:amethyst_canyon` — Desfiladeiro de Ametista
+6. `BIOME:terralith:amethyst_rainforest` — Floresta Tropical de Ametista
+7. `BIOME:terralith:ancient_sands` — Areias Ancestrais
+8. `BIOME:terralith:arid_highlands` — Planaltos Áridos
+9. `BIOME:terralith:ashen_savanna` — Savana Cinzenta
+10. `BIOME:terralith:basalt_cliffs` — Penhascos de Basalto
+
+### Critérios editoriais aplicados ao lote 24
+
+- o lote abre a cobertura Terralith para a build instalada `Terralith_1.21.x_v2.6.2.jar`, presente na modlist atual de 607 entradas;
+- os dez títulos preservam exatamente os valores do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`;
+- os registry paths foram cruzados com a integração Dynamic Trees–Terralith para 1.21.1 como confirmação independente de identidade/integração; essa integração não é tratada como autoridade para parâmetros internos de worldgen do Terralith 2.6.2;
+- palavras dos nomes como `Inverno`, `Alpinos`, `Ametista`, `Ancestrais`, `Áridos`, `Cinzenta` e `Basalto` não são convertidas em estação dinâmica, clima, altitude, composição, geometria, recursos ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `8b588d0e9dab3fb458d746ddad0998b119c50287`, RPG Skill Tree CI run `34007050395`, job `101416099969`: 994 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch24JUnitTest` na linha 48 pela ausência de `terralith/biomes-batch1.json`; o corpus foi adicionado somente depois desse RED correto;
+- a PR #431 reconciliou cinco títulos do registro/corpus com o mesmo asset oficial fixado e adicionou regressão de títulos; o HEAD de correção passou 24/24 workflows antes do merge `9707a8c5a85affa13d54e4e32d175ab56c6ee01c`.
+
+## Lote 25 — Terralith 2.6.2 / biomas do Overworld (batch 2)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch2.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:birch_taiga` — Taiga de Bétula
+2. `BIOME:terralith:blooming_plateau` — Planalto Florido
+3. `BIOME:terralith:blooming_valley` — Vale Florido
+4. `BIOME:terralith:brushland` — Matagal
+5. `BIOME:terralith:bryce_canyon` — Desfiladeiro de Bryce
+6. `BIOME:terralith:caldera` — Caldeira
+7. `BIOME:terralith:cloud_forest` — Floresta Nublada
+8. `BIOME:terralith:cold_shrubland` — Arbustivo Frio
+9. `BIOME:terralith:desert_canyon` — Desfiladeiro do Deserto
+10. `BIOME:terralith:desert_oasis` — Oásis no Deserto
+
+### Critérios editoriais aplicados ao lote 25
+
+- o recorte continua imediatamente após `basalt_cliffs` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `birch_taiga` até `desert_oasis`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; a integração Dynamic Trees–Terralith 1.3.0 é tratada apenas como confirmação complementar de identidade/integração, não como autoridade para parâmetros internos;
+- termos nominais como `Taiga`, `Florido`, `Bryce`, `Caldeira`, `Nublada`, `Frio`, `Deserto` e `Oásis` não são convertidos em temperatura, umidade, altitude, geometria, composição, água, vegetação, recursos, estruturas, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `d261b4fca6bd278df3986c2f5cfcb65b8206923e`, RPG Skill Tree CI run `34010452076`, job `101425236633`: 995 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch25JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch2.json`; o corpus foi adicionado somente depois desse RED correto.
+
+## Lote 26 — Terralith 2.6.2 / biomas do Overworld (batch 3)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch3.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:desert_spires` — Pináculos do Deserto
+2. `BIOME:terralith:emerald_peaks` — Picos Esmeralda
+3. `BIOME:terralith:forested_highlands` — Planaltos Florestados
+4. `BIOME:terralith:fractured_savanna` — Savana Fraturada
+5. `BIOME:terralith:frozen_cliffs` — Penhascos Congelados
+6. `BIOME:terralith:glacial_chasm` — Abismo Glacial
+7. `BIOME:terralith:granite_cliffs` — Penhascos de Granito
+8. `BIOME:terralith:gravel_beach` — Praia de Cascalho
+9. `BIOME:terralith:gravel_desert` — Deserto de Cascalho
+10. `BIOME:terralith:haze_mountain` — Montanha Neblinada
+
+### Critérios editoriais aplicados ao lote 26
+
+- o recorte continua imediatamente após `desert_oasis` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `desert_spires` até `haze_mountain`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; Dynamic Trees–Terralith permanece apenas como confirmação complementar de identidade/integração;
+- termos nominais como `Deserto`, `Picos`, `Florestados`, `Fraturada`, `Congelados`, `Glacial`, `Granito`, `Praia`, `Cascalho`, `Montanha` e `Neblinada` não são convertidos em clima, temperatura, altitude, geometria, composição, geologia, posição costeira, vegetação, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `d4a5045c5c52bc127b9c0b7767832e064a75397b`, RPG Skill Tree CI run `34030615435`, job `101479349192`: 1015 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch26JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch3.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `c016ab043a8a2064f965ba4d051130683dfde3a4`; o JUnit 5 correspondente passou no run `34031022352` antes da atualização deste registro.
+
+## Lote 27 — Terralith 2.6.2 / biomas do Overworld (batch 4)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch4.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:highlands` — Planalto
+2. `BIOME:terralith:hot_shrubland` — Arbustivo Quente
+3. `BIOME:terralith:ice_marsh` — Pântano de Gelo
+4. `BIOME:terralith:jungle_mountains` — Montanhas da Selva
+5. `BIOME:terralith:lavender_forest` — Floresta de Lavanda
+6. `BIOME:terralith:lavender_valley` — Vale da Lavanda
+7. `BIOME:terralith:lush_desert` — Deserto Verdejante
+8. `BIOME:terralith:lush_valley` — Vale Verdejante
+9. `BIOME:terralith:mirage_isles` — Ilhas Miragem
+10. `BIOME:terralith:moonlight_grove` — Bosque Luar
+
+### Critérios editoriais aplicados ao lote 27
+
+- o recorte continua imediatamente após `haze_mountain` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `highlands` até `moonlight_grove`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; Dynamic Trees–Terralith permanece apenas como confirmação complementar de identidade/integração;
+- termos nominais como `Planalto`, `Quente`, `Pântano`, `Gelo`, `Montanhas`, `Selva`, `Lavanda`, `Deserto`, `Verdejante`, `Ilhas`, `Miragem`, `Bosque` e `Luar` não são convertidos em clima, temperatura, altitude, geometria, composição, vegetação, espécies, água, iluminação, ciclo lunar, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `8bccbfe7e99f161db7cba4b4a6f9b5c8af0bf0e8`, RPG Skill Tree CI run `34033863889`, job `101488264513`: 1016 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch27JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch4.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `cc1da1fba598067293fa88203680a8f3b7a735f6`; Compendium Editorial CI run `34034127426` passou schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
+
+## Lote 28 — Terralith 2.6.2 / biomas do Overworld (batch 5)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch5.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:moonlight_valley` — Vale Luar
+2. `BIOME:terralith:mountain_steppe` — Montanha Estepe
+3. `BIOME:terralith:orchid_swamp` — Pântano Orquídea
+4. `BIOME:terralith:painted_mountains` — Montanhas Pintadas
+5. `BIOME:terralith:red_oasis` — Oásis Vermelho
+6. `BIOME:terralith:rocky_jungle` — Selva Rochosa
+7. `BIOME:terralith:rocky_mountains` — Montanhas Rochosas
+8. `BIOME:terralith:rocky_shrubland` — Arbustivo Rochoso
+9. `BIOME:terralith:sakura_grove` — Bosque Sakura
+10. `BIOME:terralith:sakura_valley` — Vale de Sakura
+
+### Critérios editoriais aplicados ao lote 28
+
+- o recorte continua imediatamente após `moonlight_grove` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `moonlight_valley` até `sakura_valley`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; Dynamic Trees–Terralith 1.3.0 permanece apenas como confirmação complementar de identidade/integração;
+- termos nominais como `Vale`, `Luar`, `Montanha`, `Estepe`, `Pântano`, `Orquídea`, `Pintadas`, `Oásis`, `Vermelho`, `Selva`, `Rochosa`, `Rochoso`, `Bosque` e `Sakura` não são convertidos em clima, temperatura, altitude, geometria, composição, geologia, vegetação, espécies, água, iluminação, ciclo lunar, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `06323d41daa8342f87f5fdc9605db5ea4d677e91`, RPG Skill Tree CI run `34036255544`, job `101494767505`: 1017 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch28JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch5.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `d29285fda2664c607c27cece5abb79ec7f3e2d31`; o JUnit 5 correspondente passou no RPG Skill Tree CI run `34036440482`, job `101495263965`, e o Compendium Editorial CI run `34036440421`, job `101495263669`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
+
+## Lote 29 — Terralith 2.6.2 / biomas do Overworld (batch 6)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch6.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:sandstone_valley` — Vale de Arenito
+2. `BIOME:terralith:savanna_badlands` — Mesa de Savana
+3. `BIOME:terralith:savanna_slopes` — Encostas de Savana
+4. `BIOME:terralith:scarlet_mountains` — Montanhas Escarlates
+5. `BIOME:terralith:shield` — Escudo
+6. `BIOME:terralith:shield_clearing` — Escudo Limpo
+7. `BIOME:terralith:shrubland` — Arbustivo
+8. `BIOME:terralith:siberian_grove` — Bosque Siberiano
+9. `BIOME:terralith:siberian_taiga` — Taiga Siberiana
+10. `BIOME:terralith:skylands_autumn` — Ilhas Flutuantes (Outono)
+
+### Critérios editoriais aplicados ao lote 29
+
+- o recorte continua imediatamente após `sakura_valley` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `sandstone_valley` até `skylands_autumn`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; Dynamic Trees–Terralith permanece apenas como confirmação complementar de identidade/integração;
+- termos nominais como `Vale`, `Arenito`, `Mesa`, `Savana`, `Encostas`, `Montanhas`, `Escarlates`, `Escudo`, `Limpo`, `Arbustivo`, `Siberiano`, `Taiga`, `Ilhas Flutuantes` e `Outono` não são convertidos em clima, temperatura, altitude, geometria, composição, geologia, vegetação, estação dinâmica, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `92326532b0e16baedbd575434b0e122b92026388`, RPG Skill Tree CI run `34038317783`, job `101500360835`: 1020 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch29JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch6.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `8ccd464b5dc572eebf039f70077f57951843fe07`; o JUnit 5 correspondente passou no RPG Skill Tree CI run `34038656648`, job `101501280754`, e o Compendium Editorial CI run `34038656685`, job `101501280646`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
+
+## Lote 30 — Terralith 2.6.2 / biomas do Overworld (batch 7)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch7.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:skylands_spring` — Ilhas Flutuantes (Primavera)
+2. `BIOME:terralith:skylands_summer` — Ilhas Flutuantes (Verão)
+3. `BIOME:terralith:skylands_winter` — Ilhas Flutuantes (Inverno)
+4. `BIOME:terralith:snowy_badlands` — Mesa Nevada
+5. `BIOME:terralith:snowy_maple_forest` — Floresta de Bordo Nevado
+6. `BIOME:terralith:snowy_shield` — Escudo Nevado
+7. `BIOME:terralith:steppe` — Estepe
+8. `BIOME:terralith:stony_spires` — Pináculos Pedregosos
+9. `BIOME:terralith:temperate_highlands` — Planaltos Temperados
+10. `BIOME:terralith:tropical_jungle` — Selva Tropical
+
+### Critérios editoriais aplicados ao lote 30
+
+- o recorte continua imediatamente após `skylands_autumn` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `skylands_spring` até `tropical_jungle`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion; Dynamic Trees–Terralith permanece apenas como confirmação complementar de identidade/integração;
+- termos nominais como `Ilhas Flutuantes`, `Primavera`, `Verão`, `Inverno`, `Mesa`, `Nevada`, `Floresta`, `Bordo`, `Escudo`, `Estepe`, `Pináculos`, `Pedregosos`, `Planaltos`, `Temperados`, `Selva` e `Tropical` não são convertidos em estação dinâmica, neve real, clima, temperatura, umidade, altitude, geometria, composição, geologia, vegetação, espécies, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `b8cafee71a7c806b74d4105bb280959e374ce947`, RPG Skill Tree CI run `34049499605`, job `101530421616`: 1124 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch30JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch7.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `d74370a0723bc3e53c7b75b4526c4b6001391935`; o JUnit 5 correspondente passou no RPG Skill Tree CI run `34049737139`, job `101531051695`, e o Compendium Editorial CI run `34049737149`, job `101531051719`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
+
+## Lote 31 — Terralith 2.6.2 / biomas do Overworld (batch 8)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch8.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:valley_clearing` — Vale Limpo
+2. `BIOME:terralith:volcanic_crater` — Cratera Vulcânica
+3. `BIOME:terralith:volcanic_peaks` — Picos Vulcânicos
+4. `BIOME:terralith:warm_river` — Rio Quente
+5. `BIOME:terralith:warped_mesa` — Mesa Distorcida
+6. `BIOME:terralith:white_cliffs` — Penhascos Brancos
+7. `BIOME:terralith:white_mesa` — Mesa Branca
+8. `BIOME:terralith:windswept_spires` — Pináculos Ventosos
+9. `BIOME:terralith:wintry_forest` — Floresta Invernal
+10. `BIOME:terralith:wintry_lowlands` — Planícies Invernais
+
+### Critérios editoriais aplicados ao lote 31
+
+- o recorte continua imediatamente após `tropical_jungle` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo exatamente `valley_clearing` até `wintry_lowlands`;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion, ambos reconfirmados no início deste ciclo;
+- termos nominais como `Vale`, `Limpo`, `Cratera`, `Vulcânica`, `Picos`, `Rio`, `Quente`, `Mesa`, `Distorcida`, `Penhascos`, `Brancos`, `Pináculos`, `Ventosos`, `Floresta`, `Invernal`, `Planícies` e `Invernais` não são convertidos em topologia, vulcanismo ativo, lava, altitude, temperatura, hidrologia, geometria, composição, cor de blocos, vento, estação, neve, vegetação, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `a62cae43f7630b00adae72ceb2d1c52f2035f39e`, RPG Skill Tree CI run `34052275762`, job `101537890933`: 1125 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch31JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch8.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `2695d47c9fb658854decc9fea050f1891ef5cbbb`; o JUnit 5 correspondente e todo o RPG Skill Tree CI passaram no run `34052534181`, job `101538583651`, e o Compendium Editorial CI run `34052534088`, job `101538583477`, passou provider exclusions, schema/coverage, completude pt-BR, contratos e Editorial runtime JUnit antes da atualização deste registro.
+
+## Lote 32 — Terralith 2.6.2 / biomas do Overworld e cavernas (batch 9)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch9.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:yellowstone` — Yellowstone
+2. `BIOME:terralith:yosemite_cliffs` — Penhascos de Yosemite
+3. `BIOME:terralith:yosemite_lowlands` — Planícies de Yosemite
+4. `BIOME:terralith:cave/andesite_caves` — Cavernas de Andesito
+5. `BIOME:terralith:cave/desert_caves` — Cavernas Desérticas
+6. `BIOME:terralith:cave/deep_caves` — Cavernas Profundas
+7. `BIOME:terralith:cave/diorite_caves` — Cavernas de Diorito
+8. `BIOME:terralith:cave/frostfire_caves` — Cavernas Fogofrio
+9. `BIOME:terralith:cave/fungal_caves` — Cavernas de Fungos
+10. `BIOME:terralith:cave/granite_caves` — Cavernas de Granito
+
+### Critérios editoriais aplicados ao lote 32
+
+- o recorte continua imediatamente após `wintry_lowlands` na ordem do asset pt-BR oficial da Stardust Labs congelado no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`, cobrindo `yellowstone`, os dois biomas Yosemite e os sete primeiros IDs do grupo `cave/` usados neste lote;
+- os dez títulos são preservados literalmente do mesmo asset oficial, sem tradução editorial inventada;
+- Terralith 2.6.2 permanece presente na modlist atual e no registro correspondente do Notion, ambos reconfirmados antes do fechamento deste lote; Dynamic Trees–Terralith permanece apenas como confirmação complementar de integração;
+- termos nominais como `Yellowstone`, `Yosemite`, `Penhascos`, `Planícies`, `Andesito`, `Desérticas`, `Profundas`, `Diorito`, `Fogofrio`, `Fungos` e `Granito` não são convertidos em equivalência geográfica real, altitude, profundidade, faixa Y, temperatura, geologia, composição integral, minérios, estruturas, mobs, perigo, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- nenhuma temperatura, umidade, chance, densidade, peso, extensão, geometria, altura, profundidade ou frequência numérica foi congelada no corpus;
+- TDD confirmado no commit `de5caadfa09b8bda4da3d35afd072919161132d2`, RPG Skill Tree CI run `34057971178`, job `101553233810`: 1147 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch32JUnitTest` na linha 49 pela ausência de `terralith/biomes-batch9.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `a9be4a03574de3c17761a5487aa8cbd6d44952d6`; o Compendium Editorial CI run `34058398358`, job `101554411627`, passou provider exclusions, schema/coverage, completude pt-BR, contratos de modelo/locale e Editorial runtime JUnit; o RPG Skill Tree CI run `34058398299`, job `101554411657`, passou JUnit 5, adapter NeoForge, GameTests, provider-present GameTests, validadores do Compêndio, build, inspeção do JAR e dedicated-server smoke antes da atualização deste registro.
+
+## Lote 33 — Terralith 2.6.2 / cavernas e biomas remanescentes (batch 10)
+
+Arquivo: `src/main/resources/data/rpgskilltree/compendium/editorial/pt_br/terralith/biomes-batch10.json`
+
+Estado: `REVIEWED`
+
+Entradas:
+
+1. `BIOME:terralith:cave/infested_caves` — Cavernas Infestadas
+2. `BIOME:terralith:cave/mantle_caves` — Cavernas de Manto
+3. `BIOME:terralith:cave/thermal_caves` — Cavernas Termais
+4. `BIOME:terralith:cave/tuff_caves` — Cavernas de Tufo
+5. `BIOME:terralith:cave/underground_jungle` — Selva Subterrânea
+6. `BIOME:terralith:cave/crystal_caves` — Cavernas de Cristal
+7. `BIOME:terralith:cave/ice_caves` — Cavernas de Gelo
+8. `BIOME:terralith:snowy_cherry_grove` — Bosque de Cerejeiras Nevado
+9. `BIOME:terralith:skylands` — Ilhas Flutuantes
+
+### Critérios editoriais aplicados ao lote 33
+
+- a modlist atual e o registro correspondente do Notion foram reconfirmados antes da autoria: Terralith 2.6.2 permanece instalado/verificado;
+- o lote não força cardinalidade 10: aliases de localização `biome.terralith.cave.foo` foram descartados por não constituírem IDs técnicos independentes; o recorte fecha com nove IDs únicos aceitos pelos gates de cobertura/runtime do corpus;
+- os oito títulos que possuem chave própria preservam literalmente o asset pt-BR oficial congelado da Stardust Labs no commit `b89e2772bc5b48e78c977103129a0ab358ed2294`;
+- `terralith:skylands` não possui chave pt-BR própria no asset congelado; `Ilhas Flutuantes` é explicitamente um alias editorial do projeto, coerente com a nomenclatura oficial das variantes `skylands_autumn`, `skylands_spring`, `skylands_summer` e `skylands_winter`, mantendo o ID técnico visível;
+- a enumeração binária direta do JAR Terralith 2.6.2 não foi obtida pelos conectores disponíveis; por isso o corpus congela somente identidade/título e usa os gates de cobertura/runtime do projeto como fail-closed, sem inventar semântica mecânica;
+- nomes como `Infestadas`, `Manto`, `Termais`, `Tufo`, `Selva Subterrânea`, `Cristal`, `Gelo`, `Nevado` e `Ilhas Flutuantes` não são convertidos em mobs, geologia, temperatura, faixa Y, composição, vegetação, altitude, recursos, chance, densidade ou frequência sem fonte específica da build instalada;
+- TDD confirmado no commit `e876b89c4a86cb98a00a0724bf09ca05efed067d`, RPG Skill Tree CI run `34063166128`, job `101567214983`: 1152 testes, exatamente 1 falha em `CompendiumCheckedInEditorialBatch33JUnitTest` na linha 48 pela ausência deliberada de `terralith/biomes-batch10.json`; wrapper, regeneração, core tests, wiki e coverage haviam passado;
+- o corpus foi adicionado somente depois desse RED correto no commit `93d341d912170e5101088dee30ec566cf75c1b67`; o Compendium Editorial CI run `34063396693`, job `101567840132`, passou provider exclusions, schema/coverage, completude pt-BR, contratos de modelo/locale e Editorial runtime JUnit; o RPG Skill Tree CI run `34063396620`, job `101567840241`, passou JUnit 5, adapter NeoForge, GameTests, provider-present GameTests, validadores do Compêndio, build, inspeção do JAR e dedicated-server smoke antes da atualização deste registro.
+
 ## Estado acumulado
 
 - entidades vanilla reais no corpus: **80**;
@@ -664,7 +953,8 @@ Entradas:
 - entradas de worldgen Oh The Biomes We've Gone reais no corpus: **55**;
 - entradas de worldgen BetterEnd: New Dawn reais no corpus: **27**;
 - entradas de worldgen BetterNether: New Dawn reais no corpus: **23**;
-- entradas editoriais totais: **215**;
-- lotes documentados: **23**;
-- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`;
+- entradas de worldgen Terralith reais no corpus: **99**;
+- entradas editoriais totais: **314**;
+- lotes documentados: **33**;
+- namespaces atuais em produção: `minecraft`, `alexscaves`, `biomeswevegone`, `betterend`, `betternether`, `terralith`;
 - o Stage 10.10 permanece aberto até a cobertura editorial exigida pela modlist e os demais gates do plano canônico serem concluídos.

@@ -58,3 +58,10 @@
 | 9. Cobertura providers | PASS | Epic Fight/Minecraft/Simply Swords e projeto próprio foram cruzados; rotas não comprovadas falham fechado. |
 
 Os 18 critérios técnicos cumulativos passam **no design**. Implementação só pode ser declarada confirmada após os testes e fechamento do Chat 2.
+
+## Fechamento Chat 3 — 2026-09-06
+
+- **Estado final do lote:** IMPLEMENTAÇÃO CONFIRMADA na PR #391.
+- A policy física compartilhada mantém A0061 como contribuição independente por root action, sem replay de hit e sem reexecução de efeito provider-native.
+- A suíte `RPG CI` do HEAD auditado executou JUnit, adapters, GameTests, validação de recursos, build/JAR e dedicated-server smoke com sucesso; SonarQube, CodeQL, dependency review, SBOM e secret scanning também concluíram sem falhas.
+- `P-A0061-01` e `P-A0061-02` ficam encerradas para o contrato atualmente implementado. Providers sem provenance/boundary seguro continuam fail-closed por design.

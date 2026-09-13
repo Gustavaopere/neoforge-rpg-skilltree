@@ -47,3 +47,12 @@ Sem identidade confiável de ELITE, contribuição A0071 = zero. Somente dano f�
 | Providers | PASS | Apothic real; demais fail-closed sem identidade comprovada. |
 
 Os 18 critérios técnicos cumulativos passam **no design**.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **IMPLEMENTAÇÃO CONFIRMADA NO CLASSIFICADOR CANÔNICO**.
+- `MartialTargetClassifier` foi coberto diretamente para fallback HOSTILE, `apoth.miniboss`, elite key capturada e precedência `apoth.boss` → BOSS.
+- `A0061A0080CombatPolicy` mantém `BOSS > ELITE > HOSTILE`, sem double-dipping A0070+A0071.
+- `P-A0071-01` está resolvida quanto à classificação/precedência exercitável no runtime; E2E de provider externo adicional não é requisito para liberar a perk.
+- `P-A0071-02` permanece **não bloqueante**: qualquer novo provider externo continua fail-closed até identidade exata/versionada.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.

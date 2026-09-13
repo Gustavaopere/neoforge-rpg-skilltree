@@ -86,4 +86,5 @@ jobs:
           grep -Fq 'Create 6.0.10 (create)' "$LOG"
           grep -Fq 'Sable 2.0.5 (sable)' "$LOG"
           grep -Fq 'Create Aeronautics 1.3.2 (aeronautics_bundled)' "$LOG"
+          grep -Fq 'Create engineering Mastery integration active: Create 6.0.10' "$LOG"
           grep -Eq 'All [0-9]+ required tests passed' "$LOG"

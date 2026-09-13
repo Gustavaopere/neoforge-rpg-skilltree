@@ -157,11 +157,14 @@ public final class A0041A0060CombatPolicy {
     }
 
     public static void recordCrossbowHit(
-        String actorId, String rootActionId, CombatPerkRanks ranks, A0041A0060CombatState state, long now
+        String actorId, String rootActionId, String weaponId, CombatPerkRanks ranks,
+        A0041A0060CombatState state, long now
     ) {
         requireCommon(actorId, rootActionId, ranks, state);
-        if (ranks.rank("A0052") <= 0 || !state.claimOnce(actorId, rootActionId, "A0052:hit", now)) return;
-        state.recordCrossbowHit(actorId, rootActionId, now);
+        Objects.requireNonNull(weaponId, "weaponId");
+        if (weaponId.isBlank() || ranks.rank("A0052") <= 0
+            || !state.claimOnce(actorId, rootActionId, "A0052:hit", now)) return;
+        state.recordCrossbowHit(actorId, rootActionId, weaponId, now);
     }
 
     public static boolean onCrossbowReloadComplete(
@@ -171,11 +174,14 @@ public final class A0041A0060CombatPolicy {
         Objects.requireNonNull(weaponId); Objects.requireNonNull(ranks); Objects.requireNonNull(state);
         int rank = ranks.rank("A0052");
         if (rank <= 0 || !nativeAmmoConsumed) return false;
-        if (!state.consumeCrossbowHitReceipt(actorId, NotionCombatPerkRules.cadenceReloadWindowMillis(rank), now)) return false;
+        if (!state.consumeCrossbowHitReceipt(
+            actorId, weaponId, NotionCombatPerkRules.cadenceReloadWindowMillis(rank), now
+        )) return false;
         state.addCadence(actorId);
         return true;
     }
 
+    /** Reserves the cost at release. Cadence is committed only after a correlated projectile exists. */
     public static CombatResult tryPiercingBolt(
         String actorId, String rootActionId, CombatPerkRanks ranks, A0041A0060CombatState state,
         boolean fullyLoaded, boolean penetrationAvailable, boolean impactAvailable, long now
@@ -184,8 +190,7 @@ public final class A0041A0060CombatPolicy {
         int rank = ranks.rank("A0053");
         if (rank <= 0 || !fullyLoaded || state.cadence(actorId) < NotionCombatPerkRules.A0053_CADENCE_COST
             || (!penetrationAvailable && !impactAvailable)) return CombatResult.neutral();
-        if (!state.claimOnce(actorId, rootActionId, "A0053:consume", now)) return CombatResult.neutral();
-        state.consumeCadence(actorId, NotionCombatPerkRules.A0053_CADENCE_COST);
+        if (!state.reservePiercingBolt(actorId, rootActionId, now)) return CombatResult.neutral();
         return new CombatResult(
             true, false, 1.0D,
             impactAvailable ? NotionCombatPerkRules.piercingBoltImpactMultiplier(rank) : 1.0D,
@@ -193,6 +198,25 @@ public final class A0041A0060CombatPolicy {
             penetrationAvailable ? NotionCombatPerkRules.piercingBoltPenetrationFraction(rank) : 0.0D,
             0.0D
         );
+    }
+
+    public static boolean commitPiercingBolt(
+        String actorId, String rootActionId, CombatPerkRanks ranks,
+        A0041A0060CombatState state, long now
+    ) {
+        requireCommon(actorId, rootActionId, ranks, state);
+        if (ranks.rank("A0053") <= 0) {
+            state.discardPiercingBolt(actorId, rootActionId);
+            return false;
+        }
+        return state.commitPiercingBolt(actorId, rootActionId, now);
+    }
+
+    public static void rollbackPiercingBolt(
+        String actorId, String rootActionId, A0041A0060CombatState state
+    ) {
+        Objects.requireNonNull(state, "state");
+        state.discardPiercingBolt(actorId, rootActionId);
     }
 
     public static void onCrossbowFailure(String actorId, A0041A0060CombatState state) {
@@ -204,18 +228,40 @@ public final class A0041A0060CombatPolicy {
         int mastery, boolean nativeReload, long now
     ) {
         Objects.requireNonNull(ranks); Objects.requireNonNull(state);
-        if (!ranks.learned("A0054") || mastery < 80 || !nativeReload || state.cadence(actorId) < NotionCombatPerkRules.CADENCE_CAP) return false;
+        if (!ranks.learned("A0054") || mastery < 80 || !nativeReload
+            || state.cadence(actorId) < NotionCombatPerkRules.CADENCE_CAP) return false;
         state.armAdjustedMechanism(actorId, NotionCombatPerkRules.adjustedMechanismWindowMillis(mastery), now);
         return true;
     }
 
+    /** Reserves the armed window. Cadence/window are consumed only when projectile creation commits. */
     public static CombatResult tryAdjustedCrossbowShot(
         String actorId, String rootActionId, CombatPerkRanks ranks, A0041A0060CombatState state, long now
     ) {
         requireCommon(actorId, rootActionId, ranks, state);
-        if (!ranks.learned("A0054") || !state.consumeAdjustedMechanism(actorId, now)) return CombatResult.neutral();
-        if (!state.claimOnce(actorId, rootActionId, "A0054:shot", now)) return CombatResult.neutral();
+        if (!ranks.learned("A0054") || !state.reserveAdjustedMechanism(actorId, rootActionId, now)) {
+            return CombatResult.neutral();
+        }
         return new CombatResult(true, false, 1.15D, 1.0D, 1.0D, 0.0D, 0.0D);
+    }
+
+    public static boolean commitAdjustedCrossbowShot(
+        String actorId, String rootActionId, CombatPerkRanks ranks,
+        A0041A0060CombatState state, long now
+    ) {
+        requireCommon(actorId, rootActionId, ranks, state);
+        if (!ranks.learned("A0054")) {
+            state.discardAdjustedMechanism(actorId, rootActionId);
+            return false;
+        }
+        return state.commitAdjustedMechanism(actorId, rootActionId, now);
+    }
+
+    public static void rollbackAdjustedCrossbowShot(
+        String actorId, String rootActionId, A0041A0060CombatState state
+    ) {
+        Objects.requireNonNull(state, "state");
+        state.discardAdjustedMechanism(actorId, rootActionId);
     }
 
     public static void afterConfirmedFistHit(

@@ -4,49 +4,37 @@ import dev.gustavopere.rpgskilltree.core.CombatPerkNodeBinding;
 import dev.gustavopere.rpgskilltree.core.CombatPerkRanks;
 import dev.gustavopere.rpgskilltree.core.PassiveNodeProgress;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainVersionContract;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import net.minecraft.resources.ResourceLocation;
 
-/**
- * Server-authoritative availability boundary for combat nodes whose approved contract requires
- * a concrete runtime binding before purchase or effect activation.
- *
- * <p>Persisted legacy ranks remain stored for recovery/refund, but unavailable ranks are masked
- * from gameplay so a historical allocation cannot bypass a fail-closed provider boundary.</p>
- */
+/** Server-authoritative availability boundary for combat perks with mandatory runtime providers. */
 public final class CombatPerkAvailabilityRuntime {
     private CombatPerkAvailabilityRuntime() {}
 
     public static boolean isAvailable(ResourceLocation nodeId) {
-        Objects.requireNonNull(nodeId, "nodeId");
+        Objects.requireNonNull(nodeId);
         return CombatPerkNodeBinding.catalogCode(nodeId.toString())
             .map(CombatPerkAvailabilityRuntime::isCatalogCodeAvailable)
             .orElse(true);
     }
 
     public static boolean isCatalogCodeAvailable(String code) {
-        Objects.requireNonNull(code, "code");
+        Objects.requireNonNull(code);
         return switch (code) {
-            // A0042 requires a canonical eligible_kill anti-abuse receipt. The repository does not
-            // currently publish one; Enemy/Player identity alone is not sufficient evidence.
-            case "A0042" -> false;
-
-            // No audited provider currently exposes semantic draw/preparation speed for A0044.
-            // A0047 depends structurally on A0044, and A0048 depends structurally on A0047.
-            case "A0044", "A0047", "A0048" -> false;
-
-            // No audited provider currently exposes semantic reload/preparation speed for A0050.
-            case "A0050" -> false;
-
+            case "A0042", "A0044", "A0047", "A0048", "A0050", "A0052", "A0053", "A0054",
+                 "A0067", "A0072", "A0075", "A0077", "A0080", "A0081", "A0084", "A0085",
+                 "A0086", "A0087" -> false;
+            case "A0083" -> ironsDirectMagicAvailable();
             default -> true;
         };
     }
 
-    /** Returns an effective rank snapshot where structurally unavailable nodes contribute zero. */
     public static CombatPerkRanks effectiveRanks(CombatPerkRanks persistedRanks) {
-        Objects.requireNonNull(persistedRanks, "persistedRanks");
+        Objects.requireNonNull(persistedRanks);
         Map<String, Integer> effective = new LinkedHashMap<>();
         persistedRanks.ranks().forEach((code, rank) -> {
             if (isCatalogCodeAvailable(code)) effective.put(code, rank);
@@ -54,16 +42,25 @@ public final class CombatPerkAvailabilityRuntime {
         return effective.isEmpty() ? CombatPerkRanks.empty() : CombatPerkRanks.of(effective);
     }
 
-    /**
-     * Returns a derived progression view for prerequisite evaluation. Unavailable combat-node
-     * ranks remain persisted in the source state but contribute zero to structural access.
-     */
-    public static ProgressionState effectiveAccessState(ProgressionState persistedState) {
-        Objects.requireNonNull(persistedState, "persistedState");
-        Map<String, Integer> effective = new LinkedHashMap<>(persistedState.passiveNodes().ranks());
+    public static CombatPerkRanks effectiveRanks(PassiveNodeProgress progress) {
+        Objects.requireNonNull(progress);
+        return effectiveRanks(CombatPerkNodeBinding.ranks(progress));
+    }
+
+    public static ProgressionState effectiveAccessState(ProgressionState state) {
+        Objects.requireNonNull(state);
+        Map<String, Integer> effective = new LinkedHashMap<>(state.passiveNodes().ranks());
         effective.entrySet().removeIf(entry -> CombatPerkNodeBinding.catalogCode(entry.getKey())
             .map(code -> !isCatalogCodeAvailable(code))
             .orElse(false));
-        return persistedState.withPassiveNodes(PassiveNodeProgress.of(effective));
+        return state.withPassiveNodes(PassiveNodeProgress.of(effective));
+    }
+
+    private static boolean ironsDirectMagicAvailable() {
+        return OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)
+            && IronsSustainVersionContract.supportsVersion(
+                OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS)
+            )
+            && IronsSustainVersionContract.runtimeContractPresent();
     }
 }

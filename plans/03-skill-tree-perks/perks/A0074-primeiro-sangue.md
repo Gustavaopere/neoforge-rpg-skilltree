@@ -45,3 +45,12 @@ Minecraft/NeoForge fornece vida; Epic Fight fornece root/Impact quando aplicáve
 | Providers | PASS | NeoForge/Epic Fight/RPG delimitados. |
 
 Os 18 critérios passam **no design**; implementação atual necessita correção causal.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **IMPLEMENTAÇÃO CONFIRMADA**.
+- `P-A0074-01` foi resolvida: opener, histórico `lastAttackAt`, consumo e cooldown só são efetivados no POST confirmado; PRE apenas reserva.
+- Cancelamento ou dano zero faz rollback sem criar janela, cooldown ou histórico fantasma.
+- Projéteis concorrentes são correlacionados pelo root exato, evitando que uma flecha consuma a reserva de outra.
+- Cleanup por alvo e ator está ligado aos boundaries de lifecycle do lote.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.

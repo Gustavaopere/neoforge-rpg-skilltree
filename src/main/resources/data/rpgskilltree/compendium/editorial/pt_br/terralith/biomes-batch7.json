@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "terralith",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:terralith:skylands_spring",
+      "title": "Ilhas Flutuantes (Primavera)",
+      "summary": {
+        "text": "Ilhas Flutuantes (Primavera) é um bioma do Overworld registrado no namespace Terralith com o ID terralith:skylands_spring. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands_spring"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Ilhas Flutuantes e Primavera não são convertidos em ilhas realmente suspensas, altitude, estação dinâmica, clima, vegetação, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands_spring"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:skylands_summer",
+      "title": "Ilhas Flutuantes (Verão)",
+      "summary": {
+        "text": "Ilhas Flutuantes (Verão) é um bioma do Overworld registrado no namespace Terralith com o ID terralith:skylands_summer. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands_summer"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Ilhas Flutuantes e Verão não são convertidos em ilhas realmente suspensas, altitude, estação dinâmica, clima, temperatura, vegetação, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands_summer"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:skylands_winter",
+      "title": "Ilhas Flutuantes (Inverno)",
+      "summary": {
+        "text": "Ilhas Flutuantes (Inverno) é um bioma do Overworld registrado no namespace Terralith com o ID terralith:skylands_winter. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands_winter"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Ilhas Flutuantes e Inverno não são convertidos em ilhas realmente suspensas, altitude, estação dinâmica, neve, temperatura, clima, vegetação, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands_winter"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:snowy_badlands",
+      "title": "Mesa Nevada",
+      "summary": {
+        "text": "Mesa Nevada é um bioma do Overworld registrado no namespace Terralith com o ID terralith:snowy_badlands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:snowy_badlands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Mesa e Nevada não são convertidos em neve real, temperatura, clima, relevo, composição, altitude, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:snowy_badlands"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:snowy_maple_forest",
+      "title": "Floresta de Bordo Nevado",
+      "summary": {
+        "text": "Floresta de Bordo Nevado é um bioma do Overworld registrado no namespace Terralith com o ID terralith:snowy_maple_forest. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:snowy_maple_forest"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Floresta, Bordo e Nevado não são convertidos em presença de espécies de bordo, neve real, vegetação, clima, temperatura, composição, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:snowy_maple_forest"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:snowy_shield",
+      "title": "Escudo Nevado",
+      "summary": {
+        "text": "Escudo Nevado é um bioma do Overworld registrado no namespace Terralith com o ID terralith:snowy_shield. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:snowy_shield"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Escudo e Nevado não são convertidos em neve real, temperatura, proteção, geologia, relevo, composição, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:snowy_shield"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:steppe",
+      "title": "Estepe",
+      "summary": {
+        "text": "Estepe é um bioma do Overworld registrado no namespace Terralith com o ID terralith:steppe. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:steppe"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Estepe não é convertido em categoria climática, campo aberto, vegetação, espécies, densidade vegetal, composição, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:steppe"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:stony_spires",
+      "title": "Pináculos Pedregosos",
+      "summary": {
+        "text": "Pináculos Pedregosos é um bioma do Overworld registrado no namespace Terralith com o ID terralith:stony_spires. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:stony_spires"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Pináculos e Pedregosos não são convertidos em geometria, altura, composição de pedra, geologia, materiais, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:stony_spires"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:temperate_highlands",
+      "title": "Planaltos Temperados",
+      "summary": {
+        "text": "Planaltos Temperados é um bioma do Overworld registrado no namespace Terralith com o ID terralith:temperate_highlands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:temperate_highlands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Planaltos e Temperados não são convertidos em altitude, relevo, temperatura, clima, vegetação, composição, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:temperate_highlands"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:tropical_jungle",
+      "title": "Selva Tropical",
+      "summary": {
+        "text": "Selva Tropical é um bioma do Overworld registrado no namespace Terralith com o ID terralith:tropical_jungle. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:tropical_jungle"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Selva e Tropical não são convertidos em clima, umidade, temperatura, vegetação, espécies, densidade vegetal, composição, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:tropical_jungle"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

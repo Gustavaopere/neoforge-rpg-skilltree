@@ -10,6 +10,7 @@ public final class A0081A0100CombatPolicyTest {
         recoveryIsDelayedAndIndependent();
         bloodThirstRequiresMandatoryTradeoffs();
         vitalityFormulasAndPhysicalComposition();
+        maxHealthRefreshPreservesRatioAndClampsSafely();
         openingMovementAndStationaryDefense();
         providerBoundariesFailClosed();
         antiCriticalOnlyTouchesDecomposedCriticalPortion();
@@ -76,6 +77,17 @@ public final class A0081A0100CombatPolicyTest {
         close(A0081A0100CombatPolicy.knockbackResistanceDelta(ranks),0.15D,"A0091");
         close(A0081A0100CombatPolicy.physicalDamageMultiplier(ranks,0.29D),0.92D*0.88D,"A0092 and A0096 compose independently once");
         close(A0081A0100CombatPolicy.physicalDamageMultiplier(ranks,0.30D),0.92D,"A0096 uses strict pre-impact below 30%");
+    }
+
+    private static void maxHealthRefreshPreservesRatioAndClampsSafely() {
+        close(A0081A0100CombatPolicy.preserveHealthRatio(50.0D,100.0D,110.0D),55.0D,
+            "rank up preserves the pre-refresh health ratio");
+        close(A0081A0100CombatPolicy.preserveHealthRatio(50.0D,100.0D,90.0D),45.0D,
+            "rank down preserves the pre-refresh health ratio");
+        close(A0081A0100CombatPolicy.preserveHealthRatio(100.0D,100.0D,90.0D),90.0D,
+            "full-health respec clamps to the reduced maximum");
+        close(A0081A0100CombatPolicy.preserveHealthRatio(0.0D,100.0D,110.0D),0.0D,
+            "attribute refresh cannot revive a zero-health actor");
     }
 
     private static void openingMovementAndStationaryDefense() {

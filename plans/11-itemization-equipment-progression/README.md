@@ -12,6 +12,7 @@ O Stage 11 transforma equipamentos vanilla e modded em uma camada canônica de p
 - itens craftados, loot, drops, equipamentos de mobs, rewards, trades e outputs externos devem convergir para o mesmo pipeline idempotente;
 - equipamentos de mobs devem usar os próprios efeitos e preservar exatamente a mesma identidade se forem dropados;
 - o sistema deve reutilizar capacidades úteis de Apotheosis/Apothic, Iron's Spellbooks, Ars Nouveau, Create, Curios e outros providers sem criar dois donos para a mesma decisão de itemização;
+- equipamentos produzidos pelo Blacksmith devem reutilizar a Foundry/casting do Productive Metalworks e entrar no mesmo pipeline de itemização, sem duplicar a metalurgia física nem criar uma segunda raridade de equipamento;
 - todo texto próprio exibido ao jogador deve possuir `pt_br` completo e validado por CI;
 - conteúdo modded desconhecido deve receber fallback seguro em vez de ficar silenciosamente fora do sistema.
 
@@ -27,6 +28,8 @@ O Stage 11 transforma equipamentos vanilla e modded em uma camada canônica de p
 8. **pt-BR first.** IDs técnicos ficam estáveis; apresentação própria do RPG é localizada e nenhuma chave crua deve vazar para o jogador.
 9. **Fail-soft em mods opcionais.** Ausência de integração externa não impede startup.
 10. **Performance bounded.** Nada de varrer todos os inventários/registries a cada tick; geração e reconciliação são orientadas a eventos/fronteiras.
+11. **Metalurgia provider-native.** Quando o equipamento Blacksmith depender de material fundido, melting/alloying/casting continuam sob authority do Productive Metalworks; o RPG não cria Foundry paralela como fallback.
+12. **Composição física != itemização RPG.** Material, peças, tratamento e workmanship Blacksmith são uma camada física persistida separada de Rank/Poder do Item/Prefixos/Sufixos/Infixos.
 
 ## Modelo conceitual
 
@@ -42,6 +45,11 @@ Equipamento
 ├── Sufixos [1..5]
 ├── Infixos [1..5]
 ├── origem/contexto de geração
+├── composição física opcional Blacksmith
+│   ├── peças
+│   ├── materiais
+│   ├── workmanship
+│   └── tratamentos
 └── integrações mutáveis externas
     ├── encantamentos
     ├── gems/sockets
@@ -69,6 +77,7 @@ Rank e Poder do Item controlam potência, mas não a quantidade de Prefixos/Sufi
 - Iron's Spellbooks: mana, regeneração de mana, poder mágico/escolas, cooldown/cast e equipamentos mágicos.
 - Ars Nouveau: mana, equipamentos, Threads e capacidades aplicáveis sem converter sistemas próprios em afixos RPG.
 - Create e addons: jetpacks, equipamentos tecnológicos, ferramentas e outputs de máquinas.
+- Productive Metalworks / Blacksmith: Productive Metalworks mantém Foundry, molten fluids, alloying e casting; `11.16` adiciona somente peças, composição material, workmanship, tratamentos e assembly do equipamento modular.
 - Curios: anéis, colares, amuletos e slots modded.
 - Conteúdo desconhecido: fallback universal seguro com diagnóstico de cobertura.
 
@@ -89,6 +98,7 @@ Rank e Poder do Item controlam potência, mas não a quantidade de Prefixos/Sufi
 13. `13-ptbr-localization-ui.md`
 14. `14-world-migration.md`
 15. `15-testing-performance-hardening.md`
+16. `16-blacksmith-productivemetalworks.md`
 
 ## Relação com os estágios existentes
 
@@ -104,7 +114,7 @@ Rank e Poder do Item controlam potência, mas não a quantidade de Prefixos/Sufi
 
 ## Definition of Done do Stage 11
 
-- [ ] todos os 15 subplanos concluídos, testados e integrados;
+- [ ] todos os 16 subplanos concluídos, testados e integrados;
 - [ ] identidade persiste sem reroll em todos os lifecycles suportados;
 - [ ] rank e contagem 1..5 por família comprovadamente desacoplados;
 - [ ] craft/loot/mobs/rewards/trades/outputs suportados convergem para o mesmo pipeline idempotente;
@@ -112,6 +122,9 @@ Rank e Poder do Item controlam potência, mas não a quantidade de Prefixos/Sufi
 - [ ] smithing/reparo/upgrades não regeneram identidade;
 - [ ] Apotheosis não rerrola itens RPG e gems/sockets continuam utilizáveis;
 - [ ] Iron's, Ars, Create/tech e Curios possuem adapters/fallbacks validados quando presentes;
+- [ ] Blacksmith produz gear modular por casts/peças sem recriar melting, alloying, Foundry ou Casting Table do Productive Metalworks;
+- [ ] composição Blacksmith é persistente e distinta de Rank/Item Power/Prefixos/Sufixos/Infixos;
+- [ ] gear Blacksmith permanece enchantable e interoperável com o adapter Apotheosis aprovado;
 - [ ] salvaging universal não duplica materiais;
 - [ ] todo texto próprio do Stage 11 possui `pt_br` e validator de cobertura;
 - [ ] saves antigos são migrados de forma versionada e idempotente;

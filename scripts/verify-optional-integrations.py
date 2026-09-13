@@ -23,7 +23,7 @@ PROVIDERS = {
     "EPIC_FIGHT": ("epicfight", "runtime/compat/epicfight/", "yesman.epicfight"),
     "GOETY": ("goety", "runtime/compat/goety/", "com.Polarice3.Goety"),
     "MALUM": ("malum", "runtime/compat/malum/", "com.sammy.malum"),
-    "EIDOLON": ("eidolon", "runtime/compat/eidolon/", "alexthw.eidolon_repraised"),
+    "EIDOLON": ("eidolon_repraised", "runtime/compat/eidolon/", "alexthw.eidolon_repraised"),
     "IDENTITY2": ("identity2", "runtime/compat/identity2/", "net.Gabou.identity2"),
 }
 

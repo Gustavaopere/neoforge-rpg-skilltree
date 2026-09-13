@@ -7,8 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 JAVA = ROOT / "src" / "main" / "java" / "dev" / "gustavopere" / "rpgskilltree"
 DIAGNOSTICS = JAVA / "runtime" / "diagnostics" / "RuntimeDiagnostics.java"
 RELOAD_DIAGNOSTICS = JAVA / "runtime" / "diagnostics" / "ReloadDiagnostics.java"
-TESTING_DOC = ROOT / "docs" / "TESTING.md"
-DIAGNOSTICS_DOC = ROOT / "docs" / "DIAGNOSTICS.md"
+TESTING_DOC = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "TESTING.md"
+DIAGNOSTICS_DOC = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "DIAGNOSTICS.md"
 CI = ROOT / ".github" / "workflows" / "alpha2-build.yml"
 CORE_TESTS = ROOT / "scripts" / "test-core.sh"
 GAMETEST = JAVA / "gametest" / "FoundationGameTests.java"
@@ -105,6 +105,7 @@ for label in (
 ):
     require(text(operational_files[label]), "Category.COMPENDIUM", label)
 
+testing_label = "PROJECT-INSTRUCTIONS/engineering/TESTING.md"
 testing = text(TESTING_DOC)
 for stale in (
     "Gradle Wrapper está ausente",
@@ -114,7 +115,7 @@ for stale in (
     "GameTests are absent",
 ):
     if stale in testing:
-        fail(f"docs/TESTING.md still contains stale baseline text: {stale!r}")
+        fail(f"{testing_label} still contains stale baseline text: {stale!r}")
 for command in (
     "bash scripts/test-core.sh",
     "./gradlew --no-daemon test",
@@ -125,8 +126,9 @@ for command in (
     "python3 scripts/verify-optional-integrations.py",
     "python3 scripts/verify-foundation-diagnostics.py",
 ):
-    require(testing, command, "docs/TESTING.md")
+    require(testing, command, testing_label)
 
+operations_label = "PROJECT-INSTRUCTIONS/engineering/DIAGNOSTICS.md"
 operations = text(DIAGNOSTICS_DOC)
 for marker in (
     "[rpgskilltree/<category>/<event>]",
@@ -142,7 +144,7 @@ for marker in (
     "[rpgskilltree/data/reload_failed]",
     "putIfAbsent",
 ):
-    require(operations, marker, "docs/DIAGNOSTICS.md")
+    require(operations, marker, operations_label)
 
 ci = text(CI)
 for marker in (

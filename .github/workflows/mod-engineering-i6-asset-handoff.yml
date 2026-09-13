@@ -1,0 +1,18 @@
+name: Mod Engineering I6 Asset Handoff
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  asset-handoff-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Run I6 asset handoff contract tests
+        run: python3 -m unittest PROJECT-INSTRUCTIONS/engineering/tests/test_i6_asset_handoff.py

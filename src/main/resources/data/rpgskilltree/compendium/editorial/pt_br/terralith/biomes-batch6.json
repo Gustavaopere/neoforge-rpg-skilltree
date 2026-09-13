@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "terralith",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:terralith:sandstone_valley",
+      "title": "Vale de Arenito",
+      "summary": {
+        "text": "Vale de Arenito é um bioma do Overworld registrado no namespace Terralith com o ID terralith:sandstone_valley. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:sandstone_valley"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Vale e Arenito não são convertidos em geometria, altitude, composição, geologia, materiais, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:sandstone_valley"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:savanna_badlands",
+      "title": "Mesa de Savana",
+      "summary": {
+        "text": "Mesa de Savana é um bioma do Overworld registrado no namespace Terralith com o ID terralith:savanna_badlands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:savanna_badlands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Mesa e Savana não são convertidos em relevo, clima, vegetação, composição, altitude, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:savanna_badlands"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:savanna_slopes",
+      "title": "Encostas de Savana",
+      "summary": {
+        "text": "Encostas de Savana é um bioma do Overworld registrado no namespace Terralith com o ID terralith:savanna_slopes. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:savanna_slopes"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Encostas e Savana não são convertidos em inclinação, relevo, altitude, clima, vegetação, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:savanna_slopes"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:scarlet_mountains",
+      "title": "Montanhas Escarlates",
+      "summary": {
+        "text": "Montanhas Escarlates é um bioma do Overworld registrado no namespace Terralith com o ID terralith:scarlet_mountains. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:scarlet_mountains"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Montanhas e Escarlates não são convertidos em altitude, relevo, cor, paleta, materiais, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:scarlet_mountains"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:shield",
+      "title": "Escudo",
+      "summary": {
+        "text": "Escudo é um bioma do Overworld registrado no namespace Terralith com o ID terralith:shield. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:shield"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Escudo não é convertido em proteção, geologia, relevo, composição, altitude, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:shield"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:shield_clearing",
+      "title": "Escudo Limpo",
+      "summary": {
+        "text": "Escudo Limpo é um bioma do Overworld registrado no namespace Terralith com o ID terralith:shield_clearing. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:shield_clearing"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Escudo e Limpo não são convertidos em clareira, ausência de vegetação, geologia, relevo, composição, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:shield_clearing"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:shrubland",
+      "title": "Arbustivo",
+      "summary": {
+        "text": "Arbustivo é um bioma do Overworld registrado no namespace Terralith com o ID terralith:shrubland. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:shrubland"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Arbustivo não é convertido em densidade vegetal, espécies, clima, cobertura, composição, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:shrubland"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:siberian_grove",
+      "title": "Bosque Siberiano",
+      "summary": {
+        "text": "Bosque Siberiano é um bioma do Overworld registrado no namespace Terralith com o ID terralith:siberian_grove. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:siberian_grove"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Bosque e Siberiano não são convertidos em clima, temperatura, espécies, árvores, neve, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:siberian_grove"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:siberian_taiga",
+      "title": "Taiga Siberiana",
+      "summary": {
+        "text": "Taiga Siberiana é um bioma do Overworld registrado no namespace Terralith com o ID terralith:siberian_taiga. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:siberian_taiga"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Taiga e Siberiana não são convertidos em clima, temperatura, espécies, neve, cobertura vegetal, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:siberian_taiga"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:skylands_autumn",
+      "title": "Ilhas Flutuantes (Outono)",
+      "summary": {
+        "text": "Ilhas Flutuantes (Outono) é um bioma do Overworld registrado no namespace Terralith com o ID terralith:skylands_autumn. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands_autumn"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Ilhas Flutuantes e Outono não são convertidos em geometria, altitude, flutuação física, estação dinâmica, paleta, vegetação, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands_autumn"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

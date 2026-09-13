@@ -56,3 +56,10 @@ Sem estágio de crítico estável para uma família/provider, a contribuição f
 | 9. Cobertura providers | PASS | Epic Fight, Apothic, Pufferfish e Simply Swords classificados pelo papel real. |
 
 Os 18 critérios técnicos cumulativos passam **no design**, condicionados ao pipeline crítico único.
+
+## Fechamento Chat 3 — 2026-09-06
+
+- **Estado final do lote:** IMPLEMENTAÇÃO CONFIRMADA na PR #391.
+- A0062 permanece no resolvedor crítico canônico, com uma resolução por root action e sem segundo roll/evento de dano.
+- O fechamento usa a suíte integral `RPG CI` verde do lote e a revisão do pipeline crítico existente; o teste novo de Chat 3 não é usado isoladamente como prova de A0062.
+- `P-A0062-01` fica encerrada no pipeline implementado. `P-A0062-02` permanece como regra de integração para qualquer adapter Apothic futuro: convergir no mesmo resolver ou falhar fechado.

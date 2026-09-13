@@ -1,0 +1,23 @@
+name: Mod Engineering I1 Foundation
+
+on:
+  push:
+    branches:
+      - feat/mod-engineering-i1-foundation
+  pull_request:
+    paths:
+      - 'PROJECT-INSTRUCTIONS/engineering/**'
+      - '.github/workflows/mod-engineering-i1-foundation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  schema-and-doc-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate I1 foundation
+        run: python3 PROJECT-INSTRUCTIONS/engineering/tooling/validate-i1-foundation.py
+      - name: Run I1 contract tests
+        run: python3 -m unittest PROJECT-INSTRUCTIONS/engineering/tests/test_i1_foundation.py

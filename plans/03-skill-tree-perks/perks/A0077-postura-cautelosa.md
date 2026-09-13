@@ -44,3 +44,11 @@ Sem A0067 ou sem binding de stance: node indisponível/não comprável. Nenhum f
 | Providers | PASS | RPG authority; Epic Fight não duplicado. |
 
 Os 18 critérios passam **no design**, com indisponibilidade estrutural explícita.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**.
+- A infraestrutura compartilhada de stance de A0076 está implementada e validada, mas A0077 continua indisponível porque A0067 permanece indisponível.
+- `CombatPerkAvailabilityRuntime` mascara A0077, impedindo compra/efeito e preservando availability transitiva; o binding de postura não bypassa a dependência.
+- A lógica latente `CAUTIOUS` mantém exclusividade com `AGGRESSIVE` e tradeoff físico correto, pronta para futuro desbloqueio legítimo de A0067.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.

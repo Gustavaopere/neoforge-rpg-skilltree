@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "terralith",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:terralith:yellowstone",
+      "title": "Yellowstone",
+      "summary": {
+        "text": "Yellowstone é um bioma do Overworld registrado no namespace Terralith com o ID terralith:yellowstone. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:yellowstone"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O nome Yellowstone não é convertido em equivalência com o parque real, composição geológica, atividade hidrotermal, perigo, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:yellowstone"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:yosemite_cliffs",
+      "title": "Penhascos de Yosemite",
+      "summary": {
+        "text": "Penhascos de Yosemite é um bioma do Overworld registrado no namespace Terralith com o ID terralith:yosemite_cliffs. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:yosemite_cliffs"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Penhascos e Yosemite não são convertidos em altitude, declividade, composição rochosa, vegetação, perigo, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:yosemite_cliffs"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:yosemite_lowlands",
+      "title": "Planícies de Yosemite",
+      "summary": {
+        "text": "Planícies de Yosemite é um bioma do Overworld registrado no namespace Terralith com o ID terralith:yosemite_lowlands. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:yosemite_lowlands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Planícies e Yosemite não são convertidos em altitude, relevo, vegetação, clima, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:yosemite_lowlands"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/andesite_caves",
+      "title": "Cavernas de Andesito",
+      "summary": {
+        "text": "Cavernas de Andesito é um bioma do Overworld registrado no namespace Terralith com o ID terralith:cave/andesite_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/andesite_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Andesito não é convertido em composição integral da caverna, distribuição de blocos, minérios, estruturas, mobs, perigo, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/andesite_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/desert_caves",
+      "title": "Cavernas Desérticas",
+      "summary": {
+        "text": "Cavernas Desérticas é um bioma do Overworld registrado no namespace Terralith com o ID terralith:cave/desert_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/desert_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Desérticas não é convertido em bioma de superfície associado, temperatura, aridez, composição, recursos, mobs, perigo, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/desert_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/deep_caves",
+      "title": "Cavernas Profundas",
+      "summary": {
+        "text": "Cavernas Profundas é um bioma do Overworld registrado no namespace Terralith com o ID terralith:cave/deep_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/deep_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Profundas não é convertido em faixa Y, profundidade mínima ou máxima, composição, recursos, mobs, perigo, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/deep_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/diorite_caves",
+      "title": "Cavernas de Diorito",
+      "summary": {
+        "text": "Cavernas de Diorito é um bioma do Overworld registrado no namespace Terralith com o ID terralith:cave/diorite_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/diorite_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Diorito não é convertido em composição integral da caverna, distribuição de blocos, minérios, estruturas, mobs, perigo, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/diorite_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/frostfire_caves",
+      "title": "Cavernas Fogofrio",
+      "summary": {
+        "text": "Cavernas Fogofrio é um bioma do Overworld registrado no namespace Terralith com o ID terralith:cave/frostfire_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/frostfire_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O nome Fogofrio não é convertido em coexistência mecânica de fogo e gelo, temperatura, dano, efeitos, composição, mobs, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/frostfire_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/fungal_caves",
+      "title": "Cavernas de Fungos",
+      "summary": {
+        "text": "Cavernas de Fungos é um bioma do Overworld registrado no namespace Terralith com o ID terralith:cave/fungal_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/fungal_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Fungos não é convertido em espécies, densidade, efeitos, drops, composição, mobs, recursos, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/fungal_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/granite_caves",
+      "title": "Cavernas de Granito",
+      "summary": {
+        "text": "Cavernas de Granito é um bioma do Overworld registrado no namespace Terralith com o ID terralith:cave/granite_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/granite_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Granito não é convertido em composição integral da caverna, distribuição de blocos, minérios, estruturas, mobs, perigo, chance ou frequência sem uma fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/granite_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

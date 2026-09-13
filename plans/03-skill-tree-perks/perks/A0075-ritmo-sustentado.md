@@ -52,3 +52,11 @@ Enquanto faltar qualquer binding obrigatório, A0075 fica indisponível/não com
 | Providers | PASS | Epic Fight/Cold Sweat/vanilla delimitados; ausência gera indisponibilidade. |
 
 Os 18 critérios passam **no design** porque a indisponibilidade é parte explícita do contrato.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**.
+- `P-A0075-01` foi resolvida: `CombatPerkAvailabilityRuntime` torna A0075 indisponível e mascara rank efetivo, impedindo gasto/rank fantasma.
+- Nenhum benefício parcial é ativado sem a transação completa Stamina regen + Cold Sweat thermal + exhaustion.
+- `P-A0075-02/-03` permanecem provider-bound e não bloqueiam o merge enquanto o node continuar indisponível; o desbloqueio futuro exige boundary térmico causal real.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.

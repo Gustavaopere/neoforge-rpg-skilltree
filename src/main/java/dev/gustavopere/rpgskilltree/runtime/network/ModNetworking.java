@@ -6,13 +6,22 @@ import dev.gustavopere.rpgskilltree.core.ProgressionState;
 import dev.gustavopere.rpgskilltree.core.ProgressionStateCodec;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientCoreProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.client.ClientProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomyMintPayload;
+import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomyMintPreflightPayload;
+import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomyMintPreflightResultPayload;
+import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomyRetirePayload;
+import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomySnapshotPayload;
+import dev.gustavopere.rpgskilltree.runtime.network.economy.EconomySnapshotRequestPayload;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public final class ModNetworking {
-    private static final String NETWORK_VERSION = "4";
+    // Network v5 was already consumed by the economy payload expansion on main. Adding the
+    // MARTIAL_STANCE serverbound payload changes the protocol surface again, so this reconciliation
+    // deliberately advances to v6 instead of reusing the stale Chat 2 version number.
+    private static final String NETWORK_VERSION = "6";
 
     private ModNetworking() {}
 
@@ -22,51 +31,38 @@ public final class ModNetworking {
 
     private static void registerPayloads(RegisterPayloadHandlersEvent event) {
         var registrar = event.registrar(NETWORK_VERSION);
+        registrar.playToClient(ProgressionSyncPayload.TYPE, ProgressionSyncPayload.STREAM_CODEC, ClientProgressionState::handleSync);
+        registrar.playToClient(CoreProgressionSyncPayload.TYPE, CoreProgressionSyncPayload.STREAM_CODEC, ClientCoreProgressionState::handleSync);
+        registrar.playToClient(EconomySnapshotPayload.PAYLOAD_TYPE, EconomySnapshotPayload.STREAM_CODEC, EconomySnapshotPayload::handle);
         registrar.playToClient(
-            ProgressionSyncPayload.TYPE,
-            ProgressionSyncPayload.STREAM_CODEC,
-            ClientProgressionState::handleSync
+            EconomyMintPreflightResultPayload.PAYLOAD_TYPE,
+            EconomyMintPreflightResultPayload.STREAM_CODEC,
+            EconomyMintPreflightResultPayload::handle
         );
-        registrar.playToClient(
-            CoreProgressionSyncPayload.TYPE,
-            CoreProgressionSyncPayload.STREAM_CODEC,
-            ClientCoreProgressionState::handleSync
+        registrar.playToServer(PurchaseNodePayload.TYPE, PurchaseNodePayload.STREAM_CODEC, PurchaseNodePayload::handle);
+        registrar.playToServer(RespecNodePayload.TYPE, RespecNodePayload.STREAM_CODEC, RespecNodePayload::handle);
+        registrar.playToServer(UnlockClassPayload.TYPE, UnlockClassPayload.STREAM_CODEC, UnlockClassPayload::handle);
+        registrar.playToServer(SelectClassChoicePayload.TYPE, SelectClassChoicePayload.STREAM_CODEC, SelectClassChoicePayload::handle);
+        registrar.playToServer(ClearClassChoicePayload.TYPE, ClearClassChoicePayload.STREAM_CODEC, ClearClassChoicePayload::handle);
+        registrar.playToServer(PurchaseAttributeRanksPayload.TYPE, PurchaseAttributeRanksPayload.STREAM_CODEC, PurchaseAttributeRanksPayload::handle);
+        registrar.playToServer(RefundAttributeRanksPayload.TYPE, RefundAttributeRanksPayload.STREAM_CODEC, RefundAttributeRanksPayload::handle);
+        registrar.playToServer(
+            MartialStanceIntentPayload.PAYLOAD_TYPE,
+            MartialStanceIntentPayload.STREAM_CODEC,
+            MartialStanceIntentPayload::handle
         );
         registrar.playToServer(
-            PurchaseNodePayload.TYPE,
-            PurchaseNodePayload.STREAM_CODEC,
-            PurchaseNodePayload::handle
+            EconomySnapshotRequestPayload.PAYLOAD_TYPE,
+            EconomySnapshotRequestPayload.STREAM_CODEC,
+            EconomySnapshotRequestPayload::handle
         );
         registrar.playToServer(
-            RespecNodePayload.TYPE,
-            RespecNodePayload.STREAM_CODEC,
-            RespecNodePayload::handle
+            EconomyMintPreflightPayload.PAYLOAD_TYPE,
+            EconomyMintPreflightPayload.STREAM_CODEC,
+            EconomyMintPreflightPayload::handle
         );
-        registrar.playToServer(
-            UnlockClassPayload.TYPE,
-            UnlockClassPayload.STREAM_CODEC,
-            UnlockClassPayload::handle
-        );
-        registrar.playToServer(
-            SelectClassChoicePayload.TYPE,
-            SelectClassChoicePayload.STREAM_CODEC,
-            SelectClassChoicePayload::handle
-        );
-        registrar.playToServer(
-            ClearClassChoicePayload.TYPE,
-            ClearClassChoicePayload.STREAM_CODEC,
-            ClearClassChoicePayload::handle
-        );
-        registrar.playToServer(
-            PurchaseAttributeRanksPayload.TYPE,
-            PurchaseAttributeRanksPayload.STREAM_CODEC,
-            PurchaseAttributeRanksPayload::handle
-        );
-        registrar.playToServer(
-            RefundAttributeRanksPayload.TYPE,
-            RefundAttributeRanksPayload.STREAM_CODEC,
-            RefundAttributeRanksPayload::handle
-        );
+        registrar.playToServer(EconomyMintPayload.PAYLOAD_TYPE, EconomyMintPayload.STREAM_CODEC, EconomyMintPayload::handle);
+        registrar.playToServer(EconomyRetirePayload.PAYLOAD_TYPE, EconomyRetirePayload.STREAM_CODEC, EconomyRetirePayload::handle);
     }
 
     public static void syncToOwner(ServerPlayer player, ProgressionState state) {

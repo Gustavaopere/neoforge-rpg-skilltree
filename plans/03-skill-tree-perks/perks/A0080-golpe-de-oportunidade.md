@@ -53,3 +53,13 @@ Sem receipt causal: A0080 indisponível/não comprável, sem silent no-op. Bette
 | Providers | PASS | Epic Fight/ParCool somente com receipt causal; ausência gera indisponibilidade. |
 
 Os 18 critérios passam **no design** porque o fail-closed/unavailable é explícito.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **NÃO CONFIRMADA COMO JOGÁVEL / IMPLEMENTAÇÃO FAIL-CLOSED CONFIRMADA**.
+- `P-A0080-01` está resolvida no availability runtime: A0080 é indisponível e rank efetivo é mascarado enquanto não existir dodge-success causal.
+- `P-A0080-03` foi resolvida no consumer latente: o golpe reserva no PRE e só commita janela/cooldown no POST positivo; cancelamento/dano zero faz rollback.
+- A correlação de projéteis usa root por arrow+target, impedindo consumo de janela por projétil alheio.
+- `P-A0080-02` permanece provider-bound e **não bloqueante enquanto o node estiver fail-closed**: Epic Fight/ParCool/Epic ParCool ainda não produzem receipt `avoidedAttackId` seguro nesta integração.
+- Nenhuma esquiva é inferida por animação, tecla, posição ou ausência de dano.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.

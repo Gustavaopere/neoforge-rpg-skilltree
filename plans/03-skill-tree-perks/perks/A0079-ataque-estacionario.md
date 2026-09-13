@@ -46,3 +46,12 @@ Não aproximar “parado” por velocidade client-side, animação ou input. Mov
 | Providers | PASS | NeoForge/RPG; movimento externo só por invalidation real. |
 
 Os 18 critérios passam **no design**; runtime atual tem pendência de cobertura de invalidation.
+
+## Fechamento Chat 3 — 2026-09-07
+
+- **Estado final:** **IMPLEMENTAÇÃO CONFIRMADA NOS BINDINGS AUDITADOS**.
+- `P-A0079-01` foi resolvida para boundaries comprovados: teleport, knockback e passenger invalidam imediatamente; `MartialStanceRuntime.reconcile` integra transporte provider-bound.
+- `A0079ForcedMovementCompat` usa gates exatos Create `6.0.10` e Sable `2.0.5`; versão desconhecida, `RuntimeException` ou `LinkageError` falha fechado e invalida o estado.
+- O probe Create foi exercitado em NeoForge-loaded JUnit, além dos testes do `StationaryStateService` para threshold/reset.
+- Outros transports não auditados continuam fail-closed; não são inferidos por velocidade/animação.
+- Evidência de fechamento: PR #355, HEAD funcional `201f038e2f145806f7111ef7d8376ba22769aad0`; RPG Skill Tree CI #4079 SUCCESS; SonarQube Quality Gate PASSED.

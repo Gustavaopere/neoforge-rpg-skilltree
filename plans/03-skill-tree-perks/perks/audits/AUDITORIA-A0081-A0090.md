@@ -1,21 +1,29 @@
-# AUDITORIA — CHAT 1 — A0081–A0090
+# AUDITORIA — A0081–A0090
 
-Data: 2026-08-31  
-Escopo: **exatamente 10 perks consecutivas, A0081–A0090**.  
-Responsabilidade: auditoria/design; nenhum runtime alterado neste Chat 1.
+Data do design Chat 1: 2026-08-31  
+Implementação Chat 2: 2026-09-01  
+Escopo: **exatamente 10 perks consecutivas, A0081–A0090**.
 
-## 1. Fontes obrigatórias
+## 1. Estado operacional do lote
 
-Foram aplicados integralmente os critérios de `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`, o protocolo `CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md`, os três guias consolidados de Gameplay/Sistemas, Magia e Tecnologia e o guia de Projetos Próprios.
+- **Chat 1:** DESIGN APROVADO / LOTE FECHADO.
+- **Chat 2:** **CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3**.
+- A0081, A0084, A0085, A0086 e A0087 permanecem corretamente **CÓDIGO PRESENTE EM FAIL-CLOSED / UNAVAILABLE_NODE**.
+- A0083 possui código funcional somente para o adapter auditado Iron's `1.21.1-3.16.3`; ausência, drift de versão/API e native lifesteal ambíguo falham fechado.
+- Chat 2 **não executou** unit tests, GameTests, build NeoForge, dedicated-server smoke ou CI final e **não declara `IMPLEMENTAÇÃO CONFIRMADA`**.
 
-Regra de cobertura aplicada em dois sentidos:
+## 2. Fontes obrigatórias do design
 
-1. `perk → provider`: descobrir todos os providers pertinentes ao contrato;
-2. `provider → árvore`: percorrer o universo dos três guias e verificar se alguma capacidade real deveria integrar alguma perk do lote.
+O Chat 1 aplicou integralmente os critérios de `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`, o protocolo Chat 1, os guias de Gameplay/Sistemas, Magia, Tecnologia e Projetos Próprios.
 
-Considerar todos os mods **não** significa forçar integração. Provider sem relação causal é classificado como N/A/excluído; provider pertinente sem hook seguro fica fail-closed.
+Regra de cobertura aplicada nos dois sentidos:
 
-## 2. Gate de delta dos projetos próprios
+1. `perk → provider`;
+2. `provider → árvore`.
+
+Provider sem relação causal foi excluído; provider pertinente sem hook seguro permaneceu fail-closed.
+
+## 3. Gate de delta dos projetos próprios — evidência herdada do Chat 1
 
 Baselines do lote anterior:
 
@@ -24,152 +32,186 @@ Baselines do lote anterior:
 - Enshrouded: `391ea82203d30cb392a3397f92e2a3cbe7fb6128`.
 - Black Arcana: `526d8196087c863e9df64051d5d39d88c3050856`.
 
-Freshness de abertura A0081:
+Freshness registrada pelo Chat 1:
 
-- RPG Skill Tree: `d20e7d666b627615f4af26dffb7c794b9a0b0fbd` — delta posterior à #304 é narrativa/história, sem nova capability de perks.
-- Volcanoes: `eaddc3232dfc600780769f4a5e7e45ff1e50181c` — Stage 07 release/hardening/proveniência; nenhuma nova mecânica de gameplay para o lote.
-- Enshrouded: `391ea82203d30cb392a3397f92e2a3cbe7fb6128` — sem delta.
-- Black Arcana: `710077da89da5eb4418d3ac676e148849727ff07` — hardening de Stage 05A/Backlash/snapshot; não cria sustain ofensivo.
+- RPG Skill Tree: `d20e7d666b627615f4af26dffb7c794b9a0b0fbd` — delta narrativa/história, sem capability nova pertinente;
+- Volcanoes: `eaddc3232dfc600780769f4a5e7e45ff1e50181c` — hardening/release, sem mecânica nova do lote;
+- Enshrouded: `391ea82203d30cb392a3397f92e2a3cbe7fb6128` — sem delta;
+- Black Arcana: `710077da89da5eb4418d3ac676e148849727ff07` — hardening Backlash/snapshot; não cria sustain ofensivo.
 
-Decisão: nenhum delta próprio adiciona nova perk ao lote nem autoriza bypass de provider. Black Arcana reforça que `ARCANE_BACKLASH` continua hazard terminal e não pode gerar vampirismo/sifão.
+O Chat 2 não refez a auditoria integral dos guias, conforme protocolo.
 
-## 3. Resultado por perk
+## 4. Resultado perk por perk após Chat 2
 
-| Código | Perk | Design | Estado runtime auditado | Decisão principal |
-|---|---|---|---|---|
-| A0081 | Recuperação de Combate | APROVADO EM FAIL-CLOSED | Core presente; estruturalmente indisponível | herda availability de A0075; sem compra enquanto A0075 estiver indisponível |
-| A0082 | Vampirismo de Arma | APROVADO | backend físico presente; native dedup incompleto | armas comuns comprovadas funcionam; Ignitium fail-closed até correlação do heal nativo |
-| A0083 | Vampirismo Mágico | APROVADO EM FAIL-CLOSED | coeficiente presente; sem producer magic | indisponível/não comprável até adapter DIRECT_MAGIC seguro |
-| A0084 | Sifão Elemental | APROVADO EM FAIL-CLOSED | coeficiente presente; sem producer elemental | indisponível/não comprável até adapter element+root seguro |
-| A0085 | Sifão de Dano Periódico | APROVADO EM FAIL-CLOSED | coeficiente presente; sem owner/pulse ledger | indisponível/não comprável até application+pulse receipt |
-| A0086 | Vampirismo Universal | APROVADO EM FAIL-CLOSED | convergência core presente | availability transitiva de A0083/A0085; não bypassa classificadores ausentes |
-| A0087 | Sede de Sangue | APROVADO EM FAIL-CLOSED | `BloodThirstService` presente com `BodyProvider(null)` | indisponível/não comprável; A0075/A0081 + Cold Sweat/exhaustion obrigatórios |
-| A0088 | Constituição | APROVADO | binding vanilla presente | `MAX_HEALTH` + health-ratio preservation real |
-| A0089 | Couro Endurecido | APROVADO | binding vanilla presente | `ARMOR` relativo; zero continua zero |
-| A0090 | Têmpera | APROVADO | binding vanilla presente | `ARMOR_TOUGHNESS` relativo; não confundir com STUN_ARMOR |
+| Código | Perk | Estado Chat 2 | Decisão de runtime |
+|---|---|---|---|
+| A0081 | Recuperação de Combate | **CÓDIGO PRESENTE EM FAIL-CLOSED** | availability A0075→A0081; rank efetivo zero enquanto A0075 unavailable; recovery service e provenance hardened |
+| A0082 | Vampirismo de Arma | **CÓDIGO PRESENTE** | physical sustain causal; Epic Fight root provider-native; vanilla/player_attack e launch receipts; Ignitium fail-closed por fonte |
+| A0083 | Vampirismo Mágico | **CÓDIGO PRESENTE** | Iron's exact `1.21.1-3.16.3` + `SpellDamageSource` direto; native lifesteal ambíguo paga Skill Tree=0 |
+| A0084 | Sifão Elemental | **CÓDIGO PRESENTE EM FAIL-CLOSED** | unavailable até mapa school/damage type→elemento aprovado/versionado |
+| A0085 | Sifão de Dano Periódico | **CÓDIGO PRESENTE EM FAIL-CLOSED** | unavailable até owner+applicationId+pulseId provider-native |
+| A0086 | Vampirismo Universal | **CÓDIGO PRESENTE EM FAIL-CLOSED** | unavailable transitivamente por A0085; 1% universal não classifica origem desconhecida |
+| A0087 | Sede de Sangue | **CÓDIGO PRESENTE EM FAIL-CLOSED** | unavailable por A0075/A0081 + BodyProvider/healing-received geral ausentes; nenhum benefício parcial |
+| A0088 | Constituição | **CÓDIGO PRESENTE** | binding `MAX_HEALTH` +2%/rank; preservação de razão de vida |
+| A0089 | Couro Endurecido | **CÓDIGO PRESENTE** | binding `ARMOR` +2% relativo/rank; zero continua zero |
+| A0090 | Têmpera | **CÓDIGO PRESENTE** | binding `ARMOR_TOUGHNESS` +2% relativo/rank; A0089≥2 preservado |
 
-## 4. Notion
+## 5. Notion — estado herdado do fechamento Chat 1
 
-Fetch fresco: **10/10**.
+Fetch fresco do Chat 1: **10/10**.
 
-Páginas mutadas: **7/10** — A0081, A0082, A0083, A0084, A0085, A0086, A0087.
-
-Re-fetch pós-escrita: **7/7 PASS**.
+Páginas mutadas no design: **7/10** — A0081, A0082, A0083, A0084, A0085, A0086, A0087. Re-fetch pós-escrita: **7/7 PASS**.
 
 Sem mutação funcional: A0088, A0089, A0090.
 
-Correções principais:
+O Chat 2 não alterou design/Notion.
 
-- availability transitiva A0075→A0081→A0087;
-- unavailable-node explícito para A0083/A0084/A0085 enquanto nenhum producer seguro existe;
-- availability transitiva A0083/A0085→A0086;
-- Ignitium source-specific fail-closed em A0082 até native heal correlation exata;
-- A0087 alterada de mera perk “inativa” para **indisponível/não comprável** quando heat/exhaustion obrigatórios faltam;
-- A0087 preserva o contrato geral de +8% `healing received`, não somente sustain.
+## 6. Pipeline de sustain canônico após implementação
 
-## 5. Pipeline de sustain canônico
+`SustainResolver` permanece o único bucket para vampirismo/sifão A0082–A0087:
 
-`SustainResolver` é o único bucket para A0082–A0087 quando a cura for vampirismo/sifão:
-
-- uma claim por root/pulse;
+- claim por root/pulse;
 - maior coeficiente elegível;
-- native heal correlacionado é contabilizado primeiro;
-- cap móvel de 3% da vida máxima / 20 ticks;
-- clipping por vida real do alvo e missing health;
-- sinal nativo ambíguo falha fechado;
+- cap móvel 3% da vida máxima / 20 ticks;
+- clipping por vida pré-impacto real e missing health;
+- native correlation ambígua falha fechado;
 - sem carry-over.
 
-A0081 é explicitamente separada: `CombatRecoveryService`, snapshot diferido e até quatro parcelas. A cura de A0081 não alimenta `SustainResolver`.
+`A0081A0090SustainRuntime` centraliza chamadas físicas e direct-magic sem criar segundo bucket.
 
-## 6. Provider coverage — Gameplay/Sistemas
+A0081 continua separada em `CombatRecoveryService`: snapshot diferido e até quatro parcelas; sua cura não entra no `SustainResolver`.
+
+## 7. Availability / purchase / rank efetivo
+
+`CombatPerkAvailabilityRuntime` foi estendido:
+
+- A0081 — unavailable por A0075;
+- A0083 — available somente quando Iron's está carregado exatamente em `1.21.1-3.16.3` e o runtime contém `SpellDamageSource.spell()` + `getLifestealPercent()`;
+- A0084 — unavailable;
+- A0085 — unavailable;
+- A0086 — unavailable por A0085;
+- A0087 — unavailable.
+
+`NodePurchaseRequestProcessor` e `PlayerProgressionRuntime` herdados da PR #355 rejeitam unavailable nodes antes de custo/replay mutation. `A0081A0100RuntimeState.ranks(...)` agora usa `effectiveRanks` e limpa estado transitório quando a snapshot efetiva muda.
+
+## 8. A0081/A0082 — provenance físico e deduplicação
 
 ### Epic Fight 21.17.3.1
 
-Pertinente a A0081/A0082/A0087 para classificação de ações marcial/weapon quando o receipt existir. Não é owner de lifesteal Simply nem de health/armor/toughness.
+`A0061A0080EpicFightHooks` agora publica `PhysicalHitReceipt` no PRE com:
 
-### Simply Swords 1.70.2 / Simply More 1.3.0 ALPHA / Integrated Simply Swords 1.4.0
+- player/actor;
+- `rootActionId` provider-native;
+- vida pré-impacto;
+- `ItemStack` usado.
 
-- A0082/A0087 podem cobrir hits de arma comprovados.
-- Implicits, Runic Powers, Uniques, Awakening e efeitos próprios permanecem provider-native.
-- Ability/proc não vira `direct weapon damage` só porque há arma equipada.
-- Simply More ALPHA: conteúdo sem efeito funcional comprovado permanece sem semântica inventada.
+Nenhuma cura é paga no PRE. O receipt é consumido apenas no `LivingDamageEvent.Post`, que fornece dano pós-mitigação final. POST zero/inválido descarta o handoff.
 
-### Simply Swords: Cataclysm 1.0.2
+### Vanilla
 
-Ignitium/Blazing Brand possui lifesteal nativo. A0082/A0087 devem contabilizar a cura nativa no mesmo root. Runtime atual usa `NativeCorrelation.NONE`, portanto roots com esse lifesteal ficam fail-closed até adapter exato.
+Fallback melee só aceita `DamageSource` vanilla exato com `minecraft:player_attack`, direct entity e causing entity iguais ao jogador e arma não vazia. Source custom/provider não vira melee por main-hand heuristic.
 
-### Cold Sweat 2.4.2 / Thirst Was Reclaimed 3.0.4
+### Projectiles
 
-A0087: Cold Sweat é owner do eixo térmico e vanilla é owner de exhaustion. Ambos são obrigatórios/all-or-nothing. Thirst é eixo hídrico separado e opcional apenas com causal receipt para a mesma atividade. Exhaustion nunca prova hydration.
+Bow/crossbow usam launch receipt server-side com janela bounded de 250 ms. Arrows siblings daquela janela compartilham a root, impedindo multiplicação de sustain por Multishot. Projectile sem launch receipt falha fechado.
 
-### Apotheosis/Apothic/Pufferfish's Attributes
+## 9. A0082 — Simply Swords: Cataclysm / Ignitium
 
-A0088–A0090 compõem com modifiers externos pela pilha vanilla. Pufferfish's Attributes não é promovido a owner genérico de health/armor/sustain pela presença do mod. Afixos/raridades não são reimplementados.
+Upstream SimplyCataclysm confirma que Blazing Brand cura via `attacker.heal(...)` dentro do callback de hit. O provider também expõe o tag `simplycataclysm:ignitium_gear` com as famílias Ignitium.
 
-## 7. Provider coverage — Magia
+Sem receipt final correlacionável da cura nativa, `A0081A0090SustainRuntime` marca roots cujo weapon stack pertence a esse tag como `NativeCorrelation.AMBIGUOUS`. Resultado: Skill Tree healing = 0 para a fonte, sem duplicar o provider.
 
-### Iron's Spells 'n Spellbooks 3.16.3
+Demais armas físicas comprovadas continuam elegíveis.
 
-Provider-native possui `io.redspace.ironsspellbooks.damage.SpellDamageSource` com `spell()`, entidade causadora/direta, school/damage type e `getLifestealPercent()`. É um caminho concreto para Chat 2 implementar A0083 e parte de A0084 sem heurística. Native lifesteal >0 ainda exige correlação da cura final antes de pagar Skill Tree.
+## 10. A0083 — Iron's direct magic
 
-### Ars Nouveau 5.13.1 / Ars Elemental 0.7.10.1
+O upstream auditado declara `mod_version=1.21.1-3.16.3`. `SpellDamageSource` expõe `spell()`, `getLifestealPercent()` e semântica `isDirect()/indirect()`.
 
-A0083/A0084 exigem contexto/source da versão instalada que prove caster/root e, para A0084, elemento. `ars_nouveau:spell`, namespace, VFX ou glyph isolado não bastam. Addons só herdam integração quando preservam essa provenance/classificação.
+Implementados:
 
-### Goety 3.1.4 / Malum 1.8.2 / Eidolon: Repraised 0.5.0.2
+- `IronsSustainVersionContract` exact-match de versão;
+- reflection gate de classe/métodos, evitando link obrigatório quando o mod está ausente;
+- `IronsSustainEvents` com causing `ServerPlayer`, target hostil e source `isDirect()==true`;
+- root por identidade do `DamageSource`;
+- pagamento apenas no `LivingDamageEvent.Post`;
+- `getLifestealPercent()>0` ou falha de leitura → `AMBIGUOUS` → Skill Tree=0.
 
-Candidatos de A0085 somente quando a aplicação registra owner jogador e cada pulso possui identidade causal. Summons/minions/servos continuam excluídos.
+Ars Nouveau permanece sem adapter; isso é fail-closed por provider e não invalida A0083 quando o Iron's exact contract está operacional.
 
-### Vampirism 1.10.12
+## 11. A0084/A0085/A0086/A0087 — fail-closed preservado
 
-Somente heal/lifesteal provider-native concreto e correlacionável entra no mesmo bucket. Economia de sangue, facção ou recurso não é lifesteal presumido.
+### A0084
 
-## 8. Provider coverage — Tecnologia
+A fórmula existe, mas o Chat 1 não definiu o mapa canônico/versionado school/damage type→elemento. O Chat 2 não inventou esse design. Node unavailable.
 
-Nenhum mod tecnológico dos guias é owner positivo de A0081–A0090. A cobertura provider→árvore é, portanto, **exclusiva/negativa** neste lote:
+### A0085
 
-- damage de máquina, turret, automation, fake-player, contraption ou hazard industrial não herda sustain do jogador;
-- Create/TFMG e afins não transformam dano indireto em weapon/magic/DoT elegível por autoria de construção;
-- A0088–A0090 continuam atributos do jogador, não stats de máquina/equipamento industrial.
+Nenhum provider auditado oferece owner persistente + `applicationId` + `pulseId` conforme contrato. Nenhum ledger heurístico foi criado. Node unavailable.
 
-Conclusão: `NÃO DEVE SER INTEGRADO` sem futuro receipt semântico explícito.
+### A0086
 
-## 9. Projetos próprios e hazards
+A0085 unavailable mantém a keystone unavailable. O core `max(especializados, universal)` foi preservado; o 1% universal nunca classifica source desconhecida.
 
-- Black Arcana: `ARCANE_BACKLASH` e `BLOOD_MAGIC_COST` não ativam A0083–A0087.
-- Enshrouded: Shroud/Exposure/Madness/environment não viram dano ofensivo do jogador.
-- Volcanoes: lava, calor, gás, pressão e hazards/geologia não geram sustain.
-- Mobstein/companions: owner indireto não transfere lifesteal ao jogador.
+### A0087
 
-## 10. Pendências destinadas ao Chat 2
+`BloodThirstService` continua com `BodyProvider=null`; A0075/A0081 seguem indisponíveis; não há binding geral de +8% healing received. O node permanece completamente unavailable e nenhum 3% mínimo/+8%/tradeoff parcial é ativado.
 
-1. `P-A0081-01` **BLOQUEANTE** — unavailable A0075→A0081; no-op purchase proibido.
-2. `P-A0081-02/-03` — dependency lifecycle e provenance melee real.
-3. `P-A0082-01` **BLOQUEANTE POR FONTE** — native heal correlation de Ignitium; excluir roots enquanto ausente.
-4. `P-A0082-02/-04` — weapon provenance, dedup e testes provider-present.
-5. `P-A0083-01` **BLOQUEANTE** — unavailable até DIRECT_MAGIC producer.
-6. `P-A0083-02/-04` — Iron's/Ars adapters + native lifesteal dedup.
-7. `P-A0084-01` **BLOQUEANTE** — unavailable até ELEMENT producer.
-8. `P-A0084-02/-04` — school/element mapping explícito + dedup A0083/A0084.
-9. `P-A0085-01` **BLOQUEANTE** — unavailable até owner+application+pulse receipt.
-10. `P-A0085-02/-04` — interface de receipt, lifecycle, anti-summon/hazard.
-11. `P-A0086-01` **BLOQUEANTE** — availability transitiva; sem bypass universal.
-12. `P-A0086-02/-03` — max coefficient e universal 1% somente para root já elegível.
-13. `P-A0087-01` **BLOQUEANTE** — unavailable A0075/A0081 + BodyProvider real.
-14. `P-A0087-02/-03` — Cold Sweat+exhaustion all-or-nothing; hydration causal opcional.
-15. `P-A0087-04` **BLOQUEANTE DE CONFORMIDADE** — +8% healing received geral exatamente uma vez; não estreitar silenciosamente para SustainResolver.
-16. `P-A0087-05` — native heal dedup/lifecycle.
-17. `P-A0088-01/-03` — composição MAX_HEALTH + health ratio + idempotência.
-18. `P-A0089-01/-03` — ARMOR composition/zero/lifecycle, sem STUN_ARMOR.
-19. `P-A0090-01/-03` — TOUGHNESS composition/dependency/lifecycle, sem eixos paralelos.
-20. `P-A0081-90-TEST-01` — harness/GameTests transversal: availability, source provenance, native dedup, magic/element/DoT receipts, cap, lifecycle, attributes, multiplayer e dedicated server.
+## 12. A0088–A0090 — atributos vanilla
 
-## 11. Nove eixos / 18 critérios
+Bindings já existentes foram preservados:
 
-Todos os 10 dossiês possuem os nove eixos individualizados. Resultado do lote: **PASS no design**, usando `FAIL-CLOSED / UNAVAILABLE_NODE` como resultado correto quando API/runtime atual não prova binding obrigatório.
+- A0088 → `minecraft:generic.max_health`, `MULTIPLY_TOTAL`, +0,02/rank, com health-ratio preservation;
+- A0089 → `minecraft:generic.armor`, `MULTIPLY_TOTAL`, +0,02/rank;
+- A0090 → `minecraft:generic.armor_toughness`, `MULTIPLY_TOTAL`, +0,02/rank e dependência A0089≥2 no graph.
 
-Nenhuma perk é aprovada por matemática isolada, namespace, VFX, nome de item, owner indireto ou simples presença de mod.
+Nenhum segundo owner/NBT/STUN_ARMOR/Resistência Física foi criado.
 
-## 12. Encerramento do design
+## 13. Cobertura negativa preservada
 
-O lote A0081–A0090 está suficientemente especificado para implementação sem redesign. Runtime não foi alterado pelo Chat 1. O fechamento operacional ainda exige review, CI GREEN, merge e confirmação da `main`; após isso o Chat 1 deve parar e A0091+ só poderá iniciar por novo comando do usuário.
+- Black Arcana `ARCANE_BACKLASH`/`BLOOD_MAGIC_COST` não geram sustain.
+- Enshrouded Shroud/Exposure/Madness não viram ofensiva do jogador.
+- Volcanoes hazards/geologia não geram sustain.
+- Mobstein/companions/summons não transferem autoria.
+- Create/TFMG/machines/turrets/automation/fake-player/contraptions não herdam sustain do owner/construtor.
+
+## 14. Anomalia de branch/PR do ciclo
+
+O protocolo normal exige continuidade da PR do Chat 1, porém a PR Chat 1 **#310** já estava mergeada/fechada quando este Chat 2 iniciou. Além disso, A0081 depende da availability A0075 implementada na ainda aberta PR **#355**.
+
+Para não duplicar a infraestrutura A0071–A0080 nem criar uma implementação incompatível, o Chat 2 criou:
+
+- branch: `feat/chat2-a0081-a0090-implementation`;
+- ponto de partida: `20499ec0df16b89454cac6a6c1e2b042e725b3c1`, HEAD da #355 no início deste ciclo;
+- PR do lote deve permanecer **empilhada sobre `feat/chat2-a0071-a0080-implementation`** até #355 ser mergeada;
+- depois, o Chat 3 deve retarget/reconciliar a PR A0081–A0090 com a `main` fresca, preservando somente o delta deste lote.
+
+Isso é dependência operacional entre lotes, não autorização para o Chat 2 mergear #355.
+
+## 15. Pendências obrigatórias para Chat 3
+
+1. validar unavailable purchase/effective-rank zero de A0081/A0084/A0085/A0086/A0087;
+2. validar A0083 provider absent, exact version, version mismatch e API mismatch;
+3. testar direct vs indirect `SpellDamageSource` e native lifesteal >0 → Skill Tree=0;
+4. testar vanilla melee vs source custom/ability e Epic Fight root provider-native;
+5. testar bow/crossbow Multishot, damage zero/cancel e dedup cross-bridge;
+6. testar Ignitium tag/native heal sem double-heal;
+7. testar `SustainResolver`: max coefficient, claim-once, cap, overkill, missing health e multiplayer;
+8. testar `CombatRecoveryService`: cap, snapshot, quatro parcelas, hostile interrupt, expiry e lifecycle;
+9. testar A0088–A0090 composition/idempotência/rank loss/respec/relog/respawn;
+10. executar unit tests, GameTests, integração, build NeoForge, dedicated-server smoke e CI aplicáveis;
+11. retarget/reconciliar a PR empilhada após merge da #355;
+12. só então declarar `IMPLEMENTAÇÃO CONFIRMADA`, obter CI GREEN e fazer merge.
+
+## 16. Pontos que podem exigir retorno ao Chat 1 no futuro
+
+- A0084: ativação exige mapa elemental canônico/versionado; Chat 2 não o define.
+- A0085: primeiro provider application+pulse pode exigir decisão de design se a API real divergir do receipt especificado.
+- A0087: se +8% healing received geral não puder ser implementado sem alterar escopo/semântica, devolver ao Chat 1; não estreitar para SustainResolver.
+
+Nenhum desses pontos bloqueia o estado atual **fail-closed/unavailable** do lote.
+
+## 17. Fechamento Chat 2
+
+**A0081–A0090: CÓDIGO PRESENTE / CHAT 2 CONCLUÍDO / AGUARDANDO VALIDAÇÃO CHAT 3.**
+
+Chat 2 para neste lote. A0091+ não deve ser iniciado neste ciclo.

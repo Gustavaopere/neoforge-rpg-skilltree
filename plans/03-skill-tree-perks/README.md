@@ -6,6 +6,12 @@ Base atual: 512 nós materializados e 119 declarações auditadas de efeitos de 
 
 Ordem: schema/loaders → grafo/layout → compra/ranks → efeitos → respec → conteúdo e geração de wiki.
 
+## Instruções operacionais canônicas
+
+Os critérios obrigatórios, os quatro guias consolidados e os protocolos dos Chats 1–3 ficam na pasta raiz [`PROJECT-INSTRUCTIONS/`](../../PROJECT-INSTRUCTIONS/README.md).
+
+Essa pasta é o ponto de entrada operacional do fluxo de perks. A árvore detalhada dos guias está em [`PROJECT-INSTRUCTIONS/guides/`](../../PROJECT-INSTRUCTIONS/guides/README.md); não manter uma segunda cópia ativa em `plans/03-skill-tree-perks/guides/`.
+
 ## Dossiês canônicos de perks
 
 As especificações auditadas, evidências de implementação, contratos técnicos, testes e pendências de cada perk são mantidos individualmente em [`perks/`](./perks/README.md).

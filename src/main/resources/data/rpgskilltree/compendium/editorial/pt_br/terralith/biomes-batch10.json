@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "language": "pt_br",
+  "namespace": "terralith",
+  "kind": "BIOME",
+  "entries": [
+    {
+      "entry_id": "BIOME:terralith:cave/infested_caves",
+      "title": "Cavernas Infestadas",
+      "summary": {
+        "text": "Cavernas Infestadas é um bioma registrado no namespace Terralith com o ID terralith:cave/infested_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/infested_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Infestadas não é convertido em espécie infestante, população de mobs, efeitos, blocos, perigo, loot, chance ou frequência sem fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/infested_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/mantle_caves",
+      "title": "Cavernas de Manto",
+      "summary": {
+        "text": "Cavernas de Manto é um bioma registrado no namespace Terralith com o ID terralith:cave/mantle_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/mantle_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Manto não é convertido em equivalência geológica com o manto terrestre, faixa Y, profundidade, temperatura, composição, recursos, perigo, chance ou frequência sem fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/mantle_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/thermal_caves",
+      "title": "Cavernas Termais",
+      "summary": {
+        "text": "Cavernas Termais é um bioma registrado no namespace Terralith com o ID terralith:cave/thermal_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/thermal_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Termais não é convertido em temperatura numérica, lava, atividade geotérmica, dano, efeitos, composição, recursos, chance ou frequência sem fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/thermal_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/tuff_caves",
+      "title": "Cavernas de Tufo",
+      "summary": {
+        "text": "Cavernas de Tufo é um bioma registrado no namespace Terralith com o ID terralith:cave/tuff_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/tuff_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Tufo não é convertido em composição integral da caverna, distribuição de blocos, minérios, estruturas, mobs, recursos, chance ou frequência sem fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/tuff_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/underground_jungle",
+      "title": "Selva Subterrânea",
+      "summary": {
+        "text": "Selva Subterrânea é um bioma registrado no namespace Terralith com o ID terralith:cave/underground_jungle. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/underground_jungle"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Selva e Subterrânea não são convertidos em espécies, densidade de vegetação, faixa Y, temperatura, umidade, mobs, recursos, chance ou frequência sem fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/underground_jungle"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/crystal_caves",
+      "title": "Cavernas de Cristal",
+      "summary": {
+        "text": "Cavernas de Cristal é um bioma registrado no namespace Terralith com o ID terralith:cave/crystal_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/crystal_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Cristal não é convertido em material específico, ametista, distribuição de blocos, minérios, drops, estruturas, recursos, chance ou frequência sem fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/crystal_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:cave/ice_caves",
+      "title": "Cavernas de Gelo",
+      "summary": {
+        "text": "Cavernas de Gelo é um bioma registrado no namespace Terralith com o ID terralith:cave/ice_caves. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/ice_caves"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. O termo Gelo não é convertido em temperatura, congelamento, escorregamento, composição integral, efeitos, mobs, recursos, chance ou frequência sem fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:cave/ice_caves"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:snowy_cherry_grove",
+      "title": "Bosque de Cerejeiras Nevado",
+      "summary": {
+        "text": "Bosque de Cerejeiras Nevado é um bioma registrado no namespace Terralith com o ID terralith:snowy_cherry_grove. O título preserva exatamente o valor fornecido pelo asset pt-BR oficial da Stardust Labs.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:snowy_cherry_grove"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela somente a identidade de registro e o título oficial. Os termos Cerejeiras e Nevado não são convertidos em espécie, densidade, estação, temperatura, regra de neve, drops, recursos, chance ou frequência sem fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:snowy_cherry_grove"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    },
+    {
+      "entry_id": "BIOME:terralith:skylands",
+      "title": "Ilhas Flutuantes",
+      "summary": {
+        "text": "Ilhas Flutuantes é o alias editorial pt-BR adotado pelo Compêndio para o bioma registrado como terralith:skylands. O asset pt-BR oficial congelado não fornece uma chave própria para skylands; o alias do projeto segue a nomenclatura já usada oficialmente nas variantes skylands_autumn, skylands_spring, skylands_summer e skylands_winter, enquanto o ID técnico permanece explícito.",
+        "sources": [
+          {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/Terralith/blob/5d7b5c58ec302c20328214f92c2a033b180dfdf2/data/terralith/tags/worldgen/biome/all_terralith_biomes.json"},
+          {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+        ]
+      },
+      "sections": {
+        "worldgen": {
+          "text": "Esta ficha congela a identidade de registro e identifica explicitamente o nome exibido como alias editorial do projeto. O termo Ilhas Flutuantes não é convertido em altitude, geometria, quantidade de ilhas, acesso, clima, vegetação, recursos, chance ou frequência sem fonte específica da build instalada.",
+          "sources": [
+            {"type": "RUNTIME", "ref": "terralith:biome/terralith:skylands"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/Terralith/blob/5d7b5c58ec302c20328214f92c2a033b180dfdf2/data/terralith/tags/worldgen/biome/all_terralith_biomes.json"},
+            {"type": "OFFICIAL_CODE", "ref": "https://github.com/Stardust-Labs-MC/translations/blob/b89e2772bc5b48e78c977103129a0ab358ed2294/terralith/pt_br.json"}
+          ]
+        }
+      },
+      "references": [],
+      "review_status": "REVIEWED",
+      "availability": "RUNTIME"
+    }
+  ]
+}

@@ -37,16 +37,11 @@ public final class EpicFightDepthPolicyTest {
         check(hitAwards.stream().anyMatch(a -> a.laneId().equals("epicfight:sword") && a.experience() == 10),
             "weapon milestone must award ten category mastery");
 
-        CombatAction guard = new CombatAction(
+        CombatAction guardPreConsume = new CombatAction(
             new ActionOrigin("epicfight:skill_consume", 0), "epicfight", "skill", "epicfight:guard",
             java.util.Set.of("skill", "stamina", "guard", "milestone"), 4.0D);
-        var guardAwards = MasteryPolicies.forEpicFight(guard);
-        check(guardAwards.stream().anyMatch(a -> a.laneId().equals("epicfight:guard") && a.experience() == 10),
-            "each deduplicated hostile-type guard milestone must award ten guard mastery");
-        check(guardAwards.stream().anyMatch(a -> a.laneId().equals("epicfight:stamina")),
-            "valid guard milestones should also train stamina mastery");
-        check(6 * 10 >= 60, "six finite hostile-type guard discoveries must reach the specialization gate");
-        check(8 * 10 >= 80, "eight finite hostile-type guard discoveries must reach the deeper guard gate");
+        check(MasteryPolicies.forEpicFight(guardPreConsume).isEmpty(),
+            "pre-consume guard intent must fail closed because Epic Fight may still cancel before resource consumption");
 
         CombatAction dodge = new CombatAction(
             new ActionOrigin("epicfight:dodge_success", 0), "epicfight", "dodge", "successful_dodge",

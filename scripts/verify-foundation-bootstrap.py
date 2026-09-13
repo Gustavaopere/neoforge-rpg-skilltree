@@ -107,7 +107,7 @@ optional = {
     "epicfight",
     "goety",
     "malum",
-    "eidolon",
+    "eidolon_repraised",
     "identity2",
 }
 for mod_id in sorted(optional):

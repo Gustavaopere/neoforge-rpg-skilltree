@@ -4,7 +4,7 @@
 
 - **Design:** APROVADO.
 - **Notion:** `3c569db9-f0db-8123-9939-c1e0e71a08c0`; fetch fresco em 2026-08-31 sem drift.
-- **Runtime observado:** CÓDIGO PRESENTE em melee e projéteis físicos; confirmação definitiva pertence ao Chat 2.
+- **Runtime observado:** IMPLEMENTAÇÃO CONFIRMADA em melee e projéteis físicos com snapshot pré-impacto estrito.
 
 ## Contrato canônico
 
@@ -34,10 +34,11 @@ Entidades vivas válidas usam a API vanilla de vida. Alvo não hostil/inválido,
 - Exclui DOT, ambiente, reflexão, summons, fake players e procs derivados.
 - Não gera Mastery.
 
-## Pendências para Chat 2
+## Validação Chat 3
 
-- **P-A0069-01:** testes devem fixar a borda 85% e provar uso do snapshot pré-impacto.
-- **P-A0069-02:** validar deduplicação melee/projectile e perda de elegibilidade por dano anterior real.
+- `P-A0069-01`: RESOLVIDA. `A0061A0070Chat3CoverageJUnitTest.woundedAndIntactThresholdsUseStrictPreImpactBoundaries` prova que `0.85` exato não ativa e `Math.nextUp(0.85)` ativa +12% no rank 3.
+- O teste usa `HitFacts.preImpactHealthFraction`, mantendo o snapshot antes do impacto e permitindo que dano anterior real remova elegibilidade.
+- `P-A0069-02`: encerrada no pipeline auditado do lote, com uma contribuição por root e sem herança por dano indireto.
 
 ## Nove eixos obrigatórios de aprovação
 
@@ -53,4 +54,4 @@ Entidades vivas válidas usam a API vanilla de vida. Alvo não hostil/inválido,
 | 8. NeoVitae | PASS | Ausente. |
 | 9. Cobertura providers | PASS | Vanilla/Epic Fight/RPG suficientes; sem integração artificial. |
 
-Os 18 critérios técnicos cumulativos passam **no design**.
+Os 18 critérios técnicos cumulativos passam no estado implementado validado pelo Chat 3.

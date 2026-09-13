@@ -55,3 +55,10 @@ Sem contrato semanticamente equivalente de cadência, A0064 fica inativa naquele
 | 9. Cobertura providers | PASS | Epic Fight/vanilla/Simply Swords classificados sem falsa equivalência. |
 
 Os 18 critérios técnicos cumulativos passam **no design**.
+
+## Fechamento Chat 3 — 2026-09-06
+
+- **Estado final do lote:** IMPLEMENTAÇÃO CONFIRMADA na PR #391 para os providers/movesets com binding semântico disponível.
+- O boundary Epic Fight continua provider-native via `ModifyAttackSpeedEvent`; não foi introduzida aceleração de animação, hit extra ou alteração de guard/dodge window.
+- A confirmação usa a revisão do binding existente e a suíte integral `RPG CI` verde; o teste novo de Chat 3 não é apresentado como prova isolada de A0064.
+- `P-A0064-01` fica encerrada para o binding atual. `P-A0064-02` permanece regra fail-closed para qualquer família sem equivalência segura.

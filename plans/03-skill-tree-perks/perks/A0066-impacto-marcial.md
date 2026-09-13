@@ -55,3 +55,10 @@ Sem contrato equivalente de Impact/interrupção, multiplicador A0066 = 1.0. É 
 | 9. Cobertura providers | PASS | Epic Fight/WoM/Punchy classificados corretamente; projectile fail-closed. |
 
 Os 18 critérios técnicos cumulativos passam **no design**.
+
+## Fechamento Chat 3 — 2026-09-06
+
+- **Estado final do lote:** IMPLEMENTAÇÃO CONFIRMADA no melee Epic Fight; FAIL-CLOSED CONFIRMADO para projéteis/providers sem receipt de Impact.
+- O teste `A0061A0070Chat3CoverageJUnitTest.physicalBasePenetrationAndImpactRemainIndependentContributions` fixa multiplicador A0066 em `1.12` no rank 4 e prova independência frente a A0061/A0065.
+- `P-A0066-01` fica encerrada no binding Epic Fight auditado. `P-A0066-02` permanece regra obrigatória de fail-closed, não pendência bloqueante.
+- Nenhum fallback por knockback/stun/dano foi introduzido.

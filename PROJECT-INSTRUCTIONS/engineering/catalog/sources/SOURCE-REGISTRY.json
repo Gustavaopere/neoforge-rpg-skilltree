@@ -1,0 +1,12 @@
+{
+  "schema_version":1,
+  "updated":"2026-09-09",
+  "authority_order":["runtime_mod_repository","physical_runtime_artifact_or_jar","latest_physical_modlist","exact_provider_source_ref","official_target_documentation","integration_control_plane","repo_textura","editorial_or_notion","community_reference"],
+  "sources":[
+    {"source_id":"integration_control_plane","source_type":"git_repository","authority_scope":"Shared engineering contracts, schemas, validators, catalogs, tooling and execution status.","state":"CONFIRMED","locator":{"repository_full_name":"Gustavaopere/neoforge-rpg-skilltree","default_branch":"main"}},
+    {"source_id":"latest_physical_modlist_2026_09_09","source_type":"physical_snapshot","authority_scope":"Installed top-level mod presence and physical versions for the current pack snapshot.","state":"CONFIRMED","locator":{"snapshot_date":"2026-09-09","top_level_mods":595,"neoforge":"21.1.248","sha256":"7c0a23d6013101383d196526e4b6ba6940fb54a0fed10eaed5956ab015cfcc00"}},
+    {"source_id":"mod_engineering_plan_v1","source_type":"local_artifact","authority_scope":"Canonical reusable NeoForge 1.21.1 / Java 21 engineering plan.","state":"CONFIRMED","locator":{"path":"PROJECT-INSTRUCTIONS/engineering/plans/PLANO-MESTRE-REPO-INTEGRACAO-MOD-ENGINEERING-NEOFORGE-1.21.1-V1.md","sha256":"fa61d4baf47919592fd293d39d18d0bf5a687c6c01810762dd9c4b06b8e9cf87"}},
+    {"source_id":"repo_textura_plan_v5","source_type":"local_artifact","authority_scope":"Canonical artistic production and asset-pipeline plan.","state":"CONFIRMED","locator":{"path":"PROJECT-INSTRUCTIONS/engineering/plans/PLANO-MESTRE-UNIFICADO-REPO-TEXTURA-BLOCKBENCH-ASSET-MCP-V5.md","sha256":"9d2b93d4ddc2b032d73156e8a594cc2eda352481f3620d365c244fc913a2a154"}},
+    {"source_id":"repo_textura","source_type":"git_repository","authority_scope":"Artistic source of truth for provider-native source assets and visual handoffs.","state":"UNRESOLVED","locator":{"repository_full_name":"UNRESOLVED","resolution_gate":"M0_RESOLVE_REPO_TEXTURA_REMOTE"}}
+  ]
+}
