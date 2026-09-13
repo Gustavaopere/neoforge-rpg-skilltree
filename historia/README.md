@@ -4,6 +4,8 @@ Esta pasta é a fonte editorial versionada da campanha narrativa do RPG Skill Tr
 
 Ela responde **o que existe e pode acontecer no mundo**. Os contratos técnicos que explicam **como o engine executa, persiste, valida e deduplica** essas histórias continuam em `plans/08-quests-progression-hooks/`.
 
+A infraestrutura reutilizável usada para **criar, validar e organizar** conteúdo narrativo pertence a `Gustavaopere/minecraft-mod-factory`. Este repositório guarda o conteúdo criado e as regras específicas desta campanha; não deve duplicar o toolkit genérico da Factory.
+
 ## Regra principal
 
 O jogador não deve precisar ler esta pasta para jogar. O conteúdo pode conter spoilers, identidades ocultas, agendas, consequências, alternativas e fatos que o personagem talvez nunca descubra.
@@ -15,16 +17,18 @@ Quando a história for produzida em chat, o padrão é **MODO SEM SPOILERS**: o 
 - `00-canone/` — regras, cronologia e fatos estabilizados.
 - `01-historia-do-mundo/` — macro-história e passado.
 - `02-arcos/` — arcos principais, regionais, de facção e pessoais.
-- `03-npcs/` — um dossiê por NPC narrativamente relevante.
-- `04-quests/` — uma especificação por quest/oportunidade narrativa.
+- `03-npcs/` — dossiês e material editorial específico dos NPCs desta campanha.
+- `04-quests/` — especificações de quests/oportunidades narrativas.
 - `05-faccoes/` — facções, instituições, ideologias e agendas.
 - `06-assentamentos/` — cidades/colônias e seus estados políticos/sociais.
 - `07-locais/` — lugares narrativos e seus segredos/estados.
 - `08-eventos/` — eventos históricos, emergentes e recorrentes.
 - `09-rumores-documentos-e-evidencias/` — canais de descoberta e conhecimento.
-- `10-finais-e-epilogos/` — resoluções e combinações de epílogo.
-- `11-ia-e-autoria/` — protocolo de autoria assistida e IA in-game opcional.
-- `templates/` — formatos canônicos para novos registros.
+- `10-finais-e-epilogos/` — resoluções e combinações de epílogo desta campanha.
+- `11-ia-e-autoria/` — regras específicas deste projeto, incluindo authority e IA in-game opcional.
+- `12-dialogos/` — diálogos de calibração e conteúdo player-facing versionado.
+
+Templates, validators, inventory e a skill genérica de autoria narrativa ficam na Minecraft Mod Factory. Este repositório pode manter apenas configuração/profile específico da campanha para consumir essas ferramentas.
 
 ## IDs estáveis
 
@@ -38,6 +42,7 @@ Quando a história for produzida em chat, o padrão é **MODO SEM SPOILERS**: o 
 - Evento: `EVT-####`
 - Rumor/evidência/documento: `EVD-####`
 - Final/epílogo: `END-####`
+- Diálogo: `DLG-####`
 
 IDs não devem ser reciclados depois que entrarem em `main`.
 
