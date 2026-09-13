@@ -1,0 +1,117 @@
+# Narrative Authoring Contract — RPG Skill Tree
+
+Status: **canonical working contract for AI-assisted campaign authoring in this repository.**
+
+This is project-specific guidance, not a generic Minecraft Mod Factory skill.
+
+## Authority by domain
+
+- **Runtime/mechanics:** current RPG code/tests, latest physical modlist/JARs, exact provider evidence and current technical contracts.
+- **Structured lore:** Grimoire/TTRPG.bot Campaign Bible and Foundations when available.
+- **Versioned editorial content:** `historia/` in this repository.
+- **Shared Minecraft engineering/art tooling:** `Gustavaopere/minecraft-mod-factory`.
+
+Lore never proves mechanical capability. Mechanical capability never creates historical facts automatically.
+
+If Grimoire or another required authority is unavailable and the missing fact is central to canon, keep the decision `BLOQUEADO/FAIL-CLOSED` or explicitly undecided. Do not invent missing lore merely to continue production.
+
+## Required preflight
+
+Before substantive narrative authoring:
+
+1. read relevant `historia/00-canone/` and existing records;
+2. search stable IDs to avoid duplicate NPCs, factions, locations, quests or evidence;
+3. consult Grimoire for central lore and possible pre-existing entities when accessible;
+4. consult relevant Stage 08 contracts for knowledge, chronology, relationships, opportunity lifecycle, consequences and death/return;
+5. verify the latest modlist/provider evidence before assigning a real mechanic to a mod;
+6. consult Compendium/runtime identities before binding a narrative place to a biome, structure or dimension;
+7. inspect open branches/PRs affecting the same narrative IDs.
+
+Absence of information is a valid project state.
+
+## Permanent authoring rules
+
+- Keep provider systems semantically distinct; thematic similarity does not create a universal energy/resource.
+- The player is not retroactively the reason the world existed and is not a chosen one unless canon explicitly changes.
+- NPCs, factions, journals and quest markers are not omniscient.
+- Player knowledge and character knowledge are distinct.
+- Do not protect future plot by forcing NPC survival/availability without a causal system.
+- Do not create named entities merely to fill templates or production quotas.
+- Do not infer biome climate, resources, geology or settlement suitability from a translated biome name alone.
+- New material on a branch remains a proposal until its editorial state is deliberately accepted.
+
+## Stable IDs and validation
+
+Use the existing ID families under `historia/` (`HIST`, `ARC`, `NPC`, `QST`, `FAC`, `SET`, `LOC`, `EVT`, `EVD`, `END`, `DLG`, etc.). Reference entities by ID, not only by display name.
+
+When available in the branch, run:
+
+`python historia/tools/validate_story.py historia`
+
+Use `--strict-references` when validating a closed batch. Do not claim full-repository validation unless the command actually ran against the complete materialized tree.
+
+## Knowledge and evidence
+
+Important facts need plausible acquisition paths. Distinguish knowledge, suspicion, rumor, witness, evidence, causation and inference.
+
+Every important `EVD-####` should declare provenance, possible knowers, what it proves, what it merely suggests, what it does not prove, uncertainty/reliability and how it may be altered, lost or transmitted.
+
+Repeated rumor does not automatically become independent corroboration.
+
+## Quest/opportunity lifecycle
+
+Follow Stage 08. Separate availability, discovery, engagement and resolution when applicable. Support unknown-but-eligible, rumored, declined, ignored, pre-resolved, resolved-by-others, transformed, obsolete and retrospective discovery when causally valid.
+
+A player who never knew an opportunity existed must not receive a fictitious retroactive failure. Autonomous progression requires an explicit actor/cause; player inactivity alone is not causal justification.
+
+## Dialogue and NPC voice
+
+For recurring NPCs, establish a voice profile before writing large dialogue volumes: formality, rhythm, sentence length, vocabulary, humor, directness/evasion, address forms, avoided subjects and incompatible speech patterns.
+
+Calibration lines are non-canonical unless attached to an actual event. Dialogue may reveal only knowledge justified by state/provenance.
+
+## Visual authoring
+
+Separate textual visual brief, concept/portrait, real Minecraft skin texture and 3D/in-game validation. Reuse the Minecraft Mod Factory visual/Blockbench pipeline instead of recreating visual tooling here.
+
+A generated portrait is not itself a valid Minecraft skin UV.
+
+## Geography
+
+Narrative `SET-####` and `LOC-####` may exist before a physical worldgen binding is fixed. Bind later to verified `BIOME`, `STRUCTURE` or `DIMENSION` identities from the current Compendium/runtime. Keep provider-specific physical claims unbound until proven.
+
+## Spoiler policy
+
+Unless the user explicitly asks for narrative details, reports should expose IDs/types, counts, editorial state, validation results, blockers and PR/CI state. Do not reveal hidden motives, mystery solutions, betrayals, secret conditions, alternate endings or undiscovered consequences by default.
+
+## Cost policy
+
+Narrative authoring must remain usable with zero required incremental spend. Paid APIs/subscriptions may only be optional experiments with a free/open alternative. Trials are not permanent dependencies. External story tools never become canon authority.
+
+## Completion gate
+
+Before calling an authoring batch complete, confirm:
+
+- relevant authorities checked;
+- no known duplicate stable entity introduced;
+- editorial states explicit;
+- knowledge/provenance preserved;
+- provider/worldgen claims proved or left unbound;
+- lifecycle supports legitimate alternate participation states;
+- voice consistency checked where applicable;
+- spoiler-safe reporting preserved;
+- story validation run when possible and scope reported truthfully;
+- no paid service became mandatory;
+- tooling/contracts and substantive story content are separated in PRs when practical.
+
+## Related documents
+
+- `historia/README.md`
+- `historia/00-canone/`
+- `historia/11-ia-e-autoria/`
+- `historia/templates/`
+- `historia/tools/`
+- `plans/08-quests-progression-hooks/`
+- `plans/10-compendio-natural/`
+- `docs/compendium/`
+- `PROJECT-INSTRUCTIONS/engineering/AGENT-WORKFLOW.md`
