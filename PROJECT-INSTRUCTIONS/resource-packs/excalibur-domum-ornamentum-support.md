@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `Excalibur_Domum_Ornamentum Support_1.21.1_v1.0.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** 1.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat
@@ -47,7 +47,7 @@ Domum Ornamentum continua authority de blocos, estados, modelos lógicos e compo
 A descrição oficial informa que **a maioria dos blocos** de Domum Ornamentum foi retexturizada para combinar com Excalibur. O próprio autor marca o projeto como WIP; portanto não tratar a cobertura como 100% completa e não presumir que todo material, combinação dinâmica ou asset novo do mod já possua textura própria.
 
 ## 3. Stack físico atual
-O pack mantém `domum-ornamentum-1.0.236-snapshot-main.jar`, runtime `1.0.236-snapshot`.
+O pack mantém `domum-ornamentum-1.0.236-snapshot-main.jar`, runtime `1.0.236-snapshot`. O resource pack instalado é v1.0.
 A diferença entre uma build snapshot do mod e um support pack WIP cria uma superfície real de drift: blocos/assets adicionados ou renomeados no snapshot podem cair no visual padrão do mod.
 
 ## 4. Load order
