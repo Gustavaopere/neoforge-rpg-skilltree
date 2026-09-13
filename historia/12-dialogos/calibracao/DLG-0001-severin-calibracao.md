@@ -1,7 +1,10 @@
 # DLG-0001 — Severin — Calibração de voz
 
 ## Estado editorial
-EXPERIMENTAL / CALIBRAÇÃO / não representa encontro canônico.
+EXPERIMENTAL
+
+## Escopo
+CALIBRAÇÃO DE VOZ / não representa encontro canônico e não deve ser usado diretamente como cena de runtime.
 
 ## Participantes
 - NPC-0001 — Severin
