@@ -60,7 +60,7 @@ src/main/java/dev/gustavopere/rpgskilltree/runtime/client/CompendiumScreen.java
 Evidência automatizada:
 
 - `CompendiumBrowserModelTest` verifica viewport limitada com **1.505 entradas**, scroll, composição de pesquisa/filtros, teclado, clique e preservação do contexto da lista;
-- `CompendiumSearchIndexTest` verifica pesquisa sem acento por nome localizado, alias, mod e ID técnico sem alterar o texto exibido;
+- `CompendiumSearchIndexTest` verifica pesquisa sem acento por nome localizado, alias, mod e ID técnico sem alterar o texto exibido; também cobre nomes localizados idênticos de namespaces diferentes, preservando ordem determinística por ID e filtro inequívoco por mod;
 - `CompendiumScreenLayoutTest` cobre layouts compacto, wide e ultrawide, limites mínimos e capacidade de rows;
 - `CompendiumScreenSessionTest` cobre tradução dos eventos de navegação para o modelo puro.
 
@@ -128,7 +128,8 @@ Implementação inicial de segurança:
 - nenhuma instância de preview é adicionada ao `ClientLevel` ou recebe tick pelo Compêndio;
 - blacklist explícita sobrepõe adapter;
 - falha de construção ou renderer coloca o tipo em quarentena durante a sessão do cliente e usa fallback pt-BR;
-- adapters de preview têm contrato de retornar entidade viva destacada, sem adicionar/tickar a entidade no mundo.
+- adapters de preview têm contrato de retornar entidade viva destacada, sem adicionar/tickar a entidade no mundo;
+- `CompendiumEntityPreviewRendererJUnitTest` injeta `RuntimeException` e `LinkageError` no mesmo guard usado pelo renderer físico e exige resultado `FALLBACK`; o `CompendiumScreen` traduz `render(...) == false` para `screen.rpgskilltree.compendium.preview.unavailable`, mantendo a falha contida no painel.
 
 Bloqueio atual de variantes:
 
@@ -229,20 +230,28 @@ src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumScreenSes
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumRelationNavigationTest.java
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumRelationPanelStateTest.java
 src/test/java/dev/gustavopere/rpgskilltree/compendium/client/CompendiumNotesModelTest.java
+src/test/java/dev/gustavopere/rpgskilltree/runtime/client/CompendiumEntityPreviewRendererJUnitTest.java
 ```
 
 Verificação manual/client test matrix:
 
 - [ ] 1.000+ entradas sem travamento perceptível ao scroll — viewport de 1.505 entradas é coberta automaticamente, mas percepção de fluidez exige cliente real;
 - [x] pesquisa com/sem acento — cobertura automatizada do índice;
-- [ ] nome duplicado de mods diferentes — comportamento de ordenação/filtro precisa de caso explícito/manual;
+- [x] nome duplicado de mods diferentes — `CompendiumSearchIndexTest` confirma ordem determinística por ID técnico para o mesmo nome localizado e filtro por `sourceModId` sem colisão;
 - [x] entrada desconhecida/oculta — cobertura automatizada de shell e políticas de visibilidade;
 - [ ] renderer 3D vanilla e modded — requer teste visual/client real;
-- [ ] renderer com falha usa fallback — a política/fail-soft possui testes, mas ainda falta evidência que injete falha no renderer físico e valide o fallback visível no cliente;
+- [x] renderer com falha usa fallback — `CompendiumEntityPreviewRendererJUnitTest` injeta falhas runtime/linkage no guard físico e exige `FALLBACK`; a tela já converte esse resultado em fallback pt-BR visível;
 - [ ] UI scale 1–4 — requer cliente real;
 - [x] resolução pequena e ultrawide — geometria coberta automaticamente; validação visual continua desejável;
 - [x] navegação por teclado/mouse — modelo/sessão cobertos automaticamente; smoke visual continua desejável;
 - [ ] notas persistem conforme contrato do 10.13.
+
+### Evidência TDD adicional — hardening de preview e nomes duplicados
+
+- RED `2a4a991036e634aca9dd861010193e871fcf0976`, RPG Skill Tree CI `34005941588`, job `101413001202`: `compileTestJava` produziu exatamente 6 erros, todos pela ausência de `CompendiumEntityPreviewRenderer.RenderResult`/`runRenderAttempt(...)`; nenhuma produção dessa fatia existia ainda;
+- implementação `6440112bcfedae95bf2fd3ee14a1e4c41b2fc0e6`: o renderer físico passou a conter `RuntimeException`/`LinkageError` em resultado explícito `FALLBACK`, preservando quarentena e fallback visual já existente;
+- regressão `05b0871456f744712ae128bf643ae28a5b34d1d7`: `CompendiumSearchIndexTest` passou a cobrir nomes localizados duplicados em namespaces distintos;
+- nesse HEAD, `JUnit 5 tests` e `Compendium Entities CI` fecharam GREEN antes da atualização documental; a validação final deve ser repetida sobre o HEAD documental definitivo.
 
 ## Acceptance
 
