@@ -1,0 +1,35 @@
+name: History Authoring CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'historia/**'
+      - '.github/workflows/history-authoring-ci.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'historia/**'
+      - '.github/workflows/history-authoring-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  authoring-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Unit tests
+        run: python3 -m unittest discover -s historia/tools/tests -p 'test_*.py' -v
+
+      - name: Stable IDs and references
+        run: python3 historia/tools/validate_story.py historia
+
+      - name: Dialogue structure
+        run: python3 historia/tools/validate_dialogues.py historia/12-dialogos
