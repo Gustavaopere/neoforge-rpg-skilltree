@@ -72,7 +72,7 @@ public final class MasteryAwardIdempotencyTest {
         ProgressionState decoded = ProgressionStateCodec.decode(ProgressionStateCodec.encode(source));
 
         eq(4, ProgressionStateCodec.CURRENT_VERSION);
-        eq(2, CanonicalPlayerStateCodec.CURRENT_VERSION);
+        eq(3, CanonicalPlayerStateCodec.CURRENT_VERSION);
         eq(mastery.experience(), decoded.mastery().experience());
         eq(mastery.creditedAwards(), decoded.mastery().creditedAwards());
     }
