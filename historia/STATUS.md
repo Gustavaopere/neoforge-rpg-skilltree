@@ -12,10 +12,10 @@
 - Pipeline de autoria assistida: **REGISTRADO**
 - Stack de autoria com política de custo zero: **REGISTRADO**
 - Área e template de diálogos versionados: **CRIADOS**
-- Validador local de IDs/referências: **CRIADO / TESTADO (7 testes)**
+- Validador local de IDs/referências: **CRIADO / TESTADO (8 testes)**
 - Lint estrutural de diálogos: **CRIADO / TESTADO (7 testes)**
-- Inventário local de registros/IDs/referências: **CRIADO / TESTADO (7 testes)**
-- Suíte conjunta do tooling editorial: **TESTADA (21 testes)**
+- Inventário local de registros/IDs/referências: **CRIADO / TESTADO (8 testes)**
+- Suíte conjunta do tooling editorial: **TESTADA (23 testes)**
 - Contrato editorial de relações/memória/continuidade: **PROPOSTO NO PR DO STACK DE AUTORIA**
 - Template auxiliar de relação multidimensional: **CRIADO**
 - Pipeline visual de NPCs alinhado à Minecraft Mod Factory: **REGISTRADO**
