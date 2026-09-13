@@ -8,6 +8,16 @@ This root file is the repository discovery/bootstrap entrypoint for AI agents an
 
 Reusable mod-production infrastructure, shared engineering skills, Blockbench/asset tooling, validators, scaffolding, catalogs and cross-mod automation are authoritative in [`Gustavaopere/minecraft-mod-factory`](https://github.com/Gustavaopere/minecraft-mod-factory). Do not recreate shared Factory capabilities in this repository.
 
+## Before changing campaign history or lore
+
+Read the project-local narrative contract in full:
+
+- [`PROJECT-INSTRUCTIONS/editorial/NARRATIVE-AUTHORING.md`](PROJECT-INSTRUCTIONS/editorial/NARRATIVE-AUTHORING.md)
+
+Then consult the relevant `historia/` records, Grimoire/TTRPG.bot when the task requires established structured lore and that source is available, the Stage 08 contracts for narrative state, and Compendium/runtime evidence before binding story content to real mechanics or worldgen.
+
+If a required lore authority is unavailable, preserve the gap as undecided or fail-closed instead of inventing canon to maintain throughput.
+
 ## Before changing the RPG runtime
 
 Read the repository-local working contract in full:
