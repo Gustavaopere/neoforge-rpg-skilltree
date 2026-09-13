@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `excalibur_ftbsuite.zip`
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Versão 1.21.1:** sem versão semântica própria publicada
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat, QoL
@@ -77,6 +77,6 @@ O pack precisa de prioridade suficiente para vencer o Excalibur base nos assets 
 Nenhum teste foi marcado como aprovado.
 
 ## 8. Evidências e limite
-CurseForge oficial confirma `excalibur_ftbsuite.zip`, publicado em 29/08/2026, e o alvo Library/Chunks/Teams/Quests. A modlist física confirma os quatro módulos e versões usados nesta ficha. Sem asset manifest, completude permanece fail-closed.
+CurseForge oficial confirma `excalibur_ftbsuite.zip`, publicado em 29/08/2026, e o alvo Library/Chunks/Teams/Quests. Sem asset manifest, completude permanece fail-closed.
 
 > Boundary canônico: **FTB controla todos os dados e regras; este resource pack controla somente apresentação visual**.
