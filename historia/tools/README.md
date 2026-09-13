@@ -11,16 +11,28 @@ Valida IDs estáveis e referências entre arquivos Markdown da história.
 - IDs declarados nos títulos principais (`HIST-####`, `ARC-####`, `NPC-####`, `QST-####`, `FAC-####`, `SET-####`, `LOC-####`, `EVT-####`, `EVD-####`, `END-####`, `DLG-####`);
 - duplicidade de IDs declarados;
 - referências a IDs ainda não declarados;
-- ignora placeholders de templates como `NPC-####`.
+- ignora placeholders de templates como `NPC-####`;
+- documentos auxiliares podem mencionar um ID no título sem redeclarar a entidade quando o H1 não começa diretamente pelo ID.
 
 ### Uso
+
+Saída padrão, spoiler-safe e agregada:
 
 ```bash
 python historia/tools/validate_story.py
 python historia/tools/validate_story.py --strict-references
 ```
 
+Depuração editorial com IDs, caminhos e linhas explícitos:
+
+```bash
+python historia/tools/validate_story.py --reveal
+python historia/tools/validate_story.py --strict-references --reveal
+```
+
 Por padrão, IDs duplicados retornam erro. Referências ainda não resolvidas são aviso; `--strict-references` transforma essas referências em erro.
+
+A saída padrão não imprime IDs narrativos nem caminhos de arquivos quando há findings; ela apresenta apenas nível, código e quantidade. `--reveal` deve ser usado somente quando detalhes editoriais forem realmente necessários.
 
 ## `validate_dialogues.py`
 
@@ -79,7 +91,7 @@ O inventário é read-only: não altera lore, IDs nem estado editorial.
 python -m unittest discover -s historia/tools/tests -v
 ```
 
-Os três módulos possuem 21 testes unitários no total no estado atual: 7 para IDs/referências, 7 para diálogos e 7 para inventário. As ferramentas usam somente a biblioteca padrão do Python e não requerem API, conta, assinatura ou acesso de rede.
+Os três módulos possuem **25 testes unitários** no estado atual: 10 para IDs/referências e política de saída, 7 para diálogos e 8 para inventário. As ferramentas usam somente a biblioteca padrão do Python e não requerem API, conta, assinatura ou acesso de rede.
 
 ## Limites
 
