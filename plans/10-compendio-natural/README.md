@@ -118,8 +118,8 @@ src/test/java/dev/gustavopere/rpgskilltree/compendium/
 12. `12-ferramentas-operador.md`
 13. `13-save-rede-cache-reload.md`
 14. `14-testes-performance-compatibilidade.md`
-15. `15-gate-conteudo-release.md`
-16. `16-bosses-rastreamento-waypoints.md`
+15. `15-bosses-rastreamento-waypoints.md`
+16. `16-gate-conteudo-release.md`
 
 Os arquivos anteriores são contratos causais. Um subplano posterior não deve inventar uma segunda representação dos mesmos dados.
 

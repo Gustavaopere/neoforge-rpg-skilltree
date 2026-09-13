@@ -1,4 +1,4 @@
-# 10.15 — Gate de conteúdo e release do Compêndio
+# 10.16 — Gate de conteúdo e release do Compêndio
 
 ## Objetivo
 
@@ -108,7 +108,7 @@ Para cada entidade relevante do inventário:
 - [ ] relações fauna/flora/bioma/estrutura/dimensão são navegáveis;
 - [ ] descoberta de biome/structure/dimension é validada pelo servidor.
 
-## Gate 7 — Descoberta e RPG
+## Gate 7 — Descoberta, rastreamento, bosses e RPG
 
 - [ ] first discovery funciona;
 - [ ] eventos duplicados são idempotentes;
@@ -116,7 +116,16 @@ Para cada entidade relevante do inventário:
 - [ ] relog/respawn/dimension change preservam estado;
 - [ ] multiplayer mantém jogadores separados;
 - [ ] integração RPG usa APIs canônicas;
-- [ ] quest hooks não acoplam o core a um mod de quest obrigatório.
+- [ ] quest hooks não acoplam o core a um mod de quest obrigatório;
+- [ ] criatura descoberta mostra habitat/spawn/localização somente quando esses dados forem verificáveis;
+- [ ] **Procurar / Seguir** não fabrica coordenadas quando nenhum alvo válido é conhecido;
+- [ ] habitat/região, último avistamento e posição exata de entidade permanecem estados semanticamente distintos;
+- [ ] integração com mapa/waypoints é desacoplada e ausência do provider mantém fallback funcional;
+- [ ] busca de habitat não força geração ou scan ilimitado de chunks;
+- [ ] bosses/minibosses identificados por evidência confiável ou override aparecem na seção Bosses;
+- [ ] derrota de boss é server-authoritative, atribuída pela política multiplayer e registrada de forma idempotente;
+- [ ] bosses opcionais, ordem e pré-requisitos obedecem a configuração de dados;
+- [ ] página de boss apresenta encontro/spawn/invocação, loot e rastreamento sem duplicar uma segunda ficha de entidade.
 
 ## Gate 8 — Save/rede
 
@@ -127,7 +136,10 @@ Para cada entidade relevante do inventário:
 - [ ] protocol versionado;
 - [ ] packets têm bounds;
 - [ ] packet forjado/oversized é rejeitado;
-- [ ] catálogo grande não é retransmitido integralmente a cada abertura de UI.
+- [ ] catálogo grande não é retransmitido integralmente a cada abertura de UI;
+- [ ] progresso de bosses persistido sobrevive a relog/restart e conteúdo removido segue a política de reconciliação por ID;
+- [ ] alvo de rastreamento persistido/sincronizado não duplica estado já pertencente a `DiscoveryRecord`/contratos do 10.13;
+- [ ] cliente recebe somente progresso e dados de rastreamento autorizados para aquele jogador.
 
 ## Gate 9 — Optional-mod matrix
 
@@ -138,7 +150,8 @@ Para todo adapter nominal implementado:
 - [ ] versão incompatível falha com diagnóstico ou degradação segura;
 - [ ] dedicated server sem o mod opcional inicia;
 - [ ] remoção do mod de save existente não corrompe Compêndio;
-- [ ] falha/ausência do adapter não remove entradas `AUTO` que continuam representáveis pelo coletor genérico.
+- [ ] falha/ausência do adapter não remove entradas `AUTO` que continuam representáveis pelo coletor genérico;
+- [ ] provider opcional de mapa/waypoints ausente ou incompatível não impede startup nem uso básico do Compêndio.
 
 Adicionar também pelo menos um fixture/mod de teste sem adapter nominal para provar que conteúdo registry-first aparece automaticamente como `AUTO`.
 
@@ -153,6 +166,7 @@ Anexar relatório de medição com:
 - comportamento de scroll;
 - custo de discovery path comum;
 - custo/limites de entity inspection;
+- custo/limites de resolução de alvo de rastreamento/waypoint;
 - reload duration.
 
 Os budgets finais aprovados no 10.14/Stage 09 precisam estar cumpridos ou ter waiver documentado.
@@ -168,7 +182,7 @@ Os budgets finais aprovados no 10.14/Stage 09 precisam estar cumpridos ou ter wa
 
 ## Gate 12 — CI
 
-Obrigatório antes de renomear este arquivo para `✅-15-gate-conteudo-release.md`:
+Obrigatório antes de renomear este arquivo para `✅-16-gate-conteudo-release.md`:
 
 - [ ] unit tests green;
 - [ ] validators green;
@@ -178,7 +192,8 @@ Obrigatório antes de renomear este arquivo para `✅-15-gate-conteudo-release.m
 - [ ] dedicated-server smoke green;
 - [ ] testes client/manuais definidos no 10.14 concluídos;
 - [ ] cobertura do modpack real anexada ao release evidence;
-- [ ] gate de cobertura automática de conteúdo modded sem adapter nominal green.
+- [ ] gate de cobertura automática de conteúdo modded sem adapter nominal green;
+- [ ] testes do `10.15` para Boss Checklist, atribuição de derrota, rastreamento e integração fail-soft de waypoint green.
 
 ## Evidência de fechamento
 

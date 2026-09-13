@@ -1,4 +1,4 @@
-# 10.16 — Boss Checklist, rastreamento de criaturas e waypoints
+# 10.15 — Boss Checklist, rastreamento de criaturas e waypoints
 
 ## Objetivo
 
