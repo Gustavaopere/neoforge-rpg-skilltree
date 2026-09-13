@@ -29,14 +29,35 @@ Para tratar referências não resolvidas como erro:
 python historia/tools/validate_story.py --strict-references
 ```
 
-### Testes
+## `validate_dialogues.py`
+
+Valida a estrutura editorial dos arquivos `DLG-####` dentro de `historia/12-dialogos/`.
+
+### O que verifica
+
+- título `DLG-####` válido;
+- presença e conteúdo das categorias essenciais: estado editorial, participantes, contexto, precondições, knowledge, relações/estado, abertura/entrada, ramos, saídas, intents, referências, invariantes, notas de voz, QA e spoilers internos;
+- aceita variações semânticas de heading como `Precondições editoriais`, `Knowledge exigido de ...` e `Entrada padrão`;
+- detecta IDs placeholder como `NPC-####` em diálogo real;
+- exige ao menos um checkbox na seção de QA;
+- ignora arquivos que não sejam `DLG-####*.md`.
+
+### Uso
+
+```bash
+python historia/tools/validate_dialogues.py
+```
+
+O lint é estrutural. Ele não avalia qualidade literária e não obriga todos os diálogos a usarem exatamente os mesmos títulos de seção.
+
+## Testes
 
 ```bash
 python -m unittest discover -s historia/tools/tests -v
 ```
 
-A ferramenta usa apenas a biblioteca padrão do Python e não requer API, conta, assinatura ou acesso de rede.
+As ferramentas usam apenas a biblioteca padrão do Python e não requerem API, conta, assinatura ou acesso de rede.
 
 ## Limites
 
-O validador não decide se uma relação narrativa é correta. Ele só verifica integridade estrutural de IDs/referências. Causalidade, chronology, knowledge, providers, spoilers e agência continuam exigindo revisão editorial.
+Os validadores não decidem se uma relação narrativa, fala ou consequência é correta. Eles verificam integridade estrutural. Causalidade, cronologia, knowledge, providers, spoilers, voz e agência continuam exigindo revisão editorial.
