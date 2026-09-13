@@ -1,65 +1,57 @@
-# Engineering Control Plane
+# Engineering — RPG Runtime Operations
 
-Status: **canonical entrypoint for reusable mod-production engineering in `Gustavaopere/neoforge-rpg-skilltree`.**
+Status: **canonical repository-local engineering entrypoint for the RPG Skill Tree runtime and its physical environment evidence.**
 
-## Canonical authorities
+## Current authority
 
-- Integration/control-plane repository: `Gustavaopere/neoforge-rpg-skilltree`.
-- Reusable working root: `PROJECT-INSTRUCTIONS/`, especially `PROJECT-INSTRUCTIONS/engineering/`.
-- Artistic source of truth: Repo Textura and its canonical art plan.
-- Runtime source of truth for each mod: that mod's own repository.
-- Physical runtime/provider presence and versions: latest physical modlist snapshot.
+- RPG Skill Tree runtime: `Gustavaopere/neoforge-rpg-skilltree`.
+- Shared mod-production engineering and integration control plane: [`Gustavaopere/minecraft-mod-factory`](https://github.com/Gustavaopere/minecraft-mod-factory).
+- Shared visual/asset pipeline: the **Repo Textura / Visual & Asset Pipeline** authority inside Minecraft Mod Factory.
+- Runtime for any other mod: that mod's own repository.
+- Provider/mod presence and exact physical versions for the RPG environment: the latest snapshot under [`catalog/physical-modlist/`](catalog/physical-modlist/).
 
-The integration repository coordinates instructions, skills, contracts, catalogs, templates, validators, tooling, test infrastructure, compatibility and release workflows. It must not silently become the runtime repository for every mod.
+This repository must not be used as a parallel home for generic scaffolding, schemas, validators, templates, test harnesses, asset-handoff tooling or cross-mod automation.
 
-## Canonical master plans
+## Repository-local engineering material
 
-1. [`plans/PLANO-MESTRE-UNIFICADO-REPO-TEXTURA-BLOCKBENCH-ASSET-MCP-V5.md`](plans/PLANO-MESTRE-UNIFICADO-REPO-TEXTURA-BLOCKBENCH-ASSET-MCP-V5.md)
-   - SHA-256: `9d2b93d4ddc2b032d73156e8a594cc2eda352481f3620d365c244fc913a2a154`
-   - Scope: Repo Textura, Blockbench, source models, textures, UV, rigging, animation, VFX, provider routing, Asset Toolkit/MCP, visual QA and handoff.
-2. [`plans/PLANO-MESTRE-REPO-INTEGRACAO-MOD-ENGINEERING-NEOFORGE-1.21.1-V1.md`](plans/PLANO-MESTRE-REPO-INTEGRACAO-MOD-ENGINEERING-NEOFORGE-1.21.1-V1.md)
-   - SHA-256: `fa61d4baf47919592fd293d39d18d0bf5a687c6c01810762dd9c4b06b8e9cf87`
-   - Scope: Java 21 / NeoForge 1.21.1 engineering, scaffolding, gameplay/runtime systems, testing, integration, performance and release.
+The live material retained here is intentionally RPG-specific:
 
-These files are the planning authorities for this production line. Historical plans are reference-only when they conflict with them. GitHub state, physical files/JARs and the latest modlist remain factual authorities for implementation state and provider presence.
+- [`AGENT-WORKFLOW.md`](AGENT-WORKFLOW.md) — operating contract for work on the RPG runtime;
+- [`TESTING.md`](TESTING.md) — RPG test strategy and reproduction gates;
+- [`DIAGNOSTICS.md`](DIAGNOSTICS.md) — RPG diagnostics guidance;
+- [`REPO-ROUTING.md`](REPO-ROUTING.md) — current repository/authority routing;
+- [`STATUS.md`](STATUS.md) — frozen provenance for the former shared-control-plane phase;
+- [`catalog/physical-modlist/`](catalog/physical-modlist/) — physical runtime evidence;
+- [`tooling/import-physical-modlist.py`](tooling/import-physical-modlist.py), [`tests/test_i2_modlist_catalog.py`](tests/test_i2_modlist_catalog.py) and `tests/fixtures/modlist-i2-sample.txt` — the bounded local I2 maintenance/validation path for that physical evidence.
 
-## I1 foundation contracts
+The I2 path remains here because the physical modlist is evidence bound to this RPG/modpack environment. Its presence does **not** make this repository the shared provider-catalog or engineering authority.
 
-- [`contracts/MOD-SPEC-CONTRACT.md`](contracts/MOD-SPEC-CONTRACT.md) — canonical pre-implementation mod specification rules.
-- [`schemas/`](schemas/) — fail-closed JSON schemas for mod specs, dependency profiles, asset handoffs, compatibility matrices and test manifests.
-- [`examples/`](examples/) — synthetic validation fixtures; not production facts.
-- [`catalog/sources/SOURCE-REGISTRY.json`](catalog/sources/SOURCE-REGISTRY.json) — authority/source registry. Repo Textura's remote stays `UNRESOLVED` until M0 resolves it.
-- [`tooling/validate-i1-foundation.py`](tooling/validate-i1-foundation.py) — dedicated I1 validator.
+## Historical shared-control-plane material
 
-## Execution order
+This repository previously hosted common Engineering Control Plane capabilities I1–I6. Reusable I1/I3–I6 contracts, schemas, examples, templates, scaffolding, validators, test harnesses, asset-handoff tooling and their dedicated CI were migrated/reconciled and revalidated in Minecraft Mod Factory before their working-tree duplicates were retired here.
 
-Before implementation:
-
-1. read both master plans;
-2. read [`STATUS.md`](STATUS.md);
-3. verify the latest physical modlist;
-4. verify `main`, open PRs and concurrent branches;
-5. inspect the current repository tree before choosing paths;
-6. avoid repeating work already implemented;
-7. create an isolated branch from the exact verified base;
-8. implement the smallest plan phase that closes a real gap;
-9. run the required tests/validators;
-10. resynchronize with current `main` and resolve semantic conflicts;
-11. open a PR and validate the exact head;
-12. recheck concurrency immediately before merge;
-13. update `STATUS.md` whenever a phase/PR changes the execution frontier.
+Git history preserves the original implementations and evidence. The Factory migration matrix and current Factory `STATUS.md` are authoritative for the migrated shared capabilities. Do not recreate removed generic directories here solely to preserve historical paths.
 
 ## Work routing
 
-- Art/model/texture/animation/VFX/source-format work → Repo Textura plan and Repo Textura authority.
-- Java/NeoForge runtime for a specific mod → that mod repository, coordinated by this control plane.
-- Shared contracts, skills, scaffolding, validators, catalogs, provider proofs, CI/test harness and reusable integration tooling → this repository.
-- RPG Skill Tree runtime itself → this repository's normal runtime tree, because this repository is also the RPG mod repository.
+- RPG runtime/gameplay/code/tests → this repository.
+- Shared contracts, scaffolding, validators, reusable CI/test infrastructure, provider proofs and cross-mod tooling → Minecraft Mod Factory.
+- Shared Blockbench/model/texture/animation/VFX/asset-pipeline work → Repo Textura / Visual & Asset Pipeline in Minecraft Mod Factory.
+- Another mod's runtime → that mod's repository.
+- Exact third-party API behavior → exact target JAR/source plus matching official documentation; never infer from a different Minecraft/loader/provider version.
+
+Before writes, inspect current GitHub state and concurrent work. Paths described by historical plans are not authority over the live repository tree.
+
+## Target baseline
+
+- Minecraft: `1.21.1`
+- NeoForge: verify the exact current value against the physical modlist/build; the reconciled physical baseline is `21.1.248`
+- Java: `21`
 
 ## Manual-user protocol
 
-When execution needs a user action, issue exactly one atomic, verifiable manual step and wait for the result before sending another manual action. Do not delegate work that the agent can execute directly.
+When execution requires user action, issue exactly one atomic, verifiable manual step and wait for its result before sending another manual action. Do not delegate work that the agent can execute directly.
 
-## Response protocol during execution
+## Execution reporting
 
-Execution updates should contain the current execution plan followed by the updated checklist. Use `✅` for complete, `🔄` for current, `⬜` for pending and `⛔` for blocked. Additional prose is reserved for blockers, risks, decisions, questions or a required manual action.
+During execution, report the current execution plan followed by the updated checklist. Use `✅` for complete, `🔄` for current, `⬜` for pending and `⛔` for blocked. Do not mark a gate complete until the relevant test, validator, build, CI job, runtime smoke or other objective proof has actually run.

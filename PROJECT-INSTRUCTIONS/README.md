@@ -43,10 +43,13 @@ Para execução operacional de Chat 1/2/3, esses arquivos consolidados continuam
 
 ## Estrutura de suporte
 
-- `engineering/` contém contratos e documentação técnica do RPG, além de material histórico da antiga fase em que este repositório também hospedava infraestrutura comum. Material histórico não é authority para novas capabilities compartilhadas.
+- `engineering/` contém o contrato operacional e a estratégia de testes/diagnósticos do runtime RPG, o routing atual, proveniência compacta da antiga fase de control plane e a evidência física da modlist. A infraestrutura genérica I1/I3–I6 migrada não permanece duplicada na árvore ativa.
+- `engineering/catalog/physical-modlist/` preserva a evidência física do ambiente RPG/modpack. O importer, teste, fixture e workflow I2 associados permanecem locais exclusivamente para manutenção/validação dessa evidência.
 - `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos do RPG.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
 - A antiga árvore `skills/` foi removida após migração integral e validação na Minecraft Mod Factory. Sua proveniência e classificações permanecem registradas na Factory.
+
+Material histórico removido da árvore ativa continua recuperável pelo histórico Git e pela matriz/status de migração da Factory. Ele não é authority para novas capabilities compartilhadas.
 
 ## Entrypoints com localização obrigatória
 
