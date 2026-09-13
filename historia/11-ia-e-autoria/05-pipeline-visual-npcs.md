@@ -32,17 +32,20 @@ Se uma ferramenta passar a exigir pagamento para manter o fluxo, ela deixa de se
 1. Ler o dossiê do NPC e a Visual Style Bible da Factory.
 2. Criar um asset brief específico com o template da Factory.
 3. Definir silhueta, proporção, paleta/materials, roupa, acessórios, elementos proibidos e contextos de visualização.
-4. Escolher resolução/texel density apenas com evidência adequada ao asset alvo; não criar número global por conveniência.
-5. Produzir concept/portrait apenas como referência visual.
-6. Revisar identidade contra o brief.
-7. Produzir skin/texture técnica separadamente no formato realmente exigido pelo alvo.
-8. Validar estrutura, UV, camadas e leitura no Blockbench/pipeline da Factory.
-9. Executar QA in-game antes de marcar o asset como final.
+4. Registrar explicitamente campos de identidade visual ainda não decididos como `PENDENTE`; não preenchê-los por estereótipo ou inferência temática.
+5. Escolher resolução/texel density apenas com evidência adequada ao asset alvo; não criar número global por conveniência.
+6. Produzir concept/portrait apenas como referência visual.
+7. Revisar identidade contra o brief.
+8. Produzir skin/texture técnica separadamente no formato realmente exigido pelo alvo.
+9. Validar estrutura, UV, camadas e leitura no Blockbench/pipeline da Factory.
+10. Executar QA in-game antes de marcar o asset como final.
 
 ## Regras
 
 - Concept art e portrait não são skin/UV final.
 - Modelo corporal deve ser registrado e validado no alvo real.
+- Altura/proporção percebida e tom de pele precisam estar definidos ou marcados `PENDENTE` antes de gerar concepts destinados a continuidade visual.
+- Não inferir traços físicos a partir de profissão, facção, alinhamento moral, tradição mágica ou paleta de roupa.
 - Imagens-fonte grandes não devem entrar no Git sem uma política adequada de armazenamento.
 - Assets devem usar o ID estável do NPC no nome.
 - Referência visual externa não autoriza copiar pixels, modelo ou textura.
@@ -62,7 +65,9 @@ A pasta de assets só deve ser criada quando existir o primeiro arquivo real.
 - NPC ID;
 - função narrativa;
 - contextos típicos de visualização;
-- idade aparente e proporção percebida;
+- idade aparente;
+- altura/proporção percebida, ou `PENDENTE`;
+- tom de pele, ou `PENDENTE`;
 - silhueta em uma frase;
 - rosto/cabelo/barba e marcas distintivas;
 - paleta/materials;
@@ -79,5 +84,6 @@ A pasta de assets só deve ser criada quando existir o primeiro arquivo real.
 2. O asset técnico preserva identidade sem forçar detalhes incompatíveis com a resolução aprovada.
 3. Não há UV deslocado, transparência acidental ou camada quebrada.
 4. A leitura funciona em escala real de gameplay.
-5. O QA final segue a Factory.
-6. O fluxo continua possível sem ferramenta paga.
+5. Campos visuais não decididos permanecem explicitamente pendentes, não preenchidos por inferência automática.
+6. O QA final segue a Factory.
+7. O fluxo continua possível sem ferramenta paga.
