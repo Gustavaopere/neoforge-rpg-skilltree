@@ -34,6 +34,15 @@ A implementação/authoring deve suportar, no mínimo:
 ## Regra de knowledge
 Iren não conhece automaticamente a identidade, localização, capacidades ou motivações de Severin. O estado que permite a investigação precisa apontar para rumor, testemunha, evidência ou observação concreta. O mesmo vale para qualquer outro ator que entre no caso.
 
+## Âncoras de descoberta/evidência
+- `EVD-0001` — relatos desencontrados: pode iniciar interesse ou investigação, mas não prova causa/culpa;
+- `EVD-0002` — registro cartográfico da corte: pode revelar concentração espacial/temporal de ocorrências, com viés de coleta explícito;
+- `EVD-0003` — vestígio de ocupação oculta: pode sustentar investigação de campo, mas não identifica ocupante nem provider.
+
+Essas peças são **rotas possíveis**, não uma sequência obrigatória. O jogador pode chegar por subconjuntos diferentes, encontrar `EVD-0003` antes de qualquer oferta, reconstruir parte do padrão independentemente ou nunca descobrir nenhuma delas. Perda/destruição de uma peça não deve criar soft-lock se outra rota semanticamente válida ainda existir.
+
+Nenhuma peça isolada autoriza `NPC-0003` ou outra instituição a declarar `NPC-0001` culpado, conhecido ou localizado sem uma cadeia causal adicional.
+
 ## Regra de journal
 Não mostrar “missão perdida” se o jogador nunca soube que a oportunidade existia.
 
