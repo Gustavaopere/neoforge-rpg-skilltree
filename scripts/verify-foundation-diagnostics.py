@@ -7,8 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 JAVA = ROOT / "src" / "main" / "java" / "dev" / "gustavopere" / "rpgskilltree"
 DIAGNOSTICS = JAVA / "runtime" / "diagnostics" / "RuntimeDiagnostics.java"
 RELOAD_DIAGNOSTICS = JAVA / "runtime" / "diagnostics" / "ReloadDiagnostics.java"
-TESTING_DOC = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "TESTING.md"
-DIAGNOSTICS_DOC = ROOT / "PROJECT-INSTRUCTIONS" / "engineering" / "DIAGNOSTICS.md"
+TESTING_DOC = ROOT / "TESTING.md"
+DIAGNOSTICS_DOC = ROOT / "DIAGNOSTICS.md"
 CI = ROOT / ".github" / "workflows" / "alpha2-build.yml"
 CORE_TESTS = ROOT / "scripts" / "test-core.sh"
 GAMETEST = JAVA / "gametest" / "FoundationGameTests.java"
@@ -105,7 +105,7 @@ for label in (
 ):
     require(text(operational_files[label]), "Category.COMPENDIUM", label)
 
-testing_label = "PROJECT-INSTRUCTIONS/engineering/TESTING.md"
+testing_label = "TESTING.md"
 testing = text(TESTING_DOC)
 for stale in (
     "Gradle Wrapper está ausente",
@@ -128,7 +128,7 @@ for command in (
 ):
     require(testing, command, testing_label)
 
-operations_label = "PROJECT-INSTRUCTIONS/engineering/DIAGNOSTICS.md"
+operations_label = "DIAGNOSTICS.md"
 operations = text(DIAGNOSTICS_DOC)
 for marker in (
     "[rpgskilltree/<category>/<event>]",

@@ -29,8 +29,8 @@ Git history preserves the original implementations and evidence. The Factory mig
 
 ## Work routing
 
-- RPG runtime/gameplay/code/tests → this repository.
-- Shared contracts, scaffolding, validators, reusable CI/test infrastructure, provider proofs, catalogs and cross-mod tooling → Minecraft Mod Factory.
+- RPG runtime/gameplay/code/tests and RPG-specific provider integration evidence → this repository.
+- Shared contracts, scaffolding, validators, reusable CI/test infrastructure, shared/cross-mod provider proofs, catalogs and cross-mod tooling → Minecraft Mod Factory.
 - Shared Blockbench/model/texture/animation/VFX/asset-pipeline work → Repo Textura / Visual & Asset Pipeline in Minecraft Mod Factory.
 - Another mod's runtime → that mod's repository.
 - Exact third-party API behavior → exact target JAR/source plus matching official documentation; never infer from a different Minecraft/loader/provider version.

@@ -14,9 +14,9 @@ Portanto, não iniciar aqui novas capabilities genéricas de scaffolding, valida
 
 Leia nesta ordem:
 
-1. `engineering/AGENT-WORKFLOW.md`;
-2. `../../docs/MASTER_PLAN.md` a partir de `engineering/AGENT-WORKFLOW.md`;
-3. `engineering/TESTING.md`;
+1. [`../AGENT-WORKFLOW.md`](../AGENT-WORKFLOW.md);
+2. [`../docs/MASTER_PLAN.md`](../docs/MASTER_PLAN.md);
+3. [`../TESTING.md`](../TESTING.md);
 4. a modlist física mais recente;
 5. o estado atual do GitHub, incluindo `main`, branches e PRs concorrentes.
 
@@ -43,18 +43,19 @@ Para execução operacional de Chat 1/2/3, esses arquivos consolidados continuam
 
 ## Estrutura de suporte
 
-- `engineering/` contém o contrato operacional, a estratégia de testes/diagnósticos e o routing do runtime RPG.
+- Os contratos operacionais de engenharia do RPG ficam na raiz do repositório: `/ENGINEERING.md`, `/AGENT-WORKFLOW.md`, `/TESTING.md`, `/DIAGNOSTICS.md` e `/REPO-ROUTING.md`.
 - `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos do RPG.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
-- A antiga árvore `skills/` e o antigo catálogo/tooling I2 compartilhado foram retirados da árvore ativa depois de migração/reconciliação e validação na Minecraft Mod Factory.
+- A antiga árvore `skills/`, o antigo catálogo/tooling I2 compartilhado e a antiga subárvore `engineering/` foram retirados da árvore ativa depois de migração/reconciliação ou realocação do conteúdo RPG necessário.
 
 Material histórico removido da árvore ativa continua recuperável pelo histórico Git e pela matriz/status de migração da Factory. Ele não é authority para novas capabilities compartilhadas.
 
 ## Entrypoints com localização obrigatória
 
-Alguns arquivos precisam permanecer fora deste diretório porque sua localização tem semântica para ferramentas externas:
+Alguns arquivos precisam permanecer fora deste diretório porque sua localização tem semântica operacional ou de descoberta:
 
 - `/AGENTS.md` permanece na raiz para descoberta automática de agentes e aponta para o contrato runtime local e para os entrypoints compartilhados da Factory;
+- `/ENGINEERING.md`, `/AGENT-WORKFLOW.md`, `/TESTING.md`, `/DIAGNOSTICS.md` e `/REPO-ROUTING.md` permanecem na raiz como contratos operacionais do RPG, sem recriar uma subárvore de control plane compartilhada;
 - `.github/**` permanece sob `.github/` quando o GitHub exige o caminho para workflows, templates ou políticas da plataforma.
 
 Documentação cujo papel principal seja código, configuração ou workflow executável deve permanecer no domínio correspondente. Não recriar uma árvore local de infraestrutura comum somente para conservar caminhos históricos.

@@ -12,7 +12,7 @@ Reusable mod-production infrastructure, shared engineering skills, Blockbench/as
 
 Read the repository-local working contract in full:
 
-- [`PROJECT-INSTRUCTIONS/engineering/AGENT-WORKFLOW.md`](PROJECT-INSTRUCTIONS/engineering/AGENT-WORKFLOW.md)
+- [`AGENT-WORKFLOW.md`](AGENT-WORKFLOW.md)
 
 Then use the current RPG code/build/tests and the latest physical modlist as the primary evidence for runtime behavior and provider versions.
 
