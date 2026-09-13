@@ -63,8 +63,9 @@ No estado inicial, Iren não pode assumir como conhecido:
 - resultados de investigações que ainda não ocorreram.
 
 ## Referências
-- diálogos: `DLG-0002` após criação;
+- diálogos: `DLG-0002` (calibração) e `DLG-0003` (possível oferta de `QST-0001`);
 - quests: `QST-0001`;
 - NPCs: `NPC-0001` apenas como possível objeto futuro de investigação, não conhecimento inicial;
+- evidências: `EVD-0001`, `EVD-0002`, `EVD-0003` somente quando adquiridas por canal legítimo;
 - facções: pendente;
 - locais: pendente.
