@@ -1,4 +1,4 @@
-# Integrated Stronghold- End Remastered Integration
+# Integrated Stronghold- End Remastered Integration ✅
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3d469db9f0db81c7beb3f7b34af77d3a
