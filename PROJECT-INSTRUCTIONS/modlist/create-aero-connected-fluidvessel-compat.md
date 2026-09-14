@@ -11,7 +11,7 @@
 - **Mod:** Create Aero + Connected FluidVessel Compat
 - **Arquivo JAR:** `aeroconnectedfluidvessel-1.0.0.jar`
 - **Versão 1.21.1:** 1.0.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Tecnologia
@@ -20,9 +20,9 @@
 - **Sobreposição:** Não duplica Create: Connected ou Aeronautics: cobre a lacuna de interoperabilidade entre ambos. Só seria redundante se o mesmo fix fosse incorporado upstream.
 - **Compatibilidade/Riscos:** Compat de block entities/physics assembly; risco principal é regressão após updates de Create/Aeronautics/Connected. Testar boiler, redstone, montagem/desmontagem, save/reload e servidor. Nenhum conflito comprovado no snapshot atual.
 - **Observações:** Addon de compatibilidade estreita; não cria sistema novo de fluidos/energia. Autoridade física atual: modlist de 595 top-levels.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial + dossiê técnico existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Create Aero + Connected FluidVessel Compat 1.0.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `aeroconnectedfluidvessel-1.0.0.jar` / `1.0.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-and-connected-fluid-vessel
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — bridge FluidVessel↔Aeronautics, boiler/redstone/shaft assembly e lifecycle confirmados no QC global #12.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #12: `aeroconnectedfluidvessel-1.0.0.jar` / `1.0.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
