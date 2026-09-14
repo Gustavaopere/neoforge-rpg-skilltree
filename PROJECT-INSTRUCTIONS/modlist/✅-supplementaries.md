@@ -2,20 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db8109ad48f13e5650602f
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.8`; Moonlight Lib 3.6.3 presente
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A authority física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Supplementaries 3.9.8 e Moonlight Lib 3.6.3 estão presentes. A página também registra a 3.9.9 de 10/09/2026 apenas como atualização upstream disponível; isso não altera a versão física canônica. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.8`; Moonlight Lib 3.6.3 presente
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Supplementaries
 - **Arquivo JAR:** `supplementaries-1.21.1-3.9.8-neoforge.jar`
 - **Versão 1.21.1:** 1.21.1-3.9.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL, Visual, Automação
@@ -23,16 +19,16 @@
 - **Dependências:** Moonlight Lib é obrigatória; pack instala Moonlight 1.21.1-3.6.3. Runtime Client & Server. Integrações opcionais/data-driven dependem do stack presente.
 - **Sobreposição:** Sobreposição parcial com Amendments, Blocks You Need e outros vanilla+; Sable Physics Compat declara suporte a Supplementaries.
 - **Compatibilidade/Riscos:** Catálogo amplo e feature gates encadeados. Testar Pulley com Sable/Create, Faucet/storage com capabilities, Cannon/claims, Urn/worldgen e resource packs. 3.9.8 corrige primeiro pull do Pulley, Cannon Boat range, Flag renderer/config e Hourglass load.
-- **Observações:** mod id `supplementaries`; runtime físico 1.21.1-3.9.8. Existe 3.9.9 para NeoForge 1.21.1 publicada em 10/09/2026; registrar como atualização disponível, sem substituir a versão canônica até o JAR físico mudar. Config física não foi lida; presença do mod não prova todos os features habilitados.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Supplementaries 3.9.8 File ID 8821187 + file list oficial 1.21.1 mostrando 3.9.9 File ID 8852720 publicada em 10/09/2026. Dossiê de 09/09 preservado; config local não foi lida.
+- **Observações:** mod id `supplementaries`; runtime físico 1.21.1-3.9.8. Existe 3.9.9 para NeoForge 1.21.1 publicada em 10/09/2026; registrar como atualização disponível, sem substituir a versão canônica até o JAR físico mudar. `sable-companion-common-1.21.1-1.6.0.jar` está embarcado em `META-INF/jarjar` e não é entrada top-level. Config física não foi lida.
+- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Supplementaries 3.9.8 File ID 8821187 e 3.9.9 File ID 8852720 revalidados em 13/09/2026 + inventário físico do JAR registrando Sable Companion 1.6.0 em META-INF/jarjar. Dossiê de 11/09 preservado; config local e testes runtime não foram executados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/8821187 ; https://github.com/MehVahdJukaar/Supplementaries
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — Supplementaries 3.9.8 permanece o runtime físico. Dossiê de catálogo funcional/config/feature gates preservado. ATUALIZAÇÃO DISPONÍVEL: 3.9.9 NeoForge 1.21.1 publicada em 10/09/2026; não altera a autoridade física 3.9.8.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Supplementaries 3.9.8 permanece o runtime físico; atualização 3.9.9 NeoForge 1.21.1 segue disponível desde 10/09/2026. Sable Companion 1.6.0 foi confirmado como JarJar interno, sem ordinal próprio.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **ESCOPO CANÔNICO.** Runtime físico: `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, versão `1.21.1-3.9.8`. Supplementaries é um grande **vanilla+ funcional/decorativo**, com mais de 200 blocos/itens descritos pelo projeto e configuração granular que permite desabilitar grande parte do catálogo individualmente.
+> 🧰 **ESCOPO CANÔNICO.** Runtime físico: `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, versão `1.21.1-3.9.8`. Supplementaries é um grande **vanilla+ funcional/decorativo**, com mais de 200 blocos/itens descritos pelo projeto e configuração granular que permite desabilitar grande parte do catálogo individualmente.
 
 ## 1. Identidade, versão e papel
 - **Mod:** Supplementaries.
@@ -163,3 +159,6 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 O JAR canônico continua sendo `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.8`, com Moonlight 3.6.3 presente. O dossiê 3.9.8 continua tecnicamente aplicável ao runtime físico.
 
 **Atualização upstream:** a file list oficial agora contém `supplementaries-1.21.1-3.9.9-neoforge.jar`, publicada em 10/09/2026. Esta auditoria não altera a versão instalada nem atribui à 3.9.9 comportamento adicional além do que a publicação suporta. Nenhum teste/config migration foi executado.
+
+## 18. Revalidação física e upstream — 13/09/2026
+O runtime físico permanece Supplementaries 3.9.8. A release NeoForge 1.21.1 mais recente localizada é 3.9.9, publicada em 10/09/2026; o JAR do pack não foi alterado. O inventário físico também confirma Sable Companion 1.6.0 embarcado em `META-INF/jarjar`, subordinado ao host e sem ordinal próprio. Nenhum teste de atualização, config migration, Pulley, Cannon Boat, Flags ou Hourglass foi executado nesta revalidação.

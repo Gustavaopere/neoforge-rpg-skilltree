@@ -2,16 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db810ca9d0ee8a2ad1f774
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-10
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `Ecliptic-Seasons-NeoForge-1.21.1-0.15.0-rc-3.jar`, mod id `eclipticseasons`, runtime `0.15.0-rc-3`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Ecliptic Seasons
 - **Arquivo JAR:** `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3.jar`
 - **Versão 1.21.1:** 0.15.0-rc-3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Clima, Worldgen
@@ -19,10 +19,10 @@
 - **Dependências:** NeoForge 1.21.1. Extensões instaladas: MultiMod Patch 0.32.1 e Bundles 0.18.0.2. Distant Horizons 3.2.0-b está presente e a linha 0.15.0 possui integração oficial de aparência sazonal em LODs.
 - **Sobreposição:** É o provider de estação/clima sazonal do stack. Cold Sweat trata temperatura corporal; MultiMod Patch traduz estado sazonal; Bundles adiciona dados/recursos. Não são substitutos do core.
 - **Compatibilidade/Riscos:** Build 0.15.0-rc-3 é Beta/RC. Riscos: configuração migrada de versões antigas, seasonal simulation level produzir alteração de gameplay além do desejado, snow behavior competir com outros render/world mods, crop/humidity/greenhouse drift, Distant Horizons LOD stale e dupla tradução de temperatura via adapters.
-- **Observações:** 0.15.0 introduz níveis Environment, Ecology, Agriculture, Survival e Custom; Snow Behavior separado; config screen redesenhada; datapack content pode reagir ao nível escolhido; Distant Horizons ganhou reprodução de seasonal model appearance. Runtime físico permanece 0.15.0-rc-3 para 1.21.1.
-- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3.jar`, mod id `eclipticseasons` e versão 0.15.0-rc-3. CurseForge oficial File 8798533 confirma NeoForge 1.21.1 Beta de 03/09/2026 e changelog 0.15.0.
+- **Observações:** Runtime físico permanece 0.15.0-rc-3. O artefato público 1.21.1 mais novo acrescenta sufixo `-1` no filename (`0.15.0-rc-3-1`), mas não possui changelog na página do arquivo; portanto nenhuma correção/comportamento novo é atribuído a ele por inferência.
+- **Procedência:** modlist.txt física atual — 595 entradas totais incluindo o modloader — confirma `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3.jar`, mod id `eclipticseasons` e runtime 0.15.0-rc-3. CurseForge oficial revalidado em 12/09/2026 mostra `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` (File ID 8849038) como Beta posterior de 10/09/2026, sem changelog publicado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — 0.15.0-rc-3; 24 termos solares, níveis de simulação, weather/snow/agriculture/ecology/survival, config, Distant Horizons, lifecycle, riscos e testes catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #245: pack permanece em `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3.jar` / runtime 0.15.0-rc-3. Existe artefato Beta posterior `0.15.0-rc-3-1` para 1.21.1, publicado em 10/09/2026; a página oficial não fornece changelog específico para esse arquivo.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-26
 
@@ -42,6 +42,8 @@ Ecliptic Seasons é o **provider sazonal/climático** do pack. Seu calendário u
 
 ## 3. 24 termos solares
 A descrição oficial define o sistema em torno de **24 solar terms**, usados como granularidade temporal para alterar weather, crops e ecossistemas. Integrações próprias devem consultar o state/provider sazonal, não aproximar a estação por dia do mundo em fórmula paralela.
+
+**Update upstream separado:** em 10/09/2026 foi publicado o artefato Beta `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` (File ID 8849038). A página oficial desse arquivo declara **“File has no changelog”**; portanto esta ficha registra apenas a existência do artefato posterior e não atribui a ele fixes ou mudanças funcionais não documentadas. O pack permanece fisicamente no `0.15.0-rc-3.jar`.
 
 ## 4. Seasonal Simulation Levels — 0.15.0
 A linha física 0.15.0 introduz níveis explícitos:
@@ -143,8 +145,9 @@ O servidor deve fornecer o mesmo state sazonal para todos os jogadores. Clientes
 **Esta catalogação não afirma que esses testes foram executados.**
 
 ## 19. Evidências
-- modlist física canônica de 08/09/2026: JAR/mod id/versão;
-- CurseForge oficial File 8798533, NeoForge 1.21.1 Beta;
+- modlist física atual: JAR/mod id/versão;
+- CurseForge oficial File 8798533: artefato físico `0.15.0-rc-3`, NeoForge 1.21.1 Beta;
+- CurseForge File 8849038: artefato posterior `0.15.0-rc-3-1`, NeoForge 1.21.1 Beta, publicado em 10/09/2026 e sem changelog próprio;
 - changelog oficial 0.15.0: Simulation Levels, Snow Behavior, config redesign/migration, Distant Horizons, falling leaves, performance/compatibility.
 
 > **Boundary canônico:** Ecliptic Seasons é a fonte de verdade do **estado sazonal**. Addons apenas traduzem esse state para conteúdo externo.

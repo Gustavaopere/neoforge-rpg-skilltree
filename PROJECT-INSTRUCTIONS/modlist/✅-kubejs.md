@@ -1,29 +1,29 @@
 # KubeJS — 2101.7.2-build.374
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3d369db9f0db81a1b76aca006b216684  
-> Estado no momento da importação: `Instalado — Dossiê completo`  
-> Autoridade física: `modlist(4).txt`, 595 mods top-level  
-> Importado em: 2026-09-10
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3d369db9f0db81a1b76aca006b216684
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `kubejs-neoforge-2101.7.2-build.374.jar`, mod id `kubejs`, runtime `2101.7.2-build.374`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** KubeJS
 - **Arquivo JAR:** `kubejs-neoforge-2101.7.2-build.374.jar`
 - **Versão 1.21.1:** `2101.7.2-build.374`
-- **Categoria:** Automação; QoL
+- **Categoria:** Automação, QoL
 - **Decisão:** Manter
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/kubejs
 - **Função:** Framework de scripting NeoForge para recipes, conteúdo custom e eventos em JavaScript, com domains startup/server/client e ecossistema amplo de addons.
-- **Dependências:** Required content oficial da build.374: Rhino + Better Advanced Tooltips. Rhino 2101.2.8-build.91 está fisicamente presente. KubeJS 7.x não depende mais de Architectury API; Architectury 13.0.11 no pack é independente desta relação.
+- **Dependências:** Rhino 2101.2.8-build.91 está fisicamente presente. Better Advanced Tooltips está embarcado no JAR build.374; os demais componentes JarJar internos estão documentados no corpo. KubeJS 7.x não exige Architectury API.
 - **Compatibilidade/Riscos:** Infraestrutura crítica com muitos consumers. Riscos: script exceptions, duplicate handlers após reload, registry migration, client/server leakage e addon API drift. Em 09/09/2026 existe build.377, mas o runtime físico permanece build.374 até atualização explícita.
 - **Sobreposição:** Pode alterar os mesmos dados/sistemas que datapacks e mods, conforme scripts. Não substitui providers; é glue/customization layer.
-- **Observações:** JAR físico `kubejs-neoforge-2101.7.2-build.374.jar`, mod id `kubejs`, runtime 2101.7.2-build.374. Build.377 já existe externamente em 09/09/2026, mas não substitui a authority física.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + Modrinth/CurseForge oficiais KubeJS build.374 + KubeJS Wiki 1.21/7.x; disponibilidade externa rechecada em 09/09/2026.
-- **Histórico da decisão:** vazio.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — corpo vazio corrigido; script phases, recipes/content/events, KubeJS 7.x lifecycle, dependencies, reload/persistence e risks catalogados para build.374.
+- **Observações:** Runtime físico permanece `2101.7.2-build.374`; upstream possui `2101.7.2-build.377` para NeoForge 1.21.1 desde 09/09/2026. O JAR build.374 também embarca Better Advanced Tooltips, Animated GIF Lib e Tiny Java Server via JarJar.
+- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial KubeJS listando build.377 como release NeoForge 1.21.1 mais recente e build.374 como runtime físico + inventário JarJar do host + documentação KubeJS 7.x já auditada.
+- **Histórico da decisão:**
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — KubeJS build.374/JAR físico reconfirmado; build.377 está disponível para NeoForge 1.21.1 e ainda não foi aplicada. Corpo técnico preservado.
 - **Data da última decisão:** 2026-09-06
 
 ## Dossiê operacional — padrão Alex's Mobs
@@ -49,8 +49,8 @@ Eventos Startup, Server e Client têm side/lifecycle próprios. Server events s�
 ## 5. Linha 7.x / Minecraft 1.21
 A documentação oficial 7.0 registra mudanças estruturais: suporte principal 1.21 via NeoForge, remoção da dependência em Architectury API, configs em JSON, native events reloadable e mudanças de APIs para addons. Portanto Architectury físico no pack **não é hard dependency de KubeJS 7.2**.
 
-## 6. Dependências físicas
-A release 2101.7.2-build.374 declara Rhino e Better Advanced Tooltips como required content. Rhino 2101.2.8-build.91 está fisicamente presente. Vários addons KubeJS do pack dependem deste core, tornando-o load-bearing.
+## 6. Dependências físicas e JarJar
+A release 2101.7.2-build.374 declara Rhino e Better Advanced Tooltips como required content. Rhino 2101.2.8-build.91 está fisicamente presente como entrada top-level. O JAR físico do KubeJS também contém, em `META-INF/jarjar/`, `better-advanced-tooltips-2101.1.0-build.1.jar`, `animated-gif-lib-for-java-animated-gif-lib-1.7.jar` e `tiny-java-server-1.0.0-build.33.jar`. Pelo protocolo do catálogo, esses três componentes são dependências internas do host e não recebem páginas top-level independentes. Vários addons KubeJS do pack dependem deste core, tornando-o load-bearing.
 
 ## 7. Versão física vs atualização disponível
 Em 09/09/2026 já existe build 2101.7.2-build.377 publicada. A modlist física continua em build.374 e permanece authority. Não atualizar o catálogo/runtime por disponibilidade externa sem mudança explícita do JAR e regressão dos addons/scripts.

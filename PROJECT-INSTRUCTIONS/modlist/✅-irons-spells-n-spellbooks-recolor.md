@@ -2,16 +2,17 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3ca69db9f0db8155923dc65dd14d29e5
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente; Iron's Spells físico atual = `1.21.1-3.16.3`
-- **Data da exportação:** 2026-09-11
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `recolor_tablet-1.3.2+1.21.1.jar`, mod id `recolor_tablet`, runtime `1.3.2+1.21.1`
+- **Nota de autoridade física externa:** Iron's Spells 'n Spellbooks está em `1.21.1-3.16.3` na modlist atual; a página-fonte abaixo preserva referências históricas a 3.15.1 sem reescrevê-las silenciosamente.
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Iron's Spells 'n Spellbooks: Recolor
 - **Arquivo JAR:** `recolor_tablet-1.3.2+1.21.1.jar`
 - **Versão 1.21.1:** 1.3.2+1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, QoL
@@ -26,11 +27,9 @@
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-30
 
-> **Divergência física registrada:** a ficha-fonte acima referencia Iron's Spells `3.15.1` como provider-base. A modlist física mais recente efetivamente disponível nesta execução contém `irons_spellbooks-1.21.1-3.16.3.jar` / runtime `1.21.1-3.16.3`. O texto-fonte é preservado sem ser promovido a fato físico atual.
-
 # Dossiê operacional — padrão Alex's Mobs
 
-> **ESCOPO CANÔNICO.** Runtime físico instalado: `recolor_tablet-1.3.2+1.21.1.jar`, mod id `recolor_tablet`, versão `1.3.2+1.21.1`, NeoForge 1.21.1. O mod personaliza visualmente a cor dos efeitos de spells do ecossistema Iron's Spells sem assumir autoridade sobre dano, mana, cooldown, escola ou progressão. O upstream já publicou 1.3.3; esta ficha permanece ancorada no JAR 1.3.2 efetivamente instalado.
+> 🎨 **ESCOPO CANÔNICO.** Runtime físico instalado: `recolor_tablet-1.3.2+1.21.1.jar`, mod id `recolor_tablet`, versão `1.3.2+1.21.1`, NeoForge 1.21.1. O mod personaliza visualmente a cor dos efeitos de spells do ecossistema Iron's Spells sem assumir autoridade sobre dano, mana, cooldown, escola ou progressão. O upstream já publicou 1.3.3; esta ficha permanece ancorada no JAR 1.3.2 efetivamente instalado.
 
 ## 1. Identidade e papel
 - **Mod:** Iron's Spells 'n Spellbooks: Recolor.
