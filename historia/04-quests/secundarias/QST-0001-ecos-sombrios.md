@@ -7,7 +7,7 @@ CANÔNICO DE REFERÊNCIA / QUEST-TESTE
 Oportunidade secundária de investigação.
 
 ## Premissa player-safe
-Em estágio avançado, um mago ligado à corte pode detectar indícios de atividade sombria em determinada região e decidir ou não envolver o jogador.
+Em estágio avançado, um mago ligado à corte pode reunir indícios suficientes de ocorrências incomuns por canais rastreáveis e decidir ou não envolver o jogador.
 
 ## Participantes
 - `NPC-0001` Severin
