@@ -2,29 +2,29 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db8188ab05cb35dffffbd2
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-10
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `createfisheryindustry-5.1.1.jar`, mod id `createfisheryindustry`, runtime `5.1.1`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Create: Fishery Industry
 - **Arquivo JAR:** `createfisheryindustry-5.1.1.jar`
 - **Versão 1.21.1:** 5.1.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Comida, Automação, Exploração
 - **Função:** Adiciona pesca automatizada, mergulho, captura de criaturas e processamento/logística de produtos aquáticos no estilo Create.
-- **Dependências:** Create obrigatório; build 5.1.1 é NeoForge 1.21.1 Client & Server. Pneumatic Harpoon Gun usa recurso de backtank/Create; pack possui múltiplas bridges de backtank que exigem regression test.
+- **Dependências:** Create obrigatório; pack físico usa NeoForge 21.1.248 + Create 6.0.10. Pneumatic Harpoon Gun consome recurso de backtank/Create; bridges de backtank/Curios presentes exigem regression test de fonte/consumo.
 - **Sobreposição:** Compartilha pesca/comida/fauna aquática com outros mods, mas a superfície própria inclui traps em contraptions, capture/nozzles, harpoon pneumático e processamento. Overlap deve ser comparado por loot/recipe/drop.
 - **Compatibilidade/Riscos:** Riscos: entity/loot double-capture; biome loot mismatch; Mesh Trap insert+drop dupe; Smart Nozzle filter/pickup; Peeler output duplication; Harpoon air accounting/force; diving movement stacking; Mechanical Arm/manual extraction race; chunk/contraption replay.
 - **Observações:** JAR/mod id/runtime 5.1.1 confirmados. Página oficial documenta Frame Trap, fishing loot por bioma, Trap Nozzle, Smart Mesh, Mechanical Peeler, Diving Leggings, Harpoon/Pouch, Pneumatic Harpoon Gun, Mesh Trap e Smart Nozzle. Source head consultado ainda declara 5.0.0.
-- **Procedência:** modlist.txt física atual de 08/09/2026 — 595 mods top-level + publicação oficial Fishery Industry 5.1.1 + repositório adonis-baffin/CreateFisheryIndustry usado apenas como arquitetura por estar em versão 5.0.0 no gradle consultado.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createfisheryindustry` 5.1.1 + CurseForge oficial revalidado em 12/09/2026; 5.1.1 de 18/07/2026 continua a release NeoForge 1.21.1 mais recente. Source público consultado permanece em 5.0.0 e é usado somente como arquitetura.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-fishery-industry
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — dossiê 5.1.1 com Frame/Mesh Traps, biome fishing loot, Trap/Smart Nozzles, Mechanical Peeler, diving/harpoon stack, backtank resource e contraption lifecycle catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #188: createfisheryindustry-5.1.1.jar / runtime 5.1.1 reconfirmados como latest Release NeoForge 1.21.1; Frame/Mesh Traps, biome fishing loot, nozzles, Mechanical Peeler, diving/harpoon stack e backtank integration permanecem atuais.
 - **Histórico da decisão:**
-- **Data da última decisão:**
+- **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
 
