@@ -1,28 +1,34 @@
-# 12.12 — Seletor de corpos, UI e PT-BR
+# 12.12 — Seletor de corpos — contrato funcional e pt-BR
+
+## Fronteira
+
+Cards, layout, tema tecnológico/ritual, badges, gauges e acessibilidade visual foram separados para `../textura/05-corpos-seletor-construcao-ritual.md`.
+
+Este arquivo mantém read model, actions, segurança de rede, estados e localização do Stage 12.
 
 ## Objetivo
 
-Criar uma interface clara para consultar, criar e trocar corpos sem expor IDs/NBT internos e sem depender de textos em inglês.
+Permitir consultar/criar/trocar corpos sem expor dados de outro owner, sem aceitar estado autoritativo vindo do cliente e sem exigir IDs/NBT internos no fluxo normal.
 
-## Seletor
+## Read model do seletor
 
-A interface deve apresentar apenas corpos pertencentes ao player autenticado e um read model server-authoritative.
-
-Informações por corpo:
+A interface recebe somente corpos pertencentes ao player autenticado e campos presentation-safe aprovados, que podem incluir:
 
 - nome/apelido;
-- tipo: Original, Artificial, Ritual etc.;
-- estado: Ativo, Armazenado, Em construção, Pronto, Destruído, Recuperação necessária;
+- tipo de corpo;
+- estado;
 - nível RPG;
-- classe/especialização principal quando aplicável;
-- localização/âncora;
+- classe/especialização quando aplicável;
+- localização/âncora autorizada;
 - vida resumida quando útil;
 - última ativação;
 - avisos de incompatibilidade/provider.
 
+A aparência desses campos pertence a Textura.
+
 ## Segurança de rede
 
-Cliente recebe uma lista de visualização e envia apenas intenção:
+Cliente envia apenas intenção conceitualmente equivalente a:
 
 ```text
 SwitchBodyRequest(targetBodyId, anchorId/revision)
@@ -30,17 +36,19 @@ SwitchBodyRequest(targetBodyId, anchorId/revision)
 
 Servidor revalida ownership, estado, distância, anchor, cooldown e revision. Cliente nunca envia progressão, inventário ou snapshot para ser aplicado.
 
-## Estados de UI
+## Estados e disponibilidade de ações
 
-- Corpo ativo não mostra ação de ativar;
-- `CONSTRUCTING` mostra progresso;
-- `READY/STORED` pode mostrar “Transferir consciência”;
-- `RECOVERY_REQUIRED` bloqueia troca normal e explica que é necessária recuperação;
-- `DESTROYED` aparece somente se configuração/histórico permitir.
+- corpo ativo não oferece ação de ativar;
+- `CONSTRUCTING` expõe progresso funcional quando disponível;
+- `READY/STORED` pode expor intenção de transferência;
+- `RECOVERY_REQUIRED` bloqueia troca normal e fornece motivo presentation-safe;
+- `DESTROYED` só é projetado quando configuração/histórico permitirem.
 
-## Vocabulário PT-BR
+Textura representa esses estados, mas não os calcula.
 
-Termos canônicos iniciais:
+## Vocabulário pt-BR
+
+Termos canônicos iniciais permanecem:
 
 ```text
 Body = Corpo
@@ -58,13 +66,13 @@ Constructing = Em construção
 Recovery Required = Recuperação necessária
 ```
 
-A escolha final entre “Transferir Consciência” e “Trocar de Corpo” deve considerar clareza no botão e lore no texto descritivo; ambos devem ser chaves localizadas, não strings hardcoded.
+A escolha final de copy deve usar localization keys, não strings hardcoded. IDs técnicos internos permanecem inalterados.
 
-## Tradução
+Toda key própria deve possuir `pt_br` no mesmo PR que a introduz; gate de CI deve detectar ausência conforme o padrão do Stage 11.
 
-Toda chave própria deve possuir `pt_br` no mesmo PR que a introduz. Gate de CI deve detectar chave ausente como no Stage 11.
+## Dados que não aparecem no fluxo normal
 
-Não mostrar ao usuário:
+Não projetar como copy comum:
 
 - `Shell`;
 - `BodyProfile`;
@@ -73,35 +81,35 @@ Não mostrar ao usuário:
 - nomes de classes Java;
 - erros crus de provider.
 
-Diagnóstico avançado pode mostrar IDs apenas em tooltip/admin/debug.
+Diagnóstico autorizado pode fornecer IDs em camada debug separada.
 
-## Tela de construção
+## Construção tecnológica
 
-Mostrar:
+O read model pode fornecer:
 
 - progresso;
 - recursos faltantes;
 - energia/custo quando aplicável;
-- corpo que está sendo criado;
-- estado persistente (“Construção pausada”, “Pronto para vincular” etc.).
+- corpo alvo;
+- estado persistente como pausado/pronto.
 
-## Tela ritual
+Cálculo e authority permanecem no Stage 12/provider. Apresentação tecnológica pertence a Textura.
 
-Mostrar termos místicos equivalentes, mas usar os mesmos estados internos. Não duplicar modelo de rede/UI apenas por tema; compartilhar componentes/read models onde fizer sentido.
+## Transmigração ritual
 
-## Acessibilidade
+A superfície ritual usa os mesmos estados/protocolos internos quando aplicável. Tema visual diferente não cria segundo modelo de rede ou segunda authority.
 
-- não depender apenas de cor para estado;
-- textos curtos e descritivos;
-- confirmação explícita antes de operações destrutivas;
-- suporte a escala de GUI;
-- teclado/controle quando a stack do jogo oferecer suporte.
+## Handoff de acessibilidade
 
-## Critérios de aceite
+A engenharia fornece estados explícitos, copy localizada, confirmação requerida para ações classificadas como destrutivas e disponibilidade funcional de cada botão. Distinção visual sem somente cor, escala de GUI e foco pertencem a Textura.
 
-- seletor não vaza corpos de outro owner;
-- client spoof de bodyId falha no servidor;
-- todas as ações possuem feedback PT-BR;
-- nenhum termo técnico cru aparece em fluxo normal;
-- estados de construção/recovery/destruição são distinguíveis sem depender apenas de cor;
-- UI funciona em dedicated server + cliente sem lógica autoritativa no client.
+## Critérios de aceite funcionais
+
+- seletor não projeta corpos de outro owner;
+- client spoof de `bodyId` falha no servidor;
+- ações possuem feedback presentation-safe em pt-BR;
+- nenhum termo técnico cru é necessário no fluxo normal;
+- estados de construção/recovery/destruição são dados semânticos explícitos;
+- dedicated server + client funcionam sem lógica autoritativa no client.
+
+A qualidade estética e a distinção visual desses estados são aceites separados em `../textura/05-corpos-seletor-construcao-ritual.md`.

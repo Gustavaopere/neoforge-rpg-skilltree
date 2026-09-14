@@ -1,14 +1,18 @@
-# 11.13 — Localização pt-BR, tooltip e apresentação
+# 11.13 — Localização pt-BR e contrato de apresentação da itemização
+
+## Fronteira
+
+Tooltip, Rank visual, ícones, hierarquia e acessibilidade visual foram separados para `../textura/04-itemizacao-tooltips-identidade-visual.md`.
+
+Este arquivo mantém localização, aliases semânticos, formatação e validators do Stage 11.
 
 ## Objetivo
 
-Garantir que toda informação própria da itemização seja apresentada em português do Brasil, sem persistir texto traduzido e sem depender da qualidade de localização de mods externos.
+Garantir que toda informação própria da itemização seja fornecida em português do Brasil sem persistir texto traduzido, sem alterar IDs técnicos e sem depender da qualidade de localização de mods externos.
 
-## Passo a passo
+## A — Chaves próprias
 
-### A — Chaves próprias
-
-Todo Rank, família, modifier, efeito, erro, mensagem e label do Stage 11 deve possuir chave estável, por exemplo:
+Todo Rank, família, modifier, efeito, erro, mensagem e label próprio do Stage 11 deve possuir key estável, por exemplo:
 
 ```text
 rank.rpgskilltree.common
@@ -17,61 +21,43 @@ itemization.rpgskilltree.family.prefix
 itemization.rpgskilltree.locked_roll
 ```
 
-IDs técnicos permanecem em inglês/namespace quando necessário; somente apresentação é localizada.
+IDs técnicos permanecem estáveis; apresentação é localizada no momento de exibição.
 
-### B — Aliases de integrações
+## B — Aliases de integrações
 
-Quando o RPG exibir atributos externos, usar aliases próprios para nomes conhecidos e auditados:
+Quando o RPG exibir atributos externos, usar aliases próprios somente para conceitos conhecidos e auditados, como Regeneração de Mana, Mana Máxima, Poder Mágico, Velocidade de Ataque, Redução de Recarga, Perfuração de Armadura ou Roubo de Vida quando a semântica correspondente estiver comprovada.
 
-- Regeneração de Mana;
-- Mana Máxima;
-- Poder Mágico;
-- Velocidade de Ataque;
-- Redução de Recarga;
-- Perfuração de Armadura;
-- Roubo de Vida;
-- demais termos confirmados durante cada adapter.
+Não renomear internamente IDs externos nem inventar tradução para conceito desconhecido.
 
-Não renomear internamente IDs externos nem inventar tradução para conceito desconhecido sem confirmar sua semântica.
+## C — Dados do tooltip
 
-### C — Formato de tooltip
+O Stage 11 fornece ao cliente, quando aplicável:
 
-Estrutura base planejada:
+- Rank;
+- nome base localizado pelo item/provider;
+- Poder do Item;
+- Prefixos/Sufixos/Infixos e seus textos/valores resolvidos;
+- estado de identidade permanente/sem reroll;
+- metadata avançada somente quando o modo correspondente estiver ativo.
 
-```text
-[RANK] Nome do Item
-Poder do Item: N
+A estrutura visual desses dados pertence a Textura.
 
-Prefixos — X/5
-• Nome
-  efeito localizado
+## D — Nome do item
 
-Sufixos — Y/5
-• Nome
-  efeito localizado
+O runtime não deve concatenar todos os modifiers no nome persistido. Rank e modifiers continuam campos semânticos separados; a escolha de badge/cor/prefixo visual pertence ao companion de Textura.
 
-Infixos — Z/5
-• Nome
-  descrição localizada
+## E — Formatação brasileira
 
-Identidade RPG: Permanente
-Os modificadores deste item não podem ser rerrolados.
-```
-
-### D — Nome do item
-
-Não concatenar 15 modifiers no nome. Rank pode aparecer como badge/cor/prefixo visual, mantendo o nome base localizado pelo próprio item/mod.
-
-### E — Formatação brasileira
-
-- [ ] percentuais e números apresentados com formatação adequada ao locale quando possível;
+- [ ] percentuais e números apresentados com locale adequado quando possível;
 - [ ] duração/unidades consistentes;
-- [ ] valores positivos/negativos semanticamente claros;
-- [ ] não exibir IDs/keys no modo normal.
+- [ ] sinais positivo/negativo semanticamente corretos;
+- [ ] IDs/keys não aparecem no modo normal produzido pelo RPG.
 
-### F — Tooltip avançado
+Textura define somente como esses valores já resolvidos são organizados.
 
-Com tecla/modo avançado, permitir diagnóstico opcional:
+## F — Debug avançado
+
+Quando permitido, a engenharia pode fornecer:
 
 - item ID;
 - instance ID abreviado;
@@ -79,38 +65,36 @@ Com tecla/modo avançado, permitir diagnóstico opcional:
 - source;
 - schema version;
 - provider do modifier;
-- IDs técnicos quando necessário.
+- IDs técnicos necessários ao diagnóstico.
 
-Informação debug não substitui a apresentação pt-BR normal.
+Essa metadata não substitui o conteúdo localizado normal.
 
-### G — Validator de localização
+## G — Validator de localização
 
 CI deve falhar se:
 
-- uma chave própria usada pelo Stage 11 não existir em `pt_br`;
-- tooltip próprio renderizar chave crua;
-- corpus/definitions declararem localization key inexistente;
+- key própria usada pelo Stage 11 não existir em `pt_br`;
+- conteúdo próprio conhecido renderizar key crua;
+- definitions/corpus declararem localization key inexistente;
 - strings próprias conhecidas forem hardcoded fora do mecanismo aprovado.
 
-Termos ingleses vindos de UI externa que o RPG não controla devem ser distinguidos no relatório; não mascarar como falha própria sem capacidade de corrigir.
+Termos ingleses de UI externa fora do controle do RPG devem ser classificados separadamente, sem mascarar limitação de provider como falha própria corrigível.
 
-### H — Acessibilidade e legibilidade
+## H — Handoff de acessibilidade
 
-- [ ] não depender apenas de cor para Rank;
-- [ ] linhas longas quebram corretamente;
-- [ ] tooltip não excede tela sem estratégia de paginação/compactação;
-- [ ] Shift/Alt para detalhes avançados quando necessário;
-- [ ] ícones, se usados, têm texto equivalente.
+A engenharia fornece estado semântico e texto equivalente para ícones importantes. Contraste, wrapping, paginação/compactação visual e distinção de Rank sem somente cor pertencem a `../textura/04-itemizacao-tooltips-identidade-visual.md`.
 
-## Testes previstos
+## Testes funcionais previstos
 
-- snapshot de tooltip em pt-BR para todos os Ranks/famílias;
-- modifier externo com alias próprio;
-- modifier desconhecido com fallback legível;
-- nenhuma chave crua;
+- resolução pt-BR de todos os Ranks/famílias;
+- modifier externo com alias auditado;
+- modifier desconhecido com fallback legível sem tradução inventada;
+- nenhuma key crua própria;
 - locale/decimal/percentual;
-- tooltip com 5/5/5 continua navegável.
+- payload de tooltip com 5/5/5 modifiers permanece semanticamente completo.
 
-## Acceptance
+A navegação/legibilidade visual de 5/5/5 é validada pelo companion de Textura.
 
-O jogador usando `pt_br` consegue compreender Rank, Poder, Prefixos, Sufixos, Infixos, efeitos e recusas sem encontrar inglês ou chaves técnicas produzidas pelo Stage 11, e o CI impede regressão de cobertura.
+## Acceptance funcional
+
+O cliente recebe conteúdo localizado e semanticamente correto para Rank, Poder, Prefixos, Sufixos, Infixos, efeitos e recusas; o CI impede regressão de cobertura de localization e a camada visual não precisa inventar significado a partir de IDs.

@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `integrated_villages_config-1.3.3-1.21.1.zip`
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Versão 1.21.1:** 1.3.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Worldgen

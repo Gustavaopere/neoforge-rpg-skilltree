@@ -1,111 +1,84 @@
-# 10.15 — Boss Checklist, rastreamento de criaturas e waypoints
+# 10.15 — Bosses, rastreamento e waypoints — contrato funcional
+
+## Fronteira
+
+A apresentação de habitat, ação `Procurar / Seguir`, Boss Checklist, waypoints/overlays e HUD foi separada para `../textura/06-cartografia-waypoints-bosses.md`.
+
+Este arquivo permanece dono da semântica, dados, tracking, anti-cheat, persistência, progressão de bosses e integração funcional com mapas.
 
 ## Objetivo
 
-Expandir o Compêndio Natural com duas funções de exploração/progressão diretamente ligadas às entradas de fauna:
-
-1. permitir que o jogador consulte **onde encontrar uma criatura descoberta** e selecione essa espécie para **Procurar / Seguir**, recebendo orientação e marcador no mapa quando houver informação suficiente;
-2. incorporar um **Boss Checklist** dentro do próprio Compêndio, reunindo bosses e minibosses vanilla/modded, progresso de descoberta/derrota e informações de encontro em uma única interface.
-
-A referência conceitual é combinar o fluxo de descoberta do Field Guide, a ficha enciclopédica do Biology Dictionary e a progressão organizada do Boss Checklist, sem transformar esses mods em dependências obrigatórias.
-
----
+1. permitir que o jogador consulte informação verificável de onde encontrar criatura descoberta e selecione uma espécie para rastreamento quando houver alvo legítimo;
+2. incorporar bosses/minibosses ao mesmo domínio do Compêndio, com progresso server-authoritative e sem criar catálogo paralelo.
 
 ## Dependências internas
 
-Este subplano deve consumir contratos já existentes em vez de recriá-los:
+Consumir contratos existentes:
 
-- `10.04` — descoberta e progresso por jogador;
-- `10.05` — catálogo universal de entidades e classificação técnica;
-- `10.07` — loot/ecologia quando disponível;
-- `10.08` — biomas, estruturas e dimensões;
-- `10.09` — UI, pesquisa, filtros e página de entrada;
-- `10.11` — adapters e extensibilidade para mods opcionais;
-- `10.13` — persistência, rede, cache e projeção autorizada ao cliente;
-- Stage 08 — quests/progression hooks quando rastrear ou derrotar criaturas produzir objetivos/recompensas.
+- `10.04` — descoberta/progresso;
+- `10.05` — catálogo universal de entidades;
+- `10.07` — loot/ecologia;
+- `10.08` — biomas/estruturas/dimensões;
+- `10.09` — browser/page model e client boundary;
+- `10.11` — adapters;
+- `10.13` — persistência/rede/cache/projeção autorizada;
+- Stage 08 — quest hooks quando aplicável;
+- Stage 13 — cartografia/renderer quando houver integração de mapa.
 
-Nenhum desses dados deve ser duplicado em um segundo catálogo independente.
+Nenhum dado deve ser duplicado em segundo catálogo.
 
----
+## A — Dados de encontro
 
-# A — Onde encontrar uma criatura
-
-A página de uma criatura descoberta deve poder apresentar, quando os dados forem verificáveis:
+Para criatura descoberta, o domínio pode fornecer quando verificável:
 
 - dimensão;
 - biomas;
 - habitat/ambiente;
 - estruturas relacionadas;
-- faixa de altura quando relevante e verificável;
-- horário, luminosidade, clima ou outras condições de spawn quando disponíveis;
-- condições especiais de aparição;
-- método de invocação/summon quando aplicável;
+- faixa de altura quando comprovada;
+- horário/luminosidade/clima ou outras condições comprovadas;
+- condições especiais de spawn;
+- método de invocação quando aplicável;
 - mod/namespace de origem.
 
-A ausência de um desses dados não deve gerar informação inventada. A UI omite o campo ou indica que a condição não está disponível.
+Prioridade de fonte:
 
-## Origem dos dados
-
-Prioridade:
-
-1. registries/tags/dados runtime verificáveis;
-2. contratos públicos do provider/mod;
-3. datapack/override curado pelo modpack;
+1. registries/tags/runtime verificável;
+2. contratos públicos do provider;
+3. datapack/override curado;
 4. corpus editorial com proveniência explícita.
 
-Adapters enriquecem o resultado, mas a página base continua funcional sem adapter específico.
+Ausência de dado não autoriza invenção. A forma visual desses campos pertence a Textura.
 
----
+## B — Tracking `Procurar / Seguir`
 
-# B — Procurar / Seguir criatura
+Tipos semânticos distintos:
 
-Cada entrada de fauna elegível poderá oferecer a ação **Procurar / Seguir**.
+### Habitat conhecido
 
-Fluxo pretendido:
+Região/bioma/estrutura/dimensão compatível com condições conhecidas. Não significa que uma entidade esteja naquela coordenada.
 
-```text
-descobrir criatura
-→ abrir entrada no Compêndio
-→ consultar habitat/spawn
-→ selecionar Procurar / Seguir
-→ obter alvo de busca/waypoint
-→ viajar até a região
-→ procurar a criatura
-```
+### Último avistamento
 
-## Alvo de busca
+Posição histórica somente quando o sistema realmente a persistir e o jogador estiver autorizado a recebê-la.
 
-O sistema deve distinguir explicitamente:
+### Entidade atualmente localizada
 
-### 1. Habitat conhecido
+Só existe quando o servidor conhece e autoriza a posição da instância. Deve ser temporário/configurável conforme contrato; o Compêndio não vira radar global por default.
 
-Um bioma, estrutura, dimensão ou região compatível com as condições conhecidas da espécie.
+Política funcional:
 
-O marcador significa **"procure nesta região"**, não "há uma entidade exatamente nesta coordenada".
+- primeira versão pode limitar a um alvo principal por jogador;
+- trocar alvo substitui/reconcilia o waypoint próprio anterior;
+- cancelar remove o waypoint próprio;
+- mudança de dimensão preserva/suspende conforme regra definida;
+- nenhum scan ilimitado ou geração massiva de chunks;
+- busca usa orçamento/raio/política configurável quando implementada;
+- sem localização válida, o domínio fornece apenas habitat, sem fabricar coordenada.
 
-### 2. Último avistamento conhecido
+## C — Boundary de waypoints/mapa
 
-Se o jogador já observou aquela espécie e o sistema persistir a posição do encontro, o Compêndio pode oferecer um marcador de **último avistamento**, identificado como histórico.
-
-### 3. Entidade atualmente localizada
-
-Só pode existir quando o servidor realmente conhece e autoriza a posição daquela instância. Esse modo deve ser explícito, temporário e configurável; a implementação padrão não deve transformar o Compêndio em radar permanente de entidades fora da informação legitimamente disponível ao jogador.
-
-## Política de busca
-
-- um jogador pode ter um alvo principal de criatura por vez na primeira versão;
-- trocar o alvo substitui/atualiza o waypoint anterior criado pelo Compêndio;
-- cancelar a busca remove o waypoint próprio do Compêndio;
-- mudar de dimensão deve preservar ou suspender o alvo conforme a dimensão exigida;
-- o sistema não deve procurar chunks indefinidamente nem forçar geração massiva apenas para achar um habitat;
-- buscas devem ter orçamento/raio/política configurável;
-- se nenhuma localização válida for conhecida, a UI mantém as informações de habitat sem fabricar uma coordenada.
-
----
-
-# C — Integração com mapa e waypoints
-
-Criar uma fronteira própria de integração, conceitualmente equivalente a:
+Fronteira conceitual:
 
 ```text
 CompendiumWaypointService
@@ -114,27 +87,20 @@ CompendiumWaypointService
   isAvailable()
 ```
 
-O core do Compêndio não deve depender diretamente de um mod específico de mapa.
+O core não depende de um mod específico de mapa. Adapter concreto só pode usar API confirmada da versão física instalada.
 
-Providers/adapters opcionais podem integrar o alvo com a solução de mapa/minimap/waypoints adotada pelo modpack.
+Sem provider de mapa:
 
-Fallback obrigatório quando nenhum provider de mapa estiver presente:
+- tracking pode continuar selecionado no domínio;
+- dimensão/posição/região autorizadas continuam disponíveis ao client model;
+- nenhum startup é bloqueado;
+- fallback de apresentação pertence a `../textura/06-cartografia-waypoints-bosses.md`.
 
-- manter o alvo selecionado no Compêndio;
-- mostrar dimensão e posição/região quando existirem;
-- permitir orientação interna simples no HUD/Compêndio futuramente, sem quebrar startup.
+## D — Bosses e minibosses
 
-A integração concreta só deve usar API confirmada para a versão física instalada no modpack.
+Boss é a mesma entrada de fauna com camada adicional de progressão; não criar segunda enciclopédia.
 
----
-
-# D — Boss Checklist integrado
-
-Bosses e minibosses são entradas normais de fauna, mas recebem uma camada adicional de progressão.
-
-Não deve existir uma segunda enciclopédia separada só para bosses.
-
-## Estados mínimos por jogador
+Estados mínimos por jogador:
 
 ```text
 UNKNOWN
@@ -143,7 +109,7 @@ NOT_DEFEATED
 DEFEATED
 ```
 
-Metadados adicionais podem incluir:
+Metadados opcionais podem incluir:
 
 - `optional`;
 - ordem de progressão;
@@ -155,48 +121,24 @@ Metadados adicionais podem incluir:
 - drops/recompensas;
 - mod de origem.
 
-A derrota é server-authoritative e deve registrar somente um resultado confirmado atribuível ao jogador/equipe conforme a política multiplayer definida.
+Derrota é server-authoritative e só registra resultado confirmado atribuível ao jogador/equipe conforme política multiplayer.
 
----
+## E — Classificação de boss
 
-# E — Descoberta automática de bosses e minibosses
+Usar evidência estável, como:
 
-O sistema deve tentar classificar bosses automaticamente usando somente evidência estável, por exemplo:
-
-- tags canônicas do projeto/modpack;
-- metadata/API pública de providers;
+- tags canônicas;
+- metadata/API pública de provider;
 - integrações verificadas;
 - overrides/datapacks curados.
 
-Heurísticas frágeis, como somente quantidade de vida, nome da classe ou presença de boss bar, não devem ser a única autoridade.
+Vida, nome de classe ou boss bar sozinhos não são authority suficiente.
 
-Quando a classificação automática não for confiável, o modpack deve poder:
+Override deve permitir adicionar/remover classificação, marcar opcional, ajustar ordem/dependências e complementar informação de encontro.
 
-- adicionar uma entidade como boss/miniboss;
-- remover uma classificação incorreta;
-- marcar como opcional;
-- alterar ordem;
-- definir dependências;
-- complementar texto e condições de encontro.
+## F — Ordem/progresso
 
----
-
-# F — Ordem e progresso de bosses
-
-A UI deve oferecer uma seção/filtro **Bosses** com:
-
-- total conhecido;
-- total derrotado;
-- percentual/progresso;
-- bosses pendentes;
-- bosses opcionais;
-- filtro por dimensão/mod;
-- busca por nome;
-- ordenação configurável de progressão.
-
-A ordem não deve ser calculada exclusivamente por "dificuldade automática". Modpacks frequentemente alteram dano, vida, receitas, requisitos, dimensões e progressão; portanto, a ordem final deve aceitar dados/overrides explícitos.
-
-Exemplo:
+Ordem final aceita dados explícitos; não derivar exclusivamente de dificuldade automática. Modelo conceitual continua:
 
 ```text
 BossProgressionEntry {
@@ -208,47 +150,23 @@ BossProgressionEntry {
 }
 ```
 
-Esse modelo é conceitual; a implementação final deve reutilizar IDs e estruturas canônicas já existentes no projeto.
+A forma concreta deve reutilizar IDs/estruturas canônicas do projeto. A apresentação de progresso fica em Textura.
 
----
+## G — Multiplayer
 
-# G — Página de boss
+Antes do fechamento final, definir explicitamente:
 
-Quando uma entrada for classificada como boss/miniboss, sua página normal do Compêndio deve ganhar uma seção de progressão contendo, quando disponível:
+- descoberta individual ou compartilhada conforme regra do RPG;
+- derrota individual/participação/equipe conforme policy;
+- jogador não recebe derrota apenas por estar online na mesma dimensão;
+- dedupe impede múltiplos registros/recompensas do mesmo evento;
+- waypoints de busca são pessoais por default.
 
-- status: desconhecido / descoberto / não derrotado / derrotado;
-- posição na progressão;
-- pré-requisitos;
-- dimensão;
-- bioma/estrutura/arena;
-- como encontrar;
-- como invocar;
-- itens/requisitos necessários;
-- drops e recompensas;
-- variantes/fases quando houver dados verificáveis;
-- ação **Procurar / Seguir** quando existir alvo de busca válido.
+## H — Persistência
 
-A página deve continuar exibindo os dados normais de entidade já fornecidos pelo 10.05/10.07/10.08.
+Persistir somente fatos necessários, reconciliados com `DiscoveryRecord`/10.13.
 
----
-
-# H — Multiplayer
-
-Definir explicitamente a política antes da implementação final:
-
-- descoberta pode permanecer individual por jogador;
-- derrota pode ser individual, por participação confirmada ou compartilhada por equipe/party, conforme regra do RPG;
-- um jogador não deve receber derrota apenas por estar online na mesma dimensão;
-- dedupe deve impedir múltiplos registros/recompensas para o mesmo evento confirmado;
-- waypoints de busca são pessoais por padrão e não devem ser enviados globalmente sem ação explícita.
-
----
-
-# I — Persistência
-
-Persistir somente fatos necessários, com IDs namespaced e migração versionada.
-
-Exemplos de estado por jogador:
+Modelos conceituais:
 
 ```text
 BossProgress {
@@ -265,100 +183,46 @@ CreatureTrackingState {
 }
 ```
 
-A forma exata deve ser reconciliada com `DiscoveryRecord` e o contrato do 10.13 para evitar duplicação de estado.
+Conteúdo removido não pode corromper save; IDs desconhecidos seguem política de preservação/reconciliação versionada.
 
-Conteúdo removido de um mod não deve corromper o save; IDs desconhecidos precisam de política de preservação/reconciliação compatível com os invariantes gerais do RPG.
+## I — Testes mínimos funcionais
 
----
+Tracking:
 
-# J — UI prevista
-
-Na tela principal do Compêndio:
-
-```text
-Compêndio Natural
-├── Fauna
-├── Bosses
-├── Flora
-├── Árvores
-├── Cultivos
-├── Biomas
-├── Estruturas
-├── Dimensões
-├── Descobertas
-└── Favoritos/Notas
-```
-
-Na página de criatura:
-
-```text
-Habitat
-- Dimensão
-- Biomas
-- Estruturas
-- Condições
-
-[ Procurar / Seguir ]
-```
-
-Na página de boss:
-
-```text
-Boss
-Status: Derrotado / Pendente
-Progressão: ...
-Pré-requisitos: ...
-Como encontrar/invocar: ...
-Drops: ...
-
-[ Procurar / Seguir ]
-```
-
----
-
-# K — Testes mínimos
-
-## Rastreamento
-
-- espécie descoberta com habitat conhecido produz alvo válido;
-- espécie sem coordenada válida não inventa waypoint;
-- troca de alvo remove/substitui marcador próprio;
-- cancelamento limpa marcador;
-- dimensão incompatível é tratada corretamente;
+- habitat conhecido produz alvo compatível quando a policy conseguir resolvê-lo;
+- sem coordenada válida não há waypoint inventado;
+- troca/cancelamento reconcilia marker próprio;
+- dimensão incompatível é tratada;
 - provider de mapa ausente não quebra client/server;
-- provider incompatível falha de forma diagnosticável e fail-soft;
-- nenhum scan pesado ocorre a cada tick/frame.
+- provider incompatível falha de modo diagnosticável/fail-soft;
+- nenhum scan pesado por tick/frame.
 
-## Boss Checklist
+Bosses:
 
-- boss vanilla configurado/identificado aparece na seção correta;
-- boss modded aparece quando provider/tag/override o classifica;
+- boss vanilla configurado/identificado entra no domínio correto;
+- boss modded só entra por provider/tag/override confiável;
 - entidade comum não vira boss por heurística fraca;
 - derrota confirmada atualiza exatamente uma vez;
-- morte sem atribuição válida não concede progresso indevido;
-- boss opcional não bloqueia conclusão obrigatória quando a política assim definir;
-- ordem e dependências via datapack/override são determinísticas;
-- remoção de mod não corrompe progresso persistido;
+- morte sem atribuição válida não concede progresso;
+- optional não bloqueia conclusão quando a policy assim definir;
+- ordem/dependências determinísticas;
+- remoção de mod não corrompe progresso;
 - dedicated server funciona sem classes client-only;
-- cliente recebe somente a projeção de progresso autorizada do próprio jogador.
+- cliente recebe somente projeção autorizada.
 
----
+## Definition of Done funcional
 
-## Definition of Done
+- [ ] dados verificáveis de encontro disponíveis às entradas elegíveis;
+- [ ] tracking funcional sem fabricar precisão;
+- [ ] integração de waypoint desacoplada de provider específico;
+- [ ] ausência de mapa/provider é fail-soft;
+- [ ] habitat, último avistamento e posição exata permanecem semanticamente distintos;
+- [ ] classificação de bosses usa evidência confiável + override;
+- [ ] progresso de boss server-authoritative, persistente e idempotente;
+- [ ] ordem/pré-requisitos data-driven quando aplicável;
+- [ ] multiplayer possui regra explícita de atribuição;
+- [ ] optional-mod/provider absence passa testes;
+- [ ] dedicated server/client boundaries passam sem vazamento client-only;
+- [ ] custos de busca são limitados.
 
-Este subplano fecha quando:
-
-- [ ] criaturas descobertas exibem informações verificáveis de onde podem ser encontradas;
-- [ ] existe ação funcional **Procurar / Seguir** para entradas elegíveis;
-- [ ] o alvo pode gerar/remover waypoint através de uma integração desacoplada de provider específico;
-- [ ] ausência de mapa/provider mantém fallback funcional e não quebra startup;
-- [ ] habitat/região, último avistamento e posição exata de entidade são semanticamente distintos;
-- [ ] bosses/minibosses possuem classificação automática quando há evidência confiável e override quando não há;
-- [ ] progresso de boss é server-authoritative, persistente e idempotente;
-- [ ] a seção Bosses mostra pendentes, derrotados, opcionais e progresso agregado;
-- [ ] ordem/pré-requisitos são configuráveis por dados;
-- [ ] a página do boss integra encontro/spawn/invocação, loot e rastreamento sem duplicar a ficha da entidade;
-- [ ] multiplayer possui regra explícita de atribuição de derrota;
-- [ ] optional-mod/provider absence passa nos testes aplicáveis;
-- [ ] dedicated server e client smoke passam sem vazamento de classes client-only;
-- [ ] custos de busca/waypoint são limitados e não provocam geração/scan ilimitado de mundo.
+O Definition of Done visual correspondente vive em `../textura/06-cartografia-waypoints-bosses.md` e não altera estes critérios funcionais.
