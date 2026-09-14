@@ -11,7 +11,7 @@
 - **Mod:** Advancement Plaques
 - **Arquivo JAR:** `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar`
 - **Versão 1.21.1:** 1.6.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição exclusivamente de apresentação com outros toast/HUD/advancement notification mods. Não sobrepõe a lógica de advancement, quests, rewards ou progression gates. Resource packs são customização suportada, não concorrência automática.
 - **Compatibilidade/Riscos:** Compatibilidade upstream: funciona com advancements modded em geral e é declarada compatível com Toast Control/Toast Manager nas linhas documentadas. Outros mods que substituem advancement popups podem disputar o mesmo toast/HUD. Resource packs podem remodelar plaques. 1.6.8 corrige/respeita advancement sound overrides do Aether. Não tratar duplicação de notificação de FTB Quests como conflito de advancement sem reproduzir.
 - **Observações:** A build 1.6.8 é específica para 1.21.1; não importar features 1.7.x de Minecraft 1.21.11/26.x. O mod é apresentação: qualquer trigger/reward continua pertencendo ao advancement original. Se custom sounds permanecerem habilitados, manter cliente e servidor alinhados.
-- **Procedência:** Modlist física 2026-09-07 + CurseForge/Modrinth oficiais Advancement Plaques 1.6.8 + guia gameplay/sistemas.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/Modrinth oficiais Advancement Plaques 1.6.8 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar` / `1.6.8`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/advancement-plaques
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê operacional completo de plaque rendering, Task/Goal/Challenge, whitelist, resource-pack theming, sounds, client/server e HUD QA confirmado no QC global #8.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #8: `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar` / `1.6.8` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
