@@ -2,20 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db8168aa84e5817c5ca3ed
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `relics-1.21.1-0.12.8.jar`, mod id `relics`, runtime `0.12.8`, mixin `relics.mixins.json`; Curios 9.5.1, OctoLib 0.6.2, FTB Teams 2101.1.11, Sophisticated Backpacks 3.26.2 e addons Reliquified presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Relics 0.12.8 e as dependências/integradores citados estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `relics-1.21.1-0.12.8.jar`, mod id `relics`, runtime `0.12.8`; Curios 9.5.1, OctoLib 0.6.2, FTB Teams 2101.1.11, Sophisticated Backpacks 3.26.2 e addons Reliquified presentes
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Relics
 - **Arquivo JAR:** `relics-1.21.1-0.12.8.jar`
 - **Versão 1.21.1:** 0.12.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** RPG, Magia, Exploração
