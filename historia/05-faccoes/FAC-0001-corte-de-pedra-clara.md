@@ -1,7 +1,17 @@
 # FAC-0001 — Corte de Pedra Clara
 
 ## Estado editorial
-RASCUNHO ESTRUTURADO / INSTITUIÇÃO DE REFERÊNCIA.
+RASCUNHO ESTRUTURADO / INSTITUIÇÃO DE REFERÊNCIA / ESPELHADA COMO DRAFT NO GRIMOIRE.
+
+## Reconciliação Grimoire
+Reconciliação executada em 2026-09-14 conforme `historia/11-ia-e-autoria/12-grimoire-github-sync.md`.
+
+- buscas por `Corte de Pedra Clara` e `Pedra Clara` não localizaram facção/instituição preexistente equivalente;
+- foi criado no Grimoire o draft `Corte de Pedra Clara`, UUID `331ae7ce-acee-41d4-b034-1e07cdebab9b`, com referência cruzada ao ID estável `FAC-0001`;
+- objetivos públicos, crença institucional e recursos registrados foram derivados deste dossiê sem adicionar agenda secreta, liderança ou capability nova;
+- o draft é espelho estruturado para reconciliação e **não** promoção automática de cânone.
+
+Qualquer conflito posterior com Campaign Bible, entidade anterior ou decisão editorial deve preservar os dois estados até reconciliação explícita por provenance.
 
 ## Identidade pública
 Instituição governante de `SET-0001` Pedra Clara. A Corte administra justiça, registros, segurança, relações externas e coordenação de respostas a ameaças que excedem a capacidade de cidadãos ou ofícios isolados.
