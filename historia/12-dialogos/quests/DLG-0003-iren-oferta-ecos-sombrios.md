@@ -51,7 +51,7 @@ Iren: "Se você aceitar, procure o que ainda pode ser verificado. Não vá tenta
 - regra de composição: **não existe uma resposta fixa que enumere todas as evidências**. A fala deve ser composta somente pelas classes/peças que `NPC-0003` realmente conhece naquele estado, preservando a proveniência e a incerteza de cada uma.
 - fragmento se Iren conhece `EVD-0001` ou relatos equivalentes: "Tenho relatos que não concordam nos detalhes. Isso é motivo para comparar fontes, não para escolher a versão mais dramática."
 - fragmento se Iren conhece `EVD-0002` ou análise cartográfica equivalente: "Há uma concentração geográfica que pode ser padrão real ou viés de coleta. Ainda preciso separar as duas coisas."
-- fragmento se Iren conhece `EVD-0003` ou informação de campo equivalente: "Também há informação de campo que justifica olhar mais de perto, mas a proveniência e a interpretação ainda precisam de cuidado."
+- fragmento se Iren conhece `EVD-0003` ou informação de campo equivalente: "Há informação de campo que justifica olhar mais de perto, mas a proveniência e a interpretação ainda precisam de cuidado."
 - composição: quando mais de um fragmento for legítimo, Iren pode condensá-los em uma resposta curta; desconhecer uma peça nunca autoriza mencioná-la, negar sua existência ou antecipar sua descoberta.
 - intent: pode elevar discovery do jogador conforme informação efetivamente transmitida; não altera engagement sozinho.
 
@@ -66,7 +66,7 @@ Precondição: o jogador possui knowledge legítimo de `EVD-0003` ou fato equiva
 - jogador: "Já estive naquela região. Encontrei um lugar que parece ter sido usado em segredo."
 - Iren: "Usado por quem?"
 - jogador: "Não sei."
-- Iren: "Ótimo. Mantenha esse 'não sei'. Agora me diga o que torna o uso repetido e o que torna o uso oculto. São duas afirmações diferentes."
+- Iren: "Ótimo. Mantenha esse 'não sei'. Agora me diga o que faz você chamar o uso de oculto. E encontrou sinais de repetição ou só de uma passagem? São afirmações diferentes."
 - regra: reconciliar alternate entry; não pedir ao jogador para repetir descoberta já realizada;
 - intent: compartilhar knowledge com `NPC-0003` apenas através do pipeline autorizado e registrar proveniência como relato do jogador, não como observação direta de Iren.
 
