@@ -1,0 +1,25 @@
+{
+  "story_root": "historia",
+  "dialogue_root": "historia/12-dialogos",
+  "entity_types": ["HIST", "ARC", "NPC", "QST", "FAC", "SET", "LOC", "EVT", "EVD", "END", "DLG"],
+  "editorial_state_prefixes": ["CANÔNICO", "RASCUNHO", "EXPERIMENTAL", "OBSOLETO"],
+  "editorial_state_headings": ["Estado editorial"],
+  "dialogue_entity_type": "DLG",
+  "dialogue_required_sections": {
+    "editorial-state": ["estado editorial"],
+    "participants": ["participantes"],
+    "context": ["contexto"],
+    "preconditions": ["precondições"],
+    "knowledge": ["knowledge exigido", "knowledge"],
+    "relations-state": ["relações/estado relevantes", "relações/estado"],
+    "opening": ["abertura", "entrada padrão", "entrada"],
+    "branches": ["ramos"],
+    "outputs": ["saídas do diálogo", "saídas"],
+    "intents": ["intents/consequências solicitadas", "intents", "consequências solicitadas"],
+    "related-content": ["arcos/quests relacionados"],
+    "invariants": ["invariantes"],
+    "voice-notes": ["notas de voz"],
+    "qa": ["qa"],
+    "internal-spoilers": ["spoilers internos"]
+  }
+}

@@ -1,0 +1,53 @@
+name: Narrative Factory Consumer
+
+on:
+  pull_request:
+    paths:
+      - 'historia/**'
+      - '.github/workflows/narrative-factory-consumer.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'historia/**'
+      - '.github/workflows/narrative-factory-consumer.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-narrative-consumer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Checkout RPG content
+        uses: actions/checkout@v7
+
+      - name: Checkout pinned Factory narrative toolkit
+        uses: actions/checkout@v7
+        with:
+          repository: Gustavaopere/minecraft-mod-factory
+          ref: f7abd5f0c0a75d588c62b609d382c5b6a91f07e0
+          path: .factory
+          persist-credentials: false
+
+      - name: Validate story graph and editorial states
+        run: >-
+          python3 .factory/narrative/tooling/validate_story.py
+          --profile historia/narrative-authoring-profile.json
+          --root historia
+
+      - name: Validate dialogue structure
+        run: >-
+          python3 .factory/narrative/tooling/validate_dialogues.py
+          --profile historia/narrative-authoring-profile.json
+          --root historia/12-dialogos
+
+      - name: Build narrative inventory
+        run: >-
+          python3 .factory/narrative/tooling/story_inventory.py
+          --profile historia/narrative-authoring-profile.json
+          --root historia
+          --format json
+          > narrative-inventory.json
