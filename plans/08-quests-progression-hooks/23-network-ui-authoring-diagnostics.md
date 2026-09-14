@@ -1,4 +1,4 @@
-# 08.23 — Network, UI & Authoring Diagnostics
+# 08.23 — Network, UI Data Contract & Authoring Diagnostics
 
 ## Goal
 Sincronizar apenas o necessário ao cliente e oferecer ferramentas de authoring capazes de explicar por que uma rota aparece ou não aparece.
@@ -15,10 +15,12 @@ Sincronizar apenas o necessário ao cliente e oferecer ferramentas de authoring 
 - [ ] Admin-only tooling separado de UI player-facing.
 - [ ] Graph export para inspeção de branches e rotas inalcançáveis.
 - [ ] Logs estruturados, rate-limited e sem spam por tick.
-- [ ] Accessibility/localization para qualquer UI própria futura.
+- [ ] Qualquer UI player-facing futura deve receber localization keys/estado semântico adequados e entregar sua apresentação por `../textura/02-localizacao-acessibilidade-visual.md` e pelo companion específico que vier a existir.
 
 ## Segurança
 Client não recebe secrets de outros atores apenas porque uma tela pode precisar deles no futuro. O servidor decide opções disponíveis e fornece somente presentation-safe context.
 
+A camada visual nunca pode reconstruir ou inferir secrets omitidos pelo snapshot.
+
 ## Acceptance
-Um autor consegue diagnosticar uma choice ausente com um comando/relatório determinístico. Um cliente modificado não consegue descobrir secrets server-side pelo pacote de sync normal.
+Um autor consegue diagnosticar uma choice ausente com um comando/relatório determinístico. Um cliente modificado não consegue descobrir secrets server-side pelo pacote de sync normal. Requisitos de apresentação futura não alteram esse boundary.

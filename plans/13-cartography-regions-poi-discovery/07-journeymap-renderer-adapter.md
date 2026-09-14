@@ -1,14 +1,20 @@
-# 13.07 — Adapter de renderização JourneyMap
+# 13.07 — Adapter de renderização JourneyMap — contrato técnico
+
+## Fronteira
+
+Ícones, overlays, labels, styling e apresentação de estados cartográficos foram separados para `../textura/06-cartografia-waypoints-bosses.md`.
+
+Este arquivo permanece dono do adapter, projeção segura, IDs/reconciliação, classloading opcional e compatibilidade.
 
 ## Objetivo
 
-Projetar JourneyMap como renderer primário sem tornar sua API a autoridade do domínio e sem introduzir dependência client-side no dedicated server.
+Projetar JourneyMap como renderer opcional/primário quando disponível sem tornar sua API authority do domínio e sem introduzir dependência client-side no dedicated server.
 
 ## Regra de integração
 
-Na implementação, auditar a API pública exata do JourneyMap para NeoForge 1.21.1 usada no modpack antes de escolher classes/métodos. O plano não congela nomes de API especulativos.
+Antes da implementação, auditar a API pública exata do JourneyMap para NeoForge 1.21.1 instalada fisicamente no modpack. Este plano não congela classes/métodos especulativos.
 
-O adapter deve consumir uma projeção segura do domínio:
+Pipeline conceitual:
 
 ```text
 CartographyService
@@ -17,55 +23,63 @@ CartographyService
 → JourneyMapAdapter
 ```
 
-## Elementos visuais
+O domínio define semântica e visibilidade. O adapter escolhe somente a primitive técnica suportada pela API comprovada. O estilo visual dessa primitive pertence a Textura.
 
-Quando suportados pela API pública, projetar:
+## Dados de apresentação suportáveis
 
-- labels de região;
-- polígonos/frontiers/overlays de regiões descobertas;
-- waypoints/markers de POIs localizados;
-- círculos/polígonos de área aproximada;
-- ícones por categoria;
-- estados visuais de quest, visitado, concluído e estado físico conhecido.
+Quando a API pública permitir, o adapter pode receber/projetar semanticamente:
 
-Não exigir que JourneyMap suporte exatamente todos os primitives. O domínio fornece semântica; o adapter escolhe a melhor representação suportada.
+- região descoberta;
+- POI localizado;
+- área aproximada;
+- quest/visitado/concluído;
+- estado físico conhecido;
+- categoria/label localizada.
+
+A escolha de ícone, borda, cor, pattern, typography e composição é definida em `../textura/06-cartografia-waypoints-bosses.md`.
 
 ## IDs e reconciliação
 
-Cada decoração criada pelo RPG deve ter ID namespaced e estável, derivado de `regionId`/`poiId` + tipo de projeção. O adapter precisa:
+Cada decoração criada pelo RPG deve ter ID namespaced e estável derivado de `regionId`/`poiId` + tipo de projeção.
+
+O adapter precisa:
 
 - criar quando passa a ser visível;
 - atualizar sem duplicar;
 - remover quando deixa de ser permitido;
 - limpar markers órfãos do namespace RPG;
 - reconstruir após reconnect/client restart;
-- reconciliar imediatamente na troca de corpo/dimensão.
+- reconciliar imediatamente em troca de corpo/dimensão.
 
 ## Segurança
 
-Renderer recebe somente dados já filtrados. Não passar `PoiRecord` físico completo ao client adapter e esperar que ele esconda campos.
+Renderer recebe somente dados já filtrados. Não passar `PoiRecord` físico completo ao client adapter esperando que a UI esconda campos.
 
-## Ausência de JourneyMap
+A camada de Textura não pode reconstruir precisão ou secrets ausentes do projection DTO.
+
+## Ausência/incompatibilidade de JourneyMap
 
 - nenhum classloading de JourneyMap no servidor comum;
-- integration module carregado somente quando mod/API compatível estiver presente;
+- integration module somente quando mod/API compatível estiver presente;
 - sem JourneyMap, quests/descoberta/persistência continuam funcionando;
-- outro `CartographyRenderer` pode ser adicionado futuramente.
+- outro `CartographyRenderer` pode ser adicionado futuramente;
+- fallback de apresentação sem mapa externo pertence a Textura, mas nunca cria coordenada inexistente.
 
-## Licença
+## Licença/proveniência
 
-Programar contra a API pública respeitando os termos do TeamJM. Não copiar nem embutir source/class files do JourneyMap API no projeto fora do explicitamente permitido. Registrar versão/API utilizada em `THIRD_PARTY_NOTICES.md` quando implementado.
+Programar contra API pública respeitando termos do TeamJM. Não copiar/embutir source/class files fora do permitido. Registrar versão/API utilizada em `THIRD_PARTY_NOTICES.md` quando implementado.
 
-MapFrontiers pode ser estudado para UX/algoritmos de frontier somente dentro da licença MIT; qualquer código adaptado exige proveniência por arquivo/commit.
+MapFrontiers pode ser estudado apenas dentro da licença aplicável; qualquer código adaptado exige proveniência por arquivo/commit.
 
-## PT-BR
+## Localização
 
-Todos os nomes/categorias/tooltips próprios são localizados pelo RPG. Não depender de strings inglesas internas do adapter.
+O adapter recebe labels/categories próprios já localizados pelo RPG. Keys e semântica pertencem aos estágios funcionais; aparência do label/tooltip pertence a Textura.
 
-## Acceptance
+## Acceptance técnico
 
 - dedicated server passa sem JourneyMap;
-- cliente com JourneyMap cria/update/remove overlays idempotentemente;
+- cliente com versão/API comprovada cria/update/remove overlays idempotentemente;
 - troca de corpo remove intel que o novo corpo não possui;
-- nenhum marker secreto reaparece de cache após relog;
-- ausência/versão incompatível falha de forma soft e diagnosticável.
+- marker secreto não reaparece de cache após relog;
+- ausência/versão incompatível falha soft e diagnosticável;
+- apresentação pode mudar sem alterar IDs, visibilidade ou authority do domínio.
