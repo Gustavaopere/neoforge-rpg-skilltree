@@ -2,16 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db81978364e04d99418783
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-11
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `ImmediatelyFast-NeoForge-1.6.13+1.21.1.jar`, mod id `immediatelyfast`, runtime `1.6.13+1.21.1`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** ImmediatelyFast
 - **Arquivo JAR:** `ImmediatelyFast-NeoForge-1.6.13+1.21.1.jar`
 - **Versão 1.21.1:** 1.6.13+1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Performance
@@ -20,15 +20,13 @@
 - **Sobreposição:** Complementa culling/LOD/distance optimizations; não substitui Entity Culling, Distant Horizons ou redução de distância. Atua principalmente no custo de submissão/render imediato do cliente.
 - **Compatibilidade/Riscos:** Client render optimization. Riscos: shader/render-state leakage, mixin/render-pipeline drift, config incompatível, atlas/buffer issues e composição com outros render mods. Upstream lista OptiFine/OptiFabric, VulkanMod e alguns closed-source clients como incompatíveis.
 - **Observações:** 1.6.13 restaura depth-test após flush de DrawContext, corrige exception ao fechar buffers não usados e corrige file-handle leak da config. Nested Reflect 1.6.2 corresponde ao build dependency e não recebe página top-level.
-- **Procedência:** modlist.txt física atual + CurseForge oficial ImmediatelyFast 1.6.13 file 8749421 + changelog exato 1.6.13 + GitHub RaphiMC/ImmediatelyFast branch 1.21 usado apenas para arquitetura porque já está em 1.6.14-SNAPSHOT.
+- **Procedência:** modlist.txt física anexada e reconferida em 12/09/2026 + CurseForge oficial ImmediatelyFast 1.6.13 file 8749421 para NeoForge 1.21.1 + changelog exato da release. Revalidação em 12/09/2026 confirmou que releases numericamente superiores pertencem a outras versões de Minecraft.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/immediatelyfast/files/8749421
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — ImmediatelyFast 1.6.13 release-pinned; immediate-mode batching/GPU upload, render domains, config, Reflect 1.6.2 JarJar, regressões 1.6.13, client lifecycle, riscos e testes catalogados; source branch atual já está em 1.6.14-SNAPSHOT.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — ImmediatelyFast 1.6.13+1.21.1/JAR físico reconfirmado; 1.6.13 permanece a release NeoForge aplicável mais recente para Minecraft 1.21.1, apesar de linhas numericamente superiores para Minecraft 1.21.10/1.21.11/26.x. Correções de depth state, buffer close e config handle leak preservadas.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-26
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `ImmediatelyFast-NeoForge-1.6.13+1.21.1.jar`, mod id `immediatelyfast`, versão `1.6.13+1.21.1`. A release oficial NeoForge 1.21.1 é file 8749421 de 27/08/2026. O branch source `1.21` já avançou para `1.6.14-SNAPSHOT`, por isso arquitetura pode ser consultada ali, mas a release/changelog 1.6.13 é authority do comportamento version-sensitive.
+> ⚡ **ESCOPO CANÔNICO.** Runtime físico: `ImmediatelyFast-NeoForge-1.6.13+1.21.1.jar`, mod id `immediatelyfast`, versão `1.6.13+1.21.1`. A release oficial NeoForge 1.21.1 é file 8749421 de 27/08/2026. O branch source `1.21` já avançou para `1.6.14-SNAPSHOT`, por isso arquitetura pode ser consultada ali, mas a release/changelog 1.6.13 é authority do comportamento version-sensitive.
 
 ## 1. Papel e authority
 ImmediatelyFast é mod **client-side** de performance gráfica. Ele otimiza immediate-mode rendering e caminhos específicos de render vanilla/modded. Não altera gameplay authority, world state, AI, recipes ou server tick. O servidor não deve depender de seus resultados visuais.
