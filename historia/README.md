@@ -28,7 +28,7 @@ Quando a história for produzida em chat, o padrão é **MODO SEM SPOILERS**: o 
 - `11-ia-e-autoria/` — regras específicas deste projeto, incluindo authority e IA in-game opcional.
 - `12-dialogos/` — diálogos de calibração e conteúdo player-facing versionado.
 
-Templates, validators, inventory e a skill genérica de autoria narrativa ficam na Minecraft Mod Factory. `historia/narrative-authoring-profile.json` mantém a configuração específica da campanha para consumir essas ferramentas. Arquivos ainda presentes em `historia/templates/` são snapshots legados não-autoritativos de migração; consulte `historia/templates/README.md` e não os evolua como segunda linha de scaffolds.
+Templates, validators, inventory, skills e processos genéricos de autoria ficam na Minecraft Mod Factory. `historia/narrative-authoring-profile.json` mantém apenas a configuração específica desta campanha para consumir essas ferramentas. Não manter em `historia/` snapshots, bridges de migração ou cópias locais de capabilities reutilizáveis da Factory.
 
 ## IDs estáveis
 
