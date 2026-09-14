@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `epicfight_ironsspells_addons_compatibility_pack.zip`
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Versão 1.21.1:** sem versão semântica própria publicada
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Magia, RPG
@@ -76,6 +76,3 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma o arquivo 1.21.1 e os quatro addons-alvo. Não há versão semântica própria publicada, portanto o campo de versão foi limpo em vez de repetir a versão do jogo.
 
 > Boundary canônico: **Epic Fight controla o sistema de combate; os addons controlam suas armas/spells; o datapack fornece apenas a camada de compatibilidade entre esses IDs e estilos**.
-
-## Evidência histórica adicional de empacotamento
-Logs de agosto do perfil registram warnings `Non [a-z0-9_.-] character in namespace .DS_Store` para este ZIP. O `minecraftinstance.json` também mostra um módulo `__MACOSX`. Esses artefatos são tratados como sujeira de empacotamento ignorada pelo loader até que runtime QA demonstre impacto funcional; não são convertidos em incompatibilidade presumida.
