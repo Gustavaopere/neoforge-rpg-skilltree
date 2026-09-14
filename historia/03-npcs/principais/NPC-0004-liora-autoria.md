@@ -44,7 +44,7 @@ Estas linhas não representam eventos canônicos.
 ## Direção visual permitida
 A leitura principal deve ser “praticante/pesquisadora de campo” antes de “mago genérico de combate”. Materiais, anotações e ferramentas de trabalho podem comunicar prática continuada; efeitos brilhantes permanentes não são necessários para torná-la reconhecível.
 
-Detalhes de glyph, spell focus, dispositivo ou ritual devem permanecer genéricos no concept enquanto a capability/provider específica não estiver confirmada para a cena representada.
+Detalhes de glyph, spell focus, dispositivo ou ritual devem permanecer genéricos no concept enquanto a capability pessoal de Liora para a cena representada não estiver explicitamente materializada. A existência do elemento no Ars Nouveau não basta para colocá-lo em suas mãos.
 
 ## Assets
 - arte externa do Grimoire: referência legada; não tratar como asset project-owned ou skin final;
@@ -58,10 +58,12 @@ Detalhes de glyph, spell focus, dispositivo ou ritual devem permanecer genérico
 - não conhece automaticamente outros providers;
 - não sabe que duas mecânicas são equivalentes sem evidência;
 - local de encontro e progressão exata em Ars permanecem dependentes de worldgen/progressão;
-- não deve antecipar spells/glyphs/rituais ainda não confirmados no pack.
+- o provider core 5.13.1 está auditado, mas o repertório pessoal de spells/glyphs/rituais de Liora continua não fixado;
+- uma capability existente no registry não pode ser mencionada como habilidade, posse ou conhecimento dela sem estado narrativo próprio.
 
 ## Referências
 - dossiê: `NPC-0004-liora.md`;
+- auditoria mecânica: `NPC-0004-liora-provider-audit.md`;
 - Grimoire UUID: `3cb5997c-a542-483c-9dba-9f34b51995b7`;
 - Era IV — Não Existe “A Magia”;
 - Sistemas Plurais do Mundo.
