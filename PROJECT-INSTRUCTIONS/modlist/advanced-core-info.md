@@ -11,7 +11,7 @@
 - **Mod:** AdvancedCoreInfo
 - **Arquivo JAR:** `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar`
 - **Versão 1.21.1:** 1.1.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição apenas de infraestrutura com outras tooltip/network/plugin libraries. Não é outro recipe viewer, não altera loot tables e não altera worldgen. O conflito operacional possível é congestão de tooltip/UI quando muitos consumers apresentam dados no mesmo viewer, não duplicação funcional do core.
 - **Compatibilidade/Riscos:** Risco principal é version coupling entre core e consumers: plugin API, tooltip nodes e payload/serialization podem mudar em conjunto. Como transporta dados servidor→cliente, mismatch pode causar falha de payload, desconexão ou UI vazia. Não substitui JEI/EMI/REI; estes são viewers consumidos por ALI/AWI. Não há incompatibilidade formal upstream específica localizada.
 - **Observações:** Upstream define ACI como required por ALI/AWI e 'does nothing on its own'. Não atribuir a ACI categorias/loot/worldgen que pertencem aos consumers. Ausência física de AWI no pack deve ser preservada; não inventar consumer só porque a library suporta.
-- **Procedência:** Modlist física 2026-09-07 + CurseForge oficial Advanced Core Info 1.1.0 + documentação consolidada do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Advanced Core Info 1.1.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` / `1.1.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/advanced-core-info
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê operacional completo de core/API, plugin discovery, tooltip trees, sync server→client, consumers, reload e version coupling confirmado no QC global #6.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #6: `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` / `1.1.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Ficha original curta foi substituída em 07/09/2026 por dossiê operacional completo no padrão adotado após o feedback sobre Alex's Mobs. Sem mudança de decisão curatorial.
 - **Data da última decisão:** 2026-09-07
 
