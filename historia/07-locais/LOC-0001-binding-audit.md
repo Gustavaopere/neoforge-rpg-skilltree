@@ -20,8 +20,8 @@ A decisão não decorre de ausência de opções no modpack. Ela decorre da aus�
 
 - `historia/07-locais/LOC-0001-regiao-dos-ecos.md` — define função narrativa, discovery, invariantes e requisitos físicos mínimos sem selecionar worldgen;
 - `historia/11-ia-e-autoria/11-contrato-geografia-compendio.md` — exige registry ID real, fatos verificados e binding tardio;
-- `docs/compendium/INVENTORY.md` — documenta geração de cobertura runtime do Compêndio em `build/compendium/runtime-coverage/`;
-- árvore versionada atual — não contém um snapshot `generated/compendium/` equivalente que possa ser usado daqui como catálogo autoritativo de registry IDs.
+- `docs/compendium/INVENTORY.md` — documenta o coletor runtime e os produtos derivados em `generated/compendium/`, incluindo `runtime-registry-inventory.json` e `coverage-report.{json,md}`;
+- árvore versionada atual — não contém um snapshot `generated/compendium/` que possa ser usado daqui como catálogo autoritativo de registry IDs do pack carregado.
 
 ## O que já está comprovado narrativamente
 
@@ -70,7 +70,7 @@ Um candidato só pode entrar na lista quando houver, para o mesmo snapshot relev
 ### Catálogo runtime
 Gerar ou recuperar o relatório correspondente ao snapshot corrente usando o pipeline oficial do Compêndio, em vez de reconstruir IDs por memória ou por pesquisa visual.
 
-O `docs/compendium/INVENTORY.md` registra o comando de geração de cobertura runtime. O produto em `build/` é derivado e não deve ser tratado como presente no Git apenas porque o comando existe.
+`docs/compendium/INVENTORY.md` registra a coleta opt-in do pack realmente carregado em `generated/compendium/runtime-registry-inventory.json` e a geração de `generated/compendium/coverage-report.{json,md}`. Esses produtos são derivados do runtime e não devem ser tratados como presentes/versionados no Git apenas porque o pipeline existe.
 
 ### Modlist física
 No momento de avaliar candidatos concretos, consultar o snapshot físico mais recente de `PROJECT-INSTRUCTIONS/modlist/` e não congelar versões históricas descritas em documentação anterior.
@@ -95,7 +95,7 @@ Antes de promover candidato a `VINCULADO`, reconciliar qualquer fato geográfico
 
 Quando houver acesso ao ambiente que gera a cobertura runtime do Compêndio:
 
-1. produzir o snapshot de registry/cobertura correspondente à modlist atual;
+1. produzir `generated/compendium/runtime-registry-inventory.json` no pack realmente carregado e gerar a cobertura correspondente à modlist atual;
 2. filtrar somente IDs realmente existentes;
 3. construir uma lista curta de candidatos com a matriz acima;
 4. revisar os candidatos contra `LOC-0001` e o provider real;
