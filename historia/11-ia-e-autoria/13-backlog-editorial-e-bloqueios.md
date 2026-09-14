@@ -22,9 +22,10 @@ Este backlog não substitui `historia/STATUS.md`, a Campaign Bible, os dossiês 
 1. ausência de informação nunca autoriza preencher uma lacuna;
 2. lore estruturada central deve ser reconciliada com o Grimoire quando o domínio estiver registrado ali;
 3. mecânica/provider/worldgen exige fonte técnica atual e não pode ser deduzida de tema, nome ou estética;
-4. candidatos podem ser registrados sem virarem cânone;
-5. um item só sai de `BLOQUEADO` quando a fonte que faltava foi realmente consultada;
-6. este arquivo não deve receber segredos, culpados, soluções ou finais como resumo público; detalhes internos pertencem aos dossiês apropriados e continuam sujeitos ao modo sem spoilers.
+4. fatos sociais/políticos e sua representação mecânica são domínios diferentes: a Campaign Bible/história pode definir sociedade sem que o provider implemente um sistema equivalente, mas a narrativa não pode alegar que esse sistema existe mecanicamente sem hook real;
+5. candidatos podem ser registrados sem virarem cânone;
+6. um item só sai de `BLOQUEADO` quando a fonte que faltava foi realmente consultada;
+7. este arquivo não deve receber segredos, culpados, soluções ou finais como resumo público; detalhes internos pertencem aos dossiês apropriados e continuam sujeitos ao modo sem spoilers.
 
 ## Fila atual
 
@@ -33,8 +34,8 @@ Este backlog não substitui `historia/STATUS.md`, a Campaign Bible, os dossiês 
 | NPC | `NPC-0002` Elias | `BLOQUEADO — GRIMOIRE` | Campaign Bible/Foundations ou fonte anterior recuperada | preservar ID/nome; localizar proveniência; registrar divergências | inventar aparência, função, personalidade, motivações, segredos, relações ou papel narrativo |
 | NPC | `NPC-0001` Severin | `PRONTO` | dossiê canônico + ficha de autoria + estado narrativo real | escrever material derivado compatível; calibrar voz; preparar assets sem promover rascunho visual | conceder knowledge sem proveniência; transformar estética em alinhamento moral; fixar plot por fala de calibração |
 | NPC | `NPC-0003` Iren Valmor | `PRONTO` | dossiê canônico + ficha de autoria + estado narrativo real | usar ficha/asset brief/`DLG-0002` como referência de consistência | duplicar perfil ou criar segunda versão concorrente sem reconciliação |
-| Facção/instituição | `FAC-0001` Corte de Pedra Clara | `BLOQUEADO — GRIMOIRE` para liderança/agenda não registrada | Campaign Bible + dossiê versionado | usar somente funções já explicitadas; levantar necessidades mecânicas separadamente | inventar líder, agenda, jurisdição total, leis ou posição política ausente |
-| Assentamento | `SET-0001` Pedra Clara | `AUDITORIA MECÂNICA` + `BLOQUEADO — GRIMOIRE` para fatos sociais não registrados | Compêndio/runtime/worldgen + Campaign Bible | levantar candidatos físicos; verificar MineColonies/worldgen; manter sociedade e representação mecânica separadas | declarar estrutura, política, leis, opinião pública ou sistema social que provider não possua |
+| Facção/instituição | `FAC-0001` Corte de Pedra Clara | `BLOQUEADO — GRIMOIRE` para liderança/agenda não registrada | Campaign Bible + dossiê versionado | usar somente funções já explicitadas; levantar necessidades mecânicas separadamente | inventar líder, agenda, jurisdição total, leis ou posição política ausente sem fonte de lore |
+| Assentamento | `SET-0001` Pedra Clara | `AUDITORIA MECÂNICA` + `BLOQUEADO — GRIMOIRE` apenas para fatos sociais ainda não registrados | Campaign Bible/dossiê para lore social e política; Compêndio/runtime/worldgen/MineColonies para representação mecânica | preservar e expandir fatos sociais já suportados pela lore; recuperar fatos adicionais no Grimoire; auditar binding físico e hooks mecânicos separadamente | inventar fatos sociais ausentes sem fonte; ou afirmar que MineColonies/provider implementa leis, opinião pública, política ou outro sistema social sem hook real |
 | Local | `LOC-0001` Região dos Ecos | `AUDITORIA MECÂNICA` | catálogo geográfico do Compêndio/runtime + provider de worldgen | levantar registry IDs candidatos e fatos verificáveis; manter binding `NÃO FIXADO` | escolher bioma/dimensão/estrutura por estética, tradução ou nome |
 | Eventos | família `EVT-####` | `PENDENTE DE DECISÃO EDITORIAL` | fato/evento aceito, consequência observável ou source material recuperado | preparar Event Ledger somente quando houver evento concreto a registrar | criar evento apenas para preencher `08-eventos/` ou justificar retrospectivamente uma região/quest |
 | Evidências | família `EVD-####` | `PRONTO` dentro dos registros existentes | dossiês versionados + knowledge/proveniência | expandir apenas quando a nova evidência tem fonte, descoberta e consequência definidas | usar evidência como atalho para knowledge universal ou causa automática |
