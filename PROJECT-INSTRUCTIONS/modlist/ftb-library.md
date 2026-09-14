@@ -1,10 +1,10 @@
 # FTB Library — 2101.1.35
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db812ea55af88156b67fcc  
-> Estado no momento da importação: `Instalado — Dossiê completo`  
-> Autoridade física: `modlist(4).txt`, 595 mods top-level  
-> Importado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db812ea55af88156b67fcc
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `ftb-library-neoforge-2101.1.35.jar`, mod id `ftblibrary`, runtime `2101.1.35`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do registro
 
@@ -14,21 +14,21 @@
 - **Categoria:** Biblioteca
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://github.com/FTBTeam/FTB-Library/tree/1.21.1/main
 - **Função:** Core/biblioteca do ecossistema FTB: UI/widgets/panels/sidebar, configuração e SNBT, networking/sync, NBT editor, registry/resource selectors, text/icons/math e APIs compartilhadas por FTB Chunks, Quests, Teams, Ultimine e XMod Compat.
 - **Dependências:** Ecossistema FTB/Architectury conforme consumidor. Pack instala FTB Chunks 2101.1.22, FTB Quests 2101.1.34, FTB Teams 2101.1.11, FTB Ultimine 2101.1.15 e FTB XMod Compat 21.1.11. FTB Chunks 2101.1.21+ requer Library 2101.1.34+; 2101.1.35 atende.
 - **Compatibilidade/Riscos:** Biblioteca central: risco de ABI/version skew, packet/codec mismatch, client classloading, stale KnownServerRegistries, permissões de NBT/config, shared-UI mixin collision e conflitos de key modifiers. 2101.1.35 corrige bug NeoForge que afetava FTB Quests Tab/Shift-Tab.
 - **Sobreposição:** Infraestrutura compartilhada, não substituto de FTB Quests/Teams/Chunks/Ultimine. Pode sobrepor visualmente tooltips/sidebar/UI de outros mods; item_modname é false por default justamente porque outros mods costumam adicionar esse tooltip.
-- **Observações:** Runtime físico e source coincidem em FTB Library 2101.1.35. Client config `ftblibrary-client` e defaults foram auditados. Server/startup configs encontradas no source são `Testing only!` e só registradas em development mode; não tratá-las como config de produção.
-- **Procedência:** modlist.txt física atual de 09/09/2026 + source oficial FTBTeam/FTB-Library branch 1.21.1/main exatamente em 2101.1.35 + changelog oficial 2101.1.x.
+- **Observações:** Runtime físico/source auditado: 2101.1.35. Upstream 2101.1.36 (11/09/2026) adiciona `CursorType.MOVE` e corrige tratamento de valores numéricos no NBT editor; essas mudanças não pertencem ao JAR instalado até atualização explícita.
+- **Procedência:** modlist.txt física atual de 11/09/2026 — 595 entradas totais incluindo o modloader — confirma `ftb-library-neoforge-2101.1.35.jar`, mod id `ftblibrary` e runtime 2101.1.35. CurseForge oficial revalidado em 12/09/2026 mostra 2101.1.36 como release 1.21.1 posterior.
 - **Histórico da decisão:** vazio.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — FTB Library 2101.1.35 source-pinned; UI/config/SNBT/networking/NBT editor/sidebar/keymaps, lifecycle, ABI risks e matriz de testes catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #290: FTB Library 2101.1.35 reconfirmado; upstream 2101.1.36 Release para 1.21.1 disponível desde 11/09/2026.
 - **Data da última decisão:** 2026-08-26
 
 ## Dossiê operacional — padrão Alex's Mobs
 
-> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `ftb-library-neoforge-2101.1.35.jar`, mod id `ftblibrary`, Minecraft 1.21.1 / NeoForge. O branch oficial `FTBTeam/FTB-Library:1.21.1/main` declara exatamente `mod_version=2101.1.35`, portanto é source pin compatível com o binário instalado. FTB Library é infraestrutura compartilhada: **não é autoridade sobre quests, teams, claims ou ultimine**; esses domínios pertencem aos mods consumidores.
+> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `ftb-library-neoforge-2101.1.35.jar`, mod id `ftblibrary`, versão instalada `2101.1.35`, Minecraft 1.21.1 / NeoForge. O source foi auditado enquanto a linha 1.21.1 correspondia à 2101.1.35, mas upstream já publicou **2101.1.36 em 11/09/2026**; essa release posterior não é projetada sobre o JAR instalado. FTB Library é infraestrutura compartilhada: **não é autoridade sobre quests, teams, claims ou ultimine**; esses domínios pertencem aos mods consumidores.
 
 ## 1. Identidade, versão e authority
 - **Mod:** FTB Library.
@@ -36,7 +36,7 @@
 - **Mod id:** `ftblibrary`.
 - **Versão instalada:** `2101.1.35`.
 - **Minecraft / loader:** 1.21.1 / NeoForge.
-- **Source pin:** `FTBTeam/FTB-Library`, branch `1.21.1/main`, exatamente 2101.1.35.
+- **Source audit da build instalada:** a árvore 1.21.1 foi auditada em 2101.1.35; o branch upstream já avançou posteriormente para a linha 2101.1.36.
 - **Papel:** biblioteca/core do ecossistema FTB, fornecendo UI/widgets, configuração/SNBT, networking, registry utilities, sidebar, seleção de recursos, NBT editing, ícones/text, math/utilities e abstrações consumidas por outros mods FTB.
 - **Authority:** FTB Library é dona dos seus contratos de biblioteca, protocolos e componentes de UI. FTB Quests continua autoridade sobre quests; FTB Teams sobre equipes; FTB Chunks sobre claims/map/force-load; FTB Ultimine sobre vein mining.
 
@@ -150,17 +150,20 @@ Mods próprios não devem mixinar arbitrariamente esses mesmos componentes sem n
 A versão instalada **2101.1.35** corrige no NeoForge a checagem de key modifiers para keybindings que não possuem modificador. Antes da correção, um binding sem modifier podia ser considerado ativo mesmo com uma modifier key pressionada, causando problema concreto em FTB Quests com **Tab / Shift-Tab**. A 2101.1.34 havia backportado a abstração de keymapping e suporte a modifiers.
 No pack, qualquer conflito de tecla envolvendo FTB Quests, menus ou mods de input deve ser diagnosticado considerando essa camada antes de criar patch próprio.
 
-## 12. Registry sync, stages e extensões
+## 12. Upstream 2101.1.36 — não instalado
+A release **2101.1.36**, publicada para NeoForge 1.21.1 em 11/09/2026, adiciona `CursorType.MOVE` e corrige tratamento de valores numéricos no NBT editor. O pack permanece em **2101.1.35**; portanto esses dois deltas são apenas informação de atualização disponível e regression gates para uma futura migração, não comportamento atribuído ao runtime atual.
+
+## 13. Registry sync, stages e extensões
 A Library mantém `KnownServerRegistries` e sincroniza-os no login. A 2101.1.22 adicionou client sync para o provider builtin de gamestages (`EntityTagStageProvider`) e variante de `NetworkHelper#composite` com 9 argumentos para stream codecs. A mesma release adicionou `ftb:rainbow` e `RegisterCustomColorEvent`, confirmando extensibilidade explícita.
 A existência de uma abstração não significa que o pack esteja usando determinado provider; registrar apenas integrações efetivamente configuradas.
 
-## 13. Client / server
+## 14. Client / server
 - **Client:** grande parte de GUI, panels, sidebar render, keymaps, icon/entity-face rendering, seleção visual e client config.
 - **Server:** KnownServerRegistries source, handlers NBT/config, permissões, comandos e origem authoritative de state sincronizado.
 - **Comum:** codecs, config model, math/text utilities, API contracts e networking registration.
 O entrypoint usa `EnvExecutor` para isolar `FTBLibraryClient::init`, portanto consumers próprios devem manter o mesmo princípio e evitar referências eager a classes client no dedicated server.
 
-## 14. Multiplayer
+## 15. Multiplayer
 A Library sincroniza state de registries/config/stages por packets. Riscos multiplayer incluem:
 - cliente com versão ABI diferente;
 - packet/codec mismatch;
@@ -170,7 +173,7 @@ A Library sincroniza state de registries/config/stages por packets. Riscos multi
 - sidebar/config state local confundido com autoridade de servidor.
 Em servidores com múltiplos jogadores, testar simultaneamente abertura/aplicação de telas e reconexão, não só singleplayer integrado.
 
-## 15. Integrações concretas na modlist física
+## 16. Integrações concretas na modlist física
 Os seguintes consumidores FTB estão fisicamente presentes no pack e devem ser tratados como matriz principal:
 - **FTB Chunks 2101.1.22**;
 - **FTB Quests 2101.1.34**;
@@ -182,7 +185,7 @@ Relações de versão confirmadas no changelog:
 - FTB Chunks 2101.1.21+ requer Library 2101.1.34+ por causa do novo panel scrolling; o pack usa Library 2101.1.35, portanto satisfaz essa relação documental.
 Não inferir dependência direta de qualquer outro mod apenas por usar GUI semelhante.
 
-## 16. Riscos técnicos
+## 17. Riscos técnicos
 - **ABI/version skew:** biblioteca central pode quebrar vários consumidores de uma vez por método/classe ausente.
 - **Packet/codec mismatch:** cliente e servidor divergentes podem falhar em sync/config/NBT/stages.
 - **Double-send de edição:** bug historicamente real no NBT editor, corrigido em 2101.1.27.
@@ -194,7 +197,7 @@ Não inferir dependência direta de qualquer outro mod apenas por usar GUI semel
 - **Shared UI mixin collision:** patches de terceiros em `BaseScreen`, panels, selectors ou keymaps podem afetar diversos FTB mods simultaneamente.
 - **Config ownership incorreto:** client config não deve autorizar mutação server-side.
 
-## 17. Matriz de testes obrigatória
+## 18. Matriz de testes obrigatória
 - [ ] Dedicated server boot com FTB Library 2101.1.35 + todos os consumidores FTB atuais.
 - [ ] Server stop/restart; `KnownServerRegistries.server` não retém state stale.
 - [ ] Login/relogin e troca entre servidores; registry sync refeito corretamente.
@@ -212,10 +215,10 @@ Não inferir dependência direta de qualquer outro mod apenas por usar GUI semel
 - [ ] Game-stage/config/registry sync após relog.
 - [ ] Smoke test individual de FTB Chunks, Quests, Teams, Ultimine e XMod Compat após qualquer update de Library.
 
-## 18. Evidências e limites
+## 19. Evidências e limites
 **Modlist física atual:** confirma JAR, mod id, versão e consumidores FTB instalados.
-**Source primário pinado:** `FTBTeam/FTB-Library`, branch `1.21.1/main`, exatamente 2101.1.35.
+**Source primário auditado:** `FTBTeam/FTB-Library`, branch `1.21.1/main`, auditado na build instalada 2101.1.35 antes do avanço upstream para 2101.1.36.
 **Classes auditadas:** `FTBLibrary`, `FTBLibraryNet`, `FTBLibraryClientConfig`, `FTBLibraryServerConfig`, `FTBLibraryStartupConfig` e árvore de source/API/config.
-**Changelog oficial:** releases 2101.1.35 e 2101.1.x relevantes para keymaps, GUI, NBT editing, registry sync e compatibilidade com Chunks/Quests.
+**Changelog oficial:** releases 2101.1.35, 2101.1.36 e 2101.1.x relevantes para keymaps, GUI, NBT editing, registry sync e compatibilidade com Chunks/Quests.
 **Limite:** server/startup configs encontradas no source são marcadas `Testing only!` e só registradas em development mode; não foram promovidas a config operacional do pack.
 **Nenhum teste de runtime foi executado nesta catalogação.** A matriz acima é plano de validação.
