@@ -71,11 +71,14 @@ Detalhes de agenda concreta devem ser declarados por evento/quest/estado quando 
 ### Ars Nouveau
 É o provider preferencial de Liora para o conteúdo já registrado no Grimoire.
 
+O core instalado/documentado `ars_nouveau` 5.13.1 possui auditoria técnica versionada e confirma, entre outras superfícies, spell grammar modular, Source, rituals, scrying, apparatus/imbuement e automação. A separação entre capability do provider e repertório pessoal de Liora está registrada em `NPC-0004-liora-provider-audit.md`.
+
 Regras obrigatórias:
 - Source permanece Source;
 - glyph spellcraft segue Ars Nouveau;
-- dispositivos/rituais precisam existir no provider/pack realmente auditado;
-- nenhum spell, glyph, ritual ou capacidade específica deve ser atribuído a Liora antes de confirmar o conteúdo real do pack;
+- existência de spell part, ritual, item, bloco ou subsystem no provider não prova que Liora o aprendeu, possui ou domina;
+- qualquer capability concreta atribuída a Liora precisa de estado de aprendizado/acesso e, quando aplicável, evento/quest que materialize seu uso;
+- knowledge produzido por mecanismo provider-native precisa de canal/proveniência rastreável;
 - sem bridge temática automática com Mana, Soul Energy, Black Arcana ou outro sistema.
 
 ## Relações narrativas
@@ -91,6 +94,7 @@ Nenhuma facção, superior, aliado, rival ou local permanente é fixado pelo reg
 - competência metodológica não implica onisciência;
 - seu encontro exato continua dependente de worldgen/progressão;
 - detalhes mecânicos precisam respeitar Ars Nouveau real;
+- capability do provider não equivale a capability da personagem;
 - visual externo do Grimoire não é automaticamente portrait final nem skin;
 - a função de porta de entrada da Era IV não torna sua presença obrigatória em toda rota de progressão.
 
