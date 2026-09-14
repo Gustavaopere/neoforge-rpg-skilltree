@@ -27,7 +27,7 @@ Iren deve possuir ao menos uma combinação suficiente de relatos/registro/evid�
 A relação pode alterar tom, quantidade de contexto e disposição de Iren em compartilhar detalhes, mas não muda a verdade dos fatos.
 
 ## Entrada padrão — pedido sem acusação
-Iren: "Tenho ocorrências demais na mesma região para continuar chamando tudo de coincidência e evidência de menos para chamar de qualquer outra coisa. Preciso de observação de campo, não de uma caça a culpados."
+Iren: "Há indícios suficientes para justificar uma verificação de campo naquela região e evidência de menos para chamar isso de conclusão. Preciso de observação, não de uma caça a culpados."
 
 Iren: "Se você aceitar, procure o que ainda pode ser verificado. Não vá tentando provar a minha hipótese. Eu ainda não tenho uma que mereça esse nome."
 
@@ -35,7 +35,7 @@ Iren: "Se você aceitar, procure o que ainda pode ser verificado. Não vá tenta
 
 ### Ramo A — aceitar
 - jogador: "Eu investigo."
-- Iren: "Então comece pela região, não pelas histórias. Registre o que encontrar antes de interpretar. Se houver pessoas envolvidas, não assuma hostilidade só porque preferem não ser encontradas."
+- Iren: "Então comece pelo que pode observar em campo. Registre o que encontrar antes de interpretar. Se houver pessoas envolvidas, não assuma hostilidade só porque preferem não ser encontradas."
 - intent: solicitar transição de engagement para `ACCEPTED` apenas após validação do Narrative Core;
 - discovery: no mínimo `DISCOVERED`, limitado ao conteúdo legitimamente compartilhado nesta conversa;
 - próximo: journal/objetivo player-safe compatível com o knowledge atual.
@@ -115,6 +115,7 @@ Intents possíveis:
 - pedir contexto não conta como aceitar;
 - descobrir algo antes da oferta é reconhecido;
 - conhecimento transmitido ao NPC preserva origem no jogador;
+- entrada padrão não pressupõe quantidade, conflito ou padrão cartográfico que Iren ainda não conhece;
 - uma resposta sobre evidências só pode mencionar peças/classes realmente conhecidas por Iren;
 - divergência entre relatos só pode ser mencionada quando Iren conhece múltiplos relatos incompatíveis;
 - diálogo padrão não executa se a oportunidade já mudou de estado.
@@ -125,6 +126,7 @@ Iren evita linguagem mística genérica. Quando não sabe, diz explicitamente. A
 ## QA
 - [x] nenhum participante sabe informação sem proveniência;
 - [x] offer depende de estado real;
+- [x] entrada padrão é compatível com diferentes conjuntos legítimos de evidência;
 - [x] aceitar/recusar permanecem distintos de discovery;
 - [x] consequências são intents validados, não mutações por texto;
 - [x] alternate entry possui ramo próprio;
