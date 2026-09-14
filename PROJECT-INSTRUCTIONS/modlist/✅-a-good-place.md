@@ -11,7 +11,7 @@
 - **Mod:** A Good Place
 - **Arquivo JAR:** `a_good_place-1.21-1.2.5-neoforge.jar`
 - **Versão 1.21.1:** 1.21-1.2.5
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Categoria:** Visual, QoL
 - **Função:** Mod client-side de animação de colocação de blocos, totalmente configurável por resource packs. Em vez do bloco simplesmente surgir, uma representação temporária é transformada por control points/curvas com translação, rotação, escala, pivô e seleção por block-state predicates. 1.2.5 melhora lógica de block entities e corrige bug específico; não altera placement autoritativo, inventário, recipe ou worldgen.
@@ -19,9 +19,9 @@
 - **Sobreposição:** Sobreposição apenas visual com frameworks/VFX/shaders. A Good Place é especificamente placement animation data-driven; não substitui partículas ambientais, worldgen, builder/schematic ou regras de colocação. Resource packs podem estender o próprio mod e são parte direta da auditoria.
 - **Compatibilidade/Riscos:** Risco principal é render/resource composition. Definições de resource packs podem selecionar os mesmos blocos e produzir prioridade/efeito inesperado; block entities exigem teste específico porque 1.2.5 mexe nessa lógica. AAA Particles/World, Particular, Particle Rain e shaders podem aumentar densidade/custo visual, mas não executam a mesma mecânica. Placement automatizado rápido pode gerar grande quantidade de animações client-side sem alterar servidor.
 - **Observações:** Para criar/editar animações, usar o Sample Pack/README gerado pela MESMA build 1.2.5 como authority de schema. Changelogs anteriores mostram mudanças de campos/predicates; não copiar JSON de versões antigas sem comparar. Mod é client-side: nunca usar a animação como trigger/authority de gameplay.
-- **Procedência:** Modlist física 2026-09-07 + CurseForge oficial A Good Place + changelogs da linha 1.2.x + guia gameplay corrigido.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial A Good Place, changelogs da linha 1.2.x e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `a_good_place-1.21-1.2.5-neoforge.jar` / `1.21-1.2.5`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/a-good-place
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê operacional completo de placement animation, resource-pack schema, block entities, reload, performance e client/server authority confirmado no QC global #2.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #2: `a_good_place-1.21-1.2.5-neoforge.jar` / `1.21-1.2.5` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 

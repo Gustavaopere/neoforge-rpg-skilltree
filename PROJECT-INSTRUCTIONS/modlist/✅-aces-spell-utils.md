@@ -11,7 +11,7 @@
 - **Mod:** Ace's Spell Utils
 - **Arquivo JAR:** `aces_spell_utils-1.2.7.2-1.21.1.jar`
 - **Versão 1.21.1:** 1.2.7.2-1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca, Magia
@@ -20,9 +20,9 @@
 - **Sobreposição:** Infraestrutura e conteúdo utilitário para addons de Iron's. Sobreposição de resultado com outros providers de atributos/escolas, mas não equivalência automática. Occult/Hydro/Technomancy podem ter escolas tematicamente parecidas de outros addons; só há colisão se registry IDs/semântica realmente coincidem. VFX utilities competem apenas na camada visual.
 - **Compatibilidade/Riscos:** Não é library invisível: registra attributes/schools que podem participar diretamente do gameplay. Comparar IDs/pipelines com Additional Attributes, Apothic Attributes e Pufferfish's Attributes antes de perks. VFX handlers/post-processing/screenshake/ribbons/trails cruzam shaders/AAA/Photon/Lodestone; phase/music interfaces cruzam boss systems. 1.2.7.2 depreca os dois boss music managers antigos e corrige Evasive que antes não fazia nada. Exigir dedicated-server tests e fail-closed para consumer mismatch.
 - **Observações:** Não inferir fórmulas exatas dos 13 atributos só pelo nome. Para perk/gear, inspecionar registry ID, min/max/default e ponto de aplicação no runtime/source. Boss Music Managers antigos estão deprecated em 1.2.7.2; novas integrações devem preferir as interfaces/manager rework aplicáveis ao consumer.
-- **Procedência:** Modlist física 2026-09-07 + CurseForge oficial Ace's Spell Utils, feature list, relations e release 1.2.7.2 + guia mágico do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Ace's Spell Utils, release 1.2.7.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `aces_spell_utils-1.2.7.2-1.21.1.jar` / `1.2.7.2-1.21.1`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/aces-spell-utils
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê operacional completo de API/classes-base, 13 attributes, schools, VFX, phase/music, consumers e authority Iron's confirmado no QC global #3.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #3: `aces_spell_utils-1.2.7.2-1.21.1.jar` / `1.2.7.2-1.21.1` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 

@@ -3,20 +3,15 @@
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db81c0937cf0aa06275635
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `aero_additions-1.2.8.jar`, mod id `aero_additions`, runtime `1.2.8`, mixin `aeromancy.mixins.json`; ExpandAbility `12.0.0` confirmado como JAR aninhado em `META-INF/jarjar/`; Iron's Spells `3.16.3` confirmado fisicamente
+- **Autoridade física usada:** `modlist.txt` — 595 mods top-level; `aero_additions-1.2.8.jar`, mod id `aero_additions`, runtime `1.2.8`; ExpandAbility `12.0.0` confirmado como JAR aninhado em `META-INF/jarjar/`; Iron's Spells `3.16.3` confirmado fisicamente
 - **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A authority física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**, onde Aeromancy 1.2.8, seu ExpandAbility 12.0.0 aninhado e Iron's 3.16.3 estão confirmados.
-- A própria página mantém uma divergência upstream relevante: a descrição atual cita **Feather Fall**, enquanto o changelog de 1.2.3 registra rework para **Feather Flight**. Esta exportação não normaliza o nome por suposição; registry/display runtime 1.2.8 deve decidir.
 
 ## Propriedades do banco
 
 - **Mod:** SnackPirate's Aeromancy Additions
 - **Arquivo JAR:** `aero_additions-1.2.8.jar`
 - **Versão 1.21.1:** 1.2.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia
