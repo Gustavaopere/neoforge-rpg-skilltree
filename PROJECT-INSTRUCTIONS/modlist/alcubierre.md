@@ -11,7 +11,8 @@
 - **Mod:** Alcubierre
 - **Arquivo JAR:** `alcubierre-1.2.6.jar`
 - **Versão 1.21.1:** `1.2.6`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — antigravity, warp, Dimensional Sable dependency, jar-in-jar Sable Companion e state-transfer QA confirmados no QC global #18.
+- **Estado no pack:** Integrado ao Github
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #18: `alcubierre-1.2.6.jar` / `1.2.6` conferidos contra a modlist atual; JarJar `sable-companion-common-1.21.1-1.6.0.jar` continua interno, não top-level; corpo técnico, decisão e estado preservados.
 - **Categoria:** Tecnologia
 - **Compatibilidade/Riscos:** Warp interdimensional toca serialização/persistência de block entities, passageiros, constraints, redstone e cinética. Dimensional Sable precisa permanecer compatível com Sable. Antigravidade cruza estabilização/propulsão, mas com semântica distinta.
 - **Decisão:** Sem decisão
@@ -21,7 +22,7 @@
 - **Função:** Tecnologia de physics ships: Antigravity Drive cancela gravidade enquanto alimentado pela rede cinética; Alcubierre Controller warpa o ship inteiro para coordenadas/dimensão configuradas.
 - **Histórico da decisão:** vazio
 - **Observações:** Componente jarjar Sable Companion não conta como mod top-level. Validar transferências com block entities, inventários, seats, fluids e constraints antes de depender do warp em gameplay crítico.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Create Aeronautics: Alcubierre 1.2.6 + dossiê técnico existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Create Aeronautics: Alcubierre 1.2.6 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `alcubierre-1.2.6.jar` / `1.2.6`; JarJar interno não contado como mod físico independente; sem divergência top-level.
 - **Sobreposição:** Não duplica Aeroworks: Aeroworks estabiliza/controla; Alcubierre cancela gravidade e teleporta o ship. Também não substitui Northstar/AeroStar ou portais gerais.
 - **Data da última decisão:** vazio
 
