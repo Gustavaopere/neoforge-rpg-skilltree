@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `integrated_stronghold_config_neoforge-1.1.4-1.21.1.zip`
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Versão 1.21.1:** 1.1.4
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Worldgen

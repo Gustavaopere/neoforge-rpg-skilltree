@@ -21,7 +21,7 @@
 - **Arquivo JAR:** `intstrong_endrem-1.0.0-1.18.2-1.19.2.zip`
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Versão 1.21.1:** 1.0.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Visual, Worldgen
