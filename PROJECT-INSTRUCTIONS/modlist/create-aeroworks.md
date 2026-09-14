@@ -11,7 +11,7 @@
 - **Mod:** Create: Aeroworks
 - **Arquivo JAR:** `aeroworks-1.5.0.jar`
 - **Versão 1.21.1:** 1.5.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Compartilha domínio com outros addons de pilotagem, mas fornece controles modulares, gyroscope e servos próprios. Não substitui solver físico, lift ou propulsão do Aeronautics/Sable.
 - **Compatibilidade/Riscos:** Testar concorrência com outros controladores de orientação/força e sincronização de inputs. A 1.5.0 adiciona Drive-By-Sable compat; validar multiplayer, bindings e servos após schematic/mirror/wrench.
 - **Observações:** 1.5.0 adiciona Control Stand, Copycat Control Stand, módulos copper, steering wheels coloridos, terceiro pedal socket e Drive-By-Sable compatibility.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Create: Aeroworks 1.5.0 + dossiê técnico existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Create: Aeroworks 1.5.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `aeroworks-1.5.0.jar` / `1.5.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeroworks
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — gyroscope, cockpit modules, servos, Control Stand, Drive-By-Sable e input/multiplayer QA confirmados no QC global #16.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #16: `aeroworks-1.5.0.jar` / `1.5.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
