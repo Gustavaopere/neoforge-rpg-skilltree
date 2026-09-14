@@ -44,13 +44,13 @@ Esses vínculos registram responsabilidade e atuação no núcleo inicial; não 
 
 ## Membros relacionados
 A entidade-fonte registra cinco `key_member_ids`:
-- `29552385-a06a-4258-bcb7-a27c2ce8e6bb`;
-- `324ff53b-c599-4892-b263-0f86a8e8f8b9`;
-- `32a3237d-e699-4384-bf14-a12f8d620965`;
-- `55f7bdb0-a0a3-46c2-8d10-a69b76cbe6fd`;
-- `8ed41a1d-1692-4df2-9366-7a2153545e74`.
+- `29552385-a06a-4258-bcb7-a27c2ce8e6bb` — **SEM ID EDITORIAL / NÃO RECONCILIADO** neste passo;
+- `324ff53b-c599-4892-b263-0f86a8e8f8b9` — `NPC-0005` Oren;
+- `32a3237d-e699-4384-bf14-a12f8d620965` — **SEM ID EDITORIAL / NÃO RECONCILIADO** neste passo;
+- `55f7bdb0-a0a3-46c2-8d10-a69b76cbe6fd` — **SEM ID EDITORIAL / NÃO RECONCILIADO** neste passo;
+- `8ed41a1d-1692-4df2-9366-7a2153545e74` — **SEM ID EDITORIAL / NÃO RECONCILIADO** neste passo.
 
-Nenhum recebe ID editorial neste passo apenas por constar da lista. Nome, função, sobrevivência futura e relações precisam ser reconciliados individualmente antes de materialização.
+O vínculo de `NPC-0005` é conhecido porque o UUID foi reconciliado individualmente. Os quatro UUIDs restantes não recebem nome, função, ID ou destino apenas por constarem da lista; suas entidades-fonte precisam ser consultadas antes de materialização.
 
 ## Agenda/autonomia
 A fonte declara ausência de agenda secreta institucional. A fragilidade central é institucional: poucas pessoas concentram responsabilidades e ainda não existe separação clara entre urgência, precedente, política e lei.
