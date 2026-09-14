@@ -75,12 +75,13 @@ A produção visual separa deliberadamente portrait/concept de skin técnica.
 - alvo atual: **64×64 px RGBA PNG**, layout moderno de skin humanoide Minecraft;
 - modelo `classic` enquanto a hipótese atual permanecer válida; qualquer mudança para `slim` exige ajuste explícito do layout/modelo;
 - preservar alpha/segunda camada quando usada;
-- não ampliar a skin para "HD" por conta própria: Easy NPC e o renderer humanoide atual consomem o formato de skin, enquanto 3D Skin Layers extruda a segunda camada sem transformar portrait em textura de runtime.
+- não ampliar a skin para "HD" por conta própria: Easy NPC consome skin de player/URL no renderer humanoide; portrait e skin são artefatos diferentes;
+- **não presumir outer layer 3D para NPCs**: a presença de 3D Skin Layers comprova comportamento no renderer de player, não integração automática com humanoides do Easy NPC. Qualquer efeito 3D específico no NPC exige prova de provider/render path ou modelo próprio.
 
 Evidência técnica/proveniência:
 - `PROJECT-INSTRUCTIONS/modlist/easy-npc.md` — Easy NPC Core 7.11.0 é o provider físico dos NPCs e suporta skins de player/URL;
 - upstream Easy NPC já trata skins modernas 64×64 e preservação de alpha antes da versão física 7.11.0;
-- `PROJECT-INSTRUCTIONS/modlist/3d-skin-layers.md` — a skin base continua no renderer/player profile e o mod apenas apresenta a segunda camada em 3D.
+- `PROJECT-INSTRUCTIONS/modlist/3d-skin-layers.md` — o mod atua no renderer de player e não deve ser promovido a capability do Easy NPC sem integração comprovada.
 
 A especificação `64×64` é do formato humanoide atual, não uma regra global de texel density para qualquer asset project-owned.
 
