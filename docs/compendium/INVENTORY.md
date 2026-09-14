@@ -151,3 +151,32 @@ O workflow principal executa:
 - dedicated-server smoke com `RPGSKILLTREE_COMPENDIUM_INVENTORY=1` e validação do JSON produzido pelo jogo.
 
 O smoke test confirma que o coletor funciona no runtime NeoForge 1.21.1 sem depender de rede ou de mods opcionais externos.
+
+### Evidência da pilha de compatibilidade Volcanoes
+
+O workflow historicamente chamado `Volcanoes Full Pack Compatibility Acceptance` **não carrega a modlist canônica completa do usuário**. O instalador `.github/scripts/volcanoes/install_full_pack_acceptance.sh` monta deliberadamente uma pilha limitada de providers necessária para a aceitação cruzada de Volcanoes (worldgen, Create/Sable, Destroy, Cold Sweat, RNS/KubeJS e MineColonies, com suas dependências verificadas).
+
+Consequentemente, o inventário produzido nesse workflow tem autoridade estritamente limitada:
+
+- uma entrada presente comprova que aquele registry ID/provider existiu no runtime de aceitação executado;
+- a ausência de uma entrada **não** prova ausência na modlist física completa;
+- a coleção não deve ser chamada de censo integral do modpack;
+- ela não pode, sozinha, fechar o gate de binding geográfico de `LOC-0001`;
+- lore, geografia narrativa e decisão de binding continuam fora da autoridade desse artifact.
+
+O smoke dessa pilha habilita `RPGSKILLTREE_COMPENDIUM_INVENTORY=1` e grava, dentro do artifact de nome legado `volcanoes-full-pack-compatibility-<sha>`, uma cópia auditável do inventário e da cobertura do runtime realmente carregado.
+
+Os arquivos de consumo direto ficam em `build/full-pack-acceptance/` dentro do artifact:
+
+```text
+runtime-registry-inventory.json
+compendium-coverage.json
+compendium-coverage.md
+compendium-inventory-scope.json
+```
+
+`compendium-inventory-scope.json` torna a limitação machine-readable com `scope_id=volcanoes_compatibility_acceptance_stack` e `complete_modpack_inventory=false`, além de registrar contagem de mods carregados, contagem de registry entries e o fingerprint do runtime.
+
+O workflow também preserva cópias por rodada (`*-round-1.*` e `*-round-2.*`) e exige que as duas inicializações produzam o mesmo `runtime_fingerprint_sha256`, a mesma contagem de entradas e o mesmo conjunto de `(kind, resource_location, namespace, present_at_runtime)`.
+
+Para uma auditoria que dependa de **toda** a modlist física — como a shortlist definitiva de bioma/dimensão para `LOC-0001` — é necessário executar o mesmo coletor numa instância que realmente carregue o snapshot canônico completo e reconciliar o resultado com a modlist correspondente. Até essa evidência existir, candidatos observados nesta pilha permanecem evidência mecânica parcial, nunca prova de completude.
