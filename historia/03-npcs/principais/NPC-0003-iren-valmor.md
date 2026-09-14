@@ -1,7 +1,18 @@
 # NPC-0003 — Iren Valmor
 
 ## Estado editorial
-RASCUNHO ESTRUTURADO / BLOQUEADO PARA RECONCILIAÇÃO COM GRIMOIRE ANTES DE PROMOÇÃO CANÔNICA.
+RASCUNHO ESTRUTURADO / ESPELHADO COMO DRAFT NO GRIMOIRE / NÃO PROMOVIDO A CANON.
+
+## Reconciliação Grimoire
+Reconciliação executada em 2026-09-14 conforme `historia/11-ia-e-autoria/12-grimoire-github-sync.md`.
+
+- buscas por `Iren`, `Pedra Clara`, `Corte de Pedra Clara`, função arcana/institucional e investigação não localizaram entidade preexistente equivalente no catálogo ativo/arquivado;
+- entidades semanticamente próximas encontradas (`Oren`, `Elian`, `Liora`) possuem funções, vínculos e identidades distintas e não foram tratadas como aliases;
+- foi criado no Grimoire o draft `Iren Valmor`, UUID `2f1d9ef3-2466-471a-8dbf-2b957c497a36`, com referência cruzada ao ID estável `NPC-0003`;
+- o draft aponta para `FAC-0001` e `SET-0001` por suas entidades Grimoire reconciliadas;
+- a criação do espelho estruturado remove o blocker de duplicação conhecido, mas **não** promove este NPC a cânone por si só.
+
+Qualquer nova evidência de entidade anterior equivalente ou conflito de Campaign Bible deve reabrir reconciliação por provenance, sem merge textual ou retcon automático.
 
 ## Papel
 Mago ligado à `FAC-0001` Corte de Pedra Clara e responsável por avaliar relatos de fenômenos arcanos, riscos incomuns e evidências que possam exigir resposta institucional. É o participante anteriormente sem ID citado em `QST-0001`.
@@ -77,7 +88,7 @@ Nenhum provider arcano específico é autoridade automática de Iren. Quando inv
 - seu cargo em `FAC-0001` não equivale a autoridade absoluta sobre `SET-0001`.
 
 ## Reconciliação obrigatória
-Antes de promover este NPC a estado canônico, pesquisar Grimoire/TTRPG.bot por personagem, cargo, instituição ou função narrativa equivalente. Se houver entidade existente, reconciliar nome/ID/relações em vez de manter duplicata paralela.
+O primeiro passe de reconciliação foi concluído e materializado como draft no Grimoire. Antes de qualquer promoção canônica futura, revalidar Campaign Bible/Foundations e verificar se surgiu entidade anterior ou conflito de provenance desde 2026-09-14.
 
 ## Spoilers internos
 Nenhuma verdade oculta, culpado, motivação ou outcome de `QST-0001` é fixado por este dossiê. Conteúdo secreto deve permanecer em arco/evidência/evento apropriado.
