@@ -11,7 +11,8 @@
 - **Mod:** AeronauticsCompat
 - **Arquivo JAR:** `aeronauticscompat-1.1.3.jar`
 - **Versão 1.21.1:** `1.1.3`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — conditional mixin coverage, Sable authority, target-presence rule e Bits 'n' Bobs 2.3.2 reconciliados no QC global #14.
+- **Estado no pack:** Integrado ao Github
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #14: `aeronauticscompat-1.1.3.jar` / `1.1.3` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Categoria:** Compat; QoL
 - **Compatibilidade/Riscos:** Patches podem ficar obsoletos após updates dos mods alvo. Alex's Caves/Mobs corrigidos upstream são ports de Raguto; o pack usa Continued de CodxIO, portanto não assumir cobertura sem validar targets. Storage Drawers mantém bug visual conhecido mesmo com fix upstream.
 - **Decisão:** Sem decisão
@@ -21,7 +22,7 @@
 - **Função:** Pacote de mixins/patches que corrige mods incompatíveis com physics-enabled ships do Sable; cobre coordenadas, interação, áudio, pathfinding, montagem e outros casos específicos por mod alvo.
 - **Histórico da decisão:** vazio
 - **Observações:** Não promover lista upstream inteira a integrações ativas: presença do mod alvo e compatibilidade de classes devem ser verificadas. Camera Mod/Storage Drawers/PneumaticCraft/Immersive Paintings não aparecem como top-level atuais.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Create Aeronautics: Compatibility 1.1.3 + dossiê técnico existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Create Aeronautics: Compatibility 1.1.3 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `aeronauticscompat-1.1.3.jar` / `1.1.3`; sem divergência física.
 - **Sobreposição:** O suporte de câmera 1.1.3 mira Camera Mod de henkelmax; não é evidência de redundância com Aeronautics Camera Sync 1.4.0. Bits 'n' Bobs é cobertura efetivamente relevante no pack atual.
 - **Data da última decisão:** vazio
 
