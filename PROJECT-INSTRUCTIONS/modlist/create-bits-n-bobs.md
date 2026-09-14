@@ -2,16 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db81539017f4fb97ee558c
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-10
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `bits_n_bobs-2.3.2.jar`, mod id `bits_n_bobs`, runtime `2.3.2`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Create: Bits 'n' Bobs
 - **Arquivo JAR:** `bits_n_bobs-2.3.2.jar`
 - **Versão 1.21.1:** 2.3.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Tecnologia, Visual, Automação
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobreposição mecânica/decorativa com outros addons Create. Conflito visual com Thermochemical Cogwheels de Sulfuric Resonance permanece documentado historicamente, mas o provider não está presente no snapshot atual.
 - **Compatibilidade/Riscos:** Riscos atuais: kinetic duplication, contraption lifecycle, feature suppression/config e regressão de Chain Drive/cogwheel integrations. A 2.3.2 corrige Chain Drive sobrescrevendo `gears n kinetics` e restaura assinatura antiga para evitar crash com Bits 'n Tracks. O antigo conflito visual com Sulfuric Resonance é histórico, não ativo neste snapshot.
 - **Observações:** 2.3.2: corrige Chain Drive sobrescrevendo `gears n kinetics`, adiciona mensagem de falha ausente ao usar chain em outros cogwheels e restaura `CogwheelChainRenderGeometryBuilder#renderChainSlowerButWithoutGaps` deprecated para evitar crash com Bits 'n Tracks. Conteúdo 2.3.1 catalogado permanece baseline funcional válida salvo esses deltas.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + metadata/JAR jarjar + CurseForge oficial Create: Bits 'n' Bobs 2.3.2 + decisão curatorial já registrada.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata/JAR jarjar + CurseForge oficial Create: Bits 'n' Bobs 2.3.2 + decisão curatorial e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `bits_n_bobs-2.3.2.jar` / `2.3.2`; Sable Companion 1.4.2 continua embarcado e não top-level; decisão `Manter` permanece inalterada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-bits-n-bobs
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime físico `bits_n_bobs-2.3.2.jar` reconciliado; três fixes oficiais 2.3.2 incorporados; decisão `Manter` preservada. Antigo conflito visual com Sulfuric Resonance mantido apenas como histórico porque o provider está ausente do snapshot atual. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #77: `bits_n_bobs-2.3.2.jar` / `2.3.2` conferidos contra a modlist atual; decisão `Manter`, Sable Companion 1.4.2 jarjar, fixes 2.3.2 e antigo conflito Sulfuric Resonance apenas histórico preservados.
 - **Histórico da decisão:** 2026-09-06 — decisão anterior Tirar por incompatibilidade visual explícita com Create: Sulfuric Resonance. 2026-09-07 — decisão explícita do usuário substitui a anterior: MANTER Bits 'n Bobs e aceitar/monitorar o conflito visual com CSR. 2026-09-09 — runtime atualizado/revalidado em 2.3.2; CSR não está mais presente no snapshot físico, então o conflito permanece apenas como histórico, sem alterar a decisão Manter.
 - **Data da última decisão:** 2026-09-07
 
@@ -139,8 +139,8 @@ Regras do catálogo:
 ## 13. Histórico de conflito com Create: Sulfuric Resonance
 A decisão curatorial anterior é preservada como histórico:
 - Sulfuric Resonance 0.4.1 documentava incompatibilidade visual com **Thermochemical Cogwheels**;
-- a causa registrada era a substituição/alteração de assets de cogwheel por Bits 'n' Bobs;
-- em 07/09/2026, a decisão explícita do pack foi **MANTER Bits 'n' Bobs** e aceitar/monitorar esse conflito.
+- a causa registrada era a substituição/alteração de assets de cogwheel por Bits 'n Bobs;
+- em 07/09/2026, a decisão explícita do pack foi **MANTER Bits 'n Bobs** e aceitar/monitorar esse conflito.
 No snapshot físico atual de 08/09/2026, **Create: Sulfuric Resonance não está presente**. Portanto o conflito não é tratado como risco ativo desta instância. Se o provider voltar, o render-test específico deve ser reativado; a decisão histórica não é apagada.
 
 ## 14. Client/server
