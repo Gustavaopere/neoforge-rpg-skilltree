@@ -46,11 +46,11 @@ Interessa-se imediatamente pelas descobertas do jogador quando o contato ocorrer
 O registro atual mantém `met_party=false`; isso não autoriza presumir encontro prévio.
 
 ## Vínculos registrados no Grimoire
-- facção: Coordenação de Sobrevivência do Entreposto — UUID `5988b526-9cd1-4b0c-b8b2-306f71043973`;
-- locais: Acampamento do Entreposto — UUID `e98d8010-3824-46f2-8851-cb20fddd3128`;
-- locais: O Entreposto — UUID `d540695a-a27a-42f8-83e4-089822918836`.
+- facção: `FAC-0003` Coordenação de Sobrevivência do Entreposto — UUID `5988b526-9cd1-4b0c-b8b2-306f71043973`;
+- assentamento: `SET-0003` Acampamento do Entreposto — UUID `e98d8010-3824-46f2-8851-cb20fddd3128`;
+- local: `LOC-0002` O Entreposto — UUID `d540695a-a27a-42f8-83e4-089822918836`.
 
-Esses UUIDs são referências cruzadas do Grimoire; não recebem IDs editoriais novos neste arquivo.
+Os IDs editoriais acima foram atribuídos somente após consulta individual das entidades-fonte no Grimoire e auditoria de duplicatas/numeração. Esses vínculos não concedem a Oren knowledge global, disponibilidade permanente nesses locais ou autoridade sobre a facção.
 
 ## Relevância de arco registrada
 Oren está ligado ao eixo P5-C: memória, investigação, proveniência e revisão de hipóteses. O registro o torna relevante para callbacks da primeira ruína, para a pluralidade mágica na Era IV, para arqueologia na Era X e para memória institucional da Segunda Concordância.
@@ -66,7 +66,7 @@ Ações concretas fora do registro existente precisam ser declaradas por evento/
 - estado atual: **NÃO FIXADOS** além dos vínculos de Grimoire já listados;
 - `met_party=false` permanece a única afirmação sobre encontro prévio com o jogador;
 - uma entrada em cena futura precisa ser materializada por evento, quest, local ou outro estado narrativo com proveniência própria;
-- vínculo com Entreposto/Acampamento não equivale a waypoint automático, disponibilidade permanente ou conhecimento do jogador.
+- vínculo com `SET-0003`/`LOC-0002` não equivale a waypoint automático, disponibilidade permanente ou conhecimento do jogador.
 
 ## Estados de vida / morte / retorno
 - a fonte atual apresenta Oren como entidade ativa;
@@ -88,7 +88,7 @@ Ações concretas fora do registro existente precisam ser declaradas por evento/
 - evidência nova pode obrigá-lo a rever posição;
 - não conhece automaticamente responsáveis por adulterações históricas;
 - não deve resolver a Ruptura com uma causa única por inferência;
-- seu vínculo com o Entreposto não concede knowledge global.
+- seu vínculo com `LOC-0002` não concede knowledge global.
 
 ## Spoilers internos já registrados no Grimoire
 Oren já defendeu uma síntese histórica herdada que parecia a melhor explicação disponível; evidência posterior mostrou que ela misturava épocas e estava errada em um ponto central.
