@@ -11,7 +11,7 @@
 - **Mod:** Alex's Mobs Continued
 - **Arquivo JAR:** `alexsmobs-2.1.11-neoforge+1.21.1.jar`
 - **Versão 1.21.1:** 2.1.11
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Mobs, Exploração
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobrepõe parcialmente o domínio de fauna/mobs, exploração e ecossistema de outros grandes mob packs, mas não é redundância simples: cada criatura tem IA, cadeia de interação e recursos próprios. Interseções relevantes no pack: Enhanced AI (comportamento), AI-Improvements (custo/infra de IA), mods de worldgen/biomas (spawn), Alex's Delight/Farmer's Delight (uso culinário de drops), além de outros mods de fauna/bosses que aumentam densidade ecológica e carga de entidades.
 - **Compatibilidade/Riscos:** Roster/registries continuam provider-native. Enhanced AI 4.2.3.0 pode alterar goals/pathfinding; worldgen/biome providers alteram distribuição de spawn; Alex's Delight 1.6 consome drops. 2.1.11 adiciona edição in-game de Spawn Group Sizes e depende do fix numérico do CodxLib 1.6.0. Patches feitos para outros ports de Alex não são presumidos compatíveis.
 - **Observações:** Runtime físico 2.1.11. `/amc menu` → Spawning expõe Spawn Group Sizes e grava a mesma opção `spawnGroupSizes`. Catálogo 89 mobs normais + Sea Bear secreto foi preservado; não converter a publicidade '~116' em 116 criaturas comuns.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Alex's Mobs Continued 2.1.11 + CodxLib 1.6.0 + dossiê operacional existente e fontes do roster original.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Alex's Mobs Continued 2.1.11 + CodxLib 1.6.0 + dossiê operacional e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `alexsmobs-2.1.11-neoforge+1.21.1.jar` / `2.1.11`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 2.1.11, UI Spawn Group Sizes, CodxLib 1.6.0+, Enhanced AI 4.2.3.0 e catálogo operacional preservado no QC global #21.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #21: `alexsmobs-2.1.11-neoforge+1.21.1.jar` / `2.1.11` conferidos contra a modlist atual; página benchmark e dossiê operacional preservados integralmente.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita integralmente após feedback de que a descrição anterior era genérica e insuficiente para outro chat operar. A nova ficha passa a ser um dossiê operacional do conteúdo do mod e não apenas um resumo de propósito.
 - **Data da última decisão:** 2026-09-07
 
