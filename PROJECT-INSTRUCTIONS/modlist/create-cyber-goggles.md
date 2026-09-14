@@ -2,27 +2,27 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db816a8306c1e61679b27c
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-10
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `CreateCyberGoggles-1.21.1-8.5.3-NeoForge.jar`, mod id `create_cyber_goggles`, runtime `8.5.3`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Create: Cyber Goggles
 - **Arquivo JAR:** `CreateCyberGoggles-1.21.1-8.5.3-NeoForge.jar`
-- **Versão 1.21.1:** 8.5.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Versão 1.21.1:** `8.5.3`
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL, Visual, Tecnologia
 - **Função:** Mod client-side de assistência para Create, com goggles e recursos de informação/visualização/QoL voltados a máquinas e redes Create.
-- **Dependências:** Client-side; source matching exige Create mínimo 6.0.10. Pack usa Create 6.0.10. Integrações concretas relevantes incluem Aeronautics 1.3.2/Sable 2.0.5, JEI 19.53.0.426, Jade 15.10.6 e CEI 2.5.3b; EMI/AE2 não estão top-level.
+- **Dependências:** Client-side sobre Create 6.0.10; pack físico usa NeoForge 21.1.248. Build 8.5.3 foi publicada especificamente para Create 1.21.1-6.0.10.
 - **Sobreposição:** Não é equivalente a Create Goggles/equipamentos físicos: Cyber Goggles é assistência client-side. Pode sobrepor UI/overlays de Jade/JEI/outros, mas não owns gameplay state.
 - **Compatibilidade/Riscos:** Riscos: overlay divergir do server state; `Image is not allocated` regression; Requester undo/recipe transfer duplicar ação; tooltip dedup incorreto; shader/post-process conflicts; Aeronautics body stale; Create 6.0.10 vs source-dev 6.0.11 internals.
 - **Observações:** JAR `CreateCyberGoggles-1.21.1-8.5.3-NeoForge.jar`, mod id `create_cyber_goggles`, runtime 8.5.3. A antiga observação runtime 8.3.15 foi corrigida. Source branch `1.21.1/NeoForge` é pin-matching 8.5.3.
-- **Procedência:** modlist.txt física atual de 08/09/2026 — 595 mods top-level + release/changelog 8.5.3 + repositório oficial ForgeStove/CreateCyberGoggles branch matching.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `create_cyber_goggles` 8.5.3 + CurseForge oficial revalidado em 12/09/2026; 8.5.3 de 07/09/2026 continua a Release estável mais recente para NeoForge 1.21.1, embora Betas 8.6.0 e 8.6.1 tenham sido publicadas em 10–11/09/2026.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — dossiê 8.5.3 com goggles/tooltips/overlays, Aeronautics force HUD, requester/recipe transfer, image lifecycle, client-only boundary e regressões catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #180: CreateCyberGoggles-1.21.1-8.5.3-NeoForge.jar / runtime 8.5.3 reconfirmados como Release NeoForge 1.21.1 atual; upstream já possui Betas 8.6.0/8.6.1 mais novas, portanto 8.5.3 segue como latest stable Release, não latest artifact geral.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-30
 
@@ -85,28 +85,31 @@ Resource reload, resize, shader toggle, world change e close/reopen de screens s
 A build remove deduplicação genérica de linhas de tooltip e adiciona uma interface para resolver conteúdo duplicado de maneira controlada. Isso reduz o risco de remover linhas legítimas apenas porque o texto coincide.
 Regression gate: tooltip não duplica conteúdo próprio do Cyber Goggles e também não suprime linhas válidas de outros mods.
 
-## 16. Integrações source matching
+## 16. Estado de atualização da linha 1.21.1
+Em 12/09/2026, **8.5.3 continua sendo a Release estável mais recente** para NeoForge 1.21.1/Create 6.0.10. O upstream já publicou **8.6.0 Beta (10/09/2026)** e **8.6.1 Beta (11/09/2026)** para a mesma linha. Portanto o JAR físico não está atrasado em relação às releases estáveis, mas existem artefatos Beta posteriores que exigiriam avaliação separada antes de qualquer upgrade.
+
+## 17. Integrações source matching
 O `gradle.properties` 8.5.3 inclui ambientes de desenvolvimento para Jade, Create Enchantment Industry, Create Dragons Plus, Create Fluid Logistics, Sophisticated Core, Ars Nouveau, AE2 e Thirst, além de Aeronautics/Sable.
 Isso prova superfícies de desenvolvimento/compatibilidade, não garante que todas estejam habilitadas ou presentes no pack. Na ficha, integração runtime só é tratada como concreta quando a modlist confirma o provider.
 
-## 17. Ars Nouveau/Jade/CEI no pack
+## 18. Ars Nouveau/Jade/CEI no pack
 O pack contém Ars Nouveau 5.13.1, Jade 15.10.6 e Create: Enchantment Industry 2.5.3b, além de várias superfícies Create. Esses providers tornam relevante smoke-test visual/tooltips, mas não autorizam inventar uma feature específica se ela não estiver documentada no README/source consultado.
 
-## 18. Applied Energistics — não ativo
+## 19. Applied Energistics — não ativo
 O source de desenvolvimento inclui AE2, mas a modlist física atual não contém Applied Energistics 2. Portanto qualquer compat AE2 da linha não é considerada ativa neste pack.
 
-## 19. Client-only boundary
+## 20. Client-only boundary
 A descrição oficial/source define o mod como client-side. Dedicated server deve iniciar sem o JAR e o state lógico do mundo deve ser idêntico entre clientes com e sem Cyber Goggles.
 Se uma feature aparentemente exige servidor com o mod instalado, isso deve ser investigado como possível dependency/hook externo, não assumido como design normal.
 
-## 20. Config
+## 21. Config
 As features principais podem ser habilitadas/desabilitadas individualmente. Config controla presentation e assistência; ela não deve alterar os valores server-authoritative que são exibidos.
 Profiles/config reload precisam remover overlays/hooks desativados sem restart quando suportado, ou declarar restart quando exigido pelo runtime.
 
-## 21. Multiplayer
+## 22. Multiplayer
 Dois players podem ter configs diferentes e ainda receber o mesmo state do servidor. Um pode usar overlays avançados e outro não; isso não deve alterar recipes, requests, inventory ou physics.
 
-## 22. Riscos
+## 23. Riscos
 1. Overlay mostra speed/stress/flow incorretos e induz troubleshooting errado.
 2. Resource reload/resize reproduz `Image is not allocated`.
 3. Requester Undo envia ação duplicada/stale.
@@ -118,7 +121,7 @@ Dois players podem ter configs diferentes e ainda receber o mesmo state do servi
 9. Client-only mod passa a ser exigido indevidamente pelo servidor.
 10. Integração upstream é tratada como ativa sem provider físico.
 
-## 23. Matriz de testes
+## 24. Matriz de testes
 - [ ] Dedicated server inicia sem Cyber Goggles instalado.
 - [ ] Cliente 8.5.3 conecta ao servidor Create 6.0.10 sem protocol requirement próprio.
 - [ ] Speed/stress/flow overlay confere com valores Create reais.
@@ -132,7 +135,7 @@ Dois players podem ter configs diferentes e ainda receber o mesmo state do servi
 - [ ] Desabilitar módulos remove overlays/hooks correspondentes sem state residual.
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
-## 24. Evidências e limites
+## 25. Evidências e limites
 A modlist física confirma JAR/mod id/runtime 8.5.3. O source oficial branch `1.21.1/NeoForge` é pin-matching e confirma Client-side, Java 21, NeoForge 21.1.248 e Create mínimo 6.0.10. README matching lista as famílias de features e Aeronautics overlays. O changelog 8.5.3 confirma EMI/Requester/Image/tooltip fixes. Nenhuma feature upstream foi marcada como ativa sem provider físico correspondente.
 
 > 🔒 **Boundary canônico:** Cyber Goggles owns apenas assistência/visualização/UX no cliente. Create, logistics providers e Aeronautics/Sable continuam authority do state mostrado. Se o overlay e o servidor divergem, o servidor/provider vence.
