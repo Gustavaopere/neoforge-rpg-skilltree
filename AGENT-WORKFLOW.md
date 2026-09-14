@@ -2,7 +2,7 @@
 
 Status: **canonical working contract for AI agents and contributors operating in this repository.**
 
-The root [`AGENTS.md`](../../AGENTS.md) is intentionally retained only as the discovery/bootstrap entrypoint. This file governs work on the RPG runtime.
+The root [`AGENTS.md`](AGENTS.md) is intentionally retained only as the discovery/bootstrap entrypoint. This file governs work on the RPG runtime.
 
 ## Repository authority
 
@@ -52,7 +52,7 @@ When a task requires a manual action by the user, give one atomic, verifiable ma
 
 If the requested change is generic mod-production infrastructure rather than RPG runtime work, switch authority to `Gustavaopere/minecraft-mod-factory` before implementing it. Verify that repository's current `main`, open PRs, STATUS, canonical plans and latest physical modlist first.
 
-Historical engineering/art files in this RPG repository may remain as provenance. They do not authorize a parallel control plane and must not be extended as the default location for shared capabilities.
+Historical shared engineering/art material from this repository is provenance, not an active parallel control plane. Use Git history and the reconciled Factory state when historical implementation evidence is needed; do not recreate retired shared infrastructure paths here.
 
 Preserve provider-native artistic source formats such as `.bbmodel`; cross-pipeline conversion must never happen silently.
 
@@ -66,14 +66,14 @@ Do not mark a gate complete until the relevant test, validator, build, CI job, r
 
 For RPG runtime architecture, read as applicable:
 
-- [`../../docs/MASTER_PLAN.md`](../../docs/MASTER_PLAN.md)
+- [`docs/MASTER_PLAN.md`](docs/MASTER_PLAN.md)
 - [`TESTING.md`](TESTING.md)
-- [`../../docs/decisions/README.md`](../../docs/decisions/README.md)
-- [`../../docs/audits/2026-08-23-consolidated/README.md`](../../docs/audits/2026-08-23-consolidated/README.md)
+- [`docs/decisions/README.md`](docs/decisions/README.md)
+- [`docs/audits/2026-08-23-consolidated/README.md`](docs/audits/2026-08-23-consolidated/README.md)
 
 `docs/audits/` is historical evidence. Historical recommendations are not automatically current requirements; revalidate against current code and tests.
 
-For common engineering/art infrastructure, use the canonical plans and STATUS in the Minecraft Mod Factory instead of the historical shared-control-plane material retained here.
+For common engineering/art infrastructure, use the canonical plans and STATUS in the Minecraft Mod Factory instead of historical shared-control-plane material preserved only as provenance.
 
 ## Permanent RPG runtime invariants
 
@@ -153,4 +153,4 @@ For every RPG provider integration:
 
 ## Before expanding RPG content
 
-Large-scale skill/subtree expansion should wait until the runtime foundations required by that content are objectively green. Use [`../../docs/MASTER_PLAN.md`](../../docs/MASTER_PLAN.md) and current tests/CI to determine the actual frontier rather than relying on historical phase assumptions.
+Large-scale skill/subtree expansion should wait until the runtime foundations required by that content are objectively green. Use [`docs/MASTER_PLAN.md`](docs/MASTER_PLAN.md) and current tests/CI to determine the actual frontier rather than relying on historical phase assumptions.
