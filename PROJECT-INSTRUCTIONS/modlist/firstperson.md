@@ -21,9 +21,9 @@
 - **Compatibilidade/Riscos:** Epic Fight 21.17.3.1 suprime o body FirstPerson em battle mode; bridge opcional Epic Fight x First Person Model 1.3 está ausente e só é necessária se o design exigir corpo completo durante combate. Riscos: head/arm clipping, player-model/armor 3D conflicts e duplicate transforms.
 - **Sobreposição:** Integra-se visualmente com Not Enough Animations e pode colidir com Custom Player Models, armor 3D e Epic Fight render paths. Não altera hitbox, reach ou damage.
 - **Observações:** Client-only: F6 toggle e Vanilla Hands são presentation state. Limitação Epic Fight é funcional/rendering, não incompatibilidade de startup. Não criar entradas top-level para TRansition/TRender embarcados.
-- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `firstperson-neoforge-2.7.2-mc1.21.1.jar`, mod id `firstperson`, versão 2.7.2 e SHA-1 8faf96d7c3c12eaec819b4e273e58c048e8de125; TRansition/TRender aparecem apenas dentro de META-INF/jars.
+- **Procedência:** modlist.txt física atual; fontes oficiais revalidadas em 12/09/2026.
 - **Histórico da decisão:** vazio.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — FirstPerson 2.7.2; client render ownership, F6/Vanilla Hands, Not Enough Animations, Epic Fight limitation, embedded TRender/TRansition, lifecycle, riscos e testes catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026
 - **Data da última decisão:** 2026-08-26
 
 ## Dossiê operacional — padrão Alex's Mobs
