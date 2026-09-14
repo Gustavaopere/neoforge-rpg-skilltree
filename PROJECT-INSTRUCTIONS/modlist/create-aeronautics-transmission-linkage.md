@@ -11,7 +11,7 @@
 - **Mod:** Create Aeronautics: Transmission & Linkage
 - **Arquivo JAR:** `create_aeronautics_transmission_linkage-0.2.8.jar`
 - **Versão 1.21.1:** 0.2.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, Automação
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa a transmissão cinética do Create entre estruturas físicas móveis; não substitui shafts/cogwheels do Create nem a física Aeronautics.
 - **Compatibilidade/Riscos:** Riscos: constraint/frame mismatch, kinetic double-count, stale linkage após unload, rod/joint state órfão, torque/stress divergence e API drift Aeronautics/Sable/Create. 0.2.8 tem regression gate explícito em vehicle unloading.
 - **Observações:** JAR físico `create_aeronautics_transmission_linkage-0.2.8.jar`, mod id `aeronautics_utility_objects`, runtime 0.2.8. O texto antigo que citava runtime 0.2.7 foi corrigido. Release NeoForge 1.21.1 de 02/09/2026; 0.2.8 melhora estabilidade durante vehicle unloading.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficiais Create Aeronautics: Transmission & Linkage 0.2.8.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `aeronautics_utility_objects` 0.2.8 + CurseForge/Modrinth oficiais Create Aeronautics: Transmission & Linkage 0.2.8 revalidados em 12/09/2026.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-transmission-linkage
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — corpo vazio corrigido; joints/rods/bearings, cross-body kinetics, constraints, unload stability e Sable lifecycle catalogados para 0.2.8.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #132: create_aeronautics_transmission_linkage-0.2.8.jar / 0.2.8 reconfirmados; joints/rods/bearings, cross-body kinetics, constraints, vehicle-unload stability e Sable lifecycle permanecem atuais.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
