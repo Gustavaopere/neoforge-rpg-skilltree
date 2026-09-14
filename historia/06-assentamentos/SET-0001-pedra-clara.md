@@ -1,7 +1,18 @@
 # SET-0001 — Pedra Clara
 
 ## Estado editorial
-RASCUNHO ESTRUTURADO / ASSENTAMENTO DE REFERÊNCIA.
+RASCUNHO ESTRUTURADO / ASSENTAMENTO DE REFERÊNCIA / ESPELHADO COMO DRAFT NO GRIMOIRE.
+
+## Reconciliação Grimoire
+Reconciliação executada em 2026-09-14 conforme `historia/11-ia-e-autoria/12-grimoire-github-sync.md`.
+
+- buscas por `Pedra Clara` e `Corte de Pedra Clara` não localizaram assentamento/local preexistente equivalente;
+- foi criado no Grimoire o draft `Pedra Clara`, UUID `ce9922c2-fc50-4edc-8655-d00f03f96d7e`, com referência cruzada ao ID estável `SET-0001`;
+- a identidade pública e as características culturais registradas foram derivadas deste dossiê sem fixar localização, bioma, população numérica, worldgen ou segredo novo;
+- `NPC-0003` aponta para este draft como local relacionado e para o draft de `FAC-0001` como vínculo institucional;
+- o espelho estruturado **não** promove o assentamento a cânone nem resolve seu binding físico.
+
+O conector do Grimoire não materializou diretamente o campo de facção presente do local durante este passe; por isso nenhuma relação adicional foi inventada para contornar a limitação. A relação institucional permanece comprovável pelo vínculo de `NPC-0003` e pelos IDs cruzados até que o schema/adapter aceite esse edge de forma nativa.
 
 ## Identidade pública
 Centro urbano/regional em reconstrução que sustenta `FAC-0001` Corte de Pedra Clara. Sua localização exata, bioma, escala física e integração final com worldgen permanecem abertas até compatibilização com o mapa/pack.
