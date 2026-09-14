@@ -61,10 +61,29 @@ Linhas relativamente verticais e limpas; camadas de roupa funcionais; poucos ele
 ## Modelo alvo
 Modelo corporal Minecraft: `classic`, conforme ficha de autoria atual. Deve ser revalidado no pipeline técnico antes de export final.
 
-## Resolução/texel density
-**PENDENTE DE EVIDÊNCIA TÉCNICA.**
+## Resolução e formatos
+A produção visual separa deliberadamente portrait/concept de skin técnica.
 
-Não congelar resolução global ou densidade apenas por convenção editorial. O formato final deve seguir o alvo de skin/modelo realmente validado na Minecraft Mod Factory e a evidência do runtime/asset pipeline.
+### Portrait/documentação — decisão de produção
+- master aprovado: **2048×2048 px**, PNG, sRGB;
+- manter o master sem recompressão lossy;
+- derivados menores podem ser gerados para UI/documentação, mas não substituem o master;
+- concept sheets não precisam ser quadradas, porém devem preservar pelo menos **2048 px no maior lado** para leitura de material/rosto;
+- portrait/concept nunca é convertido diretamente em UV de skin.
+
+### Skin técnica — evidência do provider
+- alvo atual: **64×64 px RGBA PNG**, layout moderno de skin humanoide Minecraft;
+- modelo `classic` conforme a ficha atual; qualquer mudança futura para `slim` exige ajuste explícito do layout/modelo;
+- preservar alpha/segunda camada quando usada;
+- não ampliar a skin para "HD" por conta própria: Easy NPC consome skin de player/URL no renderer humanoide; portrait e skin são artefatos diferentes;
+- **não presumir outer layer 3D para NPCs**: a presença de 3D Skin Layers comprova comportamento no renderer de player, não integração automática com humanoides do Easy NPC. Qualquer efeito 3D específico no NPC exige prova de provider/render path ou modelo próprio.
+
+Evidência técnica/proveniência:
+- `PROJECT-INSTRUCTIONS/modlist/easy-npc.md` — Easy NPC Core 7.11.0 é o provider físico dos NPCs e suporta skins de player/URL;
+- upstream Easy NPC já trata skins modernas 64×64 e preservação de alpha antes da versão física 7.11.0;
+- `PROJECT-INSTRUCTIONS/modlist/3d-skin-layers.md` — o mod atua no renderer de player e não deve ser promovido a capability do Easy NPC sem integração comprovada.
+
+A especificação `64×64` é do formato humanoide atual, não uma regra global de texel density para qualquer asset project-owned.
 
 ## Emissive/translucency/animated texture
 Nenhum requisito atual. Não adicionar brilho ocular, aura permanente ou emissive gratuito.
@@ -96,8 +115,8 @@ As três devem continuar reconhecíveis como o mesmo NPC.
 Asset project-owned. Referências externas, se usadas em look-dev, servem apenas para linguagem visual e devem ser registradas; não copiar textura/modelo de terceiros.
 
 ## Evidência final exigida
-- concept/portrait aprovado contra este brief;
-- textura/skin técnica separada do concept;
+- concept/portrait aprovado contra este brief em master 2048×2048;
+- textura/skin técnica 64×64 separada do concept;
 - validação estrutural no pipeline Blockbench/Factory;
 - vistas úteis de frente, lateral, costas e três-quartos quando aplicável;
 - verificação em escala real de gameplay;
@@ -106,7 +125,6 @@ Asset project-owned. Referências externas, se usadas em look-dev, servem apenas
 ## Pendências
 - altura/proporção percebida aprovada;
 - tom de pele aprovado;
-- resolução/texel density final;
 - portrait/concept aprovado;
 - skin/texture final;
 - eventual identidade visual de `FAC-0001`;
