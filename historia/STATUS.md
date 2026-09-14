@@ -8,14 +8,15 @@
 - Templates reutilizáveis: **MIGRADOS PARA MINECRAFT MOD FACTORY**
 - Profile consumidor da campanha: **DEFINIDO**
 - Macro-história inicial: **REGISTRADA**
-- Faixa inicial de NPCs `NPC-0001`–`NPC-0006`: **VERSIONADA COM ESTADOS EDITORIAIS EXPLÍCITOS**
-- NPCs já espelhados do Grimoire em dossiês completos: **Iren, Liora, Oren e Elian**
+- Faixa inicial de NPCs `NPC-0001`–`NPC-0007`: **VERSIONADA COM ESTADOS EDITORIAIS EXPLÍCITOS**
+- NPCs já espelhados do Grimoire em dossiês completos: **Iren, Liora, Oren, Elian e Maura**
 - NPC source-blocked preservado sem preenchimento artificial: **Elias (`NPC-0002`)**
 - Conflito de identidade preservado em fail-closed: **Severin ↔ Aren**
 - Primeira oportunidade/quest de referência: **REGISTRADA**
 - Pipeline genérico de autoria: **MIGRADO PARA MINECRAFT MOD FACTORY / CONSUMIDO POR CI**
 - Contratos editoriais específicos da campanha: **MANTIDOS NO RPG**
-- Referências Grimoire relacionadas ainda sem ID editorial próprio: **RASTREADAS NO BACKLOG / NÃO MATERIALIZADAS SEM SOURCE**
+- Seis referências Grimoire de Oren/Elian recuperadas neste ciclo: **MATERIALIZADAS COMO `NPC-0007`, `FAC-0002`, `FAC-0003`, `SET-0002`, `SET-0003` E `LOC-0002`**
+- Referências Grimoire residuais ainda sem ID editorial próprio: **RASTREADAS NO BACKLOG / FAIL-CLOSED ATÉ SOURCE RECONCILIADO**
 - Diretor narrativo IA in-game: **OPCIONAL / PLANEJADO / NÃO É AUTORIDADE**
 
 ## Regra de atualização
@@ -35,7 +36,7 @@ Ao adicionar conteúdo:
 
 ## Próximos blocos editoriais
 
-- reconciliar as entidades relacionadas já referenciadas por UUID nos dossiês de Oren/Elian antes de criar duplicatas (`Maura`, `Ofícios do Pátio`, `Pátio das Oficinas`, `Coordenação de Sobrevivência do Entreposto`, `Acampamento do Entreposto`, `O Entreposto`);
+- reconciliar as referências Grimoire residuais registradas no backlog, incluindo a parent location `e05ef102-46c3-4f31-8043-ee2eda6d99af` e `Pátio da Passagem`, sem atribuir ID antes de recuperar a entity-fonte;
 - resolver a decisão editorial Severin↔Aren;
 - recuperar a authority de `NPC-0002` Elias;
 - continuar expansão de NPCs nomeados somente a partir de source recuperado;
