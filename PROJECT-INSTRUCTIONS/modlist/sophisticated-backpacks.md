@@ -2,46 +2,45 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db81969230c6a657439ec8
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sophisticatedbackpacks-1.21.1-3.26.2.2141.jar`, mod id `sophisticatedbackpacks`, runtime `3.26.2`, mixin `sophisticatedbackpacks.mixins.json`; Sophisticated Core 1.5.1, Sophisticated JEI Index 1.2.2, Sophisticated Thirst Upgrade 0.1.8, Sophisticated Backpacks Create Integration 0.2.0 e Create 6.0.10 presentes
-- **Data da exportação:** 2026-09-11
+- **Baseline física pré-update:** `sophisticatedbackpacks-1.21.1-3.26.2.2141.jar`
+- **Artefato alvo selecionado no CurseForge:** `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` — file `8845926`, Release, publicado em 09/09/2026
+- **Stack físico baseline:** Sophisticated Core 1.5.1, Sophisticated JEI Index 1.2.2, Sophisticated Thirst Upgrade 0.1.8, Sophisticated Backpacks Create Integration 0.2.0 e Create 6.0.10
+- **Data da atualização documental GitHub:** 2026-09-14
 
-## Divergência documental detectada na exportação
+> **BOUNDARY FÍSICO.** A modlist física entregue ainda contém 3.26.2.2141. O GitHub registra 3.26.3.2158 como alvo de atualização. O delta público confirmado é específico e relevante para este pack: correção de **stack overflow quando Create Packagers acessam Inception backpacks**.
 
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sophisticated Backpacks 3.26.2 e os addons/providers citados estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
-
-## Propriedades do banco
+## Propriedades equivalentes do catálogo
 
 - **Mod:** Sophisticated Backpacks
-- **Arquivo JAR:** `sophisticatedbackpacks-1.21.1-3.26.2.2141.jar`
-- **Versão 1.21.1:** 3.26.2
-- **Estado no pack:** Instalado — Dossiê completo
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR alvo:** `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`
+- **Versão 1.21.1 alvo:** 3.26.3
+- **Baseline física auditada:** 3.26.2.2141 / runtime 3.26.2
+- **Estado da pesquisa:** Verificado documentalmente; validação física/runtime da 3.26.3.2158 pendente
 - **Decisão:** Manter
 - **Categoria:** Armazenamento, Automação
 - **Função:** Storage portátil e colocável modular, com tiers/capacidade e upgrades funcionais de coleta, filtragem, alimentação, crafting/processamento, fluidos/energia e automação, além de settings persistentes.
-- **Dependências:** Sophisticated Core 1.5.1 é required e está presente. Integrações físicas: Sophisticated JEI Index 1.2.2, Sophisticated Thirst Upgrade 0.1.8, Sophisticated Backpacks Create Integration 0.2.0 e Create 6.0.10.
+- **Dependências:** Sophisticated Core 1.5.1 é required e está presente na baseline. Integrações físicas: Sophisticated JEI Index 1.2.2, Sophisticated Thirst Upgrade 0.1.8, Sophisticated Backpacks Create Integration 0.2.0 e Create 6.0.10.
 - **Sobreposição:** É o storage portátil modular do stack Sophisticated. Cruza em conveniência com outros backpacks e com redes estacionárias, mas não equivale a Tom's/Sophisticated Storage nem aos addons Create.
-- **Compatibilidade/Riscos:** Core de storage portátil stateful. Riscos: inventory/upgrades dupe ou loss em place/pickup/death, nested storage recursion, filter/settings drift, automation double-processing, capability sync e Create contraption/linked-storage state. 3.26.2 adiciona linked storage ao SB Create integration e exige regressão desse path.
-- **Observações:** JAR físico `sophisticatedbackpacks-1.21.1-3.26.2.2141.jar`, runtime 3.26.2. Changelog exato da build: adição de linked storage à integração Create de Sophisticated Backpacks; demais features são arquitetura da linha, não delta exclusivo.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Sophisticated Backpacks 3.26.2.2141 + integrações físicas Sophisticated atuais do pack.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/8833888
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Sophisticated Backpacks 3.26.2 reconstruído: portable/placeable storage, tiers/upgrades/settings, automation, persistence, nested/storage safety, JEI/Thirst/Create integrations, exact 3.26.2 linked-storage delta, lifecycle, riscos e testes.
+- **Compatibilidade/Riscos:** Core de storage portátil stateful. Riscos: inventory/upgrades dupe ou loss em place/pickup/death, nested storage recursion, filter/settings drift, automation double-processing, capability sync, linked-storage state e Create Packager/Inception recursion. A 3.26.3 corrige o stack overflow conhecido nesse último path.
+- **Observações:** A baseline 3.26.2 adicionou linked storage à integração Create. A 3.26.3.2158 corrige stack overflow quando Create Packagers acessam Inception backpacks; esse fix passa a ser regression gate do alvo.
+- **Procedência:** modlist.txt física baseline + CurseForge oficial Sophisticated Backpacks 3.26.3.2158 + changelogs 3.26.2/3.26.3 + integrações físicas Sophisticated atuais do pack.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 14/09/2026 — GitHub promovido para alvo 3.26.3.2158. Fix de Create Packager ↔ Inception backpack integrado ao dossier e à matriz de regressão; baseline física 3.26.2 preservada até re-fetch pós-update.
 - **Histórico da decisão:** Mantido como núcleo de armazenamento portátil. Confirmado carregado em 22/08/2026 na versão 3.25.78. A revisão separou o mod-base de addons que apenas facilitam upgrades ou fornecem kits gratuitos.
 - **Data da última decisão:** 2026-08-22
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **ESCOPO CANÔNICO.** Runtime físico: `sophisticatedbackpacks-1.21.1-3.26.2.2141.jar`, mod id `sophisticatedbackpacks`, versão `3.26.2`, NeoForge 1.21.1. É o **storage portátil modular** do stack Sophisticated e a decisão vigente **Manter** é preservada.
+> **ESCOPO CANÔNICO.** Runtime físico baseline: `sophisticatedbackpacks-1.21.1-3.26.2.2141.jar`, mod id `sophisticatedbackpacks`, versão `3.26.2`. Alvo documental: `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`. É o **storage portátil modular** do stack Sophisticated e a decisão vigente **Manter** é preservada.
 
 ## 1. Identidade e papel
 - **Mod:** Sophisticated Backpacks.
-- **JAR:** `sophisticatedbackpacks-1.21.1-3.26.2.2141.jar`.
-- **Mod id:** `sophisticatedbackpacks`.
-- **Versão:** `3.26.2`.
+- **JAR físico baseline:** `sophisticatedbackpacks-1.21.1-3.26.2.2141.jar`.
+- **JAR alvo:** `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`.
+- **Mod id baseline:** `sophisticatedbackpacks`.
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Ambiente:** Client & Server.
-- **Required:** Sophisticated Core `1.5.1`.
+- **Required baseline:** Sophisticated Core `1.5.1`.
 
 ## 2. Storage portátil e colocável
 Backpacks mantêm inventário próprio quando carregados pelo player e podem também operar em formas/contexts colocáveis suportados pelo mod.
@@ -66,7 +65,7 @@ Pickup concorrente entre player inventory, backpack e outros magnets do pack é 
 ## 6. Feeding e consumables
 O ecossistema inclui automação de alimentação/uso de consumíveis. O consumo funcional continua pertencendo ao item/provider correspondente; backpack decide apenas seleção/storage/trigger de seu upgrade.
 
-Sophisticated Thirst Upgrade 0.1.8 amplia esse padrão para hidratação no pack atual.
+Sophisticated Thirst Upgrade 0.1.8 amplia esse padrão para hidratação no pack baseline.
 
 ## 7. Crafting e processing upgrades
 Backpacks podem expor workflows de crafting/processamento por upgrades. Inputs/outputs devem ser transacionados sem permitir extração concorrente durante commit.
@@ -98,10 +97,10 @@ Conteúdo do backpack é state crítico. Validar serialização de:
 
 State parcial não pode ser reconstruído a partir apenas do renderer/client cache.
 
-## 11. Nested storage e recursion
+## 11. Nested storage, Inception e recursion
 Backpacks/storage dentro de outros containers podem criar riscos de nesting/recursion dependendo das regras da build/config. O mod deve aplicar suas próprias restrições e nunca serializar referência cíclica que cause duplication, stack overflow ou save bloat.
 
-A ficha não inventa uma política específica não publicada; testa a política real da build/config.
+A atualização 3.26.3 é diretamente relevante: corrige **stack overflow quando Create Packagers acessam Inception backpacks**. Portanto Inception + Packager não é apenas risco teórico; é um regression gate release-specific.
 
 ## 12. Death/drop lifecycle
 Morte do player, keepInventory, grave/corpse mods e item drops são boundaries importantes. O backpack deve existir em exatamente um local após a transição.
@@ -124,14 +123,17 @@ O pack contém **Sophisticated Thirst Upgrade 0.1.8**. Ele adiciona um upgrade f
 Remover/trocar backpack ou upgrade precisa invalidar imediatamente qualquer pending auto-use; o core do backpack não deve consumir item por conta própria sem upgrade ativo.
 
 ## 16. Create Integration
-**Sophisticated Backpacks Create Integration 0.2.0** está presente e adapta funcionalidades do backpack a moving contraptions Create.
+**Sophisticated Backpacks Create Integration 0.2.0** está presente na baseline e adapta funcionalidades do backpack a moving contraptions Create.
 
-Assembly/disassembly transforma contexto/posição do storage; conteúdo e upgrades devem permanecer únicos e consistentes durante movimento.
+Assembly/disassembly transforma contexto/posição do storage; conteúdo e upgrades devem permanecer únicos e consistentes durante movimento. Create Packagers também são agora uma superfície de regressão explicitamente coberta pelo fix 3.26.3.
 
-## 17. Delta exato 3.26.2
-O changelog da build física `3.26.2.2141` registra **linked storage adicionado à integração Create de Sophisticated Backpacks**.
+## 17. Delta 3.26.2 → 3.26.3
+A baseline `3.26.2.2141` adicionou **linked storage à integração Create de Sophisticated Backpacks**.
 
-Esse é um regression gate específico da versão. O restante do catálogo de backpack/upgrades é arquitetura da linha e não deve ser atribuído como novidade exclusiva da 3.26.2.
+A release alvo `3.26.3.2158`, publicada em 09/09/2026, corrige especificamente:
+- **stack overflow when Create Packagers access Inception backpacks**.
+
+Não atribuir outras mudanças à 3.26.3 sem changelog/source específico.
 
 ## 18. Linked storage boundary
 Linked storage implica que uma integração pode referenciar storage de forma lógica além da posição estática original. Identity/link target precisa ser estável e server-authoritative.
@@ -145,7 +147,8 @@ Servidor decide:
 - filtering/automation;
 - fluid/energy quantities;
 - place/pickup transitions;
-- linked-storage identity.
+- linked-storage identity;
+- nesting/Inception access e Packager settlement.
 
 Cliente apresenta GUI/render/input. Slot fantasma/preview não equivale a item real.
 
@@ -155,10 +158,11 @@ Dois players acessando o mesmo placed/linked storage precisam de locking/synchro
 Backpack pessoal não pode ser exposto a outro player sem mecanismo de acesso autorizado do próprio mod/provider.
 
 ## 21. Integrações e sobreposição no pack
-- **Sophisticated Core 1.5.1:** infraestrutura obrigatória.
+- **Sophisticated Core 1.5.1:** infraestrutura obrigatória na baseline.
 - **Sophisticated JEI Index 1.2.2:** recipe transfer/index.
 - **Sophisticated Thirst Upgrade 0.1.8:** auto-hidratação.
 - **Create Integration 0.2.0:** moving contraptions/linked storage.
+- **Create 6.0.10:** provider dos Packagers/contraption stack envolvido na regressão.
 - **Sophisticated Storage 1.5.91:** storage estacionário irmão, não substituto direto.
 - **Tom's Storage e outras redes:** sobreposição de conveniência, não equivalência de portable inventory.
 
@@ -173,6 +177,7 @@ Validar:
 - death/drop/grave flow;
 - chunk unload/reload de placed backpack;
 - Create assembly/disassembly;
+- Create Packager acessando Inception backpack;
 - save/restart;
 - multiplayer simultaneous access.
 
@@ -187,9 +192,11 @@ Validar:
 8. **Linked-storage split-brain:** duas referências divergem.
 9. **Concurrent access:** dois players sobrescrevem state.
 10. **Core/API drift:** Sophisticated Core incompatível com build consumer.
+11. **Packager/Inception recursion:** bug de stack overflow corrigido em 3.26.3 precisa permanecer fechado.
 
 ## 24. Matriz de testes
-- [ ] Dedicated server inicia com Backpacks 3.26.2 + Core 1.5.1.
+- [ ] Nova modlist física confirma `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`.
+- [ ] Dedicated server inicia com Backpacks 3.26.3 + Core/runtime dependente atual.
 - [ ] Backpack tier upgrade preserva conteúdo/upgrades/settings.
 - [ ] Place→pickup preserva exatamente uma cópia do inventário.
 - [ ] Pickup/magnet automation não duplica entities/stacks.
@@ -200,13 +207,16 @@ Validar:
 - [ ] JEI Index transfere ingredientes sem dupe/loss.
 - [ ] Thirst Upgrade consome item corretamente do backpack.
 - [ ] Create assembly/disassembly preserva content/upgrades.
-- [ ] Linked storage funciona e mantém identity após movimento/restart — regression 3.26.2.
+- [ ] Linked storage funciona e mantém identity após movimento/restart.
+- [ ] **Create Packager acessa Inception backpack sem stack overflow, recursion runaway, dupe ou loss — regression gate 3.26.3.**
 - [ ] Dois players acessando storage compartilhado não causam lost update.
 
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
 ## 25. Evidências e limites
-- Modlist física atual: Backpacks 3.26.2.2141, Core 1.5.1 e addons Sophisticated relacionados.
-- CurseForge oficial: portable/placeable modular storage, upgrade ecosystem e exact changelog 3.26.2 linked-storage integration.
-- Catálogo do pack: JEI Index, Thirst Upgrade e Create Integration presentes.
-- **Limite:** configs locais e cada upgrade individual não foram testados; comportamento fino deve seguir a build/config efetivamente carregada.
+- Modlist física baseline: Backpacks 3.26.2.2141, Core 1.5.1 e addons Sophisticated relacionados.
+- CurseForge oficial: `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`, file 8845926, Release, 09/09/2026.
+- Changelog 3.26.3: fix de stack overflow quando Create Packagers acessam Inception backpacks.
+- Changelog 3.26.2: linked storage adicionado à integração Create.
+- Catálogo do pack: JEI Index, Thirst Upgrade, Create Integration e Create presentes.
+- **Limite:** configs locais e cada upgrade individual não foram testados; instalação física 3.26.3 e resultado runtime ainda exigem nova modlist/JAR e QA.
