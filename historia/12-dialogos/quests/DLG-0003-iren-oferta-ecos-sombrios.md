@@ -49,7 +49,8 @@ Iren: "Se você aceitar, procure o que ainda pode ser verificado. Não vá tenta
 ### Ramo C — pedir evidências
 - jogador: "O que você tem de concreto?"
 - regra de composição: **não existe uma resposta fixa que enumere todas as evidências**. A fala deve ser composta somente pelas classes/peças que `NPC-0003` realmente conhece naquele estado, preservando a proveniência e a incerteza de cada uma.
-- fragmento se Iren conhece `EVD-0001` ou relatos equivalentes: "Tenho relatos que não concordam nos detalhes. Isso é motivo para comparar fontes, não para escolher a versão mais dramática."
+- fragmento se Iren conhece ao menos um relato de `EVD-0001` ou equivalente: "Tenho um relato que merece ser verificado. Ainda é informação de uma fonte, não confirmação do que ocorreu."
+- variante somente se Iren conhece múltiplos relatos realmente incompatíveis entre si: "Tenho relatos que não concordam nos detalhes. Isso é motivo para comparar fontes, não para escolher a versão mais dramática."
 - fragmento se Iren conhece `EVD-0002` ou análise cartográfica equivalente: "Há uma concentração geográfica que pode ser padrão real ou viés de coleta. Ainda preciso separar as duas coisas."
 - fragmento se Iren conhece `EVD-0003` ou informação de campo equivalente: "Há informação de campo que justifica olhar mais de perto, mas a proveniência e a interpretação ainda precisam de cuidado."
 - composição: quando mais de um fragmento for legítimo, Iren pode condensá-los em uma resposta curta; desconhecer uma peça nunca autoriza mencioná-la, negar sua existência ou antecipar sua descoberta.
@@ -115,6 +116,7 @@ Intents possíveis:
 - descobrir algo antes da oferta é reconhecido;
 - conhecimento transmitido ao NPC preserva origem no jogador;
 - uma resposta sobre evidências só pode mencionar peças/classes realmente conhecidas por Iren;
+- divergência entre relatos só pode ser mencionada quando Iren conhece múltiplos relatos incompatíveis;
 - diálogo padrão não executa se a oportunidade já mudou de estado.
 
 ## Notas de voz
@@ -127,6 +129,7 @@ Iren evita linguagem mística genérica. Quando não sabe, diz explicitamente. A
 - [x] consequências são intents validados, não mutações por texto;
 - [x] alternate entry possui ramo próprio;
 - [x] resposta de evidências é condicionada ao knowledge real de `NPC-0003`;
+- [x] conflito entre relatos não é inferido de um único relato conhecido;
 - [x] não há culpado/solução expostos;
 - [x] perda de evidência individual não bloqueia toda a quest;
 - [x] não há provider inventado.
