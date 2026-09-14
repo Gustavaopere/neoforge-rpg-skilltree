@@ -11,7 +11,7 @@
 - **Mod:** Acolyte
 - **Arquivo JAR:** `acolyte-1.0.3.jar`
 - **Versão 1.21.1:** 1.0.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, RPG, Mobs, Exploração
@@ -20,9 +20,9 @@
 - **Sobreposição:** Estruturas se sobrepõem em finalidade a dungeon/settlement packs; spellcasters se sobrepõem tematicamente a mobs mágicos de outros addons; recruitment cruza companion systems. Nenhuma dessas sobreposições é incompatibilidade formal sem conflito de placement/AI/ownership comprovado.
 - **Compatibilidade/Riscos:** Alta superfície de worldgen/entidades. O pack possui muitos structure providers e world scaling; validar placement/densidade, biome tags, loot e dificuldade do Lieutenant. Epic Fight/EFIS e outros patches podem alterar animação/AI. Recruit system toca followers/summons, porém é contratação temporária, não familiar/summon persistente. Upstream não publica spell loadouts exatos, biome mapping, duration, template IDs/weights ou trade tables no overview; esses detalhes devem ser extraídos do JAR/data/runtime antes de integrações.
 - **Observações:** Não inventar duração do contrato, custo exato em emeralds, spell list por archetype, biome list concreta, loot pool ou structure weights: o overview upstream não publica esses valores. Antes de quest/perk/compat, extrair os dados reais da 1.0.3.
-- **Procedência:** Modlist física 2026-09-07 + CurseForge/Modrinth oficiais Acolyte + relations + guia mágico do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/Modrinth oficiais Acolyte e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `acolyte-1.0.3.jar` / `1.0.3`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/acolyte
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê operacional completo de roster, 18 estruturas, recruitment, horn economy, worldgen, Iron's authority e validation matrix confirmado no QC global #4.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #4: `acolyte-1.0.3.jar` / `1.0.3` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
