@@ -27,7 +27,7 @@ Iren deve possuir ao menos uma combinação suficiente de relatos/registro/evid�
 A relação pode alterar tom, quantidade de contexto e disposição de Iren em compartilhar detalhes, mas não muda a verdade dos fatos.
 
 ## Entrada padrão — pedido sem acusação
-Iren: "Tenho ocorrências demais na mesma região para continuar chamando tudo de coincidência e evidência de menos para chamar de qualquer outra coisa. Preciso de observação de campo, não de uma caça a culpados."
+Iren: "Há indícios suficientes para justificar uma verificação de campo naquela região e evidência de menos para chamar isso de conclusão. Preciso de observação, não de uma caça a culpados."
 
 Iren: "Se você aceitar, procure o que ainda pode ser verificado. Não vá tentando provar a minha hipótese. Eu ainda não tenho uma que mereça esse nome."
 
@@ -35,7 +35,7 @@ Iren: "Se você aceitar, procure o que ainda pode ser verificado. Não vá tenta
 
 ### Ramo A — aceitar
 - jogador: "Eu investigo."
-- Iren: "Então comece pela região, não pelas histórias. Registre o que encontrar antes de interpretar. Se houver pessoas envolvidas, não assuma hostilidade só porque preferem não ser encontradas."
+- Iren: "Então comece pelo que pode observar em campo. Registre o que encontrar antes de interpretar. Se houver pessoas envolvidas, não assuma hostilidade só porque preferem não ser encontradas."
 - intent: solicitar transição de engagement para `ACCEPTED` apenas após validação do Narrative Core;
 - discovery: no mínimo `DISCOVERED`, limitado ao conteúdo legitimamente compartilhado nesta conversa;
 - próximo: journal/objetivo player-safe compatível com o knowledge atual.
@@ -48,8 +48,12 @@ Iren: "Se você aceitar, procure o que ainda pode ser verificado. Não vá tenta
 
 ### Ramo C — pedir evidências
 - jogador: "O que você tem de concreto?"
-- Iren: "Depende do que chama de concreto. Tenho relatos que não concordam nos detalhes, um padrão geográfico que pode ser real ou viés de coleta, e informação de campo cuja proveniência ainda precisa de cuidado. Isso justifica olhar. Não justifica acusar."
-- regra: mencionar somente classes/peças que `NPC-0003` realmente conhece;
+- regra de composição: **não existe uma resposta fixa que enumere todas as evidências**. A fala deve ser composta somente pelas classes/peças que `NPC-0003` realmente conhece naquele estado, preservando a proveniência e a incerteza de cada uma.
+- fragmento se Iren conhece ao menos um relato de `EVD-0001` ou equivalente: "Tenho um relato que merece ser verificado. Ainda é informação de uma fonte, não confirmação do que ocorreu."
+- variante somente se Iren conhece múltiplos relatos realmente incompatíveis entre si: "Tenho relatos que não concordam nos detalhes. Isso é motivo para comparar fontes, não para escolher a versão mais dramática."
+- fragmento se Iren conhece `EVD-0002` ou análise cartográfica equivalente: "Há uma concentração geográfica que pode ser padrão real ou viés de coleta. Ainda preciso separar as duas coisas."
+- fragmento se Iren conhece `EVD-0003` ou informação de campo equivalente: "Há informação de campo que justifica olhar mais de perto, mas a proveniência e a interpretação ainda precisam de cuidado."
+- composição: quando mais de um fragmento for legítimo, Iren pode condensá-los em uma resposta curta; desconhecer uma peça nunca autoriza mencioná-la, negar sua existência ou antecipar sua descoberta.
 - intent: pode elevar discovery do jogador conforme informação efetivamente transmitida; não altera engagement sozinho.
 
 ### Ramo D — exigir um suspeito
@@ -63,7 +67,7 @@ Precondição: o jogador possui knowledge legítimo de `EVD-0003` ou fato equiva
 - jogador: "Já estive naquela região. Encontrei um lugar que parece ter sido usado em segredo."
 - Iren: "Usado por quem?"
 - jogador: "Não sei."
-- Iren: "Ótimo. Mantenha esse 'não sei'. Agora me diga o que torna o uso repetido e o que torna o uso oculto. São duas afirmações diferentes."
+- Iren: "Ótimo. Mantenha esse 'não sei'. Agora me diga o que faz você chamar o uso de oculto. E encontrou sinais de repetição ou só de uma passagem? São afirmações diferentes."
 - regra: reconciliar alternate entry; não pedir ao jogador para repetir descoberta já realizada;
 - intent: compartilhar knowledge com `NPC-0003` apenas através do pipeline autorizado e registrar proveniência como relato do jogador, não como observação direta de Iren.
 
@@ -111,6 +115,9 @@ Intents possíveis:
 - pedir contexto não conta como aceitar;
 - descobrir algo antes da oferta é reconhecido;
 - conhecimento transmitido ao NPC preserva origem no jogador;
+- entrada padrão não pressupõe quantidade, conflito ou padrão cartográfico que Iren ainda não conhece;
+- uma resposta sobre evidências só pode mencionar peças/classes realmente conhecidas por Iren;
+- divergência entre relatos só pode ser mencionada quando Iren conhece múltiplos relatos incompatíveis;
 - diálogo padrão não executa se a oportunidade já mudou de estado.
 
 ## Notas de voz
@@ -119,9 +126,12 @@ Iren evita linguagem mística genérica. Quando não sabe, diz explicitamente. A
 ## QA
 - [x] nenhum participante sabe informação sem proveniência;
 - [x] offer depende de estado real;
+- [x] entrada padrão é compatível com diferentes conjuntos legítimos de evidência;
 - [x] aceitar/recusar permanecem distintos de discovery;
 - [x] consequências são intents validados, não mutações por texto;
 - [x] alternate entry possui ramo próprio;
+- [x] resposta de evidências é condicionada ao knowledge real de `NPC-0003`;
+- [x] conflito entre relatos não é inferido de um único relato conhecido;
 - [x] não há culpado/solução expostos;
 - [x] perda de evidência individual não bloqueia toda a quest;
 - [x] não há provider inventado.
