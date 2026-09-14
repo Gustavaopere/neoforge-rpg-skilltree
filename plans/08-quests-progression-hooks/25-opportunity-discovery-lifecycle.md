@@ -87,7 +87,7 @@ Oportunidades podem evoluir enquanto continuam `UNKNOWN` para o player quando o 
 Não usar progressão autônoma arbitrária em todo conteúdo; ela precisa ser explicitamente declarada e determinística/observável para debugging.
 
 ## Exemplo canônico — Severin
-Em uma fase avançada, o mago da corte pode sentir energia sombria e criar uma oportunidade de investigação. Rotas válidas incluem:
+Em uma fase avançada, um mago ligado à corte pode reunir indícios suficientes de ocorrências incomuns por rumor, testemunha, evidência, observação concreta ou outro canal rastreável e criar uma oportunidade de investigação. Rotas válidas incluem:
 
 1. requisitos nunca satisfeitos → `LOCKED + UNKNOWN`;
 2. requisitos satisfeitos, mas jogador nunca fala com o mago → `ELIGIBLE + UNKNOWN`;
