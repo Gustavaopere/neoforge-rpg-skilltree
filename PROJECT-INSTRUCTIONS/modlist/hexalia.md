@@ -3,8 +3,8 @@
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3ca69db9f0db8119a1c2d69284d5abd2
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-11
+- **Autoridade física usada:** `modlist.txt` — `hexalia-neoforge-1.3.6.jar`, com metadata interna `1.3.5`
+- **Data da sincronização GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
@@ -18,10 +18,10 @@
 - **Dependências:** NeoForge 1.21.1; source 1.3.6 usa Architectury API 13.0.8, GeckoLib 4.7.6 e Patchouli 92. Pack contém Architectury 13.0.11, GeckoLib 4.9.2 e Patchouli 93.
 - **Sobreposição:** Sobreposição temática com Ars/Goety/Malum em rituais/alquimia/nature magic, mas recipes, data components, entities e settlement são provider-specific; não unificar por semelhança temática.
 - **Compatibilidade/Riscos:** Drift real: filename/release/source 1.3.6, metadata interna 1.3.5. Outros riscos: ABI Architectury/GeckoLib, recipe serializer drift, ritual/mutation double settlement, data-component/set-bonus duplication, projectile ownership e worldgen collision.
-- **Observações:** Source 1.3.6 confirma recipe types celestial_infusion/natures_ritual/small_cauldron/mortar_and_pestle/mutation, 10 entity types e componentes persistentes/sincronizados para tether, moth, magic resist e armor-set state.
-- **Procedência:** modlist.txt física atual de 09/09/2026 + CurseForge oficial Hexalia 1.3.6 NeoForge 1.21.1 + source oficial AstralyaStudios/Hexalia branch hexalia-1.21.1 exatamente em mod_version 1.3.6; metadata física 1.3.5 preservada como divergência.
+- **Observações:** Source 1.3.6 confirma recipe types celestial_infusion/natures_ritual/small_cauldron/mortar_and_pestle/mutation, 10 entity types e componentes persistentes/sincronizados para tether, moth, magic resist e armor-set state. A release 1.3.6 também expõe configuração do Nature's Ritual para exigir 0–32 crops próximos, padrão 8.
+- **Procedência:** modlist.txt física anexada e reconferida + CurseForge oficial Hexalia 1.3.6 NeoForge 1.21.1 + source oficial AstralyaStudios/Hexalia branch hexalia-1.21.1 em mod_version 1.3.6 + changelog oficial 1.3.6 + metadata física 1.3.5 preservada como divergência.
 - **Fonte:** https://github.com/AstralyaStudios/Hexalia/tree/hexalia-1.21.1
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Hexalia 1.3.6 source-pinned com metadata runtime 1.3.5 divergente; recipes, entities, components, rituais/transmutação, worldgen, side/lifecycle, riscos e testes catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 14/09/2026 — filename/release/source 1.3.6 e metadata interna 1.3.5 reconfirmados como drift real. CurseForge continua sem release NeoForge 1.21.1 semanticamente superior à 1.3.6; o botão “Atualizar” não foi convertido em versão inexistente. Configuração do Nature's Ritual 0–32 crops, padrão 8, sincronizada do dossiê Notion.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-28
 
@@ -43,6 +43,8 @@ A linha exata registra blocks, items, entities, effects, sounds, particles, menu
 
 ## 5. Recipe systems
 O source registra cinco recipe types principais: `celestial_infusion`, `natures_ritual`, `small_cauldron`, `mortar_and_pestle` e `mutation`; há ainda serializer legado `ritual_table` apontando para o ritual moderno. Scripts/datapacks não devem presumir que todos são crafting-table recipes. Alterar serializers/JSON requer `/reload` e validação de codecs.
+
+A release oficial **1.3.6** também adicionou uma configuração do **Nature's Ritual** para exigir de **0 a 32 crops próximos**, com **8 como padrão**. Esse valor deve ser tratado como configuração efetiva do provider e validado no runtime/config da instância antes de qualquer integração que assuma custo ou condição fixa.
 
 ## 6. Rituais e celestial infusion
 `natures_ritual` e `celestial_infusion` são contracts data-driven distintos. Admission, consumo de ingredientes e resultado precisam ser liquidados uma vez. Chunk unload, restart ou dois jogadores acionando a mesma estrutura não podem duplicar output nem consumir inputs parcialmente.
@@ -89,7 +91,7 @@ Hexalia se sobrepõe tematicamente a Ars Nouveau, Goety, Malum e outros provider
 ## 17. Matriz de testes obrigatória
 - [ ] Dedicated server boot com filename 1.3.6 / metadata 1.3.5 sem dependency warning inesperado.
 - [ ] Registry sync das entities/recipes/components atuais.
-- [ ] `natures_ritual` success/failure/retry/chunk unload sem dupe/loss.
+- [ ] `natures_ritual` success/failure/retry/chunk unload sem dupe/loss e respeita a quantidade de crops configurada.
 - [ ] `celestial_infusion`, cauldron, mortar e mutation recipes sobrevivem a `/reload`.
 - [ ] Spiritroot tether e moth components persistem após inventory move/relog/restart.
 - [ ] Armor set/magic resist components não duplicam modifiers.
@@ -100,7 +102,7 @@ Hexalia se sobrepõe tematicamente a Ars Nouveau, Goety, Malum e outros provider
 
 ## 18. Evidências e limites
 - **Modlist/JAR metadata:** filename 1.3.6, mod id `hexalia`, metadata reportada `1.3.5`.
-- **CurseForge:** release NeoForge 1.3.6 para 1.21.1 em 16/08/2026.
+- **CurseForge:** release NeoForge 1.3.6 para 1.21.1 em 16/08/2026; nenhuma release semanticamente superior para NeoForge 1.21.1 foi localizada em 14/09/2026.
 - **Source oficial:** branch `hexalia-1.21.1`, `mod_version=1.3.6`; recipe types, entities e data components acima confirmados diretamente.
 - **Limite:** a causa do metadata stale não foi determinada nesta auditoria; defaults/configs e spawn tables não lidos não são inventados.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
