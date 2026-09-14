@@ -1,11 +1,12 @@
 # CreativeCore
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81479e16f701d45e2dd5  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Exportado em: 2026-09-08
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3c369db9f0db81479e16f701d45e2dd5
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `CreativeCore_NEOFORGE_v2.13.44_mc1.21.1.jar`, mod id `creativecore`, runtime `2.13.44`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** CreativeCore
 - **Arquivo JAR:** `CreativeCore_NEOFORGE_v2.13.44_mc1.21.1.jar`
@@ -13,17 +14,17 @@
 - **Categoria:** Biblioteca
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/creativecore
 - **Função:** Core/API da CreativeMD com infraestrutura compartilhada usada por mods consumidores, incluindo GUI/config, networking e rendering/model utilities.
-- **Dependências:** Biblioteca Client & Server. Necessidade determinada pelos consumers CreativeMD instalados; não remover ou atualizar isoladamente sem mapear dependentes e validar ABI/comportamento.
-- **Compatibilidade/Riscos:** Riscos de version drift em GUI/config/network/render APIs e model loading. A 2.13.44 reworka modelos de bloco/item e corrige múltiplos filters não carregados; o upstream avisa impacto concreto em LittleTiles e LittleFrames.
+- **Dependências:** Biblioteca Client & Server. Necessidade determinada pelos consumers CreativeMD instalados; não remover nem atualizar isoladamente sem mapear dependentes e validar ABI/comportamento. Pack físico usa NeoForge 21.1.248.
+- **Compatibilidade/Riscos:** Riscos de version drift em GUI/config/network/render APIs e model loading. A 2.13.44 reworka modelos e corrige filters; o pack está duas releases atrás do upstream 1.21.1. A 2.13.46 corrige empty-box item rendering, rotation values tratados como radians e item-box offset held/in-ground; esses fixes NÃO estão presumidos presentes no runtime 2.13.44.
 - **Sobreposição:** Core específica da CreativeMD; coexistência com outras GUI/config/network/render libraries não implica redundância binária. Consumers compilam contra contratos próprios.
-- **Observações:** mod id `creativecore`; runtime 2.13.44. Changelog 2.13.44: reworked models for block/item, afetando LittleTiles/LittleFrames, e fix de multiple filters não carregados corretamente.
-- **Procedência:** Modlist física canônica de 08/09/2026, 595 top-levels + runtime 2.13.44 + CurseForge/Modrinth oficiais CreativeCore 2.13.44 NeoForge 1.21.1.
+- **Observações:** JAR físico `CreativeCore_NEOFORGE_v2.13.44_mc1.21.1.jar`, mod id `creativecore`, runtime 2.13.44. Upstream 1.21.1 possui 2.13.45 (10/09/2026) e latest 2.13.46 (11/09/2026). Changelog 2.13.46: fixes de empty box list em item rendering, animation rotations interpretadas como radians e item-box offset quando held/in ground. São deltas posteriores, não comportamento instalado.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `creativecore` 2.13.44 + CurseForge/Modrinth oficiais revalidados em 12/09/2026. A modlist permanece authority da versão instalada; upstream latest Release NeoForge 1.21.1 é 2.13.46 de 11/09/2026, posterior à 2.13.45 de 10/09/2026.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CreativeCore 2.13.44 foi reconfirmado como `Instalado` na modlist física de 595; o dossiê Alex já aplicado foi preservado e a presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — library/consumer authority, GUI/config/network/render surfaces, model/filter lifecycle, side e regressões 2.13.44 catalogados.
-- **Data da última decisão:** não definida.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #209: CreativeCore_NEOFORGE_v2.13.44_mc1.21.1.jar / runtime 2.13.44 confirmados como instalados, mas não mais latest. Upstream NeoForge 1.21.1 avançou para 2.13.45 em 10/09 e 2.13.46 em 11/09/2026; update disponível, sem alterar a authority física do pack.
+- **Data da última decisão:** não definida
 
 ## Dossiê operacional — padrão Alex's Mobs
 
@@ -65,23 +66,28 @@ Dedicated server não deve carregar renderer ou screen apenas para inicializar u
 ## 8. Resource/config lifecycle
 Validar resource reload, config reload quando suportado, model bake, world join, disconnect/reconnect e restart. Caches de model/filter/UI não devem sobreviver quando a fonte foi alterada.
 
-## 9. Version drift
-Sintomas possíveis:
+## 9. Version drift e upstream posterior
+A versão fisicamente instalada continua sendo **2.13.44**, mas ela já não é a release NeoForge 1.21.1 mais recente. O upstream publicou **2.13.45 em 10/09/2026** e **2.13.46 em 11/09/2026**. Essas versões posteriores não fazem parte do runtime atual e não são retroprojetadas como comportamento instalado.
+
+A 2.13.46 documenta correções de **item rendering com lista de boxes vazia**, interpretação de **rotation values de animation como radians** e **offset de item-box rendering quando o item está segurado/no chão**. Esses deltas são candidatos de upgrade/regression test para os consumers, não fixes já presentes no pack.
+
+Sintomas possíveis de version drift:
 - linkage error em consumer;
 - GUI/config que deixa de abrir;
 - packet/codec incompatível;
 - model quebrado/missing;
 - filters ausentes;
-- client classloading no servidor.
+- client classloading no servidor;
+- regressões de item/animation rendering já corrigidas upstream, mas ainda possíveis na 2.13.44.
 
-Diagnóstico precisa registrar versão CreativeCore + consumer + fase do lifecycle.
+Diagnóstico precisa registrar versão CreativeCore + consumer + fase do lifecycle e distinguir claramente **runtime instalado 2.13.44** de **upstream latest 2.13.46**.
 
 ## 10. Fail-closed de API
 A documentação pública confirma as superfícies gerais da core library e o changelog da 2.13.44, mas não fornece um inventário estático de toda ABI. Para integração própria, pin de source/JAR deve preceder uso de classes/métodos concretos.
 
 ## 11. Riscos
 1. Remover com consumer ativo.
-2. Atualizar library isoladamente e quebrar consumer.
+2. Atualizar library isoladamente e quebrar ABI.
 3. Model rework regredir LittleTiles/LittleFrames ou outro consumer.
 4. Filters permanecerem ausentes/stale.
 5. Packet handler duplicar settlement.
