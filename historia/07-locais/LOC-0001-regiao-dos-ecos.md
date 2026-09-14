@@ -34,6 +34,7 @@ NÃO FIXADO. Este arquivo não define clima, vegetação, altitude, geologia, es
 - bioma: pendente de validação pelo Compêndio/runtime;
 - estrutura: nenhuma obrigatória neste estado;
 - fonte do binding: `docs/compendium` + catálogo runtime quando snapshot relevante estiver disponível;
+- auditoria auxiliar: `LOC-0001-binding-audit.md`;
 - fatos verificados: existem providers/biomas catalogados no pack, mas nenhum foi selecionado para este local;
 - propriedades ainda desconhecidas: posição, bioma, clima, relevo, composição, estruturas e integração final com worldgen.
 
