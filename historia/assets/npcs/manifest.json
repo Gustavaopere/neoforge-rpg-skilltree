@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "asset_root": "historia/assets/npcs",
+  "policy": {
+    "portrait_master": {
+      "width": 2048,
+      "height": 2048,
+      "format": "PNG",
+      "require_native_target_resolution": true
+    },
+    "humanoid_skin": {
+      "width": 64,
+      "height": 64,
+      "format": "PNG"
+    }
+  },
+  "assets": [
+    {
+      "npc_id": "NPC-0003",
+      "npc_name": "Iren Valmor",
+      "asset_kind": "portrait",
+      "status": "CANDIDATE",
+      "path": "historia/assets/npcs/NPC-0003/iren-valmor-portrait-candidate-2048.jpg",
+      "width": 2048,
+      "height": 2048,
+      "format": "JPEG",
+      "color_mode": "RGB",
+      "sha256": "f55295772b28492b0f1098b33c6b4f78cb75ec384d94b36de5d30b55352d1e02",
+      "native_target_resolution": false,
+      "transformations": [
+        "crop/reframe to square",
+        "resample to 2048x2048",
+        "lossy JPEG derivative for versioned review"
+      ],
+      "canonical_effect": "none",
+      "final_asset": false,
+      "grimoire_art_authority": false,
+      "notes": "Look-dev candidate only. Does not satisfy the approved native 2048 PNG master requirement and must not be treated as the Minecraft skin."
+    }
+  ]
+}

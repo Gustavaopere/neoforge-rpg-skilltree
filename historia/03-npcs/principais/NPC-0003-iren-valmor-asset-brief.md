@@ -4,7 +4,7 @@
 RASCUNHO
 
 ## Estado de produção
-NÃO É ASSET FINAL / NÃO INICIADO.
+CANDIDATE 2048 VERSIONADO / NÃO É ASSET FINAL.
 
 ## Asset ID
 `NPC-0003`
@@ -71,6 +71,15 @@ A produção visual separa deliberadamente portrait/concept de skin técnica.
 - concept sheets não precisam ser quadradas, porém devem preservar pelo menos **2048 px no maior lado** para leitura de material/rosto;
 - portrait/concept nunca é convertido diretamente em UV de skin.
 
+### Candidate atual — 2026-09-14
+- path versionado: `historia/assets/npcs/NPC-0003/iren-valmor-portrait-candidate-2048.jpg`;
+- dimensões verificadas: **2048×2048 px**;
+- JPEG RGB, quality derivada para versionamento/revisão;
+- SHA-256 do arquivo versionado: `f55295772b28492b0f1098b33c6b4f78cb75ec384d94b36de5d30b55352d1e02`;
+- origem: concept gerado para look-dev e posteriormente enquadrado/cropado e reamostrado para canvas quadrado 2048;
+- portanto **não é master nativo 2048 e não satisfaz sozinho a evidência final**;
+- usar para aprovação de direção visual, não como prova de resolução nativa nem como skin Minecraft.
+
 ### Skin técnica — evidência do provider
 - alvo atual: **64×64 px RGBA PNG**, layout moderno de skin humanoide Minecraft;
 - modelo `classic` conforme a ficha atual; qualquer mudança futura para `slim` exige ajuste explícito do layout/modelo;
@@ -125,7 +134,8 @@ Asset project-owned. Referências externas, se usadas em look-dev, servem apenas
 ## Pendências
 - altura/proporção percebida aprovada;
 - tom de pele aprovado;
-- portrait/concept aprovado;
+- aprovação/rejeição do candidate 2048 atual;
+- master PNG nativo 2048×2048 após aprovação visual;
 - skin/texture final;
 - eventual identidade visual de `FAC-0001`;
 - preview/QA in-game.

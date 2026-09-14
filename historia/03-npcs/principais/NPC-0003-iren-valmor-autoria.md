@@ -53,10 +53,13 @@ Estas linhas servem para preservar voz e não representam eventos canônicos.
 A skin deve transmitir "investigador arcano institucional" antes de "feiticeiro de combate". O contraste principal fica entre tecido azul-acinzentado e couro escuro; detalhes de latão devem ser poucos e legíveis no formato técnico aprovado. Evitar superfícies excessivamente ruidosas que desapareçam na escala real de gameplay.
 
 ## Assets
-- concept/portrait: PENDENTE;
+- concept/portrait: `historia/assets/npcs/NPC-0003/iren-valmor-portrait-candidate-2048.jpg` — CANDIDATE DE DIREÇÃO VISUAL, 2048×2048, não final;
+- o candidate atual foi reamostrado para 2048 e não deve ser descrito como geração/master nativo nessa resolução;
 - skin/texture Minecraft: PENDENTE; formato e resolução conforme asset brief/pipeline técnica;
 - preview 3D: PENDENTE;
-- estado do asset: NÃO INICIADO.
+- estado do asset: LOOK-DEV EM REVISÃO.
+
+O portrait candidate não fixa sozinho altura, tom de pele, vestuário final, símbolo institucional, provider ou qualquer fato narrativo. Esses elementos continuam sujeitos ao dossiê, ao asset brief e à aprovação editorial.
 
 ## Limites de conhecimento
 No estado inicial, Iren não pode assumir como conhecido:

@@ -24,13 +24,19 @@ jobs:
       - name: Checkout RPG content
         uses: actions/checkout@v7
 
-      - name: Checkout pinned Factory narrative toolkit
+      - name: Checkout pinned Factory authoring toolkit
         uses: actions/checkout@v7
         with:
           repository: Gustavaopere/minecraft-mod-factory
-          ref: f7abd5f0c0a75d588c62b609d382c5b6a91f07e0
+          ref: 1f992c43ab3470d43582ca23147aec961b3f689f
           path: .factory
           persist-credentials: false
+
+      - name: Validate NPC visual asset manifest
+        run: >-
+          python3 .factory/art/tooling/validate_npc_visual_assets.py
+          --manifest historia/assets/npcs/manifest.json
+          --repo-root .
 
       - name: Validate story graph and editorial states
         run: >-
