@@ -8,7 +8,15 @@ The project consolidates overlapping passive/skill-tree ideas around the visual/
 
 Canonical RPG Skill Tree perk protocols, consolidated guides, detailed guide sources and modlist audit material live in [`PROJECT-INSTRUCTIONS/`](./PROJECT-INSTRUCTIONS/README.md).
 
-For the Chat 1 → Chat 2 → Chat 3 perk workflow, use the eight consolidated files in that root-level folder as the operational entry point. The physical modlist remains authority for installed JAR/runtime identity, and Notion remains the design authority where the protocols define it.
+Repository-local RPG engineering contracts live at the repository root:
+
+- [`ENGINEERING.md`](./ENGINEERING.md) — engineering entrypoint and authority boundary;
+- [`AGENT-WORKFLOW.md`](./AGENT-WORKFLOW.md) — operating contract for RPG runtime work;
+- [`TESTING.md`](./TESTING.md) — testing and reproduction gates;
+- [`DIAGNOSTICS.md`](./DIAGNOSTICS.md) — runtime diagnostics contract;
+- [`REPO-ROUTING.md`](./REPO-ROUTING.md) — repository/authority routing.
+
+For the Chat 1 → Chat 2 → Chat 3 perk workflow, use the eight consolidated files in `PROJECT-INSTRUCTIONS/` as the operational entry point. The physical modlist remains authority for installed JAR/runtime identity, and Notion remains the design authority where the protocols define it.
 
 Current implemented core:
 - deterministic canonical modifier resolution;
