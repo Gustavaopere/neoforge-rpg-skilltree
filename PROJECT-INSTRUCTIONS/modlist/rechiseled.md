@@ -2,20 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db812e818df8e068588756
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `rechiseled-1.2.5-neoforge-mc1.21.jar`, mod id `rechiseled`, runtime `1.2.5`, mixin `rechiseled.mixins.json`; Fusion 1.3.15+a, SuperMartijn642's Config Library 1.1.8, Core Lib 1.1.24 e JEI 19.53.0.426 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Rechiseled 1.2.5 e suas dependências publicadas estão presentes; `Rechiseled: Create` não aparece como top-level. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `rechiseled-1.2.5-neoforge-mc1.21.jar`, mod id `rechiseled`, runtime `1.2.5`; Fusion 1.3.15+a, SuperMartijn642's Config Library 1.1.8, Core Lib 1.1.24 e JEI presentes
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Rechiseled
 - **Arquivo JAR:** `rechiseled-1.2.5-neoforge-mc1.21.jar`
 - **Versão 1.21.1:** 1.2.5
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, QoL
