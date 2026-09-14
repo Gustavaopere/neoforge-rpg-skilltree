@@ -21,7 +21,18 @@ A decisão não decorre de ausência de opções no modpack. Ela decorre da aus�
 - `historia/07-locais/LOC-0001-regiao-dos-ecos.md` — define função narrativa, discovery, invariantes e requisitos físicos mínimos sem selecionar worldgen;
 - `historia/11-ia-e-autoria/11-contrato-geografia-compendio.md` — exige registry ID real, fatos verificados e binding tardio;
 - `docs/compendium/INVENTORY.md` — documenta o coletor runtime e os produtos derivados em `generated/compendium/`, incluindo `runtime-registry-inventory.json` e `coverage-report.{json,md}`;
-- árvore versionada atual — não contém um snapshot `generated/compendium/` que possa ser usado daqui como catálogo autoritativo de registry IDs do pack carregado.
+- árvore versionada auditada em `main@f3637a09b1479ab8d60fa60e916f1ad539a3ab7d` — não contém um snapshot `generated/compendium/` que possa ser usado como catálogo autoritativo de registry IDs do pack carregado.
+
+## Evidência da árvore versionada
+
+A inspeção Git da árvore exata de `main@f3637a09b1479ab8d60fa60e916f1ad539a3ab7d` confirmou:
+
+- `generated/` contém somente `main-tree-layout.json`; não existe subárvore `generated/compendium/` nesse commit;
+- `PROJECT-INSTRUCTIONS/modlist/` existe e contém os dossiês versionados dos mods;
+- nenhum snapshot bruto `.txt` da modlist foi localizado nessa subárvore versionada;
+- portanto os dossiês de mod podem orientar auditoria de provider, mas não substituem o `runtime-registry-inventory.json` nem criam registry IDs por inferência.
+
+Esse resultado é evidência de **ausência do artefato versionado no commit auditado**, não prova de que o artefato nunca tenha sido gerado em uma instância local ou CI.
 
 ## O que já está comprovado narrativamente
 
@@ -73,7 +84,7 @@ Gerar ou recuperar o relatório correspondente ao snapshot corrente usando o pip
 `docs/compendium/INVENTORY.md` registra a coleta opt-in do pack realmente carregado em `generated/compendium/runtime-registry-inventory.json` e a geração de `generated/compendium/coverage-report.{json,md}`. Esses produtos são derivados do runtime e não devem ser tratados como presentes/versionados no Git apenas porque o pipeline existe.
 
 ### Modlist física
-No momento de avaliar candidatos concretos, consultar o snapshot físico mais recente de `PROJECT-INSTRUCTIONS/modlist/` e não congelar versões históricas descritas em documentação anterior.
+No momento de avaliar candidatos concretos, consultar o snapshot físico mais recente aceito pelo pipeline do Compêndio e não congelar versões históricas descritas em documentação anterior. Os dossiês de `PROJECT-INSTRUCTIONS/modlist/` continuam úteis para capability/provider, mas não substituem o snapshot bruto requerido para fingerprint/drift.
 
 ### Provider/worldgen
 Para propriedades que influenciem gameplay — acesso, raridade, geração de estruturas, condições ambientais ou recursos — consultar o provider correspondente. Nome traduzido, screenshot ou estética não são prova.
