@@ -11,7 +11,8 @@
 - **Mod:** Aeronautics Camera Sync
 - **Arquivo JAR:** `aero_cam_sync-1.4.0.jar`
 - **Versão 1.21.1:** `1.4.0`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê operacional completo de camera frame, aim/throw/reach sync, Sable authority, client-only fallback, Player Tilt dependency e camera-overhaul risks confirmado no QC global #10.
+- **Estado no pack:** Integrado ao Github
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #10: `aero_cam_sync-1.4.0.jar` / `1.4.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Categoria:** Compat; QoL; Visual
 - **Compatibilidade/Riscos:** Toca câmera, raycast/aim, throw direction e reach, portanto deve ser testado com First Person/camera overhaul mods. A linha 1.3.0 corrigiu incompatibilidades específicas com Camera Overhaul e Cut Through e crash de GameRendererPickMixin; não assumir que toda combinação de camera mod é universalmente segura. Create Aeronautics upstream declara visual issues com Iris shaders, mas isso é do stack Aeronautics, não uma incompatibilidade formal específica do Camera Sync.
 - **Decisão:** Manter
@@ -19,9 +20,9 @@
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/aeronautics-camera-sync
 - **Função:** Sincroniza a orientação da câmera e, em instalação cliente+servidor, direção de olhar/aim/throw/reach com a rotação de sublevels/contraptions Sable; banking, pitch e roll acompanham o deck móvel em vez de permanecerem presos ao frame global.
-- **Histórico da decisão:** vazio
+- **Histórico da decisão:**
 - **Observações:** Dossiê aprofundado concluído em 07/09/2026. Guia antigo 1.3.6 corrigido para JAR físico 1.4.0. Sable confirmado required; Create Aeronautics optional na metadata atual. Sem transformar visual issue de Iris no mod-base em incompatibilidade própria do Camera Sync.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Aeronautics Camera Sync 1.4.0 + changelogs da linha 1.3.x/1.4.0 + guia de tecnologia do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Aeronautics Camera Sync 1.4.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `aero_cam_sync-1.4.0.jar` / `1.4.0`; sem divergência física.
 - **Sobreposição:** Complementa Player Tilt: Camera Sync cuida do frame de câmera/aim; Player Tilt aplica o frame ao corpo/hitbox/gravidade. Outros camera-overhaul mods podem atuar na mesma matriz de câmera. Não altera forças ou física da contraption.
 - **Data da última decisão:** 2026-09-06
 
