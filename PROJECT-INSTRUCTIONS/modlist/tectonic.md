@@ -2,20 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c969db9f0db815d8473fb92e531c761
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `tectonic-3.0.26-neoforge-21.1.jar`, mod id `tectonic`, runtime `3.0.26`; Lithostitched 1.8.0+beta6 presente
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A authority física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Tectonic 3.0.26 e Lithostitched 1.8.0+beta6 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `tectonic-3.0.26-neoforge-21.1.jar`, mod id `tectonic`, runtime `3.0.26`; Lithostitched `1.8.0+beta6` presente
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Tectonic
 - **Arquivo JAR:** `tectonic-3.0.26-neoforge-21.1.jar`
 - **Versão 1.21.1:** 3.0.26
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Worldgen, Exploração
@@ -23,16 +19,16 @@
 - **Dependências:** Lithostitched é hard dependency oficial; pack instala lithostitched 1.8.0+beta6 NeoForge 21.1. Runtime Tectonic 3.0.26 para NeoForge 1.21.1.
 - **Sobreposição:** Parcial com outros terrain shapers; não é equivalente a structure mods ou a expansões de conteúdo de biomas.
 - **Compatibilidade/Riscos:** Worldgen seams, structures em relevo extremo, custo de chunkgen e composição com Terralith/BWG/Streams Reflowing. 3.0.26 backporta config improvements e corrige mountain jaggedness reduzida desde 3.0.23.
-- **Observações:** mod id `tectonic`; runtime 3.0.26. Worldgen authoritative no servidor. Config física não foi lida; alterações devem ser testadas em chunks novos.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + Modrinth oficial `3.0.26-neoforge-21.1` para Minecraft 1.21.1 + Lithostitched 1.8.0+beta6 físico. Dossiê de 09/09 preservado; config e worldgen runtime não foram testados.
+- **Observações:** mod id `tectonic`; runtime 3.0.26. O JAR contém `apollib-1.1.5-neoforge-21.1.jar` em `META-INF/jarjar`; dentro dele há `json5-java-3.0.0.jar` em `META-INF/jars`. Ambos permanecem componentes embarcados, não entradas top-level. Config física não foi lida.
+- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + Modrinth oficial Tectonic 3.0.26 NeoForge 1.21.1 revalidado em 13/09/2026 + Lithostitched 1.8.0+beta6 físico + inventário do JAR registrando Apollib 1.1.5 e json5-java 3.0.0 embarcados. Nenhum teste runtime foi executado.
 - **Fonte:** https://modrinth.com/datapack/tectonic/version/3.0.26-neoforge-21.1
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — Tectonic 3.0.26 permanece exatamente instalado; terrain authority, Lithostitched dependency, config/worldgen lifecycle, integrações, riscos e testes preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Tectonic 3.0.26 permanece exatamente instalado e continua a release NeoForge 1.21.1 aplicável. Apollib 1.1.5 e json5-java 3.0.0 foram confirmados como componentes internos, sem ordinal próprio.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **ESCOPO CANÔNICO.** Runtime físico: `tectonic-3.0.26-neoforge-21.1.jar`, mod id `tectonic`, versão `3.0.26`. Tectonic é **terrain shaping** do Overworld: amplia escala e variedade do relevo sem ser um catálogo de blocos/biomas equivalente a Terralith.
+> ⛰️ **ESCOPO CANÔNICO.** Runtime físico: `tectonic-3.0.26-neoforge-21.1.jar`, mod id `tectonic`, versão `3.0.26`. Tectonic é **terrain shaping** do Overworld: amplia escala e variedade do relevo sem ser um catálogo de blocos/biomas equivalente a Terralith.
 
 ## 1. Identidade e requisitos
 - **Mod:** Tectonic.
@@ -114,3 +110,6 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 A modlist atual mantém exatamente `tectonic-3.0.26-neoforge-21.1.jar`, mod id `tectonic`, versão `3.0.26`, com Lithostitched `1.8.0+beta6` presente. A release oficial `3.0.26-neoforge-21.1` continua sendo a build NeoForge 1.21.1 relevante.
 
 Config, seed generation, structure placement e old/new chunk seams não foram testados nesta recatalogação. O fix de mountain jaggedness/config da 3.0.26 permanece regression gate documental.
+
+## 13. Revalidação física — 13/09/2026
+O runtime físico permanece Tectonic 3.0.26 para NeoForge 1.21.1 e a publicação aplicável localizada continua nessa versão. O inventário físico confirma Apollib 1.1.5 embarcado e, dentro dele, json5-java 3.0.0; ambos são componentes internos sem ordinal próprio. Nenhum teste de seed, pregen, old/new chunk seams ou jaggedness foi executado.
