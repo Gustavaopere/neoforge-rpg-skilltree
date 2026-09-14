@@ -11,7 +11,7 @@
 - **Mod:** Enhanced Boss Bars
 - **Arquivo JAR:** `enhancedbossbars-1.0.0.jar`
 - **Versão 1.21.1:** 1.0.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, QoL
@@ -20,9 +20,9 @@
 - **Sobreposição:** Sobrepõe apenas apresentação de boss bar. Jade e resource packs podem ocupar a mesma região de HUD; os boss mods continuam authority de HP, fases, AI e combate.
 - **Compatibilidade/Riscos:** Risco estritamente visual/HUD: boss bar duplicada, deslocada ou sobreposta por Jade/resource packs/outros HUD mods, identificação incorreta de boss ou suporte incompleto a uma build modded. Não altera boss health/AI. A documentação do ecossistema recomenda ajustar Jade quando ele também mostra boss bars.
 - **Observações:** Runtime físico confirmado 1.0.0. O mod foi criado para resolver casos em que apenas o resource pack não integra corretamente boss bars de mods. O suporte publicado inclui bosses de Mowzie's Mobs, Cataclysm, Bosses of Mass Destruction, Aether, Meet Your Fight, Wither Storm e Alex's Mobs; somente providers fisicamente presentes são tratados como ativos localmente.
-- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `enhancedbossbars-1.0.0.jar`, mod id `enhancedbossbars`, versão 1.0.0 e SHA-1 812fa35e45f015661e8348c96d2ccc360723583b. Documentação oficial do projeto sustenta o escopo visual e mod support.
+- **Procedência:** modlist.txt física atual — 595 entradas totais incluindo o modloader — confirma `enhancedbossbars-1.0.0.jar`, mod id `enhancedbossbars` e runtime 1.0.0. CurseForge oficial revalidado em 12/09/2026 mantém 1.0.0 como latest release NeoForge 1.21.1, publicada em 29/01/2026.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Enhanced Boss Bars 1.0.0; client-only HUD/boss support, local boss providers, Jade overlap, lifecycle, risks and tests cataloged.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #255: `enhancedbossbars-1.0.0.jar` / runtime 1.0.0 reconfirmados; 1.0.0 permanece a release NeoForge 1.21.1 atual e o boundary continua estritamente client-side/HUD.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-26
 
@@ -104,7 +104,7 @@ Cada cliente renderiza a barra com base no state recebido. Barras não podem cri
 **Esta catalogação não afirma que esses testes foram executados.**
 
 ## 12. Evidências
-- modlist física canônica: JAR/mod id/version/hash e providers locais;
+- modlist física atual: JAR/mod id/version e providers locais;
 - CurseForge oficial Enhanced Boss Bars / projeto relacionado: finalidade visual, mod support e motivo do mod frente às limitações do resource pack.
 
 > **Boundary canônico:** Enhanced Boss Bars controla somente a **apresentação da boss bar**. O boss provider continua authority de todo o combate.

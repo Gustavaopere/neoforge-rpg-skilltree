@@ -11,7 +11,7 @@
 - **Mod:** Create: Sophisticated Backpacks Compat
 - **Arquivo JAR:** `create_sophback_compat-1.0.jar`
 - **Versão 1.21.1:**
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Armazenamento, Automação
@@ -20,9 +20,9 @@
 - **Sobreposição:** Complementa `sophisticatedbackpackscreateintegration` 0.2.0: este compat adiciona recipes Create; o outro integra backpacks a contraptions. Não são duplicatas globais.
 - **Compatibilidade/Riscos:** Metadata física defeituosa: display name aponta para outro compat e runtime version é vazia. Riscos: recipe duplicada/override por datapack/KubeJS, output/custo divergente da progressão, viewer stale e confusão com Sophisticated Backpacks Create Integration. Não normalizar runtime vazio para 1.0.
 - **Observações:** JAR físico `create_sophback_compat-1.0.jar`; mod id `create_sophback_compat`; runtime display name `Create Oh The Biomes We ve Gone Compat`; runtime version vazia. `1.0` é rótulo do filename/publicação oficial, não metadata runtime.
-- **Procedência:** modlist.txt física atual de 09/09/2026 — 594 JARs top-level + metadata runtime + publicação oficial Create: Sophisticated Backpacks Compat 1.0 e galeria oficial de recipes.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime física (`create_sophback_compat`, display name incorreto, versão vazia) + CurseForge oficial revalidado em 12/09/2026; publicação 1.0 permanece a única/latest release 1.21.1. Filename/publicação não substituem a versão runtime vazia.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-sophisticated-backpacks-compat
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — dossiê completo de recipes/ownership, metadata defeituosa, deployment server-side, overlap com contraption integration, reload/lifecycle e regression matrix catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #161: create_sophback_compat-1.0.jar reconfirmado como o único/latest artefato público 1.21.1; metadata defeituosa preservada: display name incorreto e runtime version vazia, sem normalização artificial para 1.0.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 

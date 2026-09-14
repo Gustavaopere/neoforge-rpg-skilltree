@@ -14,16 +14,16 @@
 - **Categoria:** Automação; Tecnologia
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-recycle-everything-continued
 - **Função:** Recipe addon de Create para reciclar itens por Crushing Wheels e recuperar materiais de equipamentos/blocos vanilla, Create e integrações suportadas.
-- **Dependências:** Create obrigatório. A build 2.1.0 adiciona integração de recipes para Create Stuff 'N Additions; outras integrações só contam quando o mod alvo está presente.
+- **Dependências:** Create obrigatório; pack físico usa NeoForge 21.1.248 + Create 6.0.10. A build 2.1.0 adiciona integração de recipes para Create Stuff 'N Additions; outras integrações só contam quando o provider está presente.
 - **Compatibilidade/Riscos:** Aumenta recuperação de materiais e pode contornar progression/custos quando coexistem outras rotas de reciclagem. 2.1.0 adiciona crushing de diamond/netherite armor, hopper, horse armors e crushing wheel, além de jetpacks/exoskeletons de Create Stuff 'N Additions. Evitar double-recycling por recipes duplicados.
 - **Sobreposição:** Sobrepõe material recovery/recipe space de outros recycle packs, mas não Almost Unified: este mod cria rotas de reciclagem; unifiers reconciliam equivalências/outputs. Avaliar recipe-by-recipe.
 - **Observações:** JAR `create_recycle_everything-2.1.0.jar`; publicação/filename 2.1.0, metadata runtime literal 1.1. A divergência é preservada fail-closed. Changelog 2.1.0: reorganização interna e novos crushing recipes, incluindo integração Create Stuff 'N Additions.
-- **Procedência:** Modlist física canônica de 08/09/2026 + metadata runtime 1.1 + CurseForge oficial da publicação 2.1.0 e changelog exato.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime literal 1.1 + CurseForge oficial revalidado em 12/09/2026; publicação 2.1.0 continua a release mais recente para NeoForge 1.21.1. Divergência de identidade mantida fail-closed.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Recycle Everything Continued foi reconfirmado como `Instalado`; a divergência 2.1.0↔1.1 foi preservada e presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — crushing/recycling recipe authority, material-recovery economy, conditional integrations, recipe reload lifecycle e divergência filename 2.1.0 ↔ runtime 1.1 catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #157: artefato create_recycle_everything-2.1.0.jar continua latest NeoForge 1.21.1; divergência publication/filename 2.1.0 ↔ runtime metadata 1.1 preservada, com crushing/recycling economy e integrações condicionais atuais.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
