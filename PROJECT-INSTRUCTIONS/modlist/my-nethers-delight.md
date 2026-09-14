@@ -2,42 +2,39 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db815aac9dc535b9bb129b
-- **Baseline física pré-update:** `MyNethersDelight-1.21.1-1.10.4.jar`
-- **Artefato alvo selecionado no CurseForge:** `MyNethersDelight-1.21.1-1.10.4.1.jar` — file `8854319`, Release, publicado em 11/09/2026
-- **Dependência física:** Farmer's Delight `1.3.4`
-- **Data da atualização documental GitHub:** 2026-09-14
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `MyNethersDelight-1.21.1-1.10.4.jar`, mod id `mynethersdelight`, runtime `1.10.4`; Farmer's Delight `1.3.4`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
-> **BOUNDARY FÍSICO.** A modlist física ainda confirma 1.10.4. O GitHub registra 1.10.4.1 como alvo de atualização. A página oficial do arquivo **não publica changelog**; portanto nenhuma mudança interna é atribuída à 1.10.4.1 por inferência.
-
-## Propriedades equivalentes do catálogo
+## Propriedades do banco
 
 - **Mod:** My Nether's Delight
-- **Arquivo JAR alvo:** `MyNethersDelight-1.21.1-1.10.4.1.jar`
-- **Versão 1.21.1 alvo:** 1.10.4.1
-- **Baseline física auditada:** 1.10.4
-- **Estado da pesquisa:** Verificado documentalmente; validação física/runtime da 1.10.4.1 pendente
+- **Arquivo JAR:** `MyNethersDelight-1.21.1-1.10.4.jar`
+- **Versão 1.21.1:** 1.10.4
+- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Comida
 - **Função:** Addon culinário/agro do Nether para Farmer's Delight, com Blazier e heat-based cooking, Resurgent Soil/Farmland, Powdery vegetation/worldgen, Piglin food trades, ingredients, foods, recipes e processing próprio.
 - **Dependências:** Farmer's Delight — Required Dependency oficial. Pack físico usa Farmer's Delight 1.3.4.
 - **Sobreposição:** Compartilha infraestrutura culinária com Farmer's Delight e outros addons, mas conteúdo Nether, Blazier, soils/plants e bartering são próprios; não é duplicata simples.
-- **Compatibilidade/Riscos:** Addon Farmer's Delight Client & Server. Riscos: recipe/tag overlap, Blazier heat-state persistence, Resurgent Soil data-map drift, Piglin bartering economy, Powdery worldgen/pathfinding e version drift 1.10.4→1.10.4.1 sem changelog público.
-- **Observações:** Runtime físico baseline 1.10.4. Upstream publicou 1.10.4.1 em 11/09/2026; o arquivo não possui changelog público. Tratar a atualização como version gate e preservar os regression gates da 1.10.4.
-- **Procedência:** modlist.txt física baseline + CurseForge oficial 1.10.4.1 file 8854319 + documentação/changelog 1.10.4 já auditados.
+- **Compatibilidade/Riscos:** Addon Farmer's Delight Client & Server. Riscos: recipe/tag overlap, Blazier heat-state persistence, Resurgent Soil data-map drift, Piglin bartering economy, Powdery worldgen/pathfinding e version drift 1.10.4→1.10.4.1 sem changelog público. Atualização requer regressão do loop culinário/worldgen antes de promoção.
+- **Observações:** Runtime físico 1.10.4. Upstream publicou `MyNethersDelight-1.21.1-1.10.4.1.jar` em 11/09/2026, file ID 8854319, Release para NeoForge 1.21.1. O arquivo não possui changelog público; tratar como version gate sem projetar mudanças internas.
+- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial: 1.10.4 instalada e 1.10.4.1 NeoForge 1.21.1 (file 8854319, 11/09/2026) como release mais recente localizada + documentação 1.10.4 já auditada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/my-nethers-delight
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 14/09/2026 — GitHub promovido para alvo 1.10.4.1; nenhuma mudança interna foi inventada porque o arquivo 8854319 não traz changelog. Baseline física 1.10.4 preservada até re-fetch pós-update.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — My Nether's Delight físico 1.10.4/JAR reconfirmado; upstream publicou 1.10.4.1 para NeoForge 1.21.1 em 11/09/2026. Gap 1.10.4→1.10.4.1 registrado; update não aplicado. A publicação 1.10.4.1 não traz changelog público, portanto internals não foram inferidos.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-26
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **ESCOPO CANÔNICO DE CONTEÚDO.** O corpo funcional abaixo foi validado na 1.10.4. O alvo de atualização é `MyNethersDelight-1.21.1-1.10.4.1.jar`. Como a 1.10.4.1 não possui changelog público, este dossiê não projeta alterações internas e usa a arquitetura/funcionalidade 1.10.4 como baseline de regressão.
+> **ESCOPO CANÔNICO.** Runtime físico: `MyNethersDelight-1.21.1-1.10.4.jar`, mod id `mynethersdelight`, versão `1.10.4`, NeoForge 1.21.1. É um addon de Farmer's Delight dedicado ao Nether. A release 1.10.4 reworka Blazier, Resurgent Soil, Powdery Cannon/vegetação, Piglin food trades e corrige múltiplas superfícies de crash/recipe. Farmer's Delight continua authority da infraestrutura culinária base.
 
 ## 1. Identidade e papel
 - **Mod:** My Nether's Delight.
-- **JAR físico baseline:** `MyNethersDelight-1.21.1-1.10.4.jar`.
-- **JAR alvo:** `MyNethersDelight-1.21.1-1.10.4.1.jar`.
-- **Mod id:** `mynethersdelight` na baseline física.
+- **JAR físico:** `MyNethersDelight-1.21.1-1.10.4.jar`.
+- **Mod id:** `mynethersdelight`.
+- **Runtime:** `1.10.4`.
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Autor:** soytutta.
 - **Ambiente:** Client & Server.
@@ -62,7 +59,7 @@ A release 1.10.4 traz grande revisão do **Blazier**:
 - quando quebrados acesos sem Silk Touch, o drop publicado é Nether Brick + **1–4 Blaze Powder**;
 - há configuração para velocidade de cooking do Blazier.
 
-Isso torna o estado térmico parte do lifecycle do bloco. Automação deve validar input, heat state, output e comportamento de quebra/recolocação também após a promoção para 1.10.4.1.
+Isso torna o estado térmico parte do lifecycle do bloco. Automação deve validar input, heat state, output e comportamento de quebra/recolocação.
 
 ## 4. Resurgent Soil e Resurgent Farmland
 A 1.10.4 reworka **Resurgent Soil** e expõe configurações para:
@@ -99,18 +96,18 @@ A 1.10.4 corrige crashes/situações envolvendo:
 - feasts incompletos de **Stuffed Hoglin**;
 - custom recipes.
 
-Também amplia condições/integrações de recipes e adiciona tags ausentes. Essas correções permanecem regression gates na 1.10.4.1 até validação física.
+Também amplia condições/integrações de recipes e adiciona tags ausentes. Essas correções indicam que recipes/servings e estados parciais de food containers são superfícies críticas da build atual.
 
 ## 8. Processing e Cutting Board
-Mudanças documentadas na baseline incluem:
+Mudanças documentadas incluem:
 - Powdery Blocks podem virar **2 planks**;
 - salvaging via Cutting Board foi ampliado para móveis Powdery;
 - existem recipes condicionais e data maps para transformações de plantas.
 
-Isso cria interseção com automação Create, recipe viewers e scripts do pack. Não duplicar outputs via KubeJS sem comparar recipes reais da build instalada.
+Isso cria interseção com automação Create, recipe viewers e scripts do pack. Não duplicar outputs via KubeJS sem comparar recipes reais da 1.10.4.
 
 ## 9. Configuração
-A 1.10.4 expõe configuração para pelo menos:
+A release expõe configuração para pelo menos:
 - Piglin food trades;
 - frog/Magma Cake behavior;
 - Resurgent Soil propagation/growth/range;
@@ -118,7 +115,7 @@ A 1.10.4 expõe configuração para pelo menos:
 - stone cabinets;
 - Powdery Cannon generation.
 
-Defaults e nomes exatos dos arquivos devem ser lidos do config físico antes de alteração automatizada; a existência da opção não prova que o pack usa o default. A 1.10.4.1 não deve ser presumida idêntica em config sem inspeção.
+Defaults e nomes exatos dos arquivos devem ser lidos do config físico antes de alteração automatizada; a existência da opção não prova que o pack usa o default.
 
 ## 10. Client/server e persistência
 É conteúdo Client & Server.
@@ -145,15 +142,7 @@ O pack possui vários addons Farmer's Delight e integração Create. Interseçõ
 
 Sobreposição temática não é redundância. Remoção deve comparar conteúdo único, economia e progressão.
 
-## 12. Delta 1.10.4 → 1.10.4.1
-Em **11/09/2026**, upstream publicou `MyNethersDelight-1.21.1-1.10.4.1.jar` para NeoForge 1.21.1, file ID `8854319`, canal Release.
-
-A página oficial desse arquivo **não possui changelog**. Portanto:
-- não atribuir bug fix, recipe, config, registry ou comportamento novo sem evidência;
-- preservar todos os regression gates da 1.10.4;
-- inspecionar metadata/config/data/JAR após instalação se alguma diferença funcional aparecer.
-
-## 13. Riscos
+## 12. Riscos
 1. **Recipe overlap/dupe** com outros addons e KubeJS.
 2. **Blazier state loss** ao quebrar/recolocar ou automatizar.
 3. **Datapack transformation drift** em Resurgent Soil.
@@ -161,27 +150,30 @@ A página oficial desse arquivo **não possui changelog**. Portanto:
 5. **Worldgen density** da Powdery Cannon em Nether já modificado.
 6. **Mob avoidance/pathfinding** ao redor de blocos Powdery.
 7. **Feast/container state** após chunk unload/restart.
-8. **Version opacity:** 1.10.4.1 não publica changelog; diferença interna desconhecida até JAR/runtime inspection.
-9. **Cross-version docs:** não importar regras antigas de 1.19/1.20 sem confirmação na linha 1.21.1.
+8. **Cross-version docs:** não importar regras antigas de 1.19/1.20 sem confirmação na 1.10.4.
 
-## 14. Matriz de testes
-- [ ] Nova modlist física confirma `MyNethersDelight-1.21.1-1.10.4.1.jar`.
-- [ ] Dedicated server e cliente iniciam com Farmer's Delight 1.3.4 + My Nether's Delight 1.10.4.1.
+## 13. Matriz de testes
+- [ ] Dedicated server e cliente iniciam com Farmer's Delight 1.3.4 + My Nether's Delight 1.10.4.
 - [ ] Blazier processa recipe em estados de calor suportados e produz output correto.
-- [ ] Silk Touch preserva heat state; quebra normal acesa não duplica drops.
+- [ ] Silk Touch preserva heat state conforme release; quebra normal acesa produz drops publicados sem duplicação.
 - [ ] Resurgent Soil propaga/cresce conforme config real e não crasha com Bamboo.
 - [ ] Data map de transformação de planta recarrega com `/reload` sem duplicar regras.
 - [ ] Powdery Cannon gera em chunks novos conforme config e não invade densidade indevida.
 - [ ] Mobs evitam Powdery hazards de forma estável.
 - [ ] Piglin bartering entrega food trade na frequência configurada e exatamente uma vez.
-- [ ] Poaching/Striderloaf/Stuffed Hoglin não reproduzem crashes da baseline.
+- [ ] Poaching/Striderloaf/Stuffed Hoglin não reproduzem crashes corrigidos.
 - [ ] Cutting Board salvaging e Powdery plank recipes têm outputs corretos.
 - [ ] Restart/chunk reload conserva containers, crops e estado persistente relevante.
 
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
+## 14. Version gate atual — 1.10.4 → 1.10.4.1
+Em **11/09/2026**, upstream publicou `MyNethersDelight-1.21.1-1.10.4.1.jar` para NeoForge 1.21.1, file ID `8854319`. O pack permanece fisicamente em `1.10.4`.
+
+A página oficial do arquivo 1.10.4.1 **não publica changelog**. Portanto, esta auditoria registra apenas a existência do update e não atribui fixes, recipes, configs ou mudanças internas à 1.10.4.1 sem evidência adicional. Antes de promoção, regredir Blazier/heat state, Resurgent Soil/data maps, Powdery worldgen, Piglin food trades, recipes/feasts e save/restart.
+
 ## 15. Evidências e limites
-- Modlist física baseline: `MyNethersDelight-1.21.1-1.10.4.jar`, id/version e `mynethersdelight.mixins.json`.
-- CurseForge oficial: `MyNethersDelight-1.21.1-1.10.4.1.jar`, file 8854319, Release NeoForge 1.21.1, publicado em 11/09/2026.
+- Modlist física: `MyNethersDelight-1.21.1-1.10.4.jar`, id/version e `mynethersdelight.mixins.json`.
+- CurseForge oficial: release NeoForge 1.21.1 e Farmer's Delight required.
 - Changelog oficial/Modrinth 1.10.4: Blazier, Resurgent Soil, Powdery Cannon, Piglin bartering, configs e fixes aqui descritos.
-- **Limite:** o arquivo 1.10.4.1 não publica changelog; classes, registry IDs, chances, defaults ou mudanças internas não foram inventados. A instalação física da 1.10.4.1 ainda requer confirmação pela nova modlist/JAR.
+- **Limite:** classes, registry IDs, chances e defaults não explicitados pela release não foram inventados; para automação futura, extrair do JAR/config/data real.
