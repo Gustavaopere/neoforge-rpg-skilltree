@@ -1,47 +1,47 @@
-# NPC-0001 — Severin
+# Registro legado — Severin (antigo uso editorial de `NPC-0001`)
 
 ## Estado editorial
-CANÔNICO DE REFERÊNCIA / detalhes futuros podem expandir sem quebrar os invariantes abaixo.
+OBSOLETO / LEGADO HISTÓRICO / NÃO DECLARA ENTIDADE ATIVA.
 
-## Papel
-Necromante/pesquisador de práticas proibidas que serve como caso de referência do Narrative & Society Core.
+## Escopo
+Este arquivo preserva a provenance do personagem de referência chamado Severin que foi usado no desenvolvimento do Narrative & Society Core. Desde a decisão editorial de 2026-09-15, a entidade ativa `NPC-0001` no GitHub é **Aren** e está declarada em `NPC-0001-aren.md`.
 
-## Identidade pública inicial
-Pode variar conforme descoberta. O jogador pode nem saber que Severin existe.
+Este registro **não** afirma que Severin seja alias, pseudônimo, nome anterior ou identidade in-universe de Aren. A mudança foi uma substituição/retcon editorial da representação GitHub.
 
-## Invariantes
-- não é automaticamente vilão, aliado ou quest giver;
-- pode ser descoberto por investigação, acaso, rumor, terceiros ou nunca ser descoberto;
-- pode oferecer conhecimento/poder significativo em troca de risco social/político;
-- sua presença em assentamento deve interagir com leis, governo, instituições e opinião pública;
-- esconder Severin não torna a cidade onisciente;
-- testemunhas e evidências determinam propagação de conhecimento;
-- pode recusar tratamento, fugir, reagir, negociar, abandonar o jogador ou tomar iniciativa;
-- se morrer, a morte entra no Event Ledger e não some caso exista retorno posterior.
+## Papel histórico do rascunho
+Severin foi usado como necromante/pesquisador de práticas proibidas e caso de referência técnico-editorial para testar discovery, knowledge, relações, autonomia de NPC, instituições e continuidade de identidade.
 
-## Providers temáticos possíveis
-Goety, Malum, Eidolon, Black Arcana e Mobstein podem aparecer em conteúdos relacionados apenas quando cada mecânica concreta respeitar o provider real. Similaridade temática não cria recurso/bridge comum.
+Os pontos abaixo descrevem o propósito histórico desse cenário de teste e não devem ser transferidos para Aren como lore:
+- descoberta por investigação, acaso, rumor ou terceiros;
+- risco social/político em torno de práticas controversas;
+- interação com leis, governo, instituições e opinião pública;
+- knowledge condicionado por testemunhas e evidências;
+- capacidade de agir, recusar, fugir, negociar ou tomar iniciativa;
+- morte registrada no Event Ledger e retorno tratado por Identity Continuity.
 
-## Relações sistêmicas
-As dimensões `affection`, `trust`, `respect`, `fear`, `dependency` e alinhamento ideológico podem divergir.
+## Providers históricos do cenário
+Goety, Malum, Eidolon, Black Arcana e Mobstein foram citados como providers temáticos possíveis no cenário de Severin, sempre condicionados à mecânica real de cada provider. Essa lista **não** é uma lista de providers de Aren.
 
-## Relações
-- QST-0001
-- Stage 08: Opportunity & Discovery Lifecycle
-- Stage 08: Death, Resurrection & Identity Continuity
+A única associação de provider atualmente recuperada para Aren na Campaign Bible é Goety/necromancia, conforme `NPC-0001-aren.md`; detalhes mecânicos continuam dependentes da documentação/runtime reais.
 
-## Reconciliação Grimoire pendente
-Na reconciliação de 2026-09-14, o Grimoire/TTRPG.bot não possuía entidade chamada `Severin`, mas possuía o NPC ativo `Aren` (`e9a83c1b-4bd9-49c8-8b79-ad41011383cd`). O registro estruturado de Aren o declara a promoção canônica do antigo arco `P-N`, praticante de Goety/necromancia e personagem útil, controverso e politicamente difícil. Essa função apresenta sobreposição material com o papel atualmente atribuído a `NPC-0001` neste repositório.
+## Relações editoriais históricas
+O rascunho de Severin foi relacionado a:
+- `QST-0001`;
+- Stage 08: Opportunity & Discovery Lifecycle;
+- Stage 08: Death, Resurrection & Identity Continuity;
+- `DLG-0001` como calibração experimental de voz.
 
-Até existir decisão editorial explícita e rastreável:
-- não assumir que Aren e Severin são a mesma pessoa;
-- não assumir que são pessoas distintas apenas porque os nomes divergem;
-- não importar automaticamente para Severin provider preferencial, aparência, motivações, segredos ou relações de Aren;
-- não renomear, apagar ou retconar qualquer um dos dois por precedência temporal automática;
-- não marcar portrait/skin de `NPC-0001` como `FINAL`; concepts já produzidos permanecem look-dev não canônico;
-- `QST-0001` e demais referências GitHub a Severin registram o estado editorial versionado, mas não resolvem por si sós a identidade diante da authority de lore estruturada do Grimoire.
+Essas referências são mantidas para auditoria. Elas não promovem Aren automaticamente para as mesmas cenas, relações ou conteúdos.
 
-A reconciliação deve decidir explicitamente entre alias/mesma entidade, personagens distintos ou retcon/substituição, preservando provenance e o mapeamento do ID estável `NPC-0001`.
+## Materiais derivados legados
+- `NPC-0001-severin-autoria.md` — ficha de autoria de Severin; legado, não define voz/aparência de Aren;
+- `NPC-0001-severin-asset-brief.md` — brief visual de Severin; legado, sem asset final;
+- `DLG-0001-severin-calibracao.md` — diálogo experimental de Severin; não é cena canônica nem calibração de Aren.
 
-## Spoilers
-Motivações específicas, segredos, agenda futura, possíveis traições e finais devem ser colocados em arquivos internos de arco/evidência, não neste resumo estrutural.
+## Resolução da reconciliação
+Na reconciliação de 2026-09-14, o Grimoire/TTRPG.bot não possuía entidade chamada `Severin`, mas possuía Aren ativo (`e9a83c1b-4bd9-49c8-8b79-ad41011383cd`) com sobreposição material de função. Em 2026-09-15 foi aprovada a decisão editorial de preservar o ID estável `NPC-0001` para Aren e aposentar Severin como entidade ativa.
+
+A decisão completa, seus limites e gates estão em `historia/11-ia-e-autoria/15-migracao-npc-0001-severin-aren-2026-09-15.md`.
+
+## Regra de uso
+Não usar este arquivo como source de lore de Aren. Ele existe para preservar histórico, explicar referências anteriores e impedir que material técnico/editorial antigo seja reintroduzido como cânone por acidente.
