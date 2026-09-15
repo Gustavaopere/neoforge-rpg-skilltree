@@ -1,21 +1,9 @@
 # Thirst Was Reclaimed
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c969db9f0db81bb8529d4f7a2b5c7e8
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `ThirstWasReclaimed-1.21.1-3.0.4.jar`, mod id `thirst`, runtime `3.0.4`; Thirst Was Fixed 2.1.6 e Sophisticated Thirst Upgrade 0.1.8 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A authority física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Thirst Was Reclaimed 3.0.4 e seus addons citados estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
-
-## Propriedades do banco
-
-- **Mod:** Thirst Was Reclaimed
 - **Arquivo JAR:** `ThirstWasReclaimed-1.21.1-3.0.4.jar`
 - **Versão 1.21.1:** 1.21.1-3.0.4
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Categoria:** Comida, RPG
 - **Função:** Provider principal de sede/hidratação do pack: mantém thirst do jogador, purity da água/containers, item settings e sincronização server→client; 3.0.4 expõe thirst via persistent data e refaz Jade.
@@ -23,15 +11,13 @@
 - **Sobreposição:** Não é um segundo sistema de fome ou nutrição; adiciona a necessidade separada de hidratação.
 - **Compatibilidade/Riscos:** Purity migration/propagation, config hash/sync stale, addon double ownership e HUD overlap. Linha 3.0.x trata purity ausente como max, permite disable global e sincroniza settings; testar transfers Bottle/Bucket/Pipes/Create e addons.
 - **Observações:** mod id `thirst`; runtime 3.0.4. É a única authority base de thirst do pack. Config física/item hydration values não foram lidos; addons não devem ser tratados como providers paralelos.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Thirst Was Reclaimed 3.0.4 + source oficial 1.21.1 + addons físicos Thirst Was Fixed 2.1.6 e Sophisticated Thirst Upgrade 0.1.8. Dossiê de 09/09 preservado; config, purity e transferências runtime não foram testadas.
+- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Thirst Was Reclaimed 3.0.4 revalidado em 13/09/2026 + source oficial 1.21.1 + addons físicos Thirst Was Fixed 2.1.6 e Sophisticated Thirst Upgrade 0.1.8. Dossiê de 11/09 preservado; config, purity e transferências runtime não foram testadas.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/thirst-was-reclaimed/files/8391910 ; https://github.com/mlus-asuka/Thirst-Was-Reclaimed
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — Thirst Was Reclaimed 3.0.4 permanece exatamente instalado; thirst/purity, transfer propagation, config sync, Jade/persistent data, addons, lifecycle, riscos e testes preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Thirst Was Reclaimed 3.0.4 permanece exatamente instalado e continua a release NeoForge 1.21.1 mais recente localizada; thirst/purity, transfer propagation, config sync, Jade/persistent data, addons, lifecycle, riscos e testes preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `ThirstWasReclaimed-1.21.1-3.0.4.jar`, mod id `thirst`, versão `1.21.1-3.0.4`. Thirst Was Reclaimed é o **provider principal de sede/hidratação** do pack: mantém thirst do jogador, regras de consumo e sistema de purity da água.
+> 🥤 **ESCOPO CANÔNICO.** Runtime físico: `ThirstWasReclaimed-1.21.1-3.0.4.jar`, mod id `thirst`, versão `1.21.1-3.0.4`. Thirst Was Reclaimed é o **provider principal de sede/hidratação** do pack: mantém thirst do jogador, regras de consumo e sistema de purity da água.
 
 ## 1. Identidade, versão e papel
 - **Mod:** Thirst Was Reclaimed.
@@ -176,3 +162,6 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 O runtime físico continua exatamente `ThirstWasReclaimed-1.21.1-3.0.4.jar`, mod id `thirst`, versão `3.0.4`. A release oficial 3.0.4 permanece a build NeoForge 1.21.1 pertinente e continua sendo a authority única de thirst/purity do pack.
 
 Thirst Was Fixed `2.1.6` e Sophisticated Thirst Upgrade `0.1.8` permanecem extensões separadas. Nenhum teste de purity migration, Bottle/Bucket/Pipe/Create transfer, Jade, config hash/sync ou persistent-data consumer foi executado nesta recatalogação.
+
+## 19. Revalidação física e upstream — 13/09/2026
+O runtime físico permanece `ThirstWasReclaimed-1.21.1-3.0.4.jar`, versão `3.0.4`; a release NeoForge 1.21.1 localizada continua 3.0.4. O mod permanece authority única de thirst/purity, com Thirst Was Fixed `2.1.6` e Sophisticated Thirst Upgrade `0.1.8` como extensões. Nenhum teste de purity migration, Bottle/Bucket/Pipe/Create transfer, Jade, config hash/sync ou persistent-data consumer foi executado nesta revalidação.

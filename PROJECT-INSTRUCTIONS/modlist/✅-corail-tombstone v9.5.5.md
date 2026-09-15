@@ -1,17 +1,9 @@
 # Corail Tombstone
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db812ebd0cc164b9328b40
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-11
-
-## Propriedades do banco
-
-- **Mod:** Corail Tombstone
 - **Arquivo JAR:** `tombstone-neoforge-1.21.1-9.5.5.jar`
 - **Versão 1.21.1:** 9.5.5
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL, RPG
@@ -19,18 +11,14 @@
 - **Dependências:** NeoForge 1.21.1/Java 21. Integrações opcionais conforme stack. Create Aeronautics 1.3.2 está presente e a 9.5.5 adiciona compat específica para respawn em veículo; Curios 9.5.1 também está presente.
 - **Sobreposição:** Sobreposição parcial com outros grave/death mods; nenhuma duplicação lógica foi identificada neste lote.
 - **Compatibilidade/Riscos:** Double death/grave interception, inventory-extension recovery, grave placement/ownership e progression stacking. 9.5.5: Aeronautics vehicle respawn é regression gate. 9.5.4 remove ritual flute screen e reescreve lore/objectives, podendo invalidar quests antigas.
-- **Observações:** mod id `tombstone`; runtime físico 9.5.5. Decisão Sem decisão preservada. A file list oficial passou a oferecer 9.5.6 para NeoForge 1.21.1 em 09/09/2026; registrar como atualização disponível sem substituir a versão canônica até o JAR físico mudar. Config de grave/access/perks não foi lida.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Corail Tombstone 9.5.5 File ID 8661357 + file list oficial 1.21.1 confirmando 9.5.6 em 09/09/2026 + stack físico Create Aeronautics 1.3.2/Curios 9.5.1. Dossiê de 09/09 preservado.
+- **Observações:** mod id `tombstone`; runtime físico 9.5.5. Decisão Sem decisão preservada. A release oficial 9.5.6 para NeoForge 1.21.1 está disponível desde 09/09/2026 e corrige XP restoration on death com level count alto por integer overflow; a autoridade física permanece 9.5.5 até o JAR mudar. Config de grave/access/perks não foi lida.
+- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Corail Tombstone 9.5.5 File ID 8661357 + release oficial 9.5.6 File ID 8842741 revalidada em 13/09/2026 + stack físico Create Aeronautics 1.3.2/Curios 9.5.1. Dossiê de 11/09 preservado; nenhum teste de morte/recovery foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/corail-tombstone ; https://www.curseforge.com/minecraft/mc-mods/corail-tombstone/files/8661357
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — Corail Tombstone 9.5.5 permanece o runtime físico. Grave recovery, Souls/Knowledge/magic/lore, Aeronautics, lifecycle, riscos e testes preservados. ATUALIZAÇÃO DISPONÍVEL: 9.5.6 NeoForge 1.21.1 publicada em 09/09/2026.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Corail Tombstone 9.5.5 permanece o runtime físico. Grave recovery, Souls/Knowledge/magic/lore, Aeronautics, lifecycle, riscos e testes preservados. ATUALIZAÇÃO DISPONÍVEL: 9.5.6 NeoForge 1.21.1, publicada em 09/09/2026, corrige restauração de XP na morte com level count alto por integer overflow.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
-> **Divergência documental registrada:** a procedência do Notion menciona “modlist física atual de 11/09/2026”. A modlist física mais recente efetivamente acessível nesta execução é o snapshot de 08/09/2026 com 595 entradas; é ele que confirma `tombstone-neoforge-1.21.1-9.5.5.jar`, Create Aeronautics 1.3.2 e Curios 9.5.1+1.21.1. O texto-fonte foi preservado sem ser promovido a autoridade física inexistente.
-
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `tombstone-neoforge-1.21.1-9.5.5.jar`, mod id `tombstone`, versão `9.5.5`. Corail Tombstone é mais que um grave mod: protege inventário na morte e adiciona **decorative graves/souls, Knowledge of Death, perks, magic items, prayers, forgotten knowledge/lore e utilidades de sobrevivência/exploração**.
+> 🪦 **ESCOPO CANÔNICO.** Runtime físico: `tombstone-neoforge-1.21.1-9.5.5.jar`, mod id `tombstone`, versão `9.5.5`. Corail Tombstone é mais que um grave mod: protege inventário na morte e adiciona **decorative graves/souls, Knowledge of Death, perks, magic items, prayers, forgotten knowledge/lore e utilidades de sobrevivência/exploração**.
 
 ## 1. Identidade, versão e papel
 - **Mod:** Corail Tombstone.
@@ -178,3 +166,6 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 ## 19. Revalidação física — 11/09/2026
 A modlist física mantém `tombstone-neoforge-1.21.1-9.5.5.jar`, mod id `tombstone`, versão `9.5.5`; portanto **9.5.5 continua sendo a autoridade do runtime**. A integração 9.5.5 com Create Aeronautics para respawn em veículo continua sendo regression gate do pack.
 **Atualização upstream disponível:** a file list oficial passou a listar **Corail Tombstone 9.5.6 para NeoForge 1.21.1**, publicada em **09/09/2026**. Esta auditoria não atribui mudanças internas à 9.5.6 sem changelog específico confirmado e não altera a versão instalada. Nenhum teste de morte, grave recovery, veículo, Curios, Knowledge ou lore foi executado.
+
+## 20. Revalidação física e upstream — 13/09/2026
+O runtime físico permanece `tombstone-neoforge-1.21.1-9.5.5.jar`, versão `9.5.5`. A release NeoForge 1.21.1 mais recente localizada é **9.5.6**, publicada em 09/09/2026, cujo changelog corrige restauração de XP na morte com contagens altas de nível por integer overflow. A versão instalada não foi alterada e a decisão **Sem decisão** foi preservada. Nenhum teste de morte, grave recovery, XP restoration, Aeronautics vehicle respawn, Curios ou Knowledge of Death foi executado nesta revalidação.

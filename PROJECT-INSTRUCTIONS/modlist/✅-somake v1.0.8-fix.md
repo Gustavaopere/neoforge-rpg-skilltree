@@ -1,21 +1,9 @@
 # Somake
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c969db9f0db8167b32cc545b4cc90dc
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `somakespells-1.0.8-1.21.1-fix.jar`, mod id `somakespells`, runtime `1.0.8`, mixin `somakespells.mixins.json`; Iron's Spells 3.16.3, L_Ender's Cataclysm 3.33 e Born in Chaos 1.7.6 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Somake 1.0.8 fix e os providers Iron's/Cataclysm/Born in Chaos citados estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
-
-## Propriedades do banco
-
-- **Mod:** Somake
 - **Arquivo JAR:** `somakespells-1.0.8-1.21.1-fix.jar`
 - **Versão 1.21.1:** 1.0.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, RPG
@@ -26,12 +14,10 @@
 - **Observações:** JAR físico `somakespells-1.0.8-1.21.1-fix.jar`, runtime 1.0.8. A ficha pública confirma integração com Cataclysm e Born in Chaos e reconhecimento de escolas externas em parte do sistema de charges; não se presume presença de toda escola opcional.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Somake Spells 1.0.8/fix para NeoForge 1.21.1 + stack Iron's/Cataclysm/Born in Chaos confirmado fisicamente.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Somake 1.0.8 reconstruído: 50+ spells, Aqua School, elemental charges, equipment/armor, Iron's Spells ownership, Cataclysm/Born in Chaos integrations, casting lifecycle, multiplayer, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Somake 1.0.8 físico reconfirmado; permanece a release NeoForge 1.21.1 mais recente localizada.
 - **Histórico da decisão:**
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `somakespells-1.0.8-1.21.1-fix.jar`, mod id `somakespells`, versão `1.0.8`, NeoForge 1.21.1. Somake é um **addon de Iron's Spells 'n Spellbooks** com catálogo próprio de spells, Aqua School, elemental charges e equipamentos.
+> 🌊 **ESCOPO CANÔNICO.** Runtime físico: `somakespells-1.0.8-1.21.1-fix.jar`, mod id `somakespells`, versão `1.0.8`, NeoForge 1.21.1. Somake é um **addon de Iron's Spells 'n Spellbooks** com catálogo próprio de spells, Aqua School, elemental charges e equipamentos.
 
 ## 1. Identidade e papel
 - **Mod:** Somake / Somake Spells.

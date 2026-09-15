@@ -1,17 +1,9 @@
 # Create Colony Logistics
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d369db9f0db8157bff3f2f542a2f595
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-10
-
-## Propriedades do banco
-
-- **Mod:** Create Colony Logistics
 - **Arquivo JAR:** `create_colony_logistics-1.3.2.jar`
 - **Versão 1.21.1:** 1.3.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Compat, Automação
@@ -20,9 +12,9 @@
 - **Sobreposição:** Complementa MineColonies e Create. Não substitui Warehouse/Couriers, Create package network ou trains; ownership permanece nos providers.
 - **Compatibilidade/Riscos:** Forte coupling Create↔MineColonies. Riscos: dupe/loss em settlement, replay/infinite export, AI stall, train/chunk timing, pathfinding e API drift. 1.3.2 corrige infinite export e atualiza dependências; runtime físico ainda exige QA com MineColonies snapshot.
 - **Observações:** JAR físico `create_colony_logistics-1.3.2.jar`, mod id `cclogistics`, runtime 1.3.2. Release oficial NeoForge 1.21.1 de 04/09/2026; 1.3.2 corrige infinite export bug.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/GitHub oficiais Create: Colony Logistics 1.3.2 e changelog da release.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `cclogistics` 1.3.2 + CurseForge/GitHub oficiais Create: Colony Logistics 1.3.2 revalidados em 12/09/2026; changelog confirma dependências atualizadas e fix do infinite export bug.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-colony-logistics
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — placeholder de reconciliação substituído por dossiê técnico 1.3.2; requests, Freight Depot, Warehouse settlement, exportação, infinite-export regression, lifecycle e testes catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #137: create_colony_logistics-1.3.2.jar / 1.3.2 reconfirmados; MineColonies↔Create request settlement, Freight Depot/Warehouse flow, exportação e infinite-export regression permanecem atuais.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-06
 

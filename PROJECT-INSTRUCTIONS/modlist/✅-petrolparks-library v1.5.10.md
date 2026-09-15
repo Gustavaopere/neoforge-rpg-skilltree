@@ -1,38 +1,24 @@
 # Petrolpark's Library
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81898a54dfdc13c7e9a1
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `petrolpark-1.21.1-1.5.10.jar`, mod id `petrolpark`, runtime `1.5.10`, `petrolpark.mixins.json`; Destroy `0.4.3` também confirmado fisicamente
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026” e contém uma seção de revalidação física de 11/09. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Petrolpark 1.5.10 e Destroy 0.4.3 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
-
-## Propriedades do banco
-
-- **Mod:** Petrolpark's Library
 - **Arquivo JAR:** `petrolpark-1.21.1-1.5.10.jar`
 - **Versão 1.21.1:** 1.5.10
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca, Tecnologia
 - **Função:** Biblioteca/framework do ecossistema Petrolpark usada por addons Create e projetos como Destroy para recursos compartilhados.
-- **Dependências:** NeoForge 1.21.1. Consumer físico confirmado: Destroy 0.4.3. Source exato da branch Destroy `1.21.1-neo` declara Petrolpark obrigatória em `[1.5.0,1.6.0)`; a Petrolpark física 1.5.10 satisfaz a faixa. Runtime/linkage QA permanece pendente.
+- **Dependências:** NeoForge 1.21.1. Consumer físico confirmado: Destroy 0.4.3 exige Petrolpark `[1.5.0,1.6.0)`. JarJars internos do host: Commons Math 3.6.1, Flywheel 1.0.6, Ponder 1.0.82+mc1.21.1, Registrate 1.3.0+67 e Sable Companion 1.6.0; não são top-level.
 - **Sobreposição:** Library específica do ecossistema Petrolpark; não substituível por libraries Create genéricas. É load-bearing enquanto Destroy permanecer.
 - **Compatibilidade/Riscos:** Compatibilidade estática com Destroy 0.4.3 agora comprovada: o neoforge.mods.toml da branch 1.21.1-neo exige Petrolpark `[1.5.0,1.6.0)`, e o pack usa 1.5.10. Permanecem riscos de ABI/linkage e comportamento runtime entre builds; dedicated-server/client boot e features de Destroy continuam QA pendente, não presumidos.
-- **Observações:** JAR físico `petrolpark-1.21.1-1.5.10.jar`, mod id `petrolpark`, runtime 1.5.10. Destroy físico 0.4.3. Source exato do port 1.21.1 declara `petrolpark_version=1.5.0` no `gradle.properties` e dependency range `[1.5.0,1.6.0)` no `neoforge.mods.toml`; 1.5.10 satisfaz formalmente essa faixa. Isso fecha a pendência estática, sem equivaler a runtime QA.
+- **Observações:** JAR físico `petrolpark-1.21.1-1.5.10.jar`, runtime 1.5.10. Destroy 0.4.3 aceita `[1.5.0,1.6.0)`. O host embute Commons Math 3.6.1, Flywheel 1.0.6, Ponder 1.0.82+mc1.21.1, Registrate 1.3.0+67 e Sable Companion 1.6.0 via JarJar.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Petrolpark's Library 1.5.10 + source read-only `NHblock714/Destroy` branch `1.21.1-neo`: `gradle.properties` com `mod_version=0.4.3` e `petrolpark_version=1.5.0`; `src/main/templates/META-INF/neoforge.mods.toml` com dependência Petrolpark `[1.5.0,1.6.0)`. Decisão Dependência e estado `Instalado — Dossiê completo` preservados; nenhum runtime/linkage test executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/petrolpark-library
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — Petrolpark's Library 1.5.10 permanece exatamente instalada; compatibilidade estática com Destroy 0.4.3 fechada contra source exato: branch 1.21.1-neo declara Petrolpark `[1.5.0,1.6.0)`. Runtime/linkage QA permanece pendente.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Petrolpark's Library 1.5.10/JAR físico reconfirmado; 1.5.10 permanece a build NeoForge 1.21.1 mais recente localizada. Decisão Dependência e range Destroy `[1.5.0,1.6.0)` preservados.
 - **Histórico da decisão:** 2026-08-26 — origem/versionamento reconciliados e classificado como Dependência por Destroy instalado. 2026-09-10 — Dependência preservada; dossiê concluído para runtime 1.5.10, mas Estado da pesquisa mantido em Rever até prova source-level do range de Destroy 0.4.3. 2026-09-11 — source exato do port Destroy 0.4.3 confirmou dependência Petrolpark `[1.5.0,1.6.0)`; 1.5.10 satisfaz a faixa e Estado da pesquisa passou a Verificado, com runtime QA ainda pendente.
 - **Data da última decisão:** 2026-09-10
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `petrolpark-1.21.1-1.5.10.jar`, mod id `petrolpark`, versão `1.5.10`, NeoForge 1.21.1. Petrolpark's Library é framework Client & Server de APIs/data systems compartilhados pelo ecossistema Petrolpark/Create. **Destroy 0.4.3 é consumer físico confirmado**, portanto a decisão permanece **Dependência**. A build 1.5.10 é Beta e foi publicada em 07/09/2026. A compatibilidade estática com Destroy 0.4.3 foi fechada em 11/09/2026: o source exato do port exige Petrolpark `[1.5.0,1.6.0)`, faixa satisfeita pela 1.5.10 física. O estado de pesquisa é **Verificado**; runtime/linkage continua QA pendente.
+> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `petrolpark-1.21.1-1.5.10.jar`, mod id `petrolpark`, versão `1.5.10`, NeoForge 1.21.1. Petrolpark's Library é framework Client & Server de APIs/data systems compartilhados pelo ecossistema Petrolpark/Create. **Destroy 0.4.3 é consumer físico confirmado**, portanto a decisão permanece **Dependência**. A build 1.5.10 é Beta e foi publicada em 07/09/2026. A compatibilidade estática com Destroy 0.4.3 foi fechada em 11/09/2026: o source exato do port exige Petrolpark `[1.5.0,1.6.0)`, faixa satisfeita pela 1.5.10 física. O estado de pesquisa é **Verificado**; runtime/linkage continua QA pendente.
 
 ## 1. Identidade e papel
 - **Mod:** Petrolpark's Library.

@@ -1,21 +1,9 @@
 # StreamsReflowing
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db8148a8cfcbc0730d0474
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `StreamsReflowing-1.21.1-neoforge-2.13.1.jar`, mod id `streamsreflowing`, runtime `2.13.1`
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A authority física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, StreamsReflowing 2.13.1 está presente. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
-
-## Propriedades do banco
-
-- **Mod:** StreamsReflowing
 - **Arquivo JAR:** `StreamsReflowing-1.21.1-neoforge-2.13.1.jar`
 - **Versão 1.21.1:** 2.13.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Worldgen
@@ -24,15 +12,13 @@
 - **Sobreposição:** Cruza com mods atuais de terrain/river/worldgen; incompatibilidades específicas devem ser avaliadas contra os providers realmente instalados, não contra arquitetura TFC removida.
 - **Compatibilidade/Riscos:** Riscos: custo de chunkgen/presets altos, carving em terrain/structures, seams old/new chunks, river tags modded, competição com outros waterways e carga de waterfall particles. 2.13.1 corrige Create water wheels após restart e falsos waterfall spray; ambos são regression gates.
 - **Observações:** mod id `streamsreflowing`; runtime 2.13.1. A configuração física e preset do pack não foram lidos; compatibilidade upstream com worldgen é intenção/teste publicado, não garantia universal. Decisão Sem decisão preservada.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial StreamsReflowing 2.13.1 + documentação oficial de hydrology/presets. Dossiê de 08/09 preservado; config/preset local não foi lido.
+- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial StreamsReflowing 2.13.1 e documentação de hydrology/presets revalidados em 13/09/2026. Dossiê de 11/09 preservado; config/preset local e testes de seed/chunkgen não foram executados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing ; https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?version=1.21.1
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — StreamsReflowing 2.13.1 permanece o runtime físico; hydrology/worldgen, presets, chunk lifecycle e fixes Create water-wheel/waterfall spray continuam válidos.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — StreamsReflowing 2.13.1 permanece a release NeoForge 1.21.1 mais recente localizada; hydrology/worldgen, presets, lifecycle e fixes Create water-wheel/waterfall spray continuam válidos. Sem decisão preservado.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `StreamsReflowing-1.21.1-neoforge-2.13.1.jar`, mod id `streamsreflowing`, versão `2.13.1`. Streams Reflowing é um sistema de **hidrologia/worldgen** que gera streams e lakes dependentes do terreno e adiciona corrente direcional a corpos d'água configurados.
+> 🏞️ **ESCOPO CANÔNICO.** Runtime físico: `StreamsReflowing-1.21.1-neoforge-2.13.1.jar`, mod id `streamsreflowing`, versão `2.13.1`. Streams Reflowing é um sistema de **hidrologia/worldgen** que gera streams e lakes dependentes do terreno e adiciona corrente direcional a corpos d'água configurados.
 
 ## 1. Identidade, versão e papel
 - **Mod:** Streams Reflowing.
@@ -170,3 +156,6 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 A modlist atual continua contendo `StreamsReflowing-1.21.1-neoforge-2.13.1.jar`, mod id `streamsreflowing`, versão `2.13.1`. Não houve drift físico desde o dossiê de 08/09.
 
 Os fixes de Create water wheels após restart e false waterfall spray permanecem regression gates diretos. A configuração/preset do pack continua não lida e nenhum teste de seed/chunkgen foi executado nesta auditoria.
+
+## 17. Revalidação física e upstream — 13/09/2026
+A modlist física atual mantém `StreamsReflowing-1.21.1-neoforge-2.13.1.jar`, versão `2.13.1`; a release NeoForge 1.21.1 localizada permanece nessa versão, sem version gate novo. Os fixes para Create water wheels após restart e falso waterfall spray continuam regression gates. A configuração/preset local permanece não lida, e nenhum teste de seed, chunkgen, corrente ou restart foi executado nesta revalidação. A decisão **Sem decisão** foi preservada.
