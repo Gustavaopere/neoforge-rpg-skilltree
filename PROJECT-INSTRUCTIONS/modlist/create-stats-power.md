@@ -1,32 +1,24 @@
 # Create: Stats & Power
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81a8a655f94acdb67a2c  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-08
-
-## Propriedades do registro
-
-- **Mod:** Create: Stats & Power
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Arquivo JAR:** `create_stats-1.5.1.jar`
 - **Versão 1.21.1:** `1.5.1`
 - **Categoria:** Tecnologia; Automação; QoL
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-stats-power
 - **Função:** Addon Create de telemetria e infraestrutura elétrica FE com displays/recorders/alarms, Power Distribution Units, cables/dynamos/motors/capacitors, factory logic e sistemas de controle veicular.
-- **Dependências:** NeoForge + Create obrigatórios. Algumas features ativam apenas com companion mods como Create Aeronautics, Simulated e outros; essas integrações são condicionais à presença real.
+- **Dependências:** NeoForge + Create obrigatórios; pack físico usa NeoForge 21.1.248 + Create 6.0.10. Algumas features ativam apenas com companion mods como Create Aeronautics/Simulated e continuam condicionais à presença real.
 - **Compatibilidade/Riscos:** Adiciona grid FE próprio, PDU, vehicle control e monitoramento; pode sobrepor energy bridges e control systems. 1.5.1 corrige crashes de cables/PDU em certas configs, flicker de telas e layout do PDU, e adiciona chaining de boards, outlets/Smart Home Panel e cable cornering.
 - **Sobreposição:** Monitoring, FE e vehicle control podem cruzar outros addons, mas o mod owns seu PDU/grid, displays e controllers. Comparar topology/rates e companion integrations antes de classificar redundância.
 - **Observações:** runtime 1.5.1; projeto público agora se chama `Create: Stats & Power`, enquanto descrição também usa `Create Stats & Numbers`. 1.5.1 é Release NeoForge 1.21.1 de 31/08/2026. O título do Notion foi alinhado ao nome/runtime atual.
-- **Procedência:** Modlist física canônica de 08/09/2026 + runtime create_stats 1.5.1 + CurseForge oficial da release 1.5.1 e descrição atual do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `create_stats` 1.5.1 + CurseForge oficial revalidado em 12/09/2026; 1.5.1, publicada em 31/08/2026, continua a release mais recente para NeoForge 1.21.1.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Stats & Power 1.5.1 foi reconfirmado como `Instalado`; a antiga data 30/08 associada apenas à presença foi removida. Presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — FE-grid/PDU authority, monitoring/logistics/vehicle-control surfaces, 1.5.1 PDU/cable fixes, client/server lifecycle e optional-companion boundaries catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #162: create_stats-1.5.1.jar / 1.5.1 reconfirmados como latest Release NeoForge 1.21.1; FE-grid/PDU, board chaining, outlets/Smart Home Panel, telemetry/vehicle control e fixes 1.5.1 permanecem atuais.
 - **Data da última decisão:** não definida.
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > 📊 Versão física confirmada: `create_stats-1.5.1.jar`, runtime `1.5.1`, NeoForge 1.21.1. O projeto atual se apresenta como **Create: Stats & Power** e combina monitoramento industrial, grid FE, lógica de fábrica e controle veicular.
 
