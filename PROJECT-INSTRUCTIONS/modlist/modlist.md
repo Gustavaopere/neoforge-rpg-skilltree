@@ -4,6 +4,8 @@
 >
 > A ordem abaixo segue a posição física real em `modlist.txt`. O campo de pasta usa o conjunto completo de categorias temáticas atuais do projeto correspondente no CurseForge, em ordem alfabética, com ` + ` como separador compatível com Windows. Categorias de loader, versão do Minecraft e ambiente não entram na pasta.
 >
+> **Invariante de categorização (AND):** um mod só pode entrar em uma pasta composta se possuir **todas** as categorias escritas no nome dessa pasta no CurseForge. A pasta também deve conter **todas** as categorias temáticas atribuídas ao projeto; portanto, correspondência parcial, categoria faltante ou categoria extra torna o caminho inválido.
+>
 > `Última edição` significa a última alteração documental significativa do dossiê anterior a esta reorganização estrutural, normalizada para `America/Sao_Paulo` (UTC-03:00). A movimentação de diretório deste ciclo não altera essa data.
 
 ## Mods organizados
