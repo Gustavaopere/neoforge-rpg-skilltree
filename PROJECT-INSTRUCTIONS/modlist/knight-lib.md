@@ -1,34 +1,24 @@
 # Knight Lib
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db810da2b3f510f94c2635
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — Knight Lib `1.6.1` e Companions! `1.3.2` confirmados fisicamente
-- **Data da exportação:** 2026-09-11
-
-## Propriedades do banco
-
-- **Mod:** Knight Lib
 - **Arquivo JAR:** `knightlib-neoforge-1.21.1-1.6.1.jar`
 - **Versão 1.21.1:** 1.6.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
 - **Função:** Biblioteca multiloader de utilidades compartilhadas para networking, configs, eventos, AI, bossbars, camera shake, shaders, spawns, loot, persistent sounds, entity data e registration; bridge concreta para Companions! no pack.
 - **Dependências:** Source exato 1.21.1 declara Knight Lib 1.6.1, Java 21, Minecraft 1.21.1 e desenvolvimento NeoForge 21.1.150. A própria library não lista hard dependency adicional no CurseForge. Consumer físico confirmado: Companions! 1.3.2 requer Knight Lib e GeckoLib.
 - **Sobreposição:** Não é substituível por biblioteca genérica sem adaptar consumers. Companions! 1.3.2 é dependente concreto. Similaridade funcional de networking/config/event APIs com outras libs não implica ABI compatível.
-- **Compatibilidade/Riscos:** Library de ampla superfície. Riscos: networking/config/event ABI drift, hot-reload inconsistente, bossbar links stale, entity persistent-data/schema drift, AI/OBB/render paths em side errado e consumer incompatível. 1.6.1 corrige links de bossbar não limpos em world reload.
-- **Observações:** Source-pinned 1.6.1. Subsistemas publicados incluem networking, auto config, common event bus, Automaton AI, OBB hitboxes experimentais, camera shake, boss bars, music provider, post shaders, biome spawns, loot helpers, persistent sounds, entity data e registrar. 1.6.1 limpa bossbar links em world reload.
-- **Procedência:** modlist.txt física atual + CurseForge oficial Knight Lib 1.6.1 NeoForge 1.21.1 file 8400701 + source oficial Xylonity/Knight-Lib branch 1.21.1 com version=1.6.1 + README de subsistemas + dependência oficial de Companions! 1.3.2.
+- **Compatibilidade/Riscos:** Library de ampla superfície. Riscos: networking/config/event ABI drift, hot-reload inconsistente, bossbar links stale, entity persistent-data/schema drift, AI/OBB/render paths em side errado e consumer incompatível. Novo risco operacional: upstream 2.0.1 é major superior à 1.6.1 física; não atualizar sem validar Companions! e demais consumers.
+- **Observações:** Runtime físico permanece 1.6.1. Upstream publicou 1.6.2 NeoForge 1.21.1 em 10/09/2026 e 2.0.1 em 11/09/2026. A 2.0.1 corrige particle keyframe worldspace transform; o salto 1.x→2.x é tratado como version gate, não atualização automática.
+- **Procedência:** modlist.txt física anexada e reconferida em 12/09/2026 + CurseForge oficial Knight Lib: 1.6.1 físico, 1.6.2 de 10/09/2026 e 2.0.1 NeoForge 1.21.1 file 8859434 de 11/09/2026 + source/docs 1.6.1 já auditados. Consumer Companions! permanece motivo para fail-closed antes de qualquer troca major.
 - **Fonte:** https://github.com/Xylonity/Knight-Lib/tree/1.21.1
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Knight Lib 1.6.1 source-pinned; networking/config/events/AI/bossbar/render/data/registrar frameworks, Companions 1.3.2 consumer, world-reload fix, lifecycle, riscos e testes catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — Knight Lib 1.6.1/JAR físico reconfirmado, porém upstream 1.21.1 avançou para 1.6.2 em 10/09 e 2.0.1 em 11/09/2026. Gap de versão major registrado; atualização não aplicada porque Companions! é consumer físico e compatibilidade 2.x precisa ser validada.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-26
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `knightlib-neoforge-1.21.1-1.6.1.jar`, mod id `knightlib`, versão `1.6.1`. O source oficial branch `1.21.1` declara exatamente `version=1.6.1`, Java 21 e Minecraft 1.21.1. **Companions! 1.3.2**, presente no pack, declara Knight Lib como required dependency.
+> 🛡️ **ESCOPO CANÔNICO.** Runtime físico: `knightlib-neoforge-1.21.1-1.6.1.jar`, mod id `knightlib`, versão `1.6.1`. O source oficial branch `1.21.1` declara exatamente `version=1.6.1`, Java 21 e Minecraft 1.21.1. **Companions! 1.3.2**, presente no pack, declara Knight Lib como required dependency.
 
 ## 1. Papel e authority
 Knight Lib é uma biblioteca multiloader que centraliza sistemas comuns reutilizados por mods Xylonity/consumers. Ela é authority da implementação compartilhada de suas APIs; o gameplay específico continua pertencendo ao consumer.
@@ -69,8 +59,11 @@ A release é Client & Server. Networking, configs server-relevant, AI, spawns, l
 ## 13. Lifecycle
 Validar construction/registration, config load/hot-reload, world join/reload, entity spawn/despawn, bossbar link/unlink, chunk unload, reconnect e server restart. O fix 1.6.1 torna world reload um regression gate obrigatório.
 
+### Version gate atual
+Após o JAR físico 1.6.1, o upstream publicou **1.6.2 NeoForge 1.21.1 em 10/09/2026** e **2.0.1 NeoForge 1.21.1 em 11/09/2026**. A 2.0.1 publica correção de particle keyframe worldspace transform. Como existe salto de major `1.x → 2.x` e **Companions! 1.3.2** é consumer físico, esta catalogação registra atualização disponível mas não presume compatibilidade binária: a troca deve ser bloqueada até teste de bootstrap, networking/config, AI/bossbar/render e consumer real.
+
 ## 14. Riscos técnicos
-- consumer ABI drift;
+- consumer ABI drift, especialmente no salto físico 1.6.1 → upstream 2.0.1;
 - duplicate event/network registration;
 - packet aplicado duas vezes;
 - hot-reload em opção não hot-safe;
@@ -91,6 +84,7 @@ Validar construction/registration, config load/hot-reload, world join/reload, en
 - [ ] Camera/music/shader effects não alteram gameplay authority.
 - [ ] Persistent entity data sobrevive restart sem duplicação.
 - [ ] Dedicated server não carrega render-only classes.
+- [ ] Knight Lib 2.0.1 só substitui a 1.6.1 após smoke test explícito de Companions! e demais consumers.
 
 ## 16. Evidências e limites
 - **Modlist física:** Knight Lib 1.6.1 e Companions! 1.3.2.
