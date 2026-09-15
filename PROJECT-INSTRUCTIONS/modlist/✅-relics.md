@@ -2,33 +2,30 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db8168aa84e5817c5ca3ed
-- **Estado no pack:** Integrado ao Github
-- **Autoridade física:** `relics-1.21.1-0.12.8.jar`, mod id `relics`, runtime `0.12.8`; Curios 9.5.1, OctoLib 0.6.2, FTB Teams 2101.1.11, Sophisticated Backpacks 3.26.2 e addons Reliquified presentes
-- **Auditoria de migração Notion → GitHub:** 2026-09-14
+- **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader
+- **Auditoria de migração Notion → GitHub:** 2026-09-15
 
-## Propriedades do banco
+## Propriedades do registro
 
 - **Mod:** Relics
 - **Arquivo JAR:** `relics-1.21.1-0.12.8.jar`
-- **Versão 1.21.1:** 0.12.8
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Versão 1.21.1:** `0.12.8`
+- **Categoria:** RPG; Magia; Exploração
 - **Decisão:** Sem decisão
-- **Categoria:** RPG, Magia, Exploração
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/relics-mod
 - **Função:** Framework/content mod de relics e acessórios únicos com habilidades, progressão/XP próprios e loot configurável; provider-base do ecossistema Reliquified instalado.
 - **Dependências:** Required publicado: Curios API e ShatterLib | OctoLib. Pack satisfaz via Curios 9.5.1 + OctoLib 0.6.2. Sophisticated Backpacks 3.26.2 é integração optional presente; FTB Teams 2101.1.11 também está presente.
-- **Sobreposição:** Compartilha slots/efeitos com Artifacts e outros acessórios, mas Relics mantém authority de sua progressão/abilities. Curios mantém authority dos slots; addons Reliquified estendem conteúdo sem substituir o framework.
 - **Compatibilidade/Riscos:** Beta oficial. Riscos: API drift dos addons Reliquified, modifiers/abilities duplicados no lifecycle Curios, target filtering, XP/stat overflow, stale cache/memory retention, dedicated-server classloading e power/loot stacking. Issues/PR upstream citados não foram reproduzidos localmente.
+- **Sobreposição:** Compartilha slots/efeitos com Artifacts e outros acessórios, mas Relics mantém authority de sua progressão/abilities. Curios mantém authority dos slots; addons Reliquified estendem conteúdo sem substituir o framework.
 - **Observações:** 0.12.8 adiciona Shield of Retaliation, targets configuráveis, FTB Teams e estatística de relic XP; também otimiza cache/corrige leaks e altera Ghostly Mantle, Midnight Mantle e Springy Boot. Artifacts físico atual é 13.2.3.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + release/dependências oficiais Relics 0.12.8 + source público da linha 1.21 usado apenas para arquitetura + issues/PR upstream marcados como riscos não reproduzidos.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/relics-mod
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Relics 0.12.8 reconstruído: progression/XP, Curios ownership, target rules, loot/config, FTB Teams, cache lifecycle, addons Reliquified, riscos upstream e testes.
 - **Histórico da decisão:**
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Relics 0.12.8 reconstruído: progression/XP, Curios ownership, target rules, loot/config, FTB Teams, cache lifecycle, addons Reliquified, riscos upstream e testes.
 - **Data da última decisão:** 2026-08-26
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `relics-1.21.1-0.12.8.jar`, mod id `relics`, versão `0.12.8`, NeoForge 1.21.1. Relics é um sistema de acessórios/relics com habilidades e progressão próprias, loot configurável e integração com Curios. A build 0.12.8 é Beta oficial; isso é maturidade publicada, não evidência automática de incompatibilidade.
+> 💠 **ESCOPO CANÔNICO.** Runtime físico: `relics-1.21.1-0.12.8.jar`, mod id `relics`, versão `0.12.8`, NeoForge 1.21.1. Relics é um sistema de acessórios/relics com habilidades e progressão próprias, loot configurável e integração com Curios. A build 0.12.8 é Beta oficial; isso é maturidade publicada, não evidência automática de incompatibilidade.
 
 ## 1. Identidade e papel
 - **Mod:** Relics.
