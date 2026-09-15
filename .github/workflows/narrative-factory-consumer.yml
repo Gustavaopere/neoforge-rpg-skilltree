@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: Gustavaopere/minecraft-mod-factory
-          ref: 4f9bd7d248e9ba8f65166c9cd7c38496b8961868
+          ref: 38291938a724c0f61422e44a150c7d07afeed54c
           path: .factory
           persist-credentials: false
 
