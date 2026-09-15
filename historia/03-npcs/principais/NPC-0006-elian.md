@@ -43,11 +43,11 @@ Não exige preservação absoluta, mas observa se o jogador distingue urgência 
 O registro atual mantém `met_party=false`; isso não autoriza presumir encontro prévio.
 
 ## Vínculos registrados no Grimoire
-- facção: Ofícios do Pátio — UUID `c8408ee4-435c-4c85-9d61-5d4472197a88`;
-- local: Pátio das Oficinas — UUID `b015847c-7c60-4472-8d5b-31f44dcbc53e`;
-- relação NPC: Maura — UUID `76350f82-9af5-4cef-9c34-f66cf69cd2f7`.
+- facção: `FAC-0002` Ofícios do Pátio — UUID `c8408ee4-435c-4c85-9d61-5d4472197a88`;
+- assentamento: `SET-0002` Pátio das Oficinas — UUID `b015847c-7c60-4472-8d5b-31f44dcbc53e`;
+- relação NPC: `NPC-0007` Maura — UUID `76350f82-9af5-4cef-9c34-f66cf69cd2f7`.
 
-Esses UUIDs são referências cruzadas do Grimoire; este arquivo não atribui IDs editoriais novos às entidades relacionadas.
+Os IDs editoriais acima foram atribuídos somente após consulta individual das entidades-fonte no Grimoire e auditoria de duplicatas/numeração. O tipo e a intensidade do edge Elian↔Maura continuam governados pela fonte de relação específica; o simples cross-reference não autoriza expandi-los.
 
 ## Relevância de arco registrada
 Eixo A3-N1: levantamento/documentação. Pode trabalhar produtivamente com Oren, mas também confrontar interpretações baseadas em tradição quando não existe suporte material suficiente.
@@ -63,7 +63,7 @@ Eventos concretos de perda, reparo ou descoberta precisam ser declarados pelas f
 - estado atual: **NÃO FIXADOS** além dos vínculos de Grimoire já listados;
 - `met_party=false` permanece a única afirmação sobre encontro prévio com o jogador;
 - uma entrada em cena futura precisa ser materializada por evento, quest, local ou outro estado narrativo com proveniência própria;
-- vínculo com Pátio das Oficinas/Ofícios do Pátio não equivale a waypoint automático, presença permanente ou conhecimento do jogador.
+- vínculo com `SET-0002`/`FAC-0002` não equivale a waypoint automático, presença permanente ou conhecimento do jogador.
 
 ## Estados de vida / morte / retorno
 - a fonte atual apresenta Elian como entidade ativa;
@@ -73,7 +73,7 @@ Eventos concretos de perda, reparo ou descoberta precisam ser declarados pelas f
 
 ## Quests / arcos relacionados
 - eixo A3-N1: levantamento/documentação;
-- relação metodológica com Oren e vínculo com Maura somente dentro do que as fontes específicas registrarem;
+- relação metodológica com Oren e vínculo com `NPC-0007` somente dentro do que as fontes específicas registrarem;
 - nenhuma quest concreta adicional é criada por este dossiê.
 
 ## Invariantes
