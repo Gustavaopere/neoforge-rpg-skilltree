@@ -1,17 +1,9 @@
 # Moonlight Lib
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db814399b4d8e3e63f48db
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-10
-
-## Propriedades do banco
-
-- **Mod:** Moonlight Lib
 - **Arquivo JAR:** `moonlight-1.21.1-3.6.3-neoforge.jar`
 - **Versão 1.21.1:** 1.21.1-3.6.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca
@@ -19,14 +11,12 @@
 - **Dependências:** NeoForge 1.21.1. Consumer físico confirmado: Supplementaries; Amendments também está presente no ecossistema. `codecui-neoforge-1.21.1-1.3.6.jar` é biblioteca embarcada do host, não top-level.
 - **Sobreposição:** Não substituível por outras libraries genéricas sem adaptação dos consumers; APIs/registries são contratos específicos.
 - **Compatibilidade/Riscos:** Library transversal Client & Server. Riscos: ABI drift, dynamic registration/codec mismatch, resource/datapack reload, mixin overlap e consumer attribution. Supplementaries é consumer confirmado. CodecUI 1.3.6 é embedded JarJar.
-- **Observações:** Runtime literal `1.21.1-3.6.3`, file ID 8821083, Release 06/09/2026. Changelog exato: API para loom-supported items e config improvements. CodecUI 1.3.6 embutido via JarJar.
-- **Procedência:** modlist.txt física canônica atual de 10/09/2026 + CurseForge oficial da release 3.6.3 + source oficial MehVahdJukaar/Moonlight + consumers físicos.
+- **Observações:** Runtime físico 1.21.1-3.6.3. Upstream 1.21.1 avançou para 3.6.4 em 10/09/2026; changelog público: correção de concurrency issue. CodecUI 1.3.6 permanece JarJar interno do JAR instalado.
+- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial: 3.6.3 instalada e 3.6.4 NeoForge 1.21.1 (file 8850087, 10/09/2026) como release mais recente localizada + source oficial já auditado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/selene/files/8821083 | https://github.com/MehVahdJukaar/Moonlight
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Moonlight 1.21.1-3.6.3 reconstruído: APIs dinâmicas, resources/data/registries, consumers, mixins, CodecUI JarJar, changelog exato, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Moonlight físico 1.21.1-3.6.3 reconfirmado; upstream publicou 1.21.1-3.6.4 NeoForge em 10/09/2026. Gap 3.6.3→3.6.4 registrado; update não aplicado.
 - **Histórico da decisão:** 2026-08-26 — atualizado de 3.4.1 para runtime 1.21.1-3.5.0 e classificado como Dependência após confirmação de Supplementaries instalado como consumidor. 2026-08-28 — atualizado para 1.21.1-3.5.2. 2026-09-06 — atualizado para 1.21.1-3.6.1. 2026-09-07 — atualizado para `moonlight-1.21.1-3.6.3-neoforge.jar`, runtime `1.21.1-3.6.3`; decisão Dependência preservada.
 - **Data da última decisão:** 2026-09-10
-
-# Dossiê operacional — padrão Alex's Mobs
 
 > 🔎 **ESCOPO CANÔNICO.** Runtime físico: `moonlight-1.21.1-3.6.3-neoforge.jar`, mod id `moonlight`, versão literal `1.21.1-3.6.3`. A release oficial exata é o CurseForge file ID `8821083`, publicada em 06/09/2026. O JAR embute `codecui-neoforge-1.21.1-1.3.6.jar` em `META-INF/jarjar`; CodecUI pertence ao host e não é entrada top-level independente.
 
@@ -89,11 +79,12 @@ Regra de catálogo:
 - documentar risco/versionamento sob Moonlight;
 - qualquer erro de classloading de CodecUI deve ser triado como componente embarcado do host.
 
-## 9. Changelog exato 3.6.3
-A release 3.6.3 registra:
+## 9. Changelog exato 3.6.3 e version gate atual
+A release 3.6.3 instalada registra:
 - API para adicionar itens suportados pelo loom;
 - melhorias de configuração.
-A ficha não importa mudanças de releases posteriores/anteriores para descrever “novidades 3.6.3”.
+**Version gate em 13/09/2026:** upstream publicou `moonlight-1.21.1-3.6.4-neoforge.jar` em 10/09/2026, file ID `8850087`, para NeoForge 1.21.1. O changelog público da 3.6.4 registra apenas correção de um problema de concorrência. O pack permanece em 3.6.3; a atualização não foi aplicada e deve ser regressada com Supplementaries/Amendments e os demais consumers antes de promoção.
+A ficha não projeta internals da 3.6.4 sobre o JAR instalado.
 
 ## 10. Client/server e sync
 CurseForge classifica Moonlight como Client & Server. Dependendo da API usada pelo consumer, existem superfícies client-facing e server-authoritative.
