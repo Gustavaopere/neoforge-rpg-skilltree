@@ -1,7 +1,6 @@
 # Alex's Mobs Continued
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81c5a6f4d3f24f528793
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader
 - **Auditoria de migração Notion → GitHub:** 2026-09-15
