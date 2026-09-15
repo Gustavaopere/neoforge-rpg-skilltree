@@ -1,39 +1,24 @@
 # Quark
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db817e9422fd6437842a10
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `Quark-4.1-483.jar`, mod id `quark`, runtime `4.1-483`, mixins `quark.mixins.json` e `quark_integrations.mixins.json`; Zeta 1.1-40 e Dynamic Trees for Quark 2.6.1 presentes; Biolith 3.0.10 embutido e Biolith 3.0.14 também presente como JAR top-level
-- **Data da exportação:** 2026-09-11
-
-## Divergências documentais detectadas na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**.
-- O corpo do dossiê documenta Biolith 3.0.10 como JarJar interno de Quark e afirma que não deve receber entrada top-level. A modlist física acessível, porém, contém também **`biolith-neoforge-3.0.14.jar` como JAR top-level**, além da cópia 3.0.10 embutida em Quark. Isso não apaga a relação JarJar do host, mas invalida qualquer interpretação de ausência de Biolith top-level na instalação atual. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
-
-## Propriedades do banco
-
-- **Mod:** Quark
 - **Arquivo JAR:** `Quark-4.1-483.jar`
 - **Versão 1.21.1:** 4.1-483
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** QoL, Worldgen, Exploração
 - **Função:** Grande coleção modular de melhorias vanilla+, blocos, QoL, worldgen e mecânicas configuráveis.
-- **Dependências:** Zeta 1.1-40 é required dependency. Consumer/bridge causal mantido no pack: Dynamic Trees - Quark 2.6.1, que depende de Quark + Dynamic Trees. Biolith 3.0.10 está embedded no JAR.
+- **Dependências:** Zeta 1.1-40 é required dependency. Consumer/bridge causal mantido no pack: Dynamic Trees - Quark 2.6.1, que depende de Quark + Dynamic Trees. Quark embute Biolith 3.0.10; a modlist física contém também `biolith-neoforge-3.0.14.jar` como JAR top-level separado.
 - **Sobreposição:** Grande mod modular; sobreposição deve ser decidida por módulo. Dynamic Trees - Quark torna a base Quark necessária enquanto o bridge for mantido.
-- **Compatibilidade/Riscos:** Riscos: DT-Quark/worldgen drift, module overlap, Zeta coupling, item-handler automation e Biolith embedded. A build física 4.1-483 tem atualização externa 4.1-484 disponível com hotfix para Mending/filtering; não trocar versão no catálogo sem modlist física nova.
-- **Observações:** Runtime instalado permanece 4.1-483. Em 10/09/2026, 4.1-484 foi publicada como hotfix posterior para filtering que afetava Mending; registrar como update disponível, não como instalada.
-- **Procedência:** modlist.txt física canônica atual de 10/09/2026 + CurseForge oficial Quark 4.1-483 + pesquisa da release externa 4.1-484 + dossiê/source já auditado de Dynamic Trees - Quark.
+- **Compatibilidade/Riscos:** Riscos: DT-Quark/worldgen drift, module overlap, Zeta coupling, item-handler automation e coexistência da cópia Biolith 3.0.10 embutida com Biolith 3.0.14 top-level. A build física 4.1-483 tem atualização externa 4.1-484 disponível com hotfix para Mending/filtering; não trocar versão no catálogo sem modlist física nova.
+- **Observações:** Runtime instalado permanece 4.1-483. Em 10/09/2026, 4.1-484 foi publicada como hotfix posterior para filtering que afetava Mending; registrar como update disponível, não como instalada. A modlist física também confirma Biolith 3.0.14 top-level além do JarJar 3.0.10 interno de Quark.
+- **Procedência:** modlist.txt física atual reconfirmada nesta auditoria (`Quark-4.1-483.jar`, Biolith 3.0.14 top-level e Biolith 3.0.10 JarJar) + CurseForge oficial Quark 4.1-483 + pesquisa da release externa 4.1-484 + dossiê/source já auditado de Dynamic Trees - Quark.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/quark
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Quark 4.1-483 reconstruído e reclassificado como Dependência: modularidade, Zeta, DT-Quark consumer mantido, Azalea/enchants/item handlers, Biolith embedded, update 4.1-484 externo, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Quark 4.1-483 reconstruído e reclassificado como Dependência: modularidade, Zeta, DT-Quark consumer mantido, Azalea/enchants/item handlers, Biolith embedded, update 4.1-484 externo, riscos e testes. Autoridade física adicional revalidada na auditoria de migração: Biolith 3.0.14 existe também como JAR top-level.
 - **Histórico da decisão:** 2026-09-10 — reclassificado de Sem decisão para Dependência porque Dynamic Trees - Quark 2.6.1 está Mantido/Integrado ao Github e exige Quark como base funcional.
 - **Data da última decisão:** 2026-09-10
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `Quark-4.1-483.jar`, mod id `quark`, versão `4.1-483`, NeoForge 1.21.1. Quark é um grande mod **modular vanilla+**. O pack mantém `Dynamic Trees - Quark 2.6.1` com decisão **Manter**, e esse bridge depende de Quark; por isso Quark passa de `Sem decisão` para **Dependência**. O JAR embute Biolith 3.0.10 como JarJar. Existe uma release externa 4.1-484 mais nova, mas a autoridade instalada continua 4.1-483 até a modlist física mudar.
+> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `Quark-4.1-483.jar`, mod id `quark`, versão `4.1-483`, NeoForge 1.21.1. Quark é um grande mod **modular vanilla+**. O pack mantém `Dynamic Trees - Quark 2.6.1` com decisão **Manter**, e esse bridge depende de Quark; por isso Quark passa de `Sem decisão` para **Dependência**. O JAR de Quark embute Biolith 3.0.10 como JarJar. A modlist física atual também possui `biolith-neoforge-3.0.14.jar` como top-level separado. Existe uma release externa Quark 4.1-484 mais nova, mas a autoridade instalada continua 4.1-483 até a modlist física mudar.
 
 ## 1. Identidade e papel
 - **Mod:** Quark.
@@ -86,7 +71,7 @@ A 4.1-483 corrige partes do módulo “Golden Tools Have Fortune” e mutual exc
 Autoridade do catálogo:
 - instalado = **4.1-483**;
 - 4.1-484 = atualização externa disponível, não instalada;
-- não alterar `Arquivo JAR`/versão no Notion até a pasta física/modlist confirmar a troca.
+- não alterar `Arquivo JAR`/versão no catálogo até a pasta física/modlist confirmar a troca.
 
 Enquanto 483 permanecer, testar Mending/golden-tool enchantment filtering como risco conhecido.
 
@@ -100,14 +85,15 @@ A 4.1-483 adiciona capabilities de item handler a **Backpacks** e **Feeding Trou
 
 Isso amplia superfície de automação: testar insert/extract, side rules, loops e acesso indevido a itens quando integrado a Create/outros handlers.
 
-## 12. Biolith embedded
-O JAR físico inclui `/META-INF/jarjar/biolith-neoforge-3.0.10.jar`, mod id `biolith`, versão `3.0.10`.
+## 12. Biolith embedded e top-level físico
+O JAR físico de Quark inclui `/META-INF/jarjar/biolith-neoforge-3.0.10.jar`, mod id `biolith`, versão `3.0.10`.
 
-Regra canônica:
-- não recebe ordinal próprio;
-- não recebe página top-level nesta modlist;
-- não deve ser atualizado isoladamente;
-- problemas de resolução devem ser triados sob o host Quark salvo evidência de outra cópia top-level.
+Para **essa cópia embutida**:
+- não recebe ordinal próprio por ser JarJar do host Quark;
+- não recebe página top-level separada por causa da cópia 3.0.10;
+- não deve ser atualizada isoladamente dentro do host.
+
+Entretanto, a autoridade física da modlist confirma também **`biolith-neoforge-3.0.14.jar` como JAR top-level separado**. Essa entrada top-level é independente da cópia JarJar 3.0.10 para fins de presença/ordem física e deve ser tratada conforme sua própria posição no catálogo. Ao diagnosticar resolução/classloading, considerar explicitamente a coexistência das duas versões em vez de presumir ausência de Biolith top-level.
 
 ## 13. Dynamic Trees - Quark
 O bridge mantido adapta families/species, worldgen, seeds/loot e features especiais do Quark para Dynamic Trees. A combinação cria acoplamento de três versões:
@@ -138,7 +124,7 @@ A resposta correta não é “Quark duplica tudo”, mas mapear módulo → prov
 3. **Module overlap:** dois mods alteram mesma mecânica.
 4. **Worldgen drift:** azalea/Glow Shroom/feature cancellers.
 5. **Item-handler automation:** backpacks/troughs expostos a pipes/tools.
-6. **Embedded Biolith:** não promover/atualizar isoladamente.
+6. **Biolith dual presence:** Quark embute 3.0.10 e a modlist possui 3.0.14 top-level; resolução/compatibilidade precisa ser testada, não inferida.
 7. **Zeta coupling:** core e library precisam permanecer compatíveis.
 8. **Config-dependent behavior:** projeto documenta features que podem estar desligadas localmente.
 
@@ -152,13 +138,13 @@ A resposta correta não é “Quark duplica tudo”, mas mapear módulo → prov
 - [ ] Feeding Trough capability não duplica item em insert/extract.
 - [ ] Desabilitar módulo específico não quebra bridge ou registry.
 - [ ] Resource/datapack reload não duplica hooks.
-- [ ] Biolith embedded resolve sem entrada top-level duplicada.
+- [ ] Biolith 3.0.10 JarJar e Biolith 3.0.14 top-level resolvem sem conflito crítico.
 
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
 ## 18. Evidências e limites
-- Modlist física: Quark 4.1-483, Zeta 1.1-40 e Biolith 3.0.10 embedded.
+- Modlist física: Quark 4.1-483, Zeta 1.1-40, Biolith 3.0.14 top-level e Biolith 3.0.10 embedded no Quark.
 - CurseForge oficial: Quark 4.1-483 Release NeoForge 1.21.1 de 08/09/2026; changelog de enchantments, azalea, Totem option e item-handler capabilities.
-- Pesquisa externa atual: Quark 4.1-484 lançado em 10/09/2026 como hotfix de Mending/filtering; **não instalado**.
+- Pesquisa externa atual já registrada no Notion: Quark 4.1-484 lançado em 10/09/2026 como hotfix de Mending/filtering; **não instalado**.
 - Notion/source já auditado: Dynamic Trees - Quark 2.6.1 está `Manter` e depende de Quark.
-- **Limite:** config modular local não foi lida neste lote; nenhuma feature foi declarada ativa apenas por constar na documentação.
+- **Limite:** config modular local não foi lida neste lote; nenhuma feature foi declarada ativa apenas por constar na documentação. A coexistência Biolith 3.0.10 embedded + 3.0.14 top-level foi confirmada fisicamente, mas não testada em runtime nesta auditoria.
