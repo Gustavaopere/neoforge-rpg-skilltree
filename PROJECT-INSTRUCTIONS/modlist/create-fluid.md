@@ -2,9 +2,9 @@
 
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Página-fonte: https://app.notion.com/p/3c369db9f0db81cc9951fed3c43f30f1  
-> Estado no momento da importação: `Instalado — Dossiê completo`  
-> Autoridade física: `modlist(4).txt`, 595 mods top-level  
-> Importado em: 2026-09-09
+> Estado atual: `Integrado ao Github`  
+> Autoridade física: `modlist.txt`, 595 entradas totais incluindo o modloader  
+> Auditoria de migração: 2026-09-15
 
 ## Propriedades do registro
 
@@ -14,16 +14,16 @@
 - **Categoria:** Tecnologia; Automação
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-fluid/files/8520817
 - **Função:** Addon de Create para logística/processamento de fluidos: Mechanical Pipette, Centrifugal Pump, Copper Tap/Sink, Fluid Interfaces, Can Filler/Copper Can, Communicating Vessel, Gutter Outlet, válvulas, Fluid Atomizer e integração com package logistics/promises.
 - **Dependências:** Create 6.0.8+ segundo a release 2.1.5; pack instala Create 6.0.10. NeoForge 21.1.219+ declarado para a release.
 - **Compatibilidade/Riscos:** Risco crítico em atomicidade de transferência/package-unpack, handlers terceiros não transacionais e promise settlement; 2.1.5 corrigiu dupe, loops de autocrafting/self-routing, renderer e interação Mechanical Arm. Source público master tem version drift (Gradle 2.1.0), portanto não é tratado como pin binário exato.
 - **Sobreposição:** Sobreposição parcial com outros addons Create de transporte, interfaces, bombas e fluid logistics. Não remover por tema: comparar por endpoint/contrato. Este mod possui package logistics, promises, Fluid Atomizer e interaction points próprios.
 - **Observações:** Runtime físico confirmado: fluid 2.1.5. Release suporta Create 6.0.8+ e foi validada upstream com 6.0.11; pack usa Create 6.0.10. Source master inspecionado declara mod_version 2.1.0, então nomes/arquitetura do source foram usados com fail-closed.
-- **Procedência:** modlist.txt física atual de 09/09/2026 + release oficial CurseForge Create: Fluid 2.1.5 (file 8520817) + source oficial adonis-baffin/CreateFluid inspecionado com divergência de versionamento explicitada.
+- **Procedência:** modlist.txt física atual; fontes oficiais revalidadas em 12/09/2026.
 - **Histórico da decisão:** vazio.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Create: Fluid 2.1.5; conteúdo, handlers/transações, package logistics/promises, mounted storage, lifecycle, riscos de dupe e matriz de testes catalogados; source drift registrado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026
 - **Data da última decisão:** 2026-08-26
 
 ## Dossiê operacional — padrão Alex's Mobs
