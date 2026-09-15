@@ -1,5 +1,7 @@
 # Ars 'n' Spells
 
+> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `ars_n_spells-3.3.2.jar` / `3.3.2`. A release upstream mais recente para NeoForge 1.21.1 é **3.3.4**, publicada em 14/09/2026. O delta é material para integração: consolida ownership do pagamento no cast nativo para evitar debit/listener duplicado, adiciona recovery de debit/refund e obrigações não resolvidas persistentes, restaura gates opcionais de mixins do Iron's, inclui MixinExtras 0.5.3, amplia carrier revisions a todos os componentes nativos e avança o protocolo de rede para **7**, além de restaurar drops de blank scroll em loot do Iron's. Esta nota supersede somente referências antigas de “latest/upstream” abaixo; a arquitetura 3.3.0→3.3.2 continua descrevendo o runtime físico e os fixes 3.3.4 não são atribuídos à build instalada.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader
