@@ -1,5 +1,7 @@
 # Create: Fluid — 2.1.5
 
+> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `fluid-2.1.5.jar`. A release upstream mais recente para NeoForge 1.21.1 é **Create Fluid 2.1.6**, publicada em 13/09/2026. O delta é material: corrige restauração dos interaction targets da Mechanical Pipette após reconnect, dupes em Logistics Junction/package unpack, promises de Stock Links/Can Fillers, fuel timing de lava em Blaze Burners e rendering de interfaces; também melhora integração de fontes infinitas, Quicksand e Fluid Atomizer. Esta nota **supersede somente referências antigas de “latest/upstream” abaixo**; não promove a build instalada.
+
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Estado atual: `Integrado ao Github`  
 > Autoridade física: `modlist.txt`, 595 entradas totais incluindo o modloader  
