@@ -12,7 +12,8 @@ Permanecem neste repositório:
 2. **contratos de authority/ferramentas externas desta campanha** — incluindo limites de cânone, runtime e integração;
 3. `11-contrato-geografia-compendio.md` — binding tardio e prova de worldgen/Compêndio;
 4. `12-grimoire-github-sync.md` — reconciliação rastreável entre Campaign Bible e fonte editorial versionada;
-5. `13-backlog-editorial-e-bloqueios.md` — fila fail-closed das lacunas reais da campanha, com authority exigida, trabalho permitido e proibições enquanto a fonte necessária não estiver disponível.
+5. `13-backlog-editorial-e-bloqueios.md` — fila fail-closed das lacunas reais da campanha, com authority exigida, trabalho permitido e proibições enquanto a fonte necessária não estiver disponível;
+6. `14-auditoria-reconciliacao-grimoire-2026-09-15.md` — snapshot operacional da auditoria de pendências Grimoire↔GitHub, incluindo conflito Severin↔Aren, provenance de Elias e UUIDs residuais ainda sem reconciliação completa.
 
 Não adicionar skills, validators, templates ou pipelines genéricos a `historia/`; quando a necessidade for reutilizável, implementá-la no domínio correspondente da Minecraft Mod Factory e manter aqui apenas a configuração/uso específico desta campanha.
 
