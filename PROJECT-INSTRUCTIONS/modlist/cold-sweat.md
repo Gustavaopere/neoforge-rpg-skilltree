@@ -1,31 +1,24 @@
 # Cold Sweat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81aeb1e0c924d048fc36
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
-
-## Propriedades do banco
-
-- **Mod:** Cold Sweat
 - **Arquivo JAR:** `ColdSweat-2.4.2.jar`
 - **Versão 1.21.1:** `2.4.2`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Cold Sweat 2.4.2, authority térmica, Create: Cold Sweat 1.1.2, Thirst Was Reclaimed 3.0.4, lifecycle e regressões Sable/KubeJS confirmados no QC global #102. Suporte Immersive Engineering registrado como dormente; runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #102: `ColdSweat-2.4.2.jar` / `2.4.2` conferidos contra a modlist atual; authority térmica, Create: Cold Sweat 1.1.2, Thirst Was Reclaimed 3.0.4, Sable Companion 1.4.2 embarcado e decisão `Manter` preservados.
 - **Categoria:** Clima
 - **Compatibilidade/Riscos:** Authority de temperatura corporal; evitar double-application por outros temperature providers. Riscos em insulation, block temperature emitters, dimension/death lifecycle, Create/Sable moving objects, KubeJS configs e compat de thirst/IE. 2.4.2 corrige emissão térmica em objetos Sable e casos de KubeJS insulator config.
 - **Decisão:** Manter
 - **Dependências:** Provider térmico principal. Integrações físicas atuais confirmadas: Create: Cold Sweat 1.1.2 e Thirst Was Reclaimed 3.0.4. A 2.4.2 oferece suporte upstream ao external heater do Immersive Engineering, porém Immersive Engineering está ausente do snapshot físico atual; não tratá-lo como integração ativa.
 - **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat
 - **Função:** Sistema principal de temperatura corporal do pack: calcula conforto térmico a partir de ambiente e estado do jogador, oferece insulation e dispositivos/itens térmicos como Hearth, Boiler, Icebox, Waterskin e Thermometer.
 - **Histórico da decisão:** Mantido formalmente em 22/08/2026 como sistema principal de temperatura corporal. O compat antigo Cold Sweat and Aeronautics foi removido, mas Cold Sweat permanece provider térmico principal. Em 08/09/2026, a decisão foi preservada e a ficha reconciliada à build física 2.4.2 atual.
 - **Observações:** mod id `cold_sweat`; runtime 2.4.2. Changelog 2.4.2: external heater do Immersive Engineering, Thirst Was Reclaimed, fix de temperature emitters em objetos Sable/Create Aeronautics, KubeJS insulators e tooltip flicker. No snapshot atual, Immersive Engineering está ausente; esse suporte é dormente. Cold Sweat: Altitude não é top-level atual.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + metadata runtime Cold Sweat 2.4.2 + CurseForge/documentação oficial 2.4.2 + presença física de Create: Cold Sweat 1.1.2 e Thirst Was Reclaimed 3.0.4; decisão histórica preservada.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime Cold Sweat 2.4.2 + CurseForge/documentação oficial 2.4.2 + Create: Cold Sweat 1.1.2, Thirst Was Reclaimed 3.0.4 e Sable Companion 1.4.2 embarcado já auditados. Reconciliação final: JAR/runtime permanecem exatamente `ColdSweat-2.4.2.jar` / `2.4.2`; decisão `Manter` e suporte Immersive Engineering dormente permanecem inalterados.
 - **Sobreposição:** Cold Sweat controla temperatura corporal. Estações, clima visual, chuva/neve e outros efeitos ambientais podem coexistir, mas não devem liquidar uma segunda temperatura corporal sem integração explícita.
 - **Data da última decisão:** 2026-08-22
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > 🌡️ Versão física confirmada: `ColdSweat-2.4.2.jar`, mod id `cold_sweat`, runtime `2.4.2`, NeoForge 1.21.1. No pack, Cold Sweat é o **provider principal de temperatura corporal** e possui decisão formal `Manter` desde 22/08/2026.
 
