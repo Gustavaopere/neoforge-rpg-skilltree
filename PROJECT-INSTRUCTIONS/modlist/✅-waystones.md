@@ -2,26 +2,27 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db81a9aefbcfc95945ab22
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `waystones-neoforge-1.21.1-21.1.44.jar`, mod id `waystones`, runtime `21.1.44`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Waystones
 - **Arquivo JAR:** `waystones-neoforge-1.21.1-21.1.44.jar`
 - **Versão 1.21.1:** `21.1.44`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — dossiê reconstruído; network authority, visibility, worldgen, Sable/JourneyMap e lifecycle catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Waystones 21.1.44 permanece exatamente instalado e continua a latest release NeoForge 1.21.1; fixes de visibility/index, worldgen feature-cycle e animações preservados.
 - **Categoria:** QoL; Exploração
 - **Compatibilidade/Riscos:** Validar config real de costs/cooldowns/visibility/worldgen, teleport permissions, break/Silk Touch index, multiplayer e coordinate transforms Sable. 21.1.44 corrige visibility/index e feature-cycle worldgen. Marker JourneyMap não é teleport authority.
 - **Decisão:** Sem decisão
 - **Dependências:** Balm 21.0.65 no pack. Bridges atuais: Waystones:Sable 1.0.7; JourneyMap Integration 1.9 com JourneyMap 6.0.7.
 - **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/waystones
 - **Função:** Rede persistente de destinos de teleporte descobertos/construídos, com activation, visibility, costs/cooldowns/restrições configuráveis e worldgen opcional.
 - **Histórico da decisão:** vazio
 - **Observações:** Mod id `waystones`, runtime 21.1.44. Waystones é authority da rede/destinos; Waystones:Sable traduz sublevels e JMI apenas apresenta markers. Referências 21.1.41/21.1.42 são históricas.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Waystones 21.1.44 + Guias Gameplay/Tecnologia atuais.
+- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Waystones 21.1.44 NeoForge 1.21.1 revalidado em 13/09/2026 + Balm 21.0.65, Waystones:Sable 1.0.7, JourneyMap 6.0.7/JMI 1.9 físicos. Nenhum config/teleport/worldgen/Sable/multiplayer test foi executado.
 - **Sobreposição:** Compartilha finalidade com outros teleports/portais, mas sua rede persistente é própria. JourneyMap/JMI e Waystones:Sable são bridges/UI, não sistemas concorrentes.
 - **Data da última decisão:** 2026-09-09
 
@@ -160,3 +161,10 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
 ## 14. Limitação
 Config efetiva de costs/cooldowns/visibility/worldgen não foi lida e runtime QA não foi executado. Integrações de quest/perk devem consultar hooks/state reais da 21.1.44 antes de assumir discovery ou teleport success.
+
+## 15. Revalidação física — 11/09/2026
+A modlist física mantém exatamente `waystones-neoforge-1.21.1-21.1.44.jar`, mod id `waystones`, versão `21.1.44`. A file list oficial confirma essa mesma build como latest release NeoForge 1.21.1 em 08/09/2026.
+Os fixes exatos de 21.1.44 — activation visibility com default global, índices global/team após Silk Touch, waystones unseen/unnamed, feature-cycle de worldgen e animações choppy — permanecem relevantes. Balm `21.0.65`, Waystones:Sable `1.0.7`, JourneyMap `6.0.7` e JMI `1.9` continuam presentes. O estado **Integrado ao Github** e a decisão **Sem decisão** foram preservados. Nenhum config/teleport/worldgen/Sable/multiplayer test foi executado nesta recatalogação.
+
+## 16. Revalidação física e upstream — 13/09/2026
+O runtime físico permanece `waystones-neoforge-1.21.1-21.1.44.jar`, versão `21.1.44`, e esta continua a latest release NeoForge 1.21.1 localizada. Permanecem confirmados os fixes da 21.1.44 para visibility/activation com default global, índices global/team após Silk Touch, waystones unseen/unnamed, registro repetido de worldgen features causando feature-cycle e animações choppy. Balm `21.0.65`, Waystones:Sable `1.0.7`, JourneyMap `6.0.7` e JMI `1.9` continuam presentes. Nenhum config, teleport, worldgen, Sable ou multiplayer test foi executado nesta revalidação.
