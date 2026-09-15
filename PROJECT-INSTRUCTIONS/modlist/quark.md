@@ -1,22 +1,21 @@
 # Quark
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db817e9422fd6437842a10
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `Quark-4.1-483.jar`, mod id `quark`, runtime `4.1-483`, mixins `quark.mixins.json` e `quark_integrations.mixins.json`; Zeta 1.1-40 e Dynamic Trees for Quark 2.6.1 presentes; Biolith 3.0.10 embutido e Biolith 3.0.14 também presente como JAR top-level
+- **Autoridade física usada:** `modlist.txt` anexada — `Quark-4.1-483.jar`, mod id `quark`, runtime `4.1-483`; Zeta 1.1-40 e Dynamic Trees for Quark 2.6.1 presentes; Biolith 3.0.10 embutido no Quark e `biolith-neoforge-3.0.14.jar` também presente como JAR top-level
 - **Data da exportação:** 2026-09-11
 
-## Divergências documentais detectadas na exportação
+## Divergências documentais detectadas na auditoria
 
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**.
-- O corpo do dossiê documenta Biolith 3.0.10 como JarJar interno de Quark e afirma que não deve receber entrada top-level. A modlist física acessível, porém, contém também **`biolith-neoforge-3.0.14.jar` como JAR top-level**, além da cópia 3.0.10 embutida em Quark. Isso não apaga a relação JarJar do host, mas invalida qualquer interpretação de ausência de Biolith top-level na instalação atual. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
+- A página Notion registra procedência por uma modlist física canônica de 10/09/2026. A autoridade física anexada e usada nesta auditoria confirma diretamente `Quark-4.1-483.jar`; portanto não há divergência de JAR/versão do Quark, apenas diferença temporal na descrição da procedência preservada abaixo.
+- O corpo do dossiê documenta Biolith 3.0.10 como JarJar interno de Quark e afirma que não deve receber entrada top-level. A modlist física atual contém também **`biolith-neoforge-3.0.14.jar` como JAR top-level**, além da cópia 3.0.10 embutida em Quark. A relação JarJar do host continua válida, mas a afirmação de ausência de Biolith top-level não descreve a instalação física atual. O corpo-fonte é preservado para paridade e esta divergência física prevalece para inventário/presença.
 
 ## Propriedades do banco
 
 - **Mod:** Quark
 - **Arquivo JAR:** `Quark-4.1-483.jar`
 - **Versão 1.21.1:** 4.1-483
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** QoL, Worldgen, Exploração
