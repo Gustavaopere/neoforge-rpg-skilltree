@@ -1,23 +1,27 @@
-# DLG-0001 — Severin — Calibração de voz
+# DLG-0001 — Severin — Calibração de voz legada
 
 ## Estado editorial
-EXPERIMENTAL
+OBSOLETO / EXPERIMENTAL LEGADO / NÃO É VOZ DE AREN.
+
+## Aviso de migração
+Este diálogo foi escrito quando o rótulo editorial `NPC-0001` ainda correspondia a Severin. Desde 2026-09-15, `NPC-0001` representa Aren. A referência ao ID abaixo é preservada somente como provenance histórica exigida pelo registro de diálogo; **não** significa que as falas pertençam a Aren.
+
+Severin não foi transformado em alias/pseudônimo de Aren e nenhuma fala deste arquivo pode ser promovida para Aren por continuidade de ID. Consultar `historia/11-ia-e-autoria/15-migracao-npc-0001-severin-aren-2026-09-15.md`.
 
 ## Escopo
-CALIBRAÇÃO DE VOZ / não representa encontro canônico e não deve ser usado diretamente como cena de runtime.
+CALIBRAÇÃO DE VOZ LEGADA DE SEVERIN / não representa encontro canônico e não deve ser usado diretamente como cena de runtime.
 
 ## Participantes
-- NPC-0001 — Severin
-- interlocutor genérico de teste
+- `NPC-0001` — referência histórica ao slot editorial que, neste arquivo legado, era chamado Severin; não usar como caracterização de Aren.
 
 ## Contexto
-Conversa editorial abstrata usada apenas para verificar se a voz de Severin permanece distinguível em situações diferentes. Não define local, data, relação ou evento ocorrido.
+Conversa editorial abstrata usada apenas para verificar se a antiga voz de Severin permanecia distinguível em situações diferentes. Não define local, data, relação ou evento ocorrido.
 
 ## Precondições
 Nenhuma. Este arquivo não deve ser usado diretamente como cena de runtime.
 
 ## Knowledge exigido
-Somente conceitos gerais compatíveis com a ficha pública de Severin. Nenhum segredo, evento futuro ou conhecimento específico do jogador.
+Somente conceitos gerais que eram compatíveis com a antiga ficha de Severin. Nenhum segredo, evento futuro ou conhecimento específico do jogador. Nada nesta seção concede knowledge a Aren.
 
 ## Relações/estado relevantes
 Nenhum estado de relação é presumido.
@@ -78,9 +82,9 @@ Nenhuma. Este diálogo não muta estado.
 Nenhum vínculo canônico criado por este arquivo.
 
 ## NPCs/facções/locais/evidências/eventos relacionados
-- NPC-0001 apenas como referência de voz.
+- `NPC-0001` apenas como referência histórica do slot editorial; não como voz de Aren.
 
-## Invariantes
+## Invariantes históricos de Severin
 
 - Severin não revela segredo para satisfazer curiosidade do interlocutor;
 - não se apresenta automaticamente como antagonista ou aliado;
@@ -89,7 +93,9 @@ Nenhum vínculo canônico criado por este arquivo.
 - respostas mantêm distinção entre legalidade, possibilidade, ética, método e consequência;
 - provocação pode gerar ironia, mas não violência ou ameaça automática.
 
-## Notas de voz
+Esses invariantes de voz não são invariantes de Aren.
+
+## Notas de voz históricas
 
 - evitar floreio gótico;
 - preferir precisão lexical;
@@ -101,9 +107,9 @@ Nenhum vínculo canônico criado por este arquivo.
 - [x] nenhum participante sabe informação sem proveniência;
 - [x] escolhas respeitam precondições;
 - [x] consequências não mutam estado por texto;
-- [x] voz dos NPCs permanece distinguível;
 - [x] existe saída/fallback quando condição não está disponível;
-- [x] não há exposição desnecessária de segredo ao jogador.
+- [x] não há exposição desnecessária de segredo ao jogador;
+- [x] arquivo está marcado como legado e não pode ser usado para calibrar Aren.
 
 ## Spoilers internos
-Nenhum. Arquivo deliberadamente livre de plot para teste de voz.
+Nenhum. Arquivo deliberadamente livre de plot e preservado apenas como teste histórico de voz.
