@@ -1,5 +1,7 @@
 # Create: Integrated Farming
 
+> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `create-integrated-farming-1.4.1b.jar` / `1.4.1b`. A release upstream mais recente para NeoForge 1.21.1 é **1.4.1c**, publicada em 10/09/2026 para Create 6.0.10. O delta é um hotfix material de estabilidade: corrige **crash intermitente no cliente ao colocar ou visualizar um Vacuum Harvester após iniciar o jogo**. Esta nota supersede somente referências antigas de “latest/upstream”; não promove a versão instalada.
+
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Estado atual: `Integrado ao Github`  
 > Autoridade física: modlist física mais recente, 595 entradas totais incluindo o modloader  
