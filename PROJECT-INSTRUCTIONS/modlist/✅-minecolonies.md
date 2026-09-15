@@ -1,7 +1,6 @@
 # MineColonies
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81c69689ea4c0d0bf87c
 - **Autoridade física atual:** `minecolonies-1.1.1381-1.21.1-snapshot.jar`, runtime `1.1.1381-1.21.1-snapshot`
 - **Version drift upstream:** `minecolonies-1.1.1383-1.21.1-snapshot.jar` existe desde 11/09/2026, mas não está instalado no snapshot físico auditado
 - **Auditoria de migração Notion → GitHub:** 2026-09-15
