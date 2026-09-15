@@ -1,39 +1,45 @@
-# Asset Brief — NPC-0001 — Severin
+# Asset Brief legado — Severin — antigo uso editorial de `NPC-0001`
 
 ## Estado editorial
-RASCUNHO
+OBSOLETO / LEGADO HISTÓRICO / NÃO TRANSFERÍVEL PARA AREN.
 
 ## Estado de produção
-NÃO É ASSET FINAL / NÃO INICIADO.
+NÃO É ASSET FINAL / NÃO INICIADO / APOSENTADO PARA A IDENTIDADE ATIVA.
 
-## Asset ID
-`NPC-0001`
+## Aviso de migração
+Desde 2026-09-15, `NPC-0001` representa Aren em `NPC-0001-aren.md`. Este brief preserva somente a direção visual que havia sido proposta para Severin antes da reconciliação. Nenhuma característica visual abaixo deve ser usada para Aren sem source própria e nova aprovação.
+
+Severin não foi transformado em alias, pseudônimo ou nome anterior de Aren. A decisão completa está em `historia/11-ia-e-autoria/15-migracao-npc-0001-severin-aren-2026-09-15.md`.
+
+## Asset ID histórico
+`NPC-0001` no estado editorial anterior à migração. Não usar este identificador para publicar asset novo de Aren a partir deste brief.
 
 ## Owner/repositório
 `Gustavaopere/neoforge-rpg-skilltree`
 
-## Função de gameplay/apresentação
-NPC recorrente de pesquisa proibida/controversa. A leitura visual deve comunicar pesquisador funcional e reservado antes de qualquer associação automática a vilania, monstruosidade ou combate.
+## Função histórica de gameplay/apresentação
+O brief descrevia Severin como NPC recorrente de pesquisa proibida/controversa. Essa função era parte do cenário editorial de Severin e não constitui descrição visual ou narrativa de Aren.
 
-## Contextos de visualização
+## Contextos de visualização históricos
 - conversa a curta/média distância;
 - investigação e exploração;
 - ambientes de pesquisa/oficina;
 - portrait/documentação;
 - skin/modelo em escala normal de gameplay.
 
-## Referências project-owned/canônicas
-- `NPC-0001-severin.md`;
-- `NPC-0001-severin-autoria.md`;
-- `QST-0001` apenas como contexto narrativo, sem revelar resultado/culpa.
+## Referências históricas
+- `NPC-0001-severin.md` — registro legado;
+- `NPC-0001-severin-autoria.md` — autoria legada;
+- `QST-0001` — vínculo histórico do rascunho, não vínculo confirmado de Aren;
+- `NPC-0001-aren.md` — entidade ativa atual, que **não** herda este brief.
 
-## Silhueta em uma frase
-Figura humana relativamente estreita, em roupas de trabalho em camadas, que parece pesquisador cauteloso antes de parecer combatente ou "necromante de fantasia".
+## Silhueta histórica em uma frase
+Figura humana relativamente estreita, em roupas de trabalho em camadas, que pareceria pesquisador cauteloso antes de combatente ou “necromante de fantasia”.
 
-## Shape language
-Camadas funcionais, formas simples e legíveis, poucos elementos salientes, ausência de ornamento gratuito. A leitura deve vir da função e do material, não de símbolos agressivos.
+## Shape language histórico
+Camadas funcionais, formas simples e legíveis, poucos elementos salientes, ausência de ornamento gratuito. A leitura viria da função e do material, não de símbolos agressivos.
 
-## Paleta/materials
+## Paleta/materials históricos
 - grafite;
 - preto quebrado;
 - cinza frio;
@@ -41,41 +47,42 @@ Camadas funcionais, formas simples e legíveis, poucos elementos salientes, aus�
 - um acento dessaturado a definir após concept;
 - sem dependência de emissive.
 
-## Aparência
+## Aparência histórica
 - adulto maduro, sem caricatura de velhice;
-- altura/proporção percebida: **PENDENTE DE APROVAÇÃO VISUAL**; manter hipótese humana padrão até o concept justificar algo diferente;
-- tom de pele: **PENDENTE DE APROVAÇÃO VISUAL**; não inferir a partir de profissão, necromancia, moralidade ou paleta de roupa;
+- altura/proporção percebida: **PENDENTE DE APROVAÇÃO VISUAL**;
+- tom de pele: **PENDENTE DE APROVAÇÃO VISUAL**;
 - rosto humano e reservado;
 - olheiras discretas/sinais de rotina irregular permitidos;
 - cabelo escuro ou parcialmente grisalho;
 - barba curta opcional;
 - evitar aparência cadavérica automática.
 
-## Roupa/acessórios
+Nenhuma dessas características está aprovada para Aren.
+
+## Roupa/acessórios históricos
 - roupa de trabalho/pesquisa adaptada ao mundo;
 - sobretudo curto ou camada equivalente;
-- luvas/proteção quando fizer sentido;
-- caderno, bolsa, frascos ou componentes podem aparecer no concept;
-- a skin/texture final deve sugerir função sem tentar representar todos os objetos.
+- luvas/proteção quando fizesse sentido;
+- caderno, bolsa, frascos ou componentes poderiam aparecer no concept;
+- a skin/texture final deveria sugerir função sem tentar representar todos os objetos.
 
-## Modelo alvo
-Modelo corporal Minecraft: `classic` como hipótese inicial da ficha de autoria. `slim` só entra se o concept aprovado justificar e o pipeline técnico validar.
+## Modelo alvo histórico
+Modelo corporal Minecraft `classic` como hipótese inicial do rascunho de Severin. Essa escolha não vincula Aren a `classic` ou `slim`.
 
-## Resolução e formatos
-A produção visual separa deliberadamente portrait/concept de skin técnica.
+## Resolução e formatos — regras técnicas ainda úteis
+A separação entre portrait/concept e skin técnica continua sendo uma regra de produção geral, mas este brief não autoriza produzir Aren.
 
-### Portrait/documentação — decisão de produção
-- master aprovado: **2048×2048 px**, PNG, sRGB;
+### Portrait/documentação — referência técnica histórica
+- master proposto: **2048×2048 px**, PNG, sRGB;
 - manter o master sem recompressão lossy;
 - derivados menores podem ser gerados para UI/documentação, mas não substituem o master;
 - concept sheets não precisam ser quadradas, porém devem preservar pelo menos **2048 px no maior lado** para leitura de material/rosto;
 - portrait/concept nunca é convertido diretamente em UV de skin.
 
 ### Skin técnica — evidência do provider
-- alvo atual: **64×64 px RGBA PNG**, layout moderno de skin humanoide Minecraft;
-- modelo `classic` enquanto a hipótese atual permanecer válida; qualquer mudança para `slim` exige ajuste explícito do layout/modelo;
+- alvo técnico humanoide atual: **64×64 px RGBA PNG**, layout moderno de skin humanoide Minecraft;
 - preservar alpha/segunda camada quando usada;
-- não ampliar a skin para "HD" por conta própria: Easy NPC consome skin de player/URL no renderer humanoide; portrait e skin são artefatos diferentes;
+- não ampliar a skin para “HD” por conta própria: Easy NPC consome skin de player/URL no renderer humanoide; portrait e skin são artefatos diferentes;
 - **não presumir outer layer 3D para NPCs**: a presença de 3D Skin Layers comprova comportamento no renderer de player, não integração automática com humanoides do Easy NPC. Qualquer efeito 3D específico no NPC exige prova de provider/render path ou modelo próprio.
 
 Evidência técnica/proveniência:
@@ -85,16 +92,16 @@ Evidência técnica/proveniência:
 
 A especificação `64×64` é do formato humanoide atual, não uma regra global de texel density para qualquer asset project-owned.
 
-## Emissive/translucency/animated texture
-Nenhum requisito atual. Não usar brilho ocular, aura ou glow como atalho de identidade.
+## Emissive/translucency/animated texture — histórico
+Nenhum requisito havia sido aprovado. Não usar brilho ocular, aura ou glow como atalho de identidade de Aren.
 
-## Bones/attachments necessários
-Nenhum requisito adicional enquanto o alvo for uma skin/modelo humano padrão. Acessórios físicos próprios exigem contrato separado.
+## Bones/attachments necessários — histórico
+Nenhum requisito adicional havia sido estabelecido enquanto o alvo fosse uma skin/modelo humano padrão. Acessórios físicos próprios exigiriam contrato separado.
 
-## Animações necessárias
-Nenhuma animação project-owned exigida por este brief. Qualquer animação futura deve respeitar o runtime real e a pipeline vigente.
+## Animações necessárias — histórico
+Nenhuma animação project-owned havia sido exigida. Qualquer animação futura deve respeitar o runtime real e a pipeline vigente.
 
-## Elementos proibidos
+## Elementos proibidos no rascunho histórico
 - caveira ornamental gratuita;
 - olhos permanentemente brilhantes;
 - sangue decorativo;
@@ -104,29 +111,25 @@ Nenhuma animação project-owned exigida por este brief. Qualquer animação fut
 - símbolo de facção/provider sem vínculo canônico/mecânico;
 - preto puro uniforme que destrua leitura material.
 
-## Variações autorizadas
+Essa lista registra a antiga direção de Severin; não substitui um futuro brief de Aren.
+
+## Variações históricas cogitadas
 - campo;
 - laboratório/oficina;
-- versão danificada somente após existir evento específico que a justifique.
-
-Todas devem continuar reconhecíveis como o mesmo NPC.
+- versão danificada somente após existir evento específico que a justificasse.
 
 ## Proveniência/licença
-Asset project-owned. Referências externas, se usadas em look-dev, servem apenas para linguagem visual e devem ser registradas; não copiar textura/modelo de terceiros.
+Material project-owned de look-dev legado. Referências externas, se usadas em look-dev, servem apenas para linguagem visual e devem ser registradas; não copiar textura/modelo de terceiros.
 
-## Evidência final exigida
-- concept/portrait aprovado contra este brief em master 2048×2048;
+## Evidência final histórica que seria exigida
+- concept/portrait aprovado contra o brief;
 - textura/skin técnica 64×64 separada do concept;
 - validação estrutural no pipeline Blockbench/Factory;
 - vistas úteis de frente, lateral, costas e três-quartos quando aplicável;
 - verificação em escala real de gameplay;
 - QA visual in-game antes de marcar `FINAL`.
 
-## Pendências
-- concept/portrait aprovado;
-- altura/proporção percebida aprovada;
-- tom de pele aprovado;
-- escolha final entre classic/slim;
-- skin/texture final;
-- preview/QA in-game;
-- eventual detalhe/acento visual principal aprovado.
+Nenhuma dessas etapas foi concluída para Severin, e nenhuma pode ser reaproveitada como aprovação de Aren.
+
+## Pendência atual correta
+Criar um **novo** asset brief de Aren somente quando sua aparência/direção visual tiver source reconciliada e aprovação editorial. Este arquivo permanece apenas como provenance histórica.
