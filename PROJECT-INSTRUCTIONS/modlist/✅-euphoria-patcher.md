@@ -1,5 +1,7 @@
 # Euphoria Patcher — 1.10.0-r5.9-neoforge
 
+> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `EuphoriaPatcher-1.10.0-r5.9-neoforge.jar`. A release upstream mais recente compatível com Minecraft 1.21.1 é **Euphoria Patcher 1.10.5-r5.9.3-neoforge**, publicada em 15/09/2026. A 1.10.5 é uma bug-fix release e atualiza a base para **Complementary Shaders r5.9.3**. Esta nota **supersede somente as referências de “upstream/latest” mais antigas abaixo**; não promove a versão instalada e não altera o conteúdo migrado do Notion.
+
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Estado no momento da reconciliação: `Integrado ao Github`  
 > Autoridade física: `modlist.txt`, 595 entradas totais incluindo o modloader  
