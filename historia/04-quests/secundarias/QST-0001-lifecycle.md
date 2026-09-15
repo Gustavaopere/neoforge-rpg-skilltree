@@ -30,7 +30,7 @@ O mundo já permite que a situação exista e avance.
 - que o jogador sabe de algo;
 - que `NPC-0003` já possui evidência;
 - que alguém fez uma oferta;
-- que `NPC-0001` foi localizado ou identificado.
+- que qualquer sujeito/alvo relevante foi localizado ou identificado.
 
 ### INVALIDATED
 Fato posterior torna esta oportunidade específica impossível sem necessariamente representar fracasso. Exemplos editoriais possíveis: contexto que originava a investigação deixa de existir ou a situação se transforma em outro conteúdo.
@@ -204,7 +204,7 @@ Replay da mesma transição não pode duplicar journal, evento, recompensa ou co
 
 ## Relações
 - quest: `QST-0001`;
-- NPCs: `NPC-0001`, `NPC-0003`;
+- NPCs: `NPC-0003`;
 - evidências: `EVD-0001`, `EVD-0002`, `EVD-0003`.
 
 ## QA

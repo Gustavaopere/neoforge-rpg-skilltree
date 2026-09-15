@@ -1,15 +1,20 @@
-# Ficha de autoria — NPC-0001 — Severin
+# Ficha de autoria legada — Severin — antigo uso editorial de `NPC-0001`
 
 ## Estado editorial
-RASCUNHO
+OBSOLETO / LEGADO HISTÓRICO / RASCUNHO NÃO TRANSFERÍVEL PARA AREN.
+
+## Aviso de migração
+Desde 2026-09-15, `NPC-0001` representa Aren em `NPC-0001-aren.md`. Esta ficha preserva somente a calibração que havia sido escrita para Severin antes da reconciliação. Nenhuma voz, aparência, idade, roupa, atitude, fala ou preferência abaixo deve ser atribuída a Aren sem source própria.
+
+Severin não foi transformado em alias, pseudônimo ou nome anterior de Aren. A migração foi editorial; consultar `historia/11-ia-e-autoria/15-migracao-npc-0001-severin-aren-2026-09-15.md`.
 
 ## Escopo
-Ficha complementar de autoria. Não altera sozinha os invariantes canônicos de `NPC-0001-severin.md` e não cria eventos canônicos.
+Ficha histórica complementar de autoria. Não cria eventos canônicos, não declara entidade ativa e não altera o dossiê atual de Aren.
 
-## Objetivo
-Fornecer uma referência consistente de voz e aparência para escrever Severin, gerar concepts e produzir uma futura skin sem transformar detalhes de plot em exposição pública.
+## Objetivo histórico
+Preservar a referência de voz e aparência que havia sido usada para escrever Severin, gerar concepts e testar uma futura skin, sem reintroduzi-la como lore de Aren.
 
-## Voz
+## Voz — legado de Severin
 
 - formalidade: média-alta; fala como alguém acostumado a pesquisa e debate, não como nobre teatral;
 - ritmo de fala: deliberado, normalmente calmo; acelera apenas quando corrige um erro técnico ou percebe risco imediato;
@@ -21,7 +26,7 @@ Fornecer uma referência consistente de voz e aparência para escrever Severin, 
 - assuntos evitados: detalhes que comprometam terceiros, rotas de acesso, material sensível ou informação que o interlocutor não demonstrou ter direito/motivo para conhecer;
 - padrões incompatíveis: gargalhada vilanesca, ameaça gratuita, monólogo melodramático, submissão automática ao jogador, exposição espontânea de segredo, linguagem infantilizada ou excesso de metáforas sombrias.
 
-## Diretrizes de interpretação
+## Diretrizes de interpretação — legado de Severin
 
 1. Severin não deve soar como “necromante genérico”.
 2. Sua competência aparece pela precisão e pela capacidade de reconhecer incerteza.
@@ -31,9 +36,9 @@ Fornecer uma referência consistente de voz e aparência para escrever Severin, 
 6. Medo, respeito, afeto e dependência devem permanecer dimensões separadas.
 7. Se não souber algo, não inventa certeza para parecer poderoso.
 
-## Falas de calibração
+## Falas de calibração — legado de Severin
 
-Estas falas calibram a voz e não representam eventos canônicos por si mesmas.
+Estas falas calibravam a voz de Severin e não representam eventos canônicos. Não são falas de Aren.
 
 - “Isso é uma hipótese. Boa, talvez. Ainda assim, uma hipótese.”
 - “Você está perguntando se é possível. Eu perguntaria primeiro o que acontece depois.”
@@ -44,27 +49,27 @@ Estas falas calibram a voz e não representam eventos canônicos por si mesmas.
 - “Não confunda cautela com culpa. Nem curiosidade com inocência.”
 - “O resultado importa. O método também. Fingir que um apaga o outro é uma forma conveniente de não pensar.”
 
-## Aparência — proposta inicial
+## Aparência — proposta histórica de Severin
 
-Todos os elementos abaixo são RASCUNHO VISUAL até aprovação editorial.
+Todos os elementos abaixo eram RASCUNHO VISUAL de Severin e estão aposentados para fins de Aren.
 
 - modelo Minecraft: classic/Steve como padrão inicial; migrar para slim apenas se o concept justificar;
 - idade aparente: adulto maduro, sem aparência idosa caricata;
-- altura/proporção percebida: **PENDENTE DE APROVAÇÃO VISUAL**; não fixar estatura excepcional nem proporção fora do alvo humano padrão antes do concept aprovado;
-- tom de pele: **PENDENTE DE APROVAÇÃO VISUAL**; não inferir tom de pele a partir de profissão, necromancia, moralidade ou paleta de roupa;
-- silhueta: relativamente estreita e funcional, com roupa em camadas; deve parecer pesquisador antes de parecer combatente;
+- altura/proporção percebida: **PENDENTE DE APROVAÇÃO VISUAL**;
+- tom de pele: **PENDENTE DE APROVAÇÃO VISUAL**;
+- silhueta: relativamente estreita e funcional, com roupa em camadas; deveria parecer pesquisador antes de combatente;
 - características do rosto: expressão reservada, olheiras discretas ou sinais de rotina irregular permitidos; evitar rosto cadavérico;
 - cabelo/barba: cabelo escuro ou grisalho parcial; corte prático; barba curta opcional;
 - paleta: grafite, preto quebrado, cinza frio e um acento dessaturado; evitar preto puro dominante em toda a skin;
-- vestuário: roupa de trabalho/pesquisa adaptada ao mundo, sobretudo curto ou camada equivalente, luvas ou proteção quando fizer sentido;
-- acessórios: caderno, bolsa, frascos ou componentes apenas no concept; a skin deve sugerir, não tentar desenhar todos;
-- sinais visuais de profissão ou facção: nenhum símbolo de facção até existir vínculo canônico explícito;
-- elementos que não devem aparecer: caveira ornamental gratuita, olhos permanentemente brilhantes, sangue decorativo, coroa, armadura pesada sem contexto, iconografia que declare alinhamento moral;
-- variações permitidas: roupa de campo, roupa de laboratório/oficina, versão danificada por evento específico somente quando esse evento existir.
+- vestuário: roupa de trabalho/pesquisa adaptada ao mundo, sobretudo curto ou camada equivalente, luvas ou proteção quando fizesse sentido;
+- acessórios: caderno, bolsa, frascos ou componentes apenas no concept;
+- sinais visuais de profissão ou facção: nenhum símbolo de facção sem vínculo canônico explícito;
+- elementos que não deveriam aparecer: caveira ornamental gratuita, olhos permanentemente brilhantes, sangue decorativo, coroa, armadura pesada sem contexto, iconografia que declare alinhamento moral;
+- variações cogitadas: roupa de campo, roupa de laboratório/oficina, versão danificada por evento específico somente quando esse evento existisse.
 
-## Identidade visual essencial
+## Identidade visual histórica de Severin
 
-Na resolução técnica aprovada para o alvo, preservar:
+Na resolução técnica cogitada, a proposta pretendia preservar:
 
 1. silhueta de pesquisador funcional;
 2. paleta escura não monocromática;
@@ -72,31 +77,33 @@ Na resolução técnica aprovada para o alvo, preservar:
 4. um detalhe de trabalho/pesquisa reconhecível na roupa;
 5. ausência de iconografia “vilão necromante” genérica.
 
+Nenhum desses itens constitui identidade visual de Aren.
+
 ## Assets
 
-- concept/portrait: PENDENTE;
-- skin/texture Minecraft: PENDENTE; formato e resolução conforme asset brief/pipeline técnica;
-- preview 3D: PENDENTE;
-- estado do asset: NÃO INICIADO.
+- concept/portrait de Severin: não autorizado como Aren;
+- skin/texture de Severin: não autorizada como Aren;
+- preview 3D de Severin: não autorizado como Aren;
+- estado histórico do asset: NÃO INICIADO / LEGADO.
 
 ## Limites de conhecimento
+As regras abaixo eram corretas como disciplina sistêmica, mas não concedem fatos a Aren nem validam a persona de Severin:
 
-A fala de Severin deve ser filtrada pelo estado narrativo real. Esta ficha não lhe concede conhecimento adicional.
-
-- não pressupor que conhece o jogador antes de evento/proveniência correspondente;
+- não pressupor que um NPC conhece o jogador antes de evento/proveniência correspondente;
 - não pressupor que sabe como o jogador descobriu sua existência;
 - não pressupor conhecimento de rumor que não tenha alcançado suas fontes;
 - não antecipar fatos futuros do próprio arco;
 - não inferir automaticamente mortes, ressurreições ou mudanças políticas sem evidência/evento disponível;
-- não conhecer capacidades de provider que não existam ou que não tenha observado/aprendido.
+- não conhecer capabilities de provider que não existam ou que o ator não tenha observado/aprendido.
 
-## Referências
+## Referências históricas
 
-- NPC canônico: `NPC-0001-severin.md`;
-- quests: `QST-0001`;
-- sistemas: Opportunity & Discovery Lifecycle; Death, Resurrection & Identity Continuity;
-- diálogos: `DLG-0001` para calibração de voz;
-- asset brief: `NPC-0001-severin-asset-brief.md`.
+- antigo dossiê de Severin: `NPC-0001-severin.md`;
+- entidade ativa atual: `NPC-0001-aren.md`;
+- quest historicamente relacionada: `QST-0001`, sem promoção automática para Aren;
+- diálogo de calibração legado: `DLG-0001`;
+- asset brief legado: `NPC-0001-severin-asset-brief.md`;
+- decisão de migração: `historia/11-ia-e-autoria/15-migracao-npc-0001-severin-aren-2026-09-15.md`.
 
-## Critério de aceitação
-Um texto curto sem nome do personagem deve ser reconhecível como Severin por precisão, cautela, estrutura argumentativa e ausência de teatralidade necromântica genérica.
+## Critério de preservação
+Este arquivo só deve ser usado para compreender o histórico editorial de Severin. Qualquer autoria de Aren deve partir de `NPC-0001-aren.md` e de source reconciliada própria.

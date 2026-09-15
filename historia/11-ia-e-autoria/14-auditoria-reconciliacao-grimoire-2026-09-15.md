@@ -3,6 +3,11 @@
 ## Estado
 AUDITORIA OPERACIONAL / NÃO CRIA CÂNONE NOVO.
 
+## Nota de superação posterior
+Este documento preserva o snapshot operacional **anterior** à decisão editorial que resolveu o item Severin ↔ Aren. Ainda em 2026-09-15, uma decisão posterior preservou o ID estável `NPC-0001` para Aren e aposentou Severin como entidade ativa, sem declarar alias ou identidade in-universe e sem transferir voz, aparência, relações ou cenas por herança.
+
+Para o estado corrente desse item, usar `15-migracao-npc-0001-severin-aren-2026-09-15.md`, `historia/STATUS.md`, `13-backlog-editorial-e-bloqueios.md` e `NPC-0001-aren.md`. As afirmações abaixo de que o conflito ainda estava aberto permanecem somente como registro histórico desta auditoria e não representam o estado editorial atual.
+
 ## Objetivo
 Consolidar, a partir das fontes versionadas disponíveis, quais pendências de reconciliação ainda existem entre `historia/` e a Campaign Bible do Grimoire/TTRPG.bot, quais evidências já foram recuperadas e quais decisões continuam fail-closed.
 
