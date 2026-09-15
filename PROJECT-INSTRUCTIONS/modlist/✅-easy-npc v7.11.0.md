@@ -1,7 +1,6 @@
 # Easy NPC
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d369db9f0db812f8576f5016343b18c
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física:** `easy_npc-neoforge-1.21.1-7.11.0.jar`, mod id `easy_npc`, campo de versão runtime vazio; `7.11.0` vem do filename/publicação
 - **Auditoria de migração Notion → GitHub:** 2026-09-14
