@@ -1,5 +1,7 @@
 # MineColonies
 
+> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `minecolonies-1.1.1381-1.21.1-snapshot.jar` / `1.1.1381-1.21.1-snapshot`. A snapshot upstream mais recente para 1.21.1 é **1.1.1387**, publicada em 13/09/2026. Desde a 1.1.1383 já registrada abaixo, a 1.1.1386 trouxe fixes de build order, citizen ladder direction/reaching e armor rendering; a 1.1.1387 conclui o port **Cavalry 4of4**. Dependências mínimas publicadas para 1.1.1387: Structurize 1.0.832+, MultiPiston 1.2.51+, BlockUI 1.0.199+ e Domum Ornamentum 1.0.223+. Esta nota supersede somente as referências antigas de “latest/upstream” abaixo; não promove a snapshot instalada.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Autoridade física atual:** `minecolonies-1.1.1381-1.21.1-snapshot.jar`, runtime `1.1.1381-1.21.1-snapshot`
 - **Version drift upstream:** `minecolonies-1.1.1383-1.21.1-snapshot.jar` existe desde 11/09/2026, mas não está instalado no snapshot físico auditado
