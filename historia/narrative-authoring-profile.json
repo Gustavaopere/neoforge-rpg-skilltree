@@ -16,6 +16,17 @@
       "loss": ["Perda/destruição"]
     }
   },
+  "auxiliary_document_contracts": {
+    "quest-lifecycle": {
+      "include": ["04-quests/**/*-lifecycle.md"],
+      "required_sections": {
+        "availability": ["Availability"],
+        "discovery": ["Discovery"],
+        "engagement": ["Engagement"],
+        "resolution": ["Resolution"]
+      }
+    }
+  },
   "dialogue_entity_type": "DLG",
   "dialogue_required_sections": {
     "editorial-state": ["estado editorial"],
