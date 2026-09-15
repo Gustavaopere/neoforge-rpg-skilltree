@@ -1,30 +1,22 @@
 # Easy NPC: Config UI
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3d369db9f0db81b9809fd8f009ce0fa7  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
-
-## Propriedades do registro
-
-- **Mod:** Easy NPC: Config UI
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Arquivo JAR:** `easy_npc_config_ui-neoforge-1.21.1-7.11.0.jar`
 - **Versão 1.21.1:** `7.11.0`
 - **Categoria:** QoL; Visual
 - **Decisão:** Dependência
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc
 - **Função:** Módulo gráfico de configuração do Easy NPC que fornece screens/controles para editar NPCs e a camada de networking necessária ao fluxo de configuração, mantendo o Core como authority do NPC state.
 - **Dependências:** Easy NPC Core; NeoForge 1.21.1. Runtime físico: Config UI 7.11.0. Bundle 7.11.0 também está instalado e declara a composição Core + Config UI.
 - **Compatibilidade/Riscos:** Riscos de UI/API/network drift se Config UI e Core estiverem desalinhados, edição de state stale, double-submit sob latency, permissões insuficientes, screen client-only carregada no servidor e assumir que fechar/salvar UI já equivale a commit sem confirmação server-side.
 - **Sobreposição:** Sobreposição apenas de superfície administrativa com comandos/config wand: todos editam o mesmo Core. Não deve haver duas cópias de configuração autoritativa.
-- **Observações:** Config UI complementa o Core e não possui NPC state independente. A família física está alinhada pelo filename/release 7.11.0; o campo de versão da metadata física do Core continua vazio e não deve ser preenchido por inferência a partir deste módulo.
-- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `easy_npc_config_ui-neoforge-1.21.1-7.11.0.jar`, mod id `easy_npc_config_ui` e versão 7.11.0. Documentação oficial confirma que o módulo fornece configuração visual e networking para Easy NPC.
-- **Histórico da decisão:** sem histórico adicional registrado.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Config UI 7.11.0, screens/config flow, networking boundary, Core authority, lifecycle/MP, riscos e testes catalogados.
-- **Data da última decisão:** 2026-09-06.
+- **Observações:** Config UI 7.11.0 permanece alinhada ao Bundle/Core físicos. A linha 7.12.1 traz alterações importantes no browser/import/export/restore de presets e em superfícies administrativas; qualquer atualização deve manter Core, Bundle e Config UI compatíveis e ser validada contra state persistente.
+- **Procedência:** modlist.txt física atual — 595 entradas totais incluindo o modloader — confirma `easy_npc_config_ui-neoforge-1.21.1-7.11.0.jar`, mod id `easy_npc_config_ui` e runtime 7.11.0. Distribuição oficial revalidada em 12/09/2026 confirma linha Easy NPC 7.12.1 para 1.21.1; o módulo instalado permanece 7.11.0.
+- **Histórico da decisão:**
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #243: Config UI 7.11.0 permanece instalado; upstream Easy NPC 7.12.1 foi publicado para NeoForge 1.21.1 em 10/09/2026. Core continua authority do NPC state e a UI permanece camada de edição/networking.
+- **Data da última decisão:** 2026-09-06
 
 ## Dossiê operacional — padrão Alex's Mobs
 
@@ -46,6 +38,8 @@ A tela pode mostrar um snapshot; esse snapshot não deve ser tratado como state 
 O Bundle oficial organiza a instalação de Core + Config UI como módulos separados. No pack atual, Bundle 7.11.0 e Config UI 7.11.0 estão fisicamente presentes; o Core usa filename 7.11.0, embora sua coluna `mod version` física esteja vazia.
 
 Isso demonstra alinhamento de distribuição, mas não autoriza inventar metadata ausente do Core.
+
+Em 10/09/2026 a família Easy NPC publicou **7.12.1 para NeoForge 1.21.1**. Para esta ficha isso significa update disponível do módulo de configuração em conjunto com Core/Bundle; o runtime físico continua 7.11.0. Os fixes upstream de preset browser/import/export/restore reforçam a necessidade de regression test de Save/Cancel/reopen e edição concorrente após qualquer atualização.
 
 ## 4. Superfícies de edição
 A UI expõe controles para as capacidades fornecidas pelo Core, incluindo configuração de aparência, diálogos, ações, trading e comportamento conforme o tipo/feature disponível.
@@ -122,7 +116,7 @@ A regra mínima é: mutation deve ser validada no servidor e resultar em state �
 **Esta catalogação não afirma que esses testes foram executados.**
 
 ## 13. Evidências
-- modlist física canônica de 08/09/2026: JAR/mod id/versão 7.11.0;
+- modlist física atual: JAR/mod id/versão 7.11.0;
 - documentação oficial Easy NPC: Config UI como módulo de configuração e networking;
 - Bundle oficial: composição Core + Config UI como módulos separados.
 
