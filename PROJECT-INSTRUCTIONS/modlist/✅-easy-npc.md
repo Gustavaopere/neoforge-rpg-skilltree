@@ -1,10 +1,10 @@
 # Easy NPC
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3d369db9f0db812f8576f5016343b18c  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-09
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Página Notion:** https://app.notion.com/p/3d369db9f0db812f8576f5016343b18c
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `easy_npc-neoforge-1.21.1-7.11.0.jar`, mod id `easy_npc`, campo de versão runtime vazio; `7.11.0` vem do filename/publicação
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do registro
 
@@ -14,17 +14,17 @@
 - **Categoria:** RPG; QoL
 - **Decisão:** Manter
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all
 - **Função:** Core server-authoritative do Easy NPC para criar, persistir e controlar NPCs customizados, diálogos, ações, trading, aparência/skins, comportamento e integrações do ecossistema.
 - **Dependências:** NeoForge 1.21.1. Easy NPC Config UI 7.11.0 e Easy NPC Bundle 7.11.0 estão fisicamente presentes. O filename/publicação identifica Core 7.11.0, mas a coluna `mod version` da modlist física está vazia. Epic Fight 21.17.3.1 está presente e é uma integração suportada pela linha Easy NPC.
 - **Compatibilidade/Riscos:** NPC persistente é state crítico: riscos de duplicate restore, stale index/file state, backup stutter, owner-login restore, follow/look target após logout, action/trade double execution, custom model/pose interference e UI/client divergindo do servidor. A linha 7.11.0 contém correções explícitas para várias dessas superfícies.
 - **Sobreposição:** Pode sobrepor funções narrativas/trading de outros sistemas de NPC/quest, mas Easy NPC é o provider direto dos NPCs criados nele. Epic Fight integra combate/animação; Config UI edita o state; nenhum deles deve duplicar ownership do NPC.
-- **Observações:** Fail-closed: `7.11.0` vem do filename/publicação oficial, não da coluna física de versão. Config UI/Bundle são módulos complementares, não providers paralelos. O JAR contém mixin Cobblemon, mas Cobblemon não foi confirmado na modlist física atual; não tratar essa integração como ativa.
-- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `easy_npc-neoforge-1.21.1-7.11.0.jar`, mod id `easy_npc` e campo físico de versão vazio. Publicação oficial da linha 7.11.0 confirma a identificação da release, funcionalidades e changelog de estabilidade/persistência.
+- **Observações:** Fail-closed preservado: 7.11.0 vem do filename/publicação do artefato instalado, não da metadata runtime. Upstream 7.12.1 corrige fluxos de presets/restore/spawn e expande configuração/API; a integração opcional com Easy Model Entities nessa linha passa a exigir EME 2.4.0+. Core/Bundle/Config UI devem ser tratados como família versionada em conjunto.
+- **Procedência:** modlist.txt física atual — 595 entradas totais incluindo o modloader — confirma `easy_npc-neoforge-1.21.1-7.11.0.jar`, mod id `easy_npc` e campo de versão runtime vazio. CurseForge oficial revalidado em 12/09/2026 confirma Release 7.12.1 para NeoForge 1.21.1; o pack continua fisicamente no artefato 7.11.0.
 - **Histórico da decisão:** sem histórico adicional registrado.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — filename/release 7.11.0 com metadata física de versão vazia; NPC state/persistência, dialogs/actions/trades, skins, Config UI, backups, Epic Fight, lifecycle/MP, riscos e testes catalogados.
-- **Data da última decisão:** 2026-09-06.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #241: `easy_npc-neoforge-1.21.1-7.11.0.jar` permanece instalado e a metadata física continua sem versão; upstream 1.21.1 avançou para Release 7.12.1 em 10/09/2026. Versão estruturada permanece vazia por autoridade física.
+- **Data da última decisão:** 2026-09-06
 
 ## Dossiê operacional — padrão Alex's Mobs
 
@@ -45,6 +45,8 @@ NPCs criados no Easy NPC não devem ser recriados por scripts externos como uma 
 A modlist física confirma o JAR `easy_npc-neoforge-1.21.1-7.11.0.jar` e o mod id `easy_npc`, mas o campo de versão está vazio.
 
 A publicação oficial identifica esse arquivo como 7.11.0 para NeoForge 1.21.1. Portanto a ficha preserva a distinção: filename/release = 7.11.0; metadata física de versão = não declarada.
+
+Em 10/09/2026 o upstream publicou **7.12.1 para NeoForge 1.21.1**. A atualização corrige restore/import/export e o browser de presets, leaks/rate-limit/IDs instáveis em spawn e outros fluxos administrativos; também amplia APIs/configurações. Na linha 7.12.1, a integração opcional com Easy Model Entities exige **EME 2.4.0+**. Nada disso altera a autoridade física desta ficha: o pack continua no artefato 7.11.0 com versão runtime não declarada.
 
 ## 4. Criação e edição de NPCs
 O core suporta criação e edição de NPCs customizados com propriedades de aparência, comportamento e interação. O fluxo normal usa comandos e/ou Config UI/config wand quando o módulo visual está instalado.
@@ -180,8 +182,9 @@ Dois jogadores podem interagir com o mesmo NPC. Actions e trades precisam liquid
 **Esta catalogação não afirma que esses testes foram executados.**
 
 ## 23. Evidências
-- modlist física canônica de 08/09/2026: JAR, mod id, campo de versão vazio, Config UI/Bundle e Epic Fight presentes;
-- publicação oficial Easy NPC Core: escopo de NPC/dialog/trading/actions/skins/API;
-- release/changelog 7.11.0: estabilidade, backup/restore, stale state, follow/look logout, humanoid models, presets e chat bubbles.
+- modlist física atual: JAR, mod id, campo de versão vazio, Config UI/Bundle e Epic Fight presentes;
+- publicação oficial Easy NPC Core: escopo de NPC/dialog/trading/actions/skins/API e Release 7.12.1 para NeoForge 1.21.1 em 10/09/2026;
+- release/changelog 7.11.0: estabilidade, backup/restore, stale state, follow/look logout, humanoid models, presets e chat bubbles;
+- changelog 7.12.1: correções de restore/import/export/preset browser/spawn state e requisito EME 2.4.0+ para a integração opcional.
 
 > **Boundary canônico:** Easy NPC Core é authority do **NPC persistente e de suas operações**. UI, renderers e combat frameworks são consumidores/adapters, não uma segunda fonte de verdade.

@@ -2,16 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db813a8e26f0ea2e8c07c8
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `ars_controle-1.21.1-1.6.15.jar`, mod id `ars_controle`, runtime `1.21.1-1.6.15`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Ars Controle
 - **Arquivo JAR:** `ars_controle-1.21.1-1.6.15.jar`
 - **Versão 1.21.1:** 1.21.1-1.6.15
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, Automação
@@ -20,9 +20,9 @@
 - **Sobreposição:** Cruza automação/remote I/O com Create e outros providers/redes presentes, mas seu domínio é lógica mágica Ars. Não substituir APIs/capabilities dos providers remotos nem duplicar processamento; AE2 ausente não é superfície ativa.
 - **Compatibilidade/Riscos:** Riscos principais: loops de signal/poll, referências stale após unload/restart, double-processing em item/fluid/energy, perda de causalidade em spell redirection e compatibilidade espacial não comprovada automaticamente com sublevels Sable.
 - **Observações:** mod id `ars_controle`; runtime `1.21.1-1.6.15`. O estado anterior `Integrado ao Github` permanece registrado documentalmente; AE2 está ausente do snapshot físico atual e não é contado como integração ativa.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial Vonr/Ars-Controle 1.6.15 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial Vonr/Ars-Controle 1.6.15 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15`; sem divergência física.
 - **Fonte:** https://github.com/Vonr/Ars-Controle
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Controle 1.6.15, 4 blocos/4 BEs, 31 componentes, Scryer's Linkage, Warping Spell Prism, optional-provider gates e authority remota confirmados no QC global #41. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #41: `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Ficha reconstruída do zero em 07/09/2026 contra registry/source da build 1.6.15 e modlist física; addon é uma camada de controle real do Ars e não um provider mágico paralelo.
 - **Data da última decisão:** 2026-09-07
 

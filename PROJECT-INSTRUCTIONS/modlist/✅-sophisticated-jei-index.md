@@ -2,20 +2,16 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Página Notion:** https://app.notion.com/p/3c369db9f0db81d28537c47b84722bb4
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sophisticated_jei_index-1.2.2+1.21.1.jar`, mod id `sophisticated_jei_index`, runtime `1.2.2`; Sophisticated Backpacks 3.26.2 e redes/JEI relevantes presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sophisticated JEI Index 1.2.2 e seus providers físicos citados estão presentes. A página também registra upstream 1.2.3 de 10/09/2026 como update disponível; isso não altera a versão instalada. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física:** `sophisticated_jei_index-1.2.2+1.21.1.jar`, mod id `sophisticated_jei_index`, runtime `1.2.2`
+- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Sophisticated JEI Index
 - **Arquivo JAR:** `sophisticated_jei_index-1.2.2+1.21.1.jar`
 - **Versão 1.21.1:** 1.2.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Compat, QoL, Armazenamento
@@ -26,13 +22,13 @@
 - **Observações:** JAR físico `sophisticated_jei_index-1.2.2+1.21.1.jar`. O projeto prioriza fontes conforme contexto e integra terminais AE2/Refined Storage/Tom's Storage; recipe transfer precisa ser server-authoritative para evitar dupe/loss.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Sophisticated JEI Index 1.2.2 e página atual do projeto + confirmação física de JEI/Sophisticated Backpacks e terminais suportados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-jei-index/files/8726946
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Sophisticated JEI Index 1.2.2 reconstruído: JEI Index Upgrade, recipe transfer from equipped backpacks, source priority, crafting-terminal integrations, multiplayer authority, lifecycle, riscos e testes. Upstream 1.2.3 existe desde 10/09/2026, mas não está instalado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sophisticated JEI Index 1.2.2 físico reconfirmado; upstream 1.2.3 para NeoForge 1.21.1 continua disponível desde 10/09/2026. O arquivo 1.2.3 não publica changelog, portanto o gate é registrado sem atribuir mudança interna.
 - **Histórico da decisão:** Mantido para indexação/recipe transfer do ecossistema Sophisticated. Em 11/09/2026 o runtime físico continua 1.2.2; upstream 1.2.3, publicada em 10/09/2026 para 1.21.1, foi registrada apenas como atualização disponível.
 - **Data da última decisão:** 2026-08-22
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **ESCOPO CANÔNICO.** Runtime físico: `sophisticated_jei_index-1.2.2+1.21.1.jar`, mod id `sophisticated_jei_index`, versão `1.2.2`, NeoForge 1.21.1. Ele estende recipe transfer/indexação do JEI para **backpacks equipados** e terminais suportados; não substitui o JEI.
+> 📚 **ESCOPO CANÔNICO.** Runtime físico: `sophisticated_jei_index-1.2.2+1.21.1.jar`, mod id `sophisticated_jei_index`, versão `1.2.2`, NeoForge 1.21.1. Ele estende recipe transfer/indexação do JEI para **backpacks equipados** e terminais suportados; não substitui o JEI.
 
 ## 1. Identidade e papel
 - **Mod:** Sophisticated JEI Index.
@@ -141,7 +137,7 @@ Index/cache de uma mochila removida não pode continuar fornecendo ingredients.
 ## 18. Atualização upstream 1.2.3
 Em **10/09/2026** foi publicada uma 1.2.3 para Minecraft 1.21.1. A modlist física atual continua em **1.2.2**.
 
-Pela regra do projeto, presença/versão canônica permanece 1.2.2. A 1.2.3 é somente **update disponível**, a ser avaliado em outro fluxo antes de alteração da modlist.
+Pela regra do projeto, presença/versão canônica permanece 1.2.2. A 1.2.3 é somente **update disponível**, a ser avaliado em outro fluxo antes de alteração da modlist. A página oficial do arquivo 1.2.3 não publica changelog; portanto nenhum comportamento, fix ou alteração interna é atribuído a essa release por inferência.
 
 ## 19. Riscos técnicos
 1. **Dupe/loss em transfer:** mesma stack debitada/inserida incorretamente.
@@ -168,12 +164,11 @@ Pela regra do projeto, presença/versão canônica permanece 1.2.2. A 1.2.3 é s
 - [ ] Remover/equipar backpack invalida index imediatamente.
 - [ ] Dois players não compartilham backpacks/index.
 - [ ] Recipe reload/reconnect não deixa cache stale.
-
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
 ## 21. Evidências e limites
 - Modlist física atual: JEI Index 1.2.2, JEI 19.53.0.426, Sophisticated Backpacks 3.26.2 e redes relevantes.
 - CurseForge oficial 1.2.2: build física Release NeoForge 1.21.1.
 - Página oficial atual: backpack recipe transfer, terminal integrations e source/recipe-fill behavior.
-- Upstream 1.2.3 de 10/09/2026: registrado apenas como atualização disponível.
+- Upstream 1.2.3 de 10/09/2026: registrado apenas como atualização disponível; página do arquivo sem changelog, sem inferência de delta interno.
 - **Limite:** config local, EMI e detalhes internos de prioridade não foram inferidos além do publicado; testes runtime permanecem pendentes.
