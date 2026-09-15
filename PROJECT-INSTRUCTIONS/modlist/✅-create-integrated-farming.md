@@ -1,10 +1,11 @@
 # Create: Integrated Farming
 
+> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `create-integrated-farming-1.4.1b.jar` / `1.4.1b`. A release upstream mais recente para NeoForge 1.21.1 é **1.4.1c**, publicada em 10/09/2026 para Create 6.0.10. O delta é um hotfix material de estabilidade: corrige **crash intermitente no cliente ao colocar ou visualizar um Vacuum Harvester após iniciar o jogo**. Esta nota supersede somente referências antigas de “latest/upstream”; não promove a versão instalada.
+
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81ea9219ff5a8a9d8776  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: modlist física mais recente, 595 mods  
-> Exportado em: 2026-09-08
+> Estado atual: `Integrado ao Github`  
+> Autoridade física: modlist física mais recente, 595 entradas totais incluindo o modloader  
+> Auditoria de migração: 2026-09-15
 
 ## Propriedades do registro
 
@@ -14,16 +15,16 @@
 - **Categoria:** Automação; Comida; Tecnologia
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming/files/8811301
 - **Função:** Expande a automação agrícola do Create com máquinas e integrações especializadas para colheita, pesca, coleta de produtos animais, compostagem e compatibilidade com crops/containers de outros mods.
 - **Dependências:** Create 6.0.10 + Create: Dragons Plus. Farmer's Delight é fortemente recomendado pelo projeto; integrações adicionais são condicionais aos mods alvo realmente presentes.
 - **Compatibilidade/Riscos:** Interage com harvesting, crops modded, fishing loot, moving Sable sublevels, Mechanical Arms, compostagem e integrações agrícolas. A 1.4.1b corrige crash ao gerar catches de Fishing/Lava Fishing Nets com Tide 2.1.1; validar esse caminho se Tide estiver ativo.
 - **Sobreposição:** Complementa Create com automação agrícola específica. Create controla primitives cinéticas/logísticas; providers agrícolas controlam seus crops/loot/containers; Integrated Farming adapta essas authorities sem substituí-las.
 - **Observações:** mod id `create_integrated_farming`; runtime 1.4.1b. A ficha antiga ainda citava runtime 1.3.3b; corrigido em 08/09/2026. 1.4.1b é Release NeoForge 1.21.1 para Create 6.0.10 e hotfix de compatibilidade com Tide 2.1.1.
-- **Procedência:** Modlist física canônica de 08/09/2026 + runtime `create_integrated_farming` 1.4.1b + CurseForge/Modrinth oficiais da release 1.4.1b e descrição técnica do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `create_integrated_farming` 1.4.1b + CurseForge/Modrinth oficiais da release 1.4.1b e descrição técnica já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `create-integrated-farming-1.4.1b.jar` / `1.4.1b`; Tide 2.1.1 continua regression gate condicional.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Integrated Farming 1.4.1b foi reconfirmado como `Instalado`, a referência residual 1.3.3b foi corrigida e a ficha reconstruída ao padrão técnico. Presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — farming/fishing automation, harvesting authority, Arm/Spout/Sable integrations, lifecycle, config/data boundaries e regressão 1.4.1b catalogados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #123: create-integrated-farming-1.4.1b.jar / 1.4.1b reconfirmados; farming/fishing automation, harvesting authority, Arm/Spout/Sable integrations, lifecycle e regression gate Tide 2.1.1 permanecem atuais.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs

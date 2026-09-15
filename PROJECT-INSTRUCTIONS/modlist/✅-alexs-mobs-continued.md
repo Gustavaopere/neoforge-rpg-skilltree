@@ -1,17 +1,16 @@
 # Alex's Mobs Continued
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81c5a6f4d3f24f528793
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack:** Integrado ao Github
+- **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader
+- **Auditoria de migração Notion → GitHub:** 2026-09-15
 
 ## Propriedades do banco
 
 - **Mod:** Alex's Mobs Continued
 - **Arquivo JAR:** `alexsmobs-2.1.11-neoforge+1.21.1.jar`
 - **Versão 1.21.1:** 2.1.11
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Mobs, Exploração
@@ -19,10 +18,10 @@
 - **Dependências:** OBRIGATÓRIA: CodxLib 1.6.0+ para a release 2.1.11; o pack instala codxlib-1.6.0-neoforge+1.21.1.jar. Citadel 2.7.1 permanece presente por outros consumidores, mas não é hard dependency externa deste port.
 - **Sobreposição:** Sobrepõe parcialmente o domínio de fauna/mobs, exploração e ecossistema de outros grandes mob packs, mas não é redundância simples: cada criatura tem IA, cadeia de interação e recursos próprios. Interseções relevantes no pack: Enhanced AI (comportamento), AI-Improvements (custo/infra de IA), mods de worldgen/biomas (spawn), Alex's Delight/Farmer's Delight (uso culinário de drops), além de outros mods de fauna/bosses que aumentam densidade ecológica e carga de entidades.
 - **Compatibilidade/Riscos:** Roster/registries continuam provider-native. Enhanced AI 4.2.3.0 pode alterar goals/pathfinding; worldgen/biome providers alteram distribuição de spawn; Alex's Delight 1.6 consome drops. 2.1.11 adiciona edição in-game de Spawn Group Sizes e depende do fix numérico do CodxLib 1.6.0. Patches feitos para outros ports de Alex não são presumidos compatíveis.
-- **Observações:** Runtime físico 2.1.11. `/amc menu` → Spawning expõe Spawn Group Sizes e grava a mesma opção `spawnGroupSizes`. Catálogo 89 mobs normais + Sea Bear secreto foi preservado; não converter a publicidade '~116' em 116 criaturas comuns.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Alex's Mobs Continued 2.1.11 + CodxLib 1.6.0 + dossiê operacional existente e fontes do roster original.
+- **Observações:** Runtime físico permanece 2.1.11. `/amc menu` → Spawning expõe Spawn Group Sizes e grava `spawnGroupSizes`. Catálogo benchmark 89 mobs normais + Sea Bear secreto preservado. Upstream 2.1.13 não deve ser promovido para a ficha instalada sem atualização física da modlist/JAR.
+- **Procedência:** modlist.txt física do projeto reconsultada em 14/09/2026 + CurseForge oficial Alex's Mobs Continued + CodxLib 1.6.0 + dossiê operacional e fontes já auditadas. Artefato instalado `alexsmobs-2.1.11-neoforge+1.21.1.jar`, runtime `2.1.11`, SHA-1 `4c5f93c4eb7cbd784c6fda02292b2806c31a0a5f`, mixin `alexsmobs.mixins.json`. Upstream possui 2.1.13, tratado apenas como version drift.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 2.1.11, UI Spawn Group Sizes, CodxLib 1.6.0+, Enhanced AI 4.2.3.0 e catálogo operacional preservado no QC global #21.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — benchmark revalidado contra a modlist física: `alexsmobs-2.1.11-neoforge+1.21.1.jar` / `2.1.11`, SHA-1 e mixin registrados. Upstream 2.1.13 existe, mas não substitui a autoridade do artefato instalado.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita integralmente após feedback de que a descrição anterior era genérica e insuficiente para outro chat operar. A nova ficha passa a ser um dossiê operacional do conteúdo do mod e não apenas um resumo de propósito.
 - **Data da última decisão:** 2026-09-07
 
@@ -37,7 +36,7 @@
 - **Papel:** grande provider de fauna, ecossistema, exploração, combate de criaturas, tame/breeding, mobilidade, drops funcionais, equipamentos e interações ambientais.
 - **Origem:** continuação não oficial que preserva o conteúdo do Alex's Mobs original em versões modernas.
 - **Decisão do pack:** **Manter**.
-- **Authority de versão:** a modlist física prevalece. O snapshot físico de 08/09/2026 confirma que a instância já foi atualizada para **2.1.11**.
+- **Authority de versão:** a modlist física prevalece. O snapshot físico do projeto, reconsultado em **14/09/2026**, confirma `alexsmobs-2.1.11-neoforge+1.21.1.jar` / runtime **2.1.11**, SHA-1 `4c5f93c4eb7cbd784c6fda02292b2806c31a0a5f`, com `alexsmobs.mixins.json`. A publicação upstream já possui builds posteriores, incluindo **2.1.13**, mas isso é apenas version drift upstream: **não altera a versão instalada** enquanto a modlist/JAR físico permanecer em 2.1.11.
 
 ## 2. O que o mod realmente adiciona
 O mod não é “um pacote de bichos decorativos”. O roster foi projetado para que as criaturas participem do mundo por **comportamento, cadeia ecológica e utilidade**. Há predador-presa, rebanhos e tropas, domesticação por condições específicas, breeding, imprinting, montarias, animais de transporte, pesca/forrageamento automatizável, mobs que transformam blocos/biomas, criaturas que produzem recursos sem serem mortas, entidades aquáticas capturáveis em balde, ovos e colônias, monstros multipartes, criaturas do Nether e End, um chief e um boss.
@@ -370,7 +369,7 @@ Esses itens são **fila de validação**, não justificativa para afirmar que o 
 - Para **atualização**, modlist física é authority de versão; upstream mais novo só vira realidade depois que o JAR do pack mudar.
 
 ## 17. Fontes e grau de confiança
-**Authority física do pack:** `modlist.txt` física atual de 08/09/2026 — `alexsmobs-2.1.11-neoforge+1.21.1.jar`, CodxLib 1.6.0, Citadel 2.7.1, Alex's Delight 1.6 e Enhanced AI 4.2.3.0.
+**Authority física do pack:** `modlist.txt` física reconsultada em 14/09/2026 — `alexsmobs-2.1.11-neoforge+1.21.1.jar`, runtime 2.1.11, SHA-1 `4c5f93c4eb7cbd784c6fda02292b2806c31a0a5f`, mixin `alexsmobs.mixins.json`, CodxLib 1.6.0, Citadel 2.7.1, Alex's Delight 1.6 e Enhanced AI 4.2.3.0. Upstream 2.1.13 é version drift e não altera o runtime instalado.
 
 **Fonte primária do port:** [Alex's Mobs Continued — CurseForge](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued). Usada para propósito do port, loaders, dependências e changelog 2.1.10.
 

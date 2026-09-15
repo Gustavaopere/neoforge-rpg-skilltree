@@ -1,10 +1,11 @@
 # Euphoria Patcher — 1.10.0-r5.9-neoforge
 
+> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `EuphoriaPatcher-1.10.0-r5.9-neoforge.jar`. A release upstream mais recente compatível com Minecraft 1.21.1 é **Euphoria Patcher 1.10.5-r5.9.3-neoforge**, publicada em 15/09/2026. A 1.10.5 é uma bug-fix release e atualiza a base para **Complementary Shaders r5.9.3**. Esta nota **supersede somente as referências de “upstream/latest” mais antigas abaixo**; não promove a versão instalada e não altera o conteúdo migrado do Notion.
+
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c869db9f0db81eb92c9e96455eb3939  
 > Estado no momento da reconciliação: `Integrado ao Github`  
-> Autoridade física: `modlist(4).txt`, 595 mods top-level  
-> Reconciliado em: 2026-09-09
+> Autoridade física: `modlist.txt`, 595 entradas totais incluindo o modloader  
+> Reconciliado em: 2026-09-15
 
 ## Propriedades do registro
 
@@ -20,10 +21,10 @@
 - **Dependências:** Requer um Complementary Shaders base compatível e loader de shaders no cliente. Iris 1.8.14-beta.1 está fisicamente presente; a modlist de mods não comprova que o shaderpack Complementary esteja instalado.
 - **Compatibilidade/Riscos:** A revisão física é `r5.9`; referências antigas r5.8.1 foram removidas. Riscos: base Complementary de revisão errada, patched archive stale, Iris beta/render regressions, config/preset migration, modded-material properties ausentes e custo de features habilitadas. Não possui gameplay authority.
 - **Sobreposição:** Complementa Complementary Shaders e Iris; não duplica EMF/ETF, EntityCulling ou gameplay lighting. Bugs precisam ser isolados entre shader base, patch Euphoria e loader Iris.
-- **Observações:** Drift antigo corrigido: o runtime não é 1.9.3-r5.8.1. Source oficial descreve auto-detection de base Complementary, verificação, patch binário, geração de variantes Reimagined/Unbound e watchers. Opções Euphoria são desativadas por padrão; presença do mod não prova feature visual específica ativa.
-- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `EuphoriaPatcher-1.10.0-r5.9-neoforge.jar`, mod id `euphoria_patcher`, versão 1.10.0-r5.9-neoforge e SHA-1 d728a26bd67b70dfc510fbb08def619ec015c998; Iris 1.8.14-beta.1 também está presente.
+- **Observações:** Runtime físico 1.10.0-r5.9. Upstream 1.10.1-r5.9.1 é uma bug-fix release compatível com 1.21.1: corrige reflective horses/banners, adiciona opção de foliage shadows, melhora integração visual com Spyglass Astronomy; no patcher, melhora dimension switching com cache por dimensão (com custo de RAM), settings updater para dois shader styles e corrige wildcard de `dimensions.properties` que quebrava o catch-all `*` do Iris.
+- **Procedência:** modlist.txt física atual confirma o artefato instalado Euphoria Patcher 1.10.0-r5.9. Revalidação oficial em 12/09/2026 confirma a existência da release 1.10.1-r5.9.1 de 11/09/2026 compatível com Minecraft 1.21.1.
 - **Histórico da decisão:** vazio.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 09/09/2026 — Euphoria Patcher 1.10.0-r5.9; patch pipeline, Complementary/Iris ownership, default-off settings, filesystem/config lifecycle, risks and tests cataloged.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #268: pack permanece em Euphoria Patcher 1.10.0-r5.9; upstream publicou 1.10.1-r5.9.1 em 11/09/2026 com suporte explícito a 1.21.1. Update disponível registrado sem alterar a autoridade física instalada.
 - **Data da última decisão:** 2026-08-26
 
 > **Runtime físico confirmado:** `EuphoriaPatcher-1.10.0-r5.9-neoforge.jar` · mod id `euphoria_patcher` · versão `1.10.0-r5.9-neoforge` · NeoForge 1.21.1 · client-side. O pack possui **Iris 1.8.14-beta.1**; a presença de um Complementary shaderpack compatível não é inferida da modlist de mods.
@@ -39,8 +40,10 @@ Euphoria Patcher é o instalador/patcher runtime para **Euphoria Patches**, um a
 
 Não atribuir ao Patcher lógica de mundo, iluminação server-side ou gameplay.
 
-## 3. Linha compatível r5.9
+## 3. Linha física r5.9 e update upstream r5.9.1
 O JAR físico é **1.10.0-r5.9**. Referências antigas `1.9.3-r5.8.1` foram descartadas. O sufixo `r5.9` é parte do contrato de compatibilidade com a revisão Complementary/Euphoria correspondente; não reutilizar um shader base de revisão diferente por suposição.
+
+Em 11/09/2026 foi publicada **Euphoria Patcher 1.10.1-r5.9.1** para NeoForge, explicitamente compatível com Minecraft 1.21.1. A release melhora o switching entre dimensões usando cache de shaders por dimensão (com custo de RAM configurável), melhora o settings updater quando os dois estilos de shader são instalados e corrige o wildcard de `dimensions.properties` que quebrava o catch-all `*` do Iris. A camada shader também registra correções/ajustes visuais para horses/banners, foliage shadows e Spyglass Astronomy. Essas mudanças pertencem à 1.10.1-r5.9.1 e **não** são atribuídas ao artefato físico 1.10.0-r5.9.
 
 ## 4. Operação do patcher
 O source oficial descreve:
