@@ -1,7 +1,6 @@
 # Euphoria Patcher — 1.10.0-r5.9-neoforge
 
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c869db9f0db81eb92c9e96455eb3939  
 > Estado no momento da reconciliação: `Integrado ao Github`  
 > Autoridade física: `modlist.txt`, 595 entradas totais incluindo o modloader  
 > Reconciliado em: 2026-09-15
