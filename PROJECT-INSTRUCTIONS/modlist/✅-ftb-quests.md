@@ -1,7 +1,6 @@
 # FTB Quests — 2101.1.34
 
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3d369db9f0db81c88a4acb0b80b9c9b1  
 > Estado atual: `Integrado ao Github`  
 > Autoridade física: `modlist.txt`, 595 entradas totais incluindo o modloader  
 > Auditoria de migração: 2026-09-15
