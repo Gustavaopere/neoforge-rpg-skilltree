@@ -1,22 +1,9 @@
 # Northstar Redux
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c469db9f0db8197ac23ef3594a90714
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `Northstar-0.6.4+1.21.1.jar`, mod id `northstar`, runtime `0.6.4+1.21.1`, mixin `northstar.mixins.json`; Create `6.0.10` e GeckoLib `4.9.2` confirmados fisicamente
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma `modlist.txt física canônica atual de 10/09/2026`. A authority física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Northstar 0.6.4, Create 6.0.10 e GeckoLib 4.9.2 estão confirmados.
-- A página registra **0.6.5+1.21.1**, publicada em 09/09/2026, apenas como atualização externa disponível. O runtime físico permanece **0.6.4+1.21.1**; nenhuma feature exclusiva de 0.6.5 é promovida a instalada nesta exportação.
-
-## Propriedades do banco
-
-- **Mod:** Northstar Redux
 - **Arquivo JAR:** `Northstar-0.6.4+1.21.1.jar`
 - **Versão 1.21.1:** 0.6.4+1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Tecnologia, Exploração
@@ -25,15 +12,13 @@
 - **Sobreposição:** Creating Space compartilha a camada espacial, mas coexistência é decisão deliberada; não tratar como duplicata exata. Create continua authority de seu kinetic/contraption system.
 - **Compatibilidade/Riscos:** Runtime 0.6.4. Riscos: rocket/orbit transition, Return Ticket state, telescope/render/camera regressions, Create/GeckoLib drift e coexistência deliberada com Creating Space. 0.6.5 existe, mas não é o runtime físico.
 - **Observações:** Runtime 0.6.4+1.21.1, file ID 8486127. Commit `2abd30b71470d168b18a132172b5120f15fbfe61` faz bump para 0.6.4 e corrige telescope bounds/zoom. 0.6.5+1.21.1 foi publicada em 09/09/2026 e permanece apenas candidata a update.
-- **Procedência:** modlist.txt física canônica atual de 10/09/2026 + CurseForge oficial 0.6.4 + source oficial Astronauts-of-Create/Northstar-Redux e commit correspondente; 0.6.5 tratada apenas como atualização externa disponível.
+- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial: 0.6.4 instalada e 0.6.5+1.21.1 (file 8844708, 09/09/2026) como release mais recente localizada + source/commit 0.6.4 já auditados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-northstar
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Northstar Redux 0.6.4 reconstruído contra release/source correspondente: rockets/orbit, Return Tickets, telescope, renderer/camera, Create/GeckoLib, lifecycle e riscos. Update 0.6.5 publicado em 09/09/2026 foi registrado separadamente como disponível, não instalado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Northstar Redux físico 0.6.4+1.21.1 reconfirmado; 0.6.5+1.21.1, publicada em 09/09/2026, permanece a release NeoForge 1.21.1 mais recente localizada e segue como update candidate não aplicado. Decisão Manter preservada.
 - **Histórico da decisão:** Em 22/08/2026 o usuário definiu manter Northstar Redux junto de Creating Space para substituir Stellaris e evitar uma solução espacial excessivamente tecnológica. 2026-09-10 — decisão preservada; update 0.6.5 disponível foi registrado sem alterar o runtime físico 0.6.4.
 - **Data da última decisão:** 2026-08-22
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `Northstar-0.6.4+1.21.1.jar`, mod id `northstar`, versão `0.6.4+1.21.1`. O source oficial `Astronauts-of-Create/Northstar-Redux` possui commit `2abd30b71470d168b18a132172b5120f15fbfe61` que eleva a versão 0.6.3→0.6.4 e corrige bounds/zoom da tela do telescópio. Existe **0.6.5 para 1.21.1 publicada em 09/09/2026**, mas ela NÃO é o runtime físico deste catálogo; suas mudanças ficam separadas como atualização disponível.
+> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `Northstar-0.6.4+1.21.1.jar`, mod id `northstar`, versão `0.6.4+1.21.1`. O source oficial `Astronauts-of-Create/Northstar-Redux` possui commit `2abd30b71470d168b18a132172b5120f15fbfe61` que eleva a versão 0.6.3→0.6.4 e corrige bounds/zoom da tela do telescópio. Existe **0.6.5 para 1.21.1 publicada em 09/09/2026**, mas ela NÃO é o runtime físico deste catálogo; suas mudanças ficam separadas como atualização disponível.
 
 ## 1. Identidade, versão e decisão
 - **Mod:** Northstar Redux.
