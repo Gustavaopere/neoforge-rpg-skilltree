@@ -1,21 +1,9 @@
 # MRU
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81c5853cca8547d9d579
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `mru-1.0.33+1.21.1-neoforge.jar`, mod id `mru`, runtime `1.0.33+1.21.1` confirmado fisicamente
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma `modlist.txt física canônica atual de 10/09/2026`. A authority física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, MRU 1.0.33+1.21.1 está confirmado.
-
-## Propriedades do banco
-
-- **Mod:** MRU
 - **Arquivo JAR:** `mru-1.0.33+1.21.1-neoforge.jar`
 - **Versão 1.21.1:** 1.0.33+1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -24,15 +12,13 @@
 - **Sobreposição:** Não substituível automaticamente por outra library genérica. APIs equivalentes em conceito não são contratos drop-in.
 - **Compatibilidade/Riscos:** Library multiversionada. Riscos: API/ABI drift, helper de versão incorreta, packed-resource/config drift e abstrações de inventory/backpack/accessory. Nenhum consumer físico inequívoco foi comprovado nesta passagem.
 - **Observações:** Runtime físico 1.0.33+1.21.1. Linha moderna 1.0.30+ ampliou fortemente o escopo da library. Presença isolada não prova necessidade; não remover até mapear manifests dos consumers.
-- **Procedência:** modlist.txt física canônica atual de 10/09/2026 + publicação/documentação oficial MRU + source upstream IMB11-Mods/MRU.
+- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial confirmando MRU 1.0.33 para NeoForge 1.21.1 como release mais recente localizada + documentação/source upstream já auditados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/mru
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — MRU 1.0.33+1.21.1 reconstruído: Packed Resources/YACL, arquitetura 1.0.30+, helpers multiversionadas, client/server, consumer mapping, riscos e testes. Nenhum consumer inequívoco foi provado; decisão permanece Sem decisão.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — MRU 1.0.33+1.21.1/JAR físico reconfirmado; 1.0.33 permanece a release NeoForge 1.21.1 mais recente localizada. Consumer mapping e decisão Sem decisão preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-26
 
-# Dossiê operacional — padrão Alex's Mobs
-
-> **ESCOPO CANÔNICO.** Runtime físico: `mru-1.0.33+1.21.1-neoforge.jar`, mod id `mru`, versão `1.0.33+1.21.1`, em NeoForge 1.21.1. MRU é uma biblioteca do ecossistema IMB11/Cassian. A linha moderna ampliou o escopo além das antigas helpers de resources/YACL, mas nenhum consumer inequívoco foi comprovado na modlist física desta passagem; por isso a decisão permanece **Sem decisão** e a presença do JAR não é tratada como prova de necessidade.
+> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `mru-1.0.33+1.21.1-neoforge.jar`, mod id `mru`, versão `1.0.33+1.21.1`, em NeoForge 1.21.1. MRU é uma biblioteca do ecossistema IMB11/Cassian. A linha moderna ampliou o escopo além das antigas helpers de resources/YACL, mas nenhum consumer inequívoco foi comprovado na modlist física desta passagem; por isso a decisão permanece **Sem decisão** e a presença do JAR não é tratada como prova de necessidade.
 
 ## 1. Identidade e papel
 - **Mod:** MRU — Mineblocks' Repeated Utilities.
