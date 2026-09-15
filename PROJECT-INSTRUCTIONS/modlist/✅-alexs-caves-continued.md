@@ -1,5 +1,7 @@
 # Alex's Caves Continued
 
+> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `alexscaves-1.0.9-neoforge+1.21.1.jar` / `1.0.9`. A release upstream mais recente para NeoForge 1.21.1 é **1.0.10**, publicada em 11/09/2026. O delta é material: corrige crash/log spam de worldgen nas Primordial Caves causado pelo freeze check de lagos, flicker/red flashes do céu no Abyssal Chasm, prioridade de subida do Submarine quando sprint está ativo, câmera do floodlight em 1.21.1 e outras regressões visuais/compatibilidade. Esta nota supersede somente referências antigas de “latest/upstream” abaixo; não atribui os fixes à build instalada.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader
 - **Auditoria de migração Notion → GitHub:** 2026-09-15
