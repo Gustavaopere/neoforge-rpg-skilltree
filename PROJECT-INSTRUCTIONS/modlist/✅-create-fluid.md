@@ -1,7 +1,6 @@
 # Create: Fluid — 2.1.5
 
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81cc9951fed3c43f30f1  
 > Estado atual: `Integrado ao Github`  
 > Autoridade física: `modlist.txt`, 595 entradas totais incluindo o modloader  
 > Auditoria de migração: 2026-09-15
