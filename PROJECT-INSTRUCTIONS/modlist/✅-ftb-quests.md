@@ -1,5 +1,7 @@
 # FTB Quests — 2101.1.34
 
+> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `ftb-quests-neoforge-2101.1.34.jar` / `2101.1.34`. A release upstream mais recente para NeoForge 1.21.1 é **2101.1.36**, publicada em 15/09/2026. O delta inclui hotkeys rebindáveis de edição (force-complete, force-reset, save server-side e download para cliente), seleção por Alt+LMB, correção de NPE ao colar imagem com imagens selecionadas e correção do scrolling por setas. Esta nota supersede somente referências antigas de “latest/upstream” abaixo; não atribui essas mudanças à build instalada.
+
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Estado atual: `Integrado ao Github`  
 > Autoridade física: `modlist.txt`, 595 entradas totais incluindo o modloader  
