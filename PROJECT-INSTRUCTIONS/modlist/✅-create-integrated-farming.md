@@ -1,7 +1,6 @@
 # Create: Integrated Farming
 
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81ea9219ff5a8a9d8776  
 > Estado atual: `Integrado ao Github`  
 > Autoridade física: modlist física mais recente, 595 entradas totais incluindo o modloader  
 > Auditoria de migração: 2026-09-15
