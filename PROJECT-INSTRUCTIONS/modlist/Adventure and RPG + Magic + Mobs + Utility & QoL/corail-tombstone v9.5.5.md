@@ -1,171 +1,103 @@
 # Corail Tombstone
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Arquivo JAR:** `tombstone-neoforge-1.21.1-9.5.5.jar`
-- **Versão 1.21.1:** 9.5.5
+- **Arquivo JAR:** `tombstone-neoforge-1.21.1-9.5.6.jar`
+- **Versão 1.21.1:** 9.5.6
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL, RPG
-- **Função:** Sistema de death recovery com grave protegido, decorative graves/souls, Knowledge of Death/perks, magic/prayers, Forgotten Knowledge/lore e utilidades de sobrevivência/teleporte.
-- **Dependências:** NeoForge 1.21.1/Java 21. Integrações opcionais conforme stack. Create Aeronautics 1.3.2 está presente e a 9.5.5 adiciona compat específica para respawn em veículo; Curios 9.5.1 também está presente.
-- **Sobreposição:** Sobreposição parcial com outros grave/death mods; nenhuma duplicação lógica foi identificada neste lote.
-- **Compatibilidade/Riscos:** Double death/grave interception, inventory-extension recovery, grave placement/ownership e progression stacking. 9.5.5: Aeronautics vehicle respawn é regression gate. 9.5.4 remove ritual flute screen e reescreve lore/objectives, podendo invalidar quests antigas.
-- **Observações:** mod id `tombstone`; runtime físico 9.5.5. Decisão Sem decisão preservada. A release oficial 9.5.6 para NeoForge 1.21.1 está disponível desde 09/09/2026 e corrige XP restoration on death com level count alto por integer overflow; a autoridade física permanece 9.5.5 até o JAR mudar. Config de grave/access/perks não foi lida.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Corail Tombstone 9.5.5 File ID 8661357 + release oficial 9.5.6 File ID 8842741 revalidada em 13/09/2026 + stack físico Create Aeronautics 1.3.2/Curios 9.5.1. Dossiê de 11/09 preservado; nenhum teste de morte/recovery foi executado.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/corail-tombstone ; https://www.curseforge.com/minecraft/mc-mods/corail-tombstone/files/8661357
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Corail Tombstone 9.5.5 permanece o runtime físico. Grave recovery, Souls/Knowledge/magic/lore, Aeronautics, lifecycle, riscos e testes preservados. ATUALIZAÇÃO DISPONÍVEL: 9.5.6 NeoForge 1.21.1, publicada em 09/09/2026, corrige restauração de XP na morte com level count alto por integer overflow.
+- **Função:** Death recovery com grave protegido, decorative graves/souls, Knowledge of Death/perks, magic/prayers, Forgotten Knowledge/lore e utilidades de sobrevivência/teleporte.
+- **Dependências:** NeoForge 1.21.1/Java 21. Integrações opcionais conforme stack. A compat de respawn em veículo introduzida na linha 9.5.5 para Create Aeronautics permanece regression gate; Curios permanece superfície de inventory extension quando presente.
+- **Sobreposição:** Sobreposição parcial com outros grave/death mods; dois interceptors de inventário no mesmo death event são risco alto de dupe/loss.
+- **Compatibilidade/Riscos:** Double death/grave interception, inventory-extension recovery, grave placement/ownership, progression stacking, Aeronautics vehicle respawn, lore/ritual drift e XP restoration em níveis altos.
+- **Observações:** mod id `tombstone`; runtime físico 9.5.6. A release 9.5.6 para NeoForge 1.21.1, publicada em 09/09/2026, corrige restauração de XP na morte com level count alto causada por integer overflow. Config física de grave/access/perks não foi lida.
+- **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Corail Tombstone 9.5.6 + dossiê Notion anterior com 9.5.3–9.5.5. Nenhum teste de death/recovery foi executado.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/corail-tombstone
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 9.5.5 para 9.5.6; o fix de XP restoration que antes era update candidate agora pertence à build instalada. Certificação pendente de QC/re-fetch final.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
-> 🪦 **ESCOPO CANÔNICO.** Runtime físico: `tombstone-neoforge-1.21.1-9.5.5.jar`, mod id `tombstone`, versão `9.5.5`. Corail Tombstone é mais que um grave mod: protege inventário na morte e adiciona **decorative graves/souls, Knowledge of Death, perks, magic items, prayers, forgotten knowledge/lore e utilidades de sobrevivência/exploração**.
+> 🪦 **ESCOPO CANÔNICO.** Runtime físico: `tombstone-neoforge-1.21.1-9.5.6.jar`, mod id `tombstone`, versão `9.5.6`. Corail Tombstone protege inventário na morte e também possui decorative graves/souls, Knowledge of Death, perks, magic/prayers, Forgotten Knowledge/lore e utilities próprias.
 
-## 1. Identidade, versão e papel
-- **Mod:** Corail Tombstone.
-- **JAR:** `tombstone-neoforge-1.21.1-9.5.5.jar`.
-- **Mod id:** `tombstone`.
-- **Versão:** `9.5.5`.
-- **Minecraft/loader:** 1.21.1 NeoForge 21+, Java 21.
-- **Ambiente:** Client & Server.
-- **Canal:** 9.5.5 é release recomendada publicada para 1.21.1 em 16/08/2026.
-- **Decisão:** Sem decisão; preservada.
+## 1. Authority e ownership
+Tombstone é authority de criação/recuperação do grave, decorative graves/haunting souls, Knowledge of Death/perks, magic/lore e comandos/teleport-death utilities próprios. Curios, Create Aeronautics e outros mods continuam authority de slots/veículos; integrations devem reconstruir state sem Tombstone assumir os sistemas externos.
 
-## 2. Authority e ownership
-Corail Tombstone é authority de:
-- criação e recuperação do grave após morte;
-- seus decorative graves e haunting souls;
-- Knowledge of Death e perks;
-- magic items/prayers/ritual/lore próprios;
-- comandos e teleport/death utilities próprios.
-Curios, Create Aeronautics e outros mods continuam authority de seus slots/veículos. Integrações devem devolver/reconstruir state sem Tombstone assumir o sistema inteiro.
+## 2. Grave de morte
+O grave deve capturar e devolver inventário uma única vez. Gates preservados do Notion:
+- main inventory/hotbar/offhand e slots integrados conforme suporte;
+- terreno normal e situações extremas;
+- key/recovery flow;
+- ownership/access conforme config;
+- ausência de dupe/loss;
+- death em dimension/vehicle/sublevel.
 
-## 3. Grave de morte e proteção do inventário
-O propósito central publicado é manter os itens do inventário seguros em um **grave** quando o jogador morre.
-Testes críticos:
-- inventário principal/hotbar/offhand/slots integrados conforme suporte;
-- criação do grave em terreno normal e situações extremas;
-- chave/fluxo de recuperação;
-- proteção contra outro jogador conforme config;
-- recuperação única sem dupe/loss;
-- morte em dimensão/veículo/sublevel.
-A configuração física do servidor não foi lida; regras de acesso/placement não são presumidas.
+A config física do servidor não foi lida, portanto regras exatas de access/placement não são presumidas.
 
-## 4. Decorative Graves
-Decorative graves são blocos construíveis separados do grave de morte. A documentação oficial confirma:
-- variantes visuais sem diferença essencial de gameplay entre dark/white/modelos;
-- partículas/fog noturnas;
-- podem ser minerados com ferramentas apropriadas;
-- grave plates podem ser gravadas/renomeadas via anvil;
-- podem ser **haunted by a soul** conforme chance configurada.
-Não confundir decorative grave com container temporário de morte: eles participam do sistema mágico/souls.
+## 3. Decorative Graves e Souls
+Decorative graves são blocos construíveis distintos do grave de morte, com variantes visuais, fog/particles noturnas, mineração apropriada e grave plates graváveis/renomeáveis. Podem ser haunted por soul conforme chance configurada. Souls permanecem recurso Tombstone para enchanting de itens mágicos/scrolls/tablets, upgrade de Grave's Key e superfícies de Knowledge of Death; decorative grave não deve ser confundido com death container.
 
-## 5. Souls e enchanting mágico
-Souls em decorative graves permanecem até serem usadas e alimentam superfícies mágicas como:
-- enchanting de magic scroll/tablet e itens suportados;
-- upgrade da Grave's Key;
-- progressão de Knowledge of Death quando usadas/libertadas por determinados meios.
-Soul é recurso do Tombstone; efeitos/encantamentos concretos devem ser validados no Compendium/runtime da 9.5.5.
+## 4. Knowledge of Death, perks e prayers
+Knowledge é progressão própria. Pontos podem vir de ações publicadas como usar grave soul em enchanting, libertar soul, prayer perto de decorative grave com **Ankh of Pray** e advancements Tombstone. Perks vivem em GUI própria e podem depender de config. O valor histórico de cooldown de prayer (seis horas in-game no fluxo padrão documentado) não deve virar regra absoluta sem validar config/runtime atual.
 
-## 6. Knowledge of Death
-O projeto possui sistema de progressão próprio. Pontos podem ser obtidos por ações publicadas como:
-- usar grave soul para enchant;
-- libertar soul de receptacle;
-- rezar perto de decorative grave com **Ankh of Pray**, sujeito a cooldown;
-- completar Tombstone advancements.
-Os pontos desbloqueiam **perks** numa GUI própria. Perks são bônus relacionados às features Tombstone e podem depender de config.
-Isso é um progression system independente de outras skill trees do pack; evitar double-gating ou stacking não planejado.
+## 5. Forgotten Knowledge e lore
+Scrolls/enigmas/objectives desbloqueiam Forgotten Knowledge. O dossiê registra Elyra's Diary, Rite of Silent Bound e a adição de **The Nights of Nour** na 9.5.3. A 9.5.4 reescreveu grande parte do lore/objectives; quests externas não devem hardcode passos antigos sem revalidação.
 
-## 7. Ankh of Pray e prayers
-O Ankh of Pray participa do ganho de Knowledge e de prayers/buffs próprios. A documentação pública histórica informa cooldown de seis horas in-game para o fluxo padrão de prayer.
-Como configs e perks podem alterar superfícies atuais, o valor runtime deve ser testado antes de usá-lo como regra absoluta do pack.
+## 6. Ritual Flute — mudança 9.5.4
+Desde 9.5.4, melodies aprendidas tocam automaticamente no bloco correto e a antiga ritual-flute screen foi removida. Guia/quest que exija abrir essa tela está desatualizado para 9.5.6.
 
-## 8. Forgotten Knowledge e lore
-Versões recentes incluem scrolls legíveis com enigmas/objetivos que desbloqueiam **Forgotten Knowledge**. A documentação cita exemplos como Elyra's Diary e Rite of Silent Bound, e a linha 9.5.x continua expandindo/revisando lore.
-A 9.5.3 adicionou **The Nights of Nour**; a 9.5.4 reescreveu grande parte das lore stories, podendo alterar objetivos. Portanto quests externas não devem hardcode passos antigos sem revalidação.
+## 7. GUI, Compendium, commands e teleport
+O mod oferece preferences, Compendium e perks UI. Client UI apenas apresenta state; perks permanecem server-authoritative. Descrição oficial também confirma comandos de morte/dimensional teleportation. Sem command registry pinado nesta build, sintaxe não é inventada; permissions e interação com grave recovery precisam ser validadas.
 
-## 9. Ritual Flute — mudança 9.5.4
-Na 9.5.4:
-- ritual flute melodies passam a tocar automaticamente no bloco correto após serem aprendidas;
-- a antiga ritual flute screen foi removida.
-Qualquer guia/quest do pack que ainda peça abrir essa tela está desatualizado para o runtime 9.5.5.
+## 8. Histórico 9.5.5 — Create Aeronautics
+A 9.5.5 adicionou compat específica **Create Aeronautics — respawn on vehicle** (issue 351). Esse fix continua parte do histórico funcional que deve regredir na 9.5.6. Não implica compat automática com todo vehicle/physics mod.
 
-## 10. GUI, Compendium e preferências
-O mod oferece interface in-game para:
-- preferences do jogador;
-- Compendium de informações;
-- seleção/consulta de perks de Knowledge of Death.
-Client UI deve refletir state authoritative do servidor; perks não podem ser concedidos apenas por manipulação visual local.
+## 9. Atualização instalada — 9.5.6
+A build física 9.5.6 corrige **XP restoration on death com level count alto por integer overflow**. Esse ponto agora é regression gate direto do runtime instalado: morte/recuperação com XP elevado deve restaurar valor correto sem overflow, perda indevida ou duplicação.
 
-## 11. Comandos e teleport/death utilities
-A descrição oficial confirma comandos relacionados a morte e **dimensional teleportation**.
-Sem command registry pin exato desta build, a ficha não lista sintaxe individual. Operacionalmente, comandos administrativos/teleport precisam respeitar permissions e não duplicar grave recovery.
+## 10. Client/server e lifecycle
+Servidor: death, grave placement, inventory capture/recovery, Knowledge/perks, magic state e XP restoration. Cliente: GUI, particles, feedback/lore. Multiplayer exige ownership e recuperação atômica. Validar death normal, dimension change, água/lava/void, vehicle/sublevel, disconnect na death screen, restart antes de recovery, chunk unload/reload, inventário parcialmente ocupado, soul/perk/relog e lore state.
 
-## 12. Release 9.5.5 — Create Aeronautics
-Mudança exata 9.5.5:
-- **compatibility Create Aeronautics — respawn on vehicle**, issue 351.
-O pack instala Create Aeronautics `1.3.2`. Isso é integração concreta e obrigatória para regression testing de morte/respawn em veículos/sublevels.
-A correção não implica que todo mod de veículo/physics esteja automaticamente coberto.
+## 11. Integrações concretas
+- **Create Aeronautics:** vehicle respawn continua gate herdado da 9.5.5 quando provider correspondente está presente.
+- **Curios:** slots adicionais devem recuperar/equipar conforme integration real.
+- **Epic Fight/ParCool/Sable:** death/movement special states são superfícies de teste, não compat automática.
+- **Outros death/revive/grave systems:** risco alto de double interception.
+- **Quest/lore:** ritual/objectives precisam refletir 9.5.4+.
 
-## 13. Client / server e multiplayer
-- Servidor: morte, grave placement, inventory capture/recovery, Knowledge/perks e magic state.
-- Cliente: GUI, particles, feedback visual e leitura de lore.
-- Multiplayer exige ownership seguro do grave e recuperação atômica.
-- Dois eventos de death/respawn próximos não podem criar dois graves para o mesmo inventário.
+## 12. Riscos
+1. double grave/death interception;
+2. vehicle/sublevel respawn;
+3. slot externo perdido/duplicado/reequipado errado;
+4. grave placement inválido em void/border/claims;
+5. ownership/access indevido;
+6. Knowledge/perk stacking com outras skill trees;
+7. lore drift;
+8. teleport command + dimension/border interactions;
+9. XP overflow/regression em níveis altos — alvo do fix 9.5.6.
 
-## 14. Lifecycle
-Validar:
-- morte normal;
-- death durante dimension change;
-- death em água/lava/void/altura extrema;
-- death em Create Aeronautics vehicle;
-- disconnect durante death screen;
-- server restart antes da recuperação;
-- grave chunk unload/reload;
-- recuperação com inventário parcialmente ocupado;
-- uso de soul/perk e relog;
-- atualização de Forgotten Knowledge/lore state.
+## 13. Matriz de testes
+- [ ] Dedicated server boot com Tombstone 9.5.6.
+- [ ] Morte normal cria um único grave com inventário esperado.
+- [ ] Recovery devolve itens uma vez e respeita ownership.
+- [ ] Restart/chunk unload preservam grave/state.
+- [ ] Death/respawn em vehicle/sublevel compatível não duplica nem cria spawn inválido.
+- [ ] Slots Curios/inventory extensions recuperam corretamente quando integration existe.
+- [ ] Decorative grave/soul consome recurso uma única vez.
+- [ ] Knowledge/perks persistem após relog/restart.
+- [ ] Ritual Flute usa fluxo sem screen antiga.
+- [ ] Forgotten Knowledge/Nights of Nour seguem lore atual.
+- [ ] Death em dimension/void/ambiente extremo tem recovery path válido.
+- [ ] Nenhum outro grave mod captura o mesmo inventário.
+- [ ] XP alto é restaurado corretamente sem integer overflow/dupe.
 
-## 15. Integrações concretas no pack
-- **Create Aeronautics 1.3.2:** compat exata de respawn em veículo introduzida/registrada na 9.5.5.
-- **Curios 9.5.1:** pack possui slots adicionais; recuperação/equip order deve ser testada conforme integrações Tombstone atuais.
-- **Epic Fight/ParCool/Sable:** movement/death contexts podem ocorrer em estados especiais; não assumir compat sem runtime test.
-- **Outros death/revive/grave systems:** qualquer mod que também capture inventário ou intercepte death event é alto risco de dupe/loss; mapear antes de manter dois providers.
-- **Lore/quest stack:** passos de ritual precisam refletir mudanças 9.5.4/9.5.5.
+**Nenhum teste foi executado nesta reauditoria documental.**
 
-## 16. Riscos técnicos
-1. **Double grave/death interception:** dois providers de morte podem capturar o mesmo inventário.
-2. **Vehicle/sublevel respawn:** 9.5.5 corrige Aeronautics, mas continua regression gate.
-3. **Inventory extensions:** slots externos podem ser perdidos, duplicados ou reequipados em ordem errada.
-4. **Grave placement:** void/world border/structure/claims podem impedir local válido.
-5. **Permission/ownership:** outro jogador não deve recuperar indevidamente itens protegidos.
-6. **Knowledge stacking:** perks podem somar com outras skill trees e alterar balanceamento.
-7. **Lore drift:** 9.5.4 reescreveu objetivos; quests externas podem ficar obsoletas.
-8. **Teleport commands:** interação com world borders/dimensions precisa de validação administrativa.
+## 14. Evidências e limites
+- modlist física de 16/09/2026: `tombstone-neoforge-1.21.1-9.5.6.jar` / 9.5.6;
+- CurseForge oficial: grave protection, decorative graves/souls, Knowledge, magic, Compendium/utilities e fix 9.5.6;
+- histórico 9.5.3–9.5.5 do Notion preservado, inclusive Ritual Flute/lore rewrite e Aeronautics vehicle respawn;
+- configs de access/perks e runtime tests permanecem não verificados.
 
-## 17. Matriz de testes
-- [ ] Dedicated server boot com Tombstone 9.5.5.
-- [ ] Morte normal cria um único grave com inventário completo esperado.
-- [ ] Recuperação devolve itens uma única vez e respeita ownership.
-- [ ] Restart antes da recuperação preserva grave/inventário.
-- [ ] Grave chunk unload/reload não perde state.
-- [ ] Death/respawn em Create Aeronautics 1.3.2 vehicle funciona sem spawn inválido/dupe.
-- [ ] Curios/equipment slots recuperam conforme integração atual.
-- [ ] Decorative grave pode receber soul e consumi-la uma vez.
-- [ ] Knowledge of Death ganha pontos/perks e persiste após relog/restart.
-- [ ] Ritual Flute usa fluxo 9.5.4 sem tela antiga.
-- [ ] Forgotten Knowledge/Nights of Nour objectives funcionam conforme lore atual.
-- [ ] Death em dimensão/void/ambiente extremo cria recovery path válido.
-- [ ] Nenhum outro death/grave mod captura o mesmo inventário simultaneamente.
-Nenhum teste foi marcado como aprovado nesta auditoria.
-
-## 18. Evidências
-- Modlist física canônica 08/09/2026: JAR/mod id/versão, Aeronautics e Curios presentes.
-- CurseForge oficial Corail Tombstone: grave protection, decorative graves/souls, Knowledge of Death, magic, Compendium e teleport/death utilities.
-- Release oficial 9.5.5: compat Create Aeronautics para respawn em vehicle; 9.5.4 Ritual Flute/lore rewrite; 9.5.3 Nights of Nour.
-
-## 19. Revalidação física — 11/09/2026
-A modlist física mantém `tombstone-neoforge-1.21.1-9.5.5.jar`, mod id `tombstone`, versão `9.5.5`; portanto **9.5.5 continua sendo a autoridade do runtime**. A integração 9.5.5 com Create Aeronautics para respawn em veículo continua sendo regression gate do pack.
-**Atualização upstream disponível:** a file list oficial passou a listar **Corail Tombstone 9.5.6 para NeoForge 1.21.1**, publicada em **09/09/2026**. Esta auditoria não atribui mudanças internas à 9.5.6 sem changelog específico confirmado e não altera a versão instalada. Nenhum teste de morte, grave recovery, veículo, Curios, Knowledge ou lore foi executado.
-
-## 20. Revalidação física e upstream — 13/09/2026
-O runtime físico permanece `tombstone-neoforge-1.21.1-9.5.5.jar`, versão `9.5.5`. A release NeoForge 1.21.1 mais recente localizada é **9.5.6**, publicada em 09/09/2026, cujo changelog corrige restauração de XP na morte com contagens altas de nível por integer overflow. A versão instalada não foi alterada e a decisão **Sem decisão** foi preservada. Nenhum teste de morte, grave recovery, XP restoration, Aeronautics vehicle respawn, Curios ou Knowledge of Death foi executado nesta revalidação.
+## 15. Reauditoria física — 16/09/2026
+9.5.6 foi promovida de update candidate para runtime físico. Decisão **Sem decisão** preservada. Nenhum teste de death, grave recovery, XP restoration, vehicle respawn, Curios, Knowledge ou lore foi executado.
