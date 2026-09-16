@@ -28,4 +28,6 @@ Sem Easy NPC:
 - nenhuma flag é concedida automaticamente para “destravar” história.
 
 ## Acceptance
-O diálogo de Severin muda conforme `status`, relationship e conhecimento do clero; a ação escolhida gera uma mutation canônica única e reabrir o diálogo não repete rewards/consequences.
+O diálogo de uma fixture genérica de pesquisador de necromancia muda conforme `status`, relationship e conhecimento do clero; a ação escolhida gera uma mutation canônica única e reabrir o diálogo não repete rewards/consequences.
+
+A fixture é sistêmica e identitariamente neutra; seu `narrativeActorId` de teste não pode ser um ID de NPC canônico.
