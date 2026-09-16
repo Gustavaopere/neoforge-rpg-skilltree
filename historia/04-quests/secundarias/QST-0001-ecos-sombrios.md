@@ -12,10 +12,10 @@ Em estágio avançado, um mago ligado à corte pode reunir indícios suficientes
 ## Participantes confirmados
 - `NPC-0003` Iren Valmor — mago ligado à corte; sua ficha permanece rascunho estruturado até consolidação editorial.
 
-## Referência estrutural legada — NPC-0001
-Este dossiê foi escrito quando `NPC-0001` ainda representava o placeholder editorial Severin. Desde a migração de 2026-09-15, `NPC-0001` representa Aren.
+## Proveniência editorial legada
+Este dossiê foi escrito originalmente enquanto Severin ainda funcionava como placeholder editorial do cenário técnico. Esse placeholder foi aposentado na migração de 2026-09-15 e não produz qualquer aresta ativa para Aren.
 
-A presença histórica de `NPC-0001` neste conteúdo é preservada para rastreabilidade, mas **não confirma Aren como participante, alvo, responsável, aliado ou antagonista de QST-0001**. Qualquer vínculo ficcional concreto com Aren exige provenance própria antes de ser promovido. Consultar `historia/11-ia-e-autoria/15-migracao-npc-0001-severin-aren-2026-09-15.md`.
+A provenance completa da substituição permanece em `historia/11-ia-e-autoria/15-migracao-npc-0001-severin-aren-2026-09-15.md`. Qualquer vínculo ficcional concreto entre Aren e esta quest exige aprovação própria; o histórico de autoria não é evidência in-universe nem relação de grafo ativa.
 
 ## Contexto institucional e geográfico
 - `FAC-0001` Corte de Pedra Clara — instituição à qual Iren está ligado;
