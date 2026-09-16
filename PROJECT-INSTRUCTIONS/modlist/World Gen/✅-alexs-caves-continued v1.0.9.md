@@ -1,16 +1,16 @@
 # Alex's Caves Continued
 
-> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `alexscaves-1.0.9-neoforge+1.21.1.jar` / `1.0.9`. A release upstream mais recente para NeoForge 1.21.1 é **1.0.10**, publicada em 11/09/2026. O delta é material: corrige crash/log spam de worldgen nas Primordial Caves causado pelo freeze check de lagos, flicker/red flashes do céu no Abyssal Chasm, prioridade de subida do Submarine quando sprint está ativo, câmera do floodlight em 1.21.1 e outras regressões visuais/compatibilidade. Esta nota supersede somente referências antigas de “latest/upstream” abaixo; não atribui os fixes à build instalada.
+> **Reauditoria física — 16/09/2026.** A autoridade física atual do pack é `alexscaves-1.0.10.jar`, runtime `1.0.10`, NeoForge 1.21.1. A ficha Notion de origem foi preservada integralmente no conteúdo técnico abaixo; os campos de versão física foram atualizados para a build efetivamente instalada. A 1.0.10, publicada em 11/09/2026, corrige crash/log spam de worldgen nas Primordial Caves causado pelo freeze check de lagos, flicker/red flashes do céu no Abyssal Chasm, prioridade de subida do Submarine quando sprint está ativo, câmera do floodlight em 1.21.1 e outras regressões visuais/compatibilidade. O histórico 1.0.9 permanece apenas onde explicitamente histórico.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader
-- **Auditoria de migração Notion → GitHub:** 2026-09-15
+- **Autoridade física usada:** `modlist(1).txt` anexada em 16/09/2026
+- **Auditoria de migração Notion → GitHub:** revalidada em 2026-09-16
 
 ## Propriedades do banco
 
 - **Mod:** Alex's Caves Continued
-- **Arquivo JAR:** `alexscaves-1.0.9-neoforge+1.21.1.jar`
-- **Versão 1.21.1:** 1.0.9
+- **Arquivo JAR:** `alexscaves-1.0.10.jar`
+- **Versão 1.21.1:** 1.0.10
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
@@ -20,21 +20,31 @@
 - **Sobreposição:** É a implementação canônica `alexscaves` do pack. O antigo Alex's Caves 2.0.2 foi removido; não há segunda implementação concorrente no snapshot atual.
 - **Compatibilidade/Riscos:** Única implementação `alexscaves` no snapshot. Riscos: worldgen/spawn/chunk borders, biome source/profundidade, estruturas externas dentro dos cave biomes, datapack tags/loot/recipes e mobs externos contaminando spawn pools. AeronauticsCompat cita outro port: cobertura sobre Continued é fail-closed até validar mixin targets/classes. Config efetiva `/acc` da instância não foi fornecida.
 - **Observações:** Continued declara 43 mobs próprios e ~350 blocos; a wiki original tem 44 páginas de mobs porque Golden Frog usa `minecraft:frog` e é variante vanilla, reconciliando a contagem. `/acc menu` expõe 39 settings em sete páginas e a superfície herdada tem ~200 opções; valores efetivos desta instância permanecem não auditados/fail-closed.
-- **Procedência:** modlist.txt física do projeto consultada em 14/09/2026 + CurseForge/Modrinth oficiais Alex's Caves Continued 1.0.9 + documentação/source do Alex's Caves original usado somente para conteúdo que o Continued declara preservar sem alterações. Artefato instalado `alexscaves-1.0.9-neoforge+1.21.1.jar`, runtime `1.0.9`, SHA-1 `64e4c99e9bac948731ffde5f6639401bdba47072`, mixin `alexscaves.mixins.json`.
+- **Procedência:** ficha Notion auditada 1:1 + `modlist(1).txt` física de 16/09/2026 + CurseForge/Modrinth oficiais Alex's Caves Continued 1.0.10 + documentação/source do Alex's Caves original usado somente para conteúdo que o Continued declara preservar sem alterações. Artefato instalado `alexscaves-1.0.10.jar`, runtime `1.0.10`; SHA-1 do novo artefato não foi recalculado nesta reauditoria documental.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — dossiê operacional ampliado: 43 mobs próprios + Golden Frog vanilla variant reconciliados, seis biomas, progressão Tablet→Codex→Map/Compendium, `/acc` admin/config, client/server, lifecycle, integrações e fingerprint físico.
-- **Histórico da decisão:** 2026-09-06 — escolhida como implementação canônica após conferir a modlist atual e a release 1.0.9 para NeoForge 1.21.1. O projeto Continued é mantido ativamente e declara preservar o conteúdo original sem redesign.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — build física promovida de 1.0.9 para 1.0.10; delta de worldgen/visuais/Submarine/floodlight incorporado; dossiê operacional preservado.
+- **Histórico da decisão:** 2026-09-06 — escolhida como implementação canônica após conferir a modlist e a release 1.0.9 para NeoForge 1.21.1. Em 16/09/2026 a autoridade física passou a 1.0.10. O projeto Continued é mantido ativamente e declara preservar o conteúdo original sem redesign.
 - **Data da última decisão:** 2026-09-06
 
 ## Escopo e papel
 **Alex's Caves Continued** é a continuação/port do Alex's Caves para versões modernas, preservando deliberadamente o conteúdo do projeto original em vez de redesenhá-lo. O conjunto inclui os seis cave biomes — Magnetic Caves, Primordial Caves, Toxic Caves, Abyssal Chasm, Forlorn Hollows e Candy Cavity — além de mobs, blocos, itens, receitas, progressão e Cave Compendium.
 
 ## Runtime e autoridade
-- JAR físico: `alexscaves-1.0.9-neoforge+1.21.1.jar`.
+- JAR físico: `alexscaves-1.0.10.jar`.
 - Mod ID: `alexscaves`.
-- Runtime: `1.0.9`.
+- Runtime: `1.0.10`.
 - É a única implementação `alexscaves` presente no snapshot físico atual; o antigo `alexscaves-2.0.2.jar` foi removido.
-- Presença/JAR/runtime vêm da modlist física de 595 top-level; builds upstream posteriores para outras versões não substituem essa autoridade.
+- Presença/JAR/runtime vêm da modlist física anexada; builds upstream posteriores não substituem essa autoridade.
+
+## Delta instalado — 1.0.10
+A build física atual incorpora o delta publicado da 1.0.10, material para os regression gates desta ficha:
+- correção de crash/log spam de worldgen nas Primordial Caves ligado ao freeze check de lagos;
+- correção de flicker/red flashes do céu no Abyssal Chasm;
+- correção da prioridade de subida do Submarine quando sprint está ativo;
+- correção da câmera do floodlight em 1.21.1;
+- demais correções visuais/compatibilidade publicadas para a release.
+
+Esses itens são mudanças de release documentadas; não foram marcados como testes runtime aprovados nesta auditoria.
 
 ## Dependências
 O projeto Continued usa **CodxLib** correspondente ao loader/versão. O pack atual possui `codxlib-1.6.0-neoforge+1.21.1.jar`. A documentação do Continued informa que Citadel é empacotado/dispensado como dependência externa para o port; o `citadel-2.7.1-1.21.1.jar` top-level do pack pode permanecer por outros consumidores e não deve ser interpretado como requisito externo necessário deste mod.
@@ -123,10 +133,10 @@ A configuração efetiva da instância não foi fornecida neste lote, portanto a
 - **Datapacks:** recipes, tags, loot e estruturas são superfícies de conflito em `/reload`; qualquer erro deve ser atribuído por namespace/stack trace, não pelo simples fato de coexistirem mods de worldgen.
 
 ## Fingerprint físico do snapshot
-- JAR: `alexscaves-1.0.9-neoforge+1.21.1.jar`
+- JAR: `alexscaves-1.0.10.jar`
 - Mod ID: `alexscaves`
-- Runtime: `1.0.9`
-- SHA-1: `64e4c99e9bac948731ffde5f6639401bdba47072`
+- Runtime: `1.0.10`
+- SHA-1: não recalculado para o novo artefato nesta reauditoria documental.
 - Mixin config exposto: `alexscaves.mixins.json`
 - Dependência física confirmada no pack: `codxlib-1.6.0-neoforge+1.21.1.jar`.
 
@@ -141,10 +151,12 @@ O catálogo de gameplay acima cruza a descrição oficial do Continued — que d
 5. Dedicated-server smoke com exploração prolongada.
 6. Se mobs/blocos forem usados em physics ships, testar explicitamente Sable/Aeronautics em vez de presumir cobertura do AeronauticsCompat.
 
+Nenhum teste runtime foi marcado como aprovado nesta reauditoria documental.
+
 ## Evidências
 - [CurseForge oficial — Alex's Caves Continued](https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued) — autoridade para escopo do port, 43 mobs próprios, conteúdo preservado, CodxLib, Citadel embutido, `/acc` e client+server.
 - [Modrinth oficial — Alex's Caves Continued](https://modrinth.com/mod/alexs-caves-continued) — confirmação independente do mesmo projeto/ambiente e descrição do Continued.
 - [Source do Continued — Codx-org/AlexsCavesContinued](https://github.com/Codx-org/AlexsCavesContinued) — autoridade técnica do port quando for necessário validar classes/mixins da build moderna.
 - [Source original — AlexModGuy/AlexsCaves](https://github.com/AlexModGuy/AlexsCaves) — usado somente para conteúdo/ownership que o Continued declara preservar; não para assumir assinaturas internas NeoForge 1.21.1.
 - [Alex's Caves Wiki — Mobs](https://alexscaves.wiki.gg/wiki/Mobs) e páginas de bioma — fonte secundária para agrupamento de roster/estruturas e para a distinção Golden Frog=`minecraft:frog`.
-- `modlist.txt` física do projeto — autoridade para presença, ordem, filename, runtime, mixin config e SHA-1 do artefato instalado.
+- `modlist(1).txt` física anexada — autoridade para presença, ordem e filename do artefato instalado; runtime `1.0.10` conforme estado físico informado pelo usuário.
