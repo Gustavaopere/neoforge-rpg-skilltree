@@ -14,7 +14,7 @@ CALIBRAÇÃO DE VOZ/EVIDÊNCIA / não representa evento canônico e não deve se
 Verificar se Iren mantém a mesma personalidade diante de informação direta, boato, evidência material, incerteza e pressão por uma conclusão rápida.
 
 ## Contexto
-Conversa abstrata de teste. Nenhuma fala abaixo estabelece que `QST-0001`, `NPC-0001` ou qualquer investigação específica já foi descoberta.
+Conversa abstrata de teste. Nenhuma fala abaixo estabelece que `QST-0001`, qualquer pessoa específica ou qualquer investigação concreta já foi descoberta.
 
 ## Precondições
 Nenhuma. Este diálogo não deve ser usado como gatilho de gameplay.
@@ -79,7 +79,7 @@ Iren: "Antes de me dizer o que acha que aconteceu, diga o que você observou. Se
 - nenhum ramo concede quest;
 - nenhum ramo descobre `QST-0001`;
 - nenhum ramo altera relação;
-- nenhum ramo identifica `NPC-0001`;
+- nenhum ramo identifica uma pessoa específica como responsável/alvo;
 - nenhum ramo determina provider, culpa, perigo real ou causalidade.
 
 ## Intents/consequências solicitadas
