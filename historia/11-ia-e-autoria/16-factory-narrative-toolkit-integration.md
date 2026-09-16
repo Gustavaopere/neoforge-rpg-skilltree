@@ -42,6 +42,30 @@ O probe usa `historia/03-npcs/principais` como slice real e não fabrica lore pa
 - o hook de chronology/causality está configurado para `EVT`, mas o slice atual não contém registros `EVT-####`; a cobertura algorítmica de arestas/ciclos permanece no golden corpus da Factory até existirem eventos reais adequados no consumidor;
 - o inventory real é exportado para um snapshot neutro com provenance e comparado sem qualquer escrita de volta no canon.
 
+## Evidência de integração em `main`
+
+A adoção revision 1 foi integrada em duas ondas revisáveis:
+
+- PR #578 — adicionou o probe de compatibilidade do profile v1 e validou o slice narrativo real contra o Factory hardened;
+- PR #579 — promoveu o consumer canônico para revision 1, atualizou o pin do workflow principal para `86b83005cde89f26ad2ef03af43cf512bc085080`, adicionou `validate_advanced.py` e o round-trip neutro do inventário completo.
+
+O merge de #579 produziu o commit `37a31d1da0e794d21654c9468888426e18113257` em `main`.
+
+Para esse SHA de merge:
+
+- `Narrative Factory Consumer` run `35104815102`: **success**, incluindo story graph/editorial states, advanced contracts, dialogue structure, inventory local e authority round-trip;
+- `CodeQL Security` run `35104815070`: **success**;
+- `RPG Skill Tree CI` run `35104815112`: **success**, incluindo GameTests, build, verificação do JAR e dedicated-server smoke;
+- consulta agregada dos workflows disparados pelo merge: **24 de 24 top-level workflows concluídos com `success`**.
+
+Essa evidência verifica o estado integrado do consumer; ela não substitui a authority narrativa e não transforma resultado de CI em aprovação de conteúdo ficcional.
+
+## Material legado fora do corpus ativo
+
+`historia/11-ia-e-autoria/legado-dialogos/` preserva diálogos aposentados somente para provenance histórica. Em particular, `DLG-0001-severin-calibracao.md` foi movido para esse diretório durante a migração Severin→Aren.
+
+O arquivo não pertence a `historia/12-dialogos`, portanto não é diálogo ativo/player-facing e não calibra a voz de Aren. Sua preservação mantém rastreabilidade sem reintroduzir binding ativo a `NPC-0001`.
+
 ## Limites
 
 Profiles e workflows são gates de integração, não substitutos para as authorities do projeto. Eles não promovem hipóteses, não sincronizam Grimoire ↔ GitHub automaticamente, não inventam relações e não criam assets visuais.
