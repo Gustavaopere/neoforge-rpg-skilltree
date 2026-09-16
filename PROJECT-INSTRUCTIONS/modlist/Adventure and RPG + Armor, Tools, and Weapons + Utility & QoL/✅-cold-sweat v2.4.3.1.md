@@ -3,7 +3,7 @@
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Arquivo JAR:** `ColdSweat-2.4.3.1.jar`
 - **Versão 1.21.1:** `2.4.3.1`
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 2.4.2 para 2.4.3.1; dossiê reconciliado aos deltas 2.4.3 + hotfix 2.4.3.1. Certificação pendente de QC/re-fetch final.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 2.4.2 para 2.4.3.1; dossiê reconciliado aos deltas 2.4.3 + hotfix 2.4.3.1.
 - **Categoria:** Clima
 - **Compatibilidade/Riscos:** Authority de temperatura corporal; evitar double-application por outros providers. Riscos em insulation, block temperature emitters, dimension/death lifecycle, Create/Sable moving objects, KubeJS configs e integrations. 2.4.3 altera block-temperature internals e corrige Create tanks/pipes, Sable contraptions, build-limit e outros casos; 2.4.3.1 corrige crash sem Create.
 - **Decisão:** Manter
