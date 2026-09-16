@@ -19,4 +19,6 @@ Representar poder político/social e reputação sem depender de um mod externo 
 Tags temáticas são linguagem narrativa; não criam bridge mecânica entre providers. `NECROMANCY` pode classificar uma controvérsia sem afirmar equivalência entre Goety, Malum, Eidolon, Mobstein ou Black Arcana.
 
 ## Acceptance
-Uma teocracia com clero de alta influência responde a Severin de forma diferente de uma cidade acadêmica com baixa influência clerical, usando o mesmo content definition e condições derivadas.
+Uma teocracia com clero de alta influência responde à presença de uma fixture genérica de pesquisador de necromancia de forma diferente de uma cidade acadêmica com baixa influência clerical, usando o mesmo content definition e condições derivadas.
+
+A fixture é sistêmica e identitariamente neutra; não representa nem cria binding para qualquer NPC canônico.
