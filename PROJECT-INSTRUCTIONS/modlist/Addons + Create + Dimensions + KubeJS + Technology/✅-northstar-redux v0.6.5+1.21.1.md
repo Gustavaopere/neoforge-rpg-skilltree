@@ -14,7 +14,7 @@
 - **Observações:** Runtime físico 0.6.5+1.21.1, publicado em 09/09/2026. A antiga 0.6.4 e o commit `2abd30b71470d168b18a132172b5120f15fbfe61` permanecem histórico técnico do telescope/rocket baseline; 0.6.5 deixou de ser update candidate e agora é a build instalada.
 - **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Northstar 0.6.5+1.21.1 + source/commit 0.6.4 previamente auditados. Nenhum runtime test executado nesta reauditoria.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-northstar
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 0.6.4 para 0.6.5+1.21.1; o antigo bloco de update candidate foi promovido e reconciliado ao runtime instalado. Certificação pendente de QC/re-fetch final.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 0.6.4 para 0.6.5+1.21.1; o antigo bloco de update candidate foi promovido e reconciliado ao runtime instalado.
 - **Histórico da decisão:** Em 22/08/2026 o usuário definiu manter Northstar Redux junto de Creating Space para substituir Stellaris e evitar solução espacial excessivamente tecnológica. Decisão preservada.
 - **Data da última decisão:** 2026-08-22
 
