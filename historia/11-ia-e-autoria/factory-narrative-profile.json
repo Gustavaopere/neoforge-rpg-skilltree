@@ -1,0 +1,51 @@
+{
+  "profile_contract_revision": 1,
+  "story_root": "historia/03-npcs/principais",
+  "dialogue_root": "historia/11-ia-e-autoria/legado-dialogos",
+  "entity_types": ["HIST", "ARC", "NPC", "QST", "FAC", "SET", "LOC", "EVT", "EVD", "END", "DLG"],
+  "editorial_state_prefixes": ["CANON", "DRAFT", "EXPERIMENTAL", "OBSOLETE"],
+  "editorial_state_headings": ["Editorial state"],
+  "dialogue_entity_type": "DLG",
+  "dialogue_required_sections": {
+    "state": ["Estado editorial"]
+  },
+  "knowledge_evidence_contracts": {
+    "aren-source-grounding": {
+      "include": ["NPC-0001-aren-autoria.md"],
+      "required_sections": {
+        "provenance": ["Proveniência já aceita"],
+        "limits": ["Gate para expansão"]
+      },
+      "knowledge_state_sections": {
+        "voice": ["Voz"],
+        "appearance": ["Aparência"]
+      },
+      "reference_rules": {
+        "provenance": {
+          "allowed_types": ["NPC"],
+          "min_references": 1
+        }
+      }
+    }
+  },
+  "relationship_memory_contracts": {
+    "aren-systemic-relations": {
+      "include": ["NPC-0001-aren.md"],
+      "required_sections": {
+        "relations": ["Relações sistêmicas"]
+      },
+      "dimension_sections": {
+        "multidimensional-contract": ["Invariantes sistêmicos preservados"]
+      },
+      "allow_self_relation": false
+    }
+  },
+  "chronology_contract": {
+    "event_types": ["EVT"],
+    "before_headings": ["Antes", "Before"],
+    "after_headings": ["Depois", "After"],
+    "causes_headings": ["Causa", "Causes"],
+    "caused_by_headings": ["Causado por", "Caused by"],
+    "causality_acyclic": true
+  }
+}
