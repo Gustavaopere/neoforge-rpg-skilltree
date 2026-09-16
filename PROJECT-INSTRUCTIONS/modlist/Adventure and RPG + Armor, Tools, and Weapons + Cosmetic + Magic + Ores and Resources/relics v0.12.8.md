@@ -1,27 +1,30 @@
 # Relics
 
+> **Reauditoria física e de migração — 16/09/2026.** A autoridade física atual permanece `relics-1.21.1-0.12.8.jar`, mod id `relics`, runtime `0.12.8`, SHA-1 `1fe7d57ebfa56ebd0aeecfed01075f8b55b94ef7`, em NeoForge 1.21.1. A build 0.12.8 continua sendo a publicação 1.21.1 mais recente identificada. O conteúdo funcional migrado do Notion permanece aplicável; referências ao estado físico de integrações foram atualizadas para a modlist de 16/09/2026. Nenhum teste de runtime foi promovido como executado.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader
-- **Auditoria de migração Notion → GitHub:** 2026-09-15
+- **Autoridade física usada:** modlist física atual de 16/09/2026
+- **Auditoria de migração Notion → GitHub:** 2026-09-15; reauditoria física 2026-09-16
 
 ## Propriedades do registro
 
 - **Mod:** Relics
 - **Arquivo JAR:** `relics-1.21.1-0.12.8.jar`
-- **Versão 1.21.1:** `0.12.8`
+- **Versão 1.21.1 / runtime:** `0.12.8`
+- **Minecraft / loader:** 1.21.1 / NeoForge
 - **Categoria:** RPG; Magia; Exploração
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/relics-mod
 - **Função:** Framework/content mod de relics e acessórios únicos com habilidades, progressão/XP próprios e loot configurável; provider-base do ecossistema Reliquified instalado.
-- **Dependências:** Required publicado: Curios API e ShatterLib | OctoLib. Pack satisfaz via Curios 9.5.1 + OctoLib 0.6.2. Sophisticated Backpacks 3.26.2 é integração optional presente; FTB Teams 2101.1.11 também está presente.
+- **Dependências:** Required publicado: Curios API e ShatterLib | OctoLib. Pack satisfaz via Curios `9.5.1` + OctoLib `0.6.2`. Sophisticated Backpacks `3.26.3` é integração optional presente; FTB Teams `2101.1.11` também está presente.
 - **Compatibilidade/Riscos:** Beta oficial. Riscos: API drift dos addons Reliquified, modifiers/abilities duplicados no lifecycle Curios, target filtering, XP/stat overflow, stale cache/memory retention, dedicated-server classloading e power/loot stacking. Issues/PR upstream citados não foram reproduzidos localmente.
 - **Sobreposição:** Compartilha slots/efeitos com Artifacts e outros acessórios, mas Relics mantém authority de sua progressão/abilities. Curios mantém authority dos slots; addons Reliquified estendem conteúdo sem substituir o framework.
-- **Observações:** 0.12.8 adiciona Shield of Retaliation, targets configuráveis, FTB Teams e estatística de relic XP; também otimiza cache/corrige leaks e altera Ghostly Mantle, Midnight Mantle e Springy Boot. Artifacts físico atual é 13.2.3.
-- **Procedência:** modlist.txt física canônica de 10/09/2026 + release/dependências oficiais Relics 0.12.8 + source público da linha 1.21 usado apenas para arquitetura + issues/PR upstream marcados como riscos não reproduzidos.
+- **Observações:** 0.12.8 adiciona Shield of Retaliation, targets configuráveis, FTB Teams e estatística de relic XP; também otimiza cache/corrige leaks e altera Ghostly Mantle, Midnight Mantle e Springy Boot. Artifacts físico atual é `13.2.5`.
+- **Procedência:** modlist física atual de 16/09/2026 + release/dependências oficiais Relics 0.12.8 + source público da linha 1.21 usado apenas para arquitetura + issues/PR upstream marcados como riscos não reproduzidos.
 - **Histórico da decisão:**
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Relics 0.12.8 reconstruído: progression/XP, Curios ownership, target rules, loot/config, FTB Teams, cache lifecycle, addons Reliquified, riscos upstream e testes.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — Relics permanece em 0.12.8; dossiê funcional preservado, fingerprint físico revalidado e integrações atuais reconciliadas.
 - **Data da última decisão:** 2026-08-26
 
 > 💠 **ESCOPO CANÔNICO.** Runtime físico: `relics-1.21.1-0.12.8.jar`, mod id `relics`, versão `0.12.8`, NeoForge 1.21.1. Relics é um sistema de acessórios/relics com habilidades e progressão próprias, loot configurável e integração com Curios. A build 0.12.8 é Beta oficial; isso é maturidade publicada, não evidência automática de incompatibilidade.
@@ -34,6 +37,7 @@
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Canal oficial:** Beta.
 - **Ambiente publicado:** Client & Server.
+- **SHA-1 físico:** `1fe7d57ebfa56ebd0aeecfed01075f8b55b94ef7`.
 - **Mixin config físico:** `relics.mixins.json`.
 
 ## 2. Papel no modpack
@@ -47,7 +51,7 @@ A publicação oficial declara:
 - **ShatterLib | OctoLib** — required como alternativa de biblioteca;
 - **Sophisticated Backpacks** — optional.
 
-No pack atual estão presentes Curios 9.5.1, OctoLib 0.6.2 e Sophisticated Backpacks 3.26.2. Portanto a rota de dependência via OctoLib está satisfeita fisicamente.
+No pack atual estão presentes Curios `9.5.1`, OctoLib `0.6.2` e Sophisticated Backpacks `3.26.3`. Portanto a rota de dependência via OctoLib está satisfeita fisicamente.
 
 ## 4. Autoridade / ownership
 - **Relics:** relic definitions, progression/experience, ability state, target rules, loot/config do próprio ecossistema.
@@ -77,7 +81,7 @@ A documentação oficial posiciona relics como loot apropriado a exploração/du
 Addons Reliquified podem inserir relics em estruturas/biomas de seus providers, portanto a origem final de loot deve ser testada pelo conteúdo específico.
 
 ## 9. FTB Teams
-A versão 0.12.8 adicionou integração com **FTB Teams**. O pack possui FTB Teams 2101.1.11. Essa integração é relevante para identificação de aliados/ownership/targets, mas não autoriza presumir a regra exata de cada relic sem config/runtime.
+A versão 0.12.8 adicionou integração com **FTB Teams**. O pack possui FTB Teams `2101.1.11`. Essa integração é relevante para identificação de aliados/ownership/targets, mas não autoriza presumir a regra exata de cada relic sem config/runtime.
 
 ## 10. Cache e memória
 O changelog 0.12.8 cita otimização do relic data cache e correção de memory leaks relacionados. Regression gates:
@@ -118,7 +122,8 @@ Um jogador desconectando durante cooldown/ability não deve deixar state órfão
 - **Curios 9.5.1:** equip/slot provider obrigatório.
 - **OctoLib 0.6.2:** rota de biblioteca requerida presente.
 - **FTB Teams 2101.1.11:** integração adicionada na 0.12.8.
-- **Sophisticated Backpacks 3.26.2:** integração opcional relevante no pack.
+- **Sophisticated Backpacks 3.26.3:** integração opcional relevante no pack.
+- **Artifacts 13.2.5:** provider de acessórios adicional presente; aumenta a superfície de sobreposição de slots/efeitos, sem substituir Relics.
 - **Reliquified Ars Nouveau 0.8.1.**
 - **Reliquified Artifacts 1.0.8.**
 - **Reliquified Iron's Spells 'n Spellbooks 0.2.7.**
@@ -167,8 +172,8 @@ Esses são regression gates diretamente vinculados à build instalada.
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
 ## 18. Evidências e limites
-- Modlist física: JAR, mod id, versão, mixin e versões das dependências/integradores presentes.
-- Release oficial 0.12.8: canal, ambiente e changelog exato.
+- Modlist física atual: JAR, mod id, runtime, SHA-1 e versões das dependências/integradores presentes.
+- Release oficial 0.12.8: canal, ambiente e changelog exato; continua sendo a build 1.21.1 mais recente identificada na reauditoria.
 - Dependências oficiais: Curios API, ShatterLib/OctoLib, Sophisticated Backpacks optional.
 - GitHub público da linha 1.21: arquitetura geral de registries/subsistemas, sem tratá-lo como source pin exato do JAR.
 - Issues/PR upstream: riscos conhecidos, explicitamente marcados como **não reproduzidos localmente**.
