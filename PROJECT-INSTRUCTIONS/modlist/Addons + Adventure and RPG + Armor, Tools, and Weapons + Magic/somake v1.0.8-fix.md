@@ -1,171 +1,114 @@
 # Somake
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Arquivo JAR:** `somakespells-1.0.8-1.21.1-fix.jar`
-- **Versão 1.21.1:** 1.0.8
+- **Arquivo JAR:** `somakespells-1.0.9-1.21.1.jar`
+- **Versão 1.21.1:** 1.0.9
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, RPG
-- **Função:** Addon de Iron's Spells com mais de 50 feitiços, foco em Lightning/Fire/Aqua/Symmetry, Aqua School própria, sistema de elemental charges e equipamento mágico/armas associados.
-- **Dependências:** Iron's Spells 'n Spellbooks é provider central e está presente em 3.16.3. Integrações publicadas relevantes incluem L_Ender's Cataclysm e Born in Chaos, ambos fisicamente presentes; outras addon schools só são paths ativos quando seus providers existem.
-- **Sobreposição:** Amplia Iron's Spells; não substitui seu mana/casting/attribute framework. Sobreposição com outros addons de spells deve ser avaliada por school/spell IDs, effects e balanceamento, não apenas tema.
-- **Compatibilidade/Riscos:** Addon grande de Iron's Spells. Riscos: spell/attribute API drift, charge duplication, school registration conflict, projectile/AoE double-hit, equipment modifier stacking, external-school IDs ausentes e combat-engine interaction. Build física é 1.0.8 fix para NeoForge 1.21.1.
-- **Observações:** JAR físico `somakespells-1.0.8-1.21.1-fix.jar`, runtime 1.0.8. A ficha pública confirma integração com Cataclysm e Born in Chaos e reconhecimento de escolas externas em parte do sistema de charges; não se presume presença de toda escola opcional.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Somake Spells 1.0.8/fix para NeoForge 1.21.1 + stack Iron's/Cataclysm/Born in Chaos confirmado fisicamente.
+- **Função:** Addon de Iron's Spells com mais de 50 feitiços, Aqua School própria, elemental charges, equipamentos/armas e, em 1.0.9, sistema Red Soul e novos spells/progressão.
+- **Dependências:** Iron's Spells 'n Spellbooks é provider central. Integrações publicadas relevantes incluem L_Ender's Cataclysm e Born in Chaos, fisicamente presentes; outras schools/providers opcionais só são paths ativos quando instalados.
+- **Sobreposição:** Amplia Iron's Spells; não substitui mana/casting/attribute framework. Sobreposição com outros addons deve ser avaliada por IDs, schools, effects e balance, não apenas tema.
+- **Compatibilidade/Riscos:** Spell/attribute API drift, charge duplication, school registration conflict, projectile/AoE double-hit, equipment modifier stacking, missing external-school IDs, grimoire/progression persistence, Red Soul lifecycle e combat-engine interaction.
+- **Observações:** JAR físico `somakespells-1.0.9-1.21.1.jar`, mod id `somakespells`, runtime 1.0.9. O antigo sufixo `-fix` pertencia ao filename 1.0.8 e não existe no JAR atual.
+- **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Somake 1.0.9 para NeoForge 1.21.1 + stack/integrations já auditados. Nenhum teste runtime foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Somake 1.0.8 físico reconfirmado; permanece a release NeoForge 1.21.1 mais recente localizada.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 1.0.8-fix para 1.0.9; dossiê reconciliado às mudanças Red Soul, novos spells/items, compatibility e balance. Certificação pendente de QC/re-fetch final.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
-> 🌊 **ESCOPO CANÔNICO.** Runtime físico: `somakespells-1.0.8-1.21.1-fix.jar`, mod id `somakespells`, versão `1.0.8`, NeoForge 1.21.1. Somake é um **addon de Iron's Spells 'n Spellbooks** com catálogo próprio de spells, Aqua School, elemental charges e equipamentos.
+> 🌊 **ESCOPO CANÔNICO.** Runtime físico: `somakespells-1.0.9-1.21.1.jar`, mod id `somakespells`, versão `1.0.9`, NeoForge 1.21.1. Somake é addon de **Iron's Spells 'n Spellbooks** com catálogo próprio de spells, Aqua School, elemental charges, equipamentos e progressão adicional.
 
-## 1. Identidade e papel
-- **Mod:** Somake / Somake Spells.
-- **JAR:** `somakespells-1.0.8-1.21.1-fix.jar`.
-- **Mod id:** `somakespells`.
-- **Versão:** `1.0.8`.
-- **Loader/jogo:** NeoForge 1.21.1.
-- **Ambiente:** Client & Server.
-- **Papel:** expandir o framework de Iron's Spells com escolas, spells, charges, armas e armaduras próprias.
+## 1. Provider central — Iron's Spells
+Iron's Spells continua authority de casting, mana, spell attributes, base registration e infraestrutura compartilhada de spellbooks/equipment. Somake registra conteúdo sobre esse framework; não deve criar segunda fonte de mana ou ignorar authority server-side sem comportamento explícito próprio.
 
-## 2. Provider central — Iron's Spells
-Iron's Spells `3.16.3` continua authority de casting, mana, spell attributes, spell registration base e infraestrutura de spellbooks/equipment compartilhada.
+## 2. Catálogo e schools
+A página oficial anuncia **mais de 50 spells**, concentrados em Lightning, Fire, Aqua e Symmetry, além de Blood/Ender e conteúdo de outras linhas. Somake introduz **Aqua School** própria. School registration, focus/icon, power/resistance, localization, IDs/tags e spell lists precisam coexistir sem alias ou overwrite duplicado.
 
-Somake registra conteúdo em cima desse framework. Um spell Somake não deve manter uma segunda fonte de mana ou ignorar regras server-side do provider sem comportamento explícito próprio.
+## 3. Elemental charges
+O sistema de charges elementais contempla schools suportadas e pode reconhecer schools de addons externos (ex.: Sound, Symmetry, Spirit, Geo) quando providers existem. Gain/consume deve ser server-authoritative e idempotente; cast/hit não pode conceder/consumir duas vezes por hooks duplicados. Provider ausente deve degradar com segurança.
 
-## 3. Catálogo de spells
-A página oficial anuncia **mais de 50 spells**, concentrados principalmente em:
-- Lightning;
-- Fire;
-- Aqua;
-- Symmetry;
-com conteúdo adicional Blood e Ender.
+## 4. Gameplay de spells e projectiles
+Lightning/Fire/Aqua/Symmetry/Blood/Ender podem envolver projectiles, AoE, damage, control e effects. Servidor decide hit/damage/effect; cliente renderiza projectile/particles/sounds/prediction. Multi-target/AoE permanece regression surface contra double-hit por collision + explosion/event hook.
 
-O número total divulgado não implica que cada spell tenha a mesma maturidade ou integration surface; regressão deve ser feita por escola e por mecânica crítica.
+## 5. Armas e armaduras
+O escopo migrado inclui armas como Glacium Greataxe, Core Splitter, Witherite Glaive, Ruined Blade, Clef Sword, Hallow Sword, Rock Sword e Boltcutter, além de conjuntos Dark Metal Battlemage, Ceranium, Aquamancer e Abyssium. Stats/bonuses/abilities pertencem ao addon; equip/unequip/death/relog deve aplicar/remover modifiers exatamente uma vez, inclusive com combat engines externos.
 
-## 4. Aqua School
-Somake introduz uma **Aqua School** própria, com spells aquáticos e identidade separada das schools base do Iron's.
+## 6. Grimoires e progressão
+O catálogo anterior registra **Grimoires evolutivos ligados a schools mágicas**. A progressão deve usar state real do item/player. Thresholds/fórmulas/state machine não são inventados sem source/runtime específico; save/restart não pode duplicar modifier/progress.
 
-Registration de school, focus/icon, spell power/resistance e localization precisam resolver uma única vez. Addons que consultam schools por ID não devem criar alias duplicado.
+## 7. Cataclysm e Born in Chaos
+Integrações publicadas com **L_Ender's Cataclysm** e **Born in Chaos** permanecem concretas porque os providers estão no pack. Só paths explicitamente registrados devem ser atribuídos a Somake. Bosses/entities custom podem ter phases/imunidades/damage handling; spells não devem assumir mob vanilla.
 
-## 5. Elemental charges
-O projeto implementa um sistema de **charges elementais**, incluindo uma charge por elemento/escola suportada. A documentação menciona também reconhecimento de escolas fornecidas por outros addons, como Sound, Symmetry, Spirit e Geo quando seus providers estão presentes.
+## 8. Epic Fight / combat-engine boundary
+O pack usa Epic Fight. Mesmo sem atribuir integração nativa não comprovada, melee weapons/cast animations podem atravessar hooks externos. Testar combat mode, weapon swap, interruption e hit registration; boot sem crash não valida state/animation completo.
 
-Charge gain/consume precisa ser server-authoritative e idempotente: o mesmo cast/hit não pode gerar duas charges por packet/event duplicado.
+## 9. Atualização instalada — 1.0.9
+A release oficial 1.0.9 para NeoForge 1.21.1 adiciona/muda substancialmente o addon. Mudanças comprovadas incluem:
+- novo sistema **Red Soul**, com Red Soul Lantern, Crimson Reflection, Red Echo, timer/HUD, bônus e recuperação via kills;
+- conteúdo relacionado a **Legendary Monsters Spirit**;
+- mudanças de **Sunbeam elemental charge effects**;
+- novos itens **Red Soul Lantern**, **Corrupted Red Soul** e **Lullaby Flute**;
+- novos spells: **Procession of Souls**, **Grave Sigil**, **Soul Bastion**, **Soul Latch**, **Spiral of Ruin**, **Soulfall Judgment** e **Funeral Bloom**;
+- Summon Zombie passa a envolver Drowned em seu comportamento atualizado;
+- ajustes/balance de Aqua e Symmetry, Rose's Secret e atributos de staffs/weapons/spellbooks;
+- ajustes para Born in Chaos;
+- compat opcional com Legendary Monsters;
+- atualização de compat Cataclysm, incluindo correção ligada à API de projectile de Desert Wrath;
+- melhoria de fallbacks de progressão quando mods opcionais estão ausentes.
 
-## 6. External-school boundary
-Compatibilidade declarada com uma escola externa não prova que o provider esteja instalado. O pack pode conter apenas parte dessas schools.
+Essas mudanças são agora parte do runtime físico e criam novos gates de HUD/state, progression, optional-mod loading, entity/projectile compat e equipment attributes.
 
-Ao carregar, registry lookup de school ausente deve degradar de modo seguro em vez de provocar `NoSuchElement`, broken tooltip ou spell registration incompleta.
+## 10. Red Soul authority e lifecycle
+Red Soul acrescenta state/progress próprio. A documentação pública confirma lantern/timer/HUD/bonuses/recovery, mas não autoriza inventar storage internals. Servidor deve decidir ganhos/consumo/bonus; HUD é apresentação. Validar kill attribution, death/relog, dimension transfer, save/restart e multiplayer para impedir vazamento/duplicação de state.
 
-## 7. Lightning, Fire e Aqua gameplay
-Essas escolas podem envolver projectiles, AoE, damage, control e effects. O servidor deve decidir hit/damage/effect; cliente apenas apresenta projectile/particles/sounds e prediction quando aplicável.
+## 11. Casting lifecycle e multiplayer
+Validar spell learn/equip, cast start/channel/release, mana/cooldown, interruption, projectile spawn/hit/despawn, death/relog, dimension transfer, save/restart e equipment swap. Server authority: mana/cooldown, charges, spell damage/effects, projectile owner, equipment modifiers e progression. Dois players não podem compartilhar charge/Red Soul/cooldown por chave incorreta.
 
-Multi-target/AoE é regression surface: um único impacto não pode ser liquidado duas vezes por collision + explosion/event hook.
+## 12. Integrações concretas atuais
+- **Iron's Spells:** provider obrigatório.
+- **L_Ender's Cataclysm:** integração publicada; 1.0.9 inclui ajuste compat.
+- **Born in Chaos:** integração publicada; 1.0.9 inclui ajustes.
+- **Legendary Monsters:** path opcional; não presumir ativo sem presença física.
+- **Epic Fight:** regression surface de combat lifecycle.
+- Outros addons Iron's: auditar IDs/attributes reais antes de atribuir conflito.
 
-## 8. Symmetry, Blood e Ender
-Somake também amplia schools não estritamente elementais. Como outros addons do pack podem registrar spells/attributes nas mesmas escolas, IDs, tags e spell lists precisam coexistir sem sobrescrever entries de terceiros.
+## 13. Riscos técnicos
+1. Iron's API drift;
+2. charge duplication;
+3. school collision/missing optional provider;
+4. projectile/AoE double-hit;
+5. equipment modifier stacking;
+6. boss/entity custom incompat;
+7. combat-engine timing conflict;
+8. grimoire/progression persistence drift;
+9. Red Soul HUD/state desync ou kill attribution duplicada;
+10. optional-mod fallback quebrando boot/progression;
+11. Cataclysm projectile API regressão.
 
-Balanceamento semelhante não é duplicação técnica por si só.
+## 14. Matriz de testes
+- [ ] Dedicated server inicia com Somake 1.0.9 + Iron's atual.
+- [ ] Aqua School registra uma única vez.
+- [ ] Spell representativo de cada school aprende/equipa/casta.
+- [ ] Mana/cooldown e elemental charges liquidam uma única vez.
+- [ ] Provider opcional ausente não impede boot.
+- [ ] Projectile/AoE não duplica dano.
+- [ ] Armor/weapon modifiers não duplicam após relog/swap.
+- [ ] Epic Fight não cria double-hit/state preso.
+- [ ] Cataclysm/Born in Chaos integrations funcionam com providers atuais.
+- [ ] Red Soul Lantern/HUD/timer/bonus/recovery mantêm state por player.
+- [ ] Kill attribution de Red Soul não duplica em multiplayer.
+- [ ] Novos spells 1.0.9 limpam effects após death/relog.
+- [ ] Grimoire/progressão persiste corretamente quando aplicável.
 
-## 9. Armas próprias
-A documentação pública lista equipamentos/armas temáticas, incluindo exemplos como Glacium Greataxe, Core Splitter, Witherite Glaive, Ruined Blade, Clef Sword, Hallow Sword, Rock Sword e Boltcutter.
+**Nenhum teste foi executado nesta reauditoria documental.**
 
-Stats, spell bonuses e abilities desses itens pertencem ao addon; ataque-base/combat-engine externo pode alterar animation/hit timing, mas não deve duplicar modifiers.
+## 15. Evidências e limites
+- modlist física de 16/09/2026: `somakespells-1.0.9-1.21.1.jar` / runtime 1.0.9;
+- CurseForge oficial: catálogo base, schools, charges/equipment e changelog 1.0.9;
+- catálogo anterior: Grimoires evolutivos, integrations e boundaries preservados;
+- **limite:** fórmulas/thresholds/storage internals dos spells, Grimoires e Red Soul não foram inferidos sem prova específica.
 
-## 10. Armaduras
-Conjuntos publicados incluem Dark Metal Battlemage, Ceranium, Aquamancer e Abyssium Armor.
-
-Equip/unequip/death/relog devem adicionar/remover atributos exatamente uma vez. Cosmetic/render layers não podem manter bonus depois de o item real sair do slot.
-
-## 11. Grimoires e progressão
-O catálogo existente deste projeto registra **Grimoires evolutivos ligados a escolas mágicas** como parte do escopo de Somake. Essa progressão deve permanecer vinculada ao state real do item/player previsto pelo addon.
-
-Como a página pública curta não detalha toda a máquina de estados, o dossiê não inventa thresholds ou fórmulas não publicadas; eles devem ser validados em runtime/source antes de integração externa.
-
-## 12. Cataclysm integration
-O upstream declara integração com **L_Ender's Cataclysm**, que está fisicamente presente no pack.
-
-Essa integration surface pode envolver materiais/entities/effects específicos; somente paths explicitamente registrados pelo addon devem ser atribuídos a Somake. Atualização do Cataclysm exige smoke test de recipes/items/spells relacionados.
-
-## 13. Born in Chaos integration
-**Born in Chaos** também está fisicamente presente e é citado como integração do projeto.
-
-Entidades complexas podem ter imunidades, phases ou custom damage handling; spells Somake devem respeitar lifecycle do provider e não pressupor comportamento de mob vanilla.
-
-## 14. Epic Fight / combat-engine boundary
-O pack usa Epic Fight. Mesmo sem uma integração nativa específica atribuída aqui, melee weapons e cast animations podem passar por hooks de combate/animação externos.
-
-Testar cast enquanto em combat mode, weapon swap, interruption e hit registration; não assumir que boot sem crash valida animation/state completo.
-
-## 15. Casting lifecycle
-Validar:
-- spell learn/equip;
-- cast start/channel/release;
-- mana/cooldown consumption;
-- interruption;
-- projectile spawn/hit/despawn;
-- death/relog durante active effect;
-- dimension transfer;
-- save/restart;
-- spellbook/equipment swap.
-
-Nenhum efeito temporário deve permanecer órfão depois que owner/caster deixa de ser válido.
-
-## 16. Multiplayer e authority
-Servidor deve decidir:
-- mana/cooldown;
-- charge gain/consume;
-- spell damage/effects;
-- projectile ownership;
-- equipment modifiers;
-- progression state.
-
-Cliente pode renderizar FX e UI. Dois players não podem compartilhar charge/cooldown/progression por key incorreta.
-
-## 17. Persistência
-State persistente potencial inclui item/equipment data, grimoire progression e qualquer charge/progress que o addon defina como persistente.
-
-Save/restart não pode reaplicar modifiers ou resetar state sem regra explícita. Dados temporários de cast não devem ser serializados como efeito permanente por engano.
-
-## 18. Integrações concretas no pack
-- **Iron's Spells 3.16.3:** provider obrigatório.
-- **L_Ender's Cataclysm:** integração publicada e provider presente.
-- **Born in Chaos:** integração publicada e provider presente.
-- **Epic Fight:** regression surface de animação/combat lifecycle.
-- Outros addons de Iron's coexistem; school/spell IDs e attribute stacking devem ser auditados por registro real.
-
-## 19. Riscos técnicos
-1. **Iron's API drift:** spell/attribute registration muda.
-2. **Charge duplication:** mesmo evento concede/consome duas vezes.
-3. **School collision:** ID/tag de addon externo conflita.
-4. **Missing external school:** lookup de provider ausente causa erro.
-5. **Projectile/AoE double-hit:** dois hooks liquidam o mesmo impacto.
-6. **Equipment modifier stacking:** equip/relog reaplica attribute.
-7. **Mob-provider incompat:** boss/entity custom recebe state inválido.
-8. **Combat-engine conflict:** cast/melee animation altera timing lógico.
-9. **Persistence drift:** grimoire/progress perde ou duplica state.
-
-## 20. Matriz de testes
-- [ ] Dedicated server inicia com Somake 1.0.8 + Iron's 3.16.3.
-- [ ] Aqua School registra uma única vez e aparece corretamente.
-- [ ] Spell de cada escola principal aprende/equipa/casta sem erro.
-- [ ] Mana e cooldown são consumidos exatamente uma vez.
-- [ ] Elemental charge ganha/consome sem duplicação.
-- [ ] Ausência de uma school opcional não impede boot.
-- [ ] Projectile/AoE multi-target não duplica dano por evento.
-- [ ] Armaduras não duplicam modifiers após relog/equip swap.
-- [ ] Armas funcionam com Epic Fight sem double-hit/state preso.
-- [ ] Cataclysm integration funciona com provider atual.
-- [ ] Born in Chaos entities não quebram spell lifecycle.
-- [ ] Death/relog limpa casts/effects temporários.
-- [ ] Progressão/Grimoires preservam state após save/restart quando aplicável.
-
-Nenhum teste foi marcado como aprovado nesta auditoria documental.
-
-## 21. Evidências e limites
-- Modlist física atual: Somake 1.0.8 fix, Iron's 3.16.3 e integrations relevantes presentes.
-- CurseForge oficial: mais de 50 spells, escolas principais, Aqua School, charges, equipamento e integrações Cataclysm/Born in Chaos.
-- Catálogo técnico anterior: Grimoires evolutivos como parte do escopo funcional do addon.
-- **Limite:** fórmulas detalhadas, thresholds e state machine de cada spell/grimoire não foram inferidos sem documentação/source específico; runtime tests continuam pendentes.
+## 16. Reauditoria física — 16/09/2026
+Runtime atualizado de 1.0.8-fix para 1.0.9. O conteúdo técnico anterior foi preservado e os deltas 1.0.9 incorporados. Decisão permanece **Sem decisão**; nenhum teste de casting, Red Soul, charge, equipment ou integration foi executado.
