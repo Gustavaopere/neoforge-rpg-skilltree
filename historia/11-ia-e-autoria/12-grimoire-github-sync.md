@@ -62,12 +62,12 @@ A tabela abaixo documenta referências já verificadas nos dois lados. Ela não 
 | `NPC-0001` | Aren | `e9a83c1b-4bd9-49c8-8b79-ad41011383cd` | entidade ativa Grimoire + dossiê GitHub reconciliados; substituição editorial de Severin registrada em 2026-09-15 |
 | `NPC-0005` | Oren | `324ff53b-c599-4892-b263-0f86a8e8f8b9` | dossiê GitHub + entidade ativa Grimoire reconciliados |
 | `NPC-0006` | Elian | `bc60b716-8926-4558-a2a8-a96619d15c5c` | dossiê GitHub + entidade ativa Grimoire reconciliados |
-| `NPC-0007` | Maura | `76350f82-9af5-4cef-9c34-f66cf69cd2f7` | entidade-fonte consultada; materialização proposta em branch |
-| `FAC-0002` | Ofícios do Pátio | `c8408ee4-435c-4c85-9d61-5d4472197a88` | entidade-fonte consultada; materialização proposta em branch |
-| `SET-0002` | Pátio das Oficinas | `b015847c-7c60-4472-8d5b-31f44dcbc53e` | entidade-fonte consultada; tipagem `SET` derivada da descrição de assentamento, não do schema genérico |
-| `FAC-0003` | Coordenação de Sobrevivência do Entreposto | `5988b526-9cd1-4b0c-b8b2-306f71043973` | entidade-fonte consultada; materialização proposta em branch |
-| `SET-0003` | Acampamento do Entreposto | `e98d8010-3824-46f2-8851-cb20fddd3128` | entidade-fonte consultada; tipagem `SET` derivada da identidade de núcleo habitado |
-| `LOC-0002` | O Entreposto | `d540695a-a27a-42f8-83e4-089822918836` | entidade-fonte consultada; tipagem `LOC` como ruína/sítio persistente |
+| `NPC-0007` | Maura | `76350f82-9af5-4cef-9c34-f66cf69cd2f7` | dossiê GitHub + entidade-fonte Grimoire reconciliados; materialização integrada em `main` pela PR #560 |
+| `FAC-0002` | Ofícios do Pátio | `c8408ee4-435c-4c85-9d61-5d4472197a88` | dossiê GitHub + entidade-fonte Grimoire reconciliados; materialização integrada em `main` pela PR #560 |
+| `SET-0002` | Pátio das Oficinas | `b015847c-7c60-4472-8d5b-31f44dcbc53e` | dossiê GitHub + entidade-fonte Grimoire reconciliados; tipagem `SET` derivada da descrição de assentamento; materialização integrada em `main` pela PR #560 |
+| `FAC-0003` | Coordenação de Sobrevivência do Entreposto | `5988b526-9cd1-4b0c-b8b2-306f71043973` | dossiê GitHub + entidade-fonte Grimoire reconciliados; materialização integrada em `main` pela PR #560 |
+| `SET-0003` | Acampamento do Entreposto | `e98d8010-3824-46f2-8851-cb20fddd3128` | dossiê GitHub + entidade-fonte Grimoire reconciliados; tipagem `SET` derivada da identidade de núcleo habitado; materialização integrada em `main` pela PR #560 |
+| `LOC-0002` | O Entreposto | `d540695a-a27a-42f8-83e4-089822918836` | dossiê GitHub + entidade-fonte Grimoire reconciliados; tipagem `LOC` como ruína/sítio persistente; materialização integrada em `main` pela PR #560 |
 
 IDs relacionados ainda sem reconciliação própria permanecem no backlog `13-backlog-editorial-e-bloqueios.md`; não devem ser preenchidos por analogia com esta tabela.
 
