@@ -23,7 +23,7 @@ Região narrativa de investigação; não representa um único bloco, estrutura 
 - por `EVD-0003` encontrado antes de qualquer investigação formal;
 - por comunicação legítima de outro ator que conheça a região.
 
-Conhecer a região não equivale a conhecer `QST-0001`, `NPC-0001` ou a causa das ocorrências.
+Conhecer a região não equivale a conhecer `QST-0001`, a identidade de qualquer responsável pelas ocorrências ou a causa delas.
 
 ## Estado físico/worldgen
 NÃO FIXADO. Este arquivo não define clima, vegetação, altitude, geologia, estruturas, mobs, recursos ou composição de blocos.
@@ -61,7 +61,7 @@ Nenhum `EVT-####` específico é criado apenas para justificar a região. Evento
 - `EVD-0002` — consolida ocorrências de forma aproximada;
 - `EVD-0003` — vestígio material que pode existir em um ponto da região.
 
-Nenhuma evidência transforma o local inteiro em propriedade, esconderijo ou território de `NPC-0001` por inferência.
+Nenhuma evidência transforma o local inteiro em propriedade, esconderijo ou território de uma pessoa específica por inferência.
 
 ## Transformações possíveis
 A região pode:
@@ -80,7 +80,7 @@ Transformação narrativa não exige trocar o ID geográfico se a identidade da 
 ## Relações
 - assentamentos: `SET-0001` como origem institucional possível, não necessariamente território;
 - quests: `QST-0001`;
-- NPCs: `NPC-0003` pode investigar/receber informações; `NPC-0001` não é automaticamente associado ao local;
+- NPCs: `NPC-0003` pode investigar/receber informações; nenhuma outra identidade é inferida a partir deste local;
 - facções: `FAC-0001`;
 - evidências: `EVD-0001`, `EVD-0002`, `EVD-0003`.
 
