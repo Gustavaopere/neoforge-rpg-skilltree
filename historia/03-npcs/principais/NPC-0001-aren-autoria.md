@@ -45,7 +45,7 @@ A associação narrativa a Goety/necromancia está documentada. Spell, ritual, i
 - preview 3D: BLOQUEADO até existir skin válida;
 - assets de Severin: não são fonte visual para Aren.
 
-Imagem de referência existente no Grimoire deve ter origem/proveniência verificada antes de ser versionada ou usada como base de asset final.
+Se o Grimoire contiver portrait ou outra imagem de referência para Aren, sua origem/proveniência deve ser verificada antes de versioná-la ou usá-la como base de asset final.
 
 ## Gate para expansão
 1. abrir diretamente Aren no Grimoire pelo UUID conhecido;
@@ -55,7 +55,7 @@ Imagem de referência existente no Grimoire deve ter origem/proveniência verifi
 5. não importar atributos de Severin;
 6. manter `PENDENTE` o que não estiver sustentado;
 7. separar lore de capabilities mecânicas de Goety;
-8. verificar provenance de imagens antes de produção/versionamento.
+8. se houver imagem externa relevante, verificar provenance antes de produção/versionamento.
 
 ## Referências
 - `NPC-0001-aren.md`;
