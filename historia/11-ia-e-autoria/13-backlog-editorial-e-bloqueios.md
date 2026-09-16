@@ -54,7 +54,7 @@ Este arquivo não substitui `historia/STATUS.md`, os dossiês de entidade, a Cam
 
 ## Referências Grimoire resolvidas em 2026-09-14
 
-As seis referências abaixo deixaram de ser bloqueios depois da consulta individual das entidades-fonte, auditoria de duplicatas/numeração e materialização em branch. O UUID continua registrado para cross-reference.
+As seis referências abaixo deixaram de ser bloqueios depois da consulta individual das entidades-fonte, auditoria de duplicatas/numeração e materialização integrada em `main` pela PR #560. O UUID continua registrado para cross-reference.
 
 | Referência | UUID Grimoire | ID editorial atribuído | Proveniência inicial | Estado operacional |
 | --- | --- | --- | --- | --- |
