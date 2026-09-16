@@ -1,7 +1,7 @@
 # Ficha de autoria — NPC-0001 — Aren
 
 ## Estado editorial
-ESTRUTURA DE AUTORIA / BLOQUEADO PARA EXPANSÃO SOURCE-GROUNDED.
+RASCUNHO ESTRUTURADO / BLOQUEADO PARA EXPANSÃO SOURCE-GROUNDED.
 
 ## Escopo
 Esta ficha complementa `NPC-0001-aren.md` sem acrescentar fatos ficcionais novos. Ela impede que lacunas de voz, aparência, motivação ou relações sejam preenchidas por continuidade do material legado de Severin ou por inferência temática.
