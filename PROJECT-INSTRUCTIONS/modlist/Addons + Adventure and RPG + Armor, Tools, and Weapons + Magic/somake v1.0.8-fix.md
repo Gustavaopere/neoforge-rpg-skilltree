@@ -16,6 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon
 - **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Somake 1.0.8 físico reconfirmado; permanece a release NeoForge 1.21.1 mais recente localizada.
 - **Histórico da decisão:**
+- **Data da última decisão:**
 
 > 🌊 **ESCOPO CANÔNICO.** Runtime físico: `somakespells-1.0.8-1.21.1-fix.jar`, mod id `somakespells`, versão `1.0.8`, NeoForge 1.21.1. Somake é um **addon de Iron's Spells 'n Spellbooks** com catálogo próprio de spells, Aqua School, elemental charges e equipamentos.
 
