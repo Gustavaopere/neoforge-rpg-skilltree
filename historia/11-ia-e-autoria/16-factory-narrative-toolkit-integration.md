@@ -2,19 +2,38 @@
 
 ## Escopo
 
-Este arquivo registra o probe de compatibilidade do corpus real deste repositório com o contrato de profile revision 1 do `minecraft-mod-factory`.
+Este arquivo registra a integração do corpus real deste repositório com o contrato de profile revision 1 do `minecraft-mod-factory`.
 
-O profile consumidor está em `factory-narrative-profile.json`. Ele pertence a este repositório porque paths, headings e regras editoriais são específicos do projeto.
+Existem dois profiles deliberadamente distintos:
+
+- `historia/narrative-authoring-profile.json` — profile **canônico da campanha**, usado pelo workflow consumidor principal contra a árvore `historia/` e os diálogos versionados;
+- `historia/11-ia-e-autoria/factory-narrative-profile.json` — profile **de probe de compatibilidade**, restrito ao slice `historia/03-npcs/principais` para exercitar contratos avançados concretos sem impor novas estruturas ao corpus legado inteiro.
+
+Ambos pertencem a este repositório porque paths, headings e regras editoriais são específicos do projeto. Nenhum deles transfere canon para a Factory.
 
 ## Pin validado
 
 - Factory repository: `Gustavaopere/minecraft-mod-factory`;
-- Factory commit: `86b83005cde89f26ad2ef03af43cf512bc085080`;
+- Factory commit hardened: `86b83005cde89f26ad2ef03af43cf512bc085080`;
 - profile contract revision: `1`.
 
-A workflow `.github/workflows/narrative-factory-compat.yml` usa esse SHA de forma explícita; atualização do pin é uma decisão separada e revisável. O export neutro de authority é emitido pela Factory em `stdout` e redirecionado pelo próprio workflow para um caminho literal controlado pelo CI, evitando que argumentos CLI escolham destinos de escrita no filesystem.
+Os workflows `.github/workflows/narrative-factory-consumer.yml` e `.github/workflows/narrative-factory-compat.yml` usam esse SHA explicitamente. Atualização do pin é uma decisão separada e revisável.
 
-## Corpus exercitado
+O export neutro de authority é emitido pela Factory em `stdout` e redirecionado pelo workflow consumidor para caminhos literais controlados pelo CI, evitando que argumentos CLI escolham destinos de escrita no filesystem.
+
+## Consumer canônico
+
+O workflow `Narrative Factory Consumer` valida a árvore editorial completa com o profile canônico:
+
+- `validate_story.py` para IDs, estados, referências e contratos estruturais base;
+- `validate_advanced.py` para contratos avançados opt-in declarados pelo profile;
+- `validate_dialogues.py` para `historia/12-dialogos`;
+- `story_inventory.py` para produzir inventário spoiler-bearing apenas dentro do runner;
+- `authority_reconcile.py` para exportar esse inventário ao schema neutro e executar um round-trip sem mutação.
+
+O inventário não é publicado como artifact pelo workflow, porque constitui superfície editorial potencialmente carregada de spoilers.
+
+## Probe avançado
 
 O probe usa `historia/03-npcs/principais` como slice real e não fabrica lore para satisfazer tooling.
 
@@ -25,6 +44,6 @@ O probe usa `historia/03-npcs/principais` como slice real e não fabrica lore pa
 
 ## Limites
 
-Este profile é um gate de integração, não uma substituição para as authorities do projeto. Ele não promove hipóteses, não sincroniza Grimoire ↔ GitHub automaticamente, não inventa relações e não cria assets visuais.
+Profiles e workflows são gates de integração, não substitutos para as authorities do projeto. Eles não promovem hipóteses, não sincronizam Grimoire ↔ GitHub automaticamente, não inventam relações e não criam assets visuais.
 
-O estado editorial em português continua governado pelos documentos/canon existentes. O probe não ativa `validate_dialogues.py` nem impõe um novo vocabulário editorial ao corpus legado.
+O estado editorial em português continua governado pelos documentos/canon existentes. Contratos avançados permanecem opt-in: ausência de uma capability avançada no profile canônico significa ausência daquela validação, não autorização para inferir conteúdo.

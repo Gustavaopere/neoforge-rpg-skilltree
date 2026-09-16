@@ -1,4 +1,5 @@
 {
+  "profile_contract_revision": 1,
   "story_root": "historia",
   "dialogue_root": "historia/12-dialogos",
   "entity_types": ["HIST", "ARC", "NPC", "QST", "FAC", "SET", "LOC", "EVT", "EVD", "END", "DLG"],

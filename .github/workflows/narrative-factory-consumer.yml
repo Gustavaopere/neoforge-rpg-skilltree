@@ -19,6 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
+      FACTORY_SHA: 86b83005cde89f26ad2ef03af43cf512bc085080
+      PROFILE: historia/narrative-authoring-profile.json
+      STORY_ROOT: historia
+      DIALOGUE_ROOT: historia/12-dialogos
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - name: Checkout RPG content
@@ -28,26 +32,52 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: Gustavaopere/minecraft-mod-factory
-          ref: 38291938a724c0f61422e44a150c7d07afeed54c
+          ref: ${{ env.FACTORY_SHA }}
           path: .factory
           persist-credentials: false
 
       - name: Validate story graph and editorial states
         run: >-
           python3 .factory/narrative/tooling/validate_story.py
-          --profile historia/narrative-authoring-profile.json
-          --root historia
+          --profile "$PROFILE"
+          --root "$STORY_ROOT"
+
+      - name: Validate advanced narrative contracts
+        run: >-
+          python3 .factory/narrative/tooling/validate_advanced.py
+          --profile "$PROFILE"
+          --root "$STORY_ROOT"
 
       - name: Validate dialogue structure
         run: >-
           python3 .factory/narrative/tooling/validate_dialogues.py
-          --profile historia/narrative-authoring-profile.json
-          --root historia/12-dialogos
+          --profile "$PROFILE"
+          --root "$DIALOGUE_ROOT"
 
-      - name: Build narrative inventory
-        run: >-
-          python3 .factory/narrative/tooling/story_inventory.py
-          --profile historia/narrative-authoring-profile.json
-          --root historia
-          --format json
-          > narrative-inventory.json
+      - name: Build spoiler-bearing narrative inventory locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .factory-ci/output
+          python3 .factory/narrative/tooling/story_inventory.py \
+            --profile "$PROFILE" \
+            --root "$STORY_ROOT" \
+            --format json \
+            > .factory-ci/output/inventory.json
+
+      - name: Validate neutral authority round-trip
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .factory/narrative/tooling/authority_reconcile.py export-inventory \
+            --inventory .factory-ci/output/inventory.json \
+            --source github:neoforge-rpg-skilltree \
+            --revision "$GITHUB_SHA" \
+            --captured-at 2026-09-16T00:00:00Z \
+            > .factory-ci/output/github-authority.json
+          python3 .factory/narrative/tooling/authority_reconcile.py compare \
+            --local .factory-ci/output/github-authority.json \
+            --external .factory-ci/output/github-authority.json \
+            --required-external \
+            --field title \
+            --field state
