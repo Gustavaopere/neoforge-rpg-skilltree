@@ -1,17 +1,19 @@
-# MineColonies
+# MineColonies — 1.1.1387-1.21.1-snapshot
 
-> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `minecolonies-1.1.1381-1.21.1-snapshot.jar` / `1.1.1381-1.21.1-snapshot`. A snapshot upstream mais recente para 1.21.1 é **1.1.1387**, publicada em 13/09/2026. Desde a 1.1.1383 já registrada abaixo, a 1.1.1386 trouxe fixes de build order, citizen ladder direction/reaching e armor rendering; a 1.1.1387 conclui o port **Cavalry 4of4**. Dependências mínimas publicadas para 1.1.1387: Structurize 1.0.832+, MultiPiston 1.2.51+, BlockUI 1.0.199+ e Domum Ornamentum 1.0.223+. Esta nota supersede somente as referências antigas de “latest/upstream” abaixo; não promove a snapshot instalada.
+> **Reauditoria física e de migração — 16/09/2026.** A autoridade física atual é `minecolonies-1.1.1387-1.21.1-snapshot.jar`, mod id `minecolonies`, runtime `1.1.1387-1.21.1-snapshot`, SHA-1 `07752c101305dde5e4621cda39b5d7607f614871`, em NeoForge 1.21.1. O conteúdo arquitetural migrado do Notion foi preservado, mas as referências que tratavam 1.1.1381 como instalada foram atualizadas. A snapshot 1.1.1387 introduz no delta direto o port **Cavalry 4of4**. Em 16/09/2026 upstream já publicou `1.1.1392-1.21.1-snapshot`; ela é **update candidate**, não a build instalada. Nenhum teste de runtime foi promovido como executado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Autoridade física atual:** `minecolonies-1.1.1381-1.21.1-snapshot.jar`, runtime `1.1.1381-1.21.1-snapshot`
-- **Version drift upstream:** `minecolonies-1.1.1383-1.21.1-snapshot.jar` existe desde 11/09/2026, mas não está instalado no snapshot físico auditado
-- **Auditoria de migração Notion → GitHub:** 2026-09-15
+- **Autoridade física atual:** `minecolonies-1.1.1387-1.21.1-snapshot.jar`, runtime `1.1.1387-1.21.1-snapshot`
+- **Update candidate upstream:** `minecolonies-1.1.1392-1.21.1-snapshot.jar`, publicado em 16/09/2026; não instalado nesta modlist
+- **Auditoria de migração Notion → GitHub:** 2026-09-15; reauditoria física 2026-09-16
 
 ## Propriedades do registro
 
 - **Mod:** MineColonies
-- **Arquivo JAR:** `minecolonies-1.1.1381-1.21.1-snapshot.jar`
-- **Versão 1.21.1:** `1.1.1381-1.21.1-snapshot`
+- **Arquivo JAR:** `minecolonies-1.1.1387-1.21.1-snapshot.jar`
+- **Versão 1.21.1 / runtime:** `1.1.1387-1.21.1-snapshot`
+- **Minecraft / loader:** 1.21.1 / NeoForge
+- **Natureza:** snapshot/beta; não tratar como release estável final
 - **Categoria:** RPG; Automação; Worldgen; Armazenamento
 - **Tipo de conteúdo:** Mod
 - **Decisão:** Sem decisão
@@ -19,33 +21,37 @@
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/minecolonies
 - **Função:** Provider central de simulação colonial: colônias persistentes, cidadãos, jobs, buildings/módulos, construção e WorkOrders, request/logística, research, permissões, IA e sincronização Model/View server-authoritative. Addons devem estender essas surfaces sem duplicar authority.
-- **Dependências:** Release 1.1.1381 exige Structurize >=1.0.832, Multi-Piston >=1.2.51, BlockUI >=1.0.199 e Domum Ornamentum >=1.0.223. Pack físico atual: 1.0.833 / 1.2.58 / 1.0.211 / 1.0.236, todos acima dos mínimos. JEI opcional >=19.19.6.235; o snapshot físico atual usa JEI 19.53.0.426.
-- **Compatibilidade/Riscos:** Snapshot central de colônias. Riscos: churn de API, requests/logística, drift com Structurize/BlockUI/Domum/Multi-Piston e addons 3.56/2.1/3.33, colony-data migration, chunk/entity lifecycle, performance/pathfinding, permission bypass e View stale. Há gap atual 1.1.1381→1.1.1383; o changelog 1.1.1383 inclui `fix food handling`, relevante ao stack culinário/compat.
-- **Sobreposição:** MineColonies é authority da colônia. Structurize/BlockUI/Domum/Multi-Piston fornecem infraestrutura especializada. Jade crops apenas apresenta crops; Compatibility/Let's Do/Tweaks estendem comportamento/integrações. Sistemas próprios de RPG/quests não devem espelhar colony research/job/permission como authority paralela.
-- **Observações:** Runtime físico/tag auditada `v1.21.1-1.1.1381-snapshot`, publicada em 07/09/2026. Em 11/09/2026 upstream publicou `1.1.1383-1.21.1-snapshot` com changelog público `fix food handling`. Atualização não aplicada; requer regressão dos addons Compatibility 3.56, Let's Do 2.1 e Tweaks 3.33.
-- **Procedência:** modlist.txt física reconferida em 15/09/2026 + CurseForge oficial MineColonies: JAR instalado 1.1.1381-snapshot e release mais nova 1.1.1383-snapshot (file 8854687, 11/09/2026) + source/tag exata 1.1.1381 já auditada. O snapshot físico também confirma JEI 19.53.0.426, JourneyMap 6.0.7 e Dynamic Trees 1.7.2, superseding a observação histórica do Notion que não os identificava como top-level.
+- **Dependências:** A snapshot 1.1.1387 exige Structurize `>=1.0.832`, Multi-Piston `>=1.2.51`, BlockUI `>=1.0.199` e Domum Ornamentum `>=1.0.223`. Pack físico atual: Structurize `1.0.833`, Multi-Piston `1.2.58`, BlockUI `1.0.212` e Domum Ornamentum `1.0.236`, todos acima dos mínimos. JEI opcional `>=19.19.6.235`; pack usa `19.56.0.440`.
+- **Compatibilidade/Riscos:** Snapshot central de colônias. Riscos: churn de API, requests/logística, colony-data migration, chunk/entity lifecycle, performance/pathfinding, permission bypass, View stale e drift com dependências/addons. A build instalada herda correções das snapshots intermediárias e adiciona o port Cavalry 4of4; a 1.1.1392 upstream permanece candidata e não deve ser confundida com runtime atual.
+- **Sobreposição:** MineColonies é authority da colônia. Structurize/BlockUI/Domum/Multi-Piston fornecem infraestrutura especializada. Jade crops apenas apresenta crops; Compatibility/Tweaks estendem comportamento/integrações. Sistemas próprios de RPG/quests não devem espelhar colony research/job/permission como authority paralela.
+- **Observações:** Runtime físico/tag auditada `v1.21.1-1.1.1387-snapshot`, publicada em 13/09/2026. O changelog direto dessa tag registra `Cavalry 4of4 port`. Em 16/09/2026 a linha upstream avançou para `1.1.1392`; seu changelog inclui novos fixes/port work, mas nada disso é atribuído à build instalada.
+- **Procedência:** modlist física de 16/09/2026 + release/tag oficial `v1.21.1-1.1.1387-snapshot` + release upstream `v1.21.1-1.1.1392-snapshot` apenas como update candidate + arquitetura/source já auditada na linha 1.21.1.
 - **Histórico da decisão:**
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — MineColonies 1.1.1381-snapshot/JAR físico reconfirmado. Upstream 1.21.1 avançou para 1.1.1383-snapshot em 11/09/2026; gap de versão registrado sem alterar a modlist. A 1.1.1383 publica `fix food handling`; dependências mínimas permanecem na mesma linha.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — estado físico atualizado de 1.1.1381 para 1.1.1387; dependências e addons atuais reconciliados; upstream 1.1.1392 registrado separadamente como candidato.
 - **Data da última decisão:** 2026-08-30
 
-> 🏛️ **ESCOPO CANÔNICO.** Runtime físico: `minecolonies-1.1.1381-1.21.1-snapshot.jar`, mod id `minecolonies`, exatamente a snapshot oficial `v1.21.1-1.1.1381-snapshot`, publicada em 07/09/2026. A tag oficial e o asset binário têm o mesmo nome do JAR instalado. Esta ficha usa essa tag como authority de source e não projeta código posterior da branch `1.21`.
+> 🏛️ **ESCOPO CANÔNICO.** Runtime físico: `minecolonies-1.1.1387-1.21.1-snapshot.jar`, mod id `minecolonies`, snapshot oficial `v1.21.1-1.1.1387-snapshot`. A modlist física governa presença e versão instalada. A arquitetura Model/View, persistência de Colony/Citizen/Job/Building, WorkOrders, request system, research e permissões permanece o núcleo operacional documentado; o delta direto publicado da 1.1.1387 é o port Cavalry 4of4.
 
 ## 1. Identidade, versão e release
 - **Mod:** MineColonies.
-- **JAR físico:** `minecolonies-1.1.1381-1.21.1-snapshot.jar`.
-- **Versão runtime:** `1.1.1381-1.21.1-snapshot`.
+- **JAR físico:** `minecolonies-1.1.1387-1.21.1-snapshot.jar`.
+- **Versão runtime:** `1.1.1387-1.21.1-snapshot`.
 - **Minecraft:** 1.21.1.
 - **Loader:** NeoForge.
 - **Java:** 21.
 - **Upstream:** `ldtteam/minecolonies`.
-- **Tag exata:** `v1.21.1-1.1.1381-snapshot`.
-- **Release asset SHA-256 oficial:** `b6a7d66e2d37b4aa699a2573025715e07db4c2230a94540045385d093c4255bc`.
-- **SHA-1 físico do artefato instalado:** `b1912c352daf6c525c1ca9fe3462d88c0bf68305`.
-- **Natureza da build:** snapshot/beta; não tratar como release estável final.
+- **Tag instalada:** `v1.21.1-1.1.1387-snapshot`.
+- **Commit da release instalada:** `495c35113698c2a48c58fcbd0cfbd5568b23a67e`.
+- **SHA-1 físico do JAR instalado:** `07752c101305dde5e4621cda39b5d7607f614871`.
+- **Natureza da build:** snapshot/beta.
 
-O changelog da release 1.1.1381 é pequeno e centrado em **request-related fixes** e correção de compilação. Isso não reduz o escopo do mod: a snapshot carrega o sistema completo de colônias acumulado pela linha 1.21.1.
+O changelog direto da release 1.1.1387 registra **Cavalry 4of4 port**. Os subsistemas coloniais abaixo continuam sendo o baseline funcional do mod; a atualização não autoriza tratar Cavalry ou qualquer integração como validada em runtime sem teste.
 
-**Version gate atual:** upstream publicou `minecolonies-1.1.1383-1.21.1-snapshot.jar` em 11/09/2026. O changelog público da 1.1.1383 registra `fix food handling`. O pack permanece em 1.1.1381; a atualização não foi aplicada e deve ser regressada junto de Compatibility 3.56, Let's Do 2.1 e Tweaks 3.33 antes de promoção.
+### Histórico preservado da origem
+A página Notion auditada estava ancorada em `1.1.1381` e registrava para aquele asset o SHA-256 `b6a7d66e2d37b4aa699a2573025715e07db4c2230a94540045385d093c4255bc`, além de request-related fixes e um version gate posterior para 1.1.1383. Esse fingerprint é **histórico da build antiga**, não fingerprint da 1.1.1387 atual.
+
+### Update candidate — 1.1.1392
+Upstream publicou `v1.21.1-1.1.1392-snapshot` em 16/09/2026. Os mínimos de dependência permanecem na mesma linha e o changelog inclui fixes/port work adicionais. A modlist física continua em 1.1.1387; portanto 1.1.1392 é somente candidato e exige regressão antes de qualquer promoção.
 
 ## 2. Papel funcional no pack
 MineColonies é o provider central de **simulação de colônia** do pack. Ele mantém colônias persistentes, cidadãos, empregos, edifícios, construção/upgrade, pedidos e logística, pesquisas, permissões, interação do jogador, tarefas/AI, raids/defesa e interfaces de administração.
@@ -64,7 +70,7 @@ A autoridade deve permanecer nele para:
 Addons do pack podem observar, ampliar ou adaptar esses sistemas, mas não devem criar uma segunda fonte de verdade paralela.
 
 ## 3. Arquitetura ColonyManager — Model/View server-authoritative
-O `package-info.java` da tag exata documenta explicitamente a arquitetura do `ColonyManager`.
+A documentação/source da linha 1.21.1 auditada descreve explicitamente a arquitetura do `ColonyManager`.
 
 No servidor:
 - `ColonyManager` mantém ownership das colônias e lookup por ID;
@@ -80,14 +86,14 @@ No cliente:
 Esse padrão é um boundary crítico: mod próprio/addon não deve alterar uma View esperando mutar a colônia real.
 
 ## 4. Persistência e separação de estado
-A documentação interna da tag separa deliberadamente o estado por domínio:
+A documentação interna separa deliberadamente o estado por domínio:
 - **AITask:** dados necessários ao trabalho imediato, não necessariamente persistentes;
 - **CitizenData:** dados do cidadão independentes de job/building;
 - **Job:** estado persistente específico do trabalho daquele cidadão;
 - **Building:** estado do edifício, não dos trabalhadores;
 - **Colony:** estado global da colônia.
 
-A finalidade do ColonyManager é manter residência permanente dessas estruturas **sem depender de chunk/entity estar carregado**. Isso é essencial para integrações: uma entidade de cidadão descarregada não significa que o cidadão deixou de existir no modelo da colônia.
+A finalidade do ColonyManager é manter residência permanente dessas estruturas **sem depender de chunk/entity estar carregado**. Uma entidade de cidadão descarregada não significa que o cidadão deixou de existir no modelo da colônia.
 
 ## 5. Cidadãos, entidades e jobs
 Colônias rastreiam cidadãos por `CitizenData`, com IDs inteiros. Quando a entidade correspondente está carregada, o `CitizenData` se vincula ao `CitizenEntity`; o cliente recebe um `CitizenData.View` e, quando aplicável, o entity ID associado.
@@ -99,17 +105,17 @@ Consequência operacional: perks, quests ou integrações que precisam identific
 ## 6. Buildings, huts e módulos
 Buildings server-side representam o estado funcional dos edifícios da colônia e são vinculados ao bloco/hut correspondente no mundo por coordenada. Views equivalentes são sincronizadas a clientes interessados.
 
-O ecossistema moderno de MineColonies usa módulos de building para decompor capacidades. Addons desta modlist — Compatibility, Let's Do e Tweaks — podem registrar/alterar módulos, recipes/jobs ou comportamento conectado, mas o building base e seu lifecycle permanecem sob MineColonies.
+O ecossistema moderno de MineColonies usa módulos de building para decompor capacidades. Addons desta modlist podem registrar/alterar módulos, recipes/jobs ou comportamento conectado, mas o building base e seu lifecycle permanecem sob MineColonies.
 
 ## 7. WorkManager e WorkOrders
-Tarefas coordenadas da colônia são centralizadas em `WorkManager` e subclasses de `WorkOrder`. A própria documentação dá como exemplo construção/upgrade, que cria `WorkOrderBuild` para coordenar o trabalho.
+Tarefas coordenadas da colônia são centralizadas em `WorkManager` e subclasses de `WorkOrder`. Construção/upgrade, por exemplo, cria WorkOrders para coordenar o trabalho.
 
-WorkManager/WorkOrders **não são espelhados diretamente ao cliente** como as Views principais. Portanto automação ou UI externa deve usar APIs/mensagens suportadas; não assumir que existe uma lista client-side completa e autoritativa de todas as work orders.
+WorkManager/WorkOrders **não são espelhados diretamente ao cliente** como as Views principais. Automação ou UI externa deve usar APIs/mensagens suportadas; não assumir que existe uma lista client-side completa e autoritativa de todas as work orders.
 
 ## 8. Request System e logística
 O request system é uma das superfícies centrais para cadeia de suprimento: trabalhadores/buildings criam requests, resolvers encontram fontes/crafting/entrega possíveis e o estado do pedido percorre seu lifecycle até resolução/cancelamento.
 
-A própria release física 1.1.1381 inclui **request-related fixes**, logo qualquer addon que modifique recipes, warehouse/network storage, delivery ou crafting precisa ser regressado especificamente nesta build.
+A origem Notion registrava request-related fixes da snapshot 1.1.1381 e o fix de food handling da 1.1.1383. A 1.1.1387 instalada é posterior e herda essa linha; esses pontos permanecem regression gates para recipes, warehouse/network storage, delivery e crafting.
 
 Riscos clássicos neste pack incluem request órfão, resolução duplicada, item entregue sem settlement, recipe incompatível, ciclo de dependências e cache stale após alteração de building/job.
 
@@ -122,7 +128,7 @@ MineColonies não deve ser confundido com os providers auxiliares de construçã
 
 MineColonies continua authority de decidir **o que a colônia pretende construir**, níveis, work orders e lógica de trabalhadores; esses providers executam partes especializadas do pipeline.
 
-## 10. Dependências oficiais da snapshot 1.1.1381
+## 10. Dependências oficiais da snapshot 1.1.1387
 A publicação oficial exige no mínimo:
 - **Structurize** `1.0.832-1.21.1-snapshot+`;
 - **Multi-Piston** `1.2.51-1.21.1-snapshot+`;
@@ -132,12 +138,12 @@ A publicação oficial exige no mínimo:
 A modlist física atual contém:
 - Structurize `1.0.833`;
 - Multi-Piston `1.2.58`;
-- BlockUI `1.0.211`;
+- BlockUI `1.0.212`;
 - Domum Ornamentum `1.0.236`.
 
-Todos satisfazem os mínimos publicados da 1.1.1381.
+Todos satisfazem os mínimos publicados da 1.1.1387.
 
-O build também referencia **TownTalk** na lista de dependências Curse; a presença/forma de empacotamento deve ser tratada conforme metadata física e loader, não inferida apenas pelo nome do Gradle.
+O build também referencia **TownTalk** no ecossistema/publicações; presença/forma de empacotamento deve ser tratada conforme metadata física e loader, não inferida apenas por referências de build.
 
 ## 11. Integrações opcionais oficiais
 A release lista como opcionais:
@@ -145,22 +151,27 @@ A release lista como opcionais:
 - **JourneyMap** `1.21.1-6.0.0-beta.29+`;
 - **Dynamic Trees** `1.5.0-BETA07+`.
 
-A página Notion preserva uma observação histórica em que somente JEI havia sido identificado como top-level. A autoridade física mais recente resolve essa divergência: o snapshot auditado contém **JEI 19.53.0.426**, **JourneyMap 6.0.7** e **Dynamic Trees 1.7.2**. Portanto as três integrações existem no inventário atual e entram na regressão, sem reescrever artificialmente o histórico da origem.
+A autoridade física atual confirma:
+- **JEI `19.56.0.440`**;
+- **JourneyMap `6.0.8`**;
+- **Dynamic Trees `1.7.2`**.
+
+As três integrações existem no inventário atual e entram na regressão, sem transformar compatibilidade de loader em prova de comportamento perfeito.
 
 ## 12. Research e progressão
-A árvore da tag exata contém APIs/implementações de **research** e registries relacionados. Research em MineColonies é progressão colonial: unlocks e requisitos pertencem ao provider MineColonies e podem condicionar buildings/jobs/capacidades.
+A linha 1.21.1 contém APIs/implementações de **research** e registries relacionados. Research em MineColonies é progressão colonial: unlocks e requisitos pertencem ao provider MineColonies e podem condicionar buildings/jobs/capacidades.
 
 Mods próprios de árvore de habilidades do jogador não devem espelhar research como se fosse atributo individual. A integração correta é consultar/gatear a research colonial quando necessário, preservando as duas authorities.
 
 ## 13. Permissões e multiplayer
 Cada colônia mantém `Permissions`, modelando relacionamento de jogadores com a colônia; o cliente recebe `Permissions.View`.
 
-Em multiplayer, operações administrativas, building interaction, placement/ownership e mutações de colony data precisam respeitar a validação server-side. UI ou addon não deve considerar botão visível como autorização suficiente.
+Em multiplayer, operações administrativas, building interaction, placement/ownership e mutações de colony data precisam respeitar validação server-side. UI ou addon não deve considerar botão visível como autorização suficiente.
 
 Testes devem incluir owner, officer/friend/neutral/hostile conforme papéis efetivamente configurados, além de jogadores desconectando durante requests/builds.
 
 ## 14. Rede, sync e UI
-O padrão View/subscriber existe para que clientes recebam os dados relevantes sem tornar o cliente owner. BlockUI é infraestrutura central da apresentação.
+O padrão View/subscriber existe para que clientes recebam dados relevantes sem tornar o cliente owner. BlockUI é infraestrutura central da apresentação.
 
 Superfícies de risco:
 - view stale após alteração server-side;
@@ -180,33 +191,35 @@ Cidadãos carregados possuem entidades/AI, mas os dados coloniais sobrevivem a u
 
 Forçar chunks ou manter referências diretas a entidades descarregadas pode violar essa arquitetura e gerar leak/stale reference.
 
-## 16. Addons físicos diretamente relacionados neste lote
+## 16. Addons físicos diretamente relacionados
 ### MineColonies: Jade crops 1.1.1300
 Somente apresenta estágio de crops MineColonies no Jade. Não altera colony state.
 
-### Compatibility addon 3.56
-Extende jobs/recipes/compatibilidades e integra storage/crafting conforme seu próprio dossiê; MineColonies permanece provider da colônia.
-
-### Let's Do addon 2.1
-Integra conteúdo Let's Do ao ecossistema colonial; seu versionRange mínimo é menor que 1.1.1381, então loader compatibility é satisfeita, mas regressão comportamental ainda precisa de teste.
+### Compatibility addon 3.57
+Extende jobs/recipes/compatibilidades conforme seu próprio dossiê; MineColonies permanece provider da colônia. A versão física atual é `3.57`.
 
 ### Tweaks addon 3.33
-Aplica tweaks/integrações sobre MineColonies; seu mínimo declarado 1.1.1368 é satisfeito pela 1.1.1381. Novamente, isso valida contrato de loader, não todos os comportamentos.
+Aplica tweaks/integrações sobre MineColonies; a versão física atual é `3.33`. Compatibilidade declarada não substitui regressão comportamental.
 
-## 17. Riscos específicos da snapshot 1.1.1381 neste pack
+### Referência histórica a Let's Do
+A página Notion anterior registrava um addon Let's Do 2.1 como integração ativa. **Esse addon não foi identificado como top-level na modlist física atual de 16/09/2026**, portanto não é tratado como integração instalada nesta reauditoria. A referência fica preservada apenas como histórico da origem.
+
+## 17. Riscos específicos da snapshot 1.1.1387 neste pack
 1. **Snapshot churn:** APIs internas podem mudar entre snapshots próximas.
-2. **Request regressions:** a própria release corrige requests; addons de recipes/storage/crafting são área prioritária.
-3. **Dependency drift:** quatro libs obrigatórias estão em snapshots mais novas que os mínimos; precisam de teste conjunto.
-4. **Addon ABI drift:** Compatibility/Let's Do/Tweaks podem compilar contra baselines diferentes.
+2. **Request regressions:** requests/logística continuam área prioritária devido ao histórico de fixes.
+3. **Dependency drift:** quatro libs obrigatórias estão em builds acima dos mínimos e precisam de teste conjunto.
+4. **Addon ABI drift:** Compatibility/Tweaks podem compilar contra baselines diferentes.
 5. **Colony data corruption:** falhas durante save/restart/migration são de alto impacto; backups são mandatórios antes de atualização.
 6. **Chunk/entity lifecycle:** citizen entity descarregada não pode ser tratada como ausência de CitizenData.
 7. **Performance:** pathfinding, cidadãos, request resolution, construction scanning/placement e sincronização podem escalar com tamanho/número de colônias.
 8. **Permission bypass:** addons/mod próprios não devem contornar checks server-side.
 9. **UI stale state:** BlockUI/View pode ficar temporariamente atrás do estado real; não usar UI como authority.
-10. **Economia/logística duplicada:** bridges Create/Let's Do/storage precisam evitar satisfazer request duas vezes.
+10. **Economia/logística duplicada:** bridges Create/storage precisam evitar satisfazer request duas vezes.
+11. **Cavalry 4of4:** conteúdo portado na 1.1.1387 precisa de regressão de spawn/AI/mount/combat/persistência conforme superfícies efetivamente expostas.
+12. **Update candidate 1.1.1392:** não misturar fixes desse snapshot com a build 1.1.1387 instalada.
 
 ## 18. Matriz de testes obrigatória
-- [ ] Dedicated server 21.1.248 inicia com MineColonies 1.1.1381 + quatro dependências físicas atuais.
+- [ ] Dedicated server NeoForge `21.1.250` inicia com MineColonies 1.1.1387 + quatro dependências físicas atuais.
 - [ ] Criar nova colônia e reiniciar servidor; ID, owner, território e dados persistem.
 - [ ] CitizenData persiste após unload/reload e volta a vincular à entidade correta.
 - [ ] Contratar/atribuir cidadão a job/building e validar persistência após restart.
@@ -221,18 +234,18 @@ Aplica tweaks/integrações sobre MineColonies; seu mínimo declarado 1.1.1368 �
 - [ ] Chunk unload do trabalhador não apaga CitizenData/job/request.
 - [ ] Structurize placement e Domum Ornamentum blocks funcionam no estilo escolhido.
 - [ ] JEI, JourneyMap e Dynamic Trees atuais não quebram integração.
-- [ ] Compatibility 3.56, Let's Do 2.1 e Tweaks 3.33 passam smoke test conjunto.
-- [ ] Backup/restore de mundo conserva colony data antes de qualquer upgrade de snapshot.
+- [ ] Compatibility 3.57 e Tweaks 3.33 passam smoke test conjunto.
+- [ ] Cavalry da 1.1.1387 passa smoke test funcional/persistência conforme uso real.
+- [ ] Backup/restore de mundo conserva colony data antes de qualquer upgrade para 1.1.1392 ou snapshot posterior.
 
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
 ## 19. Evidências consultadas
-- Modlist física atual: `minecolonies-1.1.1381-1.21.1-snapshot.jar`.
-- Release/tag oficial `v1.21.1-1.1.1381-snapshot`, asset binário de mesmo nome.
-- SHA-256 oficial do asset: `b6a7d66e2d37b4aa699a2573025715e07db4c2230a94540045385d093c4255bc`.
-- CurseForge oficial file 8829862: release 1.1.1381 e dependências mínimas/opcionais.
-- Source exato da tag, incluindo `gradle.properties` e árvore de ~6.7k entradas.
-- `core/colony/package-info.java` da tag: arquitetura ColonyManager/Views, CitizenData, Buildings, Permissions, WorkManager/WorkOrders e Jobs.
-- Modlist física para versões atuais de Structurize, Multi-Piston, BlockUI, Domum Ornamentum, JEI, JourneyMap e Dynamic Trees.
+- Modlist física atual: `minecolonies-1.1.1387-1.21.1-snapshot.jar`, runtime, SHA-1 e dependências/addons presentes.
+- Release/tag oficial `v1.21.1-1.1.1387-snapshot`, commit `495c35113698c2a48c58fcbd0cfbd5568b23a67e`, changelog `Cavalry 4of4 port` e mínimos de dependência.
+- Release/tag upstream `v1.21.1-1.1.1392-snapshot` de 16/09/2026 usada somente como update candidate.
+- Arquitetura ColonyManager/Views, CitizenData, Buildings, Permissions, WorkManager/WorkOrders, Jobs e research preservada do source auditado da linha 1.21.1.
+- Modlist física para versões atuais de Structurize, Multi-Piston, BlockUI, Domum Ornamentum, JEI, JourneyMap, Dynamic Trees, Jade crops, Compatibility e Tweaks.
+- Fingerprint SHA-256 da antiga 1.1.1381 preservado apenas como histórico da origem Notion, não como hash da build atual.
 
-> ⚠️ **Limite de evidência:** MineColonies é grande e a ficha documenta subsistemas/contratos operacionais, não uma enumeração de cada registry ID, building, job ou recipe. Detalhes de comportamento não demonstrados pela tag/release não foram inferidos. A build é snapshot e exige regressão de runtime antes de upgrades.
+> ⚠️ **Limite de evidência:** MineColonies é grande e a ficha documenta subsistemas/contratos operacionais, não uma enumeração de cada registry ID, building, job ou recipe. A build é snapshot. O conteúdo Cavalry e o update candidate 1.1.1392 não foram runtime-tested nesta auditoria.
