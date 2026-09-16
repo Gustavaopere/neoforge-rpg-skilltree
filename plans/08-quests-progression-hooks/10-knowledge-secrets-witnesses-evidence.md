@@ -25,4 +25,6 @@ Estados mínimos de conhecimento:
 - [ ] Expiração somente para rumores/estados explicitamente temporários; fatos históricos não somem por decay genérico.
 
 ## Acceptance exemplar
-Ao esconder Severin, uma testemunha individual descobre o necromante. Somente ela recebe conhecimento inicialmente. O clero só passa a saber após propagação/evento legítimo. A cidade não sofre penalidade pública antes do conhecimento se tornar público/institucional.
+Na fixture genérica de pesquisador de necromancia, uma testemunha individual descobre o pesquisador oculto. Somente ela recebe conhecimento inicialmente. O clero só passa a saber após propagação/evento legítimo. A cidade não sofre penalidade pública antes do conhecimento se tornar público/institucional.
+
+Esta fixture é sistêmica e identitariamente neutra; não representa nem cria binding para qualquer NPC canônico.
