@@ -40,6 +40,11 @@ Fechar persistence, multiplayer, performance e compatibilidade antes de declarar
 - migrations.
 
 ## NeoForge GameTests/integration
+- [ ] SIM/NÃO/ANTES/DEPOIS;
+- [ ] objective pre-resolved;
+- [ ] dead NPC fallback;
+- [ ] secret witness propagation;
+
 A sequência abaixo usa uma fixture genérica de pesquisador de necromancia, com identidade/IDs reservados de teste e sem binding com qualquer NPC canônico:
 - [ ] pesquisador oculto → testemunha → clero → julgamento;
 - [ ] oportunidade do pesquisador nunca desbloqueada;
