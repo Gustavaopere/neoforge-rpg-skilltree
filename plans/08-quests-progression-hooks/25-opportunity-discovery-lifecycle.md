@@ -86,22 +86,24 @@ Oportunidades podem evoluir enquanto continuam `UNKNOWN` para o player quando o 
 
 Não usar progressão autônoma arbitrária em todo conteúdo; ela precisa ser explicitamente declarada e determinística/observável para debugging.
 
-## Exemplo canônico — Severin
-Em uma fase avançada, um mago ligado à corte pode reunir indícios suficientes de ocorrências incomuns por rumor, testemunha, evidência, observação concreta ou outro canal rastreável e criar uma oportunidade de investigação. Rotas válidas incluem:
+## Fixture genérica — oportunidade com pesquisador de necromancia
+Este exemplo preserva apenas o contrato sistêmico anteriormente exercitado por um rascunho de Severin. Ele **não** declara Severin como ator canônico, não aponta para `NPC-0001`/Aren e não cria binding com qualquer NPC ativo. Um ator concreto só pode ser associado por conteúdo editorial aprovado separadamente.
+
+Em uma fase avançada, um pesquisador pode reunir indícios suficientes de ocorrências incomuns por rumor, testemunha, evidência, observação concreta ou outro canal rastreável e criar uma oportunidade de investigação. Rotas válidas incluem:
 
 1. requisitos nunca satisfeitos → `LOCKED + UNKNOWN`;
-2. requisitos satisfeitos, mas jogador nunca fala com o mago → `ELIGIBLE + UNKNOWN`;
+2. requisitos satisfeitos, mas jogador nunca fala com o pesquisador → `ELIGIBLE + UNKNOWN`;
 3. jogador escuta rumor, mas não investiga → `ELIGIBLE + RUMORED`;
-4. mago oferece a investigação e jogador recusa → `OFFERED + DECLINED`;
+4. pesquisador oferece a investigação e jogador recusa → `OFFERED + DECLINED`;
 5. jogador aceita e nunca vai → `ACCEPTED + UNRESOLVED`, com consequências apenas se designadas;
-6. jogador vai ao local, mas não encontra Severin → descoberta parcial/evidência sem contato;
-7. jogador encontra Severin antes da missão → alternate entry / `PRE_RESOLVED` ou transformação apropriada;
+6. jogador vai ao local, mas não encontra o alvo/pessoa de interesse → descoberta parcial/evidência sem contato;
+7. jogador encontra o alvo/pessoa de interesse antes da missão → alternate entry / `PRE_RESOLVED` ou transformação apropriada;
 8. encontra e ignora;
 9. conversa e se alia;
 10. torna-se inimigo;
-11. mata Severin;
-12. terceiros encontram/expulsam/matam/recrutam Severin antes do jogador;
-13. Severin parte sozinho;
+11. mata o alvo/pessoa de interesse;
+12. terceiros encontram/expulsam/matam/recrutam essa pessoa antes do jogador;
+13. a pessoa parte sozinha;
 14. jogador nunca soube da oportunidade e só descobre meses depois que “um necromante foi executado”. Nesse caso ele adquire knowledge do fato histórico, não uma quest retroativa fictícia.
 
 ## Requisitos de authoring
@@ -118,7 +120,7 @@ Todo beat significativo deve declarar, quando aplicável:
 - idempotency keys por transição.
 
 ## Multiplayer
-Discovery/engagement pode ser player-scoped, team-scoped ou world-scoped de forma explícita. Um jogador pode conhecer Severin enquanto outro ainda está `UNKNOWN`. Compartilhamento de knowledge deve passar por regras próprias, não por sincronização automática de toda a quest.
+Discovery/engagement pode ser player-scoped, team-scoped ou world-scoped de forma explícita. Um jogador pode conhecer uma pessoa relevante enquanto outro ainda está `UNKNOWN`. Compartilhamento de knowledge deve passar por regras próprias, não por sincronização automática de toda a quest.
 
 ## Acceptance
 - Conteúdo `ELIGIBLE + UNKNOWN` não aparece no journal nem em diálogos sem condição de descoberta.

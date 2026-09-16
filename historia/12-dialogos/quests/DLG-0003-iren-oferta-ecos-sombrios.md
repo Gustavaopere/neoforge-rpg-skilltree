@@ -11,7 +11,7 @@ CANDIDATO PLAYER-FACING / requer validação contra runtime antes de implementa�
 - jogador
 
 ## Contexto
-Diálogo que pode apresentar `QST-0001` quando Iren possui knowledge suficiente para justificar uma investigação e decide envolver o jogador. Não presume que Iren conhece `NPC-0001`.
+Diálogo que pode apresentar `QST-0001` quando Iren possui knowledge suficiente para justificar uma investigação e decide envolver o jogador. Não presume que Iren conhece a identidade de qualquer possível responsável.
 
 ## Precondições editoriais
 - `QST-0001` availability = `ELIGIBLE`;
@@ -105,8 +105,9 @@ Intents possíveis:
 - `NPC-0003`;
 - `EVD-0001`;
 - `EVD-0002`;
-- `EVD-0003`;
-- `NPC-0001` apenas quando o estado legítimo de knowledge permitir; o diálogo padrão não revela esse vínculo.
+- `EVD-0003`.
+
+Nenhum outro NPC é relacionado por este diálogo apenas por herdar um antigo ID editorial; qualquer vínculo futuro exige evidência e declaração próprias.
 
 ## Invariantes
 - Iren não apresenta suspeito sem evidência;

@@ -36,7 +36,7 @@ Um depoimento de primeira mão pode provar apenas que aquela pessoa afirma ter o
 - que existe magia envolvida;
 - que todos os relatos descrevem o mesmo fenômeno;
 - a identidade de qualquer responsável;
-- presença, culpa, localização ou intenção de `NPC-0001`;
+- presença, culpa, localização ou intenção de qualquer pessoa específica;
 - existência de um provider arcano específico;
 - que a versão mais dramática é a mais confiável;
 - que toda `LOC-0001` compartilha a mesma causa ou risco.
@@ -69,7 +69,7 @@ Nenhum. O conteúdo permanece deliberadamente neutro até existir evidência cap
 - rumor não vira fato por repetição;
 - três repetidores de uma fonte não equivalem a três fontes independentes;
 - ausência de concordância total não torna todos os relatos inúteis;
-- nenhuma fala deve inserir conhecimento de `NPC-0001` que as testemunhas não tenham adquirido;
+- nenhuma fala deve inserir conhecimento sobre uma pessoa específica que as testemunhas não tenham adquirido;
 - conhecer relatos sobre `LOC-0001` não equivale a conhecer seu binding de worldgen ou causa narrativa.
 
 ## Spoilers internos

@@ -10,9 +10,9 @@
 - Macro-história inicial: **REGISTRADA**
 - Faixa inicial de NPCs `NPC-0001`–`NPC-0007`: **VERSIONADA COM ESTADOS EDITORIAIS EXPLÍCITOS**
 - NPCs já espelhados do Grimoire em dossiês completos: **Iren, Liora, Oren, Elian e Maura**
+- Identidade editorial de `NPC-0001`: **AREN / RECONCILIADA COM O GRIMOIRE; SEVERIN PRESERVADO SOMENTE COMO LEGADO EDITORIAL**
 - NPC source-blocked preservado sem preenchimento artificial: **Elias (`NPC-0002`)**
-- Conflito de identidade preservado em fail-closed: **Severin ↔ Aren**
-- Primeira oportunidade/quest de referência: **REGISTRADA**
+- Primeira oportunidade/quest de referência: **REGISTRADA; VÍNCULO DE AREN NÃO PRESUMIDO POR HERANÇA DO ANTIGO SLOT `NPC-0001`**
 - Pipeline genérico de autoria: **MIGRADO PARA MINECRAFT MOD FACTORY / CONSUMIDO POR CI**
 - Contratos editoriais específicos da campanha: **MANTIDOS NO RPG**
 - Seis referências Grimoire de Oren/Elian recuperadas neste ciclo: **MATERIALIZADAS COMO `NPC-0007`, `FAC-0002`, `FAC-0003`, `SET-0002`, `SET-0003` E `LOC-0002`**
@@ -37,8 +37,8 @@ Ao adicionar conteúdo:
 ## Próximos blocos editoriais
 
 - reconciliar as referências Grimoire residuais registradas no backlog, incluindo a parent location `e05ef102-46c3-4f31-8043-ee2eda6d99af` e `Pátio da Passagem`, sem atribuir ID antes de recuperar a entity-fonte;
-- resolver a decisão editorial Severin↔Aren;
 - recuperar a authority de `NPC-0002` Elias;
+- expandir Aren somente a partir de provenance própria, sem reutilizar voz, aparência, relações ou cenas de Severin por continuidade do ID;
 - continuar expansão de NPCs nomeados somente a partir de source recuperado;
 - criar/expandir facções, instituições, assentamentos e locais quando suas entities-fonte estiverem reconciliadas;
 - registrar mistérios, evidências e rumores;

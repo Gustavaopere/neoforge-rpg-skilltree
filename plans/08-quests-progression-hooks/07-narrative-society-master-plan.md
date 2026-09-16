@@ -111,7 +111,7 @@ Eventos contínuos não devem explodir o ledger. Usar milestones, state transiti
 
 Facts representam verdades atuais ou históricas, não necessariamente eventos:
 
-- `severin.status = HIDDEN`
+- `scenario.necromancy_guest.status = HIDDEN`
 - `settlement.necromancy_law = FORBIDDEN`
 - `stonefall.evacuated = PARTIAL`
 - `player.vampire_status_known_by_clergy = true`
@@ -259,26 +259,26 @@ Toda quest/beat significativo deve declarar:
 
 ---
 
-# Sistema social exemplar — Severin, o necromante
+# Sistema social exemplar — fixture genérica de pesquisador de necromancia
 
-Este cenário é acceptance exemplar do Stage 08 narrativo.
+Este cenário preserva o acceptance exemplar do Stage 08 narrativo, mas **não declara um NPC canônico**. Ele substitui o antigo uso de Severin como fixture técnica: não aponta para `NPC-0001`, não descreve Aren e não autoriza transferir para Aren voz, personalidade, relações, conhecimento ou conteúdo mecânico. Um ator concreto só pode ser associado por conteúdo editorial aprovado separadamente.
 
 ## Descoberta
 
-O jogador encontra Severin, um pesquisador/necromante. O conteúdo específico que ele domina deve respeitar providers reais e não tratar Goety, Malum, Eidolon, Mobstein e Black Arcana como o mesmo sistema só porque compartilham tema sombrio.
+O jogador encontra um pesquisador ligado a práticas de necromancia. O conteúdo específico que essa pessoa domina deve respeitar providers reais e não tratar Goety, Malum, Eidolon, Mobstein e Black Arcana como o mesmo sistema só porque compartilham tema sombrio.
 
 O jogador pode:
 
-- rejeitá-lo;
-- aceitá-lo;
-- atacá-lo;
-- denunciá-lo;
-- ajudá-lo sem levá-lo à colônia;
-- tê-lo encontrado depois de já utilizar necromancia;
+- rejeitá-la;
+- aceitá-la;
+- atacá-la;
+- denunciá-la;
+- ajudá-la sem levá-la à colônia;
+- tê-la encontrado depois de já utilizar necromancia;
 - já possuir uma colônia com leis relevantes;
 - não possuir colônia alguma.
 
-## Ao levá-lo à colônia
+## Ao levá-la à colônia
 
 O runtime consulta, conforme disponível:
 
@@ -289,35 +289,35 @@ O runtime consulta, conforme disponível:
 - histórico local com undead/necromancia;
 - reputação do jogador;
 - authority/fear/trust;
-- conhecimento público sobre Severin.
+- conhecimento público sobre a pessoa.
 
 Se a necromancia for rejeitada, rotas possíveis incluem:
 
-- expulsá-lo;
-- defendê-lo publicamente;
-- escondê-lo;
-- instalá-lo fora das muralhas;
+- expulsá-la;
+- defendê-la publicamente;
+- escondê-la;
+- instalá-la fora das muralhas;
 - criar licença/exceção;
 - mudar a lei;
 - negociar com clero;
 - usar favor/dívida;
 - intimidar;
 - aceitar julgamento;
-- abandonar a cidade com Severin;
+- abandonar a cidade com essa pessoa;
 - impor decisão e arriscar crise/guerra civil.
 
-## Esconder Severin
+## Esconder a pessoa
 
-`severin.status = HIDDEN` evita conhecimento público automático, mas altera a relação pessoal conforme personalidade/ideologia. Exemplo de efeito de conteúdo, não valor hardcoded universal:
+`scenario.necromancy_guest.status = HIDDEN` evita conhecimento público automático, mas altera a relação pessoal conforme personalidade/ideologia. Exemplo de efeito de conteúdo, não valor hardcoded universal:
 
 - loyalty/trust pode permanecer;
-- respect pode cair porque ele se sente usado/vergonzosamente oculto;
+- respect pode cair porque a pessoa se sente usada/vergonzosamente ocultada;
 - dependency pode subir;
 - grievance `kept_hidden_by_player` é registrada.
 
 ## Descoberta por testemunha
 
-Um cidadão encontra Severin. Criar:
+Um cidadão encontra a pessoa escondida. Criar:
 
 - evento de descoberta;
 - knowledge para a testemunha;
@@ -332,8 +332,8 @@ A testemunha pode:
 - guardar segredo;
 - chantagear;
 - investigar;
-- tentar matar Severin;
-- tornar-se aliada dele.
+- tentar matar a pessoa;
+- tornar-se aliada dela.
 
 ## Teocracia
 
@@ -341,18 +341,18 @@ Se o governo/instituição religiosa possuir autoridade suficiente e a lei proib
 
 - exigir exílio;
 - confiscar grimórios;
-- banir Severin;
+- banir a pessoa;
 - ordenar execução;
 - penalizar o jogador;
 - tentar remover o próprio jogador da liderança.
 
-Se Severin já salvou a cidade, houver provas de benefício, dívida política, apoio militar ou população favorável, rotas adicionais surgem.
+Se essa pessoa já salvou a cidade, houver provas de benefício, dívida política, apoio militar ou população favorável, rotas adicionais surgem.
 
 ## Valor do dilema
 
-Severin deve oferecer conteúdo realmente valioso e exclusivo dentro dos providers permitidos: conhecimento, research, quest access, interpretação de evidência, ritual/permissão ou outro unlock auditado. Não criar escolha moral falsa por recompensa banal.
+A pessoa deve oferecer conteúdo realmente valioso dentro dos providers permitidos: conhecimento, research, quest access, interpretação de evidência, ritual/permissão ou outro unlock auditado. Não criar escolha moral falsa por recompensa banal e não declarar exclusividade sem provider/content binding aprovado.
 
-Acceptance: o mesmo NPC precisa produzir estados drasticamente diferentes sem scripts monolíticos duplicados para cada governo.
+Acceptance: o mesmo ator precisa produzir estados drasticamente diferentes sem scripts monolíticos duplicados para cada governo.
 
 ---
 
@@ -531,7 +531,7 @@ Os subplanos posteriores detalham esta ordem:
 
 ## Definition of Done do Stage narrativo
 
-A implementação só pode ser chamada de pronta quando o cenário Severin e pelo menos uma cadeia macro de campanha provarem:
+A implementação só pode ser chamada de pronta quando a fixture social genérica de pesquisador de necromancia e pelo menos uma cadeia macro de campanha provarem:
 
 - rotas SIM/NÃO/ANTES/DEPOIS;
 - conhecimento não onisciente;

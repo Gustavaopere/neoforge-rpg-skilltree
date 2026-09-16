@@ -32,7 +32,7 @@ Este arquivo não substitui `historia/STATUS.md`, os dossiês de entidade, a Cam
 ## Fila atual
 | Área | Alvo | Estado | Authority/evidência exigida | Permitido agora | Proibido enquanto pendente |
 | --- | --- | --- | --- | --- | --- |
-| NPC | `NPC-0001` Severin ↔ Aren | `CONFLITO DE IDENTIDADE` | dossiês GitHub + entidade Aren no Grimoire + decisão editorial explícita | preservar ambos, comparar proveniência, manter assets como look-dev | assumir mesma pessoa ou pessoas distintas; copiar provider, aparência, segredos, motivações ou relações entre eles |
+| NPC | `NPC-0001` Aren | `PRONTO` para lore source-grounded | entidade Aren no Grimoire `e9a83c1b-4bd9-49c8-8b79-ad41011383cd` + decisão editorial registrada em `15-migracao-npc-0001-severin-aren-2026-09-15.md` | usar identidade Aren, associação recuperada a Goety/necromancia e contratos sistêmicos gerais; expandir somente com provenance própria | importar voz, aparência, relações, cenas, motivações ou assets de Severin; assumir vínculo com `QST-0001`; inventar capability de provider |
 | NPC | `NPC-0002` Elias | `BLOQUEADO — GRIMOIRE` | Campaign Bible/registro anterior recuperado | preservar ID/nome e localizar proveniência | inventar aparência, função, personalidade, relações, arco ou produzir asset visual baseado em lacunas |
 | NPC | `NPC-0003` Iren Valmor | `PRONTO` | dossiê versionado + draft reconciliado no Grimoire | continuar autoria derivada compatível; futura skin técnica e novo portrait verificado | duplicar identidade, conceder knowledge sem proveniência, promover look-dev a final sem QA |
 | NPC | `NPC-0004` Liora | `PRONTO` para lore já espelhada / `AUDITORIA MECÂNICA` para detalhes provider-native | dossiê + entidade Grimoire + runtime Ars Nouveau atual | usar identidade, voz, limites de knowledge e princípio de pluralidade já registrados; auditar spells/glyphs/rituais separadamente | inventar spell, glyph, ritual, local obrigatório, facção ou converter Source em recurso universal |
@@ -47,7 +47,7 @@ Este arquivo não substitui `historia/STATUS.md`, os dossiês de entidade, a Cam
 | Assentamento | `SET-0003` Acampamento do Entreposto | `PRONTO` para lore / `AUDITORIA MECÂNICA` para binding físico | entidade Grimoire + runtime/worldgen quando necessário | usar núcleo inicial, população 5, `FAC-0003` e proximidade de `LOC-0002` | converter `district` em cidade madura; nomear habitantes por inferência; fixar provider/worldgen |
 | Local | `LOC-0001` Região dos Ecos | `AUDITORIA MECÂNICA` | Compêndio/runtime + provider de worldgen + reconciliação geográfica com Grimoire | levantar candidatos com registry IDs reais | escolher bioma/dimensão/estrutura por estética, nome ou afinidade temática |
 | Local | `LOC-0002` O Entreposto | `PRONTO` para lore / `AUDITORIA MECÂNICA` para representação física | entidade Grimoire + runtime/worldgen/estrutura quando houver binding | usar história multicamada, reutilização, deterioração e tensão preservação↔reuso | canonizar registry structure, provider, Projeto Continuidade, tecnologia apocalíptica ou nome antigo completo sem fonte |
-| Quest | `QST-0001` Ecos Sombrios | `PRONTO` como quest-test/lifecycle | dossiês de quest/evidência/knowledge | validar discovery, lifecycle e consequências | transformar evidência isolada em culpa/localização automática |
+| Quest | `QST-0001` Ecos Sombrios | `PRONTO` como quest-test/lifecycle | dossiês de quest/evidência/knowledge | validar discovery, lifecycle e consequências | transformar evidência isolada em culpa/localização automática; tratar Aren como participante por herança do antigo slot `NPC-0001` |
 | Eventos | família `EVT-####` | `PENDENTE DE DECISÃO EDITORIAL` | evento concreto, causa/ator/tempo e consequência | criar quando existir fato persistente real | preencher diretório por completude artificial |
 | Finais/epílogos | família `END-####` | `PENDENTE DE DECISÃO EDITORIAL` | estados persistentes/deriváveis do Narrative Core | definir fragmentos condicionais quando houver base | escrever rota final fixa ou moral score universal |
 | Assets | portraits/skins NPC | `PRONTO` somente para NPC com lore/identidade reconciliados e asset brief source-grounded | dossiê reconciliado + asset brief + aprovação visual + pipeline técnica | produzir portrait HD e skin 64×64 separados apenas para NPCs que atendam ao gate individual | iniciar asset para NPC source-blocked; usar portrait como UV de skin; marcar `FINAL` sem QA; inventar símbolos/provider |
@@ -85,6 +85,7 @@ Esses UUIDs surgiram durante a reconciliação. Permanecem fail-closed até sua 
 `324ff53b-c599-4892-b263-0f86a8e8f8b9`, também presente em `FAC-0003.key_member_ids`, já é `NPC-0005` Oren e por isso não aparece como pendência.
 
 ## Reconciliações concluídas nesta etapa
+- `NPC-0001` foi reconciliado como Aren a partir da entidade ativa do Grimoire e de decisão editorial explícita; Severin foi aposentado como entidade ativa e seus materiais permanecem apenas como legado não transferível;
 - `NPC-0003` Iren Valmor foi materializado no Grimoire como draft ligado a `FAC-0001` e `SET-0001`;
 - `FAC-0001` Corte de Pedra Clara foi materializada no Grimoire como draft;
 - `SET-0001` Pedra Clara foi materializada no Grimoire como draft;
@@ -92,17 +93,15 @@ Esses UUIDs surgiram durante a reconciliação. Permanecem fail-closed até sua 
 - `NPC-0005` Oren e `NPC-0006` Elian foram materializados no GitHub a partir das entidades já ativas do Grimoire;
 - as seis referências relacionadas antes bloqueadas foram consultadas individualmente e materializadas como `NPC-0007`, `FAC-0002`, `FAC-0003`, `SET-0002`, `SET-0003` e `LOC-0002`;
 - os vínculos de Oren/Elian foram atualizados para os IDs editoriais reconciliados sem expandir semântica de relações;
-- o conflito Severin↔Aren foi registrado em fail-closed no GitHub, mas ainda não resolvido editorialmente;
 - o antigo portrait candidate de Iren da PR #548 foi rejeitado e a PR foi fechada sem merge por corrupção/incompletude do arquivo e direção visual não aprovada.
 
 ## Ordem recomendada
-1. resolver a identidade editorial Severin↔Aren antes de qualquer asset final do necromante;
-2. recuperar/reconciliar `NPC-0002` Elias antes de qualquer autoria visual dele;
-3. consultar os UUIDs relacionados ainda sem entidade-fonte materializada, priorizando os que condicionarem cenas/diálogos próximos; não reservar IDs antecipadamente;
-4. decidir a tipagem/ID de Pátio da Passagem somente depois de auditar sua entidade completa e duplicatas;
-5. manter Iren/Liora/Oren/Elian/Maura, as três facções e os três assentamentos/locais reconciliados sem promover hipóteses a fatos;
-6. executar auditoria runtime do binding de `LOC-0001`, `LOC-0002`, `SET-0002` e `SET-0003` apenas quando representação física exigir;
-7. só depois expandir eventos, diálogos e consequências que dependam dos UUIDs ainda bloqueados.
+1. recuperar/reconciliar `NPC-0002` Elias antes de qualquer autoria visual dele;
+2. consultar os UUIDs relacionados ainda sem entidade-fonte materializada, priorizando os que condicionarem cenas/diálogos próximos; não reservar IDs antecipadamente;
+3. decidir a tipagem/ID de Pátio da Passagem somente depois de auditar sua entidade completa e duplicatas;
+4. expandir Aren somente a partir de source própria e manter Iren/Liora/Oren/Elian/Maura, as três facções e os três assentamentos/locais reconciliados sem promover hipóteses a fatos;
+5. executar auditoria runtime do binding de `LOC-0001`, `LOC-0002`, `SET-0002` e `SET-0003` apenas quando representação física exigir;
+6. só depois expandir eventos, diálogos e consequências que dependam dos UUIDs ainda bloqueados.
 
 ## Trabalho seguro que pode continuar
 - QA editorial e de referências;

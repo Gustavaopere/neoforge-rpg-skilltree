@@ -60,7 +60,7 @@ A skin deve transmitir "investigador arcano institucional" antes de "feiticeiro 
 
 ## Limites de conhecimento
 No estado inicial, Iren não pode assumir como conhecido:
-- identidade, localização ou agenda de `NPC-0001`;
+- identidade, localização ou agenda de qualquer possível responsável por `QST-0001`;
 - causa verdadeira de qualquer evento relacionado a `QST-0001`;
 - funcionamento de provider que ele não tenha estudado/observado dentro da história;
 - segredos do jogador sem discovery channel;
@@ -70,7 +70,7 @@ No estado inicial, Iren não pode assumir como conhecido:
 ## Referências
 - diálogos: `DLG-0002` (calibração) e `DLG-0003` (possível oferta de `QST-0001`);
 - quests: `QST-0001`;
-- NPCs: `NPC-0001` apenas como possível objeto futuro de investigação, não conhecimento inicial;
+- NPCs: nenhum sujeito/alvo adicional é vinculado por esta ficha; qualquer relação futura exige provenance própria;
 - evidências: `EVD-0001`, `EVD-0002`, `EVD-0003` somente quando adquiridas por canal legítimo;
 - facções/instituições: `FAC-0001`;
 - assentamentos: `SET-0001`;

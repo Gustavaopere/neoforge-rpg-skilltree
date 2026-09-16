@@ -9,9 +9,13 @@ Oportunidade secundária de investigação.
 ## Premissa player-safe
 Em estágio avançado, um mago ligado à corte pode reunir indícios suficientes de ocorrências incomuns por canais rastreáveis e decidir ou não envolver o jogador.
 
-## Participantes
-- `NPC-0001` Severin
+## Participantes confirmados
 - `NPC-0003` Iren Valmor — mago ligado à corte; sua ficha permanece rascunho estruturado até consolidação editorial.
+
+## Proveniência editorial legada
+Este dossiê foi escrito originalmente enquanto Severin ainda funcionava como placeholder editorial do cenário técnico. Esse placeholder foi aposentado na migração de 2026-09-15 e não produz qualquer aresta ativa para Aren.
+
+A provenance completa da substituição permanece em `historia/11-ia-e-autoria/15-migracao-npc-0001-severin-aren-2026-09-15.md`. Qualquer vínculo ficcional concreto entre Aren e esta quest exige aprovação própria; o histórico de autoria não é evidência in-universe nem relação de grafo ativa.
 
 ## Contexto institucional e geográfico
 - `FAC-0001` Corte de Pedra Clara — instituição à qual Iren está ligado;
@@ -28,7 +32,7 @@ A implementação/authoring deve suportar, no mínimo:
 3. rumor parcial sem investigação;
 4. oferta formal recusada;
 5. oferta aceita e ignorada;
-6. investigação sem encontro com o alvo;
+6. investigação sem encontro com o sujeito/alvo relevante;
 7. encontro antes da missão;
 8. encontro e não intervenção;
 9. diálogo/negociação;
@@ -39,7 +43,7 @@ A implementação/authoring deve suportar, no mínimo:
 14. descoberta retrospectiva apenas das consequências.
 
 ## Regra de knowledge
-Iren não conhece automaticamente a identidade, localização, capacidades ou motivações de Severin. O estado que permite a investigação precisa apontar para rumor, testemunha, evidência ou observação concreta. O mesmo vale para qualquer outro ator que entre no caso.
+Iren não conhece automaticamente identidade, localização, capacidades ou motivações de qualquer sujeito/alvo associado às ocorrências investigadas. O estado que permite a investigação precisa apontar para rumor, testemunha, evidência ou observação concreta. O mesmo vale para qualquer outro ator que entre no caso.
 
 `FAC-0001` não herda automaticamente todo knowledge de `NPC-0003`, e `NPC-0003` não herda automaticamente todo registro da instituição.
 
@@ -50,14 +54,15 @@ Iren não conhece automaticamente a identidade, localização, capacidades ou mo
 
 Essas peças são **rotas possíveis**, não uma sequência obrigatória. O jogador pode chegar por subconjuntos diferentes, encontrar `EVD-0003` antes de qualquer oferta, reconstruir parte do padrão independentemente ou nunca descobrir nenhuma delas. Perda/destruição de uma peça não deve criar soft-lock se outra rota semanticamente válida ainda existir.
 
-Nenhuma peça isolada autoriza `NPC-0003` ou outra instituição a declarar `NPC-0001` culpado, conhecido ou localizado sem uma cadeia causal adicional.
+Nenhuma peça isolada autoriza `NPC-0003` ou outra instituição a declarar qualquer pessoa culpada, conhecida ou localizada sem uma cadeia causal adicional.
 
 ## Lifecycle editorial
 O mapeamento de availability/discovery/engagement/resolution, progressão autônoma, reconciliação de entrada antecipada e discovery retrospectiva está em `QST-0001-lifecycle.md`.
 
 ## Diálogos relacionados
 - `DLG-0002` — calibração de voz/evidência de `NPC-0003`; não é evento canônico;
-- `DLG-0003` — rascunho de oferta de investigação, condicionado ao estado real de knowledge/lifecycle.
+- `DLG-0003` — rascunho de oferta de investigação, condicionado ao estado real de knowledge/lifecycle;
+- `DLG-0001` — calibração legada de Severin; preservada apenas como histórico editorial e **não** utilizável como voz de Aren ou como prova de vínculo de Aren com esta quest.
 
 ## Regra de journal
 Não mostrar “missão perdida” se o jogador nunca soube que a oportunidade existia.
