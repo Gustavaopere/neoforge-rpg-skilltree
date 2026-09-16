@@ -14,7 +14,7 @@
 - **Observações:** Runtime físico `1.0.40+1.21.1`. A publicação oficial confirma MRU 1.0.40 para NeoForge 1.21.1 em 11/09/2026. O material upstream recuperado não expôs changelog específico suficiente para atribuir deltas internos à 1.0.40; nenhuma mudança funcional foi inventada.
 - **Procedência:** modlist física de 16/09/2026 + CurseForge oficial MRU 1.0.40 para NeoForge 1.21.1 + documentação/source previamente auditados para Packed Resources, YACL helpers e abstrações multiversionadas. Nenhum teste runtime/linkage foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/mru
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 1.0.33 para 1.0.40+1.21.1. Release 1.0.40 confirmada; delta interno não documentado nas fontes recuperadas e portanto não inferido. Certificação pendente de QC/re-fetch final.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 1.0.33 para 1.0.40+1.21.1. Release 1.0.40 confirmada; delta interno não documentado nas fontes recuperadas e portanto não inferido.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-26
 
