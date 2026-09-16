@@ -15,7 +15,7 @@
 - **Observações:** Config UI 7.12.1 é o runtime físico. O salto 7.11.0→7.12.1 inclui mudanças relevantes no preset browser, import/export/restore, administração e diversas superfícies da família Easy NPC.
 - **Procedência:** modlist física de 16/09/2026 + distribuição/changelog oficial Easy NPC 7.12.1. Nenhum teste de UI/networking/persistência foi executado.
 - **Histórico da decisão:**
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — Config UI/Bundle físicos atualizados de 7.11.0 para 7.12.1; Core filename também 7.12.1, sem metadata runtime publicada na modlist. Certificação pendente de QC/re-fetch final.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — Config UI/Bundle físicos atualizados de 7.11.0 para 7.12.1; Core filename também 7.12.1, sem metadata runtime publicada na modlist.
 - **Data da última decisão:** 2026-09-06
 
 > **Runtime físico confirmado:** `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` · mod id `easy_npc_config_ui` · versão `7.12.1` · NeoForge 1.21.1.
