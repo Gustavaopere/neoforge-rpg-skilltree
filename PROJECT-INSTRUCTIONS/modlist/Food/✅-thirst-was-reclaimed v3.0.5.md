@@ -16,7 +16,7 @@
 - **Observações:** JAR físico `ThirstWasReclaimed-1.21.1-3.0.5.jar`; metadata física `1.21.1-3.0.5`; para filename do catálogo usa-se versão semântica `3.0.5`, preservando a metadata completa no corpo.
 - **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Thirst Was Reclaimed 3.0.5. Nenhum teste runtime foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/thirst-was-reclaimed
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — instalado passou de 3.0.4 / metadata `1.21.1-3.0.4` para 3.0.5 / `1.21.1-3.0.5`. Certificação pendente de QC/re-fetch final.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — instalado passou de 3.0.4 / metadata `1.21.1-3.0.4` para 3.0.5 / `1.21.1-3.0.5`.
 - **Histórico da decisão:** decisão `Manter` preservada.
 - **Data da última decisão:**
 
