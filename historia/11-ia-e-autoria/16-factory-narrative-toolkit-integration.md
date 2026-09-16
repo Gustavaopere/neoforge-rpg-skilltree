@@ -9,7 +9,7 @@ O profile consumidor está em `factory-narrative-profile.json`. Ele pertence a e
 ## Pin validado
 
 - Factory repository: `Gustavaopere/minecraft-mod-factory`;
-- Factory commit: `0e8280bff471738c890ec5c085b8f6cc69258f9e`;
+- Factory commit: `99292829b25025b4cb7130a05a8221e0d7a5a19e`;
 - profile contract revision: `1`.
 
 A workflow `.github/workflows/narrative-factory-compat.yml` usa esse SHA de forma explícita; atualização do pin é uma decisão separada e revisável.
