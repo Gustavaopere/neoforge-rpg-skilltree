@@ -1,187 +1,120 @@
 # Northstar Redux
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Arquivo JAR:** `Northstar-0.6.4+1.21.1.jar`
-- **Versão 1.21.1:** 0.6.4+1.21.1
+- **Arquivo JAR:** `Northstar-0.6.5+1.21.1.jar`
+- **Versão 1.21.1:** 0.6.5+1.21.1
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Tecnologia, Exploração
 - **Função:** Addon espacial do ecossistema Create com rockets, transição orbital/dimensional, telescope/seleção de planetas, rendering espacial e sistemas ambientais/tecnológicos associados.
 - **Dependências:** Create + GeckoLib requeridos pela linha/source oficial. Addons como Northstar Curios Compat são integrações separadas.
-- **Sobreposição:** Creating Space compartilha a camada espacial, mas coexistência é decisão deliberada; não tratar como duplicata exata. Create continua authority de seu kinetic/contraption system.
-- **Compatibilidade/Riscos:** Runtime 0.6.4. Riscos: rocket/orbit transition, Return Ticket state, telescope/render/camera regressions, Create/GeckoLib drift e coexistência deliberada com Creating Space. 0.6.5 existe, mas não é o runtime físico.
-- **Observações:** Runtime 0.6.4+1.21.1, file ID 8486127. Commit `2abd30b71470d168b18a132172b5120f15fbfe61` faz bump para 0.6.4 e corrige telescope bounds/zoom. 0.6.5+1.21.1 foi publicada em 09/09/2026 e permanece apenas candidata a update.
-- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial: 0.6.4 instalada e 0.6.5+1.21.1 (file 8844708, 09/09/2026) como release mais recente localizada + source/commit 0.6.4 já auditados.
+- **Sobreposição:** Creating Space compartilha a camada espacial, mas coexistência é decisão deliberada; não tratar como duplicata exata. Create continua authority de kinetic/contraption system.
+- **Compatibilidade/Riscos:** Runtime 0.6.5. Permanecem riscos em rocket/orbit transition, Return Ticket state, telescope/render/camera, atmosphere/oxygen, Create/GeckoLib drift, Sable/zero-g e coexistência com Creating Space.
+- **Observações:** Runtime físico 0.6.5+1.21.1, publicado em 09/09/2026. A antiga 0.6.4 e o commit `2abd30b71470d168b18a132172b5120f15fbfe61` permanecem histórico técnico do telescope/rocket baseline; 0.6.5 deixou de ser update candidate e agora é a build instalada.
+- **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Northstar 0.6.5+1.21.1 + source/commit 0.6.4 previamente auditados. Nenhum runtime test executado nesta reauditoria.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-northstar
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Northstar Redux físico 0.6.4+1.21.1 reconfirmado; 0.6.5+1.21.1, publicada em 09/09/2026, permanece a release NeoForge 1.21.1 mais recente localizada e segue como update candidate não aplicado. Decisão Manter preservada.
-- **Histórico da decisão:** Em 22/08/2026 o usuário definiu manter Northstar Redux junto de Creating Space para substituir Stellaris e evitar uma solução espacial excessivamente tecnológica. 2026-09-10 — decisão preservada; update 0.6.5 disponível foi registrado sem alterar o runtime físico 0.6.4.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 0.6.4 para 0.6.5+1.21.1; o antigo bloco de update candidate foi promovido e reconciliado ao runtime instalado. Certificação pendente de QC/re-fetch final.
+- **Histórico da decisão:** Em 22/08/2026 o usuário definiu manter Northstar Redux junto de Creating Space para substituir Stellaris e evitar solução espacial excessivamente tecnológica. Decisão preservada.
 - **Data da última decisão:** 2026-08-22
 
-> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `Northstar-0.6.4+1.21.1.jar`, mod id `northstar`, versão `0.6.4+1.21.1`. O source oficial `Astronauts-of-Create/Northstar-Redux` possui commit `2abd30b71470d168b18a132172b5120f15fbfe61` que eleva a versão 0.6.3→0.6.4 e corrige bounds/zoom da tela do telescópio. Existe **0.6.5 para 1.21.1 publicada em 09/09/2026**, mas ela NÃO é o runtime físico deste catálogo; suas mudanças ficam separadas como atualização disponível.
+> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `Northstar-0.6.5+1.21.1.jar`, mod id `northstar`, versão `0.6.5+1.21.1`, NeoForge 1.21.1. Northstar Redux é o provider de seu conteúdo espacial, rockets, planets, atmosphere e telescope; Create permanece authority da infraestrutura cinética/contraptions.
 
 ## 1. Identidade, versão e decisão
 - **Mod:** Northstar Redux.
-- **JAR físico:** `Northstar-0.6.4+1.21.1.jar`.
+- **JAR físico:** `Northstar-0.6.5+1.21.1.jar`.
 - **Mod id:** `northstar`.
-- **Runtime:** `0.6.4+1.21.1`.
+- **Runtime:** `0.6.5+1.21.1`.
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Projeto:** Astronauts of Create / Northstar Redux.
 - **Ambiente:** Client & Server.
 - **Licença:** MIT.
-- **Papel:** addon espacial do ecossistema Create, com exploração planetária, rockets, telescope/rendering espacial e sistemas ambientais/tecnológicos associados.
-- **Decisão vigente:** **Manter**.
+- **Papel:** exploração planetária, rockets, telescope/rendering espacial e sistemas ambientais/tecnológicos associados.
+- **Decisão:** **Manter**.
 
-A decisão explícita anterior do pack é manter Northstar Redux junto de Creating Space como substituição ao Stellaris, evitando depender de uma solução espacial excessivamente tecnológica.
+A coexistência com Creating Space continua decisão explícita do pack, não acidente da modlist.
 
-## 2. Dependências
-O README/source oficial da linha atual exige:
-- **Create**;
-- **GeckoLib**.
+## 2. Dependências e ownership
+A linha oficial exige **Create** e **GeckoLib**. Bridges como Northstar Curios Compat permanecem projetos separados. Create mantém kinetic system/contraptions; Northstar mantém rocket, destino/orbit transition, atmosphere/oxygen, telescope e conteúdo espacial próprio. Integrações não devem duplicar esses states.
 
-Ambos pertencem ao contrato funcional do mod. Addons como Northstar Curios Compat permanecem bridges separados e não devem ser confundidos com o provider base.
+## 3. Baseline histórico 0.6.4 — rockets e orbit transition
+A 0.6.4 corrigiu rockets que podiam parar ao se aproximar da órbita por baixo. Esse histórico continua relevante ao regression da 0.6.5: decolagem, aproximação orbital, chegada/transferência, retorno e restart/reconnect em viagem precisam permanecer estáveis.
 
-## 3. Papel de Create
-Northstar usa o ecossistema Create para compor parte de sua tecnologia/automação. Create continua authority de kinetic system, contraptions e componentes base; Northstar é authority de seu conteúdo espacial, máquinas/blocks próprios e lógica de viagem/planetas.
+## 4. Return Tickets
+A 0.6.4 corrigiu Return Tickets para retornar ao ponto da decolagem anterior quando jogador permanece na mesma dimensão. Estado posicional/dimensional pode ficar stale, apontar para destino inseguro ou interagir com outros teleports; isso continua gate no runtime atual.
 
-Integrações próprias devem evitar duplicar:
-- estado de rocket;
-- destino/orbit transition;
-- atmosphere/oxygen state;
-- telescope selection.
+## 5. Telescope e seleção de planetas
+O commit `2abd30b714...` da 0.6.4 corrigiu bounds/zoom da `TelescopeScreen`: margem visível, zoom inicial/velocidade, escala/drag e planetas escondidos; também houve fix de seleção com no-op renderer. A 0.6.5 mantém telescope como superfície crítica e adiciona Ponder para **Interplanetary Navigator**. UI é client-facing, mas destino válido precisa estar coerente com dados server/world.
 
-## 4. Rockets e transição orbital — 0.6.4
-A release 0.6.4 corrige um caso em que **rockets podiam parar ao se aproximar da órbita por baixo**. Isso confirma que posição/direção durante transição orbital é uma superfície sensível do runtime.
+## 6. Rendering espacial e environment
+O baseline 0.6.4 corrigiu third-person zoom após dimension change, `daytime_star_brightness`, stars/planets durante chuva e visibilidade configurável. A 0.6.5 adiciona/fixa outras superfícies ambientais e de renderer, portanto dimension transition, weather/atmosphere e resource rendering continuam regression gates.
 
-Testes precisam cobrir:
-- decolagem normal;
-- aproximação da órbita;
-- chegada/transferência;
-- retorno;
-- restart/reconnect durante viagem quando possível.
+## 7. Atualização instalada — 0.6.5
+A release 0.6.5+1.21.1, publicada em 09/09/2026, deixou de ser candidata e é o runtime físico. Mudanças publicadas incluem:
+- retomada/ajustes de suporte a **Create 5** na codebase compatível;
+- traduções **Português-BR** e **Turco**;
+- **oxidizer tank opcional** para combustion engine;
+- Ponders para **Combustion Engine**, **Oxygen Filler**, **Rocket Thruster**, **Interplanetary Navigator** e **Auto Lander**;
+- config para **auto-relight**;
+- redstone podendo desabilitar engine;
+- limites/ajustes de velocidade do Oxygen Filler;
+- suporte Sable para punching de sublevels em **zero-g**;
+- iron spacesuits tintáveis;
+- atmosphere definition aceitando múltiplos fluids;
+- fixes em brilho de planetas, hand rendering, sealed-area sandstorms, temperatura `ultrawarm`, fluid placement, rocket picking/contraptions, combustion engine model/rotation, recipes/namespaces e outras regressões da linha.
 
-Não se deve inferir protocolo ou formato de persistência sem source específico dos componentes envolvidos.
+Essas mudanças agora pertencem ao runtime instalado e precisam de QA correspondente.
 
-## 5. Return Tickets
-A 0.6.4 corrige **Return Tickets** para teletransportar o jogador ao ponto da decolagem anterior quando ele permanece na mesma dimensão.
+## 8. Atmosphere, oxygen e múltiplos fluids
+A 0.6.5 amplia definição de atmosphere para múltiplos fluids e toca Oxygen Filler/engines. Isso aumenta o risco de config/data drift e de scripts assumirem um único fluid. Atmosphere/oxygen permanecem authority do Northstar; quests/perks devem usar dados/IDs reais da build.
 
-Isso envolve estado posicional e dimension context. Riscos:
-- coordenada stale;
-- destino obstruído/inseguro;
-- ticket sobrevivendo a restart de forma inesperada;
-- interferência de outro sistema de teleport/dimension.
+## 9. Create/Sable e contraptions
+Create continua provider cinético; Northstar acrescenta máquinas/rocket. A 0.6.5 corrige/ajusta rocket picking de contraptions, engine rotation/model e integra zero-g/Sable. Testes devem separar state de contraption Create do state espacial Northstar para evitar dupes, desync ou objetos presos entre sublevels/dimensões.
 
-## 6. Telescope e seleção de planetas
-O commit exato `2abd30b714...` altera `TelescopeScreen` e versão 0.6.4:
-- corrige planetas escondidos sob a borda da tela;
-- ajusta zoom inicial;
-- aumenta velocidade de zoom;
-- separa `WINDOW_SIZE` de `VIEW_SIZE` para respeitar margem de 8 px;
-- corrige cálculo de escala/drag dentro da área visível.
+## 10. Client/server e lifecycle
+Server-authoritative: viagem/dimensão, posição/destino, machines/rocket e efeitos ambientais com gameplay. Client-facing: telescope, star/planet rendering, camera, Ponders e GeckoLib rendering. Eventos críticos: launch, orbit transition, dimension change, relog/restart, Return Ticket, atmosphere/oxygen e resource reload.
 
-A release 0.6.4 também corrige seleção de planetas usando **no-op renderer** no telescope.
+## 11. Coexistência com Creating Space
+Northstar + Creating Space permanecem deliberadamente juntos. Cada mod mantém destinations/machines/progression próprios; quests podem conectá-los, mas não podem presumir equivalência de oxygen, rocket, atmosphere ou planet state sem bridge explícita.
 
-O telescope é client-facing na apresentação, mas seleção/destino válido precisa permanecer coerente com dados server/world do mod.
+## 12. Addons e integrações
+Northstar Curios Compat e outros addons relacionados permanecem authorities próprias. Uma bridge instalada não autoriza atribuir sua feature ao mod base.
 
-## 7. Rendering espacial
-A 0.6.4 corrige:
-- third-person camera zoom após mudança de dimensão;
-- `daytime_star_brightness` customizado aplicado entre dimensões;
-- extra stars/planets renderizando durante chuva em planetas sem chuva;
-- visibilidade configurável de planets/extra stars.
+## 13. Riscos do runtime 0.6.5
+1. rocket/orbit lifecycle e contraption pickup;
+2. Return Ticket state;
+3. telescope/Interplanetary Navigator UI e destination validity;
+4. camera/render após dimension change;
+5. atmosphere com múltiplos fluids;
+6. oxygen filler speed/state;
+7. engine redstone/auto-relight/oxidizer behavior;
+8. Create/GeckoLib/Sable drift;
+9. sealed-area weather/sandstorm e ultrawarm temperature;
+10. coexistência de providers espaciais sem ownership claro.
 
-Esses itens fazem resource/render settings e dimension transition parte da regressão visual da versão.
-
-## 8. Planetas, dimensões e environment
-Northstar Redux é um provider de exploração espacial. O runtime possui abstrações para destinos/planetas e lógica ambiental associada ao mod. A ficha não inventa lista completa de dimensões, atmosferas, temperaturas ou recipes apenas por existirem em versões/documentos gerais.
-
-Para integração do pack, qualquer quest precisa referenciar IDs reais da build 0.6.4 e validar que o destino existe no worldgen/runtime atual.
-
-## 9. Client/server e lifecycle
-Server-authoritative:
-- viagem e mudança de dimensão;
-- posição/destino;
-- estado funcional de machines/rocket;
-- efeitos ambientais com consequência de gameplay.
-
-Client-facing:
-- telescope UI;
-- star/planet rendering;
-- camera;
-- GeckoLib animation/rendering.
-
-Eventos críticos: decolagem, orbit transition, dimension change, respawn/reconnect, ticket return e reload de client resources.
-
-## 10. Coexistência com Creating Space
-A coexistência é **deliberada por decisão do usuário**, não acidente da modlist. Ambos participam da camada espacial, mas não devem ser tratados como duplicatas exatas sem comparar sistemas concretos.
-
-Regra de ownership:
-- cada mod mantém seus próprios destinations/machines/progression;
-- quests podem conectá-los, mas não devem assumir equivalência de oxygen, rocket ou planet state sem bridge explícita.
-
-## 11. Addons e integrações físicas
-A modlist contém conteúdo relacionado como **Northstar Curios Compat** e outros addons Create que podem referenciar Northstar. Esses projetos devem continuar páginas/authorities próprias.
-
-Uma bridge presente não autoriza atribuir sua funcionalidade ao Northstar base.
-
-## 12. Atualização disponível: 0.6.5 — NÃO INSTALADA
-Em **09/09/2026** foi publicada `Northstar 0.6.5+1.21.1`. A modlist física atual continua em **0.6.4**, então 0.6.5 é somente update candidate.
-
-A 0.6.5 publica mudanças como:
-- retomada/ajustes de suporte Create 5;
-- traduções PT-BR/Turco;
-- oxidizer tank opcional para combustion engine;
-- Ponders;
-- redstone podendo desabilitar engines;
-- ajustes de oxygen filler;
-- suporte Sable para punching de sublevels em zero-g;
-- spacesuits de iron tintáveis;
-- atmosphere definitions com múltiplos fluids;
-- fixes de renderer, sandstorms/sealed areas, ultrawarm temperature/fluid placement, rockets/contraptions, engine rotation, hand rendering e recipes.
-
-**Nada disso é promovido a feature instalada da 0.6.4.** Serve apenas para avaliação de update futura.
-
-## 13. Riscos do runtime 0.6.4
-1. **Rocket/orbit lifecycle:** release corrige parada de rockets; retestar transições.
-2. **Return Ticket state:** coordenada/dimensão anterior precisa ser correta.
-3. **Telescope UI:** seleção/zoom/bounds são superfícies corrigidas no commit 0.6.4.
-4. **Camera/dimension:** third-person zoom teve fix específico.
-5. **Space renderer:** chuva/star brightness/visibility dependem de dimensão/config.
-6. **Create compatibility:** atualizações de Create podem exigir bridge/adaptação.
-7. **GeckoLib:** hard dependency visual/animation.
-8. **Multiple space providers:** Northstar + Creating Space exigem progressão clara e não duplicação de authority.
-9. **Update drift:** 0.6.5 já existe; atualizar sem teste pode introduzir mudanças ambientais/rocket significativas.
-
-## 14. Matriz de testes — 0.6.4 instalado
-- [ ] Dedicated server e cliente iniciam com Northstar 0.6.4 + Create + GeckoLib atuais.
-- [ ] Telescope abre, planetas não ficam escondidos e zoom/drag funcionam corretamente.
-- [ ] Planeta com renderer válido e no-op renderer tem seleção coerente.
-- [ ] Rocket decola e alcança/atravessa a transição orbital sem parar indevidamente.
-- [ ] Mudança de dimensão não deixa camera third-person com zoom incorreto.
-- [ ] Return Ticket retorna ao ponto correto após takeoff no mesmo dimension context.
-- [ ] Star brightness respeita config e dimensão.
-- [ ] Planeta sem chuva não renderiza indevidamente extras como se estivesse chovendo.
-- [ ] Reconnect/restart após viagem conserva estado seguro e posição válida.
+## 14. Matriz de testes — 0.6.5 instalado
+- [ ] Dedicated server/client iniciam com Northstar 0.6.5 + Create + GeckoLib atuais.
+- [ ] Telescope zoom/drag/bounds e seleção funcionam.
+- [ ] Ponders novos carregam sem missing assets/recipes.
+- [ ] Rocket decola, pega contraption e atravessa orbit transition sem stall/dupe.
+- [ ] Dimension change preserva camera/render correto.
+- [ ] Return Ticket retorna ao ponto válido esperado.
+- [ ] Star/planet brightness/weather respeitam config/dimensão.
+- [ ] Atmosphere com múltiplos fluids carrega/processa sem erro.
+- [ ] Oxygen Filler respeita limits/config.
+- [ ] Combustion Engine: oxidizer opcional, rotation/model, redstone disable e auto-relight.
+- [ ] Sable zero-g/sublevel punching não corrompe state.
+- [ ] Reconnect/restart após viagem conserva posição/state seguro.
 - [ ] Creating Space coexiste sem confundir destinations/quests/recipes.
-- [ ] Northstar Curios Compat, quando usado, funciona sem transferir ownership ao mod base.
 
-Nenhum teste foi marcado como aprovado nesta auditoria documental.
+**Nenhum teste foi executado nesta reauditoria documental.**
 
-## 15. Gate de update 0.6.5
-Antes de trocar o JAR físico:
-- comparar dependencies/Create compatibility;
-- testar rockets/contraptions;
-- validar atmosphere/oxygen;
-- validar Sable zero-g se essa integração for desejada;
-- revisar recipes/Ponders;
-- testar renderer/camera;
-- confirmar que decisões de progressão com Creating Space continuam válidas.
+## 15. Evidências e limites
+- modlist física de 16/09/2026: `Northstar-0.6.5+1.21.1.jar`;
+- CurseForge oficial 0.6.5+1.21.1 de 09/09/2026;
+- source oficial `Astronauts-of-Create/Northstar-Redux` e commit 0.6.4 `2abd30b71470d168b18a132172b5120f15fbfe61` preservados como baseline histórico;
+- dossiê anterior sobre rockets, tickets, telescope, rendering, lifecycle, Creating Space e addons preservado;
+- configs físicas específicas de atmosphere/oxygen não foram lidas e runtime não foi exercitado.
 
-## 16. Evidências e limites
-- Modlist física: `Northstar-0.6.4+1.21.1.jar`, id/version e `northstar.mixins.json`.
-- CurseForge oficial: file ID 8486127, Release 0.6.4 NeoForge 1.21.1 de 22/07/2026.
-- Source oficial: `Astronauts-of-Create/Northstar-Redux`.
-- Commit exato de bump 0.6.4: `2abd30b71470d168b18a132172b5120f15fbfe61`, com correção de telescope bounds/zoom.
-- Release 0.6.4: fixes de rockets, tickets, camera, rendering e telescope.
-- Update disponível: file ID 8844708, 0.6.5+1.21.1, 09/09/2026 — explicitamente **não instalado**.
-- **Limite:** features exclusivas da 0.6.5 não foram atribuídas ao runtime 0.6.4.
+## 16. Reauditoria física — 16/09/2026
+0.6.5 foi promovida de update candidate para runtime físico confirmado. A decisão `Manter` permanece. Nenhum teste de rocket, orbit, renderer, atmosphere, oxygen, Sable, Create ou multiplayer foi executado.
