@@ -1,5 +1,7 @@
 # Create: Integrated Farming
 
+> **QC FÍSICO FINAL — 16/09/2026.** Fingerprint atual confirmado pela modlist física: `create-integrated-farming-1.4.1c.jar`, mod id `create_integrated_farming`, runtime `1.4.1c`, SHA-1 `f451d79e850e6b10f205320b614c3d91cef9e240`, NeoForge 1.21.1. Este fingerprint governa o estado presente; as referências a 1.4.1b abaixo permanecem apenas como snapshot histórico da migração.
+
 > **AUTORIDADE FÍSICA ATUAL — 16/09/2026.** O pack agora contém `create-integrated-farming-1.4.1c.jar`, mod id `create_integrated_farming`, runtime `1.4.1c`, NeoForge 1.21.1. A 1.4.1c, antes registrada abaixo somente como release upstream, passou a estar instalada. O delta publicado é um hotfix de estabilidade para **crash intermitente no cliente ao colocar ou visualizar um Vacuum Harvester após iniciar o jogo**. Esta seção supersede todas as referências abaixo a 1.4.1b como build física “atual”, preservando integralmente o dossiê migrado do Notion como snapshot técnico/histórico.
 
 ## Delta físico instalado — 1.4.1c

@@ -1,5 +1,15 @@
 # Alex's Mobs Continued
 
+> **AUTORIDADE FÍSICA ATUAL — 16/09/2026.** O pack agora contém `alexsmobs-2.1.13-neoforge+1.21.1.jar`, mod id `alexsmobs`, runtime `2.1.13`, SHA-1 físico `50ddafdf3d12b33331e4eecb4ab514ae451baadd`, NeoForge 1.21.1. CodxLib 1.6.0 continua satisfazendo o piso publicado da linha. Esta seção supersede exclusivamente as referências históricas abaixo que tratam `2.1.11` como runtime atual ou `2.1.13` como simples version drift; o catálogo benchmark de 89 mobs + Sea Bear e todo o corpo migrado do Notion permanecem preservados.
+
+## Delta físico instalado — 2.1.12 → 2.1.13
+- **2.1.12:** adiciona `flyTransformation` (default `true`), permitindo impedir a transformação de Fly em Crimson Mosquito no Nether; corrige orientação/natação de vários mobs aquáticos nas linhas afetadas, ataque vertical do Mantis Shrimp, iluminação de modelos no Animal Dictionary e o modelo das pernas de baby Moose.
+- **2.1.13:** adiciona `mimicubeDamageMultiplier`, também exposto em `/amc menu` → General; o multiplicador afeta dano melee, arrows e thrown tridents do Mimicube e mantém default `1.0`.
+- Regression gates acrescidos: transformação Fly→Crimson Mosquito com config on/off; movimentação vertical de Orca/Cachalot/Mantis Shrimp/Terrapin/Platypus/Mimic Octopus/Bone Serpent; ataques verticais do Mantis Shrimp; iluminação do Animal Dictionary; baby Moose; dano de Mimicube em melee/ranged/trident com multiplicadores `1.0`, reduzido e `0`.
+- Nenhum teste de runtime é marcado como executado nesta auditoria documental.
+
+> **Regra de leitura:** o conteúdo abaixo é o snapshot integral migrado do Notion e permanece como histórico técnico. Onde ele chama 2.1.11 de build física atual ou 2.1.13 de upstream não instalado, prevalece a autoridade física 2.1.13 acima.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader

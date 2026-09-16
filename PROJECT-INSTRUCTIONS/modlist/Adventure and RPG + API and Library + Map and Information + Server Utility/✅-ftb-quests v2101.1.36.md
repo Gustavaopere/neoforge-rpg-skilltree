@@ -1,4 +1,16 @@
-# FTB Quests — 2101.1.34
+# FTB Quests — 2101.1.36
+
+> **AUTORIDADE FÍSICA ATUAL — 16/09/2026.** O pack agora contém `ftb-quests-neoforge-2101.1.36.jar`, mod id `ftbquests`, runtime `2101.1.36`, SHA-1 físico `b2ede29b98a3022c22065fbe9b1761e385a28683`, NeoForge 1.21.1. A 2101.1.36, antes registrada abaixo como release upstream posterior, passou a ser a build instalada. Esta seção supersede exclusivamente as referências históricas abaixo que tratam 2101.1.34 como runtime atual ou 2101.1.36 como version drift.
+
+## Delta físico instalado — 2101.1.34 → 2101.1.36
+- A correção 2101.1.35 de permission checking para comandos `/ftbquests ...` executados por outros mods passa a integrar o baseline instalado.
+- A 2101.1.36 adiciona hotkeys rebindáveis de edit mode: Alt-C force-complete, Alt-R force-reset, Ctrl+S force-save server-side e Shift+Ctrl+S download do quest book para o cliente.
+- Alt+LMB passa a funcionar para seleção em caixa; Ctrl+Alt+LMB alterna seleção.
+- Corrige NPE client-side ao colar imagem com imagens selecionadas e corrige scrolling do quest screen pelas setas.
+- Regression gates acrescidos: permission checks em comandos disparados por outros mods, force-complete/reset/save/download, seleção por mouse, paste de imagens com seleção ativa e navegação por setas.
+- Nenhum teste de runtime é marcado como executado nesta auditoria documental.
+
+> **Regra de leitura:** o conteúdo abaixo é o snapshot integral migrado do Notion/GitHub. Onde ele chama 2101.1.34 de build física atual ou 2101.1.36 de upstream não instalado, prevalece a autoridade física 2101.1.36 acima.
 
 > **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `ftb-quests-neoforge-2101.1.34.jar` / `2101.1.34`. A release upstream mais recente para NeoForge 1.21.1 é **2101.1.36**, publicada em 15/09/2026. O delta inclui hotkeys rebindáveis de edição (force-complete, force-reset, save server-side e download para cliente), seleção por Alt+LMB, correção de NPE ao colar imagem com imagens selecionadas e correção do scrolling por setas. Esta nota supersede somente referências antigas de “latest/upstream” abaixo; não atribui essas mudanças à build instalada.
 

@@ -1,5 +1,17 @@
 # MineColonies
 
+> **AUTORIDADE FÍSICA ATUAL — 16/09/2026.** O pack agora contém `minecolonies-1.1.1387-1.21.1-snapshot.jar`, mod id `minecolonies`, runtime `1.1.1387-1.21.1-snapshot`, SHA-1 físico `07752c101305dde5e4621cda39b5d7607f614871`, NeoForge 1.21.1. A build continua sendo snapshot/beta. A publicação oficial 1.1.1387 mantém os mínimos Structurize `1.0.832+`, MultiPiston `1.2.51+`, BlockUI `1.0.199+` e Domum Ornamentum `1.0.223+`, e registra como delta próprio o port **Cavalry 4of4**. Esta seção supersede exclusivamente as referências históricas abaixo que tratam 1.1.1381 como runtime atual ou 1.1.1387 como version drift.
+
+## Delta físico instalado — 1.1.1381 → 1.1.1387
+- A correção `fix food handling` da 1.1.1383 passa a integrar o baseline instalado.
+- A linha intermediária 1.1.1386 trouxe correções já registradas na revalidação anterior para build order, direção/reaching em ladders de citizens e armor rendering.
+- A 1.1.1387 conclui o port **Cavalry 4of4**.
+- O boundary arquitetural permanece: MineColonies continua authority de colony state, CitizenData/jobs/buildings, WorkOrders, request system, research e permissions; snapshots novas aumentam o regression gate de migração/ABI dos addons sem transferir ownership.
+- Regression gates acrescidos: cavalry/AI e persistência associada, food handling, build order, ladder navigation/reaching, armor rendering, além de todo o lifecycle/request/addon matrix já documentado abaixo.
+- Nenhum teste de runtime é marcado como executado nesta auditoria documental.
+
+> **Regra de leitura:** o conteúdo abaixo é o snapshot integral migrado do Notion/GitHub e permanece como histórico técnico. Onde ele chama 1.1.1381 de build física atual ou 1.1.1387 de upstream não instalado, prevalece a autoridade física 1.1.1387 acima.
+
 > **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `minecolonies-1.1.1381-1.21.1-snapshot.jar` / `1.1.1381-1.21.1-snapshot`. A snapshot upstream mais recente para 1.21.1 é **1.1.1387**, publicada em 13/09/2026. Desde a 1.1.1383 já registrada abaixo, a 1.1.1386 trouxe fixes de build order, citizen ladder direction/reaching e armor rendering; a 1.1.1387 conclui o port **Cavalry 4of4**. Dependências mínimas publicadas para 1.1.1387: Structurize 1.0.832+, MultiPiston 1.2.51+, BlockUI 1.0.199+ e Domum Ornamentum 1.0.223+. Esta nota supersede somente as referências antigas de “latest/upstream” abaixo; não promove a snapshot instalada.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
