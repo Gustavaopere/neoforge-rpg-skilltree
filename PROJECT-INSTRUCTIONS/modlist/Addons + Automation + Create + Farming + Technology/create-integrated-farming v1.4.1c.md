@@ -1,35 +1,31 @@
-# Create: Integrated Farming
+# Create: Integrated Farming — 1.4.1c
 
-> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `create-integrated-farming-1.4.1b.jar` / `1.4.1b`. A release upstream mais recente para NeoForge 1.21.1 é **1.4.1c**, publicada em 10/09/2026 para Create 6.0.10. O delta é um hotfix material de estabilidade: corrige **crash intermitente no cliente ao colocar ou visualizar um Vacuum Harvester após iniciar o jogo**. Esta nota supersede somente referências antigas de “latest/upstream”; não promove a versão instalada.
-
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Estado atual: `Integrado ao Github`  
-> Autoridade física: modlist física mais recente, 595 entradas totais incluindo o modloader  
-> Auditoria de migração: 2026-09-15
+> **Reauditoria física e de migração — 16/09/2026.** A autoridade física atual é `create-integrated-farming-1.4.1c.jar`, mod id `create_integrated_farming`, runtime `1.4.1c`, SHA-1 `f451d79e850e6b10f205320b614c3d91cef9e240`, em NeoForge 1.21.1. O conteúdo migrado do Notion foi preservado e atualizado para a build instalada. A 1.4.1c herda o hotfix 1.4.1b para Tide e acrescenta correção de crash intermitente do Vacuum Harvester no cliente.
 
 ## Propriedades do registro
 
 - **Mod:** Create: Integrated Farming
-- **Arquivo JAR:** `create-integrated-farming-1.4.1b.jar`
-- **Versão 1.21.1:** `1.4.1b`
+- **Arquivo JAR:** `create-integrated-farming-1.4.1c.jar`
+- **Versão 1.21.1 / runtime:** `1.4.1c`
+- **Minecraft / loader:** 1.21.1 / NeoForge
 - **Categoria:** Automação; Comida; Tecnologia
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack:** Integrado ao Github
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming/files/8811301
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming
 - **Função:** Expande a automação agrícola do Create com máquinas e integrações especializadas para colheita, pesca, coleta de produtos animais, compostagem e compatibilidade com crops/containers de outros mods.
-- **Dependências:** Create 6.0.10 + Create: Dragons Plus. Farmer's Delight é fortemente recomendado pelo projeto; integrações adicionais são condicionais aos mods alvo realmente presentes.
-- **Compatibilidade/Riscos:** Interage com harvesting, crops modded, fishing loot, moving Sable sublevels, Mechanical Arms, compostagem e integrações agrícolas. A 1.4.1b corrige crash ao gerar catches de Fishing/Lava Fishing Nets com Tide 2.1.1; validar esse caminho se Tide estiver ativo.
+- **Dependências:** Create `6.0.10` + Create: Dragons Plus. Farmer's Delight é fortemente recomendado pelo projeto; integrações adicionais são condicionais aos mods alvo realmente presentes.
+- **Compatibilidade/Riscos:** Interage com harvesting, crops modded, fishing loot, moving Sable sublevels, Mechanical Arms, compostagem e integrações agrícolas. A linha 1.4.1b corrigiu crash ao gerar catches de Fishing/Lava Fishing Nets com Tide 2.1.1; a 1.4.1c corrige crash intermitente no cliente ao colocar ou visualizar Vacuum Harvester após iniciar o jogo. Tide não foi identificado como mod top-level na modlist física atual; sua integração permanece condicional.
 - **Sobreposição:** Complementa Create com automação agrícola específica. Create controla primitives cinéticas/logísticas; providers agrícolas controlam seus crops/loot/containers; Integrated Farming adapta essas authorities sem substituí-las.
-- **Observações:** mod id `create_integrated_farming`; runtime 1.4.1b. A ficha antiga ainda citava runtime 1.3.3b; corrigido em 08/09/2026. 1.4.1b é Release NeoForge 1.21.1 para Create 6.0.10 e hotfix de compatibilidade com Tide 2.1.1.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `create_integrated_farming` 1.4.1b + CurseForge/Modrinth oficiais da release 1.4.1b e descrição técnica já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `create-integrated-farming-1.4.1b.jar` / `1.4.1b`; Tide 2.1.1 continua regression gate condicional.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Integrated Farming 1.4.1b foi reconfirmado como `Instalado`, a referência residual 1.3.3b foi corrigida e a ficha reconstruída ao padrão técnico. Presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #123: create-integrated-farming-1.4.1b.jar / 1.4.1b reconfirmados; farming/fishing automation, harvesting authority, Arm/Spout/Sable integrations, lifecycle e regression gate Tide 2.1.1 permanecem atuais.
+- **Observações:** A build instalada é a Release 1.4.1c para NeoForge 1.21.1 / Create 6.0.10. O fix 1.4.1b para catches de Tide continua herdado; o delta 1.4.1c é de estabilidade client-side do Vacuum Harvester.
+- **Procedência:** modlist física atual de 16/09/2026 + publicação oficial da release 1.4.1c + dossiê técnico migrado do Notion. Presença de mixins opcionais (`tide`, `createenchantablemachinery`, `sable`, `delightoflight`) no JAR não é tratada como prova de que todos os providers estejam instalados.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026 a ficha foi reconstruída ao padrão técnico; a reauditoria atualiza apenas o estado físico/técnico necessário, sem converter presença em decisão curatorial.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — migração preservada e estado físico atualizado de 1.4.1b para 1.4.1c.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
 
-> 🌾 Versão física confirmada: `create-integrated-farming-1.4.1b.jar`, mod id `create_integrated_farming`, runtime `1.4.1b`, NeoForge 1.21.1. A build é feita para **Create 6.0.10** e expande a automação agrícola sem substituir a authority dos crops/loot dos mods integrados.
+> 🌾 **ESCOPO CANÔNICO.** Versão física confirmada: `create-integrated-farming-1.4.1c.jar`, mod id `create_integrated_farming`, runtime `1.4.1c`, NeoForge 1.21.1. A build é feita para **Create 6.0.10** e expande a automação agrícola sem substituir a authority dos crops/loot dos mods integrados.
 
 ## 1. Papel e authority
 Create: Integrated Farming adiciona appliances e bridges de agricultura/pesca ao ecossistema Create. **Create** continua authority de rotação, Mechanical Arms, Spouts e contraptions; cada mod agrícola continua authority de seus crops, drops, maturity rules e containers; Integrated Farming decide apenas suas máquinas e regras de adaptação.
@@ -37,13 +33,15 @@ Create: Integrated Farming adiciona appliances e bridges de agricultura/pesca ao
 ## 2. Vacuum Harvester
 O projeto documenta o **Vacuum Harvester**, um harvester rotacional em área que coleta e replanta crops maduros dentro de seu alcance. A maturidade precisa ser resolvida pelo crop/provider real; integração externa não deve colher novamente o mesmo block state após o addon já ter realizado o settlement.
 
+A **1.4.1c**, atualmente instalada, corrige um **crash intermitente no cliente ao colocar ou visualizar um Vacuum Harvester após iniciar o jogo**. O fix é de estabilidade/visualização client-side e não altera a regra de ownership da colheita.
+
 ## 3. Fishing Net
 A **Fishing Net** funciona como componente de contraption capaz de pescar e também capturar pequenas criaturas aquáticas suportadas. Loot e entidade capturada devem resultar de uma única execução; outro fishing automation não deve rolar a mesma captura em paralelo.
 
 ## 4. Lava Fishing Net
 A **Lava Fishing Net** estende a automação de pesca para lava quando integrações compatíveis estão presentes, incluindo Tide, Nether Depths Upgrade, Starcatch ou Confluence conforme documentação atual. A elegibilidade depende do mod alvo realmente instalado.
 
-A build 1.4.1b corrige especificamente crash quando Fishing Nets ou Lava Fishing Nets geram catches com **Tide 2.1.1**.
+A build 1.4.1b — herdada pela 1.4.1c — corrigiu especificamente crash quando Fishing Nets ou Lava Fishing Nets geram catches com **Tide 2.1.1**. No snapshot físico atual, Tide não foi identificado como top-level; portanto esse caminho permanece um regression gate **condicional**, e não uma integração ativa presumida.
 
 ## 5. Poultry Roosts
 Poultry Roosts automatizam produtos de aves suportadas. O projeto lista integrações com galinhas vanilla/Vanilla Backport e, condicionalmente, patos/gansos/perus de outros mods. Produção, cooldown e item gerado devem seguir a entidade/provider correspondente; não assumir suporte a qualquer ave por tag genérica.
@@ -74,31 +72,39 @@ Com Create Simulated Series, a documentação descreve Auger Shaft coletando out
 ## 13. Client/server e lifecycle
 Harvest, loot, replant, entity capture e inventory mutations são server/common. Models, Ponder e feedback são client-facing. Validar chunk unload/reload, contraption assembly, datapack/recipe reload, optional-mod load conditions, reconnect e server restart.
 
+A 1.4.1c adiciona um regression gate client-side específico: abrir o cliente recém-iniciado e colocar/visualizar Vacuum Harvester antes de considerar o update estável.
+
 ## 14. Riscos
 1. Crop colhido duas vezes por handlers concorrentes.
 2. Replant incorreto em crop multi-stage/multi-block.
 3. Fishing loot ou entidade duplicada.
-4. Tide 2.1.1 regression em nets.
+4. Tide 2.1.1 regression em nets, somente quando o provider estiver presente.
 5. Optional integration classloading sem provider.
 6. Sable sublevel resolver block/inventory do mundo errado.
 7. Poultry production duplicada.
 8. Arm/Spout operar em state stale após reload.
+9. Regressão do crash de Vacuum Harvester corrigido na 1.4.1c.
 
 ## 15. Matriz de testes
-1. Dedicated server boot com Create 6.0.10 + Dragons Plus.
-2. Vacuum Harvester em crops vanilla e modded realmente instalados.
-3. Replant e maturity em crops multi-stage/multi-block.
-4. Fishing Net: item loot + pequena criatura aquática.
-5. Lava Fishing Net com provider compatível; Tide 2.1.1 como regression gate quando presente.
-6. Poultry Roost com cada integração de ave realmente instalada.
-7. Mechanical Arm harvesting/logistics sem double settlement.
-8. Spout composting.
-9. Sable: parent world ↔ moving sublevel e sublevel ↔ sublevel.
-10. Restart/chunk reload/datapack reload.
+1. [ ] Dedicated server boot com Create 6.0.10 + Dragons Plus.
+2. [ ] Client boot limpo → colocar e visualizar Vacuum Harvester sem crash.
+3. [ ] Vacuum Harvester em crops vanilla e modded realmente instalados.
+4. [ ] Replant e maturity em crops multi-stage/multi-block.
+5. [ ] Fishing Net: item loot + pequena criatura aquática.
+6. [ ] Lava Fishing Net com provider compatível; Tide 2.1.1 apenas se realmente presente.
+7. [ ] Poultry Roost com cada integração de ave realmente instalada.
+8. [ ] Mechanical Arm harvesting/logistics sem double settlement.
+9. [ ] Spout composting.
+10. [ ] Sable: parent world ↔ moving sublevel e sublevel ↔ sublevel.
+11. [ ] Restart/chunk reload/datapack reload.
+
+Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
 ## 16. Evidência
-- modlist física 08/09/2026: `create-integrated-farming-1.4.1b.jar`, runtime 1.4.1b;
+- modlist física de 16/09/2026: `create-integrated-farming-1.4.1c.jar`, runtime 1.4.1c, SHA-1 `f451d79e850e6b10f205320b614c3d91cef9e240`;
 - CurseForge/Modrinth oficiais: farming appliances, Vacuum Harvester, Fishing/Lava Fishing Nets, Poultry Roosts, crop/Arm/Spout integrations e Sable compatibility;
-- release 1.4.1b: fix de crash de catches com Tide 2.1.1.
+- release 1.4.1b: fix de crash de catches com Tide 2.1.1;
+- release 1.4.1c: fix do crash intermitente client-side ao colocar/visualizar Vacuum Harvester após startup;
+- mixin `create_integrated_farming.tide.mixins.json` no JAR prova superfície opcional, não presença do Tide.
 
-> 🔒 Boundary canônico: **Integrated Farming automatiza a interação; o crop, loot, entidade ou container original continua decidindo seu state e conteúdo**.
+> 🔒 **Boundary canônico:** Integrated Farming automatiza a interação; o crop, loot, entidade ou container original continua decidindo seu state e conteúdo.
