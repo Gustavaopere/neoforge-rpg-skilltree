@@ -35,7 +35,7 @@ Dependendo do estado de preservação, pode sustentar que um ponto de `LOC-0001`
 ## O que NÃO prova
 - identidade do ocupante;
 - que ocultação implica crime, hostilidade ou magia proibida;
-- que o ponto pertence a `NPC-0001`;
+- que o ponto pertence a qualquer pessoa específica;
 - que qualquer material encontrado foi criado no próprio ponto;
 - um provider específico;
 - intenção, duração completa da ocupação ou número de envolvidos;
@@ -63,7 +63,7 @@ Nenhum por padrão. Se futuros detalhes usarem blocos, itens ou efeitos de um mo
 ## Relações
 - quests: `QST-0001`;
 - locais: `LOC-0001`;
-- NPCs: `NPC-0003` como possível investigador; `NPC-0001` não é identificado por esta peça isoladamente;
+- NPCs: `NPC-0003` como possível investigador;
 - evidências: `EVD-0001`, `EVD-0002`.
 
 ## Invariantes
