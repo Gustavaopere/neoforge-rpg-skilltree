@@ -14,7 +14,7 @@
 - **Observações:** JAR físico `somakespells-1.0.9-1.21.1.jar`, mod id `somakespells`, runtime 1.0.9. O antigo sufixo `-fix` pertencia ao filename 1.0.8 e não existe no JAR atual.
 - **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Somake 1.0.9 para NeoForge 1.21.1 + stack/integrations já auditados. Nenhum teste runtime foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 1.0.8-fix para 1.0.9; dossiê reconciliado às mudanças Red Soul, novos spells/items, compatibility e balance. Certificação pendente de QC/re-fetch final.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 1.0.8-fix para 1.0.9; dossiê reconciliado às mudanças Red Soul, novos spells/items, compatibility e balance.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
