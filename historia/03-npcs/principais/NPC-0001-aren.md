@@ -35,13 +35,20 @@ Esses invariantes são sistêmicos. Eles não importam para Aren a personalidade
 
 Da mesma forma, `DLG-0001`, a ficha de autoria de Severin e seu asset brief são material legado de calibração/look-dev. Eles não definem a voz nem a aparência de Aren.
 
-## Assets
+## Autoria e assets
+A ficha `NPC-0001-aren-autoria.md` materializa o gate de autoria próprio de Aren. Enquanto a entidade-fonte do Grimoire não for relida diretamente, voz, personalidade detalhada, motivações, aparência, relações específicas e direção visual permanecem `PENDENTE` nessa ficha em vez de serem preenchidas por inferência.
+
 Nenhum portrait, concept ou skin produzido para Severin pode ser marcado como asset de Aren por continuidade do ID. Aren exige direção visual derivada de source reconciliado e aprovação editorial própria antes de produção final.
 
 ## Relações sistêmicas
 - Stage 08: Opportunity & Discovery Lifecycle, quando Aren participar de conteúdo que use esse lifecycle;
 - Stage 08: Death, Resurrection & Identity Continuity;
 - Event Ledger, knowledge e relações do Narrative & Society Core.
+
+## Referências editoriais
+- autoria: `NPC-0001-aren-autoria.md`;
+- migração de identidade: `historia/11-ia-e-autoria/15-migracao-npc-0001-severin-aren-2026-09-15.md`;
+- reconciliação Grimoire ↔ GitHub: `historia/11-ia-e-autoria/12-grimoire-github-sync.md`.
 
 ## Spoilers
 Motivações específicas, segredos, agenda futura, alianças, possíveis traições e finais não são definidos por este dossiê. Quando existirem em source autoritativa, devem ser registrados nos arquivos internos apropriados sem transformar hipótese anterior de Severin em fato de Aren.
