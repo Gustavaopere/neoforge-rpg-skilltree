@@ -20,8 +20,9 @@ Registrar a resolução do conflito de identidade entre a representação GitHub
 4. A migração é tratada como **retcon/substituição editorial**, não como alias, pseudônimo, nome antigo, duplicata ou evento ocorrido no mundo.
 5. Nenhuma voz, aparência, idade, roupa, motivação, segredo, relação ou decisão anteriormente escrita para Severin é transferida automaticamente para Aren.
 6. Contratos sistêmicos independentes da identidade — knowledge, relações multidimensionais, autonomia, Event Ledger, morte/retorno e continuidade de identidade — continuam aplicáveis a `NPC-0001` como a qualquer NPC.
-7. Referências históricas de `QST-0001` a `NPC-0001` são preservadas somente para rastreabilidade. Elas não confirmam Aren como participante/alvo/responsável da quest.
+7. Referências ativas de `QST-0001`, suas evidências, NPCs associados e diálogos a `NPC-0001` não podem sobreviver apenas por herança editorial de Severin. Elas devem ser removidas ou genericizadas até que um vínculo com Aren seja aprovado por provenance própria.
 8. `DLG-0001`, a ficha de autoria e o asset brief de Severin permanecem como material legado, explicitamente não autorizado como voz/aparência de Aren.
+9. Os exemplos sistêmicos do Stage 08 podem preservar as propriedades de teste do antigo cenário de Severin somente como fixtures genéricas, sem binding a `NPC-0001`, Aren ou qualquer outro NPC ativo.
 
 ## Não decidido por esta migração
 - biografia completa de Aren;
@@ -35,7 +36,8 @@ Registrar a resolução do conflito de identidade entre a representação GitHub
 - entidade ativa: `historia/03-npcs/principais/NPC-0001-aren.md`;
 - antigo dossiê de Severin: preservado como registro legado e sem redeclarar `NPC-0001` como entidade;
 - autoria/asset/dialogue de Severin: preservados como material legado, não promovível para Aren;
-- `QST-0001`: deve distinguir participante confirmado de referência estrutural legada;
+- `QST-0001`, seus registros de evidência, Iren e diálogos ativos: não devem conter binding estável a Aren herdado de Severin;
+- Stage 08: cenários anteriormente nomeados Severin passam a fixtures genéricas de acceptance, sem identidade canônica;
 - `STATUS.md` e backlog: conflito de identidade deixa de ser pendência; possíveis vínculos narrativos/visuais de Aren permanecem sujeitos a provenance própria.
 
 ## Regra de interpretação futura
@@ -45,6 +47,7 @@ Encontrar o texto “Severin” em histórico Git, PRs, arquivos legados ou cen�
 A migração editorial está concluída quando:
 - existir apenas uma declaração ativa de entidade `NPC-0001`, nomeada Aren;
 - materiais de Severin estiverem marcados como legado;
-- `QST-0001` não afirmar Aren como participante por herança automática;
+- `QST-0001`, evidências, NPCs associados e diálogos ativos não afirmarem Aren como participante por herança automática;
+- fixtures Stage 08 anteriormente nomeadas Severin estiverem explicitamente genéricas e sem binding a `NPC-0001`;
 - backlog/status não mantiverem o conflito como aberto;
 - validators/inventory da campanha passarem sem referências órfãs ou duplicidade de declaração.
