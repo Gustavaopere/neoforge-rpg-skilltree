@@ -37,7 +37,7 @@ Se as entradas forem autênticas, prova que determinadas ocorrências foram regi
 - que a concentração não é coincidência ou viés de coleta;
 - que todos os relatos são verdadeiros;
 - que existe um único responsável;
-- identidade, intenção ou culpa de `NPC-0001`;
+- identidade, intenção ou culpa de qualquer pessoa específica;
 - natureza arcana, tecnológica, biológica ou criminal das ocorrências;
 - qual provider, se algum, está envolvido;
 - coordenadas/bioma/worldgen final de `LOC-0001` antes do binding geográfico.
