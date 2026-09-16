@@ -7,25 +7,27 @@
 > **Invariante de categorização (AND):** um mod só pode entrar em uma pasta composta se possuir **todas** as categorias escritas no nome dessa pasta no CurseForge. A pasta também deve conter **todas** as categorias temáticas atribuídas ao projeto; portanto, correspondência parcial, categoria faltante ou categoria extra torna o caminho inválido.
 >
 > `Última edição` significa a última alteração documental significativa do dossiê anterior à reorganização estrutural inicial, normalizada para `America/Sao_Paulo` (UTC-03:00). A movimentação de diretório, a retirada temporária de `✅-` ou a manutenção deste índice não reescrevem esse histórico.
+>
+> **Reauditoria física do lote atual — 16/09/2026:** os dez itens revalidados nesta rodada usam a nova modlist física com **587 entradas top-level incluindo o modloader**. Para esses dez itens, JAR, runtime/metadata e posição abaixo substituem os valores do snapshot anterior; linhas fora deste lote não foram promovidas por esta reauditoria.
 
 ## Mods certificados e organizados
 
 | # | Mod | JAR físico | Versão instalada | Pasta / categorias | Última edição |
 |---:|---|---|---|---|---|
-| 017 | Alex's Caves Continued | `alexscaves-1.0.9-neoforge+1.21.1.jar` | `1.0.9` | `World Gen` | 15/09/2026 17:41 |
-| 019 | Alex's Mobs Continued | `alexsmobs-2.1.11-neoforge+1.21.1.jar` | `2.1.11` | `Mobs` | 15/09/2026 17:41 |
-| 046 | Ars 'n' Spells | `ars_n_spells-3.3.2.jar` | `3.3.2` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 15/09/2026 17:41 |
+| 018 | Alex's Caves Continued | `alexscaves-1.0.10-neoforge+1.21.1.jar` | `1.0.10` | `World Gen` | 16/09/2026 00:29 |
+| 020 | Alex's Mobs Continued | `alexsmobs-2.1.13-neoforge+1.21.1.jar` | `2.1.13` | `Mobs` | 16/09/2026 00:29 |
+| 045 | Ars 'n' Spells | `ars_n_spells-3.3.4.jar` | `3.3.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 16/09/2026 00:29 |
+| 122 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 16/09/2026 00:29 |
 | 137 | Corail Tombstone | `tombstone-neoforge-1.21.1-9.5.5.jar` | `9.5.5` | `Adventure and RPG + Magic + Mobs + Utility & QoL` | 15/09/2026 18:39 |
 | 160 | Create: Colony Logistics | `create_colony_logistics-1.3.2.jar` | `1.3.2` | `Addons + Create` | 15/09/2026 18:39 |
-| 168 | Create: Integrated Farming | `create-integrated-farming-1.4.1b.jar` | `1.4.1b` | `Addons + Automation + Create + Farming + Technology` | 15/09/2026 17:41 |
-| 216 | Create: Fluid | `fluid-2.1.5.jar` | `2.1.5` | `Addons + Create` | 15/09/2026 17:41 |
-| 240 | Easy NPC | `easy_npc-neoforge-1.21.1-7.11.0.jar` | `7.11.0` do JAR; metadata runtime sem versão | `Adventure and RPG + API and Library` | 15/09/2026 17:41 |
+| 238 | Easy NPC | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1` do JAR/build; metadata runtime sem versão | `Adventure and RPG + API and Library` | 16/09/2026 00:29 |
 | 242 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.11.0.jar` | `7.11.0` | `Utility & QoL` | 15/09/2026 18:39 |
-| 289 | Euphoria Patches | `EuphoriaPatcher-1.10.0-r5.9-neoforge.jar` | `1.10.0-r5.9-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 15/09/2026 17:41 |
-| 325 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.34.jar` | `2101.1.34` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 15/09/2026 17:41 |
-| 405 | MineColonies | `minecolonies-1.21.1-1.1.1381-snapshot.jar` | `1.1.1381-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 15/09/2026 17:41 |
+| 265 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 16/09/2026 00:29 |
+| 283 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 16/09/2026 00:29 |
+| 289 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 16/09/2026 00:29 |
+| 394 | MineColonies | `minecolonies-1.1.1387-1.21.1-snapshot.jar` | `1.1.1387-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 16/09/2026 00:29 |
 | 434 | Create: Northstar - Redux | `Northstar-0.6.4+1.21.1.jar` | `0.6.4+1.21.1` | `Addons + Create + Dimensions + KubeJS + Technology` | 15/09/2026 18:39 |
-| 503 | Relics | `relics-1.21.1-0.12.8.jar` | `0.12.8` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources` | 15/09/2026 17:41 |
+| 473 | Relics | `relics-1.21.1-0.12.8.jar` | `0.12.8` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources` | 16/09/2026 00:29 |
 | 574 | Streams Reflowing | `StreamsReflowing-neoforge-1.21.1-2.13.1.jar` | `2.13.1` | `Biomes + Cosmetic + World Gen` | 15/09/2026 18:39 |
 
 ## Evidência de categorização no CurseForge — certificados
@@ -34,20 +36,20 @@ Categorias verificadas em 15/09/2026 no projeto CurseForge correspondente ao art
 
 | # | Projeto | Project ID | CurseForge | Categorias verificadas |
 |---:|---|---:|---|---|
-| 017 | Alex's Caves Continued | `1645389` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued) | `World Gen` |
-| 019 | Alex's Mobs Continued | `1635121` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued) | `Mobs` |
-| 046 | Ars 'n' Spells | `1447914` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells) | `Addons` · `Adventure and RPG` · `Magic` · `Utility & QoL` |
+| 018 | Alex's Caves Continued | `1645389` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued) | `World Gen` |
+| 020 | Alex's Mobs Continued | `1635121` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued) | `Mobs` |
+| 045 | Ars 'n' Spells | `1447914` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells) | `Addons` · `Adventure and RPG` · `Magic` · `Utility & QoL` |
+| 122 | Create: Integrated Farming | `1249131` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming) | `Addons` · `Automation` · `Create` · `Farming` · `Technology` |
 | 137 | Corail Tombstone | `243707` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/corail-tombstone) | `Adventure and RPG` · `Magic` · `Mobs` · `Utility & QoL` |
 | 160 | Create: Colony Logistics | `1466643` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/cclogistics) | `Addons` · `Create` |
-| 168 | Create: Integrated Farming | `1249131` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming) | `Addons` · `Automation` · `Create` · `Farming` · `Technology` |
-| 216 | Create: Fluid | `1346709` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/create-fluid) | `Addons` · `Create` |
-| 240 | Easy NPC | `559312` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/easy-npc) | `Adventure and RPG` · `API and Library` |
+| 238 | Easy NPC | `559312` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/easy-npc) | `Adventure and RPG` · `API and Library` |
 | 242 | Easy NPC: Config UI | `1214728` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui) | `Utility & QoL` |
-| 289 | Euphoria Patches | `915902` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/euphoria-patches) | `Addons` · `Cosmetic` · `Miscellaneous` · `Utility & QoL` |
-| 325 | FTB Quests (NeoForge) | `289412` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/ftb-quests-forge) | `Adventure and RPG` · `API and Library` · `Map and Information` · `Server Utility` |
-| 405 | MineColonies | `245506` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/minecolonies) | `Adventure and RPG` · `Armor, Tools, and Weapons` · `Automation` · `Storage` · `Structures` |
+| 265 | Euphoria Patches | `915902` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/euphoria-patches) | `Addons` · `Cosmetic` · `Miscellaneous` · `Utility & QoL` |
+| 283 | Create: Fluid | `1346709` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/create-fluid) | `Addons` · `Create` |
+| 289 | FTB Quests (NeoForge) | `289412` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/ftb-quests-forge) | `Adventure and RPG` · `API and Library` · `Map and Information` · `Server Utility` |
+| 394 | MineColonies | `245506` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/minecolonies) | `Adventure and RPG` · `Armor, Tools, and Weapons` · `Automation` · `Storage` · `Structures` |
 | 434 | Create: Northstar - Redux | `1318310` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/northstar-redux) | `Addons` · `Create` · `Dimensions` · `KubeJS` · `Technology` |
-| 503 | Relics | `445274` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/relics-mod) | `Adventure and RPG` · `Armor, Tools, and Weapons` · `Cosmetic` · `Magic` · `Ores and Resources` |
+| 473 | Relics | `445274` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/relics-mod) | `Adventure and RPG` · `Armor, Tools, and Weapons` · `Cosmetic` · `Magic` · `Ores and Resources` |
 | 574 | Streams Reflowing | `1581408` | [Abrir projeto](https://www.curseforge.com/minecraft/mc-mods/streams-reflowing) | `Biomes` · `Cosmetic` · `World Gen` |
 
 ## Itens organizados sem aprovação
@@ -66,6 +68,6 @@ Evidência externa dos bloqueios: [Cold Sweat](https://www.curseforge.com/minecr
 
 ## Divergências de metadata preservadas
 
-- **Easy NPC (#240):** o JAR físico registra `7.11.0` no filename, mas o campo de versão runtime da modlist está vazio; o índice não inventa uma versão runtime ausente.
+- **Easy NPC (#238):** o JAR físico atual registra `7.12.1` no filename/build (`easy_npc-neoforge-1.21.1-7.12.1.jar`), mas o campo de versão runtime da modlist permanece vazio; o índice não inventa uma versão runtime ausente.
 - **Somake Spells (#550, sem aprovação):** o JAR físico é `somakespells-1.0.8-1.21.1-fix.jar`, enquanto a metadata runtime informa `1.0.8`; ambas as formas são preservadas.
 - **Thirst Was Reclaimed (#584, sem aprovação):** o nome versionado do dossiê usa `v3.0.4`, enquanto a autoridade física/runtime registra `1.21.1-3.0.4`; a versão instalada permanece a física até o JAR mudar.
