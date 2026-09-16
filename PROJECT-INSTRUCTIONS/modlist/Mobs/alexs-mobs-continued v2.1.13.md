@@ -1,42 +1,46 @@
-# Alex's Mobs Continued
+# Alex's Mobs Continued — 2.1.13
+
+> **Reauditoria física e de migração — 16/09/2026.** A autoridade física atual é `alexsmobs-2.1.13-neoforge+1.21.1.jar`, mod id `alexsmobs`, runtime `2.1.13`, SHA-1 `50ddafdf3d12b33331e4eecb4ab514ae451baadd`, em NeoForge 1.21.1. O catálogo benchmark migrado do Notion foi preservado integralmente e atualizado para os deltas 2.1.12/2.1.13 agora instalados. A 2.1.12 adiciona `flyTransformation` e corrige superfícies aquáticas/Dictionary/model; a 2.1.13 adiciona `mimicubeDamageMultiplier`. Nenhum teste de runtime foi promovido como executado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack:** Integrado ao Github
-- **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader
-- **Auditoria de migração Notion → GitHub:** 2026-09-15
+- **Autoridade física usada:** modlist física atual de 16/09/2026
+- **Auditoria de migração Notion → GitHub:** 2026-09-15; reauditoria física 2026-09-16
 
 ## Propriedades do banco
 
 - **Mod:** Alex's Mobs Continued
-- **Arquivo JAR:** `alexsmobs-2.1.11-neoforge+1.21.1.jar`
-- **Versão 1.21.1:** 2.1.11
+- **Arquivo JAR:** `alexsmobs-2.1.13-neoforge+1.21.1.jar`
+- **Versão 1.21.1 / runtime:** `2.1.13`
+- **Minecraft / loader:** 1.21.1 / NeoForge
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
-- **Categoria:** Mobs, Exploração
+- **Categoria:** Mobs; Exploração
 - **Função:** Grande expansão de fauna/ecossistema com 89 mobs jogáveis documentados no roster oficial original, mais o Sea Bear secreto quando Super Secret Settings está ativo. O conteúdo cobre fauna terrestre/aquática/aérea, Nether e End, predador-presa, grupos/herds, domesticação e breeding seletivos, montarias, captura em balde, ovos/colônias, criaturas segmentadas, um chief (Warped Mosco), um boss (Void Worm), materiais/drops, armas, ferramentas, armaduras, blocos utilitários, efeitos/potions, Animal Dictionary, advancements e configuração granular de spawn. A ficha interna contém catálogo individual dos 89 mobs + Sea Bear, sistemas, itens, blocos, efeitos, riscos e matriz de validação.
-- **Dependências:** OBRIGATÓRIA: CodxLib 1.6.0+ para a release 2.1.11; o pack instala codxlib-1.6.0-neoforge+1.21.1.jar. Citadel 2.7.1 permanece presente por outros consumidores, mas não é hard dependency externa deste port.
+- **Dependências:** OBRIGATÓRIA: CodxLib `1.6.0+`; o pack instala `codxlib-1.6.0-neoforge+1.21.1.jar`. Citadel `2.7.1` permanece presente por outros consumidores, mas não é hard dependency externa deste port.
 - **Sobreposição:** Sobrepõe parcialmente o domínio de fauna/mobs, exploração e ecossistema de outros grandes mob packs, mas não é redundância simples: cada criatura tem IA, cadeia de interação e recursos próprios. Interseções relevantes no pack: Enhanced AI (comportamento), AI-Improvements (custo/infra de IA), mods de worldgen/biomas (spawn), Alex's Delight/Farmer's Delight (uso culinário de drops), além de outros mods de fauna/bosses que aumentam densidade ecológica e carga de entidades.
-- **Compatibilidade/Riscos:** Roster/registries continuam provider-native. Enhanced AI 4.2.3.0 pode alterar goals/pathfinding; worldgen/biome providers alteram distribuição de spawn; Alex's Delight 1.6 consome drops. 2.1.11 adiciona edição in-game de Spawn Group Sizes e depende do fix numérico do CodxLib 1.6.0. Patches feitos para outros ports de Alex não são presumidos compatíveis.
-- **Observações:** Runtime físico permanece 2.1.11. `/amc menu` → Spawning expõe Spawn Group Sizes e grava `spawnGroupSizes`. Catálogo benchmark 89 mobs normais + Sea Bear secreto preservado. Upstream 2.1.13 não deve ser promovido para a ficha instalada sem atualização física da modlist/JAR.
-- **Procedência:** modlist.txt física do projeto reconsultada em 14/09/2026 + CurseForge oficial Alex's Mobs Continued + CodxLib 1.6.0 + dossiê operacional e fontes já auditadas. Artefato instalado `alexsmobs-2.1.11-neoforge+1.21.1.jar`, runtime `2.1.11`, SHA-1 `4c5f93c4eb7cbd784c6fda02292b2806c31a0a5f`, mixin `alexsmobs.mixins.json`. Upstream possui 2.1.13, tratado apenas como version drift.
+- **Compatibilidade/Riscos:** Roster/registries continuam provider-native. Enhanced AI `4.2.3.0` pode alterar goals/pathfinding; worldgen/biome providers alteram distribuição de spawn; Alex's Delight `1.6` consome drops. A linha 2.1.10/2.1.11 introduziu e expôs `spawnGroupSizes`; 2.1.12 adicionou `flyTransformation` e corrigiu natação/Dictionary/model em versões afetadas; 2.1.13 adicionou `mimicubeDamageMultiplier`. Patches feitos para outros ports de Alex não são presumidos compatíveis.
+- **Observações:** Runtime físico atual `2.1.13`. `/amc menu` mantém Spawn Group Sizes e, na 2.1.13, expõe `mimicubeDamageMultiplier` em General. Catálogo benchmark 89 mobs normais + Sea Bear secreto preservado.
+- **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Alex's Mobs Continued 2.1.12/2.1.13 + CodxLib 1.6.0 + dossiê operacional e fontes já auditadas. Artefato instalado `alexsmobs-2.1.13-neoforge+1.21.1.jar`, runtime `2.1.13`, SHA-1 `50ddafdf3d12b33331e4eecb4ab514ae451baadd`, mixin `alexsmobs.mixins.json`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — benchmark revalidado contra a modlist física: `alexsmobs-2.1.11-neoforge+1.21.1.jar` / `2.1.11`, SHA-1 e mixin registrados. Upstream 2.1.13 existe, mas não substitui a autoridade do artefato instalado.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — benchmark preservado e estado físico atualizado de 2.1.11 para 2.1.13; deltas 2.1.12/2.1.13 incorporados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita integralmente após feedback de que a descrição anterior era genérica e insuficiente para outro chat operar. A nova ficha passa a ser um dossiê operacional do conteúdo do mod e não apenas um resumo de propósito.
 - **Data da última decisão:** 2026-09-07
 
-> 🔎 **ESCOPO CANÔNICO DESTA FICHA.** O runtime físico do pack é `alexsmobs-2.1.11-neoforge+1.21.1.jar`, mod id `alexsmobs`, em NeoForge 1.21.1. A página pública de **Alex's Mobs Continued** usa a frase “around 116 animals and monsters”, porém a página oficial do Alex's Mobs original enumera **89 mobs de gameplay**. O registro de entidades também contém vários EntityTypes técnicos — partes de criaturas segmentadas, projéteis, veículos e entidades auxiliares. Portanto, para documentação de gameplay, esta ficha usa **89 mobs normais + Sea Bear secreto**, e não interpreta “~116” como 116 criaturas normais distintas.
+> 🔎 **ESCOPO CANÔNICO DESTA FICHA.** O runtime físico do pack é `alexsmobs-2.1.13-neoforge+1.21.1.jar`, mod id `alexsmobs`, em NeoForge 1.21.1. A página pública de **Alex's Mobs Continued** usa a frase “around 116 animals and monsters”, porém a página oficial do Alex's Mobs original enumera **89 mobs de gameplay**. O registro de entidades também contém vários EntityTypes técnicos — partes de criaturas segmentadas, projéteis, veículos e entidades auxiliares. Portanto, para documentação de gameplay, esta ficha usa **89 mobs normais + Sea Bear secreto**, e não interpreta “~116” como 116 criaturas normais distintas.
 
 ## 1. Identidade, versão e authority
 - **Mod:** Alex's Mobs Continued.
-- **Runtime instalado:** `2.1.11`.
-- **JAR físico:** `alexsmobs-2.1.11-neoforge+1.21.1.jar`.
+- **Runtime instalado:** `2.1.13`.
+- **JAR físico:** `alexsmobs-2.1.13-neoforge+1.21.1.jar`.
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Mod id:** `alexsmobs`.
+- **SHA-1 físico:** `50ddafdf3d12b33331e4eecb4ab514ae451baadd`.
 - **Papel:** grande provider de fauna, ecossistema, exploração, combate de criaturas, tame/breeding, mobilidade, drops funcionais, equipamentos e interações ambientais.
 - **Origem:** continuação não oficial que preserva o conteúdo do Alex's Mobs original em versões modernas.
 - **Decisão do pack:** **Manter**.
-- **Authority de versão:** a modlist física prevalece. O snapshot físico do projeto, reconsultado em **14/09/2026**, confirma `alexsmobs-2.1.11-neoforge+1.21.1.jar` / runtime **2.1.11**, SHA-1 `4c5f93c4eb7cbd784c6fda02292b2806c31a0a5f`, com `alexsmobs.mixins.json`. A publicação upstream já possui builds posteriores, incluindo **2.1.13**, mas isso é apenas version drift upstream: **não altera a versão instalada** enquanto a modlist/JAR físico permanecer em 2.1.11.
+- **Authority de versão:** a modlist física prevalece. O snapshot atual confirma `alexsmobs-2.1.13-neoforge+1.21.1.jar` / runtime **2.1.13**, com `alexsmobs.mixins.json`. Não existe promoção por simples existência upstream: a build documentada aqui é a efetivamente presente no pack.
 
 ## 2. O que o mod realmente adiciona
 O mod não é “um pacote de bichos decorativos”. O roster foi projetado para que as criaturas participem do mundo por **comportamento, cadeia ecológica e utilidade**. Há predador-presa, rebanhos e tropas, domesticação por condições específicas, breeding, imprinting, montarias, animais de transporte, pesca/forrageamento automatizável, mobs que transformam blocos/biomas, criaturas que produzem recursos sem serem mortas, entidades aquáticas capturáveis em balde, ovos e colônias, monstros multipartes, criaturas do Nether e End, um chief e um boss.
@@ -63,14 +67,14 @@ O mod não é “um pacote de bichos decorativos”. O roster foi projetado para
 9. **Devil's Hole Pupfish** — `devils_hole_pupfish`. Peixe extremamente raro, inspirado no animal real; o design do mod restringe sua ocorrência fortemente. Bucketável. Representa conteúdo de coleção/conservação e deve ser tratado como spawn raro ao validar worldgen.
 10. **Endergrade** — `endergrade`. Ilhas externas do End. Criatura flutuante lenta; come Chorus Flowers, é presa de Enderiophages. Pode ser **selada/tornada montaria com Saddle** e controlada com **Chorus Fruit on a Stick**. Breed com Chorus Fruit.
 11. **Flutter** — `flutter`. Lush Caves. Pequena criatura floral; pode ser domesticada alimentando diferentes tipos de flores. Tamed: follow/stay/wander e dispara **Pollen Balls** homing contra ameaças. Flower Pot funciona como proteção/equipamento; pode ser carregada. Heal com flores, breed com Bone Meal e pode estimular vegetação/azaleas. Dropa Spore Blossom.
-12. **Fly** — `fly`. Overworld com céu exposto. Inseto de 2 HP; interage com undead, é presa de spiders/frogs/potoos e se transforma em **Crimson Mosquito** ao ir para o Nether. Pode gerar **Maggots**, recurso recorrente de breeding/alimentação de outros mobs.
+12. **Fly** — `fly`. Overworld com céu exposto. Inseto de 2 HP; interage com undead, é presa de spiders/frogs/potoos e, por default, transforma-se em **Crimson Mosquito** ao ir para o Nether. A 2.1.12 tornou essa transformação configurável por `flyTransformation`, habilitado por padrão. Pode gerar **Maggots**, recurso recorrente de breeding/alimentação de outros mobs.
 13. **Flying Fish** — `flying_fish`. Oceans/Lukewarm Ocean. Salta para fora d'água e plana por curtas distâncias; bucketável. Drop/item Flying Fish participa de **Flying Fish Boots**, que melhoram saltos saindo da água e combinam bem com Elytra.
 14. **Gazelle** — `gazelle`. Savanna/Savanna Plateau/Windswept Savanna. Animal de rebanho que foge coletivamente; dropa Mutton e **Gazelle Horn**. Breed com Acacia Blossom/Wheat. O horn pode elevar Speed II a Speed III.
 15. **Hummingbird** — `hummingbird`. Jungles e biomas florais. Três variações; poliniza flores/culturas e pode ser ancorado por **Hummingbird Feeder** abastecido com água+açúcar, aumentando a utilidade agrícola. Breed com flores. Sem drop de combate importante.
 16. **Jerboa** — `jerboa`. Desert à noite; dorme durante o dia. Pequeno e caçado por Rattlesnakes, foxes/cats. Pede sementes e recompensa o jogador com **Fleet-Footed**, efeito de velocidade quando corre/pula. Breed com Maggots, Crimson Mosquito Larvae ou Leafcutter Ant Pupae.
 17. **Laviathan** — `laviathan`. Lava Sea do Nether. Grande criatura passiva, nada em lava e se move lentamente em terra. Lura **Crimson Mosquitoes** com fumaça e os captura. Exposição adequada à água pode solidificá-la em variante obsidiana, que também consegue nadar em água. Tameável e breedable; Crimson Mosquito Larvae participam do manejo, Magma Cream cura. Usa **Straddlite Saddle/Tack** para transporte sobre lava.
 18. **Maned Wolf** — `maned_wolf`. Savanna e variantes. Ao receber **Apple**, produz stench por alguns segundos: atrai mobs próximos que não sejam monstros e acelera temporariamente crescimento de Gongylidia em Leafcutter Ant Chambers. É importante para a cadeia Leafcutter Ant. Breedable. Em 2.1.10 houve correção específica para freeze ao alimentar maçã quando era a última do stack.
-19. **Mimic Octopus** — `mimic_octopus`. Warm Ocean. Camufla-se copiando a cor do bloco e regenera durante camuflagem; imita Creeper, Guardian e Pufferfish para afugentar predadores. Tame com vários Lobster Tails quando não camuflado; tamed pode follow/stay/wander e ser bucketado. Slimeball estende sobrevivência terrestre. Com 5–8 Mimicream, aprende ataques das formas imitadas: pequena explosão, laser de Guardian e espinhos venenosos. Breed com Tropical Fish.
+19. **Mimic Octopus** — `mimic_octopus`. Warm Ocean. Camufla-se copiando a cor do bloco e regenera durante camuflagem; imita Creeper, Guardian e Pufferfish para afugentar predadores. Tame com vários Lobster Tails quando não camuflado; tamed pode follow/stay/wander e ser bucketado. Slimeball estende sobrevivência terrestre. Com 5–8 Mimicream, aprende ataques das formas imitadas: pequena explosão, laser de Guardian e espinhos venenosos. Breed com Tropical Fish. A 2.1.12 corrige o comportamento de natação vertical em versões afetadas da linha moderna.
 20. **Mudskipper** — `mudskipper`. Mangrove Swamp. Semi-aquático; dois indivíduos fazem disputa ritual de dominância. Bucketável. Tame com Lobster Tails; tamed usa **Mud Ball** contra ameaças, causando dano/slowness, e pode strafe em combate. Breed com larvas ou Lobster Tails.
 21. **Mungus** — `mungus`. Mushroom Fields. Cresce mushrooms no corpo, dispara feixe em mushrooms para gerar/spread de cogumelos e solta **Mungal Spores** em vida. Com cinco mushrooms nas costas, morte pode causar conversão ambiental/biome dependendo do mushroom, portanto é um mob com efeito de mundo e não apenas fauna. Também participa da transformação Crimson Mosquito → **Warped Mosco** quando coberto com Warped Fungus.
 22. **Potoo** — `potoo`. Dark Forest. Ave quase imóvel de dia, pousa em logs/leaves; à noite caça Flies. Pupilas reagem ao nível de luz. Pode ser manejado pelo **Falconry Glove** e breed com Maggots.
@@ -82,7 +86,7 @@ O mod não é “um pacote de bichos decorativos”. O roster foi projetado para
 28. **Spectre** — `spectre`. Ilhas externas do End. Criatura espectral passiva, resistente a dano comum; **Soul Heart** a atrai. O jogador pode se prender com lead para ser carregado entre ilhas do End e soltar crouch/right-click. Atua como transporte aéreo orgânico.
 29. **Stradpole** — `stradpole`. Nether/lava e também água; pequena criatura associada ao Straddler. Pode ser lançada como projétil por Straddlers e também manipulada/capturada. Alimentação com Crimson Mosquito Larvae pode transformá-la em Straddler.
 30. **Sugar Glider** — `sugar_glider`. Birch/Old Growth Birch Forest. Escala paredes e plana entre árvores. Tame com Sweet Berries; follow/stay/wander. Pode ser colocado na cabeça do dono e concede **slow falling**. Tamed forageia leaves, obtendo junk ou ocasionalmente recursos como arrows/Hair of Bear/Moose Antlers. Breed com Honeycomb.
-31. **Terrapin** — `terrapin`. Rivers. Tartaruga semi-aquática bucketável com seis tipos de shell e seis de skin, gerando centenas de combinações/mutações. Jogador pode pisar nela para recolher ao casco e pisar novamente para **lançá-la como shell**, causando dano em entidades. Breed com Seagrass e põe Terrapin Eggs.
+31. **Terrapin** — `terrapin`. Rivers. Tartaruga semi-aquática bucketável com seis tipos de shell e seis de skin, gerando centenas de combinações/mutações. Jogador pode pisar nela para recolher ao casco e pisar novamente para **lançá-la como shell**, causando dano em entidades. Breed com Seagrass e põe Terrapin Eggs. A 2.1.12 corrige natação vertical na linha moderna afetada.
 32. **Toucan** — `toucan`. Jungle/Bamboo/Sparse Jungle. Cinco variantes. Ao receber Apple/Banana, pode **plantar saplings** correspondentes; Golden Apple cria Golden Toucan mais eficiente, Enchanted Golden Apple cria variante que planta sem exigir alimentação constante. Breedable.
 33. **Triops** — `triops`. Água em Desert/Badlands e variantes. Bucketável e breedable. A presença de Triops **intimida Crimson Mosquitoes**, fazendo-os tremer, desistir de atacar e se afastar; também possui ciclo com Triops Eggs.
 
@@ -91,7 +95,7 @@ O mod não é “um pacote de bichos decorativos”. O roster foi projetado para
 2. **Bald Eagle** — `bald_eagle`. Biomas elevados/montanhosos. Predador aéreo que caça, mergulha sobre presas e pode ser domesticado com Fish Oil. **Falconry Glove** permite carregar/lançar a ave contra alvos e recuperar; **Falconry Hood** complementa falcoaria. É uma ferramenta de exploração/combate, não apenas pet.
 3. **Bison** — `bison`. Plains/Snowy Plains/Meadow e afins. Grande herbívoro de rebanho com charge. Pode ser sheared para **Bison Fur**, que volta a crescer; fur produz blocos/carpet e equipamento para neve/powder snow. Limpa snow layers em certas interações e breed com Wheat. 2.1.10 corrigiu pathfinding/agro que fazia o bison ficar bravo sem perseguir.
 4. **Bunfungus** — `bunfungus`. Mushroom Fields ou transformação de Rabbit com Mungal Spores. Gigante fúngico, muito resistente; descansa de dia e combate monstros à noite com saltos/área. Carrot pode pacificar/fortalecer temporariamente. Representa defesa ambiental ligada ao ecossistema mushroom.
-5. **Cachalot Whale** — `cachalot_whale`. Ocean/deep ocean adequados; pods. Usa **echolocation** para caçar Squid/Glow Squid/Mimic Octopus/Giant Squid; luta com Giant Squid, quebra obstáculos frágeis/boats e dorme verticalmente. Há variante albina rara. Pode encalhar em circunstâncias específicas; resgate é uma interação própria. Recursos como tooth/ambergris entram em equipamentos/utilidades.
+5. **Cachalot Whale** — `cachalot_whale`. Ocean/deep ocean adequados; pods. Usa **echolocation** para caçar Squid/Glow Squid/Mimic Octopus/Giant Squid; luta com Giant Squid, quebra obstáculos frágeis/boats e dorme verticalmente. Há variante albina rara. Pode encalhar em circunstâncias específicas; resgate é uma interação própria. Recursos como tooth/ambergris entram em equipamentos/utilidades. A 2.1.12 corrige natação vertical em versões afetadas.
 6. **Caiman** — `caiman`. Mangrove Swamp. Semi-aquático; morde quando provocado e faz comportamento de breach/vibração na superfície. Tame ocorre por **imprinting**: ficar próximo de Caiman Eggs quando eclodem faz o filhote vincular-se ao indivíduo mais próximo. Tamed possui follow/stay/wander e pode ser criado.
 7. **Capuchin Monkey** — `capuchin_monkey`. Jungle e variantes. Vive em tropas, arremessa cobblestone. Tame com Banana; follow/stay/wander e pode ficar no ombro. Do ombro, auxilia em combate; **Ancient Dart** melhora o ataque ranged/piercing. Heal com Eggs, breed com Maggots. Bananas também podem gerar Banana Peel/Sopa De Macaco na cadeia de itens.
 8. **Cosmaw** — `cosmaw`. End Highlands/Midlands/Barrens; raro, voa e não pousa. Tame com Cosmic Cod; tamed não é pet de DPS: seu papel principal é **resgatar o dono que cai no void**, pegando-o e levando-o de volta a terra. Heal com Chorus Fruit; breed com Cosmic Cod.
@@ -104,9 +108,9 @@ O mod não é “um pacote de bichos decorativos”. O roster foi projetado para
 15. **Kangaroo** — `kangaroo`. Badlands e Savannas. Locomoção por saltos; luta com punch/kick. Tame com cerca de 10–15 Carrots. Tamed tem **pouch inventory**: pode usar melee weapon armazenada, equipar helmet/chestplate e consumir comida não-carne para se curar. Breed com Dead Bush/Grass. Dropa meat e hide.
 16. **Leafcutter Ant** — `leafcutter_ant`. Colônias em Jungles, via **Leafcutter Anthill**. Workers coletam leaves e retornam; Queen permanece na colônia. Há limite de população e crescimento condicionado a folhas/queen. Leaf harvest pode expandir **Leafcutter Ant Chambers** e produzir **Gongylidia**. Shroomlight permite colher Gongylidia sem provocar workers; Maned Wolf stench acelera crescimento. Gongylidia cura/pacifica e alimenta queen; **Leafcutter Ant Pupa** inicia nova colônia. Anteaters predam ants. 2.1.10 corrigiu pathfinding/agro de workers.
 17. **Lobster** — `lobster`. Underwater Beach. Seis variantes de cor com raridades muito diferentes; reage com pinça ao ataque. Bucketável. Lobster Tail é alimento/recurso importante para breeding/taming de vários mobs aquáticos.
-18. **Mantis Shrimp** — `mantis_shrimp`. Warm Ocean/Mangrove Swamp. Socos extremamente fortes, knockback, fogo e **quebra de blocos**. Caça fish/squid/guardians/shulkers e Mimic Octopus. Tame com 10–30 Tropical Fish. Tamed: follow/stay/wander/**breaking blocks**; sneak-use entrega um block como alvo e o shrimp procura/quebra blocos iguais. Water Bucket permite sobrevivência terrestre permanente do tamed. Breed com Lobster Tails.
-19. **Moose** — `moose`. Snowy/cold biomes. Grande herbívoro de rebanho; machos com antlers fazem disputas. Pode shed antlers naturalmente, que voltam a crescer; **Moose Antler** alimenta Antler Headdress. Recebe cobertura de neve em condições frias e interage com wolves. Breed com Dandelions.
-20. **Orca** — `orca`. Cold/Deep Cold/Frozen Oceans. 60 HP na referência secundária; caça em grupo. Preda Salmon, Seals, Turtles, Drowned, Guardians, baby Cachalot Whales, Polar Bears e até Moose em situações aquáticas. Ataques incluem bite/tail slam. Não tame/breed. Integra cadeia ecológica marinha de alto nível.
+18. **Mantis Shrimp** — `mantis_shrimp`. Warm Ocean/Mangrove Swamp. Socos extremamente fortes, knockback, fogo e **quebra de blocos**. Caça fish/squid/guardians/shulkers e Mimic Octopus. Tame com 10–30 Tropical Fish. Tamed: follow/stay/wander/**breaking blocks**; sneak-use entrega um block como alvo e o shrimp procura/quebra blocos iguais. Water Bucket permite sobrevivência terrestre permanente do tamed. Breed com Lobster Tails. A 2.1.12 corrige natação vertical e restaura ataques contra alvos acima/abaixo em versões afetadas.
+19. **Moose** — `moose`. Snowy/cold biomes. Grande herbívoro de rebanho; machos com antlers fazem disputas. Pode shed antlers naturalmente, que voltam a crescer; **Moose Antler** alimenta Antler Headdress. Recebe cobertura de neve em condições frias e interage com wolves. Breed com Dandelions. A 2.1.12 corrige separação visual de um pixel nas pernas de baby Moose.
+20. **Orca** — `orca`. Cold/Deep Cold/Frozen Oceans. 60 HP na referência secundária; caça em grupo. Preda Salmon, Seals, Turtles, Drowned, Guardians, baby Cachalot Whales, Polar Bears e até Moose em situações aquáticas. Ataques incluem bite/tail slam. Não tame/breed. Integra cadeia ecológica marinha de alto nível. A 2.1.12 corrige natação vertical na linha moderna afetada.
 21. **Raccoon** — `raccoon`. Plains/forests/taigas/meadows/cherry. Procura comida, lava alimento em água, pode roubar containers/villagers. Tame deixando Egg para ele lavar na água; tamed follow/stay/wander e usa carpet como bandana. Breed com Bread. Glow Berries ativam dupla de combate com Blue Jay. **Raccoon Tail** pode virar Frontiersman's Cap.
 22. **Snow Leopard** — `snow_leopard`. Snowy Plains/Taiga/Frozen River/Ocean/slopes/peaks/grove. Predador que stalk e pounce, caça Sheep/livestock e reage ao ataque. Não tame, mas breedable. Sem drop importante; sua função é ecológica/combat behavior.
 23. **Tarantula Hawk** — `tarantula_hawk`. Desert. Vespa parasitoide. Ataca Spiders aplicando **Debilitating Sting**, paralisa, carrega e enterra em Sand. Tame com Spider Eyes; tamed follow/stay/wander e protege owner. Breed com Fermented Spider Eyes; reprodução usa Spider como hospedeiro: egg é implantado e grub emerge depois. Grub criado no Nether cresce em variante Nether. Tattered/Tarantula Hawk Wings entram em Elytra própria.
@@ -118,7 +122,7 @@ O mod não é “um pacote de bichos decorativos”. O roster foi projetado para
 1. **Alligator Snapping Turtle** — `alligator_snapping_turtle`. Swamp/Mangrove Swamp. Ataca quando chega muito perto; semi-aquática. Acumula moss depois de passar tempo em água; pode ser sheared para Seagrass e raramente **Spiked Scute**, recurso de equipamento. Breedable.
 2. **Enderiophage** — `enderiophage`. End Midlands. Voa e caça Endergrades. Ataque pode aplicar **Ender Flu**, efeito que escala e pode culminar em surgimento de novos phages; Chorus Fruit/Milk são mecanismos de cura na referência. Ao infectar perde o olho e pode obtê-lo de Endermen. Dropa **Capsid**, bloco de processamento/armazenamento que participa de Enderiophage Rocket e conversões como Cosmic Cod/Mysterious Worm.
 3. **Grizzly Bear** — `grizzly_bear`. Forests. Adultos protegem cubs, interagem com beehives/honey e Salmon. Honey altera comportamento e pode abrir janela segura de aproximação; alimentação apropriada constrói confiança/tame na mecânica do mod. **Hair of Bear** é recurso associado. Predador/forager de grande porte.
-4. **Platypus** — `platypus`. River/Frozen River; raro. Semi-aquático, retaliando com Poison via esporões. Bucketável. Redstone “carrega” a capacidade sensorial e faz o animal procurar em Clay Blocks itens como Clay Balls/Maggots; Redstone Block aumenta a colheita. Breed com Lobster Tails. Fedora é easter egg/vestível associado.
+4. **Platypus** — `platypus`. River/Frozen River; raro. Semi-aquático, retaliando com Poison via esporões. Bucketável. Redstone “carrega” a capacidade sensorial e faz o animal procurar em Clay Blocks itens como Clay Balls/Maggots; Redstone Block aumenta a colheita. Breed com Lobster Tails. Fedora é easter egg/vestível associado. A 2.1.12 corrige natação vertical na linha moderna afetada.
 5. **Rattlesnake** — `rattlesnake`. Desert/Badlands. Dá aviso sonoro antes de ataque e usa veneno; Roadrunner é predador. **Rattlesnake Rattle** participa de Poisonous Essence/potion chain. Placação/evitação depende de respeitar distância; breedable.
 6. **Rhinoceros** — `rhinoceros`. Savannas. Spawna em grupos, fica agressivo se aproximado/atacado e usa **charge/impale**. Wheat pacifica. Ataca Illagers e Ravagers, inserindo-se ativamente em raids/combate ambiental. Breedable. 2.1.10 corrigiu pathfinding/agro de rhinos.
 7. **Skunk** — `skunk`. Forests. Defesa principal é spray que causa efeitos de náusea/stink e afugenta criaturas. **Stink in a Bottle** e **Stink Ray** transformam a mecânica em ferramenta: mobs hostis/neutros podem redirecionar agressão ao alvo pulverizado e passivos fogem; pode gerar lingering cloud se o alvo estiver sob potion effect. Breed com Sweet Berries.
@@ -126,13 +130,13 @@ O mod não é “um pacote de bichos decorativos”. O roster foi projetado para
 
 ### 3.4 Placáveis/pacificáveis — 12
 1. **Anaconda** — `anaconda` + `anaconda_part`. Swamp/Mangrove Swamp. Multipart; embosca, enrola/constringe e engole presa. Presa engolida não gera drops normais. Depois de três grandes refeições pode shed **Snake Skin**, usada em banner/Vine Lasso. Raw Chicken pacifica e também participa do breeding.
-2. **Bone Serpent** — `bone_serpent` + partes. Lava Sea do Nether. Serpente segmentada que salta da lava e ataca; inimiga de Soul Vultures/Wither Skeletons. **Unsettling Kimono** ou condições de Straddleboard podem evitar agressão. Drop de Bone Serpent Tooth; tooth + Lava Bottle entra em **Lava Vision**.
+2. **Bone Serpent** — `bone_serpent` + partes. Lava Sea do Nether. Serpente segmentada que salta da lava e ataca; inimiga de Soul Vultures/Wither Skeletons. **Unsettling Kimono** ou condições de Straddleboard podem evitar agressão. Drop de Bone Serpent Tooth; tooth + Lava Bottle entra em **Lava Vision**. A 2.1.12 corrige natação vertical em versões afetadas.
 3. **Cave Centipede** — `centipede_head/body/tail`. Cavernas profundas, multipart; sobe paredes, caça Cockroaches e aplica Poison. **Bug Pheromones** podem pacificar. Dropa Cave Centipede Legs, que entram em **Cave Centipede Leggings** para wall climbing e em potion chain de Poison Resistance.
 4. **Crimson Mosquito** — `crimson_mosquito`. Crimson Forest ou transformação de Fly no Nether. Voa, prende-se ao alvo e suga sangue. Depois de se alimentar pode gerar Blood Sac/Proboscis e alimentar armas de sangue. **Bug Pheromones/Mosquito Repellent** reduzem agressão. Se sugar um Mungus adequadamente convertido com Warped Fungus, pode virar **Warped Mosco**.
 5. **Crocodile** — `crocodile`. Rivers/Swamps/Mangrove. Semi-aquático; morde, agarra, arrasta para água e usa death roll. Shield pode interromper/stun em condição de investida; sneak é importante para escapar de grapple. Tame não é por feed direto: **Crocodile Egg** hatch/imprint produz filhote vinculado. Adultos produzem/dropam **Crocodile Scute**, usada na Crocodile Chestplate de mobilidade aquática.
 6. **Froststalker** — `froststalker`. Ice Spikes/Frozen Peaks. Caçador de pack, cerca alvo e salta; prefere Tusklins. **Froststalker Helmet** pacifica. Tem formas spiked/spikeless; dropa Froststalker Horn e gelo quando spiked. Breedable.
 7. **Hammerhead Shark** — `hammerhead_shark`. Warm Ocean. Não caça jogador saudável automaticamente da mesma forma que um hostil; prioriza entidades feridas e fauna aquática. Circula e faz dash. Durante ataques pode soltar **Shark Teeth** em vez de exigir kill, coerente com filosofia de recursos renováveis; teeth fazem Shark Tooth Arrows, eficazes underwater.
-8. **Komodo Dragon** — `komodo_dragon`. Sparse Jungle. Predador com bite venenoso, caça fauna e pode canibalizar Komodos enfraquecidos; indivíduos fazem wrestling. Pode ser tame com grande quantidade de Rotten Flesh e depois usar follow/stay/wander/saddle; breed com Rotten Flesh. Produz **Komodo Dragon Spit**, recurso de potion/crafting. Qualquer divergência de tag/tame entre original e Continued deve ser validada no runtime 2.1.10.
+8. **Komodo Dragon** — `komodo_dragon`. Sparse Jungle. Predador com bite venenoso, caça fauna e pode canibalizar Komodos enfraquecidos; indivíduos fazem wrestling. Pode ser tame com grande quantidade de Rotten Flesh e depois usar follow/stay/wander/saddle; breed com Rotten Flesh. Produz **Komodo Dragon Spit**, recurso de potion/crafting. Qualquer divergência de tag/tame entre original e Continued deve ser validada no runtime **2.1.13**.
 9. **Skelewag** — `skelewag`. Próximo a Shipwrecks submersos. Peixe-esqueleto agressivo, mas **Unsettling Kimono** o pacifica. Faz charges/slashes; pode ter Drowned jockey e banner. Dropa Bones/Fish Bones e raramente **Skelewag Skull**, que funciona como arma rápida e também block/parry.
 10. **Soul Vulture** — `soul_vulture`. Bone Fossils em Soul Sand Valley. Só pousa em Bone Blocks. Ataca jogador sem **Unsettling Kimono**; circula e mergulha, podendo roubar vida/heal via soulsteal. Depois de acumular soulsteal suficiente pode fornecer **Soul Heart**, importante para Soulsteal/Spectre.
 11. **Tiger** — `tiger`. Bamboo Jungle/Cherry Grove; grupos 1–3. Antes de atacar fica quase invisível, deixando olhos visíveis; pounce aplica **Scared Still**. Alimentar Chicken/Porkchop/fresh meat concede **Tiger's Blessing**, tornando Tigers aliados temporários e fazendo-os defender o jogador; atacar um Tiger remove o benefício. Breed com Acacia Blossoms e pode gerar White Tiger raro.
@@ -142,7 +146,7 @@ O mod não é “um pacote de bichos decorativos”. O roster foi projetado para
 1. **Dropbear** — `dropbear`. Nether Wastes. Marsupial demoníaco que escala teto, espera prey abaixo e cai para causar dano antes de usar bite/claws. Dropa **Dropbear Claw**, usada em Flint and Steel alternativo, Tendon Whip e Potion of Clinging, que permite andar no teto.
 2. **Farseer** — `farseer`. Próximo/fora da **World Border**, em qualquer dimensão. Hostil endgame raro; usa múltiplos braços, beam ocular, projéteis estáticos e portais próprios para reposicionamento. Referência secundária reporta ataques que ignoram armor/enchantments e beam extremamente letal. Dropa **Farseer Arms**; acesso normal costuma envolver Dimensional Carver/Shattered Dimensional Carver. Precisa de smoke test antes de qualquer balanceamento custom.
 3. **Guster** — `guster`. Desert durante rain/thunder; variantes standard/red/soul conforme sedimento/bioma. Atira sand, puxa mobs/items para um tornado e os lança. Vulnerável a água e mais resistente a projéteis. Dropa **Guster Eye**: faz **Gustmaker** redstone que empurra entidades/itens e **Pocket of Sand** como arma.
-4. **Mimicube** — `mimicube`. End Cities. Slime hostil que **copia equipamento e ações do alvo**: weapon, helmet, shield, bow/crossbow/trident e comida. Dropa **Mimicream**; combinar Mimicream com item damageable cria cópia de durabilidade zerada que preserva propriedades/enchantments e deve ser reparada para uso.
+4. **Mimicube** — `mimicube`. End Cities. Slime hostil que **copia equipamento e ações do alvo**: weapon, helmet, shield, bow/crossbow/trident e comida. Dropa **Mimicream**; combinar Mimicream com item damageable cria cópia de durabilidade zerada que preserva propriedades/enchantments e deve ser reparada para uso. Na 2.1.13, `mimicubeDamageMultiplier` escala todo dano que o Mimicube causa — melee, arrows e thrown tridents — com default `1.0`.
 5. **Murmur** — `murmur` + `murmur_head` + tendon segments. Cavernas profundas e condições específicas de Cherry Grove; multipart, com pescoço/tendon extensível que alcança grandes distâncias e cabeça que morde. Dropa **Elastic Tendon** e pode dropar Unsettling Kimono. Danificar cabeça/pescoço tem regras próprias; kimono não torna o próprio Murmur passivo.
 6. **Rocky Roller** — `rocky_roller`. Cavernas. Monstro rochoso que enrola o corpo e acelera em carga; impacto/landing pode aplicar **Earthquake** visual. Dropa **Rocky Shell**, usada em Rock Shell Chestplate: permite ao jogador rolar em sprint e colidir com entidades.
 7. **Skreecher** — `skreecher`. Deep Dark coberto, não spawnando com céu aberto. Possui apenas 2 HP na referência, mas sua ameaça é indireta: ao detectar jogador faz ruído e **pode invocar Warden** depois de alguns segundos. Projectile pode derrubá-lo/interromper temporariamente. Dropa **Skreecher Soul**, usada em **Sculk Boomer**, trap ativada por vibração/Sculk Sensor.
@@ -268,17 +272,19 @@ Banana; Blobfish item; Boiled Emu Egg; Raw/Cooked Catfish; Raw/Cooked Kangaroo M
 - **Power Outage** (`power_down`) — efeito associado ao conteúdo secreto/easter egg.
 
 ### Famílias de poções documentadas
-Bug Pheromones; Clinging; Knockback Resistance I/II; Lava Vision; Poison Resistance; Soulsteal I/II; Swiftness III. Receitas exatas devem ser consultadas/validada via JEI/runtime ao implementar quests, pois o pack pode alterar recipes via outros mods/datapacks.
+Bug Pheromones; Clinging; Knockback Resistance I/II; Lava Vision; Poison Resistance; Soulsteal I/II; Swiftness III. Receitas exatas devem ser consultadas/validadas via JEI/runtime ao implementar quests, pois o pack pode alterar recipes via outros mods/datapacks.
 
 ## 9. Animal Dictionary e advancements
-O **Animal Dictionary** é o manual in-game do mod. Possui entry por mob normal e pode ser usado diretamente em uma criatura para abrir sua entry. Também pode interagir com Lectern/Chiseled Bookshelf. O Sea Bear, por ser segredo, não possui entry. A linha 2.1.10 corrigiu iluminação/render dos modelos mostrados no Dictionary.
+O **Animal Dictionary** é o manual in-game do mod. Possui entry por mob normal e pode ser usado diretamente em uma criatura para abrir sua entry. Também pode interagir com Lectern/Chiseled Bookshelf. O Sea Bear, por ser segredo, não possui entry. A linha 2.1.10 fez uma primeira correção de iluminação; a **2.1.12** registra o fix que faz todos os mobs aparecerem corretamente iluminados em 1.20.5+.
 
 O mod possui advancements ligados a encontros e mecânicas específicas, por exemplo tame de Tarantula Hawk/Mantis Shrimp, transformar Stradpole, obter Rainbow Jelly, usar Underminer para revelar ore, etc. Para quests do modpack, **preferir usar esses gatilhos reais quando expostos** em vez de criar achievements genéricos que ignoram a mecânica própria.
 
 ## 10. Configuração e datapackability
 A configuração é ampla e não se resume a enable/disable global. A referência documenta parâmetros como:
 - `<mobName>SpawnWeight` e `<mobName>SpawnRolls` por criatura.
-- `spawnGroupSizes` — novidade da 2.1.10; permite capar min/max por mob, ex.: `alexsmobs:orca|1|1` para spawn solo.
+- `spawnGroupSizes` — introduzido na 2.1.10 e exposto na GUI na 2.1.11; permite capar min/max por mob, ex.: `alexsmobs:orca|1|1` para spawn solo.
+- `flyTransformation` — 2.1.12; default `true`; quando desabilitado, Flies deixam de virar Crimson Mosquitoes no Nether.
+- `mimicubeDamageMultiplier` — 2.1.13; também em `/amc menu` → General; default `1.0`; escala melee, arrows e thrown tridents do Mimicube.
 - `leafcutterAntFungusGrowChance` e `leafcutterAntRepopulateFeedings`.
 - `limitGusterSpawnsToWeather`.
 - `limitTransmutingToLootTables`, `transmutingWeightRemoveStep`.
@@ -299,7 +305,7 @@ A página oficial original também descreve configuração por biome registry/di
 
 ## 11. Dependências e runtime do pack
 ### Obrigatória
-- **CodxLib:** a release 2.1.11 exige **CodxLib 1.6.0 ou superior**. O pack instala `codxlib-1.6.0-neoforge+1.21.1.jar` / runtime 1.6.0, portanto satisfaz exatamente o novo piso.
+- **CodxLib:** a release 2.1.13 exige **CodxLib 1.6.0 ou superior**. O pack instala `codxlib-1.6.0-neoforge+1.21.1.jar` / runtime 1.6.0, portanto satisfaz o piso publicado.
 
 ### Citadel
 Continued declara que **não precisa do Citadel externo**: as partes necessárias foram incorporadas. O pack possui `citadel-2.7.1-1.21.1.jar` porque outros mods dependem dele. Isso é coexistência, não dependência direta do Alex's Mobs Continued.
@@ -316,17 +322,35 @@ Continued declara que **não precisa do Citadel externo**: as partes necessária
 O changelog upstream de 2.1.10 registra:
 1. **Maned Wolf:** corrigido freeze/save+close ao alimentar Apple quando a maçã era a última do stack; a correção também cobre outros mobs que liam a mesma condição ao comer.
 2. **Pathfinding/agro:** Bison, Rhinoceros, Elephant, Gorilla e Leafcutter Ants podiam ficar agressivos mas não perseguir; corrigido.
-3. **Animal Dictionary:** iluminação dos modelos corrigida.
+3. **Animal Dictionary:** iluminação dos modelos recebeu correção inicial.
 4. **Shield of the Deep:** posição visual ao bloquear corrigida, voltando ao comportamento esperado de 2.0.7.
 5. **`spawnGroupSizes`:** nova opção de configuração para limitar tamanho de grupo por entidade.
 6. **Dependência:** CodxLib >=1.4.0 no NeoForge/Forge.
 
 ## 13. Mudança específica da versão 2.1.11
-A release **2.1.11**, agora instalada no pack, expõe a configuração de **Spawn Group Sizes** diretamente na interface `/amc menu` → Spawning. O menu grava a mesma opção `spawnGroupSizes` introduzida em 2.1.10, mantendo arquivo e GUI alinhados.
+A release **2.1.11** expõe a configuração de **Spawn Group Sizes** diretamente na interface `/amc menu` → Spawning. O menu grava a mesma opção `spawnGroupSizes` introduzida em 2.1.10, mantendo arquivo e GUI alinhados.
 
 A release também passa a exigir **CodxLib 1.6.0+**. O changelog informa ainda correção no CodxLib para os botões `+`/`-` numéricos da `/amc menu`, que antes podiam somar o novo valor ao antigo e levar rapidamente a configuração ao máximo. Como o pack usa CodxLib 1.6.0, essa correção faz parte do baseline atual.
 
-Os fixes de 2.1.10 para pathfinding/agro, Animal Dictionary, Shield of the Deep e `spawnGroupSizes` continuam herdados pela 2.1.11 e permanecem válidos como regressões a testar.
+Os fixes de 2.1.10 para pathfinding/agro, Shield of the Deep e `spawnGroupSizes` continuam herdados pelas builds atuais e permanecem válidos como regressões a testar.
+
+## 13.1 Delta instalado da versão 2.1.12
+A 2.1.12 acrescenta/ajusta:
+- `flyTransformation`, default ligado, para controlar a transformação Fly → Crimson Mosquito no Nether;
+- correção de natação vertical em versões 1.21.2+ para Orca, Cachalot Whale, Mantis Shrimp, Terrapin, Platypus, Mimic Octopus, Bone Serpent e outros swimmers afetados;
+- Mantis Shrimp volta a atingir alvos acima/abaixo;
+- Animal Dictionary passa a iluminar corretamente todos os mobs nas versões afetadas;
+- baby Moose deixa de apresentar pernas deslocadas um pixel.
+
+A build do pack é 1.21.1; correções explicitamente limitadas pelo upstream a 1.21.2+ são registradas como delta herdado da release, mas **não são inventadas como bug previamente ativo nesta instância 1.21.1**.
+
+## 13.2 Delta instalado da versão 2.1.13
+A 2.1.13 adiciona `mimicubeDamageMultiplier`, também em `/amc menu` → General. Ele escala todo dano que o Mimicube causa:
+- melee;
+- arrows;
+- thrown tridents.
+
+O default é `1.0`; `0.5` reduz o dano pela metade e `0` torna o dano do Mimicube inofensivo segundo o changelog. Isso importa porque Mimicubes copiam a arma usada contra eles, incluindo enchantments. A release continua exigindo CodxLib 1.6.0+.
 
 ## 14. Riscos upstream a acompanhar — não são falhas locais confirmadas
 Reports públicos recentes do repositório Continued incluem temas como:
@@ -345,7 +369,7 @@ Esses itens são **fila de validação**, não justificativa para afirmar que o 
 2. **Spawn Overworld:** amostrar forest, savanna, desert/badlands, swamp/mangrove, snowy/peaks, river/ocean, caves/lush/deep dark e mushroom fields.
 3. **Spawn Nether:** Bone Serpent, Crimson Mosquito, Warped Toad, Warped Mosco transformation, Straddler/Stradpole, Dropbear, Laviathan, Soul Vulture.
 4. **Spawn End:** Endergrade, Enderiophage, Spectre, Mimicube, Cosmaw/Cosmic Cod e Void Worm summon.
-5. **Group AI regression herdada de 2.1.10:** provocar Bison, Rhino, Elephant, Gorilla e Leafcutter workers no runtime 2.1.11 e verificar pursuit/pathfinding real.
+5. **Group AI regression herdada de 2.1.10:** provocar Bison, Rhino, Elephant, Gorilla e Leafcutter workers no runtime **2.1.13** e verificar pursuit/pathfinding real.
 6. **Enhanced AI compatibility:** repetir hostis e grupos com Enhanced AI ativo; observar goals duplicados, freeze, impossible path, friendly-fire ou targeting anormal.
 7. **Tame/breed:** um exemplo de cada modelo: Gorilla/Kangaroo; Mimic Octopus/Mantis Shrimp; Crocodile/Caiman imprint; Tiger Blessing; Endergrade/Tusklin/Laviathan mount.
 8. **Bucket/persistence:** capturar/recolocar Catfish com conteúdo, Terrapin, Platypus, Mimic Octopus, Mudskipper e Frilled Shark; conferir NBT/persistence.
@@ -358,6 +382,11 @@ Esses itens são **fila de validação**, não justificativa para afirmar que o 
 15. **Boss/chief:** Warped Mosco transformation + loot; Void Worm summon, multipart hitboxes, portals/projectiles, boss death/loot.
 16. **Dedicated server/sync:** tame ownership, riding, bucket NBT, multipart entities, projectiles e effects sem client-only assumptions.
 17. **Performance:** observar entity count, pathfinding de herds/colonies e tick cost em áreas com grande fauna.
+18. **`flyTransformation`:** validar default ligado e comportamento desligado no Nether sem assumir resultado além do config contract.
+19. **Swimmers/Mantis Shrimp:** smoke-test de coluna d'água e ataque vertical, especialmente se a mesma lógica do port afetar o runtime usado.
+20. **`mimicubeDamageMultiplier`:** testar `1.0`, `0.5` e `0` com melee, bow e thrown trident, sem confundir config com balanceamento externo.
+
+Nenhum desses testes foi marcado como executado nesta auditoria documental.
 
 ## 16. Regras para outros chats usarem esta ficha
 - Não resumir Alex's Mobs Continued como “adiciona ~116 animais”. Isso perde a estrutura de gameplay e ainda mistura mobs com EntityTypes técnicos.
@@ -369,9 +398,9 @@ Esses itens são **fila de validação**, não justificativa para afirmar que o 
 - Para **atualização**, modlist física é authority de versão; upstream mais novo só vira realidade depois que o JAR do pack mudar.
 
 ## 17. Fontes e grau de confiança
-**Authority física do pack:** `modlist.txt` física reconsultada em 14/09/2026 — `alexsmobs-2.1.11-neoforge+1.21.1.jar`, runtime 2.1.11, SHA-1 `4c5f93c4eb7cbd784c6fda02292b2806c31a0a5f`, mixin `alexsmobs.mixins.json`, CodxLib 1.6.0, Citadel 2.7.1, Alex's Delight 1.6 e Enhanced AI 4.2.3.0. Upstream 2.1.13 é version drift e não altera o runtime instalado.
+**Authority física do pack:** modlist física de 16/09/2026 — `alexsmobs-2.1.13-neoforge+1.21.1.jar`, runtime 2.1.13, SHA-1 `50ddafdf3d12b33331e4eecb4ab514ae451baadd`, mixin `alexsmobs.mixins.json`, CodxLib 1.6.0, Citadel 2.7.1, Alex's Delight 1.6, Enhanced AI 4.2.3.0 e AI-Improvements 0.5.3.
 
-**Fonte primária do port:** [Alex's Mobs Continued — CurseForge](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued). Usada para propósito do port, loaders, dependências e changelog 2.1.10.
+**Fonte primária do port:** [Alex's Mobs Continued — CurseForge](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued). Usada para propósito do port, loaders, dependências e changelogs 2.1.10–2.1.13.
 
 **Fonte primária do roster original:** [Alex's Mobs — CurseForge oficial](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs). A página oficial enumera o roster publicado de 89 mobs e descreve a filosofia de comportamento/recursos/configuração.
 
