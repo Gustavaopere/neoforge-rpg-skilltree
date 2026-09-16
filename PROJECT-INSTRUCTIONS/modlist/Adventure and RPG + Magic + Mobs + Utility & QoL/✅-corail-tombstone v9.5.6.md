@@ -14,7 +14,7 @@
 - **Observações:** mod id `tombstone`; runtime físico 9.5.6. A release 9.5.6 para NeoForge 1.21.1, publicada em 09/09/2026, corrige restauração de XP na morte com level count alto causada por integer overflow. Config física de grave/access/perks não foi lida.
 - **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Corail Tombstone 9.5.6 + dossiê Notion anterior com 9.5.3–9.5.5. Nenhum teste de death/recovery foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/corail-tombstone
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 9.5.5 para 9.5.6; o fix de XP restoration que antes era update candidate agora pertence à build instalada. Certificação pendente de QC/re-fetch final.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 9.5.5 para 9.5.6; o fix de XP restoration que antes era update candidate agora pertence à build instalada.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
