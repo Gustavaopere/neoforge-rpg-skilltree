@@ -25,4 +25,6 @@ Para grandes colônias, não manter simulação social pesada por cidadão. Usar
 - witnesses individuais apenas quando um evento real os seleciona.
 
 ## Acceptance
-Duas colônias MineColonies com perfis narrativos distintos reagem de modo diferente à presença de Severin sem alterar a lógica interna do MineColonies. Remover MineColonies não impede o jar base de iniciar.
+Duas colônias MineColonies com perfis narrativos distintos reagem de modo diferente à presença de uma fixture genérica de pesquisador de necromancia sem alterar a lógica interna do MineColonies. Remover MineColonies não impede o jar base de iniciar.
+
+A fixture é sistêmica e identitariamente neutra; não representa nem cria binding para qualquer NPC canônico.
