@@ -14,7 +14,7 @@
 - **Observações:** mod id `streamsreflowing`; runtime 2.13.5. Config/preset físico do pack não foi lido. Em 16/09/2026 há 2.13.7 upstream para outras linhas 1.21.x; não é promovida aqui como versão instalada nem como compat 1.21.1 validada sem arquivo específico correspondente.
 - **Procedência:** modlist física de 16/09/2026 + CurseForge oficial/changelog 2.13.2–2.13.5. Nenhum teste de seed/chunkgen/corrente/restart foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing ; https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?version=1.21.1
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 2.13.1 para 2.13.5; dossiê reconciliado aos deltas 2.13.2–2.13.5. Certificação pendente de QC/re-fetch final.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 2.13.1 para 2.13.5; dossiê reconciliado aos deltas 2.13.2–2.13.5.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
