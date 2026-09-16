@@ -43,11 +43,10 @@ Metódico, contido e difícil de impressionar. Prefere perguntas precisas a conc
 - conhecimento arcano sem proveniência deve ser tratado como hipótese até ser confrontado com evidência.
 
 ## Knowledge inicial
-Iren conhece procedimentos, arquivos e rumores que chegam a `FAC-0001` dentro do escopo de sua função. Ele não conhece automaticamente Severin, sua localização, suas motivações ou seus atos. Qualquer conhecimento sobre `NPC-0001` exige rumor, testemunha, evidência, investigação ou contato concreto.
+Iren conhece procedimentos, arquivos e rumores que chegam a `FAC-0001` dentro do escopo de sua função. Ele não conhece automaticamente a identidade, localização, motivações ou atos de qualquer possível responsável por `QST-0001`. Qualquer conhecimento sobre uma pessoa específica exige rumor, testemunha, evidência, investigação ou contato concreto.
 
 ## Relações
 - `QST-0001` — pode detectar um padrão suficiente para investigar e decidir se envolve o jogador;
-- `NPC-0001` — relação inexistente, indireta ou variável até que eventos/evidências estabeleçam algo diferente;
 - `FAC-0001` — instituição à qual presta assessoria;
 - `SET-0001` — assentamento onde sua função institucional se ancora, sem exigir presença física constante.
 
