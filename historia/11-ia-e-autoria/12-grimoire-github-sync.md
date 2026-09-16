@@ -53,12 +53,13 @@ Exemplo conceitual:
 
 Não depender apenas do nome de exibição para reconciliar entidades. Exemplos de crosswalk devem ser identitariamente neutros ou usar apenas entidades cuja reconciliação atual esteja explicitamente verificada; exemplos históricos substituídos não podem continuar instruindo novos bindings.
 
-### Crosswalk reconciliado em 2026-09-14
+### Crosswalk reconciliado a partir de 2026-09-14
 
 A tabela abaixo documenta referências já verificadas nos dois lados. Ela não substitui os dossiês nem transforma branches em `main`; serve para impedir duplicação e drift durante a revisão.
 
 | ID editorial | Entidade | UUID Grimoire | Estado da reconciliação |
 | --- | --- | --- | --- |
+| `NPC-0001` | Aren | `e9a83c1b-4bd9-49c8-8b79-ad41011383cd` | entidade ativa Grimoire + dossiê GitHub reconciliados; substituição editorial de Severin registrada em 2026-09-15 |
 | `NPC-0005` | Oren | `324ff53b-c599-4892-b263-0f86a8e8f8b9` | dossiê GitHub + entidade ativa Grimoire reconciliados |
 | `NPC-0006` | Elian | `bc60b716-8926-4558-a2a8-a96619d15c5c` | dossiê GitHub + entidade ativa Grimoire reconciliados |
 | `NPC-0007` | Maura | `76350f82-9af5-4cef-9c34-f66cf69cd2f7` | entidade-fonte consultada; materialização proposta em branch |
