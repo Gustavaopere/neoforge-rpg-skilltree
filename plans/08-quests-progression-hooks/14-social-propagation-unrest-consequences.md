@@ -21,4 +21,6 @@ Converter conhecimento, instituições, opinião e leis em consequências sociai
 - não transformar unrest em dano arbitrário ou debuff genérico.
 
 ## Acceptance exemplar
-Severin oculto não afeta opinião pública. Uma testemunha pode iniciar cadeia de rumor. Se o clero recebe prova, pode escalar para investigação. Se a população já foi salva por Severin, o mesmo evento pode produzir polarização em vez de consenso contra ele.
+Na fixture genérica de pesquisador de necromancia, manter a presença do pesquisador em segredo não afeta opinião pública. Uma testemunha pode iniciar cadeia de rumor. Se o clero recebe prova, pode escalar para investigação. Se a população já foi salva pelo pesquisador, o mesmo evento pode produzir polarização em vez de consenso contra ele.
+
+A fixture é sistêmica e identitariamente neutra; não representa nem cria binding para qualquer NPC canônico.
