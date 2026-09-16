@@ -14,7 +14,7 @@
 - **Observações:** JAR físico `create_colony_logistics-1.3.3.jar`, mod id `cclogistics`, runtime 1.3.3. Release oficial NeoForge 1.21.1 de 14/09/2026, file ID 8878545. A 1.3.3 introduz Cross-Colony Logistics, Alliance system no Foremen's Hut, acesso opcional ao Create Storage por aliados e limites de déficit comercial.
 - **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Create: Colony Logistics 1.3.3. Dossiê migrado do Notion preservado e reconciliado à versão instalada; nenhum teste runtime foi executado nesta reauditoria.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-colony-logistics
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 1.3.2 para 1.3.3; conteúdo técnico reconciliado com o Cross-Colony Update. Certificação permanece pendente até QC/re-fetch final.
+- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 1.3.2 para 1.3.3; conteúdo técnico reconciliado com o Cross-Colony Update.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-06
 
