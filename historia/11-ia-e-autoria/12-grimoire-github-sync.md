@@ -48,10 +48,10 @@ Quando a ferramenta externa permitir tags, aliases, custom fields ou notas técn
 
 Exemplo conceitual:
 
-- display name: Severin;
-- stable editorial id: `NPC-0001`.
+- display name: nome canônico da entidade;
+- stable editorial id: `NPC-####`.
 
-Não depender apenas do nome de exibição para reconciliar entidades.
+Não depender apenas do nome de exibição para reconciliar entidades. Exemplos de crosswalk devem ser identitariamente neutros ou usar apenas entidades cuja reconciliação atual esteja explicitamente verificada; exemplos históricos substituídos não podem continuar instruindo novos bindings.
 
 ### Crosswalk reconciliado em 2026-09-14
 

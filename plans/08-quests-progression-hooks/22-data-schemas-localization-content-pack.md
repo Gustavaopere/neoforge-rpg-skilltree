@@ -39,13 +39,15 @@ Separar engine de conteúdo para permitir centenas de quests/arcs sem recompilar
 - [ ] PT-BR como pacote oficial principal, preservando IDs técnicos em inglês;
 - [ ] reload atômico: inválido mantém snapshot anterior;
 - [ ] export/diagnostics de graph para authoring;
-- [ ] exemplo completo do arco Severin cobrindo conteúdo nunca descoberto;
+- [ ] exemplo completo de um arco-fixture genérico de pesquisador de necromancia cobrindo conteúdo nunca descoberto, sem reutilizar identidade ou ID de NPC canônico;
 - [ ] exemplo de NPC morto e retornado por Mobstein com continuidade parcial.
 
 ## Regra
 Texto de diálogo não deve guardar IDs/estado semanticamente importante em parsing de string. Conteúdo referencia IDs estruturados; renderers recebem texto localizado.
 
 O schema deve manter separados availability, discovery, engagement e resolution. Também deve manter separados death/return e as dimensões de Identity Continuity; não inferir “mesma pessoa intacta” apenas porque uma entidade voltou a existir.
+
+Fixtures de aceitação sistêmica devem usar IDs reservados de teste e nunca IDs estáveis do corpus narrativo canônico.
 
 ## Acceptance
 Um novo pequeno arco narrativo, incluindo choices, laws conditions, relationship changes, conteúdo potencialmente nunca descoberto, retorno pós-morte quando aplicável e epilogue fragment, pode ser criado apenas por dados/localização usando primitives já suportadas.

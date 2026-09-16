@@ -30,6 +30,8 @@ NPC físico de Easy NPC é presentation/provider de interação. A identidade na
 Morte permanece fato histórico mesmo se o ator retornar. Um retorno por Mobstein ou outro provider deve ser reconciliado por `Identity Continuity Record`; não usar simplesmente `dead=false` e restaurar todo o snapshot anterior.
 
 ## Acceptance exemplar
-Esconder Severin pode reduzir `respect`, aumentar um grievance e manter `trust`; defendê-lo em julgamento pode alterar dimensões diferentes. Nenhuma mudança precisa ser universalmente positiva/negativa.
+No cenário-fixture, ocultar um pesquisador de necromancia pode reduzir `respect`, aumentar um grievance e manter `trust`; defendê-lo em julgamento pode alterar dimensões diferentes. Nenhuma mudança precisa ser universalmente positiva/negativa.
+
+A fixture de pesquisador de necromancia é sistêmica e identitariamente neutra; não representa nem cria binding para qualquer NPC canônico.
 
 Se um NPC morto retorna via Mobstein, relações e memórias anteriores só são preservadas conforme as regras de continuidade declaradas; quests que dependem de uma memória perdida continuam podendo permanecer indisponíveis mesmo com o corpo funcional novamente.
