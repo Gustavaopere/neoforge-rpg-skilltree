@@ -1,0 +1,36 @@
+name: Reaudit Batch 1 Diagnostic
+on:
+  push:
+    branches:
+      - audit-notion-parity-reaudit-10-20260916
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    if: github.event.head_commit.message == 'chore: run re-audit diagnostic'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Locate stale version assertions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          targets = {
+            'minecolonies': ('PROJECT-INSTRUCTIONS/modlist/Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures/✅-minecolonies v1.1.1381-1.21.1-snapshot.md', ['1.1.1381','1.1.1383','1.1.1387']),
+            'alexs-caves': ('PROJECT-INSTRUCTIONS/modlist/World Gen/✅-alexs-caves-continued v1.0.9.md', ['1.0.9','1.0.10']),
+            'alexs-mobs': ('PROJECT-INSTRUCTIONS/modlist/Mobs/✅-alexs-mobs-continued v2.1.11.md', ['2.1.11','2.1.13']),
+            'euphoria': ('PROJECT-INSTRUCTIONS/modlist/Addons + Cosmetic + Miscellaneous + Utility & QoL/✅-euphoria-patcher v1.10.0-r5.9-neoforge.md', ['1.10.0','1.10.1','1.10.5','r5.9.3']),
+            'ars': ("PROJECT-INSTRUCTIONS/modlist/Addons + Adventure and RPG + Magic + Utility & QoL/✅-ars-n-spells v3.3.2.md", ['3.3.2','3.3.3','3.3.4']),
+            'fluid': ('PROJECT-INSTRUCTIONS/modlist/Addons + Create/✅-create-fluid v2.1.5.md', ['2.1.5','2.1.6']),
+            'farming': ('PROJECT-INSTRUCTIONS/modlist/Addons + Automation + Create + Farming + Technology/✅-create-integrated-farming v1.4.1b.md', ['1.4.1b','1.4.1c']),
+            'ftb-quests': ('PROJECT-INSTRUCTIONS/modlist/Adventure and RPG + API and Library + Map and Information + Server Utility/✅-ftb-quests v2101.1.34.md', ['2101.1.34','2101.1.35','2101.1.36']),
+          }
+          for name,(path,needles) in targets.items():
+              print(f'===== {name} :: {path} =====')
+              lines=Path(path).read_text(encoding='utf-8').splitlines()
+              for i,line in enumerate(lines,1):
+                  if any(n in line for n in needles):
+                      print(f'{i}: {line}')
+          PY
