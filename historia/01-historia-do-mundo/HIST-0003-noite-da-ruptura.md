@@ -12,7 +12,7 @@ A chamada Noite da Ruptura tornou-se um grande marco histórico do colapso da Pr
 O nome identifica um marco historiográfico dentro de um processo civilizacional mais amplo; ele não autoriza tratar todo o colapso como um instante simples ou monocausal.
 
 ## Definição
-Período de colapso no qual múltiplas crises independentes coincidiram, interagiram ou se amplificaram: falhas dimensionais, atividade geológica, acidentes industriais, eventos arcanos, expansão de ameaças e colapso de comunicação/governança.
+Marco historiográfico dentro do processo de colapso em que múltiplas crises independentes coincidiram, interagiram ou se amplificaram: falhas dimensionais, atividade geológica, acidentes industriais, eventos arcanos, expansão de ameaças e colapso de comunicação/governança.
 
 ## Recorte cronológico
 - ocorre depois do surgimento de `HIST-0002`;
