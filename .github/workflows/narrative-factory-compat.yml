@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      FACTORY_SHA: 99292829b25025b4cb7130a05a8221e0d7a5a19e
+      FACTORY_SHA: 86b83005cde89f26ad2ef03af43cf512bc085080
       PROFILE: historia/11-ia-e-autoria/factory-narrative-profile.json
       STORY_ROOT: historia/03-npcs/principais
       PYTHONDONTWRITEBYTECODE: '1'
@@ -49,10 +49,10 @@ jobs:
           python3 .factory-ci/factory/narrative/tooling/story_inventory.py --profile "$PROFILE" --root "$STORY_ROOT" --format json > .factory-ci/output/inventory.json
           python3 .factory-ci/factory/narrative/tooling/authority_reconcile.py export-inventory \
             --inventory .factory-ci/output/inventory.json \
-            --output .factory-ci/output/github-authority.json \
             --source github:neoforge-rpg-skilltree \
             --revision "${GITHUB_SHA}" \
-            --captured-at 2026-09-16T00:00:00Z
+            --captured-at 2026-09-16T00:00:00Z \
+            > .factory-ci/output/github-authority.json
           python3 .factory-ci/factory/narrative/tooling/authority_reconcile.py compare \
             --local .factory-ci/output/github-authority.json \
             --external .factory-ci/output/github-authority.json \
