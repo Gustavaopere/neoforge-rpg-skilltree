@@ -1,17 +1,32 @@
-# Create: Fluid — 2.1.5
+# Create: Fluid — 2.1.6
 
-> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `fluid-2.1.5.jar`. A release upstream mais recente para NeoForge 1.21.1 é **Create Fluid 2.1.6**, publicada em 13/09/2026. O delta é material: corrige restauração dos interaction targets da Mechanical Pipette após reconnect, dupes em Logistics Junction/package unpack, promises de Stock Links/Can Fillers, fuel timing de lava em Blaze Burners e rendering de interfaces; também melhora integração de fontes infinitas, Quicksand e Fluid Atomizer. Esta nota **supersede somente referências antigas de “latest/upstream” abaixo**; não promove a build instalada.
+> **AUTORIDADE FÍSICA ATUAL — 15/09/2026.** O pack agora contém `fluid-2.1.6.jar`, mod id `fluid`, runtime `2.1.6`, SHA-1 `4f16ea44499ae31826fc5e3d2d12963c4a356b0d`. Create permanece em `create-1.21.1-6.0.10.jar` / `6.0.10`. Esta seção supersede todas as referências abaixo a 2.1.5 como versão “atual/instalada”; o corpo migrado é preservado como snapshot histórico da auditoria Notion → GitHub.
+
+## Delta físico instalado — 2.1.6
+A 2.1.6 deixa de ser apenas versão upstream e passa a integrar o runtime do pack. O delta público já registrado na ficha inclui:
+- restauração dos interaction targets da **Mechanical Pipette** após reconnect;
+- correções adicionais de dupe em **Logistics Junction/package unpack**;
+- correções no settlement de promises envolvendo **Stock Links/Can Fillers**;
+- correção de fuel timing de lava em **Blaze Burners**;
+- correções de rendering de interfaces;
+- melhorias relacionadas a fontes infinitas, Quicksand e Fluid Atomizer.
+
+Regression gates da build atual: reconnect da Pipette, package/unpack atomicity, promise settlement, self-routing, lava fuel timing, interfaces renderizadas, infinite sources, Quicksand e Atomizer reload. Nenhum teste de runtime foi marcado como executado nesta auditoria documental.
+
+> **Regra de leitura:** as seções históricas abaixo continuam documentando a arquitetura e os fixes da 2.1.5 migrados do Notion. Onde dizem que 2.1.5 era a build física ou que 2.1.6 era apenas upstream, prevalece a autoridade atual acima.
+
+> **Revalidação upstream — 15/09/2026 (registro histórico anterior à troca física).** A autoridade física do pack permanecia `fluid-2.1.5.jar`. A release upstream mais recente para NeoForge 1.21.1 era **Create Fluid 2.1.6**, publicada em 13/09/2026. O delta material está incorporado na seção superior porque essa build passou a ser instalada.
 
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
 > Estado atual: `Integrado ao Github`  
-> Autoridade física: `modlist.txt`, 595 entradas totais incluindo o modloader  
+> Autoridade física histórica: `modlist.txt`, 595 entradas totais incluindo o modloader  
 > Auditoria de migração: 2026-09-15
 
-## Propriedades do registro
+## Propriedades do registro migrado
 
 - **Mod:** Create: Fluid
-- **Arquivo JAR:** `fluid-2.1.5.jar`
-- **Versão 1.21.1:** `2.1.5`
+- **Arquivo JAR no snapshot migrado:** `fluid-2.1.5.jar`
+- **Versão 1.21.1 no snapshot migrado:** `2.1.5`
 - **Categoria:** Tecnologia; Automação
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
@@ -21,23 +36,23 @@
 - **Dependências:** Create 6.0.8+ segundo a release 2.1.5; pack instala Create 6.0.10. NeoForge 21.1.219+ declarado para a release.
 - **Compatibilidade/Riscos:** Risco crítico em atomicidade de transferência/package-unpack, handlers terceiros não transacionais e promise settlement; 2.1.5 corrigiu dupe, loops de autocrafting/self-routing, renderer e interação Mechanical Arm. Source público master tem version drift (Gradle 2.1.0), portanto não é tratado como pin binário exato.
 - **Sobreposição:** Sobreposição parcial com outros addons Create de transporte, interfaces, bombas e fluid logistics. Não remover por tema: comparar por endpoint/contrato. Este mod possui package logistics, promises, Fluid Atomizer e interaction points próprios.
-- **Observações:** Runtime físico confirmado: fluid 2.1.5. Release suporta Create 6.0.8+ e foi validada upstream com 6.0.11; pack usa Create 6.0.10. Source master inspecionado declara mod_version 2.1.0, então nomes/arquitetura do source foram usados com fail-closed.
-- **Procedência:** modlist.txt física atual; fontes oficiais revalidadas em 12/09/2026.
+- **Observações:** Runtime físico confirmado naquele snapshot: fluid 2.1.5. Release suporta Create 6.0.8+ e foi validada upstream com 6.0.11; pack usa Create 6.0.10. Source master inspecionado declara mod_version 2.1.0, então nomes/arquitetura do source foram usados com fail-closed.
+- **Procedência:** modlist.txt física histórica; fontes oficiais revalidadas em 12/09/2026.
 - **Histórico da decisão:** vazio.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026
+- **Atualização/Status histórico:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026
 - **Data da última decisão:** 2026-08-26
 
 ## Dossiê operacional — padrão Alex's Mobs
 
-> 🔎 **ESCOPO CANÔNICO.** O runtime físico é `fluid-2.1.5.jar`, mod id `fluid`, em Minecraft 1.21.1 / NeoForge. A release oficial 2.1.5 é a autoridade pública para comportamento desta versão. O branch público `master` foi inspecionado, mas seu `gradle.properties` ainda declara `mod_version = 2.1.0`; portanto ele é usado para arquitetura e nomes concretos, não como prova de equivalência binária integral com o JAR 2.1.5.
+> 🔎 **ESCOPO CANÔNICO DO SNAPSHOT MIGRADO.** O runtime físico era `fluid-2.1.5.jar`, mod id `fluid`, em Minecraft 1.21.1 / NeoForge. A release oficial 2.1.5 era a autoridade pública para comportamento daquela versão. O branch público `master` foi inspecionado, mas seu `gradle.properties` ainda declara `mod_version = 2.1.0`; portanto ele é usado para arquitetura e nomes concretos, não como prova de equivalência binária integral. Para o estado atual, usar a autoridade física 2.1.6 no topo.
 
 ## 1. Identidade, versão e authority
 - **Mod:** Create: Fluid.
-- **JAR físico:** `fluid-2.1.5.jar`.
+- **JAR físico do snapshot migrado:** `fluid-2.1.5.jar`.
 - **Mod id:** `fluid`.
-- **Versão instalada:** `2.1.5`.
+- **Versão instalada naquele snapshot:** `2.1.5`.
 - **Minecraft / loader:** 1.21.1 / NeoForge.
-- **Release oficial:** CurseForge file ID `8520817`, publicada em 27/07/2026 para NeoForge 1.21.1.
+- **Release oficial 2.1.5:** CurseForge file ID `8520817`, publicada em 27/07/2026 para NeoForge 1.21.1.
 - **Compatibilidade declarada da 2.1.5:** NeoForge `21.1.219+` e Create `6.0.8+`; a validação de desenvolvimento da release foi feita com Create `6.0.11`.
 - **Authority funcional:** Create continua sendo autoridade de rede cinética, stress, Mechanical Arms, fluid handlers/pipes e logística base. Create: Fluid acrescenta endpoints, máquinas e bridges de fluido; integra-se aos contratos do Create em vez de substituí-los.
 
@@ -62,7 +77,7 @@ A página oficial documenta como recursos centrais:
 - **Fan catalysts documentados:** Powder Snow, Quicksand, Slime Fluid, Haunting Fluid e Smoking Fluid.
 - **Honeycomb Mold** — participa de receitas de compactação de honeycomb.
 
-O source público possui ainda classes/registries de block entities, mounted fluid storage, packets, JEI, Ponder, recipes e partial models. Como o source público não está version-pinado em 2.1.5 pelo metadata Gradle, a existência de cada detalhe adicional deve ser tratada como estruturalmente confirmada no source atual, não como contagem exata do binário instalado.
+O source público possui ainda classes/registries de block entities, mounted fluid storage, packets, JEI, Ponder, recipes e partial models. Como o source público não está version-pinado pelo metadata Gradle, a existência de cada detalhe adicional deve ser tratada como estruturalmente confirmada no source atual, não como contagem exata do binário instalado.
 
 ## 4. Sistemas internos e contratos operacionais
 ### Transferência e endpoints de fluido
@@ -71,8 +86,10 @@ As máquinas expõem ou consomem handlers de fluido do ecossistema NeoForge/Crea
 ### Logística empacotada
 Can Filler/Copper Can/Fluid Manifest convertem fluido em unidade transportável para a malha logística. A release 2.1.5 corrigiu um dupe ao desempacotar Brass Box, cardboard package e Copper Can: agora simula toda a operação antes de commit; rollback deve afetar apenas o conteúdo inserido pela transação corrente; quando um handler terceiro não transacional não pode ser revertido, a source package é consumida para impedir duplicação.
 
+A 2.1.6 adiciona correções sobre essa mesma superfície e deve ser tratada como continuidade do regression gate de atomicidade.
+
 ### Promises/autocrafting
-A 2.1.5 corrigiu o settlement de promises: Can Fillers passaram a resolver não só Factory Gauge promises, mas também network promises de Stock Links. O bug anterior podia repetir pedidos de autocrafting indefinidamente e fazer Can Fillers enviarem Copper Cans para si mesmos quando faltava fluido.
+A 2.1.5 corrigiu o settlement de promises: Can Fillers passaram a resolver não só Factory Gauge promises, mas também network promises de Stock Links. O bug anterior podia repetir pedidos de autocrafting indefinidamente e fazer Can Fillers enviarem Copper Cans para si mesmos quando faltava fluido. A 2.1.6 traz correções adicionais nessa área.
 
 ### Mounted storage e contraptions
 O source público registra mounted fluid storage/movement behaviour para componentes como Copper Sink e Gutter Outlet. Qualquer integração com contraptions deve respeitar montagem/desmontagem, serialização e ownership do storage do Create.
@@ -88,7 +105,7 @@ O source público contém `AtomizerCompatReloadListener` e `AtomizerProcessingRe
 ## 6. Client / server
 - CurseForge classifica o mod como **Client & Server**.
 - Transferência, handlers, block entities, logística e commits de conteúdo são responsabilidades server-authoritative.
-- Renderers, partial models, particles, JEI e Ponder são client-facing. A 2.1.5 corrigiu crash de block entity rendering causado por registro tardio de `fluid_interface_drain`; o caminho afetava Fluid Interface, Smart Fluid Interface e Communicating Vessel.
+- Renderers, partial models, particles, JEI e Ponder são client-facing. A 2.1.5 corrigiu crash de block entity rendering causado por registro tardio de `fluid_interface_drain`; o caminho afetava Fluid Interface, Smart Fluid Interface e Communicating Vessel. A 2.1.6 inclui correções adicionais de rendering de interfaces.
 - O source possui packets; validar que comandos/interações de configuração enviados pelo cliente sejam processados uma vez e validados no servidor.
 
 ## 7. Lifecycle
@@ -96,49 +113,53 @@ Validar especialmente:
 - carga/descarga de block entities e chunks contendo máquinas com fluido;
 - montagem/desmontagem de contraptions com mounted fluid storage;
 - save/reload do mundo preservando volumes, filtros e estado logístico;
+- reconnect preservando interaction targets da Mechanical Pipette na 2.1.6;
 - resource/datapack reload do Atomizer e recipes;
 - mudança de dimensão/chunk de contraptions móveis;
 - remoção/substituição do container adjacente a Fluid Interface/Smart Fluid Interface;
 - perda de destino durante uma transação de package/unpack.
 
 ## 8. Multiplayer e concorrência
-A correção de dupe da 2.1.5 torna atomicidade uma preocupação de primeira ordem. Dois jogadores, automações ou redes concorrentes não podem receber o mesmo conteúdo. Testes devem cobrir dois consumidores simultâneos, handler terceiro não transacional, falta parcial de capacidade e chunk unload entre simulation e commit.
+A correção de dupes torna atomicidade uma preocupação de primeira ordem. Dois jogadores, automações ou redes concorrentes não podem receber o mesmo conteúdo. Testes devem cobrir dois consumidores simultâneos, handler terceiro não transacional, falta parcial de capacidade e chunk unload entre simulation e commit.
 
 ## 9. Integrações concretas no pack
-- **Create 6.0.10 instalado:** dependência funcional central; está dentro do range oficial `6.0.8+` da release 2.1.5, embora o changelog cite validação com 6.0.11. Essa diferença deve ser smoke-tested no runtime real do pack.
+- **Create 6.0.10 instalado:** dependência funcional central; está dentro do range oficial `6.0.8+` documentado para a linha auditada.
 - **JEI / Ponder:** surfaces presentes no source para visualização/descoberta de recipes.
 - **Outros addons Create de logística/fluidos:** coexistência não equivale a integração. Avaliar sobreposição por endpoint e não por tema.
 - **Create Aeronautics e contraptions:** qualquer compatibilidade de mounted storage deve ser validada no runtime; não é declarada aqui como integração específica sem evidência própria.
 
 ## 10. Riscos técnicos
-- **Dupe/transação parcial:** historicamente real e corrigido em 2.1.5; regressão é risco crítico.
-- **Promise não liquidada / loop de autocrafting:** historicamente real e corrigido em 2.1.5.
-- **Self-routing de Copper Cans:** corrigido em 2.1.5; testar ausência de loop.
+- **Dupe/transação parcial:** historicamente real; regressão é risco crítico e 2.1.6 toca novamente essa área.
+- **Promise não liquidada / loop de autocrafting:** historicamente real; 2.1.6 adiciona correções nessa superfície.
+- **Self-routing de Copper Cans:** testar ausência de loop.
 - **Handler terceiro não transacional:** rollback pode ser impossível; exige teste com outros storages/handlers do pack.
-- **Block entity / partial-model classloading:** houve crash de renderer corrigido na release.
-- **Waterlogging:** Fluid Interfaces foram corrigidas para não serem deslocadas por água corrente.
-- **Mechanical Arm interaction point:** reconhecimento de Can Filler foi corrigido; testar com braços reais do Create.
-- **Version drift do source:** `master` público inspecionado não se identifica como 2.1.5 no Gradle; não derivar garantias binárias de detalhes não sustentados pelo release changelog/JAR.
+- **Interaction targets pós-reconnect:** regression gate específico da 2.1.6 para Mechanical Pipette.
+- **Lava/Blaze Burner fuel timing:** regression gate específico da 2.1.6.
+- **Block entity / partial-model classloading:** houve crash de renderer corrigido na linha e 2.1.6 volta a tocar rendering.
+- **Waterlogging:** Fluid Interfaces devem permanecer estáveis sob água corrente.
+- **Mechanical Arm interaction point:** reconhecimento de Can Filler deve ser testado com braços reais do Create.
+- **Version drift do source:** `master` público inspecionado não deve ser tratado como pin binário exato só pelo Gradle.
 
 ## 11. Matriz de testes obrigatória
-- [ ] Dedicated server boot com `fluid-2.1.5.jar` + Create 6.0.10.
+- [ ] Dedicated server boot com `fluid-2.1.6.jar` + Create 6.0.10.
 - [ ] Save/reload com cada block entity contendo fluido.
 - [ ] Chunk unload/reload durante bombeamento e durante package/unpack.
 - [ ] Mechanical Pipette entre handlers vanilla/Create/terceiros.
+- [ ] Reconnect preserva interaction targets da Mechanical Pipette.
 - [ ] Mechanical Arm reconhecendo Can Filler exatamente uma vez.
 - [ ] Copper Sink recebendo input por funnel e belt funnel.
-- [ ] Infinite water do Copper Sink/Creative Fluid Tank anunciado corretamente à network.
+- [ ] Infinite water/source anunciado corretamente à network.
 - [ ] Can Filler com Factory Gauge e Stock Link; promises liquidadas e sem repetição infinita.
 - [ ] Logistics Junction desempacotando Brass Box, cardboard package e Copper Can sem dupe sob capacidade total, parcial e zero.
 - [ ] Handler terceiro não transacional: falha de commit sem duplicação.
+- [ ] Lava em Blaze Burner respeita fuel timing esperado da 2.1.6.
 - [ ] Fluid Interface/Smart Interface/Communicating Vessel renderizando sem crash e permanecendo waterlogged.
 - [ ] Resource/datapack reload do Fluid Atomizer sem duplicar registros derivados.
+- [ ] Quicksand tags/loot/processamento coerentes.
 - [ ] Multiplayer com dois consumidores concorrentes sobre o mesmo source.
 - [ ] Contraption assemble/disassemble preservando mounted fluid storage aplicável.
 
 ## 12. Evidências e limites
-**Primárias/canônicas:** modlist física atual; CurseForge oficial da release 2.1.5 e seu changelog; repositório oficial `adonis-baffin/CreateFluid` inspecionado no branch `master`.
-
-**Source drift registrado:** o `gradle.properties` público atual declara `mod_version = 2.1.0`, Minecraft 1.21.1, NeoForge 21.1.219 e Create 6.0.11. Por isso o source confirma arquitetura/nomenclatura, enquanto a release oficial e o JAR físico governam a versão instalada.
+**Primárias/canônicas:** modlist física atual de 15/09/2026; release oficial da 2.1.6; conteúdo migrado da release 2.1.5; repositório oficial `adonis-baffin/CreateFluid` usado com o limite de source drift já registrado.
 
 **Não foi executado teste de runtime nesta catalogação.** A matriz acima é plano de validação, não resultado aprovado.

@@ -1,17 +1,33 @@
 # Ars 'n' Spells
 
-> **Revalidação upstream — 15/09/2026.** A autoridade física do pack permanece `ars_n_spells-3.3.2.jar` / `3.3.2`. A release upstream mais recente para NeoForge 1.21.1 é **3.3.4**, publicada em 14/09/2026. O delta é material para integração: consolida ownership do pagamento no cast nativo para evitar debit/listener duplicado, adiciona recovery de debit/refund e obrigações não resolvidas persistentes, restaura gates opcionais de mixins do Iron's, inclui MixinExtras 0.5.3, amplia carrier revisions a todos os componentes nativos e avança o protocolo de rede para **7**, além de restaurar drops de blank scroll em loot do Iron's. Esta nota supersede somente referências antigas de “latest/upstream” abaixo; a arquitetura 3.3.0→3.3.2 continua descrevendo o runtime físico e os fixes 3.3.4 não são atribuídos à build instalada.
+> **AUTORIDADE FÍSICA ATUAL — 15/09/2026.** O pack agora contém `ars_n_spells-3.3.4.jar`, mod id `ars_n_spells`, runtime `3.3.4`, SHA-1 `53966330a468e626cd6469259af6778a5a7d9305`. Ars Nouveau permanece em `5.13.1` e Iron's Spells 'n Spellbooks em `1.21.1-3.16.3`/linha 3.16.3. Esta seção supersede todas as referências abaixo a 3.3.2 como runtime “atual”; o corpo migrado é preservado como snapshot histórico da auditoria Notion → GitHub.
+
+## Delta físico instalado — 3.3.4
+A 3.3.4 deixa de ser apenas version drift upstream e passa a compor o baseline instalado. O delta oficial já reconciliado no dossiê inclui:
+- ownership do pagamento consolidado no cast nativo para evitar debit/listener duplicado;
+- recovery de debit/refund e obrigações não resolvidas persistentes;
+- restauração de gates opcionais dos mixins de Iron's;
+- MixinExtras 0.5.3;
+- carrier revisions ampliadas aos componentes nativos;
+- protocolo de rede avançado para **7**;
+- restauração de drops de blank scroll em loot do Iron's.
+
+Esses pontos aumentam os regression gates de cross-cast: pagamento exatamente uma vez, refund/recovery após falha, persistência de obrigações, compat sem Iron's, network protocol 7, carrier components e loot de blank scroll. Nenhum teste de runtime é marcado como executado nesta auditoria documental.
+
+> **Regra de leitura:** as seções históricas abaixo continuam documentando a arquitetura 3.3.0→3.3.2 migrada do Notion. Onde dizem que 3.3.2 era a build física ou que 3.3.4 era apenas upstream, prevalece a autoridade atual acima.
+
+> **Revalidação upstream — 15/09/2026 (registro histórico anterior à troca física).** A autoridade física do pack permanecia `ars_n_spells-3.3.2.jar` / `3.3.2`. A release upstream mais recente para NeoForge 1.21.1 era **3.3.4**, publicada em 14/09/2026. O delta é material para integração: consolida ownership do pagamento no cast nativo para evitar debit/listener duplicado, adiciona recovery de debit/refund e obrigações não resolvidas persistentes, restaura gates opcionais de mixins do Iron's, inclui MixinExtras 0.5.3, amplia carrier revisions a todos os componentes nativos e avança o protocolo de rede para **7**, além de restaurar drops de blank scroll em loot do Iron's. Esta nota descreve o momento anterior à instalação da 3.3.4.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack:** Integrado ao Github
-- **Autoridade física usada:** `modlist.txt` — 595 entradas totais incluindo o modloader
+- **Autoridade física usada no snapshot migrado:** `modlist.txt` — 595 entradas totais incluindo o modloader
 - **Auditoria de migração Notion → GitHub:** 2026-09-15
 
 ## Propriedades do banco
 
 - **Mod:** Ars 'n' Spells
-- **Arquivo JAR:** `ars_n_spells-3.3.2.jar`
-- **Versão 1.21.1:** 3.3.2
+- **Arquivo JAR no snapshot migrado:** `ars_n_spells-3.3.2.jar`
+- **Versão 1.21.1 no snapshot migrado:** 3.3.2
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
@@ -20,19 +36,19 @@
 - **Dependências:** Ars Nouveau 5.13.1 obrigatório. Iron's Spells 3.16.3 é provider opcional para cross-mod; Ars Elemental 0.7.10.1 e Ars Elemancy 1.18.3 fornecem school data quando presentes.
 - **Sobreposição:** Toca mana/scaling/progression que outras bridges podem tentar unificar. Enquanto ativa, não duplicar esses domínios em integração própria nem confundi-la com Ars Polymorphia/Ars Hex, que têm responsabilidades diferentes.
 - **Compatibilidade/Riscos:** Riscos: double-dip de spell power/perks, custo cross-cast duplicado, duas authorities de mana, affinity duplicada em multi-school, unified cooldown competindo com handlers locais, payload NBT antigo sem migração e config client tratada como authority no dedicated server.
-- **Observações:** mod id `ars_n_spells`; runtime atual 3.3.2. A auditoria técnica profunda permanece ancorada na arquitetura 3.3.0, acrescida dos deltas oficiais 3.3.1/3.3.2; não foram inventadas mudanças de hooks ou save format não declaradas pelo upstream.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Ars 'n' Spells 3.3.1/3.3.2 + source-level audit da baseline 3.3.0 já documentada. Reconciliação final: JAR/runtime permanecem exatamente `ars_n_spells-3.3.2.jar` / `3.3.2`; sem divergência física.
+- **Observações:** mod id `ars_n_spells`; runtime do snapshot migrado 3.3.2. A auditoria técnica profunda permanece ancorada na arquitetura 3.3.0, acrescida dos deltas oficiais 3.3.1/3.3.2; não foram inventadas mudanças de hooks ou save format não declaradas pelo upstream.
+- **Procedência:** modlist.txt física de 11/09/2026 + CurseForge oficial Ars 'n' Spells 3.3.1/3.3.2 + source-level audit da baseline 3.3.0 já documentada. Reconciliação daquele snapshot: JAR/runtime eram exatamente `ars_n_spells-3.3.2.jar` / `3.3.2`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-n-spells
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #46: `ars_n_spells-3.3.2.jar` / `3.3.2` conferidos contra a modlist atual; baseline técnica 3.3.0 + deltas oficiais 3.3.1/3.3.2 preservados.
+- **Atualização/Status histórico:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #46: `ars_n_spells-3.3.2.jar` / `3.3.2` conferidos contra a modlist daquele momento; baseline técnica 3.3.0 + deltas oficiais 3.3.1/3.3.2 preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi reconstruída contra a 3.3.0 real; corrigida definitivamente a hipótese de redundância genérica: esta bridge possui cross-cast, spell wheel, mana/scaling/progression e contracts próprios entre Ars e Iron's.
 - **Data da última decisão:** 2026-09-07
 
-> 🧬 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico atual: `ars_n_spells-3.3.2.jar`, mod id `ars_n_spells`, NeoForge 1.21.1. A arquitetura funcional catalogada na 3.3.0 permanece a baseline documentada da bridge bidirecional Ars Nouveau ↔ Iron's Spells 'n Spellbooks; as releases oficiais 3.3.1/3.3.2 introduzem deltas de HUD, sem evidência de mudança dos contratos centrais aqui inventariados.
+> 🧬 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico do snapshot migrado: `ars_n_spells-3.3.2.jar`, mod id `ars_n_spells`, NeoForge 1.21.1. A arquitetura funcional catalogada na 3.3.0 permanece a baseline documentada da bridge bidirecional Ars Nouveau ↔ Iron's Spells 'n Spellbooks; as releases oficiais 3.3.1/3.3.2 introduzem deltas de HUD. Para a build física atual, aplicar também o delta 3.3.4 da seção superior.
 
 ## 1. Identidade e versão
 - **Mod:** Ars 'n' Spells.
-- **JAR físico atual:** `ars_n_spells-3.3.2.jar`.
-- **Runtime:** `3.3.2`.
+- **JAR físico do snapshot migrado:** `ars_n_spells-3.3.2.jar`.
+- **Runtime do snapshot migrado:** `3.3.2`.
 - **Mod id:** `ars_n_spells`.
 - **Loader/jogo:** NeoForge 1.21.1 / Java 21.
 - **Baseline source-level auditada:** branch `port/neoforge-1.21.1` na linha 3.3.0, usada para os contratos centrais abaixo.
@@ -245,7 +261,9 @@ Não criar integração paralela de mana, scaling, affinity ou cooldown enquanto
 7. remoção de Iron's em mundo que contém dimension resources upstream;
 8. proxy spell recontabilizado como cast real e gerando XP duas vezes;
 9. binding ritual capturando item errado — a implementação atual falha fechada por isso;
-10. config client tratada como authority em dedicated server.
+10. config client tratada como authority em dedicated server;
+11. regressão de debit/refund/recovery introduzida ou exposta pela promoção a 3.3.4;
+12. incompatibilidade de protocolo em cliente/servidor se versões divergirem da linha network protocol 7.
 
 ## 23. Matriz de validação
 - boot com Ars+Iron's e boot sem Iron's;
@@ -262,10 +280,14 @@ Não criar integração paralela de mana, scaling, affinity ou cooldown enquanto
 - cross-cast multiplier exatamente uma vez;
 - save/reload/network sync do DataComponent;
 - dedicated server config;
-- remoção temporária de Iron's com payloads dormentes.
+- remoção temporária de Iron's com payloads dormentes;
+- debit/refund/recovery 3.3.4 em casts que falham antes/depois do pagamento;
+- persistência de obrigações não resolvidas;
+- client/server ambos em protocolo 7;
+- blank scroll loot restaurado sem duplicação.
 
 ## 24. Fontes
-- Modlist física do projeto, 07/09/2026.
-- Source oficial `otectus/ars-n-spells`, branch `port/neoforge-1.21.1`, v3.3.0.
+- Modlist física do projeto, snapshot histórico 07/09/2026 + reauditoria física 15/09/2026.
+- Source oficial `otectus/ars-n-spells`, branch `port/neoforge-1.21.1`, baseline v3.3.0 e release 3.3.4.
 - README 3.3.0, registries `ModItemsRegistry`/`ModBlocksRegistry`, `ManaUnificationMode` e ritual registry.
 - Guia consolidado de Magia do projeto.
