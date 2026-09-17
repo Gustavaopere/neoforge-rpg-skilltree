@@ -38,16 +38,20 @@ O inventário não é publicado como artifact pelo workflow, porque constitui su
 O probe usa `historia/03-npcs/principais` como slice real e não fabrica lore para satisfazer tooling.
 
 - `NPC-0001-aren-autoria.md` exercita provenance/source-grounding e limites de expansão;
+- `NPC-0007-maura-autoria.md` exercita source-grounding próprio, exigindo as seções de authority/proveniência e limites de knowledge e reconhecendo as superfícies editoriais de voz e aparência já versionadas;
+- o contrato de Maura não impõe `reference_rules` sobre a seção de provenance porque ela cita `FAC-0002` e `SET-0002`, cujas declarações vivem fora do `story_root` restrito do probe; isso evita tratar referências externas válidas como targets ausentes do slice;
 - `NPC-0001-aren.md` exercita o contrato estrutural de relações sistêmicas e preserva a multidimensionalidade declarada no próprio documento;
 - o hook de chronology/causality está configurado para `EVT`, mas o slice atual não contém registros `EVT-####`; a cobertura algorítmica de arestas/ciclos permanece no golden corpus da Factory até existirem eventos reais adequados no consumidor;
 - o inventory real é exportado para um snapshot neutro com provenance e comparado sem qualquer escrita de volta no canon.
 
 ## Evidência de integração em `main`
 
-A adoção revision 1 foi integrada em duas ondas revisáveis:
+A adoção revision 1 foi integrada em ondas revisáveis:
 
 - PR #578 — adicionou o probe de compatibilidade do profile v1 e validou o slice narrativo real contra o Factory hardened;
-- PR #579 — promoveu o consumer canônico para revision 1, atualizou o pin do workflow principal para `86b83005cde89f26ad2ef03af43cf512bc085080`, adicionou `validate_advanced.py` e o round-trip neutro do inventário completo.
+- PR #579 — promoveu o consumer canônico para revision 1, atualizou o pin do workflow principal para `86b83005cde89f26ad2ef03af43cf512bc085080`, adicionou `validate_advanced.py` e o round-trip neutro do inventário completo;
+- PR #580 — atualizou a evidência documental da integração e o índice de autoria sem alterar canon;
+- PR #581 — adicionou a ficha de autoria e o asset brief source-grounded de Maura; o merge `70d3a1a372c10c1a470ac565f661ad333de50b0e` concluiu **25 de 25** workflows de `push` com `success`, incluindo SonarQube e a matriz de worldgen.
 
 O merge de #579 produziu o commit `37a31d1da0e794d21654c9468888426e18113257` em `main`.
 
@@ -58,7 +62,7 @@ Para esse SHA de merge:
 - `RPG Skill Tree CI` run `35104815112`: **success**, incluindo GameTests, build, verificação do JAR e dedicated-server smoke;
 - consulta agregada dos workflows disparados pelo merge: **24 de 24 top-level workflows concluídos com `success`**.
 
-Essa evidência verifica o estado integrado do consumer; ela não substitui a authority narrativa e não transforma resultado de CI em aprovação de conteúdo ficcional.
+A evidência de #581 confirma que o novo material de Maura integrou sem regressão de CI; ela não substitui a authority narrativa e não transforma resultado de CI em aprovação de conteúdo ficcional.
 
 ## Material legado fora do corpus ativo
 
