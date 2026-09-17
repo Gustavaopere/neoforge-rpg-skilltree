@@ -37,6 +37,22 @@
         "voice": ["Voz"],
         "appearance": ["Aparência — base vinculada ao source"]
       }
+    },
+    "authored-npc-grounding": {
+      "include": [
+        "NPC-0003-iren-valmor-autoria.md",
+        "NPC-0004-liora-autoria.md",
+        "NPC-0005-oren-autoria.md",
+        "NPC-0006-elian-autoria.md"
+      ],
+      "required_sections": {
+        "references": ["Referências"],
+        "limits": ["Limites de conhecimento", "Limites de knowledge"]
+      },
+      "knowledge_state_sections": {
+        "voice": ["Voz"],
+        "appearance": ["Aparência", "Aparência — base vinculada ao Grimoire"]
+      }
     }
   },
   "relationship_memory_contracts": {

@@ -39,7 +39,8 @@ O probe usa `historia/03-npcs/principais` como slice real e não fabrica lore pa
 
 - `NPC-0001-aren-autoria.md` exercita provenance/source-grounding e limites de expansão;
 - `NPC-0007-maura-autoria.md` exercita source-grounding próprio, exigindo as seções de authority/proveniência e limites de knowledge e reconhecendo as superfícies editoriais de voz e aparência já versionadas;
-- o contrato de Maura não impõe `reference_rules` sobre a seção de provenance porque ela cita `FAC-0002` e `SET-0002`, cujas declarações vivem fora do `story_root` restrito do probe; isso evita tratar referências externas válidas como targets ausentes do slice;
+- `NPC-0003-iren-valmor-autoria.md`, `NPC-0004-liora-autoria.md`, `NPC-0005-oren-autoria.md` e `NPC-0006-elian-autoria.md` compartilham o contrato estrutural `authored-npc-grounding`, que exige `Referências`, limites explícitos de knowledge e superfícies editoriais de `Voz` e `Aparência` já presentes nos arquivos;
+- os contratos de Maura e do grupo Iren–Elian não impõem `reference_rules` sobre suas seções de referência/proveniência porque elas citam entidades e materiais que vivem fora do `story_root` restrito do probe; isso evita transformar referências externas válidas em targets ausentes do slice ou forçar um único tipo sobre referências deliberadamente heterogêneas;
 - `NPC-0001-aren.md` exercita o contrato estrutural de relações sistêmicas e preserva a multidimensionalidade declarada no próprio documento;
 - o hook de chronology/causality está configurado para `EVT`, mas o slice atual não contém registros `EVT-####`; a cobertura algorítmica de arestas/ciclos permanece no golden corpus da Factory até existirem eventos reais adequados no consumidor;
 - o inventory real é exportado para um snapshot neutro com provenance e comparado sem qualquer escrita de volta no canon.
@@ -51,7 +52,8 @@ A adoção revision 1 foi integrada em ondas revisáveis:
 - PR #578 — adicionou o probe de compatibilidade do profile v1 e validou o slice narrativo real contra o Factory hardened;
 - PR #579 — promoveu o consumer canônico para revision 1, atualizou o pin do workflow principal para `86b83005cde89f26ad2ef03af43cf512bc085080`, adicionou `validate_advanced.py` e o round-trip neutro do inventário completo;
 - PR #580 — atualizou a evidência documental da integração e o índice de autoria sem alterar canon;
-- PR #581 — adicionou a ficha de autoria e o asset brief source-grounded de Maura; o merge `70d3a1a372c10c1a470ac565f661ad333de50b0e` concluiu **25 de 25** workflows de `push` com `success`, incluindo SonarQube e a matriz de worldgen.
+- PR #581 — adicionou a ficha de autoria e o asset brief source-grounded de Maura; o merge `70d3a1a372c10c1a470ac565f661ad333de50b0e` concluiu **25 de 25** workflows de `push` com `success`, incluindo SonarQube e a matriz de worldgen;
+- PR #585 — adicionou `maura-source-grounding` ao probe avançado sem alterar canon; o merge `81e1a169a77c4b459eb49db41e396b683e60256c` concluiu **25 de 25** workflows de `push` sem falha, cancelamento ou execução pendente.
 
 O merge de #579 produziu o commit `37a31d1da0e794d21654c9468888426e18113257` em `main`.
 
@@ -62,7 +64,7 @@ Para esse SHA de merge:
 - `RPG Skill Tree CI` run `35104815112`: **success**, incluindo GameTests, build, verificação do JAR e dedicated-server smoke;
 - consulta agregada dos workflows disparados pelo merge: **24 de 24 top-level workflows concluídos com `success`**.
 
-A evidência de #581 confirma que o novo material de Maura integrou sem regressão de CI; ela não substitui a authority narrativa e não transforma resultado de CI em aprovação de conteúdo ficcional.
+As evidências de #581 e #585 confirmam que a expansão source-grounded de Maura e seu gate estrutural integraram sem regressão de CI; elas não substituem a authority narrativa e não transformam resultado de CI em aprovação de conteúdo ficcional.
 
 ## Material legado fora do corpus ativo
 
