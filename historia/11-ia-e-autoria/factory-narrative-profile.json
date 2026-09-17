@@ -26,6 +26,17 @@
           "min_references": 1
         }
       }
+    },
+    "maura-source-grounding": {
+      "include": ["NPC-0007-maura-autoria.md"],
+      "required_sections": {
+        "provenance": ["Authority e proveniência"],
+        "limits": ["Limites de knowledge"]
+      },
+      "knowledge_state_sections": {
+        "voice": ["Voz"],
+        "appearance": ["Aparência — base vinculada ao source"]
+      }
     }
   },
   "relationship_memory_contracts": {
