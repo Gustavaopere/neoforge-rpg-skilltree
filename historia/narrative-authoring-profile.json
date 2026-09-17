@@ -28,6 +28,64 @@
       }
     }
   },
+  "knowledge_evidence_contracts": {
+    "aren-source-grounding": {
+      "include": ["03-npcs/principais/NPC-0001-aren-autoria.md"],
+      "required_sections": {
+        "provenance": ["Proveniência já aceita"],
+        "limits": ["Gate para expansão"]
+      },
+      "knowledge_state_sections": {
+        "voice": ["Voz"],
+        "appearance": ["Aparência"]
+      },
+      "reference_rules": {
+        "provenance": {
+          "allowed_types": ["NPC"],
+          "min_references": 1
+        }
+      }
+    },
+    "maura-source-grounding": {
+      "include": ["03-npcs/principais/NPC-0007-maura-autoria.md"],
+      "required_sections": {
+        "provenance": ["Authority e proveniência"],
+        "limits": ["Limites de knowledge"]
+      },
+      "knowledge_state_sections": {
+        "voice": ["Voz"],
+        "appearance": ["Aparência — base vinculada ao source"]
+      }
+    },
+    "authored-npc-grounding": {
+      "include": [
+        "03-npcs/principais/NPC-0003-iren-valmor-autoria.md",
+        "03-npcs/principais/NPC-0004-liora-autoria.md",
+        "03-npcs/principais/NPC-0005-oren-autoria.md",
+        "03-npcs/principais/NPC-0006-elian-autoria.md"
+      ],
+      "required_sections": {
+        "references": ["Referências"],
+        "limits": ["Limites de conhecimento", "Limites de knowledge"]
+      },
+      "knowledge_state_sections": {
+        "voice": ["Voz"],
+        "appearance": ["Aparência", "Aparência — base vinculada ao Grimoire"]
+      }
+    }
+  },
+  "relationship_memory_contracts": {
+    "aren-systemic-relations": {
+      "include": ["03-npcs/principais/NPC-0001-aren.md"],
+      "required_sections": {
+        "relations": ["Relações sistêmicas"]
+      },
+      "dimension_sections": {
+        "multidimensional-contract": ["Invariantes sistêmicos preservados"]
+      },
+      "allow_self_relation": false
+    }
+  },
   "dialogue_entity_type": "DLG",
   "dialogue_required_sections": {
     "editorial-state": ["estado editorial"],
