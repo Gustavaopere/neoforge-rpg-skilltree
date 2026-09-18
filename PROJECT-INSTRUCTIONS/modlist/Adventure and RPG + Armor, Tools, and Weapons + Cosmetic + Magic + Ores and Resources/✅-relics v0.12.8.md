@@ -22,9 +22,9 @@
 - **Compatibilidade/Riscos:** Beta oficial. Riscos: API drift dos addons Reliquified, modifiers/abilities duplicados no lifecycle Curios, target filtering, XP/stat overflow, stale cache/memory retention, dedicated-server classloading e power/loot stacking. Issues/PR upstream citados não foram reproduzidos localmente.
 - **Sobreposição:** Compartilha slots/efeitos com Artifacts e outros acessórios, mas Relics mantém authority de sua progressão/abilities. Curios mantém authority dos slots; addons Reliquified estendem conteúdo sem substituir o framework.
 - **Observações:** 0.12.8 adiciona Shield of Retaliation, targets configuráveis, FTB Teams e estatística de relic XP; também otimiza cache/corrige leaks e altera Ghostly Mantle, Midnight Mantle e Springy Boot. Artifacts físico atual é `13.2.5`.
-- **Procedência:** modlist física atual de 16/09/2026 + release/dependências oficiais Relics 0.12.8 + source público da linha 1.21 usado apenas para arquitetura + issues/PR upstream marcados como riscos não reproduzidos.
+- **Procedência:** modlist física de 16/09/2026 + release/dependências oficiais Relics 0.12.8 + source público da linha 1.21 usado apenas para arquitetura + issues/PR upstream marcados como riscos não reproduzidos.
 - **Histórico da decisão:**
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — Relics permanece em 0.12.8; dossiê funcional preservado, fingerprint físico revalidado e integrações atuais reconciliadas.
+- **Atualização/Status:** READITADO EM 17/09/2026 — Relics permanece em 0.12.8; integrações físicas reconciliadas para Curios 9.5.1, OctoLib 0.6.2, Sophisticated Backpacks 3.26.3, FTB Teams 2101.1.11 e Artifacts 13.2.5.
 - **Data da última decisão:** 2026-08-26
 
 > 💠 **ESCOPO CANÔNICO.** Runtime físico: `relics-1.21.1-0.12.8.jar`, mod id `relics`, versão `0.12.8`, NeoForge 1.21.1. Relics é um sistema de acessórios/relics com habilidades e progressão próprias, loot configurável e integração com Curios. A build 0.12.8 é Beta oficial; isso é maturidade publicada, não evidência automática de incompatibilidade.
@@ -172,8 +172,10 @@ Esses são regression gates diretamente vinculados à build instalada.
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 
 ## 18. Evidências e limites
-- Modlist física atual: JAR, mod id, runtime, SHA-1 e versões das dependências/integradores presentes.
-- Release oficial 0.12.8: canal, ambiente e changelog exato; continua sendo a build 1.21.1 mais recente identificada na reauditoria.
+- Modlist física: JAR, mod id, versão, mixin e versões das dependências/integradores presentes.
+- Reauditoria física de 16/09/2026: runtime `0.12.8` e SHA-1 `1fe7d57ebfa56ebd0aeecfed01075f8b55b94ef7` confirmados.
+- Release oficial 0.12.8: canal, ambiente e changelog exato.
+- A 0.12.8 continua sendo a build 1.21.1 mais recente identificada na reauditoria.
 - Dependências oficiais: Curios API, ShatterLib/OctoLib, Sophisticated Backpacks optional.
 - GitHub público da linha 1.21: arquitetura geral de registries/subsistemas, sem tratá-lo como source pin exato do JAR.
 - Issues/PR upstream: riscos conhecidos, explicitamente marcados como **não reproduzidos localmente**.
