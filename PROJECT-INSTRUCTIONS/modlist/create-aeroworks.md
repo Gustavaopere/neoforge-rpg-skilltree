@@ -1,9 +1,8 @@
 # Create: Aeroworks
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db811b81a1d5fcc7663d35
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-10
 
 ## Propriedades do banco
@@ -11,7 +10,7 @@
 - **Mod:** Create: Aeroworks
 - **Arquivo JAR:** `aeroworks-1.5.0.jar`
 - **Versão 1.21.1:** 1.5.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, QoL
@@ -19,10 +18,10 @@
 - **Dependências:** Documentação atual: NeoForge 21.1.225+, Create 6.0.0+, Create Aeronautics 1.0.3+; relações CurseForge também registram Create + Sable. Pack: NeoForge 21.1.248, Create 6.0.10, Aeronautics 1.3.2 e Sable 2.0.5.
 - **Sobreposição:** Compartilha domínio com outros addons de pilotagem, mas fornece controles modulares, gyroscope e servos próprios. Não substitui solver físico, lift ou propulsão do Aeronautics/Sable.
 - **Compatibilidade/Riscos:** Testar concorrência com outros controladores de orientação/força e sincronização de inputs. A 1.5.0 adiciona Drive-By-Sable compat; validar multiplayer, bindings e servos após schematic/mirror/wrench.
-- **Observações:** 1.5.0 adiciona Control Stand, Copycat Control Stand, módulos copper, steering wheels coloridos, terceiro pedal socket e Drive-By-Sable compatibility.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Create: Aeroworks 1.5.0 + dossiê técnico existente.
+- **Observações:** 1.5.0 adiciona Control Stand/Copycat Control Stand, variantes copper/steering wheel, terceiro pedal socket e Drive-By-Sable. Validar input cliente→servidor, gyroscopes concorrentes, servos e persistência após schematic/mirror/wrench.
+- **Procedência:** modlist.txt física do projeto consultada em 14/09/2026 + CurseForge oficial Create: Aeroworks 1.5.0. Artefato `aeroworks-1.5.0.jar`, runtime `1.5.0`, SHA-1 `a14ff1c30f3c824b36ee6e2e711a47fd537a5c5f`; mixins `aeroworks-simulated`, `drivebysable`, `drivebywire` e núcleo.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeroworks
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — gyroscope, cockpit modules, servos, Control Stand, Drive-By-Sable e input/multiplayer QA confirmados no QC global #16.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — ownership de avionics, quatro mixin configs físicos, input/sync, lifecycle e fingerprint documentados; 1.5.0/Drive-By-Sable mantidos como gates de multiplayer.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
@@ -46,6 +45,24 @@ Aeroworks atua no mesmo domínio de outros addons de pilotagem, mas não é auto
 
 ## Limites
 Não fornece o solver físico, lift ou propulsão principal; esses papéis pertencem a Sable/Aeronautics e addons de propulsão. O Gyroscope estabiliza, não cria sustentação infinita por si só.
+
+
+## Ownership técnico e superfícies de integração
+- **Ownership primário:** input, controle de atitude e conversão de comandos do jogador em sinais/saída rotacional para physics ships; não possui solver físico, lift ou propulsão principal.
+- **Mod ID:** `aeroworks`.
+- **Mixin configs físicos:** `aeroworks-simulated.mixins.json`, `aeroworks-drivebysable.mixins.json`, `aeroworks-drivebywire.mixins.json` e `aeroworks.mixins.json`.
+- Os nomes dos configs confirmam superfícies dedicadas a integrações Simulated, Drive-by-Sable e Drive-by-Wire, além do núcleo; **os classes/métodos exatos não foram inferidos sem leitura de código do artefato**.
+## Configuração e dados
+A configuração funcional é majoritariamente in-world: canais/bindings dos módulos de cockpit, servos e Control Stands. Não foi confirmada neste lote uma lista completa de arquivos TOML/JSON próprios. Configuração de blocos deve sobreviver a wrench rotation, mirror, schematic placement e save/reload.
+## Client/server, input e sincronização
+Teclado/mouse/controller nascem no cliente, mas efeitos sobre orientação, redstone/controle e rotação do ship precisam convergir no servidor. A versão 1.5.0 adiciona compatibilidade Drive-By-Sable, o que torna multiplayer e sincronização de input uma superfície de regressão prioritária. Dedicated-server testing deve confirmar que um cliente não produz estado exclusivo/local de controle.
+## Lifecycle operacional
+Validar **colocação/configuração → bind de input → montagem do ship → alteração de RPM/power → perda/restauração de energia → mirror/schematic/wrench → desmontagem → save/reload**. Gyroscopes múltiplos e múltiplos controladores escrevendo no mesmo eixo/canal devem ser testados explicitamente.
+## Fingerprint físico
+- JAR: `aeroworks-1.5.0.jar`
+- Runtime: `1.5.0`
+- SHA-1: `a14ff1c30f3c824b36ee6e2e711a47fd537a5c5f`
+- Mixin configs: quatro, listados acima.
 
 ## Testes recomendados
 1. Gyroscope com RPM baixo/alto e ships de massas diferentes.
