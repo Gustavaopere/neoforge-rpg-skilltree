@@ -81,12 +81,12 @@ O pack usa Jade no ecossistema; tanks/containers suportados devem apresentar val
 O source 1.21.1 inclui Create como integration/runtime de desenvolvimento e a linha 3.0.0 menciona fix explícito de purity propagation com Create.
 No pack com Create 6.0.10 e muitos fluid addons, validar bucket/bottle/pipe/tank transitions e evitar perda de purity durante transferências.
 ## 11. Cold Sweat e outros survival mods
-O source 1.21.1 inclui Cold Sweat entre integrações de desenvolvimento. O pack possui Cold Sweat 2.4.2.
+O source 1.21.1 inclui Cold Sweat entre integrações de desenvolvimento. O pack físico atual possui Cold Sweat 2.4.3.1.
 Isto não significa que Thirst e temperature sejam o mesmo recurso: cada sistema mantém authority própria. Testar apenas a integração publicada/runtime, sem fundir balanceamento de thirst e body temperature na documentação.
 ## 12. Addons concretos no pack
 - **Thirst Was Fixed 2.1.6:** corrige cauldrons e integra Ars/Ultimine/ParCool/Amendments.
 - **Sophisticated Thirst Upgrade 0.1.8:** extensão para storage/backpacks sofisticados, catalogada separadamente.
-- **Cold Sweat 2.4.2:** sistema térmico separado.
+- **Cold Sweat 2.4.3.1:** sistema térmico separado.
 - **Create 6.0.10:** fluid transfer integration relevante.
 - **Jade:** inspection de storage/purity na 3.0.4.
 ## 13. Client / server e multiplayer
