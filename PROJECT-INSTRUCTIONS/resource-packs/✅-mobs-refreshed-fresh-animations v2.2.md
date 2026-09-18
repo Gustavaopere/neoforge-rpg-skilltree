@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `mobs-refreshed-fa-v2.2.zip`, versão `2.2`. A página oficial do arquivo inclui Minecraft `1.21.1` e informa compatibilidade com Mobs Refreshed v2.2.
+> **Resource pack físico confirmado:** `mobs-refreshed-fa-v2.2.zip`, versão `2.2`. A página oficial do arquivo inclui Minecraft `1.21.1` e informa compatibilidade com Mobs Refreshed v2.2.
 
 ## 1. Papel e authority
 Mobs Refreshed + Fresh Animations é a camada de **compatibilidade visual** entre Mobs Refreshed e Fresh Animations. Minecraft continua authority de entidades, AI, spawn, stats e drops; as duas bases e este bridge controlam apenas modelos/texturas/animações.

@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `FreshAnimations_v1.10.4.zip`, versão `1.10.4`. A página oficial do arquivo inclui explicitamente Minecraft `1.21.1`.
+> **Resource pack físico confirmado:** `FreshAnimations_v1.10.4.zip`, versão `1.10.4`. A página oficial do arquivo inclui explicitamente Minecraft `1.21.1`.
 
 ## 1. Papel e authority
 Fresh Animations é a base de animações/modelos dinâmicos de entidades vanilla do perfil. Minecraft continua authority de entity registry, AI, spawn, stats, drops e persistence; o pack controla somente apresentação.
