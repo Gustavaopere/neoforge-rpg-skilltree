@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Simply More x Excalibur.zip`, sem versão semântica própria publicada. O alvo físico atual é Simply More `1.3.0_alpha`.
+> **Resource pack físico confirmado:** `Simply More x Excalibur.zip`, sem versão semântica própria publicada. O alvo físico atual é Simply More `1.3.0_alpha`.
 
 ## 1. Papel e authority
 Simply More x Excalibur é uma camada visual não oficial que adapta armas de Simply More à estética Excalibur. **Simply More** continua authority de weapon registry, stats, abilities, recipes e comportamento em combate.
