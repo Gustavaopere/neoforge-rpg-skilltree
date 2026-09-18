@@ -1,7 +1,6 @@
 # Complementary Shaders - Reimagined
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db819c9610ca68897f62fb
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Shader
 - **Arquivo:** `ComplementaryReimagined_r5.9.zip`

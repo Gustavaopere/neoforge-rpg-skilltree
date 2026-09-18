@@ -1,7 +1,6 @@
 # Fresh Animations
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81c79ad9d387f31dac17
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `FreshAnimations_v1.10.4.zip`

@@ -1,7 +1,6 @@
 # Excalibur | Additions: Minor Mods Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81e49451f64f1ffe4853
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur Additions_Minor Mod Support 1.6.zip`
