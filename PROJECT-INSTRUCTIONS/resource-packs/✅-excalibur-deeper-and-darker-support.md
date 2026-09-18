@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Deeper and Darker Support.zip`, Release publicada para Minecraft 1.21.1. A página oficial confirma o objetivo de oferecer suporte visual Excalibur ao mod Deeper and Darker, mas não publica manifesto completo de cobertura.
+> **Resource pack físico confirmado:** `Excalibur Deeper and Darker Support.zip`, Release publicada para Minecraft 1.21.1. A página oficial confirma o objetivo de oferecer suporte visual Excalibur ao mod Deeper and Darker, mas não publica manifesto completo de cobertura.
 
 ## 1. Papel e authority
 Excalibur | Deeper and Darker Support é um compatibility resource pack. **Deeper and Darker** continua authority de dimensão, mobs, blocos, itens, worldgen, loot e qualquer comportamento. O support pack altera somente recursos visuais que existirem no ZIP.
