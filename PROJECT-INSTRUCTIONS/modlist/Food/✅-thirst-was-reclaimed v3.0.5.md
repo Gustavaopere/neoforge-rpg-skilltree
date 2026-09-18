@@ -151,3 +151,5 @@ Nenhum teste de drinking, purity, loot, Supplementaries, CreateCyberGoggle ou Co
 - [ ] Loot tables carregam sem erro de parsing.
 - [ ] CreateCyberGoggle coexiste sem incompatibilidade reproduzível.
 - [ ] Dedicated server inicia com Thirst 3.0.5 e Cold Sweat 2.4.3.1.
+## 21. Upstream posterior observado
+Em 16/09/2026 foi observada uma publicação `3.0.6` cujo filename sugere Minecraft 1.21.1, porém a listagem recuperada do CurseForge apresenta metadata de game version inconsistente. Pela regra fail-closed e pela autoridade física do pack, essa publicação **não** substitui o runtime instalado `3.0.5` nesta auditoria. Uma atualização futura exige confirmar o artefato físico realmente instalado e a compatibilidade correspondente.
