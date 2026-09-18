@@ -10,7 +10,7 @@
 ## Autoridade e limite físico na exportação
 
 - O dossiê Notion registra `intstrong_alexsmobs-1.0.0-1.21.1.zip` como fisicamente confirmado por captura do perfil em 08/09/2026.
-- A modlist física acessível de 08/09/2026 confirma `integrated_stronghold-1.1.4+1.21.1-neoforge.jar`, mod id `integrated_stronghold`, runtime `1.1.4+1.21.1-neoforge`, e `alexsmobs-2.1.11-neoforge+1.21.1.jar`, mod id `alexsmobs`, runtime `2.1.11`, nome de runtime Alex's Mobs Continued.
+- A modlist física acessível de 08/09/2026 confirma `integrated_stronghold-1.1.4+1.21.1-neoforge.jar`, mod id `integrated_stronghold`, runtime `1.1.4+1.21.1-neoforge`, e `alexsmobs-2.1.13-neoforge+1.21.1.jar`, mod id `alexsmobs`, runtime `2.1.13`, nome de runtime Alex's Mobs Continued.
 - O upstream identifica o projeto como Alex's Mobs Integration Datapack, mas não publica inventário detalhado de cada entrada do ZIP; cobertura específica permanece fail-closed.
 - Integrated Stronghold continua authority da estrutura/worldgen-base; Alex's Mobs Continued continua authority das entidades/gameplay; o datapack controla apenas a integração de dados efetivamente fornecida.
 
@@ -25,14 +25,14 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Visual, Mobs, Worldgen
 - **Função:** Datapack de integração que conecta conteúdo de Alex's Mobs ao ecossistema de dados/worldgen do Integrated Stronghold, sem assumir ownership das entidades ou da estrutura-base.
-- **Dependências:** Integrated Stronghold 1.1.4+1.21.1-neoforge + Alex's Mobs Continued 2.1.11 como alvos físicos. O projeto é um datapack de integração; não substitui nenhum dos mods.
+- **Dependências:** Integrated Stronghold 1.1.4+1.21.1-neoforge + Alex's Mobs Continued 2.1.13 como alvos físicos. O projeto é um datapack de integração; não substitui nenhum dos mods.
 - **Sobreposição:** Pode disputar dados de integração/spawn/worldgen do stronghold com outros datapacks. Integrated Stronghold continua authority da estrutura; Alex's Mobs Continued continua authority das entidades e gameplay.
-- **Compatibilidade/Riscos:** Integração data-driven entre Integrated Stronghold e Alex's Mobs. O upstream não publica inventário detalhado das entradas do ZIP; cobertura específica permanece fail-closed. Mudanças de IDs/data paths nos mods-alvo podem quebrar a integração.
-- **Observações:** Arquivo físico `intstrong_alexsmobs-1.0.0-1.21.1.zip`, versão 1.0.0, release oficial para Minecraft 1.21.1. O upstream identifica o projeto explicitamente como Alex's Mobs Integration Datapack.
-- **Procedência:** CurseForge oficial Integrated Stronghold - Alex's Mobs Integration 1.0.0 + captura Resource Packs do perfil em 08/09/2026 + modlist física Integrated Stronghold/Alex's Mobs Continued.
+- **Compatibilidade/Riscos:** Integração data-driven entre Integrated Stronghold e Alex's Mobs. O upstream não publica inventário detalhado das entradas do ZIP; cobertura específica permanece fail-closed. Mudanças de IDs/data paths no fork Alex's Mobs Continued 2.1.13 podem quebrar a integração e devem ser smoke-tested.
+- **Observações:** Arquivo físico `intstrong_alexsmobs-1.0.0-1.21.1.zip`, versão 1.0.0, release oficial para Minecraft 1.21.1. O stack físico atual usa Integrated Stronghold 1.1.4+1.21.1-neoforge e Alex's Mobs Continued 2.1.13.
+- **Procedência:** CurseForge oficial Integrated Stronghold - Alex's Mobs Integration 1.0.0 + captura do perfil em 08/09/2026 + modlist(1).txt física atual de 18/09/2026 (Integrated Stronghold 1.1.4+1.21.1-neoforge; Alex's Mobs Continued 2.1.13).
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/integrated-stronghold-alexs-mobs-integration/files/7805726
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Alex's Mobs Integration datapack 1.0.0, Integrated Stronghold 1.1.4 + Alex's Mobs Continued 2.1.11, worldgen/data boundary, riscos e QA catalogados.
-- **Histórico da decisão:**
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 18/09/2026 — datapack físico permanece `intstrong_alexsmobs-1.0.0-1.21.1.zip` / 1.0.0; stack físico atualizado para Integrated Stronghold 1.1.4+1.21.1-neoforge + Alex's Mobs Continued 2.1.13. Release oficial 1.0.0 para 1.21.1 permanece atual.
+- **Histórico da decisão:** 2026-09-18 — target físico Alex's Mobs Continued atualizado de 2.1.11 para 2.1.13; datapack permanece 1.0.0 e nenhuma decisão curatorial nova foi tomada.
 
 # Dossiê operacional — padrão Alex's Mobs
 
@@ -42,7 +42,7 @@
 Integrated Stronghold- Alex's Mobs Integration é o datapack oficial de integração entre **Integrated Stronghold** e **Alex's Mobs**. Integrated Stronghold continua authority da estrutura e worldgen-base; Alex's Mobs Continued continua authority das entidades, AI, stats, drops e demais mecânicas.
 
 ## 2. Stack físico
-O perfil contém Integrated Stronghold `1.1.4+1.21.1-neoforge` e Alex's Mobs Continued `2.1.11`. A release 1.0.0 do datapack é publicada especificamente para Minecraft 1.21.1.
+O perfil contém Integrated Stronghold `1.1.4+1.21.1-neoforge` e Alex's Mobs Continued `2.1.13`. A release 1.0.0 do datapack é publicada especificamente para Minecraft 1.21.1.
 
 ## 3. Escopo fail-closed
 O upstream identifica o projeto como **Alex's Mobs Integration Datapack for Integrated Stronghold**, mas não publica inventário detalhado de cada mob, tabela, spawn ou arquivo alterado. Portanto a ficha não inventa entidades específicas nem garante cobertura além da integração declarada.
