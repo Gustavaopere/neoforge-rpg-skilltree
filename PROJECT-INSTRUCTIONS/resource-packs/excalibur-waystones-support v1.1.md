@@ -11,7 +11,7 @@
 
 - O dossiê Notion registra `Excalibur Waystones 1.1.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
 - A busca atual na Biblioteca não recuperou diretamente esse ZIP/captura; portanto a presença/versão do resource pack é preservada conforme a procedência do dossiê, sem converter a modlist JAR-centric em inventário de resource packs.
-- A modlist física acessível de 08/09/2026 confirma o provider-alvo `waystones-neoforge-1.21.1-21.1.44.jar`, mod id `waystones`, runtime `21.1.44`.
+- A modlist física atual de 18/09/2026 confirma o provider-alvo `waystones-neoforge-1.21.1-21.1.45.jar`, mod id `waystones`, runtime `21.1.45`.
 - Evidências históricas da Biblioteca mostram versões anteriores de Waystones, mas não substituem a authority física atual de 08/09.
 
 ## Propriedades do banco
@@ -25,37 +25,37 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat
 - **Função:** Support pack visual medieval para Waystones, cobrindo waystones/warp plates e itens relacionados como shards e scrolls sem alterar teleport.
-- **Dependências:** Excalibur base + Waystones 21.1.44. WaystonesSable 1.0.7 é integração separada e não deve ser considerada coberta automaticamente.
+- **Dependências:** Excalibur base + Waystones 21.1.45. WaystonesSable 1.0.7 é integração separada e não deve ser considerada coberta automaticamente.
 - **Sobreposição:** Deve ficar acima do Excalibur base. Outros Waystones retextures podem disputar os mesmos assets; WaystonesSable pode ter assets próprios fora do namespace coberto.
-- **Compatibilidade/Riscos:** Arquivo físico é 1.1, enquanto a página oficial indexada ainda expõe 1.0; changelog exato 1.1 permanece fail-closed. Riscos adicionais: assets novos de Waystones, addon Sable e load order.
-- **Observações:** Arquivo instalado `Excalibur Waystones 1.1.zip`. Preservar versão 1.1 física; não inventar delta 1.0→1.1 sem changelog oficial suficiente.
-- **Procedência:** Captura CurseForge do perfil RPG em 08/09/2026 + modlist física atual + CurseForge oficial do Excalibur Waystones e evidência de distribuição do arquivo 1.1.
+- **Compatibilidade/Riscos:** Resource pack físico 1.1 permanece compatível com a linha 1.21.x publicada. O target físico agora é Waystones 21.1.45. Riscos: assets novos do Waystones sem cobertura, addon WaystonesSable 1.0.7 em namespace próprio, e load order com outros retextures.
+- **Observações:** Arquivo instalado `Excalibur Waystones 1.1.zip`. A página oficial atual expõe 1.1 como release principal para Minecraft 1.21.x; o antigo drift de indexação 1.0→1.1 deixou de ser pendência. O target físico atual é Waystones 21.1.45.
+- **Procedência:** Captura Resource Packs do perfil em 08/09/2026 + modlist(1).txt física atual de 18/09/2026 (Waystones 21.1.45; WaystonesSable 1.0.7) + CurseForge oficial Excalibur | Waystones Support 1.1.
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/excalibur-waystones
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — dossiê visual reconstruído; Waystones 21.1.44, versão física 1.1, cobertura, drift documental, load order, riscos e QA catalogados.
-- **Histórico da decisão:**
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 18/09/2026 — resource pack físico permanece `Excalibur Waystones 1.1.zip` / 1.1; target físico atualizado para Waystones 21.1.45. CurseForge oficial atual também expõe 1.1 como release principal para 1.21.x. WaystonesSable 1.0.7 permanece integração separada.
+- **Histórico da decisão:** 2026-09-18 — target físico Waystones atualizado de 21.1.44 para 21.1.45; resource pack permanece 1.1 e nenhuma decisão curatorial nova foi tomada.
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Waystones 1.1.zip`, versão `1.1`. O alvo físico atual é Waystones `21.1.44`; `WaystonesSable 1.0.7` também está presente como integração separada.
+> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Waystones 1.1.zip`, versão `1.1`. O alvo físico atual é Waystones `21.1.45`; `WaystonesSable 1.0.7` também está presente como integração separada.
 
 ## 1. Papel e authority
 Excalibur | Waystones Support é uma camada visual medieval para Waystones. **Waystones** continua authority de teleport, waystone activation, warp plates, scroll behavior, costs, permissions e networking.
 
 ## 2. Cobertura confirmada
-A documentação oficial do projeto descreve redesign de waystones/warp plates e itens relacionados, incluindo shards e scrolls. A publicação indexada mais antiga expõe `1.0`; o arquivo físico instalado é `1.1`, que deve permanecer como autoridade de versão instalada.
+A documentação oficial do projeto descreve redesign de waystones/warp plates e itens relacionados, incluindo shards e scrolls. Registros indexados históricos ainda podem citar `1.0`, mas a página oficial atual e o arquivo físico instalado convergem em `1.1`.
 
 ## 3. Boundary de versão
-Há evidência externa de distribuição para `Excalibur Waystones 1.1.zip`, enquanto a página principal indexada ainda pode exibir 1.0. O catálogo preserva `1.1` sem inventar changelog específico da 1.1. A diferença entre 1.0 e 1.1 permanece fail-closed.
+A página oficial atual expõe `Excalibur Waystones 1.1.zip` como release principal para Minecraft 1.21.x. O antigo drift de indexação 1.0→1.1 não é mais uma pendência. O catálogo preserva `1.1` como versão física e publicada.
 
 ## 4. Stack físico
-O target é Waystones `21.1.44`. `WaystonesSable 1.0.7` é outro mod e não é automaticamente coberto pelo resource pack; qualquer asset próprio desse addon exige evidência específica.
+O target é Waystones `21.1.45`. `WaystonesSable 1.0.7` é outro mod e não é automaticamente coberto pelo resource pack; qualquer asset próprio desse addon exige evidência específica.
 
 ## 5. Load order e reload
 O support pack deve ficar acima do Excalibur base. Resource reload altera apenas models/textures/icons; teleport network, nomes/links e estado de waystones não podem mudar.
 
 ## 6. Riscos
-1. Asset novo de Waystones 21.1.44 não coberto.
-2. Diferença não documentada entre support pack 1.0 e 1.1.
+1. Asset novo de Waystones 21.1.45 não coberto.
+2. Ausência de changelog detalhado da 1.1 limitar diagnóstico de diferenças internas de assets.
 3. WaystonesSable usar namespace próprio sem retexture.
 4. Outro Waystones resource pack vencer os mesmos paths.
 5. GUI/item icon ficar inconsistente após update/reload.
