@@ -1,9 +1,8 @@
 # AI-Improvements
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db814e82add353b6da5ce8
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
@@ -11,7 +10,7 @@
 - **Mod:** AI-Improvements
 - **Arquivo JAR:** `AI-Improvements-1.21-0.5.3.jar`
 - **Versão 1.21.1:** `0.5.3`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — performance scope, profiling requirement, AI toggles e coexistência com Enhanced AI 4.2.3.0 reconciliados no QC global #17.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — ownership/performance scope, config fail-closed, ambiente server-side, lifecycle, profiling gates e fingerprint físico documentados; coexistência com Enhanced AI preservada sem declarar conflito inexistente.
 - **Categoria:** Performance
 - **Compatibilidade/Riscos:** Pack também contém Enhanced AI 4.2.3.0. Papéis são distintos, mas ambos tocam IA; validar goals/pathfinding e qualquer toggle de desativação. Ganho de performance deve ser medido, não presumido. Nenhum conflito confirmado nesta auditoria.
 - **Decisão:** Sem decisão
@@ -20,10 +19,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ai-improvements
 - **Função:** Otimização low-level da IA vanilla para reduzir overhead de processamento e permitir desativação configurável de certos comportamentos; foco server-side/singleplayer.
 - **Histórico da decisão:** vazio
-- **Observações:** Não atribuir ganho genérico sem benchmark do pack. Testar mobs vanilla e modded, especialmente quando qualquer opção de desativação de AI for alterada.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + Modrinth/CurseForge oficiais AI Improvements 0.5.3 + dossiê técnico existente.
+- **Observações:** Ganho de performance deve ser medido, não presumido. Config efetiva da instância não foi fornecida; não afirmar quais toggles estão ativos. Validar mobs vanilla/modded e Enhanced AI em dedicated server com profiling.
+- **Procedência:** modlist.txt física do projeto consultada em 14/09/2026 + publicação oficial AI Improvements 0.5.3 para NeoForge 1.21.x. Artefato `AI-Improvements-1.21-0.5.3.jar`, runtime `0.5.3`, SHA-1 `b4a8e11384454bcc341043b251db7fb5afdfdf45`.
 - **Sobreposição:** Não é duplicata de Enhanced AI: AI-Improvements otimiza/reduz trabalho; Enhanced AI acrescenta comportamento. Sobreposição existe apenas na superfície técnica de AI tick/goals/pathfinding.
 - **Data da última decisão:** vazio
+- **Estado no pack:** Integrado ao Github
 
 ## Escopo e papel
 Mod de **otimização de IA vanilla**. O objetivo upstream é reduzir custo de processamento e permitir desativar certos comportamentos de AI, com foco em server-side/singleplayer. Ele não tenta tornar mobs mais inteligentes; atua no orçamento/execução da IA existente.
@@ -45,6 +45,23 @@ O ganho de performance depende de cenário e configuração; não deve ser assum
 
 ## Limites
 Não é substituto de Enhanced AI, não adiciona novos ataques, pathfinding sofisticado ou dificuldade. Também não resolve automaticamente custo de render, ticking de block entities ou worldgen.
+
+
+## Ownership técnico e fronteira de responsabilidade
+- **Ownership primário:** reduzir overhead de IA vanilla e permitir que determinados comportamentos sejam desativados/configurados; não adiciona novas decisões, ataques ou dificuldade.
+- **Mod ID físico:** `aiimprovements`.
+- O inventário físico não expôs nome de mixin config para este JAR. Isso **não autoriza concluir que o mod não usa patches internos**; significa apenas que o extrator da modlist não listou um arquivo de mixin associado.
+- A fronteira com `Enhanced AI 4.2.3.0` é funcionalmente distinta: AI-Improvements busca reduzir custo/trabalho, enquanto Enhanced AI adiciona/expande comportamento.
+## Configuração e dados
+A publicação upstream documenta capacidade de desativar certos comportamentos de IA, mas a lista exata de chaves e valores efetivos desta instância **não foi fornecida nem lida neste lote**. Portanto, qualquer conclusão sobre quais otimizações/toggles estão ativos permanece fail-closed até inspeção do config gerado da instância.
+## Client/server e multiplayer
+A build 0.5.3 é publicada para ambiente server-side/singleplayer. O efeito relevante deve ser medido no servidor lógico: entity tick, goals, pathfinding, TPS/MSPT e GC. Em cliente conectado, não se deve atribuir melhora de renderização, partículas ou GPU a este mod. Dedicated server é o cenário prioritário para medir ganho e detectar divergência de comportamento.
+## Lifecycle e regressões
+Validar bootstrap, carregamento de mundo, spawn massivo, unload/reload de chunks e sessões prolongadas. O risco principal não é corrupção de save, mas alteração silenciosa de AI quando uma opção interfere em goals de mobs vanilla/modded ou quando outro mod assume um comportamento vanilla que foi reduzido/desativado.
+## Fingerprint físico
+- JAR: `AI-Improvements-1.21-0.5.3.jar`
+- Runtime: `0.5.3`
+- SHA-1: `b4a8e11384454bcc341043b251db7fb5afdfdf45`
 
 ## Testes recomendados
 1. Benchmark com Spark/observable profiler em cenário controlado com e sem AI-Improvements.
