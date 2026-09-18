@@ -1,7 +1,6 @@
 # Excalibur | Deeper and Darker Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db815592f6d8f298bd8671
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur Deeper and Darker Support.zip`

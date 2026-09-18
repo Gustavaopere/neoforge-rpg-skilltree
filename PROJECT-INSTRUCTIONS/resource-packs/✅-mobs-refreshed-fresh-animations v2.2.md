@@ -1,7 +1,6 @@
 # Mobs Refreshed + Fresh Animations
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81f99ccdc3965fac6252
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `mobs-refreshed-fa-v2.2.zip`

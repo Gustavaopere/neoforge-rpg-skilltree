@@ -1,7 +1,6 @@
 # Integrated Stronghold- Alex's Mobs Integration
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db8199b1ebfed5d8b23e1c
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Arquivo:** `intstrong_alexsmobs-1.0.0-1.21.1.zip`
