@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Waystones 1.1.zip`, versão `1.1`. O alvo físico atual é Waystones `21.1.45`; `WaystonesSable 1.0.7` também está presente como integração separada.
+> **Resource pack físico confirmado:** `Excalibur Waystones 1.1.zip`, versão `1.1`. O alvo físico atual é Waystones `21.1.45`; `WaystonesSable 1.0.7` também está presente como integração separada.
 
 ## 1. Papel e authority
 Excalibur | Waystones Support é uma camada visual medieval para Waystones. **Waystones** continua authority de teleport, waystone activation, warp plates, scroll behavior, costs, permissions e networking.
