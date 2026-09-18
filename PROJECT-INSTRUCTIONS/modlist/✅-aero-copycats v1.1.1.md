@@ -1,9 +1,8 @@
 # aero_copycats
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81b88eafcc4c338a0b9a
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
@@ -11,7 +10,7 @@
 - **Mod:** aero_copycats
 - **Arquivo JAR:** `aerocopycats-1.1.1.jar`
 - **Versão 1.21.1:** `1.1.0`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — massa de Copycats+, divergência filename 1.1.1/runtime 1.1.0, Copycat Layers e boundary com Copycat Wing confirmados no QC global #13.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — ownership de massa, boundary com Copycat Wing, lifecycle, multiplayer e fingerprint físico documentados; divergência filename 1.1.1 ↔ runtime 1.1.0 preservada.
 - **Categoria:** Compat
 - **Compatibilidade/Riscos:** Pode alterar massa total, centro de massa e estabilidade de ships. Updates de Copycats+ podem introduzir formas ainda não cobertas; validar catálogo atual, montagem/desmontagem e persistência.
 - **Decisão:** Sem decisão
@@ -20,10 +19,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/copycats-aeronautics-weight
 - **Função:** Define massa física (kpg) coerente para blocos do Create: Copycats+ em Create Aeronautics/Sable, incluindo escala por número de camadas em Copycat Layers.
 - **Histórico da decisão:** vazio
-- **Observações:** Não normalizar versão: JAR `aerocopycats-1.1.1.jar`, runtime `1.1.0`. Não adiciona Copycats nem lift por si só.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Copycats+ Aeronautics Weight + dossiê técnico existente.
+- **Observações:** Não normalizar versão: publicação/filename `1.1.1`, runtime `1.1.0`. Nenhum mixin config foi exposto pelo inventário físico para este JAR; isso não prova ausência de integração em código.
+- **Procedência:** modlist.txt física do projeto consultada em 14/09/2026 + CurseForge oficial Copycats+ Aeronautics Weight. Artefato: `aerocopycats-1.1.1.jar`, metadata/runtime `1.1.0`, SHA-1 `3a93862421d0a8cdae1e3a3d7f0d4bd01e049007`; divergência preservada por evidência.
 - **Sobreposição:** Complementar a Create Aeronautics: Copycat Wing 1.0.3: Aero Copycats define massa; Copycat Wing define reconhecimento aerodinâmico/lift. Não são duplicatas.
 - **Data da última decisão:** vazio
+- **Estado no pack:** Integrado ao Github
 
 ## Escopo e papel
 Addon de física para **Create: Copycats+** dentro de **Create Aeronautics/Sable**. Sua responsabilidade é atribuir massa (`kpg`) coerente às formas Copycat, evitando que geometrias diferentes sejam tratadas com peso genérico. Em `Copycat Layers`, a massa escala conforme a quantidade de camadas.
@@ -49,6 +49,22 @@ O ponto sensível é balanceamento físico: alterações nas massas podem mudar 
 
 ## Limites
 Não cria blocos Copycat, não muda textura/camuflagem e não transforma uma forma em wing por si só. Também não é um controlador de voo.
+
+
+## Ownership técnico e superfícies alteradas
+- **Ownership primário:** massa física de blocos/formas do `Create: Copycats+` quando usados em ships do stack Aeronautics/Sable.
+- **Mod ID físico:** `aerocopycats`; nome runtime exibido: `aero_copycats`.
+- O inventário físico não expõe nome de mixin config para este JAR. Isso **não é evidência de ausência de integração em código**; apenas significa que nenhum config de mixin foi listado pelo extrator.
+- A fronteira funcional permanece clara: este addon define **massa**; `Create Aeronautics: Copycat Wing` trata **reconhecimento aerodinâmico/lift**.
+## Configuração e dados
+Nenhuma superfície de configuração de usuário foi confirmada nas fontes auditadas. O dado operacional essencial é a atribuição de massa por forma e, em `Copycat Layers`, a escala conforme o número de camadas. Valores numéricos internos de massa por bloco não foram inventariados neste lote e não devem ser presumidos.
+## Client/server, lifecycle e multiplayer
+Massa, centro de massa e resposta física precisam produzir o mesmo resultado no servidor e nos clientes observadores. O lifecycle sensível é **colocar/alterar Copycats → montar ship → recalcular massa/inércia → mover → desmontar → salvar/recarregar**. Em multiplayer, divergência de mass properties pode aparecer como jitter, correção de posição ou comportamento diferente entre host e cliente, por isso o teste deve ser feito também em dedicated server.
+## Fingerprint físico e divergência de versão
+- JAR: `aerocopycats-1.1.1.jar`
+- Metadata/runtime: `1.1.0`
+- SHA-1: `3a93862421d0a8cdae1e3a3d7f0d4bd01e049007`
+- **Não normalizar** `1.1.1` para `1.1.0` nem o inverso: filename/publicação e metadata runtime divergem no artefato físico e ambos são fatos relevantes.
 
 ## Testes recomendados
 1. Comparar massa total do ship com/sem diferentes formas Copycat.

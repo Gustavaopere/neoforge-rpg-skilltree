@@ -1,9 +1,8 @@
 # AeroStar
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c769db9f0db81a9bdf5eb41140c89b8
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
@@ -11,7 +10,7 @@
 - **Mod:** AeroStar
 - **Arquivo JAR:** `AeroStar-1.0.1.jar`
 - **Versão 1.21.1:** `1.0.1`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê completo, porém compatibilidade runtime com Northstar Redux 0.6.4 permanece FAIL-CLOSED até conferir SHA256 do JAR físico/patch específico.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — ownership de state transfer, lifecycle, multiplayer, fingerprint SHA-1 e matriz de validação aprofundados. BLOQUEIO FAIL-CLOSED Northstar Redux 0.6.4 permanece até SHA-256 físico do JAR confirmar original vs patched.
 - **Categoria:** Tecnologia; Compat
 - **Compatibilidade/Riscos:** BLOQUEIO ATUAL: patch notes registram NoClassDefFoundError no AeroStar 1.0.1 original com Northstar Redux 0.6.4 por mudança de NorthstarDimensions/API. A modlist ainda mostra `AeroStar-1.0.1.jar`; isso não prova se o binário foi patched e renomeado. Conferir SHA256 físico contra original 12d6ce... e patched 285992... antes de aprovar runtime. Continua incompatível com o antigo Northstar–Aeronautics Compatibility em paralelo.
 - **Decisão:** vazio
@@ -20,10 +19,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aerostar
 - **Função:** Bridge Create Aeronautics ↔ Northstar Redux: transfere physics ships entre dimensões/planetas com Dimensional Drive, preservando block entities, passageiros, assentos e momentum; inclui Orbital Physics Assembler e ferramentas de navegação/overlay.
 - **Histórico da decisão:** vazio
-- **Observações:** Dossiê completo documentalmente. PENDÊNCIA operacional: calcular SHA256 do JAR instalado; se original, substituir pelo `AeroStar-1.0.1-PATCHED-Northstar-0.6.4.jar`; depois executar full-pack/dedicated-server smoke e transferência dimensional.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial AeroStar + PATCH-NOTES-AeroStar-Northstar-0.6.4.txt de 08/09/2026.
+- **Observações:** Dossiê documental completo, mas runtime AeroStar↔Northstar Redux 0.6.4 não aprovado. Calcular SHA-256 do JAR instalado e comparar com os fingerprints original/patched já registrados; depois executar smoke full-pack/dedicated e transferências dimensionais.
+- **Procedência:** modlist.txt física do projeto consultada em 14/09/2026 + CurseForge oficial AeroStar 1.0.1 + patch notes já auditadas. Artefato `AeroStar-1.0.1.jar`, runtime `1.0.1`, SHA-1 `7e5ae54b22be453dc9ff0a35111d44ae78bd2128`, mixin `aerostarcomp.mixins.json`. O SHA-1 físico não substitui a comparação SHA-256 original/patched.
 - **Sobreposição:** Substitui o antigo compatibility mod Northstar↔Aeronautics. Não substitui Northstar Redux, Aeronautics ou Sable. Nenhum segundo top-level do compat antigo foi encontrado na modlist atual.
 - **Data da última decisão:** 2026-08-27
+- **Estado no pack:** Integrado ao Github
 
 ## Escopo e papel
 Compatibilidade espacial entre **Create Aeronautics** e **Northstar Redux**, construída como continuação corrigida e expandida do antigo Northstar–Aeronautics Compatibility. O núcleo é o `Dimensional Drive`: o ship físico é serializado, recriado na dimensão de destino e restaurado com block entities, passageiros, assentos e momentum.
@@ -47,6 +47,27 @@ O upstream ordena explicitamente usar AeroStar **em vez do compat original**, n�
 
 ## Limites
 AeroStar não substitui Northstar, Aeronautics ou Sable. Não é outro sistema espacial completo: é a bridge que permite levar physics ships do Aeronautics às dimensões/progressão do Northstar e operar estações físicas em órbita.
+
+
+## Ownership técnico e superfícies de estado
+- **Ownership primário:** transferência dimensional de physics ships entre a progressão/dimensões do Northstar Redux e o runtime Aeronautics/Sable; inclui `Dimensional Drive`, `Orbital Physics Assembler`, navegação e overlay.
+- **Mod ID físico:** `aerostarcomp`.
+- **Mixin config físico:** `aerostarcomp.mixins.json`.
+- A bridge precisa preservar estado que não pode ser reduzido a blocos estáticos: block entities, passageiros, seats, momentum, inventários, cinética, fluids e qualquer estado externo mantido por addons.
+## Configuração, comandos e dados
+O comando `/drivetransfer <planet>` está documentado como ferramenta administrativa de teste. Star Map e Interplanetary Navigator participam da seleção de destino. Não foi inventariada neste lote uma lista completa de arquivos/chaves de configuração próprios; qualquer ajuste adicional deve permanecer fail-closed até leitura direta do artefato/config gerado.
+## Client/server, lifecycle e multiplayer
+A decisão e execução da transferência dimensional devem ser server-authoritative; overlays/goggles/helmet constituem superfície de apresentação no cliente. O lifecycle crítico é **ship montado → destino selecionado → serialização/transferência → recriação no destino → ressincronização de passageiros e estado → save/reload → reconexão**. Em dedicated server, também é obrigatório validar ocupantes desconectando/reconectando e múltiplos passageiros.
+## Fingerprint físico e bloqueio de binário
+- JAR físico: `AeroStar-1.0.1.jar`
+- Runtime: `1.0.1`
+- SHA-1 do artefato instalado: `7e5ae54b22be453dc9ff0a35111d44ae78bd2128`
+- Mixin config: `aerostarcomp.mixins.json`
+- O SHA-1 acima **não resolve** a pendência já documentada porque os fingerprints de referência original/patched disponíveis são SHA-256. Até calcular SHA-256 do JAR físico e comparar com os valores documentados, o status de compatibilidade com Northstar Redux 0.6.4 permanece fail-closed.
+
+
+## Reconciliação física atual — 18/09/2026
+A modlist física mais recente (`modlist(1).txt`, 16/09/2026) mantém `AeroStar-1.0.1.jar`, mas Northstar Redux avançou de `0.6.4+1.21.1` para `0.6.5+1.21.1`. O patch documentado para Northstar 0.6.4 não prova compatibilidade com 0.6.5; portanto o gate operacional AeroStar ↔ Northstar permanece **FAIL-CLOSED** até validação do binário/runtime atual.
 
 ## Testes recomendados
 1. Transferir ship mínimo Earth ↔ orbit e validar posição/momentum.

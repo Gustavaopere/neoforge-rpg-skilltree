@@ -1,9 +1,8 @@
 # Alcubierre
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81fdb670d60b75dd865f
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
@@ -11,7 +10,7 @@
 - **Mod:** Alcubierre
 - **Arquivo JAR:** `alcubierre-1.2.6.jar`
 - **Versão 1.21.1:** `1.2.6`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — antigravity, warp, Dimensional Sable dependency, jar-in-jar Sable Companion e state-transfer QA confirmados no QC global #18.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — ownership de antigravidade/warp, JarJar boundary, lifecycle, multiplayer, state-transfer QA e fingerprint físico aprofundados; dependência Dimensional Sable 1.2.6+ preservada.
 - **Categoria:** Tecnologia
 - **Compatibilidade/Riscos:** Warp interdimensional toca serialização/persistência de block entities, passageiros, constraints, redstone e cinética. Dimensional Sable precisa permanecer compatível com Sable. Antigravidade cruza estabilização/propulsão, mas com semântica distinta.
 - **Decisão:** Sem decisão
@@ -20,10 +19,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-alcubierre
 - **Função:** Tecnologia de physics ships: Antigravity Drive cancela gravidade enquanto alimentado pela rede cinética; Alcubierre Controller warpa o ship inteiro para coordenadas/dimensão configuradas.
 - **Histórico da decisão:** vazio
-- **Observações:** Componente jarjar Sable Companion não conta como mod top-level. Validar transferências com block entities, inventários, seats, fluids e constraints antes de depender do warp em gameplay crítico.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Create Aeronautics: Alcubierre 1.2.6 + dossiê técnico existente.
+- **Observações:** JarJar Sable Companion 1.6.0 não é mod top-level. Validar antigravidade e warp com passengers, inventories, fluids, redstone, cinética, constraints e dedicated server; não presumir state transfer seguro sem smoke real.
+- **Procedência:** modlist.txt física do projeto consultada em 14/09/2026 + CurseForge oficial Create Aeronautics: Alcubierre 1.2.6. Artefato top-level `alcubierre-1.2.6.jar`, runtime `1.2.6`, SHA-1 `154b0a6d9abe6fdbc76b3a09ae38d21c100a21a8`, mixin `alcubierre.mixins.json`; `sable-companion-common-1.21.1-1.6.0.jar` permanece JarJar interno.
 - **Sobreposição:** Não duplica Aeroworks: Aeroworks estabiliza/controla; Alcubierre cancela gravidade e teleporta o ship. Também não substitui Northstar/AeroStar ou portais gerais.
 - **Data da última decisão:** vazio
+- **Estado no pack:** Integrado ao Github
 
 ## Escopo e papel
 Addon de tecnologia avançada para **Create/Sable** com duas mecânicas centrais: **Antigravity Drive**, que cancela a gravidade do physics ship enquanto recebe potência cinética, e **Alcubierre Controller**, que transfere o ship inteiro para coordenadas e dimensão configuradas.
@@ -47,6 +47,25 @@ O domínio cruza outros sistemas de voo/estabilização, mas a semântica é dis
 
 ## Limites
 Não fornece exploração espacial por planetas/progressão própria como Northstar/AeroStar. O warp é uma capacidade de ship; não substitui portais gerais do mundo. Antigravidade não equivale a controle completo de atitude ou propulsão horizontal.
+
+
+## Ownership técnico e superfícies de estado
+- **Ownership primário:** duas capacidades de ship — cancelamento de gravidade via Antigravity Drive e transferência/warp coordenado pelo Alcubierre Controller.
+- **Mod ID:** `alcubierre`.
+- **Mixin config físico:** `alcubierre.mixins.json`.
+- O JAR contém `sable-companion-common-1.21.1-1.6.0.jar` via JarJar. Esse componente é **interno ao host** e não deve ser contado como entrada top-level independente da modlist.
+## Configuração, dados e dependências internas
+A partir de `1.2.6`, **Dimensional Sable é obrigatório** segundo a publicação auditada. A ficha não presume arquivos/chaves de config não lidos. Destino/coordenadas do controller e estado cinético fazem parte da operação em runtime; qualquer configuração persistente adicional deve ser inventariada diretamente antes de ser usada por automação.
+## Client/server, lifecycle e multiplayer
+Gravidade, transformação do ship e transferência dimensional são efeitos server-authoritative; UI/feedback do controller podem ser apresentados no cliente. O lifecycle crítico é **montagem → alimentação cinética → antigravidade on/off → transferência intra/interdimensional → recriação de block entities/constraints/passengers → desmontagem → save/reload → reconexão**. Multiplayer deve incluir ocupantes, inventories, fluids e máquinas ativas durante o warp.
+## Boundary com outros sistemas
+Aeroworks controla/estabiliza atitude; wings/propulsão produzem forças; Alcubierre remove a componente gravitacional e executa warp. Essa diferença evita classificar a sobreposição como redundância, mas exige testes quando vários controladores físicos operam simultaneamente.
+## Fingerprint físico
+- JAR top-level: `alcubierre-1.2.6.jar`
+- Runtime: `1.2.6`
+- SHA-1: `154b0a6d9abe6fdbc76b3a09ae38d21c100a21a8`
+- Mixin: `alcubierre.mixins.json`
+- JarJar interno: `sable-companion-common-1.21.1-1.6.0.jar` / `sablecompanion` / `1.6.0`.
 
 ## Testes recomendados
 1. Antigravity Drive em ships leves/pesados e com diferentes RPM/power states.

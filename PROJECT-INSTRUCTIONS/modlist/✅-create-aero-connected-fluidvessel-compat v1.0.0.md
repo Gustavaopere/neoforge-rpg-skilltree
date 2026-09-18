@@ -1,9 +1,8 @@
 # Create Aero + Connected FluidVessel Compat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db812ea7a7f89e8f419905
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-10
 
 ## Propriedades do banco
@@ -11,7 +10,7 @@
 - **Mod:** Create Aero + Connected FluidVessel Compat
 - **Arquivo JAR:** `aeroconnectedfluidvessel-1.0.0.jar`
 - **Versão 1.21.1:** 1.0.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Tecnologia
@@ -19,10 +18,10 @@
 - **Dependências:** Obrigatórias upstream: Create, Create Aeronautics e Create: Connected. Pack atual: Create 6.0.10, Create Aeronautics 1.3.2 (bundle) e Create: Connected 1.3.3-mc1.21.1 presentes; Sable é a infraestrutura física do stack.
 - **Sobreposição:** Não duplica Create: Connected ou Aeronautics: cobre a lacuna de interoperabilidade entre ambos. Só seria redundante se o mesmo fix fosse incorporado upstream.
 - **Compatibilidade/Riscos:** Compat de block entities/physics assembly; risco principal é regressão após updates de Create/Aeronautics/Connected. Testar boiler, redstone, montagem/desmontagem, save/reload e servidor. Nenhum conflito comprovado no snapshot atual.
-- **Observações:** Addon de compatibilidade estreita; não cria sistema novo de fluidos/energia. Autoridade física atual: modlist de 595 top-levels.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial + dossiê técnico existente.
+- **Observações:** Bridge estreita Connected↔Aeronautics/Sable. Mixin configs físicos: `aeroconnectedfluidvessel.aeronauticsconnected.mixins.json` e `aeroconnectedfluidvessel.mixins.json`. Nenhuma config própria de usuário foi confirmada neste lote; manter fail-closed.
+- **Procedência:** modlist.txt física do projeto consultada em 14/09/2026 + CurseForge oficial Create Aero + Connected FluidVessel Compat 1.0.0 + dossiê técnico revalidado. Autoridade física: `aeroconnectedfluidvessel-1.0.0.jar` / `1.0.0`, SHA-1 `ce5be5d77836c966cc99d690b108409537ca1171`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-and-connected-fluid-vessel
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — bridge FluidVessel↔Aeronautics, boiler/redstone/shaft assembly e lifecycle confirmados no QC global #12.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — dossiê operacional aprofundado com ownership, mixins, lifecycle, multiplayer, fingerprint físico e matriz de validação; JAR/runtime preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
@@ -49,6 +48,22 @@ A função é estreita e não é duplicada pelo Create: Connected nem pelo Aeron
 
 ## Limites
 Não adiciona um novo sistema de fluidos, boiler ou energia. Não substitui Fluid Tanks do Create e não altera a física geral do Sable fora das interações corrigidas.
+
+
+## Ownership técnico e superfícies alteradas
+- **Ownership primário:** interoperabilidade `Create: Connected` ↔ `Create Aeronautics/Sable` para `FluidVessel` e `Steam Vent`; não possui o sistema-base de fluidos, vapor ou física.
+- **Mod ID físico:** `aeroconnectedfluidvessel`.
+- **Mixin configs expostos no inventário físico:** `aeroconnectedfluidvessel.aeronauticsconnected.mixins.json` e `aeroconnectedfluidvessel.mixins.json`.
+- A presença desses dois configs confirma uma superfície de patch dedicada à integração Aeronautics/Connected, mas **as classes e métodos-alvo individuais não foram inferidos apenas pelo nome dos arquivos**.
+## Configuração e dados
+Não foi confirmada, nas fontes auditadas deste lote, uma superfície de configuração própria destinada ao usuário. O comportamento documentado é de bridge técnica. Qualquer chave/config adicional encontrada em runtime deve ser tratada como pendência de inventário, não presumida.
+## Client/server, lifecycle e multiplayer
+O estado funcional relevante — boiler, redstone do vessel, shafts e montagem física — precisa permanecer autoritativo no servidor. Não foi identificado um subsistema client-only autônomo nas fontes consultadas. O ciclo crítico é **carregar mundo → montar ship → operar boiler/vents → desmontar → salvar/recarregar → reconectar em servidor dedicado**; regressões podem aparecer apenas após recriação das block entities/physics entities.
+## Fingerprint físico do snapshot
+- JAR: `aeroconnectedfluidvessel-1.0.0.jar`
+- Runtime: `1.0.0`
+- SHA-1: `ce5be5d77836c966cc99d690b108409537ca1171`
+- O fingerprint vem da `modlist.txt` física do projeto e é a autoridade deste snapshot.
 
 ## Testes recomendados
 1. Montar FluidVessel + Steam Vents em terreno estático e confirmar steam/boiler.
