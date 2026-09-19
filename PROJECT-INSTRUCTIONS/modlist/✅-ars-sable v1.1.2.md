@@ -210,7 +210,7 @@ A release modifica:
 - `EntityFlyingItem`;
 - `EntityFollowProjectile`.
 
-Helpers dedicados ajustam comportamento/tracking em espaço Sable. Isso é especialmente importante para spells/projectiles lançados de/para estruturas móveis: causalidade do spell continua Ars, enquanto posição/seguimento é adaptado à física espacial.
+Helpers dedicados ajustam comportamento/tracking em espaço Sable. Isso é especialmente importante para spells/projectiles lançados de/para estruturas móveis: causalidade do spell continua Ars, enquanto posição/seguimento é adaptada à física espacial.
 
 ## 18. Scrying e câmera
 A build contém suporte direcionado para câmera/scrying em sublevels:
