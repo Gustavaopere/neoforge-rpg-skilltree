@@ -15,6 +15,7 @@
 - Primeira oportunidade/quest de referência: **REGISTRADA; VÍNCULO DE AREN NÃO PRESUMIDO POR HERANÇA DO ANTIGO SLOT `NPC-0001`**
 - Pipeline genérico de autoria: **MIGRADO PARA MINECRAFT MOD FACTORY / CONSUMIDO POR CI**
 - Contratos editoriais específicos da campanha: **MANTIDOS NO RPG**
+- Briefs visuais ativos de `NPC-0003`–`NPC-0007`: **VALIDADOS ESTRUTURALMENTE PELO PROFILE, COM RESOLUÇÃO DE PORTRAIT/SKIN, PROVENIÊNCIA E EVIDÊNCIA FINAL EXPLÍCITAS; ASSETS FINAIS AINDA NÃO PRODUZIDOS**
 - Seis referências Grimoire de Oren/Elian recuperadas neste ciclo: **MATERIALIZADAS COMO `NPC-0007`, `FAC-0002`, `FAC-0003`, `SET-0002`, `SET-0003` E `LOC-0002`**
 - Referências Grimoire residuais ainda sem ID editorial próprio: **RASTREADAS NO BACKLOG / FAIL-CLOSED ATÉ SOURCE RECONCILIADO**
 - Diretor narrativo IA in-game: **OPCIONAL / PLANEJADO / NÃO É AUTORIDADE**
