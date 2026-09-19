@@ -22,6 +22,7 @@ Esta ficha deriva a voz e a direção visual da entidade ativa no Grimoire. Fala
 4. Curiosidade não elimina cautela experimental.
 5. Quando um resultado contradiz a hipótese, o resultado tem prioridade.
 6. Ela não converte vocabulário de outros providers para Ars por conveniência narrativa.
+7. A integração Ars do RPG Skill Tree para jogadores não define a progressão pessoal de Liora; nodes, identidade `sorcerer`, gates e Mastery só entram na personagem com binding NPC e estado próprios.
 
 ## Falas de calibração
 Estas linhas não representam eventos canônicos.
@@ -60,6 +61,7 @@ Detalhes de glyph, spell focus, dispositivo ou ritual devem permanecer genérico
 - local de encontro e progressão exata em Ars permanecem dependentes de worldgen/progressão;
 - o provider core 5.13.1 está auditado, mas o repertório pessoal de spells/glyphs/rituais de Liora continua não fixado;
 - uma capability existente no registry não pode ser mencionada como habilidade, posse ou conhecimento dela sem estado narrativo próprio.
+- `Despertar Arcano`, `summoning_000`, identidade `sorcerer` e lanes de Mastery Ars pertencem hoje ao runtime player-facing; não descrevê-los como status de Liora sem implementação/binding NPC explícito.
 
 ## Referências
 - dossiê: `NPC-0004-liora.md`;

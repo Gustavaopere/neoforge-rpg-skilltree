@@ -73,11 +73,14 @@ Detalhes de agenda concreta devem ser declarados por evento/quest/estado quando 
 
 O core instalado/documentado `ars_nouveau` 5.13.1 possui auditoria técnica versionada e confirma, entre outras superfícies, spell grammar modular, Source, rituals, scrying, apparatus/imbuement e automação. A separação entre capability do provider e repertório pessoal de Liora está registrada em `NPC-0004-liora-provider-audit.md`.
 
+O RPG Skill Tree também possui integração runtime real com Ars Nouveau para o **jogador**: gate de conjuração, ajustes de mana/regeneração, gate de familiar e awards causais de Mastery por composição. Essa integração é player-facing e não constitui binding mecânico de `NPC-0004`; o adapter atual não prova que Liora use `PlayerProgressionRuntime`, nodes da árvore, identidade `sorcerer`, lanes de Mastery ou os mesmos gates do jogador.
+
 Regras obrigatórias:
 - Source permanece Source;
 - glyph spellcraft segue Ars Nouveau;
 - existência de spell part, ritual, item, bloco ou subsystem no provider não prova que Liora o aprendeu, possui ou domina;
 - qualquer capability concreta atribuída a Liora precisa de estado de aprendizado/acesso e, quando aplicável, evento/quest que materialize seu uso;
+- contratos player-facing do Skill Tree (`Despertar Arcano`, identidade `sorcerer`, gate de familiar e Mastery Ars) não são estados de Liora sem binding NPC explícito;
 - knowledge produzido por mecanismo provider-native precisa de canal/proveniência rastreável;
 - sem bridge temática automática com Mana, Soul Energy, Black Arcana ou outro sistema.
 
