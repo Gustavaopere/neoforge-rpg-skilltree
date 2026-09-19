@@ -1,9 +1,10 @@
 # Ars Polymorphia
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `ars_polymorphia-1.0.3.jar`, versão `1.0.3`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81cca4b2e748d8c0dfbb
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco

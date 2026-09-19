@@ -1,9 +1,10 @@
 # Ars Elemental
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `ars_elemental-1.21.1-0.7.10.1.jar`, versão `0.7.10.1`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db814f9592dd10af855c22
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
