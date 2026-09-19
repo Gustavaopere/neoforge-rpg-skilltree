@@ -1,9 +1,8 @@
 # Amplified Nether
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c869db9f0db81dfa4bff9137a79a15f
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-10
 
 ## Propriedades do banco
@@ -11,7 +10,7 @@
 - **Mod:** Amplified Nether
 - **Arquivo JAR:** `Amplified_Nether_26.2_v1.2.16.jar`
 - **Versão 1.21.1:** 1.2.16
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Worldgen, Exploração
@@ -20,9 +19,9 @@
 - **Sobreposição:** Sobrepõe worldgen do Nether na camada de relevo/altura; Better Nether adiciona biomas/conteúdo e pode coexistir. Mods de estruturas continuam inserindo estruturas sobre esse terreno. Não substitui content mods do Nether.
 - **Compatibilidade/Riscos:** Incompatibilidade formal upstream com Incendium. Incendium não foi localizado na modlist top-level atual. Better Nether está instalado e o upstream diz que geralmente é compatível, mas isso não dispensa teste. Mundo existente: não adicionar a um Nether já gerado sem reset/novo mundo, pois a mudança de altura/terrain causa seams e inconsistência. Estruturas como YUNG's Better Nether Fortresses e outras do pack devem ser validadas quanto a altura, placement e acessibilidade.
 - **Observações:** A regra de migração é crítica: testar em Nether novo/resetado. Não usar chunk existente como validação de worldgen novo. A incompatibilidade com Incendium é formal upstream; coexistência com outros mods deve ser classificada por evidência, não por categoria.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficiais Amplified Nether 1.2.16 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/Modrinth oficiais Amplified Nether 1.2.16 e fontes já auditadas no dossiê. Reconciliação final: JAR permanece `Amplified_Nether_26.2_v1.2.16.jar` e runtime `1.2.16`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/amplified-nether
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — 256-block Nether terrain authority, Better Nether composition, YUNG structure placement, migration seams and Incendium incompatibility confirmed in global QC #27.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #27: `Amplified_Nether_26.2_v1.2.16.jar` / `1.2.16` conferidos contra a modlist atual; marcador `26.2` do filename preservado sem confundi-lo com a versão do mod; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
