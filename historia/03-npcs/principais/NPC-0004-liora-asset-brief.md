@@ -6,7 +6,7 @@ RASCUNHO
 ## Estado de produção
 NÃO INICIADO / nenhum asset project-owned aprovado.
 
-## Asset ID
+## Entity ID
 `NPC-0004`
 
 ## Referência de lore
