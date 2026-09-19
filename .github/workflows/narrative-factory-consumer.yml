@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      FACTORY_SHA: 86b83005cde89f26ad2ef03af43cf512bc085080
+      FACTORY_SHA: 55a9ad69a8316b1fa531b4c12aa88b4b70b22874
       PROFILE: historia/narrative-authoring-profile.json
       STORY_ROOT: historia
       DIALOGUE_ROOT: historia/12-dialogos
