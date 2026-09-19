@@ -14,7 +14,7 @@ Ambos pertencem a este repositório porque paths, headings e regras editoriais s
 ## Pin validado
 
 - Factory repository: `Gustavaopere/minecraft-mod-factory`;
-- Factory commit hardened: `86b83005cde89f26ad2ef03af43cf512bc085080`;
+- Factory commit hardened: `55a9ad69a8316b1fa531b4c12aa88b4b70b22874`;
 - profile contract revision: `1`.
 
 Os workflows `.github/workflows/narrative-factory-consumer.yml` e `.github/workflows/narrative-factory-compat.yml` usam esse SHA explicitamente. Atualização do pin é uma decisão separada e revisável.
@@ -37,7 +37,7 @@ O profile canônico também aplica, somente onde o corpus já possui estrutura s
 - `maura-source-grounding` a `03-npcs/principais/NPC-0007-maura-autoria.md`;
 - `authored-npc-grounding` às fichas de autoria de Iren, Liora, Oren e Elian, exigindo referências, limites explícitos de knowledge, voz e aparência;
 - `aren-systemic-relations` a `03-npcs/principais/NPC-0001-aren.md`, preservando as seções sistêmicas e a multidimensionalidade já declaradas;
-- `active-npc-asset-briefs` aos briefs ativos de Iren, Liora, Oren, Elian e Maura, exigindo estado editorial/de produção, vínculo por `Entity ID`, especificação explícita de portrait e skin, provenance/licença, evidência final e pendências. O brief legado de Severin permanece fora desse contrato ativo.
+- `active-npc-asset-briefs` aos briefs ativos de Iren, Liora, Oren, Elian e Maura, exigindo estado editorial/de produção, `Entity ID`, especificação explícita de portrait e skin, provenance/licença, evidência final e pendências; `filename_identity_section` ainda obriga o `Entity ID` a coincidir exatamente com o `NPC-####` no início do filename. O brief legado de Severin permanece fora desse contrato ativo.
 
 A promoção desses contratos para o consumer full-tree não acrescenta lore. Ela transforma estruturas editoriais já existentes e previamente validadas no probe em invariantes verificáveis no caminho canônico de CI.
 
@@ -54,7 +54,7 @@ O probe usa `historia/03-npcs/principais` como slice real e não fabrica lore pa
 - `NPC-0003-iren-valmor-autoria.md`, `NPC-0004-liora-autoria.md`, `NPC-0005-oren-autoria.md` e `NPC-0006-elian-autoria.md` compartilham o contrato estrutural `authored-npc-grounding`, que exige `Referências`, limites explícitos de knowledge e superfícies editoriais de `Voz` e `Aparência` já presentes nos arquivos;
 - os contratos de Maura e do grupo Iren–Elian não impõem `reference_rules` sobre suas seções de referência/proveniência porque essas seções são deliberadamente heterogêneas e, no probe, também podem apontar para entidades fora do `story_root` restrito;
 - `NPC-0001-aren.md` exercita o contrato estrutural de relações sistêmicas e preserva a multidimensionalidade declarada no próprio documento;
-- os cinco briefs visuais ativos (`NPC-0003`–`NPC-0007`) exercitam `active-npc-asset-briefs`; o contrato exige, entre outros invariantes, seções `Portrait/documentação` e `Skin Minecraft` independentes; Iren foi normalizado para a mesma separação estrutural dos demais briefs, impedindo que uma seção-pai satisfaça as duas exigências;
+- os cinco briefs visuais ativos (`NPC-0003`–`NPC-0007`) exercitam `active-npc-asset-briefs`; o contrato exige `Entity ID` idêntico ao ID do filename por `filename_identity_section`, além de seções `Portrait/documentação` e `Skin Minecraft` independentes; Iren foi normalizado para a mesma separação estrutural dos demais briefs, impedindo que uma seção-pai satisfaça as duas exigências;
 - o hook de chronology/causality do probe está configurado para `EVT`, mas o slice atual não contém registros `EVT-####`; a cobertura algorítmica de arestas/ciclos permanece no golden corpus da Factory até existirem eventos reais adequados no consumidor;
 - o inventory real é exportado para um snapshot neutro com provenance e comparado sem qualquer escrita de volta no canon.
 
