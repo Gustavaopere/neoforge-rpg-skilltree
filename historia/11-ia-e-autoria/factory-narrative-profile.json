@@ -87,15 +87,15 @@
       "required_sections": {
         "editorial-state": ["Estado editorial"],
         "production-state": ["Estado de produção"],
-        "asset-id": ["Asset ID"],
-        "portrait-spec": ["Resolução e formatos", "Portrait/documentação"],
-        "skin-spec": ["Resolução e formatos", "Skin Minecraft"],
+        "entity-id": ["Entity ID"],
+        "portrait-spec": ["Portrait/documentação"],
+        "skin-spec": ["Skin Minecraft"],
         "provenance": ["Proveniência/licença"],
         "final-evidence": ["Evidência final exigida", "Evidência exigida antes de FINAL"],
         "pending": ["Pendências"]
       },
       "reference_rules": {
-        "asset-id": {
+        "entity-id": {
           "allowed_types": ["NPC"],
           "min_references": 1
         }
