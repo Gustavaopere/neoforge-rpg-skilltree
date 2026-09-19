@@ -1,17 +1,18 @@
 # Athena
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `athena-neoforge-1.21.1-4.0.6.jar`, versão `4.0.6`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db813e8874fd85bace5487
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
 
 - **Mod:** Athena
-- **Arquivo JAR:** `athena-neoforge-1.21.1-4.0.6.jar`
+- **Arquivo JAR:** athena-neoforge-1.21.1-4.0.6.jar
 - **Versão 1.21.1:** 4.0.6
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +21,9 @@
 - **Sobreposição:** Biblioteca técnica; APIs de renderização/modelos não são automaticamente intercambiáveis.
 - **Compatibilidade/Riscos:** Não remover por aparente redundância com outras bibliotecas de renderização; consumidores podem exigir Athena especificamente.
 - **Observações:** mod id: athena; runtime name: Athena.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + documentação/source Athena 4.0.6 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + documentação/source Athena 4.0.6 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `athena-neoforge-1.21.1-4.0.6.jar` / `4.0.6`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/athena
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Athena 4.0.6, oito model factories/IDs, client-side model infrastructure e dedicated-server boundary confirmados no QC global #57. Estado anterior `Integrado ao Github` preservado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #57: `athena-neoforge-1.21.1-4.0.6.jar` / `4.0.6` conferidos contra a modlist atual; escopo client-side/model infrastructure e corpo técnico preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Athena 4.0.6 como biblioteca client-side de modelos/CTM e registrou que sua necessidade depende dos consumidores reais. Nenhuma decisão de manter/remover foi inferida apenas da presença no pack.
 - **Data da última decisão:** não definida
 

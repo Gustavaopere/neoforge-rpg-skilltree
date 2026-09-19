@@ -1,17 +1,18 @@
 # AzureLib
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `azurelib-neo-1.21.1-3.1.11.jar`, versão `3.1.11`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81febc53dab2496b58ee
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
 
 - **Mod:** AzureLib
-- **Arquivo JAR:** `azurelib-neo-1.21.1-3.1.11.jar`
+- **Arquivo JAR:** azurelib-neo-1.21.1-3.1.11.jar
 - **Versão 1.21.1:** 3.1.11
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca, Visual
@@ -20,9 +21,9 @@
 - **Sobreposição:** Biblioteca técnica, não conteúdo jogável.
 - **Compatibilidade/Riscos:** Não é intercambiável automaticamente com GeckoLib. Riscos em classloading client/server, keyframe gameplay sem authority, eventos duplicados, controllers concorrentes e caches após resource reload.
 - **Observações:** AzureLib 3.1.11 NeoForge 1.21.1. Release fix: `q.x` queries e crash ao sobrescrever Bedrock easings. Engine derivada do ecossistema GeckoLib 4.x; não é intercambiável automaticamente com GeckoLib.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficial AzureLib 3.1.11 + source/documentação oficial do projeto.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/Modrinth oficial AzureLib 3.1.11 + source/documentação oficial já auditados no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `azurelib-neo-1.21.1-3.1.11.jar` / `3.1.11`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/azurelib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — AzureLib 3.1.11 físico/release confirmado; engine/model/controller/keyframe lifecycle preservado; fixes de `q.x` queries e Bedrock easing override incorporados no QC global #61. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #61: `azurelib-neo-1.21.1-3.1.11.jar` / `3.1.11` conferidos contra a modlist atual; engine/model/controller/keyframe lifecycle e fixes específicos 3.1.11 preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou AzureLib 3.1.11 como biblioteca de modelos/animações e preservou seus contratos de side, controllers, keyframes e lifecycle. Em 09/09/2026, a release física foi revalidada e os dois fixes específicos de 3.1.11 foram incorporados sem converter presença em decisão curatorial.
 - **Data da última decisão:** não definida
 

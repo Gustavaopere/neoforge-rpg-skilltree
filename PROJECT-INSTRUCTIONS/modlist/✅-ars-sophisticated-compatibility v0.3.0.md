@@ -1,17 +1,18 @@
 # Ars Sophisticated Compatibility
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `arssophisticatedcompat-0.3.0.jar`, versão `0.3.0`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c869db9f0db81a4becdc393b14d60f7
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
 
 - **Mod:** Ars Sophisticated Compatibility
-- **Arquivo JAR:** `arssophisticatedcompat-0.3.0.jar`
+- **Arquivo JAR:** arssophisticatedcompat-0.3.0.jar
 - **Versão 1.21.1:** 0.3.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Armazenamento, Magia
@@ -20,9 +21,9 @@
 - **Sobreposição:** Ponte específica Ars Nouveau↔Sophisticated Storage; não é substituto de nenhum dos dois sistemas-base.
 - **Compatibilidade/Riscos:** Sem source público versionado acessível nesta auditoria: taxas/classes internas não foram inferidas. Riscos principais são double-consumption/double-credit de Source, repair duplicado, potion refresh fantasma e concorrência de automação.
 - **Observações:** Quatro superfícies oficiais: Source Storage, Storage Source Link, Potion Jar e Enchanter's Upgrade. A divergência de filename `arssophisticatedcompat` vs publicação `arssophisticatedstoragecompat` continua registrada sem alegar identidade binária não comprovada.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + documentação/release oficial Ars Sophisticated Compatibility 0.3.0 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + documentação/release oficial Ars Sophisticated Compatibility 0.3.0 + dossiê operacional já auditado. Reconciliação final: JAR/runtime permanecem exatamente `arssophisticatedcompat-0.3.0.jar` / `0.3.0`; sem divergência física e sem inferir classes/taxas internas não confirmadas.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Sophisticated Compatibility 0.3.0, quatro upgrades oficiais, Sophisticated Core corrigido para 1.5.1 e AE2 reconciliado como ausente no QC global #54. Estado anterior `Integrado ao Github` preservado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #54: `arssophisticatedcompat-0.3.0.jar` / `0.3.0` conferidos contra a modlist atual; quatro superfícies oficiais e limite de evidência sem source versionado preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou o runtime físico 0.3.0 e as quatro superfícies funcionais oficiais. A instalação atual não foi usada como substituto de decisão de manter/remover.
 - **Data da última decisão:** não definida
 
