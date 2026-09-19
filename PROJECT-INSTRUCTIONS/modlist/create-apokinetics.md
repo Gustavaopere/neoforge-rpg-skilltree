@@ -1,9 +1,8 @@
 # Create: Apokinetics
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db818db39cc9864c9f4403
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
@@ -11,7 +10,7 @@
 - **Mod:** Create: Apokinetics
 - **Arquivo JAR:** `apokinetics-1.0.6.jar`
 - **Versão 1.21.1:** 1.0.6
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, Automação, Compat
@@ -20,9 +19,9 @@
 - **Sobreposição:** Diferente de Apotheotic Creation: Apokinetics altera máquinas com sockets/gems e buffs industriais; Apotheotic Creation apenas torna raridades/affixes reconhecíveis por Create Attribute Filters. Pode sobrepor outros upgrades de máquina Create, mas não é redundância automática.
 - **Compatibilidade/Riscos:** Modifica máquinas Create e pode cruzar com addons que mixinam as mesmas classes. 1.0.6 endurece optional mixins contra fatal injection failures e corrige vários crashes. Precision/Yielding tiveram correção explícita contra resource loops em Mechanical Crafters; isso é superfície anti-dupe obrigatória de teste. Rotation/gem cases, Frostwork fan modes, Rupture Crushing Wheels, Mob Effect gems, enchanted Apotheosis arrows e scanner speed checks também receberam fixes em 1.0.6.
 - **Observações:** Qualquer automação que combine Precision + Yielding deve ser testada como caso de segurança/dupe. A build 1.0.6 também faz o Apokinetic Wrench atuar como Create Wrench; Shift+Right-Click preserva ações normais Create em máquinas socketable.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/documentação oficiais Create: Apokinetics 1.0.6 + Create 6.0.10/Apothic stack físico + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/documentação oficiais Create: Apokinetics 1.0.6 + Create 6.0.10/Apothic stack físico e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `apokinetics-1.0.6.jar` / `1.0.6`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apokinetics
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — 12 Machine Gems, Rotation, Table/Pylon/Scanner/Locator, Create 6.0.10 + Apothic stack and Precision/Yielding anti-dupe gates confirmed in global QC #29.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #29: `apokinetics-1.0.6.jar` / `1.0.6` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
@@ -292,6 +291,6 @@ pode tocar a mesma superfície. A própria release 1.0.6 diz que compat com addo
 ## 18. Fontes e confiança
 **Authority física:** modlist 07/09/2026.
 
-**Upstream:** [CurseForge — Create: Apokinetics](https://www.curseforge.com/minecraft/mc-mods/apokinetics) e release 1.0.6, além da documentação/config upstream.
+**Upstream:** [CurseForge — Create: Apokinetics](https://www.curseforge.com/minecraft/mc-mods/apokinetics) e [release 1.0.6](https://www.curseforge.com/minecraft/mc-mods/apokinetics/files/8790422), além da documentação/config upstream.
 
 **Confiança:** alta para lista de gems, componentes, changelog 1.0.6 e arquitetura. Valores/configs efetivos desta instância devem ser lidos antes de balanceamento ou implementação.
