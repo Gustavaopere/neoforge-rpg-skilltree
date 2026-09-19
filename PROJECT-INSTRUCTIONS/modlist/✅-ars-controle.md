@@ -28,6 +28,16 @@
 > 🧠 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico atual: `ars_controle-1.21.1-1.6.16.jar`, mod id `ars_controle`, NeoForge 1.21.1. O inventário técnico foi reconstruído no snapshot 1.6.15 (**4 blocos + 4 block entities e 31 componentes Ars/logic principais**); o changelog 1.6.16 registra correções de Warping Spell Prism/compatibilidade Ars 5.13.1 e não anuncia novo conteúdo registrado. Ars Nouveau continua authority de Source, spell grammar e cast; Ars Controle adiciona lógica, inspeção, referência e roteamento remoto.
 
 
+
+## Snapshot canônico do Notion — 11/09/2026
+> 🧠 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico: `ars_controle-1.21.1-1.6.15.jar`, mod id `ars_controle`, NeoForge 1.21.1. A build 1.6.15 registra **4 blocos + 4 block entities e 31 componentes Ars/logic principais**, além de integrações opcionais carregadas somente quando o provider existe. Ars Nouveau continua authority de Source, spell grammar e cast; Ars Controle adiciona lógica, inspeção, referência e roteamento remoto.
+
+- **JAR:** `ars_controle-1.21.1-1.6.15.jar`.
+- **Runtime:** `1.21.1-1.6.15`.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #41: `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Observações:** mod id `ars_controle`; runtime `1.21.1-1.6.15`. O estado anterior `Integrado ao Github` permanece registrado documentalmente; AE2 está ausente do snapshot físico atual e não é contado como integração ativa.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial Vonr/Ars-Controle 1.6.15 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15`; sem divergência física.
+
 ## Reconciliação física 1.6.16 — 19/09/2026
 O snapshot canônico do Notion de 11/09/2026 documenta `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15`. A modlist física de 16/09/2026 contém `ars_controle-1.21.1-1.6.16.jar` / `1.21.1-1.6.16`. O changelog oficial 1.6.16 registra: correção da direção do **Warping Spell Prism** ao atingir diretamente um bloco; correção de compatibilidade com **Ars Nouveau 5.13.1**; bump da versão Ars; atualizações de localização; e otimização de assets. Não há anúncio de novos blocos/registries, portanto o inventário estrutural 1.6.15 permanece como baseline até inspeção source/runtime específica da 1.6.16.
 
