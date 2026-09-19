@@ -1,9 +1,8 @@
 # Apotheosis
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db8192b784c910dff44fb8
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
@@ -11,7 +10,7 @@
 - **Mod:** Apotheosis
 - **Arquivo JAR:** `Apotheosis-1.21.1-8.8.0.jar`
 - **Versão 1.21.1:** 8.8.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** RPG, Exploração
@@ -20,9 +19,9 @@
 - **Sobreposição:** Sobreposição funcional com outros sistemas de loot affix, gems, rarity, sockets e equipment progression, mas os módulos Apothic próprios não são duplicatas: Attributes fornece stats, Enchanting overhaul de enchanting, Spawners overhaul de spawners. Apothic Compats/Category Compat são bridges de integração.
 - **Compatibilidade/Riscos:** Progressão RPG de alto impacto: affixes/gems/World Tiers somam atributos e podem multiplicar bônus com RPG Skill Tree, Additional Attributes e outros gear systems. 8.8.0 adiciona `apotheosis:cannot_be_duplicated`; qualquer sistema externo de clone/loot-copy deve respeitar a tag. Summit/Pinnacle agora dão damage reduction física e mágica a monsters. Invader spawn rules são configuráveis. Data-driven affixes/gems/rarities/tier augments exigem reload e validação de datapacks/compats.
 - **Observações:** World Tier e affix/gem data são contratos centrais para perks/economia. Não usar raridade pelo nome de exibição como ID; ler JSON/registry/data. Qualquer clonagem custom deve checar `apotheosis:cannot_be_duplicated`.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/changelog oficiais Apotheosis 8.8.0 + Placebo 9.9.2/Apothic Attributes 2.10.1/Enchanting 1.6.2/Spawners 1.4.0 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/changelog oficiais Apotheosis 8.8.0 + Placebo 9.9.2/Apothic Attributes 2.10.1/Enchanting 1.6.2/Spawners 1.4.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `Apotheosis-1.21.1-8.8.0.jar` / `8.8.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apotheosis
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Adventure module authority, affixes/gems/sockets, World Tiers, Invaders, cannot_be_duplicated, Placebo 9.9.2 and Apothic modules confirmed in global QC #30.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #30: `Apotheosis-1.21.1-8.8.0.jar` / `8.8.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
@@ -236,7 +235,7 @@ O mod é fortemente data-driven. Packs podem alterar:
 - invader spawn rules;
 - structures/gateways/rewards conforme sistemas associados.
 
-A release 8.8.0 oferece também arquivo adicional `stock_data.zip`, útil como referência canônica do datapack default da versão.
+A release 8.8.0 oferece também arquivo adicional [**stock_data.zip**](http://data.zip), útil como referência canônica do datapack default da versão.
 
 Para customização, partir dos stock data da **mesma versão 8.8.0**, não de wiki antiga.
 
@@ -269,6 +268,7 @@ Além da tag `cannot_be_duplicated`, testar interações com:
 - curios/relics que repetem drop;
 - perks de extra loot;
 - grave/death recovery;
+- AE2/RS storage movendo affix items com components complexos.
 - storage movendo affix items com components complexos.
 
 Affix gear deve manter todos os components ao mover entre inventories/dimensions.
@@ -309,10 +309,14 @@ A partir de 8.8.0, Summit/Pinnacle têm DR adicional, portanto o mesmo ataque pr
 24. Datapack reload usando stock data 8.8.0 como baseline.
 25. Apothic Category Compat nos itens alvo instalados.
 26. Apothic Compats adicionando conteúdo sem duplicar categories.
-27. Storage/transport de affix gear sem perder components.
+27. Storage/transport de affix gear em AE2 sem perder components.
 28. RPG Skill Tree: crit/lifesteal/pierce/shred sem double-application.
 29. Invader/mob scaling com outros mods de dificuldade.
 30. Server restart/relog: World Tier, gear, gems e progression persistem.
+
+
+## Reconciliação física atual — 19/09/2026
+A origem canônica preserva cenários de risco/teste para transporte de affix gear em AE2/RS. Na `modlist(1).txt` física de 16/09/2026 não existem mods top-level de Applied Energistics 2 nem Refined Storage. Essas linhas foram restauradas por paridade histórica, mas estão **dormentes no pack atual**; voltam a ser gates ativos apenas se um desses providers for reintroduzido.
 
 ## 32. Changelog específico 8.8.0
 Confirmado no changelog oficial 1.21:
@@ -337,7 +341,7 @@ Confirmado no changelog oficial 1.21:
 ## 34. Fontes e confiança
 **Authority física:** modlist de 07/09/2026 — `Apotheosis-1.21.1-8.8.0.jar`.
 
-**Upstream:** [CurseForge — Apotheosis](https://www.curseforge.com/minecraft/mc-mods/apotheosis), release 8.8.0 e changelog oficial 1.21.
+**Upstream:** [CurseForge — Apotheosis](https://www.curseforge.com/minecraft/mc-mods/apotheosis), release 8.8.0 e [changelog oficial 1.21](https://github.com/Shadows-of-Fire/Apotheosis/blob/1.21/changelog.md).
 
 **Fonte interna:** guia completo gameplay/sistemas; usado para arquitetura geral, corrigido pela modlist física onde o guia ainda apontava 8.7.0.
 
