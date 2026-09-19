@@ -12,7 +12,7 @@
 - **Mod:** Ars Sable
 - **Arquivo JAR:** `ars_sable-1.21.1-1.1.2.jar`
 - **Versão 1.21.1:** 1.1.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, Compat, QoL
@@ -21,10 +21,10 @@
 - **Sobreposição:** Bridge específica Ars↔Sable. Não substitui Ars Nouveau nem Sable e não cria Source/physics próprios. Evitar dupla projeção espacial com outras bridges e preservar provider-native ownership.
 - **Compatibilidade/Riscos:** RISCO ACEITO/VALIDAÇÃO OBRIGATÓRIA: Ars Sable 1.1.2 foi compilado contra Sable 1.2.2 e usa 29 mixins dirigidos a internals; o pack usa Sable 2.0.5. Validar startup, Source/storage, warp, Planarium, pathfinding, render/client boundary e assembly lifecycle; fail-closed para contracts não testados.
 - **Observações:** mod id ars_sable. Release 1.1.2 possui 24 mixins common + 5 client-only e GameTests para Planarium, Storage Lectern, tracked positions e Warp Portal. Não registra gameplay blocks próprios na build auditada; é bridge de infraestrutura.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + source ars-sable commit 1fd83f3a998e3a41b5a21d0d6529140a0b0a55ba (1.1.2) + Sable 2.0.5 físico e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime do addon permanecem exatamente ars_sable-1.21.1-1.1.2.jar / 1.1.2; compatibilidade comportamental com Sable 2.0.5 continua pendente de runtime QA.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source ars-sable commit `1fd83f3a998e3a41b5a21d0d6529140a0b0a55ba` (1.1.2) + Sable 2.0.5 físico e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime do addon permanecem exatamente `ars_sable-1.21.1-1.1.2.jar` / `1.1.2`; compatibilidade comportamental com Sable 2.0.5 continua pendente de runtime QA.
 - **Fonte:** https://github.com/baileyholl/ars-sable
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #49: ars_sable-1.21.1-1.1.2.jar / 1.1.2 conferidos contra a modlist atual; risco Sable build-target 1.2.2 → runtime 2.0.5 preservado, sem aprovação automática de compatibilidade.
-- **Histórico da decisão:** Manter com risco aceito/validação obrigatória. Em 07/09/2026 a ficha foi reconstruída contra o commit exato 1.1.2; metadata aceita Sable >=1.0, mas o salto do build target 1.2.2 para runtime físico 2.0.5 não foi tratado como prova automática de compatibilidade.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #49: `ars_sable-1.21.1-1.1.2.jar` / `1.1.2` conferidos contra a modlist atual; risco Sable build-target 1.2.2 → runtime 2.0.5 preservado, sem aprovação automática de compatibilidade.
+- **Histórico da decisão:** Manter com risco aceito/validação obrigatória. Em 07/09/2026 a ficha foi reconstruída contra o commit exato 1.1.2; metadata aceita Sable \>=1.0, mas o salto do build target 1.2.2 para runtime físico 2.0.5 não foi tratado como prova automática de compatibilidade.
 - **Data da última decisão:** 2026-09-07
 
 > 🧭 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico: `ars_sable-1.21.1-1.1.2.jar`, mod id `ars_sable`, NeoForge 1.21.1. A auditoria está fixada no commit upstream **`1fd83f3a998e3a41b5a21d0d6529140a0b0a55ba`**, cujo `gradle.properties` declara `1.1.2`. Ars Sable é uma **bridge espacial Ars Nouveau ↔ Sable**: projeta posições entre sublevels e mundo, preserva conexões e adapta storage, Source, warp, Planarium, pathfinding, projectiles, Mob Jar e renderização. Não adiciona Source paralelo nem physics engine próprio.
