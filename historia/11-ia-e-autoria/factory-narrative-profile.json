@@ -99,7 +99,8 @@
           "allowed_types": ["NPC"],
           "min_references": 1
         }
-      }
+      },
+      "filename_identity_section": "entity-id"
     }
   }
 }
