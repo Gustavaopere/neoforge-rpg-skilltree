@@ -1,9 +1,10 @@
 # Ars Hex
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `ars_hex-1.21.1-5.0.4b.jar`, versão `5.0.4b`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3ca69db9f0db819484eff8bd220a057e
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
@@ -11,7 +12,7 @@
 - **Mod:** Ars Hex
 - **Arquivo JAR:** `ars_hex-1.21.1-5.0.4b.jar`
 - **Versão 1.21.1:** 5.0.4b
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, Compat
@@ -19,10 +20,10 @@
 - **Dependências:** Ars Nouveau 5.13.1. Providers opcionais físicos ativos: Malum 1.8.2 e Iron's Spells 3.16.3. Hexerei está ausente da modlist top-level atual; seu módulo permanece dormente. Sauce é jarjar.
 - **Sobreposição:** Sobrepõe objetivos de integração a outras bridges mágicas, mas não substitui nenhum provider. Deve usar contracts nativos de Ars, Malum e Iron's sem reaplicar dano, souls ou perks.
 - **Compatibilidade/Riscos:** Riscos principais: double damage conversion Ars↔Iron's, double soul/spirit rewards com Malum, classloading de provider opcional e contaminação documental por 5.0.5. Hexerei não está ativo no runtime físico atual. Moon Dial é 5.0.5 e foi excluído.
-- **Observações:** mod id `ars_hex`. Na integração Malum a build registra EffectSoulShatter + SoulWardPerk, MagicProficencyPerk e SpiritSpoilsPerk. Iron's registra damage tweaks/post-init/docs/particles; perk placeholder permanece comentado. Hexerei support existe upstream, mas provider está ausente na modlist física.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source Ars-Unity commit `a12bf191458f48ae0375d1e1073f24455f654416` (5.0.4b) + dossiê version-pinned existente.
+- **Observações:** mod id ars_hex. Na integração Malum a build registra EffectSoulShatter + SoulWardPerk, MagicProficencyPerk e SpiritSpoilsPerk. Iron's registra damage tweaks/post-init/docs/particles; perk placeholder permanece comentado. Hexerei support existe upstream, mas provider está ausente na modlist física.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source Ars-Unity commit `a12bf191458f48ae0375d1e1073f24455f654416` (5.0.4b) e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_hex-1.21.1-5.0.4b.jar` / `5.0.4b`; sem divergência física.
 - **Fonte:** https://github.com/Alexthw46/Ars-Unity
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Ars Hex 5.0.4b, Malum 1.8.2 + Iron's 3.16.3 active bridges, Hexerei absent gate, 5.0.5/Moon Dial exclusion and classloading boundaries confirmed in global QC #45. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #45: `ars_hex-1.21.1-5.0.4b.jar` / `5.0.4b` conferidos contra a modlist atual; source pin e exclusão de conteúdo 5.0.5 preservados.
 - **Histórico da decisão:** Manter. Ficha reconstruída em 07/09/2026 no commit exato 5.0.4b; suporte Hexerei foi separado de integração ativa e Moon Dial 5.0.5 foi explicitamente excluído.
 - **Data da última decisão:** 2026-09-07
 
