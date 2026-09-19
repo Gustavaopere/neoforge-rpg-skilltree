@@ -1,17 +1,18 @@
 # Create: Backpack Pixel
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `backpack_pixel-1.2.0-neoforge-1.21.1.jar`, versão `1.2.0`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81599a48d83f90402ff4
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
 - **Data da exportação:** 2026-09-10
 
 ## Propriedades do banco
 
 - **Mod:** Create: Backpack Pixel
-- **Arquivo JAR:** `backpack_pixel-1.2.0-neoforge-1.21.1.jar`
+- **Arquivo JAR:** backpack_pixel-1.2.0-neoforge-1.21.1.jar
 - **Versão 1.21.1:** 1.2.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, Armazenamento, QoL
@@ -20,9 +21,9 @@
 - **Sobreposição:** Sobreposição de categoria com Sophisticated Backpacks; não são duplicatas integrais e podem coexistir.
 - **Compatibilidade/Riscos:** Riscos em persistência/equip/death/GUI concorrente e double-processing de componentes. Sobreposição de categoria com Sophisticated Backpacks, sem incompatibilidade estrutural confirmada.
 - **Observações:** JAR marcado como MCreator na modlist. Componentes funcionais existem, mas nomes/capacidades não foram inferidos sem evidência versionada. A antiga dependência obrigatória de Create foi corrigida.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + metadata runtime + CurseForge oficial Create: Backpack Pixel 1.2.0 + reconciliação física Sophisticated Backpacks 3.26.2.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime + CurseForge oficial Create: Backpack Pixel 1.2.0 + fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `backpack_pixel-1.2.0-neoforge-1.21.1.jar` / `1.2.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-backpack-pixel
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Backpack Pixel 1.2.0 físico/release confirmado; no-dependency boundary preservado e sobreposição atualizada para Sophisticated Backpacks 3.26.2 no QC global #62. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #62: `backpack_pixel-1.2.0-neoforge-1.21.1.jar` / `1.2.0` conferidos contra a modlist atual; no-dependency boundary e corpo técnico preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Create: Backpack Pixel 1.2.0 e a ausência de dependência externa obrigatória declarada para esta linha. Em 09/09/2026, a sobreposição foi reconciliada contra Sophisticated Backpacks 3.26.2 físico, sem inferir remoção ou manutenção.
 - **Data da última decisão:**
 

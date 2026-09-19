@@ -1,12 +1,26 @@
 # Artifacts
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db8121b079dbc4804d6da0
 - **Estado no pack:** Integrado ao Github
-- **Autoridade física:** `artifacts-neoforge-13.2.3.jar`, mod id `artifacts`, versão `13.2.3`; source pin `eb331973311068a6b5a6392a0c734f7f2a705e2a`
+- **Autoridade física atual:** `artifacts-neoforge-13.2.5.jar`, mod id `artifacts`, versão `13.2.5`; source pin `7cf7dc42e322e13f096eea16cee17a4b400b75f7`
 - **Auditoria de migração Notion → GitHub:** 2026-09-14
 
-## Propriedades do banco
+> **Reauditoria física — 19/09/2026.** O JAR top-level atual é `artifacts-neoforge-13.2.5.jar` / `13.2.5`. O Notion permanece como baseline histórico 13.2.3; a correção abaixo é derivada da autoridade física atual e do source/release oficial, sem apagar o conteúdo migrado original.
+
+## Estado físico atual — 19/09/2026
+
+- **Arquivo JAR atual:** `artifacts-neoforge-13.2.5.jar`
+- **Versão atual:** `13.2.5`
+- **Mod id:** `artifacts`
+- **Source pin atual:** `ochotonida/artifacts@7cf7dc42e322e13f096eea16cee17a4b400b75f7` (`Update 13.2.5`)
+- **Dependências físicas relevantes:** Curios `9.5.1+1.21.1`; ExpandAbility `12.0.0` permanece embedded; Quark `4.1-484` está instalado.
+- **Reconciliação 13.2.3 → 13.2.5:** o compare oficial contém cinco commits e altera apenas `MimicChestMaterials.java`, `ArtifactHooks.java` e `gradle.properties`; `ModItems.java` não muda, portanto o inventário de 49 item entries do baseline permanece válido.
+- **13.2.4:** corrige Mimics trocando textura rapidamente com Quark e um crash ao matar certas entidades modded.
+- **13.2.5:** incorpora o fix adicional de crash com Quark e promove o `mod_version` para 13.2.5.
+- **Impacto operacional:** os fixes Quark/crash que o baseline 13.2.3 tratava como ausentes agora fazem parte do runtime instalado. Permanecem válidos os gates de Curios, loot dedup, cooldown/death lifecycle, Mimic/Quark e dedicated server.
+- **Evidência:** modlist física atual de 19/09/2026; CurseForge oficial do arquivo 13.2.5; compare oficial `eb331973311068a6b5a6392a0c734f7f2a705e2a...7cf7dc42e322e13f096eea16cee17a4b400b75f7`.
+
+## Propriedades do banco — baseline Notion 11/09/2026 (preservado)
 
 - **Mod:** Artifacts
 - **Arquivo JAR:** `artifacts-neoforge-13.2.3.jar`
@@ -25,6 +39,8 @@
 - **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #55: `artifacts-neoforge-13.2.3.jar` / `13.2.3` conferidos contra a modlist atual; source pin exato `eb331973311068a6b5a6392a0c734f7f2a705e2a` e boundary 13.2.4/13.2.5 preservados.
 - **Histórico da decisão:** Sem decisão formal. A ficha foi inicialmente construída contra a linha source 13.2.5; em 09/09/2026 esse desvio foi corrigido contra o runtime físico real 13.2.3 e o commit upstream exato `eb331973311068a6b5a6392a0c734f7f2a705e2a`. O inventário de 49 entries permanece válido porque `ModItems.java` não mudou entre 13.2.3 e 13.2.5. A presença física não foi convertida automaticamente em decisão.
 - **Data da última decisão:**
+
+> **Boundary histórico preservado:** o dossiê abaixo reproduz o baseline do Notion auditado para 13.2.3. Declarações nele sobre “runtime instalado 13.2.3” e sobre fixes 13.2.4/13.2.5 ainda não instalados são históricas e ficam subordinadas ao bloco **Estado físico atual — 19/09/2026** acima.
 
 # Dossiê operacional — padrão Alex's Mobs
 
