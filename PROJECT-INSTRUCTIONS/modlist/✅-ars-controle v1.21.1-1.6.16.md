@@ -1,16 +1,15 @@
 # Ars Controle
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db813a8e26f0ea2e8c07c8
 - **Estado no pack:** Integrado ao Github
-- **Autoridade física:** `ars_controle-1.21.1-1.6.15.jar`, mod id `ars_controle`, runtime `1.21.1-1.6.15`
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — `ars_controle-1.21.1-1.6.16.jar` / `1.21.1-1.6.16`
 - **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Ars Controle
-- **Arquivo JAR:** `ars_controle-1.21.1-1.6.15.jar`
-- **Versão 1.21.1:** 1.21.1-1.6.15
+- **Arquivo JAR:** `ars_controle-1.21.1-1.6.16.jar`
+- **Versão 1.21.1:** 1.21.1-1.6.16
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
@@ -19,19 +18,33 @@
 - **Dependências:** Ars Nouveau 5.13.1. Integrações opcionais condicionadas aos providers físicos presentes, incluindo Ars Additions 21.3.0, Alex's Caves Continued 1.0.9 e StarbuncleMania 1.5.8; provider ausente = integração ausente/fail-closed.
 - **Sobreposição:** Cruza automação/remote I/O com Create e outros providers/redes presentes, mas seu domínio é lógica mágica Ars. Não substituir APIs/capabilities dos providers remotos nem duplicar processamento; AE2 ausente não é superfície ativa.
 - **Compatibilidade/Riscos:** Riscos principais: loops de signal/poll, referências stale após unload/restart, double-processing em item/fluid/energy, perda de causalidade em spell redirection e compatibilidade espacial não comprovada automaticamente com sublevels Sable.
-- **Observações:** mod id `ars_controle`; runtime `1.21.1-1.6.15`. O estado anterior `Integrado ao Github` permanece registrado documentalmente; AE2 está ausente do snapshot físico atual e não é contado como integração ativa.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial Vonr/Ars-Controle 1.6.15 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15`; sem divergência física.
+- **Observações:** mod id `ars_controle`; runtime físico atual `1.21.1-1.6.16`. O snapshot canônico do Notion de 11/09/2026 documentava `1.21.1-1.6.15`; AE2 continua ausente do snapshot físico atual e não é contado como integração ativa.
+- **Procedência:** `modlist(1).txt` física de 16/09/2026 + release oficial Ars Controle 1.6.16. O snapshot Notion 1.6.15 é preservado como origem histórica; 1.6.16 corrige direção do Warping Spell Prism em impacto direto, compatibilidade com Ars Nouveau 5.13.1, atualiza a versão Ars e otimiza assets/localização.
 - **Fonte:** https://github.com/Vonr/Ars-Controle
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #41: `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** REVALIDADO EM 19/09/2026 — runtime físico atualizado de `1.21.1-1.6.15` para `1.21.1-1.6.16`; changelog 1.6.16 reconciliado sem alteração reportada do inventário principal de blocos/componentes.
 - **Histórico da decisão:** Manter. Ficha reconstruída do zero em 07/09/2026 contra registry/source da build 1.6.15 e modlist física; addon é uma camada de controle real do Ars e não um provider mágico paralelo.
 - **Data da última decisão:** 2026-09-07
 
+> 🧠 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico atual: `ars_controle-1.21.1-1.6.16.jar`, mod id `ars_controle`, NeoForge 1.21.1. O inventário técnico foi reconstruído no snapshot 1.6.15 (**4 blocos + 4 block entities e 31 componentes Ars/logic principais**); o changelog 1.6.16 registra correções de Warping Spell Prism/compatibilidade Ars 5.13.1 e não anuncia novo conteúdo registrado. Ars Nouveau continua authority de Source, spell grammar e cast; Ars Controle adiciona lógica, inspeção, referência e roteamento remoto.
+
+
+
+## Snapshot canônico do Notion — 11/09/2026
 > 🧠 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico: `ars_controle-1.21.1-1.6.15.jar`, mod id `ars_controle`, NeoForge 1.21.1. A build 1.6.15 registra **4 blocos + 4 block entities e 31 componentes Ars/logic principais**, além de integrações opcionais carregadas somente quando o provider existe. Ars Nouveau continua authority de Source, spell grammar e cast; Ars Controle adiciona lógica, inspeção, referência e roteamento remoto.
+
+- **JAR:** `ars_controle-1.21.1-1.6.15.jar`.
+- **Runtime:** `1.21.1-1.6.15`.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #41: `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Observações:** mod id `ars_controle`; runtime `1.21.1-1.6.15`. O estado anterior `Integrado ao Github` permanece registrado documentalmente; AE2 está ausente do snapshot físico atual e não é contado como integração ativa.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial Vonr/Ars-Controle 1.6.15 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15`; sem divergência física.
+
+## Reconciliação física 1.6.16 — 19/09/2026
+O snapshot canônico do Notion de 11/09/2026 documenta `ars_controle-1.21.1-1.6.15.jar` / `1.21.1-1.6.15`. A modlist física de 16/09/2026 contém `ars_controle-1.21.1-1.6.16.jar` / `1.21.1-1.6.16`. O changelog oficial 1.6.16 registra: correção da direção do **Warping Spell Prism** ao atingir diretamente um bloco; correção de compatibilidade com **Ars Nouveau 5.13.1**; bump da versão Ars; atualizações de localização; e otimização de assets. Não há anúncio de novos blocos/registries, portanto o inventário estrutural 1.6.15 permanece como baseline até inspeção source/runtime específica da 1.6.16.
 
 ## 1. Identidade e versão
 - **Mod:** Ars Controle.
-- **JAR:** `ars_controle-1.21.1-1.6.15.jar`.
-- **Runtime:** `1.21.1-1.6.15`.
+- **JAR:** `ars_controle-1.21.1-1.6.16.jar`.
+- **Runtime:** `1.21.1-1.6.16`.
 - **Mod id:** `ars_controle`.
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Papel:** lógica, sensores, referências e automação remota no ecossistema Ars Nouveau.
