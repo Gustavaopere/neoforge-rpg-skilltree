@@ -2,83 +2,40 @@
   "profile_contract_revision": 1,
   "story_root": "historia/03-npcs/principais",
   "dialogue_root": "historia/11-ia-e-autoria/legado-dialogos",
-  "entity_types": [
-    "HIST",
-    "ARC",
-    "NPC",
-    "QST",
-    "FAC",
-    "SET",
-    "LOC",
-    "EVT",
-    "EVD",
-    "END",
-    "DLG"
-  ],
-  "editorial_state_prefixes": [
-    "CANON",
-    "DRAFT",
-    "EXPERIMENTAL",
-    "OBSOLETE"
-  ],
-  "editorial_state_headings": [
-    "Editorial state"
-  ],
+  "entity_types": ["HIST", "ARC", "NPC", "QST", "FAC", "SET", "LOC", "EVT", "EVD", "END", "DLG"],
+  "editorial_state_prefixes": ["CANON", "DRAFT", "EXPERIMENTAL", "OBSOLETE"],
+  "editorial_state_headings": ["Editorial state"],
   "dialogue_entity_type": "DLG",
   "dialogue_required_sections": {
-    "state": [
-      "Estado editorial"
-    ]
+    "state": ["Estado editorial"]
   },
   "knowledge_evidence_contracts": {
     "aren-source-grounding": {
-      "include": [
-        "NPC-0001-aren-autoria.md"
-      ],
+      "include": ["NPC-0001-aren-autoria.md"],
       "required_sections": {
-        "provenance": [
-          "Proveniência já aceita"
-        ],
-        "limits": [
-          "Gate para expansão"
-        ]
+        "provenance": ["Proveniência já aceita"],
+        "limits": ["Gate para expansão"]
       },
       "knowledge_state_sections": {
-        "voice": [
-          "Voz"
-        ],
-        "appearance": [
-          "Aparência"
-        ]
+        "voice": ["Voz"],
+        "appearance": ["Aparência"]
       },
       "reference_rules": {
         "provenance": {
-          "allowed_types": [
-            "NPC"
-          ],
+          "allowed_types": ["NPC"],
           "min_references": 1
         }
       }
     },
     "maura-source-grounding": {
-      "include": [
-        "NPC-0007-maura-autoria.md"
-      ],
+      "include": ["NPC-0007-maura-autoria.md"],
       "required_sections": {
-        "provenance": [
-          "Authority e proveniência"
-        ],
-        "limits": [
-          "Limites de knowledge"
-        ]
+        "provenance": ["Authority e proveniência"],
+        "limits": ["Limites de knowledge"]
       },
       "knowledge_state_sections": {
-        "voice": [
-          "Voz"
-        ],
-        "appearance": [
-          "Aparência — base vinculada ao source"
-        ]
+        "voice": ["Voz"],
+        "appearance": ["Aparência — base vinculada ao source"]
       }
     },
     "authored-npc-grounding": {
@@ -89,63 +46,33 @@
         "NPC-0006-elian-autoria.md"
       ],
       "required_sections": {
-        "references": [
-          "Referências"
-        ],
-        "limits": [
-          "Limites de conhecimento",
-          "Limites de knowledge"
-        ]
+        "references": ["Referências"],
+        "limits": ["Limites de conhecimento", "Limites de knowledge"]
       },
       "knowledge_state_sections": {
-        "voice": [
-          "Voz"
-        ],
-        "appearance": [
-          "Aparência",
-          "Aparência — base vinculada ao Grimoire"
-        ]
+        "voice": ["Voz"],
+        "appearance": ["Aparência", "Aparência — base vinculada ao Grimoire"]
       }
     }
   },
   "relationship_memory_contracts": {
     "aren-systemic-relations": {
-      "include": [
-        "NPC-0001-aren.md"
-      ],
+      "include": ["NPC-0001-aren.md"],
       "required_sections": {
-        "relations": [
-          "Relações sistêmicas"
-        ]
+        "relations": ["Relações sistêmicas"]
       },
       "dimension_sections": {
-        "multidimensional-contract": [
-          "Invariantes sistêmicos preservados"
-        ]
+        "multidimensional-contract": ["Invariantes sistêmicos preservados"]
       },
       "allow_self_relation": false
     }
   },
   "chronology_contract": {
-    "event_types": [
-      "EVT"
-    ],
-    "before_headings": [
-      "Antes",
-      "Before"
-    ],
-    "after_headings": [
-      "Depois",
-      "After"
-    ],
-    "causes_headings": [
-      "Causa",
-      "Causes"
-    ],
-    "caused_by_headings": [
-      "Causado por",
-      "Caused by"
-    ],
+    "event_types": ["EVT"],
+    "before_headings": ["Antes", "Before"],
+    "after_headings": ["Depois", "After"],
+    "causes_headings": ["Causa", "Causes"],
+    "caused_by_headings": ["Causado por", "Caused by"],
     "causality_acyclic": true
   },
   "auxiliary_document_contracts": {
@@ -158,39 +85,18 @@
         "NPC-0007-maura-asset-brief.md"
       ],
       "required_sections": {
-        "editorial-state": [
-          "Estado editorial"
-        ],
-        "production-state": [
-          "Estado de produção"
-        ],
-        "asset-id": [
-          "Asset ID"
-        ],
-        "portrait-spec": [
-          "Resolução e formatos",
-          "Portrait/documentação"
-        ],
-        "skin-spec": [
-          "Resolução e formatos",
-          "Skin Minecraft"
-        ],
-        "provenance": [
-          "Proveniência/licença"
-        ],
-        "final-evidence": [
-          "Evidência final exigida",
-          "Evidência exigida antes de FINAL"
-        ],
-        "pending": [
-          "Pendências"
-        ]
+        "editorial-state": ["Estado editorial"],
+        "production-state": ["Estado de produção"],
+        "asset-id": ["Asset ID"],
+        "portrait-spec": ["Resolução e formatos", "Portrait/documentação"],
+        "skin-spec": ["Resolução e formatos", "Skin Minecraft"],
+        "provenance": ["Proveniência/licença"],
+        "final-evidence": ["Evidência final exigida", "Evidência exigida antes de FINAL"],
+        "pending": ["Pendências"]
       },
       "reference_rules": {
         "asset-id": {
-          "allowed_types": [
-            "NPC"
-          ],
+          "allowed_types": ["NPC"],
           "min_references": 1
         }
       }
