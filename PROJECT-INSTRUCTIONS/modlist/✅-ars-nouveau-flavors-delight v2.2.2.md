@@ -12,7 +12,7 @@
 - **Mod:** Ars Nouveau's Flavors & Delight
 - **Arquivo JAR:** `arsdelight-2.2.2.jar`
 - **Versão 1.21.1:** 2.2.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, Comida, Compat
