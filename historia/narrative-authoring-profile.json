@@ -2,59 +2,172 @@
   "profile_contract_revision": 1,
   "story_root": "historia",
   "dialogue_root": "historia/12-dialogos",
-  "entity_types": ["HIST", "ARC", "NPC", "QST", "FAC", "SET", "LOC", "EVT", "EVD", "END", "DLG"],
-  "editorial_state_prefixes": ["CANÔNICO", "RASCUNHO", "EXPERIMENTAL", "OBSOLETO"],
-  "editorial_state_headings": ["Estado editorial"],
+  "entity_types": [
+    "HIST",
+    "ARC",
+    "NPC",
+    "QST",
+    "FAC",
+    "SET",
+    "LOC",
+    "EVT",
+    "EVD",
+    "END",
+    "DLG"
+  ],
+  "editorial_state_prefixes": [
+    "CANÔNICO",
+    "RASCUNHO",
+    "EXPERIMENTAL",
+    "OBSOLETO"
+  ],
+  "editorial_state_headings": [
+    "Estado editorial"
+  ],
   "entity_required_sections": {
     "EVD": {
-      "provenance": ["Origem/proveniência"],
-      "knowledge-holders": ["Conhecedores iniciais"],
-      "proof": ["O que pode provar"],
-      "suggestion": ["O que apenas sugere"],
-      "limits": ["O que NÃO prova"],
-      "reliability": ["Confiabilidade"],
-      "tampering": ["Falsificação/adulteração"],
-      "loss": ["Perda/destruição"]
+      "provenance": [
+        "Origem/proveniência"
+      ],
+      "knowledge-holders": [
+        "Conhecedores iniciais"
+      ],
+      "proof": [
+        "O que pode provar"
+      ],
+      "suggestion": [
+        "O que apenas sugere"
+      ],
+      "limits": [
+        "O que NÃO prova"
+      ],
+      "reliability": [
+        "Confiabilidade"
+      ],
+      "tampering": [
+        "Falsificação/adulteração"
+      ],
+      "loss": [
+        "Perda/destruição"
+      ]
     }
   },
   "auxiliary_document_contracts": {
     "quest-lifecycle": {
-      "include": ["04-quests/**/*-lifecycle.md"],
+      "include": [
+        "04-quests/**/*-lifecycle.md"
+      ],
       "required_sections": {
-        "availability": ["Availability"],
-        "discovery": ["Discovery"],
-        "engagement": ["Engagement"],
-        "resolution": ["Resolution"]
+        "availability": [
+          "Availability"
+        ],
+        "discovery": [
+          "Discovery"
+        ],
+        "engagement": [
+          "Engagement"
+        ],
+        "resolution": [
+          "Resolution"
+        ]
+      }
+    },
+    "active-npc-asset-briefs": {
+      "include": [
+        "03-npcs/principais/NPC-0003-iren-valmor-asset-brief.md",
+        "03-npcs/principais/NPC-0004-liora-asset-brief.md",
+        "03-npcs/principais/NPC-0005-oren-asset-brief.md",
+        "03-npcs/principais/NPC-0006-elian-asset-brief.md",
+        "03-npcs/principais/NPC-0007-maura-asset-brief.md"
+      ],
+      "required_sections": {
+        "editorial-state": [
+          "Estado editorial"
+        ],
+        "production-state": [
+          "Estado de produção"
+        ],
+        "asset-id": [
+          "Asset ID"
+        ],
+        "portrait-spec": [
+          "Resolução e formatos",
+          "Portrait/documentação"
+        ],
+        "skin-spec": [
+          "Resolução e formatos",
+          "Skin Minecraft"
+        ],
+        "provenance": [
+          "Proveniência/licença"
+        ],
+        "final-evidence": [
+          "Evidência final exigida",
+          "Evidência exigida antes de FINAL"
+        ],
+        "pending": [
+          "Pendências"
+        ]
+      },
+      "reference_rules": {
+        "asset-id": {
+          "allowed_types": [
+            "NPC"
+          ],
+          "min_references": 1
+        }
       }
     }
   },
   "knowledge_evidence_contracts": {
     "aren-source-grounding": {
-      "include": ["03-npcs/principais/NPC-0001-aren-autoria.md"],
+      "include": [
+        "03-npcs/principais/NPC-0001-aren-autoria.md"
+      ],
       "required_sections": {
-        "provenance": ["Proveniência já aceita"],
-        "limits": ["Gate para expansão"]
+        "provenance": [
+          "Proveniência já aceita"
+        ],
+        "limits": [
+          "Gate para expansão"
+        ]
       },
       "knowledge_state_sections": {
-        "voice": ["Voz"],
-        "appearance": ["Aparência"]
+        "voice": [
+          "Voz"
+        ],
+        "appearance": [
+          "Aparência"
+        ]
       },
       "reference_rules": {
         "provenance": {
-          "allowed_types": ["NPC"],
+          "allowed_types": [
+            "NPC"
+          ],
           "min_references": 1
         }
       }
     },
     "maura-source-grounding": {
-      "include": ["03-npcs/principais/NPC-0007-maura-autoria.md"],
+      "include": [
+        "03-npcs/principais/NPC-0007-maura-autoria.md"
+      ],
       "required_sections": {
-        "provenance": ["Authority e proveniência"],
-        "limits": ["Limites de knowledge"]
+        "provenance": [
+          "Authority e proveniência"
+        ],
+        "limits": [
+          "Limites de knowledge"
+        ]
       },
       "knowledge_state_sections": {
-        "voice": ["Voz"],
-        "appearance": ["Aparência — base vinculada ao source"]
+        "voice": [
+          "Voz"
+        ],
+        "appearance": [
+          "Aparência — base vinculada ao source"
+        ]
       }
     },
     "authored-npc-grounding": {
@@ -65,52 +178,110 @@
         "03-npcs/principais/NPC-0006-elian-autoria.md"
       ],
       "required_sections": {
-        "references": ["Referências"],
-        "limits": ["Limites de conhecimento", "Limites de knowledge"]
+        "references": [
+          "Referências"
+        ],
+        "limits": [
+          "Limites de conhecimento",
+          "Limites de knowledge"
+        ]
       },
       "knowledge_state_sections": {
-        "voice": ["Voz"],
-        "appearance": ["Aparência", "Aparência — base vinculada ao Grimoire"]
+        "voice": [
+          "Voz"
+        ],
+        "appearance": [
+          "Aparência",
+          "Aparência — base vinculada ao Grimoire"
+        ]
       }
     }
   },
   "relationship_memory_contracts": {
     "aren-systemic-relations": {
-      "include": ["03-npcs/principais/NPC-0001-aren.md"],
+      "include": [
+        "03-npcs/principais/NPC-0001-aren.md"
+      ],
       "required_sections": {
-        "relations": ["Relações sistêmicas"]
+        "relations": [
+          "Relações sistêmicas"
+        ]
       },
       "dimension_sections": {
-        "multidimensional-contract": ["Invariantes sistêmicos preservados"]
+        "multidimensional-contract": [
+          "Invariantes sistêmicos preservados"
+        ]
       },
       "allow_self_relation": false
     }
   },
   "dialogue_entity_type": "DLG",
   "dialogue_required_sections": {
-    "editorial-state": ["estado editorial"],
-    "participants": ["participantes"],
-    "context": ["contexto"],
-    "preconditions": ["precondições"],
-    "knowledge": ["knowledge exigido", "knowledge"],
-    "relations-state": ["relações/estado relevantes", "relações/estado"],
-    "opening": ["abertura", "entrada padrão", "entrada"],
-    "branches": ["ramos"],
-    "outputs": ["saídas do diálogo", "saídas"],
-    "intents": ["intents/consequências solicitadas", "intents", "consequências solicitadas"],
-    "related-content": ["arcos/quests relacionados"],
-    "invariants": ["invariantes"],
-    "voice-notes": ["notas de voz"],
-    "qa": ["qa"],
-    "internal-spoilers": ["spoilers internos"]
+    "editorial-state": [
+      "estado editorial"
+    ],
+    "participants": [
+      "participantes"
+    ],
+    "context": [
+      "contexto"
+    ],
+    "preconditions": [
+      "precondições"
+    ],
+    "knowledge": [
+      "knowledge exigido",
+      "knowledge"
+    ],
+    "relations-state": [
+      "relações/estado relevantes",
+      "relações/estado"
+    ],
+    "opening": [
+      "abertura",
+      "entrada padrão",
+      "entrada"
+    ],
+    "branches": [
+      "ramos"
+    ],
+    "outputs": [
+      "saídas do diálogo",
+      "saídas"
+    ],
+    "intents": [
+      "intents/consequências solicitadas",
+      "intents",
+      "consequências solicitadas"
+    ],
+    "related-content": [
+      "arcos/quests relacionados"
+    ],
+    "invariants": [
+      "invariantes"
+    ],
+    "voice-notes": [
+      "notas de voz"
+    ],
+    "qa": [
+      "qa"
+    ],
+    "internal-spoilers": [
+      "spoilers internos"
+    ]
   },
   "dialogue_reference_rules": {
     "participants": {
-      "allowed_types": ["NPC"],
+      "allowed_types": [
+        "NPC"
+      ],
       "min_references": 1
     },
     "related-content": {
-      "allowed_types": ["ARC", "QST"],
+      "allowed_types": [
+        "ARC",
+        "QST"
+      ],
       "min_references": 0
     }
   }
