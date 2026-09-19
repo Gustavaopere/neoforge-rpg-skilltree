@@ -1,17 +1,20 @@
 # AmbientSounds 6
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db8129b8ded48793d4c919
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
+
+
+## Reconciliação física atual — 19/09/2026
+O snapshot canônico do Notion, fechado em 11/09/2026, registra CreativeCore `2.13.44`. A autoridade física mais recente (`modlist(1).txt`, 16/09/2026) contém `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar` / `2.13.46`. As referências a `2.13.44` abaixo são preservadas como estado histórico da origem; para o runtime atual, a dependência efetiva é `2.13.46`.
 
 ## Propriedades do banco
 
 - **Mod:** AmbientSounds 6
 - **Arquivo JAR:** `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar`
 - **Versão 1.21.1:** 6.3.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, QoL
@@ -20,9 +23,9 @@
 - **Sobreposição:** Sobreposição parcial com outros mods de ambience/soundscape. Não substitui Presence Footsteps, Sound Physics ou sistema de música; atua em outra camada de áudio.
 - **Compatibilidade/Riscos:** Risco principal é composição de áudio: outros ambience/sound mods podem tocar camadas simultâneas e elevar volume/ruído/custo. Presence Footsteps não é duplicata: trata passos/material sob o jogador, enquanto AmbientSounds trata paisagem sonora contextual. Validar cavernas, água, biomas, dimensões, weather/daytime e categoria suspense. Como é client-side, não deve ser usado como authority de eventos de servidor.
 - **Observações:** Qualquer resource/sound pack que acrescente ambience precisa ser auditado junto porque pode mudar completamente a experiência sem alterar o JAR. O mod reage ao mundo; não é fonte de verdade para biome/weather/spawn.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial AmbientSounds 6.3.8 + CreativeCore 2.13.44 + dossiê operacional existente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial AmbientSounds 6.3.8 + CreativeCore 2.13.44 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` / `6.3.8`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ambientsounds
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — client-only ambience authority, CreativeCore 2.13.44, suspense category, resource-pack composition and audio QA confirmed in global QC #25.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #25: `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` / `6.3.8` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
