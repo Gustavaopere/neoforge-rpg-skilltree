@@ -1,28 +1,27 @@
 # Architectury API
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81af83dfd39b42f36694
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
 
 - **Mod:** Architectury API
-- **Arquivo JAR:** `architectury-13.0.11-neoforge.jar`
+- **Arquivo JAR:** architectury-13.0.11-neoforge.jar
 - **Versão 1.21.1:** 13.0.11
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca
-- **Função:** API intermediária multiplataforma usada por mods para abstrair eventos, networking, registries, loader/platform calls e implementações específicas via `@ExpectPlatform`. Não adiciona sistema jogável próprio.
+- **Função:** API intermediária multiplataforma usada por mods para abstrair eventos, networking, registries, loader/platform calls e implementações específicas via @ExpectPlatform. Não adiciona sistema jogável próprio.
 - **Dependências:** É uma biblioteca consumida por diversos mods multiplataforma. A necessidade da instalação top-level é determinada pelo grafo real de dependentes; cópias jarjar/embedded não contam como mods top-level separados.
 - **Sobreposição:** Não é redundante com NeoForge, Cloth Config, Curios ou APIs de providers. Architectury abstrai diferenças de plataforma para consumidores; outras bibliotecas têm contratos distintos.
 - **Compatibilidade/Riscos:** Principal risco é version mismatch entre Architectury e consumidores, causando linkage/registry/network/mixin errors. Não remover por ausência de conteúdo visível e não atualizar isoladamente para linha de outro Minecraft. Stack traces podem apontar Architectury mesmo quando o erro está no consumer.
-- **Observações:** mod id: `architectury`; runtime 13.0.11. Build oficial 13.0.11+neoforge suporta Minecraft 1.21–1.21.1. Mais de 90 event hooks, networking/registry/loader abstractions e `@ExpectPlatform` são superfícies de desenvolvimento, não gameplay.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth/source oficiais Architectury API 13.0.11 + dossiê operacional existente.
+- **Observações:** mod id: architectury; runtime 13.0.11. Build oficial 13.0.11+neoforge suporta Minecraft 1.21–1.21.1. Mais de 90 event hooks, networking/registry/loader abstractions e @ExpectPlatform são superfícies de desenvolvimento, não gameplay.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/Modrinth/source oficiais Architectury API 13.0.11 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `architectury-13.0.11-neoforge.jar` / `13.0.11`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/architectury-api
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Architectury 13.0.11, platform abstraction, event/network/registry contracts, top-level vs jarjar and dependency-graph risks confirmed in global QC #39. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #39: `architectury-13.0.11-neoforge.jar` / `13.0.11` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Dependência. Em 07/09/2026 a ficha foi refeita para registrar seu papel exclusivamente infraestrutural, a distinção top-level versus jarjar e a regra de avaliar necessidade pelo grafo de dependentes.
 - **Data da última decisão:** 2026-09-07
 

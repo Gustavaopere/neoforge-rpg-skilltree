@@ -1,17 +1,16 @@
 # Apothic Enchanting
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db816c92c9f603c681432f
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
 
 - **Mod:** Apothic Enchanting
-- **Arquivo JAR:** `ApothicEnchanting-1.21.1-1.6.2.jar`
+- **Arquivo JAR:** ApothicEnchanting-1.21.1-1.6.2.jar
 - **Versão 1.21.1:** 1.6.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** RPG, Magia
@@ -19,14 +18,14 @@
 - **Dependências:** Placebo 9.9.2 + ecossistema Apothic atual; integra com Apothic Attributes 2.10.1 e Apothic Spawners 1.4.0 em superfícies explícitas. Não assume authority de affixes/gems.
 - **Sobreposição:** Complementa Apotheosis, mas não duplica affixes/gems. Spawner logic continua em Apothic Spawners; atributos em Apothic Attributes. Outros mods de enchanting podem sobrepor UX/caps, exigindo teste concreto.
 - **Compatibilidade/Riscos:** Não usar documentação antiga de Enchantability: desde 1.6.1 ele não dá Arcana; fornece chance de +1 nível de encantamento. Respeitar max_eterna/World Tiers, caps de encantamento, infusion costs e blacklist de spawners. Testar conflitos com mods que alteram anvil/enchant caps e automação.
-- **Observações:** mod id: `apothic_enchanting`; runtime 1.6.2. Dossiê interno documenta tables, shelves, infusion, Library, Enchantability atual, max_eterna, integração com World Tiers, Ender Leads e matriz de teste.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/source/changelog oficiais Apothic Enchanting 1.6.2 + dossiê operacional existente.
+- **Observações:** mod id: apothic_enchanting; runtime 1.6.2. Dossiê interno documenta tables, shelves, infusion, Library, Enchantability atual, max_eterna, integração com World Tiers, Ender Leads e matriz de teste.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/source/changelog oficiais Apothic Enchanting 1.6.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ApothicEnchanting-1.21.1-1.6.2.jar` / `1.6.2`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-enchanting
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — runtime 1.6.2, enchanting authority, Eterna/Quanta/Arcana/Enchantability, max_eterna, 30 blocks/20 enchantments and module boundaries confirmed in global QC #35. Estado anterior `Integrado ao Github` preservado como histórico documental.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #35: `ApothicEnchanting-1.21.1-1.6.2.jar` / `1.6.2` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita contra o changelog oficial 1.21 até 1.6.2, corrigindo a semântica atual de Enchantability e separando authority de enchanting de affixes/gems/spawners.
 - **Data da última decisão:** 2026-09-07
 
-> ✨ **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Esta página documenta `ApothicEnchanting-1.21.1-1.6.2.jar`, mod id `apothic_enchanting`, em NeoForge 1.21.1. O inventário abaixo cobre **30 blocos registrados, 20 enchantments, 15 effect-components registrados, tomes/itens especiais, stats de enchanting, infusion, Library, Ender Leads, integrações e matriz de teste**.
+> ✨ **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Esta página documenta `ApothicEnchanting-1.21.1-1.6.2.jar`, mod id `apothic_enchanting`, em NeoForge 1.21.1. O inventário abaixo foi reconstruído contra o source/changelog 1.21 e cobre **30 blocos registrados, 20 enchantments, 15 effect-components registrados, tomes/itens especiais, stats de enchanting, infusion, Library, Ender Leads, integrações e matriz de teste**.
 
 ## 1. Identidade, versão e authority
 - **Mod:** Apothic Enchanting.
@@ -60,7 +59,7 @@ Qualquer perk/docs anterior que diga “Enchantability aumenta Arcana” está e
 ## 3. Catálogo completo de blocos registrados — 30
 ### Mesas e armazenamento
 1. `apothic_enchanting_table` — variante Apothic da mesa de encantamento.
-2. `raven_enchanting_table` — **Enchanting Table of the Raven**, mesa endgame com controle manual de Eterna/Quanta/Arcana; em `1.6.2`, recebe JEI transfer handler para infusion.
+2. `raven_enchanting_table` — **Enchanting Table of the Raven**, mesa endgame com controle manual de Eterna/Quanta/Arcana; receita/contexto complementar pode vir do Apotheosis. Em `1.6.2`, recebe JEI transfer handler para infusion.
 3. `library` — Enchantment Library para armazenamento/gerenciamento de encantamentos.
 4. `ender_library` — variante avançada/Ender da Library.
 
@@ -112,7 +111,7 @@ A árvore RPG não deve entregar Eterna/Arcana suficiente para pular o gate de e
 | `chainsaw` | Quebra árvores/conjuntos de logs no comportamento de “chainsaw”; a linha 1.21 recebeu correções para árvores modded. |
 | `chromatic` | Atua sobre wool/cor, randomizando/alterando cor conforme o effect-component. |
 | `crescendo_of_bolts` | Permite disparos adicionais de crossbow sem reload entre eles; há integração específica com Ars Spell Crossbow. |
-| `endless_quiver` | Enchantment registrado. **Comportamento específico não é inferido nesta ficha sem inspeção do component/runtime correspondente**. |
+| `endless_quiver` | Enchantment registrado da linha 1.21. **Comportamento específico não é inferido nesta ficha sem inspeção do component/runtime correspondente**; usar source antes de perk provider-specific. |
 | `growth_serum` | Chance/efeito de crescimento/regrowth associado a sheep segundo component registrado. |
 | `icy_thorns` | Enchantment registrado. Semântica detalhada deve ser tomada do component/runtime da versão antes de integração específica. |
 | `infusion` | Enchantment/marker ligado ao sistema de infusion do módulo. Não confundir com recipe infusion em si. |
@@ -132,6 +131,7 @@ A árvore RPG não deve entregar Eterna/Arcana suficiente para pular o gate de e
 O registro confirma os 20 enchantments. Onde a mecânica detalhada não foi inspecionada, a ficha **declara explicitamente a lacuna** em vez de inventar descrição a partir do nome.
 
 ## 6. Effect components registrados — 15
+O módulo registra componentes de efeito que dão comportamento aos enchantments:
 1. `berserking`
 2. `bonemeal_crops`
 3. `chainsaw`
@@ -151,7 +151,7 @@ O registro confirma os 20 enchantments. Onde a mecânica detalhada não foi insp
 Esses components são evidence de comportamento provider-native. Não duplicar o mesmo efeito com listener externo quando o enchantment já o executa.
 
 ## 7. Tomes — catálogo
-A linha auditada registra nove typed tomes:
+A linha auditada registra nove typed tomes para filtrar/dirigir enchanting por categoria:
 - Boots Tome;
 - Bow Tome;
 - Chestplate Tome;
@@ -170,13 +170,13 @@ Também existem:
 Esses itens participam de manipulação/seleção/extração de enchantments. Qualquer automação deve respeitar consumo e resultado nativos.
 
 ## 8. Itens especiais registrados
-Além dos tomes e block items, o source registra:
+Além dos tomes e block items, o source registra itens utilitários/materiais específicos:
 - `inert_trident`;
 - `infused_breath`;
 - `prismatic_web`;
 - `warden_tendril`;
-- `flimsy_ender_lead` — durabilidade 8;
-- `ender_lead` — durabilidade 64;
+- `flimsy_ender_lead` — durabilidade 8; voltado a animais/targets restritos conforme implementação;
+- `ender_lead` — durabilidade 64; versão mais ampla;
 - `occult_ender_lead` — durabilidade 1024, armazena entity component e pode interagir com spawners;
 - três music discs temáticos: **Eterna**, **Quanta** e **Arcana**.
 
@@ -209,7 +209,7 @@ Infusion é um sistema data-driven de transformação que usa requisitos de ench
 Processing externo não pode conceder output “previsto” antes da recipe provider-native concluir. Consumo parcial, cancelamento, reload e transfer JEI devem ser testados.
 
 ## 11. Enchantment Library
-A Library permite armazenar e gerenciar enchantments como recurso organizado.
+A Library permite armazenar e gerenciar enchantments como recurso organizado, reduzindo a necessidade de manter centenas de livros isolados.
 
 Superfícies críticas:
 - inserção;
