@@ -1,17 +1,19 @@
 # Bloodlines
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bloodlines-1.21-3.0.9.jar`, versão `1.21-3.0.9`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+> **Ordem física atual:** #80 na `modlist(1).txt` de 586 mods top-level. O ordinal #81 embutido em `Atualização/Status` é histórico do snapshot Notion de 11/09/2026 e permanece apenas como conteúdo de paridade; para ordem do pack, a modlist física atual é a autoridade.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c869db9f0db814a89adfb017bfacc71
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
 
 ## Propriedades do banco
 
 - **Mod:** Bloodlines
-- **Arquivo JAR:** `bloodlines-1.21-3.0.9.jar`
+- **Arquivo JAR:** bloodlines-1.21-3.0.9.jar
 - **Versão 1.21.1:** 1.21-3.0.9
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Magia, RPG
@@ -20,9 +22,9 @@
 - **Sobreposição:** Estende diretamente Vampirism; BloodlineManager, Vampirism blood e Gravebound Souls/Phylactery permanecem domínios distintos. Não duplicar em sistemas próprios nem converter automaticamente para mana/soul-energy genérica.
 - **Compatibilidade/Riscos:** Source-pinned 3.0.9 com runtime QA ainda pendente. Riscos auditados incluem dual skill-point gate, costs/wallet, movement/side, Mist Form, Possession, Souls/Phylactery e interop com addons Vampirism. Não duplicar BloodlineManager ou recursos provider-native.
 - **Observações:** Source pin exato c8fd517d204d09dfcb9a544c17d7df87755eaa5c. 5 bloodlines: Noble, Zealot, Ectotherm, Bloodknight, Gravebound. Source 3.0.9 define Heinous Elixir = 15 s. Source audit não equivale a runtime QA.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + source oficial TheDrOfDoctoring/bloodlines pin c8fd517d204d09dfcb9a544c17d7df87755eaa5c + catálogo source-level já auditado.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial TheDrOfDoctoring/bloodlines pin `c8fd517d204d09dfcb9a544c17d7df87755eaa5c` + catálogo source-level já auditado. Reconciliação final: JAR/runtime permanecem exatamente `bloodlines-1.21-3.0.9.jar` / `1.21-3.0.9`; decisão `Manter` e gates de runtime QA permanecem inalterados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bloodlines
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Bloodlines 1.21-3.0.9 físico e source pin c8fd517d… reconfirmados; 5 bloodlines/101 skills/29 actions/22 tasks, BloodlineManager, wallet, Gravebound Souls/Phylactery e gates de QA preservados. Decisão Manter preservada. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #81: `bloodlines-1.21-3.0.9.jar` / `1.21-3.0.9` conferidos contra a modlist atual; source pin `c8fd517d204d09dfcb9a544c17d7df87755eaa5c`, 5 bloodlines/101 skills/29 actions/22 tasks, BloodlineManager e decisão `Manter` preservados.
 - **Histórico da decisão:** 07/09/2026: auditoria granular source-level 3.0.9 concluída no catálogo Black Arcana; manter instalado e preservar autoridade provider-native. Runtime QA permanece pendente.
 - **Data da última decisão:** 2026-09-07
 
@@ -90,3 +92,4 @@ Bloodline perk points são recurso próprio. Vampire blood continua sendo autori
 
 ### Estado de fechamento
 O catálogo granular de source do Bloodlines 3.0.9 está concluído para registries, trees, skills, actions, tasks, progressão, joins/leaving, Bloodline points, Vampirism blood, Gravebound Souls/Phylactery, lifecycle, mixins de alta relevância e contrato de integração. **RUNTIME QA CONFIRMED não foi concedido.**
+

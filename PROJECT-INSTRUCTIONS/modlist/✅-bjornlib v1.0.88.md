@@ -1,17 +1,19 @@
 # BjornLib
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bjornlib-neoforge-1.0.88-1.21.1.jar`, versão `1.0.88`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+> **Ordem física atual:** #77 na `modlist(1).txt` de 586 mods top-level. O ordinal #78 embutido em `Atualização/Status` é histórico do snapshot Notion de 11/09/2026 e permanece apenas como conteúdo de paridade; para ordem do pack, a modlist física atual é a autoridade.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81d98d6ec39cc94db94f
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
 
 ## Propriedades do banco
 
 - **Mod:** BjornLib
-- **Arquivo JAR:** `bjornlib-neoforge-1.0.88-1.21.1.jar`
+- **Arquivo JAR:** bjornlib-neoforge-1.0.88-1.21.1.jar
 - **Versão 1.21.1:** 1.0.88
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +22,9 @@
 - **Sobreposição:** Biblioteca técnica específica. APIs conceitualmente parecidas em outras libs não são substitutas binárias dos consumidores BjornLib.
 - **Compatibilidade/Riscos:** APIs de ability/event/particle/lightning/leveling podem ser usadas por gameplay e render; riscos de event duplication, client/server authority incorreta, entity state órfão e consumer incompatível após update.
 - **Observações:** Descrição oficial confirma Ability Registry + events, Particle Builder com glowing rendering/default particles, Lightning Builder e Leveling Builder para mobs. Nenhuma classe interna adicional foi inventada além das superfícies publicadas.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial BjornLib + arquivo NeoForge 1.21.1 1.0.88.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial BjornLib 1.0.88 NeoForge 1.21.1 + superfícies públicas e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `bjornlib-neoforge-1.0.88-1.21.1.jar` / `1.0.88`; detalhes internos não confirmados continuam não inferidos.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bjornlib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BjornLib 1.0.88 físico/release confirmado; Ability Registry/events, Particle Builder, Lightning Builder e Leveling Builder preservados de forma fail-closed. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #78: `bjornlib-neoforge-1.0.88-1.21.1.jar` / `1.0.88` conferidos contra a modlist atual; Ability Registry/events, Particle Builder, Lightning Builder e Leveling Builder preservados de forma fail-closed.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, BjornLib 1.0.88 foi reconfirmado como biblioteca estrutural. Em 09/09/2026, a versão física e as quatro superfícies públicas documentadas foram revalidadas sem inferir decisão curatorial.
 - **Data da última decisão:** não definida
 
@@ -131,3 +133,4 @@ State de ability/level deve pertencer à entidade correta. Eventos não podem us
 - descrição oficial: Ability Registry/events, Particle Builder com glowing rendering/default particles, Lightning Builder e Leveling Builder.
 
 > 🧰 Exaustividade proporcional e fail-closed: as quatro superfícies públicas confirmadas estão catalogadas; detalhes internos não publicados para a 1.0.88 não foram inventados.
+
