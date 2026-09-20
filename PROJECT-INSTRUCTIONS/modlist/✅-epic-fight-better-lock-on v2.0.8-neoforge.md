@@ -1,30 +1,31 @@
 # Epic Fight - Better Lock On
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c869db9f0db8141b838ce93a7d54591  
-> Estado no momento da reconciliação: `Integrado ao Github`  
-> Autoridade física: `modlist(4).txt`, 595 mods top-level  
-> Reconciliado em: 2026-09-09
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `betterlockon-2.0.8-neoforge.jar`, versão `2.0.8-neoforge`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
-## Propriedades do registro
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
+
+## Propriedades do banco
 
 - **Mod:** Epic Fight - Better Lock On
-- **Arquivo JAR:** `betterlockon-2.0.8-neoforge.jar`
-- **Versão 1.21.1:** `2.0.8-neoforge`
-- **Categoria:** RPG; QoL; Visual
-- **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR:** betterlockon-2.0.8-neoforge.jar
+- **Versão 1.21.1:** 2.0.8-neoforge
 - **Estado no pack:** Integrado ao Github
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-lock-on
+- **Estado da pesquisa:** Verificado
+- **Decisão:** Sem decisão
+- **Categoria:** RPG, QoL, Visual
 - **Função:** Extensão client-side do lock-on do Epic Fight: indicador de alvo/vida, troca lateral de alvo, aquisição automática do alvo próximo e melhorias de câmera/FOV/transições.
 - **Dependências:** Integração funcional com Epic Fight; pack usa Epic Fight 21.17.3.1. A release pública é 2.0.8, enquanto o metadata runtime físico declara 2.0.8-neoforge.
-- **Compatibilidade/Riscos:** Conflitos possíveis com outros mods que alteram câmera, targeting, primeira pessoa, dodge/rotation ou HUD. Lock visual não pode se tornar authority de hit/dano. Validar mudanças de API com Epic Fight 21.17.3.1.
 - **Sobreposição:** Complementa o lock-on do Epic Fight. Pode sobrepor HUD/câmera/target selection com mods de câmera ou combat QoL, mas não substitui o combat pipeline do Epic Fight.
+- **Compatibilidade/Riscos:** Conflitos possíveis com outros mods que alteram câmera, targeting, primeira pessoa, dodge/rotation ou HUD. Lock visual não pode se tornar authority de hit/dano. Validar mudanças de API com Epic Fight 21.17.3.1.
 - **Observações:** Runtime preservado como 2.0.8-neoforge. Recursos documentados na linha 2.x: lock icon/health, target switch por mouse, auto-unlock/death retarget, nearest-target acquisition, team filtering, camera transition e dynamic FOV.
-- **Procedência:** Modlist física canônica de 08/09/2026 (595 top-levels) confirma `betterlockon-2.0.8-neoforge.jar`, mod id `betterlockon`, runtime `2.0.8-neoforge` e SHA-1 94926350c5500857097c993e64259a35c93c8eae. CurseForge/Modrinth oficiais sustentam a release pública 2.0.8; Epic Fight físico é 21.17.3.1.
+- **Procedência:** modlist.txt física atual de 11/09/2026 confirma `betterlockon-2.0.8-neoforge.jar`, mod id `betterlockon` e runtime `2.0.8-neoforge`; CurseForge/Modrinth oficiais sustentam a release pública 2.0.8, e Epic Fight físico permanece 21.17.3.1. Reconciliação final preserva essa diferença de nomenclatura sem normalização fictícia.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-lock-on
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #73: `betterlockon-2.0.8-neoforge.jar` / runtime `2.0.8-neoforge` conferidos contra a modlist atual; distinção da release pública 2.0.8, targeting/HUD/camera lifecycle e authority do Epic Fight 21.17.3.1 preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, Better Lock On 2.0.8-neoforge foi revalidado contra o snapshot físico atual e Epic Fight 21.17.3.1; a presença continua documental e não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better Lock On 2.0.8-neoforge físico/release confirmado; targeting/HUD/camera lifecycle e boundary de authority com Epic Fight 21.17.3.1 preservados. Runtime QA não executado.
-- **Data da última decisão:** não definida.
+- **Data da última decisão:** não definida
 
 ## Dossiê operacional — padrão Alex's Mobs
 

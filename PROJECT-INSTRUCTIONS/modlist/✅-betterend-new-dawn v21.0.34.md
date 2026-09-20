@@ -1,17 +1,18 @@
 # BetterEnd: New Dawn
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `BetterEnd-21.0.34.jar`, versão `21.0.34`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81eda15fcc9d30b9a7e6
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
 
 ## Propriedades do banco
 
 - **Mod:** BetterEnd: New Dawn
-- **Arquivo JAR:** `BetterEnd-21.0.34.jar`
+- **Arquivo JAR:** BetterEnd-21.0.34.jar
 - **Versão 1.21.1:** 21.0.34
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Worldgen, Exploração, Mobs
@@ -20,9 +21,9 @@
 - **Sobreposição:** Provider amplo do End. Pode coexistir com estruturas/expansões adicionais, mas conflitos devem ser avaliados por biome/structure/feature concreta; não é substituível por uma library de worldgen.
 - **Compatibilidade/Riscos:** Worldgen amplo do End. Riscos: conflito de biome/feature/structure placement, registry/holder stale, transição de versões em mundos existentes, render/particle client-side e sobreposição de End com YUNG's Better End Island/outros mods. 21.0.34 corrige crash de partículas server-side.
 - **Observações:** 21.0.34 NeoForge 1.21.1. Dependências oficiais: BCLib, WorldWeaver e WunderLib. Conteúdo New Dawn inclui Flower Islets, Waterfall Ponds, Ruined End Bridges, Dragon-Helix, Amaranita, End lakes reworked, boats/chest boats, End Lotus Raft, chiseled bookshelves e Resonance I/II.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + metadata runtime + Modrinth/CurseForge oficiais BetterEnd: New Dawn 21.0.34 + stack físico New Dawn.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime + Modrinth/CurseForge oficiais BetterEnd: New Dawn 21.0.34 + stack New Dawn e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `BetterEnd-21.0.34.jar` / `21.0.34`; decisão `Manter` e dependências físicas permanecem inalteradas.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/betterend-new-dawn
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — BetterEnd: New Dawn 21.0.34 físico/release confirmado; stack BCLib 21.0.26 + WorldWeaver 21.0.25 + WunderLib 21.0.10 e decisão histórica MANTER preservados. Runtime/worldgen QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #71: `BetterEnd-21.0.34.jar` / `21.0.34` conferidos contra a modlist atual; stack BCLib 21.0.26 + WorldWeaver 21.0.25 + WunderLib 21.0.10, worldgen boundaries e decisão histórica `Manter` preservados.
 - **Histórico da decisão:** Em 22/08/2026, BetterEnd foi desativado temporariamente apenas para isolamento junto de WorldWeaver e BetterNether. Após identificar e remover FirmaTerrain 1.0.0, o stack BetterX/New Dawn foi reativado e funcionou. Decisão final desta investigação: MANTER BetterEnd; a desativação anterior foi apenas diagnóstica.
 - **Data da última decisão:** 2026-08-22
 
@@ -157,3 +158,4 @@ Não usar reload para tentar regenerar chunks existentes.
 - histórico curatorial preservado no Notion: desativação de 22/08 foi diagnóstica; decisão final MANTER.
 
 > 🌌 Authority canônica: BetterEnd = conteúdo e geração do End; BCLib/WorldWeaver/WunderLib = infraestrutura New Dawn. A ficha não transforma libraries em providers de conteúdo nem mascara a diferença entre chunks antigos e novos.
+

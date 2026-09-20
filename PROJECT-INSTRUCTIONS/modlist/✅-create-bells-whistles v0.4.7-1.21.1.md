@@ -1,30 +1,31 @@
 # Create: Bells & Whistles
 
-> Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db81b583c7cbd2681a24f7  
-> Estado no momento da exportação: `Instalado — Dossiê completo`  
-> Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
-> Exportado em: 2026-09-09
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bellsandwhistles-0.4.7-1.21.1.jar`, versão `0.4.7-1.21.1`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
-## Propriedades do registro
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
+
+## Propriedades do banco
 
 - **Mod:** Create: Bells & Whistles
-- **Arquivo JAR:** `bellsandwhistles-0.4.7-1.21.1.jar`
-- **Versão 1.21.1:** `0.4.7-1.21.1`
-- **Categoria:** Tecnologia; Visual
-- **Decisão:** Sem decisão
+- **Arquivo JAR:** bellsandwhistles-0.4.7-1.21.1.jar
+- **Versão 1.21.1:** 0.4.7-1.21.1
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-bells-whistles
+- **Decisão:** Sem decisão
+- **Categoria:** Tecnologia, Visual
 - **Função:** Addon Create para construção ferroviária com Train Pilots, Grab Bars, Bogie Steps e Station Platform Block, incluindo peças ladder-aware que funcionam em trains.
 - **Dependências:** Create; pack usa Create 6.0.10.
-- **Compatibilidade/Riscos:** Version drift com Create 6.0.10, collision/ladder em contraptions, assemble/disassemble e sobreposição visual com outros addons ferroviários. Create mantém authority de trains/contraptions.
 - **Sobreposição:** Sobreposição parcial de decoração/ferrovia com outros addons Create, sem equivalência automática.
+- **Compatibilidade/Riscos:** Version drift com Create 6.0.10, collision/ladder em contraptions, assemble/disassemble e sobreposição visual com outros addons ferroviários. Create mantém authority de trains/contraptions.
 - **Observações:** README lista 9 Train Pilots, 3 Grab Bars, 3 Bogie Steps e 1 Station Platform Block = 16 entradas/variantes principais; não rotulado como registry count binário exato.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial `bellsandwhistles-0.4.7-1.21.1.jar` + README/source oficial + Create 6.0.10 físico.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial `bellsandwhistles-0.4.7-1.21.1.jar` + README/source oficial + Create 6.0.10 físico e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `bellsandwhistles-0.4.7-1.21.1.jar` / `0.4.7-1.21.1`; sem divergência física.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-bells-whistles
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #67: `bellsandwhistles-0.4.7-1.21.1.jar` / `0.4.7-1.21.1` conferidos contra a modlist atual; 16 entradas/variantes principais do README, ladder/contraption lifecycle e authority Create 6.0.10 preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Create: Bells & Whistles 0.4.7-1.21.1, seu escopo ferroviário/decorativo e a authority do Create sobre trains/contraptions. Em 09/09/2026, a release e Create 6.0.10 foram revalidados; a sobreposição visual com outros addons não foi usada para inferir decisão.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Create: Bells & Whistles 0.4.7-1.21.1 físico/release confirmado; 16 entradas/variantes principais do README, ladder/contraption lifecycle e authority Create 6.0.10 preservados no QC global #67. Runtime QA não executado.
-- **Data da última decisão:** não definida.
+- **Data da última decisão:** não definida
 
 ## Dossiê operacional — padrão Alex's Mobs
 
@@ -109,3 +110,4 @@ Não reimplementar movement de peça ferroviária em mod próprio.
 - README/source oficial com Train Pilots, Grab Bars, Bogie Steps e Station Platform Block.
 
 > 🚂 Conteúdo documentado: 16 entradas/variantes principais no README. Create continua authority de trains/contraptions; Bells & Whistles fornece as peças e seus comportamentos específicos.
+

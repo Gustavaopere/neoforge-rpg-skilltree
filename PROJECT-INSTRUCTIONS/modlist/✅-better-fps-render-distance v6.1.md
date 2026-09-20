@@ -1,17 +1,18 @@
 # Better Fps - Render Distance
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `betterfpsdist-1.21.1-6.1.jar`, versão `6.1`. O dossiê GitHub preexistente foi reutilizado como base e renomeado após a comparação 1:1; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db8135bd20f2bb29075214
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
 
 ## Propriedades do banco
 
 - **Mod:** Better Fps - Render Distance
-- **Arquivo JAR:** `betterfpsdist-1.21.1-6.1.jar`
+- **Arquivo JAR:** betterfpsdist-1.21.1-6.1.jar
 - **Versão 1.21.1:** 6.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Performance, Visual, QoL
@@ -19,10 +20,10 @@
 - **Dependências:** Required dependency: Cupboard; pack físico atual usa Cupboard 4.1. Funcionalidade de Better Fps - Render Distance permanece client-side NeoForge 1.21.1. Distant Horizons 3.2.0-b, EntityCulling 1.10.5 e ImmediatelyFast 1.6.13 são camadas distintas, não dependências diretas.
 - **Sobreposição:** Atua na seleção por render distance; Distant Horizons trata LOD distante, EntityCulling trata oclusão de entidades/block entities e ImmediatelyFast otimiza pipelines de render. Não são equivalentes.
 - **Compatibilidade/Riscos:** Pode causar pop-in/culling visual, divergência com LOD/render-distance mods e redução excessiva de entity range se configs forem combinadas. Não altera chunk generation nem authority de servidor.
-- **Observações:** Build 6.1 NeoForge 1.21.1, client. Configura escalas horizontal/vertical, entity render range e debug de chunk sections ignoradas; documentação estima redução de ~10–35% de chunk sections em cenários apropriados.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Better Fps - Render Distance 6.1 + relação oficial de dependência Cupboard + Cupboard 4.1 físico.
+- **Observações:** Build 6.1 NeoForge 1.21.1, client. Configura escalas horizontal/vertical, entity render range e debug de chunk sections ignoradas; documentação estima redução de \~10–35% de chunk sections em cenários apropriados.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Better Fps - Render Distance 6.1 + relação oficial de dependência Cupboard + Cupboard 4.1 físico e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `betterfpsdist-1.21.1-6.1.jar` / `6.1`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-fps-render-distance
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better Fps - Render Distance 6.1 físico/release confirmado; dependência obrigatória Cupboard 4.1 reconciliada; render-volume/config/entity-range e sobreposições client-side preservadas. Runtime QA/benchmark não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #72: `betterfpsdist-1.21.1-6.1.jar` / `6.1` conferidos contra a modlist atual; dependência obrigatória Cupboard 4.1, render-volume/config/entity-range e boundaries client-side preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Better Fps - Render Distance 6.1 como otimização client-side. Em 09/09/2026, a dependência obrigatória Cupboard foi reconciliada com o JAR físico Cupboard 4.1; a instalação não foi convertida em decisão curatorial.
 - **Data da última decisão:** não definida
 
@@ -120,3 +121,4 @@ A mudança deve reconstruir o conjunto visual sem deixar chunks invisíveis pres
 - presença física no pack de Distant Horizons, EntityCulling e ImmediatelyFast usada apenas para mapear sobreposição real de camada.
 
 > 📐 Authority canônica: BetterFPSDist controla apenas seleção visual por distância no cliente. Ele não gera chunks, não altera AI e não substitui Distant Horizons ou EntityCulling.
+

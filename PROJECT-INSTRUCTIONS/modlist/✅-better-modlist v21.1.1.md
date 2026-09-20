@@ -1,17 +1,18 @@
 # Better ModList
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `better_modlist-21.1.1.jar`, versão `21.1.1`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d569db9f0db8171bd54e590916e68e5
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-10
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
 
 ## Propriedades do banco
 
 - **Mod:** Better ModList
-- **Arquivo JAR:** `better_modlist-21.1.1.jar`
+- **Arquivo JAR:** better_modlist-21.1.1.jar
 - **Versão 1.21.1:** 21.1.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL
@@ -20,11 +21,11 @@
 - **Sobreposição:** Pode sobrepor apenas a apresentação/navegação da tela de mods e outras UI mods; não substitui bibliotecas/config backends dos mods listados.
 - **Compatibilidade/Riscos:** QoL de interface. Riscos principais: mod ocultado dificultar diagnóstico, config-screen provider ausente/incompatível, UI conflitante com outras alterações de Mods screen e confusão entre display name e mod id. Não altera gameplay authority.
 - **Observações:** JAR físico `better_modlist-21.1.1.jar`, mod id físico `mod_menu`, nome runtime Better ModList, versão 21.1.1. É um port não oficial de Mod Menu para NeoForge; não confundir o mod id `mod_menu` com o loader Fabric.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Better Modlist 21.1.1 para NeoForge 1.21.1.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Better ModList 21.1.1 para NeoForge 1.21.1 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `better_modlist-21.1.1.jar` / `21.1.1`; mod id `mod_menu` continua documentado sem confusão com o Mod Menu original/Fabric.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-modlist-neoforge
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better ModList 21.1.1 físico/release confirmado como linha NeoForge 1.21.1; mod id `mod_menu`, UI authority, hiding/filtering, badges e config-screen boundary preservados no QC global #70. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #70: `better_modlist-21.1.1.jar` / `21.1.1` conferidos contra a modlist atual; mod id físico `mod_menu`, UI authority, hiding/filtering, badges e config-screen boundary preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, a auditoria confirmou `better_modlist-21.1.1.jar`, mod id físico `mod_menu`, runtime Better ModList 21.1.1 e o papel exclusivamente UI/QoL do port NeoForge. A presença física não foi convertida automaticamente em decisão de manter/remover.
-- **Data da última decisão:**
+- **Data da última decisão:** não definida
 
 > 🧭 **ESCOPO CANÔNICO.** Runtime físico: `better_modlist-21.1.1.jar`, mod id `mod_menu`, nome runtime `Better ModList`, versão `21.1.1`. É uma camada de **UI/QoL para a lista de mods do NeoForge**; não adiciona conteúdo, progressão ou state de gameplay.
 
@@ -68,3 +69,4 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Modlist física: `better_modlist-21.1.1.jar`, mod id `mod_menu`, runtime Better ModList 21.1.1.
 - CurseForge oficial: Release 21.1.1 para NeoForge 1.21.1 e objetivo de melhorar a mod list como port de Mod Menu.
 - Config interna e lista exata de badges/toggles da build não foram decompiladas; a ficha não inventa opções além das publicamente documentadas.
+
