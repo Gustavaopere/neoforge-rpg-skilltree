@@ -26,6 +26,32 @@
         "engagement": ["Engagement"],
         "resolution": ["Resolution"]
       }
+    },
+    "active-npc-asset-briefs": {
+      "include": [
+        "03-npcs/principais/NPC-0003-iren-valmor-asset-brief.md",
+        "03-npcs/principais/NPC-0004-liora-asset-brief.md",
+        "03-npcs/principais/NPC-0005-oren-asset-brief.md",
+        "03-npcs/principais/NPC-0006-elian-asset-brief.md",
+        "03-npcs/principais/NPC-0007-maura-asset-brief.md"
+      ],
+      "required_sections": {
+        "editorial-state": ["Estado editorial"],
+        "production-state": ["Estado de produção"],
+        "entity-id": ["Entity ID"],
+        "portrait-spec": ["Portrait/documentação"],
+        "skin-spec": ["Skin Minecraft"],
+        "provenance": ["Proveniência/licença"],
+        "final-evidence": ["Evidência final exigida", "Evidência exigida antes de FINAL"],
+        "pending": ["Pendências"]
+      },
+      "reference_rules": {
+        "entity-id": {
+          "allowed_types": ["NPC"],
+          "min_references": 1
+        }
+      },
+      "filename_identity_section": "entity-id"
     }
   },
   "knowledge_evidence_contracts": {

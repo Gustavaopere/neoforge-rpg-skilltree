@@ -74,5 +74,33 @@
     "causes_headings": ["Causa", "Causes"],
     "caused_by_headings": ["Causado por", "Caused by"],
     "causality_acyclic": true
+  },
+  "auxiliary_document_contracts": {
+    "active-npc-asset-briefs": {
+      "include": [
+        "NPC-0003-iren-valmor-asset-brief.md",
+        "NPC-0004-liora-asset-brief.md",
+        "NPC-0005-oren-asset-brief.md",
+        "NPC-0006-elian-asset-brief.md",
+        "NPC-0007-maura-asset-brief.md"
+      ],
+      "required_sections": {
+        "editorial-state": ["Estado editorial"],
+        "production-state": ["Estado de produção"],
+        "entity-id": ["Entity ID"],
+        "portrait-spec": ["Portrait/documentação"],
+        "skin-spec": ["Skin Minecraft"],
+        "provenance": ["Proveniência/licença"],
+        "final-evidence": ["Evidência final exigida", "Evidência exigida antes de FINAL"],
+        "pending": ["Pendências"]
+      },
+      "reference_rules": {
+        "entity-id": {
+          "allowed_types": ["NPC"],
+          "min_references": 1
+        }
+      },
+      "filename_identity_section": "entity-id"
+    }
   }
 }

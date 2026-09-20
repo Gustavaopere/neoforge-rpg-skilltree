@@ -6,7 +6,7 @@ RASCUNHO
 ## Estado de produção
 NÃO É ASSET FINAL / NÃO INICIADO.
 
-## Asset ID
+## Entity ID
 `NPC-0003`
 
 ## Owner/repositório
@@ -64,14 +64,16 @@ Modelo corporal Minecraft: `classic`, conforme ficha de autoria atual. Deve ser 
 ## Resolução e formatos
 A produção visual separa deliberadamente portrait/concept de skin técnica.
 
-### Portrait/documentação — decisão de produção
+## Portrait/documentação
+Decisão de produção para o portrait/documentação:
 - master aprovado: **2048×2048 px**, PNG, sRGB;
 - manter o master sem recompressão lossy;
 - derivados menores podem ser gerados para UI/documentação, mas não substituem o master;
 - concept sheets não precisam ser quadradas, porém devem preservar pelo menos **2048 px no maior lado** para leitura de material/rosto;
 - portrait/concept nunca é convertido diretamente em UV de skin.
 
-### Skin técnica — evidência do provider
+## Skin Minecraft
+Evidência técnica do provider para a skin:
 - alvo atual: **64×64 px RGBA PNG**, layout moderno de skin humanoide Minecraft;
 - modelo `classic` conforme a ficha atual; qualquer mudança futura para `slim` exige ajuste explícito do layout/modelo;
 - preservar alpha/segunda camada quando usada;

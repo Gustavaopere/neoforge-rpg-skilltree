@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      FACTORY_SHA: 86b83005cde89f26ad2ef03af43cf512bc085080
+      FACTORY_SHA: 1b7c64e43e1e470c846fc4ef02fbfb9a038f2ad5
       PROFILE: historia/11-ia-e-autoria/factory-narrative-profile.json
       STORY_ROOT: historia/03-npcs/principais
       PYTHONDONTWRITEBYTECODE: '1'
