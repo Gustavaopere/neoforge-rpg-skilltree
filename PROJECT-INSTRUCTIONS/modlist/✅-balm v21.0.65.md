@@ -1,17 +1,18 @@
 # Balm
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `balm-neoforge-1.21.1-21.0.65.jar`, versão `21.0.65`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db8165993ad1c2180f3153
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
 
 ## Propriedades do banco
 
 - **Mod:** Balm
-- **Arquivo JAR:** `balm-neoforge-1.21.1-21.0.65.jar`
+- **Arquivo JAR:** balm-neoforge-1.21.1-21.0.65.jar
 - **Versão 1.21.1:** 21.0.65
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +21,9 @@
 - **Sobreposição:** Biblioteca técnica; não substitui nem é substituída automaticamente por Architectury, Moonlight ou APIs semelhantes.
 - **Compatibilidade/Riscos:** Riscos de registro duplicado common/platform, packet sem server authority, attachment/capability órfão, registry stale após reload e classloading client-only. Não substituir por outra abstraction library por similaridade.
 - **Observações:** KumaAPI 21.0.8 é dependência embarcada. Changelog 21.0.65 corrige ChunkTrackingEvent na camada Fabric; tracking de chunk é superfície real da API.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + JAR/jarjar físico + CurseForge/documentação/changelog oficial Balm 21.0.65.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + JAR/jarjar físico + CurseForge/documentação/changelog oficial Balm 21.0.65 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `balm-neoforge-1.21.1-21.0.65.jar` / `21.0.65`; KumaAPI 21.0.8 continua embarcado, não top-level.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/balm
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Balm 21.0.65 físico/release confirmado; networking/config/registries/data/events lifecycle e KumaAPI 21.0.8 jarjar preservados no QC global #64. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #64: `balm-neoforge-1.21.1-21.0.65.jar` / `21.0.65` conferidos contra a modlist atual; networking/config/registries/data/events lifecycle e KumaAPI 21.0.8 jarjar preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Balm 21.0.65 e registrou KumaAPI 21.0.8 como biblioteca embarcada em `META-INF/jarjar`, não top-level. Em 09/09/2026, ambos foram revalidados no snapshot físico atual; a necessidade funcional continua dependente dos consumidores reais, sem decisão curatorial inferida.
 - **Data da última decisão:** não definida
 
@@ -104,3 +105,4 @@ Architectury, Moonlight e outras abstraction libraries podem coexistir. Não sã
 - changelog oficial 21.0.65 sobre `ChunkTrackingEvent`.
 
 > 🧱 Exaustividade proporcional: Balm é infraestrutura. A ficha cobre networking, config, registries, dados, eventos, side e dependência embarcada sem atribuir conteúdo jogável à biblioteca.
+

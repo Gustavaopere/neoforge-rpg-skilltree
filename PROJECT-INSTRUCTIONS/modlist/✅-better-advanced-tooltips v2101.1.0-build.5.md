@@ -1,17 +1,18 @@
 # Better Advanced Tooltips
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `better-advanced-tooltips-2101.1.0-build.5.jar`, versão `2101.1.0-build.5`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d369db9f0db814c9a3ef368d8c594d8
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
 
 ## Propriedades do banco
 
 - **Mod:** Better Advanced Tooltips
-- **Arquivo JAR:** `better-advanced-tooltips-2101.1.0-build.5.jar`
+- **Arquivo JAR:** better-advanced-tooltips-2101.1.0-build.5.jar
 - **Versão 1.21.1:** 2101.1.0-build.5
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Opcional
 - **Categoria:** QoL, Visual
@@ -20,9 +21,9 @@
 - **Sobreposição:** Coexiste com Simply Tooltips 0.1.5 e Obscure Tooltips 4.2.4 porque o foco é informação avançada/técnica; pode haver poluição/duplicação visual, sem conflito estrutural confirmado.
 - **Compatibilidade/Riscos:** Risco principal é composição visual: linhas duplicadas, ordem de callbacks, tooltip excessivo e cache stale após reload. Não altera atributos ou state de item.
 - **Observações:** Build 2101.1.0-build.5. Tags/components exibidos continuam pertencendo ao provider/Minecraft; o mod é viewer de diagnóstico.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge oficial Better Advanced Tooltips build.5 + Simply Tooltips 0.1.5 e Obscure Tooltips 4.2.4 físicos.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Better Advanced Tooltips build.5 + Simply Tooltips 0.1.5 e Obscure Tooltips 4.2.4 físicos e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `better-advanced-tooltips-2101.1.0-build.5.jar` / `2101.1.0-build.5`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-advanced-tooltips
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Better Advanced Tooltips 2101.1.0-build.5 físico/release confirmado; F3+H/tags/components, data freshness e side safety preservados. Sobreposição reconciliada para Simply Tooltips 0.1.5 + Obscure Tooltips 4.2.4 no QC global #68. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #68: `better-advanced-tooltips-2101.1.0-build.5.jar` / `2101.1.0-build.5` conferidos contra a modlist atual; F3+H/tags/components, data freshness, side safety e decisão Opcional preservados.
 - **Histórico da decisão:** Decisão formal já registrada como Opcional em 06/09/2026. O registro anterior não continha justificativa textual; em 08/09/2026 a auditoria preservou a decisão sem inventar motivo. Em 09/09/2026, a build.5 foi revalidada e a sobreposição de UI foi corrigida para os providers fisicamente presentes Simply Tooltips 0.1.5 e Obscure Tooltips 4.2.4.
 - **Data da última decisão:** 2026-09-06
 
@@ -91,3 +92,4 @@ Nenhum cache visual deve sobreviver quando a fonte de dados mudou.
 - descrição oficial: tags, components e outras informações em Advanced Tooltips.
 
 > 🔎 Exaustividade proporcional ao escopo: a ficha cobre as superfícies observáveis de diagnóstico, data freshness, composição de tooltip e side safety sem inventar gameplay.
+
