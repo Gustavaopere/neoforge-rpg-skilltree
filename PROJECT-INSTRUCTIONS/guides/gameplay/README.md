@@ -22,7 +22,7 @@ Para perks de combate/armas que possam tocar **Simply Swords, Simply More, Integ
 - [2. Progressão RPG, identidades e atributos](02-progressao-rpg-identidades-e-atributos.md)
 - [3. Sobrevivência e condições ambientais](03-sobrevivencia-e-condicoes-ambientais.md)
 - [4. Alimentação, culinária e agricultura](04-alimentacao-culinaria-e-agricultura.md)
-- [5. Ecossistema [Let's Do]](05-ecossistema-let-s-do.md)
+- [5. Manejo animal e genética](05-manejo-animal-e-genetica.md)
 - [6. Fauna, inimigos e bosses](06-fauna-inimigos-e-bosses.md)
 - [7. Exploração, dimensões e worldgen](07-exploracao-dimensoes-e-worldgen.md)
 - [8. Estruturas e dungeons](08-estruturas-e-dungeons.md)
