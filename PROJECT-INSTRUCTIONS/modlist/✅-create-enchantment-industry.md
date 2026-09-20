@@ -17,7 +17,7 @@
 - **Observações:** mod id `create_enchantment_industry`; runtime 2.5.3b. Mixin configs físicos incluem integração condicional com Apothic Enchanting, Apotheosis, Sable e Touhou Little Maid; a presença dessas configs confirma superfícies de compatibilidade, não autoriza inventar contracts além das fontes. Jar-in-jar: Conditional Mixin 0.6.4.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime 2.5.3b + Apothic Enchanting físico 1.6.2 + inventário mixin/jar-in-jar do host + CurseForge/Modrinth oficiais da build já auditados. Reconciliação final: JAR/runtime permanecem exatamente `create-enchantment-industry-2.5.3b.jar` / `2.5.3b`; `conditional-mixin-neoforge-0.6.4.jar` continua embedded e não top-level.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Enchantment Industry 2.5.3b foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. A antiga data sem decisão formal foi removida; presença/uso não foram convertidos em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #119: `create-enchantment-industry-2.5.3b.jar` / `2.5.3b` conferidos contra a modlist atual; Liquid Experience/enchant authority, máquinas, hyper-enchanting, Apothic integration, lifecycle e jar-in-jar preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #119: `create-enchantment-industry-2.5.3b.jar` / `2.5.3b` reconfirmados; Liquid Experience/enchant authority, máquinas, hyper-enchanting, Apothic integration, lifecycle e jar-in-jar permanecem atuais.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
