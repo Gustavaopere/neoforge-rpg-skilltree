@@ -17,7 +17,7 @@
 - **Observações:** mod id `cgs`; runtime 1.4.9. Arsenal documentado pelo projeto inclui Flintlock, Revolver, Shotgun, Nailgun, Gatling, Blazegun, Launcher, Pneumatic Hammer e Frag Grenade. 1.4.9: suporte a NTGL 3.1.8.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `cgs` 1.4.9 + CurseForge/Modrinth oficiais 1.4.9 + source público NeoForge 1.21.1 já auditado para requirements/optional integrations. Reconciliação final: JAR/runtime permanecem exatamente `create-gunsmithing-1.21.1-1.4.9.jar` / `1.4.9`; suporte NTGL 3.1.8 permanece regression gate.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Gunsmithing 1.4.9 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença do arsenal não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #121: `create-gunsmithing-1.21.1-1.4.9.jar` / `1.4.9` conferidos contra a modlist atual; firearm/ammo/attachment authority, Create crafting integration, NTGL dependency, combat attribution, client/server e lifecycle preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #121: `create-gunsmithing-1.21.1-1.4.9.jar` / `1.4.9` reconfirmados; firearm/ammo/attachment authority, Create crafting integration, NTGL dependency, combat attribution, client/server e lifecycle permanecem atuais.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
